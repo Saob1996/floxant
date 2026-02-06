@@ -69,10 +69,17 @@ export async function POST(req: Request) {
     }
 }
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
+// ... keep POST as is ...
+
 export async function GET() {
-    // Determine if we should allow access (Basic check, real auth handled by middleware or session)
-    // For this route, we assume middleware protects /dashboard, but API might need session check if exposed.
-    // We will just read the file.
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     if (!fs.existsSync(DB_PATH)) {
         return NextResponse.json([]);
