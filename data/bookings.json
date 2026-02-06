@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1770296622700",
+    "service": "umzug",
+    "upgrades": [],
+    "details": {},
+    "name": "saaleh",
+    "email": "salehobid3@gmail.com",
+    "phone": "015771105087",
+    "timestamp": "2026-02-05T13:03:42.045Z",
+    "hasFile": true,
+    "status": "new",
+    "fileUrl": "/uploads/1770296622700_image006.png"
+  },
+  {
+    "id": "1770297391267",
+    "service": "umzug",
+    "upgrades": [
+      "bureaucracy_shield"
+    ],
+    "details": {},
+    "name": "saalehcgb",
+    "email": "salehobid3@gmail.com",
+    "phone": "015771105087",
+    "timestamp": "2026-02-05T13:16:31.188Z",
+    "hasFile": false,
+    "status": "new"
+  },
+  {
+    "id": "1770341711425",
+    "service": "umzug",
+    "upgrades": [
+      "first_48h"
+    ],
+    "details": {},
+    "name": "saalehcgbtzzzzz",
+    "email": "salehobid3@gmail.com",
+    "phone": "015771105087",
+    "timestamp": "2026-02-06T01:35:11.401Z",
+    "hasFile": false,
+    "status": "new"
+  },
+  {
+    "id": "1770350009831",
+    "service": "umzug",
+    "upgrades": [
+      "first_48h",
+      "ladies_team"
+    ],
+    "details": {},
+    "name": "saalehcgbtzzzzz22",
+    "email": "salehobid3@gmail.com",
+    "phone": "01577110508750",
+    "timestamp": "2026-02-06T03:53:29.793Z",
+    "hasFile": false,
+    "status": "new"
+  }
+]
