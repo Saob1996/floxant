@@ -6,6 +6,39 @@ import { supabase } from "@/lib/supabase";
 export async function POST(req: Request) {
     try {
         const formData = await req.formData();
+        const file = formData.get("file") as File | null;
+        let fileUrl: string | null = null;
+
+        // Handle File Upload to Supabase Storage
+        if (file && file.size > 0) {
+            try {
+                const timestamp = Date.now();
+                // Sanitize filename: remove special chars, keep extension
+                const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
+                const path = `bookings/${timestamp}_${safeName}`;
+
+                console.log("Uploading file to Supabase:", path);
+
+                const { error: uploadError } = await supabase.storage
+                    .from('uploads')
+                    .upload(path, file);
+
+                if (uploadError) {
+                    console.error("Supabase Storage Upload Error:", uploadError);
+                    // Continue without file if upload fails
+                } else {
+                    // Get Public URL
+                    const { data: publicUrlData } = supabase.storage
+                        .from('uploads')
+                        .getPublicUrl(path);
+
+                    fileUrl = publicUrlData.publicUrl;
+                    console.log("File uploaded successfully. URL:", fileUrl);
+                }
+            } catch (err) {
+                console.error("Unexpected error during file upload:", err);
+            }
+        }
 
         // Extract basic data
         const booking = {
@@ -16,10 +49,9 @@ export async function POST(req: Request) {
             email: formData.get("email") as string,
             phone: formData.get("phone") as string,
             timestamp: formData.get("timestamp") as string,
-            file_url: null, // Placeholder as requested, file handled separately or later
+            file_url: fileUrl,
             status: "new"
         };
-
 
         const { data, error } = await supabase
             .from('bookings')
