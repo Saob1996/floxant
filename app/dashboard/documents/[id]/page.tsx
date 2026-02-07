@@ -88,8 +88,8 @@ export default function DocumentPage() {
                         Auftrag
                     </PremiumButton>
                 </div>
-                <PremiumButton onClick={() => window.print()} className="gap-2">
-                    <Printer size={16} /> PDF Herunterladen / Drucken
+                <PremiumButton onClick={() => window.open(`/api/pdf/${params.id}`, '_blank')} className="gap-2">
+                    <Printer size={16} /> PDF Herunterladen
                 </PremiumButton>
             </div>
 

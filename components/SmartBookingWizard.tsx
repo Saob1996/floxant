@@ -44,7 +44,7 @@ export function SmartBookingWizard() {
         email: "",
         phone: "",
     });
-    const [file, setFile] = useState<File | null>(null);
+    const [files, setFiles] = useState<File[]>([]);
 
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -60,8 +60,10 @@ export function SmartBookingWizard() {
         submitData.append("email", formData.email);
         submitData.append("phone", formData.phone);
         submitData.append("timestamp", new Date().toISOString());
-        if (file) {
-            submitData.append("file", file);
+        if (files.length > 0) {
+            files.forEach(file => {
+                submitData.append("file", file);
+            });
         }
 
         try {
@@ -313,8 +315,13 @@ export function SmartBookingWizard() {
                         <div className="relative">
                             <input
                                 type="file"
+                                multiple
                                 accept="image/*"
-                                onChange={e => setFile(e.target.files?.[0] || null)}
+                                onChange={e => {
+                                    if (e.target.files) {
+                                        setFiles(Array.from(e.target.files));
+                                    }
+                                }}
                                 className="hidden"
                                 id="file-upload"
                             />
@@ -324,7 +331,9 @@ export function SmartBookingWizard() {
                             >
                                 <Upload className="w-5 h-5 text-muted-foreground" />
                                 <span className="text-sm text-muted-foreground">
-                                    {file ? file.name : "Klicken zum Hochladen"}
+                                    {files.length > 0
+                                        ? `${files.length} Datei(en) ausgewählt`
+                                        : "Klicken zum Hochladen (Mehrfachauswahl möglich)"}
                                 </span>
                             </label>
                         </div>

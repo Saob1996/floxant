@@ -21,7 +21,8 @@ interface Booking {
     timestamp: string;
     status: string;
     upgrades: string[];
-    file_url?: string;
+    file_urls?: string[];
+    file_url?: string; // Legacy support
 }
 
 export default function Dashboard() {
@@ -242,7 +243,27 @@ export default function Dashboard() {
                                                     <Phone className="w-4 h-4 text-muted-foreground" />
                                                     <a href={`tel:${booking.phone}`} className="hover:text-primary transition-colors">{booking.phone}</a>
                                                 </div>
-                                                {booking.file_url && (
+                                                {booking.file_urls && booking.file_urls.length > 0 ? (
+                                                    <div className="flex gap-2 mt-2 overflow-x-auto pb-2">
+                                                        {booking.file_urls.map((url, i) => (
+                                                            <img
+                                                                key={i}
+                                                                src={url}
+                                                                alt={`Upload ${i + 1}`}
+                                                                className="cursor-pointer hover:opacity-80 transition-opacity"
+                                                                onClick={() => window.open(url, '_blank')}
+                                                                style={{
+                                                                    width: "100px",
+                                                                    height: "100px",
+                                                                    borderRadius: "6px",
+                                                                    border: "1px solid #e5e7eb",
+                                                                    objectFit: "cover"
+                                                                }}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                ) : booking.file_url ? (
+                                                    // Legacy Display
                                                     <img
                                                         src={booking.file_url}
                                                         alt="Booking upload"
@@ -254,7 +275,7 @@ export default function Dashboard() {
                                                             objectFit: "cover"
                                                         }}
                                                     />
-                                                )}
+                                                ) : null}
                                             </div>
 
                                             <div className="flex flex-wrap gap-2 max-w-xs justify-start md:justify-end">

@@ -2,41 +2,56 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
+import sharp from "sharp";
 
 export async function POST(req: Request) {
     try {
         const formData = await req.formData();
-        const file = formData.get("file") as File | null;
-        let fileUrl: string | null = null;
+        const files = formData.getAll("file") as File[];
+        const fileUrls: string[] = [];
 
-        // Handle File Upload to Supabase Storage
-        if (file && file.size > 0) {
-            try {
-                const timestamp = Date.now();
-                // Sanitize filename: remove special chars, keep extension
-                const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
-                const path = `bookings/${timestamp}_${safeName}`;
+        // Handle File Uploads to Supabase Storage with Compression
+        if (files && files.length > 0) {
+            const timestamp = Date.now();
 
-                console.log("Uploading file to Supabase:", path);
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.size > 0 && file.type.startsWith("image/")) {
+                    try {
+                        const buffer = Buffer.from(await file.arrayBuffer());
 
-                const { error: uploadError } = await supabase.storage
-                    .from('uploads')
-                    .upload(path, file);
+                        // Compress image using sharp
+                        const compressedBuffer = await sharp(buffer)
+                            .resize(1600, null, { withoutEnlargement: true }) // Max width 1600px, preserve aspect ratio
+                            .jpeg({ quality: 70 }) // Convert to JPEG with 70% quality
+                            .toBuffer();
 
-                if (uploadError) {
-                    console.error("Supabase Storage Upload Error:", uploadError);
-                    // Continue without file if upload fails
-                } else {
-                    // Get Public URL
-                    const { data: publicUrlData } = supabase.storage
-                        .from('uploads')
-                        .getPublicUrl(path);
+                        const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
+                        // Use .jpg extension since we converted to jpeg
+                        const filename = `${timestamp}_${i}_${safeName}.jpg`;
+                        const path = `bookings/${filename}`;
 
-                    fileUrl = publicUrlData.publicUrl;
-                    console.log("File uploaded successfully. URL:", fileUrl);
+                        console.log(`Uploading compressed file ${i + 1}/${files.length} to Supabase:`, path);
+
+                        const { error: uploadError } = await supabase.storage
+                            .from('uploads')
+                            .upload(path, compressedBuffer, {
+                                contentType: 'image/jpeg'
+                            });
+
+                        if (uploadError) {
+                            console.error("Supabase Storage Upload Error:", uploadError);
+                        } else {
+                            const { data: publicUrlData } = supabase.storage
+                                .from('uploads')
+                                .getPublicUrl(path);
+
+                            fileUrls.push(publicUrlData.publicUrl);
+                        }
+                    } catch (err) {
+                        console.error("Error processing file:", file.name, err);
+                    }
                 }
-            } catch (err) {
-                console.error("Unexpected error during file upload:", err);
             }
         }
 
@@ -49,7 +64,7 @@ export async function POST(req: Request) {
             email: formData.get("email") as string,
             phone: formData.get("phone") as string,
             timestamp: formData.get("timestamp") as string,
-            file_url: fileUrl,
+            file_urls: fileUrls, // Store array of URLs
             status: "new"
         };
 
@@ -63,7 +78,6 @@ export async function POST(req: Request) {
             throw error;
         }
 
-        // Return the id from the inserted record
         const newId = data && data[0] ? data[0].id : "unknown";
 
         return NextResponse.json({ success: true, id: newId });
