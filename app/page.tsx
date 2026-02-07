@@ -264,6 +264,34 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
+            {/* SEO Content - Hidden */}
+            <div style={{
+                position: "absolute",
+                left: "-9999px",
+                width: "1px",
+                height: "1px",
+                overflow: "hidden"
+            }}>
+                <h1>Umzugs- und Reinigungsservice in Bayern und Nordrhein-Westfalen</h1>
+
+                <p>
+                    Floxant bietet professionelle Umzugs-, Reinigungs- und Entrümpelungsservices
+                    in ganz Bayern, einschließlich München, Nürnberg, Augsburg, Regensburg,
+                    Ingolstadt, Würzburg, Fürth und Erlangen.
+                </p>
+
+                <p>
+                    Zusätzlich sind unsere Teams in Nordrhein-Westfalen im Einsatz,
+                    insbesondere in Düsseldorf und Köln.
+                </p>
+
+                <p>
+                    Servicegebiete:
+                    München, Nürnberg, Augsburg, Regensburg, Ingolstadt, Würzburg,
+                    Fürth, Erlangen, Düsseldorf, Köln.
+                </p>
+            </div>
         </main >
     );
 }

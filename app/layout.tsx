@@ -12,22 +12,21 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
     metadataBase: new URL("https://floxant.de"),
     title: {
-        default: "Floxant | Premium Umzug, Reinigung & Entsorgung Berlin",
-        template: "%s | Floxant Berlin"
+        default: "Floxant – Umzug & Reinigung in Bayern",
+        template: "%s | Floxant Bayern"
     },
-    description: "Ihr Partner für stressfreie Umzüge, professionelle Reinigung und fachgerechte Entsorgung in Berlin. Exzellenter Service, transparenter Festpreis & 100% Zuverlässigkeit.",
+    description: "Professioneller Umzugs- und Reinigungsservice in Bayern. Jetzt Anfrage stellen.",
     keywords: [
-        "Umzug Berlin",
-        "Umzugsunternehmen Berlin",
+        "Umzug Bayern",
+        "Umzug München",
+        "Umzug Nürnberg",
+        "Umzugsunternehmen Bayern",
         "Umzugsfirma",
         "Privatumzug",
         "Firmenumzug",
-        "Möbelmontage",
-        "Reinigungsfirma Berlin",
-        "Entsorgung Berlin",
-        "Sperrmüllabholung",
+        "Reinigungsfirma Bayern",
+        "Entsorgung Bayern",
         "Wohnungsauflösung",
-        "Endreinigung",
         "Floxant"
     ],
     authors: [{ name: "Floxant Service GmbH", url: "https://floxant.de" }],
