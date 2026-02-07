@@ -21,7 +21,7 @@ interface Booking {
     timestamp: string;
     status: string;
     upgrades: string[];
-    fileUrl?: string;
+    file_url?: string;
 }
 
 export default function Dashboard() {
@@ -242,6 +242,19 @@ export default function Dashboard() {
                                                     <Phone className="w-4 h-4 text-muted-foreground" />
                                                     <a href={`tel:${booking.phone}`} className="hover:text-primary transition-colors">{booking.phone}</a>
                                                 </div>
+                                                {booking.file_url && (
+                                                    <img
+                                                        src={booking.file_url}
+                                                        alt="Booking upload"
+                                                        style={{
+                                                            width: "120px",
+                                                            marginTop: "8px",
+                                                            borderRadius: "6px",
+                                                            border: "1px solid #e5e7eb",
+                                                            objectFit: "cover"
+                                                        }}
+                                                    />
+                                                )}
                                             </div>
 
                                             <div className="flex flex-wrap gap-2 max-w-xs justify-start md:justify-end">
@@ -253,8 +266,8 @@ export default function Dashboard() {
                                             </div>
 
                                             <div className="flex items-center gap-3 w-full md:w-auto border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 mt-4 md:mt-0">
-                                                {booking.fileUrl ? (
-                                                    <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => window.open(booking.fileUrl, '_blank')}>
+                                                {booking.file_url ? (
+                                                    <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => window.open(booking.file_url, '_blank')}>
                                                         <FileText className="w-5 h-5" />
                                                     </PremiumButton>
                                                 ) : (
