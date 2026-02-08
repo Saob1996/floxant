@@ -287,8 +287,8 @@ export default function Dashboard() {
                                             </div>
 
                                             <div className="flex items-center gap-3 w-full md:w-auto border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 mt-4 md:mt-0">
-                                                {booking.file_url ? (
-                                                    <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => window.open(booking.file_url, '_blank')}>
+                                                {booking.file_url || (booking.file_urls && booking.file_urls.length > 0) ? (
+                                                    <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => window.open(booking.file_url || (booking.file_urls && booking.file_urls[0]), '_blank')}>
                                                         <FileText className="w-5 h-5" />
                                                     </PremiumButton>
                                                 ) : (
