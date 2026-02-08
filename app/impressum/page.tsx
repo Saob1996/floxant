@@ -13,38 +13,49 @@ export default function Impressum() {
             <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto space-y-8">
                 <h1 className="text-4xl font-bold">Impressum</h1>
 
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <p><strong>Angaben gemäß § 5 TMG</strong></p>
-                    <p>
-                        FLOXANT<br />
-                        [Vorname Nachname / Firmenname]<br />
-                        [Adresse]<br />
-                        [PLZ Ort]<br />
-                        Deutschland
-                    </p>
+                <div className="space-y-6 text-muted-foreground leading-relaxed">
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-2">Angaben gemäß § 5 TMG</h2>
+                        <p>
+                            FLOXANT<br />
+                            Inhaber: Saleh Obid<br />
+                            Breite Straße 22<br />
+                            40213 Düsseldorf<br />
+                            Deutschland
+                        </p>
+                    </section>
 
-                    <p><strong>Kontakt:</strong><br />
-                        Telefon: [Telefonnummer]<br />
-                        E-Mail: [E-Mail-Adresse]<br />
-                        Website: www.floxant.de</p>
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-2">Kontakt</h2>
+                        <p>
+                            Telefon: +49 1577 1105087<br />
+                            E-Mail: [wird ergänzt]
+                        </p>
+                    </section>
 
-                    <p><strong>Vertreten durch:</strong><br />
-                        [Name des Geschäftsführers / Inhabers]</p>
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-2">Umsatzsteuer</h2>
+                        <p>
+                            Umsatzsteuer-Identifikationsnummer gemäß §27a UStG:<br />
+                            wird beantragt
+                        </p>
+                    </section>
 
-                    <p><strong>Umsatzsteuer-ID:</strong><br />
-                        [USt-IdNr., falls vorhanden]</p>
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+                        <p>
+                            Saleh Obid<br />
+                            Breite Straße 22<br />
+                            40213 Düsseldorf
+                        </p>
+                    </section>
 
-                    <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br />
-                        [Name + Adresse]</p>
-
-                    <p><strong>Haftung für Inhalte</strong><br />
-                        Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt.</p>
-
-                    <p><strong>Haftung für Links</strong><br />
-                        Unsere Website enthält Links zu externen Websites Dritter.</p>
-
-                    <p><strong>Urheberrecht</strong><br />
-                        Die durch FLOXANT erstellten Inhalte unterliegen dem deutschen Urheberrecht.</p>
+                    <section>
+                        <h2 className="text-xl font-semibold text-foreground mb-2">Hinweis</h2>
+                        <p>
+                            Dieses Unternehmen wird als Einzelunternehmen geführt.
+                        </p>
+                    </section>
                 </div>
             </div>
         </main>
