@@ -22,21 +22,24 @@ export default function LoginPage() {
         const password = formData.get("password");
 
         try {
+            console.log("Attempting sign in...");
             const res = await signIn("credentials", {
                 email,
                 password,
                 redirect: false,
             });
+            console.log("Sign in result:", res);
 
             if (res?.ok) {
-                router.push("/dashboard");
-                router.refresh();
+                console.log("Redirecting to dashboard via window.location...");
+                // Use window.location to ensure a full state reset and cookie refresh
+                window.location.href = "/dashboard";
             } else {
                 setError("Login fehlgeschlagen");
                 setLoading(false);
             }
         } catch (error) {
-            console.error(error);
+            console.error("Login error:", error);
             setError("Ein Fehler ist aufgetreten.");
             setLoading(false);
         }
