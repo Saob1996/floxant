@@ -78,6 +78,8 @@ export const metadata: Metadata = {
     }
 };
 
+import AuthProvider from "@/components/session-provider";
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -86,11 +88,13 @@ export default function RootLayout({
     return (
         <html lang="de" suppressHydrationWarning>
             <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
-                <JsonLd />
-                {children}
-                <WhatsAppButton />
-                <CookieBanner />
-                <Footer />
+                <AuthProvider>
+                    <JsonLd />
+                    {children}
+                    <WhatsAppButton />
+                    <CookieBanner />
+                    <Footer />
+                </AuthProvider>
             </body>
         </html>
     );

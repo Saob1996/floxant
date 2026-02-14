@@ -28,12 +28,12 @@ export default function LoginPage() {
                 redirect: false,
             });
 
-            if (res?.error) {
-                setError("Ungültige Zugangsdaten.");
-                setLoading(false);
-            } else {
+            if (res?.ok) {
                 router.push("/dashboard");
                 router.refresh();
+            } else {
+                setError("Login fehlgeschlagen");
+                setLoading(false);
             }
         } catch (error) {
             console.error(error);

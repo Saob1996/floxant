@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { EditModal } from "@/components/EditModal";
 import {
@@ -26,6 +27,8 @@ interface Booking {
 }
 
 export default function Dashboard() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
@@ -33,17 +36,38 @@ export default function Dashboard() {
     const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
     useEffect(() => {
-        fetch("/api/bookings")
-            .then(res => res.json())
-            .then(data => {
-                setBookings(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error(err);
-                setLoading(false);
-            });
-    }, []);
+        if (status === "unauthenticated") {
+            router.push("/login");
+        }
+    }, [status, router]);
+
+    useEffect(() => {
+        if (status === "authenticated") {
+            fetch("/api/bookings")
+                .then(res => res.json())
+                .then(data => {
+                    setBookings(data);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    console.error(err);
+                    setLoading(false);
+                });
+        }
+    }, [status]);
+
+    if (status === "loading") {
+        return (
+            <div className="flex h-screen items-center justify-center bg-background">
+                <div className="animate-pulse flex flex-col items-center gap-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full"></div>
+                    <p className="text-muted-foreground font-medium">Lade Dashboard...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!session) return null;
 
     const getIcon = (service: string) => {
         switch (service) {
