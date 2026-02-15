@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "services": "Leistungen",
+    "pricing": "Preise",
+    "contact": "Kontakt",
+    "login": "Login",
+    "book_now": "JETZT BUCHEN",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "title": "Die Architekten Ihrer Veränderung",
+    "subtitle": "Ein Umzug ist kein Durcheinander von Kartons. Er ist ein komplexes technisches Projekt. Wir planen, steuern und führen aus.",
+    "cta": "Angebot anfordern"
+  },
+  "area": {
+    "title": "Unsere Einsatzgebiete",
+    "description": "FLOXANT hat seinen Firmensitz in Düsseldorf. Unser operativer Schwerpunkt liegt in Regensburg und der Oberpfalz. Von hier aus betreuen wir Kunden in ganz Bayern sowie deutschlandweite Fernumzüge.",
+    "hub_note": "FLOXANT hat seinen Firmensitz in Düsseldorf. Unser operativer Schwerpunkt liegt in Regensburg und der Oberpfalz. Von hier aus betreuen wir Kunden in ganz Bayern sowie deutschlandweite Fernumzüge.",
+    "cities": {
+      "regensburg": "Regensburg",
+      "bavaria": "Bayern",
+      "munich": "München",
+      "nuremberg": "Nürnberg",
+      "augsburg": "Augsburg",
+      "germany": "Deutschlandweit"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "Service",
+      "details": "Details",
+      "upgrades": "Upgrades",
+      "contact": "Kontakt"
+    },
+    "headings": {
+      "service_selection": "Womit dürfen wir starten?",
+      "service_subtitle": "Wählen Sie Ihren Hauptservice.",
+      "details_prefix": "Details für",
+      "upgrades_title": "Darf es etwas mehr sein?",
+      "upgrades_subtitle": "Unsere Signature Services für Ihren Komfort.",
+      "summary_title": "Ihre Zusammenfassung",
+      "summary_subtitle": "Wir prüfen Ihre Kapazitäten sofort.",
+      "success_title": "Anfrage erfolgreich!",
+      "success_message": "Vielen Dank, {name}. Wir haben Ihre Anfrage erhalten und prüfen Ihre Kapazitäten.",
+      "success_email": "Eine Bestätigung wurde an {email} gesendet."
+    },
+    "services": {
+      "umzug": {
+        "label": "Umzug",
+        "desc": "Stressfrei umziehen."
+      },
+      "reinigung": {
+        "label": "Reinigung",
+        "desc": "Tiefenreinigung & Übergabe."
+      },
+      "entsorgung": {
+        "label": "Entsorgung",
+        "desc": "Fachgerecht & schnell."
+      }
+    },
+    "form": {
+      "start_address": "Start-Adresse",
+      "end_address": "Ziel-Adresse",
+      "date": "Wunschtermin",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Telefon",
+      "photos": "Fotos hochladen (Optional)",
+      "photos_placeholder": "Klicken zum Hochladen (Mehrfachauswahl möglich)",
+      "photos_count": "{count} Datei(en) ausgewählt",
+      "placeholder_address": "Straße, Ort",
+      "placeholder_name": "Ihr Name",
+      "placeholder_email": "email@beispiel.de",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "Zurück",
+      "next": "Weiter",
+      "finish": "Zum Abschluss",
+      "submit": "Jetzt verbindlich anfragen",
+      "sending": "Sende...",
+      "new_request": "Neue Anfrage stellen"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "Damen-Team",
+        "desc": "Maximale Sorgfalt & Empathie."
+      },
+      "24h_service": {
+        "title": "24h Service",
+        "desc": "Rund um die Uhr einsatzbereit."
+      },
+      "furniture_opt": {
+        "title": "Möbel-Optimierung",
+        "desc": "Demontage, Aufbau & Pflege."
+      },
+      "storage_rot": {
+        "title": "Lager-Rotation",
+        "desc": "Flexible Zwischenlagerung."
+      },
+      "maybe_box": {
+        "title": "Die Vielleicht-Box",
+        "desc": "Entscheidungshilfe für Unklares."
+      },
+      "clean_shield": {
+        "title": "Bureaucracy Shield",
+        "desc": "Halteverbotszonen & Service."
+      }
+    },
+    "error": {
+      "submit": "Fehler beim Senden. Bitte versuchen Sie es erneut.",
+      "generic": "Ein unerwarteter Fehler ist aufgetreten."
+    }
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "impressum": "Impressum",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "revocation": "Widerruf",
+    "booking": "Buchungsbedingungen",
+    "areas": "Servicegebiete"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "submit": "Senden",
+    "success": "Nachricht gesendet",
+    "error": "Fehler beim Senden"
+  },
+  "trust": {
+    "experience": "Jahrelange Erfahrung",
+    "quality": "Höchste Qualität",
+    "insured": "Voll versichert"
+  },
+  "auth": {
+    "login_title": "Admin Login",
+    "subtitle": "Geschützter Bereich",
+    "email_label": "Email",
+    "password_label": "Passwort",
+    "submit_button": "Anmelden",
+    "loading_button": "Prüfe...",
+    "error_failed": "Login fehlgeschlagen",
+    "error_generic": "Ein Fehler ist aufgetreten.",
+    "logout": "Abmelden",
+    "system_operational": "System operational",
+    "dashboard_title": "Floxant Internal"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "Gesamt Anfragen",
+      "new": "Neu (24h)",
+      "status": "Status",
+      "active": "Aktiv"
+    },
+    "filters": {
+      "search_placeholder": "Suchen nach Name oder Email...",
+      "all": "Alle",
+      "umzug": "Umzug",
+      "reinigung": "Reinigung",
+      "entsorgung": "Entsorgung"
+    },
+    "status": {
+      "loading": "Lade Dashboard...",
+      "syncing": "Synchronisiere Datenbank...",
+      "empty": "Keine passenden Anfragen gefunden.",
+      "empty_hint": "Versuchen Sie die Filter anzupassen."
+    },
+    "card": {
+      "edit": "Bearbeiten",
+      "no_extras": "Keine Extras"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "Ihr Umzug in",
+      "hero_title_highlight": "München",
+      "hero_desc": "Stressfrei in die bayerische Landeshauptstadt oder von München in die Welt. FLOXANT bietet Premium-Umzugsservice mit Festpreisgarantie.",
+      "badge": "München & Umgebung",
+      "intro_title": "Umziehen in München – Mit Plan und Präzision",
+      "intro_text_1": "München ist eine pulsierende Metropole, die Menschen aus aller Welt anzieht. Ein Umzug in der bayerischen Landeshauptstadt stellt jedoch oft eine besondere logistische Herausforderung dar. Enge Treppenhäuser in Schwabing, fehlende Parkplätze im Glockenbachviertel oder strikte Zeitfenster in Wohnanlagen: Die Gegebenheiten erfordern Erfahrung und gute Planung.",
+      "intro_text_2": "FLOXANT steht für einen Umzugsservice, der genau diese Herausforderungen meistert. Wir arbeiten nicht einfach drauf los, sondern planen Ihren Standortwechsel detailliert. Unser Ziel ist es, dass Sie sich entspannt zurücklehnen können, während wir die schwere Arbeit erledigen.",
+      "transparency_title": "Transparenzhinweis zum Firmensitz",
+      "transparency_text": "FLOXANT hat seinen juristischen Firmensitz in Düsseldorf. Unser operatives Team ist jedoch regelmäßig für Umzüge in München und dem gesamten Umland im Einsatz. Wir kombinieren die Flexibilität eines überregionalen Anbieters mit der Zuverlässigkeit, die Sie erwarten. Zusätzlich organisieren wir routiniert Fernumzüge von München nach Nordrhein-Westfalen und in alle anderen Bundesländer.",
+      "portfolio_title": "Unser Service-Portfolio für München",
+      "services": {
+        "city": {
+          "title": "Stadtumzüge München",
+          "desc": "Schnell und effizient innerhalb des Stadtgebiets. Wir kennen die Wege und organisieren bei Bedarf Halteverbotszonen."
+        },
+        "remote": {
+          "title": "Fernumzüge ab München",
+          "desc": "Von der Isar an den Rhein oder die Spree. Unsere Fernumzüge sind logistisch optimiert und sicher."
+        },
+        "clearance": {
+          "title": "Entrümpelung",
+          "desc": "Fachgerechte Entsorgung von Altmöbeln bei Wohnungsauflösungen in München. Besenreine Übergabe garantiert."
+        }
+      },
+      "details_title": "München-Spezial: Was Sie beachten sollten",
+      "details_text": "Jede Stadt hat ihre Eigenheiten, und München macht hier keine Ausnahme. Die Parkplatzsituation ist in vielen Vierteln angespannt. Für einen reibungslosen Ablauf ist die Einrichtung einer offiziellen Halteverbotszone oft unerlässlich. Wir übernehmen gerne die Beantragung bei den Münchner Behörden für Sie, inklusive der rechtzeitigen Aufstellung der Schilder.",
+      "remote_title": "Umzug von Bayern in ganz Deutschland",
+      "remote_text": "Viele unserer Kunden ziehen beruflich von München in andere Metropolregionen wie Düsseldorf, Köln, Frankfurt oder Berlin. Gerade bei solchen Langstreckenumzügen (Fernumzüge) ist eine professionelle Planung das A und O. Wir sorgen dafür, dass Ihr Inventar sicher verpackt, versichert und pünktlich am Zielort ankommt. Dank unserer regelmäßigen Touren zwischen Bayern und NRW können wir oft attraktive Beiladungsmöglichkeiten oder effiziente Direktfahrten anbieten.",
+      "pricing_title": "Transparente Preise ohne Überraschungen",
+      "pricing_text": "München ist schon teuer genug – Ihr Umzug sollte Sie nicht finanziell ruinieren. Bei FLOXANT setzen wir auf absolute Kostentransparenz. Statt vager Stundensätze erhalten Sie von uns in der Regel ein Festpreisangebot. Darin sind alle Leistungen enthalten, die wir vorab besprochen haben. Keine versteckten Gebühren für Etagenzuschläge oder Anfahrtswege.",
+      "features": {
+        "inspection": "Kostenlose Besichtigung: Gerne begutachten wir Ihr Umzugsgut vorab per Video-Call. Das spart Zeit und ermöglicht eine genaue Kalkulation.",
+        "insurance": "Versicherung inklusive: Ihre Möbel sind bei uns in sicheren Händen und umfassend versichert.",
+        "staff": "Qualifiziertes Personal: Unsere Mitarbeiter sind erfahren, freundlich und arbeiten sorgfältig."
+      },
+      "links_title": "Weitere Standorte in der Region",
+      "cta_title": "Ihr Angebot für München",
+      "cta_text": "Starten Sie jetzt Ihre Anfrage. Wir erstellen Ihnen kurzfristig ein unverbindliches Angebot für Ihren Umzug in, nach oder aus München."
+    },
+    "service_umzug": {
+      "meta_title": "Privat-Umzug – Ihr persönlicher Standortwechsel",
+      "meta_desc": "FLOXANT begleitet Ihren privaten Umzug mit Präzision und Diskretion. Von Regensburg aus – für ganz Bayern und deutschlandweit.",
+      "badge": "Kernleistung",
+      "hero_title": "Privat-Umzug",
+      "hero_desc": "Ein Umzug ist mehr als Transport. Es ist ein Übergang. FLOXANT begleitet diesen Prozess diskret, strukturiert und zuverlässig.",
+      "intro_title": "Ihr Umzug – durchdacht bis ins Detail",
+      "intro_p1": "Ein privater Umzug berührt alle Lebensbereiche. Persönliche Gegenstände, wertvolle Erinnerungsstücke, empfindliche Möbel – alles erfordert individuelle Behandlung. Bei FLOXANT verstehen wir, dass Ihr Zuhause mehr ist als eine Adresse. Es ist ein Teil Ihrer Identität. Deshalb planen wir jeden Standortwechsel so, dass Sie sich auf das konzentrieren können, was wirklich zählt: Ihr neues Kapitel.",
+      "intro_p2": "Unser Team arbeitet mit einem klaren Prozess, der Ihnen jederzeit volle Transparenz bietet. Von der ersten Besichtigung bis zur letzten Kiste an ihrem neuen Platz – wir überlassen nichts dem Zufall. Unser operativer Schwerpunkt liegt in Regensburg und der Oberpfalz. Von hier aus betreuen wir Kunden in ganz Bayern sowie deutschlandweite Fernumzüge.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Privatpersonen und Familien, die Wert auf Sorgfalt legen",
+        "Wohnungswechsel innerhalb einer Stadt oder Region",
+        "Umzüge mit besonderem Schutzbedarf für Wertgegenstände"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Bestandsaufnahme",
+          "desc": "Kostenlose Besichtigung – vor Ort oder per Video-Call. Wir erfassen Volumen, Besonderheiten und Ihre Wünsche."
+        },
+        {
+          "title": "Festpreisangebot",
+          "desc": "Sie erhalten ein transparentes Angebot ohne versteckte Kosten. Was vereinbart ist, gilt."
+        },
+        {
+          "title": "Ausführung",
+          "desc": "Professionelles Verpacken, sicherer Transport, termingerechte Lieferung. Unsere Teams arbeiten sorgfältig und leise."
+        },
+        {
+          "title": "Übergabe",
+          "desc": "Aufbau, Platzierung und eine besenreine Hinterlassung am alten Standort. Ihr neues Zuhause ist bezugsfertig."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Festpreisgarantie ohne Nachforderungen",
+        "Vollversicherung für Ihr gesamtes Inventar",
+        "Qualifiziertes, geschultes Personal"
+      ],
+      "cta_title": "Unverbindliche Anfrage stellen",
+      "cta_text": "Starten Sie Ihren Umzug mit einem persönlichen Angebot. Diskret, transparent und ohne Verpflichtung."
+    },
+    "service_buero_umzug": {
+      "meta_title": "Büro-Umzug – Professionelle Firmenumzüge",
+      "meta_desc": "FLOXANT organisiert Ihren Büroumzug mit minimaler Ausfallzeit. Strukturiert, diskret und termingerecht – von Regensburg aus für ganz Bayern.",
+      "badge": "Gewerbe",
+      "hero_title": "Büro-Umzug",
+      "hero_desc": "Geschäftskontinuität erfordert Planung. Wir sorgen dafür, dass Ihr Unternehmen am neuen Standort ohne Verzögerung weiterarbeitet.",
+      "intro_title": "Firmenumzüge mit System",
+      "intro_p1": "Ein Büroumzug ist ein Eingriff in laufende Geschäftsprozesse. IT-Infrastruktur, sensible Dokumente, Arbeitsplatzergonomie – jedes Detail muss stimmen. FLOXANT plant Ihren gewerblichen Standortwechsel so, dass Ihre Mitarbeiter am nächsten Morgen produktiv weiterarbeiten können.",
+      "intro_p2": "Wir koordinieren alle Gewerke: von der IT-Abschaltung über den physischen Transport bis zur Neuinstallation. Diskretion ist dabei selbstverständlich – gerade bei sensiblen Branchen wie Kanzleien, Praxen oder Finanzdienstleistern.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Unternehmen jeder Größe mit laufendem Betrieb",
+        "Kanzleien, Praxen und Büros mit sensiblen Unterlagen",
+        "Firmen, die Ausfallzeiten minimieren müssen"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Projektplanung",
+          "desc": "Detaillierte Analyse Ihrer Bürostruktur. Zeitplan, Verantwortlichkeiten und Meilensteine werden definiert."
+        },
+        {
+          "title": "Koordination",
+          "desc": "Abstimmung mit Ihrem IT-Team, Facility Management und Vermieter. Alles aus einer Hand."
+        },
+        {
+          "title": "Durchführung",
+          "desc": "Verlagerung in definierten Zeitfenstern – auch abends oder am Wochenende. Minimal-invasiv."
+        },
+        {
+          "title": "Inbetriebnahme",
+          "desc": "Aufbau der Arbeitsplätze, Funktionstest und Übergabe. Ihr Team kann sofort starten."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Definierte Zeitfenster mit garantierter Einhaltung",
+        "Versicherungsschutz für IT-Equipment und Inventar",
+        "Diskrete Abwicklung ohne Störung des Geschäftsbetriebs"
+      ],
+      "cta_title": "Büroumzug planen",
+      "cta_text": "Lassen Sie uns Ihren Firmenumzug gemeinsam strukturieren. Kontaktieren Sie uns für eine vertrauliche Beratung."
+    },
+    "service_fernumzug": {
+      "meta_title": "Fernumzug – Deutschlandweit und europaweit",
+      "meta_desc": "FLOXANT organisiert Fernumzüge von Bayern aus in jede Stadt Deutschlands. Logistisch optimiert, versichert und termingerecht.",
+      "badge": "Langstrecke",
+      "hero_title": "Fernumzug",
+      "hero_desc": "Distanz ist kein Hindernis. Wir verbinden Regensburg, Bayern und ganz Deutschland mit einer Logistik, die keine Kompromisse kennt.",
+      "intro_title": "Langstrecke mit Präzision",
+      "intro_p1": "Ein Fernumzug erfordert eine andere Qualität der Planung. Längere Transportwege, wechselnde Straßenverhältnisse und die Koordination an zwei Standorten gleichzeitig – das alles muss nahtlos funktionieren. FLOXANT hat sich auf diese Komplexität spezialisiert.",
+      "intro_p2": "Ob von Regensburg nach Hamburg, von München nach Berlin oder von Bayern nach Nordrhein-Westfalen: Unser Team plant Routen, organisiert Zwischenlager bei Bedarf und sorgt dafür, dass Ihr Inventar sicher und pünktlich ankommt.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Privatpersonen mit berufsbedingtem Standortwechsel",
+        "Familien, die in eine andere Stadt ziehen",
+        "Unternehmen mit Mitarbeiterverlegungen"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Routenplanung",
+          "desc": "Optimale Streckenführung unter Berücksichtigung von Verkehr, Wetter und Zeitfenstern."
+        },
+        {
+          "title": "Verpackung",
+          "desc": "Professionelles Verpacken mit Spezialmaterialien für den Langstreckentransport."
+        },
+        {
+          "title": "Transport",
+          "desc": "GPS-überwachter Transport mit erfahrenen Fahrern. Versicherungsschutz auf der gesamten Strecke."
+        },
+        {
+          "title": "Anlieferung",
+          "desc": "Termingerechte Lieferung, Aufbau und Platzierung am neuen Standort."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Festpreisangebot für die gesamte Strecke",
+        "Vollversicherung während des gesamten Transports",
+        "Termingarantie mit definierten Lieferfenstern"
+      ],
+      "cta_title": "Fernumzug anfragen",
+      "cta_text": "Wohin darf es gehen? Starten Sie Ihre Anfrage und erhalten Sie ein individuelles Angebot für Ihren Fernumzug."
+    },
+    "service_reinigung": {
+      "meta_title": "Professionelle Reinigung – Endreinigung und Übergabe",
+      "meta_desc": "FLOXANT bietet professionelle Endreinigung nach Vermieterstandards. Für Regensburg, Bayern und deutschlandweit.",
+      "badge": "Reinigung",
+      "hero_title": "Reinigung",
+      "hero_desc": "Sauberkeit ist kein Detail – sie ist die Grundlage für einen geordneten Abschluss und einen klaren Neuanfang.",
+      "intro_title": "Endreinigung mit System",
+      "intro_p1": "Die Endreinigung einer Wohnung ist oft der entscheidende Faktor für eine reibungslose Kautionsrückzahlung. FLOXANT arbeitet nach klar definierten Vermieterstandards und dokumentiert das Ergebnis. So haben Sie Sicherheit bei der Übergabe.",
+      "intro_p2": "Unser Reinigungsteam arbeitet gründlich, schnell und respektvoll mit Ihrem Eigentum. Ob nach einem Umzug, vor einem Einzug oder als eigenständige Dienstleistung – wir hinterlassen Räume in einem Zustand, der keine Fragen offenlässt.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Mieter vor der Wohnungsübergabe",
+        "Eigentümer vor dem Verkauf oder der Neuvermietung",
+        "Gewerbeflächen nach Mietende"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Besichtigung",
+          "desc": "Erfassung des Zustands und Definition des Reinigungsumfangs."
+        },
+        {
+          "title": "Durchführung",
+          "desc": "Systematische Reinigung aller Räume, Böden, Fenster und Sanitäranlagen."
+        },
+        {
+          "title": "Qualitätskontrolle",
+          "desc": "Abnahme nach Checkliste. Fotodokumentation für Ihre Unterlagen."
+        },
+        {
+          "title": "Übergabe",
+          "desc": "Besenreine Übergabe, bereit für den Vermieter oder den nächsten Mieter."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Reinigung nach Vermieterstandards",
+        "Fotodokumentation inklusive",
+        "Nachbesserung bei berechtigten Beanstandungen"
+      ],
+      "cta_title": "Reinigung beauftragen",
+      "cta_text": "Sichern Sie sich eine professionelle Endreinigung. Transparent kalkuliert und termingerecht."
+    },
+    "service_entruempelung": {
+      "meta_title": "Entrümpelung – Professionelle Räumung und Entsorgung",
+      "meta_desc": "FLOXANT räumt Wohnungen und Gewerbeflächen fachgerecht. Entrümpelung in Regensburg, Bayern und deutschlandweit.",
+      "badge": "Entsorgung",
+      "hero_title": "Entrümpelung",
+      "hero_desc": "Loslassen erfordert Vertrauen. Wir räumen professionell, diskret und umweltbewusst.",
+      "intro_title": "Räumung mit Verantwortung",
+      "intro_p1": "Entrümpelung ist mehr als das Entfernen von Gegenständen. Oft stehen emotionale Entscheidungen dahinter – sei es nach einem Todesfall, bei einer Auflösung des Haushalts oder bei einem Neuanfang. FLOXANT geht mit diesen Situationen respektvoll und einfühlsam um.",
+      "intro_p2": "Wir trennen fachgerecht, entsorgen umweltbewusst und hinterlassen besenreine Räume. Wertstoffe werden recycelt, Brauchbares kann auf Wunsch gespendet werden. Sie erhalten einen vollständigen Nachweis über die Entsorgung.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Haushaltsauflösungen und Nachlassräumungen",
+        "Gewerbliche Räumungen bei Betriebsaufgabe",
+        "Privatpersonen, die sich professionell von Altlasten trennen möchten"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Begehung",
+          "desc": "Gemeinsame Bestandsaufnahme. Sie entscheiden, was bleibt, was geht und was gespendet wird."
+        },
+        {
+          "title": "Räumung",
+          "desc": "Systematische Räumung aller vereinbarten Bereiche durch unser geschultes Team."
+        },
+        {
+          "title": "Entsorgung",
+          "desc": "Fachgerechte Trennung und Entsorgung nach gesetzlichen Vorgaben."
+        },
+        {
+          "title": "Endzustand",
+          "desc": "Besenreine Übergabe des Objekts. Dokumentation auf Wunsch."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Umweltgerechte Entsorgung mit Nachweis",
+        "Diskrete Abwicklung bei sensiblen Situationen",
+        "Besenreine Übergabe garantiert"
+      ],
+      "cta_title": "Entrümpelung anfragen",
+      "cta_text": "Kontaktieren Sie uns für eine vertrauliche Beratung. Wir erstellen Ihnen ein transparentes Angebot."
+    },
+    "service_montage": {
+      "meta_title": "Montage – Professioneller Möbelaufbau und Küchenmontage",
+      "meta_desc": "FLOXANT montiert Möbel, Küchen und Einrichtungen fachgerecht. In Regensburg, Bayern und deutschlandweit.",
+      "badge": "Montage",
+      "hero_title": "Montage",
+      "hero_desc": "Präzision im Detail. Fachgerechter Auf- und Abbau Ihrer Möbel und Küchen – mit dem Anspruch, den Ihre Einrichtung verdient.",
+      "intro_title": "Montage mit Fachkompetenz",
+      "intro_p1": "Hochwertige Möbel und Küchen verdienen eine fachgerechte Montage. Falsche Handgriffe können Oberflächen beschädigen, Funktionen beeinträchtigen oder die Lebensdauer verkürzen. FLOXANT setzt ausschließlich geschultes Personal ein, das mit verschiedensten Montagesystemen vertraut ist.",
+      "intro_p2": "Ob IKEA-Regale oder maßgeschneiderte Designerküchen – wir arbeiten sorgfältig, sauber und respektvoll mit Ihrem Eigentum. Nach der Montage hinterlassen wir den Arbeitsbereich aufgeräumt und nehmen Verpackungsmaterial auf Wunsch mit.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Privatpersonen nach einem Umzug oder Neukauf",
+        "Gewerbliche Kunden mit Büroeinrichtung",
+        "Küchenmontage bei Renovierung oder Neubezug"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Vorbereitung",
+          "desc": "Prüfung der Aufbauanleitungen und des Materials. Werkzeug und Zubehör bringen wir mit."
+        },
+        {
+          "title": "Montage",
+          "desc": "Fachgerechter Aufbau unter Berücksichtigung von Raumgeometrie und Nutzung."
+        },
+        {
+          "title": "Funktionstest",
+          "desc": "Prüfung aller beweglichen Teile, Schubladen und Mechanismen."
+        },
+        {
+          "title": "Endkontrolle",
+          "desc": "Reinigung des Arbeitsbereichs, Entsorgung von Verpackungsmaterial."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Fachgerechte Montage durch geschultes Personal",
+        "Sorgfältiger Umgang mit Oberflächen und Materialien",
+        "Saubere Hinterlassung des Arbeitsbereichs"
+      ],
+      "cta_title": "Montage beauftragen",
+      "cta_text": "Professionelle Montage ohne Kompromisse. Kontaktieren Sie uns für ein Angebot."
+    },
+    "service_halteverbotszone": {
+      "meta_title": "Halteverbotszone – Offizielle Genehmigung und Einrichtung",
+      "meta_desc": "FLOXANT beantragt und richtet Halteverbotszonen ein. Behördliche Abwicklung für Regensburg, Bayern und deutschlandweit.",
+      "badge": "Logistik",
+      "hero_title": "Halteverbotszone",
+      "hero_desc": "Freie Zufahrt ist die Grundlage jedes reibungslosen Umzugs. Wir kümmern uns um die behördliche Genehmigung.",
+      "intro_title": "Halteverbotszonen – rechtzeitig und rechtssicher",
+      "intro_p1": "In vielen Stadtgebieten – besonders in Innenstadtlagen von Regensburg, München oder Nürnberg – ist das Einrichten einer offiziellen Halteverbotszone unverzichtbar für einen reibungslosen Umzug. Ohne reservierten Parkplatz verlieren Sie wertvolle Zeit und riskieren Verzögerungen.",
+      "intro_p2": "FLOXANT übernimmt den gesamten Prozess: Beantragung bei der zuständigen Behörde, Aufstellung der Schilder mit gesetzlicher Vorlaufzeit und Abbau nach Ihrem Umzug. Sie müssen sich um nichts kümmern.",
+      "for_whom_title": "Für wen ist dieser Service?",
+      "for_whom_items": [
+        "Umzüge in Innenstadtlagen ohne Privatparkplatz",
+        "Gewerbeumzüge mit größerem Fahrzeugbedarf",
+        "Jeden Standortwechsel, der Zufahrtssicherheit erfordert"
+      ],
+      "process_title": "Unser Ablauf",
+      "process_steps": [
+        {
+          "title": "Beantragung",
+          "desc": "Einreichung bei der zuständigen Straßenverkehrsbehörde mit allen erforderlichen Unterlagen."
+        },
+        {
+          "title": "Genehmigung",
+          "desc": "Nachverfolgung und Bestätigung der Genehmigung."
+        },
+        {
+          "title": "Aufstellung",
+          "desc": "Platzierung der Halteverbotsschilder mit gesetzlicher Vorlaufzeit (mind. 72 Stunden)."
+        },
+        {
+          "title": "Abbau",
+          "desc": "Entfernung der Schilder nach Abschluss des Umzugs."
+        }
+      ],
+      "guarantees_title": "Unsere Garantien",
+      "guarantees": [
+        "Vollständige behördliche Abwicklung",
+        "Rechtzeitige Aufstellung der Beschilderung",
+        "Komplettservice ohne eigenen Aufwand"
+      ],
+      "cta_title": "Halteverbotszone beantragen",
+      "cta_text": "Sichern Sie sich freie Zufahrt für Ihren Umzugstag. Wir übernehmen die gesamte Organisation."
+    },
+    "reinigung_regensburg": {
+      "meta_title": "Reinigung Regensburg – Professionelle Endreinigung in der Oberpfalz",
+      "meta_desc": "FLOXANT bietet professionelle Endreinigung in Regensburg und Umgebung. Besenreine Übergabe nach Vermieterstandards. Diskret und zuverlässig.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Professionelle Reinigung in",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Regensburg ist unser operativer Schwerpunkt. Hier kennen wir die Standards der lokalen Hausverwaltungen und Vermieter. Unsere Reinigungsteams arbeiten nach einem strukturierten Prozess, der keine Fragen offenlässt.",
+      "intro_title": "Endreinigung in Regensburg – unser Kerngebiet",
+      "intro_p1": "Als operativer Standort von FLOXANT ist Regensburg das Zentrum unserer Reinigungsdienstleistungen. Unsere Teams kennen die Besonderheiten der lokalen Wohnungsgesellschaften, Genossenschaften und privaten Vermieter. Ob Altbau in der Altstadt, Wohnung im Kasernenviertel oder Neubau am Brandlberg – wir wissen, worauf es bei der Übergabe ankommt.",
+      "intro_p2": "Unsere Endreinigung folgt einem dokumentierten Prozess mit Checkliste und Fotodokumentation. So sind Sie bei der Übergabe auf der sicheren Seite. Wir arbeiten gründlich, termingerecht und respektvoll mit Ihrem Eigentum.",
+      "services_title": "Unser Reinigungsangebot für Regensburg",
+      "services": {
+        "end_cleaning": {
+          "title": "Endreinigung",
+          "desc": "Vollständige Reinigung der Wohnung nach Vermieterstandards. Inklusive Böden, Fenster, Küche und Sanitäranlagen."
+        },
+        "construction_cleaning": {
+          "title": "Baureinigung",
+          "desc": "Professionelle Reinigung nach Renovierung oder Umbau. Staub, Farbreste und Bauschutt werden restlos entfernt."
+        },
+        "office_cleaning": {
+          "title": "Büroreinigung",
+          "desc": "Regelmäßige oder einmalige Reinigung von Gewerbeflächen. Diskret und außerhalb der Geschäftszeiten."
+        }
+      },
+      "cta_title": "Reinigung in Regensburg anfragen",
+      "cta_text": "Sichern Sie sich einen Termin für Ihre professionelle Reinigung in Regensburg. Transparent kalkuliert und zuverlässig."
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "Entrümpelung Regensburg – Fachgerechte Räumung in der Oberpfalz",
+      "meta_desc": "FLOXANT räumt Wohnungen und Gewerbeflächen in Regensburg fachgerecht. Umweltbewusste Entsorgung, diskrete Abwicklung.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Entrümpelung in",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Loslassen ist ein Prozess. Wir begleiten ihn in Regensburg und Umgebung mit Respekt, Sorgfalt und fachgerechter Entsorgung.",
+      "intro_title": "Entrümpelung in Regensburg – vor Ort und persönlich",
+      "intro_p1": "Regensburg ist unser operatives Zentrum, und genau hier sind wir am stärksten. Ob Haushaltsauflösung nach einem Todesfall, Räumung vor einer Renovierung oder einfach der Wunsch nach einem Neuanfang – wir agieren schnell, diskret und verantwortungsbewusst.",
+      "intro_p2": "Unser Team trennt vor Ort fachgerecht, entsorgt umweltbewusst über zertifizierte Partner und hinterlässt besenreine Räume. Brauchbare Gegenstände können auf Ihren Wunsch an soziale Einrichtungen in Regensburg gespendet werden.",
+      "services_title": "Unsere Räumungsleistungen in Regensburg",
+      "services": {
+        "household": {
+          "title": "Haushaltsauflösung",
+          "desc": "Vollständige Räumung von Privatwohnungen. Diskret und einfühlsam bei Nachlässen."
+        },
+        "commercial": {
+          "title": "Gewerberäumung",
+          "desc": "Professionelle Räumung von Büros, Lagern und Geschäftsräumen bei Betriebsaufgabe."
+        },
+        "partial": {
+          "title": "Teilentrümpelung",
+          "desc": "Gezielte Räumung einzelner Räume oder Bereiche. Sie entscheiden, was bleibt."
+        }
+      },
+      "cta_title": "Entrümpelung in Regensburg anfragen",
+      "cta_text": "Kontaktieren Sie uns für eine diskrete Beratung. Wir erstellen Ihnen ein transparentes Angebot für Ihre Räumung in Regensburg."
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "Büro-Umzug Regensburg – Professionelle Firmenumzüge in der Oberpfalz",
+      "meta_desc": "FLOXANT organisiert Büroumzüge in Regensburg. Minimale Ausfallzeit, IT-sichere Verlegung, termingerechte Durchführung.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Büro-Umzug in",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Geschäftskontinuität hat Priorität. Wir verlagern Ihr Büro in Regensburg mit System, Diskretion und minimaler Ausfallzeit.",
+      "intro_title": "Firmenumzüge in Regensburg – unser Kerngebiet",
+      "intro_p1": "Regensburg wächst als Wirtschaftsstandort stetig. Mit dem Conti-Campus, dem TechBase und zahlreichen mittelständischen Unternehmen in der Region steigt auch der Bedarf an professionellen Firmenumzügen. FLOXANT hat als operativer Standort in Regensburg das lokale Know-how, das Sie brauchen.",
+      "intro_p2": "Wir koordinieren die Verlagerung Ihres Büros so, dass Ihr Team am nächsten Arbeitstag produktiv weiterarbeiten kann. IT-Equipment wird sicher transportiert, sensible Unterlagen diskret behandelt und alle Arbeitsplätze nach Ihren Vorgaben eingerichtet.",
+      "services_title": "Unser Leistungsspektrum für Firmenumzüge",
+      "services": {
+        "full_move": {
+          "title": "Komplettumzug",
+          "desc": "Vollständige Verlagerung aller Büroeinheiten, IT-Infrastruktur und Inventar."
+        },
+        "it_relocation": {
+          "title": "IT-Verlegung",
+          "desc": "Fachgerechter Ab- und Aufbau von Servern, Netzwerkinfrastruktur und Arbeitsplatzgeräten."
+        },
+        "weekend_move": {
+          "title": "Wochenend-Umzug",
+          "desc": "Durchführung außerhalb der Geschäftszeiten für null Ausfallzeit."
+        }
+      },
+      "cta_title": "Büroumzug in Regensburg planen",
+      "cta_text": "Lassen Sie uns Ihren Firmenumzug in Regensburg gemeinsam planen. Vertraulich, strukturiert und termingerecht."
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – Bewusster Abschied vom alten Zuhause",
+      "meta_desc": "Die Ritual Exit Box von FLOXANT begleitet Sie bei einem bewussten Abschied. Ein persönliches Ritual für den Übergang in ein neues Kapitel.",
+      "badge": "Signature Experience",
+      "hero_title": "Ritual Exit Box",
+      "hero_desc": "Ein Zuhause zu verlassen bedeutet, ein Kapitel abzuschließen. Die Ritual Exit Box gibt diesem Moment den Raum, den er verdient.",
+      "story_title": "Warum ein Abschied ein Ritual verdient",
+      "story_p1": "Jedes Zuhause trägt Erinnerungen. Die erste Nacht, das gemeinsame Kochen, die stillen Momente am Fenster. Wenn wir gehen, lassen wir nicht nur Räume zurück – wir lassen ein Stück unserer Geschichte zurück. Die Ritual Exit Box ist unsere Antwort auf einen Übergang, der zu oft übergangen wird.",
+      "story_p2": "In der Box finden Sie eine kleine Zeremonie: eine Kerze, eine handgeschriebene Anleitung und einen verschließbaren Umschlag für einen letzten Brief an diesen Ort. Es ist kein Produkt. Es ist eine Geste.",
+      "purpose_title": "Psychologischer Wert",
+      "purpose_text": "Bewusste Übergänge reduzieren den emotionalen Stress eines Umzugs. Die Ritual Exit Box schafft einen definierten Moment des Loslassens – ruhig, persönlich und würdevoll.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für jeden, der sein Zuhause nicht einfach verlässt, sondern sich verabschieden möchte. Besonders wertvoll bei langjährigen Wohnungen, Familienhäusern oder gemeinsam bewohnten Räumen.",
+      "cta_title": "Ritual Exit Box hinzufügen",
+      "cta_text": "Ergänzen Sie Ihren Umzug mit einer Ritual Exit Box. Sprechen Sie uns bei Ihrer Anfrage darauf an."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Ihr neues Zuhause bewusst beziehen",
+      "meta_desc": "Die Clean Start Ceremony von FLOXANT bereitet Ihre neue Wohnung auf einen bewussten Einzug vor. Professionelle Reinigung als Grundlage für einen Neuanfang.",
+      "badge": "Signature Experience",
+      "hero_title": "Clean Start Ceremony",
+      "hero_desc": "Bevor Sie Ihre Möbel einräumen, bereiten wir Ihren neuen Raum vor – physisch und atmosphärisch.",
+      "story_title": "Der Neuanfang beginnt mit Klarheit",
+      "story_p1": "Ein neues Zuhause sollte sich von der ersten Sekunde an wie Ihres anfühlen. Nicht wie der Ort eines Vorgängers. Die Clean Start Ceremony ist eine professionelle Grundreinigung, die über das Übliche hinausgeht.",
+      "story_p2": "Wir reinigen nicht nur Oberflächen – wir schaffen eine Atmosphäre. Nach der Reinigung wird belüftet und der Raum dezent vorbereitet. Wenn Sie eintreten, betreten Sie Ihren Raum.",
+      "purpose_title": "Psychologischer Wert",
+      "purpose_text": "Ein sauberer, vorbereiteter Raum signalisiert dem Unterbewusstsein: Hier beginnt etwas Neues. Die Clean Start Ceremony macht diesen Übergang spürbar.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Einzüge in Bestandswohnungen, nach Renovierungen oder für alle, die ihren neuen Raum bewusst in Besitz nehmen möchten.",
+      "cta_title": "Clean Start buchen",
+      "cta_text": "Bereiten Sie Ihren Einzug vor. Sprechen Sie uns bei Ihrer Anfrage auf die Clean Start Ceremony an."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professionelle Nachbarschaftsintroduktion",
+      "meta_desc": "Das New Neighbour Kit von FLOXANT erleichtert Ihnen das Ankommen in der neuen Nachbarschaft. Diskret, charmant und durchdacht.",
+      "badge": "Signature Experience",
+      "hero_title": "New Neighbour Kit",
+      "hero_desc": "Der erste Eindruck zählt – auch bei den neuen Nachbarn. Unser Kit macht Ihre Ankunft zu einem positiven Moment.",
+      "story_title": "Ankommen beginnt mit Verbindung",
+      "story_p1": "In einer neuen Umgebung fühlt man sich zunächst fremd. Das New Neighbour Kit überbrückt diese erste Distanz auf elegante Weise. Es enthält eine personalisierte Grußkarte und eine kleine Aufmerksamkeit für die direkten Nachbarn.",
+      "story_p2": "Wir bereiten das Kit vor und liefern es auf Wunsch am Einzugstag. Sie hinterlassen einen positiven ersten Eindruck – ohne selbst daran denken zu müssen.",
+      "purpose_title": "Sozialer Wert",
+      "purpose_text": "Gute Nachbarschaftsbeziehungen beginnen am ersten Tag. Das Kit schafft eine Grundlage für gegenseitigen Respekt und reduziert die soziale Barriere des Neuanfangs.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Familien, Paare oder Einzelpersonen, die in ein Mehrfamilienhaus einziehen und von Anfang an ein positives Verhältnis zur Nachbarschaft aufbauen möchten.",
+      "cta_title": "New Neighbour Kit anfragen",
+      "cta_text": "Ergänzen Sie Ihren Umzug mit dem New Neighbour Kit. Wir kümmern uns um die Details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – Die ersten zwei Tage sorgenfrei",
+      "meta_desc": "Das First 48h Package von FLOXANT versorgt Sie in den ersten zwei Tagen nach dem Umzug mit allem Nötigen. Kein Kartonsuchen, kein Stress.",
+      "badge": "Signature Experience",
+      "hero_title": "First 48h Package",
+      "hero_desc": "Die ersten Stunden im neuen Zuhause sind entscheidend. Wir sorgen dafür, dass Sie sofort ankommen können.",
+      "story_title": "Die kritischen ersten 48 Stunden",
+      "story_p1": "Nach einem Umzug ist der Haushalt im Ausnahmezustand. Wo ist die Kaffeemaschine? Wo sind die Handtücher? Das First 48h Package enthält alles, was Sie in den ersten zwei Tagen brauchen: Hygieneartikel, Snacks, Grundreinigungsmittel und eine Checkliste für die wichtigsten Erledigungen.",
+      "story_p2": "Das Paket steht bereit, wenn Sie in Ihre neue Wohnung eintreten. Kein Suchen, kein Improvisieren – einfach ankommen.",
+      "purpose_title": "Praktischer Wert",
+      "purpose_text": "Die ersten 48 Stunden entscheiden darüber, wie ein Umzug emotional bewertet wird. Wer sofort funktionsfähig ist, erlebt den Übergang als positiv statt als belastend.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für alle, die nach dem Umzug sofort funktionsfähig sein möchten. Besonders wertvoll für Alleinstehende, Berufstätige oder Familien mit Kindern.",
+      "cta_title": "First 48h Package buchen",
+      "cta_text": "Starten Sie entspannt in Ihrem neuen Zuhause. Wir bereiten das Package für Ihren Einzug vor."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bürokratie-Schutz – Behördliche Formalitäten delegieren",
+      "meta_desc": "Der FLOXANT Bürokratie-Schutz übernimmt die behördlichen Formalitäten rund um Ihren Umzug. Halteverbotszone, Ummeldung, Nachsendeauftrag.",
+      "badge": "Signature Experience",
+      "hero_title": "Bürokratie-Schutz",
+      "hero_desc": "Behördengänge und Formalitäten gehören zu jedem Umzug. Wir nehmen Ihnen diese Last ab – vollständig und rechtssicher.",
+      "story_title": "Bürokratie muss nicht Ihre Angelegenheit sein",
+      "story_p1": "Ein Umzug bringt eine Welle an Formalitäten mit sich: Halteverbotszone beantragen, Wohnsitz ummelden, Nachsendeauftrag einrichten, Versorgungsunternehmen informieren. Der Bürokratie-Schutz bündelt all diese Aufgaben und erledigt sie für Sie.",
+      "story_p2": "Unser Team ist mit den Abläufen in Regensburg und ganz Bayern vertraut. Wir kennen die zuständigen Ämter, die Formulare und die Fristen. Sie erhalten eine vollständige Dokumentation aller erledigten Schritte.",
+      "purpose_title": "Organisatorischer Wert",
+      "purpose_text": "Bürokratie ist einer der größten Stressfaktoren bei Umzügen. Die Delegation an erfahrene Fachleute reduziert Fehler, spart Zeit und gibt Ihnen Sicherheit.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Privatpersonen und Unternehmen, die sich auf ihren Umzug konzentrieren und die Formalitäten an erfahrene Hände delegieren möchten.",
+      "cta_title": "Bürokratie-Schutz anfragen",
+      "cta_text": "Delegieren Sie die Formalitäten. Wir übernehmen die behördliche Abwicklung für Sie."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Möbel-Optimierung – Raumplanung nach dem Umzug",
+      "meta_desc": "Die FLOXANT Möbel-Optimierung hilft Ihnen, Ihre Einrichtung perfekt im neuen Raum zu platzieren. Professionelle Raumplanung inklusive.",
+      "badge": "Signature Experience",
+      "hero_title": "Möbel-Optimierung",
+      "hero_desc": "Möbel stellen statt nur abstellen. Wir optimieren die Platzierung Ihrer Einrichtung für den neuen Raum.",
+      "story_title": "Ihr Raum, neu gedacht",
+      "story_p1": "Alte Möbel in neuen Räumen – das passt nicht immer auf Anhieb. Die Möbel-Optimierung analysiert Ihre Einrichtung im Kontext des neuen Grundrisses und schlägt eine optimale Anordnung vor. Lichteinfall, Laufwege und Raumproportionen fließen in die Planung ein.",
+      "story_p2": "Unser Team setzt die Optimierung direkt am Umzugstag um. So erleben Sie Ihren neuen Raum nicht als Kompromiss, sondern als durchdachtes Zuhause.",
+      "purpose_title": "Gestalterischer Wert",
+      "purpose_text": "Eine durchdachte Raumanordnung steigert Wohnqualität und Wohlbefinden. Die Optimierung verhindert, dass provisorische Lösungen zum Dauerzustand werden.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für alle, die mit bestehender Einrichtung in einen grundrisslich anderen Raum ziehen und das Beste aus der Situation machen möchten.",
+      "cta_title": "Möbel-Optimierung anfragen",
+      "cta_text": "Lassen Sie Ihren neuen Raum professionell einrichten. Wir planen die optimale Anordnung."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Reinigungsgarantie – Besenreine Übergabe garantiert",
+      "meta_desc": "Die FLOXANT Reinigungsgarantie sichert Ihnen eine besenreine Übergabe zu. Bei Beanstandungen reinigen wir nach – kostenfrei.",
+      "badge": "Signature Experience",
+      "hero_title": "Reinigungsgarantie",
+      "hero_desc": "Besenreine Übergabe – garantiert. Sollte Ihr Vermieter Beanstandungen haben, reinigen wir nach. Kostenfrei.",
+      "story_title": "Sicherheit bei der Übergabe",
+      "story_p1": "Die Wohnungsübergabe ist oft der stressigste Moment nach einem Umzug. Wird die Kaution vollständig zurückgezahlt? Gibt es Beanstandungen? Die Reinigungsgarantie nimmt Ihnen diese Sorge. Wir reinigen nach unseren definierten Standards und stehen bei Beanstandungen ein.",
+      "story_p2": "Sollte Ihr Vermieter innerhalb von 14 Tagen nach der Übergabe berechtigte Reinigungsmängel feststellen, kommen wir zurück und bessern nach – ohne zusätzliche Kosten.",
+      "purpose_title": "Finanzieller Wert",
+      "purpose_text": "Die Reinigungsgarantie schützt Ihre Kaution und gibt Ihnen Verhandlungssicherheit bei der Übergabe. Sie dokumentiert professionelle Sorgfalt.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für alle Mieter, die eine stressfreie Wohnungsübergabe wünschen und ihre Kaution vollständig zurückerhalten möchten.",
+      "cta_title": "Reinigungsgarantie hinzufügen",
+      "cta_text": "Sichern Sie Ihre Übergabe ab. Die Reinigungsgarantie kann jedem Umzug hinzugefügt werden."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Lager-Rotation – Flexibles Zwischenlager für Ihren Umzug",
+      "meta_desc": "FLOXANT Lager-Rotation bietet sichere Zwischenlagerung mit flexiblem Zugriff. Ideal für gestaffelte Umzüge und Renovierungen.",
+      "badge": "Signature Experience",
+      "hero_title": "Lager-Rotation",
+      "hero_desc": "Nicht alles muss gleichzeitig umziehen. Unsere Lager-Rotation gibt Ihnen zeitliche Flexibilität.",
+      "story_title": "Zwischenlagerung als strategisches Werkzeug",
+      "story_p1": "Manchmal passen die Zeitpläne nicht zusammen: Die alte Wohnung muss geräumt werden, aber die neue ist noch nicht bezugsfertig. Oder Sie renovieren und benötigen temporären Platz für Ihr Inventar. Die Lager-Rotation löst dieses Timing-Problem.",
+      "story_p2": "Ihre Gegenstände werden sicher in unserem Partner-Lager in der Region Regensburg verwahrt. Sie haben nach Absprache Zugriff und können Teillieferungen beauftragen – wann immer es für Sie passt.",
+      "purpose_title": "Logistischer Wert",
+      "purpose_text": "Flexibilität im Zeitplan reduziert Druck und ermöglicht bessere Entscheidungen. Die Lager-Rotation entkoppelt Auszug und Einzug.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für alle, deren Umzugstermine nicht synchron laufen, oder die während einer Renovierung Platz benötigen.",
+      "cta_title": "Lager-Rotation anfragen",
+      "cta_text": "Sichern Sie sich flexible Zwischenlagerung. Wir beraten Sie zu den Möglichkeiten."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kinder-Umzugsbox – Umzug kindgerecht begleiten",
+      "meta_desc": "Die FLOXANT Kinder-Umzugsbox macht den Umzug für Kinder zum Abenteuer. Beschäftigungsmaterial, Erklärbuch und persönliche Überraschung.",
+      "badge": "Signature Experience",
+      "hero_title": "Kinder-Umzugsbox",
+      "hero_desc": "Kinder erleben einen Umzug anders als Erwachsene. Unsere Box macht den Übergang zu einem positiven Erlebnis.",
+      "story_title": "Ein Umzug aus Kinderaugen",
+      "story_p1": "Für Kinder bedeutet ein Umzug Unsicherheit: Das gewohnte Zimmer verschwindet, Freunde bleiben zurück, alles verändert sich. Die Kinder-Umzugsbox begleitet diesen Prozess altersgerecht mit Beschäftigungsmaterial, einem kleinen Erklärbuch zum Thema Umzug und einer persönlichen Überraschung für den ersten Tag im neuen Zimmer.",
+      "story_p2": "Die Box wird vor dem Umzugstag übergeben, damit Kinder sich vorbereiten und den Tag aktiv miterleben können – als Abenteuer, nicht als Verlust.",
+      "purpose_title": "Pädagogischer Wert",
+      "purpose_text": "Kinder, die aktiv in den Umzugsprozess einbezogen werden, verarbeiten die Veränderung besser. Die Box gibt ihnen eine Rolle und macht den Übergang greifbar.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Familien mit Kindern zwischen 3 und 12 Jahren, die den Umzug kindgerecht gestalten möchten.",
+      "cta_title": "Kinder-Umzugsbox bestellen",
+      "cta_text": "Machen Sie den Umzug für Ihre Kinder zum positiven Erlebnis. Wir bereiten die Box individuell vor."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Umzugsservice – Rund um die Uhr verfügbar",
+      "meta_desc": "FLOXANT 24h Umzugsservice für dringende und termingebundene Umzüge. Abends, nachts und am Wochenende verfügbar.",
+      "badge": "Signature Experience",
+      "hero_title": "24h Umzugsservice",
+      "hero_desc": "Manchmal wartet ein Umzug nicht. Unser 24h-Service steht bereit, wenn Sie uns brauchen – auch außerhalb der üblichen Zeiten.",
+      "story_title": "Verfügbarkeit als Versprechen",
+      "story_p1": "Nicht jeder Umzug passt in die regulären Geschäftszeiten. Kurzfristige Kündigungen, berufliche Versetzungen oder persönliche Umstände erfordern manchmal schnelles Handeln. Der 24h Umzugsservice garantiert Ihnen Verfügbarkeit auch abends, nachts und am Wochenende.",
+      "story_p2": "Unser Bereitschaftsteam ist innerhalb kurzer Zeit einsatzbereit. Die gleiche Qualität, die gleiche Sorgfalt – unabhängig von der Uhrzeit.",
+      "purpose_title": "Zeitlicher Wert",
+      "purpose_text": "Zeitnot ist einer der größten Stressfaktoren bei Umzügen. Der 24h-Service eliminiert die zeitliche Einschränkung und gibt Ihnen maximale Flexibilität.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für dringende Umzüge, termingebundene Verlegungen oder Kunden, die aus beruflichen Gründen nur außerhalb der Geschäftszeiten umziehen können.",
+      "cta_title": "24h Service anfragen",
+      "cta_text": "Kontaktieren Sie uns jederzeit. Wir sind für Sie da – rund um die Uhr."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Damen-Team – Umzug durch ein reines Frauenteam",
+      "meta_desc": "FLOXANT Damen-Team bietet Umzüge durch ausschließlich weibliches Personal. Diskret, respektvoll und professionell.",
+      "badge": "Signature Experience",
+      "hero_title": "Damen-Team",
+      "hero_desc": "Manche Situationen erfordern besondere Sensibilität. Unser Damen-Team bietet Umzüge durch ausschließlich weibliches Personal.",
+      "story_title": "Respekt beginnt mit Verständnis",
+      "story_p1": "Es gibt Situationen, in denen sich Kundinnen mit einem reinen Frauenteam wohler fühlen: nach einer Trennung, bei religiösen oder kulturellen Präferenzen oder einfach als persönliche Entscheidung. Das Damen-Team respektiert diese Wünsche ohne Fragen und ohne Aufpreis.",
+      "story_p2": "Unser weibliches Umzugsteam arbeitet mit der gleichen Professionalität und Effizienz wie alle unsere Teams. Der einzige Unterschied: die Zusammensetzung.",
+      "purpose_title": "Persönlicher Wert",
+      "purpose_text": "Das Damen-Team schafft einen geschützten Rahmen für den Umzug. Es respektiert persönliche Grenzen und kulturelle Bedürfnisse – diskret und selbstverständlich.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Kundinnen, die aus persönlichen, kulturellen oder religiösen Gründen ein reines Frauenteam bevorzugen.",
+      "cta_title": "Damen-Team anfragen",
+      "cta_text": "Buchen Sie Ihren Umzug mit unserem Damen-Team. Diskret, professionell und ohne Aufpreis."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Erinnerungskapsel – Momente bewahren beim Umzug",
+      "meta_desc": "Die FLOXANT Erinnerungskapsel bewahrt einen Moment Ihres alten Zuhauses. Fotos, Notizen und persönliche Gegenstände in einer versiegelten Kapsel.",
+      "badge": "Signature Experience",
+      "hero_title": "Erinnerungskapsel",
+      "hero_desc": "Manche Orte verdienen es, in Erinnerung bewahrt zu werden. Die Erinnerungskapsel hält einen Moment fest – für immer.",
+      "story_title": "Ein Ort, eingefroren in der Zeit",
+      "story_p1": "Bevor die letzte Kiste gepackt wird, halten wir inne. Die Erinnerungskapsel enthält Fotos der leeren Räume, eine Notiz Ihrer Wahl und einen kleinen Gegenstand aus dem alten Zuhause. Alles wird in einer hochwertigen Kapsel versiegelt.",
+      "story_p2": "Diese Kapsel ist nicht zum sofortigen Öffnen gedacht. Sie ist ein Anker – ein physisches Objekt, das einen Ort in der Zeit festhält. Öffnen Sie sie, wann immer Sie bereit sind.",
+      "purpose_title": "Emotionaler Wert",
+      "purpose_text": "Erinnerungen verblassen mit der Zeit. Die Kapsel konserviert einen definierten Moment und macht ihn jederzeit wieder zugänglich.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Menschen, die einen Ort verlassen, der ihnen viel bedeutet hat. Besonders wertvoll bei Familienhäusern oder Wohnungen mit langer Geschichte.",
+      "cta_title": "Erinnerungskapsel hinzufügen",
+      "cta_text": "Bewahren Sie einen Moment Ihres alten Zuhauses. Wir bereiten die Kapsel am Umzugstag vor."
+    },
+    "sig_maybe_box": {
+      "meta_title": "Die Vielleicht-Box – Entscheidungshilfe beim Umzug",
+      "meta_desc": "Die FLOXANT Vielleicht-Box gibt Ihnen Zeit für unklare Entscheidungen. Behalten oder weggeben? Entscheiden Sie später.",
+      "badge": "Signature Experience",
+      "hero_title": "Die Vielleicht-Box",
+      "hero_desc": "Nicht jede Entscheidung muss sofort fallen. Die Vielleicht-Box gibt Ihnen Zeit für die schwierigen Fragen.",
+      "story_title": "Entscheidungsdruck reduzieren",
+      "story_p1": "Beim Umzug werden unzählige Entscheidungen gleichzeitig verlangt: Behalten, weggeben, einlagern? Für viele Gegenstände ist die Antwort klar. Aber für manche nicht. Die Vielleicht-Box ist für genau diese Fälle gedacht.",
+      "story_p2": "Packen Sie alles Unklare in die Vielleicht-Box. Wir lagern sie für einen vereinbarten Zeitraum. Danach entscheiden Sie in Ruhe, was Sie davon wirklich brauchen.",
+      "purpose_title": "Psychologischer Wert",
+      "purpose_text": "Unter Zeitdruck getroffene Entscheidungen werden häufig bereut. Die Vielleicht-Box entkoppelt die Entscheidung vom Umzugsstress und ermöglicht überlegtere Ergebnisse.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für alle, die sich beim Packen schwer tun, sich von Dingen zu trennen. Besonders hilfreich bei Nachlässen oder langjährigen Haushalten.",
+      "cta_title": "Vielleicht-Box nutzen",
+      "cta_text": "Nehmen Sie sich den Druck. Die Vielleicht-Box gibt Ihnen Zeit für durchdachte Entscheidungen."
+    },
+    "sig_key_handover": {
+      "meta_title": "Schlüsselübergabe – Professionelle Wohnungsübergabe",
+      "meta_desc": "FLOXANT Schlüsselübergabe: Wir vertreten Sie bei der Wohnungsübergabe. Protokoll, Dokumentation und Schlüsselrückgabe inklusive.",
+      "badge": "Signature Experience",
+      "hero_title": "Schlüsselübergabe",
+      "hero_desc": "Sie können nicht persönlich zur Übergabe erscheinen? Wir vertreten Sie – professionell, dokumentiert und rechtssicher.",
+      "story_title": "Übergabe ohne Ihre Anwesenheit",
+      "story_p1": "Berufliche Verpflichtungen, Distanz oder persönliche Gründe können die Teilnahme an der Wohnungsübergabe unmöglich machen. Der Schlüsselübergabe-Service vertritt Sie vor Ort. Wir führen die Begehung mit dem Vermieter durch, dokumentieren den Zustand und übergeben die Schlüssel.",
+      "story_p2": "Sie erhalten ein vollständiges Übergabeprotokoll mit Fotodokumentation. Eventuelle Beanstandungen werden sofort festgehalten und Ihnen mitgeteilt.",
+      "purpose_title": "Organisatorischer Wert",
+      "purpose_text": "Die professionelle Vertretung schützt Ihre Interessen und spart Ihnen einen Termin, der oft mit Anreise und Wartezeit verbunden ist.",
+      "for_whom_title": "Für wen ist diese Experience?",
+      "for_whom_text": "Für Mieter, die nicht persönlich bei der Übergabe anwesend sein können oder eine professionelle Vertretung für die Protokollierung wünschen.",
+      "cta_title": "Schlüsselübergabe beauftragen",
+      "cta_text": "Delegieren Sie die Wohnungsübergabe. Wir vertreten Sie professionell und dokumentiert."
+    }
+  },
+  "services_section": {
+    "title": "Unsere Leistungen",
+    "subtitle": "Maßgeschneiderte Lösungen für jeden Bedarf. Ob privat, gewerblich oder spezialisiert.",
+    "items": [
+      {
+        "title": "Privat-Umzug",
+        "desc": "Sorglos ins neue Zuhause. Wir kümmern uns um alles."
+      },
+      {
+        "title": "Büro-Umzug",
+        "desc": "Minimale Ausfallzeiten für Ihr Geschäft. Professionelle Planung."
+      },
+      {
+        "title": "Fernumzug",
+        "desc": "Europaweit sicher ans Ziel. Wir verbinden Städte und Länder."
+      },
+      {
+        "title": "Entrümpelung",
+        "desc": "Besenreine Räumung von Wohnungen und Betriebsstätten."
+      },
+      {
+        "title": "Montage",
+        "desc": "Fachgerechter Auf- und Abbau Ihrer Möbel und Küchen."
+      },
+      {
+        "title": "Halteverbotszone",
+        "desc": "Behördliche Genehmigung und Einrichtung der Zonen."
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "Signature Services",
+    "subtitle": "Mehr als nur Logistik. Wir kümmern uns um die emotionalen und organisatorischen Details Ihres Neuanfangs.",
+    "badge": "Exklusiv bei Floxant",
+    "items": {
+      "ritual_exit": {
+        "title": "Ritual Exit Box",
+        "desc": "Ein bewusster Abschied. Wir begleiten den Übergang mit liebevollen Erinnerungs- und Abschiedsgegenständen, um einen Lebensabschnitt ruhig abzuschließen."
+      },
+      "clean_start": {
+        "title": "Clean Start Ceremony",
+        "desc": "Der Moment des Ankommens. Nach der Reinigung bereiten wir Ihr neues Zuhause atmosphärisch vor – mit Ordnung, Frische und einem Gefühl von Ruhe."
+      },
+      "neighbour_kit": {
+        "title": "New Neighbour Kit",
+        "desc": "Ankommen im Umfeld. Unser Neighbour Kit erleichtert den Einstieg in die Nachbarschaft – stilvoll, zurückhaltend und respektvoll."
+      },
+      "first_48h": {
+        "title": "First 48h Package",
+        "desc": "Stabilität in den ersten Stunden. Wir richten Schlafzimmer, Bad und Küche sofort ein, damit Ihr Alltag ohne Verzögerung beginnen kann."
+      },
+      "bureaucracy": {
+        "title": "Bürokratie-Schutz",
+        "desc": "Weniger Papier. Mehr Fokus. Wir übernehmen Ummeldungen, Verträge und organisatorische Schritte strukturiert und zuverlässig."
+      },
+      "furniture_opt": {
+        "title": "Möbel-Optimierung",
+        "desc": "Funktion trifft Ästhetik. Wir montieren, platzieren und optimieren nach Raumlogik und Lichtführung – funktional, ruhig und visuell ausgewogen."
+      },
+      "cleaning_guarantee": {
+        "title": "Reinigungsgarantie",
+        "desc": "Sauberkeit mit Sicherheit. Endreinigung nach klar definierten Vermieterstandards, dokumentiert für eine reibungslose Kautionsrückzahlung."
+      },
+      "storage_rot": {
+        "title": "Lager-Rotation",
+        "desc": "Flexibel lagern. Klar entscheiden. Wir lagern Dinge sicher ein und liefern sie bei Bedarf zurück – ideal für saisonale Nutzung oder Übergangsphasen."
+      },
+      "kids_box": {
+        "title": "Kinder-Umzugsbox",
+        "desc": "Ein Umzug aus Kinderperspektive. Mit einer eigenen Box geben wir Orientierung, Struktur und ein positives Erlebnis für die Kleinsten."
+      },
+      "service_24h": {
+        "title": "24h Umzugsservice",
+        "desc": "Wenn Zeit der Faktor ist. Diskrete, effiziente Umzüge innerhalb von 24 Stunden. Schnell, kontrolliert und professionell."
+      },
+      "ladies_team": {
+        "title": "Damen-Team",
+        "desc": "Vertrauen in sensiblen Situationen. Ein Team für besondere Sicherheit und Ruhe – bei Bedarf durch männliche Kraft für schweres Tragen ergänzt."
+      },
+      "memory_capsule": {
+        "title": "Erinnerungskapsel",
+        "desc": "Bewahren, was Bedeutung hat. Eine stilvolle Box für Persönliches aus dem alten Zuhause – geschützt und bewusst aufbewahrt."
+      },
+      "maybe_box": {
+        "title": "Die Vielleicht-Box",
+        "desc": "Entscheidungen vertagen. Wir lagern Unsicheres ein, bis Sie bereit sind, loszulassen oder zu behalten. Ohne Druck. Ohne Chaos."
+      },
+      "key_handover": {
+        "title": "Schlüsselübergabe",
+        "desc": "Dokumentiert. Sicher. Nachvollziehbar. Professionelle Protokolle für Vermieter und visuelle Nachweise für Ihre Sicherheit."
+      }
+    }
+  }
+}

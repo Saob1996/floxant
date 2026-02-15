@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "services": "Dịch vụ",
+    "pricing": "Bảng giá",
+    "contact": "Liên hệ",
+    "login": "Đăng nhập",
+    "book_now": "Đặt ngay",
+    "dashboard": "Bảng điều khiển"
+  },
+  "hero": {
+    "title": "Kiến Trúc Sư Của Sự Thay Đổi",
+    "subtitle": "Chuyển nhà không chỉ là hỗn loạn trong những chiếc hộp. Đó là một dự án kỹ thuật phức tạp. Chúng tôi lên kế hoạch, quản lý và thực hiện.",
+    "cta": "Nhận báo giá"
+  },
+  "area": {
+    "title": "Khu vực dịch vụ",
+    "description": "Trụ sở tại Düsseldorf. Trung tâm vận hành tại Regensburg.",
+    "hub_note": "Trụ sở chính FLOXANT tại Düsseldorf. Trung tâm vận hành tại Regensburg và Oberpfalz. Chúng tôi phục vụ khắp Bavaria và cung cấp dịch vụ chuyển nhà đường dài trên toàn nước Đức.",
+    "cities": {
+      "regensburg": "Regensburg",
+      "bavaria": "Bavaria",
+      "munich": "München",
+      "nuremberg": "Nürnberg",
+      "augsburg": "Augsburg",
+      "germany": "Toàn nước Đức"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "Dịch vụ",
+      "details": "Chi tiết",
+      "upgrades": "Nâng cấp",
+      "contact": "Liên hệ"
+    },
+    "headings": {
+      "service_selection": "Bắt đầu từ đâu?",
+      "service_subtitle": "Chọn dịch vụ chính.",
+      "details_prefix": "Chi tiết cho",
+      "upgrades_title": "Bạn muốn thêm gì?",
+      "upgrades_subtitle": "Dịch vụ Signature cho sự thoải mái của bạn.",
+      "summary_title": "Tóm tắt",
+      "summary_subtitle": "Chúng tôi đang kiểm tra khả dụng ngay.",
+      "success_title": "Yêu cầu thành công!",
+      "success_message": "Cảm ơn bạn, {name}. Chúng tôi đã nhận yêu cầu.",
+      "success_email": "Xác nhận đã gửi tới {email}."
+    },
+    "services": {
+      "umzug": {
+        "label": "Chuyển nhà",
+        "desc": "Chuyển nhà không căng thẳng."
+      },
+      "reinigung": {
+        "label": "Vệ sinh",
+        "desc": "Vệ sinh sâu và bàn giao."
+      },
+      "entsorgung": {
+        "label": "Xử lý rác",
+        "desc": "Chuyên nghiệp và nhanh chóng."
+      }
+    },
+    "form": {
+      "start_address": "Địa chỉ xuất phát",
+      "end_address": "Địa chỉ đích",
+      "date": "Ngày mong muốn",
+      "name": "Tên",
+      "email": "Email",
+      "phone": "Điện thoại",
+      "photos": "Tải ảnh lên (tùy chọn)",
+      "photos_placeholder": "Nhấn để tải lên (chọn nhiều)",
+      "photos_count": "Đã chọn {count} tệp",
+      "placeholder_address": "Đường, Thành phố",
+      "placeholder_name": "Tên của bạn",
+      "placeholder_email": "email@example.com",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "Quay lại",
+      "next": "Tiếp theo",
+      "finish": "Hoàn tất",
+      "submit": "Yêu cầu báo giá",
+      "sending": "Đang gửi...",
+      "new_request": "Yêu cầu mới"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "Đội nữ",
+        "desc": "Chăm sóc và đồng cảm tối đa."
+      },
+      "24h_service": {
+        "title": "Dịch vụ 24h",
+        "desc": "Sẵn sàng 24/7."
+      },
+      "furniture_opt": {
+        "title": "Tối ưu nội thất",
+        "desc": "Tháo lắp và bảo dưỡng."
+      },
+      "storage_rot": {
+        "title": "Lưu trữ linh hoạt",
+        "desc": "Lưu trữ tạm thời linh hoạt."
+      },
+      "maybe_box": {
+        "title": "Hộp Có thể",
+        "desc": "Hỗ trợ quyết định."
+      },
+      "clean_shield": {
+        "title": "Lá chắn thủ tục",
+        "desc": "Vùng cấm đỗ xe và giấy phép."
+      }
+    },
+    "error": {
+      "submit": "Lỗi gửi. Vui lòng thử lại.",
+      "generic": "Đã xảy ra lỗi không mong muốn."
+    }
+  },
+  "footer": {
+    "rights": "Bảo lưu mọi quyền.",
+    "impressum": "Thông tin pháp lý",
+    "privacy": "Quyền riêng tư",
+    "terms": "Điều khoản",
+    "revocation": "Quyền hủy bỏ",
+    "booking": "Điều kiện đặt chỗ",
+    "areas": "Khu vực dịch vụ"
+  },
+  "contact": {
+    "name": "Tên",
+    "email": "Email",
+    "message": "Tin nhắn",
+    "submit": "Gửi",
+    "success": "Tin nhắn đã gửi",
+    "error": "Lỗi gửi"
+  },
+  "trust": {
+    "experience": "Nhiều năm kinh nghiệm",
+    "quality": "Chất lượng cao nhất",
+    "insured": "Được bảo hiểm đầy đủ"
+  },
+  "auth": {
+    "login_title": "Đăng nhập quản trị",
+    "subtitle": "Khu vực bảo vệ",
+    "email_label": "Email",
+    "password_label": "Mật khẩu",
+    "submit_button": "Đăng nhập",
+    "loading_button": "Đang xác minh...",
+    "error_failed": "Đăng nhập thất bại",
+    "error_generic": "Đã xảy ra lỗi.",
+    "logout": "Đăng xuất",
+    "system_operational": "Hệ thống hoạt động",
+    "dashboard_title": "FLOXANT Nội bộ"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "Tổng yêu cầu",
+      "new": "Mới (24h)",
+      "status": "Trạng thái",
+      "active": "Đang hoạt động"
+    },
+    "filters": {
+      "search_placeholder": "Tìm theo tên hoặc email...",
+      "all": "Tất cả",
+      "umzug": "Chuyển nhà",
+      "reinigung": "Vệ sinh",
+      "entsorgung": "Xử lý rác"
+    },
+    "status": {
+      "loading": "Đang tải bảng điều khiển...",
+      "syncing": "Đang đồng bộ...",
+      "empty": "Không tìm thấy yêu cầu.",
+      "empty_hint": "Thử điều chỉnh bộ lọc."
+    },
+    "card": {
+      "edit": "Chỉnh sửa",
+      "no_extras": "Không có thêm"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "Chuyển nhà của bạn tại",
+      "hero_title_highlight": "München",
+      "hero_desc": "Không căng thẳng đến thủ phủ Bavaria. FLOXANT cung cấp dịch vụ cao cấp với cam kết giá cố định.",
+      "badge": "München và vùng phụ cận",
+      "intro_title": "Chuyển nhà tại München – có kế hoạch và chính xác",
+      "intro_text_1": "München là đô thị năng động. Việc chuyển nhà tại thủ phủ Bavaria thường là thách thức về hậu cần. Cầu thang hẹp, thiếu chỗ đỗ xe – điều kiện đòi hỏi kinh nghiệm và lập kế hoạch tốt.",
+      "intro_text_2": "FLOXANT là dịch vụ chuyển nhà chuyên xử lý những thách thức này. Chúng tôi không chỉ bắt đầu – chúng tôi lên kế hoạch chi tiết.",
+      "transparency_title": "Minh bạch về trụ sở",
+      "transparency_text": "Trụ sở pháp lý của FLOXANT tại Düsseldorf. Đội ngũ của chúng tôi thường xuyên làm việc tại München.",
+      "portfolio_title": "Danh mục dịch vụ cho München",
+      "services": {
+        "city": {
+          "title": "Chuyển nhà nội thành München",
+          "desc": "Nhanh chóng và hiệu quả."
+        },
+        "remote": {
+          "title": "Chuyển nhà đường dài",
+          "desc": "Từ Isar đến Rhein."
+        },
+        "clearance": {
+          "title": "Dọn dẹp",
+          "desc": "Xử lý chuyên nghiệp đồ cũ."
+        }
+      },
+      "details_title": "Đặc điểm München",
+      "details_text": "Mỗi thành phố có đặc thù riêng.",
+      "remote_title": "Từ Bavaria đến toàn Đức",
+      "remote_text": "Nhiều khách hàng chuyển từ München đi.",
+      "pricing_title": "Giá minh bạch không bất ngờ",
+      "pricing_text": "München đã đủ đắt. Chúng tôi cam kết minh bạch tuyệt đối.",
+      "features": {
+        "inspection": "Khảo sát miễn phí: đánh giá trước qua video.",
+        "insurance": "Bảo hiểm bao gồm: nội thất được bảo vệ toàn diện.",
+        "staff": "Nhân viên chuyên nghiệp: giàu kinh nghiệm và cẩn thận."
+      },
+      "links_title": "Địa điểm khác",
+      "cta_title": "Đặt lắp ráp",
+      "cta_text": "Lắp ráp không thỏa hiệp."
+    },
+    "service_umzug": {
+      "meta_title": "Chuyển nhà tư nhân",
+      "meta_desc": "FLOXANT đồng hành cùng bạn trong chuyến chuyển nhà.",
+      "badge": "Dịch vụ cơ bản",
+      "hero_title": "Chuyển nhà tư nhân",
+      "hero_desc": "Chuyển nhà không chỉ là vận chuyển. Đó là một sự chuyển đổi.",
+      "intro_title": "Chuyển nhà – chu đáo đến từng chi tiết",
+      "intro_p1": "Chuyển nhà tư nhân chạm đến mọi khía cạnh cuộc sống. Đồ dùng cá nhân, kỷ niệm quý giá – tất cả cần sự chú ý riêng.",
+      "intro_p2": "Đội ngũ làm việc theo quy trình rõ ràng, đảm bảo minh bạch toàn diện.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Cá nhân và gia đình",
+        "Chuyển nhà nội thành",
+        "Đồ vật quý giá"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Đánh giá",
+          "desc": "Khảo sát miễn phí."
+        },
+        {
+          "title": "Giá cố định",
+          "desc": "Báo giá minh bạch."
+        },
+        {
+          "title": "Thực hiện",
+          "desc": "Đóng gói và vận chuyển chuyên nghiệp."
+        },
+        {
+          "title": "Bàn giao",
+          "desc": "Lắp ráp và dọn dẹp."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Cam kết giá cố định",
+        "Bảo hiểm đầy đủ",
+        "Nhân viên chuyên nghiệp"
+      ],
+      "cta_title": "Gửi yêu cầu",
+      "cta_text": "Bắt đầu với báo giá cá nhân."
+    },
+    "service_buero_umzug": {
+      "meta_title": "Chuyển văn phòng",
+      "meta_desc": "FLOXANT tổ chức chuyển văn phòng với thời gian gián đoạn tối thiểu.",
+      "badge": "Thương mại",
+      "hero_title": "Chuyển văn phòng",
+      "hero_desc": "Liên tục kinh doanh cần lập kế hoạch.",
+      "intro_title": "Chuyển văn phòng chính xác",
+      "intro_p1": "Chuyển văn phòng ảnh hưởng đến quy trình kinh doanh. Hạ tầng CNTT, tài liệu mật – mọi chi tiết phải chính xác.",
+      "intro_p2": "Chúng tôi phối hợp tất cả.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Doanh nghiệp mọi quy mô",
+        "Văn phòng luật",
+        "Doanh nghiệp giảm thiểu gián đoạn"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Lập kế hoạch",
+          "desc": "Phân tích chi tiết."
+        },
+        {
+          "title": "Phối hợp",
+          "desc": "Liên lạc với bộ phận IT."
+        },
+        {
+          "title": "Thực hiện",
+          "desc": "Chuyển trong khung giờ xác định."
+        },
+        {
+          "title": "Đưa vào hoạt động",
+          "desc": "Cấu hình trạm làm việc."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Khung giờ đảm bảo",
+        "Bảo hiểm CNTT",
+        "Xử lý kín đáo"
+      ],
+      "cta_title": "Lên kế hoạch chuyển văn phòng",
+      "cta_text": "Cùng lên kế hoạch."
+    },
+    "service_fernumzug": {
+      "meta_title": "Chuyển nhà đường dài",
+      "meta_desc": "FLOXANT tổ chức chuyển nhà đường dài.",
+      "badge": "Đường dài",
+      "hero_title": "Chuyển nhà đường dài",
+      "hero_desc": "Khoảng cách không là trở ngại.",
+      "intro_title": "Đường dài chính xác",
+      "intro_p1": "Chuyển nhà đường dài cần lập kế hoạch đặc biệt.",
+      "intro_p2": "Từ Regensburg đến Hamburg, từ München đến Berlin.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Thay đổi công việc",
+        "Gia đình",
+        "Điều chuyển nhân viên"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Lộ trình",
+          "desc": "Tuyến đường tối ưu."
+        },
+        {
+          "title": "Đóng gói",
+          "desc": "Vật liệu đặc biệt."
+        },
+        {
+          "title": "Vận chuyển",
+          "desc": "Theo dõi GPS."
+        },
+        {
+          "title": "Giao hàng",
+          "desc": "Giao đúng hẹn."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Giá cố định",
+        "Bảo hiểm đầy đủ",
+        "Đảm bảo giao hàng"
+      ],
+      "cta_title": "Yêu cầu chuyển nhà",
+      "cta_text": "Bạn muốn đến đâu?"
+    },
+    "service_reinigung": {
+      "meta_title": "Vệ sinh chuyên nghiệp",
+      "meta_desc": "FLOXANT cung cấp dịch vụ vệ sinh cuối kỳ.",
+      "badge": "Vệ sinh",
+      "hero_title": "Vệ sinh",
+      "hero_desc": "Sạch sẽ là nền tảng của kết thúc và khởi đầu mới.",
+      "intro_title": "Vệ sinh cuối kỳ có hệ thống",
+      "intro_p1": "Vệ sinh cuối kỳ quyết định việc hoàn trả tiền đặt cọc.",
+      "intro_p2": "Đội ngũ làm việc tỉ mỉ và nhanh chóng.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Người thuê",
+        "Chủ nhà",
+        "Mặt bằng thương mại"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Kiểm tra",
+          "desc": "Đánh giá tình trạng."
+        },
+        {
+          "title": "Thực hiện",
+          "desc": "Vệ sinh có hệ thống."
+        },
+        {
+          "title": "Kiểm soát",
+          "desc": "Nghiệm thu với ảnh chụp."
+        },
+        {
+          "title": "Bàn giao",
+          "desc": "Bàn giao sạch sẽ."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Tiêu chuẩn chủ nhà",
+        "Tài liệu ảnh",
+        "Vệ sinh lại khi cần"
+      ],
+      "cta_title": "Đặt vệ sinh",
+      "cta_text": "Đặt dịch vụ vệ sinh chuyên nghiệp."
+    },
+    "service_entruempelung": {
+      "meta_title": "Dọn dẹp chuyên nghiệp",
+      "meta_desc": "FLOXANT dọn dẹp tài sản chuyên nghiệp.",
+      "badge": "Xử lý",
+      "hero_title": "Dọn dẹp",
+      "hero_desc": "Buông bỏ cần sự tin tưởng.",
+      "intro_title": "Dọn dẹp có trách nhiệm",
+      "intro_p1": "Dọn dẹp không chỉ là bỏ đồ.",
+      "intro_p2": "Phân loại chuyên nghiệp và xử lý sinh thái.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Thanh lý nhà cửa",
+        "Dọn dẹp thương mại",
+        "Cá nhân"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Khảo sát",
+          "desc": "Kiểm kê chung."
+        },
+        {
+          "title": "Dọn dẹp",
+          "desc": "Có hệ thống."
+        },
+        {
+          "title": "Xử lý",
+          "desc": "Phân loại chuyên nghiệp."
+        },
+        {
+          "title": "Trạng thái cuối",
+          "desc": "Bàn giao sạch."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Xử lý sinh thái",
+        "Xử lý kín đáo",
+        "Bàn giao sạch"
+      ],
+      "cta_title": "Yêu cầu dọn dẹp",
+      "cta_text": "Liên hệ chúng tôi."
+    },
+    "service_montage": {
+      "meta_title": "Lắp ráp chuyên nghiệp",
+      "meta_desc": "FLOXANT lắp ráp nội thất và bếp.",
+      "badge": "Lắp ráp",
+      "hero_title": "Lắp ráp",
+      "hero_desc": "Chính xác trong từng chi tiết.",
+      "intro_title": "Chuyển nhà tại München – có kế hoạch và chính xác",
+      "intro_p1": "Nội thất chất lượng xứng đáng được lắp ráp chuyên nghiệp.",
+      "intro_p2": "Từ kệ IKEA đến bếp thiết kế.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Sau chuyển nhà",
+        "Khách hàng thương mại",
+        "Lắp đặt bếp"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Chuẩn bị",
+          "desc": "Kiểm tra hướng dẫn."
+        },
+        {
+          "title": "Lắp ráp",
+          "desc": "Lắp đặt chuyên nghiệp."
+        },
+        {
+          "title": "Kiểm tra",
+          "desc": "Test các bộ phận."
+        },
+        {
+          "title": "Hoàn thiện",
+          "desc": "Dọn dẹp khu vực."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Lắp ráp chuyên nghiệp",
+        "Bảo vệ bề mặt",
+        "Khu vực sạch"
+      ],
+      "cta_title": "Đặt lắp ráp",
+      "cta_text": "Lắp ráp không thỏa hiệp."
+    },
+    "service_halteverbotszone": {
+      "meta_title": "Khu vực cấm đỗ xe",
+      "meta_desc": "FLOXANT xử lý khu vực cấm đỗ.",
+      "badge": "Hậu cần",
+      "hero_title": "Khu vực cấm đỗ xe",
+      "hero_desc": "Lối vào tự do – nền tảng cho mọi chuyến chuyển nhà.",
+      "intro_title": "Khu vực cấm đỗ – đúng hạn và hợp pháp",
+      "intro_p1": "Ở nhiều khu vực đô thị cần khu vực cấm đỗ chính thức.",
+      "intro_p2": "FLOXANT đảm nhận toàn bộ quy trình.",
+      "for_whom_title": "Dịch vụ dành cho ai?",
+      "for_whom_items": [
+        "Chuyển nhà trung tâm",
+        "Chuyển nhà thương mại",
+        "Mọi chuyển nhà"
+      ],
+      "process_title": "Quy trình của chúng tôi",
+      "process_steps": [
+        {
+          "title": "Nộp đơn",
+          "desc": "Nộp lên cơ quan."
+        },
+        {
+          "title": "Phê duyệt",
+          "desc": "Xác nhận."
+        },
+        {
+          "title": "Lắp đặt",
+          "desc": "Đặt biển báo."
+        },
+        {
+          "title": "Tháo dỡ",
+          "desc": "Gỡ biển."
+        }
+      ],
+      "guarantees_title": "Cam kết của chúng tôi",
+      "guarantees": [
+        "Xử lý chính thức đầy đủ",
+        "Lắp đặt đúng hạn",
+        "Dịch vụ trọn gói"
+      ],
+      "cta_title": "Nộp đơn khu vực cấm",
+      "cta_text": "Đảm bảo lối vào."
+    },
+    "reinigung_regensburg": {
+      "meta_title": "Vệ sinh Regensburg",
+      "meta_desc": "Vệ sinh chuyên nghiệp tại Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Vệ sinh chuyên nghiệp tại",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Trung tâm vận hành.",
+      "intro_title": "Vệ sinh cuối kỳ tại Regensburg",
+      "intro_p1": "Cơ sở vận hành.",
+      "intro_p2": "Quy trình có tài liệu.",
+      "services_title": "Dịch vụ vệ sinh",
+      "services": {
+        "end_cleaning": {
+          "title": "Vệ sinh cuối kỳ",
+          "desc": "Toàn diện."
+        },
+        "construction_cleaning": {
+          "title": "Vệ sinh sau xây dựng",
+          "desc": "Sau sửa chữa."
+        },
+        "office_cleaning": {
+          "title": "Vệ sinh văn phòng",
+          "desc": "Định kỳ hoặc một lần."
+        }
+      },
+      "cta_title": "Yêu cầu tại Regensburg",
+      "cta_text": "Đặt lịch."
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "Dọn dẹp Regensburg",
+      "meta_desc": "FLOXANT dọn dẹp tại Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Dọn dẹp tại",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Buông bỏ là quá trình.",
+      "intro_title": "Dọn dẹp tại Regensburg",
+      "intro_p1": "Trung tâm vận hành.",
+      "intro_p2": "Phân loại tại chỗ.",
+      "services_title": "Dịch vụ dọn dẹp",
+      "services": {
+        "household": {
+          "title": "Thanh lý",
+          "desc": "Dọn dẹp toàn bộ."
+        },
+        "commercial": {
+          "title": "Dọn dẹp thương mại",
+          "desc": "Văn phòng và kho."
+        },
+        "partial": {
+          "title": "Dọn dẹp từng phần",
+          "desc": "Phòng được chọn."
+        }
+      },
+      "cta_title": "Yêu cầu dọn dẹp",
+      "cta_text": "Liên hệ."
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "Chuyển văn phòng Regensburg",
+      "meta_desc": "FLOXANT tổ chức tại Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Chuyển văn phòng tại",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Liên tục kinh doanh.",
+      "intro_title": "Chuyển văn phòng tại Regensburg",
+      "intro_p1": "Regensburg đang phát triển.",
+      "intro_p2": "Chúng tôi phối hợp.",
+      "services_title": "Dịch vụ chuyển văn phòng",
+      "services": {
+        "full_move": {
+          "title": "Chuyển toàn bộ",
+          "desc": "Văn phòng và CNTT."
+        },
+        "it_relocation": {
+          "title": "Di chuyển CNTT",
+          "desc": "Ngắt kết nối chuyên nghiệp."
+        },
+        "weekend_move": {
+          "title": "Chuyển cuối tuần",
+          "desc": "Ngoài giờ làm việc."
+        }
+      },
+      "cta_title": "Lên kế hoạch",
+      "cta_text": "Cùng lên kế hoạch."
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – A Conscious Farewell to Your Home",
+      "meta_desc": "The FLOXANT Ritual Exit Box accompanies you through a conscious farewell. A personal ritual for the transition into a new chapter.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Hộp Nghi Thức Chia Tay",
+      "hero_desc": "Rời xa ngôi nhà là khép lại một chương.",
+      "story_title": "Why a Farewell Deserves a Ritual",
+      "story_p1": "Every home carries memories. The first night, cooking together, quiet moments by the window. When we leave, we do not just leave rooms behind – we leave a part of our story. The Ritual Exit Box is our answer to a transition that is too often overlooked.",
+      "story_p2": "Inside the box you will find a small ceremony: a candle, a handwritten guide, and a sealable envelope for a final letter to this place. It is not a product. It is a gesture.",
+      "purpose_title": "Giá trị tâm lý",
+      "purpose_text": "Conscious transitions reduce the emotional stress of a move. The Ritual Exit Box creates a defined moment of letting go – calm, personal, and dignified.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For anyone who does not simply leave their home but wishes to say goodbye. Especially valuable for long-term residences, family homes, or shared living spaces.",
+      "cta_title": "Thêm hộp nghi thức",
+      "cta_text": "Complement your move with a Ritual Exit Box. Mention it when submitting your enquiry."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Consciously Move into Your New Home",
+      "meta_desc": "The FLOXANT Clean Start Ceremony prepares your new apartment for a conscious move-in. Professional cleaning as the foundation for a fresh start.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Nghi Lễ Khởi Đầu Mới",
+      "hero_desc": "Trước khi bày biện, chúng tôi chuẩn bị không gian.",
+      "story_title": "A New Beginning Starts with Clarity",
+      "story_p1": "A new home should feel like yours from the very first second. Not like the space of a predecessor. The Clean Start Ceremony is a professional deep clean that goes beyond the ordinary.",
+      "story_p2": "We do not just clean surfaces – we create an atmosphere. After cleaning, the space is ventilated and subtly prepared. When you step in, you enter your space.",
+      "purpose_title": "Giá trị tâm lý",
+      "purpose_text": "A clean, prepared space signals to your subconscious: something new begins here. The Clean Start Ceremony makes this transition tangible.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For move-ins to existing properties, after renovations, or for anyone who wishes to consciously take possession of their new space.",
+      "cta_title": "Đặt khởi đầu sạch",
+      "cta_text": "Prepare your move-in. Mention the Clean Start Ceremony when submitting your enquiry."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professional Neighbourhood Introduction",
+      "meta_desc": "The FLOXANT New Neighbour Kit eases your arrival in the new neighbourhood. Discreet, charming, and thoughtfully crafted.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Bộ Chào Hàng Xóm",
+      "hero_desc": "Ấn tượng đầu tiên rất quan trọng.",
+      "story_title": "Arriving Begins with Connection",
+      "story_p1": "In a new environment, one initially feels like a stranger. The New Neighbour Kit bridges this first distance elegantly. It contains a personalised greeting card and a small token of appreciation for your immediate neighbours.",
+      "story_p2": "We prepare the kit and deliver it on your move-in day upon request. You leave a positive first impression – without having to think about it yourself.",
+      "purpose_title": "Giá trị xã hội",
+      "purpose_text": "Good neighbourly relations begin on day one. The kit creates a foundation for mutual respect and reduces the social barrier of a new beginning.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For families, couples, or individuals moving into a multi-unit building who wish to build a positive relationship with their neighbours from the start.",
+      "cta_title": "Đặt bộ hàng xóm",
+      "cta_text": "Complement your move with the New Neighbour Kit. We take care of the details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – The First Two Days Worry-Free",
+      "meta_desc": "The FLOXANT First 48h Package supplies you with everything you need in the first two days after your move. No searching, no stress.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Gói 48 Giờ Đầu",
+      "hero_desc": "Những giờ đầu là quyết định.",
+      "story_title": "The Critical First 48 Hours",
+      "story_p1": "After a move, the household is in a state of emergency. Where is the coffee machine? Where are the towels? The First 48h Package contains everything you need for the first two days: hygiene products, snacks, basic cleaning supplies, and a checklist for the most important tasks.",
+      "story_p2": "The package is ready when you enter your new home. No searching, no improvising – simply arrive.",
+      "purpose_title": "Giá trị thực tiễn",
+      "purpose_text": "The first 48 hours determine how a move is emotionally evaluated. Those who are immediately functional experience the transition as positive rather than burdensome.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For anyone who wishes to be immediately functional after a move. Especially valuable for singles, professionals, or families with children.",
+      "cta_title": "Đặt gói 48h",
+      "cta_text": "Start relaxed in your new home. We prepare the package for your move-in."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bureaucracy Shield – Delegate Official Formalities",
+      "meta_desc": "The FLOXANT Bureaucracy Shield handles official formalities around your move. No-parking zones, re-registration, mail forwarding.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Lá Chắn Thủ Tục",
+      "hero_desc": "Thủ tục là phần của mỗi chuyến chuyển nhà.",
+      "story_title": "Bureaucracy Need Not Be Your Concern",
+      "story_p1": "A move brings a wave of formalities: applying for a no-parking zone, re-registering your address, setting up mail forwarding, notifying utility providers. The Bureaucracy Shield bundles all these tasks and handles them for you.",
+      "story_p2": "Our team is familiar with procedures across Regensburg and all of Bavaria. We know the relevant offices, the forms, and the deadlines. You receive complete documentation of all completed steps.",
+      "purpose_title": "Giá trị tổ chức",
+      "purpose_text": "Bureaucracy is one of the greatest stress factors in relocations. Delegating to experienced professionals reduces errors, saves time, and gives you certainty.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For individuals and companies who wish to focus on their move and delegate formalities to experienced hands.",
+      "cta_title": "Yêu cầu lá chắn",
+      "cta_text": "Delegate the formalities. We handle the official processing for you."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Furniture Optimisation – Space Planning After Your Move",
+      "meta_desc": "FLOXANT Furniture Optimisation helps you place your furnishings perfectly in new spaces. Professional space planning included.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Tối Ưu Nội Thất",
+      "hero_desc": "Sắp xếp, không chỉ đặt vào.",
+      "story_title": "Your Space, Reimagined",
+      "story_p1": "Old furniture in new rooms – it does not always fit immediately. Furniture Optimisation analyses your furnishings in the context of the new floor plan and suggests an optimal arrangement. Natural light, walkways, and room proportions inform the planning.",
+      "story_p2": "Our team implements the optimisation directly on moving day. So you experience your new space not as a compromise, but as a thoughtfully arranged home.",
+      "purpose_title": "Giá trị thiết kế",
+      "purpose_text": "A well-considered room arrangement enhances living quality and well-being. The optimisation prevents provisional solutions from becoming permanent.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For anyone moving existing furnishings into a differently proportioned space and wishing to make the best of the situation.",
+      "cta_title": "Yêu cầu tối ưu",
+      "cta_text": "Have your new space professionally arranged. We plan the optimal layout."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Cleaning Guarantee – Broom-Clean Handover Guaranteed",
+      "meta_desc": "The FLOXANT Cleaning Guarantee assures broom-clean handover. If your landlord has complaints, we re-clean – free of charge.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Bảo Đảm Vệ Sinh",
+      "hero_desc": "Bàn giao sạch – cam kết.",
+      "story_title": "Certainty at Handover",
+      "story_p1": "Property handover is often the most stressful moment after a move. Will the deposit be returned in full? Will there be complaints? The Cleaning Guarantee takes this worry from you. We clean to our defined standards and stand behind our work.",
+      "story_p2": "Should your landlord identify legitimate cleaning deficiencies within 14 days of handover, we return and rectify them – at no additional cost.",
+      "purpose_title": "Giá trị tài chính",
+      "purpose_text": "The Cleaning Guarantee protects your deposit and gives you negotiating confidence at handover. It documents professional diligence.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For all tenants who wish for a stress-free property handover and want to receive their full deposit back.",
+      "cta_title": "Thêm bảo đảm",
+      "cta_text": "Secure your handover. The Cleaning Guarantee can be added to any move."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Storage Rotation – Flexible Interim Storage for Your Move",
+      "meta_desc": "FLOXANT Storage Rotation offers secure interim storage with flexible access. Ideal for staged moves and renovations.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Luân Chuyển Kho",
+      "hero_desc": "Không phải tất cả cần chuyển cùng lúc.",
+      "story_title": "Interim Storage as a Strategic Tool",
+      "story_p1": "Sometimes schedules do not align: the old property must be vacated, but the new one is not yet ready. Or you are renovating and need temporary space for your belongings. Storage Rotation solves this timing challenge.",
+      "story_p2": "Your items are stored securely at our partner facility in the Regensburg region. You can arrange access and request partial deliveries whenever it suits you.",
+      "purpose_title": "Giá trị hậu cần",
+      "purpose_text": "Flexibility in scheduling reduces pressure and enables better decisions. Storage Rotation decouples move-out and move-in.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For anyone whose moving dates are not synchronised, or who needs space during a renovation.",
+      "cta_title": "Yêu cầu luân chuyển",
+      "cta_text": "Secure flexible interim storage. We advise on the possibilities."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kids Moving Box – Making Moves Child-Friendly",
+      "meta_desc": "The FLOXANT Kids Moving Box makes moving an adventure for children. Activity materials, an explanatory booklet, and a personal surprise.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Hộp Chuyển Nhà Trẻ Em",
+      "hero_desc": "Trẻ em trải nghiệm chuyển nhà khác.",
+      "story_title": "A Move Through a Child's Eyes",
+      "story_p1": "For children, a move means uncertainty: the familiar room disappears, friends are left behind, everything changes. The Kids Moving Box accompanies this process in an age-appropriate way with activity materials, a small explanatory booklet about moving, and a personal surprise for the first day in the new room.",
+      "story_p2": "The box is handed over before moving day so children can prepare and actively participate – as an adventure, not a loss.",
+      "purpose_title": "Giá trị giáo dục",
+      "purpose_text": "Children who are actively included in the moving process cope better with the change. The box gives them a role and makes the transition tangible.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For families with children aged 3 to 12 who wish to make the move child-friendly.",
+      "cta_title": "Đặt hộp trẻ em",
+      "cta_text": "Make the move a positive experience for your children. We prepare the box individually."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Moving Service – Available Around the Clock",
+      "meta_desc": "FLOXANT 24h Moving Service for urgent and time-sensitive relocations. Available evenings, nights, and weekends.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Dịch Vụ 24 Giờ",
+      "hero_desc": "Đôi khi chuyển nhà không thể đợi.",
+      "story_title": "Availability as a Promise",
+      "story_p1": "Not every move fits into regular business hours. Short-notice terminations, professional transfers, or personal circumstances sometimes demand swift action. The 24h Moving Service guarantees availability in the evenings, at night, and on weekends.",
+      "story_p2": "Our standby team is ready at short notice. The same quality, the same care – regardless of the hour.",
+      "purpose_title": "Giá trị thời gian",
+      "purpose_text": "Time pressure is one of the greatest stress factors in relocations. The 24h service eliminates the time constraint and gives you maximum flexibility.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For urgent moves, time-sensitive relocations, or clients who can only move outside business hours for professional reasons.",
+      "cta_title": "Yêu cầu dịch vụ 24h",
+      "cta_text": "Contact us at any time. We are there for you – around the clock."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Ladies Team – Moving by an All-Female Team",
+      "meta_desc": "The FLOXANT Ladies Team offers moves exclusively by female personnel. Discreet, respectful, and professional.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Đội Ngũ Nữ",
+      "hero_desc": "Một số tình huống cần sự nhạy cảm đặc biệt.",
+      "story_title": "Respect Begins with Understanding",
+      "story_p1": "There are situations in which clients feel more comfortable with an all-female team: after a separation, due to religious or cultural preferences, or simply as a personal choice. The Ladies Team respects these wishes without question and at no extra charge.",
+      "story_p2": "Our female moving team works with the same professionalism and efficiency as all our teams. The only difference: the composition.",
+      "purpose_title": "Giá trị cá nhân",
+      "purpose_text": "The Ladies Team creates a protected environment for the move. It respects personal boundaries and cultural needs – discreetly and naturally.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For female clients who prefer an all-female team for personal, cultural, or religious reasons.",
+      "cta_title": "Yêu cầu đội nữ",
+      "cta_text": "Book your move with our Ladies Team. Discreet, professional, and at no extra charge."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Memory Capsule – Preserving Moments During Your Move",
+      "meta_desc": "The FLOXANT Memory Capsule preserves a moment from your old home. Photos, notes, and personal items in a sealed capsule.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Viên Nang Ký Ức",
+      "hero_desc": "Một số nơi xứng đáng được ghi nhớ.",
+      "story_title": "A Place, Frozen in Time",
+      "story_p1": "Before the last box is packed, we pause. The Memory Capsule contains photos of the empty rooms, a note of your choice, and a small object from the old home. Everything is sealed in a high-quality capsule.",
+      "story_p2": "This capsule is not meant to be opened immediately. It is an anchor – a physical object that captures a place in time. Open it whenever you are ready.",
+      "purpose_title": "Giá trị cảm xúc",
+      "purpose_text": "Memories fade over time. The capsule preserves a defined moment and makes it accessible again at any time.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For people leaving a place that meant a great deal to them. Especially valuable for family homes or properties with a long history.",
+      "cta_title": "Thêm viên nang",
+      "cta_text": "Preserve a moment from your old home. We prepare the capsule on moving day."
+    },
+    "sig_maybe_box": {
+      "meta_title": "The Maybe Box – Decision Aid During Your Move",
+      "meta_desc": "The FLOXANT Maybe Box gives you time for uncertain decisions. Keep or let go? Decide later.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Hộp Có Thể",
+      "hero_desc": "Không phải quyết định nào cũng cần ngay.",
+      "story_title": "Reducing Decision Pressure",
+      "story_p1": "During a move, countless decisions are demanded simultaneously: keep, give away, store? For many items the answer is clear. But for some it is not. The Maybe Box is designed for exactly these cases.",
+      "story_p2": "We store items you are unsure about for up to 90 days. During that time, you can decide at leisure whether to keep or let go. Without pressure. Without haste.",
+      "purpose_title": "Giá trị quyết định",
+      "purpose_text": "Decisional overload during a move leads to regrettable choices. The Maybe Box decouples the physical process of moving from the emotional process of letting go.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For anyone finding it difficult to part with certain items immediately and needing time for a considered decision.",
+      "cta_title": "Yêu cầu hộp Có Thể",
+      "cta_text": "Give yourself time for the difficult decisions. We store items in the Maybe Box until you are ready."
+    },
+    "sig_key_handover": {
+      "meta_title": "Key Handover – Documented and Secure Property Handover",
+      "meta_desc": "The FLOXANT Key Handover documents the property handover securely. Professional protocols and visual evidence for your protection.",
+      "badge": "Trải nghiệm Signature",
+      "hero_title": "Bàn Giao Chìa Khóa",
+      "hero_desc": "Có tài liệu. An toàn. Truy vết được.",
+      "story_title": "The Final Step, Properly Documented",
+      "story_p1": "The key handover marks the official closing of a chapter. But too often it happens hurriedly, without documentation. The Key Handover service creates a professional protocol of the property condition, photographs all rooms, and documents the handover of all keys.",
+      "story_p2": "You receive a complete documentation package that serves as proof in the event of subsequent disputes. This is not merely a formality – it is your legal safeguard.",
+      "purpose_title": "Giá trị pháp lý",
+      "purpose_text": "A documented handover protects both parties. It creates clarity about the condition of the property and prevents subsequent disputes over the deposit.",
+      "for_whom_title": "Trải nghiệm dành cho ai?",
+      "for_whom_text": "For all tenants and landlords who value a legally secure, documented property handover.",
+      "cta_title": "Đặt bàn giao chìa khóa",
+      "cta_text": "Document your property handover professionally. We create a complete protocol for your records."
+    }
+  },
+  "services_section": {
+    "title": "Dịch Vụ Của Chúng Tôi",
+    "subtitle": "Giải pháp tùy chỉnh cho mọi nhu cầu.",
+    "items": [
+      {
+        "title": "Chuyển nhà cá nhân",
+        "desc": "Vô lo đến nhà mới."
+      },
+      {
+        "title": "Chuyển văn phòng",
+        "desc": "Thời gian gián đoạn tối thiểu."
+      },
+      {
+        "title": "Chuyển nhà đường dài",
+        "desc": "An toàn khắp châu Âu."
+      },
+      {
+        "title": "Dọn dẹp",
+        "desc": "Dọn sạch căn hộ và mặt bằng."
+      },
+      {
+        "title": "Lắp ráp",
+        "desc": "Lắp ráp chuyên nghiệp nội thất."
+      },
+      {
+        "title": "Vùng cấm đỗ xe",
+        "desc": "Phê duyệt và lắp đặt chính thức."
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "Dịch Vụ Signature",
+    "subtitle": "Hơn cả logistics. Chúng tôi chăm sóc chi tiết cảm xúc cho khởi đầu mới.",
+    "badge": "Độc quyền tại FLOXANT",
+    "items": {
+      "ritual_exit": {
+        "title": "Hộp Chia Tay",
+        "desc": "Lời chia tay có ý thức."
+      },
+      "clean_start": {
+        "title": "Nghi lễ Khởi Đầu Sạch",
+        "desc": "Khoảnh khắc đến nơi mới."
+      },
+      "neighbour_kit": {
+        "title": "Bộ Hàng Xóm Mới",
+        "desc": "Hòa nhập vào khu phố dễ dàng."
+      },
+      "first_48h": {
+        "title": "Gói 48 giờ đầu",
+        "desc": "Ổn định trong những giờ đầu tiên."
+      },
+      "bureaucracy": {
+        "title": "Lá chắn thủ tục",
+        "desc": "Ít giấy tờ hơn."
+      },
+      "furniture_opt": {
+        "title": "Tối ưu nội thất",
+        "desc": "Bố trí theo logic không gian."
+      },
+      "cleaning_guarantee": {
+        "title": "Bảo đảm vệ sinh",
+        "desc": "Vệ sinh cuối cùng theo tiêu chuẩn."
+      },
+      "storage_rot": {
+        "title": "Lưu trữ linh hoạt",
+        "desc": "Lưu trữ an toàn, trả lại khi cần."
+      },
+      "kids_box": {
+        "title": "Hộp chuyển nhà trẻ em",
+        "desc": "Chuyển nhà từ góc nhìn trẻ em."
+      },
+      "service_24h": {
+        "title": "Dịch vụ chuyển nhà 24h",
+        "desc": "Chuyển nhà hiệu quả trong 24 giờ."
+      },
+      "ladies_team": {
+        "title": "Đội nữ",
+        "desc": "Tin tưởng trong tình huống nhạy cảm."
+      },
+      "memory_capsule": {
+        "title": "Viên nang ký ức",
+        "desc": "Giữ gìn điều quan trọng."
+      },
+      "maybe_box": {
+        "title": "Hộp Có thể",
+        "desc": "Hoãn quyết định đến khi sẵn sàng."
+      },
+      "key_handover": {
+        "title": "Bàn giao chìa khóa",
+        "desc": "Có hồ sơ. An toàn. Truy vết được."
+      }
+    }
+  }
+}

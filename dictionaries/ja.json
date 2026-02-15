@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "services": "サービス",
+    "pricing": "料金",
+    "contact": "お問い合わせ",
+    "login": "ログイン",
+    "book_now": "今すぐ予約",
+    "dashboard": "ダッシュボード"
+  },
+  "hero": {
+    "title": "あなたの変化の設計者",
+    "subtitle": "引越しは単なる箱の中の混乱ではありません。複雑な技術プロジェクトです。私たちが計画、管理、実行します。",
+    "cta": "見積もりを取得"
+  },
+  "area": {
+    "title": "サービスエリア",
+    "description": "本社：デュッセルドルフ。運営センター：レーゲンスブルク。",
+    "hub_note": "FLOXANTの本社はデュッセルドルフにあります。運営センターはレーゲンスブルクとオーバープファルツにあり、バイエルン全域へのサービスとドイツ全国の長距離引越しを提供しています。",
+    "cities": {
+      "regensburg": "レーゲンスブルク",
+      "bavaria": "バイエルン",
+      "munich": "ミュンヘン",
+      "nuremberg": "ニュルンベルク",
+      "augsburg": "アウクスブルク",
+      "germany": "ドイツ全国"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "サービス",
+      "details": "詳細",
+      "upgrades": "オプション",
+      "contact": "連絡先"
+    },
+    "headings": {
+      "service_selection": "どこから始めましょうか？",
+      "service_subtitle": "メインサービスをお選びください。",
+      "details_prefix": "詳細：",
+      "upgrades_title": "もう少し追加しますか？",
+      "upgrades_subtitle": "快適さのためのシグネチャーサービス。",
+      "summary_title": "概要",
+      "summary_subtitle": "すぐに空き状況を確認します。",
+      "success_title": "リクエスト完了！",
+      "success_message": "ありがとうございます、{name}様。リクエストを受け取りました。",
+      "success_email": "{email}に確認メールを送信しました。"
+    },
+    "services": {
+      "umzug": {
+        "label": "引越し",
+        "desc": "ストレスフリーの引越し。"
+      },
+      "reinigung": {
+        "label": "清掃",
+        "desc": "徹底清掃と引き渡し。"
+      },
+      "entsorgung": {
+        "label": "廃棄",
+        "desc": "プロフェッショナルかつ迅速。"
+      }
+    },
+    "form": {
+      "start_address": "出発先住所",
+      "end_address": "目的地住所",
+      "date": "希望日",
+      "name": "お名前",
+      "email": "メール",
+      "phone": "電話番号",
+      "photos": "写真をアップロード（任意）",
+      "photos_placeholder": "クリックしてアップロード（複数選択可）",
+      "photos_count": "{count}ファイル選択済み",
+      "placeholder_address": "通り、市",
+      "placeholder_name": "お名前",
+      "placeholder_email": "email@example.com",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "戻る",
+      "next": "次へ",
+      "finish": "完了",
+      "submit": "見積もりを依頼",
+      "sending": "送信中...",
+      "new_request": "新規リクエスト"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "レディースチーム",
+        "desc": "最大限の配慮と共感。"
+      },
+      "24h_service": {
+        "title": "24時間サービス",
+        "desc": "24時間対応。"
+      },
+      "furniture_opt": {
+        "title": "家具最適化",
+        "desc": "分解、組立、ケア。"
+      },
+      "storage_rot": {
+        "title": "フレキシブル保管",
+        "desc": "柔軟な一時保管。"
+      },
+      "maybe_box": {
+        "title": "迷いボックス",
+        "desc": "決断の手助け。"
+      },
+      "clean_shield": {
+        "title": "事務手続きシールド",
+        "desc": "駐車禁止区域と許可証。"
+      }
+    },
+    "error": {
+      "submit": "送信エラー。再試行してください。",
+      "generic": "予期しないエラーが発生しました。"
+    }
+  },
+  "footer": {
+    "rights": "全著作権所有。",
+    "impressum": "法的情報",
+    "privacy": "プライバシー",
+    "terms": "利用規約",
+    "revocation": "撤回権",
+    "booking": "予約条件",
+    "areas": "サービスエリア"
+  },
+  "contact": {
+    "name": "お名前",
+    "email": "メール",
+    "message": "メッセージ",
+    "submit": "送信",
+    "success": "メッセージ送信完了",
+    "error": "送信エラー"
+  },
+  "trust": {
+    "experience": "長年の経験",
+    "quality": "最高品質",
+    "insured": "完全保険付き"
+  },
+  "auth": {
+    "login_title": "管理者ログイン",
+    "subtitle": "保護エリア",
+    "email_label": "メール",
+    "password_label": "パスワード",
+    "submit_button": "ログイン",
+    "loading_button": "確認中...",
+    "error_failed": "ログイン失敗",
+    "error_generic": "エラーが発生しました。",
+    "logout": "ログアウト",
+    "system_operational": "システム稼働中",
+    "dashboard_title": "FLOXANT 内部"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "リクエスト合計",
+      "new": "新規（24時間）",
+      "status": "ステータス",
+      "active": "アクティブ"
+    },
+    "filters": {
+      "search_placeholder": "名前またはメールで検索...",
+      "all": "すべて",
+      "umzug": "引越し",
+      "reinigung": "清掃",
+      "entsorgung": "廃棄"
+    },
+    "status": {
+      "loading": "ダッシュボード読み込み中...",
+      "syncing": "データベース同期中...",
+      "empty": "該当するリクエストがありません。",
+      "empty_hint": "フィルターを調整してください。"
+    },
+    "card": {
+      "edit": "編集",
+      "no_extras": "追加なし"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "お引越し先：",
+      "hero_title_highlight": "ミュンヘン",
+      "hero_desc": "バイエルンの州都へストレスフリーで。FLOXANTは固定価格保証付きのプレミアム引越しサービスを提供します。",
+      "badge": "ミュンヘンと周辺地域",
+      "intro_title": "ミュンヘンへの引越し – 計画と精密さで",
+      "intro_text_1": "ミュンヘンはダイナミックな大都市です。バイエルンの州都での引越しは、狭い階段や駐車場不足など、物流上の課題となることがしばしばです。経験と入念な計画が求められます。",
+      "intro_text_2": "FLOXANTはこれらの課題を見事に管理する引越しサービスです。私たちは単に作業を始めるのではなく、お引越しを詳細に計画します。",
+      "transparency_title": "本社についての透明性",
+      "transparency_text": "FLOXANTの法的本社はデュッセルドルフにあります。しかし当チームはミュンヘンで定期的に業務を行っています。",
+      "portfolio_title": "ミュンヘン向けサービスポートフォリオ",
+      "services": {
+        "city": {
+          "title": "ミュンヘン市内引越し",
+          "desc": "市内で迅速かつ効率的。"
+        },
+        "remote": {
+          "title": "ミュンヘン発長距離引越し",
+          "desc": "イザール川からライン川まで。物流最適化。"
+        },
+        "clearance": {
+          "title": "片付け",
+          "desc": "古い家具の専門的処分。"
+        }
+      },
+      "details_title": "ミュンヘンの特性",
+      "details_text": "どの都市にも固有の特性があります。",
+      "remote_title": "バイエルンからドイツ全国へ",
+      "remote_text": "多くのお客様がミュンヘンから移転されます。",
+      "pricing_title": "明朗な価格、サプライズなし",
+      "pricing_text": "ミュンヘンは十分に高価です。私たちは絶対的な価格透明性を追求します。",
+      "features": {
+        "inspection": "無料点検：ビデオ通話による事前評価。",
+        "insurance": "保険込み：お客様の家具は完全に保護されます。",
+        "staff": "有資格スタッフ：経験豊富で丁寧。"
+      },
+      "links_title": "その他の地域",
+      "cta_title": "組立てを注文",
+      "cta_text": "妥協のない専門的組立て。"
+    },
+    "service_umzug": {
+      "meta_title": "個人引越し",
+      "meta_desc": "FLOXANTが精密さと丁寧さで個人のお引越しをサポートします。",
+      "badge": "基本サービス",
+      "hero_title": "個人引越し",
+      "hero_desc": "引越しは運搬以上のもの。それは人生の転換です。",
+      "intro_title": "細部まで考え抜かれたお引越し",
+      "intro_p1": "個人の引越しは人生のあらゆる側面に関わります。大切な持ち物、貴重な思い出 – すべてに個別の注意が必要です。",
+      "intro_p2": "私たちのチームは明確なプロセスで完全な透明性を確保します。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "丁寧なサービスを重視する個人・ご家族",
+        "市内・地域内の住居引越し",
+        "特別な保護が必要な引越し"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "評価",
+          "desc": "無料点検（現地またはビデオ）。"
+        },
+        {
+          "title": "固定価格",
+          "desc": "透明なお見積もり。"
+        },
+        {
+          "title": "実施",
+          "desc": "専門的な梱包と安全な輸送。"
+        },
+        {
+          "title": "引き渡し",
+          "desc": "組立て、配置、清掃。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "固定価格保証",
+        "完全保険",
+        "専門研修を受けたスタッフ"
+      ],
+      "cta_title": "お気軽にお問い合わせください",
+      "cta_text": "カスタムお見積もりから始めましょう。"
+    },
+    "service_buero_umzug": {
+      "meta_title": "オフィス引越し",
+      "meta_desc": "FLOXANTがダウンタイム最小でオフィス移転を組織します。",
+      "badge": "商業",
+      "hero_title": "オフィス引越し",
+      "hero_desc": "ビジネスの継続性には計画が必要です。",
+      "intro_title": "精密な企業引越し",
+      "intro_p1": "オフィスの引越しは稼働中のビジネスプロセスに介入します。ITインフラ、機密書類 – すべての細部が重要です。",
+      "intro_p2": "すべての作業を調整します。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "あらゆる規模の企業",
+        "法律事務所",
+        "ダウンタイム最小化企業"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "プロジェクト計画",
+          "desc": "詳細分析。"
+        },
+        {
+          "title": "調整",
+          "desc": "ITチームとの連携。"
+        },
+        {
+          "title": "実施",
+          "desc": "指定時間枠での引越し。"
+        },
+        {
+          "title": "稼働開始",
+          "desc": "ワークステーション設定。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "保証された時間枠",
+        "IT機器保険",
+        "慎重な取り扱い"
+      ],
+      "cta_title": "オフィス引越しを計画",
+      "cta_text": "一緒に計画しましょう。"
+    },
+    "service_fernumzug": {
+      "meta_title": "長距離引越し",
+      "meta_desc": "FLOXANTがバイエルン発の長距離引越しを組織します。",
+      "badge": "長距離",
+      "hero_title": "長距離引越し",
+      "hero_desc": "距離は障壁ではありません。",
+      "intro_title": "精密な長距離引越し",
+      "intro_p1": "長距離引越しには特別な計画品質が求められます。",
+      "intro_p2": "レーゲンスブルクからハンブルク、ミュンヘンからベルリンまで。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "転職による移転",
+        "ご家族の転居",
+        "社員の異動"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "ルート計画",
+          "desc": "最適ルート。"
+        },
+        {
+          "title": "梱包",
+          "desc": "特殊素材。"
+        },
+        {
+          "title": "輸送",
+          "desc": "GPS追跡。"
+        },
+        {
+          "title": "配達",
+          "desc": "時間通りの配達。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "全行程固定価格",
+        "完全保険",
+        "配達保証"
+      ],
+      "cta_title": "長距離引越しのお問い合わせ",
+      "cta_text": "どちらへお引越しですか？"
+    },
+    "service_reinigung": {
+      "meta_title": "プロフェッショナルクリーニング",
+      "meta_desc": "FLOXANTのプロフェッショナル最終清掃。",
+      "badge": "清掃",
+      "hero_title": "清掃",
+      "hero_desc": "清潔さは終了と新しい始まりの基盤です。",
+      "intro_title": "体系的な最終清掃",
+      "intro_p1": "最終清掃は敷金返還の決定的要因です。",
+      "intro_p2": "私たちのチームは丁寧かつ迅速に作業します。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "引き渡し前の借主",
+        "売却前のオーナー",
+        "商業施設"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "点検",
+          "desc": "状態評価。"
+        },
+        {
+          "title": "実施",
+          "desc": "体系的清掃。"
+        },
+        {
+          "title": "品質管理",
+          "desc": "写真記録による検収。"
+        },
+        {
+          "title": "引き渡し",
+          "desc": "清潔な引き渡し。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "オーナー基準の清掃",
+        "写真記録付き",
+        "正当な場合の再清掃"
+      ],
+      "cta_title": "清掃を注文",
+      "cta_text": "プロフェッショナルな最終清掃。"
+    },
+    "service_entruempelung": {
+      "meta_title": "専門的な片付け・処分",
+      "meta_desc": "FLOXANTが専門的に物件を片付けます。",
+      "badge": "処分",
+      "hero_title": "片付け・処分",
+      "hero_desc": "手放すには信頼が必要です。",
+      "intro_title": "責任ある片付け",
+      "intro_p1": "片付けは物を除去する以上のことです。",
+      "intro_p2": "専門的に分類し、環境に配慮して処分します。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "住居の整理",
+        "商業施設の片付け",
+        "個人"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "現地確認",
+          "desc": "共同在庫調査。"
+        },
+        {
+          "title": "片付け",
+          "desc": "体系的に。"
+        },
+        {
+          "title": "処分",
+          "desc": "専門的分類。"
+        },
+        {
+          "title": "最終状態",
+          "desc": "清潔な引き渡し。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "環境配慮の処分",
+        "慎重な取り扱い",
+        "清潔な引き渡し保証"
+      ],
+      "cta_title": "片付けのお問い合わせ",
+      "cta_text": "お気軽にご連絡ください。"
+    },
+    "service_montage": {
+      "meta_title": "専門的な組立て",
+      "meta_desc": "FLOXANTが家具とキッチンを専門的に組み立てます。",
+      "badge": "組立て",
+      "hero_title": "組立て",
+      "hero_desc": "細部における精密さ。",
+      "intro_title": "ミュンヘンへの引越し – 計画と精密さで",
+      "intro_p1": "品質の高い家具は専門的な組立てに値します。",
+      "intro_p2": "IKEAの棚からデザイナーキッチンまで。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "引越し後",
+        "商業クライアント",
+        "キッチン設置"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "準備",
+          "desc": "説明書確認。"
+        },
+        {
+          "title": "組立て",
+          "desc": "専門的設置。"
+        },
+        {
+          "title": "機能テスト",
+          "desc": "可動部分のテスト。"
+        },
+        {
+          "title": "最終点検",
+          "desc": "作業エリアの清掃。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "専門的組立て",
+        "表面保護",
+        "清潔な作業場"
+      ],
+      "cta_title": "組立てを注文",
+      "cta_text": "妥協のない専門的組立て。"
+    },
+    "service_halteverbotszone": {
+      "meta_title": "駐車禁止区域",
+      "meta_desc": "FLOXANTが駐車禁止区域を手配します。",
+      "badge": "ロジスティクス",
+      "hero_title": "駐車禁止区域",
+      "hero_desc": "自由なアクセスがすべての引越しの基盤です。",
+      "intro_title": "駐車禁止区域 – 適時かつ合法的に",
+      "intro_p1": "多くの都市部では公式の禁止区域が必要です。",
+      "intro_p2": "FLOXANTがプロセス全体を担当します。",
+      "for_whom_title": "このサービスの対象は？",
+      "for_whom_items": [
+        "市中心部の引越し",
+        "商業引越し",
+        "すべての引越し"
+      ],
+      "process_title": "プロセス",
+      "process_steps": [
+        {
+          "title": "申請",
+          "desc": "当局への提出。"
+        },
+        {
+          "title": "承認",
+          "desc": "確認。"
+        },
+        {
+          "title": "設置",
+          "desc": "標識の設置。"
+        },
+        {
+          "title": "撤去",
+          "desc": "標識の撤去。"
+        }
+      ],
+      "guarantees_title": "保証内容",
+      "guarantees": [
+        "完全な公式手続き",
+        "適時の設置",
+        "フルサービス"
+      ],
+      "cta_title": "禁止区域を申請",
+      "cta_text": "自由なアクセスを確保。"
+    },
+    "reinigung_regensburg": {
+      "meta_title": "レーゲンスブルク清掃",
+      "meta_desc": "レーゲンスブルクでの専門清掃。",
+      "badge": "Regensburg",
+      "hero_title_prefix": "専門清掃：",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "運営センター。",
+      "intro_title": "レーゲンスブルクの最終清掃",
+      "intro_p1": "運営拠点。",
+      "intro_p2": "文書化されたプロセス。",
+      "services_title": "清掃サービス",
+      "services": {
+        "end_cleaning": {
+          "title": "最終清掃",
+          "desc": "完全清掃。"
+        },
+        "construction_cleaning": {
+          "title": "建設後清掃",
+          "desc": "リフォーム後。"
+        },
+        "office_cleaning": {
+          "title": "オフィス清掃",
+          "desc": "定期または一回。"
+        }
+      },
+      "cta_title": "レーゲンスブルクでの注文",
+      "cta_text": "ご予約ください。"
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "レーゲンスブルク片付け",
+      "meta_desc": "FLOXANTがレーゲンスブルクで片付けます。",
+      "badge": "Regensburg",
+      "hero_title_prefix": "片付け：",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "手放すプロセス。",
+      "intro_title": "レーゲンスブルクでの片付け",
+      "intro_p1": "運営センター。",
+      "intro_p2": "現地での分類。",
+      "services_title": "片付けサービス",
+      "services": {
+        "household": {
+          "title": "住居整理",
+          "desc": "完全片付け。"
+        },
+        "commercial": {
+          "title": "商業片付け",
+          "desc": "オフィスと倉庫。"
+        },
+        "partial": {
+          "title": "部分片付け",
+          "desc": "選択した部屋。"
+        }
+      },
+      "cta_title": "片付けのお問い合わせ",
+      "cta_text": "ご連絡ください。"
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "レーゲンスブルクオフィス引越し",
+      "meta_desc": "FLOXANTがレーゲンスブルクで組織します。",
+      "badge": "Regensburg",
+      "hero_title_prefix": "オフィス引越し：",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "ビジネスの継続性。",
+      "intro_title": "レーゲンスブルクでのオフィス引越し",
+      "intro_p1": "レーゲンスブルクは成長中。",
+      "intro_p2": "調整します。",
+      "services_title": "オフィス引越しサービス",
+      "services": {
+        "full_move": {
+          "title": "完全引越し",
+          "desc": "オフィスとIT。"
+        },
+        "it_relocation": {
+          "title": "IT移転",
+          "desc": "専門的な切断。"
+        },
+        "weekend_move": {
+          "title": "週末引越し",
+          "desc": "営業時間外。"
+        }
+      },
+      "cta_title": "計画",
+      "cta_text": "一緒に計画しましょう。"
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – A Conscious Farewell to Your Home",
+      "meta_desc": "The FLOXANT Ritual Exit Box accompanies you through a conscious farewell. A personal ritual for the transition into a new chapter.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "お別れの儀式ボックス",
+      "hero_desc": "家を離れることは一つの章を閉じること。",
+      "story_title": "Why a Farewell Deserves a Ritual",
+      "story_p1": "Every home carries memories. The first night, cooking together, quiet moments by the window. When we leave, we do not just leave rooms behind – we leave a part of our story. The Ritual Exit Box is our answer to a transition that is too often overlooked.",
+      "story_p2": "Inside the box you will find a small ceremony: a candle, a handwritten guide, and a sealable envelope for a final letter to this place. It is not a product. It is a gesture.",
+      "purpose_title": "心理的価値",
+      "purpose_text": "Conscious transitions reduce the emotional stress of a move. The Ritual Exit Box creates a defined moment of letting go – calm, personal, and dignified.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For anyone who does not simply leave their home but wishes to say goodbye. Especially valuable for long-term residences, family homes, or shared living spaces.",
+      "cta_title": "儀式ボックスを追加",
+      "cta_text": "Complement your move with a Ritual Exit Box. Mention it when submitting your enquiry."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Consciously Move into Your New Home",
+      "meta_desc": "The FLOXANT Clean Start Ceremony prepares your new apartment for a conscious move-in. Professional cleaning as the foundation for a fresh start.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "クリーンスタート・セレモニー",
+      "hero_desc": "家具の前に、空間を整えます。",
+      "story_title": "A New Beginning Starts with Clarity",
+      "story_p1": "A new home should feel like yours from the very first second. Not like the space of a predecessor. The Clean Start Ceremony is a professional deep clean that goes beyond the ordinary.",
+      "story_p2": "We do not just clean surfaces – we create an atmosphere. After cleaning, the space is ventilated and subtly prepared. When you step in, you enter your space.",
+      "purpose_title": "心理的価値",
+      "purpose_text": "A clean, prepared space signals to your subconscious: something new begins here. The Clean Start Ceremony makes this transition tangible.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For move-ins to existing properties, after renovations, or for anyone who wishes to consciously take possession of their new space.",
+      "cta_title": "クリーンスタートを予約",
+      "cta_text": "Prepare your move-in. Mention the Clean Start Ceremony when submitting your enquiry."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professional Neighbourhood Introduction",
+      "meta_desc": "The FLOXANT New Neighbour Kit eases your arrival in the new neighbourhood. Discreet, charming, and thoughtfully crafted.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "新しいご近所キット",
+      "hero_desc": "第一印象は大切です。",
+      "story_title": "Arriving Begins with Connection",
+      "story_p1": "In a new environment, one initially feels like a stranger. The New Neighbour Kit bridges this first distance elegantly. It contains a personalised greeting card and a small token of appreciation for your immediate neighbours.",
+      "story_p2": "We prepare the kit and deliver it on your move-in day upon request. You leave a positive first impression – without having to think about it yourself.",
+      "purpose_title": "社会的価値",
+      "purpose_text": "Good neighbourly relations begin on day one. The kit creates a foundation for mutual respect and reduces the social barrier of a new beginning.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For families, couples, or individuals moving into a multi-unit building who wish to build a positive relationship with their neighbours from the start.",
+      "cta_title": "ご近所キットを注文",
+      "cta_text": "Complement your move with the New Neighbour Kit. We take care of the details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – The First Two Days Worry-Free",
+      "meta_desc": "The FLOXANT First 48h Package supplies you with everything you need in the first two days after your move. No searching, no stress.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "最初の48時間パッケージ",
+      "hero_desc": "新居での最初の数時間が決定的です。",
+      "story_title": "The Critical First 48 Hours",
+      "story_p1": "After a move, the household is in a state of emergency. Where is the coffee machine? Where are the towels? The First 48h Package contains everything you need for the first two days: hygiene products, snacks, basic cleaning supplies, and a checklist for the most important tasks.",
+      "story_p2": "The package is ready when you enter your new home. No searching, no improvising – simply arrive.",
+      "purpose_title": "実用的価値",
+      "purpose_text": "The first 48 hours determine how a move is emotionally evaluated. Those who are immediately functional experience the transition as positive rather than burdensome.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For anyone who wishes to be immediately functional after a move. Especially valuable for singles, professionals, or families with children.",
+      "cta_title": "48時間パッケージを予約",
+      "cta_text": "Start relaxed in your new home. We prepare the package for your move-in."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bureaucracy Shield – Delegate Official Formalities",
+      "meta_desc": "The FLOXANT Bureaucracy Shield handles official formalities around your move. No-parking zones, re-registration, mail forwarding.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "官僚シールド",
+      "hero_desc": "手続きはあらゆる引越しの一部です。",
+      "story_title": "Bureaucracy Need Not Be Your Concern",
+      "story_p1": "A move brings a wave of formalities: applying for a no-parking zone, re-registering your address, setting up mail forwarding, notifying utility providers. The Bureaucracy Shield bundles all these tasks and handles them for you.",
+      "story_p2": "Our team is familiar with procedures across Regensburg and all of Bavaria. We know the relevant offices, the forms, and the deadlines. You receive complete documentation of all completed steps.",
+      "purpose_title": "組織的価値",
+      "purpose_text": "Bureaucracy is one of the greatest stress factors in relocations. Delegating to experienced professionals reduces errors, saves time, and gives you certainty.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For individuals and companies who wish to focus on their move and delegate formalities to experienced hands.",
+      "cta_title": "シールドを申請",
+      "cta_text": "Delegate the formalities. We handle the official processing for you."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Furniture Optimisation – Space Planning After Your Move",
+      "meta_desc": "FLOXANT Furniture Optimisation helps you place your furnishings perfectly in new spaces. Professional space planning included.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "家具最適化",
+      "hero_desc": "配置する、ただ置くだけではなく。",
+      "story_title": "Your Space, Reimagined",
+      "story_p1": "Old furniture in new rooms – it does not always fit immediately. Furniture Optimisation analyses your furnishings in the context of the new floor plan and suggests an optimal arrangement. Natural light, walkways, and room proportions inform the planning.",
+      "story_p2": "Our team implements the optimisation directly on moving day. So you experience your new space not as a compromise, but as a thoughtfully arranged home.",
+      "purpose_title": "デザイン的価値",
+      "purpose_text": "A well-considered room arrangement enhances living quality and well-being. The optimisation prevents provisional solutions from becoming permanent.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For anyone moving existing furnishings into a differently proportioned space and wishing to make the best of the situation.",
+      "cta_title": "最適化を申請",
+      "cta_text": "Have your new space professionally arranged. We plan the optimal layout."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Cleaning Guarantee – Broom-Clean Handover Guaranteed",
+      "meta_desc": "The FLOXANT Cleaning Guarantee assures broom-clean handover. If your landlord has complaints, we re-clean – free of charge.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "清掃保証",
+      "hero_desc": "清潔な引き渡し – 保証付き。",
+      "story_title": "Certainty at Handover",
+      "story_p1": "Property handover is often the most stressful moment after a move. Will the deposit be returned in full? Will there be complaints? The Cleaning Guarantee takes this worry from you. We clean to our defined standards and stand behind our work.",
+      "story_p2": "Should your landlord identify legitimate cleaning deficiencies within 14 days of handover, we return and rectify them – at no additional cost.",
+      "purpose_title": "財務的価値",
+      "purpose_text": "The Cleaning Guarantee protects your deposit and gives you negotiating confidence at handover. It documents professional diligence.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For all tenants who wish for a stress-free property handover and want to receive their full deposit back.",
+      "cta_title": "保証を追加",
+      "cta_text": "Secure your handover. The Cleaning Guarantee can be added to any move."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Storage Rotation – Flexible Interim Storage for Your Move",
+      "meta_desc": "FLOXANT Storage Rotation offers secure interim storage with flexible access. Ideal for staged moves and renovations.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "倉庫ローテーション",
+      "hero_desc": "すべてを一度に移す必要はありません。",
+      "story_title": "Interim Storage as a Strategic Tool",
+      "story_p1": "Sometimes schedules do not align: the old property must be vacated, but the new one is not yet ready. Or you are renovating and need temporary space for your belongings. Storage Rotation solves this timing challenge.",
+      "story_p2": "Your items are stored securely at our partner facility in the Regensburg region. You can arrange access and request partial deliveries whenever it suits you.",
+      "purpose_title": "物流的価値",
+      "purpose_text": "Flexibility in scheduling reduces pressure and enables better decisions. Storage Rotation decouples move-out and move-in.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For anyone whose moving dates are not synchronised, or who needs space during a renovation.",
+      "cta_title": "ローテーションを申請",
+      "cta_text": "Secure flexible interim storage. We advise on the possibilities."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kids Moving Box – Making Moves Child-Friendly",
+      "meta_desc": "The FLOXANT Kids Moving Box makes moving an adventure for children. Activity materials, an explanatory booklet, and a personal surprise.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "お子様引越しボックス",
+      "hero_desc": "お子様は引越しを異なる体験をします。",
+      "story_title": "A Move Through a Child's Eyes",
+      "story_p1": "For children, a move means uncertainty: the familiar room disappears, friends are left behind, everything changes. The Kids Moving Box accompanies this process in an age-appropriate way with activity materials, a small explanatory booklet about moving, and a personal surprise for the first day in the new room.",
+      "story_p2": "The box is handed over before moving day so children can prepare and actively participate – as an adventure, not a loss.",
+      "purpose_title": "教育的価値",
+      "purpose_text": "Children who are actively included in the moving process cope better with the change. The box gives them a role and makes the transition tangible.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For families with children aged 3 to 12 who wish to make the move child-friendly.",
+      "cta_title": "お子様ボックスを注文",
+      "cta_text": "Make the move a positive experience for your children. We prepare the box individually."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Moving Service – Available Around the Clock",
+      "meta_desc": "FLOXANT 24h Moving Service for urgent and time-sensitive relocations. Available evenings, nights, and weekends.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "24時間引越しサービス",
+      "hero_desc": "待てない引越しもあります。",
+      "story_title": "Availability as a Promise",
+      "story_p1": "Not every move fits into regular business hours. Short-notice terminations, professional transfers, or personal circumstances sometimes demand swift action. The 24h Moving Service guarantees availability in the evenings, at night, and on weekends.",
+      "story_p2": "Our standby team is ready at short notice. The same quality, the same care – regardless of the hour.",
+      "purpose_title": "時間的価値",
+      "purpose_text": "Time pressure is one of the greatest stress factors in relocations. The 24h service eliminates the time constraint and gives you maximum flexibility.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For urgent moves, time-sensitive relocations, or clients who can only move outside business hours for professional reasons.",
+      "cta_title": "24時間サービスを申請",
+      "cta_text": "Contact us at any time. We are there for you – around the clock."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Ladies Team – Moving by an All-Female Team",
+      "meta_desc": "The FLOXANT Ladies Team offers moves exclusively by female personnel. Discreet, respectful, and professional.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "女性チーム",
+      "hero_desc": "特別な配慮が必要な状況もあります。",
+      "story_title": "Respect Begins with Understanding",
+      "story_p1": "There are situations in which clients feel more comfortable with an all-female team: after a separation, due to religious or cultural preferences, or simply as a personal choice. The Ladies Team respects these wishes without question and at no extra charge.",
+      "story_p2": "Our female moving team works with the same professionalism and efficiency as all our teams. The only difference: the composition.",
+      "purpose_title": "個人的価値",
+      "purpose_text": "The Ladies Team creates a protected environment for the move. It respects personal boundaries and cultural needs – discreetly and naturally.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For female clients who prefer an all-female team for personal, cultural, or religious reasons.",
+      "cta_title": "女性チームを申請",
+      "cta_text": "Book your move with our Ladies Team. Discreet, professional, and at no extra charge."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Memory Capsule – Preserving Moments During Your Move",
+      "meta_desc": "The FLOXANT Memory Capsule preserves a moment from your old home. Photos, notes, and personal items in a sealed capsule.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "メモリーカプセル",
+      "hero_desc": "記憶に値する場所があります。",
+      "story_title": "A Place, Frozen in Time",
+      "story_p1": "Before the last box is packed, we pause. The Memory Capsule contains photos of the empty rooms, a note of your choice, and a small object from the old home. Everything is sealed in a high-quality capsule.",
+      "story_p2": "This capsule is not meant to be opened immediately. It is an anchor – a physical object that captures a place in time. Open it whenever you are ready.",
+      "purpose_title": "感情的価値",
+      "purpose_text": "Memories fade over time. The capsule preserves a defined moment and makes it accessible again at any time.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For people leaving a place that meant a great deal to them. Especially valuable for family homes or properties with a long history.",
+      "cta_title": "カプセルを追加",
+      "cta_text": "Preserve a moment from your old home. We prepare the capsule on moving day."
+    },
+    "sig_maybe_box": {
+      "meta_title": "The Maybe Box – Decision Aid During Your Move",
+      "meta_desc": "The FLOXANT Maybe Box gives you time for uncertain decisions. Keep or let go? Decide later.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "「もしかして」ボックス",
+      "hero_desc": "すべての決断が即座である必要はありません。",
+      "story_title": "Reducing Decision Pressure",
+      "story_p1": "During a move, countless decisions are demanded simultaneously: keep, give away, store? For many items the answer is clear. But for some it is not. The Maybe Box is designed for exactly these cases.",
+      "story_p2": "We store items you are unsure about for up to 90 days. During that time, you can decide at leisure whether to keep or let go. Without pressure. Without haste.",
+      "purpose_title": "決断の価値",
+      "purpose_text": "Decisional overload during a move leads to regrettable choices. The Maybe Box decouples the physical process of moving from the emotional process of letting go.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For anyone finding it difficult to part with certain items immediately and needing time for a considered decision.",
+      "cta_title": "ボックスを申請",
+      "cta_text": "Give yourself time for the difficult decisions. We store items in the Maybe Box until you are ready."
+    },
+    "sig_key_handover": {
+      "meta_title": "Key Handover – Documented and Secure Property Handover",
+      "meta_desc": "The FLOXANT Key Handover documents the property handover securely. Professional protocols and visual evidence for your protection.",
+      "badge": "Signatureエクスペリエンス",
+      "hero_title": "鍵の引き渡し",
+      "hero_desc": "文書化。安全。追跡可能。",
+      "story_title": "The Final Step, Properly Documented",
+      "story_p1": "The key handover marks the official closing of a chapter. But too often it happens hurriedly, without documentation. The Key Handover service creates a professional protocol of the property condition, photographs all rooms, and documents the handover of all keys.",
+      "story_p2": "You receive a complete documentation package that serves as proof in the event of subsequent disputes. This is not merely a formality – it is your legal safeguard.",
+      "purpose_title": "法的価値",
+      "purpose_text": "A documented handover protects both parties. It creates clarity about the condition of the property and prevents subsequent disputes over the deposit.",
+      "for_whom_title": "この体験はどなた向けですか？",
+      "for_whom_text": "For all tenants and landlords who value a legally secure, documented property handover.",
+      "cta_title": "鍵の引き渡しを予約",
+      "cta_text": "Document your property handover professionally. We create a complete protocol for your records."
+    }
+  },
+  "services_section": {
+    "title": "サービス一覧",
+    "subtitle": "あらゆるニーズに合わせたソリューション。",
+    "items": [
+      {
+        "title": "個人引越し",
+        "desc": "安心して新居へ。"
+      },
+      {
+        "title": "オフィス引越し",
+        "desc": "最小限のダウンタイム。"
+      },
+      {
+        "title": "長距離引越し",
+        "desc": "ヨーロッパ全域への安全な輸送。"
+      },
+      {
+        "title": "片付け",
+        "desc": "住居・商業施設のきれいな片付け。"
+      },
+      {
+        "title": "組立",
+        "desc": "家具・キッチンのプロ組立。"
+      },
+      {
+        "title": "駐車禁止区域",
+        "desc": "公式許可と設置。"
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "シグネチャーサービス",
+    "subtitle": "物流以上のもの。新生活の感情的・組織的な細部をケアします。",
+    "badge": "FLOXANT限定",
+    "items": {
+      "ritual_exit": {
+        "title": "お別れボックス",
+        "desc": "意識的な別れ。心のこもった記念品で移行を伴走します。"
+      },
+      "clean_start": {
+        "title": "クリーンスタートセレモニー",
+        "desc": "到着の瞬間。清掃後、秩序と新鮮さで新居を整えます。"
+      },
+      "neighbour_kit": {
+        "title": "新隣人キット",
+        "desc": "近隣への入居をスムーズにします。"
+      },
+      "first_48h": {
+        "title": "最初の48時間パッケージ",
+        "desc": "最初の数時間の安定。寝室、浴室、キッチンをすぐにセットアップ。"
+      },
+      "bureaucracy": {
+        "title": "事務手続き保護",
+        "desc": "書類を減らし、集中力を高めます。"
+      },
+      "furniture_opt": {
+        "title": "家具最適化",
+        "desc": "空間ロジックに基づく配置と最適化。"
+      },
+      "cleaning_guarantee": {
+        "title": "清掃保証",
+        "desc": "オーナー基準に基づく最終清掃。"
+      },
+      "storage_rot": {
+        "title": "フレキシブル保管",
+        "desc": "柔軟に保管し、必要時に返却。"
+      },
+      "kids_box": {
+        "title": "引越しキッズボックス",
+        "desc": "子供の視点からの引越し体験。"
+      },
+      "service_24h": {
+        "title": "24時間引越しサービス",
+        "desc": "時間が重要な時。24時間以内の効率的な引越し。"
+      },
+      "ladies_team": {
+        "title": "レディースチーム",
+        "desc": "デリケートな状況での信頼。"
+      },
+      "memory_capsule": {
+        "title": "メモリーカプセル",
+        "desc": "大切なものを保存するエレガントなボックス。"
+      },
+      "maybe_box": {
+        "title": "迷いボックス",
+        "desc": "決断を先送り。準備ができるまで保管します。"
+      },
+      "key_handover": {
+        "title": "鍵の引き渡し",
+        "desc": "文書化。安全。追跡可能。"
+      }
+    }
+  }
+}

@@ -19,14 +19,55 @@ interface BookingState {
     upgrades: string[];
 }
 
-const steps = [
-    { number: 1, title: "Service" },
-    { number: 2, title: "Details" },
-    { number: 3, title: "Upgrades" },
-    { number: 4, title: "Kontakt" },
-];
+interface SmartBookingWizardProps {
+    dict: any;
+}
 
-export function SmartBookingWizard() {
+export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
+    const defaultBooking = {
+        steps: { service: "Service", details: "Details", upgrades: "Upgrades", contact: "Contact" },
+        headings: {
+            service_selection: "Select Service", service_subtitle: "Choose your service", details_prefix: "Details",
+            upgrades_title: "Upgrades", upgrades_subtitle: "Select extras", summary_title: "Summary", summary_subtitle: "Review details",
+            success_title: "Success", success_message: "Thank you {name}", success_email: "Email sent to {email}"
+        },
+        services: {
+            umzug: { label: "Moving", desc: "Standard move" },
+            reinigung: { label: "Cleaning", desc: "Cleaning service" },
+            entsorgung: { label: "Disposal", desc: "Disposal service" }
+        },
+        form: {
+            start_address: "Start Address", end_address: "End Address", date: "Date",
+            name: "Name", email: "Email", phone: "Phone",
+            photos: "Photos", photos_placeholder: "Upload photos", photos_count: "{count} selected",
+            placeholder_address: "Address", placeholder_name: "Name", placeholder_email: "Email", placeholder_phone: "Phone"
+        },
+        buttons: { back: "Back", next: "Next", finish: "Finish", submit: "Submit", sending: "Sending...", new_request: "New Request" },
+        upgrades: {
+            ladies_team: { title: "Ladies Team", desc: "Care team" },
+            "24h_service": { title: "24h Service", desc: "Fast service" },
+            furniture_opt: { title: "Furniture Opt", desc: "Optimization" },
+            storage_rot: { title: "Storage", desc: "Storage service" },
+            maybe_box: { title: "Maybe Box", desc: "Decision box" },
+            clean_shield: { title: "Clean Shield", desc: "Protection" }
+        },
+        error: { submit: "Error", generic: "Error" }
+    };
+
+    const t = dict?.booking || defaultBooking;
+
+    // Helper to safely get nested keys if dict is incomplete
+    const safeT = (key: string, fallback: string) => {
+        return key || fallback;
+    };
+
+    const steps = [
+        { number: 1, title: t?.steps?.service || "Service" },
+        { number: 2, title: t?.steps?.details || "Details" },
+        { number: 3, title: t?.steps?.upgrades || "Upgrades" },
+        { number: 4, title: t?.steps?.contact || "Contact" },
+    ];
+
     const [state, setState] = useState<BookingState>({
         step: 1,
         service: null,
@@ -37,7 +78,7 @@ export function SmartBookingWizard() {
     const nextStep = () => setState(prev => ({ ...prev, step: prev.step + 1 }));
     const prevStep = () => setState(prev => ({ ...prev, step: prev.step - 1 }));
 
-    // Form State & Handlers (Lifted to top level to avoid Hook errors)
+    // Form State & Handlers
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -75,11 +116,11 @@ export function SmartBookingWizard() {
             if (response.ok) {
                 setIsSuccess(true);
             } else {
-                alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+                alert(t.error.submit);
             }
         } catch (error) {
             console.error("Submission error:", error);
-            alert("Ein unerwarteter Fehler ist aufgetreten.");
+            alert(t.error.generic);
         } finally {
             setIsSubmitting(false);
         }
@@ -93,17 +134,17 @@ export function SmartBookingWizard() {
                     <CheckCircle2 className="w-12 h-12 text-green-500" />
                 </div>
                 <div className="space-y-4">
-                    <h2 className="text-3xl font-bold">Anfrage erfolgreich!</h2>
+                    <h2 className="text-3xl font-bold">{t.headings.success_title}</h2>
                     <p className="text-xl text-muted-foreground">
-                        Vielen Dank, {formData.name}. Wir haben Ihre Anfrage erhalten und prüfen Ihre Kapazitäten.
+                        {t.headings.success_message.replace("{name}", formData.name)}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                        Eine Bestätigung wurde an {formData.email} gesendet.
+                        {t.headings.success_email.replace("{email}", formData.email)}
                     </p>
                 </div>
                 <div className="pt-8">
                     <PremiumButton onClick={() => window.location.reload()}>
-                        Neue Anfrage stellen
+                        {t.buttons.new_request}
                     </PremiumButton>
                 </div>
             </div>
@@ -114,9 +155,9 @@ export function SmartBookingWizard() {
     const renderServiceSelection = () => (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-                { id: "umzug", label: "Umzug", icon: Box, desc: "Stressfrei umziehen." },
-                { id: "reinigung", label: "Reinigung", icon: Sparkles, desc: "Tiefenreinigung & Übergabe." },
-                { id: "entsorgung", label: "Entsorgung", icon: Trash2, desc: "Fachgerecht & schnell." },
+                { id: "umzug", label: t?.services?.umzug?.label || "Moving", icon: Box, desc: t?.services?.umzug?.desc || "" },
+                { id: "reinigung", label: t?.services?.reinigung?.label || "Cleaning", icon: Sparkles, desc: t?.services?.reinigung?.desc || "" },
+                { id: "entsorgung", label: t?.services?.entsorgung?.label || "Disposal", icon: Trash2, desc: t?.services?.entsorgung?.desc || "" },
             ].map((option) => (
                 <button
                     key={option.id}
@@ -144,23 +185,23 @@ export function SmartBookingWizard() {
     // Step 2: Dynamic Details
     const renderDetails = () => (
         <div className="space-y-6 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4 text-center">Details für {state.service?.toUpperCase()}</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-center">{t.headings?.details_prefix || "Details"} {t.services?.[state.service || "umzug"]?.label}</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium flex items-center gap-2"><MapPin size={16} /> Start-Adresse</label>
-                    <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Straße, Ort" />
+                    <label className="text-sm font-medium flex items-center gap-2"><MapPin size={16} /> {t.form?.start_address || "Start Address"}</label>
+                    <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder={t.form?.placeholder_address || "Address"} />
                 </div>
                 {state.service === "umzug" && (
                     <div className="space-y-2">
-                        <label className="text-sm font-medium flex items-center gap-2"><MapPin size={16} /> Ziel-Adresse</label>
-                        <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Straße, Ort" />
+                        <label className="text-sm font-medium flex items-center gap-2"><MapPin size={16} /> {t.form?.end_address || "End Address"}</label>
+                        <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder={t.form?.placeholder_address || "Address"} />
                     </div>
                 )}
             </div>
 
             <div className="space-y-2">
-                <label className="text-sm font-medium flex items-center gap-2"><Calendar size={16} /> Wunschtermin</label>
+                <label className="text-sm font-medium flex items-center gap-2"><Calendar size={16} /> {t.form.date}</label>
                 <input
                     type="date"
                     min={new Date().toISOString().split('T')[0]}
@@ -170,10 +211,10 @@ export function SmartBookingWizard() {
 
             <div className="flex justify-center gap-4 pt-8">
                 <PremiumButton variant="ghost" onClick={prevStep}>
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Zurück
+                    <ArrowLeft className="w-4 h-4 mr-2" /> {t.buttons.back}
                 </PremiumButton>
                 <PremiumButton onClick={nextStep}>
-                    Weiter <ArrowRight className="w-4 h-4 ml-2" />
+                    {t.buttons.next} <ArrowRight className="w-4 h-4 ml-2" />
                 </PremiumButton>
             </div>
         </div>
@@ -181,20 +222,21 @@ export function SmartBookingWizard() {
 
     // Step 3: Intelligent Upgrades
     const renderUpgrades = () => {
+        const u = t.upgrades || {};
         const relevantUpgrades = [
-            { id: "ladies_team", title: "Damen-Team", icon: Users, desc: "Maximale Sorgfalt & Empathie.", service: ["umzug", "reinigung"] },
-            { id: "24h_service", title: "24h Service", icon: Clock, desc: "Rund um die Uhr einsatzbereit.", service: ["umzug", "entsorgung", "reinigung"] },
-            { id: "furniture_opt", title: "Möbel-Optimierung", icon: Sparkles, desc: "Demontage, Aufbau & Pflege.", service: "umzug" },
-            { id: "storage_rot", title: "Lager-Rotation", icon: PackageOpen, desc: "Flexible Zwischenlagerung.", service: "umzug" },
-            { id: "maybe_box", title: "Die Vielleicht-Box", icon: Box, desc: "Entscheidungshilfe für Unklares.", service: ["umzug", "entsorgung"] },
-            { id: "clean_shield", title: "Bureaucracy Shield", icon: Shield, desc: "Halteverbotszonen & Service.", service: ["umzug", "entsorgung"] },
+            { id: "ladies_team", title: u.ladies_team?.title || "Ladies Team", icon: Users, desc: u.ladies_team?.desc || "", service: ["umzug", "reinigung"] },
+            { id: "24h_service", title: u["24h_service"]?.title || "24h Service", icon: Clock, desc: u["24h_service"]?.desc || "", service: ["umzug", "entsorgung", "reinigung"] },
+            { id: "furniture_opt", title: u.furniture_opt?.title || "Furniture Opt", icon: Sparkles, desc: u.furniture_opt?.desc || "", service: "umzug" },
+            { id: "storage_rot", title: u.storage_rot?.title || "Storage", icon: PackageOpen, desc: u.storage_rot?.desc || "", service: "umzug" },
+            { id: "maybe_box", title: u.maybe_box?.title || "Maybe Box", icon: Box, desc: u.maybe_box?.desc || "", service: ["umzug", "entsorgung"] },
+            { id: "clean_shield", title: u.clean_shield?.title || "Clean Shield", icon: Shield, desc: u.clean_shield?.desc || "", service: ["umzug", "entsorgung"] },
         ].filter(u => Array.isArray(u.service) ? u.service.includes(state.service || "") : u.service === state.service);
 
         return (
             <div className="space-y-8">
                 <div className="text-center space-y-2">
-                    <h3 className="text-2xl font-bold">Darf es etwas mehr sein?</h3>
-                    <p className="text-muted-foreground">Unsere Signature Services für Ihren Komfort.</p>
+                    <h3 className="text-2xl font-bold">{t.headings.upgrades_title}</h3>
+                    <p className="text-muted-foreground">{t.headings.upgrades_subtitle}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -232,28 +274,30 @@ export function SmartBookingWizard() {
 
                 <div className="flex justify-center gap-4 pt-8">
                     <PremiumButton variant="ghost" onClick={prevStep}>
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Zurück
+                        <ArrowLeft className="w-4 h-4 mr-2" /> {t.buttons.back}
                     </PremiumButton>
                     <PremiumButton onClick={nextStep}>
-                        Zum Abschluss <ArrowRight className="w-4 h-4 ml-2" />
+                        {t.buttons.finish} <ArrowRight className="w-4 h-4 ml-2" />
                     </PremiumButton>
                 </div>
             </div>
         );
     };
 
-    // Step 4: Summary & Contact - Simplified (Uses Top Level Hooks)
+    // Step 4: Summary & Contact
     const renderContact = () => {
         return (
             <div className="space-y-8 max-w-2xl mx-auto">
                 <div className="text-center">
-                    <h3 className="text-2xl font-bold mb-2">Ihre Zusammenfassung</h3>
-                    <p className="text-muted-foreground">Wir prüfen Ihre Kapazitäten sofort.</p>
+                    <h3 className="text-2xl font-bold mb-2">{t.headings.summary_title}</h3>
+                    <p className="text-muted-foreground">{t.headings.summary_subtitle}</p>
                 </div>
 
                 <div className="bg-white dark:bg-white/5 p-6 rounded-2xl border border-slate-200 dark:border-white/10 space-y-4 shadow-sm">
                     <div className="flex justify-between items-center border-b border-slate-100 dark:border-white/10 pb-4">
-                        <span className="font-semibold capitalize text-lg text-foreground">{state.service}</span>
+                        <span className="font-semibold capitalize text-lg text-foreground">
+                            {state.service ? t.services[state.service]?.label : ""}
+                        </span>
                         <span className="text-primary"><CheckCircle2 className="w-5 h-5" /></span>
                     </div>
 
@@ -261,11 +305,16 @@ export function SmartBookingWizard() {
                         <div className="space-y-2">
                             <span className="text-sm text-muted-foreground">Extras:</span>
                             <div className="flex flex-wrap gap-2">
-                                {state.upgrades.map(u => (
-                                    <span key={u} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full border border-primary/20">
-                                        {u.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
-                                    </span>
-                                ))}
+                                {state.upgrades.map(u => {
+                                    // Try to find upgrade title in current dictionary, fallback to ID replacement
+                                    // Dictionary keys match ids: ladies_team, etc.
+                                    const title = t.upgrades[u]?.title || u;
+                                    return (
+                                        <span key={u} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full border border-primary/20">
+                                            {title}
+                                        </span>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
@@ -274,43 +323,43 @@ export function SmartBookingWizard() {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <label className="text-sm font-medium">Name <span className="text-red-500">*</span></label>
+                            <label className="text-sm font-medium">{t.form.name} <span className="text-red-500">*</span></label>
                             <input
                                 required
                                 value={formData.name}
                                 onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
                                 className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-foreground"
-                                placeholder="Ihr Name"
+                                placeholder={t.form.placeholder_name}
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-sm font-medium">Email <span className="text-red-500">*</span></label>
+                            <label className="text-sm font-medium">{t.form.email} <span className="text-red-500">*</span></label>
                             <input
                                 type="email"
                                 required
                                 value={formData.email}
                                 onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
                                 className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-foreground"
-                                placeholder="email@beispiel.de"
+                                placeholder={t.form.placeholder_email}
                             />
                         </div>
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium">Telefon <span className="text-red-500">*</span></label>
+                        <label className="text-sm font-medium">{t.form.phone} <span className="text-red-500">*</span></label>
                         <input
                             type="tel"
                             required
                             value={formData.phone}
                             onChange={e => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                             className="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-foreground"
-                            placeholder="+49 ..."
+                            placeholder={t.form.placeholder_phone}
                         />
                     </div>
 
                     {/* Photo Upload */}
                     <div className="space-y-2">
                         <label className="text-sm font-medium flex items-center gap-2">
-                            Fotos hochladen (Optional)
+                            {t.form.photos}
                         </label>
                         <div className="relative">
                             <input
@@ -332,8 +381,8 @@ export function SmartBookingWizard() {
                                 <Upload className="w-5 h-5 text-muted-foreground" />
                                 <span className="text-sm text-muted-foreground">
                                     {files.length > 0
-                                        ? `${files.length} Datei(en) ausgewählt`
-                                        : "Klicken zum Hochladen (Mehrfachauswahl möglich)"}
+                                        ? t.form.photos_count.replace("{count}", files.length.toString())
+                                        : t.form.photos_placeholder}
                                 </span>
                             </label>
                         </div>
@@ -341,10 +390,10 @@ export function SmartBookingWizard() {
 
                     <div className="flex justify-center gap-4 pt-4">
                         <PremiumButton variant="ghost" type="button" onClick={prevStep}>
-                            <ArrowLeft className="w-4 h-4 mr-2" /> Zurück
+                            <ArrowLeft className="w-4 h-4 mr-2" /> {t.buttons.back}
                         </PremiumButton>
                         <PremiumButton className="w-full md:w-auto" disabled={isSubmitting}>
-                            {isSubmitting ? "Sende..." : "Jetzt verbindlich anfragen"}
+                            {isSubmitting ? t.buttons.sending : t.buttons.submit}
                         </PremiumButton>
                     </div>
                 </form>
@@ -395,8 +444,8 @@ export function SmartBookingWizard() {
                     {state.step === 1 && (
                         <div className="space-y-8 text-center">
                             <div className="space-y-2">
-                                <h2 className="text-3xl font-bold">Womit dürfen wir starten?</h2>
-                                <p className="text-muted-foreground">Wählen Sie Ihren Hauptservice.</p>
+                                <h2 className="text-3xl font-bold">{t.headings.service_selection}</h2>
+                                <p className="text-muted-foreground">{t.headings.service_subtitle}</p>
                             </div>
                             {renderServiceSelection()}
                         </div>

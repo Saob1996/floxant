@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "pricing": "Tarifs",
+    "contact": "Contact",
+    "login": "Connexion",
+    "book_now": "Réserver maintenant",
+    "dashboard": "Tableau de bord"
+  },
+  "hero": {
+    "title": "Les Architectes de Votre Changement",
+    "subtitle": "Déménager n'est pas juste du chaos dans des cartons. C'est un projet technique complexe. Nous planifions, gérons et exécutons.",
+    "cta": "Obtenir un devis"
+  },
+  "area": {
+    "title": "Zones de service",
+    "description": "Le siège de FLOXANT se trouve à Düsseldorf. Centre opérationnel à Regensburg.",
+    "hub_note": "Le siège de FLOXANT se trouve à Düsseldorf. Notre centre opérationnel est à Regensburg et Haut-Palatinat. De là, nous desservons la Bavière et toute l'Allemagne.",
+    "cities": {
+      "regensburg": "Regensburg",
+      "bavaria": "Bavière",
+      "munich": "Munich",
+      "nuremberg": "Nuremberg",
+      "augsburg": "Augsbourg",
+      "germany": "Toute l'Allemagne"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "Service",
+      "details": "Détails",
+      "upgrades": "Extras",
+      "contact": "Contact"
+    },
+    "headings": {
+      "service_selection": "Par où commençons-nous ?",
+      "service_subtitle": "Choisissez votre service principal.",
+      "details_prefix": "Détails pour",
+      "upgrades_title": "Vous en voulez un peu plus ?",
+      "upgrades_subtitle": "Nos Services Signature pour votre confort.",
+      "summary_title": "Votre Résumé",
+      "summary_subtitle": "Nous vérifions les disponibilités immédiatement.",
+      "success_title": "Demande réussie !",
+      "success_message": "Merci, {name}. Nous avons reçu votre demande et vérifions les disponibilités.",
+      "success_email": "Une confirmation a été envoyée à {email}."
+    },
+    "services": {
+      "umzug": {
+        "label": "Déménagement",
+        "desc": "Déménagement sans stress."
+      },
+      "reinigung": {
+        "label": "Nettoyage",
+        "desc": "Nettoyage en profondeur et remise."
+      },
+      "entsorgung": {
+        "label": "Élimination",
+        "desc": "Professionnel et rapide."
+      }
+    },
+    "form": {
+      "start_address": "Adresse de départ",
+      "end_address": "Adresse de destination",
+      "date": "Date souhaitée",
+      "name": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "photos": "Télécharger des photos (optionnel)",
+      "photos_placeholder": "Cliquez pour télécharger (sélection multiple possible)",
+      "photos_count": "{count} fichier(s) sélectionné(s)",
+      "placeholder_address": "Rue, Ville",
+      "placeholder_name": "Votre nom",
+      "placeholder_email": "email@exemple.com",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "Retour",
+      "next": "Suivant",
+      "finish": "Terminer",
+      "submit": "Demander un devis",
+      "sending": "Envoi en cours...",
+      "new_request": "Nouvelle demande"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "Équipe Féminine",
+        "desc": "Soin et empathie maximaux."
+      },
+      "24h_service": {
+        "title": "Service 24h",
+        "desc": "Disponible 24 heures sur 24."
+      },
+      "furniture_opt": {
+        "title": "Optimisation des Meubles",
+        "desc": "Démontage, montage et entretien."
+      },
+      "storage_rot": {
+        "title": "Stockage Flexible",
+        "desc": "Stockage temporaire flexible."
+      },
+      "maybe_box": {
+        "title": "Boîte Peut-être",
+        "desc": "Aide à la décision."
+      },
+      "clean_shield": {
+        "title": "Bouclier Bureaucratique",
+        "desc": "Zones de stationnement interdit et permis."
+      }
+    },
+    "error": {
+      "submit": "Erreur d'envoi. Veuillez réessayer.",
+      "generic": "Une erreur inattendue s'est produite."
+    }
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "impressum": "Mentions légales",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "revocation": "Droit de rétractation",
+    "booking": "Conditions de réservation",
+    "areas": "Zones de service"
+  },
+  "contact": {
+    "name": "Nom",
+    "email": "E-mail",
+    "message": "Message",
+    "submit": "Envoyer",
+    "success": "Message envoyé",
+    "error": "Erreur d'envoi"
+  },
+  "trust": {
+    "experience": "Années d'expérience",
+    "quality": "Qualité supérieure",
+    "insured": "Entièrement assuré"
+  },
+  "auth": {
+    "login_title": "Connexion administrateur",
+    "subtitle": "Zone protégée",
+    "email_label": "E-mail",
+    "password_label": "Mot de passe",
+    "submit_button": "Connexion",
+    "loading_button": "Vérification...",
+    "error_failed": "Connexion échouée",
+    "error_generic": "Une erreur s'est produite.",
+    "logout": "Déconnexion",
+    "system_operational": "Système opérationnel",
+    "dashboard_title": "FLOXANT Interne"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "Total des demandes",
+      "new": "Nouvelles (24h)",
+      "status": "Statut",
+      "active": "Actif"
+    },
+    "filters": {
+      "search_placeholder": "Rechercher par nom ou e-mail...",
+      "all": "Tous",
+      "umzug": "Déménagement",
+      "reinigung": "Nettoyage",
+      "entsorgung": "Élimination"
+    },
+    "status": {
+      "loading": "Chargement du tableau de bord...",
+      "syncing": "Synchronisation de la base de données...",
+      "empty": "Aucune demande correspondante trouvée.",
+      "empty_hint": "Essayez d'ajuster les filtres."
+    },
+    "card": {
+      "edit": "Modifier",
+      "no_extras": "Sans extras"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "Votre déménagement à",
+      "hero_title_highlight": "Munich",
+      "hero_desc": "Sans stress vers la capitale bavaroise. FLOXANT offre des services premium avec garantie de prix fixe.",
+      "badge": "Munich et environs",
+      "intro_title": "Déménagement à Munich – avec plan et précision",
+      "intro_text_1": "Munich est une métropole dynamique. Le déménagement dans la capitale bavaroise représente souvent un défi logistique. Escaliers étroits, manque de stationnement – les conditions exigent expérience et planification.",
+      "intro_text_2": "FLOXANT est le service de déménagement qui maîtrise ces défis. Nous ne commençons pas simplement – nous planifions en détail.",
+      "transparency_title": "Transparence sur le siège",
+      "transparency_text": "Le siège légal de FLOXANT est à Düsseldorf. Notre équipe travaille régulièrement à Munich.",
+      "portfolio_title": "Notre portefeuille pour Munich",
+      "services": {
+        "city": {
+          "title": "Déménagements urbains Munich",
+          "desc": "Rapide et efficace en ville."
+        },
+        "remote": {
+          "title": "Déménagements longue distance",
+          "desc": "De l'Isar au Rhin. Optimisé logistiquement."
+        },
+        "clearance": {
+          "title": "Débarras",
+          "desc": "Élimination professionnelle des anciens meubles."
+        }
+      },
+      "details_title": "Spécifique Munich",
+      "details_text": "Chaque ville a ses particularités.",
+      "remote_title": "De la Bavière à toute l'Allemagne",
+      "remote_text": "Beaucoup de clients quittent Munich pour d'autres métropoles.",
+      "pricing_title": "Prix transparents sans surprises",
+      "pricing_text": "Munich est déjà assez cher. Chez FLOXANT, nous misons sur la transparence totale.",
+      "features": {
+        "inspection": "Inspection gratuite: évaluation préalable par appel vidéo.",
+        "insurance": "Assurance incluse: vos meubles sont entièrement couverts.",
+        "staff": "Personnel qualifié: expérimenté et soigneux."
+      },
+      "links_title": "Autres sites",
+      "cta_title": "Commander montage",
+      "cta_text": "Montage sans compromis."
+    },
+    "service_umzug": {
+      "meta_title": "Déménagement privé",
+      "meta_desc": "FLOXANT accompagne votre déménagement privé avec précision.",
+      "badge": "Service de base",
+      "hero_title": "Déménagement privé",
+      "hero_desc": "Déménager c'est plus que transporter. C'est une transition.",
+      "intro_title": "Votre déménagement – pensé dans les moindres détails",
+      "intro_p1": "Un déménagement privé touche tous les aspects de la vie. Objets personnels, souvenirs précieux – tout nécessite une attention individuelle.",
+      "intro_p2": "Notre équipe travaille avec un processus clair garantissant une transparence totale.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Particuliers et familles",
+        "Déménagements résidentiels",
+        "Objets de valeur"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Évaluation",
+          "desc": "Inspection gratuite."
+        },
+        {
+          "title": "Prix fixe",
+          "desc": "Offre transparente."
+        },
+        {
+          "title": "Exécution",
+          "desc": "Emballage professionnel."
+        },
+        {
+          "title": "Remise",
+          "desc": "Montage et nettoyage."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Garantie prix fixe",
+        "Assurance complète",
+        "Personnel qualifié"
+      ],
+      "cta_title": "Envoyez une demande",
+      "cta_text": "Commencez avec une offre personnalisée."
+    },
+    "service_buero_umzug": {
+      "meta_title": "Déménagement de bureaux",
+      "meta_desc": "FLOXANT organise votre déménagement de bureau.",
+      "badge": "Commercial",
+      "hero_title": "Déménagement de bureaux",
+      "hero_desc": "La continuité des affaires nécessite de la planification.",
+      "intro_title": "Déménagements d'entreprise avec précision",
+      "intro_p1": "Le déménagement de bureau intervient dans les processus actifs.",
+      "intro_p2": "Nous coordonnons tout: de la déconnexion IT au transport.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Entreprises de toute taille",
+        "Cabinets d'avocats",
+        "Entreprises minimisant les temps d'arrêt"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Planification",
+          "desc": "Analyse détaillée."
+        },
+        {
+          "title": "Coordination",
+          "desc": "Liaison avec l'IT."
+        },
+        {
+          "title": "Exécution",
+          "desc": "Déménagement dans des créneaux définis."
+        },
+        {
+          "title": "Mise en service",
+          "desc": "Configuration des postes."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Créneaux horaires garantis",
+        "Assurance IT",
+        "Traitement discret"
+      ],
+      "cta_title": "Planifiez votre déménagement",
+      "cta_text": "Structurons ensemble."
+    },
+    "service_fernumzug": {
+      "meta_title": "Déménagement longue distance",
+      "meta_desc": "FLOXANT organise des déménagements longue distance.",
+      "badge": "Longue distance",
+      "hero_title": "Déménagement longue distance",
+      "hero_desc": "La distance n'est pas un obstacle.",
+      "intro_title": "Longue distance avec précision",
+      "intro_p1": "Le déménagement longue distance nécessite une planification spéciale.",
+      "intro_p2": "De Regensburg à Hambourg, de Munich à Berlin.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Changement d'emploi",
+        "Familles",
+        "Transfert d'employés"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Itinéraire",
+          "desc": "Route optimale."
+        },
+        {
+          "title": "Emballage",
+          "desc": "Matériaux spéciaux."
+        },
+        {
+          "title": "Transport",
+          "desc": "Suivi GPS."
+        },
+        {
+          "title": "Livraison",
+          "desc": "Livraison ponctuelle."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Prix fixe",
+        "Assurance complète",
+        "Livraison garantie"
+      ],
+      "cta_title": "Demander un devis",
+      "cta_text": "Où voulez-vous aller?"
+    },
+    "service_reinigung": {
+      "meta_title": "Nettoyage professionnel",
+      "meta_desc": "FLOXANT offre un nettoyage final professionnel.",
+      "badge": "Nettoyage",
+      "hero_title": "Nettoyage",
+      "hero_desc": "La propreté est la base d'une fin ordonnée.",
+      "intro_title": "Nettoyage final systématique",
+      "intro_p1": "Le nettoyage final est décisif pour la caution.",
+      "intro_p2": "Notre équipe travaille méticuleusement.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Locataires",
+        "Propriétaires",
+        "Locaux commerciaux"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Inspection",
+          "desc": "Évaluation."
+        },
+        {
+          "title": "Exécution",
+          "desc": "Nettoyage systématique."
+        },
+        {
+          "title": "Contrôle",
+          "desc": "Documentation photo."
+        },
+        {
+          "title": "Remise",
+          "desc": "Remise propre."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Standards du propriétaire",
+        "Documentation photo",
+        "Re-nettoyage si justifié"
+      ],
+      "cta_title": "Commander nettoyage",
+      "cta_text": "Nettoyage professionnel."
+    },
+    "service_entruempelung": {
+      "meta_title": "Débarras professionnel",
+      "meta_desc": "FLOXANT débarrasse professionnellement.",
+      "badge": "Élimination",
+      "hero_title": "Débarras",
+      "hero_desc": "Lâcher prise nécessite confiance.",
+      "intro_title": "Débarras avec responsabilité",
+      "intro_p1": "Le débarras est plus que retirer des objets.",
+      "intro_p2": "Nous trions et éliminons écologiquement.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Liquidations",
+        "Débarras commercial",
+        "Particuliers"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Visite",
+          "desc": "Inventaire conjoint."
+        },
+        {
+          "title": "Débarras",
+          "desc": "Systématique."
+        },
+        {
+          "title": "Élimination",
+          "desc": "Tri professionnel."
+        },
+        {
+          "title": "État final",
+          "desc": "Remise propre."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Élimination écologique",
+        "Traitement discret",
+        "Remise propre"
+      ],
+      "cta_title": "Demander débarras",
+      "cta_text": "Contactez-nous."
+    },
+    "service_montage": {
+      "meta_title": "Montage professionnel",
+      "meta_desc": "FLOXANT monte meubles et cuisines.",
+      "badge": "Montage",
+      "hero_title": "Montage",
+      "hero_desc": "Précision dans le détail.",
+      "intro_title": "Déménagement à Munich – avec plan et précision",
+      "intro_p1": "Les meubles de qualité méritent un montage professionnel.",
+      "intro_p2": "Des étagères IKEA aux cuisines design.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Après déménagement",
+        "Clients commerciaux",
+        "Installation cuisines"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Préparation",
+          "desc": "Vérification des instructions."
+        },
+        {
+          "title": "Montage",
+          "desc": "Installation professionnelle."
+        },
+        {
+          "title": "Test",
+          "desc": "Test des parties mobiles."
+        },
+        {
+          "title": "Contrôle",
+          "desc": "Nettoyage zone de travail."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Montage professionnel",
+        "Soin des surfaces",
+        "Zone propre"
+      ],
+      "cta_title": "Commander montage",
+      "cta_text": "Montage sans compromis."
+    },
+    "service_halteverbotszone": {
+      "meta_title": "Zone d'interdiction de stationnement",
+      "meta_desc": "FLOXANT gère les zones d'interdiction.",
+      "badge": "Logistique",
+      "hero_title": "Zone d'interdiction",
+      "hero_desc": "Accès libre – la base.",
+      "intro_title": "Zones – à temps et légal",
+      "intro_p1": "Dans beaucoup de zones urbaines, une zone officielle est nécessaire.",
+      "intro_p2": "FLOXANT prend en charge tout le processus.",
+      "for_whom_title": "Pour qui ce service?",
+      "for_whom_items": [
+        "Déménagements centre-ville",
+        "Déménagements commerciaux",
+        "Tout déménagement"
+      ],
+      "process_title": "Notre processus",
+      "process_steps": [
+        {
+          "title": "Demande",
+          "desc": "Dépôt auprès de l'autorité."
+        },
+        {
+          "title": "Approbation",
+          "desc": "Confirmation."
+        },
+        {
+          "title": "Installation",
+          "desc": "Mise en place."
+        },
+        {
+          "title": "Démontage",
+          "desc": "Retrait."
+        }
+      ],
+      "guarantees_title": "Nos garanties",
+      "guarantees": [
+        "Traitement officiel complet",
+        "Installation ponctuelle",
+        "Service complet"
+      ],
+      "cta_title": "Demander zone",
+      "cta_text": "Assurez l'accès."
+    },
+    "reinigung_regensburg": {
+      "meta_title": "Nettoyage Regensburg",
+      "meta_desc": "Nettoyage professionnel à Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Nettoyage professionnel à",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Notre centre opérationnel.",
+      "intro_title": "Nettoyage final à Regensburg",
+      "intro_p1": "Base opérationnelle FLOXANT.",
+      "intro_p2": "Processus documenté.",
+      "services_title": "Services de nettoyage",
+      "services": {
+        "end_cleaning": {
+          "title": "Nettoyage final",
+          "desc": "Complet."
+        },
+        "construction_cleaning": {
+          "title": "Nettoyage post-chantier",
+          "desc": "Après rénovation."
+        },
+        "office_cleaning": {
+          "title": "Nettoyage bureaux",
+          "desc": "Régulier ou ponctuel."
+        }
+      },
+      "cta_title": "Demander à Regensburg",
+      "cta_text": "Réservez."
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "Débarras Regensburg",
+      "meta_desc": "FLOXANT débarrasse à Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Débarras à",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Processus de lâcher prise.",
+      "intro_title": "Débarras à Regensburg",
+      "intro_p1": "Centre opérationnel.",
+      "intro_p2": "Tri sur place.",
+      "services_title": "Services de débarras",
+      "services": {
+        "household": {
+          "title": "Liquidation",
+          "desc": "Vidage complet."
+        },
+        "commercial": {
+          "title": "Débarras commercial",
+          "desc": "Bureaux et entrepôts."
+        },
+        "partial": {
+          "title": "Débarras partiel",
+          "desc": "Pièces sélectionnées."
+        }
+      },
+      "cta_title": "Demander débarras",
+      "cta_text": "Contactez-nous."
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "Déménagement bureaux Regensburg",
+      "meta_desc": "FLOXANT organise à Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Déménagement bureaux à",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Continuité prioritaire.",
+      "intro_title": "Déménagements de bureau à Regensburg",
+      "intro_p1": "Regensburg en croissance.",
+      "intro_p2": "Nous coordonnons.",
+      "services_title": "Services de déménagement",
+      "services": {
+        "full_move": {
+          "title": "Déménagement complet",
+          "desc": "Bureau et IT."
+        },
+        "it_relocation": {
+          "title": "Relocalisation IT",
+          "desc": "Déconnexion professionnelle."
+        },
+        "weekend_move": {
+          "title": "Déménagement week-end",
+          "desc": "Hors heures ouvrables."
+        }
+      },
+      "cta_title": "Planifier",
+      "cta_text": "Planifions ensemble."
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – A Conscious Farewell to Your Home",
+      "meta_desc": "The FLOXANT Ritual Exit Box accompanies you through a conscious farewell. A personal ritual for the transition into a new chapter.",
+      "badge": "Expérience Signature",
+      "hero_title": "Boîte du Rituel d'Adieu",
+      "hero_desc": "Quitter un foyer, c'est clore un chapitre.",
+      "story_title": "Pourquoi l'adieu mérite un rituel",
+      "story_p1": "Every home carries memories. The first night, cooking together, quiet moments by the window. When we leave, we do not just leave rooms behind – we leave a part of our story. The Ritual Exit Box is our answer to a transition that is too often overlooked.",
+      "story_p2": "Inside the box you will find a small ceremony: a candle, a handwritten guide, and a sealable envelope for a final letter to this place. It is not a product. It is a gesture.",
+      "purpose_title": "Valeur psychologique",
+      "purpose_text": "Conscious transitions reduce the emotional stress of a move. The Ritual Exit Box creates a defined moment of letting go – calm, personal, and dignified.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For anyone who does not simply leave their home but wishes to say goodbye. Especially valuable for long-term residences, family homes, or shared living spaces.",
+      "cta_title": "Ajouter la boîte rituelle",
+      "cta_text": "Complement your move with a Ritual Exit Box. Mention it when submitting your enquiry."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Consciously Move into Your New Home",
+      "meta_desc": "The FLOXANT Clean Start Ceremony prepares your new apartment for a conscious move-in. Professional cleaning as the foundation for a fresh start.",
+      "badge": "Expérience Signature",
+      "hero_title": "Cérémonie du Nouveau Départ",
+      "hero_desc": "Avant les meubles, nous préparons l'espace.",
+      "story_title": "A New Beginning Starts with Clarity",
+      "story_p1": "A new home should feel like yours from the very first second. Not like the space of a predecessor. The Clean Start Ceremony is a professional deep clean that goes beyond the ordinary.",
+      "story_p2": "We do not just clean surfaces – we create an atmosphere. After cleaning, the space is ventilated and subtly prepared. When you step in, you enter your space.",
+      "purpose_title": "Valeur psychologique",
+      "purpose_text": "A clean, prepared space signals to your subconscious: something new begins here. The Clean Start Ceremony makes this transition tangible.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For move-ins to existing properties, after renovations, or for anyone who wishes to consciously take possession of their new space.",
+      "cta_title": "Réserver nouveau départ",
+      "cta_text": "Prepare your move-in. Mention the Clean Start Ceremony when submitting your enquiry."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professional Neighbourhood Introduction",
+      "meta_desc": "The FLOXANT New Neighbour Kit eases your arrival in the new neighbourhood. Discreet, charming, and thoughtfully crafted.",
+      "badge": "Expérience Signature",
+      "hero_title": "Kit du Nouveau Voisin",
+      "hero_desc": "La première impression compte.",
+      "story_title": "Arriving Begins with Connection",
+      "story_p1": "In a new environment, one initially feels like a stranger. The New Neighbour Kit bridges this first distance elegantly. It contains a personalised greeting card and a small token of appreciation for your immediate neighbours.",
+      "story_p2": "We prepare the kit and deliver it on your move-in day upon request. You leave a positive first impression – without having to think about it yourself.",
+      "purpose_title": "Valeur sociale",
+      "purpose_text": "Good neighbourly relations begin on day one. The kit creates a foundation for mutual respect and reduces the social barrier of a new beginning.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For families, couples, or individuals moving into a multi-unit building who wish to build a positive relationship with their neighbours from the start.",
+      "cta_title": "Commander kit voisin",
+      "cta_text": "Complement your move with the New Neighbour Kit. We take care of the details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – The First Two Days Worry-Free",
+      "meta_desc": "The FLOXANT First 48h Package supplies you with everything you need in the first two days after your move. No searching, no stress.",
+      "badge": "Expérience Signature",
+      "hero_title": "Pack Premières 48 Heures",
+      "hero_desc": "Les premières heures sont décisives.",
+      "story_title": "The Critical First 48 Hours",
+      "story_p1": "After a move, the household is in a state of emergency. Where is the coffee machine? Where are the towels? The First 48h Package contains everything you need for the first two days: hygiene products, snacks, basic cleaning supplies, and a checklist for the most important tasks.",
+      "story_p2": "The package is ready when you enter your new home. No searching, no improvising – simply arrive.",
+      "purpose_title": "Valeur pratique",
+      "purpose_text": "The first 48 hours determine how a move is emotionally evaluated. Those who are immediately functional experience the transition as positive rather than burdensome.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For anyone who wishes to be immediately functional after a move. Especially valuable for singles, professionals, or families with children.",
+      "cta_title": "Réserver pack 48h",
+      "cta_text": "Start relaxed in your new home. We prepare the package for your move-in."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bureaucracy Shield – Delegate Official Formalities",
+      "meta_desc": "The FLOXANT Bureaucracy Shield handles official formalities around your move. No-parking zones, re-registration, mail forwarding.",
+      "badge": "Expérience Signature",
+      "hero_title": "Bouclier Bureaucratique",
+      "hero_desc": "Les formalités font partie de chaque déménagement.",
+      "story_title": "Bureaucracy Need Not Be Your Concern",
+      "story_p1": "A move brings a wave of formalities: applying for a no-parking zone, re-registering your address, setting up mail forwarding, notifying utility providers. The Bureaucracy Shield bundles all these tasks and handles them for you.",
+      "story_p2": "Our team is familiar with procedures across Regensburg and all of Bavaria. We know the relevant offices, the forms, and the deadlines. You receive complete documentation of all completed steps.",
+      "purpose_title": "Valeur organisationnelle",
+      "purpose_text": "Bureaucracy is one of the greatest stress factors in relocations. Delegating to experienced professionals reduces errors, saves time, and gives you certainty.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For individuals and companies who wish to focus on their move and delegate formalities to experienced hands.",
+      "cta_title": "Demander le bouclier",
+      "cta_text": "Delegate the formalities. We handle the official processing for you."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Furniture Optimisation – Space Planning After Your Move",
+      "meta_desc": "FLOXANT Furniture Optimisation helps you place your furnishings perfectly in new spaces. Professional space planning included.",
+      "badge": "Expérience Signature",
+      "hero_title": "Optimisation du Mobilier",
+      "hero_desc": "Placer, pas juste poser.",
+      "story_title": "Your Space, Reimagined",
+      "story_p1": "Old furniture in new rooms – it does not always fit immediately. Furniture Optimisation analyses your furnishings in the context of the new floor plan and suggests an optimal arrangement. Natural light, walkways, and room proportions inform the planning.",
+      "story_p2": "Our team implements the optimisation directly on moving day. So you experience your new space not as a compromise, but as a thoughtfully arranged home.",
+      "purpose_title": "Valeur design",
+      "purpose_text": "A well-considered room arrangement enhances living quality and well-being. The optimisation prevents provisional solutions from becoming permanent.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For anyone moving existing furnishings into a differently proportioned space and wishing to make the best of the situation.",
+      "cta_title": "Demander optimisation",
+      "cta_text": "Have your new space professionally arranged. We plan the optimal layout."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Cleaning Guarantee – Broom-Clean Handover Guaranteed",
+      "meta_desc": "The FLOXANT Cleaning Guarantee assures broom-clean handover. If your landlord has complaints, we re-clean – free of charge.",
+      "badge": "Expérience Signature",
+      "hero_title": "Garantie de Propreté",
+      "hero_desc": "Remise propre – garanti.",
+      "story_title": "Certainty at Handover",
+      "story_p1": "Property handover is often the most stressful moment after a move. Will the deposit be returned in full? Will there be complaints? The Cleaning Guarantee takes this worry from you. We clean to our defined standards and stand behind our work.",
+      "story_p2": "Should your landlord identify legitimate cleaning deficiencies within 14 days of handover, we return and rectify them – at no additional cost.",
+      "purpose_title": "Valeur financière",
+      "purpose_text": "The Cleaning Guarantee protects your deposit and gives you negotiating confidence at handover. It documents professional diligence.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For all tenants who wish for a stress-free property handover and want to receive their full deposit back.",
+      "cta_title": "Ajouter garantie",
+      "cta_text": "Secure your handover. The Cleaning Guarantee can be added to any move."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Storage Rotation – Flexible Interim Storage for Your Move",
+      "meta_desc": "FLOXANT Storage Rotation offers secure interim storage with flexible access. Ideal for staged moves and renovations.",
+      "badge": "Expérience Signature",
+      "hero_title": "Rotation d'Entrepôt",
+      "hero_desc": "Tout ne doit pas déménager en même temps.",
+      "story_title": "Interim Storage as a Strategic Tool",
+      "story_p1": "Sometimes schedules do not align: the old property must be vacated, but the new one is not yet ready. Or you are renovating and need temporary space for your belongings. Storage Rotation solves this timing challenge.",
+      "story_p2": "Your items are stored securely at our partner facility in the Regensburg region. You can arrange access and request partial deliveries whenever it suits you.",
+      "purpose_title": "Valeur logistique",
+      "purpose_text": "Flexibility in scheduling reduces pressure and enables better decisions. Storage Rotation decouples move-out and move-in.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For anyone whose moving dates are not synchronised, or who needs space during a renovation.",
+      "cta_title": "Demander rotation",
+      "cta_text": "Secure flexible interim storage. We advise on the possibilities."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kids Moving Box – Making Moves Child-Friendly",
+      "meta_desc": "The FLOXANT Kids Moving Box makes moving an adventure for children. Activity materials, an explanatory booklet, and a personal surprise.",
+      "badge": "Expérience Signature",
+      "hero_title": "Boîte Enfants Déménagement",
+      "hero_desc": "Les enfants vivent le déménagement différemment.",
+      "story_title": "A Move Through a Child's Eyes",
+      "story_p1": "For children, a move means uncertainty: the familiar room disappears, friends are left behind, everything changes. The Kids Moving Box accompanies this process in an age-appropriate way with activity materials, a small explanatory booklet about moving, and a personal surprise for the first day in the new room.",
+      "story_p2": "The box is handed over before moving day so children can prepare and actively participate – as an adventure, not a loss.",
+      "purpose_title": "Valeur éducative",
+      "purpose_text": "Children who are actively included in the moving process cope better with the change. The box gives them a role and makes the transition tangible.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For families with children aged 3 to 12 who wish to make the move child-friendly.",
+      "cta_title": "Commander boîte enfants",
+      "cta_text": "Make the move a positive experience for your children. We prepare the box individually."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Moving Service – Available Around the Clock",
+      "meta_desc": "FLOXANT 24h Moving Service for urgent and time-sensitive relocations. Available evenings, nights, and weekends.",
+      "badge": "Expérience Signature",
+      "hero_title": "Service Déménagement 24h",
+      "hero_desc": "Parfois ça ne peut pas attendre.",
+      "story_title": "Availability as a Promise",
+      "story_p1": "Not every move fits into regular business hours. Short-notice terminations, professional transfers, or personal circumstances sometimes demand swift action. The 24h Moving Service guarantees availability in the evenings, at night, and on weekends.",
+      "story_p2": "Our standby team is ready at short notice. The same quality, the same care – regardless of the hour.",
+      "purpose_title": "Valeur temporelle",
+      "purpose_text": "Time pressure is one of the greatest stress factors in relocations. The 24h service eliminates the time constraint and gives you maximum flexibility.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For urgent moves, time-sensitive relocations, or clients who can only move outside business hours for professional reasons.",
+      "cta_title": "Demander service 24h",
+      "cta_text": "Contact us at any time. We are there for you – around the clock."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Ladies Team – Moving by an All-Female Team",
+      "meta_desc": "The FLOXANT Ladies Team offers moves exclusively by female personnel. Discreet, respectful, and professional.",
+      "badge": "Expérience Signature",
+      "hero_title": "Équipe Féminine",
+      "hero_desc": "Certaines situations nécessitent une sensibilité particulière.",
+      "story_title": "Respect Begins with Understanding",
+      "story_p1": "There are situations in which clients feel more comfortable with an all-female team: after a separation, due to religious or cultural preferences, or simply as a personal choice. The Ladies Team respects these wishes without question and at no extra charge.",
+      "story_p2": "Our female moving team works with the same professionalism and efficiency as all our teams. The only difference: the composition.",
+      "purpose_title": "Valeur personnelle",
+      "purpose_text": "The Ladies Team creates a protected environment for the move. It respects personal boundaries and cultural needs – discreetly and naturally.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For female clients who prefer an all-female team for personal, cultural, or religious reasons.",
+      "cta_title": "Demander équipe féminine",
+      "cta_text": "Book your move with our Ladies Team. Discreet, professional, and at no extra charge."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Memory Capsule – Preserving Moments During Your Move",
+      "meta_desc": "The FLOXANT Memory Capsule preserves a moment from your old home. Photos, notes, and personal items in a sealed capsule.",
+      "badge": "Expérience Signature",
+      "hero_title": "Capsule de Mémoire",
+      "hero_desc": "Certains lieux méritent d'être rappelés.",
+      "story_title": "A Place, Frozen in Time",
+      "story_p1": "Before the last box is packed, we pause. The Memory Capsule contains photos of the empty rooms, a note of your choice, and a small object from the old home. Everything is sealed in a high-quality capsule.",
+      "story_p2": "This capsule is not meant to be opened immediately. It is an anchor – a physical object that captures a place in time. Open it whenever you are ready.",
+      "purpose_title": "Valeur émotionnelle",
+      "purpose_text": "Memories fade over time. The capsule preserves a defined moment and makes it accessible again at any time.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For people leaving a place that meant a great deal to them. Especially valuable for family homes or properties with a long history.",
+      "cta_title": "Ajouter capsule",
+      "cta_text": "Preserve a moment from your old home. We prepare the capsule on moving day."
+    },
+    "sig_maybe_box": {
+      "meta_title": "The Maybe Box – Decision Aid During Your Move",
+      "meta_desc": "The FLOXANT Maybe Box gives you time for uncertain decisions. Keep or let go? Decide later.",
+      "badge": "Expérience Signature",
+      "hero_title": "Boîte Peut-être",
+      "hero_desc": "Pas toute décision ne doit être immédiate.",
+      "story_title": "Reducing Decision Pressure",
+      "story_p1": "During a move, countless decisions are demanded simultaneously: keep, give away, store? For many items the answer is clear. But for some it is not. The Maybe Box is designed for exactly these cases.",
+      "story_p2": "We store items you are unsure about for up to 90 days. During that time, you can decide at leisure whether to keep or let go. Without pressure. Without haste.",
+      "purpose_title": "Valeur décisionnelle",
+      "purpose_text": "Decisional overload during a move leads to regrettable choices. The Maybe Box decouples the physical process of moving from the emotional process of letting go.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For anyone finding it difficult to part with certain items immediately and needing time for a considered decision.",
+      "cta_title": "Demander boîte Peut-être",
+      "cta_text": "Give yourself time for the difficult decisions. We store items in the Maybe Box until you are ready."
+    },
+    "sig_key_handover": {
+      "meta_title": "Key Handover – Documented and Secure Property Handover",
+      "meta_desc": "The FLOXANT Key Handover documents the property handover securely. Professional protocols and visual evidence for your protection.",
+      "badge": "Expérience Signature",
+      "hero_title": "Remise des Clés",
+      "hero_desc": "Documenté. Sûr. Traçable.",
+      "story_title": "The Final Step, Properly Documented",
+      "story_p1": "The key handover marks the official closing of a chapter. But too often it happens hurriedly, without documentation. The Key Handover service creates a professional protocol of the property condition, photographs all rooms, and documents the handover of all keys.",
+      "story_p2": "You receive a complete documentation package that serves as proof in the event of subsequent disputes. This is not merely a formality – it is your legal safeguard.",
+      "purpose_title": "Valeur juridique",
+      "purpose_text": "A documented handover protects both parties. It creates clarity about the condition of the property and prevents subsequent disputes over the deposit.",
+      "for_whom_title": "Pour qui cette expérience?",
+      "for_whom_text": "For all tenants and landlords who value a legally secure, documented property handover.",
+      "cta_title": "Réserver remise des clés",
+      "cta_text": "Document your property handover professionally. We create a complete protocol for your records."
+    }
+  },
+  "services_section": {
+    "title": "Nos Services",
+    "subtitle": "Des solutions sur mesure pour chaque besoin. Privées, commerciales ou spécialisées.",
+    "items": [
+      {
+        "title": "Déménagement privé",
+        "desc": "Sans souci dans votre nouveau foyer. Nous nous occupons de tout."
+      },
+      {
+        "title": "Déménagement de bureau",
+        "desc": "Temps d'arrêt minimal pour votre entreprise. Planification professionnelle."
+      },
+      {
+        "title": "Déménagement longue distance",
+        "desc": "En sécurité vers votre destination dans toute l'Europe."
+      },
+      {
+        "title": "Débarrassage",
+        "desc": "Débarrassage propre d'appartements et de locaux commerciaux."
+      },
+      {
+        "title": "Montage",
+        "desc": "Montage et démontage professionnel de vos meubles et cuisines."
+      },
+      {
+        "title": "Zone de stationnement interdit",
+        "desc": "Approbation officielle et mise en place des zones."
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "Services Exclusifs",
+    "subtitle": "Plus que de la logistique. Nous prenons soin des détails émotionnels et organisationnels de votre nouveau départ.",
+    "badge": "Exclusif chez FLOXANT",
+    "items": {
+      "ritual_exit": {
+        "title": "Boîte d'Adieu",
+        "desc": "Un adieu conscient. Nous accompagnons la transition avec des souvenirs affectueux."
+      },
+      "clean_start": {
+        "title": "Cérémonie du Nouveau Départ",
+        "desc": "Le moment de l'arrivée. Après le nettoyage, nous préparons votre nouveau foyer avec ordre et fraîcheur."
+      },
+      "neighbour_kit": {
+        "title": "Kit Nouveau Voisin",
+        "desc": "Arrivée dans l'environnement. Le Kit Voisin facilite votre entrée dans le quartier."
+      },
+      "first_48h": {
+        "title": "Pack Premières 48h",
+        "desc": "Stabilité dans les premières heures. Nous installons chambre, salle de bain et cuisine immédiatement."
+      },
+      "bureaucracy": {
+        "title": "Protection Bureaucratique",
+        "desc": "Moins de paperasse. Plus de focus. Nous gérons les inscriptions et contrats de manière structurée."
+      },
+      "furniture_opt": {
+        "title": "Optimisation des Meubles",
+        "desc": "Fonction et esthétique. Montage et optimisation selon la logique spatiale."
+      },
+      "cleaning_guarantee": {
+        "title": "Garantie de Nettoyage",
+        "desc": "Propreté avec sécurité. Nettoyage final documenté selon les standards du propriétaire."
+      },
+      "storage_rot": {
+        "title": "Stockage Flexible",
+        "desc": "Stockez avec flexibilité. Nous gardons en sécurité et restituons sur demande."
+      },
+      "kids_box": {
+        "title": "Boîte de Déménagement Enfant",
+        "desc": "Un déménagement du point de vue de l'enfant. Avec leur propre boîte, nous créons une expérience positive."
+      },
+      "service_24h": {
+        "title": "Service Déménagement 24h",
+        "desc": "Quand le temps est le facteur. Déménagements discrets et efficaces en 24 heures."
+      },
+      "ladies_team": {
+        "title": "Équipe Féminine",
+        "desc": "Confiance dans les situations sensibles. Une équipe pour une sécurité et un calme particuliers."
+      },
+      "memory_capsule": {
+        "title": "Capsule de Souvenirs",
+        "desc": "Préservez ce qui compte. Une boîte élégante pour les objets personnels de l'ancien foyer."
+      },
+      "maybe_box": {
+        "title": "Boîte Peut-être",
+        "desc": "Reportez les décisions. Nous gardons les articles incertains jusqu'à ce que vous soyez prêt."
+      },
+      "key_handover": {
+        "title": "Remise des Clés",
+        "desc": "Documenté. Sécurisé. Traçable. Protocoles professionnels pour les propriétaires."
+      }
+    }
+  }
+}

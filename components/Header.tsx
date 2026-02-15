@@ -1,53 +1,131 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { PremiumButton } from "./ui/PremiumButton";
+import { cn } from "@/lib/utils";
+import { Logo as BrandLogo } from "@/components/BrandLogo";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
-export function Header() {
+// Define a type for the navigation dictionary from our JSON structure
+type NavDictionary = {
+    home: string;
+    services: string;
+    pricing: string;
+    contact: string;
+    login: string;
+    book_now: string;
+    dashboard: string;
+};
+
+interface HeaderProps {
+    lang: string;
+    dic: NavDictionary;
+}
+
+export function Header({ lang, dic }: HeaderProps) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const menuItems = [
+        { label: dic?.home || "Home", href: `/${lang}` },
+        { label: dic?.services || "Services", href: `/${lang}/#services` },
+        // { label: dic?.pricing, href: `/${lang}/#pricing` }, // Hidden per original design or use #pricing
+        { label: dic?.contact || "Contact", href: `/${lang}/#contact` },
+    ];
+
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
-            <div className="mx-auto max-w-7xl">
-                <div className="glass flex items-center justify-between rounded-full px-6 py-3">
-                    <Link href="/" className="flex items-center gap-2">
-                        <div className="relative w-12 h-12 md:w-16 md:h-16">
-                            <Image
-                                src="/logo_v10.png"
-                                alt="Floxant Logo"
-                                fill
-                                className="object-contain"
-                                priority
-                            />
-                        </div>
-                        <span className="text-xl md:text-3xl font-bold tracking-tight text-foreground">floxant.</span>
-                    </Link>
+        <header
+            className={cn(
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+                scrolled
+                    ? "bg-background/80 backdrop-blur-md border-border/50 py-4"
+                    : "bg-transparent border-transparent py-6"
+            )}
+        >
+            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+                <Link href={`/${lang}`} className="relative z-50">
+                    <BrandLogo />
+                    {/* <span className="font-bold text-xl tracking-tighter">FLOXANT</span> */}
+                </Link>
 
-                    <nav className="hidden md:flex items-center gap-8">
-                        {[
-                            { label: "Leistungen", href: "#services" },
-                            { label: "Extras", href: "#extras" },
-                            { label: "Kontakt", href: "#contact" },
-                            { label: "Über uns", href: "#about" }
-                        ].map((item) => (
-                            <a
+                {/* Desktop Navigation */}
+                <nav className="hidden md:flex items-center gap-8">
+                    {menuItems.map((item) => (
+                        <Link
+                            key={item.label}
+                            href={item.href}
+                            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
+
+                    {/* Language Switcher */}
+                    <div className="border-l border-border/50 pl-6 ml-2">
+                        <LanguageSwitcher lang={lang} />
+                    </div>
+
+                    <Link
+                        href={`/${lang}/#contact`}
+                        className={cn(
+                            "hidden md:inline-flex items-center justify-center rounded-full text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+                            "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+                            "h-9 px-6 py-2"
+                        )}
+                    >
+                        {dic?.book_now || "Book Now"}
+                    </Link>
+                </nav>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                    className="md:hidden relative z-50 p-2 text-foreground"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? <X /> : <Menu />}
+                </button>
+
+                {/* Mobile Navigation */}
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute top-0 left-0 right-0 bg-background border-b border-border/50 p-6 pt-24 md:hidden flex flex-col gap-6 shadow-2xl"
+                    >
+                        {menuItems.map((item) => (
+                            <Link
                                 key={item.label}
                                 href={item.href}
-                                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                                onClick={() => setIsOpen(false)}
+                                className="text-lg font-medium text-foreground"
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         ))}
-                    </nav>
-
-                    <div className="flex items-center gap-4">
-                        <a href="#contact">
-                            <PremiumButton size="icon" variant="ghost" className="md:hidden" aria-label="Menü öffnen">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
-                            </PremiumButton>
-                            <PremiumButton size="sm" className="hidden md:inline-flex">
-                                Jetzt Buchen
-                            </PremiumButton>
-                        </a>
-                    </div>
-                </div>
+                        <div className="py-4 border-t border-border/50">
+                            <LanguageSwitcher lang={lang} />
+                        </div>
+                        <Link
+                            href={`/${lang}/#contact`}
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center justify-between text-lg font-bold text-primary"
+                        >
+                            {dic?.book_now || "Book Now"}
+                            <ArrowUpRight className="w-5 h-5" />
+                        </Link>
+                    </motion.div>
+                )}
             </div>
         </header>
     );

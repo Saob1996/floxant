@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "خانه",
+    "services": "خدمات",
+    "pricing": "قیمت‌ها",
+    "contact": "تماس",
+    "login": "ورود",
+    "book_now": "همین حالا رزرو کنید",
+    "dashboard": "داشبورد"
+  },
+  "hero": {
+    "title": "معماران تغییر شما",
+    "subtitle": "اسباب‌کشی فقط بهم‌ریختگی در جعبه‌ها نیست. یک پروژه فنی پیچیده است. ما برنامه‌ریزی، مدیریت و اجرا می‌کنیم.",
+    "cta": "دریافت قیمت"
+  },
+  "area": {
+    "title": "مناطق خدمات",
+    "description": "دفتر مرکزی در دوسلدورف. مرکز عملیاتی در رگنسبورگ.",
+    "hub_note": "دفتر مرکزی FLOXANT در دوسلدورف است. مرکز عملیاتی ما در رگنسبورگ و اوبرپفالتس قرار دارد.",
+    "cities": {
+      "regensburg": "رگنسبورگ",
+      "bavaria": "باواریا",
+      "munich": "مونیخ",
+      "nuremberg": "نورنبرگ",
+      "augsburg": "آگسبورگ",
+      "germany": "سراسر آلمان"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "سرویس",
+      "details": "جزئیات",
+      "upgrades": "ارتقا",
+      "contact": "تماس"
+    },
+    "headings": {
+      "service_selection": "از کجا شروع کنیم؟",
+      "service_subtitle": "خدمت اصلی خود را انتخاب کنید.",
+      "details_prefix": "جزئیات برای",
+      "upgrades_title": "آیا کمی بیشتر می‌خواهید؟",
+      "upgrades_subtitle": "خدمات ویژه ما برای راحتی شما.",
+      "summary_title": "خلاصه شما",
+      "summary_subtitle": "ما فوراً ظرفیت‌ها را بررسی می‌کنیم.",
+      "success_title": "درخواست با موفقیت ارسال شد!",
+      "success_message": "متشکریم، {name}. درخواست شما دریافت شد و ظرفیت‌ها در حال بررسی است.",
+      "success_email": "تأییدیه به {email} ارسال شد."
+    },
+    "services": {
+      "umzug": {
+        "label": "اسباب‌کشی",
+        "desc": "اسباب‌کشی بدون استرس."
+      },
+      "reinigung": {
+        "label": "نظافت",
+        "desc": "نظافت عمیق و تحویل."
+      },
+      "entsorgung": {
+        "label": "دفع زباله",
+        "desc": "حرفه‌ای و سریع."
+      }
+    },
+    "form": {
+      "start_address": "آدرس مبدا",
+      "end_address": "آدرس مقصد",
+      "date": "تاریخ ترجیحی",
+      "name": "نام",
+      "email": "ایمیل",
+      "phone": "تلفن",
+      "photos": "بارگذاری عکس (اختیاری)",
+      "photos_placeholder": "برای بارگذاری کلیک کنید (انتخاب چندتایی ممکن است)",
+      "photos_count": "{count} فایل انتخاب شده",
+      "placeholder_address": "خیابان، شهر",
+      "placeholder_name": "نام شما",
+      "placeholder_email": "email@example.com",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "قبلی",
+      "next": "بعدی",
+      "finish": "پایان",
+      "submit": "درخواست قیمت",
+      "sending": "در حال ارسال...",
+      "new_request": "درخواست جدید"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "تیم بانوان",
+        "desc": "حداکثر مراقبت و همدلی."
+      },
+      "24h_service": {
+        "title": "خدمات ۲۴ ساعته",
+        "desc": "آماده در تمام ساعات."
+      },
+      "furniture_opt": {
+        "title": "بهینه‌سازی مبلمان",
+        "desc": "جمع و باز کردن و مراقبت."
+      },
+      "storage_rot": {
+        "title": "انبارداری انعطاف‌پذیر",
+        "desc": "انبارداری موقت انعطاف‌پذیر."
+      },
+      "maybe_box": {
+        "title": "جعبه شاید",
+        "desc": "کمک در تصمیم‌گیری."
+      },
+      "clean_shield": {
+        "title": "سپر بوروکراسی",
+        "desc": "مناطق پارک ممنوع و مجوزها."
+      }
+    },
+    "error": {
+      "submit": "خطا در ارسال. لطفاً دوباره تلاش کنید.",
+      "generic": "خطای غیرمنتظره‌ای رخ داد."
+    }
+  },
+  "footer": {
+    "rights": "تمامی حقوق محفوظ است.",
+    "impressum": "اطلاعات حقوقی",
+    "privacy": "حریم خصوصی",
+    "terms": "شرایط",
+    "revocation": "حق انصراف",
+    "booking": "شرایط رزرو",
+    "areas": "مناطق خدمات"
+  },
+  "contact": {
+    "name": "نام",
+    "email": "ایمیل",
+    "message": "پیام",
+    "submit": "ارسال",
+    "success": "پیام ارسال شد",
+    "error": "خطا در ارسال"
+  },
+  "trust": {
+    "experience": "سال‌ها تجربه",
+    "quality": "بالاترین کیفیت",
+    "insured": "کاملاً بیمه‌شده"
+  },
+  "auth": {
+    "login_title": "ورود مدیر",
+    "subtitle": "منطقه محافظت‌شده",
+    "email_label": "ایمیل",
+    "password_label": "رمز عبور",
+    "submit_button": "ورود",
+    "loading_button": "در حال بررسی...",
+    "error_failed": "ورود ناموفق",
+    "error_generic": "خطایی رخ داد.",
+    "logout": "خروج",
+    "system_operational": "سیستم فعال",
+    "dashboard_title": "FLOXANT داخلی"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "کل درخواست‌ها",
+      "new": "جدید (۲۴ ساعت)",
+      "status": "وضعیت",
+      "active": "فعال"
+    },
+    "filters": {
+      "search_placeholder": "جستجو بر اساس نام یا ایمیل...",
+      "all": "همه",
+      "umzug": "اسباب‌کشی",
+      "reinigung": "نظافت",
+      "entsorgung": "دفع زباله"
+    },
+    "status": {
+      "loading": "در حال بارگذاری داشبورد...",
+      "syncing": "در حال همگام‌سازی پایگاه داده...",
+      "empty": "درخواست مطابقی یافت نشد.",
+      "empty_hint": "فیلترها را تنظیم کنید."
+    },
+    "card": {
+      "edit": "ویرایش",
+      "no_extras": "بدون افزودنی"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "اسباب‌کشی شما در",
+      "hero_title_highlight": "مونیخ",
+      "hero_desc": "بدون استرس به پایتخت باواریا. FLOXANT خدمات ممتاز با تضمین قیمت ثابت ارائه می‌دهد.",
+      "badge": "مونیخ و حومه",
+      "intro_title": "اسباب‌کشی در مونیخ – با برنامه و دقت",
+      "intro_text_1": "مونیخ یک کلان‌شهر پویا است. اسباب‌کشی در پایتخت باواریا اغلب چالشی لجستیکی است. پله‌های تنگ، کمبود پارکینگ – شرایط نیازمند تجربه است.",
+      "intro_text_2": "FLOXANT سرویس اسباب‌کشی است که این چالش‌ها را مدیریت می‌کند. ما فقط شروع نمی‌کنیم – دقیقاً برنامه‌ریزی می‌کنیم.",
+      "transparency_title": "شفافیت درباره دفتر مرکزی",
+      "transparency_text": "دفتر قانونی FLOXANT در دوسلدورف است. تیم ما مرتباً در مونیخ کار می‌کند.",
+      "portfolio_title": "پورتفولیوی ما برای مونیخ",
+      "services": {
+        "city": {
+          "title": "اسباب‌کشی شهری مونیخ",
+          "desc": "سریع و کارآمد در شهر."
+        },
+        "remote": {
+          "title": "اسباب‌کشی بین‌شهری",
+          "desc": "از ایزار تا راین."
+        },
+        "clearance": {
+          "title": "تخلیه",
+          "desc": "حذف حرفه‌ای مبلمان قدیمی."
+        }
+      },
+      "details_title": "ویژگی‌های مونیخ",
+      "details_text": "هر شهر ویژگی‌های خود را دارد.",
+      "remote_title": "از باواریا به سراسر آلمان",
+      "remote_text": "بسیاری از مشتریان از مونیخ نقل مکان می‌کنند.",
+      "pricing_title": "قیمت‌های شفاف بدون سورپرایز",
+      "pricing_text": "مونیخ به اندازه کافی گران است. ما بر شفافیت کامل تکیه می‌کنیم.",
+      "features": {
+        "inspection": "بازرسی رایگان: ارزیابی قبلی از طریق تماس ویدیویی.",
+        "insurance": "بیمه شامل: مبلمان شما کاملاً تحت پوشش است.",
+        "staff": "کارکنان واجد شرایط: باتجربه و دقیق."
+      },
+      "links_title": "مکان‌های دیگر",
+      "cta_title": "سفارش نصب",
+      "cta_text": "نصب حرفه‌ای."
+    },
+    "service_umzug": {
+      "meta_title": "اسباب‌کشی خصوصی",
+      "meta_desc": "FLOXANT اسباب‌کشی خصوصی شما را همراهی می‌کند.",
+      "badge": "خدمات پایه",
+      "hero_title": "اسباب‌کشی خصوصی",
+      "hero_desc": "اسباب‌کشی بیش از حمل‌ونقل است. یک گذار است.",
+      "intro_title": "اسباب‌کشی شما – تا آخرین جزئیات",
+      "intro_p1": "اسباب‌کشی خصوصی همه جنبه‌های زندگی را لمس می‌کند.",
+      "intro_p2": "تیم ما با فرآیندی شفاف کار می‌کند.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "افراد و خانواده‌ها",
+        "اسباب‌کشی مسکونی",
+        "اشیای ارزشمند"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "ارزیابی",
+          "desc": "بازرسی رایگان."
+        },
+        {
+          "title": "قیمت ثابت",
+          "desc": "پیشنهاد شفاف."
+        },
+        {
+          "title": "اجرا",
+          "desc": "بسته‌بندی حرفه‌ای."
+        },
+        {
+          "title": "تحویل",
+          "desc": "نصب و نظافت."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "تضمین قیمت ثابت",
+        "بیمه کامل",
+        "کارکنان واجد شرایط"
+      ],
+      "cta_title": "ارسال درخواست",
+      "cta_text": "از پیشنهاد شخصی شروع کنید."
+    },
+    "service_buero_umzug": {
+      "meta_title": "اسباب‌کشی دفتر",
+      "meta_desc": "FLOXANT اسباب‌کشی دفتر شما را سازماندهی می‌کند.",
+      "badge": "تجاری",
+      "hero_title": "اسباب‌کشی دفتر",
+      "hero_desc": "تداوم کسب‌وکار نیاز به برنامه‌ریزی دارد.",
+      "intro_title": "اسباب‌کشی شرکتی با دقت",
+      "intro_p1": "اسباب‌کشی دفتر در فرآیندهای فعال دخالت می‌کند.",
+      "intro_p2": "ما همه کارها را هماهنگ می‌کنیم.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "شرکت‌ها",
+        "دفاتر حقوقی",
+        "شرکت‌هایی که توقف را به حداقل می‌رسانند"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "برنامه‌ریزی",
+          "desc": "تحلیل دقیق."
+        },
+        {
+          "title": "هماهنگی",
+          "desc": "ارتباط با IT."
+        },
+        {
+          "title": "اجرا",
+          "desc": "در بازه‌های زمانی مشخص."
+        },
+        {
+          "title": "راه‌اندازی",
+          "desc": "پیکربندی ایستگاه‌ها."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "بازه‌های زمانی تضمینی",
+        "بیمه IT",
+        "پردازش محرمانه"
+      ],
+      "cta_title": "برنامه‌ریزی اسباب‌کشی",
+      "cta_text": "بیایید ساختار دهیم."
+    },
+    "service_fernumzug": {
+      "meta_title": "اسباب‌کشی بین‌شهری",
+      "meta_desc": "FLOXANT اسباب‌کشی بین‌شهری را سازماندهی می‌کند.",
+      "badge": "بین‌شهری",
+      "hero_title": "اسباب‌کشی بین‌شهری",
+      "hero_desc": "فاصله مانع نیست.",
+      "intro_title": "بین‌شهری با دقت",
+      "intro_p1": "اسباب‌کشی بین‌شهری نیاز به برنامه‌ریزی خاص دارد.",
+      "intro_p2": "از رگنسبورگ تا هامبورگ.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "تغییر شغل",
+        "خانواده‌ها",
+        "انتقال کارکنان"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "مسیر",
+          "desc": "مسیر بهینه."
+        },
+        {
+          "title": "بسته‌بندی",
+          "desc": "مواد ویژه."
+        },
+        {
+          "title": "حمل",
+          "desc": "ردیابی GPS."
+        },
+        {
+          "title": "تحویل",
+          "desc": "تحویل به‌موقع."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "قیمت ثابت",
+        "بیمه کامل",
+        "تحویل تضمینی"
+      ],
+      "cta_title": "درخواست اسباب‌کشی",
+      "cta_text": "کجا می‌خواهید بروید؟"
+    },
+    "service_reinigung": {
+      "meta_title": "نظافت حرفه‌ای",
+      "meta_desc": "FLOXANT نظافت نهایی حرفه‌ای ارائه می‌دهد.",
+      "badge": "نظافت",
+      "hero_title": "نظافت",
+      "hero_desc": "پاکیزگی پایه یک پایان منظم است.",
+      "intro_title": "نظافت نهایی سیستماتیک",
+      "intro_p1": "نظافت نهایی برای بازگشت ودیعه تعیین‌کننده است.",
+      "intro_p2": "تیم ما دقیق و سریع کار می‌کند.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "مستاجران",
+        "مالکان",
+        "فضاهای تجاری"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "بازرسی",
+          "desc": "ارزیابی."
+        },
+        {
+          "title": "اجرا",
+          "desc": "نظافت سیستماتیک."
+        },
+        {
+          "title": "کنترل",
+          "desc": "مستندسازی عکس."
+        },
+        {
+          "title": "تحویل",
+          "desc": "تحویل تمیز."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "استانداردهای مالک",
+        "مستندسازی عکس",
+        "نظافت مجدد"
+      ],
+      "cta_title": "سفارش نظافت",
+      "cta_text": "نظافت حرفه‌ای."
+    },
+    "service_entruempelung": {
+      "meta_title": "تخلیه حرفه‌ای",
+      "meta_desc": "FLOXANT املاک را حرفه‌ای تخلیه می‌کند.",
+      "badge": "حذف",
+      "hero_title": "تخلیه",
+      "hero_desc": "رها کردن نیاز به اعتماد دارد.",
+      "intro_title": "تخلیه با مسئولیت",
+      "intro_p1": "تخلیه بیش از حذف اشیا است.",
+      "intro_p2": "مرتب‌سازی حرفه‌ای و حذف زیست‌محیطی.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "تسویه منازل",
+        "تخلیه تجاری",
+        "افراد خصوصی"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "بازدید",
+          "desc": "فهرست مشترک."
+        },
+        {
+          "title": "تخلیه",
+          "desc": "سیستماتیک."
+        },
+        {
+          "title": "حذف",
+          "desc": "مرتب‌سازی حرفه‌ای."
+        },
+        {
+          "title": "وضعیت نهایی",
+          "desc": "تحویل تمیز."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "حذف زیست‌محیطی",
+        "پردازش محرمانه",
+        "تحویل تمیز"
+      ],
+      "cta_title": "درخواست تخلیه",
+      "cta_text": "با ما تماس بگیرید."
+    },
+    "service_montage": {
+      "meta_title": "نصب حرفه‌ای",
+      "meta_desc": "FLOXANT مبلمان و آشپزخانه نصب می‌کند.",
+      "badge": "نصب",
+      "hero_title": "نصب",
+      "hero_desc": "دقت در جزئیات.",
+      "intro_title": "اسباب‌کشی در مونیخ – با برنامه و دقت",
+      "intro_p1": "مبلمان باکیفیت شایسته نصب حرفه‌ای است.",
+      "intro_p2": "از قفسه‌های IKEA تا آشپزخانه‌های طراح.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "پس از اسباب‌کشی",
+        "مشتریان تجاری",
+        "نصب آشپزخانه"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "آماده‌سازی",
+          "desc": "بررسی دستورالعمل‌ها."
+        },
+        {
+          "title": "نصب",
+          "desc": "نصب حرفه‌ای."
+        },
+        {
+          "title": "تست",
+          "desc": "تست قطعات متحرک."
+        },
+        {
+          "title": "کنترل",
+          "desc": "نظافت محل کار."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "نصب حرفه‌ای",
+        "مراقبت از سطوح",
+        "محل کار تمیز"
+      ],
+      "cta_title": "سفارش نصب",
+      "cta_text": "نصب حرفه‌ای."
+    },
+    "service_halteverbotszone": {
+      "meta_title": "منطقه ممنوعیت پارک",
+      "meta_desc": "FLOXANT مناطق ممنوعیت را مدیریت می‌کند.",
+      "badge": "لجستیک",
+      "hero_title": "منطقه ممنوعیت پارک",
+      "hero_desc": "دسترسی آزاد – پایه هر اسباب‌کشی.",
+      "intro_title": "مناطق – به‌موقع و قانونی",
+      "intro_p1": "در بسیاری از مناطق شهری منطقه رسمی لازم است.",
+      "intro_p2": "FLOXANT کل فرآیند را بر عهده می‌گیرد.",
+      "for_whom_title": "این خدمات برای چه کسی است؟",
+      "for_whom_items": [
+        "اسباب‌کشی مرکز شهر",
+        "تجاری",
+        "هر اسباب‌کشی"
+      ],
+      "process_title": "فرآیند ما",
+      "process_steps": [
+        {
+          "title": "درخواست",
+          "desc": "ارائه."
+        },
+        {
+          "title": "تایید",
+          "desc": "تایید."
+        },
+        {
+          "title": "نصب",
+          "desc": "علائم."
+        },
+        {
+          "title": "برچیدن",
+          "desc": "حذف علائم."
+        }
+      ],
+      "guarantees_title": "تضمین‌های ما",
+      "guarantees": [
+        "پردازش رسمی کامل",
+        "نصب به‌موقع",
+        "خدمات کامل"
+      ],
+      "cta_title": "درخواست منطقه",
+      "cta_text": "دسترسی آزاد تضمین کنید."
+    },
+    "reinigung_regensburg": {
+      "meta_title": "نظافت رگنسبورگ",
+      "meta_desc": "نظافت حرفه‌ای در رگنسبورگ.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "نظافت حرفه‌ای در",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "مرکز عملیاتی ما.",
+      "intro_title": "نظافت نهایی در رگنسبورگ",
+      "intro_p1": "پایگاه عملیاتی.",
+      "intro_p2": "فرآیند مستند.",
+      "services_title": "خدمات نظافت",
+      "services": {
+        "end_cleaning": {
+          "title": "نظافت نهایی",
+          "desc": "کامل."
+        },
+        "construction_cleaning": {
+          "title": "نظافت پس از ساخت",
+          "desc": "پس از بازسازی."
+        },
+        "office_cleaning": {
+          "title": "نظافت دفتر",
+          "desc": "منظم یا یکباره."
+        }
+      },
+      "cta_title": "درخواست در رگنسبورگ",
+      "cta_text": "رزرو کنید."
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "تخلیه رگنسبورگ",
+      "meta_desc": "FLOXANT در رگنسبورگ تخلیه می‌کند.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "تخلیه در",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "رها کردن فرآیندی است.",
+      "intro_title": "تخلیه در رگنسبورگ",
+      "intro_p1": "مرکز عملیاتی.",
+      "intro_p2": "مرتب‌سازی در محل.",
+      "services_title": "خدمات تخلیه",
+      "services": {
+        "household": {
+          "title": "تسویه",
+          "desc": "تخلیه کامل."
+        },
+        "commercial": {
+          "title": "تخلیه تجاری",
+          "desc": "دفاتر و انبارها."
+        },
+        "partial": {
+          "title": "تخلیه جزئی",
+          "desc": "اتاق‌های انتخابی."
+        }
+      },
+      "cta_title": "درخواست تخلیه",
+      "cta_text": "تماس بگیرید."
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "اسباب‌کشی دفتر رگنسبورگ",
+      "meta_desc": "FLOXANT سازماندهی می‌کند.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "اسباب‌کشی دفتر در",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "تداوم کسب‌وکار.",
+      "intro_title": "اسباب‌کشی دفتر در رگنسبورگ",
+      "intro_p1": "رگنسبورگ در حال رشد.",
+      "intro_p2": "ما هماهنگ می‌کنیم.",
+      "services_title": "خدمات اسباب‌کشی",
+      "services": {
+        "full_move": {
+          "title": "اسباب‌کشی کامل",
+          "desc": "دفتر و IT."
+        },
+        "it_relocation": {
+          "title": "جابجایی IT",
+          "desc": "قطع اتصال حرفه‌ای."
+        },
+        "weekend_move": {
+          "title": "اسباب‌کشی آخر هفته",
+          "desc": "خارج از ساعات کاری."
+        }
+      },
+      "cta_title": "برنامه‌ریزی",
+      "cta_text": "بیایید برنامه‌ریزی کنیم."
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – A Conscious Farewell to Your Home",
+      "meta_desc": "The FLOXANT Ritual Exit Box accompanies you through a conscious farewell. A personal ritual for the transition into a new chapter.",
+      "badge": "تجربه Signature",
+      "hero_title": "جعبه آیین خداحافظی",
+      "hero_desc": "ترک خانه یعنی بستن یک فصل.",
+      "story_title": "Why a Farewell Deserves a Ritual",
+      "story_p1": "Every home carries memories. The first night, cooking together, quiet moments by the window. When we leave, we do not just leave rooms behind – we leave a part of our story. The Ritual Exit Box is our answer to a transition that is too often overlooked.",
+      "story_p2": "Inside the box you will find a small ceremony: a candle, a handwritten guide, and a sealable envelope for a final letter to this place. It is not a product. It is a gesture.",
+      "purpose_title": "ارزش روان‌شناختی",
+      "purpose_text": "Conscious transitions reduce the emotional stress of a move. The Ritual Exit Box creates a defined moment of letting go – calm, personal, and dignified.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For anyone who does not simply leave their home but wishes to say goodbye. Especially valuable for long-term residences, family homes, or shared living spaces.",
+      "cta_title": "افزودن جعبه آیین",
+      "cta_text": "Complement your move with a Ritual Exit Box. Mention it when submitting your enquiry."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Consciously Move into Your New Home",
+      "meta_desc": "The FLOXANT Clean Start Ceremony prepares your new apartment for a conscious move-in. Professional cleaning as the foundation for a fresh start.",
+      "badge": "تجربه Signature",
+      "hero_title": "مراسم شروع تازه",
+      "hero_desc": "قبل از مبلمان، فضا را آماده می‌کنیم.",
+      "story_title": "A New Beginning Starts with Clarity",
+      "story_p1": "A new home should feel like yours from the very first second. Not like the space of a predecessor. The Clean Start Ceremony is a professional deep clean that goes beyond the ordinary.",
+      "story_p2": "We do not just clean surfaces – we create an atmosphere. After cleaning, the space is ventilated and subtly prepared. When you step in, you enter your space.",
+      "purpose_title": "ارزش روان‌شناختی",
+      "purpose_text": "A clean, prepared space signals to your subconscious: something new begins here. The Clean Start Ceremony makes this transition tangible.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For move-ins to existing properties, after renovations, or for anyone who wishes to consciously take possession of their new space.",
+      "cta_title": "رزرو شروع تازه",
+      "cta_text": "Prepare your move-in. Mention the Clean Start Ceremony when submitting your enquiry."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professional Neighbourhood Introduction",
+      "meta_desc": "The FLOXANT New Neighbour Kit eases your arrival in the new neighbourhood. Discreet, charming, and thoughtfully crafted.",
+      "badge": "تجربه Signature",
+      "hero_title": "کیت همسایه جدید",
+      "hero_desc": "اولین برداشت مهم است.",
+      "story_title": "Arriving Begins with Connection",
+      "story_p1": "In a new environment, one initially feels like a stranger. The New Neighbour Kit bridges this first distance elegantly. It contains a personalised greeting card and a small token of appreciation for your immediate neighbours.",
+      "story_p2": "We prepare the kit and deliver it on your move-in day upon request. You leave a positive first impression – without having to think about it yourself.",
+      "purpose_title": "ارزش اجتماعی",
+      "purpose_text": "Good neighbourly relations begin on day one. The kit creates a foundation for mutual respect and reduces the social barrier of a new beginning.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For families, couples, or individuals moving into a multi-unit building who wish to build a positive relationship with their neighbours from the start.",
+      "cta_title": "سفارش کیت",
+      "cta_text": "Complement your move with the New Neighbour Kit. We take care of the details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – The First Two Days Worry-Free",
+      "meta_desc": "The FLOXANT First 48h Package supplies you with everything you need in the first two days after your move. No searching, no stress.",
+      "badge": "تجربه Signature",
+      "hero_title": "بسته ۴۸ ساعت اول",
+      "hero_desc": "ساعات اول تعیین‌کننده‌اند.",
+      "story_title": "The Critical First 48 Hours",
+      "story_p1": "After a move, the household is in a state of emergency. Where is the coffee machine? Where are the towels? The First 48h Package contains everything you need for the first two days: hygiene products, snacks, basic cleaning supplies, and a checklist for the most important tasks.",
+      "story_p2": "The package is ready when you enter your new home. No searching, no improvising – simply arrive.",
+      "purpose_title": "ارزش عملی",
+      "purpose_text": "The first 48 hours determine how a move is emotionally evaluated. Those who are immediately functional experience the transition as positive rather than burdensome.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For anyone who wishes to be immediately functional after a move. Especially valuable for singles, professionals, or families with children.",
+      "cta_title": "رزرو بسته",
+      "cta_text": "Start relaxed in your new home. We prepare the package for your move-in."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bureaucracy Shield – Delegate Official Formalities",
+      "meta_desc": "The FLOXANT Bureaucracy Shield handles official formalities around your move. No-parking zones, re-registration, mail forwarding.",
+      "badge": "تجربه Signature",
+      "hero_title": "سپر بوروکراسی",
+      "hero_desc": "تشریفات بخشی از هر اسباب‌کشی است.",
+      "story_title": "Bureaucracy Need Not Be Your Concern",
+      "story_p1": "A move brings a wave of formalities: applying for a no-parking zone, re-registering your address, setting up mail forwarding, notifying utility providers. The Bureaucracy Shield bundles all these tasks and handles them for you.",
+      "story_p2": "Our team is familiar with procedures across Regensburg and all of Bavaria. We know the relevant offices, the forms, and the deadlines. You receive complete documentation of all completed steps.",
+      "purpose_title": "ارزش سازمانی",
+      "purpose_text": "Bureaucracy is one of the greatest stress factors in relocations. Delegating to experienced professionals reduces errors, saves time, and gives you certainty.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For individuals and companies who wish to focus on their move and delegate formalities to experienced hands.",
+      "cta_title": "درخواست سپر",
+      "cta_text": "Delegate the formalities. We handle the official processing for you."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Furniture Optimisation – Space Planning After Your Move",
+      "meta_desc": "FLOXANT Furniture Optimisation helps you place your furnishings perfectly in new spaces. Professional space planning included.",
+      "badge": "تجربه Signature",
+      "hero_title": "بهینه‌سازی مبلمان",
+      "hero_desc": "چیدن، نه فقط گذاشتن.",
+      "story_title": "Your Space, Reimagined",
+      "story_p1": "Old furniture in new rooms – it does not always fit immediately. Furniture Optimisation analyses your furnishings in the context of the new floor plan and suggests an optimal arrangement. Natural light, walkways, and room proportions inform the planning.",
+      "story_p2": "Our team implements the optimisation directly on moving day. So you experience your new space not as a compromise, but as a thoughtfully arranged home.",
+      "purpose_title": "ارزش طراحی",
+      "purpose_text": "A well-considered room arrangement enhances living quality and well-being. The optimisation prevents provisional solutions from becoming permanent.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For anyone moving existing furnishings into a differently proportioned space and wishing to make the best of the situation.",
+      "cta_title": "درخواست بهینه‌سازی",
+      "cta_text": "Have your new space professionally arranged. We plan the optimal layout."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Cleaning Guarantee – Broom-Clean Handover Guaranteed",
+      "meta_desc": "The FLOXANT Cleaning Guarantee assures broom-clean handover. If your landlord has complaints, we re-clean – free of charge.",
+      "badge": "تجربه Signature",
+      "hero_title": "تضمین نظافت",
+      "hero_desc": "تحویل تمیز – تضمینی.",
+      "story_title": "Certainty at Handover",
+      "story_p1": "Property handover is often the most stressful moment after a move. Will the deposit be returned in full? Will there be complaints? The Cleaning Guarantee takes this worry from you. We clean to our defined standards and stand behind our work.",
+      "story_p2": "Should your landlord identify legitimate cleaning deficiencies within 14 days of handover, we return and rectify them – at no additional cost.",
+      "purpose_title": "ارزش مالی",
+      "purpose_text": "The Cleaning Guarantee protects your deposit and gives you negotiating confidence at handover. It documents professional diligence.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For all tenants who wish for a stress-free property handover and want to receive their full deposit back.",
+      "cta_title": "افزودن تضمین",
+      "cta_text": "Secure your handover. The Cleaning Guarantee can be added to any move."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Storage Rotation – Flexible Interim Storage for Your Move",
+      "meta_desc": "FLOXANT Storage Rotation offers secure interim storage with flexible access. Ideal for staged moves and renovations.",
+      "badge": "تجربه Signature",
+      "hero_title": "چرخش انبار",
+      "hero_desc": "همه چیز لازم نیست یکجا جابجا شود.",
+      "story_title": "Interim Storage as a Strategic Tool",
+      "story_p1": "Sometimes schedules do not align: the old property must be vacated, but the new one is not yet ready. Or you are renovating and need temporary space for your belongings. Storage Rotation solves this timing challenge.",
+      "story_p2": "Your items are stored securely at our partner facility in the Regensburg region. You can arrange access and request partial deliveries whenever it suits you.",
+      "purpose_title": "ارزش لجستیکی",
+      "purpose_text": "Flexibility in scheduling reduces pressure and enables better decisions. Storage Rotation decouples move-out and move-in.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For anyone whose moving dates are not synchronised, or who needs space during a renovation.",
+      "cta_title": "درخواست چرخش",
+      "cta_text": "Secure flexible interim storage. We advise on the possibilities."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kids Moving Box – Making Moves Child-Friendly",
+      "meta_desc": "The FLOXANT Kids Moving Box makes moving an adventure for children. Activity materials, an explanatory booklet, and a personal surprise.",
+      "badge": "تجربه Signature",
+      "hero_title": "جعبه اسباب‌کشی کودک",
+      "hero_desc": "کودکان اسباب‌کشی را متفاوت تجربه می‌کنند.",
+      "story_title": "A Move Through a Child's Eyes",
+      "story_p1": "For children, a move means uncertainty: the familiar room disappears, friends are left behind, everything changes. The Kids Moving Box accompanies this process in an age-appropriate way with activity materials, a small explanatory booklet about moving, and a personal surprise for the first day in the new room.",
+      "story_p2": "The box is handed over before moving day so children can prepare and actively participate – as an adventure, not a loss.",
+      "purpose_title": "ارزش آموزشی",
+      "purpose_text": "Children who are actively included in the moving process cope better with the change. The box gives them a role and makes the transition tangible.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For families with children aged 3 to 12 who wish to make the move child-friendly.",
+      "cta_title": "سفارش جعبه کودک",
+      "cta_text": "Make the move a positive experience for your children. We prepare the box individually."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Moving Service – Available Around the Clock",
+      "meta_desc": "FLOXANT 24h Moving Service for urgent and time-sensitive relocations. Available evenings, nights, and weekends.",
+      "badge": "تجربه Signature",
+      "hero_title": "سرویس ۲۴ ساعته",
+      "hero_desc": "گاهی اسباب‌کشی نمی‌تواند صبر کند.",
+      "story_title": "Availability as a Promise",
+      "story_p1": "Not every move fits into regular business hours. Short-notice terminations, professional transfers, or personal circumstances sometimes demand swift action. The 24h Moving Service guarantees availability in the evenings, at night, and on weekends.",
+      "story_p2": "Our standby team is ready at short notice. The same quality, the same care – regardless of the hour.",
+      "purpose_title": "ارزش زمانی",
+      "purpose_text": "Time pressure is one of the greatest stress factors in relocations. The 24h service eliminates the time constraint and gives you maximum flexibility.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For urgent moves, time-sensitive relocations, or clients who can only move outside business hours for professional reasons.",
+      "cta_title": "درخواست سرویس ۲۴ ساعته",
+      "cta_text": "Contact us at any time. We are there for you – around the clock."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Ladies Team – Moving by an All-Female Team",
+      "meta_desc": "The FLOXANT Ladies Team offers moves exclusively by female personnel. Discreet, respectful, and professional.",
+      "badge": "تجربه Signature",
+      "hero_title": "تیم بانوان",
+      "hero_desc": "برخی شرایط حساسیت ویژه می‌خواهد.",
+      "story_title": "Respect Begins with Understanding",
+      "story_p1": "There are situations in which clients feel more comfortable with an all-female team: after a separation, due to religious or cultural preferences, or simply as a personal choice. The Ladies Team respects these wishes without question and at no extra charge.",
+      "story_p2": "Our female moving team works with the same professionalism and efficiency as all our teams. The only difference: the composition.",
+      "purpose_title": "ارزش شخصی",
+      "purpose_text": "The Ladies Team creates a protected environment for the move. It respects personal boundaries and cultural needs – discreetly and naturally.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For female clients who prefer an all-female team for personal, cultural, or religious reasons.",
+      "cta_title": "درخواست تیم بانوان",
+      "cta_text": "Book your move with our Ladies Team. Discreet, professional, and at no extra charge."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Memory Capsule – Preserving Moments During Your Move",
+      "meta_desc": "The FLOXANT Memory Capsule preserves a moment from your old home. Photos, notes, and personal items in a sealed capsule.",
+      "badge": "تجربه Signature",
+      "hero_title": "کپسول خاطره",
+      "hero_desc": "برخی مکان‌ها شایسته یادآوری هستند.",
+      "story_title": "A Place, Frozen in Time",
+      "story_p1": "Before the last box is packed, we pause. The Memory Capsule contains photos of the empty rooms, a note of your choice, and a small object from the old home. Everything is sealed in a high-quality capsule.",
+      "story_p2": "This capsule is not meant to be opened immediately. It is an anchor – a physical object that captures a place in time. Open it whenever you are ready.",
+      "purpose_title": "ارزش احساسی",
+      "purpose_text": "Memories fade over time. The capsule preserves a defined moment and makes it accessible again at any time.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For people leaving a place that meant a great deal to them. Especially valuable for family homes or properties with a long history.",
+      "cta_title": "افزودن کپسول",
+      "cta_text": "Preserve a moment from your old home. We prepare the capsule on moving day."
+    },
+    "sig_maybe_box": {
+      "meta_title": "The Maybe Box – Decision Aid During Your Move",
+      "meta_desc": "The FLOXANT Maybe Box gives you time for uncertain decisions. Keep or let go? Decide later.",
+      "badge": "تجربه Signature",
+      "hero_title": "جعبه شاید",
+      "hero_desc": "هر تصمیمی لازم نیست فوری باشد.",
+      "story_title": "Reducing Decision Pressure",
+      "story_p1": "During a move, countless decisions are demanded simultaneously: keep, give away, store? For many items the answer is clear. But for some it is not. The Maybe Box is designed for exactly these cases.",
+      "story_p2": "We store items you are unsure about for up to 90 days. During that time, you can decide at leisure whether to keep or let go. Without pressure. Without haste.",
+      "purpose_title": "ارزش تصمیم‌گیری",
+      "purpose_text": "Decisional overload during a move leads to regrettable choices. The Maybe Box decouples the physical process of moving from the emotional process of letting go.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For anyone finding it difficult to part with certain items immediately and needing time for a considered decision.",
+      "cta_title": "درخواست جعبه شاید",
+      "cta_text": "Give yourself time for the difficult decisions. We store items in the Maybe Box until you are ready."
+    },
+    "sig_key_handover": {
+      "meta_title": "Key Handover – Documented and Secure Property Handover",
+      "meta_desc": "The FLOXANT Key Handover documents the property handover securely. Professional protocols and visual evidence for your protection.",
+      "badge": "تجربه Signature",
+      "hero_title": "تحویل کلید",
+      "hero_desc": "مستند. امن. قابل ردیابی.",
+      "story_title": "The Final Step, Properly Documented",
+      "story_p1": "The key handover marks the official closing of a chapter. But too often it happens hurriedly, without documentation. The Key Handover service creates a professional protocol of the property condition, photographs all rooms, and documents the handover of all keys.",
+      "story_p2": "You receive a complete documentation package that serves as proof in the event of subsequent disputes. This is not merely a formality – it is your legal safeguard.",
+      "purpose_title": "ارزش حقوقی",
+      "purpose_text": "A documented handover protects both parties. It creates clarity about the condition of the property and prevents subsequent disputes over the deposit.",
+      "for_whom_title": "این تجربه برای چه کسی است؟",
+      "for_whom_text": "For all tenants and landlords who value a legally secure, documented property handover.",
+      "cta_title": "رزرو تحویل کلید",
+      "cta_text": "Document your property handover professionally. We create a complete protocol for your records."
+    }
+  },
+  "services_section": {
+    "title": "خدمات ما",
+    "subtitle": "راه‌حل‌های سفارشی برای هر نیازی. خصوصی، تجاری، یا تخصصی.",
+    "items": [
+      {
+        "title": "اسباب‌کشی خصوصی",
+        "desc": "بدون نگرانی به خانه جدید. ما از همه چیز مراقبت می‌کنیم."
+      },
+      {
+        "title": "اسباب‌کشی دفتر",
+        "desc": "حداقل زمان توقف برای کسب‌وکار شما. برنامه‌ریزی حرفه‌ای."
+      },
+      {
+        "title": "اسباب‌کشی بین‌شهری",
+        "desc": "با امنیت به مقصد در سراسر اروپا."
+      },
+      {
+        "title": "تخلیه",
+        "desc": "تخلیه تمیز آپارتمان‌ها و فضاهای تجاری."
+      },
+      {
+        "title": "مونتاژ",
+        "desc": "مونتاژ و دمونتاژ حرفه‌ای مبلمان و آشپزخانه."
+      },
+      {
+        "title": "منطقه پارک ممنوع",
+        "desc": "مجوز و راه‌اندازی رسمی مناطق."
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "خدمات ویژه",
+    "subtitle": "فراتر از لجستیک. ما از جزئیات عاطفی و سازمانی شروع جدید شما مراقبت می‌کنیم.",
+    "badge": "انحصاری در FLOXANT",
+    "items": {
+      "ritual_exit": {
+        "title": "جعبه خداحافظی",
+        "desc": "یک خداحافظی آگاهانه. ما انتقال را با یادگاری‌های عاشقانه همراهی می‌کنیم."
+      },
+      "clean_start": {
+        "title": "مراسم شروع تمیز",
+        "desc": "لحظه ورود. پس از نظافت، خانه جدید شما را با نظم و آرامش آماده می‌کنیم."
+      },
+      "neighbour_kit": {
+        "title": "کیت همسایه جدید",
+        "desc": "ورود به محیط. کیت همسایه ورود شما به محله را آسان می‌کند."
+      },
+      "first_48h": {
+        "title": "بسته ۴۸ ساعت اول",
+        "desc": "ثبات در ساعات اول. اتاق خواب، حمام و آشپزخانه را فوراً راه‌اندازی می‌کنیم."
+      },
+      "bureaucracy": {
+        "title": "محافظت بوروکراسی",
+        "desc": "کاغذ کمتر. تمرکز بیشتر. ثبت‌نام‌ها و قراردادها را به صورت ساختاریافته انجام می‌دهیم."
+      },
+      "furniture_opt": {
+        "title": "بهینه‌سازی مبلمان",
+        "desc": "عملکرد و زیبایی. مونتاژ، قرارگیری و بهینه‌سازی بر اساس منطق فضا."
+      },
+      "cleaning_guarantee": {
+        "title": "ضمانت نظافت",
+        "desc": "نظافت با امنیت. نظافت نهایی طبق استانداردهای مالک."
+      },
+      "storage_rot": {
+        "title": "انبارداری انعطاف‌پذیر",
+        "desc": "با انعطاف ذخیره کنید. به وضوح تصمیم بگیرید."
+      },
+      "kids_box": {
+        "title": "جعبه اسباب‌کشی کودکان",
+        "desc": "اسباب‌کشی از دید کودک. با جعبه مخصوص خودشان، تجربه مثبت ارائه می‌دهیم."
+      },
+      "service_24h": {
+        "title": "خدمات اسباب‌کشی ۲۴ ساعته",
+        "desc": "وقتی زمان عامل اصلی است. اسباب‌کشی محتاطانه و کارآمد در ۲۴ ساعت."
+      },
+      "ladies_team": {
+        "title": "تیم بانوان",
+        "desc": "اعتماد در شرایط حساس. تیمی برای امنیت و آرامش ویژه."
+      },
+      "memory_capsule": {
+        "title": "کپسول خاطرات",
+        "desc": "آنچه مهم است نگه دارید. جعبه‌ای شیک برای اقلام شخصی از خانه قدیمی."
+      },
+      "maybe_box": {
+        "title": "جعبه شاید",
+        "desc": "تصمیم‌ها را به تعویق بیندازید. اقلام نامشخص را ذخیره می‌کنیم تا آماده شوید."
+      },
+      "key_handover": {
+        "title": "تحویل کلید",
+        "desc": "مستند. امن. قابل ردیابی. پروتکل‌های حرفه‌ای برای مالکان."
+      }
+    }
+  }
+}

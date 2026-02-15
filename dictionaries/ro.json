@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "services": "Servicii",
+    "pricing": "Prețuri",
+    "contact": "Contact",
+    "login": "Autentificare",
+    "book_now": "Rezervă acum",
+    "dashboard": "Panou"
+  },
+  "hero": {
+    "title": "Arhitecții Schimbării Tale",
+    "subtitle": "Mutarea nu este doar haos în cutii. Este un proiect tehnic complex. Planificăm, gestionăm și executăm.",
+    "cta": "Obțineți ofertă"
+  },
+  "area": {
+    "title": "Zone de servicii",
+    "description": "Sediul FLOXANT se află în Düsseldorf. Centrul nostru operațional este în Regensburg și Oberpfalz.",
+    "hub_note": "Sediul FLOXANT se află în Düsseldorf. Centrul nostru operațional este în Regensburg și Oberpfalz. De aici deservim clienți în toată Bavaria și oferim mutări la distanță lungă în toată Germania.",
+    "cities": {
+      "regensburg": "Regensburg",
+      "bavaria": "Bavaria",
+      "munich": "München",
+      "nuremberg": "Nürnberg",
+      "augsburg": "Augsburg",
+      "germany": "Toată Germania"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "Serviciu",
+      "details": "Detalii",
+      "upgrades": "Extra",
+      "contact": "Contact"
+    },
+    "headings": {
+      "service_selection": "De unde începem?",
+      "service_subtitle": "Alege serviciul principal.",
+      "details_prefix": "Detalii pentru",
+      "upgrades_title": "Doriți mai mult?",
+      "upgrades_subtitle": "Serviciile noastre Signature pentru confortul dvs.",
+      "summary_title": "Rezumat",
+      "summary_subtitle": "Verificăm disponibilitatea imediat.",
+      "success_title": "Cerere trimisă!",
+      "success_message": "Mulțumim, {name}. Am primit cererea dvs.",
+      "success_email": "Confirmare trimisă la {email}."
+    },
+    "services": {
+      "umzug": {
+        "label": "Mutare",
+        "desc": "Mutare fără stres."
+      },
+      "reinigung": {
+        "label": "Curățenie",
+        "desc": "Curățenie profundă și predare."
+      },
+      "entsorgung": {
+        "label": "Eliminare",
+        "desc": "Profesional și rapid."
+      }
+    },
+    "form": {
+      "start_address": "Adresa de plecare",
+      "end_address": "Adresa de destinație",
+      "date": "Data preferată",
+      "name": "Nume",
+      "email": "E-mail",
+      "phone": "Telefon",
+      "photos": "Încărcați fotografii (opțional)",
+      "photos_placeholder": "Clic pentru încărcare (selecție multiplă)",
+      "photos_count": "{count} fișiere selectate",
+      "placeholder_address": "Stradă, Oraș",
+      "placeholder_name": "Numele dvs.",
+      "placeholder_email": "email@example.com",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "Înapoi",
+      "next": "Înainte",
+      "finish": "Finalizare",
+      "submit": "Solicitați ofertă",
+      "sending": "Se trimite...",
+      "new_request": "Cerere nouă"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "Echipă feminină",
+        "desc": "Grijă maximă și empatie."
+      },
+      "24h_service": {
+        "title": "Serviciu 24h",
+        "desc": "Disponibili non-stop."
+      },
+      "furniture_opt": {
+        "title": "Optimizare mobilier",
+        "desc": "Demontare, montare și îngrijire."
+      },
+      "storage_rot": {
+        "title": "Depozitare flexibilă",
+        "desc": "Depozitare temporară flexibilă."
+      },
+      "maybe_box": {
+        "title": "Cutia Poate",
+        "desc": "Ajutor în luarea deciziilor."
+      },
+      "clean_shield": {
+        "title": "Scut birocratic",
+        "desc": "Zone fără parcare și autorizații."
+      }
+    },
+    "error": {
+      "submit": "Eroare la trimitere. Încercați din nou.",
+      "generic": "A apărut o eroare neașteptată."
+    }
+  },
+  "footer": {
+    "rights": "Toate drepturile rezervate.",
+    "impressum": "Informații juridice",
+    "privacy": "Confidențialitate",
+    "terms": "Termeni",
+    "revocation": "Drept de retragere",
+    "booking": "Condiții de rezervare",
+    "areas": "Zone de serviciu"
+  },
+  "contact": {
+    "name": "Nume",
+    "email": "E-mail",
+    "message": "Mesaj",
+    "submit": "Trimite",
+    "success": "Mesaj trimis",
+    "error": "Eroare la trimitere"
+  },
+  "trust": {
+    "experience": "Ani de experiență",
+    "quality": "Cea mai înaltă calitate",
+    "insured": "Complet asigurați"
+  },
+  "auth": {
+    "login_title": "Autentificare administrator",
+    "subtitle": "Zonă protejată",
+    "email_label": "E-mail",
+    "password_label": "Parolă",
+    "submit_button": "Autentificare",
+    "loading_button": "Verificare...",
+    "error_failed": "Autentificare eșuată",
+    "error_generic": "A apărut o eroare.",
+    "logout": "Deconectare",
+    "system_operational": "Sistem operațional",
+    "dashboard_title": "FLOXANT Intern"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "Total cereri",
+      "new": "Noi (24h)",
+      "status": "Status",
+      "active": "Activ"
+    },
+    "filters": {
+      "search_placeholder": "Căutare după nume sau e-mail...",
+      "all": "Toate",
+      "umzug": "Mutare",
+      "reinigung": "Curățenie",
+      "entsorgung": "Eliminare"
+    },
+    "status": {
+      "loading": "Se încarcă panoul...",
+      "syncing": "Sincronizare...",
+      "empty": "Nu s-au găsit cereri.",
+      "empty_hint": "Încercați să ajustați filtrele."
+    },
+    "card": {
+      "edit": "Editare",
+      "no_extras": "Fără extra"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "Mutarea dvs. în",
+      "hero_title_highlight": "München",
+      "hero_desc": "Fără stres către capitala Bavariei. FLOXANT oferă servicii premium de mutare cu garanție de preț fix.",
+      "badge": "München și împrejurimi",
+      "intro_title": "Mutare în München – cu plan și precizie",
+      "intro_text_1": "München este o metropolă dinamică. Mutarea în capitala Bavariei reprezintă adesea o provocare logistică. Scări înguste, lipsa locurilor de parcare – condițiile necesită experiență și planificare.",
+      "intro_text_2": "FLOXANT este serviciul de mutări care gestionează exact aceste provocări. Nu doar începem – planificăm detaliat mutarea dvs.",
+      "transparency_title": "Transparență privind sediul",
+      "transparency_text": "Sediul legal FLOXANT se află în Düsseldorf. Cu toate acestea, echipa noastră lucrează regulat la mutări în München.",
+      "portfolio_title": "Portofoliul nostru pentru München",
+      "services": {
+        "city": {
+          "title": "Mutări urbane München",
+          "desc": "Rapid și eficient în oraș."
+        },
+        "remote": {
+          "title": "Mutări la distanță din München",
+          "desc": "De la Isar la Rin. Optimizat logistic."
+        },
+        "clearance": {
+          "title": "Golire",
+          "desc": "Eliminarea profesională a mobilierului vechi."
+        }
+      },
+      "details_title": "Specific München",
+      "details_text": "Fiecare oraș are particularitățile sale.",
+      "remote_title": "Din Bavaria în toată Germania",
+      "remote_text": "Mulți clienți se mută din München în alte metropole.",
+      "pricing_title": "Prețuri transparente fără surprize",
+      "pricing_text": "München este deja destul de scump. La FLOXANT mizăm pe transparența absolută a costurilor.",
+      "features": {
+        "inspection": "Inspecție gratuită: evaluare anticipată prin apel video.",
+        "insurance": "Asigurare inclusă: mobilierul dvs. este complet asigurat.",
+        "staff": "Personal calificat: experimentat, prietenos și atent."
+      },
+      "links_title": "Alte locații în regiune",
+      "cta_title": "Oferta dvs. pentru München",
+      "cta_text": "Începeți solicitarea acum."
+    },
+    "service_umzug": {
+      "meta_title": "Mutare privată",
+      "meta_desc": "FLOXANT vă însoțește mutarea privată cu precizie.",
+      "badge": "Serviciu de bază",
+      "hero_title": "Mutare privată",
+      "hero_desc": "Mutarea este mai mult decât transport. Este o tranziție. FLOXANT însoțește acest proces cu discreție și fiabilitate.",
+      "intro_title": "Mutarea dvs. – gândită până la ultimul detaliu",
+      "intro_p1": "O mutare privată atinge toate aspectele vieții. Obiecte personale, amintiri prețioase, mobilier delicat – totul necesită atenție individuală.",
+      "intro_p2": "Echipa noastră lucrează cu un proces clar care asigură transparență completă în fiecare etapă.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "Persoane și familii care apreciază grija",
+        "Mutări rezidențiale în oraș sau regiune",
+        "Mutări care necesită protecție specială"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Evaluare",
+          "desc": "Inspecție gratuită – la fața locului sau video."
+        },
+        {
+          "title": "Preț fix",
+          "desc": "Ofertă transparentă fără costuri ascunse."
+        },
+        {
+          "title": "Execuție",
+          "desc": "Ambalare profesională, transport sigur, livrare la timp."
+        },
+        {
+          "title": "Predare",
+          "desc": "Montaj, amplasare și curățenie."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Garanție preț fix fără suplimente",
+        "Asigurare completă",
+        "Personal calificat profesional"
+      ],
+      "cta_title": "Trimiteți o solicitare neobligatorie",
+      "cta_text": "Începeți mutarea cu o ofertă personalizată."
+    },
+    "service_buero_umzug": {
+      "meta_title": "Mutare birou",
+      "meta_desc": "FLOXANT organizează mutarea biroului cu timp minim de nefuncționare.",
+      "badge": "Comercial",
+      "hero_title": "Mutare birou",
+      "hero_desc": "Continuitatea afacerii necesită planificare.",
+      "intro_title": "Mutări corporative cu precizie",
+      "intro_p1": "Mutarea biroului intervine în procesele active. Infrastructura IT, documentele confidențiale – fiecare detaliu contează.",
+      "intro_p2": "Coordonăm toate lucrările: de la deconectarea IT la transport și reinstalare.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "Companii de orice dimensiune",
+        "Cabinete juridice, cabinete medicale",
+        "Companii care trebuie să minimizeze inactivitatea"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Planificare",
+          "desc": "Analiza detaliată a biroului."
+        },
+        {
+          "title": "Coordonare",
+          "desc": "Colaborare cu echipa IT."
+        },
+        {
+          "title": "Execuție",
+          "desc": "Mutare în intervale de timp definite."
+        },
+        {
+          "title": "Punere în funcțiune",
+          "desc": "Configurarea stațiilor de lucru."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Intervale de timp garantate",
+        "Acoperire asigurare IT",
+        "Procesare discretă"
+      ],
+      "cta_title": "Planificați mutarea biroului",
+      "cta_text": "Să structurăm mutarea corporativă împreună."
+    },
+    "service_fernumzug": {
+      "meta_title": "Mutare la distanță lungă",
+      "meta_desc": "FLOXANT organizează mutări la distanță lungă din Bavaria.",
+      "badge": "Distanță lungă",
+      "hero_title": "Mutare la distanță lungă",
+      "hero_desc": "Distanța nu este un obstacol.",
+      "intro_title": "Distanță lungă cu precizie",
+      "intro_p1": "Mutarea la distanță lungă necesită planificare specială.",
+      "intro_p2": "Din Regensburg la Hamburg, din München la Berlin.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "Persoane care schimbă locul de muncă",
+        "Familii care se mută în alt oraș",
+        "Companii care transferă angajați"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Planificarea rutei",
+          "desc": "Rută optimală."
+        },
+        {
+          "title": "Ambalare",
+          "desc": "Ambalare profesională cu materiale speciale."
+        },
+        {
+          "title": "Transport",
+          "desc": "Monitorizare GPS cu șoferi experimentați."
+        },
+        {
+          "title": "Livrare",
+          "desc": "Livrare la timp, montaj și amplasare."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Preț fix pentru întreaga distanță",
+        "Asigurare completă",
+        "Garanție de livrare la timp"
+      ],
+      "cta_title": "Solicitați mutare la distanță",
+      "cta_text": "Unde doriți să mergeți?"
+    },
+    "service_reinigung": {
+      "meta_title": "Curățenie profesională",
+      "meta_desc": "FLOXANT oferă curățenie finală profesională.",
+      "badge": "Curățenie",
+      "hero_title": "Curățenie",
+      "hero_desc": "Curățenia nu este un detaliu – este baza încheierii și a unui nou început.",
+      "intro_title": "Curățenie finală sistematică",
+      "intro_p1": "Curățenia finală este factorul decisiv pentru returnarea garanției.",
+      "intro_p2": "Echipa noastră lucrează meticulos și rapid.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "Chiriași înainte de predare",
+        "Proprietari înainte de vânzare",
+        "Spații comerciale"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Inspecție",
+          "desc": "Evaluarea stării."
+        },
+        {
+          "title": "Execuție",
+          "desc": "Curățenie sistematică."
+        },
+        {
+          "title": "Control calitate",
+          "desc": "Recepție cu documentare foto."
+        },
+        {
+          "title": "Predare",
+          "desc": "Predare curată."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Curățenie la standarde de proprietar",
+        "Documentare foto inclusă",
+        "Recurățenie la reclamații justificate"
+      ],
+      "cta_title": "Comandați curățenie",
+      "cta_text": "Comandați curățenie finală profesională."
+    },
+    "service_entruempelung": {
+      "meta_title": "Golire – curățare profesională",
+      "meta_desc": "FLOXANT golește profesional proprietăți.",
+      "badge": "Eliminare",
+      "hero_title": "Golire",
+      "hero_desc": "A renunța necesită încredere. Golim profesional și ecologic.",
+      "intro_title": "Golire cu responsabilitate",
+      "intro_p1": "Golirea este mai mult decât eliminarea obiectelor.",
+      "intro_p2": "Sortăm profesional și eliminăm ecologic.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "Lichidări de locuințe",
+        "Goliri comerciale",
+        "Persoane private"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Tur",
+          "desc": "Inventar comun."
+        },
+        {
+          "title": "Golire",
+          "desc": "Golire sistematică."
+        },
+        {
+          "title": "Eliminare",
+          "desc": "Sortare și eliminare profesională."
+        },
+        {
+          "title": "Stare finală",
+          "desc": "Predare curată."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Eliminare ecologică documentată",
+        "Procesare discretă",
+        "Predare curată garantată"
+      ],
+      "cta_title": "Solicitați golire",
+      "cta_text": "Contactați-ne."
+    },
+    "service_montage": {
+      "meta_title": "Montaj profesional",
+      "meta_desc": "FLOXANT montează profesional mobilier și bucătării.",
+      "badge": "Montaj",
+      "hero_title": "Montaj",
+      "hero_desc": "Precizie în detaliu.",
+      "intro_title": "Montaj cu expertiză",
+      "intro_p1": "Mobilierul de calitate merită montaj profesional.",
+      "intro_p2": "De la rafturi IKEA la bucătării de designer.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "După mutare sau achiziție",
+        "Clienți comerciali",
+        "Montaj bucătării"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Pregătire",
+          "desc": "Verificarea instrucțiunilor."
+        },
+        {
+          "title": "Montaj",
+          "desc": "Instalare profesională."
+        },
+        {
+          "title": "Test funcții",
+          "desc": "Testarea pieselor mobile."
+        },
+        {
+          "title": "Control final",
+          "desc": "Curățarea zonei de lucru."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Montaj profesional",
+        "Grijă pentru suprafețe",
+        "Zonă de lucru curată"
+      ],
+      "cta_title": "Comandați montaj",
+      "cta_text": "Montaj profesional fără compromis."
+    },
+    "service_halteverbotszone": {
+      "meta_title": "Zonă de interdicție parcare",
+      "meta_desc": "FLOXANT amenajează zone de interdicție parcare.",
+      "badge": "Logistică",
+      "hero_title": "Zonă de interdicție parcare",
+      "hero_desc": "Acces liber – baza fiecărei mutări reușite.",
+      "intro_title": "Zone de interdicție – la timp și legal",
+      "intro_p1": "În multe zone urbane, o zonă oficială de interdicție este necesară.",
+      "intro_p2": "FLOXANT se ocupă de întregul proces.",
+      "for_whom_title": "Pentru cine este acest serviciu?",
+      "for_whom_items": [
+        "Mutări în centrul orașului",
+        "Mutări comerciale",
+        "Orice mutare care necesită acces garantat"
+      ],
+      "process_title": "Procesul nostru",
+      "process_steps": [
+        {
+          "title": "Cerere",
+          "desc": "Depunere la autoritate."
+        },
+        {
+          "title": "Aprobare",
+          "desc": "Urmărire și confirmare."
+        },
+        {
+          "title": "Instalare",
+          "desc": "Amplasarea indicatoarelor."
+        },
+        {
+          "title": "Demontare",
+          "desc": "Îndepărtarea indicatoarelor."
+        }
+      ],
+      "guarantees_title": "Garanțiile noastre",
+      "guarantees": [
+        "Procesare oficială completă",
+        "Instalare la timp",
+        "Serviciu complet"
+      ],
+      "cta_title": "Depuneți cerere",
+      "cta_text": "Asigurați acces liber."
+    },
+    "reinigung_regensburg": {
+      "meta_title": "Curățenie Regensburg",
+      "meta_desc": "FLOXANT oferă curățenie profesională în Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Curățenie profesională în",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Regensburg este centrul nostru operațional.",
+      "intro_title": "Curățenie finală în Regensburg",
+      "intro_p1": "Ca bază operațională FLOXANT, Regensburg este centrul serviciilor noastre de curățenie.",
+      "intro_p2": "Curățenia noastră finală urmează un proces documentat.",
+      "services_title": "Serviciile noastre de curățenie în Regensburg",
+      "services": {
+        "end_cleaning": {
+          "title": "Curățenie finală",
+          "desc": "Curățenie completă la standarde de proprietar."
+        },
+        "construction_cleaning": {
+          "title": "Curățenie post-construcție",
+          "desc": "Curățenie profesională după renovare."
+        },
+        "office_cleaning": {
+          "title": "Curățenie birou",
+          "desc": "Curățenie regulată sau unică."
+        }
+      },
+      "cta_title": "Solicitați curățenie în Regensburg",
+      "cta_text": "Programați curățenie profesională."
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "Golire Regensburg",
+      "meta_desc": "FLOXANT golește profesional în Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Golire în",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "A renunța este un proces.",
+      "intro_title": "Golire în Regensburg",
+      "intro_p1": "Regensburg este centrul nostru operațional.",
+      "intro_p2": "Echipa noastră sortează profesional la fața locului.",
+      "services_title": "Serviciile noastre de golire în Regensburg",
+      "services": {
+        "household": {
+          "title": "Lichidare locuință",
+          "desc": "Golire completă."
+        },
+        "commercial": {
+          "title": "Golire comercială",
+          "desc": "Golire profesională birouri."
+        },
+        "partial": {
+          "title": "Golire parțială",
+          "desc": "Golire selectivă."
+        }
+      },
+      "cta_title": "Solicitați golire în Regensburg",
+      "cta_text": "Contactați-ne."
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "Mutare birou Regensburg",
+      "meta_desc": "FLOXANT organizează mutări de birou în Regensburg.",
+      "badge": "Regensburg",
+      "hero_title_prefix": "Mutare birou în",
+      "hero_title_highlight": "Regensburg",
+      "hero_desc": "Continuitatea afacerii este prioritatea.",
+      "intro_title": "Mutări de birou în Regensburg",
+      "intro_p1": "Regensburg crește constant ca locație de afaceri.",
+      "intro_p2": "Coordonăm mutarea biroului dvs.",
+      "services_title": "Serviciile noastre de mutare birou",
+      "services": {
+        "full_move": {
+          "title": "Mutare completă",
+          "desc": "Mutare completă birou și IT."
+        },
+        "it_relocation": {
+          "title": "Relocare IT",
+          "desc": "Deconectare și reconectare profesională."
+        },
+        "weekend_move": {
+          "title": "Mutare weekend",
+          "desc": "Execuție în afara programului."
+        }
+      },
+      "cta_title": "Planificați mutarea biroului",
+      "cta_text": "Să planificăm împreună."
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – A Conscious Farewell to Your Home",
+      "meta_desc": "The FLOXANT Ritual Exit Box accompanies you through a conscious farewell. A personal ritual for the transition into a new chapter.",
+      "badge": "Experiență Signature",
+      "hero_title": "Cutia Ritualului de Adio",
+      "hero_desc": "A pleca de acasă înseamnă a încheia un capitol.",
+      "story_title": "De ce adio merită un ritual",
+      "story_p1": "Every home carries memories. The first night, cooking together, quiet moments by the window. When we leave, we do not just leave rooms behind – we leave a part of our story. The Ritual Exit Box is our answer to a transition that is too often overlooked.",
+      "story_p2": "Inside the box you will find a small ceremony: a candle, a handwritten guide, and a sealable envelope for a final letter to this place. It is not a product. It is a gesture.",
+      "purpose_title": "Valoare psihologică",
+      "purpose_text": "Conscious transitions reduce the emotional stress of a move. The Ritual Exit Box creates a defined moment of letting go – calm, personal, and dignified.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For anyone who does not simply leave their home but wishes to say goodbye. Especially valuable for long-term residences, family homes, or shared living spaces.",
+      "cta_title": "Adăugați cutia ritualului",
+      "cta_text": "Complement your move with a Ritual Exit Box. Mention it when submitting your enquiry."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Consciously Move into Your New Home",
+      "meta_desc": "The FLOXANT Clean Start Ceremony prepares your new apartment for a conscious move-in. Professional cleaning as the foundation for a fresh start.",
+      "badge": "Experiență Signature",
+      "hero_title": "Ceremonia Startului Curat",
+      "hero_desc": "Înainte de a aranja mobilierul, pregătim spațiul.",
+      "story_title": "Noul început începe cu claritate",
+      "story_p1": "A new home should feel like yours from the very first second. Not like the space of a predecessor. The Clean Start Ceremony is a professional deep clean that goes beyond the ordinary.",
+      "story_p2": "We do not just clean surfaces – we create an atmosphere. After cleaning, the space is ventilated and subtly prepared. When you step in, you enter your space.",
+      "purpose_title": "Valoare psihologică",
+      "purpose_text": "A clean, prepared space signals to your subconscious: something new begins here. The Clean Start Ceremony makes this transition tangible.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For move-ins to existing properties, after renovations, or for anyone who wishes to consciously take possession of their new space.",
+      "cta_title": "Rezervați start curat",
+      "cta_text": "Prepare your move-in. Mention the Clean Start Ceremony when submitting your enquiry."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professional Neighbourhood Introduction",
+      "meta_desc": "The FLOXANT New Neighbour Kit eases your arrival in the new neighbourhood. Discreet, charming, and thoughtfully crafted.",
+      "badge": "Experiență Signature",
+      "hero_title": "Setul Noului Vecin",
+      "hero_desc": "Prima impresie contează.",
+      "story_title": "Sosirea începe cu conexiunea",
+      "story_p1": "In a new environment, one initially feels like a stranger. The New Neighbour Kit bridges this first distance elegantly. It contains a personalised greeting card and a small token of appreciation for your immediate neighbours.",
+      "story_p2": "We prepare the kit and deliver it on your move-in day upon request. You leave a positive first impression – without having to think about it yourself.",
+      "purpose_title": "Valoare socială",
+      "purpose_text": "Good neighbourly relations begin on day one. The kit creates a foundation for mutual respect and reduces the social barrier of a new beginning.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For families, couples, or individuals moving into a multi-unit building who wish to build a positive relationship with their neighbours from the start.",
+      "cta_title": "Comandați setul de vecin",
+      "cta_text": "Complement your move with the New Neighbour Kit. We take care of the details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – The First Two Days Worry-Free",
+      "meta_desc": "The FLOXANT First 48h Package supplies you with everything you need in the first two days after your move. No searching, no stress.",
+      "badge": "Experiență Signature",
+      "hero_title": "Pachetul Primelor 48 de Ore",
+      "hero_desc": "Primele ore sunt decisive.",
+      "story_title": "Primele 48 de ore critice",
+      "story_p1": "After a move, the household is in a state of emergency. Where is the coffee machine? Where are the towels? The First 48h Package contains everything you need for the first two days: hygiene products, snacks, basic cleaning supplies, and a checklist for the most important tasks.",
+      "story_p2": "The package is ready when you enter your new home. No searching, no improvising – simply arrive.",
+      "purpose_title": "Valoare practică",
+      "purpose_text": "The first 48 hours determine how a move is emotionally evaluated. Those who are immediately functional experience the transition as positive rather than burdensome.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For anyone who wishes to be immediately functional after a move. Especially valuable for singles, professionals, or families with children.",
+      "cta_title": "Rezervați pachetul 48h",
+      "cta_text": "Start relaxed in your new home. We prepare the package for your move-in."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bureaucracy Shield – Delegate Official Formalities",
+      "meta_desc": "The FLOXANT Bureaucracy Shield handles official formalities around your move. No-parking zones, re-registration, mail forwarding.",
+      "badge": "Experiență Signature",
+      "hero_title": "Scutul Birocrației",
+      "hero_desc": "Formalitățile fac parte din fiecare mutare.",
+      "story_title": "Birocrația nu ar trebui să fie grija dvs.",
+      "story_p1": "A move brings a wave of formalities: applying for a no-parking zone, re-registering your address, setting up mail forwarding, notifying utility providers. The Bureaucracy Shield bundles all these tasks and handles them for you.",
+      "story_p2": "Our team is familiar with procedures across Regensburg and all of Bavaria. We know the relevant offices, the forms, and the deadlines. You receive complete documentation of all completed steps.",
+      "purpose_title": "Valoare organizațională",
+      "purpose_text": "Bureaucracy is one of the greatest stress factors in relocations. Delegating to experienced professionals reduces errors, saves time, and gives you certainty.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For individuals and companies who wish to focus on their move and delegate formalities to experienced hands.",
+      "cta_title": "Solicitați scutul birocrației",
+      "cta_text": "Delegate the formalities. We handle the official processing for you."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Furniture Optimisation – Space Planning After Your Move",
+      "meta_desc": "FLOXANT Furniture Optimisation helps you place your furnishings perfectly in new spaces. Professional space planning included.",
+      "badge": "Experiență Signature",
+      "hero_title": "Optimizarea Mobilierului",
+      "hero_desc": "A aranja, nu doar a pune.",
+      "story_title": "Spațiul dvs., reimaginat",
+      "story_p1": "Old furniture in new rooms – it does not always fit immediately. Furniture Optimisation analyses your furnishings in the context of the new floor plan and suggests an optimal arrangement. Natural light, walkways, and room proportions inform the planning.",
+      "story_p2": "Our team implements the optimisation directly on moving day. So you experience your new space not as a compromise, but as a thoughtfully arranged home.",
+      "purpose_title": "Valoare de design",
+      "purpose_text": "A well-considered room arrangement enhances living quality and well-being. The optimisation prevents provisional solutions from becoming permanent.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For anyone moving existing furnishings into a differently proportioned space and wishing to make the best of the situation.",
+      "cta_title": "Solicitați optimizare",
+      "cta_text": "Have your new space professionally arranged. We plan the optimal layout."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Cleaning Guarantee – Broom-Clean Handover Guaranteed",
+      "meta_desc": "The FLOXANT Cleaning Guarantee assures broom-clean handover. If your landlord has complaints, we re-clean – free of charge.",
+      "badge": "Experiență Signature",
+      "hero_title": "Garanția de Curățenie",
+      "hero_desc": "Predare curată – garantat.",
+      "story_title": "Încredere la predare",
+      "story_p1": "Property handover is often the most stressful moment after a move. Will the deposit be returned in full? Will there be complaints? The Cleaning Guarantee takes this worry from you. We clean to our defined standards and stand behind our work.",
+      "story_p2": "Should your landlord identify legitimate cleaning deficiencies within 14 days of handover, we return and rectify them – at no additional cost.",
+      "purpose_title": "Valoare financiară",
+      "purpose_text": "The Cleaning Guarantee protects your deposit and gives you negotiating confidence at handover. It documents professional diligence.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For all tenants who wish for a stress-free property handover and want to receive their full deposit back.",
+      "cta_title": "Adăugați garanția",
+      "cta_text": "Secure your handover. The Cleaning Guarantee can be added to any move."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Storage Rotation – Flexible Interim Storage for Your Move",
+      "meta_desc": "FLOXANT Storage Rotation offers secure interim storage with flexible access. Ideal for staged moves and renovations.",
+      "badge": "Experiență Signature",
+      "hero_title": "Rotația Depozitului",
+      "hero_desc": "Nu totul trebuie mutat odată.",
+      "story_title": "Depozitarea temporară ca instrument strategic",
+      "story_p1": "Sometimes schedules do not align: the old property must be vacated, but the new one is not yet ready. Or you are renovating and need temporary space for your belongings. Storage Rotation solves this timing challenge.",
+      "story_p2": "Your items are stored securely at our partner facility in the Regensburg region. You can arrange access and request partial deliveries whenever it suits you.",
+      "purpose_title": "Valoare logistică",
+      "purpose_text": "Flexibility in scheduling reduces pressure and enables better decisions. Storage Rotation decouples move-out and move-in.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For anyone whose moving dates are not synchronised, or who needs space during a renovation.",
+      "cta_title": "Solicitați rotația",
+      "cta_text": "Secure flexible interim storage. We advise on the possibilities."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kids Moving Box – Making Moves Child-Friendly",
+      "meta_desc": "The FLOXANT Kids Moving Box makes moving an adventure for children. Activity materials, an explanatory booklet, and a personal surprise.",
+      "badge": "Experiență Signature",
+      "hero_title": "Cutia de Mutare pentru Copii",
+      "hero_desc": "Copiii experimentează mutarea altfel.",
+      "story_title": "Mutarea prin ochii copilului",
+      "story_p1": "For children, a move means uncertainty: the familiar room disappears, friends are left behind, everything changes. The Kids Moving Box accompanies this process in an age-appropriate way with activity materials, a small explanatory booklet about moving, and a personal surprise for the first day in the new room.",
+      "story_p2": "The box is handed over before moving day so children can prepare and actively participate – as an adventure, not a loss.",
+      "purpose_title": "Valoare educațională",
+      "purpose_text": "Children who are actively included in the moving process cope better with the change. The box gives them a role and makes the transition tangible.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For families with children aged 3 to 12 who wish to make the move child-friendly.",
+      "cta_title": "Comandați cutia pentru copii",
+      "cta_text": "Make the move a positive experience for your children. We prepare the box individually."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Moving Service – Available Around the Clock",
+      "meta_desc": "FLOXANT 24h Moving Service for urgent and time-sensitive relocations. Available evenings, nights, and weekends.",
+      "badge": "Experiență Signature",
+      "hero_title": "Serviciu de Mutare 24h",
+      "hero_desc": "Uneori mutarea nu poate aștepta.",
+      "story_title": "Disponibilitatea ca promisiune",
+      "story_p1": "Not every move fits into regular business hours. Short-notice terminations, professional transfers, or personal circumstances sometimes demand swift action. The 24h Moving Service guarantees availability in the evenings, at night, and on weekends.",
+      "story_p2": "Our standby team is ready at short notice. The same quality, the same care – regardless of the hour.",
+      "purpose_title": "Valoare temporală",
+      "purpose_text": "Time pressure is one of the greatest stress factors in relocations. The 24h service eliminates the time constraint and gives you maximum flexibility.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For urgent moves, time-sensitive relocations, or clients who can only move outside business hours for professional reasons.",
+      "cta_title": "Solicitați serviciul 24h",
+      "cta_text": "Contact us at any time. We are there for you – around the clock."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Ladies Team – Moving by an All-Female Team",
+      "meta_desc": "The FLOXANT Ladies Team offers moves exclusively by female personnel. Discreet, respectful, and professional.",
+      "badge": "Experiență Signature",
+      "hero_title": "Echipa Feminină",
+      "hero_desc": "Unele situații necesită sensibilitate specială.",
+      "story_title": "Respectul începe cu înțelegerea",
+      "story_p1": "There are situations in which clients feel more comfortable with an all-female team: after a separation, due to religious or cultural preferences, or simply as a personal choice. The Ladies Team respects these wishes without question and at no extra charge.",
+      "story_p2": "Our female moving team works with the same professionalism and efficiency as all our teams. The only difference: the composition.",
+      "purpose_title": "Valoare personală",
+      "purpose_text": "The Ladies Team creates a protected environment for the move. It respects personal boundaries and cultural needs – discreetly and naturally.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For female clients who prefer an all-female team for personal, cultural, or religious reasons.",
+      "cta_title": "Solicitați echipa feminină",
+      "cta_text": "Book your move with our Ladies Team. Discreet, professional, and at no extra charge."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Memory Capsule – Preserving Moments During Your Move",
+      "meta_desc": "The FLOXANT Memory Capsule preserves a moment from your old home. Photos, notes, and personal items in a sealed capsule.",
+      "badge": "Experiență Signature",
+      "hero_title": "Capsula Memoriei",
+      "hero_desc": "Unele locuri merită amintite.",
+      "story_title": "Un loc înghețat în timp",
+      "story_p1": "Before the last box is packed, we pause. The Memory Capsule contains photos of the empty rooms, a note of your choice, and a small object from the old home. Everything is sealed in a high-quality capsule.",
+      "story_p2": "This capsule is not meant to be opened immediately. It is an anchor – a physical object that captures a place in time. Open it whenever you are ready.",
+      "purpose_title": "Valoare emoțională",
+      "purpose_text": "Memories fade over time. The capsule preserves a defined moment and makes it accessible again at any time.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For people leaving a place that meant a great deal to them. Especially valuable for family homes or properties with a long history.",
+      "cta_title": "Adăugați capsula memoriei",
+      "cta_text": "Preserve a moment from your old home. We prepare the capsule on moving day."
+    },
+    "sig_maybe_box": {
+      "meta_title": "The Maybe Box – Decision Aid During Your Move",
+      "meta_desc": "The FLOXANT Maybe Box gives you time for uncertain decisions. Keep or let go? Decide later.",
+      "badge": "Experiență Signature",
+      "hero_title": "Cutia Poate",
+      "hero_desc": "Nu fiecare decizie trebuie luată imediat.",
+      "story_title": "Reducerea presiunii decizionale",
+      "story_p1": "During a move, countless decisions are demanded simultaneously: keep, give away, store? For many items the answer is clear. But for some it is not. The Maybe Box is designed for exactly these cases.",
+      "story_p2": "We store items you are unsure about for up to 90 days. During that time, you can decide at leisure whether to keep or let go. Without pressure. Without haste.",
+      "purpose_title": "Valoare decizională",
+      "purpose_text": "Decisional overload during a move leads to regrettable choices. The Maybe Box decouples the physical process of moving from the emotional process of letting go.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For anyone finding it difficult to part with certain items immediately and needing time for a considered decision.",
+      "cta_title": "Solicitați cutia Poate",
+      "cta_text": "Give yourself time for the difficult decisions. We store items in the Maybe Box until you are ready."
+    },
+    "sig_key_handover": {
+      "meta_title": "Key Handover – Documented and Secure Property Handover",
+      "meta_desc": "The FLOXANT Key Handover documents the property handover securely. Professional protocols and visual evidence for your protection.",
+      "badge": "Experiență Signature",
+      "hero_title": "Predarea Cheilor",
+      "hero_desc": "Documentat. Sigur. Trasabil.",
+      "story_title": "Ultimul pas, documentat corect",
+      "story_p1": "The key handover marks the official closing of a chapter. But too often it happens hurriedly, without documentation. The Key Handover service creates a professional protocol of the property condition, photographs all rooms, and documents the handover of all keys.",
+      "story_p2": "You receive a complete documentation package that serves as proof in the event of subsequent disputes. This is not merely a formality – it is your legal safeguard.",
+      "purpose_title": "Valoare juridică",
+      "purpose_text": "A documented handover protects both parties. It creates clarity about the condition of the property and prevents subsequent disputes over the deposit.",
+      "for_whom_title": "Who Is This Experience For?",
+      "for_whom_text": "For all tenants and landlords who value a legally secure, documented property handover.",
+      "cta_title": "Rezervați predarea cheilor",
+      "cta_text": "Document your property handover professionally. We create a complete protocol for your records."
+    }
+  },
+  "services_section": {
+    "title": "Serviciile Noastre",
+    "subtitle": "Soluții personalizate pentru fiecare nevoie.",
+    "items": [
+      {
+        "title": "Mutare privată",
+        "desc": "Fără griji în casa nouă."
+      },
+      {
+        "title": "Mutare birou",
+        "desc": "Întrerupere minimă."
+      },
+      {
+        "title": "Mutare pe distanțe lungi",
+        "desc": "În siguranță în toată Europa."
+      },
+      {
+        "title": "Golire",
+        "desc": "Golire curată a apartamentelor."
+      },
+      {
+        "title": "Montaj",
+        "desc": "Montaj profesional de mobilier."
+      },
+      {
+        "title": "Zonă fără parcare",
+        "desc": "Aprobare oficială și instalare."
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "Servicii Signature",
+    "subtitle": "Mai mult decât logistică. Ne ocupăm de detaliile emoționale ale noului dvs. început.",
+    "badge": "Exclusiv la FLOXANT",
+    "items": {
+      "ritual_exit": {
+        "title": "Cutia de Rămas Bun",
+        "desc": "Un rămas bun conștient."
+      },
+      "clean_start": {
+        "title": "Ceremonia Start Curat",
+        "desc": "Momentul sosirii."
+      },
+      "neighbour_kit": {
+        "title": "Kit Vecin Nou",
+        "desc": "Facilitează intrarea în cartier."
+      },
+      "first_48h": {
+        "title": "Pachet Primele 48h",
+        "desc": "Stabilitate în primele ore."
+      },
+      "bureaucracy": {
+        "title": "Scut birocratic",
+        "desc": "Mai puține documente."
+      },
+      "furniture_opt": {
+        "title": "Optimizare mobilier",
+        "desc": "Aranjare după logica spațiului."
+      },
+      "cleaning_guarantee": {
+        "title": "Garanție curățenie",
+        "desc": "Curățenie finală conform standardelor."
+      },
+      "storage_rot": {
+        "title": "Depozitare flexibilă",
+        "desc": "Depozitare sigură cu returnare."
+      },
+      "kids_box": {
+        "title": "Cutia copiilor",
+        "desc": "Mutare din perspectiva copilului."
+      },
+      "service_24h": {
+        "title": "Serviciu 24h",
+        "desc": "Mutări eficiente în 24 ore."
+      },
+      "ladies_team": {
+        "title": "Echipă feminină",
+        "desc": "Încredere în situații sensibile."
+      },
+      "memory_capsule": {
+        "title": "Capsula amintirilor",
+        "desc": "Păstrați ce contează."
+      },
+      "maybe_box": {
+        "title": "Cutia Poate",
+        "desc": "Amânați deciziile."
+      },
+      "key_handover": {
+        "title": "Predare chei",
+        "desc": "Documentat. Sigur. Trasabil."
+      }
+    }
+  }
+}

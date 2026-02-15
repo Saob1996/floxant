@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "home": "Головна",
+    "services": "Послуги",
+    "pricing": "Ціни",
+    "contact": "Контакт",
+    "login": "Увійти",
+    "book_now": "Забронювати зараз",
+    "dashboard": "Панель"
+  },
+  "hero": {
+    "title": "Архітектори Ваших Змін",
+    "subtitle": "Переїзд — це не просто хаос у коробках. Це складний технічний проєкт. Ми плануємо, керуємо і виконуємо.",
+    "cta": "Отримати пропозицію"
+  },
+  "area": {
+    "title": "Зони обслуговування",
+    "description": "Штаб-квартира FLOXANT знаходиться в Дюссельдорфі. Наш операційний центр розташований у Регенсбурзі та Верхньому Пфальці. Звідси ми обслуговуємо клієнтів по всій Баварії та пропонуємо переїзди на далекі відстані по всій Німеччині.",
+    "hub_note": "Штаб-квартира FLOXANT знаходиться в Дюссельдорфі. Наш операційний центр розташований у Регенсбурзі та Верхньому Пфальці. Звідси ми обслуговуємо клієнтів по всій Баварії та пропонуємо переїзди на далекі відстані по всій Німеччині.",
+    "cities": {
+      "regensburg": "Регенсбург",
+      "bavaria": "Баварія",
+      "munich": "Мюнхен",
+      "nuremberg": "Нюрнберг",
+      "augsburg": "Аугсбург",
+      "germany": "По всій Німеччині"
+    }
+  },
+  "booking": {
+    "steps": {
+      "service": "Послуга",
+      "details": "Деталі",
+      "upgrades": "Додатки",
+      "contact": "Контакт"
+    },
+    "headings": {
+      "service_selection": "З чого почнемо?",
+      "service_subtitle": "Оберіть основну послугу.",
+      "details_prefix": "Деталі для",
+      "upgrades_title": "Бажаєте ще щось?",
+      "upgrades_subtitle": "Наші Фірмові послуги для вашого комфорту.",
+      "summary_title": "Зведення",
+      "summary_subtitle": "Ми одразу перевіряємо наявність.",
+      "success_title": "Запит успішний!",
+      "success_message": "Дякуємо, {name}. Ми отримали ваш запит.",
+      "success_email": "Підтвердження надіслано на {email}."
+    },
+    "services": {
+      "umzug": {
+        "label": "Переїзд",
+        "desc": "Переїзд без стресу."
+      },
+      "reinigung": {
+        "label": "Прибирання",
+        "desc": "Глибоке прибирання і передача."
+      },
+      "entsorgung": {
+        "label": "Утилізація",
+        "desc": "Професійно і швидко."
+      }
+    },
+    "form": {
+      "start_address": "Адреса відправлення",
+      "end_address": "Адреса призначення",
+      "date": "Бажана дата",
+      "name": "Ім'я",
+      "email": "Ел. пошта",
+      "phone": "Телефон",
+      "photos": "Завантажити фото (необов'язково)",
+      "photos_placeholder": "Натисніть для завантаження (множинний вибір)",
+      "photos_count": "Вибрано {count} файлів",
+      "placeholder_address": "Вулиця, Місто",
+      "placeholder_name": "Ваше ім'я",
+      "placeholder_email": "email@example.com",
+      "placeholder_phone": "+49 ..."
+    },
+    "buttons": {
+      "back": "Назад",
+      "next": "Далі",
+      "finish": "Готово",
+      "submit": "Запитати пропозицію",
+      "sending": "Надсилання...",
+      "new_request": "Новий запит"
+    },
+    "upgrades": {
+      "ladies_team": {
+        "title": "Жіноча команда",
+        "desc": "Максимальна турбота та емпатія."
+      },
+      "24h_service": {
+        "title": "Сервіс 24год",
+        "desc": "Готові цілодобово."
+      },
+      "furniture_opt": {
+        "title": "Оптимізація меблів",
+        "desc": "Розбирання, збирання та догляд."
+      },
+      "storage_rot": {
+        "title": "Гнучке зберігання",
+        "desc": "Гнучке тимчасове зберігання."
+      },
+      "maybe_box": {
+        "title": "Коробка «Можливо»",
+        "desc": "Допомога у прийнятті рішень."
+      },
+      "clean_shield": {
+        "title": "Бюрократичний щит",
+        "desc": "Зони заборони паркування та дозволи."
+      }
+    },
+    "error": {
+      "submit": "Помилка надсилання. Спробуйте знову.",
+      "generic": "Виникла неочікувана помилка."
+    }
+  },
+  "footer": {
+    "rights": "Усі права захищені.",
+    "impressum": "Юридична інформація",
+    "privacy": "Конфіденційність",
+    "terms": "Умови",
+    "revocation": "Право відкликання",
+    "booking": "Умови бронювання",
+    "areas": "Зони обслуговування"
+  },
+  "contact": {
+    "name": "Ім'я",
+    "email": "Ел. пошта",
+    "message": "Повідомлення",
+    "submit": "Надіслати",
+    "success": "Повідомлення надіслано",
+    "error": "Помилка надсилання"
+  },
+  "trust": {
+    "experience": "Роки досвіду",
+    "quality": "Найвища якість",
+    "insured": "Повністю застраховані"
+  },
+  "auth": {
+    "login_title": "Вхід адміністратора",
+    "subtitle": "Захищена зона",
+    "email_label": "Ел. пошта",
+    "password_label": "Пароль",
+    "submit_button": "Увійти",
+    "loading_button": "Перевірка...",
+    "error_failed": "Помилка входу",
+    "error_generic": "Виникла помилка.",
+    "logout": "Вийти",
+    "system_operational": "Система працює",
+    "dashboard_title": "FLOXANT Внутрішній"
+  },
+  "dashboard": {
+    "stats": {
+      "total": "Усього запитів",
+      "new": "Нові (24год)",
+      "status": "Статус",
+      "active": "Активний"
+    },
+    "filters": {
+      "search_placeholder": "Пошук за ім'ям або поштою...",
+      "all": "Усі",
+      "umzug": "Переїзд",
+      "reinigung": "Прибирання",
+      "entsorgung": "Утилізація"
+    },
+    "status": {
+      "loading": "Завантаження панелі...",
+      "syncing": "Синхронізація...",
+      "empty": "Запитів не знайдено.",
+      "empty_hint": "Спробуйте змінити фільтри."
+    },
+    "card": {
+      "edit": "Редагувати",
+      "no_extras": "Без додатків"
+    }
+  },
+  "pages": {
+    "umzug_muenchen": {
+      "hero_title_prefix": "Ваш переїзд у",
+      "hero_title_highlight": "Мюнхен",
+      "hero_desc": "Без стресу до столиці Баварії або з Мюнхена у світ. FLOXANT пропонує преміальні послуги переїзду з гарантією фіксованої ціни.",
+      "badge": "Мюнхен і околиці",
+      "intro_title": "Переїзд у Мюнхен – з планом і точністю",
+      "intro_text_1": "Мюнхен – це динамічний мегаполіс, що приваблює людей з усього світу. Однак переїзд у баварську столицю часто становить логістичний виклик. Вузькі сходи в Швабінгу, відсутність паркувальних місць – умови вимагають досвіду та хорошого планування.",
+      "intro_text_2": "FLOXANT – це служба переїзду, яка майстерно справляється з цими завданнями. Ми не просто починаємо роботу – ми детально плануємо ваш переїзд.",
+      "transparency_title": "Прозорість щодо штаб-квартири",
+      "transparency_text": "Юридична адреса FLOXANT знаходиться в Дюссельдорфі. Проте наша команда регулярно працює на переїздах у Мюнхені та околицях.",
+      "portfolio_title": "Наш портфель послуг для Мюнхена",
+      "services": {
+        "city": {
+          "title": "Міські переїзди Мюнхен",
+          "desc": "Швидко та ефективно в межах міста."
+        },
+        "remote": {
+          "title": "Далекі переїзди з Мюнхена",
+          "desc": "Від Ізару до Рейну або Шпрее."
+        },
+        "clearance": {
+          "title": "Розчищення",
+          "desc": "Професійна утилізація старих меблів."
+        }
+      },
+      "details_title": "Особливості Мюнхена",
+      "details_text": "Кожне місто має свої особливості. Паркування обмежене в багатьох районах.",
+      "remote_title": "Переїзд з Баварії по всій Німеччині",
+      "remote_text": "Багато наших клієнтів переїжджають з Мюнхена до інших мегаполісів.",
+      "pricing_title": "Прозорі ціни без сюрпризів",
+      "pricing_text": "Мюнхен і так достатньо дорогий. У FLOXANT ми покладаємося на абсолютну прозорість витрат.",
+      "features": {
+        "inspection": "Безкоштовний огляд: ми оглядаємо ваші речі заздалегідь по відеозв'язку.",
+        "insurance": "Страхування включено: ваші меблі в надійних руках.",
+        "staff": "Кваліфікований персонал: досвідчений, привітний та акуратний."
+      },
+      "links_title": "Інші локації в регіоні",
+      "cta_title": "Ваша пропозиція для Мюнхена",
+      "cta_text": "Почніть запит зараз."
+    },
+    "service_umzug": {
+      "meta_title": "Приватний переїзд – ваш особистий переїзд",
+      "meta_desc": "FLOXANT супроводжує ваш приватний переїзд з точністю та делікатністю.",
+      "badge": "Основна послуга",
+      "hero_title": "Приватний переїзд",
+      "hero_desc": "Переїзд – це більше, ніж транспортування. Це перехід. FLOXANT супроводжує цей процес делікатно та надійно.",
+      "intro_title": "Ваш переїзд – продуманий до дрібниць",
+      "intro_p1": "Приватний переїзд торкається всіх аспектів життя. Особисті речі, цінні спогади, делікатні меблі – все вимагає індивідуальної уваги. У FLOXANT ми розуміємо, що ваш дім – це більше, ніж адреса.",
+      "intro_p2": "Наша команда працює з чітким процесом, що забезпечує повну прозорість на кожному етапі.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Приватні особи та сім'ї, які цінують дбайливе поводження",
+        "Житлові переїзди в межах міста або регіону",
+        "Переїзди, що потребують особливого захисту цінностей"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Оцінка",
+          "desc": "Безкоштовний огляд – на місці або по відеозв'язку."
+        },
+        {
+          "title": "Фіксована ціна",
+          "desc": "Прозора пропозиція без прихованих витрат."
+        },
+        {
+          "title": "Виконання",
+          "desc": "Професійне пакування, безпечне транспортування, вчасна доставка."
+        },
+        {
+          "title": "Передача",
+          "desc": "Складання, розташування та прибирання старого приміщення."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Гарантія фіксованої ціни без доплат",
+        "Повне страхування всього майна",
+        "Кваліфікований, професійно навчений персонал"
+      ],
+      "cta_title": "Подати необов'язковий запит",
+      "cta_text": "Почніть ваш переїзд з персональної пропозиції."
+    },
+    "service_buero_umzug": {
+      "meta_title": "Офісний переїзд – професійний бізнес-переїзд",
+      "meta_desc": "FLOXANT організує ваш офісний переїзд з мінімальним простоєм.",
+      "badge": "Комерційний",
+      "hero_title": "Офісний переїзд",
+      "hero_desc": "Безперервність бізнесу вимагає планування.",
+      "intro_title": "Корпоративні переїзди з точністю",
+      "intro_p1": "Офісний переїзд втручається в активні бізнес-процеси. ІТ-інфраструктура, конфіденційні документи – кожна деталь має бути правильною.",
+      "intro_p2": "Ми координуємо всі роботи: від відключення ІТ до фізичного транспортування та повторної установки.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Підприємства будь-якого розміру",
+        "Юридичні фірми, практики",
+        "Компанії, яким потрібно мінімізувати простій"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Планування проєкту",
+          "desc": "Детальний аналіз вашого офісу."
+        },
+        {
+          "title": "Координація",
+          "desc": "Зв'язок з ІТ-командою та управлінням будівлею."
+        },
+        {
+          "title": "Виконання",
+          "desc": "Переїзд у визначені часові вікна."
+        },
+        {
+          "title": "Введення в експлуатацію",
+          "desc": "Налаштування робочих місць та перевірка функціональності."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Визначені часові вікна з гарантією дотримання",
+        "Страхове покриття ІТ-обладнання",
+        "Делікатна обробка"
+      ],
+      "cta_title": "Сплануйте офісний переїзд",
+      "cta_text": "Давайте структуруємо ваш корпоративний переїзд разом."
+    },
+    "service_fernumzug": {
+      "meta_title": "Далекий переїзд – по всій Німеччині та Європі",
+      "meta_desc": "FLOXANT організує далекі переїзди з Баварії.",
+      "badge": "Далекий переїзд",
+      "hero_title": "Далекий переїзд",
+      "hero_desc": "Відстань – не перешкода.",
+      "intro_title": "Далекі відстані з точністю",
+      "intro_p1": "Далекий переїзд вимагає особливої якості планування.",
+      "intro_p2": "З Регенсбурга до Гамбурга, з Мюнхена до Берліна – наша команда планує маршрути.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Особи при зміні роботи",
+        "Сім'ї, що переїжджають до іншого міста",
+        "Компанії при переведенні працівників"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Планування маршруту",
+          "desc": "Оптимальний маршрут з урахуванням трафіку та погоди."
+        },
+        {
+          "title": "Пакування",
+          "desc": "Професійне пакування спеціальними матеріалами."
+        },
+        {
+          "title": "Транспортування",
+          "desc": "GPS-моніторинг з досвідченими водіями."
+        },
+        {
+          "title": "Доставка",
+          "desc": "Вчасна доставка, складання та розташування."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Фіксована ціна на весь маршрут",
+        "Повне страхування",
+        "Гарантія доставки"
+      ],
+      "cta_title": "Запросити далекий переїзд",
+      "cta_text": "Куди ви хочете переїхати?"
+    },
+    "service_reinigung": {
+      "meta_title": "Професійне прибирання",
+      "meta_desc": "FLOXANT пропонує професійне фінальне прибирання.",
+      "badge": "Прибирання",
+      "hero_title": "Прибирання",
+      "hero_desc": "Чистота – не деталь, а основа для завершення та нового початку.",
+      "intro_title": "Фінальне прибирання з системою",
+      "intro_p1": "Фінальне прибирання часто є вирішальним фактором для повернення застави.",
+      "intro_p2": "Наша команда працює ретельно та швидко.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Орендарі перед передачею об'єкта",
+        "Власники перед продажем",
+        "Комерційні приміщення"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Огляд",
+          "desc": "Оцінка стану та визначення обсягу прибирання."
+        },
+        {
+          "title": "Виконання",
+          "desc": "Систематичне прибирання всіх приміщень."
+        },
+        {
+          "title": "Контроль якості",
+          "desc": "Приймання за чек-листом з фотодокументацією."
+        },
+        {
+          "title": "Передача",
+          "desc": "Чиста передача, готово для орендодавця."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Прибирання за стандартами орендодавця",
+        "Фотодокументація включена",
+        "Повторне прибирання при обґрунтованих претензіях"
+      ],
+      "cta_title": "Замовити прибирання",
+      "cta_text": "Замовте професійне фінальне прибирання."
+    },
+    "service_entruempelung": {
+      "meta_title": "Розчищення – професійне вичищення",
+      "meta_desc": "FLOXANT професійно розчищає об'єкти.",
+      "badge": "Утилізація",
+      "hero_title": "Розчищення",
+      "hero_desc": "Відпустити вимагає довіри. Ми розчищаємо професійно та екологічно.",
+      "intro_title": "Розчищення з відповідальністю",
+      "intro_p1": "Розчищення – це більше, ніж видалення речей.",
+      "intro_p2": "Ми професійно сортуємо та екологічно утилізуємо.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Розформування домогосподарств",
+        "Комерційне розчищення",
+        "Приватні особи"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Огляд",
+          "desc": "Спільна інвентаризація."
+        },
+        {
+          "title": "Розчищення",
+          "desc": "Систематичне розчищення."
+        },
+        {
+          "title": "Утилізація",
+          "desc": "Професійне сортування та утилізація."
+        },
+        {
+          "title": "Фінальний стан",
+          "desc": "Чиста передача об'єкта."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Екологічна утилізація з документацією",
+        "Делікатне поводження",
+        "Гарантована чиста передача"
+      ],
+      "cta_title": "Запросити розчищення",
+      "cta_text": "Зв'яжіться з нами для конфіденційної консультації."
+    },
+    "service_montage": {
+      "meta_title": "Монтаж – професійне складання меблів",
+      "meta_desc": "FLOXANT професійно складає меблі та кухні.",
+      "badge": "Монтаж",
+      "hero_title": "Монтаж",
+      "hero_desc": "Точність у деталях.",
+      "intro_title": "Монтаж з експертизою",
+      "intro_p1": "Якісні меблі заслуговують на професійне складання.",
+      "intro_p2": "Від полиць IKEA до дизайнерських кухонь.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Після переїзду або покупки",
+        "Комерційні клієнти",
+        "Установка кухонь"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Підготовка",
+          "desc": "Перевірка інструкцій."
+        },
+        {
+          "title": "Складання",
+          "desc": "Професійна установка."
+        },
+        {
+          "title": "Тест функцій",
+          "desc": "Перевірка рухомих частин."
+        },
+        {
+          "title": "Фінальна перевірка",
+          "desc": "Прибирання робочого місця."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Професійне складання",
+        "Дбайливе поводження",
+        "Чисте робоче місце"
+      ],
+      "cta_title": "Замовити монтаж",
+      "cta_text": "Професійне складання без компромісів."
+    },
+    "service_halteverbotszone": {
+      "meta_title": "Зона заборони паркування",
+      "meta_desc": "FLOXANT оформлює зони заборони паркування.",
+      "badge": "Логістика",
+      "hero_title": "Зона заборони паркування",
+      "hero_desc": "Вільний під'їзд – основа кожного успішного переїзду.",
+      "intro_title": "Зони заборони паркування – вчасно та законно",
+      "intro_p1": "У багатьох міських районах встановлення зони заборони паркування є необхідним.",
+      "intro_p2": "FLOXANT бере на себе весь процес.",
+      "for_whom_title": "Для кого ця послуга?",
+      "for_whom_items": [
+        "Переїзди в центрі міста",
+        "Комерційні переїзди",
+        "Будь-який переїзд з потребою гарантованого під'їзду"
+      ],
+      "process_title": "Наш процес",
+      "process_steps": [
+        {
+          "title": "Заява",
+          "desc": "Подача до дорожнього відомства."
+        },
+        {
+          "title": "Схвалення",
+          "desc": "Контроль та підтвердження дозволу."
+        },
+        {
+          "title": "Встановлення",
+          "desc": "Розміщення знаків."
+        },
+        {
+          "title": "Демонтаж",
+          "desc": "Зняття знаків після переїзду."
+        }
+      ],
+      "guarantees_title": "Наші гарантії",
+      "guarantees": [
+        "Повне офіційне оформлення",
+        "Вчасне встановлення знаків",
+        "Повний сервіс"
+      ],
+      "cta_title": "Оформити зону заборони",
+      "cta_text": "Забезпечте вільний під'їзд."
+    },
+    "reinigung_regensburg": {
+      "meta_title": "Прибирання Регенсбург",
+      "meta_desc": "FLOXANT пропонує професійне фінальне прибирання в Регенсбурзі.",
+      "badge": "Регенсбург",
+      "hero_title_prefix": "Професійне прибирання в",
+      "hero_title_highlight": "Регенсбурзі",
+      "hero_desc": "Регенсбург – наш операційний центр.",
+      "intro_title": "Фінальне прибирання в Регенсбурзі",
+      "intro_p1": "Як операційна база FLOXANT, Регенсбург є центром наших клінінгових послуг.",
+      "intro_p2": "Наше фінальне прибирання слідує документованому процесу.",
+      "services_title": "Наші клінінгові послуги в Регенсбурзі",
+      "services": {
+        "end_cleaning": {
+          "title": "Фінальне прибирання",
+          "desc": "Повне прибирання за стандартами орендодавця."
+        },
+        "construction_cleaning": {
+          "title": "Прибирання після будівництва",
+          "desc": "Професійне прибирання після ремонту."
+        },
+        "office_cleaning": {
+          "title": "Офісне прибирання",
+          "desc": "Регулярне або разове прибирання комерційних приміщень."
+        }
+      },
+      "cta_title": "Запросити прибирання в Регенсбурзі",
+      "cta_text": "Запишіться на професійне прибирання."
+    },
+    "entruempelung_regensburg": {
+      "meta_title": "Розчищення Регенсбург",
+      "meta_desc": "FLOXANT професійно розчищає об'єкти в Регенсбурзі.",
+      "badge": "Регенсбург",
+      "hero_title_prefix": "Розчищення в",
+      "hero_title_highlight": "Регенсбурзі",
+      "hero_desc": "Відпустити – це процес. В Регенсбурзі ми супроводжуємо його з повагою.",
+      "intro_title": "Розчищення в Регенсбурзі",
+      "intro_p1": "Регенсбург – наш операційний центр.",
+      "intro_p2": "Наша команда професійно сортує на місці.",
+      "services_title": "Наші послуги розчищення в Регенсбурзі",
+      "services": {
+        "household": {
+          "title": "Розформування домогосподарства",
+          "desc": "Повне розчищення житлових приміщень."
+        },
+        "commercial": {
+          "title": "Комерційне розчищення",
+          "desc": "Професійне розчищення офісів та складів."
+        },
+        "partial": {
+          "title": "Часткове розчищення",
+          "desc": "Цільове розчищення окремих кімнат."
+        }
+      },
+      "cta_title": "Запросити розчищення в Регенсбурзі",
+      "cta_text": "Зв'яжіться з нами для конфіденційної консультації."
+    },
+    "buero_umzug_regensburg": {
+      "meta_title": "Офісний переїзд Регенсбург",
+      "meta_desc": "FLOXANT організує офісні переїзди в Регенсбурзі.",
+      "badge": "Регенсбург",
+      "hero_title_prefix": "Офісний переїзд в",
+      "hero_title_highlight": "Регенсбурзі",
+      "hero_desc": "Безперервність бізнесу – пріоритет.",
+      "intro_title": "Офісні переїзди в Регенсбурзі",
+      "intro_p1": "Регенсбург стабільно зростає як бізнес-локація.",
+      "intro_p2": "Ми координуємо ваш офісний переїзд.",
+      "services_title": "Наші послуги офісного переїзду",
+      "services": {
+        "full_move": {
+          "title": "Повний переїзд",
+          "desc": "Повний переїзд всіх офісних блоків та ІТ."
+        },
+        "it_relocation": {
+          "title": "ІТ-переїзд",
+          "desc": "Професійне від'єднання та переключення серверів."
+        },
+        "weekend_move": {
+          "title": "Переїзд у вихідні",
+          "desc": "Виконання поза робочими годинами."
+        }
+      },
+      "cta_title": "Сплануйте офісний переїзд в Регенсбурзі",
+      "cta_text": "Давайте сплануємо ваш офісний переїзд разом."
+    },
+    "sig_ritual_exit": {
+      "meta_title": "Ritual Exit Box – A Conscious Farewell to Your Home",
+      "meta_desc": "The FLOXANT Ritual Exit Box accompanies you through a conscious farewell. A personal ritual for the transition into a new chapter.",
+      "badge": "Signature Досвід",
+      "hero_title": "Ритуальна коробка прощання",
+      "hero_desc": "Залишити дім – це закрити розділ.",
+      "story_title": "Чому прощання заслуговує ритуалу",
+      "story_p1": "Every home carries memories. The first night, cooking together, quiet moments by the window. When we leave, we do not just leave rooms behind – we leave a part of our story. The Ritual Exit Box is our answer to a transition that is too often overlooked.",
+      "story_p2": "Inside the box you will find a small ceremony: a candle, a handwritten guide, and a sealable envelope for a final letter to this place. It is not a product. It is a gesture.",
+      "purpose_title": "Психологічна цінність",
+      "purpose_text": "Conscious transitions reduce the emotional stress of a move. The Ritual Exit Box creates a defined moment of letting go – calm, personal, and dignified.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For anyone who does not simply leave their home but wishes to say goodbye. Especially valuable for long-term residences, family homes, or shared living spaces.",
+      "cta_title": "Додати ритуальну коробку",
+      "cta_text": "Complement your move with a Ritual Exit Box. Mention it when submitting your enquiry."
+    },
+    "sig_clean_start": {
+      "meta_title": "Clean Start Ceremony – Consciously Move into Your New Home",
+      "meta_desc": "The FLOXANT Clean Start Ceremony prepares your new apartment for a conscious move-in. Professional cleaning as the foundation for a fresh start.",
+      "badge": "Signature Досвід",
+      "hero_title": "Церемонія чистого старту",
+      "hero_desc": "Перш ніж розставити меблі, ми підготуємо ваш простір.",
+      "story_title": "Новий початок починається з чистоти",
+      "story_p1": "A new home should feel like yours from the very first second. Not like the space of a predecessor. The Clean Start Ceremony is a professional deep clean that goes beyond the ordinary.",
+      "story_p2": "We do not just clean surfaces – we create an atmosphere. After cleaning, the space is ventilated and subtly prepared. When you step in, you enter your space.",
+      "purpose_title": "Психологічна цінність",
+      "purpose_text": "A clean, prepared space signals to your subconscious: something new begins here. The Clean Start Ceremony makes this transition tangible.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For move-ins to existing properties, after renovations, or for anyone who wishes to consciously take possession of their new space.",
+      "cta_title": "Забронювати чистий старт",
+      "cta_text": "Prepare your move-in. Mention the Clean Start Ceremony when submitting your enquiry."
+    },
+    "sig_neighbour_kit": {
+      "meta_title": "New Neighbour Kit – Professional Neighbourhood Introduction",
+      "meta_desc": "The FLOXANT New Neighbour Kit eases your arrival in the new neighbourhood. Discreet, charming, and thoughtfully crafted.",
+      "badge": "Signature Досвід",
+      "hero_title": "Набір нового сусіда",
+      "hero_desc": "Перше враження важливе.",
+      "story_title": "Прибуття починається зі зв'язку",
+      "story_p1": "In a new environment, one initially feels like a stranger. The New Neighbour Kit bridges this first distance elegantly. It contains a personalised greeting card and a small token of appreciation for your immediate neighbours.",
+      "story_p2": "We prepare the kit and deliver it on your move-in day upon request. You leave a positive first impression – without having to think about it yourself.",
+      "purpose_title": "Соціальна цінність",
+      "purpose_text": "Good neighbourly relations begin on day one. The kit creates a foundation for mutual respect and reduces the social barrier of a new beginning.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For families, couples, or individuals moving into a multi-unit building who wish to build a positive relationship with their neighbours from the start.",
+      "cta_title": "Запросити набір нового сусіда",
+      "cta_text": "Complement your move with the New Neighbour Kit. We take care of the details."
+    },
+    "sig_first_48h": {
+      "meta_title": "First 48h Package – The First Two Days Worry-Free",
+      "meta_desc": "The FLOXANT First 48h Package supplies you with everything you need in the first two days after your move. No searching, no stress.",
+      "badge": "Signature Досвід",
+      "hero_title": "Пакет перших 48 годин",
+      "hero_desc": "Перші години в новому домі вирішальні.",
+      "story_title": "Критичні перші 48 годин",
+      "story_p1": "After a move, the household is in a state of emergency. Where is the coffee machine? Where are the towels? The First 48h Package contains everything you need for the first two days: hygiene products, snacks, basic cleaning supplies, and a checklist for the most important tasks.",
+      "story_p2": "The package is ready when you enter your new home. No searching, no improvising – simply arrive.",
+      "purpose_title": "Практична цінність",
+      "purpose_text": "The first 48 hours determine how a move is emotionally evaluated. Those who are immediately functional experience the transition as positive rather than burdensome.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For anyone who wishes to be immediately functional after a move. Especially valuable for singles, professionals, or families with children.",
+      "cta_title": "Забронювати пакет 48 годин",
+      "cta_text": "Start relaxed in your new home. We prepare the package for your move-in."
+    },
+    "sig_bureaucracy": {
+      "meta_title": "Bureaucracy Shield – Delegate Official Formalities",
+      "meta_desc": "The FLOXANT Bureaucracy Shield handles official formalities around your move. No-parking zones, re-registration, mail forwarding.",
+      "badge": "Signature Досвід",
+      "hero_title": "Бюрократичний щит",
+      "hero_desc": "Формальності – частина кожного переїзду.",
+      "story_title": "Бюрократія не повинна бути вашим клопотом",
+      "story_p1": "A move brings a wave of formalities: applying for a no-parking zone, re-registering your address, setting up mail forwarding, notifying utility providers. The Bureaucracy Shield bundles all these tasks and handles them for you.",
+      "story_p2": "Our team is familiar with procedures across Regensburg and all of Bavaria. We know the relevant offices, the forms, and the deadlines. You receive complete documentation of all completed steps.",
+      "purpose_title": "Організаційна цінність",
+      "purpose_text": "Bureaucracy is one of the greatest stress factors in relocations. Delegating to experienced professionals reduces errors, saves time, and gives you certainty.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For individuals and companies who wish to focus on their move and delegate formalities to experienced hands.",
+      "cta_title": "Запросити бюрократичний щит",
+      "cta_text": "Delegate the formalities. We handle the official processing for you."
+    },
+    "sig_furniture_opt": {
+      "meta_title": "Furniture Optimisation – Space Planning After Your Move",
+      "meta_desc": "FLOXANT Furniture Optimisation helps you place your furnishings perfectly in new spaces. Professional space planning included.",
+      "badge": "Signature Досвід",
+      "hero_title": "Оптимізація меблів",
+      "hero_desc": "Розставити, а не просто поставити.",
+      "story_title": "Ваш простір, переосмислений",
+      "story_p1": "Old furniture in new rooms – it does not always fit immediately. Furniture Optimisation analyses your furnishings in the context of the new floor plan and suggests an optimal arrangement. Natural light, walkways, and room proportions inform the planning.",
+      "story_p2": "Our team implements the optimisation directly on moving day. So you experience your new space not as a compromise, but as a thoughtfully arranged home.",
+      "purpose_title": "Дизайнерська цінність",
+      "purpose_text": "A well-considered room arrangement enhances living quality and well-being. The optimisation prevents provisional solutions from becoming permanent.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For anyone moving existing furnishings into a differently proportioned space and wishing to make the best of the situation.",
+      "cta_title": "Запросити оптимізацію меблів",
+      "cta_text": "Have your new space professionally arranged. We plan the optimal layout."
+    },
+    "sig_cleaning_guarantee": {
+      "meta_title": "Cleaning Guarantee – Broom-Clean Handover Guaranteed",
+      "meta_desc": "The FLOXANT Cleaning Guarantee assures broom-clean handover. If your landlord has complaints, we re-clean – free of charge.",
+      "badge": "Signature Досвід",
+      "hero_title": "Гарантія прибирання",
+      "hero_desc": "Бездоганна передача – гарантовано.",
+      "story_title": "Впевненість при передачі",
+      "story_p1": "Property handover is often the most stressful moment after a move. Will the deposit be returned in full? Will there be complaints? The Cleaning Guarantee takes this worry from you. We clean to our defined standards and stand behind our work.",
+      "story_p2": "Should your landlord identify legitimate cleaning deficiencies within 14 days of handover, we return and rectify them – at no additional cost.",
+      "purpose_title": "Фінансова цінність",
+      "purpose_text": "The Cleaning Guarantee protects your deposit and gives you negotiating confidence at handover. It documents professional diligence.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For all tenants who wish for a stress-free property handover and want to receive their full deposit back.",
+      "cta_title": "Додати гарантію прибирання",
+      "cta_text": "Secure your handover. The Cleaning Guarantee can be added to any move."
+    },
+    "sig_storage_rot": {
+      "meta_title": "Storage Rotation – Flexible Interim Storage for Your Move",
+      "meta_desc": "FLOXANT Storage Rotation offers secure interim storage with flexible access. Ideal for staged moves and renovations.",
+      "badge": "Signature Досвід",
+      "hero_title": "Ротація складу",
+      "hero_desc": "Не все потрібно переїжджати одразу.",
+      "story_title": "Тимчасове зберігання як стратегічний інструмент",
+      "story_p1": "Sometimes schedules do not align: the old property must be vacated, but the new one is not yet ready. Or you are renovating and need temporary space for your belongings. Storage Rotation solves this timing challenge.",
+      "story_p2": "Your items are stored securely at our partner facility in the Regensburg region. You can arrange access and request partial deliveries whenever it suits you.",
+      "purpose_title": "Логістична цінність",
+      "purpose_text": "Flexibility in scheduling reduces pressure and enables better decisions. Storage Rotation decouples move-out and move-in.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For anyone whose moving dates are not synchronised, or who needs space during a renovation.",
+      "cta_title": "Запросити ротацію складу",
+      "cta_text": "Secure flexible interim storage. We advise on the possibilities."
+    },
+    "sig_kids_box": {
+      "meta_title": "Kids Moving Box – Making Moves Child-Friendly",
+      "meta_desc": "The FLOXANT Kids Moving Box makes moving an adventure for children. Activity materials, an explanatory booklet, and a personal surprise.",
+      "badge": "Signature Досвід",
+      "hero_title": "Дитяча коробка переїзду",
+      "hero_desc": "Діти сприймають переїзд інакше.",
+      "story_title": "Переїзд очима дитини",
+      "story_p1": "For children, a move means uncertainty: the familiar room disappears, friends are left behind, everything changes. The Kids Moving Box accompanies this process in an age-appropriate way with activity materials, a small explanatory booklet about moving, and a personal surprise for the first day in the new room.",
+      "story_p2": "The box is handed over before moving day so children can prepare and actively participate – as an adventure, not a loss.",
+      "purpose_title": "Педагогічна цінність",
+      "purpose_text": "Children who are actively included in the moving process cope better with the change. The box gives them a role and makes the transition tangible.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For families with children aged 3 to 12 who wish to make the move child-friendly.",
+      "cta_title": "Замовити дитячу коробку",
+      "cta_text": "Make the move a positive experience for your children. We prepare the box individually."
+    },
+    "sig_service_24h": {
+      "meta_title": "24h Moving Service – Available Around the Clock",
+      "meta_desc": "FLOXANT 24h Moving Service for urgent and time-sensitive relocations. Available evenings, nights, and weekends.",
+      "badge": "Signature Досвід",
+      "hero_title": "Переїзд 24 години",
+      "hero_desc": "Іноді переїзд не може чекати.",
+      "story_title": "Доступність як обіцянка",
+      "story_p1": "Not every move fits into regular business hours. Short-notice terminations, professional transfers, or personal circumstances sometimes demand swift action. The 24h Moving Service guarantees availability in the evenings, at night, and on weekends.",
+      "story_p2": "Our standby team is ready at short notice. The same quality, the same care – regardless of the hour.",
+      "purpose_title": "Часова цінність",
+      "purpose_text": "Time pressure is one of the greatest stress factors in relocations. The 24h service eliminates the time constraint and gives you maximum flexibility.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For urgent moves, time-sensitive relocations, or clients who can only move outside business hours for professional reasons.",
+      "cta_title": "Запросити сервіс 24 години",
+      "cta_text": "Contact us at any time. We are there for you – around the clock."
+    },
+    "sig_ladies_team": {
+      "meta_title": "Ladies Team – Moving by an All-Female Team",
+      "meta_desc": "The FLOXANT Ladies Team offers moves exclusively by female personnel. Discreet, respectful, and professional.",
+      "badge": "Signature Досвід",
+      "hero_title": "Жіноча команда",
+      "hero_desc": "Деякі ситуації вимагають особливої делікатності.",
+      "story_title": "Повага починається з розуміння",
+      "story_p1": "There are situations in which clients feel more comfortable with an all-female team: after a separation, due to religious or cultural preferences, or simply as a personal choice. The Ladies Team respects these wishes without question and at no extra charge.",
+      "story_p2": "Our female moving team works with the same professionalism and efficiency as all our teams. The only difference: the composition.",
+      "purpose_title": "Особиста цінність",
+      "purpose_text": "The Ladies Team creates a protected environment for the move. It respects personal boundaries and cultural needs – discreetly and naturally.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For female clients who prefer an all-female team for personal, cultural, or religious reasons.",
+      "cta_title": "Запросити жіночу команду",
+      "cta_text": "Book your move with our Ladies Team. Discreet, professional, and at no extra charge."
+    },
+    "sig_memory_capsule": {
+      "meta_title": "Memory Capsule – Preserving Moments During Your Move",
+      "meta_desc": "The FLOXANT Memory Capsule preserves a moment from your old home. Photos, notes, and personal items in a sealed capsule.",
+      "badge": "Signature Досвід",
+      "hero_title": "Капсула пам'яті",
+      "hero_desc": "Деякі місця заслуговують на пам'ять.",
+      "story_title": "Місце, заморожене в часі",
+      "story_p1": "Before the last box is packed, we pause. The Memory Capsule contains photos of the empty rooms, a note of your choice, and a small object from the old home. Everything is sealed in a high-quality capsule.",
+      "story_p2": "This capsule is not meant to be opened immediately. It is an anchor – a physical object that captures a place in time. Open it whenever you are ready.",
+      "purpose_title": "Емоційна цінність",
+      "purpose_text": "Memories fade over time. The capsule preserves a defined moment and makes it accessible again at any time.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For people leaving a place that meant a great deal to them. Especially valuable for family homes or properties with a long history.",
+      "cta_title": "Додати капсулу пам'яті",
+      "cta_text": "Preserve a moment from your old home. We prepare the capsule on moving day."
+    },
+    "sig_maybe_box": {
+      "meta_title": "The Maybe Box – Decision Aid During Your Move",
+      "meta_desc": "The FLOXANT Maybe Box gives you time for uncertain decisions. Keep or let go? Decide later.",
+      "badge": "Signature Досвід",
+      "hero_title": "Коробка «Можливо»",
+      "hero_desc": "Не кожне рішення потрібно приймати негайно.",
+      "story_title": "Зменшення тиску рішень",
+      "story_p1": "During a move, countless decisions are demanded simultaneously: keep, give away, store? For many items the answer is clear. But for some it is not. The Maybe Box is designed for exactly these cases.",
+      "story_p2": "We store items you are unsure about for up to 90 days. During that time, you can decide at leisure whether to keep or let go. Without pressure. Without haste.",
+      "purpose_title": "Цінність рішень",
+      "purpose_text": "Decisional overload during a move leads to regrettable choices. The Maybe Box decouples the physical process of moving from the emotional process of letting go.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For anyone finding it difficult to part with certain items immediately and needing time for a considered decision.",
+      "cta_title": "Запросити коробку «Можливо»",
+      "cta_text": "Give yourself time for the difficult decisions. We store items in the Maybe Box until you are ready."
+    },
+    "sig_key_handover": {
+      "meta_title": "Key Handover – Documented and Secure Property Handover",
+      "meta_desc": "The FLOXANT Key Handover documents the property handover securely. Professional protocols and visual evidence for your protection.",
+      "badge": "Signature Досвід",
+      "hero_title": "Передача ключів",
+      "hero_desc": "Задокументовано. Безпечно. Простежувано.",
+      "story_title": "Останній крок, правильно задокументований",
+      "story_p1": "The key handover marks the official closing of a chapter. But too often it happens hurriedly, without documentation. The Key Handover service creates a professional protocol of the property condition, photographs all rooms, and documents the handover of all keys.",
+      "story_p2": "You receive a complete documentation package that serves as proof in the event of subsequent disputes. This is not merely a formality – it is your legal safeguard.",
+      "purpose_title": "Юридична цінність",
+      "purpose_text": "A documented handover protects both parties. It creates clarity about the condition of the property and prevents subsequent disputes over the deposit.",
+      "for_whom_title": "Для кого цей досвід?",
+      "for_whom_text": "For all tenants and landlords who value a legally secure, documented property handover.",
+      "cta_title": "Забронювати передачу ключів",
+      "cta_text": "Document your property handover professionally. We create a complete protocol for your records."
+    }
+  },
+  "services_section": {
+    "title": "Наші Послуги",
+    "subtitle": "Індивідуальні рішення для кожної потреби.",
+    "items": [
+      {
+        "title": "Приватний переїзд",
+        "desc": "Без турбот у нову домівку."
+      },
+      {
+        "title": "Офісний переїзд",
+        "desc": "Мінімальний простій."
+      },
+      {
+        "title": "Далекий переїзд",
+        "desc": "Безпечно по всій Європі."
+      },
+      {
+        "title": "Розчищення",
+        "desc": "Чисте розчищення приміщень."
+      },
+      {
+        "title": "Монтаж",
+        "desc": "Професійний монтаж меблів."
+      },
+      {
+        "title": "Зона заборони паркування",
+        "desc": "Офіційний дозвіл та встановлення."
+      }
+    ]
+  },
+  "signature_services": {
+    "title": "Фірмові Послуги",
+    "subtitle": "Більше ніж логістика. Ми дбаємо про емоційні деталі вашого нового початку.",
+    "badge": "Ексклюзивно в FLOXANT",
+    "items": {
+      "ritual_exit": {
+        "title": "Коробка прощання",
+        "desc": "Усвідомлене прощання."
+      },
+      "clean_start": {
+        "title": "Церемонія чистого старту",
+        "desc": "Момент прибуття."
+      },
+      "neighbour_kit": {
+        "title": "Набір нового сусіда",
+        "desc": "Полегшує входження в район."
+      },
+      "first_48h": {
+        "title": "Пакет перших 48год",
+        "desc": "Стабільність у перші години."
+      },
+      "bureaucracy": {
+        "title": "Бюрократичний щит",
+        "desc": "Менше паперів."
+      },
+      "furniture_opt": {
+        "title": "Оптимізація меблів",
+        "desc": "Розміщення за просторовою логікою."
+      },
+      "cleaning_guarantee": {
+        "title": "Гарантія прибирання",
+        "desc": "Фінальне прибирання за стандартами."
+      },
+      "storage_rot": {
+        "title": "Гнучке зберігання",
+        "desc": "Безпечне зберігання з поверненням."
+      },
+      "kids_box": {
+        "title": "Дитяча коробка переїзду",
+        "desc": "Переїзд очима дитини."
+      },
+      "service_24h": {
+        "title": "Служба переїзду 24год",
+        "desc": "Ефективний переїзд за 24 години."
+      },
+      "ladies_team": {
+        "title": "Жіноча команда",
+        "desc": "Довіра в делікатних ситуаціях."
+      },
+      "memory_capsule": {
+        "title": "Капсула спогадів",
+        "desc": "Збережіть важливе."
+      },
+      "maybe_box": {
+        "title": "Коробка «Можливо»",
+        "desc": "Відкладіть рішення."
+      },
+      "key_handover": {
+        "title": "Передача ключів",
+        "desc": "Задокументовано. Безпечно. Відстежувано."
+      }
+    }
+  }
+}

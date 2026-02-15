@@ -1,33 +1,41 @@
-export function JsonLd() {
+import { i18n } from "../i18n-config";
+import { company } from "@/lib/company";
+
+export function JsonLd({ lang }: { lang: string }) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "MovingCompany",
-        "name": "Floxant",
-        "image": "https://floxant.de/og-image.jpg",
-        "description": "Premium Umzug, Reinigung und Entsorgung aus einer Hand. Stressfreie Neuanfänge mit Floxant Signature Services.",
-        "url": "https://floxant.de",
+        "name": "FLOXANT",
+        "image": "https://floxant.de/logo.png",
+        "description": "Professionelles Umzugsunternehmen für Bayern und deutschlandweite Fernumzüge. Spezialisiert auf Privatumzüge, Firmenumzüge und Entrümpelungen.",
+        "url": `https://floxant.de/${lang}`,
         "telephone": "+4915771105087",
-        "email": "salehobidvc@gmail.com",
+        "email": company.email,
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Musterstraße 1", // TODO: Update with real address
-            "addressLocality": "Berlin",
-            "postalCode": "10115",
+            "streetAddress": "Breite Straße 22",
+            "addressLocality": "Düsseldorf",
+            "postalCode": "40213",
             "addressCountry": "DE"
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 52.5200,
-            "longitude": 13.4050
+            "latitude": 51.2217,
+            "longitude": 6.7766
         },
-        "areaServed": {
-            "@type": "City",
-            "name": "Berlin"
-        },
+        "areaServed": [
+            { "@type": "AdministrativeArea", "name": "Bavaria" },
+            { "@type": "AdministrativeArea", "name": "North Rhine-Westphalia" },
+            { "@type": "Country", "name": "Germany" }
+        ],
         "serviceArea": [
-            { "@type": "City", "name": "Berlin" },
-            { "@type": "City", "name": "Potsdam" },
-            { "@type": "AdministrativeArea", "name": "Brandenburg" }
+            { "@type": "City", "name": "München" },
+            { "@type": "City", "name": "Nürnberg" },
+            { "@type": "City", "name": "Augsburg" },
+            { "@type": "City", "name": "Regensburg" },
+            { "@type": "City", "name": "Ingolstadt" },
+            { "@type": "City", "name": "Düsseldorf" },
+            { "@type": "City", "name": "Köln" }
         ],
         "priceRange": "$$",
         "openingHoursSpecification": [
@@ -51,16 +59,19 @@ export function JsonLd() {
             }
         ],
         "sameAs": [
-            "https://www.instagram.com/floxant" // Placeholder
-        ]
+            "https://www.instagram.com/floxant"
+        ],
+        "availableLanguage": i18n.locales.map(locale => ({
+            "@type": "Language",
+            "name": locale,
+            "alternateName": locale
+        }))
     };
 
     return (
-        <section>
-            <script
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                type="application/ld+json"
-            />
-        </section>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
     );
 }
