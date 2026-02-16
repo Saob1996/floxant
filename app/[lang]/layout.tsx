@@ -50,6 +50,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
                 'ja': 'https://floxant.de/ja',
                 'x-default': 'https://floxant.de/de'
             }
+        },
+        icons: {
+            icon: '/icon.png',
+            shortcut: '/icon.png',
+            apple: '/icon.png',
         }
     };
 }
