@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { PremiumButton } from "@/components/ui/PremiumButton";
+import { supabase } from "@/lib/supabase";
 import { EditModal } from "@/components/EditModal";
 import { GalleryModal } from "@/components/GalleryModal";
 import {
@@ -56,6 +57,12 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
 
     useEffect(() => {
         if (status === "authenticated") {
+            // Client-side ping to keep Supabase active and verify connection
+            supabase.from('bookings').select('id').limit(1).then(({ error }) => {
+                if (error) console.error("Supabase Client Ping Error:", error);
+                else console.log("Supabase Client Ping Success");
+            });
+
             fetch("/api/bookings")
                 .then(res => res.json())
                 .then(data => {
