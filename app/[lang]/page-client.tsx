@@ -94,7 +94,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground font-medium">{contact.title}</p>
-                                    <a href="tel:015771105087" className="text-lg font-bold text-foreground hover:text-primary transition-colors">01577 110 50 87</a>
+                                    <a href={`tel:${company.phone.replace(/\s+/g, '')}`} className="text-lg font-bold text-foreground hover:text-primary transition-colors">{company.phone}</a>
                                 </div>
                             </div>
 

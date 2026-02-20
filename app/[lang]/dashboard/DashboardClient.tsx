@@ -5,6 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { EditModal } from "@/components/EditModal";
+import { GalleryModal } from "@/components/GalleryModal";
 import {
     Box, Sparkles, Trash2, Calendar, FileText, Download,
     User, Phone, Mail, Clock, Search, Filter,
@@ -38,6 +39,10 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const [filterService, setFilterService] = useState<string | null>(null);
     const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
+
+    // Gallery State
+    const [galleryImages, setGalleryImages] = useState<string[] | null>(null);
+    const [galleryIndex, setGalleryIndex] = useState(0);
 
     const t = dict.dashboard;
     const tAuth = dict.auth;
@@ -115,6 +120,11 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
         setBookings(newBookings);
     };
 
+    const openGallery = (images: string[], index: number = 0) => {
+        setGalleryImages(images);
+        setGalleryIndex(index);
+    };
+
     return (
         <div className="min-h-screen bg-background">
             <AnimatePresence>
@@ -123,6 +133,13 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                         booking={selectedBooking}
                         onClose={() => setSelectedBooking(null)}
                         onSave={handleUpdateBooking}
+                    />
+                )}
+                {galleryImages && (
+                    <GalleryModal
+                        images={galleryImages}
+                        initialIndex={galleryIndex}
+                        onClose={() => setGalleryImages(null)}
                     />
                 )}
             </AnimatePresence>
@@ -285,7 +302,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                                                                 src={url}
                                                                 alt={`Upload ${i + 1}`}
                                                                 className="cursor-pointer hover:opacity-80 transition-opacity"
-                                                                onClick={() => window.open(url, '_blank')}
+                                                                onClick={() => openGallery(booking.file_urls || [], i)}
                                                                 style={{
                                                                     width: "100px",
                                                                     height: "100px",
@@ -301,6 +318,8 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                                                     <img
                                                         src={booking.file_url}
                                                         alt="Booking upload"
+                                                        onClick={() => openGallery([booking.file_url!])}
+                                                        className="cursor-pointer hover:opacity-80 transition-opacity"
                                                         style={{
                                                             width: "120px",
                                                             marginTop: "8px",
@@ -322,7 +341,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
 
                                             <div className="flex items-center gap-3 w-full md:w-auto border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 mt-4 md:mt-0">
                                                 {booking.file_url || (booking.file_urls && booking.file_urls.length > 0) ? (
-                                                    <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => window.open(booking.file_url || (booking.file_urls && booking.file_urls[0]), '_blank')}>
+                                                    <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => openGallery(booking.file_urls || [booking.file_url!], 0)}>
                                                         <FileText className="w-5 h-5" />
                                                     </PremiumButton>
                                                 ) : (

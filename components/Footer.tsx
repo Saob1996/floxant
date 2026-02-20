@@ -54,18 +54,8 @@ export function Footer({ lang, dic }: FooterProps) {
     return (
         <footer className="bg-background border-t border-border/50 py-12 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center gap-8">
-                <BrandLogo />
-                {/* <span className="font-bold text-xl tracking-tighter">FLOXANT</span> */}
-
-                <div className="flex flex-col items-center gap-2 text-center">
-                    <p className="text-sm text-muted-foreground">
-                        &copy; {currentYear} FLOXANT. {dic.footer.rights}
-                    </p>
-                    <a href={`mailto:${company.email}`} className="hover:text-foreground transition-colors">{company.email}</a>
-                </div>
-
-                <div className="flex flex-col items-center justify-center gap-6">
-                    <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground/60 border-b border-white/5 pb-4 mb-2 max-w-2xl text-center">
+                <div className="flex flex-col items-center justify-center gap-6 w-full">
+                    <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground/60 max-w-2xl text-center">
                         <span className="font-semibold text-muted-foreground">{dic.footer.areas}:</span>
                         <Link href={`/${lang}/umzug-muenchen`} className="hover:text-foreground transition-colors">{dic.area.cities.munich}</Link> ·
                         <Link href={`/${lang}/umzug-nuernberg`} className="hover:text-foreground transition-colors">{dic.area.cities.nuremberg}</Link> ·
@@ -75,7 +65,7 @@ export function Footer({ lang, dic }: FooterProps) {
                         <span className="cursor-default">{dic.area.cities.germany}</span>
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center gap-6">
+                    <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
                         <Link href={`/${lang}/impressum`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                             {dic.footer.impressum}
                         </Link>
@@ -95,6 +85,15 @@ export function Footer({ lang, dic }: FooterProps) {
                             Intern
                         </Link>
                     </div>
+                </div>
+
+                <BrandLogo className="h-12 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+
+                <div className="flex flex-col items-center gap-2 text-center mt-4">
+                    <p className="text-sm text-muted-foreground">
+                        &copy; {currentYear} FLOXANT. {dic.footer.rights}
+                    </p>
+                    <a href={`mailto:${company.email}`} className="hover:text-foreground transition-colors">{company.email}</a>
                 </div>
             </div>
         </footer >
