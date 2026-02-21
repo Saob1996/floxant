@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -97,7 +97,7 @@ export function Header({ lang, dic }: HeaderProps) {
 
                 {/* Mobile Navigation */}
                 {isOpen && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -124,7 +124,7 @@ export function Header({ lang, dic }: HeaderProps) {
                             {dic?.book_now || "Book Now"}
                             <ArrowUpRight className="w-5 h-5" />
                         </Link>
-                    </motion.div>
+                    </m.div>
                 )}
             </div>
         </header>

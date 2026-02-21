@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, HTMLMotionProps } from "framer-motion";
+import { m, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 import React from "react";
 
@@ -31,7 +31,7 @@ export function PremiumButton({
     };
 
     return (
-        <motion.button
+        <m.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
@@ -43,6 +43,6 @@ export function PremiumButton({
             {...props}
         >
             {children}
-        </motion.button>
+        </m.button>
     );
 }

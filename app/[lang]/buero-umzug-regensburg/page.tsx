@@ -2,7 +2,12 @@ import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { i18n, type Locale } from "../../../i18n-config";
 import { Header } from "@/components/Header";
-import { SmartBookingWizard } from "@/components/SmartBookingWizard";
+import dynamic from "next/dynamic";
+
+const SmartBookingWizard = dynamic(
+    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
+    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+);
 import Link from "next/link";
 
 export async function generateMetadata({

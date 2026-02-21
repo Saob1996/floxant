@@ -1,11 +1,11 @@
 "use client";
 
 import { MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export function WhatsAppButton() {
     return (
-        <motion.a
+        <m.a
             href="https://wa.me/4915771105087"
             target="_blank"
             rel="noopener noreferrer"
@@ -20,6 +20,6 @@ export function WhatsAppButton() {
             <span className="absolute right-full mr-4 hidden whitespace-nowrap rounded-lg bg-white px-3 py-1 text-sm font-medium text-slate-800 shadow-lg lg:block">
                 Chatten Sie mit uns!
             </span>
-        </motion.a>
+        </m.a>
     );
 }

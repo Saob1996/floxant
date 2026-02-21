@@ -1,7 +1,6 @@
 'use client';
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Logo as BrandLogo } from "@/components/BrandLogo";
 import { company } from "@/lib/company";
 

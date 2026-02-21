@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Lock } from "lucide-react";
 
@@ -53,7 +53,7 @@ export default function LoginForm({ dict }: LoginFormProps) {
         <main className="min-h-screen flex items-center justify-center bg-background p-6">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background pointer-events-none" />
 
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="w-full max-w-sm relative z-10"
@@ -108,7 +108,7 @@ export default function LoginForm({ dict }: LoginFormProps) {
                         </button>
                     </form>
                 </div>
-            </motion.div>
+            </m.div>
         </main>
     );
 }

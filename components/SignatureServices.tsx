@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
     PackageOpen, Sparkles, Users, Clock, Shield, Wrench,
     CheckCircle2, RotateCw, Baby, Truck, Heart, Archive,
@@ -40,7 +40,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
             <div className="absolute inset-0 bg-blue-900/5 skew-y-3 transform -z-10 origin-top-left" />
 
             <div className="mx-auto max-w-7xl">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -53,7 +53,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         {t.subtitle}
                     </p>
-                </motion.div>
+                </m.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {serviceList.map((service, index) => {
@@ -61,7 +61,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
                         const content = items[service.id] || { title: service.id, desc: "..." };
 
                         return (
-                            <motion.div
+                            <m.div
                                 key={index}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -91,7 +91,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
                                         </p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </m.div>
                         );
                     })}
                 </div>

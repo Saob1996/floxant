@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Download } from "lucide-react";
 
 interface GalleryModalProps {
@@ -59,7 +59,7 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
     };
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -113,7 +113,7 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
                 onClick={(e) => e.stopPropagation()}
             >
                 <AnimatePresence initial={false} custom={direction}>
-                    <motion.div
+                    <m.div
                         key={index}
                         custom={direction}
                         variants={variants}
@@ -153,7 +153,7 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
                                 </div>
                             )}
                         </div>
-                    </motion.div>
+                    </m.div>
                 </AnimatePresence>
             </div>
 
@@ -177,6 +177,6 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
                     ))}
                 </div>
             )}
-        </motion.div>
+        </m.div>
     );
 }

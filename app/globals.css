@@ -133,3 +133,57 @@
 .glass-panel {
   @apply bg-background/60 backdrop-blur-xl border-b border-border;
 }
+
+/* Hero Animations — CSS-only, replaces Framer Motion m.div */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-fade {
+  animation: hero-fade-in 0.8s ease-out both;
+}
+
+.animate-hero-scale {
+  animation: hero-scale-in 0.5s ease-out 0.2s both;
+}
+
+.animate-hero-slide {
+  animation: hero-slide-up 0.8s ease-out 0.4s both;
+}
+
+/* Service card hover — CSS-only, replaces m.div whileHover */
+.service-card-hover {
+  transition: transform 0.2s ease-out;
+}
+.service-card-hover:hover {
+  transform: translateY(-5px);
+}

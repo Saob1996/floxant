@@ -5,7 +5,7 @@ import { ServiceSelector, ServiceType } from "@/components/ServiceSelector";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { FileUp, Calendar, MapPin } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 export function BookingForm() {
     const [service, setService] = useState<ServiceType>("umzug");
@@ -20,7 +20,7 @@ export function BookingForm() {
             <ServiceSelector current={service} onSelect={setService} />
 
             <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                     key={service}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ export function BookingForm() {
                             </div>
                         </form>
                     </GlassCard>
-                </motion.div>
+                </m.div>
             </AnimatePresence>
         </div>
     );

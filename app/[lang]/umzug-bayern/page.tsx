@@ -1,6 +1,10 @@
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { SmartBookingWizard } from "@/components/SmartBookingWizard";
+import dynamic from "next/dynamic";
+
+const SmartBookingWizard = dynamic(
+    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
+    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+);
 import { getDictionary } from "../../../get-dictionary";
 import { Locale } from "../../../i18n-config";
 import { Metadata } from "next";
@@ -140,7 +144,6 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                 </div>
             </section>
 
-            <Footer lang={lang} dic={dict} />
         </main>
     );
 }

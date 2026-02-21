@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X, Check, Loader2 } from "lucide-react";
 import { PremiumButton } from "./ui/PremiumButton";
 
@@ -32,7 +32,7 @@ export function EditModal({ booking, onClose, onSave }: EditModalProps) {
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div
+            <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -40,7 +40,7 @@ export function EditModal({ booking, onClose, onSave }: EditModalProps) {
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
 
-            <motion.div
+            <m.div
                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -106,7 +106,7 @@ export function EditModal({ booking, onClose, onSave }: EditModalProps) {
                         </PremiumButton>
                     </div>
                 </div>
-            </motion.div>
+            </m.div>
         </div>
     );
 }

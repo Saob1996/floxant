@@ -4,11 +4,21 @@ import "../globals.css";
 import { cn } from "@/lib/utils";
 import { JsonLd } from "../../components/JsonLd";
 import { Footer } from "../../components/Footer";
-import { CookieBanner } from "../../components/CookieBanner";
-import { WhatsAppButton } from "../../components/WhatsAppButton";
+import dynamic from "next/dynamic";
 import AuthProvider from "../../components/session-provider";
+import { MotionProvider } from "../../components/MotionProvider";
 import { i18n, type Locale } from "../../i18n-config"; // Adjusted path (was ../../../)
 import { getDictionary } from "../../get-dictionary"; // Adjusted path (was ../../)
+
+const WhatsAppButton = dynamic(
+    () => import("../../components/WhatsAppButton").then(mod => ({ default: mod.WhatsAppButton })),
+    { loading: () => <div className="fixed bottom-6 right-6 z-50 h-14 w-14" /> }
+);
+
+const CookieBanner = dynamic(
+    () => import("../../components/CookieBanner").then(mod => ({ default: mod.CookieBanner })),
+    { loading: () => null }
+);
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -80,11 +90,13 @@ export default async function RootLayout({
         <html lang={lang} dir={dir} suppressHydrationWarning>
             <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
                 <AuthProvider>
-                    <JsonLd lang={lang} />
-                    {children}
-                    <WhatsAppButton />
-                    <CookieBanner />
-                    <Footer lang={lang} dic={dict} />
+                    <MotionProvider>
+                        <JsonLd lang={lang} />
+                        {children}
+                        <WhatsAppButton />
+                        <CookieBanner />
+                        <Footer lang={lang} dic={dict} />
+                    </MotionProvider>
                 </AuthProvider>
             </body>
         </html>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Box, Sparkles, Trash2 } from "lucide-react";
 
@@ -36,7 +36,7 @@ export function ServiceSelector({ current, onSelect }: ServiceSelectorProps) {
                             )}
                         >
                             {isActive && (
-                                <motion.div
+                                <m.div
                                     layoutId="active-pill"
                                     className="absolute inset-0 rounded-full bg-primary"
                                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}

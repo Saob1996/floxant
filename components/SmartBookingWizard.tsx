@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { m, AnimatePresence } from "framer-motion";
 import {
     Box, Sparkles, Trash2, ArrowRight, ArrowLeft, MapPin, Calendar,
     PackageOpen, Users, Clock, Shield, CheckCircle2, Upload
@@ -23,7 +23,16 @@ interface SmartBookingWizardProps {
     dict: any;
 }
 
-export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
+// ─── Inner component: only mounts when visible ───────────────────────────
+function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
+    // Two-stage loading: first paint shows shell, then initialize heavy state
+    const [initialized, setInitialized] = useState(false);
+
+    useEffect(() => {
+        // Defer heavy state initialization to after first paint
+        setInitialized(true);
+    }, []);
+
     const defaultBooking = {
         steps: { service: "Service", details: "Details", upgrades: "Upgrades", contact: "Contact" },
         headings: {
@@ -56,27 +65,12 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
 
     const t = dict?.booking || defaultBooking;
 
-    // Helper to safely get nested keys if dict is incomplete
-    const safeT = (key: string, fallback: string) => {
-        return key || fallback;
-    };
-
-    const steps = [
-        { number: 1, title: t?.steps?.service || "Service" },
-        { number: 2, title: t?.steps?.details || "Details" },
-        { number: 3, title: t?.steps?.upgrades || "Upgrades" },
-        { number: 4, title: t?.steps?.contact || "Contact" },
-    ];
-
     const [state, setState] = useState<BookingState>({
         step: 1,
         service: null,
         details: {},
         upgrades: [],
     });
-
-    const nextStep = () => setState(prev => ({ ...prev, step: prev.step + 1 }));
-    const prevStep = () => setState(prev => ({ ...prev, step: prev.step - 1 }));
 
     // Form State & Handlers
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,6 +82,21 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
     const [files, setFiles] = useState<File[]>([]);
 
     const [isSuccess, setIsSuccess] = useState(false);
+
+    // Show lightweight shell until initialized (all hooks called above)
+    if (!initialized) {
+        return <div className="w-full max-w-5xl mx-auto min-h-[400px] glass rounded-3xl border border-white/10" />;
+    }
+
+    const steps = [
+        { number: 1, title: t?.steps?.service || "Service" },
+        { number: 2, title: t?.steps?.details || "Details" },
+        { number: 3, title: t?.steps?.upgrades || "Upgrades" },
+        { number: 4, title: t?.steps?.contact || "Contact" },
+    ];
+
+    const nextStep = () => setState(prev => ({ ...prev, step: prev.step + 1 }));
+    const prevStep = () => setState(prev => ({ ...prev, step: prev.step - 1 }));
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -306,8 +315,6 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
                             <span className="text-sm text-muted-foreground">Extras:</span>
                             <div className="flex flex-wrap gap-2">
                                 {state.upgrades.map(u => {
-                                    // Try to find upgrade title in current dictionary, fallback to ID replacement
-                                    // Dictionary keys match ids: ladies_team, etc.
                                     const title = t.upgrades[u]?.title || u;
                                     return (
                                         <span key={u} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full border border-primary/20">
@@ -434,7 +441,7 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
             </div>
 
             <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                     key={state.step}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -456,8 +463,42 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
                     {state.step === 3 && renderUpgrades()}
 
                     {state.step === 4 && renderContact()}
-                </motion.div>
+                </m.div>
             </AnimatePresence>
+        </div>
+    );
+}
+
+// ─── Outer component: visibility gate ────────────────────────────────────
+export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
+    const containerRef = useRef<HTMLDivElement | null>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "200px" } // start loading slightly before visible
+        );
+
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <div ref={containerRef}>
+            {isVisible ? (
+                <SmartBookingWizardInner dict={dict} />
+            ) : (
+                <div className="w-full max-w-5xl mx-auto min-h-[400px]" />
+            )}
         </div>
     );
 }

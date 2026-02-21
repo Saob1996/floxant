@@ -12,7 +12,7 @@ import {
     User, Phone, Mail, Clock, Search, Filter,
     MoreHorizontal, CheckCircle2, AlertCircle, Inbox, LayoutDashboard, LogOut
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface Booking {
@@ -254,7 +254,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                     <div className="grid gap-4">
                         <AnimatePresence>
                             {filteredBookings.map((booking, index) => (
-                                <motion.div
+                                <m.div
                                     key={booking.id}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -363,7 +363,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                                             </div>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </m.div>
                             ))}
                         </AnimatePresence>
                     </div>

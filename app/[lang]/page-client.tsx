@@ -1,13 +1,23 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { SmartBookingWizard } from "@/components/SmartBookingWizard";
-import { SignatureServices } from "@/components/SignatureServices";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { m } from "framer-motion";
 import { ArrowRight, Box, Sparkles, Trash2, CheckCircle2, Phone } from "lucide-react";
 import Link from "next/link";
 // import { Footer } from "@/components/Footer";
 import { company } from "@/lib/company";
+import { useRef, useState, useEffect } from "react";
+
+const SmartBookingWizard = dynamic(
+    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
+    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+);
+
+const SignatureServices = dynamic(
+    () => import("@/components/SignatureServices").then(mod => ({ default: mod.SignatureServices })),
+    { loading: () => <div className="py-24 px-6 min-h-[600px]" /> }
+);
 
 // Type definition for dictionary
 type Dictionary = any; // avoiding complex types for now to ensure speed, but structure matches JSON
@@ -53,13 +63,13 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                 <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-600/20 rounded-full blur-[100px] -z-10 animate-pulse delay-1000" />
 
                 <div className="mx-auto max-w-7xl relative z-10 flex flex-col items-center">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="text-center max-w-4xl mx-auto mb-20 space-y-8"
                     >
-                        <motion.div
+                        <m.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.2 }}
@@ -67,7 +77,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                         >
                             <Sparkles className="w-4 h-4" />
                             <span>{trust.quality}</span>
-                        </motion.div>
+                        </m.div>
 
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/50 leading-[1.1]">
                             {hero.title}
@@ -75,9 +85,9 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                         <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
                             {hero.subtitle}
                         </p>
-                    </motion.div>
+                    </m.div>
 
-                    <motion.div
+                    <m.div
                         id="contact"
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -110,7 +120,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             </section >
 
@@ -118,7 +128,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent pointer-events-none" />
 
                 <div className="mx-auto max-w-7xl relative z-10">
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
@@ -128,11 +138,11 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                             {servicesSection.subtitle}
                         </p>
-                    </motion.div>
+                    </m.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {displayServices.map((service: any, index: number) => (
-                            <motion.div
+                            <m.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +158,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                                 <p className="text-muted-foreground mb-8 leading-relaxed">
                                     {service.description}
                                 </p>
-                            </motion.div>
+                            </m.div>
                         ))}
                     </div>
                 </div>
