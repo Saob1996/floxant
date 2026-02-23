@@ -52,7 +52,8 @@ export function Footer({ lang, dic }: FooterProps) {
 
     return (
         <footer className="bg-background border-t border-border/50 py-12 px-6">
-            <div className="max-w-7xl mx-auto flex flex-col items-center gap-8">
+            <div className="max-w-7xl mx-auto flex flex-col items-center">
+                {/* (A) Links / legal section */}
                 <div className="flex flex-col items-center justify-center gap-6 w-full">
                     <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground/60 max-w-2xl text-center">
                         <span className="font-semibold text-muted-foreground">{dic.footer.areas}:</span>
@@ -64,7 +65,7 @@ export function Footer({ lang, dic }: FooterProps) {
                         <span className="cursor-default">{dic.area.cities.germany}</span>
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
+                    <div className="flex flex-wrap items-center justify-center gap-6">
                         <Link href={`/${lang}/impressum`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                             {dic.footer.impressum}
                         </Link>
@@ -86,15 +87,21 @@ export function Footer({ lang, dic }: FooterProps) {
                     </div>
                 </div>
 
-                <BrandLogo className="h-12 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                {/* (B) Centered logo (standalone) with visual layer separation */}
+                <div className="w-full flex items-center justify-center py-12 md:py-14 border-t border-border/10 mt-12">
+                    <BrandLogo size={{ base: 44, md: 60 }} />
+                </div>
 
-                <div className="flex flex-col items-center gap-2 text-center mt-4">
-                    <p className="text-sm text-muted-foreground">
+                {/* (C) Copyright text centered under the logo */}
+                <div className="flex flex-col items-center gap-2 text-center mt-6 max-w-[280px] md:max-w-md">
+                    <p className="text-xs md:text-sm text-muted-foreground/80">
                         &copy; {currentYear} FLOXANT. {dic.footer.rights}
                     </p>
-                    <a href={`mailto:${company.email}`} className="hover:text-foreground transition-colors">{company.email}</a>
+                    <a href={`mailto:${company.email}`} className="text-xs text-muted-foreground/60 hover:text-foreground transition-colors">
+                        {company.email}
+                    </a>
                 </div>
             </div>
-        </footer >
+        </footer>
     );
 }
