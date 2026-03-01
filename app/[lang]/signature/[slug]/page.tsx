@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
 import { i18n, type Locale } from "../../../../i18n-config";
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 
 const SmartBookingWizard = dynamic(
@@ -69,10 +70,10 @@ export async function generateMetadata({
         title: content.meta_title || `FLOXANT Signature – ${slug}`,
         description: content.meta_desc || "",
         alternates: {
-            canonical: `https://floxant.de/${lang}/signature/${slug}`,
+            canonical: `https://www.floxant.de/${lang}/signature/${slug}`,
             languages: i18n.locales.reduce(
                 (acc, l) => {
-                    acc[l] = `https://floxant.de/${l}/signature/${slug}`;
+                    acc[l] = `https://www.floxant.de/${l}/signature/${slug}`;
                     return acc;
                 },
                 {} as Record<string, string>
@@ -98,6 +99,7 @@ export default async function SignatureServicePage({
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={dict.nav} />
+            <Breadcrumbs lang={lang} items={[{ label: 'Signature Services', href: `/${lang}/#extras` }, { label: content.hero_title || slug }]} />
 
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">

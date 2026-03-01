@@ -41,6 +41,12 @@ export const CITY_PAGES = [
     'umzug-nuernberg',
     'umzug-augsburg',
     'umzug-regensburg',
+    'umzug-neumarkt',
+    'umzug-schwandorf',
+    'umzug-amberg',
+    'umzug-feucht',
+    'umzug-straubing',
+    'umzug-landshut',
 ] as const;
 
 /** Regensburg-specific service pages — Priority 0.9 for DE */

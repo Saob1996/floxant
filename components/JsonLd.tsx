@@ -2,13 +2,33 @@ import { i18n } from "../i18n-config";
 import { company } from "@/lib/company";
 
 export function JsonLd({ lang }: { lang: string }) {
-    const jsonLd = {
+    // Organization schema — Google uses this for the logo in search results
+    const organization = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "FLOXANT",
+        "url": "https://www.floxant.de",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.floxant.de/logo_v10.png",
+            "width": 600,
+            "height": 200,
+        },
+        "image": "https://www.floxant.de/logo_v10.png",
+        "sameAs": [
+            "https://www.instagram.com/floxant"
+        ],
+    };
+
+    // MovingCompany schema — detailed local business info
+    const movingCompany = {
         "@context": "https://schema.org",
         "@type": "MovingCompany",
         "name": "FLOXANT",
-        "image": "https://floxant.de/logo.png",
+        "image": "https://www.floxant.de/logo_v10.png",
+        "logo": "https://www.floxant.de/logo_v10.png",
         "description": "Professionelles Umzugsunternehmen für Bayern. Spezialisiert auf Privatumzüge, Firmenumzüge, Entrümpelungen und Reinigungen. Operativer Schwerpunkt Regensburg & Oberpfalz.",
-        "url": `https://floxant.de/${lang}`,
+        "url": `https://www.floxant.de/${lang}`,
         "telephone": "+4915771105087",
         "email": company.email,
         "address": {
@@ -34,8 +54,11 @@ export function JsonLd({ lang }: { lang: string }) {
             { "@type": "City", "name": "München" },
             { "@type": "City", "name": "Augsburg" },
             { "@type": "City", "name": "Feucht" },
-            { "@type": "City", "name": "Ingolstadt" },
-            { "@type": "City", "name": "Düsseldorf" }
+            { "@type": "City", "name": "Landshut" },
+            { "@type": "City", "name": "Straubing" },
+            { "@type": "City", "name": "Schwandorf" },
+            { "@type": "City", "name": "Amberg" },
+            { "@type": "City", "name": "Neumarkt in der Oberpfalz" },
         ],
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -65,9 +88,6 @@ export function JsonLd({ lang }: { lang: string }) {
                 "closes": "18:00"
             }
         ],
-        "sameAs": [
-            "https://www.instagram.com/floxant"
-        ],
         "availableLanguage": i18n.locales.map(locale => ({
             "@type": "Language",
             "name": locale,
@@ -75,10 +95,37 @@ export function JsonLd({ lang }: { lang: string }) {
         }))
     };
 
+    // WebSite schema — helps Google understand site structure
+    const webSite = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FLOXANT",
+        "url": "https://www.floxant.de",
+        "inLanguage": lang,
+        "publisher": {
+            "@type": "Organization",
+            "name": "FLOXANT",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.floxant.de/logo_v10.png",
+            },
+        },
+    };
+
     return (
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(movingCompany) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(webSite) }}
+            />
+        </>
     );
 }
