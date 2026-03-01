@@ -49,11 +49,11 @@ export async function middleware(request: NextRequest) {
     );
 
     // Redirect if there is no locale
+    // Always default to 'de' for stable Google crawling
+    // Users can switch language via the language switcher (hreflang preserved)
     if (pathnameIsMissingLocale) {
-        const locale = getLocale(request);
+        const locale = i18n.defaultLocale; // Always 'de' — no browser detection
 
-        // e.g. incoming request is /products
-        // The new URL is now /en-US/products
         return NextResponse.redirect(
             new URL(
                 `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,

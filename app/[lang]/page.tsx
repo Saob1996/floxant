@@ -1,5 +1,6 @@
+import { Metadata } from "next";
 import { getDictionary } from "../../get-dictionary";
-import { Locale } from "../../i18n-config";
+import { i18n, Locale } from "../../i18n-config";
 import { Header } from "@/components/Header";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { ArrowRight, Box, Sparkles, Trash2, Phone } from "lucide-react";
@@ -16,6 +17,26 @@ const SignatureServices = dynamic(
     () => import("@/components/SignatureServices").then(mod => ({ default: mod.SignatureServices })),
     { loading: () => <div className="py-24 px-6 min-h-[600px]" /> }
 );
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang } = await params;
+    return {
+        title: lang === 'de' ? 'FLOXANT – Umzug, Reinigung & Entrümpelung in Bayern' : 'FLOXANT – Moving, Cleaning & Clearance in Bavaria',
+        description: lang === 'de'
+            ? 'Professioneller Umzugsservice in Bayern – Regensburg, Nürnberg, München. Reinigung, Entrümpelung & Wohnungsauflösung. Festpreis, versichert, kurzfristig verfügbar.'
+            : 'Professional moving services in Bavaria – Regensburg, Nuremberg, Munich. Cleaning, clearance & apartment dissolution. Fixed price, insured, available at short notice.',
+        alternates: {
+            canonical: `https://www.floxant.de/${lang}`,
+            languages: {
+                ...i18n.locales.reduce((acc, l) => {
+                    acc[l] = `https://www.floxant.de/${l}`;
+                    return acc;
+                }, {} as Record<string, string>),
+                'x-default': 'https://www.floxant.de/de',
+            },
+        },
+    };
+}
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
