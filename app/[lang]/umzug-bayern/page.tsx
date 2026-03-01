@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 
 const SmartBookingWizard = dynamic(
@@ -6,15 +7,22 @@ const SmartBookingWizard = dynamic(
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
 import { getDictionary } from "../../../get-dictionary";
-import { Locale } from "../../../i18n-config";
+import { i18n, Locale } from "../../../i18n-config";
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin, Truck, ShieldCheck, Clock } from "lucide-react";
 
-export const metadata: Metadata = {
-    title: "Umzugsfirma Bayern | FLOXANT – Umzug Bayern & Deutschland",
-    description: "Professionelle Umzugsfirma für Bayern und deutschlandweite Fernumzüge. Firmensitz in Düsseldorf, regelmäßig in Bayern aktiv. Jetzt Angebot anfordern.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang } = await params;
+    return {
+        title: "Umzugsunternehmen Bayern | Professionelle Umzüge | FLOXANT",
+        description: "Professionelle Umzugsfirma für ganz Bayern – Regensburg, Nürnberg, München, Augsburg & Oberpfalz. Festpreisgarantie, voll versichert, kurzfristig verfügbar. Jetzt Angebot anfordern!",
+        alternates: {
+            canonical: `https://floxant.de/${lang}/umzug-bayern`,
+            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/umzug-bayern`; return acc; }, {} as Record<string, string>),
+        },
+    };
+}
 
 export default async function UmzugBayern({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
@@ -23,9 +31,10 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={dict.nav} />
+            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern" }]} />
 
             {/* Hero Section */}
-            <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
+            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
                         <MapPin className="w-4 h-4" />
@@ -51,7 +60,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                             Ein Umzug ist weit mehr als der Transport von Möbeln von A nach B. Er markiert einen neuen Lebensabschnitt, eine Veränderung, die oft mit viel Organisation und emotionalem Aufwand verbunden ist. Bei FLOXANT verstehen wir diese Herausforderung genau. Unser Anspruch ist es, Ihnen nicht nur schwere Kisten, sondern auch die Last der Planung abzunehmen.
                         </p>
                         <p className="bg-muted/30 p-6 rounded-xl border border-border/50 not-italic">
-                            <strong>Wichtiger Hinweis:</strong> FLOXANT hat seinen juristischen Firmensitz in Düsseldorf. Unser operatives Team ist jedoch regelmäßig für Umzüge in ganz Bayern im Einsatz. Ob München, Nürnberg oder Augsburg – wir sind vor Ort vernetzt und führen Ihren Auftrag mit höchster Zuverlässigkeit aus. Zusätzlich organisieren wir routiniert Fernumzüge von Bayern in alle Regionen Nordrhein-Westfalens und ganz Deutschlands.
+                            <strong>Operativer Schwerpunkt Bayern:</strong> FLOXANT hat seinen Firmensitz in Düsseldorf. Unser operatives Zentrum liegt in Regensburg und der Oberpfalz. Von hier aus sind unsere Teams regelmäßig in ganz Bayern im Einsatz – in München, Nürnberg, Augsburg, Feucht und allen umliegenden Regionen. Zusätzlich organisieren wir routiniert Fernumzüge von Bayern nach NRW und ganz Deutschland.
                         </p>
                         <p>
                             Unsere Philosophie basiert auf architektonischer Ordnung. Wir überlassen nichts dem Zufall. Jeder Handgriff sitzt, jede Phase des Umzugs ist durchgeplant. Das gibt Ihnen die Sicherheit, dass Ihr Hab und Gut in den besten Händen ist.
@@ -66,7 +75,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                                 <Truck className="w-10 h-10 text-primary mb-6" />
                                 <h3 className="text-xl font-bold mb-4">Privatumzüge</h3>
                                 <p className="text-muted-foreground mb-6">
-                                    Ob Single-Appartement oder Familienhaus – wir behandeln Ihren Privatumzug mit Diskretion und Respekt. Unsere Teams sind geschult im Umgang mit sensiblen Gegenständen und sorgen dafür, dass Sie sich in Ihrem neuen Zuhause sofort wohlfühlen.
+                                    Ob Single-Appartement oder Familienhaus – wir behandeln Ihren Privatumzug mit Diskretion und Respekt. Unsere Teams sind geschult im Umgang mit sensiblen Gegenständen.
                                 </p>
                                 <ul className="space-y-2">
                                     <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Demontage & Montage</li>
@@ -79,7 +88,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                                 <Clock className="w-10 h-10 text-primary mb-6" />
                                 <h3 className="text-xl font-bold mb-4">Fernumzüge ab Bayern</h3>
                                 <p className="text-muted-foreground mb-6">
-                                    Sie ziehen von Bayern nach NRW, Hamburg oder Berlin? Fernumzüge sind unsere Spezialität. Durch unseren Sitz in Düsseldorf und unsere regelmäßigen Touren in den Süden können wir logistisch effiziente Lösungen für Langstrecken anbieten.
+                                    Von Bayern nach NRW, Hamburg oder Berlin? Fernumzüge sind unsere Spezialität. Logistisch effiziente Lösungen für Langstrecken.
                                 </p>
                                 <ul className="space-y-2">
                                     <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Bundesweite Logistik</li>
@@ -90,45 +99,69 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                         </div>
                     </div>
 
-                    {/* Detailed Content: Why Floxant */}
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Warum FLOXANT für Ihren Umzug wählen?</h2>
-                        <p>
-                            Der Markt für Umzugsdienstleistungen ist groß und oft unübersichtlich. FLOXANT unterscheidet sich durch einen Ansatz, der Qualität und Transparenz in den Mittelpunkt stellt. Wir sind keine reine Transportfirma, sondern ein Full-Service-Dienstleister für Ihren Wohnungswechsel.
-                        </p>
-                        <h3>Transparente Preisgestaltung</h3>
-                        <p>
-                            Versteckte Kosten und nachträgliche Aufschläge gibt es bei uns nicht. Nach einer detaillierten Bestandsaufnahme – die wir gerne auch digital per Videochat durchführen – erhalten Sie ein verbindliches Festpreisangebot. Darin sind alle vereinbarten Leistungen inkludiert: vom Verpackungsmaterial bis zur Versicherung, von der Anfahrt bis zur besenreinen Übergabe.
-                        </p>
-                        <h3>Sicherheit und Versicherung</h3>
-                        <p>
-                            Trotz größter Sorgfalt kann im Eifer des Gefechts einmal etwas passieren. Als professionelles Unternehmen sind wir selbstverständlich umfassend versichert. Eine Haftpflicht- und Transportversicherung schützt Ihr Eigentum während des gesamten Prozesses. Sollte ein Schaden entstehen, kümmern wir uns um eine unbürokratische Regulierung.
-                        </p>
-                        <h3>Fokus auf Nachhaltigkeit</h3>
-                        <p>
-                            Wir versuchen, unseren ökologischen Fußabdruck so gering wie möglich zu halten. Das bedeutet: effiziente Routenplanung zur Vermeidung von Leerfahrten, Einsatz von wiederverwendbaren Verpackungsmaterialien und fachgerechte Trennung bei Entrümpelungen. Gerade bei Fernumzügen kombinieren wir Ladungen intelligent, um CO2 zu sparen.
-                        </p>
+                    {/* Regional Coverage */}
+                    <div className="space-y-12">
+                        <h2 className="text-3xl font-bold text-foreground">Umzug in Ihrer Region</h2>
+                        <div className="prose prose-lg max-w-none text-muted-foreground">
+                            <h3 className="text-2xl font-bold text-foreground">Umzug in Regensburg & Oberpfalz</h3>
+                            <p>Regensburg ist unser operatives Zentrum. Ob mittelalterliche Altstadt, Universitätsviertel oder Neubaugebiete am Stadtrand – wir kennen die logistischen Herausforderungen jeder Lage. Enge Zufahrten, Fußgängerzonen und denkmalgeschützte Gebäude erfordern Erfahrung, die wir aus hunderten von Aufträgen mitbringen.</p>
+
+                            <h3 className="text-2xl font-bold text-foreground">Umzug in Nürnberg & Franken</h3>
+                            <p>In der Metropolregion Nürnberg sind wir regelmäßig für Privat- und Firmenumzüge im Einsatz. Von der Südstadt über Fürth und Erlangen bis nach Schwabach – unser Team kennt die fränkischen Gegebenheiten und organisiert Ihren Umzug effizient.</p>
+
+                            <h3 className="text-2xl font-bold text-foreground">Umzug in München</h3>
+                            <p>Münchens angespannter Wohnungsmarkt und die Parkplatzsituation erfordern besondere Vorbereitung. Wir beantragen Halteverbotszonen, koordinieren Aufzugsbelegungen und planen Ihren Münchner Umzug bis ins Detail.</p>
+
+                            <h3 className="text-2xl font-bold text-foreground">Umzug in Feucht & Nürnberger Land</h3>
+                            <p>Im Raum Feucht, Schwarzenbruck und dem Nürnberger Land bieten wir kurze Anfahrtszeiten und flexible Terminvergabe. Ideal für kurzfristige Umzüge in der Region.</p>
+                        </div>
                     </div>
 
-                    {/* Regional Expertise */}
+                    {/* Why FLOXANT */}
+                    <div className="prose prose-lg max-w-none text-muted-foreground">
+                        <h2 className="text-3xl font-bold text-foreground mb-6">Warum FLOXANT für Ihren Umzug wählen?</h2>
+                        <h3>Transparente Preisgestaltung</h3>
+                        <p>Versteckte Kosten gibt es bei uns nicht. Nach einer detaillierten Bestandsaufnahme erhalten Sie ein verbindliches Festpreisangebot. Darin sind alle Leistungen inkludiert: vom Verpackungsmaterial bis zur Versicherung.</p>
+                        <h3>Sicherheit und Versicherung</h3>
+                        <p>Als professionelles Unternehmen sind wir umfassend versichert. Eine Haftpflicht- und Transportversicherung schützt Ihr Eigentum während des gesamten Prozesses.</p>
+                        <h3>Fokus auf Nachhaltigkeit</h3>
+                        <p>Effiziente Routenplanung, wiederverwendbare Verpackungsmaterialien und fachgerechte Trennung bei Entrümpelungen. Bei Fernumzügen kombinieren wir Ladungen intelligent, um CO2 zu sparen.</p>
+                    </div>
+
+                    {/* Einsatzgebiet Bayern */}
                     <div className="bg-muted/20 p-8 rounded-3xl">
-                        <h2 className="text-2xl font-bold mb-6">Unsere Einsatzgebiete in der Region</h2>
+                        <h2 className="text-2xl font-bold mb-6">Einsatzgebiet Bayern – Alle Standorte</h2>
                         <p className="text-muted-foreground mb-8">
-                            Wir sind in allen größeren Städten und Regionen Bayerns aktiv. Unsere Teams kennen die lokalen Gegebenheiten, von den engen Gassen in Regensburg bis zu den Parkplatzsituationen in München.
+                            Wir sind in allen größeren Städten und Regionen Bayerns aktiv. Unsere Teams kennen die lokalen Gegebenheiten.
                         </p>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <Link href="/umzug-muenchen" className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${lang}/umzug-muenchen`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> München
                             </Link>
-                            <Link href="/umzug-nuernberg" className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${lang}/umzug-nuernberg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> Nürnberg
                             </Link>
-                            <Link href="/umzug-augsburg" className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${lang}/umzug-augsburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> Augsburg
                             </Link>
-                            <Link href="/umzug-regensburg" className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${lang}/umzug-regensburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> Regensburg
                             </Link>
+                        </div>
+                    </div>
+
+                    {/* Internal Links */}
+                    <div className="border-t border-border pt-12">
+                        <h3 className="text-lg font-semibold mb-6">Weitere Leistungen in Bayern</h3>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href={`/${lang}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
+                            <Link href={`/${lang}/reinigung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Bayern</Link>
+                            <Link href={`/${lang}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
+                            <Link href={`/${lang}/familienumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Familienumzug Bayern</Link>
+                            <Link href={`/${lang}/seniorenumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Seniorenumzug Bayern</Link>
+                            <Link href={`/${lang}/24h-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">24h Umzug Bayern</Link>
+                            <Link href={`/${lang}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
+                            <Link href={`/${lang}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
                         </div>
                     </div>
 

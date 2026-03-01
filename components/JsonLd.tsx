@@ -7,7 +7,7 @@ export function JsonLd({ lang }: { lang: string }) {
         "@type": "MovingCompany",
         "name": "FLOXANT",
         "image": "https://floxant.de/logo.png",
-        "description": "Professionelles Umzugsunternehmen für Bayern und deutschlandweite Fernumzüge. Spezialisiert auf Privatumzüge, Firmenumzüge und Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen für Bayern. Spezialisiert auf Privatumzüge, Firmenumzüge, Entrümpelungen und Reinigungen. Operativer Schwerpunkt Regensburg & Oberpfalz.",
         "url": `https://floxant.de/${lang}`,
         "telephone": "+4915771105087",
         "email": company.email,
@@ -20,34 +20,41 @@ export function JsonLd({ lang }: { lang: string }) {
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 51.2217,
-            "longitude": 6.7766
+            "latitude": 49.0134,
+            "longitude": 12.1016
         },
         "areaServed": [
-            { "@type": "AdministrativeArea", "name": "Bavaria" },
-            { "@type": "AdministrativeArea", "name": "North Rhine-Westphalia" },
+            { "@type": "State", "name": "Bayern" },
+            { "@type": "AdministrativeArea", "name": "Oberpfalz" },
             { "@type": "Country", "name": "Germany" }
         ],
         "serviceArea": [
-            { "@type": "City", "name": "München" },
-            { "@type": "City", "name": "Nürnberg" },
-            { "@type": "City", "name": "Augsburg" },
             { "@type": "City", "name": "Regensburg" },
+            { "@type": "City", "name": "Nürnberg" },
+            { "@type": "City", "name": "München" },
+            { "@type": "City", "name": "Augsburg" },
+            { "@type": "City", "name": "Feucht" },
             { "@type": "City", "name": "Ingolstadt" },
-            { "@type": "City", "name": "Düsseldorf" },
-            { "@type": "City", "name": "Köln" }
+            { "@type": "City", "name": "Düsseldorf" }
         ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Umzugs- und Reinigungsdienstleistungen",
+            "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Privatumzug" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Büroumzug" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fernumzug" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Entrümpelung" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reinigung" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wohnungsauflösung" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24h Umzugsservice" } },
+            ]
+        },
         "priceRange": "$$",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday"
-                ],
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                 "opens": "08:00",
                 "closes": "20:00"
             },
