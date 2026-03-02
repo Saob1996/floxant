@@ -22,8 +22,10 @@ const CookieBanner = dynamic(
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
+// Force Node.js runtime — consolidates all page functions into one
+// instead of creating separate Edge functions per route
+export const runtime = 'nodejs';
 // ISR: all pages render on demand, cache for 1 hour
-// This eliminates ~600 static pages from build output
 export const revalidate = 3600;
 export const dynamicParams = true;
 
