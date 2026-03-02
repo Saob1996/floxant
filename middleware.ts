@@ -54,11 +54,14 @@ export async function middleware(request: NextRequest) {
     if (pathnameIsMissingLocale) {
         const locale = i18n.defaultLocale; // Always 'de' — no browser detection
 
+        // Use 308 (Permanent Redirect) — NOT default 307 (Temporary)
+        // 308 preserves request method AND tells Google this is permanent
         return NextResponse.redirect(
             new URL(
                 `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
                 request.url
-            )
+            ),
+            308
         );
     }
 }
