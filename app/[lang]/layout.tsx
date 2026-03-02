@@ -22,12 +22,16 @@ const CookieBanner = dynamic(
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-// Force Node.js runtime — consolidates all page functions into one
-// instead of creating separate Edge functions per route
+// Node.js runtime — consolidates all page functions
 export const runtime = 'nodejs';
-// ISR: all pages render on demand, cache for 1 hour
+// ISR: cache pages for 1 hour, then revalidate
 export const revalidate = 3600;
-export const dynamicParams = true;
+
+// Define valid locale params — required for ISR caching
+// Without this, [lang] is treated as fully dynamic (no cache)
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
