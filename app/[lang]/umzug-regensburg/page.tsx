@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
+import { type Locale } from "../../../i18n-config";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPin, Milestone, Layers, Award, ArrowRight } from "lucide-react";
@@ -14,14 +15,12 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return {
-        title: "Umzugsfirma Regensburg | Festpreis & Versichert | FLOXANT",
-        description: "Professionelle Umzugsfirma in Regensburg & Oberpfalz. Privatumzüge, Firmenumzüge, Fernumzüge. Festpreisgarantie, voll versichert. Kostenlose Besichtigung – jetzt Angebot anfordern!",
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}/umzug-regensburg`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://www.floxant.de/${l}/umzug-regensburg`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    return generatePageSEO({
+        lang,
+        path: 'umzug-regensburg',
+        title: 'Umzugsfirma Regensburg | Festpreis | FLOXANT',
+        description: 'Professionelle Umzugsfirma in Regensburg & Oberpfalz. Privatumzüge, Firmenumzüge, Fernumzüge. Festpreisgarantie, voll versichert.',
+    });
 }
 
 export default async function UmzugRegensburg({ params }: { params: Promise<{ lang: string }> }) {

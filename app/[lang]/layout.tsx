@@ -36,42 +36,53 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
 
-    // Basic metadata generation - in a real app, this would be dynamic per dictionary
-    const title = lang === 'de' ? "Floxant – Umzug & Reinigung" : "Floxant – Moving & Cleaning";
+    const title = lang === 'de' ? "FLOXANT – Umzug & Reinigung in Bayern" : "FLOXANT – Moving & Cleaning in Bavaria";
+    const description = lang === 'de'
+        ? 'Professioneller Umzugsservice in Bayern. Regensburg, Nürnberg, München. Festpreis, versichert, kurzfristig verfügbar.'
+        : 'Professional moving services in Bavaria. Regensburg, Nuremberg, Munich. Fixed price, insured, available at short notice.';
+
+    const canonical = `https://www.floxant.de/${lang}`;
+
+    // hreflang for all locales + x-default
+    const languages: Record<string, string> = {
+        'x-default': 'https://www.floxant.de/de',
+    };
+    for (const l of i18n.locales) {
+        languages[l] = `https://www.floxant.de/${l}`;
+    }
 
     return {
         title: {
             default: title,
-            template: `%s | Floxant (${lang.toUpperCase()})`
+            template: `%s | FLOXANT`
         },
-        description: "Professional Moving & Cleaning Services.",
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}`,
-            languages: {
-                'de': 'https://www.floxant.de/de',
-                'en': 'https://www.floxant.de/en',
-                'ar': 'https://www.floxant.de/ar',
-                'tr': 'https://www.floxant.de/tr',
-                'ru': 'https://www.floxant.de/ru',
-                'uk': 'https://www.floxant.de/uk',
-                'pl': 'https://www.floxant.de/pl',
-                'ro': 'https://www.floxant.de/ro',
-                'bg': 'https://www.floxant.de/bg',
-                'es': 'https://www.floxant.de/es',
-                'fr': 'https://www.floxant.de/fr',
-                'it': 'https://www.floxant.de/it',
-                'fa': 'https://www.floxant.de/fa',
-                'zh': 'https://www.floxant.de/zh',
-                'vi': 'https://www.floxant.de/vi',
-                'ko': 'https://www.floxant.de/ko',
-                'ja': 'https://www.floxant.de/ja',
-            }
+        description,
+        alternates: { canonical, languages },
+        openGraph: {
+            type: 'website',
+            url: canonical,
+            title,
+            description,
+            siteName: 'FLOXANT',
+            locale: lang === 'de' ? 'de_DE' : lang,
+            images: [{
+                url: 'https://www.floxant.de/og.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'FLOXANT – Umzug & Reinigung in Bayern',
+            }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: ['https://www.floxant.de/og.jpg'],
         },
         icons: {
             icon: '/icon.png',
             shortcut: '/icon.png',
             apple: '/icon.png',
-        }
+        },
     };
 }
 

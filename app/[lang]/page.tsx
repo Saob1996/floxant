@@ -6,6 +6,7 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { ArrowRight, Box, Sparkles, Trash2, Phone } from "lucide-react";
 import Link from "next/link";
 import { company } from "@/lib/company";
+import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
 
 const SmartBookingWizard = dynamic(
@@ -20,22 +21,14 @@ const SignatureServices = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return {
-        title: lang === 'de' ? 'FLOXANT – Umzug, Reinigung & Entrümpelung in Bayern' : 'FLOXANT – Moving, Cleaning & Clearance in Bavaria',
+    return generatePageSEO({
+        lang,
+        path: '',
+        title: lang === 'de' ? 'FLOXANT – Umzug, Reinigung & Entrümpelung Bayern' : 'FLOXANT – Moving, Cleaning & Clearance Bavaria',
         description: lang === 'de'
-            ? 'Professioneller Umzugsservice in Bayern – Regensburg, Nürnberg, München. Reinigung, Entrümpelung & Wohnungsauflösung. Festpreis, versichert, kurzfristig verfügbar.'
-            : 'Professional moving services in Bavaria – Regensburg, Nuremberg, Munich. Cleaning, clearance & apartment dissolution. Fixed price, insured, available at short notice.',
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}`,
-            languages: {
-                ...i18n.locales.reduce((acc, l) => {
-                    acc[l] = `https://www.floxant.de/${l}`;
-                    return acc;
-                }, {} as Record<string, string>),
-                'x-default': 'https://www.floxant.de/de',
-            },
-        },
-    };
+            ? 'Professioneller Umzugsservice in Bayern. Regensburg, Nürnberg, München. Festpreis, versichert, kurzfristig verfügbar.'
+            : 'Professional moving services in Bavaria. Fixed price, insured, short notice availability.',
+    });
 }
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
