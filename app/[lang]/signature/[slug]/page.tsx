@@ -50,11 +50,9 @@ const SLUG_TO_KEY: Record<SignatureSlug, string> = {
     "schluesseluebergabe": "sig_key_handover",
 };
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-    return SIGNATURE_SLUGS.map((slug) => ({ slug }));
-}
+// ISR: render on demand, revalidate every hour (reduces static output by ~238 pages)
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 export async function generateMetadata({
     params,

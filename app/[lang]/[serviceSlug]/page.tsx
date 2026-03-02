@@ -47,11 +47,9 @@ const RELATED_SERVICES: Record<ServiceSlug, ServiceSlug[]> = {
     "halteverbotszone": ["umzug", "buero-umzug", "fernumzug"],
 };
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-    return SERVICE_SLUGS.map((slug) => ({ serviceSlug: slug }));
-}
+// ISR: render on demand, revalidate every hour (reduces static output by ~119 pages)
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 export async function generateMetadata({
     params,

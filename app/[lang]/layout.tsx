@@ -22,9 +22,10 @@ const CookieBanner = dynamic(
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-export async function generateStaticParams() {
-    return i18n.locales.map((locale) => ({ lang: locale }));
-}
+// ISR: all pages render on demand, cache for 1 hour
+// This eliminates ~600 static pages from build output
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
