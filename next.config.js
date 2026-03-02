@@ -8,6 +8,16 @@ const nextConfig = {
             },
         ],
     },
+    async redirects() {
+        return [
+            {
+                // Root → /de (replaces middleware)
+                source: '/',
+                destination: '/de',
+                permanent: true, // 301
+            },
+        ];
+    },
     async headers() {
         return [
             {
