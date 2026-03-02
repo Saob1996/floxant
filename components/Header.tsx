@@ -53,9 +53,9 @@ export function Header({ lang, dic }: HeaderProps) {
             )}
         >
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                <Link href={`/${lang}`} className="relative z-50">
+                <Link href={`/${lang}`} className="relative z-50 flex items-center gap-2">
                     <BrandLogo />
-                    {/* <span className="font-bold text-xl tracking-tighter">FLOXANT</span> */}
+                    <span className="font-bold text-xl tracking-tighter">FLOXANT</span>
                 </Link>
 
                 {/* Desktop Navigation */}
