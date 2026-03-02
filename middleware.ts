@@ -1,38 +1,31 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Inline locale list — no external imports needed
-const LOCALES = ['de', 'en', 'ar', 'tr', 'ru', 'uk', 'pl', 'ro', 'bg', 'es', 'fr', 'it', 'fa', 'zh', 'vi', 'ko', 'ja'] as const;
 const DEFAULT_LOCALE = 'de';
 
 export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
-    // Skip if pathname already has a valid locale prefix
-    const hasLocale = LOCALES.some(
-        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    );
-
-    if (hasLocale) {
-        return NextResponse.next();
+    // Root path → redirect to /de
+    if (pathname === '/') {
+        const url = request.nextUrl.clone();
+        url.pathname = `/${DEFAULT_LOCALE}`;
+        return NextResponse.redirect(url, 308);
     }
 
-    // No locale found — permanent redirect to /de/...
-    const url = request.nextUrl.clone();
-    url.pathname = `/${DEFAULT_LOCALE}${pathname}`;
-    return NextResponse.redirect(url, 308);
+    // Already has locale prefix → pass through
+    return NextResponse.next();
 }
 
 export const config = {
+    // Strict positive matcher — ONLY page routes, NO negative lookahead
+    // Middleware runs ONLY on these explicit patterns:
+    //   /           → root redirect to /de
+    //   /de/...     → pass through
+    //   /en/...     → pass through
+    //   etc.
     matcher: [
-        /*
-         * Run middleware ONLY on page routes.
-         * Exclude:
-         * - api routes (/api/...)
-         * - Next.js internals (/_next/...)
-         * - Static files (anything with a file extension like .png, .xml, .ico, .css, .js)
-         * - robots.txt, sitemap files
-         */
-        '/((?!api|_next|static|.*\\..*|favicon\\.ico|sitemap.*\\.xml|robots\\.txt).*)',
+        '/',
+        '/(de|en|ar|tr|ru|uk|pl|ro|bg|es|fr|it|fa|zh|vi|ko|ja)/:path*',
     ],
 };
