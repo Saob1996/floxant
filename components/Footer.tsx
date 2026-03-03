@@ -102,6 +102,8 @@ export function Footer({ lang, dic }: FooterProps) {
                     <Link href={`/${lang}/widerruf`} className="hover:text-foreground transition-colors">{dic.footer.revocation}</Link>
                     <span>·</span>
                     <Link href={`/${lang}/buchungsbedingungen`} className="hover:text-foreground transition-colors">{dic.footer.booking}</Link>
+                    <span>·</span>
+                    <Link href={`/${lang}/login`} className="hover:text-foreground transition-colors">Intern</Link>
                 </div>
 
                 {/* (D) Copyright */}
