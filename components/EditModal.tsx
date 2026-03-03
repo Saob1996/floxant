@@ -96,7 +96,7 @@ export function EditModal({ booking, onClose, onSave }: EditModalProps) {
                         >
                             Abbrechen
                         </button>
-                        <a href={`/dashboard/documents/${booking.id}`} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                        <a href={`/de/dashboard/documents/${booking.id}`} target="_blank" rel="noopener noreferrer" className="flex items-center">
                             <PremiumButton variant="outline" className="gap-2 h-9">
                                 Dokument
                             </PremiumButton>
