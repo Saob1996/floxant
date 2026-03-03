@@ -37,7 +37,7 @@ export default function LoginForm({ dict }: LoginFormProps) {
 
             if (res?.ok) {
                 console.log("Redirecting to dashboard via window.location...");
-                window.location.href = "/dashboard";
+                window.location.href = "/de/dashboard";
             } else {
                 setError(t.error_failed);
                 setLoading(false);
