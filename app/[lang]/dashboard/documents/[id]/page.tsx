@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { PremiumButton } from "@/components/ui/PremiumButton";
-import { Printer, Plus, Trash2 } from "lucide-react";
+import { Download, Printer, Plus, Trash2 } from "lucide-react";
 
 // Force dynamic rendering — prevents 404 on dynamic [id] param
 export const dynamic = 'force-dynamic';
@@ -18,17 +18,17 @@ interface LineItem {
 // FLOXANT Business Data (German Compliance)
 const BUSINESS = {
     name: "FLOXANT – Saleh Obid",
-    street: "", // Add when available
-    zip: "",
+    street: "Johanna-Kinkel-Straße 1 + 2",
+    zip: "93049",
     city: "Regensburg",
     country: "Deutschland",
     phone: "+49 1577 1105087",
     email: "info@floxant.de",
     steuernummer: "103/5163/5231",
-    // USt-IdNr: DE 45971484
+    ustIdNr: "DE 45971484",
     bank: "Sparkasse Neuss",
     iban: "DE87 3055 0000 0093 7290 93",
-    bic: "", // Add when available
+    bic: "",
     vatRate: 0.19,
     vatLabel: "Umsatzsteuer 19%",
 } as const;
@@ -127,13 +127,24 @@ export default function DocumentPage() {
                     </PremiumButton>
                 </div>
 
-                <PremiumButton onClick={() => window.print()} className="gap-2">
-                    <Printer size={16} /> Drucken / PDF
-                </PremiumButton>
+                <div className="flex gap-4">
+                    <PremiumButton
+                        onClick={() => {
+                            const url = `/api/pdf/${params.id}?type=${docType}`;
+                            window.open(url, '_blank');
+                        }}
+                        className="gap-2"
+                    >
+                        <Download size={16} /> PDF Herunterladen
+                    </PremiumButton>
+                    <PremiumButton variant="ghost" onClick={() => window.print()} className="gap-2 text-black hover:bg-black/5">
+                        <Printer size={16} /> Drucken
+                    </PremiumButton>
+                </div>
             </div>
 
             {/* A4 Page */}
-            <div className="max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-xl p-[20mm] print:shadow-none print:p-[15mm] relative text-sm leading-relaxed font-sans">
+            <div className="max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-xl p-[20mm] print:shadow-none print:p-[15mm] text-sm leading-relaxed font-sans flex flex-col">
 
                 {/* Header */}
                 <div className="flex justify-between items-start mb-12">
@@ -146,20 +157,18 @@ export default function DocumentPage() {
                     </div>
                     <div className="text-right text-[11px] text-gray-600 leading-relaxed">
                         <p className="font-semibold">{BUSINESS.name}</p>
-                        {BUSINESS.street && <p>{BUSINESS.street}</p>}
-                        {BUSINESS.zip && <p>{BUSINESS.zip} {BUSINESS.city}</p>}
-                        {!BUSINESS.zip && <p>{BUSINESS.city}</p>}
+                        <p>{BUSINESS.street}</p>
+                        <p>{BUSINESS.zip} {BUSINESS.city}</p>
                         <p>{BUSINESS.country}</p>
                         <p className="mt-2">Tel: {BUSINESS.phone}</p>
                         <p>E-Mail: {BUSINESS.email}</p>
-                        <p className="mt-2">St.-Nr.: {BUSINESS.steuernummer}</p>
                     </div>
                 </div>
 
                 {/* Recipient */}
                 <div className="mb-10 text-sm">
                     <p className="text-[9px] text-gray-400 mb-1 border-b border-gray-200 pb-1">
-                        {BUSINESS.name} · {BUSINESS.city} · {BUSINESS.country}
+                        {BUSINESS.name} · {BUSINESS.street} · {BUSINESS.zip} {BUSINESS.city}
                     </p>
                     <div className="mt-3">
                         <p className="font-medium">{booking.name}</p>
@@ -287,7 +296,7 @@ export default function DocumentPage() {
                 </div>
 
                 {/* Footer — Legal & Bank */}
-                <div className="absolute bottom-[20mm] left-[20mm] right-[20mm] border-t border-gray-300 pt-6 text-[9px] text-gray-600 leading-relaxed">
+                <div className="mt-auto pt-16 border-t border-gray-300 text-[9px] text-gray-600 leading-relaxed">
                     <p className="mb-3">
                         {docType === "angebot"
                             ? "Dieses Angebot ist freibleibend und 30 Tage gültig. Es gelten unsere AGB."
@@ -296,8 +305,8 @@ export default function DocumentPage() {
                     <div className="grid grid-cols-3 gap-6">
                         <div>
                             <p className="font-semibold mb-1">{BUSINESS.name}</p>
-                            {BUSINESS.street && <p>{BUSINESS.street}</p>}
-                            <p>{BUSINESS.city}, {BUSINESS.country}</p>
+                            <p>{BUSINESS.street}</p>
+                            <p>{BUSINESS.zip} {BUSINESS.city}</p>
                             <p>Tel: {BUSINESS.phone}</p>
                             <p>E-Mail: {BUSINESS.email}</p>
                         </div>
@@ -310,6 +319,7 @@ export default function DocumentPage() {
                         <div className="text-right">
                             <p className="font-semibold mb-1">Steuerliche Angaben</p>
                             <p>St.-Nr.: {BUSINESS.steuernummer}</p>
+                            <p>USt-IdNr: {BUSINESS.ustIdNr}</p>
                             <p className="mt-1 text-[8px]">
                                 Umsatzsteuer wird gemäß<br />
                                 §1 Abs. 1 Nr. 1 UStG berechnet.
