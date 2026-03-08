@@ -70,6 +70,7 @@ export function Footer({ lang, dic }: FooterProps) {
                             <li><Link href={`/${lang}/umzug-muenchen`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.munich}</Link></li>
                             <li><Link href={`/${lang}/umzug-augsburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.augsburg}</Link></li>
                             <li><Link href={`/${lang}/umzug-landshut`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Landshut</Link></li>
+                            <li><Link href={`/${lang}/umzug-passau`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Passau</Link></li>
                             <li><Link href={`/${lang}/umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.bavaria}</Link></li>
                         </ul>
                     </div>
@@ -82,6 +83,7 @@ export function Footer({ lang, dic }: FooterProps) {
                             <li><Link href={`/${lang}/seniorenumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Seniorenumzug</Link></li>
                             <li><Link href={`/${lang}/umzugskosten-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Umzugskosten</Link></li>
                             <li><Link href={`/${lang}/service-area-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Servicegebiet</Link></li>
+                            <li><Link href={`/${lang}/ratgeber`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Ratgeber</Link></li>
                         </ul>
                     </div>
                 </div>

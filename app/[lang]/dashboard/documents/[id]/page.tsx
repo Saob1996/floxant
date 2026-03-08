@@ -25,7 +25,7 @@ const BUSINESS = {
     phone: "+49 1577 1105087",
     email: "info@floxant.de",
     steuernummer: "103/5163/5231",
-    // USt-IdNr: will be added when issued
+    // USt-IdNr: DE 45971484
     bank: "Sparkasse Neuss",
     iban: "DE87 3055 0000 0093 7290 93",
     bic: "", // Add when available

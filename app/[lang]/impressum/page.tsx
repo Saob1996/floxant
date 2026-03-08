@@ -24,8 +24,8 @@ export default async function Impressum({ params }: { params: Promise<{ lang: st
                         <p>
                             FLOXANT<br />
                             Inhaber: Saleh Obid<br />
-                            Breite Straße 22<br />
-                            40213 Düsseldorf<br />
+                            Johanna-Kinkel-Straße 1 + 2<br />
+                            93049 Regensburg<br />
                             Deutschland
                         </p>
                     </section>
@@ -50,8 +50,8 @@ export default async function Impressum({ params }: { params: Promise<{ lang: st
                         <h2 className="text-xl font-semibold text-foreground mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
                         <p>
                             Saleh Obid<br />
-                            Breite Straße 22<br />
-                            40213 Düsseldorf
+                            Johanna-Kinkel-Straße 1 + 2<br />
+                            93049 Regensburg
                         </p>
                     </section>
 

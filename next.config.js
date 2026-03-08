@@ -11,6 +11,17 @@ const nextConfig = {
     async redirects() {
         return [
             {
+                source: '/:path*',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'floxant.de',
+                    },
+                ],
+                destination: 'https://www.floxant.de/:path*',
+                permanent: true,
+            },
+            {
                 // Root → /de (replaces middleware)
                 source: '/',
                 destination: '/de',

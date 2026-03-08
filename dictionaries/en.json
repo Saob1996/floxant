@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Service Areas",
-    "description": "FLOXANT is headquartered in Düsseldorf. Our operational hub is in Regensburg and the Upper Palatinate. From here, we serve clients throughout Bavaria and offer long-distance moves across Germany.",
-    "hub_note": "FLOXANT is headquartered in Düsseldorf. Our operational hub is in Regensburg and the Upper Palatinate. From here, we serve clients throughout Bavaria and offer long-distance moves across Germany.",
+    "description": "FLOXANT is headquartered in Regensburg. Our operational hub is in Regensburg and the Upper Palatinate. From here, we serve clients throughout Bavaria and offer long-distance moves across Germany.",
+    "hub_note": "FLOXANT is headquartered in Regensburg. Our operational hub is in Regensburg and the Upper Palatinate. From here, we serve clients throughout Bavaria and offer long-distance moves across Germany.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Bavaria",
@@ -183,7 +183,7 @@
       "intro_text_1": "Munich is a vibrant metropolis attracting people from all over the world. However, moving in the Bavarian capital often presents a logistical challenge. Narrow staircases in Schwabing, missing parking spaces in the Glockenbachviertel, or strict time windows in residential complexes: The conditions require experience and good planning.",
       "intro_text_2": "FLOXANT stands for a moving service that masters exactly these challenges. We don't just start working; we plan your relocation in detail. Our goal is for you to sit back and relax while we do the heavy lifting.",
       "transparency_title": "Transparency Note on Headquarters",
-      "transparency_text": "FLOXANT has its legal headquarters in Düsseldorf. However, our distinct team operates regularly for moves in Munich and the entire surrounding area. We combine the flexibility of a supra-regional provider with the reliability you expect. Additionally, we routinely organize long-distance moves from Munich to North Rhine-Westphalia and all other federal states.",
+      "transparency_text": "FLOXANT has its legal headquarters in Regensburg. However, our distinct team operates regularly for moves in Munich and the entire surrounding area. We combine the flexibility of a supra-regional provider with the reliability you expect. Additionally, we routinely organize long-distance moves from Munich to North Rhine-Westphalia and all other federal states.",
       "portfolio_title": "Our Service Portfolio for Munich",
       "services": {
         "city": {

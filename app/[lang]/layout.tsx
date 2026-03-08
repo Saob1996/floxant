@@ -36,9 +36,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
 
-    const title = lang === 'de' ? "FLOXANT – Umzug & Reinigung in Bayern" : "FLOXANT – Moving & Cleaning in Bavaria";
+    const title = lang === 'de' ? "Umzugsfirma Regensburg | Umzug, Reinigung & Entrümpelung | FLOXANT" : "FLOXANT – Moving & Cleaning in Bavaria";
     const description = lang === 'de'
-        ? 'Professioneller Umzugsservice in Bayern. Regensburg, Nürnberg, München. Festpreis, versichert, kurzfristig verfügbar.'
+        ? 'Professionelle Umzugsfirma in Regensburg. Umzug, Möbeltransport, Entrümpelung und Reinigung aus einer Hand. Schnell, zuverlässig und transparent. Jetzt Angebot anfordern.'
         : 'Professional moving services in Bavaria. Regensburg, Nuremberg, Munich. Fixed price, insured, available at short notice.';
 
     const canonical = `https://www.floxant.de/${lang}`;

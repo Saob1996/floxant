@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: '',
-        title: lang === 'de' ? 'FLOXANT – Umzug, Reinigung & Entrümpelung Bayern' : 'FLOXANT – Moving, Cleaning & Clearance Bavaria',
+        title: lang === 'de' ? 'Umzugsfirma Regensburg | Umzug, Reinigung & Entrümpelung | FLOXANT' : 'FLOXANT – Moving, Cleaning & Clearance Bavaria',
         description: lang === 'de'
-            ? 'Professioneller Umzugsservice in Bayern. Regensburg, Nürnberg, München. Festpreis, versichert, kurzfristig verfügbar.'
-            : 'Professional moving services in Bavaria. Fixed price, insured, short notice availability.',
+            ? 'Professionelle Umzugsfirma in Regensburg. Umzug, Möbeltransport, Entrümpelung und Reinigung aus einer Hand. Schnell, zuverlässig und transparent. Jetzt Angebot anfordern.'
+            : 'Professional moving services in Regensburg & Bavaria. Fixed price, insured, short notice availability.',
     });
 }
 
@@ -71,10 +71,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                         </div>
 
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/50 leading-[1.1]">
-                            {hero.title}
+                            {lang === 'de' ? 'Umzugsfirma in Regensburg' : hero.title}
                         </h1>
                         <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-                            {hero.subtitle}
+                            {lang === 'de' ? 'Ihr Partner für Umzug, Möbeltransport, Entrümpelung und Reinigung aus einer Hand.' : hero.subtitle}
                         </p>
                     </div>
 
@@ -115,9 +115,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
                 <div className="mx-auto max-w-7xl relative z-10">
                     <AnimateOnScroll className="text-center mb-20">
-                        <h2 className="text-4xl font-bold mb-6">{servicesSection.title}</h2>
+                        <h2 className="text-4xl font-bold mb-6">{lang === 'de' ? 'Unsere Leistungen' : servicesSection.title}</h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                             {servicesSection.subtitle}
+
                         </p>
                     </AnimateOnScroll>
 
@@ -152,7 +153,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 <div className="mx-auto max-w-7xl">
                     <div className="text-center mb-12">
                         <span className="text-sm font-medium tracking-[0.2em] text-primary/60 uppercase">{area.title}</span>
-                        <h2 className="text-3xl font-bold mt-2">Floxant {area.cities?.bavaria}</h2>
+                        <h2 className="text-3xl font-bold mt-2">{lang === 'de' ? 'Umzug in Bayern' : `Floxant ${area.cities?.bavaria}`}</h2>
                         <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
                             {area.description}
                         </p>

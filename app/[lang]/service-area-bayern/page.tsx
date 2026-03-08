@@ -36,7 +36,7 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
         "url": "https://floxant.de",
         "telephone": "+4915771105087",
         "email": "info@floxant.de",
-        "address": { "@type": "PostalAddress", "streetAddress": "Breite Straße 22", "addressLocality": "Düsseldorf", "postalCode": "40213", "addressCountry": "DE" },
+        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" },
         "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
         "areaServed": [
             { "@type": "State", "name": "Bayern" },
@@ -85,7 +85,7 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Mobiles Servicemodell für ganz Bayern</h2>
-                        <p>FLOXANT arbeitet mit einem mobilen Servicemodell. Unser Firmensitz liegt in Düsseldorf, der operative Schwerpunkt in Regensburg. Von hier aus koordinieren wir Einsätze in ganz Bayern. Unsere Teams fahren zu Ihnen – egal ob Großstadt oder ländlicher Raum. Alle Leistungen sind vor Ort verfügbar: Umzug, Reinigung, Entrümpelung, Wohnungsauflösung und unsere Signature Services.</p>
+                        <p>FLOXANT arbeitet mit einem mobilen Servicemodell. Unser Firmensitz liegt in Regensburg, von wo aus wir Einsätze in ganz Bayern koordinieren. Unsere Teams fahren zu Ihnen – egal ob Großstadt oder ländlicher Raum. Alle Leistungen sind vor Ort verfügbar: Umzug, Reinigung, Entrümpelung, Wohnungsauflösung und unsere Signature Services.</p>
                         <p>Durch unser Netzwerk und die regelmäßigen Fahrten innerhalb Bayerns können wir auch logistisch effiziente Beiladungen anbieten und Fernumzüge nach NRW und ganz Deutschland organisieren.</p>
                     </div>
 

@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: 'umzug-regensburg',
-        title: 'Umzugsfirma Regensburg | Festpreis | FLOXANT',
-        description: 'Professionelle Umzugsfirma in Regensburg & Oberpfalz. Privatumzüge, Firmenumzüge, Fernumzüge. Festpreisgarantie, voll versichert.',
+        title: 'Umzugsfirma Regensburg – Umzug & Möbeltransport | FLOXANT',
+        description: 'Ihr Umzug in Regensburg mit Profis. Möbeltransport, Entrümpelung und Reinigung schnell und zuverlässig. Jetzt kostenloses Angebot anfordern.',
     });
 }
 
@@ -48,12 +48,22 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
         "priceRange": "$$",
     };
 
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Umzug, Transport, Entrümpelung, Reinigung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Regensburg", "telephone": "+4915771105087", "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" } },
+        "areaServed": { "@type": "City", "name": "Regensburg" }
+    };
+
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={dict.nav} />
             <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: `/${lang}/umzug-bayern` }, { label: "Umzug Regensburg" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -66,6 +76,11 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         FLOXANT ist Ihr Umzugspartner in Regensburg und der Oberpfalz. Altstadt-Logistik, Festpreisgarantie und voll versicherter Transport – von der UNESCO-Welterbestadt in ganz Deutschland.
                     </p>
+                    <div className="flex flex-wrap justify-center gap-4 mt-8">
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Award className="w-4 h-4 text-primary" /> 100% Versichert</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><ArrowRight className="w-4 h-4 text-primary" /> Kostenlose Besichtigung</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Layers className="w-4 h-4 text-primary" /> Festpreisgarantie</span>
+                    </div>
                 </div>
             </section>
 
@@ -141,6 +156,24 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                             <Link href={`/${lang}/entruempelung-kosten-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Kosten Regensburg</Link>
                             <Link href={`/${lang}/umzug-nuernberg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Nürnberg</Link>
                             <Link href={`/${lang}/umzug-muenchen`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug München</Link>
+                        </div>
+                    </div>
+
+                    <div className="bg-muted/20 p-8 rounded-3xl border border-border/50 text-center">
+                        <h2 className="text-2xl font-bold mb-6">Was unsere Kunden in Regensburg sagen</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                            <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+                                <p className="italic text-muted-foreground mb-4">"Wir sind von der Altstadt in den Westen gezogen. Durch die engen Gassen dachten wir, es wird Chaos. FLOXANT hat alles perfekt organisiert, ohne einen Kratzer!"</p>
+                                <p className="font-semibold">– Familie M. aus Regensburg</p>
+                            </div>
+                            <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
+                                <p className="italic text-muted-foreground mb-4">"Super nettes Team und sehr transparenter Festpreis. Die Reinigung danach war auch ein großer Pluspunkt für uns bei der Wohnungsübergabe."</p>
+                                <p className="font-semibold">– Julian S.</p>
+                            </div>
+                            <div className="bg-card p-6 rounded-xl border border-border shadow-sm hidden md:block">
+                                <p className="italic text-muted-foreground mb-4">"Büroumzug innerhalb Regensburgs an einem Wochenende. Montagmorgen konnten alle wieder arbeiten. Top!"</p>
+                                <p className="font-semibold">– Kanzlei R.</p>
+                            </div>
                         </div>
                     </div>
 

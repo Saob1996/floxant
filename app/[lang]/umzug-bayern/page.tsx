@@ -60,7 +60,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                             Ein Umzug ist weit mehr als der Transport von Möbeln von A nach B. Er markiert einen neuen Lebensabschnitt, eine Veränderung, die oft mit viel Organisation und emotionalem Aufwand verbunden ist. Bei FLOXANT verstehen wir diese Herausforderung genau. Unser Anspruch ist es, Ihnen nicht nur schwere Kisten, sondern auch die Last der Planung abzunehmen.
                         </p>
                         <p className="bg-muted/30 p-6 rounded-xl border border-border/50 not-italic">
-                            <strong>Operativer Schwerpunkt Bayern:</strong> FLOXANT hat seinen Firmensitz in Düsseldorf. Unser operatives Zentrum liegt in Regensburg und der Oberpfalz. Von hier aus sind unsere Teams regelmäßig in ganz Bayern im Einsatz – in München, Nürnberg, Augsburg, Feucht und allen umliegenden Regionen. Zusätzlich organisieren wir routiniert Fernumzüge von Bayern nach NRW und ganz Deutschland.
+                            <strong>Operativer Schwerpunkt Bayern:</strong> FLOXANT hat seinen Firmensitz in Regensburg. Von hier aus sind unsere Teams regelmäßig in ganz Bayern im Einsatz – in München, Nürnberg, Augsburg, Feucht und allen umliegenden Regionen. Zusätzlich organisieren wir routiniert Fernumzüge von Bayern nach NRW und ganz Deutschland.
                         </p>
                         <p>
                             Unsere Philosophie basiert auf architektonischer Ordnung. Wir überlassen nichts dem Zufall. Jeder Handgriff sitzt, jede Phase des Umzugs ist durchgeplant. Das gibt Ihnen die Sicherheit, dass Ihr Hab und Gut in den besten Händen ist.

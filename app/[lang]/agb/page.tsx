@@ -23,7 +23,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                         <p className="font-semibold text-foreground">
                             FLOXANT<br />
                             Dienstleistungsunternehmen für Umzug, Transport, Reinigung und Zusatzservices<br />
-                            Sitz: Düsseldorf, Deutschland
+                            Sitz: Regensburg, Deutschland
                         </p>
                     </section>
 
@@ -189,7 +189,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                     <section>
                         <h2 className="text-xl font-semibold text-foreground mb-2">§13 Gerichtsstand und anwendbares Recht</h2>
                         <p>Es gilt ausschließlich deutsches Recht.</p>
-                        <p className="mt-2">Gerichtsstand für Kaufleute ist Düsseldorf.</p>
+                        <p className="mt-2">Gerichtsstand für Kaufleute ist Regensburg.</p>
                     </section>
 
                     <section>

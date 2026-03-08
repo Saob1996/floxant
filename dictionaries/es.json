@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Áreas de servicio",
-    "description": "La sede de FLOXANT está en Düsseldorf. Centro operativo en Regensburg.",
-    "hub_note": "La sede de FLOXANT está en Düsseldorf. Nuestro centro operativo está en Regensburg y Alto Palatinado. Desde aquí servimos a clientes en toda Baviera y ofrecemos mudanzas de larga distancia en toda Alemania.",
+    "description": "La sede de FLOXANT está en Regensburg. Centro operativo en Regensburg.",
+    "hub_note": "La sede de FLOXANT está en Regensburg. Nuestro centro operativo está en Regensburg y Alto Palatinado. Desde aquí servimos a clientes en toda Baviera y ofrecemos mudanzas de larga distancia en toda Alemania.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Baviera",
@@ -183,7 +183,7 @@
       "intro_text_1": "Múnich es una metrópoli dinámica. La mudanza en la capital bávara suele ser un desafío logístico. Escaleras estrechas, falta de aparcamiento – las condiciones requieren experiencia.",
       "intro_text_2": "FLOXANT es el servicio de mudanzas que domina estos desafíos. No solo empezamos – planificamos detalladamente.",
       "transparency_title": "Transparencia sobre la sede",
-      "transparency_text": "La sede legal de FLOXANT está en Düsseldorf. Sin embargo, nuestro equipo trabaja regularmente en Múnich.",
+      "transparency_text": "La sede legal de FLOXANT está en Regensburg. Sin embargo, nuestro equipo trabaja regularmente en Múnich.",
       "portfolio_title": "Nuestro portafolio para Múnich",
       "services": {
         "city": {

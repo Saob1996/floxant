@@ -28,7 +28,7 @@ export default async function Widerrufsbelehrung({ params }: { params: Promise<{
                         <h2 className="text-xl font-semibold text-foreground mb-2">Widerrufsfrist</h2>
                         <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.</p>
                         <p className="mt-2">
-                            Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (FLOXANT, Breite Straße 22, 40213 Düsseldorf, Deutschland, Telefon: +49 1577 1105087) mittels einer eindeutigen Erklärung (z. B. per Telefon oder E-Mail) über Ihren Entschluss informieren.
+                            Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (FLOXANT, Johanna-Kinkel-Straße 1 + 2, 93049 Regensburg, Deutschland, Telefon: +49 1577 1105087) mittels einer eindeutigen Erklärung (z. B. per Telefon oder E-Mail) über Ihren Entschluss informieren.
                         </p>
                     </section>
 

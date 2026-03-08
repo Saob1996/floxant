@@ -41,6 +41,7 @@ export const CITY_PAGES = [
     'umzug-nuernberg',
     'umzug-augsburg',
     'umzug-regensburg',
+    'umzug-passau',
     'umzug-neumarkt',
     'umzug-schwandorf',
     'umzug-amberg',
@@ -78,6 +79,26 @@ export const SIGNATURE_SEO_PAGES = [
 export const LONGTAIL_PAGES = [
     'umzugskosten-bayern',
     'entruempelung-kosten-regensburg',
+] as const;
+
+/** Ratgeber / Blog pages — Priority 0.6 for DE */
+export const RATGEBER_PAGES = [
+    'ratgeber',
+    'ratgeber/umzug-kosten-regensburg',
+    'ratgeber/checkliste-umzug',
+    'ratgeber/gute-umzugsfirma-finden',
+    'ratgeber/entruempelung-kosten-pro-m3',
+    'ratgeber/umzug-vorbereiten-7-schritte',
+    'ratgeber/wann-lohnt-sich-umzugsfirma',
+    'ratgeber/moebeltransport-sicher',
+    'ratgeber/umzug-tipps-familien',
+    'ratgeber/reinigung-nach-umzug',
+    'ratgeber/umzug-kosten-rechner',
+    'ratgeber/umzug-anmelden-ummelden',
+    'ratgeber/umzug-versicherung',
+    'ratgeber/wohnungsaufloesung-tipps',
+    'ratgeber/umzug-im-winter',
+    'ratgeber/umzug-erste-wohnung',
 ] as const;
 
 /** Signature services (dynamic route /signature/[slug]) — Priority 0.7 for DE */

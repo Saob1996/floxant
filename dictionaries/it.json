@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Aree di servizio",
-    "description": "La sede di FLOXANT è a Düsseldorf. Centro operativo a Regensburg.",
-    "hub_note": "La sede di FLOXANT è a Düsseldorf. Il nostro centro operativo è a Regensburg e Alto Palatinato. Da qui serviamo clienti in tutta la Baviera e offriamo traslochi a lunga distanza in tutta la Germania.",
+    "description": "La sede di FLOXANT è a Regensburg. Centro operativo a Regensburg.",
+    "hub_note": "La sede di FLOXANT è a Regensburg. Il nostro centro operativo è a Regensburg e Alto Palatinato. Da qui serviamo clienti in tutta la Baviera e offriamo traslochi a lunga distanza in tutta la Germania.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Baviera",
@@ -183,7 +183,7 @@
       "intro_text_1": "Monaco è una metropoli dinamica. Il trasloco nella capitale bavarese è spesso una sfida logistica. Scale strette, mancanza di parcheggio – le condizioni richiedono esperienza e buona pianificazione.",
       "intro_text_2": "FLOXANT è il servizio traslochi che gestisce queste sfide. Non iniziamo semplicemente – pianifichiamo nel dettaglio.",
       "transparency_title": "Trasparenza sulla sede",
-      "transparency_text": "La sede legale di FLOXANT è a Düsseldorf. Il nostro team lavora regolarmente a Monaco.",
+      "transparency_text": "La sede legale di FLOXANT è a Regensburg. Il nostro team lavora regolarmente a Monaco.",
       "portfolio_title": "Il nostro portfolio per Monaco",
       "services": {
         "city": {

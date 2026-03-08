@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Zones de service",
-    "description": "Le siège de FLOXANT se trouve à Düsseldorf. Centre opérationnel à Regensburg.",
-    "hub_note": "Le siège de FLOXANT se trouve à Düsseldorf. Notre centre opérationnel est à Regensburg et Haut-Palatinat. De là, nous desservons la Bavière et toute l'Allemagne.",
+    "description": "Le siège de FLOXANT se trouve à Regensburg. Centre opérationnel à Regensburg.",
+    "hub_note": "Le siège de FLOXANT se trouve à Regensburg. Notre centre opérationnel est à Regensburg et Haut-Palatinat. De là, nous desservons la Bavière et toute l'Allemagne.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Bavière",
@@ -183,7 +183,7 @@
       "intro_text_1": "Munich est une métropole dynamique. Le déménagement dans la capitale bavaroise représente souvent un défi logistique. Escaliers étroits, manque de stationnement – les conditions exigent expérience et planification.",
       "intro_text_2": "FLOXANT est le service de déménagement qui maîtrise ces défis. Nous ne commençons pas simplement – nous planifions en détail.",
       "transparency_title": "Transparence sur le siège",
-      "transparency_text": "Le siège légal de FLOXANT est à Düsseldorf. Notre équipe travaille régulièrement à Munich.",
+      "transparency_text": "Le siège légal de FLOXANT est à Regensburg. Notre équipe travaille régulièrement à Munich.",
       "portfolio_title": "Notre portefeuille pour Munich",
       "services": {
         "city": {

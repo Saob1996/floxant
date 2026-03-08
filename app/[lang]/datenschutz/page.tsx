@@ -31,8 +31,8 @@ export default async function Datenschutz({ params }: { params: Promise<{ lang: 
                         <p>
                             FLOXANT<br />
                             Inhaber: Saleh Obid<br />
-                            Breite Straße 22<br />
-                            40213 Düsseldorf<br />
+                            Johanna-Kinkel-Straße 1 + 2<br />
+                            93049 Regensburg<br />
                             Deutschland<br />
                             Telefon: +49 1577 1105087<br />
                             E-Mail: [wird ergänzt]

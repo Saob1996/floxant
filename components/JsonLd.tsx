@@ -33,9 +33,9 @@ export function JsonLd({ lang }: { lang: string }) {
         "email": company.email,
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Breite Straße 22",
-            "addressLocality": "Düsseldorf",
-            "postalCode": "40213",
+            "streetAddress": "Johanna-Kinkel-Straße 1 + 2",
+            "addressLocality": "Regensburg",
+            "postalCode": "93049",
             "addressCountry": "DE"
         },
         "geo": {

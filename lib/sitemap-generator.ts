@@ -14,6 +14,7 @@ import {
     BAVARIA_AUTHORITY_PAGES,
     SIGNATURE_SEO_PAGES,
     LONGTAIL_PAGES,
+    RATGEBER_PAGES,
     SIGNATURE_SERVICES,
     LEGAL_PAGES,
     HIGH_VALUE_ROUTES_FOR_NON_DE,
@@ -129,6 +130,11 @@ function getUrlsForLocale(locale: string): SitemapUrl[] {
         LONGTAIL_PAGES.forEach((slug) => {
             urls.push(buildUrl(locale, slug, '0.6', 'monthly'));
         });
+
+        // Ratgeber / Blog pages — 0.6
+        RATGEBER_PAGES.forEach((slug) => {
+            urls.push(buildUrl(locale, slug, '0.6', 'weekly'));
+        });
     }
 
     return urls;
@@ -176,6 +182,10 @@ export function generateCoreSitemap(): string {
 
     // Long-tail
     LONGTAIL_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.6', 'monthly')));
+
+    // Ratgeber / Blog
+    RATGEBER_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.6', 'weekly')));
+
 
     return wrapUrlset(urls.map(urlToXml));
 }
