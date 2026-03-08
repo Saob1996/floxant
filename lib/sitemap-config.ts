@@ -50,11 +50,21 @@ export const CITY_PAGES = [
     'umzug-landshut',
 ] as const;
 
-/** Regensburg-specific service pages — Priority 0.9 for DE */
-export const REGENSBURG_PAGES = [
+/** Service-specific city pages — Priority 0.9 for DE */
+export const SERVICE_CITY_PAGES = [
     'reinigung-regensburg',
     'entruempelung-regensburg',
     'buero-umzug-regensburg',
+    'reinigung-muenchen',
+    'reinigung-nuernberg',
+    'reinigung-augsburg',
+    'reinigung-passau',
+    'reinigung-landshut',
+    'entruempelung-muenchen',
+    'entruempelung-nuernberg',
+    'entruempelung-augsburg',
+    'entruempelung-passau',
+    'entruempelung-landshut',
 ] as const;
 
 /** Bavaria authority pages — Priority 0.9 for DE */
@@ -135,7 +145,7 @@ export const HIGH_VALUE_ROUTES_FOR_NON_DE = [
     '', // homepage
     ...CORE_SERVICES,
     ...CITY_PAGES,
-    ...REGENSBURG_PAGES,
+    ...SERVICE_CITY_PAGES,
     ...BAVARIA_AUTHORITY_PAGES,
 ] as const;
 

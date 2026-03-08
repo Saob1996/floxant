@@ -52,9 +52,20 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         iconIndex: index,
     }));
 
+    const faqJsonLd = {
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Was kostet ein Umzug in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": "Ein Umzug in Regensburg kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
+            { "@type": "Question", "name": "Bietet FLOXANT auch Reinigung und Entrümpelung?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. FLOXANT bietet Umzug, professionelle Reinigung und Entrümpelung aus einer Hand in ganz Bayern." } },
+            { "@type": "Question", "name": "In welchen Städten ist FLOXANT aktiv?", "acceptedAnswer": { "@type": "Answer", "text": "FLOXANT ist in ganz Bayern aktiv, insbesondere in Regensburg, München, Nürnberg, Augsburg, Passau, Landshut, Straubing und weiteren Städten." } },
+            { "@type": "Question", "name": "Wie schnell kann FLOXANT einen Umzug durchführen?", "acceptedAnswer": { "@type": "Answer", "text": "FLOXANT bietet auch kurzfristige Umzüge innerhalb von 24 bis 48 Stunden. Kontaktieren Sie uns für eine schnelle Verfügbarkeit." } },
+        ],
+    };
+
     return (
         <main className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background overflow-hidden">
             <Header lang={lang} dic={nav} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             {/* Hero Section — fully server-rendered with CSS animations */}
             <section id="zero" className="relative pt-32 pb-20 px-6 lg:pt-48">
@@ -159,23 +170,64 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <Link href={`/${lang}/umzug-regensburg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.regensburg || 'Regensburg'}</h3>
+                        </Link>
                         <Link href={`/${lang}/umzug-muenchen`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.munich}</h3>
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.munich || 'München'}</h3>
                         </Link>
                         <Link href={`/${lang}/umzug-nuernberg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.nuremberg}</h3>
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.nuremberg || 'Nürnberg'}</h3>
                         </Link>
                         <Link href={`/${lang}/umzug-augsburg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.augsburg}</h3>
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.augsburg || 'Augsburg'}</h3>
                         </Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.regensburg}</h3>
+                        <Link href={`/${lang}/umzug-passau`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">Passau</h3>
+                        </Link>
+                        <Link href={`/${lang}/umzug-landshut`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">Landshut</h3>
+                        </Link>
+                        <Link href={`/${lang}/umzug-straubing`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">Straubing</h3>
+                        </Link>
+                        <Link href={`/${lang}/umzug-schwandorf`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">Schwandorf</h3>
+                        </Link>
+                        <Link href={`/${lang}/umzug-amberg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">Amberg</h3>
                         </Link>
                         <Link href={`/${lang}/umzug-bayern`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center bg-primary/5">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.bavaria}</h3>
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.bavaria || 'Ganz Bayern'}</h3>
                         </Link>
                     </div>
+
+                    {/* Service Links */}
+                    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <Link href={`/${lang}/reinigung-bayern`} className="group glass p-6 rounded-2xl border border-white/10 hover:border-primary/30 transition-all">
+                            <h3 className="text-lg font-bold group-hover:text-primary transition-colors mb-2">Reinigung Bayern</h3>
+                            <p className="text-sm text-muted-foreground">Professionelle Endreinigung für Wohnungsübergabe in ganz Bayern.</p>
+                        </Link>
+                        <Link href={`/${lang}/entruempelung-bayern`} className="group glass p-6 rounded-2xl border border-white/10 hover:border-primary/30 transition-all">
+                            <h3 className="text-lg font-bold group-hover:text-primary transition-colors mb-2">Entrümpelung Bayern</h3>
+                            <p className="text-sm text-muted-foreground">Entrümpelung und Wohnungsauflösung schnell und zuverlässig.</p>
+                        </Link>
+                        <Link href={`/${lang}/ratgeber`} className="group glass p-6 rounded-2xl border border-white/10 hover:border-primary/30 transition-all">
+                            <h3 className="text-lg font-bold group-hover:text-primary transition-colors mb-2">Umzug Ratgeber</h3>
+                            <p className="text-sm text-muted-foreground">Tipps, Checklisten und Kostenübersichten rund um Ihren Umzug.</p>
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* SEO Text Section */}
+            <section className="py-16 px-6 border-t border-border/50">
+                <div className="mx-auto max-w-4xl prose prose-lg text-muted-foreground">
+                    <h2 className="text-2xl font-bold text-foreground">Ihre professionelle Umzugsfirma in Bayern</h2>
+                    <p>FLOXANT ist Ihr zuverlässiger Partner für Umzug, Reinigung und Entrümpelung in Bayern. Mit Sitz in Regensburg betreuen wir Kunden in der gesamten Region – von München über Nürnberg und Augsburg bis Passau. Unser erfahrenes Team garantiert einen reibungslosen Ablauf, faire Festpreise und vollständigen Versicherungsschutz.</p>
+                    <p>Ob Privatumzug, Firmenumzug, Fernumzug, Studentenumzug oder Seniorenumzug – wir passen unseren Service exakt an Ihre Bedürfnisse an. Zusätzlich bieten wir professionelle Reinigung für die Wohnungsübergabe und fachgerechte Entrümpelung aus einer Hand.</p>
+                    <p>Fordern Sie jetzt Ihr <strong>kostenloses Festpreisangebot</strong> an – telefonisch, per E-Mail oder über unser Online-Formular. Wir freuen uns auf Ihren Umzug in Bayern!</p>
                 </div>
             </section>
         </main>

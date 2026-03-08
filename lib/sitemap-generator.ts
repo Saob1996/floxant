@@ -10,7 +10,7 @@ import {
     ALL_LOCALES,
     CORE_SERVICES,
     CITY_PAGES,
-    REGENSBURG_PAGES,
+    SERVICE_CITY_PAGES,
     BAVARIA_AUTHORITY_PAGES,
     SIGNATURE_SEO_PAGES,
     LONGTAIL_PAGES,
@@ -109,7 +109,7 @@ function getUrlsForLocale(locale: string): SitemapUrl[] {
     });
 
     // Regensburg service pages — 0.9 DE, 0.5 non-DE
-    REGENSBURG_PAGES.forEach((slug) => {
+    SERVICE_CITY_PAGES.forEach((slug) => {
         urls.push(buildUrl(locale, slug, isDE ? '0.9' : '0.5', 'weekly'));
     });
 
@@ -172,7 +172,7 @@ export function generateCoreSitemap(): string {
     CITY_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
 
     // Regensburg pages
-    REGENSBURG_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
+    SERVICE_CITY_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
 
     // Bavaria authority pages
     BAVARIA_AUTHORITY_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
