@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
+import { type Locale } from "../../../i18n-config";
+import { generatePageSEO } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
@@ -14,14 +15,12 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return {
-        title: "Umzugsfirma Feucht | Nürnberger Land | FLOXANT",
-        description: "Professionelle Umzugsfirma in Feucht bei Nürnberg. Privatumzüge, Firmenumzüge, Entrümpelung. Festpreisgarantie, voll versichert. Schnell verfügbar.",
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}/umzug-feucht`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://www.floxant.de/${l}/umzug-feucht`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    return generatePageSEO({
+        lang,
+        path: 'umzug-feucht',
+        title: 'Umzugsfirma Feucht | Nürnberger Land | FLOXANT',
+        description: 'Professionelle Umzugsfirma in Feucht bei Nürnberg. Privatumzüge, Firmenumzüge, Entrümpelung. Festpreisgarantie, voll versichert. Schnell verfügbar.',
+    });
 }
 
 export default async function UmzugFeucht({ params }: { params: Promise<{ lang: string }> }) {

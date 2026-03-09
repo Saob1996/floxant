@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
+import { type Locale } from "../../../i18n-config";
+import { generatePageSEO } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
@@ -14,14 +15,12 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return {
-        title: "Umzugsfirma Schwandorf | Festpreis | FLOXANT",
-        description: "Professionelle Umzugsfirma in Schwandorf & Oberpfalz. Privatumzüge, Entrümpelung, Fernumzüge. Festpreisgarantie, voll versichert. Kurze Anfahrt ab Regensburg.",
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}/umzug-schwandorf`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://www.floxant.de/${l}/umzug-schwandorf`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    return generatePageSEO({
+        lang,
+        path: 'umzug-schwandorf',
+        title: 'Umzugsfirma Schwandorf | Festpreis | FLOXANT',
+        description: 'Professionelle Umzugsfirma in Schwandorf & Oberpfalz. Privatumzüge, Entrümpelung, Fernumzüge. Festpreisgarantie, voll versichert. Kurze Anfahrt ab Regensburg.',
+    });
 }
 
 export default async function UmzugSchwandorf({ params }: { params: Promise<{ lang: string }> }) {

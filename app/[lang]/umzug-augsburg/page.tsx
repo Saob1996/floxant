@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
+import { type Locale } from "../../../i18n-config";
+import { generatePageSEO } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
@@ -14,14 +15,12 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return {
-        title: "Umzugsfirma Augsburg | Festpreis & Versichert | FLOXANT",
-        description: "Zuverlässiger Umzugsservice in Augsburg & Schwaben. Privatumzüge, Full-Service, Fernumzüge deutschlandweit. Festpreisgarantie. Jetzt kostenloses Angebot anfordern!",
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}/umzug-augsburg`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://www.floxant.de/${l}/umzug-augsburg`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    return generatePageSEO({
+        lang,
+        path: 'umzug-augsburg',
+        title: 'Umzugsfirma Augsburg | Festpreis & Versichert | FLOXANT',
+        description: 'Zuverlässiger Umzugsservice in Augsburg & Schwaben. Privatumzüge, Full-Service, Fernumzüge deutschlandweit. Festpreisgarantie. Jetzt kostenloses Angebot anfordern!',
+    });
 }
 
 export default async function UmzugAugsburg({ params }: { params: Promise<{ lang: string }> }) {
@@ -46,6 +45,7 @@ export default async function UmzugAugsburg({ params }: { params: Promise<{ lang
         "geo": { "@type": "GeoCoordinates", "latitude": 48.3705, "longitude": 10.8978 },
         "areaServed": [{ "@type": "City", "name": "Augsburg" }, { "@type": "City", "name": "Friedberg" }, { "@type": "AdministrativeArea", "name": "Schwaben" }],
         "priceRange": "$$",
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "127", "bestRating": "5" },
     };
 
     return (

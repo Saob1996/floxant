@@ -88,9 +88,12 @@ export function Footer({ lang, dic }: FooterProps) {
                     </div>
                 </div>
 
-                {/* (B) Logo */}
-                <div className="w-full flex items-center justify-center py-10 border-t border-border/10">
+                {/* (B) Logo + Trust */}
+                <div className="w-full flex items-center justify-center gap-8 py-10 border-t border-border/10 flex-wrap">
                     <BrandLogo size={{ base: 44, md: 60 }} />
+                    <a href="https://www.check24.de" target="_blank" rel="noopener noreferrer" title="zum CHECK24 Profi Profil" className="opacity-60 hover:opacity-100 transition-opacity">
+                        <img src="https://cdn.profis.check24.de/widget/2026.svg" alt="CHECK24 Profi Siegel" width="120" height="104" loading="lazy" className="h-10 w-auto object-contain" />
+                    </a>
                 </div>
 
                 {/* (C) Legal links — small & de-emphasized */}

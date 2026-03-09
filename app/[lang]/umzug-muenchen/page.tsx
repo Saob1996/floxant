@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
+import { type Locale } from "../../../i18n-config";
+import { generatePageSEO } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
@@ -14,15 +15,12 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
-    return {
-        title: `Umzugsfirma München | Festpreis & Versichert | FLOXANT`,
-        description: "Professionelle Umzugsfirma in München & Oberbayern. Halteverbotszone, Aufzugsservice, Fernumzüge. Festpreisgarantie, voll versichert. Jetzt kostenloses Angebot anfordern!",
-        alternates: {
-            canonical: `https://www.floxant.de/${lang}/umzug-muenchen`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://www.floxant.de/${l}/umzug-muenchen`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    return generatePageSEO({
+        lang,
+        path: 'umzug-muenchen',
+        title: 'Umzugsfirma München | Festpreis & Versichert | FLOXANT',
+        description: 'Professionelle Umzugsfirma in München & Oberbayern. Halteverbotszone, Aufzugsservice, Fernumzüge. Festpreisgarantie, voll versichert. Jetzt kostenloses Angebot anfordern!',
+    });
 }
 
 export default async function UmzugMuenchen({ params }: { params: Promise<{ lang: string }> }) {
@@ -49,6 +47,7 @@ export default async function UmzugMuenchen({ params }: { params: Promise<{ lang
         "geo": { "@type": "GeoCoordinates", "latitude": 48.1351, "longitude": 11.5820 },
         "areaServed": [{ "@type": "City", "name": "München" }, { "@type": "City", "name": "Freising" }, { "@type": "AdministrativeArea", "name": "Oberbayern" }],
         "priceRange": "$$",
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "127", "bestRating": "5" },
     };
 
     // Fallback content if dictionary keys aren't available

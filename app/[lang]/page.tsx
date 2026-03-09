@@ -120,6 +120,18 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 </div>
             </section>
 
+            {/* Trust Partners */}
+            <section className="py-10 px-6 border-y border-border/30">
+                <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
+                    <span className="text-xs font-medium tracking-widest text-muted-foreground/50 uppercase">Bekannt aus</span>
+                    <div className="flex items-center justify-center gap-8 flex-wrap">
+                        <a href="https://www.check24.de" target="_blank" rel="noopener noreferrer" title="zum CHECK24 Profi Profil" className="opacity-80 hover:opacity-100 transition-opacity">
+                            <img src="https://cdn.profis.check24.de/widget/2026.svg" alt="CHECK24 Profi Siegel" width="150" height="130" loading="lazy" className="h-16 w-auto object-contain" />
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             {/* Services Section — server-rendered with CSS scroll animations */}
             <section id="services" className="py-32 px-6 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent pointer-events-none" />

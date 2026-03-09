@@ -53,8 +53,9 @@ export function JsonLd({ lang }: { lang: string }) {
             { "@type": "City", "name": "Nürnberg" },
             { "@type": "City", "name": "München" },
             { "@type": "City", "name": "Augsburg" },
-            { "@type": "City", "name": "Feucht" },
+            { "@type": "City", "name": "Passau" },
             { "@type": "City", "name": "Landshut" },
+            { "@type": "City", "name": "Feucht" },
             { "@type": "City", "name": "Straubing" },
             { "@type": "City", "name": "Schwandorf" },
             { "@type": "City", "name": "Amberg" },
@@ -71,8 +72,27 @@ export function JsonLd({ lang }: { lang: string }) {
                 { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reinigung" } },
                 { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wohnungsauflösung" } },
                 { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24h Umzugsservice" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Seniorenumzug" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Studentenumzug" } },
             ]
         },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "vatID": "DE45971484",
+        "taxID": "103/5163/5231",
+        "foundingDate": "2022",
+        "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "minValue": 5,
+            "maxValue": 15
+        },
+        "paymentAccepted": "Bar, Überweisung, PayPal",
+        "currenciesAccepted": "EUR",
         "priceRange": "$$",
         "openingHoursSpecification": [
             {
