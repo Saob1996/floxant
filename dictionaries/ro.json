@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Zone de servicii",
-    "description": "Sediul FLOXANT se află în Düsseldorf. Centrul nostru operațional este în Regensburg și Oberpfalz.",
-    "hub_note": "Sediul FLOXANT se află în Düsseldorf. Centrul nostru operațional este în Regensburg și Oberpfalz. De aici deservim clienți în toată Bavaria și oferim mutări la distanță lungă în toată Germania.",
+    "description": "Sediul FLOXANT se află în Regensburg. Centrul nostru operațional este în Regensburg și Oberpfalz.",
+    "hub_note": "Sediul FLOXANT se află în Regensburg. Centrul nostru operațional este în Regensburg și Oberpfalz. De aici deservim clienți în toată Bavaria și oferim mutări la distanță lungă în toată Germania.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Bavaria",
@@ -183,7 +183,7 @@
       "intro_text_1": "München este o metropolă dinamică. Mutarea în capitala Bavariei reprezintă adesea o provocare logistică. Scări înguste, lipsa locurilor de parcare – condițiile necesită experiență și planificare.",
       "intro_text_2": "FLOXANT este serviciul de mutări care gestionează exact aceste provocări. Nu doar începem – planificăm detaliat mutarea dvs.",
       "transparency_title": "Transparență privind sediul",
-      "transparency_text": "Sediul legal FLOXANT se află în Düsseldorf. Cu toate acestea, echipa noastră lucrează regulat la mutări în München.",
+      "transparency_text": "Sediul legal FLOXANT se află în Regensburg. Cu toate acestea, echipa noastră lucrează regulat la mutări în München.",
       "portfolio_title": "Portofoliul nostru pentru München",
       "services": {
         "city": {

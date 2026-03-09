@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Obszary usług",
-    "description": "Siedziba FLOXANT mieści się w Düsseldorfie. Nasze centrum operacyjne to Regensburg i Górny Palatynat.",
-    "hub_note": "Siedziba FLOXANT mieści się w Düsseldorfie. Nasze centrum operacyjne to Regensburg i Górny Palatynat. Stąd obsługujemy klientów w całej Bawarii.",
+    "description": "Siedziba FLOXANT mieści się w Regensburgie. Nasze centrum operacyjne to Regensburg i Górny Palatynat.",
+    "hub_note": "Siedziba FLOXANT mieści się w Regensburgie. Nasze centrum operacyjne to Regensburg i Górny Palatynat. Stąd obsługujemy klientów w całej Bawarii.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Bawaria",
@@ -183,7 +183,7 @@
       "intro_text_1": "Monachium to dynamiczna metropolia przyciągająca ludzi z całego świata. Jednak przeprowadzka w stolicy Bawarii często stanowi wyzwanie logistyczne. Wąskie klatki schodowe, brak miejsc parkingowych – warunki wymagają doświadczenia i dobrego planowania.",
       "intro_text_2": "FLOXANT to serwis przeprowadzkowy, który mistrzowsko radzi sobie z tymi wyzwaniami. Nie zaczynamy po prostu pracy – szczegółowo planujemy Twoją przeprowadzkę.",
       "transparency_title": "Przejrzystość dotycząca siedziby",
-      "transparency_text": "Siedziba FLOXANT mieści się w Düsseldorfie. Nasz zespół regularnie realizuje przeprowadzki w Monachium i okolicach.",
+      "transparency_text": "Siedziba FLOXANT mieści się w Regensburgie. Nasz zespół regularnie realizuje przeprowadzki w Monachium i okolicach.",
       "portfolio_title": "Nasz portfel usług dla Monachium",
       "services": {
         "city": {

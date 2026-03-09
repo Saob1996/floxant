@@ -174,7 +174,7 @@ const plT = {
     muc_badge: "Monachium i okolice", muc_intro_title: "Przeprowadzka w Monachium – z planem i precyzją",
     muc_intro1: "Monachium to dynamiczna metropolia przyciągająca ludzi z całego świata. Jednak przeprowadzka w stolicy Bawarii często stanowi wyzwanie logistyczne. Wąskie klatki schodowe, brak miejsc parkingowych – warunki wymagają doświadczenia i dobrego planowania.",
     muc_intro2: "FLOXANT to serwis przeprowadzkowy, który mistrzowsko radzi sobie z tymi wyzwaniami. Nie zaczynamy po prostu pracy – szczegółowo planujemy Twoją przeprowadzkę.",
-    transp_title: "Przejrzystość dotycząca siedziby", transp_text: "Siedziba FLOXANT mieści się w Düsseldorfie. Nasz zespół regularnie realizuje przeprowadzki w Monachium i okolicach.",
+    transp_title: "Przejrzystość dotycząca siedziby", transp_text: "Siedziba FLOXANT mieści się w Regensburgie. Nasz zespół regularnie realizuje przeprowadzki w Monachium i okolicach.",
     portfolio: "Nasz portfel usług dla Monachium",
     city_move: "Przeprowadzki miejskie Monachium", city_desc: "Szybko i sprawnie w obrębie miasta.",
     remote_move: "Przeprowadzki dalekodystansowe z Monachium", remote_desc: "Od Isar do Renu. Zoptymalizowane logistycznie.",
@@ -292,8 +292,8 @@ const plT = {
 };
 
 gen('pl', {
-    title: "Obszary usług", description: "Siedziba FLOXANT mieści się w Düsseldorfie. Nasze centrum operacyjne to Regensburg i Górny Palatynat.",
-    hub_note: "Siedziba FLOXANT mieści się w Düsseldorfie. Nasze centrum operacyjne to Regensburg i Górny Palatynat. Stąd obsługujemy klientów w całej Bawarii.",
+    title: "Obszary usług", description: "Siedziba FLOXANT mieści się w Regensburgie. Nasze centrum operacyjne to Regensburg i Górny Palatynat.",
+    hub_note: "Siedziba FLOXANT mieści się w Regensburgie. Nasze centrum operacyjne to Regensburg i Górny Palatynat. Stąd obsługujemy klientów w całej Bawarii.",
     cities: { regensburg: "Regensburg", bavaria: "Bawaria", munich: "Monachium", nuremberg: "Norymberga", augsburg: "Augsburg", germany: "Cała Niemcy" }
 }, translatePages(plT));
 

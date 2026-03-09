@@ -113,13 +113,13 @@ function buildSigs(badge, fwLabel, sigs) {
 
 // =========== ROMANIAN ===========
 gen('ro', {
-    title: "Zone de servicii", hub_note: "Sediul FLOXANT se află în Düsseldorf. Centrul nostru operațional este în Regensburg și Oberpfalz. De aici deservim clienți în toată Bavaria și oferim mutări la distanță lungă în toată Germania.",
-    description: "Sediul FLOXANT se află în Düsseldorf. Centrul nostru operațional este în Regensburg și Oberpfalz.",
+    title: "Zone de servicii", hub_note: "Sediul FLOXANT se află în Regensburg. Centrul nostru operațional este în Regensburg și Oberpfalz. De aici deservim clienți în toată Bavaria și oferim mutări la distanță lungă în toată Germania.",
+    description: "Sediul FLOXANT se află în Regensburg. Centrul nostru operațional este în Regensburg și Oberpfalz.",
     cities: { regensburg: "Regensburg", bavaria: "Bavaria", munich: "München", nuremberg: "Nürnberg", augsburg: "Augsburg", germany: "Toată Germania" }
 }, applyTranslations({
     move_in: "Mutarea dvs. în", munich: "München", muc_hero: "Fără stres către capitala Bavariei. FLOXANT oferă servicii premium de mutare cu garanție de preț fix.", muc_badge: "München și împrejurimi",
     muc_intro_title: "Mutare în München – cu plan și precizie", muc_intro1: "München este o metropolă dinamică. Mutarea în capitala Bavariei reprezintă adesea o provocare logistică. Scări înguste, lipsa locurilor de parcare – condițiile necesită experiență și planificare.", muc_intro2: "FLOXANT este serviciul de mutări care gestionează exact aceste provocări. Nu doar începem – planificăm detaliat mutarea dvs.",
-    transp_title: "Transparență privind sediul", transp_text: "Sediul legal FLOXANT se află în Düsseldorf. Cu toate acestea, echipa noastră lucrează regulat la mutări în München.",
+    transp_title: "Transparență privind sediul", transp_text: "Sediul legal FLOXANT se află în Regensburg. Cu toate acestea, echipa noastră lucrează regulat la mutări în München.",
     portfolio: "Portofoliul nostru pentru München", city_move: "Mutări urbane München", city_desc: "Rapid și eficient în oraș.",
     remote_move: "Mutări la distanță din München", remote_desc: "De la Isar la Rin. Optimizat logistic.",
     clearance: "Golire", clearance_desc: "Eliminarea profesională a mobilierului vechi.",

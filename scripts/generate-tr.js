@@ -35,8 +35,8 @@ function generateLocale(locale, trans) {
 generateLocale('tr', {
     area: {
         title: "Hizmet Alanları",
-        description: "FLOXANT'ın merkezi Düsseldorf'tadır. Operasyonel merkezimiz Regensburg ve Oberpfalz'dadır. Buradan Bavyera genelinde ve Almanya çapında uzun mesafe nakliye hizmeti sunuyoruz.",
-        hub_note: "FLOXANT'ın merkezi Düsseldorf'tadır. Operasyonel merkezimiz Regensburg ve Oberpfalz'dadır. Buradan Bavyera genelinde ve Almanya çapında uzun mesafe nakliye hizmeti sunuyoruz.",
+        description: "FLOXANT'ın merkezi Regensburg'tadır. Operasyonel merkezimiz Regensburg ve Oberpfalz'dadır. Buradan Bavyera genelinde ve Almanya çapında uzun mesafe nakliye hizmeti sunuyoruz.",
+        hub_note: "FLOXANT'ın merkezi Regensburg'tadır. Operasyonel merkezimiz Regensburg ve Oberpfalz'dadır. Buradan Bavyera genelinde ve Almanya çapında uzun mesafe nakliye hizmeti sunuyoruz.",
         cities: { regensburg: "Regensburg", bavaria: "Bavyera", munich: "Münih", nuremberg: "Nürnberg", augsburg: "Augsburg", germany: "Almanya geneli" }
     },
     pages: {
@@ -47,7 +47,7 @@ generateLocale('tr', {
             intro_text_1: "Münih, dünya genelinden insanları çeken canlı bir metropol. Ancak Bavyera başkentinde taşınma genellikle lojistik bir zorluk teşkil eder. Schwabing'de dar merdivenler, Glockenbachviertel'de park yeri bulamama veya konut komplekslerinde katı zaman aralıkları: koşullar deneyim ve iyi planlama gerektirir.",
             intro_text_2: "FLOXANT, tam da bu zorlukları ustaca aşan bir nakliye hizmeti temsil eder. Sadece işe başlamayız; taşınmanızı detaylı olarak planlarız.",
             transparency_title: "Merkez Hakkında Şeffaflık Notu",
-            transparency_text: "FLOXANT'ın yasal merkezi Düsseldorf'tadır. Ancak ekibimiz Münih ve çevresinde düzenli olarak çalışmaktadır.",
+            transparency_text: "FLOXANT'ın yasal merkezi Regensburg'tadır. Ancak ekibimiz Münih ve çevresinde düzenli olarak çalışmaktadır.",
             portfolio_title: "Münih İçin Hizmet Portföyümüz",
             services: {
                 city: { title: "Münih Şehir İçi Taşıma", desc: "Şehir içinde hızlı ve verimli." },

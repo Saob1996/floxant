@@ -26,18 +26,18 @@ function replaceCompanyData(text) {
     modified = modified.replace(/Breite Stra(ß|ss)e 22/gi, 'Johanna-Kinkel-Straße 1 + 2');
     modified = modified.replace(/40213 D(ü|u)sseldorf/gi, '93049 Regensburg');
 
-    // Contextual Düsseldorf replacements
+    // Contextual Regensburg replacements
     modified = modified.replace(/Firmensitz in D(ü|u)sseldorf/gi, 'Firmensitz in Regensburg');
     modified = modified.replace(/Sitz in D(ü|u)sseldorf/gi, 'Sitz in Regensburg');
     modified = modified.replace(/Sitz: D(ü|u)sseldorf/gi, 'Sitz: Regensburg');
     modified = modified.replace(/headquartered in D(ü|u)sseldorf/gi, 'headquartered in Regensburg');
     modified = modified.replace(/headquarters in D(ü|u)sseldorf/gi, 'headquarters in Regensburg');
-    modified = modified.replace(/sede di FLOXANT è a Düsseldorf/gi, 'sede di FLOXANT è a Regensburg');
-    modified = modified.replace(/sede legale di FLOXANT è a Düsseldorf/gi, 'sede legale di FLOXANT è a Regensburg');
-    modified = modified.replace(/siège de FLOXANT se trouve à Düsseldorf/gi, 'siège de FLOXANT se trouve à Regensburg');
-    modified = modified.replace(/siège légal de FLOXANT est à Düsseldorf/gi, 'siège légal de FLOXANT est à Regensburg');
-    modified = modified.replace(/sede de FLOXANT está en Düsseldorf/gi, 'sede de FLOXANT está en Regensburg');
-    modified = modified.replace(/sede legal de FLOXANT está en Düsseldorf/gi, 'sede legal de FLOXANT está en Regensburg');
+    modified = modified.replace(/sede di FLOXANT è a Regensburg/gi, 'sede di FLOXANT è a Regensburg');
+    modified = modified.replace(/sede legale di FLOXANT è a Regensburg/gi, 'sede legale di FLOXANT è a Regensburg');
+    modified = modified.replace(/siège de FLOXANT se trouve à Regensburg/gi, 'siège de FLOXANT se trouve à Regensburg');
+    modified = modified.replace(/siège légal de FLOXANT est à Regensburg/gi, 'siège légal de FLOXANT est à Regensburg');
+    modified = modified.replace(/sede de FLOXANT está en Regensburg/gi, 'sede de FLOXANT está en Regensburg');
+    modified = modified.replace(/sede legal de FLOXANT está en Regensburg/gi, 'sede legal de FLOXANT está en Regensburg');
 
     // Specific known keys replacement logic from previous attempts
     // E.g., removing redundant operational hub info since HQ is now Regensburg

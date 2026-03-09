@@ -15,8 +15,8 @@
   },
   "area": {
     "title": "Khu vực dịch vụ",
-    "description": "Trụ sở tại Düsseldorf. Trung tâm vận hành tại Regensburg.",
-    "hub_note": "Trụ sở chính FLOXANT tại Düsseldorf. Trung tâm vận hành tại Regensburg và Oberpfalz. Chúng tôi phục vụ khắp Bavaria và cung cấp dịch vụ chuyển nhà đường dài trên toàn nước Đức.",
+    "description": "Trụ sở tại Regensburg. Trung tâm vận hành tại Regensburg.",
+    "hub_note": "Trụ sở chính FLOXANT tại Regensburg. Trung tâm vận hành tại Regensburg và Oberpfalz. Chúng tôi phục vụ khắp Bavaria và cung cấp dịch vụ chuyển nhà đường dài trên toàn nước Đức.",
     "cities": {
       "regensburg": "Regensburg",
       "bavaria": "Bavaria",
@@ -183,7 +183,7 @@
       "intro_text_1": "München là đô thị năng động. Việc chuyển nhà tại thủ phủ Bavaria thường là thách thức về hậu cần. Cầu thang hẹp, thiếu chỗ đỗ xe – điều kiện đòi hỏi kinh nghiệm và lập kế hoạch tốt.",
       "intro_text_2": "FLOXANT là dịch vụ chuyển nhà chuyên xử lý những thách thức này. Chúng tôi không chỉ bắt đầu – chúng tôi lên kế hoạch chi tiết.",
       "transparency_title": "Minh bạch về trụ sở",
-      "transparency_text": "Trụ sở pháp lý của FLOXANT tại Düsseldorf. Đội ngũ của chúng tôi thường xuyên làm việc tại München.",
+      "transparency_text": "Trụ sở pháp lý của FLOXANT tại Regensburg. Đội ngũ của chúng tôi thường xuyên làm việc tại München.",
       "portfolio_title": "Danh mục dịch vụ cho München",
       "services": {
         "city": {
