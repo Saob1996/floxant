@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import {
     BASE_URL,
     LASTMOD,
@@ -36,34 +35,18 @@ interface SitemapUrl {
     pagePath: string;
 }
 
-const buildUrlNode = (url: SitemapUrl): string => {
-    const loc = escapeXml(url.loc);
-    let xml = `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${url.lastmod}</lastmod>\n    <changefreq>${url.changefreq}</changefreq>\n    <priority>${url.priority}</priority>\n`;
-    
-    // Hreflang
-    ALL_LOCALES.forEach(locLang => {
-        const href = escapeXml(`${BASE_URL}/${locLang}${url.pagePath ? '/' + url.pagePath : ''}`);
-        xml += `    <xhtml:link rel="alternate" hreflang="${locLang}" href="${href}" />\n`;
-    });
-    if (!url.pagePath) {
-        xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${BASE_URL}/de`)}" />\n`;
-    }
-    
-    xml += `  </url>\n`;
-    return xml;
-};
-
 export const generateSitemapIndexResponse = () => {
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-    SITEMAP_SEGMENTS.forEach(seg => {
-        xml += `  <sitemap>\n    <loc>${escapeXml(`${BASE_URL}/${seg}`)}</loc>\n    <lastmod>${LASTMOD}</lastmod>\n  </sitemap>\n`;
-    });
-    xml += `</sitemapindex>\n`;
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${SITEMAP_SEGMENTS.map(seg => `  <sitemap>
+    <loc>${escapeXml(`${BASE_URL}/${seg}`)}</loc>
+    <lastmod>${LASTMOD}</lastmod>
+  </sitemap>`).join('\n')}
+</sitemapindex>`;
 
-    return new NextResponse(xml, {
+    return new Response(xml, {
         headers: {
-            'Content-Type': 'application/xml; charset=utf-8',
-            'Cache-Control': 'public, max-age=86400, s-maxage=86400'
+            "Content-Type": "application/xml"
         }
     });
 };
@@ -129,16 +112,26 @@ export const generateSitemapSegmentResponse = (segmentId: string) => {
         }
     }
 
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
-    urls.forEach(u => {
-        xml += buildUrlNode(u);
-    });
-    xml += `</urlset>\n`;
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.map(url => {
+    let hreflangs = ALL_LOCALES.map(locLang => `    <xhtml:link rel="alternate" hreflang="${locLang}" href="${escapeXml(`${BASE_URL}/${locLang}${url.pagePath ? '/' + url.pagePath : ''}`)}" />`).join('\n');
+    if (!url.pagePath) {
+        hreflangs += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${BASE_URL}/de`)}" />`;
+    }
+    return `  <url>
+    <loc>${escapeXml(url.loc)}</loc>
+    <lastmod>${url.lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
+    <priority>${url.priority}</priority>
+${hreflangs}
+  </url>`;
+}).join('\n')}
+</urlset>`;
 
-    return new NextResponse(xml, {
+    return new Response(xml, {
         headers: {
-            'Content-Type': 'application/xml; charset=utf-8',
-            'Cache-Control': 'public, max-age=86400, s-maxage=86400'
+            "Content-Type": "application/xml"
         }
     });
 };
