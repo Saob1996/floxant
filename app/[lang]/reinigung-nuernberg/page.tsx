@@ -40,12 +40,30 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
         "priceRange": "$$",
     };
 
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Reinigung, Endreinigung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Reinigung Nürnberg", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "City", "name": "Nürnberg" }
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Reinigung Bayern", "item": `https://www.floxant.de/${lang}/reinigung-bayern` },
+            { "@type": "ListItem", "position": 3, "name": "Reinigung Nürnberg", "item": `https://www.floxant.de/${lang}/reinigung-nuernberg` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={(dict as any).nav} />
             <Breadcrumbs lang={lang} items={[{ label: "Reinigung Bayern", href: `/${lang}/reinigung-bayern` }, { label: "Reinigung Nürnberg" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">

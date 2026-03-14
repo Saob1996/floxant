@@ -13,13 +13,13 @@ const SmartBookingWizard = dynamic(
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
     return generatePageSEO({
         lang,
         path: 'umzug-regensburg',
-        title: 'Umzugsfirma Regensburg – Umzug & Möbeltransport | FLOXANT',
-        description: 'Ihr Umzug in Regensburg mit Profis. Möbeltransport, Entrümpelung und Reinigung schnell und zuverlässig. Jetzt kostenloses Angebot anfordern.',
+        title: 'Umzugsunternehmen Regensburg ✓ Festpreis ✓ Versicherung | FLOXANT',
+        description: 'Professionelles Umzugsunternehmen in Regensburg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.',
     });
 }
 
@@ -55,6 +55,14 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
         "areaServed": { "@type": "City", "name": "Regensburg" }
     };
 
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
+            { "@type": "ListItem", "position": 3, "name": "Umzug Regensburg", "item": `https://www.floxant.de/${lang}/umzug-regensburg` }
+        ]
+    };
 
     return (
         <main className="min-h-screen bg-background">
@@ -63,7 +71,7 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -71,7 +79,7 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                         <MapPin className="w-4 h-4" /><span>Regensburg & Oberpfalz</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Umzugsfirma in <span className="text-primary">Regensburg</span>
+                        Umzugsunternehmen in <span className="text-primary">Regensburg</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         FLOXANT ist Ihr Umzugspartner in Regensburg und der Oberpfalz. Altstadt-Logistik, Festpreisgarantie und voll versicherter Transport – von der UNESCO-Welterbestadt in ganz Deutschland.

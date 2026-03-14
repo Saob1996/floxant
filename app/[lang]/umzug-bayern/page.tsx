@@ -7,31 +7,56 @@ const SmartBookingWizard = dynamic(
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, Locale } from "../../../i18n-config";
+import { Locale } from "../../../i18n-config";
+import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin, Truck, ShieldCheck, Clock } from "lucide-react";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
-    return {
-        title: "Umzugsunternehmen Bayern | Professionelle Umzüge | FLOXANT",
-        description: "Professionelle Umzugsfirma für ganz Bayern – Regensburg, Nürnberg, München, Augsburg & Oberpfalz. Festpreisgarantie, voll versichert, kurzfristig verfügbar. Jetzt Angebot anfordern!",
-        alternates: {
-            canonical: `https://floxant.de/${lang}/umzug-bayern`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/umzug-bayern`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    return generatePageSEO({
+        lang,
+        path: 'umzug-bayern',
+        title: 'Umzugsunternehmen Bayern ✓ Festpreis ✓ Versicherung | FLOXANT',
+        description: 'Professionelles Umzugsunternehmen in Bayern. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.',
+    });
 }
 
 export default async function UmzugBayern({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
     const dict = await getDictionary(lang as Locale);
 
+    const localBusinessJsonLd = {
+        "@context": "https://schema.org", "@type": "MovingCompany", "name": "FLOXANT Umzug Bayern",
+        "url": `https://www.floxant.de/${lang}/umzug-bayern`, "telephone": "+4915771105087",
+        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
+        "areaServed": [{ "@type": "State", "name": "Bayern" }], "priceRange": "$$",
+    };
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Umzug, Transport, Entrümpelung, Reinigung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Bayern", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "State", "name": "Bayern" }
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={dict.nav} />
             <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern" }]} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             {/* Hero Section */}
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
@@ -41,7 +66,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                         <span>Bayern & Deutschlandweit</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Professionelle Umzüge in <span className="text-primary">Bayern</span>
+                        Umzugsunternehmen in <span className="text-primary">Bayern</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                         Ihr Partner für stressfreie Wohnungswechsel. FLOXANT koordiniert Ihren Umzug mit Präzision und Sorgfalt – von Bayern in jede Region Deutschlands.

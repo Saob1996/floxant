@@ -17,34 +17,34 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return generatePageSEO({
         lang,
-        path: "umzug-nuernberg",
-        title: "Umzugsunternehmen Nürnberg ✓ Festpreis ✓ Versicherung | FLOXANT",
-        description: "Professionelles Umzugsunternehmen in Nürnberg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
+        path: "umzug-weiden",
+        title: "Umzugsunternehmen Weiden i.d. OPf. ✓ Festpreis ✓ Versicherung | FLOXANT",
+        description: "Professionelles Umzugsunternehmen in Weiden i.d. OPf.. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
     });
 }
 
-export default async function UmzugNuernberg({ params }: { params: Promise<{ lang: string }> }) {
+export default async function UmzugWeiden({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
     const dict = await getDictionary(lang as Locale);
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet ein Umzug in Nürnberg?", "acceptedAnswer": { "@type": "Answer", "text": "Ein lokaler Umzug in Nürnberg kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
-            { "@type": "Question", "name": "Macht FLOXANT auch Umzüge in der Altstadt von Nürnberg?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen." } },
-            { "@type": "Question", "name": "Bieten Sie Fernumzüge ab Nürnberg an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wir organisieren Fernumzüge von Nürnberg nach ganz Deutschland." } },
+            { "@type": "Question", "name": "Was kostet ein Umzug in Weiden i.d. OPf.?", "acceptedAnswer": { "@type": "Answer", "text": "Ein lokaler Umzug in Weiden i.d. OPf. kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
+            { "@type": "Question", "name": "Macht FLOXANT auch Umzüge in der Altstadt von Weiden i.d. OPf.?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen." } },
+            { "@type": "Question", "name": "Bieten Sie Fernumzüge ab Weiden i.d. OPf. an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wir organisieren Fernumzüge von Weiden i.d. OPf. nach ganz Deutschland." } },
         ],
     };
 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
-        "name": "FLOXANT Umzug Nürnberg",
-        "description": "Professionelle Umzugsfirma in Nürnberg – Privatumzüge, Firmenumzüge, Entrümpelungen.",
-        "url": "https://www.floxant.de/" + lang + "/umzug-nuernberg",
+        "name": "FLOXANT Umzug Weiden i.d. OPf.",
+        "description": "Professionelle Umzugsfirma in Weiden i.d. OPf. – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "url": "https://www.floxant.de/" + lang + "/umzug-weiden",
         "telephone": "+4915771105087",
-        "address": { "@type": "PostalAddress", "addressLocality": "Nürnberg", "addressRegion": "Bayern", "addressCountry": "DE" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 49.452, "longitude": 11.0767 },
-        "areaServed": [{ "@type": "City", "name": "Nürnberg" }, { "@type": "AdministrativeArea", "name": "Mittelfranken" }],
+        "address": { "@type": "PostalAddress", "addressLocality": "Weiden i.d. OPf.", "addressRegion": "Bayern", "addressCountry": "DE" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 49.6738, "longitude": 12.1584 },
+        "areaServed": [{ "@type": "City", "name": "Weiden i.d. OPf." }, { "@type": "AdministrativeArea", "name": "Oberpfalz" }],
         "priceRange": "$$",
         "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "134", "bestRating": "5" },
     };
@@ -52,8 +52,8 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
     const serviceJsonLd = {
         "@context": "https://schema.org", "@type": "Service",
         "serviceType": "Umzug, Transport, Entrümpelung, Reinigung",
-        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Nürnberg", "telephone": "+4915771105087" },
-        "areaServed": { "@type": "City", "name": "Nürnberg" }
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Weiden i.d. OPf.", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "City", "name": "Weiden i.d. OPf." }
     };
 
     const breadcrumbsJsonLd = {
@@ -61,14 +61,14 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.floxant.de/" + lang },
             { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": "https://www.floxant.de/" + lang + "/umzug-bayern" },
-            { "@type": "ListItem", "position": 3, "name": "Umzug Nürnberg", "item": "https://www.floxant.de/" + lang + "/umzug-nuernberg" }
+            { "@type": "ListItem", "position": 3, "name": "Umzug Weiden i.d. OPf.", "item": "https://www.floxant.de/" + lang + "/umzug-weiden" }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: "/" + lang + "/umzug-bayern" }, { label: "Umzug Nürnberg" }]} />
+            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: "/" + lang + "/umzug-bayern" }, { label: "Umzug Weiden i.d. OPf." }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
@@ -77,13 +77,13 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <MapPin className="w-4 h-4" /><span>Nürnberg & Mittelfranken</span>
+                        <MapPin className="w-4 h-4" /><span>Weiden i.d. OPf. & Oberpfalz</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Umzugsunternehmen in <span className="text-primary">Nürnberg</span>
+                        Umzugsunternehmen in <span className="text-primary">Weiden i.d. OPf.</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        FLOXANT ist Ihr starker Umzugspartner für Nürnberg. Wir bieten Festpreisgarantie, voll versicherten Transport und lokale Expertise für Privathaushalte und Firmen.
+                        FLOXANT ist Ihr starker Umzugspartner für Weiden i.d. OPf.. Wir bieten Festpreisgarantie, voll versicherten Transport und lokale Expertise für Privathaushalte und Firmen.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 mt-8">
                         <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Award className="w-4 h-4 text-primary" /> 100% Versichert</span>
@@ -96,22 +96,22 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
             <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Ihr verlässlicher Umzug in Nürnberg</h2>
-                        <p>Nürnberg vereint historische Altstadt mit moderner Metropole. Ob in Sankt Johannis oder Langwasser – wir kennen die fränkische Metropole genau. Spezielle Anforderungen wie Aufzüge oder enge Hofeinfahrten meistern unsere Möbelpacker routiniert.</p>
-                        <p>Ein Umzug ist mehr als nur der Transport von Kartons. Es ist ein Neustart. Wir von FLOXANT verstehen das und setzen alles daran, Ihren Wohnungswechsel so stressfrei wie möglich zu gestalten. Neben dem reinen Möbeltransport bieten wir Ihnen in Nürnberg auch professionelle Demontage- und Montagearbeiten, Einpackservice sowie die Bereitstellung von hochwertigem Verpackungsmaterial an.</p>
+                        <h2 className="text-3xl font-bold text-foreground mb-6">Ihr verlässlicher Umzug in Weiden i.d. OPf.</h2>
+                        <p>Im Herzen der nördlichen Oberpfalz übernehmen wir für Sie den Wohnungswechsel in Weiden. Von Rothenstadt bis Mooslohe bieten wir professionelle Verpackung, Transport und den besenreinen Abschluss von Wohnungen.</p>
+                        <p>Ein Umzug ist mehr als nur der Transport von Kartons. Es ist ein Neustart. Wir von FLOXANT verstehen das und setzen alles daran, Ihren Wohnungswechsel so stressfrei wie möglich zu gestalten. Neben dem reinen Möbeltransport bieten wir Ihnen in Weiden i.d. OPf. auch professionelle Demontage- und Montagearbeiten, Einpackservice sowie die Bereitstellung von hochwertigem Verpackungsmaterial an.</p>
                         <div className="bg-muted/30 p-6 rounded-xl border border-border/50 not-italic mt-6">
                             <h4 className="text-foreground font-semibold mb-2 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500" /> Transparenz von Anfang an</h4>
-                            <p className="m-0 text-sm">Nach unser kostenlosen, oft virtuellen Besichtigung erhalten Sie ein verbindliches Festpreisangebot. Keine versteckten Gebühren, keine Stundensätze, die aus dem Ruder laufen. Sie wissen genau, was Ihr Umzug in Nürnberg kosten wird.</p>
+                            <p className="m-0 text-sm">Nach unser kostenlosen, oft virtuellen Besichtigung erhalten Sie ein verbindliches Festpreisangebot. Keine versteckten Gebühren, keine Stundensätze, die aus dem Ruder laufen. Sie wissen genau, was Ihr Umzug in Weiden i.d. OPf. kosten wird.</p>
                         </div>
                     </div>
 
                     <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-12">Unsere Kompetenzen für Nürnberg</h2>
+                        <h2 className="text-3xl font-bold text-foreground mb-12">Unsere Kompetenzen für Weiden i.d. OPf.</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="p-6 rounded-2xl bg-card border border-border shadow-sm">
                                 <Milestone className="w-8 h-8 text-primary mb-4" />
                                 <h3 className="text-lg font-bold mb-2">Lokale Expertise</h3>
-                                <p className="text-sm text-muted-foreground">Kenntnis der örtlichen Gegebenheiten, Treppenhäuser und Halteverbots-Beantragung direkt in Nürnberg.</p>
+                                <p className="text-sm text-muted-foreground">Kenntnis der örtlichen Gegebenheiten, Treppenhäuser und Halteverbots-Beantragung direkt in Weiden i.d. OPf..</p>
                             </div>
                             <div className="p-6 rounded-2xl bg-card border border-border shadow-sm">
                                 <Shield className="w-8 h-8 text-primary mb-4" />
@@ -128,16 +128,16 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
 
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Zusatzleistungen rund um Ihren Wohnungswechsel</h2>
-                        <p>Wer nach Nürnberg zieht, oder die Stadt verlässt, muss oft auch alte Möbel entsorgen. FLOXANT bietet exzellente <Link href={"/" + lang + "/entruempelung"}>Entrümpelungs-Services</Link> an. Wir nehmen anfallenden Sperrmüll sofort am Umzugstag mit und entsorgen ihn fachgerecht bei den lokalen Wertstoffhöfen.</p>
+                        <p>Wer nach Weiden i.d. OPf. zieht, oder die Stadt verlässt, muss oft auch alte Möbel entsorgen. FLOXANT bietet exzellente <Link href={"/" + lang + "/entruempelung"}>Entrümpelungs-Services</Link> an. Wir nehmen anfallenden Sperrmüll sofort am Umzugstag mit und entsorgen ihn fachgerecht bei den lokalen Wertstoffhöfen.</p>
                         <p>Zudem kümmern wir uns auf Wunsch um die <Link href={"/" + lang + "/reinigung"}>besenreine Endreinigung</Link> Ihrer alten Wohnung, damit Sie die Schlüsselübergabe an den Vermieter tiefenentspannt abwickeln können.</p>
                     </div>
 
                     {/* FAQ Section */}
                     <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-8">Häufige Fragen zum Umzug in Nürnberg</h2>
+                        <h2 className="text-3xl font-bold text-foreground mb-8">Häufige Fragen zum Umzug in Weiden i.d. OPf.</h2>
                         <div className="space-y-4">
                             <details className="group border border-border/50 rounded-lg p-4 bg-muted/10 open:ring-2 open:ring-primary/20 transition-all">
-                                <summary className="text-lg font-medium cursor-pointer list-none flex justify-between items-center outline-none"><span>Was kostet ein Umzug in Nürnberg?</span><span className="transition group-open:rotate-180">↓</span></summary>
+                                <summary className="text-lg font-medium cursor-pointer list-none flex justify-between items-center outline-none"><span>Was kostet ein Umzug in Weiden i.d. OPf.?</span><span className="transition group-open:rotate-180">↓</span></summary>
                                 <div className="pt-4 text-muted-foreground">Ein lokaler Umzug kostet im Schnitt zwischen 400 und 2.000 Euro. Der genaue Preis hängt vom Transportvolumen (Kubikmeter) ab. Wir vereinbaren per Video-Call einen verbindlichen Festpreis.</div>
                             </details>
                             <details className="group border border-border/50 rounded-lg p-4 bg-muted/10 open:ring-2 open:ring-primary/20 transition-all">
@@ -146,7 +146,7 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
                             </details>
                             <details className="group border border-border/50 rounded-lg p-4 bg-muted/10 open:ring-2 open:ring-primary/20 transition-all">
                                 <summary className="text-lg font-medium cursor-pointer list-none flex justify-between items-center outline-none"><span>Wer beantragt die Halteverbotszone?</span><span className="transition group-open:rotate-180">↓</span></summary>
-                                <div className="pt-4 text-muted-foreground">Falls am Be- oder Entladeort in Nürnberg keine Parkplätze verfügbar sind, übernehmen wir die behördliche Anmeldung und Beschilderung der offiziellen Halteverbotszone für Sie komplett.</div>
+                                <div className="pt-4 text-muted-foreground">Falls am Be- oder Entladeort in Weiden i.d. OPf. keine Parkplätze verfügbar sind, übernehmen wir die behördliche Anmeldung und Beschilderung der offiziellen Halteverbotszone für Sie komplett.</div>
                             </details>
                         </div>
                     </div>
@@ -155,8 +155,8 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
                         <h2 className="text-2xl font-bold mb-6">Kundenstimmen</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto">
                             <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
-                                <p className="italic text-muted-foreground mb-4">"Schneller Firmenumzug in der Nürnberger Südstadt. Das Team war hochprofessionell und hat unsere IT sicher transportiert."</p>
-                                <p className="font-semibold">– Start-Up GmbH, Nürnberg</p>
+                                <p className="italic text-muted-foreground mb-4">"Wir haben unseren Seniorenumzug nach Weiden gebucht. Die Jungs waren extrem rücksichtsvoll und geduldig. Danke!"</p>
+                                <p className="font-semibold">– Ehepaar D.</p>
                             </div>
                             <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
                                 <p className="italic text-muted-foreground mb-4">"Wir hatten große Sorge wegen unserer schweren Massivholzküche. Die FLOXANT-Monteure haben alles perfekt zerlegt und sicher im LKW verstaut."</p>
@@ -180,7 +180,7 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
 
                     <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg mt-8">
                         <h2 className="text-3xl font-bold mb-4">Preis berechnen</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kontaktieren Sie uns noch heute. Wir erstellen Ihr individuelles Festpreisangebot für Nürnberg.</p>
+                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kontaktieren Sie uns noch heute. Wir erstellen Ihr individuelles Festpreisangebot für Weiden i.d. OPf..</p>
                         <SmartBookingWizard dict={dict} />
                     </div>
                 </div>

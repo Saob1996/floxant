@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: 'umzug-feucht',
-        title: 'Umzugsfirma Feucht | Nürnberger Land | FLOXANT',
-        description: 'Professionelle Umzugsfirma in Feucht bei Nürnberg. Privatumzüge, Firmenumzüge, Entrümpelung. Festpreisgarantie, voll versichert. Schnell verfügbar.',
+        title: 'Umzugsunternehmen Feucht ✓ Festpreis ✓ Versicherung | FLOXANT',
+        description: 'Professionelles Umzugsunternehmen in Feucht. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.',
     });
 }
 
@@ -34,7 +34,6 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
             { "@type": "Question", "name": "Bietet FLOXANT auch Entrümpelung in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Professionelle Entrümpelung und Wohnungsauflösung in Feucht und dem gesamten Nürnberger Land." } },
         ],
     };
-
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany", "name": "FLOXANT Umzug Feucht",
         "url": `https://www.floxant.de/${lang}/umzug-feucht`, "telephone": "+4915771105087",
@@ -43,12 +42,30 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
         "areaServed": [{ "@type": "City", "name": "Feucht" }, { "@type": "City", "name": "Nürnberg" }, { "@type": "AdministrativeArea", "name": "Nürnberger Land" }], "priceRange": "$$",
     };
 
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Umzug, Transport, Entrümpelung, Reinigung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Feucht", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "City", "name": "Feucht" }
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
+            { "@type": "ListItem", "position": 3, "name": "Umzug Feucht", "item": `https://www.floxant.de/${lang}/umzug-feucht` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={(dict as any).nav} />
             <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: `/${lang}/umzug-bayern` }, { label: "Umzug Feucht" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -56,7 +73,7 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                         <MapPin className="w-4 h-4" /><span>Feucht & Nürnberger Land</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Umzugsfirma in <span className="text-primary">Feucht</span>
+                        Umzugsunternehmen in <span className="text-primary">Feucht</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         FLOXANT – Ihr Umzugspartner in Feucht bei Nürnberg. Operativer Hub im Nürnberger Land, Festpreisgarantie und professioneller Service.

@@ -45,9 +45,38 @@ export default async function EntruempelungRegensburg({
     const content = (dict?.pages as any)?.entruempelung_regensburg || {};
     const area = (dict?.area as any) || {};
 
+    const localBusinessJsonLd = {
+        "@context": "https://schema.org", "@type": "LocalBusiness",
+        "name": "FLOXANT Entrümpelung Regensburg",
+        "description": "Professionelle Entrümpelung und Haushaltsauflösung in Regensburg.",
+        "url": `https://www.floxant.de/${lang}/entruempelung-regensburg`,
+        "telephone": "+4915771105087",
+        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
+        "priceRange": "$$"
+    };
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Entrümpelung, Haushaltsauflösung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Entrümpelung Regensburg", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "City", "name": "Regensburg" }
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Entrümpelung", "item": `https://www.floxant.de/${lang}/entruempelung` },
+            { "@type": "ListItem", "position": 3, "name": "Entrümpelung Regensburg", "item": `https://www.floxant.de/${lang}/entruempelung-regensburg` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={dict.nav} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="mx-auto max-w-4xl text-center">

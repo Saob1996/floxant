@@ -1,0 +1,41 @@
+﻿app/[lang]/blog/umzug-kosten-regensburg/page.tsx(171,109): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(171,175): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(175,27): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(177,105): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(177,171): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(181,27): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(183,19): error TS17002: Expected corresponding JSX closing tag for 'main'.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(184,13): error TS1005: ')' expected.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(196,9): error TS1128: Declaration or statement expected.
+app/[lang]/blog/umzug-kosten-regensburg/page.tsx(197,5): error TS1109: Expression expected.
+app/[lang]/umzug-ingolstadt/page.tsx(286,118): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(286,184): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(290,27): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(292,101): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(292,167): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(296,27): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(298,128): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(298,194): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(302,27): error TS17002: Expected corresponding JSX closing tag for 'section'.
+app/[lang]/umzug-ingolstadt/page.tsx(304,96): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(304,162): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-ingolstadt/page.tsx(308,27): error TS17002: Expected corresponding JSX closing tag for 'main'.
+app/[lang]/umzug-ingolstadt/page.tsx(309,21): error TS1005: ')' expected.
+app/[lang]/umzug-ingolstadt/page.tsx(310,17): error TS1109: Expression expected.
+app/[lang]/umzug-ingolstadt/page.tsx(311,13): error TS1109: Expression expected.
+app/[lang]/umzug-ingolstadt/page.tsx(314,9): error TS1128: Declaration or statement expected.
+app/[lang]/umzug-ingolstadt/page.tsx(315,5): error TS1109: Expression expected.
+app/[lang]/umzug-weiden/page.tsx(235,102): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(235,168): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(239,27): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(241,90): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(241,156): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(245,27): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(247,88): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(247,154): error TS17002: Expected corresponding JSX closing tag for 'div'.
+app/[lang]/umzug-weiden/page.tsx(251,27): error TS17002: Expected corresponding JSX closing tag for 'section'.
+app/[lang]/umzug-weiden/page.tsx(252,23): error TS17002: Expected corresponding JSX closing tag for 'main'.
+app/[lang]/umzug-weiden/page.tsx(253,17): error TS1005: ')' expected.
+app/[lang]/umzug-weiden/page.tsx(254,13): error TS1109: Expression expected.
+app/[lang]/umzug-weiden/page.tsx(257,9): error TS1128: Declaration or statement expected.
+app/[lang]/umzug-weiden/page.tsx(258,5): error TS1109: Expression expected.

@@ -1,0 +1,11 @@
+﻿app/[lang]/blog/umzug-checkliste/page.tsx(45,62): error TS2322: Type '{ lang: string; items: { label: string; href: string; }[]; className: string; }' is not assignable to type 'IntrinsicAttributes & BreadcrumbsProps'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & BreadcrumbsProps'.
+app/[lang]/blog/umzug-checkliste/page.tsx(107,74): error TS2304: Cannot find name 'CheckCircle2'.
+app/[lang]/blog/umzug-checkliste/page.tsx(108,74): error TS2304: Cannot find name 'CheckCircle2'.
+app/[lang]/blog/umzug-checkliste/page.tsx(109,74): error TS2304: Cannot find name 'CheckCircle2'.
+app/[lang]/blog/umzug-checkliste/page.tsx(110,74): error TS2304: Cannot find name 'CheckCircle2'.
+app/[lang]/blog/umzug-checkliste/page.tsx(111,74): error TS2304: Cannot find name 'CheckCircle2'.
+app/[lang]/blog/umzug-tipps-bayern/page.tsx(45,62): error TS2322: Type '{ lang: string; items: { label: string; href: string; }[]; className: string; }' is not assignable to type 'IntrinsicAttributes & BreadcrumbsProps'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & BreadcrumbsProps'.
+app/[lang]/blog/wohnungsaufloesung-was-tun/page.tsx(45,62): error TS2322: Type '{ lang: string; items: { label: string; href: string; }[]; className: string; }' is not assignable to type 'IntrinsicAttributes & BreadcrumbsProps'.
+  Property 'className' does not exist on type 'IntrinsicAttributes & BreadcrumbsProps'.

@@ -42,6 +42,32 @@ export default async function EntruempelungBayern({
     const { lang } = await params;
     const dict = await getDictionary(lang as Locale);
 
+    const localBusinessJsonLd = {
+        "@context": "https://schema.org", "@type": "LocalBusiness",
+        "name": "FLOXANT Entrümpelung Bayern",
+        "description": "Professionelle Entrümpelung in ganz Bayern – Regensburg, Nürnberg, München & Umgebung.",
+        "url": `https://www.floxant.de/${lang}/entruempelung-bayern`,
+        "telephone": "+4915771105087",
+        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
+        "priceRange": "$$"
+    };
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Entrümpelung, Haushaltsauflösung, Gewerberäumung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Entrümpelung Bayern", "telephone": "+4915771105087" },
+        "areaServed": [{ "@type": "AdministrativeArea", "name": "Bayern" }]
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Entrümpelung", "item": `https://www.floxant.de/${lang}/entruempelung` },
+            { "@type": "ListItem", "position": 3, "name": "Entrümpelung Bayern", "item": `https://www.floxant.de/${lang}/entruempelung-bayern` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={(dict as any).nav} />
@@ -52,6 +78,9 @@ export default async function EntruempelungBayern({
                     { label: "Bayern" },
                 ]}
             />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             {/* Hero Section */}
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">

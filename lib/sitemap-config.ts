@@ -30,6 +30,7 @@ export const CORE_SERVICES = [
     'fernumzug',
     'reinigung',
     'entruempelung',
+    'kleintransporte',
     'montage',
     'halteverbotszone',
 ] as const;
@@ -48,6 +49,8 @@ export const CITY_PAGES = [
     'umzug-feucht',
     'umzug-straubing',
     'umzug-landshut',
+    'umzug-ingolstadt',
+    'umzug-weiden',
 ] as const;
 
 /** Service-specific city pages — Priority 0.9 for DE */
@@ -109,6 +112,12 @@ export const RATGEBER_PAGES = [
     'ratgeber/wohnungsaufloesung-tipps',
     'ratgeber/umzug-im-winter',
     'ratgeber/umzug-erste-wohnung',
+    'blog',
+    'blog/umzug-kosten-regensburg',
+    'blog/entrumpelung-kosten-bayern',
+    'blog/umzug-checkliste',
+    'blog/umzug-tipps-bayern',
+    'blog/wohnungsaufloesung-was-tun',
 ] as const;
 
 /** Signature services (dynamic route /signature/[slug]) — Priority 0.7 for DE */

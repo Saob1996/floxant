@@ -46,9 +46,38 @@ export default async function ReinigungRegensburg({
     const content = (dict?.pages as any)?.reinigung_regensburg || {};
     const area = (dict?.area as any) || {};
 
+    const localBusinessJsonLd = {
+        "@context": "https://schema.org", "@type": "LocalBusiness",
+        "name": "FLOXANT Reinigung Regensburg",
+        "description": "Professionelle Endreinigung und Umzugsreinigung in Regensburg.",
+        "url": `https://www.floxant.de/${lang}/reinigung-regensburg`,
+        "telephone": "+4915771105087",
+        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
+        "priceRange": "$$"
+    };
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Reinigung, Endreinigung, Umzugsreinigung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Reinigung Regensburg", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "City", "name": "Regensburg" }
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Reinigung", "item": `https://www.floxant.de/${lang}/reinigung` },
+            { "@type": "ListItem", "position": 3, "name": "Reinigung Regensburg", "item": `https://www.floxant.de/${lang}/reinigung-regensburg` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={dict.nav} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             {/* Hero */}
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">

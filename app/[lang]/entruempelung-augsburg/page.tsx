@@ -40,12 +40,30 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
         "priceRange": "$$",
     };
 
+    const serviceJsonLd = {
+        "@context": "https://schema.org", "@type": "Service",
+        "serviceType": "Entrümpelung, Wohnungsauflösung",
+        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Entrümpelung Augsburg", "telephone": "+4915771105087" },
+        "areaServed": { "@type": "City", "name": "Augsburg" }
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+            { "@type": "ListItem", "position": 2, "name": "Entrümpelung Bayern", "item": `https://www.floxant.de/${lang}/entruempelung-bayern` },
+            { "@type": "ListItem", "position": 3, "name": "Entrümpelung Augsburg", "item": `https://www.floxant.de/${lang}/entruempelung-augsburg` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
             <Header lang={lang} dic={(dict as any).nav} />
             <Breadcrumbs lang={lang} items={[{ label: "Entrümpelung Bayern", href: `/${lang}/entruempelung-bayern` }, { label: "Entrümpelung Augsburg" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
