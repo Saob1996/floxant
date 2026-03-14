@@ -29,6 +29,14 @@ const nextConfig = {
             },
         ];
     },
+    async rewrites() {
+        return [
+            {
+                source: '/sitemap-:id.xml',
+                destination: '/sitemap/:id.xml',
+            },
+        ];
+    },
     async headers() {
         return [
             {
