@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: "umzug-passau",
-        title: "Umzugsunternehmen Passau ✓ Festpreis ✓ Versicherung | FLOXANT",
+        title: "Umzug in Passau ab 79€ – Heute Termin möglich | FLOXANT",
         description: "Professionelles Umzugsunternehmen in Passau. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
     });
 }
@@ -39,7 +39,7 @@ export default async function UmzugPassau({ params }: { params: Promise<{ lang: 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Passau",
-        "description": "Professionelle Umzugsfirma in Passau – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Passau. Local moving, long distance, and professional packing.",
         "url": "https://www.floxant.de/" + lang + "/umzug-passau",
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Passau", "addressRegion": "Bayern", "addressCountry": "DE" },

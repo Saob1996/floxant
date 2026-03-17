@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: "umzug-schwandorf",
-        title: "Umzugsunternehmen Schwandorf ✓ Festpreis ✓ Versicherung | FLOXANT",
+        title: "Umzug in Schwandorf ab 79€ – Heute Termin möglich | FLOXANT",
         description: "Professionelles Umzugsunternehmen in Schwandorf. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
     });
 }
@@ -39,7 +39,7 @@ export default async function UmzugSchwandorf({ params }: { params: Promise<{ la
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Schwandorf",
-        "description": "Professionelle Umzugsfirma in Schwandorf – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Schwandorf. Local moving, long distance, and professional packing.",
         "url": "https://www.floxant.de/" + lang + "/umzug-schwandorf",
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Schwandorf", "addressRegion": "Bayern", "addressCountry": "DE" },

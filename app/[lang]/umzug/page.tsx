@@ -3,6 +3,7 @@ import { getDictionary } from "../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
 import { Header } from "@/components/Header";
+import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CheckCircle2, Shield, Star, Clock, Truck, Package, Banknote, MapPin } from "lucide-react";
 import dynamic from 'next/dynamic';

@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
 import { Header } from "@/components/Header";
+import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { MapPin, Milestone, Layers, Award, ArrowRight } from "lucide-react";
+import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2 } from "lucide-react";
 
 const SmartBookingWizard = dynamic(
     () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
@@ -39,7 +40,7 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Regensburg",
-        "description": "Professionelle Umzugsfirma in Regensburg – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Regensburg. Local moving, long distance, and professional packing.",
         "url": `https://www.floxant.de/${lang}/umzug-regensburg`,
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressRegion": "Bayern", "addressCountry": "DE" },
@@ -185,7 +186,10 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                         </div>
                     </div>
 
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
+                    {/* Global E-E-A-T Trust Signal Injection */}
+            <TrustStack className="my-16" />
+            
+            <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Ihr Umzug in Regensburg</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kontaktieren Sie uns noch heute. Wir erstellen Ihr individuelles Festpreisangebot.</p>
                         <SmartBookingWizard dict={dict} />

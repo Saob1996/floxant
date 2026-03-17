@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
 import { Header } from "@/components/Header";
+import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: "umzug-nuernberg",
-        title: "Umzugsunternehmen Nürnberg ✓ Festpreis ✓ Versicherung | FLOXANT",
+        title: "Umzug in Nürnberg ab 79€ – Heute Termin möglich | FLOXANT",
         description: "Professionelles Umzugsunternehmen in Nürnberg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
     });
 }
@@ -39,7 +40,7 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Nürnberg",
-        "description": "Professionelle Umzugsfirma in Nürnberg – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Nürnberg. Local moving, long distance, and professional packing.",
         "url": "https://www.floxant.de/" + lang + "/umzug-nuernberg",
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Nürnberg", "addressRegion": "Bayern", "addressCountry": "DE" },
@@ -178,7 +179,10 @@ export default async function UmzugNuernberg({ params }: { params: Promise<{ lan
                         </div>
                     </div>
 
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg mt-8">
+                    {/* Global E-E-A-T Trust Signal Injection */}
+            <TrustStack className="my-16" />
+            
+            <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg mt-8">
                         <h2 className="text-3xl font-bold mb-4">Preis berechnen</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kontaktieren Sie uns noch heute. Wir erstellen Ihr individuelles Festpreisangebot für Nürnberg.</p>
                         <SmartBookingWizard dict={dict} />

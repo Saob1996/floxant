@@ -40,6 +40,18 @@ export function Footer({ lang, dic }: FooterProps) {
         <footer className="bg-background border-t border-border/50 py-12 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
 
+                {/* Authority Link & Trust Intro */}
+                <div className="w-full border-b border-border/20 pb-10 mb-10 text-left">
+                    <div className="max-w-4xl">
+                        <Link href={"/" + lang} className="text-3xl font-extrabold tracking-tighter text-foreground hover:text-primary transition-colors inline-block mb-4">
+                            FLOXANT<span className="text-primary">.</span>
+                        </Link>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                            FLOXANT ist Ihr verlässlicher, regional verwurzelter Dienstleister in Bayern. Mit unserem Hauptverwaltungssitz nahe Regensburg koordinieren wir tägliche Umzüge, spezialisierte Entrümpelungen und gewerbliche Reinigungen im gesamten Freistaat – von der Oberpfalz bis München. Profitieren Sie von unserer zertifizierten Verkehrshaftung, kurzfristigen Dispositionen und limitierten Festpreisen. Wir sind Ihr zentraler Ansprechpartner für Logistik und Transport.
+                        </p>
+                    </div>
+                </div>
+
                 {/* (A) Core Services — HIGH SEO PRIORITY */}
                 <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                     <div>

@@ -68,7 +68,7 @@ export const generateSitemapSegmentResponse = (segmentId: string) => {
         const locale = 'de';
         buildEntry(locale, '', '1.0', 'daily');
         CORE_SERVICES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
-        CITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
+        CITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'daily'));
         SERVICE_CITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
         BAVARIA_AUTHORITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
         SIGNATURE_SEO_PAGES.forEach(s => buildEntry(locale, s, '0.7', 'weekly'));
@@ -91,7 +91,7 @@ export const generateSitemapSegmentResponse = (segmentId: string) => {
         minorLocales.forEach(locale => {
             buildEntry(locale, '', '0.5', 'daily');
             CORE_SERVICES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
-            CITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
+            CITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'daily'));
             SERVICE_CITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
             BAVARIA_AUTHORITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
         });
@@ -101,7 +101,7 @@ export const generateSitemapSegmentResponse = (segmentId: string) => {
         const isDE = locale === 'de';
         buildEntry(locale, '', isDE ? '1.0' : '0.5', 'daily');
         CORE_SERVICES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
-        CITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
+        CITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'daily'));
         SERVICE_CITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
         BAVARIA_AUTHORITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
     

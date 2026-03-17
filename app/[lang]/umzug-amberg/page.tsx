@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: "umzug-amberg",
-        title: "Umzugsunternehmen Amberg ✓ Festpreis ✓ Versicherung | FLOXANT",
+        title: "Umzug in Amberg ab 79€ – Heute Termin möglich | FLOXANT",
         description: "Professionelles Umzugsunternehmen in Amberg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
     });
 }
@@ -39,7 +39,7 @@ export default async function UmzugAmberg({ params }: { params: Promise<{ lang: 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Amberg",
-        "description": "Professionelle Umzugsfirma in Amberg – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Amberg. Local moving, long distance, and professional packing.",
         "url": "https://www.floxant.de/" + lang + "/umzug-amberg",
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Amberg", "addressRegion": "Bayern", "addressCountry": "DE" },

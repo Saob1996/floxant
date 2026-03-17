@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang,
         path: "umzug-landshut",
-        title: "Umzugsunternehmen Landshut ✓ Festpreis ✓ Versicherung | FLOXANT",
+        title: "Umzug in Landshut ab 79€ – Heute Termin möglich | FLOXANT",
         description: "Professionelles Umzugsunternehmen in Landshut. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.",
     });
 }
@@ -39,7 +39,7 @@ export default async function UmzugLandshut({ params }: { params: Promise<{ lang
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Landshut",
-        "description": "Professionelle Umzugsfirma in Landshut – Privatumzüge, Firmenumzüge, Entrümpelungen.",
+        "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Landshut. Local moving, long distance, and professional packing.",
         "url": "https://www.floxant.de/" + lang + "/umzug-landshut",
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Landshut", "addressRegion": "Bayern", "addressCountry": "DE" },
