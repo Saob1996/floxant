@@ -112,6 +112,40 @@ export const CITY_PAGES = [
     'umzug-neufahrn-in-niederbayern',
     'umzug-rottenburg-an-der-laaber',
     'umzug-pfeffenhausen',
+    // --- Corridor Expansion: A3 Regensburg → Nürnberg ---
+    'umzug-dietfurt',
+    'umzug-berching',
+    'umzug-freystadt',
+    'umzug-postbauer-heng',
+    'umzug-altdorf-bei-nuernberg',
+    'umzug-lauf-an-der-pegnitz',
+    'umzug-schwabach',
+    'umzug-roth',
+    'umzug-wendelstein',
+    // --- Corridor Expansion: A93/A9 Regensburg → München ---
+    'umzug-mainburg',
+    'umzug-moosburg',
+    'umzug-freising',
+    'umzug-erding',
+    'umzug-pfaffenhofen',
+    'umzug-wolnzach',
+    'umzug-geisenfeld',
+    'umzug-vohburg',
+    'umzug-dachau',
+    'umzug-fuerstenfeldbruck',
+    // --- Corridor Expansion: A8 München → Augsburg ---
+    'umzug-olching',
+    'umzug-mammendorf',
+    'umzug-mering',
+    'umzug-friedberg',
+    'umzug-kissing',
+    'umzug-koenigsbrunn',
+    // --- Nürnberg Metropolregion ---
+    'umzug-fuerth',
+    'umzug-erlangen',
+    'umzug-herzogenaurach',
+    'umzug-zirndorf',
+    'umzug-oberasbach',
 ] as const;
 
 /** Service-specific city pages — Priority 0.9 for DE */
@@ -129,6 +163,16 @@ export const SERVICE_CITY_PAGES = [
     'entruempelung-augsburg',
     'entruempelung-passau',
     'entruempelung-landshut',
+    // --- High-Profit Niche Pages ---
+    'seniorenumzug-regensburg',
+    'seniorenumzug-nuernberg',
+    'seniorenumzug-muenchen',
+    'halteverbotszone-regensburg',
+    'halteverbotszone-nuernberg',
+    'halteverbotszone-muenchen',
+    'klaviertransport-regensburg',
+    'klaviertransport-nuernberg',
+    'klaviertransport-muenchen',
 ] as const;
 
 /** Bavaria authority pages — Priority 0.9 for DE */
@@ -179,6 +223,12 @@ export const RATGEBER_PAGES = [
     'blog/umzug-checkliste',
     'blog/umzug-tipps-bayern',
     'blog/wohnungsaufloesung-was-tun',
+    // --- New Blog Articles (March 2026) ---
+    'blog/umzug-planen-schritt-fuer-schritt',
+    'blog/umzugskosten-senken-7-tipps',
+    'blog/wohnungsuebergabe-protokoll-guide',
+    'blog/fernumzug-bayern-nrw-tipps',
+    'blog/umzug-mit-kindern-stressfrei',
 ] as const;
 
 /** Signature services (dynamic route /signature/[slug]) — Priority 0.7 for DE */
