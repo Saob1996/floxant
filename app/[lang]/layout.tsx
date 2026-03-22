@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         ? "Umzugsunternehmen Bayern | 100% Festpreis & Kosten-Rechner | FLOXANT" 
         : "FLOXANT – Premium Moving & Service in Bavaria";
     const description = lang === 'de'
-        ? 'Ihr Umzugsunternehmen für Bayern (München, Nürnberg, Regensburg). Entrümpelung & Reinigung zum Festpreis. Sofortpreis online berechnen oder direkt per WhatsApp 015771105087 anfragen!'
+        ? 'Ihr Umzugsunternehmen für Bayern (München, Nürnberg, Regensburg). Entrümpelung & Reinigung zum Festpreis. Jetzt online berechnen oder via WhatsApp anfragen!'
         : 'Professional moving and cleaning services in Bavaria. Regensburg, Munich, Nuremberg. Transparent pricing, fast online estimates and direct WhatsApp support.';
 
     const canonical = `https://www.floxant.de/${lang}`;

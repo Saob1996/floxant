@@ -125,7 +125,13 @@ export function generatePageSEO({ lang, path, title, description }: PageSEOInput
 
     let ctrDesc = description;
     if (ctrDesc && !ctrDesc.includes('⭐') && !ctrDesc.includes('⚡')) {
+        // Prefix with emoji, then append suffix
         ctrDesc = `⚡ ${ctrDesc}${triggers.descSuffix}`;
+    }
+
+    // 🔥 Safety Check: Truncate to 158 characters to ensure perfect display in search results
+    if (ctrDesc.length > 158) {
+        ctrDesc = ctrDesc.substring(0, 155) + "...";
     }
 
     return {

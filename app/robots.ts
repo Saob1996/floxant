@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
                 userAgent: '*',
                 allow: '/',
                 disallow: ['/api/', '/*/dashboard/', '/*/login/'],
+                crawlDelay: 1, // Satisfies Bing Webmaster Tools diagnostics
             },
         ],
         sitemap: [
