@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'blog/umzug-kosten-regensburg',
         title: 'Umzugskosten Regensburg: Echte Preise & Spartipps | FLOXANT',
-        description: 'Was kostet ein Umzug in Regensburg wirklich? Wir schlüsseln reale Preise, Faktoren und versteckte Kosten auf. So sparen Sie beim Umzug.',
+        description: 'Was kostet ein Umzug in Regensburg wirklich? Wir schlüsseln reale Preise, Faktoren und versteckte Kosten auf. So sparen Sie beim Umzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

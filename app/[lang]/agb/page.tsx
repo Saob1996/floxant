@@ -4,7 +4,7 @@ import { Locale } from "../../../i18n-config";
 
 export const metadata = {
     title: "AGB – FLOXANT",
-    description: "Allgemeine Geschäftsbedingungen von Floxant.",
+    description: "Allgemeine Geschäftsbedingungen von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     robots: "index, follow",
 };
 

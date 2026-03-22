@@ -8,9 +8,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2, Clock, ThumbsUp, Truck } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "umzug-kissing",
         title: "Umzugsunternehmen Kissing ✓ Festpreis ✓ Versichert | FLOXANT",
-        description: "Ihr Umzugsunternehmen für Kissing (Schwaben). Professioneller Umzug mit Festpreisgarantie, voller Versicherung und schneller Verfügbarkeit. Jetzt Angebot anfordern!",
+        description: "Ihr Umzugsunternehmen für Kissing (Schwaben). Professioneller Umzug mit Festpreisgarantie, voller Versicherung und schneller Verfügbarkeit. Jetzt Angebot anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -188,7 +188,7 @@ export default async function UmzugKissing({ params }: { params: Promise<{ lang:
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Preis anfragen für Kissing</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Füllen Sie unser kurzes Formular aus und erhalten Sie Ihr persönliches Festpreisangebot für Kissing.</p>
                         <div className="px-6">
-                            <SmartBookingWizard dict={dict} />
+                            <DualCalculator />
                         </div>
                     </div>
                 </div>

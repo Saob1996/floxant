@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'blog/umzug-checkliste',
         title: 'Die ultimative Umzug Checkliste: PDF & Zeitplan | FLOXANT',
-        description: 'Vom Packen bis zur Ummeldung: Unsere interaktive Umzug Checkliste bewahrt Sie vor dem Chaos. Der perfekte Zeitplan 3 Monate vor dem Umzug.',
+        description: 'Vom Packen bis zur Ummeldung: Unsere interaktive Umzug Checkliste bewahrt Sie vor dem Chaos. Der perfekte Zeitplan 3 Monate vor dem Umzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

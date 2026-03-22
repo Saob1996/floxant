@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'blog/umzug-tipps-bayern',
         title: '12 Experten Umzug Tipps für Bayern: Zeit & Geld sparen | FLOXANT',
-        description: 'Planen Sie einen Umzug in München, Regensburg oder Franken? Unsere Profi Umzug Tipps vom etablierten Umzugsunternehmen helfen Ihnen sofort.',
+        description: 'Planen Sie einen Umzug in München, Regensburg oder Franken? Unsere Profi Umzug Tipps vom etablierten Umzugsunternehmen helfen Ihnen sofort. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

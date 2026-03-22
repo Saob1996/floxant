@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Studentenumzug Regensburg | Günstig & Zuverlässig | FLOXANT",
-        description: "Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Service. FLOXANT – Ihr Umzugspartner für Studierende.",
+        description: "Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Service. FLOXANT – Ihr Umzugspartner für Studierende. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/studentenumzug-regensburg`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/studentenumzug-regensburg`; return acc; }, {} as Record<string, string>),

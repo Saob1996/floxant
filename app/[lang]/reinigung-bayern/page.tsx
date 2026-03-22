@@ -7,9 +7,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { CheckCircle2, MapPin, Shield, Sparkles, Clock, ArrowRight } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({
@@ -20,7 +20,7 @@ export async function generateMetadata({
     const { lang } = await params;
     return {
         title: "Reinigung Bayern | Professionelle Endreinigung | FLOXANT",
-        description: "Professionelle Reinigungsdienstleistungen in ganz Bayern. Endreinigung nach Vermieterstandards, Baureinigung & Büroreinigung. Regensburg, Nürnberg, München. Jetzt anfragen!",
+        description: "Professionelle Reinigungsdienstleistungen in ganz Bayern. Endreinigung nach Vermieterstandards, Baureinigung & Büroreinigung. Regensburg, Nürnberg, München. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/reinigung-bayern`,
             languages: i18n.locales.reduce(
@@ -213,7 +213,7 @@ export default async function ReinigungBayern({
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                             Transparentes Festpreisangebot mit Zufriedenheitsgarantie. Kurzfristig verfügbar in ganz Bayern.
                         </p>
-                        <SmartBookingWizard dict={dict} />
+                        <DualCalculator />
                     </div>
 
                 </div>

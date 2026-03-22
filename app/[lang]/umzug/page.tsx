@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'umzug',
         title: 'Umzugsunternehmen Bayern ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: 'Professionelles Umzugsunternehmen in Bayern. Umzugsservice planen, Umzugskosten berechnen. Ihre seriöse Umzugsfirma für stressfreie Umzüge deutschlandweit.',
+        description: 'Professionelles Umzugsunternehmen in Bayern. Umzugsservice planen, Umzugskosten berechnen. Ihre seriöse Umzugsfirma für stressfreie Umzüge deutschlandweit. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

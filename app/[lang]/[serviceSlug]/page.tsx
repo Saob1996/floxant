@@ -9,6 +9,11 @@ const SmartBookingWizard = dynamic(
     () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
+
+const ReviewCarousel = dynamic(
+    () => import("@/components/trust/ReviewCarousel"),
+    { loading: () => <div className="w-full py-20 bg-[#0A0A0A] min-h-[500px]" /> }
+);
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 
@@ -199,6 +204,8 @@ export default async function CoreServicePage({
                     </div>
                 </section>
             )}
+
+            <ReviewCarousel />
 
             {/* Internal Links: Related Services */}
             <section className="py-16 px-6 border-t border-border/50">

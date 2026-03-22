@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "blog/umzug-planen-schritt-fuer-schritt",
         title: "Umzug planen: Der ultimative Leitfaden in 10 Schritten | FLOXANT Ratgeber",
-        description: "Umzug richtig planen – von der Kündigung bis zur Schlüsselübergabe. 10-Schritte-Anleitung mit Checklisten, Fristen und Insider-Tipps für Bayern.",
+        description: "Umzug richtig planen – von der Kündigung bis zur Schlüsselübergabe. 10-Schritte-Anleitung mit Checklisten, Fristen und Insider-Tipps für Bayern. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -24,8 +24,8 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         "@context": "https://schema.org", "@type": "Article",
         "headline": "Umzug planen: Der ultimative Leitfaden in 10 Schritten",
         "description": "Umzug richtig planen – von der Kündigung bis zur Schlüsselübergabe. 10-Schritte-Anleitung mit Checklisten, Fristen und Insider-Tipps für Bayern.",
-        "author": { "@type": "Organization", "name": "FLOXANT GmbH" },
-        "publisher": { "@type": "Organization", "name": "FLOXANT GmbH", "url": "https://www.floxant.de" },
+        "author": { "@type": "Organization", "name": "FLOXANT" },
+        "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
         "datePublished": "2026-03-18",
         "dateModified": "2026-03-18",
     };

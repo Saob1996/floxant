@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'blog/entrumpelung-kosten-bayern',
         title: 'Entrümpelung Kosten Bayern: Was kostet die Räumung? | FLOXANT',
-        description: 'Von Kellerentrümpelung bis zur Wohnungsauflösung: Alle Entrümpelungskosten in Bayern (inkl. Entsorgungsgebühren) detailliert aufgeschlüsselt.',
+        description: 'Von Kellerentrümpelung bis zur Wohnungsauflösung: Alle Entrümpelungskosten in Bayern (inkl. Entsorgungsgebühren) detailliert aufgeschlüsselt. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

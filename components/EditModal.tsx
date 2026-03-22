@@ -89,14 +89,14 @@ export function EditModal({ booking, onClose, onSave }: EditModalProps) {
                         />
                     </div>
 
-                    <div className="flex gap-3 justify-end pt-2">
-                        <button
-                            onClick={onClose}
-                            className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                            Abbrechen
-                        </button>
-                        <a href={`/de/dashboard/documents/${booking.id}`} target="_blank" rel="noopener noreferrer" className="flex items-center">
+        <div className="flex gap-3 justify-end pt-2">
+            <button
+                onClick={onClose}
+                className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+                Abbrechen
+            </button>
+            <a href={`/${typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : 'de'}/dashboard/documents/${booking.id}`} target="_blank" rel="noopener noreferrer" className="flex items-center">
                             <PremiumButton variant="outline" className="gap-2 h-9">
                                 Dokument
                             </PremiumButton>

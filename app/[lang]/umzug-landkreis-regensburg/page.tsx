@@ -8,9 +8,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPin, ArrowRight, Layers, Shield } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "umzug-landkreis-regensburg",
         title: "Umzugsunternehmen Landkreis Regensburg – Ihr regionaler Partner | FLOXANT",
-        description: "Professioneller Transporte und Umzüge in Landkreis Regensburg. Alle 41 Gemeinden und Märkte im direkten Umkreis der Domstadt. 100% Versichert, Festpreisgarantie.",
+        description: "Professioneller Transporte und Umzüge in Landkreis Regensburg. Alle 41 Gemeinden und Märkte im direkten Umkreis der Domstadt. 100% Versichert, Festpreisgarantie. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -94,7 +94,7 @@ export default async function HubUmzuglandkreisregensburg({ params }: { params: 
 
                 <div className="mt-16 text-center">
                     <h2 className="text-3xl font-bold mb-8">Kostenfrei innerhalb der Landkreis Regensburg anfragen</h2>
-                    <SmartBookingWizard dict={dict} />
+                    <DualCalculator />
                 </div>
             </section>
         </main>

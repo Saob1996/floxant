@@ -2,9 +2,9 @@ import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 import { getDictionary } from "../../../get-dictionary";
 import { Locale } from "../../../i18n-config";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'umzug-bayern',
         title: 'Umzugsunternehmen Bayern ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: 'Professionelles Umzugsunternehmen in Bayern. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.',
+        description: 'Professionelles Umzugsunternehmen in Bayern. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 
@@ -196,7 +196,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                             Fordern Sie jetzt Ihr unverbindliches Festpreisangebot an. Wir beraten Sie gerne persönlich zu Ihrem Umzugsvorhaben in Bayern oder deutschlandweit.
                         </p>
-                        <SmartBookingWizard dict={dict} />
+                        <DualCalculator />
                     </div>
 
                 </div>

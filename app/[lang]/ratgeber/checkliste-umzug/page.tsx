@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/checkliste-umzug', title: 'Checkliste für stressfreien Umzug | FLOXANT Ratgeber', description: 'Die ultimative Umzug-Checkliste: Schritt für Schritt zum perfekten Umzug ohne Stress.' });
+    return generatePageSEO({ lang, path: 'ratgeber/checkliste-umzug', title: 'Checkliste für stressfreien Umzug | FLOXANT Ratgeber', description: 'Die ultimative Umzug-Checkliste: Schritt für Schritt zum perfekten Umzug ohne Stress. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {

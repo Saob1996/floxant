@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "seniorenumzug-muenchen",
         title: "Seniorenumzug München – Einfühlsam & Sicher | FLOXANT",
-        description: "Seniorenumzug in München: Kompletter Einpackservice, Möbelmontage, Behördenhilfe. Empathisches Team, fester Preis, volle Versicherung. Jetzt beraten lassen!",
+        description: "Seniorenumzug in München: Kompletter Einpackservice, Möbelmontage, Behördenhilfe. Empathisches Team, fester Preis, volle Versicherung. Jetzt beraten lassen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -31,7 +31,7 @@ export default async function SeniorenumzugPage({ params }: { params: Promise<{ 
         "@context": "https://schema.org", "@type": "Service",
         "name": "Seniorenumzug München",
         "provider": {
-            "@type": "MovingCompany", "name": "FLOXANT GmbH",
+            "@type": "MovingCompany", "name": "FLOXANT",
             "telephone": "+4915771105087",
             "address": { "@type": "PostalAddress", "streetAddress": "Friedenstraße 24", "addressLocality": "Regensburg", "postalCode": "93053", "addressCountry": "DE" },
             "geo": { "@type": "GeoCoordinates", "latitude": "48.1351", "longitude": "11.5820" }

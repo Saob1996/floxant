@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/umzug-kosten-regensburg', title: 'Umzug Kosten Regensburg 2026 | FLOXANT Ratgeber', description: 'Was kostet ein Umzug in Regensburg? Preise, Faktoren und Spartipps für 2026.' });
+    return generatePageSEO({ lang, path: 'ratgeber/umzug-kosten-regensburg', title: 'Umzug Kosten Regensburg 2026 | FLOXANT Ratgeber', description: 'Was kostet ein Umzug in Regensburg? Preise, Faktoren und Spartipps für 2026. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {

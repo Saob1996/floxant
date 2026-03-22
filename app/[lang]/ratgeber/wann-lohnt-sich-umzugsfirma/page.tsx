@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/wann-lohnt-sich-umzugsfirma', title: 'Wann lohnt sich eine Umzugsfirma? | FLOXANT Ratgeber', description: 'Ab wann lohnt sich eine Umzugsfirma? Kosten-Nutzen-Analyse für Ihren Umzug.' });
+    return generatePageSEO({ lang, path: 'ratgeber/wann-lohnt-sich-umzugsfirma', title: 'Wann lohnt sich eine Umzugsfirma? | FLOXANT Ratgeber', description: 'Ab wann lohnt sich eine Umzugsfirma? Kosten-Nutzen-Analyse für Ihren Umzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {

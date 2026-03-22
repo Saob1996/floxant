@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "blog/umzugskosten-senken-7-tipps",
         title: "7 bewährte Tipps, um Umzugskosten drastisch zu senken | FLOXANT Ratgeber",
-        description: "Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen!",
+        description: "Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -24,8 +24,8 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         "@context": "https://schema.org", "@type": "Article",
         "headline": "7 bewährte Tipps, um Umzugskosten drastisch zu senken",
         "description": "Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen!",
-        "author": { "@type": "Organization", "name": "FLOXANT GmbH" },
-        "publisher": { "@type": "Organization", "name": "FLOXANT GmbH", "url": "https://www.floxant.de" },
+        "author": { "@type": "Organization", "name": "FLOXANT" },
+        "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
         "datePublished": "2026-03-18",
         "dateModified": "2026-03-18",
     };

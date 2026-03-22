@@ -4,9 +4,9 @@ import { i18n, type Locale } from "../../../i18n-config";
 import { Header } from "@/components/Header";
 import dynamic from "next/dynamic";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 import Link from "next/link";
 
@@ -135,7 +135,7 @@ export default async function EntruempelungRegensburg({
                 <div className="mx-auto max-w-3xl text-center py-12 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg px-8">
                     <h2 className="text-3xl font-bold mb-4">{content.cta_title}</h2>
                     <p className="text-muted-foreground mb-10 max-w-xl mx-auto">{content.cta_text}</p>
-                    <SmartBookingWizard dict={dict} />
+                    <DualCalculator />
                 </div>
             </section>
         </main>

@@ -7,16 +7,16 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Calculator } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
     return {
         title: "Entrümpelung Kosten Regensburg | Preise & Angebot | FLOXANT",
-        description: "Was kostet eine Entrümpelung in Regensburg? Transparente Preise für Haushaltsauflösung, Gewerberäumung & Nachlassräumung. Festpreisangebot von FLOXANT anfordern!",
+        description: "Was kostet eine Entrümpelung in Regensburg? Transparente Preise für Haushaltsauflösung, Gewerberäumung & Nachlassräumung. Festpreisangebot von FLOXANT anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/entruempelung-kosten-regensburg`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/entruempelung-kosten-regensburg`; return acc; }, {} as Record<string, string>),
@@ -142,7 +142,7 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
                     <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Kostenloses Angebot anfordern</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Verbindliches Festpreisangebot nach kostenloser Begehung.</p>
-                        <SmartBookingWizard dict={dict} />
+                        <DualCalculator />
                     </div>
                 </div>
             </section>

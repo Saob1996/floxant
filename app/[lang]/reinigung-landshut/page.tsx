@@ -8,14 +8,14 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'reinigung-landshut', title: 'Reinigung Landshut | Professionelle Endreinigung | FLOXANT', description: 'Professionelle Reinigung in Landshut. Endreinigung für Wohnungsübergabe, Büroreinigung und Grundreinigung. Festpreis & Abnahmegarantie.' });
+    return generatePageSEO({ lang, path: 'reinigung-landshut', title: 'Reinigung Landshut | Professionelle Endreinigung | FLOXANT', description: 'Professionelle Reinigung in Landshut. Endreinigung für Wohnungsübergabe, Büroreinigung und Grundreinigung. Festpreis & Abnahmegarantie. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
@@ -124,7 +124,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
                     <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Reinigung in Landshut anfragen</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenloses Festpreisangebot für Reinigung in Landshut.</p>
-                        <SmartBookingWizard dict={dict} />
+                        <DualCalculator />
                     </div>
                 </div>
             </section>

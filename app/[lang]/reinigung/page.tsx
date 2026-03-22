@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'reinigung',
         title: 'Reinigungsfirma & Gebäudereinigung Bayern ✓ Endreinigung | FLOXANT',
-        description: 'Professionelle Wohnungsreinigung, Büroreinigung und Grundreinigung nach Vermieterstandard. Übergabegarantie, transparente Preise.',
+        description: 'Professionelle Wohnungsreinigung, Büroreinigung und Grundreinigung nach Vermieterstandard. Übergabegarantie, transparente Preise. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

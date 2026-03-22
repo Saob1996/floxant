@@ -31,6 +31,15 @@ export function JsonLd({ lang }: { lang: string }) {
         "url": `https://www.floxant.de/${lang}`,
         "telephone": "+4915771105087",
         "email": company.email,
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "+49-1577-1105087",
+                "contactType": "customer support",
+                "contactOption": ["TollFree"],
+                "availableLanguage": ["German", "English", "Arabic", "Turkish"]
+            }
+        ],
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Johanna-Kinkel-Straße 1 + 2",
@@ -115,6 +124,38 @@ export function JsonLd({ lang }: { lang: string }) {
         }))
     };
 
+    // FAQPage schema - to occupy massive space in search results
+    const faqPage = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Arbeitet FLOXANT in ganz Bayern?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ja, wir betreuen ganz Bayern. Unser Fokus liegt auf der Oberpfalz (Regensburg), aber unsere Teams fahren regelmäßig nach München, Nürnberg und Augsburg."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Bieten Sie wirklich einen Festpreis?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolut. Nach einer kostenlosen Erstbesichtigung (auch via WhatsApp-Video möglich) erhalten Sie ein garantiertes Festpreisangebot ohne versteckte Nachkalkulationen."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wie schnell bekommen wir einen Termin?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Dank unserer großen Kapazitäten realisieren wir dringende Umzüge und Entrümpelungen oft innerhalb von 48 Stunden. Für reguläre Termine empfehlen wir 2-4 Wochen Vorlauf."
+                }
+            }
+        ]
+    };
+
     // WebSite schema — helps Google understand site structure
     const webSite = {
         "@context": "https://schema.org",
@@ -145,6 +186,10 @@ export function JsonLd({ lang }: { lang: string }) {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(webSite) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
             />
         </>
     );

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Kurzfristiger Umzug Bayern | Schnell & Flexibel | FLOXANT",
-        description: "Kurzfristiger Umzug in Bayern – auch innerhalb weniger Tage. Regensburg, Nürnberg, München. Professionell & versichert. Jetzt anfragen!",
+        description: "Kurzfristiger Umzug in Bayern – auch innerhalb weniger Tage. Regensburg, Nürnberg, München. Professionell & versichert. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/kurzfristiger-umzug-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/kurzfristiger-umzug-bayern`; return acc; }, {} as Record<string, string>),

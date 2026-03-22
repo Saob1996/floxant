@@ -2,9 +2,8 @@ export const runtime = 'nodejs';
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, renderToStream, Font } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, renderToStream } from '@react-pdf/renderer';
 
 // FLOXANT Business Data — German Compliance
 const BIZ = {
@@ -63,42 +62,25 @@ const styles = StyleSheet.create({
     pageNumber: { position: 'absolute', bottom: 15, right: 50, fontSize: 7, color: '#9ca3af' },
 });
 
-interface Booking {
-    id: string;
-    service: string;
-    name: string;
-    email: string;
-    phone: string;
-    upgrades: string[];
-    details: any;
-    timestamp: string;
-}
-
 const fmt = (n: number) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
 
-const InvoiceDocument = ({ booking, docType }: { booking: Booking; docType: 'angebot' | 'rechnung' }) => {
+const InvoiceDocument = ({ 
+    clientInfo, 
+    items,
+    docType,
+    leistungsdatum,
+    bookingId
+}: { 
+    clientInfo: { name: string, email: string, phone: string, address?: string },
+    items: { description: string, quantity: number, unitPrice: number }[],
+    docType: 'angebot' | 'rechnung' | 'auftragsbestaetigung',
+    leistungsdatum: string,
+    bookingId: string
+}) => {
     const today = new Date().toLocaleDateString("de-DE");
-    const prefix = docType === 'rechnung' ? 'RE' : 'AG';
-    const docNr = `${prefix}-${booking.id.slice(0, 8).toUpperCase()}`;
-    const title = docType === 'rechnung' ? 'RECHNUNG' : 'ANGEBOT';
-
-    const items = [
-        {
-            description: `${booking.service?.charAt(0).toUpperCase()}${booking.service?.slice(1) || 'Service'} – ${booking.details?.date || 'Nach Vereinbarung'}`,
-            quantity: 1,
-            unitPrice: 0,
-        }
-    ];
-
-    if (booking.upgrades && Array.isArray(booking.upgrades)) {
-        booking.upgrades.forEach((u: string) => {
-            items.push({
-                description: u.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase()),
-                quantity: 1,
-                unitPrice: 0,
-            });
-        });
-    }
+    const prefix = docType === 'rechnung' ? 'RE' : docType === 'auftragsbestaetigung' ? 'AB' : 'AG';
+    const docNr = `${prefix}-${bookingId.slice(0, 8).toUpperCase()}`;
+    const title = docType === 'rechnung' ? 'RECHNUNG' : docType === 'auftragsbestaetigung' ? 'AUFTRAGSBESTÄTIGUNG' : 'ANGEBOT';
 
     const netto = items.reduce((sum, i) => sum + (i.quantity * i.unitPrice), 0);
     const ust = netto * 0.19;
@@ -126,9 +108,10 @@ const InvoiceDocument = ({ booking, docType }: { booking: Booking; docType: 'ang
                 {/* Recipient */}
                 <View style={styles.recipient}>
                     <Text style={styles.recipientLine}>{BIZ.name} · {BIZ.street} · {BIZ.zip} {BIZ.city}</Text>
-                    <Text style={{ fontWeight: 'bold' }}>{booking.name}</Text>
-                    <Text>{booking.email}</Text>
-                    <Text>{booking.phone}</Text>
+                    <Text style={{ fontWeight: 'bold' }}>{clientInfo.name}</Text>
+                    <Text>{clientInfo.email}</Text>
+                    <Text>{clientInfo.phone}</Text>
+                    {clientInfo.address && <Text>{clientInfo.address}</Text>}
                 </View>
 
                 {/* Title Row */}
@@ -139,16 +122,18 @@ const InvoiceDocument = ({ booking, docType }: { booking: Booking; docType: 'ang
                     </View>
                     <View>
                         <Text style={styles.dateInfo}>Datum: {today}</Text>
-                        <Text style={styles.dateInfo}>Leistungsdatum: {today}</Text>
+                        <Text style={styles.dateInfo}>Leistungsdatum: {leistungsdatum}</Text>
                     </View>
                 </View>
 
                 {/* Intro */}
                 <Text style={styles.intro}>
-                    Sehr geehrte(r) {booking.name},{"\n\n"}
+                    Sehr geehrte(r) {clientInfo.name},{"\n\n"}
                     {docType === 'angebot'
                         ? 'vielen Dank für Ihre Anfrage. Wir unterbreiten Ihnen folgendes Angebot:'
-                        : 'wir stellen Ihnen folgende Leistungen in Rechnung:'}
+                        : docType === 'rechnung' 
+                        ? 'wir stellen Ihnen folgende Leistungen in Rechnung:'
+                        : 'hiermit bestätigen wir Ihren Auftrag basierend auf den folgenden Angaben:'}
                 </Text>
 
                 {/* Table */}
@@ -189,13 +174,25 @@ const InvoiceDocument = ({ booking, docType }: { booking: Booking; docType: 'ang
                     </View>
                 </View>
 
-                {/* Legal Note */}
+                {/* Legal Note & Signature Line */}
                 <View style={styles.legalNote} wrap={false}>
                     <Text>
                         {docType === 'angebot'
                             ? 'Dieses Angebot ist freibleibend und 30 Tage gültig. Es gelten unsere AGB.'
-                            : 'Zahlungsziel: 14 Tage nach Rechnungserhalt ohne Abzug. Es gelten unsere AGB.'}
+                            : docType === 'rechnung'
+                            ? 'Zahlungsziel: 14 Tage nach Rechnungserhalt ohne Abzug. Es gelten unsere AGB.'
+                            : 'Bitte senden Sie uns ein unterzeichnetes Exemplar zurück. Es gelten unsere AGB.'}
                     </Text>
+                    {docType === 'auftragsbestaetigung' && (
+                        <View style={{ marginTop: 40, flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <View style={{ width: '40%', borderTopWidth: 1, borderTopColor: '#000', paddingTop: 5 }}>
+                                <Text>Ort, Datum</Text>
+                            </View>
+                            <View style={{ width: '40%', borderTopWidth: 1, borderTopColor: '#000', paddingTop: 5 }}>
+                                <Text>Unterschrift Auftraggeber ({clientInfo.name})</Text>
+                            </View>
+                        </View>
+                    )}
                 </View>
 
                 {/* Footer — fixed at bottom of every page */}
@@ -227,28 +224,41 @@ const InvoiceDocument = ({ booking, docType }: { booking: Booking; docType: 'ang
     );
 };
 
-export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const session = await getServerSession(authOptions);
     if (!session) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { id } = await params;
-    const url = new URL(req.url);
-    const docType = (url.searchParams.get('type') === 'rechnung' ? 'rechnung' : 'angebot') as 'angebot' | 'rechnung';
-
-    const { data: booking, error } = await supabase
-        .from('bookings')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-    if (error || !booking) {
-        return NextResponse.json({ error: "Booking not found" }, { status: 404 });
+    
+    let body;
+    try {
+        body = await req.json();
+    } catch(e) {
+        return NextResponse.json({ error: "Invalid Request body" }, { status: 400 });
     }
 
-    const prefix = docType === 'rechnung' ? 'rechnung' : 'angebot';
-    const stream = await renderToStream(<InvoiceDocument booking={booking} docType={docType} />);
+    const { docType = 'angebot', items = [], clientInfo, leistungsdatum } = body;
+
+    if (!clientInfo || !Array.isArray(items)) {
+        return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    const prefix = docType === 'rechnung' ? 'rechnung' : docType === 'auftragsbestaetigung' ? 'auftragsbestaetigung' : 'angebot';
+    
+    // Convert dates Format -> toLocaleDateString expects valid date parsing if we were turning it, 
+    // but the client sends a YYYY-MM-DD string, so we just format it nicely or pass it directly.
+    const dateArr = leistungsdatum?.split('-') || [];
+    const formattedDate = dateArr.length === 3 ? `${dateArr[2]}.${dateArr[1]}.${dateArr[0]}` : leistungsdatum;
+
+    const stream = await renderToStream(<InvoiceDocument 
+        bookingId={id} 
+        docType={docType} 
+        items={items} 
+        clientInfo={clientInfo} 
+        leistungsdatum={formattedDate || "Nach Vereinbarung"} 
+    />);
 
     return new NextResponse(stream as unknown as BodyInit, {
         headers: {

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Umzugskosten Bayern | Preise & Festpreisangebot | FLOXANT",
-        description: "Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München. Transparente Festpreise ohne versteckte Kosten. Jetzt kostenloses Angebot anfordern!",
+        description: "Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München. Transparente Festpreise ohne versteckte Kosten. Jetzt kostenloses Angebot anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/umzugskosten-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/umzugskosten-bayern`; return acc; }, {} as Record<string, string>),

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "blog/wohnungsuebergabe-protokoll-guide",
         title: "Wohnungsübergabe: So sichern Sie sich rechtlich ab | FLOXANT Ratgeber",
-        description: "Wohnungsübergabeprotokoll richtig erstellen. Was muss rein, worauf achten und wie vermeiden Sie Streit um die Kaution? Kompletter Guide.",
+        description: "Wohnungsübergabeprotokoll richtig erstellen. Was muss rein, worauf achten und wie vermeiden Sie Streit um die Kaution? Kompletter Guide. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -24,8 +24,8 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         "@context": "https://schema.org", "@type": "Article",
         "headline": "Wohnungsübergabe: So sichern Sie sich rechtlich ab",
         "description": "Wohnungsübergabeprotokoll richtig erstellen. Was muss rein, worauf achten und wie vermeiden Sie Streit um die Kaution? Kompletter Guide.",
-        "author": { "@type": "Organization", "name": "FLOXANT GmbH" },
-        "publisher": { "@type": "Organization", "name": "FLOXANT GmbH", "url": "https://www.floxant.de" },
+        "author": { "@type": "Organization", "name": "FLOXANT" },
+        "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
         "datePublished": "2026-03-18",
         "dateModified": "2026-03-18",
     };

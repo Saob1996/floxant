@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/moebeltransport-sicher', title: 'Möbeltransport sicher organisieren | FLOXANT Ratgeber', description: 'So kommen Ihre Möbel sicher an: Verpackung, Transport und Versicherung beim Umzug.' });
+    return generatePageSEO({ lang, path: 'ratgeber/moebeltransport-sicher', title: 'Möbeltransport sicher organisieren | FLOXANT Ratgeber', description: 'So kommen Ihre Möbel sicher an: Verpackung, Transport und Versicherung beim Umzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {

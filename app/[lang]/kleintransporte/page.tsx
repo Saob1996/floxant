@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'kleintransporte',
         title: 'Kleintransporte & Möbel Taxi Bayern ✓ Günstig | FLOXANT',
-        description: 'Schnelle Kleintransporte, Möbeltaxi und Beiladungen in ganz Bayern. Zuverlässiger Transport einzelner Möbelstücke zum günstigen Festpreis.',
+        description: 'Schnelle Kleintransporte, Möbeltaxi und Beiladungen in ganz Bayern. Zuverlässiger Transport einzelner Möbelstücke zum günstigen Festpreis. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

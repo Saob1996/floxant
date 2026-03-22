@@ -9,7 +9,7 @@ import { BookOpen } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber', title: 'Umzug Ratgeber | Tipps & Kosten | FLOXANT', description: 'Ratgeber rund um Umzug, Entrümpelung und Reinigung. Kosten, Checklisten und Tipps von FLOXANT – Ihrer Umzugsfirma in Regensburg.' });
+    return generatePageSEO({ lang, path: 'ratgeber', title: 'Umzug Ratgeber | Tipps & Kosten | FLOXANT', description: 'Ratgeber rund um Umzug, Entrümpelung und Reinigung. Kosten, Checklisten und Tipps von FLOXANT – Ihrer Umzugsfirma in Regensburg. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 const articles = [

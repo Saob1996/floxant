@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Seniorenumzug Bayern | Einfühlsam & Professionell | FLOXANT",
-        description: "Seniorenumzug in Bayern – mit Geduld, Respekt und professioneller Planung. Wechsel ins Pflegeheim, altersgerechte Wohnung oder Seniorenresidenz. FLOXANT begleitet Sie.",
+        description: "Seniorenumzug in Bayern – mit Geduld, Respekt und professioneller Planung. Wechsel ins Pflegeheim, altersgerechte Wohnung oder Seniorenresidenz. FLOXANT begleitet Sie. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/seniorenumzug-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/seniorenumzug-bayern`; return acc; }, {} as Record<string, string>),

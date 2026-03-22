@@ -35,84 +35,70 @@
   --radius-sm: calc(var(--radius) - 4px);
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-heading), var(--font-sans);
 }
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    /* Matte Technical White */
-    --foreground: 215 25% 20%;
-    /* Technical Lead Gray */
+    /* Phase 6 Luxury Dark Base (Obsidian/Graphite) applied globally */
+    --background: 240 10% 4%; /* #0A0A0C */
+    --foreground: 0 0% 98%; /* #FAFAFA */
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 20%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 20%;
+    --card: 240 10% 7%; /* #121216 Graphite Surface */
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 215 25% 30%;
-    /* Lead (Dark Blue-Gray) */
+    --primary: 220 70% 55%; /* Controlled Blue Violet Accent */
     --primary-foreground: 0 0% 100%;
-    /* Pure White */
 
-    --secondary: 210 20% 90%;
-    /* Technical Silver */
-    --secondary-foreground: 215 25% 20%;
+    --secondary: 240 10% 10%; /* Elevated Surface */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 240 10% 8%;
+    --muted-foreground: 240 5% 65%; /* Soft readable gray */
 
-    --accent: 210 25% 50%;
-    /* Steel Blue Accent */
+    --accent: 220 70% 55%; 
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 215 15% 85%;
-    /* Precise Lines */
-    --input: 215 15% 85%;
-    --ring: 215 25% 50%;
-    --radius: 0.25rem;
-    /* Sharp, technical corners */
+    --border: 240 10% 14%; /* Subtle structural crisp borders */
+    --input: 240 10% 14%;
+    --ring: 220 70% 55%;
+    
+    --radius: 0.5rem; /* Strict architectural corners */
   }
 
+  /* Force dark mode tokens everywhere for true luxury feel */
   .dark {
-    --background: 215 30% 10%;
-    /* Dark Blueprint Blue */
-    --foreground: 210 20% 90%;
-    /* Silver Text */
-
-    --card: 215 30% 13%;
-    --card-foreground: 210 20% 90%;
-    --popover: 215 30% 13%;
-    --popover-foreground: 210 20% 90%;
-
-    --primary: 210 20% 80%;
-    /* Bright Silver */
-    --primary-foreground: 215 30% 10%;
-
-    --secondary: 215 25% 20%;
-    --secondary-foreground: 210 20% 90%;
-
-    --muted: 215 25% 18%;
-    --muted-foreground: 215 15% 60%;
-
-    --accent: 210 30% 60%;
-    /* Lighter Steel */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 220 70% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 10% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 10% 8%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 220 70% 55%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 215 20% 25%;
-    --input: 215 20% 25%;
-    --ring: 210 30% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 14%;
+    --input: 240 10% 14%;
+    --ring: 220 70% 55%;
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: hsl(var(--background));
   }
 
   * {
@@ -123,15 +109,30 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
+
+  /* Force global heading typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em; /* Tighter tracking for modern B2B look */
+  }
 }
 
-/* Glassmorphism Utilities */
+/* Phase 6 Premium Overrides */
 .glass {
-  @apply bg-white/5 dark:bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/50;
+  /* Removed messy neon/glow blurs, replacing with razor-sharp architectural elevation */
+  @apply bg-[#121216]/80 backdrop-blur-md border border-[#ffffff0a] shadow-[0_4px_24px_rgba(0,0,0,0.4)];
 }
 
 .glass-panel {
-  @apply bg-background/60 backdrop-blur-xl border-b border-border;
+  @apply bg-[#0A0A0C]/90 backdrop-blur-lg border-b border-[#ffffff0a];
+}
+
+/* Suppress all previous neon glows globally */
+.glow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+.glow-emerald {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Hero Animations — CSS-only, replaces Framer Motion m.div */

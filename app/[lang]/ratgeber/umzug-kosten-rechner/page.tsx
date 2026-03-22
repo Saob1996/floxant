@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/umzug-kosten-rechner', title: 'Umzug Kosten Rechner Erklärung | FLOXANT Ratgeber', description: 'Wie funktioniert ein Umzugskostenrechner? Faktoren und Berechnung verständlich erklärt.' });
+    return generatePageSEO({ lang, path: 'ratgeber/umzug-kosten-rechner', title: 'Umzug Kosten Rechner Erklärung | FLOXANT Ratgeber', description: 'Wie funktioniert ein Umzugskostenrechner? Faktoren und Berechnung verständlich erklärt. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {

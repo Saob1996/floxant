@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/umzug-vorbereiten-7-schritte', title: 'Umzug vorbereiten in 7 Schritten | FLOXANT Ratgeber', description: '7 einfache Schritte für die perfekte Umzugsvorbereitung. Planung, Packen, Transport.' });
+    return generatePageSEO({ lang, path: 'ratgeber/umzug-vorbereiten-7-schritte', title: 'Umzug vorbereiten in 7 Schritten | FLOXANT Ratgeber', description: '7 einfache Schritte für die perfekte Umzugsvorbereitung. Planung, Packen, Transport. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {

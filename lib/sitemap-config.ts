@@ -146,6 +146,42 @@ export const CITY_PAGES = [
     'umzug-herzogenaurach',
     'umzug-zirndorf',
     'umzug-oberasbach',
+    // --- Massive Expansion: Unterfranken / Mittelfranken / Oberfranken ---
+    'umzug-wuerzburg',
+    'umzug-bamberg',
+    'umzug-bayreuth',
+    'umzug-coburg',
+    'umzug-schweinfurt',
+    'umzug-ansbach',
+    'umzug-forchheim',
+    // --- Massive Expansion: Südbayern / Oberbayern (Speckgürtel) ---
+    'umzug-rosenheim',
+    'umzug-starnberg',
+    'umzug-germering',
+    'umzug-unterhaching',
+    'umzug-garching',
+    'umzug-bad-toelz',
+    'umzug-landsberg-am-lech',
+    'umzug-weilheim-in-oberbayern',
+    'umzug-traunstein',
+    // --- Massive Expansion: Schwaben ---
+    'umzug-kempten',
+    'umzug-memmingen',
+    'umzug-kaufbeuren',
+    'umzug-neu-ulm',
+    'umzug-gersthofen',
+    'umzug-neusaess',
+    'umzug-guenzburg',
+    // --- Massive Expansion: Niederbayern ---
+    'umzug-dingolfing',
+    'umzug-deggendorf',
+    'umzug-vilshofen',
+    'umzug-pocking',
+    'umzug-plattling',
+    // --- Massive Expansion: Oberpfalz ---
+    'umzug-cham',
+    'umzug-tirschenreuth',
+    'umzug-sulzbach-rosenberg',
 ] as const;
 
 /** Service-specific city pages — Priority 0.9 for DE */
@@ -173,6 +209,29 @@ export const SERVICE_CITY_PAGES = [
     'klaviertransport-regensburg',
     'klaviertransport-nuernberg',
     'klaviertransport-muenchen',
+    // --- High-Profit Core Extensions für Großstädte/Wirtschaftszentren ---
+    'reinigung-rosenheim',
+    'entruempelung-rosenheim',
+    'reinigung-wuerzburg',
+    'entruempelung-wuerzburg',
+    'reinigung-deggendorf',
+    'entruempelung-deggendorf',
+    'reinigung-ingolstadt',
+    'entruempelung-ingolstadt',
+    'reinigung-straubing',
+    'entruempelung-straubing',
+    'reinigung-kempten',
+    'entruempelung-kempten',
+    'reinigung-amberg',
+    'entruempelung-amberg',
+    'reinigung-weiden',
+    'entruempelung-weiden',
+    'reinigung-freising',
+    'entruempelung-freising',
+    'reinigung-dachau',
+    'entruempelung-dachau',
+    'reinigung-erlangen',
+    'entruempelung-erlangen',
 ] as const;
 
 /** Bavaria authority pages — Priority 0.9 for DE */

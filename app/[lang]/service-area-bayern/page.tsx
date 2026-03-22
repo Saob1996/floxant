@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Einsatzgebiet Bayern | Servicegebiet | FLOXANT",
-        description: "FLOXANT Servicegebiet: Ganz Bayern mit Schwerpunkt Regensburg, Nürnberg, München, Feucht & Oberpfalz. Umzug, Reinigung, Entrümpelung – bayernweit verfügbar.",
+        description: "FLOXANT Servicegebiet: Ganz Bayern mit Schwerpunkt Regensburg, Nürnberg, München, Feucht & Oberpfalz. Umzug, Reinigung, Entrümpelung – bayernweit verfügbar. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/service-area-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/service-area-bayern`; return acc; }, {} as Record<string, string>),

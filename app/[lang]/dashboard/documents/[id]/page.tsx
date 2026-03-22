@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { PremiumButton } from "@/components/ui/PremiumButton";
-import { Download, Printer, Plus, Trash2 } from "lucide-react";
+import { Download, Printer, Plus, Trash2, Loader2 } from "lucide-react";
 
 // Force dynamic rendering — prevents 404 on dynamic [id] param
 export const dynamic = 'force-dynamic';
@@ -36,9 +36,11 @@ const BUSINESS = {
 export default function DocumentPage() {
     const params = useParams();
     const [booking, setBooking] = useState<any>(null);
-    const [docType, setDocType] = useState<"rechnung" | "angebot">("angebot");
+    const [docType, setDocType] = useState<"rechnung" | "angebot" | "auftragsbestaetigung">("angebot");
+    const [clientInfo, setClientInfo] = useState({ name: "", email: "", phone: "", address: "" });
     const [items, setItems] = useState<LineItem[]>([]);
     const [loading, setLoading] = useState(true);
+    const [downloading, setDownloading] = useState(false);
     const [leistungsdatum, setLeistungsdatum] = useState(
         new Date().toISOString().slice(0, 10) // YYYY-MM-DD
     );
@@ -48,6 +50,13 @@ export default function DocumentPage() {
             const found = data.find((b: any) => b.id === params.id);
             if (found) {
                 setBooking(found);
+                setClientInfo({
+                    name: found.name || "",
+                    email: found.email || "",
+                    phone: found.phone || "",
+                    address: ""
+                });
+                
                 const initialItems: LineItem[] = [
                     {
                         description: `${found.service?.charAt(0).toUpperCase()}${found.service?.slice(1) || ''} – ${found.details?.date || 'Nach Vereinbarung'}`,
@@ -91,11 +100,45 @@ export default function DocumentPage() {
     };
 
     const addItem = () => {
-        setItems(prev => [...prev, { description: "", quantity: 1, unitPrice: 0 }]);
+        setItems(prev => [...prev, { description: " Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.", quantity: 1, unitPrice: 0 }]);
     };
 
     const deleteItem = (index: number) => {
         setItems(prev => prev.filter((_, i) => i !== index));
+    };
+
+    const handleDownload = async () => {
+        if (!booking) return;
+        setDownloading(true);
+        try {
+            const response = await fetch(`/api/pdf/${params.id}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    docType,
+                    items,
+                    clientInfo,
+                    leistungsdatum
+                })
+            });
+            if (!response.ok) throw new Error('PDF Generation failed');
+            
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const prefix = docType === 'rechnung' ? 'RE' : docType === 'auftragsbestaetigung' ? 'AB' : 'AG';
+            a.download = `${prefix}-${(params.id as string).slice(0, 8).toUpperCase()}.pdf`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("PDF Download error:", error);
+            alert("Fehler beim Erstellen des PDFs.");
+        } finally {
+            setDownloading(false);
+        }
     };
 
     if (loading) return <div className="p-10 text-center">Laden...</div>;
@@ -103,48 +146,58 @@ export default function DocumentPage() {
 
     const { netto, ust, brutto } = calculateTotals();
     const today = new Date().toLocaleDateString("de-DE");
-    const docTitle = docType === "rechnung" ? "RECHNUNG" : "ANGEBOT";
-    const docNr = `${docType === "rechnung" ? "RE" : "AG"}-${booking.id.slice(0, 8).toUpperCase()}`;
+    const docTitle = docType === "rechnung" ? "RECHNUNG" : docType === "auftragsbestaetigung" ? "AUFTRAGSBESTÄTIGUNG" : "ANGEBOT";
+    const docNr = `${docType === "rechnung" ? "RE" : docType === "auftragsbestaetigung" ? "AB" : "AG"}-${booking.id.slice(0, 8).toUpperCase()}`;
+
+    // Format dates for display
+    const dateArr = leistungsdatum.split('-');
+    const formattedDate = dateArr.length === 3 ? `${dateArr[2]}.${dateArr[1]}.${dateArr[0]}` : leistungsdatum;
 
     return (
         <div className="min-h-screen bg-slate-100 p-8 print:p-0 print:bg-white text-black">
             {/* Controls — hidden in print */}
-            <div className="max-w-4xl mx-auto mb-8 flex justify-between items-center print:hidden">
-                <div className="flex gap-4">
+            <div className="max-w-4xl mx-auto mb-8 flex justify-between items-center print:hidden bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                <div className="flex gap-2">
                     <PremiumButton
                         variant={docType === "angebot" ? "primary" : "ghost"}
                         onClick={() => setDocType("angebot")}
-                        className={docType === "angebot" ? "" : "text-black hover:bg-black/5"}
+                        className={`px-3 py-1.5 h-auto text-sm ${docType === "angebot" ? "" : "text-gray-600 hover:bg-gray-100"}`}
                     >
                         Angebot
                     </PremiumButton>
                     <PremiumButton
+                        variant={docType === "auftragsbestaetigung" ? "primary" : "ghost"}
+                        onClick={() => setDocType("auftragsbestaetigung")}
+                        className={`px-3 py-1.5 h-auto text-sm ${docType === "auftragsbestaetigung" ? "" : "text-gray-600 hover:bg-gray-100"}`}
+                    >
+                        Auftragsbestätigung
+                    </PremiumButton>
+                    <PremiumButton
                         variant={docType === "rechnung" ? "primary" : "ghost"}
                         onClick={() => setDocType("rechnung")}
-                        className={docType === "rechnung" ? "" : "text-black hover:bg-black/5"}
+                        className={`px-3 py-1.5 h-auto text-sm ${docType === "rechnung" ? "" : "text-gray-600 hover:bg-gray-100"}`}
                     >
                         Rechnung
                     </PremiumButton>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                     <PremiumButton
-                        onClick={() => {
-                            const url = `/api/pdf/${params.id}?type=${docType}`;
-                            window.open(url, '_blank');
-                        }}
-                        className="gap-2"
+                        onClick={handleDownload}
+                        disabled={downloading}
+                        className="gap-2 px-4 py-2 h-auto text-sm"
                     >
-                        <Download size={16} /> PDF Herunterladen
+                        {downloading ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />} 
+                        PDF Herunterladen
                     </PremiumButton>
-                    <PremiumButton variant="ghost" onClick={() => window.print()} className="gap-2 text-black hover:bg-black/5">
+                    <PremiumButton variant="ghost" onClick={() => window.print()} className="gap-2 px-4 py-2 h-auto text-sm text-gray-600 hover:bg-gray-100">
                         <Printer size={16} /> Drucken
                     </PremiumButton>
                 </div>
             </div>
 
             {/* A4 Page */}
-            <div className="max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-xl p-[20mm] print:shadow-none print:p-[15mm] text-sm leading-relaxed font-sans flex flex-col">
+            <div className="max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-xl p-[20mm] print:shadow-none print:p-[15mm] text-sm leading-relaxed font-sans flex flex-col relative overflow-hidden">
 
                 {/* Header */}
                 <div className="flex justify-between items-start mb-12">
@@ -165,15 +218,36 @@ export default function DocumentPage() {
                     </div>
                 </div>
 
-                {/* Recipient */}
+                {/* Recipient - Editable */}
                 <div className="mb-10 text-sm">
                     <p className="text-[9px] text-gray-400 mb-1 border-b border-gray-200 pb-1">
                         {BUSINESS.name} · {BUSINESS.street} · {BUSINESS.zip} {BUSINESS.city}
                     </p>
-                    <div className="mt-3">
-                        <p className="font-medium">{booking.name}</p>
-                        <p>{booking.email}</p>
-                        <p>{booking.phone}</p>
+                    <div className="mt-3 flex flex-col gap-1 w-72">
+                        <input 
+                            value={clientInfo.name} 
+                            onChange={(e) => setClientInfo(prev => ({...prev, name: e.target.value}))} 
+                            className="font-bold bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none py-1 text-base p-0 m-0"
+                            placeholder="Kundenname..."
+                        />
+                        <input 
+                            value={clientInfo.email} 
+                            onChange={(e) => setClientInfo(prev => ({...prev, email: e.target.value}))} 
+                            className="bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none py-0.5 p-0 m-0"
+                            placeholder="E-Mail Adresse..."
+                        />
+                        <input 
+                            value={clientInfo.phone} 
+                            onChange={(e) => setClientInfo(prev => ({...prev, phone: e.target.value}))} 
+                            className="bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none py-0.5 p-0 m-0"
+                            placeholder="Telefonnummer..."
+                        />
+                        <input 
+                            value={clientInfo.address} 
+                            onChange={(e) => setClientInfo(prev => ({...prev, address: e.target.value}))} 
+                            className="bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none py-0.5 p-0 m-0"
+                            placeholder="Zusatzadresse (optional)"
+                        />
                     </div>
                 </div>
 
@@ -191,18 +265,22 @@ export default function DocumentPage() {
                                 type="date"
                                 value={leistungsdatum}
                                 onChange={(e) => setLeistungsdatum(e.target.value)}
-                                className="bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-right print:border-none"
+                                className="bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-right print:border-none cursor-pointer"
                             />
                         </div>
                     </div>
                 </div>
 
                 {/* Intro */}
-                <p className="mb-6">Sehr geehrte(r) {booking.name},</p>
+                <p className="mb-6">
+                    <span className="flex items-center gap-1">Sehr geehrte(r) <span className="font-medium">{clientInfo.name || "Kunde"}</span>,</span>
+                </p>
                 <p className="mb-8">
                     {docType === "angebot"
                         ? "vielen Dank für Ihre Anfrage. Wir unterbreiten Ihnen folgendes Angebot:"
-                        : "wir stellen Ihnen folgende Leistungen in Rechnung:"}
+                        : docType === "rechnung"
+                        ? "wir stellen Ihnen folgende Leistungen in Rechnung:"
+                        : "hiermit bestätigen wir Ihren Auftrag basierend auf den folgenden Angaben:"}
                 </p>
 
                 {/* Table — Editable */}
@@ -223,12 +301,12 @@ export default function DocumentPage() {
                             return (
                                 <tr key={idx} className="border-b border-gray-100 group">
                                     <td className="py-3 text-gray-500 align-top">{idx + 1}</td>
-                                    <td className="py-3 align-top">
+                                    <td className="py-3 align-top pr-2">
                                         <textarea
                                             value={item.description}
                                             onChange={(e) => updateItem(idx, 'description', e.target.value)}
                                             rows={2}
-                                            className="w-full bg-transparent focus:outline-none resize-y min-h-[36px] text-sm placeholder:text-gray-300"
+                                            className="w-full bg-transparent focus:outline-none resize-y min-h-[36px] text-sm placeholder:text-gray-300 border border-transparent hover:border-gray-200 rounded p-1"
                                             placeholder="Leistungsbeschreibung eingeben..."
                                         />
                                     </td>
@@ -273,13 +351,13 @@ export default function DocumentPage() {
                         variant="ghost"
                         size="sm"
                         onClick={addItem}
-                        className="gap-2 text-xs h-8 text-muted-foreground border border-dashed border-gray-300 w-full justify-center hover:bg-gray-50 hover:text-primary hover:border-primary"
+                        className="gap-2 text-xs h-8 text-gray-500 border border-dashed border-gray-300 w-full justify-center hover:bg-gray-50 hover:text-black hover:border-black"
                     >
                         <Plus size={14} /> Position hinzufügen
                     </PremiumButton>
                 </div>
 
-                {/* Totals — German Compliance */}
+                {/* Totals */}
                 <div className="ml-auto w-72 border-t border-gray-200 pt-4">
                     <div className="flex justify-between py-1">
                         <span className="text-gray-500">Zwischensumme (Netto)</span>
@@ -295,14 +373,28 @@ export default function DocumentPage() {
                     </div>
                 </div>
 
-                {/* Footer — Legal & Bank */}
-                <div className="mt-auto pt-16 border-t border-gray-300 text-[9px] text-gray-600 leading-relaxed">
-                    <p className="mb-3">
+                {/* Footer — Legal & Signature Block */}
+                <div className="mt-auto pt-16 border-t border-gray-300 text-[9px] text-gray-600 leading-relaxed pb-[40px]">
+                    <p className="mb-3 text-[10px]">
                         {docType === "angebot"
                             ? "Dieses Angebot ist freibleibend und 30 Tage gültig. Es gelten unsere AGB."
-                            : "Zahlungsziel: 14 Tage nach Rechnungserhalt ohne Abzug. Es gelten unsere AGB."}
+                            : docType === "rechnung"
+                            ? "Zahlungsziel: 14 Tage nach Rechnungserhalt ohne Abzug. Es gelten unsere AGB."
+                            : "Bitte senden Sie uns ein unterzeichnetes Exemplar zurück. Es gelten unsere AGB."}
                     </p>
-                    <div className="grid grid-cols-3 gap-6">
+
+                    {docType === 'auftragsbestaetigung' && (
+                        <div className="mt-8 mb-6 flex justify-between print:mt-12">
+                            <div className="border-t border-gray-400 w-48 pt-1 text-[10px] text-gray-500">
+                                Ort, Datum
+                            </div>
+                            <div className="border-t border-gray-400 w-56 pt-1 text-[10px] text-gray-500">
+                                Unterschrift Kunde ({clientInfo.name || "Auftraggeber"})
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="grid grid-cols-3 gap-6 pt-4">
                         <div>
                             <p className="font-semibold mb-1">{BUSINESS.name}</p>
                             <p>{BUSINESS.street}</p>

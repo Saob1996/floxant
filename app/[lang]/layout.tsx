@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { JsonLd } from "../../components/JsonLd";
@@ -9,6 +9,7 @@ import AuthProvider from "../../components/session-provider";
 import { MotionProvider } from "../../components/MotionProvider";
 import { i18n, type Locale } from "../../i18n-config"; // Adjusted path (was ../../../)
 import { getDictionary } from "../../get-dictionary"; // Adjusted path (was ../../)
+import UtmCapture from '@/components/UtmCapture';
 
 const WhatsAppButton = dynamic(
     () => import("../../components/WhatsAppButton").then(mod => ({ default: mod.WhatsAppButton })),
@@ -20,7 +21,12 @@ const CookieBanner = dynamic(
     { loading: () => null }
 );
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const MobileFloatingContact = dynamic(
+    () => import("../../components/MobileFloatingContact")
+);
+
+const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans", weight: ["300", "400", "500", "600", "700"] });
+const fontHeading = Outfit({ subsets: ["latin"], variable: "--font-heading", weight: ["300", "400", "500", "600", "700", "800"] });
 
 // Node.js runtime — consolidates all page functions
 export const runtime = 'nodejs';
@@ -36,10 +42,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
 
-    const title = lang === 'de' ? "Umzugsfirma Regensburg | Umzug, Reinigung & Entrümpelung | FLOXANT" : "FLOXANT – Moving & Cleaning in Bavaria";
+    const title = lang === 'de' 
+        ? "Umzugsunternehmen Bayern | 100% Festpreis & Kosten-Rechner | FLOXANT" 
+        : "FLOXANT – Premium Moving & Service in Bavaria";
     const description = lang === 'de'
-        ? 'Professionelle Umzugsfirma in Regensburg. Umzug, Möbeltransport, Entrümpelung und Reinigung aus einer Hand. Schnell, zuverlässig und transparent. Jetzt Angebot anfordern.'
-        : 'Professional moving services in Bavaria. Regensburg, Nuremberg, Munich. Fixed price, insured, available at short notice.';
+        ? 'Ihr Umzugsunternehmen für Bayern (München, Nürnberg, Regensburg). Entrümpelung & Reinigung zum Festpreis. Sofortpreis online berechnen oder direkt per WhatsApp 015771105087 anfragen!'
+        : 'Professional moving and cleaning services in Bavaria. Regensburg, Munich, Nuremberg. Transparent pricing, fast online estimates and direct WhatsApp support.';
 
     const canonical = `https://www.floxant.de/${lang}`;
 
@@ -52,6 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     }
 
     return {
+        metadataBase: new URL('https://www.floxant.de'),
         title: {
             default: title,
             template: `%s | FLOXANT`
@@ -105,14 +114,16 @@ export default async function RootLayout({
 
     return (
         <html lang={lang} dir={dir} suppressHydrationWarning>
-            <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
+            <body className={cn("min-h-screen bg-background font-sans antialiased text-[15px] tracking-tight", fontSans.variable, fontHeading.variable)}>
                 <AuthProvider>
                     <MotionProvider>
                         <JsonLd lang={lang} />
+                        <UtmCapture />
                         {children}
                         <WhatsAppButton />
                         <CookieBanner />
                         <Footer lang={lang} dic={dict} />
+                        <MobileFloatingContact />
                     </MotionProvider>
                 </AuthProvider>
             </body>

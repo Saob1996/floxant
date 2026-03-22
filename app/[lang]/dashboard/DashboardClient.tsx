@@ -10,10 +10,11 @@ import { GalleryModal } from "@/components/GalleryModal";
 import {
     Box, Sparkles, Trash2, Calendar, FileText, Download,
     User, Phone, Mail, Clock, Search, Filter,
-    MoreHorizontal, CheckCircle2, AlertCircle, Inbox, LayoutDashboard, LogOut
+    MoreHorizontal, CheckCircle2, AlertCircle, Inbox, LayoutDashboard, LogOut, TrendingUp, PieChart as PieChartIcon
 } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
 interface Booking {
     id: string;
@@ -127,6 +128,32 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
         setBookings(newBookings);
     };
 
+    const getServiceData = () => {
+        let umzug = 0; let entsorgung = 0; let reinigung = 0;
+        bookings.forEach(b => {
+            if(b.service === 'umzug') umzug++;
+            else if(b.service === 'entsorgung') entsorgung++;
+            else if(b.service === 'reinigung') reinigung++;
+        });
+        return [
+           { name: 'Umzug', value: umzug, color: '#3b82f6' },
+           { name: 'Reinigung', value: reinigung, color: '#22d3ee' },
+           { name: 'Entsorgung', value: entsorgung, color: '#f97316' }
+        ].filter(v => v.value > 0);
+    };
+
+    const getTimelineData = () => {
+        const map = new Map<string, number>();
+        bookings.forEach(b => {
+           const d = new Date(b.timestamp).toLocaleDateString("de-DE", { month: "short", day: "numeric" });
+           map.set(d, (map.get(d) || 0) + 1);
+        });
+        return Array.from(map.entries()).map(([name, leads]) => ({ name, leads })).reverse().slice(0, 14); // Last 14 active days
+    };
+
+    const serviceData = getServiceData();
+    const timelineData = getTimelineData();
+
     const openGallery = (images: string[], index: number = 0) => {
         setGalleryImages(images);
         setGalleryIndex(index);
@@ -201,6 +228,52 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                         <h3 className="text-4xl font-bold text-green-500">{t.stats.active}</h3>
                     </div>
                 </div>
+
+                {/* Live Reporting Charts */}
+                {!loading && bookings.length > 0 && (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-6 border-b border-white/5">
+                        <div className="glass p-6 rounded-2xl border border-white/10">
+                            <div className="flex items-center gap-2 mb-6">
+                                <TrendingUp className="w-5 h-5 text-primary" />
+                                <h3 className="text-lg font-bold">Leads Timeline (Letzte Aktivität)</h3>
+                            </div>
+                            <div className="h-64 w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={timelineData}>
+                                        <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+                                        <XAxis dataKey="name" stroke="#888" fontSize={12} tickLine={false} axisLine={false} />
+                                        <YAxis stroke="#888" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
+                                        <RechartsTooltip cursor={{fill: '#222'}} contentStyle={{ backgroundColor: '#111', borderColor: '#333', borderRadius: '12px', color: '#fff' }} />
+                                        <Bar dataKey="leads" fill="#00e5ff" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+
+                        <div className="glass p-6 rounded-2xl border border-white/10">
+                            <div className="flex items-center gap-2 mb-6">
+                                <PieChartIcon className="w-5 h-5 text-primary" />
+                                <h3 className="text-lg font-bold">Service-Verteilung</h3>
+                            </div>
+                            <div className="h-64 w-full">
+                                {serviceData.length > 0 ? (
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <PieChart>
+                                            <Pie data={serviceData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label={{fill: '#fff', fontSize: 12}}>
+                                                {serviceData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={entry.color} />
+                                                ))}
+                                            </Pie>
+                                            <RechartsTooltip contentStyle={{ backgroundColor: '#111', borderColor: '#333', borderRadius: '12px', color: '#fff' }} />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">{t.status.empty}</div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Filters */}
                 <div className="flex flex-col md:flex-row justify-between gap-4 items-center">

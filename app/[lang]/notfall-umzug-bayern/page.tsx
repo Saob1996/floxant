@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Notfall-Umzug Bayern | Sofort-Hilfe | FLOXANT",
-        description: "Notfall-Umzug in Bayern bei Wasserschaden, Brand, Räumungsklage oder familiären Notfällen. FLOXANT – sofortige Hilfe, 24/7 erreichbar. Regensburg, Nürnberg, München.",
+        description: "Notfall-Umzug in Bayern bei Wasserschaden, Brand, Räumungsklage oder familiären Notfällen. FLOXANT – sofortige Hilfe, 24/7 erreichbar. Regensburg, Nürnberg, München. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/notfall-umzug-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/notfall-umzug-bayern`; return acc; }, {} as Record<string, string>),

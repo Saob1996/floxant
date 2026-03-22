@@ -8,9 +8,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPin, Shield, Clock, Truck } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'umzug-feucht',
         title: 'Umzugsunternehmen Feucht ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: 'Professionelles Umzugsunternehmen in Feucht. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen.',
+        description: 'Professionelles Umzugsunternehmen in Feucht. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 
@@ -132,7 +132,7 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                     <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Angebot für Feucht anfordern</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenloses Festpreisangebot für Ihren Umzug in Feucht.</p>
-                        <SmartBookingWizard dict={dict} />
+                        <DualCalculator />
                     </div>
                 </div>
             </section>

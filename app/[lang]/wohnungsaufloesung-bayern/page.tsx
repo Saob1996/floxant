@@ -20,7 +20,7 @@ export async function generateMetadata({
     const { lang } = await params;
     return {
         title: "Wohnungsauflösung Bayern | Haushaltsauflösung | FLOXANT",
-        description: "Professionelle Wohnungsauflösung in Bayern – Regensburg, Nürnberg, München. Nachlassräumung, Seniorenumzüge, besenreine Übergabe. Diskret, versichert & kurzfristig verfügbar.",
+        description: "Professionelle Wohnungsauflösung in Bayern – Regensburg, Nürnberg, München. Nachlassräumung, Seniorenumzüge, besenreine Übergabe. Diskret, versichert & kurzfristig verfügbar. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/wohnungsaufloesung-bayern`,
             languages: i18n.locales.reduce(

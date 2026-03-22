@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "halteverbotszone-regensburg",
         title: "Halteverbotszone Regensburg – Beantragung & Aufstellung | FLOXANT",
-        description: "Halteverbotszone in Regensburg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei.",
+        description: "Halteverbotszone in Regensburg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -31,7 +31,7 @@ export default async function HalteverbotPage({ params }: { params: Promise<{ la
         "@context": "https://schema.org", "@type": "Service",
         "name": "Halteverbotszone Regensburg",
         "provider": {
-            "@type": "MovingCompany", "name": "FLOXANT GmbH",
+            "@type": "MovingCompany", "name": "FLOXANT",
             "telephone": "+4915771105087",
             "address": { "@type": "PostalAddress", "streetAddress": "Friedenstraße 24", "addressLocality": "Regensburg", "postalCode": "93053", "addressCountry": "DE" }
         },

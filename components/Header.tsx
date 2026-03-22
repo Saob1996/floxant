@@ -70,6 +70,17 @@ export function Header({ lang, dic }: HeaderProps) {
                         </Link>
                     ))}
 
+                    {/* Contact & WhatsApp */}
+                    <div className="hidden lg:flex items-center gap-2 border-l border-border/50 pl-6 ml-2">
+                        <a href="https://wa.me/4915771105087" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-500 transition-colors">
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            </span>
+                            WhatsApp / Anruf
+                        </a>
+                    </div>
+
                     {/* Language Switcher */}
                     <div className="border-l border-border/50 pl-6 ml-2">
                         <LanguageSwitcher lang={lang} />
@@ -83,13 +94,15 @@ export function Header({ lang, dic }: HeaderProps) {
                             "h-9 px-6 py-2"
                         )}
                     >
-                        {dic?.book_now || "Book Now"}
+                        Zum Kostenrechner
                     </Link>
                 </nav>
 
                 {/* Mobile Menu Toggle */}
                 <button
                     className="md:hidden relative z-50 p-2 text-foreground"
+                    aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+                    aria-expanded={isOpen}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <X /> : <Menu />}
@@ -116,12 +129,22 @@ export function Header({ lang, dic }: HeaderProps) {
                         <div className="py-4 border-t border-border/50">
                             <LanguageSwitcher lang={lang} />
                         </div>
+                        <a 
+                            href="https://wa.me/4915771105087" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex flex-col gap-1 p-4 bg-green-50/50 rounded-xl mb-2"
+                        >
+                            <span className="text-sm font-semibold text-green-600">Schnelle Frage?</span>
+                            <span className="text-lg font-bold text-green-700">Jetzt WhatsApp schreiben</span>
+                        </a>
+
                         <Link
                             href={`/${lang}/#contact`}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center justify-between text-lg font-bold text-primary"
+                            className="flex items-center justify-between text-lg font-bold text-primary p-4 bg-primary/5 rounded-xl"
                         >
-                            {dic?.book_now || "Book Now"}
+                            Zum Kostenrechner
                             <ArrowUpRight className="w-5 h-5" />
                         </Link>
                     </m.div>

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'blog/wohnungsaufloesung-was-tun',
         title: 'Wohnungsauflösung im Todesfall: Checkliste & Kosten | FLOXANT',
-        description: 'Ein Angehöriger ist verstorben: Was ist jetzt zu tun? Leitfaden zur Wohnungsauflösung, Kündigungsfristen, Erbrecht und Übernahme der Kosten.',
+        description: 'Ein Angehöriger ist verstorben: Was ist jetzt zu tun? Leitfaden zur Wohnungsauflösung, Kündigungsfristen, Erbrecht und Übernahme der Kosten. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

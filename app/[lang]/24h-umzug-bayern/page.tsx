@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "24h Umzug Bayern | Notfall-Umzugsservice | FLOXANT",
-        description: "24-Stunden-Umzugsservice in Bayern. Kurzfristiger Umzug auch abends, nachts und am Wochenende. Regensburg, Nürnberg, München. Sofort verfügbar!",
+        description: "24-Stunden-Umzugsservice in Bayern. Kurzfristiger Umzug auch abends, nachts und am Wochenende. Regensburg, Nürnberg, München. Sofort verfügbar! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/24h-umzug-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/24h-umzug-bayern`; return acc; }, {} as Record<string, string>),

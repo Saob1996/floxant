@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "blog/fernumzug-bayern-nrw-tipps",
         title: "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Tipps | FLOXANT Ratgeber",
-        description: "Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps.",
+        description: "Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -24,8 +24,8 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         "@context": "https://schema.org", "@type": "Article",
         "headline": "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Tipps",
         "description": "Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps.",
-        "author": { "@type": "Organization", "name": "FLOXANT GmbH" },
-        "publisher": { "@type": "Organization", "name": "FLOXANT GmbH", "url": "https://www.floxant.de" },
+        "author": { "@type": "Organization", "name": "FLOXANT" },
+        "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
         "datePublished": "2026-03-18",
         "dateModified": "2026-03-18",
     };

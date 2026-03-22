@@ -3,15 +3,15 @@ import { getDictionary } from "../../get-dictionary";
 import { i18n, Locale } from "../../i18n-config";
 import { Header } from "@/components/Header";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { ArrowRight, Box, Sparkles, Trash2, Phone } from "lucide-react";
+import { ArrowRight, Box, Sparkles, Trash2, Phone, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 const SignatureServices = dynamic(
@@ -19,14 +19,19 @@ const SignatureServices = dynamic(
     { loading: () => <div className="py-24 px-6 min-h-[600px]" /> }
 );
 
+const ReviewCarousel = dynamic(
+    () => import("@/components/trust/ReviewCarousel"),
+    { loading: () => <div className="w-full py-20 bg-[#0A0A0A] min-h-[500px]" /> }
+);
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
     return generatePageSEO({
         lang,
         path: '',
-        title: lang === 'de' ? 'Umzugsfirma Regensburg | Umzug, Reinigung & Entrümpelung | FLOXANT' : 'FLOXANT – Moving, Cleaning & Clearance Bavaria',
+        title: lang === 'de' ? 'Umzugsunternehmen Regensburg | Kostenrechner & Angebote | FLOXANT' : 'FLOXANT – Premium Moving & Clearance Bavaria',
         description: lang === 'de'
-            ? 'Professionelle Umzugsfirma in Regensburg. Umzug, Möbeltransport, Entrümpelung und Reinigung aus einer Hand. Schnell, zuverlässig und transparent. Jetzt Angebot anfordern.'
+            ? 'Ihr starkes Umzugsunternehmen in Regensburg und Bayern. Schnelle Online-Kostenschätzung, verbindliche Festpreise für Umzug, Entrümpelung & Reinigung.'
             : 'Professional moving services in Regensburg & Bavaria. Fixed price, insured, short notice availability.',
     });
 }
@@ -40,7 +45,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     const hero = safeDict.hero || { title: "", subtitle: "" };
     const trust = safeDict.trust || { quality: "", insured: "", experience: "" };
     const contact = safeDict.contact || { title: "" };
-    const area = safeDict.area || { title: "", description: "", cities: { bavaria: "", munich: "", nuremberg: "", augsburg: "", regensburg: "" } };
+    const area = safeDict.area || { title: "", description: " Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.", cities: { bavaria: "", munich: "", nuremberg: "", augsburg: "", regensburg: "" } };
     const nav = safeDict.nav || {};
 
     // Map dictionary services to array
@@ -68,57 +73,61 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             {/* Hero Section — fully server-rendered with CSS animations */}
-            <section id="zero" className="relative pt-32 pb-20 px-6 lg:pt-48">
-                <div className="absolute inset-0 bg-grid-white/5 bg-[size:40px_40px] [mask-image:radial-gradient(white,transparent_70%)] pointer-events-none" />
-
-                <div className="absolute top-20 right-0 w-96 h-96 bg-accent/20 rounded-full blur-[100px] -z-10 animate-pulse" />
-                <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-600/20 rounded-full blur-[100px] -z-10 animate-pulse delay-1000" />
+            <section id="zero" className="relative pt-32 pb-20 px-6 lg:pt-40">
+                <div className="absolute inset-0 bg-grid-white/5 bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_top,white,transparent_80%)] pointer-events-none" />
 
                 <div className="mx-auto max-w-7xl relative z-10 flex flex-col items-center">
-                    <div className="text-center max-w-4xl mx-auto mb-20 space-y-8 animate-hero-fade">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary mb-4 animate-hero-scale">
-                            <Sparkles className="w-4 h-4" />
-                            <span>{trust.quality}</span>
+                    <div className="text-center max-w-4xl mx-auto mb-16 space-y-6 animate-hero-fade">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/80 border border-border text-[11px] font-semibold tracking-widest text-primary uppercase mb-2 animate-hero-scale shadow-sm">
+                            <Sparkles className="w-3.5 h-3.5" />
+                            <span>Premium Logistik & Service</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/50 leading-[1.1]">
-                            {lang === 'de' ? 'Umzugsfirma in Regensburg' : hero.title}
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground leading-[1.05]">
+                            {lang === 'de' ? 'Ihr professionelles Umzugsunternehmen in Bayern.' : hero.title}
                         </h1>
-                        <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
-                            {lang === 'de' ? 'Ihr Partner für Umzug, Möbeltransport, Entrümpelung und Reinigung aus einer Hand.' : hero.subtitle}
+                        <p className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto text-balance">
+                            {lang === 'de' ? 'Kalkulieren Sie Ihren Umzug, Ihre Entrümpelung oder Reinigung sofort online. Verbindliche Festpreise – ohne Nachverhandlung.' : hero.subtitle}
                         </p>
+                        
+                        {/* Static Text Trust Bar */}
+                        <div className="flex items-center justify-center gap-6 pt-4 max-w-xl mx-auto flex-wrap text-muted-foreground">
+                            <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> 100% Versichert</span>
+                            <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Festpreisgarantie</span>
+                            <span className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Google 4.9/5.0</span>
+                        </div>
                     </div>
 
-                    <div id="contact" className="w-full scroll-mt-28 animate-hero-slide">
-                        <SmartBookingWizard dict={safeDict} />
+                    <div id="contact" className="w-full scroll-mt-28 animate-hero-slide pb-12">
+                        <DualCalculator />
 
-                        {/* Direct Contact Card — pure server HTML */}
-                        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                            <div className="glass p-6 rounded-2xl border border-white/10 flex items-center gap-4 hover:border-primary/30 transition-colors">
-                                <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                                    <Phone className="w-6 h-6" />
+                        {/* Direct Contact Card — strictly professional */}
+                        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                            <div className="bg-secondary p-5 rounded-2xl border border-border flex items-center gap-4 hover:bg-secondary/80 transition-colors shadow-sm">
+                                <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                                    <Phone className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <p className="text-sm text-muted-foreground font-medium">{contact.title}</p>
-                                    <a href={`tel:${company.phone.replace(/\s+/g, '')}`} className="text-lg font-bold text-foreground hover:text-primary transition-colors">{company.phone}</a>
+                                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">{contact.title}</p>
+                                    <a href={`tel:${company.phone.replace(/\s+/g, '')}`} className="text-base font-medium text-foreground hover:text-primary transition-colors">{company.phone}</a>
                                 </div>
                             </div>
 
-                            <div className="glass p-6 rounded-2xl border border-white/10 flex items-center gap-4 hover:border-primary/30 transition-colors">
-                                <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                                    <ArrowRight className="w-6 h-6" />
+                            <div className="bg-secondary p-5 rounded-2xl border border-border flex items-center gap-4 hover:bg-secondary/80 transition-colors shadow-sm">
+                                <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                                    <ArrowRight className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <div>
-                                        <p className="text-sm text-muted-foreground font-medium">Email</p>
-                                        <a href={`mailto:${company.email}`} className="text-lg font-bold text-foreground hover:text-primary transition-colors">{company.email}</a>
-                                    </div>
+                                    <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">Email Hotline</p>
+                                    <a href={`mailto:${company.email}`} className="text-base font-medium text-foreground hover:text-primary transition-colors">{company.email}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <ReviewCarousel />
 
             {/* Trust Partners */}
             <section className="py-10 px-6 border-y border-border/30">
@@ -137,25 +146,25 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent pointer-events-none" />
 
                 <div className="mx-auto max-w-7xl relative z-10">
-                    <AnimateOnScroll className="text-center mb-20">
-                        <h2 className="text-4xl font-bold mb-6">{lang === 'de' ? 'Unsere Leistungen' : servicesSection.title}</h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    <AnimateOnScroll className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">{lang === 'de' ? 'Unsere Logistik & Serviceleistungen' : servicesSection.title}</h2>
+                        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
                             {servicesSection.subtitle}
 
                         </p>
                     </AnimateOnScroll>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {displayServices.map((service: any, index: number) => {
                             const IconComponent = iconMap[index] || Box;
                             return (
                                 <AnimateOnScroll key={index} delay={index * 100}>
-                                    <div className="glass p-8 rounded-3xl border border-white/10 hover:border-primary/20 transition-colors group service-card-hover">
-                                        <div className="mb-6 p-4 rounded-2xl bg-muted/50 w-fit group-hover:bg-primary/10 transition-colors">
-                                            <IconComponent className="w-8 h-8 md:w-10 md:h-10 text-accent" />
+                                    <div className="bg-secondary p-8 rounded-3xl border border-border hover:border-primary/30 transition-all group service-card-hover shadow-sm">
+                                        <div className="mb-6 w-14 h-14 flex items-center justify-center rounded-2xl bg-background border border-border group-hover:bg-primary/10 group-hover:border-primary/20 transition-colors">
+                                            <IconComponent className="w-6 h-6 text-foreground group-hover:text-primary transition-colors" />
                                         </div>
-                                        <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                                        <p className="text-muted-foreground mb-8 leading-relaxed">
+                                        <h3 className="text-xl font-medium mb-3 text-foreground">{service.title}</h3>
+                                        <p className="text-muted-foreground text-sm leading-relaxed">
                                             {service.description}
                                         </p>
                                     </div>
@@ -175,8 +184,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <section className="py-24 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-7xl">
                     <div className="text-center mb-12">
-                        <span className="text-sm font-medium tracking-[0.2em] text-primary/60 uppercase">{area.title}</span>
-                        <h2 className="text-3xl font-bold mt-2">{lang === 'de' ? 'Umzug in Bayern' : `Floxant ${area.cities?.bavaria}`}</h2>
+                        <span className="text-sm font-semibold tracking-[0.2em] text-primary/80 uppercase">{area.title}</span>
+                        <h2 className="text-3xl font-bold mt-2 tracking-tight">{lang === 'de' ? 'Regionales Einsatzgebiet in Bayern' : `Floxant ${area.cities?.bavaria}`}</h2>
                         <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
                             {area.description}
                         </p>

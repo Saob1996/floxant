@@ -8,9 +8,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2, Clock, ThumbsUp, Truck } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: "umzug-moetzing",
         title: "Umzug in Mötzing ab 79€ – Sofort verfügbar | FLOXANT",
-        description: "Professionelles Umzugsunternehmen für Mötzing. ✓ Festpreisgarantie ✓ 100% Versichert ✓ Möbelmontage. Mehr als 100+ erfolgreiche Umzüge. Jetzt Angebot sichern!",
+        description: "Professionelles Umzugsunternehmen für Mötzing. ✓ Festpreisgarantie ✓ 100% Versichert ✓ Möbelmontage. Mehr als 100+ erfolgreiche Umzüge. Jetzt Angebot sichern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
     });
 }
 
@@ -185,7 +185,7 @@ export default async function UmzugMoetzing({ params }: { params: Promise<{ lang
                                     <span>Ist mein Inventar bei Schäden sofort versichert?</span>
                                     <span className="text-primary transition-transform group-open:rotate-180">▼</span>
                                 </summary>
-                                <div className="pt-5 text-muted-foreground leading-relaxed">Selbstverständlich. Jeder Transport der FLOXANT GmbH ist gesetzlich über die Verkehrshaftungsversicherung abgesichert. Sie tragen kein finanzielles Risiko, falls etwas zu Bruch gehen sollte.</div>
+                                <div className="pt-5 text-muted-foreground leading-relaxed">Selbstverständlich. Jeder Transport der FLOXANT ist gesetzlich über die Verkehrshaftungsversicherung abgesichert. Sie tragen kein finanzielles Risiko, falls etwas zu Bruch gehen sollte.</div>
                             </details>
                             <details className="group border border-border/50 rounded-2xl p-6 bg-muted/20 open:bg-card open:ring-2 open:ring-primary/20 transition-all cursor-pointer">
                                 <summary className="text-xl font-bold list-none flex justify-between items-center outline-none">
@@ -240,7 +240,7 @@ export default async function UmzugMoetzing({ params }: { params: Promise<{ lang
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Preis sofort online anfragen</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Sichern Sie sich jetzt Ihren Umzugstermin für Mötzing. Wir berechnen das Volumen und das beste Angebot für Sie in Kürzester Zeit.</p>
                         <div className="px-6">
-                            <SmartBookingWizard dict={dict} />
+                            <DualCalculator />
                         </div>
                     </div>
                 </div>

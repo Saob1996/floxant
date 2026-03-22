@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         lang,
         path: 'entruempelung',
         title: 'Entrümpelung & Wohnungsauflösung Bayern ✓ Besenrein | FLOXANT',
-        description: 'Professionelle Entrümpelung, Wohnungsauflösung und Firmenentrümpelung. Diskrete Hausentrümpelung und Kellerentrümpelung mit Festpreisgarantie.',
+        description: 'Professionelle Entrümpelung, Wohnungsauflösung und Firmenentrümpelung. Diskrete Hausentrümpelung und Kellerentrümpelung mit Festpreisgarantie. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
     });
 }
 

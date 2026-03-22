@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
     return {
         title: "Familienumzug Bayern | Stressfrei mit Kindern umziehen | FLOXANT",
-        description: "Familienumzug in Bayern – kindgerecht, sorgfältig und durchgeplant. Regensburg, Nürnberg, München. Kinder-Umzugsbox inklusive. Jetzt Festpreisangebot anfordern!",
+        description: "Familienumzug in Bayern – kindgerecht, sorgfältig und durchgeplant. Regensburg, Nürnberg, München. Kinder-Umzugsbox inklusive. Jetzt Festpreisangebot anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
         alternates: {
             canonical: `https://floxant.de/${lang}/familienumzug-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/familienumzug-bayern`; return acc; }, {} as Record<string, string>),

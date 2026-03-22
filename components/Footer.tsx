@@ -40,6 +40,34 @@ export function Footer({ lang, dic }: FooterProps) {
         <footer className="bg-background border-t border-border/50 py-12 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
 
+                {/* High Conversion CTA Section */}
+                <div className="w-full bg-[#0a0a0a] rounded-2xl p-8 md:p-12 mb-16 border border-white/10 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-3xl rounded-full -z-10" />
+                    <div className="max-w-xl z-10">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                            Bereit für einen stressfreien Service?
+                        </h2>
+                        <p className="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">
+                            Erhalten Sie sofort Ihr unverbindliches Angebot über unseren intelligenten Kostenrechner oder schreiben Sie uns bei Fragen ganz einfach per WhatsApp.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center gap-4">
+                            <Link href={`/${lang}/#contact`} className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-all text-center">
+                                Direkt zum Kostenrechner
+                            </Link>
+                            <a href="https://wa.me/4915771105087" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold hover:bg-[#25D366]/20 transition-all text-center flex items-center justify-center gap-2">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]"></span>
+                                </span>
+                                +49 1577 1105087
+                            </a>
+                        </div>
+                    </div>
+                    <div className="hidden lg:block w-32 h-32 opacity-20 z-10">
+                        <BrandLogo size={{ base: 120, md: 128 }} />
+                    </div>
+                </div>
+
                 {/* Authority Link & Trust Intro */}
                 <div className="w-full border-b border-border/20 pb-10 mb-10 text-left">
                     <div className="max-w-4xl">

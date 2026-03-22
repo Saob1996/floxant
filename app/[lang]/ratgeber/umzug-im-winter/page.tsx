@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/umzug-im-winter', title: 'Umzug im Winter: Vor- und Nachteile | FLOXANT Ratgeber', description: 'Lohnt sich ein Umzug im Winter? Tipps, Vor- und Nachteile für den Winterumzug.' });
+    return generatePageSEO({ lang, path: 'ratgeber/umzug-im-winter', title: 'Umzug im Winter: Vor- und Nachteile | FLOXANT Ratgeber', description: 'Lohnt sich ein Umzug im Winter? Tipps, Vor- und Nachteile für den Winterumzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {
