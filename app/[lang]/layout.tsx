@@ -87,11 +87,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             description,
             images: ['https://www.floxant.de/og.jpg'],
         },
-        icons: {
-            icon: '/icon.png',
-            shortcut: '/icon.png',
-            apple: '/icon.png',
-        },
     };
 }
 
