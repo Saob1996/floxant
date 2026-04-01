@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "../../../get-dictionary";
@@ -8,8 +8,13 @@ import Link from "next/link";
 import { BookOpen } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber', title: 'Umzug Ratgeber | Tipps & Kosten | FLOXANT', description: 'Ratgeber rund um Umzug, Entrümpelung und Reinigung. Kosten, Checklisten und Tipps von FLOXANT – Ihrer Umzugsfirma in Regensburg. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
+    var { lang: pageLocale } = await params;
+    return generatePageSEO({
+        pageLocale,
+        path: 'ratgeber',
+        title: 'Umzug Entrümpelung | FLOXANT',
+        description: 'Professionelle Umzug Dienstleistungen in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+    });
 }
 
 const articles = [
@@ -31,13 +36,12 @@ const articles = [
 ];
 
 export default async function Ratgeber({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Ratgeber" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Ratgeber" }]} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -45,7 +49,7 @@ export default async function Ratgeber({ params }: { params: Promise<{ lang: str
                         <BookOpen className="w-4 h-4" /><span>FLOXANT Ratgeber</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Umzug <span className="text-primary">Ratgeber</span>
+                        Umzug <span className="text-primary">{dict.common.guide}</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         Tipps, Checklisten und Kostenübersichten rund um Umzug, Entrümpelung und Reinigung – von den Profis bei FLOXANT.
@@ -56,7 +60,7 @@ export default async function Ratgeber({ params }: { params: Promise<{ lang: str
             <section className="py-16 px-6">
                 <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {articles.map((article) => (
-                        <Link key={article.slug} href={`/${lang}/ratgeber/${article.slug}`} className="group p-6 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/30 hover:shadow-md transition-all">
+                        <Link key={article.slug} href={`/${pageLocale}/ratgeber/${article.slug}`} className="group p-6 rounded-2xl bg-card border border-border shadow-sm hover:border-primary/30 hover:shadow-md transition-all">
                             <h2 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">{article.title}</h2>
                             <p className="text-sm text-muted-foreground leading-relaxed">{article.desc}</p>
                             <span className="inline-block mt-4 text-xs font-semibold text-primary">Weiterlesen →</span>

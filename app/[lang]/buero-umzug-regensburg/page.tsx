@@ -1,112 +1,56 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+import { type Locale } from "../../../i18n-config";
 import dynamic from "next/dynamic";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 import Link from "next/link";
 
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
-    const content = dict?.pages?.buero_umzug_regensburg || {};
-
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict?.pages as any)?.buero_umzug_regensburg || {};
     return {
-        title: content.meta_title || "Büro-Umzug Regensburg – FLOXANT",
-        description: content.meta_desc || "",
-        alternates: {
-            canonical: `https://floxant.de/${lang}/buero-umzug-regensburg`,
-            languages: i18n.locales.reduce(
-                (acc, l) => {
-                    acc[l] = `https://floxant.de/${l}/buero-umzug-regensburg`;
-                    return acc;
-                },
-                {} as Record<string, string>
-            ),
-        },
+        title: content.meta_title || "Büroumzug Regensburg | Profi-Service | FLOXANT",
+        description: 'description: content.meta_desc || Professioneller Büroumzug in Regensburg und Umgebung. Wir planen und realisieren Ihren Firmenumzug effizient, termin...',
     };
 }
 
-export default async function BueroUmzugRegensburg({
-    params,
-}: {
-    params: Promise<{ lang: string }>;
-}) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+export default async function BueroUmzugRegensburg({ params }: { params: Promise<{ lang: string }> }) {
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale) as any;
     const content = (dict?.pages as any)?.buero_umzug_regensburg || {};
     const area = (dict?.area as any) || {};
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
-
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="mx-auto max-w-4xl text-center">
                     <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 border border-primary/20">
-                        {content.badge}
+                        {content.badge || "Regensburg & Oberpfalz"}
                     </span>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
-                        {content.hero_title_prefix}{" "}
-                        <span className="text-primary">{content.hero_title_highlight}</span>
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-8">
+                        {content.h1 || "Professioneller Büroumzug Regensburg"}
                     </h1>
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        {content.hero_desc}
+                    <p className="text-xl text-muted-foreground leading-relaxed mb-12">
+                        {content.hero_desc || "Wir machen Ihren Firmenumzug zum Erfolg. Effizient, diskret und absolut terminsicher."}
                     </p>
                 </div>
             </section>
 
             <section className="py-20 px-6">
-                <div className="mx-auto max-w-3xl">
-                    <h2 className="text-3xl font-bold mb-8">{content.intro_title}</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-6 text-lg">{content.intro_p1}</p>
-                    <p className="text-muted-foreground leading-relaxed text-lg">{content.intro_p2}</p>
+                <div className="max-w-7xl mx-auto">
+                    <DualCalculator dic={dict} />
                 </div>
             </section>
 
-            <section className="py-16 px-6 bg-muted/10">
-                <div className="mx-auto max-w-4xl">
-                    <h2 className="text-2xl font-bold mb-8">{content.services_title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {content.services && Object.values(content.services).map((svc: any, i: number) => (
-                            <div key={i} className="p-6 rounded-2xl border border-border/50 bg-background">
-                                <h3 className="text-lg font-semibold mb-3">{svc.title}</h3>
-                                <p className="text-muted-foreground text-sm leading-relaxed">{svc.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-12 px-6 border-t border-border/50">
-                <div className="mx-auto max-w-4xl">
-                    <div className="flex flex-wrap items-center justify-center gap-3">
-                        <Link href={`/${lang}/buero-umzug`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
-                            {(dict?.pages as any)?.service_buero_umzug?.hero_title || "Büro-Umzug"}
-                        </Link>
-                        <Link href={`/${lang}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
-                            Reinigung Regensburg
-                        </Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
-                            {area.cities?.regensburg || "Regensburg"}
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-20 px-6">
-                <div className="mx-auto max-w-3xl text-center py-12 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg px-8">
-                    <h2 className="text-3xl font-bold mb-4">{content.cta_title}</h2>
-                    <p className="text-muted-foreground mb-10 max-w-xl mx-auto">{content.cta_text}</p>
-                    <SmartBookingWizard dict={dict} />
+            <section className="py-20 px-6 bg-muted/30">
+                <div className="max-w-4xl mx-auto prose prose-invert">
+                    <h2 className="text-3xl font-bold mb-8">Ihr Partner für Firmenumzüge</h2>
+                    <p>Ein Büroumzug erfordert präzise Planung. Wir sorgen dafür, dass Ihre IT-Systeme, Akten und Möbel sicher am neuen Standort ankommen – damit Sie so schnell wie möglich wieder arbeitsbereit sind.</p>
                 </div>
             </section>
         </main>

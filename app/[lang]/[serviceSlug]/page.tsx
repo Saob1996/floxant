@@ -1,7 +1,8 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 
@@ -61,8 +62,8 @@ export async function generateMetadata({
 }: {
     params: Promise<{ lang: string; serviceSlug: string }>;
 }): Promise<Metadata> {
-    const { lang, serviceSlug } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+    var { lang: pageLocale, serviceSlug } = await params;
+    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
     const key = SLUG_TO_KEY[serviceSlug as ServiceSlug];
     const content = (dict?.pages as any)?.[key] || {};
 
@@ -70,7 +71,7 @@ export async function generateMetadata({
         title: content.meta_title || `FLOXANT – ${serviceSlug}`,
         description: content.meta_desc || "",
         alternates: {
-            canonical: `https://www.floxant.de/${lang}/${serviceSlug}`,
+            canonical: `https://www.floxant.de/${pageLocale}/${serviceSlug}`,
             languages: i18n.locales.reduce(
                 (acc, l) => {
                     acc[l] = `https://www.floxant.de/${l}/${serviceSlug}`;
@@ -87,8 +88,8 @@ export default async function CoreServicePage({
 }: {
     params: Promise<{ lang: string; serviceSlug: string }>;
 }) {
-    const { lang, serviceSlug } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+    var { lang: pageLocale, serviceSlug } = await params;
+    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
     const key = SLUG_TO_KEY[serviceSlug as ServiceSlug];
     const content = (dict?.pages as any)?.[key] || {};
     const area = dict?.area || {};
@@ -96,8 +97,7 @@ export default async function CoreServicePage({
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
-            <Breadcrumbs lang={lang} items={[{ label: content.hero_title || serviceSlug }]} />
+            <Breadcrumbs lang={pageLocale} items={[{ label: content.hero_title || serviceSlug }]} />
 
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
@@ -216,11 +216,11 @@ export default async function CoreServicePage({
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {related.map((slug) => {
                             const relKey = SLUG_TO_KEY[slug];
-                            const relContent = dict?.pages?.[relKey] || {};
+                            const relContent = (dict?.pages as any)?.[relKey] || {};
                             return (
                                 <Link
                                     key={slug}
-                                    href={`/${lang}/${slug}`}
+                                    href={`/${pageLocale}/${slug}`}
                                     className="group p-5 rounded-xl border border-border/50 hover:border-primary/30 transition-all"
                                 >
                                     <h3 className="font-semibold group-hover:text-primary transition-colors flex items-center gap-2">
@@ -243,23 +243,23 @@ export default async function CoreServicePage({
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         {[
                             {
-                                href: `/${lang}/umzug-regensburg`,
+                                href: `/${pageLocale}/umzug-regensburg`,
                                 label: area.cities?.regensburg || "Regensburg",
                             },
                             {
-                                href: `/${lang}/umzug-bayern`,
+                                href: `/${pageLocale}/umzug-bayern`,
                                 label: area.cities?.bavaria || "Bayern",
                             },
                             {
-                                href: `/${lang}/umzug-muenchen`,
+                                href: `/${pageLocale}/umzug-muenchen`,
                                 label: area.cities?.munich || "München",
                             },
                             {
-                                href: `/${lang}/umzug-nuernberg`,
+                                href: `/${pageLocale}/umzug-nuernberg`,
                                 label: area.cities?.nuremberg || "Nürnberg",
                             },
                             {
-                                href: `/${lang}/umzug-augsburg`,
+                                href: `/${pageLocale}/umzug-augsburg`,
                                 label: area.cities?.augsburg || "Augsburg",
                             },
                         ].map((link) => (

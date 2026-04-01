@@ -1,45 +1,51 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { Calculator } from "lucide-react";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
+import Link from "next/link";
+import { Calculator } from "lucide-react";
+
+
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.entruempelung_kosten_regensburg || {};
     return {
-        title: "Entrümpelung Kosten Regensburg | Preise & Angebot | FLOXANT",
-        description: "Was kostet eine Entrümpelung in Regensburg? Transparente Preise für Haushaltsauflösung, Gewerberäumung & Nachlassräumung. Festpreisangebot von FLOXANT anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Entrümpelung Kosten Regensburg | Preise & Angebot | FLOXANT",
+        description: 'description: content.meta_desc || Was kostet eine Entrümpelung in Regensburg? Transparente Preise für Haushaltsauflösung, Gewerberäumung & Nachlassräu...',
         alternates: {
-            canonical: `https://floxant.de/${lang}/entruempelung-kosten-regensburg`,
+            canonical: `https://floxant.de/${pageLocale}/entruempelung-kosten-regensburg`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/entruempelung-kosten-regensburg`; return acc; }, {} as Record<string, string>),
         },
     };
 }
 
 export default async function EntruempelungKostenRegensburg({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_entruempelung || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet eine Entrümpelung in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": "Eine Entrümpelung in Regensburg kostet je nach Umfang zwischen 300 und 3.000 Euro. FLOXANT bietet verbindliche Festpreise nach kostenloser Begehung." } },
-            { "@type": "Question", "name": "Ist die Entsorgung im Preis inbegriffen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Fachgerechte Entsorgung, Recycling und besenreine Übergabe sind im Festpreis enthalten." } },
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine Entrümpelung in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Eine Entrümpelung in Regensburg kostet je nach Umfang zwischen 300 und 3.000 Euro. FLOXANT bietet verbindliche Festpreise nach kostenloser Begehung." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Ist die Entsorgung im Preis inbegriffen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Fachgerechte Entsorgung, Recycling und besenreine Übergabe sind im Festpreis enthalten." } }
+            ],
     };
 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "LocalBusiness",
         "name": "FLOXANT Entrümpelung Regensburg",
-        "url": `https://www.floxant.de/${lang}/entruempelung-kosten-regensburg`,
+        "url": `https://www.floxant.de/${pageLocale}/entruempelung-kosten-regensburg`,
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" },
         "areaServed": { "@type": "City", "name": "Regensburg" },
@@ -56,16 +62,15 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Entrümpelung Regensburg", "item": `https://www.floxant.de/${lang}/entruempelung-regensburg` },
-            { "@type": "ListItem", "position": 3, "name": "Kosten", "item": `https://www.floxant.de/${lang}/entruempelung-kosten-regensburg` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Entrümpelung Regensburg", "item": `https://www.floxant.de/${pageLocale}/entruempelung-regensburg` },
+            { "@type": "ListItem", "position": 3, "name": "Kosten", "item": `https://www.floxant.de/${pageLocale}/entruempelung-kosten-regensburg` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Entrümpelung Regensburg", href: `/${lang}/entruempelung-regensburg` }, { label: "Kosten" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Entrümpelung Regensburg", href: `/${pageLocale}/entruempelung-regensburg` }, { label: "Kosten" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
@@ -85,7 +90,8 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Was kostet eine Entrümpelung in Regensburg?</h2>
@@ -115,7 +121,7 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
                     </div>
 
                     <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-8">Häufige Fragen</h2>
+                        <h2 className="text-3xl font-bold text-foreground mb-8">{dict.common.faq_title}</h2>
                         <div className="space-y-6">
                             {[
                                 { q: "Was kostet eine Entrümpelung in Regensburg?", a: "Je nach Umfang zwischen 300 und 3.000+ Euro. Nach kostenloser Begehung erhalten Sie ein verbindliches Festpreisangebot." },
@@ -132,17 +138,17 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
 
                     <div className="border-t border-border pt-12">
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/entruempelung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Regensburg</Link>
-                            <Link href={`/${lang}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
-                            <Link href={`/${lang}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
-                            <Link href={`/${lang}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
+                            <Link href={`/${pageLocale}/entruempelung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Regensburg</Link>
+                            <Link href={`/${pageLocale}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
+                            <Link href={`/${pageLocale}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
+                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
                         </div>
                     </div>
 
                     <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Kostenloses Angebot anfordern</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Verbindliches Festpreisangebot nach kostenloser Begehung.</p>
-                        <DualCalculator />
+                        <DualCalculator dic={dict} />
                     </div>
                 </div>
             </section>

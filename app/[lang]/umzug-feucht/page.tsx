@@ -2,41 +2,44 @@ import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
 import { generatePageSEO } from "@/lib/seo";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { MapPin, Shield, Clock, Truck } from "lucide-react";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
+import Link from "next/link";
+import { MapPin, Shield, Clock, Truck } from "lucide-react";
+
+
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'umzug-feucht',
-        title: 'Umzugsunternehmen Feucht ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: 'Professionelles Umzugsunternehmen in Feucht. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        title: 'Umzugsunternehmen in Feucht | FLOXANT',
+        description: 'Professionelle Umzugsunternehmen in Feucht in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
     });
 }
 
 export default async function UmzugFeucht({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet ein Umzug in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": "Ein Umzug in Feucht kostet je nach Wohnungsgröße zwischen 300 und 1.500 Euro. Verbindlicher Festpreis nach Besichtigung." } },
-            { "@type": "Question", "name": "Bietet FLOXANT auch Entrümpelung in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Professionelle Entrümpelung und Wohnungsauflösung in Feucht und dem gesamten Nürnberger Land." } },
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein Umzug in Feucht kostet je nach Wohnungsgröße zwischen 300 und 1.500 Euro. Verbindlicher Festpreis nach Besichtigung." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bietet FLOXANT auch Entrümpelung in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Professionelle Entrümpelung und Wohnungsauflösung in Feucht und dem gesamten Nürnberger Land." } }
+            ],
     };
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany", "name": "FLOXANT Umzug Feucht",
-        "url": `https://www.floxant.de/${lang}/umzug-feucht`, "telephone": "+4915771105087",
+        "url": `https://www.floxant.de/${pageLocale}/umzug-feucht`, "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Feucht", "addressRegion": "Bayern", "addressCountry": "DE" },
         "geo": { "@type": "GeoCoordinates", "latitude": 49.3769, "longitude": 11.2147 },
         "areaServed": [{ "@type": "City", "name": "Feucht" }, { "@type": "City", "name": "Nürnberg" }, { "@type": "AdministrativeArea", "name": "Nürnberger Land" }], "priceRange": "$$",
@@ -52,16 +55,15 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
-            { "@type": "ListItem", "position": 3, "name": "Umzug Feucht", "item": `https://www.floxant.de/${lang}/umzug-feucht` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${pageLocale}/umzug-bayern` },
+            { "@type": "ListItem", "position": 3, "name": "Umzug Feucht", "item": `https://www.floxant.de/${pageLocale}/umzug-feucht` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: `/${lang}/umzug-bayern` }, { label: "Umzug Feucht" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "Umzug Feucht" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
@@ -76,12 +78,13 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                         Umzugsunternehmen in <span className="text-primary">Feucht</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        FLOXANT – Ihr Umzugspartner in Feucht bei Nürnberg. Operativer Hub im Nürnberger Land, Festpreisgarantie und professioneller Service.
+                        FLOXANT – Ihr Umzugspartner in Feucht bei Nürnberg. Operativer Hub im Nürnberger Land, {dict.calculator?.fixed_price_tag || "Festpreisgarantie"} und professioneller Service.
                     </p>
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Umzug in Feucht – Im Herzen des Nürnberger Landes</h2>
@@ -92,7 +95,7 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {[
                             { icon: <Clock className="w-8 h-8 text-primary" />, title: "Operativer Hub", desc: "Feucht ist einer unserer Knotenpunkte – besonders kurze Anfahrtszeiten." },
-                            { icon: <Shield className="w-8 h-8 text-primary" />, title: "Festpreisgarantie", desc: "Verbindliches Angebot nach Besichtigung. Keine versteckten Kosten." },
+                            { icon: <Shield className="w-8 h-8 text-primary" />, title: dict.calculator?.fixed_price_tag || "Festpreisgarantie", desc: "Verbindliches Angebot nach Besichtigung. Keine versteckten Kosten." },
                             { icon: <Truck className="w-8 h-8 text-primary" />, title: "Fernumzüge", desc: "Von Feucht nach ganz Deutschland – effizient und termingenau." },
                         ].map((item, i) => (
                             <div key={i} className="p-6 rounded-2xl bg-card border border-border shadow-sm">
@@ -104,7 +107,7 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                     </div>
 
                     <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-8">Häufige Fragen</h2>
+                        <h2 className="text-3xl font-bold text-foreground mb-8">{dict.common.faq_title}</h2>
                         <div className="space-y-6">
                             {[
                                 { q: "Was kostet ein Umzug in Feucht?", a: "Zwischen 300 und 1.500 Euro je nach Wohnungsgröße. Verbindlicher Festpreis nach Besichtigung." },
@@ -121,18 +124,18 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                     <div className="border-t border-border pt-12">
                         <h3 className="text-lg font-semibold mb-6">Weitere Standorte</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/umzug-nuernberg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Nürnberg</Link>
-                            <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
-                            <Link href={`/${lang}/umzug-neumarkt`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Neumarkt</Link>
-                            <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
-                            <Link href={`/${lang}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
+                            <Link href={`/${pageLocale}/umzug-nuernberg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_nuremberg}</Link>
+                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-neumarkt`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Neumarkt</Link>
+                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
+                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
                         </div>
                     </div>
 
                     <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Angebot für Feucht anfordern</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenloses Festpreisangebot für Ihren Umzug in Feucht.</p>
-                        <DualCalculator />
+                        <DualCalculator dic={dict} />
                     </div>
                 </div>
             </section>

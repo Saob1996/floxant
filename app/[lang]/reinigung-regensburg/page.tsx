@@ -1,13 +1,15 @@
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
-import dynamic from "next/dynamic";
 
+import dynamic from "next/dynamic";
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
+
+
+
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -16,33 +18,22 @@ export async function generateMetadata({
 }: {
     params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
-    const content = dict?.pages?.reinigung_regensburg || {};
-
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict?.pages as any)?.reinigung_regensburg || {};
     return {
-        title: content.meta_title || "Reinigung Regensburg – FLOXANT",
-        description: content.meta_desc || "",
-        alternates: {
-            canonical: `https://floxant.de/${lang}/reinigung-regensburg`,
-            languages: i18n.locales.reduce(
-                (acc, l) => {
-                    acc[l] = `https://floxant.de/${l}/reinigung-regensburg`;
-                    return acc;
-                },
-                {} as Record<string, string>
-            ),
-        },
+        title: content.meta_title || "FLOXANT Reinigung Regensburg",
+        description: content.meta_desc || "Professionelle Endreinigung und Umzugsreinigung in Regensburg."
     };
 }
 
-export default async function ReinigungRegensburg({
+export default async function ReinigungRegensburgPage({
     params,
 }: {
     params: Promise<{ lang: string }>;
 }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale) as any;
     const content = (dict?.pages as any)?.reinigung_regensburg || {};
     const area = (dict?.area as any) || {};
 
@@ -50,7 +41,7 @@ export default async function ReinigungRegensburg({
         "@context": "https://schema.org", "@type": "LocalBusiness",
         "name": "FLOXANT Reinigung Regensburg",
         "description": "Professionelle Endreinigung und Umzugsreinigung in Regensburg.",
-        "url": `https://www.floxant.de/${lang}/reinigung-regensburg`,
+        "url": `https://www.floxant.de/${pageLocale}/reinigung-regensburg`,
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
         "priceRange": "$$"
@@ -66,15 +57,14 @@ export default async function ReinigungRegensburg({
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Reinigung", "item": `https://www.floxant.de/${lang}/reinigung` },
-            { "@type": "ListItem", "position": 3, "name": "Reinigung Regensburg", "item": `https://www.floxant.de/${lang}/reinigung-regensburg` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Reinigung", "item": `https://www.floxant.de/${pageLocale}/reinigung` },
+            { "@type": "ListItem", "position": 3, "name": "Reinigung Regensburg", "item": `https://www.floxant.de/${pageLocale}/reinigung-regensburg` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
@@ -123,13 +113,13 @@ export default async function ReinigungRegensburg({
             <section className="py-12 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-4xl">
                     <div className="flex flex-wrap items-center justify-center gap-3">
-                        <Link href={`/${lang}/reinigung`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <Link href={`/${pageLocale}/reinigung`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                             {(dict?.pages as any)?.service_reinigung?.hero_title || "Reinigung"}
                         </Link>
-                        <Link href={`/${lang}/entruempelung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <Link href={`/${pageLocale}/entruempelung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                             {(dict?.pages as any)?.entruempelung_regensburg?.hero_title_highlight ? `Entrümpelung ${(dict?.pages as any).entruempelung_regensburg.hero_title_highlight}` : "Entrümpelung Regensburg"}
                         </Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                             {area.cities?.regensburg || "Regensburg"}
                         </Link>
                     </div>
@@ -141,7 +131,7 @@ export default async function ReinigungRegensburg({
                 <div className="mx-auto max-w-3xl text-center py-12 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg px-8">
                     <h2 className="text-3xl font-bold mb-4">{content.cta_title}</h2>
                     <p className="text-muted-foreground mb-10 max-w-xl mx-auto">{content.cta_text}</p>
-                    <DualCalculator />
+                    <DualCalculator dic={dict} />
                 </div>
             </section>
         </main>

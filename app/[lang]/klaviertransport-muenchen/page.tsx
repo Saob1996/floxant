@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
@@ -14,18 +13,21 @@ const SmartBookingWizard = dynamic(
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.klaviertransport_muenchen || {};
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: "klaviertransport-muenchen",
-        title: "Klaviertransport & Tresortransport München | FLOXANT Schwertransporte",
-        description: "Klaviertransport, Flügeltransport und Tresortransport in München. Spezialisiertes Equipment, geschultes Team, volle Versicherung. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Klaviertransport & Tresortransport München | FLOXA | FLOXANT",
+        description: content.meta_desc || `Klaviertransport, Flügeltransport und Tresortransport in München. Spezialisiertes Equipment, geschultes Team, volle Versicherung. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
     });
 }
 
 export default async function KlaviertransportPage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const serviceJsonLd = {
         "@context": "https://schema.org", "@type": "Service",
@@ -41,8 +43,7 @@ export default async function KlaviertransportPage({ params }: { params: Promise
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug München", href: "/" + lang + "/umzug-muenchen" }, { label: "Klavier- & Tresortransport" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug München", href: "/" + pageLocale + "/umzug-muenchen" }, { label: "Klavier- & Tresortransport" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
 
             <section className="pt-12 pb-24 px-6 bg-gradient-to-b from-slate-100 dark:from-slate-900/40 via-muted/30 to-background overflow-hidden relative">
@@ -108,9 +109,9 @@ export default async function KlaviertransportPage({ params }: { params: Promise
                         <div className="px-6"><SmartBookingWizard dict={dict} /></div>
                     </div>
                     <div className="flex flex-wrap justify-center gap-3 mt-8">
-                        <Link href={"/" + lang + "/umzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Umzug München</Link>
-                        <Link href={"/" + lang + "/seniorenumzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Seniorenumzug München</Link>
-                        <Link href={"/" + lang + "/halteverbotszone-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Halteverbotszone München</Link>
+                        <Link href={"/" + pageLocale + "/umzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">{dict.common.umzug_munich}</Link>
+                        <Link href={"/" + pageLocale + "/seniorenumzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Seniorenumzug München</Link>
+                        <Link href={"/" + pageLocale + "/halteverbotszone-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Halteverbotszone München</Link>
                     </div>
                 </div>
             </section>

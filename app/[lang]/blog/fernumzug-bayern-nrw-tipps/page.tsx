@@ -1,24 +1,26 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
 import { type Locale } from "../../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.fernumzug_bayern_nrw_tipps || {};
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: "blog/fernumzug-bayern-nrw-tipps",
-        title: "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Tipps | FLOXANT Ratgeber",
-        description: "Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Ti | FLOXANT",
+        description: content.meta_desc || `Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
     });
 }
 
 export default async function BlogArticle({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const articleJsonLd = {
         "@context": "https://schema.org", "@type": "Article",
@@ -32,8 +34,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Blog", href: "/" + lang + "/blog" }, { label: "Fernumzug von Bayern nach NRW: Der komplette Guide" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Blog", href: "/" + pageLocale + "/blog" }, { label: "Fernumzug von Bayern nach NRW: Der komplette Guide" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
             
             <article className="py-20 px-6">
@@ -77,7 +78,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                     <div className="mt-20 p-8 bg-primary/5 border border-primary/10 rounded-3xl text-center">
                         <h3 className="text-2xl font-bold mb-4">Bereit für Ihren Umzug?</h3>
                         <p className="text-muted-foreground mb-6">Holen Sie sich jetzt Ihr unverbindliches Festpreisangebot bei FLOXANT.</p>
-                        <Link href={"/" + lang + "/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
+                        <Link href={"/" + pageLocale + "/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
                             Angebot anfordern →
                         </Link>
                     </div>
@@ -85,10 +86,10 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                     <div className="mt-12 border-t border-border pt-8">
                         <h4 className="font-bold mb-4">Weitere Artikel</h4>
                         <div className="flex flex-wrap gap-3">
-                            <Link href={"/" + lang + "/blog/umzug-kosten-regensburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzugskosten Regensburg</Link>
-                            <Link href={"/" + lang + "/blog/umzug-checkliste"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Checkliste</Link>
-                            <Link href={"/" + lang + "/blog/umzug-tipps-bayern"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Tipps Bayern</Link>
-                            <Link href={"/" + lang + "/ratgeber"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Alle Ratgeber</Link>
+                            <Link href={"/" + pageLocale + "/blog/umzug-kosten-regensburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzugskosten Regensburg</Link>
+                            <Link href={"/" + pageLocale + "/blog/umzug-checkliste"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Checkliste</Link>
+                            <Link href={"/" + pageLocale + "/blog/umzug-tipps-bayern"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Tipps Bayern</Link>
+                            <Link href={"/" + pageLocale + "/ratgeber"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Alle Ratgeber</Link>
                         </div>
                     </div>
                 </div>

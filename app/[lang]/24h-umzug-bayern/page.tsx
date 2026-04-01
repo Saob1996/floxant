@@ -1,37 +1,42 @@
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Clock, MapPin, Shield, Truck, CheckCircle2 } from "lucide-react";
+import { generatePageSEO } from "@/lib/seo";
 
 const SmartBookingWizard = dynamic(
     () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
+);
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
-    return {
-        title: "24h Umzug Bayern | Notfall-Umzugsservice | FLOXANT",
-        description: "24-Stunden-Umzugsservice in Bayern. Kurzfristiger Umzug auch abends, nachts und am Wochenende. Regensburg, Nürnberg, München. Sofort verfügbar! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-        alternates: {
-            canonical: `https://floxant.de/${lang}/24h-umzug-bayern`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/24h-umzug-bayern`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.["24h_umzug_bayern"] || {};
+    return generatePageSEO({
+        lang: pageLocale,
+        path: "24h-umzug-bayern",
+        title: content.meta_title || "24h Umzug Bayern | Notfall-Umzugsservice | FLOXANT",
+        description: content.meta_desc || "24-Stunden-Umzugsservice in Bayern. Kurzfristiger Umzug auch abends, nachts und am Wochenende. Regensburg, Nürnberg, München. Sofort verfügbar!",
+    });
 }
 
 export default async function UmzugBayern24h({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: `/${lang}/umzug-bayern` }, { label: "24h Umzugsservice" }]} />
+            <Breadcrumbs lang={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "24h Umzugsservice" }]} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -47,7 +52,8 @@ export default async function UmzugBayern24h({ params }: { params: Promise<{ lan
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Ihr Umzug wartet nicht – wir auch nicht</h2>
@@ -87,11 +93,11 @@ export default async function UmzugBayern24h({ params }: { params: Promise<{ lan
                     <div className="border-t border-border pt-12">
                         <h3 className="text-lg font-semibold mb-6">Verwandte Leistungen</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
-                            <Link href={`/${lang}/notfall-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Notfall-Umzug Bayern</Link>
-                            <Link href={`/${lang}/kurzfristiger-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Kurzfristiger Umzug</Link>
-                            <Link href={`/${lang}/signature/24h-umzugsservice`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">24h Signature Service</Link>
-                            <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{(dict.common as any).umzug_bavaria || "Umzug Bayern"}</Link>
+                            <Link href={`/${pageLocale}/notfall-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Notfall-Umzug Bayern</Link>
+                            <Link href={`/${pageLocale}/kurzfristiger-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Kurzfristiger Umzug</Link>
+                            <Link href={`/${pageLocale}/signature/24h-umzugsservice`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">24h Signature Service</Link>
+                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
                         </div>
                     </div>
 

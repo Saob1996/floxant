@@ -2,23 +2,22 @@ import { type Locale } from "../../../../i18n-config";
 import { getDictionary } from "../../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Clock, CalendarDays, UserCircle, Scale, Building2, Coins, ArrowRight } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'blog/wohnungsaufloesung-was-tun',
         title: 'Wohnungsauflösung im Todesfall: Checkliste & Kosten | FLOXANT',
-        description: 'Ein Angehöriger ist verstorben: Was ist jetzt zu tun? Leitfaden zur Wohnungsauflösung, Kündigungsfristen, Erbrecht und Übernahme der Kosten. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Ein Angehöriger ist verstorben: Was ist jetzt zu tun? Leitfaden zur Wohnungsauflösung, Kündigungsfristen, Erbrecht und Übernahme der Kosten. Sofortpre...',
     });
 }
 
 export default async function BlogWohnungsaufloesungTodesfall({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     const articleJsonLd = {
         "@context": "https://schema.org",
@@ -31,18 +30,17 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
-        { label: "Blog", href: `/${lang}/blog` },
-        { label: "Wohnungsauflösung Todesfall", href: `/${lang}/blog/wohnungsaufloesung-was-tun` }
+        { label: "Home", href: `/${pageLocale}` },
+        { label: "Blog", href: `/${pageLocale}/blog` },
+        { label: "Wohnungsauflösung Todesfall", href: `/${pageLocale}/blog/wohnungsaufloesung-was-tun` }
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
-                <div className="mb-8"><Breadcrumbs lang={lang} items={breadcrumbs} /></div>
+                <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} /></div>
                 
                 <article>
                     <header className="mb-12">
@@ -61,7 +59,7 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
 
                     <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
                         <p>
-                            Der Tod eines engen Angehörigen ist eine psychische Ausnahmesituation. Die Auflösung des Hausstandes ist dabei oft der schwerste Schritt beim endgültigen Abschiednehmen. Doch das deutsche Vertragsrecht duldet keinen Stillstand. Wir haben diesen Leitfaden entwickelt, um Sie als zertifizierter Fachbetrieb für <a href={`/${lang}/entruempelung`}>Wohnungsauflösungen in Bayern</a> sicher durch diesen Prozess zu navigieren.
+                            Der Tod eines engen Angehörigen ist eine psychische Ausnahmesituation. Die Auflösung des Hausstandes ist dabei oft der schwerste Schritt beim endgültigen Abschiednehmen. Doch das deutsche Vertragsrecht duldet keinen Stillstand. Wir haben diesen Leitfaden entwickelt, um Sie als zertifizierter Fachbetrieb für <a href={`/${pageLocale}/entruempelung`}>Wohnungsauflösungen in Bayern</a> sicher durch diesen Prozess zu navigieren.
                         </p>
 
                         <div className="bg-amber-50 border border-amber-200 p-6 rounded-2xl my-8">
@@ -105,7 +103,7 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
 
                         <h2>Schritt 3: Die praktische Umsetzung der Wohnungsauflösung</h2>
                         <p>
-                            Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/${lang}/entruempelung-regensburg`}>Regensburg, München und ganz Bayern</a> am besten vor:
+                            Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/${pageLocale}/entruempelung-regensburg`}>Regensburg, München und ganz Bayern</a> am besten vor:
                         </p>
 
                         <ol>
@@ -113,10 +111,10 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
                                 <strong>Persönliches sichern:</strong> Gehen Sie ohne Zeitdruck durch die Räume. Sichern Sie wichtige Dokumente (Testament, Policen, Bankdaten), Bargeld, Schmuck und emotionale Erinnerungsstücke.
                             </li>
                             <li>
-                                <strong>Wertsachen schätzen lassen:</strong> Oft schlummern echte Schätze im Haushalt (Antiquitäten, Silberwaren). Verkaufen Sie diese Gegenstände oder übergeben Sie sie einem <a href={`/${lang}/entruempelung`}>zertifizierten Entrümpelungsunternehmen</a> mit dem Auftrag der Wertanrechnung.
+                                <strong>Wertsachen schätzen lassen:</strong> Oft schlummern echte Schätze im Haushalt (Antiquitäten, Silberwaren). Verkaufen Sie diese Gegenstände oder übergeben Sie sie einem <a href={`/${pageLocale}/entruempelung`}>zertifizierten Entrümpelungsunternehmen</a> mit dem Auftrag der Wertanrechnung.
                             </li>
                             <li>
-                                <strong>Möbelverteilung in der Familie:</strong> Klären Sie zügig mit anderen Erben, wer welche Möbelstücke behält. Für den Transport an die neuen Standorte bieten sich <a href={`/${lang}/kleintransporte`}>günstige Kleintransporte</a> oder Beiladungen an.
+                                <strong>Möbelverteilung in der Familie:</strong> Klären Sie zügig mit anderen Erben, wer welche Möbelstücke behält. Für den Transport an die neuen Standorte bieten sich <a href={`/${pageLocale}/kleintransporte`}>günstige Kleintransporte</a> oder Beiladungen an.
                             </li>
                             <li>
                                 <strong>Kostenvoranschläge einholen:</strong> Rufen Sie nicht den erstbesten Lockvogel-Flyer aus dem Briefkasten an. Suchen Sie nach transparenten Festpreis-Angeboten ansässiger Speditionen.
@@ -133,13 +131,13 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
                         </p>
 
                         <p>
-                            Besonders bei Extremfällen (z.B. Vernachlässigung) bieten Full-Service Anbieter wie FLOXANT auch die abschließende, hygienische <a href={`/${lang}/reinigung`}>Grundreinigung</a> an, um die Wohnung sofort wieder an den Vermieter übergeben zu können.
+                            Besonders bei Extremfällen (z.B. Vernachlässigung) bieten Full-Service Anbieter wie FLOXANT auch die abschließende, hygienische <a href={`/${pageLocale}/reinigung`}>Grundreinigung</a> an, um die Wohnung sofort wieder an den Vermieter übergeben zu können.
                         </p>
 
                         <div className="bg-primary/5 p-8 rounded-2xl border-primary/20 border mt-12 text-center">
                             <h3 className="mt-0">Benötigen Sie diskrete Unterstützung?</h3>
                             <p className="mb-6">Wir von FLOXANT gehen bei Trauerfällen mit höchster Sensibilität, Pietät und Diskretion im Hausflur vor. Wir begutachten den aufzulösenden Haushalt kostenlos per Videoanruf und fixieren den Preis.</p>
-                            <a href={`/${lang}/#booking`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
+                            <a href={`/${pageLocale}/#booking`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                                 Anfrage für Haushaltsauflösung <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>
@@ -150,14 +148,14 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
                 <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href={"/" + lang + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
-                    <a href={"/" + lang + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
-                    <a href={"/" + lang + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
-                    <a href={"/" + lang + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
-                    <a href={"/" + lang + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug München</a>
-                    <a href={"/" + lang + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Nürnberg</a>
-                    <a href={"/" + lang + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
-                    <a href={"/" + lang + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
+                    <a href={"/" + pageLocale + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
+                    <a href={"/" + pageLocale + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
+                    <a href={"/" + pageLocale + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
+                    <a href={"/" + pageLocale + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_munich}</a>
+                    <a href={"/" + pageLocale + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_nuremberg}</a>
+                    <a href={"/" + pageLocale + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
         
@@ -168,9 +166,9 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
                 <div className="container px-4 text-center max-w-5xl mx-auto">
                     <h3 className="text-2xl font-bold mb-8">Lesen Sie auch</h3>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/blog/entrumpelung-kosten-bayern`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Was kostet eine Auflösung?</a>
-                        <a href={`/${lang}/entruempelung-muenchen`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Haushaltsauflösung München</a>
-                        <a href={`/${lang}/entruempelung-nuernberg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Haushaltsauflösung Nürnberg</a>
+                        <a href={`/${pageLocale}/blog/entrumpelung-kosten-bayern`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Was kostet eine Auflösung?</a>
+                        <a href={`/${pageLocale}/entruempelung-muenchen`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Haushaltsauflösung München</a>
+                        <a href={`/${pageLocale}/entruempelung-nuernberg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Haushaltsauflösung Nürnberg</a>
                     </div>
                 </div>
             </div>

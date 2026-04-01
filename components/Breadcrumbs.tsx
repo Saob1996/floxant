@@ -7,12 +7,14 @@ interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
     items: BreadcrumbItem[];
-    lang: string;
+    lang?: string;
+    pageLocale?: string;
 }
 
-export function Breadcrumbs({ items, lang }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, lang, pageLocale }: BreadcrumbsProps) {
+    const locale = lang || pageLocale || 'de';
     const fullItems: BreadcrumbItem[] = [
-        { label: "FLOXANT", href: `/${lang}` },
+        { label: "FLOXANT", href: `/${locale}` },
         ...items,
     ];
 

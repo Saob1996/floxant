@@ -2,23 +2,22 @@ import { type Locale } from "../../../../i18n-config";
 import { getDictionary } from "../../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Clock, CalendarDays, UserCircle, ArrowRight } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'blog/warum-floxant-die-beste-wahl-ist',
         title: 'Warum FLOXANT die beste Wahl ist | FLOXANT',
-        description: 'Hier kommt die Meta-Description für Google hin (max 160 Zeichen).',
+        description: 'Professionelle Warum FLOXANT die beste Wahl ist in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
     });
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     const articleJsonLd = {
         "@context": "https://schema.org",
@@ -32,18 +31,17 @@ export default async function BlogPost({ params }: { params: Promise<{ lang: str
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
-        { label: "Blog", href: `/${lang}/blog` },
+        { label: "Home", href: `/${pageLocale}` },
+        { label: "Blog", href: `/${pageLocale}/blog` },
         { label: "Warum FLOXANT die beste Wahl ist" }
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
-                <div className="mb-8"><Breadcrumbs lang={lang} items={breadcrumbs}  /></div>
+                <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs}  /></div>
                 
                 <article>
                     <header className="mb-12">
@@ -67,13 +65,13 @@ export default async function BlogPost({ params }: { params: Promise<{ lang: str
 
                         <h2>Die wichtigste Zwischenüberschrift</h2>
                         <p>
-                            Weiterer Text. Um SEO-Rankings zu verbessern, verlinken Sie zu Service-Seiten wie z.B.: <a href={`/${lang}/umzug`}>Umzug planen</a>.
+                            Weiterer Text. Um SEO-Rankings zu verbessern, verlinken Sie zu Service-Seiten wie z.B.: <a href={`/${pageLocale}/umzug`}>Umzug planen</a>.
                         </p>
 
                         <div className="bg-primary/5 p-8 rounded-2xl border-primary/20 border mt-12 text-center">
                             <h3 className="mt-0">Lassen Sie uns helfen</h3>
                             <p className="mb-6">Nutzen Sie unser smartes Buchungstool für ein sofortiges Angebot.</p>
-                            <a href={`/${lang}/#calculator`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
+                            <a href={`/${pageLocale}/#calculator`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                                 Zum Preisrechner <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>
@@ -86,7 +84,7 @@ export default async function BlogPost({ params }: { params: Promise<{ lang: str
                 <div className="container px-4 max-w-4xl mx-auto text-center">
                     <h3 className="text-2xl font-bold mb-8">Mehr zum Thema</h3>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/umzug`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Allgemeine Umzugsinformationen</a>
+                        <a href={`/${pageLocale}/umzug`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Allgemeine Umzugsinformationen</a>
                     </div>
                 </div>
             </div>

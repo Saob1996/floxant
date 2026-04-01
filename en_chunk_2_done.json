@@ -1,0 +1,335 @@
+{
+  "dashboard.status.empty_hint": "Try adjusting your filters.",
+  "dashboard.card.edit": "Edit",
+  "dashboard.card.no_extras": "No Extras",
+  "pages.umzug_muenchen.hero_title_prefix": "Your Relocation in",
+  "pages.umzug_muenchen.hero_title_highlight": "München",
+  "pages.umzug_muenchen.hero_desc": "Stress-free moves into the Bavarian capital or from München to the world. FLOXANT offers a premium relocation service with a fixed price guarantee.",
+  "pages.umzug_muenchen.badge": "München & Surroundings",
+  "pages.umzug_muenchen.intro_title": "Moving in München – With a Plan and Precision",
+  "pages.umzug_muenchen.intro_text_1": "München is a vibrant metropolis that attracts people from all over the world. However, relocating within the Bavarian capital often presents a unique logistical challenge. Narrow staircases in Schwabing, a lack of parking in the Glockenbachviertel, or strict time windows in residential complexes: the conditions require experience and solid planning.",
+  "pages.umzug_muenchen.intro_text_2": "FLOXANT stands for a relocation service that masters precisely these challenges. We don’t just get to work blindly; we plan your change of location in detail. Our goal is for you to sit back and relax while we do the heavy lifting.",
+  "pages.umzug_muenchen.transparency_title": "Transparency Notice Regarding Headquarters",
+  "pages.umzug_muenchen.transparency_text": "FLOXANT has its legal headquarters in Regensburg. However, our operational team is regularly deployed for relocations in München and the surrounding area. We combine the flexibility of a national provider with the reliability you expect. Additionally, we routinely organize long-distance moves from München to North Rhine-Westphalia and all other federal states.",
+  "pages.umzug_muenchen.portfolio_title": "Our Service Portfolio for München",
+  "pages.umzug_muenchen.services.city.title": "City Moves München",
+  "pages.umzug_muenchen.services.city.desc": "Fast and efficient within the city limits. We know the routes and, if necessary, organize no-parking zones.",
+  "pages.umzug_muenchen.services.remote.title": "Long-Distance Moves from München",
+  "pages.umzug_muenchen.services.remote.desc": "From the Isar to the Rhine or the Spree. Our long-distance moves are logistically optimized and safe.",
+  "pages.umzug_muenchen.services.clearance.title": "Entrümpelung (Clearance)",
+  "pages.umzug_muenchen.services.clearance.desc": "Professional disposal of old furniture during apartment clearances in München. Complete swept-clean handover guaranteed.",
+  "pages.umzug_muenchen.details_title": "München Special: What You Need to Know",
+  "pages.umzug_muenchen.details_text": "Every city has its quirks, and München is no exception. The parking situation is tight in many districts. Establishing an official no-parking zone is often essential for a smooth process. We are happy to take care of the application with the München authorities on your behalf, complete with timely signage placement.",
+  "pages.umzug_muenchen.remote_title": "Relocating from Bayern to all of Germany",
+  "pages.umzug_muenchen.remote_text": "Many of our clients move for work from München to other metropolitan regions like Regensburg, Cologne, Frankfurt, or Berlin. Especially with such long-distance moves, professional planning is crucial. We ensure that your inventory is securely packed, insured, and arrives on time at the destination. Thanks to our regular routes between Bayern and NRW, we can often offer attractive partial load options or efficient direct transports.",
+  "pages.umzug_muenchen.pricing_title": "Transparent Prices With No Surprises",
+  "pages.umzug_muenchen.pricing_text": "München is expensive enough – your move shouldn't ruin you financially. At FLOXANT, we rely on absolute cost transparency. Instead of vague hourly rates, you will usually receive a fixed-price offer from us. This includes all the services we have discussed in advance. No hidden fees for floor surcharges or travel distances.",
+  "pages.umzug_muenchen.features.inspection": "Free Inspection: We will gladly assess your inventory in advance via a video call. This saves time and allows for a precise calculation.",
+  "pages.umzug_muenchen.features.insurance": "Insurance Included: Your furniture is in safe hands with us and fully insured.",
+  "pages.umzug_muenchen.features.staff": "Qualified Staff: Our employees are experienced, friendly, and work with care.",
+  "pages.umzug_muenchen.links_title": "Other Locations in the Region",
+  "pages.umzug_muenchen.cta_title": "Your Quote for München",
+  "pages.umzug_muenchen.cta_text": "Start your request now. We will quickly prepare a non-binding offer for your move within, to, or from München.",
+  "pages.umzug_muenchen.faqs": [
+    {
+      "q": "How much does a move in München cost?",
+      "a": "A local move in München costs between 400 and 2,000 euros, depending on the apartment size. FLOXANT offers binding fixed prices after a free inspection."
+    },
+    {
+      "q": "Does FLOXANT also handle moves in the old town of München?",
+      "a": "Yes, we specialize in challenging logistics, such as narrow alleys or many stairs, and handle all no-parking zone requirements."
+    },
+    {
+      "q": "Do you offer long-distance moves starting from München?",
+      "a": "Yes. We organize long-distance relocations from München to all of Germany."
+    }
+  ],
+  "pages.service_umzug.meta_title": "Private Relocation – Your Personal Move",
+  "pages.service_umzug.meta_desc": "FLOXANT accompanies your private relocation with precision and discretion. Based in Regensburg – covering all of Bayern and nationwide.",
+  "pages.service_umzug.badge": "Core Service",
+  "pages.service_umzug.hero_title": "Private Relocation",
+  "pages.service_umzug.hero_desc": "Moving is more than just transport. It is a transition. FLOXANT accompanies this process discreetly, systematically, and reliably.",
+  "pages.service_umzug.intro_title": "Your Relocation – Thought Out to the Smallest Detail",
+  "pages.service_umzug.intro_p1": "A private move touches every area of life. Personal items, valuable keepsakes, delicate furniture – everything requires customized handling. At FLOXANT, we understand that your home is more than an address. It’s part of your identity. That’s why we plan every move so you can focus on what truly matters: your new chapter.",
+  "pages.service_umzug.intro_p2": "Our team operates with a clear process that gives you full transparency at all times. From the initial inspection to placing the final box in its new spot – we leave nothing to chance. Our operational focus is in Regensburg and the Oberpfalz. From here, we serve clients throughout Bayern, as well as nationwide long-distance moves.",
+  "pages.service_umzug.for_whom_title": "Who is this service for?",
+  "pages.service_umzug.for_whom_items": [
+    "Individuals and families who value diligence",
+    "Apartment moves within a city or region",
+    "Relocations requiring special protection for valuables"
+  ],
+  "pages.service_umzug.process_title": "Our Process",
+  "pages.service_umzug.process_steps": [
+    {
+      "title": "Inventory Assessment",
+      "desc": "Free inspection – on-site or via video call. We record volumes, special items, and your wishes."
+    },
+    {
+      "title": "Fixed Price Quote",
+      "desc": "You receive a transparent quote without hidden costs. What is agreed upon is final."
+    },
+    {
+      "title": "Execution",
+      "desc": "Professional packing, safe transport, and on-time delivery. Our teams work carefully and quietly."
+    },
+    {
+      "title": "Handover",
+      "desc": "Assembly, placement, and a swept-clean finish at the old location. Your new home is ready to live in."
+    }
+  ],
+  "pages.service_umzug.guarantees_title": "Our Guarantees",
+  "pages.service_umzug.guarantees": [
+    "Fixed-price guarantee without subsequent demands",
+    "Full insurance for your entire inventory",
+    "Qualified, trained staff"
+  ],
+  "pages.service_umzug.cta_title": "Submit a Non-Binding Request",
+  "pages.service_umzug.cta_text": "Start your relocation by getting a personal quote. Discreet, transparent, and without obligation.",
+  "pages.service_buero_umzug.meta_title": "Office Relocation – Professional Corporate Moves",
+  "pages.service_buero_umzug.meta_desc": "FLOXANT organizes your office relocation with minimal downtime. Structured, discreet, and on schedule – operated from Regensburg for all of Bayern.",
+  "pages.service_buero_umzug.badge": "Commercial",
+  "pages.service_buero_umzug.hero_title": "Office Relocation",
+  "pages.service_buero_umzug.hero_desc": "Business continuity requires planning. We ensure your company can resume operations at the new location without delay.",
+  "pages.service_buero_umzug.intro_title": "Corporate Moves With a Strategy",
+  "pages.service_buero_umzug.intro_p1": "An office relocation means interfering with active business processes. IT infrastructure, sensitive files, workplace ergonomics – every detail must be exactly right. FLOXANT plans your commercial move so your employees can simply keep working productively the next morning.",
+  "pages.service_buero_umzug.intro_p2": "We coordinate all necessary trades: from shutting down the IT setup over physical transport to reinstallation. Discretion is guaranteed, especially for sensitive sectors like law firms, medical practices, or financial services.",
+  "pages.service_buero_umzug.for_whom_title": "Who is this service for?",
+  "pages.service_buero_umzug.for_whom_items": [
+    "Companies of any size with ongoing operations",
+    "Law firms, clinics, and offices handling sensitive documents",
+    "Businesses that need to minimize downtime strictly"
+  ],
+  "pages.service_buero_umzug.process_title": "Our Process",
+  "pages.service_buero_umzug.process_steps": [
+    {
+      "title": "Project Planning",
+      "desc": "Detailed analysis of your office layout. Timelines, responsibilities, and milestones are established."
+    },
+    {
+      "title": "Coordination",
+      "desc": "Alignment with your IT team, facility management, and landlord. Everything from a single source."
+    },
+    {
+      "title": "Execution",
+      "desc": "Relocation within established time windows – including evenings or weekends. Minimally invasive."
+    },
+    {
+      "title": "Activation",
+      "desc": "Setting up workstations, conducting functional tests, and final handover. Your team can start immediately."
+    }
+  ],
+  "pages.service_buero_umzug.guarantees_title": "Our Guarantees",
+  "pages.service_buero_umzug.guarantees": [
+    "Strictly defined time windows with guaranteed compliance",
+    "Complete insurance for IT equipment and inventory",
+    "Discreet handling smoothly bypassing ongoing business"
+  ],
+  "pages.service_buero_umzug.cta_title": "Plan Your Office Relocation",
+  "pages.service_buero_umzug.cta_text": "Let us structure your company's move together. Contact us for a confidential consultation.",
+  "pages.service_fernumzug.meta_title": "Long-Distance Moves – Nationwide and European Wide",
+  "pages.service_fernumzug.meta_desc": "FLOXANT organizes long-distance relocations starting from Bayern to any city in Germany. Logistically optimized, fully insured, and punctually delivered.",
+  "pages.service_fernumzug.badge": "Long-Distance",
+  "pages.service_fernumzug.hero_title": "Long-Distance Relocation",
+  "pages.service_fernumzug.hero_desc": "Distance is no obstacle. We connect Regensburg, Bayern, and all of Germany using uncompromising logistics.",
+  "pages.service_fernumzug.intro_title": "Long-Distance With Precision",
+  "pages.service_fernumzug.intro_p1": "A long-distance relocation demands a different caliber of planning. Longer transport routes, shifting road conditions, and dual-location coordination all demand seamless operations. FLOXANT specializes in managing this exact complexity.",
+  "pages.service_fernumzug.intro_p2": "Whether from Regensburg to Hamburg, from München to Berlin, or from Bayern to North Rhine-Westphalia: Our experienced team sets the right routes, coordinates interim storage if necessary, and ensures your items arrive safely and on time.",
+  "pages.service_fernumzug.for_whom_title": "Who is this service for?",
+  "pages.service_fernumzug.for_whom_items": [
+    "Individuals transferring locations for occupational reasons",
+    "Families changing cities to find a new home",
+    "Companies relocating entire teams of employees"
+  ],
+  "pages.service_fernumzug.process_title": "Our Process",
+  "pages.service_fernumzug.process_steps": [
+    {
+      "title": "Route Planning",
+      "desc": "Optimal routing considering traffic, weather, and necessary arrival windows."
+    },
+    {
+      "title": "Packing",
+      "desc": "Professional wrapping using specialized materials explicitly made for long-haul transport."
+    },
+    {
+      "title": "Transport",
+      "desc": "GPS-monitored fleet driven by experts. Full insurance coverage applied on the entire journey."
+    },
+    {
+      "title": "Delivery",
+      "desc": "Timely handover, precise assembly, and final placement at the new destination."
+    }
+  ],
+  "pages.service_fernumzug.guarantees_title": "Our Guarantees",
+  "pages.service_fernumzug.guarantees": [
+    "A singular fixed-price offering for the entire distance",
+    "Full comprehensive insurance covering the full transit",
+    "Punctual guarantees adhering to defined delivery timeframes"
+  ],
+  "pages.service_fernumzug.cta_title": "Request a Long-Distance Move",
+  "pages.service_fernumzug.cta_text": "Where is the journey taking you? Send a request to receive an individualized quote for your long-distance relocation.",
+  "pages.service_reinigung.meta_title": "Professional Cleaning – Final Cleaning and Handover",
+  "pages.service_reinigung.meta_desc": "FLOXANT offers professional final cleanings meeting supreme landlord standards. For Regensburg, Bayern, and across Germany.",
+  "pages.service_reinigung.badge": "Cleaning",
+  "pages.service_reinigung.hero_title": "Cleaning",
+  "pages.service_reinigung.hero_desc": "Cleanliness is never an afterthought – it establishes a solid foundation for closure and serves as a canvas for new beginnings.",
+  "pages.service_reinigung.intro_title": "End-to-End Cleaning Systematic Approach",
+  "pages.service_reinigung.intro_p1": "The final cleaning of an apartment generally determines the smooth return of a security deposit. FLOXANT employs sharply defined landlord cleaning benchmarks and supplies complete outcome documentation, assuring absolute compliance for the final handover.",
+  "pages.service_reinigung.intro_p2": "Our dedicated cleaning crews act thoroughly, fast, and with a deep respect for your property. Following a move-out, preparing a move-in, or rendering solitary tasks – we leave spaces entirely unchallengeable.",
+  "pages.service_reinigung.for_whom_title": "Who is this service for?",
+  "pages.service_reinigung.for_whom_items": [
+    "Tenants needing to surrender a rented space to management",
+    "Real Estate Owners getting ready for a sale or listing",
+    "Commercial space lessees completing their commercial term"
+  ],
+  "pages.service_reinigung.process_title": "Our Process",
+  "pages.service_reinigung.process_steps": [
+    {
+      "title": "Inspection",
+      "desc": "Capturing current condition and defining the entire required scope of cleaning."
+    },
+    {
+      "title": "Execution",
+      "desc": "Systematic deep-cleaning spanning all rooms, floors, windows, and heavy-duty sanitation."
+    },
+    {
+      "title": "Quality Endorsement",
+      "desc": "Final acceptance matched against an extensive cleaning checklist and photo journal."
+    },
+    {
+      "title": "Handover",
+      "desc": "Completion of a visibly spotless interior, fully ready for the landlord or new occupants."
+    }
+  ],
+  "pages.service_reinigung.guarantees_title": "Our Guarantees",
+  "pages.service_reinigung.guarantees": [
+    "Immaculate cleaning fulfilling strict landlord parameters",
+    "Inclusive photographic reporting supplied",
+    "Prompt, free-of-charge correction upon rightful complaints"
+  ],
+  "pages.service_reinigung.cta_title": "Schedule a Cleaning",
+  "pages.service_reinigung.cta_text": "Reserve a professional tier cleaning operation. Calculated transparently and performed on time.",
+  "pages.service_entruempelung.meta_title": "Clearance – Expert Evacuation and Refuse Disposal",
+  "pages.service_entruempelung.meta_desc": "FLOXANT empties dwellings and commercial facilities proficiently. Offering swift Entrümpelung in Regensburg, Bayern, and nationwide.",
+  "pages.service_entruempelung.badge": "Disposal & Clearance",
+  "pages.service_entruempelung.hero_title": "Entrümpelung (Clearance)",
+  "pages.service_entruempelung.hero_desc": "Parting requires a high level of trust. We evacuate professionally, with discretion, and mindful of ecological constraints.",
+  "pages.service_entruempelung.intro_title": "Highly Responsible Clearances",
+  "pages.service_entruempelung.intro_p1": "Entrümpelung is more than merely carrying stuff away. Commonly, complex emotional conditions are tied to the act – be it dealing with bereavement, liquidating an entire household, or seeking a complete mental restart. FLOXANT handles such instances showing maximal respect and profound empathy.",
+  "pages.service_entruempelung.intro_p2": "To ensure correct compliance, we segregate all items locally, dispose of refuse ecologically through established partners, and vacate the floor space wholly clean. Value-retaining matter gets integrated into recycling loops; functioning elements can be redirected to charitable causes upon your request. Every client gets definitive proof of ethical disposal.",
+  "pages.service_entruempelung.for_whom_title": "Who is this service for?",
+  "pages.service_entruempelung.for_whom_items": [
+    "Disbandment of households and respectful estate liquidation instances",
+    "Corporate evacuations during shutdowns or operational pauses",
+    "Private entities endeavoring to offload unwanted accumulations expertly"
+  ],
+  "pages.service_entruempelung.process_title": "Our Process",
+  "pages.service_entruempelung.process_steps": [
+    {
+      "title": "Assessment",
+      "desc": "On-site mutual assessment. You single out the objects to keep, dispose of, and donate."
+    },
+    {
+      "title": "Clearance",
+      "desc": "Orderly removal covering all scoped perimeter zones enacted by our specifically vetted crew."
+    },
+    {
+      "title": "Disposal",
+      "desc": "Conscientious waste separation and disposal aligned strictly with existing laws."
+    },
+    {
+      "title": "End Results",
+      "desc": "Turnover of pristine, unburdened real estate with optionally supplied evidence documents."
+    }
+  ],
+  "pages.service_entruempelung.guarantees_title": "Our Guarantees",
+  "pages.service_entruempelung.guarantees": [
+    "Verified ecological refuse processing tied to formal receipts",
+    "Quiet and discrete operation adapted to sensitive events",
+    "Uncompromising guarantee of a broom-clean outcome"
+  ],
+  "pages.service_entruempelung.cta_title": "Inquire About Clearance",
+  "pages.service_entruempelung.cta_text": "Connect with us to attain private counseling on the subject. We will frame an untroubled and evident proposition for you.",
+  "pages.service_montage.meta_title": "Assembly – Expert Furniture and Kitchen Fixation",
+  "pages.service_montage.meta_desc": "FLOXANT mounts furnishings, culinary stations, and built-ins perfectly. Executed across Regensburg, Bayern, and Germany.",
+  "pages.service_montage.badge": "Installation & Assembly",
+  "pages.service_montage.hero_title": "Assembly Services",
+  "pages.service_montage.hero_desc": "Sublime precision. Qualified assembly and deconstruction of all items – with the thorough exactitude your elements call for.",
+  "pages.service_montage.intro_title": "Unrivalled Industry Assembly Competence",
+  "pages.service_montage.intro_p1": "High-value goods and architectural kitchens undeniably mandate supreme installation skills. Erroneous adjustments can fracture facades, impair mechanical features, or radically diminish lifetime usefulness. For that reason, FLOXANT uniquely employs trained artisans seasoned with highly diverse alignment mechanics.",
+  "pages.service_montage.intro_p2": "Regardless if confronting standard IKEA arrays or exclusive customized architectural kitchen layouts – our approach is systematically clean, meticulously exact, and deeply protective of your physical possessions. Upon completing the assembly, our technicians clear out the workspace comprehensively while extracting and discarding all wrapper materials at your request.",
+  "pages.service_montage.for_whom_title": "Who is this service for?",
+  "pages.service_montage.for_whom_items": [
+    "Private households demanding reliable setup during relocations",
+    "Commercial delegates with office system networks",
+    "Individuals requiring kitchen installations after recent upgrades"
+  ],
+  "pages.service_montage.process_title": "Our Process",
+  "pages.service_montage.process_steps": [
+    {
+      "title": "Preparation",
+      "desc": "Thorough inspection of blueprints alongside all related materials. Technicians supply all vital tools."
+    },
+    {
+      "title": "Assembly",
+      "desc": "Calculated structural builds heavily emphasizing exact space geometries and intended usage patterns."
+    },
+    {
+      "title": "Functional Test",
+      "desc": "Meticulous stress tests applied to hinges, mobile components, and integral mechanics."
+    },
+    {
+      "title": "Final Review",
+      "desc": "Aesthetic purification of the workplace linked to conscientious packaging removal."
+    }
+  ],
+  "pages.service_montage.guarantees_title": "Our Guarantees",
+  "pages.service_montage.guarantees": [
+    "Highly masterful alignment by technically gifted pros",
+    "Impeccable care taken confronting external layers and core materials",
+    "Totally tidied workspace presented post-completion"
+  ],
+  "pages.service_montage.cta_title": "Engage Assembly Services",
+  "pages.service_montage.cta_text": "Uncompromising assembly competence delivered. Connect to formulate an exact pricing offer.",
+  "pages.service_halteverbotszone.meta_title": "No-Parking Zone – Statutory Approval and Implementation",
+  "pages.service_halteverbotszone.meta_desc": "FLOXANT processes and enforces explicit No-Parking zones. Masterful bureaucratic handling provided across Regensburg, Bayern, and entire Germany.",
+  "pages.service_halteverbotszone.badge": "Logistics Edge",
+  "pages.service_halteverbotszone.hero_title": "No-Parking Zone",
+  "pages.service_halteverbotszone.hero_desc": "An unhindered operational approach stands as the absolute foundation of any seamless transport flow. We manage all legal approvals.",
+  "pages.service_halteverbotszone.intro_title": "Legally Enforced Logistics Perimeters",
+  "pages.service_halteverbotszone.intro_p1": "Especially functioning inside vibrant urban domains like Regensburg, München, or Nürnberg, cementing a legally approved physical no-parking parameter remains fundamentally necessary. Lacking a preassigned logistical spot costs heavy time drops and yields immense friction.",
+  "pages.service_halteverbotszone.intro_p2": "FLOXANT effortlessly manages the entire pipeline: Initiating legal claims against local administrations, deploying physical signboards inside pre-designated legal frames, and retracting them following operational conclusion. It eliminates your workload altogether.",
+  "pages.service_halteverbotszone.for_whom_title": "Who is this service for?",
+  "pages.service_halteverbotszone.for_whom_items": [
+    "Relocations traversing inner-city sectors void of adjacent parking infrastructures",
+    "Enterprise transfers strictly demanding massive operational fleet space",
+    "Virtually any transitional activity fundamentally reliant on stable vehicle approachability"
+  ],
+  "pages.service_halteverbotszone.process_title": "Our Process",
+  "pages.service_halteverbotszone.process_steps": [
+    {
+      "title": "Application",
+      "desc": "Formal submittal toward the respective traffic directory carrying all pivotal dossiers."
+    },
+    {
+      "title": "Clearance",
+      "desc": "Vigilant tracking combined with final endorsement validation."
+    },
+    {
+      "title": "Deployment",
+      "desc": "Structural placing of required prohibition indicators within precise legal lead times (min 72 hrs)."
+    },
+    {
+      "title": "Retraction",
+      "desc": "Physical detachment of signs right upon absolute completion of the operational timeline."
+    }
+  ],
+  "pages.service_halteverbotszone.guarantees_title": "Our Guarantees",
+  "pages.service_halteverbotszone.guarantees": [
+    "Wholly subsumed jurisdictional processing",
+    "Chronologically punctilious sign emplacement",
+    "Encompassing hands-off service saving individual endeavors"
+  ],
+  "pages.service_halteverbotszone.cta_title": "Request No-Parking Parameter",
+  "pages.service_halteverbotszone.cta_text": "Cinch undisrupted entryway access for the targeted occasion. We completely orchestrate the background structure.",
+  "pages.reinigung_regensburg.meta_title": "Cleaning Regensburg – Highly Competent Final Sanitation inside the Oberpfalz"
+}

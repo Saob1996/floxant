@@ -1,31 +1,35 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { MapPin, ArrowRight, Layers, Shield } from "lucide-react";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
+import Link from "next/link";
+import { MapPin, ArrowRight, Layers, Shield } from "lucide-react";
+
+
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.umzug_oberpfalz || {};
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: "umzug-oberpfalz",
-        title: "Umzugsunternehmen Oberpfalz – Ihr regionaler Partner | FLOXANT",
-        description: "Professioneller Transporte und Umzüge in Oberpfalz. Die gesamte Oberpfalz von Regensburg bis Tirschenreuth. 100% Versichert, Festpreisgarantie. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Umzug Oberpfalz – Ihr regionaler Partner | FLOXANT",
+        description: `Professionelle Transporte und Umzüge in der Oberpfalz. Die gesamte Region von Regensburg bis Tirschenreuth.`,
     });
 }
 
 export default async function HubUmzugoberpfalz({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const bridgeLd = {
         "@context": "https://schema.org", "@type": "Service",
@@ -36,8 +40,7 @@ export default async function HubUmzugoberpfalz({ params }: { params: Promise<{ 
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Standorte", href: "/" + lang + "/service-area-bayern" }, { label: "Oberpfalz" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Standorte", href: "/" + pageLocale + "/service-area-bayern" }, { label: "Oberpfalz" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(bridgeLd) }} />
             
             <section className="pt-20 pb-20 px-6 bg-muted/20">
@@ -81,20 +84,20 @@ export default async function HubUmzugoberpfalz({ params }: { params: Promise<{ 
                 <div>
                     <h3 className="text-2xl font-bold mb-6">Wichtige Knotenpunkte in unserem Netzwerk</h3>
                     <div className="flex flex-wrap gap-4">
-                        <Link href={"/" + lang + "/umzug-regensburg"} className="px-6 py-3 bg-primary/10 text-primary font-bold rounded-full">Regensburg Headquarter</Link>
-                        <Link href={"/" + lang + "/umzug-neutraubling"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Neutraubling</Link>
-                        <Link href={"/" + lang + "/umzug-schwandorf"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Schwandorf</Link>
-                        <Link href={"/" + lang + "/umzug-kelheim"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Kelheim</Link>
-                        <Link href={"/" + lang + "/umzug-amberg"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Amberg</Link>
-                        <Link href={"/" + lang + "/umzug-parsberg"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Parsberg</Link>
-                        <Link href={"/" + lang + "/umzug-burglengenfeld"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Burglengenfeld</Link>
-                        <Link href={"/" + lang + "/umzug-weiden"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Weiden</Link>
+                        <Link href={"/" + pageLocale + "/umzug-regensburg"} className="px-6 py-3 bg-primary/10 text-primary font-bold rounded-full">Regensburg Headquarter</Link>
+                        <Link href={"/" + pageLocale + "/umzug-neutraubling"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Neutraubling</Link>
+                        <Link href={"/" + pageLocale + "/umzug-schwandorf"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Schwandorf</Link>
+                        <Link href={"/" + pageLocale + "/umzug-kelheim"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Kelheim</Link>
+                        <Link href={"/" + pageLocale + "/umzug-amberg"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Amberg</Link>
+                        <Link href={"/" + pageLocale + "/umzug-parsberg"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Parsberg</Link>
+                        <Link href={"/" + pageLocale + "/umzug-burglengenfeld"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Burglengenfeld</Link>
+                        <Link href={"/" + pageLocale + "/umzug-weiden"} className="px-6 py-3 border border-border/50 rounded-full hover:border-primary">Weiden</Link>
                     </div>
                 </div>
 
                 <div className="mt-16 text-center">
                     <h2 className="text-3xl font-bold mb-8">Kostenfrei innerhalb der Oberpfalz anfragen</h2>
-                    <DualCalculator />
+                    <DualCalculator dic={dict} />
                 </div>
             </section>
         </main>

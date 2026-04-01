@@ -9,7 +9,7 @@ import de from "../../dictionaries/de.json";
 export default function NotFound() {
     return (
         <main className="min-h-screen bg-background flex flex-col">
-            <Header lang="de" dic={de.nav} />
+            <Header dic={de as any} />
             <div className="flex-1 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
                 {/* Background Decor */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />

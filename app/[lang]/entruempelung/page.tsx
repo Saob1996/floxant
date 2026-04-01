@@ -2,7 +2,6 @@ import { type Locale } from "../../../i18n-config";
 import { getDictionary } from "../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CheckCircle2, Recycle, Trash2, Home, Building2, Shield, Leaf, MapPin } from "lucide-react";
@@ -14,31 +13,32 @@ const SmartBookingWizard = dynamic(
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'entruempelung',
         title: 'Entrümpelung & Wohnungsauflösung Bayern ✓ Besenrein | FLOXANT',
-        description: 'Professionelle Entrümpelung, Wohnungsauflösung und Firmenentrümpelung. Diskrete Hausentrümpelung und Kellerentrümpelung mit Festpreisgarantie. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Professionelle Entrümpelung, Wohnungsauflösung und Firmenentrümpelung. Diskrete Hausentrümpelung und Kellerentrümpelung mit .... Sofortpreis online be...',
     });
 }
 
 export default async function EntruempelungPillarPage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_entruempelung || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet eine komplette Entrümpelung oder Wohnungsauflösung?", "acceptedAnswer": { "@type": "Answer", "text": "Die Kosten für eine Entrümpelung variieren je nach Volumen, Etage und Verschmutzungsgrad. Ein durchschnittlicher Keller kostet oft ab 300 Euro, eine komplette Wohnungsauflösung zwischen 1.000 und 2.500 Euro. FLOXANT bietet Ihnen nach einer Besichtigung einen garantierten Festpreis an." } },
-            { "@type": "Question", "name": "Bieten Sie eine besenreine Übergabe bei einer Hausentrümpelung?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Bei jeder Hausentrümpelung und Wohnungsauflösung garantieren wir eine besenreine Übergabe. Auf Wunsch können Sie zusätzlich eine tiefergehende Endreinigung nach Vermieterstandard (Wischreinigung) hinzubuchen." } },
-            { "@type": "Question", "name": "Entsorgen Sie die Möbel umweltgerecht?", "acceptedAnswer": { "@type": "Answer", "text": "Wir arbeiten streng nach ökologischen Standards. Holz, Elektroschrott, Metall und Restmüll werden von uns fachgerecht getrennt und zertifizierten Wertstoffhöfen übergeben." } },
-            { "@type": "Question", "name": "Muss ich bei der Firmenentrümpelung vor Ort sein?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wenn wir im Vorfeld genau besprechen, welche Maschinen, Büromöbel und Akten aus der Firmenentrümpelung entsorgt werden sollen, können wir das Objekt nach Schlüsselübergabe völlig selbstständig räumen." } }
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine komplette Entrümpelung oder Wohnungsauflösung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Kosten für eine Entrümpelung variieren je nach Volumen, Etage und Verschmutzungsgrad. Ein durchschnittlicher Keller kostet oft ab 300 Euro, eine komplette Wohnungsauflösung zwischen 1.000 und 2.500 Euro. FLOXANT bietet Ihnen nach einer Besichtigung einen garantierten Festpreis an." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bieten Sie eine besenreine Übergabe bei einer Hausentrümpelung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Bei jeder Hausentrümpelung und Wohnungsauflösung garantieren wir eine besenreine Übergabe. Auf Wunsch können Sie zusätzlich eine tiefergehende Endreinigung nach Vermieterstandard (Wischreinigung) hinzubuchen." } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q || "Entsorgen Sie die Möbel umweltgerecht?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Wir arbeiten streng nach ökologischen Standards. Holz, Elektroschrott, Metall und Restmüll werden von uns fachgerecht getrennt und zertifizierten Wertstoffhöfen übergeben." } },
+                { "@type": "Question", "name": content.faqs?.[3]?.q || "Muss ich bei der Firmenentrümpelung vor Ort sein?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a || "Nein. Wenn wir im Vorfeld genau besprechen, welche Maschinen, Büromöbel und Akten aus der Firmenentrümpelung entsorgt werden sollen, können wir das Objekt nach Schlüsselübergabe völlig selbstständig räumen." } }
+            ],
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
+        { label: "Home", href: `/${pageLocale}` },
         { label: "Entrümpelung (Pillar)" }
     ];
 
@@ -49,17 +49,16 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
             "@type": "ListItem",
             "position": idx + 1,
             "name": crumb.label,
-            "item": `https://www.floxant.de${crumb.href || `/${lang}/entruempelung`}`
+            "item": `https://www.floxant.de${crumb.href || `/${pageLocale}/entruempelung`}`
         }))
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-            <Breadcrumbs lang={lang} items={breadcrumbs} />
+            <Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} />
             
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -68,7 +67,7 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
                         <span>Ihr Experte für Räumungen in Bayern</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Professionelle <span className="text-primary">Entrümpelung</span> & Auflösung
+                        Professionelle <span className="text-primary">{dict.common.entruempelung}</span> & Auflösung
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                         Wir schaffen Platz. Ob komplette Wohnungsauflösung nach einem Todesfall, eine Firmenentrümpelung oder eine private Kellerentrümpelung: FLOXANT räumt schnell, diskret, umweltbewusst und hinterlässt das Objekt immer besenrein.
@@ -84,10 +83,10 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
                             <h2 className="text-4xl font-bold tracking-tight">Wohnungsauflösung: Taktvoll und zuverlässig entrümpeln</h2>
                             <div className="prose prose-lg text-slate-700">
                                 <p>
-                                    Eine <strong>Wohnungsauflösung</strong> ist oft mit einem hohen emotionalen und körperlichen Aufwand verbunden. Meistens finden Wohnungsauflösungen aufgrund eines Todesfalls, dem Umzug in ein Pflegeheim oder bei schweren Mieterproblemen (Messie-Wohnungen) statt. Für Angehörige ist die <strong>Entrümpelung</strong> der Räumlichkeiten eine schwere Last.
+                                    Eine <strong>Wohnungsauflösung</strong> ist oft mit einem hohen emotionalen und körperlichen Aufwand verbunden. Meistens finden Wohnungsauflösungen aufgrund eines Todesfalls, dem Umzug in ein Pflegeheim oder bei schweren Mieterproblemen (Messie-Wohnungen) statt. Für Angehörige ist die <strong>{dict.common.entruempelung}</strong> der Räumlichkeiten eine schwere Last.
                                 </p>
                                 <p>
-                                    FLOXANT ist Ihr verständnisvoller Partner in dieser herausfordernden Zeit. Als professioneller Fachbetrieb für <strong>Entrümpelung</strong> in Bayern übernehmen wir die gesamte Räumung. Wir katalogisieren auf Wunsch Wertgegenstände, übergeben persönliche Dokumente ordentlich separiert an Sie und sorgen für den schnellen und völlig lautlosen Abtransport der restlichen Einrichtungsgegenstände. Diskretion đối với den Nachbarn hat hier oberste Priorität. Am Ende einer <strong>Wohnungsauflösung</strong> übergeben wir Ihnen die Immobilie komplett besenrein und übergabefertig.
+                                    FLOXANT ist Ihr verständnisvoller Partner in dieser herausfordernden Zeit. Als professioneller Fachbetrieb für <strong>{dict.common.entruempelung}</strong> in Bayern übernehmen wir die gesamte Räumung. Wir katalogisieren auf Wunsch Wertgegenstände, übergeben persönliche Dokumente ordentlich separiert an Sie und sorgen für den schnellen und völlig lautlosen Abtransport der restlichen Einrichtungsgegenstände. Diskretion đối với den Nachbarn hat hier oberste Priorität. Am Ende einer <strong>Wohnungsauflösung</strong> übergeben wir Ihnen die Immobilie komplett besenrein und übergabefertig.
                                 </p>
                             </div>
                         </div>
@@ -195,12 +194,12 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
                     <h2 className="text-2xl font-bold tracking-tight mb-8">Unsere Entrümpelungsservices vor Ort</h2>
                     <p className="text-slate-400 mb-8 max-w-3xl mx-auto">Besenreine Räumungen und Wohnungsauflösungen bieten wir flächendeckend in allen großen bayerischen Städten an.</p>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/entruempelung-regensburg`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Regensburg</a>
-                        <a href={`/${lang}/entruempelung-muenchen`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung München</a>
-                        <a href={`/${lang}/entruempelung-nuernberg`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Nürnberg</a>
-                        <a href={`/${lang}/entruempelung-augsburg`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Augsburg</a>
-                        <a href={`/${lang}/entruempelung-landshut`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Landshut</a>
-                        <a href={`/${lang}/entruempelung-passau`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Passau</a>
+                        <a href={`/${pageLocale}/entruempelung-regensburg`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Regensburg</a>
+                        <a href={`/${pageLocale}/entruempelung-muenchen`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung München</a>
+                        <a href={`/${pageLocale}/entruempelung-nuernberg`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Nürnberg</a>
+                        <a href={`/${pageLocale}/entruempelung-augsburg`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Augsburg</a>
+                        <a href={`/${pageLocale}/entruempelung-landshut`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Landshut</a>
+                        <a href={`/${pageLocale}/entruempelung-passau`} className="bg-slate-800 border border-slate-700 hover:border-primary hover:text-white px-6 py-3 rounded-xl font-medium transition-all">Entrümpelung Passau</a>
                     </div>
                 </div>
             </section>

@@ -1,19 +1,19 @@
+import { type Locale } from "@/i18n-config";
 import DashboardClient from "./DashboardClient";
 import { getDictionary } from "../../../get-dictionary";
-import { Locale } from "../../../i18n-config";
 import { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
     return {
         title: `${dict.auth.dashboard_title} | FLOXANT`,
     };
 }
 
 export default async function DashboardPage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     return <DashboardClient dict={dict} />;
 }

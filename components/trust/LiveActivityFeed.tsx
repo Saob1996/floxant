@@ -12,16 +12,16 @@ interface Activity {
   type: 'booking' | 'viewing';
 }
 
-const mockActivities: Omit<Activity, 'id'>[] = [
-  { message: "Gerade gebucht: Umzug", location: "München", timeAgo: "vor 2 Min", type: "booking" },
-  { message: "3 Personen schauen sich diesen Rechner an", location: "in deiner Nähe", timeAgo: "Live", type: "viewing" },
-  { message: "Angebot bestätigt: Reinigung", location: "Augsburg", timeAgo: "vor 12 Min", type: "booking" },
-  { message: "Letzte Anfrage", location: "Nürnberg", timeAgo: "vor 4 Min", type: "booking" },
-  { message: "Gerade gebucht: Entsorgung", location: "Berlin", timeAgo: "vor 8 Min", type: "booking" },
-];
-
-export default function LiveActivityFeed() {
+export default function LiveActivityFeed({ dic }: { dic?: any }) {
   const [currentActivity, setCurrentActivity] = useState<Activity | null>(null);
+
+  const mockActivities: Omit<Activity, 'id'>[] = [
+    { message: dic?.calculator?.just_booked_moving || "Gerade gebucht: Umzug", location: dic?.area?.cities?.munich || "München", timeAgo: "vor 2 Min", type: "booking" },
+    { message: dic?.calculator?.social_proof || "3 Personen schauen sich diesen Rechner an", location: dic?.calculator?.near_you || "in deiner Nähe", timeAgo: "Live", type: "viewing" },
+    { message: dic?.calculator?.offer_confirmed_cleaning || "Angebot bestätigt: Reinigung", location: dic?.area?.cities?.augsburg || "Augsburg", timeAgo: "vor 12 Min", type: "booking" },
+    { message: dic?.calculator?.latest_request || "Letzte Anfrage", location: dic?.area?.cities?.nuremberg || "Nürnberg", timeAgo: "vor 4 Min", type: "booking" },
+    { message: dic?.calculator?.just_booked_clearance || "Gerade gebucht: Entsorgung", location: "Passau", timeAgo: "vor 8 Min", type: "booking" },
+  ];
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;

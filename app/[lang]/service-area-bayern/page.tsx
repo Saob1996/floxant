@@ -1,7 +1,8 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -11,22 +12,30 @@ const SmartBookingWizard = dynamic(
     () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
+);
+
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.service_area_bayern || {};
     return {
-        title: "Einsatzgebiet Bayern | Servicegebiet | FLOXANT",
-        description: "FLOXANT Servicegebiet: Ganz Bayern mit Schwerpunkt Regensburg, Nürnberg, München, Feucht & Oberpfalz. Umzug, Reinigung, Entrümpelung – bayernweit verfügbar. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Einsatzgebiet Bayern | Servicegebiet | FLOXANT",
+        description: 'description: content.meta_desc || FLOXANT Servicegebiet: Ganz Bayern mit Schwerpunkt Regensburg, Nürnberg, München, Feucht & Oberpfalz. Umzug, Reinigu...',
         alternates: {
-            canonical: `https://floxant.de/${lang}/service-area-bayern`,
+            canonical: `https://floxant.de/${pageLocale}/service-area-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/service-area-bayern`; return acc; }, {} as Record<string, string>),
         },
     };
 }
 
 export default async function ServiceAreaBayern({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const jsonLd = {
         "@context": "https://schema.org",
@@ -63,8 +72,7 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Einsatzgebiet Bayern" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Einsatzgebiet Bayern" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
@@ -81,7 +89,8 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Mobiles Servicemodell für ganz Bayern</h2>
@@ -109,14 +118,14 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
                         <h2 className="text-3xl font-bold text-foreground mb-8">Verfügbare Leistungen</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {[
-                                { label: "Umzug Bayern", href: `/${lang}/umzug-bayern` },
-                                { label: "Entrümpelung Bayern", href: `/${lang}/entruempelung-bayern` },
-                                { label: "Reinigung Bayern", href: `/${lang}/reinigung-bayern` },
-                                { label: "Wohnungsauflösung Bayern", href: `/${lang}/wohnungsaufloesung-bayern` },
-                                { label: "Umzug Regensburg", href: `/${lang}/umzug-regensburg` },
-                                { label: "Umzug Nürnberg", href: `/${lang}/umzug-nuernberg` },
-                                { label: "Umzug München", href: `/${lang}/umzug-muenchen` },
-                                { label: "24h Umzugsservice", href: `/${lang}/24h-umzug-bayern` },
+                                { label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` },
+                                { label: "Entrümpelung Bayern", href: `/${pageLocale}/entruempelung-bayern` },
+                                { label: "Reinigung Bayern", href: `/${pageLocale}/reinigung-bayern` },
+                                { label: "Wohnungsauflösung Bayern", href: `/${pageLocale}/wohnungsaufloesung-bayern` },
+                                { label: "Umzug Regensburg", href: `/${pageLocale}/umzug-regensburg` },
+                                { label: "Umzug Nürnberg", href: `/${pageLocale}/umzug-nuernberg` },
+                                { label: "Umzug München", href: `/${pageLocale}/umzug-muenchen` },
+                                { label: "24h Umzugsservice", href: `/${pageLocale}/24h-umzug-bayern` },
                             ].map(link => (
                                 <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium border border-border/30">
                                     <ArrowRight className="w-4 h-4 text-primary" /> {link.label}

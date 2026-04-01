@@ -1,26 +1,31 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
 import { type Locale } from "../../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/entruempelung-kosten-pro-m3', title: 'Entrümpelung Kosten pro m³ erklärt | FLOXANT Ratgeber', description: 'Was kostet eine Entrümpelung pro Kubikmeter? Alle Preise und Faktoren im Überblick. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
+    var { lang: pageLocale } = await params;
+    return generatePageSEO({
+        pageLocale,
+        path: 'ratgeber/entruempelung-kosten-pro-m3',
+        title: 'Entrümpelung Kosten pro m³ erklärt | FLOXANT',
+        description: 'Professionelle Entrümpelung Kosten pro m³ erklärt in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+    });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_entruempelung || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet Entrümpelung pro m³?", "acceptedAnswer": { "@type": "Answer", "text": "30 bis 80 Euro im Durchschnitt, je nach Material und Zugänglichkeit." } },
-            { "@type": "Question", "name": "Ist eine Entrümpelung auch kurzfristig möglich?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. FLOXANT bietet auch Express-Entrümpelung innerhalb von 24 bis 48 Stunden." } }
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet Entrümpelung pro m³?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "30 bis 80 Euro im Durchschnitt, je nach Material und Zugänglichkeit." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Ist eine Entrümpelung auch kurzfristig möglich?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. FLOXANT bietet auch Express-Entrümpelung innerhalb von 24 bis 48 Stunden." } }
+            ],
     };
 
     const articleJsonLd = {
@@ -35,8 +40,7 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Ratgeber", href: `/${lang}/ratgeber` }, { label: "Entrümpelung Kosten pro m³ erklärt" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Ratgeber", href: `/${pageLocale}/ratgeber` }, { label: "Entrümpelung Kosten pro m³ erklärt" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
@@ -66,7 +70,7 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
                     </div>
 
                     <div>
-                        <h2 className="text-2xl font-bold text-foreground mb-6">Häufige Fragen</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
                         <div className="space-y-4">
                             {[
                             { q: "Was kostet Entrümpelung pro m³?", a: "30 bis 80 Euro im Durchschnitt, je nach Material und Zugänglichkeit." },
@@ -81,9 +85,9 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
                     </div>
 
                     <div className="border-t border-border pt-8 flex flex-wrap gap-3">
-                        <Link href={`/${lang}/ratgeber`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">← Alle Ratgeber</Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugsfirma Regensburg</Link>
-                        <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
+                        <Link href={`/${pageLocale}/ratgeber`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">← Alle Ratgeber</Link>
+                        <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugsfirma Regensburg</Link>
+                        <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
                     </div>
                 </div>
             </section>

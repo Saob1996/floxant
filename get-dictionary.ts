@@ -1,6 +1,12 @@
 import 'server-only';
 import type { Locale } from './i18n-config';
 
+// Allow flexible key access on dictionary objects (generated pages may
+// reference keys that haven't been added to de.json yet).
+type DeepStringIndex<T> = T extends object
+    ? { [K in keyof T]: DeepStringIndex<T[K]> } & { [key: string]: any }
+    : T;
+
 // We enumerate all dictionaries to ensure they are bundled
 const dictionaries = {
     de: () => import('./dictionaries/de.json').then((module) => module.default),
@@ -22,6 +28,10 @@ const dictionaries = {
     ja: () => import('./dictionaries/ja.json').then((module) => module.default),
 };
 
-export const getDictionary = async (locale: Locale) => {
-    return dictionaries[locale]?.() ?? dictionaries.de();
+type RawDict = Awaited<ReturnType<(typeof dictionaries)['de']>>;
+export type Dictionary = DeepStringIndex<RawDict>;
+
+export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
+    const raw = await (dictionaries[locale]?.() ?? dictionaries.de());
+    return raw as Dictionary;
 };

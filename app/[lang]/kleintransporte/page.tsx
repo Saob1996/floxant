@@ -2,7 +2,6 @@ import { type Locale } from "../../../i18n-config";
 import { getDictionary } from "../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Truck, Clock, Package, MapPin, CheckCircle2 } from "lucide-react";
@@ -14,47 +13,47 @@ const SmartBookingWizard = dynamic(
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'kleintransporte',
-        title: 'Kleintransporte & Möbel Taxi Bayern ✓ Günstig | FLOXANT',
-        description: 'Schnelle Kleintransporte, Möbeltaxi und Beiladungen in ganz Bayern. Zuverlässiger Transport einzelner Möbelstücke zum günstigen Festpreis. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        title: 'Schnelle Kleintransporte in ganz Bayern | FLOXANT',
+        description: 'Professionelle Schnelle Kleintransporte in ganz Bayern in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
     });
 }
 
 export default async function KleintransportePillarPage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was genau fällt unter einen Kleintransport?", "acceptedAnswer": { "@type": "Answer", "text": "Kleintransporte umfassen den Transport von wenigen Möbelstücken, wie einem gekauften eBay-Sofa, einer sperrigen Waschmaschine oder Baumarkt-Lieferungen. Es handelt sich um Transporte, für die sich ein großer Umzugs-LKW nicht lohnt, die aber nicht ins Privat-PKW passen." } },
-            { "@type": "Question", "name": "Bieten Sie Kleintransporte auch als Beiladung an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wenn Sie flexibel in der Zustellung sind, bieten wir Beiladungen auf unseren bestehenden LKW-Routen durch Bayern an. Dies ist besonders ökologisch und die Transportkosten sind für Sie extrem günstig." } },
-            { "@type": "Question", "name": "Gibt es einen Express-Service für Möbeltaxis?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Für besonders eilige Transporte, etwa wenn ein gekauftes Sofa sofort abgeholt werden muss, bieten wir innerhalb der großen Städte (z.B. Regensburg, München) einen buchbaren Express-Kurierdienst an." } }
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was genau fällt unter einen Kleintransport?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Kleintransporte umfassen den Transport von wenigen Möbelstücken, wie einem gekauften eBay-Sofa, einer sperrigen Waschmaschine oder Baumarkt-Lieferungen. Es handelt sich um Transporte, für die sich ein großer Umzugs-LKW nicht lohnt, die aber nicht ins Privat-PKW passen." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bieten Sie Kleintransporte auch als Beiladung an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Wenn Sie flexibel in der Zustellung sind, bieten wir Beiladungen auf unseren bestehenden LKW-Routen durch Bayern an. Dies ist besonders ökologisch und die Transportkosten sind für Sie extrem günstig." } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q || "Gibt es einen Express-Service für Möbeltaxis?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Für besonders eilige Transporte, etwa wenn ein gekauftes Sofa sofort abgeholt werden muss, bieten wir innerhalb der großen Städte (z.B. Regensburg, München) einen buchbaren Express-Kurierdienst an." } }
+            ],
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
+        { label: "Home", href: `/${pageLocale}` },
         { label: "Kleintransporte & Möbeltaxi" }
     ];
 
     const breadcrumbJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": breadcrumbs.map((crumb, idx) => ({
-            "@type": "ListItem", "position": idx + 1, "name": crumb.label, "item": `https://www.floxant.de${crumb.href || `/${lang}/kleintransporte`}`
+            "@type": "ListItem", "position": idx + 1, "name": crumb.label, "item": `https://www.floxant.de${crumb.href || `/${pageLocale}/kleintransporte`}`
         }))
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-            <Breadcrumbs lang={lang} items={breadcrumbs} />
+            <Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} />
             
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">

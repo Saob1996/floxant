@@ -2,23 +2,22 @@ import { type Locale } from "../../../../i18n-config";
 import { getDictionary } from "../../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Clock, CalendarDays, UserCircle, MapPin, HeartHandshake, Box } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'blog/umzug-tipps-bayern',
         title: '12 Experten Umzug Tipps für Bayern: Zeit & Geld sparen | FLOXANT',
-        description: 'Planen Sie einen Umzug in München, Regensburg oder Franken? Unsere Profi Umzug Tipps vom etablierten Umzugsunternehmen helfen Ihnen sofort. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Planen Sie einen Umzug in München, Regensburg oder Franken? Unsere Profi Umzug Tipps vom etablierten Umzugsunternehmen helfen Ihnen sofort. Sofortprei...',
     });
 }
 
 export default async function BlogUmzugTippsBayern({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     const articleJsonLd = {
         "@context": "https://schema.org",
@@ -31,18 +30,17 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
-        { label: "Blog", href: `/${lang}/blog` },
-        { label: "Umzug Tipps Bayern", href: `/${lang}/blog/umzug-tipps-bayern` }
+        { label: "Home", href: `/${pageLocale}` },
+        { label: "Blog", href: `/${pageLocale}/blog` },
+        { label: "Umzug Tipps Bayern", href: `/${pageLocale}/blog/umzug-tipps-bayern` }
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
-                <div className="mb-8"><Breadcrumbs lang={lang} items={breadcrumbs} /></div>
+                <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} /></div>
                 
                 <article>
                     <header className="mb-12">
@@ -61,7 +59,7 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
 
                     <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
                         <p>
-                            Wenn Sie selbst vor der Mammutaufgabe eines Standortwechsels stehen – ob von Regensburg nach Nürnberg oder innerhalb des hektischen Münchner Verkehrs – lohnt sich der Blick auf die Vorgehensweise von professionellen <a href={`/${lang}/umzug`}>Umzugsunternehmen</a>. Wir verraten Ihnen unsere Branchengeheimnisse.
+                            Wenn Sie selbst vor der Mammutaufgabe eines Standortwechsels stehen – ob von Regensburg nach Nürnberg oder innerhalb des hektischen Münchner Verkehrs – lohnt sich der Blick auf die Vorgehensweise von professionellen <a href={`/${pageLocale}/umzug`}>Umzugsunternehmen</a>. Wir verraten Ihnen unsere Branchengeheimnisse.
                         </p>
 
                         <div className="grid md:grid-cols-3 gap-6 my-10 not-prose">
@@ -96,7 +94,7 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                         <p>Wer flüssige Lebensmittelware (Öl, Essig, Duschgel) transportiert, sollte den Deckel abdrehen, ein kleines Stück Frischhaltefolie über die Öffnung spannen und den Deckel wieder zudrehen. Das verhindert das Auslaufen bei Druckveränderungen im LKW zu 100%.</p>
 
                         <h3>Tipp 4: Vorab Rigoros Entrümpeln</h3>
-                        <p>Jeder Karton kostet Geld beim Transport. Machen Sie kurzen Prozess: Alles, was Sie in den letzten 2 Jahren nicht getragen oder benutzt haben, sollte direkt einer <a href={`/${lang}/entruempelung-nuernberg`}>Entrümpelung</a> zum Opfer fallen oder gespendet werden. Das befreit den Geist und senkt die Transportrechnung gewaltig.</p>
+                        <p>Jeder Karton kostet Geld beim Transport. Machen Sie kurzen Prozess: Alles, was Sie in den letzten 2 Jahren nicht getragen oder benutzt haben, sollte direkt einer <a href={`/${pageLocale}/entruempelung-nuernberg`}>{dict.common.entruempelung}</a> zum Opfer fallen oder gespendet werden. Das befreit den Geist und senkt die Transportrechnung gewaltig.</p>
 
                         <h3>Tipp 5: Kleidung am Bügel belassen</h3>
                         <p>Verschwenden Sie keine Zeit damit, Hemden abzubügeln und zu falten. Schneiden Sie ein kleines Loch in den Boden eines stabilen Müllsacks und ziehen Sie den Sack von oben über einen gebündelten Schwung (ca. 10 Stück) Hängekleidung. Die Bügelhaken schauen oben heraus. So können Sie sie im neuen Zuhause sofort faltenfrei einsortieren. Alternativ bietet FLOXANT professionelle Kleiderboxen an, bei denen die Kleidung einfach reingehängt wird.</p>
@@ -105,7 +103,7 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                             <div className="relative z-10">
                                 <h3 className="mt-0 text-2xl font-bold">Klingt nach viel Arbeit? Das muss nicht sein.</h3>
                                 <p>Sollten Ihnen angesichts der Fülle an logistischen Herausforderungen Zweifel an Eigenleistung kommen, bietet FLOXANT vollumfängliche Packservices an.</p>
-                                <a href={`/${lang}/#booking`} className="inline-block mt-4 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
+                                <a href={`/${pageLocale}/#booking`} className="inline-block mt-4 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                                     Jetzt Full-Service Angebot checken
                                 </a>
                             </div>
@@ -138,14 +136,14 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
                 <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href={"/" + lang + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
-                    <a href={"/" + lang + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
-                    <a href={"/" + lang + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
-                    <a href={"/" + lang + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
-                    <a href={"/" + lang + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug München</a>
-                    <a href={"/" + lang + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Nürnberg</a>
-                    <a href={"/" + lang + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
-                    <a href={"/" + lang + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
+                    <a href={"/" + pageLocale + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
+                    <a href={"/" + pageLocale + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
+                    <a href={"/" + pageLocale + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
+                    <a href={"/" + pageLocale + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_munich}</a>
+                    <a href={"/" + pageLocale + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_nuremberg}</a>
+                    <a href={"/" + pageLocale + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
         
@@ -156,9 +154,9 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                 <div className="container px-4 text-center max-w-5xl mx-auto">
                     <h3 className="text-2xl font-bold mb-8">Passende Links zu Städten</h3>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/umzug-nuernberg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umzug Nürnberg</a>
-                        <a href={`/${lang}/umzug-augsburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umzug Augsburg</a>
-                        <a href={`/${lang}/kleintransporte`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Kleintransporte & Beiladung</a>
+                        <a href={`/${pageLocale}/umzug-nuernberg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">{dict.common.umzug_nuremberg}</a>
+                        <a href={`/${pageLocale}/umzug-augsburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umzug Augsburg</a>
+                        <a href={`/${pageLocale}/kleintransporte`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Kleintransporte & Beiladung</a>
                     </div>
                 </div>
             </div>

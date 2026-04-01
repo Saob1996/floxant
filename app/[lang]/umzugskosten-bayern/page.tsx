@@ -1,7 +1,8 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -11,37 +12,44 @@ const SmartBookingWizard = dynamic(
     () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
+);
+
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.umzugskosten_bayern || {};
     return {
-        title: "Umzugskosten Bayern | Preise & Festpreisangebot | FLOXANT",
-        description: "Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München. Transparente Festpreise ohne versteckte Kosten. Jetzt kostenloses Angebot anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Umzugskosten Bayern | Preise & Festpreisangebot | FLOXANT",
+        description: 'description: content.meta_desc || Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München. Transparente Festpreise ohne verst...',
         alternates: {
-            canonical: `https://floxant.de/${lang}/umzugskosten-bayern`,
+            canonical: `https://floxant.de/${pageLocale}/umzugskosten-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/umzugskosten-bayern`; return acc; }, {} as Record<string, string>),
         },
     };
 }
 
 export default async function UmzugskostenBayern({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet ein Umzug in Bayern?", "acceptedAnswer": { "@type": "Answer", "text": "Ein lokaler Umzug in Bayern kostet je nach Volumen zwischen 400 und 2.500 Euro. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
-            { "@type": "Question", "name": "Gibt es versteckte Kosten bei FLOXANT?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Unser Festpreis umfasst alle vereinbarten Leistungen: Transport, Verpackungsmaterial, Versicherung und Personal." } },
-            { "@type": "Question", "name": "Wie bekomme ich ein Angebot?", "acceptedAnswer": { "@type": "Answer", "text": "Über unser Online-Formular oder telefonisch. Nach einer Besichtigung (vor Ort oder per Video-Call) erhalten Sie ein verbindliches Angebot." } },
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Bayern?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein lokaler Umzug in Bayern kostet je nach Volumen zwischen 400 und 2.500 Euro. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Gibt es versteckte Kosten bei FLOXANT?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Nein. Unser Festpreis umfasst alle vereinbarten Leistungen: Transport, Verpackungsmaterial, Versicherung und Personal." } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q || "Wie bekomme ich ein Angebot?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Über unser Online-Formular oder telefonisch. Nach einer Besichtigung (vor Ort oder per Video-Call) erhalten Sie ein verbindliches Angebot." } }
+            ],
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: `/${lang}/umzug-bayern` }, { label: "Umzugskosten" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "Umzugskosten" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
@@ -58,7 +66,8 @@ export default async function UmzugskostenBayern({ params }: { params: Promise<{
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Was kostet ein Umzug in Bayern?</h2>
@@ -110,10 +119,10 @@ export default async function UmzugskostenBayern({ params }: { params: Promise<{
                     <div className="border-t border-border pt-12">
                         <h3 className="text-lg font-semibold mb-6">Verwandte Seiten</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
-                            <Link href={`/${lang}/studentenumzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Studentenumzug Regensburg</Link>
-                            <Link href={`/${lang}/entruempelung-kosten-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Kosten Regensburg</Link>
-                            <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
+                            <Link href={`/${pageLocale}/studentenumzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Studentenumzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/entruempelung-kosten-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Kosten Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
                         </div>
                     </div>
 

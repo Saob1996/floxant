@@ -1,9 +1,12 @@
+import { type Locale } from "@/i18n-config";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 import { Euro, TrendingDown, Target } from 'lucide-react';
-
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const parts = params.slug.split('-');
+import { getDictionary } from "../../../../get-dictionary";
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+  const parts = slug.split('-');
   const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
 
@@ -13,8 +16,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function PriceTrapPage({ params }: { params: { slug: string } }) {
-  const parts = params.slug.split('-');
+export default async function PriceTrapPage({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+  const parts = slug.split('-');
   const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
   const serviceKey = parts[0]?.toLowerCase() as 'umzug' | 'reinigung' | 'entsorgung' || 'umzug';
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt';

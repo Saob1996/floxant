@@ -2,23 +2,22 @@ import { type Locale } from "../../../../i18n-config";
 import { getDictionary } from "../../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Clock, CalendarDays, UserCircle, CheckSquare, AlertTriangle, Lightbulb, CheckCircle2 } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'blog/umzug-checkliste',
         title: 'Die ultimative Umzug Checkliste: PDF & Zeitplan | FLOXANT',
-        description: 'Vom Packen bis zur Ummeldung: Unsere interaktive Umzug Checkliste bewahrt Sie vor dem Chaos. Der perfekte Zeitplan 3 Monate vor dem Umzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Vom Packen bis zur Ummeldung: Unsere interaktive Umzug Checkliste bewahrt Sie vor dem Chaos. Der perfekte Zeitplan 3 Monate vor dem Umzug. Sofortpreis...',
     });
 }
 
 export default async function BlogUmzugCheckliste({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     const articleJsonLd = {
         "@context": "https://schema.org",
@@ -31,18 +30,17 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
-        { label: "Blog", href: `/${lang}/blog` },
-        { label: "Umzugscheckliste", href: `/${lang}/blog/umzug-checkliste` }
+        { label: "Home", href: `/${pageLocale}` },
+        { label: "Blog", href: `/${pageLocale}/blog` },
+        { label: "Umzugscheckliste", href: `/${pageLocale}/blog/umzug-checkliste` }
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
-                <div className="mb-8"><Breadcrumbs lang={lang} items={breadcrumbs} /></div>
+                <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} /></div>
                 
                 <article>
                     <header className="mb-12">
@@ -61,7 +59,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
 
                     <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
                         <p>
-                            Unsere Erfahrung aus hunderten Projekten bei <a href={`/${lang}/umzug`}>FLOXANT in ganz Bayern</a> beweist: Gute Logistik verzeiht fast jeden Fehler – schlechte Planung verzeiht nichts. Beginnen Sie mit dieser Checkliste idealerweise <strong>drei Monate vor dem Stichtag</strong>.
+                            Unsere Erfahrung aus hunderten Projekten bei <a href={`/${pageLocale}/umzug`}>FLOXANT in ganz Bayern</a> beweist: Gute Logistik verzeiht fast jeden Fehler – schlechte Planung verzeiht nichts. Beginnen Sie mit dieser Checkliste idealerweise <strong>drei Monate vor dem Stichtag</strong>.
                         </p>
 
                         <div className="bg-slate-900 text-white p-8 rounded-3xl my-10 shadow-xl">
@@ -92,7 +90,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                                     <CheckSquare className="w-6 h-6 text-primary shrink-0" />
                                     <div>
                                         <strong className="block text-lg">Angebote der Umzugsfirma einholen</strong>
-                                        <span className="text-slate-400 text-base">Holen Sie jetzt die Angebote für den <a href={`/${lang}/umzug-regensburg`}>Festpreis Umzug</a> ein und fixieren Sie den Termin, bevor die Kalender der Firmen voll sind.</span>
+                                        <span className="text-slate-400 text-base">Holen Sie jetzt die Angebote für den <a href={`/${pageLocale}/umzug-regensburg`}>Festpreis Umzug</a> ein und fixieren Sie den Termin, bevor die Kalender der Firmen voll sind.</span>
                                     </div>
                                 </li>
                             </ul>
@@ -104,7 +102,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                         </p>
                         <div className="bg-slate-50 p-6 rounded-2xl border my-6">
                             <ul className="list-none pl-0 space-y-3">
-                                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Starten Sie mit der <a href={`/${lang}/entruempelung`}>Entrümpelung</a>. Was jetzt an den Wertstoffhof geht, muss nicht mehr eingepackt werden.</li>
+                                <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Starten Sie mit der <a href={`/${pageLocale}/entruempelung`}>{dict.common.entruempelung}</a>. Was jetzt an den Wertstoffhof geht, muss nicht mehr eingepackt werden.</li>
                                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Kaufen oder mieten Sie hochwertige Umzugskartons (FLOXANT bringt Ihnen diese auf Wunsch direkt vor die Haustür).</li>
                                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Beantragen Sie bei der Stadt (falls beim Umzugsunternehmen nicht inbegriffen) die Halteverbotszone.</li>
                                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Einrichten eines Nachsendeauftrags bei der Deutschen Post.</li>
@@ -127,7 +125,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                         <ul>
                             <li><strong>Pack-Management:</strong> Packen Sie einen "Survival-Koffer" oder Karton. Darin: Zahnbürste, Wechselkleidung, Kaffeemaschine, Toilettenpapier, wichtige Medikamente und das Ladekabel fürs Handy. Dieser Karton wird am Stichtag in Ihrem eigenen PKW transportiert.</li>
                             <li><strong>Lebensmittel:</strong> Tauen Sie den Kühlschrank und Gefrierschrank ab.</li>
-                            <li><strong>Wohnungsübergabe:</strong> Vereinbaren Sie den exakten Termin zur Wohnungsübergabe mit Ihrem alten Vermieter. Falls eine Endreinigung nötig ist, buchen Sie spätestens jetzt eine <a href={`/${lang}/reinigung`}>professionelle Wohnungsreinigung</a>.</li>
+                            <li><strong>Wohnungsübergabe:</strong> Vereinbaren Sie den exakten Termin zur Wohnungsübergabe mit Ihrem alten Vermieter. Falls eine Endreinigung nötig ist, buchen Sie spätestens jetzt eine <a href={`/${pageLocale}/reinigung`}>professionelle Wohnungsreinigung</a>.</li>
                         </ul>
 
                         <h2>Der Umzugstag & Die Woche danach</h2>
@@ -145,7 +143,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                             <Lightbulb className="w-12 h-12 text-primary mx-auto mb-4" />
                             <h3 className="mt-0">Haben Sie das Wichtigste schon erledigt?</h3>
                             <p className="mb-6">Das A&O einer erfolgreichen Umzugscheckliste ist der Transport selbst. Sichern Sie sich jetzt Ihren Wunschtermin bei FLOXANT. Wir checken unsere Verfügbarkeiten in wenigen Minuten!</p>
-                            <a href={`/${lang}/#booking`} className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
+                            <a href={`/${pageLocale}/#booking`} className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                                 Zur kostenfreien Buchungsanfrage
                             </a>
                         </div>
@@ -156,14 +154,14 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
                 <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href={"/" + lang + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
-                    <a href={"/" + lang + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
-                    <a href={"/" + lang + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
-                    <a href={"/" + lang + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
-                    <a href={"/" + lang + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug München</a>
-                    <a href={"/" + lang + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Nürnberg</a>
-                    <a href={"/" + lang + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
-                    <a href={"/" + lang + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
+                    <a href={"/" + pageLocale + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
+                    <a href={"/" + pageLocale + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
+                    <a href={"/" + pageLocale + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
+                    <a href={"/" + pageLocale + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_munich}</a>
+                    <a href={"/" + pageLocale + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_nuremberg}</a>
+                    <a href={"/" + pageLocale + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
         
@@ -174,9 +172,9 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                 <div className="container px-4 text-center max-w-5xl mx-auto">
                     <h3 className="text-2xl font-bold mb-8">Serviceangebote & Hilfreiche Links</h3>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/umzug-regensburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umziehen in Regensburg</a>
-                        <a href={`/${lang}/umzug-muenchen`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umziehen in München</a>
-                        <a href={`/${lang}/reinigung`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Endreinigung Buchen</a>
+                        <a href={`/${pageLocale}/umzug-regensburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umziehen in Regensburg</a>
+                        <a href={`/${pageLocale}/umzug-muenchen`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Umziehen in München</a>
+                        <a href={`/${pageLocale}/reinigung`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">Endreinigung Buchen</a>
                     </div>
                 </div>
             </div>

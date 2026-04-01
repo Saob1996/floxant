@@ -10,14 +10,14 @@
 import type { Metadata } from 'next';
 
 const BASE_URL = 'https://www.floxant.de';
-const LOCALES = ['de', 'en', 'ar', 'tr', 'ru', 'uk', 'pl', 'ro', 'bg', 'es', 'fr', 'it', 'fa', 'zh', 'vi', 'ko', 'ja'] as const;
 const OG_IMAGE = `${BASE_URL}/og.jpg`;
 
 interface PageSEOInput {
-    lang: string;
+    lang?: string;
+    pageLocale?: string;
     path: string; // e.g. 'umzug-regensburg' (without leading slash, without lang prefix)
-    title: string; // max 60 chars
-    description: string; // 120-155 chars
+    title?: string; // max 60 chars
+    description?: string; // 120-155 chars
 }
 
 // 17-Language Psychological CTR Triggers
@@ -47,16 +47,16 @@ const CTR_TRIGGERS: Record<string, { titleSuffix: string, descSuffix: string }> 
     default: { titleSuffix: " | ✅ 24/7 Top Service", descSuffix: " ⭐ 100% Premium Quality!" }
 };
 
-export function generatePageSEO({ lang, path, title, description }: PageSEOInput): Metadata {
+export function generatePageSEO({ lang, pageLocale, path, title, description }: PageSEOInput): Metadata {
+    const resolvedLang = lang || pageLocale || 'de';
     const pagePath = path ? `/${path}` : '';
-    const canonical = `${BASE_URL}/${lang}${pagePath}`;
+    const canonical = `${BASE_URL}/${resolvedLang}${pagePath}`;
 
-    // hreflang alternates for all locales + x-default
-    const languages: Record<string, string> = {};
-    for (const locale of LOCALES) {
-        languages[locale] = `${BASE_URL}/${locale}${pagePath}`;
-    }
-    languages['x-default'] = `${BASE_URL}/de${pagePath}`;
+    // Enforce Germany-Only SEO footprint
+    const languages: Record<string, string> = {
+        'de': `${BASE_URL}/de${pagePath}`,
+        'x-default': `${BASE_URL}/de${pagePath}`
+    };
 
     const GLOBAL_SIGNATURE = [
         "Ritual Exit Box", "Clean Start Reinigung", "New Neighbour Kit", 
@@ -109,29 +109,48 @@ export function generatePageSEO({ lang, path, title, description }: PageSEOInput
     const seoKeywords = getKeywords();
     
     // 🔥 CTR Hyper-Optimization: Apply psychological triggers
-    const triggers = CTR_TRIGGERS[lang] || CTR_TRIGGERS.default;
+    const triggers = CTR_TRIGGERS[resolvedLang] || CTR_TRIGGERS.default;
     
-    let ctrTitle = title;
-    // Only append if it doesn't already have emojis to avoid emoji-spam
+    let ctrTitle = title || (resolvedLang === 'de' ? "Umzugsunternehmen Bayern | FLOXANT" : "Moving Company Bavaria | FLOXANT");
+    
+    // Add CTR triggers if there's room, but NOT if it exceeds 65 characters
     if (!ctrTitle.includes('✅') && !ctrTitle.includes('⭐')) {
-        // If the title naturally ends with " | FLOXANT", we might want to keep the brand and prepend the emoji, 
-        // but replacing/appending is safer. Let's just append.
+        let proposedTitle = '';
         if (ctrTitle.includes('FLOXANT')) {
-            ctrTitle = `${ctrTitle}${triggers.titleSuffix}`;
+            proposedTitle = `${ctrTitle}${triggers.titleSuffix}`;
         } else {
-            ctrTitle = `${ctrTitle} - FLOXANT${triggers.titleSuffix}`;
+            proposedTitle = `${ctrTitle} | FLOXANT${triggers.titleSuffix}`;
+        }
+        
+        // Google limit is strictly ~60-65 chars for titles
+        if (proposedTitle.length <= 65) {
+            ctrTitle = proposedTitle;
+        } else if (`${ctrTitle} | FLOXANT`.length <= 65 && !ctrTitle.includes('FLOXANT')) {
+            ctrTitle = `${ctrTitle} | FLOXANT`;
+        }
+        
+        // If it's still > 65 without triggers, we must hard truncate
+        if (ctrTitle.length > 65) {
+            let core = ctrTitle.replace(' | FLOXANT', '').substring(0, 52);
+            ctrTitle = `${core}... | FLOXANT`;
         }
     }
 
-    let ctrDesc = description;
+    let ctrDesc = description || (resolvedLang === 'de' 
+        ? "Ihr Profi für Umzug, Reinigung & Entrümpelung in Bayern. Festpreisgarantie & Versicherung." 
+        : "Your professional for moving, cleaning & clearance in Bavaria. Fixed price & insurance.");
+    
+    // Prefix with emoji, then append suffix if it fits
     if (ctrDesc && !ctrDesc.includes('⭐') && !ctrDesc.includes('⚡')) {
-        // Prefix with emoji, then append suffix
-        ctrDesc = `⚡ ${ctrDesc}${triggers.descSuffix}`;
+        let proposedDesc = `⚡ ${ctrDesc}${triggers.descSuffix}`;
+        if (proposedDesc.length <= 155) {
+            ctrDesc = proposedDesc;
+        }
     }
 
-    // 🔥 Safety Check: Truncate to 158 characters to ensure perfect display in search results
-    if (ctrDesc.length > 158) {
-        ctrDesc = ctrDesc.substring(0, 155) + "...";
+    // 🔥 Safety Check: Truncate to 155 characters to ensure perfect display in search results
+    if (ctrDesc.length > 155) {
+        ctrDesc = ctrDesc.substring(0, 150) + "...";
     }
 
     return {
@@ -160,7 +179,7 @@ export function generatePageSEO({ lang, path, title, description }: PageSEOInput
             title: ctrTitle,
             description: ctrDesc,
             siteName: 'FLOXANT',
-            locale: lang === 'de' ? 'de_DE' : lang,
+            locale: resolvedLang === 'de' ? 'de_DE' : resolvedLang,
             images: [
                 {
                     url: OG_IMAGE,

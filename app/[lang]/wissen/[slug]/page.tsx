@@ -1,10 +1,14 @@
+import { type Locale } from "@/i18n-config";
 import React from 'react';
 import { generateCityContent } from '@/lib/content-engine';
 import { generateSemanticLinks } from '@/lib/internal-linking';
 import { ArrowRight, BookOpen } from 'lucide-react';
+import { getDictionary } from "../../../../get-dictionary";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const parts = params.slug.split('-');
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+  const parts = slug.split('-');
   const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
 
@@ -14,8 +18,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function KnowledgeHubPage({ params }: { params: { slug: string } }) {
-  const parts = params.slug.split('-');
+export default async function KnowledgeHubPage({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+  const parts = slug.split('-');
   const service = parts[0] || 'umzug';
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt';
 

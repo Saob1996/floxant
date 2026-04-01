@@ -1,47 +1,51 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2, Clock, ThumbsUp, Truck } from "lucide-react";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
+import Link from "next/link";
+import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2, Clock, ThumbsUp, Truck } from "lucide-react";
+
+
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.umzug_pfaffenhofen || {};
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: "umzug-pfaffenhofen",
-        title: "Umzugsunternehmen Pfaffenhofen an der Ilm ✓ Festpreis ✓ Versichert | FLOXANT",
-        description: "Ihr Umzugsunternehmen für Pfaffenhofen an der Ilm (Oberbayern). Professioneller Umzug mit Festpreisgarantie, voller Versicherung und schneller Verfügbarkeit. Jetzt Angebot anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Umzugsunternehmen Pfaffenhofen an der Ilm | FLOXANT",
+        description: 'Ihr Umzugsunternehmen für Pfaffenhofen an der Ilm (Oberbayern). Professioneller Umzug mit $..., ...',
     });
 }
 
 export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet ein Umzug in Pfaffenhofen an der Ilm?", "acceptedAnswer": { "@type": "Answer", "text": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung." } },
-            { "@type": "Question", "name": "Wie schnell ist FLOXANT in Pfaffenhofen an der Ilm verfügbar?", "acceptedAnswer": { "@type": "Answer", "text": "Da unsere Teams täglich auf der Strecke A9 Ingolstadt–München unterwegs sind, können wir oft schon innerhalb weniger Tage einen Termin in Pfaffenhofen an der Ilm realisieren." } },
-            { "@type": "Question", "name": "Ist mein Umzugsgut bei FLOXANT versichert?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und die gesetzliche Verkehrshaftung nach §451g HGB abgesichert." } },
-            { "@type": "Question", "name": "Bieten Sie auch Entrümpelung in Pfaffenhofen an der Ilm an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wir kombinieren Umzug, Entrümpelung und Endreinigung zu einem Paket. Ideal bei Wohnungsauflösungen oder wenn die alte Wohnung besenrein übergeben werden muss." } },
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Pfaffenhofen an der Ilm?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie schnell ist FLOXANT in Pfaffenhofen an der Ilm verfügbar?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Da unsere Teams täglich auf der Strecke A9 Ingolstadt–München unterwegs sind, können wir oft schon innerhalb weniger Tage einen Termin in Pfaffenhofen an der Ilm realisieren." } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q || "Ist mein Umzugsgut bei FLOXANT versichert?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und die gesetzliche Verkehrshaftung nach §451g HGB abgesichert." } },
+                { "@type": "Question", "name": content.faqs?.[3]?.q || "Bieten Sie auch Entrümpelung in Pfaffenhofen an der Ilm an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a || "Ja. Wir kombinieren Umzug, Entrümpelung und Endreinigung zu einem Paket. Ideal bei Wohnungsauflösungen oder wenn die alte Wohnung besenrein übergeben werden muss." } }
+            ],
     };
 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Pfaffenhofen an der Ilm",
         "description": "Professioneller Umzugsservice und Möbeltransport in Pfaffenhofen an der Ilm (Oberbayern). Regional, versichert und zum garantierten Festpreis.",
-        "url": "https://www.floxant.de/" + lang + "/umzug-pfaffenhofen",
+        "url": "https://www.floxant.de/" + pageLocale + "/umzug-pfaffenhofen",
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Pfaffenhofen an der Ilm", "addressRegion": "Oberbayern", "addressCountry": "DE" },
         "areaServed": [{ "@type": "City", "name": "Pfaffenhofen an der Ilm" }, { "@type": "AdministrativeArea", "name": "Oberbayern" }],
@@ -51,16 +55,15 @@ export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ 
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.floxant.de/" + lang },
-            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": "https://www.floxant.de/" + lang + "/umzug-bayern" },
-            { "@type": "ListItem", "position": 3, "name": "Umzug Pfaffenhofen an der Ilm", "item": "https://www.floxant.de/" + lang + "/umzug-pfaffenhofen" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.floxant.de/" + pageLocale },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": "https://www.floxant.de/" + pageLocale + "/umzug-bayern" },
+            { "@type": "ListItem", "position": 3, "name": "Umzug Pfaffenhofen an der Ilm", "item": "https://www.floxant.de/" + pageLocale + "/umzug-pfaffenhofen" }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: "/" + lang + "/umzug-bayern" }, { label: "Umzug Pfaffenhofen an der Ilm" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: "/" + pageLocale + "/umzug-bayern" }, { label: "Umzug Pfaffenhofen an der Ilm" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
@@ -80,8 +83,8 @@ export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ 
                         Ob Privatumzug, Seniorenbetreuung oder kompletter Firmenumzug: Unser erfahrenes Team bringt alles sicher ans Ziel.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-10">
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Award className="w-5 h-5 text-emerald-500" /> 100% Versichert</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Layers className="w-5 h-5 text-blue-500" /> Festpreisgarantie</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Award className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag || "100% Versichert"}</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Layers className="w-5 h-5 text-blue-500" /> {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</span>
                         <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><ThumbsUp className="w-5 h-5 text-primary" /> Korridor A9 Ingolstadt–München</span>
                     </div>
                     <div className="mt-12 flex justify-center">
@@ -102,7 +105,7 @@ export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ 
                         <p className="text-lg">Jede Gemeinde hat ihre Eigenheiten – von Zufahrtsbeschränkungen über Einbahnstraßen bis zu historischen Ortskernen mit engen Gassen. Unsere Fahrer kennen die Region und planen jede Anfahrt sorgfältig vor.</p>
                         <div className="bg-gradient-to-br from-card to-muted p-8 rounded-3xl border border-border mt-10 shadow-sm not-italic relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-8 opacity-10"><Truck className="w-32 h-32" /></div>
-                            <h4 className="text-2xl text-foreground font-bold mb-4 flex items-center gap-3 relative z-10"><CheckCircle2 className="w-8 h-8 text-emerald-500" /> Lokale Herausforderungen meistern</h4>
+                            <h4 className="text-2xl text-foreground font-bold mb-4 flex items-center gap-3 relative z-10"><CheckCircle2 className="w-8 h-8 text-emerald-500" />{dict.common.local_challenges}</h4>
                             <p className="m-0 text-base relative z-10">Viele Kunden unterschätzen den Aufwand für den Küchenumbau. Unsere hauseigenen Monteure demontieren und montieren Einbauküchen mit professionellem Werkzeug routiniert und schnell. Wir kennen die infrastrukturellen Besonderheiten in Pfaffenhofen an der Ilm und reagieren routiniert auf jede Situation.</p>
                         </div>
                     </div>
@@ -111,27 +114,27 @@ export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ 
                     <div>
                         <div className="text-center mb-16">
                             <h2 className="text-4xl font-extrabold text-foreground mb-4">Warum FLOXANT für Pfaffenhofen an der Ilm?</h2>
-                            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Wir verbinden regionalen Service mit überregionaler Logistikkompetenz.</p>
+                            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{dict.common.regional_service_competence}</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="p-8 rounded-3xl bg-card border border-border shadow-md hover:shadow-lg transition-all group">
                                 <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><Clock className="w-7 h-7 text-primary" /></div>
-                                <h3 className="text-xl font-bold mb-3">Schnell verfügbar</h3>
+                                <h3 className="text-xl font-bold mb-3">{dict.common.fast_available}</h3>
                                 <p className="text-muted-foreground leading-relaxed">Unsere Teams fahren regelmäßig auf der Strecke A9 Ingolstadt–München. Dadurch sind wir in Pfaffenhofen an der Ilm oft schon innerhalb weniger Tage einsatzbereit.</p>
                             </div>
                             <div className="p-8 rounded-3xl bg-card border border-border shadow-md hover:shadow-lg transition-all group">
                                 <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><Shield className="w-7 h-7 text-emerald-600" /></div>
-                                <h3 className="text-xl font-bold mb-3">100% Versichert</h3>
+                                <h3 className="text-xl font-bold mb-3">{dict.calculator?.insured_tag || "100% Versichert"}</h3>
                                 <p className="text-muted-foreground leading-relaxed">Jeder Transport ist über unsere Betriebshaftpflicht nach §451g HGB abgesichert. Bei Hochpreisigem empfehlen wir eine optionale Zusatzversicherung.</p>
                             </div>
                             <div className="p-8 rounded-3xl bg-card border border-border shadow-md hover:shadow-lg transition-all group">
                                 <div className="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><Layers className="w-7 h-7 text-blue-600" /></div>
-                                <h3 className="text-xl font-bold mb-3">Festpreis ohne Nachverhandlung</h3>
-                                <p className="text-muted-foreground leading-relaxed">Wir kalkulieren auf Basis einer kostenlosen Besichtigung (vor Ort oder per Video). Der Preis steht, bevor ein Karton gepackt wird.</p>
+                                <h3 className="text-xl font-bold mb-3">{dict.common.fixed_price_no_nego}</h3>
+                                <p className="text-muted-foreground leading-relaxed">{dict.common.fixed_price_calc_desc}</p>
                             </div>
                             <div className="p-8 rounded-3xl bg-card border border-border shadow-md hover:shadow-lg transition-all group">
                                 <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><Milestone className="w-7 h-7 text-purple-600" /></div>
-                                <h3 className="text-xl font-bold mb-3">Alles aus einer Hand</h3>
+                                <h3 className="text-xl font-bold mb-3">{dict.common.all_from_one_source}</h3>
                                 <p className="text-muted-foreground leading-relaxed">Transport, Küchenmontage, Entrümpelung und Endreinigung – wir bieten ein modulares Gesamtpaket, das Sie je nach Bedarf zusammenstellen.</p>
                             </div>
                         </div>
@@ -152,12 +155,12 @@ export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ 
                                 <div className="pt-5 text-muted-foreground leading-relaxed">Da unsere Fahrzeuge regelmäßig auf der Route A9 Ingolstadt–München unterwegs sind, können wir häufig auch innerhalb von 3–5 Werktagen einen Termin in Pfaffenhofen an der Ilm anbieten.</div>
                             </details>
                             <details className="group border border-border/50 rounded-2xl p-6 bg-muted/20 open:bg-card open:ring-2 open:ring-primary/20 transition-all cursor-pointer">
-                                <summary className="text-xl font-bold list-none flex justify-between items-center outline-none"><span>Organisieren Sie auch Halteverbotszonen?</span><span className="text-primary transition-transform group-open:rotate-180">▼</span></summary>
-                                <div className="pt-5 text-muted-foreground leading-relaxed">Ja. Wir übernehmen die behördliche Beantragung und Beschilderung bei der zuständigen Verwaltung. Bitte planen Sie mindestens 14 Tage Vorlauf ein.</div>
+                                <summary className="text-xl font-bold list-none flex justify-between items-center outline-none"><span>{dict.common.faq_no_parking_q}</span><span className="text-primary transition-transform group-open:rotate-180">▼</span></summary>
+                                <div className="pt-5 text-muted-foreground leading-relaxed">{dict.common.faq_no_parking_a}</div>
                             </details>
                             <details className="group border border-border/50 rounded-2xl p-6 bg-muted/20 open:bg-card open:ring-2 open:ring-primary/20 transition-all cursor-pointer">
-                                <summary className="text-xl font-bold list-none flex justify-between items-center outline-none"><span>Bieten Sie auch Entrümpelung und Reinigung an?</span><span className="text-primary transition-transform group-open:rotate-180">▼</span></summary>
-                                <div className="pt-5 text-muted-foreground leading-relaxed">Selbstverständlich. Wir kombinieren Umzug, fachgerechte Entrümpelung und besenreine Endreinigung zu einem effizienten Gesamtpaket – ideal für Wohnungsübergaben.</div>
+                                <summary className="text-xl font-bold list-none flex justify-between items-center outline-none"><span>{dict.common.faq_cleaning_q}</span><span className="text-primary transition-transform group-open:rotate-180">▼</span></summary>
+                                <div className="pt-5 text-muted-foreground leading-relaxed">{dict.common.faq_cleaning_a}</div>
                             </details>
                         </div>
                     </div>
@@ -165,30 +168,30 @@ export default async function UmzugPfaffenhofen({ params }: { params: Promise<{ 
                     {/* Cross-Links */}
                     <div className="border-t border-border pt-16">
                         <div className="text-center mb-10">
-                            <h3 className="text-2xl font-bold mb-4">Weitere FLOXANT-Standorte in Bayern</h3>
-                            <p className="text-muted-foreground">Wir sind in ganz Bayern aktiv – nutzen Sie unser dichtes Netzwerk.</p>
+                            <h3 className="text-2xl font-bold mb-4">{dict.common.other_locations_bavaria}</h3>
+                            <p className="text-muted-foreground">{dict.common.network_active_bavaria}</p>
                         </div>
                         <div className="flex flex-wrap justify-center gap-3">
-                            <Link href={"/" + lang + "/umzug-regensburg"} className="px-5 py-3 rounded-2xl border-2 border-primary/20 bg-primary/5 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all shadow-sm">Hauptsitz Regensburg</Link>
-                            <Link href={"/" + lang + "/umzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold text-foreground hover:border-primary/50 transition-all shadow-sm">Umzug München</Link>
-                            <Link href={"/" + lang + "/umzug-mammendorf"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Mammendorf</Link>
-                            <Link href={"/" + lang + "/umzug-geisenfeld"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Geisenfeld</Link>
-                            <Link href={"/" + lang + "/umzug-vohburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Vohburg an der Donau</Link>
-                            <Link href={"/" + lang + "/umzug-wolnzach"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Wolnzach</Link>
-                            <Link href={"/" + lang + "/umzug-olching"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Olching</Link>
-                            <Link href={"/" + lang + "/umzug-friedberg"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Friedberg</Link>
-                            <Link href={"/" + lang + "/umzug-altdorf-bei-nuernberg"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Altdorf bei Nürnberg</Link>
-                            <Link href={"/" + lang + "/umzug-freising"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Freising</Link>
+                            <Link href={"/" + pageLocale + "/umzug-regensburg"} className="px-5 py-3 rounded-2xl border-2 border-primary/20 bg-primary/5 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all shadow-sm">{dict.common.headquarters_regensburg}</Link>
+                            <Link href={"/" + pageLocale + "/umzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold text-foreground hover:border-primary/50 transition-all shadow-sm">{dict.common.umzug_munich}</Link>
+                            <Link href={"/" + pageLocale + "/umzug-mammendorf"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Mammendorf</Link>
+                            <Link href={"/" + pageLocale + "/umzug-geisenfeld"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Geisenfeld</Link>
+                            <Link href={"/" + pageLocale + "/umzug-vohburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Vohburg an der Donau</Link>
+                            <Link href={"/" + pageLocale + "/umzug-wolnzach"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Wolnzach</Link>
+                            <Link href={"/" + pageLocale + "/umzug-olching"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Olching</Link>
+                            <Link href={"/" + pageLocale + "/umzug-friedberg"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Friedberg</Link>
+                            <Link href={"/" + pageLocale + "/umzug-altdorf-bei-nuernberg"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Altdorf bei Nürnberg</Link>
+                            <Link href={"/" + pageLocale + "/umzug-freising"} className="px-4 py-2 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/50 transition-all bg-card/50">Umzug Freising</Link>
                         </div>
                     </div>
 
                     {/* Booking Wizard */}
                     <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">Unverbindlich & Kostenlos</div>
+                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Preis anfragen für Pfaffenhofen an der Ilm</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Füllen Sie unser kurzes Formular aus und erhalten Sie Ihr persönliches Festpreisangebot für Pfaffenhofen an der Ilm.</p>
                         <div className="px-6">
-                            <DualCalculator />
+                            <DualCalculator dic={dict} />
                         </div>
                     </div>
                 </div>

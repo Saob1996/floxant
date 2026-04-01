@@ -11,7 +11,7 @@ import {
 } from '@/lib/pricing/calculator-engine';
 import TrustBlock from '../trust/TrustBlock';
 
-export default function ExpressCalculator() {
+export default function ExpressCalculator({ dic }: { dic?: any }) {
   const store = useCalculatorStore();
   const [activeStep, setActiveStep] = useState(0);
 
@@ -65,18 +65,18 @@ export default function ExpressCalculator() {
               className="flex flex-col gap-6"
             >
               <h2 className="text-3xl font-light text-white mb-2">
-                Was können wir für Sie tun?
+                {dic?.calculator?.start_now || "What can we do for you?"}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <ServiceCard icon={Truck} title="Umzug" onClick={() => handleServiceSelect('umzug')} active={store.serviceType === 'umzug'} />
-                <ServiceCard icon={Sparkles} title="Reinigung" onClick={() => handleServiceSelect('reinigung')} active={store.serviceType === 'reinigung'} />
-                <ServiceCard icon={Trash2} title="Entsorgung" onClick={() => handleServiceSelect('entsorgung')} active={store.serviceType === 'entsorgung'} />
+                <ServiceCard icon={Truck} title={dic?.nav?.service_umzug || "Umzug"} onClick={() => handleServiceSelect('umzug')} active={store.serviceType === 'umzug'} />
+                <ServiceCard icon={Sparkles} title={dic?.nav?.service_reinigung || "Reinigung"} onClick={() => handleServiceSelect('reinigung')} active={store.serviceType === 'reinigung'} />
+                <ServiceCard icon={Trash2} title={dic?.nav?.service_entruempelung || "Entsorgung"} onClick={() => handleServiceSelect('entsorgung')} active={store.serviceType === 'entsorgung'} />
               </div>
               <button 
                 onClick={() => setActiveStep(1)}
                 className="mt-8 self-end px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all flex items-center gap-2"
               >
-                Weiter <ArrowRight size={18} />
+                {dic?.common?.next || "Next"} <ArrowRight size={18} />
               </button>
             </m.div>
           )}
@@ -91,7 +91,7 @@ export default function ExpressCalculator() {
               className="flex flex-col gap-6 w-full"
             >
               <h2 className="text-3xl font-light text-white mb-2">
-                Eckdaten eingeben
+                {dic?.calculator?.requirements_title || "Enter Details"}
               </h2>
               
               <div className="space-y-4">
@@ -171,13 +171,13 @@ export default function ExpressCalculator() {
                   onClick={() => setActiveStep(0)}
                   className="px-6 py-3 text-white/50 hover:text-white transition-all"
                 >
-                  Zurück
+                  {dic?.calculator?.back_to_overview || "Zurück"}
                 </button>
                 <button 
                   onClick={() => setActiveStep(2)}
                   className="px-8 py-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white rounded-full transition-all shadow-lg shadow-blue-500/25 flex items-center gap-2 font-medium"
                 >
-                  Preis berechnen
+                  {dic?.calculator?.calculating || "Preis berechnen"}
                 </button>
               </div>
             </m.div>
@@ -194,7 +194,7 @@ export default function ExpressCalculator() {
               <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6 border border-white/10 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
                 <Sparkles className="text-blue-400" size={32} />
               </div>
-              <h2 className="text-white/60 text-lg mb-2">Ihre Kostenschätzung</h2>
+              <h2 className="text-white/60 text-lg mb-2">{dic?.calculator?.prognosis_label || "Ihre Kostenschätzung"}</h2>
               <div className="text-5xl font-light text-white mb-6 flex items-center justify-center gap-2">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400 font-medium">
                   {store.expressPriceRange?.min}€
@@ -205,7 +205,7 @@ export default function ExpressCalculator() {
                 </span>
               </div>
               <p className="text-white/50 text-sm max-w-sm mb-10">
-                Dies ist eine grobe Schätzung basiert auf Ihren Angaben. Für ein verbindliches, milllimetergenaues Angebot wechseln Sie zum Detailrechner.
+                {dic?.calculator?.uncertainty_note || "Dies ist eine grobe Schätzung..."}
               </p>
               
               <button 
@@ -214,7 +214,7 @@ export default function ExpressCalculator() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-violet-100 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span className="relative flex items-center justify-center gap-2">
-                  Genau berechnen <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  {dic?.calculator?.start_now || "Genau berechnen"} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
               

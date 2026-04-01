@@ -1,13 +1,15 @@
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
-import dynamic from "next/dynamic";
 
+import dynamic from "next/dynamic";
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
+
+
+
 import Link from "next/link";
 
 export async function generateMetadata({
@@ -15,33 +17,22 @@ export async function generateMetadata({
 }: {
     params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
-    const content = dict?.pages?.entruempelung_regensburg || {};
-
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict?.pages as any)?.entruempelung_regensburg || {};
     return {
-        title: content.meta_title || "Entrümpelung Regensburg – FLOXANT",
-        description: content.meta_desc || "",
-        alternates: {
-            canonical: `https://floxant.de/${lang}/entruempelung-regensburg`,
-            languages: i18n.locales.reduce(
-                (acc, l) => {
-                    acc[l] = `https://floxant.de/${l}/entruempelung-regensburg`;
-                    return acc;
-                },
-                {} as Record<string, string>
-            ),
-        },
+        title: content.meta_title || "FLOXANT Entrümpelung Regensburg",
+        description: content.meta_desc || "Professionelle Entrümpelung und Haushaltsauflösung in Regensburg."
     };
 }
 
-export default async function EntruempelungRegensburg({
+export default async function EntruempelungRegensburgPage({
     params,
 }: {
     params: Promise<{ lang: string }>;
 }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale) as any;
     const content = (dict?.pages as any)?.entruempelung_regensburg || {};
     const area = (dict?.area as any) || {};
 
@@ -49,7 +40,7 @@ export default async function EntruempelungRegensburg({
         "@context": "https://schema.org", "@type": "LocalBusiness",
         "name": "FLOXANT Entrümpelung Regensburg",
         "description": "Professionelle Entrümpelung und Haushaltsauflösung in Regensburg.",
-        "url": `https://www.floxant.de/${lang}/entruempelung-regensburg`,
+        "url": `https://www.floxant.de/${pageLocale}/entruempelung-regensburg`,
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
         "priceRange": "$$"
@@ -65,15 +56,14 @@ export default async function EntruempelungRegensburg({
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Entrümpelung", "item": `https://www.floxant.de/${lang}/entruempelung` },
-            { "@type": "ListItem", "position": 3, "name": "Entrümpelung Regensburg", "item": `https://www.floxant.de/${lang}/entruempelung-regensburg` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Entrümpelung", "item": `https://www.floxant.de/${pageLocale}/entruempelung` },
+            { "@type": "ListItem", "position": 3, "name": "Entrümpelung Regensburg", "item": `https://www.floxant.de/${pageLocale}/entruempelung-regensburg` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
@@ -118,13 +108,13 @@ export default async function EntruempelungRegensburg({
             <section className="py-12 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-4xl">
                     <div className="flex flex-wrap items-center justify-center gap-3">
-                        <Link href={`/${lang}/entruempelung`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <Link href={`/${pageLocale}/entruempelung`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                             {(dict?.pages as any)?.service_entruempelung?.hero_title || "Entrümpelung"}
                         </Link>
-                        <Link href={`/${lang}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <Link href={`/${pageLocale}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                             Reinigung Regensburg
                         </Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+                        <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
                             {area.cities?.regensburg || "Regensburg"}
                         </Link>
                     </div>
@@ -135,7 +125,7 @@ export default async function EntruempelungRegensburg({
                 <div className="mx-auto max-w-3xl text-center py-12 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg px-8">
                     <h2 className="text-3xl font-bold mb-4">{content.cta_title}</h2>
                     <p className="text-muted-foreground mb-10 max-w-xl mx-auto">{content.cta_text}</p>
-                    <DualCalculator />
+                    <DualCalculator dic={dict} />
                 </div>
             </section>
         </main>

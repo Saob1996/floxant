@@ -1,6 +1,6 @@
-import { Header } from "@/components/Header";
+import { type Locale } from "@/i18n-config";
+
 import { getDictionary } from "../../../get-dictionary";
-import { Locale } from "../../../i18n-config";
 
 export const metadata = {
     title: "Datenschutz – FLOXANT",
@@ -9,12 +9,11 @@ export const metadata = {
 };
 
 export default async function Datenschutz({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
             <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto space-y-8">
                 <h1 className="text-4xl font-bold">Datenschutzerklärung</h1>
 

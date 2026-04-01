@@ -14,63 +14,40 @@ interface Review {
   date: string;
 }
 
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: "Dr. Michael M.",
-    role: "Kanzleiinhaber, Regensburg",
-    text: "Top organisiert! Der Büroumzug lief absolut reibungslos. Das Team war pünktlich, professionell und hat unsere sensiblen Akten perfekt behandelt. Jeden Cent wert.",
-    rating: 5,
-    date: "Vor 2 Wochen"
-  },
-  {
-    id: 2,
-    name: "Sabine T.",
-    role: "Privatkundin, München",
-    text: "Kurzfristige Entrümpelung unseres Hauses nach einem Trauerfall. Die Mitarbeiter waren extrem empathisch, diskret und der Festpreis wurde exakt eingehalten.",
-    rating: 5,
-    date: "Letzter Monat"
-  },
-  {
-    id: 3,
-    name: "Thomas Berger",
-    role: "Immobilienverwalter",
-    text: "Wahnsinnig schnell und sauber. Die gebuchte Endreinigung mit Abnahmegarantie hat mir bei der Wohnungsübergabe extrem viel Stress erspart. Sehr zu empfehlen!",
-    rating: 5,
-    date: "Vor 3 Monaten"
-  },
-  {
-    id: 4,
-    name: "Jens W.",
-    role: "Facility Management",
-    text: "Als Facility Manager arbeite ich in der Oberpfalz nur noch mit FLOXANT. Verlässlich, pünktlich und hervorragende B2B-Konditionen für dauerhafte Partnerschaften.",
-    rating: 5,
-    date: "Vor einem Monat"
-  }
-];
-
-export default function ReviewCarousel() {
+export default function ReviewCarousel({ dic }: { dic?: any }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  const reviewsList = dic?.reviews?.items || [];
+  
+  // Header labels from dictionary
+  const satisfactionLabel = dic?.reviews?.satisfaction_label || "Exzellente Kundenzufriedenheit";
+  const titlePart1 = dic?.reviews?.title_part1 || "Das sagen unsere";
+  const titlePart2 = dic?.reviews?.title_part2 || "Kunden";
+  const subtitle = dic?.reviews?.subtitle || "Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern.";
+
   // Auto-advance
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || reviewsList.length === 0) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % reviews.length);
+      setCurrentIndex((prev) => (prev + 1) % reviewsList.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, reviewsList.length]);
+
+  if (reviewsList.length === 0) return null;
 
   const handleNext = () => {
     setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+    setCurrentIndex((prev) => (prev + 1) % reviewsList.length);
   };
 
   const handlePrev = () => {
     setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    setCurrentIndex((prev) => (prev - 1 + reviewsList.length) % reviewsList.length);
   };
+
+  const currentReview = reviewsList[currentIndex];
 
   return (
     <section className="w-full py-20 relative overflow-hidden bg-[#0A0A0A]">
@@ -89,14 +66,14 @@ export default function ReviewCarousel() {
               ))}
             </span>
             <span className="text-xs font-semibold text-white tracking-widest uppercase">
-              Exzellente Kundenzufriedenheit
+              {satisfactionLabel}
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Das sagen unsere <span className="text-primary italic">Kunden</span>.
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 text-balance">
+            {titlePart1} <span className="text-primary italic">{titlePart2}</span>.
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto text-lg leading-relaxed">
-            Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern.
+          <p className="text-gray-400 max-w-xl mx-auto text-lg leading-relaxed text-balance">
+            {subtitle}
           </p>
         </div>
 
@@ -106,7 +83,7 @@ export default function ReviewCarousel() {
             <button
               onClick={handlePrev}
               className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-white transition-all backdrop-blur-md"
-              aria-label="Vorherige Bewertung"
+              aria-label={dic?.common?.prev_review || "Vorherige Bewertung"}
             >
               <ChevronLeft size={24} />
             </button>
@@ -116,7 +93,7 @@ export default function ReviewCarousel() {
             <button
               onClick={handleNext}
               className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-white transition-all backdrop-blur-md"
-              aria-label="Nächste Bewertung"
+              aria-label={dic?.common?.next_review || "Nächste Bewertung"}
             >
               <ChevronRight size={24} />
             </button>
@@ -134,17 +111,17 @@ export default function ReviewCarousel() {
               >
                 <Quote className="text-primary/40 w-16 h-16 absolute top-6 left-6 -z-10" />
                 
-                <p className="text-lg md:text-2xl text-white font-medium leading-relaxed mb-8 max-w-2xl relative z-10">
-                  "{reviews[currentIndex].text}"
+                <p className="text-lg md:text-2xl text-white font-medium leading-relaxed mb-8 max-w-2xl relative z-10 text-balance">
+                  "{currentReview.text}"
                 </p>
                 
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-white font-bold text-lg">{reviews[currentIndex].name}</span>
+                  <span className="text-white font-bold text-lg">{currentReview.name}</span>
                   <div className="flex items-center gap-2 text-gray-400 text-sm">
                     <CheckCircle2 size={14} className="text-green-500" /> 
-                    {reviews[currentIndex].role}
+                    {currentReview.role}
                   </div>
-                  <span className="text-gray-500 text-xs mt-2">{reviews[currentIndex].date}</span>
+                  <span className="text-gray-500 text-xs mt-2">{currentReview.date}</span>
                 </div>
               </m.div>
             </AnimatePresence>
@@ -152,7 +129,7 @@ export default function ReviewCarousel() {
 
           {/* Dots */}
           <div className="flex justify-center gap-3 mt-8">
-            {reviews.map((_, idx) => (
+            {reviewsList.map((_: any, idx: number) => (
               <button
                 key={idx}
                 onClick={() => {
@@ -163,13 +140,11 @@ export default function ReviewCarousel() {
                   "w-2.5 h-2.5 rounded-full transition-all duration-300",
                   idx === currentIndex ? "bg-primary w-8" : "bg-white/20 hover:bg-white/40"
                 )}
-                aria-label={`Gehe zu Bewertung ${idx + 1}`}
+                aria-label={`${dic?.common?.go_to_review || "Gehe zu Bewertung"} ${idx + 1}`}
               />
             ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

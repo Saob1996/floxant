@@ -1,12 +1,16 @@
+import { type Locale } from "@/i18n-config";
+import { getDictionary } from "@/get-dictionary";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 
 export const metadata = {
   title: 'Reinigungskosten berechnen 2026 | FLOXANT Rechner',
-  description: 'Berechnen Sie sofort Ihre Reinigungskosten. Ob Grundreinigung oder Spezialauftrag – unser Dual-Calculator zeigt Ihnen sekundenschnell ein Festpreis-Angebot. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+  description: 'Berechnen Sie sofort Ihre Reinigungskosten. Ob Grundreinigung oder Spezialauftrag – unser Dual-Calculator zeigt Ihnen sekundenschnell ein Festpreis-An...',
 };
 
-export default function ReinigungPreisRechnerPage() {
+export default async function ReinigungPreisRechnerPage({ params }: { params: Promise<{ lang: string }> }) {
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",

@@ -1,0 +1,70 @@
+=== ZH.JSON ANALYSIS ===
+Total lines: 4296
+Total chars: 172987
+JSON ERROR: Expected ',' or '}' after property value in JSON at position 82310 (line 2227 column 29)
+
+=== TOP-LEVEL SECTIONS ===
+Line 2: "nav"
+Line 11: "hero"
+Line 16: "area"
+Line 33: "booking"
+Line 120: "footer"
+Line 159: "contact"
+Line 167: "trust"
+Line 172: "auth"
+Line 185: "dashboard"
+Line 210: "pages"
+Line 3855: "services_section"
+Line 3885: "signature_services"
+Line 3948: "common"
+Line 4032: "calculator"
+Line 4232: "home"
+Line 4254: "reviews"
+
+=== SECTION AROUND ERROR (line 2227) ===
+Error is in section: pages starting at line 210
+Next section: services_section at line 3855
+
+=== LINES 2218-2250 ===
+2218|           "q": "要是在 Hemau 请求火线加塞插队火急火燎安排档期排得开么？",
+2219|           "a": "倚赖总后勤调派局就嵌在这贴近到快长在一块的 Regensburg ，假设哪怕在 Hemau 撞上了极尽紧缩限时拉警报的高热紧急挪场大单，我们照旧能如同神灵天降般把空缺补上。"
+2220|         },
+2221|         {
+2222|           "q": "你们同样也在 Hemau 操刀帮搞下来申请竖路牌禁停圈这个吃软饭的环节嘛？",
+2223|           "a": "千真万确半点不虚。但凡侦测到您楼下空间匮乏，我们立马上马将对接街区管委会求批路权且最终敲进土里悬挂起黄牌这套连招耍得全数拿稳。"
+2224|         },
+2225|         {
+2226|           "q": "到了 Hemau 这个地界把做饭的重阵大厨房破开拆掉运过去再完好拼贴这档业务也揽？",
+2227|           "a": "我们直接挥霍?    "umzug_zirndorf": {
+2228|       "meta_title": "Umzugsunternehmen Zirndorf ? 承诺固定总价 ? 全面强力上险 | FLOXANT",
+2229|       "faqs": [
+2230|         {
+2231|           "q": "在 Zirndorf (齐恩多夫) 打包跑路一趟要往外掏多深口袋的钞票？",
+2232|           "a": "开支水位的波峰浪谷永远锁死受制于住区的占地容积率、拔起的高耸楼层阶段以及要耗干轮胎的两地通勤差。对于只是一介学生兵的挪窝而言其开闸价格相当地平易近人。倘若是家庭总动员这种重量级委托的话我们就会在跑了一趟0收费实勘之后拍给您一份量体裁衣雷打不涨的固定卖身契单价。"
+2233|         },
+2234|         {
+2235|           "q": "FLOXANT 大规模投送战斗小分队冲刺到 Zirndorf 最快多火神速？",
+2236|           "a": "依托着我们麾下每日穿梭于 N?rnberg (纽伦堡) 大都市圈咽喉要道的恐怖运力网络赋能，只需抛开短短区区几日的小小断层节点，向 Zirndorf 投掷派送进场开工简直就是信手拦截般的囊中物。"
+2237|         },
+2238|         {
+2239|           "q": "把身家全都交由 FLOXANT 去押送途中如果有了万一有个磕碰也有护城河保命吗？",
+2240|           "a": "对。每一趟从发车伊始直至到达的物理动线均被牢固镶嵌入我们主导的企业防线级意外保险及受限于德国法定商法典 HGB #451g 第四百五十一条严格界定下的无可动摇绝对交通物流安全总括。"
+2241|         },
+2242|         {
+2243|           "q": "顺带也把 Zirndorf 分配点里的抛垃圾搞深层面遗弃这个恶心累活也大包揽进去了么？",
+2244|           "a": "当然。我们早就把挪移搬卸、抛杂碎扔物及最后一抹封口的最终净场打包成不可匹敌闭环战力组拳头矩阵了。那是横扫诸如变造退空死局或者非得强制符合苛刻包租婆验房那种能打及格分级退租死线时最具性价比的不二王牌打法。"
+2245|         }
+2246|       ]
+2247|     },后拍给您一份量体裁衣雷打不涨的固定卖身契单价。"
+2248|         },
+2249|         {
+2250|           "q": "FLOXANT 大规模投送战斗小分队冲刺到 Herzogenaurach 最快多火神速？",
+
+=== KEY COMPARISON ===
+DE top-level keys: nav, hero, area, booking, footer, contact, trust, auth, dashboard, pages, services_section, signature_services, common, calculator, home, reviews
+ZH top-level keys: nav, hero, area, booking, footer, contact, trust, auth, dashboard, pages, services_section, signature_services, common, calculator, home, reviews
+Missing in ZH: none
+Extra in ZH: none
+
+=== PAGES SUB-KEYS (DE) ===
+umzug_muenchen, service_umzug, service_buero_umzug, service_fernumzug, service_reinigung, service_entruempelung, service_montage, service_halteverbotszone, reinigung_regensburg, entruempelung_regensburg, buero_umzug_regensburg, sig_ritual_exit, sig_clean_start, sig_neighbour_kit, sig_first_48h, sig_bureaucracy, sig_furniture_opt, sig_cleaning_guarantee, sig_storage_rot, sig_kids_box, sig_service_24h, sig_ladies_team, sig_memory_capsule, sig_maybe_box, sig_key_handover, slug, 24h_umzug_bayern, dashboard, entruempelung_bayern, entruempelung_kosten_regensburg, familienumzug_bayern, kurzfristiger_umzug_bayern, login, notfall_umzug_bayern, reinigung_bayern, seniorenumzug_bayern, service_area_bayern, studentenumzug_regensburg, umzugskosten_bayern, wohnungsaufloesung_bayern, serviceSlug, entrumpelung_kosten_bayern, fernumzug_bayern_nrw_tipps, umzug_checkliste, umzug_kosten_regensburg, umzug_mit_kindern_stressfrei, umzug_planen_schritt_fuer_schritt, umzug_tipps_bayern, umzugskosten_senken_7_tipps, warum_floxant_die_beste_wahl_ist, wohnungsaufloesung_was_tun, wohnungsuebergabe_protokoll_guide, entruempelung, entruempelung_augsburg, entruempelung_landshut, entruempelung_muenchen, entruempelung_nuernberg, entruempelung_passau, halteverbotszone_muenchen, halteverbotszone_nuernberg, halteverbotszone_regensburg, klaviertransport_muenchen, klaviertransport_nuernberg, klaviertransport_regensburg, kleintransporte, lang, checkliste_umzug, entruempelung_kosten_pro_m3, gute_umzugsfirma_finden, moebeltransport_sicher, ratgeber, reinigung_nach_umzug, umzug_anmelden_ummelden, umzug_erste_wohnung, umzug_im_winter, umzug_kosten_rechner, umzug_tipps_familien, umzug_versicherung, umzug_vorbereiten_7_schritte, wann_lohnt_sich_umzugsfirma, wohnungsaufloesung_tipps, reinigung, reinigung_augsburg, reinigung_landshut, reinigung_muenchen, reinigung_nuernberg, reinigung_passau, seniorenumzug_muenchen, seniorenumzug_nuernberg, seniorenumzug_regensburg, umzug, umzug_abensberg, umzug_altdorf_bei_nuernberg, umzug_alteglofsheim, umzug_altenthann, umzug_amberg, umzug_aufhausen, umzug_augsburg, umzug_bad_abbach, umzug_barbing, umzug_bayern, umzug_beratzhausen, umzug_berching, umzug_bernhardswald, umzug_brennberg, umzug_brunn, umzug_burglengenfeld, umzug_dachau, umzug_deuerling, umzug_dietfurt, umzug_donaustauf, umzug_duggendorf, umzug_erding, umzug_ergoldsbach, umzug_erlangen, umzug_feucht, umzug_freising, umzug_freystadt, umzug_friedberg, umzug_fuerstenfeldbruck, umzug_fuerth, umzug_geiselhoering, umzug_geisenfeld, umzug_hagelstadt, umzug_hemau, umzug_herzogenaurach, umzug_hohenfels, umzug_holzheim_am_forst, umzug_ingolstadt, umzug_kallmuenz, umzug_kelheim, umzug_kissing, umzug_koefering, umzug_koenigsbrunn, umzug_laaber, umzug_landkreis_regensburg, umzug_landshut, umzug_langquaid, umzug_lappersdorf, umzug_lauf_an_der_pegnitz, umzug_lupburg, umzug_mainburg, umzug_mallersdorf_pfaffenberg, umzug_mammendorf, umzug_maxhuette_haidhof, umzug_mering, umzug_mintraching, umzug_moetzing, umzug_moosburg, umzug_neufahrn_in_niederbayern, umzug_neumarkt, umzug_neustadt_an_der_donau, umzug_neutraubling, umzug_nittenau, umzug_nittendorf, umzug_nuernberg, umzug_oberasbach, umzug_oberpfalz, umzug_obertraubling, umzug_olching, umzug_parsberg, umzug_passau, umzug_pentling, umzug_pettendorf, umzug_pfaffenhofen, umzug_pfatter, umzug_pfeffenhausen, umzug_pielenhofen, umzug_postbauer_heng, umzug_regensburg, umzug_regenstauf, umzug_riekofen, umzug_roth, umzug_rottenburg_an_der_laaber, umzug_saal_an_der_donau, umzug_schierling, umzug_schwabach, umzug_schwandorf, umzug_seubersdorf, umzug_sinzing, umzug_straubing, umzug_suenching, umzug_tegernheim, umzug_teublitz, umzug_thalmassing, umzug_velburg, umzug_vohburg, umzug_weiden, umzug_wendelstein, umzug_wenzenbach, umzug_wiesent, umzug_woerth_an_der_donau, umzug_wolfsegg, umzug_wolnzach, umzug_zeitlarn, umzug_zirndorf, pricing_insights, agb, buchungsbedingungen, id, datenschutz, entsorgung_kosten_rechner, feedback, impressum, reinigung_preis_rechner, widerruf

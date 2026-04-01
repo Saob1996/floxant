@@ -1,35 +1,37 @@
-import { Header } from "@/components/Header";
+import { type Locale } from "@/i18n-config";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
+
+
+
 import { getDictionary } from "../../../get-dictionary";
-import { Locale } from "../../../i18n-config";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin, Truck, ShieldCheck, Clock } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'umzug-bayern',
         title: 'Umzugsunternehmen Bayern ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: 'Professionelles Umzugsunternehmen in Bayern. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: "Professionelles Umzugsunternehmen in Bayern. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen!",
     });
 }
 
 export default async function UmzugBayern({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany", "name": "FLOXANT Umzug Bayern",
-        "url": `https://www.floxant.de/${lang}/umzug-bayern`, "telephone": "+4915771105087",
+        "url": `https://www.floxant.de/${pageLocale}/umzug-bayern`, "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" },
         "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
         "areaServed": [{ "@type": "State", "name": "Bayern" }], "priceRange": "$$",
@@ -45,15 +47,14 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${pageLocale}/umzug-bayern` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
@@ -75,7 +76,8 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
             </section>
 
             {/* Main Content Area */}
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
 
                     {/* Introduction */}
@@ -160,16 +162,16 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                             Wir sind in allen größeren Städten und Regionen Bayerns aktiv. Unsere Teams kennen die lokalen Gegebenheiten.
                         </p>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <Link href={`/${lang}/umzug-muenchen`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${pageLocale}/umzug-muenchen`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> München
                             </Link>
-                            <Link href={`/${lang}/umzug-nuernberg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${pageLocale}/umzug-nuernberg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> Nürnberg
                             </Link>
-                            <Link href={`/${lang}/umzug-augsburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${pageLocale}/umzug-augsburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> Augsburg
                             </Link>
-                            <Link href={`/${lang}/umzug-regensburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
+                            <Link href={`/${pageLocale}/umzug-regensburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                 <ArrowRight className="w-4 h-4 text-primary" /> Regensburg
                             </Link>
                         </div>
@@ -179,14 +181,14 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                     <div className="border-t border-border pt-12">
                         <h3 className="text-lg font-semibold mb-6">Weitere Leistungen in Bayern</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
-                            <Link href={`/${lang}/reinigung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Bayern</Link>
-                            <Link href={`/${lang}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
-                            <Link href={`/${lang}/familienumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Familienumzug Bayern</Link>
-                            <Link href={`/${lang}/seniorenumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Seniorenumzug Bayern</Link>
-                            <Link href={`/${lang}/24h-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">24h Umzug Bayern</Link>
-                            <Link href={`/${lang}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                            <Link href={`/${lang}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
+                            <Link href={`/${pageLocale}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
+                            <Link href={`/${pageLocale}/reinigung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Bayern</Link>
+                            <Link href={`/${pageLocale}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
+                            <Link href={`/${pageLocale}/familienumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Familienumzug Bayern</Link>
+                            <Link href={`/${pageLocale}/seniorenumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Seniorenumzug Bayern</Link>
+                            <Link href={`/${pageLocale}/24h-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">24h Umzug Bayern</Link>
+                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
+                            <Link href={`/${pageLocale}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
                         </div>
                     </div>
 
@@ -196,7 +198,7 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                             Fordern Sie jetzt Ihr unverbindliches Festpreisangebot an. Wir beraten Sie gerne persönlich zu Ihrem Umzugsvorhaben in Bayern oder deutschlandweit.
                         </p>
-                        <DualCalculator />
+                        <DualCalculator dic={dict} />
                     </div>
 
                 </div>

@@ -1,47 +1,50 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
 import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2 } from "lucide-react";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
+import Link from "next/link";
+import { MapPin, Milestone, Layers, Award, ArrowRight, Shield, CheckCircle2 } from "lucide-react";
+
+
+
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'umzug-regensburg',
         title: 'Umzugsunternehmen Regensburg ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: 'Professionelles Umzugsunternehmen in Regensburg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: "Professionelles Umzugsunternehmen in Regensburg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen!",
     });
 }
 
 export default async function UmzugRegensburg({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet ein Umzug in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": "Ein lokaler Umzug in Regensburg kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
-            { "@type": "Question", "name": "Macht FLOXANT auch Umzüge in der Regensburger Altstadt?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, wir sind spezialisiert auf Altstadt-Logistik: enge Gassen, Fußgängerzonen, denkmalgeschützte Gebäude. Wir kümmern uns um Genehmigungen für Zufahrten." } },
-            { "@type": "Question", "name": "Bieten Sie Fernumzüge ab Regensburg an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Wir organisieren Fernumzüge von Regensburg nach ganz Deutschland, insbesondere NRW. Wöchentliche Touren ermöglichen effiziente Preise." } },
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein lokaler Umzug in Regensburg kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Macht FLOXANT auch Umzüge in der Regensburger Altstadt?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja, wir sind spezialisiert auf Altstadt-Logistik: enge Gassen, Fußgängerzonen, denkmalgeschützte Gebäude. Wir kümmern uns um Genehmigungen für Zufahrten." } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q || "Bieten Sie Fernumzüge ab Regensburg an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Wir organisieren Fernumzüge von Regensburg nach ganz Deutschland, insbesondere NRW. Wöchentliche Touren ermöglichen effiziente Preise." } }
+            ],
     };
 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "name": "FLOXANT Umzug Regensburg",
         "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Regensburg. Local moving, long distance, and professional packing.",
-        "url": `https://www.floxant.de/${lang}/umzug-regensburg`,
+        "url": `https://www.floxant.de/${pageLocale}/umzug-regensburg`,
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressRegion": "Bayern", "addressCountry": "DE" },
         "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
@@ -59,16 +62,15 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
-            { "@type": "ListItem", "position": 3, "name": "Umzug Regensburg", "item": `https://www.floxant.de/${lang}/umzug-regensburg` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${pageLocale}/umzug-bayern` },
+            { "@type": "ListItem", "position": 3, "name": "Umzug Regensburg", "item": `https://www.floxant.de/${pageLocale}/umzug-regensburg` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Bayern", href: `/${lang}/umzug-bayern` }, { label: "Umzug Regensburg" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "Umzug Regensburg" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
@@ -83,17 +85,18 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                         Umzugsunternehmen in <span className="text-primary">Regensburg</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        FLOXANT ist Ihr Umzugspartner in Regensburg und der Oberpfalz. Altstadt-Logistik, Festpreisgarantie und voll versicherter Transport – von der UNESCO-Welterbestadt in ganz Deutschland.
-                    </p>
+            {pageLocale === 'de' ? `FLOXANT ist Ihr Umzugspartner in Regensburg und der Oberpfalz. Altstadt-Logistik, {dict.calculator?.fixed_price_tag || "Festpreisgarantie"} und voll versicherter Transport – von der UNESCO-Welterbestadt in ganz Deutschland.` : "FLOXANT is your professional partner for moves, cleaning and clearance. We offer fixed price guarantee, fully insured transport and local expertise."}
+          </p>
                     <div className="flex flex-wrap justify-center gap-4 mt-8">
-                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Award className="w-4 h-4 text-primary" /> 100% Versichert</span>
-                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><ArrowRight className="w-4 h-4 text-primary" /> Kostenlose Besichtigung</span>
-                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Layers className="w-4 h-4 text-primary" /> Festpreisgarantie</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Award className="w-4 h-4 text-primary" /> {dict.calculator?.insured_tag || "100% Versichert"}</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><ArrowRight className="w-4 h-4 text-primary" /> {dict.calculator?.inspection_tag || "Kostenlose Besichtigung"}</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Layers className="w-4 h-4 text-primary" /> {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</span>
                     </div>
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Umziehen im Herzen der Oberpfalz</h2>
@@ -120,7 +123,7 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                             </div>
                             <div className="p-6 rounded-2xl bg-card border border-border shadow-sm">
                                 <Award className="w-8 h-8 text-primary mb-4" />
-                                <h3 className="text-lg font-bold mb-2">Festpreisgarantie</h3>
+                                <h3 className="text-lg font-bold mb-2">{dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</h3>
                                 <p className="text-sm text-muted-foreground">Verbindliche Angebote nach kostenloser Besichtigung. Keine versteckten Kosten, keine Nachverhandlungen.</p>
                             </div>
                         </div>
@@ -156,15 +159,15 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                     <div className="border-t border-border pt-12">
                         <h3 className="text-lg font-semibold mb-6">Weitere Leistungen in Regensburg & Bayern</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
-                            <Link href={`/${lang}/entruempelung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Regensburg</Link>
-                            <Link href={`/${lang}/buero-umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Büroumzug Regensburg</Link>
-                            <Link href={`/${lang}/studentenumzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Studentenumzug Regensburg</Link>
-                            <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
-                            <Link href={`/${lang}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                            <Link href={`/${lang}/entruempelung-kosten-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Kosten Regensburg</Link>
-                            <Link href={`/${lang}/umzug-nuernberg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Nürnberg</Link>
-                            <Link href={`/${lang}/umzug-muenchen`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug München</Link>
+                            <Link href={`/${pageLocale}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
+                            <Link href={`/${pageLocale}/entruempelung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Regensburg</Link>
+                            <Link href={`/${pageLocale}/buero-umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Büroumzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/studentenumzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Studentenumzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
+                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
+                            <Link href={`/${pageLocale}/entruempelung-kosten-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Kosten Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-nuernberg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_nuremberg}</Link>
+                            <Link href={`/${pageLocale}/umzug-muenchen`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_munich}</Link>
                         </div>
                     </div>
 
@@ -192,7 +195,7 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
             <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
                         <h2 className="text-3xl font-bold mb-4">Ihr Umzug in Regensburg</h2>
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kontaktieren Sie uns noch heute. Wir erstellen Ihr individuelles Festpreisangebot.</p>
-                        <DualCalculator />
+                        <DualCalculator dic={dict} />
                     </div>
                 </div>
             </section>

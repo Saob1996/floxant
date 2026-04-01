@@ -1,7 +1,8 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -11,27 +12,34 @@ const SmartBookingWizard = dynamic(
     () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
+const DualCalculator = dynamic(
+    () => import("@/components/calculator/DualCalculator"),
+    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
+);
+
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.studentenumzug_regensburg || {};
     return {
-        title: "Studentenumzug Regensburg | Günstig & Zuverlässig | FLOXANT",
-        description: "Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Service. FLOXANT – Ihr Umzugspartner für Studierende. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Studentenumzug Regensburg | Günstig & Zuverlässig | FLOXANT",
+        description: 'description: content.meta_desc || Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Ser...',
         alternates: {
-            canonical: `https://floxant.de/${lang}/studentenumzug-regensburg`,
+            canonical: `https://floxant.de/${pageLocale}/studentenumzug-regensburg`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/studentenumzug-regensburg`; return acc; }, {} as Record<string, string>),
         },
     };
 }
 
 export default async function StudentenumzugRegensburg({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Regensburg", href: `/${lang}/umzug-regensburg` }, { label: "Studentenumzug" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Regensburg", href: `/${pageLocale}/umzug-regensburg` }, { label: "Studentenumzug" }]} />
 
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -47,7 +55,8 @@ export default async function StudentenumzugRegensburg({ params }: { params: Pro
                 </div>
             </section>
 
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">
                         <h2 className="text-3xl font-bold text-foreground mb-6">Umziehen als Student – einfach und bezahlbar</h2>
@@ -87,13 +96,13 @@ export default async function StudentenumzugRegensburg({ params }: { params: Pro
                     </div>
 
                     <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">Weitere Leistungen</h3>
+                        <h3 className="text-lg font-semibold mb-6">{dict.common.more_services}</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
-                            <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
-                            <Link href={`/${lang}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                            <Link href={`/${lang}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
-                            <Link href={`/${lang}/kurzfristiger-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Kurzfristiger Umzug</Link>
+                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
+                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
+                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
+                            <Link href={`/${pageLocale}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
+                            <Link href={`/${pageLocale}/kurzfristiger-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Kurzfristiger Umzug</Link>
                         </div>
                     </div>
 

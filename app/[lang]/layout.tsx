@@ -7,8 +7,9 @@ import { Footer } from "../../components/Footer";
 import dynamic from "next/dynamic";
 import AuthProvider from "../../components/session-provider";
 import { MotionProvider } from "../../components/MotionProvider";
-import { i18n, type Locale } from "../../i18n-config"; // Adjusted path (was ../../../)
-import { getDictionary } from "../../get-dictionary"; // Adjusted path (was ../../)
+import { i18n, type Locale } from "../../i18n-config";
+import { getDictionary } from "../../get-dictionary";
+import { Header } from "../../components/Header";
 import UtmCapture from '@/components/UtmCapture';
 
 const WhatsAppButton = dynamic(
@@ -61,10 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
     return {
         metadataBase: new URL('https://www.floxant.de'),
-        title: {
-            default: title,
-            template: `%s | FLOXANT`
-        },
+        title: title,
         description,
         alternates: { canonical, languages },
         openGraph: {
@@ -102,7 +100,7 @@ export default async function RootLayout({
     // getDictionary expects Locale.
     // We should cast it.
     const locale = lang as Locale;
-    const dict = await getDictionary(locale);
+    var dict = await getDictionary(locale);
 
     // Set dir="rtl" for Arabic and Farsi
     const dir = (lang === 'ar' || lang === 'fa') ? 'rtl' : 'ltr';
@@ -114,8 +112,9 @@ export default async function RootLayout({
                     <MotionProvider>
                         <JsonLd lang={lang} />
                         <UtmCapture />
+                        <Header dic={dict} />
                         {children}
-                        <WhatsAppButton />
+                        <WhatsAppButton dic={dict} />
                         <CookieBanner />
                         <Footer lang={lang} dic={dict} />
                         <MobileFloatingContact />

@@ -1,24 +1,26 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
 import { type Locale } from "../../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.umzugskosten_senken_7_tipps || {};
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: "blog/umzugskosten-senken-7-tipps",
-        title: "7 bewährte Tipps, um Umzugskosten drastisch zu senken | FLOXANT Ratgeber",
-        description: "Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "7 bewährte Tipps, um Umzugskosten drastisch zu sen | FLOXANT",
+        description: content.meta_desc || `Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
     });
 }
 
 export default async function BlogArticle({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const articleJsonLd = {
         "@context": "https://schema.org", "@type": "Article",
@@ -32,8 +34,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Blog", href: "/" + lang + "/blog" }, { label: "7 bewährte Tipps, um Ihre Umzugskosten zu senken" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Blog", href: "/" + pageLocale + "/blog" }, { label: "7 bewährte Tipps, um Ihre Umzugskosten zu senken" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
             
             <article className="py-20 px-6">
@@ -54,7 +55,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                         <p>Monatsende, Freitag, Sommer – das sind die teuersten Zeiten für Umzüge. Wer unter der Woche oder Mitte des Monats umzieht, profitiert von deutlich niedrigeren Preisen. Im Winter sind Umzugsunternehmen weniger ausgelastet und bieten oft Sonderkonditionen an.</p>
 
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">2. Rigoros entrümpeln</h2>
-                        <p>Jeder Kubikmeter zählt. Weniger Volumen bedeutet: kleinerer LKW, weniger Träger, niedrigerer Preis. Verkaufen Sie gut erhaltene Möbel vorab auf lokalen Portalen. Was keinen Wert mehr hat, kann eine <Link href={"/" + lang + "/entruempelung"} className="text-primary underline hover:text-primary/80">Entrümpelung</Link> schnell und fachgerecht entsorgen.</p>
+                        <p>Jeder Kubikmeter zählt. Weniger Volumen bedeutet: kleinerer LKW, weniger Träger, niedrigerer Preis. Verkaufen Sie gut erhaltene Möbel vorab auf lokalen Portalen. Was keinen Wert mehr hat, kann eine <Link href={"/" + pageLocale + "/entruempelung"} className="text-primary underline hover:text-primary/80">{dict.common.entruempelung}</Link> schnell und fachgerecht entsorgen.</p>
 
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">3. Selbst packen, Profis tragen lassen</h2>
                         <p>Der teuerste Einzelposten ist oft der Einpack-Service. Wenn Sie selbst packen, sparen Sie 20–30% der Gesamtkosten. Investieren Sie in gute Kartons und Packpapier – defekte Güter sind am Ende teurer als professionelle Verpackung.</p>
@@ -69,13 +70,13 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                         <p>Beruflich bedingte Umzugskosten können Sie in der Steuererklärung als Werbungskosten geltend machen. Auch bei privaten Umzügen sind sogenannte haushaltsnahe Dienstleistungen absetzbar (20% der Arbeitskosten, max. 4.000€ pro Jahr).</p>
 
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">7. Festpreisangebot einholen</h2>
-                        <p>Der wichtigste Tipp überhaupt: Bestehen Sie auf einem <strong>verbindlichen Festpreis</strong> nach Besichtigung. Stundenbasierte Angebote führen fast immer zu einer höheren Endrechnung als erwartet. Bei <Link href={"/" + lang + "/umzug"} className="text-primary underline hover:text-primary/80">FLOXANT</Link> erhalten Sie immer einen garantierten Festpreis.</p>
+                        <p>Der wichtigste Tipp überhaupt: Bestehen Sie auf einem <strong>verbindlichen Festpreis</strong> nach Besichtigung. Stundenbasierte Angebote führen fast immer zu einer höheren Endrechnung als erwartet. Bei <Link href={"/" + pageLocale + "/umzug"} className="text-primary underline hover:text-primary/80">FLOXANT</Link> erhalten Sie immer einen garantierten Festpreis.</p>
                     </div>
 
                     <div className="mt-20 p-8 bg-primary/5 border border-primary/10 rounded-3xl text-center">
                         <h3 className="text-2xl font-bold mb-4">Bereit für Ihren Umzug?</h3>
                         <p className="text-muted-foreground mb-6">Holen Sie sich jetzt Ihr unverbindliches Festpreisangebot bei FLOXANT.</p>
-                        <Link href={"/" + lang + "/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
+                        <Link href={"/" + pageLocale + "/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
                             Angebot anfordern →
                         </Link>
                     </div>
@@ -83,10 +84,10 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                     <div className="mt-12 border-t border-border pt-8">
                         <h4 className="font-bold mb-4">Weitere Artikel</h4>
                         <div className="flex flex-wrap gap-3">
-                            <Link href={"/" + lang + "/blog/umzug-kosten-regensburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzugskosten Regensburg</Link>
-                            <Link href={"/" + lang + "/blog/umzug-checkliste"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Checkliste</Link>
-                            <Link href={"/" + lang + "/blog/umzug-tipps-bayern"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Tipps Bayern</Link>
-                            <Link href={"/" + lang + "/ratgeber"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Alle Ratgeber</Link>
+                            <Link href={"/" + pageLocale + "/blog/umzug-kosten-regensburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzugskosten Regensburg</Link>
+                            <Link href={"/" + pageLocale + "/blog/umzug-checkliste"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Checkliste</Link>
+                            <Link href={"/" + pageLocale + "/blog/umzug-tipps-bayern"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Tipps Bayern</Link>
+                            <Link href={"/" + pageLocale + "/ratgeber"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Alle Ratgeber</Link>
                         </div>
                     </div>
                 </div>

@@ -9,26 +9,25 @@ const nextConfig = {
         ],
     },
     async redirects() {
-        return [
-            {
-                source: '/:path*',
-                has: [
-                    {
-                        type: 'host',
-                        value: 'floxant.de',
-                    },
-                ],
-                destination: 'https://www.floxant.de/:path*',
-                permanent: true,
-            },
-            {
-                // Root → /de (replaces middleware)
-                source: '/',
-                destination: '/de',
-                permanent: true, // 301
-            },
-        ];
-    },
+    return [
+        {
+            source: '/:path*',
+            has: [
+                {
+                    type: 'host',
+                    value: 'floxant.de',
+                },
+            ],
+            destination: 'https://www.floxant.de/:path*',
+            permanent: true,
+        },
+        {
+            source: '/',
+            destination: '/de',
+            permanent: true,
+        },
+    ];
+},
     async headers() {
         return [
             {

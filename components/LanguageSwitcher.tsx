@@ -23,12 +23,14 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
     }, []);
 
     const handleLanguageChange = (newLocale: string) => {
-        // Redirect to the new locale path
-        const pathSegments = pathname.split('/');
-        pathSegments[1] = newLocale;
-        const newPath = pathSegments.join('/');
+        const cleanPath = pathname.replace(
+            /^\/(de|en|ar|tr|ru|uk|pl|ro|bg|es|fr|it|fa|zh|vi|ko|ja)/,
+            ''
+        );
 
-        router.push(newPath);
+        const newPath = `/${newLocale}${cleanPath || ''}`;
+
+        router.replace(newPath);
         setIsOpen(false);
     };
 
@@ -52,7 +54,9 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
         { code: 'ja', name: '日本語' }
     ];
 
-    const currentLang = languages.find(l => l.code === lang) || languages[0];
+    // Sprache direkt aus URL ableiten (nicht aus prop)
+    const currentLangFromPath = pathname.split('/')[1];
+    const currentLang = languages.find(l => l.code === currentLangFromPath) || languages[0];
 
     return (
         <div className="relative z-50" ref={containerRef}>
@@ -67,14 +71,12 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
             >
                 <Globe className="w-4 h-4" />
                 <span className="text-sm font-medium hidden sm:inline-block">{currentLang.name}</span>
-                <span className="text-sm font-medium sm:hidden uppercase">{lang}</span>
+                <span className="text-sm font-medium sm:hidden uppercase">{currentLang.code}</span>
                 <ChevronDown className={cn("w-3 h-3 transition-transform duration-300", isOpen && "rotate-180")} />
             </button>
 
             {isOpen && (
-                <div
-                    className="absolute top-full right-0 mt-2 w-48 max-h-[60vh] overflow-y-auto rounded-xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-1.5"
-                >
+                <div className="absolute top-full right-0 mt-2 w-48 max-h-[60vh] overflow-y-auto rounded-xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-1.5">
                     <div className="flex flex-col gap-0.5">
                         {languages.map((l) => (
                             <button
@@ -82,13 +84,13 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
                                 onClick={() => handleLanguageChange(l.code)}
                                 className={cn(
                                     "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all",
-                                    lang === l.code
+                                    currentLang.code === l.code
                                         ? "bg-primary/15 text-primary font-medium"
                                         : "hover:bg-white/5 text-muted-foreground hover:text-foreground hover:pl-4"
                                 )}
                             >
                                 <span>{l.name}</span>
-                                {lang === l.code && <Check className="w-3.5 h-3.5" />}
+                                {currentLang.code === l.code && <Check className="w-3.5 h-3.5" />}
                             </button>
                         ))}
                     </div>

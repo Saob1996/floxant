@@ -3,15 +3,14 @@
 import React, { useState } from 'react';
 import { useCalculatorStore } from '@/store/calculatorStore';
 import { m, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, Sparkles, Home, Settings, MessageSquare, ClipboardCheck } from 'lucide-react';
+import { ChevronDown, ChevronUp, Sparkles, Home, Settings, MessageSquare } from 'lucide-react';
 
-const SECTIONS = [
-  { id: 'condition', label: 'Zustand & Ausstattung', icon: Sparkles },
-  { id: 'logistics', label: 'Ablauf & Extras', icon: Settings },
-  { id: 'notes', label: 'Weitere Hinweise', icon: MessageSquare }
-];
-
-export default function ReinigungForm() {
+export default function ReinigungForm({ dic }: { dic?: any }) {
+  const SECTIONS = [
+    { id: 'condition', label: dic?.calculator.condition_equipment || "Zustand & Ausstattung", icon: Sparkles },
+    { id: 'logistics', label: dic?.calculator.process_extras || "Ablauf & Extras", icon: Settings },
+    { id: 'notes', label: dic?.calculator.notes_title || "Weitere Hinweise", icon: MessageSquare }
+  ];
   const { reinigungData, updateReinigungData } = useCalculatorStore();
   const [openSection, setOpenSection] = useState<string | null>(null);
 
@@ -31,37 +30,37 @@ export default function ReinigungForm() {
       {/* BASIC DATA */}
       <div className="bg-white/[0.02] border border-white/5 rounded-xl p-6 space-y-4">
         <h3 className="text-xs font-bold text-foreground/70 uppercase tracking-[0.15em] flex items-center gap-2 mb-4">
-          <Home size={14} className="text-primary" /> Basisdaten
-        </h3>
+          <Home size={14} className="text-primary" />{dic?.calculator.basis_data || "Basisdaten"}</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">Objektart</label>
+            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.property_type || "Objektart"}</label>
             <select 
               value={reinigungData.propertyType} 
               onChange={e => updateReinigungData({ propertyType: e.target.value as any })}
               className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30 transition-colors"
             >
-              <option value="wohnung">Wohnung</option>
-              <option value="haus">Haus</option>
-              <option value="buero">Gewerbe / Büro</option>
+              <option value="wohnung">{dic?.calculator.apartment || "Wohnung"}</option>
+              <option value="haus">{dic?.calculator.house || "Haus"}</option>
+              <option value="buero">{dic?.calculator.commercial_office || "Gewerbe / Büro"}</option>
             </select>
           </div>
           <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">Fläche (m²)</label>
+            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.living_area || "Fläche (m²)"}</label>
             <input 
               type="number" 
               value={reinigungData.areaM2 || ''}
               onChange={(e) => updateReinigungData({ areaM2: parseInt(e.target.value) || 0 })}
+              placeholder="e.g. 60"
               className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30 transition-colors"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">Fenster (ca.)</label>
+            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.windows_approx || "Fenster (ca.)"}</label>
             <input 
               type="number" 
               value={reinigungData.windowsCount || ''}
               onChange={(e) => updateReinigungData({ windowsCount: parseInt(e.target.value) || 0 })}
-              placeholder="Inkl. Rahmen"
+              placeholder={dic?.calculator.windows_hint || "Inkl. Rahmen"}
               className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30 transition-colors"
             />
           </div>
@@ -95,42 +94,42 @@ export default function ReinigungForm() {
                   {section.id === 'condition' && (
                     <div className="space-y-8 pt-2">
                       <div className="space-y-2">
-                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">Verschmutzungsgrad</label>
+                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.condition_level || "Verschmutzungsgrad"}</label>
                         <select 
                           value={reinigungData.condition} 
                           onChange={e => updateReinigungData({ condition: e.target.value as any })}
                           className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30 transition-colors"
                         >
-                          <option value="leicht">Leicht (Normale Unterhaltsreinigung)</option>
-                          <option value="mittel">Mittel (Sichtbarer Schmutz, Staub)</option>
-                          <option value="stark">Stark (Baureinigung, Messie, lange unbewohnt)</option>
+                          <option value="leicht">{dic?.calculator.light || "Leicht (Normale Unterhaltsreinigung)"}</option>
+                          <option value="mittel">{dic?.calculator.medium || "Mittel (Sichtbarer Schmutz, Staub)"}</option>
+                          <option value="stark">{dic?.calculator.heavy || "Stark (Baureinigung, Messie, lange unbewohnt)"}</option>
                         </select>
                       </div>
 
                       <label className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] cursor-pointer hover:bg-white/[0.04] transition-colors">
                         <input type="checkbox" checked={reinigungData.uncertainCondition} onChange={e => updateReinigungData({ uncertainCondition: e.target.checked })} className="mt-1 accent-primary w-4 h-4" /> 
                         <div>
-                           <span className="text-sm font-medium text-foreground block">Verschmutzungsgrad ist schwer einzuschätzen</span>
-                           <span className="text-xs text-muted-foreground block mt-1 leading-relaxed">Der Preisrahmen wird zur Sicherheit erweitert.</span>
+                           <span className="text-sm font-medium text-foreground block">{dic?.calculator.uncertain_condition || "Verschmutzungsgrad ist schwer einzuschätzen"}</span>
+                           <span className="text-xs text-muted-foreground block mt-1 leading-relaxed">{dic?.calculator.uncertain_condition_desc || "Der Preisrahmen wird zur Sicherheit erweitert."}</span>
                         </div>
                       </label>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer">
                           <input type="checkbox" checked={reinigungData.isFurnished} onChange={e => updateReinigungData({ isFurnished: e.target.checked })} className="accent-primary" /> 
-                          <span className="text-sm font-medium">Objekt ist möbliert</span>
+                          <span className="text-sm font-medium">{dic?.calculator.is_furnished || "Objekt ist möbliert"}</span>
                         </label>
                         <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer">
                           <input type="checkbox" checked={reinigungData.extras.includes('teppich')} onChange={() => toggleExtra('teppich')} className="accent-primary" /> 
-                          <span className="text-sm font-medium">Teppichreinigung nötig</span>
+                          <span className="text-sm font-medium">{dic?.calculator.carpet_cleaning || "Teppichreinigung nötig"}</span>
                         </label>
                         <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer">
                           <input type="checkbox" checked={reinigungData.extras.includes('kueche_tiefenreinigung')} onChange={() => toggleExtra('kueche_tiefenreinigung')} className="accent-primary" /> 
-                          <span className="text-sm font-medium">Küchen-Tiefenreinigung</span>
+                          <span className="text-sm font-medium">{dic?.calculator.kitchen_deep_clean || "Küchen-Tiefenreinigung"}</span>
                         </label>
                         <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer">
                           <input type="checkbox" checked={reinigungData.extras.includes('bad_kalk')} onChange={() => toggleExtra('bad_kalk')} className="accent-primary" /> 
-                          <span className="text-sm font-medium">Starke Kalkentfernung (Bad)</span>
+                          <span className="text-sm font-medium">{dic?.calculator.lime_removal || "Starke Kalkentfernung (Bad)"}</span>
                         </label>
                       </div>
                     </div>
@@ -140,27 +139,27 @@ export default function ReinigungForm() {
                   {section.id === 'logistics' && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-xs text-muted-foreground uppercase tracking-wider">Turnus</label>
+                        <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.frequency || "Turnus"}</label>
                         <select 
                           value={reinigungData.frequency} 
                           onChange={e => updateReinigungData({ frequency: e.target.value as any })}
                           className="w-full bg-background border border-border rounded-lg p-3 text-sm outline-none"
                         >
-                          <option value="einmalig">Einmalige Grundreinigung</option>
-                          <option value="regelmaessig">Regelmäßig (Unterhaltsreinigung)</option>
+                          <option value="einmalig">{dic?.calculator.one_time || "Einmalige Grundreinigung"}</option>
+                          <option value="regelmaessig">{dic?.calculator.regular || "Regelmäßig (Unterhaltsreinigung)"}</option>
                         </select>
                       </div>
                       
                       <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer self-end h-[46px]">
                         <input type="checkbox" checked={reinigungData.keysHandover} onChange={e => updateReinigungData({ keysHandover: e.target.checked })} className="accent-primary" /> 
-                        <span className="text-sm">Schlüsselübergabe separat nötig</span>
+                        <span className="text-sm">{dic?.calculator.keys_handover || "Schlüsselübergabe separat nötig"}</span>
                       </label>
                       
                       <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer md:col-span-2">
                         <input type="checkbox" checked={reinigungData.cleaningGuarantee} onChange={e => updateReinigungData({ cleaningGuarantee: e.target.checked })} className="mt-1 accent-primary" /> 
                         <div>
-                          <span className="text-sm font-medium block">Mit Abgabegarantie</span>
-                          <span className="text-xs text-muted-foreground">Wir garantieren die problemlose Wohnungsübergabe an die Verwaltung (inkl. kostenloser Nachbesserung).</span>
+                          <span className="text-sm font-medium block">{dic?.calculator.handover_guarantee || "Mit Abgabegarantie"}</span>
+                          <span className="text-xs text-muted-foreground">{dic?.calculator.handover_guarantee_desc || "Wir garantieren die problemlose Wohnungsübergabe an die Verwaltung (inkl. kostenloser Nachbesserung)."}</span>
                         </div>
                       </label>
                     </div>
@@ -169,11 +168,11 @@ export default function ReinigungForm() {
                   {/* NOTES */}
                   {section.id === 'notes' && (
                     <div className="space-y-2">
-                      <label className="text-xs text-muted-foreground uppercase tracking-wider">Ergänzende Beschreibungen (Optional)</label>
+                      <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.additional_notes || "Ergänzende Beschreibungen (Optional)"}</label>
                       <textarea 
                         value={reinigungData.freeTextNote || ''}
                         onChange={e => updateReinigungData({ freeTextNote: e.target.value })}
-                        placeholder="Z.B. Besonderheiten zum Bodenbelag, Zugangscode zum Gebäude..."
+                        placeholder={dic?.calculator.cleaning_notes_placeholder || "Z.B. Besonderheiten zum Bodenbelag, Zugangscode zum Gebäude..."}
                         className="w-full h-24 bg-background border border-border rounded-lg p-3 text-sm outline-none focus:border-primary resize-none"
                       />
                     </div>

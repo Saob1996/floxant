@@ -1,26 +1,31 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
 import { type Locale } from "../../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
-    return generatePageSEO({ lang, path: 'ratgeber/reinigung-nach-umzug', title: 'Reinigung nach Umzug: Tipps vom Profi | FLOXANT Ratgeber', description: 'Professionelle Reinigung nach dem Umzug für die Wohnungsübergabe. Tipps und Kosten. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.' });
+    var { lang: pageLocale } = await params;
+    return generatePageSEO({
+        pageLocale,
+        path: 'ratgeber/reinigung-nach-umzug',
+        title: 'Reinigung nach Umzug: Tipps vom Profi | FLOXANT',
+        description: 'Professionelle Reinigung nach Umzug: Tipps vom Profi in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+    });
 }
 
 export default async function Article({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_reinigung || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet eine Endreinigung?", "acceptedAnswer": { "@type": "Answer", "text": "3 bis 5 Euro pro Quadratmeter bei professioneller Reinigung." } },
-            { "@type": "Question", "name": "Muss ich nach dem Umzug besenrein übergeben?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Das ist der Mindeststandard. Viele Vermieter erwarten mehr. Eine professionelle Reinigung gibt Sicherheit." } }
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine Endreinigung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "3 bis 5 Euro pro Quadratmeter bei professioneller Reinigung." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Muss ich nach dem Umzug besenrein übergeben?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Das ist der Mindeststandard. Viele Vermieter erwarten mehr. Eine professionelle Reinigung gibt Sicherheit." } }
+            ],
     };
 
     const articleJsonLd = {
@@ -35,8 +40,7 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Ratgeber", href: `/${lang}/ratgeber` }, { label: "Reinigung nach Umzug: Tipps vom Profi" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Ratgeber", href: `/${pageLocale}/ratgeber` }, { label: "Reinigung nach Umzug: Tipps vom Profi" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
@@ -66,7 +70,7 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
                     </div>
 
                     <div>
-                        <h2 className="text-2xl font-bold text-foreground mb-6">Häufige Fragen</h2>
+                        <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
                         <div className="space-y-4">
                             {[
                             { q: "Was kostet eine Endreinigung?", a: "3 bis 5 Euro pro Quadratmeter bei professioneller Reinigung." },
@@ -81,9 +85,9 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
                     </div>
 
                     <div className="border-t border-border pt-8 flex flex-wrap gap-3">
-                        <Link href={`/${lang}/ratgeber`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">← Alle Ratgeber</Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugsfirma Regensburg</Link>
-                        <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
+                        <Link href={`/${pageLocale}/ratgeber`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">← Alle Ratgeber</Link>
+                        <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugsfirma Regensburg</Link>
+                        <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
                     </div>
                 </div>
             </section>

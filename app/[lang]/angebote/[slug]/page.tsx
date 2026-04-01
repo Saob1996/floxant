@@ -1,9 +1,12 @@
+import { type Locale } from "@/i18n-config";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 import { MapPin } from 'lucide-react';
+import { getDictionary } from "../../../../get-dictionary";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const slug = params.slug; 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
   const parts = slug.split('-');
   
   const service = parts[0]; 
@@ -15,8 +18,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function ProgrammaticSeoCalculator({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+export default async function ProgrammaticSeoCalculator({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
   const parts = slug.split('-');
   
   const serviceRaw = parts[0]?.toLowerCase(); 
@@ -42,37 +47,8 @@ export default function ProgrammaticSeoCalculator({ params }: { params: { slug: 
     "@context": "https://schema.org",
     "@type": "WebPage",
     "mainEntity": [
-      {
-        "@type": "Service",
-        "name": `${serviceType.charAt(0).toUpperCase() + serviceType.slice(1)} Service ${city}`,
-        "provider": {
-          "@type": "LocalBusiness",
-          "name": "FLOXANT",
-          "image": "https://floxant.de/logo.png"
-        },
-        "areaServed": {
-          "@type": "City",
-          "name": city
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "128",
-          "bestRating": "5"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": faqs.map(f => ({
-          "@type": "Question",
-          "name": f.question,
-          "acceptedAnswer": {
-             "@type": "Answer",
-             "text": f.answer
-          }
-        }))
-      }
-    ]
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "FLOXANT", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "" } }
+            ]
   };
 
   return (

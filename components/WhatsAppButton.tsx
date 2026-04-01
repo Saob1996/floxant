@@ -3,7 +3,7 @@
 import { MessageCircle } from "lucide-react";
 import { m } from "framer-motion";
 
-export function WhatsAppButton() {
+export function WhatsAppButton({ dic }: { dic?: any }) {
     return (
         <m.a
             href="https://wa.me/4915771105087"
@@ -18,7 +18,7 @@ export function WhatsAppButton() {
         >
             <MessageCircle className="h-8 w-8 fill-current" />
             <span className="absolute right-full mr-4 hidden whitespace-nowrap rounded-lg bg-white px-3 py-1 text-sm font-medium text-slate-800 shadow-lg lg:block">
-                Chatten Sie mit uns!
+                {dic?.common?.whatsapp_write || "Jetzt WhatsApp schreiben"}
             </span>
         </m.a>
     );

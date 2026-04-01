@@ -2,7 +2,6 @@ import { type Locale } from "../../../i18n-config";
 import { getDictionary } from "../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CheckCircle2, Droplets, Sparkles, Building, Home, CheckSquare, Stethoscope, MapPin } from "lucide-react";
@@ -14,47 +13,47 @@ const SmartBookingWizard = dynamic(
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'reinigung',
         title: 'Reinigungsfirma & Gebäudereinigung Bayern ✓ Endreinigung | FLOXANT',
-        description: 'Professionelle Wohnungsreinigung, Büroreinigung und Grundreinigung nach Vermieterstandard. Übergabegarantie, transparente Preise. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Professionelle Wohnungsreinigung, Büroreinigung und Grundreinigung nach Vermieterstandard. Übergabegarantie, transparente Preise. Sofortpreis online b...',
     });
 }
 
 export default async function ReinigungPillarPage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_reinigung || {};
 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet eine professionelle Wohnungsreinigung mit Übergabegarantie?", "acceptedAnswer": { "@type": "Answer", "text": "Die Kosten richten sich nach der Quadratmeterzahl und dem Grad der Verschmutzung. Eine gründliche Umzugsreinigung mit Fensterreinigung beginnt oftmals bei 350 bis 600 Euro. FLOXANT erstellt für Ihre Wohnungsreinigung stets einen garantierten Festpreis." } },
-            { "@type": "Question", "name": "Bieten Sie auch regelmäßige Büroreinigung an?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Im B2B-Sektor führen wir für Unternehmen regelmäßige Unterhaltsreinigungen, Büroreinigung und Praxisreinigung außerhalb der regulären Geschäftszeiten durch." } },
-            { "@type": "Question", "name": "Was unterscheidet eine Grundreinigung von einer Sichtreinigung?", "acceptedAnswer": { "@type": "Answer", "text": "Bei der Grundreinigung greift man in die Tiefe: Wir behandeln stark verschmutzte Fußböden, entkalken die komplette Sanitäranlage, reinigen Fenster, Fugen und den Heizkörper. Es ist eine sehr intensive Pflege, ideal nach dem Auszug oder vor dem Einzug." } }
-        ],
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine professionelle Wohnungsreinigung mit Übergabegarantie?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Kosten richten sich nach der Quadratmeterzahl und dem Grad der Verschmutzung. Eine gründliche Umzugsreinigung mit Fensterreinigung beginnt oftmals bei 350 bis 600 Euro. FLOXANT erstellt für Ihre Wohnungsreinigung stets einen garantierten Festpreis." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bieten Sie auch regelmäßige Büroreinigung an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Im B2B-Sektor führen wir für Unternehmen regelmäßige Unterhaltsreinigungen, Büroreinigung und Praxisreinigung außerhalb der regulären Geschäftszeiten durch." } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q || "Was unterscheidet eine Grundreinigung von einer Sichtreinigung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Bei der Grundreinigung greift man in die Tiefe: Wir behandeln stark verschmutzte Fußböden, entkalken die komplette Sanitäranlage, reinigen Fenster, Fugen und den Heizkörper. Es ist eine sehr intensive Pflege, ideal nach dem Auszug oder vor dem Einzug." } }
+            ],
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
+        { label: "Home", href: `/${pageLocale}` },
         { label: "Reinigung (Pillar)" }
     ];
 
     const breadcrumbJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": breadcrumbs.map((crumb, idx) => ({
-            "@type": "ListItem", "position": idx + 1, "name": crumb.label, "item": `https://www.floxant.de${crumb.href || `/${lang}/reinigung`}`
+            "@type": "ListItem", "position": idx + 1, "name": crumb.label, "item": `https://www.floxant.de${crumb.href || `/${pageLocale}/reinigung`}`
         }))
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-            <Breadcrumbs lang={lang} items={breadcrumbs} />
+            <Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} />
             
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
@@ -66,8 +65,8 @@ export default async function ReinigungPillarPage({ params }: { params: Promise<
                         Professionelle <span className="text-primary">Reinigung</span> auf höchstem Niveau
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Von der intensiven Grundreinigung und Endreinigung vor der Wohnungsübergabe bis hin zur peniblen Büro- und Praxisreinigung. FLOXANT ist Ihr Gebäudedienstleister für kompromisslose Sauberkeit zum Festpreis.
-                    </p>
+            Von der intensiven Grundreinigung und Endreinigung vor der Wohnungsübergabe bis hin zur peniblen Büro- und Praxisreinigung. FLOXANT ist Ihr Gebäudedienstleister für kompromisslose Sauberkeit zum Festpreis.
+          </p>
                 </div>
             </section>
 
@@ -172,12 +171,12 @@ export default async function ReinigungPillarPage({ params }: { params: Promise<
                     <h2 className="text-2xl font-bold tracking-tight mb-8">Unsere Reinigungs-Standorte</h2>
                     <p className="text-slate-600 mb-8 max-w-3xl mx-auto">Wir bieten unsere Gebäudereinigung und Wohnungsreinigungen lokal in ganz Bayern mit eigenen Einsatzteams an.</p>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/reinigung-regensburg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Regensburg</a>
-                        <a href={`/${lang}/reinigung-muenchen`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung München</a>
-                        <a href={`/${lang}/reinigung-nuernberg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Nürnberg</a>
-                        <a href={`/${lang}/reinigung-augsburg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Augsburg</a>
-                        <a href={`/${lang}/reinigung-landshut`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Landshut</a>
-                        <a href={`/${lang}/reinigung-passau`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Passau</a>
+                        <a href={`/${pageLocale}/reinigung-regensburg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Regensburg</a>
+                        <a href={`/${pageLocale}/reinigung-muenchen`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung München</a>
+                        <a href={`/${pageLocale}/reinigung-nuernberg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Nürnberg</a>
+                        <a href={`/${pageLocale}/reinigung-augsburg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Augsburg</a>
+                        <a href={`/${pageLocale}/reinigung-landshut`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Landshut</a>
+                        <a href={`/${pageLocale}/reinigung-passau`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Passau</a>
                     </div>
                 </div>
             </section>

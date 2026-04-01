@@ -59,7 +59,7 @@ export default function DocumentPage() {
                 
                 const initialItems: LineItem[] = [
                     {
-                        description: `${found.service?.charAt(0).toUpperCase()}${found.service?.slice(1) || ''} – ${found.details?.date || 'Nach Vereinbarung'}`,
+                        description: '$...$... – $...',
                         quantity: 1,
                         unitPrice: 0,
                     }
@@ -100,7 +100,7 @@ export default function DocumentPage() {
     };
 
     const addItem = () => {
-        setItems(prev => [...prev, { description: " Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.", quantity: 1, unitPrice: 0 }]);
+        setItems(prev => [...prev, { description: "", quantity: 1, unitPrice: 0 }]);
     };
 
     const deleteItem = (index: number) => {

@@ -1,20 +1,28 @@
+import { type Locale } from "@/i18n-config";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 import { Check, X, Shield, Clock, TrendingDown } from 'lucide-react';
+import { getDictionary } from "../../../../get-dictionary";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const parts = params.slug.split('-');
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    
+    const content = (dict?.pages as any)?.[slug] || {};
+  const parts = slug.split('-');
   const competitor = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'anderen Anbietern';
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
 
   return {
     title: `Die bessere Alternative zu ${competitor} in ${city} | FLOXANT`,
-    description: `Warum FLOXANT die ideale Wahl gegenüber ${competitor} in ${city} ist. 100% Festpreisgarantie, keine versteckten Kosten, sofortige Berechnung.`,
+    description: 'Warum FLOXANT die ideale Wahl gegenüber $... in $... ist. 100% $..., keine versteckt...',
   };
 }
 
-export default function AlternativenPage({ params }: { params: { slug: string } }) {
-  const parts = params.slug.split('-');
+export default async function AlternativenPage({ params }: { params: Promise<{ slug: string, lang: string }> }) {
+    var { lang: pageLocale, slug } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+  const parts = slug.split('-');
   const competitor = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Wettbewerbern';
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Stadt';
 
@@ -44,7 +52,7 @@ export default function AlternativenPage({ params }: { params: { slug: string } 
           
           <div className="divide-y divide-white/5">
             {[
-              { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: '100% Festpreisgarantie' },
+              { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: '100% {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}' },
               { label: 'Tarife', comp: 'Statischer Preis', flox: 'Intelligentes 3-Tier System' },
               { label: 'Wartezeit', comp: 'Bis zu 48h auf Angebot', flox: 'Sofortige KI-Kalkulation' },
               { label: 'Disposition', comp: 'Manuelle Subunternehmer', flox: 'Cluster-Optimierte Flotten' }
@@ -67,7 +75,7 @@ export default function AlternativenPage({ params }: { params: { slug: string } 
         <section className="max-w-5xl mx-auto text-center border-t border-white/10 pt-20">
           <h2 className="text-3xl font-light mb-8">Überzeugen Sie sich selbst.</h2>
           <p className="text-white/50 mb-12">Berechnen Sie in 60 Sekunden Ihren Preis für {city}.</p>
-          <DualCalculator />
+          <DualCalculator dic={dict} />
         </section>
         
       </div>

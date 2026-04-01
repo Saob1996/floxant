@@ -1,8 +1,23 @@
 export const i18n = {
     defaultLocale: 'de',
     locales: [
-        'de', 'en', 'ar', 'tr', 'ru', 'uk', 'pl', 'ro', 'bg',
-        'es', 'fr', 'it', 'fa', 'zh', 'vi', 'ko', 'ja'
+        'de',
+        'en',
+        'ar',
+        'tr',
+        'ru',
+        'uk',
+        'pl',
+        'ro',
+        'bg',
+        'es',
+        'fr',
+        'it',
+        'fa',
+        'zh',
+        'vi',
+        'ko',
+        'ja'
     ],
 } as const;
 

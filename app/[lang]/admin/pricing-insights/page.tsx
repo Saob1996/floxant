@@ -31,6 +31,7 @@ const clusterData = [
 ];
 
 export default function EnhancedPricingInsights() {
+
   const [timeRange, setTimeRange] = useState('7d');
   const [mounted, setMounted] = useState(false);
 

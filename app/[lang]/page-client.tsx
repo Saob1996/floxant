@@ -30,7 +30,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
     const hero = safeDict.hero || { title: "", subtitle: "" };
     const trust = safeDict.trust || { quality: "", insured: "", experience: "" };
     const contact = safeDict.contact || { title: "" };
-    const area = safeDict.area || { title: "", description: "", cities: { bavaria: "", munich: "", nuremberg: "", augsburg: "", regensburg: "" } };
+    const area = safeDict.area || { description: "", title: "", cities: { bavaria: "" } };
     const nav = safeDict.nav || {};
 
     // Map dictionary services to array
@@ -54,7 +54,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background overflow-hidden">
-            <Header lang={lang} dic={nav} />
+            <Header dic={dict} />
 
             <section id="zero" className="relative pt-32 pb-20 px-6 lg:pt-48">
                 <div className="absolute inset-0 bg-grid-white/5 bg-[size:40px_40px] [mask-image:radial-gradient(white,transparent_70%)] pointer-events-none" />

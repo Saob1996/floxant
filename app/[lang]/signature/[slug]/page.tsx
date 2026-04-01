@@ -1,7 +1,9 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
-import { i18n, type Locale } from "../../../../i18n-config";
-import { Header } from "@/components/Header";
+;
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
 
@@ -59,8 +61,8 @@ export async function generateMetadata({
 }: {
     params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-    const { lang, slug } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+    var { lang: pageLocale, slug } = await params;
+    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
     const key = SLUG_TO_KEY[slug as SignatureSlug];
     const content = (dict?.pages as any)?.[key] || {};
 
@@ -68,7 +70,7 @@ export async function generateMetadata({
         title: content.meta_title || `FLOXANT Signature – ${slug}`,
         description: content.meta_desc || "",
         alternates: {
-            canonical: `https://www.floxant.de/${lang}/signature/${slug}`,
+            canonical: `https://www.floxant.de/${pageLocale}/signature/${slug}`,
             languages: i18n.locales.reduce(
                 (acc, l) => {
                     acc[l] = `https://www.floxant.de/${l}/signature/${slug}`;
@@ -85,8 +87,8 @@ export default async function SignatureServicePage({
 }: {
     params: Promise<{ lang: string; slug: string }>;
 }) {
-    const { lang, slug } = await params;
-    const dict = await getDictionary(lang as Locale) as any;
+    var { lang: pageLocale, slug } = await params;
+    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
     const key = SLUG_TO_KEY[slug as SignatureSlug];
     const content = (dict?.pages as any)?.[key] || {};
     const area = (dict?.area as any) || {};
@@ -96,8 +98,7 @@ export default async function SignatureServicePage({
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={dict.nav} />
-            <Breadcrumbs lang={lang} items={[{ label: 'Signature Services', href: `/${lang}/#extras` }, { label: content.hero_title || slug }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: 'Signature Services', href: `/${pageLocale}/#extras` }, { label: content.hero_title || slug }]} />
 
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
@@ -171,7 +172,7 @@ export default async function SignatureServicePage({
                             return (
                                 <Link
                                     key={s}
-                                    href={`/${lang}/signature/${s}`}
+                                    href={`/${pageLocale}/signature/${s}`}
                                     className="group p-5 rounded-xl border border-border/50 hover:border-primary/30 transition-all"
                                 >
                                     <h3 className="font-semibold group-hover:text-primary transition-colors flex items-center gap-2">
@@ -199,7 +200,7 @@ export default async function SignatureServicePage({
                                 return (
                                     <Link
                                         key={svc}
-                                        href={`/${lang}/${svc}`}
+                                        href={`/${pageLocale}/${svc}`}
                                         className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                                     >
                                         {svcContent.hero_title || svc}

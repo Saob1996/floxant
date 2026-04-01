@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
 import dynamic from "next/dynamic";
@@ -14,18 +13,21 @@ const SmartBookingWizard = dynamic(
 );
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = dict?.pages?.halteverbotszone_nuernberg || {};
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: "halteverbotszone-nuernberg",
-        title: "Halteverbotszone Nürnberg – Beantragung & Aufstellung | FLOXANT",
-        description: "Halteverbotszone in Nürnberg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Halteverbotszone Nürnberg – Beantragung & Aufstell | FLOXANT",
+        description: content.meta_desc || `Halteverbotszone in Nürnberg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
     });
 }
 
 export default async function HalteverbotPage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_umzug || {};
 
     const serviceJsonLd = {
         "@context": "https://schema.org", "@type": "Service",
@@ -41,8 +43,7 @@ export default async function HalteverbotPage({ params }: { params: Promise<{ la
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
-            <Breadcrumbs lang={lang} items={[{ label: "Umzug Nürnberg", href: "/" + lang + "/umzug-nuernberg" }, { label: "Halteverbotszone Nürnberg" }]} />
+            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Nürnberg", href: "/" + pageLocale + "/umzug-nuernberg" }, { label: "Halteverbotszone Nürnberg" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
 
             <section className="pt-12 pb-24 px-6 bg-gradient-to-b from-amber-50 dark:from-amber-950/20 via-muted/30 to-background overflow-hidden relative">
@@ -101,8 +102,8 @@ export default async function HalteverbotPage({ params }: { params: Promise<{ la
                         <div className="px-6"><SmartBookingWizard dict={dict} /></div>
                     </div>
                     <div className="flex flex-wrap justify-center gap-3 mt-8">
-                        <Link href={"/" + lang + "/umzug-nuernberg"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Umzug Nürnberg</Link>
-                        <Link href={"/" + lang + "/halteverbotszone"} className="px-5 py-3 rounded-2xl border-2 border-primary/20 bg-primary/5 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground transition-all">Halteverbotszone Bayern</Link>
+                        <Link href={"/" + pageLocale + "/umzug-nuernberg"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">{dict.common.umzug_nuremberg}</Link>
+                        <Link href={"/" + pageLocale + "/halteverbotszone"} className="px-5 py-3 rounded-2xl border-2 border-primary/20 bg-primary/5 text-sm font-bold text-primary hover:bg-primary hover:text-primary-foreground transition-all">Halteverbotszone Bayern</Link>
                     </div>
                 </div>
             </section>

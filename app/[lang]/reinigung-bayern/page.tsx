@@ -1,28 +1,31 @@
+import { i18n } from "@/i18n-config";
+import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
-import { i18n, type Locale } from "../../../i18n-config";
-import { Header } from "@/components/Header";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { CheckCircle2, MapPin, Shield, Sparkles, Clock, ArrowRight } from "lucide-react";
-
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
     { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
 );
 
-export async function generateMetadata({
-    params,
-}: {
+import Link from "next/link";
+import { CheckCircle2, MapPin, Shield, Sparkles, Clock, ArrowRight } from "lucide-react";
+
+
+
+export async function generateMetadata({ params, }: {
     params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_reinigung || {};
     return {
-        title: "Reinigung Bayern | Professionelle Endreinigung | FLOXANT",
-        description: "Professionelle Reinigungsdienstleistungen in ganz Bayern. Endreinigung nach Vermieterstandards, Baureinigung & Büroreinigung. Regensburg, Nürnberg, München. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+        title: content.meta_title || "Reinigung Bayern | Professionelle Endreinigung | FLOXANT",
+        description: 'description: content.meta_desc || Professionelle Reinigungsdienstleistungen in ganz Bayern. Endreinigung nach Vermieterstandards, Baureinigung & Büror...',
         alternates: {
-            canonical: `https://floxant.de/${lang}/reinigung-bayern`,
+            canonical: `https://floxant.de/${pageLocale}/reinigung-bayern`,
             languages: i18n.locales.reduce(
                 (acc, l) => {
                     acc[l] = `https://floxant.de/${l}/reinigung-bayern`;
@@ -39,14 +42,15 @@ export default async function ReinigungBayern({
 }: {
     params: Promise<{ lang: string }>;
 }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+    const content = (dict as any)?.pages?.service_reinigung || {};
 
     const localBusinessJsonLd = {
         "@context": "https://schema.org", "@type": "LocalBusiness",
         "name": "FLOXANT Reinigung Bayern",
         "description": "Professionelle Reinigungsdienstleistungen in ganz Bayern.",
-        "url": `https://www.floxant.de/${lang}/reinigung-bayern`,
+        "url": `https://www.floxant.de/${pageLocale}/reinigung-bayern`,
         "telephone": "+4915771105087",
         "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
         "priceRange": "$$"
@@ -62,19 +66,18 @@ export default async function ReinigungBayern({
     const breadcrumbsJsonLd = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-            { "@type": "ListItem", "position": 2, "name": "Reinigung", "item": `https://www.floxant.de/${lang}/reinigung` },
-            { "@type": "ListItem", "position": 3, "name": "Reinigung Bayern", "item": `https://www.floxant.de/${lang}/reinigung-bayern` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": "Reinigung", "item": `https://www.floxant.de/${pageLocale}/reinigung` },
+            { "@type": "ListItem", "position": 3, "name": "Reinigung Bayern", "item": `https://www.floxant.de/${pageLocale}/reinigung-bayern` }
         ]
     };
 
     return (
         <main className="min-h-screen bg-background">
-            <Header lang={lang} dic={(dict as any).nav} />
             <Breadcrumbs
-                lang={lang}
+                pageLocale={pageLocale}
                 items={[
-                    { label: "Reinigung", href: `/${lang}/reinigung` },
+                    { label: "Reinigung", href: `/${pageLocale}/reinigung` },
                     { label: "Bayern" },
                 ]}
             />
@@ -99,7 +102,8 @@ export default async function ReinigungBayern({
             </section>
 
             {/* Main Content */}
-            <section className="py-20 px-6">
+            
+      <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
 
                     {/* Introduction */}
@@ -183,10 +187,10 @@ export default async function ReinigungBayern({
                         </p>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {[
-                                { href: `/${lang}/reinigung-regensburg`, label: "Regensburg" },
-                                { href: `/${lang}/umzug-nuernberg`, label: "Nürnberg" },
-                                { href: `/${lang}/umzug-muenchen`, label: "München" },
-                                { href: `/${lang}/umzug-augsburg`, label: "Augsburg" },
+                                { href: `/${pageLocale}/reinigung-regensburg`, label: "Regensburg" },
+                                { href: `/${pageLocale}/umzug-nuernberg`, label: "Nürnberg" },
+                                { href: `/${pageLocale}/umzug-muenchen`, label: "München" },
+                                { href: `/${pageLocale}/umzug-augsburg`, label: "Augsburg" },
                             ].map((link) => (
                                 <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
                                     <ArrowRight className="w-4 h-4 text-primary" /> {link.label}
@@ -199,11 +203,11 @@ export default async function ReinigungBayern({
                     <div className="border-t border-border pt-12">
                         <h3 className="text-lg font-semibold mb-6">Weitere Leistungen in Bayern</h3>
                         <div className="flex flex-wrap gap-4">
-                            <Link href={`/${lang}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Bayern</Link>
-                            <Link href={`/${lang}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
-                            <Link href={`/${lang}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
-                            <Link href={`/${lang}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
-                            <Link href={`/${lang}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
+                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
+                            <Link href={`/${pageLocale}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
+                            <Link href={`/${pageLocale}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
+                            <Link href={`/${pageLocale}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
+                            <Link href={`/${pageLocale}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
                         </div>
                     </div>
 
@@ -213,7 +217,7 @@ export default async function ReinigungBayern({
                         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                             Transparentes Festpreisangebot mit Zufriedenheitsgarantie. Kurzfristig verfügbar in ganz Bayern.
                         </p>
-                        <DualCalculator />
+                        <DualCalculator dic={dict} />
                     </div>
 
                 </div>

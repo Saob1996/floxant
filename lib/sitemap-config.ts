@@ -342,13 +342,6 @@ export interface SitemapUrl {
 
 export const SITEMAP_SEGMENTS = [
     'sitemap-de.xml',
-    'sitemap-en.xml',
-    'sitemap-ar.xml',
-    'sitemap-tr.xml',
-    'sitemap-ru.xml',
-    'sitemap-uk.xml',
-    'sitemap-pl.xml',
-    'sitemap-other.xml',
     'sitemap-core.xml',
     'sitemap-signature.xml',
     'sitemap-legal.xml',

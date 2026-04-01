@@ -2,23 +2,24 @@ import { type Locale } from "../../../../i18n-config";
 import { getDictionary } from "../../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Clock, CalendarDays, UserCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'blog/umzug-kosten-regensburg',
         title: 'Umzugskosten Regensburg: Echte Preise & Spartipps | FLOXANT',
-        description: 'Was kostet ein Umzug in Regensburg wirklich? Wir schlüsseln reale Preise, Faktoren und versteckte Kosten auf. So sparen Sie beim Umzug. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Was kostet ein Umzug in Regensburg wirklich? Wir schlüsseln reale Preise, Faktoren und versteckte Kosten auf. So sparen Sie beim Umzug. Sofortpreis on...',
     });
 }
 
 export default async function BlogUmzugKostenRegensburg({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
+
+    const content = dict?.pages?.umzug_kosten_regensburg || {} as any;
 
     const articleJsonLd = {
         "@context": "https://schema.org",
@@ -34,25 +35,24 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "Was kostet ein Umzug innerhalb von Regensburg durchschnittlich?", "acceptedAnswer": { "@type": "Answer", "text": "Für eine 2-Zimmer-Wohnung innerhalb Regensburgs müssen Sie bei einem professionellen Umzugsunternehmen mit Kosten zwischen 600 und 1.200 Euro rechnen, abhängig vom Transportvolumen und Serviceumfang." } },
-            { "@type": "Question", "name": "Wie kann ich bei den Umzugskosten sparen?", "acceptedAnswer": { "@type": "Answer", "text": "Sie senken die Kosten erheblich, indem Sie vorab rigoros entrümpeln, Umzugskartons selbst packen und die Halteverbotszone (falls erlaubt) selbst organisieren. Buchen Sie bei FLOXANT nur den Transport und Beladeservice." } }
-        ]
+                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug innerhalb von Regensburg durchschnittlich?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Für eine 2-Zimmer-Wohnung innerhalb Regensburgs müssen Sie bei einem professionellen Umzugsunternehmen mit Kosten zwischen 600 und 1.200 Euro rechnen, abhängig vom Transportvolumen und Serviceumfang." } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie kann ich bei den Umzugskosten sparen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Sie senken die Kosten erheblich, indem Sie vorab rigoros entrümpeln, Umzugskartons selbst packen und die Halteverbotszone (falls erlaubt) selbst organisieren. Buchen Sie bei FLOXANT nur den Transport und Beladeservice." } }
+            ]
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
-        { label: "Blog", href: `/${lang}/blog` },
+        { label: "Home", href: `/${pageLocale}` },
+        { label: "Blog", href: `/${pageLocale}/blog` },
         { label: "Umzugskosten Regensburg" }
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
-                <div className="mb-8"><Breadcrumbs lang={lang} items={breadcrumbs}  /></div>
+                <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs}  /></div>
                 
                 <article>
                     <header className="mb-12">
@@ -141,22 +141,22 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                             </ul>
                         </div>
                         <p>
-                            <strong>Der FLOXANT-Vorteil:</strong> Wir bei <a href={`/${lang}/umzug-regensburg`}>FLOXANT in Regensburg</a> arbeiten ausschließlich mit schriftlich fixierten <strong>Festpreisen</strong>. Nach einer kurzen (oft digitalen) Vorab-Besichtigung Ihres Inventars garantieren wir Ihnen den Preis stichtagsgenau.
+                            <strong>Der FLOXANT-Vorteil:</strong> Wir bei <a href={`/${pageLocale}/umzug-regensburg`}>FLOXANT in Regensburg</a> arbeiten ausschließlich mit schriftlich fixierten <strong>Festpreisen</strong>. Nach einer kurzen (oft digitalen) Vorab-Besichtigung Ihres Inventars garantieren wir Ihnen den Preis stichtagsgenau.
                         </p>
 
                         <h2>5 Geheimtipps: So drücken Sie die Umzugskosten</h2>
                         <ol>
-                            <li><strong>Gnadenlos Entrümpeln:</strong> Je weniger mitkommt, desto billiger wird es. Nutzen Sie die Gelegenheit für eine radikale <a href={`/${lang}/entruempelung-regensburg`}>Entrümpelung</a> Ihres Kellers. Was auf den Flohmarkt oder Wertstoffhof geht, muss nicht im teuren LKW transportiert werden.</li>
+                            <li><strong>Gnadenlos Entrümpeln:</strong> Je weniger mitkommt, desto billiger wird es. Nutzen Sie die Gelegenheit für eine radikale <a href={`/${pageLocale}/entruempelung-regensburg`}>{dict.common.entruempelung}</a> Ihres Kellers. Was auf den Flohmarkt oder Wertstoffhof geht, muss nicht im teuren LKW transportiert werden.</li>
                             <li><strong>Flexibilität beim Datum:</strong> Umzüge zum Monatsende oder an Freitagen/Wochenenden sind am teuersten, da die Nachfrage explodiert. Wer flexibel zur Monatsmitte (z.B. an einem Dienstag) umzieht, kann bei fast allen Umzugsunternehmen Rabatte aushandeln.</li>
                             <li><strong>Eigenleistung erbringen:</strong> Übernehmen Sie den Packservice selbst. Wer seine Kartons (fachgerecht!) selbst packt und Möbel eigenständig vorab demontiert, spart wertvolle Arbeitsstunden des Fachpersonals.</li>
-                            <li><strong>Beiladungen bei Kleinstmengen nutzen:</strong> Wenn Sie nur ein Sofa und drei Kommoden transportieren müssen, buchen Sie eine studentische <a href={`/${lang}/kleintransporte`}>Beiladung / Kleintransport</a> anstatt eines Voll-Umzugs.</li>
+                            <li><strong>Beiladungen bei Kleinstmengen nutzen:</strong> Wenn Sie nur ein Sofa und drei Kommoden transportieren müssen, buchen Sie eine studentische <a href={`/${pageLocale}/kleintransporte`}>Beiladung / Kleintransport</a> anstatt eines Voll-Umzugs.</li>
                             <li><strong>Steuerliche Absetzbarkeit:</strong> Vergessen Sie nicht: Haushaltsnahe Dienstleistungen (wie ein Umzug) können Sie in Deutschland zu 20% (bis max. 4.000 € pro Jahr) direkt von der Steuerschuld abziehen. Bei berufsbedingten Umzügen winken sogar noch höhere Werbungskostenabzüge!</li>
                         </ol>
 
                         <div className="bg-primary/5 p-8 rounded-2xl border-primary/20 border mt-12 text-center">
                             <h3 className="mt-0">Lassen Sie uns Ihren Festpreis berechnen</h3>
                             <p className="mb-6">Anonyme Listen im Internet ersetzen keine professionelle Kalkulation. Nutzen Sie unser smartes Buchungstool, geben Sie Ihre Zimmeranzahl ein und wir senden Ihnen sofort einen verlässlichen Preis für Ihren Umzug in Regensburg.</p>
-                            <a href={`/${lang}/#booking`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
+                            <a href={`/${pageLocale}/#booking`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                                 Zum Preisrechner <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>
@@ -168,14 +168,14 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
                 <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href={"/" + lang + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
-                    <a href={"/" + lang + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
-                    <a href={"/" + lang + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
-                    <a href={"/" + lang + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
-                    <a href={"/" + lang + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug München</a>
-                    <a href={"/" + lang + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Nürnberg</a>
-                    <a href={"/" + lang + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
-                    <a href={"/" + lang + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
+                    <a href={"/" + pageLocale + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
+                    <a href={"/" + pageLocale + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
+                    <a href={"/" + pageLocale + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
+                    <a href={"/" + pageLocale + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_munich}</a>
+                    <a href={"/" + pageLocale + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_nuremberg}</a>
+                    <a href={"/" + pageLocale + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
         
@@ -204,9 +204,9 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                 <div className="container px-4 max-w-4xl mx-auto text-center">
                     <h3 className="text-2xl font-bold mb-8">Mehr zum Thema</h3>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/umzug`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Allgemeine Umzugsinformationen</a>
-                        <a href={`/${lang}/entruempelung-regensburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Entrümpelungskosten Regensburg</a>
-                        <a href={`/${lang}/blog/umzug-checkliste`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Die perfekte Checkliste</a>
+                        <a href={`/${pageLocale}/umzug`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Allgemeine Umzugsinformationen</a>
+                        <a href={`/${pageLocale}/entruempelung-regensburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Entrümpelungskosten Regensburg</a>
+                        <a href={`/${pageLocale}/blog/umzug-checkliste`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Die perfekte Checkliste</a>
                     </div>
                 </div>
             </div>

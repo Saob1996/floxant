@@ -2,23 +2,22 @@ import { type Locale } from "../../../../i18n-config";
 import { getDictionary } from "../../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from 'next';
-import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Clock, CalendarDays, UserCircle, ArrowRight, Trash2, Home, Receipt, CheckCircle2 } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang } = await params;
+    var { lang: pageLocale } = await params;
     return generatePageSEO({
-        lang,
+        pageLocale,
         path: 'blog/entrumpelung-kosten-bayern',
         title: 'Entrümpelung Kosten Bayern: Was kostet die Räumung? | FLOXANT',
-        description: 'Von Kellerentrümpelung bis zur Wohnungsauflösung: Alle Entrümpelungskosten in Bayern (inkl. Entsorgungsgebühren) detailliert aufgeschlüsselt. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.',
+        description: 'Von Kellerentrümpelung bis zur Wohnungsauflösung: Alle Entrümpelungskosten in Bayern (inkl. Entsorgungsgebühren) detailliert aufgeschlüsselt. Sofortpr...',
     });
 }
 
 export default async function BlogEntrumpelungKosten({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang } = await params;
-    const dict = await getDictionary(lang as Locale);
+    var { lang: pageLocale } = await params;
+    var dict = await getDictionary(pageLocale as Locale);
 
     const articleJsonLd = {
         "@context": "https://schema.org",
@@ -32,18 +31,17 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
     };
 
     const breadcrumbs = [
-        { label: "Home", href: `/${lang}` },
-        { label: "Blog", href: `/${lang}/blog` },
+        { label: "Home", href: `/${pageLocale}` },
+        { label: "Blog", href: `/${pageLocale}/blog` },
         { label: "Entrümpelung Kosten Bayern" }
     ];
 
     return (
         <main className="min-h-screen bg-white">
-            <Header lang={lang} dic={(dict as any).nav} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
-                <div className="mb-8"><Breadcrumbs lang={lang} items={breadcrumbs}  /></div>
+                <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs}  /></div>
                 
                 <article>
                     <header className="mb-12">
@@ -62,7 +60,7 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
 
                     <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
                         <p>
-                            Egal ob es der eigene Keller ist, der aus allen Nähten platzt, oder ob Sie als Erbe die komplette <a href={`/${lang}/entruempelung`}>Wohnungsauflösung</a> eines Familienangehörigen in die Wege leiten müssen: Eine professionelle Räumung ist oft unausweichlich. Doch wie viel Budget müssen Sie für einen zertifizierten Fachbetrieb in Bayern (z.B. in Regensburg, München oder Nürnberg) einplanen?
+                            Egal ob es der eigene Keller ist, der aus allen Nähten platzt, oder ob Sie als Erbe die komplette <a href={`/${pageLocale}/entruempelung`}>Wohnungsauflösung</a> eines Familienangehörigen in die Wege leiten müssen: Eine professionelle Räumung ist oft unausweichlich. Doch wie viel Budget müssen Sie für einen zertifizierten Fachbetrieb in Bayern (z.B. in Regensburg, München oder Nürnberg) einplanen?
                         </p>
 
                         <h2>Wie setzen sich die Entrümpelungskosten zusammen?</h2>
@@ -128,13 +126,13 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
 
                         <h2>Zusatzkosten nach der Entrümpelung: Die Endreinigung</h2>
                         <p>
-                            Das Haus ist leer – was nun? Oft fordern Vermieter im Mietvertrag oder Käufer im Notarvertrag die Übergabe in einem zumindest "besenreinen" Zustand. Bei starken Verunreinigungen ist oft eine tiefergehende <a href={`/${lang}/reinigung`}>Wohnungsreinigung (Grundreinigung)</a> notwendig. Wir empfehlen stets, Räumung und Reinigung aus einer Hand beim selben Unternehmen zu buchen, um Schnittstellenprobleme zu vermeiden.
+                            Das Haus ist leer – was nun? Oft fordern Vermieter im Mietvertrag oder Käufer im Notarvertrag die Übergabe in einem zumindest "besenreinen" Zustand. Bei starken Verunreinigungen ist oft eine tiefergehende <a href={`/${pageLocale}/reinigung`}>Wohnungsreinigung (Grundreinigung)</a> notwendig. Wir empfehlen stets, Räumung und Reinigung aus einer Hand beim selben Unternehmen zu buchen, um Schnittstellenprobleme zu vermeiden.
                         </p>
 
                         <div className="bg-primary/5 p-8 rounded-2xl border-primary/20 border mt-12 text-center">
                             <h3 className="mt-0">Ihr Festpreis Angebot in 24 Stunden</h3>
                             <p className="mb-6">Lassen Sie uns helfen. Schildern Sie uns über unser Formular kurz den Umfang der Räumung in Bayern. Unser Team meldet sich umgehend mit einem transparenten Kostenvoranschlag.</p>
-                            <a href={`/${lang}/#booking`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
+                            <a href={`/${pageLocale}/#booking`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                                 Zur kostenfreien Anfrage <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>
@@ -145,14 +143,14 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
                 <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <a href={"/" + lang + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
-                    <a href={"/" + lang + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
-                    <a href={"/" + lang + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
-                    <a href={"/" + lang + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
-                    <a href={"/" + lang + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug München</a>
-                    <a href={"/" + lang + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Nürnberg</a>
-                    <a href={"/" + lang + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
-                    <a href={"/" + lang + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
+                    <a href={"/" + pageLocale + "/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
+                    <a href={"/" + pageLocale + "/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
+                    <a href={"/" + pageLocale + "/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>
+                    <a href={"/" + pageLocale + "/umzug-muenchen"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_munich}</a>
+                    <a href={"/" + pageLocale + "/umzug-nuernberg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">{dict.common.umzug_nuremberg}</a>
+                    <a href={"/" + pageLocale + "/umzug-landkreis-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Landkreis Regensburg</a>
+                    <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
         
@@ -163,9 +161,9 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
                 <div className="container px-4 max-w-4xl mx-auto text-center">
                     <h3 className="text-2xl font-bold mb-8">Mehr zum Thema Entrümpelung</h3>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${lang}/entruempelung`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Allgemeine Infos zur Auflösung</a>
-                        <a href={`/${lang}/entruempelung-regensburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Entrümpelung in Regensburg</a>
-                        <a href={`/${lang}/blog/wohnungsaufloesung-was-tun`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Ratgeber: Auflösung nach Todesfall</a>
+                        <a href={`/${pageLocale}/entruempelung`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Allgemeine Infos zur Auflösung</a>
+                        <a href={`/${pageLocale}/entruempelung-regensburg`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Entrümpelung in Regensburg</a>
+                        <a href={`/${pageLocale}/blog/wohnungsaufloesung-was-tun`} className="bg-white border hover:border-primary shadow-sm px-6 py-2 rounded-lg font-medium">➔ Ratgeber: Auflösung nach Todesfall</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,5 @@
+home -> total: 20, possible German: 0
+calculator -> total: 196, possible German: 0
+common -> total: 82, possible German: 6
+reviews -> total: 21, possible German: 0
+pages -> total: 1691, possible German: 1036

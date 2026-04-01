@@ -77,24 +77,9 @@ export const generateSitemapSegmentResponse = (segmentId: string) => {
     } 
     else if (segmentId === 'signature') {
         SIGNATURE_SERVICES.forEach(slug => buildEntry('de', `signature/${slug}`, '0.7', 'monthly'));
-        ['en', 'ar', 'tr', 'ru', 'uk', 'pl'].forEach(locale => {
-            SIGNATURE_SERVICES.forEach(slug => buildEntry(locale, `signature/${slug}`, '0.5', 'monthly'));
-        });
     }
     else if (segmentId === 'legal') {
-        ALL_LOCALES.forEach(locale => {
-            LEGAL_PAGES.forEach(slug => buildEntry(locale, slug, '0.3', 'yearly'));
-        });
-    }
-    else if (segmentId === 'other') {
-        const minorLocales = ALL_LOCALES.filter(l => !['de', 'en', 'ar', 'tr', 'ru', 'uk', 'pl'].includes(l));
-        minorLocales.forEach(locale => {
-            buildEntry(locale, '', '0.5', 'daily');
-            CORE_SERVICES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
-            CITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'daily'));
-            SERVICE_CITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
-            BAVARIA_AUTHORITY_PAGES.forEach(s => buildEntry(locale, s, '0.5', 'weekly'));
-        });
+        LEGAL_PAGES.forEach(slug => buildEntry('de', slug, '0.3', 'yearly'));
     }
     else {
         const locale = segmentId;
@@ -115,16 +100,11 @@ export const generateSitemapSegmentResponse = (segmentId: string) => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls.map(url => {
-    let hreflangs = ALL_LOCALES.map(locLang => `    <xhtml:link rel="alternate" hreflang="${locLang}" href="${escapeXml(`${BASE_URL}/${locLang}${url.pagePath ? '/' + url.pagePath : ''}`)}" />`).join('\n');
-    if (!url.pagePath) {
-        hreflangs += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${BASE_URL}/de`)}" />`;
-    }
     return `  <url>
     <loc>${escapeXml(url.loc)}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-${hreflangs}
   </url>`;
 }).join('\n')}
 </urlset>`;

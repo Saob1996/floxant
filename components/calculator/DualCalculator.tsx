@@ -11,9 +11,10 @@ import ExitIntentModal from './ExitIntentModal';
 
 interface DualCalculatorProps {
   initialService?: ServiceType;
+  dic?: any;
 }
 
-export default function DualCalculator({ initialService }: DualCalculatorProps) {
+export default function DualCalculator({ initialService, dic }: DualCalculatorProps) {
   const { mode, setServiceType } = useCalculatorStore();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function DualCalculator({ initialService }: DualCalculatorProps) 
 
   return (
     <div className="w-full relative">
-      <LiveActivityFeed />
+      <LiveActivityFeed dic={dic} />
       <ExitIntentModal />
       <AnimatePresence mode="wait">
         {mode === 'express' && (
@@ -35,7 +36,7 @@ export default function DualCalculator({ initialService }: DualCalculatorProps) 
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
           >
-            <ExpressCalculator />
+            <ExpressCalculator dic={dic} />
           </m.div>
         )}
 
@@ -47,13 +48,10 @@ export default function DualCalculator({ initialService }: DualCalculatorProps) 
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5, type: 'spring', bounce: 0.3 }}
           >
-            <AdvancedCalculator />
+            <AdvancedCalculator dic={dic} />
           </m.div>
         )}
 
-        {/* Lead state - we added this to Mode conditionally but let's assume mode === 'lead' is an extension. */}
-        {/* We need to make sure 'lead' is aded to CalculatorMode type in the store. */}
-        {/* If the user clicks "Angebot sichern", we will switch mode to 'lead'. */}
         {mode === ('lead' as any) && (
           <m.div 
             key="lead"
@@ -62,7 +60,7 @@ export default function DualCalculator({ initialService }: DualCalculatorProps) 
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.4 }}
           >
-            <LeadCaptureForm />
+            <LeadCaptureForm dic={dic} />
           </m.div>
         )}
       </AnimatePresence>

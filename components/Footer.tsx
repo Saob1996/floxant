@@ -4,31 +4,9 @@ import Link from "next/link";
 import { Logo as BrandLogo } from "@/components/BrandLogo";
 import { company } from "@/lib/company";
 
-type Dictionary = {
-    footer: {
-        rights: string;
-        impressum: string;
-        privacy: string;
-        terms: string;
-        revocation: string;
-        booking: string;
-        areas: string;
-    };
-    area: {
-        cities: {
-            munich: string;
-            nuremberg: string;
-            augsburg: string;
-            regensburg: string;
-            bavaria: string;
-            germany: string;
-        }
-    }
-};
-
 interface FooterProps {
     lang: string;
-    dic?: Dictionary;
+    dic?: any;
 }
 
 export function Footer({ lang, dic }: FooterProps) {
@@ -45,14 +23,14 @@ export function Footer({ lang, dic }: FooterProps) {
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-3xl rounded-full -z-10" />
                     <div className="max-w-xl z-10">
                         <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                            Bereit für einen stressfreien Service?
+                            {dic?.common?.ready_for_service || "Ready for a stress-free service?"}
                         </h2>
                         <p className="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">
-                            Erhalten Sie sofort Ihr unverbindliches Angebot über unseren intelligenten Kostenrechner oder schreiben Sie uns bei Fragen ganz einfach per WhatsApp.
+                            {dic?.common?.cta_description || "Get your non-binding offer immediately..."}
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <Link href={`/${lang}/#contact`} className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-all text-center">
-                                Direkt zum Kostenrechner
+                                {dic?.common?.cost_calculator_btn || "Direct to Cost Calculator"}
                             </Link>
                             <a href="https://wa.me/4915771105087" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold hover:bg-[#25D366]/20 transition-all text-center flex items-center justify-center gap-2">
                                 <span className="relative flex h-2 w-2">
@@ -75,7 +53,7 @@ export function Footer({ lang, dic }: FooterProps) {
                             FLOXANT<span className="text-primary">.</span>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                            FLOXANT ist Ihr verlässlicher, regional verwurzelter Dienstleister in Bayern. Mit unserem Hauptverwaltungssitz nahe Regensburg koordinieren wir tägliche Umzüge, spezialisierte Entrümpelungen und gewerbliche Reinigungen im gesamten Freistaat – von der Oberpfalz bis München. Profitieren Sie von unserer zertifizierten Verkehrshaftung, kurzfristigen Dispositionen und limitierten Festpreisen. Wir sind Ihr zentraler Ansprechpartner für Logistik und Transport.
+                            {dic?.common?.authority_bio || "FLOXANT is your reliable, regionally rooted service provider in Bavaria..."}
                         </p>
                     </div>
                 </div>
@@ -83,47 +61,47 @@ export function Footer({ lang, dic }: FooterProps) {
                 {/* (A) Core Services — HIGH SEO PRIORITY */}
                 <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">Umzug</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.moving_header || "Umzug"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/umzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Privatumzug</Link></li>
-                            <li><Link href={`/${lang}/buero-umzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Büroumzug</Link></li>
-                            <li><Link href={`/${lang}/fernumzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Fernumzug</Link></li>
-                            <li><Link href={`/${lang}/montage`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Möbelmontage</Link></li>
-                            <li><Link href={`/${lang}/halteverbotszone`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Halteverbotszone</Link></li>
+                            <li><Link href={`/${lang}/umzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.private_moving || "Privatumzug"}</Link></li>
+                            <li><Link href={`/${lang}/buero-umzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.office_moving || "Büroumzug"}</Link></li>
+                            <li><Link href={`/${lang}/fernumzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.long_distance || "Fernumzug"}</Link></li>
+                            <li><Link href={`/${lang}/montage`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.furniture_assembly || "Möbelmontage"}</Link></li>
+                            <li><Link href={`/${lang}/halteverbotszone`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.no_parking_zone || "Halteverbotszone"}</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">Reinigung & Räumung</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.cleaning_clearance_header || "Reinigung & Räumung"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/reinigung`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Reinigung</Link></li>
-                            <li><Link href={`/${lang}/entruempelung`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Entrümpelung</Link></li>
-                            <li><Link href={`/${lang}/reinigung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Reinigung Bayern</Link></li>
-                            <li><Link href={`/${lang}/entruempelung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Entrümpelung Bayern</Link></li>
-                            <li><Link href={`/${lang}/wohnungsaufloesung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Wohnungsauflösung</Link></li>
+                            <li><Link href={`/${lang}/reinigung`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.cleaning || "Reinigung"}</Link></li>
+                            <li><Link href={`/${lang}/entruempelung`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.clearance || "Entrümpelung"}</Link></li>
+                            <li><Link href={`/${lang}/reinigung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.cleaning_bavaria || "Reinigung Bayern"}</Link></li>
+                            <li><Link href={`/${lang}/entruempelung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.clearance_bavaria || "Entrümpelung Bayern"}</Link></li>
+                            <li><Link href={`/${lang}/wohnungsaufloesung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.apartment_clearance || "Wohnungsauflösung"}</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">Standorte</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.locations_header || "Standorte"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/umzug-regensburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.regensburg}</Link></li>
-                            <li><Link href={`/${lang}/umzug-nuernberg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.nuremberg}</Link></li>
-                            <li><Link href={`/${lang}/umzug-muenchen`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.munich}</Link></li>
-                            <li><Link href={`/${lang}/umzug-augsburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.augsburg}</Link></li>
+                            <li><Link href={`/${lang}/umzug-regensburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.regensburg || "Regensburg"}</Link></li>
+                            <li><Link href={`/${lang}/umzug-nuernberg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.nuremberg || "Nürnberg"}</Link></li>
+                            <li><Link href={`/${lang}/umzug-muenchen`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.munich || "München"}</Link></li>
+                            <li><Link href={`/${lang}/umzug-augsburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.augsburg || "Augsburg"}</Link></li>
                             <li><Link href={`/${lang}/umzug-landshut`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Landshut</Link></li>
                             <li><Link href={`/${lang}/umzug-passau`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Passau</Link></li>
-                            <li><Link href={`/${lang}/umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic.area.cities.bavaria}</Link></li>
+                            <li><Link href={`/${lang}/umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.bavaria || "Bayern"}</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">Spezial</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.special_header || "Spezial"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/24h-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">24h Umzug</Link></li>
-                            <li><Link href={`/${lang}/studentenumzug-regensburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Studentenumzug</Link></li>
-                            <li><Link href={`/${lang}/familienumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Familienumzug</Link></li>
-                            <li><Link href={`/${lang}/seniorenumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Seniorenumzug</Link></li>
-                            <li><Link href={`/${lang}/umzugskosten-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Umzugskosten</Link></li>
-                            <li><Link href={`/${lang}/service-area-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Servicegebiet</Link></li>
-                            <li><Link href={`/${lang}/ratgeber`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Ratgeber</Link></li>
+                            <li><Link href={`/${lang}/24h-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.moving_24h || "24h Umzug"}</Link></li>
+                            <li><Link href={`/${lang}/studentenumzug-regensburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.student_moving || "Studentenumzug"}</Link></li>
+                            <li><Link href={`/${lang}/familienumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.family_moving || "Familienumzug"}</Link></li>
+                            <li><Link href={`/${lang}/seniorenumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.senior_moving || "Seniorenumzug"}</Link></li>
+                            <li><Link href={`/${lang}/umzugskosten-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.moving_costs || "Umzugskosten"}</Link></li>
+                            <li><Link href={`/${lang}/service-area-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.service_area || "Servicegebiet"}</Link></li>
+                            <li><Link href={`/${lang}/ratgeber`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.guide || "Ratgeber"}</Link></li>
                         </ul>
                     </div>
                 </div>
