@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: 'umzug-regensburg',
-        title: 'Umzugsunternehmen Regensburg ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: "Professionelles Umzugsunternehmen in Regensburg. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen!",
+        title: 'Umzugsunternehmen Regensburg ✓ Festpreis ✓ Versichert | FLOXANT',
+        description: "Professionelles Umzugsunternehmen in Regensburg & Oberpfalz. Umzug, Entrümpelung und Reinigung zum Festpreis. Altstadt-Logistik, 24h-Service, voll versichert. Jetzt kostenloses Angebot anfragen!",
     });
 }
 
@@ -46,10 +46,23 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
         "description": "Professionelles Umzugsunternehmen. Moving company and clearance services in Regensburg. Local moving, long distance, and professional packing.",
         "url": `https://www.floxant.de/${pageLocale}/umzug-regensburg`,
         "telephone": "+4915771105087",
-        "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "addressRegion": "Bayern", "addressCountry": "DE" },
+        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
         "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
-        "areaServed": [{ "@type": "City", "name": "Regensburg" }, { "@type": "AdministrativeArea", "name": "Oberpfalz" }],
+        "areaServed": [
+            { "@type": "City", "name": "Regensburg" },
+            { "@type": "AdministrativeArea", "name": "Oberpfalz" },
+            { "@type": "City", "name": "Neutraubling" },
+            { "@type": "City", "name": "Lappersdorf" },
+            { "@type": "City", "name": "Regenstauf" },
+            { "@type": "City", "name": "Nittendorf" },
+            { "@type": "City", "name": "Sinzing" },
+            { "@type": "City", "name": "Pentling" },
+            { "@type": "City", "name": "Barbing" },
+            { "@type": "City", "name": "Tegernheim" }
+        ],
         "priceRange": "$$",
+        "hasMap": "https://maps.google.com/?q=FLOXANT+Regensburg+Johanna-Kinkel-Straße+1",
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "127", "bestRating": "5" },
     };
 
     const serviceJsonLd = {
@@ -143,9 +156,11 @@ export default async function UmzugRegensburg({ params }: { params: Promise<{ la
                         <h2 className="text-3xl font-bold text-foreground mb-8">Häufige Fragen zum Umzug in Regensburg</h2>
                         <div className="space-y-6">
                             {[
-                                { q: "Was kostet ein Umzug in Regensburg?", a: "Ein lokaler Umzug kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. Nach kostenloser Besichtigung erhalten Sie ein verbindliches Festpreisangebot." },
-                                { q: "Machen Sie auch Umzüge in der Altstadt?", a: "Ja. Wir sind auf Altstadt-Logistik spezialisiert und kümmern uns um alle nötigen Genehmigungen für Zufahrten in der Fußgängerzone." },
-                                { q: "Bieten Sie Fernumzüge ab Regensburg an?", a: "Ja. Wöchentliche Touren nach NRW und ganz Deutschland ermöglichen effiziente Preise für Fernumzüge." },
+                                { q: content.faqs?.[0]?.q || "Was kostet ein Umzug in Regensburg?", a: content.faqs?.[0]?.a || "Ein lokaler Umzug kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. Nach kostenloser Besichtigung erhalten Sie ein verbindliches Festpreisangebot." },
+                                { q: content.faqs?.[1]?.q || "Machen Sie auch Umzüge in der Altstadt?", a: content.faqs?.[1]?.a || "Ja. Wir sind auf Altstadt-Logistik spezialisiert und kümmern uns um alle nötigen Genehmigungen für Zufahrten in der Fußgängerzone." },
+                                { q: content.faqs?.[2]?.q || "Bieten Sie Fernumzüge ab Regensburg an?", a: content.faqs?.[2]?.a || "Ja. Wöchentliche Touren nach NRW und ganz Deutschland ermöglichen effiziente Preise für Fernumzüge." },
+                                { q: "Bietet FLOXANT auch Entrümpelung in Regensburg an?", a: "Ja. Wir bieten professionelle Entrümpelung, Haushaltsauflösung und Wohnungsauflösung in Regensburg und der gesamten Oberpfalz zum Festpreis." },
+                                { q: "Können Sie die Halteverbotszone in Regensburg beantragen?", a: "Ja. Wir übernehmen die komplette Beantragung der Halteverbotszone bei der Stadt Regensburg, inklusive Aufstellung und Abbau der Schilder." },
                             ].map((item, i) => (
                                 <div key={i} className="p-6 rounded-2xl bg-muted/10 border border-border/50">
                                     <h3 className="text-lg font-bold mb-2">{item.q}</h3>

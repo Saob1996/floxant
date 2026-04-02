@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'FLOXANT - Premium Umzug & Reinigung',
+    name: 'FLOXANT - Umzugsunternehmen Regensburg & Bayern | Umzug, Reinigung, Entrümpelung',
     short_name: 'FLOXANT',
-    description: 'Ihr starkes Umzugsunternehmen in Bayern. Festpreisgarantie, 100% Versichert.',
+    description: 'Ihr professionelles Umzugsunternehmen in Regensburg & Bayern. Umzug, Entrümpelung & Reinigung zum Festpreis. 100% versichert, 24h-Service. München, Nürnberg, Augsburg & 100+ Städte.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0A0A0A',

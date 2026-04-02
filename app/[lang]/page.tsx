@@ -100,9 +100,7 @@ export default async function Home({ params }: PageProps) {
         name: dict.home?.faq_q1 || "Was kostet ein Umzug in Regensburg?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            dict.home?.faq_a1 ||
-            "Ein Umzug in Regensburg kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße.",
+          text: dict.home?.faq_a1 || "Ein Umzug in Regensburg kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße.",
         },
       },
       {
@@ -110,9 +108,7 @@ export default async function Home({ params }: PageProps) {
         name: dict.home?.faq_q2 || "Bietet FLOXANT auch Reinigung und Entrümpelung?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            dict.home?.faq_a2 ||
-            "Ja. FLOXANT bietet Umzug, professionelle Reinigung und Entrümpelung aus einer Hand in ganz Bayern.",
+          text: dict.home?.faq_a2 || "Ja. FLOXANT bietet Umzug, professionelle Reinigung und Entrümpelung aus einer Hand in ganz Bayern.",
         },
       },
       {
@@ -120,9 +116,7 @@ export default async function Home({ params }: PageProps) {
         name: dict.home?.faq_q3 || "In welchen Städten ist FLOXANT aktiv?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            dict.home?.faq_a3 ||
-            "FLOXANT ist in ganz Bayern aktiv, insbesondere in Regensburg, München, Nürnberg und Augsburg.",
+          text: dict.home?.faq_a3 || "FLOXANT ist in ganz Bayern aktiv, insbesondere in Regensburg, München, Nürnberg und Augsburg.",
         },
       },
       {
@@ -130,12 +124,55 @@ export default async function Home({ params }: PageProps) {
         name: dict.home?.faq_q4 || "Wie schnell kann FLOXANT einen Umzug durchführen?",
         acceptedAnswer: {
           "@type": "Answer",
-          text:
-            dict.home?.faq_a4 ||
-            "Kurzfristige Umzüge innerhalb von 24 bis 48 Stunden sind je nach Verfügbarkeit möglich.",
+          text: dict.home?.faq_a4 || "Kurzfristige Umzüge innerhalb von 24 bis 48 Stunden sind je nach Verfügbarkeit möglich.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: dict.home?.faq_q5 || "Was kostet eine Entrümpelung in Regensburg?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: dict.home?.faq_a5 || "Kellerentrümpelungen starten ab ca. 200 Euro, komplette Wohnungsauflösungen ab ca. 800 Euro.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: dict.home?.faq_q6 || "Kann FLOXANT die Halteverbotszone beantragen?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: dict.home?.faq_a6 || "Ja. Wir übernehmen die komplette Beantragung der Halteverbotszone in allen Städten Bayerns.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: dict.home?.faq_q7 || "Wie funktioniert die Reinigung bei der Wohnungsübergabe?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: dict.home?.faq_a7 || "Professionelle Endreinigung nach Vermieterstandards mit Fotodokumentation und Abnahmegarantie.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: dict.home?.faq_q8 || "Ist mein Umzugsgut bei FLOXANT versichert?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: dict.home?.faq_a8 || "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und §451g HGB vollständig abgesichert.",
         },
       },
     ],
+  };
+
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Wie funktioniert ein Umzug mit FLOXANT?",
+    "description": "In 4 einfachen Schritten zu Ihrem stressfreien Umzug in Bayern.",
+    "step": [
+      { "@type": "HowToStep", "name": "Kosten berechnen", "text": "Nutzen Sie unseren Online-Rechner oder kontaktieren Sie uns für eine kostenlose Besichtigung." },
+      { "@type": "HowToStep", "name": "Festpreisangebot erhalten", "text": "Sie erhalten ein verbindliches Festpreisangebot ohne versteckte Kosten." },
+      { "@type": "HowToStep", "name": "Termin buchen", "text": "Wählen Sie Ihren Wunschtermin. Auch kurzfristige Termine innerhalb von 48h sind möglich." },
+      { "@type": "HowToStep", "name": "Entspannt umziehen", "text": "Unser versichertes Team erledigt den Rest – professionell, pünktlich und sorgfältig." }
+    ]
   };
 
   return (
@@ -143,6 +180,10 @@ export default async function Home({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
       />
 
       <section id="zero" className="relative px-6 pb-20 pt-32 lg:pt-40">
@@ -446,6 +487,9 @@ export default async function Home({ params }: PageProps) {
           <p>{dict.home?.seo_p1}</p>
           <p>{dict.home?.seo_p2}</p>
           <p>{dict.home?.seo_p3}</p>
+          <p>{dict.home?.seo_p4}</p>
+          <p>{dict.home?.seo_p5}</p>
+          <p>{dict.home?.seo_p6}</p>
         </div>
       </section>
     </main>

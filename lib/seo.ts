@@ -64,7 +64,36 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
         "Reinigungsgarantie bei Übergabe", "Lager Rotation", "Kinder Umzugsbox", 
         "24h Umzugsservice Notfall", "Damen Team Reinigung", "Erinnerungskapsel", 
         "Vielleicht Box", "Schlüsselübergabe Service", "Premium Dienstleister",
-        "100% Festpreis"
+        "100% Festpreis", "Umzugsunternehmen Bayern", "Umzugsfirma Regensburg",
+        "Umzug Oberpfalz", "Festpreisgarantie Umzug", "versicherter Umzug Bayern"
+    ];
+
+    // === REGENSBURG & OBERPFALZ SPECIFIC ===
+    const REGENSBURG_KEYWORDS = [
+        "umzugsunternehmen regensburg", "umzugsfirma regensburg günstig",
+        "umzug regensburg kosten", "umzugsunternehmen oberpfalz",
+        "umzug regensburg festpreis", "umzugsfirma oberpfalz",
+        "entrümpelung regensburg", "entrümpelung regensburg preise",
+        "haushaltsauflösung regensburg", "wohnungsauflösung regensburg kosten",
+        "reinigung regensburg", "endreinigung regensburg kosten",
+        "reinigungsfirma regensburg", "gebäudereinigung regensburg",
+        "büroumzug regensburg", "firmenumzug regensburg",
+        "seniorenumzug regensburg", "studentenumzug regensburg",
+        "halteverbotszone regensburg", "umzug regensburg altstadt",
+        "möbeltransport regensburg", "umzugshelfer regensburg"
+    ];
+
+    // === BAYERN-WEIT ===
+    const BAYERN_KEYWORDS = [
+        "umzugsunternehmen bayern", "umzugsfirma bayern günstig",
+        "umzug bayern festpreis", "umzugsunternehmen bayern testsieger",
+        "beste umzugsfirma bayern", "umzug münchen", "umzug nürnberg",
+        "umzug augsburg", "umzug passau", "umzug landshut", "umzug straubing",
+        "umzug schwandorf", "umzug amberg", "umzug ingolstadt", "umzug erlangen",
+        "umzug fürth", "umzug freising", "umzug dachau", "umzug erding",
+        "fernumzug bayern", "fernumzug bayern nrw", "fernumzug regensburg berlin",
+        "entrümpelung bayern", "reinigung bayern", "wohnungsauflösung bayern",
+        "umzugskosten bayern rechner", "günstig umziehen bayern"
     ];
 
     const ENTRUEMPELUNG_KEYWORDS = [
@@ -72,7 +101,12 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
         "wohnungsauflösung mit wertanrechnung", "hausauflösung pflegeheim",
         "keller räumen lassen kosten", "dachboden entrümpelung zum festpreis",
         "sperrmüllabholung schnell", "betriebsauflösung verwertung", "entsorgung altmöbel",
-        "haushaltsauflösung schnell", "sperrmüll entsorgen lassen"
+        "haushaltsauflösung schnell", "sperrmüll entsorgen lassen",
+        "entrümpelung kosten pro qm", "entrümpelung kosten pro m3",
+        "wohnung räumen lassen kosten", "entrümpelung oberpfalz",
+        "entrümpelung regensburg", "entrümpelung münchen", "entrümpelung nürnberg",
+        "hausrat entsorgen lassen", "keller entrümpeln kosten bayern",
+        "gartenhaus abriss und entsorgung", "sperrmüll abholen lassen bayern"
     ];
 
     const UMZUG_KEYWORDS = [
@@ -82,7 +116,12 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
         "halteverbotszone beantragen lassen", "umzug am wochenende zuschlag",
         "studentenumzug günstig", "firmenumzug wochenende", "beiladung umzug",
         "möbel montieren lassen", "kurzfristiger umzug", "notfall umzug heute",
-        "umzug bayern", "umzug zum festpreis", "umzugsunternehmen empfehlung"
+        "umzug bayern", "umzug zum festpreis", "umzugsunternehmen empfehlung",
+        "umzugsunternehmen regensburg erfahrungen", "umzugsfirma in meiner nähe",
+        "umzug komplettservice", "umzug all inclusive", "umzug einpacken auspacken",
+        "umzugskosten berechnen", "umzug checkliste", "umzug planen",
+        "umzug mit kindern stressfrei", "umzug erste wohnung",
+        "spedition umzug bayern", "möbelspedition regensburg"
     ];
 
     const REINIGUNG_KEYWORDS = [
@@ -90,7 +129,11 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
         "grundreinigung nach mieterwechsel", "baugrob reinigung",
         "teppichboden tiefenreinigung", "matratzenreinigung",
         "raucherwohnung reinigen kosten", "büroreinigung festpreis",
-        "reinigungskraft gewerblich", "putzfirma für umzug"
+        "reinigungskraft gewerblich", "putzfirma für umzug",
+        "endreinigung wohnung kosten", "endreinigung nach umzug",
+        "reinigung nach auszug regensburg", "gebäudereinigung oberpfalz",
+        "treppenhausreinigung", "fensterreinigung professionell",
+        "unterhaltsreinigung gewerbe", "reinigung nach renovierung bayern"
     ];
 
     const getKeywords = () => {
@@ -103,7 +146,8 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
             specific = REINIGUNG_KEYWORDS;
         }
 
-        return [...GLOBAL_SIGNATURE, ...specific, title].join(', ');
+        // Always include regional keywords for maximum local coverage
+        return [...GLOBAL_SIGNATURE, ...REGENSBURG_KEYWORDS, ...BAYERN_KEYWORDS, ...specific, title].join(', ');
     };
 
     const seoKeywords = getKeywords();
@@ -173,6 +217,16 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
             canonical,
             languages,
         },
+        // Geo-Targeting Meta Tags for Bayern / Regensburg
+        other: {
+            'geo.region': 'DE-BY',
+            'geo.placename': 'Regensburg',
+            'geo.position': '49.0134;12.1016',
+            'ICBM': '49.0134, 12.1016',
+            'distribution': 'Germany',
+            'revisit-after': '3 days',
+            'rating': 'general',
+        },
         openGraph: {
             type: 'website',
             url: canonical,
@@ -180,12 +234,13 @@ export function generatePageSEO({ lang, pageLocale, path, title, description }: 
             description: ctrDesc,
             siteName: 'FLOXANT',
             locale: resolvedLang === 'de' ? 'de_DE' : resolvedLang,
+            countryName: 'Germany',
             images: [
                 {
                     url: OG_IMAGE,
                     width: 1200,
                     height: 630,
-                    alt: 'FLOXANT – Umzug & Reinigung in Bayern',
+                    alt: 'FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg & Bayern',
                 },
             ],
         },

@@ -44,11 +44,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const { lang } = await params;
 
     const title = lang === 'de' 
-        ? "Umzugsunternehmen Bayern | 100% Festpreis & Kosten-Rechner | FLOXANT" 
-        : "FLOXANT – Premium Moving & Service in Bavaria";
+        ? "Umzugsunternehmen Bayern | Umzug ✓ Reinigung ✓ Entrümpelung | FLOXANT Regensburg" 
+        : "FLOXANT – Premium Moving, Cleaning & Clearance in Bavaria";
     const description = lang === 'de'
-        ? 'Ihr Umzugsunternehmen für Bayern (München, Nürnberg, Regensburg). Entrümpelung & Reinigung zum Festpreis. Jetzt online berechnen oder via WhatsApp anfragen!'
-        : 'Professional moving and cleaning services in Bavaria. Regensburg, Munich, Nuremberg. Transparent pricing, fast online estimates and direct WhatsApp support.';
+        ? 'FLOXANT – Ihr Umzugsunternehmen in Regensburg & Bayern. Umzug, Entrümpelung & Reinigung zum Festpreis. München, Nürnberg, Augsburg, Passau, Landshut & 100+ Städte. Jetzt berechnen!'
+        : 'FLOXANT – Professional moving, cleaning and clearance in Regensburg & Bavaria. Fixed prices, fully insured. Munich, Nuremberg, Augsburg & 100+ cities. Get your free quote!';
 
     const canonical = `https://www.floxant.de/${lang}`;
 
@@ -64,7 +64,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         metadataBase: new URL('https://www.floxant.de'),
         title: title,
         description,
+        keywords: 'Umzugsunternehmen Bayern, Umzug Regensburg, Entrümpelung Bayern, Reinigung Regensburg, Umzugsfirma München, Umzug Nürnberg, Festpreis Umzug, versicherter Umzug, FLOXANT',
         alternates: { canonical, languages },
+        other: {
+            'geo.region': 'DE-BY',
+            'geo.placename': 'Regensburg',
+            'geo.position': '49.0134;12.1016',
+            'ICBM': '49.0134, 12.1016',
+        },
         openGraph: {
             type: 'website',
             url: canonical,
@@ -72,11 +79,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             description,
             siteName: 'FLOXANT',
             locale: lang === 'de' ? 'de_DE' : lang,
+            countryName: 'Germany',
             images: [{
                 url: 'https://www.floxant.de/og.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'FLOXANT – Umzug & Reinigung in Bayern',
+                alt: 'FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg & Bayern',
             }],
         },
         twitter: {

@@ -2,6 +2,8 @@ import { i18n } from "@/i18n-config";
 import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
+import { generatePageSEO } from "@/lib/seo";
+import { company } from "@/lib/company";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
@@ -67,20 +69,12 @@ export async function generateMetadata({
     const key = SLUG_TO_KEY[serviceSlug as ServiceSlug];
     const content = (dict?.pages as any)?.[key] || {};
 
-    return {
+    return generatePageSEO({
+        pageLocale,
+        path: serviceSlug,
         title: content.meta_title || `FLOXANT – ${serviceSlug}`,
-        description: content.meta_desc || "",
-        alternates: {
-            canonical: `https://www.floxant.de/${pageLocale}/${serviceSlug}`,
-            languages: i18n.locales.reduce(
-                (acc, l) => {
-                    acc[l] = `https://www.floxant.de/${l}/${serviceSlug}`;
-                    return acc;
-                },
-                {} as Record<string, string>
-            ),
-        },
-    };
+        description: content.meta_desc || content.hero_desc || "",
+    });
 }
 
 export default async function CoreServicePage({
@@ -95,8 +89,52 @@ export default async function CoreServicePage({
     const area = dict?.area || {};
     const related = RELATED_SERVICES[serviceSlug as ServiceSlug] || [];
 
+    // Build FAQ JSON-LD from dictionary data
+    const faqs = content.faqs || [];
+    const faqJsonLd = faqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((faq: { q: string; a: string }) => ({
+            "@type": "Question",
+            "name": faq.q,
+            "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+        }))
+    } : null;
+
+    // Service-type specific schema
+    const serviceType = serviceSlug.includes('reinigung') ? 'Reinigungsservice'
+        : serviceSlug.includes('entruempelung') ? 'Entrümpelungsservice'
+        : 'Umzugsservice';
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": serviceType,
+        "name": content.hero_title || serviceSlug,
+        "description": content.hero_desc || content.meta_desc || "",
+        "provider": {
+            "@type": "MovingCompany",
+            "name": "FLOXANT",
+            "telephone": company.phone.replace(/\s+/g, ""),
+            "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" }
+        },
+        "areaServed": { "@type": "State", "name": "Bayern" }
+    };
+
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
+            { "@type": "ListItem", "position": 2, "name": content.hero_title || serviceSlug, "item": `https://www.floxant.de/${pageLocale}/${serviceSlug}` }
+        ]
+    };
+
     return (
         <main className="min-h-screen bg-background">
+            {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
             <Breadcrumbs lang={pageLocale} items={[{ label: content.hero_title || serviceSlug }]} />
 
             {/* Hero Section */}
@@ -240,28 +278,21 @@ export default async function CoreServicePage({
             {/* Internal Links: Geo Pages */}
             <section className="py-12 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-4xl">
+                    <h3 className="text-center text-sm font-semibold text-muted-foreground mb-6 uppercase tracking-widest">
+                        {dict?.common?.also_available_in || "Auch verfügbar in"}
+                    </h3>
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         {[
-                            {
-                                href: `/${pageLocale}/umzug-regensburg`,
-                                label: area.cities?.regensburg || "Regensburg",
-                            },
-                            {
-                                href: `/${pageLocale}/umzug-bayern`,
-                                label: area.cities?.bavaria || "Bayern",
-                            },
-                            {
-                                href: `/${pageLocale}/umzug-muenchen`,
-                                label: area.cities?.munich || "München",
-                            },
-                            {
-                                href: `/${pageLocale}/umzug-nuernberg`,
-                                label: area.cities?.nuremberg || "Nürnberg",
-                            },
-                            {
-                                href: `/${pageLocale}/umzug-augsburg`,
-                                label: area.cities?.augsburg || "Augsburg",
-                            },
+                            { href: `/${pageLocale}/umzug-regensburg`, label: area.cities?.regensburg || "Regensburg" },
+                            { href: `/${pageLocale}/umzug-bayern`, label: area.cities?.bavaria || "Bayern" },
+                            { href: `/${pageLocale}/umzug-muenchen`, label: area.cities?.munich || "München" },
+                            { href: `/${pageLocale}/umzug-nuernberg`, label: area.cities?.nuremberg || "Nürnberg" },
+                            { href: `/${pageLocale}/umzug-augsburg`, label: area.cities?.augsburg || "Augsburg" },
+                            { href: `/${pageLocale}/umzug-landshut`, label: "Landshut" },
+                            { href: `/${pageLocale}/umzug-passau`, label: "Passau" },
+                            { href: `/${pageLocale}/umzug-straubing`, label: "Straubing" },
+                            { href: `/${pageLocale}/umzug-schwandorf`, label: "Schwandorf" },
+                            { href: `/${pageLocale}/umzug-ingolstadt`, label: "Ingolstadt" },
                         ].map((link) => (
                             <Link
                                 key={link.href}
@@ -272,6 +303,32 @@ export default async function CoreServicePage({
                             </Link>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Quick WhatsApp CTA */}
+            <section className="py-10 px-6 bg-[#25D366]/5 border-y border-[#25D366]/10">
+                <div className="mx-auto max-w-3xl flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h3 className="text-lg font-bold text-foreground mb-1">
+                            {dict?.common?.whatsapp_cta_title || "Schnelle Frage? WhatsApp!"}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                            {dict?.common?.whatsapp_cta_desc || "Antwort meist innerhalb von 5 Minuten. Kostenlos & unverbindlich."}
+                        </p>
+                    </div>
+                    <a
+                        href="https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20interessiere%20mich%20für%20ein%20Angebot."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-xl font-bold hover:bg-[#128C7E] transition-all shadow-lg shadow-green-900/20 whitespace-nowrap"
+                    >
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
+                        </span>
+                        WhatsApp Chat
+                    </a>
                 </div>
             </section>
 
