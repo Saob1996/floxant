@@ -27,7 +27,7 @@ export async function generateMetadata({
     var dict = await getDictionary(pageLocale as Locale);
     const content = (dict?.pages as any)?.wohnungsaufloesung_bayern || {};
     return {
-        title: content.meta_title || "Wohnungsauflösung Bayern | Haushaltsauflösung | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Professionelle Wohnungsauflösung in Bayern – Regensburg, Nürnberg, München. Nachlassräumung, Seniorenumzüge, besenre...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/wohnungsaufloesung-bayern`,

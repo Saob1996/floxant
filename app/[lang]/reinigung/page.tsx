@@ -14,11 +14,13 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'reinigung',
-        title: 'Reinigungsfirma & Gebäudereinigung Bayern ✓ Endreinigung | FLOXANT',
-        description: 'Professionelle Wohnungsreinigung, Büroreinigung und Grundreinigung nach Vermieterstandard. Übergabegarantie, transparente Preise. Sofortpreis online b...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -30,9 +32,9 @@ export default async function ReinigungPillarPage({ params }: { params: Promise<
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine professionelle Wohnungsreinigung mit Übergabegarantie?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Kosten richten sich nach der Quadratmeterzahl und dem Grad der Verschmutzung. Eine gründliche Umzugsreinigung mit Fensterreinigung beginnt oftmals bei 350 bis 600 Euro. FLOXANT erstellt für Ihre Wohnungsreinigung stets einen garantierten Festpreis." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bieten Sie auch regelmäßige Büroreinigung an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Im B2B-Sektor führen wir für Unternehmen regelmäßige Unterhaltsreinigungen, Büroreinigung und Praxisreinigung außerhalb der regulären Geschäftszeiten durch." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Was unterscheidet eine Grundreinigung von einer Sichtreinigung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Bei der Grundreinigung greift man in die Tiefe: Wir behandeln stark verschmutzte Fußböden, entkalken die komplette Sanitäranlage, reinigen Fenster, Fugen und den Heizkörper. Es ist eine sehr intensive Pflege, ideal nach dem Auszug oder vor dem Einzug." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } }
             ],
     };
 
@@ -109,7 +111,7 @@ export default async function ReinigungPillarPage({ params }: { params: Promise<
 
              {/* Semantic Cluster: Praxisreinigung & Büroreinigung */}
              <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
+                <div className="absolute top-0 end- w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
                 
                 <div className="container px-4 max-w-6xl mx-auto relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">

@@ -162,7 +162,8 @@
     "message": "Noticias",
     "submit": "Enviar",
     "success": "Mensaje enviado",
-    "error": "Error al enviar"
+    "error": "Error al enviar",
+    "email_label": "Email"
   },
   "trust": {
     "experience": "Años de experiencia",
@@ -260,7 +261,11 @@
           "q": "¿Ofrecen mudanzas de larga distancia desde München?",
           "a": "Sí. Organizamos mudanzas de larga distancia desde München a toda Alemania."
         }
-      ]
+      ],
+      "meta_title": "Empresa de Mudanzas Múnich | FLOXANT",
+      "meta_desc": "Empresa profesional de mudanzas en Múnich. Precio fijo online.",
+      "hero_h1": "Empresa de Mudanzas ",
+      "hero_h1_highlight": "Múnich"
     },
     "service_umzug": {
       "meta_title": "Mudanza privada: su cambio personal de ubicación",
@@ -2832,7 +2837,11 @@
           "q": "¿Ofrecen mudanzas de larga distancia desde Nürnberg?",
           "a": "Sí. Organizamos mudanzas de larga distancia desde Nürnberg a toda Alemania."
         }
-      ]
+      ],
+      "meta_title": "Empresa de Mudanzas Núremberg | FLOXANT",
+      "meta_desc": "Empresa profesional de mudanzas en Núremberg.",
+      "hero_h1": "Empresa de Mudanzas ",
+      "hero_h1_highlight": "Núremberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Empresa de mudanzas Oberasbach ✓ Precio Fijo ✓ Asegurado | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Calculadora de Mudanzas 2026 | FLOXANT",
+      "meta_desc": "Calcule el precio de su mudanza online.",
+      "h1_pre": "Calcule sus",
+      "h1_hi": "Gastos de mudanza",
+      "subtitle": "En segundos obtiene una estimación y un precio fijo garantizado.",
+      "h2": "¿Qué determina los costos?"
+    },
+    "calc_reinigung": {
+      "meta_title": "Calculadora de Limpieza 2026 | FLOXANT",
+      "meta_desc": "Calcule los costes de limpieza online.",
+      "h1_pre": "Calcule sus",
+      "h1_hi": "Gastos de limpieza",
+      "subtitle": "Limpieza profesional con precio fijo.",
+      "h2": "Factores de costo de limpieza"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Calculadora de Desalojo | FLOXANT",
+      "meta_desc": "Calcule el costo del vaciado de apartamentos.",
+      "h1_pre": "¿Cuánto cuesta el",
+      "h1_hi": "Desalojo?",
+      "subtitle": "Obtenga su cotización directamente.",
+      "h2": "¿Cómo se calculan los costos?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Otros servicios y ubicaciones en Bayern",
     "cleaning_company": "empresa de limpieza",
     "calculate_price": "Calcular precio",
-    "combination_move": "Combinación con mudanza"
+    "combination_move": "Combinación con mudanza",
+    "also_available_in": "También disponible en:",
+    "whatsapp_cta_title": "Soporte WhatsApp",
+    "whatsapp_cta_desc": "Disponible 24/7."
   },
   "calculator": {
     "requirements_title": "Tus requisitos",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Ruta de transporte Ruta de carrera",
     "flag_disassembly_on_site": "Incluye desmontaje in situ",
     "flag_express_service": "Servicio Express (Urgente)",
-    "flag_waste_notes_noted": "Guardaremos su nota para la planificación."
+    "flag_waste_notes_noted": "Guardaremos su nota para la planificación.",
+    "upload_link_note": "Le enviaremos un enlace de carga para fotos.",
+    "error_submit": "Error de envío. Por favor, inténtelo de nuevo."
   },
   "home": {
     "hero_title": "Tu empresa de mudanzas profesional en Bayern.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT también ofrece mudanzas a corto plazo dentro de 24 a 48 horas. Contáctenos para disponibilidad rápida.",
     "premium_badge": "Logística y servicio premium",
     "services_title": "Nuestra logística y servicios",
-    "services_subtitle": "Ya sea una mudanza de oficina complicada o la liquidación de un apartamento delicado, ofrecemos calidad medible y transparencia absoluta de precios en todo Bayern."
+    "services_subtitle": "Ya sea una mudanza de oficina complicada o la liquidación de un apartamento delicado, ofrecemos calidad medible y transparencia absoluta de precios en todo Bayern.",
+    "seo_p4": "Mudanzas rápidas y sin estrés.",
+    "seo_p5": "Le trasladamos de manera rápida y fiable.",
+    "seo_p6": "Precio fijo en internet.",
+    "faq_q5": "¿Están asegurados mis muebles?",
+    "faq_a5": "Sí, el seguro estándar de transporte está incluido.",
+    "faq_q6": "¿Proveen material de embalaje?",
+    "faq_a6": "Sí, si nos lo indica.",
+    "faq_q7": "¿Con qué rapidez pueden empezar?",
+    "faq_a7": "Frecuentemente en menos de 48 horas.",
+    "faq_q8": "¿Realizan servicio de limpieza final?",
+    "faq_a8": "Sí, limpieza a fondo."
   },
   "reviews": {
     "title": "Eso es lo que dicen nuestros clientes.",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "Eso es lo que dicen los nuestros.",
     "title_part2": "Clientes"
+  },
+  "seo": {
+    "dynamic_city_title": "Mudanzas en {city} | FLOXANT",
+    "dynamic_city_desc": "Mudanzas seguras y de calidad en {city}."
+  },
+  "ratgeber": {
+    "title": "Guía Práctica",
+    "h1_pre": "Guía",
+    "meta_title": "Consejos para Mudanzas | FLOXANT",
+    "meta_desc": "Listas y consejos útiles.",
+    "subtitle": "Lo mejor de los profesionales.",
+    "read_more": "Leer más →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Costos de Mudanza en Ratisbona 2026",
+        "desc": "¿Cuánto cuesta?"
+      },
+      "checkliste_umzug": {
+        "title": "Lista de Verificación",
+        "desc": "La lista perfecta."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "¿Cómo encontrar una buena empresa?",
+        "desc": "Lo más importante."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Gastos de desalojo por m3",
+        "desc": "¿Cuánto cuesta?"
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Preparación en 7 pasos",
+        "desc": "Pasos sencillos."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "¿Vale la pena una empresa?",
+        "desc": "Análisis costo/beneficio."
+      },
+      "moebeltransport_sicher": {
+        "title": "Transporte seguro de muebles",
+        "desc": "Viaje asegurado."
+      },
+      "umzug_tipps_familien": {
+        "title": "Mudanza con niños",
+        "desc": "Consejos."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Limpieza posterior a mudanza",
+        "desc": "Consejos."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Calculadora Explicación",
+        "desc": "Como usar."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Burocracia y Cambio de Domicilio",
+        "desc": "Documentación."
+      },
+      "umzug_versicherung": {
+        "title": "El Seguro de Transporte",
+        "desc": "¿Es necesario?"
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Procedimientos Vaciamientos",
+        "desc": "Detalles."
+      },
+      "umzug_im_winter": {
+        "title": "Mudarse en invierno.",
+        "desc": "Ventajas."
+      },
+      "umzug_erste_wohnung": {
+        "title": "Primer apartamento",
+        "desc": "Para estudiantes."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Mudanza, Empresa Mudanzas, FLOXANT",
+    "og_img_alt": "FLOXANT Mudanzas y Desalojo",
+    "og_locale": "es_ES"
   }
 }

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.entruempelung_kosten_regensburg || {};
     return {
-        title: content.meta_title || "Entrümpelung Kosten Regensburg | Preise & Angebot | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Was kostet eine Entrümpelung in Regensburg? Transparente Preise für Haushaltsauflösung, Gewerberäumung & Nachlassräu...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/entruempelung-kosten-regensburg`,
@@ -37,8 +37,8 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine Entrümpelung in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Eine Entrümpelung in Regensburg kostet je nach Umfang zwischen 300 und 3.000 Euro. FLOXANT bietet verbindliche Festpreise nach kostenloser Begehung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Ist die Entsorgung im Preis inbegriffen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Fachgerechte Entsorgung, Recycling und besenreine Übergabe sind im Festpreis enthalten." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 
@@ -104,8 +104,8 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
                             <table className="w-full border-collapse">
                                 <thead>
                                     <tr className="border-b border-border">
-                                        <th className="text-left py-4 px-4 font-semibold">Objektgröße</th>
-                                        <th className="text-left py-4 px-4 font-semibold">Preisbereich*</th>
+                                        <th className="text-start py-4 px-4 font-semibold">Objektgröße</th>
+                                        <th className="text-start py-4 px-4 font-semibold">Preisbereich*</th>
                                     </tr>
                                 </thead>
                                 <tbody className="text-muted-foreground">

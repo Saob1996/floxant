@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/moebeltransport-sicher',
-        title: 'Möbeltransport sicher organisieren | FLOXANT',
-        description: 'Professionelle Möbeltransport sicher organisieren in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Wie werden Möbel beim Umzug geschützt?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Durch fachgerechte Demontage, Polsterung, Verpackung und Ladungssicherung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Was passiert bei Transportschäden?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "FLOXANT ist voll versichert. Schäden werden dokumentiert und reguliert." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

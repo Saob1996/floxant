@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "klaviertransport-muenchen",
-        title: content.meta_title || "Klaviertransport & Tresortransport München | FLOXA | FLOXANT",
-        description: content.meta_desc || `Klaviertransport, Flügeltransport und Tresortransport in München. Spezialisiertes Equipment, geschultes Team, volle Versicherung. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 
@@ -103,7 +103,7 @@ export default async function KlaviertransportPage({ params }: { params: Promise
                     </div>
 
                     <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">Spezialservice</div>
+                        <div className="absolute -top-6 start-/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">Spezialservice</div>
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Schwertransport in München anfragen</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Teilen Sie uns Gewicht, Maße und Standort mit – wir kalkulieren den sicheren Transport.</p>
                         <div className="px-6"><SmartBookingWizard dict={dict} /></div>

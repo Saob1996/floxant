@@ -76,8 +76,8 @@ export default async function UmzugBayern({ params }: { params: Promise<{ lang: 
             </section>
 
             {/* Main Content Area */}
-            
-      <section className="py-20 px-6">
+
+            <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
 
                     {/* Introduction */}

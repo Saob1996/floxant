@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/umzug-versicherung',
-        title: 'Umzug Versicherung: Was Sie wissen müssen | FLOXANT',
-        description: 'Professionelle Umzug Versicherung: Was Sie wissen müssen in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechne',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Bin ich beim Umzug versichert?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Umzugsfirma haftet gesetzlich begrenzt. Für vollen Schutz empfehlen wir eine Allgefahrenversicherung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Was kostet eine Umzugsversicherung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ca. 1 bis 2 Prozent des Inventarwerts für Vollwertdeckung." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

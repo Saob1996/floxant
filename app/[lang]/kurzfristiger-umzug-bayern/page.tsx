@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.kurzfristiger_umzug_bayern || {};
     return {
-        title: content.meta_title || "Kurzfristiger Umzug Bayern | Schnell & Flexibel | FLOXANT",
-        description: content.meta_desc || "Kurzfristiger Umzug in Bayern – auch innerhalb weniger Tage. Regensburg, Nürnberg, München. Professionell & versichert. Jetzt anfragen!",
+        title: content.meta_title,
+        description: content.meta_desc,
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/kurzfristiger-umzug-bayern`,
             languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/kurzfristiger-umzug-bayern`; return acc; }, {} as Record<string, string>),

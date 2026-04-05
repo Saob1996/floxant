@@ -47,8 +47,8 @@ export function EditModal({ booking, onClose, onSave }: EditModalProps) {
                 className="relative w-full max-w-lg bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl p-6 overflow-hidden"
             >
                 {/* Decorative gradients */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full -z-10" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full -z-10" />
+                <div className="absolute top-0 end- w-32 h-32 bg-primary/10 blur-3xl rounded-full -z-10" />
+                <div className="absolute bottom-0 start- w-32 h-32 bg-blue-500/10 blur-3xl rounded-full -z-10" />
 
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-xl font-bold">Buchung bearbeiten</h2>

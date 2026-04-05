@@ -7,11 +7,13 @@ import { Clock, CalendarDays, UserCircle, CheckSquare, AlertTriangle, Lightbulb,
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'blog/umzug-checkliste',
-        title: 'Die ultimative Umzug Checkliste: PDF & Zeitplan | FLOXANT',
-        description: 'Vom Packen bis zur Ummeldung: Unsere interaktive Umzug Checkliste bewahrt Sie vor dem Chaos. Der perfekte Zeitplan 3 Monate vor dem Umzug. Sofortpreis...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -52,7 +54,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
                             Die ultimative Umzug Checkliste: Schritt für Schritt zum neuen Zuhause
                         </h1>
-                        <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-primary pl-6">
+                        <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-primary ps-">
                             Nichts verursacht mehr Stress als ein unkoordinierter Umzug, bei dem Verträge weiterlaufen, Kartons fehlen und der Internetanschluss in der neuen Wohnung blockiert ist. Mit unserem chronologischen Zeitplan haken Sie alles stressfrei ab.
                         </p>
                     </header>
@@ -64,7 +66,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
 
                         <div className="bg-slate-900 text-white p-8 rounded-3xl my-10 shadow-xl">
                             <h2 className="text-3xl text-white mt-0 mb-6 flex items-center gap-3"><Clock className="text-primary w-8 h-8" /> Purer Vorlauf (3 Monate vorher)</h2>
-                            <ul className="space-y-4 list-none pl-0">
+                            <ul className="space-y-4 list-none ps-">
                                 <li className="flex gap-4">
                                     <CheckSquare className="w-6 h-6 text-primary shrink-0" />
                                     <div>
@@ -101,7 +103,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                             Der Countdown läuft. Jetzt geht es an die logistische Feinarbeit und das gefürchtete Kartonpacken.
                         </p>
                         <div className="bg-slate-50 p-6 rounded-2xl border my-6">
-                            <ul className="list-none pl-0 space-y-3">
+                            <ul className="list-none ps- space-y-3">
                                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Starten Sie mit der <a href={`/${pageLocale}/entruempelung`}>{dict.common.entruempelung}</a>. Was jetzt an den Wertstoffhof geht, muss nicht mehr eingepackt werden.</li>
                                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Kaufen oder mieten Sie hochwertige Umzugskartons (FLOXANT bringt Ihnen diese auf Wunsch direkt vor die Haustür).</li>
                                 <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-600" /> Beantragen Sie bei der Stadt (falls beim Umzugsunternehmen nicht inbegriffen) die Halteverbotszone.</li>

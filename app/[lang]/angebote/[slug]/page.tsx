@@ -47,7 +47,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
     "@context": "https://schema.org",
     "@type": "WebPage",
     "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "FLOXANT", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "" } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } }
             ]
   };
 
@@ -75,7 +75,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
         {/* SEO AUTHORITY LAYER: Micro Case Studies & Geo Signals */}
         <section className="mt-32 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
            <div className="bg-[#0B0B12] border border-white/5 rounded-3xl p-8 relative overflow-hidden shadow-2xl">
-             <div className="absolute top-0 right-0 p-6">
+             <div className="absolute top-0 end- p-6">
                <span className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full">Verifiziert</span>
              </div>
              <h3 className="text-2xl font-light mb-6 text-white">Letzter {serviceType} in {city}</h3>

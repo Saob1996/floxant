@@ -158,7 +158,7 @@ export default function EnhancedPricingInsights() {
                    <span className="text-sm font-mono text-blue-400 block mb-1">{cluster.id}</span>
                    <span className="text-xs text-white/50">{cluster.jobs} Gebündelte Aufträge</span>
                  </div>
-                 <div className="text-right">
+                 <div className="text-end">
                    <span className="block text-lg font-medium text-emerald-400">{cluster.revenue}€</span>
                    <span className="text-xs text-white/40">Auslastung: {cluster.efficiency}%</span>
                  </div>

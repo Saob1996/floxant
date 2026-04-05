@@ -162,7 +162,8 @@
     "message": "소식",
     "submit": "보내다",
     "success": "메시지가 전송되었습니다",
-    "error": "보내는 중 오류가 발생했습니다."
+    "error": "보내는 중 오류가 발생했습니다.",
+    "email_label": "이메일"
   },
   "trust": {
     "experience": "수년간의 경험",
@@ -260,7 +261,11 @@
           "q": "München에서 출발하는 전국 장거리 이사도 접수하나요?",
           "a": "네. München에서 출발하여 독일 전역 어느 곳으로든 향하는 체계적인 장거리 이사 운송 서비스를 제공하고 있습니다."
         }
-      ]
+      ],
+      "meta_title": "뮌헨 이사 업체 | FLOXANT",
+      "meta_desc": "뮌헨 전문 이사 업체. 고정 가격 보장.",
+      "hero_h1": "이사 업체 ",
+      "hero_h1_highlight": "뮌헨"
     },
     "service_umzug": {
       "meta_title": "개인 이사 – 개인적인 위치 변경",
@@ -2832,7 +2837,11 @@
           "q": "Nürnberg에서 출발하는 전국 장거리 이사도 접수하나요?",
           "a": "네. Nürnberg에서 출발하여 독일 전역 어느 곳으로든 향하는 체계적인 장거리 이사 운송 서비스를 제공하고 있습니다."
         }
-      ]
+      ],
+      "meta_title": "뉘른베르크 이사 업체 | FLOXANT",
+      "meta_desc": "뉘른베르크 전문 이사.",
+      "hero_h1": "이사 업체 ",
+      "hero_h1_highlight": "뉘른베르크"
     },
     "umzug_oberasbach": {
       "meta_title": "Oberasbach 이사업체 ✓ 확정 가격 ✓ 보험 가입 | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "이사 비용 계산기 2026 | FLOXANT",
+      "meta_desc": "온라인으로 이사 비용을 계산하세요.",
+      "h1_pre": "계산하기",
+      "h1_hi": "이사 비용",
+      "subtitle": "단 몇 초만에 예상 견적 확인.",
+      "h2": "이사 비용 요인"
+    },
+    "calc_reinigung": {
+      "meta_title": "청소 비용 계산기 | FLOXANT",
+      "meta_desc": "퇴거 청소 비용을 계산하세요.",
+      "h1_pre": "계산하기",
+      "h1_hi": "청소 비용",
+      "subtitle": "안전하고 깨끗한 퇴거 청소.",
+      "h2": "청소 비용 요인"
+    },
+    "calc_entsorgung": {
+      "meta_title": "폐기물 처리 계산기 | FLOXANT",
+      "meta_desc": "가구 폐기 및 집 비우기 비용.",
+      "h1_pre": "얼마나 드나요?",
+      "h1_hi": "폐기물 처리",
+      "subtitle": "모든 쓰레기 걱정 끝.",
+      "h2": "비용은 어떻게 계산되나요?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Bayern의 추가 서비스 및 위치",
     "cleaning_company": "청소업체",
     "calculate_price": "가격 계산",
-    "combination_move": "이동과의 결합"
+    "combination_move": "이동과의 결합",
+    "also_available_in": "제공 언어:",
+    "whatsapp_cta_title": "WhatsApp 지원",
+    "whatsapp_cta_desc": "연중무휴 24시간 대기."
   },
   "calculator": {
     "requirements_title": "귀하의 요구 사항",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "운반 경로 주행 경로",
     "flag_disassembly_on_site": "현장 해체 포함",
     "flag_express_service": "특급 서비스(긴급)",
-    "flag_waste_notes_noted": "계획을 위해 귀하의 메모를 저장하겠습니다"
+    "flag_waste_notes_noted": "계획을 위해 귀하의 메모를 저장하겠습니다",
+    "upload_link_note": "사진 업로드를 위한 링크를 보내드립니다.",
+    "error_submit": "전송 오류. 다시 시도해 주세요."
   },
   "home": {
     "hero_title": "Bayern의 전문 이사 회사입니다.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT은(는) 24~48시간 이내의 단기 이사도 제공합니다. 빠른 이용을 원하시면 연락주세요.",
     "premium_badge": "프리미엄 물류 및 서비스",
     "services_title": "우리의 물류 및 서비스",
-    "services_subtitle": "복잡한 사무실 이전이든 민감한 아파트 정리이든 상관없이 우리는 Bayern 전반에 걸쳐 측정 가능한 품질과 절대적인 가격 투명성을 제공합니다."
+    "services_subtitle": "복잡한 사무실 이전이든 민감한 아파트 정리이든 상관없이 우리는 Bayern 전반에 걸쳐 측정 가능한 품질과 절대적인 가격 투명성을 제공합니다.",
+    "seo_p4": "안전한 이사.",
+    "seo_p5": "신속하고 전문적인 서비스.",
+    "seo_p6": "고정 가격을 확인하세요.",
+    "faq_q5": "내 물건은 보험에 가입되어 있나요?",
+    "faq_a5": "네, 기본 운송 보험이 포함되어 있습니다.",
+    "faq_q6": "포장재를 제공하나요?",
+    "faq_a6": "네, 요청 시 상자 등을 제공합니다.",
+    "faq_q7": "얼마나 빨리 이사할 수 있나요?",
+    "faq_a7": "보통 48시간 내에 가능합니다.",
+    "faq_q8": "청소 서비스도 하나요?",
+    "faq_a8": "네, 퇴거 청소를 지원합니다."
   },
   "reviews": {
     "title": "우리 고객님들이 그러시더라구요",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "우리말이 그래요",
     "title_part2": "고객"
+  },
+  "seo": {
+    "dynamic_city_title": "{city} 이사 업체 | FLOXANT",
+    "dynamic_city_desc": "{city}에서 가장 신뢰할 수 있는 이사."
+  },
+  "ratgeber": {
+    "title": "FLOXANT 가이드",
+    "h1_pre": "이사",
+    "meta_title": "이사 가이드 및 팁 | FLOXANT",
+    "meta_desc": "이사 준비를 위한 유용한 정보.",
+    "subtitle": "전문가들의 조언.",
+    "read_more": "더 읽기 →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "레겐스부르크 이사 비용",
+        "desc": "얼마나 들까요?"
+      },
+      "checkliste_umzug": {
+        "title": "스트레스 없는 이사 체크리스트",
+        "desc": "가장 완벽한 리스트."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "좋은 이사 업체 찾기",
+        "desc": "주의해야 할 사항."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "입방미터당 폐기 비용",
+        "desc": "가격 알아보기."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "이사 준비 7단계",
+        "desc": "매우 쉬운 준비."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "업체를 쓰는 것이 좋을까요?",
+        "desc": "장단점 분석."
+      },
+      "moebeltransport_sicher": {
+        "title": "안전한 가구 운송",
+        "desc": "파손 없이 운송하는 법."
+      },
+      "umzug_tipps_familien": {
+        "title": "가족 이사 팁",
+        "desc": "아이와 함께 이사하기."
+      },
+      "reinigung_nach_umzug": {
+        "title": "이사 후 청소",
+        "desc": "청소 꿀팁."
+      },
+      "umzug_kosten_rechner": {
+        "title": "비용 계산기는 어떻게 작동하나요?",
+        "desc": "설명 안내."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "주소 변경 절차",
+        "desc": "모든 행정 절차."
+      },
+      "umzug_versicherung": {
+        "title": "이사 보험",
+        "desc": "보장 범위 알아보기."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "집 비우기 팁",
+        "desc": "비용과 절차."
+      },
+      "umzug_im_winter": {
+        "title": "겨울철 이사",
+        "desc": "유의사항."
+      },
+      "umzug_erste_wohnung": {
+        "title": "첫 자취방 입주",
+        "desc": "학생을 위한 이사 준비."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "이사, 독일이사, 청소, 폐기, FLOXANT",
+    "og_img_alt": "FLOXANT 이사",
+    "og_locale": "ko_KR"
   }
 }

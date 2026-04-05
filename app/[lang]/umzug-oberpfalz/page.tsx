@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "umzug-oberpfalz",
-        title: content.meta_title || "Umzug Oberpfalz – Ihr regionaler Partner | FLOXANT",
+        title: content.meta_title,
         description: `Professionelle Transporte und Umzüge in der Oberpfalz. Die gesamte Region von Regensburg bis Tirschenreuth.`,
     });
 }

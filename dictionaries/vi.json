@@ -162,7 +162,8 @@
     "message": "Tin tức",
     "submit": "Gửi",
     "success": "Đã gửi tin nhắn",
-    "error": "Lỗi gửi"
+    "error": "Lỗi gửi",
+    "email_label": "Email"
   },
   "trust": {
     "experience": "Số năm kinh nghiệm",
@@ -260,7 +261,11 @@
           "q": "Có làm những chuyến dọn nhà vượt tuyến xa tận ngoài khỏi München không?",
           "a": "Có. Dịch vụ vận tải đồ đi lộ trình xa kéo tuốt từ München sải bước tới mọi thị trấn xa tít khắp toàn nước Đức."
         }
-      ]
+      ],
+      "meta_title": "Công ty dọn nhà Munich | FLOXANT",
+      "meta_desc": "Công ty dọn nhà chuyên nghiệp. Tính giá cố định.",
+      "hero_h1": "Công ty chuyển nhà ",
+      "hero_h1_highlight": "Munich"
     },
     "service_umzug": {
       "meta_title": "Di chuyển riêng tư – thay đổi vị trí cá nhân của bạn",
@@ -2832,7 +2837,11 @@
           "q": "Có làm những chuyến dọn nhà vượt tuyến xa tận ngoài khỏi Nürnberg không?",
           "a": "Có. Dịch vụ vận tải đồ đi lộ trình xa kéo tuốt từ Nürnberg sải bước tới mọi thị trấn xa tít khắp toàn nước Đức."
         }
-      ]
+      ],
+      "meta_title": "Công ty chuyển nhà Nuremberg | FLOXANT",
+      "meta_desc": "Dịch vụ chuyển nhà tại Nuremberg.",
+      "hero_h1": "Công ty chuyển nhà ",
+      "hero_h1_highlight": "Nuremberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Cơ sở chuyển nhà Oberasbach ✓ Giá trọn gói ✓ Có bảo hiểm | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Công cụ tính phí chuyển nhà 2026 | FLOXANT",
+      "meta_desc": "Tính phí chuyển nhà của bạn trực tuyến ngay lập tức.",
+      "h1_pre": "Tính toán",
+      "h1_hi": "Chi phí chuyển nhà",
+      "subtitle": "Nhận giá cố định chỉ trong vài giây.",
+      "h2": "Điều gì quyết định chi phí chuyển nhà?"
+    },
+    "calc_reinigung": {
+      "meta_title": "Tính phí dọn dẹp nhà | FLOXANT",
+      "meta_desc": "Tính phí dọn dẹp trực tuyến.",
+      "h1_pre": "Tính",
+      "h1_hi": "Chi phí dọn dẹp",
+      "subtitle": "Bảo đảm làm sạch giá rẻ.",
+      "h2": "Các yếu tố chi phí vệ sinh"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Tính phí vứt rác | FLOXANT",
+      "meta_desc": "Giá cho việc vứt rác.",
+      "h1_pre": "Giá vứt",
+      "h1_hi": "rác lớn?",
+      "subtitle": "Nhận ngay chi phí dọn dẹp.",
+      "h2": "Khoản phí tính thế nào?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Các dịch vụ và địa điểm khác ở Bayern",
     "cleaning_company": "Công ty vệ sinh",
     "calculate_price": "Tính giá",
-    "combination_move": "Kết hợp di chuyển"
+    "combination_move": "Kết hợp di chuyển",
+    "also_available_in": "Có sẵn bằng ngôn ngữ:",
+    "whatsapp_cta_title": "Hỗ trợ WhatsApp",
+    "whatsapp_cta_desc": "Sẵn sàng 24/7."
   },
   "calculator": {
     "requirements_title": "Yêu cầu của bạn",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Tuyến đường chạy tuyến đường vận chuyển",
     "flag_disassembly_on_site": "Bao gồm tháo dỡ tại chỗ",
     "flag_express_service": "Dịch vụ chuyển phát nhanh (Khẩn cấp)",
-    "flag_waste_notes_noted": "Chúng tôi sẽ lưu ghi chú của bạn để lập kế hoạch"
+    "flag_waste_notes_noted": "Chúng tôi sẽ lưu ghi chú của bạn để lập kế hoạch",
+    "upload_link_note": "Bạn sẽ nhận được liên kết tải lên ảnh qua email.",
+    "error_submit": "Lỗi gửi. Vui lòng thử lại."
   },
   "home": {
     "hero_title": "Công ty chuyển nhà chuyên nghiệp của bạn ở Bayern.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT cũng cung cấp các dịch chuyển ngắn hạn trong vòng 24 đến 48 giờ. Liên hệ với chúng tôi để có sẵn nhanh chóng.",
     "premium_badge": "Dịch vụ & hậu cần cao cấp",
     "services_title": "Hậu cần và dịch vụ của chúng tôi",
-    "services_subtitle": "Cho dù đó là một cuộc chuyển văn phòng phức tạp hay một cuộc thanh lý căn hộ nhạy cảm - chúng tôi đều cung cấp chất lượng có thể đo lường được và sự minh bạch tuyệt đối về giá trong suốt Bayern."
+    "services_subtitle": "Cho dù đó là một cuộc chuyển văn phòng phức tạp hay một cuộc thanh lý căn hộ nhạy cảm - chúng tôi đều cung cấp chất lượng có thể đo lường được và sự minh bạch tuyệt đối về giá trong suốt Bayern.",
+    "seo_p4": "Dọn nhà nhanh chóng.",
+    "seo_p5": "Chuyên nghiệp nhất.",
+    "seo_p6": "Có giá cố định.",
+    "faq_q5": "Cố bảo hiểm không?",
+    "faq_a5": "Có, bảo hiểm vận chuyển tiêu chuẩn.",
+    "faq_q6": "Cung cấp thùng carton?",
+    "faq_a6": "Có.",
+    "faq_q7": "Có dịch vụ bao lâu?",
+    "faq_a7": "Thường là 48 tiếng.",
+    "faq_q8": "Có vệ sinh nhà không?",
+    "faq_a8": "Có."
   },
   "reviews": {
     "title": "Đó là những gì khách hàng của chúng tôi nói",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "Đó là những gì chúng tôi nói",
     "title_part2": "Khách hàng"
+  },
+  "seo": {
+    "dynamic_city_title": "Công ty dọn nhà {city} | FLOXANT",
+    "dynamic_city_desc": "Chuyên nghiệp tại {city}."
+  },
+  "ratgeber": {
+    "title": "Hướng dẫn",
+    "h1_pre": "Mẹo",
+    "meta_title": "Hướng dẫn | FLOXANT",
+    "meta_desc": "Các mẹo dọn nhà.",
+    "subtitle": "Lời khuyên hữu ích.",
+    "read_more": "Đọc thêm →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Giá chuyển nhà Regensburg",
+        "desc": "Cần bao nhiêu?"
+      },
+      "checkliste_umzug": {
+        "title": "Danh sách cần làm",
+        "desc": "Để chuyển nhà tốt."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "Cách tìm công ty tốt",
+        "desc": "Cần để ý gì?"
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Phí rác thải m3",
+        "desc": "Chi tiết."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Chuẩn bị 7 bước",
+        "desc": "Bí quyết dọn."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Khi nào nên thuê dọn nhà",
+        "desc": "Lợi ích và giá."
+      },
+      "moebeltransport_sicher": {
+        "title": "Vận chuyển nội thất",
+        "desc": "Cách bọc."
+      },
+      "umzug_tipps_familien": {
+        "title": "Có em bé dọn sao",
+        "desc": "Mẹo vặt."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Vệ sinh nhà cửa",
+        "desc": "Chỗ nào dơ."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Máy tính giá hoạt động",
+        "desc": "Chi tiết."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Làm giấy tờ chính phủ",
+        "desc": "Thay đổi chỗ ở."
+      },
+      "umzug_versicherung": {
+        "title": "Bảo hiểm.",
+        "desc": "Nội quy."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Gom nhà",
+        "desc": "Xóa nhà trống."
+      },
+      "umzug_im_winter": {
+        "title": "Vào mùa đông",
+        "desc": "Khó khăn."
+      },
+      "umzug_erste_wohnung": {
+        "title": "Sinh viên",
+        "desc": "Giá rẻ."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Chuyển nhà, vệ sinh, FLOXANT",
+    "og_img_alt": "FLOXANT Chuyển nhà",
+    "og_locale": "vi_VN"
   }
 }

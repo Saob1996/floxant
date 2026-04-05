@@ -14,11 +14,13 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'umzug',
-        title: 'Das Kompetenzzentrum für Ihren Umzug | FLOXANT',
-        description: 'Professionelle Das Kompetenzzentrum für Ihren Umzug in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -30,10 +32,10 @@ export default async function UmzugPillarPage({ params }: { params: Promise<{ la
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Wie finde ich das richtige Umzugsunternehmen in Bayern?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Achten Sie auf Transparenz, einen festen Geschäftssitz (wie FLOXANT in Regensburg), Haftpflichtversicherungen und Festpreisangebote ohne versteckte Klauseln. Online-Bewertungen geben zusätzlichen Aufschluss über die Seriosität der Umzugsfirma." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie setzen sich die Umzug Kosten zusammen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Die Umzug Kosten berechnen sich aus dem Transportvolumen (Anzahl der Möbel und Kartons in cbm), der Entfernung zwischen Auszugs- und Einzugsort, den Stockwerken sowie gebuchten Extra-Services wie Einpackservice oder Küchenmontage." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Was beinhaltet ein Full-Service Umzugsservice?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ein Full-Service Umzugsservice umfasst das komplette Ein- und Auspacken aller Gegenstände, den sicheren Möbelabbau und -aufbau, den Transport sowie die Beantragung von Halteverbotszonen. Sie lehnen sich zurück, die Umzugsfirma erledigt alles." } },
-                { "@type": "Question", "name": content.faqs?.[3]?.q || "Wann sollte ich den Umzug planen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a || "Beginnen Sie mit dem Umzug Planen idealerweise 2 bis 3 Monate im Voraus. So sichern Sie sich Ihren Wunschtermin bei Ihrem Umzugsunternehmen und haben genügend Zeit für Behördengänge, Ummeldungen und das Entrümpeln." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } },
+                { "@type": "Question", "name": content.faqs?.[3]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a } }
             ],
     };
 
@@ -88,7 +90,7 @@ export default async function UmzugPillarPage({ params }: { params: Promise<{ la
                                     Wenn Sie eine <strong>Umzug Firma</strong> beauftragen, überlassen Sie wildfremden Menschen Ihren gesamten Hausrat – Ihre Erinnerungsstücke, teure Elektronik und empfindliche Erbstücke. Setzen Sie deshalb auf ein etabliertes, bewertetes System. FLOXANT grenzt sich als <strong>Umzugsfirma</strong> im Premiumsektor bewusst von schwarzen Schafen ab. Wir arbeiten nicht mit verdeckten Stundenlöhnen, die bei einem Stau künstlich in die Höhe schnellen. Wir arbeiten mit garantierten Festpreisen.
                                 </p>
                                 <h3>Merkmale eines professionellen Umzugsunternehmens in Bayern</h3>
-                                <ul className="grid md:grid-cols-2 gap-4 list-none pl-0">
+                                <ul className="grid md:grid-cols-2 gap-4 list-none ps-">
                                     {[
                                         'Kostenlose und unverbindliche Vorabbesichtigung zur genauen Kalkulation',
                                         'Transparenter Kostenvoranschlag mit Festpreisgarantie',
@@ -114,14 +116,14 @@ export default async function UmzugPillarPage({ params }: { params: Promise<{ la
                             <div className="grid lg:grid-cols-2 gap-12 items-center">
                                 <div>
                                     <div className="bg-white p-6 rounded-2xl shadow-sm border mb-6 relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px]" />
+                                        <div className="absolute top-0 end- w-32 h-32 bg-primary/5 rounded-bl-[100px]" />
                                         <h3 className="text-2xl font-bold mb-4 flex items-center gap-3"><Clock className="text-primary w-6 h-6" /> Umzug planen: Das Timing</h3>
                                         <p className="text-slate-600">
                                             Erfolgreiche Logistik beginnt Monate vor dem eigentlichen Stichtag. Einen <strong>Umzug planen</strong> erfordert Disziplin. Kündigen Sie alte Verträge rechtzeitig, organisieren Sie Nachsendeaufträge und beginnen Sie frühzeitig mit der Vorsortierung (Entrümpelung) Ihres Kellers. Je exakter Sie Ihren <strong>Umzug planen</strong>, desto reibungsloser greift das Zahnradwerk am eigentlichen Transporttag ineinander.
                                         </p>
                                     </div>
                                     <div className="bg-white p-6 rounded-2xl shadow-sm border relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px]" />
+                                        <div className="absolute top-0 end- w-32 h-32 bg-primary/5 rounded-bl-[100px]" />
                                         <h3 className="text-2xl font-bold mb-4 flex items-center gap-3"><Package className="text-primary w-6 h-6" /> Der richtige Umzugsservice</h3>
                                         <p className="text-slate-600">
                                             Nicht jeder Umzug ist gleich. Ein moderner <strong>Umzugsservice</strong> ist modular. Vom reinen Transport (inklusive Fahrer und LKW) über das Ein- und Auspacken (Packservice) bis hin zum Full-Service-Umzug, bei dem Sie keinen einzigen Finger krümmen müssen. FLOXANT bietet Ihnen exakt den <strong>Umzugsservice</strong>, der zu Ihrem Budget und Ihrem Zeitplan passt.
@@ -152,7 +154,7 @@ export default async function UmzugPillarPage({ params }: { params: Promise<{ la
                                 <p>
                                     Eines der häufigsten Suchanliegen im Netz lautet <strong>Umzug Kosten</strong>. Viele Interessenten suchen nach pauschalen Listen, doch so einfach ist es in der Praxis nicht. Ein seriöses <strong>Umzugsunternehmen in Bayern</strong> wird Ihnen niemals seriös am Telefon einen finalen Preis zusagen können, ohne die Gegebenheiten zu kennen.
                                 </p>
-                                <div className="grid md:grid-cols-2 gap-8 text-left mt-12">
+                                <div className="grid md:grid-cols-2 gap-8 text-start mt-12">
                                     <div className="bg-slate-50 p-8 rounded-2xl border">
                                         <h3 className="mt-0 text-xl font-bold">Faktoren für die Umzug Kosten</h3>
                                         <ul>

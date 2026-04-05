@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "umzug-landkreis-regensburg",
-        title: content.meta_title || "Umzug Landkreis Regensburg – Ihr regionaler Partne | FLOXANT",
+        title: content.meta_title,
         description: `Professionelle Transporte und Umzüge im Landkreis Regensburg. Alle 41 Gemeinden und Märkte im direkten Umkreis der Domstadt.`,
     });
 }

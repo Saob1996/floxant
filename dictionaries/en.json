@@ -162,7 +162,8 @@
     "message": "Message",
     "submit": "Send",
     "success": "Message sent",
-    "error": "Error sending message"
+    "error": "Error sending message",
+    "email_label": "Email"
   },
   "trust": {
     "experience": "Years of Experience",
@@ -260,7 +261,11 @@
           "q": "Do you offer long-distance moves starting from München?",
           "a": "Yes. We organize long-distance relocations from München to all of Germany."
         }
-      ]
+      ],
+      "meta_title": "Moving Company Munich | FLOXANT",
+      "meta_desc": "Professional moving company in Munich. Calculate fixed price online.",
+      "hero_h1": "Moving Company ",
+      "hero_h1_highlight": "Munich"
     },
     "service_umzug": {
       "meta_title": "Private Relocation – Your Personal Move",
@@ -2916,7 +2921,11 @@
           "q": "Are long-distance jumps dispatched leaving Nürnberg?",
           "a": "Absolutely. We architect massive long-range jumps originating from Nürnberg actively connecting the entire German republic."
         }
-      ]
+      ],
+      "meta_title": "Moving Company Nuremberg | FLOXANT",
+      "meta_desc": "Professional moving company in Nuremberg. Calculate fixed price online.",
+      "hero_h1": "Moving Company ",
+      "hero_h1_highlight": "Nuremberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Moving Company Oberasbach ✓ Fixed Price ✓ Fully Insured | FLOXANT",
@@ -3843,6 +3852,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Calculate Moving Costs 2026 | FLOXANT",
+      "meta_desc": "Calculate your moving costs instantly online.",
+      "h1_pre": "Calculate your",
+      "h1_hi": "Moving Costs",
+      "subtitle": "Seconds to your first estimate or millimeter exact guaranteed fixed price.",
+      "h2": "What determines your moving costs?"
+    },
+    "calc_reinigung": {
+      "meta_title": "Calculate Cleaning Costs 2026 | FLOXANT",
+      "meta_desc": "Calculate your cleaning costs instantly online.",
+      "h1_pre": "Calculate your",
+      "h1_hi": "Cleaning Costs",
+      "subtitle": "Seconds to your first estimate or guaranteed fixed price.",
+      "h2": "Cost factors for professional cleaning"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Calculate Clearance Costs 2026 | FLOXANT",
+      "meta_desc": "Calculate your clearance and disposal costs instantly online.",
+      "h1_pre": "What does your",
+      "h1_hi": "Clearance cost?",
+      "subtitle": "Whether bulky waste or complete household clearance. Calculate fixed prices online.",
+      "h2": "How are clearance costs calculated?"
     }
   },
   "services_section": {
@@ -4020,7 +4053,10 @@
     "additional_services_locations": "Peripheral Services & Outposts inside Bayern",
     "cleaning_company": "Sanitation Agency",
     "calculate_price": "Compute Volume",
-    "combination_move": "Symbiotic Relocation Pairing"
+    "combination_move": "Symbiotic Relocation Pairing",
+    "also_available_in": "Also available in:",
+    "whatsapp_cta_title": "WhatsApp Support",
+    "whatsapp_cta_desc": "We are available 24/7."
   },
   "calculator": {
     "requirements_title": "Your Specifications",
@@ -4220,7 +4256,9 @@
     "flag_loading_path": "Carrying path distance",
     "flag_disassembly_on_site": "Incl. disassembly on site",
     "flag_express_service": "Express service (Urgent)",
-    "flag_waste_notes_noted": "We save your note for planning"
+    "flag_waste_notes_noted": "We save your note for planning",
+    "upload_link_note": "We will send you a link to upload photos separately via email and WhatsApp. This speeds up the exact fixed price calculation.",
+    "error_submit": "Error sending. Please try again."
   },
   "home": {
     "hero_title": "Your professional moving company in Bavaria.",
@@ -4242,7 +4280,18 @@
     "faq_a4": "FLOXANT also offers short-term moves within 24 to 48 hours. Contact us for fast availability.",
     "premium_badge": "Premium Logistics & Service",
     "services_title": "Our Logistics & Services",
-    "services_subtitle": "Whether it is a complex office move or a sensitive house clearance – we deliver measurable quality and absolute price transparency throughout Bavaria."
+    "services_subtitle": "Whether it is a complex office move or a sensitive house clearance – we deliver measurable quality and absolute price transparency throughout Bavaria.",
+    "seo_p4": "Moving safely and relaxed.",
+    "seo_p5": "We move you quickly and reliably.",
+    "seo_p6": "Get your fixed price online.",
+    "faq_q5": "Are my goods insured?",
+    "faq_a5": "Yes, standard transport insurance is included.",
+    "faq_q6": "Do you provide packing materials?",
+    "faq_a6": "Yes, we can provide boxes and foil upon request.",
+    "faq_q7": "How fast can you move us?",
+    "faq_a7": "Often within 48 hours for urgent moves.",
+    "faq_q8": "Do you offer cleaning services?",
+    "faq_a8": "Yes, we offer final cleaning with handover guarantee."
   },
   "reviews": {
     "title": "What our customers say",
@@ -4284,5 +4333,84 @@
     ],
     "title_part1": "What our",
     "title_part2": "customers say"
+  },
+  "seo": {
+    "dynamic_city_title": "Moving Company in your City | FLOXANT",
+    "dynamic_city_desc": "Your reliable moving company. Fixed price guarantee."
+  },
+  "ratgeber": {
+    "title": "FLOXANT Guide",
+    "h1_pre": "Moving",
+    "meta_title": "Moving Guide & Tips 2026 | FLOXANT",
+    "meta_desc": "Valuable tips, checklists and cost overviews for moving, clearance and cleaning.",
+    "subtitle": "Tips, checklists and cost overviews.",
+    "read_more": "Read more →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Moving Costs Regensburg 2026",
+        "desc": "What does a move in Regensburg cost?"
+      },
+      "checkliste_umzug": {
+        "title": "Checklist for a stress-free move",
+        "desc": "The ultimate moving checklist."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "How to find a good moving company?",
+        "desc": "What to look out for when choosing."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Clearance costs per m³ explained",
+        "desc": "What does a clearance cost per cubic meter?"
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Prepare move in 7 steps",
+        "desc": "7 simple steps for perfect preparation."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "When is a moving company worth it?",
+        "desc": "Cost-benefit analysis."
+      },
+      "moebeltransport_sicher": {
+        "title": "Organize safe furniture transport",
+        "desc": "How your furniture arrives safely."
+      },
+      "umzug_tipps_familien": {
+        "title": "Moving tips for families",
+        "desc": "Practical tips for moving with children."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Cleaning after moving",
+        "desc": "Professional cleaning tips."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Moving cost calculator explained",
+        "desc": "How does a moving cost calculator work?"
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Register & reregister move",
+        "desc": "All bureaucratic steps."
+      },
+      "umzug_versicherung": {
+        "title": "Moving Insurance: What is important?",
+        "desc": "Transport insurance coverage."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Apartment clearance tips",
+        "desc": "Process, costs and checklist."
+      },
+      "umzug_im_winter": {
+        "title": "Moving in winter",
+        "desc": "Pros, cons and tips."
+      },
+      "umzug_erste_wohnung": {
+        "title": "First apartment move",
+        "desc": "What you need to know."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Moving company, Moving, Clearance, Cleaning, Fixed price move, FLOXANT",
+    "og_img_alt": "FLOXANT – Moving, Cleaning & Clearance",
+    "og_locale": "en_US"
   }
 }

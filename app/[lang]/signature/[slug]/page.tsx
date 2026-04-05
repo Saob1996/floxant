@@ -67,8 +67,8 @@ export async function generateMetadata({
     const content = (dict?.pages as any)?.[key] || {};
 
     return {
-        title: content.meta_title || `FLOXANT Signature – ${slug}`,
-        description: content.meta_desc || "",
+        title: content.meta_title,
+        description: content.meta_desc,
         alternates: {
             canonical: `https://www.floxant.de/${pageLocale}/signature/${slug}`,
             languages: i18n.locales.reduce(
@@ -152,7 +152,7 @@ export default async function SignatureServicePage({
             {area.hub_note && (
                 <section className="py-12 px-6">
                     <div className="mx-auto max-w-3xl">
-                        <p className="text-sm text-muted-foreground/70 leading-relaxed border-l-2 border-primary/20 pl-6 italic">
+                        <p className="text-sm text-muted-foreground/70 leading-relaxed border-s-2 border-primary/20 ps- italic">
                             {area.hub_note}
                         </p>
                     </div>
@@ -163,7 +163,7 @@ export default async function SignatureServicePage({
             <section className="py-16 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="text-xl font-bold mb-8 text-center text-muted-foreground">
-                        {dict?.signature_services?.title || "Signature Experiences"}
+                        {dict?.signature_services?.title}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {otherSlugs.map((s) => {

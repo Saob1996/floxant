@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "blog/umzug-mit-kindern-stressfrei",
-        title: content.meta_title || "Umzug mit Kindern: So wird der Wohnungswechsel zum | FLOXANT",
-        description: content.meta_desc || `Umzug mit Kindern stressfrei gestalten. Alter-spezifische Tipps, Einbeziehung ins Packen, Schulwechsel-Vorbereitung und emotionale Unterstützung. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 

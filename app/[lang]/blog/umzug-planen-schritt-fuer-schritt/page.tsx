@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "blog/umzug-planen-schritt-fuer-schritt",
-        title: content.meta_title || "Umzug planen: Der ultimative Leitfaden in 10 Schri | FLOXANT",
-        description: content.meta_desc || `Umzug richtig planen – von der Kündigung bis zur Schlüsselübergabe. 10-Schritte-Anleitung mit Checklisten, Fristen und Insider-Tipps für Bayern. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 

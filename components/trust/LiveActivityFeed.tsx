@@ -16,11 +16,11 @@ export default function LiveActivityFeed({ dic }: { dic?: any }) {
   const [currentActivity, setCurrentActivity] = useState<Activity | null>(null);
 
   const mockActivities: Omit<Activity, 'id'>[] = [
-    { message: dic?.calculator?.just_booked_moving || "Gerade gebucht: Umzug", location: dic?.area?.cities?.munich || "München", timeAgo: "vor 2 Min", type: "booking" },
-    { message: dic?.calculator?.social_proof || "3 Personen schauen sich diesen Rechner an", location: dic?.calculator?.near_you || "in deiner Nähe", timeAgo: "Live", type: "viewing" },
-    { message: dic?.calculator?.offer_confirmed_cleaning || "Angebot bestätigt: Reinigung", location: dic?.area?.cities?.augsburg || "Augsburg", timeAgo: "vor 12 Min", type: "booking" },
-    { message: dic?.calculator?.latest_request || "Letzte Anfrage", location: dic?.area?.cities?.nuremberg || "Nürnberg", timeAgo: "vor 4 Min", type: "booking" },
-    { message: dic?.calculator?.just_booked_clearance || "Gerade gebucht: Entsorgung", location: "Passau", timeAgo: "vor 8 Min", type: "booking" },
+    { message: dic?.calculator?.just_booked_moving, location: dic?.area?.cities?.munich, timeAgo: "vor 2 Min", type: "booking" },
+    { message: dic?.calculator?.social_proof, location: dic?.calculator?.near_you, timeAgo: "Live", type: "viewing" },
+    { message: dic?.calculator?.offer_confirmed_cleaning, location: dic?.area?.cities?.augsburg, timeAgo: "vor 12 Min", type: "booking" },
+    { message: dic?.calculator?.latest_request, location: dic?.area?.cities?.nuremberg, timeAgo: "vor 4 Min", type: "booking" },
+    { message: dic?.calculator?.just_booked_clearance, location: "Passau", timeAgo: "vor 8 Min", type: "booking" },
   ];
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function LiveActivityFeed({ dic }: { dic?: any }) {
   }, []);
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 pointer-events-none">
+    <div className="fixed bottom-6 start- z-50 pointer-events-none">
       <AnimatePresence>
         {currentActivity && (
           <m.div

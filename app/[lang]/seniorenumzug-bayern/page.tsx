@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.seniorenumzug_bayern || {};
     return {
-        title: content.meta_title || "Seniorenumzug Bayern | Einfühlsam & Professionell | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Seniorenumzug in Bayern – mit Geduld, Respekt und professioneller Planung. Wechsel ins Pflegeheim, altersgerechte Wo...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/seniorenumzug-bayern`,

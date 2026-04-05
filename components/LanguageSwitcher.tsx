@@ -5,6 +5,26 @@ import { Globe, ChevronDown, Check } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
+const languages = [
+    { code: 'de', name: 'Deutsch' },
+    { code: 'en', name: 'English' },
+    { code: 'ar', name: 'العربية' },
+    { code: 'tr', name: 'Türkçe' },
+    { code: 'ru', name: 'Русский' },
+    { code: 'uk', name: 'Українська' },
+    { code: 'pl', name: 'Polski' },
+    { code: 'ro', name: 'Română' },
+    { code: 'bg', name: 'Български' },
+    { code: 'es', name: 'Español' },
+    { code: 'fr', name: 'Français' },
+    { code: 'it', name: 'Italiano' },
+    { code: 'fa', name: 'فارسی' },
+    { code: 'zh', name: '中文' },
+    { code: 'vi', name: 'Tiếng Việt' },
+    { code: 'ko', name: '한국어' },
+    { code: 'ja', name: '日本語' }
+];
+
 export function LanguageSwitcher({ lang }: { lang: string }) {
     const pathname = usePathname();
     const router = useRouter();
@@ -23,40 +43,18 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
     }, []);
 
     const handleLanguageChange = (newLocale: string) => {
-        const cleanPath = pathname.replace(
-            /^\/(de|en|ar|tr|ru|uk|pl|ro|bg|es|fr|it|fa|zh|vi|ko|ja)/,
-            ''
-        );
+        // Dynamically generate regex from the codes in the languages array
+        const localeCodes = languages.map(l => l.code).join('|');
+        const cleanPath = pathname.replace(new RegExp(`^/(${localeCodes})`), '');
 
         const newPath = `/${newLocale}${cleanPath || ''}`;
 
         router.replace(newPath);
         setIsOpen(false);
-    };
-
-    const languages = [
-        { code: 'de', name: 'Deutsch' },
-        { code: 'en', name: 'English' },
-        { code: 'ar', name: 'العربية' },
-        { code: 'tr', name: 'Türkçe' },
-        { code: 'ru', name: 'Русский' },
-        { code: 'uk', name: 'Українська' },
-        { code: 'pl', name: 'Polski' },
-        { code: 'ro', name: 'Română' },
-        { code: 'bg', name: 'Български' },
-        { code: 'es', name: 'Español' },
-        { code: 'fr', name: 'Français' },
-        { code: 'it', name: 'Italiano' },
-        { code: 'fa', name: 'فارسی' },
-        { code: 'zh', name: '中文' },
-        { code: 'vi', name: 'Tiếng Việt' },
-        { code: 'ko', name: '한국어' },
-        { code: 'ja', name: '日本語' }
-    ];
+    }
 
     // Sprache direkt aus URL ableiten (nicht aus prop)
-    const currentLangFromPath = pathname.split('/')[1];
-    const currentLang = languages.find(l => l.code === currentLangFromPath) || languages[0];
+    const currentLang = languages.find(l => pathname.split('/')[1] === l.code) || languages[0];
 
     return (
         <div className="relative z-50" ref={containerRef}>
@@ -76,7 +74,7 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
             </button>
 
             {isOpen && (
-                <div className="absolute top-full right-0 mt-2 w-48 max-h-[60vh] overflow-y-auto rounded-xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-1.5">
+                <div className="absolute top-full end-0 mt-2 w-48 max-h-[60vh] overflow-y-auto rounded-xl bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-1.5">
                     <div className="flex flex-col gap-0.5">
                         {languages.map((l) => (
                             <button
@@ -86,7 +84,7 @@ export function LanguageSwitcher({ lang }: { lang: string }) {
                                     "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all",
                                     currentLang.code === l.code
                                         ? "bg-primary/15 text-primary font-medium"
-                                        : "hover:bg-white/5 text-muted-foreground hover:text-foreground hover:pl-4"
+                                        : "hover:bg-white/5 text-muted-foreground hover:text-foreground hover:ps-4"
                                 )}
                             >
                                 <span>{l.name}</span>

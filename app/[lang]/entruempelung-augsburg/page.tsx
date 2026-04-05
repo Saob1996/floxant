@@ -16,11 +16,13 @@ import { MapPin } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'entruempelung-augsburg',
-        title: 'Entrümpelung in Augsburg | FLOXANT',
-        description: 'Professionelle Entrümpelung in Augsburg in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -32,8 +34,8 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine Entrümpelung in Augsburg?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "30 bis 80 Euro pro Kubikmeter, abhängig von Material und Zugänglichkeit. Festpreis nach Besichtigung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie schnell können Sie entrümpeln?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Express-Entrümpelung innerhalb von 24 bis 48 Stunden möglich. Standard innerhalb einer Woche." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

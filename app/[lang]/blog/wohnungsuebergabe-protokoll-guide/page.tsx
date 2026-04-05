@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "blog/wohnungsuebergabe-protokoll-guide",
-        title: content.meta_title || "Wohnungsübergabe: So sichern Sie sich rechtlich ab | FLOXANT",
-        description: content.meta_desc || `Wohnungsübergabeprotokoll richtig erstellen. Was muss rein, worauf achten und wie vermeiden Sie Streit um die Kaution? Kompletter Guide. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 

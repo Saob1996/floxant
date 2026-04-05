@@ -7,11 +7,13 @@ import { Clock, CalendarDays, UserCircle, ArrowRight, Trash2, Home, Receipt, Che
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'blog/entrumpelung-kosten-bayern',
-        title: 'Entrümpelung Kosten Bayern: Was kostet die Räumung? | FLOXANT',
-        description: 'Von Kellerentrümpelung bis zur Wohnungsauflösung: Alle Entrümpelungskosten in Bayern (inkl. Entsorgungsgebühren) detailliert aufgeschlüsselt. Sofortpr...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -53,7 +55,7 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
                             Entrümpelung Kosten Bayern: Das zahlen Sie für Haus & Keller
                         </h1>
-                        <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-primary pl-6">
+                        <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-primary ps-">
                             Eine Haushaltsauflösung ist emotional und körperlich anstrengend. Hinzu kommt oft die Unsicherheit bezüglich der entstehenden Kosten. Wir erklären Ihnen die Preisstruktur bayerischer Entsorgungsbetriebe im Detail.
                         </p>
                     </header>
@@ -79,7 +81,7 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
                         </p>
 
                         <div className="overflow-x-auto my-8 border rounded-xl shadow-sm">
-                            <table className="w-full text-left border-collapse m-0 text-base">
+                            <table className="w-full text-start border-collapse m-0 text-base">
                                 <thead>
                                     <tr className="bg-slate-100">
                                         <th className="p-4 border-b">Einsatzort</th>
@@ -115,11 +117,11 @@ export default async function BlogEntrumpelungKosten({ params }: { params: Promi
 
                         <div className="grid md:grid-cols-2 gap-6 my-10">
                             <div className="bg-slate-50 p-6 rounded-2xl border">
-                                <h3 className="mt-0 text-xl"><Receipt className="inline w-5 h-5 mr-2 text-primary" /> Unseriöse Lockvögel</h3>
+                                <h3 className="mt-0 text-xl"><Receipt className="inline w-5 h-5 me- text-primary" /> Unseriöse Lockvögel</h3>
                                 <p className="text-sm">Vorsicht vor Angeboten wie "Kostenlose Entrümpelung". Oft laden illegale Entsorger den Müll dann im Wald ab. Als Hausbesitzer haften Sie im Zweifel mit!</p>
                             </div>
                             <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
-                                <h3 className="mt-0 text-xl text-emerald-900"><CheckCircle2 className="inline w-5 h-5 mr-2 text-emerald-600" /> FLOXANT Transparenz</h3>
+                                <h3 className="mt-0 text-xl text-emerald-900"><CheckCircle2 className="inline w-5 h-5 me- text-emerald-600" /> FLOXANT Transparenz</h3>
                                 <p className="text-sm text-emerald-800">Wir erstellen nach einer digitalen Besichtigung einen garantierten <strong>Festpreis</strong>. Die umweltgerechte Entsorgung bei bayerischen Recyclinghöfen ist immer inklusive.</p>
                             </div>
                         </div>

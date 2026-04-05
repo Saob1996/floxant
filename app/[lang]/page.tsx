@@ -51,21 +51,16 @@ type DisplayService = {
   Icon: typeof Box;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const pageLocale = lang as Locale;
+  const dict = (await getDictionary(pageLocale)) as any;
 
   return generatePageSEO({
     pageLocale,
     path: "",
-    title:
-      pageLocale === "de"
-        ? "FLOXANT | Umzugsunternehmen Bayern"
-        : "FLOXANT | Moving Company Bavaria",
-    description:
-      pageLocale === "de"
-        ? "Professionelles Umzugsunternehmen in Bayern für Umzug, Reinigung und Entrümpelung. Festpreise, versicherter Service und schnelle Verfügbarkeit."
-        : "Professional moving company in Bavaria for moving, cleaning and clearance. Fixed prices, insured service and fast availability.",
+    title: dict.seo?.home_title,
+    description: dict.seo?.home_desc,
   });
 }
 
@@ -97,81 +92,81 @@ export default async function Home({ params }: PageProps) {
     mainEntity: [
       {
         "@type": "Question",
-        name: dict.home?.faq_q1 || "Was kostet ein Umzug in Regensburg?",
+        name: dict.home?.faq_q1,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a1 || "Ein Umzug in Regensburg kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße.",
+          text: dict.home?.faq_a1,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q2 || "Bietet FLOXANT auch Reinigung und Entrümpelung?",
+        name: dict.home?.faq_q2,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a2 || "Ja. FLOXANT bietet Umzug, professionelle Reinigung und Entrümpelung aus einer Hand in ganz Bayern.",
+          text: dict.home?.faq_a2,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q3 || "In welchen Städten ist FLOXANT aktiv?",
+        name: dict.home?.faq_q3,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a3 || "FLOXANT ist in ganz Bayern aktiv, insbesondere in Regensburg, München, Nürnberg und Augsburg.",
+          text: dict.home?.faq_a3,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q4 || "Wie schnell kann FLOXANT einen Umzug durchführen?",
+        name: dict.home?.faq_q4,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a4 || "Kurzfristige Umzüge innerhalb von 24 bis 48 Stunden sind je nach Verfügbarkeit möglich.",
+          text: dict.home?.faq_a4,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q5 || "Was kostet eine Entrümpelung in Regensburg?",
+        name: dict.home?.faq_q5,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a5 || "Kellerentrümpelungen starten ab ca. 200 Euro, komplette Wohnungsauflösungen ab ca. 800 Euro.",
+          text: dict.home?.faq_a5,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q6 || "Kann FLOXANT die Halteverbotszone beantragen?",
+        name: dict.home?.faq_q6,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a6 || "Ja. Wir übernehmen die komplette Beantragung der Halteverbotszone in allen Städten Bayerns.",
+          text: dict.home?.faq_a6,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q7 || "Wie funktioniert die Reinigung bei der Wohnungsübergabe?",
+        name: dict.home?.faq_q7,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a7 || "Professionelle Endreinigung nach Vermieterstandards mit Fotodokumentation und Abnahmegarantie.",
+          text: dict.home?.faq_a7,
         },
       },
       {
         "@type": "Question",
-        name: dict.home?.faq_q8 || "Ist mein Umzugsgut bei FLOXANT versichert?",
+        name: dict.home?.faq_q8,
         acceptedAnswer: {
           "@type": "Answer",
-          text: dict.home?.faq_a8 || "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und §451g HGB vollständig abgesichert.",
+          text: dict.home?.faq_a8,
         },
       },
     ],
   };
 
-  const howToJsonLd = {
+    const howToJsonLd = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "Wie funktioniert ein Umzug mit FLOXANT?",
-    "description": "In 4 einfachen Schritten zu Ihrem stressfreien Umzug in Bayern.",
+    "name": dict.home?.howto_name || "Wie funktioniert ein Umzug mit FLOXANT?",
+    "description": dict.home?.howto_desc || "In 4 einfachen Schritten zu Ihrem stressfreien Umzug in Bayern.",
     "step": [
-      { "@type": "HowToStep", "name": "Kosten berechnen", "text": "Nutzen Sie unseren Online-Rechner oder kontaktieren Sie uns für eine kostenlose Besichtigung." },
-      { "@type": "HowToStep", "name": "Festpreisangebot erhalten", "text": "Sie erhalten ein verbindliches Festpreisangebot ohne versteckte Kosten." },
-      { "@type": "HowToStep", "name": "Termin buchen", "text": "Wählen Sie Ihren Wunschtermin. Auch kurzfristige Termine innerhalb von 48h sind möglich." },
-      { "@type": "HowToStep", "name": "Entspannt umziehen", "text": "Unser versichertes Team erledigt den Rest – professionell, pünktlich und sorgfältig." }
+      { "@type": "HowToStep", "name": dict.home?.howto_step1_name || "Kosten berechnen", "text": dict.home?.howto_step1_text || "Nutzen Sie unseren Online-Rechner oder kontaktieren Sie uns für eine kostenlose Besichtigung." },
+      { "@type": "HowToStep", "name": dict.home?.howto_step2_name || "Festpreisangebot erhalten", "text": dict.home?.howto_step2_text || "Sie erhalten ein verbindliches Festpreisangebot ohne versteckte Kosten." },
+      { "@type": "HowToStep", "name": dict.home?.howto_step3_name || "Termin buchen", "text": dict.home?.howto_step3_text || "Wählen Sie Ihren Wunschtermin. Auch kurzfristige Termine innerhalb von 48h sind möglich." },
+      { "@type": "HowToStep", "name": dict.home?.howto_step4_name || "Entspannt umziehen", "text": dict.home?.howto_step4_text || "Unser versichertes Team erledigt den Rest – professionell, pünktlich und sorgfältig." }
     ]
   };
 
@@ -193,30 +188,29 @@ export default async function Home({ params }: PageProps) {
           <div className="mx-auto mb-16 max-w-4xl space-y-6 text-center animate-hero-fade">
             <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary shadow-sm animate-hero-scale">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>{dict.home?.premium_badge || "Premium Logistik & Service"}</span>
+              <span>{dict.home?.premium_badge}</span>
             </div>
 
             <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              {dict.home?.hero_title || "Ihr professionelles Umzugsunternehmen in Bayern."}
+              {dict.home?.hero_title}
             </h1>
 
             <p className="mx-auto max-w-2xl text-balance text-lg font-medium leading-relaxed text-muted-foreground md:text-xl">
-              {dict.home?.hero_subtitle ||
-                "Kalkulieren Sie Ihren Umzug, Ihre Entrümpelung oder Reinigung sofort online."}
+              {dict.home?.hero_subtitle}
             </p>
 
             <div className="mx-auto flex max-w-xl flex-wrap items-center justify-center gap-6 pt-4 text-muted-foreground">
               <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                {dict.common?.insured || "100% Versichert"}
+                {dict.common?.insured}
               </span>
               <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                {dict.common?.fixed_price || "Festpreisgarantie"}
+                {dict.common?.fixed_price}
               </span>
               <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                {dict.common?.google_rating || "Google 4.9/5.0"}
+                {dict.common?.google_rating}
               </span>
             </div>
           </div>
@@ -231,7 +225,7 @@ export default async function Home({ params }: PageProps) {
                 </div>
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    {contact.title || dict.common?.quick_question || "Telefon"}
+                    {contact.title || dict.common?.quick_question}
                   </p>
                   <a
                     href={`tel:${company.phone.replace(/\s+/g, "")}`}
@@ -248,7 +242,7 @@ export default async function Home({ params }: PageProps) {
                 </div>
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    {dict.common?.email_hotline || "Email Hotline"}
+                    {dict.common?.email_hotline}
                   </p>
                   <a
                     href={`mailto:${company.email}`}
@@ -268,7 +262,7 @@ export default async function Home({ params }: PageProps) {
       <section className="border-y border-border/30 px-6 py-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-4">
           <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground/50">
-            {dict.common?.known_from || "Bekannt aus"}
+            {dict.common?.known_from}
           </span>
           <div className="flex flex-wrap items-center justify-center gap-8">
             <a
@@ -297,7 +291,7 @@ export default async function Home({ params }: PageProps) {
         <div className="relative z-10 mx-auto max-w-7xl">
           <AnimateOnScroll className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
-              {dict.home?.services_title || "Unsere Logistik & Serviceleistungen"}
+              {dict.home?.services_title}
             </h2>
             <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
               {dict.home?.services_subtitle || servicesSection.subtitle}
@@ -334,10 +328,10 @@ export default async function Home({ params }: PageProps) {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">
-              {dict.home?.service_area_title || "Einsatzgebiete"}
+              {dict.home?.service_area_title}
             </span>
             <h2 className="mt-2 text-3xl font-bold tracking-tight">
-              {dict.home?.bavaria_deployment || "Regionales Einsatzgebiet in Bayern"}
+              {dict.home?.bavaria_deployment}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               {area.description}
@@ -350,7 +344,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.regensburg || "Regensburg"}
+                {dict.area?.cities?.regensburg}
               </h3>
             </Link>
 
@@ -359,7 +353,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.munich || "München"}
+                {dict.area?.cities?.munich}
               </h3>
             </Link>
 
@@ -368,7 +362,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.nuremberg || "Nürnberg"}
+                {dict.area?.cities?.nuremberg}
               </h3>
             </Link>
 
@@ -377,7 +371,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.augsburg || "Augsburg"}
+                {dict.area?.cities?.augsburg}
               </h3>
             </Link>
 
@@ -386,7 +380,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.passau || "Passau"}
+                {dict.area?.cities?.passau}
               </h3>
             </Link>
 
@@ -395,7 +389,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.landshut || "Landshut"}
+                {dict.area?.cities?.landshut}
               </h3>
             </Link>
 
@@ -404,7 +398,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.straubing || "Straubing"}
+                {dict.area?.cities?.straubing}
               </h3>
             </Link>
 
@@ -413,7 +407,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.schwandorf || "Schwandorf"}
+                {dict.area?.cities?.schwandorf}
               </h3>
             </Link>
 
@@ -422,7 +416,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.amberg || "Amberg"}
+                {dict.area?.cities?.amberg}
               </h3>
             </Link>
 
@@ -431,7 +425,7 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-xl border border-white/10 bg-primary/5 p-4 text-center transition-all hover:border-primary/30"
             >
               <h3 className="font-semibold text-foreground transition-colors group-hover:text-primary">
-                {dict.area?.cities?.bavaria || "Ganz Bayern"}
+                {dict.area?.cities?.bavaria}
               </h3>
             </Link>
           </div>
@@ -442,11 +436,10 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-2xl border border-white/10 p-6 transition-all hover:border-primary/30"
             >
               <h3 className="mb-2 text-lg font-bold transition-colors group-hover:text-primary">
-                {dict.common?.cleaning || "Reinigung"} Bayern
+                {dict.common?.cleaning} {dict.area?.cities?.bavaria || "Bayern"}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {dict.home?.cleaning_desc ||
-                  "Professionelle Endreinigung für Wohnungsübergabe."}
+                {dict.home?.cleaning_desc}
               </p>
             </Link>
 
@@ -455,11 +448,10 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-2xl border border-white/10 p-6 transition-all hover:border-primary/30"
             >
               <h3 className="mb-2 text-lg font-bold transition-colors group-hover:text-primary">
-                {dict.common?.clearance || "Entrümpelung"} Bayern
+                {dict.common?.clearance} {dict.area?.cities?.bavaria || "Bayern"}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {dict.home?.clearance_desc ||
-                  "Entrümpelung und Wohnungsauflösung schnell und zuverlässig."}
+                {dict.home?.clearance_desc}
               </p>
             </Link>
 
@@ -468,11 +460,10 @@ export default async function Home({ params }: PageProps) {
               className="group glass rounded-2xl border border-white/10 p-6 transition-all hover:border-primary/30"
             >
               <h3 className="mb-2 text-lg font-bold transition-colors group-hover:text-primary">
-                {dict.common?.guide || "Ratgeber"}
+                {dict.common?.guide}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {dict.home?.guide_desc ||
-                  "Tipps, Checklisten und Kostenübersichten rund um Ihren Umzug."}
+                {dict.home?.guide_desc}
               </p>
             </Link>
           </div>
@@ -482,7 +473,7 @@ export default async function Home({ params }: PageProps) {
       <section className="border-t border-border/50 px-6 py-16">
         <div className="prose prose-lg mx-auto max-w-4xl text-muted-foreground">
           <h2 className="text-2xl font-bold text-foreground">
-            {dict.home?.seo_title || "Ihre professionelle Umzugsfirma in Bayern"}
+            {dict.home?.seo_title}
           </h2>
           <p>{dict.home?.seo_p1}</p>
           <p>{dict.home?.seo_p2}</p>

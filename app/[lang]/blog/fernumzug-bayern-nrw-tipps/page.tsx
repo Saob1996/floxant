@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "blog/fernumzug-bayern-nrw-tipps",
-        title: content.meta_title || "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Ti | FLOXANT",
-        description: content.meta_desc || `Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 

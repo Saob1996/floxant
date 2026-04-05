@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/umzug-im-winter',
-        title: 'Umzug im Winter: Vor- und Nachteile | FLOXANT',
-        description: 'Professionelle Umzug im Winter: Vor- und Nachteile in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Ist ein Winterumzug günstiger?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Oft ja, weil die Nachfrage geringer ist und Umzugsfirmen besser verfügbar sind." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Welche Risiken gibt es?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Glätte, Kälte und kürzere Tage. Mit guter Planung lassen sich diese Risiken minimieren." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

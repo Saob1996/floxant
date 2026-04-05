@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "blog/umzugskosten-senken-7-tipps",
-        title: content.meta_title || "7 bewährte Tipps, um Umzugskosten drastisch zu sen | FLOXANT",
-        description: content.meta_desc || `Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 

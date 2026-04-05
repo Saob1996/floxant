@@ -162,7 +162,8 @@
     "message": "消息",
     "submit": "发送",
     "success": "消息已发送",
-    "error": "发送错误"
+    "error": "发送错误",
+    "email_label": "电子邮件"
   },
   "trust": {
     "experience": "多年经验",
@@ -260,7 +261,11 @@
           "q": "Bieten Sie Fernumzüge ab München an?",
           "a": "Ja. Wir organisieren Fernumzüge von München nach ganz Deutschland."
         }
-      ]
+      ],
+      "meta_title": "慕尼黑搬家公司 | FLOXANT",
+      "meta_desc": "慕尼黑专业搬家公司。在线计算固定价格。",
+      "hero_h1": "搬家公司 ",
+      "hero_h1_highlight": "慕尼黑"
     },
     "service_umzug": {
       "meta_title": "私人搬迁",
@@ -2919,7 +2924,11 @@
           "q": "从 Nürnberg 搬走去往天南海北遥远他乡的这种长途马拉松挪窝您家也发车么？",
           "a": "正是。我们将为您构筑起自 Nürnberg 挥师出征乃至覆盖打击德国版图每一个犄角旮旯的宏大超距长途远洋转运大动脉。"
         }
-      ]
+      ],
+      "meta_title": "纽伦堡搬家公司 | FLOXANT",
+      "meta_desc": "纽伦堡专业搬家。固定价格保证。",
+      "hero_h1": "搬家公司 ",
+      "hero_h1_highlight": "纽伦堡"
     },
     "umzug_oberasbach": {
       "meta_title": "Umzugsunternehmen Oberasbach ✓ 承诺固定总价 ✓ 全面强力上险 | FLOXANT",
@@ -3848,6 +3857,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "2026年搬家费用计算器 | FLOXANT",
+      "meta_desc": "在线立即计算您的搬家费用。",
+      "h1_pre": "计算您的",
+      "h1_hi": "搬家费用",
+      "subtitle": "几秒钟即可获得固定价格。",
+      "h2": "什么决定了搬家费用？"
+    },
+    "calc_reinigung": {
+      "meta_title": "清洁费用计算器 | FLOXANT",
+      "meta_desc": "在线计算退租清洁费用。",
+      "h1_pre": "计算您的",
+      "h1_hi": "清洁费用",
+      "subtitle": "保证交房固定价格。",
+      "h2": "专业清洁的费用因素"
+    },
+    "calc_entsorgung": {
+      "meta_title": "家具清理和垃圾处理计算器 | FLOXANT",
+      "meta_desc": "在线计算垃圾处理费用。",
+      "h1_pre": "处理垃圾",
+      "h1_hi": "需要多少钱？",
+      "subtitle": "大件垃圾和整屋清理直接报价。",
+      "h2": "费用是如何计算的？"
     }
   },
   "services_section": {
@@ -4025,7 +4058,10 @@
     "additional_services_locations": "Bayern 的其他服务和地点",
     "cleaning_company": "清洁公司",
     "calculate_price": "计算价格",
-    "combination_move": "与搬家结合"
+    "combination_move": "与搬家结合",
+    "also_available_in": "也提供以下语言版本：",
+    "whatsapp_cta_title": "WhatsApp 支持",
+    "whatsapp_cta_desc": "我们24/7全天候在线。"
   },
   "calculator": {
     "requirements_title": "Your Requirements",
@@ -4225,7 +4261,9 @@
     "flag_loading_path": "Carrying path distance",
     "flag_disassembly_on_site": "Incl. disassembly on site",
     "flag_express_service": "Express service (Urgent)",
-    "flag_waste_notes_noted": "We save your note for planning"
+    "flag_waste_notes_noted": "We save your note for planning",
+    "upload_link_note": "我们将向您发送一个用于上传照片的链接。",
+    "error_submit": "发送错误。请再试一次。"
   },
   "home": {
     "hero_title": "Your professional moving company in Bavaria.",
@@ -4249,7 +4287,18 @@
     "services_title": "Our Logistics & Services",
     "services_subtitle": "Whether it is a complex office move or a sensitive house clearance – we deliver measurable quality and absolute price transparency throughout Bavaria.",
     "meta_title": "FLOXANT | 雷根斯堡 (Regensburg) 与巴伐利亚的顶级搬家公司",
-    "meta_description": "您在雷根斯堡 (Regensburg) 和整个巴伐利亚的高级搬迁、清洁和清运合作伙伴。透明价格，专业团队，已投保。"
+    "meta_description": "您在雷根斯堡 (Regensburg) 和整个巴伐利亚的高级搬迁、清洁和清运合作伙伴。透明价格，专业团队，已投保。",
+    "seo_p4": "安全无忧的搬家。",
+    "seo_p5": "我们提供最快最可靠的搬家服务。",
+    "seo_p6": "在线获取固定价格。",
+    "faq_q5": "我的物品有保险吗？",
+    "faq_a5": "是的，包括标准运输保险。",
+    "faq_q6": "你们提供包装材料吗？",
+    "faq_a6": "是的，我们可应要求提供纸箱和打包膜。",
+    "faq_q7": "你们搬家有多快？",
+    "faq_a7": "紧急情况下通常在48小时内。",
+    "faq_q8": "你们提供清洁服务吗？",
+    "faq_a8": "是的，我们提供带交房保证的退租清洁。"
   },
   "reviews": {
     "title": "What our customers say",
@@ -4291,5 +4340,84 @@
     ],
     "title_part1": "What our",
     "title_part2": "customers say"
+  },
+  "seo": {
+    "dynamic_city_title": "{city} 搬家公司 | FLOXANT",
+    "dynamic_city_desc": "您在 {city} 的可靠搬家公司。固定价格保证。"
+  },
+  "ratgeber": {
+    "title": "FLOXANT 指南",
+    "h1_pre": "搬家",
+    "meta_title": "搬家指南和提示 | FLOXANT",
+    "meta_desc": "关于搬家、清理和清洁的宝贵提示。",
+    "subtitle": "专业人士的提示和清单。",
+    "read_more": "阅读更多 →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "雷根斯堡搬家费用2026",
+        "desc": "搬一次家要多少钱？"
+      },
+      "checkliste_umzug": {
+        "title": "无压力搬家清单",
+        "desc": "完美搬家的终极清单。"
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "如何找到好的搬家公司？",
+        "desc": "选择时需要注意什么。"
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "按立方米计算的清理费用",
+        "desc": "按立方米计算要多少钱？"
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "7步准备搬家",
+        "desc": "完美准备的简单步骤。"
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "什么时候值得找搬家公司？",
+        "desc": "成本效益分析。"
+      },
+      "moebeltransport_sicher": {
+        "title": "安全运输家具",
+        "desc": "如何确保家具安全送达。"
+      },
+      "umzug_tipps_familien": {
+        "title": "家庭搬家提示",
+        "desc": "带孩子搬家的实用提示。"
+      },
+      "reinigung_nach_umzug": {
+        "title": "搬家后清洁",
+        "desc": "专业退租清洁提示。"
+      },
+      "umzug_kosten_rechner": {
+        "title": "搬家费用计算器图解",
+        "desc": "计算器的工作原理。"
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "注册与地址变更",
+        "desc": "所有手续。"
+      },
+      "umzug_versicherung": {
+        "title": "搬家保险：哪些必买？",
+        "desc": "运输保险涵盖范围。"
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "清空公寓提示",
+        "desc": "流程和成本。"
+      },
+      "umzug_im_winter": {
+        "title": "在冬天搬家",
+        "desc": "利弊和注意事项。"
+      },
+      "umzug_erste_wohnung": {
+        "title": "第一次租房搬家",
+        "desc": "你需要知道什么。"
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "搬家公司, 搬家, 慕尼黑搬家, 清洁, 固定价格搬家, FLOXANT",
+    "og_img_alt": "FLOXANT 搬家, 清洁",
+    "og_locale": "zh_CN"
   }
 }

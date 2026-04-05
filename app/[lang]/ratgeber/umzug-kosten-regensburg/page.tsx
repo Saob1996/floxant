@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/umzug-kosten-regensburg',
-        title: 'Was kostet ein Umzug in Regensburg? | FLOXANT',
-        description: 'Professionelle Was kostet ein Umzug in Regensburg? in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Regensburg?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Zwischen 400 und 2.500 Euro je nach Wohnungsgröße und Service." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Gibt es Festpreise?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. FLOXANT bietet nach kostenloser Besichtigung ein verbindliches Festpreisangebot." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

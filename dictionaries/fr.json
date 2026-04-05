@@ -162,7 +162,8 @@
     "message": "Nouvelles",
     "submit": "Envoyer",
     "success": "Message envoyé",
-    "error": "Erreur d'envoi"
+    "error": "Erreur d'envoi",
+    "email_label": "E-mail"
   },
   "trust": {
     "experience": "Années d'expérience",
@@ -260,7 +261,11 @@
           "q": "Prenez-vous la requête sur grandes routes nationales allemandes lorgnant un voyage qui abandonnera la commune d'origine München?",
           "a": "C'est l'essence même de notre cœur métier. Lançant à volonté tous déploiements interrégionaux fuyant les délimitations originelles de München vers globalement chaque parcelle sur cette nation."
         }
-      ]
+      ],
+      "meta_title": "Entreprise de Déménagement Munich | FLOXANT",
+      "meta_desc": "Entreprise professionnelle de déménagement à Munich.",
+      "hero_h1": "Déménagement ",
+      "hero_h1_highlight": "Munich"
     },
     "service_umzug": {
       "meta_title": "Déménagement privé – votre changement de lieu personnel",
@@ -2832,7 +2837,11 @@
           "q": "Prenez-vous la requête sur grandes routes nationales allemandes lorgnant un voyage qui abandonnera la commune d'origine Nürnberg?",
           "a": "C'est l'essence même de notre cœur métier. Lançant à volonté tous déploiements interrégionaux fuyant les délimitations originelles de Nürnberg vers globalement chaque parcelle sur cette nation."
         }
-      ]
+      ],
+      "meta_title": "Entreprise de Déménagement Nuremberg | FLOXANT",
+      "meta_desc": "Entreprise de déménagement à Nuremberg.",
+      "hero_h1": "Déménagement ",
+      "hero_h1_highlight": "Nuremberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Entreprise de déménagement Oberasbach ✓ Prix fixe ✓ Assuré | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Calculateur de Déménagement 2026 | FLOXANT",
+      "meta_desc": "Calculez le prix de votre déménagement.",
+      "h1_pre": "Évaluer",
+      "h1_hi": "Les Frais de Déménagement",
+      "subtitle": "Prix fixe garanti.",
+      "h2": "Facteurs de prix"
+    },
+    "calc_reinigung": {
+      "meta_title": "Calculateur Nettoyage 2026 | FLOXANT",
+      "meta_desc": "Calculez les frais de nettoyage en ligne.",
+      "h1_pre": "Évaluer",
+      "h1_hi": "Frais de Nettoyage",
+      "subtitle": "Nettoyage pro avec prix fixe.",
+      "h2": "Facteurs de nettoyage"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Calculateur Evacuation | FLOXANT",
+      "meta_desc": "Calculez le prix de votre débarras en ligne.",
+      "h1_pre": "Combien coûte un",
+      "h1_hi": "Débarras?",
+      "subtitle": "Demandez en un clic.",
+      "h2": "C'est comment évalué?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Autres services et emplacements à Bayern",
     "cleaning_company": "Entreprise de nettoyage",
     "calculate_price": "Calculer le prix",
-    "combination_move": "Combinaison avec un déménagement"
+    "combination_move": "Combinaison avec un déménagement",
+    "also_available_in": "Aussi disponible en:",
+    "whatsapp_cta_title": "Service WhatsApp",
+    "whatsapp_cta_desc": "Disponible 24/7."
   },
   "calculator": {
     "requirements_title": "Vos exigences",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Itinéraire de transport",
     "flag_disassembly_on_site": "Y compris le démontage sur place",
     "flag_express_service": "Service express (urgent)",
-    "flag_waste_notes_noted": "Nous enregistrerons votre note pour la planification"
+    "flag_waste_notes_noted": "Nous enregistrerons votre note pour la planification",
+    "upload_link_note": "On vous enverra un lien pour uploader vos photos.",
+    "error_submit": "Erreur d'envoi. Veuillez réessayer."
   },
   "home": {
     "hero_title": "Votre entreprise de déménagement professionnelle à Bayern.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT propose également des déménagements à court terme dans un délai de 24 à 48 heures. Contactez-nous pour une disponibilité rapide.",
     "premium_badge": "Logistique et service haut de gamme",
     "services_title": "Notre logistique & services",
-    "services_subtitle": "Qu'il s'agisse d'un déménagement de bureau compliqué ou d'un dégagement d'appartement sensible, nous offrons une qualité mesurable et une transparence absolue des prix tout au long de Bayern."
+    "services_subtitle": "Qu'il s'agisse d'un déménagement de bureau compliqué ou d'un dégagement d'appartement sensible, nous offrons une qualité mesurable et une transparence absolue des prix tout au long de Bayern.",
+    "seo_p4": "Déménagez de manière calme.",
+    "seo_p5": "Service professionnel de qualité.",
+    "seo_p6": "Profitez d'un prix fixe en ligne.",
+    "faq_q5": "Mes produits sont-ils assurés ?",
+    "faq_a5": "Oui, assurance incluse.",
+    "faq_q6": "Fournissez-vous du matériel ?",
+    "faq_a6": "Oui, du matériel d'emballage.",
+    "faq_q7": "À quelle vitesse intervenez-vous ?",
+    "faq_a7": "Dans les 48 heures souvent.",
+    "faq_q8": "Proposez-vous un nettoyage final ?",
+    "faq_a8": "Oui, nettoyage garanti."
   },
   "reviews": {
     "title": "C'est ce que disent nos clients",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "C'est ce que disent les nôtres",
     "title_part2": "Clients"
+  },
+  "seo": {
+    "dynamic_city_title": "Déménagement {city} | FLOXANT",
+    "dynamic_city_desc": "Votre expert de déménagement à {city}."
+  },
+  "ratgeber": {
+    "title": "Guide FLOXANT",
+    "h1_pre": "Guide de",
+    "meta_title": "Conseils de Déménagement | FLOXANT",
+    "meta_desc": "Astuces et listes utiles.",
+    "subtitle": "Guides spécialisés.",
+    "read_more": "Lire la suite →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Frais déménagement Ratisbonne 2026",
+        "desc": "Combien ça coûte?"
+      },
+      "checkliste_umzug": {
+        "title": "Liste de contrôle déménagement",
+        "desc": "Guide de 5 pages."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "Trouver la bonne entreprise",
+        "desc": "Comment éviter les pièges."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Frais de débarras par m3",
+        "desc": "A savoir."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Préparation en 7 étapes",
+        "desc": "Astuces simples."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Pourquoi embaucher avec nous?",
+        "desc": "Analyse prix."
+      },
+      "moebeltransport_sicher": {
+        "title": "Transport sûr des meubles",
+        "desc": "Nos techniques."
+      },
+      "umzug_tipps_familien": {
+        "title": "Déménagement en famille",
+        "desc": "Petites astuces."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Nettoyage post-déménagement",
+        "desc": "Que dit la loi?"
+      },
+      "umzug_kosten_rechner": {
+        "title": "Calculateur: comment ça marche",
+        "desc": "Tutoriel."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Bureaux et enregistrement",
+        "desc": "Les documents."
+      },
+      "umzug_versicherung": {
+        "title": "Assurance lors d'un transport",
+        "desc": "Explication."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Liquidation des choses",
+        "desc": "Comment on fait?"
+      },
+      "umzug_im_winter": {
+        "title": "Déménagement d'hiver",
+        "desc": "Pourquoi le faire?"
+      },
+      "umzug_erste_wohnung": {
+        "title": "Premier appartement étudiante",
+        "desc": "Premiers pas."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Déménagement, Nettoyage, Débarras, FLOXANT",
+    "og_img_alt": "FLOXANT Service",
+    "og_locale": "fr_FR"
   }
 }

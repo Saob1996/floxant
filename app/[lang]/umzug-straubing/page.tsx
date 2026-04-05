@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "umzug-straubing",
-        title: content.meta_title || "Umzugsunternehmen Straubing | FLOXANT",
-        description: "Professionelles Umzugsunternehmen in Straubing. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen!",
+        title: content.meta_title,
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -34,9 +34,9 @@ export default async function UmzugStraubing({ params }: { params: Promise<{ lan
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Straubing?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein lokaler Umzug in Straubing kostet zwischen 400 und 2.000 Euro je nach Wohnungsgröße. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Macht FLOXANT auch Umzüge in der Altstadt von Straubing?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Bieten Sie Fernumzüge ab Straubing an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Wir organisieren Fernumzüge von Straubing nach ganz Deutschland." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } }
             ],
     };
 
@@ -86,12 +86,12 @@ export default async function UmzugStraubing({ params }: { params: Promise<{ lan
                         Umzugsunternehmen in <span className="text-primary">Straubing</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {pageLocale === 'de' ? `FLOXANT ist Ihr starker Umzugspartner für Straubing. Wir bieten {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}, voll versicherten Transport und lokale Expertise für Privathaushalte und Firmen.` : "FLOXANT is your professional partner for moves, cleaning and clearance. We offer fixed price guarantee, fully insured transport and local expertise."}
+            `FLOXANT ist Ihr starker Umzugspartner für Straubing. Wir bieten {dict.calculator?.fixed_price_tag}, voll versicherten Transport und lokale Expertise für Privathaushalte und Firmen.`
           </p>
                     <div className="flex flex-wrap justify-center gap-4 mt-8">
-                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Award className="w-4 h-4 text-primary" /> {dict.calculator?.insured_tag || "100% Versichert"}</span>
-                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><ArrowRight className="w-4 h-4 text-primary" /> {dict.calculator?.inspection_tag || "Kostenlose Besichtigung"}</span>
-                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Layers className="w-4 h-4 text-primary" /> {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Award className="w-4 h-4 text-primary" /> {dict.calculator?.insured_tag}</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><ArrowRight className="w-4 h-4 text-primary" /> {dict.calculator?.inspection_tag}</span>
+                        <span className="px-4 py-2 glass rounded-full text-sm font-semibold flex items-center gap-2"><Layers className="w-4 h-4 text-primary" /> {dict.calculator?.fixed_price_tag}</span>
                     </div>
                 </div>
             </section>
@@ -124,7 +124,7 @@ export default async function UmzugStraubing({ params }: { params: Promise<{ lan
                             </div>
                             <div className="p-6 rounded-2xl bg-card border border-border shadow-sm">
                                 <Award className="w-8 h-8 text-primary mb-4" />
-                                <h3 className="text-lg font-bold mb-2">{dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</h3>
+                                <h3 className="text-lg font-bold mb-2">{dict.calculator?.fixed_price_tag}</h3>
                                 <p className="text-sm text-muted-foreground">Verbindliche Angebote nach kostenloser Besichtigung. Keine versteckten Kosten, keine Nachverhandlungen.</p>
                             </div>
                         </div>
@@ -157,7 +157,7 @@ export default async function UmzugStraubing({ params }: { params: Promise<{ lan
 
                     <div className="bg-muted/20 p-8 rounded-3xl border border-border/50 text-center">
                         <h2 className="text-2xl font-bold mb-6">{dict.common.customer_voices}</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-start max-w-3xl mx-auto">
                             <div className="bg-card p-6 rounded-xl border border-border shadow-sm">
                                 <p className="italic text-muted-foreground mb-4">"Wir sind als Familie nach Straubing gezogen. Der Einpackservice war Gold wert, wir konnten entspannt zusehen."</p>
                                 <p className="font-semibold">– Familie S.</p>

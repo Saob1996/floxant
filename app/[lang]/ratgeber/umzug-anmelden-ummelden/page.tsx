@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/umzug-anmelden-ummelden',
-        title: 'Umzug anmelden & ummelden: Alles Wichtige | FLOXANT',
-        description: 'Professionelle Umzug anmelden & ummelden: Alles Wichtige in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechne',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Wie lange habe ich für die Ummeldung Zeit?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "14 Tage ab Einzug in die neue Wohnung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Was brauche ich zur Ummeldung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Personalausweis und Wohnungsgeberbescheinigung vom Vermieter." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

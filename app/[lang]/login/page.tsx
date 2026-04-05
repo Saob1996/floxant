@@ -6,11 +6,13 @@ import { generatePageSEO } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'login',
-        title: 'Umzugsunternehmen Bayern | FLOXANT',
-        description: 'Ihr Partner für Umzug und Entrümpelung in Bayern. Festpreisgarantie und Top-Service.',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 

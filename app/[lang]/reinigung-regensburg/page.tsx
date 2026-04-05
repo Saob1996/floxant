@@ -22,8 +22,8 @@ export async function generateMetadata({
     var dict = await getDictionary(pageLocale as Locale);
     const content = (dict?.pages as any)?.reinigung_regensburg || {};
     return {
-        title: content.meta_title || "FLOXANT Reinigung Regensburg",
-        description: content.meta_desc || "Professionelle Endreinigung und Umzugsreinigung in Regensburg."
+        title: content.meta_title,
+        description: content.meta_desc
     };
 }
 

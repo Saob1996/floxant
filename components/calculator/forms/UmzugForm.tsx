@@ -7,11 +7,11 @@ import { ChevronDown, ChevronUp, MapPin, Box, Briefcase, Calendar, MessageSquare
 
 export default function UmzugForm({ dic }: { dic?: any }) {
   const SECTIONS = [
-    { id: 'access', label: dic?.calculator.access_conditions || "Zugang & Parksituation", icon: MapPin },
-    { id: 'volume', label: dic?.calculator.inventory_volume || "Inventar & Volumen (Optional)", icon: Box },
-    { id: 'services', label: dic?.calculator.service_scope || "Leistungsumfang", icon: Briefcase },
-    { id: 'time', label: dic?.calculator.arrival_time || "Termin & Logistik", icon: Calendar },
-    { id: 'notes', label: dic?.calculator.notes_title || "Weitere Hinweise", icon: MessageSquare }
+    { id: 'access', label: dic?.calculator.access_conditions, icon: MapPin },
+    { id: 'volume', label: dic?.calculator.inventory_volume, icon: Box },
+    { id: 'services', label: dic?.calculator.service_scope, icon: Briefcase },
+    { id: 'time', label: dic?.calculator.arrival_time, icon: Calendar },
+    { id: 'notes', label: dic?.calculator.notes_title, icon: MessageSquare }
   ];
   const { umzugData, updateUmzugData } = useCalculatorStore();
   const [openSection, setOpenSection] = useState<string | null>(null);
@@ -34,25 +34,25 @@ export default function UmzugForm({ dic }: { dic?: any }) {
       {/* BASIC DATA (Always visible) */}
       <div className="bg-white/[0.02] border border-white/5 rounded-xl p-6 space-y-4">
         <h3 className="text-xs font-bold text-foreground/70 uppercase tracking-[0.15em] flex items-center gap-2 mb-4">
-          <Truck size={14} className="text-primary" />{dic?.calculator.basis_data || "Basisdaten"}</h3>
+          <Truck size={14} className="text-primary" />{dic?.calculator.basis_data}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.living_area || "Wohnfläche (m²)"}</label>
+            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.living_area}</label>
             <input 
               type="number" 
               value={umzugData.areaM2 || ''}
               onChange={(e) => updateUmzugData({ areaM2: parseInt(e.target.value) || 0 })}
-              placeholder={dic?.calculator.area_placeholder || "z.B. 65"}
+              placeholder={dic?.calculator.area_placeholder}
               className="w-full bg-background border border-white/10 rounded-md p-3 text-sm text-foreground outline-none focus:border-white/30 transition-colors"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.rooms || "Zimmeranzahl"}</label>
+            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.rooms}</label>
             <input 
               type="number" 
               value={umzugData.rooms || ''}
               onChange={(e) => updateUmzugData({ rooms: parseInt(e.target.value) || 0 })}
-              placeholder={dic?.calculator.rooms_placeholder || "z.B. 3"}
+              placeholder={dic?.calculator.rooms_placeholder}
               className="w-full bg-background border border-white/10 rounded-md p-3 text-sm text-foreground outline-none focus:border-white/30 transition-colors"
             />
           </div>
@@ -90,54 +90,54 @@ export default function UmzugForm({ dic }: { dic?: any }) {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* FROM */}
                         <div className="space-y-5">
-                          <h4 className="text-[11px] font-bold text-foreground/50 uppercase tracking-[0.15em] border-b border-white/5 pb-2">{dic?.calculator.from_address || "Auszugsort"}</h4>
+                          <h4 className="text-[11px] font-bold text-foreground/50 uppercase tracking-[0.15em] border-b border-white/5 pb-2">{dic?.calculator.from_address}</h4>
                           <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.address_optional || "Vollständige Adresse (Optional)"}</label>
-                            <input type="text" placeholder={dic?.calculator.address_placeholder || "Straße, PLZ, Ort"} value={umzugData.fromAddressDetailed || ''} onChange={e => updateUmzugData({ fromAddressDetailed: e.target.value })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
+                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.address_optional}</label>
+                            <input type="text" placeholder={dic?.calculator.address_placeholder} value={umzugData.fromAddressDetailed || ''} onChange={e => updateUmzugData({ fromAddressDetailed: e.target.value })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
                           </div>
                           <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.floor || "Etage"}</label>
+                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.floor}</label>
                             <input type="number" placeholder="0 = Erdgeschoss" value={umzugData.fromFloor ?? ''} onChange={e => updateUmzugData({ fromFloor: parseInt(e.target.value) })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
                           </div>
                           <div className="space-y-3 pt-2">
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.hasElevatorFrom} onChange={e => updateUmzugData({ hasElevatorFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.lift || "Aufzug vorhanden"}
+                              <input type="checkbox" checked={umzugData.hasElevatorFrom} onChange={e => updateUmzugData({ hasElevatorFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.lift}
                             </label>
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.narrowStairsFrom} onChange={e => updateUmzugData({ narrowStairsFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.narrow_stairs || "Sehr enges Treppenhaus"}
+                              <input type="checkbox" checked={umzugData.narrowStairsFrom} onChange={e => updateUmzugData({ narrowStairsFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.narrow_stairs}
                             </label>
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.courtyardAccessFrom} onChange={e => updateUmzugData({ courtyardAccessFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.courtyard_access || "Zugang über Innenhof"}
+                              <input type="checkbox" checked={umzugData.courtyardAccessFrom} onChange={e => updateUmzugData({ courtyardAccessFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.courtyard_access}
                             </label>
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.noParkingZoneFrom} onChange={e => updateUmzugData({ noParkingZoneFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.footer.no_parking_zone || "Halteverbotszone benötigt"}
+                              <input type="checkbox" checked={umzugData.noParkingZoneFrom} onChange={e => updateUmzugData({ noParkingZoneFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.footer.no_parking_zone}
                             </label>
                           </div>
                         </div>
 
                         {/* TO */}
                         <div className="space-y-5">
-                          <h4 className="text-[11px] font-bold text-foreground/50 uppercase tracking-[0.15em] border-b border-white/5 pb-2">{dic?.calculator.to_address || "Einzugsort"}</h4>
+                          <h4 className="text-[11px] font-bold text-foreground/50 uppercase tracking-[0.15em] border-b border-white/5 pb-2">{dic?.calculator.to_address}</h4>
                           <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.address_optional || "Vollständige Adresse (Optional)"}</label>
-                            <input type="text" placeholder={dic?.calculator.address_placeholder || "Straße, PLZ, Ort"} value={umzugData.toAddressDetailed || ''} onChange={e => updateUmzugData({ toAddressDetailed: e.target.value })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
+                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.address_optional}</label>
+                            <input type="text" placeholder={dic?.calculator.address_placeholder} value={umzugData.toAddressDetailed || ''} onChange={e => updateUmzugData({ toAddressDetailed: e.target.value })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
                           </div>
                           <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.floor || "Etage"}</label>
+                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.floor}</label>
                             <input type="number" placeholder="0 = Erdgeschoss" value={umzugData.toFloor ?? ''} onChange={e => updateUmzugData({ toFloor: parseInt(e.target.value) })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
                           </div>
                           <div className="space-y-3 pt-2">
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.hasElevatorTo} onChange={e => updateUmzugData({ hasElevatorTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.lift || "Aufzug vorhanden"}
+                              <input type="checkbox" checked={umzugData.hasElevatorTo} onChange={e => updateUmzugData({ hasElevatorTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.lift}
                             </label>
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.narrowStairsTo} onChange={e => updateUmzugData({ narrowStairsTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.narrow_stairs || "Sehr enges Treppenhaus"}
+                              <input type="checkbox" checked={umzugData.narrowStairsTo} onChange={e => updateUmzugData({ narrowStairsTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.narrow_stairs}
                             </label>
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.courtyardAccessTo} onChange={e => updateUmzugData({ courtyardAccessTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.courtyard_access || "Zugang über Innenhof"}
+                              <input type="checkbox" checked={umzugData.courtyardAccessTo} onChange={e => updateUmzugData({ courtyardAccessTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.courtyard_access}
                             </label>
                             <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.noParkingZoneTo} onChange={e => updateUmzugData({ noParkingZoneTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.footer.no_parking_zone || "Halteverbotszone benötigt"}
+                              <input type="checkbox" checked={umzugData.noParkingZoneTo} onChange={e => updateUmzugData({ noParkingZoneTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.footer.no_parking_zone}
                             </label>
                           </div>
                         </div>
@@ -145,8 +145,8 @@ export default function UmzugForm({ dic }: { dic?: any }) {
 
                       <div className="border-t border-white/5 pt-6 mt-4">
                         <div className="max-w-xs space-y-2">
-                          <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.distance_parking || "Distanz zwischen den Orten (km)"}</label>
-                          <input type="number" placeholder={dic?.calculator.dist_placeholder || "ca. 15"} value={umzugData.distanceKm || ''} onChange={e => updateUmzugData({ distanceKm: parseInt(e.target.value) || 0 })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
+                          <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.distance_parking}</label>
+                          <input type="number" placeholder={dic?.calculator.dist_placeholder} value={umzugData.distanceKm || ''} onChange={e => updateUmzugData({ distanceKm: parseInt(e.target.value) || 0 })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
                         </div>
                       </div>
                     </div>
@@ -156,20 +156,20 @@ export default function UmzugForm({ dic }: { dic?: any }) {
                   {section.id === 'volume' && (
                     <div className="space-y-8 pt-2">
                       <div className="space-y-2">
-                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.estimated_boxes || "Geschätzte Anzahl Umzugskartons"}</label>
-                        <input type="number" placeholder={dic?.calculator.boxes_placeholder || "z.B. 40"} value={umzugData.boxesCount || ''} onChange={e => updateUmzugData({ boxesCount: parseInt(e.target.value) || 0 })} className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30" />
+                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.estimated_boxes}</label>
+                        <input type="number" placeholder={dic?.calculator.boxes_placeholder} value={umzugData.boxesCount || ''} onChange={e => updateUmzugData({ boxesCount: parseInt(e.target.value) || 0 })} className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30" />
                       </div>
                       
                       <label className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] cursor-pointer hover:bg-white/[0.04] transition-colors">
                         <input type="checkbox" checked={umzugData.uncertainVolume} onChange={e => updateUmzugData({ uncertainVolume: e.target.checked })} className="mt-1 accent-primary w-4 h-4" /> 
                         <div>
-                           <span className="text-sm font-medium text-foreground block">{dic?.calculator.uncertain_volume || "Ich bin mir beim Volumen sehr unsicher"}</span>
-                           <span className="text-xs text-muted-foreground block mt-1 leading-relaxed">{dic?.calculator.uncertain_volume_desc || "Der Preisrahmen wird basierend darauf zur Sicherheit stark erweitert. Eine finale Einschätzung erfolgt nach persönlicher Klärung oder Besichtigung."}</span>
+                           <span className="text-sm font-medium text-foreground block">{dic?.calculator.uncertain_volume}</span>
+                           <span className="text-xs text-muted-foreground block mt-1 leading-relaxed">{dic?.calculator.uncertain_volume_desc}</span>
                         </div>
                       </label>
 
                       <div className="space-y-3 pt-2">
-                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.heavy_items_title || "Schwergut & Sonderteile"}</label>
+                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.heavy_items_title}</label>
                         <div className="flex flex-wrap gap-2">
                           {Object.entries(dic?.calculator.heavy_items || {
                             "piano": "Piano",
@@ -199,23 +199,23 @@ export default function UmzugForm({ dic }: { dic?: any }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
                         <input type="checkbox" checked={umzugData.packingService} onChange={e => updateUmzugData({ packingService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.packing_service || "Einpackservice"}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.packing_desc || "Wir packen Ihre Hausrat sicher in Kartons."}</span></div>
+                        <div><span className="text-sm font-medium block">{dic?.calculator.packing_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.packing_desc}</span></div>
                       </label>
                       <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
                         <input type="checkbox" checked={umzugData.unpackingService} onChange={e => updateUmzugData({ unpackingService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.unpacking_service || "Auspackservice"}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.unpacking_desc || "Wir räumen alles wieder in Ihre Schränke."}</span></div>
+                        <div><span className="text-sm font-medium block">{dic?.calculator.unpacking_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.unpacking_desc}</span></div>
                       </label>
                       <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
                         <input type="checkbox" checked={umzugData.disassemblyService} onChange={e => updateUmzugData({ disassemblyService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.disassembly_service || "Möbeldemontage"}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.disassembly_desc || "Abbau großer Möbelstücke."}</span></div>
+                        <div><span className="text-sm font-medium block">{dic?.calculator.disassembly_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.disassembly_desc}</span></div>
                       </label>
                       <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
                         <input type="checkbox" checked={umzugData.assemblyService} onChange={e => updateUmzugData({ assemblyService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.assembly_service || "Möbelmontage"}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.assembly_desc || "Fachgerechter Aufbau am Zielort."}</span></div>
+                        <div><span className="text-sm font-medium block">{dic?.calculator.assembly_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.assembly_desc}</span></div>
                       </label>
                       <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors md:col-span-2">
                         <input type="checkbox" checked={umzugData.kitchenAssembly} onChange={e => updateUmzugData({ kitchenAssembly: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.kitchen_service || "Küchendemontage / -montage"}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.kitchen_desc || "Inkl. Wasser- und Stromanschlüsse (soweit zulässig)."}</span></div>
+                        <div><span className="text-sm font-medium block">{dic?.calculator.kitchen_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.kitchen_desc}</span></div>
                       </label>
                     </div>
                   )}
@@ -225,21 +225,21 @@ export default function UmzugForm({ dic }: { dic?: any }) {
                     <div className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.time_flexibility || "Terminflexibilität"}</label>
+                          <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.time_flexibility}</label>
                           <select 
                             value={umzugData.timeConstraint} 
                             onChange={e => updateUmzugData({ timeConstraint: e.target.value as any })}
                             className="w-full bg-background border border-border rounded-lg p-3 text-sm outline-none"
                           >
-                            <option value="flexibel">{dic?.calculator.flexible_time || "Zeitlich flexibel (+/- 14 Tage)"}</option>
-                            <option value="genaues_datum">{dic?.calculator.exact_date || "Festes Datum benötigt"}</option>
-                            <option value="wochenende">{dic?.calculator.weekend_only || "Zwingend Wochenende"}</option>
-                            <option value="dringend">{dic?.calculator.urgent || "Dringend (innerhalb 7 Tage)"}</option>
+                            <option value="flexibel">{dic?.calculator.flexible_time}</option>
+                            <option value="genaues_datum">{dic?.calculator.exact_date}</option>
+                            <option value="wochenende">{dic?.calculator.weekend_only}</option>
+                            <option value="dringend">{dic?.calculator.urgent}</option>
                           </select>
                         </div>
                         <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors self-end h-[46px]">
                           <input type="checkbox" checked={umzugData.isPartialMove} onChange={e => updateUmzugData({ isPartialMove: e.target.checked })} className="accent-primary" /> 
-                          <span className="text-sm">{dic?.calculator.partial_move || "Nur Beiladung / Teilleistung"}</span>
+                          <span className="text-sm">{dic?.calculator.partial_move}</span>
                         </label>
                       </div>
                     </div>
@@ -248,11 +248,11 @@ export default function UmzugForm({ dic }: { dic?: any }) {
                   {/* NOTES SECTION */}
                   {section.id === 'notes' && (
                     <div className="space-y-2">
-                      <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.additional_notes || "Ergänzende Beschreibungen (Optional)"}</label>
+                      <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.additional_notes}</label>
                       <textarea 
                         value={umzugData.freeTextNote || ''}
                         onChange={e => updateUmzugData({ freeTextNote: e.target.value })}
-                        placeholder={dic?.calculator.notes_placeholder_detailed || "Z.B. Besonderheiten zum Treppenhaus, Art der Möbel, Wünsche zur Abwicklung..."}
+                        placeholder={dic?.calculator.notes_placeholder_detailed}
                         className="w-full h-24 bg-background border border-border rounded-lg p-3 text-sm outline-none focus:border-primary resize-none"
                       />
                     </div>
@@ -274,7 +274,7 @@ export default function UmzugForm({ dic }: { dic?: any }) {
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-muted-foreground/60 font-medium">{dic?.calculator.social_proof || "Aktuell schauen 3 Personen diesen Rechner an"}</p>
+        <p className="text-[10px] text-muted-foreground/60 font-medium">{dic?.calculator.social_proof}</p>
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ export default function SmartReviewPage() {
          </div>
 
          <div className={`transition-all duration-500 ease-in-out ${rating > 0 && rating <= 3 ? 'opacity-100 max-h-64 mb-8' : 'opacity-0 max-h-0 overflow-hidden'}`}>
-             <label className="block text-sm text-left text-white/50 mb-2">Was können wir besser machen?</label>
+             <label className="block text-sm text-start text-white/50 mb-2">Was können wir besser machen?</label>
              <textarea 
                value={feedback}
                onChange={(e) => setFeedback(e.target.value)}

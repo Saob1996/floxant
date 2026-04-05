@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "umzug-riekofen",
-        title: content.meta_title || "Umzug in Riekofen ab 79€ – Sofort verfügbar | FLOXANT",
-        description: 'Professionelles Umzugsunternehmen für Riekofen. ✓ $... ✓ $.... Jetzt Termin sichern.',
+        title: content.meta_title,
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -34,11 +34,11 @@ export default async function UmzugRiekofen({ params }: { params: Promise<{ lang
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Riekofen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein Transporter mit Helfern ist oft schon ab günstigen Einstiegspreisen verfügbar. Für den durchschnittlichen Familienhaushalt kalkulieren wir maßgeschneiderte Festpreise, in der Regel zwischen 400€ und 1.500€, abhängig von Raumanzahl und Transportstrecke." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie kurzfristig ist ein Umzugstermin in Riekofen verfügbar?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Riekofen realisieren." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Kümmern Sie sich um Halteverbotszonen in Riekofen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden." } },
-                { "@type": "Question", "name": content.faqs?.[3]?.q || "Bieten Sie auch Küchenmontage in Riekofen an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a || "Wir demontieren Ihre Küche fachmännisch und verpacken die Teile sicher. Den fachgerechten Wiederaufbau übernehmen wir im Rahmen der Machbarkeiten ebenfalls gerne." } },
-                { "@type": "Question", "name": content.faqs?.[4]?.q || "Muss ich die Umzugskartons selbst besorgen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[4]?.a || "Nein. Sie können stabile Umzugskartons, Kleiderboxen und Packpapier komfortabel über uns mieten oder kaufen." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } },
+                { "@type": "Question", "name": content.faqs?.[3]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a } },
+                { "@type": "Question", "name": content.faqs?.[4]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[4]?.a } }
             ],
     };
 
@@ -87,8 +87,8 @@ export default async function UmzugRiekofen({ params }: { params: Promise<{ lang
                     </p>
                     
                     <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-10">
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Award className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag || "100% Versichert"}</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Layers className="w-5 h-5 text-blue-500" /> {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Award className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag}</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Layers className="w-5 h-5 text-blue-500" /> {dict.calculator?.fixed_price_tag}</span>
                         <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><ThumbsUp className="w-5 h-5 text-primary" />{dict.common.top_ratings}</span>
                     </div>
 
@@ -111,7 +111,7 @@ export default async function UmzugRiekofen({ params }: { params: Promise<{ lang
                         <p className="text-lg">Egal ob Sie ein modernes Reihenhaus im Neubaugebiet beziehen oder eine Wohnung im historisch gewachsenen Ortskern verlasen:  Wir stellen uns flexibel auf Ihre Wohnsituation ein. Unser Team demontiert Einrichtungsgegenstände, verpackt empfindliche Möbel sicher mit professionellem Material und lädt alles strukturiert in den LKW.</p>
                         
                         <div className="bg-gradient-to-br from-card to-muted p-8 rounded-3xl border border-border mt-10 shadow-sm not-italic relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-10"><Truck className="w-32 h-32" /></div>
+                            <div className="absolute top-0 end- p-8 opacity-10"><Truck className="w-32 h-32" /></div>
                             <h4 className="text-2xl text-foreground font-bold mb-4 flex items-center gap-3 relative z-10"><CheckCircle2 className="w-8 h-8 text-emerald-500" />{dict.common.master_logistics}</h4>
                             <p className="m-0 text-base relative z-10">In jeder Gemeinde und jedem Stadtteil tauchen individuelle Herausforderungen auf. Gerade das Be- und Entladen über mehrere Stockwerke in älteren Bebauungen ohne Fahrstuhl ist kräftezehrend. Unsere Teams arbeiten hier mit speziellen Tragesystemen und, falls nötig, mit Außenaufzügen. Bei einer vorherigen virtuellen oder persönlichen Besichtigung kalkulieren wir exakt, welches Equipment und wie viele Träger für den Standort in Riekofen optimal sind.</p>
                         </div>
@@ -240,7 +240,7 @@ export default async function UmzugRiekofen({ params }: { params: Promise<{ lang
 
                     {/* Final Smart Booking Wizard Anchor */}
                     <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
+                        <div className="absolute -top-6 start-/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">{dict.common.request_price_online}</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Sichern Sie sich jetzt Ihren Umzugstermin für Riekofen. Wir berechnen das Volumen und das beste Angebot für Sie in Kürzester Zeit.</p>
                         <div className="px-6">

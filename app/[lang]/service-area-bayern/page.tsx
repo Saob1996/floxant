@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.service_area_bayern || {};
     return {
-        title: content.meta_title || "Einsatzgebiet Bayern | Servicegebiet | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || FLOXANT Servicegebiet: Ganz Bayern mit Schwerpunkt Regensburg, Nürnberg, München, Feucht & Oberpfalz. Umzug, Reinigu...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/service-area-bayern`,

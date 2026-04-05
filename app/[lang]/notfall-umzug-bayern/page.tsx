@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.notfall_umzug_bayern || {};
     return {
-        title: content.meta_title || "Notfall-Umzug Bayern | Sofort-Hilfe | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Notfall-Umzug in Bayern bei Wasserschaden, Brand, Räumungsklage oder familiären Notfällen. FLOXANT – sofortige Hilfe...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/notfall-umzug-bayern`,

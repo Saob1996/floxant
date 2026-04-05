@@ -162,7 +162,8 @@
     "message": "Haberler",
     "submit": "Göndermek",
     "success": "Mesaj gönderildi",
-    "error": "Gönderim hatası"
+    "error": "Gönderim hatası",
+    "email_label": "E-Posta"
   },
   "trust": {
     "experience": "Yılların deneyimi",
@@ -260,7 +261,11 @@
           "q": "München çıkışlı uzun mesafe nakliyat yapıyor musunuz?",
           "a": "Evet. München şehrinden tüm Almanya'ya uzun mesafeli nakliyat işlemleri düzenliyoruz."
         }
-      ]
+      ],
+      "meta_title": "Münih Nakliyat Şirketi | FLOXANT",
+      "meta_desc": "Münih'te profesyonel nakliyat şirketi. Taşınma masraflarınızı saniyeler içinde hesaplayın.",
+      "hero_h1": "Nakliyat Şirketi ",
+      "hero_h1_highlight": "Münih"
     },
     "service_umzug": {
       "meta_title": "Özel taşınma – kişisel konum değişikliğiniz",
@@ -2832,7 +2837,11 @@
           "q": "Nürnberg çıkışlı uzun mesafe nakliyat yapıyor musunuz?",
           "a": "Evet. Nürnberg şehrinden tüm Almanya'ya uzun mesafeli nakliyat işlemleri düzenliyoruz."
         }
-      ]
+      ],
+      "meta_title": "Nürnberg Nakliyat Şirketi | FLOXANT",
+      "meta_desc": "Nürnberg'de profesyonel nakliyat. Çevrimiçi sabit fiyat hesaplayın.",
+      "hero_h1": "Nakliyat Şirketi ",
+      "hero_h1_highlight": "Nürnberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Oberasbach Nakliyat Şirketi ✓ Sabit Fiyat ✓ Sigortalı | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Taşınma Maliyetlerini Hesapla 2026 | FLOXANT",
+      "meta_desc": "Taşınma maliyetinizi hemen çevrimiçi hesaplayın.",
+      "h1_pre": "Hesaplayın:",
+      "h1_hi": "Taşınma Masrafları",
+      "subtitle": "Garantili sabit fiyat için saniyeler içinde ilk tahmin.",
+      "h2": "Taşınma maliyetlerini belirleyen faktörler"
+    },
+    "calc_reinigung": {
+      "meta_title": "Temizlik Masraflarını Hesapla 2026 | FLOXANT",
+      "meta_desc": "Temizlik maliyetlerinizi anında hesaplayın.",
+      "h1_pre": "Hesaplayın:",
+      "h1_hi": "Temizlik Masrafları",
+      "subtitle": "Garantili sabit fiyat ile profesyonel temizlik.",
+      "h2": "Profesyonel temizlikte maliyet faktörleri"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Tasfiye Masraflarını Hesapla | FLOXANT",
+      "meta_desc": "Çöp atım ve ev boşaltma maliyetlerinizi hesaplayın.",
+      "h1_pre": "Tasfiye",
+      "h1_hi": "Ücreti Nedir?",
+      "subtitle": "Büyük çöplerden tam ev boşaltımına kadar.",
+      "h2": "Tasfiye masrafları nasıl hesaplanır?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Bayern bölgesindeki diğer hizmetler ve konumlar",
     "cleaning_company": "Temizlik şirketi",
     "calculate_price": "Fiyatı hesapla",
-    "combination_move": "Hareketli kombinasyon"
+    "combination_move": "Hareketli kombinasyon",
+    "also_available_in": "Diğer diller:",
+    "whatsapp_cta_title": "WhatsApp Desteği",
+    "whatsapp_cta_desc": "7/24 hizmetinizdeyiz."
   },
   "calculator": {
     "requirements_title": "Gereksinimleriniz",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Rotayı koşu rotasını taşıma",
     "flag_disassembly_on_site": "Yerinde sökme dahil",
     "flag_express_service": "Ekspres Servis (Acil)",
-    "flag_waste_notes_noted": "Notunuzu planlama için kaydedeceğiz"
+    "flag_waste_notes_noted": "Notunuzu planlama için kaydedeceğiz",
+    "upload_link_note": "Ayrıntılı hesaplama için size fotoğraf yükleme bağı göndereceğiz.",
+    "error_submit": "Gönderim hatası. Lütfen tekrar deneyin."
   },
   "home": {
     "hero_title": "Bayern'daki profesyonel taşıma şirketiniz.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT ayrıca 24 ila 48 saat içinde kısa vadeli hareketler sunar. Hızlı kullanılabilirlik için bizimle iletişime geçin.",
     "premium_badge": "Üstün lojistik ve hizmet",
     "services_title": "Lojistik ve hizmetlerimiz",
-    "services_subtitle": "İster karmaşık bir ofis taşıma işlemi ister hassas bir apartman temizliği olsun, Bayern genelinde ölçülebilir kalite ve mutlak fiyat şeffaflığı sağlıyoruz."
+    "services_subtitle": "İster karmaşık bir ofis taşıma işlemi ister hassas bir apartman temizliği olsun, Bayern genelinde ölçülebilir kalite ve mutlak fiyat şeffaflığı sağlıyoruz.",
+    "seo_p4": "Güvenle ve rahatça taşının.",
+    "seo_p5": "Sizi hızla ve güvenilir şekilde taşıyoruz.",
+    "seo_p6": "Sabit fiyatınızı çevrimiçi edinin.",
+    "faq_q5": "Eşyalarım sigortalı mı?",
+    "faq_a5": "Evet, standart nakliyat sigortası dahildir.",
+    "faq_q6": "Paketleme malzemesi sağlıyor musunuz?",
+    "faq_a6": "Evet, talep üzerine koli ve folyo temin edebiliriz.",
+    "faq_q7": "Bizi ne kadar hızlı taşıyabilirsiniz?",
+    "faq_a7": "Acil taşınmalar için genellikle 48 saat içinde.",
+    "faq_q8": "Temizlik hizmetleri sunuyor musunuz?",
+    "faq_a8": "Evet, teslimat garantili son temizlik sunuyoruz."
   },
   "reviews": {
     "title": "Müşterilerimiz böyle söylüyor",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "Bizimkiler öyle diyor",
     "title_part2": "Müşteriler"
+  },
+  "seo": {
+    "dynamic_city_title": "{city} şehrinde Nakliyat Şirketi | FLOXANT",
+    "dynamic_city_desc": "{city} içinde güvenilir nakliyat firmanız. Sabit fiyat garantisi."
+  },
+  "ratgeber": {
+    "title": "FLOXANT Rehberi",
+    "h1_pre": "Taşınma",
+    "meta_title": "Taşınma Rehberi ve İpuçları 2026 | FLOXANT",
+    "meta_desc": "Taşınma, tasfiye ve temizlik için değerli ipuçları.",
+    "subtitle": "Uzmanlardan ipuçları, kontrol listeleri ve maliyet özetleri.",
+    "read_more": "Devamını oku →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Regensburg Taşınma Maliyetleri 2026",
+        "desc": "Regensburg'da taşınmak ne kadar tutar?"
+      },
+      "checkliste_umzug": {
+        "title": "Stressiz Taşınma Kontrol Listesi",
+        "desc": "Mükemmel taşınma için nihai liste."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "İyi Bir Nakliyat Firması Nasıl Bulunur?",
+        "desc": "Seçim yaparken nelere dikkat etmelisiniz."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "M³ Başına Tasfiye Maliyetleri",
+        "desc": "Metreküp başına tasfiye ne kadar tutar?"
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "7 Adımda Taşınmaya Hazırlık",
+        "desc": "Kusursuz hazırlık için 7 basit adım."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Nakliye Şirketi Ne Zaman Mantıklıdır?",
+        "desc": "Maliyet-fayda analizi."
+      },
+      "moebeltransport_sicher": {
+        "title": "Güvenli Mobilya Taşımacılığı",
+        "desc": "Mobilyalarınız nasıl güvenle ulaşır."
+      },
+      "umzug_tipps_familien": {
+        "title": "Aileler için Taşınma İpuçları",
+        "desc": "Çocuklarla taşınmak için pratik ipuçları."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Taşınma Sonrası Temizlik",
+        "desc": "Profesyonel temizlik ipuçları."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Maliyet Hesaplayıcı Nasıl Çalışır?",
+        "desc": "Taşınma hesaplayıcı sistemi."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Taşınma Kayıt İşlemleri",
+        "desc": "Tüm bürokratik adımlar."
+      },
+      "umzug_versicherung": {
+        "title": "Taşınma Sigortası Neden Önemli?",
+        "desc": "Nakliye sigortasının kapsamı."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Ev Boşaltma İpuçları",
+        "desc": "Süreç, maliyetler ve liste."
+      },
+      "umzug_im_winter": {
+        "title": "Kışın Taşınmak",
+        "desc": "Artıları, eksileri ve öneriler."
+      },
+      "umzug_erste_wohnung": {
+        "title": "İlk Eve Taşınma",
+        "desc": "Bilmeniz gereken her şey."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Nakliyat şirketi, Taşınma, Tasfiye, Temizlik, Sabit fiyatlı taşınma, FLOXANT",
+    "og_img_alt": "FLOXANT – Taşınma, Temizlik ve Tasfiye",
+    "og_locale": "tr_TR"
   }
 }

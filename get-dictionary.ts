@@ -1,37 +1,77 @@
 import 'server-only';
 import type { Locale } from './i18n-config';
 
-// Allow flexible key access on dictionary objects (generated pages may
-// reference keys that haven't been added to de.json yet).
-type DeepStringIndex<T> = T extends object
-    ? { [K in keyof T]: DeepStringIndex<T[K]> } & { [key: string]: any }
-    : T;
+import de from './dictionaries/de.json';
+import en from './dictionaries/en.json';
+import ar from './dictionaries/ar.json';
+import tr from './dictionaries/tr.json';
+import ru from './dictionaries/ru.json';
+import uk from './dictionaries/uk.json';
+import pl from './dictionaries/pl.json';
+import ro from './dictionaries/ro.json';
+import bg from './dictionaries/bg.json';
+import es from './dictionaries/es.json';
+import fr from './dictionaries/fr.json';
+import it from './dictionaries/it.json';
+import fa from './dictionaries/fa.json';
+import zh from './dictionaries/zh.json';
+import vi from './dictionaries/vi.json';
+import ko from './dictionaries/ko.json';
+import ja from './dictionaries/ja.json';
 
-// We enumerate all dictionaries to ensure they are bundled
 const dictionaries = {
-    de: () => import('./dictionaries/de.json').then((module) => module.default),
-    en: () => import('./dictionaries/en.json').then((module) => module.default),
-    ar: () => import('./dictionaries/ar.json').then((module) => module.default),
-    tr: () => import('./dictionaries/tr.json').then((module) => module.default),
-    ru: () => import('./dictionaries/ru.json').then((module) => module.default),
-    uk: () => import('./dictionaries/uk.json').then((module) => module.default),
-    pl: () => import('./dictionaries/pl.json').then((module) => module.default),
-    ro: () => import('./dictionaries/ro.json').then((module) => module.default),
-    bg: () => import('./dictionaries/bg.json').then((module) => module.default),
-    es: () => import('./dictionaries/es.json').then((module) => module.default),
-    fr: () => import('./dictionaries/fr.json').then((module) => module.default),
-    it: () => import('./dictionaries/it.json').then((module) => module.default),
-    fa: () => import('./dictionaries/fa.json').then((module) => module.default),
-    zh: () => import('./dictionaries/zh.json').then((module) => module.default),
-    vi: () => import('./dictionaries/vi.json').then((module) => module.default),
-    ko: () => import('./dictionaries/ko.json').then((module) => module.default),
-    ja: () => import('./dictionaries/ja.json').then((module) => module.default),
-};
+    de,
+    en,
+    ar,
+    tr,
+    ru,
+    uk,
+    pl,
+    ro,
+    bg,
+    es,
+    fr,
+    it,
+    fa,
+    zh,
+    vi,
+    ko,
+    ja,
+} as const;
 
-type RawDict = Awaited<ReturnType<(typeof dictionaries)['de']>>;
-export type Dictionary = DeepStringIndex<RawDict>;
+export type Dictionary = typeof de;
 
-export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
-    const raw = await (dictionaries[locale]?.() ?? dictionaries.de());
-    return raw as Dictionary;
-};
+function isObject(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function deepMerge<T extends Record<string, unknown>>(
+    base: T,
+    override: Record<string, unknown>
+): T {
+    const result: Record<string, unknown> = { ...base };
+
+    for (const key of Object.keys(override)) {
+        const baseValue = result[key];
+        const overrideValue = override[key];
+
+        if (isObject(baseValue) && isObject(overrideValue)) {
+            result[key] = deepMerge(baseValue, overrideValue);
+        } else if (overrideValue !== undefined && overrideValue !== null && overrideValue !== '') {
+            result[key] = overrideValue;
+        }
+    }
+
+    return result as T;
+}
+
+export async function getDictionary(locale: Locale): Promise<Dictionary> {
+    const base = dictionaries.de as Dictionary;
+    const target = dictionaries[locale] as Record<string, unknown>;
+
+    if (locale === 'de') {
+        return base;
+    }
+
+    return deepMerge(base, target);
+}

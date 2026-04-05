@@ -15,7 +15,7 @@ export function WhatsAppButton({ dic }: { dic?: any }) {
     }, []);
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        <div className="fixed bottom-6 end- z-50 flex items-center gap-3">
             {/* Tooltip bubble */}
             <AnimatePresence>
                 {showTooltip && (
@@ -25,8 +25,8 @@ export function WhatsAppButton({ dic }: { dic?: any }) {
                         exit={{ opacity: 0, x: 20, scale: 0.8 }}
                         className="hidden lg:block bg-white text-slate-800 px-4 py-2.5 rounded-xl shadow-2xl text-sm font-medium max-w-[220px] leading-snug"
                     >
-                        <span className="block font-bold text-[#25D366]">💬 {dic?.common?.whatsapp_title || "Sofort Antwort!"}</span>
-                        <span className="text-xs text-slate-500">{dic?.common?.whatsapp_subtitle || "Schreiben Sie uns jetzt auf WhatsApp für ein kostenloses Angebot."}</span>
+                        <span className="block font-bold text-[#25D366]">💬 {dic?.common?.whatsapp_title}</span>
+                        <span className="text-xs text-slate-500">{dic?.common?.whatsapp_subtitle}</span>
                         <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white rotate-45 shadow-sm" />
                     </m.div>
                 )}
@@ -51,7 +51,7 @@ export function WhatsAppButton({ dic }: { dic?: any }) {
                 <MessageCircle className="h-8 w-8 fill-current relative z-10" />
                 
                 {/* Notification badge */}
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white z-20 shadow-lg">
+                <span className="absolute -top-1 -end- flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white z-20 shadow-lg">
                     1
                 </span>
             </m.a>

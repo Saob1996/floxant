@@ -72,10 +72,10 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
             <div className="mb-10 border-b border-border/50 pb-5">
                <h2 className="text-2xl font-heading font-semibold text-foreground flex items-center gap-3">
                  <FileText size={24} className="text-primary" />
-                 {dic?.calculator?.requirements_title || "Ihre Anforderungen"}
+                 {dic?.calculator?.requirements_title}
                </h2>
                <p className="text-[15px] text-muted-foreground mt-3 font-normal leading-relaxed">
-                 {dic?.calculator?.requirements_subtitle || "Um Ihnen ein seriöses Angebot zu machen, füllen Sie bitte die relevanten Punkte grob aus."}
+                 {dic?.calculator?.requirements_subtitle}
                </p>
             </div>
             
@@ -92,17 +92,17 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
         <div className="bg-[#0a0a0a] rounded-3xl p-6 lg:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
           
           {/* Subtle gradient glow inside the card */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-0 end- w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
 
           <div className="flex items-center justify-between gap-3 mb-6 pb-4 border-b border-white/5 relative z-10">
             <h3 className="text-foreground tracking-tight font-heading font-semibold text-lg flex items-center gap-2">
               <Database className="text-primary" size={20} /> 
-              {dic?.calculator?.calculation_title || "Ihre Kalkulation"}
+              {dic?.calculator?.calculation_title}
             </h3>
             {est && hasInput && (
               <span className={`text-[10px] uppercase font-bold tracking-widest flex items-center gap-1.5 px-2.5 py-1 rounded-full ${est.confidenceLevel === 'low' ? 'text-primary bg-primary/10' : 'text-blue-400 bg-blue-400/10'}`}>
                 <Info size={12} />
-                {est.confidenceLevel === 'low' ? (dic?.calculator?.prognosis_label || 'Erste Prognose') : (dic?.calculator?.estimate_label || 'Echte Schätzung')}
+                {est.confidenceLevel === 'low' ? (dic?.calculator?.prognosis_label) : (dic?.calculator?.estimate_label)}
               </span>
             )}
           </div>
@@ -117,9 +117,9 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
                  >
                    <span className="text-4xl">👋</span>
                  </m.div>
-                 <h4 className="text-white text-lg font-heading font-semibold">{dic?.calculator?.start_now || "Lassen Sie uns starten!"}</h4>
+                 <h4 className="text-white text-lg font-heading font-semibold">{dic?.calculator?.start_now}</h4>
                  <p className="text-neutral-400 text-[14px] font-normal leading-relaxed max-w-[280px]">
-                   {dic?.calculator?.start_description || "Geben Sie einfach ein paar erste Eckdaten (z.B. die Wohnfläche) links ein."}
+                   {dic?.calculator?.start_description}
                  </p>
                </div>
             </div>
@@ -127,7 +127,7 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
             <div className="w-full relative z-10">
               <div className="animate-pulse h-64 bg-white/[0.02] border border-white/5 rounded-2xl w-full flex items-center justify-center flex-col gap-4">
                 <div className="w-8 h-8 rounded-full border-[3px] border-primary border-t-transparent animate-spin" />
-                <span className="text-neutral-500 text-xs font-bold uppercase tracking-widest">{dic?.calculator?.calculating || "Kalkuliere Aufwand..."}</span>
+                <span className="text-neutral-500 text-xs font-bold uppercase tracking-widest">{dic?.calculator?.calculating}</span>
               </div>
             </div>
           ) : (
@@ -135,7 +135,7 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
               
               {/* Main Price Frame */}
               <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 shadow-inner">
-                 <span className="text-primary/70 text-[11px] font-bold uppercase tracking-[0.2em] block mb-3">{dic?.calculator?.live_price_indicative || "Live Preisindikativ"}</span>
+                 <span className="text-primary/70 text-[11px] font-bold uppercase tracking-[0.2em] block mb-3">{dic?.calculator?.live_price_indicative}</span>
                  <div className="flex items-baseline gap-2 font-heading">
                    <span className="text-5xl font-bold text-white">{est.priceRange.min}€</span>
                    <span className="text-neutral-500 font-light text-2xl px-1">–</span>
@@ -143,11 +143,11 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
                  </div>
                  {est.confidenceLevel === 'low' ? (
                     <span className="text-primary/80 text-[12px] block mt-4 leading-relaxed border-t border-primary/10 pt-4 font-medium">
-                      {dic?.calculator?.uncertainty_note || "Dies ist eine maschinelle Schätzung zur groben Orientierung."}
+                      {dic?.calculator?.uncertainty_note}
                     </span>
                  ) : (
                     <span className="text-neutral-400 text-[12px] block mt-4 leading-relaxed border-t border-white/5 pt-4">
-                      {dic?.calculator?.legal_note || "*Hinweis: Hierbei handelt es sich um einen unverbindlichen Richtwert."}
+                      {dic?.calculator?.legal_note}
                     </span>
                  )}
               </div>
@@ -157,14 +157,14 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
                  <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 transition-colors hover:bg-white/[0.04]">
                     <div className="flex items-center gap-2 text-neutral-400 mb-2">
                        <Clock size={14} />
-                       <span className="text-[10px] uppercase tracking-widest font-bold">{dic?.calculator?.duration || "Dauer"}</span>
+                       <span className="text-[10px] uppercase tracking-widest font-bold">{dic?.calculator?.duration}</span>
                     </div>
                     <span className="text-[15px] font-medium text-white">{est.estimatedHours}</span>
                  </div>
                  <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 transition-colors hover:bg-white/[0.04]">
                     <div className="flex items-center gap-2 text-neutral-400 mb-2">
                        <Users size={14} />
-                       <span className="text-[10px] uppercase tracking-widest font-bold">{dic?.calculator?.personnel || "Personal"}</span>
+                       <span className="text-[10px] uppercase tracking-widest font-bold">{dic?.calculator?.personnel}</span>
                     </div>
                     <span className="text-[15px] font-medium text-white">{est.recommendedTeam}</span>
                  </div>
@@ -172,19 +172,19 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
 
               {/* Basis */}
               <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5">
-                 <h4 className="text-[11px] uppercase tracking-[0.1em] font-bold text-neutral-500 mb-3">{dic?.calculator?.summary || "Zusammenfassung"}</h4>
+                 <h4 className="text-[11px] uppercase tracking-[0.1em] font-bold text-neutral-500 mb-3">{dic?.calculator?.summary}</h4>
                  <p className="text-[14px] text-white/90 leading-relaxed font-medium">{est.calculationBasis}</p>
                  
                  {est.operationalFlags.length > 0 && (
                    <div className="mt-5 pt-5 border-t border-white/5">
                      <h4 className="text-[11px] uppercase tracking-[0.1em] font-bold text-neutral-500 mb-3 flex items-center gap-1.5">
                         <HardHat size={14} className="text-primary/70" />
-                        {dic?.calculator?.included_in_calculation || "In der Kalkulation enthalten"}
+                        {dic?.calculator?.included_in_calculation}
                      </h4>
                      <ul className="space-y-2">
                        {est.operationalFlags.map((flag, i) => (
                          <li key={i} className="text-[12px] text-neutral-300 flex items-start leading-relaxed">
-                           <span className="mr-2.5 text-primary mt-[2px]">✓</span> {flag}
+                           <span className="me-.5 text-primary mt-[2px]">✓</span> {flag}
                          </li>
                        ))}
                      </ul>
@@ -201,11 +201,11 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
               className="w-full py-4 rounded-xl text-[15px] font-semibold tracking-wide transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-primary/25 bg-primary hover:bg-primary/90 text-primary-foreground transform hover:-translate-y-0.5"
             >
               <PhoneCall size={18} />
-              {dic?.calculator?.fix_now_btn || "Jetzt kostenlos fixieren"}
+              {dic?.calculator?.fix_now_btn}
             </button>
             <div className="pt-2 px-2 text-center">
               <p className="text-neutral-500 font-normal text-[11px] leading-relaxed">
-                {dic?.calculator?.unbinding_note || "Diese Schnell-Schätzung ist zu 100% unverbindlich."}
+                {dic?.calculator?.unbinding_note}
               </p>
             </div>
           </div>

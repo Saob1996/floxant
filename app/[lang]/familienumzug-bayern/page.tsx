@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.familienumzug_bayern || {};
     return {
-        title: content.meta_title || "Familienumzug Bayern | Stressfrei mit Kindern umzi | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Familienumzug in Bayern – kindgerecht, sorgfältig und durchgeplant. Regensburg, Nürnberg, München. Kinder-Umzugsbox ...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/familienumzug-bayern`,

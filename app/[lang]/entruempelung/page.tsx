@@ -14,11 +14,13 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'entruempelung',
-        title: 'Entrümpelung & Wohnungsauflösung Bayern ✓ Besenrein | FLOXANT',
-        description: 'Professionelle Entrümpelung, Wohnungsauflösung und Firmenentrümpelung. Diskrete Hausentrümpelung und Kellerentrümpelung mit .... Sofortpreis online be...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -30,10 +32,10 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine komplette Entrümpelung oder Wohnungsauflösung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Kosten für eine Entrümpelung variieren je nach Volumen, Etage und Verschmutzungsgrad. Ein durchschnittlicher Keller kostet oft ab 300 Euro, eine komplette Wohnungsauflösung zwischen 1.000 und 2.500 Euro. FLOXANT bietet Ihnen nach einer Besichtigung einen garantierten Festpreis an." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bieten Sie eine besenreine Übergabe bei einer Hausentrümpelung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Bei jeder Hausentrümpelung und Wohnungsauflösung garantieren wir eine besenreine Übergabe. Auf Wunsch können Sie zusätzlich eine tiefergehende Endreinigung nach Vermieterstandard (Wischreinigung) hinzubuchen." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Entsorgen Sie die Möbel umweltgerecht?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Wir arbeiten streng nach ökologischen Standards. Holz, Elektroschrott, Metall und Restmüll werden von uns fachgerecht getrennt und zertifizierten Wertstoffhöfen übergeben." } },
-                { "@type": "Question", "name": content.faqs?.[3]?.q || "Muss ich bei der Firmenentrümpelung vor Ort sein?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a || "Nein. Wenn wir im Vorfeld genau besprechen, welche Maschinen, Büromöbel und Akten aus der Firmenentrümpelung entsorgt werden sollen, können wir das Objekt nach Schlüsselübergabe völlig selbstständig räumen." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } },
+                { "@type": "Question", "name": content.faqs?.[3]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a } }
             ],
     };
 
@@ -95,7 +97,7 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
                                 {/* Placeholder for large image */}
                                 <Home className="w-32 h-32 text-slate-300" />
                             </div>
-                            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-4 py-2 rounded-full font-bold text-primary flex items-center gap-2 shadow">
+                            <div className="absolute top-4 end- bg-white/90 backdrop-blur px-4 py-2 rounded-full font-bold text-primary flex items-center gap-2 shadow">
                                 <Shield className="w-5 h-5"/> Diskret & Besenrein
                             </div>
                         </div>
@@ -147,7 +149,7 @@ export default async function EntruempelungPillarPage({ params }: { params: Prom
                                 <Building2 className="w-32 h-32 text-primary/40" />
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent z-10" />
-                            <div className="absolute bottom-6 left-6 z-20 text-white">
+                            <div className="absolute bottom-6 start- z-20 text-white">
                                 <p className="font-bold text-xl">Sichere Firmenauflösung</p>
                             </div>
                         </div>

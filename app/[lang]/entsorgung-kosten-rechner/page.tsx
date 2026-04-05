@@ -3,10 +3,14 @@ import { getDictionary } from "@/get-dictionary";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 
-export const metadata = {
-  title: 'Entsorgungskosten berechnen 2026 | FLOXANT Rechner',
-  description: 'Berechnen Sie sofort Ihre Entsorgungskosten. Tragen Sie Abfallart und Volumen in unseren Rechner ein für ein verbindliches Festpreis-Angebot. Sofortpr...',
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+    var { lang: pageLocale } = await params;
+    const dict = (await getDictionary(pageLocale as any)) as any;
+    return {
+        title: dict.pages?.calc_entsorgung?.meta_title || "FLOXANT",
+        description: dict.pages?.calc_entsorgung?.meta_desc || "FLOXANT",
+    };
+}
 
 export default async function EntsorgungKostenRechnerPage({ params }: { params: Promise<{ lang: string }> }) {
     var { lang: pageLocale } = await params;
@@ -41,10 +45,10 @@ export default async function EntsorgungKostenRechnerPage({ params }: { params: 
             Ökologisch & Fair
           </div>
           <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
-            Was kostet Ihre <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">Entsorgung?</span>
+            {(dict as any).pages?.calc_entsorgung?.h1_pre} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">{(dict as any).pages?.calc_entsorgung?.h1_hi}</span>
           </h1>
           <p className="text-white/60 text-lg">
-            Egal ob Sperrmüll, Bauschutt oder kompletter Hausrat. Berechnen Sie Ihren Festpreis direkt online.
+            {(dict as any).pages?.calc_entsorgung?.subtitle}
           </p>
         </header>
 
@@ -53,7 +57,7 @@ export default async function EntsorgungKostenRechnerPage({ params }: { params: 
 
         {/* Dynamic SEO Content Layer */}
         <section className="mt-32 max-w-4xl mx-auto prose prose-invert">
-          <h2 className="text-3xl font-light">Wie berechnen sich die Entsorgungskosten?</h2>
+          <h2 className="text-3xl font-light">{(dict as any).pages?.calc_entsorgung?.h2}</h2>
           <p className="text-white/70">
             Jede Entsorgung ist einzigartig. Um Ihnen einen fairen Preis zu bieten, analysiert unser Rechner:
           </p>

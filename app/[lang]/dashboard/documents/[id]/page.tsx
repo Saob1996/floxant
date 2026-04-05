@@ -208,7 +208,7 @@ export default function DocumentPage() {
                         <h1 className="text-2xl font-bold tracking-wide">FLOXANT</h1>
                         <p className="text-xs text-gray-500 mt-1">Premium Umzug · Reinigung · Entrümpelung</p>
                     </div>
-                    <div className="text-right text-[11px] text-gray-600 leading-relaxed">
+                    <div className="text-end text-[11px] text-gray-600 leading-relaxed">
                         <p className="font-semibold">{BUSINESS.name}</p>
                         <p>{BUSINESS.street}</p>
                         <p>{BUSINESS.zip} {BUSINESS.city}</p>
@@ -257,7 +257,7 @@ export default function DocumentPage() {
                         <h2 className="text-xl font-bold">{docTitle}</h2>
                         <p className="text-gray-500 text-sm">{docNr}</p>
                     </div>
-                    <div className="text-right text-sm text-gray-600">
+                    <div className="text-end text-sm text-gray-600">
                         <p>Datum: {today}</p>
                         <div className="flex items-center gap-2 mt-1 print:block">
                             <span>Leistungsdatum:</span>
@@ -265,7 +265,7 @@ export default function DocumentPage() {
                                 type="date"
                                 value={leistungsdatum}
                                 onChange={(e) => setLeistungsdatum(e.target.value)}
-                                className="bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-right print:border-none cursor-pointer"
+                                className="bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-end print:border-none cursor-pointer"
                             />
                         </div>
                     </div>
@@ -286,12 +286,12 @@ export default function DocumentPage() {
                 {/* Table — Editable */}
                 <table className="w-full mb-6 border-collapse">
                     <thead>
-                        <tr className="border-b-2 border-gray-300 text-left text-xs uppercase tracking-wider text-gray-500">
+                        <tr className="border-b-2 border-gray-300 text-start text-xs uppercase tracking-wider text-gray-500">
                             <th className="py-2 w-12">Pos.</th>
                             <th className="py-2">Beschreibung</th>
-                            <th className="py-2 text-right w-16">Menge</th>
-                            <th className="py-2 text-right w-28">Einzelpreis</th>
-                            <th className="py-2 text-right w-28">Gesamt</th>
+                            <th className="py-2 text-end w-16">Menge</th>
+                            <th className="py-2 text-end w-28">Einzelpreis</th>
+                            <th className="py-2 text-end w-28">Gesamt</th>
                             <th className="py-2 w-10 print:hidden"></th>
                         </tr>
                     </thead>
@@ -301,7 +301,7 @@ export default function DocumentPage() {
                             return (
                                 <tr key={idx} className="border-b border-gray-100 group">
                                     <td className="py-3 text-gray-500 align-top">{idx + 1}</td>
-                                    <td className="py-3 align-top pr-2">
+                                    <td className="py-3 align-top pe-">
                                         <textarea
                                             value={item.description}
                                             onChange={(e) => updateItem(idx, 'description', e.target.value)}
@@ -310,25 +310,25 @@ export default function DocumentPage() {
                                             placeholder="Leistungsbeschreibung eingeben..."
                                         />
                                     </td>
-                                    <td className="py-3 text-right align-top">
+                                    <td className="py-3 text-end align-top">
                                         <input
                                             type="number"
                                             min="1"
                                             value={item.quantity}
                                             onChange={(e) => updateItem(idx, 'quantity', e.target.value)}
-                                            className="w-14 text-right bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none"
+                                            className="w-14 text-end bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none"
                                         />
                                     </td>
-                                    <td className="py-3 text-right align-top">
+                                    <td className="py-3 text-end align-top">
                                         <input
                                             type="number"
                                             step="0.01"
                                             value={item.unitPrice}
                                             onChange={(e) => updateItem(idx, 'unitPrice', e.target.value)}
-                                            className="w-24 text-right bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none"
+                                            className="w-24 text-end bg-transparent border-b border-transparent hover:border-gray-200 focus:border-primary focus:outline-none"
                                         />
                                     </td>
-                                    <td className="py-3 text-right align-top font-medium">
+                                    <td className="py-3 text-end align-top font-medium">
                                         {lineTotal.toFixed(2)} €
                                     </td>
                                     <td className="py-3 text-center align-top print:hidden">
@@ -358,7 +358,7 @@ export default function DocumentPage() {
                 </div>
 
                 {/* Totals */}
-                <div className="ml-auto w-72 border-t border-gray-200 pt-4">
+                <div className="ms- w-72 border-t border-gray-200 pt-4">
                     <div className="flex justify-between py-1">
                         <span className="text-gray-500">Zwischensumme (Netto)</span>
                         <span>{netto.toFixed(2)} €</span>
@@ -408,7 +408,7 @@ export default function DocumentPage() {
                             <p>IBAN: {BUSINESS.iban}</p>
                             {BUSINESS.bic && <p>BIC: {BUSINESS.bic}</p>}
                         </div>
-                        <div className="text-right">
+                        <div className="text-end">
                             <p className="font-semibold mb-1">Steuerliche Angaben</p>
                             <p>St.-Nr.: {BUSINESS.steuernummer}</p>
                             <p>USt-IdNr: {BUSINESS.ustIdNr}</p>

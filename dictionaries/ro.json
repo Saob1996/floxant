@@ -162,7 +162,8 @@
     "message": "Ştiri",
     "submit": "Trimite",
     "success": "Mesaj trimis",
-    "error": "Eroare la trimitere"
+    "error": "Eroare la trimitere",
+    "email_label": "Email"
   },
   "trust": {
     "experience": "Ani de experiență",
@@ -260,7 +261,11 @@
           "q": "Echipajele dumneavoastră realizează curse prelungite depășind localitatea München?",
           "a": "Categoric da! Echilibrăm logistic arhitecturile mari desfăşurând forțe conectate prin mutarea direct din adresa din München ducând către tot arealul întinsei țări teritoreale din Germania cu o precizie ridicată."
         }
-      ]
+      ],
+      "meta_title": "Firmă de mutări München | FLOXANT",
+      "meta_desc": "Firmă profesionistă de mutări. Calcul preț online.",
+      "hero_h1": "Firmă de mutări ",
+      "hero_h1_highlight": "München"
     },
     "service_umzug": {
       "meta_title": "Mutare privată – schimbarea personală a locației",
@@ -2832,7 +2837,11 @@
           "q": "Echipajele dumneavoastră realizează curse prelungite depășind localitatea Nürnberg?",
           "a": "Categoric da! Echilibrăm logistic arhitecturile mari desfăşurând forțe conectate prin mutarea direct din adresa din Nürnberg ducând către tot arealul întinsei țări teritoreale din Germania cu o precizie ridicată."
         }
-      ]
+      ],
+      "meta_title": "Firmă de mutări Nürnberg | FLOXANT",
+      "meta_desc": "Firmă de mutări în Nürnberg. Preț fix.",
+      "hero_h1": "Firmă de mutări ",
+      "hero_h1_highlight": "Nürnberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Firma de mutări Oberasbach ✓ Preț fix ✓ Asigurat | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Calculator Mutare 2026 | FLOXANT",
+      "meta_desc": "Calculați costurile de mutare online.",
+      "h1_pre": "Calculați",
+      "h1_hi": "Costurile Mutării",
+      "subtitle": "De la o estimare la un preț fix garantat.",
+      "h2": "Cum calculăm costurile?"
+    },
+    "calc_reinigung": {
+      "meta_title": "Calculator Curățenie | FLOXANT",
+      "meta_desc": "Calculați costurile pentru curățenie online.",
+      "h1_pre": "Calculați",
+      "h1_hi": "Costurile Curățeniei",
+      "subtitle": "Preț fix garantat pentru curățenia profesională.",
+      "h2": "Factori de cost pentru curățenie"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Calculator Evacuare | FLOXANT",
+      "meta_desc": "Cât costă debarsarea apartamentului?",
+      "h1_pre": "Cât costă",
+      "h1_hi": "Evacuarea?",
+      "subtitle": "Calcul transparent pentru orice gunoi voluminos.",
+      "h2": "Cum se calculează costurile?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Alte servicii și locații în Bayern",
     "cleaning_company": "Firma de curatenie",
     "calculate_price": "Calculați prețul",
-    "combination_move": "Combinație cu mutarea"
+    "combination_move": "Combinație cu mutarea",
+    "also_available_in": "Disponibil în limbile:",
+    "whatsapp_cta_title": "Suport WhatsApp",
+    "whatsapp_cta_desc": "Disponibil 24/7."
   },
   "calculator": {
     "requirements_title": "Cerințele dumneavoastră",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Traseu de transport traseu de alergare",
     "flag_disassembly_on_site": "Inclusiv dezmembrari pe santier",
     "flag_express_service": "Serviciu expres (urgent)",
-    "flag_waste_notes_noted": "Vă vom salva nota pentru planificare"
+    "flag_waste_notes_noted": "Vă vom salva nota pentru planificare",
+    "upload_link_note": "Un link de upload imagini vă va fi trimis separat.",
+    "error_submit": "Eroare la trimitere. Vă rugăm să încercați din nou."
   },
   "home": {
     "hero_title": "Compania dumneavoastră profesională de mutări din Bayern.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT oferă și mișcări pe termen scurt în 24 până la 48 de ore. Contactați-ne pentru disponibilitate rapidă.",
     "premium_badge": "Logistică și servicii premium",
     "services_title": "Logistica și serviciile noastre",
-    "services_subtitle": "Fie că este vorba de o mutare complicată a biroului sau de o eliberare delicată a unui apartament - oferim o calitate măsurabilă și o transparență absolută a prețurilor pe tot parcursul Bayern."
+    "services_subtitle": "Fie că este vorba de o mutare complicată a biroului sau de o eliberare delicată a unui apartament - oferim o calitate măsurabilă și o transparență absolută a prețurilor pe tot parcursul Bayern.",
+    "seo_p4": "Ne mișcăm repede și sigur.",
+    "seo_p5": "Oferim suport pentru orice mutare.",
+    "seo_p6": "Obțineți un preț fix online.",
+    "faq_q5": "Sunt bunurile mele asigurate?",
+    "faq_a5": "Da, asigurarea e inclusă în preț.",
+    "faq_q6": "Oferiți material pentru ambalat?",
+    "faq_a6": "Da, oferim cutii la cerere.",
+    "faq_q7": "Căt durează mutarea?",
+    "faq_a7": "Adesea operam în 48 de ore la urgențe.",
+    "faq_q8": "Oferiți servicii de curățenie?",
+    "faq_a8": "Da, oferim curățenie finală cu garanție."
   },
   "reviews": {
     "title": "Așa spun clienții noștri",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "Așa spun ai noștri",
     "title_part2": "Clienții"
+  },
+  "seo": {
+    "dynamic_city_title": "Firmă mutări în {city} | FLOXANT",
+    "dynamic_city_desc": "Mutare cu preț fix în {city}."
+  },
+  "ratgeber": {
+    "title": "Ghid FLOXANT",
+    "h1_pre": "Ghid",
+    "meta_title": "Sfaturi Mutare | FLOXANT",
+    "meta_desc": "Cele mai bune sfaturi.",
+    "subtitle": "Sfaturi și instrucțiuni.",
+    "read_more": "Citește mai mult →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Cost Mutări Regensburg 2026",
+        "desc": "Cât costă mutarea?"
+      },
+      "checkliste_umzug": {
+        "title": "Ghid de Mutare",
+        "desc": "Listă pentru mutare perfectă."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "Cum găsești o firmă bună?",
+        "desc": "La ce trebuie să fii atent."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Preț de debarasare la cubaj",
+        "desc": "Costurile exacte de calculat."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Prepararea în 7 Pași",
+        "desc": "Pași simpli de organizare."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Când merită o firmă?",
+        "desc": "Analiză calitate/preț."
+      },
+      "moebeltransport_sicher": {
+        "title": "Transport sigur pentru mobila",
+        "desc": "Metode ca mobila să ajungă..."
+      },
+      "umzug_tipps_familien": {
+        "title": "Mutat cu copiii",
+        "desc": "Sfaturi bune."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Curățenia de după mutare",
+        "desc": "Sfat pro pentru curățenie."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Modul de Calcul a costurilor",
+        "desc": "Prezentarea calculatorului."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Re-înregistrare adresă",
+        "desc": "Ghid complet."
+      },
+      "umzug_versicherung": {
+        "title": "Asigurarea Mutării",
+        "desc": "Toate detaliile."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Golirea apartamentului",
+        "desc": "Proces și pași."
+      },
+      "umzug_im_winter": {
+        "title": "Mutatul iarna",
+        "desc": "Avantaje."
+      },
+      "umzug_erste_wohnung": {
+        "title": "Primul apartament",
+        "desc": "Cum obții succesul."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Firmă mutări, Mutare, FLOXANT",
+    "og_img_alt": "Servicii Mutări Germania",
+    "og_locale": "ro_RO"
   }
 }

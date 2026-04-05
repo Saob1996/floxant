@@ -17,11 +17,13 @@ import { MapPin, Shield, Clock, Truck } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'umzug-feucht',
-        title: 'Umzugsunternehmen in Feucht | FLOXANT',
-        description: 'Professionelle Umzugsunternehmen in Feucht in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -33,8 +35,8 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein Umzug in Feucht kostet je nach Wohnungsgröße zwischen 300 und 1.500 Euro. Verbindlicher Festpreis nach Besichtigung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bietet FLOXANT auch Entrümpelung in Feucht?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Professionelle Entrümpelung und Wohnungsauflösung in Feucht und dem gesamten Nürnberger Land." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
     const localBusinessJsonLd = {
@@ -78,7 +80,7 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                         Umzugsunternehmen in <span className="text-primary">Feucht</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        FLOXANT – Ihr Umzugspartner in Feucht bei Nürnberg. Operativer Hub im Nürnberger Land, {dict.calculator?.fixed_price_tag || "Festpreisgarantie"} und professioneller Service.
+                        FLOXANT – Ihr Umzugspartner in Feucht bei Nürnberg. Operativer Hub im Nürnberger Land, {dict.calculator?.fixed_price_tag} und professioneller Service.
                     </p>
                 </div>
             </section>
@@ -95,7 +97,7 @@ export default async function UmzugFeucht({ params }: { params: Promise<{ lang: 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {[
                             { icon: <Clock className="w-8 h-8 text-primary" />, title: "Operativer Hub", desc: "Feucht ist einer unserer Knotenpunkte – besonders kurze Anfahrtszeiten." },
-                            { icon: <Shield className="w-8 h-8 text-primary" />, title: dict.calculator?.fixed_price_tag || "Festpreisgarantie", desc: "Verbindliches Angebot nach Besichtigung. Keine versteckten Kosten." },
+                            { icon: <Shield className="w-8 h-8 text-primary" />, title: dict.calculator?.fixed_price_tag, desc: "Verbindliches Angebot nach Besichtigung. Keine versteckten Kosten." },
                             { icon: <Truck className="w-8 h-8 text-primary" />, title: "Fernumzüge", desc: "Von Feucht nach ganz Deutschland – effizient und termingenau." },
                         ].map((item, i) => (
                             <div key={i} className="p-6 rounded-2xl bg-card border border-border shadow-sm">

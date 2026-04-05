@@ -3,10 +3,14 @@ import { getDictionary } from "@/get-dictionary";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 
-export const metadata = {
-  title: 'Umzugskosten berechnen 2026 | FLOXANT Rechner',
-  description: 'Berechnen Sie sofort Ihre Umzugskosten. Unser Dual-Calculator zeigt Ihnen sekundenschnell eine Schätzung oder berechnet ein millimetergenaues Festprei...',
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+    var { lang: pageLocale } = await params;
+    const dict = (await getDictionary(pageLocale as any)) as any;
+    return {
+        title: dict.pages?.calc_umzug?.meta_title || 'Calculate Moving Costs | FLOXANT',
+        description: dict.pages?.calc_umzug?.meta_desc || 'Calculate your moving costs.',
+    };
+}
 
 export default async function UmzugKostenRechnerPage({ params }: { params: Promise<{ lang: string }> }) {
     var { lang: pageLocale } = await params;
@@ -42,11 +46,10 @@ export default async function UmzugKostenRechnerPage({ params }: { params: Promi
             Live Preisberechnung
           </div>
           <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
-            Was kostet Ihr <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">Umzug?</span>
+            {(dict as any).pages?.calc_umzug?.h1_pre} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">{(dict as any).pages?.calc_umzug?.h1_hi}</span>
           </h1>
           <p className="text-white/60 text-lg">
-            Transparente Preise in Sekunden. Starten Sie mit der Schnellschätzung 
-            oder konfigurieren Sie Ihr verbindliches Festpreis-Angebot.
+            {(dict as any).pages?.calc_umzug?.subtitle}
           </p>
         </header>
 
@@ -55,7 +58,7 @@ export default async function UmzugKostenRechnerPage({ params }: { params: Promi
 
         {/* Dynamic SEO Content Layer */}
         <section className="mt-32 max-w-4xl mx-auto prose prose-invert">
-          <h2 className="text-3xl font-light">Wie berechnen sich die Umzugskosten bei FLOXANT?</h2>
+          <h2 className="text-3xl font-light">{(dict as any).pages?.calc_umzug?.h2}</h2>
           <p className="text-white/70">
             Die Berechnung der Umzugskosten hängt von mehreren Faktoren ab. Unser Algorithmus berücksichtigt:
           </p>

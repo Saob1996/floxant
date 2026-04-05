@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "umzug-geisenfeld",
-        title: content.meta_title || "Umzugsunternehmen Geisenfeld | FLOXANT",
-        description: 'Ihr Umzugsunternehmen für Geisenfeld (Oberbayern). Professioneller Umzug mit $..., voller Versic...',
+        title: content.meta_title,
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -34,10 +34,10 @@ export default async function UmzugGeisenfeld({ params }: { params: Promise<{ la
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Geisenfeld?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie schnell ist FLOXANT in Geisenfeld verfügbar?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Da unsere Teams täglich auf der Strecke A9 Ingolstadt–München unterwegs sind, können wir oft schon innerhalb weniger Tage einen Termin in Geisenfeld realisieren." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Ist mein Umzugsgut bei FLOXANT versichert?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und die gesetzliche Verkehrshaftung nach §451g HGB abgesichert." } },
-                { "@type": "Question", "name": content.faqs?.[3]?.q || "Bieten Sie auch Entrümpelung in Geisenfeld an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a || "Ja. Wir kombinieren Umzug, Entrümpelung und Endreinigung zu einem Paket. Ideal bei Wohnungsauflösungen oder wenn die alte Wohnung besenrein übergeben werden muss." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } },
+                { "@type": "Question", "name": content.faqs?.[3]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a } }
             ],
     };
 
@@ -83,8 +83,8 @@ export default async function UmzugGeisenfeld({ params }: { params: Promise<{ la
                         Transparente Festpreise, voll versicherter Transport und ein Team, das sich wirklich kümmert. So sieht moderner Umzugsservice aus.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-10">
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Award className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag || "100% Versichert"}</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Layers className="w-5 h-5 text-blue-500" /> {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Award className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag}</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Layers className="w-5 h-5 text-blue-500" /> {dict.calculator?.fixed_price_tag}</span>
                         <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><ThumbsUp className="w-5 h-5 text-primary" /> Korridor A9 Ingolstadt–München</span>
                     </div>
                     <div className="mt-12 flex justify-center">
@@ -104,7 +104,7 @@ export default async function UmzugGeisenfeld({ params }: { params: Promise<{ la
                         <p className="text-lg">Wenige Lebensereignisse erfordern so viel Organisation wie ein Umzug. Transport, Verpackung, Montage und Reinigung müssen ineinandergreifen. Wir koordinieren alles aus einer Hand.</p>
                         <p className="text-lg">Durch unsere strategische Lage im bayerischen Zentralraum bedienen wir Umzugsrouten effizient an den Hauptverkehrsachsen. Unsere Transporter sind täglich auf diesen Strecken unterwegs, was sich positiv auf Anfahrtszeiten und Kosten auswirkt.</p>
                         <div className="bg-gradient-to-br from-card to-muted p-8 rounded-3xl border border-border mt-10 shadow-sm not-italic relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-10"><Truck className="w-32 h-32" /></div>
+                            <div className="absolute top-0 end- p-8 opacity-10"><Truck className="w-32 h-32" /></div>
                             <h4 className="text-2xl text-foreground font-bold mb-4 flex items-center gap-3 relative z-10"><CheckCircle2 className="w-8 h-8 text-emerald-500" />{dict.common.local_challenges}</h4>
                             <p className="m-0 text-base relative z-10">Beengte Parkverhältnisse am Be- oder Entladeort? Wir übernehmen die behördliche Beantragung und Beschilderung der offiziellen Halteverbotszone für Sie – fristgerecht und rechtskonform. Wir kennen die infrastrukturellen Besonderheiten in Geisenfeld und reagieren routiniert auf jede Situation.</p>
                         </div>
@@ -124,7 +124,7 @@ export default async function UmzugGeisenfeld({ params }: { params: Promise<{ la
                             </div>
                             <div className="p-8 rounded-3xl bg-card border border-border shadow-md hover:shadow-lg transition-all group">
                                 <div className="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><Shield className="w-7 h-7 text-emerald-600" /></div>
-                                <h3 className="text-xl font-bold mb-3">{dict.calculator?.insured_tag || "100% Versichert"}</h3>
+                                <h3 className="text-xl font-bold mb-3">{dict.calculator?.insured_tag}</h3>
                                 <p className="text-muted-foreground leading-relaxed">Jeder Transport ist über unsere Betriebshaftpflicht nach §451g HGB abgesichert. Bei Hochpreisigem empfehlen wir eine optionale Zusatzversicherung.</p>
                             </div>
                             <div className="p-8 rounded-3xl bg-card border border-border shadow-md hover:shadow-lg transition-all group">
@@ -187,7 +187,7 @@ export default async function UmzugGeisenfeld({ params }: { params: Promise<{ la
 
                     {/* Booking Wizard */}
                     <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
+                        <div className="absolute -top-6 start-/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Preis anfragen für Geisenfeld</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Füllen Sie unser kurzes Formular aus und erhalten Sie Ihr persönliches Festpreisangebot für Geisenfeld.</p>
                         <div className="px-6">

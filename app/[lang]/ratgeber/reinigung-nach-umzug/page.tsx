@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/reinigung-nach-umzug',
-        title: 'Reinigung nach Umzug: Tipps vom Profi | FLOXANT',
-        description: 'Professionelle Reinigung nach Umzug: Tipps vom Profi in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet eine Endreinigung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "3 bis 5 Euro pro Quadratmeter bei professioneller Reinigung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Muss ich nach dem Umzug besenrein übergeben?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Das ist der Mindeststandard. Viele Vermieter erwarten mehr. Eine professionelle Reinigung gibt Sicherheit." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

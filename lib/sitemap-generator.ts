@@ -1,8 +1,8 @@
 /**
- * FLOXANT Sitemap Generator
- * Shared functions for generating Google-compliant XML sitemaps
- * with proper hreflang clustering and priority strategy.
- */
+* FLOXANT Sitemap Generator
+* Shared functions for generating Google-compliant XML sitemaps
+* with proper hreflang clustering and priority strategy.
+*/
 
 import {
     BASE_URL,
@@ -17,7 +17,6 @@ import {
     RATGEBER_PAGES,
     SIGNATURE_SERVICES,
     LEGAL_PAGES,
-    HIGH_VALUE_ROUTES_FOR_NON_DE,
     type SitemapUrl,
 } from './sitemap-config';
 
@@ -76,8 +75,14 @@ export function sitemapResponse(xml: string): Response {
 
 // --- URL generators per locale ---
 
-function buildUrl(locale: string, route: string, priority: string, changefreq: SitemapUrl['changefreq']): SitemapUrl {
+function buildUrl(
+    locale: string,
+    route: string,
+    priority: string,
+    changefreq: SitemapUrl['changefreq']
+): SitemapUrl {
     const pagePath = route;
+
     return {
         loc: `${BASE_URL}/${locale}${route ? '/' + route : ''}`,
         lastmod: LASTMOD,
@@ -89,7 +94,7 @@ function buildUrl(locale: string, route: string, priority: string, changefreq: S
 
 /**
  * Get all URLs for a specific locale.
- * For non-DE locales, only high-value routes are included (Phase 6).
+ * For non-DE locales, only high-value routes are included.
  */
 function getUrlsForLocale(locale: string): SitemapUrl[] {
     const isDE = locale === 'de';
@@ -103,23 +108,22 @@ function getUrlsForLocale(locale: string): SitemapUrl[] {
         urls.push(buildUrl(locale, slug, isDE ? '0.9' : '0.5', 'weekly'));
     });
 
-    // City pages — 0.9 for DE, 0.5 for non-DE
+    // City pages — 0.8 for DE, 0.5 for non-DE
     CITY_PAGES.forEach((slug) => {
-        urls.push(buildUrl(locale, slug, isDE ? '0.9' : '0.5', 'weekly'));
+        urls.push(buildUrl(locale, slug, isDE ? '0.8' : '0.5', 'weekly'));
     });
 
-    // Regensburg service pages — 0.9 DE, 0.5 non-DE
+    // Service-city pages — 0.85 for DE, 0.5 for non-DE
     SERVICE_CITY_PAGES.forEach((slug) => {
-        urls.push(buildUrl(locale, slug, isDE ? '0.9' : '0.5', 'weekly'));
+        urls.push(buildUrl(locale, slug, isDE ? '0.85' : '0.5', 'weekly'));
     });
 
-    // Bavaria authority pages — 0.9 DE, 0.5 non-DE
+    // Bavaria authority pages — 0.85 for DE, 0.5 for non-DE
     BAVARIA_AUTHORITY_PAGES.forEach((slug) => {
-        urls.push(buildUrl(locale, slug, isDE ? '0.9' : '0.5', 'weekly'));
+        urls.push(buildUrl(locale, slug, isDE ? '0.85' : '0.5', 'weekly'));
     });
 
-    // --- Below this point: only included for DE locale (high-value filter for non-DE) ---
-
+    // Only German locale gets the additional lower-priority content
     if (isDE) {
         // Signature SEO landing pages — 0.7
         SIGNATURE_SEO_PAGES.forEach((slug) => {
@@ -151,13 +155,19 @@ export function generateLocaleSitemap(locale: string): string {
 /** Generate sitemap for all minor locales combined */
 export function generateOtherLocalesSitemap(locales: readonly string[]): string {
     const urls: SitemapUrl[] = [];
+
     for (const locale of locales) {
         urls.push(...getUrlsForLocale(locale));
     }
+
     return wrapUrlset(urls.map(urlToXml));
 }
 
-/** Generate sitemap-core.xml — German high-priority business pages */
+/**
+ * Generate sitemap-core.xml
+ * German high-priority business pages only.
+ * Deliberately excludes Ratgeber/Blog to avoid excessive overlap with sitemap-de.xml.
+ */
 export function generateCoreSitemap(): string {
     const locale = 'de';
     const urls: SitemapUrl[] = [];
@@ -165,32 +175,40 @@ export function generateCoreSitemap(): string {
     // Homepage
     urls.push(buildUrl(locale, '', '1.0', 'daily'));
 
-    // Core services at top priority
-    CORE_SERVICES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
+    // Core services
+    CORE_SERVICES.forEach((slug) => {
+        urls.push(buildUrl(locale, slug, '0.9', 'weekly'));
+    });
 
     // City pages
-    CITY_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
+    CITY_PAGES.forEach((slug) => {
+        urls.push(buildUrl(locale, slug, '0.8', 'weekly'));
+    });
 
-    // Regensburg pages
-    SERVICE_CITY_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
+    // Service-city pages
+    SERVICE_CITY_PAGES.forEach((slug) => {
+        urls.push(buildUrl(locale, slug, '0.85', 'weekly'));
+    });
 
     // Bavaria authority pages
-    BAVARIA_AUTHORITY_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.9', 'weekly')));
+    BAVARIA_AUTHORITY_PAGES.forEach((slug) => {
+        urls.push(buildUrl(locale, slug, '0.85', 'weekly'));
+    });
 
     // Signature SEO landing pages
-    SIGNATURE_SEO_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.7', 'weekly')));
+    SIGNATURE_SEO_PAGES.forEach((slug) => {
+        urls.push(buildUrl(locale, slug, '0.7', 'weekly'));
+    });
 
     // Long-tail
-    LONGTAIL_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.6', 'monthly')));
-
-    // Ratgeber / Blog
-    RATGEBER_PAGES.forEach((slug) => urls.push(buildUrl(locale, slug, '0.6', 'weekly')));
-
+    LONGTAIL_PAGES.forEach((slug) => {
+        urls.push(buildUrl(locale, slug, '0.6', 'monthly'));
+    });
 
     return wrapUrlset(urls.map(urlToXml));
 }
 
-/** Generate sitemap-signature.xml — All signature service pages across all locales */
+/** Generate sitemap-signature.xml — All signature service pages across selected locales */
 export function generateSignatureSitemap(): string {
     const urls: SitemapUrl[] = [];
 
@@ -200,7 +218,6 @@ export function generateSignatureSitemap(): string {
     });
 
     // Non-DE major locales get signature services at 0.5
-    // (excluded from minor locales per Phase 6)
     for (const locale of ['en', 'ar', 'tr', 'ru', 'uk', 'pl']) {
         SIGNATURE_SERVICES.forEach((slug) => {
             urls.push(buildUrl(locale, `signature/${slug}`, '0.5', 'monthly'));

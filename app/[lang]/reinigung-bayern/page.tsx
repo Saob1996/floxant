@@ -22,7 +22,7 @@ export async function generateMetadata({ params, }: {
     var dict = await getDictionary(pageLocale as Locale);
     const content = (dict as any)?.pages?.service_reinigung || {};
     return {
-        title: content.meta_title || "Reinigung Bayern | Professionelle Endreinigung | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Professionelle Reinigungsdienstleistungen in ganz Bayern. Endreinigung nach Vermieterstandards, Baureinigung & Büror...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/reinigung-bayern`,

@@ -162,7 +162,8 @@
     "message": "Nachricht",
     "submit": "Senden",
     "success": "Nachricht gesendet",
-    "error": "Fehler beim Senden"
+    "error": "Fehler beim Senden",
+    "email_label": "E-Mail"
   },
   "trust": {
     "experience": "Jahrelange Erfahrung",
@@ -260,7 +261,11 @@
           "q": "Bieten Sie Fernumzüge ab München an?",
           "a": "Ja. Wir organisieren Fernumzüge von München nach ganz Deutschland."
         }
-      ]
+      ],
+      "meta_title": "Umzugsunternehmen München ✓ Festpreis ✓ Versichert | FLOXANT",
+      "meta_desc": "Professionelles Umzugsunternehmen in München & Umland. Umzug, Entrümpelung und Reinigung zum Festpreis. Altstadt-Logistik, 24h-Service. Jetzt Angebot anfragen!",
+      "hero_h1": "Umzugsunternehmen in ",
+      "hero_h1_highlight": "München"
     },
     "service_umzug": {
       "meta_title": "Privat-Umzug – Ihr persönlicher Standortwechsel",
@@ -2916,7 +2921,11 @@
           "q": "Bieten Sie Fernumzüge ab Nürnberg an?",
           "a": "Ja. Wir organisieren Fernumzüge von Nürnberg nach ganz Deutschland."
         }
-      ]
+      ],
+      "meta_title": "Umzugsunternehmen Nürnberg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "meta_desc": "Professionelles Umzugsunternehmen in Nürnberg & Franken. Umzug, Entrümpelung und Reinigung zum Festpreis. Altstadt-Logistik, 24h-Service. Jetzt Angebot anfragen!",
+      "hero_h1": "Umzugsunternehmen in ",
+      "hero_h1_highlight": "Nürnberg"
     },
     "umzug_oberasbach": {
       "meta_title": "Umzugsunternehmen Oberasbach ✓ Festpreis ✓ Versichert | FLOXANT",
@@ -3843,6 +3852,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Umzugskosten berechnen 2026 | FLOXANT Rechner",
+      "meta_desc": "Berechnen Sie sofort Ihre Umzugskosten...",
+      "h1_pre": "Was kostet Ihr ",
+      "h1_hi": "Umzug?",
+      "subtitle": "Transparente Preise in Sekunden.",
+      "h2": "Wie berechnen sich die Umzugskosten bei FLOXANT?"
+    },
+    "calc_reinigung": {
+      "meta_title": "Reinigungskosten berechnen | FLOXANT",
+      "meta_desc": "Berechnen Sie sofort Ihre Reinigungskosten...",
+      "h1_pre": "Was kostet Ihre ",
+      "h1_hi": "Reinigung?",
+      "subtitle": "Transparente Preise.",
+      "h2": "Wie berechnen sich die Reinigungskosten?"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Entsorgungskosten berechnen | FLOXANT",
+      "meta_desc": "Berechnen Sie sofort Ihre Entsorgungskosten...",
+      "h1_pre": "Was kostet Ihre ",
+      "h1_hi": "Entsorgung?",
+      "subtitle": "Transparente Preise.",
+      "h2": "Wie berechnen sich die Entsorgungskosten?"
     }
   },
   "services_section": {
@@ -4020,7 +4053,10 @@
     "additional_services_locations": "Weitere Leistungen & Standorte in Bayern",
     "cleaning_company": "Reinigungsfirma",
     "calculate_price": "Preis berechnen",
-    "combination_move": "Kombination mit Umzug"
+    "combination_move": "Kombination mit Umzug",
+    "also_available_in": "Auch verfügbar in",
+    "whatsapp_cta_title": "Schnelle Frage? WhatsApp!",
+    "whatsapp_cta_desc": "Antwort meist innerhalb von 5 Minuten. Kostenlos & unverbindlich."
   },
   "calculator": {
     "requirements_title": "Ihre Anforderungen",
@@ -4220,7 +4256,9 @@
     "flag_loading_path": "Trageweg Laufstrecke",
     "flag_disassembly_on_site": "Inkl. Demontage vor Ort",
     "flag_express_service": "Express-Service (Dringend)",
-    "flag_waste_notes_noted": "Ihre Notiz speichern wir für die Planung"
+    "flag_waste_notes_noted": "Ihre Notiz speichern wir für die Planung",
+    "upload_link_note": "Den Link für den Foto-Upload erhalten Sie separat via WhatsApp oder E-Mail.",
+    "error_submit": "Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt."
   },
   "home": {
     "hero_title": "Ihr professionelles Umzugsunternehmen in Bayern.",
@@ -4295,5 +4333,84 @@
     ],
     "title_part1": "Das sagen unsere",
     "title_part2": "Kunden"
+  },
+  "seo": {
+    "dynamic_city_title": "Umzugsunternehmen ✓ Festpreis ✓ Versichert | FLOXANT",
+    "dynamic_city_desc": "Professionelles Umzugsunternehmen. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt Angebot anfragen!"
+  },
+  "ratgeber": {
+    "title": "FLOXANT Ratgeber",
+    "h1_pre": "Umzug ",
+    "meta_title": "Umzugsratgeber & Tipps 2026 | FLOXANT",
+    "meta_desc": "Wertvolle Tipps, Checklisten und Kostenübersichten rund um Umzug, Entrümpelung und Reinigung – von den Profis bei FLOXANT.",
+    "subtitle": "Tipps, Checklisten und Kostenübersichten rund um Umzug, Entrümpelung und Reinigung – von den Profis bei FLOXANT.",
+    "read_more": "Weiterlesen →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Umzug Kosten Regensburg 2026",
+        "desc": "Was kostet ein Umzug in Regensburg? Preise, Faktoren und Spartipps."
+      },
+      "checkliste_umzug": {
+        "title": "Checkliste für stressfreien Umzug",
+        "desc": "Die ultimative Umzug-Checkliste: Schritt für Schritt zum perfekten Umzug."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "Wie findet man eine gute Umzugsfirma?",
+        "desc": "Worauf Sie bei der Wahl einer Umzugsfirma achten sollten."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Entrümpelung Kosten pro m³ erklärt",
+        "desc": "Was kostet eine Entrümpelung pro Kubikmeter? Alle Preise im Überblick."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Umzug vorbereiten in 7 Schritten",
+        "desc": "7 einfache Schritte für eine perfekte Umzugsvorbereitung."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Wann lohnt sich eine Umzugsfirma?",
+        "desc": "Ab wann lohnt sich der Profi? Kosten-Nutzen-Analyse."
+      },
+      "moebeltransport_sicher": {
+        "title": "Möbeltransport sicher organisieren",
+        "desc": "So kommen Ihre Möbel sicher an: Verpackung, Transport, Versicherung."
+      },
+      "umzug_tipps_familien": {
+        "title": "Umzug Tipps für Familien",
+        "desc": "Umzug mit Kindern: praktische Tipps für Familien."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Reinigung nach Umzug: Tipps vom Profi",
+        "desc": "Professionelle Reinigung nach dem Umzug für die Wohnungsübergabe."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Umzug Kosten Rechner Erklärung",
+        "desc": "Wie funktioniert ein Umzugskostenrechner? Faktoren und Berechnung."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Umzug anmelden & ummelden",
+        "desc": "Alle Behördengänge beim Umzug: Anmeldung, Ummeldung, Fristen."
+      },
+      "umzug_versicherung": {
+        "title": "Umzug Versicherung: Was ist wichtig?",
+        "desc": "Transportversicherung beim Umzug: Was deckt sie ab, was nicht?"
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Wohnungsauflösung: Tipps und Kosten",
+        "desc": "Wohnungsauflösung organisieren: Ablauf, Kosten und Checkliste."
+      },
+      "umzug_im_winter": {
+        "title": "Umzug im Winter: Vor- und Nachteile",
+        "desc": "Lohnt sich ein Umzug im Winter? Tipps für den Winterumzug."
+      },
+      "umzug_erste_wohnung": {
+        "title": "Erste Wohnung: Umzug richtig planen",
+        "desc": "Der erste eigene Umzug: Was Studierende und Berufseinsteiger wissen müssen."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Umzugsunternehmen Bayern, Umzug Regensburg, Entrümpelung Bayern, Reinigung Regensburg, Umzugsfirma München, Umzug Nürnberg, Festpreis Umzug, versicherter Umzug, FLOXANT",
+    "og_img_alt": "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg & Bayern",
+    "og_locale": "de_DE"
   }
 }

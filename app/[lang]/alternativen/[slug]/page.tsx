@@ -45,20 +45,20 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
         {/* The VS Matrix */}
         <section className="max-w-4xl mx-auto mb-20 bg-[#0B0B12] rounded-3xl border border-white/5 overflow-hidden">
           <div className="grid grid-cols-3 bg-white/5 p-4 border-b border-white/10 text-center font-medium">
-            <div className="text-left pl-4 text-white/40">Kriterium</div>
+            <div className="text-start ps- text-white/40">Kriterium</div>
             <div className="text-white/60">{competitor}</div>
             <div className="text-blue-400 font-bold text-xl drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">FLOXANT</div>
           </div>
           
           <div className="divide-y divide-white/5">
             {[
-              { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: '100% {dict.calculator?.fixed_price_tag || "Festpreisgarantie"}' },
+              { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: '100% {dict.calculator?.fixed_price_tag}' },
               { label: 'Tarife', comp: 'Statischer Preis', flox: 'Intelligentes 3-Tier System' },
               { label: 'Wartezeit', comp: 'Bis zu 48h auf Angebot', flox: 'Sofortige KI-Kalkulation' },
               { label: 'Disposition', comp: 'Manuelle Subunternehmer', flox: 'Cluster-Optimierte Flotten' }
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-3 p-4 text-center items-center hover:bg-white/5 transition-colors">
-                 <div className="text-left pl-4 text-white/70 text-sm">{row.label}</div>
+                 <div className="text-start ps- text-white/70 text-sm">{row.label}</div>
                  <div className="text-red-400/80 text-sm flex flex-col items-center gap-1">
                    {row.comp}
                  </div>

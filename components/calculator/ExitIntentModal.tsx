@@ -56,7 +56,7 @@ export default function ExitIntentModal() {
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="relative w-full max-w-lg bg-gradient-to-b from-[#1A1A24] to-[#0A0A0F] rounded-3xl border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden p-8 text-center"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-0 end- w-64 h-64 bg-emerald-500/20 rounded-full blur-[80px] pointer-events-none" />
           
           <div className="mx-auto w-16 h-16 bg-red-500/10 text-red-400 rounded-full flex items-center justify-center mb-6 border border-red-500/20">
             <AlertTriangle size={32} />

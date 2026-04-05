@@ -73,7 +73,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl blur-sm group-hover:blur-md transition-all opacity-50 dark:opacity-20" />
 
                                 <div className="glass h-full p-6 rounded-2xl border border-white/10 relative overflow-hidden group-hover:border-primary/30 transition-colors">
-                                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+                                    <div className="absolute top-0 end- p-4 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
                                         <Icon className="w-24 h-24" />
                                     </div>
 

@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/wann-lohnt-sich-umzugsfirma',
-        title: 'Wann lohnt sich eine Umzugsfirma? | FLOXANT',
-        description: 'Professionelle Wann lohnt sich eine Umzugsfirma? in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Ab welcher Wohnungsgröße lohnt sich eine Umzugsfirma?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ab einer 2-Zimmer-Wohnung oder bei erschwertem Zugang (Treppen, enge Gassen)." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Kann ich einzelne Leistungen buchen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. FLOXANT bietet modulare Pakete – vom reinen Transport bis zum Full-Service." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

@@ -3,10 +3,14 @@ import { getDictionary } from "@/get-dictionary";
 import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 
-export const metadata = {
-  title: 'Reinigungskosten berechnen 2026 | FLOXANT Rechner',
-  description: 'Berechnen Sie sofort Ihre Reinigungskosten. Ob Grundreinigung oder Spezialauftrag – unser Dual-Calculator zeigt Ihnen sekundenschnell ein Festpreis-An...',
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+    var { lang: pageLocale } = await params;
+    const dict = (await getDictionary(pageLocale as any)) as any;
+    return {
+        title: dict.pages?.calc_reinigung?.meta_title || "FLOXANT",
+        description: dict.pages?.calc_reinigung?.meta_desc || "FLOXANT",
+    };
+}
 
 export default async function ReinigungPreisRechnerPage({ params }: { params: Promise<{ lang: string }> }) {
     var { lang: pageLocale } = await params;
@@ -41,10 +45,10 @@ export default async function ReinigungPreisRechnerPage({ params }: { params: Pr
             Transparente Preise
           </div>
           <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
-            Ihre <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-indigo-400">Reinigungskosten</span> berechnen
+            {(dict as any).pages?.calc_reinigung?.h1_pre} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-indigo-400">{(dict as any).pages?.calc_reinigung?.h1_hi}</span>
           </h1>
           <p className="text-white/60 text-lg">
-            Sekundenschnell zur ersten Schätzung oder millimetergenau zum garantierten Festpreis.
+            {(dict as any).pages?.calc_reinigung?.subtitle}
           </p>
         </header>
 
@@ -53,7 +57,7 @@ export default async function ReinigungPreisRechnerPage({ params }: { params: Pr
 
         {/* Dynamic SEO Content Layer */}
         <section className="mt-32 max-w-4xl mx-auto prose prose-invert">
-          <h2 className="text-3xl font-light">Kostenfaktoren der professionellen Reinigung</h2>
+          <h2 className="text-3xl font-light">{(dict as any).pages?.calc_reinigung?.h2}</h2>
           <p className="text-white/70">
             Wir reinigen transparent nach Aufwand und Fläche. Zu den Faktoren zählen:
           </p>

@@ -67,7 +67,7 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
             onClick={onClose}
         >
             {/* Controls */}
-            <div className="absolute top-4 right-4 z-50 flex gap-4">
+            <div className="absolute top-4 end- z-50 flex gap-4">
                 <button
                     onClick={(e) => { e.stopPropagation(); window.open(images[index], '_blank'); }}
                     className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
@@ -86,13 +86,13 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
             {images.length > 1 && (
                 <>
                     <button
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                        className="absolute start- top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
                         onClick={(e) => { e.stopPropagation(); prevImage(); }}
                     >
                         <ChevronLeft className="w-8 h-8" />
                     </button>
                     <button
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                        className="absolute end- top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
                         onClick={(e) => { e.stopPropagation(); nextImage(); }}
                     >
                         <ChevronRight className="w-8 h-8" />
@@ -102,7 +102,7 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
 
             {/* Image Counter */}
             {images.length > 1 && (
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm font-medium border border-white/10 backdrop-blur-sm">
+                <div className="absolute bottom-6 start-/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm font-medium border border-white/10 backdrop-blur-sm">
                     {index + 1} / {images.length}
                 </div>
             )}
@@ -159,7 +159,7 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
 
             {/* Thumbnail Strip (Optional, for > 1 images) */}
             {images.length > 1 && (
-                <div className="absolute bottom-6 right-6 z-50 hidden md:flex gap-2 p-2 rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 overflow-x-auto max-w-md" onClick={(e) => e.stopPropagation()}>
+                <div className="absolute bottom-6 end- z-50 hidden md:flex gap-2 p-2 rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 overflow-x-auto max-w-md" onClick={(e) => e.stopPropagation()}>
                     {images.map((img, i) => (
                         <button
                             key={i}

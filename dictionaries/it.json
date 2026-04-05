@@ -162,7 +162,8 @@
     "message": "Notizia",
     "submit": "Inviare",
     "success": "Messaggio inviato",
-    "error": "Errore nell'invio"
+    "error": "Errore nell'invio",
+    "email_label": "Email"
   },
   "trust": {
     "experience": "Anni di esperienza",
@@ -260,7 +261,11 @@
           "q": "Prendete accordi d'imbarco carichi destinati inter-regionale distanti molto dal limite in München?",
           "a": "Di certo gestiamo flotte attivamente spingendo carichi diretti e ben coordinati abbandonando o mirando sulla base München percorrendo tratte per ogni singolo perimetro esteso sull'enorme carta politica germanica."
         }
-      ]
+      ],
+      "meta_title": "Traslochi Monaco di Baviera | FLOXANT",
+      "meta_desc": "Società professionale di traslochi a Monaco.",
+      "hero_h1": "Traslochi ",
+      "hero_h1_highlight": "Monaco di Baviera"
     },
     "service_umzug": {
       "meta_title": "Private move – il tuo cambio personale di ubicazione",
@@ -2832,7 +2837,11 @@
           "q": "Prendete accordi d'imbarco carichi destinati inter-regionale distanti molto dal limite in Nürnberg?",
           "a": "Di certo gestiamo flotte attivamente spingendo carichi diretti e ben coordinati abbandonando o mirando sulla base Nürnberg percorrendo tratte per ogni singolo perimetro esteso sull'enorme carta politica germanica."
         }
-      ]
+      ],
+      "meta_title": "Traslochi Norimberga | FLOXANT",
+      "meta_desc": "Azienda di traslochi a Norimberga.",
+      "hero_h1": "Traslochi ",
+      "hero_h1_highlight": "Norimberga"
     },
     "umzug_oberasbach": {
       "meta_title": "Ditta di traslochi Oberasbach ✓ Prezzo Fisso ✓ Assicurato | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Calcola costi trasloco 2026 | FLOXANT",
+      "meta_desc": "Calcola il costo online.",
+      "h1_pre": "Calcola le",
+      "h1_hi": "Spese di trasloco",
+      "subtitle": "Prezzi trasparenti.",
+      "h2": "Fattori di prezzo"
+    },
+    "calc_reinigung": {
+      "meta_title": "Calcolatore Pulizia | FLOXANT",
+      "meta_desc": "Calcola il costo online.",
+      "h1_pre": "Calcola la",
+      "h1_hi": "Pulizia professionale",
+      "subtitle": "Prezzo fisso garantito.",
+      "h2": "Fattori di prezzo"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Calcola Sgombero | FLOXANT",
+      "meta_desc": "Calcola sgombero online.",
+      "h1_pre": "Quanto costa lo",
+      "h1_hi": "Sgombero?",
+      "subtitle": "Un conto veloce.",
+      "h2": "Calcolo"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Ulteriori servizi e luoghi a Bayern",
     "cleaning_company": "Impresa di pulizie",
     "calculate_price": "Calcola il prezzo",
-    "combination_move": "Combinazione con trasloco"
+    "combination_move": "Combinazione con trasloco",
+    "also_available_in": "Disponibile anche in:",
+    "whatsapp_cta_title": "Assistenza WhatsApp",
+    "whatsapp_cta_desc": "Disponibile 24/7."
   },
   "calculator": {
     "requirements_title": "Le tue esigenze",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Portare il percorso di corsa",
     "flag_disassembly_on_site": "Compreso lo smantellamento in loco",
     "flag_express_service": "Servizio espresso (urgente)",
-    "flag_waste_notes_noted": "Salveremo la tua nota per la pianificazione"
+    "flag_waste_notes_noted": "Salveremo la tua nota per la pianificazione",
+    "upload_link_note": "Un link vi sarà inviato.",
+    "error_submit": "Errore riscontrato."
   },
   "home": {
     "hero_title": "La tua azienda di traslochi professionale a Bayern.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT offre anche spostamenti a breve termine entro 24-48 ore. Contattaci per una rapida disponibilità.",
     "premium_badge": "Logistica e servizio premium",
     "services_title": "La nostra logistica e i nostri servizi",
-    "services_subtitle": "Che si tratti di un complicato trasloco di ufficio o di una delicata sgombero di un appartamento, forniamo qualità misurabile e assoluta trasparenza dei prezzi durante Bayern."
+    "services_subtitle": "Che si tratti di un complicato trasloco di ufficio o di una delicata sgombero di un appartamento, forniamo qualità misurabile e assoluta trasparenza dei prezzi durante Bayern.",
+    "seo_p4": "Trasloco rapido.",
+    "seo_p5": "Efficienza al massimo.",
+    "seo_p6": "Assicurato e fisso.",
+    "faq_q5": "Cose assicurate?",
+    "faq_a5": "Sì, certamamente.",
+    "faq_q6": "Date il materiale?",
+    "faq_a6": "Certo.",
+    "faq_q7": "Velocità operativa?",
+    "faq_a7": "In 48 ore di solito.",
+    "faq_q8": "Pulite anche?",
+    "faq_a8": "Assolutamente."
   },
   "reviews": {
     "title": "Questo è ciò che dicono i nostri clienti",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "Questo è quello che dicono i nostri",
     "title_part2": "Clienti"
+  },
+  "seo": {
+    "dynamic_city_title": "Traslochi in {city} | FLOXANT",
+    "dynamic_city_desc": "Traslochi perfetti a {city}."
+  },
+  "ratgeber": {
+    "title": "Guida",
+    "h1_pre": "Guide",
+    "meta_title": "Consigli utili | FLOXANT",
+    "meta_desc": "Cose da sapere.",
+    "subtitle": "Tutto sul trasloco.",
+    "read_more": "Leggere →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Prezzi 2026 Ratisbona",
+        "desc": "Quanto ci vuole?"
+      },
+      "checkliste_umzug": {
+        "title": "Lista di cose da fare",
+        "desc": "Per non dimenticare nulla."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "Una buona ditta?",
+        "desc": "Come si fa?"
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Sgomberi prezzo m3",
+        "desc": "Metriche."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "7 passaggi per il trasloco",
+        "desc": "Semplificazione massima."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Perchè un'azienda pro?",
+        "desc": "Considerazioni."
+      },
+      "moebeltransport_sicher": {
+        "title": "I mobili perfetti",
+        "desc": "Senza strappi."
+      },
+      "umzug_tipps_familien": {
+        "title": "In famiglia",
+        "desc": "Cosa sapere per chi è in maternità."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Pulizie post operazione",
+        "desc": "Cosa offriamo"
+      },
+      "umzug_kosten_rechner": {
+        "title": "La calcolatrice automatica",
+        "desc": "Le funzioni."
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Burocrazia a monaco",
+        "desc": "Nessun ingrippo."
+      },
+      "umzug_versicherung": {
+        "title": "Assicurazione generale danni",
+        "desc": "Che cosa si aspetta."
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Sgomberi totali",
+        "desc": "Massivo evento."
+      },
+      "umzug_im_winter": {
+        "title": "Spese invernali",
+        "desc": "Meglio d'inverno?"
+      },
+      "umzug_erste_wohnung": {
+        "title": "Primo alloggio in citta",
+        "desc": "Studenti e altro."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Trasloco, Monaco, Assicurato, Pulizie, Sgombero, FLOXANT",
+    "og_img_alt": "FLOXANT traslochi",
+    "og_locale": "it_IT"
   }
 }

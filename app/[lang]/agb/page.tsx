@@ -32,7 +32,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                             Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen der Firma FLOXANT, nachfolgend „Dienstleister“ genannt, und ihren Kunden, nachfolgend „Auftraggeber“ genannt.
                         </p>
                         <p className="mt-2">Die AGB gelten für sämtliche Dienstleistungen, insbesondere:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>Umzugs- und Transportleistungen</li>
                             <li>Möbelmontage und Demontage</li>
                             <li>Reinigungsleistungen</li>
@@ -49,7 +49,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                         <h2 className="text-xl font-semibold text-foreground mb-2">§2 Vertragsabschluss</h2>
                         <p>Angebote von FLOXANT sind freibleibend und unverbindlich.</p>
                         <p className="mt-2">Ein Vertrag kommt zustande durch:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>schriftliche Auftragsbestätigung,</li>
                             <li>elektronische Bestätigung (z. B. E-Mail oder Online-Formular),</li>
                             <li>oder durch tatsächliche Durchführung der Leistung.</li>
@@ -66,7 +66,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                         </p>
                         <p className="mt-2">Der konkrete Leistungsumfang ergibt sich aus dem bestätigten Angebot.</p>
                         <p className="mt-2">Zusatzleistungen oder Mehraufwand werden gesondert berechnet, insbesondere bei:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>nicht angegebenen Möbeln oder Gegenständen,</li>
                             <li>zusätzlichen Etagen ohne Aufzug,</li>
                             <li>langen Tragewegen,</li>
@@ -85,7 +85,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                             Der Auftraggeber ist verpflichtet, alle für die Durchführung relevanten Informationen vollständig und wahrheitsgemäß anzugeben.
                         </p>
                         <p className="mt-2">Der Auftraggeber hat sicherzustellen:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>freie Zufahrt und Parkmöglichkeit,</li>
                             <li>zugängliche Transportwege,</li>
                             <li>rechtzeitige Bereitstellung des Umzugsgutes.</li>
@@ -129,7 +129,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                         <h2 className="text-xl font-semibold text-foreground mb-2">§7 Haftung</h2>
                         <p>FLOXANT haftet für Schäden nur bei Vorsatz oder grober Fahrlässigkeit.</p>
                         <p className="mt-2">Eine Haftung ist ausgeschlossen für:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>unzureichend verpackte Gegenstände durch den Auftraggeber,</li>
                             <li>Schäden an besonders empfindlichen Gegenständen ohne vorherige schriftliche Vereinbarung,</li>
                             <li>Geld, Schmuck, Wertpapiere oder wichtige Dokumente,</li>
@@ -145,7 +145,7 @@ export default async function AGB({ params }: { params: Promise<{ lang: string }
                         <h2 className="text-xl font-semibold text-foreground mb-2">§8 Stornierung und Rücktritt</h2>
                         <p>Stornierungen müssen schriftlich erfolgen.</p>
                         <p className="mt-2">Es gelten folgende Stornogebühren:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>bis 5 Tage vor Termin: 30 % der Auftragssumme</li>
                             <li>weniger als 5 Tage vor Termin: 100 % der Auftragssumme</li>
                         </ul>

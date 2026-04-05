@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "halteverbotszone-nuernberg",
-        title: content.meta_title || "Halteverbotszone Nürnberg – Beantragung & Aufstell | FLOXANT",
-        description: content.meta_desc || `Halteverbotszone in Nürnberg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 
@@ -96,7 +96,7 @@ export default async function HalteverbotPage({ params }: { params: Promise<{ la
                     </div>
 
                     <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-amber-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">Inkl. behördlicher Beantragung</div>
+                        <div className="absolute -top-6 start-/2 -translate-x-1/2 bg-amber-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">Inkl. behördlicher Beantragung</div>
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Halteverbotszone jetzt beantragen</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Teilen Sie uns Ihren Umzugstermin und die Adresse mit – wir kümmern uns um den Rest.</p>
                         <div className="px-6"><SmartBookingWizard dict={dict} /></div>

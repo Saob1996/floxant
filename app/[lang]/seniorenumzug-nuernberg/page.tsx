@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         pageLocale,
         path: "seniorenumzug-nuernberg",
-        title: content.meta_title || "Seniorenumzug Nürnberg – Einfühlsam & Sicher | FLOXANT",
-        description: content.meta_desc || `Seniorenumzug in Nürnberg: Kompletter Einpackservice, Möbelmontage, Behördenhilfe. Empathisches Team, fester Preis, volle Versicherung. Jetzt beraten lassen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.`,
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 
@@ -49,9 +49,9 @@ export default async function SeniorenumzugPage({ params }: { params: Promise<{ 
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was unterscheidet einen Seniorenumzug vom normalen Umzug?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Beim Seniorenumzug übernehmen wir deutlich mehr: Komplettes Einpacken, Aussortieren, Möbelmontage, Behördengänge und auf Wunsch sogar die Einrichtung am neuen Standort. Unser Team ist speziell geschult, empathisch und geduldig." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie viel kostet ein Seniorenumzug in Nürnberg?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Die Kosten richten sich nach Wohnungsgröße und gewünschten Zusatzleistungen. Ein Full-Service Seniorenumzug mit Einpacken liegt typischerweise 30-50% über einem Standard-Umzug, eliminiert dafür aber jeglichen Stress." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Helfen Sie auch bei der Wohnungsauflösung?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Wir kombinieren Seniorenumzug mit fachgerechter Entrümpelung und besenreiner Endreinigung. Ideal beim Wechsel ins betreute Wohnen oder Pflegeheim." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } }
             ],
     };
 
@@ -77,7 +77,7 @@ export default async function SeniorenumzugPage({ params }: { params: Promise<{ 
                     <div className="flex flex-wrap justify-center gap-4 mt-10">
                         <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Package className="w-5 h-5 text-rose-500" /> Kompletter Einpackservice</span>
                         <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Home className="w-5 h-5 text-blue-500" /> Möbelauf- & -abbau</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Shield className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag || "100% Versichert"}</span>
+                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Shield className="w-5 h-5 text-emerald-500" /> {dict.calculator?.insured_tag}</span>
                     </div>
                     <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
                         <a href="#wizard" className="group inline-flex items-center gap-3 px-8 py-4 bg-rose-600 text-white text-lg font-bold rounded-full hover:bg-rose-700 hover:scale-105 transition-all shadow-xl">
@@ -156,7 +156,7 @@ export default async function SeniorenumzugPage({ params }: { params: Promise<{ 
             <section className="py-16 px-6">
                 <div className="max-w-4xl mx-auto space-y-12">
                     <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative scroll-mt-24">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-rose-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
+                        <div className="absolute -top-6 start-/2 -translate-x-1/2 bg-rose-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">{dict.common.free_unbinding}</div>
                         <h2 className="text-4xl font-extrabold mb-6 mt-6">Seniorenumzug in Nürnberg anfragen</h2>
                         <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Wir beraten Sie persönlich und erstellen ein maßgeschneidertes Festpreisangebot für Ihren Seniorenumzug.</p>
                         <div className="px-6"><SmartBookingWizard dict={dict} /></div>

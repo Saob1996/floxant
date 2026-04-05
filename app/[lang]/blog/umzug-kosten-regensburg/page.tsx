@@ -7,11 +7,13 @@ import { Clock, CalendarDays, UserCircle, ArrowRight, CheckCircle2 } from "lucid
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'blog/umzug-kosten-regensburg',
-        title: 'Umzugskosten Regensburg: Echte Preise & Spartipps | FLOXANT',
-        description: 'Was kostet ein Umzug in Regensburg wirklich? Wir schlüsseln reale Preise, Faktoren und versteckte Kosten auf. So sparen Sie beim Umzug. Sofortpreis on...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -35,8 +37,8 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug innerhalb von Regensburg durchschnittlich?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Für eine 2-Zimmer-Wohnung innerhalb Regensburgs müssen Sie bei einem professionellen Umzugsunternehmen mit Kosten zwischen 600 und 1.200 Euro rechnen, abhängig vom Transportvolumen und Serviceumfang." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie kann ich bei den Umzugskosten sparen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Sie senken die Kosten erheblich, indem Sie vorab rigoros entrümpeln, Umzugskartons selbst packen und die Halteverbotszone (falls erlaubt) selbst organisieren. Buchen Sie bei FLOXANT nur den Transport und Beladeservice." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ]
     };
 
@@ -64,7 +66,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
                             Umzugskosten in Regensburg: Was Sie wirklich zahlen
                         </h1>
-                        <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-primary pl-6">
+                        <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-primary ps-">
                             Ein Wohnortwechsel in der Domstadt ist logistisch oft eine Herausforderung. Enge Gassen, historische Gebäude ohne Aufzug und knapper Parkraum prägen Regensburg. Doch wie wirken sich diese Faktoren auf die Umzugskosten aus?
                         </p>
                     </header>
@@ -91,7 +93,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                         </p>
 
                         <div className="overflow-x-auto my-8 border rounded-xl shadow-sm">
-                            <table className="w-full text-left border-collapse m-0 text-base">
+                            <table className="w-full text-start border-collapse m-0 text-base">
                                 <thead>
                                     <tr className="bg-slate-100">
                                         <th className="p-4 border-b">Wohnungsgröße (Wohnfläche)</th>
@@ -125,7 +127,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                         </p>
                         
                         <div className="bg-slate-50 p-6 rounded-2xl border my-8">
-                            <ul className="list-none pl-0 m-0 space-y-4">
+                            <ul className="list-none ps- m-0 space-y-4">
                                 <li className="flex gap-3 m-0">
                                     <CheckCircle2 className="w-6 h-6 text-red-500 shrink-0 mt-1" />
                                     <span><strong>An- und Abfahrtskosten:</strong> Sind diese bereits im Preis inkludiert? Bei überregionalen Anbietern können hier leicht hunderte Euro veranschlagt werden.</span>

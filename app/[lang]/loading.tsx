@@ -15,7 +15,7 @@ export default function Loading() {
                         className="absolute inset-0 rounded-full border-4 border-primary/30"
                     />
                     <m.div
-                        className="absolute inset-0 rounded-full border-4 border-t-primary border-r-transparent border-b-transparent border-l-transparent"
+                        className="absolute inset-0 rounded-full border-4 border-t-primary border-e-transparent border-b-transparent border-s-transparent"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                     />

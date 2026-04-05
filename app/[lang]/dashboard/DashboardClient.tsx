@@ -207,21 +207,21 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                 {/* Stats Row */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="glass p-6 rounded-2xl border border-white/10 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+                        <div className="absolute top-0 end- p-4 opacity-10 group-hover:scale-110 transition-transform">
                             <Inbox className="w-16 h-16" />
                         </div>
                         <p className="text-sm text-muted-foreground font-medium mb-1">{t.stats.total}</p>
                         <h3 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/50">{totalRequests}</h3>
                     </div>
                     <div className="glass p-6 rounded-2xl border border-white/10 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-4 opacity-10 text-primary group-hover:scale-110 transition-transform">
+                        <div className="absolute top-0 end- p-4 opacity-10 text-primary group-hover:scale-110 transition-transform">
                             <Sparkles className="w-16 h-16" />
                         </div>
                         <p className="text-sm text-muted-foreground font-medium mb-1">{t.stats.new}</p>
                         <h3 className="text-4xl font-bold text-primary">{newRequests}</h3>
                     </div>
                     <div className="glass p-6 rounded-2xl border border-white/10 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-4 opacity-10 text-green-500 group-hover:scale-110 transition-transform">
+                        <div className="absolute top-0 end- p-4 opacity-10 text-green-500 group-hover:scale-110 transition-transform">
                             <CheckCircle2 className="w-16 h-16" />
                         </div>
                         <p className="text-sm text-muted-foreground font-medium mb-1">{t.stats.status}</p>
@@ -278,12 +278,12 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                 {/* Filters */}
                 <div className="flex flex-col md:flex-row justify-between gap-4 items-center">
                     <div className="relative w-full md:w-96">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Search className="absolute start- top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <input
                             placeholder={t.filters.search_placeholder}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl h-10 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl h-10 ps- pe- text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                         />
                     </div>
                     <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
@@ -419,7 +419,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                                                 )) : <span className="text-xs text-muted-foreground italic">{t.card.no_extras}</span>}
                                             </div>
 
-                                            <div className="flex items-center gap-3 w-full md:w-auto border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 mt-4 md:mt-0">
+                                            <div className="flex items-center gap-3 w-full md:w-auto border-t md:border-t-0 md:border-s border-white/10 pt-4 md:pt-0 md:ps- mt-4 md:mt-0">
                                                 {booking.file_url || (booking.file_urls && booking.file_urls.length > 0) ? (
                                                     <PremiumButton size="icon" variant="ghost" className="h-10 w-10 text-primary bg-primary/10 hover:bg-primary/20" onClick={() => openGallery(booking.file_urls || [booking.file_url!], 0)}>
                                                         <FileText className="w-5 h-5" />

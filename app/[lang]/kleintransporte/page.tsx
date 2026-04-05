@@ -14,11 +14,13 @@ const SmartBookingWizard = dynamic(
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'kleintransporte',
-        title: 'Schnelle Kleintransporte in ganz Bayern | FLOXANT',
-        description: 'Professionelle Schnelle Kleintransporte in ganz Bayern in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -30,9 +32,9 @@ export default async function KleintransportePillarPage({ params }: { params: Pr
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was genau fällt unter einen Kleintransport?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Kleintransporte umfassen den Transport von wenigen Möbelstücken, wie einem gekauften eBay-Sofa, einer sperrigen Waschmaschine oder Baumarkt-Lieferungen. Es handelt sich um Transporte, für die sich ein großer Umzugs-LKW nicht lohnt, die aber nicht ins Privat-PKW passen." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Bieten Sie Kleintransporte auch als Beiladung an?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. Wenn Sie flexibel in der Zustellung sind, bieten wir Beiladungen auf unseren bestehenden LKW-Routen durch Bayern an. Dies ist besonders ökologisch und die Transportkosten sind für Sie extrem günstig." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Gibt es einen Express-Service für Möbeltaxis?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Ja. Für besonders eilige Transporte, etwa wenn ein gekauftes Sofa sofort abgeholt werden muss, bieten wir innerhalb der großen Städte (z.B. Regensburg, München) einen buchbaren Express-Kurierdienst an." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } }
             ],
     };
 

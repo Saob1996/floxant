@@ -21,10 +21,10 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
   const reviewsList = dic?.reviews?.items || [];
   
   // Header labels from dictionary
-  const satisfactionLabel = dic?.reviews?.satisfaction_label || "Exzellente Kundenzufriedenheit";
-  const titlePart1 = dic?.reviews?.title_part1 || "Das sagen unsere";
-  const titlePart2 = dic?.reviews?.title_part2 || "Kunden";
-  const subtitle = dic?.reviews?.subtitle || "Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern.";
+  const satisfactionLabel = dic?.reviews?.satisfaction_label;
+  const titlePart1 = dic?.reviews?.title_part1;
+  const titlePart2 = dic?.reviews?.title_part2;
+  const subtitle = dic?.reviews?.subtitle;
 
   // Auto-advance
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
     <section className="w-full py-20 relative overflow-hidden bg-[#0A0A0A]">
       {/* Background Decor */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:32px_32px]" />
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute start-/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
         
@@ -79,21 +79,21 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
 
         {/* Carousel Container */}
         <div className="relative w-full max-w-4xl mx-auto">
-          <div className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-20">
+          <div className="absolute -start- md:-start- top-1/2 -translate-y-1/2 z-20">
             <button
               onClick={handlePrev}
               className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-white transition-all backdrop-blur-md"
-              aria-label={dic?.common?.prev_review || "Vorherige Bewertung"}
+              aria-label={dic?.common?.prev_review}
             >
               <ChevronLeft size={24} />
             </button>
           </div>
 
-          <div className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-20">
+          <div className="absolute -end- md:-end- top-1/2 -translate-y-1/2 z-20">
             <button
               onClick={handleNext}
               className="p-3 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-white transition-all backdrop-blur-md"
-              aria-label={dic?.common?.next_review || "Nächste Bewertung"}
+              aria-label={dic?.common?.next_review}
             >
               <ChevronRight size={24} />
             </button>
@@ -109,7 +109,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                 transition={{ duration: 0.5, type: "spring", stiffness: 200, damping: 20 }}
                 className="absolute inset-0 flex flex-col items-center justify-center bg-white/[0.03] border border-white/10 rounded-3xl p-8 md:p-12 text-center"
               >
-                <Quote className="text-primary/40 w-16 h-16 absolute top-6 left-6 -z-10" />
+                <Quote className="text-primary/40 w-16 h-16 absolute top-6 start- -z-10" />
                 
                 <p className="text-lg md:text-2xl text-white font-medium leading-relaxed mb-8 max-w-2xl relative z-10 text-balance">
                   "{currentReview.text}"
@@ -140,7 +140,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                   "w-2.5 h-2.5 rounded-full transition-all duration-300",
                   idx === currentIndex ? "bg-primary w-8" : "bg-white/20 hover:bg-white/40"
                 )}
-                aria-label={`${dic?.common?.go_to_review || "Gehe zu Bewertung"} ${idx + 1}`}
+                aria-label={`${dic?.common?.go_to_review} ${idx + 1}`}
               />
             ))}
           </div>

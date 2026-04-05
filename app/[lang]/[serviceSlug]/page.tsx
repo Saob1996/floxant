@@ -59,21 +59,17 @@ const RELATED_SERVICES: Record<ServiceSlug, ServiceSlug[]> = {
 export const revalidate = 3600;
 export const dynamicParams = true;
 
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ lang: string; serviceSlug: string }>;
-}): Promise<Metadata> {
-    var { lang: pageLocale, serviceSlug } = await params;
-    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
+export async function generateMetadata({ params }: { params: Promise<{ lang: string; serviceSlug: string }> }): Promise<Metadata> {
+    const { lang: pageLocale, serviceSlug } = await params;
+    const dict = await getDictionary(pageLocale as Locale);
     const key = SLUG_TO_KEY[serviceSlug as ServiceSlug];
     const content = (dict?.pages as any)?.[key] || {};
 
     return generatePageSEO({
         pageLocale,
         path: serviceSlug,
-        title: content.meta_title || `FLOXANT – ${serviceSlug}`,
-        description: content.meta_desc || content.hero_desc || "",
+        title: content.meta_title,
+        description: content.meta_desc || content.hero_desc,
     });
 }
 
@@ -82,8 +78,8 @@ export default async function CoreServicePage({
 }: {
     params: Promise<{ lang: string; serviceSlug: string }>;
 }) {
-    var { lang: pageLocale, serviceSlug } = await params;
-    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
+    const { lang: pageLocale, serviceSlug } = await params;
+    const dict = await getDictionary(pageLocale as Locale);
     const key = SLUG_TO_KEY[serviceSlug as ServiceSlug];
     const content = (dict?.pages as any)?.[key] || {};
     const area = dict?.area || {};
@@ -101,22 +97,51 @@ export default async function CoreServicePage({
         }))
     } : null;
 
+    const localBusinessJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "MovingCompany",
+        "@id": `https://www.floxant.de/${pageLocale}/${serviceSlug}#localbusiness`,
+        "name": "FLOXANT",
+        "url": `https://www.floxant.de/${pageLocale}/${serviceSlug}`,
+        "telephone": company.phone.replace(/\s+/g, ""),
+        "areaServed": {
+            "@type": "State",
+            "name": "Bayern"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Prüfeninger Straße 20",
+            "addressLocality": "Regensburg",
+            "postalCode": "93049",
+            "addressRegion": "Bayern",
+            "addressCountry": "DE"
+        }
+    };
+
     // Service-type specific schema
-    const serviceType = serviceSlug.includes('reinigung') ? 'Reinigungsservice'
-        : serviceSlug.includes('entruempelung') ? 'Entrümpelungsservice'
-        : 'Umzugsservice';
+    const serviceType = serviceSlug.includes("reinigung")
+        ? "Reinigungsservice"
+        : serviceSlug.includes("entruempelung")
+            ? "Entrümpelungsservice"
+            : "Umzugsservice";
 
     const serviceJsonLd = {
         "@context": "https://schema.org",
         "@type": "Service",
         "serviceType": serviceType,
         "name": content.hero_title || serviceSlug,
-        "description": content.hero_desc || content.meta_desc || "",
+        "description": content.hero_desc || content.meta_desc,
         "provider": {
             "@type": "MovingCompany",
             "name": "FLOXANT",
             "telephone": company.phone.replace(/\s+/g, ""),
-            "address": { "@type": "PostalAddress", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" }
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Regensburg",
+                "postalCode": "93049",
+                "addressRegion": "Bayern",
+                "addressCountry": "DE"
+            }
         },
         "areaServed": { "@type": "State", "name": "Bayern" }
     };
@@ -132,9 +157,24 @@ export default async function CoreServicePage({
 
     return (
         <main className="min-h-screen bg-background">
-            {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            {faqJsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
             <Breadcrumbs lang={pageLocale} items={[{ label: content.hero_title || serviceSlug }]} />
 
             {/* Hero Section */}
@@ -236,7 +276,7 @@ export default async function CoreServicePage({
             {area.hub_note && (
                 <section className="py-12 px-6">
                     <div className="mx-auto max-w-3xl">
-                        <p className="text-sm text-muted-foreground/70 leading-relaxed border-l-2 border-primary/20 pl-6 italic">
+                        <p className="text-sm text-muted-foreground/70 leading-relaxed border-s-2 border-primary/20 ps- italic">
                             {area.hub_note}
                         </p>
                     </div>
@@ -249,7 +289,7 @@ export default async function CoreServicePage({
             <section className="py-16 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-4xl">
                     <h2 className="text-xl font-bold mb-8 text-center text-muted-foreground">
-                        {dict?.services_section?.title || "Weitere Leistungen"}
+                        {dict?.services_section?.title}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {related.map((slug) => {
@@ -279,7 +319,7 @@ export default async function CoreServicePage({
             <section className="py-12 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-4xl">
                     <h3 className="text-center text-sm font-semibold text-muted-foreground mb-6 uppercase tracking-widest">
-                        {dict?.common?.also_available_in || "Auch verfügbar in"}
+                        {dict?.common?.also_available_in}
                     </h3>
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         {[
@@ -311,10 +351,10 @@ export default async function CoreServicePage({
                 <div className="mx-auto max-w-3xl flex flex-col sm:flex-row items-center justify-between gap-6">
                     <div>
                         <h3 className="text-lg font-bold text-foreground mb-1">
-                            {dict?.common?.whatsapp_cta_title || "Schnelle Frage? WhatsApp!"}
+                            {dict?.common?.whatsapp_cta_title}
                         </h3>
                         <p className="text-sm text-muted-foreground">
-                            {dict?.common?.whatsapp_cta_desc || "Antwort meist innerhalb von 5 Minuten. Kostenlos & unverbindlich."}
+                            {dict?.common?.whatsapp_cta_desc}
                         </p>
                     </div>
                     <a

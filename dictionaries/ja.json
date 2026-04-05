@@ -162,7 +162,8 @@
     "message": "ニュース",
     "submit": "送信",
     "success": "メッセージが送信されました",
-    "error": "送信エラー"
+    "error": "送信エラー",
+    "email_label": "メール"
   },
   "trust": {
     "experience": "長年の経験",
@@ -260,7 +261,11 @@
           "q": "München から出発する全国長距離引っ越しも受け付けていますか？",
           "a": "はい。München から出発してドイツ全土のどこへでも向かう、体系的な長距離引っ越し輸送サービスを提供しています。"
         }
-      ]
+      ],
+      "meta_title": "ミュンヘン引越し業者 | FLOXANT",
+      "meta_desc": "ミュンヘンのプロフェッショナルな引越し業者。オンラインで固定価格を計算します。",
+      "hero_h1": "引越し業者 ",
+      "hero_h1_highlight": "ミュンヘン"
     },
     "service_umzug": {
       "meta_title": "プライベートな移動 – 個人的な場所の変更",
@@ -2832,7 +2837,11 @@
           "q": "Nürnberg から出発する全国長距離引っ越しも受け付けていますか？",
           "a": "はい。Nürnberg から出発してドイツ全土のどこへでも向かう、体系的な長距離引っ越し輸送サービスを提供しています。"
         }
-      ]
+      ],
+      "meta_title": "ニュルンベルク引越し業者 | FLOXANT",
+      "meta_desc": "ニュルンベルクの引越し業者。",
+      "hero_h1": "引越し業者 ",
+      "hero_h1_highlight": "ニュルンベルク"
     },
     "umzug_oberasbach": {
       "meta_title": "Oberasbach 引っ越し業者 ✓ 固定料金 ✓ 保険完備 | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "引越し費用計算 2026 | FLOXANT",
+      "meta_desc": "引越し費用をオンラインで計算します。",
+      "h1_pre": "計算する：",
+      "h1_hi": "引越し費用",
+      "subtitle": "数秒で固定価格を見積もります。",
+      "h2": "費用要因"
+    },
+    "calc_reinigung": {
+      "meta_title": "清掃費用計算 | FLOXANT",
+      "meta_desc": "退去時の清掃費用を計算します。",
+      "h1_pre": "計算する：",
+      "h1_hi": "清掃費用",
+      "subtitle": "引き渡し保証付きのプロフェッショナル清掃。",
+      "h2": "清掃の費用要因"
+    },
+    "calc_entsorgung": {
+      "meta_title": "不用品回収計算 | FLOXANT",
+      "meta_desc": "粗大ごみ回収の費用を計算します。",
+      "h1_pre": "いくらかかる？",
+      "h1_hi": "不用品回収費用",
+      "subtitle": "粗大ゴミから家財整理まで。",
+      "h2": "費用の計算方法"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Bayern のその他のサービスと場所",
     "cleaning_company": "清掃会社",
     "calculate_price": "価格を計算する",
-    "combination_move": "移動との組み合わせ"
+    "combination_move": "移動との組み合わせ",
+    "also_available_in": "利用可能な言語:",
+    "whatsapp_cta_title": "WhatsApp サポート",
+    "whatsapp_cta_desc": "年中無休で対応。"
   },
   "calculator": {
     "requirements_title": "あなたの要件",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "搬入経路 走行経路",
     "flag_disassembly_on_site": "現場解体含む",
     "flag_express_service": "エクスプレスサービス（緊急）",
-    "flag_waste_notes_noted": "あなたのメモは計画のために保存されます"
+    "flag_waste_notes_noted": "あなたのメモは計画のために保存されます",
+    "upload_link_note": "写真アップロード用のリンクをお送りします。",
+    "error_submit": "送信エラー。もう一度やり直してください。"
   },
   "home": {
     "hero_title": "Bayern の専門の引越し会社。",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT では、24 ～ 48 時間以内の短期引越しも提供しています。お急ぎの場合はお問い合わせください。",
     "premium_badge": "プレミアムな物流とサービス",
     "services_title": "当社の物流とサービス",
-    "services_subtitle": "複雑なオフィスの移転であれ、デリケートなアパートの立ち退きであれ、当社はBayern全体を通じて測定可能な品質と絶対的な価格の透明性を提供します。"
+    "services_subtitle": "複雑なオフィスの移転であれ、デリケートなアパートの立ち退きであれ、当社はBayern全体を通じて測定可能な品質と絶対的な価格の透明性を提供します。",
+    "seo_p4": "安心・安全な引越し。",
+    "seo_p5": "迅速かつ丁寧に対応します。",
+    "seo_p6": "オンラインで固定価格を取得。",
+    "faq_q5": "荷物には保険がかかっていますか？",
+    "faq_a5": "はい、標準の輸送保険が含まれています。",
+    "faq_q6": "梱包資材はありますか？",
+    "faq_a6": "はい、ご要望に応じてダンボールを提供します。",
+    "faq_q7": "引越しのスピードは？",
+    "faq_a7": "お急ぎの場合は48時間以内に可能です。",
+    "faq_q8": "清掃サービスはありますか？",
+    "faq_a8": "はい、引き渡し保証付きの退去清掃を提供します。"
   },
   "reviews": {
     "title": "それがお客様の声です",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "それが私たちの言うことです",
     "title_part2": "お客様"
+  },
+  "seo": {
+    "dynamic_city_title": "{city}の引越し業者 | FLOXANT",
+    "dynamic_city_desc": "{city}での確かな引越し。固定価格保証。"
+  },
+  "ratgeber": {
+    "title": "FLOXANTガイド",
+    "h1_pre": "引越し",
+    "meta_title": "引越しガイドとヒント | FLOXANT",
+    "meta_desc": "引越しのための貴重な情報。",
+    "subtitle": "プロフェッショナルからのアドバイス。",
+    "read_more": "続きを読む →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "レーゲンスブルク引越し費用",
+        "desc": "相場はいくらですか？"
+      },
+      "checkliste_umzug": {
+        "title": "引越しチェックリスト",
+        "desc": "これを読めば完璧です。"
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "良い引越し業者の選び方",
+        "desc": "注意すべきこと。"
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "不用品回収費用/立米",
+        "desc": "立米あたりのコスト。"
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "7ステップの準備",
+        "desc": "簡単な7つのステップ。"
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "いつ業者に頼むべきか",
+        "desc": "費用対効果の分析。"
+      },
+      "moebeltransport_sicher": {
+        "title": "家具の安全な輸送",
+        "desc": "家具を安全に運ぶ方法。"
+      },
+      "umzug_tipps_familien": {
+        "title": "家族での引越し",
+        "desc": "子供と一緒の引越しのヒント。"
+      },
+      "reinigung_nach_umzug": {
+        "title": "引越し後の清掃",
+        "desc": "プロの清掃のヒント。"
+      },
+      "umzug_kosten_rechner": {
+        "title": "計算機の仕組み",
+        "desc": "費用計算について。"
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "住所変更手続き",
+        "desc": "すべての官公庁手続き。"
+      },
+      "umzug_versicherung": {
+        "title": "引越し保険の基本",
+        "desc": "保険の適用範囲。"
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "家財整理のヒント",
+        "desc": "費用とチェックリスト。"
+      },
+      "umzug_im_winter": {
+        "title": "冬の引越し",
+        "desc": "メリットとデメリット。"
+      },
+      "umzug_erste_wohnung": {
+        "title": "初めての一人暮らし",
+        "desc": "知っておくべきこと。"
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "引越し業者, ドイツ引越し, 清掃,不用品回収, 固定価格, FLOXANT",
+    "og_img_alt": "FLOXANT 引越し, 清掃",
+    "og_locale": "ja_JP"
   }
 }

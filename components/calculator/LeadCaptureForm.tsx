@@ -70,14 +70,14 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
 
       if (!res.ok) {
         console.error("Booking API error:", result);
-        throw new Error(result?.error || "Fehler beim Speichern");
+        throw new Error(result?.error || dic?.error?.generic || "Error while saving");
       }
 
       console.log("Booking saved:", result);
       setIsSuccess(true);
     } catch (err) {
       console.error("Submit error:", err);
-      alert("Fehler beim Senden. Bitte erneut versuchen.");
+      alert(dic?.calculator?.error_submit || "Error during submit. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -97,18 +97,18 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
         </div>
 
         <h2 className="text-2xl text-foreground font-light mb-4">
-          {dic?.calculator?.success_title || "Anfrage erfolgreich übermittelt"}
+          {dic?.calculator?.success_title}
         </h2>
 
         <p className="text-muted-foreground mb-8 max-w-md mx-auto text-sm leading-relaxed">
-          {dic?.calculator?.success_description || "Vielen Dank für Ihre detaillierten Angaben..."}
+          {dic?.calculator?.success_description}
         </p>
 
         {store.leadDetails.wantsPhotosLink && (
-          <div className="bg-background/50 border border-border rounded-lg p-4 mb-8 flex items-center gap-3 text-left">
+          <div className="bg-background/50 border border-border rounded-lg p-4 mb-8 flex items-center gap-3 text-start">
             <Camera size={20} className="text-blue-400 shrink-0" />
             <span className="text-xs text-foreground/80">
-              Den Link für den Upload von Fotos senden wir Ihnen separat via E-Mail & WhatsApp zu.
+              {dic?.calculator?.upload_link_note || "Wir senden Ihnen den Link für den Foto-Upload separat per E-Mail & WhatsApp."}
             </span>
           </div>
         )}
@@ -119,7 +119,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
           }}
           className="px-8 py-3 bg-background border border-border hover:bg-background/80 text-foreground rounded-full transition-all text-sm font-medium"
         >
-          {dic?.common?.back_to_home || "Zurück zur Startseite"}
+          {dic?.common?.back_to_home}
         </button>
       </m.div>
     );
@@ -134,16 +134,16 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       <div className="p-6 md:p-10 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center bg-white/[0.01] gap-8">
         <div>
           <h2 className="text-2xl tracking-tight font-medium text-foreground mb-2">
-            {dic?.calculator?.submit_details || "Details übermitteln"}
+            {dic?.calculator?.submit_details}
           </h2>
           <p className="text-sm text-muted-foreground font-normal">
-            {dic?.calculator?.submit_details_subtitle || "Teilen Sie uns mit..."}
+            {dic?.calculator?.submit_details_subtitle}
           </p>
         </div>
 
-        <div className="text-left md:text-right bg-white/[0.02] border border-white/5 px-6 py-4 rounded-xl shadow-sm w-full md:w-auto">
+        <div className="text-start md:text-end bg-white/[0.02] border border-white/5 px-6 py-4 rounded-xl shadow-sm w-full md:w-auto">
           <span className="text-[10px] text-muted-foreground block uppercase font-bold tracking-[0.15em] mb-2">
-            {dic?.calculator?.your_price_range || "Ihr Preisrahmen"}
+            {dic?.calculator?.your_price_range}
           </span>
           <span className="text-2xl tracking-tight font-medium text-foreground whitespace-nowrap">
             {min}€ – {max}€
@@ -155,12 +155,12 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-background/50 border border-border/50 rounded-xl p-4 flex flex-col gap-2 relative">
             <label className="text-[10px] text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-              <User size={12} className="text-primary" /> {dic?.calculator?.contact_person || "Ansprechpartner"}
+              <User size={12} className="text-primary" /> {dic?.calculator?.contact_person}
             </label>
             <input
               required
               type="text"
-              placeholder={dic?.calculator?.name_placeholder || "Vor- und Nachname"}
+              placeholder={dic?.calculator?.name_placeholder}
               className="bg-transparent text-foreground text-sm outline-none w-full"
               value={store.leadDetails.customerName}
               onChange={(e) => store.updateLeadDetails({ customerName: e.target.value })}
@@ -169,7 +169,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
 
           <div className="bg-background/50 border border-border/50 rounded-xl p-4 flex flex-col gap-2">
             <label className="text-[10px] text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-              <Phone size={12} className="text-primary" /> {dic?.calculator?.phone_number || "Telefonnummer"}
+              <Phone size={12} className="text-primary" /> {dic?.calculator?.phone_number}
             </label>
             <input
               required
@@ -184,7 +184,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
 
         <div className="bg-background/50 border border-border/50 rounded-xl p-4 flex flex-col gap-2">
           <label className="text-[10px] text-muted-foreground uppercase tracking-widest flex items-center gap-2">
-            <Mail size={12} className="text-primary" /> {dic?.calculator?.email_address || "E-Mail Adresse"}
+            <Mail size={12} className="text-primary" /> {dic?.calculator?.email_address}
           </label>
           <input
             required
@@ -199,7 +199,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
         <div className="bg-background/30 border border-border/40 rounded-xl p-5">
           <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
             <PhoneCall size={14} className="text-primary" />
-            {dic?.calculator?.preferred_contact_time || "Bevorzugte Kontaktzeit"}
+            {dic?.calculator?.preferred_contact_time}
           </label>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -237,21 +237,21 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
           />
           <div>
             <span className="text-sm font-medium text-foreground block">
-              {dic?.calculator?.submit_photos || "Fotos vom Objekt übermitteln (Empfohlen)"}
+              {dic?.calculator?.submit_photos}
             </span>
             <span className="text-xs text-muted-foreground">
-              {dic?.calculator?.submit_photos_subtitle || "Wir senden Ihnen einen sicheren WhatsApp/Upload-Link..."}
+              {dic?.calculator?.submit_photos_subtitle}
             </span>
           </div>
         </label>
 
-        <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 flex gap-3 text-left">
+        <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 flex gap-3 text-start">
           <Info className="text-primary shrink-0 mt-0.5" size={16} />
           <p className="text-xs text-muted-foreground leading-relaxed">
             <strong className="text-foreground">
-              {dic?.calculator?.important_price_note || "Wichtiger Hinweis zum Preis:"}
+              {dic?.calculator?.important_price_note}
             </strong>{" "}
-            {dic?.calculator?.price_disclaimer || "Der angezeigte Wert..."}
+            {dic?.calculator?.price_disclaimer}
           </p>
         </div>
 
@@ -262,7 +262,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
             className="w-full md:w-auto px-6 py-3.5 text-muted-foreground hover:text-foreground hover:bg-background/50 rounded-lg transition-all flex items-center justify-center gap-2 text-sm font-medium"
           >
             <ArrowLeft size={16} />
-            {dic?.calculator?.back_to_overview || "Zurück zur Übersicht"}
+            {dic?.calculator?.back_to_overview}
           </button>
 
           <button
@@ -272,11 +272,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
           >
             {isSubmitting ? (
               <span className="flex items-center gap-2">
-                {dic?.calculator?.submitting || "Wird übermittelt..."}
+                {dic?.calculator?.submitting}
               </span>
             ) : (
               <span className="flex items-center gap-2">
-                {dic?.calculator?.submit_request || "Unverbindliche Anfrage absenden"} <Send size={16} />
+                {dic?.calculator?.submit_request} <Send size={16} />
               </span>
             )}
           </button>
@@ -285,7 +285,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
         <div className="text-center pt-4 flex items-center justify-center gap-2 text-muted-foreground/60">
           <Info size={12} />
           <span className="text-[10px] uppercase tracking-widest">
-            {dic?.calculator?.ssl_encryption_note || "Ihre Daten werden SSL-verschlüsselt übertragen."}
+            {dic?.calculator?.ssl_encryption_note}
           </span>
         </div>
       </form>

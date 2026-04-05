@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/gute-umzugsfirma-finden',
-        title: 'Wie findet man eine gute Umzugsfirma? | FLOXANT',
-        description: 'Professionelle Wie findet man eine gute Umzugsfirma? in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Woran erkenne ich eine seriöse Umzugsfirma?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Festpreisangebot, Versicherungsnachweis, positive Bewertungen und transparente Kommunikation." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Wie viele Angebote sollte man einholen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Mindestens drei Angebote vergleichen. Achten Sie auf den Leistungsumfang, nicht nur den Preis." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

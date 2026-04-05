@@ -7,11 +7,13 @@ import { Clock, CalendarDays, UserCircle, ArrowRight } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'blog/warum-floxant-die-beste-wahl-ist',
-        title: 'Warum FLOXANT die beste Wahl ist | FLOXANT',
-        description: 'Professionelle Warum FLOXANT die beste Wahl ist in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -53,7 +55,7 @@ export default async function BlogPost({ params }: { params: Promise<{ lang: str
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
                             Warum FLOXANT die beste Wahl ist
                         </h1>
-                        <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-primary pl-6">
+                        <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-primary ps-">
                             Ein starker Einleitungssatz (Teaser), der sofort den Kern des Artikels trifft und zum Weiterlesen anregt.
                         </p>
                     </header>

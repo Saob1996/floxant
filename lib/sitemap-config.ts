@@ -5,7 +5,7 @@
  */
 
 export const BASE_URL = 'https://www.floxant.de';
-export const LASTMOD = '2026-03-01';
+export const LASTMOD = new Date().toISOString().split('T')[0];
 
 // --- Locale Segmentation ---
 

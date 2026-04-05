@@ -45,7 +45,7 @@ export default async function Datenschutz({ params }: { params: Promise<{ lang: 
                         <p>
                             Beim Besuch unserer Website werden automatisch Informationen durch den Hosting-Anbieter erfasst und in sogenannten Server-Log-Dateien gespeichert. Dies sind:
                         </p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>Browsertyp und Browserversion</li>
                             <li>verwendetes Betriebssystem</li>
                             <li>Referrer URL</li>
@@ -91,7 +91,7 @@ export default async function Datenschutz({ params }: { params: Promise<{ lang: 
                     <section>
                         <h2 className="text-xl font-semibold text-foreground mb-2">7. Ihre Rechte</h2>
                         <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                        <ul className="list-disc ps- mt-2 space-y-1">
                             <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
                             <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
                             <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>

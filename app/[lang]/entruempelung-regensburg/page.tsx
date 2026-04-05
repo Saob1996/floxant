@@ -21,8 +21,8 @@ export async function generateMetadata({
     var dict = await getDictionary(pageLocale as Locale);
     const content = (dict?.pages as any)?.entruempelung_regensburg || {};
     return {
-        title: content.meta_title || "FLOXANT Entrümpelung Regensburg",
-        description: content.meta_desc || "Professionelle Entrümpelung und Haushaltsauflösung in Regensburg."
+        title: content.meta_title,
+        description: content.meta_desc
     };
 }
 

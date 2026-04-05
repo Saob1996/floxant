@@ -219,7 +219,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                         setState(prev => ({ ...prev, service: option.id as ServiceType }));
                         nextStep();
                     }}
-                    className="group relative h-64 w-full text-left transition-all hover:-translate-y-1"
+                    className="group relative h-64 w-full text-start transition-all hover:-translate-y-1"
                 >
                     <div className="absolute inset-0 bg-white/5 bg-slate-100/50 dark:bg-white/5 rounded-2xl border border-slate-300 dark:border-white/10 shadow-lg shadow-slate-200/50 dark:shadow-none transition-all group-hover:border-primary/50 group-hover:shadow-xl group-hover:shadow-primary/10" />
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6">
@@ -265,10 +265,10 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
             <div className="flex justify-center gap-4 pt-8">
                 <PremiumButton variant="ghost" onClick={prevStep}>
-                    <ArrowLeft className="w-4 h-4 mr-2" /> {t.buttons.back}
+                    <ArrowLeft className="w-4 h-4 me-" /> {t.buttons.back}
                 </PremiumButton>
                 <PremiumButton onClick={nextStep}>
-                    {t.buttons.next} <ArrowRight className="w-4 h-4 ml-2" />
+                    {t.buttons.next} <ArrowRight className="w-4 h-4 ms-" />
                 </PremiumButton>
             </div>
         </div>
@@ -307,7 +307,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                                         : [...prev.upgrades, upgrade.id]
                                 }))}
                                 className={cn(
-                                    "relative p-6 rounded-2xl border transition-all text-left group",
+                                    "relative p-6 rounded-2xl border transition-all text-start group",
                                     isSelected
                                         ? "bg-primary/10 border-primary"
                                         : "bg-white/5 border-white/10 hover:border-primary/30"
@@ -328,10 +328,10 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
                 <div className="flex justify-center gap-4 pt-8">
                     <PremiumButton variant="ghost" onClick={prevStep}>
-                        <ArrowLeft className="w-4 h-4 mr-2" /> {t.buttons.back}
+                        <ArrowLeft className="w-4 h-4 me-" /> {t.buttons.back}
                     </PremiumButton>
                     <PremiumButton onClick={nextStep}>
-                        {t.buttons.finish} <ArrowRight className="w-4 h-4 ml-2" />
+                        {t.buttons.finish} <ArrowRight className="w-4 h-4 ms-" />
                     </PremiumButton>
                 </div>
             </div>
@@ -442,7 +442,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
                     <div className="flex justify-center gap-4 pt-4">
                         <PremiumButton variant="ghost" type="button" onClick={prevStep}>
-                            <ArrowLeft className="w-4 h-4 mr-2" /> {t.buttons.back}
+                            <ArrowLeft className="w-4 h-4 me-" /> {t.buttons.back}
                         </PremiumButton>
                         <PremiumButton className="w-full md:w-auto" disabled={isSubmitting}>
                             {isSubmitting ? t.buttons.sending : t.buttons.submit}
@@ -458,9 +458,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             {/* Progress Bar */}
             <div className="mb-12">
                 <div className="flex justify-between relative">
-                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -z-10" />
+                    <div className="absolute top-1/2 start- w-full h-0.5 bg-white/10 -z-10" />
                     <div
-                        className="absolute top-1/2 left-0 h-0.5 bg-primary -z-10 transition-all duration-500"
+                        className="absolute top-1/2 start- h-0.5 bg-primary -z-10 transition-all duration-500"
                         style={{ width: `${((state.step - 1) / (steps.length - 1)) * 100}%` }}
                     />
 

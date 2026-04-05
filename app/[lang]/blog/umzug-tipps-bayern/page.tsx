@@ -7,11 +7,13 @@ import { Clock, CalendarDays, UserCircle, MapPin, HeartHandshake, Box } from "lu
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'blog/umzug-tipps-bayern',
-        title: '12 Experten Umzug Tipps für Bayern: Zeit & Geld sparen | FLOXANT',
-        description: 'Planen Sie einen Umzug in München, Regensburg oder Franken? Unsere Profi Umzug Tipps vom etablierten Umzugsunternehmen helfen Ihnen sofort. Sofortprei...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -52,7 +54,7 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
                             Die 12 effektivsten Umzug Tipps aus dem Praxisalltag
                         </h1>
-                        <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-primary pl-6">
+                        <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-primary ps-">
                             Mit Erfahrung aus hunderten Einsätzen als Premium-Umzugsspedition in Bayern haben wir gesehen, was hervorragend funktioniert und welche Fehler Sie unbedingt vermeiden sollten. Die besten Hacks unserer Möbelpacker.
                         </p>
                     </header>

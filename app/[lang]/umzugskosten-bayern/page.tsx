@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.umzugskosten_bayern || {};
     return {
-        title: content.meta_title || "Umzugskosten Bayern | Preise & Festpreisangebot | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München. Transparente Festpreise ohne verst...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/umzugskosten-bayern`,
@@ -41,9 +41,9 @@ export default async function UmzugskostenBayern({ params }: { params: Promise<{
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet ein Umzug in Bayern?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein lokaler Umzug in Bayern kostet je nach Volumen zwischen 400 und 2.500 Euro. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Gibt es versteckte Kosten bei FLOXANT?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Nein. Unser Festpreis umfasst alle vereinbarten Leistungen: Transport, Verpackungsmaterial, Versicherung und Personal." } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q || "Wie bekomme ich ein Angebot?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a || "Über unser Online-Formular oder telefonisch. Nach einer Besichtigung (vor Ort oder per Video-Call) erhalten Sie ein verbindliches Angebot." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
+                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } }
             ],
     };
 
@@ -81,9 +81,9 @@ export default async function UmzugskostenBayern({ params }: { params: Promise<{
                             <table className="w-full border-collapse">
                                 <thead>
                                     <tr className="border-b border-border">
-                                        <th className="text-left py-4 px-4 font-semibold">Wohnungsgröße</th>
-                                        <th className="text-left py-4 px-4 font-semibold">Preisbereich*</th>
-                                        <th className="text-left py-4 px-4 font-semibold">Enthaltene Leistungen</th>
+                                        <th className="text-start py-4 px-4 font-semibold">Wohnungsgröße</th>
+                                        <th className="text-start py-4 px-4 font-semibold">Preisbereich*</th>
+                                        <th className="text-start py-4 px-4 font-semibold">Enthaltene Leistungen</th>
                                     </tr>
                                 </thead>
                                 <tbody className="text-muted-foreground">

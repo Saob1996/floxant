@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/umzug-vorbereiten-7-schritte',
-        title: 'Umzug vorbereiten in 7 Schritten | FLOXANT',
-        description: 'Professionelle Umzug vorbereiten in 7 Schritten in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Wie lange dauert ein Umzug?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Ein lokaler Umzug dauert in der Regel 4 bis 8 Stunden, abhängig von der Wohnungsgröße." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Was brauche ich zum Packen?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Umzugskartons, Packpapier, Luftpolsterfolie, Klebeband und einen Marker zum Beschriften." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

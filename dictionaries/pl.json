@@ -162,7 +162,8 @@
     "message": "Aktualności",
     "submit": "Wysłać",
     "success": "Wiadomość wysłana",
-    "error": "Błąd podczas wysyłania"
+    "error": "Błąd podczas wysyłania",
+    "email_label": "Email"
   },
   "trust": {
     "experience": "Lata doświadczeń",
@@ -260,7 +261,11 @@
           "q": "Czy wypuszczacie długodystansowe trasy odchodzące z okolic miasta München?",
           "a": "Właśnie tak. Nienagannie kierujemy załogą tworząco przejazdy oddalone z München dotykając absolutnie wszystkich obszarów oraz landów zachodnich terenów całych Niemiec."
         }
-      ]
+      ],
+      "meta_title": "Firma przeprowadzkowa Monachium | FLOXANT",
+      "meta_desc": "Profesjonalna firma przeprowadzkowa w Monachium.",
+      "hero_h1": "Firma przeprowadzkowa ",
+      "hero_h1_highlight": "Monachium"
     },
     "service_umzug": {
       "meta_title": "Przeprowadzka prywatna – Twoja osobista zmiana lokalizacji",
@@ -2832,7 +2837,11 @@
           "q": "Czy wypuszczacie długodystansowe trasy odchodzące z okolic miasta Nürnberg?",
           "a": "Właśnie tak. Nienagannie kierujemy załogą tworząco przejazdy oddalone z Nürnberg dotykając absolutnie wszystkich obszarów oraz landów zachodnich terenów całych Niemiec."
         }
-      ]
+      ],
+      "meta_title": "Firma przeprowadzkowa Norymberga | FLOXANT",
+      "meta_desc": "Przeprowadzki w Norymberdze ze stałą ceną.",
+      "hero_h1": "Firma ",
+      "hero_h1_highlight": "Norymberga"
     },
     "umzug_oberasbach": {
       "meta_title": "Firma przeprowadzkowa Oberasbach ✓ Stała Cena ✓ Z ubezpieczeniem | FLOXANT",
@@ -3759,6 +3768,30 @@
     },
     "widerruf": {
       "faqs": []
+    },
+    "calc_umzug": {
+      "meta_title": "Kalkulator Przeprowadzek 2026 | FLOXANT",
+      "meta_desc": "Oblicz koszty przeprowadzki online.",
+      "h1_pre": "Oblicz swoje",
+      "h1_hi": "Koszty Przeprowadzki",
+      "subtitle": "Gwarantowana stała cena online.",
+      "h2": "Czynniki wpływające na cenę przeprowadzki"
+    },
+    "calc_reinigung": {
+      "meta_title": "Kalkulator Sprzątania | FLOXANT",
+      "meta_desc": "Oblicz koszty sprzątania online.",
+      "h1_pre": "Oblicz swoje",
+      "h1_hi": "Koszty Sprzątania",
+      "subtitle": "Profesjonalne sprzątanie w stałej cenie.",
+      "h2": "Czynniki kosztów czyszczenia"
+    },
+    "calc_entsorgung": {
+      "meta_title": "Kalkulator Utylizacji | FLOXANT",
+      "meta_desc": "Oblicz koszty wywozu śmieci online.",
+      "h1_pre": "Ile kosztuje",
+      "h1_hi": "Utylizacja?",
+      "subtitle": "Gwarancja stałej ceny wywozu gabarytów.",
+      "h2": "Jak obliczyć koszty?"
     }
   },
   "services_section": {
@@ -3918,7 +3951,10 @@
     "additional_services_locations": "Dalsze usługi i lokalizacje w Bayern",
     "cleaning_company": "Firma sprzątająca",
     "calculate_price": "Oblicz cenę",
-    "combination_move": "Połączenie z przeprowadzką"
+    "combination_move": "Połączenie z przeprowadzką",
+    "also_available_in": "Dostępne również w językach:",
+    "whatsapp_cta_title": "Wsparcie WhatsApp",
+    "whatsapp_cta_desc": "Jesteśmy dostępni 24/7."
   },
   "calculator": {
     "requirements_title": "Twoje wymagania",
@@ -4118,7 +4154,9 @@
     "flag_loading_path": "Trasa nośna trasa biegowa",
     "flag_disassembly_on_site": "Łącznie z demontażem na miejscu",
     "flag_express_service": "Usługa ekspresowa (pilna)",
-    "flag_waste_notes_noted": "Zachowamy Twoją notatkę do planowania"
+    "flag_waste_notes_noted": "Zachowamy Twoją notatkę do planowania",
+    "upload_link_note": "Osobno wyślemy Ci link do wgrania zdjęć.",
+    "error_submit": "Błąd wysyłania. Spróbuj ponownie."
   },
   "home": {
     "hero_title": "Twoja profesjonalna firma przeprowadzkowa w Bayern.",
@@ -4140,7 +4178,18 @@
     "faq_a4": "FLOXANT oferuje również krótkotrwałe ruchy w ciągu 24 do 48 godzin. Skontaktuj się z nami, aby uzyskać szybką dostępność.",
     "premium_badge": "Logistyka i serwis najwyższej klasy",
     "services_title": "Nasza logistyka i usługi",
-    "services_subtitle": "Niezależnie od tego, czy jest to skomplikowana przeprowadzka biura, czy też czyszczenie wrażliwego mieszkania – zapewniamy wymierną jakość i absolutną przejrzystość cen przez cały okres Bayern."
+    "services_subtitle": "Niezależnie od tego, czy jest to skomplikowana przeprowadzka biura, czy też czyszczenie wrażliwego mieszkania – zapewniamy wymierną jakość i absolutną przejrzystość cen przez cały okres Bayern.",
+    "seo_p4": "Przeprowadzaj się bezpiecznie.",
+    "seo_p5": "Przeprowadzamy szybko i rzetelnie.",
+    "seo_p6": "Uzyskaj stałą cenę online.",
+    "faq_q5": "Czy moje ubezpieczenie jest wliczone?",
+    "faq_a5": "Tak, transport posiada ubezpieczenie.",
+    "faq_q6": "Czy dostarczacie materiały do pakowania?",
+    "faq_a6": "Tak, dostarczamy pudełka i folie.",
+    "faq_q7": "Jak szybko możecie nas przeprowadzić?",
+    "faq_a7": "Często w 48 godzin przy pilnych zleceniach.",
+    "faq_q8": "Czy oferujecie sprzątanie?",
+    "faq_a8": "Tak, oferujemy sprzątanie końcowe z gwarancją."
   },
   "reviews": {
     "title": "Tak mówią nasi klienci",
@@ -4154,5 +4203,84 @@
     ],
     "title_part1": "Tak mówią nasi",
     "title_part2": "Klienci"
+  },
+  "seo": {
+    "dynamic_city_title": "Przeprowadzki {city} | FLOXANT",
+    "dynamic_city_desc": "Dobra firma przeprowadzkowa w {city}."
+  },
+  "ratgeber": {
+    "title": "Poradnik FLOXANT",
+    "h1_pre": "Poradnik",
+    "meta_title": "Porady dotyczące przeprowadzek | FLOXANT",
+    "meta_desc": "Wskazówki dla przeprowadzki.",
+    "subtitle": "Wskazówki od profesjonalistów.",
+    "read_more": "Czytaj więcej →",
+    "articles": {
+      "umzug_kosten_regensburg": {
+        "title": "Koszty przeprowadzki Ratyzbona 2026",
+        "desc": "Ile kosztuje przeprowadzka?"
+      },
+      "checkliste_umzug": {
+        "title": "Checklista przeprowadzki",
+        "desc": "Idealna lista krok po kroku."
+      },
+      "gute_umzugsfirma_finden": {
+        "title": "Jak znaleźć dobrą firmę?",
+        "desc": "Na co zwrócić uwagę."
+      },
+      "entruempelung_kosten_pro_m3": {
+        "title": "Koszty utylizacji za m³",
+        "desc": "Koszty utylizacji za metr."
+      },
+      "umzug_vorbereiten_7_schritte": {
+        "title": "Przygotowania w 7 krokach",
+        "desc": "Proste przygotowanie przeprowadzki."
+      },
+      "wann_lohnt_sich_umzugsfirma": {
+        "title": "Kiedy warto wynająć firmę?",
+        "desc": "Analiza korzyści."
+      },
+      "moebeltransport_sicher": {
+        "title": "Bezpieczny transport mebli",
+        "desc": "Jak bezpiecznie transportować meble."
+      },
+      "umzug_tipps_familien": {
+        "title": "Wskazówki dla rodzin",
+        "desc": "Przeprowadzki z dziećmi."
+      },
+      "reinigung_nach_umzug": {
+        "title": "Sprzątanie po przeprowadzce",
+        "desc": "Porady na temat czyszczenia."
+      },
+      "umzug_kosten_rechner": {
+        "title": "Kalkulator Przeprowadzek",
+        "desc": "Jak obliczyć koszty?"
+      },
+      "umzug_anmelden_ummelden": {
+        "title": "Formalności podczas przeprowadzki",
+        "desc": "Zgłoszenie zmiany adresu."
+      },
+      "umzug_versicherung": {
+        "title": "Ubezpieczenie przeprowadzki",
+        "desc": "Co obejmuje ubezpieczenie?"
+      },
+      "wohnungsaufloesung_tipps": {
+        "title": "Likwidacja mieszkania",
+        "desc": "Proces, koszty, checklisty."
+      },
+      "umzug_im_winter": {
+        "title": "Przeprowadzka zimą",
+        "desc": "Zalety i wady."
+      },
+      "umzug_erste_wohnung": {
+        "title": "Pierwsze mieszkanie",
+        "desc": "Co musisz wiedzieć."
+      }
+    }
+  },
+  "metadata": {
+    "keywords": "Przeprowadzki, Sprzątanie, Monachium, FLOXANT",
+    "og_img_alt": "Przeprowadzki i usługi w Niemczech",
+    "og_locale": "pl_PL"
   }
 }

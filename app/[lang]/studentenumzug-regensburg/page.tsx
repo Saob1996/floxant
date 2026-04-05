@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = dict?.pages?.studentenumzug_regensburg || {};
     return {
-        title: content.meta_title || "Studentenumzug Regensburg | Günstig & Zuverlässig | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Ser...',
         alternates: {
             canonical: `https://floxant.de/${pageLocale}/studentenumzug-regensburg`,

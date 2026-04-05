@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     var dict = await getDictionary(pageLocale as Locale);
     const content = (dict?.pages as any)?.buero_umzug_regensburg || {};
     return {
-        title: content.meta_title || "Büroumzug Regensburg | Profi-Service | FLOXANT",
+        title: content.meta_title,
         description: 'description: content.meta_desc || Professioneller Büroumzug in Regensburg und Umgebung. Wir planen und realisieren Ihren Firmenumzug effizient, termin...',
     };
 }
@@ -30,13 +30,13 @@ export default async function BueroUmzugRegensburg({ params }: { params: Promise
             <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="mx-auto max-w-4xl text-center">
                     <span className="inline-block py-1.5 px-4 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6 border border-primary/20">
-                        {content.badge || "Regensburg & Oberpfalz"}
+                        {content.badge}
                     </span>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-8">
-                        {content.h1 || "Professioneller Büroumzug Regensburg"}
+                        {content.h1}
                     </h1>
                     <p className="text-xl text-muted-foreground leading-relaxed mb-12">
-                        {content.hero_desc || "Wir machen Ihren Firmenumzug zum Erfolg. Effizient, diskret und absolut terminsicher."}
+                        {content.hero_desc}
                     </p>
                 </div>
             </section>

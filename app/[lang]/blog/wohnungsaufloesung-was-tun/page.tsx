@@ -7,11 +7,13 @@ import { Clock, CalendarDays, UserCircle, Scale, Building2, Coins, ArrowRight } 
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'blog/wohnungsaufloesung-was-tun',
-        title: 'Wohnungsauflösung im Todesfall: Checkliste & Kosten | FLOXANT',
-        description: 'Ein Angehöriger ist verstorben: Was ist jetzt zu tun? Leitfaden zur Wohnungsauflösung, Kündigungsfristen, Erbrecht und Übernahme der Kosten. Sofortpre...',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -52,7 +54,7 @@ export default async function BlogWohnungsaufloesungTodesfall({ params }: { para
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
                             Wohnungsauflösung im Todesfall: Was Angehörige jetzt tun müssen
                         </h1>
-                        <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-primary pl-6">
+                        <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-primary ps-">
                             Neben der Trauer um den Verlust eines geliebten Menschen sehen sich Hinterbliebene oft mit einem Berg an bürokratischen und logistischen Aufgaben konfrontiert. Was passiert mit dem bestehenden Mietvertrag? Und wer zahlt die Räumung?
                         </p>
                     </header>

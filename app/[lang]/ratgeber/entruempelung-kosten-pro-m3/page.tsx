@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/entruempelung-kosten-pro-m3',
-        title: 'Entrümpelung Kosten pro m³ erklärt | FLOXANT',
-        description: 'Professionelle Entrümpelung Kosten pro m³ erklärt in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Was kostet Entrümpelung pro m³?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "30 bis 80 Euro im Durchschnitt, je nach Material und Zugänglichkeit." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Ist eine Entrümpelung auch kurzfristig möglich?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Ja. FLOXANT bietet auch Express-Entrümpelung innerhalb von 24 bis 48 Stunden." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 

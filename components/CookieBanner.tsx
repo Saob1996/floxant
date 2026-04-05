@@ -12,7 +12,7 @@ type ConsentState = {
     marketing: boolean;
 };
 
-export function CookieBanner() {
+export function CookieBanner({ dic }: { dic?: any }) {
     const [isVisible, setIsVisible] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showTrigger, setShowTrigger] = useState(false);
@@ -79,9 +79,9 @@ export function CookieBanner() {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
                         onClick={() => setIsVisible(true)}
-                        className="fixed bottom-6 left-6 z-[90] p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:bg-white/20 transition-all group"
-                        title="Cookie Einstellungen"
-                        aria-label="Cookie Einstellungen anpassen"
+                        className="fixed bottom-6 start-6 z-[90] p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:bg-white/20 transition-all group"
+                        title={dic?.cookie?.settings || "Cookie Einstellungen"}
+                        aria-label={dic?.cookie?.settings || "Cookie Einstellungen anpassen"}
                     >
                         <Shield className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                     </m.button>
@@ -105,17 +105,17 @@ export function CookieBanner() {
                                             <Shield className="w-6 h-6 text-primary" />
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold mb-2">Ihre Privatsphäre ist uns wichtig</h3>
+                                            <h3 className="text-xl font-bold mb-2">{dic?.cookie?.title || "Ihre Privatsphäre ist uns wichtig"}</h3>
                                             <p className="text-sm text-neutral-400 leading-relaxed">
-                                                Wir nutzen Cookies, um Ihre Erfahrung auf FLOXANT zu optimieren. Einige sind essenziell für die Funktionalität, während andere uns helfen, unsere Website und Marketingmaßnahmen zu verbessern. Sie können Ihre Wahl jederzeit anpassen.
+                                                {dic?.cookie?.desc || "Wir nutzen Cookies, um Ihre Erfahrung auf FLOXANT zu optimieren. Einige sind essenziell für die Funktionalität, während andere uns helfen, unsere Website und Marketingmaßnahmen zu verbessern. Sie können Ihre Wahl jederzeit anpassen."}
                                             </p>
                                         </div>
                                     </div>
                                     
                                     <div className="flex flex-col items-center justify-between gap-4 pt-4 border-t border-white/5 sm:flex-row">
                                         <div className="flex gap-4 text-xs text-neutral-500">
-                                            <a href="/de/datenschutz" className="hover:text-primary transition-colors hover:underline">Datenschutz</a>
-                                            <a href="/de/impressum" className="hover:text-primary transition-colors hover:underline">Impressum</a>
+                                            <a href="/de/datenschutz" className="hover:text-primary transition-colors hover:underline">{dic?.cookie?.privacy || "Datenschutz"}</a>
+                                            <a href="/de/impressum" className="hover:text-primary transition-colors hover:underline">{dic?.cookie?.imprint || "Impressum"}</a>
                                         </div>
                                         
                                         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -123,17 +123,17 @@ export function CookieBanner() {
                                                 onClick={() => setShowSettings(true)}
                                                 className="px-5 py-2.5 text-sm font-medium text-neutral-300 hover:text-white bg-white/5 border border-white/10 hover:bg-white/10 rounded-xl transition-colors"
                                             >
-                                                Einstellungen
+                                                {dic?.cookie?.settings || "Einstellungen"}
                                             </button>
                                             {/* Note: In Germany (DSGVO/TTDSG), 'Reject' and 'Accept' must be visually comparable */}
                                             <button
                                                 onClick={handleAcceptNecessary}
                                                 className="px-5 py-2.5 text-sm font-medium text-white bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded-xl transition-colors"
                                             >
-                                                Nur Essenzielle
+                                                {dic?.cookie?.essential_only || "Nur Essenzielle"}
                                             </button>
                                             <PremiumButton onClick={handleAcceptAll} className="whitespace-nowrap px-8">
-                                                Alle akzeptieren
+                                                {dic?.cookie?.accept_all || "Alle akzeptieren"}
                                             </PremiumButton>
                                         </div>
                                     </div>
@@ -144,17 +144,17 @@ export function CookieBanner() {
                                     <div className="flex items-center justify-between">
                                         <h3 className="text-xl font-bold flex items-center gap-2">
                                             <Settings2 className="w-5 h-5 text-primary" />
-                                            Cookie Einstellungen
+                                            {dic?.cookie?.settings || "Cookie Einstellungen"}
                                         </h3>
                                         <button onClick={() => setShowSettings(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors text-neutral-400">
                                             <X className="w-5 h-5" />
                                         </button>
                                     </div>
                                     
-                                    <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
+                                    <div className="space-y-4 max-h-[50vh] overflow-y-auto pe- custom-scrollbar">
                                         {/* Essential */}
                                         <div className="flex items-start justify-between p-4 bg-white/5 rounded-xl border border-white/10">
-                                            <div className="pr-4">
+                                            <div className="pe-">
                                                 <h4 className="font-bold mb-1">Essenziell</h4>
                                                 <p className="text-xs text-neutral-400">Diese Cookies sind für die Grundfunktionen der Website zwingend erforderlich.</p>
                                             </div>
@@ -165,7 +165,7 @@ export function CookieBanner() {
                                         
                                         {/* Analytics */}
                                         <div className="flex items-start justify-between p-4 bg-white/5 rounded-xl border border-white/10 transition-colors">
-                                            <div className="pr-4 cursor-pointer" onClick={() => setPreferences(p => ({ ...p, analytics: !p.analytics }))}>
+                                            <div className="pe- cursor-pointer" onClick={() => setPreferences(p => ({ ...p, analytics: !p.analytics }))}>
                                                 <h4 className="font-bold mb-1">Analyse & Performance</h4>
                                                 <p className="text-xs text-neutral-400">Helfen uns zu verstehen, wie Besucher mit der Website interagieren (z.B. Google Analytics).</p>
                                             </div>
@@ -177,7 +177,7 @@ export function CookieBanner() {
 
                                         {/* Marketing */}
                                         <div className="flex items-start justify-between p-4 bg-white/5 rounded-xl border border-white/10 transition-colors">
-                                            <div className="pr-4 cursor-pointer" onClick={() => setPreferences(p => ({ ...p, marketing: !p.marketing }))}>
+                                            <div className="pe- cursor-pointer" onClick={() => setPreferences(p => ({ ...p, marketing: !p.marketing }))}>
                                                 <h4 className="font-bold mb-1">Marketing</h4>
                                                 <p className="text-xs text-neutral-400">Werden verwendet, um Besuchern relevante Werbung anzuzeigen (z.B. Google Ads).</p>
                                             </div>
@@ -196,7 +196,7 @@ export function CookieBanner() {
                                             Alle auswählen
                                         </button>
                                         <PremiumButton onClick={handleSaveSettings} className="px-8">
-                                            Auswahl speichern
+                                            {dic?.cookie?.save || "Auswahl speichern"}
                                         </PremiumButton>
                                     </div>
                                 </div>

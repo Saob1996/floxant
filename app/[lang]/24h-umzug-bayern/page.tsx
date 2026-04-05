@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     return generatePageSEO({
         lang: pageLocale,
         path: "24h-umzug-bayern",
-        title: content.meta_title || "24h Umzug Bayern | Notfall-Umzugsservice | FLOXANT",
-        description: content.meta_desc || "24-Stunden-Umzugsservice in Bayern. Kurzfristiger Umzug auch abends, nachts und am Wochenende. Regensburg, Nürnberg, München. Sofort verfügbar!",
+        title: content.meta_title,
+        description: content.meta_desc,
     });
 }
 

@@ -3,50 +3,68 @@
 import { Header } from "@/components/Header";
 import dynamic from "next/dynamic";
 import { m } from "framer-motion";
-import { ArrowRight, Box, Sparkles, Trash2, CheckCircle2, Phone } from "lucide-react";
+import { ArrowRight, Box, Sparkles, Trash2, Phone } from "lucide-react";
 import Link from "next/link";
-// import { Footer } from "@/components/Footer";
+
 import { company } from "@/lib/company";
-import { useRef, useState, useEffect } from "react";
 
 const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
+    () =>
+        import("@/components/SmartBookingWizard").then((mod) => ({
+            default: mod.SmartBookingWizard,
+        })),
     { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
 );
 
 const SignatureServices = dynamic(
-    () => import("@/components/SignatureServices").then(mod => ({ default: mod.SignatureServices })),
+    () =>
+        import("@/components/SignatureServices").then((mod) => ({
+            default: mod.SignatureServices,
+        })),
     { loading: () => <div className="py-24 px-6 min-h-[600px]" /> }
 );
 
-// Type definition for dictionary
-type Dictionary = any; // avoiding complex types for now to ensure speed, but structure matches JSON
+type Dictionary = any;
 
-export default function PageClient({ lang, dict }: { lang: string; dict: Dictionary }) {
-
-    // Helper to safely access nested properties
+export default function PageClient({
+    lang,
+    dict,
+}: {
+    lang: string;
+    dict: Dictionary;
+}) {
     const safeDict = dict || {};
-    const servicesSection = safeDict.services_section || { title: "", subtitle: "", items: [] };
+    const servicesSection = safeDict.services_section || {
+        title: "",
+        subtitle: "",
+        items: [],
+    };
     const hero = safeDict.hero || { title: "", subtitle: "" };
     const trust = safeDict.trust || { quality: "", insured: "", experience: "" };
-    const contact = safeDict.contact || { title: "" };
-    const area = safeDict.area || { description: "", title: "", cities: { bavaria: "" } };
-    const nav = safeDict.nav || {};
+    const contact = safeDict.contact || { title: "", email_label: "" };
+    const area = safeDict.area || {
+        description: "",
+        title: "",
+        cities: { bavaria: "" },
+    };
 
-    // Map dictionary services to array
     const servicesItems = servicesSection.items || [];
     const services = servicesItems.map((item: any, index: number) => {
         let icon;
-        // Manual override for icons based on title or index to match original design
-        if (index === 3) icon = <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-accent" />;
-        else if (index === 4) icon = <Trash2 className="w-8 h-8 md:w-10 md:h-10 text-accent" />;
-        else icon = <Box className="w-8 h-8 md:w-10 md:h-10 text-accent" />;
+
+        if (index === 3) {
+            icon = <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-accent" />;
+        } else if (index === 4) {
+            icon = <Trash2 className="w-8 h-8 md:w-10 md:h-10 text-accent" />;
+        } else {
+            icon = <Box className="w-8 h-8 md:w-10 md:h-10 text-accent" />;
+        }
 
         return {
             icon,
             title: item.title,
             description: item.desc,
-            features: [trust.quality, trust.insured, trust.experience]
+            features: [trust.quality, trust.insured, trust.experience],
         };
     });
 
@@ -54,7 +72,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background overflow-hidden">
-            <Header dic={dict} />
+            <Header lang={lang as any} dic={dict} />
 
             <section id="zero" className="relative pt-32 pb-20 px-6 lg:pt-48">
                 <div className="absolute inset-0 bg-grid-white/5 bg-[size:40px_40px] [mask-image:radial-gradient(white,transparent_70%)] pointer-events-none" />
@@ -82,6 +100,7 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-foreground to-foreground/50 leading-[1.1]">
                             {hero.title}
                         </h1>
+
                         <p className="text-lg md:text-2xl text-muted-foreground font-light leading-relaxed max-w-3xl mx-auto">
                             {hero.subtitle}
                         </p>
@@ -96,15 +115,22 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                     >
                         <SmartBookingWizard dict={safeDict} />
 
-                        {/* Direct Contact Card */}
                         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                             <div className="glass p-6 rounded-2xl border border-white/10 flex items-center gap-4 hover:border-primary/30 transition-colors">
                                 <div className="p-3 rounded-xl bg-primary/10 text-primary">
                                     <Phone className="w-6 h-6" />
                                 </div>
+
                                 <div>
-                                    <p className="text-sm text-muted-foreground font-medium">{contact.title}</p>
-                                    <a href={`tel:${company.phone.replace(/\s+/g, '')}`} className="text-lg font-bold text-foreground hover:text-primary transition-colors">{company.phone}</a>
+                                    <p className="text-sm text-muted-foreground font-medium">
+                                        {contact.title}
+                                    </p>
+                                    <a
+                                        href={`tel:${company.phone.replace(/\s+/g, "")}`}
+                                        className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+                                    >
+                                        {company.phone}
+                                    </a>
                                 </div>
                             </div>
 
@@ -112,17 +138,23 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                                 <div className="p-3 rounded-xl bg-primary/10 text-primary">
                                     <ArrowRight className="w-6 h-6" />
                                 </div>
+
                                 <div>
-                                    <div>
-                                        <p className="text-sm text-muted-foreground font-medium">Email</p>
-                                        <a href={`mailto:${company.email}`} className="text-lg font-bold text-foreground hover:text-primary transition-colors">{company.email}</a>
-                                    </div>
+                                    <p className="text-sm text-muted-foreground font-medium">
+                                        {contact.email_label}
+                                    </p>
+                                    <a
+                                        href={`mailto:${company.email}`}
+                                        className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+                                    >
+                                        {company.email}
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </m.div>
                 </div>
-            </section >
+            </section>
 
             <section id="services" className="py-32 px-6 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent pointer-events-none" />
@@ -168,36 +200,68 @@ export default function PageClient({ lang, dict }: { lang: string; dict: Diction
                 <SignatureServices dict={safeDict} />
             </div>
 
-            {/* SEO Service Area Visible Section */}
             <section className="py-24 px-6 border-t border-border/50">
                 <div className="mx-auto max-w-7xl">
                     <div className="text-center mb-12">
-                        <span className="text-sm font-medium tracking-[0.2em] text-primary/60 uppercase">{area.title}</span>
-                        <h2 className="text-3xl font-bold mt-2">Floxant {area.cities?.bavaria}</h2>
+                        <span className="text-sm font-medium tracking-[0.2em] text-primary/60 uppercase">
+                            {area.title}
+                        </span>
+                        <h2 className="text-3xl font-bold mt-2">
+                            <span translate="no">FLOXANT</span> {area.cities?.bavaria}
+                        </h2>
                         <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
                             {area.description}
                         </p>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        <Link href={`/${lang}/umzug-muenchen`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.munich}</h3>
+                        <Link
+                            href={`/${lang}/umzug-muenchen`}
+                            className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center"
+                        >
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {area.cities?.munich}
+                            </h3>
                         </Link>
-                        <Link href={`/${lang}/umzug-nuernberg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.nuremberg}</h3>
+
+                        <Link
+                            href={`/${lang}/umzug-nuernberg`}
+                            className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center"
+                        >
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {area.cities?.nuremberg}
+                            </h3>
                         </Link>
-                        <Link href={`/${lang}/umzug-augsburg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.augsburg}</h3>
+
+                        <Link
+                            href={`/${lang}/umzug-augsburg`}
+                            className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center"
+                        >
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {area.cities?.augsburg}
+                            </h3>
                         </Link>
-                        <Link href={`/${lang}/umzug-regensburg`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.regensburg}</h3>
+
+                        <Link
+                            href={`/${lang}/umzug-regensburg`}
+                            className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center"
+                        >
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {area.cities?.regensburg}
+                            </h3>
                         </Link>
-                        <Link href={`/${lang}/umzug-bayern`} className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center bg-primary/5">
-                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">{area.cities?.bavaria}</h3>
+
+                        <Link
+                            href={`/${lang}/umzug-bayern`}
+                            className="group glass p-4 rounded-xl border border-white/10 hover:border-primary/30 transition-all text-center bg-primary/5"
+                        >
+                            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                                {area.cities?.bavaria}
+                            </h3>
                         </Link>
                     </div>
                 </div>
             </section>
-        </main >
+        </main>
     );
 }

@@ -7,11 +7,13 @@ import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    return generatePageSEO({
+    
+    const dict = (await getDictionary(pageLocale as Locale)) as any;
+return generatePageSEO({
         pageLocale,
         path: 'ratgeber/umzug-tipps-familien',
-        title: 'Umzug Tipps für Familien | FLOXANT',
-        description: 'Professionelle Umzug Tipps für Familien in Bayern. Seriöse Abwicklung, Festpreisgarantie und versicherter Transport. Jetzt online berechnen!',
+        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
+        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
     });
 }
 
@@ -23,8 +25,8 @@ export default async function Article({ params }: { params: Promise<{ lang: stri
     const faqJsonLd = {
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q || "Wie bereite ich Kinder auf den Umzug vor?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a || "Früh darüber sprechen, neue Wohnung gemeinsam besuchen und das neue Zimmer planen." } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q || "Sollten Kinder am Umzugstag dabei sein?", "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a || "Bei kleinen Kindern ist eine Betreuung besser. Ältere Kinder können je nach Alter mithelfen." } }
+                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
+                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
             ],
     };
 
