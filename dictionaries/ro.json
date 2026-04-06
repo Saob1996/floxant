@@ -3792,6 +3792,366 @@
       "h1_hi": "Evacuarea?",
       "subtitle": "Calcul transparent pentru orice gunoi voluminos.",
       "h2": "Cum se calculează costurile?"
+    },
+    "klaviertransport": {
+      "meta_title": "Transport Piane {city} | FLOXANT",
+      "meta_desc": "Transport sigur.",
+      "hero_badge": "Siguranta",
+      "hero_h1": "Transport Piane",
+      "hero_p": "Echipa noastra.",
+      "badges": {
+        "piano": "-",
+        "safe": "-",
+        "insurance": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "halteverbotszone": {
+      "meta_title": "Zona de parcare {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Parcare",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "seniorenumzug": {
+      "meta_title": "Mutare Seniori {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Seniori",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "studentenumzug": {
+      "meta_title": "Studenti {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Mutare Studenti",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "familienumzug": {
+      "meta_title": "Mutare Familie {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Familie",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "umzug24": {
+      "meta_title": "Mutari 24h {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "24h Mutare",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "Transport Mic {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Mic Transport",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "Mutare Birou {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Birou",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Eliberari {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Eliberari",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "reinigung_spec": {
+      "meta_title": "Curatenie {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Curatenie f.",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {

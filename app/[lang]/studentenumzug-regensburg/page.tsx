@@ -1,118 +1,201 @@
-import { i18n } from "@/i18n-config";
-import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
+import { Briefcase, Shield, Truck } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { GraduationCap, MapPin, CheckCircle2 } from "lucide-react";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import {
+    getSpecialtyPageData,
+    resolveField,
+    resolveNestedField,
+} from "@/lib/specialty-page";
+import { generatePageSEO } from "@/lib/seo";
+import { type Locale } from "../../../i18n-config";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
-);
-const DualCalculator = dynamic(
-    () => import("@/components/calculator/DualCalculator"),
-    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
-);
+const CITY = "Regensburg";
+const PATH = "studentenumzug-regensburg";
 
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = dict?.pages?.studentenumzug_regensburg || {};
-    return {
-        title: content.meta_title,
-        description: 'description: content.meta_desc || Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Ser...',
-        alternates: {
-            canonical: `https://floxant.de/${pageLocale}/studentenumzug-regensburg`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/studentenumzug-regensburg`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    const { content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "studentenumzug",
+            seoKey: "studentenumzug_regensburg",
+            city: CITY,
+        });
+
+    const title =
+        resolveField(seoContent.meta_title, seoFallback.meta_title, city) ||
+        resolveField(content.meta_title, fallback.meta_title, city) ||
+        `Studentenumzug ${city} | FLOXANT`;
+
+    const description =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city) ||
+        `Professioneller Studentenumzug in ${city}.`;
+
+    return generatePageSEO({
+        pageLocale,
+        path: PATH,
+        title,
+        description,
+    });
 }
 
-export default async function StudentenumzugRegensburg({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export default async function StudentenumzugRegensburgPage({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}) {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
+
+    const { localeDict, content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "studentenumzug",
+            seoKey: "studentenumzug_regensburg",
+            city: CITY,
+        });
+
+    const heroTitle =
+        resolveField(content.hero_h1, fallback.hero_h1) || "Studentenumzug";
+    const serviceName = `${heroTitle} ${city}`.trim();
+
+    const metaDescription =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city);
+
+    const moveLabel =
+        resolveField(content.link_umzug, fallback.link_umzug, city) ||
+        `Umzug ${city}`;
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: serviceName,
+        description: metaDescription,
+        provider: {
+            "@type": "MovingCompany",
+            name: "FLOXANT",
+            telephone: "+4915771105087",
+        },
+        areaServed: {
+            "@type": "City",
+            name: city,
+        },
+        serviceType: [serviceName],
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "FLOXANT",
+                item: `https://www.floxant.de/${pageLocale}`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: moveLabel,
+                item: `https://www.floxant.de/${pageLocale}/umzug-regensburg`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: serviceName,
+                item: `https://www.floxant.de/${pageLocale}/${PATH}`,
+            },
+        ],
+    };
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Regensburg", href: `/${pageLocale}/umzug-regensburg` }, { label: "Studentenumzug" }]} />
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+            />
 
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <GraduationCap className="w-4 h-4" /><span>Für Studierende in Regensburg</span>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Studentenumzug in <span className="text-primary">Regensburg</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Regensburg ist Universitätsstadt. Semesterwechsel, WG-Umzüge und der erste eigene Haushalt – FLOXANT bietet flexible und faire Umzugslösungen für Studierende.
-                    </p>
-                </div>
-            </section>
-
-            
-      <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto space-y-24">
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Umziehen als Student – einfach und bezahlbar</h2>
-                        <p>
-                            Als Universitätsstadt mit über 30.000 Studierenden ist Regensburg ein Ort, an dem Umzüge zum Alltag gehören. Ob der Wechsel vom Studentenwohnheim in die erste WG, der Auszug nach dem Abschluss oder der saisonale Zimmertausch – Studierende brauchen einen Umzugspartner, der flexibel, zuverlässig und fair kalkuliert.
-                        </p>
-                        <p>
-                            FLOXANT bietet speziell auf Studierende zugeschnittene Umzugsoptionen: vom reinen „Bordsteinkante zu Bordsteinkante"-Transport bis zum Komplettservice mit Verpackung und Montage. Unsere Preise sind transparent und studentenfreundlich – ohne versteckte Kosten, ohne Mindestauftragsvolumen.
-                        </p>
-                        <p>
-                            Die Universität Regensburg, die OTH Regensburg und das Studentenwerk sorgen für eine hohe Umzugsfrequenz in den Semestermonaten. Wir kennen die Wohnsituationen rund um den Campus, in der Altstadt, im Kasernenviertel und in Prüfening genau und wissen, worauf es bei der Anfahrt, beim Parken und beim Transport in enge Treppenhäuser ankommt.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-8">Unsere Studentenumzug-Optionen</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="p-6 rounded-2xl bg-muted/10 border border-border/50">
-                                <h3 className="text-xl font-bold mb-3">Basis-Transport</h3>
-                                <p className="text-muted-foreground mb-4">Bordsteinkante zu Bordsteinkante. Sie packen – wir transportieren. Die günstigste Option für Studierende mit kleinem Budget.</p>
-                                <ul className="space-y-2">
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Ab einem Zimmer buchbar</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Keine Mindestmenge</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Festpreis ohne Überraschungen</li>
-                                </ul>
-                            </div>
-                            <div className="p-6 rounded-2xl bg-muted/10 border border-border/50">
-                                <h3 className="text-xl font-bold mb-3">Komplett-Service</h3>
-                                <p className="text-muted-foreground mb-4">Wir übernehmen alles: Verpackung, Transport, Aufbau. Ideal für den Umzug in die erste eigene Wohnung oder bei wenig Zeit.</p>
-                                <ul className="space-y-2">
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Verpackungsmaterial inklusive</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Möbelmontage auf Wunsch</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Endreinigung optional zubuchbar</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">{dict.common.more_services}</h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
-                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
-                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                            <Link href={`/${pageLocale}/reinigung-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Regensburg</Link>
-                            <Link href={`/${pageLocale}/kurzfristiger-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Kurzfristiger Umzug</Link>
-                        </div>
-                    </div>
-
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
-                        <h2 className="text-3xl font-bold mb-4">Studentenumzug anfragen</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenloses Angebot – studentenfreundlich kalkuliert. Jetzt anfragen!</p>
-                        <SmartBookingWizard dict={dict} />
-                    </div>
-                </div>
-            </section>
-        </main>
+            <SpecialtyPageLayout
+                pageLocale={pageLocale}
+                dict={localeDict}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge)}
+                heroTitle={heroTitle}
+                city={city}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta)}
+                breadcrumbs={[
+                    {
+                        label: moveLabel,
+                        href: `/${pageLocale}/umzug-regensburg`,
+                    },
+                    {
+                        label: serviceName,
+                    },
+                ]}
+                chips={[
+                    {
+                        icon: Briefcase,
+                        text: resolveNestedField(content.badges, fallback.badges, "permit"),
+                    },
+                    {
+                        icon: Truck,
+                        text: resolveNestedField(content.badges, fallback.badges, "signs"),
+                        iconClassName: "h-5 w-5 text-muted-foreground",
+                    },
+                    {
+                        icon: Shield,
+                        text: resolveNestedField(
+                            content.badges,
+                            fallback.badges,
+                            "stressfree"
+                        ),
+                    },
+                ]}
+                cards={[
+                    {
+                        icon: Briefcase,
+                        title: resolveNestedField(content.service1, fallback.service1, "title"),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1"),
+                            resolveNestedField(content.service1, fallback.service1, "l2"),
+                            resolveNestedField(content.service1, fallback.service1, "l3"),
+                            resolveNestedField(content.service1, fallback.service1, "l4"),
+                        ],
+                    },
+                    {
+                        icon: Truck,
+                        iconClassName: "mb-6 h-10 w-10 text-muted-foreground",
+                        title: resolveNestedField(content.service2, fallback.service2, "title"),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1"),
+                            resolveNestedField(content.service2, fallback.service2, "l2"),
+                            resolveNestedField(content.service2, fallback.service2, "l3"),
+                            resolveNestedField(content.service2, fallback.service2, "l4"),
+                        ],
+                    },
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
+        </>
     );
 }

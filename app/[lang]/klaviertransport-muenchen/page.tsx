@@ -1,120 +1,208 @@
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
-import { type Locale } from "../../../i18n-config";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Lock, Music, Shield } from "lucide-react";
+
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import {
+    getSpecialtyPageData,
+    resolveField,
+    resolveNestedField,
+} from "@/lib/specialty-page";
 import { generatePageSEO } from "@/lib/seo";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { Shield, Weight, Truck, ArrowRight, CheckCircle2, AlertTriangle, Lock, Music } from "lucide-react";
+import { type Locale } from "../../../i18n-config";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
-);
+const CITY = "München";
+const PATH = "klaviertransport-muenchen";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = dict?.pages?.klaviertransport_muenchen || {};
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
+
+    const { content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "klaviertransport",
+            seoKey: "klaviertransport_muenchen",
+            city: CITY,
+        });
+
+    const title =
+        resolveField(seoContent.meta_title, seoFallback.meta_title, city) ||
+        resolveField(content.meta_title, fallback.meta_title, city) ||
+        `Klaviertransport ${city} | FLOXANT`;
+
+    const description =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city) ||
+        `Professioneller Klaviertransport in ${city}.`;
+
     return generatePageSEO({
         pageLocale,
-        path: "klaviertransport-muenchen",
-        title: content.meta_title,
-        description: content.meta_desc,
+        path: PATH,
+        title,
+        description,
     });
 }
 
-export default async function KlaviertransportPage({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export default async function KlaviertransportMuenchenPage({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}) {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
+
+    const { localeDict, content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "klaviertransport",
+            seoKey: "klaviertransport_muenchen",
+            city: CITY,
+        });
+
+    const heroTitle =
+        resolveField(content.hero_h1, fallback.hero_h1) || "Klaviertransport";
+    const serviceName = `${heroTitle} ${city}`.trim();
+
+    const metaDescription =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city);
+
+    const moveLabel =
+        resolveField(content.link_umzug, fallback.link_umzug, city) ||
+        `Umzug ${city}`;
 
     const serviceJsonLd = {
-        "@context": "https://schema.org", "@type": "Service",
-        "name": "Klaviertransport & Tresortransport München",
-        "provider": {
-            "@type": "MovingCompany", "name": "FLOXANT",
-            "telephone": "+4915771105087",
-            "address": { "@type": "PostalAddress", "streetAddress": "Friedenstraße 24", "addressLocality": "Regensburg", "postalCode": "93053", "addressCountry": "DE" }
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: serviceName,
+        description: metaDescription,
+        provider: {
+            "@type": "MovingCompany",
+            name: "FLOXANT",
+            telephone: "+4915771105087",
+            address: {
+                "@type": "PostalAddress",
+                streetAddress: "Friedenstraße 24",
+                addressLocality: "Regensburg",
+                postalCode: "93053",
+                addressCountry: "DE",
+            },
         },
-        "areaServed": { "@type": "City", "name": "München", "geo": { "@type": "GeoCoordinates", "latitude": "48.1351", "longitude": "11.5820" } },
-        "serviceType": ["Klaviertransport", "Flügeltransport", "Tresortransport"],
+        areaServed: {
+            "@type": "City",
+            name: city,
+        },
+        serviceType: [serviceName],
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "FLOXANT",
+                item: `https://www.floxant.de/${pageLocale}`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: moveLabel,
+                item: `https://www.floxant.de/${pageLocale}/umzug-muenchen`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: serviceName,
+                item: `https://www.floxant.de/${pageLocale}/${PATH}`,
+            },
+        ],
     };
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug München", href: "/" + pageLocale + "/umzug-muenchen" }, { label: "Klavier- & Tresortransport" }]} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+            />
 
-            <section className="pt-12 pb-24 px-6 bg-gradient-to-b from-slate-100 dark:from-slate-900/40 via-muted/30 to-background overflow-hidden relative">
-                <div className="max-w-7xl mx-auto text-center space-y-8 relative z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-bold">
-                        <AlertTriangle className="w-4 h-4" /> Spezialtransporte · Schwerlast
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground leading-tight">
-                        Klavier- & Tresortransport<br className="hidden md:block"/>
-                        <span className="text-primary">München</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
-                        Ein Klavier wiegt 200-500 kg, ein Tresor oft noch mehr. Für solche Aufträge braucht es Spezialkönnen, -equipment und -versicherung. Genau das liefern wir.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4 mt-10">
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Music className="w-5 h-5 text-primary" /> Klavier & Flügel</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Lock className="w-5 h-5 text-slate-600" /> Tresore & Safes</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Shield className="w-5 h-5 text-emerald-500" /> Spezialversicherung</span>
-                    </div>
-                    <div className="mt-12 flex justify-center">
-                        <a href="#wizard" className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground text-lg font-bold rounded-full hover:bg-primary/90 hover:scale-105 transition-all shadow-xl shadow-primary/30">
-                            Schwertransport anfragen <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-24 px-6">
-                <div className="max-w-4xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                        <div className="p-8 rounded-3xl bg-card border border-border shadow-md">
-                            <Music className="w-10 h-10 text-primary mb-6" />
-                            <h3 className="text-2xl font-bold mb-4">Klaviertransport</h3>
-                            <ul className="space-y-3 text-muted-foreground">
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Spezial-Klavierrollwagen & Tragegurte</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Schutzpolsterung für Tasten, Pedale & Gehäuse</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Klimatisierter Transport (Feuchtigkeit!)</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Auf Wunsch: Neuformung durch Fachstimmer</li>
-                            </ul>
-                        </div>
-                        <div className="p-8 rounded-3xl bg-card border border-border shadow-md">
-                            <Lock className="w-10 h-10 text-slate-600 mb-6" />
-                            <h3 className="text-2xl font-bold mb-4">Tresortransport</h3>
-                            <ul className="space-y-3 text-muted-foreground">
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Tresore bis 2.000 kg Eigengewicht</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Hydraulische Hubwagen & Treppen-Raupen</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Statikprüfung für Zielort (Deckenlast)</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> Diskrete Abwicklung für Wertgegenstände</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
-                        <h2 className="text-3xl font-extrabold text-foreground">Schwertransporte in München: lokales Können</h2>
-                        <p>In München erleben wir häufig Klaviertransporte aus Altbauwohnungen in Schwabing oder  Bogenhausen. Die Herausforderung: enge Treppenhäuser, keine Aufzüge, Wendeltreppen. Unsere Lösung: Außenlift oder Krantransport über den Balkon – je nach Situation.</p>
-                        <p>Tresortransporte sind dagegen oft Firmenkunden-Aufträge. Wir transportieren Waffenschränke, Datensafes und Dokumententresore sowohl innerhalb von München als auch überregional. Dabei garantieren wir absolute Diskretion und volle Versicherungsdeckung.</p>
-                    </div>
-
-                    <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 start-/2 -translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">Spezialservice</div>
-                        <h2 className="text-4xl font-extrabold mb-6 mt-6">Schwertransport in München anfragen</h2>
-                        <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">Teilen Sie uns Gewicht, Maße und Standort mit – wir kalkulieren den sicheren Transport.</p>
-                        <div className="px-6"><SmartBookingWizard dict={dict} /></div>
-                    </div>
-                    <div className="flex flex-wrap justify-center gap-3 mt-8">
-                        <Link href={"/" + pageLocale + "/umzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">{dict.common.umzug_munich}</Link>
-                        <Link href={"/" + pageLocale + "/seniorenumzug-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Seniorenumzug München</Link>
-                        <Link href={"/" + pageLocale + "/halteverbotszone-muenchen"} className="px-5 py-3 rounded-2xl border border-border/50 bg-card text-sm font-semibold hover:border-primary/50 transition-all">Halteverbotszone München</Link>
-                    </div>
-                </div>
-            </section>
-        </main>
+            <SpecialtyPageLayout
+                pageLocale={pageLocale}
+                dict={localeDict}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge)}
+                heroTitle={heroTitle}
+                city={city}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta)}
+                breadcrumbs={[
+                    {
+                        label: moveLabel,
+                        href: `/${pageLocale}/umzug-muenchen`,
+                    },
+                    {
+                        label: serviceName,
+                    },
+                ]}
+                chips={[
+                    {
+                        icon: Music,
+                        text: resolveNestedField(content.badges, fallback.badges, "piano"),
+                    },
+                    {
+                        icon: Lock,
+                        text: resolveNestedField(content.badges, fallback.badges, "safe"),
+                        iconClassName: "h-5 w-5 text-muted-foreground",
+                    },
+                    {
+                        icon: Shield,
+                        text: resolveNestedField(
+                            content.badges,
+                            fallback.badges,
+                            "insurance"
+                        ),
+                    },
+                ]}
+                cards={[
+                    {
+                        icon: Music,
+                        title: resolveNestedField(content.service1, fallback.service1, "title"),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1"),
+                            resolveNestedField(content.service1, fallback.service1, "l2"),
+                            resolveNestedField(content.service1, fallback.service1, "l3"),
+                            resolveNestedField(content.service1, fallback.service1, "l4"),
+                        ],
+                    },
+                    {
+                        icon: Lock,
+                        iconClassName: "mb-6 h-10 w-10 text-muted-foreground",
+                        title: resolveNestedField(content.service2, fallback.service2, "title"),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1"),
+                            resolveNestedField(content.service2, fallback.service2, "l2"),
+                            resolveNestedField(content.service2, fallback.service2, "l3"),
+                            resolveNestedField(content.service2, fallback.service2, "l4"),
+                        ],
+                    },
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
+        </>
     );
 }

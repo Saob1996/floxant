@@ -3792,6 +3792,366 @@
       "h1_hi": "Ücreti Nedir?",
       "subtitle": "Büyük çöplerden tam ev boşaltımına kadar.",
       "h2": "Tasfiye masrafları nasıl hesaplanır?"
+    },
+    "klaviertransport": {
+      "meta_title": "Piyano & Kasa Taşıma {city} | FLOXANT",
+      "meta_desc": "{city} profesyonel ambalajlı piyano ve kasa taşıma hizmeti.",
+      "hero_badge": "Özel Taşıma",
+      "hero_h1": "Piyano & Kasa Taşıma",
+      "hero_p": "Ağır yükler uzmanlık ve özel sigorta gerektirir. Bunu biz sağlıyoruz.",
+      "badges": {
+        "piano": "Piyano",
+        "safe": "Kasa",
+        "insurance": "Özel Sigorta"
+      },
+      "cta": "Ağır Taşıma İsteyin",
+      "service1": {
+        "title": "Piyano Taşıma",
+        "l1": "Özel ekipman",
+        "l2": "Koruma",
+        "l3": "İklim kontrollü",
+        "l4": "Akort"
+      },
+      "service2": {
+        "title": "Kasa Taşıma",
+        "l1": "2000 kg kadar",
+        "l2": "Hidrolik",
+        "l3": "Kontrol",
+        "l4": "Gizli işlem"
+      },
+      "section2_h2": "{city} Ağır Taşıma",
+      "section2_p1": "Dar alanlarda bile uzman çözüm.",
+      "section2_p2": "Tam gizlilik ve sigorta.",
+      "wizard_badge": "Özel Hizmet",
+      "wizard_h2": "{city} Taşıma İste",
+      "wizard_p": "Ağırlık ve detayları bildirin.",
+      "link_umzug": "Nakliyat {city}",
+      "link_senioren": "Yaşlı Nakliyatı",
+      "link_halteverbot": "Park Yasağı"
+    },
+    "halteverbotszone": {
+      "meta_title": "Park Yasağı Bölgesi {city} | FLOXANT",
+      "meta_desc": "{city} taşınma için park yasağı izni alın.",
+      "hero_badge": "İzin Servisi",
+      "hero_h1": "Park Yasağı Bölgesi",
+      "hero_p": "Cezalardan kaçının. Tüm park izni işlemlerinizi biz hallediyoruz.",
+      "badges": {
+        "permit": "Şehir İzni",
+        "signs": "Kurulum",
+        "stressfree": "Stressiz Park"
+      },
+      "cta": "Bölge İsteyin",
+      "service1": {
+        "title": "Tam Hizmet",
+        "l1": "Belediye başvurusu",
+        "l2": "Tabela kiralama",
+        "l3": "72s öncesi kurulum",
+        "l4": "Toplama"
+      },
+      "service2": {
+        "title": "Tabela Kiralama",
+        "l1": "İzin başvurusu",
+        "l2": "Teslimat",
+        "l3": "Kurulum",
+        "l4": "İade"
+      },
+      "section2_h2": "{city} Sipariş Ver",
+      "section2_p1": "Önceden başvuru gerekir.",
+      "section2_p2": "Bürokrasiyle biz ilgilenelim.",
+      "wizard_badge": "Şehir Servisi",
+      "wizard_h2": "Kurulum İsteyin",
+      "wizard_p": "Yükleme adresini bildirin.",
+      "link_umzug": "Nakliyat {city}",
+      "link_senioren": "Yaşlı Nakliyatı",
+      "link_halteverbot": "Piyano"
+    },
+    "seniorenumzug": {
+      "meta_title": "Yaşlı Evden Eve Nakliyat {city} | FLOXANT",
+      "meta_desc": "{city} yaşlılar için stressiz nakliyat.",
+      "hero_badge": "Hassas Taşıma",
+      "hero_h1": "Yaşlı Nakliyatı",
+      "hero_p": "Paketlemeden kuruluma her şeyi hallediyoruz.",
+      "badges": {
+        "permit": "Sabır",
+        "signs": "Tam Hizmet",
+        "stressfree": "Atık imhası dahil"
+      },
+      "cta": "Nakliyat İste",
+      "service1": {
+        "title": "Her Şey Dahil",
+        "l1": "Paketleme",
+        "l2": "Montaj",
+        "l3": "Lamba montajı",
+        "l4": "Açma"
+      },
+      "service2": {
+        "title": "Boşaltma",
+        "l1": "Eski eşya imhası",
+        "l2": "Temiz teslim",
+        "l3": "Bağış",
+        "l4": "Çevre dostu"
+      },
+      "section2_h2": "Hassas Taşıma {city}",
+      "section2_p1": "Eski eşyalardan ayrılmanın zor olduğunu biliyoruz.",
+      "section2_p2": "Özel eğitimli ekip.",
+      "wizard_badge": "Premium",
+      "wizard_h2": "Nakliye İsteyin",
+      "wizard_p": "Ücretsiz randevu.",
+      "link_umzug": "Nakliyat",
+      "link_senioren": "Park yasağı",
+      "link_halteverbot": "Temizlik"
+    },
+    "studentenumzug": {
+      "meta_title": "Öğrenci Nakliyatı {city} | FLOXANT",
+      "meta_desc": "Ucuz öğrenci taşıma {city}.",
+      "hero_badge": "Öğrenci İndirimi",
+      "hero_h1": "Öğrenci Taşıma",
+      "hero_p": "Bütçeniz kısıtlı mı? {city} ucuz öğrenci taşımacılığı sunuyoruz.",
+      "badges": {
+        "permit": "Hızlı",
+        "signs": "Ucuz",
+        "stressfree": "Esnek"
+      },
+      "cta": "İste",
+      "service1": {
+        "title": "Araç ve Şoför",
+        "l1": "Siz taşıyın",
+        "l2": "Biz sürelim",
+        "l3": "Battaniye dahil",
+        "l4": "Yakıt dahil"
+      },
+      "service2": {
+        "title": "Tam taşıma",
+        "l1": "Her şey bizde",
+        "l2": "Öğrenci indirimi",
+        "l3": "Montaj",
+        "l4": "Hızlı"
+      },
+      "section2_h2": "{city} Taşıma",
+      "section2_p1": "Yurt veya paylaşımlı ev.",
+      "section2_p2": "Ucuz taşıma ayırtın.",
+      "wizard_badge": "İndirim",
+      "wizard_h2": "İndirim İste",
+      "wizard_p": "Ucuz fiyat alın.",
+      "link_umzug": "Nakliyat",
+      "link_senioren": "Küçük",
+      "link_halteverbot": "Park"
+    },
+    "familienumzug": {
+      "meta_title": "Aile Nakliyatı {city} | FLOXANT",
+      "meta_desc": "Aileler için stressiz taşıma.",
+      "hero_badge": "Aile Hizmeti",
+      "hero_h1": "Aile Nakliyatı",
+      "hero_p": "Çocuklarla taşınmak mı? Bize güvenin.",
+      "badges": {
+        "permit": "Hızlı",
+        "signs": "Dikkatli",
+        "stressfree": "Çocuk dostu"
+      },
+      "cta": "Taşıma İste",
+      "service1": {
+        "title": "Paket",
+        "l1": "Oyuncak",
+        "l2": "Mutfak",
+        "l3": "Kıyafet",
+        "l4": "Kitap"
+      },
+      "service2": {
+        "title": "Taşıma",
+        "l1": "Güvenli",
+        "l2": "Hızlı",
+        "l3": "Sigortalı",
+        "l4": "Kurulu"
+      },
+      "section2_h2": "Aile Taşıma {city}",
+      "section2_p1": "Neye ihtiyaç olduğunu biliyoruz.",
+      "section2_p2": "Şimdi rezervasyon yapın.",
+      "wizard_badge": "Aile",
+      "wizard_h2": "Taşıma iste",
+      "wizard_p": "Detay verin.",
+      "link_umzug": "Nakliyat",
+      "link_senioren": "Temizlik",
+      "link_halteverbot": "Boşaltma"
+    },
+    "umzug24": {
+      "meta_title": "24s Acil Navigasyon {city} | FLOXANT",
+      "meta_desc": "24 saat içinde taşınma.",
+      "hero_badge": "Ekspres",
+      "hero_h1": "24 Saat Nakliyat",
+      "hero_p": "Acil bir taşınma mı gerekiyor?",
+      "badges": {
+        "permit": "Acil",
+        "signs": "Hızlı",
+        "stressfree": "Şimdi"
+      },
+      "cta": "Acil İste",
+      "service1": {
+        "title": "Hızlı Taşıma",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "Acil Nakliye",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "Hızlı {city}",
+      "section2_p1": "Bugün al.",
+      "section2_p2": "Yarın taşın.",
+      "wizard_badge": "Acil",
+      "wizard_h2": "Acil taşı",
+      "wizard_p": "Hemen girin.",
+      "link_umzug": "Nakliye",
+      "link_senioren": "Acil",
+      "link_halteverbot": "Özel"
+    },
+    "kleintransport": {
+      "meta_title": "Küçük Nakliyat | FLOXANT",
+      "meta_desc": "Mini eşyaları güvenle taşıma.",
+      "hero_badge": "Küçük Taksi",
+      "hero_h1": "Küçük Taşımacılık",
+      "hero_p": "Birkaç eşya mı? Halletmek kolay.",
+      "badges": {
+        "permit": "Ucuz",
+        "signs": "Hızlı",
+        "stressfree": "Kolay"
+      },
+      "cta": "Taşı",
+      "service1": {
+        "title": "A'dan B'ye",
+        "l1": "Eşya taksi",
+        "l2": "Ebay",
+        "l3": "Ikea",
+        "l4": "Küçük yük"
+      },
+      "service2": {
+        "title": "Öğrenci",
+        "l1": "1 oda",
+        "l2": "Yurt",
+        "l3": "Paylaşımlı",
+        "l4": "ofis"
+      },
+      "section2_h2": "Küçük Eşya",
+      "section2_p1": "İdeal çözüm.",
+      "section2_p2": "Online al.",
+      "wizard_badge": "Taşı",
+      "wizard_h2": "İste",
+      "wizard_p": "Bildirin.",
+      "link_umzug": "Nakliyat",
+      "link_senioren": "Genel",
+      "link_halteverbot": "Mini"
+    },
+    "bueroumzug": {
+      "meta_title": "Ofis Nakliyatı {city} | FLOXANT",
+      "meta_desc": "Profesyonel B2B taşımacılığı.",
+      "hero_badge": "B2B",
+      "hero_h1": "Ofis Taşımacılığı",
+      "hero_p": "Ofisler özel planlama gerektirir.",
+      "badges": {
+        "permit": "Hızlı",
+        "signs": "BT Güvenli",
+        "stressfree": "Resmi"
+      },
+      "cta": "Talep Et",
+      "service1": {
+        "title": "Bilişim",
+        "l1": "Güvenli ağ",
+        "l2": "Kablolama",
+        "l3": "Sunucu",
+        "l4": "Koruma"
+      },
+      "service2": {
+        "title": "Mobilya",
+        "l1": "Dosyalar",
+        "l2": "Montaj",
+        "l3": "Hızlı",
+        "l4": "Gizli"
+      },
+      "section2_h2": "Ofis {city}",
+      "section2_p1": "Kesin.",
+      "section2_p2": "Güvenli.",
+      "wizard_badge": "Ofis",
+      "wizard_h2": "Fiyat Al",
+      "wizard_p": "Bilgi girin.",
+      "link_umzug": "Nakliye",
+      "link_senioren": "Kurumsal",
+      "link_halteverbot": "Ticari"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Ev Boşaltma {city} | FLOXANT",
+      "meta_desc": "{city} ev temizliği ve atık imhası.",
+      "hero_badge": "Eşya Boşaltma",
+      "hero_h1": "Ev Boşaltma",
+      "hero_p": "Daireleri, bodrumları hızlıca boşaltıyoruz.",
+      "badges": {
+        "permit": "Hızlı",
+        "signs": "Gizli",
+        "stressfree": "Değer Testi"
+      },
+      "cta": "Boşaltma iste",
+      "service1": {
+        "title": "Tam boşaltma",
+        "l1": "Daire",
+        "l2": "Bodrum",
+        "l3": "Sabit fiyat",
+        "l4": "Hızlı"
+      },
+      "service2": {
+        "title": "Elden çıkarma",
+        "l1": "Çevre dostu",
+        "l2": "Ağır eşya",
+        "l3": "Temiz",
+        "l4": "Bağış"
+      },
+      "section2_h2": "Boşaltma {city}",
+      "section2_p1": "Uzman hizmet.",
+      "section2_p2": "Randevu al.",
+      "wizard_badge": "Boşalt",
+      "wizard_h2": "Boşalt",
+      "wizard_p": "Bize bildirin.",
+      "link_umzug": "Nakliyat",
+      "link_senioren": "Temiz",
+      "link_halteverbot": "Boya"
+    },
+    "reinigung_spec": {
+      "meta_title": "Teslimat Temizliği {city} | FLOXANT",
+      "meta_desc": "Taşınma sonrası %100 teslimat garantisi ile temizlik.",
+      "hero_badge": "Temizlik",
+      "hero_h1": "Taşınma Temizliği",
+      "hero_p": "Stres yapmayın. {city} apartman temizliğini biz hallediyoruz.",
+      "badges": {
+        "permit": "Garanti",
+        "signs": "Ekolojik",
+        "stressfree": "Derin temiz"
+      },
+      "cta": "Temizlik İste",
+      "service1": {
+        "title": "Derin",
+        "l1": "Banyo mutfak",
+        "l2": "Pencere",
+        "l3": "Lekeler",
+        "l4": "Radyatör"
+      },
+      "service2": {
+        "title": "Garanti",
+        "l1": "Bedava onarım",
+        "l2": "Ev sahibi onaylı",
+        "l3": "Şeffaf",
+        "l4": "Hızlı"
+      },
+      "section2_h2": "Temizlik",
+      "section2_p1": "-",
+      "section2_p2": "Rezerve et.",
+      "wizard_badge": "Temiz",
+      "wizard_h2": "İste",
+      "wizard_p": "Bilgi girin.",
+      "link_umzug": "Nakliyat",
+      "link_senioren": "Eski",
+      "link_halteverbot": "Boş"
     }
   },
   "services_section": {

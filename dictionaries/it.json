@@ -3792,6 +3792,366 @@
       "h1_hi": "Sgombero?",
       "subtitle": "Un conto veloce.",
       "h2": "Calcolo"
+    },
+    "klaviertransport": {
+      "meta_title": "Trasporto Pianoforti {city} | FLOXANT",
+      "meta_desc": "Trasporto sicuro di pianoforti.",
+      "hero_badge": "Sicuro",
+      "hero_h1": "Trasporto Pianoforti",
+      "hero_p": "Completamente assicurato.",
+      "badges": {
+        "piano": "Pianoforti",
+        "safe": "Casseforti",
+        "insurance": "Assicurazione"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "Traslocare",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "halteverbotszone": {
+      "meta_title": "Zona di divieto di sosta {city}",
+      "meta_desc": "Zona per il trasloco.",
+      "hero_badge": "Permesso",
+      "hero_h1": "Divieto di Sosta",
+      "hero_p": "Richiediamo il permesso.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "seniorenumzug": {
+      "meta_title": "Trasloco per Anziani {city}",
+      "meta_desc": "Trasloco senza stress.",
+      "hero_badge": "Premium",
+      "hero_h1": "Trasloco per Anziani",
+      "hero_p": "Ci prendiamo cura di tutto.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "studentenumzug": {
+      "meta_title": "Trasloco Studenti {city}",
+      "meta_desc": "Trasloco economico.",
+      "hero_badge": "Studenti",
+      "hero_h1": "Trasloco Studenti",
+      "hero_p": "Economico e veloce.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "familienumzug": {
+      "meta_title": "Trasloco Famiglie {city}",
+      "meta_desc": "Famiglie.",
+      "hero_badge": "Famiglia",
+      "hero_h1": "Trasloco Famiglie",
+      "hero_p": "Sicuro.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "umzug24": {
+      "meta_title": "Trasloco 24h {city}",
+      "meta_desc": "Urgente.",
+      "hero_badge": "24h",
+      "hero_h1": "Trasloco 24 ore",
+      "hero_p": "Oggi stesso.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Ora",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "Mini Trasporti",
+      "meta_desc": "Piccoli trasporti.",
+      "hero_badge": "Mini",
+      "hero_h1": "Piccoli Trasporti",
+      "hero_p": "Un mobile.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Muovere",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "Trasloco Ufficio {city}",
+      "meta_desc": "Uffici.",
+      "hero_badge": "B2B",
+      "hero_h1": "Trasloco Uffici",
+      "hero_p": "Professionisti.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Sgombero {city}",
+      "meta_desc": "Pulizia profonda.",
+      "hero_badge": "Sgomberi",
+      "hero_h1": "Sgombero",
+      "hero_p": "Veloce.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Richiedi",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "reinigung_spec": {
+      "meta_title": "Pulizia {city}",
+      "meta_desc": "Pulizia finale.",
+      "hero_badge": "Pulizia",
+      "hero_h1": "Pulizia Finale",
+      "hero_p": "Garanzia.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Pulire",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {

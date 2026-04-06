@@ -3876,6 +3876,366 @@
       "h1_hi": "Entsorgung?",
       "subtitle": "Transparente Preise.",
       "h2": "Wie berechnen sich die Entsorgungskosten?"
+    },
+    "klaviertransport": {
+      "meta_title": "Klaviertransport & Tresortransport {city} | FLOXANT",
+      "meta_desc": "Professioneller Klavier- und Tresortransport in {city}. Voll versichert und sicher mit Spezialequipment von FLOXANT.",
+      "hero_badge": "Spezialtransporte · Schwerlast",
+      "hero_h1": "Klavier- & Tresortransport",
+      "hero_p": "Ein Klavier wiegt 200-500 kg, ein Tresor oft noch mehr. Für solche Aufträge braucht es Spezialkönnen, -equipment und -versicherung. Genau das liefern wir.",
+      "badges": {
+        "piano": "Klavier & Flügel",
+        "safe": "Tresore & Safes",
+        "insurance": "Spezialversicherung"
+      },
+      "cta": "Schwertransport anfragen",
+      "service1": {
+        "title": "Klaviertransport",
+        "l1": "Spezial-Klavierrollwagen & Tragegurte",
+        "l2": "Schutzpolsterung für Tasten, Pedale & Gehäuse",
+        "l3": "Klimatisierter Transport (Feuchtigkeit!)",
+        "l4": "Auf Wunsch: Neuformung durch Fachstimmer"
+      },
+      "service2": {
+        "title": "Tresortransport",
+        "l1": "Tresore bis 2.000 kg Eigengewicht",
+        "l2": "Hydraulische Hubwagen & Treppen-Raupen",
+        "l3": "Statikprüfung für Zielort (Deckenlast)",
+        "l4": "Diskrete Abwicklung für Wertgegenstände"
+      },
+      "section2_h2": "Schwertransporte in {city}: lokales Können",
+      "section2_p1": "In {city} erleben wir häufig Klaviertransporte aus Altbauwohnungen. Die Herausforderung: enge Treppenhäuser, keine Aufzüge. Unsere Lösung: Außenlift oder Krantransport über den Balkon.",
+      "section2_p2": "Tresortransporte sind dagegen oft Firmenkunden-Aufträge. Wir garantieren absolute Diskretion und volle Versicherungsdeckung.",
+      "wizard_badge": "Spezialservice",
+      "wizard_h2": "Schwertransport in {city} anfragen",
+      "wizard_p": "Teilen Sie uns Gewicht, Maße und Standort mit – wir kalkulieren den sicheren Transport.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Seniorenumzug {city}",
+      "link_halteverbot": "Halteverbotszone {city}"
+    },
+    "halteverbotszone": {
+      "meta_title": "Halteverbotszone {city} | FLOXANT",
+      "meta_desc": "Halteverbotszone für Ihren Umzug in {city} einrichten lassen.",
+      "hero_badge": "Behördenservice",
+      "hero_h1": "Halteverbotszone",
+      "hero_p": "Vermeiden Sie Knöllchen und lange Tragewege. Wir kümmern uns um den Antrag und die Aufstellung der Halteverbotszone in {city}.",
+      "badges": {
+        "permit": "Behördliche Genehmigung",
+        "signs": "Auf- & Abbau",
+        "stressfree": "Stressfrei parken"
+      },
+      "cta": "Halteverbotszone anfragen",
+      "service1": {
+        "title": "Komplettservice",
+        "l1": "Antragstellung bei der Stadt",
+        "l2": "Miete der Schilder für {city}",
+        "l3": "Aufstellung 72h vorher",
+        "l4": "Abbau nach dem Umzug"
+      },
+      "service2": {
+        "title": "Schildermiete",
+        "l1": "Sie beantragen die Genehmigung",
+        "l2": "Wir liefern die Schilder",
+        "l3": "Sie stellen auf",
+        "l4": "Wir holen ab"
+      },
+      "section2_h2": "Halteverbotszone in {city} bestellen",
+      "section2_p1": "In {city} benötigen die Behörden im Schnitt 14 Tage Vorlauf.",
+      "section2_p2": "Überlassen Sie uns die Bürokratie.",
+      "wizard_badge": "Stadtservice",
+      "wizard_h2": "Halteverbotszone {city} einrichten",
+      "wizard_p": "Nennen Sie uns die Ladeadresse in {city}.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Seniorenumzug {city}",
+      "link_halteverbot": "Klaviertransport {city}"
+    },
+    "seniorenumzug": {
+      "meta_title": "Seniorenumzug {city} | FLOXANT",
+      "meta_desc": "Stressfreier Seniorenumzug in {city}. Einfühlsam, geduldig und mit Komplettservice.",
+      "hero_badge": "Behutsamer Transport",
+      "hero_h1": "Seniorenumzug",
+      "hero_p": "Ein Umzug im Alter erfordert Vertrauen und Geduld. Wir kümmern uns um alles von Einpacken bis Aufbau, damit Sie in {city} ruhig ankommen.",
+      "badges": {
+        "permit": "Empathie & Geduld",
+        "signs": "Komplettservice",
+        "stressfree": "Entsorgung inklusive"
+      },
+      "cta": "Seniorenumzug anfragen",
+      "service1": {
+        "title": "Rundum-Sorglos",
+        "l1": "Einpackservice",
+        "l2": "Möbelmontage",
+        "l3": "Lampen anbringen",
+        "l4": "Auspackhilfe"
+      },
+      "service2": {
+        "title": "Entrümpelung",
+        "l1": "Entsorgung alter Möbel",
+        "l2": "Besenreine Übergabe",
+        "l3": "Spendenkoordination",
+        "l4": "Umweltgerecht"
+      },
+      "section2_h2": "Behutsamer Seniorenumzug in {city}",
+      "section2_p1": "Wir wissen, dass der Abschied von alten Dingen oft schwerfällt.",
+      "section2_p2": "Unser Team in {city} ist speziell für Seniorenumzüge geschult.",
+      "wizard_badge": "Premiumservice",
+      "wizard_h2": "Seniorenumzug {city} anfragen",
+      "wizard_p": "Kostenfreier Besichtigungstermin in {city}.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Halteverbotszone {city}",
+      "link_halteverbot": "Entrümpelung {city}"
+    },
+    "studentenumzug": {
+      "meta_title": "Studentenumzug {city} | FLOXANT",
+      "meta_desc": "Günstiger Studentenumzug in {city}. Flexibel, schnell und für den schmalen Geldbeutel.",
+      "hero_badge": "Studentenrabatt",
+      "hero_h1": "Studentenumzug",
+      "hero_p": "Knappes Budget? Kein Problem. Wir bieten günstige Studentenumzüge in {city} – ob nur als Transporter mit Fahrer oder mit Tragehelfern.",
+      "badges": {
+        "permit": "Schnelle Abwicklung",
+        "signs": "Günstige Tarife",
+        "stressfree": "Flexibel"
+      },
+      "cta": "Studentenumzug anfragen",
+      "service1": {
+        "title": "Transporter & Fahrer",
+        "l1": "WG packt und trägt",
+        "l2": "Wir fahren den LKW",
+        "l3": "Möbeldecken dabei",
+        "l4": "Sprit inklusive"
+      },
+      "service2": {
+        "title": "Komplettumzug",
+        "l1": "Wir erledigen alles",
+        "l2": "Studentenrabatt greift",
+        "l3": "Möbelmontage",
+        "l4": "Schnelle Durchführung"
+      },
+      "section2_h2": "Studentenumzug in {city}",
+      "section2_p1": "Egal ob Studentenwohnheim oder WG-Zimmer in {city}.",
+      "section2_p2": "Buche jetzt deinen günstigen Umzug.",
+      "wizard_badge": "Rabattaktion",
+      "wizard_h2": "Studentenumzug {city} anfragen",
+      "wizard_p": "Hol dir deinen günstigen Preis.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Kleintransporte {city}",
+      "link_halteverbot": "Entrümpelung {city}"
+    },
+    "familienumzug": {
+      "meta_title": "Familienumzug {city} | FLOXANT",
+      "meta_desc": "Stressfreier Familienumzug in {city}.",
+      "hero_badge": "Familienservice",
+      "hero_h1": "Familienumzug",
+      "hero_p": "Mit Kindern umziehen? Wir organisieren alles, damit Sie Zeit für Ihre Familie haben.",
+      "badges": {
+        "permit": "Schnell",
+        "signs": "Sorgfältig",
+        "stressfree": "Kinderfreundlich"
+      },
+      "cta": "Familienumzug anfragen",
+      "service1": {
+        "title": "Einpacken",
+        "l1": "Spielzeug sicher verpackt",
+        "l2": "Küche voll eingepackt",
+        "l3": "Kleidung in Kleiderboxen",
+        "l4": "Bücherkartons"
+      },
+      "service2": {
+        "title": "Transport",
+        "l1": "Sicher",
+        "l2": "Schnell",
+        "l3": "Vollversichert",
+        "l4": "Möbelaufbau"
+      },
+      "section2_h2": "Ihr Familienumzug in {city}",
+      "section2_p1": "Wir wissen, was Familien brauchen.",
+      "section2_p2": "Buchen Sie jetzt.",
+      "wizard_badge": "Familie",
+      "wizard_h2": "Umzug anfragen",
+      "wizard_p": "Geben Sie die Details ein.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Seniorenumzug",
+      "link_halteverbot": "Entrümpelung"
+    },
+    "umzug24": {
+      "meta_title": "24h Umzug {city} | FLOXANT",
+      "meta_desc": "Schneller Umzug innerhalb 24h in {city}.",
+      "hero_badge": "Express",
+      "hero_h1": "24h Umzug",
+      "hero_p": "Sie müssen extrem kurzfristig raus? Unser Express-Team ist sofort da.",
+      "badges": {
+        "permit": "Schnell",
+        "signs": "24h",
+        "stressfree": "Sofort"
+      },
+      "cta": "Jetzt anfragen",
+      "service1": {
+        "title": "Express Umzug",
+        "l1": "Sofort Team",
+        "l2": "Möbelaufbau",
+        "l3": "Transport",
+        "l4": "Sicher"
+      },
+      "service2": {
+        "title": "Notfall Transport",
+        "l1": "Direkt LKW",
+        "l2": "Fahrer",
+        "l3": "Möbel",
+        "l4": "Versichert"
+      },
+      "section2_h2": "Schneller Umzug {city}",
+      "section2_p1": "Heute buchen.",
+      "section2_p2": "Morgen umziehen.",
+      "wizard_badge": "Express",
+      "wizard_h2": "Express Umzug anfragen",
+      "wizard_p": "Details für den Notfall.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Umzugsservice",
+      "link_halteverbot": "Entrümpelung"
+    },
+    "kleintransport": {
+      "meta_title": "Kleintransporte & Möbeltaxi | FLOXANT",
+      "meta_desc": "Schnelle Transporte für Einzelstücke und kleine Umzüge.",
+      "hero_badge": "Möbeltaxi",
+      "hero_h1": "Kleintransporte",
+      "hero_p": "Nur ein Sofa, eine Waschmaschine oder ein WG-Zimmer? Unser Kleintransport in Bayern ist extrem günstig.",
+      "badges": {
+        "permit": "Schnell",
+        "signs": "Günstig",
+        "stressfree": "Sicher"
+      },
+      "cta": "Transport anfragen",
+      "service1": {
+        "title": "A nach B Transport",
+        "l1": "Möbeltaxi",
+        "l2": "Ebay Kleinanzeigen",
+        "l3": "Ikea Einkauf",
+        "l4": "Beiladung"
+      },
+      "service2": {
+        "title": "Kleine Umzüge",
+        "l1": "1-Zimmer Wohnung",
+        "l2": "Studenten",
+        "l3": "WG Zimmer",
+        "l4": "Büroumzug"
+      },
+      "section2_h2": "Dein Kleintransport",
+      "section2_p1": "Ideal für Einzelstücke.",
+      "section2_p2": "Direkt online anfragen.",
+      "wizard_badge": "Transport",
+      "wizard_h2": "Kleintransport anfragen",
+      "wizard_p": "Details eingeben.",
+      "link_umzug": "Umzug",
+      "link_senioren": "Umzug",
+      "link_halteverbot": "Entrümpelung"
+    },
+    "bueroumzug": {
+      "meta_title": "Büroumzug {city} | FLOXANT",
+      "meta_desc": "Professioneller Büroumzug in {city}. Diskrete IT-Verlagerung.",
+      "hero_badge": "Firmenkunden",
+      "hero_h1": "Büroumzug",
+      "hero_p": "Büroumzüge erfordern minutiöse Planung, um Ausfallzeiten zu minimieren.",
+      "badges": {
+        "permit": "Wochenende",
+        "signs": "IT-Umzug",
+        "stressfree": "Akten sicher"
+      },
+      "cta": "Büroumzug anfragen",
+      "service1": {
+        "title": "IT & Elektronik",
+        "l1": "Sicher",
+        "l2": "EDV",
+        "l3": "Server",
+        "l4": "Kabelmanagement"
+      },
+      "service2": {
+        "title": "Möbel & Akten",
+        "l1": "Montage",
+        "l2": "Akten sicher",
+        "l3": "Diskret",
+        "l4": "Schnell"
+      },
+      "section2_h2": "Firmenumzug in {city}",
+      "section2_p1": "Wir planen exakt.",
+      "section2_p2": "Vollversichert.",
+      "wizard_badge": "Business",
+      "wizard_h2": "Büroumzug {city}",
+      "wizard_p": "Details angeben.",
+      "link_umzug": "Umzug",
+      "link_senioren": "Umzug",
+      "link_halteverbot": "Entrümpelung"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Entrümpelung {city} | FLOXANT",
+      "meta_desc": "Professionelle Entrümpelung und Wohnungsauflösung in {city}.",
+      "hero_badge": "Räumungsservice",
+      "hero_h1": "Entrümpelung",
+      "hero_p": "Ob Wohnungsauflösung, Keller oder Dachboden in {city}: Wir räumen diskret und besenrein.",
+      "badges": {
+        "permit": "Schnell",
+        "signs": "Diskret",
+        "stressfree": "Wertanrechnung"
+      },
+      "cta": "Entrümpelung anfragen",
+      "service1": {
+        "title": "Kompletträumung",
+        "l1": "Wohnungsauflösung",
+        "l2": "Keller & Dachboden",
+        "l3": "Festpreis",
+        "l4": "Besenrein"
+      },
+      "service2": {
+        "title": "Fachgerechte Entsorgung",
+        "l1": "Umweltgerecht",
+        "l2": "Sperrmüll",
+        "l3": "Aktenvernichtung",
+        "l4": "Spenden"
+      },
+      "section2_h2": "Professionelle Entrümpelung {city}",
+      "section2_p1": "Wir sind Ihr Ansprechpartner in {city}.",
+      "section2_p2": "Vereinbaren Sie eine kostenlose Besichtigung.",
+      "wizard_badge": "Räumung",
+      "wizard_h2": "Entrümpelung {city} anfragen",
+      "wizard_p": "Senden Sie uns Bilder oder vereinbaren Sie einen Termin.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Seniorenumzug {city}",
+      "link_halteverbot": "Reinigung {city}"
+    },
+    "reinigung_spec": {
+      "meta_title": "Endreinigung {city} | FLOXANT",
+      "meta_desc": "Professionelle Umzugsreinigung mit Abnahmegarantie in {city}.",
+      "hero_badge": "Reinigungsfirma",
+      "hero_h1": "Endreinigung",
+      "hero_p": "Sparen Sie sich den Putzstress nach dem Umzug. Wir reinigen Ihre Wohnung in {city} mit 100% Abnahmegarantie.",
+      "badges": {
+        "permit": "Abnahmegarantie",
+        "signs": "Umweltfreundlich",
+        "stressfree": "Tiefenrein"
+      },
+      "cta": "Reinigung anfragen",
+      "service1": {
+        "title": "Intensivreinigung",
+        "l1": "Bad & Küche Entkalkung",
+        "l2": "Fenster & Rahmen",
+        "l3": "Böden",
+        "l4": "Heizkörper"
+      },
+      "service2": {
+        "title": "Garantie",
+        "l1": "Kostenlose Nachbesserung",
+        "l2": "Vermietergerecht",
+        "l3": "Festpreis",
+        "l4": "Zuverlässig"
+      },
+      "section2_h2": "Professionelle Reinigung in {city}",
+      "section2_p1": "Ihre alte Wohnung in {city} erstrahlt in neuem Glanz.",
+      "section2_p2": "Mit Abnahmegarantie.",
+      "wizard_badge": "Sauber",
+      "wizard_h2": "Reinigung {city} anfragen",
+      "wizard_p": "Geben Sie die Quadratmeterzahl ein.",
+      "link_umzug": "Umzug {city}",
+      "link_senioren": "Seniorenumzug {city}",
+      "link_halteverbot": "Entrümpelung {city}"
     }
   },
   "services_section": {

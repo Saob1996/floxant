@@ -3881,6 +3881,366 @@
       "h1_hi": "需要多少钱？",
       "subtitle": "大件垃圾和整屋清理直接报价。",
       "h2": "费用是如何计算的？"
+    },
+    "klaviertransport": {
+      "meta_title": "钢琴搬运 {city} | FLOXANT",
+      "meta_desc": "专业钢琴搬运在 {city}.",
+      "hero_badge": "重物运输",
+      "hero_h1": "钢琴",
+      "hero_p": "安全运输",
+      "badges": {
+        "piano": "钢琴",
+        "safe": "保险箱",
+        "insurance": "保险"
+      },
+      "cta": "请求服务",
+      "service1": {
+        "title": "钢琴",
+        "l1": "A",
+        "l2": "B",
+        "l3": "C",
+        "l4": "D"
+      },
+      "service2": {
+        "title": "保险箱",
+        "l1": "A",
+        "l2": "B",
+        "l3": "C",
+        "l4": "D"
+      },
+      "section2_h2": "专业服务 {city}",
+      "section2_p1": "在 {city}",
+      "section2_p2": "专业",
+      "wizard_badge": "专业",
+      "wizard_h2": "请求 {city}",
+      "wizard_p": "详情",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "长者搬家 {city}",
+      "link_halteverbot": "禁停区 {city}"
+    },
+    "halteverbotszone": {
+      "meta_title": "禁停区 {city} | FLOXANT",
+      "meta_desc": "为您的搬家在 {city} 设立禁停区.",
+      "hero_badge": "许可服务",
+      "hero_h1": "禁停区申请",
+      "hero_p": "避免停车罚单和长途搬运。我们在 {city} 处理申请和设置.",
+      "badges": {
+        "permit": "城市许可",
+        "signs": "设置与拆除",
+        "stressfree": "无压力停车"
+      },
+      "cta": "请求禁停区",
+      "service1": {
+        "title": "全面服务",
+        "l1": "市政门户申请",
+        "l2": "在 {city} 租用标志",
+        "l3": "提前72小时设置",
+        "l4": "搬家后拆除"
+      },
+      "service2": {
+        "title": "自助租用",
+        "l1": "您申请许可",
+        "l2": "我们提供标志",
+        "l3": "您进行设置",
+        "l4": "我们负责回收"
+      },
+      "section2_h2": "在 {city} 预订禁停区",
+      "section2_p1": "在 {city}，当局平均需要14天的提前量.",
+      "section2_p2": "把繁琐的手续交给我们.",
+      "wizard_badge": "城市服务",
+      "wizard_h2": "设置 {city} 禁停区",
+      "wizard_p": "请告诉我们 {city} 的装载地址.",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "长者搬家 {city}",
+      "link_halteverbot": "钢琴搬运 {city}"
+    },
+    "seniorenumzug": {
+      "meta_title": "长者搬家 {city} | FLOXANT",
+      "meta_desc": "在 {city} 无压力的长者搬家。细心、耐心且全面的服务.",
+      "hero_badge": "小心运输",
+      "hero_h1": "长者搬家",
+      "hero_p": "晚年搬家需要信任和耐心。我们包揽从打包到组装的一切，让您顺利搬入 {city} 的新家.",
+      "badges": {
+        "permit": "同理心与耐心",
+        "signs": "全方位服务",
+        "stressfree": "包含废弃物处理"
+      },
+      "cta": "请求长者搬家",
+      "service1": {
+        "title": "全包套餐",
+        "l1": "打包服务",
+        "l2": "家具组装",
+        "l3": "灯具安装",
+        "l4": "拆箱"
+      },
+      "service2": {
+        "title": "清理服务",
+        "l1": "处理旧家具",
+        "l2": "清洁交房",
+        "l3": "慈善捐助",
+        "l4": "环保规范"
+      },
+      "section2_h2": "在 {city} 的贴心长者搬家",
+      "section2_p1": "我们理解与旧物告别往往很艰难.",
+      "section2_p2": "我们在 {city} 的团队专门受过长者搬家培训.",
+      "wizard_badge": "优质服务",
+      "wizard_h2": "请求 {city} 长者搬家",
+      "wizard_p": "在 {city} 免费上门评估.",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "禁停区 {city}",
+      "link_halteverbot": "清理房屋 {city}"
+    },
+    "studentenumzug": {
+      "meta_title": "学生搬家 {city} | FLOXANT",
+      "meta_desc": "{city} 廉价学生搬家服务。灵活、快速且实惠.",
+      "hero_badge": "学生折扣",
+      "hero_h1": "学生搬家",
+      "hero_p": "预算吃紧？没问题。我们在 {city} 提供便宜的学生搬家服务.",
+      "badges": {
+        "permit": "快速处理",
+        "signs": "低成本",
+        "stressfree": "灵活"
+      },
+      "cta": "请求学生搬家",
+      "service1": {
+        "title": "货车和司机",
+        "l1": "你自己打包和搬运",
+        "l2": "我们负责驾驶",
+        "l3": "提供毯子",
+        "l4": "包含油费"
+      },
+      "service2": {
+        "title": "全套搬家服务",
+        "l1": "我们包揽一切",
+        "l2": "享受学生折扣",
+        "l3": "家具组装",
+        "l4": "快速执行"
+      },
+      "section2_h2": "在 {city} 的学生搬家",
+      "section2_p1": "无论是在 {city} 的宿舍还是合租房.",
+      "section2_p2": "现在预订您的实惠搬家.",
+      "wizard_badge": "折扣区",
+      "wizard_h2": "请求 {city} 学生搬家",
+      "wizard_p": "获取您的超低价格.",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "微型搬家 {city}",
+      "link_halteverbot": "清理房屋 {city}"
+    },
+    "familienumzug": {
+      "meta_title": "家庭搬家 {city} | FLOXANT",
+      "meta_desc": "{city} 无压力的家庭搬运.",
+      "hero_badge": "家庭服务",
+      "hero_h1": "家庭搬家",
+      "hero_p": "带孩子搬家？我们将重担接管.",
+      "badges": {
+        "permit": "快速",
+        "signs": "细心",
+        "stressfree": "儿童友好"
+      },
+      "cta": "请求家庭搬家",
+      "service1": {
+        "title": "打包",
+        "l1": "玩具",
+        "l2": "厨房",
+        "l3": "衣服",
+        "l4": "书本"
+      },
+      "service2": {
+        "title": "运输",
+        "l1": "安全",
+        "l2": "快速",
+        "l3": "有保险",
+        "l4": "已安装"
+      },
+      "section2_h2": "{city} 家庭搬家",
+      "section2_p1": "我们了解家庭需要什么.",
+      "section2_p2": "现在预订.",
+      "wizard_badge": "家庭",
+      "wizard_h2": "请求搬迁",
+      "wizard_p": "写下细节.",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "高龄搬家",
+      "link_halteverbot": "清理"
+    },
+    "umzug24": {
+      "meta_title": "24小时搬迁 {city} | FLOXANT",
+      "meta_desc": "在24小时内极速搬迁.",
+      "hero_badge": "极速",
+      "hero_h1": "24小时搬迁",
+      "hero_p": "需要极速搬家？",
+      "badges": {
+        "permit": "快速",
+        "signs": "24h",
+        "stressfree": "现在"
+      },
+      "cta": "立即请求",
+      "service1": {
+        "title": "极速搬家",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "极速运输",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "快速搬迁 {city}",
+      "section2_p1": "今日预订.",
+      "section2_p2": "明日搬走.",
+      "wizard_badge": "极速",
+      "wizard_h2": "请求极速搬运",
+      "wizard_p": "细节.",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "搬迁",
+      "link_halteverbot": "清空"
+    },
+    "kleintransport": {
+      "meta_title": "微型运输 | FLOXANT",
+      "meta_desc": "安全运输少量物品.",
+      "hero_badge": "微型运输",
+      "hero_h1": "微型运输",
+      "hero_p": "只有几件物品？我们也会为您搬运.",
+      "badges": {
+        "permit": "快速",
+        "signs": "便宜",
+        "stressfree": "安全"
+      },
+      "cta": "请求运输",
+      "service1": {
+        "title": "点到点运输",
+        "l1": "家具计程车",
+        "l2": "Ebay物品",
+        "l3": "宜家取货",
+        "l4": "小负载"
+      },
+      "service2": {
+        "title": "小型搬家",
+        "l1": "1室公寓",
+        "l2": "学生搬家",
+        "l3": "合租单间",
+        "l4": "办公室"
+      },
+      "section2_h2": "您的微型搬家",
+      "section2_p1": "完美适合单件物品.",
+      "section2_p2": "立即预订.",
+      "wizard_badge": "运输",
+      "wizard_h2": "请求微型运输",
+      "wizard_p": "细节.",
+      "link_umzug": "搬家",
+      "link_senioren": "长者",
+      "link_halteverbot": "清理"
+    },
+    "bueroumzug": {
+      "meta_title": "办公室搬房 {city} | FLOXANT",
+      "meta_desc": "专业的办公室搬迁 {city}.",
+      "hero_badge": "B2B",
+      "hero_h1": "办公室搬家",
+      "hero_p": "搬迁办公室需要规划.",
+      "badges": {
+        "permit": "快",
+        "signs": "IT",
+        "stressfree": "安全"
+      },
+      "cta": "请求",
+      "service1": {
+        "title": "IT",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "B2B",
+      "wizard_h2": "请求",
+      "wizard_p": "细节",
+      "link_umzug": "搬家",
+      "link_senioren": "清理",
+      "link_halteverbot": "清理"
+    },
+    "entruempelung_spec": {
+      "meta_title": "房屋清理 {city} | FLOXANT",
+      "meta_desc": "专业房屋清理在 {city}.",
+      "hero_badge": "清理服务",
+      "hero_h1": "清理房屋",
+      "hero_p": "我们在 {city} 快速清理公寓和地下室.",
+      "badges": {
+        "permit": "快",
+        "signs": "小心",
+        "stressfree": "保值评估"
+      },
+      "cta": "请求清理",
+      "service1": {
+        "title": "清理服务",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "废弃处理",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "{city}",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "清理",
+      "wizard_h2": "请求 {city}",
+      "wizard_p": "-",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "长者 {city}",
+      "link_halteverbot": "保洁 {city}"
+    },
+    "reinigung_spec": {
+      "meta_title": "退房保洁 {city} | FLOXANT",
+      "meta_desc": "带有退房保证的保洁服务 {city}.",
+      "hero_badge": "保洁",
+      "hero_h1": "退房保洁",
+      "hero_p": "省去麻烦。我们为您在 {city} 彻底清洁公寓.",
+      "badges": {
+        "permit": "退租保证",
+        "signs": "环保",
+        "stressfree": "深度清洁"
+      },
+      "cta": "请求保洁",
+      "service1": {
+        "title": "深度清洁",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "保证",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "{city} 保洁",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "保洁",
+      "wizard_h2": "请求 {city}",
+      "wizard_p": "-",
+      "link_umzug": "搬家 {city}",
+      "link_senioren": "长者 {city}",
+      "link_halteverbot": "搬家 {city}"
     }
   },
   "services_section": {

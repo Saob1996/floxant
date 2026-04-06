@@ -1,115 +1,201 @@
-import { i18n } from "@/i18n-config";
-import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
+import { Briefcase, Shield, Truck } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { Users, MapPin, CheckCircle2, Baby, Shield } from "lucide-react";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import {
+    getSpecialtyPageData,
+    resolveField,
+    resolveNestedField,
+} from "@/lib/specialty-page";
+import { generatePageSEO } from "@/lib/seo";
+import { type Locale } from "../../../i18n-config";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
-);
-const DualCalculator = dynamic(
-    () => import("@/components/calculator/DualCalculator"),
-    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
-);
+const CITY = "Bayern";
+const PATH = "familienumzug-bayern";
 
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = dict?.pages?.familienumzug_bayern || {};
-    return {
-        title: content.meta_title,
-        description: 'description: content.meta_desc || Familienumzug in Bayern – kindgerecht, sorgfältig und durchgeplant. Regensburg, Nürnberg, München. Kinder-Umzugsbox ...',
-        alternates: {
-            canonical: `https://floxant.de/${pageLocale}/familienumzug-bayern`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/familienumzug-bayern`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    const { content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "familienumzug",
+            seoKey: "familienumzug_bayern",
+            city: CITY,
+        });
+
+    const title =
+        resolveField(seoContent.meta_title, seoFallback.meta_title, city) ||
+        resolveField(content.meta_title, fallback.meta_title, city) ||
+        `Familienumzug ${city} | FLOXANT`;
+
+    const description =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city) ||
+        `Professioneller Familienumzug in ${city}.`;
+
+    return generatePageSEO({
+        pageLocale,
+        path: PATH,
+        title,
+        description,
+    });
 }
 
-export default async function FamilienumzugBayern({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export default async function FamilienumzugBayernPage({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}) {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
+
+    const { localeDict, content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "familienumzug",
+            seoKey: "familienumzug_bayern",
+            city: CITY,
+        });
+
+    const heroTitle =
+        resolveField(content.hero_h1, fallback.hero_h1) || "Familienumzug";
+    const serviceName = `${heroTitle} ${city}`.trim();
+
+    const metaDescription =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city);
+
+    const moveLabel =
+        resolveField(content.link_umzug, fallback.link_umzug, city) ||
+        `Umzug ${city}`;
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: serviceName,
+        description: metaDescription,
+        provider: {
+            "@type": "MovingCompany",
+            name: "FLOXANT",
+            telephone: "+4915771105087",
+        },
+        areaServed: {
+            "@type": "AdministrativeArea",
+            name: city,
+        },
+        serviceType: [serviceName],
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "FLOXANT",
+                item: `https://www.floxant.de/${pageLocale}`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: moveLabel,
+                item: `https://www.floxant.de/${pageLocale}/umzug-bayern`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: serviceName,
+                item: `https://www.floxant.de/${pageLocale}/${PATH}`,
+            },
+        ],
+    };
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "Familienumzug" }]} />
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+            />
 
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <Users className="w-4 h-4" /><span>Familienumzug in Bayern</span>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Familienumzug in <span className="text-primary">Bayern</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Ein Umzug mit Familie ist eine besondere Herausforderung. FLOXANT plant und koordiniert Ihren Familienumzug so, dass alle Familienmitglieder – vom Kleinkind bis zum Teenager – den Übergang positiv erleben.
-                    </p>
-                </div>
-            </section>
-
-            
-      <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto space-y-24">
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Umziehen mit Familie – mit System statt Chaos</h2>
-                        <p>
-                            Familien haben beim Umzug andere Bedürfnisse als Singles oder Paare. Das Volumen ist größer, die Logistik komplexer, und vor allem: Kinder brauchen Stabilität in einer Phase der Veränderung. FLOXANT hat sich auf genau diese Anforderungen spezialisiert. Wir planen Ihren Familienumzug so, dass der Ablauf für alle Beteiligten möglichst stressfrei ist.
-                        </p>
-                        <p>
-                            Unser Team arbeitet von Regensburg und der Oberpfalz aus – mit Einsätzen in ganz Bayern. Ob innerhalb von München, von Nürnberg nach Augsburg oder vom ländlichen Oberbayern in die Stadt: Wir koordinieren Transport, Montage, Reinigung und bei Bedarf sogar die Kinderbetreuung am Umzugstag.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                            { icon: Baby, title: "Kinder-Umzugsbox", desc: "Optional: Altersgerechte Beschäftigungsbox für Kinder am Umzugstag. Macht den Übergang zum Abenteuer." },
-                            { icon: Shield, title: "Vollversicherung", desc: "Spielzeug, Kindermöbel, Erinnerungsstücke – alles professionell verpackt und vollständig versichert." },
-                            { icon: Users, title: "Familienfreundlich", desc: "Flexible Zeitfenster, leises Arbeiten und Rücksicht auf den Tagesrhythmus Ihrer Familie." },
-                        ].map((item, i) => (
-                            <div key={i} className="p-6 rounded-2xl bg-muted/10 border border-border/50 text-center">
-                                <item.icon className="w-10 h-10 text-primary mx-auto mb-4" />
-                                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Was einen Familienumzug besonders macht</h2>
-                        <p>
-                            Kinder erleben einen Umzug emotional anders als Erwachsene. Das gewohnte Kinderzimmer verschwindet, Freunde bleiben zurück, die gesamte Routine ändert sich. FLOXANT nimmt darauf Rücksicht. Auf Wunsch wird das Kinderzimmer im neuen Zuhause als erstes eingerichtet, damit Ihr Kind sofort einen vertrauten Rückzugsort hat.
-                        </p>
-                        <p>
-                            Darüber hinaus bieten wir unsere Signature „Kinder-Umzugsbox" an: eine liebevoll zusammengestellte Box mit Beschäftigungsmaterial, einem kleinen Erklärbuch zum Thema Umzug und einer persönlichen Überraschung für den ersten Tag im neuen Zimmer.
-                        </p>
-                    </div>
-
-                    <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">Verwandte Leistungen</h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
-                            <Link href={`/${pageLocale}/seniorenumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Seniorenumzug Bayern</Link>
-                            <Link href={`/${pageLocale}/signature/kinder-umzugsbox`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Kinder-Umzugsbox</Link>
-                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
-                        </div>
-                    </div>
-
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
-                        <h2 className="text-3xl font-bold mb-4">Familienumzug in Bayern anfragen</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenloses Festpreisangebot – familienfreundlich und durchgeplant.</p>
-                        <SmartBookingWizard dict={dict} />
-                    </div>
-                </div>
-            </section>
-        </main>
+            <SpecialtyPageLayout
+                pageLocale={pageLocale}
+                dict={localeDict}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge)}
+                heroTitle={heroTitle}
+                city={city}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta)}
+                breadcrumbs={[
+                    {
+                        label: moveLabel,
+                        href: `/${pageLocale}/umzug-bayern`,
+                    },
+                    {
+                        label: serviceName,
+                    },
+                ]}
+                chips={[
+                    {
+                        icon: Briefcase,
+                        text: resolveNestedField(content.badges, fallback.badges, "permit"),
+                    },
+                    {
+                        icon: Truck,
+                        text: resolveNestedField(content.badges, fallback.badges, "signs"),
+                        iconClassName: "h-5 w-5 text-muted-foreground",
+                    },
+                    {
+                        icon: Shield,
+                        text: resolveNestedField(
+                            content.badges,
+                            fallback.badges,
+                            "stressfree"
+                        ),
+                    },
+                ]}
+                cards={[
+                    {
+                        icon: Briefcase,
+                        title: resolveNestedField(content.service1, fallback.service1, "title"),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1"),
+                            resolveNestedField(content.service1, fallback.service1, "l2"),
+                            resolveNestedField(content.service1, fallback.service1, "l3"),
+                            resolveNestedField(content.service1, fallback.service1, "l4"),
+                        ],
+                    },
+                    {
+                        icon: Truck,
+                        iconClassName: "mb-6 h-10 w-10 text-muted-foreground",
+                        title: resolveNestedField(content.service2, fallback.service2, "title"),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1"),
+                            resolveNestedField(content.service2, fallback.service2, "l2"),
+                            resolveNestedField(content.service2, fallback.service2, "l3"),
+                            resolveNestedField(content.service2, fallback.service2, "l4"),
+                        ],
+                    },
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
+        </>
     );
 }

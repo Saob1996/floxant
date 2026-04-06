@@ -3792,6 +3792,366 @@
       "h1_hi": "Utylizacja?",
       "subtitle": "Gwarancja stałej ceny wywozu gabarytów.",
       "h2": "Jak obliczyć koszty?"
+    },
+    "klaviertransport": {
+      "meta_title": "Transport Pianin {city} | FLOXANT",
+      "meta_desc": "Bezpieczny transport.",
+      "hero_badge": "Pewny",
+      "hero_h1": "Transport Pianin",
+      "hero_p": "Ubezpieczone.",
+      "badges": {
+        "piano": "-",
+        "safe": "-",
+        "insurance": "-"
+      },
+      "cta": "Zapytaj",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "halteverbotszone": {
+      "meta_title": "Strefa {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Zakaz parkowania",
+      "hero_p": "Pozwolenia.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "seniorenumzug": {
+      "meta_title": "Dla seniorów {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Dla seniorów",
+      "hero_p": "Bez stresu.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "studentenumzug": {
+      "meta_title": "Studenckie {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Dla studentów",
+      "hero_p": "Tanio.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "familienumzug": {
+      "meta_title": "Rodzina {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Rodzinne",
+      "hero_p": "Spokojnie.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "umzug24": {
+      "meta_title": "24h {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "24h transport",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "Transporter {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Maty",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "Biuro {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Biura",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Opróżnianie {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Opróżnianie mieszkań",
+      "hero_p": "Szybko.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "reinigung_spec": {
+      "meta_title": "Sprzątanie {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Sprzątanie końcowe",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Zamów",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {

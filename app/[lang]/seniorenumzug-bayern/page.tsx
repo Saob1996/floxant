@@ -1,120 +1,205 @@
-import { i18n } from "@/i18n-config";
-import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
+import { Briefcase, Shield, Truck } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { Heart, MapPin, CheckCircle2, Shield, Clock } from "lucide-react";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import {
+    getSpecialtyPageData,
+    resolveField,
+    resolveNestedField,
+} from "@/lib/specialty-page";
+import { generatePageSEO } from "@/lib/seo";
+import { type Locale } from "../../../i18n-config";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
-);
-const DualCalculator = dynamic(
-    () => import("@/components/calculator/DualCalculator"),
-    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
-);
+const CITY = "Bayern";
+const PATH = "seniorenumzug-bayern";
 
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = dict?.pages?.seniorenumzug_bayern || {};
-    return {
-        title: content.meta_title,
-        description: 'description: content.meta_desc || Seniorenumzug in Bayern – mit Geduld, Respekt und professioneller Planung. Wechsel ins Pflegeheim, altersgerechte Wo...',
-        alternates: {
-            canonical: `https://floxant.de/${pageLocale}/seniorenumzug-bayern`,
-            languages: i18n.locales.reduce((acc, l) => { acc[l] = `https://floxant.de/${l}/seniorenumzug-bayern`; return acc; }, {} as Record<string, string>),
-        },
-    };
+    const { content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "seniorenumzug",
+            seoKey: "seniorenumzug_bayern",
+            city: CITY,
+        });
+
+    const title =
+        resolveField(seoContent.meta_title, seoFallback.meta_title, city) ||
+        resolveField(content.meta_title, fallback.meta_title, city) ||
+        `Seniorenumzug ${city} | FLOXANT`;
+
+    const description =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city) ||
+        `Professioneller Seniorenumzug in ${city}.`;
+
+    return generatePageSEO({
+        pageLocale,
+        path: PATH,
+        title,
+        description,
+    });
 }
 
-export default async function SeniorenumzugBayern({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export default async function SeniorenumzugBayernPage({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}) {
+    const { lang } = await params;
+    const pageLocale = lang as Locale;
+
+    const { localeDict, content, fallback, seoContent, seoFallback, city } =
+        await getSpecialtyPageData({
+            locale: pageLocale,
+            baseKey: "seniorenumzug",
+            seoKey: "seniorenumzug_bayern",
+            city: CITY,
+        });
+
+    const heroTitle =
+        resolveField(content.hero_h1, fallback.hero_h1) || "Seniorenumzug";
+    const serviceName = `${heroTitle} ${city}`.trim();
+
+    const metaDescription =
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city);
+
+    const moveLabel =
+        resolveField(content.link_umzug, fallback.link_umzug, city) ||
+        `Umzug ${city}`;
+
+    const serviceJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: serviceName,
+        description: metaDescription,
+        provider: {
+            "@type": "MovingCompany",
+            name: "FLOXANT",
+            telephone: "+4915771105087",
+        },
+        areaServed: {
+            "@type": "AdministrativeArea",
+            name: city,
+        },
+        serviceType: [serviceName],
+    };
+
+    const breadcrumbsJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "FLOXANT",
+                item: `https://www.floxant.de/${pageLocale}`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: moveLabel,
+                item: `https://www.floxant.de/${pageLocale}/umzug-bayern`,
+            },
+            {
+                "@type": "ListItem",
+                position: 3,
+                name: serviceName,
+                item: `https://www.floxant.de/${pageLocale}/${PATH}`,
+            },
+        ],
+    };
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "Seniorenumzug" }]} />
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+            />
 
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <Heart className="w-4 h-4" /><span>Seniorenumzug in Bayern</span>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Seniorenumzug in <span className="text-primary">Bayern</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Ein Umzug im Alter erfordert besonderes Verständnis. FLOXANT begleitet Senioren und ihre Angehörigen mit Geduld, Respekt und einem durchdachten Ablauf durch jeden Schritt des Wohnungswechsels.
-                    </p>
-                </div>
-            </section>
-
-            
-      <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto space-y-24">
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Umziehen im Alter – mit Würde und Unterstützung</h2>
-                        <p>
-                            Der Wechsel aus dem langjährigen Zuhause in eine kleinere Wohnung, ein Pflegeheim oder eine Seniorenresidenz ist einer der emotionalsten Umzüge überhaupt. Jahrzehnte an Erinnerungen, Gewohnheiten und Vertrautheit müssen in einen neuen Rahmen überführt werden. Das erfordert weit mehr als logistisches Geschick – es erfordert Empathie.
-                        </p>
-                        <p>
-                            FLOXANT hat umfangreiche Erfahrung mit Seniorenumzügen in ganz Bayern. Unser Team nimmt sich die Zeit, die es braucht. Wir hören zu, beraten bei der Auswahl der Gegenstände, die mitgenommen werden sollen, und sorgen dafür, dass das neue Zuhause so eingerichtet wird, dass es sich vertraut anfühlt.
-                        </p>
-                        <p>
-                            Von unserem operativen Standort in Regensburg betreuen wir Senioren und ihre Familien in der gesamten Oberpfalz, in Nürnberg, München, Augsburg und allen bayerischen Regionen. Wir arbeiten eng mit Pflegeeinrichtungen und Angehörigen zusammen, um den Übergang so sanft wie möglich zu gestalten.
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                            { icon: Heart, title: "Einfühlsam", desc: "Respektvoller Umgang mit persönlichen Gegenständen und Erinnerungsstücken. Geduld ist selbstverständlich." },
-                            { icon: Shield, title: "Versichert", desc: "Vollständiger Versicherungsschutz für alle transportierten Gegenstände – auch für antike Möbel." },
-                            { icon: Clock, title: "Flexible Zeiten", desc: "Umzug in Ihrem Tempo. Kein Zeitdruck, keine Hektik. Wir passen uns Ihrem Rhythmus an." },
-                        ].map((item, i) => (
-                            <div key={i} className="p-6 rounded-2xl bg-muted/10 border border-border/50 text-center">
-                                <item.icon className="w-10 h-10 text-primary mx-auto mb-4" />
-                                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Unser Service für Senioren</h2>
-                        <ul className="space-y-3">
-                            <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span>Beratung bei der Auswahl: Was kommt mit, was wird aufbewahrt, was gespendet?</span></li>
-                            <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span>Sorgfältiges Verpacken empfindlicher und wertvoller Gegenstände</span></li>
-                            <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span>Einrichtung des neuen Zuhauses nach Ihren Wünschen</span></li>
-                            <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span>Koordination mit Pflegeheim oder Residenz</span></li>
-                            <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span>Endreinigung der alten Wohnung inklusive</span></li>
-                            <li className="flex items-start gap-3"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span>Optional: Wohnungsauflösung der verbleibenden Gegenstände</span></li>
-                        </ul>
-                    </div>
-
-                    <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">Verwandte Leistungen</h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
-                            <Link href={`/${pageLocale}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
-                            <Link href={`/${pageLocale}/familienumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Familienumzug Bayern</Link>
-                            <Link href={`/${pageLocale}/reinigung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Bayern</Link>
-                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                        </div>
-                    </div>
-
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
-                        <h2 className="text-3xl font-bold mb-4">Seniorenumzug in Bayern anfragen</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenlose Beratung – einfühlsam und unverbindlich. Für Sie und Ihre Angehörigen.</p>
-                        <SmartBookingWizard dict={dict} />
-                    </div>
-                </div>
-            </section>
-        </main>
+            <SpecialtyPageLayout
+                pageLocale={pageLocale}
+                dict={localeDict}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge)}
+                heroTitle={heroTitle}
+                city={city}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta)}
+                breadcrumbs={[
+                    {
+                        label: moveLabel,
+                        href: `/${pageLocale}/umzug-bayern`,
+                    },
+                    {
+                        label: serviceName,
+                    },
+                ]}
+                chips={[
+                    {
+                        icon: Briefcase,
+                        text: resolveNestedField(
+                            content.badges,
+                            fallback.badges,
+                            "permit"
+                        ),
+                    },
+                    {
+                        icon: Truck,
+                        text: resolveNestedField(content.badges, fallback.badges, "signs"),
+                        iconClassName: "h-5 w-5 text-muted-foreground",
+                    },
+                    {
+                        icon: Shield,
+                        text: resolveNestedField(
+                            content.badges,
+                            fallback.badges,
+                            "stressfree"
+                        ),
+                    },
+                ]}
+                cards={[
+                    {
+                        icon: Briefcase,
+                        title: resolveNestedField(content.service1, fallback.service1, "title"),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1"),
+                            resolveNestedField(content.service1, fallback.service1, "l2"),
+                            resolveNestedField(content.service1, fallback.service1, "l3"),
+                            resolveNestedField(content.service1, fallback.service1, "l4"),
+                        ],
+                    },
+                    {
+                        icon: Truck,
+                        iconClassName: "mb-6 h-10 w-10 text-muted-foreground",
+                        title: resolveNestedField(content.service2, fallback.service2, "title"),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1"),
+                            resolveNestedField(content.service2, fallback.service2, "l2"),
+                            resolveNestedField(content.service2, fallback.service2, "l3"),
+                            resolveNestedField(content.service2, fallback.service2, "l4"),
+                        ],
+                    },
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
+        </>
     );
 }

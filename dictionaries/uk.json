@@ -3792,6 +3792,366 @@
       "h1_hi": "Утилізація?",
       "subtitle": "Будь-яке сміття – фіксована ціна.",
       "h2": "Як розраховується вартість?"
+    },
+    "klaviertransport": {
+      "meta_title": "Перевезення піаніно {city} | FLOXANT",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Піаніно",
+      "hero_p": "-",
+      "badges": {
+        "piano": "-",
+        "safe": "-",
+        "insurance": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "halteverbotszone": {
+      "meta_title": "Паркування {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Зона",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "seniorenumzug": {
+      "meta_title": "Літнім {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Літнім",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "studentenumzug": {
+      "meta_title": "Студентам {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Студентам",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "familienumzug": {
+      "meta_title": "Родинам {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Сім'я",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "umzug24": {
+      "meta_title": "24 год {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "24 год",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "Міні {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Дрібні",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "Офіс {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Офісний",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Очищення {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Очищення",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "reinigung_spec": {
+      "meta_title": "Прибирання {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Прибирання",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {

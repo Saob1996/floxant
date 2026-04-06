@@ -3792,6 +3792,366 @@
       "h1_hi": "rác lớn?",
       "subtitle": "Nhận ngay chi phí dọn dẹp.",
       "h2": "Khoản phí tính thế nào?"
+    },
+    "klaviertransport": {
+      "meta_title": "Vận chuyển piano {city} | FLOXANT",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Vận chuyển piano",
+      "hero_p": "-",
+      "badges": {
+        "piano": "-",
+        "safe": "-",
+        "insurance": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "halteverbotszone": {
+      "meta_title": "Vùng cấm đỗ xe {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Khu vực cấm",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "seniorenumzug": {
+      "meta_title": "Chuyển nhà cho người lớn tuổi {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Chuyển nhà",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "studentenumzug": {
+      "meta_title": "Sinh viên {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Sinh viên",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "familienumzug": {
+      "meta_title": "Gia đình {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Gia đình",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "umzug24": {
+      "meta_title": "24h {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "24h",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "Vận chuyển nhỏ {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Nhỏ",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "Văn phòng {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Văn phòng",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Dọn dẹp {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Dọn dẹp",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "reinigung_spec": {
+      "meta_title": "Làm sạch {city}",
+      "meta_desc": "-",
+      "hero_badge": "-",
+      "hero_h1": "Làm sạch",
+      "hero_p": "-",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "-",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {

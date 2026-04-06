@@ -3792,6 +3792,366 @@
       "h1_hi": "هزینه دارد؟",
       "subtitle": "تخلیه کامل آپارتمان یا فقط زباله های بزرگ.",
       "h2": "نحوه محاسبه"
+    },
+    "klaviertransport": {
+      "meta_title": "جابجایی پیانو و گاوصندوق {city} | FLOXANT",
+      "meta_desc": "حمل حرفه ای پیانو.",
+      "hero_badge": "حمل ویژه",
+      "hero_h1": "جابجایی پیانو",
+      "hero_p": "نیازمند مهارت و بیمه.",
+      "badges": {
+        "piano": "پیانو",
+        "safe": "گاوصندوق",
+        "insurance": "بیمه"
+      },
+      "cta": "درخواست",
+      "service1": {
+        "title": "پیانو",
+        "l1": "چرخ",
+        "l2": "محافظ",
+        "l3": "دما",
+        "l4": "تنظیم"
+      },
+      "service2": {
+        "title": "گاوصندوق",
+        "l1": "سنگین",
+        "l2": "جک",
+        "l3": "بررسی",
+        "l4": "مخفی"
+      },
+      "section2_h2": "حمل سنگین",
+      "section2_p1": "تضمین",
+      "section2_p2": "امن.",
+      "wizard_badge": "ویژه",
+      "wizard_h2": "درخواست",
+      "wizard_p": "وزن.",
+      "link_umzug": "اسباب کشی",
+      "link_senioren": "سالمندان",
+      "link_halteverbot": "توقف ممنوع"
+    },
+    "halteverbotszone": {
+      "meta_title": "توقف ممنوع {city} | FLOXANT",
+      "meta_desc": "دریافت مجوز توقف.",
+      "hero_badge": "مجوز",
+      "hero_h1": "توقف ممنوع",
+      "hero_p": "دوری از جریمه.",
+      "badges": {
+        "permit": "شهر",
+        "signs": "نصب",
+        "stressfree": "بدون استرس"
+      },
+      "cta": "ثبت",
+      "service1": {
+        "title": "کامل",
+        "l1": "رزرو",
+        "l2": "اجاره",
+        "l3": "نصب",
+        "l4": "جمع آوری"
+      },
+      "service2": {
+        "title": "فقط اجاره",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "مجوز",
+      "section2_p1": "زمان.",
+      "section2_p2": "آسان.",
+      "wizard_badge": "سرویس",
+      "wizard_h2": "درخواست",
+      "wizard_p": "آدرس",
+      "link_umzug": "اسباب کشی",
+      "link_senioren": "سالمندان",
+      "link_halteverbot": "پیانو"
+    },
+    "seniorenumzug": {
+      "meta_title": "اسباب کشی سالمندان {city} | FLOXANT",
+      "meta_desc": "ویژه سالمندان.",
+      "hero_badge": "با دقت",
+      "hero_h1": "سالمندان",
+      "hero_p": "ما همه کار را میکنیم.",
+      "badges": {
+        "permit": "دقت",
+        "signs": "کامل",
+        "stressfree": "دورریز"
+      },
+      "cta": "ثبت",
+      "service1": {
+        "title": "کامل",
+        "l1": "بسته بندی",
+        "l2": "نصب",
+        "l3": "لوستر",
+        "l4": "بازکردن"
+      },
+      "service2": {
+        "title": "دورریز",
+        "l1": "قدیمی",
+        "l2": "تمیز",
+        "l3": "خیریه",
+        "l4": "مجاز"
+      },
+      "section2_h2": "با افتخار",
+      "section2_p1": "سخت است.",
+      "section2_p2": "تیم ویژه.",
+      "wizard_badge": "VIP",
+      "wizard_h2": "اسباب کشی",
+      "wizard_p": "مشاوره.",
+      "link_umzug": "اسباب کشی",
+      "link_senioren": "مجوز",
+      "link_halteverbot": "تمیز"
+    },
+    "studentenumzug": {
+      "meta_title": "اسباب کشی دانشجویی {city} | FLOXANT",
+      "meta_desc": "ارزان.",
+      "hero_badge": "تخفیف",
+      "hero_h1": "دانشجویی",
+      "hero_p": "بودجه کم؟",
+      "badges": {
+        "permit": "ارزان",
+        "signs": "سریع",
+        "stressfree": "انعطاف"
+      },
+      "cta": "ثبت",
+      "service1": {
+        "title": "شما و ما",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "کامل",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "آموزشی",
+      "section2_p1": "خوابگاه.",
+      "section2_p2": "ارزان.",
+      "wizard_badge": "ارزان",
+      "wizard_h2": "دانشجو",
+      "wizard_p": "قیمت.",
+      "link_umzug": "اسباب کشی",
+      "link_senioren": "مینی",
+      "link_halteverbot": "تمیز"
+    },
+    "familienumzug": {
+      "meta_title": "خانواده {city} | FLOXANT",
+      "meta_desc": "بدون استرس.",
+      "hero_badge": "خانواده",
+      "hero_h1": "خانواده",
+      "hero_p": "با فرزندان؟",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "ثبت",
+      "service1": {
+        "title": "بسته",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "حمل",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "خانواده",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "ثبت",
+      "wizard_p": "-",
+      "link_umzug": "اسباب کشی",
+      "link_senioren": "تجاری",
+      "link_halteverbot": "خلوت"
+    },
+    "umzug24": {
+      "meta_title": "اسباب کشی ۲۴ ساعته | FLOXANT",
+      "meta_desc": "نقل سریع.",
+      "hero_badge": "فوری",
+      "hero_h1": "۲۴ ساعته",
+      "hero_p": "اورژانسی؟",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "الان",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "مینی | FLOXANT",
+      "meta_desc": "کوچک.",
+      "hero_badge": "کوچک",
+      "hero_h1": "وانت بار",
+      "hero_p": "کم است؟",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "وانت",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "اداری | FLOXANT",
+      "meta_desc": "شرکتی.",
+      "hero_badge": "شرکتی",
+      "hero_h1": "اسباب کشی شرکتی",
+      "hero_p": "برنامه ریزی دقیق.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "ثبت",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "تخلیه {city} | FLOXANT",
+      "meta_desc": "تخلیه کامل.",
+      "hero_badge": "تخلیه",
+      "hero_h1": "تخلیه منازل",
+      "hero_p": "سریع و تمیز.",
+      "badges": {
+        "permit": "سریع",
+        "signs": "مخفی",
+        "stressfree": "تخفیف"
+      },
+      "cta": "درخواست",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "تخلیه",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "تخلیه",
+      "wizard_h2": "ثبت",
+      "wizard_p": "بدون استرس.",
+      "link_umzug": "اسباب کشی",
+      "link_senioren": "تمیز",
+      "link_halteverbot": "مجوز"
+    },
+    "reinigung_spec": {
+      "meta_title": "نظافت {city} | FLOXANT",
+      "meta_desc": "تضمین صد در صد.",
+      "hero_badge": "تمیز",
+      "hero_h1": "نظافت نهایی",
+      "hero_p": "تحویل به صاحبخانه.",
+      "badges": {
+        "permit": "تضمین",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "نظافت",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "تمیز",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "درخواست",
+      "wizard_p": "-",
+      "link_umzug": "نقل",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {

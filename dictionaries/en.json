@@ -3876,6 +3876,366 @@
       "h1_hi": "Clearance cost?",
       "subtitle": "Whether bulky waste or complete household clearance. Calculate fixed prices online.",
       "h2": "How are clearance costs calculated?"
+    },
+    "klaviertransport": {
+      "meta_title": "Piano & Safe Transport {city} | FLOXANT",
+      "meta_desc": "Professional piano and safe moving in {city}. Fully insured and secure with specialized equipment from FLOXANT.",
+      "hero_badge": "Specialty Transport · Heavy Load",
+      "hero_h1": "Piano & Safe Moving",
+      "hero_p": "A piano weighs 200-500 kg, a safe often more. Such jobs require specialized skills, equipment, and insurance. That's exactly what we provide.",
+      "badges": {
+        "piano": "Pianos & Grand Pianos",
+        "safe": "Safes & Vaults",
+        "insurance": "Special Insurance"
+      },
+      "cta": "Request Heavy Transport",
+      "service1": {
+        "title": "Piano Transport",
+        "l1": "Special piano dollies & carrying straps",
+        "l2": "Protective padding for keys, pedals & casing",
+        "l3": "Climate-controlled transport",
+        "l4": "On request: Tuning by a professional"
+      },
+      "service2": {
+        "title": "Safe Transport",
+        "l1": "Safes up to 2,000 kg",
+        "l2": "Hydraulic pallet trucks & stair crawlers",
+        "l3": "Static check for destination",
+        "l4": "Discreet handling"
+      },
+      "section2_h2": "Heavy Load Transport in {city}: Local Expertise",
+      "section2_p1": "In {city}, we frequently handle piano moves from older apartments. Challenge: narrow stairwells. Our solution: exterior lifts or crane transport.",
+      "section2_p2": "Safe transports are often for corporate clients. We guarantee absolute discretion and full insurance coverage.",
+      "wizard_badge": "Special Service",
+      "wizard_h2": "Request Heavy Transport in {city}",
+      "wizard_p": "Tell us the weight, dimensions, and location – we will calculate a secure transport.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Senior Moving {city}",
+      "link_halteverbot": "No-Parking Zone {city}"
+    },
+    "halteverbotszone": {
+      "meta_title": "No-Parking Zone {city} | FLOXANT",
+      "meta_desc": "Set up a no-parking zone for your move in {city}.",
+      "hero_badge": "Permit Service",
+      "hero_h1": "No-Parking Zone",
+      "hero_p": "Avoid parking tickets and long carrying distances. We take care of applying for and setting up the no-parking zone in {city}.",
+      "badges": {
+        "permit": "City Permit",
+        "signs": "Setup & Removal",
+        "stressfree": "Stress-free Parking"
+      },
+      "cta": "Request No-Parking Zone",
+      "service1": {
+        "title": "Complete Service",
+        "l1": "Application at the city portal",
+        "l2": "Rental of signs for {city}",
+        "l3": "Setup 72h beforehand",
+        "l4": "Removal after the move"
+      },
+      "service2": {
+        "title": "Self-Service with Rent",
+        "l1": "You apply for the permit",
+        "l2": "We deliver the signs",
+        "l3": "You set them up",
+        "l4": "We pick them up"
+      },
+      "section2_h2": "Order No-Parking Zone in {city}",
+      "section2_p1": "In {city}, the authorities require 14 days lead time on average.",
+      "section2_p2": "Let us handle the bureaucracy.",
+      "wizard_badge": "City Service",
+      "wizard_h2": "Set up No-Parking Zone {city}",
+      "wizard_p": "Tell us the loading address in {city}.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Senior Moving {city}",
+      "link_halteverbot": "Piano moving {city}"
+    },
+    "seniorenumzug": {
+      "meta_title": "Senior Moving {city} | FLOXANT",
+      "meta_desc": "Stress-free senior moving in {city}. Sensitive, patient, and comprehensive service.",
+      "hero_badge": "Careful Transport",
+      "hero_h1": "Senior Moving",
+      "hero_p": "Moving in old age requires trust and patience. We take care of everything from packing to assembly, so you can move smoothly into your new home in {city}.",
+      "badges": {
+        "permit": "Empathy & Patience",
+        "signs": "Full Service",
+        "stressfree": "Disposal included"
+      },
+      "cta": "Request Senior Move",
+      "service1": {
+        "title": "All-in-One Package",
+        "l1": "Packing service",
+        "l2": "Furniture assembly",
+        "l3": "Lamp installation",
+        "l4": "Unpacking"
+      },
+      "service2": {
+        "title": "Clearance",
+        "l1": "Disposal of old furniture",
+        "l2": "Handover clean",
+        "l3": "Charity donations",
+        "l4": "Environmentally friendly"
+      },
+      "section2_h2": "Careful Senior Move in {city}",
+      "section2_p1": "We understand that parting with old belongings is hard.",
+      "section2_p2": "Our team in {city} is specially trained for senior moves.",
+      "wizard_badge": "Premium Service",
+      "wizard_h2": "Request Senior Move {city}",
+      "wizard_p": "Free viewing appointment in {city}.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "No-Parking {city}",
+      "link_halteverbot": "Clearance {city}"
+    },
+    "studentenumzug": {
+      "meta_title": "Student Moving {city} | FLOXANT",
+      "meta_desc": "Cheap student moving in {city}. Flexible, fast, and affordable.",
+      "hero_badge": "Student Discount",
+      "hero_h1": "Student Moving",
+      "hero_p": "Tight budget? No problem. We offer cheap student moving in {city} with or without helpers.",
+      "badges": {
+        "permit": "Fast Processing",
+        "signs": "Low Cost",
+        "stressfree": "Flexible"
+      },
+      "cta": "Request Student Move",
+      "service1": {
+        "title": "Transporter & Driver",
+        "l1": "You pack and carry",
+        "l2": "We drive",
+        "l3": "Blankets included",
+        "l4": "Fuel included"
+      },
+      "service2": {
+        "title": "Full Move",
+        "l1": "We do everything",
+        "l2": "Student discount applies",
+        "l3": "Furniture assembly",
+        "l4": "Fast execution"
+      },
+      "section2_h2": "Student Move in {city}",
+      "section2_p1": "Whether dorm or shared flat in {city}.",
+      "section2_p2": "Book your cheap move now.",
+      "wizard_badge": "Discount",
+      "wizard_h2": "Request Student Move {city}",
+      "wizard_p": "Get your cheap price.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Mini Transport {city}",
+      "link_halteverbot": "Clearance {city}"
+    },
+    "familienumzug": {
+      "meta_title": "Family Moving {city} | FLOXANT",
+      "meta_desc": "Stress-free moving for families in {city}.",
+      "hero_badge": "Family Service",
+      "hero_h1": "Family Moving",
+      "hero_p": "Moving with kids? We handle the stress.",
+      "badges": {
+        "permit": "Fast",
+        "signs": "Careful",
+        "stressfree": "Kids friendly"
+      },
+      "cta": "Request Family Move",
+      "service1": {
+        "title": "Packing",
+        "l1": "Toys",
+        "l2": "Kitchen",
+        "l3": "Clothes",
+        "l4": "Books"
+      },
+      "service2": {
+        "title": "Transport",
+        "l1": "Safe",
+        "l2": "Fast",
+        "l3": "Insured",
+        "l4": "Built"
+      },
+      "section2_h2": "Family Move in {city}",
+      "section2_p1": "We know what families need.",
+      "section2_p2": "Book now.",
+      "wizard_badge": "Family",
+      "wizard_h2": "Request Move",
+      "wizard_p": "Tell us details.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Senior Move",
+      "link_halteverbot": "Clearance"
+    },
+    "umzug24": {
+      "meta_title": "24h Move {city} | FLOXANT",
+      "meta_desc": "Fast moving within 24h in {city}.",
+      "hero_badge": "Express",
+      "hero_h1": "24h Moving",
+      "hero_p": "Need a fast move?",
+      "badges": {
+        "permit": "Fast",
+        "signs": "24h",
+        "stressfree": "Now"
+      },
+      "cta": "Request Now",
+      "service1": {
+        "title": "Express Move",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "Express Transport",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "Fast Move {city}",
+      "section2_p1": "Book today.",
+      "section2_p2": "Move tomorrow.",
+      "wizard_badge": "Express",
+      "wizard_h2": "Request Express Move",
+      "wizard_p": "Details.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Moving",
+      "link_halteverbot": "Storage"
+    },
+    "kleintransport": {
+      "meta_title": "Mini Transport | FLOXANT",
+      "meta_desc": "Transporting small items safely.",
+      "hero_badge": "Mini Transport",
+      "hero_h1": "Mini Transport",
+      "hero_p": "Only a few items to move? We do it.",
+      "badges": {
+        "permit": "Fast",
+        "signs": "Cheap",
+        "stressfree": "Safe"
+      },
+      "cta": "Request Transport",
+      "service1": {
+        "title": "A to B Transport",
+        "l1": "Furniture taxi",
+        "l2": "Ebay classifieds",
+        "l3": "Ikea runs",
+        "l4": "Small loads"
+      },
+      "service2": {
+        "title": "Small Removals",
+        "l1": "1-room flat",
+        "l2": "Student move",
+        "l3": "Shared room",
+        "l4": "Office moves"
+      },
+      "section2_h2": "Your Small Move",
+      "section2_p1": "Perfect for single items.",
+      "section2_p2": "Book directly online.",
+      "wizard_badge": "Transport",
+      "wizard_h2": "Request Mini Transport",
+      "wizard_p": "Details.",
+      "link_umzug": "Moving",
+      "link_senioren": "Moving",
+      "link_halteverbot": "Storage"
+    },
+    "bueroumzug": {
+      "meta_title": "Office Moving {city} | FLOXANT",
+      "meta_desc": "Professional office moving in {city}.",
+      "hero_badge": "B2B",
+      "hero_h1": "Office Moving",
+      "hero_p": "Moving an office requires precise planning.",
+      "badges": {
+        "permit": "Fast",
+        "signs": "IT Relocation",
+        "stressfree": "Safe"
+      },
+      "cta": "Request Transport",
+      "service1": {
+        "title": "IT Relocation",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "Furniture",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "Office Move {city}",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "B2B",
+      "wizard_h2": "Request",
+      "wizard_p": "Details.",
+      "link_umzug": "Moving",
+      "link_senioren": "Moving",
+      "link_halteverbot": "Storage"
+    },
+    "entruempelung_spec": {
+      "meta_title": "House Clearance {city} | FLOXANT",
+      "meta_desc": "Professional house clearance and disposal in {city}.",
+      "hero_badge": "Clearance Service",
+      "hero_h1": "Clearance",
+      "hero_p": "We clear flats, basements, and attics in {city} quickly and discretely.",
+      "badges": {
+        "permit": "Fast",
+        "signs": "Discrete",
+        "stressfree": "Fair Value Check"
+      },
+      "cta": "Request Clearance",
+      "service1": {
+        "title": "Complete Clearance",
+        "l1": "Flat clearance",
+        "l2": "Basement clearance",
+        "l3": "Firm price",
+        "l4": "Fast execution"
+      },
+      "service2": {
+        "title": "Disposal",
+        "l1": "Eco-friendly",
+        "l2": "Heavy items",
+        "l3": "Clean handover",
+        "l4": "Charity"
+      },
+      "section2_h2": "Clearance {city}",
+      "section2_p1": "Your expert in {city}.",
+      "section2_p2": "Book your free viewing now.",
+      "wizard_badge": "Clearance",
+      "wizard_h2": "Request {city}",
+      "wizard_p": "Tell us what you need cleared.",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Senior Moving {city}",
+      "link_halteverbot": "Cleaning {city}"
+    },
+    "reinigung_spec": {
+      "meta_title": "Handover Cleaning {city} | FLOXANT",
+      "meta_desc": "Professional cleaning with handover guarantee in {city}.",
+      "hero_badge": "Cleaning",
+      "hero_h1": "Move-out Cleaning",
+      "hero_p": "Save yourself the stress. We clean your apartment in {city} with a 100% handover guarantee.",
+      "badges": {
+        "permit": "Handover Guarantee",
+        "signs": "Eco-friendly",
+        "stressfree": "Deep Clean"
+      },
+      "cta": "Request Cleaning",
+      "service1": {
+        "title": "Deep Clean",
+        "l1": "Bathroom & Kitchen",
+        "l2": "Windows",
+        "l3": "Stains",
+        "l4": "Radiators"
+      },
+      "service2": {
+        "title": "Guarantee",
+        "l1": "Free rework",
+        "l2": "Landlord appoved",
+        "l3": "Transparent",
+        "l4": "Fast"
+      },
+      "section2_h2": "Cleaning {city}",
+      "section2_p1": "-",
+      "section2_p2": "Book now.",
+      "wizard_badge": "Clean",
+      "wizard_h2": "Request {city}",
+      "wizard_p": "-",
+      "link_umzug": "Moving {city}",
+      "link_senioren": "Senior Move {city}",
+      "link_halteverbot": "Clearance {city}"
     }
   },
   "services_section": {

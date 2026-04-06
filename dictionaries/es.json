@@ -3792,6 +3792,366 @@
       "h1_hi": "Desalojo?",
       "subtitle": "Obtenga su cotización directamente.",
       "h2": "¿Cómo se calculan los costos?"
+    },
+    "klaviertransport": {
+      "meta_title": "Transporte de Pianos {city} | FLOXANT",
+      "meta_desc": "Transporte seguro de pianos.",
+      "hero_badge": "Seguro",
+      "hero_h1": "Transporte de Pianos y Cajas Fuertes",
+      "hero_p": "Totalmente asegurado.",
+      "badges": {
+        "piano": "Pianos",
+        "safe": "Cajas",
+        "insurance": "Seguro"
+      },
+      "cta": "Pedir Presupuesto",
+      "service1": {
+        "title": "Pianos",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "Cajas Fuertes",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "Seguro",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "VIP",
+      "wizard_h2": "Presupuesto",
+      "wizard_p": "-",
+      "link_umzug": "Mudanza",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "halteverbotszone": {
+      "meta_title": "Zona de Prohibición de Aparcamiento {city}",
+      "meta_desc": "Zona para mudanza.",
+      "hero_badge": "Permiso",
+      "hero_h1": "Zona de Prohibición de Aparcamiento",
+      "hero_p": "Solicitamos el permiso.",
+      "badges": {
+        "permit": "Permiso",
+        "signs": "Señales",
+        "stressfree": "Fácil"
+      },
+      "cta": "Solicitar",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "Ayuntamiento",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "Solicitar",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "seniorenumzug": {
+      "meta_title": "Mudanza para Mayores {city}",
+      "meta_desc": "Mudanza sin estrés.",
+      "hero_badge": "Premium",
+      "hero_h1": "Mudanza para Mayores",
+      "hero_p": "Nos cuidamos de todo.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Pedir",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "Pedir",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "studentenumzug": {
+      "meta_title": "Mudanza Estudiantil {city}",
+      "meta_desc": "Mudanza barata.",
+      "hero_badge": "Estudiantes",
+      "hero_h1": "Mudanza Estudiantil",
+      "hero_p": "Barato y rápido.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Pedir",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "Pedir",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "familienumzug": {
+      "meta_title": "Mudanza Familiar {city}",
+      "meta_desc": "Familias.",
+      "hero_badge": "Familia",
+      "hero_h1": "Mudanza Familiar",
+      "hero_p": "Seguro.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Pedir",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "Pedir",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "umzug24": {
+      "meta_title": "Mudanza 24h {city}",
+      "meta_desc": "Urgente.",
+      "hero_badge": "24h",
+      "hero_h1": "Mudanza 24 horas",
+      "hero_p": "Hoy mismo.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Ya",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "kleintransport": {
+      "meta_title": "Mini Transportes",
+      "meta_desc": "Transportes pequeños.",
+      "hero_badge": "Mini",
+      "hero_h1": "Transportes Pequeños",
+      "hero_p": "Un mueble.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Mover",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "bueroumzug": {
+      "meta_title": "Mudanza de Oficina {city}",
+      "meta_desc": "Oficinas.",
+      "hero_badge": "B2B",
+      "hero_h1": "Mudanza de Oficinas",
+      "hero_p": "Profesionales.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Pedir",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "-",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "entruempelung_spec": {
+      "meta_title": "Desalojo {city}",
+      "meta_desc": "Limpieza profunda.",
+      "hero_badge": "Desalojos",
+      "hero_h1": "Desalojo de Pisos",
+      "hero_p": "Rápido.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Pedir",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "Pedir",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
+    },
+    "reinigung_spec": {
+      "meta_title": "Limpieza {city}",
+      "meta_desc": "Limpieza final.",
+      "hero_badge": "Limpieza",
+      "hero_h1": "Limpieza Final",
+      "hero_p": "Garantía.",
+      "badges": {
+        "permit": "-",
+        "signs": "-",
+        "stressfree": "-"
+      },
+      "cta": "Limpiar",
+      "service1": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "service2": {
+        "title": "-",
+        "l1": "-",
+        "l2": "-",
+        "l3": "-",
+        "l4": "-"
+      },
+      "section2_h2": "-",
+      "section2_p1": "-",
+      "section2_p2": "-",
+      "wizard_badge": "-",
+      "wizard_h2": "Pedir",
+      "wizard_p": "-",
+      "link_umzug": "-",
+      "link_senioren": "-",
+      "link_halteverbot": "-"
     }
   },
   "services_section": {
