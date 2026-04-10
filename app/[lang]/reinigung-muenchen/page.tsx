@@ -1,134 +1,181 @@
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
-import { type Locale } from "../../../i18n-config";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { notFound } from "next/navigation";
+import { isValidLocale, type Locale } from "@/i18n-config";
 import { generatePageSEO } from "@/lib/seo";
-import dynamic from "next/dynamic";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 import Link from "next/link";
-import { Shield, ArrowRight, CheckCircle2, AlertTriangle, Briefcase, Truck } from "lucide-react";
 
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
-);
+interface PageProps {
+    params: Promise<{ lang: string }>;
+}
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    const { lang: pageLocale } = await params;
-    const dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.reinigung_spec || {};
-    
-    const safeTitle = (content.meta_title || "").replace('{city}', 'München');
-    const safeDesc = (content.meta_desc || "").replace('{city}', 'München');
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) return {};
+
+    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+        locale: lang as Locale,
+        baseKey: "reinigung_spec",
+        seoKey: "reinigung_muenchen",
+        city: "München",
+    });
 
     return generatePageSEO({
-        pageLocale,
-        path: "reinigung-muenchen",
-        title: safeTitle,
-        description: safeDesc,
+        pageLocale: lang,
+        path: `reinigung-muenchen`,
+        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
+        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
     });
 }
 
-export default async function GenericServicePage({ params }: { params: Promise<{ lang: string }> }) {
-    const { lang: pageLocale } = await params;
-    const dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.reinigung_spec || {};
+export default async function ReinigungMuenchenPage({ params }: PageProps) {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) notFound();
 
-    const serviceName = (content.hero_h1 || "Service") + " München";
-    const serviceDesc = (content.meta_desc || "").replace('{city}', 'München');
+    const locale = lang as Locale;
+    const { 
+        localeDict, 
+        content, 
+        fallback, 
+        seoContent, 
+        seoFallback, 
+        city 
+    } = await getSpecialtyPageData({
+        locale,
+        baseKey: "reinigung_spec",
+        seoKey: "reinigung_muenchen",
+        city: "München",
+    });
 
-    const serviceJsonLd = {
-        "@context": "https://schema.org", "@type": "Service",
-        "name": serviceName,
-        "description": serviceDesc,
-        "provider": {
-            "@type": "MovingCompany", "name": "FLOXANT",
-            "telephone": "+4915771105087"
-        },
-        "areaServed": { "@type": "City", "name": "München" },
-        "serviceType": [serviceName]
-    };
+    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
 
-    const breadcrumbsJsonLd = {
-        "@context": "https://schema.org", "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.floxant.de/" + pageLocale },
-            { "@type": "ListItem", "position": 2, "name": "Umzug München", "item": "https://www.floxant.de/" + pageLocale + "/umzug-muenchen" },
-            { "@type": "ListItem", "position": 3, "name": serviceName, "item": "https://www.floxant.de/" + pageLocale + "/reinigung-muenchen" }
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Service",
+                "name": `Reinigung ${city} | FLOXANT`,
+                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+                "url": `https://www.floxant.de/${lang}/reinigung-muenchen`,
+                "provider": {
+                    "@type": "LocalBusiness",
+                    "name": "FLOXANT",
+                    "telePhone": "+49 1577 1105087",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "München",
+                        "addressRegion": "Bayern",
+                        "addressCountry": "DE"
+                    }
+                },
+                "areaServed": { "@type": "City", "name": city }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+                    { "@type": "ListItem", "position": 2, "name": "Reinigung Bayern", "item": `https://www.floxant.de/${lang}/reinigung-bayern` },
+                    { "@type": "ListItem", "position": 3, "name": city, "item": `https://www.floxant.de/${lang}/reinigung-muenchen` }
+                ]
+            },
+            ...(faqItems.length > 0 ? [{
+                "@type": "FAQPage",
+                "mainEntity": faqItems.map(item => ({
+                    "@type": "Question",
+                    "name": item.q,
+                    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+                }))
+            }] : [])
         ]
     };
 
     return (
-        <main className="min-h-screen bg-background">
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <SpecialtyPageLayout
+                pageLocale={lang}
+                dict={localeDict}
+                city={city}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta, city)}
+                breadcrumbs={[
+                    { label: "Home", href: `/${lang}` },
+                    { label: "Reinigung", href: `/${lang}/reinigung-bayern` },
+                    { label: city }
+                ]}
+                chips={[
+                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
+                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
+                    { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+                ]}
+                cards={[
+                    {
+                        icon: Star,
+                        title: resolveNestedField(content.service1, fallback.service1, "title", city),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1", city),
+                            resolveNestedField(content.service1, fallback.service1, "l2", city),
+                            resolveNestedField(content.service1, fallback.service1, "l3", city),
+                            resolveNestedField(content.service1, fallback.service1, "l4", city),
+                        ]
+                    },
+                    {
+                        icon: Zap,
+                        title: resolveNestedField(content.service2, fallback.service2, "title", city),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1", city),
+                            resolveNestedField(content.service2, fallback.service2, "l2", city),
+                            resolveNestedField(content.service2, fallback.service2, "l3", city),
+                            resolveNestedField(content.service2, fallback.service2, "l4", city),
+                        ]
+                    }
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
 
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: content.link_umzug?.replace('{city}', 'München') || "Umzug München", href: "/" + pageLocale + "/umzug-muenchen" }, { label: content.hero_h1 || "Service" }]} />
-
-            <section className="pt-12 pb-24 px-6 bg-gradient-to-b from-slate-100 dark:from-slate-900/40 via-muted/30 to-background overflow-hidden relative text-start">
-                <div className="max-w-7xl mx-auto text-center space-y-8 relative z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-bold">
-                        <AlertTriangle className="w-4 h-4" /> {content.hero_badge || "Spezialtransporte"}
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground leading-tight">
-                        {content.hero_h1}
-                        <br className="hidden md:block"/>
-                        <span className="text-primary"> München</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
-                        {content.hero_p}
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4 mt-10">
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Briefcase className="w-5 h-5 text-primary" /> {content.badges?.permit}</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Truck className="w-5 h-5 text-slate-600" /> {content.badges?.signs}</span>
-                        <span className="px-5 py-3 bg-white dark:bg-card rounded-2xl text-sm font-bold shadow-sm border border-border flex items-center gap-3"><Shield className="w-5 h-5 text-emerald-500" /> {content.badges?.stressfree}</span>
-                    </div>
-                    <div className="mt-12 flex justify-center">
-                        <a href="#wizard" className="group inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground text-lg font-bold rounded-full hover:bg-primary/90 hover:scale-105 transition-all shadow-xl shadow-primary/30">
-                            {content.cta} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 rtl:rotate-180 transition-transform" />
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-24 px-6 text-start">
-                <div className="max-w-4xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                        <div className="p-8 rounded-3xl bg-card border border-border shadow-md">
-                            <Briefcase className="w-10 h-10 text-primary mb-6" />
-                            <h3 className="text-2xl font-bold mb-4">{content.service1?.title || "-"}</h3>
-                            <ul className="space-y-3 text-muted-foreground">
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service1?.l1 || "-"}</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service1?.l2 || "-"}</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service1?.l3 || "-"}</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service1?.l4 || "-"}</li>
-                            </ul>
+            {/* Regional SEO Gating (DE-only) */}
+            {lang === "de" && (
+                <section className="bg-slate-50 py-16 px-6 border-t border-border">
+                    <div className="max-w-4xl mx-auto">
+                        <h3 className="text-xl font-bold mb-8 text-slate-800">Regionale Reinigungs-Services in Bayern</h3>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            {[
+                                { name: "München", href: "/de/reinigung-muenchen" },
+                                { name: "Augsburg", href: "/de/reinigung-augsburg" },
+                                { name: "Ingolstadt", href: "/de/reinigung-ingolstadt" },
+                                { name: "Freising", href: "/de/reinigung-freising" },
+                                { name: "Dachau", href: "/de/reinigung-dachau" },
+                                { name: "Erding", href: "/de/reinigung-erding" },
+                                { name: "Fürstenfeldbruck", href: "/de/reinigung-fuerstenfeldbruck" },
+                                { name: "Germering", href: "/de/reinigung-germering" },
+                                { name: "Starnberg", href: "/de/reinigung-starnberg" },
+                                { name: "Landshut", href: "/de/reinigung-landshut" },
+                                { name: "Rosenheim", href: "/de/reinigung-rosenheim" },
+                                { name: "Kempten", href: "/de/reinigung-kempten" }
+                            ].map((loc) => (
+                                <Link 
+                                    key={loc.name} 
+                                    href={loc.href}
+                                    className="text-sm text-slate-600 hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary pb-1"
+                                >
+                                    Reinigung {loc.name}
+                                </Link>
+                            ))}
                         </div>
-                        <div className="p-8 rounded-3xl bg-card border border-border shadow-md">
-                            <Truck className="w-10 h-10 text-slate-600 mb-6" />
-                            <h3 className="text-2xl font-bold mb-4">{content.service2?.title || "-"}</h3>
-                            <ul className="space-y-3 text-muted-foreground">
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service2?.l1 || "-"}</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service2?.l2 || "-"}</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service2?.l3 || "-"}</li>
-                                <li className="flex gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" /> {content.service2?.l4 || "-"}</li>
-                            </ul>
-                        </div>
                     </div>
-
-                    <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
-                        <h2 className="text-3xl font-extrabold text-foreground">{(content.section2_h2 || "").replace('{city}', 'München')}</h2>
-                        <p>{(content.section2_p1 || "").replace('{city}', 'München')}</p>
-                        <p>{(content.section2_p2 || "").replace('{city}', 'München')}</p>
-                    </div>
-
-                    <div id="wizard" className="text-center py-16 bg-card rounded-[3rem] border border-border shadow-2xl relative mt-16 scroll-mt-24">
-                        <div className="absolute -top-6 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-sm shadow-lg">{content.wizard_badge}</div>
-                        <h2 className="text-4xl font-extrabold mb-6 mt-6">{(content.wizard_h2 || "").replace('{city}', 'München')}</h2>
-                        <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">{content.wizard_p}</p>
-                        <div className="px-6 text-start"><SmartBookingWizard dict={dict} /></div>
-                    </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            )}
+        </>
     );
 }

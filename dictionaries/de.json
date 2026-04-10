@@ -6,7 +6,10 @@
     "contact": "Kontakt",
     "login": "Login",
     "book_now": "JETZT BUCHEN",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "service_umzug": "Umzug",
+    "service_reinigung": "Reinigung",
+    "service_entruempelung": "Entrümpelung"
   },
   "hero": {
     "title": "Die Architekten Ihrer Veränderung",
@@ -168,7 +171,14 @@
   "trust": {
     "experience": "Jahrelange Erfahrung",
     "quality": "Höchste Qualität",
-    "insured": "Voll versichert"
+    "insured": "Voll versichert",
+    "google_reviews": "Google-Bewertungen",
+    "google_reviews_desc": "Sichtbar, öffentlich und nachvollziehbar.",
+    "personal_consultation": "Persönliche Beratung",
+    "personal_consultation_desc": "Direkte Abstimmung statt starrem Standardablauf.",
+    "regional_active": "Regional aktiv",
+    "location_generic": "Einsätze in Regensburg und Bayern planbar.",
+    "location_template": "Anfragen aus {location} werden direkt eingeordnet."
   },
   "auth": {
     "login_title": "Admin Login",
@@ -1118,6 +1128,66 @@
         }
       ]
     },
+    "entruempelung_ingolstadt": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Ingolstadt?",
+          "a": "30 bis 80 Euro pro Kubikmeter, abhängig von Material und Zugänglichkeit. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Wie schnell können Sie entrümpeln?",
+          "a": "Express-Entrümpelung innerhalb von 24 bis 48 Stunden möglich. Standard innerhalb einer Woche."
+        }
+      ]
+    },
+    "entruempelung_straubing": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Straubing?",
+          "a": "30 bis 80 Euro pro Kubikmeter, abhängig von Material und Zugänglichkeit. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Wie schnell können Sie entrümpeln?",
+          "a": "Express-Entrümpelung innerhalb von 24 bis 48 Stunden möglich. Standard innerhalb einer Woche."
+        }
+      ]
+    },
+    "entruempelung_deggendorf": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Deggendorf?",
+          "a": "30 bis 80 Euro pro Kubikmeter, abhängig von Material und Zugänglichkeit. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Wie schnell können Sie entrümpeln?",
+          "a": "Express-Entrümpelung innerhalb von 24 bis 48 Stunden möglich. Standard innerhalb einer Woche."
+        }
+      ]
+    },
+    "entruempelung_wuerzburg": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Würzburg?",
+          "a": "30 bis 80 Euro pro Kubikmeter, abhängig von Material und Zugänglichkeit. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Wie schnell können Sie entrümpeln?",
+          "a": "Express-Entrümpelung innerhalb von 24 bis 48 Stunden möglich. Standard innerhalb einer Woche."
+        }
+      ]
+    },
+    "entruempelung_rosenheim": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Rosenheim?",
+          "a": "30 bis 80 Euro pro Kubikmeter, abhängig von Material und Zugänglichkeit. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Wie schnell können Sie entrümpeln?",
+          "a": "Express-Entrümpelung innerhalb von 24 bis 48 Stunden möglich. Standard innerhalb einer Woche."
+        }
+      ]
+    },
     "halteverbotszone_muenchen": {
       "meta_title": "Halteverbotszone München – Beantragung & Aufstellung | FLOXANT",
       "meta_desc": "Halteverbotszone in München beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
@@ -1406,6 +1476,66 @@
       "faqs": [
         {
           "q": "Was kostet eine Reinigung in Passau?",
+          "a": "3 bis 5 Euro pro Quadratmeter für eine professionelle Endreinigung. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Gibt es eine Abnahmegarantie?",
+          "a": "Ja. Falls der Vermieter Nachbesserungen verlangt, kommen wir kostenfrei zurück."
+        }
+      ]
+    },
+    "reinigung_ingolstadt": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Reinigung in Ingolstadt?",
+          "a": "3 bis 5 Euro pro Quadratmeter für eine professionelle Endreinigung. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Gibt es eine Abnahmegarantie?",
+          "a": "Ja. Falls der Vermieter Nachbesserungen verlangt, kommen wir kostenfrei zurück."
+        }
+      ]
+    },
+    "reinigung_straubing": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Reinigung in Straubing?",
+          "a": "3 bis 5 Euro pro Quadratmeter für eine professionelle Endreinigung. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Gibt es eine Abnahmegarantie?",
+          "a": "Ja. Falls der Vermieter Nachbesserungen verlangt, kommen wir kostenfrei zurück."
+        }
+      ]
+    },
+    "reinigung_deggendorf": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Reinigung in Deggendorf?",
+          "a": "3 bis 5 Euro pro Quadratmeter für eine professionelle Endreinigung. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Gibt es eine Abnahmegarantie?",
+          "a": "Ja. Falls der Vermieter Nachbesserungen verlangt, kommen wir kostenfrei zurück."
+        }
+      ]
+    },
+    "reinigung_wuerzburg": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Reinigung in Würzburg?",
+          "a": "3 bis 5 Euro pro Quadratmeter für eine professionelle Endreinigung. Festpreis nach Besichtigung."
+        },
+        {
+          "q": "Gibt es eine Abnahmegarantie?",
+          "a": "Ja. Falls der Vermieter Nachbesserungen verlangt, kommen wir kostenfrei zurück."
+        }
+      ]
+    },
+    "reinigung_rosenheim": {
+      "faqs": [
+        {
+          "q": "Was kostet eine Reinigung in Rosenheim?",
           "a": "3 bis 5 Euro pro Quadratmeter für eine professionelle Endreinigung. Festpreis nach Besichtigung."
         },
         {
@@ -3207,6 +3337,32 @@
       ]
     },
     "umzug_regensburg": {
+      "meta_title": "Umzugsunternehmen Regensburg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "meta_desc": "Professionelles Umzugsunternehmen in Regensburg & Oberpfalz. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
+      "hero_h1": "Umzugsunternehmen in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_text": "Ihr zuverlässiger Partner für stressfreie Umzüge in der Domstadt und der gesamten Oberpfalz. Professionell, versichert und zum garantierten Festpreis.",
+      "section1_title": "Umziehen im Herzen der Oberpfalz",
+      "section1_p1": "Regensburg ist nicht nur UNESCO-Welterbe, sondern auch eine Stadt mit ganz eigenen logistischen Herausforderungen. Von den engen Gassen der Altstadt bis hin zu den modernen Stadtteilen wie Burgweinting – wir kennen jeden Winkel und wissen, worauf es ankommt.",
+      "section1_p2": "Als lokales Umzugsunternehmen mit Sitz in Regensburg bieten wir Ihnen nicht nur den reinen Transport, sondern ein Rundum-Sorglos-Paket. Wir kümmern uns um Halteverbotszonen, professionelles Verpackungsmaterial und den fachgerechten Möbelabbau.",
+      "standort_title": "Unser Standort-Konzept",
+      "standort_text": "Unser operativer Stützpunkt in Regensburg ermöglicht uns extrem kurze Reaktionszeiten und eine detaillierte Vorort-Kenntnis für alle Stadtteile und das Umland.",
+      "skills_title": "Unsere Kompetenzen für Regensburg",
+      "skill1_title": "Altstadt-Logistik",
+      "skill1_text": "Spezialisiert auf Umzüge in der historischen Altstadt – auch bei schwierigsten Parksituationen und engen Treppenhäusern.",
+      "skill2_title": "Sorgfältige Verpackung",
+      "skill2_text": "Höchster Schutz für Ihr Inventar durch hochwertige Packmittel und geschulte Mitarbeiter.",
+      "module_title": "Modularer Service für jeden Bedarf",
+      "module_p1": "Ob Full-Service-Umzug inklusive Einpacken oder reiner Möbeltransport – Sie entscheiden, welche Leistungen Sie benötigen. Wir passen uns Ihrem Budget und Ihren Anforderungen an.",
+      "longdistance_title": "Fernumzüge ab Regensburg",
+      "longdistance_text": "Wir organisieren Ihren Umzug von Regensburg in jede Stadt Deutschlands oder Europas. Effizient geplant und sicher ausgeführt.",
+      "students_title": "Service für Studenten und Senioren",
+      "students_text": "Attraktive Konditionen für Studenten und einfühlsame Betreuung bei Seniorenumzügen. Wir helfen jedem, gut im neuen Zuhause anzukommen.",
+      "faq_title": "Häufige Fragen zum Umzug in Regensburg",
+      "faq_extra1_q": "Wie lange dauert ein Umzug in Regensburg?",
+      "faq_extra1_a": "In der Regel ist ein lokaler Umzug (bis 3 Zimmer) in Regensburg innerhalb eines Tages abgeschlossen. Wir planen den Zeitbedarf individuell für Sie.",
+      "faq_extra2_q": "Helfen Sie auch beim Auspacken?",
+      "faq_extra2_a": "Ja, wir bieten einen kompletten Auspackservice an, damit Sie sich in Ihrem neuen Regensburger Zuhause sofort wohlfühlen können.",
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Regensburg?",
@@ -4236,6 +4392,362 @@
       "link_umzug": "Umzug {city}",
       "link_senioren": "Seniorenumzug {city}",
       "link_halteverbot": "Entrümpelung {city}"
+    },
+    "reinigung_freising": {
+      "meta_title": "Endreinigung Freising ✓ Abnahmegarantie | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet eine Umzugsreinigung in Freising?",
+          "a": "Die Kosten hängen von der Quadratmeterzahl ab. Wir bieten Festpreise inklusive Abnahmegarantie nach einer kurzen Einschätzung."
+        }
+      ]
+    },
+    "reinigung_dachau": {
+      "meta_title": "Endreinigung Dachau ✓ 100% Abnahmegarantie | FLOXANT",
+      "faqs": [
+        {
+          "q": "Übernehmen Sie auch die Fensterreinigung in Dachau?",
+          "a": "Ja, bei unserer Umzugsreinigung in Dachau sind Fenster, Rahmen und alle Oberflächen standardmäßig enthalten."
+        }
+      ]
+    },
+    "reinigung_erlangen": {
+      "meta_title": "Endreinigung Erlangen ✓ Abnahmegarantie | FLOXANT",
+      "faqs": [
+        {
+          "q": "Wann sollte ich die Reinigung in Erlangen buchen?",
+          "a": "Idealerweise 1-2 Wochen vor dem Übergabetermin. Wir versuchen aber auch kurzfristige Termine in Erlangen zu ermöglichen."
+        }
+      ]
+    },
+    "reinigung_weiden": {
+      "meta_title": "Endreinigung Weiden i.d.OPf. ✓ Fachgerecht | FLOXANT",
+      "faqs": [
+        {
+          "q": "Geben Sie eine Abnahmegarantie für Weiden?",
+          "a": "Ja, wir garantieren die erfolgreiche Übergabe an den Vermieter in Weiden. Sollte etwas beanstandet werden, bessern wir kostenlos nach."
+        }
+      ]
+    },
+    "reinigung_amberg": {
+      "meta_title": "Endreinigung Amberg ✓ Festpreis | FLOXANT",
+      "faqs": [
+        {
+          "q": "Ist das Reinigungsmittel im Preis für Amberg enthalten?",
+          "a": "Ja, wir bringen alle professionellen Reinigungsmittel und Geräte für den Einsatz in Amberg selbst mit."
+        }
+      ]
+    },
+    "entruempelung_freising": {
+      "meta_title": "Entrümpelung Freising ✓ Besenrein ✓ Festpreis | FLOXANT",
+      "faqs": [
+        {
+          "q": "Wie schnell ist eine Entrümpelung in Freising möglich?",
+          "a": "Oft können wir innerhalb von 48 Stunden eine Besichtigung in Freising durchführen und direkt im Anschluss räumen."
+        }
+      ]
+    },
+    "entruempelung_dachau": {
+      "meta_title": "Entrümpelung Dachau ✓ Wohnungsauflösung | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was passiert mit verwertbaren Möbeln bei einer Räumung in Dachau?",
+          "a": "Gut erhaltene Möbel können wir bei der Entrümpelung in Dachau wertanrechnen, was Ihre Gesamtkosten senkt."
+        }
+      ]
+    },
+    "entruempelung_weiden": {
+      "meta_title": "Entrümpelung Weiden i.d.OPf. ✓ Besenrein ✓ Festpreis | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Weiden?",
+          "a": "Die Kosten hängen vom Volumen ab. Wir bieten kostenlose Besichtigungen in Weiden und erstellen Ihnen einen verbindlichen Festpreis."
+        }
+      ]
+    },
+    "entruempelung_amberg": {
+      "meta_title": "Entrümpelung Amberg ✓ Wohnungsauflösung | FLOXANT",
+      "faqs": [
+        {
+          "q": "Führen Sie auch Haushaltsauflösungen in Amberg durch?",
+          "a": "Ja, wir übernehmen komplette Haushaltsauflösungen in Amberg inklusive Wertanrechnung von verwertbaren Gegenständen."
+        }
+      ]
+    },
+    "umzug_rosenheim": {
+      "meta_title": "Umzugsunternehmen Rosenheim ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Bieten Sie Umzüge von Rosenheim nach München an?",
+          "a": "Ja, wir führen täglich Umzüge in der Region Rosenheim sowie Fernumzüge in ganz Bayern durch."
+        }
+      ]
+    },
+    "umzug_bamberg": {
+      "meta_title": "Umzugsunternehmen Bamberg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet ein Umzug in Bamberg?",
+          "a": "Ein Umzug in Bamberg wird individuell nach Aufwand berechnet. Wir bieten Festpreise für volle Kostensicherheit."
+        }
+      ]
+    },
+    "umzug_bayreuth": {
+      "meta_title": "Umzugsunternehmen Bayreuth ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet ein Umzug in Bayreuth?",
+          "a": "Die Kosten hängen vom Volumen ab. Wir bieten kostenlose Besichtigungen in Bayreuth und erstellen Ihnen einen verbindlichen Festpreis."
+        }
+      ]
+    },
+    "umzug_coburg": {
+      "meta_title": "Umzugsunternehmen Coburg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Wie schnell ist ein Umzugstermin in Coburg verfügbar?",
+          "a": "In der Region Coburg können wir oft innerhalb von 7-10 Tagen einen Termin realisieren. Fragen Sie einfach unverbindlich an."
+        }
+      ]
+    },
+    "umzug_schweinfurt": {
+      "meta_title": "Umzugsunternehmen Schweinfurt ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Kümmern Sie sich auch um Halteverbote in Schweinfurt?",
+          "a": "Ja, wir übernehmen die Beantragung und Aufstellung von Halteverbotszonen in Schweinfurt für einen reibungslosen Ablauf."
+        }
+      ]
+    },
+    "umzug_ansbach": {
+      "meta_title": "Umzugsunternehmen Ansbach ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Führen Sie auch Fernumzüge von Ansbach durch?",
+          "a": "Ja, wir ziehen Sie von Ansbach aus in ganz Deutschland und Europa um – professionell und versichert."
+        }
+      ]
+    },
+    "umzug_forchheim": {
+      "meta_title": "Umzugsunternehmen Forchheim ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Ist mein Umzugsgut in Forchheim versichert?",
+          "a": "Ja, jeder Umzug in Forchheim ist über unsere Betriebshaftpflicht und Transportversicherung voll abgesichert."
+        }
+      ]
+    },
+    "reinigung_kempten": {
+      "meta_title": "Endreinigung Kempten ✓ Abnahmegarantie | FLOXANT",
+      "faqs": [
+        {
+          "q": "Geben Sie eine Abnahmegarantie für Kempten?",
+          "a": "Ja, wir garantieren die erfolgreiche Übergabe Ihrer Wohnung in Kempten an den Vermieter."
+        }
+      ]
+    },
+    "entruempelung_kempten": {
+      "meta_title": "Entrümpelung Kempten ✓ Besenrein ✓ Festpreis | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet eine Entrümpelung in Kempten?",
+          "a": "Wir berechnen faire Festpreise nach einer kostenlosen Besichtigung in Kempten. Es entstehen keine versteckten Kosten."
+        }
+      ]
+    },
+    "umzug_kempten": {
+      "meta_title": "Umzugsunternehmen Kempten (Allgäu) ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet ein Umzug in Kempten?",
+          "a": "Ein Umzug in Kempten wird nach Aufwand oder Festpreis berechnet. Kostenlose Besichtigung vorab möglich."
+        }
+      ]
+    },
+    "umzug_memmingen": {
+      "meta_title": "Umzugsunternehmen Memmingen ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Bieten Sie auch Umzüge zum Flughafen Memmingen an?",
+          "a": "Ja, wir führen Umzüge und Transporte im gesamten Raum Memmingen und Unterallgäu durch."
+        }
+      ]
+    },
+    "umzug_kaufbeuren": {
+      "meta_title": "Umzugsunternehmen Kaufbeuren ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Helfen Sie auch beim Einpacken in Kaufbeuren?",
+          "a": "Ja, unser Full-Service Paket beinhaltet auf Wunsch das professionelle Einpacken Ihres Hausrats."
+        }
+      ]
+    },
+    "umzug_neu_ulm": {
+      "meta_title": "Umzugsunternehmen Neu-Ulm ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Umzug Ulm oder Neu-Ulm – was decken Sie ab?",
+          "a": "Wir sind als regionales Umzugsunternehmen in der gesamten Doppelstadt Ulm/Neu-Ulm für Sie da."
+        }
+      ]
+    },
+    "umzug_gersthofen": {
+      "meta_title": "Umzugsunternehmen Gersthofen ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Wie schnell sind Sie in Gersthofen verfügbar?",
+          "a": "Durch unsere Nähe zu Augsburg können wir oft auch kurzfristige Termine in Gersthofen realisieren."
+        }
+      ]
+    },
+    "umzug_neusaess": {
+      "meta_title": "Umzugsunternehmen Neusäß ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Bieten Sie auch Küchenmontage in Neusäß an?",
+          "a": "Ja, unsere Monteure übernehmen die fachgerechte Demontage und Montage Ihrer Küche."
+        }
+      ]
+    },
+    "umzug_guenzburg": {
+      "meta_title": "Umzugsunternehmen Günzburg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Führen Sie auch Firmenumzüge in Günzburg durch?",
+          "a": "Ja, von Kleinbüros bis zu großen Standorten ziehen wir Unternehmen in Günzburg professionell um."
+        }
+      ]
+    },
+    "umzug_dingolfing": {
+      "meta_title": "Umzugsunternehmen Dingolfing ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet ein Umzug in Dingolfing?",
+          "a": "Die Kosten richten sich nach dem Volumen und der Etage. Wir erstellen Ihnen gerne ein kostenloses Festpreisangebot für Ihren Umzug in Dingolfing."
+        }
+      ]
+    },
+    "umzug_deggendorf": {
+      "meta_title": "Umzugsunternehmen Deggendorf ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Sind Sie auch für Studentenumzüge in Deggendorf verfügbar?",
+          "a": "Ja, wir bieten auch kleinere Transporte und Studentenumzüge in der Hochschulstadt Deggendorf zum fairen Preis an."
+        }
+      ]
+    },
+    "umzug_vilshofen": {
+      "meta_title": "Umzugsunternehmen Vilshofen ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Kümmern Sie sich auch um Halteverbote in Vilshofen?",
+          "a": "Ja, wir übernehmen die Beantragung und die Aufstellung der Halteverbotszonen für Ihren Umzug in Vilshofen."
+        }
+      ]
+    },
+    "umzug_pocking": {
+      "meta_title": "Umzugsunternehmen Pocking ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Führen Sie auch Fernumzüge von Pocking durch?",
+          "a": "Ja, wir ziehen Sie von Pocking aus deutschland- und europaweit um – sicher und voll versichert."
+        }
+      ]
+    },
+    "umzug_plattling": {
+      "meta_title": "Umzugsunternehmen Plattling ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Wie schnell ist ein Termin in Plattling möglich?",
+          "a": "Durch unsere gute Anbindung können wir in Plattling oft auch kurzfristige Besichtigungstermine realisieren."
+        }
+      ]
+    },
+    "umzug_cham": {
+      "meta_title": "Umzugsunternehmen Cham ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Helfen Sie auch beim Möbelabbau in Cham?",
+          "a": "Ja, unser Team übernimmt in Cham gerne die fachgerechte Demontage und Montage Ihrer Möbel."
+        }
+      ]
+    },
+    "umzug_tirschenreuth": {
+      "meta_title": "Umzugsunternehmen Tirschenreuth ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Ist mein Umzugsgut in Tirschenreuth versichert?",
+          "a": "Ja, jeder Umzug in Tirschenreuth ist über unsere Haftpflicht- und Transportversicherung voll abgesichert."
+        }
+      ]
+    },
+    "umzug_sulzbach_rosenberg": {
+      "meta_title": "Umzugsunternehmen Sulzbach-Rosenberg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Bieten Sie Full-Service Umzüge in Sulzbach-Rosenberg an?",
+          "a": "Ja, vom Einpackservice bis zur Möbelmontage bieten wir in Sulzbach-Rosenberg das gesamte Spektrum an."
+        }
+      ]
+    },
+    "entruempelung_erlangen": {
+      "meta_title": "Entrümpelung Erlangen ✓ Diskret & Schnell | FLOXANT",
+      "faqs": [
+        {
+          "q": "Räumen Sie auch Keller und Dachböden in Erlangen?",
+          "a": "Ja, wir übernehmen die komplette Räumung von Teilbereichen bis hin zur gesamten Wohnungsauflösung in Erlangen."
+        }
+      ]
+    },
+    "umzug_spec": {
+      "meta_title": "Umzugsunternehmen {city} ✓ Festpreis ✓ Versichert | FLOXANT",
+      "meta_desc": "Professionelles Umzugsunternehmen in {city} & Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
+      "hero_badge": "Umzugsservice",
+      "hero_h1": "Umzug {city}",
+      "hero_p": "Ihr verlässliches Umzugsunternehmen für stressfreie Umzüge in {city} und ganz Bayern. Mit Festpreisgarantie und voller Versicherungsschutz.",
+      "badges": {
+        "permit": "Genehmigungen",
+        "signs": "Halteverbote",
+        "stressfree": "Stressfrei"
+      },
+      "cta": "Umzug anfragen",
+      "service1": {
+        "title": "Privatumzug",
+        "l1": "Ab- & Aufbau Möbel",
+        "l2": "Sicherer Transport",
+        "l3": "Packservice",
+        "l4": "Voll versichert"
+      },
+      "service2": {
+        "title": "Vorteile",
+        "l1": "Kostenlose Besichtigung",
+        "l2": "Festpreisgarantie",
+        "l3": "Erfahrenes Team",
+        "l4": "Termintreue"
+      },
+      "section2_h2": "Ihr Umzug in {city} – strukturiert und sicher",
+      "section2_p1": "Ein Umzug ist mehr als ein Transport. Wir begleiten Sie in {city} von der Planung bis zur Schlüsselübergabe.",
+      "section2_p2": "Vertrauen Sie auf regionale Erfahrung und faire Preise.",
+      "wizard_badge": "Angebot",
+      "wizard_h2": "Umzug in {city} kalkulieren",
+      "wizard_p": "Nutzen Sie unseren Rechner für ein sofortiges Angebot."
+    },
+    "umzug_wuerzburg": {
+      "meta_title": "Umzugsunternehmen Würzburg ✓ Festpreis ✓ Versichert | FLOXANT",
+      "faqs": [
+        {
+          "q": "Was kostet ein Umzug in Würzburg?",
+          "a": "Ein lokaler Privat-Umzug in Würzburg kostet je nach Volumen zwischen 400€ und 2.000€. Wir bieten Festpreise nach einer kostenlosen Besichtigung."
+        },
+        {
+          "q": "Bieten Sie auch Küchenmontage in Würzburg an?",
+          "a": "Ja, unser Team übernimmt die fachgerechte Demontage und den Wiederaufbau Ihrer Küche direkt am neuen Standort in Würzburg."
+        },
+        {
+          "q": "Gibt es Beiladungsmöglichkeiten ab Würzburg?",
+          "a": "Regelmäßig fahren wir von Würzburg Richtung NRW oder München. Fragen Sie nach günstigen Beiladungstarifen."
+        }
+      ]
     }
   },
   "services_section": {
@@ -4344,15 +4856,15 @@
     "cta_description": "Erhalten Sie sofort Ihr unverbindliches Angebot über unseren intelligenten Kostenrechner oder schreiben Sie uns bei Fragen ganz einfach per WhatsApp.",
     "whatsapp_write": "Jetzt WhatsApp schreiben",
     "quick_question": "Schnelle Frage?",
-    "back_to_home": "Zurück zur Startseite",
+    "back_to_home": "Zur Startansicht",
     "nav_open": "Menü öffnen",
     "nav_close": "Menü schließen",
-    "fast_question": "Schnelle Frage?",
-    "write_whatsapp_now": "Jetzt WhatsApp schreiben",
     "authority_bio": "FLOXANT ist Ihr verlässlicher, regional verwurzelter Dienstleister in Bayern. Mit unserem Hauptverwaltungssitz nahe Regensburg koordinieren wir tägliche Umzüge, spezialisierte Entrümpelungen und gewerbliche Reinigungen im gesamten Freistaat – von der Oberpfalz bis München. Profitieren Sie von unserer zertifizierten Verkehrshaftung, kurzfristigen Dispositionen und limitierten Festpreisen. Wir sind Ihr zentraler Ansprechpartner für Logistik und Transport.",
     "free_unbinding": "Unverbindlich & Kostenlos",
     "headquarters_regensburg": "Hauptsitz Regensburg",
+    "umzug_bavaria": "Umzug Bayern",
     "entruempelung": "Entrümpelung",
+    "reinigung": "Reinigung",
     "success_100_region": "Über 100+ erfolgreiche Umzüge in der Region.",
     "top_ratings": "Top Bewertungen",
     "local_expert": "Ihr Transport- und Logistikexperte vor Ort",
@@ -4377,7 +4889,6 @@
     "metro_munich": "Metropole München",
     "metro_nuremberg": "Großraum Nürnberg",
     "request_price_online": "Preis sofort online anfragen",
-    "umzug_bavaria": "Umzug Bayern",
     "umzug_nuremberg": "Umzug Nürnberg",
     "umzug_munich": "Umzug München",
     "local_challenges": "Lokale Herausforderungen meistern",
@@ -4416,19 +4927,20 @@
     "combination_move": "Kombination mit Umzug",
     "also_available_in": "Auch verfügbar in",
     "whatsapp_cta_title": "Schnelle Frage? WhatsApp!",
-    "whatsapp_cta_desc": "Antwort meist innerhalb von 5 Minuten. Kostenlos & unverbindlich."
+    "whatsapp_cta_desc": "Antwort meist innerhalb von 5 Minuten. Kostenlos & unverbindlich.",
+    "next": "Weiter"
   },
   "calculator": {
-    "requirements_title": "Ihre Anforderungen",
+    "requirements_title": "Angaben",
     "requirements_subtitle": "Um Ihnen ein seriöses Angebot zu machen, füllen Sie bitte die relevanten Punkte grob aus. Je mehr wir wissen, desto genauer definieren sich Preis und Teamstärke.",
     "calculation_title": "Ihre Kalkulation",
-    "prognosis_label": "Erste Prognose",
+    "prognosis_label": "Preisspanne",
     "estimate_label": "Echte Schätzung",
-    "start_now": "Lassen Sie uns starten!",
+    "start_now": "Jetzt starten",
     "start_description": "Geben Sie einfach ein paar erste Eckdaten (z.B. die Wohnfläche) links ein. Unser intelligenter Rechner ermittelt sofort einen fairen Preis für Sie.",
     "calculating": "Kalkuliere Aufwand...",
     "live_price_indicative": "Live Preisindikativ",
-    "uncertainty_note": "Dies ist eine maschinelle Schätzung zur groben Orientierung. Bitte geben Sie mehr Details ein, um einen genaueren Wert zu erhalten.",
+    "uncertainty_note": "Dies ist eine erste grobe Schätzung. Faktoren wie Etage, Laufwege, Zusatzleistungen oder Sperrmüllart können den finalen Preis beeinflussen.",
     "legal_note": "*Hinweis: Hierbei handelt es sich um einen unverbindlichen Richtwert. Da jedes Objekt individuell ist, können die realen Kosten variieren. Ein verbindliches Festpreisangebot erstellen wir Ihnen gerne nach unserer kostenlosen Erstbesichtigung!",
     "duration": "Dauer",
     "personnel": "Personal",
@@ -4436,12 +4948,12 @@
     "included_in_calculation": "In der Kalkulation enthalten",
     "fix_now_btn": "Jetzt kostenlos fixieren",
     "unbinding_note": "Diese Schnell-Schätzung ist zu 100% unverbindlich. Im nächsten Schritt können Sie einen Rückruf oder Ihre kostenlose Erstbesichtigung vereinbaren.",
-    "submit_details": "Details übermitteln",
+    "submit_details": "Kontaktdaten übermitteln",
     "submit_subtitle": "Teilen Sie uns mit, wie wir Sie für Rückfragen und den finalen Abgleich erreichen können.",
-    "your_price_range": "Ihr Preisrahmen",
+    "your_price_range": "Ihre Preisspanne",
     "contact_person": "Ansprechpartner",
-    "name_placeholder": "Vor- und Nachname",
-    "preferred_contact_time": "Bevorzugte Kontaktzeit",
+    "name_placeholder": "Ihr Name",
+    "preferred_contact_time": "Bevorzugte Rückrufzeit",
     "anytime": "jederzeit",
     "morning": "vormittags",
     "afternoon": "nachmittags",
@@ -4450,16 +4962,16 @@
     "upload_photos_hint": "Wir senden Ihnen einen sicheren WhatsApp/Upload-Link, um Fotos der Gegenstände nachzureichen. Dies hilft uns bei der präziseren Endkalkulation.",
     "price_importance_note": "Wichtiger Hinweis zum Preis:",
     "price_importance_text": "Der angezeigte Wert aus unserem Online-Rechner ist eine erste fundierte Schätzung für Ihre Orientierung. Da jeder Auftrag – ob Möbel, Zugangswege oder Volumen – einzigartig ist, können die realen Kosten in der Praxis etwas variieren. Wir garantieren Ihnen jedoch nach einem kurzen persönlichen Austausch immer einen 100% transparenten Festpreis ohne versteckte Kosten! 🙌",
-    "back_to_overview": "Zurück zur Übersicht",
-    "submitting": "Wird übermittelt...",
+    "back_to_overview": "Zurück",
+    "submitting": "Wird gesendet",
     "submit_btn": "Unverbindliche Anfrage absenden",
     "ssl_encryption": "Ihre Daten werden SSL-verschlüsselt übertragen.",
     "success_submitted": "Anfrage erfolgreich übermittelt",
-    "success_description": "Vielen Dank für Ihre detaillierten Angaben. Unser Dispositionsteam prüft Ihre Anfrage aktuell und meldet sich wie gewünscht bei Ihnen. Sie erhalten in Kürze eine Eingangsbestätigung per E-Mail.",
+    "success_description": "Wir haben Ihre Anfrage erhalten und melden uns zeitnah mit einer passenden Rückmeldung bei Ihnen.",
     "photo_link_note": "Den Link für den Upload von Fotos senden wir Ihnen separat via E-Mail & WhatsApp zu.",
     "basis_data": "Basisdaten",
-    "living_area": "Wohnfläche",
-    "rooms": "Zimmer",
+    "living_area": "Wohnfläche (m²)",
+    "rooms": "Zimmeranzahl",
     "access_conditions": "Zugang & Wege",
     "floor": "Etage",
     "lift": "Aufzug",
@@ -4546,7 +5058,7 @@
     "handover_guarantee_desc": "Wir garantieren die problemlose Wohnungsübergabe an die Verwaltung (inkl. kostenloser Nachbesserung).",
     "cleaning_notes_placeholder": "Z.B. Besonderheiten zum Bodenbelag, Zugangscode zum Gebäude...",
     "waste_volume_title": "Volumen & Art",
-    "estimated_waste_volume": "Geschätztes Volumen (m³)",
+    "estimated_waste_volume": "Schätzvolumen (m³)",
     "uncertain_waste_volume": "Ich bin mir beim Entsorgungsvolumen sehr unsicher",
     "uncertain_waste_volume_desc": "Der Preisrahmen wird zur Sicherheit erweitert. Endpreis nach realem Volumen.",
     "waste_types": "Abfallarten (Mehrfachnennung möglich)",
@@ -4617,8 +5129,27 @@
     "flag_disassembly_on_site": "Inkl. Demontage vor Ort",
     "flag_express_service": "Express-Service (Dringend)",
     "flag_waste_notes_noted": "Ihre Notiz speichern wir für die Planung",
-    "upload_link_note": "Den Link für den Foto-Upload erhalten Sie separat via WhatsApp oder E-Mail.",
-    "error_submit": "Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt."
+    "upload_link_note": "Wir senden Ihnen den Link für den Foto-Upload separat per E-Mail und WhatsApp.",
+    "error_submit": "Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+    "service_selection_note": "Wählen Sie zuerst die passende Leistung. Danach erfassen wir die wichtigsten Eckdaten für eine schnelle erste Einschätzung.",
+    "requirements_note": "Nur die wichtigsten Angaben. Die genaue Kalkulation folgt im nächsten Schritt.",
+    "from_place_placeholder": "Von Ort / PLZ",
+    "to_place_placeholder": "Nach Ort / PLZ",
+    "adjust_details": "Angaben anpassen",
+    "submit_details_subtitle": "Hinterlassen Sie Ihre Kontaktdaten. Wir prüfen die Angaben und melden uns mit einer passenden Rückmeldung.",
+    "phone_number": "Telefonnummer",
+    "email_address": "E-Mail-Adresse",
+    "jederzeit": "jederzeit",
+    "vormittags": "vormittags",
+    "nachmittags": "nachmittags",
+    "abends": "abends",
+    "submit_photos": "Fotos nachreichen",
+    "submit_photos_subtitle": "Auf Wunsch senden wir Ihnen einen Upload-Link für Bilder oder Videos.",
+    "important_price_note": "Wichtiger Hinweis:",
+    "price_disclaimer": "Die angezeigte Kalkulation ist unverbindlich und dient als erste Orientierung auf Basis Ihrer Angaben.",
+    "submit_request": "Anfrage senden",
+    "ssl_encryption_note": "SSL-verschlüsselte Übertragung",
+    "success_title": "Anfrage erfolgreich gesendet"
   },
   "home": {
     "hero_title": "Ihr professionelles Umzugsunternehmen in Bayern.",
@@ -4651,7 +5182,31 @@
     "faq_a8": "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und die gesetzliche Verkehrshaftung nach §451g HGB vollständig abgesichert. Zusätzlich bieten wir auf Wunsch erweiterte Premium-Versicherungen an.",
     "premium_badge": "Premium Logistik & Service",
     "services_title": "Unsere Logistik & Serviceleistungen",
-    "services_subtitle": "Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern."
+    "services_subtitle": "Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern.",
+    "short_notice_title": "Kurzfristige Termine",
+    "short_notice_subtitle": "Auch bei dringendem Bedarf",
+    "direct_reachability": "Direkt erreichbar",
+    "call_cta": "Anrufen",
+    "email_cta": "E-Mail",
+    "howto_name": "Wie funktioniert ein Umzug mit FLOXANT?",
+    "howto_desc": "In 4 einfachen Schritten zu Ihrem stressfreien Umzug in Bayern.",
+    "howto_step1_name": "Kosten berechnen",
+    "howto_step1_text": "Nutzen Sie unseren Online-Rechner oder kontaktieren Sie uns für eine kostenlose Besichtigung.",
+    "howto_step2_name": "Festpreisangebot erhalten",
+    "howto_step2_text": "Sie erhalten ein verbindliches Festpreisangebot ohne versteckte Kosten.",
+    "howto_step3_name": "Termin buchen",
+    "howto_step3_text": "Wählen Sie Ihren Wunschtermin. Auch kurzfristige Termine innerhalb von 48h sind möglich.",
+    "howto_step4_name": "Entspannt umziehen",
+    "howto_step4_text": "Unser versichertes Team erledigt den Rest – professionell, pünktlich und sorgfältig.",
+    "services_fallback_moving": "Professionelle Umzüge für Privat- und Firmenkunden in Bayern.",
+    "services_fallback_cleaning": "Zuverlässige Reinigung für Wohnungen, Häuser und Gewerbeobjekte.",
+    "services_fallback_clearance": "Saubere Räumung, Abtransport und fachgerechte Entsorgung.",
+    "cleaning_desc": "Besenreine Endreinigung für eine sorgenfreie Wohnungsübergabe mit Abnahmegarantie.",
+    "clearance_desc": "Fachgerechte Entrümpelung und Entsorgung Ihrer Altmöbel und Haushaltsgegenstände.",
+    "guide_desc": "Wertvolle Tipps, Checklisten und Ratgeber rund um Ihren Umzug in Bayern.",
+    "premium_experience": "Die FLOXANT Experience",
+    "brand_promise_title": "Eigene Teams & Gebrandete LKWs",
+    "brand_promise_desc": "Wir setzen auf Transparenz und Qualität. Mit unseren eigenen geschulten Teams und modernem Fuhrpark garantieren wir höchste Sicherheit für Ihr Hab und Gut."
   },
   "reviews": {
     "title": "Das sagen unsere Kunden",
@@ -4769,6 +5324,8 @@
     }
   },
   "metadata": {
+    "global_title": "Umzugsunternehmen Bayern | Umzug, Reinigung & Entrümpelung | FLOXANT",
+    "global_desc": "FLOXANT – Ihr Partner für Umzug, Entrümpelung und Reinigung in Regensburg und ganz Bayern zum Festpreis.",
     "keywords": "Umzugsunternehmen Bayern, Umzug Regensburg, Entrümpelung Bayern, Reinigung Regensburg, Umzugsfirma München, Umzug Nürnberg, Festpreis Umzug, versicherter Umzug, FLOXANT",
     "og_img_alt": "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg & Bayern",
     "og_locale": "de_DE"

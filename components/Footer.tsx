@@ -18,7 +18,6 @@ export function Footer({ lang, dic }: FooterProps) {
         <footer className="bg-background border-t border-border/50 py-12 px-6">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
 
-                {/* High Conversion CTA Section */}
                 <div className="w-full bg-[#0a0a0a] rounded-2xl p-8 md:p-12 mb-16 border border-white/10 relative overflow-hidden text-center md:text-start flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
                     <div className="absolute top-0 end-0 w-64 h-64 bg-primary/10 blur-3xl rounded-full -z-10" />
                     <div className="max-w-xl z-10">
@@ -29,10 +28,18 @@ export function Footer({ lang, dic }: FooterProps) {
                             {dic?.common?.cta_description}
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
-                            <Link href={`/${lang}/#contact`} className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-all text-center">
+                            <Link
+                                href={`/${lang}/#contact`}
+                                className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-all text-center"
+                            >
                                 {dic?.common?.cost_calculator_btn}
                             </Link>
-                            <a href="https://wa.me/4915771105087" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold hover:bg-[#25D366]/20 transition-all text-center flex items-center justify-center gap-2">
+                            <a
+                                href="https://wa.me/4915771105087"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto px-8 py-4 bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold hover:bg-[#25D366]/20 transition-all text-center flex items-center justify-center gap-2"
+                            >
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]"></span>
@@ -46,10 +53,12 @@ export function Footer({ lang, dic }: FooterProps) {
                     </div>
                 </div>
 
-                {/* Authority Link & Trust Intro */}
                 <div className="w-full border-b border-border/20 pb-10 mb-10 text-start">
                     <div className="max-w-4xl">
-                        <Link href={"/" + lang} className="text-3xl font-extrabold tracking-tighter text-foreground hover:text-primary transition-colors inline-block mb-4">
+                        <Link
+                            href={"/" + lang}
+                            className="text-3xl font-extrabold tracking-tighter text-foreground hover:text-primary transition-colors inline-block mb-4"
+                        >
                             FLOXANT<span className="text-primary">.</span>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed">
@@ -58,7 +67,6 @@ export function Footer({ lang, dic }: FooterProps) {
                     </div>
                 </div>
 
-                {/* (A) Core Services — HIGH SEO PRIORITY */}
                 <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                     <div>
                         <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.moving_header}</h3>
@@ -106,15 +114,28 @@ export function Footer({ lang, dic }: FooterProps) {
                     </div>
                 </div>
 
-                {/* (B) Logo + Trust */}
-                <div className="w-full flex items-center justify-center gap-8 py-10 border-t border-border/10 flex-wrap">
-                    <BrandLogo size={{ base: 44, md: 60 }} />
-                    <a href="https://www.check24.de" target="_blank" rel="noopener noreferrer" title="zum CHECK24 Profi Profil" className="opacity-60 hover:opacity-100 transition-opacity">
-                        <img src="https://cdn.profis.check24.de/widget/2026.svg" alt="CHECK24 Profi Siegel" width="120" height="104" loading="lazy" className="h-10 w-auto object-contain" />
+                <div className="w-full flex items-center justify-center gap-10 py-10 border-t border-border/10 flex-wrap">
+                    <div className="flex items-center justify-center">
+                        <BrandLogo size={{ base: 72, md: 96 }} />
+                    </div>
+                    <a
+                        href="https://www.check24.de"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="zum CHECK24 Profi Profil"
+                        className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
+                    >
+                        <img
+                            src="https://cdn.profis.check24.de/widget/2026.svg"
+                            alt="CHECK24 Profi Siegel"
+                            width="120"
+                            height="104"
+                            loading="lazy"
+                            className="h-12 md:h-14 w-auto object-contain"
+                        />
                     </a>
                 </div>
 
-                {/* (C) Legal links — small & de-emphasized */}
                 <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-muted-foreground/50 mt-4">
                     <Link href={`/${lang}/impressum`} className="hover:text-foreground transition-colors">{dic.footer.impressum}</Link>
                     <span>·</span>
@@ -129,12 +150,14 @@ export function Footer({ lang, dic }: FooterProps) {
                     <Link href={`/${lang}/login`} className="hover:text-foreground transition-colors">{dic?.footer?.intern || "Intern"}</Link>
                 </div>
 
-                {/* (D) Copyright */}
                 <div className="flex flex-col items-center gap-2 text-center mt-6 max-w-[280px] md:max-w-md">
                     <p className="text-xs text-muted-foreground/80">
                         &copy; {currentYear} FLOXANT. {dic.footer.rights}
                     </p>
-                    <a href={`mailto:${company.email}`} className="text-xs text-muted-foreground/60 hover:text-foreground transition-colors">
+                    <a
+                        href={`mailto:${company.email}`}
+                        className="text-xs text-muted-foreground/60 hover:text-foreground transition-colors"
+                    >
                         {company.email}
                     </a>
                 </div>

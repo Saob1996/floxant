@@ -1,209 +1,142 @@
-import { type Locale } from "@/i18n-config";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import dynamic from "next/dynamic";
-const DualCalculator = dynamic(
-    () => import("@/components/calculator/DualCalculator"),
-    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
-);
-
-
-
-import { getDictionary } from "../../../get-dictionary";
-import { generatePageSEO } from "@/lib/seo";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { isValidLocale, type Locale } from "@/i18n-config";
+import { generatePageSEO } from "@/lib/seo";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, MapPin, Truck, ShieldCheck, Clock } from "lucide-react";
+import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
+interface PageProps {
+    params: Promise<{ lang: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) return {};
+
+    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+        locale: lang as Locale,
+        baseKey: "umzug_spec",
+        seoKey: "umzug_bayern",
+        city: "Bayern",
+    });
+
     return generatePageSEO({
-        pageLocale,
-        path: 'umzug-bayern',
-        title: 'Umzugsunternehmen Bayern ✓ Festpreis ✓ Versicherung | FLOXANT',
-        description: "Professionelles Umzugsunternehmen in Bayern. Umzug, Entrümpelung und Reinigung mit Festpreis und Versicherung. Jetzt Angebot bei FLOXANT anfragen!",
+        pageLocale: lang,
+        path: `umzug-bayern`,
+        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
+        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
     });
 }
 
-export default async function UmzugBayern({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
+export default async function UmzugBayernPage({ params }: PageProps) {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) notFound();
 
-    const localBusinessJsonLd = {
-        "@context": "https://schema.org", "@type": "MovingCompany", "name": "FLOXANT Umzug Bayern",
-        "url": `https://www.floxant.de/${pageLocale}/umzug-bayern`, "telephone": "+4915771105087",
-        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
-        "areaServed": [{ "@type": "State", "name": "Bayern" }], "priceRange": "$$",
-    };
+    const locale = lang as Locale;
+    const { 
+        localeDict, 
+        content, 
+        fallback, 
+        seoContent, 
+        seoFallback, 
+        city 
+    } = await getSpecialtyPageData({
+        locale,
+        baseKey: "umzug_spec",
+        seoKey: "umzug_bayern",
+        city: "Bayern",
+    });
 
-    const serviceJsonLd = {
-        "@context": "https://schema.org", "@type": "Service",
-        "serviceType": "Umzug, Transport, Entrümpelung, Reinigung",
-        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Bayern", "telephone": "+4915771105087" },
-        "areaServed": { "@type": "State", "name": "Bayern" }
-    };
+    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
 
-    const breadcrumbsJsonLd = {
-        "@context": "https://schema.org", "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
-            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${pageLocale}/umzug-bayern` }
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "MovingCompany",
+                "name": `Umzug ${city} | FLOXANT`,
+                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+                "url": `https://www.floxant.de/${lang}/umzug-bayern`,
+                "telePhone": "+49 1577 1105087",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Regensburg",
+                    "addressRegion": "Bayern",
+                    "addressCountry": "DE"
+                },
+                "areaServed": { "@type": "State", "name": "Bayern" }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+                    { "@type": "ListItem", "position": 2, "name": `Umzug ${city}`, "item": `https://www.floxant.de/${lang}/umzug-bayern` }
+                ]
+            },
+            ...(faqItems.length > 0 ? [{
+                "@type": "FAQPage",
+                "mainEntity": faqItems.map(item => ({
+                    "@type": "Question",
+                    "name": item.q,
+                    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+                }))
+            }] : [])
         ]
     };
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern" }]} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
-
-            {/* Hero Section */}
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <MapPin className="w-4 h-4" />
-                        <span>Bayern & Deutschlandweit</span>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Umzugsunternehmen in <span className="text-primary">Bayern</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                        Ihr Partner für stressfreie Wohnungswechsel. FLOXANT koordiniert Ihren Umzug mit Präzision und Sorgfalt – von Bayern in jede Region Deutschlands.
-                    </p>
-                </div>
-            </section>
-
-            {/* Main Content Area */}
-
-            <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto space-y-24">
-
-                    {/* Introduction */}
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Ihr Umzug in Bayern – Strukturiert und Sicher</h2>
-                        <p>
-                            Ein Umzug ist weit mehr als der Transport von Möbeln von A nach B. Er markiert einen neuen Lebensabschnitt, eine Veränderung, die oft mit viel Organisation und emotionalem Aufwand verbunden ist. Bei FLOXANT verstehen wir diese Herausforderung genau. Unser Anspruch ist es, Ihnen nicht nur schwere Kisten, sondern auch die Last der Planung abzunehmen.
-                        </p>
-                        <p className="bg-muted/30 p-6 rounded-xl border border-border/50 not-italic">
-                            <strong>Operativer Schwerpunkt Bayern:</strong> FLOXANT hat seinen Firmensitz in Regensburg. Von hier aus sind unsere Teams regelmäßig in ganz Bayern im Einsatz – in München, Nürnberg, Augsburg, Feucht und allen umliegenden Regionen. Zusätzlich organisieren wir routiniert Fernumzüge von Bayern nach NRW und ganz Deutschland.
-                        </p>
-                        <p>
-                            Unsere Philosophie basiert auf architektonischer Ordnung. Wir überlassen nichts dem Zufall. Jeder Handgriff sitzt, jede Phase des Umzugs ist durchgeplant. Das gibt Ihnen die Sicherheit, dass Ihr Hab und Gut in den besten Händen ist.
-                        </p>
-                    </div>
-
-                    {/* Services Section */}
-                    <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-12">Unsere Leistungen in Bayern</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="p-8 rounded-2xl bg-muted/10 border border-border/50">
-                                <Truck className="w-10 h-10 text-primary mb-6" />
-                                <h3 className="text-xl font-bold mb-4">Privatumzüge</h3>
-                                <p className="text-muted-foreground mb-6">
-                                    Ob Single-Appartement oder Familienhaus – wir behandeln Ihren Privatumzug mit Diskretion und Respekt. Unsere Teams sind geschult im Umgang mit sensiblen Gegenständen.
-                                </p>
-                                <ul className="space-y-2">
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Demontage & Montage</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Ein- und Auspackservice</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Schutz empfindlicher Böden</li>
-                                </ul>
-                            </div>
-
-                            <div className="p-8 rounded-2xl bg-muted/10 border border-border/50">
-                                <Clock className="w-10 h-10 text-primary mb-6" />
-                                <h3 className="text-xl font-bold mb-4">Fernumzüge ab Bayern</h3>
-                                <p className="text-muted-foreground mb-6">
-                                    Von Bayern nach NRW, Hamburg oder Berlin? Fernumzüge sind unsere Spezialität. Logistisch effiziente Lösungen für Langstrecken.
-                                </p>
-                                <ul className="space-y-2">
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Bundesweite Logistik</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Festpreis-Garantie</li>
-                                    <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Termintreue Zustellung</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Regional Coverage */}
-                    <div className="space-y-12">
-                        <h2 className="text-3xl font-bold text-foreground">Umzug in Ihrer Region</h2>
-                        <div className="prose prose-lg max-w-none text-muted-foreground">
-                            <h3 className="text-2xl font-bold text-foreground">Umzug in Regensburg & Oberpfalz</h3>
-                            <p>Regensburg ist unser operatives Zentrum. Ob mittelalterliche Altstadt, Universitätsviertel oder Neubaugebiete am Stadtrand – wir kennen die logistischen Herausforderungen jeder Lage. Enge Zufahrten, Fußgängerzonen und denkmalgeschützte Gebäude erfordern Erfahrung, die wir aus hunderten von Aufträgen mitbringen.</p>
-
-                            <h3 className="text-2xl font-bold text-foreground">Umzug in Nürnberg & Franken</h3>
-                            <p>In der Metropolregion Nürnberg sind wir regelmäßig für Privat- und Firmenumzüge im Einsatz. Von der Südstadt über Fürth und Erlangen bis nach Schwabach – unser Team kennt die fränkischen Gegebenheiten und organisiert Ihren Umzug effizient.</p>
-
-                            <h3 className="text-2xl font-bold text-foreground">Umzug in München</h3>
-                            <p>Münchens angespannter Wohnungsmarkt und die Parkplatzsituation erfordern besondere Vorbereitung. Wir beantragen Halteverbotszonen, koordinieren Aufzugsbelegungen und planen Ihren Münchner Umzug bis ins Detail.</p>
-
-                            <h3 className="text-2xl font-bold text-foreground">Umzug in Feucht & Nürnberger Land</h3>
-                            <p>Im Raum Feucht, Schwarzenbruck und dem Nürnberger Land bieten wir kurze Anfahrtszeiten und flexible Terminvergabe. Ideal für kurzfristige Umzüge in der Region.</p>
-                        </div>
-                    </div>
-
-                    {/* Why FLOXANT */}
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Warum FLOXANT für Ihren Umzug wählen?</h2>
-                        <h3>Transparente Preisgestaltung</h3>
-                        <p>Versteckte Kosten gibt es bei uns nicht. Nach einer detaillierten Bestandsaufnahme erhalten Sie ein verbindliches Festpreisangebot. Darin sind alle Leistungen inkludiert: vom Verpackungsmaterial bis zur Versicherung.</p>
-                        <h3>Sicherheit und Versicherung</h3>
-                        <p>Als professionelles Unternehmen sind wir umfassend versichert. Eine Haftpflicht- und Transportversicherung schützt Ihr Eigentum während des gesamten Prozesses.</p>
-                        <h3>Fokus auf Nachhaltigkeit</h3>
-                        <p>Effiziente Routenplanung, wiederverwendbare Verpackungsmaterialien und fachgerechte Trennung bei Entrümpelungen. Bei Fernumzügen kombinieren wir Ladungen intelligent, um CO2 zu sparen.</p>
-                    </div>
-
-                    {/* Einsatzgebiet Bayern */}
-                    <div className="bg-muted/20 p-8 rounded-3xl">
-                        <h2 className="text-2xl font-bold mb-6">Einsatzgebiet Bayern – Alle Standorte</h2>
-                        <p className="text-muted-foreground mb-8">
-                            Wir sind in allen größeren Städten und Regionen Bayerns aktiv. Unsere Teams kennen die lokalen Gegebenheiten.
-                        </p>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <Link href={`/${pageLocale}/umzug-muenchen`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
-                                <ArrowRight className="w-4 h-4 text-primary" /> München
-                            </Link>
-                            <Link href={`/${pageLocale}/umzug-nuernberg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
-                                <ArrowRight className="w-4 h-4 text-primary" /> Nürnberg
-                            </Link>
-                            <Link href={`/${pageLocale}/umzug-augsburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
-                                <ArrowRight className="w-4 h-4 text-primary" /> Augsburg
-                            </Link>
-                            <Link href={`/${pageLocale}/umzug-regensburg`} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
-                                <ArrowRight className="w-4 h-4 text-primary" /> Regensburg
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* Internal Links */}
-                    <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">Weitere Leistungen in Bayern</h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${pageLocale}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
-                            <Link href={`/${pageLocale}/reinigung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Bayern</Link>
-                            <Link href={`/${pageLocale}/wohnungsaufloesung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Wohnungsauflösung Bayern</Link>
-                            <Link href={`/${pageLocale}/familienumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Familienumzug Bayern</Link>
-                            <Link href={`/${pageLocale}/seniorenumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Seniorenumzug Bayern</Link>
-                            <Link href={`/${pageLocale}/24h-umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">24h Umzug Bayern</Link>
-                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                            <Link href={`/${pageLocale}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
-                        </div>
-                    </div>
-
-                    {/* CTA Section */}
-                    <div className="text-center py-10 bg-primary/5 rounded-3xl border border-primary/10">
-                        <h2 className="text-3xl font-bold mb-4">Bereit für den Neustart?</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                            Fordern Sie jetzt Ihr unverbindliches Festpreisangebot an. Wir beraten Sie gerne persönlich zu Ihrem Umzugsvorhaben in Bayern oder deutschlandweit.
-                        </p>
-                        <DualCalculator dic={dict} />
-                    </div>
-
-                </div>
-            </section>
-
-        </main>
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <SpecialtyPageLayout
+                pageLocale={lang}
+                dict={localeDict}
+                city={city}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta, city)}
+                breadcrumbs={[
+                    { label: "Home", href: `/${lang}` },
+                    { label: `Umzug ${city}` }
+                ]}
+                chips={[
+                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
+                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
+                    { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+                ]}
+                cards={[
+                    {
+                        icon: Star,
+                        title: resolveNestedField(content.service1, fallback.service1, "title", city),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1", city),
+                            resolveNestedField(content.service1, fallback.service1, "l2", city),
+                            resolveNestedField(content.service1, fallback.service1, "l3", city),
+                            resolveNestedField(content.service1, fallback.service1, "l4", city),
+                        ]
+                    },
+                    {
+                        icon: Zap,
+                        title: resolveNestedField(content.service2, fallback.service2, "title", city),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1", city),
+                            resolveNestedField(content.service2, fallback.service2, "l2", city),
+                            resolveNestedField(content.service2, fallback.service2, "l3", city),
+                            resolveNestedField(content.service2, fallback.service2, "l4", city),
+                        ]
+                    }
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
+        </>
     );
 }

@@ -1,231 +1,102 @@
-import { i18n } from "@/i18n-config";
-import { type Locale } from "@/i18n-config";
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
+import { notFound } from "next/navigation";
+import { isValidLocale, type Locale } from "@/i18n-config";
+import { generatePageSEO } from "@/lib/seo";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import { Trash, Shield, Clock, Star, Zap } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { CheckCircle2, MapPin, Shield, Heart, Clock, ArrowRight, Home } from "lucide-react";
-
-const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
-);
-const DualCalculator = dynamic(
-    () => import("@/components/calculator/DualCalculator"),
-    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
-);
-
-
-export async function generateMetadata({
-    params,
-}: {
+interface PageProps {
     params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict?.pages as any)?.wohnungsaufloesung_bayern || {};
-    return {
-        title: content.meta_title,
-        description: 'description: content.meta_desc || Professionelle Wohnungsauflösung in Bayern – Regensburg, Nürnberg, München. Nachlassräumung, Seniorenumzüge, besenre...',
-        alternates: {
-            canonical: `https://floxant.de/${pageLocale}/wohnungsaufloesung-bayern`,
-            languages: i18n.locales.reduce(
-                (acc, l) => {
-                    acc[l] = `https://floxant.de/${l}/wohnungsaufloesung-bayern`;
-                    return acc;
-                },
-                {} as Record<string, string>
-            ),
-        },
-    };
 }
 
-export default async function WohnungsaufloesungBayern({
-    params,
-}: {
-    params: Promise<{ lang: string }>;
-}) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) return {};
 
-    const localBusinessJsonLd = {
-        "@context": "https://schema.org", "@type": "LocalBusiness",
-        "name": "FLOXANT Wohnungsauflösung Bayern",
-        "description": "Professionelle Wohnungsauflösung in Bayern – Regensburg, Nürnberg, München. Nachlassräumung, Seniorenumzüge, besenreine Übergabe.",
-        "url": `https://www.floxant.de/${pageLocale}/wohnungsaufloesung-bayern`,
-        "telephone": "+4915771105087",
-        "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressRegion": "Bayern", "addressCountry": "DE" },
-        "priceRange": "$$"
-    };
+    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+        locale: lang as Locale,
+        baseKey: "service_entruempelung",
+        seoKey: "wohnungsaufloesung_bayern",
+        city: "Bayern",
+    });
 
-    const serviceJsonLd = {
-        "@context": "https://schema.org", "@type": "Service",
-        "serviceType": "Wohnungsauflösung, Haushaltsauflösung",
-        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Wohnungsauflösung Bayern", "telephone": "+4915771105087" },
-        "areaServed": [{ "@type": "AdministrativeArea", "name": "Bayern" }]
-    };
+    return generatePageSEO({
+        pageLocale: lang,
+        path: `wohnungsaufloesung-bayern`,
+        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
+        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+    });
+}
 
-    const breadcrumbsJsonLd = {
-        "@context": "https://schema.org", "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
-            { "@type": "ListItem", "position": 2, "name": "Entrümpelung", "item": `https://www.floxant.de/${pageLocale}/entruempelung` },
-            { "@type": "ListItem", "position": 3, "name": "Wohnungsauflösung Bayern", "item": `https://www.floxant.de/${pageLocale}/wohnungsaufloesung-bayern` }
-        ]
-    };
+export default async function WohnungsaufloesungBayernPage({ params }: PageProps) {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) notFound();
+
+    const locale = lang as Locale;
+    const { 
+        localeDict, 
+        content, 
+        fallback, 
+        seoContent, 
+        seoFallback, 
+        city 
+    } = await getSpecialtyPageData({
+        locale,
+        baseKey: "service_entruempelung",
+        seoKey: "wohnungsaufloesung_bayern",
+        city: "Bayern",
+    });
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs
-                lang={pageLocale}
-                items={[
-                    { label: "Entrümpelung", href: `/${pageLocale}/entruempelung` },
-                    { label: "Wohnungsauflösung Bayern" },
-                ]}
-            />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
-
-            {/* Hero */}
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <MapPin className="w-4 h-4" />
-                        <span>Wohnungsauflösung in ganz Bayern</span>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Wohnungsauflösung in <span className="text-primary">Bayern</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        Wenn ein Haushalt aufgelöst werden muss, brauchen Sie einen Partner mit Erfahrung, Feingefühl und der nötigen Infrastruktur. FLOXANT übernimmt die vollständige Wohnungsauflösung in ganz Bayern – diskret, versichert und termingerecht.
-                    </p>
-                </div>
-            </section>
-
-            {/* Main Content */}
-            
-      <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto space-y-24">
-
-                    {/* Introduction */}
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Haushaltsauflösung – behutsam und professionell</h2>
-                        <p>
-                            Eine Wohnungsauflösung ist selten ein einfacher Vorgang. Ob nach einem Todesfall, bei einem Umzug ins Pflegeheim, nach einer Trennung oder bei einer Auswanderung – die Gründe sind so vielfältig wie die Emotionen, die damit verbunden sind. FLOXANT versteht diese Situationen und geht mit der gebotenen Sensibilität vor.
-                        </p>
-                        <p>
-                            Unser Team übernimmt den gesamten Prozess: von der Sichtung und Bewertung des Inventars über die Sortierung und fachgerechte Entsorgung bis hin zur besenreinen Übergabe des Objekts an den Vermieter oder Makler. Wertvolle Gegenstände werden gesichert, brauchbare Möbel und Kleidung können auf Wunsch an soziale Einrichtungen in der Region gespendet werden.
-                        </p>
-                        <p>
-                            Unser operativer Schwerpunkt liegt in Regensburg und der Oberpfalz. Von hier betreuen wir Kunden in München, Nürnberg, Augsburg, Feucht und allen weiteren bayerischen Regionen. Wir sind kurzfristig verfügbar und bieten transparente Festpreise ohne versteckte Kosten.
-                        </p>
-                    </div>
-
-                    {/* Trust Signals */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { icon: Heart, title: "Sensibel & diskret", desc: "Besonders einfühlsame Abwicklung bei Nachlassräumungen und emotionalen Situationen." },
-                            { icon: Shield, title: "Voll versichert", desc: "Umfassender Versicherungsschutz für alle Arbeiten. Ihr Eigentum ist geschützt." },
-                            { icon: Home, title: "Besenrein", desc: "Übergabefertiger Zustand – inklusive Reinigung und vollständiger Räumung." },
-                            { icon: Clock, title: "Kurzfristig möglich", desc: "Schnelle Einsatzbereitschaft bei dringenden Auflösungen. Flexible Terminvergabe." },
-                        ].map((item, i) => (
-                            <div key={i} className="p-6 rounded-2xl bg-muted/10 border border-border/50 text-center">
-                                <item.icon className="w-10 h-10 text-primary mx-auto mb-4" />
-                                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Process */}
-                    <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-12">Unser Ablauf bei der Wohnungsauflösung</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {[
-                                { step: "01", title: "Begehung & Bestandsaufnahme", desc: "Gemeinsame Besichtigung – vor Ort oder per Video-Call. Wir erfassen den Umfang und besprechen Ihre Wünsche: Was bleibt? Was wird entsorgt? Was gespendet?" },
-                                { step: "02", title: "Transparentes Angebot", desc: "Sie erhalten ein verbindliches Festpreisangebot. Alle Leistungen sind inklusive: Sortierung, Entsorgung, Reinigung, Abtransport." },
-                                { step: "03", title: "Durchführung", desc: "Unser geschultes Team räumt systematisch. Wertgegenstände werden gesichert, Wertstoffe getrennt, Müll fachgerecht entsorgt." },
-                                { step: "04", title: "Besenreine Übergabe", desc: "Das Objekt wird gereinigt und übergabebereit hinterlassen. Entsorgungsnachweise werden auf Wunsch bereitgestellt." },
-                            ].map((item, i) => (
-                                <div key={i} className="relative p-6 rounded-2xl border border-border/50 bg-background">
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-sm">{item.step}</span>
-                                        <h3 className="text-lg font-semibold">{item.title}</h3>
-                                    </div>
-                                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Regional Sections */}
-                    <div className="space-y-12">
-                        <h2 className="text-3xl font-bold text-foreground">Wohnungsauflösung in Ihrer Region</h2>
-                        <div className="prose prose-lg max-w-none text-muted-foreground">
-                            <h3 className="text-2xl font-bold text-foreground">Regensburg & Oberpfalz</h3>
-                            <p>
-                                Als unser Haupteinsatzgebiet bieten wir in Regensburg und der gesamten Oberpfalz die schnellsten Reaktionszeiten. Wir arbeiten eng mit lokalen Entsorgungspartnern, sozialen Einrichtungen und Hausverwaltungen zusammen.
-                            </p>
-
-                            <h3 className="text-2xl font-bold text-foreground">Nürnberg & Metropolregion</h3>
-                            <p>
-                                Wohnungsauflösungen in Nürnberg, Fürth, Erlangen und dem Nürnberger Land inklusive Feucht und Schwarzenbruck. Unser Team passt die Vorgehensweise an die jeweilige Wohnsituation an – vom Altbau bis zum Hochhaus.
-                            </p>
-
-                            <h3 className="text-2xl font-bold text-foreground">München & Oberbayern</h3>
-                            <p>
-                                Auch in München und dem oberbayerischen Raum führen wir Wohnungsauflösungen durch. Die Besonderheiten des Münchner Immobilienmarktes – strenge Übergabestandards, Parkplatzmangel, Aufzugskoordination – kennen wir aus langjähriger Erfahrung.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Einsatzgebiet */}
-                    <div className="bg-muted/20 p-8 rounded-3xl">
-                        <h2 className="text-2xl font-bold mb-6">Einsatzgebiet Bayern</h2>
-                        <p className="text-muted-foreground mb-8">
-                            FLOXANT führt Wohnungsauflösungen in allen bayerischen Regionen durch. Kontaktieren Sie uns für ein individuelles Angebot.
-                        </p>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {[
-                                { href: `/${pageLocale}/entruempelung-regensburg`, label: "Regensburg" },
-                                { href: `/${pageLocale}/umzug-nuernberg`, label: "Nürnberg" },
-                                { href: `/${pageLocale}/umzug-muenchen`, label: "München" },
-                                { href: `/${pageLocale}/umzug-augsburg`, label: "Augsburg" },
-                            ].map((link) => (
-                                <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 bg-background rounded-lg hover:shadow-md transition-all text-sm font-medium">
-                                    <ArrowRight className="w-4 h-4 text-primary" /> {link.label}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Internal Links */}
-                    <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">Weitere Leistungen in Bayern</h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{(dict.common as any).umzug_bavaria || "Umzug Bayern"}</Link>
-                            <Link href={`/${pageLocale}/entruempelung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Entrümpelung Bayern</Link>
-                            <Link href={`/${pageLocale}/reinigung-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Reinigung Bayern</Link>
-                            <Link href={`/${pageLocale}/seniorenumzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Seniorenumzug Bayern</Link>
-                            <Link href={`/${pageLocale}/service-area-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Einsatzgebiet Bayern</Link>
-                        </div>
-                    </div>
-
-                    {/* CTA */}
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
-                        <h2 className="text-3xl font-bold mb-4">Wohnungsauflösung in Bayern anfragen</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                            Kostenlose Beratung und transparentes Festpreisangebot. Diskret und einfühlsam – in ganz Bayern.
-                        </p>
-                        <SmartBookingWizard dict={dict} />
-                    </div>
-
-                </div>
-            </section>
-        </main>
+        <SpecialtyPageLayout
+            pageLocale={lang}
+            dict={localeDict}
+            city={city}
+            heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
+            heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
+            heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+            ctaText={resolveField(content.cta, fallback.cta, city)}
+            breadcrumbs={[
+                { label: "Home", href: `/${lang}` },
+                { label: "Entrümpelung Bayern", href: `/${lang}/entruempelung-bayern` },
+                { label: "Wohnungsauflösung" }
+            ]}
+            chips={[
+                { icon: Trash, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
+                { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
+                { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+            ]}
+            cards={[
+                {
+                    icon: Star,
+                    title: resolveNestedField(content.service1, fallback.service1, "title", city),
+                    lines: [
+                        resolveNestedField(content.service1, fallback.service1, "l1", city),
+                        resolveNestedField(content.service1, fallback.service1, "l2", city),
+                        resolveNestedField(content.service1, fallback.service1, "l3", city),
+                        resolveNestedField(content.service1, fallback.service1, "l4", city),
+                    ]
+                },
+                {
+                    icon: Zap,
+                    title: resolveNestedField(content.service2, fallback.service2, "title", city),
+                    lines: [
+                        resolveNestedField(content.service2, fallback.service2, "l1", city),
+                        resolveNestedField(content.service2, fallback.service2, "l2", city),
+                        resolveNestedField(content.service2, fallback.service2, "l3", city),
+                        resolveNestedField(content.service2, fallback.service2, "l4", city),
+                    ]
+                }
+            ]}
+            sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+            sectionParagraphs={[
+                resolveField(content.section2_p1, fallback.section2_p1, city),
+                resolveField(content.section2_p2, fallback.section2_p2, city),
+            ]}
+            wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
+            wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+            wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+        />
     );
 }

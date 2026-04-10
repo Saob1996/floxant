@@ -1,14 +1,11 @@
 import { Metadata } from "next";
-import { Briefcase, Shield, Truck } from "lucide-react";
-
-import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
-import {
-    getSpecialtyPageData,
-    resolveField,
-    resolveNestedField,
-} from "@/lib/specialty-page";
+import { notFound } from "next/navigation";
+import { isValidLocale, type Locale } from "@/i18n-config";
 import { generatePageSEO } from "@/lib/seo";
-import { type Locale } from "../../../i18n-config";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import Link from "next/link";
+import { Briefcase, Shield, Truck } from "lucide-react";
 
 const CITY = "Regensburg";
 const PATH = "buero-umzug-regensburg";
@@ -19,7 +16,12 @@ export async function generateMetadata({
     params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
     const { lang } = await params;
-    const pageLocale = lang as Locale;
+
+    if (!isValidLocale(lang)) {
+        notFound();
+    }
+
+    const pageLocale: Locale = lang as Locale;
 
     const { content, fallback, seoContent, seoFallback, city } =
         await getSpecialtyPageData({
@@ -53,7 +55,12 @@ export default async function BueroumzugRegensburgPage({
     params: Promise<{ lang: string }>;
 }) {
     const { lang } = await params;
-    const pageLocale = lang as Locale;
+
+    if (!isValidLocale(lang)) {
+        notFound();
+    }
+
+    const pageLocale: Locale = lang;
 
     const { localeDict, content, fallback, seoContent, seoFallback, city } =
         await getSpecialtyPageData({
@@ -63,8 +70,7 @@ export default async function BueroumzugRegensburgPage({
             city: CITY,
         });
 
-    const heroTitle =
-        resolveField(content.hero_h1, fallback.hero_h1) || "Büroumzug";
+    const heroTitle = resolveField(content.hero_h1, fallback.hero_h1, city) || "Büroumzug";
     const serviceName = `${heroTitle} ${city}`.trim();
 
     const metaDescription =
@@ -131,11 +137,11 @@ export default async function BueroumzugRegensburgPage({
             <SpecialtyPageLayout
                 pageLocale={pageLocale}
                 dict={localeDict}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge)}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
                 heroTitle={heroTitle}
                 city={city}
                 heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta)}
+                ctaText={resolveField(content.cta, fallback.cta, city)}
                 breadcrumbs={[
                     {
                         label: moveLabel,
@@ -148,11 +154,11 @@ export default async function BueroumzugRegensburgPage({
                 chips={[
                     {
                         icon: Briefcase,
-                        text: resolveNestedField(content.badges, fallback.badges, "permit"),
+                        text: resolveNestedField(content.badges, fallback.badges, "permit", city),
                     },
                     {
                         icon: Truck,
-                        text: resolveNestedField(content.badges, fallback.badges, "signs"),
+                        text: resolveNestedField(content.badges, fallback.badges, "signs", city),
                         iconClassName: "h-5 w-5 text-muted-foreground",
                     },
                     {
@@ -167,23 +173,23 @@ export default async function BueroumzugRegensburgPage({
                 cards={[
                     {
                         icon: Briefcase,
-                        title: resolveNestedField(content.service1, fallback.service1, "title"),
+                        title: resolveNestedField(content.service1, fallback.service1, "title", city),
                         lines: [
-                            resolveNestedField(content.service1, fallback.service1, "l1"),
-                            resolveNestedField(content.service1, fallback.service1, "l2"),
-                            resolveNestedField(content.service1, fallback.service1, "l3"),
-                            resolveNestedField(content.service1, fallback.service1, "l4"),
+                            resolveNestedField(content.service1, fallback.service1, "l1", city),
+                            resolveNestedField(content.service1, fallback.service1, "l2", city),
+                            resolveNestedField(content.service1, fallback.service1, "l3", city),
+                            resolveNestedField(content.service1, fallback.service1, "l4", city),
                         ],
                     },
                     {
                         icon: Truck,
                         iconClassName: "mb-6 h-10 w-10 text-muted-foreground",
-                        title: resolveNestedField(content.service2, fallback.service2, "title"),
+                        title: resolveNestedField(content.service2, fallback.service2, "title", city),
                         lines: [
-                            resolveNestedField(content.service2, fallback.service2, "l1"),
-                            resolveNestedField(content.service2, fallback.service2, "l2"),
-                            resolveNestedField(content.service2, fallback.service2, "l3"),
-                            resolveNestedField(content.service2, fallback.service2, "l4"),
+                            resolveNestedField(content.service2, fallback.service2, "l1", city),
+                            resolveNestedField(content.service2, fallback.service2, "l2", city),
+                            resolveNestedField(content.service2, fallback.service2, "l3", city),
+                            resolveNestedField(content.service2, fallback.service2, "l4", city),
                         ],
                     },
                 ]}
@@ -192,7 +198,7 @@ export default async function BueroumzugRegensburgPage({
                     resolveField(content.section2_p1, fallback.section2_p1, city),
                     resolveField(content.section2_p2, fallback.section2_p2, city),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
             />

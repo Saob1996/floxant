@@ -1,220 +1,392 @@
-import { type Locale } from "../../../i18n-config";
+import type { Metadata } from "next";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import {
+    Banknote,
+    CheckCircle2,
+    Clock,
+    MapPin,
+    Package,
+} from "lucide-react";
+
+import { type Locale, isValidLocale } from "../../../i18n-config";
 import { getDictionary } from "../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
-import { Metadata } from 'next';
-import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { CheckCircle2, Shield, Star, Clock, Truck, Package, Banknote, MapPin } from "lucide-react";
-import dynamic from 'next/dynamic';
 
 const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+    () =>
+        import("@/components/SmartBookingWizard").then((mod) => ({
+            default: mod.SmartBookingWizard,
+        })),
+    { loading: () => <div className="mx-auto min-h-[400px] w-full max-w-5xl" /> }
 );
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    
-    const dict = (await getDictionary(pageLocale as Locale)) as any;
-return generatePageSEO({
+type PageProps = {
+    params: Promise<{ lang: string }>;
+};
+
+type FaqItem = {
+    q?: string;
+    a?: string;
+};
+
+type UmzugContent = {
+    faqs?: FaqItem[];
+};
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+
+    if (!isValidLocale(lang)) {
+        notFound();
+    }
+
+    const pageLocale: Locale = lang;
+    await getDictionary(pageLocale);
+
+    return generatePageSEO({
         pageLocale,
-        path: 'umzug',
-        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+        path: "umzug",
+        title: "Umzugsunternehmen Bayern | Professioneller Umzug mit FLOXANT",
+        description:
+            "Professionelles Umzugsunternehmen in Bayern mit Fokus auf Regensburg. Transparente Festpreise, planbare Abläufe und zuverlässiger Umzugsservice.",
     });
 }
 
-export default async function UmzugPillarPage({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export default async function UmzugPillarPage({ params }: PageProps) {
+    const { lang } = await params;
 
-    const faqJsonLd = {
-        "@context": "https://schema.org", "@type": "FAQPage",
-        "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } },
-                { "@type": "Question", "name": content.faqs?.[3]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[3]?.a } }
-            ],
-    };
+    if (!isValidLocale(lang)) {
+        notFound();
+    }
+
+    const pageLocale: Locale = lang;
+    const dict = await getDictionary(pageLocale);
+    const isDe = pageLocale === "de";
+
+    const content = (dict.pages?.service_umzug ?? {}) as UmzugContent;
+
+    const faqItems = Array.isArray(content.faqs)
+        ? content.faqs.filter(
+            (item): item is Required<FaqItem> =>
+                Boolean(item?.q?.trim()) && Boolean(item?.a?.trim())
+        )
+        : [];
+
+    const faqJsonLd =
+        faqItems.length > 0
+            ? {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faqItems.map((item) => ({
+                    "@type": "Question",
+                    name: item.q,
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: item.a,
+                    },
+                })),
+            }
+            : null;
 
     const breadcrumbs = [
         { label: "Home", href: `/${pageLocale}` },
-        { label: "Umzug (Pillar)" }
+        { label: "Umzug" },
     ];
 
-    // Added BreadcrumbList manually for maximum schema extraction
     const breadcrumbJsonLd = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": breadcrumbs.map((crumb, idx) => ({
-            "@type": "ListItem",
-            "position": idx + 1,
-            "name": crumb.label,
-            "item": `https://www.floxant.de${crumb.href || `/${pageLocale}/umzug`}`
-        }))
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: `https://www.floxant.de/${pageLocale}`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Umzug",
+                item: `https://www.floxant.de/${pageLocale}/umzug`,
+            },
+        ],
     };
+
+    const trustItems = [
+        "Kostenlose und unverbindliche Vorabbesichtigung zur genauen Kalkulation",
+        "Transparenter Kostenvoranschlag mit Festpreisgarantie",
+        "Abgeschlossene Transport- und Verkehrshaftungsversicherung",
+        "Bereitstellung von professionellem Umzugsmaterial",
+        "Eigene, geschulte Handwerker und Möbelpacker",
+        "Zusatzleistungen wie Entrümpelung oder Endreinigung aus einer Hand",
+    ];
+
+    const cityLinks = [
+        { href: `/${pageLocale}/umzug-regensburg`, label: "Umzugsfirma Regensburg" },
+        { href: `/${pageLocale}/umzug-muenchen`, label: "Umzugsfirma München" },
+        { href: `/${pageLocale}/umzug-nuernberg`, label: "Umzugsfirma Nürnberg" },
+        { href: `/${pageLocale}/umzug-augsburg`, label: "Umzugsfirma Augsburg" },
+        { href: `/${pageLocale}/umzug-ingolstadt`, label: "Umzugsfirma Ingolstadt" },
+        { href: `/${pageLocale}/umzug-weiden`, label: "Umzugsfirma Weiden" },
+    ];
 
     return (
         <main className="min-h-screen bg-background">
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            {faqJsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
 
-            <Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} />
-            
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                        <div className="max-w-7xl mx-auto text-center space-y-8">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                                <MapPin className="w-4 h-4" />
-                                <span>Ihr Leitfaden für den perfekten Wohnortwechsel</span>
-                            </div>
-                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                                Das Kompetenzzentrum für Ihren <span className="text-primary">Umzug</span>
-                            </h1>
-                            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                                Ein Umzug ist ein komplexes logistisches Projekt. Erfahren Sie hier alles über professionelle Umzugsunternehmen, transparente Umzug Kosten, Full-Service-Leistungen und wie Sie Ihren Umzug perfekt planen. Profitieren Sie vom Know-how der renommiertesten Umzugsfirma in Bayern: FLOXANT.
-                            </p>
-                        </div>
-                    </section>
+            <Breadcrumbs lang={pageLocale} items={breadcrumbs} />
 
-                    {/* Semantic Keyword Cluster 1: Umzugsunternehmen & Umzugsfirma */}
-                    <section className="py-20 bg-white">
-                        <div className="container px-4 max-w-5xl mx-auto">
-                            <h2 className="text-4xl font-bold tracking-tight mb-8">Wie Sie das richtige Umzugsunternehmen finden</h2>
-                            <div className="prose prose-lg text-slate-700 max-w-none">
-                                <p>
-                                    Der Markt der <strong>Umzugsunternehmen</strong> ist groß, unübersichtlich und leider nicht immer komplett seriös. Die Suche nach der richtigen <strong>Umzugsfirma</strong> erfordert daher eine sorgfältige Prüfung der Anbieter. Ein seriöses <em>Umzugsunternehmen Bayern</em> zeichnet sich nicht nur durch bunte Werbung aus, sondern durch harte Fakten: Eigene Festangestellte, ein moderner, gepflegter Fuhrpark, nachweisbare Betriebshaftpflichtversicherungen und transparente Preisgestaltung.
-                                </p>
-                                <p>
-                                    Wenn Sie eine <strong>Umzug Firma</strong> beauftragen, überlassen Sie wildfremden Menschen Ihren gesamten Hausrat – Ihre Erinnerungsstücke, teure Elektronik und empfindliche Erbstücke. Setzen Sie deshalb auf ein etabliertes, bewertetes System. FLOXANT grenzt sich als <strong>Umzugsfirma</strong> im Premiumsektor bewusst von schwarzen Schafen ab. Wir arbeiten nicht mit verdeckten Stundenlöhnen, die bei einem Stau künstlich in die Höhe schnellen. Wir arbeiten mit garantierten Festpreisen.
-                                </p>
-                                <h3>Merkmale eines professionellen Umzugsunternehmens in Bayern</h3>
-                                <ul className="grid md:grid-cols-2 gap-4 list-none ps-">
-                                    {[
-                                        'Kostenlose und unverbindliche Vorabbesichtigung zur genauen Kalkulation',
-                                        'Transparenter Kostenvoranschlag mit Festpreisgarantie',
-                                        'Abgeschlossene Transport- und Verkehrshaftungsversicherung',
-                                        'Bereitstellung von professionellem Umzugsmaterial',
-                                        'Eigene, geschulte Handwerker und Möbelpacker',
-                                        'Zusatzleistungen wie Entrümpelung oder Endreinigung aus einer Hand'
-                                    ].map((item, idx) => (
-                                        <li key={idx} className="flex gap-3 mb-0">
-                                            <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600 shrink-0"><CheckCircle2 className="h-4 w-4" /></div>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Semantic Keyword Cluster 2: Umzug planen & Umzugsservice */}
-                    <section className="py-20 bg-slate-50 border-t border-b">
-                        <div className="container px-4 max-w-5xl mx-auto">
-                            <h2 className="text-4xl font-bold tracking-tight mb-8">Den perfekten Umzug planen mit unserem Umzugsservice</h2>
-                            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                                <div>
-                                    <div className="bg-white p-6 rounded-2xl shadow-sm border mb-6 relative overflow-hidden">
-                                        <div className="absolute top-0 end- w-32 h-32 bg-primary/5 rounded-bl-[100px]" />
-                                        <h3 className="text-2xl font-bold mb-4 flex items-center gap-3"><Clock className="text-primary w-6 h-6" /> Umzug planen: Das Timing</h3>
-                                        <p className="text-slate-600">
-                                            Erfolgreiche Logistik beginnt Monate vor dem eigentlichen Stichtag. Einen <strong>Umzug planen</strong> erfordert Disziplin. Kündigen Sie alte Verträge rechtzeitig, organisieren Sie Nachsendeaufträge und beginnen Sie frühzeitig mit der Vorsortierung (Entrümpelung) Ihres Kellers. Je exakter Sie Ihren <strong>Umzug planen</strong>, desto reibungsloser greift das Zahnradwerk am eigentlichen Transporttag ineinander.
-                                        </p>
-                                    </div>
-                                    <div className="bg-white p-6 rounded-2xl shadow-sm border relative overflow-hidden">
-                                        <div className="absolute top-0 end- w-32 h-32 bg-primary/5 rounded-bl-[100px]" />
-                                        <h3 className="text-2xl font-bold mb-4 flex items-center gap-3"><Package className="text-primary w-6 h-6" /> Der richtige Umzugsservice</h3>
-                                        <p className="text-slate-600">
-                                            Nicht jeder Umzug ist gleich. Ein moderner <strong>Umzugsservice</strong> ist modular. Vom reinen Transport (inklusive Fahrer und LKW) über das Ein- und Auspacken (Packservice) bis hin zum Full-Service-Umzug, bei dem Sie keinen einzigen Finger krümmen müssen. FLOXANT bietet Ihnen exakt den <strong>Umzugsservice</strong>, der zu Ihrem Budget und Ihrem Zeitplan passt.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="relative aspect-square lg:h-full lg:max-h-[600px] rounded-3xl overflow-hidden shadow-2xl">
-                                     <div className="absolute inset-0 bg-slate-800" />
-                                     <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 to-primary/40 mix-blend-multiply z-10" />
-                                     <div className="absolute inset-0 z-20 flex flex-col justify-end p-10 text-white">
-                                        <h3 className="text-3xl font-bold mb-4">Masterplan statt Chaos</h3>
-                                        <p className="text-white/90 text-lg">Ein professionell durchgeführter Umzug schont nicht nur das Inventar, sondern vor allem Ihre Nerven.</p>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                     {/* Semantic Keyword Cluster 3: Umzug Kosten */}
-                     <section className="py-20 bg-white">
-                        <div className="container px-4 max-w-4xl mx-auto">
-                            <div className="text-center mb-12">
-                                <Banknote className="w-16 h-16 text-primary mx-auto mb-6" />
-                                <h2 className="text-4xl font-bold tracking-tight mb-4">Zusammensetzung der Umzug Kosten</h2>
-                                <p className="text-xl text-muted-foreground">Absolute Transparenz statt böser Überraschungen beim Abrechnen.</p>
-                            </div>
-                            <div className="prose prose-lg text-slate-700 max-w-none text-center">
-                                <p>
-                                    Eines der häufigsten Suchanliegen im Netz lautet <strong>Umzug Kosten</strong>. Viele Interessenten suchen nach pauschalen Listen, doch so einfach ist es in der Praxis nicht. Ein seriöses <strong>Umzugsunternehmen in Bayern</strong> wird Ihnen niemals seriös am Telefon einen finalen Preis zusagen können, ohne die Gegebenheiten zu kennen.
-                                </p>
-                                <div className="grid md:grid-cols-2 gap-8 text-start mt-12">
-                                    <div className="bg-slate-50 p-8 rounded-2xl border">
-                                        <h3 className="mt-0 text-xl font-bold">Faktoren für die Umzug Kosten</h3>
-                                        <ul>
-                                            <li><strong>Transportvolumen:</strong> Wieviele Kubikmeter Möbel und Hausrat müssen transportiert werden?</li>
-                                            <li><strong>Distanz:</strong> Ist es ein Nahumzug (z.B. innerhalb von Regensburg) oder ein Fernumzug nach Berlin?</li>
-                                            <li><strong>Tragewege & Stockwerke:</strong> Gibt es einen geräumigen Aufzug oder müssen schwere Schränke in den 5. Stock durch ein enges Treppenhaus getragen werden?</li>
-                                            <li><strong>Zusatzleistungen:</strong> Buchen Sie Handwerker für den Möbelaufbau, oder übernehmen Sie dies selbst?</li>
-                                        </ul>
-                                    </div>
-                                    <div className="bg-primary text-primary-foreground p-8 rounded-2xl shadow-xl flex flex-col justify-center">
-                                        <h3 className="mt-0 text-xl font-bold text-white">Die FLOXANT Festpreis-Garantie</h3>
-                                        <p className="text-primary-foreground/90">
-                                            Um ungewisse <strong>Umzug Kosten</strong> auszuschließen, arbeiten wir mit digitalen Besichtigungen (oder auf Wunsch vor Ort in Bayern). Dabei ermitteln wir alle Faktoren exakt. 
-                                        </p>
-                                        <p className="text-primary-foreground/90 font-bold mt-4">
-                                            Das Resultat: Ein garantierter Festpreis. Keine Nachverhandlungen. Keine versteckten Gebühren.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Internal City Ring Linking */}
-                    <section className="py-20 bg-white">
-                        <div className="container px-4 text-center max-w-5xl mx-auto">
-                            <h2 className="text-2xl font-bold tracking-tight mb-8">Unser Umzugsunternehmen Bayern in Ihrer Region</h2>
-                            <p className="text-slate-600 mb-8 max-w-2xl mx-auto">Als etabliertes Umzugsunternehmen in Bayern bedienen wir alle großen Städte und Wirtschaftszentren mit unseren top ausgestatteten Flotten.</p>
-                            <div className="flex flex-wrap justify-center gap-4">
-                                <a href={`/\${pageLocale}/umzug-regensburg`} className="bg-slate-50 border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">Umzugsfirma Regensburg</a>
-                                <a href={`/\${pageLocale}/umzug-muenchen`} className="bg-slate-50 border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">Umzugsfirma München</a>
-                                <a href={`/\${pageLocale}/umzug-nuernberg`} className="bg-slate-50 border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">Umzugsfirma Nürnberg</a>
-                                <a href={`/\${pageLocale}/umzug-augsburg`} className="bg-slate-50 border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">Umzugsfirma Augsburg</a>
-                                <a href={`/\${pageLocale}/umzug-ingolstadt`} className="bg-slate-50 border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">Umzugsfirma Ingolstadt</a>
-                                <a href={`/\${pageLocale}/umzug-weiden`} className="bg-slate-50 border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">Umzugsfirma Weiden</a>
-                            </div>
-                        </div>
-                    </section>
-
-            {/* Smart Booking Call to Action (Kept neutral for all langs) */}
-            <section className="py-24 bg-slate-900 border-t" id="booking">
-                <div className="container px-4">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl font-bold tracking-tight mb-4 text-white">
-                            Berechnen Sie jetzt Ihre Umzugskosten
-                        </h2>
-                        <p className="text-lg text-slate-400">
-                            Fordern Sie Ihr unverbindliches Angebot unserer Umzugsfirma an. In weniger als 2 Minuten übermitteln Sie uns die wichtigsten Eckdaten.
-                        </p>
+            <section className="bg-gradient-to-b from-muted/20 to-background px-6 pb-20 pt-8">
+                <div className="mx-auto max-w-7xl space-y-8 text-center">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+                        <MapPin className="h-4 w-4" />
+                        <span>Ihr Leitfaden für den perfekten Wohnortwechsel</span>
                     </div>
-                    <div className="bg-white text-slate-900 rounded-3xl overflow-hidden shadow-2xl max-w-5xl mx-auto relative z-10">
-                        {/* We use a wrapper with arbitrary z-index context so the modal renders correctly */}
-                        <div className="p-4 md:p-8">
-                           {/* @ts-ignore */}
-                            <SmartBookingWizard dict={{ common: dict.common, calculator: dict.calculator }} />
+
+                    <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+                        Das Kompetenzzentrum für Ihren{" "}
+                        <span className="text-primary">Umzug</span>
+                    </h1>
+
+                    <p className="mx-auto max-w-3xl text-xl leading-relaxed text-muted-foreground">
+                        Ein Umzug ist ein komplexes logistisches Projekt. Erfahren
+                        Sie hier alles über professionelle Umzugsunternehmen,
+                        transparente Umzugskosten, Full-Service-Leistungen und wie
+                        Sie Ihren Umzug sauber planen. FLOXANT ist Ihr Partner für
+                        planbare Umzüge in Bayern.
+                    </p>
+                </div>
+            </section>
+
+            <section className="bg-white py-20">
+                <div className="container mx-auto max-w-5xl px-4">
+                    <h2 className="mb-8 text-4xl font-bold tracking-tight">
+                        Wie Sie das richtige Umzugsunternehmen finden
+                    </h2>
+
+                    <div className="prose prose-lg max-w-none text-slate-700">
+                        <p>
+                            Der Markt der <strong>Umzugsunternehmen</strong> ist
+                            groß, unübersichtlich und nicht immer seriös. Die Suche
+                            nach der richtigen <strong>Umzugsfirma</strong> erfordert
+                            daher eine nüchterne Prüfung der Anbieter. Ein seriöses{" "}
+                            <em>Umzugsunternehmen in Bayern</em> zeichnet sich durch
+                            klare Prozesse, feste Teams, einen gepflegten Fuhrpark,
+                            Versicherungen und nachvollziehbare Preise aus.
+                        </p>
+
+                        <p>
+                            Wenn Sie eine <strong>Umzug Firma</strong> beauftragen,
+                            überlassen Sie Dritten Ihren gesamten Hausrat. Genau
+                            deshalb zählt nicht Werbung, sondern Struktur. FLOXANT
+                            arbeitet mit klaren Abläufen und Festpreisen statt mit
+                            intransparenten Nachforderungen.
+                        </p>
+
+                        <h3>Merkmale eines professionellen Umzugsunternehmens in Bayern</h3>
+
+                        <ul className="grid list-none gap-4 ps-0 md:grid-cols-2">
+                            {trustItems.map((item, idx) => (
+                                <li key={idx} className="mb-0 flex gap-3">
+                                    <div className="mt-1 shrink-0 rounded-full bg-green-100 p-1 text-green-600">
+                                        <CheckCircle2 className="h-4 w-4" />
+                                    </div>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section className="border-y bg-slate-50 py-20">
+                <div className="container mx-auto max-w-5xl px-4">
+                    <h2 className="mb-8 text-4xl font-bold tracking-tight">
+                        Den perfekten Umzug planen mit unserem Umzugsservice
+                    </h2>
+
+                    <div className="grid items-center gap-12 lg:grid-cols-2">
+                        <div>
+                            <div className="relative mb-6 overflow-hidden rounded-2xl border bg-white p-6 shadow-sm">
+                                <div className="absolute top-0 right-0 h-32 w-32 rounded-bl-[100px] bg-primary/5" />
+                                <h3 className="mb-4 flex items-center gap-3 text-2xl font-bold">
+                                    <Clock className="h-6 w-6 text-primary" />
+                                    Umzug planen: Das Timing
+                                </h3>
+                                <p className="text-slate-600">
+                                    Erfolgreiche Logistik beginnt lange vor dem
+                                    eigentlichen Umzugstag. Wer den Umzug früh plant,
+                                    Verträge sauber organisiert und parallel
+                                    vorsortiert, senkt Kosten, reduziert Stress und
+                                    vermeidet operative Reibung.
+                                </p>
+                            </div>
+
+                            <div className="relative overflow-hidden rounded-2xl border bg-white p-6 shadow-sm">
+                                <div className="absolute top-0 right-0 h-32 w-32 rounded-bl-[100px] bg-primary/5" />
+                                <h3 className="mb-4 flex items-center gap-3 text-2xl font-bold">
+                                    <Package className="h-6 w-6 text-primary" />
+                                    Der richtige Umzugsservice
+                                </h3>
+                                <p className="text-slate-600">
+                                    Nicht jeder Umzug ist gleich. Ein professioneller
+                                    Umzugsservice ist modular: Transport, Packservice,
+                                    Möbelmontage oder Full Service. FLOXANT richtet
+                                    den Leistungsumfang nach Budget, Zeitfenster und
+                                    Objektstruktur aus.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="relative aspect-square overflow-hidden rounded-3xl shadow-2xl lg:h-full lg:max-h-[600px]">
+                            <div className="absolute inset-0 bg-slate-800" />
+                            <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/90 to-primary/40 mix-blend-multiply" />
+                            <div className="absolute inset-0 z-20 flex flex-col justify-end p-10 text-white">
+                                <h3 className="mb-4 text-3xl font-bold">
+                                    Masterplan statt Chaos
+                                </h3>
+                                <p className="text-lg text-white/90">
+                                    Ein professionell geplanter Umzug schont nicht nur
+                                    das Inventar, sondern vor allem Ihre Zeit und
+                                    Nerven.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section className="bg-white py-20">
+                <div className="container mx-auto max-w-4xl px-4">
+                    <div className="mb-12 text-center">
+                        <Banknote className="mx-auto mb-6 h-16 w-16 text-primary" />
+                        <h2 className="mb-4 text-4xl font-bold tracking-tight">
+                            Zusammensetzung der Umzugskosten
+                        </h2>
+                        <p className="text-xl text-muted-foreground">
+                            Transparenz statt böser Überraschungen.
+                        </p>
+                    </div>
+
+                    <div className="prose prose-lg max-w-none text-center text-slate-700">
+                        <p>
+                            Einer der häufigsten Suchbegriffe lautet{" "}
+                            <strong>Umzug Kosten</strong>. Pauschalen wirken
+                            verlockend, sind aber selten belastbar. Ein seriöses{" "}
+                            <strong>Umzugsunternehmen in Bayern</strong> kalkuliert
+                            erst dann sauber, wenn Volumen, Distanz, Tragewege und
+                            Zusatzleistungen klar sind.
+                        </p>
+
+                        <div className="mt-12 grid gap-8 text-left md:grid-cols-2">
+                            <div className="rounded-2xl border bg-slate-50 p-8">
+                                <h3 className="mt-0 text-xl font-bold">
+                                    Faktoren für die Umzugskosten
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <strong>Transportvolumen:</strong> Wie viel
+                                        Möbel- und Hausrat muss transportiert werden?
+                                    </li>
+                                    <li>
+                                        <strong>Distanz:</strong> Nahumzug oder
+                                        Fernumzug?
+                                    </li>
+                                    <li>
+                                        <strong>Tragewege & Stockwerke:</strong> Aufzug,
+                                        Laufwege, enge Treppenhäuser, Parklage.
+                                    </li>
+                                    <li>
+                                        <strong>Zusatzleistungen:</strong> Montage,
+                                        Packservice, Halteverbotszone, Entrümpelung.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="flex flex-col justify-center rounded-2xl bg-primary p-8 text-primary-foreground shadow-xl">
+                                <h3 className="mt-0 text-xl font-bold text-white">
+                                    Die FLOXANT Festpreis-Logik
+                                </h3>
+                                <p className="text-primary-foreground/90">
+                                    Um unklare Umzugskosten zu vermeiden, erfassen wir
+                                    die relevanten Faktoren vorab strukturiert.
+                                </p>
+                                <p className="mt-4 font-bold text-primary-foreground/90">
+                                    Ergebnis: planbarer Festpreis ohne versteckte
+                                    Nachforderungen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {isDe && (
+                <section className="bg-white py-20">
+                    <div className="container mx-auto max-w-5xl px-4 text-center">
+                        <h2 className="mb-8 text-2xl font-bold tracking-tight">
+                            Unser Umzugsunternehmen in Ihrer Region
+                        </h2>
+                        <p className="mx-auto mb-8 max-w-2xl text-slate-600">
+                            Als Umzugsunternehmen in Bayern bedienen wir zahlreiche
+                            Städte und Regionen mit eigenen Einsatzteams.
+                        </p>
+
+                        <div className="flex flex-wrap justify-center gap-4">
+                            {cityLinks.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className="rounded-xl border bg-slate-50 px-6 py-3 font-medium transition-all hover:border-primary hover:text-primary"
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            <section id="booking" className="border-t bg-slate-900 py-24">
+                <div className="container px-4">
+                    <div className="mx-auto mb-16 max-w-3xl text-center">
+                        <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">
+                            Berechnen Sie jetzt Ihre Umzugskosten
+                        </h2>
+                        <p className="text-lg text-slate-400">
+                            Fordern Sie Ihr unverbindliches Angebot an. In wenigen
+                            Minuten übermitteln Sie die wichtigsten Eckdaten.
+                        </p>
+                    </div>
+
+                    <div className="relative z-10 mx-auto max-w-5xl overflow-hidden rounded-3xl bg-white text-slate-900 shadow-2xl">
+                        <div className="p-4 md:p-8">
+                            <SmartBookingWizard
+                                dict={{
+                                    common: dict.common,
+                                    calculator: dict.calculator,
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     );
 }

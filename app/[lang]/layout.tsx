@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 
 import "../globals.css";
 import { cn } from "@/lib/utils";
+import { generatePageSEO } from "@/lib/seo";
 import { JsonLd } from "../../components/JsonLd";
 import { Footer } from "../../components/Footer";
 import AuthProvider from "../../components/session-provider";
@@ -26,7 +27,7 @@ const WhatsAppButton = dynamic(
         import("../../components/WhatsAppButton").then((mod) => ({
             default: mod.WhatsAppButton,
         })),
-    { loading: () => <div className="fixed bottom-6 end- z-50 h-14 w-14" /> }
+    { loading: () => <div className="fixed bottom-6 right-6 z-[70] h-14 w-14" /> }
 );
 
 const CookieBanner = dynamic(
@@ -38,7 +39,8 @@ const CookieBanner = dynamic(
 );
 
 const MobileFloatingContact = dynamic(
-    () => import("../../components/MobileFloatingContact")
+    () => import("../../components/MobileFloatingContact"),
+    { loading: () => null }
 );
 
 const fontSans = Inter({
@@ -71,66 +73,23 @@ export async function generateMetadata({
         notFound();
     }
 
-    const locale = lang as Locale;
-
-    const dict = (await getDictionary(locale)) as any;
+    const locale: Locale = lang;
+    const dict = await getDictionary(locale);
 
     const title =
-        dict?.metadata?.global_title || "Umzugsunternehmen Bayern | Umzug ✓ Reinigung ✓ Entrümpelung | FLOXANT";
+        dict.metadata.global_title ||
+        "Umzugsunternehmen Bayern | Umzug, Reinigung & Entrümpelung | FLOXANT";
 
     const description =
-        dict?.metadata?.global_desc || "FLOXANT – Ihr Umzugsunternehmen in Regensburg & Bayern. Umzug, Entrümpelung & Reinigung zum Festpreis. Jetzt berechnen!";
+        dict.metadata.global_desc ||
+        "FLOXANT – Ihr Partner für Umzug, Entrümpelung und Reinigung in Regensburg und ganz Bayern zum Festpreis.";
 
-    const canonical = `https://www.floxant.de/${locale}`;
-
-    const languages: Record<string, string> = {
-        "x-default": "https://www.floxant.de/de",
-    };
-
-    for (const l of i18n.locales) {
-        languages[l] = `https://www.floxant.de/${l}`;
-    }
-
-    return {
-        metadataBase: new URL("https://www.floxant.de"),
+    return generatePageSEO({
+        lang: locale,
+        path: "",
         title,
         description,
-        keywords:
-            dict?.metadata?.keywords || "FLOXANT",
-        alternates: {
-            canonical,
-            languages,
-        },
-        other: {
-            "geo.region": "DE-BY",
-            "geo.placename": "Regensburg",
-            "geo.position": "49.0134;12.1016",
-            ICBM: "49.0134, 12.1016",
-        },
-        openGraph: {
-            type: "website",
-            url: canonical,
-            title,
-            description,
-            siteName: "FLOXANT",
-            locale: dict?.metadata?.og_locale || locale,
-            countryName: "Germany",
-            images: [
-                {
-                    url: "https://www.floxant.de/og.jpg",
-                    width: 1200,
-                    height: 630,
-                    alt: dict?.metadata?.og_img_alt || "FLOXANT",
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: ["https://www.floxant.de/og.jpg"],
-        },
-    };
+    });
 }
 
 export default async function RootLayout({
@@ -146,7 +105,7 @@ export default async function RootLayout({
         notFound();
     }
 
-    const locale = lang as Locale;
+    const locale: Locale = lang;
     const dict = await getDictionary(locale);
     const dir = getDirFromLocale(locale);
 
@@ -154,7 +113,7 @@ export default async function RootLayout({
         <html lang={locale} dir={dir} suppressHydrationWarning>
             <body
                 className={cn(
-                    "min-h-screen bg-background font-sans antialiased text-[15px] tracking-tight",
+                    "min-h-screen bg-background font-sans antialiased text-foreground",
                     fontSans.variable,
                     fontHeading.variable
                 )}
@@ -164,7 +123,7 @@ export default async function RootLayout({
                         <JsonLd lang={locale} />
                         <UtmCapture />
                         <Header lang={locale} dic={dict} />
-                        {children}
+                        <main id="main-content">{children}</main>
                         <WhatsAppButton dic={dict} />
                         <CookieBanner dic={dict} />
                         <Footer lang={locale} dic={dict} />

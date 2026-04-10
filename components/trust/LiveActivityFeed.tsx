@@ -1,75 +1,46 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, MapPin } from 'lucide-react';
-
-interface Activity {
-  id: number;
-  message: string;
-  location: string;
-  timeAgo: string;
-  type: 'booking' | 'viewing';
-}
+import React from "react";
+import { CheckCircle2, MapPin } from "lucide-react";
 
 export default function LiveActivityFeed({ dic }: { dic?: any }) {
-  const [currentActivity, setCurrentActivity] = useState<Activity | null>(null);
+  const locationLabel =
+    dic?.calculator?.near_you || dic?.area?.cities?.bavaria || "Bayern";
 
-  const mockActivities: Omit<Activity, 'id'>[] = [
-    { message: dic?.calculator?.just_booked_moving, location: dic?.area?.cities?.munich, timeAgo: "vor 2 Min", type: "booking" },
-    { message: dic?.calculator?.social_proof, location: dic?.calculator?.near_you, timeAgo: "Live", type: "viewing" },
-    { message: dic?.calculator?.offer_confirmed_cleaning, location: dic?.area?.cities?.augsburg, timeAgo: "vor 12 Min", type: "booking" },
-    { message: dic?.calculator?.latest_request, location: dic?.area?.cities?.nuremberg, timeAgo: "vor 4 Min", type: "booking" },
-    { message: dic?.calculator?.just_booked_clearance, location: "Passau", timeAgo: "vor 8 Min", type: "booking" },
-  ];
+  const headline =
+    dic?.calculator?.social_proof ||
+    "Unverbindliche Anfrage in wenigen Schritten";
 
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-
-    const triggerRandomActivity = () => {
-      // Pick random activity
-      const activityTemplate = mockActivities[Math.floor(Math.random() * mockActivities.length)];
-      setCurrentActivity({ ...activityTemplate, id: Date.now() });
-
-      // Dismiss after 4 seconds
-      setTimeout(() => {
-        setCurrentActivity(null);
-      }, 4000);
-
-      // Re-trigger between 8 to 20 seconds later
-      const nextInterval = Math.floor(Math.random() * (20000 - 8000 + 1)) + 8000;
-      timeout = setTimeout(triggerRandomActivity, nextInterval);
-    };
-
-    // First trigger after 3 seconds
-    timeout = setTimeout(triggerRandomActivity, 3000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  const subline =
+    dic?.calculator?.start_description ||
+    "Sie erhalten eine erste Einschätzung und können danach Ihre Anfrage absenden.";
 
   return (
-    <div className="fixed bottom-6 start- z-50 pointer-events-none">
-      <AnimatePresence>
-        {currentActivity && (
-          <m.div
-            key={currentActivity.id}
-            initial={{ opacity: 0, y: 15, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ type: "tween", duration: 0.4, ease: "easeOut" }}
-            className="bg-secondary/90 border border-border shadow-lg rounded-full py-2.5 px-4 flex items-center gap-3 max-w-sm backdrop-blur-md"
-          >
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${currentActivity.type === 'booking' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-primary/10 text-primary'}`}>
-              {currentActivity.type === 'booking' ? <CheckCircle2 size={12} /> : <MapPin size={12} />}
-            </div>
+    <div className="mb-4 w-full">
+      <div className="mx-auto flex w-full max-w-3xl items-center justify-between gap-3 rounded-[22px] border border-white/10 bg-[#11131A]/90 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.14)] backdrop-blur">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-blue-400/15 bg-blue-400/10 text-blue-300">
+            <CheckCircle2 size={16} />
+          </div>
+
+          <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-foreground text-[11px] font-medium leading-none tracking-wide">{currentActivity.message}</span>
-              <span className="text-muted-foreground/30 text-[10px]">|</span>
-              <span className="text-muted-foreground text-[10px] uppercase tracking-wider">{currentActivity.location}</span>
+              <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              <p className="truncate text-sm font-medium tracking-tight text-white">
+                {headline}
+              </p>
             </div>
-          </m.div>
-        )}
-      </AnimatePresence>
+            <p className="truncate text-xs text-white/45">{subline}</p>
+          </div>
+        </div>
+
+        <div className="hidden shrink-0 items-center gap-2 rounded-full border border-white/10 bg-[#0B0D12] px-3 py-1.5 md:flex">
+          <MapPin size={14} className="text-blue-300" />
+          <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/45">
+            {locationLabel}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

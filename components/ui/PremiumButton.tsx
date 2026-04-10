@@ -14,30 +14,39 @@ export function PremiumButton({
     className,
     variant = "primary",
     size = "md",
+    disabled,
     ...props
 }: PremiumButtonProps) {
-    const variants = {
-        primary: "bg-primary text-primary-foreground hover:opacity-90 shadow-lg shadow-primary/20",
-        secondary: "bg-white/10 backdrop-blur-md border border-white/20 text-foreground hover:bg-white/20",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+    const variantClasses = {
+        primary:
+            "bg-white text-black shadow-[0_10px_30px_rgba(255,255,255,0.12)] hover:bg-white/95",
+        secondary:
+            "border border-white/10 bg-[#11131A] text-white hover:bg-white/[0.04] hover:border-white/15",
+        ghost:
+            "bg-transparent text-white/72 hover:bg-white/[0.04] hover:text-white",
+        outline:
+            "border border-white/10 bg-transparent text-white hover:border-blue-400/25 hover:bg-white/[0.03]",
     };
 
-    const sizes = {
+    const sizeClasses = {
         sm: "h-9 px-4 text-sm",
-        md: "h-11 px-8 text-base",
-        lg: "h-14 px-10 text-lg",
-        icon: "h-11 w-11",
+        md: "h-11 px-6 text-sm",
+        lg: "h-14 px-8 text-base",
+        icon: "h-11 w-11 shrink-0 p-0",
     };
 
     return (
         <m.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={disabled ? undefined : { scale: 1.01 }}
+            whileTap={disabled ? undefined : { scale: 0.985 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            disabled={disabled}
             className={cn(
-                "relative inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-                variants[variant],
-                sizes[size],
+                "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-tight transition-all duration-200",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/30",
+                "disabled:pointer-events-none disabled:opacity-45",
+                variantClasses[variant],
+                sizeClasses[size],
                 className
             )}
             {...props}

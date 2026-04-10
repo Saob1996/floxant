@@ -1,280 +1,706 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useCalculatorStore } from '@/store/calculatorStore';
+import React, { useMemo, useState } from "react";
+import { useCalculatorStore } from "@/store/calculatorStore";
 import { m, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, MapPin, Box, Briefcase, Calendar, MessageSquare, Truck, Sparkles } from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronUp,
+  MapPin,
+  Box,
+  Briefcase,
+  Calendar,
+  MessageSquare,
+  Truck,
+  CheckCircle2,
+} from "lucide-react";
+
+type TimeConstraint = "flexibel" | "wochenende" | "dringend" | "genaues_datum";
+
+function parseNumber(value: string): number {
+  if (!value.trim()) return 0;
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
 
 export default function UmzugForm({ dic }: { dic?: any }) {
-  const SECTIONS = [
-    { id: 'access', label: dic?.calculator.access_conditions, icon: MapPin },
-    { id: 'volume', label: dic?.calculator.inventory_volume, icon: Box },
-    { id: 'services', label: dic?.calculator.service_scope, icon: Briefcase },
-    { id: 'time', label: dic?.calculator.arrival_time, icon: Calendar },
-    { id: 'notes', label: dic?.calculator.notes_title, icon: MessageSquare }
-  ];
-  const { umzugData, updateUmzugData } = useCalculatorStore();
-  const [openSection, setOpenSection] = useState<string | null>(null);
+  const umzugData = useCalculatorStore((s) => s.umzugData);
+  const updateUmzugData = useCalculatorStore((s) => s.updateUmzugData);
+
+  const [openSection, setOpenSection] = useState<string | null>("access");
+
+  const sections = useMemo(
+    () => [
+      {
+        id: "access",
+        label: dic?.calculator?.access_conditions || "Zugang & Adressen",
+        icon: MapPin,
+      },
+      {
+        id: "volume",
+        label: dic?.calculator?.inventory_volume || "Volumen & Inventar",
+        icon: Box,
+      },
+      {
+        id: "services",
+        label: dic?.calculator?.service_scope || "Leistungsumfang",
+        icon: Briefcase,
+      },
+      {
+        id: "time",
+        label: dic?.calculator?.arrival_time || "Termin & Zeitfenster",
+        icon: Calendar,
+      },
+      {
+        id: "notes",
+        label: dic?.calculator?.notes_title || "Notizen",
+        icon: MessageSquare,
+      },
+    ],
+    [dic]
+  );
+
+  const heavyItemsMap =
+    dic?.calculator?.heavy_items || {
+      piano: "Piano",
+      safe: "Safe",
+      fitness_gear: "Fitnessgerät",
+      aquarium: "Aquarium",
+      grand_piano: "Flügel",
+    };
+
+  const liftLabel = dic?.calculator?.lift || "Aufzug";
+  const narrowStairsLabel = dic?.calculator?.narrow_stairs || "Enge Treppe";
+  const courtyardAccessLabel =
+    dic?.calculator?.courtyard_access || "Innenhof / schwieriger Zugang";
+  const noParkingZoneLabel =
+    dic?.footer?.no_parking_zone || "Halteverbotszone";
 
   const toggleSection = (id: string) => {
-    setOpenSection(prev => prev === id ? null : id);
+    setOpenSection((prev) => (prev === id ? null : id));
   };
 
   const toggleHeavyItem = (item: string) => {
-    const active = umzugData.heavyItems.includes(item);
+    const exists = umzugData.heavyItems.includes(item);
     updateUmzugData({
-      heavyItems: active 
-        ? umzugData.heavyItems.filter(i => i !== item) 
-        : [...umzugData.heavyItems, item]
+      heavyItems: exists
+        ? umzugData.heavyItems.filter((i) => i !== item)
+        : [...umzugData.heavyItems, item],
     });
   };
 
   return (
     <div className="space-y-4">
-      {/* BASIC DATA (Always visible) */}
-      <div className="bg-white/[0.02] border border-white/5 rounded-xl p-6 space-y-4">
-        <h3 className="text-xs font-bold text-foreground/70 uppercase tracking-[0.15em] flex items-center gap-2 mb-4">
-          <Truck size={14} className="text-primary" />{dic?.calculator.basis_data}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.living_area}</label>
-            <input 
-              type="number" 
-              value={umzugData.areaM2 || ''}
-              onChange={(e) => updateUmzugData({ areaM2: parseInt(e.target.value) || 0 })}
-              placeholder={dic?.calculator.area_placeholder}
-              className="w-full bg-background border border-white/10 rounded-md p-3 text-sm text-foreground outline-none focus:border-white/30 transition-colors"
+      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+        <h3 className="mb-4 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
+          <Truck size={14} className="text-blue-300" />
+          {dic?.calculator?.basis_data || "Basisdaten"}
+        </h3>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <FieldCard label={dic?.calculator?.living_area || "Wohnfläche"}>
+            <input
+              type="number"
+              min={0}
+              value={umzugData.areaM2 || ""}
+              onChange={(e) =>
+                updateUmzugData({ areaM2: parseNumber(e.target.value) })
+              }
+              placeholder={dic?.calculator?.area_placeholder || "z. B. 80"}
+              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
             />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[11px] text-muted-foreground tracking-wide uppercase">{dic?.calculator.rooms}</label>
-            <input 
-              type="number" 
-              value={umzugData.rooms || ''}
-              onChange={(e) => updateUmzugData({ rooms: parseInt(e.target.value) || 0 })}
-              placeholder={dic?.calculator.rooms_placeholder}
-              className="w-full bg-background border border-white/10 rounded-md p-3 text-sm text-foreground outline-none focus:border-white/30 transition-colors"
+          </FieldCard>
+
+          <FieldCard label={dic?.calculator?.rooms || "Zimmer"}>
+            <input
+              type="number"
+              min={0}
+              value={umzugData.rooms || ""}
+              onChange={(e) =>
+                updateUmzugData({ rooms: parseNumber(e.target.value) })
+              }
+              placeholder={dic?.calculator?.rooms_placeholder || "z. B. 3"}
+              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
             />
-          </div>
+          </FieldCard>
         </div>
       </div>
 
-      {/* ACCORDION SECTIONS */}
-      {SECTIONS.map(section => {
+      {sections.map((section) => {
         const isOpen = openSection === section.id;
         const Icon = section.icon;
+
         return (
-          <div key={section.id} className="bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden shadow-sm">
-            <button 
+          <div
+            key={section.id}
+            className="overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] shadow-[0_10px_30px_rgba(0,0,0,0.1)]"
+          >
+            <button
+              type="button"
               onClick={() => toggleSection(section.id)}
-              className="w-full flex items-center justify-between p-4 hover:bg-background/40 transition-colors"
+              className="flex w-full items-center justify-between px-4 py-4 text-start transition-colors hover:bg-white/[0.03]"
             >
               <div className="flex items-center gap-3">
-                <Icon size={16} className={isOpen ? "text-primary" : "text-muted-foreground"} />
-                <span className={`text-sm font-medium ${isOpen ? 'text-foreground' : 'text-foreground/80'}`}>{section.label}</span>
-              </div>
-              {isOpen ? <ChevronUp size={16} className="text-muted-foreground" /> : <ChevronDown size={16} className="text-muted-foreground" />}
-            </button>
-            <AnimatePresence>
-              {isOpen && (
-                <m.div 
-                  initial={{ height: 0, opacity: 0 }} 
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="px-4 pb-4 border-t border-border/50 pt-4"
+                <Icon
+                  size={16}
+                  className={isOpen ? "text-blue-300" : "text-white/40"}
+                />
+                <span
+                  className={`text-sm font-medium tracking-tight ${isOpen ? "text-white" : "text-white/78"
+                    }`}
                 >
-                  
-                  {/* ACCESS SECTION */}
-                  {section.id === 'access' && (
-                    <div className="space-y-8 pt-2">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {/* FROM */}
-                        <div className="space-y-5">
-                          <h4 className="text-[11px] font-bold text-foreground/50 uppercase tracking-[0.15em] border-b border-white/5 pb-2">{dic?.calculator.from_address}</h4>
-                          <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.address_optional}</label>
-                            <input type="text" placeholder={dic?.calculator.address_placeholder} value={umzugData.fromAddressDetailed || ''} onChange={e => updateUmzugData({ fromAddressDetailed: e.target.value })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.floor}</label>
-                            <input type="number" placeholder="0 = Erdgeschoss" value={umzugData.fromFloor ?? ''} onChange={e => updateUmzugData({ fromFloor: parseInt(e.target.value) })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
-                          </div>
-                          <div className="space-y-3 pt-2">
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.hasElevatorFrom} onChange={e => updateUmzugData({ hasElevatorFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.lift}
-                            </label>
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.narrowStairsFrom} onChange={e => updateUmzugData({ narrowStairsFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.narrow_stairs}
-                            </label>
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.courtyardAccessFrom} onChange={e => updateUmzugData({ courtyardAccessFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.courtyard_access}
-                            </label>
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.noParkingZoneFrom} onChange={e => updateUmzugData({ noParkingZoneFrom: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.footer.no_parking_zone}
-                            </label>
-                          </div>
-                        </div>
+                  {section.label}
+                </span>
+              </div>
 
-                        {/* TO */}
-                        <div className="space-y-5">
-                          <h4 className="text-[11px] font-bold text-foreground/50 uppercase tracking-[0.15em] border-b border-white/5 pb-2">{dic?.calculator.to_address}</h4>
-                          <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.address_optional}</label>
-                            <input type="text" placeholder={dic?.calculator.address_placeholder} value={umzugData.toAddressDetailed || ''} onChange={e => updateUmzugData({ toAddressDetailed: e.target.value })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
-                          </div>
-                          <div className="space-y-2">
-                            <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.floor}</label>
-                            <input type="number" placeholder="0 = Erdgeschoss" value={umzugData.toFloor ?? ''} onChange={e => updateUmzugData({ toFloor: parseInt(e.target.value) })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
-                          </div>
-                          <div className="space-y-3 pt-2">
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.hasElevatorTo} onChange={e => updateUmzugData({ hasElevatorTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.lift}
-                            </label>
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.narrowStairsTo} onChange={e => updateUmzugData({ narrowStairsTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.narrow_stairs}
-                            </label>
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.courtyardAccessTo} onChange={e => updateUmzugData({ courtyardAccessTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.calculator.courtyard_access}
-                            </label>
-                            <label className="flex items-center gap-3 text-sm text-foreground/80 cursor-pointer hover:text-foreground transition-colors">
-                              <input type="checkbox" checked={umzugData.noParkingZoneTo} onChange={e => updateUmzugData({ noParkingZoneTo: e.target.checked })} className="accent-primary w-4 h-4" /> {dic?.footer.no_parking_zone}
-                            </label>
-                          </div>
-                        </div>
+              {isOpen ? (
+                <ChevronUp size={16} className="text-white/40" />
+              ) : (
+                <ChevronDown size={16} className="text-white/40" />
+              )}
+            </button>
+
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <m.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.22 }}
+                  className="border-t border-white/8 px-4 pb-4 pt-4"
+                >
+                  {section.id === "access" && (
+                    <div className="space-y-8 pt-2">
+                      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        <AddressBlock
+                          title={dic?.calculator?.from_address || "Startadresse"}
+                          addressValue={umzugData.fromAddressDetailed || ""}
+                          addressPlaceholder={
+                            dic?.calculator?.address_placeholder ||
+                            "Straße / Ort"
+                          }
+                          addressLabel={
+                            dic?.calculator?.address_optional ||
+                            "Adresse optional"
+                          }
+                          floorValue={umzugData.fromFloor ?? ""}
+                          floorLabel={dic?.calculator?.floor || "Etage"}
+                          floorPlaceholder="0 = Erdgeschoss"
+                          walkingDistanceValue={umzugData.walkingDistanceFrom ?? ""}
+                          walkingDistanceLabel={
+                            dic?.calculator?.distance_parking ||
+                            "Laufweg zum LKW (Meter)"
+                          }
+                          walkingDistancePlaceholder={
+                            dic?.calculator?.dist_placeholder || "z. B. 15"
+                          }
+                          onAddressChange={(value) =>
+                            updateUmzugData({ fromAddressDetailed: value })
+                          }
+                          onFloorChange={(value) =>
+                            updateUmzugData({ fromFloor: parseNumber(value) })
+                          }
+                          onWalkingDistanceChange={(value) =>
+                            updateUmzugData({
+                              walkingDistanceFrom: parseNumber(value),
+                            })
+                          }
+                          checks={[
+                            {
+                              checked: Boolean(umzugData.hasElevatorFrom),
+                              label: liftLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ hasElevatorFrom: checked }),
+                            },
+                            {
+                              checked: Boolean(umzugData.narrowStairsFrom),
+                              label: narrowStairsLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ narrowStairsFrom: checked }),
+                            },
+                            {
+                              checked: Boolean(umzugData.courtyardAccessFrom),
+                              label: courtyardAccessLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ courtyardAccessFrom: checked }),
+                            },
+                            {
+                              checked: Boolean(umzugData.noParkingZoneFrom),
+                              label: noParkingZoneLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ noParkingZoneFrom: checked }),
+                            },
+                          ]}
+                        />
+
+                        <AddressBlock
+                          title={dic?.calculator?.to_address || "Zieladresse"}
+                          addressValue={umzugData.toAddressDetailed || ""}
+                          addressPlaceholder={
+                            dic?.calculator?.address_placeholder ||
+                            "Straße / Ort"
+                          }
+                          addressLabel={
+                            dic?.calculator?.address_optional ||
+                            "Adresse optional"
+                          }
+                          floorValue={umzugData.toFloor ?? ""}
+                          floorLabel={dic?.calculator?.floor || "Etage"}
+                          floorPlaceholder="0 = Erdgeschoss"
+                          walkingDistanceValue={umzugData.walkingDistanceTo ?? ""}
+                          walkingDistanceLabel={
+                            dic?.calculator?.distance_parking ||
+                            "Laufweg zum LKW (Meter)"
+                          }
+                          walkingDistancePlaceholder={
+                            dic?.calculator?.dist_placeholder || "z. B. 15"
+                          }
+                          onAddressChange={(value) =>
+                            updateUmzugData({ toAddressDetailed: value })
+                          }
+                          onFloorChange={(value) =>
+                            updateUmzugData({ toFloor: parseNumber(value) })
+                          }
+                          onWalkingDistanceChange={(value) =>
+                            updateUmzugData({
+                              walkingDistanceTo: parseNumber(value),
+                            })
+                          }
+                          checks={[
+                            {
+                              checked: Boolean(umzugData.hasElevatorTo),
+                              label: liftLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ hasElevatorTo: checked }),
+                            },
+                            {
+                              checked: Boolean(umzugData.narrowStairsTo),
+                              label: narrowStairsLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ narrowStairsTo: checked }),
+                            },
+                            {
+                              checked: Boolean(umzugData.courtyardAccessTo),
+                              label: courtyardAccessLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ courtyardAccessTo: checked }),
+                            },
+                            {
+                              checked: Boolean(umzugData.noParkingZoneTo),
+                              label: noParkingZoneLabel,
+                              onChange: (checked) =>
+                                updateUmzugData({ noParkingZoneTo: checked }),
+                            },
+                          ]}
+                        />
                       </div>
 
-                      <div className="border-t border-white/5 pt-6 mt-4">
-                        <div className="max-w-xs space-y-2">
-                          <label className="text-[11px] text-muted-foreground tracking-wide">{dic?.calculator.distance_parking}</label>
-                          <input type="number" placeholder={dic?.calculator.dist_placeholder} value={umzugData.distanceKm || ''} onChange={e => updateUmzugData({ distanceKm: parseInt(e.target.value) || 0 })} className="w-full bg-background border border-white/10 rounded-md p-2.5 text-sm outline-none focus:border-white/30 transition-colors" />
+                      <div className="grid grid-cols-1 gap-5 border-t border-white/8 pt-6 md:grid-cols-2">
+                        <FieldCard
+                          label={dic?.calculator?.distance || "Entfernung (km)"}
+                        >
+                          <input
+                            type="number"
+                            min={0}
+                            placeholder={
+                              dic?.calculator?.dist_placeholder || "z. B. 15"
+                            }
+                            value={umzugData.distanceKm || ""}
+                            onChange={(e) =>
+                              updateUmzugData({
+                                distanceKm: parseNumber(e.target.value),
+                              })
+                            }
+                            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
+                          />
+                        </FieldCard>
+
+                        <div className="rounded-2xl border border-white/10 bg-[#0B0D12] p-4">
+                          <p className="text-xs leading-relaxed text-white/45">
+                            {dic?.calculator?.access_hint ||
+                              "Zugang, Laufwege und Halteverbotszonen beeinflussen Aufwand und Tragezeit deutlich."}
+                          </p>
                         </div>
                       </div>
                     </div>
                   )}
 
-                  {/* VOLUME SECTION */}
-                  {section.id === 'volume' && (
+                  {section.id === "volume" && (
                     <div className="space-y-8 pt-2">
-                      <div className="space-y-2">
-                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.estimated_boxes}</label>
-                        <input type="number" placeholder={dic?.calculator.boxes_placeholder} value={umzugData.boxesCount || ''} onChange={e => updateUmzugData({ boxesCount: parseInt(e.target.value) || 0 })} className="w-full bg-background border border-white/10 rounded-md p-3 text-sm outline-none focus:border-white/30" />
-                      </div>
-                      
-                      <label className="flex items-start gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] cursor-pointer hover:bg-white/[0.04] transition-colors">
-                        <input type="checkbox" checked={umzugData.uncertainVolume} onChange={e => updateUmzugData({ uncertainVolume: e.target.checked })} className="mt-1 accent-primary w-4 h-4" /> 
+                      <FieldCard
+                        label={
+                          dic?.calculator?.estimated_boxes ||
+                          "Geschätzte Kartons"
+                        }
+                      >
+                        <input
+                          type="number"
+                          min={0}
+                          placeholder={
+                            dic?.calculator?.boxes_placeholder || "z. B. 20"
+                          }
+                          value={umzugData.boxesCount || ""}
+                          onChange={(e) =>
+                            updateUmzugData({
+                              boxesCount: parseNumber(e.target.value),
+                            })
+                          }
+                          className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
+                        />
+                      </FieldCard>
+
+                      <label className="flex cursor-pointer items-start gap-4 rounded-2xl border border-white/10 bg-[#0B0D12] p-4 transition-colors hover:bg-white/[0.03]">
+                        <input
+                          type="checkbox"
+                          checked={umzugData.uncertainVolume}
+                          onChange={(e) =>
+                            updateUmzugData({
+                              uncertainVolume: e.target.checked,
+                            })
+                          }
+                          className="mt-1 h-4 w-4 accent-blue-500"
+                        />
                         <div>
-                           <span className="text-sm font-medium text-foreground block">{dic?.calculator.uncertain_volume}</span>
-                           <span className="text-xs text-muted-foreground block mt-1 leading-relaxed">{dic?.calculator.uncertain_volume_desc}</span>
+                          <span className="block text-sm font-medium text-white">
+                            {dic?.calculator?.uncertain_volume ||
+                              "Volumen noch unsicher"}
+                          </span>
+                          <span className="mt-1 block text-xs leading-relaxed text-white/50">
+                            {dic?.calculator?.uncertain_volume_desc ||
+                              "Kein Problem. Eine grobe Angabe reicht zunächst aus."}
+                          </span>
                         </div>
                       </label>
 
                       <div className="space-y-3 pt-2">
-                        <label className="text-[11px] text-muted-foreground uppercase tracking-wider">{dic?.calculator.heavy_items_title}</label>
+                        <label className="text-[11px] uppercase tracking-[0.14em] text-white/40">
+                          {dic?.calculator?.heavy_items_title ||
+                            "Schwere Einzelstücke"}
+                        </label>
+
                         <div className="flex flex-wrap gap-2">
-                          {Object.entries(dic?.calculator.heavy_items || {
-                            "piano": "Piano",
-                            "safe": "Safe",
-                            "fitness_gear": "Fitnessgerät",
-                            "aquarium": "Aquarium",
-                            "grand_piano": "Flügel"
-                          }).map(([key, label]) => {
-                             const active = umzugData.heavyItems.includes(key);
-                             return (
-                               <button 
-                                 type="button"
-                                 key={key} onClick={() => toggleHeavyItem(key)}
-                                 className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${active ? 'bg-primary/20 border-primary text-primary' : 'bg-background border-border text-muted-foreground hover:border-muted-foreground/50'}`}
-                               >
-                                 {label as string}
-                               </button>
-                             )
+                          {Object.entries(heavyItemsMap).map(([key, label]) => {
+                            const active = umzugData.heavyItems.includes(key);
+
+                            return (
+                              <button
+                                type="button"
+                                key={key}
+                                onClick={() => toggleHeavyItem(key)}
+                                className={`rounded-full border px-3 py-2 text-xs font-medium transition-colors ${active
+                                    ? "border-blue-400/40 bg-blue-400/10 text-blue-200"
+                                    : "border-white/10 bg-[#0B0D12] text-white/55 hover:bg-white/[0.04]"
+                                  }`}
+                              >
+                                {String(label)}
+                              </button>
+                            );
                           })}
                         </div>
                       </div>
                     </div>
                   )}
 
-                  {/* SERVICES SECTION */}
-                  {section.id === 'services' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
-                        <input type="checkbox" checked={umzugData.packingService} onChange={e => updateUmzugData({ packingService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.packing_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.packing_desc}</span></div>
-                      </label>
-                      <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
-                        <input type="checkbox" checked={umzugData.unpackingService} onChange={e => updateUmzugData({ unpackingService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.unpacking_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.unpacking_desc}</span></div>
-                      </label>
-                      <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
-                        <input type="checkbox" checked={umzugData.disassemblyService} onChange={e => updateUmzugData({ disassemblyService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.disassembly_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.disassembly_desc}</span></div>
-                      </label>
-                      <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors">
-                        <input type="checkbox" checked={umzugData.assemblyService} onChange={e => updateUmzugData({ assemblyService: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.assembly_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.assembly_desc}</span></div>
-                      </label>
-                      <label className="flex items-start gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors md:col-span-2">
-                        <input type="checkbox" checked={umzugData.kitchenAssembly} onChange={e => updateUmzugData({ kitchenAssembly: e.target.checked })} className="mt-0.5 accent-primary" /> 
-                        <div><span className="text-sm font-medium block">{dic?.calculator.kitchen_service}</span><span className="text-[10px] text-muted-foreground">{dic?.calculator.kitchen_desc}</span></div>
-                      </label>
-                    </div>
-                  )}
+                  {section.id === "services" && (
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <OptionCard
+                        checked={umzugData.packingService}
+                        title={dic?.calculator?.packing_service || "Einpackservice"}
+                        description={
+                          dic?.calculator?.packing_desc ||
+                          "Wir übernehmen das fachgerechte Verpacken."
+                        }
+                        onChange={(checked) =>
+                          updateUmzugData({ packingService: checked })
+                        }
+                      />
 
-                  {/* TIME SECTION */}
-                  {section.id === 'time' && (
-                    <div className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.time_flexibility}</label>
-                          <select 
-                            value={umzugData.timeConstraint} 
-                            onChange={e => updateUmzugData({ timeConstraint: e.target.value as any })}
-                            className="w-full bg-background border border-border rounded-lg p-3 text-sm outline-none"
-                          >
-                            <option value="flexibel">{dic?.calculator.flexible_time}</option>
-                            <option value="genaues_datum">{dic?.calculator.exact_date}</option>
-                            <option value="wochenende">{dic?.calculator.weekend_only}</option>
-                            <option value="dringend">{dic?.calculator.urgent}</option>
-                          </select>
-                        </div>
-                        <label className="flex items-center gap-3 p-3 rounded-lg border border-border bg-background/50 cursor-pointer hover:bg-background transition-colors self-end h-[46px]">
-                          <input type="checkbox" checked={umzugData.isPartialMove} onChange={e => updateUmzugData({ isPartialMove: e.target.checked })} className="accent-primary" /> 
-                          <span className="text-sm">{dic?.calculator.partial_move}</span>
-                        </label>
+                      <OptionCard
+                        checked={umzugData.unpackingService}
+                        title={
+                          dic?.calculator?.unpacking_service || "Auspackservice"
+                        }
+                        description={
+                          dic?.calculator?.unpacking_desc ||
+                          "Wir helfen beim strukturierten Auspacken."
+                        }
+                        onChange={(checked) =>
+                          updateUmzugData({ unpackingService: checked })
+                        }
+                      />
+
+                      <OptionCard
+                        checked={umzugData.disassemblyService}
+                        title={dic?.calculator?.disassembly_service || "Demontage"}
+                        description={
+                          dic?.calculator?.disassembly_desc ||
+                          "Abbau von Möbeln vor dem Transport."
+                        }
+                        onChange={(checked) =>
+                          updateUmzugData({ disassemblyService: checked })
+                        }
+                      />
+
+                      <OptionCard
+                        checked={umzugData.assemblyService}
+                        title={dic?.calculator?.assembly_service || "Montage"}
+                        description={
+                          dic?.calculator?.assembly_desc ||
+                          "Wiederaufbau am Zielort."
+                        }
+                        onChange={(checked) =>
+                          updateUmzugData({ assemblyService: checked })
+                        }
+                      />
+
+                      <div className="md:col-span-2">
+                        <OptionCard
+                          checked={umzugData.kitchenAssembly}
+                          title={dic?.calculator?.kitchen_service || "Küchenservice"}
+                          description={
+                            dic?.calculator?.kitchen_desc ||
+                            "Demontage und Montage der Küche."
+                          }
+                          onChange={(checked) =>
+                            updateUmzugData({ kitchenAssembly: checked })
+                          }
+                        />
                       </div>
                     </div>
                   )}
 
-                  {/* NOTES SECTION */}
-                  {section.id === 'notes' && (
-                    <div className="space-y-2">
-                      <label className="text-xs text-muted-foreground uppercase tracking-wider">{dic?.calculator.additional_notes}</label>
-                      <textarea 
-                        value={umzugData.freeTextNote || ''}
-                        onChange={e => updateUmzugData({ freeTextNote: e.target.value })}
-                        placeholder={dic?.calculator.notes_placeholder_detailed}
-                        className="w-full h-24 bg-background border border-border rounded-lg p-3 text-sm outline-none focus:border-primary resize-none"
-                      />
+                  {section.id === "time" && (
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <FieldCard
+                          label={
+                            dic?.calculator?.time_flexibility ||
+                            "Zeitliche Flexibilität"
+                          }
+                        >
+                          <select
+                            value={umzugData.timeConstraint}
+                            onChange={(e) =>
+                              updateUmzugData({
+                                timeConstraint: e.target.value as TimeConstraint,
+                              })
+                            }
+                            className="w-full bg-transparent text-sm text-white outline-none"
+                          >
+                            <option value="flexibel" className="bg-[#0B0D12]">
+                              {dic?.calculator?.flexible_time || "Flexibel"}
+                            </option>
+                            <option
+                              value="genaues_datum"
+                              className="bg-[#0B0D12]"
+                            >
+                              {dic?.calculator?.exact_date || "Genaues Datum"}
+                            </option>
+                            <option value="wochenende" className="bg-[#0B0D12]">
+                              {dic?.calculator?.weekend_only || "Nur Wochenende"}
+                            </option>
+                            <option value="dringend" className="bg-[#0B0D12]">
+                              {dic?.calculator?.urgent || "Dringend"}
+                            </option>
+                          </select>
+                        </FieldCard>
+
+                        <OptionCard
+                          checked={umzugData.isPartialMove}
+                          title={dic?.calculator?.partial_move || "Teilleistung"}
+                          description={
+                            dic?.calculator?.partial_move_desc ||
+                            "Nur ein Teil des Hausrats oder einzelne Möbelstücke."
+                          }
+                          onChange={(checked) =>
+                            updateUmzugData({ isPartialMove: checked })
+                          }
+                          compact
+                        />
+                      </div>
                     </div>
                   )}
 
+                  {section.id === "notes" && (
+                    <div className="space-y-2">
+                      <label className="text-[11px] uppercase tracking-[0.14em] text-white/40">
+                        {dic?.calculator?.additional_notes ||
+                          "Zusätzliche Hinweise"}
+                      </label>
+                      <textarea
+                        value={umzugData.freeTextNote || ""}
+                        onChange={(e) =>
+                          updateUmzugData({ freeTextNote: e.target.value })
+                        }
+                        placeholder={
+                          dic?.calculator?.notes_placeholder_detailed ||
+                          "Besondere Hinweise zu Zugang, Möbeln oder Termin"
+                        }
+                        className="h-28 w-full resize-none rounded-2xl border border-white/10 bg-[#0B0D12] p-3 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-blue-400/30"
+                      />
+                    </div>
+                  )}
                 </m.div>
               )}
             </AnimatePresence>
           </div>
-        )
+        );
       })}
 
-      {/* Social Proof Banner */}
-      <div className="flex items-center gap-3 px-4 py-3 bg-primary/5 border border-primary/10 rounded-xl animate-pulse-slow">
-        <div className="flex -space-x-2">
-          {[1,2,3].map(i => (
-            <div key={i} className="w-6 h-6 rounded-full border-2 border-background bg-secondary flex items-center justify-center text-[10px] font-bold text-primary">
-              <Sparkles size={10} />
-            </div>
-          ))}
-        </div>
-        <p className="text-[10px] text-muted-foreground/60 font-medium">{dic?.calculator.social_proof}</p>
+      <div className="flex items-start gap-3 rounded-2xl border border-blue-400/10 bg-blue-400/[0.06] px-4 py-3">
+        <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-300" />
+        <p className="text-xs leading-relaxed text-white/55">
+          {dic?.calculator?.social_proof ||
+            "Je genauer die Angaben, desto präziser wird die Schätzung und das spätere Angebot."}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function FieldCard({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-2 rounded-2xl border border-white/10 bg-[#0B0D12] p-4">
+      <label className="text-[11px] uppercase tracking-[0.14em] text-white/40">
+        {label}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function OptionCard({
+  checked,
+  title,
+  description,
+  onChange,
+  compact = false,
+}: {
+  checked: boolean;
+  title: string;
+  description: string;
+  onChange: (checked: boolean) => void;
+  compact?: boolean;
+}) {
+  return (
+    <label
+      className={`flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition-colors ${checked
+          ? "border-blue-400/30 bg-blue-400/[0.07]"
+          : "border-white/10 bg-[#0B0D12] hover:bg-white/[0.03]"
+        } ${compact ? "h-full" : ""}`}
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-0.5 accent-blue-500"
+      />
+      <div>
+        <span className="block text-sm font-medium text-white">{title}</span>
+        <span className="text-[11px] leading-relaxed text-white/50">
+          {description}
+        </span>
+      </div>
+    </label>
+  );
+}
+
+function AddressBlock({
+  title,
+  addressValue,
+  addressPlaceholder,
+  addressLabel,
+  floorValue,
+  floorLabel,
+  floorPlaceholder,
+  walkingDistanceValue,
+  walkingDistanceLabel,
+  walkingDistancePlaceholder,
+  onAddressChange,
+  onFloorChange,
+  onWalkingDistanceChange,
+  checks,
+}: {
+  title: string;
+  addressValue: string;
+  addressPlaceholder: string;
+  addressLabel: string;
+  floorValue: number | string;
+  floorLabel: string;
+  floorPlaceholder: string;
+  walkingDistanceValue: number | string;
+  walkingDistanceLabel: string;
+  walkingDistancePlaceholder: string;
+  onAddressChange: (value: string) => void;
+  onFloorChange: (value: string) => void;
+  onWalkingDistanceChange: (value: string) => void;
+  checks: Array<{
+    checked: boolean;
+    label: string;
+    onChange: (checked: boolean) => void;
+  }>;
+}) {
+  return (
+    <div className="space-y-5">
+      <h4 className="border-b border-white/8 pb-2 text-[11px] font-bold uppercase tracking-[0.15em] text-white/38">
+        {title}
+      </h4>
+
+      <FieldCard label={addressLabel}>
+        <input
+          type="text"
+          placeholder={addressPlaceholder}
+          value={addressValue}
+          onChange={(e) => onAddressChange(e.target.value)}
+          className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
+        />
+      </FieldCard>
+
+      <FieldCard label={floorLabel}>
+        <input
+          type="number"
+          placeholder={floorPlaceholder}
+          value={floorValue}
+          onChange={(e) => onFloorChange(e.target.value)}
+          className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
+        />
+      </FieldCard>
+
+      <FieldCard label={walkingDistanceLabel}>
+        <input
+          type="number"
+          min={0}
+          placeholder={walkingDistancePlaceholder}
+          value={walkingDistanceValue}
+          onChange={(e) => onWalkingDistanceChange(e.target.value)}
+          className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
+        />
+      </FieldCard>
+
+      <div className="space-y-3 pt-1">
+        {checks.map((item, index) => (
+          <label
+            key={`${item.label}-${index}`}
+            className={`flex cursor-pointer items-center gap-3 rounded-xl border px-3 py-3 text-sm transition-colors ${item.checked
+                ? "border-blue-400/30 bg-blue-400/[0.07] text-white"
+                : "border-white/10 bg-[#0B0D12] text-white/72 hover:bg-white/[0.03]"
+              }`}
+          >
+            <input
+              type="checkbox"
+              checked={item.checked}
+              onChange={(e) => item.onChange(e.target.checked)}
+              className="h-4 w-4 accent-blue-500"
+            />
+            <span>{item.label}</span>
+          </label>
+        ))}
       </div>
     </div>
   );

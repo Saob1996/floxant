@@ -40,58 +40,58 @@
 
 @layer base {
   :root {
-    /* Phase 6 Luxury Dark Base (Obsidian/Graphite) applied globally */
-    --background: 240 10% 4%; /* #0A0A0C */
-    --foreground: 0 0% 98%; /* #FAFAFA */
+    /* Premium dark system with warmer contrast and stronger depth */
+    --background: 240 12% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 240 10% 7%; /* #121216 Graphite Surface */
+    --card: 240 10% 8%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 7%;
+
+    --popover: 240 10% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 220 70% 55%; /* Controlled Blue Violet Accent */
+    --primary: 223 84% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 10% 10%; /* Elevated Surface */
+    --secondary: 240 8% 11%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 10% 8%;
-    --muted-foreground: 240 5% 65%; /* Soft readable gray */
+    --muted: 240 8% 9%;
+    --muted-foreground: 240 5% 68%;
 
-    --accent: 220 70% 55%; 
+    --accent: 223 84% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 72% 54%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 240 10% 14%; /* Subtle structural crisp borders */
-    --input: 240 10% 14%;
-    --ring: 220 70% 55%;
-    
-    --radius: 0.5rem; /* Strict architectural corners */
+    --border: 240 8% 16%;
+    --input: 240 8% 16%;
+    --ring: 223 84% 60%;
+
+    --radius: 0.9rem;
   }
 
-  /* Force dark mode tokens everywhere for true luxury feel */
   .dark {
-    --background: 240 10% 4%;
+    --background: 240 12% 5%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 7%;
+    --card: 240 10% 8%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 7%;
+    --popover: 240 10% 8%;
     --popover-foreground: 0 0% 98%;
-    --primary: 220 70% 55%;
+    --primary: 223 84% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 10% 10%;
+    --secondary: 240 8% 11%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 10% 8%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 220 70% 55%;
+    --muted: 240 8% 9%;
+    --muted-foreground: 240 5% 68%;
+    --accent: 223 84% 60%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 72% 54%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 10% 14%;
-    --input: 240 10% 14%;
-    --ring: 220 70% 55%;
+    --border: 240 8% 16%;
+    --input: 240 8% 16%;
+    --ring: 223 84% 60%;
   }
 }
 
@@ -105,42 +105,150 @@
     @apply border-border;
   }
 
+  ::selection {
+    background: hsl(var(--primary) / 0.28);
+    color: hsl(var(--foreground));
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-image:
+      radial-gradient(circle at top, rgba(82, 121, 255, 0.10), transparent 34%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0));
+    background-attachment: fixed;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Force global heading typography */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
-    letter-spacing: -0.02em; /* Tighter tracking for modern B2B look */
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease,
+      opacity 180ms ease;
+  }
+
+  input,
+  select,
+  textarea {
+    color: hsl(var(--foreground));
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: hsl(var(--muted-foreground) / 0.75);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus-visible,
+  a:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 1px hsl(var(--ring) / 0.55),
+      0 0 0 4px hsl(var(--ring) / 0.14);
   }
 }
 
-/* Phase 6 Premium Overrides */
+/* Premium surfaces */
 .glass {
-  /* Removed messy neon/glow blurs, replacing with razor-sharp architectural elevation */
-  @apply bg-[#121216]/80 backdrop-blur-md border border-[#ffffff0a] shadow-[0_4px_24px_rgba(0,0,0,0.4)];
+  background:
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .glass-panel {
-  @apply bg-[#0A0A0C]/90 backdrop-blur-lg border-b border-[#ffffff0a];
+  background:
+    linear-gradient(to bottom, rgba(18, 18, 22, 0.92), rgba(10, 10, 12, 0.9));
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
 }
 
-/* Suppress all previous neon glows globally */
-.glow {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
-}
+.glow,
 .glow-emerald {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset !important;
 }
 
-/* Hero Animations — CSS-only, replaces Framer Motion m.div */
+/* Elevated cards and premium hover feel */
+.card-premium {
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  border-radius: 1.5rem;
+}
+
+.card-premium:hover {
+  border-color: hsl(var(--primary) / 0.22);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(82, 121, 255, 0.06) inset;
+  transform: translateY(-2px);
+}
+
+/* Better prose in dark mode */
+.prose {
+  --tw-prose-body: hsl(var(--muted-foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-links: hsl(var(--foreground));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-bullets: hsl(var(--primary));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--border));
+  --tw-prose-captions: hsl(var(--muted-foreground));
+  --tw-prose-code: hsl(var(--foreground));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: rgba(255, 255, 255, 0.03);
+}
+
+.prose h2,
+.prose h3 {
+  text-wrap: balance;
+}
+
+.prose p+p {
+  margin-top: 1.1em;
+}
+
+/* Hero animations */
 @keyframes hero-fade-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -150,8 +258,9 @@
 @keyframes hero-scale-in {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -161,8 +270,9 @@
 @keyframes hero-slide-up {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(34px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -174,17 +284,41 @@
 }
 
 .animate-hero-scale {
-  animation: hero-scale-in 0.5s ease-out 0.2s both;
+  animation: hero-scale-in 0.55s ease-out 0.18s both;
 }
 
 .animate-hero-slide {
-  animation: hero-slide-up 0.8s ease-out 0.4s both;
+  animation: hero-slide-up 0.8s ease-out 0.32s both;
 }
 
-/* Service card hover — CSS-only, replaces m.div whileHover */
+/* Refined interaction */
 .service-card-hover {
-  transition: transform 0.2s ease-out;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease;
 }
+
 .service-card-hover:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  border-color: hsl(var(--primary) / 0.2);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+}
+
+/* Subtle ambient pulse for small UI emphasis */
+@keyframes pulse-slow-soft {
+
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow-soft 2.8s ease-in-out infinite;
 }

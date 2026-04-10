@@ -1,188 +1,359 @@
-import { type Locale } from "../../../i18n-config";
+import type { Metadata } from "next";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import {
+    Building,
+    CheckCircle2,
+    Droplets,
+    Home,
+    MapPin,
+    Sparkles,
+    Stethoscope,
+} from "lucide-react";
+
+import { type Locale, isValidLocale } from "../../../i18n-config";
 import { getDictionary } from "../../../get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
-import { Metadata } from 'next';
-import { TrustStack } from "@/components/TrustStack";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { CheckCircle2, Droplets, Sparkles, Building, Home, CheckSquare, Stethoscope, MapPin } from "lucide-react";
-import dynamic from 'next/dynamic';
 
 const SmartBookingWizard = dynamic(
-    () => import("@/components/SmartBookingWizard").then(mod => ({ default: mod.SmartBookingWizard })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+    () =>
+        import("@/components/SmartBookingWizard").then((mod) => ({
+            default: mod.SmartBookingWizard,
+        })),
+    { loading: () => <div className="mx-auto min-h-[400px] w-full max-w-5xl" /> }
 );
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    
-    const dict = (await getDictionary(pageLocale as Locale)) as any;
-return generatePageSEO({
+type PageProps = {
+    params: Promise<{ lang: string }>;
+};
+
+type FaqItem = {
+    q?: string;
+    a?: string;
+};
+
+type ReinigungContent = {
+    faqs?: FaqItem[];
+};
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+    const { lang } = await params;
+
+    if (!isValidLocale(lang)) {
+        notFound();
+    }
+
+    const pageLocale: Locale = lang;
+    await getDictionary(pageLocale);
+
+    return generatePageSEO({
         pageLocale,
-        path: 'reinigung',
-        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+        path: "reinigung",
+        title: "Reinigung Bayern | Gebäudereinigung & Endreinigung mit FLOXANT",
+        description:
+            "Professionelle Reinigung in Bayern mit Fokus auf Regensburg. Endreinigung, Grundreinigung, Büroreinigung und Praxisreinigung zum Festpreis.",
     });
 }
 
-export default async function ReinigungPillarPage({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_reinigung || {};
+export default async function ReinigungPillarPage({ params }: PageProps) {
+    const { lang } = await params;
 
-    const faqJsonLd = {
-        "@context": "https://schema.org", "@type": "FAQPage",
-        "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } },
-                { "@type": "Question", "name": content.faqs?.[2]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[2]?.a } }
-            ],
-    };
+    if (!isValidLocale(lang)) {
+        notFound();
+    }
+
+    const pageLocale: Locale = lang;
+    const dict = await getDictionary(pageLocale);
+    const isDe = pageLocale === "de";
+
+    const content = (dict.pages?.service_reinigung ?? {}) as ReinigungContent;
+
+    const faqItems = Array.isArray(content.faqs)
+        ? content.faqs.filter(
+            (item): item is Required<FaqItem> =>
+                Boolean(item?.q?.trim()) && Boolean(item?.a?.trim())
+        )
+        : [];
+
+    const faqJsonLd =
+        faqItems.length > 0
+            ? {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faqItems.map((item) => ({
+                    "@type": "Question",
+                    name: item.q,
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: item.a,
+                    },
+                })),
+            }
+            : null;
 
     const breadcrumbs = [
         { label: "Home", href: `/${pageLocale}` },
-        { label: "Reinigung (Pillar)" }
+        { label: "Reinigung" },
     ];
 
     const breadcrumbJsonLd = {
-        "@context": "https://schema.org", "@type": "BreadcrumbList",
-        "itemListElement": breadcrumbs.map((crumb, idx) => ({
-            "@type": "ListItem", "position": idx + 1, "name": crumb.label, "item": `https://www.floxant.de${crumb.href || `/${pageLocale}/reinigung`}`
-        }))
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: `https://www.floxant.de/${pageLocale}`,
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Reinigung",
+                item: `https://www.floxant.de/${pageLocale}/reinigung`,
+            },
+        ],
     };
+
+    const cityLinks = [
+        { href: `/${pageLocale}/reinigung-regensburg`, label: "Gebäudereinigung Regensburg" },
+        { href: `/${pageLocale}/reinigung-muenchen`, label: "Gebäudereinigung München" },
+        { href: `/${pageLocale}/reinigung-nuernberg`, label: "Gebäudereinigung Nürnberg" },
+        { href: `/${pageLocale}/reinigung-augsburg`, label: "Gebäudereinigung Augsburg" },
+        { href: `/${pageLocale}/reinigung-landshut`, label: "Gebäudereinigung Landshut" },
+        { href: `/${pageLocale}/reinigung-passau`, label: "Gebäudereinigung Passau" },
+    ];
 
     return (
         <main className="min-h-screen bg-background">
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            {faqJsonLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
 
-            <Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} />
-            
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <MapPin className="w-4 h-4" />
+            <Breadcrumbs lang={pageLocale} items={breadcrumbs} />
+
+            <section className="bg-gradient-to-b from-muted/20 to-background px-6 pb-20 pt-8">
+                <div className="mx-auto max-w-7xl space-y-8 text-center">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+                        <MapPin className="h-4 w-4" />
                         <span>Glanzleistungen für Gewerbe und Immobilien</span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+
+                    <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-6xl">
                         Professionelle <span className="text-primary">Reinigung</span> auf höchstem Niveau
                     </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Von der intensiven Grundreinigung und Endreinigung vor der Wohnungsübergabe bis hin zur peniblen Büro- und Praxisreinigung. FLOXANT ist Ihr Gebäudedienstleister für kompromisslose Sauberkeit zum Festpreis.
-          </p>
+
+                    <p className="mx-auto max-w-3xl text-xl leading-relaxed text-muted-foreground">
+                        Von der intensiven Grundreinigung und Endreinigung bis hin zur
+                        strukturierten Büro- und Praxisreinigung. FLOXANT ist Ihr
+                        Reinigungsdienstleister für Bayern mit Fokus auf saubere Abläufe,
+                        klare Leistungen und feste Preise.
+                    </p>
                 </div>
             </section>
 
-            {/* Semantic Cluster: Wohnungsreinigung & Grundreinigung */}
-            <section className="py-20 bg-white">
-                <div className="container px-4 max-w-6xl mx-auto">
-                    <div className="text-center mb-16">
-                        <Sparkles className="w-16 h-16 text-primary mx-auto mb-6" />
-                        <h2 className="text-4xl font-bold tracking-tight mb-4">Wohnungsreinigung & Intensive Grundreinigung</h2>
-                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Die rettende Lösung, wenn die besenreine Übergabe der alten Immobilie nicht ausreicht. Garantiert rücknahmebereit.</p>
-                    </div>
-
-                    <div className="grid lg:grid-cols-2 gap-12">
-                        <div className="bg-slate-50 p-10 rounded-3xl border">
-                            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2"><Home className="text-slate-800" /> Die professionelle Wohnungsreinigung</h3>
-                            <div className="prose text-slate-700">
-                                <p>
-                                    Nachdem das letzte Umzugsgut die Wohnung verlassen hat, offenbaren sich oft hartnäckige Spuren von jahrelangem Wohnen. Unsere <strong>Wohnungsreinigung</strong> (Endreinigung) sichert Ihnen die problemlose Schlüsselübergabe mit Ihrem Vermieter.
-                                </p>
-                                <p>
-                                    Wir agieren streng nach den üblichen Vermieter Checklisten. Dies umfasst die komplette Fenster- und Rahmenreinigung, die Wischreinigung aller Flächen, das gründliche Entfernen von Kalk und Urinstein in den Sanitäranlagen sowie die Entfettung der Küchenrückwände. Eine <strong>Wohnungsreinigung</strong> von FLOXANT schützt Ihre Kaution.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="bg-blue-50/50 p-10 rounded-3xl border border-blue-100">
-                            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-blue-900"><Droplets className="text-blue-600" /> Die porentiefe Grundreinigung</h3>
-                            <div className="prose text-slate-700">
-                                <p>
-                                    Eine <strong>Grundreinigung</strong> geht weit über die alltägliche Pflege hinaus. Hierbei entfernen wir selbst hartnäckigste Schmutzkrusten, alte Pflegemittelfilme und Bau-Rückstände (z.B. nach einer Sanierung). 
-                                </p>
-                                <p>
-                                    Wir widmen uns den unzugänglichen Stellen: Fugen in Badezimmern werden maschinell geschrubbt, Heizkörper von innen entstaubt, Türblätter und Zargen komplett abgewaschen. Eine <strong>Grundreinigung</strong> eignet sich auch hervorragend vor dem Einzug in eine Bestandsimmobilie, um das Objekt hygienisch zu "nullen" (siehe auch unseren Signature Service: Clean Start Ceremony).
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-             {/* Semantic Cluster: Praxisreinigung & Büroreinigung */}
-             <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-                <div className="absolute top-0 end- w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
-                
-                <div className="container px-4 max-w-6xl mx-auto relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div className="space-y-6">
-                            <div className="inline-block bg-white/10 text-white px-4 py-2 rounded-full font-bold text-sm tracking-widest uppercase mb-2">B2B Facility Management</div>
-                            <h2 className="text-4xl font-bold tracking-tight">Spezialisten für Praxisreinigung & Büroreinigung</h2>
-                            <div className="prose prose-lg text-slate-300">
-                                <p>
-                                    Gewerbliche Räumlichkeiten sind das Aushängeschild Ihres Unternehmens. Patienten und Kunden schließen von der Sauberkeit direkt auf Ihre Professionalität. Unsere auf B2B-Kunden zugeschnittene <strong>Büroreinigung</strong> sorgt täglich oder wöchentlich für eine repräsentative Arbeitsumgebung.
-                                </p>
-                                <p>
-                                    Eine besondere Herausforderung bildet die <strong>Praxisreinigung</strong>. Hier wenden unsere geschulten Fachkräfte spezielle Desinfektionspläne an, um die extremen Hygienestandards der Gesundheitsbranche (HACCP) zu gewährleisten. Schreibtische, Wartezimmer, Tastaturen, Sanitärbereiche – wir überlassen bei der <strong>Praxisreinigung</strong> nichts dem Zufall.
-                                </p>
-                            </div>
-                            
-                            <ul className="space-y-3 pt-6">
-                                <li className="flex items-start gap-3 text-slate-200"><CheckCircle2 className="text-emerald-400 shrink-0 mt-1" /> Reinigung außerhalb der Öffnungszeiten (Morgens / Abends)</li>
-                                <li className="flex items-start gap-3 text-slate-200"><CheckCircle2 className="text-emerald-400 shrink-0 mt-1" /> Fest zugewiesenes, vertrauenswürdiges Reinigungspersonal</li>
-                                <li className="flex items-start gap-3 text-slate-200"><CheckCircle2 className="text-emerald-400 shrink-0 mt-1" /> Transparente Leistungsverzeichnisse und Qualitätsprotokolle</li>
-                            </ul>
-                        </div>
-                        
-                        <div className="grid gap-6">
-                            <div className="bg-white/5 backdrop-blur border border-white/10 p-8 rounded-3xl">
-                                <Building className="w-10 h-10 text-primary mb-4" />
-                                <h3 className="text-2xl font-bold mb-2 text-white">Büroreinigung</h3>
-                                <p className="text-slate-400">Schreibtische, Monitorflächen, Böden saugen, Müllentsorgung, Teeküchen und Konferenzräume. Wir schaffen das perfekte produktive Umfeld für Ihre Mitarbeiter.</p>
-                            </div>
-                            <div className="bg-white/5 backdrop-blur border border-white/10 p-8 rounded-3xl">
-                                <Stethoscope className="w-10 h-10 text-blue-400 mb-4" />
-                                <h3 className="text-2xl font-bold mb-2 text-white">Praxisreinigung</h3>
-                                <p className="text-slate-400">Flächendesinfektion nach RKI-Standards, klinisch saubere Sanitäranlagen, geruchsneutrale Wartebereiche. Absolutes Vertrauen für sensible Zonen.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-             {/* Smart Booking Call to Action */}
-             <section className="py-24 bg-white" id="booking">
-                <div className="container px-4">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl font-bold tracking-tight mb-4 text-slate-900">Fordern Sie Ihr Reinigungs-Angebot an</h2>
-                        <p className="text-lg text-slate-500">
-                            Ob einmalige Endreinigung beim Auszug oder langfristige Betreuung für Ihr Büro: Nutzen Sie den Konfigurator für eine schnelle Preisschätzung und Konzepterstellung.
+            <section className="bg-white py-20">
+                <div className="container mx-auto max-w-6xl px-4">
+                    <div className="mb-16 text-center">
+                        <Sparkles className="mx-auto mb-6 h-16 w-16 text-primary" />
+                        <h2 className="mb-4 text-4xl font-bold tracking-tight">
+                            Wohnungsreinigung & intensive Grundreinigung
+                        </h2>
+                        <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
+                            Die saubere Lösung, wenn eine oberflächliche Übergabe nicht reicht.
                         </p>
                     </div>
-                    <div className="bg-white border rounded-3xl overflow-hidden shadow-xl max-w-5xl mx-auto">
-                        <div className="p-4 md:p-8">
-                            <SmartBookingWizard dict={dict} />
+
+                    <div className="grid gap-12 lg:grid-cols-2">
+                        <div className="rounded-3xl border bg-slate-50 p-10">
+                            <h3 className="mb-4 flex items-center gap-2 text-2xl font-bold">
+                                <Home className="text-slate-800" />
+                                Die professionelle Wohnungsreinigung
+                            </h3>
+
+                            <div className="prose text-slate-700">
+                                <p>
+                                    Nach dem Auszug bleiben oft Rückstände, die bei der
+                                    Übergabe sofort auffallen. Unsere{" "}
+                                    <strong>Wohnungsreinigung</strong> sichert eine
+                                    belastbare Endreinigung vor Vermieter- oder
+                                    Eigentümerabnahme.
+                                </p>
+                                <p>
+                                    Dazu gehören Fenster und Rahmen, Flächenreinigung,
+                                    Sanitärbereiche, Kalk- und Fettentfernung sowie
+                                    kritische Zonen in Küche und Bad. Eine professionelle{" "}
+                                    <strong>Wohnungsreinigung</strong> schützt Zeit,
+                                    Nerven und oft auch die Kaution.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="rounded-3xl border border-blue-100 bg-blue-50/50 p-10">
+                            <h3 className="mb-4 flex items-center gap-2 text-2xl font-bold text-blue-900">
+                                <Droplets className="text-blue-600" />
+                                Die porentiefe Grundreinigung
+                            </h3>
+
+                            <div className="prose text-slate-700">
+                                <p>
+                                    Eine <strong>Grundreinigung</strong> geht deutlich
+                                    weiter als reguläre Unterhaltsreinigung. Sie entfernt
+                                    hartnäckige Rückstände, alte Pflegeschichten,
+                                    Sanierungsstaub und stark belastete Ablagerungen.
+                                </p>
+                                <p>
+                                    Wir bearbeiten auch schwer zugängliche Stellen wie
+                                    Fugen, Heizkörper, Türblätter, Zargen und sensible
+                                    Übergangsflächen. Eine saubere{" "}
+                                    <strong>Grundreinigung</strong> ist besonders vor
+                                    Einzug, Übergabe oder Wiedervermietung sinnvoll.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Internal City Routing */}
-            <section className="py-16 bg-slate-50 border-t">
-                <div className="container px-4 text-center max-w-5xl mx-auto">
-                    <h2 className="text-2xl font-bold tracking-tight mb-8">Unsere Reinigungs-Standorte</h2>
-                    <p className="text-slate-600 mb-8 max-w-3xl mx-auto">Wir bieten unsere Gebäudereinigung und Wohnungsreinigungen lokal in ganz Bayern mit eigenen Einsatzteams an.</p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <a href={`/${pageLocale}/reinigung-regensburg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Regensburg</a>
-                        <a href={`/${pageLocale}/reinigung-muenchen`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung München</a>
-                        <a href={`/${pageLocale}/reinigung-nuernberg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Nürnberg</a>
-                        <a href={`/${pageLocale}/reinigung-augsburg`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Augsburg</a>
-                        <a href={`/${pageLocale}/reinigung-landshut`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Landshut</a>
-                        <a href={`/${pageLocale}/reinigung-passau`} className="bg-white border hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all shadow-sm">Gebäudereinigung Passau</a>
+            <section className="relative overflow-hidden bg-slate-900 py-24 text-white">
+                <div className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]" />
+
+                <div className="container relative z-10 mx-auto max-w-6xl px-4">
+                    <div className="grid items-center gap-16 lg:grid-cols-2">
+                        <div className="space-y-6">
+                            <div className="mb-2 inline-block rounded-full bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-widest text-white">
+                                B2B Facility Management
+                            </div>
+
+                            <h2 className="text-4xl font-bold tracking-tight">
+                                Spezialisten für Praxisreinigung & Büroreinigung
+                            </h2>
+
+                            <div className="prose prose-lg text-slate-300">
+                                <p>
+                                    Gewerbliche Räume wirken direkt auf Kunden,
+                                    Patienten und Mitarbeitende. Unsere{" "}
+                                    <strong>Büroreinigung</strong> schafft eine saubere,
+                                    produktive und repräsentative Umgebung mit klaren
+                                    Intervallen und festen Standards.
+                                </p>
+                                <p>
+                                    Die <strong>Praxisreinigung</strong> stellt höhere
+                                    Anforderungen an Hygiene, Struktur und Dokumentation.
+                                    Gerade in sensiblen Bereichen braucht es kontrollierte
+                                    Abläufe statt improvisierter Reinigung.
+                                </p>
+                            </div>
+
+                            <ul className="space-y-3 pt-6">
+                                <li className="flex items-start gap-3 text-slate-200">
+                                    <CheckCircle2 className="mt-1 shrink-0 text-emerald-400" />
+                                    Reinigung außerhalb der Öffnungszeiten
+                                </li>
+                                <li className="flex items-start gap-3 text-slate-200">
+                                    <CheckCircle2 className="mt-1 shrink-0 text-emerald-400" />
+                                    Fest zugewiesenes, vertrauenswürdiges Reinigungspersonal
+                                </li>
+                                <li className="flex items-start gap-3 text-slate-200">
+                                    <CheckCircle2 className="mt-1 shrink-0 text-emerald-400" />
+                                    Transparente Leistungsverzeichnisse und Qualitätsprotokolle
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="grid gap-6">
+                            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                                <Building className="mb-4 h-10 w-10 text-primary" />
+                                <h3 className="mb-2 text-2xl font-bold text-white">
+                                    Büroreinigung
+                                </h3>
+                                <p className="text-slate-400">
+                                    Schreibtische, Böden, Küchen, Konferenzräume und
+                                    Sanitärbereiche. Strukturierte Reinigung für ein
+                                    stabiles Arbeitsumfeld.
+                                </p>
+                            </div>
+
+                            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                                <Stethoscope className="mb-4 h-10 w-10 text-blue-400" />
+                                <h3 className="mb-2 text-2xl font-bold text-white">
+                                    Praxisreinigung
+                                </h3>
+                                <p className="text-slate-400">
+                                    Höhere Hygienestandards, sensible Flächen und
+                                    saubere Patientenzonen. Belastbare Reinigung für
+                                    medizinisch geprägte Umgebungen.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <section id="booking" className="bg-white py-24">
+                <div className="container px-4">
+                    <div className="mx-auto mb-16 max-w-3xl text-center">
+                        <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900">
+                            Fordern Sie Ihr Reinigungs-Angebot an
+                        </h2>
+                        <p className="text-lg text-slate-500">
+                            Ob Endreinigung beim Auszug oder laufende Betreuung für
+                            Büro und Gewerbe: Nutzen Sie den Konfigurator für eine
+                            schnelle Preisschätzung.
+                        </p>
+                    </div>
+
+                    <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border bg-white shadow-xl">
+                        <div className="p-4 md:p-8">
+                            <SmartBookingWizard
+                                dict={{
+                                    common: dict.common,
+                                    calculator: dict.calculator,
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {isDe && (
+                <section className="border-t bg-slate-50 py-16">
+                    <div className="container mx-auto max-w-5xl px-4 text-center">
+                        <h2 className="mb-8 text-2xl font-bold tracking-tight">
+                            Unsere Reinigungs-Standorte
+                        </h2>
+                        <p className="mx-auto mb-8 max-w-3xl text-slate-600">
+                            Wir bieten unsere Reinigung lokal in Bayern mit eigenen
+                            Einsatzteams und klaren Einsatzgebieten an.
+                        </p>
+
+                        <div className="flex flex-wrap justify-center gap-4">
+                            {cityLinks.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className="rounded-xl border bg-white px-6 py-3 font-medium shadow-sm transition-all hover:border-primary hover:text-primary"
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
         </main>
     );
 }

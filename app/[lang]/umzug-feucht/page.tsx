@@ -1,146 +1,178 @@
 import { Metadata } from "next";
-import { getDictionary } from "../../../get-dictionary";
-import { type Locale } from "../../../i18n-config";
+import { notFound } from "next/navigation";
+import { isValidLocale, type Locale } from "@/i18n-config";
 import { generatePageSEO } from "@/lib/seo";
-
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import dynamic from "next/dynamic";
-const DualCalculator = dynamic(
-    () => import("@/components/calculator/DualCalculator"),
-    { loading: () => <div className="w-full max-w-7xl mx-auto min-h-[400px] animate-pulse bg-white/5 rounded-3xl" /> }
-);
-
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 import Link from "next/link";
-import { MapPin, Shield, Clock, Truck } from "lucide-react";
 
+interface PageProps {
+    params: Promise<{ lang: string }>;
+}
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) return {};
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-    var { lang: pageLocale } = await params;
-    
-    const dict = (await getDictionary(pageLocale as Locale)) as any;
-return generatePageSEO({
-        pageLocale,
-        path: 'umzug-feucht',
-        title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-        description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+        locale: lang as Locale,
+        baseKey: "umzug_spec",
+        seoKey: "umzug_feucht",
+        city: "Feucht",
+    });
+
+    return generatePageSEO({
+        pageLocale: lang,
+        path: `umzug-feucht`,
+        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
+        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
     });
 }
 
-export default async function UmzugFeucht({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    const content = (dict as any)?.pages?.service_umzug || {};
+export default async function UmzugCityPage({ params }: PageProps) {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) notFound();
 
-    const faqJsonLd = {
-        "@context": "https://schema.org", "@type": "FAQPage",
-        "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } },
-                { "@type": "Question", "name": content.faqs?.[1]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[1]?.a } }
-            ],
-    };
-    const localBusinessJsonLd = {
-        "@context": "https://schema.org", "@type": "MovingCompany", "name": "FLOXANT Umzug Feucht",
-        "url": `https://www.floxant.de/${pageLocale}/umzug-feucht`, "telephone": "+4915771105087",
-        "address": { "@type": "PostalAddress", "addressLocality": "Feucht", "addressRegion": "Bayern", "addressCountry": "DE" },
-        "geo": { "@type": "GeoCoordinates", "latitude": 49.3769, "longitude": 11.2147 },
-        "areaServed": [{ "@type": "City", "name": "Feucht" }, { "@type": "City", "name": "Nürnberg" }, { "@type": "AdministrativeArea", "name": "Nürnberger Land" }], "priceRange": "$$",
-    };
+    const locale = lang as Locale;
+    const { 
+        localeDict, 
+        content, 
+        fallback, 
+        seoContent, 
+        seoFallback, 
+        city 
+    } = await getSpecialtyPageData({
+        locale,
+        baseKey: "umzug_spec",
+        seoKey: "umzug_feucht",
+        city: "Feucht",
+    });
 
-    const serviceJsonLd = {
-        "@context": "https://schema.org", "@type": "Service",
-        "serviceType": "Umzug, Transport, Entrümpelung, Reinigung",
-        "provider": { "@type": "LocalBusiness", "name": "FLOXANT Umzug Feucht", "telephone": "+4915771105087" },
-        "areaServed": { "@type": "City", "name": "Feucht" }
-    };
+    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
 
-    const breadcrumbsJsonLd = {
-        "@context": "https://schema.org", "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${pageLocale}` },
-            { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${pageLocale}/umzug-bayern` },
-            { "@type": "ListItem", "position": 3, "name": "Umzug Feucht", "item": `https://www.floxant.de/${pageLocale}/umzug-feucht` }
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "MovingCompany",
+                "name": `Umzug ${city} | FLOXANT`,
+                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+                "url": `https://www.floxant.de/${lang}/umzug-feucht`,
+                "telePhone": "+49 1577 1105087",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Nürnberg",
+                    "addressRegion": "Bayern",
+                    "addressCountry": "DE"
+                },
+                "areaServed": { "@type": "City", "name": city }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
+                    { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
+                    { "@type": "ListItem", "position": 3, "name": city, "item": `https://www.floxant.de/${lang}/umzug-feucht` }
+                ]
+            },
+            ...(faqItems.length > 0 ? [{
+                "@type": "FAQPage",
+                "mainEntity": faqItems.map(item => ({
+                    "@type": "Question",
+                    "name": item.q,
+                    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+                }))
+            }] : [])
         ]
     };
 
     return (
-        <main className="min-h-screen bg-background">
-            <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Umzug Bayern", href: `/${pageLocale}/umzug-bayern` }, { label: "Umzug Feucht" }]} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }} />
+        <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            <SpecialtyPageLayout
+                pageLocale={lang}
+                dict={localeDict}
+                city={city}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
+                ctaText={resolveField(content.cta, fallback.cta, city)}
+                breadcrumbs={[
+                    { label: "Home", href: `/${lang}` },
+                    { label: "Umzug", href: `/${lang}/umzug-bayern` },
+                    { label: city }
+                ]}
+                chips={[
+                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
+                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
+                    { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+                ]}
+                cards={[
+                    {
+                        icon: Star,
+                        title: resolveNestedField(content.service1, fallback.service1, "title", city),
+                        lines: [
+                            resolveNestedField(content.service1, fallback.service1, "l1", city),
+                            resolveNestedField(content.service1, fallback.service1, "l2", city),
+                            resolveNestedField(content.service1, fallback.service1, "l3", city),
+                            resolveNestedField(content.service1, fallback.service1, "l4", city),
+                        ]
+                    },
+                    {
+                        icon: Zap,
+                        title: resolveNestedField(content.service2, fallback.service2, "title", city),
+                        lines: [
+                            resolveNestedField(content.service2, fallback.service2, "l1", city),
+                            resolveNestedField(content.service2, fallback.service2, "l2", city),
+                            resolveNestedField(content.service2, fallback.service2, "l3", city),
+                            resolveNestedField(content.service2, fallback.service2, "l4", city),
+                        ]
+                    }
+                ]}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionParagraphs={[
+                    resolveField(content.section2_p1, fallback.section2_p1, city),
+                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                ]}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+            />
 
-            <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
-                <div className="max-w-7xl mx-auto text-center space-y-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                        <MapPin className="w-4 h-4" /><span>Feucht & Nürnberger Land</span>
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-                        Umzugsunternehmen in <span className="text-primary">Feucht</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        FLOXANT – Ihr Umzugspartner in Feucht bei Nürnberg. Operativer Hub im Nürnberger Land, {dict.calculator?.fixed_price_tag} und professioneller Service.
-                    </p>
-                </div>
-            </section>
-
-            
-      <section className="py-20 px-6">
-                <div className="max-w-4xl mx-auto space-y-24">
-                    <div className="prose prose-lg max-w-none text-muted-foreground">
-                        <h2 className="text-3xl font-bold text-foreground mb-6">Umzug in Feucht – Im Herzen des Nürnberger Landes</h2>
-                        <p>Feucht liegt verkehrsgünstig am südöstlichen Rand der Metropolregion Nürnberg. Die Marktgemeinde ist ein beliebter Wohnort für Familien und Pendler. Als einer der operativen Knotenpunkte von FLOXANT in Franken bieten wir hier besonders schnelle Verfügbarkeit und kurze Anfahrtszeiten.</p>
-                        <p>Ob Umzug innerhalb von Feucht, in die Nürnberger Stadtteile oder Fernumzug nach ganz Deutschland – wir planen und realisieren Ihren Umzug professionell und zum Festpreis.</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                            { icon: <Clock className="w-8 h-8 text-primary" />, title: "Operativer Hub", desc: "Feucht ist einer unserer Knotenpunkte – besonders kurze Anfahrtszeiten." },
-                            { icon: <Shield className="w-8 h-8 text-primary" />, title: dict.calculator?.fixed_price_tag, desc: "Verbindliches Angebot nach Besichtigung. Keine versteckten Kosten." },
-                            { icon: <Truck className="w-8 h-8 text-primary" />, title: "Fernumzüge", desc: "Von Feucht nach ganz Deutschland – effizient und termingenau." },
-                        ].map((item, i) => (
-                            <div key={i} className="p-6 rounded-2xl bg-card border border-border shadow-sm">
-                                <div className="mb-4">{item.icon}</div>
-                                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div>
-                        <h2 className="text-3xl font-bold text-foreground mb-8">{dict.common.faq_title}</h2>
-                        <div className="space-y-6">
+            {/* Regional SEO Gating (DE-only) */}
+            {lang === "de" && (
+                <section className="bg-slate-50 py-16 px-6 border-t border-border">
+                    <div className="max-w-4xl mx-auto">
+                        <h3 className="text-xl font-bold mb-8 text-slate-800">Regionale Umzugs-Services in Bayern</h3>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                             {[
-                                { q: "Was kostet ein Umzug in Feucht?", a: "Zwischen 300 und 1.500 Euro je nach Wohnungsgröße. Verbindlicher Festpreis nach Besichtigung." },
-                                { q: "Bieten Sie auch Entrümpelung in Feucht?", a: "Ja. Professionelle Entrümpelung und Wohnungsauflösung für Feucht und das Nürnberger Land." },
-                            ].map((item, i) => (
-                                <div key={i} className="p-6 rounded-2xl bg-muted/10 border border-border/50">
-                                    <h3 className="text-lg font-bold mb-2">{item.q}</h3>
-                                    <p className="text-muted-foreground">{item.a}</p>
-                                </div>
+                                { name: "Nürnberg", href: "/de/umzug-nuernberg" },
+                                { name: "Feucht", href: "/de/umzug-feucht" },
+                                { name: "Schwarzenbruck", href: "/de/umzug-schwarzenbruck" },
+                                { name: "Wendelstein", href: "/de/umzug-wendelstein" },
+                                { name: "Altdorf", href: "/de/umzug-altdorf-bei-nuernberg" },
+                                { name: "Burgthann", href: "/de/umzug-burgthann" },
+                                { name: "Winkelhaid", href: "/de/umzug-winkelhaid" },
+                                { name: "Leinburg", href: "/de/umzug-leinburg" },
+                                { name: "Schwanstetten", href: "/de/umzug-schwanstetten" },
+                                { name: "Rednitzhembach", href: "/de/umzug-rednitzhembach" },
+                                { name: "Roth", href: "/de/umzug-roth" },
+                                { name: "Schwabach", href: "/de/umzug-schwabach" },
+                                { name: "Fürth", href: "/de/umzug-fuerth" }
+                            ].map((loc) => (
+                                <Link 
+                                    key={loc.name} 
+                                    href={loc.href}
+                                    className="text-sm text-slate-600 hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary pb-1"
+                                >
+                                    Umzug {loc.name}
+                                </Link>
                             ))}
                         </div>
                     </div>
-
-                    <div className="border-t border-border pt-12">
-                        <h3 className="text-lg font-semibold mb-6">Weitere Standorte</h3>
-                        <div className="flex flex-wrap gap-4">
-                            <Link href={`/${pageLocale}/umzug-nuernberg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_nuremberg}</Link>
-                            <Link href={`/${pageLocale}/umzug-regensburg`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Regensburg</Link>
-                            <Link href={`/${pageLocale}/umzug-neumarkt`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzug Neumarkt</Link>
-                            <Link href={`/${pageLocale}/umzug-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">{dict.common.umzug_bavaria}</Link>
-                            <Link href={`/${pageLocale}/umzugskosten-bayern`} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">Umzugskosten Bayern</Link>
-                        </div>
-                    </div>
-
-                    <div className="text-center py-10 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 rounded-3xl border border-primary/10 shadow-lg">
-                        <h2 className="text-3xl font-bold mb-4">Angebot für Feucht anfordern</h2>
-                        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Kostenloses Festpreisangebot für Ihren Umzug in Feucht.</p>
-                        <DualCalculator dic={dict} />
-                    </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            )}
+        </>
     );
 }

@@ -1,7 +1,7 @@
 import {
     BASE_URL,
     LASTMOD,
-    ALL_LOCALES,
+    MAJOR_LOCALES,
     CORE_SERVICES,
     CITY_PAGES,
     SERVICE_CITY_PAGES,
@@ -11,107 +11,178 @@ import {
     RATGEBER_PAGES,
     SIGNATURE_SERVICES,
     LEGAL_PAGES,
-    SITEMAP_SEGMENTS
-} from './sitemap-config';
+} from "./sitemap-config";
 
-const escapeXml = (unsafe: string): string => {
-    return unsafe.replace(/[<>&'"]/g, (c) => {
-        switch (c) {
-            case '<': return '&lt;';
-            case '>': return '&gt;';
-            case '&': return '&amp;';
-            case '\'': return '&apos;';
-            case '"': return '&quot;';
-            default: return c;
-        }
-    });
-};
+type Locale = (typeof MAJOR_LOCALES)[number];
+
+type ContentGroup =
+    | "home"
+    | "core"
+    | "cities"
+    | "service-cities"
+    | "authority"
+    | "signature-seo"
+    | "longtail"
+    | "ratgeber"
+    | "signature"
+    | "legal";
 
 interface SitemapUrl {
     loc: string;
     lastmod: string;
     changefreq: string;
     priority: string;
-    pagePath: string;
 }
 
-export const generateSitemapIndexResponse = () => {
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${SITEMAP_SEGMENTS.map(seg => `  <sitemap>
-    <loc>${escapeXml(`${BASE_URL}/${seg}`)}</loc>
-    <lastmod>${LASTMOD}</lastmod>
-  </sitemap>`).join('\n')}
-</sitemapindex>`;
+const INDEXABLE_SEGMENTS = MAJOR_LOCALES;
 
-    return new Response(xml, {
-        headers: {
-            "Content-Type": "application/xml"
-        }
-    });
+const ALLOWED_GROUPS_PER_LOCALE: Record<Locale, readonly ContentGroup[]> = {
+    de: [
+        "home",
+        "core",
+        "cities",
+        "service-cities",
+        "authority",
+        "signature-seo",
+        "longtail",
+        "ratgeber",
+        "signature",
+        "legal",
+    ],
+    en: ["home", "core", "signature"],
+    ru: ["home", "core", "signature"],
 };
 
-export const generateSitemapSegmentResponse = (segmentId: string) => {
-    const urls: SitemapUrl[] = [];
+function isIndexableLocale(value: string): value is Locale {
+    return (INDEXABLE_SEGMENTS as readonly string[]).includes(value);
+}
 
-    const buildEntry = (locale: string, route: string, priority: string, changefreq: string) => {
+function escapeXml(unsafe: string): string {
+    return unsafe.replace(/[<>&'"]/g, (char) => {
+        switch (char) {
+            case "<":
+                return "&lt;";
+            case ">":
+                return "&gt;";
+            case "&":
+                return "&amp;";
+            case "'":
+                return "&apos;";
+            case '"':
+                return "&quot;";
+            default:
+                return char;
+        }
+    });
+}
+
+function buildAbsoluteUrl(locale: Locale, route: string): string {
+    return `${BASE_URL}/${locale}${route ? `/${route}` : ""}`;
+}
+
+function addEntries(
+    urls: SitemapUrl[],
+    locale: Locale,
+    routes: readonly string[],
+    priority: string,
+    changefreq: string
+): void {
+    for (const route of routes) {
         urls.push({
-            loc: `${BASE_URL}/${locale}${route ? '/' + route : ''}`,
+            loc: buildAbsoluteUrl(locale, route),
             lastmod: LASTMOD,
             changefreq,
             priority,
-            pagePath: route
         });
-    };
+    }
+}
 
-    if (segmentId === 'core') {
-        const locale = 'de';
-        buildEntry(locale, '', '1.0', 'daily');
-        CORE_SERVICES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
-        CITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'daily'));
-        SERVICE_CITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
-        BAVARIA_AUTHORITY_PAGES.forEach(s => buildEntry(locale, s, '0.9', 'weekly'));
-        SIGNATURE_SEO_PAGES.forEach(s => buildEntry(locale, s, '0.7', 'weekly'));
-        LONGTAIL_PAGES.forEach(s => buildEntry(locale, s, '0.6', 'monthly'));
-        RATGEBER_PAGES.forEach(s => buildEntry(locale, s, '0.6', 'weekly'));
-    } 
-    else if (segmentId === 'signature') {
-        SIGNATURE_SERVICES.forEach(slug => buildEntry('de', `signature/${slug}`, '0.7', 'monthly'));
+export function generateSitemapIndexResponse(): Response {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${INDEXABLE_SEGMENTS.map(
+        (segment) => `  <sitemap>
+    <loc>${escapeXml(`${BASE_URL}/sitemap-${segment}.xml`)}</loc>
+    <lastmod>${LASTMOD}</lastmod>
+  </sitemap>`
+    ).join("\n")}
+</sitemapindex>`;
+
+    return new Response(xml, {
+        headers: { "Content-Type": "application/xml" },
+    });
+}
+
+export function generateSitemapSegmentResponse(segmentId: string): Response {
+    if (!isIndexableLocale(segmentId)) {
+        return new Response("Not Found", { status: 404 });
     }
-    else if (segmentId === 'legal') {
-        LEGAL_PAGES.forEach(slug => buildEntry('de', slug, '0.3', 'yearly'));
+
+    const locale = segmentId;
+    const allowedGroups = ALLOWED_GROUPS_PER_LOCALE[locale];
+    const urls: SitemapUrl[] = [];
+
+    if (allowedGroups.includes("home")) {
+        urls.push({
+            loc: buildAbsoluteUrl(locale, ""),
+            lastmod: LASTMOD,
+            changefreq: "daily",
+            priority: "1.0",
+        });
     }
-    else {
-        const locale = segmentId;
-        const isDE = locale === 'de';
-        buildEntry(locale, '', isDE ? '1.0' : '0.5', 'daily');
-        CORE_SERVICES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
-        CITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'daily'));
-        SERVICE_CITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
-        BAVARIA_AUTHORITY_PAGES.forEach(s => buildEntry(locale, s, isDE ? '0.9' : '0.5', 'weekly'));
-    
-        if (isDE) {
-            SIGNATURE_SEO_PAGES.forEach(s => buildEntry(locale, s, '0.7', 'weekly'));
-            LONGTAIL_PAGES.forEach(s => buildEntry(locale, s, '0.6', 'monthly'));
-            RATGEBER_PAGES.forEach(s => buildEntry(locale, s, '0.6', 'weekly'));
-        }
+
+    if (allowedGroups.includes("core")) {
+        addEntries(urls, locale, CORE_SERVICES, "0.9", "weekly");
+    }
+
+    if (allowedGroups.includes("cities")) {
+        addEntries(urls, locale, CITY_PAGES, "0.9", "daily");
+    }
+
+    if (allowedGroups.includes("service-cities")) {
+        addEntries(urls, locale, SERVICE_CITY_PAGES, "0.9", "weekly");
+    }
+
+    if (allowedGroups.includes("authority")) {
+        addEntries(urls, locale, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
+    }
+
+    if (allowedGroups.includes("signature-seo")) {
+        addEntries(urls, locale, SIGNATURE_SEO_PAGES, "0.7", "weekly");
+    }
+
+    if (allowedGroups.includes("longtail")) {
+        addEntries(urls, locale, LONGTAIL_PAGES, "0.6", "monthly");
+    }
+
+    if (allowedGroups.includes("ratgeber")) {
+        addEntries(urls, locale, RATGEBER_PAGES, "0.6", "weekly");
+    }
+
+    if (allowedGroups.includes("signature")) {
+        const signatureRoutes = SIGNATURE_SERVICES.map((slug) => `signature/${slug}`);
+        addEntries(urls, locale, signatureRoutes, "0.7", "monthly");
+    }
+
+    if (allowedGroups.includes("legal")) {
+        addEntries(urls, locale, LEGAL_PAGES, "0.3", "yearly");
     }
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls.map(url => {
-    return `  <url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+            .map(
+                (url) => `  <url>
     <loc>${escapeXml(url.loc)}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-  </url>`;
-}).join('\n')}
+  </url>`
+            )
+            .join("\n")}
 </urlset>`;
 
     return new Response(xml, {
-        headers: {
-            "Content-Type": "application/xml"
-        }
+        headers: { "Content-Type": "application/xml" },
     });
-};
+}

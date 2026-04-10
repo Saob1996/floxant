@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
+import { company } from "@/lib/company";
+import { i18n, isValidLocale, type Locale } from "@/i18n-config";
 
-const BASE_URL = "https://www.floxant.de";
+const BASE_URL = company.url;
 const OG_IMAGE = `${BASE_URL}/og.jpg`;
+
+const INDEXABLE_LOCALES = new Set<Locale>(["de"]);
+
+const OG_LOCALE_MAP: Record<Locale, string> = {
+    de: "de_DE",
+    en: "en_US",
+    ru: "ru_RU",
+};
 
 interface PageSEOInput {
     lang?: string;
@@ -27,40 +37,27 @@ function trimDescription(description: string): string {
     return `${description.slice(0, 157).trim()}...`;
 }
 
-function getDefaultTitle(locale: string): string {
+function resolveLocale(input?: string): Locale {
+    if (input && isValidLocale(input)) {
+        return input;
+    }
+    return i18n.defaultLocale;
+}
+
+function getDefaultTitle(locale: Locale): string {
     return locale === "de"
         ? "FLOXANT | Umzug, Reinigung & Entrümpelung in Bayern"
         : "FLOXANT | Moving, Cleaning & Clearance in Bavaria";
 }
 
-function getDefaultDescription(locale: string): string {
+function getDefaultDescription(locale: Locale): string {
     return locale === "de"
-        ? "FLOXANT bietet Umzug, Reinigung und Entrümpelung in Bayern mit transparenten Preisen und professioneller Abwicklung."
+        ? "FLOXANT bietet Umzug, Reinigung und Entrümpelung in Bayern mit transparenter Preisstruktur und professioneller Abwicklung."
         : "FLOXANT offers moving, cleaning and clearance services in Bavaria with transparent pricing and professional execution.";
 }
 
-function getOgLocale(locale: string): string {
-    const map: Record<string, string> = {
-        de: "de_DE",
-        en: "en_US",
-        fr: "fr_FR",
-        it: "it_IT",
-        es: "es_ES",
-        ar: "ar_AR",
-        tr: "tr_TR",
-        ru: "ru_RU",
-        uk: "uk_UA",
-        pl: "pl_PL",
-        ro: "ro_RO",
-        bg: "bg_BG",
-        fa: "fa_IR",
-        zh: "zh_CN",
-        vi: "vi_VN",
-        ko: "ko_KR",
-        ja: "ja_JP",
-    };
-
-    return map[locale] || locale;
+function getOgLocale(locale: Locale): string {
+    return OG_LOCALE_MAP[locale];
 }
 
 function buildKeywords(path: string, title: string): string {
@@ -95,6 +92,27 @@ function buildKeywords(path: string, title: string): string {
     return Array.from(new Set(common)).join(", ");
 }
 
+function isIndexableLocale(locale: Locale): boolean {
+    return INDEXABLE_LOCALES.has(locale);
+}
+
+function normalizePath(path: string): string {
+    if (!path) return "";
+    return `/${path.replace(/^\/+/, "").replace(/\/+$/, "")}`;
+}
+
+function buildLanguageAlternates(path: string): Record<string, string> {
+    const alternates: Record<string, string> = {};
+
+    for (const locale of i18n.locales) {
+        alternates[locale] = `${BASE_URL}/${locale}${path}`;
+    }
+
+    alternates["x-default"] = `${BASE_URL}/${i18n.defaultLocale}${path}`;
+
+    return alternates;
+}
+
 export function generatePageSEO({
     lang,
     pageLocale,
@@ -102,52 +120,34 @@ export function generatePageSEO({
     title,
     description,
 }: PageSEOInput): Metadata {
-    const resolvedLang = lang || pageLocale || "de";
-    const normalizedPath = path ? `/${path.replace(/^\/+/, "")}` : "";
-    const canonical = `${BASE_URL}/${resolvedLang}${normalizedPath}`;
+    const resolvedLocale = resolveLocale(lang || pageLocale);
+    const normalizedPath = normalizePath(path);
+    const indexable = isIndexableLocale(resolvedLocale);
+    const canonicalLocale: Locale = indexable ? resolvedLocale : i18n.defaultLocale;
+    const canonical = `${BASE_URL}/${canonicalLocale}${normalizedPath}`;
 
     const safeTitle = trimTitle(
-        normalizeText(title, getDefaultTitle(resolvedLang))
+        normalizeText(title, getDefaultTitle(resolvedLocale))
     );
     const safeDescription = trimDescription(
-        normalizeText(description, getDefaultDescription(resolvedLang))
+        normalizeText(description, getDefaultDescription(resolvedLocale))
     );
-    const keywords = buildKeywords(path, safeTitle);
-
-    const languages: Record<string, string> = {
-        de: `${BASE_URL}/de${normalizedPath}`,
-        en: `${BASE_URL}/en${normalizedPath}`,
-        ar: `${BASE_URL}/ar${normalizedPath}`,
-        tr: `${BASE_URL}/tr${normalizedPath}`,
-        ru: `${BASE_URL}/ru${normalizedPath}`,
-        uk: `${BASE_URL}/uk${normalizedPath}`,
-        pl: `${BASE_URL}/pl${normalizedPath}`,
-        ro: `${BASE_URL}/ro${normalizedPath}`,
-        bg: `${BASE_URL}/bg${normalizedPath}`,
-        es: `${BASE_URL}/es${normalizedPath}`,
-        fr: `${BASE_URL}/fr${normalizedPath}`,
-        it: `${BASE_URL}/it${normalizedPath}`,
-        fa: `${BASE_URL}/fa${normalizedPath}`,
-        zh: `${BASE_URL}/zh${normalizedPath}`,
-        vi: `${BASE_URL}/vi${normalizedPath}`,
-        ko: `${BASE_URL}/ko${normalizedPath}`,
-        ja: `${BASE_URL}/ja${normalizedPath}`,
-        "x-default": `${BASE_URL}/de${normalizedPath}`,
-    };
+    const keywords = buildKeywords(normalizedPath, safeTitle);
 
     return {
+        metadataBase: new URL(BASE_URL),
         title: safeTitle,
         description: safeDescription,
         keywords,
         alternates: {
             canonical,
-            languages,
+            languages: buildLanguageAlternates(normalizedPath),
         },
         robots: {
-            index: true,
+            index: indexable,
             follow: true,
             googleBot: {
-                index: true,
+                index: indexable,
                 follow: true,
                 "max-video-preview": -1,
                 "max-image-preview": "large",
@@ -156,7 +156,7 @@ export function generatePageSEO({
         },
         other: {
             "geo.region": "DE-BY",
-            "geo.placename": "Regensburg",
+            "geo.placename": company.city,
             "geo.position": "49.0134;12.1016",
             ICBM: "49.0134, 12.1016",
         },
@@ -165,8 +165,8 @@ export function generatePageSEO({
             url: canonical,
             title: safeTitle,
             description: safeDescription,
-            siteName: "FLOXANT",
-            locale: getOgLocale(resolvedLang),
+            siteName: company.name,
+            locale: getOgLocale(resolvedLocale),
             countryName: "Germany",
             images: [
                 {

@@ -1,21 +1,21 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
+import { company } from "@/lib/company";
 
 export default function robots(): MetadataRoute.Robots {
     return {
         rules: [
             {
-                userAgent: '*',
-                allow: '/',
-                disallow: ['/api/', '/*/dashboard/', '/*/login/'],
-                crawlDelay: 1, // Satisfies Bing Webmaster Tools diagnostics
+                userAgent: "*",
+                allow: "/",
+                disallow: ["/api/", "/*/dashboard/", "/*/login/"],
             },
         ],
         sitemap: [
-            'https://www.floxant.de/sitemap.xml',
-            'https://www.floxant.de/sitemap-core.xml',
-            'https://www.floxant.de/sitemap-de.xml',
-            'https://www.floxant.de/sitemap-signature.xml',
-            'https://www.floxant.de/sitemap-legal.xml',
+            `${company.url}/sitemap.xml`,
+            `${company.url}/sitemap-de.xml`,
+            `${company.url}/sitemap-en.xml`,
+            `${company.url}/sitemap-ru.xml`,
         ],
-    }
+        host: company.url,
+    };
 }

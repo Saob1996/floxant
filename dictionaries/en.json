@@ -6,7 +6,10 @@
     "contact": "Contact",
     "login": "Login",
     "book_now": "BOOK NOW",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "service_umzug": "Moving",
+    "service_reinigung": "Cleaning",
+    "service_entruempelung": "Clearance"
   },
   "hero": {
     "title": "The Architects of Your Transition",
@@ -168,7 +171,14 @@
   "trust": {
     "experience": "Years of Experience",
     "quality": "Highest Quality",
-    "insured": "Fully Insured"
+    "insured": "Fully Insured",
+    "google_reviews": "Google Reviews",
+    "google_reviews_desc": "Visible, public, and verifiable.",
+    "personal_consultation": "Personal Consultation",
+    "personal_consultation_desc": "Direct coordination instead of rigid standard processes.",
+    "regional_active": "Regionally Active",
+    "location_generic": "Operations in Regensburg and Bavaria – well planned.",
+    "location_template": "Requests from {location} are processed directly."
   },
   "auth": {
     "login_title": "Admin Login",
@@ -1118,6 +1128,66 @@
         }
       ]
     },
+    "entruempelung_ingolstadt": {
+      "faqs": [
+        {
+          "q": "What does an Entrümpelung cost inside Ingolstadt?",
+          "a": "Roughly scaling 30 up to 80 Euros spanning per cubic meter, tightly bounded upon material composition combined with operational proximity. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "How rapid is your Entrümpelung clearance velocity?",
+          "a": "Express Entrümpelung operations realistically mature inside 24 to 48 hours. Habitual loops execute efficiently within seven days."
+        }
+      ]
+    },
+    "entruempelung_straubing": {
+      "faqs": [
+        {
+          "q": "What does an Entrümpelung cost inside Straubing?",
+          "a": "Roughly scaling 30 up to 80 Euros spanning per cubic meter, tightly bounded upon material composition combined with operational proximity. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "How rapid is your Entrümpelung clearance velocity?",
+          "a": "Express Entrümpelung operations realistically mature inside 24 to 48 hours. Habitual loops execute efficiently within seven days."
+        }
+      ]
+    },
+    "entruempelung_deggendorf": {
+      "faqs": [
+        {
+          "q": "What does an Entrümpelung cost inside Deggendorf?",
+          "a": "Roughly scaling 30 up to 80 Euros spanning per cubic meter, tightly bounded upon material composition combined with operational proximity. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "How rapid is your Entrümpelung clearance velocity?",
+          "a": "Express Entrümpelung operations realistically mature inside 24 to 48 hours. Habitual loops execute efficiently within seven days."
+        }
+      ]
+    },
+    "entruempelung_wuerzburg": {
+      "faqs": [
+        {
+          "q": "What does an Entrümpelung cost inside Würzburg?",
+          "a": "Roughly scaling 30 up to 80 Euros spanning per cubic meter, tightly bounded upon material composition combined with operational proximity. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "How rapid is your Entrümpelung clearance velocity?",
+          "a": "Express Entrümpelung operations realistically mature inside 24 to 48 hours. Habitual loops execute efficiently within seven days."
+        }
+      ]
+    },
+    "entruempelung_rosenheim": {
+      "faqs": [
+        {
+          "q": "What does an Entrümpelung cost inside Rosenheim?",
+          "a": "Roughly scaling 30 up to 80 Euros spanning per cubic meter, tightly bounded upon material composition combined with operational proximity. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "How rapid is your Entrümpelung clearance velocity?",
+          "a": "Express Entrümpelung operations realistically mature inside 24 to 48 hours. Habitual loops execute efficiently within seven days."
+        }
+      ]
+    },
     "halteverbotszone_muenchen": {
       "meta_title": "No-Parking Zone München – Procurement & Signage Mounting | FLOXANT",
       "meta_desc": "Requesting a no-parking zone in München: We secure municipal permits alongside deploying authoritative barricades. Legally binding, strictly punctual, stress-free. Immediately calculate online pricing or effortlessly connect via WhatsApp / Phone: +49 1577 1105087.",
@@ -1406,6 +1476,66 @@
       "faqs": [
         {
           "q": "What is the financial volume of a cleaning sweep traversing Passau?",
+          "a": "Generally sweeping from 3 hitting 5 Euros bound by per-square-meter calculations covering specialized finish sanitation. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "Is a terminal handover assurance embedded?",
+          "a": "Undoubtedly. Assuming any landlord invokes secondary refinements remotely attached to the sanitation grid, our squad physically loops back eliminating costs."
+        }
+      ]
+    },
+    "reinigung_ingolstadt": {
+      "faqs": [
+        {
+          "q": "What is the financial volume of a cleaning sweep traversing Ingolstadt?",
+          "a": "Generally sweeping from 3 hitting 5 Euros bound by per-square-meter calculations covering specialized finish sanitation. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "Is a terminal handover assurance embedded?",
+          "a": "Undoubtedly. Assuming any landlord invokes secondary refinements remotely attached to the sanitation grid, our squad physically loops back eliminating costs."
+        }
+      ]
+    },
+    "reinigung_straubing": {
+      "faqs": [
+        {
+          "q": "What is the financial volume of a cleaning sweep traversing Straubing?",
+          "a": "Generally sweeping from 3 hitting 5 Euros bound by per-square-meter calculations covering specialized finish sanitation. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "Is a terminal handover assurance embedded?",
+          "a": "Undoubtedly. Assuming any landlord invokes secondary refinements remotely attached to the sanitation grid, our squad physically loops back eliminating costs."
+        }
+      ]
+    },
+    "reinigung_deggendorf": {
+      "faqs": [
+        {
+          "q": "What is the financial volume of a cleaning sweep traversing Deggendorf?",
+          "a": "Generally sweeping from 3 hitting 5 Euros bound by per-square-meter calculations covering specialized finish sanitation. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "Is a terminal handover assurance embedded?",
+          "a": "Undoubtedly. Assuming any landlord invokes secondary refinements remotely attached to the sanitation grid, our squad physically loops back eliminating costs."
+        }
+      ]
+    },
+    "reinigung_wuerzburg": {
+      "faqs": [
+        {
+          "q": "What is the financial volume of a cleaning sweep traversing Würzburg?",
+          "a": "Generally sweeping from 3 hitting 5 Euros bound by per-square-meter calculations covering specialized finish sanitation. Iron-clad Fixed Value unlocked upon evaluation."
+        },
+        {
+          "q": "Is a terminal handover assurance embedded?",
+          "a": "Undoubtedly. Assuming any landlord invokes secondary refinements remotely attached to the sanitation grid, our squad physically loops back eliminating costs."
+        }
+      ]
+    },
+    "reinigung_rosenheim": {
+      "faqs": [
+        {
+          "q": "What is the financial volume of a cleaning sweep traversing Rosenheim?",
           "a": "Generally sweeping from 3 hitting 5 Euros bound by per-square-meter calculations covering specialized finish sanitation. Iron-clad Fixed Value unlocked upon evaluation."
         },
         {
@@ -3207,6 +3337,32 @@
       ]
     },
     "umzug_regensburg": {
+      "meta_title": "Moving Company Regensburg ✓ Fixed Price ✓ Insured | FLOXANT",
+      "meta_desc": "Professional moving company in Regensburg & Upper Palatinate. Moving, clearing and cleaning at a fixed price. Request a free quote now!",
+      "hero_h1": "Relocation Squad active in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_text": "Your unyielding partner for frictionless transitions dissecting the cathedral metropolis and the comprehensive Upper Palatinate grid. Peerlessly professional, absolute insurance covers, anchored by guaranteed fixed-valuations.",
+      "section1_title": "Transitioning dissecting the core of Upper Palatinate",
+      "section1_p1": "Regensburg is not simply a UNESCO protected landmark, but a metropolitan grid presenting unique logistical bottlenecks. From the bottlenecked alleyways of the historical core to hyper-modern clusters like Burgweinting – we intimately possess total spatial awareness.",
+      "section1_p2": "As a localized relocation entity anchored in Regensburg, we offer significantly more than rudimentary transit – an absolute carefree infrastructure. We orchestrate no-parking zones, professional-grade shielding materials, and surgical furniture deconstruction.",
+      "standort_title": "Our Operational Nexus Concept",
+      "standort_text": "Our tactical command center in Regensburg enables exceptionally rapid reaction cycles and granular on-site intelligence covering all urban sectors and the surrounding periphery.",
+      "skills_title": "Our Domain Expertise for Regensburg",
+      "skill1_title": "Historical Core Logistics",
+      "skill1_text": "Highly specialized in transitions through the historical legacy core – masterfully bypassing severe parking constraints and extremely restricted stairwell access.",
+      "skill2_title": "Meticulous Inventory Shielding",
+      "skill2_text": "Supreme archival-grade protection for your logistical assets through high-grade defensive materials and rigorously trained specialists.",
+      "module_title": "Modular Architecture for every Demand",
+      "module_p1": "Whether supreme full-service maneuvers including high-speed packing or rudimentary furniture transit – you decisively select the modular components. We adapt natively to your fiscal constraints.",
+      "longdistance_title": "Long-range Jumps originating from Regensburg",
+      "longdistance_text": "We architect your transition from Regensburg to any destination within the German republic or the European grid. Masterfully planned, safely executed.",
+      "students_title": "Support for Educational Seekers and Seniors",
+      "students_text": "Dominant fiscal conditions for students and deeply empathetic protocols for senior transitions. We champion everyone entering their new residential sanctuary.",
+      "faq_title": "Frequent Queries regarding Relocation in Regensburg",
+      "faq_extra1_q": "What temporal volume absorbs a Regensburg jump?",
+      "faq_extra1_a": "Generally, a localized transition (up to 3 units) dissecting Regensburg is physically finalized within a solitary daylight cycle. We architect your temporal requirements granularly.",
+      "faq_extra2_q": "Do you also execute inventory unpacking?",
+      "faq_extra2_a": "Affirmative, we offer comprehensive terminal unpacking protocols, ensuring you instantly integrate into your new Regensburg sanctuary.",
       "faqs": [
         {
           "q": "What financial volume absorbs a relocation traversing Regensburg?",
@@ -4236,6 +4392,154 @@
       "link_umzug": "Moving {city}",
       "link_senioren": "Senior Move {city}",
       "link_halteverbot": "Clearance {city}"
+    },
+    "reinigung_freising": {
+      "meta_title": "Cleaning Freising | FLOXANT"
+    },
+    "reinigung_dachau": {
+      "meta_title": "Cleaning Dachau | FLOXANT"
+    },
+    "reinigung_erlangen": {
+      "meta_title": "Cleaning Erlangen | FLOXANT"
+    },
+    "reinigung_weiden": {
+      "meta_title": "Cleaning Weiden | FLOXANT"
+    },
+    "reinigung_amberg": {
+      "meta_title": "Cleaning Amberg | FLOXANT"
+    },
+    "entruempelung_freising": {
+      "meta_title": "Clearance Freising | FLOXANT"
+    },
+    "entruempelung_dachau": {
+      "meta_title": "Clearance Dachau | FLOXANT"
+    },
+    "entruempelung_weiden": {
+      "meta_title": "Clearance Weiden | FLOXANT"
+    },
+    "entruempelung_amberg": {
+      "meta_title": "Clearance Amberg | FLOXANT"
+    },
+    "umzug_bayreuth": {
+      "meta_title": "Moving Bayreuth | FLOXANT"
+    },
+    "umzug_coburg": {
+      "meta_title": "Moving Coburg | FLOXANT"
+    },
+    "umzug_schweinfurt": {
+      "meta_title": "Moving Schweinfurt | FLOXANT"
+    },
+    "umzug_ansbach": {
+      "meta_title": "Moving Ansbach | FLOXANT"
+    },
+    "umzug_forchheim": {
+      "meta_title": "Moving Forchheim | FLOXANT"
+    },
+    "reinigung_kempten": {
+      "meta_title": "Cleaning Kempten | FLOXANT"
+    },
+    "entruempelung_kempten": {
+      "meta_title": "Clearance Kempten | FLOXANT"
+    },
+    "umzug_kempten": {
+      "meta_title": "Moving Kempten | FLOXANT"
+    },
+    "umzug_memmingen": {
+      "meta_title": "Moving Memmingen | FLOXANT"
+    },
+    "umzug_kaufbeuren": {
+      "meta_title": "Moving Kaufbeuren | FLOXANT"
+    },
+    "umzug_neu_ulm": {
+      "meta_title": "Moving Neu-Ulm | FLOXANT"
+    },
+    "umzug_gersthofen": {
+      "meta_title": "Moving Gersthofen | FLOXANT"
+    },
+    "umzug_neusaess": {
+      "meta_title": "Moving Neusäß | FLOXANT"
+    },
+    "umzug_guenzburg": {
+      "meta_title": "Moving Günzburg | FLOXANT"
+    },
+    "umzug_dingolfing": {
+      "meta_title": "Moving Dingolfing | FLOXANT"
+    },
+    "umzug_deggendorf": {
+      "meta_title": "Moving Deggendorf | FLOXANT"
+    },
+    "umzug_vilshofen": {
+      "meta_title": "Moving Vilshofen | FLOXANT"
+    },
+    "umzug_pocking": {
+      "meta_title": "Moving Pocking | FLOXANT"
+    },
+    "umzug_plattling": {
+      "meta_title": "Moving Plattling | FLOXANT"
+    },
+    "umzug_cham": {
+      "meta_title": "Moving Cham | FLOXANT"
+    },
+    "umzug_tirschenreuth": {
+      "meta_title": "Moving Tirschenreuth | FLOXANT"
+    },
+    "umzug_sulzbach_rosenberg": {
+      "meta_title": "Moving Sulzbach-Rosenberg | FLOXANT"
+    },
+    "umzug_rosenheim": {
+      "meta_title": "Moving Rosenheim | FLOXANT"
+    },
+    "umzug_bamberg": {
+      "meta_title": "Moving Bamberg | FLOXANT"
+    },
+    "entruempelung_erlangen": {
+      "meta_title": "Clearance Erlangen | FLOXANT"
+    },
+    "umzug_spec": {
+      "meta_title": "Moving Company {city} ✓ Fixed Price ✓ Insured | FLOXANT",
+      "meta_desc": "Professional moving company in {city} & Bavaria. Moving, clearance and cleaning at a fixed price. Request your free quote now!",
+      "hero_badge": "Moving Service",
+      "hero_h1": "Moving {city}",
+      "hero_p": "Your reliable moving company for stress-free moves in {city} and throughout Bavaria. With fixed price guarantee and full insurance coverage.",
+      "badges": {
+        "permit": "Permits",
+        "signs": "Parking Permits",
+        "stressfree": "Stress-free"
+      },
+      "cta": "Request Move",
+      "service1": {
+        "title": "Private Move",
+        "l1": "Furniture Assembly",
+        "l2": "Safe Transport",
+        "l3": "Packing Service",
+        "l4": "Fully Insured"
+      },
+      "service2": {
+        "title": "Advantages",
+        "l1": "Free Viewing",
+        "l2": "Fixed Price Guarantee",
+        "l3": "Experienced Team",
+        "l4": "On-time Delivery"
+      },
+      "section2_h2": "Your Move in {city} – Structured and Safe",
+      "section2_p1": "A move is more than just transport. We accompany you in {city} from planning to key handover.",
+      "section2_p2": "Trust in regional experience and fair prices.",
+      "wizard_badge": "Quote",
+      "wizard_h2": "Calculate Move in {city}",
+      "wizard_p": "Use our calculator for an instant quote."
+    },
+    "umzug_wuerzburg": {
+      "meta_title": "Moving Company Würzburg ✓ Fixed Price ✓ Insured | FLOXANT",
+      "faqs": [
+        {
+          "q": "What does a move in Würzburg cost?",
+          "a": "A local private move in Würzburg costs between €400 and €2,000 depending on volume. We offer fixed prices after a free viewing."
+        },
+        {
+          "q": "Do you also offer kitchen assembly in Würzburg?",
+          "a": "Yes, our team takes care of the professional dismantling and reassembly of your kitchen directly at the new location in Würzburg."
+        }
+      ]
     }
   },
   "services_section": {
@@ -4337,6 +4641,8 @@
     "free_visit": "Free Consultation",
     "insured": "100% Insured",
     "fixed_price": "Fixed Price Guarantee",
+    "moving": "Moving",
+    "clearance": "Clearance",
     "google_rating": "Google 4.9/5.0",
     "email_hotline": "Email Support",
     "known_from": "Featured in",
@@ -4344,15 +4650,12 @@
     "cta_description": "Extract your completely non-binding estimate instantaneously executing our smart calculator or seamlessly channel inquiries utilizing direct WhatsApp access.",
     "whatsapp_write": "Message via WhatsApp",
     "quick_question": "Immediate inquiry?",
-    "back_to_home": "Return Home",
+    "back_to_home": "Back to Home",
     "nav_open": "Expand Menu",
     "nav_close": "Collapse Menu",
-    "fast_question": "Immediate inquiry?",
     "write_whatsapp_now": "Message via WhatsApp",
     "authority_bio": "FLOXANT constitutes your unyielding, regionally anchored operational force commanding Bayern. Radiating out from our primary administrative nexus located near Regensburg, we daily sequence migrations, surgical clearances, and massive commercial purifications intersecting the total state footprint – spanning the Oberpfalz directly sweeping downward absorbing München. Leverage our certified transport liabilities, exceptionally fast dispatch horizons, alongside impenetrable fixed valuations. We stand as your definitive focal point conquering logistics.",
     "free_unbinding": "Non-binding & Entirely Free",
-    "headquarters_regensburg": "Headquarters Regensburg",
-    "entruempelung": "Clearance",
     "success_100_region": "Surpassing 100+ flawless relocations framing this region.",
     "top_ratings": "Premier Ratings",
     "local_expert": "Your proximal logistical authority",
@@ -4377,7 +4680,6 @@
     "metro_munich": "München Metropolis",
     "metro_nuremberg": "Nürnberg Greater Area",
     "request_price_online": "Aquire Baseline Online Now",
-    "umzug_bavaria": "Relocation Bayern",
     "umzug_nuremberg": "Relocation Nürnberg",
     "umzug_munich": "Relocation München",
     "local_challenges": "Neutralizing localized frictions",
@@ -4416,19 +4718,24 @@
     "combination_move": "Symbiotic Relocation Pairing",
     "also_available_in": "Also available in:",
     "whatsapp_cta_title": "WhatsApp Support",
-    "whatsapp_cta_desc": "We are available 24/7."
+    "whatsapp_cta_desc": "We are available 24/7.",
+    "next": "Next",
+    "headquarters_regensburg": "Headquarters Regensburg",
+    "umzug_bavaria": "Moving Bavaria",
+    "entruempelung": "Clearance",
+    "reinigung": "Cleaning"
   },
   "calculator": {
-    "requirements_title": "Your Specifications",
+    "requirements_title": "Details",
     "requirements_subtitle": "To forge a profoundly serious offer, selectively populate critical parameters. Expansive data radically tightens financial calculations and personnel geometry.",
     "calculation_title": "Your Metric Output",
-    "prognosis_label": "Baseline Prognosis",
+    "prognosis_label": "Price Range",
     "estimate_label": "Concrete Estimate",
-    "start_now": "Initiate Protocol!",
+    "start_now": "Start Now",
     "start_description": "Simply inject raw foundational variables (e.g. spatial footprint) laterally. Our systemic tool instantly generates logically sound pricing structures securely.",
     "calculating": "Processing workload density...",
     "live_price_indicative": "Live Financial Indicator",
-    "uncertainty_note": "Representing a strictly automated approximation guiding baseline orientations. Elevate accuracy injecting granular focal details immediately.",
+    "uncertainty_note": "This is an initial rough estimate. Factors such as floor level, carrying distances, additional services, or type of waste can influence the final price.",
     "legal_note": "*Disclaimer: This constitutes a non-binding baseline parameter. Real-world geometries routinely inflict variance dynamically. Unbreakable fixed validations exclusively materialize accompanying complimentary structural audits!",
     "duration": "Temporal Arc",
     "personnel": "Crew Density",
@@ -4436,12 +4743,12 @@
     "included_in_calculation": "Absorbed Within Calculus",
     "fix_now_btn": "Lock Validation Free",
     "unbinding_note": "This rapid projection fundamentally promises zero-binding states. The ensuing phase enables active callback hooks or orchestrates initial complimentary inspections.",
-    "submit_details": "Push Telemetrics",
+    "submit_details": "Submit Contact Details",
     "submit_subtitle": "Indicate preferential routing networks ensuring seamless call-backs resolving outstanding variables perfectly.",
-    "your_price_range": "Targeted Financial Bounds",
-    "contact_person": "Liaison Point",
-    "name_placeholder": "Full Identity Matrix",
-    "preferred_contact_time": "Preferred Communication Window",
+    "your_price_range": "Your Price Range",
+    "contact_person": "Contact Person",
+    "name_placeholder": "Your Name",
+    "preferred_contact_time": "Preferred Callback Time",
     "anytime": "Unrestricted",
     "morning": "AM Phase",
     "afternoon": "PM Phase",
@@ -4450,16 +4757,16 @@
     "upload_photos_hint": "We distribute an encrypted WhatsApp/Upload link securing asset chronologys passively. Immensely boosting endgame precision dramatically.",
     "price_importance_note": "Critical Financial Context:",
     "price_importance_text": "The value displayed from our online calculator is an initial sound estimate for your orientation. Since every job – whether furniture, access routes or volume – is unique, real costs can vary slightly in practice. However, we always guarantee a 100% transparent fixed price without hidden costs after a brief personal exchange! 🙌",
-    "back_to_overview": "Back to Overview",
-    "submitting": "Submitting...",
+    "back_to_overview": "Back",
+    "submitting": "Sending...",
     "submit_btn": "Send non-binding request",
     "ssl_encryption": "Your data is transmitted via SSL encryption.",
     "success_submitted": "Request successfully submitted",
-    "success_description": "Thank you for your detailed information. Our dispatch team is currently reviewing your request and will get back to you as requested. You will receive a confirmation via email shortly.",
+    "success_description": "We have received your request and will contact you shortly with a matching response.",
     "photo_link_note": "The link for the photo upload will be sent to you separately via email & WhatsApp.",
     "basis_data": "Basic Data",
-    "living_area": "Living Area",
-    "rooms": "Rooms",
+    "living_area": "Living Area (sqm)",
+    "rooms": "Number of Rooms",
     "access_conditions": "Access & Paths",
     "floor": "Floor",
     "lift": "Elevator",
@@ -4546,7 +4853,7 @@
     "handover_guarantee_desc": "We guarantee a smooth handover to the management (incl. free re-cleaning).",
     "cleaning_notes_placeholder": "e.g. Special floor types, building access code...",
     "waste_volume_title": "Volume & Type",
-    "estimated_waste_volume": "Estimated Volume (m³)",
+    "estimated_waste_volume": "Estimated Volume (cbm)",
     "uncertain_waste_volume": "I am very unsure about the waste volume",
     "uncertain_waste_volume_desc": "The price range will be expanded for safety. Final price based on real volume.",
     "waste_types": "Waste Types (Multiple selection possible)",
@@ -4617,8 +4924,27 @@
     "flag_disassembly_on_site": "Incl. disassembly on site",
     "flag_express_service": "Express service (Urgent)",
     "flag_waste_notes_noted": "We save your note for planning",
-    "upload_link_note": "We will send you a link to upload photos separately via email and WhatsApp. This speeds up the exact fixed price calculation.",
-    "error_submit": "Error sending. Please try again."
+    "upload_link_note": "We will send you the link for the photo upload separately via E-Mail and WhatsApp.",
+    "error_submit": "Error sending. Please try again.",
+    "service_selection_note": "First, select the appropriate service. Then we will gather the most important details for a quick initial estimate.",
+    "requirements_note": "Only the most important details. The exact calculation follows in the next step.",
+    "from_place_placeholder": "From City / ZIP",
+    "to_place_placeholder": "To City / ZIP",
+    "adjust_details": "Adjust Details",
+    "submit_details_subtitle": "Leave your contact details. We will check the information and get back to you with a matching response.",
+    "phone_number": "Phone Number",
+    "email_address": "E-Mail Address",
+    "jederzeit": "anytime",
+    "vormittags": "mornings",
+    "nachmittags": "afternoons",
+    "abends": "evenings",
+    "submit_photos": "Submit Photos Later",
+    "submit_photos_subtitle": "If requested, we will send you an upload link for images or videos.",
+    "important_price_note": "Important Note:",
+    "price_disclaimer": "The displayed calculation is non-binding and serves as an initial orientation based on your input.",
+    "submit_request": "Send Request",
+    "ssl_encryption_note": "SSL-encrypted Transmission",
+    "success_title": "Request Successfully Sent"
   },
   "home": {
     "hero_title": "Your professional moving company in Bavaria.",
@@ -4641,6 +4967,27 @@
     "premium_badge": "Premium Logistics & Service",
     "services_title": "Our Logistics & Services",
     "services_subtitle": "Whether it is a complex office move or a sensitive house clearance – we deliver measurable quality and absolute price transparency throughout Bavaria.",
+    "short_notice_title": "Short-notice appointments",
+    "short_notice_subtitle": "Even with urgent needs",
+    "direct_reachability": "Directly reachable",
+    "call_cta": "Call",
+    "email_cta": "E-Mail",
+    "howto_name": "How a move with FLOXANT works",
+    "howto_desc": "In 4 simple steps to your stress-free move in Bavaria.",
+    "howto_step1_name": "Calculate costs",
+    "howto_step1_text": "Use our online calculator or contact us for a free inspection.",
+    "howto_step2_name": "Receive fixed-price offer",
+    "howto_step2_text": "You will receive a binding fixed-price offer without hidden costs.",
+    "howto_step3_name": "Book appointment",
+    "howto_step3_text": "Choose your preferred date. Short-term appointments within 48h are also possible.",
+    "howto_step4_name": "Move relaxed",
+    "howto_step4_text": "Our insured team does the rest – professional, punctual and careful.",
+    "services_fallback_moving": "Professional moves for private and corporate clients in Bavaria.",
+    "services_fallback_cleaning": "Reliable cleaning for apartments, houses and commercial properties.",
+    "services_fallback_clearance": "Clean clearance, removal and professional disposal.",
+    "cleaning_desc": "Final cleaning for a carefree apartment handover with handover guarantee.",
+    "clearance_desc": "Professional clearance and disposal of your old furniture and household items.",
+    "guide_desc": "Valuable tips, checklists and guides for your move in Bavaria.",
     "seo_p4": "Moving safely and relaxed.",
     "seo_p5": "We move you quickly and reliably.",
     "seo_p6": "Get your fixed price online.",
@@ -4651,7 +4998,10 @@
     "faq_q7": "How fast can you move us?",
     "faq_a7": "Often within 48 hours for urgent moves.",
     "faq_q8": "Do you offer cleaning services?",
-    "faq_a8": "Yes, we offer final cleaning with handover guarantee."
+    "faq_a8": "Yes, we offer final cleaning with handover guarantee.",
+    "premium_experience": "The FLOXANT Experience",
+    "brand_promise_title": "Own Teams & Branded Trucks",
+    "brand_promise_desc": "We focus on transparency and quality. With our own trained teams and modern fleet, we guarantee the highest security for your belongings."
   },
   "reviews": {
     "title": "What our customers say",
@@ -4769,6 +5119,8 @@
     }
   },
   "metadata": {
+    "global_title": "Moving Company Bavaria | Relocation, Cleaning & Clearance | FLOXANT",
+    "global_desc": "FLOXANT – Your partner for moving, clearance and cleaning services in Regensburg and throughout Bavaria at fixed prices.",
     "keywords": "Moving company, Moving, Clearance, Cleaning, Fixed price move, FLOXANT",
     "og_img_alt": "FLOXANT – Moving, Cleaning & Clearance",
     "og_locale": "en_US"

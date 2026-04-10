@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Performance: Optimize images with modern formats
     images: {
         remotePatterns: [
             {
@@ -7,27 +8,39 @@ const nextConfig = {
                 hostname: '**.supabase.co',
             },
         ],
+        formats: ['image/avif', 'image/webp'],
+        minimumCacheTTL: 31536000, // 1 year
     },
+
+    // Performance: Enable React strict mode for better debugging
+    reactStrictMode: true,
+
+    // Performance: Compress output
+    compress: true,
+
+    // SEO: Redirects for canonical URL normalization
     async redirects() {
-    return [
-        {
-            source: '/:path*',
-            has: [
-                {
-                    type: 'host',
-                    value: 'floxant.de',
-                },
-            ],
-            destination: 'https://www.floxant.de/:path*',
-            permanent: true,
-        },
-        {
-            source: '/',
-            destination: '/de',
-            permanent: true,
-        },
-    ];
-},
+        return [
+            {
+                source: '/:path*',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'floxant.de',
+                    },
+                ],
+                destination: 'https://www.floxant.de/:path*',
+                permanent: true,
+            },
+            {
+                source: '/',
+                destination: '/de',
+                permanent: true,
+            },
+        ];
+    },
+
+    // Security & Performance headers
     async headers() {
         return [
             {
@@ -45,6 +58,34 @@ const nextConfig = {
                         key: 'X-Robots-Tag',
                         value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
                     },
+                    {
+                        key: 'X-Frame-Options',
+                        value: 'SAMEORIGIN',
+                    },
+                    {
+                        key: 'Referrer-Policy',
+                        value: 'strict-origin-when-cross-origin',
+                    },
+                ],
+            },
+            // Long cache for static assets
+            {
+                source: '/_next/static/:path*',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable',
+                    },
+                ],
+            },
+            // Cache for images
+            {
+                source: '/images/:path*',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=86400, stale-while-revalidate=604800',
+                    },
                 ],
             },
         ];
@@ -52,3 +93,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+

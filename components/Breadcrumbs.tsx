@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
     label: string;
@@ -12,7 +13,8 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ items, lang, pageLocale }: BreadcrumbsProps) {
-    const locale = lang || pageLocale || 'de';
+    const locale = lang || pageLocale || "de";
+
     const fullItems: BreadcrumbItem[] = [
         { label: "FLOXANT", href: `/${locale}` },
         ...items,
@@ -21,11 +23,11 @@ export function Breadcrumbs({ items, lang, pageLocale }: BreadcrumbsProps) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": fullItems.map((item, index) => ({
+        itemListElement: fullItems.map((item, index) => ({
             "@type": "ListItem",
-            "position": index + 1,
-            "name": item.label,
-            ...(item.href ? { "item": `https://floxant.de${item.href}` } : {}),
+            position: index + 1,
+            name: item.label,
+            ...(item.href ? { item: `https://www.floxant.de${item.href}` } : {}),
         })),
     };
 
@@ -35,22 +37,31 @@ export function Breadcrumbs({ items, lang, pageLocale }: BreadcrumbsProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto px-6 pt-24 pb-2">
+            <nav
+                aria-label="Breadcrumb"
+                className="mx-auto max-w-7xl px-6 pb-3 pt-24"
+            >
                 <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
                     {fullItems.map((item, index) => (
-                        <li key={index} className="flex items-center gap-1.5">
+                        <li key={`${item.label}-${index}`} className="flex items-center gap-1.5">
                             {index > 0 && (
-                                <span className="text-border" aria-hidden="true">/</span>
+                                <ChevronRight
+                                    className="h-3.5 w-3.5 text-border"
+                                    aria-hidden="true"
+                                />
                             )}
+
                             {item.href && index < fullItems.length - 1 ? (
                                 <Link
                                     href={item.href}
-                                    className="hover:text-primary transition-colors"
+                                    className="transition-colors hover:text-primary"
                                 >
                                     {item.label}
                                 </Link>
                             ) : (
-                                <span className="text-foreground font-medium">{item.label}</span>
+                                <span className="font-medium text-foreground/90">
+                                    {item.label}
+                                </span>
                             )}
                         </li>
                     ))}

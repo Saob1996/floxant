@@ -13,7 +13,11 @@ const SmartBookingWizard = dynamic(
         import("@/components/SmartBookingWizard").then((mod) => ({
             default: mod.SmartBookingWizard,
         })),
-    { loading: () => <div className="w-full max-w-5xl mx-auto min-h-[400px]" /> }
+    {
+        loading: () => (
+            <div className="mx-auto min-h-[400px] w-full max-w-5xl rounded-3xl bg-white/5" />
+        ),
+    }
 );
 
 type IconEntry = {
@@ -87,7 +91,9 @@ export function SpecialtyPageLayout({
         <main className="min-h-screen bg-background text-foreground">
             <Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} />
 
-            <section className="relative overflow-hidden bg-gradient-to-b from-background via-secondary/30 to-background px-6 pt-12 pb-24">
+            <section className="relative overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background px-6 pb-24 pt-12">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(82,121,255,0.10),transparent_36%)]" />
+
                 <div className="relative z-10 mx-auto max-w-7xl space-y-8 text-center">
                     {heroBadge ? (
                         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/90 px-4 py-2 text-sm font-semibold text-card-foreground shadow-sm backdrop-blur-sm">
@@ -96,7 +102,7 @@ export function SpecialtyPageLayout({
                         </div>
                     ) : null}
 
-                    <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl xl:text-7xl">
+                    <h1 className="mx-auto max-w-5xl text-4xl font-extrabold leading-[1.02] tracking-tight text-foreground md:text-6xl xl:text-7xl">
                         {heroTitle}
                         <br className="hidden md:block" />
                         <span className="text-primary">{city}</span>
@@ -152,14 +158,14 @@ export function SpecialtyPageLayout({
                                     >
                                         <Icon className={card.iconClassName || "mb-6 h-10 w-10 text-primary"} />
                                         {card.title ? (
-                                            <h3 className="mb-4 text-2xl font-bold">{card.title}</h3>
+                                            <h2 className="mb-4 text-2xl font-bold">{card.title}</h2>
                                         ) : null}
                                         {card.lines.length > 0 ? (
                                             <ul className="space-y-3 text-muted-foreground">
                                                 {card.lines.map((line, lineIndex) => (
                                                     <li key={`${line}-${lineIndex}`} className="flex gap-2">
                                                         <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                                                        {line}
+                                                        <span>{line}</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -185,7 +191,7 @@ export function SpecialtyPageLayout({
 
                     <div
                         id="wizard"
-                        className="relative mt-16 scroll-mt-24 rounded-[3rem] border border-border bg-card px-6 py-16 text-center text-card-foreground shadow-2xl"
+                        className="relative mt-16 scroll-mt-24 rounded-[2rem] border border-border bg-card px-6 py-16 text-center text-card-foreground shadow-2xl md:rounded-[3rem]"
                     >
                         {wizardBadge ? (
                             <div className="absolute -top-6 start-1/2 -translate-x-1/2 rounded-full bg-primary px-6 py-2 text-sm font-bold text-primary-foreground shadow-lg rtl:translate-x-1/2">
@@ -194,7 +200,9 @@ export function SpecialtyPageLayout({
                         ) : null}
 
                         {wizardTitle ? (
-                            <h2 className="mt-6 mb-6 text-4xl font-extrabold">{wizardTitle}</h2>
+                            <h2 className="mb-6 mt-6 text-3xl font-extrabold md:text-4xl">
+                                {wizardTitle}
+                            </h2>
                         ) : null}
 
                         {wizardText ? (
@@ -203,7 +211,7 @@ export function SpecialtyPageLayout({
                             </p>
                         ) : null}
 
-                        <div className="px-0 md:px-6 text-start">
+                        <div className="px-0 text-start md:px-6">
                             <SmartBookingWizard dict={dict} />
                         </div>
                     </div>
