@@ -1,19 +1,17 @@
 /**
  * FLOXANT Sitemap Configuration
  * Centralized route definitions for the current sitemap architecture.
- * Active locales: de, en, ru
+ * Only DE is indexable. EN/RU are noindex and excluded from sitemaps.
  * Active sitemap files:
- * - sitemap.xml
+ * - sitemap.xml (index → sitemap-de.xml)
  * - sitemap-de.xml
- * - sitemap-en.xml
- * - sitemap-ru.xml
  */
 
 export const BASE_URL = "https://www.floxant.de";
 export const LASTMOD = new Date().toISOString().split("T")[0];
 
-/** Active locales with dedicated sitemap files */
-export const MAJOR_LOCALES = ["de", "en", "ru"] as const;
+/** Active locales with dedicated sitemap files (only DE is indexable) */
+export const MAJOR_LOCALES = ["de"] as const;
 
 // --- Route Definitions ---
 
@@ -169,6 +167,9 @@ export const CITY_PAGES = [
     "umzug-cham",
     "umzug-tirschenreuth",
     "umzug-sulzbach-rosenberg",
+    "umzug-oberpfalz",
+    "umzug-landkreis-regensburg",
+    "umzug-hausen",
 ] as const;
 
 /** Service-specific city pages */
@@ -235,6 +236,13 @@ export const SIGNATURE_SEO_PAGES = [
     "seniorenumzug-bayern",
     "kurzfristiger-umzug-bayern",
     "notfall-umzug-bayern",
+    "studentenumzug-bayern",
+] as const;
+
+/** Hub landing pages */
+export const HUB_PAGES = [
+    "wissen",
+    "alternativen",
 ] as const;
 
 /** Long-tail / cost pages */
@@ -309,10 +317,8 @@ export interface SitemapUrl {
     pagePath: string;
 }
 
-/** Final sitemap files in the current architecture */
+/** Final sitemap files in the current architecture (DE-only) */
 export const SITEMAP_SEGMENTS = [
     "sitemap.xml",
     "sitemap-de.xml",
-    "sitemap-en.xml",
-    "sitemap-ru.xml",
 ] as const;

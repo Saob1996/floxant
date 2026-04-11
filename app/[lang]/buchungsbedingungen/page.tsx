@@ -1,16 +1,23 @@
-import { type Locale } from "@/i18n-config";
-
+import { type Locale, isValidLocale } from "@/i18n-config";
+import { Metadata } from "next";
+import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "../../../get-dictionary";
 
-export const metadata = {
-    title: "Buchungsbedingungen – FLOXANT",
-    description: "Buchungsbedingungen von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-    robots: "index, follow",
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) return {};
+    return generatePageSEO({
+        pageLocale: lang,
+        path: "buchungsbedingungen",
+        title: "Buchungsbedingungen – FLOXANT",
+        description: "Buchungsbedingungen von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+    });
+}
 
 export default async function Buchungsbedingungen({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
+    const { lang: pageLocale } = await params;
+    if (!isValidLocale(pageLocale)) return null;
+    const dict = await getDictionary(pageLocale as Locale);
 
     return (
         <main className="min-h-screen bg-background">

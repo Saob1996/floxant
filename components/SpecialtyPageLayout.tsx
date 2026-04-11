@@ -103,7 +103,7 @@ export function SpecialtyPageLayout({
                     ) : null}
 
                     <h1 className="mx-auto max-w-5xl text-4xl font-extrabold leading-[1.02] tracking-tight text-foreground md:text-6xl xl:text-7xl">
-                        {heroTitle}
+                        {heroTitle || (dict.common?.moving || "Umzug") + " "}
                         <br className="hidden md:block" />
                         <span className="text-primary">{city}</span>
                     </h1>

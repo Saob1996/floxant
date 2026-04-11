@@ -109,7 +109,10 @@ export function Footer({ lang, dic }: FooterProps) {
                             <li><Link href={`/${lang}/seniorenumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.senior_moving}</Link></li>
                             <li><Link href={`/${lang}/umzugskosten-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.moving_costs}</Link></li>
                             <li><Link href={`/${lang}/service-area-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.service_area}</Link></li>
+                            <li><Link href={`/${lang}/kurzfristiger-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Kurzfristiger Umzug</Link></li>
+                            <li><Link href={`/${lang}/notfall-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Notfall-Umzug</Link></li>
                             <li><Link href={`/${lang}/ratgeber`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.guide}</Link></li>
+                            <li><Link href={`/${lang}/wissen`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Wissen Hub</Link></li>
                         </ul>
                     </div>
                 </div>

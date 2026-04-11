@@ -4,19 +4,20 @@ import DualCalculator from '@/components/calculator/DualCalculator';
 import { Check, X, Shield, Clock, TrendingDown } from 'lucide-react';
 import { getDictionary } from "../../../../get-dictionary";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string, lang: string }> }) {
-    var { lang: pageLocale, slug } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-    
-    const content = (dict?.pages as any)?.[slug] || {};
-  const parts = slug.split('-');
-  const competitor = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'anderen Anbietern';
-  const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
+import { generatePageSEO } from "@/lib/seo";
 
-  return {
-    title: `Die bessere Alternative zu ${competitor} in ${city} | FLOXANT`,
-    description: 'Warum FLOXANT die ideale Wahl gegenüber $... in $... ist. 100% $..., keine versteckt...',
-  };
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, lang: string }> }) {
+    const { lang: pageLocale, slug } = await params;
+    const parts = slug.split('-');
+    const competitor = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'anderen Anbietern';
+    const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
+
+    return generatePageSEO({
+        pageLocale: pageLocale as Locale,
+        path: `alternativen/${slug}`,
+        title: `Die bessere Alternative zu ${competitor} in ${city} | FLOXANT`,
+        description: `Warum FLOXANT die ideale Wahl gegenüber ${competitor} in ${city} ist. 100% Festpreis, keine versteckten Kosten.`,
+    });
 }
 
 export default async function AlternativenPage({ params }: { params: Promise<{ slug: string, lang: string }> }) {

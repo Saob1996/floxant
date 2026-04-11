@@ -5,6 +5,13 @@ import { i18n, isValidLocale, type Locale } from "@/i18n-config";
 const BASE_URL = company.url;
 const OG_IMAGE = `${BASE_URL}/og.jpg`;
 
+/**
+ * SEO Architecture Decision:
+ * - Only DE is indexable and should rank in Google.
+ * - EN/RU exist for users in Germany only → noindex, self-canonical, NO hreflang exposure.
+ * - DE pages: index, self-canonical, NO hreflang (no alternate locale targets).
+ * - This eliminates: hreflang-to-non-canonical, noindex-in-sitemap, non-canonical-in-sitemap.
+ */
 const INDEXABLE_LOCALES = new Set<Locale>(["de"]);
 
 const OG_LOCALE_MAP: Record<Locale, string> = {
@@ -16,6 +23,7 @@ const OG_LOCALE_MAP: Record<Locale, string> = {
 interface PageSEOInput {
     lang?: string;
     pageLocale?: string;
+    locale?: string; // Alias for pageLocale to support legacy/variant calls
     path: string;
     title?: string;
     description?: string;
@@ -101,30 +109,21 @@ function normalizePath(path: string): string {
     return `/${path.replace(/^\/+/, "").replace(/\/+$/, "")}`;
 }
 
-function buildLanguageAlternates(path: string): Record<string, string> {
-    const alternates: Record<string, string> = {};
-
-    for (const locale of i18n.locales) {
-        alternates[locale] = `${BASE_URL}/${locale}${path}`;
-    }
-
-    alternates["x-default"] = `${BASE_URL}/${i18n.defaultLocale}${path}`;
-
-    return alternates;
-}
-
 export function generatePageSEO({
     lang,
     pageLocale,
+    locale,
     path,
     title,
     description,
 }: PageSEOInput): Metadata {
-    const resolvedLocale = resolveLocale(lang || pageLocale);
+    const resolvedLocale = resolveLocale(lang || pageLocale || locale);
     const normalizedPath = normalizePath(path);
     const indexable = isIndexableLocale(resolvedLocale);
-    const canonicalLocale: Locale = indexable ? resolvedLocale : i18n.defaultLocale;
-    const canonical = `${BASE_URL}/${canonicalLocale}${normalizedPath}`;
+
+    // Self-canonical: every page points to itself as canonical.
+    // This prevents "hreflang to non-canonical" errors.
+    const canonical = `${BASE_URL}/${resolvedLocale}${normalizedPath}`;
 
     const safeTitle = trimTitle(
         normalizeText(title, getDefaultTitle(resolvedLocale))
@@ -134,6 +133,16 @@ export function generatePageSEO({
     );
     const keywords = buildKeywords(normalizedPath, safeTitle);
 
+    // Hreflang: Only DE pages get hreflang (pointing only to DE + x-default).
+    // EN/RU pages get NO hreflang alternates – they are noindex and should not
+    // appear as alternate targets anywhere.
+    const languages: Record<string, string> | undefined = indexable
+        ? {
+              de: `${BASE_URL}/de${normalizedPath}`,
+              "x-default": `${BASE_URL}/de${normalizedPath}`,
+          }
+        : undefined;
+
     return {
         metadataBase: new URL(BASE_URL),
         title: safeTitle,
@@ -141,7 +150,7 @@ export function generatePageSEO({
         keywords,
         alternates: {
             canonical,
-            languages: buildLanguageAlternates(normalizedPath),
+            languages,
         },
         robots: {
             index: indexable,

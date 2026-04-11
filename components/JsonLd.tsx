@@ -59,7 +59,8 @@ const LOCALIZED_SERVICE_NAMES: Record<
 };
 
 export function JsonLd({ lang }: { lang: Locale }) {
-    const canonicalBaseUrl = `${company.url}/${lang}`;
+    // Always use DE as the canonical base – aligns with SEO architecture where only DE is indexed
+    const canonicalBaseUrl = `${company.url}/de`;
     const organizationId = `${company.url}/#organization`;
     const websiteId = `${company.url}/#website`;
     const movingCompanyId = `${canonicalBaseUrl}/#moving-company`;
@@ -87,7 +88,7 @@ export function JsonLd({ lang }: { lang: Locale }) {
                         telephone: company.phoneRaw,
                         contactType: "customer support",
                         areaServed: "DE",
-                        availableLanguage: [LANGUAGE_LABELS[lang]],
+                        availableLanguage: ["German", "English", "Russian"],
                     },
                 ],
             },
@@ -96,7 +97,7 @@ export function JsonLd({ lang }: { lang: Locale }) {
                 "@id": websiteId,
                 url: company.url,
                 name: company.name,
-                inLanguage: LANGUAGE_LABELS[lang],
+                inLanguage: "de",
                 publisher: {
                     "@id": organizationId,
                 },
@@ -108,7 +109,7 @@ export function JsonLd({ lang }: { lang: Locale }) {
                 url: canonicalBaseUrl,
                 image: logoUrl,
                 logo: logoUrl,
-                description: LOCALIZED_DESCRIPTIONS[lang],
+                description: LOCALIZED_DESCRIPTIONS["de"],
                 telephone: company.phoneRaw,
                 email: company.email,
                 address: {
@@ -142,8 +143,8 @@ export function JsonLd({ lang }: { lang: Locale }) {
                 ],
                 hasOfferCatalog: {
                     "@type": "OfferCatalog",
-                    name: LOCALIZED_CATALOG_NAMES[lang],
-                    itemListElement: LOCALIZED_SERVICE_NAMES[lang].map((serviceName) => ({
+                    name: LOCALIZED_CATALOG_NAMES["de"],
+                    itemListElement: LOCALIZED_SERVICE_NAMES["de"].map((serviceName) => ({
                         "@type": "Offer",
                         itemOffered: {
                             "@type": "Service",
@@ -176,8 +177,8 @@ export function JsonLd({ lang }: { lang: Locale }) {
                 ],
                 hasMap:
                     "https://maps.google.com/?q=FLOXANT+Regensburg+Johanna-Kinkel-Stra%C3%9Fe+1",
-                slogan: LOCALIZED_SLOGANS[lang],
-                availableLanguage: [LANGUAGE_LABELS[lang]],
+                slogan: LOCALIZED_SLOGANS["de"],
+                availableLanguage: ["German", "English", "Russian"],
                 parentOrganization: {
                     "@id": organizationId,
                 },

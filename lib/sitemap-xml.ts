@@ -1,7 +1,6 @@
 import {
     BASE_URL,
     LASTMOD,
-    MAJOR_LOCALES,
     CORE_SERVICES,
     CITY_PAGES,
     SERVICE_CITY_PAGES,
@@ -11,50 +10,22 @@ import {
     RATGEBER_PAGES,
     SIGNATURE_SERVICES,
     LEGAL_PAGES,
+    HUB_PAGES,
 } from "./sitemap-config";
 
-type Locale = (typeof MAJOR_LOCALES)[number];
-
-type ContentGroup =
-    | "home"
-    | "core"
-    | "cities"
-    | "service-cities"
-    | "authority"
-    | "signature-seo"
-    | "longtail"
-    | "ratgeber"
-    | "signature"
-    | "legal";
+/**
+ * Sitemap Architecture:
+ * - Only DE pages are indexable → only DE sitemap segment exists.
+ * - EN/RU are noindex → removed from sitemap entirely.
+ * - sitemap.xml is the index pointing to sitemap-de.xml only.
+ * - sitemap-en.xml and sitemap-ru.xml return 404 (no indexable content).
+ */
 
 interface SitemapUrl {
     loc: string;
     lastmod: string;
     changefreq: string;
     priority: string;
-}
-
-const INDEXABLE_SEGMENTS = MAJOR_LOCALES;
-
-const ALLOWED_GROUPS_PER_LOCALE: Record<Locale, readonly ContentGroup[]> = {
-    de: [
-        "home",
-        "core",
-        "cities",
-        "service-cities",
-        "authority",
-        "signature-seo",
-        "longtail",
-        "ratgeber",
-        "signature",
-        "legal",
-    ],
-    en: ["home", "core", "signature"],
-    ru: ["home", "core", "signature"],
-};
-
-function isIndexableLocale(value: string): value is Locale {
-    return (INDEXABLE_SEGMENTS as readonly string[]).includes(value);
 }
 
 function escapeXml(unsafe: string): string {
@@ -76,20 +47,19 @@ function escapeXml(unsafe: string): string {
     });
 }
 
-function buildAbsoluteUrl(locale: Locale, route: string): string {
-    return `${BASE_URL}/${locale}${route ? `/${route}` : ""}`;
+function buildAbsoluteUrl(route: string): string {
+    return `${BASE_URL}/de${route ? `/${route}` : ""}`;
 }
 
 function addEntries(
     urls: SitemapUrl[],
-    locale: Locale,
     routes: readonly string[],
     priority: string,
     changefreq: string
 ): void {
     for (const route of routes) {
         urls.push({
-            loc: buildAbsoluteUrl(locale, route),
+            loc: buildAbsoluteUrl(route),
             lastmod: LASTMOD,
             changefreq,
             priority,
@@ -100,12 +70,10 @@ function addEntries(
 export function generateSitemapIndexResponse(): Response {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${INDEXABLE_SEGMENTS.map(
-        (segment) => `  <sitemap>
-    <loc>${escapeXml(`${BASE_URL}/sitemap-${segment}.xml`)}</loc>
+  <sitemap>
+    <loc>${escapeXml(`${BASE_URL}/sitemap-de.xml`)}</loc>
     <lastmod>${LASTMOD}</lastmod>
-  </sitemap>`
-    ).join("\n")}
+  </sitemap>
 </sitemapindex>`;
 
     return new Response(xml, {
@@ -114,59 +82,51 @@ ${INDEXABLE_SEGMENTS.map(
 }
 
 export function generateSitemapSegmentResponse(segmentId: string): Response {
-    if (!isIndexableLocale(segmentId)) {
+    // Only DE segment is valid. EN/RU are noindex and must not appear in sitemaps.
+    if (segmentId !== "de") {
         return new Response("Not Found", { status: 404 });
     }
 
-    const locale = segmentId;
-    const allowedGroups = ALLOWED_GROUPS_PER_LOCALE[locale];
     const urls: SitemapUrl[] = [];
 
-    if (allowedGroups.includes("home")) {
-        urls.push({
-            loc: buildAbsoluteUrl(locale, ""),
-            lastmod: LASTMOD,
-            changefreq: "daily",
-            priority: "1.0",
-        });
-    }
+    // Homepage
+    urls.push({
+        loc: buildAbsoluteUrl(""),
+        lastmod: LASTMOD,
+        changefreq: "daily",
+        priority: "1.0",
+    });
 
-    if (allowedGroups.includes("core")) {
-        addEntries(urls, locale, CORE_SERVICES, "0.9", "weekly");
-    }
+    // Core services
+    addEntries(urls, CORE_SERVICES, "0.9", "weekly");
 
-    if (allowedGroups.includes("cities")) {
-        addEntries(urls, locale, CITY_PAGES, "0.9", "daily");
-    }
+    // City pages
+    addEntries(urls, CITY_PAGES, "0.9", "daily");
 
-    if (allowedGroups.includes("service-cities")) {
-        addEntries(urls, locale, SERVICE_CITY_PAGES, "0.9", "weekly");
-    }
+    // Service + city pages
+    addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
 
-    if (allowedGroups.includes("authority")) {
-        addEntries(urls, locale, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
-    }
+    // Bavaria authority pages
+    addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
 
-    if (allowedGroups.includes("signature-seo")) {
-        addEntries(urls, locale, SIGNATURE_SEO_PAGES, "0.7", "weekly");
-    }
+    // Hub pages
+    addEntries(urls, HUB_PAGES, "0.8", "weekly");
 
-    if (allowedGroups.includes("longtail")) {
-        addEntries(urls, locale, LONGTAIL_PAGES, "0.6", "monthly");
-    }
+    // Signature SEO pages
+    addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly");
 
-    if (allowedGroups.includes("ratgeber")) {
-        addEntries(urls, locale, RATGEBER_PAGES, "0.6", "weekly");
-    }
+    // Long-tail pages
+    addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly");
 
-    if (allowedGroups.includes("signature")) {
-        const signatureRoutes = SIGNATURE_SERVICES.map((slug) => `signature/${slug}`);
-        addEntries(urls, locale, signatureRoutes, "0.7", "monthly");
-    }
+    // Ratgeber / Blog pages
+    addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
 
-    if (allowedGroups.includes("legal")) {
-        addEntries(urls, locale, LEGAL_PAGES, "0.3", "yearly");
-    }
+    // Signature services
+    const signatureRoutes = SIGNATURE_SERVICES.map((slug) => `signature/${slug}`);
+    addEntries(urls, signatureRoutes, "0.7", "monthly");
+
+    // Legal pages
+    addEntries(urls, LEGAL_PAGES, "0.3", "yearly");
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

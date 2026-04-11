@@ -12,9 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
         sitemap: [
             `${company.url}/sitemap.xml`,
-            `${company.url}/sitemap-de.xml`,
-            `${company.url}/sitemap-en.xml`,
-            `${company.url}/sitemap-ru.xml`,
         ],
         host: company.url,
     };

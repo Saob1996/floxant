@@ -371,7 +371,7 @@ export default async function CoreServicePage({ params }: PageProps) {
                     )}
 
                     <h1 className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl">
-                        {content.hero_title || serviceSlug}
+                        {content.hero_title || (serviceSlug.charAt(0).toUpperCase() + serviceSlug.slice(1).replace("-", " "))}
                     </h1>
 
                     {content.hero_desc && (
@@ -532,40 +532,41 @@ export default async function CoreServicePage({ params }: PageProps) {
 
                         <div className="flex flex-wrap items-center justify-center gap-3">
                             {[
-                                {
-                                    href: `/${locale}/umzug-regensburg`,
-                                    label: getLocalizedCityLabel(cities, "regensburg", "Regensburg"),
-                                },
-                                {
-                                    href: `/${locale}/umzug-bayern`,
-                                    label: getLocalizedCityLabel(cities, "bavaria", "Bayern"),
-                                },
-                                {
-                                    href: `/${locale}/umzug-muenchen`,
-                                    label: getLocalizedCityLabel(cities, "munich", "München"),
-                                },
-                                {
-                                    href: `/${locale}/umzug-nuernberg`,
-                                    label: getLocalizedCityLabel(cities, "nuremberg", "Nürnberg"),
-                                },
-                                {
-                                    href: `/${locale}/umzug-augsburg`,
-                                    label: getLocalizedCityLabel(cities, "augsburg", "Augsburg"),
-                                },
-                                { href: `/${locale}/umzug-landshut`, label: "Landshut" },
-                                { href: `/${locale}/umzug-passau`, label: "Passau" },
-                                { href: `/${locale}/umzug-straubing`, label: "Straubing" },
-                                { href: `/${locale}/umzug-schwandorf`, label: "Schwandorf" },
-                                { href: `/${locale}/umzug-ingolstadt`, label: "Ingolstadt" },
-                            ].map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="rounded-full border border-border/50 px-4 py-2 text-sm text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
+                                { slug: "regensburg", label: getLocalizedCityLabel(cities, "regensburg", "Regensburg") },
+                                { slug: "bayern", label: getLocalizedCityLabel(cities, "bavaria", "Bayern") },
+                                { slug: "muenchen", label: getLocalizedCityLabel(cities, "munich", "München") },
+                                { slug: "nuernberg", label: getLocalizedCityLabel(cities, "nuremberg", "Nürnberg") },
+                                { slug: "augsburg", label: getLocalizedCityLabel(cities, "augsburg", "Augsburg") },
+                                { slug: "landshut", label: "Landshut" },
+                                { slug: "passau", label: "Passau" },
+                                { slug: "straubing", label: "Straubing" },
+                                { slug: "schwandorf", label: "Schwandorf" },
+                                { slug: "ingolstadt", label: "Ingolstadt" },
+                            ].map((city) => {
+                                // Logic to determine the correct link:
+                                // If we're on "reinigung", we check if "reinigung-{city.slug}" is a valid SEO route.
+                                // For now, we use a simple heuristic: if it's one of the major cities for that service.
+                                let href = `/${locale}/umzug-${city.slug}`;
+                                
+                                // Specific overrides for Reinung and Entrümpelung
+                                if (serviceSlug === "reinigung" || serviceSlug === "entruempelung") {
+                                    href = `/${locale}/${serviceSlug}-${city.slug}`;
+                                } else if (serviceSlug === "buero-umzug" && city.slug === "regensburg") {
+                                    href = `/${locale}/buero-umzug-regensburg`;
+                                } else if ((serviceSlug as string) === "seniorenumzug" && (city.slug === "regensburg" || city.slug === "muenchen" || city.slug === "nuernberg")) {
+                                    href = `/${locale}/seniorenumzug-${city.slug}`;
+                                }
+
+                                return (
+                                    <Link
+                                        key={href}
+                                        href={href}
+                                        className="rounded-full border border-border/50 px-4 py-2 text-sm text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
+                                    >
+                                        {city.label}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 </section>

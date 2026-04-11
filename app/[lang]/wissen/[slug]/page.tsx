@@ -5,17 +5,20 @@ import { generateSemanticLinks } from '@/lib/internal-linking';
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { getDictionary } from "../../../../get-dictionary";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string; lang: string }> }) {
-    var { lang: pageLocale, slug } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
-  const parts = slug.split('-');
-  const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
-  const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
+import { generatePageSEO } from "@/lib/seo";
 
-  return {
-    title: `Die besten Tipps für Ihren ${service} in ${city} | FLOXANT Wissen`,
-    description: `Alles was Sie über Kosten, Planung und Ablauf eines ${service}s in ${city} wissen müssen. Plus: Lokale Tipps.`,
-  };
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; lang: string }> }) {
+    const { lang: pageLocale, slug } = await params;
+    const parts = slug.split('-');
+    const service = parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : 'Umzug';
+    const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : 'Ihrer Region';
+
+    return generatePageSEO({
+        pageLocale: pageLocale as Locale,
+        path: `wissen/${slug}`,
+        title: `Die besten Tipps für Ihren ${service} in ${city} | FLOXANT Wissen`,
+        description: `Alles was Sie über Kosten, Planung und Ablauf eines ${service}s in ${city} wissen müssen. Plus: Lokale Tipps.`,
+    });
 }
 
 export default async function KnowledgeHubPage({ params }: { params: Promise<{ slug: string; lang: string }> }) {

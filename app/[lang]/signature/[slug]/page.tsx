@@ -1,8 +1,7 @@
-import { i18n } from "@/i18n-config";
-import { type Locale } from "@/i18n-config";
+import { type Locale, isValidLocale } from "@/i18n-config";
 import { Metadata } from "next";
 import { getDictionary } from "../../../../get-dictionary";
-;
+import { generatePageSEO } from "@/lib/seo";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import dynamic from "next/dynamic";
@@ -61,25 +60,19 @@ export async function generateMetadata({
 }: {
     params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-    var { lang: pageLocale, slug } = await params;
-    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
+    const { lang: pageLocale, slug } = await params;
+    if (!isValidLocale(pageLocale)) return {};
+
+    const dict = await getDictionary(pageLocale as Locale);
     const key = SLUG_TO_KEY[slug as SignatureSlug];
     const content = (dict?.pages as any)?.[key] || {};
 
-    return {
+    return generatePageSEO({
+        pageLocale,
+        path: `signature/${slug}`,
         title: content.meta_title,
         description: content.meta_desc,
-        alternates: {
-            canonical: `https://www.floxant.de/${pageLocale}/signature/${slug}`,
-            languages: i18n.locales.reduce(
-                (acc, l) => {
-                    acc[l] = `https://www.floxant.de/${l}/signature/${slug}`;
-                    return acc;
-                },
-                {} as Record<string, string>
-            ),
-        },
-    };
+    });
 }
 
 export default async function SignatureServicePage({
@@ -87,8 +80,10 @@ export default async function SignatureServicePage({
 }: {
     params: Promise<{ lang: string; slug: string }>;
 }) {
-    var { lang: pageLocale, slug } = await params;
-    /* deduplicated */ var dict = await getDictionary(pageLocale as Locale); 
+    const { lang: pageLocale, slug } = await params;
+    if (!isValidLocale(pageLocale)) return null;
+
+    const dict = await getDictionary(pageLocale as Locale);
     const key = SLUG_TO_KEY[slug as SignatureSlug];
     const content = (dict?.pages as any)?.[key] || {};
     const area = (dict?.area as any) || {};
@@ -152,7 +147,7 @@ export default async function SignatureServicePage({
             {area.hub_note && (
                 <section className="py-12 px-6">
                     <div className="mx-auto max-w-3xl">
-                        <p className="text-sm text-muted-foreground/70 leading-relaxed border-s-2 border-primary/20 ps- italic">
+                        <p className="text-sm text-muted-foreground/70 leading-relaxed border-s-2 border-primary/20 ps-4 italic">
                             {area.hub_note}
                         </p>
                     </div>

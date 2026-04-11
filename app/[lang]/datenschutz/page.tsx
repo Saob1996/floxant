@@ -1,16 +1,23 @@
-import { type Locale } from "@/i18n-config";
-
+import { type Locale, isValidLocale } from "@/i18n-config";
+import { Metadata } from "next";
+import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "../../../get-dictionary";
 
-export const metadata = {
-    title: "Datenschutz – FLOXANT",
-    description: "Datenschutzerklärung von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-    robots: "index, follow",
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+    const { lang } = await params;
+    if (!isValidLocale(lang)) return {};
+    return generatePageSEO({
+        pageLocale: lang,
+        path: "datenschutz",
+        title: "Datenschutz – FLOXANT",
+        description: "Datenschutzerklärung von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+    });
+}
 
 export default async function Datenschutz({ params }: { params: Promise<{ lang: string }> }) {
-    var { lang: pageLocale } = await params;
-    var dict = await getDictionary(pageLocale as Locale);
+    const { lang: pageLocale } = await params;
+    if (!isValidLocale(pageLocale)) return null;
+    const dict = await getDictionary(pageLocale as Locale);
 
     return (
         <main className="min-h-screen bg-background">
@@ -45,7 +52,7 @@ export default async function Datenschutz({ params }: { params: Promise<{ lang: 
                         <p>
                             Beim Besuch unserer Website werden automatisch Informationen durch den Hosting-Anbieter erfasst und in sogenannten Server-Log-Dateien gespeichert. Dies sind:
                         </p>
-                        <ul className="list-disc ps- mt-2 space-y-1">
+                        <ul className="list-disc ps-6 mt-2 space-y-1">
                             <li>Browsertyp und Browserversion</li>
                             <li>verwendetes Betriebssystem</li>
                             <li>Referrer URL</li>
@@ -84,14 +91,14 @@ export default async function Datenschutz({ params }: { params: Promise<{ lang: 
                             Unsere Website verwendet Cookies. Cookies richten auf Ihrem Endgerät keinen Schaden an und enthalten keine Viren. Sie dienen dazu, unser Angebot nutzerfreundlicher und sicherer zu machen.
                         </p>
                         <p className="mt-2">
-                            Die meisten der verwendeten Cookies sind sogenannte „Session-Cookies“. Sie werden nach Ende Ihres Besuchs automatisch gelöscht.
+                            Die meisten der verwendeten Cookies sind sogenannte „Session-Cookies". Sie werden nach Ende Ihres Besuchs automatisch gelöscht.
                         </p>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-semibold text-foreground mb-2">7. Ihre Rechte</h2>
                         <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf:</p>
-                        <ul className="list-disc ps- mt-2 space-y-1">
+                        <ul className="list-disc ps-6 mt-2 space-y-1">
                             <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
                             <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
                             <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>
