@@ -5,7 +5,6 @@ import { generatePageSEO } from "@/lib/seo";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
-import Link from "next/link";
 
 interface PageProps {
     params: Promise<{ lang: string }>;
@@ -18,19 +17,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { seoContent, seoFallback, city } = await getSpecialtyPageData({
         locale: lang as Locale,
         baseKey: "umzug_spec",
-        seoKey: "umzug_memmingen",
         city: "Memmingen",
     });
 
     return generatePageSEO({
         pageLocale: lang,
-        path: `umzug-memmingen`,
-        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
-        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+        path: "umzug-memmingen",
+        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, lang),
+        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, lang),
     });
 }
 
-export default async function UmzugCityPage({ params }: PageProps) {
+export default async function UmzugMemmingenPage({ params }: PageProps) {
     const { lang } = await params;
     if (!isValidLocale(lang)) notFound();
 
@@ -39,63 +37,22 @@ export default async function UmzugCityPage({ params }: PageProps) {
         localeDict, 
         content, 
         fallback, 
-        seoContent, 
-        seoFallback, 
         city 
     } = await getSpecialtyPageData({
         locale,
         baseKey: "umzug_spec",
-        seoKey: "umzug_memmingen",
         city: "Memmingen",
     });
 
-    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
-
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "MovingCompany",
-                "name": `Umzug ${city} | FLOXANT`,
-                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
-                "url": `https://www.floxant.de/${lang}/umzug-memmingen`,
-                "telePhone": "+49 1577 1105087",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Memmingen",
-                    "addressRegion": "Bayern",
-                    "addressCountry": "DE"
-                },
-                "areaServed": { "@type": "City", "name": city }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-                    { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
-                    { "@type": "ListItem", "position": 3, "name": city, "item": `https://www.floxant.de/${lang}/umzug-memmingen` }
-                ]
-            },
-            ...(faqItems.length > 0 ? [{
-                "@type": "FAQPage",
-                "mainEntity": faqItems.map(item => ({
-                    "@type": "Question", "name": item.q, "acceptedAnswer": { "@type": "Answer", "text": item.a }
-                }))
-            }] : [])
-        ]
-    };
-
     return (
-        <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            <SpecialtyPageLayout
+        <SpecialtyPageLayout
                 pageLocale={lang}
                 dict={localeDict}
                 city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta, city)}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, lang)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, lang)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city, lang)}
+                ctaText={resolveField(content.cta, fallback.cta, city, lang)}
                 breadcrumbs={[
                     { label: "Home", href: `/${lang}` },
                     { label: "Umzug", href: `/${lang}/umzug-bayern` },
@@ -128,48 +85,14 @@ export default async function UmzugCityPage({ params }: PageProps) {
                         ]
                     }
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, lang)}
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city),
-                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                    resolveField(content.section2_p1, fallback.section2_p1, city, lang),
+                    resolveField(content.section2_p2, fallback.section2_p2, city, lang),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, lang)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, lang)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, lang)}
             />
-
-            {lang === "de" && (
-                <section className="bg-slate-50 py-16 px-6 border-t border-border">
-                    <div className="max-w-4xl mx-auto">
-                        <h3 className="text-xl font-bold mb-8 text-slate-800">Regionale Umzugs-Services in Bayern</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {[
-                                { name: "Memmingen", href: "/de/umzug-memmingen" },
-                                { name: "Mindelheim", href: "/de/umzug-mindelheim" },
-                                { name: "Bad Wörishofen", href: "/de/umzug-bad-woerishofen" },
-                                { name: "Ottobeuren", href: "/de/umzug-ottobeuren" },
-                                { name: "Buxheim", href: "/de/umzug-buxheim" },
-                                { name: "Memmingerberg", href: "/de/umzug-memmingerberg" },
-                                { name: "Heimertingen", href: "/de/umzug-heimertingen" },
-                                { name: "Legau", href: "/de/umzug-legau" },
-                                { name: "Tussenhausen", href: "/de/umzug-tussenhausen" },
-                                { name: "Kempten", href: "/de/umzug-kempten" },
-                                { name: "Ulm", href: "/de/umzug-ulm" },
-                                { name: "Ravensburg", href: "/de/umzug-ravensburg" },
-                                { name: "München", href: "/de/umzug-muenchen" }
-                            ].map((loc) => (
-                                <Link 
-                                    key={loc.name} 
-                                    href={loc.href}
-                                    className="text-sm text-slate-600 hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary pb-1"
-                                >
-                                    Umzug {loc.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-        </>
     );
 }

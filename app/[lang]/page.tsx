@@ -19,6 +19,8 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "../../get-dictionary";
+import { RegionalDominanceGrid } from "@/components/RegionalDominanceGrid";
+import { TrustBadge } from "@/components/trust/TrustBadge";
 
 const DualCalculator = dynamic(
     () => import("@/components/calculator/DualCalculator"),
@@ -207,14 +209,24 @@ export default async function Home({ params }: PageProps) {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
             />
 
-            <section id="zero" className="relative px-6 pb-16 pt-32 lg:pt-40">
-                <div className="pointer-events-none absolute inset-0 bg-grid-white/5 bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_top,white,transparent_80%)]" />
+            <section id="zero" className="relative px-6 pb-16 pt-32 lg:pt-40 overflow-hidden">
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse-slow" />
+                    <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-float" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-600/5 rounded-full blur-[110px] animate-float-delayed" />
+                </div>
+
+                <div className="pointer-events-none absolute inset-0 bg-grid-white/[0.03] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_top,white,transparent_80%)]" />
 
                 <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center">
                     <div className="mx-auto mb-10 max-w-5xl text-center animate-hero-fade">
-                        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary shadow-sm animate-hero-scale">
-                            <Sparkles className="h-3.5 w-3.5" />
-                            <span>{home.premium_badge || "Premium Service in Bayern"}</span>
+                        <div className="mb-4 flex flex-wrap items-center justify-center gap-2 animate-hero-scale">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-primary shadow-sm">
+                                <Sparkles className="h-3.5 w-3.5" />
+                                <span>{home.premium_badge || "Premium Service in Bayern"}</span>
+                            </div>
+                            <TrustBadge type="verified" lang={locale} />
                         </div>
 
                         <h1 className="mx-auto max-w-5xl text-balance text-4xl font-semibold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-7xl">
@@ -457,7 +469,7 @@ export default async function Home({ params }: PageProps) {
             </section>
 
             <div id="extras">
-                <SignatureServices dict={dict} />
+                <SignatureServices dict={dict} locale={locale} />
             </div>
 
             {/* DE-ONLY: Regional SEO & Deep Links (Hidden for EN/RU to avoid German content leaks) */}
@@ -534,6 +546,7 @@ export default async function Home({ params }: PageProps) {
                     </section>
                 </>
             )}
+            <RegionalDominanceGrid locale={locale} dic={dict} />
 
             {/* SEO Narrative Section - Kept for all but uses localized keys */}
             <section className="border-t border-border/50 px-6 py-16">

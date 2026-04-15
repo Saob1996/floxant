@@ -11,23 +11,48 @@ export default function ExitIntentModal() {
   const setMode = useCalculatorStore((s) => s.setMode);
 
   const [isVisible, setIsVisible] = useState(false);
+  const [canShow, setCanShow] = useState(false);
 
   const whatsappUrl = useMemo(
     () => `https://wa.me/${company.phoneRaw.replace("+", "")}`,
     []
   );
 
+  // Time-gate the trigger: Only allow showing after 30s in advanced mode
+  useEffect(() => {
+    if (mode !== "advanced") {
+      setCanShow(false);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCanShow(true);
+    }, 30000); // 30 seconds wait
+
+    return () => clearTimeout(timer);
+  }, [mode]);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (mode !== "advanced") return;
+    if (mode !== "advanced" || !canShow) return;
 
-    const hasSeenExitIntent = window.sessionStorage.getItem("floxant_exit_seen");
-    if (hasSeenExitIntent) return;
+    // Check localStorage for 7-day suppression
+    const exitRecord = localStorage.getItem("floxant_exit_suppressed");
+    if (exitRecord) {
+      const { expiry } = JSON.parse(exitRecord);
+      if (Date.now() < expiry) return;
+    }
 
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY < 12) {
+      // Sensitivity check: e.clientY < 10 for clearly leaving top
+      if (e.clientY < 10) {
         setIsVisible(true);
-        window.sessionStorage.setItem("floxant_exit_seen", "true");
+        // Initial suppression for this session
+        const weekFromNow = Date.now() + 7 * 24 * 60 * 60 * 1000;
+        localStorage.setItem(
+          "floxant_exit_suppressed",
+          JSON.stringify({ expiry: weekFromNow })
+        );
       }
     };
 
@@ -44,7 +69,7 @@ export default function ExitIntentModal() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [mode]);
+  }, [mode, canShow]);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -57,7 +82,15 @@ export default function ExitIntentModal() {
     };
   }, [isVisible]);
 
-  const closeModal = () => setIsVisible(false);
+  const closeModal = () => {
+    setIsVisible(false);
+    // Ensure it stays closed for 7 days if the user manually closes it
+    const weekFromNow = Date.now() + 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem(
+      "floxant_exit_suppressed",
+      JSON.stringify({ expiry: weekFromNow })
+    );
+  };
 
   if (!isVisible) return null;
 

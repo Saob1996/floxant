@@ -3,20 +3,24 @@
 import React from "react";
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Box, Sparkles, Trash2 } from "lucide-react";
+import { Box, Sparkles, Trash2, Briefcase, Heart, Music } from "lucide-react";
 
-export type ServiceType = "umzug" | "reinigung" | "entsorgung";
+export type ServiceType = "umzug" | "reinigung" | "entsorgung" | "bueroumzug" | "seniorenumzug" | "klaviertransport";
 
 interface ServiceSelectorProps {
     current: ServiceType;
     onSelect: (service: ServiceType) => void;
+    dic?: any;
 }
 
-export function ServiceSelector({ current, onSelect }: ServiceSelectorProps) {
+export function ServiceSelector({ current, onSelect, dic }: ServiceSelectorProps) {
     const options: { id: ServiceType; label: string; icon: React.ElementType }[] = [
-        { id: "umzug", label: "Umzug", icon: Box },
-        { id: "reinigung", label: "Reinigung", icon: Sparkles },
-        { id: "entsorgung", label: "Entsorgung", icon: Trash2 },
+        { id: "umzug", label: dic?.booking?.services?.service_umzug || "Umzug", icon: Box },
+        { id: "bueroumzug", label: dic?.booking?.services?.service_bueroumzug || "Büro", icon: Briefcase },
+        { id: "seniorenumzug", label: dic?.booking?.services?.service_seniorenumzug || "Senior", icon: Heart },
+        { id: "reinigung", label: dic?.nav?.service_reinigung || "Reinigung", icon: Sparkles },
+        { id: "entsorgung", label: dic?.nav?.service_entruempelung || "Entrümpelung", icon: Trash2 },
+        { id: "klaviertransport", label: dic?.common?.klaviertransport || "Klavier", icon: Music },
     ];
 
     return (

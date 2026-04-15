@@ -9,6 +9,10 @@ import {
   ArrowRight,
   MapPin,
   Layers,
+  CheckCircle2,
+  Briefcase,
+  Heart,
+  Music,
 } from "lucide-react";
 import { useCalculatorStore, ServiceType } from "@/store/calculatorStore";
 import {
@@ -39,9 +43,10 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
   const updateEntsorgungData = useCalculatorStore((s) => s.updateEntsorgungData);
 
   const [activeStep, setActiveStep] = useState(serviceType ? 1 : 0);
+  const [isCalculating, setIsCalculating] = useState(false);
 
   const calculatedRange = useMemo<PriceRange | null>(() => {
-    if (serviceType === "umzug") {
+    if (serviceType === "umzug" || serviceType === "seniorenumzug") {
       return calculateUmzugExpress(umzugData, baseDetails);
     }
 
@@ -51,6 +56,16 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
 
     if (serviceType === "entsorgung") {
       return calculateEntsorgungExpress(entsorgungData);
+    }
+
+    if (serviceType === "bueroumzug") {
+      // Simplified express calculation for office
+      const price = 300 + (umzugData.areaM2 || 40) * 8;
+      return { min: price, max: price * 1.3 };
+    }
+
+    if (serviceType === "klaviertransport") {
+      return { min: 180, max: 280 };
     }
 
     return null;
@@ -128,24 +143,42 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                 <ServiceCard
                   icon={Truck}
-                  title={dic?.nav?.service_umzug || ""}
+                  title={dic?.booking?.services?.umzug?.label || "Privatumzug"}
                   onClick={() => handleServiceSelect("umzug")}
                   active={serviceType === "umzug"}
                 />
                 <ServiceCard
+                  icon={Briefcase}
+                  title={dic?.booking?.services?.bueroumzug?.label || "Büroumzug"}
+                  onClick={() => handleServiceSelect("bueroumzug")}
+                  active={serviceType === "bueroumzug"}
+                />
+                <ServiceCard
+                   icon={Heart}
+                   title={dic?.booking?.services?.seniorenumzug?.label || "Seniorenumzug"}
+                   onClick={() => handleServiceSelect("seniorenumzug")}
+                   active={serviceType === "seniorenumzug"}
+                />
+                <ServiceCard
                   icon={Sparkles}
-                  title={dic?.nav?.service_reinigung || ""}
+                  title={dic?.booking?.services?.reinigung?.label || "Reinigung"}
                   onClick={() => handleServiceSelect("reinigung")}
                   active={serviceType === "reinigung"}
                 />
                 <ServiceCard
                   icon={Trash2}
-                  title={dic?.nav?.service_entruempelung || ""}
+                  title={dic?.booking?.services?.entsorgung?.label || "Entrümpelung"}
                   onClick={() => handleServiceSelect("entsorgung")}
                   active={serviceType === "entsorgung"}
+                />
+                <ServiceCard
+                   icon={Music}
+                   title={dic?.booking?.services?.klaviertransport?.label || "Klavier"}
+                   onClick={() => handleServiceSelect("klaviertransport")}
+                   active={serviceType === "klaviertransport"}
                 />
               </div>
 
@@ -158,7 +191,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                   disabled={!isStepZeroValid}
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-8 py-3 text-sm font-medium text-white transition-all duration-200 hover:border-white/20 hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  {dic?.common?.next || ""}
+                  {dic?.common?.next || "Weiter"}
                   <ArrowRight size={18} />
                 </button>
               </div>
@@ -302,7 +335,11 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                 </button>
 
                 <button
-                  onClick={() => setActiveStep(2)}
+                  onClick={() => {
+                    setIsCalculating(true);
+                    setActiveStep(2);
+                    setTimeout(() => setIsCalculating(false), 1200);
+                  }}
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-8 py-3 text-sm font-medium text-white shadow-[0_10px_30px_rgba(59,130,246,0.28)] transition-all duration-200 hover:from-blue-500 hover:to-violet-500"
                 >
                   {dic?.common?.next || "Weiter"}
@@ -321,48 +358,73 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
               transition={{ duration: 0.25 }}
               className="flex flex-col items-center justify-center py-8 text-center"
             >
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] shadow-[0_0_30px_rgba(59,130,246,0.22)]">
-                <Sparkles className="text-blue-400" size={30} />
-              </div>
+              {isCalculating ? (
+                <div className="flex flex-col items-center gap-4 py-12">
+                  <div className="h-12 w-12 animate-spin rounded-full border-[3px] border-blue-400 border-t-transparent" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+                    {dic?.calculator?.calculating || "Kalkulation für Bayern läuft"}
+                  </span>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] shadow-[0_0_30px_rgba(59,130,246,0.22)]">
+                    <Sparkles className="text-blue-400" size={30} />
+                  </div>
 
-              <h2 className="mb-2 text-sm uppercase tracking-[0.18em] text-white/45">
-                {dic?.calculator?.prognosis_label || ""}
-              </h2>
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-emerald-400">
+                    <CheckCircle2 size={12} />
+                    Qualitätsgeprüft für Bayern
+                  </div>
 
-              <div className="mb-5 flex flex-wrap items-end justify-center gap-2 text-5xl font-light tracking-tight text-white md:text-6xl">
-                <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text font-medium text-transparent">
-                  {resultMin}€
-                </span>
-                <span className="px-1 text-3xl text-white/25">–</span>
-                <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text font-medium text-transparent">
-                  {resultMax}€
-                </span>
-              </div>
+                  <h2 className="mb-2 text-sm uppercase tracking-[0.18em] text-white/45">
+                    {dic?.calculator?.prognosis_label || ""}
+                  </h2>
 
-              <p className="mb-10 max-w-md text-sm leading-6 text-white/50">
-                {dic?.calculator?.uncertainty_note || ""}
-              </p>
+                  <div className="mb-5 flex flex-wrap items-end justify-center gap-2 text-5xl font-light tracking-tight text-white md:text-6xl">
+                    <m.span
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text font-medium text-transparent"
+                    >
+                      {resultMin}€
+                    </m.span>
+                    <span className="px-1 text-3xl text-white/25">–</span>
+                    <m.span
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text font-medium text-transparent"
+                    >
+                      {resultMax}€
+                    </m.span>
+                  </div>
 
-              <button
-                onClick={() => setMode("advanced")}
-                className="group relative w-full max-w-sm overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-medium text-black transition-transform duration-200 hover:scale-[1.01]"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-violet-100 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-                <span className="relative flex items-center justify-center gap-2">
-                  {dic?.common?.next || ""}
-                  <ArrowRight
-                    size={20}
-                    className="transition-transform duration-200 group-hover:translate-x-1"
-                  />
-                </span>
-              </button>
+                  <p className="mb-10 max-w-md text-sm leading-6 text-white/50">
+                    {dic?.calculator?.uncertainty_note || ""}
+                  </p>
 
-              <button
-                onClick={() => setActiveStep(1)}
-                className="mt-6 text-sm text-white/40 underline-offset-4 transition-colors hover:text-white/80 hover:underline"
-              >
-                {dic?.calculator?.adjust_details || ""}
-              </button>
+                  <button
+                    onClick={() => setMode("lead")}
+                    className="group relative w-full max-w-sm overflow-hidden rounded-full bg-white px-8 py-4 text-lg font-medium text-black transition-transform duration-200 hover:scale-[1.01]"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-violet-100 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                    <span className="relative flex items-center justify-center gap-2">
+                      {dic?.calculator?.contact_us_now || "Jetzt Kontakt aufnehmen"}
+                      <ArrowRight
+                        size={20}
+                        className="transition-transform duration-200 group-hover:translate-x-1"
+                      />
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveStep(1)}
+                    className="mt-6 text-sm text-white/40 underline-offset-4 transition-colors hover:text-white/80 hover:underline"
+                  >
+                    {dic?.calculator?.adjust_details || ""}
+                  </button>
+                </>
+              )}
             </m.div>
           )}
         </AnimatePresence>

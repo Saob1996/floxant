@@ -2,13 +2,12 @@ import { NextResponse, type NextRequest } from "next/server";
 import { i18n } from "./i18n-config";
 
 /**
- * High-Performance Middleware — Germany-First SEO Architecture
+ * High-Performance Proxy — Germany-First SEO Architecture (Next.js 16)
  * - Native Web-APIs ONLY (zero external deps)
- * - Radical path skipping for static assets
  * - Seamless [de, en, ru] routing with DE as default
  * - Redirects unlocalized paths to /de/ for SEO hygiene
  */
-export function middleware(req: NextRequest) {
+export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Faster static skipping using native string methods
@@ -31,8 +30,6 @@ export function middleware(req: NextRequest) {
   );
 
   // If no locale detected, redirect to /de/ prefix for SEO consistency
-  // This ensures German users always see German content and prevents
-  // duplicate content issues with unlocalized URLs
   if (!hasLocale) {
     return NextResponse.redirect(
       new URL(`/${i18n.defaultLocale}${pathname}`, req.url)
@@ -44,4 +41,4 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: ["/((?!_next|api|favicon.ico).*)"],
-};
+};

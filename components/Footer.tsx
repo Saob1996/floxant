@@ -1,8 +1,9 @@
-'use client';
-
 import Link from "next/link";
-import { Logo as BrandLogo } from "@/components/BrandLogo";
+import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
 import { company } from "@/lib/company";
+import { ShieldCheck, Award, CheckCircle } from "lucide-react";
+
+const brandIcons = { ShieldCheck, Award, CheckCircle };
 
 interface FooterProps {
     lang: string;
@@ -12,7 +13,57 @@ interface FooterProps {
 export function Footer({ lang, dic }: FooterProps) {
     if (!dic) return null;
 
-    const currentYear = new Date().getFullYear();
+    const MOVING_SERVICES = [
+        { href: "/umzug", label: dic?.footer?.private_moving || "Privatumzug" },
+        { href: "/bueroumzug", label: dic?.footer?.office_moving || "Büroumzug" },
+        { href: "/fernumzug", label: dic?.footer?.long_distance || "Fernumzug" },
+        { href: "/klaviertransport", label: dic?.footer?.piano_moving || "Klaviertransport" },
+        { href: "/einlagerung", label: dic?.footer?.storage || "Einlagerung" },
+        { href: "/akteneinlagerung-regensburg", label: dic?.footer?.archive_storage || "Akteneinlagerung" },
+        { href: "/montage", label: dic?.footer?.furniture_assembly || "Möbelmontage" },
+        { href: "/halteverbotszone", label: dic?.footer?.no_parking_zone || "Halteverbotszone" },
+    ];
+
+    const CLEAN_CLEAR_SERVICES = [
+        { href: "/reinigung", label: dic?.footer?.cleaning || "Reinigung" },
+        { href: "/entruempelung", label: dic?.footer?.clearance || "Entrümpelung" },
+        { href: "/malerarbeiten", label: dic?.footer?.painting || "Malerarbeiten" },
+        { href: "/reinigung-bayern", label: dic?.footer?.cleaning_bavaria || "Reinigung Bayern" },
+        { href: "/entruempelung-bayern", label: dic?.footer?.clearance_bavaria || "Entrümpelung Bayern" },
+        { href: "/wohnungsaufloesung-bayern", label: dic?.footer?.apartment_clearance || "Wohnungsauflösung" },
+    ];
+
+    const LOCATION_LINKS = [
+        { href: "/umzug-regensburg", label: dic?.area?.cities?.regensburg || "Regensburg" },
+        { href: "/umzug-nuernberg", label: dic?.area?.cities?.nuremberg || "Nürnberg" },
+        { href: "/umzug-muenchen", label: dic?.area?.cities?.munich || "München" },
+        { href: "/umzug-augsburg", label: dic?.area?.cities?.augsburg || "Augsburg" },
+        { href: "/umzug-landshut", label: dic?.area?.cities?.landshut || "Landshut" },
+        { href: "/umzug-passau", label: dic?.area?.cities?.passau || "Passau" },
+        { href: "/umzug-bayern", label: dic?.area?.cities?.bavaria || "Bayern" },
+    ];
+
+    const SPECIAL_LINKS = [
+        { href: "/24h-umzug-bayern", label: dic?.footer?.moving_24h || "24h Umzug" },
+        { href: "/studentenumzug-regensburg", label: dic?.footer?.student_moving || "Studentenumzug" },
+        { href: "/familienumzug-bayern", label: dic?.footer?.family_moving || "Familienumzug" },
+        { href: "/seniorenumzug", label: dic?.footer?.senior_moving || "Seniorenumzug" },
+        { href: "/umzugskosten-bayern", label: dic?.footer?.moving_costs || "Umzugskosten" },
+        { href: "/service-area-bayern", label: dic?.footer?.service_area || "Servicegebiet" },
+        { href: "/kurzfristiger-umzug-bayern", label: dic?.footer?.fast_moving || "Kurzfristiger Umzug" },
+        { href: "/notfall-umzug-bayern", label: dic?.footer?.emergency_moving || "Notfall-Umzug" },
+        { href: "/ratgeber", label: dic?.footer?.guide || "Ratgeber" },
+        { href: "/wissen", label: dic?.footer?.knowledge_hub || "Wissen Hub" },
+    ];
+
+    const LEGAL_LINKS = [
+        { href: "/impressum", label: dic?.footer?.impressum || "Impressum" },
+        { href: "/datenschutz", label: dic?.footer?.privacy || "Datenschutz" },
+        { href: "/agb", label: dic?.footer?.terms || "AGB" },
+        { href: "/widerruf", label: dic?.footer?.revocation || "Widerruf" },
+        { href: "/buchungsbedingungen", label: dic?.footer?.booking || "Buchungsbedingungen" },
+        { href: "/login", label: dic?.footer?.internal || dic?.footer?.intern || "Internal" },
+    ];
 
     return (
         <footer className="bg-background border-t border-border/50 py-12 px-6">
@@ -21,30 +72,24 @@ export function Footer({ lang, dic }: FooterProps) {
                 <div className="w-full bg-[#0a0a0a] rounded-2xl p-8 md:p-12 mb-16 border border-white/10 relative overflow-hidden text-center md:text-start flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
                     <div className="absolute top-0 end-0 w-64 h-64 bg-primary/10 blur-3xl rounded-full -z-10" />
                     <div className="max-w-xl z-10">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                            {dic?.common?.ready_for_service}
-                        </h2>
-                        <p className="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">
-                            {dic?.common?.cta_description}
-                        </p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{dic?.common?.ready_for_service || "Bereit für Ihren Umzug?"}</h2>
+                        <p className="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">{dic?.common?.cta_description || "Fordern Sie jetzt Ihr unverbindliches Angebot an."}</p>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <Link
                                 href={`/${lang}/#contact`}
                                 className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-xl font-bold hover:bg-primary/90 transition-all text-center"
                             >
-                                {dic?.common?.cost_calculator_btn}
+                                {dic?.common?.cost_calculator_btn || "Kostenlos berechnen"}
                             </Link>
                             <a
-                                href="https://wa.me/4915771105087"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={`tel:${company.phoneRaw}`}
                                 className="w-full sm:w-auto px-8 py-4 bg-[#25D366]/10 text-[#25D366] rounded-xl font-bold hover:bg-[#25D366]/20 transition-all text-center flex items-center justify-center gap-2"
                             >
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]"></span>
                                 </span>
-                                +49 1577 1105087
+                                {company.phone}
                             </a>
                         </div>
                     </div>
@@ -61,59 +106,88 @@ export function Footer({ lang, dic }: FooterProps) {
                         >
                             FLOXANT<span className="text-primary">.</span>
                         </Link>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                            {dic?.common?.authority_bio}
-                        </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{dic?.common?.authority_bio || "Ihr lokaler Experte für Umzug, Reinigung und Entrümpelung in Bayern."}</p>
                     </div>
                 </div>
 
                 <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.moving_header}</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer?.moving_header || "Umzug"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/umzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.private_moving}</Link></li>
-                            <li><Link href={`/${lang}/buero-umzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.office_moving}</Link></li>
-                            <li><Link href={`/${lang}/fernumzug`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.long_distance}</Link></li>
-                            <li><Link href={`/${lang}/montage`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.furniture_assembly}</Link></li>
-                            <li><Link href={`/${lang}/halteverbotszone`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.no_parking_zone}</Link></li>
+                            {MOVING_SERVICES.map((s) => (
+                                <li key={s.href}>
+                                    <Link href={`/${lang}${s.href}`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">
+                                        {s.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.cleaning_clearance_header}</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer?.cleaning_clearance_header || "Reinigung & Räumung"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/reinigung`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.cleaning}</Link></li>
-                            <li><Link href={`/${lang}/entruempelung`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.clearance}</Link></li>
-                            <li><Link href={`/${lang}/reinigung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.cleaning_bavaria}</Link></li>
-                            <li><Link href={`/${lang}/entruempelung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.clearance_bavaria}</Link></li>
-                            <li><Link href={`/${lang}/wohnungsaufloesung-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.apartment_clearance}</Link></li>
+                            {CLEAN_CLEAR_SERVICES.map((s) => (
+                                <li key={s.href}>
+                                    <Link href={`/${lang}${s.href}`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">
+                                        {s.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.locations_header}</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer?.locations_header || "Standorte"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/umzug-regensburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.regensburg}</Link></li>
-                            <li><Link href={`/${lang}/umzug-nuernberg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.nuremberg}</Link></li>
-                            <li><Link href={`/${lang}/umzug-muenchen`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.munich}</Link></li>
-                            <li><Link href={`/${lang}/umzug-augsburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.augsburg}</Link></li>
-                            <li><Link href={`/${lang}/umzug-landshut`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.landshut || "Landshut"}</Link></li>
-                            <li><Link href={`/${lang}/umzug-passau`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.passau || "Passau"}</Link></li>
-                            <li><Link href={`/${lang}/umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.area?.cities?.bavaria}</Link></li>
+                            {LOCATION_LINKS.map((s) => (
+                                <li key={s.href}>
+                                    <Link href={`/${lang}${s.href}`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">
+                                        {s.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div>
-                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer.special_header}</h3>
+                        <h3 className="text-sm font-semibold text-foreground mb-3">{dic?.footer?.special_header || "Spezial"}</h3>
                         <ul className="space-y-2">
-                            <li><Link href={`/${lang}/24h-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.moving_24h}</Link></li>
-                            <li><Link href={`/${lang}/studentenumzug-regensburg`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.student_moving}</Link></li>
-                            <li><Link href={`/${lang}/familienumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.family_moving}</Link></li>
-                            <li><Link href={`/${lang}/seniorenumzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.senior_moving}</Link></li>
-                            <li><Link href={`/${lang}/umzugskosten-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.moving_costs}</Link></li>
-                            <li><Link href={`/${lang}/service-area-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.service_area}</Link></li>
-                            <li><Link href={`/${lang}/kurzfristiger-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Kurzfristiger Umzug</Link></li>
-                            <li><Link href={`/${lang}/notfall-umzug-bayern`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Notfall-Umzug</Link></li>
-                            <li><Link href={`/${lang}/ratgeber`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">{dic?.footer.guide}</Link></li>
-                            <li><Link href={`/${lang}/wissen`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">Wissen Hub</Link></li>
+                            {SPECIAL_LINKS.map((s) => (
+                                <li key={s.href}>
+                                    <Link href={`/${lang}${s.href}`} className="text-xs text-muted-foreground/70 hover:text-foreground transition-colors">
+                                        {s.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
+                    </div>
+                </div>
+
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 pt-10 border-t border-border/10 mb-10">
+                    <div className="flex items-center gap-4 group">
+                        <div className="p-3 bg-primary/5 text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-all">
+                            <brandIcons.ShieldCheck className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-bold text-foreground">{dic?.common?.badge_quality_title || "Geprüfte Qualität"}</p>
+                            <p className="text-[11px] text-muted-foreground">{dic?.common?.badge_quality_desc || "Regelmäßige Audits & Zertifizierungen"}</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4 group">
+                        <div className="p-3 bg-emerald-500/5 text-emerald-500 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                            <brandIcons.Award className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-bold text-foreground">{dic?.common?.badge_ihk_title || "IHK Fachbetrieb"}</p>
+                            <p className="text-[11px] text-muted-foreground">{dic?.common?.badge_ihk_desc || "Eingetragen im Handelsregister Bayern"}</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4 group">
+                        <div className="p-3 bg-blue-500/5 text-blue-500 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all">
+                            <brandIcons.CheckCircle className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-bold text-foreground">{dic?.common?.badge_insured_title || "100% Versichert"}</p>
+                            <p className="text-[11px] text-muted-foreground">{dic?.common?.badge_insured_desc || "Betriebs- & Verkehrshaftpflichtschutz"}</p>
+                        </div>
                     </div>
                 </div>
 
@@ -140,31 +214,18 @@ export function Footer({ lang, dic }: FooterProps) {
                 </div>
 
                 <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-muted-foreground/50 mt-4">
-                    <Link href={`/${lang}/impressum`} className="hover:text-foreground transition-colors">{dic.footer.impressum}</Link>
-                    <span>·</span>
-                    <Link href={`/${lang}/datenschutz`} className="hover:text-foreground transition-colors">{dic.footer.privacy}</Link>
-                    <span>·</span>
-                    <Link href={`/${lang}/agb`} className="hover:text-foreground transition-colors">{dic.footer.terms}</Link>
-                    <span>·</span>
-                    <Link href={`/${lang}/widerruf`} className="hover:text-foreground transition-colors">{dic.footer.revocation}</Link>
-                    <span>·</span>
-                    <Link href={`/${lang}/buchungsbedingungen`} className="hover:text-foreground transition-colors">{dic.footer.booking}</Link>
-                    <span>·</span>
-                    <Link href={`/${lang}/login`} className="hover:text-foreground transition-colors">{dic?.footer?.intern || "Intern"}</Link>
+                    {LEGAL_LINKS.map((s, idx) => (
+                        <div key={s.href} className="flex items-center gap-4">
+                            <Link href={`/${lang}${s.href}`} className="hover:text-foreground transition-colors">
+                                {s.label}
+                            </Link>
+                            {idx < LEGAL_LINKS.length - 1 && <span>·</span>}
+                        </div>
+                    ))}
                 </div>
 
-                <div className="flex flex-col items-center gap-2 text-center mt-6 max-w-[280px] md:max-w-md">
-                    <p className="text-xs text-muted-foreground/80">
-                        &copy; {currentYear} FLOXANT. {dic.footer.rights}
-                    </p>
-                    <a
-                        href={`mailto:${company.email}`}
-                        className="text-xs text-muted-foreground/60 hover:text-foreground transition-colors"
-                    >
-                        {company.email}
-                    </a>
-                </div>
             </div>
         </footer>
     );
 }
+

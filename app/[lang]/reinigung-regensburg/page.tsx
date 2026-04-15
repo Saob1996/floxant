@@ -5,7 +5,6 @@ import { generatePageSEO } from "@/lib/seo";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
-import Link from "next/link";
 
 interface PageProps {
     params: Promise<{ lang: string }>;
@@ -18,15 +17,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { seoContent, seoFallback, city } = await getSpecialtyPageData({
         locale: lang as Locale,
         baseKey: "reinigung_spec",
-        seoKey: "reinigung_regensburg",
         city: "Regensburg",
     });
 
     return generatePageSEO({
         pageLocale: lang,
-        path: `reinigung-regensburg`,
-        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
-        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+        path: "reinigung-regensburg",
+        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, lang),
+        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, lang),
     });
 }
 
@@ -39,72 +37,25 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
         localeDict, 
         content, 
         fallback, 
-        seoContent, 
-        seoFallback, 
         city 
     } = await getSpecialtyPageData({
         locale,
         baseKey: "reinigung_spec",
-        seoKey: "reinigung_regensburg",
         city: "Regensburg",
     });
 
-    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
-
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Service",
-                "name": `Reinigung ${city} | FLOXANT`,
-                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
-                "url": `https://www.floxant.de/${lang}/reinigung-regensburg`,
-                "provider": {
-                    "@type": "LocalBusiness",
-                    "name": "FLOXANT",
-                    "telePhone": "+49 1577 1105087",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "addressLocality": "Regensburg",
-                        "addressRegion": "Bayern",
-                        "addressCountry": "DE"
-                    }
-                },
-                "areaServed": { "@type": "City", "name": city }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-                    { "@type": "ListItem", "position": 2, "name": "Reinigung Bayern", "item": `https://www.floxant.de/${lang}/reinigung-bayern` },
-                    { "@type": "ListItem", "position": 3, "name": city, "item": `https://www.floxant.de/${lang}/reinigung-regensburg` }
-                ]
-            },
-            ...(faqItems.length > 0 ? [{
-                "@type": "FAQPage",
-                "mainEntity": faqItems.map(item => ({
-                    "@type": "Question",
-                    "name": item.q,
-                    "acceptedAnswer": { "@type": "Answer", "text": item.a }
-                }))
-            }] : [])
-        ]
-    };
-
     return (
-        <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            <SpecialtyPageLayout
+        <SpecialtyPageLayout
                 pageLocale={lang}
                 dict={localeDict}
                 city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta, city)}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, lang)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, lang)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city, lang)}
+                ctaText={resolveField(content.cta, fallback.cta, city, lang)}
                 breadcrumbs={[
                     { label: "Home", href: `/${lang}` },
-                    { label: "Reinigung", href: `/${lang}/reinigung-bayern` },
+                    { label: "Reinigung", href: `/${lang}/umzug-bayern` },
                     { label: city }
                 ]}
                 chips={[
@@ -134,48 +85,14 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                         ]
                     }
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, lang)}
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city),
-                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                    resolveField(content.section2_p1, fallback.section2_p1, city, lang),
+                    resolveField(content.section2_p2, fallback.section2_p2, city, lang),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, lang)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, lang)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, lang)}
             />
-
-            {/* Regional SEO Gating (DE-only) */}
-            {lang === "de" && (
-                <section className="bg-slate-50 py-16 px-6 border-t border-border">
-                    <div className="max-w-4xl mx-auto">
-                        <h3 className="text-xl font-bold mb-8 text-slate-800">Regionale Reinigungs-Services in Bayern</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {[
-                                { name: "Regensburg", href: "/de/reinigung-regensburg" },
-                                { name: "Schwandorf", href: "/de/reinigung-schwandorf" },
-                                { name: "Amberg", href: "/de/reinigung-amberg" },
-                                { name: "Straubing", href: "/de/reinigung-straubing" },
-                                { name: "Kelheim", href: "/de/reinigung-kelheim" },
-                                { name: "Lappersdorf", href: "/de/reinigung-lappersdorf" },
-                                { name: "Neutraubling", href: "/de/reinigung-neutraubling" },
-                                { name: "Donaustauf", href: "/de/reinigung-donaustauf" },
-                                { name: "Sinzing", href: "/de/reinigung-sinzing" },
-                                { name: "Nittendorf", href: "/de/reinigung-nittendorf" },
-                                { name: "Regenstauf", href: "/de/reinigung-regenstauf" },
-                                { name: "Wenzenbach", href: "/de/reinigung-wenzenbach" }
-                            ].map((loc) => (
-                                <Link 
-                                    key={loc.name} 
-                                    href={loc.href}
-                                    className="text-sm text-slate-600 hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary pb-1"
-                                >
-                                    Reinigung {loc.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-        </>
     );
 }

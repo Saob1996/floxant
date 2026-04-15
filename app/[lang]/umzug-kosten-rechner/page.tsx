@@ -15,30 +15,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function UmzugKostenRechnerPage({ params }: { params: Promise<{ lang: string }> }) {
     var { lang: pageLocale } = await params;
     var dict = await getDictionary(pageLocale as Locale);
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Umzugskosten Rechner",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "FLOXANT",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "DE"
-      }
-    },
-    "description": "Erhalten Sie sofort eine Kostenschätzung für Ihren bevorstehenden Umzug.",
-    "serviceType": "MovingCompany"
-  };
-
   return (
     <main className="min-h-screen bg-[#05050A] text-white pt-32 pb-24">
-      {/* JSON-LD for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      
+
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <header className="text-center mb-16 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">

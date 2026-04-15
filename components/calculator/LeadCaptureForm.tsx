@@ -29,6 +29,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
   const reinigungData = useCalculatorStore((s) => s.reinigungData);
   const entsorgungData = useCalculatorStore((s) => s.entsorgungData);
   const advancedEstimate = useCalculatorStore((s) => s.advancedEstimate);
+  const expressPriceRange = useCalculatorStore((s) => s.expressPriceRange);
+  const mode = useCalculatorStore((s) => s.mode);
   const timeOnPage = useCalculatorStore((s) => s.timeOnPage);
 
   const updateLeadDetails = useCalculatorStore((s) => s.updateLeadDetails);
@@ -46,7 +48,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     return () => window.clearInterval(timer);
   }, [incrementTimeOnPage]);
 
-  const priceRange = advancedEstimate?.priceRange ?? { min: 0, max: 0 };
+  const priceRange = useMemo(() => {
+    if (advancedEstimate?.priceRange) return advancedEstimate.priceRange;
+    if (expressPriceRange) return expressPriceRange;
+    return { min: 0, max: 0 };
+  }, [advancedEstimate, expressPriceRange]);
 
   const canSubmit = useMemo(() => {
     const hasContactData =
@@ -55,15 +61,19 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       leadDetails.customerPhone.trim().length >= 6 &&
       leadDetails.callbackTime.trim().length >= 2;
 
-    return Boolean(serviceType && advancedEstimate && hasContactData && !isSubmitting);
-  }, [serviceType, advancedEstimate, leadDetails, isSubmitting]);
+    const hasEstimate = Boolean(advancedEstimate || expressPriceRange);
+
+    return Boolean(serviceType && hasEstimate && hasContactData && !isSubmitting);
+  }, [serviceType, advancedEstimate, expressPriceRange, leadDetails, isSubmitting]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!canSubmit || !serviceType || !advancedEstimate) {
+    const hasEstimate = Boolean(advancedEstimate || expressPriceRange);
+
+    if (!canSubmit || !serviceType || !hasEstimate) {
       alert(
-        dic?.calculator?.error_submit || ""
+        dic?.calculator?.error_submit || "Bitte füllen Sie alle Felder aus."
       );
       return;
     }
@@ -84,17 +94,24 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     try {
       const formData = new FormData();
 
+      // Get additional service data from store directly to ensure latest state
+      const state = useCalculatorStore.getState();
+
       formData.append("service", serviceType);
       formData.append("upgrades", JSON.stringify([]));
       formData.append(
         "details",
         JSON.stringify({
           calculator_inputs: {
-            umzug: serviceType === "umzug" ? umzugData : null,
-            reinigung: serviceType === "reinigung" ? reinigungData : null,
-            entsorgung: serviceType === "entsorgung" ? entsorgungData : null,
+            umzug: serviceType === "umzug" ? state.umzugData : null,
+            reinigung: serviceType === "reinigung" ? state.reinigungData : null,
+            entsorgung: serviceType === "entsorgung" ? state.entsorgungData : null,
+            bueroumzug: serviceType === "bueroumzug" ? state.bueroumzugData : null,
+            seniorenumzug: serviceType === "seniorenumzug" ? state.seniorenumzugData : null,
+            klaviertransport: serviceType === "klaviertransport" ? state.klaviertransportData : null,
           },
-          estimate_data: advancedEstimate,
+          estimate_data: advancedEstimate || { priceRange: expressPriceRange, type: "express" },
+          calculator_mode: mode,
           time_to_convert_seconds: timeOnPage,
           device_type:
             typeof window !== "undefined" && window.innerWidth < 768

@@ -7,7 +7,7 @@ import { Clock, CalendarDays, UserCircle, ArrowRight, CheckCircle2 } from "lucid
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    
+
     const dict = (await getDictionary(pageLocale as Locale)) as any;
 return generatePageSEO({
         pageLocale,
@@ -55,7 +55,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
                 <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs}  /></div>
-                
+
                 <article>
                     <header className="mb-12">
                         <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
@@ -125,7 +125,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                         <p>
                             Der Markt ist kompetitiv. Leider versuchen unseriöse Anbieter oft mit Lockangeboten von "Umzug ab 199 Euro" Kunden zu gewinnen. Am Ende des Tages droht das böse Erwachen. Auf diese Kostenpunkte sollten Sie bei Angeboten unbedingt achten:
                         </p>
-                        
+
                         <div className="bg-slate-50 p-6 rounded-2xl border my-8">
                             <ul className="list-none ps- m-0 space-y-4">
                                 <li className="flex gap-3 m-0">
@@ -162,9 +162,9 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                                 Zum Preisrechner <ArrowRight className="w-5 h-5" />
                             </a>
                         </div>
-                        
+
                     </div>
-                
+
             {/* Contextual Hub Interlinking Layer */}
             <div className="bg-muted/10 p-8 rounded-2xl border border-primary/20 my-12">
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
@@ -180,7 +180,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                     <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
-        
+
                 </article>
 
                 <div className="mt-16 pt-8 border-t">
@@ -201,7 +201,7 @@ export default async function BlogUmzugKostenRegensburg({ params }: { params: Pr
                     </div>
                 </div>
             </div>
-            
+
             <div className="bg-slate-50 py-16 border-t">
                 <div className="container px-4 max-w-4xl mx-auto text-center">
                     <h3 className="text-2xl font-bold mb-8">Mehr zum Thema</h3>

@@ -19,13 +19,13 @@ export function PremiumButton({
 }: PremiumButtonProps) {
     const variantClasses = {
         primary:
-            "bg-white text-black shadow-[0_10px_30px_rgba(255,255,255,0.12)] hover:bg-white/95",
+            "bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.5)] ring-1 ring-white/20 hover:from-blue-500 hover:to-indigo-600 hover:shadow-[0_15px_40px_-5px_rgba(37,99,235,0.6)]",
         secondary:
-            "border border-white/10 bg-[#11131A] text-white hover:bg-white/[0.04] hover:border-white/15",
+            "border border-white/10 bg-[#161925] text-white shadow-inner hover:bg-[#1E2235] hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]",
         ghost:
-            "bg-transparent text-white/72 hover:bg-white/[0.04] hover:text-white",
+            "bg-transparent text-white/70 hover:bg-white/5 hover:text-white",
         outline:
-            "border border-white/10 bg-transparent text-white hover:border-blue-400/25 hover:bg-white/[0.03]",
+            "border-2 border-blue-500/30 bg-transparent text-blue-400 hover:border-blue-400 hover:bg-blue-500/10 hover:text-white",
     };
 
     const sizeClasses = {
@@ -42,9 +42,9 @@ export function PremiumButton({
             transition={{ duration: 0.18, ease: "easeOut" }}
             disabled={disabled}
             className={cn(
-                "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-tight transition-all duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/30",
-                "disabled:pointer-events-none disabled:opacity-45",
+                "group inline-flex items-center justify-center gap-3 rounded-xl font-bold tracking-wide transition-all duration-300",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0C10]",
+                "disabled:pointer-events-none disabled:opacity-40 disabled:grayscale",
                 variantClasses[variant],
                 sizeClasses[size],
                 className

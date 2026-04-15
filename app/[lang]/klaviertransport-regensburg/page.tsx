@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return generatePageSEO({
         pageLocale: lang,
         path: `klaviertransport-regensburg`,
-        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
-        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, lang),
+        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, lang),
     });
 }
 
@@ -48,35 +48,15 @@ export default async function KlaviertransportRegensburgPage({ params }: PagePro
         city: "Regensburg",
     });
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Service",
-                "name": `Klaviertransport ${city} | FLOXANT`,
-                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
-                "url": `https://www.floxant.de/${lang}/klaviertransport-regensburg`,
-                "provider": {
-                    "@type": "LocalBusiness",
-                    "name": "FLOXANT",
-                    "telePhone": "+49 1577 1105087"
-                },
-                "areaServed": { "@type": "City", "name": city }
-            }
-        ]
-    };
-
     return (
-        <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            <SpecialtyPageLayout
+        <SpecialtyPageLayout
                 pageLocale={lang}
                 dict={localeDict}
                 city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta, city)}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, lang)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, lang)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city, lang)}
+                ctaText={resolveField(content.cta, fallback.cta, city, lang)}
                 breadcrumbs={[
                     { label: "Home", href: `/${lang}` },
                     { label: "Umzug Regensburg", href: `/${lang}/umzug-regensburg` },
@@ -105,15 +85,14 @@ export default async function KlaviertransportRegensburgPage({ params }: PagePro
                         ]
                     }
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, lang)}
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city),
-                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                    resolveField(content.section2_p1, fallback.section2_p1, city, lang),
+                    resolveField(content.section2_p2, fallback.section2_p2, city, lang),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, lang)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, lang)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, lang)}
             />
-        </>
     );
 }

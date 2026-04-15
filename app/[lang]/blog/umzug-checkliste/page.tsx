@@ -7,7 +7,7 @@ import { Clock, CalendarDays, UserCircle, CheckSquare, AlertTriangle, Lightbulb,
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    
+
     const dict = (await getDictionary(pageLocale as Locale)) as any;
 return generatePageSEO({
         pageLocale,
@@ -43,7 +43,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
                 <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} /></div>
-                
+
                 <article>
                     <header className="mb-12">
                         <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
@@ -150,7 +150,7 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                             </a>
                         </div>
                     </div>
-                
+
             {/* Contextual Hub Interlinking Layer */}
             <div className="bg-muted/10 p-8 rounded-2xl border border-primary/20 my-12">
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
@@ -166,10 +166,10 @@ export default async function BlogUmzugCheckliste({ params }: { params: Promise<
                     <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
-        
+
                 </article>
             </div>
-            
+
             <div className="bg-slate-50 py-16 border-t">
                 <div className="container px-4 text-center max-w-5xl mx-auto">
                     <h3 className="text-2xl font-bold mb-8">Serviceangebote & Hilfreiche Links</h3>

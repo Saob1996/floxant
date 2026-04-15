@@ -46,6 +46,12 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
     const [galleryImages, setGalleryImages] = useState<string[] | null>(null);
     const [galleryIndex, setGalleryIndex] = useState(0);
 
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const t = dict.dashboard;
     const tAuth = dict.auth;
     const tBooking = dict.booking;
@@ -115,13 +121,13 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
         return matchesSearch && matchesService;
     });
 
-    // Stats calculation
+    // Stats calculation - Only on client to avoid hydration mismatch
     const totalRequests = bookings.length;
-    const newRequests = bookings.filter(b => {
+    const newRequests = mounted ? bookings.filter(b => {
         const date = new Date(b.timestamp);
         const now = new Date();
         return (now.getTime() - date.getTime()) < (24 * 60 * 60 * 1000);
-    }).length;
+    }).length : 0;
 
     const handleUpdateBooking = (updated: Booking) => {
         const newBookings = bookings.map(b => b.id === updated.id ? updated : b);
@@ -129,6 +135,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
     };
 
     const getServiceData = () => {
+        if (!mounted) return [];
         let umzug = 0; let entsorgung = 0; let reinigung = 0;
         bookings.forEach(b => {
             if(b.service === 'umzug') umzug++;
@@ -143,6 +150,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
     };
 
     const getTimelineData = () => {
+        if (!mounted) return [];
         const map = new Map<string, number>();
         bookings.forEach(b => {
            const d = new Date(b.timestamp).toLocaleDateString("de-DE", { month: "short", day: "numeric" });

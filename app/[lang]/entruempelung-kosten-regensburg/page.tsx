@@ -13,8 +13,6 @@ const DualCalculator = dynamic(
 import Link from "next/link";
 import { Calculator } from "lucide-react";
 
-
-
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
     var dict = await getDictionary(pageLocale as Locale);
@@ -90,7 +88,6 @@ export default async function EntruempelungKostenRegensburg({ params }: { params
                 </div>
             </section>
 
-            
       <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto space-y-24">
                     <div className="prose prose-lg max-w-none text-muted-foreground">

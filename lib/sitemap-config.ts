@@ -1,17 +1,14 @@
 /**
  * FLOXANT Sitemap Configuration
  * Centralized route definitions for the current sitemap architecture.
- * Only DE is indexable. EN/RU are noindex and excluded from sitemaps.
- * Active sitemap files:
- * - sitemap.xml (index → sitemap-de.xml)
- * - sitemap-de.xml
+ * DE, EN and RU are indexable.
  */
 
 export const BASE_URL = "https://www.floxant.de";
 export const LASTMOD = new Date().toISOString().split("T")[0];
 
-/** Active locales with dedicated sitemap files (only DE is indexable) */
-export const MAJOR_LOCALES = ["de"] as const;
+/** Active locales with dedicated sitemap files */
+export const MAJOR_LOCALES = ["de", "en", "ru"] as const;
 
 // --- Route Definitions ---
 
@@ -21,7 +18,7 @@ export const HOMEPAGE = "";
 /** Core service pages */
 export const CORE_SERVICES = [
     "umzug",
-    "buero-umzug",
+    "bueroumzug",
     "fernumzug",
     "reinigung",
     "entruempelung",
@@ -170,13 +167,19 @@ export const CITY_PAGES = [
     "umzug-oberpfalz",
     "umzug-landkreis-regensburg",
     "umzug-hausen",
+    "umzug-kulmbach",
+    "umzug-guenzburg",
+    "umzug-lindau",
+    "umzug-muenchen-schwabing",
+    "umzug-muenchen-bogenhausen",
+    "umzug-nuernberg-gostenhof",
 ] as const;
 
 /** Service-specific city pages */
 export const SERVICE_CITY_PAGES = [
     "reinigung-regensburg",
     "entruempelung-regensburg",
-    "buero-umzug-regensburg",
+    "bueroumzug-regensburg",
     "reinigung-muenchen",
     "reinigung-nuernberg",
     "reinigung-augsburg",
@@ -193,9 +196,22 @@ export const SERVICE_CITY_PAGES = [
     "halteverbotszone-regensburg",
     "halteverbotszone-nuernberg",
     "halteverbotszone-muenchen",
-    "klaviertransport-regensburg",
-    "klaviertransport-nuernberg",
-    "klaviertransport-muenchen",
+    "klaviertransport-passau",
+    "klaviertransport-straubing",
+    "klaviertransport-rosenheim",
+    "klaviertransport-amberg",
+    "klaviertransport-weiden",
+    "klaviertransport-freising",
+    "klaviertransport-dachau",
+    "bueroumzug-muenchen",
+    "bueroumzug-nuernberg",
+    "bueroumzug-augsburg",
+    "bueroumzug-ingolstadt",
+    "bueroumzug-landshut",
+    "seniorenumzug-augsburg",
+    "seniorenumzug-landshut",
+    "seniorenumzug-passau",
+    "seniorenumzug-ingolstadt",
     "reinigung-rosenheim",
     "entruempelung-rosenheim",
     "reinigung-wuerzburg",
@@ -218,6 +234,29 @@ export const SERVICE_CITY_PAGES = [
     "entruempelung-dachau",
     "reinigung-erlangen",
     "entruempelung-erlangen",
+    "entruempelung-bamberg",
+    "entruempelung-bayreuth",
+    "entruempelung-fuerth",
+    "entruempelung-kaufbeuren",
+    "entruempelung-memmingen",
+    "umzug-berlin",
+    "umzug-hamburg",
+    "umzug-koeln",
+    "umzug-frankfurt",
+    "umzug-stuttgart",
+    "umzug-duesseldorf",
+    "umzug-leipzig",
+    "umzug-dortmund",
+    "umzug-essen",
+    "umzug-bremen",
+    "umzug-reinigung-regensburg",
+    "reinigung-fuerth",
+    "reinigung-erlangen",
+    "reinigung-bamberg",
+    "reinigung-bayreuth",
+    "reinigung-kulmbach",
+    "reinigung-starnberg",
+    "reinigung-garmisch-partenkirchen",
 ] as const;
 
 /** Bavaria authority pages */
@@ -243,6 +282,7 @@ export const SIGNATURE_SEO_PAGES = [
 export const HUB_PAGES = [
     "wissen",
     "alternativen",
+    "standorte",
 ] as const;
 
 /** Long-tail / cost pages */

@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 
 interface SignatureServicesProps {
     dict: any;
+    locale: string;
 }
 
 type ServiceContent = {
@@ -29,7 +30,7 @@ type ServiceContent = {
     desc?: string;
 };
 
-export function SignatureServices({ dict }: SignatureServicesProps) {
+export function SignatureServices({ dict, locale }: SignatureServicesProps) {
     const t = dict?.signature_services || {
         items: {},
         badge: "",
@@ -78,16 +79,15 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
                     className="mb-16 text-center"
                 >
                     <span className="mb-4 inline-block rounded-full border border-blue-400/15 bg-blue-400/10 px-3 py-1 text-sm font-medium text-blue-300">
-                        {t.badge || "Zusätzliche Leistungen"}
+                        {t.badge || (locale === "ru" ? "Дополнительные услуги" : locale === "en" ? "Additional Services" : "Zusätzliche Leistungen")}
                     </span>
 
                     <h2 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-                        {t.title || "Mehr als nur Standard"}
+                        {t.title || (locale === "ru" ? "Больше чем стандарт" : locale === "en" ? "More Than Just Standard" : "Mehr als nur Standard")}
                     </h2>
 
                     <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/50">
-                        {t.subtitle ||
-                            "Leistungen, die den Ablauf strukturierter, komfortabler und verlässlicher machen."}
+                        {t.subtitle || (locale === "ru" ? "Услуги, которые делают процесс более структурированным, комфортным и надежным." : locale === "en" ? "Services that make the process more structured, comfortable and reliable." : "Leistungen, die den Ablauf strukturierter, komfortabler und verlässlicher machen.")}
                     </p>
                 </m.div>
 
@@ -135,9 +135,18 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
                                             {content.title}
                                         </h3>
 
-                                        <p className="text-sm font-medium leading-relaxed text-white/60 group-hover:text-white/80">
+                                        <p className="mb-6 text-sm font-medium leading-relaxed text-white/60 group-hover:text-white/80">
                                             {content.desc}
                                         </p>
+
+                                        <div className="pt-2">
+                                            <a
+                                                href="#contact"
+                                                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold text-white transition-all hover:bg-white hover:text-black"
+                                            >
+                                                {locale === "ru" ? "Запросить сейчас" : locale === "en" ? "Request Now" : "Jetzt anfragen"}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </m.div>

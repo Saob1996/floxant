@@ -41,29 +41,7 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
     const dict = await getDictionary(pageLocale);
     const isDe = pageLocale === "de";
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "FLOXANT",
-        "description": "Professionelles Umzugsunternehmen für ganz Bayern.",
-        "url": `https://www.floxant.de/${pageLocale}/service-area-bayern`,
-        "telephone": "+4915771105087",
-        "address": { 
-            "@type": "PostalAddress", 
-            "streetAddress": "Johanna-Kinkel-Straße 1 + 2", 
-            "addressLocality": "Regensburg", 
-            "postalCode": "93049", 
-            "addressCountry": "DE" 
-        },
-        "geo": { "@type": "GeoCoordinates", "latitude": 49.0134, "longitude": 12.1016 },
-        "areaServed": [
-            { "@type": "State", "name": "Bayern" },
-            { "@type": "City", "name": "Regensburg" },
-            { "@type": "City", "name": "Nürnberg" },
-            { "@type": "City", "name": "München" },
-            { "@type": "City", "name": "Augsburg" }
-        ]
-    };
+    
 
     const regions = [
         { 
@@ -90,9 +68,6 @@ export default async function ServiceAreaBayern({ params }: { params: Promise<{ 
 
     return (
         <main className="min-h-screen bg-background text-start">
-            <Breadcrumbs lang={pageLocale} items={[{ label: "Einsatzgebiet Bayern" }]} />
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
             <section className="pt-8 pb-20 px-6 bg-gradient-to-b from-muted/20 to-background">
                 <div className="max-w-7xl mx-auto text-center space-y-8">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">

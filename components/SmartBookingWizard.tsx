@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PremiumButton } from "@/components/ui/PremiumButton";
+import { useCalculatorStore } from "@/store/calculatorStore";
 
 type ServiceType = "umzug" | "reinigung" | "entsorgung" | null;
 
@@ -39,10 +40,34 @@ interface SmartBookingWizardProps {
 
 function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     const [initialized, setInitialized] = useState(false);
+    const storeService = useCalculatorStore((s) => s.serviceType);
+    const storeBase = useCalculatorStore((s) => s.baseDetails);
+    const storeLead = useCalculatorStore((s) => s.leadDetails);
+    const setMode = useCalculatorStore((s) => s.setMode);
 
     useEffect(() => {
         setInitialized(true);
-    }, []);
+        if (storeService) {
+            setState((prev) => ({
+                ...prev,
+                service: storeService as ServiceType,
+                details: {
+                    ...prev.details,
+                    startAddress: storeBase.fromAddress || "",
+                    endAddress: storeBase.toAddress || "",
+                    date: storeBase.moveDate || "",
+                },
+                step: 2, // Skip service selection if already selected
+            }));
+        }
+        if (storeLead) {
+            setFormData({
+                name: storeLead.customerName || "",
+                email: storeLead.customerEmail || "",
+                phone: storeLead.customerPhone || "",
+            });
+        }
+    }, [storeService, storeBase, storeLead]);
 
     const defaultBooking = {
         steps: {
@@ -205,6 +230,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         setFiles([]);
         setIsSuccess(false);
         setIsSubmitting(false);
+        setMode("selection");
     };
 
     const compressImage = async (file: File): Promise<File> => {

@@ -36,7 +36,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         <main className="min-h-screen bg-background">
             <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Blog", href: "/" + pageLocale + "/blog" }, { label: "Umzug planen: Der ultimative Leitfaden in 10 Schritten" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-            
+
             <article className="py-20 px-6">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-5xl font-extrabold tracking-tight text-foreground mb-8">Umzug planen: Der ultimative Leitfaden in 10 Schritten</h1>
@@ -47,37 +47,37 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                         <span>·</span>
                         <span>Lesezeit: 8 Min.</span>
                     </div>
-                    
+
                     <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
                         <p className="text-lg font-medium text-foreground">Jeder Umzug beginnt mit einer Entscheidung und endet hoffentlich in einem neuen Zuhause, in dem Sie sich wohlfühlen. Dazwischen liegen Wochen voller Organisation. Mit diesem Leitfaden navigieren Sie souverän durch jede Phase.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">1. Drei Monate vorher: Grundsatzplanung</h2>
                         <p>Kündigen Sie den alten Mietvertrag fristgerecht (die meisten Verträge haben eine 3-Monats-Frist). Erstellen Sie ein Inventar aller Möbel und Kartons. Holen Sie sich mindestens drei Angebote von Umzugsunternehmen ein – achten Sie auf <strong>verbindliche Festpreise</strong> statt offener Stundenzettel.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">2. Zwei Monate vorher: Entrümpeln und Sortieren</h2>
                         <p>Jetzt ist der perfekte Zeitpunkt, um radikal auszumisten. Was Sie in den letzten zwei Jahren nicht benutzt haben, brauchen Sie wahrscheinlich nicht. Verkaufen Sie auf Portalen, spenden Sie an Sozialkaufhäuser oder beauftragen Sie eine <Link href={"/" + pageLocale + "/entruempelung"} className="text-primary underline hover:text-primary/80">professionelle Entrümpelung</Link>.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">3. Sechs Wochen vorher: Behördliches und Verträge</h2>
                         <p>Informieren Sie Stromanbieter, Internet- und Telefonanbieter, GEZ, Bank und Versicherungen über Ihren Umzug. Beantragen Sie bei Bedarf einen Nachsendeauftrag bei der Post (online in 5 Minuten erledigt).</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">4. Vier Wochen vorher: Halteverbotszone beantragen</h2>
                         <p>Falls Parkplätze vor der alten oder neuen Wohnung knapp sind, beantragen Sie frühzeitig eine <Link href={"/" + pageLocale + "/halteverbotszone"} className="text-primary underline hover:text-primary/80">amtliche Halteverbotszone</Link>. Die meisten Kommunen benötigen 14 Tage Vorlauf. Professionelle Umzugsunternehmen wie FLOXANT übernehmen diesen Service gerne für Sie.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">5. Zwei Wochen vorher: Verpackung und Vorbereitung</h2>
                         <p>Beginnen Sie mit dem Einpacken von selten genutzten Gegenständen (Bücher, Deko, Saisonkleidung). Beschriften Sie jeden Karton mit Raum und Inhalt. Nummerieren Sie die Kartons und führen Sie eine Liste – so behalten Sie den Überblick und bemerken sofort, wenn beim Transport etwas fehlt.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">6. Eine Woche vorher: Küchen-Demontage und Technik</h2>
                         <p>Lassen Sie die Einbauküche von einem Fachmann demontieren. Sichern Sie alle Kabel und Anschlüsse mit Etiketten (z.B. "Wohnzimmer TV HDMI 1"). Defrosten Sie Kühlschrank und Gefriertruhe mindestens 24 Stunden vor dem Umzug.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">7. Umzugstag: Abläufe und Koordination</h2>
                         <p>Stehen Sie früh auf. Legen Sie eine "Survival-Box" mit Kaffee, Snacks, Ladekabeln und Toilettenpapier bereit – die letzte Kiste, die eingepackt, und die erste, die ausgepackt wird. Halten Sie den Grundriss der neuen Wohnung bereit, damit die Möbelträger wissen, wohin jedes Teil gehört.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">8. Am Abend: Übergabe der alten Wohnung</h2>
                         <p>Machen Sie einen Rundgang und dokumentieren Sie den Zustand mit Fotos. Lesen Sie alle Zählerstände ab (Strom, Gas, Wasser). Idealerweise übergeben Sie besenrein – oder buchen Sie eine <Link href={"/" + pageLocale + "/reinigung"} className="text-primary underline hover:text-primary/80">professionelle Endreinigung</Link>.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">9. Erste Woche: Ummeldung und Einleben</h2>
                         <p>Melden Sie Ihren Wohnsitz innerhalb von 14 Tagen beim Einwohnermeldeamt um (Pflicht nach §17 BMG). Vergessen Sie nicht die Ummeldung des Fahrzeugs bei der Zulassungsstelle.</p>
-                        
+
                         <h2 className="text-3xl font-extrabold text-foreground mt-16 mb-6">10. Langfristig: Garantie prüfen</h2>
                         <p>Überprüfen Sie in den Wochen nach dem Umzug, ob alle Möbel unbeschädigt angekommen sind. Seriöse Umzugsunternehmen haften über die gesetzliche Verkehrshaftung – eventuelle Schadensmeldungen sollten Sie zeitnah einreichen.</p>
                     </div>

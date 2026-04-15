@@ -25,7 +25,7 @@ const ReviewCarousel = dynamic(
 
 const SERVICE_SLUGS = [
     "umzug",
-    "buero-umzug",
+    "bueroumzug",
     "fernumzug",
     "reinigung",
     "entruempelung",
@@ -37,7 +37,7 @@ type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
 const SLUG_TO_KEY: Record<ServiceSlug, string> = {
     umzug: "service_umzug",
-    "buero-umzug": "service_buero_umzug",
+    bueroumzug: "service_buero_umzug",
     fernumzug: "service_fernumzug",
     reinigung: "service_reinigung",
     entruempelung: "service_entruempelung",
@@ -47,12 +47,12 @@ const SLUG_TO_KEY: Record<ServiceSlug, string> = {
 
 const RELATED_SERVICES: Record<ServiceSlug, readonly ServiceSlug[]> = {
     umzug: ["fernumzug", "montage", "halteverbotszone"],
-    "buero-umzug": ["fernumzug", "halteverbotszone", "montage"],
-    fernumzug: ["umzug", "buero-umzug", "halteverbotszone"],
+    bueroumzug: ["fernumzug", "halteverbotszone", "montage"],
+    fernumzug: ["umzug", "bueroumzug", "halteverbotszone"],
     reinigung: ["entruempelung", "umzug", "montage"],
     entruempelung: ["reinigung", "umzug", "montage"],
-    montage: ["umzug", "buero-umzug", "reinigung"],
-    halteverbotszone: ["umzug", "buero-umzug", "fernumzug"],
+    montage: ["umzug", "bueroumzug", "reinigung"],
+    halteverbotszone: ["umzug", "bueroumzug", "fernumzug"],
 };
 
 type PageProps = {
@@ -551,8 +551,8 @@ export default async function CoreServicePage({ params }: PageProps) {
                                 // Specific overrides for Reinung and Entrümpelung
                                 if (serviceSlug === "reinigung" || serviceSlug === "entruempelung") {
                                     href = `/${locale}/${serviceSlug}-${city.slug}`;
-                                } else if (serviceSlug === "buero-umzug" && city.slug === "regensburg") {
-                                    href = `/${locale}/buero-umzug-regensburg`;
+                                } else if (serviceSlug === "bueroumzug" && city.slug === "regensburg") {
+                                    href = `/${locale}/bueroumzug-regensburg`;
                                 } else if ((serviceSlug as string) === "seniorenumzug" && (city.slug === "regensburg" || city.slug === "muenchen" || city.slug === "nuernberg")) {
                                     href = `/${locale}/seniorenumzug-${city.slug}`;
                                 }

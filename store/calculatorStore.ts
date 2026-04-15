@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-export type ServiceType = "umzug" | "reinigung" | "entsorgung";
-export type CalculatorMode = "express" | "advanced" | "lead";
+export type ServiceType = "umzug" | "reinigung" | "entsorgung" | "bueroumzug" | "seniorenumzug" | "klaviertransport" | "einlagerung" | "malerarbeiten" | "akteneinlagerung";
+export type CalculatorMode = "selection" | "express" | "advanced" | "lead";
 export type PricingTier = "economy" | "balanced" | "premium";
 
 export interface BaseDetails {
@@ -33,7 +33,7 @@ export interface UmzugExpressData {
 }
 
 export interface ReinigungExpressData {
-  propertyType: "wohnung" | "haus" | "buero";
+  propertyType: "wohnung" | "haus" | "buero" | "";
   areaM2: number;
   condition: "leicht" | "mittel" | "stark";
 }
@@ -69,6 +69,34 @@ export interface UmzugAdvancedData extends UmzugExpressData {
   freeTextNote: string;
 }
 
+export interface SeniorenumzugAdvancedData extends UmzugAdvancedData {
+  seniorCarePackage: boolean;
+}
+
+export interface BueroumzugAdvancedData extends UmzugExpressData {
+  workstations: number;
+  itSetup: boolean;
+  archiveMeters: number;
+  packingService: boolean;
+  disassemblyService: boolean;
+  assemblyService: boolean;
+  walkingDistanceFrom: number;
+  walkingDistanceTo: number;
+  noParkingZoneFrom: boolean;
+  noParkingZoneTo: boolean;
+  freeTextNote: string;
+}
+
+export interface KlaviertransportAdvancedData {
+  pianoType: "upright" | "grand";
+  fromFloor: number;
+  toFloor: number;
+  hasElevatorFrom: boolean;
+  hasElevatorTo: boolean;
+  distanceKm: number;
+  freeTextNote: string;
+}
+
 export interface ReinigungAdvancedData extends ReinigungExpressData {
   windowsCount: number;
   extras: string[];
@@ -90,6 +118,35 @@ export interface EntsorgungAdvancedData extends EntsorgungExpressData {
   freeTextNote: string;
 }
 
+export interface EinlagerungAdvancedData {
+  volumeM3: number;
+  durationMonths: number;
+  pickupRequired: boolean;
+  insuranceValue: number;
+  freeTextNote: string;
+}
+
+export interface MalerarbeitenAdvancedData {
+  areaM2: number;
+  paintQuality: "standard" | "premium" | "bio";
+  includesCeiling: boolean;
+  includesDoors: boolean;
+  roomsCount: number;
+  isFurnished: boolean;
+  freeTextNote: string;
+}
+
+export interface AkteneinlagerungAdvancedData {
+  boxCount: number;
+  shelfMeters: number;
+  durationMonths: number;
+  pickupRequired: boolean;
+  securityShredding: boolean;
+  digitalization: boolean;
+  insuranceValue: number;
+  freeTextNote: string;
+}
+
 export interface AdvancedEstimate {
   priceRange: { min: number; max: number };
   estimatedHours: string;
@@ -97,6 +154,7 @@ export interface AdvancedEstimate {
   calculationBasis: string;
   operationalFlags: string[];
   confidenceLevel: "high" | "medium" | "low";
+  cbm?: number;
 }
 
 export interface CalculatorState {
@@ -108,6 +166,12 @@ export interface CalculatorState {
   umzugData: UmzugAdvancedData;
   reinigungData: ReinigungAdvancedData;
   entsorgungData: EntsorgungAdvancedData;
+  bueroumzugData: BueroumzugAdvancedData;
+  seniorenumzugData: SeniorenumzugAdvancedData;
+  klaviertransportData: KlaviertransportAdvancedData;
+  einlagerungData: EinlagerungAdvancedData;
+  malerarbeitenData: MalerarbeitenAdvancedData;
+  akteneinlagerungData: AkteneinlagerungAdvancedData;
 
   expressPriceRange: { min: number; max: number } | null;
   advancedEstimate: AdvancedEstimate | null;
@@ -123,6 +187,12 @@ export interface CalculatorState {
   updateUmzugData: (data: Partial<UmzugAdvancedData>) => void;
   updateReinigungData: (data: Partial<ReinigungAdvancedData>) => void;
   updateEntsorgungData: (data: Partial<EntsorgungAdvancedData>) => void;
+  updateBueroumzugData: (data: Partial<BueroumzugAdvancedData>) => void;
+  updateSeniorenumzugData: (data: Partial<SeniorenumzugAdvancedData>) => void;
+  updateKlaviertransportData: (data: Partial<KlaviertransportAdvancedData>) => void;
+  updateEinlagerungData: (data: Partial<EinlagerungAdvancedData>) => void;
+  updateMalerarbeitenData: (data: Partial<MalerarbeitenAdvancedData>) => void;
+  updateAkteneinlagerungData: (data: Partial<AkteneinlagerungAdvancedData>) => void;
 
   setExpressPriceRange: (min: number, max: number) => void;
   setAdvancedEstimate: (estimate: AdvancedEstimate | null) => void;
@@ -182,8 +252,43 @@ const initialUmzugData: UmzugAdvancedData = {
   freeTextNote: "",
 };
 
+const initialSeniorenumzugData: SeniorenumzugAdvancedData = {
+  ...initialUmzugData,
+  seniorCarePackage: true,
+};
+
+const initialBueroumzugData: BueroumzugAdvancedData = {
+  areaM2: 0,
+  rooms: 1,
+  fromFloor: 0,
+  toFloor: 0,
+  hasElevatorFrom: false,
+  hasElevatorTo: false,
+  workstations: 1,
+  itSetup: true,
+  archiveMeters: 0,
+  packingService: true,
+  disassemblyService: false,
+  assemblyService: false,
+  walkingDistanceFrom: 15,
+  walkingDistanceTo: 15,
+  noParkingZoneFrom: false,
+  noParkingZoneTo: false,
+  freeTextNote: "",
+};
+
+const initialKlaviertransportData: KlaviertransportAdvancedData = {
+  pianoType: "upright",
+  fromFloor: 0,
+  toFloor: 0,
+  hasElevatorFrom: false,
+  hasElevatorTo: false,
+  distanceKm: 10,
+  freeTextNote: "",
+};
+
 const initialReinigungData: ReinigungAdvancedData = {
-  propertyType: "wohnung",
+  propertyType: "",
   areaM2: 0,
   condition: "mittel",
   windowsCount: 0,
@@ -205,6 +310,35 @@ const initialEntsorgungData: EntsorgungAdvancedData = {
   disassemblyRequired: false,
   urgency: "flexibel",
   uncertainVolume: false,
+  freeTextNote: "",
+};
+
+const initialEinlagerungData: EinlagerungAdvancedData = {
+  volumeM3: 5,
+  durationMonths: 3,
+  pickupRequired: true,
+  insuranceValue: 5000,
+  freeTextNote: "",
+};
+
+const initialMalerarbeitenData: MalerarbeitenAdvancedData = {
+  areaM2: 50,
+  paintQuality: "standard",
+  includesCeiling: true,
+  includesDoors: false,
+  roomsCount: 2,
+  isFurnished: false,
+  freeTextNote: "",
+};
+
+const initialAkteneinlagerungData: AkteneinlagerungAdvancedData = {
+  boxCount: 0,
+  shelfMeters: 0,
+  durationMonths: 6,
+  pickupRequired: true,
+  securityShredding: false,
+  digitalization: false,
+  insuranceValue: 10000,
   freeTextNote: "",
 };
 
@@ -248,13 +382,14 @@ function advancedEstimateEqual(a: AdvancedEstimate | null, b: AdvancedEstimate |
     a.recommendedTeam === b.recommendedTeam &&
     a.calculationBasis === b.calculationBasis &&
     a.confidenceLevel === b.confidenceLevel &&
+    a.cbm === b.cbm &&
     arraysEqual(a.operationalFlags, b.operationalFlags)
   );
 }
 
 export const useCalculatorStore = create<CalculatorState>((set) => ({
   serviceType: null,
-  mode: "express",
+  mode: "selection",
 
   baseDetails: initialBaseDetails,
   leadDetails: initialLeadDetails,
@@ -262,6 +397,12 @@ export const useCalculatorStore = create<CalculatorState>((set) => ({
   umzugData: initialUmzugData,
   reinigungData: initialReinigungData,
   entsorgungData: initialEntsorgungData,
+  bueroumzugData: initialBueroumzugData,
+  seniorenumzugData: initialSeniorenumzugData,
+  klaviertransportData: initialKlaviertransportData,
+  einlagerungData: initialEinlagerungData,
+  malerarbeitenData: initialMalerarbeitenData,
+  akteneinlagerungData: initialAkteneinlagerungData,
 
   expressPriceRange: null,
   advancedEstimate: null,
@@ -320,6 +461,48 @@ export const useCalculatorStore = create<CalculatorState>((set) => ({
       const next = mergeIfChanged(state.entsorgungData, data);
       if (next === state.entsorgungData) return state;
       return { entsorgungData: next };
+    }),
+
+  updateBueroumzugData: (data) =>
+    set((state) => {
+      const next = mergeIfChanged(state.bueroumzugData, data);
+      if (next === state.bueroumzugData) return state;
+      return { bueroumzugData: next };
+    }),
+
+  updateSeniorenumzugData: (data) =>
+    set((state) => {
+      const next = mergeIfChanged(state.seniorenumzugData, data);
+      if (next === state.seniorenumzugData) return state;
+      return { seniorenumzugData: next };
+    }),
+
+  updateKlaviertransportData: (data) =>
+    set((state) => {
+      const next = mergeIfChanged(state.klaviertransportData, data);
+      if (next === state.klaviertransportData) return state;
+      return { klaviertransportData: next };
+    }),
+    
+  updateEinlagerungData: (data) =>
+    set((state) => {
+      const next = mergeIfChanged(state.einlagerungData, data);
+      if (next === state.einlagerungData) return state;
+      return { einlagerungData: next };
+    }),
+
+  updateMalerarbeitenData: (data) =>
+    set((state) => {
+      const next = mergeIfChanged(state.malerarbeitenData, data);
+      if (next === state.malerarbeitenData) return state;
+      return { malerarbeitenData: next };
+    }),
+
+  updateAkteneinlagerungData: (data) =>
+    set((state) => {
+      const next = mergeIfChanged(state.akteneinlagerungData, data);
+      if (next === state.akteneinlagerungData) return state;
+      return { akteneinlagerungData: next };
     }),
 
   setExpressPriceRange: (min, max) =>

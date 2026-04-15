@@ -15,10 +15,9 @@ import {
 
 /**
  * Sitemap Architecture:
- * - Only DE pages are indexable → only DE sitemap segment exists.
- * - EN/RU are noindex → removed from sitemap entirely.
- * - sitemap.xml is the index pointing to sitemap-de.xml only.
- * - sitemap-en.xml and sitemap-ru.xml return 404 (no indexable content).
+ * - DE, EN and RU are indexable.
+ * - Each locale has its own sitemap segment (sitemap-de.xml, sitemap-en.xml, sitemap-ru.xml).
+ * - sitemap.xml is the index pointing to all locale sitemaps.
  */
 
 interface SitemapUrl {
@@ -47,19 +46,20 @@ function escapeXml(unsafe: string): string {
     });
 }
 
-function buildAbsoluteUrl(route: string): string {
-    return `${BASE_URL}/de${route ? `/${route}` : ""}`;
+function buildAbsoluteUrl(route: string, locale: string): string {
+    return `${BASE_URL}/${locale}${route ? `/${route}` : ""}`;
 }
 
 function addEntries(
     urls: SitemapUrl[],
     routes: readonly string[],
     priority: string,
-    changefreq: string
+    changefreq: string,
+    locale: string
 ): void {
     for (const route of routes) {
         urls.push({
-            loc: buildAbsoluteUrl(route),
+            loc: buildAbsoluteUrl(route, locale),
             lastmod: LASTMOD,
             changefreq,
             priority,
@@ -74,6 +74,14 @@ export function generateSitemapIndexResponse(): Response {
     <loc>${escapeXml(`${BASE_URL}/sitemap-de.xml`)}</loc>
     <lastmod>${LASTMOD}</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>${escapeXml(`${BASE_URL}/sitemap-en.xml`)}</loc>
+    <lastmod>${LASTMOD}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${escapeXml(`${BASE_URL}/sitemap-ru.xml`)}</loc>
+    <lastmod>${LASTMOD}</lastmod>
+  </sitemap>
 </sitemapindex>`;
 
     return new Response(xml, {
@@ -82,51 +90,52 @@ export function generateSitemapIndexResponse(): Response {
 }
 
 export function generateSitemapSegmentResponse(segmentId: string): Response {
-    // Only DE segment is valid. EN/RU are noindex and must not appear in sitemaps.
-    if (segmentId !== "de") {
+    // Validate segment
+    if (!["de", "en", "ru"].includes(segmentId)) {
         return new Response("Not Found", { status: 404 });
     }
 
+    const locale = segmentId;
     const urls: SitemapUrl[] = [];
 
     // Homepage
     urls.push({
-        loc: buildAbsoluteUrl(""),
+        loc: buildAbsoluteUrl("", locale),
         lastmod: LASTMOD,
         changefreq: "daily",
         priority: "1.0",
     });
 
     // Core services
-    addEntries(urls, CORE_SERVICES, "0.9", "weekly");
+    addEntries(urls, CORE_SERVICES, "0.9", "weekly", locale);
 
     // City pages
-    addEntries(urls, CITY_PAGES, "0.9", "daily");
+    addEntries(urls, CITY_PAGES, "0.9", "daily", locale);
 
     // Service + city pages
-    addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
+    addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly", locale);
 
     // Bavaria authority pages
-    addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
+    addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly", locale);
 
     // Hub pages
-    addEntries(urls, HUB_PAGES, "0.8", "weekly");
+    addEntries(urls, HUB_PAGES, "0.8", "weekly", locale);
 
     // Signature SEO pages
-    addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly");
+    addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly", locale);
 
     // Long-tail pages
-    addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly");
+    addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly", locale);
 
     // Ratgeber / Blog pages
-    addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
+    addEntries(urls, RATGEBER_PAGES, "0.6", "weekly", locale);
 
     // Signature services
     const signatureRoutes = SIGNATURE_SERVICES.map((slug) => `signature/${slug}`);
-    addEntries(urls, signatureRoutes, "0.7", "monthly");
+    addEntries(urls, signatureRoutes, "0.7", "monthly", locale);
 
     // Legal pages
-    addEntries(urls, LEGAL_PAGES, "0.3", "yearly");
+    addEntries(urls, LEGAL_PAGES, "0.3", "yearly", locale);
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

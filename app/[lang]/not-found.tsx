@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Header } from "@/components/Header";
+import { FloxNavigation as Header } from "@/components/FloxNavigation";
 import { m } from "framer-motion";
 import { MoveLeft, HelpCircle } from "lucide-react";
 import de from "../../dictionaries/de.json";

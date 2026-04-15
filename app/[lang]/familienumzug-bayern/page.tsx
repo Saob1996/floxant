@@ -32,13 +32,13 @@ export async function generateMetadata({
         });
 
     const title =
-        resolveField(seoContent.meta_title, seoFallback.meta_title, city) ||
-        resolveField(content.meta_title, fallback.meta_title, city) ||
+        resolveField(seoContent.meta_title, seoFallback.meta_title, city, lang) ||
+        resolveField(content.meta_title, fallback.meta_title, city, lang) ||
         `Familienumzug ${city} | FLOXANT`;
 
     const description =
-        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
-        resolveField(content.meta_desc, fallback.meta_desc, city) ||
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, lang) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city, lang) ||
         `Professioneller Familienumzug in ${city}.`;
 
     return generatePageSEO({
@@ -71,15 +71,15 @@ export default async function FamilienumzugBayernPage({
         });
 
     const heroTitle =
-        resolveField(content.hero_h1, fallback.hero_h1, city) || "Familienumzug";
+        resolveField(content.hero_h1, fallback.hero_h1, city, lang) || "Familienumzug";
     const serviceName = `${heroTitle} ${city}`.trim();
 
     const metaDescription =
-        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city) ||
-        resolveField(content.meta_desc, fallback.meta_desc, city);
+        resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, lang) ||
+        resolveField(content.meta_desc, fallback.meta_desc, city, lang);
 
     const moveLabel =
-        resolveField(content.link_umzug, fallback.link_umzug, city) ||
+        resolveField(content.link_umzug, fallback.link_umzug, city, lang) ||
         `Umzug ${city}`;
 
     const serviceJsonLd = {
@@ -125,24 +125,14 @@ export default async function FamilienumzugBayernPage({
     };
 
     return (
-        <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
-            />
-
-            <SpecialtyPageLayout
+        <SpecialtyPageLayout
                 pageLocale={pageLocale}
                 dict={localeDict}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, lang)}
                 heroTitle={heroTitle}
                 city={city}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta, city)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city, lang)}
+                ctaText={resolveField(content.cta, fallback.cta, city, lang)}
                 breadcrumbs={[
                     {
                         label: moveLabel,
@@ -194,15 +184,14 @@ export default async function FamilienumzugBayernPage({
                         ],
                     },
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, lang)}
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city),
-                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                    resolveField(content.section2_p1, fallback.section2_p1, city, lang),
+                    resolveField(content.section2_p2, fallback.section2_p2, city, lang),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, lang)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, lang)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, lang)}
             />
-        </>
     );
 }

@@ -6,6 +6,7 @@ import { ArrowRight, BookOpen } from 'lucide-react';
 import { getDictionary } from "../../../../get-dictionary";
 
 import { generatePageSEO } from "@/lib/seo";
+import { AuthorBox } from "@/components/AuthorBox";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; lang: string }> }) {
     const { lang: pageLocale, slug } = await params;
@@ -54,6 +55,12 @@ export default async function KnowledgeHubPage({ params }: { params: Promise<{ s
             <div 
               className="prose prose-invert prose-blue max-w-none text-white/70"
               dangerouslySetInnerHTML={{ __html: article.htmlBlob }}
+            />
+
+            <AuthorBox 
+              name="Alexander Florax"
+              role="Senior Logistik-Experte & Gründer"
+              description="Mit über 15 Jahren Erfahrung in der bayerischen Umzugsbranche ist Alexander Florax Ihr Ansprechpartner für komplexe Logistikprojekte. Er steht für die FLOXANT-Qualitätsversprechen und sorgt für reibungslose Abläufe von Regensburg bis München."
             />
           </div>
 

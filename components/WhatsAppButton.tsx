@@ -39,7 +39,7 @@ export function WhatsAppButton({ dic }: { dic?: any }) {
             </AnimatePresence>
 
             <m.a
-                href="https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot."
+                href={`https://wa.me/4915771105087?text=${encodeURIComponent(dic?.contact?.whatsapp_message || "Hallo FLOXANT, ich interessiere mich für ein Angebot.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ scale: 0.92, opacity: 0 }}
@@ -49,7 +49,7 @@ export function WhatsAppButton({ dic }: { dic?: any }) {
                 onHoverStart={() => setShowTooltip(true)}
                 onHoverEnd={() => setShowTooltip(false)}
                 className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-green-900/20 transition-colors hover:bg-[#1fb85a]"
-                aria-label="Chat with us on WhatsApp"
+                aria-label={dic?.common?.whatsapp_title || "WhatsApp"}
             >
                 <MessageCircle className="h-6 w-6 fill-current" />
             </m.a>

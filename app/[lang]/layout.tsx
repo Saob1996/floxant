@@ -6,12 +6,13 @@ import { notFound } from "next/navigation";
 
 import "../globals.css";
 import { cn } from "@/lib/utils";
-import { generatePageSEO } from "@/lib/seo";
+import { generatePageSEO, viewport } from "@/lib/seo";
+export { viewport };
 import { JsonLd } from "../../components/JsonLd";
 import { Footer } from "../../components/Footer";
 import AuthProvider from "../../components/session-provider";
 import { MotionProvider } from "../../components/MotionProvider";
-import { Header } from "../../components/Header";
+import { FloxNavigation as Header } from "../../components/FloxNavigation";
 import UtmCapture from "@/components/UtmCapture";
 
 import { getDictionary } from "../../get-dictionary";
@@ -47,12 +48,14 @@ const fontSans = Inter({
     subsets: ["latin"],
     variable: "--font-sans",
     weight: ["300", "400", "500", "600", "700"],
+    display: "swap",
 });
 
 const fontHeading = Outfit({
     subsets: ["latin"],
     variable: "--font-heading",
     weight: ["300", "400", "500", "600", "700", "800"],
+    display: "swap",
 });
 
 export const runtime = "nodejs";

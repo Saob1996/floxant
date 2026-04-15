@@ -11,6 +11,7 @@ const LANGUAGE_LABELS: Record<Locale, string> = {
     de: "Deutsch",
     en: "English",
     ru: "Русский",
+    bg: "Български",
 };
 
 const languages = i18n.locales.map((code) => ({
@@ -18,7 +19,8 @@ const languages = i18n.locales.map((code) => ({
     name: LANGUAGE_LABELS[code],
 })) as ReadonlyArray<{ code: Locale; name: string }>;
 
-export function LanguageSwitcher({ lang }: { lang: Locale }) {
+export function LanguageSwitcher({ lang, dic }: { lang: Locale; dic?: any }) {
+    const label = dic?.common?.select_language || "Sprache wählen";
     const pathname = usePathname();
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +95,7 @@ export function LanguageSwitcher({ lang }: { lang: Locale }) {
                 )}
                 aria-haspopup="menu"
                 aria-expanded={isOpen}
-                aria-label="Sprache wählen"
+                aria-label={label}
             >
                 <Globe className="h-4 w-4" />
                 <span className="hidden max-w-[96px] truncate sm:inline-block">
@@ -118,7 +120,7 @@ export function LanguageSwitcher({ lang }: { lang: Locale }) {
                         className="absolute end-0 top-full mt-2 w-48 overflow-hidden rounded-2xl border border-white/10 bg-[#11131A] p-1.5 shadow-2xl"
                     >
                         <div className="mb-1 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/30">
-                            Sprache wählen
+                            {label}
                         </div>
 
                         <div className="flex flex-col gap-0.5">

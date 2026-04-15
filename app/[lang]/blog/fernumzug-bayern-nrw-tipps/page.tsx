@@ -36,7 +36,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         <main className="min-h-screen bg-background">
             <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Blog", href: "/" + pageLocale + "/blog" }, { label: "Fernumzug von Bayern nach NRW: Der komplette Guide" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-            
+
             <article className="py-20 px-6">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-5xl font-extrabold tracking-tight text-foreground mb-8">Fernumzug von Bayern nach NRW: Der komplette Guide</h1>
@@ -47,7 +47,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                         <span>·</span>
                         <span>Lesezeit: 8 Min.</span>
                     </div>
-                    
+
                     <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
                         <p className="text-lg font-medium text-foreground">Bayern und Nordrhein-Westfalen sind durch Arbeitsmigration eng verbunden. Jedes Jahr ziehen tausende Menschen zwischen den beiden Bundesländern um. Die Distanz von rund 500-600 Kilometern macht den Transport zu einer logistischen Herausforderung – aber mit der richtigen Planung ist auch ein Fernumzug stressfrei machbar.</p>
 

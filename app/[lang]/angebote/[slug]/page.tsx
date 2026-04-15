@@ -43,18 +43,10 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
     }
   ];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "mainEntity": [
-                { "@type": "Question", "name": content.faqs?.[0]?.q, "acceptedAnswer": { "@type": "Answer", "text": content.faqs?.[0]?.a } }
-            ]
-  };
+  
 
   return (
     <main className="min-h-screen bg-[#05050A] text-white pt-32 pb-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <header className="text-center mb-16 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">

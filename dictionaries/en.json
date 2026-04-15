@@ -8,6 +8,7 @@
     "book_now": "BOOK NOW",
     "dashboard": "Dashboard",
     "service_umzug": "Moving",
+    "service_bueroumzug": "Office Move",
     "service_reinigung": "Cleaning",
     "service_entruempelung": "Clearance"
   },
@@ -18,20 +19,39 @@
   },
   "area": {
     "title": "Our Service Areas",
-    "description": "FLOXANT is headquartered in Regensburg and the Oberpfalz. From here, we serve clients throughout Bayern, as well as handle nationwide long-distance moves.",
-    "hub_note": "FLOXANT is headquartered in Regensburg and the Oberpfalz. From here, we serve clients throughout Bayern, as well as handle nationwide long-distance moves.",
+    "description": "FLOXANT is headquartered in Regensburg and the Upper Palatinate. From here, we serve clients throughout Bavaria, as well as handle nationwide long-distance moves.",
+    "hub_note": "FLOXANT is headquartered in Regensburg and the Upper Palatinate. From here, we serve clients throughout Bavaria, as well as handle nationwide long-distance moves.",
     "cities": {
       "regensburg": "Regensburg",
-      "munich": "München",
-      "nuremberg": "Nürnberg",
+      "munich": "Munich",
+      "nuremberg": "Nuremberg",
       "augsburg": "Augsburg",
       "passau": "Passau",
       "landshut": "Landshut",
       "straubing": "Straubing",
       "schwandorf": "Schwandorf",
       "amberg": "Amberg",
-      "bavaria": "All of Bayern"
+      "bavaria": "Bavaria"
+    },
+    "regions": {
+      "Oberpfalz": "Upper Palatinate",
+      "Oberbayern": "Upper Bavaria",
+      "Mittelfranken": "Middle Franconia",
+      "Niederbayern": "Lower Bavaria",
+      "Schwaben": "Swabia",
+      "Oberfranken": "Upper Franconia",
+      "Unterfranken": "Lower Franconia",
+      "Stadtbezirk München": "Munich Districts",
+      "Stadtbezirk Nürnberg": "Nuremberg Districts"
     }
+  },
+  "regional_grid": {
+    "badge": "Bavaria-wide Logistics Presence",
+    "title": "Our Regional Network",
+    "subtitle": "From the Alps to Franconia – FLOXANT combines international logistics power with deep-rooted local expertise in every Bavarian district.",
+    "help_title": "Your city not on the list?",
+    "help_desc": "No problem. Our teams are mobile and perform logistics projects throughout Bavaria, Germany and Europe at a fixed price.",
+    "cta": "Show all locations"
   },
   "booking": {
     "steps": {
@@ -54,8 +74,16 @@
     },
     "services": {
       "umzug": {
-        "label": "Relocation",
+        "label": "Private Move",
         "desc": "Move stress-free."
+      },
+      "bueroumzug": {
+        "label": "Office Move",
+        "desc": "Professional business logistics."
+      },
+      "seniorenumzug": {
+        "label": "Senior Move",
+        "desc": "With care & assistance."
       },
       "reinigung": {
         "label": "Cleaning",
@@ -64,6 +92,10 @@
       "entsorgung": {
         "label": "Disposal",
         "desc": "Professional & fast."
+      },
+      "klaviertransport": {
+        "label": "Piano Transport",
+        "desc": "Specialized instrument logistics."
       }
     },
     "form": {
@@ -133,6 +165,9 @@
     "private_moving": "Private Relocation",
     "office_moving": "Office Relocation",
     "furniture_assembly": "Furniture Assembly",
+    "storage": "Storage",
+    "painting": "Painting Works",
+    "piano_moving": "Piano Transport",
     "cleaning_clearance": "Cleaning & Clearance",
     "locations": "Locations",
     "company": "Company",
@@ -146,9 +181,10 @@
     "special_header": "Special",
     "no_parking_zone": "No-Parking Zone",
     "cleaning": "Cleaning",
-    "clearance": "Entrümpelung (Clearance)",
-    "cleaning_bavaria": "Cleaning Bayern",
-    "clearance_bavaria": "Clearance Bayern",
+    "clearance": "Clearance",
+    "long_distance": "Long-Distance Move",
+    "cleaning_bavaria": "Cleaning Bavaria",
+    "clearance_bavaria": "Clearance Bavaria",
     "apartment_clearance": "Apartment Clearance",
     "moving_24h": "24h Relocation",
     "student_moving": "Student Relocation",
@@ -157,16 +193,104 @@
     "moving_costs": "Moving Costs",
     "service_area": "Service Area",
     "guide": "Guide",
-    "internal": "Internal"
+    "internal": "Internal",
+    "fast_moving": "Short-Notice Moving",
+    "emergency_moving": "Emergency Moving",
+    "knowledge_hub": "Knowledge Hub"
   },
   "contact": {
+    "title": "Any Questions?",
     "name": "Name",
     "email": "Email",
     "message": "Message",
     "submit": "Send",
     "success": "Message sent",
-    "error": "Error sending message",
-    "email_label": "Email"
+    "error": "Error sending",
+    "email_label": "Email",
+    "phone": "Phone",
+    "whatsapp_message": "Hello FLOXANT, I am interested in a move/cleaning quote."
+  },
+  "common": {
+    "fixed_price_guarantee": "Fixed prices without surprises",
+    "trust_bar": {
+      "certified": "Certified Bavarian specialist company",
+      "insurance": "Full comprehensive insurance coverage",
+      "fixed_price": "Fixed prices without surprises"
+    },
+    "services_in_city": "Our services for {city}",
+    "human_trust": {
+      "badge_security": "Security & Care",
+      "badge_local": "Regional Strength",
+      "security_title": "Your belongings in safe hands",
+      "security_text": "We handle your furniture as if it were our own. Our trained teams use special packaging materials and state-of-the-art equipment.",
+      "local_title": "Deeply rooted in {city}",
+      "local_text": "No anonymous mediation. We are your local logistics partner directly from the neighborhood. Our local knowledge in {city} ensures smooth processes."
+    },
+    "quality": {
+      "title_01": "Quality & Seals",
+      "text_01": "Our teams are subject to strict quality controls and are regularly trained internally.",
+      "title_02": "Precise Planning",
+      "text_02": "No floor is too high, no staircase too narrow. We coordinate every step.",
+      "title_03": "Transparency",
+      "text_03": "You receive an offer that stands. We guarantee you 100% price certainty."
+    },
+    "knowledge_title": "Expert knowledge for {city}",
+    "knowledge_subtitle": "Benefit from our insider know-how for your smooth process.",
+    "all_articles": "Read all articles",
+    "region_label": "Your region: {region}",
+    "region_text": "We are not only active in {city}, but cover the entire {region} region. Benefit from our local strength.",
+    "show_all_locations": "Show all locations",
+    "stats": {
+      "projects": "Projects in {city}",
+      "satisfaction": "Customer Satisfaction",
+      "experts": "Experts on Site",
+      "response": "Response Time"
+    },
+    "neighborhoods_title": "Availability in {city} & Surroundings",
+    "whatsapp_title": "WhatsApp",
+    "whatsapp_subtitle": "Text us directly",
+    "cost_calculator_btn": "Calculate Price",
+    "whatsapp_call": "Direct WhatsApp",
+    "fast_question": "Quick Question?",
+    "write_whatsapp_now": "Chat via WhatsApp now",
+    "ready_for_service": "Ready for your move?",
+    "cta_description": "Request your non-binding offer now.",
+    "authority_bio": "Your local expert for relocation, cleaning and clearance in Bavaria.",
+    "badge_quality_title": "Certified Quality",
+    "badge_quality_desc": "Regular Audits & Certifications",
+    "badge_ihk_title": "IHK Specialist Company",
+    "badge_ihk_desc": "Entered in the Bavarian Commercial Register",
+    "badge_insured_title": "100% Insured",
+    "badge_insured_desc": "Public & Product Liability Protection",
+    "umzug_munich": "Moving Munich",
+    "umzug_nuremberg": "Moving Nuremberg",
+    "umzug_regensburg": "Moving Regensburg",
+    "umzug_landshut": "Moving Landshut",
+    "umzug_neutraubling": "Moving Neutraubling",
+    "umzug_oberpfalz": "Moving Upper Palatinate",
+    "umzug_landkreis_regensburg": "Regensburg District",
+    "umzug_augsburg": "Moving Augsburg",
+    "umzug_bavaria": "Moving Bavaria",
+    "bueroumzug": "Office Relocation",
+    "seniorenumzug": "Senior Relocation",
+    "klaviertransport": "Piano Transport",
+    "entruempelung": "Clearance",
+    "reinigung": "Cleaning",
+    "fernumzug": "Long-Distance Move",
+    "kleintransporte": "Small Transports",
+    "faq_title": "Frequently Asked Questions",
+    "top_ratings": "Top rated",
+    "fixed_price": "Fixed Price",
+    "fixed_price_no_surprises": "No hidden costs",
+    "insured": "Insured",
+    "guide": "Guide",
+    "quick_question": "Quick Question?",
+    "email_hotline": "Email",
+    "known_from": "Known from",
+    "also_available_in": "Also available in",
+    "whatsapp_cta_title": "Enquire quickly via WhatsApp",
+    "whatsapp_cta_desc": "Get an answer in a few minutes.",
+    "select_language": "Select Language"
   },
   "trust": {
     "experience": "Years of Experience",
@@ -179,6 +303,30 @@
     "regional_active": "Regionally Active",
     "location_generic": "Operations in Regensburg and Bavaria – well planned.",
     "location_template": "Requests from {location} are processed directly."
+  },
+  "reviews": {
+    "satisfaction_label": "Customer Satisfaction",
+    "title_part1": "What our clients",
+    "title_part2": "say",
+    "subtitle": "Real feedback, clear impressions and traceable experiences from everyday operations.",
+    "verified_label": "Verified feedback",
+    "items": [
+      {
+        "text": "Punctual, clean and reliable. The process was much more structured than expected.",
+        "name": "Client from Regensburg",
+        "role": "Verified inquiry"
+      },
+      {
+        "text": "Good communication, clear price structure and a professional overall impression.",
+        "name": "Client from Bavaria",
+        "role": "Verified inquiry"
+      },
+      {
+        "text": "Quick feedback and a serious impression even before the actual operation.",
+        "name": "Client from Upper Palatinate",
+        "role": "Verified inquiry"
+      }
+    ]
   },
   "auth": {
     "login_title": "Admin Login",
@@ -216,6 +364,48 @@
     "card": {
       "edit": "Edit",
       "no_extras": "No Extras"
+    }
+  },
+  "authority_magnet": {
+    "title": "Transparency & Local Expertise in {city}",
+    "subtitle": "A successful project requires real on-site knowledge. To offer you maximum transparency, we constantly check our capacities and document our logistical reach in the {city} area.",
+    "activity_title": "Current Planning & Fleet Activity",
+    "services": {
+      "family": {
+        "title": "Private Relocation (Family)",
+        "desc": "Currently being planned in {city}. Includes full service with kitchen assembly and packing material provision."
+      },
+      "commercial": {
+        "title": "Company Relocation",
+        "desc": "Short-notice scheduling for a commercial property. Focused on secure IT transport and file archiving."
+      },
+      "clearance": {
+        "title": "Professional Clearance",
+        "desc": "Site visit registered in {city}. Objective: Broom-clean apartment clearance with certified disposal."
+      },
+      "special": {
+        "title": "Special Furniture Transport",
+        "desc": "Regular partial load via our weekly routes through the {region} region."
+      }
+    },
+    "search_title": "Search specifically for \"FLOXANT experiences\"",
+    "search_desc": "The choice of service provider for your move in {city} is an absolute matter of trust. We recommend our customers check our reviews independently. Enter FLOXANT Moving Experiences into your search engine and convince yourself of our consistent quality, regional reliability and the consistently positive customer feedback.",
+    "nap_title": "Central Contact Details (NAP)",
+    "nap_operating_area": "Operating area: {city} / {region}",
+    "useful_title": "Useful information for your start in {city}",
+    "useful": {
+      "no_parking": {
+        "title": "No-Parking Zones",
+        "desc": "Apply early for an official no-parking zone at the responsible office in {city} (or we can do it for you). The lead time should ideally be at least 14 days to complete the bureaucratic process in time."
+      },
+      "registration": {
+        "title": "Authorities Registration",
+        "desc": "According to the Federal Registration Act, you have 14 days after moving into the new apartment to re-register your residence at the registration office in {city}. Don't forget to register your vehicle!"
+      },
+      "insurance": {
+        "title": "Liability & Insurance",
+        "desc": "A licensed carrier is liable according to § 451g HGB with exactly 620 EUR per cubic meter of loading volume. For art, antiques or high-priced IT equipment, we recommend taking out additional transport insurance."
+      }
     }
   },
   "pages": {
@@ -280,6 +470,7 @@
     "service_umzug": {
       "meta_title": "Private Relocation – Your Personal Move",
       "meta_desc": "FLOXANT accompanies your private relocation with precision and discretion. Based in Regensburg – covering all of Bayern and nationwide.",
+      "keywords": ["Relocation {city}", "Moving Company {city}", "English speaking movers {city}", "long distance move {city}", "Privatumzug {city}", "FLOXANT {city}"],
       "badge": "Core Service",
       "hero_title": "Private Relocation",
       "hero_desc": "Moving is more than just transport. It is a transition. FLOXANT accompanies this process discreetly, systematically, and reliably.",
@@ -323,6 +514,7 @@
     "service_buero_umzug": {
       "meta_title": "Office Relocation – Professional Corporate Moves",
       "meta_desc": "FLOXANT organizes your office relocation with minimal downtime. Structured, discreet, and on schedule – operated from Regensburg for all of Bayern.",
+      "keywords": ["Office relocation {city}", "Business move {city}", "Corporate relocation {city}", "IT move {city}", "Office movers {city}"],
       "badge": "Commercial",
       "hero_title": "Office Relocation",
       "hero_desc": "Business continuity requires planning. We ensure your company can resume operations at the new location without delay.",
@@ -1002,20 +1194,20 @@
     "umzug_kosten_regensburg": {
       "faqs": [
         {
-          "q": "Was kostet ein Umzug innerhalb von Regensburg durchschnittlich?",
-          "a": "Für eine 2-Zimmer-Wohnung innerhalb Regensburgs müssen Sie bei einem professionellen Umzugsunternehmen mit Kosten zwischen 600 und 1.200 Euro rechnen, abhängig vom Transportvolumen und Serviceumfang."
+          "q": "How much does a move within Regensburg cost on average?",
+          "a": "For a 2-room apartment within Regensburg, you should expect costs between 600 and 1,200 euros with a professional moving company, depending on the volume and scope of service."
         },
         {
-          "q": "Wie kann ich bei den Umzugskosten sparen?",
-          "a": "Sie senken die Kosten erheblich, indem Sie vorab rigoros entrümpeln, Umzugskartons selbst packen und die Halteverbotszone (falls erlaubt) selbst organisieren. Buchen Sie bei FLOXANT nur den Transport und Beladeservice."
+          "q": "How can I save on moving costs?",
+          "a": "You can significantly reduce costs by clearing out inventory beforehand, packing boxes yourself, and organizing a no-parking zone yourself (if allowed). At FLOXANT, you can book just the transport and loading service."
         },
         {
-          "q": "Was kostet ein Umzug in Regensburg?",
-          "a": "Zwischen 400 und 2.500 Euro je nach Wohnungsgröße und Service."
+          "q": "What does a move in Regensburg cost?",
+          "a": "Between 400 and 2,500 euros depending on the size of the apartment and service level."
         },
         {
-          "q": "Gibt es Festpreise?",
-          "a": "Ja. FLOXANT bietet nach kostenloser Besichtigung ein verbindliches Festpreisangebot."
+          "q": "Are there fixed prices?",
+          "a": "Yes. FLOXANT offers a binding fixed-price quote after a free inspection."
         }
       ]
     },
@@ -4509,24 +4701,236 @@
       "cta": "Request Move",
       "service1": {
         "title": "Private Move",
-        "l1": "Furniture Assembly",
-        "l2": "Safe Transport",
-        "l3": "Packing Service",
-        "l4": "Fully Insured"
+        "l1": "Consultation",
+        "l2": "Packing Service",
+        "l3": "Furniture Assembly",
+        "l4": "Kitchen Installation"
       },
       "service2": {
-        "title": "Advantages",
-        "l1": "Free Viewing",
-        "l2": "Fixed Price Guarantee",
-        "l3": "Experienced Team",
-        "l4": "On-time Delivery"
+        "title": "Full Service",
+        "l1": "All-inclusive packing",
+        "l2": "Final cleaning",
+        "l3": "Waste disposal",
+        "l4": "Storage options"
       },
-      "section2_h2": "Your Move in {city} – Structured and Safe",
-      "section2_p1": "A move is more than just transport. We accompany you in {city} from planning to key handover.",
-      "section2_p2": "Trust in regional experience and fair prices.",
-      "wizard_badge": "Quote",
-      "wizard_h2": "Calculate Move in {city}",
-      "wizard_p": "Use our calculator for an instant quote."
+      "section2_h2": "Your moving company for {city}",
+      "section2_p1": "Moving is a matter of trust. In {city}, we ensure that your furniture and personal belongings arrive safely and quickly at their new destination. Our experienced team in {city} takes care of all the heavy lifting.",
+      "section2_p2": "We work with modern equipment and trained teams to offer the highest quality at a fair price. Trust FLOXANT Pro-Logistics for your relocation in the {city} region.",
+      "wizard_badge": "Quote Check",
+      "wizard_h2": "Calculate moving costs for {city}",
+      "wizard_p": "Enter your key data and receive an immediate initial estimate for your move in {city}."
+    },
+    "buero_umzug_spec": {
+      "meta_title": "Office Move {city} ✓ Corporate Relocation ✓ Minimal Downtime | FLOXANT",
+      "meta_desc": "Professional office moves in {city}. We organize your company relocation discreetly and efficiently. Minimal downtime, IT transport & fixed price.",
+      "keywords": ["Office move {city}", "Company relocation {city}", "Commercial move {city}", "IT relocation {city}", "Corporate move {city}"],
+      "hero_h1": "Office Relocation in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Business continuity is the priority. We relocate your company in {city} so that you can continue working productively the next day.",
+      "hero_badge": "Business Logistics",
+      "cta": "Request Corporate Quote",
+      "badges": {
+        "permit": "IT Transport Special",
+        "signs": "Discreet & Secure",
+        "stressfree": "Weekend Service"
+      },
+      "service1": {
+        "title": "Project Relocation {city}",
+        "l1": "Detailed Phase Planning",
+        "l2": "IT Infrastructure Transfer",
+        "l3": "Archive & File Logistics",
+        "l4": "Inventorying & Labeling"
+      },
+      "service2": {
+        "title": "Premium Business",
+        "l1": "After-hours execution",
+        "l2": "Complete Furniture Assembly",
+        "l3": "Old Inventory Disposal",
+        "l4": "Cleaning of New Premises"
+      },
+      "section2_h2": "Your Partner for Commercial Moves in {city}",
+      "section2_p1": "A company move in {city} is a strategic project. We minimize your downtime through precise planning and powerful teams. FLOXANT is your partner for commercial logistics in {city}.",
+      "section2_p2": "From law firms to industrial plants: We have the experience and equipment for your success in {city}.",
+      "wizard_badge": "B2B Request",
+      "wizard_h2": "Request individual consultation for {city}",
+      "wizard_p": "Brief data is enough – our project manager for {city} will get back to you immediately."
+    },
+    "seniorenumzug_spec": {
+      "meta_title": "Senior Move {city} ✓ Gentle & Full Service | FLOXANT",
+      "meta_desc": "Empathetic senior moves in {city}. We take care of everything: packing, assembly, disposal & cleaning. Stress-free & reliable at a fixed price.",
+      "keywords": ["Senior move {city}", "Moving in old age {city}", "Full-service senior move", "Downsizing {city}", "assisted move {city}"],
+      "hero_h1": "Senior Relocation in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Moving in old age requires trust and peace. We accompany you gently in {city} to your new home – with full service.",
+      "hero_badge": "Empathetic Service",
+      "cta": "Free On-site Consultation",
+      "badges": {
+        "permit": "Full-Service Package",
+        "signs": "Gentle Teams",
+        "stressfree": "All from One Source"
+      },
+      "service1": {
+        "title": "Carefree Package {city}",
+        "l1": "Joint Packing",
+        "l2": "Furniture Dismantling & Assembly",
+        "l3": "Hanging Lamps & Pictures",
+        "l4": "Complete Cleaning"
+      },
+      "service2": {
+        "title": "Home Downsizing",
+        "l1": "Professional Clearance",
+        "l2": "Furniture Recycling",
+        "l3": "Broom-clean Handover",
+        "l4": "Document & Waste Disposal"
+      },
+      "section2_h2": "Your Move in {city} in Good Hands",
+      "section2_p1": "A senior move in {city} is often associated with life changes. We take the time, listen, and conduct the move with the necessary calm and care.",
+      "section2_p2": "Our team in {city} ensures that your familiar pieces arrive safely and you feel comfortable immediately.",
+      "wizard_badge": "Service Check",
+      "wizard_h2": "Schedule consultation for {city}",
+      "wizard_p": "We would be happy to come by for a non-binding inspection in {city}."
+    },
+    "klaviertransport_spec": {
+      "meta_title": "Piano Transport {city} ✓ Secure ✓ Piano Pro | FLOXANT",
+      "meta_desc": "Pro piano transport in {city} and all of Bavaria. Specialized equipment for pianos & grand pianos. Fully insured & experienced teams.",
+      "keywords": ["Piano transport {city}", "Grand piano transport {city}", "Specialty transport {city}", "Piano relocation {city}", "heavy transport {city}"],
+      "hero_h1": "Piano Transport in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Your valuable instrument in the best hands. We transport pianos and grand pianos in {city} with precision and specialized equipment.",
+      "hero_badge": "Masterful Logistics",
+      "cta": "Request Special Quote",
+      "badges": {
+        "permit": "Specialized Equipment",
+        "signs": "Fully Insured",
+        "stressfree": "Experienced Teams"
+      },
+      "service1": {
+        "title": "Piano & Grand Piano {city}",
+        "l1": "Professional Packaging",
+        "l2": "Specialized Sleds & Belts",
+        "l3": "Temperature-controlled Transport",
+        "l4": "Setup & Protection"
+      },
+      "service2": {
+        "title": "Heavy Lifting",
+        "l1": "Safes & Special Loads",
+        "l2": "Hydraulic Jack Technology",
+        "l3": "Stair Crawler Deployment",
+        "l4": "Structural Check if Needed"
+      },
+      "section2_h2": "Precision Logistics for {city}",
+      "section2_p1": "A piano transport in {city} is no ordinary task. It requires experience and the right technique. We protect your instrument and the surroundings in {city}.",
+      "section2_p2": "Rely on FLOXANT for your most valuable pieces in {city}.",
+      "wizard_badge": "Express Check",
+      "wizard_h2": "Request costs for {city}",
+      "wizard_p": "Enter the details briefly – our specialist for {city} will get in touch."
+    },
+    "einlagerung_spec": {
+      "meta_title": "Storage {city} ✓ Secure ✓ Dry ✓ Flexible | FLOXANT",
+      "meta_desc": "Affordable storage in {city}. Short or long terms, alarm-secured & climate-controlled. Pickup and delivery service throughout Bavaria.",
+      "keywords": ["Storage {city}", "Furniture storage {city}", "Rent storage space {city}", "Self Storage {city}", "Temporary storage {city}"],
+      "hero_h1": "Secure Storage in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Lack of space or moving break? We store your furniture in {city} safely, dryly, and accessible at any time.",
+      "hero_badge": "Security Storage",
+      "cta": "Request Storage Quote",
+      "badges": {
+        "permit": "Alarm Secured",
+        "signs": "Climate Controlled",
+        "stressfree": "Pickup & Delivery"
+      },
+      "service1": {
+        "title": "Furniture Depot {city}",
+        "l1": "Individual Boxes or Areas",
+        "l2": "Dust-free Packaging",
+        "l3": "Short-term Cancellation",
+        "l4": "Inventory List Included"
+      },
+      "service2": {
+        "title": "Full-Service Storage",
+        "l1": "Pickup from your private home",
+        "l2": "Professional Dismantling",
+        "l3": "Insured Depot",
+        "l4": "Delivery at your preferred date"
+      },
+      "section2_h2": "Flexible Storage Space for {city}",
+      "section2_p1": "In {city}, we offer you tailor-made storage solutions. Whether for a few weeks during a renovation or for years – your treasures are in safe hands with us in {city}.",
+      "section2_p2": "State-of-the-art surveillance technology and optimal climatic conditions guarantee the value preservation of your furniture in {city}.",
+      "wizard_badge": "Space Check",
+      "wizard_h2": "Calculate storage space in {city}",
+      "wizard_p": "Tell us what you want to store. We will estimate the space requirement for {city}."
+    },
+    "akteneinlagerung_regensburg_spec": {
+      "meta_title": "Archive Storage Regensburg ✓ Secure ✓ GDPR ✓ Archiving | FLOXANT",
+      "meta_desc": "Professional archive storage in Regensburg for law firms & companies. Secure, dry & GDPR-compliant. Incl. pickup, digitalization & shredding.",
+      "keywords": ["Archive Storage Regensburg", "Record storage Regensburg", "Document storage law firm", "Certified shredding Regensburg", "Archiving service"],
+      "hero_h1": "Archive & Document Storage in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Maximum security for your sensitive documents. We offer professional archive solutions for law firms and businesses in Regensburg – from boxes to shelf meters.",
+      "hero_badge": "Business & Law Logistics",
+      "cta": "Request B2B Quote",
+      "badges": {
+        "permit": "GDPR Compliant",
+        "signs": "Secure Depot",
+        "stressfree": "Scan-on-Demand"
+      },
+      "service1": {
+        "title": "Archive Logistics Regensburg",
+        "l1": "Secure On-site Pickup",
+        "l2": "Systematic Inventory",
+        "l3": "Dry & Pest-free",
+        "l4": "Access at any time"
+      },
+      "service2": {
+        "title": "Digital Advantage",
+        "l1": "Scan-on-Demand Service",
+        "l1_desc": "We send required records digitally within 2 hours.",
+        "l2": "Certified Shredding",
+        "l2_desc": "After retention period according to DIN 66399.",
+        "l3": "Full Archive Maintenance",
+        "l4": "Backup & Cloud Integration"
+      },
+      "section2_h2": "Secure Document Management in Regensburg",
+      "section2_p1": "Lack of space in the office? Our archive storage in Regensburg creates space. We store your binders under optimal conditions and guarantee compliance with all legal data protection requirements.",
+      "section2_p2": "From law firms to industrial companies: FLOXANT is your reliable partner for archive logistics in the world heritage city of Regensburg.",
+      "wizard_badge": "B2B Check",
+      "wizard_h2": "Calculate archiving costs",
+      "wizard_p": "Determine the monthly costs for your document stock in Regensburg immediately."
+    },
+    "malerarbeiten_spec": {
+      "meta_title": "Painting Services {city} ✓ Profi-Quality ✓ Fixed Price | FLOXANT",
+      "meta_desc": "Professional painting in {city} for apartments & houses. Wallpapering, painting, varnishing & renovating. Clean & fast at a fixed price.",
+      "keywords": ["Painter {city}", "Painting business {city}", "Coating {city}", "Wallpapering {city}", "Renovation {city}", "Paint apartment {city}"],
+      "hero_h1": "Professional Painting in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Fresh shine for your walls. We take care of all painting and renovation work in {city} – clean, fast, and at a fixed price.",
+      "hero_badge": "Premium Finish",
+      "cta": "Get Renovation Quote",
+      "badges": {
+        "permit": "Master Quality",
+        "signs": "Incl. Material",
+        "stressfree": "Cleanliness Guarantee"
+      },
+      "service1": {
+        "title": "Interior Painting {city}",
+        "l1": "Painting walls & ceilings",
+        "l2": "Varnishing doors & frames",
+        "l3": "High-quality branded paints",
+        "l4": "Covering service included"
+      },
+      "service2": {
+        "title": "Full Renovation",
+        "l1": "Wallpapering & Priming",
+        "l2": "Mold remediation (light)",
+        "l3": "Plastering & Filling",
+        "l4": "Broom-clean Handover"
+      },
+      "section2_h2": "Your Painting Business for {city}",
+      "section2_p1": "After moving or simply for a new living feeling: Our painters in {city} ensure perfect results without stress. We dependably protect your floors and furniture in {city}.",
+      "section2_p2": "Save time and effort – rely on the skilled craftsmanship of FLOXANT in {city}.",
+      "wizard_badge": "Color Check",
+      "wizard_h2": "Calculate quote for {city}",
+      "wizard_p": "Enter the square footage. We will send you a fixed-price quote for {city}."
     },
     "umzug_wuerzburg": {
       "meta_title": "Moving Company Würzburg ✓ Fixed Price ✓ Insured | FLOXANT",
@@ -4635,96 +5039,6 @@
       }
     }
   },
-  "common": {
-    "whatsapp_call": "WhatsApp / Call",
-    "cost_calculator_btn": "Launch Calculator",
-    "free_visit": "Free Consultation",
-    "insured": "100% Insured",
-    "fixed_price": "Fixed Price Guarantee",
-    "moving": "Moving",
-    "clearance": "Clearance",
-    "google_rating": "Google 4.9/5.0",
-    "email_hotline": "Email Support",
-    "known_from": "Featured in",
-    "ready_for_service": "Primed for an unburdened transition?",
-    "cta_description": "Extract your completely non-binding estimate instantaneously executing our smart calculator or seamlessly channel inquiries utilizing direct WhatsApp access.",
-    "whatsapp_write": "Message via WhatsApp",
-    "quick_question": "Immediate inquiry?",
-    "back_to_home": "Back to Home",
-    "nav_open": "Expand Menu",
-    "nav_close": "Collapse Menu",
-    "write_whatsapp_now": "Message via WhatsApp",
-    "authority_bio": "FLOXANT constitutes your unyielding, regionally anchored operational force commanding Bayern. Radiating out from our primary administrative nexus located near Regensburg, we daily sequence migrations, surgical clearances, and massive commercial purifications intersecting the total state footprint – spanning the Oberpfalz directly sweeping downward absorbing München. Leverage our certified transport liabilities, exceptionally fast dispatch horizons, alongside impenetrable fixed valuations. We stand as your definitive focal point conquering logistics.",
-    "free_unbinding": "Non-binding & Entirely Free",
-    "success_100_region": "Surpassing 100+ flawless relocations framing this region.",
-    "top_ratings": "Premier Ratings",
-    "local_expert": "Your proximal logistical authority",
-    "master_logistics": "Commanding complex logistical variables gracefully",
-    "questions_process": "Queries mapping the underlying cadence?",
-    "quick_estimation": "Often, a sparse telephone briefing or swift email perfectly catalyzes our baseline structural assessment.",
-    "local_advantages": "Deploying natively stationed moving operators launches tremendous advantages.",
-    "fast_reaction": "Blitz-Response & Readily Operable",
-    "max_security": "Ultimate Shielding & Assurances",
-    "fixed_price_no_surprises": "100% Fixed Valuation, Zero Anomalies",
-    "fixed_price_desc": "We actively reject variable hourly hemorrhage models. Post absolute volume assessment, we forge an unyielding financial vow shielding you permanently.",
-    "combined_services": "Interlocked Service Constructs",
-    "important_aspects_summary": "We gathered pivotal parameters illuminating your transit tightly compressed structurally.",
-    "faq_insurance_q": "Does immediate liability cover my inventory mitigating damage?",
-    "faq_insurance_a": "Irrefutably. Every FLOXANT commanded grid legally integrates absolute transport liability umbrellas. You shoulder zero fiscal threat assuming anomalies occur.",
-    "faq_kitchen_q": "Are entrenched kitchen arrays dismantled successfully?",
-    "faq_kitchen_a": "Indeed, our ranks contain heavily equipped installation specialists precisely unwiring kitchen networks, gigantic wardrobe architectures, and sleep platforms rendering them safe traversing bounds.",
-    "faq_booking_q": "How do I secure an unbreakable dispatch schedule?",
-    "faq_booking_a": "Submit the baseline funnel underneath or initiate a verbal call. We audit the perimeter, relay the definitive fixed contract, await your affirmative seal, cementing the deployment strictly.",
-    "transport_networks": "Our interconnected transit grids spanning surrounding territories",
-    "regular_routes_bavaria": "We actively cycle spanning these dominant nodes intersecting Bayern.",
-    "metro_munich": "München Metropolis",
-    "metro_nuremberg": "Nürnberg Greater Area",
-    "request_price_online": "Aquire Baseline Online Now",
-    "umzug_nuremberg": "Relocation Nürnberg",
-    "umzug_munich": "Relocation München",
-    "local_challenges": "Neutralizing localized frictions",
-    "regional_service_competence": "We fuse local dedication flawlessly binding extensive trans-regional logistical prowess.",
-    "fast_available": "Instantly Callable",
-    "fixed_price_no_nego": "Fixed Metrics Extinguishing Negotiations",
-    "fixed_price_calc_desc": "Calculations materialize via complimentary local (or visually remote) diagnostics. Valuations lock absolutely solid prior to touching single cartons.",
-    "all_from_one_source": "Wholly Unified Origin",
-    "modular_package_desc": "Transits, culinary installations, systemic clearances, and absolute sanitation – offering modular clusters custom molded hugging your specific needs.",
-    "faq_no_parking_q": "Do you establish authorized no-parking sectors?",
-    "faq_no_parking_a": "Yes. We actively command bureaucratic petitions and physical signage placements interfacing respective administrative zones. Ideally allocate 14 days operational runway.",
-    "faq_cleaning_q": "Do you similarly supply clearance & sanitation routines?",
-    "faq_cleaning_a": "Undoubtedly. We interconnect transition, legitimate structural clearance, alongside swept-clean finishings forging a hyper-efficient total solution – perfectly aligned satisfying rental handovers.",
-    "other_locations_bavaria": "Expanded FLOXANT Nodes inside Bayern",
-    "network_active_bavaria": "Operating statewide inside Bayern – harness our intensively dense logistical mesh.",
-    "faq_title": "Frequently Addressed Parameters",
-    "more_services": "Extended Capabilities",
-    "guide": "Knowledge Base",
-    "transparency_start": "Crystalline Transparency Originating Day One",
-    "local_expertise": "Native Tactical Expertise",
-    "full_insurance": "Absolute Liability Veil",
-    "full_insurance_desc": "All-encompassing operational & transport coverage. Your complete matrix remains safeguarded bridging initial teardown traversing final setup.",
-    "extra_services_relocation": "Peripheral Enhancements accompanying your Habitat Shift",
-    "entruempelung_services": "Clearance Operations",
-    "waste_disposal_desc": "Actively hauling accrued debris synchronously during migration day enforcing lawful localized disposal strictly utilizing authorized recycling grids.",
-    "also_handle_desc": "Furthermore, conditionally managing extensive operations targeting",
-    "besenrein_cleaning": "swept-clean terminal sanitation",
-    "handover_desc": "upon your previously occupied boundaries, enabling profoundly calm key-turns navigating strict landlords.",
-    "faq_boxes_q": "Do you supply professional packing vessels?",
-    "faq_boxes_a": "Affirmative, we preemptively deliver hyper-durable professional cartons, hanging-wardrobe units, and shock-absorbent wraps – uniquely available via temporary lease or concrete purchase loops.",
-    "faq_no_parking_who_q": "Who processes the restrictive parking petitions?",
-    "customer_voices": "Client Testimonials",
-    "additional_services_locations": "Peripheral Services & Outposts inside Bayern",
-    "cleaning_company": "Sanitation Agency",
-    "calculate_price": "Compute Volume",
-    "combination_move": "Symbiotic Relocation Pairing",
-    "also_available_in": "Also available in:",
-    "whatsapp_cta_title": "WhatsApp Support",
-    "whatsapp_cta_desc": "We are available 24/7.",
-    "next": "Next",
-    "headquarters_regensburg": "Headquarters Regensburg",
-    "umzug_bavaria": "Moving Bavaria",
-    "entruempelung": "Clearance",
-    "reinigung": "Cleaning"
-  },
   "calculator": {
     "requirements_title": "Details",
     "requirements_subtitle": "To forge a profoundly serious offer, selectively populate critical parameters. Expansive data radically tightens financial calculations and personnel geometry.",
@@ -4814,6 +5128,20 @@
     "dist_placeholder": "approx. 15",
     "social_proof": "3 people are currently viewing this calculator",
     "uncertain_volume_desc": "The price range will be significantly expanded for safety. A final assessment follows personal clarification or inspection.",
+    "archive": {
+      "box_count": "Number of Archive Boxes",
+      "shelf_meters": "Shelf Meters (lfm)",
+      "duration": "Duration (Months)",
+      "pickup": "Secure Pickup",
+      "shredding": "Certified Destruction",
+      "digitalization": "Scan-on-Demand (Digitalization)",
+      "insurance_value": "Insurance Value of Archive",
+      "flag_longterm_discount": "Long-term discount applied (>12 months)",
+      "flag_secure_pickup": "Secure pickup by specialist staff",
+      "flag_secure_destruction": "Incl. certified file destruction",
+      "flag_digitalization": "Incl. scan-on-demand & digitalization",
+      "flag_archive_insurance": "Special insurance for documents"
+    },
     "packing_service_desc": "We pack your household goods securely in boxes.",
     "unpacking_service_desc": "We put everything back into your cupboards.",
     "disassembly_desc": "Dismantling of large pieces of furniture.",
@@ -4924,8 +5252,24 @@
     "flag_disassembly_on_site": "Incl. disassembly on site",
     "flag_express_service": "Express service (Urgent)",
     "flag_waste_notes_noted": "We save your note for planning",
+    "flag_office_it_setup": "IT-Infrastructure special transport planned",
+    "flag_senior_care": "Senior Care Package (Worry-Free) activated",
+    "flag_piano_special": "Piano/Grand Piano special logistics (Sled & Protection)",
     "upload_link_note": "We will send you the link for the photo upload separately via E-Mail and WhatsApp.",
     "error_submit": "Error sending. Please try again.",
+    "step_basics": "Basic Data",
+    "step_inventory": "Inventory",
+    "step_office": "Office Details",
+    "step_senior": "Care Options",
+    "step_piano": "Instrument",
+    "step_services": "Premium Services",
+    "workstations": "Number of Workstations",
+    "it_setup": "IT Infrastructure Relocation",
+    "archive_meters": "Archival Storage (Linear Meters)",
+    "piano_type": "Piano/Grand Piano Type",
+    "upright_piano": "Upright Piano",
+    "grand_piano_label": "Grand Piano",
+    "senior_care_package": "Full-Service Care Package for Seniors",
     "service_selection_note": "First, select the appropriate service. Then we will gather the most important details for a quick initial estimate.",
     "requirements_note": "Only the most important details. The exact calculation follows in the next step.",
     "from_place_placeholder": "From City / ZIP",
@@ -5002,47 +5346,6 @@
     "premium_experience": "The FLOXANT Experience",
     "brand_promise_title": "Own Teams & Branded Trucks",
     "brand_promise_desc": "We focus on transparency and quality. With our own trained teams and modern fleet, we guarantee the highest security for your belongings."
-  },
-  "reviews": {
-    "title": "What our customers say",
-    "subtitle": "Whether it is a complex office move or a sensitive house clearance – we deliver measurable quality and absolute price transparency throughout Bavaria.",
-    "satisfaction_label": "Excellent Customer Satisfaction",
-    "items": [
-      {
-        "id": 1,
-        "name": "Dr. Michael M.",
-        "role": "Law firm owner, Regensburg",
-        "text": "Perfectly organized! The office move went absolutely smoothly. The team was punctual, professional and handled our sensitive files perfectly. Worth every penny.",
-        "rating": 5,
-        "date": "2 weeks ago"
-      },
-      {
-        "id": 2,
-        "name": "Sabine T.",
-        "role": "Private client, Munich",
-        "text": "Short-term clearance of our house after a bereavement. The staff were extremely empathetic and discreet, and the fixed price was strictly adhered to.",
-        "rating": 5,
-        "date": "Last month"
-      },
-      {
-        "id": 3,
-        "name": "Thomas Berger",
-        "role": "Property manager",
-        "text": "Incredibly fast and clean. The final cleaning with handover guarantee saved me a lot of stress during the apartment handover. Highly recommended!",
-        "rating": 5,
-        "date": "3 months ago"
-      },
-      {
-        "id": 4,
-        "name": "Jens W.",
-        "role": "Facility Management",
-        "text": "As a facility manager, I only work with FLOXANT in the Upper Palatinate. Reliable, punctual and excellent B2B conditions for long-term partnerships.",
-        "rating": 5,
-        "date": "A month ago"
-      }
-    ],
-    "title_part1": "What our",
-    "title_part2": "customers say"
   },
   "seo": {
     "dynamic_city_title": "Moving Company in your City | FLOXANT",

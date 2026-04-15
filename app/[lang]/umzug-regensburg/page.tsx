@@ -5,7 +5,6 @@ import { generatePageSEO } from "@/lib/seo";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
-import Link from "next/link";
 
 interface PageProps {
     params: Promise<{ lang: string }>;
@@ -15,18 +14,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { lang } = await params;
     if (!isValidLocale(lang)) return {};
 
-    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+    const { seoContent, seoFallback, city, neighborhoods } = await getSpecialtyPageData({
         locale: lang as Locale,
         baseKey: "umzug_spec",
-        seoKey: "umzug_regensburg",
         city: "Regensburg",
     });
 
     return generatePageSEO({
         pageLocale: lang,
-        path: `umzug-regensburg`,
-        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
-        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+        path: "umzug-regensburg",
+        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, neighborhoods, lang),
+        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, neighborhoods, lang),
     });
 }
 
@@ -39,140 +37,64 @@ export default async function UmzugRegensburgPage({ params }: PageProps) {
         localeDict, 
         content, 
         fallback, 
-        seoContent, 
-        seoFallback, 
-        city 
+        city,
+        neighborhoods
     } = await getSpecialtyPageData({
         locale,
         baseKey: "umzug_spec",
-        seoKey: "umzug_regensburg",
         city: "Regensburg",
     });
 
-    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
-
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "MovingCompany",
-                "name": `Umzug ${city} | FLOXANT`,
-                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
-                "url": `https://www.floxant.de/${lang}/umzug-regensburg`,
-                "telePhone": "+49 1577 1105087",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Regensburg",
-                    "addressRegion": "Bayern",
-                    "addressCountry": "DE"
-                },
-                "areaServed": { "@type": "City", "name": city }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-                    { "@type": "ListItem", "position": 2, "name": "Umzug Bayern", "item": `https://www.floxant.de/${lang}/umzug-bayern` },
-                    { "@type": "ListItem", "position": 3, "name": city, "item": `https://www.floxant.de/${lang}/umzug-regensburg` }
-                ]
-            },
-            ...(faqItems.length > 0 ? [{
-                "@type": "FAQPage",
-                "mainEntity": faqItems.map(item => ({
-                    "@type": "Question",
-                    "name": item.q,
-                    "acceptedAnswer": { "@type": "Answer", "text": item.a }
-                }))
-            }] : [])
-        ]
-    };
-
     return (
-        <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            <SpecialtyPageLayout
+        <SpecialtyPageLayout
                 pageLocale={lang}
                 dict={localeDict}
                 city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta, city)}
+                neighborhoods={neighborhoods}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, neighborhoods, lang)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, neighborhoods, lang)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city, neighborhoods, lang)}
+                ctaText={resolveField(content.cta, fallback.cta, city, neighborhoods, lang)}
                 breadcrumbs={[
                     { label: "Home", href: `/${lang}` },
                     { label: "Umzug", href: `/${lang}/umzug-bayern` },
                     { label: city }
                 ]}
                 chips={[
-                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
-                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
-                    { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city, neighborhoods) },
+                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city, neighborhoods) },
+                    { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city, neighborhoods) }
                 ]}
                 cards={[
                     {
                         icon: Star,
-                        title: resolveNestedField(content.service1, fallback.service1, "title", city),
+                        title: resolveNestedField(content.service1, fallback.service1, "title", city, neighborhoods),
                         lines: [
-                            resolveNestedField(content.service1, fallback.service1, "l1", city),
-                            resolveNestedField(content.service1, fallback.service1, "l2", city),
-                            resolveNestedField(content.service1, fallback.service1, "l3", city),
-                            resolveNestedField(content.service1, fallback.service1, "l4", city),
+                            resolveNestedField(content.service1, fallback.service1, "l1", city, neighborhoods),
+                            resolveNestedField(content.service1, fallback.service1, "l2", city, neighborhoods),
+                            resolveNestedField(content.service1, fallback.service1, "l3", city, neighborhoods),
+                            resolveNestedField(content.service1, fallback.service1, "l4", city, neighborhoods),
                         ]
                     },
                     {
                         icon: Zap,
-                        title: resolveNestedField(content.service2, fallback.service2, "title", city),
+                        title: resolveNestedField(content.service2, fallback.service2, "title", city, neighborhoods),
                         lines: [
-                            resolveNestedField(content.service2, fallback.service2, "l1", city),
-                            resolveNestedField(content.service2, fallback.service2, "l2", city),
-                            resolveNestedField(content.service2, fallback.service2, "l3", city),
-                            resolveNestedField(content.service2, fallback.service2, "l4", city),
+                            resolveNestedField(content.service2, fallback.service2, "l1", city, neighborhoods),
+                            resolveNestedField(content.service2, fallback.service2, "l2", city, neighborhoods),
+                            resolveNestedField(content.service2, fallback.service2, "l3", city, neighborhoods),
+                            resolveNestedField(content.service2, fallback.service2, "l4", city, neighborhoods),
                         ]
                     }
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, neighborhoods, lang)}
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city),
-                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                    resolveField(content.section2_p1, fallback.section2_p1, city, neighborhoods, lang),
+                    resolveField(content.section2_p2, fallback.section2_p2, city, neighborhoods, lang),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, neighborhoods, lang)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, neighborhoods, lang)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, neighborhoods, lang)}
             />
-
-            {/* Regional SEO Gating (DE-only) */}
-            {lang === "de" && (
-                <section className="bg-slate-50 py-16 px-6 border-t border-border">
-                    <div className="max-w-4xl mx-auto">
-                        <h3 className="text-xl font-bold mb-8 text-slate-800">Regionale Umzugs-Services in Bayern</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {[
-                                { name: "Regensburg", href: "/de/umzug-regensburg" },
-                                { name: "Schwandorf", href: "/de/umzug-schwandorf" },
-                                { name: "Amberg", href: "/de/umzug-amberg" },
-                                { name: "Neumarkt", href: "/de/umzug-neumarkt" },
-                                { name: "Straubing", href: "/de/umzug-straubing" },
-                                { name: "Kelheim", href: "/de/umzug-kelheim" },
-                                { name: "Abensberg", href: "/de/umzug-abensberg" },
-                                { name: "Neutraubling", href: "/de/umzug-neutraubling" },
-                                { name: "Bad Abbach", href: "/de/umzug-bad-abbach" },
-                                { name: "Lappersdorf", href: "/de/umzug-lappersdorf" },
-                                { name: "Regenstauf", href: "/de/umzug-regenstauf" },
-                                { name: "Wenzenbach", href: "/de/umzug-wenzenbach" },
-                                { name: "Burglengenfeld", href: "/de/umzug-burglengenfeld" }
-                            ].map((loc) => (
-                                <Link 
-                                    key={loc.name} 
-                                    href={loc.href}
-                                    className="text-sm text-slate-600 hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary pb-1"
-                                >
-                                    Umzug {loc.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-        </>
     );
 }

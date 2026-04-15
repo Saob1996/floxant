@@ -1,6 +1,6 @@
 "use client";
 
-import { Header } from "@/components/Header";
+import { FloxNavigation as Header } from "@/components/FloxNavigation";
 import dynamic from "next/dynamic";
 import { m } from "framer-motion";
 import { ArrowRight, Box, Sparkles, Trash2, Phone } from "lucide-react";
@@ -197,7 +197,7 @@ export default function PageClient({
             </section>
 
             <div id="extras">
-                <SignatureServices dict={safeDict} />
+                <SignatureServices dict={safeDict} locale={lang} />
             </div>
 
             <section className="py-24 px-6 border-t border-border/50">

@@ -32,41 +32,35 @@ export function Breadcrumbs({ items, lang, pageLocale }: BreadcrumbsProps) {
     };
 
     return (
-        <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <nav
-                aria-label="Breadcrumb"
-                className="mx-auto max-w-7xl px-6 pb-3 pt-24"
-            >
-                <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
-                    {fullItems.map((item, index) => (
-                        <li key={`${item.label}-${index}`} className="flex items-center gap-1.5">
-                            {index > 0 && (
-                                <ChevronRight
-                                    className="h-3.5 w-3.5 text-border"
-                                    aria-hidden="true"
-                                />
-                            )}
+        <nav
+            aria-label="Breadcrumb"
+            className="mx-auto w-full max-w-7xl px-6 pb-2 pt-28"
+        >
+            <ol className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground/60">
+                {fullItems.map((item, index) => (
+                    <li key={`${item.label}-${index}`} className="flex items-center gap-2">
+                        {index > 0 && (
+                            <ChevronRight
+                                className="h-3 w-3 opacity-30"
+                                aria-hidden="true"
+                            />
+                        )}
 
-                            {item.href && index < fullItems.length - 1 ? (
-                                <Link
-                                    href={item.href}
-                                    className="transition-colors hover:text-primary"
-                                >
-                                    {item.label}
-                                </Link>
-                            ) : (
-                                <span className="font-medium text-foreground/90">
-                                    {item.label}
-                                </span>
-                            )}
-                        </li>
-                    ))}
-                </ol>
-            </nav>
-        </>
+                        {item.href && index < fullItems.length - 1 ? (
+                            <Link
+                                href={item.href}
+                                className="transition-all hover:text-primary hover:tracking-widest"
+                            >
+                                {item.label}
+                            </Link>
+                        ) : (
+                            <span className="text-foreground/40 line-clamp-1">
+                                {item.label}
+                            </span>
+                        )}
+                    </li>
+                ))}
+            </ol>
+        </nav>
     );
 }

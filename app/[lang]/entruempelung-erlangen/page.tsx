@@ -4,8 +4,7 @@ import { isValidLocale, type Locale } from "@/i18n-config";
 import { generatePageSEO } from "@/lib/seo";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
-import { Trash2, Shield, Clock, Star, Zap } from "lucide-react";
-import Link from "next/link";
+import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
     params: Promise<{ lang: string }>;
@@ -18,19 +17,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { seoContent, seoFallback, city } = await getSpecialtyPageData({
         locale: lang as Locale,
         baseKey: "entruempelung_spec",
-        seoKey: "entruempelung_erlangen",
         city: "Erlangen",
     });
 
     return generatePageSEO({
         pageLocale: lang,
-        path: `entruempelung-erlangen`,
-        title: resolveField(seoContent.meta_title, seoFallback.meta_title, city),
-        description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
+        path: "entruempelung-erlangen",
+        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, lang),
+        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, lang),
     });
 }
 
-export default async function EntruempelungCityPage({ params }: PageProps) {
+export default async function EntruempelungErlangenPage({ params }: PageProps) {
     const { lang } = await params;
     if (!isValidLocale(lang)) notFound();
 
@@ -39,70 +37,30 @@ export default async function EntruempelungCityPage({ params }: PageProps) {
         localeDict, 
         content, 
         fallback, 
-        seoContent, 
-        seoFallback, 
         city 
     } = await getSpecialtyPageData({
         locale,
         baseKey: "entruempelung_spec",
-        seoKey: "entruempelung_erlangen",
         city: "Erlangen",
     });
 
-    const faqItems = (seoContent.faqs || seoFallback.faqs || []) as Array<{ q: string; a: string }>;
-
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Service",
-                "name": `Entrümpelung ${city} | FLOXANT`,
-                "description": resolveField(seoContent.meta_desc, seoFallback.meta_desc, city),
-                "provider": {
-                    "@type": "MovingCompany",
-                    "name": "FLOXANT",
-                    "telephone": "+49 1577 1105087"
-                },
-                "areaServed": { "@type": "City", "name": city }
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.floxant.de/${lang}` },
-                    { "@type": "ListItem", "position": 2, "name": "Entrümpelung Bayern", "item": `https://www.floxant.de/${lang}/entruempelung-bayern` },
-                    { "@type": "ListItem", "position": 3, "name": city, "item": `https://www.floxant.de/${lang}/entruempelung-erlangen` }
-                ]
-            },
-            ...(faqItems.length > 0 ? [{
-                "@type": "FAQPage",
-                "mainEntity": faqItems.map(item => ({
-                    "@type": "Question",
-                    "name": item.q,
-                    "acceptedAnswer": { "@type": "Answer", "text": item.a }
-                }))
-            }] : [])
-        ]
-    };
-
     return (
-        <>
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            <SpecialtyPageLayout
+        <SpecialtyPageLayout
                 pageLocale={lang}
                 dict={localeDict}
                 city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city)}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city)}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city)}
-                ctaText={resolveField(content.cta, fallback.cta, city)}
+                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, lang)}
+                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, lang)}
+                heroText={resolveField(content.hero_p, fallback.hero_p, city, lang)}
+                ctaText={resolveField(content.cta, fallback.cta, city, lang)}
                 breadcrumbs={[
                     { label: "Home", href: `/${lang}` },
-                    { label: "Entrümpelung", href: `/${lang}/entruempelung-bayern` },
+                    { label: "Entruempelung", href: `/${lang}/umzug-bayern` },
                     { label: city }
                 ]}
                 chips={[
-                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
-                    { icon: Trash2, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
+                    { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
+                    { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
                     { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
                 ]}
                 cards={[
@@ -127,47 +85,14 @@ export default async function EntruempelungCityPage({ params }: PageProps) {
                         ]
                     }
                 ]}
-                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city)}
+                sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, lang)}
                 sectionParagraphs={[
-                    resolveField(content.section2_p1, fallback.section2_p1, city),
-                    resolveField(content.section2_p2, fallback.section2_p2, city),
+                    resolveField(content.section2_p1, fallback.section2_p1, city, lang),
+                    resolveField(content.section2_p2, fallback.section2_p2, city, lang),
                 ]}
-                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city)}
-                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city)}
-                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city)}
+                wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, lang)}
+                wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, lang)}
+                wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, lang)}
             />
-
-            {/* Regional SEO Gating (DE-only) */}
-            {lang === "de" && (
-                <section className="bg-slate-50 py-16 px-6 border-t border-border">
-                    <div className="max-w-4xl mx-auto">
-                        <h3 className="text-xl font-bold mb-8 text-slate-800">Regionale Entrümpelungs-Services in Bayern</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {[
-                                { name: "München", href: "/de/entruempelung-muenchen" },
-                                { name: "Nürnberg", href: "/de/entruempelung-nuernberg" },
-                                { name: "Regensburg", href: "/de/entruempelung-regensburg" },
-                                { name: "Augsburg", href: "/de/entruempelung-augsburg" },
-                                { name: "Freising", href: "/de/entruempelung-freising" },
-                                { name: "Dachau", href: "/de/entruempelung-dachau" },
-                                { name: "Erlangen", href: "/de/entruempelung-erlangen" },
-                                { name: "Landshut", href: "/de/entruempelung-landshut" },
-                                { name: "Ingolstadt", href: "/de/entruempelung-ingolstadt" },
-                                { name: "Passau", href: "/de/entruempelung-passau" },
-                                { name: "Straubing", href: "/de/entruempelung-straubing" }
-                            ].map((loc) => (
-                                <Link 
-                                    key={loc.name} 
-                                    href={loc.href}
-                                    className="text-sm text-slate-600 hover:text-primary transition-colors font-medium border-b border-transparent hover:border-primary pb-1"
-                                >
-                                    Entrümpelung {loc.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-        </>
     );
 }

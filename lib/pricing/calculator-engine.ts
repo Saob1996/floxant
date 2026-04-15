@@ -2,6 +2,12 @@ import {
   UmzugAdvancedData,
   ReinigungAdvancedData,
   EntsorgungAdvancedData,
+  BueroumzugAdvancedData,
+  SeniorenumzugAdvancedData,
+  KlaviertransportAdvancedData,
+  EinlagerungAdvancedData,
+  MalerarbeitenAdvancedData,
+  AkteneinlagerungAdvancedData,
   BaseDetails,
   UmzugExpressData,
   ReinigungExpressData,
@@ -67,7 +73,42 @@ function getDistanceKm(base?: BaseDetails, fallback = 15): number {
 }
 
 function getAreaToVolume(areaM2: number): number {
-  return Math.max(5, areaM2 * 0.4);
+  return Math.max(2, areaM2 * 0.35); // Slightly reduced multiplier for base volume
+}
+
+function getCityMultiplier(address: string): number {
+  const addr = address.toLowerCase();
+  if (addr.includes("münchen") || addr.includes("munich")) return 1.15;
+  if (
+    addr.includes("nürnberg") ||
+    addr.includes("nuremberg") ||
+    addr.includes("augsburg")
+  )
+    return 1.05;
+  if (addr.includes("regensburg") || addr.includes("passau")) return 1.02;
+  return 1.0;
+}
+
+function getSeasonalMultiplier(): number {
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth(); // 0-indexed
+
+  let mult = 1.0;
+
+  // End of month / Start of month peak
+  if (day >= 25 || day <= 5) mult += 0.1;
+
+  // Summer peak
+  if (month >= 5 && month <= 7) mult += 0.05;
+
+  return Number(mult.toFixed(2));
+}
+
+function getGlobalMultiplier(base?: BaseDetails): number {
+  const cityMult = getCityMultiplier(base?.fromAddress || "");
+  const seatMult = getSeasonalMultiplier();
+  return cityMult * seatMult;
 }
 
 // EXPRESS CALCULATION
@@ -77,10 +118,10 @@ export function calculateUmzugExpress(
 ): PriceRange {
   const areaM2 = Math.max(0, num(data.areaM2, 0));
   const cbm = getAreaToVolume(areaM2);
-  const laborCost = cbm * 35;
-  const fixedCost = 150;
+  const laborCost = cbm * 29; // Reduced from 35 for competitive Basis price
+  const fixedCost = 120; // Reduced from 150
   const distanceKm = getDistanceKm(base, 15);
-  const distanceCost = distanceKm * 1.5;
+  const distanceCost = distanceKm * 1.2; // Reduced from 1.5
 
   let price = fixedCost + laborCost + distanceCost;
 
@@ -90,7 +131,8 @@ export function calculateUmzugExpress(
   if (fromFloor > 0 && !data.hasElevatorFrom) price += fromFloor * 25;
   if (toFloor > 0 && !data.hasElevatorTo) price += toFloor * 25;
 
-  price = minPrice(price, 250);
+  price *= getGlobalMultiplier(base);
+  price = minPrice(price, 220);
 
   return createPriceRange(price, 1.25);
 }
@@ -99,7 +141,7 @@ export function calculateReinigungExpress(
   data: ReinigungExpressData
 ): PriceRange {
   const area = Math.max(0, num(data.areaM2, 0));
-  let price = Math.max(120, area * 4.5);
+  let price = Math.max(99, area * 3.8); // Reduced from 120 and 4.5
 
   if (data.propertyType === "haus") price *= 1.15;
   if (data.propertyType === "buero") price *= 1.1;
@@ -109,6 +151,7 @@ export function calculateReinigungExpress(
   if (data.condition === "stark") conditionMultiplier = 1.6;
 
   price *= conditionMultiplier;
+  price *= getSeasonalMultiplier();
 
   return createPriceRange(price, 1.2);
 }
@@ -117,13 +160,14 @@ export function calculateEntsorgungExpress(
   data: EntsorgungExpressData
 ): PriceRange {
   const volume = Math.max(0, num(data.wasteVolumeM3, 0));
-  let price = 90 + volume * 40;
+  let price = 79 + volume * 34; // Reduced from 90 and 40
 
   let accessMultiplier = 1;
   if (data.accessDifficulty === "mittel") accessMultiplier = 1.2;
   if (data.accessDifficulty === "schwer") accessMultiplier = 1.4;
 
   price *= accessMultiplier;
+  price *= getGlobalMultiplier();
 
   return createPriceRange(price, 1.3);
 }
@@ -136,38 +180,65 @@ export function calculateUmzugAdvanced(
 ): AdvancedEstimate {
   const flags: string[] = [];
   let confidenceLevel: ConfidenceLevel = "high";
-  let uncertaintyMultiplier = 1.15;
+  let uncertaintyMultiplier = 1.12;
 
   const areaM2 = Math.max(0, num(data.areaM2, 0));
-  let cbm = getAreaToVolume(areaM2 || 50);
+  let cbm = getAreaToVolume(areaM2 || 40);
 
   if (!areaM2) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "low");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.4);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.35);
     flags.push(
       dic?.calculator?.flag_area_missing ||
       "Wohnfläche für genaueres Volumen ergänzen"
     );
   } else if (data.uncertainVolume) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "medium");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.3);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.25);
     flags.push(
       dic?.calculator?.flag_uncertain_volume ||
       "Kunde wünscht persönliche Beratung zum Volumen"
     );
   }
 
+  // Visual Furniture Estimator - CBM values
+  const FURNITURE_VOLUMES: Record<string, number> = {
+    "sofa-2": 1.5,
+    "sofa-3": 2.2,
+    "bed-s": 1.5,
+    "bed-d": 3.0,
+    "table": 0.8,
+    "chair": 0.2,
+    "wardrobe-1": 1.2,
+    "wardrobe-2": 2.4,
+    "tv-bench": 0.5,
+    "fridge": 1.0,
+    "washing": 0.8,
+    "shelf": 0.6,
+  };
+
   if (Array.isArray(data.furnitureList) && data.furnitureList.length > 0) {
-    cbm += data.furnitureList.length * 1.2;
+    let furnitureCbm = 0;
+    data.furnitureList.forEach(item => {
+      furnitureCbm += FURNITURE_VOLUMES[item] || 0.8; // Default 0.8 if unknown
+    });
+    
+    // If furniture list is long, it becomes more reliable than area calculation
+    if (data.furnitureList.length > 5) {
+       cbm = (cbm * 0.4) + (furnitureCbm * 0.8);
+       confidenceLevel = "high";
+    } else {
+       cbm += furnitureCbm * 0.5;
+    }
   }
 
-  const laborCost = cbm * 35;
-  const fixedCost = 150;
+  const laborCost = cbm * 42; // Premium labor rate
+  const fixedCost = 249; // Professional truck & logistics base
   const distanceKm = Math.max(
     0,
     num(data.distanceKm, 0) || getDistanceKm(base, 15)
   );
-  const distanceCost = distanceKm * 1.5;
+  const distanceCost = distanceKm * 1.8;
 
   let price = fixedCost + laborCost + distanceCost;
 
@@ -336,7 +407,8 @@ export function calculateUmzugAdvanced(
     );
   }
 
-  price = minPrice(price, 250);
+  price = minPrice(price, 350); // Minimum Order Value for Professional Moving
+  price *= getGlobalMultiplier(base);
 
   let teamSize = dic?.calculator?.team_2_persons || "2 Personen";
   if (cbm > 20) teamSize = dic?.calculator?.team_3_persons || "3 Personen";
@@ -351,6 +423,7 @@ export function calculateUmzugAdvanced(
     calculationBasis: `${Math.round(cbm)} m³ ${dic?.calculator?.volume || "Volumen"} | ≈${distanceKm} km ${dic?.calculator?.distance || "Distanz"}`,
     operationalFlags: uniqueFlags(flags),
     confidenceLevel,
+    cbm: Math.round(cbm),
   };
 }
 
@@ -379,7 +452,12 @@ export function calculateReinigungAdvanced(
     uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.3);
   }
 
-  let price = Math.max(120, area * 4.5);
+  let m2Rate = 4.8;
+  if (area < 40) m2Rate = 6.5;
+  else if (area < 80) m2Rate = 5.2;
+  else if (area > 150) m2Rate = 3.9;
+
+  let price = Math.max(149, area * m2Rate);
 
   if (data.propertyType === "haus") {
     price *= 1.15;
@@ -464,6 +542,7 @@ export function calculateReinigungAdvanced(
   }
 
   price = minPrice(price, 120);
+  price *= getSeasonalMultiplier();
 
   let teamSize = dic?.calculator?.person_1 || "1 Person";
   if (area > 80) teamSize = dic?.calculator?.team_2_persons || "2 Personen";
@@ -506,7 +585,7 @@ export function calculateEntsorgungAdvanced(
     uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.4);
   }
 
-  let price = 90 + expectedVolume * 40;
+  let price = 149 + expectedVolume * 45; // Increased disposal handling fee
 
   if (Array.isArray(data.wasteCategories) && data.wasteCategories.length > 0) {
     data.wasteCategories.forEach((cat) => {
@@ -583,7 +662,8 @@ export function calculateEntsorgungAdvanced(
     );
   }
 
-  price = minPrice(price, 90);
+  price = minPrice(price, 180); // Professional disposal minimum
+  price *= getGlobalMultiplier();
 
   let teamSize = dic?.calculator?.team_2_persons || "2 Personen";
   if (expectedVolume > 15) teamSize = dic?.calculator?.team_3_persons || "3 Personen";
@@ -597,5 +677,279 @@ export function calculateEntsorgungAdvanced(
     calculationBasis: `${expectedVolume} m³ ${dic?.calculator?.disposal_item || "Entsorgungsgut"}`,
     operationalFlags: uniqueFlags(flags),
     confidenceLevel,
+  };
+}
+
+export function calculateBueroumzugAdvanced(
+  data: BueroumzugAdvancedData,
+  base: BaseDetails,
+  dic?: any
+): AdvancedEstimate {
+  const flags: string[] = [];
+  let confidenceLevel: ConfidenceLevel = "high";
+  let uncertaintyMultiplier = 1.15;
+
+  const workstations = Math.max(1, num(data.workstations, 1));
+  const cbm = workstations * 4.5; // Average 4.5cbm per workstation including desk, chair, storage
+
+  let price = 300 + workstations * 180; // Basic logistics + per workstation fee
+
+  if (data.itSetup) {
+    price += workstations * 45;
+    flags.push(dic?.calculator?.flag_office_it_setup || "IT-Infrastruktur Spezialtransport eingeplant");
+  }
+
+  const archiveMeters = Math.max(0, num(data.archiveMeters, 0));
+  if (archiveMeters > 0) {
+    price += archiveMeters * 35;
+    flags.push(`${dic?.calculator?.archive_meters || "Archivmeter"}: ${archiveMeters}m`);
+  }
+
+  if (data.packingService) {
+    price += cbm * 15;
+  }
+
+  if (data.disassemblyService) {
+    price += workstations * 30;
+  }
+
+  if (data.assemblyService) {
+    price += workstations * 30;
+  }
+
+  const distanceKm = Math.max(0, num(base?.distance, 15));
+  price += distanceKm * 2.5;
+
+  const walkingDistanceFrom = Math.max(0, num(data.walkingDistanceFrom, 15));
+  const walkingDistanceTo = Math.max(0, num(data.walkingDistanceTo, 15));
+
+  if (walkingDistanceFrom > 20) price += (walkingDistanceFrom - 20) * 2;
+  if (walkingDistanceTo > 20) price += (walkingDistanceTo - 20) * 2;
+
+  if (data.noParkingZoneFrom) price += 95;
+  if (data.noParkingZoneTo) price += 95;
+
+  price *= getGlobalMultiplier(base);
+  price = minPrice(price, 500);
+
+  const teamSize = workstations <= 5 ? "2-3 Personen" : workstations <= 15 ? "4-6 Personen" : "8+ Personen";
+  const hours = Math.ceil(workstations * 2.5);
+
+  return {
+    priceRange: createPriceRange(price, uncertaintyMultiplier),
+    estimatedHours: formatHours(hours, hours + 4, dic),
+    recommendedTeam: teamSize,
+    calculationBasis: `${workstations} ${dic?.calculator?.workstations || "Arbeitsplätze"} | ${Math.round(cbm)} m³`,
+    operationalFlags: uniqueFlags(flags),
+    confidenceLevel,
+    cbm: Math.round(cbm),
+  };
+}
+
+export function calculateSeniorenumzugAdvanced(
+  data: SeniorenumzugAdvancedData,
+  base: BaseDetails,
+  dic?: any
+): AdvancedEstimate {
+  // Seniorenumzug is a wrapper around Umzug with premium defaults and care package
+  const baseResult = calculateUmzugAdvanced(data, base, dic);
+  
+  if (data.seniorCarePackage) {
+    const careSurcharge = 250; // Premium service surcharge for senior assistance
+    baseResult.priceRange.min += careSurcharge;
+    baseResult.priceRange.max += careSurcharge;
+    baseResult.operationalFlags.push(dic?.calculator?.flag_senior_care || "Senioren-Begleitpaket (Sorglos) aktiviert");
+  }
+
+  return baseResult;
+}
+
+export function calculateKlaviertransportAdvanced(
+  data: KlaviertransportAdvancedData,
+  base: BaseDetails,
+  dic?: any
+): AdvancedEstimate {
+  const flags: string[] = [];
+  const confidenceLevel: ConfidenceLevel = "high";
+  const uncertaintyMultiplier = 1.1;
+
+  let price = data.pianoType === "grand" ? 350 : 180;
+  
+  const fromFloor = Math.max(0, num(data.fromFloor, 0));
+  const toFloor = Math.max(0, num(data.toFloor, 0));
+
+  if (fromFloor > 0 && !data.hasElevatorFrom) {
+    price += fromFloor * 40;
+  }
+  if (toFloor > 0 && !data.hasElevatorTo) {
+    price += toFloor * 40;
+  }
+
+  const distanceKm = Math.max(0, num(data.distanceKm, 10));
+  price += distanceKm * 2;
+
+  flags.push(dic?.calculator?.flag_piano_special || "Klavier/Flügel Speziallogistik (Schlitten & Schutz)");
+
+  price *= getGlobalMultiplier(base);
+  price = minPrice(price, 220);
+
+  return {
+    priceRange: createPriceRange(price, uncertaintyMultiplier),
+    estimatedHours: "2 - 4 Std.",
+    recommendedTeam: "2-3 Personen",
+    calculationBasis: data.pianoType === "grand" ? "Flügel" : "Klavier (Hock)",
+    operationalFlags: uniqueFlags(flags),
+    confidenceLevel,
+  };
+}
+
+export function calculateEinlagerungAdvanced(
+  data: EinlagerungAdvancedData,
+  base: BaseDetails,
+  dic?: any
+): AdvancedEstimate {
+  const flags: string[] = [];
+  const confidenceLevel: ConfidenceLevel = "high";
+  const uncertaintyMultiplier = 1.15;
+
+  const volume = Math.max(1, num(data.volumeM3, 5));
+  const months = Math.max(1, num(data.durationMonths, 1));
+  
+  const monthlyRate = volume * 18;
+  let price = monthlyRate * months;
+
+  if (data.pickupRequired) {
+    const pickupFee = 150 + volume * 25;
+    price += pickupFee;
+    flags.push(dic?.calculator?.flag_storage_pickup || "Inkl. Abholung und Einlagerungsservice");
+  }
+
+  if (data.insuranceValue > 5000) {
+    price += (data.insuranceValue - 5000) * 0.002;
+    flags.push(dic?.calculator?.flag_storage_insurance || "Zusatzversicherung für Lagergut");
+  }
+
+  flags.push(`${dic?.calculator?.storage_volume || "Lagervolumen"}: ${volume} m³ | ${dic?.calculator?.duration || "Dauer"}: ${months} ${dic?.common?.months || "Monate"}`);
+
+  price *= getGlobalMultiplier(base);
+  price = minPrice(price, 150);
+
+  return {
+    priceRange: createPriceRange(price, uncertaintyMultiplier),
+    estimatedHours: "Voraussichtliche Mietdauer: " + months + " Monate",
+    recommendedTeam: data.pickupRequired ? "2 Personen (Abholung)" : "Self-Storage",
+    calculationBasis: `${volume} m³ Storage | ${months} Monate`,
+    operationalFlags: uniqueFlags(flags),
+    confidenceLevel,
+    cbm: volume,
+  };
+}
+
+export function calculateMalerarbeitenAdvanced(
+  data: MalerarbeitenAdvancedData,
+  base: BaseDetails,
+  dic?: any
+): AdvancedEstimate {
+  const flags: string[] = [];
+  const confidenceLevel: ConfidenceLevel = "high";
+  const uncertaintyMultiplier = 1.2;
+
+  const area = Math.max(1, num(data.areaM2, 50));
+  
+  let rate = 14;
+  if (data.paintQuality === "premium") rate = 18;
+  if (data.paintQuality === "bio") rate = 22;
+
+  let price = area * rate;
+
+  if (data.includesCeiling) {
+    price *= 1.35;
+    flags.push(dic?.calculator?.flag_painting_ceiling || "Inkl. Deckenanstrich");
+  }
+
+  if (data.includesDoors) {
+    price += 80 * 2;
+    flags.push(dic?.calculator?.flag_painting_doors || "Inkl. Türen/Rahmen lackieren");
+  }
+
+  if (data.isFurnished) {
+    price *= 1.25;
+    flags.push(dic?.calculator?.flag_painting_furnished || "Möbliert (Mehraufwand für Abdecken/Rücken)");
+  }
+
+  flags.push(`${dic?.calculator?.painting_area || "Anstrichfläche"}: ~${area} m²`);
+
+  price *= getGlobalMultiplier(base);
+  price = minPrice(price, 250);
+
+  const hours = Math.max(4, Math.ceil(area / 10));
+
+  return {
+    priceRange: createPriceRange(price, uncertaintyMultiplier),
+    estimatedHours: formatHours(hours, hours + 6, dic),
+    recommendedTeam: area > 100 ? "2-3 Personen" : "1-2 Personen",
+    calculationBasis: `${area} m² Wandfläche | Qualität: ${data.paintQuality}`,
+    operationalFlags: uniqueFlags(flags),
+    confidenceLevel,
+  };
+}
+
+export function calculateAkteneinlagerungAdvanced(
+  data: AkteneinlagerungAdvancedData,
+  base: BaseDetails,
+  dic?: any
+): AdvancedEstimate {
+  const flags: string[] = [];
+  const confidenceLevel: ConfidenceLevel = "high";
+  const uncertaintyMultiplier = 1.1;
+
+  const boxes = Math.max(0, num(data.boxCount, 0));
+  const meters = Math.max(0, num(data.shelfMeters, 0));
+  const months = Math.max(1, num(data.durationMonths, 6));
+
+  const monthlyRate = (boxes * 1.8) + (meters * 12);
+  let price = monthlyRate * months;
+
+  if (months >= 12) {
+    price *= 0.9;
+    flags.push(dic?.calculator?.flag_longterm_discount || "Langzeit-Rabatt angewendet (>12 Mon.)");
+  }
+
+  if (data.pickupRequired) {
+    const pickupFee = 45 + (boxes * 0.6) + (meters * 4);
+    price += pickupFee;
+    flags.push(dic?.calculator?.flag_secure_pickup || "Sicherheits-Abholung durch Fachpersonal");
+  }
+
+  if (data.securityShredding) {
+    const shredFee = (boxes * 15) + (meters * 25);
+    price += shredFee;
+    flags.push(dic?.calculator?.flag_secure_destruction || "Inkl. zertifizierter Aktenvernichtung");
+  }
+
+  if (data.digitalization) {
+    const scanFee = 85 + (meters * 150) + (boxes * 20);
+    price += scanFee;
+    flags.push(dic?.calculator?.flag_digitalization || "Inkl. Scan-on-Demand & Digitalisierung");
+  }
+
+  if (data.insuranceValue > 10000) {
+    price += (data.insuranceValue - 10000) * 0.0015;
+    flags.push(dic?.calculator?.flag_archive_insurance || "Spezial-Versicherung für Dokumente");
+  }
+
+  flags.push(`${dic?.calculator?.storage_volume || "Bestand"}: ${boxes} Boxen | ${meters} lfm`);
+
+  price *= getGlobalMultiplier(base);
+  price = minPrice(price, 180);
+
+  return {
+    priceRange: createPriceRange(price, uncertaintyMultiplier),
+    estimatedHours: "Mietdauer: " + months + " Monate",
+    recommendedTeam: "B2B Logistik-Team",
+    calculationBasis: `${boxes} Boxen / ${meters} lfm Archive Storage`,
+    operationalFlags: uniqueFlags(flags),
+    confidenceLevel,
+    cbm: (boxes * 0.06) + (meters * 0.4),
   };
 }

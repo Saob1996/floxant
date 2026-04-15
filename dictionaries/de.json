@@ -1,4 +1,147 @@
 {
+  "common": {
+    "moving": "Umzug",
+    "certified": "Geprüfter bayerischer Fachbetrieb",
+    "insurance_full": "Vollkasko-Versicherungsschutz",
+    "fixed_price_guarantee": "Festpreise ohne Überraschungen",
+    "trust_bar": {
+      "certified": "Geprüfter bayerischer Fachbetrieb",
+      "insurance": "Vollkasko-Versicherungsschutz",
+      "fixed_price": "Festpreise ohne Überraschungen"
+    },
+    "services_in_city": "Unsere Leistungen für {city}",
+    "human_trust": {
+      "badge_security": "Sicherheit & Sorgfalt",
+      "badge_local": "Regionale Stärke",
+      "security_title": "Ihr Hab & Gut in sicheren Händen",
+      "security_text": "Wir gehen mit Ihren Möbeln um wie mit unseren eigenen. Unsere geschulten Teams nutzen spezielles Verpackungsmaterial und modernstes Equipment, damit jeder Handgriff sitzt.",
+      "local_title": "Fest verwurzelt in {city}",
+      "local_text": "Keine anonyme Vermittlung. Wir sind Ihr lokaler Logistik-Partner direkt aus der Nachbarschaft. Unsere Ortskenntnis in {city} sorgt für reibungslose Abläufe und kurze Wege."
+    },
+    "quality": {
+      "title_01": "Qualität & Siegel",
+      "text_01": "Unsere Teams unterliegen strengen Qualitätskontrollen und werden regelmäßig intern geschult.",
+      "title_02": "Punktgenaue Planung",
+      "text_02": "Keine Etage ist zu hoch, kein Treppenhaus zu eng. Wir koordinieren jeden Schritt.",
+      "title_03": "Transparenz",
+      "text_03": "Sie erhalten ein Angebot, das steht. Wir garantieren Ihnen 100% Preissicherheit."
+    },
+    "knowledge_title": "Experten-Wissen für {city}",
+    "knowledge_subtitle": "Profitieren Sie von unserem Insider-Know-how für Ihren reibungslosen Ablauf.",
+    "all_articles": "Alle Artikel lesen",
+    "region_label": "Ihre Region: {region}",
+    "region_text": "Wir sind nicht nur in {city} aktiv, sondern decken die gesamte Region {region} flächendeckend ab. Profitieren Sie von unserer lokalen Stärke und schnellen Logistikwegen.",
+    "show_all_locations": "Alle Standorte anzeigen",
+    "stats": {
+      "projects": "Projekte in {city}",
+      "satisfaction": "Kundenzufriedenheit",
+      "experts": "Experten vor Ort",
+      "response": "Reaktionszeit"
+    },
+    "neighborhoods_title": "Verfügbarkeit in {city} & Umgebung",
+    "cost_calculator_btn": "Preis berechnen",
+    "whatsapp_call": "WhatsApp direkt",
+    "fast_question": "Kurze Frage?",
+    "write_whatsapp_now": "Jetzt per WhatsApp schreiben",
+    "umzug_munich": "Umzug München",
+    "umzug_nuremberg": "Umzug Nürnberg",
+    "umzug_regensburg": "Umzug Regensburg",
+    "umzug_landshut": "Umzug Landshut",
+    "umzug_neutraubling": "Umzug Neutraubling",
+    "umzug_oberpfalz": "Umzug Oberpfalz",
+    "umzug_landkreis_regensburg": "Landkreis Regensburg",
+    "umzug_augsburg": "Umzug Augsburg",
+    "umzug_bavaria": "Umzug Bayern",
+    "bueroumzug": "Büroumzug",
+    "seniorenumzug": "Seniorenumzug",
+    "klaviertransport": "Klaviertransport",
+    "entruempelung": "Entrümpelung",
+    "reinigung": "Reinigung",
+    "fernumzug": "Fernumzug",
+    "kleintransporte": "Kleintransporte",
+    "faq_title": "Häufig gestellte Fragen",
+    "top_ratings": "Top bewertet",
+    "fixed_price": "Festpreis",
+    "fixed_price_no_surprises": "Keine versteckten Kosten",
+    "insured": "Versichert",
+    "guide": "Ratgeber",
+    "whatsapp_call": "WhatsApp direkt",
+    "cost_calculator_btn": "Preis berechnen",
+    "fast_question": "Kurze Frage?",
+    "write_whatsapp_now": "Jetzt per WhatsApp schreiben",
+    "quick_question": "Kurze Frage?",
+    "email_hotline": "E-Mail",
+    "known_from": "Bekannt von",
+    "also_available_in": "Auch verfügbar in",
+    "whatsapp_cta_title": "Schnell per WhatsApp anfragen",
+    "whatsapp_cta_desc": "Erhalten Sie eine Antwort in wenigen Minuten."
+  },
+  "authority_magnet": {
+    "title": "Transparenz & Lokale Expertise in {city}",
+    "subtitle": "Ein erfolgreicher Projektverlauf benötigt echte Vor-Ort-Kenntnisse. Um Ihnen maximale Transparenz zu bieten, prüfen wir stetig unsere Kapazitäten und dokumentieren unsere logistische Reichweite im Raum {city}.",
+    "activity_title": "Aktuelle Planungs- & Flottenaktivität",
+    "services": {
+      "family": {
+        "title": "Privatumzug (Familie)",
+        "desc": "Wird aktuell in {city} geplant. Beinhaltet Full-Service mit Küchenmontage und Packmaterial-Bereitstellung."
+      },
+      "commercial": {
+        "title": "Firmen-Relocation",
+        "desc": "Kurzfristige Terminierung für ein Gewerbeobjekt. Fokussiert auf sicheren IT-Transport und Akten-Archivierung."
+      },
+      "clearance": {
+        "title": "Fachgerechte Räumung",
+        "desc": "Besichtigung in {city} angemeldet. Zielsetzung: Besenreine Wohnungsauflösung mit zertifizierter Entsorgung."
+      },
+      "special": {
+        "title": "Möbel-Spezialtransport",
+        "desc": "Turnusmäßige Beiladung über unsere wöchentlichen Routen durch die Region {region}."
+      }
+    },
+    "search_title": "Gezielt nach \"FLOXANT Erfahrungen\" suchen",
+    "search_desc": "Die Wahl des Dienstleisters für Ihren Umzug in {city} ist absolute Vertrauenssache. Wir empfehlen unseren Kunden, unsere Bewertungen unabhängig zu prüfen. Geben Sie FLOXANT Umzug Erfahrungen in Ihre Suchmaschine ein und überzeugen Sie sich von unserer beständigen Qualität, regionalen Verlässlichkeit und den durchweg positiven Kundenresonanzen.",
+    "nap_title": "Zentrale Kontakt-Details (NAP)",
+    "nap_operating_area": "Einsatzgebiet: {city} / {region}",
+    "useful_title": "Wissenswertes für Ihren Start in {city}",
+    "useful": {
+      "no_parking": {
+        "title": "Halteverbotszonen",
+        "desc": "Beantragen Sie (oder wir für Sie) frühzeitig eine amtliche Halteverbotszone beim zuständigen Amt in {city}. Die Vorlaufzeit sollte idealerweise mind. 14 Tage betragen, um den Behördenweg rechtzeitig abzuschließen."
+      },
+      "registration": {
+        "title": "Behörden-Ummeldung",
+        "desc": "Gemäß Bundesmeldegesetz haben Sie nach Bezug der neuen Wohnung 14 Tage Zeit, Ihren Wohnsitz beim Einwohnermeldeamt in {city} umzumelden. Vergessen Sie nicht die Anmeldung Ihres Fahrzeugs!"
+      },
+      "insurance": {
+        "title": "Haftung & Versicherung",
+        "desc": "Ein lizensierter Spediteur haftet nach § 451g HGB mit exakt 620 EUR pro Kubikmeter Ladevolumen. Bei Kunst, Antiquitäten oder hochpreisigem IT-Equipment empfehlen wir den Abschluss einer Transport-Zusatzversicherung."
+      }
+    }
+  },
+  "reviews": {
+    "satisfaction_label": "Kundenzufriedenheit",
+    "title_part1": "Was unsere Kunden",
+    "title_part2": "sagen",
+    "subtitle": "Echte Rückmeldungen, klare Eindrücke und nachvollziehbare Erfahrungen aus dem operativen Alltag.",
+    "verified_label": "Verifizierte Rückmeldung",
+    "items": [
+      {
+        "text": "Pünktlich, sauber und zuverlässig. Der Ablauf war deutlich strukturierter als erwartet.",
+        "name": "Kundin aus Regensburg",
+        "role": "Verifizierte Anfrage"
+      },
+      {
+        "text": "Gute Kommunikation, klare Preisstruktur und ein professioneller Gesamteindruck.",
+        "name": "Kunde aus Bayern",
+        "role": "Verifizierte Anfrage"
+      },
+      {
+        "text": "Schnelle Rückmeldung und ein seriöser Eindruck schon vor dem eigentlichen Einsatz.",
+        "name": "Kundin aus Oberpfalz",
+        "role": "Verifizierte Anfrage"
+      }
+    ]
+  },
   "nav": {
     "home": "Startseite",
     "services": "Leistungen",
@@ -8,6 +151,7 @@
     "book_now": "JETZT BUCHEN",
     "dashboard": "Dashboard",
     "service_umzug": "Umzug",
+    "service_bueroumzug": "Büroumzug",
     "service_reinigung": "Reinigung",
     "service_entruempelung": "Entrümpelung"
   },
@@ -31,7 +175,26 @@
       "schwandorf": "Schwandorf",
       "amberg": "Amberg",
       "bavaria": "Ganz Bayern"
+    },
+    "regions": {
+      "Oberpfalz": "Oberpfalz",
+      "Oberbayern": "Oberbayern",
+      "Mittelfranken": "Mittelfranken",
+      "Niederbayern": "Niederbayern",
+      "Schwaben": "Schwaben",
+      "Oberfranken": "Oberfranken",
+      "Unterfranken": "Unterfranken",
+      "Stadtbezirk München": "Stadtbezirk München",
+      "Stadtbezirk Nürnberg": "Stadtbezirk Nürnberg"
     }
+  },
+  "regional_grid": {
+    "badge": "Bayernweite Logistik-Präsenz",
+    "title": "Unser regionales Netzwerk",
+    "subtitle": "Von den Alpen bis nach Franken – FLOXANT kombiniert internationale Logistik-Power mit tief verwurzelter lokaler Expertise in jedem bayerischen Bezirk.",
+    "help_title": "Ihre Stadt nicht in der Liste?",
+    "help_desc": "Kein Problem. Unsere Teams sind mobil und führen Logistikprojekte in ganz Bayern, Deutschland und Europa zum Festpreis durch.",
+    "cta": "Alle Standorte anzeigen"
   },
   "booking": {
     "steps": {
@@ -54,8 +217,16 @@
     },
     "services": {
       "umzug": {
-        "label": "Umzug",
+        "label": "Privatumzug",
         "desc": "Stressfrei umziehen."
+      },
+      "bueroumzug": {
+        "label": "Büroumzug",
+        "desc": "Professionelle Firmenlogistik."
+      },
+      "seniorenumzug": {
+        "label": "Seniorenumzug",
+        "desc": "Mit Sorgfalt & Begleitung."
       },
       "reinigung": {
         "label": "Reinigung",
@@ -64,6 +235,10 @@
       "entsorgung": {
         "label": "Entsorgung",
         "desc": "Fachgerecht & schnell."
+      },
+      "klaviertransport": {
+        "label": "Klaviertransport",
+        "desc": "Spezialtransport für Instrumente."
       }
     },
     "form": {
@@ -133,6 +308,10 @@
     "private_moving": "Privatumzug",
     "office_moving": "Büroumzug",
     "furniture_assembly": "Möbelmontage",
+    "storage": "Einlagerung",
+    "painting": "Malerarbeiten",
+    "piano_moving": "Klaviertransport",
+    "archive_storage": "Akteneinlagerung",
     "cleaning_clearance": "Reinigung & Räumung",
     "locations": "Standorte",
     "company": "Unternehmen",
@@ -145,6 +324,10 @@
     "locations_header": "Standorte",
     "special_header": "Spezial",
     "no_parking_zone": "Halteverbotszone",
+    "storage_label": "Einlagerung",
+    "painting_label": "Malerarbeiten",
+    "piano_label": "Klaviertransport",
+    "archive_label": "Akteneinlagerung",
     "cleaning": "Reinigung",
     "clearance": "Entrümpelung",
     "cleaning_bavaria": "Reinigung Bayern",
@@ -157,7 +340,10 @@
     "moving_costs": "Umzugskosten",
     "service_area": "Servicegebiet",
     "guide": "Ratgeber",
-    "internal": "Intern"
+    "internal": "Intern",
+    "fast_moving": "Kurzfristiger Umzug",
+    "emergency_moving": "Notfall-Umzug",
+    "knowledge_hub": "Wissen Hub"
   },
   "contact": {
     "name": "Name",
@@ -219,6 +405,253 @@
     }
   },
   "pages": {
+    "umzug_spec": {
+      "meta_title": "Umzugsunternehmen {city} ✓ Festpreis ✓ Versichert | FLOXANT",
+      "meta_desc": "Ihr professionelles Umzugsunternehmen für {city} und ganz Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
+      "keywords": ["Umzug {city}", "Umzugsunternehmen {city}", "Umzugsfirma {city}", "günstig umziehen {city}", "Privatumzug {city}", "Umzugsservice Bayern", "FLOXANT {city}"],
+      "hero_h1": "Umzugsunternehmen in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Professioneller Umzugsservice in {city} mit Festpreisgarantie. Wir planen, verpacken und transportieren Ihr Hab und Gut sicher an das neue Ziel.",
+      "hero_badge": "Meisterhafte Logistik",
+      "cta": "Angebot in 2 Min. berechnen",
+      "badges": {
+        "permit": "Halteverbot inkl.",
+        "signs": "Voll versichert",
+        "stressfree": "Stressfrei & Sicher"
+      },
+      "service1": {
+        "title": "Privatumzug {city}",
+        "l1": "Vollständige Planung & Koordination",
+        "l2": "Sorgfältiger Möbelabbau & Aufbau",
+        "l3": "Sicherer Transport im eigenen LKW",
+        "l4": "Inklusive Transportversicherung"
+      },
+      "service2": {
+        "title": "Full-Service Paket",
+        "l1": "Inkl. Einpack- & Auspackservice",
+        "l2": "Kostenlosem Kartonverleih",
+        "l3": "Endreinigung mit Abnahmegarantie",
+        "l4": "Entrümpelung von Altmöbeln"
+      },
+      "section2_h2": "Umziehen in {city} ohne Kompromisse",
+      "section2_p1": "Ein Umzug in {city} erfordert nicht nur Kraft, sondern auch Köpfchen. Als spezialisiertes Umzugsunternehmen kennen wir die lokalen Gegebenheiten in {city} und sorgen für einen reibungslosen Ablauf – vom ersten Karton bis zur Schlüsselübergabe.",
+      "section2_p2": "Wir arbeiten mit modernem Equipment und geschulten Teams, um höchste Qualität zum fairen Preis zu bieten. Vertrauen Sie auf FLOXANT Pro-Logistik für Ihren Standortwechsel in der Region {city}.",
+      "wizard_badge": "Festpreis-Check",
+      "wizard_h2": "Jetzt Umzugskosten für {city} kalkulieren",
+      "wizard_p": "Geben Sie kurz Ihre Eckdaten ein und erhalten Sie sofort eine erste Einschätzung für Ihren Umzug in {city}."
+    },
+    "buero_umzug_spec": {
+      "meta_title": "Büroumzug {city} ✓ Firmenumzug ✓ Minimaler Ausfall | FLOXANT",
+      "meta_desc": "Professioneller Büroumzug in {city}. Wir organisieren Ihren Firmenumzug diskret und effizient. Minimale Ausfallzeiten, IT-Transport & Festpreis.",
+      "keywords": ["Büroumzug {city}", "Firmenumzug {city}", "Gewerbeumzug {city}", "IT-Umzug {city}", "Objektumzug {city}", "Büro Service {city}"],
+      "hero_h1": "Büroumzug in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Geschäftskontinuität hat Priorität. Wir ziehen Ihr Unternehmen in {city} so um, dass Sie am nächsten Tag produktiv weiterarbeiten können.",
+      "hero_badge": "Business Logistik",
+      "cta": "Firmenangebot anfordern",
+      "badges": {
+        "permit": "IT-Transport Spezial",
+        "signs": "Diskret & Sicher",
+        "stressfree": "Wochenend-Service"
+      },
+      "service1": {
+        "title": "Projektumzug {city}",
+        "l1": "Detaillierter Phasenplan",
+        "l2": "IT-Infrastruktur Verlagerung",
+        "l3": "Archiv- & Akten-Logistik",
+        "l4": "Inventarisierung & Kennzeichnung"
+      },
+      "service2": {
+        "title": "Premium Business",
+        "l1": "Abwicklung nach Feierabend",
+        "l2": "Vollständige Möbelmontage",
+        "l3": "Entsorgung von Altinventar",
+        "l4": "Reinigung der neuen Räume"
+      },
+      "section2_h2": "Ihr Partner für Gewerbeumzüge in {city}",
+      "section2_p1": "Ein Firmenumzug in {city} ist ein strategisches Projekt. Wir minimieren Ihre Ausfallzeiten durch präzise Planung und schlagkräftige Teams. FLOXANT ist Ihr Partner für gewerbliche Logistik in {city}.",
+      "section2_p2": "Von der Kanzlei bis zum Industriebetrieb: Wir haben die Erfahrung und das Equipment für Ihren Erfolg in {city}.",
+      "wizard_badge": "B2B-Anfrage",
+      "wizard_h2": "Individuelle Beratung für {city} anfordern",
+      "wizard_p": "Kurze Eckdaten reichen aus – unser Projektleiter für {city} meldet sich umgehend bei Ihnen."
+    },
+    "seniorenumzug_spec": {
+      "meta_title": "Seniorenumzug {city} ✓ Behutsam & Full-Service | FLOXANT",
+      "meta_desc": "Einfühlsamer Seniorenumzug in {city}. Wir übernehmen alles: Packen, Montage, Entsorgung & Reinigung. Stressfrei & Verlässlich zum Festpreis.",
+      "keywords": ["Seniorenumzug {city}", "Umzug im Alter {city}", "Full-Service Umzug Senioren", "Wohnungsverkleinerung {city}", "begleiteter Umzug {city}"],
+      "hero_h1": "Seniorenumzug in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Ein Umzug im Alter erfordert Vertrauen und Ruhe. Wir begleiten Sie in {city} behutsam in Ihr neues Zuhause – mit vollem Service.",
+      "hero_badge": "Einfühlsamer Service",
+      "cta": "Kostenlose Beratung vor Ort",
+      "badges": {
+        "permit": "Full-Service Paket",
+        "signs": "Behutsame Teams",
+        "stressfree": "Alles aus einer Hand"
+      },
+      "service1": {
+        "title": "Rundum-Sorglos {city}",
+        "l1": "Gemeinsames Einpacken",
+        "l2": "Möbelabbau- & Aufbau",
+        "l3": "Anbringen von Lampen & Bildern",
+        "l4": "Vollständige Reinigung"
+      },
+      "service2": {
+        "title": "Wohnungsverkleinerung",
+        "l1": "Fachgerechte Entrümpelung",
+        "l2": "Verwertung von Möbeln",
+        "l3": "Besenreine Übergabe",
+        "l4": "Akten- & Müllentsorgung"
+      },
+      "section2_h2": "Ihr Umzug in {city} in guten Händen",
+      "section2_p1": "Ein Seniorenumzug in {city} ist oft mit Lebensveränderungen verbunden. Wir nehmen uns die Zeit, hören zu und führen den Umzug mit der nötigen Ruhe und Sorgfalt durch.",
+      "section2_p2": "Unser Team in {city} sorgt dafür, dass Ihre vertrauten Stücke sicher ankommen und Sie sich sofort wohlfühlen.",
+      "wizard_badge": "Service-Check",
+      "wizard_h2": "Beratung für {city} vereinbaren",
+      "wizard_p": "Gerne kommen wir in {city} zu einer unverbindlichen Besichtigung vorbei."
+    },
+    "klaviertransport_spec": {
+      "meta_title": "Klaviertransport {city} ✓ Sicher ✓ Klavier-Profi | FLOXANT",
+      "meta_desc": "Profi-Klaviertransport in {city} und ganz Bayern. Spezialisiertes Equipment für Klaviere & Flügel. Voll versichert & erfahrene Teams.",
+      "keywords": ["Klaviertransport {city}", "Flügeltransport {city}", "Spezialtransport {city}", "Klavier Umzug {city}", "Schwertransport {city}"],
+      "hero_h1": "Klaviertransport in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Ihr wertvolles Instrument in den besten Händen. Wir transportieren Klaviere und Flügel in {city} mit Präzision und Spezial-Equipment.",
+      "hero_badge": "Meisterhafte Logistik",
+      "cta": "Spezial-Angebot anfordern",
+      "badges": {
+        "permit": "Spezial-Equipment",
+        "signs": "Voll versichert",
+        "stressfree": "Erfahrene Teams"
+      },
+      "service1": {
+        "title": "Klavier & Flügel {city}",
+        "l1": "Fachgerechte Verpackung",
+        "l2": "Spezial-Schlitten & Gurte",
+        "l3": "Temperaturgeschützter Transport",
+        "l4": "Aufstellung & Schutz"
+      },
+      "service2": {
+        "title": "Schwertransport",
+        "l1": "Tresore & Sonderlasten",
+        "l2": "Hydraulik-Heber Technik",
+        "l3": "Treppen-Raupen Einsatz",
+        "l4": "Statik-Prüfung bei Bedarf"
+      },
+      "section2_h2": "Präzisions-Logistik für {city}",
+      "section2_p1": "Ein Klaviertransport in {city} ist keine gewöhnliche Aufgabe. Es erfordert Erfahrung und die richtige Technik. Wir schützen Ihr Instrument und die Umgebung in {city}.",
+      "section2_p2": "Verlassen Sie sich auf FLOXANT für Ihre wertvollsten Stücke in {city}.",
+      "wizard_badge": "Express-Check",
+      "wizard_h2": "Kosten für {city} anfragen",
+      "wizard_p": "Geben Sie kurz die Details an – unser Spezialist für {city} meldet sich."
+    },
+    "einlagerung_spec": {
+      "meta_title": "Einlagerung {city} ✓ Sicher ✓ Trocken ✓ Flexibel | FLOXANT",
+      "meta_desc": "Günstige Einlagerung in {city}. Kurze oder lange Laufzeiten, alarmgesichert & klimatisiert. Hol- und Bringservice in ganz Bayern.",
+      "keywords": ["Einlagerung {city}", "Möbeleinlagerung {city}", "Lagerraum mieten {city}", "Self Storage {city}", "Zwischenlagerung {city}"],
+      "hero_h1": "Sichere Einlagerung in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Platzmangel oder Umzugspause? Wir lagern Ihre Möbel in {city} sicher, trocken und jederzeit zugänglich ein.",
+      "hero_badge": "Sicherheits-Lager",
+      "cta": "Lagerangebot anfordern",
+      "badges": {
+        "permit": "Alarmgesichert",
+        "signs": "Klimatisiert",
+        "stressfree": "Hol- & Bringservice"
+      },
+      "service1": {
+        "title": "Möbellager {city}",
+        "l1": "Einzelne Boxen oder Flächen",
+        "l2": "Staubfreie Verpackung",
+        "l3": "Kurzfristig kündbar",
+        "l4": "Inventarliste inklusive"
+      },
+      "service2": {
+        "title": "Full-Service Lager",
+        "l1": "Abholung bei Ihnen privat",
+        "l2": "Fachgerechte Demontage",
+        "l3": "Versichertes Depot",
+        "l4": "Anlieferung zum Wunschtermin"
+      },
+      "section2_h2": "Flexibler Stauraum für {city}",
+      "section2_p1": "In {city} bieten wir Ihnen maßgeschneiderte Lagerlösungen. Ob für wenige Wochen während einer Renovierung oder über Jahre hinweg – Ihre Schätze sind bei uns in {city} sicher aufgehoben.",
+      "section2_p2": "Modernste Überwachungstechnik und optimale klimatische Bedingungen garantieren den Werterhalt Ihrer Möbel in {city}.",
+      "wizard_badge": "Platz-Check",
+      "wizard_h2": "Lagerplatz in {city} berechnen",
+      "wizard_p": "Geben Sie an, was Sie lagern möchten. Wir schätzen den Platzbedarf für {city}."
+    },
+    "malerarbeiten_spec": {
+      "meta_title": "Malerarbeiten {city} ✓ Profi-Qualität ✓ Festpreis | FLOXANT",
+      "meta_desc": "Professionelle Malerarbeiten in {city} für Wohnungen & Häuser. Tapezieren, Streichen, Lackieren & Renovieren. Sauber & Schnell zum Festpreis.",
+      "keywords": ["Maler {city}", "Malerbetrieb {city}", "Anstrich {city}", "Tapezieren {city}", "Renovierung {city}", "Wohnung streichen {city}"],
+      "hero_h1": "Professionelle Malerarbeiten in ",
+      "hero_h1_highlight": "{city}",
+      "hero_p": "Frischer Glanz für Ihre Wände. Wir übernehmen alle Maler- und Renovierungsarbeiten in {city} – sauber, schnell und zum Festpreis.",
+      "hero_badge": "Premium Finish",
+      "cta": "Renovierungs-Angebot einholen",
+      "badges": {
+        "permit": "Meisterqualität",
+        "signs": "Inkl. Material",
+        "stressfree": "Sauberkeitsgarantie"
+      },
+      "service1": {
+        "title": "Innenanstrich {city}",
+        "l1": "Wände & Decken streichen",
+        "l2": "Lackieren von Türen & Rahmen",
+        "l3": "Hochwertige Markenfarben",
+        "l4": "Abdeck-Service inklusive"
+      },
+      "service2": {
+        "title": "Komplett-Renovierung",
+        "l1": "Tapezieren & Grundierung",
+        "l2": "Schimmelsanierung (leicht)",
+        "l3": "Verputzen & Spachteln",
+        "l4": "Besenreine Übergabe"
+      },
+      "section2_h2": "Ihr Malerbetrieb für {city}",
+      "section2_p1": "Nach dem Umzug oder einfach für ein neues Wohngefühl: Unsere Maler in {city} sorgen für perfekte Ergebnisse ohne Stress. Wir schützen Ihre Böden und Möbel in {city} zuverlässig.",
+      "section2_p2": "Sparen Sie Zeit und Mühe – verlassen Sie sich auf das Fachhandwerk von FLOXANT in {city}.",
+      "wizard_badge": "Farb-Check",
+      "wizard_h2": "Angebot für {city} kalkulieren",
+      "wizard_p": "Geben Sie die Quadratmeterzahl an. Wir senden Ihnen ein Festpreis-Angebot für {city}."
+    },
+    "akteneinlagerung_regensburg_spec": {
+      "meta_title": "Aktenlagerung Regensburg ✓ Sicher ✓ DSGVO ✓ Archivierung | FLOXANT",
+      "meta_desc": "Professionelle Akteneinlagerung in Regensburg für Kanzleien & Firmen. Sicher, trocken & DSGVO-konform. Inkl. Abholung, Digitalisierung & Vernichtung.",
+      "keywords": ["Akteneinlagerung Regensburg", "Archivlager Regensburg", "Dokumentenlagerung Kanzlei", "Aktenvernichtung Regensburg", "Archivierung Service"],
+      "hero_h1": "Akten- & Archivlagerung in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Höchste Sicherheit für Ihre sensiblen Unterlagen. Wir bieten Kanzleien und Unternehmen in Regensburg professionelle Archivlösungen – vom Karton bis zum Regalmeter.",
+      "hero_badge": "Business & Law Logistik",
+      "cta": "B2B Angebot anfordern",
+      "badges": {
+        "permit": "DSGVO-Konform",
+        "signs": "Sicherheitslager",
+        "stressfree": "Scan-on-Demand"
+      },
+      "service1": {
+        "title": "Archiv-Logistik Regensburg",
+        "l1": "Sicherheits-Abholung vor Ort",
+        "l2": "Inventarisierung nach System",
+        "l3": "Trocken & Schädlingsfrei",
+        "l4": "Jederzeitiger Zugriff"
+      },
+      "service2": {
+        "title": "Digitaler Vorsprung",
+        "l1": "Scan-on-Demand Service",
+        "l1_desc": "Benötigte Akten senden wir Ihnen digital innerhalb von 2 Std.",
+        "l2": "Zertifizierte Vernichtung",
+        "l2_desc": "Nach Ablauf der Aufbewahrungsfrist nach DIN 66399.",
+        "l3": "Vollständige Archivpflege",
+        "l4": "Backup & Cloud-Anbindung"
+      },
+      "section2_h2": "Sichere Dokumenten-Verwaltung in Regensburg",
+      "section2_p1": "Platzmangel im Büro? Unsere Aktenlagerung in Regensburg schafft Freiräume. Wir lagern Ihre Ordner unter optimalen Bedingungen und garantieren die Einhaltung aller gesetzlichen Datenschutzvorgaben.",
+      "section2_p2": "Von der Anwaltskanzlei bis zum Industriebetrieb: FLOXANT ist Ihr verlässlicher Partner für Archiv-Logistik in der Welterbestadt Regensburg.",
+      "wizard_badge": "B2B-Check",
+      "wizard_h2": "Kosten für Archivierung berechnen",
+      "wizard_p": "Ermitteln Sie sofort die monatlichen Kosten für Ihren Dokumentenbestand in Regensburg."
+    },
     "umzug_muenchen": {
       "hero_title_prefix": "Ihr Umzug in",
       "hero_title_highlight": "München",
@@ -491,6 +924,36 @@
       ],
       "cta_title": "Entrümpelung anfragen",
       "cta_text": "Kontaktieren Sie uns für eine vertrauliche Beratung. Wir erstellen Ihnen ein transparentes Angebot."
+    },
+    "service_schwertransport": {
+      "meta_title": "Klaviertransport & Schwertransport {city} – Sicher & Versichert",
+      "meta_desc": "Profi-Klaviertransport in {city} und ganz Bayern. Spezialisiertes Equipment für Klaviere, Flügel und Tresore. Voll versichert, erfahrene Teams, Bestpreis.",
+      "badge": "Spezialtransport",
+      "hero_h1": "Klaviertransport {city}",
+      "hero_p": "Ihr wertvolles Instrument in den besten Händen. Wir transportieren Klaviere, Flügel und Tresore in {city} mit Präzision, Spezial-Equipment und Leidenschaft.",
+      "hero_badge": "Meisterhafte Logistik",
+      "cta": "Jetzt Kostenvoranschlag erhalten",
+      "badges": {
+        "permit": "Spezial-Equipment",
+        "signs": "Voll versichert",
+        "stressfree": "Erfahrene Teams"
+      },
+      "service1": {
+        "title": "Klavier- & Flügeltransport",
+        "l1": "Fachgerechte Verpackung und Sicherung",
+        "l2": "Einsatz von Klavierschlitten und Spezialgurten"
+      },
+      "service2": {
+        "title": "Tresor- & Schwertransport",
+        "l1": "Transport schwerster Lasten bis 500kg+",
+        "l2": "Präzise Planung der Transportwege"
+      },
+      "section2_h2": "Sicherheit steht an erster Stelle",
+      "section2_p1": "Ein Klaviertransport in {city} ist keine gewöhnliche Logistikaufgabe. Es erfordert physikalisches Verständnis, die richtige Technik und ein eingespieltes Team. Wir schützen nicht nur Ihr Instrument, sondern auch die Treppenhäuser und Bodenbeläge vor Ort.",
+      "section2_p2": "Jeder Transport ist durch unsere spezielle Güterversicherung abgedeckt. So können Sie sich darauf verlassen, dass Ihr wertvolles Gut in jeder Phase des Umzugs geschützt ist.",
+      "wizard_badge": "Express-Anfrage",
+      "wizard_h2": "Kosten für Klaviertransport in {city} berechnen",
+      "wizard_p": "Geben Sie die wichtigsten Eckdaten ein und Sie erhalten sofort eine erste Einschätzung für Ihren Spezialtransport."
     },
     "service_montage": {
       "meta_title": "Montage – Professioneller Möbelaufbau und Küchenmontage",
@@ -3336,6 +3799,39 @@
         }
       ]
     },
+    "kombi_spec": {
+      "meta_title": "Umzug & Reinigung {city} ✓ Kombi-Paket ✓ Stressfrei | FLOXANT",
+      "meta_desc": "Buchen Sie das Sorglos-Paket für Ihren Wohnungswechsel in {city}. Umzug & Endreinigung aus einer Hand – mit Abnahmegarantie und Paket-Vorteil.",
+      "hero_badge": "Service-Katalog 2026",
+      "hero_h1": "Kombi-Service: Umzug & Reinigung in {city}",
+      "hero_p": "Buchen Sie das Sorglos-Paket für Ihren Wohnungswechsel. Wir ziehen Sie professionell um und übernehmen direkt im Anschluss die komplette Endreinigung inklusive Abnahmegarantie. Stressfrei, versichert - alles aus einer Hand.",
+      "cta": "Kombi-Angebot anfordern",
+      "badges": {
+        "permit": "Eigener Fuhrpark",
+        "signs": "Abnahmegarantie",
+        "stressfree": "Paket-Vorteil"
+      },
+      "service1": {
+        "title": "Logistik & Transport",
+        "l1": "Sicherer Transport Ihres Eigentums",
+        "l2": "Fachgerechter Möbelabbau inklusive",
+        "l3": "Modernstes Equipment & Schutzmittel",
+        "l4": "Erfahrene Umzugsprofis vor Ort"
+      },
+      "service2": {
+        "title": "Reinigung & Übergabe",
+        "l1": "Tiefenreinigung aller Oberflächen",
+        "l2": "Fenster- & Rahmenreinigung",
+        "l3": "Vermieter-Standard (Besenrein)",
+        "l4": "Garantierte Mängelbeseitigung"
+      },
+      "section2_h2": "Warum das Kombi-Paket für {city} die beste Wahl ist",
+      "section2_p1": "Ein Umzug in {city} erfordert oft perfektes Timing zwischen Auszug und Schlüsselübergabe. Wenn Sie unseren Kombi-Service wählen, entfällt die Koordination verschiedener Dienstleister. Sobald der letzte Karton das Haus verlässt, startet unser Reinigungs-Team direkt durch.",
+      "section2_p2": "Sie sparen nicht nur wertvolle Zeit, sondern profitieren auch von unserem Paket-Vorteil. Vertrauen Sie auf FLOXANT – Ihren Partner für einen nahtlosen Übergang in Ihr neues Zuhause.",
+      "wizard_badge": "Schnellanfrage",
+      "wizard_h2": "Jetzt Festpreis anfragen",
+      "wizard_p": "Schicken Sie uns Ihre Eckdaten und wir prüfen sofort unsere bayerischen Kapazitäten für Ihren Kombi-Termin."
+    },
     "umzug_regensburg": {
       "meta_title": "Umzugsunternehmen Regensburg ✓ Festpreis ✓ Versichert | FLOXANT",
       "meta_desc": "Professionelles Umzugsunternehmen in Regensburg & Oberpfalz. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
@@ -4703,7 +5199,7 @@
       "meta_title": "Umzugsunternehmen {city} ✓ Festpreis ✓ Versichert | FLOXANT",
       "meta_desc": "Professionelles Umzugsunternehmen in {city} & Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
       "hero_badge": "Umzugsservice",
-      "hero_h1": "Umzug {city}",
+      "hero_h1": "Umzug {city_district}",
       "hero_p": "Ihr verlässliches Umzugsunternehmen für stressfreie Umzüge in {city} und ganz Bayern. Mit Festpreisgarantie und voller Versicherungsschutz.",
       "badges": {
         "permit": "Genehmigungen",
@@ -4843,101 +5339,23 @@
       }
     }
   },
-  "common": {
-    "whatsapp_call": "WhatsApp / Anruf",
-    "cost_calculator_btn": "Zum Kostenrechner",
-    "free_visit": "Kostenlose Besichtigung",
-    "insured": "100% Versichert",
-    "fixed_price": "Festpreisgarantie",
-    "google_rating": "Google 4.9/5.0",
-    "email_hotline": "Email Hotline",
-    "known_from": "Bekannt aus",
-    "ready_for_service": "Bereit für einen stressfreien Service?",
-    "cta_description": "Erhalten Sie sofort Ihr unverbindliches Angebot über unseren intelligenten Kostenrechner oder schreiben Sie uns bei Fragen ganz einfach per WhatsApp.",
-    "whatsapp_write": "Jetzt WhatsApp schreiben",
-    "quick_question": "Schnelle Frage?",
-    "back_to_home": "Zur Startansicht",
-    "nav_open": "Menü öffnen",
-    "nav_close": "Menü schließen",
-    "authority_bio": "FLOXANT ist Ihr verlässlicher, regional verwurzelter Dienstleister in Bayern. Mit unserem Hauptverwaltungssitz nahe Regensburg koordinieren wir tägliche Umzüge, spezialisierte Entrümpelungen und gewerbliche Reinigungen im gesamten Freistaat – von der Oberpfalz bis München. Profitieren Sie von unserer zertifizierten Verkehrshaftung, kurzfristigen Dispositionen und limitierten Festpreisen. Wir sind Ihr zentraler Ansprechpartner für Logistik und Transport.",
-    "free_unbinding": "Unverbindlich & Kostenlos",
-    "headquarters_regensburg": "Hauptsitz Regensburg",
-    "umzug_bavaria": "Umzug Bayern",
-    "entruempelung": "Entrümpelung",
-    "reinigung": "Reinigung",
-    "success_100_region": "Über 100+ erfolgreiche Umzüge in der Region.",
-    "top_ratings": "Top Bewertungen",
-    "local_expert": "Ihr Transport- und Logistikexperte vor Ort",
-    "master_logistics": "Logistische Herausforderungen souverän meistern",
-    "questions_process": "Haben Sie Fragen zum Ablauf?",
-    "quick_estimation": "Oft reichen uns schon wenige Minuten am Telefon oder per Mail, um den Aufwand einzuschätzen.",
-    "local_advantages": "Die Vorteile eines lokal agierenden Umzugsunternehmens sind immens.",
-    "fast_reaction": "Schnelle Reaktion & Verfügbarkeit",
-    "max_security": "Maximale Sicherheit & Garantien",
-    "fixed_price_no_surprises": "100% Festpreis, 0% Überraschung",
-    "fixed_price_desc": "Wir arbeiten nicht mit offenen Stundenzetteln. Wenn wir Ihr Transportvolumen erfasst haben, geben wir Ihnen unser Wort auf einen fairen, fixen Preis, der bestehen bleibt.",
-    "combined_services": "Kombinierte Dienstleistungen",
-    "important_aspects_summary": "Wir haben die wichtigsten Aspekte rund um Ihren Transport kompakt zusammengefasst.",
-    "faq_insurance_q": "Ist mein Inventar bei Schäden sofort versichert?",
-    "faq_insurance_a": "Selbstverständlich. Jeder Transport der FLOXANT ist gesetzlich über die Verkehrshaftungsversicherung abgesichert. Sie tragen kein finanzielles Risiko, falls etwas zu Bruch gehen sollte.",
-    "faq_kitchen_q": "Demontieren Sie auch Einbauküchen?",
-    "faq_kitchen_a": "Ja, wir verfügen über werkzeugtechnisch vollausgestattete Montage-Profis, die Küchenschränke, große Kleiderschränke und Bettsysteme fachgerecht abbauen und transportsicher verpacken.",
-    "faq_booking_q": "Wie buche ich verbindlich?",
-    "faq_booking_a": "Füllen Sie untenstehendes Formular aus, oder rufen Sie uns an. Wir machen eine Bestandsaufnahme, Sie erhalten das Festpreis-Dokument, bestätigen dieses und schon ist unser Termin gesichert.",
-    "transport_networks": "Unsere Transport-Netzwerke in der Umgebung",
-    "regular_routes_bavaria": "Wir fahren regelmäßig zwischen folgenden Standorten in Bayern.",
-    "metro_munich": "Metropole München",
-    "metro_nuremberg": "Großraum Nürnberg",
-    "request_price_online": "Preis sofort online anfragen",
-    "umzug_nuremberg": "Umzug Nürnberg",
-    "umzug_munich": "Umzug München",
-    "local_challenges": "Lokale Herausforderungen meistern",
-    "regional_service_competence": "Wir verbinden regionalen Service mit überregionaler Logistikkompetenz.",
-    "fast_available": "Schnell verfügbar",
-    "fixed_price_no_nego": "Festpreis ohne Nachverhandlung",
-    "fixed_price_calc_desc": "Wir kalkulieren auf Basis einer kostenlosen Besichtigung (vor Ort oder per Video). Der Preis steht, bevor ein Karton gepackt wird.",
-    "all_from_one_source": "Alles aus einer Hand",
-    "modular_package_desc": "Transform, Küchenmontage, Entrümpelung und Endreinigung – wir bieten ein modulares Gesamtpaket, das Sie je nach Bedarf zusammenstellen.",
-    "faq_no_parking_q": "Organisieren Sie auch Halteverbotszonen?",
-    "faq_no_parking_a": "Ja. Wir übernehmen die behördliche Beantragung und Beschilderung bei der zuständigen Verwaltung. Bitte planen Sie mindestens 14 Tage Vorlauf ein.",
-    "faq_cleaning_q": "Bieten Sie auch Entrümpelung und Reinigung an?",
-    "faq_cleaning_a": "Selbstverständlich. Wir kombinieren Umzug, fachgerechte Entrümpelung und besenreine Endreinigung zu einem effizienten Gesamtpaket – ideal für Wohnungsübergaben.",
-    "other_locations_bavaria": "Weitere FLOXANT-Standorte in Bayern",
-    "network_active_bavaria": "Wir sind in ganz Bayern aktiv – nutzen Sie unser dichtes Netzwerk.",
-    "faq_title": "Häufige Fragen",
-    "more_services": "Weitere Leistungen",
-    "guide": "Ratgeber",
-    "transparency_start": "Transparenz von Anfang an",
-    "local_expertise": "Lokale Expertise",
-    "full_insurance": "Vollversicherung",
-    "full_insurance_desc": "Umfassende Transport- und Betriebshaftpflicht. Ihr gesamtes Inventar ist vom Abbau bis zum Aufbau geschützt.",
-    "extra_services_relocation": "Zusatzleistungen rund um Ihren Wohnungswechsel",
-    "entruempelung_services": "Entrümpelungs-Services",
-    "waste_disposal_desc": "an. Wir nehmen anfallenden Sperrmüll sofort am Umzugstag mit und entsorgen ihn fachgerecht bei den lokalen Wertstoffhöfen.",
-    "also_handle_desc": "Zudem kümmern wir uns auf Wunsch um die",
-    "besenrein_cleaning": "besenreine Endreinigung",
-    "handover_desc": "Ihrer alten Wohnung, damit Sie die Schlüsselübergabe an den Vermieter tiefenentspannt abwickeln können.",
-    "faq_boxes_q": "Bieten Sie Umzugskartons an?",
-    "faq_boxes_a": "Ja, wir stellen rechtzeitig hochstabile Profi-Umzugskartons, Kleiderboxen und Packpapier zur Verfügung – wahlweise zur Leihe oder zum Kauf.",
-    "faq_no_parking_who_q": "Wer beantragt die Halteverbotszone?",
-    "customer_voices": "Kundenstimmen",
-    "additional_services_locations": "Weitere Leistungen & Standorte in Bayern",
-    "cleaning_company": "Reinigungsfirma",
-    "calculate_price": "Preis berechnen",
-    "combination_move": "Kombination mit Umzug",
-    "also_available_in": "Auch verfügbar in",
-    "whatsapp_cta_title": "Schnelle Frage? WhatsApp!",
-    "whatsapp_cta_desc": "Antwort meist innerhalb von 5 Minuten. Kostenlos & unverbindlich.",
-    "next": "Weiter"
-  },
   "calculator": {
+    "selection_title": "Wie möchten Sie fortfahren?",
+    "selection_subtitle": "Drei Wege zum Festpreis-Angebot. Sicher, schnell und persönlich.",
+    "mode_basis_title": "Basis-Kalkulation",
+    "mode_basis_desc": "Sofort-Einschätzung in 2 Minuten ohne Fotos. Ideal für eine erste Orientierung.",
+    "mode_basis_badge": "In 2 Min.",
+    "mode_premium_title": "Premium-Vollservice",
+    "mode_premium_desc": "Detaillierte Planung inkl. Fotos & Zusatzleistungen. Maximale Präzision für Ihren Umzug.",
+    "mode_premium_badge": "Empfohlen",
+    "mode_contact_title": "Direkt-Anfrage",
+    "mode_contact_desc": "Wir rufen Sie zurück oder schreiben Ihnen bei WhatsApp. Die schnellste persönliche Lösung.",
+    "mode_contact_badge": "WhatsApp & Call",
+    "start_btn": "Jetzt starten",
     "requirements_title": "Angaben",
     "requirements_subtitle": "Um Ihnen ein seriöses Angebot zu machen, füllen Sie bitte die relevanten Punkte grob aus. Je mehr wir wissen, desto genauer definieren sich Preis und Teamstärke.",
     "calculation_title": "Ihre Kalkulation",
     "prognosis_label": "Preisspanne",
-    "estimate_label": "Echte Schätzung",
-    "start_now": "Jetzt starten",
-    "start_description": "Geben Sie einfach ein paar erste Eckdaten (z.B. die Wohnfläche) links ein. Unser intelligenter Rechner ermittelt sofort einen fairen Preis für Sie.",
     "calculating": "Kalkuliere Aufwand...",
     "live_price_indicative": "Live Preisindikativ",
     "uncertainty_note": "Dies ist eine erste grobe Schätzung. Faktoren wie Etage, Laufwege, Zusatzleistungen oder Sperrmüllart können den finalen Preis beeinflussen.",
@@ -5019,6 +5437,20 @@
     "dist_placeholder": "ca. 15",
     "social_proof": "3 Personen schauen sich diesen Rechner an",
     "uncertain_volume_desc": "Der Preisrahmen wird basierend darauf zur Sicherheit stark erweitert. Eine finale Einschätzung erfolgt nach persönlicher Klärung oder Besichtigung.",
+    "archive": {
+      "box_count": "Anzahl Archivkartons",
+      "shelf_meters": "Regalmeter (lfm)",
+      "duration": "Lagerdauer (Monate)",
+      "pickup": "Sicherheits-Abholung",
+      "shredding": "Zertifizierte Vernichtung",
+      "digitalization": "Scan-on-Demand (Digitalisierung)",
+      "insurance_value": "Versicherungswert des Archivs",
+      "flag_longterm_discount": "Langzeit-Rabatt angewendet (>12 Mon.)",
+      "flag_secure_pickup": "Sicherheits-Abholung durch Fachpersonal",
+      "flag_secure_destruction": "Inkl. zertifizierter Aktenvernichtung",
+      "flag_digitalization": "Inkl. Scan-on-Demand & Digitalisierung",
+      "flag_archive_insurance": "Spezial-Versicherung für Dokumente"
+    },
     "packing_service_desc": "Wir packen Ihre Hausrat sicher in Kartons.",
     "unpacking_service_desc": "Wir räumen alles wieder in Ihre Schränke.",
     "disassembly_desc": "Abbau großer Möbelstücke.",
@@ -5129,8 +5561,24 @@
     "flag_disassembly_on_site": "Inkl. Demontage vor Ort",
     "flag_express_service": "Express-Service (Dringend)",
     "flag_waste_notes_noted": "Ihre Notiz speichern wir für die Planung",
+    "flag_office_it_setup": "IT-Infrastruktur Spezialtransport eingeplant",
+    "flag_senior_care": "Senioren-Begleitpaket (Sorglos) aktiviert",
+    "flag_piano_special": "Klavier/Flügel Speziallogistik (Schlitten & Schutz)",
     "upload_link_note": "Wir senden Ihnen den Link für den Foto-Upload separat per E-Mail und WhatsApp.",
     "error_submit": "Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+    "step_basics": "Basisdaten",
+    "step_inventory": "Inventar",
+    "step_office": "Büro-Details",
+    "step_senior": "Sorglos-Optionen",
+    "step_piano": "Instrument",
+    "step_services": "Premium Services",
+    "workstations": "Anzahl Arbeitsplätze",
+    "it_setup": "IT-Infrastruktur Umzug",
+    "archive_meters": "Archivmeter (Laufmeter)",
+    "piano_type": "Klavier/Flügel Typ",
+    "upright_piano": "Klavier (Standard)",
+    "grand_piano_label": "Flügel",
+    "senior_care_package": "Full-Service Begleitpaket für Senioren",
     "service_selection_note": "Wählen Sie zuerst die passende Leistung. Danach erfassen wir die wichtigsten Eckdaten für eine schnelle erste Einschätzung.",
     "requirements_note": "Nur die wichtigsten Angaben. Die genaue Kalkulation folgt im nächsten Schritt.",
     "from_place_placeholder": "Von Ort / PLZ",
@@ -5158,28 +5606,32 @@
     "service_area_title": "Einsatzgebiete",
     "bavaria_deployment": "Regionales Einsatzgebiet in Bayern",
     "seo_title": "Ihre professionelle Umzugsfirma in Bayern – Regensburg, München, Nürnberg & mehr",
-    "seo_p1": "FLOXANT ist Ihr zuverlässiger Partner für Umzug, Reinigung und Entrümpelung in Bayern. Mit Sitz in Regensburg betreuen wir Kunden in der gesamten Region – von München über Nürnberg und Augsburg bis Passau und Landshut. Unser erfahrenes Team garantiert einen reibungslosen Ablauf, faire Festpreise und vollständigen Versicherungsschutz für jede Stadt und jeden Ort in Bayern.",
-    "seo_p2": "Ob Privatumzug, Firmenumzug, Fernumzug, Studentenumzug oder Seniorenumzug – wir passen unseren Service exakt an Ihre Bedürfnisse an. Zusätzlich bieten wir professionelle Reinigung für die Wohnungsübergabe und fachgerechte Entrümpelung aus einer Hand. In der Oberpfalz, in Niederbayern, Oberbayern, Mittelfranken und Schwaben – FLOXANT ist Ihr Ansprechpartner.",
-    "seo_p3": "Fordern Sie jetzt Ihr kostenloses Festpreisangebot an – telefonisch, per E-Mail oder über unser Online-Formular. Ob in Regensburg, Straubing, Schwandorf, Amberg, Kelheim, Neumarkt oder Cham – wir sind in Ihrer Nähe.",
-    "seo_p4": "Unsere Entrümpelungsservice umfasst die komplette Haushaltsauflösung, Wohnungsauflösung und Kellerräumung in ganz Bayern. Ob nach einem Todesfall, bei einem Auszug oder vor einer Renovierung – wir arbeiten diskret, umweltbewusst und zum garantierten Festpreis. In Regensburg, München, Nürnberg, Augsburg, Passau, Landshut, Straubing und allen Gemeinden der Oberpfalz.",
-    "seo_p5": "Die professionelle Endreinigung von FLOXANT sichert Ihre Kaution bei der Wohnungsübergabe. Wir reinigen nach Vermieterstandards mit Fotodokumentation und Abnahmegarantie. Von der Grundreinigung über die Baureinigung bis zur regelmäßigen Büroreinigung – in Regensburg, Neutraubling, Lappersdorf, Regenstauf, Maxhütte-Haidhof und ganz Bayern.",
-    "seo_p6": "Seit 2022 vertrauen uns Privatpersonen, Familien und Unternehmen in über 100 Städten Bayerns. FLOXANT verbindet höchste Qualitätsstandards mit transparenter Preisgestaltung. Unsere Leistungen: Umzug, Entrümpelung, Reinigung, Möbelmontage, Halteverbotszone, Klaviertransport, 24h-Service und Fernumzüge – alles aus einer Hand, alles zum Festpreis.",
-    "faq_q1": "Was kostet ein Umzug in Regensburg?",
-    "faq_a1": "Ein Umzug in Regensburg kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße, Etage und Entfernung. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung – ohne versteckte Kosten.",
-    "faq_q2": "Bietet FLOXANT auch Reinigung und Entrümpelung?",
-    "faq_a2": "Ja. FLOXANT bietet Umzug, professionelle Endreinigung und fachgerechte Entrümpelung aus einer Hand in ganz Bayern – für Regensburg, München, Nürnberg, Augsburg und über 100 weitere Städte.",
-    "faq_q3": "In welchen Städten ist FLOXANT aktiv?",
-    "faq_a3": "FLOXANT ist in ganz Bayern aktiv: Regensburg, München, Nürnberg, Augsburg, Passau, Landshut, Straubing, Schwandorf, Amberg, Ingolstadt, Erlangen, Fürth, Kelheim, Neumarkt und in über 100 weiteren Städten und Gemeinden.",
-    "faq_q4": "Wie schnell kann FLOXANT einen Umzug durchführen?",
-    "faq_a4": "FLOXANT bietet kurzfristige Umzüge innerhalb von 24 bis 48 Stunden in Regensburg und Umgebung. Für alle Städte in Bayern kontaktieren Sie uns für eine schnelle Verfügbarkeit.",
-    "faq_q5": "Was kostet eine Entrümpelung in Regensburg?",
-    "faq_a5": "Die Kosten einer Entrümpelung in Regensburg hängen von der Raumgröße und dem Volumen ab. Kellernrümpelungen starten ab ca. 200 Euro, komplette Wohnungsauflösungen ab ca. 800 Euro. FLOXANT erstellt Ihnen ein kostenfreies Festpreisangebot.",
-    "faq_q6": "Kann FLOXANT die Halteverbotszone beantragen?",
-    "faq_a6": "Ja. Wir übernehmen die komplette Beantragung der Halteverbotszone bei der zuständigen Straßenverkehrsbehörde – in Regensburg, München, Nürnberg und allen Städten Bayerns. Inkl. Aufstellung und Abbau der Schilder.",
-    "faq_q7": "Wie funktioniert die Reinigung bei der Wohnungsübergabe?",
-    "faq_a7": "Unsere professionelle Endreinigung erfolgt nach Vermieterstandards mit Checkliste und Fotodokumentation. Sollte Ihr Vermieter Beanstandungen haben, reinigen wir innerhalb von 14 Tagen kostenfrei nach – mit unserer Abnahmegarantie.",
-    "faq_q8": "Ist mein Umzugsgut bei FLOXANT komplett versichert?",
-    "faq_a8": "Ja. Jeder Transport ist über unsere Betriebshaftpflicht und die gesetzliche Verkehrshaftung nach §451g HGB vollständig abgesichert. Zusätzlich bieten wir auf Wunsch erweiterte Premium-Versicherungen an.",
+    "seo_p1": "FLOXANT ist Ihr verlässlicher Premium-Partner für Umzug, Reinigung und Entrümpelung in ganz Bayern. Mit unserem operativen Hauptsitz in Regensburg betreuen wir Kunden im gesamten Freistaat – von München und Nürnberg über Augsburg und Ingolstadt bis hin nach Passau, Landshut und Straubing. Unser geschultes Expertenteam garantiert Ihnen einen reibungslosen Ablauf, transparente Festpreise ohne Nachverhandlung und einen lückenlosen Versicherungsschutz für jedes Logistikprojekt im Jahr 2026.",
+    "seo_p2": "Ganz gleich, ob Sie einen Privatumzug, einen komplexen Firmenumzug, einen deutschlandweiten Fernumzug oder einen einfühlsamen Seniorenumzug planen: Wir passen unsere Service-Module exakt an Ihre individuellen Bedürfnisse an. Als Full-Service-Dienstleister bieten wir Ihnen zudem professionelle Endreinigungen mit Abnahmegarantie sowie fachgerechte Entrümpelungen aus einer Hand. In der Oberpfalz, Niederbayern, Oberbayern, Mittelfranken und Schwaben ist FLOXANT die erste Wahl für qualitätsbewusste Kunden.",
+    "seo_p3": "Fordern Sie noch heute Ihr kostenloses Festpreisangebot an – bequem per Online-Rechner, WhatsApp oder Telefon. Wir sind in Ihrer Nähe: Ob in Regensburg, Straubing, Schwandorf, Amberg, Kelheim, Neumarkt oder Cham – unsere mobilen Teams sind täglich in Ihrer Region im Einsatz und sorgen für höchste Kundenzufriedenheit durch Pünktlichkeit und Sorgfalt.",
+    "seo_p4": "Unser Entrümpelungsservice umfasst die vollständige Haushaltsauflösung, Wohnungsauflösung und diskrete Räumung von Messie-Objekten in ganz Bayern. Wir arbeiten umweltbewusst, trennen Wertstoffe fachgerecht und hinterlassen Ihre Räumlichkeiten besenrein. Verlassen Sie sich bei Wohnungsauflösungen in München, Nürnberg oder Regensburg auf unsere Expertise und unseren diskreten Umgang mit sensiblen Nachlässen.",
+    "seo_p5": "Mit der professionellen Endreinigung von FLOXANT sichern Sie sich Ihre Mietkaution. Wir reinigen streng nach den Standards führender Hausverwaltungen und bieten eine kostenlose Nachreinigungs-Garantie, falls es bei der Übergabe Beanstandungen geben sollte. Von der Baureinigung bis zur gewerblichen Büroreinigung in Regensburg, Neutraubling, Lappersdorf und Umgebung bieten wir Ihnen Sauberkeit auf höchstem Niveau.",
+    "seo_p6": "Seit unserer Gründung vertrauen uns tausende Kunden in über 100 Städten Bayerns. Wir verbinden traditionelle Werte wie Fleiß und Verlässlichkeit mit modernster Logistikplanung. Unsere Kernkompetenzen für 2026: Umzug, Entrümpelung, Reinigung, Möbelmontage, Halteverbotszonen und Spezialtransporte wie Klaviertransporte. Alles aus einer Hand, alles zum garantierten Bestpreis.",
+    "faq_q1": "Was kostet ein Umzug in {city}?",
+    "faq_a1": "Ein Umzug in {city} kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße, Etage und Entfernung. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung – ohne versteckte Kosten.",
+    "faq_q2": "Bietet FLOXANT auch Reinigung und Entrümpelung in {city}?",
+    "faq_a2": "Ja. FLOXANT bietet Umzug, professionelle Endreinigung und fachgerechte Entrümpelung aus einer Hand in ganz Bayern – für {city}, München, Nürnberg, Augsburg und über 100 weitere Städte.",
+    "faq_q3": "In welchen Stadtteilen von {city} ist FLOXANT aktiv?",
+    "faq_a3": "FLOXANT ist in allen Stadtteilen von {city} sowie im gesamten Umland aktiv. Wir kennen die lokalen Gegebenheiten und Parksituationen vor Ort genau.",
+    "faq_q4": "Wie schnell kann FLOXANT einen Umzug in {city} durchführen?",
+    "faq_a4": "In {city} bieten wir oft kurzfristige Termine innerhalb von 24 bis 48 Stunden an. Kontaktieren Sie uns für eine sofortige Kapazitätsprüfung.",
+    "faq_q5": "Was kostet eine Entrümpelung in {city}?",
+    "faq_a5": "Die Kosten hängen vom Volumen ab. Kleinere Räumungen in {city} starten ab ca. 200 Euro, komplette Wohnungsauflösungen ab ca. 800 Euro. Inklusive fachgerechter Entsorgung.",
+    "faq_q6": "Wird das Halteverbot in {city} von Ihnen organisiert?",
+    "faq_a6": "Ja. Wir übernehmen die komplette Beantragung bei der Stadtverwaltung {city}, inklusive fristgerechter Aufstellung und Abholung der Schilder.",
+    "faq_q7": "Gibt es eine Abnahmegarantie für die Reinigung in {city}?",
+    "faq_a7": "Absolut. Unsere Endreinigung in {city} erfolgt nach strengen Standards. Sollte Ihr Vermieter nicht zufrieden sein, reinigen wir kostenlos nach.",
+    "faq_q8": "Ist mein Umzug in {city} versichert?",
+    "faq_a8": "Ja, jeder Transport in {city} ist vollumfänglich nach §451g HGB versichert. Zudem deckt unsere Betriebshaftpflicht alle Schäden an Gebäuden ab.",
+    "faq_q9": "Führen Sie auch Büroumzüge (B2B) in {city} durch?",
+    "faq_a9": "Ja, wir sind spezialisiert auf gewerbliche Umzüge in {city}. Wir planen den Ablauf so, dass Ihr Betrieb so kurz wie möglich unterbrochen wird.",
+    "faq_q10": "Entsorgen Sie auch Sperrmüll bei einer Entrümpelung in {city}?",
+    "faq_a10": "Selbstverständlich. Wir entsorgen Möbel, Elektroschrott und Mischabfall fachgerecht bei den lokalen Wertstoffhöfen in der Region {city}.",
     "premium_badge": "Premium Logistik & Service",
     "services_title": "Unsere Logistik & Serviceleistungen",
     "services_subtitle": "Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern.",
@@ -5207,47 +5659,6 @@
     "premium_experience": "Die FLOXANT Experience",
     "brand_promise_title": "Eigene Teams & Gebrandete LKWs",
     "brand_promise_desc": "Wir setzen auf Transparenz und Qualität. Mit unseren eigenen geschulten Teams und modernem Fuhrpark garantieren wir höchste Sicherheit für Ihr Hab und Gut."
-  },
-  "reviews": {
-    "title": "Das sagen unsere Kunden",
-    "subtitle": "Ob komplizierter Büroumzug oder sensible Wohnungsauflösung – wir liefern messbare Qualität und absolute Preistransparenz in ganz Bayern.",
-    "satisfaction_label": "Exzellente Kundenzufriedenheit",
-    "items": [
-      {
-        "id": 1,
-        "name": "Dr. Michael M.",
-        "role": "Kanzleiinhaber, Regensburg",
-        "text": "Top organisiert! Der Büroumzug lief absolut reibungslos. Das Team war pünktlich, professionell und hat unsere sensiblen Akten perfekt behandelt. Jeden Cent wert.",
-        "rating": 5,
-        "date": "Vor 2 Wochen"
-      },
-      {
-        "id": 2,
-        "name": "Sabine T.",
-        "role": "Privatkundin, München",
-        "text": "Kurzfristige Entrümpelung unseres Hauses nach einem Trauerfall. Die Mitarbeiter waren extrem empathisch, diskret und der Festpreis wurde exakt eingehalten.",
-        "rating": 5,
-        "date": "Letzter Monat"
-      },
-      {
-        "id": 3,
-        "name": "Thomas Berger",
-        "role": "Immobilienverwalter",
-        "text": "Wahnsinnig schnell und sauber. Die gebuchte Endreinigung mit Abnahmegarantie hat mir bei der Wohnungsübergabe extrem viel Stress erspart. Sehr zu empfehlen!",
-        "rating": 5,
-        "date": "Vor 3 Monaten"
-      },
-      {
-        "id": 4,
-        "name": "Jens W.",
-        "role": "Facility Management",
-        "text": "Als Facility Manager arbeite ich in der Oberpfalz nur noch mit FLOXANT. Verlässlich, pünktlich und hervorragende B2B-Konditionen für dauerhafte Partnerschaften.",
-        "rating": 5,
-        "date": "Vor einem Monat"
-      }
-    ],
-    "title_part1": "Das sagen unsere",
-    "title_part2": "Kunden"
   },
   "seo": {
     "dynamic_city_title": "Umzugsunternehmen ✓ Festpreis ✓ Versichert | FLOXANT",

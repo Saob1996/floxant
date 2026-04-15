@@ -7,7 +7,7 @@ import { Clock, CalendarDays, UserCircle, MapPin, HeartHandshake, Box } from "lu
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     var { lang: pageLocale } = await params;
-    
+
     const dict = (await getDictionary(pageLocale as Locale)) as any;
 return generatePageSEO({
         pageLocale,
@@ -43,7 +43,7 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
 
             <div className="container px-4 max-w-4xl mx-auto pt-10 pb-20">
                 <div className="mb-8"><Breadcrumbs pageLocale={pageLocale} items={breadcrumbs} /></div>
-                
+
                 <article>
                     <header className="mb-12">
                         <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
@@ -83,7 +83,7 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                         </div>
 
                         <h2>Wissen aus 1. Hand: Unsere Top-Tipps</h2>
-                        
+
                         <h3>Tipp 1: Teller hochkant einpacken</h3>
                         <p>Einer der häufigsten Fehler bei Laien-Umzügen sind zersprungene Tellerwaren. Stapeln Sie Teller im Karton niemals flach aufeinander, da der Druck auf die unteren Teller bei Stößen im LKW immens hoch ist. Stellen Sie Teller (wie Schallplatten) immer hochkant in den gut ausgepolsterten Karton.</p>
 
@@ -122,17 +122,17 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
 
                         <h3>Tipp 9: Die schwere-Bücher-unten Regel</h3>
                         <p>Jeder Bücherkarton darf nicht schwerer als 20 kg sein. Die Profi-Technik: Bücher kommen auf den Boden des Kartons und füllen nur ein Drittel aus. Den restlichen Platz im Karton füllen Sie mit Kissen, Bettwäsche oder Wintermäntel auf. So entsteht ein voluminöser, aber wunderbar leichter Karton.</p>
-                        
+
                         <h3>Tipp 10: Gefrierschrank als Kühlbox nutzen</h3>
                         <p>Ein leerer aber frisch abgetauter Gefrierschrank, der transportiert wird, kann genutzt werden, um nicht allzu schwere Textilien (Kissen) in seinem Inneren sicher und staubfrei von A nach B zu befördern. Volumen auf dem LKW gespart!</p>
 
                         <hr className="my-10 border-slate-200" />
-                        
+
                         <p className="text-xl font-medium text-slate-800 text-center">
                             Wir hoffen, diese Hacks unserer Möbelpacker erleichtern Ihren Start im neuen Leben. Behalten Sie die Nerven, planen Sie vorausschauend – und für den Schwertransport rufen Sie einfach FLOXANT!
                         </p>
                     </div>
-                
+
             {/* Contextual Hub Interlinking Layer */}
             <div className="bg-muted/10 p-8 rounded-2xl border border-primary/20 my-12">
                 <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
@@ -148,10 +148,10 @@ export default async function BlogUmzugTippsBayern({ params }: { params: Promise
                     <a href={"/" + pageLocale + "/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Dienstleistungen</a>
                 </div>
             </div>
-        
+
                 </article>
             </div>
-            
+
             <div className="bg-slate-50 py-16 border-t">
                 <div className="container px-4 text-center max-w-5xl mx-auto">
                     <h3 className="text-2xl font-bold mb-8">Passende Links zu Städten</h3>

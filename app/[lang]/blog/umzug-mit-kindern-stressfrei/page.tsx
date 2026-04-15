@@ -36,7 +36,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
         <main className="min-h-screen bg-background">
             <Breadcrumbs pageLocale={pageLocale} items={[{ label: "Blog", href: "/" + pageLocale + "/blog" }, { label: "Umzug mit Kindern: So wird der Wohnungswechsel stressfrei" }]} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-            
+
             <article className="py-20 px-6">
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-5xl font-extrabold tracking-tight text-foreground mb-8">Umzug mit Kindern: So wird der Wohnungswechsel stressfrei</h1>
@@ -47,7 +47,7 @@ export default async function BlogArticle({ params }: { params: Promise<{ lang: 
                         <span>·</span>
                         <span>Lesezeit: 8 Min.</span>
                     </div>
-                    
+
                     <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
                         <p className="text-lg font-medium text-foreground">Für Erwachsene ist ein Umzug schon stressig genug. Für Kinder kann er eine echte emotionale Herausforderung sein – das vertraute Zimmer, die Freunde, der Spielplatz, alles verändert sich gleichzeitig. Mit der richtigen Vorbereitung wird der Wohnungswechsel zum aufregenden Familienprojekt.</p>
 
