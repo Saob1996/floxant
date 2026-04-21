@@ -2,16 +2,19 @@ import React from 'react';
 import DualCalculator from '@/components/calculator/DualCalculator';
 import { MapPin } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
+import { generatePageSEO } from "@/lib/seo";
+import { type Locale } from "@/i18n-config";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const dict = await getDictionary("de");
   const parts = slug.split('-');
   const service = parts[0]; 
   const city = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '';
-  return {
-    title: `${service.charAt(0).toUpperCase() + service.slice(1)} Kosten in ${city} berechnen | FLOXANT`,
-    description: `Sofortige Preisberechnung für ${service} in ${city}. Transparente 3-Tier Angebote ohne versteckte Kosten. 4.9/5 auf Google Bewertungen.`,
-  };
+  return generatePageSEO({
+    pageLocale: "de" as Locale,
+    path: `angebote/${slug}`,
+    title: `${service.charAt(0).toUpperCase() + service.slice(1)} Preisrahmen in ${city} | FLOXANT`,
+    description: `Unverbindliche Vorprüfung für ${service} in ${city}: Aufwand, Region und Kostentreiber strukturiert einordnen.`,
+  });
 }
 export default async function ProgrammaticSeoCalculator({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -27,11 +30,11 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
   const faqs = [
     {
       question: `Was kostet ein ${serviceType} in ${city}?`,
-      answer: `Die Kosten für ein ${serviceType} in ${city} hängen von Faktoren wie Distanz, Volumen und Zusatzleistungen ab. Nutzen Sie unseren Rechner für einen sekundenschnellen Festpreis.`
+      answer: `Die Kosten für ein ${serviceType} in ${city} hängen von Faktoren wie Distanz, Volumen, Zugang und Zusatzleistungen ab. Der Rechner liefert dafür einen unverbindlichen Orientierungsrahmen.`
     },
     {
-      question: `Bieten Sie in ${city} Festpreise an?`,
-      answer: `Ja, unser intelligentes System generiert für Sie verbindliche 3-Tier Festpreise (Economy, Balanced, Premium) direkt online für ${city}.`
+      question: `Ist die Einschätzung für ${city} verbindlich?`,
+      answer: `Nein. Die Einschätzung ist eine vorläufige Orientierung. Verbindlich wird ein Angebot erst nach finaler Prüfung der Angaben und Abstimmung des Leistungsumfangs.`
     }
   ];
   return (
@@ -46,7 +49,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
             {serviceType} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">Kosten in {city}</span>
           </h1>
           <p className="text-white/60 text-lg">
-            Sichern Sie sich Ihr maßgeschneidertes Angebot für {city}. Unser Algorithmus berechnet in Echtzeit den besten Tarif.
+            Starten Sie eine unverbindliche Vorprüfung für {city}. Ihre Angaben werden strukturiert eingeordnet, damit Aufwand, Region und Kostentreiber verständlich werden.
           </p>
         </header>
         {/* DualCalculator Orchestrator automatically tracks user data now */}
@@ -69,7 +72,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
              <div className="absolute top-0 end- p-6">
                <span className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full">Verifiziert</span>
              </div>
-             <h3 className="text-2xl font-light mb-6 text-white">Letzter {serviceType} in {city}</h3>
+             <h3 className="text-2xl font-light mb-6 text-white">Welche Angaben für {city} wichtig sind</h3>
              <ul className="space-y-4 text-sm text-white/60">
                <li className="flex justify-between items-center border-b border-white/5 pb-3">
                  <span>Objekt / Umfang:</span> <span className="text-white font-medium">75m² Wohnung / Mittel</span>
@@ -81,7 +84,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
                  <span>Fazit Dauer:</span> <span className="text-white font-medium">4.5 Stunden gesamt</span>
                </li>
                <li className="flex justify-between items-center pt-2 font-medium text-base">
-                 <span>Gebuchter Festpreis:</span> <span className="text-blue-400">890€ (Balanced Tarif)</span>
+                 <span>Orientierungsrahmen:</span> <span className="text-blue-400">nach Vorprüfung</span>
                </li>
              </ul>
            </div>
@@ -91,7 +94,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
              </div>
              <h3 className="text-2xl font-light mb-4 text-white hover:text-blue-400 transition-colors">Stark vernetzt in Ihrer Region</h3>
              <p className="text-white/60 leading-relaxed max-w-sm">
-               Unsere Disponenten koordinieren täglich Flotten. Diese Woche waren wir besonders aktiv in den angrenzenden Bereichen von <strong className="text-white font-medium">{city}</strong> sowie umliegenden Großräumen, wodurch wir Leerfahrten vermeiden und Ihnen Bestpreise sichern.
+               Unsere Disponenten koordinieren täglich Routen. Für <strong className="text-white font-medium">{city}</strong> und umliegende Großräume prüfen wir, ob Laufwege, Zugang, Terminlage und mögliche Rückfahrten den Aufwand sinnvoll reduzieren können.
              </p>
            </div>
         </section>

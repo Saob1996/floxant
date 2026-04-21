@@ -27,9 +27,9 @@ export function TrustBadge({ type = "verified", className, lang = "de" }: TrustB
             color: "text-blue-400"
         },
         rating: {
-            de: "4.9/5 Kundenzufriedenheit",
-            en: "4.9/5 Customer Satisfaction",
-            ru: "4.9/5 Удовлетворенность",
+            de: "Dokumentierte Servicequalität",
+            en: "Documented service quality",
+            ru: "Документированное качество сервиса",
             icon: Star,
             color: "text-amber-400"
         }

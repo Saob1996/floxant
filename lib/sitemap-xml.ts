@@ -8,11 +8,10 @@ import {
     SIGNATURE_SEO_PAGES,
     LONGTAIL_PAGES,
     RATGEBER_PAGES,
-    SIGNATURE_SERVICES,
     LEGAL_PAGES,
     HUB_PAGES,
 } from "./sitemap-config";
-import { existsSync, readdirSync } from "fs";
+import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 
 /**
@@ -61,6 +60,10 @@ function shouldSkipSitemapSegment(segment: string): boolean {
         segment === "admin" ||
         segment === "dashboard" ||
         segment === "login" ||
+        segment === "angebote" ||
+        segment === "guenstig" ||
+        segment === "signature" ||
+        segment === "feedback" ||
         segment === "villenservice" ||
         segment === "sitemap.xml" ||
         segment === "sitemap-de.xml" ||
@@ -101,6 +104,21 @@ function discoverStaticAppRoutes(): string[] {
     return Array.from(routes).sort();
 }
 
+function lastmodForRoute(route: string): string {
+    const routeSegments = route ? route.split("/") : [];
+    const appRouteDir = join(process.cwd(), "app", ...routeSegments);
+    const pageCandidates = ["page.tsx", "page.ts", "page.jsx", "page.js", "route.ts", "route.tsx"];
+
+    for (const fileName of pageCandidates) {
+        const candidate = join(appRouteDir, fileName);
+        if (existsSync(candidate)) {
+            return statSync(candidate).mtime.toISOString().split("T")[0];
+        }
+    }
+
+    return LASTMOD;
+}
+
 function priorityForRoute(route: string): string {
     if (!route) return "1.0";
     if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "rechner"].includes(route)) return "0.9";
@@ -127,10 +145,16 @@ function addEntries(
     changefreq: string
 ): void {
     for (const route of routes) {
+        const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+
+        if (normalizedRoute.split("/").some(shouldSkipSitemapSegment)) {
+            continue;
+        }
+
         urls.push({
-            pagePath: route,
-            loc: buildAbsoluteUrl(route),
-            lastmod: LASTMOD,
+            pagePath: normalizedRoute,
+            loc: buildAbsoluteUrl(normalizedRoute),
+            lastmod: lastmodForRoute(normalizedRoute),
             changefreq,
             priority,
         });
@@ -147,7 +171,7 @@ export function generateSitemapResponse(): Response {
     urls.push({
         pagePath: "",
         loc: buildAbsoluteUrl(""),
-        lastmod: LASTMOD,
+        lastmod: lastmodForRoute(""),
         changefreq: "daily",
         priority: "1.0",
     });
@@ -175,10 +199,6 @@ export function generateSitemapResponse(): Response {
 
     // Ratgeber / Blog pages
     addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
-
-    // Signature services
-    const signatureRoutes = SIGNATURE_SERVICES.map((slug) => `signature/${slug}`);
-    addEntries(urls, signatureRoutes, "0.7", "monthly");
 
     // Legal pages
     addEntries(urls, LEGAL_PAGES, "0.3", "yearly");

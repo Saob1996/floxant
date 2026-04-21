@@ -2,11 +2,33 @@ import type { Metadata, Viewport } from "next";
 import { company } from "@/lib/company";
 import { getCityGeoData } from "@/lib/geo-data";
 import { germanizeText } from "@/lib/german-text";
+import { getDominanceSnippet } from "@/lib/seo-dominance";
 
 const BASE_URL = company.url;
 const OG_IMAGE = `${BASE_URL}/opengraph-image`;
 const TITLE_LIMIT = 68;
 const DESCRIPTION_LIMIT = 160;
+const SIGNATURE_ROOT_SLUGS = new Set([
+  "ritual-exit-box",
+  "clean-start",
+  "new-neighbour-kit",
+  "first-48h",
+  "buerokratie-schutz",
+  "moebel-optimierung",
+  "reinigungsgarantie",
+  "lager-rotation",
+  "kinder-umzugsbox",
+  "24h-umzugsservice",
+  "damen-team",
+  "erinnerungskapsel",
+  "vielleicht-box",
+  "schluesseluebergabe",
+]);
+const PRIVATE_NOINDEX_PREFIXES = ["/api", "/admin", "/dashboard", "/login"];
+const LOW_VALUE_NOINDEX_PREFIXES = ["/angebote", "/guenstig", "/feedback"];
+const LEGACY_CANONICAL_PATHS: Record<string, string> = {
+  "/villenservice": "/private-client-service",
+};
 
 type Locale = "de";
 
@@ -53,37 +75,53 @@ function getOgLocale(_locale: Locale = "de") {
   return "de_DE";
 }
 
-function buildKeywords(path: string, title: string, _locale: Locale = "de", explicitKeywords: string[] = []) {
-  const keywords = new Set<string>([
-    "FLOXANT",
-    "Regensburg",
-    "Bayern",
-    "Umzug",
-    "Reinigung",
-    "Entrümpelung",
-    ...explicitKeywords,
-    title,
-  ]);
-
-  if (path.includes("rechner")) keywords.add("Preisrechner");
-  if (path.includes("umzug")) keywords.add("Umzugsunternehmen");
-  if (path.includes("reinigung")) keywords.add("Reinigungsfirma");
-  if (path.includes("entruempelung")) keywords.add("Wohnungsauflösung");
-  if (path.includes("bueroumzug")) keywords.add("Büroumzug");
-  if (path.includes("firmenentsorgung")) keywords.add("Firmenentsorgung");
-  if (path.includes("leerfahrt-rueckfahrt")) keywords.add("Leer-Rückfahrt");
-  if (path.includes("private-client-service")) {
-    keywords.add("Private Client Service");
-    keywords.add("Anwesen");
-    keywords.add("Baden-Württemberg");
-  }
-
-  return Array.from(keywords).map((keyword) => germanizeText(keyword)).filter(Boolean).slice(0, 12).join(", ");
-}
-
 function normalizePath(path: string) {
   if (!path) return "";
-  return `/${path.replace(/^\/+/, "").replace(/\/+$/, "")}`;
+  const withoutParameters = path.split("#")[0].split("?")[0];
+  const withoutLocale = withoutParameters
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "")
+    .replace(/^(de|en|ru|bg)(\/|$)/, "");
+
+  return withoutLocale ? `/${withoutLocale}` : "";
+}
+
+function resolveCanonicalPath(path: string) {
+  if (!path) return "";
+
+  if (LEGACY_CANONICAL_PATHS[path]) {
+    return LEGACY_CANONICAL_PATHS[path];
+  }
+
+  const signatureMatch = path.match(/^\/signature\/([^/]+)$/);
+  if (signatureMatch && SIGNATURE_ROOT_SLUGS.has(signatureMatch[1])) {
+    return `/${signatureMatch[1]}`;
+  }
+
+  if (/^\/alternativen\/[^/]+$/.test(path)) {
+    return "/alternativen";
+  }
+
+  if (/^\/(angebote|guenstig)\/[^/]+$/.test(path)) {
+    return "/rechner";
+  }
+
+  return path;
+}
+
+function isPrivateRoute(path: string) {
+  return PRIVATE_NOINDEX_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
+}
+
+function isLowValueRoute(path: string) {
+  if (LOW_VALUE_NOINDEX_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`))) {
+    return true;
+  }
+
+  if (/^\/alternativen\/[^/]+$/.test(path)) return true;
+  if (/^\/signature\/[^/]+$/.test(path)) return true;
+
+  return false;
 }
 
 export const viewport: Viewport = {
@@ -100,22 +138,23 @@ export function generatePageSEO({
   path,
   title,
   description,
-  keywords: customKeywords,
 }: PageSEOInput & { keywords?: string[] }): Metadata {
   const resolvedLocale = resolveLocale(lang || pageLocale || locale);
   const normalizedPath = normalizePath(path);
-  const canonical = `${BASE_URL}${normalizedPath}`.replace("https://www.floxant.de/de", "https://www.floxant.de");
-  const safeTitle = trimTitle(normalizeText(title, getDefaultTitle(resolvedLocale)));
-  const safeDescription = trimDescription(normalizeText(description, getDefaultDescription(resolvedLocale)));
-  const keywords = buildKeywords(normalizedPath, safeTitle, resolvedLocale, customKeywords);
+  const canonicalPath = resolveCanonicalPath(normalizedPath);
+  const canonical = `${BASE_URL}${canonicalPath}`.replace("https://www.floxant.de/de", "https://www.floxant.de");
+  const dominanceSnippet = getDominanceSnippet(normalizedPath || "/", { title, description });
+  const safeTitle = trimTitle(normalizeText(dominanceSnippet.title, getDefaultTitle(resolvedLocale)));
+  const safeDescription = trimDescription(normalizeText(dominanceSnippet.description, getDefaultDescription(resolvedLocale)));
   const geo = getCityGeoData(normalizedPath);
+  const indexable = !isPrivateRoute(normalizedPath) && !isLowValueRoute(normalizedPath);
+  const followable = !isPrivateRoute(normalizedPath);
 
   return {
     metadataBase: new URL(BASE_URL),
     applicationName: company.name,
     title: safeTitle,
     description: safeDescription,
-    keywords,
     authors: [{ name: company.name, url: BASE_URL }],
     creator: company.name,
     publisher: company.name,
@@ -134,16 +173,16 @@ export function generatePageSEO({
     alternates: {
       canonical,
       languages: {
-        de: canonical,
+        "de-DE": canonical,
         "x-default": canonical,
       },
     },
     robots: {
-      index: true,
-      follow: true,
+      index: indexable,
+      follow: followable,
       googleBot: {
-        index: true,
-        follow: true,
+        index: indexable,
+        follow: followable,
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,

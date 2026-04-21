@@ -116,6 +116,16 @@ const nextConfig = {
                 destination: '/:path*',
                 permanent: true,
             },
+            {
+                source: '/villenservice',
+                destination: '/private-client-service',
+                permanent: true,
+            },
+            {
+                source: '/signature/:slug',
+                destination: '/:slug',
+                permanent: true,
+            },
             ...buildUmlautRedirects(),
         ];
     },

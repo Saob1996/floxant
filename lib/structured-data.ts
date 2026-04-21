@@ -1,4 +1,5 @@
 import { company } from "@/lib/company";
+import { germanizeText } from "@/lib/german-text";
 
 type BreadcrumbEntry = {
     name: string;
@@ -47,6 +48,24 @@ function absoluteUrl(path: string) {
     return `${company.url}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+function clean(value: string) {
+    return germanizeText(value || "").replace(/\s+/g, " ").trim();
+}
+
+function schemaPlaceType(area: string) {
+    const normalized = clean(area).toLowerCase();
+
+    if (normalized === "bayern" || normalized === "baden-württemberg") {
+        return "State";
+    }
+
+    if (normalized.includes("oberpfalz") || normalized.includes("niederbayern")) {
+        return "AdministrativeArea";
+    }
+
+    return "City";
+}
+
 export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
     return {
         "@context": "https://schema.org",
@@ -54,7 +73,7 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
         itemListElement: items.map((item, index) => ({
             "@type": "ListItem",
             position: index + 1,
-            name: item.name,
+            name: clean(item.name),
             ...(item.item ? { item: absoluteUrl(item.item) } : {}),
         })),
     };
@@ -63,8 +82,8 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
 export function buildFaqJsonLd(items: FaqEntry[]) {
     const faqItems = items
         .map((item) => {
-            const question = item.q || item.question || "";
-            const answer = item.a || item.answer || "";
+            const question = clean(item.q || item.question || "");
+            const answer = clean(item.a || item.answer || "");
 
             if (!question.trim() || !answer.trim()) {
                 return null;
@@ -98,13 +117,14 @@ export function buildServiceJsonLd({
     return {
         "@context": "https://schema.org",
         "@type": "Service",
-        name,
-        description,
-        serviceType: serviceType || name,
+        "@id": `${absoluteUrl(path)}#service`,
+        name: clean(name),
+        description: clean(description),
+        serviceType: clean(serviceType || name),
         url: absoluteUrl(path),
         areaServed: areaServed.map((area) => ({
-            "@type": area === "Bayern" || area === "Baden-Württemberg" ? "State" : "City",
-            name: area,
+            "@type": schemaPlaceType(area),
+            name: clean(area),
         })),
         provider: {
             "@type": "LocalBusiness",
@@ -133,8 +153,8 @@ export function buildWebPageJsonLd({
         "@context": "https://schema.org",
         "@type": "WebPage",
         "@id": `${absoluteUrl(path)}#webpage`,
-        name,
-        description,
+        name: clean(name),
+        description: clean(description),
         url: absoluteUrl(path),
         inLanguage: "de",
         isPartOf: {
@@ -145,7 +165,7 @@ export function buildWebPageJsonLd({
         },
         about: about.map((entry) => ({
             "@type": "Thing",
-            name: entry,
+            name: clean(entry),
         })),
     };
 }
@@ -160,21 +180,28 @@ export function buildArticleJsonLd({
     return {
         "@context": "https://schema.org",
         "@type": "Article",
-        headline,
-        description,
+        headline: clean(headline),
+        description: clean(description),
         url: absoluteUrl(path),
         datePublished,
         dateModified: dateModified || datePublished,
         inLanguage: "de",
+        image: `${company.url}/opengraph-image`,
         author: {
             "@type": "Organization",
+            "@id": `${company.url}/#organization`,
             name: company.name,
             url: company.url,
         },
         publisher: {
             "@type": "Organization",
+            "@id": `${company.url}/#organization`,
             name: company.name,
             url: company.url,
+            logo: {
+                "@type": "ImageObject",
+                url: `${company.url}/logo-dark.png`,
+            },
         },
         mainEntityOfPage: {
             "@type": "WebPage",

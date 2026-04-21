@@ -10,9 +10,23 @@ const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
 const PRIVATE_SEGMENTS = new Set(["api", "dashboard", "admin", "login"]);
+const LEGACY_REDIRECT_ROUTES = new Set(["/villenservice"]);
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
 const STATIC_METADATA_ROUTES = ["/robots.txt"];
+const DOMINANCE_MONEY_ROUTES = [
+  "/",
+  "/rechner",
+  "/umzug",
+  "/reinigung",
+  "/entruempelung",
+  "/bueroumzug",
+  "/firmenentsorgung",
+  "/leerfahrt-rueckfahrt",
+  "/private-client-service",
+  "/service-area-bayern",
+  "/einsatzgebiet-regensburg-200km",
+];
 const IMPORTANT_ROUTES = [
   "/",
   "/rechner",
@@ -38,6 +52,8 @@ const REDIRECT_EXPECTATIONS = [
   ["/umzug-m%C3%BCnchen", "/umzug-muenchen"],
   ["/reinigung-m%C3%BCnchen", "/reinigung-muenchen"],
   ["/entr%C3%BCmpelung-m%C3%BCnchen", "/entruempelung-muenchen"],
+  ["/villenservice", "/private-client-service"],
+  ["/signature/clean-start", "/clean-start"],
 ];
 
 function isPrivateSegment(segment) {
@@ -70,7 +86,8 @@ function discoverRoutes({ includePrivate = false } = {}) {
     const hasRoute = entries.some((entry) => entry.isFile() && /^route\.(tsx|ts|jsx|js)$/.test(entry.name));
 
     if (hasPage || hasRoute) {
-      routes.add(routeFromSegments(segments));
+      const route = routeFromSegments(segments);
+      if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
     }
 
     for (const entry of entries) {
@@ -235,6 +252,96 @@ function runSeoCheck() {
   console.log(`SEO_GUARD_OK files=${files.length} importantRoutes=${IMPORTANT_ROUTES.length}`);
 }
 
+function routeToPageFile(route) {
+  const segments = route === "/" ? [] : route.replace(/^\/+/, "").split("/");
+  return path.join(APP_DIR, ...segments, "page.tsx");
+}
+
+function fileContains(file, needles) {
+  if (!fs.existsSync(file)) return false;
+  const text = fs.readFileSync(file, "utf8");
+  return needles.every((needle) => text.includes(needle));
+}
+
+function runDominanceCheck() {
+  const routes = discoverRoutes({ includePrivate: true });
+  const failures = [];
+  const blogMetaPath = path.join(ROOT, "lib", "blog-posts.ts");
+  const seoPath = path.join(ROOT, "lib", "seo.ts");
+  const seoDominancePath = path.join(ROOT, "lib", "seo-dominance.ts");
+  const sitemapPath = path.join(ROOT, "lib", "sitemap-xml.ts");
+  const footerPath = path.join(ROOT, "components", "Footer.tsx");
+  const llmsPath = path.join(ROOT, "app", "llms.txt", "route.ts");
+  const localBusinessPath = path.join(ROOT, "components", "seo", "LocalBusinessJsonLd.tsx");
+
+  for (const route of DOMINANCE_MONEY_ROUTES) {
+    if (!routes.has(route)) failures.push(`missing money route: ${route}`);
+  }
+
+  if (!fileContains(seoPath, ["getDominanceSnippet", "robots", "canonical"])) {
+    failures.push("central metadata does not use dominance snippets, robots and canonical logic");
+  }
+
+  if (!fileContains(seoDominancePath, ["SEO_MONEY_ROUTES", "serviceCityPatterns", "getDominanceSnippet"])) {
+    failures.push("seo-dominance registry is incomplete");
+  }
+
+  for (const segment of ["angebote", "guenstig", "signature", "feedback", "villenservice"]) {
+    if (!fileContains(sitemapPath, [`segment === "${segment}"`])) {
+      failures.push(`sitemap does not defensively skip ${segment}`);
+    }
+  }
+
+  for (const href of ["/rechner", "/umzug", "/reinigung", "/entruempelung", "/bueroumzug", "/firmenentsorgung", "/leerfahrt-rueckfahrt", "/private-client-service"]) {
+    if (!fileContains(footerPath, [`href: "${href}"`]) && !fileContains(footerPath, [`href="${href}"`])) {
+      failures.push(`footer misses authority link: ${href}`);
+    }
+  }
+
+  const pageRequirements = {
+    "/": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "LocalBusinessJsonLd"],
+    "/rechner": ["generatePageSEO", "buildFaqJsonLd", "Orientierungsrahmen"],
+    "/umzug": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
+    "/reinigung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
+    "/entruempelung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
+    "/leerfahrt-rueckfahrt": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "BackhaulOffersBoard"],
+    "/private-client-service": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "PrivateClientInquiryForm"],
+  };
+
+  for (const [route, needles] of Object.entries(pageRequirements)) {
+    if (!fileContains(routeToPageFile(route), needles)) {
+      failures.push(`money page lacks required SEO/content signals: ${route}`);
+    }
+  }
+
+  if (fs.existsSync(blogMetaPath)) {
+    const blogMeta = fs.readFileSync(blogMetaPath, "utf8");
+    const postCount = (blogMeta.match(/slug:\s*"/g) || []).length;
+    const featuredCount = (blogMeta.match(/featured:\s*true/g) || []).length;
+    if (postCount < 18) failures.push(`blog cluster too small: ${postCount} posts`);
+    if (featuredCount < 6) failures.push(`not enough featured blog entry points: ${featuredCount}`);
+  } else {
+    failures.push("blog metadata registry missing");
+  }
+
+  if (!fileContains(llmsPath, ["Leer-Rückfahrt", "Private Client", "Büroumzug", "unverbindlichen Orientierungsrahmen"])) {
+    failures.push("llms.txt route is missing AI-readable core service context");
+  }
+
+  if (!fileContains(localBusinessPath, ["department", "openingHoursSpecification", "Leer-Rückfahrt", "areaServed"])) {
+    failures.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
+  }
+
+  if (failures.length) {
+    console.log(`DOMINANCE_CHECK_FAILED issues=${failures.length}`);
+    console.log(failures.join("\n"));
+    process.exitCode = 1;
+    return;
+  }
+
+  console.log(`DOMINANCE_CHECK_OK moneyRoutes=${DOMINANCE_MONEY_ROUTES.length}`);
+}
+
 async function waitForServer(baseUrl, child) {
   for (let attempt = 0; attempt < 90; attempt += 1) {
     if (child.exitCode !== null) break;
@@ -308,6 +415,7 @@ async function main() {
   for (const mode of selectedModes) {
     if (mode === "links") runLinkCheck();
     else if (mode === "seo") runSeoCheck();
+    else if (mode === "dominance") runDominanceCheck();
     else if (mode === "http") await runHttpCheck();
     else {
       console.error(`Unknown quality-gate mode: ${mode}`);

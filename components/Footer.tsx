@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldCheck, Award, ArrowRight, MessageSquare } from "lucide-react";
+import { ShieldCheck, Award, MessageSquare } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { company } from "@/lib/company";
 
@@ -13,7 +13,8 @@ export function Footer({ dic }: { dic?: any }) {
 
     const SOLUTIONS = [
         { href: "/umzug", label: "Umzugslösungen" },
-        { href: "/reinigung", label: "Reinigungssysteme" },
+        { href: "/bueroumzug", label: "Büroumzug" },
+        { href: "/reinigung", label: "Reinigung" },
         { href: "/entruempelung", label: "Entrümpelung" },
         { href: "/firmenentsorgung", label: "Firmenentsorgung" },
         { href: "/private-client-service", label: "Private Client" },
@@ -21,12 +22,12 @@ export function Footer({ dic }: { dic?: any }) {
     ];
 
     const NETWORK = [
-        { href: "/umzug-regensburg", label: "Hub Regensburg" },
-        { href: "/einsatzgebiet-regensburg-200km", label: "200-km-Einsatzgebiet" },
-        { href: "/endreinigung-regensburg", label: "Endreinigung Ratisbona" },
-  { href: "/wohnungsaufloesung-regensburg", label: "Räumung Regensburg" },
-        { href: "/bueroumzug-bayern", label: "B2B Bayern Hub" },
-        { href: "/umzug-bayern", label: "Operations Bayern" },
+        { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+        { href: "/einsatzgebiet-regensburg-200km", label: "Einsatzgebiet ab Regensburg" },
+        { href: "/endreinigung-regensburg", label: "Endreinigung Regensburg" },
+        { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+        { href: "/bueroumzug-bayern", label: "Büroumzug Bayern" },
+        { href: "/umzug-bayern", label: "Umzug Bayern" },
     ];
 
     const COMPLIANCE = [
@@ -90,7 +91,7 @@ export function Footer({ dic }: { dic?: any }) {
                         </Link>
                         <div className="space-y-4">
                             <p className="text-[11px] leading-relaxed text-white/30 max-w-[180px]">
-                                Premium Service Operating System. Operativer Kern in Regensburg.
+                                Premium-Dienstleistungen für Umzug, Reinigung und Entrümpelung mit operativem Kern in Regensburg.
                             </p>
                             <a href={`mailto:${company.email}`} className="block text-[11px] font-semibold text-blue-400 hover:text-white transition-colors">
                                 {company.email}
@@ -100,7 +101,7 @@ export function Footer({ dic }: { dic?: any }) {
 
                     {/* Solutions */}
                     <div>
-                        <span className="label-premium block mb-6">Solutions</span>
+                        <span className="label-premium block mb-6">Leistungen</span>
                         <ul className="space-y-4">
                             {SOLUTIONS.map((link) => (
                                 <li key={link.href}>
@@ -114,7 +115,7 @@ export function Footer({ dic }: { dic?: any }) {
 
                     {/* Extensions */}
                     <div>
-                        <span className="label-premium block mb-6">Extensions</span>
+                        <span className="label-premium block mb-6">Zusatzservices</span>
                         <ul className="space-y-4">
                             {EXTENSIONS.map((link) => (
                                 <li key={link.href}>
@@ -128,7 +129,7 @@ export function Footer({ dic }: { dic?: any }) {
 
                     {/* Network */}
                     <div>
-                        <span className="label-premium block mb-6">Network</span>
+                        <span className="label-premium block mb-6">Region</span>
                         <ul className="space-y-4">
                             {NETWORK.map((link) => (
                                 <li key={link.href}>
@@ -142,7 +143,7 @@ export function Footer({ dic }: { dic?: any }) {
 
                     {/* Compliance & System */}
                     <div>
-                        <span className="label-premium block mb-6">System Legal</span>
+                        <span className="label-premium block mb-6">Recht & System</span>
                         <ul className="space-y-4">
                             {COMPLIANCE.map((link) => (
                                 <li key={link.href}>
@@ -152,8 +153,8 @@ export function Footer({ dic }: { dic?: any }) {
                                 </li>
                             ))}
                             <li className="pt-4">
-                                <Link href="/login" className="label-premium hover:text-blue-500/50 transition-colors">
-                                    Internal Login
+                                <Link href="/login" rel="nofollow" className="label-premium hover:text-blue-500/50 transition-colors">
+                                    Admin Login
                                 </Link>
                             </li>
                         </ul>

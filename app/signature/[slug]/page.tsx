@@ -52,6 +52,9 @@ export async function generateMetadata({
     const { slug } = await params;
     const dict = await getDictionary("de");
     const key = SLUG_TO_KEY[slug as SignatureSlug];
+    if (!key) {
+        notFound();
+    }
     const content = (dict?.pages as any)?.[key] || {};
     return generatePageSEO({
         lang: "de",
@@ -68,6 +71,9 @@ export default async function SignatureServicePage({
     const { slug } = await params;
     const dict = await getDictionary("de");
     const key = SLUG_TO_KEY[slug as SignatureSlug];
+    if (!key) {
+        notFound();
+    }
     const content = (dict?.pages as any)?.[key] || {};
     const area = (dict?.area as any) || {};
     // Get other signature services for cross-linking

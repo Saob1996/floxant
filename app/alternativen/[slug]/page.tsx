@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return generatePageSEO({
         pageLocale: pageLocale as Locale,
         path: `alternativen/${slug}`,
-        title: `Die bessere Alternative zu ${competitor} in ${city} | FLOXANT`,
-        description: `Warum FLOXANT die ideale Wahl gegenüber ${competitor} in ${city} ist. 100% Festpreis, keine versteckten Kosten.`,
+        title: `FLOXANT Vergleich in ${city} | Ablauf, Preisrahmen & Service`,
+        description: `Vergleichen Sie Anbieter in ${city} ohne Lockpreis-Logik: FLOXANT setzt auf klare Vorprüfung, nachvollziehbaren Preisrahmen und saubere Abstimmung.`,
     });
 }
 export default async function AlternativenPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -35,7 +35,7 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
             Suchen Sie nach <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-400">{competitor} in {city}?</span>
           </h1>
           <p className="text-lg text-white/60">
-            Bevor Sie blind buchen, vergleichen Sie die echten Kosten. FLOXANT berechnet Ihren Festpreis durch intelligente Datenalgorithmen – ganz ohne versteckte Gebühren.
+            Bevor Sie blind buchen, vergleichen Sie Ablauf, Leistungsumfang und Preislogik. FLOXANT arbeitet mit unverbindlicher Vorprüfung, nachvollziehbarem Preisrahmen und klarer Abstimmung.
           </p>
         </header>
         {/* The VS Matrix */}
@@ -47,10 +47,10 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
           </div>
           <div className="divide-y divide-white/5">
             {[
-              { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: `100% ${dict.calculator?.fixed_price_tag || 'Festpreis'}` },
-              { label: 'Tarife', comp: 'Statischer Preis', flox: 'Intelligentes 3-Tier System' },
-              { label: 'Wartezeit', comp: 'Bis zu 48h auf Angebot', flox: 'Sofortige KI-Kalkulation' },
-              { label: 'Disposition', comp: 'Manuelle Subunternehmer', flox: 'Cluster-Optimierte Flotten' }
+              { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: 'Nachvollziehbarer Orientierungsrahmen' },
+              { label: 'Leistungsumfang', comp: 'Unklare Pauschale', flox: 'Service-Stufen nach Vorprüfung' },
+              { label: 'Anfrage', comp: 'Lange Rückfragen', flox: 'Strukturierter Einstieg' },
+              { label: 'Disposition', comp: 'Unklare Zuständigkeit', flox: 'Eigene Einsatzplanung' }
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-3 p-4 text-center items-center hover:bg-white/5 transition-colors">
                  <div className="text-start ps- text-white/70 text-sm">{row.label}</div>
@@ -74,7 +74,7 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Überzeugen Sie sich selbst.</h2>
-            <p className="text-white/60 text-lg mb-12">Berechnen Sie in 60 Sekunden Ihren Preis für {city}.</p>
+            <p className="text-white/60 text-lg mb-12">Starten Sie eine unverbindliche Vorprüfung für {city}.</p>
             <div className="relative group-calc">
               <div className="absolute -inset-1 bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-[2.5rem] blur-xl opacity-0 group-calc-hover:opacity-100 transition duration-1000" />
               <div className="relative bg-[#0A0C10] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl backdrop-blur-sm p-4 md:p-8 text-start">

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { company } from "@/lib/company";
 
-const publicDisallow = ["/api/", "/dashboard/", "/login/"];
+const publicDisallow = ["/api/", "/admin/", "/dashboard/", "/login/"];
 
 export default function robots(): MetadataRoute.Robots {
     return {

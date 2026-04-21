@@ -3,7 +3,6 @@
 import React, { useMemo, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import {
-  Star,
   Quote,
   ChevronLeft,
   ChevronRight,
@@ -49,10 +48,10 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
   const reviewsList = fallbackReviews; // Prioritize neutral, high-quality fallbacks
 
   const labels = useMemo(() => ({
-    title: "Operative Beweisfahrung",
-    subtitle: "Verifizierte Rückmeldungen und dokumentierte Einsatzqualität aus dem bayerischen Raum.",
-    rating: "4.9/5",
-    ratingText: "Google Rating // 100+ Rezensionen",
+    title: "Operative Qualität",
+    subtitle: "Dokumentierte Einsatzabläufe und strukturierte Rückmeldungen aus dem bayerischen Raum.",
+    rating: "Qualitätsprüfung",
+    ratingText: "Rückmeldung nach Einsätzen",
   }), []);
 
   const currentReview = reviewsList[currentIndex];
@@ -83,10 +82,10 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
             <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
                     {[1, 2, 3, 4, 5].map((s) => (
-                        <Star key={s} size={14} className="fill-blue-500 text-blue-500" />
+                        <CheckCircle2 key={s} size={14} className="text-blue-500" />
                     ))}
                 </div>
-                <span className="font-sans text-2xl font-semibold text-white leading-none tracking-tight">{labels.rating}</span>
+                <span className="font-sans text-xl font-semibold text-white leading-none tracking-tight">{labels.rating}</span>
             </div>
             <span className="label-premium !text-white/30">
                 {labels.ratingText}
@@ -119,7 +118,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                         <span className="label-premium block mb-2">Status</span>
                         <div className="flex items-center gap-2 text-xs font-semibold text-white">
                             <CheckCircle2 size={12} className="text-emerald-500" />
-                            Verifizierter Einsatz
+                            Dokumentierter Einsatz
                         </div>
                     </div>
                     
@@ -135,7 +134,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                             <div className="text-[11px] font-medium text-white/60">{currentReview.location}</div>
                         </div>
                         <div>
-                            <span className="label-premium block mb-2">Timestamp</span>
+                            <span className="label-premium block mb-2">Zeitraum</span>
                             <div className="text-[11px] font-medium text-blue-500/80">{currentReview.date}</div>
                         </div>
                     </div>

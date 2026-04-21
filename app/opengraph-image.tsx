@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "FLOXANT - Umzug, Reinigung und Entrümpelung in Regensburg und Bayern";
+export const alt = "FLOXANT - Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt in Regensburg und Bayern";
 export const size = {
   width: 1200,
   height: 630,
@@ -21,7 +21,7 @@ export default function OpenGraphImage() {
           color: "white",
           background:
             "radial-gradient(circle at 72% 10%, rgba(96,165,250,0.34), transparent 34%), linear-gradient(135deg, #05070d 0%, #0b1020 52%, #101827 100%)",
-          fontFamily: "Arial, sans-serif",
+          fontFamily: "Georgia, serif",
           position: "relative",
           overflow: "hidden",
         }}
@@ -55,7 +55,7 @@ export default function OpenGraphImage() {
               F
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <div style={{ fontSize: 34, fontWeight: 900, letterSpacing: 3 }}>FLOXANT</div>
+            <div style={{ fontSize: 34, fontWeight: 900, letterSpacing: 3 }}>FLOXANT</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,0.52)", letterSpacing: 4 }}>
                 PREMIUM SERVICES
               </div>
@@ -89,18 +89,18 @@ export default function OpenGraphImage() {
               marginBottom: 26,
             }}
           >
-            Umzug · Reinigung · Entrümpelung
+            Umzug · Reinigung · Entrümpelung · Büroumzug
           </div>
           <div style={{ fontSize: 78, fontWeight: 900, lineHeight: 0.98, letterSpacing: -3 }}>
-            Klare Vorprüfung statt Chaos.
+            Klare Vorprüfung. Starke Umsetzung.
           </div>
           <div style={{ marginTop: 28, fontSize: 30, lineHeight: 1.35, color: "rgba(255,255,255,0.64)" }}>
-            Premium-Dienstleistungen mit unverbindlichem Orientierungsrahmen, sauberer Planung und direkter Anfrage.
+            Regensburg und Bayern: Preisrahmen, Zusatzservices, Leer-Rückfahrt und direkte Anfrage.
           </div>
         </div>
 
         <div style={{ display: "flex", gap: 16, position: "relative" }}>
-          {["Rechner", "Preisvorstellung", "Express-Anfrage", "Kombiservice"].map((label) => (
+          {["Rechner", "Preisvorstellung", "Leer-Rückfahrt", "Private Client"].map((label) => (
             <div
               key={label}
               style={{

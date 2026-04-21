@@ -9,6 +9,29 @@ export type BlogPostMeta = {
 
 export const blogPosts: BlogPostMeta[] = [
   {
+    slug: "leer-rueckfahrt-regensburg-firmen-moebeltransport",
+    category: "Leer-Rückfahrt",
+    readTime: "7 Min.",
+    title: "Leer-Rückfahrt nach Regensburg: fairer Transport für Firmen und Möbel",
+    description: "Wann freie Rückfahrten für Büroinventar, Möbel, Kartons und Teilmengen sinnvoll sind und welche Grenzen gelten.",
+    featured: true,
+  },
+  {
+    slug: "bueroumzug-regensburg-kostenfaktoren-checkliste",
+    category: "Büroumzug",
+    readTime: "8 Min.",
+    title: "Büroumzug in Regensburg: Kostenfaktoren und Checkliste",
+    description: "Arbeitsplätze, IT, Archiv, Zugang und Zeitfenster: so wird ein Firmenumzug realistisch vorbereitet.",
+    featured: true,
+  },
+  {
+    slug: "firmenentsorgung-buero-inventar-regensburg",
+    category: "Firmenentsorgung",
+    readTime: "6 Min.",
+    title: "Firmenentsorgung in Regensburg: Büroinventar sauber abholen lassen",
+    description: "Welche Büro- und Gewerbegegenstände ohne Sonderabfall-Risiko angefragt werden können und wie FLOXANT vorprüft.",
+  },
+  {
     slug: "preisrahmen-vorpruefung-statt-festpreis",
     category: "Preiswahrheit",
     readTime: "7 Min.",

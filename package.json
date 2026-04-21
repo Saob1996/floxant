@@ -10,9 +10,10 @@
     "lint": "next lint",
     "check:links": "node scripts/quality-gate.js links",
     "check:seo": "node scripts/quality-gate.js seo",
-    "check:quality": "node scripts/quality-gate.js links seo",
+    "check:quality": "node scripts/quality-gate.js links seo dominance",
     "check:http": "node scripts/quality-gate.js http",
-    "check:deploy": "npm run build && node scripts/quality-gate.js links seo http",
+    "check:deploy": "npm run build && node scripts/quality-gate.js links seo dominance http",
+    "seo:ctr": "node scripts/ctr-opportunity-report.js",
     "make:blog": "node scripts/generate-blog.js"
   },
   "keywords": [],
