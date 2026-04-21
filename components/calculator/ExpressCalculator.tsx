@@ -19,6 +19,7 @@ import {
   calculateUmzugExpress,
   calculateReinigungExpress,
   calculateEntsorgungExpress,
+  calculateBueroumzugAdvanced,
 } from "@/lib/pricing/calculator-engine";
 import TrustBlock from "../trust/TrustBlock";
 
@@ -31,6 +32,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
   const umzugData = useCalculatorStore((s) => s.umzugData);
   const reinigungData = useCalculatorStore((s) => s.reinigungData);
   const entsorgungData = useCalculatorStore((s) => s.entsorgungData);
+  const bueroumzugData = useCalculatorStore((s) => s.bueroumzugData);
   const baseDetails = useCalculatorStore((s) => s.baseDetails);
 
   const expressPriceRange = useCalculatorStore((s) => s.expressPriceRange);
@@ -41,6 +43,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
   const updateUmzugData = useCalculatorStore((s) => s.updateUmzugData);
   const updateReinigungData = useCalculatorStore((s) => s.updateReinigungData);
   const updateEntsorgungData = useCalculatorStore((s) => s.updateEntsorgungData);
+  const updateBueroumzugData = useCalculatorStore((s) => s.updateBueroumzugData);
 
   const [activeStep, setActiveStep] = useState(serviceType ? 1 : 0);
   const [isCalculating, setIsCalculating] = useState(false);
@@ -55,13 +58,11 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
     }
 
     if (serviceType === "entsorgung") {
-      return calculateEntsorgungExpress(entsorgungData);
+      return calculateEntsorgungExpress(entsorgungData, baseDetails);
     }
 
     if (serviceType === "bueroumzug") {
-      // Simplified express calculation for office
-      const price = 300 + (umzugData.areaM2 || 40) * 8;
-      return { min: price, max: price * 1.3 };
+      return calculateBueroumzugAdvanced(bueroumzugData, baseDetails, dic).priceRange;
     }
 
     if (serviceType === "klaviertransport") {
@@ -69,7 +70,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
     }
 
     return null;
-  }, [serviceType, umzugData, reinigungData, entsorgungData, baseDetails]);
+  }, [serviceType, umzugData, reinigungData, entsorgungData, bueroumzugData, baseDetails, dic]);
 
   useEffect(() => {
     if (!serviceType && activeStep !== 0) {
@@ -249,9 +250,9 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                   </div>
                 )}
 
-                {(serviceType === "umzug" || serviceType === "reinigung") && (
+                {(serviceType === "umzug" || serviceType === "seniorenumzug" || serviceType === "reinigung") && (
                   <div
-                    className={`grid gap-4 ${serviceType === "umzug" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
+                    className={`grid gap-4 ${serviceType === "umzug" || serviceType === "seniorenumzug" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
                       }`}
                   >
                     <FieldCard
@@ -262,13 +263,13 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                         min={0}
                         inputMode="numeric"
                         value={
-                          serviceType === "umzug"
+                          serviceType === "umzug" || serviceType === "seniorenumzug"
                             ? umzugData.areaM2
                             : reinigungData.areaM2
                         }
                         onChange={(e) => {
                           const val = Number.parseInt(e.target.value, 10) || 0;
-                          if (serviceType === "umzug") {
+                          if (serviceType === "umzug" || serviceType === "seniorenumzug") {
                             updateUmzugData({ areaM2: val });
                           } else {
                             updateReinigungData({ areaM2: val });
@@ -278,7 +279,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                       />
                     </FieldCard>
 
-                    {serviceType === "umzug" && (
+                    {(serviceType === "umzug" || serviceType === "seniorenumzug") && (
                       <FieldCard
                         label={dic?.calculator?.rooms || ""}
                       >
@@ -296,6 +297,39 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                         />
                       </FieldCard>
                     )}
+                  </div>
+                )}
+
+                {serviceType === "bueroumzug" && (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <FieldCard label={dic?.calculator?.workstations || "Arbeitsplätze"}>
+                      <input
+                        type="number"
+                        min={1}
+                        inputMode="numeric"
+                        value={bueroumzugData.workstations || ""}
+                        onChange={(e) =>
+                          updateBueroumzugData({
+                            workstations: Number.parseInt(e.target.value, 10) || 1,
+                          })
+                        }
+                        className="w-full bg-transparent text-2xl font-light tracking-tight text-white outline-none placeholder:text-white/30"
+                      />
+                    </FieldCard>
+                    <FieldCard label={dic?.calculator?.archive_meters || "Archivmeter"}>
+                      <input
+                        type="number"
+                        min={0}
+                        inputMode="numeric"
+                        value={bueroumzugData.archiveMeters || ""}
+                        onChange={(e) =>
+                          updateBueroumzugData({
+                            archiveMeters: Number.parseInt(e.target.value, 10) || 0,
+                          })
+                        }
+                        className="w-full bg-transparent text-2xl font-light tracking-tight text-white outline-none placeholder:text-white/30"
+                      />
+                    </FieldCard>
                   </div>
                 )}
 
@@ -371,7 +405,7 @@ export default function ExpressCalculator({ dic }: { dic?: any }) {
                     <Sparkles className="text-blue-400" size={30} />
                   </div>
 
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-emerald-400">
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-400">
                     <CheckCircle2 size={12} />
                     Qualitätsgeprüft für Bayern
                   </div>

@@ -12,15 +12,17 @@ import {
     LEGAL_PAGES,
     HUB_PAGES,
 } from "./sitemap-config";
+import { existsSync, readdirSync } from "fs";
+import { join } from "path";
 
 /**
  * Sitemap Architecture:
- * - DE, EN and RU are indexable.
- * - Each locale has its own sitemap segment (sitemap-de.xml, sitemap-en.xml, sitemap-ru.xml).
- * - sitemap.xml is the index pointing to all locale sitemaps.
+ * - German-only root architecture.
+ * - Single flat sitemap.xml for all indexable pages.
  */
 
 interface SitemapUrl {
+    pagePath?: string;
     loc: string;
     lastmod: string;
     changefreq: string;
@@ -46,20 +48,88 @@ function escapeXml(unsafe: string): string {
     });
 }
 
-function buildAbsoluteUrl(route: string, locale: string): string {
-    return `${BASE_URL}/${locale}${route ? `/${route}` : ""}`;
+/**
+ * Builds final root-based canonical URLs.
+ */
+function buildAbsoluteUrl(route: string): string {
+    return `${BASE_URL}${route ? `/${route}` : ""}`;
+}
+
+function shouldSkipSitemapSegment(segment: string): boolean {
+    return (
+        segment === "api" ||
+        segment === "admin" ||
+        segment === "dashboard" ||
+        segment === "login" ||
+        segment === "villenservice" ||
+        segment === "sitemap.xml" ||
+        segment === "sitemap-de.xml" ||
+        segment.startsWith("_") ||
+        segment.startsWith("[")
+    );
+}
+
+function normalizeRouteSegments(segments: string[]): string[] {
+    return segments.filter((segment) => !segment.startsWith("(") && !segment.endsWith(")"));
+}
+
+function discoverStaticAppRoutes(): string[] {
+    const appDir = join(process.cwd(), "app");
+    const routes = new Set<string>();
+
+    function walk(directory: string, segments: string[] = []) {
+        if (!existsSync(directory)) return;
+
+        const entries = readdirSync(directory, { withFileTypes: true });
+        const hasPage = entries.some((entry) => entry.isFile() && /^page\.(tsx|ts|jsx|js)$/.test(entry.name));
+
+        if (hasPage) {
+            const routeSegments = normalizeRouteSegments(segments);
+            if (!routeSegments.some(shouldSkipSitemapSegment)) {
+                routes.add(routeSegments.join("/"));
+            }
+        }
+
+        for (const entry of entries) {
+            if (!entry.isDirectory()) continue;
+            if (shouldSkipSitemapSegment(entry.name)) continue;
+            walk(join(directory, entry.name), [...segments, entry.name]);
+        }
+    }
+
+    walk(appDir);
+    return Array.from(routes).sort();
+}
+
+function priorityForRoute(route: string): string {
+    if (!route) return "1.0";
+    if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "rechner"].includes(route)) return "0.9";
+    if (route === "leerfahrt-rueckfahrt") return "0.88";
+    if (route === "einsatzgebiet-regensburg-200km") return "0.88";
+    if (route === "floxant-fakten") return "0.8";
+    if (route.includes("regensburg") || route.endsWith("-bayern") || route === "service-area-bayern") return "0.85";
+    if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "0.65";
+    if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "0.3";
+    return "0.7";
+}
+
+function changefreqForRoute(route: string): string {
+    if (!route) return "daily";
+    if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
+    if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";
+    return "weekly";
 }
 
 function addEntries(
     urls: SitemapUrl[],
     routes: readonly string[],
     priority: string,
-    changefreq: string,
-    locale: string
+    changefreq: string
 ): void {
     for (const route of routes) {
         urls.push({
-            loc: buildAbsoluteUrl(route, locale),
+            pagePath: route,
+            loc: buildAbsoluteUrl(route),
             lastmod: LASTMOD,
             changefreq,
             priority,
@@ -67,88 +137,118 @@ function addEntries(
     }
 }
 
-export function generateSitemapIndexResponse(): Response {
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>${escapeXml(`${BASE_URL}/sitemap-de.xml`)}</loc>
-    <lastmod>${LASTMOD}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${escapeXml(`${BASE_URL}/sitemap-en.xml`)}</loc>
-    <lastmod>${LASTMOD}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${escapeXml(`${BASE_URL}/sitemap-ru.xml`)}</loc>
-    <lastmod>${LASTMOD}</lastmod>
-  </sitemap>
-</sitemapindex>`;
-
-    return new Response(xml, {
-        headers: { "Content-Type": "application/xml" },
-    });
-}
-
-export function generateSitemapSegmentResponse(segmentId: string): Response {
-    // Validate segment
-    if (!["de", "en", "ru"].includes(segmentId)) {
-        return new Response("Not Found", { status: 404 });
-    }
-
-    const locale = segmentId;
+/**
+ * Generates the full flat German sitemap.
+ */
+export function generateSitemapResponse(): Response {
     const urls: SitemapUrl[] = [];
 
     // Homepage
     urls.push({
-        loc: buildAbsoluteUrl("", locale),
+        pagePath: "",
+        loc: buildAbsoluteUrl(""),
         lastmod: LASTMOD,
         changefreq: "daily",
         priority: "1.0",
     });
 
     // Core services
-    addEntries(urls, CORE_SERVICES, "0.9", "weekly", locale);
+    addEntries(urls, CORE_SERVICES, "0.9", "weekly");
 
     // City pages
-    addEntries(urls, CITY_PAGES, "0.9", "daily", locale);
+    addEntries(urls, CITY_PAGES, "0.9", "daily");
 
     // Service + city pages
-    addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly", locale);
+    addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
 
     // Bavaria authority pages
-    addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly", locale);
+    addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
 
     // Hub pages
-    addEntries(urls, HUB_PAGES, "0.8", "weekly", locale);
+    addEntries(urls, HUB_PAGES, "0.8", "weekly");
 
     // Signature SEO pages
-    addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly", locale);
+    addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly");
 
     // Long-tail pages
-    addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly", locale);
+    addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly");
 
     // Ratgeber / Blog pages
-    addEntries(urls, RATGEBER_PAGES, "0.6", "weekly", locale);
+    addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
 
     // Signature services
     const signatureRoutes = SIGNATURE_SERVICES.map((slug) => `signature/${slug}`);
-    addEntries(urls, signatureRoutes, "0.7", "monthly", locale);
+    addEntries(urls, signatureRoutes, "0.7", "monthly");
 
     // Legal pages
-    addEntries(urls, LEGAL_PAGES, "0.3", "yearly", locale);
+    addEntries(urls, LEGAL_PAGES, "0.3", "yearly");
+
+    // Safety net: include all static root routes that exist in app/, while excluding
+    // private/admin/API areas and dynamic placeholders. This keeps the sitemap aligned
+    // with the large generated route set without hand-maintaining every city page.
+    addEntries(
+        urls,
+        discoverStaticAppRoutes(),
+        "0.7",
+        "weekly"
+    );
+
+    const changefreqWeight: Record<string, number> = {
+        daily: 4,
+        weekly: 3,
+        monthly: 2,
+        yearly: 1,
+    };
+    const uniqueUrlMap = new Map<string, SitemapUrl>();
+
+    for (const url of urls) {
+        const discoveredPriority = Number(priorityForRoute(url.pagePath || ""));
+        const configuredPriority = Number(url.priority);
+        const priority = Math.max(
+            Number.isFinite(configuredPriority) ? configuredPriority : 0.7,
+            Number.isFinite(discoveredPriority) ? discoveredPriority : 0.7
+        ).toFixed(2).replace(/0$/, "");
+        const normalizedUrl = {
+            ...url,
+            priority,
+            changefreq: url.changefreq || changefreqForRoute(url.pagePath || ""),
+        };
+        const existing = uniqueUrlMap.get(url.loc);
+
+        if (!existing) {
+            uniqueUrlMap.set(url.loc, normalizedUrl);
+            continue;
+        }
+
+        const bestPriority = Math.max(Number(existing.priority), Number(normalizedUrl.priority))
+            .toFixed(2)
+            .replace(/0$/, "");
+        const bestChangefreq =
+            changefreqWeight[normalizedUrl.changefreq] > changefreqWeight[existing.changefreq]
+                ? normalizedUrl.changefreq
+                : existing.changefreq;
+
+        uniqueUrlMap.set(url.loc, {
+            ...existing,
+            priority: bestPriority,
+            changefreq: bestChangefreq,
+        });
+    }
+
+    const uniqueUrls = Array.from(uniqueUrlMap.values());
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-            .map(
-                (url) => `  <url>
+${uniqueUrls
+    .map(
+        (url) => `  <url>
     <loc>${escapeXml(url.loc)}</loc>
     <lastmod>${url.lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
   </url>`
-            )
-            .join("\n")}
+    )
+    .join("\n")}
 </urlset>`;
 
     return new Response(xml, {

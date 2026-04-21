@@ -1,14 +1,13 @@
 /**
  * FLOXANT Sitemap Configuration
- * Centralized route definitions for the current sitemap architecture.
- * DE, EN and RU are indexable.
+ * Centralized route definitions for the German-only root architecture.
  */
 
 export const BASE_URL = "https://www.floxant.de";
 export const LASTMOD = new Date().toISOString().split("T")[0];
 
-/** Active locales with dedicated sitemap files */
-export const MAJOR_LOCALES = ["de", "en", "ru"] as const;
+/** Active locales with dedicated sitemap files (DE ONLY) */
+export const MAJOR_LOCALES = ["de"] as const;
 
 // --- Route Definitions ---
 
@@ -19,12 +18,11 @@ export const HOMEPAGE = "";
 export const CORE_SERVICES = [
     "umzug",
     "bueroumzug",
-    "fernumzug",
+    "firmenentsorgung",
+    "private-client-service",
     "reinigung",
     "entruempelung",
     "kleintransporte",
-    "montage",
-    "halteverbotszone",
 ] as const;
 
 /** City/Geo pages */
@@ -167,9 +165,6 @@ export const CITY_PAGES = [
     "umzug-oberpfalz",
     "umzug-landkreis-regensburg",
     "umzug-hausen",
-    "umzug-kulmbach",
-    "umzug-guenzburg",
-    "umzug-lindau",
     "umzug-muenchen-schwabing",
     "umzug-muenchen-bogenhausen",
     "umzug-nuernberg-gostenhof",
@@ -254,9 +249,7 @@ export const SERVICE_CITY_PAGES = [
     "reinigung-erlangen",
     "reinigung-bamberg",
     "reinigung-bayreuth",
-    "reinigung-kulmbach",
     "reinigung-starnberg",
-    "reinigung-garmisch-partenkirchen",
 ] as const;
 
 /** Bavaria authority pages */
@@ -283,12 +276,14 @@ export const HUB_PAGES = [
     "wissen",
     "alternativen",
     "standorte",
+    "einsatzgebiet-regensburg-200km",
 ] as const;
 
 /** Long-tail / cost pages */
 export const LONGTAIL_PAGES = [
     "umzugskosten-bayern",
     "entruempelung-kosten-regensburg",
+    "leerfahrt-rueckfahrt",
 ] as const;
 
 /** Ratgeber / Blog pages */
@@ -357,8 +352,5 @@ export interface SitemapUrl {
     pagePath: string;
 }
 
-/** Final sitemap files in the current architecture (DE-only) */
-export const SITEMAP_SEGMENTS = [
-    "sitemap.xml",
-    "sitemap-de.xml",
-] as const;
+/** Final sitemap configuration (Single Flat XML) */
+export const SITEMAP_FILES = ["sitemap.xml"] as const;

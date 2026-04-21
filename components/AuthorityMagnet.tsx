@@ -25,7 +25,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
                 
                 {/* VIP / Link Magnet Intro */}
                 <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl font-extrabold mb-4 flex items-center justify-center gap-3">
+                    <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
                         <Activity className="w-8 h-8 text-primary" /> 
                         {t(am?.title, `Transparenz & Lokale Expertise in ${city}`)}
                     </h2>

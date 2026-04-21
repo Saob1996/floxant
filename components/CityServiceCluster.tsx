@@ -11,62 +11,72 @@ interface CityServiceClusterProps {
 export function CityServiceCluster({ locale, city, citySlug }: CityServiceClusterProps) {
     if (locale !== "de") return null; // DE-only SEO Gating
 
+    const incompleteServiceCitySlugs = new Set([
+        "garmisch-partenkirchen",
+        "kulmbach",
+        "lindau",
+        "muenchen-bogenhausen",
+        "muenchen-schwabing",
+        "nuernberg-gostenhof",
+    ]);
+    const useServiceFallbacks = incompleteServiceCitySlugs.has(citySlug);
+
     const services = [
         {
             title: "Umzug",
-            href: `/de/umzug-${citySlug}`,
+            href: `/umzug-${citySlug}`,
             icon: Truck,
             color: "text-blue-500",
-            bg: "bg-blue-50",
+            bg: "bg-blue-500/10",
         },
         {
             title: "Entrümpelung",
-            href: `/de/entruempelung-${citySlug}`,
+            href: useServiceFallbacks ? "/entruempelung" : `/entruempelung-${citySlug}`,
             icon: Trash2,
             color: "text-emerald-500",
-            bg: "bg-emerald-50",
+            bg: "bg-emerald-500/10",
         },
         {
             title: "Klaviertransport",
-            href: `/de/klaviertransport-${citySlug}`,
+            href: useServiceFallbacks ? "/klaviertransport" : `/klaviertransport-${citySlug}`,
             icon: Piano,
             color: "text-amber-500",
-            bg: "bg-amber-50",
+            bg: "bg-amber-500/10",
         },
         {
             title: "Reinigung",
-            href: `/de/reinigung-${citySlug}`,
+            href: useServiceFallbacks ? "/reinigung" : `/reinigung-${citySlug}`,
             icon: Sparkles,
             color: "text-purple-500",
-            bg: "bg-purple-50",
+            bg: "bg-purple-500/10",
         },
         {
             title: "Büroumzug",
-            href: `/de/bueroumzug-${citySlug}`,
+            href: useServiceFallbacks ? "/bueroumzug" : `/bueroumzug-${citySlug}`,
             icon: Building2,
             color: "text-slate-500",
-            bg: "bg-slate-50",
+            bg: "bg-slate-500/10",
         },
         {
             title: "Full-Service",
-            href: `/de/angebote`,
+            href: `/rechner`,
             icon: PackageCheck,
             color: "text-rose-500",
-            bg: "bg-rose-50",
+            bg: "bg-rose-500/10",
         },
     ];
 
     return (
-        <section className="border-t border-border bg-slate-50/50 py-24 px-6 relative overflow-hidden">
+        <section className="border-t border-white/5 bg-black/40 py-24 px-6 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
             
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                     <div className="space-y-4 text-start">
-                        <h3 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+                        <h3 className="text-3xl font-bold text-white tracking-tight">
                             Lokale Expertise in <span className="text-primary">{city}</span>
                         </h3>
-                        <p className="text-lg text-slate-600 max-w-2xl leading-relaxed">
+                        <p className="text-lg text-white/40 max-w-2xl leading-relaxed">
                             {company.name} ist Ihr kompetenter Partner für alle Anliegen rund um Umzug, Logistik und Immobilien-Services in der Region {city}. Entdecken Sie unsere spezialisierten Fachbereiche vor Ort.
                         </p>
                     </div>
@@ -90,12 +100,12 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
                             <Link
                                 key={service.href}
                                 href={service.href}
-                                className="group relative flex flex-col items-center p-6 bg-white border border-slate-200 rounded-3xl transition-all hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 hover:border-primary/20"
+                                className="group relative flex flex-col items-center p-6 bg-white/[0.02] border border-white/5 rounded-3xl transition-all hover:bg-white/[0.04] hover:-translate-y-1 hover:border-primary/20"
                             >
                                 <div className={`mb-4 p-4 rounded-2xl ${service.bg} ${service.color} transition-transform group-hover:scale-110`}>
                                     <Icon className="w-8 h-8" />
                                 </div>
-                                <span className="text-sm font-bold text-slate-800 group-hover:text-primary transition-colors text-center">
+                                <span className="text-sm font-bold text-white group-hover:text-primary transition-colors text-center">
                                     {service.title} in {city}
                                 </span>
                                 

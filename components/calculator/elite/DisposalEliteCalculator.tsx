@@ -65,7 +65,7 @@ export default function DisposalEliteCalculator({ dic }: Props) {
           </div>
 
           <div className="relative z-10 min-h-[400px]">
-             <EntsorgungForm dic={dic} />
+             <EntsorgungForm dic={dic} currentStep={1} />
           </div>
 
           {/* Action */}
@@ -78,7 +78,7 @@ export default function DisposalEliteCalculator({ dic }: Props) {
             </button>
             <button
               onClick={() => setMode("lead")}
-              className="flex items-center gap-2 rounded-2xl bg-amber-600 px-8 py-4 text-sm font-black text-white shadow-xl shadow-amber-900/20 transition-all hover:bg-amber-500 active:scale-95"
+              className="flex items-center gap-2 rounded-2xl bg-amber-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-amber-900/20 transition-all hover:bg-amber-500 active:scale-95"
             >
               Angebot jetzt anfordern <ArrowRight size={18} />
             </button>
@@ -94,7 +94,7 @@ export default function DisposalEliteCalculator({ dic }: Props) {
               <Database size={18} className="text-amber-500" />
               Kostenschätzung
             </h3>
-            <div className={`flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${est?.confidenceLevel === 'high' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>
+            <div className={`flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${est?.confidenceLevel === 'high' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>
               <div className={`h-1.5 w-1.5 rounded-full ${est?.confidenceLevel === 'high' ? 'bg-emerald-500' : 'bg-amber-500'} animate-pulse`} />
               {est?.confidenceLevel === 'high' ? 'Verbindlich' : 'Indikativ'}
             </div>
@@ -113,21 +113,21 @@ export default function DisposalEliteCalculator({ dic }: Props) {
           ) : (
             <div className="space-y-6">
               <div className="rounded-2xl bg-amber-600/5 p-6 shadow-inner ring-1 ring-amber-500/20">
-                <span className="mb-2 block text-[10px] font-black uppercase tracking-widest text-amber-400">Kostenrahmen für Räumung</span>
+                <span className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-amber-400">Kostenrahmen für Räumung</span>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-black tracking-tighter text-white">{est?.priceRange?.min}€</span>
+                  <span className="text-5xl font-bold tracking-tighter text-white">{est?.priceRange?.min}€</span>
                   <span className="text-xl text-white/20">bis</span>
-                  <span className="text-5xl font-black tracking-tighter text-white">{est?.priceRange?.max}€</span>
+                  <span className="text-5xl font-bold tracking-tighter text-white">{est?.priceRange?.max}€</span>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
-                <div className="mb-1 flex items-center gap-2 text-white/30"><Layers size={12} /> <span className="text-[9px] font-black uppercase tracking-widest">Kalkulationsbasis</span></div>
+                <div className="mb-1 flex items-center gap-2 text-white/30"><Layers size={12} /> <span className="text-[10px] font-bold uppercase tracking-widest">Kalkulationsbasis</span></div>
                 <div className="text-sm font-bold text-white leading-relaxed">{est?.calculationBasis}</div>
               </div>
 
               <div className="rounded-2xl bg-rose-500/5 p-4 ring-1 ring-rose-500/20">
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-rose-400"><AlertTriangle size={14} /> Entsorgungs-Hinweis</div>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-rose-400"><AlertTriangle size={14} /> Entsorgungs-Hinweis</div>
                 <p className="mt-2 text-[11px] leading-relaxed text-rose-400/70">Preise inkl. Deponiegebühren für Standardwaste. Sonderabfall wird separat berechnet.</p>
               </div>
             </div>

@@ -1,17 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
-import {
-  Sparkles,
-  Database,
-  Clock,
-  CheckCircle2,
-  ArrowLeft,
-  ArrowRight,
-  ShieldCheck,
-  Star,
-} from "lucide-react";
+import { Sparkles, Database, Clock, CheckCircle2, ArrowLeft, ArrowRight, ShieldCheck, Star } from "lucide-react";
 import { useCalculatorStore } from "@/store/calculatorStore";
 import {
   calculateReinigungAdvanced,
@@ -24,23 +14,29 @@ interface Props {
   dic: any;
 }
 
-export default function CleaningEliteCalculator({ dic }: Props) {
-  const serviceType = useCalculatorStore((s) => s.serviceType);
-  const baseDetails = useCalculatorStore((s) => s.baseDetails);
-  const reinigungData = useCalculatorStore((s) => s.reinigungData);
-  const malerarbeitenData = useCalculatorStore((s) => s.malerarbeitenData);
+function formatEuro(value: number | undefined): string {
+  return new Intl.NumberFormat("de-DE").format(value || 0);
+}
 
-  const advancedEstimate = useCalculatorStore((s) => s.advancedEstimate);
-  const setAdvancedEstimate = useCalculatorStore((s) => s.setAdvancedEstimate);
-  const setMode = useCalculatorStore((s) => s.setMode);
+export default function CleaningEliteCalculator({ dic }: Props) {
+  const serviceType = useCalculatorStore((state) => state.serviceType);
+  const baseDetails = useCalculatorStore((state) => state.baseDetails);
+  const reinigungData = useCalculatorStore((state) => state.reinigungData);
+  const malerarbeitenData = useCalculatorStore((state) => state.malerarbeitenData);
+  const advancedEstimate = useCalculatorStore((state) => state.advancedEstimate);
+  const setAdvancedEstimate = useCalculatorStore((state) => state.setAdvancedEstimate);
+  const setMode = useCalculatorStore((state) => state.setMode);
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const calculatedEstimate = useMemo(() => {
     switch (serviceType) {
-      case "reinigung": return calculateReinigungAdvanced(reinigungData, dic);
-      case "malerarbeiten": return calculateMalerarbeitenAdvanced(malerarbeitenData, baseDetails, dic);
-      default: return null;
+      case "reinigung":
+        return calculateReinigungAdvanced(reinigungData, dic);
+      case "malerarbeiten":
+        return calculateMalerarbeitenAdvanced(malerarbeitenData, baseDetails, dic);
+      default:
+        return null;
     }
   }, [serviceType, reinigungData, malerarbeitenData, baseDetails, dic]);
 
@@ -48,109 +44,123 @@ export default function CleaningEliteCalculator({ dic }: Props) {
     if (!calculatedEstimate) return;
     if (JSON.stringify(advancedEstimate) !== JSON.stringify(calculatedEstimate)) {
       setAdvancedEstimate(calculatedEstimate);
-      setIsRefreshing(true);
-      const t = setTimeout(() => setIsRefreshing(false), 200);
-      return () => clearTimeout(t);
     }
   }, [calculatedEstimate, advancedEstimate, setAdvancedEstimate]);
 
-  const hasInput = (reinigungData.areaM2 > 0 || malerarbeitenData.areaM2 > 0);
+  useEffect(() => {
+    if (!calculatedEstimate) return;
+    setIsRefreshing(true);
+    const timeout = setTimeout(() => setIsRefreshing(false), 200);
+    return () => clearTimeout(timeout);
+  }, [calculatedEstimate]);
+
+  const hasInput = reinigungData.areaM2 > 0 || malerarbeitenData.areaM2 > 0;
   const est = (calculatedEstimate || advancedEstimate) as any;
 
   return (
     <div className="relative flex w-full max-w-7xl flex-col gap-8 xl:flex-row xl:items-start">
-      {/* Main Form Area */}
       <div className="w-full flex-[1.2]">
         <div className="relative overflow-hidden rounded-[32px] border border-emerald-500/10 bg-[#0B0C0E] p-6 shadow-2xl backdrop-blur-md lg:p-10">
           <div className="pointer-events-none absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_0%_0%,rgba(16,185,129,0.05),transparent_40%)]" />
-          
-          {/* Header */}
+
           <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
             <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
               Elite <span className="text-emerald-500">Service Planung</span>
             </h2>
-            <p className="mt-2 text-sm text-white/40">Geben Sie Ihre Objektdaten für ein exaktes Angebot an.</p>
+            <p className="mt-2 text-sm text-white/40">Geben Sie Ihre Objektdaten für eine belastbare Vorprüfung an.</p>
           </div>
 
           <div className="relative z-10 min-h-[400px]">
-            <AnimatePresence mode="wait">
-              <m.div
-                key={serviceType}
-                initial={{ opacity: 0, scale: 0.99 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.99 }}
-                transition={{ duration: 0.2 }}
-              >
-                {serviceType === "reinigung" ? (
-                  <ReinigungForm dic={dic} />
-                ) : (
-                  <PaintingForm dic={dic} />
-                )}
-              </m.div>
-            </AnimatePresence>
+            {serviceType === "reinigung" ? (
+              <ReinigungForm dic={dic} currentStep={1} />
+            ) : (
+              <PaintingForm dic={dic} currentStep={1} />
+            )}
           </div>
 
-          {/* Action */}
           <div className="relative z-10 mt-12 flex items-center justify-between border-t border-white/5 pt-8">
             <button
               onClick={() => setMode("selection")}
               className="flex items-center gap-2 text-sm font-bold text-white/30 transition-colors hover:text-white"
             >
-              <ArrowLeft size={18} /> Zurück
+              <ArrowLeft size={18} />
+              Zurück
             </button>
             <button
               onClick={() => setMode("lead")}
-              className="flex items-center gap-2 rounded-2xl bg-emerald-600 px-8 py-4 text-sm font-black text-white shadow-xl shadow-emerald-900/20 transition-all hover:bg-emerald-500 active:scale-95"
+              className="flex items-center gap-2 rounded-2xl bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-900/20 transition-all hover:bg-emerald-500 active:scale-95"
             >
-              Kalkulation abschließen <ArrowRight size={18} />
+              Vorprüfung abschließen
+              <ArrowRight size={18} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Sidebar Result */}
       <div className="sticky top-24 w-full xl:w-[420px]">
         <div className="rounded-[32px] border border-white/10 bg-[#0B0C0E] p-8 shadow-2xl">
           <div className="mb-8 flex items-center justify-between border-b border-white/5 pb-6">
             <h3 className="flex items-center gap-2 text-lg font-bold text-white">
               <Database size={18} className="text-emerald-500" />
-              Live-Preise
+              Aktuelle Einordnung
             </h3>
-            <div className={`flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${est?.confidenceLevel === 'high' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>
-              <div className={`h-1.5 w-1.5 rounded-full ${est?.confidenceLevel === 'high' ? 'bg-emerald-500' : 'bg-amber-500'} animate-pulse`} />
-              {est?.confidenceLevel === 'high' ? 'Qualitäts-Check' : 'Indikativ'}
+            <div className="rounded-full bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white/60">
+              {est?.valuationStage || "Erste Einschätzung"}
             </div>
           </div>
 
           {!hasInput ? (
             <div className="py-12 text-center">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-3xl">✨</div>
-              <p className="text-sm font-medium text-white/40">Starten Sie mit den Objektdaten für eine professionelle Analyse.</p>
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-3xl">R</div>
+              <p className="text-sm font-medium text-white/40">Starten Sie mit den Objektdaten für eine belastbare Vorprüfung.</p>
             </div>
           ) : isRefreshing ? (
             <div className="flex h-48 flex-col items-center justify-center gap-4">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Dienstleistung wird kalkuliert...</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Dienstleistung wird geprüft...</span>
             </div>
           ) : (
             <div className="space-y-6">
               <div className="rounded-2xl bg-emerald-600/5 p-6 shadow-inner ring-1 ring-emerald-500/20">
-                <span className="mb-2 block text-[10px] font-black uppercase tracking-widest text-emerald-400">Festpreis-Angebot (Voraussichtlich)</span>
+                <span className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-emerald-400">Unverbindlicher Orientierungsrahmen</span>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-black tracking-tighter text-white">{est?.priceRange?.min}€</span>
-                  <span className="text-xl text-white/20">bis</span>
-                  <span className="text-5xl font-black tracking-tighter text-white">{est?.priceRange?.max}€</span>
+                  <span className="text-5xl font-bold tracking-tighter text-white">{formatEuro(est?.priceRange?.min)}</span>
+                  <span className="text-xl text-white/20">-</span>
+                  <span className="text-5xl font-bold tracking-tighter text-white">{formatEuro(est?.priceRange?.max)}</span>
+                  <span className="ml-1 text-xl font-bold text-emerald-400">EUR</span>
                 </div>
+                <p className="mt-4 text-[11px] leading-relaxed text-white/50">{est?.priceExplanation}</p>
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
-                <div className="mb-1 flex items-center gap-2 text-white/30"><Star size={12} /> <span className="text-[9px] font-black uppercase tracking-widest">Inkludierte Leistung</span></div>
-                <div className="text-sm font-bold text-white leading-relaxed">{est?.calculationBasis}</div>
+                <div className="mb-1 flex items-center gap-2 text-white/30">
+                  <Star size={12} />
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Leistungsbasis</span>
+                </div>
+                <div className="text-sm font-bold leading-relaxed text-white">{est?.calculationBasis}</div>
               </div>
 
+              {est?.topDrivers?.length ? (
+                <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+                  <div className="mb-3 text-[10px] font-bold uppercase tracking-widest text-white/25">Wichtige Kostentreiber</div>
+                  <div className="space-y-2">
+                    {est.topDrivers.map((driver: string) => (
+                      <div key={driver} className="text-sm font-medium leading-relaxed text-white/70">
+                        {driver}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
               <div className="rounded-2xl bg-blue-500/5 p-4 ring-1 ring-blue-500/20">
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-blue-400"><Clock size={14} /> Zeitrahmen</div>
-                <p className="mt-2 text-[11px] leading-relaxed text-blue-400/70">Dauer ca. {est?.estimatedHours}. Personal: {est?.recommendedTeam}.</p>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-400">
+                  <Clock size={14} />
+                  Zeit und Ressourcen
+                </div>
+                <p className="mt-2 text-[11px] leading-relaxed text-blue-400/70">
+                  Dauer ca. {est?.estimatedHours}. Personal: {est?.recommendedTeam}.
+                </p>
               </div>
             </div>
           )}
@@ -161,7 +171,7 @@ export default function CleaningEliteCalculator({ dic }: Props) {
               <CheckCircle2 size={24} />
               <Sparkles size={24} />
             </div>
-            <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Elite-Standard in ganz Bayern</p>
+            <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Vorprüfung in ganz Bayern</p>
           </div>
         </div>
       </div>

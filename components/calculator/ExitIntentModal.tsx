@@ -14,7 +14,7 @@ export default function ExitIntentModal() {
   const [canShow, setCanShow] = useState(false);
 
   const whatsappUrl = useMemo(
-    () => `https://wa.me/${company.phoneRaw.replace("+", "")}`,
+        () => `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`,
     []
   );
 
@@ -27,7 +27,7 @@ export default function ExitIntentModal() {
 
     const timer = setTimeout(() => {
       setCanShow(true);
-    }, 30000); // 30 seconds wait
+    }, 240000); // 4 minutes wait (240s)
 
     return () => clearTimeout(timer);
   }, [mode]);
@@ -36,18 +36,22 @@ export default function ExitIntentModal() {
     if (typeof window === "undefined") return;
     if (mode !== "advanced" || !canShow) return;
 
-    // Check localStorage for 7-day suppression
     const exitRecord = localStorage.getItem("floxant_exit_suppressed");
     if (exitRecord) {
       const { expiry } = JSON.parse(exitRecord);
       if (Date.now() < expiry) return;
     }
 
+    // Session-level suppression (non-persistent, just for the current tab)
+    if (sessionStorage.getItem("floxant_exit_session_seen")) return;
+
     const handleMouseLeave = (e: MouseEvent) => {
-      // Sensitivity check: e.clientY < 10 for clearly leaving top
-      if (e.clientY < 10) {
+      // sensitivity check: e.clientY < 3 for clearly leaving top
+      if (e.clientY < 3) {
         setIsVisible(true);
-        // Initial suppression for this session
+        // Mark as seen in this session
+        sessionStorage.setItem("floxant_exit_session_seen", "true");
+        // Persistent suppression for 7 days
         const weekFromNow = Date.now() + 7 * 24 * 60 * 60 * 1000;
         localStorage.setItem(
           "floxant_exit_suppressed",

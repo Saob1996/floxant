@@ -40,7 +40,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
             className="space-y-8"
           >
             <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30">
+              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
                 <Maximize size={14} className="text-blue-400" />
                 Flächen & Räume
               </h3>
@@ -77,7 +77,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">Farb-Qualität</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Farb-Qualität</label>
               <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                 {qualities.map((q) => (
                   <button
@@ -89,7 +89,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
                         : "border-white/5 bg-[#0B0D12] hover:bg-white/5"
                     }`}
                   >
-                    <span className={`text-[10px] font-black uppercase tracking-widest ${q.color}`}>{q.label}</span>
+                    <span className={`text-[10px] font-bold uppercase tracking-widest ${q.color}`}>{q.label}</span>
                     <span className="text-[11px] text-white/40">{q.desc}</span>
                   </button>
                 ))}
@@ -131,7 +131,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">Sonderwünsche</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Sonderwünsche</label>
               <textarea
                 value={malerarbeitenData.freeTextNote || ""}
                 onChange={(e) => updateMalerarbeitenData({ freeTextNote: e.target.value })}
@@ -150,7 +150,7 @@ function FieldCard({ label, children, tip }: { label: string; children: React.Re
   return (
     <div className="space-y-2 rounded-2xl border border-white/5 bg-[#0B0D12] p-5 shadow-sm">
       <div className="flex items-center justify-between">
-        <label className="text-[10px] font-black uppercase tracking-widest text-white/20">{label}</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">{label}</label>
         {tip && <ExpertTooltip content={tip} />}
       </div>
       {children}

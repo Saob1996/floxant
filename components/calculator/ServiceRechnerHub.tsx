@@ -1,165 +1,260 @@
 "use client";
 
-import React, { useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
-import { Truck, Sparkles, Trash2, ArrowLeft } from "lucide-react";
+import React, { useEffect, useMemo } from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { Banknote, Briefcase, Repeat, Sparkles, Trash2, Truck, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import FloxButton from "./ui/FloxButton";
+import { ServiceType, useCalculatorStore } from "@/store/calculatorStore";
+import { IntakeWizard } from "./IntakeWizard";
+import UmzugForm from "./forms/UmzugForm";
+import ReinigungForm from "./forms/ReinigungForm";
+import EntsorgungForm from "./forms/EntsorgungForm";
+import BueroumzugForm from "./forms/BueroumzugForm";
+import LeadClosing from "./LeadClosing";
 
-// Import calculators
-import FloxUmzugRechner from "./standalone/FloxUmzugRechner";
-import FloxReinigungRechner from "./standalone/FloxReinigungRechner";
-import FloxEntsorgungRechner from "./standalone/FloxEntsorgungRechner";
+const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
+  const activeService = useCalculatorStore((state) => state.serviceType);
+  const setServiceType = useCalculatorStore((state) => state.setServiceType);
+  const currentMode = useCalculatorStore((state) => state.mode);
+  const setMode = useCalculatorStore((state) => state.setMode);
 
-type ServiceType = "umzug" | "reinigung" | "entsorgung" | null;
+  const searchParams = useSearchParams();
+  const queryService = searchParams.get("service");
 
-const ServiceRechnerHub: React.FC = () => {
-  const [activeService, setActiveService] = useState<ServiceType>(null);
+  useEffect(() => {
+    if (!queryService || activeService) return;
+    const safeService = queryService.trim().toLowerCase();
+    const normalizedService =
+      safeService === "entruempelung" || safeService === "entrümpelung"
+        ? "entsorgung"
+        : safeService === "büroumzug" || safeService === "bueroumzug"
+          ? "bueroumzug"
+          : safeService;
+
+    if (["umzug", "reinigung", "entsorgung", "bueroumzug"].includes(normalizedService)) {
+      setServiceType(normalizedService as ServiceType);
+    }
+  }, [queryService, activeService, setServiceType]);
+
+  const umzugData = useCalculatorStore((state) => state.umzugData);
+  const hasUmzugInput = useMemo(
+    () => (umzugData.fromAddressDetailed?.length || 0) > 5 || umzugData.areaM2 > 0,
+    [umzugData]
+  );
+
+  const reinigungData = useCalculatorStore((state) => state.reinigungData);
+  const hasReinigungInput = useMemo(() => reinigungData.areaM2 > 0, [reinigungData]);
+
+  const entsorgungData = useCalculatorStore((state) => state.entsorgungData);
+  const hasEntsorgungInput = useMemo(() => entsorgungData.wasteVolumeM3 > 0, [entsorgungData]);
+
+  const bueroumzugData = useCalculatorStore((state) => state.bueroumzugData);
+  const hasBueroumzugInput = useMemo(
+    () =>
+      (bueroumzugData.workstations || 0) > 1 ||
+      (bueroumzugData.archiveMeters || 0) > 0 ||
+      (bueroumzugData.walkingDistanceFrom || 0) > 0 ||
+      (bueroumzugData.walkingDistanceTo || 0) > 0,
+    [bueroumzugData]
+  );
 
   const services = [
     {
-      id: "umzug" as const,
+      id: "umzug" as ServiceType,
       title: "Umzug",
-      description: "Professionelle Umzugsplanung mit Preisgarantie.",
-      icon: <Truck className="w-8 h-8" />,
+      description: "Privat- oder Firmenumzug mit klarer Vorprüfung zu Aufwand, Strecke und Zusatzleistungen.",
+      icon: <Truck className="h-8 w-8" />,
       color: "from-blue-600 to-indigo-600",
       gradient: "hover:shadow-blue-500/20",
+      steps: [
+        { id: 1, title: "Start" },
+        { id: 2, title: "Ziel" },
+        { id: 3, title: "Inventar" },
+        { id: 4, title: "Leistungen" },
+      ],
     },
     {
-      id: "reinigung" as const,
+      id: "reinigung" as ServiceType,
       title: "Reinigung",
-      description: "Bau-, Unterhalts- oder Endreinigung.",
-      icon: <Sparkles className="w-8 h-8" />,
+      description: "Reinigung mit klarer Einordnung zu Fläche, Zustand, Extras und Terminlage.",
+      icon: <Sparkles className="h-8 w-8" />,
       color: "from-emerald-500 to-teal-600",
       gradient: "hover:shadow-emerald-500/20",
+      steps: [
+        { id: 1, title: "Objekt" },
+        { id: 2, title: "Details" },
+      ],
     },
     {
-      id: "entsorgung" as const,
-      title: "Entsorgung",
-      description: "Fachgerechte Entsorgung & Entrümpelung.",
-      icon: <Trash2 className="w-8 h-8" />,
+      id: "entsorgung" as ServiceType,
+      title: "Entrümpelung",
+      description: "Entrümpelung und Entsorgung mit plausibler Vorprüfung zu Volumen, Zugang und Materialarten.",
+      icon: <Trash2 className="h-8 w-8" />,
       color: "from-orange-500 to-red-600",
       gradient: "hover:shadow-orange-500/20",
+      steps: [
+        { id: 1, title: "Material" },
+        { id: 2, title: "Logistik" },
+      ],
+    },
+    {
+      id: "bueroumzug" as ServiceType,
+      title: "Büroumzug",
+      description: "Büro- und Firmenumzug mit Arbeitsplatzanzahl, IT, Archiv, Zugang und Zeitfenster im Blick.",
+      icon: <Briefcase className="h-8 w-8" />,
+      color: "from-cyan-500 to-blue-700",
+      gradient: "hover:shadow-cyan-500/20",
+      steps: [
+        { id: 1, title: "Standorte" },
+        { id: 2, title: "Büro" },
+        { id: 3, title: "Extras" },
+      ],
     },
   ];
 
-  const renderCalculator = () => {
+  const activeServiceConfig = services.find((service) => service.id === activeService);
+
+  const renderActiveForm = (step: number) => {
     switch (activeService) {
       case "umzug":
-        return <FloxUmzugRechner />;
+        return <UmzugForm dic={dic} currentStep={step} />;
       case "reinigung":
-        return <FloxReinigungRechner />;
+        return <ReinigungForm dic={dic} currentStep={step} />;
       case "entsorgung":
-        return <FloxEntsorgungRechner />;
+        return <EntsorgungForm dic={dic} currentStep={step} />;
+      case "bueroumzug":
+        return <BueroumzugForm dic={dic} currentStep={step} />;
       default:
         return null;
     }
   };
 
-  return (    <div className="w-full max-w-7xl mx-auto px-6 py-20">
+  if (currentMode === "lead") {
+    return (
+      <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:py-24">
+        <LeadClosing dic={dic} onBack={() => setMode("express")} />
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:py-24">
       <AnimatePresence mode="wait">
         {!activeService ? (
           <m.div
             key="selection"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96 }}
             className="text-center"
           >
-            <m.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
-            >
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-tight">
-                Was dürfen wir für Sie <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">berechnen?</span>
+            <m.div className="mb-16">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
+                Rechner-Auswahl
+              </div>
+              <h2 className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">
+                Was dürfen wir für Sie
+                <br />
+                <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent">
+                  heute vorprüfen?
+                </span>
               </h2>
-              <p className="text-white/40 text-xl mb-16 max-w-2xl mx-auto font-medium">
-                Wählen Sie Ihren gewünschten Service für ein präzises, unverbindliches Angebot in Echtzeit.
+              <p className="mx-auto max-w-2xl text-xl font-medium text-white/45">
+                Wählen Sie einen Service für eine unverbindliche Vorprüfung mit realistischem
+                Orientierungsrahmen, sichtbaren Kostentreibern und sauberer Weiterführung in die
+                Anfrage.
               </p>
             </m.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
               {services.map((service, index) => (
                 <m.div
                   key={service.id}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    delay: 0.2 + index * 0.15, 
-                    duration: 0.8, 
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 20
-                  }}
-                  whileHover={{ 
-                    y: -15,
-                    scale: 1.02,
-                  }}
-                  onClick={() => setActiveService(service.id)}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -10 }}
+                  onClick={() => setServiceType(service.id)}
                   className={cn(
-                    "group relative overflow-hidden bg-white/[0.02] backdrop-blur-3xl border border-white/10 rounded-[3rem] p-12 cursor-pointer transition-all duration-700",
-                    service.gradient,
-                    "hover:border-white/25 hover:bg-white/[0.04] shadow-[0_30px_60px_rgba(0,0,0,0.5)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
+                    "group relative cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-10 shadow-2xl backdrop-blur-3xl transition-all duration-500 hover:border-white/20 hover:bg-white/[0.04]",
+                    service.gradient
                   )}
                 >
-                  {/* High-End Dynamic Background Glow */}
-                  <div className={`absolute -right-16 -top-16 w-56 h-56 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-30 blur-[80px] transition-opacity duration-1000`} />
-                  <div className={`absolute -left-16 -bottom-16 w-56 h-56 bg-gradient-to-tr ${service.color} opacity-0 group-hover:opacity-20 blur-[80px] transition-opacity duration-1000`} />
-                  
-                  {/* Icon Container with Floating Animation */}
-                  <m.div 
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className={`relative z-10 w-24 h-24 rounded-[2rem] bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-10 shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-700`}
+                  <div
+                    className={`absolute -right-12 -top-12 h-48 w-48 bg-gradient-to-br ${service.color} opacity-0 blur-[60px] transition-opacity duration-700 group-hover:opacity-20`}
+                  />
+
+                  <div
+                    className={`mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br ${service.color} text-white shadow-xl transition-transform group-hover:scale-110`}
                   >
-                    {React.cloneElement(service.icon as React.ReactElement<any>, { className: "w-12 h-12" })}
-                  </m.div>
-                  
-                  <h3 className="relative z-10 text-3xl font-black text-white mb-5 tracking-tight group-hover:translate-x-2 transition-transform duration-500">{service.title}</h3>
-                  <p className="relative z-10 text-white/50 text-lg mb-12 leading-relaxed font-semibold group-hover:text-white/70 transition-colors">
-                    {service.description}
-                  </p>
-                  
-                  <div className="relative z-10 mt-auto">
-                    <FloxButton 
-                      variant="primary" 
-                      fullWidth 
-                      className="rounded-2xl py-6 text-sm font-black uppercase tracking-[0.2em] shadow-none group-hover:shadow-[0_15px_40px_-10px_rgba(37,99,235,0.7)]"
-                      onClick={(e) => { e?.stopPropagation(); setActiveService(service.id); }}
-                    >
-                      Konfigurieren
-                    </FloxButton>
+                    {React.cloneElement(service.icon as React.ReactElement<any>, { className: "h-10 w-10" })}
                   </div>
 
-                  {/* Glass Highlight Overlay */}
-                  <div className="absolute inset-0 border border-white/0 group-hover:border-white/15 rounded-[3rem] transition-all duration-700" />
+                  <h3 className="mb-4 text-2xl font-bold tracking-tight text-white">{service.title}</h3>
+                  <p className="mb-10 text-base font-medium leading-relaxed text-white/45 transition-colors group-hover:text-white/65">
+                    {service.description}
+                  </p>
+
+                  <FloxButton variant="glass" fullWidth onClick={() => setServiceType(service.id)}>
+                    Service starten
+                  </FloxButton>
                 </m.div>
               ))}
             </div>
+
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mt-16 flex flex-wrap justify-center gap-4"
+            >
+              <Link
+                href="/express-anfrage"
+                className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white/50 transition-colors hover:bg-white/5 hover:text-blue-400"
+              >
+                <div className="animate-pulse text-blue-400">
+                  <Zap size={14} />
+                </div>
+                Express-Anfrage
+              </Link>
+              <Link
+                href="/beiladung"
+                className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white/50 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                <Repeat size={14} className="text-white/30" />
+                Beiladung prüfen
+              </Link>
+              <Link
+                href="/anfrage-mit-preisrahmen"
+                className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-3 text-xs font-bold uppercase tracking-widest text-white/50 transition-colors hover:bg-white/5 hover:text-emerald-400"
+              >
+                <Banknote size={14} className="text-emerald-500" />
+                Preisvorstellung
+              </Link>
+            </m.div>
           </m.div>
         ) : (
-          <m.div
-            key="calculator"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          >
-            <button
-              onClick={() => setActiveService(null)}
-              className="flex items-center text-white/40 hover:text-white mb-12 transition-all group font-bold tracking-wider"
-            >
-              <ArrowLeft className="w-5 h-5 mr-3 transform group-hover:-translate-x-2 transition-transform" />
-              ZURÜCK ZUR AUSWAHL
-            </button>
-            
-            <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/5 rounded-[3rem] p-1 md:p-4 overflow-hidden shadow-2xl">
-              {renderCalculator()}
-            </div>
-          </m.div>
+          <IntakeWizard
+            key="wizard"
+            dic={dic}
+            serviceType={activeService}
+            steps={activeServiceConfig?.steps || []}
+            renderStep={renderActiveForm}
+            onClose={() => setServiceType(null)}
+            onFinish={() => setMode("lead")}
+            hasInput={
+              activeService === "umzug"
+                ? hasUmzugInput
+                : activeService === "reinigung"
+                  ? hasReinigungInput
+                  : activeService === "entsorgung"
+                    ? hasEntsorgungInput
+                    : hasBueroumzugInput
+            }
+          />
         )}
       </AnimatePresence>
     </div>

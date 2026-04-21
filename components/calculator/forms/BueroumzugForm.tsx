@@ -94,7 +94,7 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
             className="space-y-8"
           >
             <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30">
+              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
                 <Briefcase size={14} className="text-blue-400" />
                 Büro-Inventar
               </h3>
@@ -177,7 +177,7 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">Besondere Hinweise</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Besondere Hinweise</label>
               <textarea
                 value={bueroumzugData.freeTextNote || ""}
                 onChange={(e) => updateBueroumzugData({ freeTextNote: e.target.value })}
@@ -196,7 +196,7 @@ function FieldCard({ label, children, tip }: { label: string; children: React.Re
   return (
     <div className="space-y-2 rounded-2xl border border-white/5 bg-[#0B0D12] p-5 shadow-sm">
       <div className="flex items-center justify-between">
-        <label className="text-[10px] font-black uppercase tracking-widest text-white/20">{label}</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">{label}</label>
         {tip && <ExpertTooltip content={tip} />}
       </div>
       {children}
@@ -269,7 +269,7 @@ function AddressBlock({
 }) {
   return (
     <div className="space-y-6">
-      <h4 className="border-b border-white/5 pb-3 text-[10px] font-black uppercase tracking-widest text-white/20">{title}</h4>
+      <h4 className="border-b border-white/5 pb-3 text-[10px] font-bold uppercase tracking-widest text-white/20">{title}</h4>
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <FieldCard label={floorLabel}>

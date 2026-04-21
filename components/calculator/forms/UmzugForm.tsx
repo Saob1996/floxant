@@ -3,11 +3,9 @@
 import React from "react";
 import { useCalculatorStore } from "@/store/calculatorStore";
 import { m, AnimatePresence } from "framer-motion";
-import {
-  Box,
-  Truck,
-} from "lucide-react";
+import { Box, Truck } from "lucide-react";
 import { ExpertTooltip } from "../ExpertTooltip";
+import { cn } from "@/lib/utils";
 
 type TimeConstraint = "flexibel" | "wochenende" | "dringend" | "genaues_datum";
 
@@ -60,18 +58,15 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
           >
             {/* Object Basics */}
             <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30">
+              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
                 <Truck size={14} className="text-blue-400" />
                 {dic?.calculator?.basis_data || "Objekt-Eckdaten"}
               </h3>
-
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <FieldCard label={dic?.calculator?.living_area || "Wohnfläche"}>
                   <div className="flex items-center gap-2">
                     <input
-                      type="number"
-                      min={0}
-                      value={umzugData.areaM2 || ""}
+                      type="number" min={0} value={umzugData.areaM2 || ""}
                       onChange={(e) => updateStoreData({ areaM2: parseNumber(e.target.value) })}
                       placeholder="z. B. 80"
                       className="w-full bg-transparent text-lg font-bold text-white outline-none placeholder:text-white/20"
@@ -79,12 +74,9 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
                     <span className="text-sm font-medium text-white/30">m²</span>
                   </div>
                 </FieldCard>
-
                 <FieldCard label={dic?.calculator?.rooms || "Zimmeranzahl"}>
                   <input
-                    type="number"
-                    min={0}
-                    value={umzugData.rooms || ""}
+                    type="number" min={0} value={umzugData.rooms || ""}
                     onChange={(e) => updateStoreData({ rooms: parseNumber(e.target.value) })}
                     placeholder="z. B. 3"
                     className="w-full bg-transparent text-lg font-bold text-white outline-none placeholder:text-white/20"
@@ -93,52 +85,27 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
               </div>
             </div>
 
-            {/* Address & Access */}
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-              <AddressBlock
-                title={dic?.calculator?.from_address || "Auszug (Start)"}
-                addressValue={umzugData.fromAddressDetailed || ""}
-                addressPlaceholder="Straße / Ort"
-                addressLabel="Startadresse"
-                floorValue={umzugData.fromFloor ?? ""}
-                floorLabel="Etage"
-                floorPlaceholder="0 = EG"
-                walkingDistanceValue={umzugData.walkingDistanceFrom ?? ""}
-                walkingDistanceLabel="Laufweg zum LKW"
-                walkingDistancePlaceholder="Meter"
-                onAddressChange={(v) => updateStoreData({ fromAddressDetailed: v })}
-                onFloorChange={(v) => updateStoreData({ fromFloor: parseNumber(v) })}
-                onWalkingDistanceChange={(v) => updateStoreData({ walkingDistanceFrom: parseNumber(v) })}
-                dic={dic}
-                checks={[
-                  { checked: !!umzugData.hasElevatorFrom, label: liftLabel, onChange: (c) => updateStoreData({ hasElevatorFrom: c }), tip: "Spart Zeit und schont die Möbel." },
-                  { checked: !!umzugData.narrowStairsFrom, label: narrowStairsLabel, onChange: (c) => updateStoreData({ narrowStairsFrom: c }), tip: "Erfordert spezielles Handling." },
-                  { checked: !!umzugData.noParkingZoneFrom, label: noParkingZoneLabel, onChange: (c) => updateStoreData({ noParkingZoneFrom: c }), tip: "Wichtig für einen reibungslosen Ablauf." },
-                ]}
-              />
-
-              <AddressBlock
-                title={dic?.calculator?.to_address || "Einzug (Ziel)"}
-                addressValue={umzugData.toAddressDetailed || ""}
-                addressPlaceholder="Straße / Ort"
-                addressLabel="Zieladresse"
-                floorValue={umzugData.toFloor ?? ""}
-                floorLabel="Etage"
-                floorPlaceholder="0 = EG"
-                walkingDistanceValue={umzugData.walkingDistanceTo ?? ""}
-                walkingDistanceLabel="Laufweg zum LKW"
-                walkingDistancePlaceholder="Meter"
-                onAddressChange={(v) => updateStoreData({ toAddressDetailed: v })}
-                onFloorChange={(v) => updateStoreData({ toFloor: parseNumber(v) })}
-                onWalkingDistanceChange={(v) => updateStoreData({ walkingDistanceTo: parseNumber(v) })}
-                dic={dic}
-                checks={[
-                  { checked: !!umzugData.hasElevatorTo, label: liftLabel, onChange: (c) => updateStoreData({ hasElevatorTo: c }), tip: "Spart Zeit und schont die Möbel." },
-                  { checked: !!umzugData.narrowStairsTo, label: narrowStairsLabel, onChange: (c) => updateStoreData({ narrowStairsTo: c }), tip: "Erfordert spezielles Handling." },
-                  { checked: !!umzugData.noParkingZoneTo, label: noParkingZoneLabel, onChange: (c) => updateStoreData({ noParkingZoneTo: c }), tip: "Vermeidet Bußgelder und Verzögerungen." },
-                ]}
-              />
-            </div>
+            <AddressBlock
+              title="Start-Check: Wo ziehen Sie aus?"
+              addressValue={umzugData.fromAddressDetailed || ""}
+              addressPlaceholder="Straße / Ort"
+              addressLabel="Startadresse"
+              floorValue={umzugData.fromFloor ?? ""}
+              floorLabel="Etage"
+              floorPlaceholder="0 = EG"
+              walkingDistanceValue={umzugData.walkingDistanceFrom ?? ""}
+              walkingDistanceLabel="Laufweg zum LKW"
+              walkingDistancePlaceholder="Meter"
+              onAddressChange={(v) => updateStoreData({ fromAddressDetailed: v })}
+              onFloorChange={(v) => updateStoreData({ fromFloor: parseNumber(v) })}
+              onWalkingDistanceChange={(v) => updateStoreData({ walkingDistanceFrom: parseNumber(v) })}
+              dic={dic}
+              checks={[
+                { checked: !!umzugData.hasElevatorFrom, label: liftLabel, onChange: (c) => updateStoreData({ hasElevatorFrom: c }), tip: "Spart Zeit und schont die Möbel." },
+                { checked: !!umzugData.narrowStairsFrom, label: narrowStairsLabel, onChange: (c) => updateStoreData({ narrowStairsFrom: c }), tip: "Erfordert spezielles Handling." },
+                { checked: !!umzugData.noParkingZoneFrom, label: noParkingZoneLabel, onChange: (c) => updateStoreData({ noParkingZoneFrom: c }), tip: "Wichtig für einen reibungslosen Ablauf." },
+              ]}
+            />
           </m.div>
         )}
 
@@ -150,8 +117,59 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
             exit={{ opacity: 0, x: -20 }}
             className="space-y-8"
           >
+            <div className="flex items-center justify-between rounded-2xl border border-blue-500/20 bg-blue-500/5 p-4">
+              <span className="text-xs font-bold text-white/70">Gleiche Bedingungen wie Auszug?</span>
+              <button
+                type="button"
+                onClick={() => {
+                  updateStoreData({
+                    toFloor: umzugData.fromFloor,
+                    hasElevatorTo: umzugData.hasElevatorFrom,
+                    narrowStairsTo: umzugData.narrowStairsFrom,
+                    walkingDistanceTo: umzugData.walkingDistanceFrom,
+                    noParkingZoneTo: umzugData.noParkingZoneFrom
+                  });
+                }}
+                className="rounded-lg bg-blue-600 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white hover:bg-blue-500 transition-colors"
+              >
+                Anwenden
+              </button>
+            </div>
+
+            <AddressBlock
+              title="Ziel-Check: Wo geht es hin?"
+              addressValue={umzugData.toAddressDetailed || ""}
+              addressPlaceholder="Straße / Ort"
+              addressLabel="Zieladresse"
+              floorValue={umzugData.toFloor ?? ""}
+              floorLabel="Etage"
+              floorPlaceholder="0 = EG"
+              walkingDistanceValue={umzugData.walkingDistanceTo ?? ""}
+              walkingDistanceLabel="Laufweg zum LKW"
+              walkingDistancePlaceholder="Meter"
+              onAddressChange={(v) => updateStoreData({ toAddressDetailed: v })}
+              onFloorChange={(v) => updateStoreData({ toFloor: parseNumber(v) })}
+              onWalkingDistanceChange={(v) => updateStoreData({ walkingDistanceTo: parseNumber(v) })}
+              dic={dic}
+              checks={[
+                { checked: !!umzugData.hasElevatorTo, label: liftLabel, onChange: (c) => updateStoreData({ hasElevatorTo: c }), tip: "Spart Zeit und schont die Möbel." },
+                { checked: !!umzugData.narrowStairsTo, label: narrowStairsLabel, onChange: (c) => updateStoreData({ narrowStairsTo: c }), tip: "Erfordert spezielles Handling." },
+                { checked: !!umzugData.noParkingZoneTo, label: noParkingZoneLabel, onChange: (c) => updateStoreData({ noParkingZoneTo: c }), tip: "Vermeidet Bußgelder und Verzögerungen." },
+              ]}
+            />
+          </m.div>
+        )}
+
+        {currentStep === 3 && (
+          <m.div
+            key="step3"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="space-y-8"
+          >
             <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30">
+              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
                 <Box size={14} className="text-blue-400" />
                 Umzugsgut & Kartons
               </h3>
@@ -183,7 +201,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">
                 Möbel-Auswahl
               </label>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
@@ -211,7 +229,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
                     >
                       <span className="mb-2 text-2xl">{item.icon}</span>
                       <span className="text-center text-[10px] font-bold text-white/50">{item.label}</span>
-                      {count > 0 && <div className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-[10px] font-black">{count}</div>}
+                      {count > 0 && <div className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-[10px] font-bold">{count}</div>}
                     </button>
                   );
                 })}
@@ -219,7 +237,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">Spezialstücke</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Spezialstücke</label>
               <div className="flex flex-wrap gap-2">
                 {Object.entries(heavyItemsMap).map(([key, label]) => {
                   const active = umzugData.heavyItems.includes(key);
@@ -239,9 +257,9 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
           </m.div>
         )}
 
-        {currentStep === 3 && (
+        {currentStep === 4 && (
           <m.div
-            key="step3"
+            key="step4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
@@ -297,7 +315,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
             </div>
 
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">Besondere Hinweise</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Besondere Hinweise</label>
               <textarea
                 value={umzugData.freeTextNote || ""}
                 onChange={(e) => updateStoreData({ freeTextNote: e.target.value })}
@@ -316,7 +334,7 @@ function FieldCard({ label, children, tip }: { label: string; children: React.Re
   return (
     <div className="space-y-2 rounded-2xl border border-white/5 bg-[#0B0D12] p-5 shadow-sm">
       <div className="flex items-center justify-between">
-        <label className="text-[10px] font-black uppercase tracking-widest text-white/20">{label}</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">{label}</label>
         {tip && <ExpertTooltip content={tip} />}
       </div>
       {children}
@@ -389,7 +407,7 @@ function AddressBlock({
 }) {
   return (
     <div className="space-y-6">
-      <h4 className="border-b border-white/5 pb-3 text-[10px] font-black uppercase tracking-widest text-white/20">{title}</h4>
+      <h4 className="border-b border-white/5 pb-3 text-[10px] font-bold uppercase tracking-widest text-white/20">{title}</h4>
       <div className="space-y-4">
         <FieldCard label={addressLabel}>
           <input

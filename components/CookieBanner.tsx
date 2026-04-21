@@ -114,8 +114,8 @@ export function CookieBanner({ dic }: { dic?: any }) {
                                     
                                     <div className="flex flex-col items-center justify-between gap-4 pt-4 border-t border-white/5 sm:flex-row">
                                         <div className="flex gap-4 text-xs text-neutral-500">
-                                            <a href="/de/datenschutz" className="hover:text-primary transition-colors hover:underline">{dic?.cookie?.privacy || "Datenschutz"}</a>
-                                            <a href="/de/impressum" className="hover:text-primary transition-colors hover:underline">{dic?.cookie?.imprint || "Impressum"}</a>
+                                            <a href="/datenschutz" className="hover:text-primary transition-colors hover:underline">{dic?.cookie?.privacy || "Datenschutz"}</a>
+                                            <a href="/impressum" className="hover:text-primary transition-colors hover:underline">{dic?.cookie?.imprint || "Impressum"}</a>
                                         </div>
                                         
                                         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">

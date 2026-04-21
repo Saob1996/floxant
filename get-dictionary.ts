@@ -1,82 +1,52 @@
-import "server-only";
-import type { Locale } from "./i18n-config";
+import de from "./dictionaries/de.json";
 
+function hardenPriceLanguage(value: unknown): unknown {
+  if (typeof value === "string") {
+    return value
+      .replace(/Festpreis-Garantie/g, "Preisrahmen nach Vorprüfung")
+      .replace(/Festpreisgarantie/g, "Preisrahmen nach Vorprüfung")
+      .replace(/Festpreise ohne Überraschungen/g, "Nachvollziehbarer Preisrahmen")
+      .replace(/Festpreisangebot/g, "Angebot nach Prüfung")
+      .replace(/zum Festpreis/g, "mit Preisrahmen")
+      .replace(/Festpreise/g, "Preisrahmen")
+      .replace(/Festpreis/g, "Preisrahmen")
+      .replace(/100% Preissicherheit/g, "klare Kosteneinordnung")
+      .replace(/100% Abnahmegarantie/g, "klare Übergabevorbereitung")
+      .replace(/Abnahmegarantie 100%/g, "Übergabevorbereitung")
+      .replace(/zu 100% unverbindlich/g, "unverbindlich")
+      .replace(/100% transparenten/g, "transparenten")
+      .replace(/garantierte Abnahme/g, "klare Übergabevorbereitung")
+      .replace(
+        /Wir garantieren Ihnen jedoch nach einem kurzen persönlichen Austausch immer einen transparenten Preisrahmen ohne versteckte Kosten!?\s*🙌?/g,
+        "Nach einem persönlichen Austausch erhalten Sie eine transparente Einordnung ohne versteckte Kosten."
+      )
+      .replace(/verbindliche Preisrahmen/g, "konkrete Angebote");
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(hardenPriceLanguage);
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, nestedValue]) => [
+        key,
+        hardenPriceLanguage(nestedValue),
+      ])
+    );
+  }
+
+  return value;
+}
+
+const germanDictionary = hardenPriceLanguage(de) as typeof de;
+
+// Root Architecture Hardening: Ignore locale and always return German.
+// This preserves compatibility while effectively disabling i18n.
 const dictionaries = {
-    de: () => import("./dictionaries/de.json").then((module) => module.default),
-    en: () => import("./dictionaries/en.json").then((module) => module.default),
-    ru: () => import("./dictionaries/ru.json").then((module) => module.default),
-    bg: () => import("./dictionaries/bg.json").then((module) => module.default),
+  de: () => Promise.resolve(germanDictionary),
+  en: () => Promise.resolve(germanDictionary),
+  ru: () => Promise.resolve(germanDictionary),
 };
 
-export type Dictionary = Awaited<ReturnType<typeof dictionaries.de>>;
-
-function isObject(value: unknown): value is Record<string, unknown> {
-    return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function isMeaningfulString(value: unknown): value is string {
-    if (typeof value !== "string") return false;
-
-    const trimmed = value.trim();
-    if (!trimmed) return false;
-
-    const lowered = trimmed.toLowerCase();
-
-    return ![
-        "-",
-        "—",
-        "_",
-        "todo",
-        "tbd",
-        "placeholder",
-        "coming soon",
-        "n/a",
-    ].includes(lowered);
-}
-
-function isUsableOverride(value: unknown): boolean {
-    if (value === undefined || value === null) return false;
-
-    if (typeof value === "string") {
-        return isMeaningfulString(value);
-    }
-
-    return true;
-}
-
-function deepMerge<T extends Record<string, unknown>>(
-    base: T,
-    override: Record<string, unknown>
-): T {
-    const result: Record<string, unknown> = { ...base };
-
-    for (const key of Object.keys(override)) {
-        const baseValue = result[key];
-        const overrideValue = override[key];
-
-        if (isObject(baseValue) && isObject(overrideValue)) {
-            result[key] = deepMerge(baseValue as Record<string, unknown>, overrideValue);
-            continue;
-        }
-
-        if (isUsableOverride(overrideValue)) {
-            result[key] = overrideValue;
-        }
-    }
-
-    return result as T;
-}
-
-export async function getDictionary(locale: Locale): Promise<Dictionary> {
-    const deDict = await dictionaries.de();
-    const base = deDict as Dictionary;
-
-    if (locale === "de") {
-        return base;
-    }
-
-    const loader = dictionaries[locale] || dictionaries.de;
-    const target = (await loader()) as Record<string, unknown>;
-
-    return deepMerge(base, target);
-}
+export const getDictionary = async (locale: any) => dictionaries.de();

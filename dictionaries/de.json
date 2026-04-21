@@ -65,16 +65,31 @@
     "fixed_price_no_surprises": "Keine versteckten Kosten",
     "insured": "Versichert",
     "guide": "Ratgeber",
-    "whatsapp_call": "WhatsApp direkt",
-    "cost_calculator_btn": "Preis berechnen",
-    "fast_question": "Kurze Frage?",
-    "write_whatsapp_now": "Jetzt per WhatsApp schreiben",
     "quick_question": "Kurze Frage?",
     "email_hotline": "E-Mail",
     "known_from": "Bekannt von",
     "also_available_in": "Auch verfügbar in",
     "whatsapp_cta_title": "Schnell per WhatsApp anfragen",
-    "whatsapp_cta_desc": "Erhalten Sie eine Antwort in wenigen Minuten."
+    "whatsapp_cta_desc": "Erhalten Sie eine Antwort in wenigen Minuten.",
+    "budget_faq_title": "Sparen & Budget-Planung FAQs",
+    "budget_faqs": [
+      {
+        "q": "Was mache ich, wenn mein Budget für einen kompletten Umzug nicht reicht?",
+        "a": "FLOXANT bietet flexible Lösungen: Statt eines Full-Service-Pakets können wir nur die schwersten Möbel transportieren (Beiladung) oder Sie übernehmen das Packen selbst. Wir nennen Ihnen ehrlich den minimalen Preisrahmen, der für eine sichere Durchführung nötig ist."
+      },
+      {
+        "q": "Gibt es bei FLOXANT Lösungen für Low-Budget Umzüge?",
+        "a": "Ja. Über unsere 'Beiladungs-Option' oder Rücktouren-Nutzung in Bayern können wir Kleinstumzüge oft 30-50% günstiger anbieten. Zudem ermöglicht unser Modell 'Anfrage mit Preisrahmen' eine Planung, die genau an Ihre finanziellen Mittel angepasst ist."
+      },
+      {
+        "q": "Wie kann ich die Kosten für Reinigung oder Entrümpelung senken?",
+        "a": "Bei der Entrümpelung sparen Sie, wenn Sie bereits Vorarbeiten leisten (z.B. Kleinteile selbst entsorgen). Bei der Reinigung konzentrieren wir uns auf die abnahmerelevanten Bereiche. Wir beraten Sie unverbindlich, wo Einsparungen für Ihr Projekt in Bayern sinnvoll sind."
+      },
+      {
+        "q": "Warum ist ein fester Preisrahmen oft besser als ein offenes Angebot?",
+        "a": "Ein vorgegebener Preisrahmen erlaubt es uns, die Kapazitäten und Teams sofort so zu disponieren, dass Sie die maximale Leistung für Ihr Geld erhalten, ohne dass es am Ende zu teuren Nachberechnungen kommt."
+      }
+    ]
   },
   "authority_magnet": {
     "title": "Transparenz & Lokale Expertise in {city}",
@@ -153,12 +168,13 @@
     "service_umzug": "Umzug",
     "service_bueroumzug": "Büroumzug",
     "service_reinigung": "Reinigung",
-    "service_entruempelung": "Entrümpelung"
+    "service_entruempelung": "Entrümpelung",
+    "budget_request": "Preisrahmen-Anfrage"
   },
   "hero": {
-    "title": "Die Architekten Ihrer Veränderung",
-    "subtitle": "Ein Umzug ist kein Durcheinander von Kartons. Er ist ein komplexes technisches Projekt. Wir planen, steuern und führen aus.",
-    "cta": "Angebot anfordern"
+    "title": "FLOXANT | Premium Umzug & Reinigung in Bayern",
+    "subtitle": "Meisterhafte Logistik für private und gewerbliche Projekte. Wir planen, steuern und führen Ihren Standortwechsel mit bayerischer Präzision aus.",
+    "cta": "Angebot kalkulieren"
   },
   "area": {
     "title": "Unsere Einsatzgebiete",
@@ -184,8 +200,8 @@
       "Schwaben": "Schwaben",
       "Oberfranken": "Oberfranken",
       "Unterfranken": "Unterfranken",
-      "Stadtbezirk München": "Stadtbezirk München",
-      "Stadtbezirk Nürnberg": "Stadtbezirk Nürnberg"
+      "Stadtbezirk Muenchen": "Stadtbezirk München",
+      "Stadtbezirk Nuernberg": "Stadtbezirk Nürnberg"
     }
   },
   "regional_grid": {
@@ -217,8 +233,8 @@
     },
     "services": {
       "umzug": {
-        "label": "Privatumzug",
-        "desc": "Stressfrei umziehen."
+        "label": "Premium Umzug",
+        "desc": "Strukturierte Privat- & Firmenlogistik."
       },
       "bueroumzug": {
         "label": "Büroumzug",
@@ -407,43 +423,52 @@
   "pages": {
     "umzug_spec": {
       "meta_title": "Umzugsunternehmen {city} ✓ Festpreis ✓ Versichert | FLOXANT",
-      "meta_desc": "Ihr professionelles Umzugsunternehmen für {city} und ganz Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
-      "keywords": ["Umzug {city}", "Umzugsunternehmen {city}", "Umzugsfirma {city}", "günstig umziehen {city}", "Privatumzug {city}", "Umzugsservice Bayern", "FLOXANT {city}"],
-      "hero_h1": "Umzugsunternehmen in ",
-      "hero_h1_highlight": "{city}",
-      "hero_p": "Professioneller Umzugsservice in {city} mit Festpreisgarantie. Wir planen, verpacken und transportieren Ihr Hab und Gut sicher an das neue Ziel.",
-      "hero_badge": "Meisterhafte Logistik",
-      "cta": "Angebot in 2 Min. berechnen",
+      "meta_desc": "Professionelles Umzugsunternehmen in {city} & Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
+      "hero_badge": "Umzugsservice",
+      "hero_h1": "Umzug {city_district}",
+      "hero_p": "Ihr verlässliches Umzugsunternehmen für stressfreie Umzüge in {city} und ganz Bayern. Mit Festpreisgarantie und voller Versicherungsschutz.",
       "badges": {
-        "permit": "Halteverbot inkl.",
-        "signs": "Voll versichert",
-        "stressfree": "Stressfrei & Sicher"
+        "permit": "Genehmigungen",
+        "signs": "Halteverbote",
+        "stressfree": "Stressfrei"
       },
+      "cta": "Umzug anfragen",
       "service1": {
-        "title": "Privatumzug {city}",
-        "l1": "Vollständige Planung & Koordination",
-        "l2": "Sorgfältiger Möbelabbau & Aufbau",
-        "l3": "Sicherer Transport im eigenen LKW",
-        "l4": "Inklusive Transportversicherung"
+        "title": "Privatumzug",
+        "l1": "Ab- & Aufbau Möbel",
+        "l2": "Sicherer Transport",
+        "l3": "Packservice",
+        "l4": "Voll versichert"
       },
       "service2": {
-        "title": "Full-Service Paket",
-        "l1": "Inkl. Einpack- & Auspackservice",
-        "l2": "Kostenlosem Kartonverleih",
-        "l3": "Endreinigung mit Abnahmegarantie",
-        "l4": "Entrümpelung von Altmöbeln"
+        "title": "Vorteile",
+        "l1": "Kostenlose Besichtigung",
+        "l2": "Festpreisgarantie",
+        "l3": "Erfahrenes Team",
+        "l4": "Termintreue"
       },
-      "section2_h2": "Umziehen in {city} ohne Kompromisse",
-      "section2_p1": "Ein Umzug in {city} erfordert nicht nur Kraft, sondern auch Köpfchen. Als spezialisiertes Umzugsunternehmen kennen wir die lokalen Gegebenheiten in {city} und sorgen für einen reibungslosen Ablauf – vom ersten Karton bis zur Schlüsselübergabe.",
-      "section2_p2": "Wir arbeiten mit modernem Equipment und geschulten Teams, um höchste Qualität zum fairen Preis zu bieten. Vertrauen Sie auf FLOXANT Pro-Logistik für Ihren Standortwechsel in der Region {city}.",
-      "wizard_badge": "Festpreis-Check",
-      "wizard_h2": "Jetzt Umzugskosten für {city} kalkulieren",
-      "wizard_p": "Geben Sie kurz Ihre Eckdaten ein und erhalten Sie sofort eine erste Einschätzung für Ihren Umzug in {city}."
+      "section2_h2": "Ihr Umzug in {city} – strukturiert und sicher",
+      "section2_p1": "Ein Umzug ist mehr als ein Transport. Wir begleiten Sie in {city} von der Planung bis zur Schlüsselübergabe.",
+      "section2_p2": "Vertrauen Sie auf regionale Erfahrung und faire Preise.",
+      "wizard_badge": "Angebot",
+      "wizard_h2": "Umzug in {city} kalkulieren",
+      "wizard_p": "Nutzen Sie unseren Rechner für ein sofortiges Angebot.",
+      "seo": {
+        "meta_title": "Umzug {city} ✓ Privat & Gewerblich ✓ Festpreis | FLOXANT",
+        "meta_desc": "Stressfreier Umzug für Privatkunden und Unternehmen in {city} und Umgebung. Inklusive Abbau, Transport und Aufbau. Regional verwurzelt, bayernweit aktiv."
+      }
     },
     "buero_umzug_spec": {
       "meta_title": "Büroumzug {city} ✓ Firmenumzug ✓ Minimaler Ausfall | FLOXANT",
       "meta_desc": "Professioneller Büroumzug in {city}. Wir organisieren Ihren Firmenumzug diskret und effizient. Minimale Ausfallzeiten, IT-Transport & Festpreis.",
-      "keywords": ["Büroumzug {city}", "Firmenumzug {city}", "Gewerbeumzug {city}", "IT-Umzug {city}", "Objektumzug {city}", "Büro Service {city}"],
+      "keywords": [
+        "Büroumzug {city}",
+        "Firmenumzug {city}",
+        "Gewerbeumzug {city}",
+        "IT-Umzug {city}",
+        "Objektumzug {city}",
+        "Büro Service {city}"
+      ],
       "hero_h1": "Büroumzug in ",
       "hero_h1_highlight": "{city}",
       "hero_p": "Geschäftskontinuität hat Priorität. Wir ziehen Ihr Unternehmen in {city} so um, dass Sie am nächsten Tag produktiv weiterarbeiten können.",
@@ -473,12 +498,32 @@
       "section2_p2": "Von der Kanzlei bis zum Industriebetrieb: Wir haben die Erfahrung und das Equipment für Ihren Erfolg in {city}.",
       "wizard_badge": "B2B-Anfrage",
       "wizard_h2": "Individuelle Beratung für {city} anfordern",
-      "wizard_p": "Kurze Eckdaten reichen aus – unser Projektleiter für {city} meldet sich umgehend bei Ihnen."
+      "wizard_p": "Kurze Eckdaten reichen aus – unser Projektleiter für {city} meldet sich umgehend bei Ihnen.",
+      "faqs": [
+        {
+          "q": "Kann ein Büroumzug am Wochenende stattfinden?",
+          "a": "Absolut. Wir führen gewerbliche Umzüge bevorzugt nachts oder am Wochenende durch, um Ihre Betriebsunterbrechung so gering wie möglich zu halten."
+        },
+        {
+          "q": "Transportieren Sie auch sensible IT-Infrastruktur?",
+          "a": "Ja, unsere Teams sind für den sicheren Server- und IT-Transport geschult und nutzen spezielles antistatisches Verpackungsmaterial."
+        }
+      ],
+      "seo": {
+        "meta_title": "Büroumzug {city} ✓ IT & Akten ✓ Festpreis | FLOXANT",
+        "meta_desc": "Zertifizierter Firmenumzug in {city}. Wir kümmern uns um Arbeitsplätze, IT-Equipment und Akten. Minimale Ausfallzeiten für Ihr Unternehmen."
+      }
     },
     "seniorenumzug_spec": {
       "meta_title": "Seniorenumzug {city} ✓ Behutsam & Full-Service | FLOXANT",
       "meta_desc": "Einfühlsamer Seniorenumzug in {city}. Wir übernehmen alles: Packen, Montage, Entsorgung & Reinigung. Stressfrei & Verlässlich zum Festpreis.",
-      "keywords": ["Seniorenumzug {city}", "Umzug im Alter {city}", "Full-Service Umzug Senioren", "Wohnungsverkleinerung {city}", "begleiteter Umzug {city}"],
+      "keywords": [
+        "Seniorenumzug {city}",
+        "Umzug im Alter {city}",
+        "Full-Service Umzug Senioren",
+        "Wohnungsverkleinerung {city}",
+        "begleiteter Umzug {city}"
+      ],
       "hero_h1": "Seniorenumzug in ",
       "hero_h1_highlight": "{city}",
       "hero_p": "Ein Umzug im Alter erfordert Vertrauen und Ruhe. Wir begleiten Sie in {city} behutsam in Ihr neues Zuhause – mit vollem Service.",
@@ -513,7 +558,13 @@
     "klaviertransport_spec": {
       "meta_title": "Klaviertransport {city} ✓ Sicher ✓ Klavier-Profi | FLOXANT",
       "meta_desc": "Profi-Klaviertransport in {city} und ganz Bayern. Spezialisiertes Equipment für Klaviere & Flügel. Voll versichert & erfahrene Teams.",
-      "keywords": ["Klaviertransport {city}", "Flügeltransport {city}", "Spezialtransport {city}", "Klavier Umzug {city}", "Schwertransport {city}"],
+      "keywords": [
+        "Klaviertransport {city}",
+        "Flügeltransport {city}",
+        "Spezialtransport {city}",
+        "Klavier Umzug {city}",
+        "Schwertransport {city}"
+      ],
       "hero_h1": "Klaviertransport in ",
       "hero_h1_highlight": "{city}",
       "hero_p": "Ihr wertvolles Instrument in den besten Händen. Wir transportieren Klaviere und Flügel in {city} mit Präzision und Spezial-Equipment.",
@@ -548,7 +599,13 @@
     "einlagerung_spec": {
       "meta_title": "Einlagerung {city} ✓ Sicher ✓ Trocken ✓ Flexibel | FLOXANT",
       "meta_desc": "Günstige Einlagerung in {city}. Kurze oder lange Laufzeiten, alarmgesichert & klimatisiert. Hol- und Bringservice in ganz Bayern.",
-      "keywords": ["Einlagerung {city}", "Möbeleinlagerung {city}", "Lagerraum mieten {city}", "Self Storage {city}", "Zwischenlagerung {city}"],
+      "keywords": [
+        "Einlagerung {city}",
+        "Möbeleinlagerung {city}",
+        "Lagerraum mieten {city}",
+        "Self Storage {city}",
+        "Zwischenlagerung {city}"
+      ],
       "hero_h1": "Sichere Einlagerung in ",
       "hero_h1_highlight": "{city}",
       "hero_p": "Platzmangel oder Umzugspause? Wir lagern Ihre Möbel in {city} sicher, trocken und jederzeit zugänglich ein.",
@@ -583,7 +640,14 @@
     "malerarbeiten_spec": {
       "meta_title": "Malerarbeiten {city} ✓ Profi-Qualität ✓ Festpreis | FLOXANT",
       "meta_desc": "Professionelle Malerarbeiten in {city} für Wohnungen & Häuser. Tapezieren, Streichen, Lackieren & Renovieren. Sauber & Schnell zum Festpreis.",
-      "keywords": ["Maler {city}", "Malerbetrieb {city}", "Anstrich {city}", "Tapezieren {city}", "Renovierung {city}", "Wohnung streichen {city}"],
+      "keywords": [
+        "Maler {city}",
+        "Malerbetrieb {city}",
+        "Anstrich {city}",
+        "Tapezieren {city}",
+        "Renovierung {city}",
+        "Wohnung streichen {city}"
+      ],
       "hero_h1": "Professionelle Malerarbeiten in ",
       "hero_h1_highlight": "{city}",
       "hero_p": "Frischer Glanz für Ihre Wände. Wir übernehmen alle Maler- und Renovierungsarbeiten in {city} – sauber, schnell und zum Festpreis.",
@@ -618,7 +682,13 @@
     "akteneinlagerung_regensburg_spec": {
       "meta_title": "Aktenlagerung Regensburg ✓ Sicher ✓ DSGVO ✓ Archivierung | FLOXANT",
       "meta_desc": "Professionelle Akteneinlagerung in Regensburg für Kanzleien & Firmen. Sicher, trocken & DSGVO-konform. Inkl. Abholung, Digitalisierung & Vernichtung.",
-      "keywords": ["Akteneinlagerung Regensburg", "Archivlager Regensburg", "Dokumentenlagerung Kanzlei", "Aktenvernichtung Regensburg", "Archivierung Service"],
+      "keywords": [
+        "Akteneinlagerung Regensburg",
+        "Archivlager Regensburg",
+        "Dokumentenlagerung Kanzlei",
+        "Aktenvernichtung Regensburg",
+        "Archivierung Service"
+      ],
       "hero_h1": "Akten- & Archivlagerung in ",
       "hero_h1_highlight": "Regensburg",
       "hero_p": "Höchste Sicherheit für Ihre sensiblen Unterlagen. Wir bieten Kanzleien und Unternehmen in Regensburg professionelle Archivlösungen – vom Karton bis zum Regalmeter.",
@@ -1068,7 +1138,11 @@
       },
       "cta_title": "Reinigung in Regensburg anfragen",
       "cta_text": "Sichern Sie sich einen Termin für Ihre professionelle Reinigung in Regensburg. Transparent kalkuliert und zuverlässig.",
-      "faqs": []
+      "faqs": [],
+      "seo": {
+        "meta_title": "Reinigung Regensburg ✓ Übergabe & Endreinigung | FLOXANT",
+        "meta_desc": "Fachgerechte Reinigung für Wohnungen und Gewerbe in Regensburg. Setzen Sie auf streifenfreie Sauberkeit und garantierte Abnahme. Regional, zuverlässig, fair."
+      }
     },
     "entruempelung_regensburg": {
       "meta_title": "Entrümpelung Regensburg – Fachgerechte Räumung in der Oberpfalz",
@@ -1097,7 +1171,11 @@
       },
       "cta_title": "Entrümpelung in Regensburg anfragen",
       "cta_text": "Kontaktieren Sie uns für eine diskrete Beratung. Wir erstellen Ihnen ein transparentes Angebot für Ihre Räumung in Regensburg.",
-      "faqs": []
+      "faqs": [],
+      "seo": {
+        "meta_title": "Entrümpelung Regensburg ✓ Besenrein ✓ Entsorgung | FLOXANT",
+        "meta_desc": "Diskret und schnell: Entrümpelung und Wohnungsauflösung mit zertifizierter Entsorgung in Regensburg. Hinterlassen Sie besenreine Räume. Direkt Festpreis anfragen."
+      }
     },
     "buero_umzug_regensburg": {
       "meta_title": "Büro-Umzug Regensburg – Professionelle Firmenumzüge in der Oberpfalz",
@@ -1126,7 +1204,11 @@
       },
       "cta_title": "Büroumzug in Regensburg planen",
       "cta_text": "Lassen Sie uns Ihren Firmenumzug in Regensburg gemeinsam planen. Vertraulich, strukturiert und termingerecht.",
-      "faqs": []
+      "faqs": [],
+      "seo": {
+        "meta_title": "Büroumzug Regensburg ✓ IT & Akten ✓ Festpreis | FLOXANT",
+        "meta_desc": "Zertifizierter Firmenumzug in Regensburg. Wir kümmern uns um Arbeitsplätze, IT-Equipment und Akten. Minimale Ausfallzeiten für Ihr Unternehmen."
+      }
     },
     "sig_ritual_exit": {
       "meta_title": "Ritual Exit Box – Bewusster Abschied vom alten Zuhause",
@@ -1371,7 +1453,11 @@
     "entruempelung_bayern": {
       "meta_title": "Entrümpelung Bayern | Professionelle Räumung | FLOXANT",
       "meta_desc": "Professionelle Entrümpelung in ganz Bayern – Regensburg, Nürnberg, München & Umgebung. Haushaltsauflösung, Gewerberäumung, Nachlassräumung. Versichert, diskret & kurzfristig verfügbar. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-      "faqs": []
+      "faqs": [],
+      "seo": {
+        "meta_title": "Entrümpelung Bayern ✓ Besenrein ✓ Entsorgung | FLOXANT",
+        "meta_desc": "Diskret und schnell: Entrümpelung und Wohnungsauflösung mit zertifizierter Entsorgung in ganz Bayern. Hinterlassen Sie besenreine Räume. Direkt Festpreis anfragen."
+      }
     },
     "entruempelung_kosten_regensburg": {
       "meta_title": "Entrümpelung Kosten Regensburg | Preise & Angebot | FLOXANT",
@@ -1408,7 +1494,11 @@
     "reinigung_bayern": {
       "meta_title": "Reinigung Bayern | Professionelle Endreinigung | FLOXANT",
       "meta_desc": "Professionelle Reinigungsdienstleistungen in ganz Bayern. Endreinigung nach Vermieterstandards, Baureinigung & Büroreinigung. Regensburg, Nürnberg, München. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-      "faqs": []
+      "faqs": [],
+      "seo": {
+        "meta_title": "Reinigung Bayern ✓ Übergabe & Endreinigung | FLOXANT",
+        "meta_desc": "Fachgerechte Reinigung für Wohnungen und Gewerbe in ganz Bayern. Setzen Sie auf streifenfreie Sauberkeit und garantierte Abnahme. Regional, zuverlässig, fair."
+      }
     },
     "seniorenumzug_bayern": {
       "meta_title": "Seniorenumzug Bayern | Einfühlsam & Professionell | FLOXANT",
@@ -2285,7 +2375,11 @@
       ]
     },
     "umzug_bayern": {
-      "faqs": []
+      "faqs": [],
+      "seo": {
+        "meta_title": "Umzug Bayern ✓ Privat & Gewerblich ✓ Festpreis | FLOXANT",
+        "meta_desc": "Stressfreier Umzug für Privatkunden und Unternehmen in ganz Bayern. Inklusive Abbau, Transport und Aufbau. Regional verwurzelt in Regensburg, bayernweit aktiv."
+      }
     },
     "umzug_beratzhausen": {
       "meta_title": "Umzug in Beratzhausen ab 79€ – Sofort verfügbar | FLOXANT",
@@ -4851,7 +4945,11 @@
       "wizard_p": "Senden Sie uns Bilder oder vereinbaren Sie einen Termin.",
       "link_umzug": "Umzug {city}",
       "link_senioren": "Seniorenumzug {city}",
-      "link_halteverbot": "Reinigung {city}"
+      "link_halteverbot": "Reinigung {city}",
+      "seo": {
+        "meta_title": "Entrümpelung {city} ✓ Besenrein ✓ Entsorgung | FLOXANT",
+        "meta_desc": "Diskret und schnell: Entrümpelung und Wohnungsauflösung mit zertifizierter Entsorgung in {city}. Hinterlassen Sie besenreine Räume. Direkt Festpreis anfragen."
+      }
     },
     "reinigung_spec": {
       "meta_title": "Endreinigung {city} | FLOXANT",
@@ -4887,7 +4985,11 @@
       "wizard_p": "Geben Sie die Quadratmeterzahl ein.",
       "link_umzug": "Umzug {city}",
       "link_senioren": "Seniorenumzug {city}",
-      "link_halteverbot": "Entrümpelung {city}"
+      "link_halteverbot": "Entrümpelung {city}",
+      "seo": {
+        "meta_title": "Reinigung {city} ✓ Übergabe & Endreinigung | FLOXANT",
+        "meta_desc": "Fachgerechte Reinigung für Wohnungen und Gewerbe in {city}. Setzen Sie auf streifenfreie Sauberkeit und garantierte Abnahme. Regional, zuverlässig, fair."
+      }
     },
     "reinigung_freising": {
       "meta_title": "Endreinigung Freising ✓ Abnahmegarantie | FLOXANT",
@@ -5195,39 +5297,6 @@
         }
       ]
     },
-    "umzug_spec": {
-      "meta_title": "Umzugsunternehmen {city} ✓ Festpreis ✓ Versichert | FLOXANT",
-      "meta_desc": "Professionelles Umzugsunternehmen in {city} & Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
-      "hero_badge": "Umzugsservice",
-      "hero_h1": "Umzug {city_district}",
-      "hero_p": "Ihr verlässliches Umzugsunternehmen für stressfreie Umzüge in {city} und ganz Bayern. Mit Festpreisgarantie und voller Versicherungsschutz.",
-      "badges": {
-        "permit": "Genehmigungen",
-        "signs": "Halteverbote",
-        "stressfree": "Stressfrei"
-      },
-      "cta": "Umzug anfragen",
-      "service1": {
-        "title": "Privatumzug",
-        "l1": "Ab- & Aufbau Möbel",
-        "l2": "Sicherer Transport",
-        "l3": "Packservice",
-        "l4": "Voll versichert"
-      },
-      "service2": {
-        "title": "Vorteile",
-        "l1": "Kostenlose Besichtigung",
-        "l2": "Festpreisgarantie",
-        "l3": "Erfahrenes Team",
-        "l4": "Termintreue"
-      },
-      "section2_h2": "Ihr Umzug in {city} – strukturiert und sicher",
-      "section2_p1": "Ein Umzug ist mehr als ein Transport. Wir begleiten Sie in {city} von der Planung bis zur Schlüsselübergabe.",
-      "section2_p2": "Vertrauen Sie auf regionale Erfahrung und faire Preise.",
-      "wizard_badge": "Angebot",
-      "wizard_h2": "Umzug in {city} kalkulieren",
-      "wizard_p": "Nutzen Sie unseren Rechner für ein sofortiges Angebot."
-    },
     "umzug_wuerzburg": {
       "meta_title": "Umzugsunternehmen Würzburg ✓ Festpreis ✓ Versichert | FLOXANT",
       "faqs": [
@@ -5244,6 +5313,298 @@
           "a": "Regelmäßig fahren wir von Würzburg Richtung NRW oder München. Fragen Sie nach günstigen Beiladungstarifen."
         }
       ]
+    },
+    "endreinigung_regensburg_spec": {
+      "meta_title": "Endreinigung Regensburg ✓ Abnahmegarantie ✓ Besenrein | FLOXANT",
+      "meta_desc": "Professionelle Endreinigung in Regensburg mit 100% Abnahmegarantie. Wir reinigen Ihre Wohnung oder Ihr Haus bezugsfertig für die Übergabe. Jetzt Termin sichern!",
+      "hero_h1": "Endreinigung in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Die sicherste Lösung für Ihre Wohnungsübergabe. Wir reinigen nach höchsten Standards und garantieren die Akzeptanz durch Ihren Vermieter in Regensburg.",
+      "hero_badge": "Abnahmegarantie 100%",
+      "cta": "Reinigung berechnen",
+      "badges": {
+        "permit": "Inkl. Abnahme",
+        "signs": "Profi-Equipment",
+        "stressfree": "Festpreis"
+      },
+      "service1": {
+        "title": "Was wir leisten",
+        "l1": "Vollständige Oberflächenreinigung",
+        "l2": "Fenster- & Rahmenreinigung",
+        "l3": "Kalkentfernung in Bad & Küche",
+        "l4": "Bodenpflege & Saugen"
+      },
+      "service2": {
+        "title": "Ihre Vorteile",
+        "l1": "Keine Diskussion bei Übergabe",
+        "l2": "Zeitersparnis nach dem Umzug",
+        "l3": "Zertifiziertes Reinigungsteam",
+        "l4": "Kostenlose Nachreinigung falls nötig"
+      },
+      "section2_h2": "Saubere Übergabe in Regensburg ohne Stress",
+      "section2_p1": "Nach einem anstrengenden Umzug fehlt oft die Kraft für eine tiefenreine Endreinigung. Unsere Spezialisten in Regensburg kennen die Erwartungen von Hausverwaltungen und sorgen für einen perfekten Ersteindruck.",
+      "section2_p2": "Wir nutzen umweltfreundliche Reinigungsmittel und modernste Technik, um auch hartnäckige Verschmutzungen spurlos zu beseitigen. FLOXANT ist Ihr Partner für Sauberkeit in der Welterbestadt.",
+      "wizard_badge": "Live-Check",
+      "wizard_h2": "Reinigungspreis für Regensburg ermitteln",
+      "wizard_p": "Geben Sie die Quadratmeterzahl ein und erhalten Sie sofort ein Angebot.",
+      "faqs": [
+        {
+          "q": "Was ist in der Endreinigung Regensburg enthalten?",
+          "a": "Unsere Endreinigung umfasst alle Räume inkl. Sanitärbereich, Küche, Fenster, Rahmen und Böden. Ziel ist die besenreine und hygienische Übergabe."
+        },
+        {
+          "q": "Wie funktioniert die Abnahmegarantie?",
+          "a": "Sollte der Vermieter bei der Übergabe Mängel reklamieren, reinigen wir diese innerhalb von 24 Stunden kostenlos nach."
+        }
+      ]
+    },
+    "wohnungsaufloesung_regensburg_spec": {
+      "meta_title": "Wohnungsauflösung Regensburg ✓ Besenrein ✓ Diskret | FLOXANT",
+      "meta_desc": "Fachgerechte Wohnungsauflösung & Entrümpelung in Regensburg. Diskret, schnell und zum Festpreis. Inkl. Entsorgungsnachweis. Jetzt anfragen!",
+      "hero_h1": "Wohnungsauflösung ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Wir schaffen Platz mit System. Diskretion und Schnelligkeit sind unsere Stärke bei jeder Wohnungsauflösung in Regensburg und der Oberpfalz.",
+      "hero_badge": "Diskrete Abwicklung",
+      "cta": "Räumung anfragen",
+      "badges": {
+        "permit": "Zert. Entsorgung",
+        "signs": "Besenrein",
+        "stressfree": "Festpreis"
+      },
+      "service1": {
+        "title": "Unser Service",
+        "l1": "Vollständige Räumung",
+        "l2": "Fachgerechte Mülltrennung",
+        "l3": "Demontage von Einbauten",
+        "l4": "Entfernung von Bodenbelägen"
+      },
+      "service2": {
+        "title": "Für wen?",
+        "l1": "Nachlassverwaltungen & Erben",
+        "l2": "Vermieter bei Mieterwechsel",
+        "l3": "Senioren beim Heimumzug",
+        "l4": "Firmen bei Standortschliessung"
+      },
+      "section2_h2": "Professionelle Wohnungsauflösung in Regensburg",
+      "section2_p1": "Eine Wohnungsauflösung in Regensburg erfordert oft Fingerspitzengefühl. Wir gehen respektvoll mit dem Inventar um und sorgen für eine besenreine Übergabe aller Räumlichkeiten.",
+      "section2_p2": "Von der Garage bis zum Dachboden: Wir entsorgen Altmöbel und unbrauchbare Gegenstände nach strengen gesetzlichen Vorgaben bei zertifizierten regionalen Entsorgern.",
+      "wizard_badge": "Räumungs-Check",
+      "wizard_h2": "Kosten für Regensburg kalkulieren",
+      "wizard_p": "Grobvolumen angeben und sofort eine Einschätzung erhalten.",
+      "faqs": [
+        {
+          "q": "Was kostet eine Wohnungsauflösung in Regensburg?",
+          "a": "Die Kosten richten sich nach dem Volumen und der Etage. Wir bieten Ihnen nach einer kostenlosen Besichtigung einen verbindlichen Festpreis an."
+        },
+        {
+          "q": "Wie gehen Sie mit Wertsachen um?",
+          "a": "Sollten wir während der Räumung auf Wertsachen oder wichtige Unterlagen stoßen, legen wir diese zur Seite und informieren Sie umgehend."
+        }
+      ]
+    },
+    "kleintransport_regensburg_spec": {
+      "meta_title": "Kleintransport Regensburg ✓ Möbeltransport ✓ Sicher | FLOXANT",
+      "meta_desc": "Schnelle Kleintransporte in Regensburg & Umland. Möbeltransport, Waschmaschinen oder Einzelstücke zum Festpreis. Jetzt Express-Status prüfen!",
+      "hero_h1": "Kleintransporte in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Zu groß für den PKW? Wir transportieren Ihre Möbel und Einzelstücke in Regensburg sicher von A nach B – egal ob 1. Stock oder Hinterhof.",
+      "hero_badge": "Express-Verfügbarkeit",
+      "cta": "Transport kalkulieren",
+      "badges": {
+        "permit": "Sicher verpackt",
+        "signs": "2 Mann Team",
+        "stressfree": "Kurzfristig"
+      },
+      "service1": {
+        "title": "Was wir fahren",
+        "l1": "Einzelmöbel & Sofa-Transport",
+        "l2": "Elektrogeräte & Weiße Ware",
+        "l3": "Baumarkt- & IKEA-Einkäufe",
+        "l4": "Kleinstumzüge"
+      },
+      "service2": {
+        "title": "Warum FLOXANT?",
+        "l1": "Sicherer Möbelwagen statt Anhänger",
+        "l2": "Profi-Tragschutz inklusive",
+        "l3": "Versichert nach HGB",
+        "l4": "Pünktlichkeit garantiert"
+      },
+      "section2_h2": "Ihr Partner für kleine Logistikaufgaben in Regensburg",
+      "section2_p1": "Kleintransporte in Regensburg müssen nicht kompliziert sein. Wir bieten flexible Zeitfenster und schützende Verpackung für Ihre wertvollen Einzelstücke.",
+      "section2_p2": "Egal ob Sie ein Sofa bei eBay gekauft haben oder eine Waschmaschine umziehen möchten – unser Team in Regensburg ist schnell vor Ort.",
+      "wizard_badge": "Mini-Check",
+      "wizard_h2": "Preis für Kleintransport anfragen",
+      "wizard_p": "Kurze Beschreibung des Guts und der Strecke genügt."
+    },
+    "beiladung_regensburg_spec": {
+      "meta_title": "Günstige Beiladung Regensburg ✓ Rücktouren-Rabatt | FLOXANT",
+      "meta_desc": "Kosten sparen durch Beiladung ab Regensburg. Wir nutzen freie Kapazitäten auf bestehenden Routen für Ihre Möbel. Sicher & Preiswert durch Bayern.",
+      "hero_h1": "Beiladung ab ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Wir nutzen freie Flächen auf unseren täglichen Routen durch Bayern. Transportieren Sie Ihre Möbel ab Regensburg zum Bruchteil der Kosten.",
+      "hero_badge": "Umweltfreundlich & Günstig",
+      "cta": "Beiladung prüfen",
+      "badges": {
+        "permit": "CO2 Optimiert",
+        "signs": "Sicher verpackt",
+        "stressfree": "Spar-Tarif"
+      },
+      "service1": {
+        "title": "Das Konzept",
+        "l1": "Nutzung von Leerfahrten",
+        "l2": "Effiziente Routenplanung",
+        "l3": "Möbel-Mitnahme-Service",
+        "l4": "Voller Versicherungsschutz"
+      },
+      "service2": {
+        "title": "Ideal für",
+        "l1": "Einzelne Schränke & Betten",
+        "l2": "Umzugskartons (Kleinstmenge)",
+        "l3": "Gebrauchtmobilität",
+        "l4": "Studentische Logistik"
+      },
+      "section2_h2": "Spar-Logistik für Regensburg und Bayern",
+      "section2_p1": "Beiladung in Regensburg ist die intelligente Art zu transportieren. Wenn wir ohnehin von Regensburg nach München oder Nürnberg fahren, nehmen wir Ihr Gut einfach mit.",
+      "section2_p2": "Sie profitieren von deutlich reduzierten Kosten bei gleicher FLOXANT-Qualität. Lediglich beim Termin ist eine gewisse Flexibilität erforderlich.",
+      "wizard_badge": "Eco-Check",
+      "wizard_h2": "Beiladungs-Platz reservieren",
+      "wizard_p": "Prüfen Sie, ob auf Ihrer Wunschroute aktuell Fläche frei ist."
+    },
+    "studentenumzug_regensburg_spec": {
+      "meta_title": "Studentenumzug Regensburg ✓ Günstig ✓ WG-Service | FLOXANT",
+      "meta_desc": "Dein Umzug in Regensburg zum fairen Studenten-Preis. WG-Umzug, Einzeltransporte oder Mini-Logistik. Stressfrei studieren, wir tragen!",
+      "hero_h1": "Studentenumzug in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Stressfrei in die Uni-Stadt Regensburg. Wir ziehen dich und deine WG unkompliziert um – passend zum studentischen Budget.",
+      "hero_badge": "Studi-Tarif 2026",
+      "cta": "Preis berechnen",
+      "badges": {
+        "permit": "WG-Special",
+        "signs": "Fix-Termin",
+        "stressfree": "Studi-Rabatt"
+      },
+      "service1": {
+        "title": "Unsere Pakete",
+        "l1": "Nur LKW + Fahrer (Selbsttrager)",
+        "l2": "Full-Service WG-Umzug",
+        "l3": "Kartonverleih (Günstig)",
+        "l4": "Mini-Logistik für Möbeltaxi"
+      },
+      "service2": {
+        "title": "Deine Vorteile",
+        "l1": "Faire Kalkulation ohne Abzocke",
+        "l2": "Hilfe beim Möbel-Handling",
+        "l3": "Flexible Termine am Wochenende",
+        "l4": "Erfahrene Teams"
+      },
+      "section2_h2": "Dein Start in Regensburg ohne Rückenprobleme",
+      "section2_p1": "Ein Umzug zum Studium in Regensburg muss nicht teuer sein. Wir bieten maßgeschneiderte Lösungen für Studierende an der Uni oder OTH.",
+      "section2_p2": "Egal ob Einzelzimmer oder ganze Wohngemeinschaft – FLOXANT bringt deine Sachen sicher in dein neues Zuhause in der Regensburger Altstadt oder im Galgenberg.",
+      "wizard_badge": "Fix-Preis",
+      "wizard_h2": "Studenten-Angebot anfordern",
+      "wizard_p": "Kurze Info zum Umfang reicht, wir melden uns mit dem Studi-Special."
+    },
+    "bueroumzug_regensburg_spec": {
+      "meta_title": "Büroumzug Regensburg ✓ Firmenlogistik ✓ No-Downtime | FLOXANT",
+      "meta_desc": "Professioneller Büroumzug in Regensburg. Wir ziehen Ihr Unternehmen diskret und effizient um. Minimale Ausfallzeiten für Ihren Standortwechsel.",
+      "hero_h1": "Büroumzug in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Geschäftskontinuität hat Priorität. Wir organisieren Ihren Firmenumzug in Regensburg so, dass Sie am nächsten Tag wieder operativ sind.",
+      "hero_badge": "Business Logistik Oberpfalz",
+      "cta": "Firmen-Angebot",
+      "badges": {
+        "permit": "IT-Transport",
+        "signs": "Diskret",
+        "stressfree": "Wochenend-Service"
+      },
+      "service1": {
+        "title": "Kompetenzen",
+        "l1": "IT-Infrastruktur Verlagerung",
+        "l2": "Archiv- & Akten-Logistik",
+        "l3": "Inventarisierung",
+        "l4": "Möbel-Montage Professional"
+      },
+      "service2": {
+        "title": "Sicherheit",
+        "l1": "DSGVO-Konformer Umgang",
+        "l2": "Spezialversicherung für Inventar",
+        "l3": "Eigene, festangestellte Teams",
+        "l4": "Zertifizierte Vernichtung von Altmaterial"
+      },
+      "section2_h2": "Ihr Partner für gewerbliche Logistik in Regensburg",
+      "section2_p1": "Ein Firmenumzug in Regensburg ist ein strategisches Projekt. Wir minimieren Ausfallzeiten durch präzise Planung und schlagkräftige Umsetzung.",
+      "section2_p2": "Seit Jahren vertrauen Kanzleien, Praxen und mittelständische Betriebe in Regensburg auf die Zuverlässigkeit von FLOXANT.",
+      "wizard_badge": "B2B-Status",
+      "wizard_h2": "Unternehmens-Anfrage Regensburg",
+      "wizard_p": "Geschäftskunden erhalten bei uns einen festen Projektleiter von Anfang an."
+    },
+    "bueroumzug_bayern_spec": {
+      "meta_title": "Büroumzug Bayern ✓ Firmenrelocation ✓ Bayernweit | FLOXANT",
+      "meta_desc": "Strukturierte Firmenumzüge in ganz Bayern. Wir vernetzen Ihre Standorte und organisieren Ihren Umzug diskret & termintreu zum Festpreis.",
+      "hero_h1": "Büroumzug in ",
+      "hero_h1_highlight": "ganz Bayern",
+      "hero_p": "Bayernweite Firmen-Logistik auf Premium-Niveau. Wir ziehen Ihr Unternehmen zwischen München, Nürnberg und Regensburg sicher um.",
+      "hero_badge": "Freistaat-Netzwerk",
+      "cta": "Bayern-Angebot",
+      "badges": {
+        "permit": "Bayern-Netzwerk",
+        "signs": "Großflotten-Einsatz",
+        "stressfree": "Sorglos-Planung"
+      },
+      "service1": {
+        "title": "Service Bayern",
+        "l1": "Standortvernetzung",
+        "l2": "Zentrallager-Nutzung",
+        "l3": "Spezialtransporte Bayernweit",
+        "l4": "Großraum-Logistik"
+      },
+      "service2": {
+        "title": "Qualität",
+        "l1": "Bayernweit einheitliche Standards",
+        "l2": "Zentrale Einsatzleitung",
+        "l3": "Erfahrung mit Großkunden",
+        "l4": "Absolute Termintreue"
+      },
+      "section2_h2": "Souveräne Firmenumzüge für den bayerischen Mittelstand",
+      "section2_p1": "FLOXANT ist Ihr Partner für komplexe Relocations in ganz Bayern. Wir verstehen die Anforderungen bayerischer Unternehmen an Qualität und Diskretion.",
+      "section2_p2": "Von der Landeshauptstadt bis nach Franken: Wir steuern Ihre gewerbliche Logistik zentral und effizient.",
+      "wizard_badge": "Priority-Check",
+      "wizard_h2": "Bayernweite Anfrage stellen",
+      "wizard_p": "Nutzen Sie unseren Priority-Check für Firmenkunden aus Bayern."
+    },
+    "seniorenumzug_regensburg_spec": {
+      "meta_title": "Seniorenumzug Regensburg ✓ Behutsam ✓ Full-Service | FLOXANT",
+      "meta_desc": "Einfühlsamer Seniorenumzug in Regensburg. Wir übernehmen alles: Packen, Montage, Reinigung & Entsorgung. Stressfrei zum Festpreis ankommen.",
+      "hero_h1": "Seniorenumzug in ",
+      "hero_h1_highlight": "Regensburg",
+      "hero_p": "Ein Umzug im Alter erfordert Vertrauen und Ruhe. Wir begleiten Sie in Regensburg behutsam in Ihr neues Zuhause – mit vollem Service-Paket.",
+      "hero_badge": "Einfühlsame Logistik",
+      "cta": "Beratung anfordern",
+      "badges": {
+        "permit": "Full-Service",
+        "signs": "Ruhe & Sorgfalt",
+        "stressfree": "Alles inkl."
+      },
+      "service1": {
+        "title": "Rundum-Paket",
+        "l1": "Gemeinsames Einpacken",
+        "l2": "Möbel- & Lampenmontage",
+        "l3": "Anbringen von Bildern",
+        "l4": "Endreinigung Alt-Wohnung"
+      },
+      "service2": {
+        "title": "Werteerhalt",
+        "l1": "Respektvoller Umgang",
+        "l2": "Möbelaufbereitung bei Bedarf",
+        "l3": "Entsorgung von Altgut",
+        "l4": "Besenreine Übergabe"
+      },
+      "section2_h2": "Ihr behutsamer Partner für den Wohnungswechsel in Regensburg",
+      "section2_p1": "Ein Seniorenumzug in Regensburg ist oft mit Lebensveränderungen verbunden. Wir nehmen uns die Zeit, die es braucht, und sorgen für einen stressfreien Ablauf.",
+      "section2_p2": "Unser Team in Regensburg ist speziell geschult, um mit Empathie und Geduld an jeden Auftrag heranzugehen.",
+      "wizard_badge": "Service-Check",
+      "wizard_h2": "Kostenloses Gespräch vereinbaren",
+      "wizard_p": "Gerne kommen wir für eine unverbindliche Beratung zu Ihnen nach Hause in Regensburg."
     }
   },
   "services_section": {
@@ -5734,11 +6095,82 @@
       }
     }
   },
+  "extra_services": {
+    "beiladung": {
+      "title": "FLOXANT Beiladung",
+      "subtitle": "Intelligente Logistik durch Beiladung",
+      "desc": "Nutzen Sie unsere freien Kapazitäten auf bestehenden Routen – effizient und preiswert.",
+      "long_desc": "Wir kombinieren Kleintransporte zu effizienten Touren. Wenn unsere Fahrzeuge Kapazitäten frei haben, geben wir den Kostenvorteil direkt an Sie weiter. Ideal für Einzelstücke oder kleine Mengen.",
+      "use_cases": "Gebrauchtmöbel-Käufe, Erbschaften, kleine Ergänzungen zum Hausrat.",
+      "conditions": "Flexibilität beim Liefertermin (7–14 Tage Fenster), nur gut verpackte Güter.",
+      "cta": "Jetzt freie Kapazität prüfen",
+      "meta_title": "Günstige Beiladung & Möbel-Mitnahme Bayern | FLOXANT",
+      "meta_desc": "Möbel preiswert transportieren durch Beiladung & Rücktour-Nutzung in ganz Bayern. Jetzt freie LKW-Kapazitäten prüfen und Kosten sparen!"
+    },
+    "all_in_uebergabe": {
+      "title": "FLOXANT All-In Übergabe",
+      "subtitle": "Umzug und Endreinigung aus einer Hand",
+      "desc": "Das Premium-Paket: Wir ziehen Sie um, reinigen die alte Wohnung und erledigen die Übergabe.",
+      "long_desc": "Mit dem FLOXANT Full-Service Paket kombinieren wir Ihren Umzug direkt mit einer professionellen Endreinigung und Vorbereitung für die Übergabe. Ein zertifiziertes Team für alle operativen Schritte.",
+      "use_cases": "Anspruchsvolle Wohnungswechsel, Firmenumzüge, Senioren-Full-Service.",
+      "benefit_time": "Zeitersparnis: Nur ein Ansprechpartner für alle Gewerke.",
+      "benefit_guarantee": "Übergabe-Garantie: Unsere Reinigung entspricht höchsten Standards.",
+      "cta": "Full-Service anfragen",
+      "meta_title": "Umzug mit Endreinigung & Übergabe | FLOXANT All-In Service",
+      "meta_desc": "Stressfrei ausziehen mit dem FLOXANT All-In Paket. Umzug, Reinigung & Wohnungsübergabe aus einer Hand. Jetzt Termin anfragen!"
+    },
+    "express_logistik": {
+      "title": "FLOXANT Elite-Express",
+      "subtitle": "Sofortige operative Einsatzbereitschaft",
+      "desc": "Wenn es schnell gehen muss: Last-Minute Planung und Umsetzung innerhalb von 24-48 Stunden.",
+      "long_desc": "Wir halten Kapazitäten für zeitkritische Logistikprojekte vor. Unser Express-Team reagiert sofort auf unvorhergesehene Umzugs- oder Räumungssituationen.",
+      "cta": "Express-Status prüfen",
+      "meta_title": "Express Umzug & Last-Minute Transport Bayern | FLOXANT",
+      "meta_desc": "Schnelle Hilfe bei Notfall-Umzügen oder kurzfristigen Räumungen in Bayern. Operative Umsetzung oft innerhalb 24h möglich!"
+    },
+    "bau_logistik": {
+      "title": "FLOXANT Bau-Logistik",
+      "subtitle": "Renovierungsreste professionell entsorgen",
+      "desc": "Die saubere Lösung für Renovierungsprojekte: Abholung von Bauschutt in Kleinstmengen.",
+      "long_desc": "Wir holen Fliesenreste, Gipskarton oder Bodenbeläge unkompliziert ab, auch in Mengen unterhalb einer Containerstellung. Ideal für Privat-Renovierer.",
+      "cta": "Entsorgung anfragen",
+      "meta_title": "Bauschutt Abholung & Bauabfall Entsorgung Kleinstmengen | FLOXANT",
+      "meta_desc": "Günstige Entsorgung von Renovierungsresten und Bauschutt in kleinen Mengen. Schnelle Abholung in Regensburg & Bayern."
+    },
+    "wunschbudget": {
+      "title": "Budget-Planung",
+      "subtitle": "Maßgeschneidert für Ihren Preisrahmen",
+      "desc": "Nennen Sie uns Ihr Wunschbudget – wir schnüren das maximale Service-Paket dafür.",
+      "cta": "Budget-Optionen prüfen",
+      "meta_title": "Budget-orientierte Umzugsplanung | FLOXANT",
+      "meta_desc": "Geben Sie Ihren Preisrahmen vor und wir konfigurieren das optimale Service-Paket für Ihren Umzug in Bayern."
+    }
+  },
   "metadata": {
-    "global_title": "Umzugsunternehmen Bayern | Umzug, Reinigung & Entrümpelung | FLOXANT",
-    "global_desc": "FLOXANT – Ihr Partner für Umzug, Entrümpelung und Reinigung in Regensburg und ganz Bayern zum Festpreis.",
+    "global_title": "Umzug, Reinigung & Entrümpelung Bayern ✓ Festpreis | FLOXANT",
+    "global_desc": "Professionelle Logistik für Umzug, Reinigung und Entrümpelung. Ihr starker Partner in Regensburg und Bayern. Festpreis, versichert, pünktlich. Jetzt planen!",
     "keywords": "Umzugsunternehmen Bayern, Umzug Regensburg, Entrümpelung Bayern, Reinigung Regensburg, Umzugsfirma München, Umzug Nürnberg, Festpreis Umzug, versicherter Umzug, FLOXANT",
-    "og_img_alt": "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg & Bayern",
+    "og_img_alt": "FLOXANT – Logistik für Umzug, Reinigung & Entrümpelung in Bayern",
     "og_locale": "de_DE"
+  },
+  "faq": {
+    "service_questions": [
+      {
+        "q": "Was ist der Vorteil eines individuellen Preisvorschlags?",
+        "a": "Durch Ihren Preisvorschlag können wir unsere Tourenplanung in Bayern so optimieren, dass wir Synergien nutzen. Sie bekommen professionelle Qualität zum fairen, von Ihnen gesteuerten Preis."
+      },
+      {
+        "q": "Gilt die Abnahmegarantie bei der Reinigung für alle Budgets?",
+        "a": "Ja. Wir definieren im Vorfeld genau die Leistungen, die für eine erfolgreiche Übergabe nötig sind. Auch bei budget-orientierten Paketen steht die Qualität an erster Stelle."
+      },
+      {
+        "q": "Können Entrümpelungen auch am Wochenende durchgeführt werden?",
+        "a": "Ja, FLOXANT bietet Einsätze in ganz Bayern auch samstags an, oft ohne Aufpreis, wenn wir den Einsatz frühzeitig in unseren logistischen Preisrahmen einplanen können."
+      },
+      {
+        "q": "Wie sicher ist mein Hab und Gut bei einem Transport?",
+        "a": "Jeder Einsatz ist voll transportversichert. Egal ob Basis-Umzug oder Premium-Service – wir garantieren höchste Sorgfalt und rechtliche Absicherung."
+      }
+    ]
   }
 }

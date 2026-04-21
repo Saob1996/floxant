@@ -1,14 +1,9 @@
 import { ImageResponse } from "next/og";
-
-export const runtime = "edge";
-
 export const size = {
   width: 96,
   height: 96,
 };
-
 export const contentType = "image/png";
-
 export default function Icon() {
   return new ImageResponse(
     (
@@ -42,7 +37,6 @@ export default function Icon() {
               "radial-gradient(circle at top, rgba(96,165,250,0.22), transparent 45%)",
           }}
         />
-
         <span
           style={{
             lineHeight: 1,
@@ -53,7 +47,6 @@ export default function Icon() {
         >
           F
         </span>
-
         <div
           style={{
             position: "absolute",

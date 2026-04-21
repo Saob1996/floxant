@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { Phone, MessageCircle, Calculator } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { company } from "@/lib/company";
 
 export default function MobileFloatingContact({ dic }: { dic?: any }) {
   const [isVisible, setIsVisible] = useState(false);
-  const params = useParams();
-  const lang = (params?.lang as string) || "de";
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +20,10 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (pathname === "/private-client-service" || pathname === "/villenservice") {
+    return null;
+  }
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -28,14 +32,14 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ type: "spring", bounce: 0.08, duration: 0.45 }}
-          className="fixed inset-x-0 bottom-0 z-50 lg:hidden"
+          className="fixed inset-x-0 bottom-0 z-[99] lg:hidden"
         >
           <div className="absolute inset-0 -z-10 h-[140%] bg-gradient-to-t from-background via-background/92 to-transparent" />
 
           <div className="border-t border-border bg-background/95 px-3 py-3 pb-7 shadow-[0_-8px_28px_rgba(0,0,0,0.28)] backdrop-blur safe-area-bottom">
             <div className="mx-auto grid max-w-md grid-cols-3 gap-2">
               <a
-                href="https://wa.me/4915771105087"
+                href={`https://wa.me/${company.phoneRaw.replace(/\+/g, "").replace(/\s/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card px-2 py-3 text-center transition-colors hover:border-green-500/30 hover:bg-green-500/5"
@@ -50,7 +54,7 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
               </a>
 
               <Link
-                href={`/${lang}/#contact`}
+                href="/rechner"
                 className="flex flex-col items-center justify-center rounded-2xl border border-primary/20 bg-primary px-2 py-3 text-center shadow-lg transition-colors hover:bg-primary/90"
                 aria-label="Zum Rechner"
               >
@@ -63,7 +67,7 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
               </Link>
 
               <a
-                href="tel:+4915771105087"
+                href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
                 className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card px-2 py-3 text-center transition-colors hover:border-primary/30 hover:bg-muted/60"
                 aria-label="Jetzt anrufen"
               >

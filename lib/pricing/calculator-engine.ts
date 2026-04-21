@@ -13,6 +13,7 @@ import {
   ReinigungExpressData,
   EntsorgungExpressData,
   AdvancedEstimate,
+  PricingSignalSnapshot,
 } from "@/store/calculatorStore";
 
 export interface PriceRange {
@@ -36,8 +37,11 @@ function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function roundPrice(value: number): number {
-  return Math.round(Math.max(0, value));
+function normalizeText(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 }
 
 function minPrice(value: number, floor: number): number {
@@ -55,13 +59,30 @@ function uniqueFlags(flags: string[]): string[] {
   return [...new Set(flags.filter(Boolean))];
 }
 
+function getRangeStep(value: number): number {
+  if (value < 200) return 10;
+  if (value < 500) return 25;
+  if (value < 1500) return 50;
+  if (value < 3000) return 100;
+  return 250;
+}
+
+function roundDownToStep(value: number, step: number): number {
+  return Math.floor(Math.max(0, value) / step) * step;
+}
+
+function roundUpToStep(value: number, step: number): number {
+  return Math.ceil(Math.max(0, value) / step) * step;
+}
+
 function createPriceRange(basePrice: number, multiplier: number): PriceRange {
-  const min = roundPrice(basePrice);
-  const max = roundPrice(basePrice * multiplier);
-  return {
-    min,
-    max: Math.max(min, max),
-  };
+  const rawMin = Math.max(0, basePrice);
+  const rawMax = Math.max(rawMin, basePrice * multiplier);
+  const step = getRangeStep(rawMax);
+  const min = roundDownToStep(rawMin, step);
+  const max = Math.max(min + step, roundUpToStep(rawMax, step));
+
+  return { min, max };
 }
 
 function formatHours(minHours: number, maxHours: number, dic?: any): string {
@@ -72,56 +93,129 @@ function getDistanceKm(base?: BaseDetails, fallback = 15): number {
   return Math.max(0, num(base?.distance, fallback));
 }
 
+function getDistanceBandMultiplier(distanceKm: number): number {
+  if (distanceKm <= 35) return 1;
+  if (distanceKm <= 100) return 1.04;
+  if (distanceKm <= 200) return 1.1;
+  return 1.18;
+}
+
+function getDistanceBandDriver(distanceKm: number): string {
+  if (distanceKm <= 35) return "Nahbereich Regensburg";
+  if (distanceKm <= 100) return "Regionalachse Oberpfalz und Niederbayern";
+  if (distanceKm <= 200) return "200-km-Einsatzkorridor";
+  return "Fernstrecke außerhalb des Kernkorridors";
+}
+
 function getAreaToVolume(areaM2: number): number {
-  return Math.max(2, areaM2 * 0.35); // Slightly reduced multiplier for base volume
+  return Math.max(2, areaM2 * 0.35);
 }
 
 function getCityMultiplier(address: string): number {
-  const addr = address.toLowerCase();
-  if (addr.includes("münchen") || addr.includes("munich")) return 1.15;
-  if (
-    addr.includes("nürnberg") ||
-    addr.includes("nuremberg") ||
-    addr.includes("augsburg")
-  )
-    return 1.05;
+  const addr = normalizeText(address || "");
+  if (addr.includes("munchen") || addr.includes("munich")) return 1.15;
+  if (addr.includes("nurnberg") || addr.includes("nuremberg") || addr.includes("augsburg")) return 1.05;
   if (addr.includes("regensburg") || addr.includes("passau")) return 1.02;
-  return 1.0;
+  return 1;
 }
 
 function getSeasonalMultiplier(): number {
   const date = new Date();
   const day = date.getDate();
-  const month = date.getMonth(); // 0-indexed
+  const month = date.getMonth();
 
-  let mult = 1.0;
+  let multiplier = 1;
+  if (day >= 25 || day <= 5) multiplier += 0.08;
+  if (month >= 5 && month <= 7) multiplier += 0.05;
 
-  // End of month / Start of month peak
-  if (day >= 25 || day <= 5) mult += 0.1;
-
-  // Summer peak
-  if (month >= 5 && month <= 7) mult += 0.05;
-
-  return Number(mult.toFixed(2));
+  return Number(multiplier.toFixed(2));
 }
 
 function getGlobalMultiplier(base?: BaseDetails): number {
-  const cityMult = getCityMultiplier(base?.fromAddress || "");
-  const seatMult = getSeasonalMultiplier();
-  return cityMult * seatMult;
+  return getCityMultiplier(base?.fromAddress || "") * getSeasonalMultiplier();
 }
 
-// EXPRESS CALCULATION
+function getValuationStage(confidenceLevel: ConfidenceLevel): string {
+  if (confidenceLevel === "high") return "Gut belastbare Vorprüfung";
+  if (confidenceLevel === "medium") return "Solide Vorplanung";
+  return "Erste Einschätzung";
+}
+
+function trimDrivers(drivers: string[]): string[] {
+  return uniqueFlags(drivers).slice(0, 5);
+}
+
+function makeSignals(
+  serviceType: string,
+  primaryFactors: string[],
+  metrics: PricingSignalSnapshot["metrics"]
+): PricingSignalSnapshot {
+  return {
+    serviceType,
+    primaryFactors: trimDrivers(primaryFactors),
+    metrics: Object.fromEntries(
+      Object.entries(metrics).filter(([, value]) => value !== undefined)
+    ),
+  };
+}
+
+function finalizeEstimate({
+  price,
+  uncertaintyMultiplier,
+  estimatedHours,
+  recommendedTeam,
+  calculationBasis,
+  operationalFlags,
+  confidenceLevel,
+  drivers,
+  priceExplanation,
+  pricingSignals,
+  cbm,
+}: {
+  price: number;
+  uncertaintyMultiplier: number;
+  estimatedHours: string;
+  recommendedTeam: string;
+  calculationBasis: string;
+  operationalFlags: string[];
+  confidenceLevel: ConfidenceLevel;
+  drivers: string[];
+  priceExplanation: string;
+  pricingSignals: PricingSignalSnapshot;
+  cbm?: number;
+}): AdvancedEstimate {
+  const topDrivers = trimDrivers(drivers);
+
+  return {
+    priceRange: createPriceRange(price, uncertaintyMultiplier),
+    estimatedHours,
+    recommendedTeam,
+    calculationBasis,
+    operationalFlags: uniqueFlags(operationalFlags),
+    operationalDrivers: topDrivers,
+    topDrivers,
+    confidenceLevel,
+    valuationStage: getValuationStage(confidenceLevel),
+    priceExplanation,
+    pricingSignals,
+    cbm,
+  };
+}
+
+function hasSeasonalDemand(): boolean {
+  return getSeasonalMultiplier() > 1.04;
+}
+
 export function calculateUmzugExpress(
   data: UmzugExpressData,
   base: BaseDetails
 ): PriceRange {
   const areaM2 = Math.max(0, num(data.areaM2, 0));
   const cbm = getAreaToVolume(areaM2);
-  const laborCost = cbm * 29; // Reduced from 35 for competitive Basis price
-  const fixedCost = 120; // Reduced from 150
+  const laborCost = cbm * 29;
+  const fixedCost = 120;
   const distanceKm = getDistanceKm(base, 15);
-  const distanceCost = distanceKm * 1.2; // Reduced from 1.5
+  const distanceCost = distanceKm * 1.2;
 
   let price = fixedCost + laborCost + distanceCost;
 
@@ -132,47 +226,50 @@ export function calculateUmzugExpress(
   if (toFloor > 0 && !data.hasElevatorTo) price += toFloor * 25;
 
   price *= getGlobalMultiplier(base);
+  price *= getDistanceBandMultiplier(distanceKm);
   price = minPrice(price, 220);
 
-  return createPriceRange(price, 1.25);
+  return createPriceRange(price, 1.35);
 }
 
 export function calculateReinigungExpress(
   data: ReinigungExpressData
 ): PriceRange {
   const area = Math.max(0, num(data.areaM2, 0));
-  let price = Math.max(99, area * 3.8); // Reduced from 120 and 4.5
+  let price = Math.max(99, area * 3.8);
 
   if (data.propertyType === "haus") price *= 1.15;
   if (data.propertyType === "buero") price *= 1.1;
 
   let conditionMultiplier = 1;
-  if (data.condition === "mittel") conditionMultiplier = 1.3;
-  if (data.condition === "stark") conditionMultiplier = 1.6;
+  if (data.condition === "mittel") conditionMultiplier = 1.22;
+  if (data.condition === "stark") conditionMultiplier = 1.45;
 
   price *= conditionMultiplier;
   price *= getSeasonalMultiplier();
 
-  return createPriceRange(price, 1.2);
+  return createPriceRange(price, 1.18);
 }
 
 export function calculateEntsorgungExpress(
-  data: EntsorgungExpressData
+  data: EntsorgungExpressData,
+  base?: BaseDetails
 ): PriceRange {
   const volume = Math.max(0, num(data.wasteVolumeM3, 0));
-  let price = 79 + volume * 34; // Reduced from 90 and 40
+  const distanceKm = getDistanceKm(base, 15);
+  let price = 79 + volume * 34;
 
   let accessMultiplier = 1;
-  if (data.accessDifficulty === "mittel") accessMultiplier = 1.2;
-  if (data.accessDifficulty === "schwer") accessMultiplier = 1.4;
+  if (data.accessDifficulty === "mittel") accessMultiplier = 1.18;
+  if (data.accessDifficulty === "schwer") accessMultiplier = 1.35;
 
   price *= accessMultiplier;
-  price *= getGlobalMultiplier();
+  price *= getGlobalMultiplier(base);
+  price *= getDistanceBandMultiplier(distanceKm);
 
-  return createPriceRange(price, 1.3);
+  return createPriceRange(price, 1.4);
 }
 
-// ADVANCED CALCULATION
 export function calculateUmzugAdvanced(
   data: UmzugAdvancedData,
   base: BaseDetails,
@@ -182,249 +279,270 @@ export function calculateUmzugAdvanced(
   let confidenceLevel: ConfidenceLevel = "high";
   let uncertaintyMultiplier = 1.12;
 
-  const areaM2 = Math.max(0, num(data.areaM2, 0));
-  let cbm = getAreaToVolume(areaM2 || 40);
+  const rawArea = Math.max(0, num(data.areaM2, 0));
+  let cbm = getAreaToVolume(rawArea || 40);
 
-  if (!areaM2) {
+  if (!rawArea) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "low");
     uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.35);
     flags.push(
       dic?.calculator?.flag_area_missing ||
-      "Wohnfläche für genaueres Volumen ergänzen"
+        "Wohnfläche ergänzen, damit der Rahmen belastbarer wird"
     );
   } else if (data.uncertainVolume) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "medium");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.25);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.26);
     flags.push(
       dic?.calculator?.flag_uncertain_volume ||
-      "Kunde wünscht persönliche Beratung zum Volumen"
+        "Volumen ist noch nicht abschließend geklärt"
     );
   }
 
-  // Visual Furniture Estimator - CBM values
-  const FURNITURE_VOLUMES: Record<string, number> = {
+  const furnitureVolumes: Record<string, number> = {
     "sofa-2": 1.5,
     "sofa-3": 2.2,
     "bed-s": 1.5,
-    "bed-d": 3.0,
-    "table": 0.8,
-    "chair": 0.2,
+    "bed-d": 3,
+    table: 0.8,
+    chair: 0.2,
     "wardrobe-1": 1.2,
     "wardrobe-2": 2.4,
     "tv-bench": 0.5,
-    "fridge": 1.0,
-    "washing": 0.8,
-    "shelf": 0.6,
+    fridge: 1,
+    washing: 0.8,
+    shelf: 0.6,
   };
 
   if (Array.isArray(data.furnitureList) && data.furnitureList.length > 0) {
-    let furnitureCbm = 0;
-    data.furnitureList.forEach(item => {
-      furnitureCbm += FURNITURE_VOLUMES[item] || 0.8; // Default 0.8 if unknown
-    });
-    
-    // If furniture list is long, it becomes more reliable than area calculation
-    if (data.furnitureList.length > 5) {
-       cbm = (cbm * 0.4) + (furnitureCbm * 0.8);
-       confidenceLevel = "high";
+    const furnitureCbm = data.furnitureList.reduce(
+      (sum, item) => sum + (furnitureVolumes[item] || 0.8),
+      0
+    );
+
+    if (data.furnitureList.length >= 5) {
+      cbm = Math.max(cbm, rawArea ? cbm * 0.55 + furnitureCbm * 0.8 : furnitureCbm);
     } else {
-       cbm += furnitureCbm * 0.5;
+      cbm += furnitureCbm * 0.45;
     }
   }
 
-  const laborCost = cbm * 42; // Premium labor rate
-  const fixedCost = 249; // Professional truck & logistics base
   const distanceKm = Math.max(
     0,
     num(data.distanceKm, 0) || getDistanceKm(base, 15)
   );
-  const distanceCost = distanceKm * 1.8;
-
-  let price = fixedCost + laborCost + distanceCost;
-
-  const fromFloor = Math.max(0, num(data.fromFloor, 0));
-  const toFloor = Math.max(0, num(data.toFloor, 0));
   const rooms = Math.max(1, num(data.rooms, 2));
   const boxesCount = Math.max(0, num(data.boxesCount, 0));
+  const fromFloor = Math.max(0, num(data.fromFloor, 0));
+  const toFloor = Math.max(0, num(data.toFloor, 0));
+  const walkingDistanceFrom = Math.max(0, num(data.walkingDistanceFrom, 0));
+  const walkingDistanceTo = Math.max(0, num(data.walkingDistanceTo, 0));
+
+  let price = 260 + cbm * 41 + distanceKm * 1.9 + boxesCount * 2.5;
+  price *= getDistanceBandMultiplier(distanceKm);
+
+  if (distanceKm > 100) {
+    flags.push("Erweiterter Einsatzkorridor bis etwa 200 km eingeplant");
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.18);
+  }
 
   if (fromFloor > 0 && !data.hasElevatorFrom) {
-    price += fromFloor * 25;
-    if (fromFloor > 3) {
-      flags.push(
-        dic?.calculator?.flag_trageservice_auszug ||
-        "Auszug: Trageservice 4.+ Etage berücksichtigt"
-      );
-    }
+    price += fromFloor * 28;
+    flags.push(
+      dic?.calculator?.flag_trageservice_auszug ||
+        "Auszug ohne Aufzug wurde berücksichtigt"
+    );
   }
 
   if (toFloor > 0 && !data.hasElevatorTo) {
-    price += toFloor * 25;
-    if (toFloor > 3) {
-      flags.push(
-        dic?.calculator?.flag_trageservice_einzug ||
-        "Einzug: Trageservice 4.+ Etage berücksichtigt"
-      );
-    }
+    price += toFloor * 28;
+    flags.push(
+      dic?.calculator?.flag_trageservice_einzug ||
+        "Einzug ohne Aufzug wurde berücksichtigt"
+    );
   }
 
-  price += boxesCount * 2.5;
+  if (walkingDistanceFrom > 20) {
+    price += (walkingDistanceFrom - 20) * 1.8;
+    flags.push(`Auszug Laufweg: ${walkingDistanceFrom} m`);
+  }
 
-  if (Array.isArray(data.heavyItems) && data.heavyItems.length > 0) {
-    flags.push(
-      `${dic?.calculator?.flag_heavy_transport || "Schwertransport eingeplant"}: ${data.heavyItems.join(", ")}`
-    );
+  if (walkingDistanceTo > 20) {
+    price += (walkingDistanceTo - 20) * 1.8;
+    flags.push(`Einzug Laufweg: ${walkingDistanceTo} m`);
+  }
 
-    data.heavyItems.forEach((item) => {
-      const value = item.toLowerCase();
-      if (value.includes("flügel")) price += 350;
-      else if (value.includes("piano") || value.includes("klavier")) price += 180;
-      else if (value.includes("safe") || value.includes("tresor")) price += 150;
-      else if (value.includes("aquarium")) price += 100;
-      else if (value.includes("fitness")) price += 80;
-    });
+  if (data.courtyardAccessFrom) {
+    price += 45;
+    flags.push("Auszug mit Innenhof oder erschwertem Zugang");
+  }
+
+  if (data.courtyardAccessTo) {
+    price += 45;
+    flags.push("Einzug mit Innenhof oder erschwertem Zugang");
+  }
+
+  if (data.narrowStairsFrom) {
+    price += 95;
+    flags.push("Auszug mit engem Treppenhaus");
+  }
+
+  if (data.narrowStairsTo) {
+    price += 95;
+    flags.push("Einzug mit engem Treppenhaus");
+  }
+
+  if (data.noParkingZoneFrom) {
+    price += 85;
+    flags.push("Haltezone am Auszugsort einplanen");
+  }
+
+  if (data.noParkingZoneTo) {
+    price += 85;
+    flags.push("Haltezone am Einzugsort einplanen");
   }
 
   if (data.packingService) {
-    price += cbm * 18;
-    flags.push(dic?.calculator?.flag_packing_service || "Einpackservice gebucht");
+    price += cbm * 16;
+    flags.push("Einpackservice notiert");
   }
 
   if (data.unpackingService) {
-    price += cbm * 15;
-    flags.push(
-      dic?.calculator?.flag_unpacking_service || "Auspackservice gebucht"
-    );
+    price += cbm * 12;
+    flags.push("Auspackhilfe notiert");
   }
 
   if (data.disassemblyService) {
     price += rooms * 45;
-    flags.push(
-      dic?.calculator?.flag_disassembly_service || "Möbeldemontage gebucht"
-    );
+    flags.push("Demontageaufwand berücksichtigt");
   }
 
   if (data.assemblyService) {
     price += rooms * 45;
-    flags.push(dic?.calculator?.flag_assembly_service || "Möbelmontage gebucht");
+    flags.push("Montageaufwand berücksichtigt");
   }
 
   if (data.kitchenAssembly) {
-    price += 350;
-    flags.push(
-      dic?.calculator?.flag_kitchen_assembly ||
-      "Küchendemontage/-montage notiert"
-    );
+    price += 320;
+    flags.push("Küchenservice eingeplant");
   }
 
-  const walkingDistanceFrom = Math.max(0, num(data.walkingDistanceFrom, 0));
-  const walkingDistanceTo = Math.max(0, num(data.walkingDistanceTo, 0));
+  if (Array.isArray(data.heavyItems) && data.heavyItems.length > 0) {
+    data.heavyItems.forEach((item) => {
+      const value = normalizeText(item);
 
-  if (walkingDistanceFrom > 20 || data.courtyardAccessFrom) {
-    const extraDistance = data.courtyardAccessFrom
-      ? 30
-      : walkingDistanceFrom - 20;
-    price += extraDistance * 1.5;
-    flags.push(
-      data.courtyardAccessFrom
-        ? dic?.calculator?.flag_difficult_access_from ||
-        "Auszug: Erschwerter Zugang (Innenhof)"
-        : `${dic?.calculator?.flag_walking_distance_from || "Auszug: Laufweg"} ${walkingDistanceFrom}m`
-    );
-  }
+      if (value.includes("grand") || value.includes("flugel")) price += 320;
+      else if (value.includes("piano") || value.includes("klavier")) price += 180;
+      else if (value.includes("safe") || value.includes("tresor")) price += 150;
+      else if (value.includes("aquarium")) price += 110;
+      else if (value.includes("fitness")) price += 90;
+      else price += 70;
+    });
 
-  if (walkingDistanceTo > 20 || data.courtyardAccessTo) {
-    const extraDistance = data.courtyardAccessTo ? 30 : walkingDistanceTo - 20;
-    price += extraDistance * 1.5;
-    flags.push(
-      data.courtyardAccessTo
-        ? dic?.calculator?.flag_difficult_access_to ||
-        "Einzug: Erschwerter Zugang (Innenhof)"
-        : `${dic?.calculator?.flag_walking_distance_to || "Einzug: Laufweg"} ${walkingDistanceTo}m`
-    );
-  }
-
-  if (data.narrowStairsFrom) {
-    price += 100;
-    flags.push(
-      dic?.calculator?.flag_narrow_stairs_from ||
-      "Auszug: Enges Treppenhaus (Tragezuschlag)"
-    );
-  }
-
-  if (data.narrowStairsTo) {
-    price += 100;
-    flags.push(
-      dic?.calculator?.flag_narrow_stairs_to ||
-      "Einzug: Enges Treppenhaus (Tragezuschlag)"
-    );
-  }
-
-  if (data.noParkingZoneFrom) {
-    price += 90;
-    flags.push(
-      dic?.calculator?.flag_no_parking_from ||
-      "Auszug: Halteverbotszone inkl. Anmeldung"
-    );
-  }
-
-  if (data.noParkingZoneTo) {
-    price += 90;
-    flags.push(
-      dic?.calculator?.flag_no_parking_to ||
-      "Einzug: Halteverbotszone inkl. Anmeldung"
-    );
+    flags.push("Schwerstücke oder Spezialgut berücksichtigt");
   }
 
   if (data.timeConstraint === "genaues_datum") {
-    price *= 1.1;
-    flags.push(
-      dic?.calculator?.flag_time_guarantee ||
-      "Termingarantie für Wunschdatum eingepreist"
-    );
+    price *= 1.06;
+    flags.push("Festes Zeitfenster eingeplant");
   } else if (data.timeConstraint === "wochenende") {
-    price *= 1.2;
-    flags.push(dic?.calculator?.flag_weekend_surcharge || "Wochenendzuschlag");
+    price *= 1.12;
+    flags.push("Wochenendtermin eingeplant");
   } else if (data.timeConstraint === "dringend") {
-    price *= 1.3;
-    flags.push(
-      dic?.calculator?.flag_urgent_surcharge ||
-      "Dringender Termin (Expresszuschlag einkalkuliert)"
-    );
+    price *= 1.18;
+    flags.push("Kurzfristiger Termin angefragt");
   }
 
   if (data.isPartialMove) {
-    price *= 0.65;
-    flags.push(
-      dic?.calculator?.flag_partial_move ||
-      "Teilleistung / Beiladung berücksichtigt"
-    );
+    price *= 0.72;
+    flags.push("Teilleistung oder Beiladung berücksichtigt");
   }
 
   if (text(data.freeTextNote)) {
-    flags.push(
-      dic?.calculator?.flag_notes_noted ||
-      "Ihren persönlichen Text-Vermerk haben wir notiert"
-    );
+    flags.push("Persönliche Hinweise wurden notiert");
   }
 
-  price = minPrice(price, 350); // Minimum Order Value for Professional Moving
-  price *= getGlobalMultiplier(base);
+  price *= getSeasonalMultiplier();
+  price *= getCityMultiplier(base?.fromAddress || "");
+  price = minPrice(price, 360);
 
-  let teamSize = dic?.calculator?.team_2_persons || "2 Personen";
-  if (cbm > 20) teamSize = dic?.calculator?.team_3_persons || "3 Personen";
-  if (cbm > 40) teamSize = dic?.calculator?.team_4_persons || "4 Personen";
+  const drivers: string[] = ["Volumen und Inventar", getDistanceBandDriver(distanceKm)];
 
-  const hours = Math.max(3, Math.round(cbm / 4));
+  if ((fromFloor > 1 && !data.hasElevatorFrom) || (toFloor > 1 && !data.hasElevatorTo)) {
+    drivers.push("Stockwerke ohne Aufzug");
+  }
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: formatHours(hours, hours + 2, dic),
-    recommendedTeam: teamSize,
-    calculationBasis: `${Math.round(cbm)} m³ ${dic?.calculator?.volume || "Volumen"} | ≈${distanceKm} km ${dic?.calculator?.distance || "Distanz"}`,
-    operationalFlags: uniqueFlags(flags),
+  if (
+    walkingDistanceFrom > 20 ||
+    walkingDistanceTo > 20 ||
+    data.courtyardAccessFrom ||
+    data.courtyardAccessTo ||
+    data.narrowStairsFrom ||
+    data.narrowStairsTo
+  ) {
+    drivers.push("Laufwege oder schwieriger Zugang");
+  }
+
+  if (
+    data.packingService ||
+    data.unpackingService ||
+    data.disassemblyService ||
+    data.assemblyService ||
+    data.kitchenAssembly ||
+    data.timeConstraint !== "flexibel"
+  ) {
+    drivers.push("Montage, Verpackung oder Zeitfenster");
+  }
+
+  if ((data.heavyItems?.length || 0) > 0) {
+    drivers.push("Schwerstücke oder Spezialtransport");
+  }
+
+  if (hasSeasonalDemand()) {
+    drivers.push("Starke Terminlage");
+  }
+
+  let recommendedTeam = dic?.calculator?.team_2_persons || "2 Personen";
+  if (cbm > 20) recommendedTeam = dic?.calculator?.team_3_persons || "3 Personen";
+  if (cbm > 40) recommendedTeam = dic?.calculator?.team_4_persons || "4 Personen";
+
+  const baseHours = Math.max(3, Math.round(cbm / 4));
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: formatHours(baseHours, baseHours + 2, dic),
+    recommendedTeam,
+    calculationBasis: `~${Math.round(cbm)} m3 Volumen | ${Math.round(distanceKm)} km Strecke`,
+    operationalFlags: flags,
     confidenceLevel,
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Ihren Angaben zu Volumen, Strecke, Zugang, Zusatzleistungen und Terminlage.",
+    pricingSignals: makeSignals("umzug", drivers, {
+      areaM2: rawArea,
+      cbm: Math.round(cbm),
+      rooms,
+      boxesCount,
+      distanceKm: Math.round(distanceKm),
+      fromFloor,
+      toFloor,
+      hasElevatorFrom: !!data.hasElevatorFrom,
+      hasElevatorTo: !!data.hasElevatorTo,
+      walkingDistanceFrom,
+      walkingDistanceTo,
+      noParkingZoneFrom: !!data.noParkingZoneFrom,
+      noParkingZoneTo: !!data.noParkingZoneTo,
+      packingService: !!data.packingService,
+      unpackingService: !!data.unpackingService,
+      disassemblyService: !!data.disassemblyService,
+      assemblyService: !!data.assemblyService,
+      kitchenAssembly: !!data.kitchenAssembly,
+      timeConstraint: data.timeConstraint,
+      heavyItems: data.heavyItems,
+      uncertainVolume: !!data.uncertainVolume,
+    }),
     cbm: Math.round(cbm),
-  };
+  });
 }
 
 export function calculateReinigungAdvanced(
@@ -433,131 +551,151 @@ export function calculateReinigungAdvanced(
 ): AdvancedEstimate {
   const flags: string[] = [];
   let confidenceLevel: ConfidenceLevel = "high";
-  let uncertaintyMultiplier = 1.15;
+  let uncertaintyMultiplier = 1.14;
 
   const rawArea = Math.max(0, num(data.areaM2, 0));
   const area = rawArea || 60;
+  const windowsCount = Math.max(0, num(data.windowsCount, 0));
 
   if (!rawArea) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "low");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.4);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.35);
     flags.push(
       dic?.calculator?.flag_cleaning_area_missing ||
-      "Fläche für genauere Schätzung ergänzen"
+        "Fläche ergänzen, damit der Rahmen belastbarer wird"
     );
   }
 
   if (data.uncertainCondition) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "medium");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.3);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.25);
+    flags.push("Zustand wird noch vor Ort geprüft");
   }
 
-  let m2Rate = 4.8;
-  if (area < 40) m2Rate = 6.5;
-  else if (area < 80) m2Rate = 5.2;
-  else if (area > 150) m2Rate = 3.9;
+  let m2Rate = 5.4;
+  if (area < 40) m2Rate = 6.4;
+  else if (area >= 150) m2Rate = 4.3;
+  else if (area >= 80) m2Rate = 4.8;
 
   let price = Math.max(149, area * m2Rate);
 
   if (data.propertyType === "haus") {
-    price *= 1.15;
-    flags.push(
-      dic?.calculator?.flag_house_surcharge || "Hauszuschlag für Treppen/Flure"
-    );
+    price *= 1.12;
+    flags.push("Hausstruktur mit Fluren oder Treppen berücksichtigt");
   } else if (data.propertyType === "buero") {
-    price *= 1.1;
-    flags.push(
-      dic?.calculator?.flag_commercial_structure ||
-      "Gewerbliche Objektstruktur berücksichtigt"
-    );
+    price *= 1.08;
+    flags.push("Gewerbliche Objektstruktur berücksichtigt");
   }
 
   let conditionMultiplier = 1;
-  if (data.condition === "mittel") conditionMultiplier = 1.3;
+  if (data.condition === "mittel") conditionMultiplier = 1.22;
   if (data.condition === "stark") {
-    conditionMultiplier = 1.6;
-    flags.push(dic?.calculator?.flag_heavy_dirt || "Reinigungsgrad: Stark");
+    conditionMultiplier = 1.45;
+    flags.push("Erhöhter Verschmutzungsgrad berücksichtigt");
   }
 
   price *= conditionMultiplier;
-  price += Math.max(0, num(data.windowsCount, 0)) * 12;
+  price += windowsCount * 11;
 
   if (Array.isArray(data.extras)) {
     data.extras.forEach((extra) => {
       if (extra === "kueche_tiefenreinigung") {
-        price += 70;
-        flags.push(
-          dic?.calculator?.flag_kitchen_deep_clean ||
-          "Inkl. Küche Tiefenreinigung"
-        );
+        price += 65;
+        flags.push("Tiefenreinigung der Küche berücksichtigt");
       }
 
       if (extra === "bad_kalk") {
         price += 45;
-        flags.push(
-          dic?.calculator?.flag_bad_lime || "Inkl. Bad Intensiventkalkung"
-        );
+        flags.push("Zusatzaufwand im Bad berücksichtigt");
       }
 
       if (extra === "teppich") {
-        price += area * 1.5;
-        flags.push(
-          dic?.calculator?.flag_carpet_cleaning || "Inkl. Teppichreinigung"
-        );
+        price += area * 1.2;
+        flags.push("Teppichreinigung berücksichtigt");
+      }
+
+      if (extra === "fenster_glas") {
+        price += Math.max(25, windowsCount * 6);
+        flags.push("Fenster- und Glasflächen berücksichtigt");
       }
     });
   }
 
   if (data.isFurnished) {
-    price *= 1.2;
-    flags.push(
-      dic?.calculator?.flag_furnished_extra ||
-      "Objekt ist möbliert (Mehraufwand einkalkuliert)"
-    );
+    price *= 1.12;
+    flags.push("Möbliertes Objekt berücksichtigt");
   }
 
   if (data.keysHandover) {
     price += 25;
-    flags.push(dic?.calculator?.flag_keys_handover || "Schlüsselübergabe separat");
+    flags.push("Schlüsselübergabe berücksichtigt");
   }
 
   if (data.cleaningGuarantee) {
-    price += 50;
-    flags.push(
-      dic?.calculator?.flag_handover_guarantee ||
-      "Inklusive Abnahmegarantie für Vermieter"
-    );
+    price += 40;
+    flags.push("Abnahmeorientierte Endkontrolle notiert");
   }
 
   if (data.frequency === "regelmaessig") {
-    price *= 0.85;
-    flags.push(
-      dic?.calculator?.flag_regular_discount ||
-      "Dauerauftrag-Rabatt angewendet"
-    );
+    price *= 0.88;
+    flags.push("Regelmäßiger Turnus berücksichtigt");
   }
 
   if (text(data.freeTextNote)) {
-    flags.push(dic?.calculator?.flag_notes_noted || "Ihren Kommentar haben wir notiert");
+    flags.push("Persönliche Hinweise wurden notiert");
   }
 
-  price = minPrice(price, 120);
   price *= getSeasonalMultiplier();
+  price = minPrice(price, 130);
 
-  let teamSize = dic?.calculator?.person_1 || "1 Person";
-  if (area > 80) teamSize = dic?.calculator?.team_2_persons || "2 Personen";
-  if (area > 150) teamSize = dic?.calculator?.team_3_persons || "3 Personen";
+  const drivers: string[] = ["Fläche und Objektart", "Verschmutzungsgrad"];
 
-  const hours = Math.max(2, Math.round(area / 20));
+  if (data.isFurnished) {
+    drivers.push("Möblierung oder enge Objektstruktur");
+  }
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: formatHours(hours, hours + 2, dic),
-    recommendedTeam: teamSize,
-    calculationBasis: `${area} m² ${dic?.calculator?.living_area || "Fläche"} | ${dic?.calculator?.condition_level || "Zustand"}: ${data.condition}`,
-    operationalFlags: uniqueFlags(flags),
+  if (windowsCount > 0 || (data.extras?.length || 0) > 0) {
+    drivers.push("Fenster und Zusatzleistungen");
+  }
+
+  if (hasSeasonalDemand() || data.frequency === "einmalig") {
+    drivers.push("Terminlage");
+  }
+
+  if (data.cleaningGuarantee) {
+    drivers.push("Abnahmeorientierte Endkontrolle");
+  }
+
+  let recommendedTeam = dic?.calculator?.person_1 || "1 Person";
+  if (area > 80) recommendedTeam = dic?.calculator?.team_2_persons || "2 Personen";
+  if (area > 150) recommendedTeam = dic?.calculator?.team_3_persons || "3 Personen";
+
+  const baseHours = Math.max(2, Math.round(area / 22));
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: formatHours(baseHours, baseHours + 2, dic),
+    recommendedTeam,
+    calculationBasis: `${Math.round(area)} m2 Fläche | Zustand: ${data.condition || "mittel"}`,
+    operationalFlags: flags,
     confidenceLevel,
-  };
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Ihren Angaben zu Fläche, Objektart, Zustand, Zusatzleistungen und Terminlage.",
+    pricingSignals: makeSignals("reinigung", drivers, {
+      areaM2: Math.round(area),
+      propertyType: data.propertyType,
+      condition: data.condition,
+      windowsCount,
+      isFurnished: !!data.isFurnished,
+      extras: data.extras,
+      frequency: data.frequency,
+      keysHandover: !!data.keysHandover,
+      cleaningGuarantee: !!data.cleaningGuarantee,
+      uncertainCondition: !!data.uncertainCondition,
+    }),
+  });
 }
 
 export function calculateEntsorgungAdvanced(
@@ -566,118 +704,131 @@ export function calculateEntsorgungAdvanced(
 ): AdvancedEstimate {
   const flags: string[] = [];
   let confidenceLevel: ConfidenceLevel = "high";
-  let uncertaintyMultiplier = 1.25;
+  let uncertaintyMultiplier = 1.24;
 
   const rawVolume = Math.max(0, num(data.wasteVolumeM3, 0));
   const expectedVolume = rawVolume || 3;
+  const loadingDistanceMeters = Math.max(0, num(data.loadingDistanceMeters, 0));
 
   if (!rawVolume) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "low");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.5);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.45);
     flags.push(
       dic?.calculator?.flag_waste_volume_missing ||
-      "Volumenangabe empfohlen für präziseren Preis"
+        "Volumen ergänzen, damit der Rahmen belastbarer wird"
     );
   }
 
   if (data.uncertainVolume) {
     confidenceLevel = downgradeConfidence(confidenceLevel, "medium");
-    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.4);
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.35);
+    flags.push("Volumen ist noch nicht abschließend geklärt");
   }
 
-  let price = 149 + expectedVolume * 45; // Increased disposal handling fee
+  let price = 155 + expectedVolume * 48;
 
   if (Array.isArray(data.wasteCategories) && data.wasteCategories.length > 0) {
-    data.wasteCategories.forEach((cat) => {
-      const value = cat.toLowerCase();
+    data.wasteCategories.forEach((category) => {
+      const value = normalizeText(category);
 
       if (value.includes("bauschutt")) {
         price += expectedVolume * 25;
-        flags.push(
-          dic?.calculator?.flag_construction_waste ||
-          "Zuschlag: Bauschuttdeponie"
-        );
-      }
-
-      if (value.includes("elektro")) {
-        price += 40;
-        flags.push(
-          dic?.calculator?.flag_e_waste || "Elektro-Recycling eingeplant"
-        );
-      }
-
-      if (value.includes("gruenschnitt")) {
-        price -= expectedVolume * 5;
-        flags.push(dic?.calculator?.flag_green_waste || "Grünschnitt/Bio (Vergünstigt)");
+        flags.push("Bauschutt oder schwere Fraktionen berücksichtigt");
+      } else if (value.includes("elektro")) {
+        price += 35;
+        flags.push("Elektrogeräte und Recycling berücksichtigt");
+      } else if (value.includes("misch")) {
+        price += expectedVolume * 12;
+      } else if (value.includes("metall")) {
+        price += expectedVolume * 8;
+      } else if (value.includes("grun")) {
+        price -= expectedVolume * 4;
       }
     });
   }
 
   let accessMultiplier = 1;
-  if (data.accessDifficulty === "mittel") accessMultiplier = 1.2;
+  if (data.accessDifficulty === "mittel") accessMultiplier = 1.15;
   if (data.accessDifficulty === "schwer") {
-    accessMultiplier = 1.4;
-    flags.push(
-      dic?.calculator?.flag_difficult_access ||
-      "Schwerer Zugang (Extra Tragezeit kalkuliert)"
-    );
+    accessMultiplier = 1.32;
+    flags.push("Schwieriger Zugang wurde berücksichtigt");
   }
 
   price *= accessMultiplier;
 
-  if (data.hazardMaterials) {
-    price *= 1.5;
-    flags.push(
-      dic?.calculator?.flag_hazard_materials ||
-      "Potenzielle Gefahrstoffe vorgemerkt"
-    );
-  }
-
-  const loadingDistanceMeters = Math.max(0, num(data.loadingDistanceMeters, 0));
-  if (loadingDistanceMeters > 20) {
-    price += (loadingDistanceMeters - 20) * 1.5;
-    flags.push(
-      `${dic?.calculator?.flag_loading_path || "Trageweg Laufstrecke"}: ${loadingDistanceMeters}m`
-    );
+  if (loadingDistanceMeters > 15) {
+    price += (loadingDistanceMeters - 15) * 1.4;
+    flags.push(`Laufweg zum Fahrzeug: ${loadingDistanceMeters} m`);
   }
 
   if (data.disassemblyRequired) {
-    price += 50 + expectedVolume * 10;
-    flags.push(
-      dic?.calculator?.flag_disassembly_on_site || "Inkl. Demontage vor Ort"
-    );
+    price += 65 + expectedVolume * 12;
+    flags.push("Demontage vor Ort eingeplant");
+  }
+
+  if (data.hazardMaterials) {
+    price *= 1.35;
+    flags.push("Sonderaufwand durch Problemstoffe notiert");
   }
 
   if (data.urgency === "dringend") {
-    price *= 1.35;
-    flags.push(
-      dic?.calculator?.flag_express_service || "Express-Service (Dringend)"
-    );
+    price *= 1.2;
+    flags.push("Kurzfristiger Termin angefragt");
   }
 
   if (text(data.freeTextNote)) {
-    flags.push(
-      dic?.calculator?.flag_waste_notes_noted ||
-      "Ihre Notiz speichern wir für die Planung"
-    );
+    flags.push("Persönliche Hinweise wurden notiert");
   }
 
-  price = minPrice(price, 180); // Professional disposal minimum
   price *= getGlobalMultiplier();
+  price = minPrice(price, 190);
 
-  let teamSize = dic?.calculator?.team_2_persons || "2 Personen";
-  if (expectedVolume > 15) teamSize = dic?.calculator?.team_3_persons || "3 Personen";
+  const drivers: string[] = ["Volumen und Materialarten"];
 
-  const hours = Math.max(1, Math.round(expectedVolume / 3));
+  if (data.accessDifficulty !== "einfach" || loadingDistanceMeters > 15) {
+    drivers.push("Zugang und Laufweg");
+  }
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: formatHours(hours, hours + 1, dic),
-    recommendedTeam: teamSize,
-    calculationBasis: `${expectedVolume} m³ ${dic?.calculator?.disposal_item || "Entsorgungsgut"}`,
-    operationalFlags: uniqueFlags(flags),
+  if (data.disassemblyRequired) {
+    drivers.push("Demontage vor Ort");
+  }
+
+  if (data.urgency === "dringend") {
+    drivers.push("Dringlichkeit");
+  }
+
+  if (data.hazardMaterials || (data.wasteCategories?.includes("bauschutt") ?? false)) {
+    drivers.push("Sonderaufwand oder Problemstoffe");
+  }
+
+  let recommendedTeam = dic?.calculator?.team_2_persons || "2 Personen";
+  if (expectedVolume > 15) recommendedTeam = dic?.calculator?.team_3_persons || "3 Personen";
+
+  const baseHours = Math.max(1, Math.round(expectedVolume / 3));
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: formatHours(baseHours, baseHours + 1, dic),
+    recommendedTeam,
+    calculationBasis: `~${Math.round(expectedVolume)} m3 Entsorgungsgut`,
+    operationalFlags: flags,
     confidenceLevel,
-  };
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Ihren Angaben zu Volumen, Materialarten, Zugang, Zusatzaufwand und Terminlage.",
+    pricingSignals: makeSignals("entsorgung", drivers, {
+      wasteVolumeM3: Math.round(expectedVolume),
+      wasteCategories: data.wasteCategories,
+      accessDifficulty: data.accessDifficulty,
+      loadingDistanceMeters,
+      disassemblyRequired: !!data.disassemblyRequired,
+      urgency: data.urgency,
+      hazardMaterials: !!data.hazardMaterials,
+      uncertainVolume: !!data.uncertainVolume,
+    }),
+    cbm: Math.round(expectedVolume),
+  });
 }
 
 export function calculateBueroumzugAdvanced(
@@ -690,60 +841,103 @@ export function calculateBueroumzugAdvanced(
   let uncertaintyMultiplier = 1.15;
 
   const workstations = Math.max(1, num(data.workstations, 1));
-  const cbm = workstations * 4.5; // Average 4.5cbm per workstation including desk, chair, storage
+  const archiveMeters = Math.max(0, num(data.archiveMeters, 0));
+  const distanceKm = getDistanceKm(base, 15);
+  const cbm = workstations * 4.5 + archiveMeters * 0.3;
 
-  let price = 300 + workstations * 180; // Basic logistics + per workstation fee
+  let price = 320 + workstations * 180 + archiveMeters * 32 + distanceKm * 2.4;
+  price *= getDistanceBandMultiplier(distanceKm);
+
+  if (distanceKm > 100) {
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.22);
+    flags.push("200-km-Einsatzkorridor mit Routen- und Teamplanung berücksichtigt");
+  }
+
+  if (workstations > 20) {
+    confidenceLevel = downgradeConfidence(confidenceLevel, "medium");
+    uncertaintyMultiplier = Math.max(uncertaintyMultiplier, 1.24);
+    flags.push("Größerer Büroumzug mit detaillierter Ablaufplanung empfohlen");
+  }
+
+  if (archiveMeters > 30) {
+    price *= 1.05;
+    flags.push("Größerer Archivbestand berücksichtigt");
+  }
 
   if (data.itSetup) {
     price += workstations * 45;
-    flags.push(dic?.calculator?.flag_office_it_setup || "IT-Infrastruktur Spezialtransport eingeplant");
-  }
-
-  const archiveMeters = Math.max(0, num(data.archiveMeters, 0));
-  if (archiveMeters > 0) {
-    price += archiveMeters * 35;
-    flags.push(`${dic?.calculator?.archive_meters || "Archivmeter"}: ${archiveMeters}m`);
+    flags.push("IT-Arbeitsplätze und Peripherie berücksichtigt");
   }
 
   if (data.packingService) {
-    price += cbm * 15;
+    price += cbm * 14;
+    flags.push("Packservice eingeplant");
   }
 
   if (data.disassemblyService) {
-    price += workstations * 30;
+    price += workstations * 28;
+    flags.push("Demontageaufwand berücksichtigt");
   }
 
   if (data.assemblyService) {
-    price += workstations * 30;
+    price += workstations * 28;
+    flags.push("Montageaufwand berücksichtigt");
   }
 
-  const distanceKm = Math.max(0, num(base?.distance, 15));
-  price += distanceKm * 2.5;
+  if (data.walkingDistanceFrom > 20 || data.walkingDistanceTo > 20) {
+    price +=
+      Math.max(0, data.walkingDistanceFrom - 20) * 2 +
+      Math.max(0, data.walkingDistanceTo - 20) * 2;
+    flags.push("Längere Laufwege berücksichtigt");
+  }
 
-  const walkingDistanceFrom = Math.max(0, num(data.walkingDistanceFrom, 15));
-  const walkingDistanceTo = Math.max(0, num(data.walkingDistanceTo, 15));
-
-  if (walkingDistanceFrom > 20) price += (walkingDistanceFrom - 20) * 2;
-  if (walkingDistanceTo > 20) price += (walkingDistanceTo - 20) * 2;
-
-  if (data.noParkingZoneFrom) price += 95;
-  if (data.noParkingZoneTo) price += 95;
+  if (data.noParkingZoneFrom || data.noParkingZoneTo) {
+    price += 95 * Number(data.noParkingZoneFrom) + 95 * Number(data.noParkingZoneTo);
+    flags.push("Haltezonen berücksichtigt");
+  }
 
   price *= getGlobalMultiplier(base);
-  price = minPrice(price, 500);
+  price = minPrice(price, 520);
 
-  const teamSize = workstations <= 5 ? "2-3 Personen" : workstations <= 15 ? "4-6 Personen" : "8+ Personen";
-  const hours = Math.ceil(workstations * 2.5);
+  const drivers = trimDrivers([
+    "Arbeitsplätze und Transportvolumen",
+    getDistanceBandDriver(distanceKm),
+    data.itSetup ? "IT-Handling" : "",
+    archiveMeters > 0 ? "Archiv oder Zusatzbestand" : "",
+    data.walkingDistanceFrom > 20 || data.walkingDistanceTo > 20 ? "Laufwege und Objektzugang" : "",
+    data.disassemblyService || data.assemblyService ? "Montageleistungen" : "",
+  ]);
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: formatHours(hours, hours + 4, dic),
-    recommendedTeam: teamSize,
-    calculationBasis: `${workstations} ${dic?.calculator?.workstations || "Arbeitsplätze"} | ${Math.round(cbm)} m³`,
-    operationalFlags: uniqueFlags(flags),
+  const recommendedTeam =
+    workstations <= 5 ? "2-3 Personen" : workstations <= 15 ? "4-6 Personen" : "8+ Personen";
+  const baseHours = Math.ceil(workstations * 2.5);
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: formatHours(baseHours, baseHours + 4, dic),
+    recommendedTeam,
+    calculationBasis: `${workstations} Arbeitsplätze | ~${Math.round(cbm)} m3`,
+    operationalFlags: flags,
     confidenceLevel,
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Ihren Angaben zu Arbeitsplatzanzahl, Strecke, Zugang und Zusatzleistungen.",
+    pricingSignals: makeSignals("bueroumzug", drivers, {
+      workstations,
+      archiveMeters,
+      distanceKm: Math.round(distanceKm),
+      itSetup: !!data.itSetup,
+      packingService: !!data.packingService,
+      disassemblyService: !!data.disassemblyService,
+      assemblyService: !!data.assemblyService,
+      walkingDistanceFrom: data.walkingDistanceFrom,
+      walkingDistanceTo: data.walkingDistanceTo,
+      noParkingZoneFrom: !!data.noParkingZoneFrom,
+      noParkingZoneTo: !!data.noParkingZoneTo,
+    }),
     cbm: Math.round(cbm),
-  };
+  });
 }
 
 export function calculateSeniorenumzugAdvanced(
@@ -751,15 +945,29 @@ export function calculateSeniorenumzugAdvanced(
   base: BaseDetails,
   dic?: any
 ): AdvancedEstimate {
-  // Seniorenumzug is a wrapper around Umzug with premium defaults and care package
   const baseResult = calculateUmzugAdvanced(data, base, dic);
-  
-  if (data.seniorCarePackage) {
-    const careSurcharge = 250; // Premium service surcharge for senior assistance
-    baseResult.priceRange.min += careSurcharge;
-    baseResult.priceRange.max += careSurcharge;
-    baseResult.operationalFlags.push(dic?.calculator?.flag_senior_care || "Senioren-Begleitpaket (Sorglos) aktiviert");
+
+  if (!data.seniorCarePackage) {
+    return baseResult;
   }
+
+  baseResult.priceRange.min += 250;
+  baseResult.priceRange.max += 250;
+  baseResult.operationalFlags = uniqueFlags([
+    ...baseResult.operationalFlags,
+    dic?.calculator?.flag_senior_care || "Begleitservice für Seniorenumzug eingeplant",
+  ]);
+  baseResult.topDrivers = trimDrivers([
+    "Begleitservice und sensible Planung",
+    ...baseResult.topDrivers,
+  ]);
+  baseResult.operationalDrivers = baseResult.topDrivers;
+  baseResult.pricingSignals = makeSignals("seniorenumzug", baseResult.topDrivers, {
+    ...baseResult.pricingSignals.metrics,
+    seniorCarePackage: true,
+  });
+  baseResult.priceExplanation =
+    "Diese vorläufige Einschätzung basiert auf Ihren Angaben zu Volumen, Strecke, Zugang und dem gewünschten Begleitservice.";
 
   return baseResult;
 }
@@ -773,34 +981,52 @@ export function calculateKlaviertransportAdvanced(
   const confidenceLevel: ConfidenceLevel = "high";
   const uncertaintyMultiplier = 1.1;
 
-  let price = data.pianoType === "grand" ? 350 : 180;
-  
   const fromFloor = Math.max(0, num(data.fromFloor, 0));
   const toFloor = Math.max(0, num(data.toFloor, 0));
+  const distanceKm = Math.max(0, num(data.distanceKm, 10));
+
+  let price = data.pianoType === "grand" ? 390 : 220;
 
   if (fromFloor > 0 && !data.hasElevatorFrom) {
-    price += fromFloor * 40;
+    price += fromFloor * 45;
+    flags.push("Ausgangsort ohne Aufzug");
   }
+
   if (toFloor > 0 && !data.hasElevatorTo) {
-    price += toFloor * 40;
+    price += toFloor * 45;
+    flags.push("Zielort ohne Aufzug");
   }
 
-  const distanceKm = Math.max(0, num(data.distanceKm, 10));
-  price += distanceKm * 2;
-
-  flags.push(dic?.calculator?.flag_piano_special || "Klavier/Flügel Speziallogistik (Schlitten & Schutz)");
-
+  price += distanceKm * 2.2;
   price *= getGlobalMultiplier(base);
-  price = minPrice(price, 220);
+  price = minPrice(price, 260);
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: "2 - 4 Std.",
+  const drivers = trimDrivers([
+    data.pianoType === "grand" ? "Flügel oder Großinstrument" : "Instrumenttyp",
+    fromFloor > 0 || toFloor > 0 ? "Stockwerke und Zugang" : "",
+    "Strecke und Spezialhandling",
+  ]);
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: "ca. 2 - 4 Std.",
     recommendedTeam: "2-3 Personen",
-    calculationBasis: data.pianoType === "grand" ? "Flügel" : "Klavier (Hock)",
-    operationalFlags: uniqueFlags(flags),
+    calculationBasis: data.pianoType === "grand" ? "Flügel" : "Klavier",
+    operationalFlags: flags,
     confidenceLevel,
-  };
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Instrumenttyp, Stockwerken, Zugang und Strecke.",
+    pricingSignals: makeSignals("klaviertransport", drivers, {
+      pianoType: data.pianoType,
+      fromFloor,
+      toFloor,
+      hasElevatorFrom: !!data.hasElevatorFrom,
+      hasElevatorTo: !!data.hasElevatorTo,
+      distanceKm: Math.round(distanceKm),
+    }),
+  });
 }
 
 export function calculateEinlagerungAdvanced(
@@ -814,35 +1040,47 @@ export function calculateEinlagerungAdvanced(
 
   const volume = Math.max(1, num(data.volumeM3, 5));
   const months = Math.max(1, num(data.durationMonths, 1));
-  
-  const monthlyRate = volume * 18;
-  let price = monthlyRate * months;
+
+  let price = volume * 18 * months;
 
   if (data.pickupRequired) {
-    const pickupFee = 150 + volume * 25;
-    price += pickupFee;
-    flags.push(dic?.calculator?.flag_storage_pickup || "Inkl. Abholung und Einlagerungsservice");
+    price += 150 + volume * 25;
+    flags.push("Abholung und Einlagerung eingeplant");
   }
 
   if (data.insuranceValue > 5000) {
     price += (data.insuranceValue - 5000) * 0.002;
-    flags.push(dic?.calculator?.flag_storage_insurance || "Zusatzversicherung für Lagergut");
+    flags.push("Höhere Versicherungssumme berücksichtigt");
   }
-
-  flags.push(`${dic?.calculator?.storage_volume || "Lagervolumen"}: ${volume} m³ | ${dic?.calculator?.duration || "Dauer"}: ${months} ${dic?.common?.months || "Monate"}`);
 
   price *= getGlobalMultiplier(base);
   price = minPrice(price, 150);
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: "Voraussichtliche Mietdauer: " + months + " Monate",
+  const drivers = trimDrivers([
+    "Lagervolumen und Laufzeit",
+    data.pickupRequired ? "Abholung und Transport" : "",
+    data.insuranceValue > 5000 ? "Versicherungswert" : "",
+  ]);
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: `Voraussichtliche Mietdauer: ${months} Monate`,
     recommendedTeam: data.pickupRequired ? "2 Personen (Abholung)" : "Self-Storage",
-    calculationBasis: `${volume} m³ Storage | ${months} Monate`,
-    operationalFlags: uniqueFlags(flags),
+    calculationBasis: `${volume} m3 Lagergut | ${months} Monate`,
+    operationalFlags: flags,
     confidenceLevel,
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Volumen, Lagerdauer, Abholung und Versicherungswert.",
+    pricingSignals: makeSignals("einlagerung", drivers, {
+      volumeM3: volume,
+      durationMonths: months,
+      pickupRequired: !!data.pickupRequired,
+      insuranceValue: Math.round(data.insuranceValue),
+    }),
     cbm: volume,
-  };
+  });
 }
 
 export function calculateMalerarbeitenAdvanced(
@@ -855,7 +1093,7 @@ export function calculateMalerarbeitenAdvanced(
   const uncertaintyMultiplier = 1.2;
 
   const area = Math.max(1, num(data.areaM2, 50));
-  
+
   let rate = 14;
   if (data.paintQuality === "premium") rate = 18;
   if (data.paintQuality === "bio") rate = 22;
@@ -864,34 +1102,50 @@ export function calculateMalerarbeitenAdvanced(
 
   if (data.includesCeiling) {
     price *= 1.35;
-    flags.push(dic?.calculator?.flag_painting_ceiling || "Inkl. Deckenanstrich");
+    flags.push("Deckenflächen berücksichtigt");
   }
 
   if (data.includesDoors) {
-    price += 80 * 2;
-    flags.push(dic?.calculator?.flag_painting_doors || "Inkl. Türen/Rahmen lackieren");
+    price += 160;
+    flags.push("Türen oder Zargen berücksichtigt");
   }
 
   if (data.isFurnished) {
     price *= 1.25;
-    flags.push(dic?.calculator?.flag_painting_furnished || "Möbliert (Mehraufwand für Abdecken/Rücken)");
+    flags.push("Möbliertes Objekt berücksichtigt");
   }
-
-  flags.push(`${dic?.calculator?.painting_area || "Anstrichfläche"}: ~${area} m²`);
 
   price *= getGlobalMultiplier(base);
   price = minPrice(price, 250);
 
-  const hours = Math.max(4, Math.ceil(area / 10));
+  const baseHours = Math.max(4, Math.ceil(area / 10));
+  const drivers = trimDrivers([
+    "Fläche und Farbqualität",
+    data.includesCeiling ? "Deckenflächen" : "",
+    data.includesDoors ? "Türen oder Zargen" : "",
+    data.isFurnished ? "Möbliertes Objekt" : "",
+  ]);
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: formatHours(hours, hours + 6, dic),
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: formatHours(baseHours, baseHours + 6, dic),
     recommendedTeam: area > 100 ? "2-3 Personen" : "1-2 Personen",
-    calculationBasis: `${area} m² Wandfläche | Qualität: ${data.paintQuality}`,
-    operationalFlags: uniqueFlags(flags),
+    calculationBasis: `${area} m2 Wandfläche | Qualität: ${data.paintQuality}`,
+    operationalFlags: flags,
     confidenceLevel,
-  };
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Fläche, Materialqualität, Objektstruktur und Zusatzflächen.",
+    pricingSignals: makeSignals("malerarbeiten", drivers, {
+      areaM2: area,
+      paintQuality: data.paintQuality,
+      includesCeiling: !!data.includesCeiling,
+      includesDoors: !!data.includesDoors,
+      roomsCount: data.roomsCount,
+      isFurnished: !!data.isFurnished,
+    }),
+  });
 }
 
 export function calculateAkteneinlagerungAdvanced(
@@ -907,49 +1161,63 @@ export function calculateAkteneinlagerungAdvanced(
   const meters = Math.max(0, num(data.shelfMeters, 0));
   const months = Math.max(1, num(data.durationMonths, 6));
 
-  const monthlyRate = (boxes * 1.8) + (meters * 12);
-  let price = monthlyRate * months;
+  let price = (boxes * 1.8 + meters * 12) * months;
 
   if (months >= 12) {
     price *= 0.9;
-    flags.push(dic?.calculator?.flag_longterm_discount || "Langzeit-Rabatt angewendet (>12 Mon.)");
+    flags.push("Langfristige Laufzeit berücksichtigt");
   }
 
   if (data.pickupRequired) {
-    const pickupFee = 45 + (boxes * 0.6) + (meters * 4);
-    price += pickupFee;
-    flags.push(dic?.calculator?.flag_secure_pickup || "Sicherheits-Abholung durch Fachpersonal");
+    price += 45 + boxes * 0.6 + meters * 4;
+    flags.push("Sichere Abholung berücksichtigt");
   }
 
   if (data.securityShredding) {
-    const shredFee = (boxes * 15) + (meters * 25);
-    price += shredFee;
-    flags.push(dic?.calculator?.flag_secure_destruction || "Inkl. zertifizierter Aktenvernichtung");
+    price += boxes * 15 + meters * 25;
+    flags.push("Aktenvernichtung berücksichtigt");
   }
 
   if (data.digitalization) {
-    const scanFee = 85 + (meters * 150) + (boxes * 20);
-    price += scanFee;
-    flags.push(dic?.calculator?.flag_digitalization || "Inkl. Scan-on-Demand & Digitalisierung");
+    price += 85 + meters * 150 + boxes * 20;
+    flags.push("Digitalisierung berücksichtigt");
   }
 
   if (data.insuranceValue > 10000) {
     price += (data.insuranceValue - 10000) * 0.0015;
-    flags.push(dic?.calculator?.flag_archive_insurance || "Spezial-Versicherung für Dokumente");
+    flags.push("Erhöhte Versicherungssumme berücksichtigt");
   }
-
-  flags.push(`${dic?.calculator?.storage_volume || "Bestand"}: ${boxes} Boxen | ${meters} lfm`);
 
   price *= getGlobalMultiplier(base);
   price = minPrice(price, 180);
 
-  return {
-    priceRange: createPriceRange(price, uncertaintyMultiplier),
-    estimatedHours: "Mietdauer: " + months + " Monate",
+  const drivers = trimDrivers([
+    "Aktenbestand und Laufzeit",
+    data.pickupRequired ? "Abholung" : "",
+    data.securityShredding ? "Aktenvernichtung" : "",
+    data.digitalization ? "Digitalisierung" : "",
+  ]);
+
+  return finalizeEstimate({
+    price,
+    uncertaintyMultiplier,
+    estimatedHours: `Mietdauer: ${months} Monate`,
     recommendedTeam: "B2B Logistik-Team",
-    calculationBasis: `${boxes} Boxen / ${meters} lfm Archive Storage`,
-    operationalFlags: uniqueFlags(flags),
+    calculationBasis: `${boxes} Boxen | ${meters} lfm Archiv`,
+    operationalFlags: flags,
     confidenceLevel,
-    cbm: (boxes * 0.06) + (meters * 0.4),
-  };
+    drivers,
+    priceExplanation:
+      "Diese vorläufige Einschätzung basiert auf Bestand, Laufzeit, Sicherheitsanforderungen und Zusatzleistungen.",
+    pricingSignals: makeSignals("akteneinlagerung", drivers, {
+      boxCount: boxes,
+      shelfMeters: meters,
+      durationMonths: months,
+      pickupRequired: !!data.pickupRequired,
+      securityShredding: !!data.securityShredding,
+      digitalization: !!data.digitalization,
+      insuranceValue: Math.round(data.insuranceValue),
+    }),
+    cbm: boxes * 0.06 + meters * 0.4,
+  });
 }

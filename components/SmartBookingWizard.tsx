@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
     Box,
     Sparkles,
@@ -16,12 +17,24 @@ import {
     Shield,
     CheckCircle2,
     Upload,
+    Banknote,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { useCalculatorStore } from "@/store/calculatorStore";
 
-type ServiceType = "umzug" | "reinigung" | "entsorgung" | null;
+type ServiceType =
+    | "umzug"
+    | "reinigung"
+    | "entsorgung"
+    | "bueroumzug"
+    | "seniorenumzug"
+    | "klaviertransport"
+    | "einlagerung"
+    | "malerarbeiten"
+    | "akteneinlagerung"
+    | "leerfahrt"
+    | null;
 
 interface BookingState {
     step: number;
@@ -352,7 +365,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     };
 
     const renderServiceSelection = () => (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
                 {
                     id: "umzug",
@@ -372,27 +385,54 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                     icon: Trash2,
                     desc: t?.services?.entsorgung?.desc || "",
                 },
-            ].map((option) => (
-                <button
-                    key={option.id}
-                    onClick={() =>
-                        setState((prev) => ({
-                            ...prev,
-                            service: option.id as ServiceType,
-                            step: 2,
-                        }))
-                    }
-                    className="group relative w-full rounded-[24px] border border-white/10 bg-[#11131A] p-7 text-start shadow-[0_16px_40px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-blue-400/30 hover:bg-white/[0.03]"
-                    type="button"
-                >
-                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.05] transition-colors group-hover:bg-blue-400/10">
-                        <option.icon className="h-7 w-7 text-white/75 transition-colors group-hover:text-blue-300" />
-                    </div>
-                    <h3 className="mb-2 text-xl font-semibold tracking-tight text-white">
-                        {option.label}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-white/50">{option.desc}</p>
-                </button>
+                {
+                    id: "budget",
+                    label: "Preisvorschlag",
+                    icon: Banknote,
+                    desc: "Haben Sie ein festes Budget? Nennen Sie uns Ihren Rahmen.",
+                    isLink: true,
+                    href: "/anfrage-mit-preisrahmen"
+                },
+            ].map((option: any) => (
+                option.isLink ? (
+                    <Link
+                        key={option.id}
+                        href={option.href || "/"}
+                        className="group relative w-full rounded-[24px] border border-blue-400/20 bg-blue-400/5 p-7 text-start shadow-[0_16px_40px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-blue-400/40 hover:bg-blue-400/10"
+                    >
+                        <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-400/10 transition-colors group-hover:bg-blue-400/20">
+                            <option.icon className="h-7 w-7 text-blue-300" />
+                        </div>
+                        <h3 className="mb-2 text-xl font-semibold tracking-tight text-white">
+                            {option.label}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-blue-100/60">{option.desc}</p>
+                        <div className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400">
+                            Preisanfrage starten <ArrowRight size={14} />
+                        </div>
+                    </Link>
+                ) : (
+                    <button
+                        key={option.id}
+                        onClick={() =>
+                            setState((prev) => ({
+                                ...prev,
+                                service: option.id as ServiceType,
+                                step: 2,
+                            }))
+                        }
+                        className="group relative w-full rounded-[24px] border border-white/10 bg-[#11131A] p-7 text-start shadow-[0_16px_40px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-blue-400/30 hover:bg-white/[0.03]"
+                        type="button"
+                    >
+                        <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.05] transition-colors group-hover:bg-blue-400/10">
+                            <option.icon className="h-7 w-7 text-white/75 transition-colors group-hover:text-blue-300" />
+                        </div>
+                        <h3 className="mb-2 text-xl font-semibold tracking-tight text-white">
+                            {option.label}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-white/50">{option.desc}</p>
+                    </button>
+                )
             ))}
         </div>
     );

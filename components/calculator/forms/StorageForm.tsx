@@ -35,7 +35,7 @@ export default function StorageForm({ dic, currentStep = 1 }: { dic?: any; curre
             className="space-y-8"
           >
             <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/30">
+              <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
                 <Package size={14} className="text-blue-400" />
                 Lager-Details
               </h3>
@@ -80,7 +80,7 @@ export default function StorageForm({ dic, currentStep = 1 }: { dic?: any; curre
                 icon={<Truck size={18} className="text-blue-400" />}
               />
               <div className="rounded-2xl border border-white/5 bg-[#0B0D12] p-5">
-                <label className="mb-2 block text-[10px] font-black uppercase tracking-widest text-white/20">Versicherungswert</label>
+                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-white/20">Versicherungswert</label>
                 <div className="flex items-center gap-3">
                   <ShieldCheck size={18} className="text-emerald-400" />
                   <input
@@ -106,7 +106,7 @@ export default function StorageForm({ dic, currentStep = 1 }: { dic?: any; curre
             className="space-y-8"
           >
             <div className="space-y-4">
-              <label className="text-[10px] font-black uppercase tracking-widest text-white/20">Besondere Anforderungen</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Besondere Anforderungen</label>
               <textarea
                 value={einlagerungData.freeTextNote || ""}
                 onChange={(e) => updateEinlagerungData({ freeTextNote: e.target.value })}
@@ -125,7 +125,7 @@ function FieldCard({ label, children, tip }: { label: string; children: React.Re
   return (
     <div className="space-y-2 rounded-2xl border border-white/5 bg-[#0B0D12] p-5 shadow-sm">
       <div className="flex items-center justify-between">
-        <label className="text-[10px] font-black uppercase tracking-widest text-white/20">{label}</label>
+        <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">{label}</label>
         {tip && <ExpertTooltip content={tip} />}
       </div>
       {children}

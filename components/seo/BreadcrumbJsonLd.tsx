@@ -1,4 +1,3 @@
-import { type Locale } from "@/i18n-config";
 import { company } from "@/lib/company";
 
 interface BreadcrumbItem {
@@ -7,7 +6,7 @@ interface BreadcrumbItem {
 }
 
 interface BreadcrumbJsonLdProps {
-    lang: Locale;
+    lang?: string;
     items: BreadcrumbItem[];
 }
 

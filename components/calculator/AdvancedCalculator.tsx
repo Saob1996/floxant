@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect, useMemo, useState, useRef } from "react";
-import { m, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
+import React, { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
 import {
   FileText,
   Clock,
   Users,
   Database,
-  Info,
-  HardHat,
   PhoneCall,
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
 } from "lucide-react";
 import { useCalculatorStore } from "@/store/calculatorStore";
 import {
@@ -32,79 +33,77 @@ import StorageForm from "./forms/StorageForm";
 import PaintingForm from "./forms/PaintingForm";
 import ArchiveForm from "./forms/ArchiveForm";
 import { VolumeIndicator } from "./VolumeIndicator";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 
-function estimatesEqual(a: any, b: any) {
-  return JSON.stringify(a) === JSON.stringify(b);
+function formatEuro(value: number | undefined): string {
+  return new Intl.NumberFormat("de-DE").format(value || 0);
 }
 
 export default function AdvancedCalculator({ dic }: { dic?: any }) {
-  const serviceType = useCalculatorStore((s) => s.serviceType);
-  const baseDetails = useCalculatorStore((s) => s.baseDetails);
-  const umzugData = useCalculatorStore((s) => s.umzugData);
-  const reinigungData = useCalculatorStore((s) => s.reinigungData);
-  const entsorgungData = useCalculatorStore((s) => s.entsorgungData);
-  const bueroumzugData = useCalculatorStore((s) => s.bueroumzugData);
-  const seniorenumzugData = useCalculatorStore((s) => s.seniorenumzugData);
-  const klaviertransportData = useCalculatorStore((s) => s.klaviertransportData);
-  const einlagerungData = useCalculatorStore((s) => s.einlagerungData);
-  const malerarbeitenData = useCalculatorStore((s) => s.malerarbeitenData);
-  const akteneinlagerungData = useCalculatorStore((s) => s.akteneinlagerungData);
-  
-  const advancedEstimate = useCalculatorStore((s) => s.advancedEstimate);
-  const setAdvancedEstimate = useCalculatorStore((s) => s.setAdvancedEstimate);
-  const setMode = useCalculatorStore((s) => s.setMode);
+  const serviceType = useCalculatorStore((state) => state.serviceType);
+  const baseDetails = useCalculatorStore((state) => state.baseDetails);
+  const umzugData = useCalculatorStore((state) => state.umzugData);
+  const reinigungData = useCalculatorStore((state) => state.reinigungData);
+  const entsorgungData = useCalculatorStore((state) => state.entsorgungData);
+  const bueroumzugData = useCalculatorStore((state) => state.bueroumzugData);
+  const seniorenumzugData = useCalculatorStore((state) => state.seniorenumzugData);
+  const klaviertransportData = useCalculatorStore((state) => state.klaviertransportData);
+  const einlagerungData = useCalculatorStore((state) => state.einlagerungData);
+  const malerarbeitenData = useCalculatorStore((state) => state.malerarbeitenData);
+  const akteneinlagerungData = useCalculatorStore((state) => state.akteneinlagerungData);
+  const advancedEstimate = useCalculatorStore((state) => state.advancedEstimate);
+  const setAdvancedEstimate = useCalculatorStore((state) => state.setAdvancedEstimate);
+  const setMode = useCalculatorStore((state) => state.setMode);
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isRefreshingEstimate, setIsRefreshingEstimate] = useState(false);
 
-  // Elite Flow Steps
-  const STEPS = [
+  const steps = [
     { id: 1, title: dic?.calculator?.step_basics || "Basis" },
-    { 
-      id: 2, 
-      title: serviceType === "bueroumzug" ? (dic?.calculator?.step_office || "Büro") 
-           : serviceType === "klaviertransport" ? (dic?.calculator?.step_piano || "Instrument") 
-           : serviceType === "einlagerung" ? (dic?.calculator?.step_storage || "Lager")
-           : serviceType === "akteneinlagerung" ? (dic?.calculator?.archive_label || "Archiv")
-           : serviceType === "malerarbeiten" ? (dic?.calculator?.step_painting || "Maler")
-           : (dic?.calculator?.step_inventory || "Inventar") 
+    {
+      id: 2,
+      title:
+        serviceType === "bueroumzug"
+          ? dic?.calculator?.step_office || "Buero"
+          : serviceType === "klaviertransport"
+            ? dic?.calculator?.step_piano || "Instrument"
+            : serviceType === "einlagerung"
+              ? dic?.calculator?.step_storage || "Lager"
+              : serviceType === "akteneinlagerung"
+                ? dic?.calculator?.archive_label || "Archiv"
+                : serviceType === "malerarbeiten"
+                  ? dic?.calculator?.step_painting || "Maler"
+                  : dic?.calculator?.step_inventory || "Inventar",
     },
     { id: 3, title: dic?.calculator?.step_services || "Services" },
   ];
 
   const hasInput = useMemo(() => {
-    if (
-      (baseDetails.fromAddress || "").trim().length >= 2 ||
-      (baseDetails.toAddress || "").trim().length >= 2
-    ) {
+    if ((baseDetails.fromAddress || "").trim().length >= 2 || (baseDetails.toAddress || "").trim().length >= 2) {
       return true;
     }
 
     if (serviceType === "umzug" || serviceType === "seniorenumzug") {
       const data = serviceType === "umzug" ? umzugData : seniorenumzugData;
-      return (
-        (data.fromAddressDetailed?.trim().length || 0) >= 2 ||
-        data.areaM2 > 1 ||
-        (data.furnitureList?.length || 0) > 0 ||
-        data.boxesCount > 0
-      );
-    }
-    
-    if (serviceType === "bueroumzug") {
-      return bueroumzugData.workstations > 0 || bueroumzugData.areaM2 > 0;
+      return (data.fromAddressDetailed?.trim().length || 0) >= 2 || data.areaM2 > 1 || data.boxesCount > 0;
     }
 
-    if (serviceType === "akteneinlagerung") {
-      return akteneinlagerungData.boxCount > 0 || akteneinlagerungData.shelfMeters > 0;
-    }
-
-    if (serviceType === "klaviertransport") {
-      return true; // Piano transport has defaults that always calculate
-    }
+    if (serviceType === "reinigung") return reinigungData.areaM2 > 0;
+    if (serviceType === "entsorgung") return entsorgungData.wasteVolumeM3 > 0;
+    if (serviceType === "bueroumzug") return bueroumzugData.workstations > 0 || bueroumzugData.areaM2 > 0;
+    if (serviceType === "akteneinlagerung") return akteneinlagerungData.boxCount > 0 || akteneinlagerungData.shelfMeters > 0;
+    if (serviceType === "klaviertransport") return true;
 
     return false;
-  }, [baseDetails, serviceType, umzugData, seniorenumzugData, bueroumzugData]);
+  }, [
+    baseDetails,
+    serviceType,
+    umzugData,
+    seniorenumzugData,
+    reinigungData,
+    entsorgungData,
+    bueroumzugData,
+    akteneinlagerungData,
+  ]);
 
   const calculatedEstimate = useMemo(() => {
     if (!serviceType) return null;
@@ -131,12 +130,24 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
       default:
         return null;
     }
-  }, [serviceType, umzugData, reinigungData, entsorgungData, bueroumzugData, seniorenumzugData, klaviertransportData, baseDetails, dic]);
+  }, [
+    serviceType,
+    umzugData,
+    reinigungData,
+    entsorgungData,
+    bueroumzugData,
+    seniorenumzugData,
+    klaviertransportData,
+    einlagerungData,
+    malerarbeitenData,
+    akteneinlagerungData,
+    baseDetails,
+    dic,
+  ]);
 
   useEffect(() => {
     if (!calculatedEstimate) return;
-
-    if (!advancedEstimate || !estimatesEqual(advancedEstimate, calculatedEstimate)) {
+    if (JSON.stringify(advancedEstimate) !== JSON.stringify(calculatedEstimate)) {
       setAdvancedEstimate(calculatedEstimate);
     }
   }, [calculatedEstimate, advancedEstimate, setAdvancedEstimate]);
@@ -148,21 +159,34 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
     }
 
     setIsRefreshingEstimate(true);
-    const timeout = window.setTimeout(() => {
-      setIsRefreshingEstimate(false);
-    }, 180);
-
+    const timeout = window.setTimeout(() => setIsRefreshingEstimate(false), 180);
     return () => window.clearTimeout(timeout);
   }, [calculatedEstimate, hasInput]);
 
   const est = (calculatedEstimate ?? advancedEstimate) as any;
-  const showLoadingState = hasInput && (!est || isRefreshingEstimate);
   const canProceedToLead = Boolean(hasInput && est);
 
-  const nextStep = () => setCurrentStep((s) => Math.min(s + 1, 3));
-  const prevStep = () => setCurrentStep((s) => Math.max(s - 1, 1));
-
-  const isWizardService = ["umzug", "seniorenumzug", "bueroumzug", "klaviertransport", "einlagerung", "malerarbeiten", "akteneinlagerung"].includes(serviceType || "");
+  const renderCurrentForm = () => {
+    switch (serviceType) {
+      case "umzug":
+      case "seniorenumzug":
+        return <UmzugForm dic={dic} currentStep={currentStep} />;
+      case "reinigung":
+        return <ReinigungForm dic={dic} currentStep={currentStep} />;
+      case "entsorgung":
+        return <EntsorgungForm dic={dic} currentStep={currentStep} />;
+      case "bueroumzug":
+        return <BueroumzugForm dic={dic} currentStep={currentStep} />;
+      case "klaviertransport":
+        return <PianoForm dic={dic} currentStep={currentStep} />;
+      case "einlagerung":
+        return <StorageForm dic={dic} currentStep={currentStep} />;
+      case "akteneinlagerung":
+        return <ArchiveForm dic={dic} currentStep={currentStep} />;
+      default:
+        return <PaintingForm dic={dic} currentStep={currentStep} />;
+    }
+  };
 
   return (
     <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-8 xl:flex-row xl:items-start">
@@ -170,31 +194,26 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
         <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#11131A] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-sm lg:p-10">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.08),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(139,92,246,0.08),transparent_35%)]" />
 
-          {/* Wizard Header */}
           <div className="relative z-10 mb-10 border-b border-white/8 pb-8">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold tracking-tight text-white">
                   <FileText size={22} className="text-blue-400" />
-                  {isWizardService ? `Schritt ${currentStep}: ${STEPS[currentStep - 1].title}` : dic?.calculator?.requirements_title || "Angaben"}
+                  {`Schritt ${currentStep}: ${steps[currentStep - 1].title}`}
                 </h2>
                 <p className="mt-2 text-sm text-white/45">
-                  {isWizardService ? "Detaillierte Planung für höchste Präzision." : "Geben Sie Ihre Objektdaten an."}
+                  Detaillierte Angaben für eine belastbare Vorprüfung.
                 </p>
               </div>
 
-              {/* Step Dots */}
-              {isWizardService && (
-                <div className="flex gap-2">
-                  {STEPS.map((step) => (
-                    <div
-                      key={step.id}
-                      className={`h-1.5 w-8 rounded-full transition-all duration-300 ${step.id === currentStep ? "bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "bg-white/10"
-                        }`}
-                    />
-                  ))}
-                </div>
-              )}
+              <div className="flex gap-2">
+                {steps.map((step) => (
+                  <div
+                    key={step.id}
+                    className={`h-1.5 w-8 rounded-full transition-all duration-300 ${step.id === currentStep ? "bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "bg-white/10"}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
@@ -207,58 +226,39 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
                 exit={{ opacity: 0, x: -10 }}
                 transition={{ duration: 0.2 }}
               >
-                {serviceType === "umzug" || serviceType === "seniorenumzug" ? (
-                  <UmzugForm dic={dic} currentStep={currentStep} />
-                ) : serviceType === "reinigung" ? (
-                  <ReinigungForm dic={dic} />
-                ) : serviceType === "entsorgung" ? (
-                  <EntsorgungForm dic={dic} />
-                ) : serviceType === "bueroumzug" ? (
-                  <BueroumzugForm dic={dic} currentStep={currentStep} />
-                ) : serviceType === "klaviertransport" ? (
-                  <PianoForm dic={dic} currentStep={currentStep} />
-                ) : serviceType === "einlagerung" ? (
-                  <StorageForm dic={dic} currentStep={currentStep} />
-                ) : serviceType === "akteneinlagerung" ? (
-                  <ArchiveForm dic={dic} currentStep={currentStep} />
-                ) : (
-                  <PaintingForm dic={dic} currentStep={currentStep} />
-                )}
+                {renderCurrentForm()}
               </m.div>
             </AnimatePresence>
 
-            {/* Navigation Controls */}
-            {isWizardService && (
-              <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
-                <button
-                  onClick={prevStep}
-                  disabled={currentStep === 1}
-                  className="flex items-center gap-2 text-sm font-semibold text-white/40 transition-colors hover:text-white disabled:opacity-0"
-                >
-                  <ArrowLeft size={16} />
-                  {dic?.calculator?.back || "Zurück"}
-                </button>
+            <div className="mt-12 flex items-center justify-between border-t border-white/5 pt-8">
+              <button
+                onClick={() => setCurrentStep((step) => Math.max(step - 1, 1))}
+                disabled={currentStep === 1}
+                className="flex items-center gap-2 text-sm font-semibold text-white/40 transition-colors hover:text-white disabled:opacity-0"
+              >
+                <ArrowLeft size={16} />
+                {dic?.calculator?.back || "Zurück"}
+              </button>
 
-                {currentStep < 3 ? (
-                  <button
-                    onClick={nextStep}
-                    className="flex items-center gap-2 rounded-xl bg-white/5 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-white/10"
-                  >
-                    {dic?.calculator?.next || "Weiter"}
-                    <ArrowRight size={16} />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setMode("lead")}
-                    disabled={!canProceedToLead}
-                    className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-blue-500 disabled:opacity-40"
-                  >
-                    {dic?.calculator?.finish_and_request || "Planung beenden"}
-                    <CheckCircle2 size={16} />
-                  </button>
-                )}
-              </div>
-            )}
+              {currentStep < 3 ? (
+                <button
+                  onClick={() => setCurrentStep((step) => Math.min(step + 1, 3))}
+                  className="flex items-center gap-2 rounded-xl bg-white/5 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-white/10"
+                >
+                  {dic?.calculator?.next || "Weiter"}
+                  <ArrowRight size={16} />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setMode("lead")}
+                  disabled={!canProceedToLead}
+                  className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-blue-500 disabled:opacity-40"
+                >
+                  {dic?.calculator?.finish_and_request || "Vorprüfung abschließen"}
+                  <CheckCircle2 size={16} />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -270,95 +270,94 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
           <div className="relative z-10 mb-6 flex items-center justify-between gap-3 border-b border-white/6 pb-5">
             <h3 className="flex items-center gap-2 text-lg font-semibold tracking-tight text-white">
               <Database className="text-blue-400" size={18} />
-              {dic?.calculator?.calculation_title || "Live Kalkulation"}
+              Aktuelle Einordnung
             </h3>
-
-            <div className="flex items-center gap-2">
-              <m.div
-                animate={est?.confidenceLevel === "high" ? { scale: [1, 1.05, 1] } : {}}
-                transition={{ repeat: Infinity, duration: 2 }}
-              >
-                <div className={`h-2 w-2 rounded-full ${est?.confidenceLevel === "low" ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]" : "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"}`} />
-              </m.div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">
-                {est?.confidenceLevel === "high" ? "Verlässlich" : "Grob"}
-              </span>
-            </div>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/50">
+              {est?.valuationStage || "Erste Einschätzung"}
+            </span>
           </div>
 
-          {/* NEW: Volume Indicator */}
-          {serviceType === "umzug" && hasInput && (
+          {serviceType === "umzug" && hasInput ? (
             <div className="mb-6">
               <VolumeIndicator cbm={est?.cbm ?? 0} dic={dic} />
             </div>
-          )}
+          ) : null}
 
-          <AnimatePresence mode="wait">
-            {!hasInput ? (
-              <m.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="py-12 text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-3xl">
-                  👋
-                </div>
-                <h4 className="mb-2 text-lg font-bold text-white">Starten wir!</h4>
-                <p className="px-4 text-xs leading-relaxed text-white/40">Geben Sie oben Ihre Daten ein, um eine sofortige Kalkulation zu erhalten.</p>
-              </m.div>
-            ) : showLoadingState ? (
-              <div className="flex h-64 flex-col items-center justify-center gap-4 py-12">
-                <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Analysiere Daten...</span>
+          {!hasInput ? (
+            <div className="py-12 text-center">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-3xl">
+                1
               </div>
-            ) : (
-              <m.div key="result" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="space-y-6">
-                <div className="relative rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] p-6 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)] transition-all duration-500">
-                  <div className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-blue-500 blur-sm animate-pulse" />
-                  
-                  <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300/60">
-                    {dic?.calculator?.live_price_indicative || "Indikativer Preisrahmen"}
+              <h4 className="mb-2 text-lg font-bold text-white">Starten wir</h4>
+              <p className="px-4 text-xs leading-relaxed text-white/40">
+                Geben Sie oben Ihre Daten ein, um einen unverbindlichen Orientierungsrahmen zu
+                erhalten.
+              </p>
+            </div>
+          ) : isRefreshingEstimate ? (
+            <div className="flex h-64 flex-col items-center justify-center gap-4 py-12">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Analysiere Daten...</span>
+            </div>
+          ) : (
+            <div className="relative z-10 space-y-6">
+              <div className="rounded-2xl border border-blue-500/20 bg-blue-500/[0.05] p-6 shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]">
+                <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300/60">
+                  Unverbindlicher Orientierungsrahmen
+                </span>
+                <div className="flex flex-wrap items-baseline gap-2">
+                  <span className="text-5xl font-bold tracking-tighter text-white">
+                    {formatEuro(est?.priceRange?.min)}
                   </span>
-
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="text-5xl font-black tracking-tighter text-white">
-                      <Counter value={est?.priceRange?.min ?? 0} />
-                    </span>
-                    <span className="text-xl font-light text-white/30">bis</span>
-                    <span className="text-5xl font-black tracking-tighter text-white">
-                      <Counter value={est?.priceRange?.max ?? 0} />
-                    </span>
-                    <span className="ml-1 text-2xl font-medium text-blue-400">€</span>
-                  </div>
-
-                  <p className="mt-4 border-t border-white/5 pt-4 text-[11px] leading-relaxed text-white/50">
-                    {est?.confidenceLevel === "low" 
-                      ? "Die Schätzung ist noch grob. Mehr Details = mehr Präzision."
-                      : "Diese Kalkulation basiert auf Ihren detaillierten Angaben."}
-                  </p>
+                  <span className="text-xl font-light text-white/30">-</span>
+                  <span className="text-5xl font-bold tracking-tighter text-white">
+                    {formatEuro(est?.priceRange?.max)}
+                  </span>
+                  <span className="ml-1 text-2xl font-medium text-blue-400">EUR</span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <InfoTile icon={<Clock size={14} />} label="Zeitansatz" value={est?.estimatedHours || "–"} />
-                  <InfoTile icon={<Users size={14} />} label="Elite-Team" value={est?.recommendedTeam || "–"} />
-                </div>
+                <p className="mt-4 border-t border-white/5 pt-4 text-[11px] leading-relaxed text-white/50">
+                  {est?.priceExplanation ||
+                    "Diese Einordnung basiert auf Ihren Angaben und wird mit mehr Details belastbarer."}
+                </p>
+              </div>
 
+              <div className="grid grid-cols-2 gap-3">
+                <InfoTile icon={<Clock size={14} />} label="Zeitansatz" value={est?.estimatedHours || "-"} />
+                <InfoTile icon={<Users size={14} />} label="Personal" value={est?.recommendedTeam || "-"} />
+              </div>
+
+              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-5">
+                <h4 className="mb-3 text-[10px] font-bold uppercase tracking-widest text-white/20">Basis</h4>
+                <p className="text-[13px] font-medium leading-relaxed text-white/80">{est?.calculationBasis}</p>
+              </div>
+
+              {est?.topDrivers?.length ? (
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-5">
-                  <h4 className="mb-3 text-[10px] font-bold uppercase tracking-widest text-white/20">Basis</h4>
-                  <p className="text-[13px] font-medium leading-relaxed text-white/80">{est?.calculationBasis}</p>
+                  <h4 className="mb-3 text-[10px] font-bold uppercase tracking-widest text-white/20">Wichtige Kostentreiber</h4>
+                  <div className="space-y-2">
+                    {est.topDrivers.map((driver: string) => (
+                      <p key={driver} className="text-[13px] font-medium leading-relaxed text-white/70">
+                        {driver}
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </m.div>
-            )}
-          </AnimatePresence>
+              ) : null}
+            </div>
+          )}
 
           <div className="mt-8">
             <button
               onClick={() => setMode("lead")}
               disabled={!canProceedToLead}
-              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-white px-6 py-4.5 text-[16px] font-black tracking-tight text-black transition-all hover:bg-blue-50 active:scale-[0.98] disabled:opacity-20"
+              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-white px-6 py-4.5 text-[16px] font-bold tracking-tight text-black transition-all hover:bg-blue-50 active:scale-[0.98] disabled:opacity-20"
             >
-              <div className="absolute inset-0 -z-10 translate-y-full bg-gradient-to-t from-blue-500/10 to-transparent transition-transform group-hover:translate-y-0" />
               <PhoneCall size={18} className="transition-transform group-hover:scale-110" />
-              {dic?.calculator?.fix_now_btn || "Jetzt Angebot sichern"}
+              {dic?.calculator?.fix_now_btn || "Vorprüfung abschließen"}
             </button>
-            <p className="mt-4 text-center text-[10px] font-medium text-white/20 uppercase tracking-widest">
-              Unverbindlich & Kostenlos
+            <p className="mt-4 text-center text-[10px] font-medium uppercase tracking-widest text-white/20">
+              Unverbindlich und kostenlos
             </p>
           </div>
         </div>
@@ -380,35 +379,9 @@ function InfoTile({
     <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
       <div className="mb-2 flex items-center gap-2 text-white/30">
         {icon}
-        <span className="text-[9px] font-black uppercase tracking-widest">
-          {label}
-        </span>
+        <span className="text-[10px] font-bold uppercase tracking-widest">{label}</span>
       </div>
       <span className="text-[14px] font-bold text-white">{value}</span>
     </div>
   );
-}
-
-function Counter({ value }: { value: number }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
-  const nodeRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const animation = animate(count, value, {
-      duration: 0.8,
-      ease: [0.33, 1, 0.68, 1], // expoOut
-    });
-    return animation.stop;
-  }, [count, value]);
-
-  useEffect(() => {
-    return rounded.on("change", (latest) => {
-      if (nodeRef.current) {
-        nodeRef.current.textContent = latest.toLocaleString();
-      }
-    });
-  }, [rounded]);
-
-  return <span ref={nodeRef} />;
 }

@@ -8,6 +8,7 @@ interface PremiumButtonProps {
   className?: string;
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
+  disabled?: boolean;
 }
 
 const FloxButton: React.FC<PremiumButtonProps> = ({
@@ -17,6 +18,7 @@ const FloxButton: React.FC<PremiumButtonProps> = ({
   className = "",
   rightIcon,
   fullWidth = false,
+  disabled = false,
 }) => {
   // Magnetic Effect Logic
   const x = useMotionValue(0);
@@ -53,13 +55,15 @@ const FloxButton: React.FC<PremiumButtonProps> = ({
       style={{ x: mouseX, y: mouseY }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.96 }}
-      onClick={onClick}
+      whileHover={disabled ? {} : { scale: 1.05 }}
+      whileTap={disabled ? {} : { scale: 0.96 }}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
       className={cn(
-        "relative overflow-hidden group inline-flex items-center justify-center gap-2.5 px-10 py-5 font-black uppercase tracking-widest rounded-2xl transition-all duration-300",
+        "relative overflow-hidden group inline-flex items-center justify-center gap-2.5 px-10 py-5 font-bold uppercase tracking-widest rounded-2xl transition-all duration-300",
         variants[variant],
         fullWidth ? "w-full" : "",
+        disabled && "opacity-50 pointer-events-none shadow-none",
         className
       )}
     >

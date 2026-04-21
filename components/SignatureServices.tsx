@@ -1,159 +1,191 @@
 "use client";
 
-import { m } from "framer-motion";
+import Link from "next/link";
 import {
-    PackageOpen,
-    Sparkles,
-    Users,
-    Clock,
-    Shield,
-    Wrench,
-    CheckCircle2,
-    RotateCw,
-    Baby,
-    Truck,
-    Heart,
-    Archive,
-    HelpCircle,
-    Key,
+  ArrowUpRight,
+  CheckCircle2,
+  Clock,
+  Key,
+  PackageOpen,
+  RotateCw,
+  Shield,
+  Sparkles,
+  Users,
+  Wrench,
 } from "lucide-react";
 import React, { useMemo } from "react";
-import { cn } from "@/lib/utils";
+import { germanText } from "@/lib/german-text";
 
 interface SignatureServicesProps {
-    dict: any;
-    locale: string;
+  dict: any;
+  locale: string;
 }
 
 type ServiceContent = {
-    title?: string;
-    desc?: string;
+  title?: string;
+  desc?: string;
 };
 
-export function SignatureServices({ dict, locale }: SignatureServicesProps) {
-    const t = dict?.signature_services || {
-        items: {},
-        badge: "",
-        title: "",
-        subtitle: "",
-    };
+const serviceTargets: Record<string, { href: string; label: string; eyebrow: string }> = {
+  ritual_exit: { href: "/umzug", label: "Umzug ansehen", eyebrow: "Umzugsplanung" },
+  clean_start: { href: "/umzug-mit-reinigung", label: "Kombiservice", eyebrow: "Sauberer Auszug" },
+  neighbour_kit: { href: "/beiladung", label: "Beiladung prüfen", eyebrow: "Geteilte Route" },
+  first_48h: { href: "/express-anfrage", label: "Express-Anfrage", eyebrow: "Schneller Start" },
+  bureaucracy: { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung", eyebrow: "Budget-Fokus" },
+  furniture_opt: { href: "/umzug", label: "Montagehilfe", eyebrow: "Möbelservice" },
+  cleaning_guarantee: { href: "/reinigung", label: "Reinigung", eyebrow: "Reiner Abschluss" },
+  storage_rot: { href: "/einlagerung", label: "Einlagerung", eyebrow: "Zwischenlösung" },
+  key_handover: { href: "/umzug-mit-reinigung", label: "Übergabe-Lösung", eyebrow: "Schlüsselübergabe" },
+};
 
-    const items: Record<string, ServiceContent> = t.items || {};
+const defaultCopy: Record<string, { title: string; desc: string }> = {
+  ritual_exit: {
+    title: "Strukturierter Auszug",
+    desc: "Für Kunden, die ihren Umzug nicht improvisieren, sondern mit klarer Reihenfolge, Übergang und belastbarer Vorbereitung lösen möchten.",
+  },
+  clean_start: {
+    title: "Umzug mit Reinigung",
+    desc: "Wenn Auszug, Endreinigung und Übergabe direkt ineinandergreifen sollen, statt mühsam über zwei getrennte Abläufe zu laufen.",
+  },
+  neighbour_kit: {
+    title: "Beiladung und Teilmengen",
+    desc: "Für einzelne Möbel, Restmengen oder kleinere Transporte, die keinen vollen Umzug brauchen, aber professionell abgewickelt werden sollen.",
+  },
+  first_48h: {
+    title: "Express und kurzfristige Fälle",
+    desc: "Für Anfragen mit engem Zeitfenster, bei denen schnelle Vorprüfung und saubere operative Einordnung entscheidend sind.",
+  },
+  bureaucracy: {
+    title: "Preisvorstellung einbinden",
+    desc: "Wenn ein Budget oder Zielkorridor schon feststeht und Sie möchten, dass FLOXANT diesen Rahmen sauber in die Vorprüfung einordnet.",
+  },
+  furniture_opt: {
+    title: "Montage und Demontage",
+    desc: "Für Projekte, bei denen Möbel, Küchen oder spezielle Einbauten nicht nur transportiert, sondern sinnvoll vorbereitet werden müssen.",
+  },
+  cleaning_guarantee: {
+    title: "Sauberer Abschluss",
+    desc: "Für Übergaben, Neuvermietung und Auszüge, bei denen sichtbare Reinigungsqualität ein Teil des Gesamterlebnisses ist.",
+  },
+  storage_rot: {
+    title: "Einlagerung mit Plan",
+    desc: "Wenn Übergaben, Zwischenmiete oder Bauverzug eine flexible Zwischenlösung erfordern, ohne am Umzugstag hektisch zu werden.",
+  },
+  key_handover: {
+    title: "Übergabe ohne Reibung",
+    desc: "Für Kunden, die die letzten Schritte wie Schlüssel, Restmengen und sauberen Objektzustand nicht dem Zufall überlassen möchten.",
+  },
+};
 
-    const serviceList = useMemo(
-        () => [
-            { id: "ritual_exit", icon: PackageOpen, color: "text-amber-300", image: "/assets/sig-ritual.png" },
-            { id: "clean_start", icon: Sparkles, color: "text-cyan-300", image: "/assets/sig-clean.png" },
-            { id: "neighbour_kit", icon: Users, color: "text-green-300", image: "/assets/sig-kit.png" },
-            { id: "first_48h", icon: Clock, color: "text-blue-300", image: "/assets/sig-48h.png" },
-            { id: "bureaucracy", icon: Shield, color: "text-slate-300", image: "/assets/service-moving.png" },
-            { id: "furniture_opt", icon: Wrench, color: "text-orange-300", image: "/assets/service-moving.png" },
-            { id: "cleaning_guarantee", icon: CheckCircle2, color: "text-teal-300", image: "/assets/sig-clean.png" },
-            { id: "storage_rot", icon: RotateCw, color: "text-indigo-300", image: "/assets/sig-ritual.png" },
-            { id: "kids_box", icon: Baby, color: "text-pink-300", image: "/assets/sig-kit.png" },
-            { id: "service_24h", icon: Truck, color: "text-red-300", image: "/assets/service-moving.png" },
-            { id: "ladies_team", icon: Heart, color: "text-rose-300", image: "/assets/service-cleaning.png" },
-            { id: "memory_capsule", icon: Archive, color: "text-purple-300", image: "/assets/sig-ritual.png" },
-            { id: "maybe_box", icon: HelpCircle, color: "text-yellow-300", image: "/assets/sig-ritual.png" },
-            { id: "key_handover", icon: Key, color: "text-emerald-300", image: "/assets/sig-kit.png" },
-        ],
-        []
-    );
+export function SignatureServices({ dict }: SignatureServicesProps) {
+  const t = dict?.signature_services || { items: {}, badge: "", title: "", subtitle: "" };
+  const items: Record<string, ServiceContent> = t.items || {};
 
-    const visibleServices = serviceList.filter((service) => {
-        const content = items[service.id];
-        return content?.title && content?.desc;
-    });
+  const serviceList = useMemo(
+    () => [
+      { id: "ritual_exit", icon: PackageOpen, accent: "from-blue-500/20 to-cyan-400/10" },
+      { id: "clean_start", icon: Sparkles, accent: "from-emerald-500/20 to-cyan-400/10" },
+      { id: "neighbour_kit", icon: Users, accent: "from-indigo-500/20 to-blue-400/10" },
+      { id: "first_48h", icon: Clock, accent: "from-orange-500/20 to-amber-300/10" },
+      { id: "bureaucracy", icon: Shield, accent: "from-sky-500/20 to-white/10" },
+      { id: "furniture_opt", icon: Wrench, accent: "from-white/15 to-blue-500/10" },
+      { id: "cleaning_guarantee", icon: CheckCircle2, accent: "from-cyan-500/20 to-emerald-400/10" },
+      { id: "storage_rot", icon: RotateCw, accent: "from-violet-500/20 to-blue-400/10" },
+      { id: "key_handover", icon: Key, accent: "from-blue-500/20 to-slate-200/10" },
+    ],
+    []
+  );
 
-    if (visibleServices.length === 0) return null;
+  const visibleServices = serviceList.filter((service) => serviceTargets[service.id]);
 
-    return (
-        <section id="extras" className="relative overflow-hidden px-6 py-24">
-            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-blue-500/[0.04] to-transparent" />
+  if (visibleServices.length === 0) return null;
 
-            <div className="mx-auto max-w-7xl">
-                <m.div
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-16 text-center"
-                >
-                    <span className="mb-4 inline-block rounded-full border border-blue-400/15 bg-blue-400/10 px-3 py-1 text-sm font-medium text-blue-300">
-                        {t.badge || (locale === "ru" ? "Дополнительные услуги" : locale === "en" ? "Additional Services" : "Zusätzliche Leistungen")}
-                    </span>
+  return (
+    <section id="extras" className="relative overflow-hidden px-6 py-32">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.08),transparent_38%)]" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.02))]" />
 
-                    <h2 className="mb-6 text-4xl font-semibold tracking-tight text-white md:text-5xl">
-                        {t.title || (locale === "ru" ? "Больше чем стандарт" : locale === "en" ? "More Than Just Standard" : "Mehr als nur Standard")}
-                    </h2>
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <span className="label-premium text-blue-400">
+              {germanText(t.badge, "Signatur-Services")}
+            </span>
+            <h2 className="mt-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+              {germanText(t.title, "Zusatzlösungen mit echtem Unterschied im Ablauf")}
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/45">
+              {germanText(
+                t.subtitle,
+                "Diese Karten zeigen nicht einfach Extras, sondern die Situationen, in denen FLOXANT für Kunden besonders stark wird: bei Übergabe, Zeitdruck, Teilmengen, Preisvorstellung und sauberer Koordination."
+              )}
+            </p>
+          </div>
 
-                    <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/50">
-                        {t.subtitle || (locale === "ru" ? "Услуги, которые делают процесс более структурированным, комфортным и надежным." : locale === "en" ? "Services that make the process more structured, comfortable and reliable." : "Leistungen, die den Ablauf strukturierter, komfortabler und verlässlicher machen.")}
-                    </p>
-                </m.div>
+          <div className="grid gap-3 sm:grid-cols-3 lg:max-w-xl lg:grid-cols-1">
+            {[
+              "Stärker für Übergaben und Kombi-Abläufe",
+              "Saubere Wege vom Lesen zur passenden Anfrage",
+              "Mehr Orientierung statt unklarer Zusatzoptionen",
+            ].map((point) => (
+              <div key={point} className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-sm text-white/55">
+                {point}
+              </div>
+            ))}
+          </div>
+        </div>
 
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                    {visibleServices.map((service, index) => {
-                        const Icon = service.icon;
-                        const content = items[service.id];
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {visibleServices.map((service) => {
+            const Icon = service.icon;
+            const content = items[service.id];
+            const target = serviceTargets[service.id];
+            const fallback = defaultCopy[service.id];
 
-                        return (
-                            <m.div
-                                key={service.id}
-                                initial={{ opacity: 0, y: 22 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.04 }}
-                                className="group h-full"
-                            >
-                                <div className="relative h-full overflow-hidden rounded-[28px] border border-white/10 bg-[#11131A] p-7 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-blue-400/20">
-                                    {/* Branded Background with Glassmorphism */}
-                                    <div className="absolute inset-0 -z-10">
-                                        <img
-                                            src={service.image}
-                                            alt=""
-                                            className="h-full w-full object-cover opacity-20 transition-all duration-500 group-hover:scale-105 group-hover:opacity-35"
-                                        />
-                                        <div className="absolute inset-0 bg-[#11131A]/80 backdrop-blur-[2px] transition-colors group-hover:bg-[#11131A]/70" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#11131A] via-[#11131A]/40 to-transparent" />
-                                    </div>
+            return (
+              <article
+                key={service.id}
+                className="premium-scan group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-7 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.8)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/25"
+              >
+                <div
+                  className={`absolute inset-0 -z-10 bg-gradient-to-br ${service.accent} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                />
 
-                                    <div className="absolute right-5 top-5 opacity-[0.05] transition-opacity duration-300 group-hover:opacity-[0.1]">
-                                        <Icon className="h-16 w-16 text-white" />
-                                    </div>
-
-                                    <div className="relative z-10">
-                                        <div
-                                            className={cn(
-                                                "mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#0B0D12]/80 backdrop-blur-md",
-                                                service.color
-                                            )}
-                                        >
-                                            <Icon className="h-5 w-5" />
-                                        </div>
-
-                                        <h3 className="mb-3 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-blue-300">
-                                            {content.title}
-                                        </h3>
-
-                                        <p className="mb-6 text-sm font-medium leading-relaxed text-white/60 group-hover:text-white/80">
-                                            {content.desc}
-                                        </p>
-
-                                        <div className="pt-2">
-                                            <a
-                                                href="#contact"
-                                                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold text-white transition-all hover:bg-white hover:text-black"
-                                            >
-                                                {locale === "ru" ? "Запросить сейчас" : locale === "en" ? "Request Now" : "Jetzt anfragen"}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </m.div>
-                        );
-                    })}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-blue-300 transition-transform duration-300 group-hover:scale-105">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                    {target.eyebrow}
+                  </span>
                 </div>
-            </div>
-        </section>
-    );
+
+                <div className="mt-8">
+                  <h3 className="text-2xl font-semibold tracking-tight text-white">
+                    {germanText(content?.title, fallback.title)}
+                  </h3>
+                  <p className="mt-4 min-h-[88px] text-sm leading-relaxed text-white/52">
+                    {germanText(content?.desc, fallback.desc)}
+                  </p>
+                </div>
+
+                <div className="mt-8 flex items-center justify-between border-t border-white/8 pt-6">
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-white/30">
+                    Direkter Einstieg
+                  </div>
+                  <Link
+                    href={target.href}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-all hover:border-blue-400/30 hover:bg-white hover:text-black"
+                  >
+                    {target.label}
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 }

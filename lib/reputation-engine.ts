@@ -27,7 +27,7 @@ export async function processReviewWorkflow(submission: ReviewSubmission): Promi
   } else {
     // In production: Save complaint internally `routed_to_google: false`
     console.log(`[Reputation Engine] Low Rating (${submission.rating} stars). Capturing internal feedback for Lead ${submission.leadId}.`);
-    return '/de/angebote/umzug-kosten'; // Fallback redirect after submitting internal feedback
+    return '/rechner'; // Fallback redirect after submitting internal feedback
   }
 }
 

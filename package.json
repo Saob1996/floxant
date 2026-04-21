@@ -8,6 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "check:links": "node scripts/quality-gate.js links",
+    "check:seo": "node scripts/quality-gate.js seo",
+    "check:quality": "node scripts/quality-gate.js links seo",
+    "check:http": "node scripts/quality-gate.js http",
+    "check:deploy": "npm run build && node scripts/quality-gate.js links seo http",
     "make:blog": "node scripts/generate-blog.js"
   },
   "keywords": [],
@@ -27,6 +32,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "recharts": "^3.8.0",
+    "resend": "^6.12.0",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0",
     "zustand": "^5.0.12"

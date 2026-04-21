@@ -16,11 +16,18 @@ export interface LeadDetails {
   customerEmail: string;
   customerPhone: string;
   callbackTime: string;
+  customerBudget: string;
   wantsPhotosLink: boolean;
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
   gclid?: string;
+}
+
+export interface PricingSignalSnapshot {
+  serviceType: ServiceType | string;
+  primaryFactors: string[];
+  metrics: Record<string, string | number | boolean | string[] | null | undefined>;
 }
 
 export interface UmzugExpressData {
@@ -153,7 +160,12 @@ export interface AdvancedEstimate {
   recommendedTeam: string;
   calculationBasis: string;
   operationalFlags: string[];
+  operationalDrivers?: string[];
+  topDrivers: string[];
   confidenceLevel: "high" | "medium" | "low";
+  valuationStage: string;
+  priceExplanation: string;
+  pricingSignals: PricingSignalSnapshot;
   cbm?: number;
 }
 
@@ -213,6 +225,7 @@ const initialLeadDetails: LeadDetails = {
   customerEmail: "",
   customerPhone: "",
   callbackTime: "",
+  customerBudget: "",
   wantsPhotosLink: false,
   utmSource: "",
   utmMedium: "",
@@ -382,8 +395,12 @@ function advancedEstimateEqual(a: AdvancedEstimate | null, b: AdvancedEstimate |
     a.recommendedTeam === b.recommendedTeam &&
     a.calculationBasis === b.calculationBasis &&
     a.confidenceLevel === b.confidenceLevel &&
+    a.valuationStage === b.valuationStage &&
+    a.priceExplanation === b.priceExplanation &&
     a.cbm === b.cbm &&
-    arraysEqual(a.operationalFlags, b.operationalFlags)
+    arraysEqual(a.operationalFlags, b.operationalFlags) &&
+    arraysEqual(a.topDrivers, b.topDrivers) &&
+    JSON.stringify(a.pricingSignals) === JSON.stringify(b.pricingSignals)
   );
 }
 

@@ -1,0 +1,9 @@
+{
+  "type": "budget_inquiry",
+  "name": "V10 Fresh Test",
+  "email": "v10fresh@floxant.de",
+  "phone": "0176999",
+  "service": "umzug",
+  "budget": "7500",
+  "message": "Fresh server test"
+}

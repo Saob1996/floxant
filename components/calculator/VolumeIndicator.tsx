@@ -23,7 +23,7 @@ export function VolumeIndicator({ cbm, maxCbm = 120, dic }: VolumeIndicatorProps
                         {dic?.calculator?.move_volume || "Umzugsvolumen"}
                     </span>
                 </div>
-                <span className="text-sm font-black text-white">
+                <span className="text-sm font-bold text-white">
                     {roundedCbm} m³
                 </span>
             </div>

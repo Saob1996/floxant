@@ -1,6 +1,7 @@
 import { getDictionary } from "@/get-dictionary";
 import { type Locale } from "@/i18n-config";
 import { BAVARIAN_CITIES_GEO } from "./geo-data";
+import { germanizeText } from "@/lib/german-text";
 
 /**
  * DETERMINISTIC SEMANTIC INVERSION & EMPATHY ENGINE
@@ -119,7 +120,7 @@ export async function getSpecialtyPageData(options: {
 }) {
     const localeDict = await getDictionary(options.locale);
     const content = (localeDict.pages as any)[options.baseKey] || {};
-    const fallback = (localeDict.pages as any).umzug_spec || {};
+    const fallback = (localeDict.pages as any)[options.baseKey] || (localeDict.pages as any).umzug_spec || {};
     
     const cityData = BAVARIAN_CITIES_GEO[options.city.toLowerCase()] || 
                     Object.values(BAVARIAN_CITIES_GEO).find(c => c.name === options.city);
@@ -172,14 +173,7 @@ export function resolveField(
         []
     );
 
-    const processed = applyCity(template, city, resolvedNeighborhoods);
-    
-    // Apply Human Touch to paragraph blocks (longer than 100 chars)
-    if (processed.length > 100 && !processed.includes("?")) {
-        return applyHumanTouch(processed, city, locale);
-    }
-    
-    return processed;
+    return germanizeText(applyCity(template, city, resolvedNeighborhoods));
 }
 
 /**
@@ -201,7 +195,7 @@ export function resolveNestedField(
         Object.values(BAVARIAN_CITIES_GEO).find(c => c.name === resolvedCity)?.neighborhoods) : []) || 
         [];
 
-    return applyCity(template, resolvedCity, resolvedNeighborhoods);
+    return germanizeText(applyCity(template, resolvedCity, resolvedNeighborhoods));
 }
 
 /**
@@ -222,5 +216,5 @@ export function applyCity(text: string, city: string, neighborhoods: string[] = 
         }
     }
     
-    return result;
+    return germanizeText(result);
 }
