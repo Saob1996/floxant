@@ -14,6 +14,8 @@
     "check:http": "node scripts/quality-gate.js http",
     "check:deploy": "npm run build && node scripts/quality-gate.js links seo dominance http",
     "seo:ctr": "node scripts/ctr-opportunity-report.js",
+    "seo:links": "node scripts/internal-link-graph.js",
+    "seo:geo": "node scripts/geo-quality-report.js",
     "make:blog": "node scripts/generate-blog.js"
   },
   "keywords": [],

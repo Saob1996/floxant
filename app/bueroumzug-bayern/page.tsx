@@ -5,90 +5,90 @@ import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/sp
 import { Building2, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
-    params: Promise<{}>;
+  params: Promise<{}>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
-        locale: "de",
-        baseKey: "service_bueroumzug",
-        seoKey: "bueroumzug_bayern_spec",
-        city: "Bayern",
-    });
+  const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+    locale: "de",
+    baseKey: "service_bueroumzug",
+    seoKey: "bueroumzug_bayern_spec",
+    city: "Bayern",
+  });
 
-    return generatePageSEO({
-        lang: "de",
-        path: `bueroumzug-bayern`,
-        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, "Bayern", "de"),
-        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, "Bayern", "de"),
-    });
+  return generatePageSEO({
+    lang: "de",
+    path: `bueroumzug-bayern`,
+    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, "Bayern", "de"),
+    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, "Bayern", "de"),
+  });
 }
 
 export default async function BueroUmzugBayernPage({ params }: PageProps) {
-    const locale = "de";
-    const { 
-        localeDict, 
-        content, 
-        fallback, 
-        city 
-    } = await getSpecialtyPageData({
-        locale,
-        baseKey: "service_bueroumzug",
-        seoKey: "bueroumzug_bayern_spec",
-        city: "Bayern",
-    });
+  const locale = "de";
+  const { 
+    localeDict, 
+    content, 
+    fallback, 
+    city 
+  } = await getSpecialtyPageData({
+    locale,
+    baseKey: "service_bueroumzug",
+    seoKey: "bueroumzug_bayern_spec",
+    city: "Bayern",
+  });
 
-    return (
-        <SpecialtyPageLayout
-            lang="de"
-            dict={localeDict}
-            city={city}
-            heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-            heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-            highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
-            heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
-            ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-            heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
-            breadcrumbs={[
-                { label: "Home", href: "/" },
-                { label: "Büroumzug", href: `/umzug-bayern` },
-                { label: "Bayernweit" }
-            ]}
-            chips={[
-                { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
-                { icon: Building2, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
-                { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
-            ]}
-            cards={[
-                {
-                    icon: Star,
-                    title: resolveNestedField(content.service1, fallback.service1, "title", city),
-                    lines: [
-                        resolveNestedField(content.service1, fallback.service1, "l1", city),
-                        resolveNestedField(content.service1, fallback.service1, "l2", city),
-                        resolveNestedField(content.service1, fallback.service1, "l3", city),
-                        resolveNestedField(content.service1, fallback.service1, "l4", city),
-                    ]
-                },
-                {
-                    icon: Zap,
-                    title: resolveNestedField(content.service2, fallback.service2, "title", city),
-                    lines: [
-                        resolveNestedField(content.service2, fallback.service2, "l1", city),
-                        resolveNestedField(content.service2, fallback.service2, "l2", city),
-                        resolveNestedField(content.service2, fallback.service2, "l3", city),
-                        resolveNestedField(content.service2, fallback.service2, "l4", city),
-                    ]
-                }
-            ]}
-            sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, "de")}
-            sectionParagraphs={[
-                resolveField(content.section2_p1, fallback.section2_p1, city, "de"),
-                resolveField(content.section2_p2, fallback.section2_p2, city, "de"),
-            ]}
-            wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
-            wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
-            wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
-        />
-    );
+  return (
+    <SpecialtyPageLayout
+      lang="de"
+      dict={localeDict}
+      city={city}
+      heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
+      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
+      highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
+      heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
+      ctaText={resolveField(content.cta, fallback.cta, city, "de")}
+      heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Büroumzug", href: `/umzug-bayern` },
+        { label: "Bayernweit" }
+      ]}
+      chips={[
+        { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
+        { icon: Building2, text: resolveNestedField(content.badges, fallback.badges, "signs", city) },
+        { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) }
+      ]}
+      cards={[
+        {
+          icon: Star,
+          title: resolveNestedField(content.service1, fallback.service1, "title", city),
+          lines: [
+            resolveNestedField(content.service1, fallback.service1, "l1", city),
+            resolveNestedField(content.service1, fallback.service1, "l2", city),
+            resolveNestedField(content.service1, fallback.service1, "l3", city),
+            resolveNestedField(content.service1, fallback.service1, "l4", city),
+          ]
+        },
+        {
+          icon: Zap,
+          title: resolveNestedField(content.service2, fallback.service2, "title", city),
+          lines: [
+            resolveNestedField(content.service2, fallback.service2, "l1", city),
+            resolveNestedField(content.service2, fallback.service2, "l2", city),
+            resolveNestedField(content.service2, fallback.service2, "l3", city),
+            resolveNestedField(content.service2, fallback.service2, "l4", city),
+          ]
+        }
+      ]}
+      sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, city, "de")}
+      sectionParagraphs={[
+        resolveField(content.section2_p1, fallback.section2_p1, city, "de"),
+        resolveField(content.section2_p2, fallback.section2_p2, city, "de"),
+      ]}
+      wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
+      wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
+      wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
+    />
+  );
 }

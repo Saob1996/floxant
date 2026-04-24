@@ -17,71 +17,71 @@ import MobileFloatingContact from "@/components/MobileFloatingContact";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const fontSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600"],
-  display: "swap",
+ subsets: ["latin"],
+ variable: "--font-sans",
+ weight: ["400", "500", "600"],
+ display: "swap",
 });
 
 const fontHeading = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["500", "600", "700"],
-  display: "swap",
+ subsets: ["latin"],
+ variable: "--font-heading",
+ weight: ["500", "600", "700"],
+ display: "swap",
 });
 
 export const runtime = "nodejs";
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary("de");
-  const title =
-    dict.metadata.global_title ||
-    "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern";
-  const description =
-    dict.metadata.global_desc ||
-    "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, sauberer Einsatzplanung und belastbaren Anfragen.";
+ const dict = await getDictionary("de");
+ const title =
+  dict.metadata.global_title ||
+  "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern";
+ const description =
+  dict.metadata.global_desc ||
+  "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, sauberer Einsatzplanung und belastbaren Anfragen.";
 
-  return generatePageSEO({
-    lang: "de",
-    path: "",
-    title,
-    description,
-  });
+ return generatePageSEO({
+  lang: "de",
+  path: "",
+  title,
+  description,
+ });
 }
 
 export default async function RootLayout({
-  children,
+ children,
 }: {
-  children: ReactNode;
+ children: ReactNode;
 }) {
-  const dict = await getDictionary("de");
+ const dict = await getDictionary("de");
 
-  return (
-    <html lang="de" dir="ltr" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased text-foreground",
-          fontSans.variable,
-          fontHeading.variable
-        )}
-      >
-        <a href="#main-content" className="skip-to-content">
-          Direkt zum Inhalt springen
-        </a>
-        <AuthProvider>
-          <MotionProvider>
-            <JsonLd lang="de" />
-            <UtmCapture />
-            <FloxNavigation dic={dict} />
-            <div id="main-content">{children}</div>
-            <CookieBanner dic={dict} />
-            <Footer dic={dict} />
-            <MobileFloatingContact dic={dict} />
-            <WhatsAppButton dic={dict} />
-          </MotionProvider>
-        </AuthProvider>
-      </body>
-    </html>
-  );
+ return (
+  <html lang="de" dir="ltr" suppressHydrationWarning>
+   <body
+    className={cn(
+     "min-h-screen bg-background font-sans antialiased text-foreground flox-site-light",
+     fontSans.variable,
+     fontHeading.variable
+    )}
+   >
+    <a href="#main-content" className="skip-to-content">
+     Direkt zum Inhalt springen
+    </a>
+    <AuthProvider>
+     <MotionProvider>
+      <JsonLd lang="de" />
+      <UtmCapture />
+      <FloxNavigation dic={dict} />
+      <div id="main-content">{children}</div>
+      <CookieBanner dic={dict} />
+      <Footer dic={dict} />
+      <MobileFloatingContact dic={dict} />
+      <WhatsAppButton dic={dict} />
+     </MotionProvider>
+    </AuthProvider>
+   </body>
+  </html>
+ );
 }

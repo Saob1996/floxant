@@ -2,210 +2,225 @@ import { company } from "@/lib/company";
 import { germanizeText } from "@/lib/german-text";
 
 type BreadcrumbEntry = {
-    name: string;
-    item?: string;
+  name: string;
+  item?: string;
 };
 
 type FaqEntry = {
-    q?: string;
-    a?: string;
-    question?: string;
-    answer?: string;
+  q?: string;
+  a?: string;
+  question?: string;
+  answer?: string;
 };
 
 type ServiceJsonLdInput = {
-    name: string;
-    description: string;
-    path: string;
-    serviceType?: string;
-    areaServed?: string[];
+  name: string;
+  description: string;
+  path: string;
+  serviceType?: string;
+  areaServed?: string[];
 };
 
 type WebPageJsonLdInput = {
+  name: string;
+  description: string;
+  path: string;
+  about?: string[];
+  potentialActions?: Array<{
     name: string;
-    description: string;
-    path: string;
-    about?: string[];
+    target: string;
+    type?: "Action" | "ContactAction";
+  }>;
 };
 
 type ArticleJsonLdInput = {
-    headline: string;
-    description: string;
-    path: string;
-    datePublished: string;
-    dateModified?: string;
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified?: string;
 };
 
 function absoluteUrl(path: string) {
-    if (!path) {
-        return company.url;
-    }
+  if (!path) {
+    return company.url;
+  }
 
-    if (path.startsWith("http")) {
-        return path;
-    }
+  if (path.startsWith("http")) {
+    return path;
+  }
 
-    return `${company.url}${path.startsWith("/") ? path : `/${path}`}`;
+  return `${company.url}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 function clean(value: string) {
-    return germanizeText(value || "").replace(/\s+/g, " ").trim();
+  return germanizeText(value || "").replace(/\s+/g, " ").trim();
 }
 
 function schemaPlaceType(area: string) {
-    const normalized = clean(area).toLowerCase();
+  const normalized = clean(area).toLowerCase();
 
-    if (normalized === "bayern" || normalized === "baden-württemberg") {
-        return "State";
-    }
+  if (normalized === "bayern" || normalized === "baden-württemberg") {
+    return "State";
+  }
 
-    if (normalized.includes("oberpfalz") || normalized.includes("niederbayern")) {
-        return "AdministrativeArea";
-    }
+  if (normalized.includes("oberpfalz") || normalized.includes("niederbayern")) {
+    return "AdministrativeArea";
+  }
 
-    return "City";
+  return "City";
 }
 
 export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: items.map((item, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            name: clean(item.name),
-            ...(item.item ? { item: absoluteUrl(item.item) } : {}),
-        })),
-    };
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: clean(item.name),
+      ...(item.item ? { item: absoluteUrl(item.item) } : {}),
+    })),
+  };
 }
 
 export function buildFaqJsonLd(items: FaqEntry[]) {
-    const faqItems = items
-        .map((item) => {
-            const question = clean(item.q || item.question || "");
-            const answer = clean(item.a || item.answer || "");
+  const faqItems = items
+    .map((item) => {
+      const question = clean(item.q || item.question || "");
+      const answer = clean(item.a || item.answer || "");
 
-            if (!question.trim() || !answer.trim()) {
-                return null;
-            }
+      if (!question.trim() || !answer.trim()) {
+        return null;
+      }
 
-            return {
-                "@type": "Question",
-                name: question,
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text: answer,
-                },
-            };
-        })
-        .filter(Boolean);
+      return {
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: answer,
+        },
+      };
+    })
+    .filter(Boolean);
 
-    return {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqItems,
-    };
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems,
+  };
 }
 
 export function buildServiceJsonLd({
-    name,
-    description,
-    path,
-    serviceType,
-    areaServed = ["Regensburg", "Bayern"],
+  name,
+  description,
+  path,
+  serviceType,
+  areaServed = ["Regensburg", "Bayern"],
 }: ServiceJsonLdInput) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "@id": `${absoluteUrl(path)}#service`,
-        name: clean(name),
-        description: clean(description),
-        serviceType: clean(serviceType || name),
-        url: absoluteUrl(path),
-        areaServed: areaServed.map((area) => ({
-            "@type": schemaPlaceType(area),
-            name: clean(area),
-        })),
-        provider: {
-            "@type": "LocalBusiness",
-            "@id": `${company.url}/#localbusiness`,
-            name: company.name,
-            url: company.url,
-            telephone: company.phoneRaw,
-            address: {
-                "@type": "PostalAddress",
-                streetAddress: company.streetAddress,
-                addressLocality: company.city,
-                postalCode: company.postalCode,
-                addressCountry: company.countryCode,
-            },
-        },
-    };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${absoluteUrl(path)}#service`,
+    name: clean(name),
+    description: clean(description),
+    serviceType: clean(serviceType || name),
+    url: absoluteUrl(path),
+    areaServed: areaServed.map((area) => ({
+      "@type": schemaPlaceType(area),
+      name: clean(area),
+    })),
+    provider: {
+      "@type": "LocalBusiness",
+      "@id": `${company.url}/#localbusiness`,
+      name: company.name,
+      url: company.url,
+      telephone: company.phoneRaw,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: company.streetAddress,
+        addressLocality: company.city,
+        postalCode: company.postalCode,
+        addressCountry: company.countryCode,
+      },
+    },
+  };
 }
 
 export function buildWebPageJsonLd({
-    name,
-    description,
-    path,
-    about = [],
+  name,
+  description,
+  path,
+  about = [],
+  potentialActions = [],
 }: WebPageJsonLdInput) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "@id": `${absoluteUrl(path)}#webpage`,
-        name: clean(name),
-        description: clean(description),
-        url: absoluteUrl(path),
-        inLanguage: "de",
-        isPartOf: {
-            "@type": "WebSite",
-            "@id": `${company.url}/#website`,
-            name: company.name,
-            url: company.url,
-        },
-        about: about.map((entry) => ({
-            "@type": "Thing",
-            name: clean(entry),
-        })),
-    };
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    name: clean(name),
+    description: clean(description),
+    url: absoluteUrl(path),
+    inLanguage: "de",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${company.url}/#website`,
+      name: company.name,
+      url: company.url,
+    },
+    about: about.map((entry) => ({
+      "@type": "Thing",
+      name: clean(entry),
+    })),
+    ...(potentialActions.length
+      ? {
+         potentialAction: potentialActions.map((action) => ({
+           "@type": action.type || "Action",
+           name: clean(action.name),
+           target: absoluteUrl(action.target),
+         })),
+       }
+      : {}),
+  };
 }
 
 export function buildArticleJsonLd({
-    headline,
-    description,
-    path,
-    datePublished,
-    dateModified,
+  headline,
+  description,
+  path,
+  datePublished,
+  dateModified,
 }: ArticleJsonLdInput) {
-    return {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline: clean(headline),
-        description: clean(description),
-        url: absoluteUrl(path),
-        datePublished,
-        dateModified: dateModified || datePublished,
-        inLanguage: "de",
-        image: `${company.url}/opengraph-image`,
-        author: {
-            "@type": "Organization",
-            "@id": `${company.url}/#organization`,
-            name: company.name,
-            url: company.url,
-        },
-        publisher: {
-            "@type": "Organization",
-            "@id": `${company.url}/#organization`,
-            name: company.name,
-            url: company.url,
-            logo: {
-                "@type": "ImageObject",
-                url: `${company.url}/logo-dark.png`,
-            },
-        },
-        mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": `${absoluteUrl(path)}#webpage`,
-        },
-    };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: clean(headline),
+    description: clean(description),
+    url: absoluteUrl(path),
+    datePublished,
+    dateModified: dateModified || datePublished,
+    inLanguage: "de",
+    image: `${company.url}/opengraph-image`,
+    author: {
+      "@type": "Organization",
+      "@id": `${company.url}/#organization`,
+      name: company.name,
+      url: company.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${company.url}/#organization`,
+      name: company.name,
+      url: company.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${company.url}/logo_v10.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${absoluteUrl(path)}#webpage`,
+    },
+  };
 }

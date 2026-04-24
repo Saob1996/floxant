@@ -13,9 +13,26 @@ const PRIVATE_SEGMENTS = new Set(["api", "dashboard", "admin", "login"]);
 const LEGACY_REDIRECT_ROUTES = new Set(["/villenservice"]);
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
-const STATIC_METADATA_ROUTES = ["/robots.txt"];
+const STATIC_METADATA_ROUTES = [
+  "/robots.txt",
+  "/seo-image/floxant",
+  "/seo-image/buchung",
+  "/seo-image/rechner",
+  "/seo-image/umzug",
+  "/seo-image/reinigung",
+  "/seo-image/entruempelung",
+  "/seo-image/bueroumzug",
+  "/seo-image/qualitaet-ablauf",
+  "/seo-image/praxisfaelle",
+  "/seo-image/kostenfaktoren",
+  "/seo-image/leistungen-vergleichen",
+  "/seo-image/anbieter-vergleichen",
+  "/seo-image/buchung-ablauf",
+  "/seo-image/kontakt",
+];
 const DOMINANCE_MONEY_ROUTES = [
   "/",
+  "/buchung",
   "/rechner",
   "/umzug",
   "/reinigung",
@@ -26,9 +43,17 @@ const DOMINANCE_MONEY_ROUTES = [
   "/private-client-service",
   "/service-area-bayern",
   "/einsatzgebiet-regensburg-200km",
+  "/qualitaet-ablauf",
+  "/praxisfaelle",
+  "/kostenfaktoren",
+  "/leistungen-vergleichen",
+  "/anbieter-vergleichen",
+  "/buchung-ablauf",
+  "/kontakt",
 ];
 const IMPORTANT_ROUTES = [
   "/",
+  "/buchung",
   "/rechner",
   "/umzug",
   "/reinigung",
@@ -36,6 +61,13 @@ const IMPORTANT_ROUTES = [
   "/service-area-bayern",
   "/blog",
   "/floxant-fakten",
+  "/qualitaet-ablauf",
+  "/praxisfaelle",
+  "/kostenfaktoren",
+  "/leistungen-vergleichen",
+  "/anbieter-vergleichen",
+  "/buchung-ablauf",
+  "/kontakt",
   "/llms.txt",
   "/sitemap.xml",
   "/robots.txt",
@@ -146,6 +178,13 @@ function normalizeInternalUrl(value) {
   return withoutOrigin.split("#")[0].split("?")[0].replace(/\/$/, "") || "/";
 }
 
+function publicAssetExists(url) {
+  if (!url || url === "/") return false;
+  const cleanUrl = url.replace(/^\/+/, "");
+  if (cleanUrl.includes("..")) return false;
+  return fs.existsSync(path.join(ROOT, "public", cleanUrl));
+}
+
 function hasNonAscii(value) {
   return [...value].some((char) => char.charCodeAt(0) > 127);
 }
@@ -182,7 +221,7 @@ function runLinkCheck() {
 
         if (hasNonAscii(url)) nonAscii.push(`${relativeFile}:${line}: ${rawUrl}`);
         if (url === "/de" || url.startsWith("/de/")) legacyLocaleLinks.push(`${relativeFile}:${line}: ${rawUrl}`);
-        if (!routes.has(url)) missing.push(`${relativeFile}:${line}: ${rawUrl} -> ${url}`);
+        if (!routes.has(url) && !publicAssetExists(url)) missing.push(`${relativeFile}:${line}: ${rawUrl} -> ${url}`);
       }
     }
   }
@@ -204,7 +243,7 @@ function runSeoCheck() {
   const riskyClaims = [];
   const importantMissing = [];
   const suspiciousPatterns = [
-    { pattern: /Ã|Â|â€|â€¦|â€“|â€”/g, label: "mojibake" },
+    { pattern: /[\u00c3\u00c2\u00e2]/g, label: "mojibake" },
   ];
   const riskyClaimPatterns = [
     /\bFestpreisgarantie\b/gi,
@@ -273,6 +312,13 @@ function runDominanceCheck() {
   const footerPath = path.join(ROOT, "components", "Footer.tsx");
   const llmsPath = path.join(ROOT, "app", "llms.txt", "route.ts");
   const localBusinessPath = path.join(ROOT, "components", "seo", "LocalBusinessJsonLd.tsx");
+  const localSignalPath = path.join(ROOT, "components", "seo", "LocalSeoSignalPanel.tsx");
+  const layoutPath = path.join(ROOT, "app", "layout.tsx");
+  const webVitalsPath = path.join(ROOT, "components", "WebVitalsReporter.tsx");
+  const twitterImagePath = path.join(ROOT, "app", "twitter-image.tsx");
+  const trustFlowPath = path.join(ROOT, "components", "seo", "TrustFlowSection.tsx");
+  const serviceAuthorityFaqPath = path.join(ROOT, "components", "seo", "ServiceAuthorityFaq.tsx");
+  const seoImageRoutePath = path.join(ROOT, "app", "seo-image", "[slug]", "route.tsx");
 
   for (const route of DOMINANCE_MONEY_ROUTES) {
     if (!routes.has(route)) failures.push(`missing money route: ${route}`);
@@ -300,12 +346,20 @@ function runDominanceCheck() {
 
   const pageRequirements = {
     "/": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "LocalBusinessJsonLd"],
+    "/buchung": ["generatePageSEO", "buildFaqJsonLd", "SmartBookingWizard", "Google Maps"],
     "/rechner": ["generatePageSEO", "buildFaqJsonLd", "Orientierungsrahmen"],
     "/umzug": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/reinigung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/entruempelung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/leerfahrt-rueckfahrt": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "BackhaulOffersBoard"],
     "/private-client-service": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "PrivateClientInquiryForm"],
+    "/qualitaet-ablauf": ["generatePageSEO", "buildFaqJsonLd", "Vorprüfung", "Preisrahmen"],
+    "/praxisfaelle": ["generatePageSEO", "buildFaqJsonLd", "Entscheidungssituationen", "CustomerIntentRouter"],
+    "/kostenfaktoren": ["generatePageSEO", "buildFaqJsonLd", "CostDriverMatrix", "Orientierungsrahmen"],
+    "/leistungen-vergleichen": ["generatePageSEO", "buildFaqJsonLd", "ServiceMatchBoard", "Service-Kompass"],
+    "/anbieter-vergleichen": ["generatePageSEO", "buildFaqJsonLd", "ProviderComparisonPanel", "Anbieter vergleichen"],
+    "/buchung-ablauf": ["generatePageSEO", "buildFaqJsonLd", "BookingProcessPanel", "Auftragsbestätigung"],
+    "/kontakt": ["generatePageSEO", "buildFaqJsonLd", "ContactTrustPanel", "ContactPage"],
   };
 
   for (const [route, needles] of Object.entries(pageRequirements)) {
@@ -330,6 +384,66 @@ function runDominanceCheck() {
 
   if (!fileContains(localBusinessPath, ["department", "openingHoursSpecification", "Leer-Rückfahrt", "areaServed"])) {
     failures.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
+  }
+
+  if (!fileContains(routeToPageFile("/"), ["LocalSeoSignalPanel"]) || !fileContains(localSignalPath, ["Google Maps", "company.address", "company.phone"])) {
+    failures.push("homepage lacks visible local SEO/NAP signal panel");
+  }
+
+  if (!fileContains(routeToPageFile("/"), ["TrustFlowSection"]) || !fileContains(trustFlowPath, ["Anfrage-Qualität", "Rechner starten", "Express-Check"])) {
+    failures.push("homepage lacks trust-building request flow section");
+  }
+
+  if (!fileContains(serviceAuthorityFaqPath, ["serviceAuthorityFaqs", "ServiceAuthorityFaq", "getServiceAuthorityFaqs"])) {
+    failures.push("service-specific authority FAQ component is missing");
+  }
+
+  if (!fileContains(path.join(ROOT, "components", "seo", "CustomerIntentRouter.tsx"), ["CustomerIntentRouter", "Leer-Rückfahrt", "Büro"])) {
+    failures.push("customer intent router is missing or incomplete");
+  }
+
+  if (!fileContains(path.join(ROOT, "components", "seo", "CostDriverMatrix.tsx"), ["CostDriverMatrix", "costDriverGroups", "Kostenfaktoren"])) {
+    failures.push("cost driver matrix is missing or incomplete");
+  }
+
+  if (!fileContains(path.join(ROOT, "components", "seo", "ServiceMatchBoard.tsx"), ["ServiceMatchBoard", "serviceComparisonRows", "Service-Kompass"])) {
+    failures.push("service match board is missing or incomplete");
+  }
+
+  if (!fileContains(path.join(ROOT, "components", "seo", "ProviderComparisonPanel.tsx"), ["ProviderComparisonPanel", "providerComparisonCriteria", "Anbieter vergleichen"])) {
+    failures.push("provider comparison panel is missing or incomplete");
+  }
+
+  if (!fileContains(path.join(ROOT, "components", "seo", "BookingProcessPanel.tsx"), ["BookingProcessPanel", "bookingDocumentSteps", "Auftragsbestätigung"])) {
+    failures.push("booking process panel is missing or incomplete");
+  }
+
+  if (!fileContains(path.join(ROOT, "components", "seo", "ContactTrustPanel.tsx"), ["ContactTrustPanel", "contactEntryPoints", "WhatsApp"])) {
+    failures.push("contact trust panel is missing or incomplete");
+  }
+
+  if (!fileContains(twitterImagePath, ["opengraph-image"]) || !fileContains(seoPath, ["twitter-image"])) {
+    failures.push("twitter/social image metadata is not wired");
+  }
+
+  if (!fileContains(seoImageRoutePath, ["ImageResponse", "umzug", "reinigung", "entruempelung"]) || !fileContains(seoPath, ["seo-image"])) {
+    failures.push("service-specific social image route is not wired");
+  }
+
+  for (const asset of ["logo_v10.png", "og.jpg", "favicon.ico"]) {
+    if (!fs.existsSync(path.join(ROOT, "public", asset))) {
+      failures.push(`required public SEO asset missing: ${asset}`);
+    }
+  }
+
+  for (const file of [path.join(ROOT, "components", "JsonLd.tsx"), path.join(ROOT, "components", "seo", "OrganizationJsonLd.tsx"), path.join(ROOT, "lib", "structured-data.ts")]) {
+    if (fileContains(file, ["logo-dark.png"])) {
+      failures.push(`structured data references missing logo-dark.png: ${path.relative(ROOT, file)}`);
+    }
+  }
+
+  if (!fileContains(layoutPath, ["WebVitalsReporter"]) || !fileContains(webVitalsPath, ["useReportWebVitals", "/api/vitals"])) {
+    failures.push("web vitals monitoring is not wired into the layout");
   }
 
   if (failures.length) {

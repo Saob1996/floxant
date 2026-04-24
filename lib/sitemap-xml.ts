@@ -1,15 +1,15 @@
 import {
-    BASE_URL,
-    LASTMOD,
-    CORE_SERVICES,
-    CITY_PAGES,
-    SERVICE_CITY_PAGES,
-    BAVARIA_AUTHORITY_PAGES,
-    SIGNATURE_SEO_PAGES,
-    LONGTAIL_PAGES,
-    RATGEBER_PAGES,
-    LEGAL_PAGES,
-    HUB_PAGES,
+  BASE_URL,
+  LASTMOD,
+  CORE_SERVICES,
+  CITY_PAGES,
+  SERVICE_CITY_PAGES,
+  BAVARIA_AUTHORITY_PAGES,
+  SIGNATURE_SEO_PAGES,
+  LONGTAIL_PAGES,
+  RATGEBER_PAGES,
+  LEGAL_PAGES,
+  HUB_PAGES,
 } from "./sitemap-config";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
@@ -21,257 +21,265 @@ import { join } from "path";
  */
 
 interface SitemapUrl {
-    pagePath?: string;
-    loc: string;
-    lastmod: string;
-    changefreq: string;
-    priority: string;
+  pagePath?: string;
+  loc: string;
+  lastmod: string;
+  changefreq: string;
+  priority: string;
 }
 
 function escapeXml(unsafe: string): string {
-    return unsafe.replace(/[<>&'"]/g, (char) => {
-        switch (char) {
-            case "<":
-                return "&lt;";
-            case ">":
-                return "&gt;";
-            case "&":
-                return "&amp;";
-            case "'":
-                return "&apos;";
-            case '"':
-                return "&quot;";
-            default:
-                return char;
-        }
-    });
+  return unsafe.replace(/[<>&'"]/g, (char) => {
+    switch (char) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case "'":
+        return "&apos;";
+      case '"':
+        return "&quot;";
+      default:
+        return char;
+    }
+  });
 }
 
 /**
  * Builds final root-based canonical URLs.
  */
 function buildAbsoluteUrl(route: string): string {
-    return `${BASE_URL}${route ? `/${route}` : ""}`;
+  return `${BASE_URL}${route ? `/${route}` : ""}`;
 }
 
 function shouldSkipSitemapSegment(segment: string): boolean {
-    return (
-        segment === "api" ||
-        segment === "admin" ||
-        segment === "dashboard" ||
-        segment === "login" ||
-        segment === "angebote" ||
-        segment === "guenstig" ||
-        segment === "signature" ||
-        segment === "feedback" ||
-        segment === "villenservice" ||
-        segment === "sitemap.xml" ||
-        segment === "sitemap-de.xml" ||
-        segment.startsWith("_") ||
-        segment.startsWith("[")
-    );
+  return (
+    segment === "api" ||
+    segment === "admin" ||
+    segment === "dashboard" ||
+    segment === "login" ||
+    segment === "angebote" ||
+    segment === "guenstig" ||
+    segment === "signature" ||
+    segment === "feedback" ||
+    segment === "villenservice" ||
+    segment === "sitemap.xml" ||
+    segment === "sitemap-de.xml" ||
+    segment.startsWith("_") ||
+    segment.startsWith("[")
+  );
 }
 
 function normalizeRouteSegments(segments: string[]): string[] {
-    return segments.filter((segment) => !segment.startsWith("(") && !segment.endsWith(")"));
+  return segments.filter((segment) => !segment.startsWith("(") && !segment.endsWith(")"));
 }
 
 function discoverStaticAppRoutes(): string[] {
-    const appDir = join(process.cwd(), "app");
-    const routes = new Set<string>();
+  const appDir = join(process.cwd(), "app");
+  const routes = new Set<string>();
 
-    function walk(directory: string, segments: string[] = []) {
-        if (!existsSync(directory)) return;
+  function walk(directory: string, segments: string[] = []) {
+    if (!existsSync(directory)) return;
 
-        const entries = readdirSync(directory, { withFileTypes: true });
-        const hasPage = entries.some((entry) => entry.isFile() && /^page\.(tsx|ts|jsx|js)$/.test(entry.name));
+    const entries = readdirSync(directory, { withFileTypes: true });
+    const hasPage = entries.some((entry) => entry.isFile() && /^page\.(tsx|ts|jsx|js)$/.test(entry.name));
 
-        if (hasPage) {
-            const routeSegments = normalizeRouteSegments(segments);
-            if (!routeSegments.some(shouldSkipSitemapSegment)) {
-                routes.add(routeSegments.join("/"));
-            }
-        }
-
-        for (const entry of entries) {
-            if (!entry.isDirectory()) continue;
-            if (shouldSkipSitemapSegment(entry.name)) continue;
-            walk(join(directory, entry.name), [...segments, entry.name]);
-        }
+    if (hasPage) {
+      const routeSegments = normalizeRouteSegments(segments);
+      if (!routeSegments.some(shouldSkipSitemapSegment)) {
+        routes.add(routeSegments.join("/"));
+      }
     }
 
-    walk(appDir);
-    return Array.from(routes).sort();
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      if (shouldSkipSitemapSegment(entry.name)) continue;
+      walk(join(directory, entry.name), [...segments, entry.name]);
+    }
+  }
+
+  walk(appDir);
+  return Array.from(routes).sort();
 }
 
 function lastmodForRoute(route: string): string {
-    const routeSegments = route ? route.split("/") : [];
-    const appRouteDir = join(process.cwd(), "app", ...routeSegments);
-    const pageCandidates = ["page.tsx", "page.ts", "page.jsx", "page.js", "route.ts", "route.tsx"];
+  const routeSegments = route ? route.split("/") : [];
+  const appRouteDir = join(process.cwd(), "app", ...routeSegments);
+  const pageCandidates = ["page.tsx", "page.ts", "page.jsx", "page.js", "route.ts", "route.tsx"];
 
-    for (const fileName of pageCandidates) {
-        const candidate = join(appRouteDir, fileName);
-        if (existsSync(candidate)) {
-            return statSync(candidate).mtime.toISOString().split("T")[0];
-        }
+  for (const fileName of pageCandidates) {
+    const candidate = join(appRouteDir, fileName);
+    if (existsSync(candidate)) {
+      return statSync(candidate).mtime.toISOString().split("T")[0];
     }
+  }
 
-    return LASTMOD;
+  return LASTMOD;
 }
 
 function priorityForRoute(route: string): string {
-    if (!route) return "1.0";
-    if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "rechner"].includes(route)) return "0.9";
-    if (route === "leerfahrt-rueckfahrt") return "0.88";
-    if (route === "einsatzgebiet-regensburg-200km") return "0.88";
-    if (route === "floxant-fakten") return "0.8";
-    if (route.includes("regensburg") || route.endsWith("-bayern") || route === "service-area-bayern") return "0.85";
-    if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "0.65";
-    if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "0.3";
-    return "0.7";
+  if (!route) return "1.0";
+  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "rechner", "buchung"].includes(route)) return "0.9";
+  if (route === "leerfahrt-rueckfahrt") return "0.88";
+  if (route === "einsatzgebiet-regensburg-200km") return "0.88";
+  if (route === "standorte") return "0.86";
+  if (route === "kontakt") return "0.86";
+  if (route === "buchung-ablauf") return "0.86";
+  if (route === "leistungen-vergleichen") return "0.85";
+  if (route === "anbieter-vergleichen") return "0.85";
+  if (route === "qualitaet-ablauf") return "0.84";
+  if (route === "praxisfaelle") return "0.82";
+  if (route === "kostenfaktoren") return "0.84";
+  if (route === "floxant-fakten") return "0.8";
+  if (route.includes("regensburg") || route.endsWith("-bayern") || route === "service-area-bayern") return "0.85";
+  if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "0.65";
+  if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "0.3";
+  return "0.7";
 }
 
 function changefreqForRoute(route: string): string {
-    if (!route) return "daily";
-    if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
-    if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";
-    return "weekly";
+  if (!route) return "daily";
+  if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
+  if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";
+  return "weekly";
 }
 
 function addEntries(
-    urls: SitemapUrl[],
-    routes: readonly string[],
-    priority: string,
-    changefreq: string
+  urls: SitemapUrl[],
+  routes: readonly string[],
+  priority: string,
+  changefreq: string
 ): void {
-    for (const route of routes) {
-        const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+  for (const route of routes) {
+    const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
 
-        if (normalizedRoute.split("/").some(shouldSkipSitemapSegment)) {
-            continue;
-        }
-
-        urls.push({
-            pagePath: normalizedRoute,
-            loc: buildAbsoluteUrl(normalizedRoute),
-            lastmod: lastmodForRoute(normalizedRoute),
-            changefreq,
-            priority,
-        });
+    if (normalizedRoute.split("/").some(shouldSkipSitemapSegment)) {
+      continue;
     }
+
+    urls.push({
+      pagePath: normalizedRoute,
+      loc: buildAbsoluteUrl(normalizedRoute),
+      lastmod: lastmodForRoute(normalizedRoute),
+      changefreq,
+      priority,
+    });
+  }
 }
 
 /**
  * Generates the full flat German sitemap.
  */
 export function generateSitemapResponse(): Response {
-    const urls: SitemapUrl[] = [];
+  const urls: SitemapUrl[] = [];
 
-    // Homepage
-    urls.push({
-        pagePath: "",
-        loc: buildAbsoluteUrl(""),
-        lastmod: lastmodForRoute(""),
-        changefreq: "daily",
-        priority: "1.0",
-    });
+  // Homepage
+  urls.push({
+    pagePath: "",
+    loc: buildAbsoluteUrl(""),
+    lastmod: lastmodForRoute(""),
+    changefreq: "daily",
+    priority: "1.0",
+  });
 
-    // Core services
-    addEntries(urls, CORE_SERVICES, "0.9", "weekly");
+  // Core services
+  addEntries(urls, CORE_SERVICES, "0.9", "weekly");
 
-    // City pages
-    addEntries(urls, CITY_PAGES, "0.9", "daily");
+  // City pages
+  addEntries(urls, CITY_PAGES, "0.9", "daily");
 
-    // Service + city pages
-    addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
+  // Service + city pages
+  addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
 
-    // Bavaria authority pages
-    addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
+  // Bavaria authority pages
+  addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");
 
-    // Hub pages
-    addEntries(urls, HUB_PAGES, "0.8", "weekly");
+  // Hub pages
+  addEntries(urls, HUB_PAGES, "0.8", "weekly");
 
-    // Signature SEO pages
-    addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly");
+  // Signature SEO pages
+  addEntries(urls, SIGNATURE_SEO_PAGES, "0.7", "weekly");
 
-    // Long-tail pages
-    addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly");
+  // Long-tail pages
+  addEntries(urls, LONGTAIL_PAGES, "0.6", "monthly");
 
-    // Ratgeber / Blog pages
-    addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
+  // Ratgeber / Blog pages
+  addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
 
-    // Legal pages
-    addEntries(urls, LEGAL_PAGES, "0.3", "yearly");
+  // Legal pages
+  addEntries(urls, LEGAL_PAGES, "0.3", "yearly");
 
-    // Safety net: include all static root routes that exist in app/, while excluding
-    // private/admin/API areas and dynamic placeholders. This keeps the sitemap aligned
-    // with the large generated route set without hand-maintaining every city page.
-    addEntries(
-        urls,
-        discoverStaticAppRoutes(),
-        "0.7",
-        "weekly"
-    );
+  // Safety net: include all static root routes that exist in app/, while excluding
+  // private/admin/API areas and dynamic placeholders. This keeps the sitemap aligned
+  // with the large generated route set without hand-maintaining every city page.
+  addEntries(
+    urls,
+    discoverStaticAppRoutes(),
+    "0.7",
+    "weekly"
+  );
 
-    const changefreqWeight: Record<string, number> = {
-        daily: 4,
-        weekly: 3,
-        monthly: 2,
-        yearly: 1,
+  const changefreqWeight: Record<string, number> = {
+    daily: 4,
+    weekly: 3,
+    monthly: 2,
+    yearly: 1,
+  };
+  const uniqueUrlMap = new Map<string, SitemapUrl>();
+
+  for (const url of urls) {
+    const discoveredPriority = Number(priorityForRoute(url.pagePath || ""));
+    const configuredPriority = Number(url.priority);
+    const priority = Math.max(
+      Number.isFinite(configuredPriority) ? configuredPriority : 0.7,
+      Number.isFinite(discoveredPriority) ? discoveredPriority : 0.7
+    ).toFixed(2).replace(/0$/, "");
+    const normalizedUrl = {
+      ...url,
+      priority,
+      changefreq: url.changefreq || changefreqForRoute(url.pagePath || ""),
     };
-    const uniqueUrlMap = new Map<string, SitemapUrl>();
+    const existing = uniqueUrlMap.get(url.loc);
 
-    for (const url of urls) {
-        const discoveredPriority = Number(priorityForRoute(url.pagePath || ""));
-        const configuredPriority = Number(url.priority);
-        const priority = Math.max(
-            Number.isFinite(configuredPriority) ? configuredPriority : 0.7,
-            Number.isFinite(discoveredPriority) ? discoveredPriority : 0.7
-        ).toFixed(2).replace(/0$/, "");
-        const normalizedUrl = {
-            ...url,
-            priority,
-            changefreq: url.changefreq || changefreqForRoute(url.pagePath || ""),
-        };
-        const existing = uniqueUrlMap.get(url.loc);
-
-        if (!existing) {
-            uniqueUrlMap.set(url.loc, normalizedUrl);
-            continue;
-        }
-
-        const bestPriority = Math.max(Number(existing.priority), Number(normalizedUrl.priority))
-            .toFixed(2)
-            .replace(/0$/, "");
-        const bestChangefreq =
-            changefreqWeight[normalizedUrl.changefreq] > changefreqWeight[existing.changefreq]
-                ? normalizedUrl.changefreq
-                : existing.changefreq;
-
-        uniqueUrlMap.set(url.loc, {
-            ...existing,
-            priority: bestPriority,
-            changefreq: bestChangefreq,
-        });
+    if (!existing) {
+      uniqueUrlMap.set(url.loc, normalizedUrl);
+      continue;
     }
 
-    const uniqueUrls = Array.from(uniqueUrlMap.values());
+    const bestPriority = Math.max(Number(existing.priority), Number(normalizedUrl.priority))
+      .toFixed(2)
+      .replace(/0$/, "");
+    const bestChangefreq =
+      changefreqWeight[normalizedUrl.changefreq] > changefreqWeight[existing.changefreq]
+        ? normalizedUrl.changefreq
+        : existing.changefreq;
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+    uniqueUrlMap.set(url.loc, {
+      ...existing,
+      priority: bestPriority,
+      changefreq: bestChangefreq,
+    });
+  }
+
+  const uniqueUrls = Array.from(uniqueUrlMap.values());
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${uniqueUrls
-    .map(
-        (url) => `  <url>
-    <loc>${escapeXml(url.loc)}</loc>
-    <lastmod>${url.lastmod}</lastmod>
-    <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>
-  </url>`
-    )
-    .join("\n")}
+  .map(
+    (url) => ` <url>
+  <loc>${escapeXml(url.loc)}</loc>
+  <lastmod>${url.lastmod}</lastmod>
+  <changefreq>${url.changefreq}</changefreq>
+  <priority>${url.priority}</priority>
+ </url>`
+  )
+  .join("\n")}
 </urlset>`;
 
-    return new Response(xml, {
-        headers: { "Content-Type": "application/xml" },
-    });
+  return new Response(xml, {
+    headers: { "Content-Type": "application/xml" },
+  });
 }
