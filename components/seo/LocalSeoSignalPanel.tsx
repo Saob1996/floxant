@@ -1,147 +1,123 @@
 import Link from "next/link";
-import { ArrowRight, Clock3, Mail, MapPinned, Phone, Radar, ShieldCheck } from "lucide-react";
+import { MapPin, Navigation, PhoneCall } from "lucide-react";
+
 import { company } from "@/lib/company";
 
-const mapQuery = encodeURIComponent(`${company.name} ${company.streetAddress} ${company.postalCode} ${company.city}`);
-const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
-
-const serviceAreas = [
- { label: "Regensburg", text: "operativer Kern und wichtigste lokale Nachfrage" },
- { label: "Oberpfalz", text: "kurze Wege für Umzug, Reinigung und Entrümpelung" },
- { label: "Bayern", text: "strukturierter Ausbau für Service- und Firmenanfragen" },
- { label: "200-km-Raum", text: "realistische Vorprüfung nach Strecke, Termin und Kapazität" },
-];
-
 const localSignals = [
- {
-  icon: MapPinned,
-  title: "Klare lokale Einordnung",
-  text: "Adresse, Region, Einsatzradius und Kernleistungen sind sichtbar und konsistent formuliert.",
- },
- {
-  icon: ShieldCheck,
-  title: "Saubere Service-Grenzen",
-  text: "FLOXANT trennt Umzug, Reinigung, Entrümpelung, Büroumzug und Spezialservices verständlich.",
- },
- {
-  icon: Radar,
-  title: "Regionale Suchpfade",
-  text: "Nutzer finden direkt Stadt-, Bayern-, Rechner- und Spezialseiten statt zufälliger Linklisten.",
- },
+  "Regensburg als operative Basis",
+  "Bayern als klares Einsatzgebiet",
+  "Buchung als direkter Maps- und Search-Einstieg",
 ];
 
-export function LocalSeoSignalPanel() {
- return (
-  <section className="relative overflow-hidden border-y border-foreground/5 bg-[linear-gradient(180deg,rgba(10,15,28,0.96),rgba(5,8,15,0.98))] px-6 py-24">
-   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(59,130,246,0.16),transparent_32%),radial-gradient(circle_at_88%_20%,rgba(245,158,11,0.08),transparent_30%)]" />
-   <div className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-    <div className="rounded-[2.4rem] border border-foreground/10 bg-white/[0.035] p-8 shadow-2xl shadow-foreground/10">
-     <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-600 ">
-      <MapPinned className="h-4 w-4" />
-      Local SEO Signal
-     </div>
-     <h2 className="mt-6 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-      FLOXANT ist lokal klar verortet.
-     </h2>
-     <p className="mt-5 text-lg leading-relaxed text-foreground/52">
-      Für Google Maps, lokale Suche und echte Kunden zählt Konsistenz: wer FLOXANT ist,
-      wo der operative Kern liegt, welche Leistungen angeboten werden und wie eine Anfrage startet.
-     </p>
+const localHighlights = [
+  "Klare Standortsignale statt unruhiger Linkpfade",
+  "Ein bevorzugter Einstieg für Maps, Search und direkte Empfehlungen",
+  "Freundliche Führung statt verstreuter Kontaktwege",
+];
 
-     <div className="mt-8 grid gap-3">
-      <a
-       href={`tel:${company.phoneRaw}`}
-       className="group flex items-center justify-between rounded-2xl border border-foreground/10 bg-foreground/5 px-5 py-4 text-foreground/70 transition hover:border-blue-300/25 hover:bg-blue-500/10 hover:text-foreground"
-      >
-       <span className="flex items-center gap-3">
-        <Phone className="h-4 w-4 text-blue-700 " />
-        {company.phone}
-       </span>
-       <ArrowRight className="h-4 w-4 text-blue-700 transition-transform group-hover:translate-x-1" />
-      </a>
-      <a
-       href={`mailto:${company.email}`}
-       className="group flex items-center justify-between rounded-2xl border border-foreground/10 bg-foreground/5 px-5 py-4 text-foreground/70 transition hover:border-blue-300/25 hover:bg-blue-500/10 hover:text-foreground"
-      >
-       <span className="flex items-center gap-3">
-        <Mail className="h-4 w-4 text-blue-700 " />
-        {company.email}
-       </span>
-       <ArrowRight className="h-4 w-4 text-blue-700 transition-transform group-hover:translate-x-1" />
-      </a>
-      <a
-       href={googleMapsUrl}
-       target="_blank"
-       rel="noopener noreferrer"
-       className="group flex items-center justify-between rounded-2xl border border-foreground/10 bg-foreground/5 px-5 py-4 text-foreground/70 transition hover:border-blue-300/25 hover:bg-blue-500/10 hover:text-foreground"
-      >
-       <span className="flex items-center gap-3">
-        <MapPinned className="h-4 w-4 text-blue-700 " />
-        {company.address}
-       </span>
-       <ArrowRight className="h-4 w-4 text-blue-700 transition-transform group-hover:translate-x-1" />
-      </a>
-     </div>
+export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: string }) {
+  return (
+    <section id={sectionId} className="section-glow relative px-6 pb-22">
+      <div className="mx-auto grid max-w-7xl gap-5 xl:grid-cols-[1.02fr_0.98fr]">
+        <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+            Lokales Signal
+          </div>
+          <h2 className="mt-4 max-w-3xl text-[1.9rem] font-bold flox-display-section text-slate-950 md:text-[2.45rem]">
+            Regensburg ist unser operativer Kern. Bayern bleibt das klare Einsatzgebiet.
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
+            Für Google Maps, Google Search und direkte Kundenanfragen soll sofort sichtbar sein:
+            FLOXANT plant von Regensburg aus, prüft Einsätze sauber und führt Interessenten nicht
+            im Kreis, sondern in einen verständlichen direkten Anfrageweg.
+          </p>
+          <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
+            Kurz gesagt: lieber klar geführt als irgendwo zwischen Vergleichsportalen hängen
+            bleiben. So wirkt es menschlicher, vertrauenswürdiger und im Alltag deutlich ruhiger.
+          </p>
 
-     <div className="mt-6 flex items-center gap-3 rounded-2xl border border-emerald-300/15 bg-emerald-400/[0.055] px-5 py-4 text-sm text-emerald-800 ">
-      <Clock3 className="h-4 w-4 text-emerald-600 " />
-      Anfrage und Vorprüfung für Regensburg, Bayern und passende Einsätze im erweiterten Radius.
-     </div>
-    </div>
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {localSignals.map((signal) => (
+              <span
+                key={signal}
+                className="rounded-full border border-blue-100 bg-blue-50/80 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-blue-800"
+              >
+                {signal}
+              </span>
+            ))}
+          </div>
 
-    <div className="grid gap-5">
-     <div className="grid gap-4 md:grid-cols-2">
-      {serviceAreas.map((area) => (
-       <Link
-        key={area.label}
-        href={area.label === "Regensburg" ? "/umzug-regensburg" : area.label === "Bayern" ? "/service-area-bayern" : "/einsatzgebiet-regensburg-200km"}
-        className="premium-scan rounded-[1.75rem] border border-foreground/10 bg-white/[0.028] p-6 transition hover:-translate-y-1 hover:border-blue-300/25"
-       >
-        <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700 ">
-         {area.label}
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="card-premium rounded-[1.25rem] p-5">
+              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                <MapPin className="h-3.5 w-3.5" />
+                Adresse
+              </div>
+              <p className="mt-3 text-[1rem] font-semibold leading-8 text-slate-950">{company.address}</p>
+            </div>
+
+            <div className="card-premium rounded-[1.25rem] p-5">
+              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                <PhoneCall className="h-3.5 w-3.5" />
+                Direkter Kontakt
+              </div>
+              <div className="mt-3 space-y-1.5 text-[1rem] font-semibold leading-8 text-slate-950">
+                <a href={`tel:${company.phoneRaw}`} className="block hover:text-blue-700">
+                  {company.phone}
+                </a>
+                <a href={`mailto:${company.email}`} className="block hover:text-blue-700">
+                  {company.email}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-foreground/48">{area.text}</p>
-       </Link>
-      ))}
-     </div>
 
-     <div className="grid gap-4 md:grid-cols-3">
-      {localSignals.map((signal) => {
-       const Icon = signal.icon;
-       return (
-        <div key={signal.title} className="rounded-[1.75rem] border border-foreground/10 bg-foreground/5 p-6">
-         <Icon className="h-5 w-5 text-blue-700 " />
-         <h3 className="mt-5 text-lg font-semibold text-foreground">{signal.title}</h3>
-         <p className="mt-3 text-sm leading-relaxed text-foreground/45">{signal.text}</p>
+        <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+            Maps, Search & direkte Wege
+          </div>
+          <h3 className="mt-4 max-w-[15ch] text-[1.75rem] font-bold flox-display-section-tight text-slate-950 md:text-[2.1rem]">
+            Ein direkter Pfad, der in Google Maps und Search sofort verständlich wirkt
+          </h3>
+          <p className="mt-4 text-[15px] leading-7 text-slate-700">
+            Der direkte Einstieg für spontane Kunden bleibt bewusst die Buchungsseite. Von dort aus
+            bleiben Buchung, Express-Check, Preisvorstellung und Kontakt sauber getrennt. Genau das
+            wirkt für Kunden ruhiger, verständlicher und oft auch klickstärker.
+          </p>
+
+          <div className="mt-6 rounded-[1.1rem] border border-blue-100 bg-blue-50/75 px-4 py-3.5 text-sm font-mono text-blue-800">
+            {company.businessProfilePreferredUrl}
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <Link
+              href="/buchung"
+              className="btn-premium inline-flex h-11 items-center justify-center gap-2 rounded-[1rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-white"
+            >
+              Buchungsseite öffnen
+              <Navigation className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/kontakt"
+              className="inline-flex h-11 items-center justify-center rounded-[1rem] border border-slate-200 bg-white px-5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 transition-all hover:border-blue-200 hover:bg-blue-50"
+            >
+              Kontakt & Standort
+            </Link>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {localHighlights.map((item) => (
+              <div
+                key={item}
+                className="rounded-[1.05rem] border border-slate-200 bg-white/92 px-4 py-4 shadow-sm shadow-slate-950/5"
+              >
+                <p className="text-sm leading-6 text-slate-700">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
-       );
-      })}
-     </div>
-
-     <div className="flex flex-col gap-3 rounded-[1.75rem] border border-blue-300/15 bg-blue-500/[0.07] p-6 md:flex-row md:items-center md:justify-between">
-      <div>
-       <h3 className="text-xl font-semibold text-foreground">Nächster sinnvoller Schritt</h3>
-       <p className="mt-2 text-sm leading-relaxed text-foreground/50">
-        Erst Service und Ort einordnen, dann unverbindlichen Preisrahmen oder Preisvorstellung senden.
-       </p>
       </div>
-      <div className="flex flex-col gap-2 sm:flex-row">
-       <Link
-        href="/kontakt"
-        className="inline-flex h-12 items-center justify-center rounded-2xl border border-foreground/10 bg-white/[0.04] px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-foreground/75 transition hover:bg-white/[0.08] hover:text-foreground"
-       >
-        Kontakt
-       </Link>
-       <Link
-        href="/rechner"
-        className="inline-flex h-12 items-center justify-center rounded-2xl bg-blue-500 px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-foreground transition hover:bg-blue-400"
-       >
-        Rechner starten
-       </Link>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section>
- );
+    </section>
+  );
 }

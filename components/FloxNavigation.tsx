@@ -1,138 +1,168 @@
-"use client";
+﻿"use client";
 
 import { AnimatePresence, m } from "framer-motion";
 import {
   ArrowUpRight,
-  Calculator,
   ChevronDown,
-  Home,
   Mail,
   MapPin,
   Menu,
   MessageCircle,
-  Newspaper,
-  Phone,
-  Sparkles,
   X,
   Zap,
 } from "lucide-react";
-import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { QuickBudgetModal } from "./QuickBudgetModal";
-import { QuickExpressModal } from "./QuickExpressModal";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
-import { cn } from "@/lib/utils";
+import { QuickBudgetModal } from "@/components/QuickBudgetModal";
+import { QuickExpressModal } from "@/components/QuickExpressModal";
 import { company } from "@/lib/company";
+import { germanizeDeep } from "@/lib/german-text";
+import { cn } from "@/lib/utils";
 
-const SERVICE_CATEGORIES = {
-  kern: {
-    label: "Kern-Services",
+const SERVICE_GROUPS = [
+  {
+    label: "Kernleistungen",
+    description: "Die direkten Hauptwege für Umzug, Reinigung und Entrümpelung.",
     items: [
       { label: "Umzug", href: "/umzug" },
       { label: "Reinigung", href: "/reinigung" },
       { label: "Entrümpelung", href: "/entruempelung" },
-      { label: "Einlagerung", href: "/einlagerung" },
-    ],
-  },
-  premium: {
-    label: "Signatur-Services",
-    items: [
-      { label: "Schlüsselübergabe", href: "/schluesseluebergabe" },
-      { label: "Reinigungsgarantie", href: "/reinigungsgarantie" },
-      { label: "Bürokratie-Schutz", href: "/buerokratie-schutz" },
-      { label: "Private Client", href: "/private-client-service" },
-      { label: "Möbel-Optimierung", href: "/moebel-optimierung" },
-      { label: "24h Umzugsservice", href: "/24h-umzugsservice" },
-      { label: "Damen-Team", href: "/damen-team" },
-      { label: "Lager-Rotation", href: "/lager-rotation" },
-      { label: "Kinder-Umzugsbox", href: "/kinder-umzugsbox" },
-    ],
-  },
-  spezial: {
-    label: "Spezialservices",
-    items: [
       { label: "Büroumzug", href: "/bueroumzug" },
+    ],
+  },
+  {
+    label: "Spezialwege",
+    description: "Für B2B-Reinigung, Rückfahrten, Firmenentsorgung und Premium-Fälle.",
+    items: [
+      { label: "Gewerbereinigung", href: "/gewerbereinigung-regensburg" },
       { label: "Firmenentsorgung", href: "/firmenentsorgung" },
       { label: "Leer-Rückfahrt", href: "/leerfahrt-rueckfahrt" },
-      { label: "Seniorenumzug", href: "/seniorenumzug" },
-      { label: "Klaviertransport", href: "/klaviertransport" },
-      { label: "Beiladung", href: "/beiladung" },
-      { label: "Anfrage mit Preisrahmen", href: "/anfrage-mit-preisrahmen" },
-      { label: "Halteverbotszone", href: "/halteverbotszone-regensburg" },
-      { label: "Express-Anfrage", href: "/express-anfrage" },
+      { label: "Private Client", href: "/private-client-service" },
     ],
   },
-};
+];
 
-const SERVICE_HIGHLIGHTS = [
-  { label: "Umzug", href: "/umzug" },
-  { label: "Reinigung", href: "/reinigung" },
-  { label: "Entrümpelung", href: "/entruempelung" },
-  { label: "Leer-Rückfahrt", href: "/leerfahrt-rueckfahrt" },
+const DESKTOP_LINKS = [
+  { label: "Startseite", href: "/" },
+  { label: "Buchung", href: "/buchung" },
+  { label: "Rechner", href: "/rechner" },
+  { label: "Bayern", href: "/service-area-bayern" },
+  { label: "Ratgeber", href: "/blog" },
+];
+
+const MOBILE_LINKS = [
+  { label: "Startseite", href: "/" },
+  { label: "Buchung", href: "/buchung" },
+  { label: "Rechner", href: "/rechner" },
+  { label: "Bayern", href: "/service-area-bayern" },
+  { label: "Kontakt", href: "/kontakt" },
+  { label: "Ratgeber", href: "/blog" },
 ];
 
 export function FloxNavigation({ dic }: { dic: any }) {
-  const [mounted, setMounted] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isBudgetOpen, setIsBudgetOpen] = useState(false);
-  const [isExpressOpen, setIsExpressOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [showServices, setShowServices] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const hideTimerRef = useRef<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [budgetOpen, setBudgetOpen] = useState(false);
+  const [expressOpen, setExpressOpen] = useState(false);
 
-  const whatsappUrl = useMemo(
-    () => `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`,
-    []
+  const whatsappUrl = useMemo(() => `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`, []);
+  const serviceGroups = useMemo(() => germanizeDeep(SERVICE_GROUPS) as typeof SERVICE_GROUPS, []);
+  const desktopLinks = useMemo(() => germanizeDeep(DESKTOP_LINKS) as typeof DESKTOP_LINKS, []);
+  const mobileLinks = useMemo(() => germanizeDeep(MOBILE_LINKS) as typeof MOBILE_LINKS, []);
+
+  const servicesActive = serviceGroups.some((group) =>
+    group.items.some((item) => pathname === item.href),
   );
+
+  const clearHideTimer = () => {
+    if (hideTimerRef.current !== null) {
+      window.clearTimeout(hideTimerRef.current);
+      hideTimerRef.current = null;
+    }
+  };
+
+  const scheduleAutoHide = () => {
+    clearHideTimer();
+    hideTimerRef.current = window.setTimeout(() => {
+      if (window.scrollY > 72 && !menuOpen && !servicesOpen) {
+        setNavVisible(false);
+      }
+    }, 4600);
+  };
 
   useEffect(() => {
     setMounted(true);
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 18);
+
+      if (currentScrollY <= 24) {
+        clearHideTimer();
+        setNavVisible(true);
+      } else if (currentScrollY < lastScrollY - 6) {
+        setNavVisible(true);
+        if (!menuOpen && !servicesOpen) {
+          scheduleAutoHide();
+        }
+      } else if (currentScrollY > lastScrollY + 12 && !menuOpen && !servicesOpen) {
+        clearHideTimer();
+        setNavVisible(false);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      clearHideTimer();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [menuOpen, servicesOpen]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
-
-    if (isOpen) {
+    if (menuOpen) {
       document.body.style.overflow = "hidden";
     }
-
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [isOpen]);
+  }, [menuOpen]);
 
-  // Close dropdown on outside click
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setShowServices(false);
+    if (menuOpen || servicesOpen) {
+      clearHideTimer();
+      setNavVisible(true);
+    }
+  }, [menuOpen, servicesOpen]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setServicesOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setServicesOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
-  const calculatorLabel = dic?.common?.cost_calculator_btn || "Preis berechnen";
-  const primaryNavItems = [
-    { label: dic?.nav?.home || "Startseite", href: "/", icon: Home, hint: "FLOXANT" },
-    { label: "Rechner", href: "/rechner", icon: Calculator, hint: "Preisrahmen" },
-    { label: "Bayern", href: "/service-area-bayern", icon: MapPin, hint: "Einsatzgebiet" },
-    { label: "Ratgeber", href: "/blog", icon: Newspaper, hint: "Wissen" },
-  ];
-  const isServiceActive = Object.values(SERVICE_CATEGORIES).some((cat) =>
-    cat.items.some((item) => pathname === item.href)
-  );
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, []);
 
   if (pathname === "/private-client-service" || pathname === "/villenservice") {
     return null;
@@ -142,432 +172,304 @@ export function FloxNavigation({ dic }: { dic: any }) {
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed inset-x-3 z-50 mx-auto max-w-[1280px] transition-[top,box-shadow,border-color] duration-500 ease-out sm:inset-x-5",
-        "flox-nav-shell rounded-[1.65rem] px-3 py-2.5 sm:px-4 lg:px-5",
-        mounted && scrolled ? "top-3 shadow-[0_18px_70px_rgba(0,0,0,0.48)]" : "top-4"
+        "fixed inset-x-3 z-50 mx-auto max-w-[1320px] transition-all duration-500 sm:inset-x-5",
+        "flox-nav-shell rounded-[1.6rem] px-3 py-2.5 sm:px-4",
+        navVisible ? "translate-y-0 opacity-100" : "-translate-y-[145%] opacity-0",
+        mounted && scrolled ? "top-3" : "top-4",
       )}
     >
-      <div className="mx-auto w-full">
-        <div className="relative grid grid-cols-[auto_1fr_auto] items-center gap-3 min-[1180px]:gap-5">
-          {/* Brand Mark: Left Column */}
-          <Link
-            href="/"
-            className="group relative z-50 flex min-w-0 items-center gap-3 rounded-2xl pr-1 transition-transform duration-300 active:scale-95"
-            onClick={() => {
-              setIsOpen(false);
-              setShowServices(false);
-            }}
-            aria-label="FLOXANT Startseite"
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/[0.035] shadow-inner shadow-white/[0.03]">
-              <BrandLogo size={30} />
+      <div className="relative flex items-center gap-3">
+        <Link
+          href="/"
+          className="group flex min-w-0 items-center gap-3"
+          onClick={() => {
+            setMenuOpen(false);
+            setServicesOpen(false);
+          }}
+          aria-label="FLOXANT Startseite"
+        >
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[1rem] border border-blue-100/80 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)]">
+            <BrandLogo size={30} />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-[0.92rem] font-black tracking-[0.16em] text-slate-950" translate="no">
+              FLOXANT
             </span>
-            <div className="flex min-w-0 flex-col">
-              <span className="font-heading text-[15px] font-black leading-none tracking-[0.16em] text-white" translate="no">
-                FLOXANT
-              </span>
-              <span className="mt-1 hidden text-[8px] font-bold uppercase leading-none tracking-[0.28em] text-blue-100/[0.38] sm:block">
-                Premium Services
-              </span>
-            </div>
-          </Link>
+            <span className="mt-0.5 hidden text-[0.52rem] font-black uppercase tracking-[0.18em] text-slate-500 xl:block">
+              Premium Service Operating System für Regensburg und Bayern
+            </span>
+          </span>
+        </Link>
 
-          {/* Center: Navigation Links: Center Column */}
-          <nav className={cn(
-            "!hidden items-center justify-center min-[1180px]:!flex transition-opacity duration-500",
-            mounted ? "opacity-100" : "opacity-0"
-          )}
-            aria-label="Hauptnavigation"
-          >
-            <div className="flex items-center gap-1 rounded-full border border-white/[0.07] bg-white/[0.025] p-1 shadow-inner shadow-white/[0.025]">
-              <Link
-                href="/"
-                onClick={() => setShowServices(false)}
-                className={cn("flox-nav-link", pathname === "/" && "flox-nav-link-active")}
-              >
-                {dic?.nav?.home || "Startseite"}
-              </Link>
+        <nav className="hidden flex-1 items-center justify-center min-[1180px]:flex" aria-label="Hauptnavigation">
+          <div className="flex items-center gap-0.5 rounded-full border border-slate-200 bg-white/96 p-1.5 shadow-sm shadow-slate-950/5">
+            <Link
+              href={desktopLinks[0].href}
+              className={cn("flox-nav-link", pathname === desktopLinks[0].href && "flox-nav-link-active")}
+            >
+              {desktopLinks[0].label}
+            </Link>
 
-            {/* Services Dropdown */}
-            <div ref={dropdownRef} className="relative">
+            <div
+              ref={dropdownRef}
+              className="relative"
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
               <button
                 type="button"
-                aria-expanded={showServices}
-                aria-label="Leistungsmenü öffnen"
-                onClick={() => setShowServices((prev) => !prev)}
+                aria-expanded={servicesOpen}
                 className={cn(
                   "flox-nav-link inline-flex items-center gap-1.5",
-                  (showServices || isServiceActive) && "flox-nav-link-active"
+                  (servicesOpen || servicesActive) && "flox-nav-link-active",
                 )}
+                onClick={() => setServicesOpen((value) => !value)}
               >
                 {dic?.nav?.services || "Leistungen"}
-                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-200", showServices && "rotate-180")} />
+                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", servicesOpen && "rotate-180")} />
               </button>
 
               <AnimatePresence>
-                {showServices && (
+                {servicesOpen ? (
                   <m.div
-                    initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.985 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                    className="flox-nav-panel absolute left-1/2 top-full mt-4 w-[760px] -translate-x-1/2 rounded-[2rem] p-5"
+                    exit={{ opacity: 0, y: 6, scale: 0.985 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[680px] -translate-x-1/2 rounded-[1.45rem] p-4"
                   >
-                    <div className="mb-4 flex items-center justify-between gap-4 rounded-3xl border border-white/[0.06] bg-white/[0.025] px-4 py-3">
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-200/[0.65]">
-                          FLOXANT Leistungen
-                        </p>
-                        <p className="mt-1 text-sm text-white/[0.62]">
-                          Schnell zu Umzug, Reinigung, Entrümpelung und Spezialservice.
+                    <div className="mb-4 grid gap-3 md:grid-cols-2">
+                      <div className="rounded-[1.1rem] border border-blue-100 bg-blue-50/70 px-4 py-4">
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                          Direkt statt überladen
+                        </div>
+                        <p className="mt-2 text-sm leading-6 text-slate-700">
+                          FLOXANT trennt Hauptwege, Spezialfälle und direkte Anfragepfade bewusst,
+                          damit Kunden schneller zum passenden Einstieg kommen.
                         </p>
                       </div>
-                      <Sparkles className="h-5 w-5 shrink-0 text-blue-300/[0.65]" />
+                      <div className="rounded-[1.1rem] border border-slate-200 bg-white px-4 py-4">
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                          Regensburg zuerst
+                        </div>
+                        <p className="mt-2 text-sm leading-6 text-slate-700">
+                          Operative Basis in Regensburg, sauber geführte Einsätze in Bayern.
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4">
-                      {Object.values(SERVICE_CATEGORIES).map((cat) => (
-                        <div
-                          key={cat.label}
-                          className="rounded-3xl border border-white/[0.055] bg-white/[0.018] p-3"
-                        >
-                          <span className="mb-2 block px-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-200/[0.65]">{cat.label}</span>
-                          <div className="flex flex-col gap-1">
-                            {cat.items.map((item) => (
+                    <div className="grid gap-3 md:grid-cols-2">
+                      {serviceGroups.map((group) => (
+                        <div key={group.label} className="rounded-[1.15rem] border border-slate-200 bg-white p-4">
+                          <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                            {group.label}
+                          </div>
+                          <p className="mt-2 text-xs leading-5 text-slate-500">{group.description}</p>
+                          <div className="mt-3 grid gap-2">
+                            {group.items.map((item) => (
                               <Link
                                 key={item.href}
                                 href={item.href}
-                                onClick={() => setShowServices(false)}
-                                className="group flex items-center justify-between rounded-2xl px-3 py-2 text-[13px] font-semibold text-white/[0.64] transition-all hover:bg-white/[0.055] hover:text-white"
+                                className="group flex items-center justify-between rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                               >
                                 <span>{item.label}</span>
-                                <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-70" />
+                                <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
                               </Link>
                             ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <div className="mt-4">
-                      <div className="grid grid-cols-2 gap-3">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setShowServices(false);
-                            setIsExpressOpen(true);
-                          }}
-                          className="group flex items-center justify-center gap-2 rounded-2xl border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-[11px] font-black uppercase tracking-[0.14em] text-amber-100 transition-all hover:bg-amber-300/15 hover:text-white"
-                        >
-                          <Zap className="h-4 w-4 transition-transform group-hover:-rotate-12" />
-                          Express-Check
-                        </button>
-                        <Link
-                          href="/rechner"
-                          onClick={() => setShowServices(false)}
-                          className="group flex items-center justify-center gap-2 rounded-2xl border border-blue-400/20 bg-blue-500/[0.12] px-4 py-3 text-[11px] font-black uppercase tracking-[0.14em] text-blue-100 transition-all hover:bg-blue-500/[0.18] hover:text-white"
-                        >
-                          {calculatorLabel}
-                          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </Link>
-                      </div>
-                    </div>
                   </m.div>
-                )}
+                ) : null}
               </AnimatePresence>
             </div>
 
-              {primaryNavItems.slice(1).map((item) => (
+            {desktopLinks.slice(1).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn("flox-nav-link", pathname === item.href && "flox-nav-link-active")}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+
+        <div className="hidden items-center gap-2 min-[1180px]:flex">
+          <Link
+            href="/kontakt"
+            className="inline-flex h-10 items-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-700 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+          >
+            <MapPin className="h-3.5 w-3.5 text-blue-700" />
+            Kontakt
+          </Link>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="grid h-10 w-10 place-items-center rounded-[0.95rem] border border-slate-200 bg-white text-slate-500 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:text-[#25D366]"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle size={15} />
+          </a>
+
+          <a
+            href={`mailto:${company.email}`}
+            className="grid h-10 w-10 place-items-center rounded-[0.95rem] border border-slate-200 bg-white text-slate-500 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700"
+            aria-label="E-Mail"
+          >
+            <Mail size={15} />
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setExpressOpen(true)}
+            className="flox-button-quiet min-h-10 rounded-[0.95rem] border-amber-200 bg-amber-50 px-3.5 text-[10px] text-amber-800"
+          >
+            <Zap className="h-3.5 w-3.5" />
+            Express-Check
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setBudgetOpen(true)}
+            className="flox-button-secondary hidden min-h-10 rounded-[0.95rem] px-3.5 text-[10px] min-[1280px]:inline-flex"
+          >
+            Budget nennen
+          </button>
+
+          <Link href="/buchung" className="flox-button-primary min-h-10 rounded-[0.95rem] px-4 text-[10px]">
+            Direkt anfragen
+          </Link>
+        </div>
+
+        <button
+          type="button"
+          className="ml-auto inline-flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:bg-slate-50 min-[1180px]:hidden"
+          onClick={() => setMenuOpen((value) => !value)}
+          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={17} /> : <Menu size={17} />}
+          <span>{menuOpen ? "Schließen" : "Menü"}</span>
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {menuOpen ? (
+          <m.div
+            initial={{ opacity: 0, y: -8, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.985 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl min-[1180px]:hidden sm:inset-x-5 sm:p-5"
+          >
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Link
+                href="/buchung"
+                className="flox-button-primary flex min-h-[86px] flex-col items-start justify-center rounded-[1.35rem] px-5 text-left normal-case tracking-normal"
+              >
+                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
+                  Schnellster Weg
+                </span>
+                <span className="mt-2 text-xl font-black tracking-tight">Direkt anfragen</span>
+              </Link>
+
+              <div className="rounded-[1.35rem] border border-blue-100 bg-blue-50 px-5 py-5 text-sm leading-6 text-slate-700">
+                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                  Regensburg zuerst
+                </div>
+                <p className="mt-2">
+                  Klare Anfragewege, ruhige Vorprüfung und feste Ansprechpartner statt Sucherei.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 grid gap-3">
+              {mobileLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setShowServices(false)}
-                  className={cn("flox-nav-link", pathname === item.href && "flox-nav-link-active")}
+                  className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900 transition-all hover:border-blue-200 hover:bg-blue-50"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
-          </nav>
 
-          {/* Right: Actions: Right Column */}
-          <div className="!hidden items-center justify-end gap-2 min-[1180px]:!flex">
-            {/* Quick Contact Cluster */}
-            <div className="mr-1 flex items-center gap-1 rounded-full border border-white/[0.065] bg-white/[0.025] p-1">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="grid h-9 w-9 place-items-center rounded-full text-white/[0.48] transition-all hover:bg-[#25D366]/10 hover:text-[#25D366]"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle size={15} />
-              </a>
-              <a
-                href={`mailto:${company.email}`}
-                className="grid h-9 w-9 place-items-center rounded-full text-white/[0.48] transition-all hover:bg-blue-500/10 hover:text-blue-200"
-                aria-label="E-Mail"
-              >
-                <Mail size={15} />
-              </a>
-            </div>
-
-            {/* Divider */}
-            <div className="hidden h-5 w-px bg-white/[0.06]" />
-
-            {/* Primary CTA Cluster */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                aria-label="Express-Rechner für kurzfristige Anfrage öffnen"
-                onClick={() => setIsExpressOpen(true)}
-                className="group relative inline-flex h-11 items-center justify-center gap-2 overflow-hidden rounded-2xl border border-amber-300/[0.22] bg-gradient-to-b from-amber-300/[0.13] to-amber-700/10 px-4 text-[10px] font-black uppercase tracking-[0.16em] text-amber-100 transition-all duration-300 hover:border-amber-200/40 hover:bg-amber-300/[0.16] hover:text-white"
-              >
-                <Zap className="h-3.5 w-3.5" />
-                Express
-                <span className="absolute inset-x-3 bottom-0 h-px bg-gradient-to-r from-transparent via-amber-200/[0.65] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              </button>
-              <button
-                type="button"
-                aria-label="Preisvorschlag unverbindlich senden"
-                onClick={() => setIsBudgetOpen(true)}
-                className="group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-2xl border border-blue-400/[0.28] bg-blue-500/10 px-4 text-[10px] font-black uppercase tracking-[0.16em] text-blue-100 transition-all duration-300 hover:border-blue-300/40 hover:bg-blue-500/[0.18] hover:text-white"
-              >
-                Preisvorschlag
-                <span className="absolute inset-x-3 bottom-0 h-px bg-gradient-to-r from-transparent via-blue-300/[0.65] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              </button>
-              <Link
-                href="/rechner"
-                className="group relative inline-flex h-11 items-center justify-center rounded-2xl bg-gradient-to-b from-blue-500 to-blue-600 px-5 text-[10px] font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:from-blue-400 hover:to-blue-600 hover:shadow-xl hover:shadow-blue-600/30"
-              >
-                {calculatorLabel}
-              </Link>
-            </div>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button
-            type="button"
-            className="relative z-50 !inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.045] px-3.5 text-[11px] font-black uppercase tracking-[0.16em] text-white/[0.82] shadow-inner shadow-white/[0.025] transition-all hover:bg-white/[0.07] min-[1180px]:!hidden sm:px-4"
-            onClick={() => setIsOpen((prev) => !prev)}
-            aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
-            aria-expanded={isOpen}
-          >
-            {isOpen ? <X size={18} /> : <Menu size={18} />}
-            <span className="hidden sm:inline">{isOpen ? "Schließen" : "Menü"}</span>
-          </button>
-
-          {/* Mobile Menu */}
-          <AnimatePresence>
-            {isOpen && (
-              <m.div
-                initial={{ opacity: 0, y: -14, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                className="flox-nav-panel fixed inset-x-3 top-[5.75rem] z-[60] flex max-h-[calc(100dvh-6.5rem)] flex-col gap-3 overflow-y-auto rounded-[2rem] p-4 shadow-2xl min-[1180px]:hidden sm:inset-x-5 sm:p-5"
-              >
-                <div className="flex items-center justify-between gap-3 rounded-3xl border border-white/[0.06] bg-white/[0.025] p-3">
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-200/[0.65]">
-                      Navigation
-                    </p>
-                    <p className="mt-1 text-sm text-white/[0.62]">
-                      Schnell zu Preis, Service und Kontakt.
-                    </p>
+            <div className="mt-4 grid gap-3">
+              {serviceGroups.map((group) => (
+                <div key={group.label} className="rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                    {group.label}
                   </div>
-                  <a
-                    href={`tel:${company.phoneRaw}`}
-                    onClick={() => setIsOpen(false)}
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-white/[0.08] bg-white/[0.035] text-white/[0.72]"
-                    aria-label="FLOXANT anrufen"
-                  >
-                    <Phone className="h-4 w-4" />
-                  </a>
-                </div>
-
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  <Link
-                    href="/rechner"
-                    onClick={() => setIsOpen(false)}
-                    className="group flex min-h-[76px] items-center justify-between rounded-3xl bg-gradient-to-br from-blue-500 to-blue-700 px-4 py-4 text-white shadow-lg shadow-blue-700/25"
-                  >
-                    <span>
-                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/[0.62]">
-                        Orientierung
-                      </span>
-                      <span className="mt-1 block text-base font-black">{calculatorLabel}</span>
-                    </span>
-                    <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsExpressOpen(true);
-                    }}
-                    className="group flex min-h-[76px] items-center justify-between rounded-3xl border border-amber-300/[0.22] bg-amber-300/10 px-4 py-4 text-left text-amber-50"
-                  >
-                    <span>
-                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-amber-100/[0.65]">
-                        Kurz & schnell
-                      </span>
-                      <span className="mt-1 block text-base font-black">Express-Check</span>
-                    </span>
-                    <Zap className="h-5 w-5 transition-transform group-hover:-rotate-12" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsBudgetOpen(true);
-                    }}
-                    className="group flex min-h-[76px] items-center justify-between rounded-3xl border border-blue-300/20 bg-blue-400/10 px-4 py-4 text-left text-blue-50"
-                  >
-                    <span>
-                      <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-blue-100/[0.65]">
-                        Budget
-                      </span>
-                      <span className="mt-1 block text-base font-black">Preisvorschlag</span>
-                    </span>
-                    <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </button>
-                </div>
-                <Link
-                  href="/"
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-3xl border border-white/[0.065] bg-white/[0.026] p-4 text-sm font-black text-white/[0.84] transition-all hover:border-blue-300/20 hover:bg-blue-500/[0.09]"
-                >
-                  {dic?.nav?.home || "Startseite"}
-                </Link>
-                <Link
-                  href="/service-area-bayern"
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-3xl border border-white/[0.065] bg-white/[0.026] p-4 text-sm font-black text-white/[0.84] transition-all hover:border-blue-300/20 hover:bg-blue-500/[0.09]"
-                >
-                  Servicegebiet Bayern
-                </Link>
-                <Link
-                  href="/leerfahrt-rueckfahrt"
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-3xl border border-white/[0.065] bg-white/[0.026] p-4 text-sm font-black text-white/[0.84] transition-all hover:border-blue-300/20 hover:bg-blue-500/[0.09]"
-                >
-                  Leer-Rückfahrt
-                </Link>
-                <Link
-                  href="/blog"
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-3xl border border-white/[0.065] bg-white/[0.026] p-4 text-sm font-black text-white/[0.84] transition-all hover:border-blue-300/20 hover:bg-blue-500/[0.09]"
-                >
-                  Ratgeber & Blog
-                </Link>
-
-                <div className="rounded-[1.75rem] border border-white/[0.06] bg-white/[0.018] p-3">
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <span className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-200/[0.65]">
-                      Häufig gesucht
-                    </span>
-                    <Sparkles className="h-4 w-4 text-blue-200/55" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {SERVICE_HIGHLIGHTS.map((item) => (
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                    {group.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-between rounded-2xl border border-white/[0.045] bg-white/[0.018] px-3 py-3 text-sm font-bold text-white/[0.72] transition-all hover:border-blue-300/[0.18] hover:bg-white/[0.05] hover:text-white"
+                        className="flex items-center justify-between rounded-[1rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                       >
-                        {item.label}
-                        <ArrowUpRight className="h-3.5 w-3.5 text-white/[0.32]" />
+                        <span>{item.label}</span>
+                        <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
                       </Link>
                     ))}
                   </div>
                 </div>
+              ))}
+            </div>
 
-                {/* Mobile Service Categories */}
-                {Object.values(SERVICE_CATEGORIES).map((cat) => (
-                  <div key={cat.label} className="rounded-[1.75rem] border border-white/[0.055] bg-white/[0.014] p-3">
-                    <span className="mb-2 block px-1 text-[10px] font-black uppercase tracking-[0.2em] text-blue-200/[0.62]">{cat.label}</span>
-                    <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                      {cat.items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className="flex items-center justify-between rounded-2xl px-3 py-2.5 text-sm font-semibold text-white/[0.62] transition-all hover:bg-white/[0.045] hover:text-white"
-                        >
-                          <span>{item.label}</span>
-                          <ArrowUpRight className="h-3.5 w-3.5 text-white/[0.28]" />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setExpressOpen(true);
+                }}
+                className="rounded-[1.15rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm font-black text-amber-900"
+              >
+                Express-Check
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setBudgetOpen(true);
+                }}
+                className="rounded-[1.15rem] border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
+              >
+                Budget nennen
+              </button>
+            </div>
 
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-[#25D366]/20 bg-white px-4 py-4 text-sm font-black text-slate-900"
+              >
+                <MessageCircle size={18} className="text-[#25D366]" />
+                WhatsApp
+              </a>
+              <a
+                href={`mailto:${company.email}`}
+                className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900"
+              >
+                <Mail size={18} className="text-blue-700" />
+                E-Mail
+              </a>
+            </div>
+          </m.div>
+        ) : null}
+      </AnimatePresence>
 
-                <div className="h-px w-full bg-white/[0.06] my-2" />
-
-                {/* Mobile Contact Actions */}
-                <div className="grid grid-cols-2 gap-3">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 rounded-3xl border border-[#25D366]/20 bg-[#25D366]/[0.07] px-4 py-4 text-sm font-black text-white"
-                  >
-                    <MessageCircle size={18} className="text-[#25D366]" />
-                    WhatsApp
-                  </a>
-                  <a
-                    href={`mailto:${company.email}`}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 rounded-3xl border border-blue-300/20 bg-blue-400/[0.08] px-4 py-4 text-sm font-black text-white"
-                  >
-                    <Mail size={18} className="text-blue-200" />
-                    E-Mail
-                  </a>
-                </div>
-
-                {/* Mobile Primary CTA */}
-                <div className="hidden">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsExpressOpen(true);
-                    }}
-                    className="flex items-center justify-center gap-3 rounded-2xl border border-orange-300/20 bg-orange-400/10 p-5 text-base font-bold text-orange-100 shadow-lg shadow-orange-900/10"
-                  >
-                    <Zap className="h-5 w-5" />
-                    Express-Check
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsBudgetOpen(true);
-                    }}
-                    className="flex items-center justify-center gap-3 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-5 text-base font-bold text-blue-400 shadow-lg shadow-blue-600/5"
-                  >
-                    Preisvorschlag senden
-                  </button>
-                  <Link
-                    href="/rechner"
-                    onClick={() => setIsOpen(false)}
-                    className="btn-premium flex items-center justify-center gap-3 rounded-2xl bg-gradient-to-b from-blue-500 to-blue-600 p-5 text-base font-bold text-white shadow-lg shadow-blue-600/20"
-                  >
-                    {calculatorLabel}
-                    <ArrowUpRight className="h-5 w-5" />
-                  </Link>
-                </div>
-              </m.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      <QuickBudgetModal isOpen={isBudgetOpen} onClose={() => setIsBudgetOpen(false)} />
-      <QuickExpressModal isOpen={isExpressOpen} onClose={() => setIsExpressOpen(false)} />
+      <QuickBudgetModal isOpen={budgetOpen} onClose={() => setBudgetOpen(false)} />
+      <QuickExpressModal isOpen={expressOpen} onClose={() => setExpressOpen(false)} />
     </header>
   );
 }
+

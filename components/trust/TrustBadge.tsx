@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
-import { ShieldCheck, Award, Star } from "lucide-react";
 import { m } from "framer-motion";
+import { Award, ShieldCheck, Star } from "lucide-react";
+
+import { germanText } from "@/lib/german-text";
+import { cn } from "@/lib/utils";
 
 interface TrustBadgeProps {
   type?: "verified" | "expert" | "rating";
@@ -10,43 +12,51 @@ interface TrustBadgeProps {
   lang?: string;
 }
 
-export function TrustBadge({ type = "verified", className, lang = "de" }: TrustBadgeProps) {
-  const labels = {
-    verified: {
-      de: "Verifizierter Logistik-Partner",
-      en: "Verified Logistics Partner",
-      ru: "Проверенный партнер",
-      icon: ShieldCheck,
-      color: "text-emerald-400"
-    },
-    expert: {
-      de: "Zertifiziertes Expertenteam",
-      en: "Certified Expert Team",
-      ru: "Сертифицированные эксперты",
-      icon: Award,
-      color: "text-blue-400"
-    },
-    rating: {
-      de: "Dokumentierte Servicequalität",
-      en: "Documented service quality",
-      ru: "Документированное качество сервиса",
-      icon: Star,
-      color: "text-amber-400"
-    }
-  };
+const badgeConfig = {
+  verified: {
+    de: "Verifizierter Servicepartner",
+    en: "Verified service partner",
+    icon: ShieldCheck,
+    tone:
+      "border-emerald-200 bg-emerald-50/90 text-emerald-800",
+    iconTone: "text-emerald-600",
+  },
+  expert: {
+    de: "Zertifiziertes Expertenteam",
+    en: "Certified expert team",
+    icon: Award,
+    tone:
+      "border-blue-200 bg-blue-50/90 text-blue-800",
+    iconTone: "text-blue-600",
+  },
+  rating: {
+    de: "Dokumentierte Servicequalität",
+    en: "Documented service quality",
+    icon: Star,
+    tone:
+      "border-amber-200 bg-amber-50/90 text-amber-900",
+    iconTone: "text-amber-500",
+  },
+} as const;
 
-  const config = labels[type] || labels.verified;
+export function TrustBadge({ type = "verified", className, lang = "de" }: TrustBadgeProps) {
+  const config = badgeConfig[type];
   const Icon = config.icon;
-  const label = (config as any)[lang] || (config as any).de;
+  const label = lang === "en" ? config.en : config.de;
 
   return (
     <m.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md shadow-sm ${className}`}
+      transition={{ duration: 0.28, ease: "easeOut" }}
+      className={cn(
+        "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.16em] shadow-sm shadow-slate-950/5 backdrop-blur-md",
+        config.tone,
+        className,
+      )}
     >
-      <Icon size={12} className={config.color} />
-      <span className="text-white/80">{label}</span>
+      <Icon size={13} className={config.iconTone} />
+      <span>{germanText(label, label)}</span>
     </m.div>
   );
 }

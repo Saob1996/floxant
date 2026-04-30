@@ -20,6 +20,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     path: "reinigung-regensburg",
     title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
     description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+    keywords: [
+      "Reinigung Regensburg",
+      "Reinigungsfirma Regensburg",
+      "Endreinigung Regensburg",
+      "Gewerbereinigung Regensburg",
+      "Unterhaltsreinigung Regensburg",
+    ],
   });
 }
 

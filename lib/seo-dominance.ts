@@ -1,4 +1,4 @@
-import { germanizeText } from "@/lib/german-text";
+﻿import { germanizeText } from "@/lib/german-text";
 
 type Snippet = {
  title: string;
@@ -57,9 +57,9 @@ export const SEO_SUPPORT_ROUTES = [
 
 const moneySnippets: Record<string, Snippet> = {
  "/": {
-  title: "FLOXANT Regensburg | Umzug & Reinigung Preisrahmen prüfen",
+  title: "FLOXANT Regensburg | Umzug, Reinigung und Entrümpelung",
   description:
-   "Umzug, Reinigung, Entrümpelung und Büroumzug in Regensburg und Bayern: Preisrahmen online prüfen, Ablauf verstehen und direkt anfragen.",
+   "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, festen Ansprechpartnern und direktem Einstieg über Buchung, Rechner oder WhatsApp.",
   cluster: "money",
   intent: "Premium-Dienstleister für Umzug, Reinigung und Entrümpelung finden",
  },
@@ -313,9 +313,9 @@ moneySnippets["/private-client-service"] = {
 };
 
 moneySnippets["/"] = {
- title: "Umzug Regensburg | Preisrahmen prüfen & direkt buchen",
+ title: "FLOXANT Regensburg | Umzug, Reinigung und Entrümpelung",
  description:
-  "Direkt statt Vergleichsportal: Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt in Regensburg und Bayern unverbindlich prüfen.",
+  "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, festen Ansprechpartnern und direktem Einstieg über Buchung, Rechner oder WhatsApp.",
  cluster: "money",
  intent: "Direkten Dienstleister für Umzug, Reinigung und Entrümpelung mit Buchung finden",
 };
@@ -520,3 +520,4 @@ export function getDominanceIntent(path: string) {
 
  return "FLOXANT Dienstleistung verstehen und Anfrage vorbereiten";
 }
+

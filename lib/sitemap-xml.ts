@@ -121,11 +121,11 @@ function lastmodForRoute(route: string): string {
 
 function priorityForRoute(route: string): string {
   if (!route) return "1.0";
-  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "rechner", "buchung"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "rechner", "buchung"].includes(route)) return "0.9";
   if (route === "leerfahrt-rueckfahrt") return "0.88";
   if (route === "einsatzgebiet-regensburg-200km") return "0.88";
-  if (route === "standorte") return "0.86";
-  if (route === "kontakt") return "0.86";
+  if (route === "standorte") return "0.88";
+  if (route === "kontakt") return "0.88";
   if (route === "buchung-ablauf") return "0.86";
   if (route === "leistungen-vergleichen") return "0.85";
   if (route === "anbieter-vergleichen") return "0.85";

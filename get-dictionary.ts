@@ -1,4 +1,5 @@
 import de from "./dictionaries/de.json";
+import { germanizeDeep } from "@/lib/german-text";
 
 function hardenPriceLanguage(value: unknown): unknown {
  if (typeof value === "string") {
@@ -39,7 +40,7 @@ function hardenPriceLanguage(value: unknown): unknown {
  return value;
 }
 
-const germanDictionary = hardenPriceLanguage(de) as typeof de;
+const germanDictionary = germanizeDeep(hardenPriceLanguage(de)) as typeof de;
 
 // Root Architecture Hardening: Ignore locale and always return German.
 // This preserves compatibility while effectively disabling i18n.

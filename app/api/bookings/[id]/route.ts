@@ -6,7 +6,16 @@ import { authOptions } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { company } from "@/lib/company";
 import { sendDocumentMail } from "@/lib/mail";
-import { DocumentLineItem, FloxDocument, FloxDocumentType, IntakePayload } from "@/lib/types/intake";
+import {
+ CommercialDecision,
+ DocumentLineItem,
+ FinanceLedgerEntry,
+ FloxDocument,
+ FloxDocumentType,
+ IntakePayload,
+ OperationCostLine,
+ WorkOrderDetails,
+} from "@/lib/types/intake";
 
 type BookingRecord = {
  id: string;
@@ -23,12 +32,58 @@ type PatchPayload = {
  status?: string;
  internalNotes?: string;
  nextAction?: string;
+ operations?: {
+  workOrder?: WorkOrderDetails;
+  costLines?: OperationCostLine[];
+  ledgerEntries?: FinanceLedgerEntry[];
+  commercialDecision?: CommercialDecision;
+ };
  action?: "create_doc" | "update_doc" | "send_doc";
  documentType?: FloxDocumentType;
  documentId?: string;
  fromDocumentId?: string;
  updatedDoc?: FloxDocument;
 };
+
+function normalizeCostLines(lines: OperationCostLine[] = []) {
+ return lines.map((line) => ({
+  ...line,
+  quantity: Number(line.quantity) || 0,
+  unitCost: Number(line.unitCost) || 0,
+  note: line.note || "",
+ }));
+}
+
+function normalizeLedgerEntries(entries: FinanceLedgerEntry[] = []) {
+ return entries.map((entry) => ({
+  ...entry,
+  amount: Number(entry.amount) || 0,
+  note: entry.note || "",
+  date: entry.date || new Date().toISOString().slice(0, 10),
+ }));
+}
+
+function buildProfitability(costLines: OperationCostLine[] = [], ledgerEntries: FinanceLedgerEntry[] = []) {
+ const costTotal = costLines.reduce(
+  (sum, line) => sum + (Number(line.quantity) || 0) * (Number(line.unitCost) || 0),
+  0
+ );
+ const incomeTotal = ledgerEntries
+  .filter((entry) => entry.type === "income")
+  .reduce((sum, entry) => sum + (Number(entry.amount) || 0), 0);
+ const ledgerExpenseTotal = ledgerEntries
+  .filter((entry) => entry.type === "expense")
+  .reduce((sum, entry) => sum + (Number(entry.amount) || 0), 0);
+ const expenseTotal = costTotal + ledgerExpenseTotal;
+
+ return {
+  incomeTotal,
+  expenseTotal,
+  costTotal,
+  profit: incomeTotal - expenseTotal,
+  updatedAt: new Date().toISOString(),
+ };
+}
 
 function cloneItems(items: DocumentLineItem[] = []) {
  return items.map((item) => ({
@@ -379,6 +434,24 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
    stateChanges.push(body.nextAction ? `Nächste Aktion gesetzt: ${body.nextAction}` : "Nächste Aktion entfernt");
   }
 
+  const nextCostLines = body.operations?.costLines
+   ? normalizeCostLines(body.operations.costLines)
+   : currentAdmin.costLines || [];
+  const nextLedgerEntries = body.operations?.ledgerEntries
+   ? normalizeLedgerEntries(body.operations.ledgerEntries)
+   : currentAdmin.ledgerEntries || [];
+  const nextWorkOrder = body.operations?.workOrder ?? currentAdmin.workOrder;
+  const nextCommercialDecision = body.operations?.commercialDecision ?? currentAdmin.commercialDecision;
+  const nextProfitability = body.operations
+   ? buildProfitability(nextCostLines, nextLedgerEntries)
+   : currentAdmin.profitability;
+
+  if (body.operations) {
+   stateChanges.push(
+    `Interne Kalkulation aktualisiert (${nextCostLines.length} Kostenpositionen / ${nextLedgerEntries.length} Finanzposten)`
+   );
+  }
+
   if (stateChanges.length > 0) {
    adminHistory = appendHistory(
     { ...currentAdmin, history: adminHistory },
@@ -395,6 +468,11 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     internalNotes: body.internalNotes ?? currentAdmin.internalNotes,
     nextAction: body.nextAction ?? currentAdmin.nextAction,
     docs: updatedDocs,
+    workOrder: nextWorkOrder,
+    costLines: nextCostLines,
+    ledgerEntries: nextLedgerEntries,
+    commercialDecision: nextCommercialDecision,
+    profitability: nextProfitability,
     history: adminHistory,
     updatedAt: new Date().toISOString(),
     updatedBy: actingUser,
@@ -416,6 +494,30 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   }
 
   return NextResponse.json({ success: true, data });
+ } catch (error: any) {
+  return NextResponse.json({ error: "Internal Server Error", details: error?.message }, { status: 500 });
+ }
+}
+
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
+ const { response } = await requireSession();
+ if (response) return response;
+
+ try {
+  const { id } = await params;
+  const booking = await loadBooking(id);
+
+  if (!booking) {
+   return NextResponse.json({ error: "Booking not found" }, { status: 404 });
+  }
+
+  const { error } = await supabase.from("bookings").delete().eq("id", id);
+
+  if (error) {
+   return NextResponse.json({ error: "Delete failed", details: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ success: true, id });
  } catch (error: any) {
   return NextResponse.json({ error: "Internal Server Error", details: error?.message }, { status: 500 });
  }

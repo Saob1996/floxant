@@ -227,18 +227,18 @@ export default async function CoreServicePage({ params }: PageProps) {
         lang="de"
         items={[{ label: content.hero_title || serviceSlug }]}
       />
-      <section className="bg-gradient-to-b from-primary/5 to-background px-6 pb-20 pt-32">
+      <section className="section-glow bg-gradient-to-b from-primary/5 to-background px-6 pb-20 pt-32">
         <div className="mx-auto max-w-4xl text-center">
           {content.badge && (
             <span className="mb-6 inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
               {content.badge}
             </span>
           )}
-          <h1 className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-white md:text-6xl">
+          <h1 className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-slate-950 md:text-6xl">
             {content.hero_title || (serviceSlug.charAt(0).toUpperCase() + serviceSlug.slice(1).replace("-", " "))}
           </h1>
           {content.hero_desc && (
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-400 md:text-xl">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
               {content.hero_desc}
             </p>
           )}
@@ -248,15 +248,15 @@ export default async function CoreServicePage({ params }: PageProps) {
         <section className="px-6 py-20">
           <div className="mx-auto max-w-3xl">
             {content.intro_title && (
-              <h2 className="mb-8 text-3xl font-bold text-white">{content.intro_title}</h2>
+              <h2 className="mb-8 text-3xl font-bold text-slate-950">{content.intro_title}</h2>
             )}
             {content.intro_p1 && (
-              <p className="mb-6 text-lg leading-relaxed text-slate-300">
+              <p className="mb-6 text-lg leading-relaxed text-slate-600">
                 {content.intro_p1}
               </p>
             )}
             {content.intro_p2 && (
-              <p className="text-lg leading-relaxed text-slate-300">
+              <p className="text-lg leading-relaxed text-slate-600">
                 {content.intro_p2}
               </p>
             )}
@@ -264,17 +264,17 @@ export default async function CoreServicePage({ params }: PageProps) {
         </section>
       )}
       {(content.for_whom_title || forWhomItems.length > 0) && (
-        <section className="bg-white/5 px-6 py-16">
+        <section className="section-glow px-6 py-16">
           <div className="mx-auto max-w-3xl">
             {content.for_whom_title && (
-              <h2 className="mb-8 text-2xl font-bold text-white">{content.for_whom_title}</h2>
+              <h2 className="mb-8 text-2xl font-bold text-slate-950">{content.for_whom_title}</h2>
             )}
             {forWhomItems.length > 0 && (
               <div className="space-y-4">
                 {forWhomItems.map((item: any, index: number) => (
-                  <div key={`${item}-${index}`} className="flex items-start gap-4">
+                  <div key={`${item}-${index}`} className="card-premium flex items-start gap-4 rounded-[1.6rem] p-5">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                    <p className="text-slate-300">{item}</p>
+                    <p className="text-slate-700">{item}</p>
                   </div>
                 ))}
               </div>
@@ -286,7 +286,7 @@ export default async function CoreServicePage({ params }: PageProps) {
         <section className="px-6 py-20">
           <div className="mx-auto max-w-4xl">
             {content.process_title && (
-              <h2 className="mb-12 text-center text-3xl font-bold text-white">
+              <h2 className="mb-12 text-center text-3xl font-bold text-slate-950">
                 {content.process_title}
               </h2>
             )}
@@ -295,15 +295,15 @@ export default async function CoreServicePage({ params }: PageProps) {
                 {processSteps.map((step: any, index: number) => (
                   <div
                     key={`${step.title}-${index}`}
-                    className="relative rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:border-primary/20"
+                    className="card-premium relative rounded-[1.8rem] p-6"
                   >
                     <div className="mb-4 flex items-center gap-4">
                       <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                      <h3 className="text-lg font-semibold text-slate-950">{step.title}</h3>
                     </div>
-                    <p className="leading-relaxed text-slate-400">
+                    <p className="leading-relaxed text-slate-600">
                       {step.desc}
                     </p>
                   </div>
@@ -314,19 +314,19 @@ export default async function CoreServicePage({ params }: PageProps) {
         </section>
       )}
       {(content.guarantees_title || guarantees.length > 0) && (
-        <section className="bg-white/5 px-6 py-16">
+        <section className="section-glow px-6 py-16">
           <div className="mx-auto max-w-3xl">
             {content.guarantees_title && (
-              <h2 className="mb-8 text-2xl font-bold text-white">
+              <h2 className="mb-8 text-2xl font-bold text-slate-950">
                 {content.guarantees_title}
               </h2>
             )}
             {guarantees.length > 0 && (
               <div className="space-y-4">
                 {guarantees.map((guarantee: any, index: number) => (
-                  <div key={`${guarantee}-${index}`} className="flex items-start gap-4">
+                  <div key={`${guarantee}-${index}`} className="card-premium flex items-start gap-4 rounded-[1.6rem] p-5">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                    <p className="font-medium text-slate-300">
+                    <p className="font-medium text-slate-700">
                       {guarantee}
                     </p>
                   </div>
@@ -439,25 +439,25 @@ export default async function CoreServicePage({ params }: PageProps) {
         </div>
       </section>
       {(content.cta_title || content.cta_text) && (
-        <section className="bg-slate-900 py-24 px-6 relative overflow-hidden">
+        <section className="section-glow py-24 px-6 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-40">
-            <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-violet-600/20 blur-[120px] rounded-full animate-pulse" />
-            <div className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] bg-indigo-600/20 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+            <div className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-violet-600/10 blur-[120px] animate-pulse" />
+            <div className="absolute -bottom-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-indigo-600/10 blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
           </div>
-          <div className="max-w-4xl mx-auto relative z-10 text-center">
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
             {content.cta_title && (
-              <h2 className="text-3xl md:text-5xl font-light text-white mb-6">
+              <h2 className="mb-6 text-3xl font-bold text-slate-950 md:text-5xl">
                 {content.cta_title}
               </h2>
             )}
             {content.cta_text && (
-              <p className="text-white/60 text-lg mb-12 max-w-2xl mx-auto">
+              <p className="mx-auto mb-12 max-w-2xl text-lg text-slate-600">
                 {content.cta_text}
               </p>
             )}
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-violet-500/20 to-indigo-500/20 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-              <div className="relative bg-[#0A0C10] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl backdrop-blur-sm p-4 md:p-8">
+              <div className="absolute -inset-1 rounded-[2.5rem] bg-gradient-to-r from-violet-500/10 to-indigo-500/10 blur-xl opacity-0 transition duration-1000 group-hover:opacity-100 group-hover:duration-200" />
+              <div className="glass-elevated relative overflow-hidden rounded-[2rem] p-4 shadow-[0_30px_90px_rgba(15,23,42,0.12)] md:p-8">
                 <SmartBookingWizard dict={dict} />
               </div>
             </div>

@@ -1,14 +1,10 @@
 "use client";
 
 import React from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { Briefcase, Truck } from "lucide-react";
+
 import { useCalculatorStore } from "@/store/calculatorStore";
-import { m, AnimatePresence } from "framer-motion";
-import {
- Briefcase,
- Truck,
- Monitor,
- Library,
-} from "lucide-react";
 import { ExpertTooltip } from "../ExpertTooltip";
 
 function parseNumber(value: string): number {
@@ -17,20 +13,25 @@ function parseNumber(value: string): number {
  return Number.isFinite(parsed) ? parsed : 0;
 }
 
-export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; currentStep?: number }) {
- const bueroumzugData = useCalculatorStore((s) => s.bueroumzugData);
- const baseDetails = useCalculatorStore((s) => s.baseDetails);
- const updateBueroumzugData = useCalculatorStore((s) => s.updateBueroumzugData);
- const updateBaseDetails = useCalculatorStore((s) => s.updateBaseDetails);
+export default function BueroumzugForm({
+ dic,
+ currentStep = 1,
+}: {
+ dic?: any;
+ currentStep?: number;
+}) {
+ const bueroumzugData = useCalculatorStore((state) => state.bueroumzugData);
+ const baseDetails = useCalculatorStore((state) => state.baseDetails);
+ const updateBueroumzugData = useCalculatorStore((state) => state.updateBueroumzugData);
+ const updateBaseDetails = useCalculatorStore((state) => state.updateBaseDetails);
 
  const liftLabel = dic?.calculator?.lift || "Aufzug";
- const narrowStairsLabel = dic?.calculator?.narrow_stairs || "Enge Treppe";
  const noParkingZoneLabel = dic?.footer?.no_parking_zone || "Halteverbotszone";
 
  return (
   <div className="space-y-8">
    <AnimatePresence mode="wait">
-    {currentStep === 1 && (
+    {currentStep === 1 ? (
      <m.div
       key="step1"
       initial={{ opacity: 0, x: 20 }}
@@ -38,7 +39,6 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8"
      >
-      {/* Address & Access */}
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
        <AddressBlock
         title={dic?.calculator?.from_address || "Auszug (Start)"}
@@ -51,19 +51,34 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
         walkingDistanceValue={bueroumzugData.walkingDistanceFrom ?? ""}
         walkingDistanceLabel="Laufweg zum LKW"
         walkingDistancePlaceholder="Meter"
-        onAddressChange={(v) => updateBaseDetails({ fromAddress: v })}
-        onFloorChange={(v) => updateBueroumzugData({ fromFloor: parseNumber(v) })}
-        onWalkingDistanceChange={(v) => updateBueroumzugData({ walkingDistanceFrom: parseNumber(v) })}
-        dic={dic}
+        onAddressChange={(value) => updateBaseDetails({ fromAddress: value })}
+        onFloorChange={(value) =>
+         updateBueroumzugData({ fromFloor: parseNumber(value) })
+        }
+        onWalkingDistanceChange={(value) =>
+         updateBueroumzugData({ walkingDistanceFrom: parseNumber(value) })
+        }
         checks={[
-         { checked: !!bueroumzugData.hasElevatorFrom, label: liftLabel, onChange: (c) => updateBueroumzugData({ hasElevatorFrom: c }), tip: "Spart Zeit und schont die Möbel." },
-         { checked: !!bueroumzugData.noParkingZoneFrom, label: noParkingZoneLabel, onChange: (c) => updateBueroumzugData({ noParkingZoneFrom: c }), tip: "Wichtig für einen reibungslosen Ablauf." },
+         {
+          checked: !!bueroumzugData.hasElevatorFrom,
+          label: liftLabel,
+          onChange: (checked) =>
+           updateBueroumzugData({ hasElevatorFrom: checked }),
+          tip: "Spart Zeit und schont die Möbel.",
+         },
+         {
+          checked: !!bueroumzugData.noParkingZoneFrom,
+          label: noParkingZoneLabel,
+          onChange: (checked) =>
+           updateBueroumzugData({ noParkingZoneFrom: checked }),
+          tip: "Wichtig für einen reibungslosen Ablauf.",
+         },
         ]}
        />
 
        <AddressBlock
         title={dic?.calculator?.to_address || "Einzug (Ziel)"}
-        addressValue={baseDetails?.toAddress || ""} 
+        addressValue={baseDetails?.toAddress || ""}
         addressPlaceholder="Straße / Ort"
         addressLabel="Zieladresse"
         floorValue={bueroumzugData.toFloor ?? ""}
@@ -72,20 +87,32 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
         walkingDistanceValue={bueroumzugData.walkingDistanceTo ?? ""}
         walkingDistanceLabel="Laufweg zum LKW"
         walkingDistancePlaceholder="Meter"
-        onAddressChange={(v) => updateBaseDetails({ toAddress: v })} 
-        onFloorChange={(v) => updateBueroumzugData({ toFloor: parseNumber(v) })}
-        onWalkingDistanceChange={(v) => updateBueroumzugData({ walkingDistanceTo: parseNumber(v) })}
-        dic={dic}
+        onAddressChange={(value) => updateBaseDetails({ toAddress: value })}
+        onFloorChange={(value) => updateBueroumzugData({ toFloor: parseNumber(value) })}
+        onWalkingDistanceChange={(value) =>
+         updateBueroumzugData({ walkingDistanceTo: parseNumber(value) })
+        }
         checks={[
-         { checked: !!bueroumzugData.hasElevatorTo, label: liftLabel, onChange: (c) => updateBueroumzugData({ hasElevatorTo: c }), tip: "Spart Zeit und schont die Möbel." },
-         { checked: !!bueroumzugData.noParkingZoneTo, label: noParkingZoneLabel, onChange: (c) => updateBueroumzugData({ noParkingZoneTo: c }), tip: "Vermeidet Bußgelder und Verzögerungen." },
+         {
+          checked: !!bueroumzugData.hasElevatorTo,
+          label: liftLabel,
+          onChange: (checked) => updateBueroumzugData({ hasElevatorTo: checked }),
+          tip: "Spart Zeit und schont die Möbel.",
+         },
+         {
+          checked: !!bueroumzugData.noParkingZoneTo,
+          label: noParkingZoneLabel,
+          onChange: (checked) =>
+           updateBueroumzugData({ noParkingZoneTo: checked }),
+          tip: "Vermeidet Bußgelder und Verzögerungen.",
+         },
         ]}
        />
       </div>
      </m.div>
-    )}
+    ) : null}
 
-    {currentStep === 2 && (
+    {currentStep === 2 ? (
      <m.div
       key="step2"
       initial={{ opacity: 0, x: 20 }}
@@ -93,9 +120,9 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8"
      >
-      <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-       <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
-        <Briefcase size={14} className="text-blue-400" />
+      <div className="calc-surface rounded-[2rem] p-6">
+       <h3 className="calc-kicker mb-6">
+        <Briefcase size={14} className="text-blue-500" />
         Büro-Inventar
        </h3>
 
@@ -105,46 +132,54 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
           type="number"
           min={1}
           value={bueroumzugData.workstations || ""}
-          onChange={(e) => updateBueroumzugData({ workstations: parseNumber(e.target.value) })}
+          onChange={(event) =>
+           updateBueroumzugData({ workstations: parseNumber(event.target.value) })
+          }
           placeholder="z. B. 5"
-          className="w-full bg-transparent text-lg font-bold text-white outline-none placeholder:text-white/20"
+          className="calc-input text-lg"
          />
         </FieldCard>
 
         <FieldCard label={dic?.calculator?.archive_meters || "Archivmeter"}>
-          <div className="flex items-center gap-2">
+         <div className="flex items-center gap-2">
           <input
            type="number"
            min={0}
            value={bueroumzugData.archiveMeters || ""}
-           onChange={(e) => updateBueroumzugData({ archiveMeters: parseNumber(e.target.value) })}
+           onChange={(event) =>
+            updateBueroumzugData({ archiveMeters: parseNumber(event.target.value) })
+           }
            placeholder="z. B. 10"
-           className="w-full bg-transparent text-lg font-bold text-white outline-none placeholder:text-white/20"
+           className="calc-input text-lg"
           />
-          <span className="text-sm font-medium text-white/30">lfm</span>
+          <span className="text-sm font-semibold text-slate-400">lfm</span>
          </div>
         </FieldCard>
 
-        <div className="flex items-center px-2">
+        <div className="calc-field flex items-center">
          <label className="flex cursor-pointer items-center gap-3">
           <input
            type="checkbox"
            checked={bueroumzugData.itSetup}
-           onChange={(e) => updateBueroumzugData({ itSetup: e.target.checked })}
+           onChange={(event) =>
+            updateBueroumzugData({ itSetup: event.target.checked })
+           }
            className="h-4 w-4 accent-blue-500"
           />
           <div className="flex flex-col">
-           <span className="text-sm font-medium text-white/60">{dic?.calculator?.it_setup || "IT-Infrastruktur"}</span>
-           <span className="text-[10px] text-white/30">Spezialtransport für Server/PCs</span>
+           <span className="text-sm font-semibold text-slate-700">
+            {dic?.calculator?.it_setup || "IT-Infrastruktur"}
+           </span>
+           <span className="calc-help">Spezialtransport für Server und PCs.</span>
           </div>
          </label>
         </div>
        </div>
       </div>
      </m.div>
-    )}
+    ) : null}
 
-    {currentStep === 3 && (
+    {currentStep === 3 ? (
      <m.div
       key="step3"
       initial={{ opacity: 0, x: 20 }}
@@ -155,49 +190,56 @@ export default function BueroumzugForm({ dic, currentStep = 1 }: { dic?: any; cu
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
        <OptionCard
         checked={bueroumzugData.packingService}
-        title="Einpackservice (Akten/Material)"
-        description="Wir verpacken Ihr gesamtes Archiv."
-        onChange={(c) => updateBueroumzugData({ packingService: c })}
-        dic={dic}
+        title="Einpackservice (Akten / Material)"
+        description="Wir verpacken Archiv, Material und sensible Bereiche strukturiert."
+        onChange={(checked) => updateBueroumzugData({ packingService: checked })}
        />
        <OptionCard
         checked={bueroumzugData.disassemblyService}
         title="Möbel-Demontage"
-        description="Abbau von Schreibtischsystemen."
-        onChange={(c) => updateBueroumzugData({ disassemblyService: c })}
-        dic={dic}
+        description="Abbau von Schreibtischsystemen, Regalen und Sondermöbeln."
+        onChange={(checked) =>
+         updateBueroumzugData({ disassemblyService: checked })
+        }
        />
-        <OptionCard
+       <OptionCard
         checked={bueroumzugData.assemblyService}
         title="Möbel-Montage"
-        description="Wiederaufbau am Zielort."
-        onChange={(c) => updateBueroumzugData({ assemblyService: c })}
-        dic={dic}
+        description="Wiederaufbau am Zielort mit klarem Ablauf für Team und Fläche."
+        onChange={(checked) => updateBueroumzugData({ assemblyService: checked })}
        />
       </div>
 
       <div className="space-y-4">
-       <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Besondere Hinweise</label>
+       <label className="calc-label">Besondere Hinweise</label>
        <textarea
         value={bueroumzugData.freeTextNote || ""}
-        onChange={(e) => updateBueroumzugData({ freeTextNote: e.target.value })}
+        onChange={(event) => updateBueroumzugData({ freeTextNote: event.target.value })}
         placeholder="Details zu Serverräumen, Zeitfenstern oder Sicherheitsvorschriften..."
-        className="h-32 w-full resize-none rounded-2xl border border-white/5 bg-[#0B0D12] p-4 text-sm font-medium text-white outline-none placeholder:text-white/20 focus:border-blue-400/20"
+        className="calc-field calc-textarea h-32 p-4 text-sm"
        />
       </div>
      </m.div>
-    )}
+    ) : null}
    </AnimatePresence>
   </div>
  );
 }
 
-function FieldCard({ label, children, tip }: { label: string; children: React.ReactNode; tip?: string }) {
+function FieldCard({
+ label,
+ children,
+ tip,
+}: {
+ label: string;
+ children: React.ReactNode;
+ tip?: string;
+}) {
  return (
-  <div className="space-y-2 rounded-2xl border border-white/5 bg-[#0B0D12] p-5 shadow-sm">
+  <div className="calc-field space-y-2">
    <div className="flex items-center justify-between">
-    <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">{label}</label>
-    {tip && <ExpertTooltip content={tip} />}
+    <label className="calc-label">{label}</label>
+    {tip ? <ExpertTooltip content={tip} /> : null}
    </div>
    {children}
   </div>
@@ -214,21 +256,26 @@ function OptionCard({
  checked: boolean;
  title: string;
  description: string;
- onChange: (c: boolean) => void;
- dic: any;
+ onChange: (checked: boolean) => void;
  tip?: string;
 }) {
  return (
   <label
-   className={`flex cursor-pointer items-start gap-4 rounded-2xl border p-5 transition-all ${checked ? "border-blue-500/30 bg-blue-500/10" : "border-white/5 bg-[#0B0D12] hover:bg-white/5"}`}
+   data-active={checked}
+   className="calc-option-card flex cursor-pointer items-start gap-4 p-5"
   >
-   <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-blue-500" />
+   <input
+    type="checkbox"
+    checked={checked}
+    onChange={(event) => onChange(event.target.checked)}
+    className="mt-1 h-4 w-4 accent-blue-500"
+   />
    <div className="flex-1">
     <div className="flex items-center justify-between">
-     <span className="text-sm font-bold text-white">{title}</span>
-     {tip && <ExpertTooltip content={tip} />}
+     <span className="text-sm font-bold text-slate-950">{title}</span>
+     {tip ? <ExpertTooltip content={tip} /> : null}
     </div>
-    <span className="text-[11px] leading-relaxed text-white/40">{description}</span>
+    <span className="calc-help">{description}</span>
    </div>
   </label>
  );
@@ -249,7 +296,6 @@ function AddressBlock({
  onFloorChange,
  onWalkingDistanceChange,
  checks,
- dic,
 }: {
  title: string;
  addressValue: string;
@@ -261,34 +307,69 @@ function AddressBlock({
  walkingDistanceValue: number | string;
  walkingDistanceLabel: string;
  walkingDistancePlaceholder: string;
- onAddressChange: (v: string) => void;
- onFloorChange: (v: string) => void;
- onWalkingDistanceChange: (v: string) => void;
- checks: Array<{ checked: boolean; label: string; onChange: (c: boolean) => void; tip?: string }>;
- dic: any;
+ onAddressChange: (value: string) => void;
+ onFloorChange: (value: string) => void;
+ onWalkingDistanceChange: (value: string) => void;
+ checks: Array<{ checked: boolean; label: string; onChange: (checked: boolean) => void; tip?: string }>;
 }) {
  return (
   <div className="space-y-6">
-   <h4 className="border-b border-white/5 pb-3 text-[10px] font-bold uppercase tracking-widest text-white/20">{title}</h4>
-   <div className="space-y-4">
-    <div className="grid grid-cols-2 gap-4">
-     <FieldCard label={floorLabel}>
-      <input type="number" placeholder={floorPlaceholder} value={floorValue} onChange={(e) => onFloorChange(e.target.value)} className="w-full bg-transparent text-sm font-bold text-white outline-none" />
+   <div className="calc-surface rounded-[2rem] p-6">
+    <h4 className="calc-kicker mb-6">
+     <Truck size={14} className="text-blue-500" />
+     {title}
+    </h4>
+    <div className="space-y-4">
+     <FieldCard label={addressLabel}>
+      <input
+       type="text"
+       placeholder={addressPlaceholder}
+       value={addressValue}
+       onChange={(event) => onAddressChange(event.target.value)}
+       className="calc-input text-sm font-semibold"
+      />
      </FieldCard>
-     <FieldCard label={walkingDistanceLabel}>
-      <input type="number" min={0} placeholder={walkingDistancePlaceholder} value={walkingDistanceValue} onChange={(e) => onWalkingDistanceChange(e.target.value)} className="w-full bg-transparent text-sm font-bold text-white outline-none" />
-     </FieldCard>
-    </div>
-    <div className="grid grid-cols-1 gap-2">
-     {checks.map((item, i) => (
-      <label key={i} className={`flex cursor-pointer items-center justify-between rounded-xl border px-3 py-3 transition-all ${item.checked ? "border-blue-500/30 bg-blue-500/10" : "border-white/5 bg-[#0B0D12] hover:bg-white/5"}`}>
-       <div className="flex items-center gap-3">
-        <input type="checkbox" checked={item.checked} onChange={(e) => item.onChange(e.target.checked)} className="h-4 w-4 accent-blue-500" />
-        <span className="text-xs font-bold text-white/70">{item.label}</span>
-       </div>
-       {item.tip && <ExpertTooltip content={item.tip} />}
-      </label>
-     ))}
+     <div className="grid grid-cols-2 gap-4">
+      <FieldCard label={floorLabel}>
+       <input
+        type="number"
+        placeholder={floorPlaceholder}
+        value={floorValue}
+        onChange={(event) => onFloorChange(event.target.value)}
+        className="calc-input text-sm"
+       />
+      </FieldCard>
+      <FieldCard label={walkingDistanceLabel}>
+       <input
+        type="number"
+        min={0}
+        placeholder={walkingDistancePlaceholder}
+        value={walkingDistanceValue}
+        onChange={(event) => onWalkingDistanceChange(event.target.value)}
+        className="calc-input text-sm"
+       />
+      </FieldCard>
+     </div>
+     <div className="grid grid-cols-1 gap-2">
+      {checks.map((item) => (
+       <label
+        key={item.label}
+        data-active={item.checked}
+        className="calc-check-row flex cursor-pointer items-center justify-between rounded-xl px-3 py-3"
+       >
+        <div className="flex items-center gap-3">
+         <input
+          type="checkbox"
+          checked={item.checked}
+          onChange={(event) => item.onChange(event.target.checked)}
+          className="h-4 w-4 accent-blue-500"
+         />
+         <span className="text-xs font-bold text-slate-700">{item.label}</span>
+        </div>
+        {item.tip ? <ExpertTooltip content={item.tip} /> : null}
+       </label>
+      ))}
+     </div>
     </div>
    </div>
   </div>

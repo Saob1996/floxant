@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useMemo } from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { AlertTriangle, CheckCircle2, Route, Trash2 } from "lucide-react";
+
 import { useCalculatorStore } from "@/store/calculatorStore";
-import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Trash2, Route, AlertTriangle, CheckCircle2 } from "lucide-react";
 
 type AccessDifficulty = "einfach" | "mittel" | "schwer";
 type UrgencyType = "flexibel" | "dringend";
@@ -23,12 +24,12 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
    { id: "sperrmuell", label: dic?.calculator?.bulky_waste || "Sperrmüll" },
    { id: "elektroschrott", label: dic?.calculator?.e_waste || "Elektroschrott" },
    { id: "bauschutt", label: dic?.calculator?.construction_waste || "Bauschutt" },
-   { id: "gruenschnitt", label: dic?.calculator?.green_waste || "Gruenschnitt" },
+   { id: "gruenschnitt", label: dic?.calculator?.green_waste || "Grünschnitt" },
    { id: "hausmuell", label: dic?.calculator?.household_waste || "Hausmüll" },
    { id: "altmetall", label: dic?.calculator?.scrap_metal || "Altmetall" },
    { id: "mischabfall", label: dic?.calculator?.mixed_waste || "Mischabfall" },
   ],
-  [dic]
+  [dic],
  );
 
  const toggleCategory = (category: string) => {
@@ -51,43 +52,49 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8"
      >
-      <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-       <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
-        <Trash2 size={14} className="text-blue-400" />
+      <div className="calc-surface rounded-[2rem] p-6">
+       <h3 className="calc-kicker mb-6">
+        <Trash2 size={14} className="text-blue-500" />
         {dic?.calculator?.waste_volume_title || "Volumen und Material"}
        </h3>
 
        <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-2">
-        <FieldCard label={dic?.calculator?.estimated_waste_volume || "Geschaetztes Volumen"}>
+        <FieldCard label={dic?.calculator?.estimated_waste_volume || "Geschätztes Volumen"}>
          <div className="flex items-center gap-2">
           <input
            type="number"
            min={0}
            value={entsorgungData.wasteVolumeM3 || ""}
-           onChange={(e) => updateEntsorgungData({ wasteVolumeM3: parseNumber(e.target.value) })}
+           onChange={(event) =>
+            updateEntsorgungData({ wasteVolumeM3: parseNumber(event.target.value) })
+           }
            placeholder="z. B. 8"
-           className="w-full bg-transparent text-lg font-bold text-white outline-none"
+           className="calc-input text-lg"
           />
-          <span className="text-sm font-medium text-white/30">m3</span>
+          <span className="text-sm font-semibold text-slate-400">m³</span>
          </div>
         </FieldCard>
-        <label className="flex h-full cursor-pointer items-center gap-4 rounded-2xl border border-white/5 bg-[#0B0D12] p-4 transition-all hover:bg-white/10">
+        <label className="calc-option-card flex h-full cursor-pointer items-center gap-4 p-4">
          <input
           type="checkbox"
           checked={entsorgungData.uncertainVolume}
-          onChange={(e) => updateEntsorgungData({ uncertainVolume: e.target.checked })}
+          onChange={(event) =>
+           updateEntsorgungData({ uncertainVolume: event.target.checked })
+          }
           className="h-5 w-5 accent-blue-500"
          />
          <div className="flex flex-col">
-          <span className="text-xs font-bold text-white">Menge noch unklar?</span>
-          <span className="text-[10px] text-white/40">Dann bleibt die Einordnung bewusst breiter.</span>
+          <span className="text-xs font-bold text-slate-900">Menge noch unklar?</span>
+          <span className="calc-help">
+           Dann bleibt die Einordnung bewusst etwas breiter.
+          </span>
          </div>
         </label>
        </div>
       </div>
 
       <div className="space-y-4">
-       <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Materialarten (Mehrfachwahl)</label>
+       <label className="calc-label">Materialarten (Mehrfachwahl)</label>
        <div className="flex flex-wrap gap-2">
         {wasteCategories.map((category) => {
          const active = entsorgungData.wasteCategories.includes(category.id);
@@ -95,12 +102,11 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
           <button
            key={category.id}
            type="button"
+           data-active={active}
            onClick={() => toggleCategory(category.id)}
            className={cn(
-            "rounded-xl border px-4 py-2 text-[11px] font-bold uppercase tracking-wider transition-all",
-            active
-             ? "border-blue-500/30 bg-blue-600/10 text-white"
-             : "border-white/5 bg-[#0B0D12] text-white/30 hover:border-white/10"
+            "calc-chip-card rounded-xl px-4 py-2 text-[11px] font-black uppercase tracking-[0.14em]",
+            active ? "text-blue-700" : "text-slate-600",
            )}
           >
            {category.label}
@@ -120,21 +126,25 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8"
      >
-      <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-       <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
-        <Route size={14} className="text-blue-400" />
+      <div className="calc-surface rounded-[2rem] p-6">
+       <h3 className="calc-kicker mb-6">
+        <Route size={14} className="text-blue-500" />
         Zugang und Logistik
        </h3>
        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <FieldCard label="Zugaenglichkeit">
+        <FieldCard label="Zugänglichkeit">
          <select
           value={entsorgungData.accessDifficulty}
-          onChange={(e) => updateEntsorgungData({ accessDifficulty: e.target.value as AccessDifficulty })}
-          className="w-full bg-transparent text-sm font-bold text-white outline-none"
+          onChange={(event) =>
+           updateEntsorgungData({
+            accessDifficulty: event.target.value as AccessDifficulty,
+           })
+          }
+          className="calc-select text-sm"
          >
-          <option value="einfach" className="bg-[#0B0D12]">Einfach (EG / Lift)</option>
-          <option value="mittel" className="bg-[#0B0D12]">Mittel (Treppe)</option>
-          <option value="schwer" className="bg-[#0B0D12]">Schwer (eng / Hinterhof)</option>
+          <option value="einfach">Einfach (EG / Lift)</option>
+          <option value="mittel">Mittel (Treppe)</option>
+          <option value="schwer">Schwer (eng / Hinterhof)</option>
          </select>
         </FieldCard>
         <FieldCard label="Laufweg zum Fahrzeug">
@@ -143,11 +153,15 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
            type="number"
            min={0}
            value={entsorgungData.loadingDistanceMeters || ""}
-           onChange={(e) => updateEntsorgungData({ loadingDistanceMeters: parseNumber(e.target.value) })}
+           onChange={(event) =>
+            updateEntsorgungData({
+             loadingDistanceMeters: parseNumber(event.target.value),
+            })
+           }
            placeholder="z. B. 20"
-           className="w-full bg-transparent text-sm font-bold text-white outline-none"
+           className="calc-input text-sm"
           />
-          <span className="text-sm font-medium text-white/30">Meter</span>
+          <span className="text-sm font-semibold text-slate-400">Meter</span>
          </div>
         </FieldCard>
        </div>
@@ -158,18 +172,22 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
         checked={entsorgungData.disassemblyRequired}
         title="Demontage-Service"
         description="Auseinanderbauen von Möbeln oder Einbauten vor Ort."
-        onChange={(checked) => updateEntsorgungData({ disassemblyRequired: checked })}
+        onChange={(checked) =>
+         updateEntsorgungData({ disassemblyRequired: checked })
+        }
        />
        <OptionCard
         checked={entsorgungData.hazardMaterials}
         title="Problemstoffe"
-        description="Farben, Oele oder andere Stoffe mit Sonderaufwand."
-        onChange={(checked) => updateEntsorgungData({ hazardMaterials: checked })}
+        description="Farben, Öle oder andere Stoffe mit Sonderaufwand."
+        onChange={(checked) =>
+         updateEntsorgungData({ hazardMaterials: checked })
+        }
        />
       </div>
 
-      <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6">
-       <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
+      <div className="calc-surface rounded-[2rem] p-6">
+       <h3 className="calc-kicker mb-6">
         <AlertTriangle size={14} className="text-amber-500" />
         Zeitplan und Hinweise
        </h3>
@@ -177,18 +195,20 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
         <FieldCard label="Dringlichkeit">
          <select
           value={entsorgungData.urgency}
-          onChange={(e) => updateEntsorgungData({ urgency: e.target.value as UrgencyType })}
-          className="w-full bg-transparent text-sm font-bold text-white outline-none"
+          onChange={(event) =>
+           updateEntsorgungData({ urgency: event.target.value as UrgencyType })
+          }
+          className="calc-select text-sm"
          >
-          <option value="flexibel" className="bg-[#0B0D12]">Flexibel</option>
-          <option value="dringend" className="bg-[#0B0D12]">Dringend</option>
+          <option value="flexibel">Flexibel</option>
+          <option value="dringend">Dringend</option>
          </select>
         </FieldCard>
         <textarea
          value={entsorgungData.freeTextNote || ""}
-         onChange={(e) => updateEntsorgungData({ freeTextNote: e.target.value })}
+         onChange={(event) => updateEntsorgungData({ freeTextNote: event.target.value })}
          placeholder="Wichtige Details zum Standort, Zugang oder Spezialaufwand..."
-         className="h-24 w-full resize-none rounded-2xl border border-white/5 bg-[#0B0D12] p-4 text-sm font-medium text-white outline-none placeholder:text-white/20"
+         className="calc-field calc-textarea h-24 p-4 text-sm"
         />
        </div>
       </div>
@@ -196,11 +216,11 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
     ) : null}
    </AnimatePresence>
 
-   <div className="flex items-start gap-3 rounded-2xl border border-blue-400/10 bg-blue-400/[0.06] px-4 py-3">
-    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-300" />
-    <p className="text-xs leading-relaxed text-white/55">
-     Je klarer Volumen, Zugang und Materialarten beschrieben sind, desto belastbarer wird die
-     Vorprüfung.
+   <div className="flex items-start gap-3 rounded-[1.5rem] border border-blue-100 bg-blue-50 px-4 py-3">
+    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
+    <p className="text-xs leading-relaxed text-slate-600">
+     Je klarer Volumen, Zugang und Materialarten beschrieben sind, desto belastbarer wird
+     die Vorprüfung.
     </p>
    </div>
   </div>
@@ -209,8 +229,8 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
 
 function FieldCard({ label, children }: { label: string; children: React.ReactNode }) {
  return (
-  <div className="space-y-2 rounded-2xl border border-white/10 bg-[#0B0D12] p-4">
-   <label className="text-[11px] uppercase tracking-[0.14em] text-white/40">{label}</label>
+  <div className="calc-field space-y-2">
+   <label className="calc-label">{label}</label>
    {children}
   </div>
  );
@@ -229,17 +249,18 @@ function OptionCard({
 }) {
  return (
   <label
-   className={cn(
-    "flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition-colors",
-    checked
-     ? "border-blue-400/30 bg-blue-400/[0.07]"
-     : "border-white/10 bg-[#0B0D12] hover:bg-white/[0.03]"
-   )}
+   data-active={checked}
+   className="calc-option-card flex cursor-pointer items-start gap-3 p-4"
   >
-   <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-0.5 accent-blue-500" />
+   <input
+    type="checkbox"
+    checked={checked}
+    onChange={(event) => onChange(event.target.checked)}
+    className="mt-0.5 accent-blue-500"
+   />
    <div>
-    <span className="block text-sm font-medium text-white">{title}</span>
-    <span className="text-[11px] leading-relaxed text-white/50">{description}</span>
+    <span className="block text-sm font-semibold text-slate-950">{title}</span>
+    <span className="calc-help">{description}</span>
    </div>
   </label>
  );

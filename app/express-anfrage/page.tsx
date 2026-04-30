@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AlertCircle, Calendar, Clock, PhoneCall, Zap } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
@@ -77,7 +78,7 @@ export default async function ExpressPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background text-white">
+  <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -86,28 +87,31 @@ export default async function ExpressPage() {
       <Breadcrumbs lang="de" items={breadcrumbs} />
 
       <section className="relative overflow-hidden px-6 pb-20 pt-16">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.06),transparent_50%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_50%)]" />
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-55">
+          <FloxantSymbolLayer variant="moving" density="soft" />
+        </div>
         <div className="mx-auto max-w-6xl text-center">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-mono uppercase tracking-widest text-blue-400">
-            <Clock size={14} className="text-blue-500/60" />
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-mono uppercase tracking-widest text-blue-700">
+            <Clock size={14} className="text-blue-600" />
             Express Anfrage Bayern
           </div>
-          <h1 className="mb-8 text-4xl font-bold tracking-tight md:text-6xl text-white">
+          <h1 className="mb-8 text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
             Express-Anfrage & Notfall-Service in Regensburg & Bayern
           </h1>
-          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/50">
+          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600">
             Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit priorisierter Kapazitätslogik. Wir bieten eine verlässliche Anlaufstelle für Notfall-Einsätze auf dem gewohnt hohen Premium-Niveau in ganz Bayern.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/rechner"
-              className="inline-flex h-14 items-center justify-center rounded-xl bg-blue-600 px-10 text-xs font-bold uppercase tracking-widest text-white transition-all hover:bg-blue-500"
+              className="inline-flex h-14 items-center justify-center rounded-xl bg-blue-600 px-10 text-xs font-bold uppercase tracking-widest text-white shadow-[0_18px_48px_rgba(37,99,235,0.22)] transition-all hover:-translate-y-0.5 hover:bg-blue-500"
             >
               Express-Anfrage starten
             </Link>
             <a
               href={`https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`}
-              className="inline-flex h-14 items-center justify-center gap-3 rounded-xl border border-white/10 px-10 text-xs font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10"
+              className="inline-flex h-14 items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-10 text-xs font-bold uppercase tracking-widest text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:bg-blue-50"
             >
               <PhoneCall size={16} />
               WhatsApp Sofort-Check
@@ -116,7 +120,7 @@ export default async function ExpressPage() {
         </div>
       </section>
 
-      <section className="border-y border-white/5 bg-white/[0.01] px-6 py-20">
+      <section className="section-glow px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {[
             { icon: Zap, title: "Was ist das?", text: "Ein priorisierter Einstieg für knappe Zeitfenster und schnelle Machbarkeitsprüfung." },
@@ -125,10 +129,10 @@ export default async function ExpressPage() {
           ].map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
-                <Icon className="mb-5 h-8 w-8 text-blue-400" />
-                <h2 className="mb-3 text-xl font-bold">{item.title}</h2>
-                <p className="text-white/60">{item.text}</p>
+              <div key={item.title} className="card-premium rounded-3xl p-8">
+                <Icon className="mb-5 h-8 w-8 text-blue-600" />
+                <h2 className="mb-3 text-xl font-bold text-slate-950">{item.title}</h2>
+                <p className="text-slate-600">{item.text}</p>
               </div>
             );
           })}
@@ -137,22 +141,22 @@ export default async function ExpressPage() {
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-8 text-3xl font-bold">Häufige Fragen zur Express-Anfrage</h2>
+          <h2 className="mb-8 text-3xl font-bold text-slate-950">Häufige Fragen zur Express-Anfrage</h2>
           <div className="space-y-6">
             {faqItems.map((item) => (
-              <div key={item.q} className="rounded-3xl border border-white/10 bg-[#0B0B14] p-8">
-                <h3 className="mb-4 text-xl font-bold">{item.q}</h3>
-                <p className="text-white/60">{item.a}</p>
+              <div key={item.q} className="card-premium rounded-3xl p-8">
+                <h3 className="mb-4 text-xl font-bold text-slate-950">{item.q}</h3>
+                <p className="text-slate-600">{item.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="booking" className="bg-slate-900/50 py-24">
+      <section id="booking" className="section-glow py-24">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <h2 className="mb-12 text-3xl font-bold">Jetzt Express-Status anfragen</h2>
-          <div className="rounded-3xl border border-white/5 bg-black/40 p-4 shadow-2xl backdrop-blur-xl">
+          <h2 className="mb-12 text-3xl font-bold text-slate-950">Jetzt Express-Status anfragen</h2>
+          <div className="glass-elevated rounded-3xl p-4 shadow-[0_30px_90px_rgba(15,23,42,0.12)]">
             <SmartBookingWizard
               dict={{
                 common: dict.common,
@@ -163,7 +167,7 @@ export default async function ExpressPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/5 px-6 py-16">
+      <section className="section-glow px-6 py-16">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
             { href: "/umzug", label: "Umzug als Hauptservice" },
@@ -174,7 +178,7 @@ export default async function ExpressPage() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-2xl border border-white/10 bg-[#0B0B14] px-6 py-4 font-medium text-slate-300 transition-all hover:border-blue-500/40 hover:text-white"
+              className="card-premium rounded-2xl px-6 py-4 font-medium text-slate-700 transition-all hover:border-blue-500/30 hover:text-slate-950"
             >
               {item.label}
             </Link>

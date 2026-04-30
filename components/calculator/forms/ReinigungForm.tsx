@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { CheckCircle2, Sparkles } from "lucide-react";
+
 import { useCalculatorStore } from "@/store/calculatorStore";
-import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Sparkles, CheckCircle2 } from "lucide-react";
 
 type PropertyType = "wohnung" | "haus" | "buero";
 type ConditionLevel = "leicht" | "mittel" | "stark";
@@ -14,6 +15,13 @@ function parseNumber(value: string): number {
  const parsed = Number.parseInt(value, 10);
  return Number.isFinite(parsed) ? parsed : 0;
 }
+
+const cleaningExtras = [
+ { id: "kueche_tiefenreinigung", title: "Küche+", icon: "K" },
+ { id: "bad_kalk", title: "Bad Kalk", icon: "B" },
+ { id: "teppich", title: "Teppich", icon: "T" },
+ { id: "fenster_glas", title: "Glas", icon: "G" },
+];
 
 export default function ReinigungForm({ dic, currentStep }: { dic?: any; currentStep: number }) {
  const reinigungData = useCalculatorStore((state) => state.reinigungData);
@@ -39,9 +47,9 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8"
      >
-      <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6 lg:p-8">
-       <h3 className="mb-8 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
-        <Sparkles size={14} className="text-emerald-400" />
+      <div className="calc-surface rounded-[2rem] p-6 lg:p-8">
+       <h3 className="calc-kicker mb-8">
+        <Sparkles size={14} className="text-emerald-500" />
         Objekt-Eckdaten
        </h3>
 
@@ -53,11 +61,13 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
             type="number"
             min={0}
             value={reinigungData.areaM2 || ""}
-            onChange={(e) => updateReinigungData({ areaM2: parseNumber(e.target.value) })}
+            onChange={(event) =>
+             updateReinigungData({ areaM2: parseNumber(event.target.value) })
+            }
             placeholder="z. B. 80"
-            className="w-full bg-transparent text-2xl font-bold text-white outline-none placeholder:text-white/10"
+            className="calc-input text-2xl"
            />
-           <span className="text-lg font-bold text-white/20">m2</span>
+           <span className="text-lg font-bold text-slate-400">m²</span>
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -65,15 +75,14 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
             <button
              key={size}
              type="button"
+             data-active={reinigungData.areaM2 === size}
              onClick={() => updateReinigungData({ areaM2: size })}
              className={cn(
-              "rounded-xl border px-4 py-2 text-[10px] font-bold uppercase tracking-widest transition-all",
-              reinigungData.areaM2 === size
-               ? "border-emerald-400 bg-emerald-500 text-white"
-               : "border-white/5 bg-white/5 text-white/30 hover:bg-white/10 hover:text-white/60"
+              "calc-chip-card rounded-xl px-4 py-2 text-[10px] font-black uppercase tracking-[0.14em]",
+              reinigungData.areaM2 === size ? "text-emerald-700" : "text-slate-600",
              )}
             >
-             {size} m2
+             {size} m²
             </button>
            ))}
           </div>
@@ -84,12 +93,14 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
          <FieldCard label="Objektart">
           <select
            value={reinigungData.propertyType}
-           onChange={(e) => updateReinigungData({ propertyType: e.target.value as PropertyType })}
-           className="w-full bg-transparent text-sm font-bold text-white outline-none"
+           onChange={(event) =>
+            updateReinigungData({ propertyType: event.target.value as PropertyType })
+           }
+           className="calc-select text-sm"
           >
-           <option value="wohnung" className="bg-[#0B0D12]">Wohnung</option>
-           <option value="haus" className="bg-[#0B0D12]">Haus</option>
-           <option value="buero" className="bg-[#0B0D12]">Buero / Gewerbe</option>
+           <option value="wohnung">Wohnung</option>
+           <option value="haus">Haus</option>
+           <option value="buero">Büro / Gewerbe</option>
           </select>
          </FieldCard>
          <FieldCard label="Fensteranzahl (ca.)">
@@ -97,9 +108,11 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
            type="number"
            min={0}
            value={reinigungData.windowsCount || ""}
-           onChange={(e) => updateReinigungData({ windowsCount: parseNumber(e.target.value) })}
+           onChange={(event) =>
+            updateReinigungData({ windowsCount: parseNumber(event.target.value) })
+           }
            placeholder="Anzahl"
-           className="w-full bg-transparent text-sm font-bold text-white outline-none"
+           className="calc-input text-sm"
           />
          </FieldCard>
         </div>
@@ -109,13 +122,15 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
        <OptionCard
         checked={reinigungData.frequency === "regelmaessig"}
-      title="Regelmäßige Reinigung"
+        title="Regelmäßige Reinigung"
         description="Wiederkehrende Leistung mit anderem Aufwand als ein Einzeltermin."
-        onChange={(checked) => updateReinigungData({ frequency: checked ? "regelmaessig" : "einmalig" })}
+        onChange={(checked) =>
+         updateReinigungData({ frequency: checked ? "regelmaessig" : "einmalig" })
+        }
        />
        <OptionCard
         checked={reinigungData.isFurnished}
-        title="Objekt moebliert"
+        title="Objekt möbliert"
         description="Inventar und enge Objektstruktur werden als Aufwandstreiber berücksichtigt."
         onChange={(checked) => updateReinigungData({ isFurnished: checked })}
        />
@@ -131,79 +146,86 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8"
      >
-      <div className="rounded-[24px] border border-white/5 bg-white/[0.02] p-6 lg:p-8">
-       <h3 className="mb-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
-        <Sparkles size={14} className="text-blue-400" />
+      <div className="calc-surface rounded-[2rem] p-6 lg:p-8">
+       <h3 className="calc-kicker mb-6">
+        <Sparkles size={14} className="text-blue-500" />
         Zustand und Extras
        </h3>
        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FieldCard label="Verschmutzungsgrad">
          <select
           value={reinigungData.condition}
-          onChange={(e) => updateReinigungData({ condition: e.target.value as ConditionLevel })}
-          className="w-full bg-transparent text-sm font-bold text-white outline-none"
+          onChange={(event) =>
+           updateReinigungData({ condition: event.target.value as ConditionLevel })
+          }
+          className="calc-select text-sm"
          >
-          <option value="leicht" className="bg-[#0B0D12]">Leicht / Normal</option>
-          <option value="mittel" className="bg-[#0B0D12]">Mittel / Sichtbar</option>
-          <option value="stark" className="bg-[#0B0D12]">Stark / Baustelle</option>
+          <option value="leicht">Leicht / Normal</option>
+          <option value="mittel">Mittel / Sichtbar</option>
+          <option value="stark">Stark / Baustelle</option>
          </select>
         </FieldCard>
-        <label className="flex cursor-pointer items-center gap-4 rounded-2xl border border-white/5 bg-[#0B0D12] p-4 transition-all hover:bg-white/5">
+        <label className="calc-option-card flex cursor-pointer items-center gap-4 p-4">
          <input
           type="checkbox"
           checked={reinigungData.uncertainCondition}
-          onChange={(e) => updateReinigungData({ uncertainCondition: e.target.checked })}
+          onChange={(event) =>
+           updateReinigungData({ uncertainCondition: event.target.checked })
+          }
           className="h-5 w-5 accent-blue-500"
          />
          <div className="flex flex-col">
-          <span className="text-xs font-bold text-white">Zustand noch unsicher?</span>
-          <span className="text-[10px] text-white/40">Dann bleibt die Einordnung bewusst breiter.</span>
+          <span className="text-xs font-bold text-slate-900">Zustand noch unsicher?</span>
+          <span className="calc-help">
+           Dann bleibt die Einordnung bewusst etwas breiter.
+          </span>
          </div>
         </label>
        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-       {[
-        { id: "kueche_tiefenreinigung", title: "Küche+", icon: "K" },
-        { id: "bad_kalk", title: "Bad Kalk", icon: "B" },
-        { id: "teppich", title: "Teppich", icon: "T" },
-        { id: "fenster_glas", title: "Glas", icon: "G" },
-       ].map((extra) => (
-        <button
-         key={extra.id}
-         type="button"
-         onClick={() => toggleExtra(extra.id)}
-         className={cn(
-          "flex flex-col items-center justify-center rounded-3xl border p-4 transition-all hover:scale-[1.02] active:scale-[0.98]",
-          reinigungData.extras.includes(extra.id)
-           ? "border-blue-500/30 bg-blue-600/10 text-white"
-           : "border-white/5 bg-[#0B0D12] text-white/30 hover:border-white/10"
-         )}
-        >
-         <span className="mb-2 text-xl">{extra.icon}</span>
-         <span className="text-[10px] font-bold uppercase tracking-widest">{extra.title}</span>
-        </button>
-       ))}
+       {cleaningExtras.map((extra) => {
+        const active = reinigungData.extras.includes(extra.id);
+        return (
+         <button
+          key={extra.id}
+          type="button"
+          data-active={active}
+          onClick={() => toggleExtra(extra.id)}
+          className={cn(
+           "calc-chip-card flex flex-col items-center justify-center rounded-[1.6rem] p-4 hover:scale-[1.02] active:scale-[0.98]",
+           active ? "text-blue-700" : "text-slate-600",
+          )}
+         >
+          <span className="mb-2 flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-sm font-black">
+           {extra.icon}
+          </span>
+          <span className="text-[10px] font-black uppercase tracking-[0.14em]">
+           {extra.title}
+          </span>
+         </button>
+        );
+       })}
       </div>
 
       <div className="space-y-4">
-       <label className="text-[10px] font-bold uppercase tracking-widest text-white/20">Besondere Hinweise</label>
+       <label className="calc-label">Besondere Hinweise</label>
        <textarea
         value={reinigungData.freeTextNote || ""}
-        onChange={(e) => updateReinigungData({ freeTextNote: e.target.value })}
-      placeholder="Details zu Haustieren, empfindlichen Oberflächen oder Zugang..."
-        className="h-28 w-full resize-none rounded-2xl border border-white/5 bg-[#0B0D12] p-4 text-sm font-medium text-white outline-none placeholder:text-white/20 focus:border-emerald-500/20"
+        onChange={(event) => updateReinigungData({ freeTextNote: event.target.value })}
+        placeholder="Details zu Haustieren, empfindlichen Oberflächen oder Zugang..."
+        className="calc-field calc-textarea h-28 p-4 text-sm"
        />
       </div>
      </m.div>
     ) : null}
    </AnimatePresence>
 
-   <div className="flex items-start gap-3 rounded-2xl border border-blue-400/10 bg-blue-400/[0.06] px-4 py-3">
-    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-300" />
-    <p className="text-xs leading-relaxed text-white/55">
-     Je klarer Zustand und Sonderwuensche beschrieben sind, desto belastbarer wird die
+   <div className="flex items-start gap-3 rounded-[1.5rem] border border-blue-100 bg-blue-50 px-4 py-3">
+    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
+    <p className="text-xs leading-relaxed text-slate-600">
+     Je klarer Zustand und Sonderwünsche beschrieben sind, desto belastbarer wird die
      Vorprüfung.
     </p>
    </div>
@@ -213,8 +235,8 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
 
 function FieldCard({ label, children }: { label: string; children: React.ReactNode }) {
  return (
-  <div className="space-y-2 rounded-2xl border border-white/10 bg-[#0B0D12] p-4 shadow-sm transition-all hover:border-white/20">
-   <label className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30">{label}</label>
+  <div className="calc-field space-y-2">
+   <label className="calc-label">{label}</label>
    {children}
   </div>
  );
@@ -233,17 +255,18 @@ function OptionCard({
 }) {
  return (
   <label
-   className={cn(
-    "flex cursor-pointer items-start gap-4 rounded-2xl border p-5 transition-all",
-    checked
-     ? "border-emerald-500/30 bg-emerald-500/[0.07]"
-     : "border-white/10 bg-[#0B0D12] hover:border-white/20 hover:bg-white/[0.03]"
-   )}
+   data-active={checked}
+   className="calc-option-card flex cursor-pointer items-start gap-4 p-5"
   >
-   <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-0.5 h-5 w-5 accent-emerald-500" />
+   <input
+    type="checkbox"
+    checked={checked}
+    onChange={(event) => onChange(event.target.checked)}
+    className="mt-0.5 h-5 w-5 accent-emerald-500"
+   />
    <div>
-    <span className="block text-sm font-bold text-white">{title}</span>
-    <span className="text-[11px] font-medium leading-relaxed text-white/50">{description}</span>
+    <span className="block text-sm font-bold text-slate-950">{title}</span>
+    <span className="calc-help">{description}</span>
    </div>
   </label>
  );

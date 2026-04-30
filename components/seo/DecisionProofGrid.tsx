@@ -49,7 +49,7 @@ export function DecisionProofGrid() {
       <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 ">
        Nutzerszenarien
       </div>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+      <h2 className="mt-4 max-w-[14ch] text-4xl font-semibold flox-display-hero text-foreground md:text-6xl">
        Schnell erkennen, welcher FLOXANT Weg passt.
       </h2>
      </div>

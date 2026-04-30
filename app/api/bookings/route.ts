@@ -107,6 +107,86 @@ function buildBudgetInquiryDetails(payload: any): IntakePayload {
  };
 }
 
+function isStructuredIntakePayload(value: unknown): value is IntakePayload {
+ return Boolean(
+  value &&
+   typeof value === "object" &&
+   "contact" in (value as Record<string, unknown>) &&
+   "service" in (value as Record<string, unknown>) &&
+   "valuation" in (value as Record<string, unknown>) &&
+   "metadata" in (value as Record<string, unknown>)
+ );
+}
+
+function buildBookingWizardDetails(payload: any): IntakePayload {
+ const normalizedService = normalizeService(payload.service);
+ const details = payload.details || {};
+ const upgrades = Array.isArray(payload.upgrades) ? payload.upgrades : [];
+ const startAddress = String(details.startAddress || details.fromAddress || "").trim();
+ const endAddress = String(details.endAddress || details.toAddress || "").trim();
+ const date = String(details.date || details.moveDate || "").trim();
+
+ return {
+  contact: {
+   fullName: payload.name || "Interessent",
+   email: payload.email || "",
+   phone: payload.phone || "",
+   callbackPreference: "jederzeit",
+   notes: payload.message || "",
+  },
+  service: {
+   type: normalizedService,
+   source: "booking_page_wizard",
+   entryPoint: "/buchung",
+   presetFromUrl: normalizedService,
+  },
+  valuation: {
+   systemPriceRangeMin: 0,
+   systemPriceRangeMax: 0,
+   priceRangeMin: 0,
+   priceRangeMax: 0,
+   valuationLabel: "Anfrage mit Eckdaten",
+   valuationStage: "Vorpruefung gestartet",
+   accuracyState: "Solide Vorplanung",
+   topDrivers: [
+    normalizedService === "umzug" ? "Route" : "Standort",
+    "Terminwunsch",
+    upgrades.length ? "Ausgewaehlte Extras" : "Grunddaten vorhanden",
+   ],
+   priceExplanation:
+    "Die Buchungsseite erfasst die wichtigsten Eckdaten fuer eine strukturierte Vorpruefung. FLOXANT ordnet daraus Aufwand, Termin und Zusatzleistungen ein.",
+   pricingSignals: {
+    inquiryMode: "booking_page_wizard",
+    serviceType: normalizedService,
+    startAddress,
+    endAddress,
+    requestedDate: date,
+    upgrades,
+   },
+  },
+  configuration: {
+   requestContext: "booking_page_wizard",
+   entryPoint: "/buchung",
+   fromAddress: startAddress,
+   location: startAddress,
+   toAddress: endAddress,
+   moveDate: date,
+   date,
+   selectedUpgrades: upgrades,
+  },
+  metadata: {
+   createdAt: payload.timestamp || new Date().toISOString(),
+   intakeVersion: "1.3.0",
+   source: "booking_page_wizard",
+   servicePresetFromUrl: normalizedService,
+   clientContext: {
+    entryPoint: "/buchung",
+    bookingMode: "smart_wizard",
+   },
+  },
+ };
+}
+
 async function uploadBookingFiles(files: File[]) {
  const fileUrls: string[] = [];
  const timestamp = Date.now();
@@ -177,7 +257,13 @@ export async function POST(req: Request) {
 
   const normalizedService = normalizeService(payload.service);
   const details =
-   payload.type === "budget_inquiry" ? buildBudgetInquiryDetails(payload) : payload.details || {};
+   payload.type === "budget_inquiry"
+    ? buildBudgetInquiryDetails(payload)
+    : payload.type === "booking_wizard"
+     ? isStructuredIntakePayload(payload.details)
+       ? payload.details
+       : buildBookingWizardDetails(payload)
+     : payload.details || {};
 
   const booking = {
    name: payload.name || "Interessent",

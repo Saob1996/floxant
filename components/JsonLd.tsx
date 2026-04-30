@@ -11,7 +11,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
         url: company.url,
         email: company.email,
         telephone: company.phoneRaw,
-        logo: `${company.url}/logo-dark.png`,
+        logo: `${company.url}/logo_v10.png`,
         description:
           "FLOXANT organisiert Umzug, Reinigung und Entrümpelung mit Schwerpunkt Regensburg und Einsatzgebiet Bayern.",
         knowsAbout: [

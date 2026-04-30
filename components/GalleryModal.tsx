@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { m, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Download } from "lucide-react";
+import { AnimatePresence, m } from "framer-motion";
+import { ChevronLeft, ChevronRight, Download, X } from "lucide-react";
 
 interface GalleryModalProps {
   images: string[];
@@ -11,20 +11,13 @@ interface GalleryModalProps {
   onClose: () => void;
 }
 
-export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProps) {
+export function GalleryModal({
+  images,
+  initialIndex,
+  onClose,
+}: GalleryModalProps) {
   const [index, setIndex] = useState(initialIndex);
   const [direction, setDirection] = useState(0);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") prevImage();
-      if (e.key === "ArrowRight") nextImage();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [index, onClose]);
 
   const nextImage = useCallback(() => {
     if (images.length <= 1) return;
@@ -38,24 +31,35 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
     setIndex((prev) => (prev - 1 + images.length) % images.length);
   }, [images.length]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "ArrowLeft") prevImage();
+      if (event.key === "ArrowRight") nextImage();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [nextImage, onClose, prevImage]);
+
   const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+    enter: (currentDirection: number) => ({
+      x: currentDirection > 0 ? 900 : -900,
       opacity: 0,
-      scale: 0.5
+      scale: 0.96,
     }),
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
-      scale: 1
+      scale: 1,
     },
-    exit: (direction: number) => ({
+    exit: (currentDirection: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: currentDirection < 0 ? 900 : -900,
       opacity: 0,
-      scale: 0.5
-    })
+      scale: 0.96,
+    }),
   };
 
   return (
@@ -66,51 +70,60 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md"
       onClick={onClose}
     >
-      {/* Controls */}
-      <div className="absolute top-4 end- z-50 flex gap-4">
+      <div className="absolute right-4 top-4 z-50 flex gap-3">
         <button
-          onClick={(e) => { e.stopPropagation(); window.open(images[index], '_blank'); }}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            window.open(images[index], "_blank");
+          }}
+          className="rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
         >
-          <Download className="w-6 h-6" />
+          <Download className="h-6 w-6" />
         </button>
         <button
+          type="button"
           onClick={onClose}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          className="rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
         >
-          <X className="w-6 h-6" />
+          <X className="h-6 w-6" />
         </button>
       </div>
 
-      {/* Navigation Buttons - Only if multiple images */}
-      {images.length > 1 && (
+      {images.length > 1 ? (
         <>
           <button
-            className="absolute start- top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            type="button"
+            className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20"
+            onClick={(event) => {
+              event.stopPropagation();
+              prevImage();
+            }}
           >
-            <ChevronLeft className="w-8 h-8" />
+            <ChevronLeft className="h-8 w-8" />
           </button>
           <button
-            className="absolute end- top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            type="button"
+            className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20"
+            onClick={(event) => {
+              event.stopPropagation();
+              nextImage();
+            }}
           >
-            <ChevronRight className="w-8 h-8" />
+            <ChevronRight className="h-8 w-8" />
           </button>
         </>
-      )}
+      ) : null}
 
-      {/* Image Counter */}
-      {images.length > 1 && (
-        <div className="absolute bottom-6 start-/2 -translate-x-1/2 px-4 py-2 rounded-full bg-black/50 text-white text-sm font-medium border border-white/10 backdrop-blur-sm">
+      {images.length > 1 ? (
+        <div className="absolute bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full border border-white/10 bg-black/50 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
           {index + 1} / {images.length}
         </div>
-      )}
+      ) : null}
 
-      {/* Main Image */}
       <div
-        className="relative w-full h-full max-w-7xl max-h-[90vh] p-4 flex items-center justify-center overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
+        className="relative flex h-full max-h-[90vh] w-full max-w-7xl items-center justify-center overflow-hidden p-4"
+        onClick={(event) => event.stopPropagation()}
       >
         <AnimatePresence initial={false} custom={direction}>
           <m.div
@@ -122,34 +135,24 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
             exit="exit"
             transition={{
               x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
+              opacity: { duration: 0.2 },
             }}
-            className="absolute w-full h-full flex items-center justify-center p-4"
+            className="absolute flex h-full w-full items-center justify-center p-4"
           >
-            <div className="relative w-full h-full max-w-6xl max-h-[85vh]">
+            <div className="relative h-full max-h-[85vh] w-full max-w-6xl">
               {images[index] ? (
                 <Image
                   src={images[index]}
-                  alt={`Gallery Image ${index + 1}`}
+                  alt={`Galeriebild ${index + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, 80vw"
-                  priority={true}
+                  priority
                   className="object-contain"
                   quality={90}
-                  onError={(e) => {
-                    console.error("Image load failed:", images[index]);
-                    // Could set a local error state here to show a fallback icon using a wrapper component
-                    e.currentTarget.style.display = 'none'; // Simple fallback: hide broken image
-                    e.currentTarget.parentElement?.classList.add('bg-white/5', 'flex', 'items-center', 'justify-center');
-                    const fallback = document.createElement('div');
-                    fallback.innerText = '⚠️ Image not available';
-                    fallback.className = 'text-white/50 font-medium';
-                    e.currentTarget.parentElement?.appendChild(fallback);
-                  }}
                 />
               ) : (
-                <div className="flex items-center justify-center h-full text-white/50">
-                  Image source missing
+                <div className="flex h-full items-center justify-center text-white/50">
+                  Bildquelle fehlt
                 </div>
               )}
             </div>
@@ -157,26 +160,41 @@ export function GalleryModal({ images, initialIndex, onClose }: GalleryModalProp
         </AnimatePresence>
       </div>
 
-      {/* Thumbnail Strip (Optional, for > 1 images) */}
-      {images.length > 1 && (
-        <div className="absolute bottom-6 end- z-50 hidden md:flex gap-2 p-2 rounded-xl bg-black/50 backdrop-blur-sm border border-white/10 overflow-x-auto max-w-md" onClick={(e) => e.stopPropagation()}>
-          {images.map((img, i) => (
+      {images.length > 1 ? (
+        <div
+          className="absolute bottom-6 right-6 z-50 hidden max-w-md gap-2 overflow-x-auto rounded-xl border border-white/10 bg-black/50 p-2 backdrop-blur-sm md:flex"
+          onClick={(event) => event.stopPropagation()}
+        >
+          {images.map((image, imageIndex) => (
             <button
-              key={i}
-              onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); }}
-              className={`relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${i === index ? 'border-primary scale-110' : 'border-transparent opacity-60 hover:opacity-100'}`}
+              key={image}
+              type="button"
+              onClick={() => {
+                setDirection(imageIndex > index ? 1 : -1);
+                setIndex(imageIndex);
+              }}
+              className={cnThumb(imageIndex === index)}
             >
               <Image
-                src={img}
-                alt={`Thumbnail ${i}`}
+                src={image}
+                alt={`Vorschaubild ${imageIndex + 1}`}
                 fill
-                sizes="50px"
+                sizes="48px"
                 className="object-cover"
               />
             </button>
           ))}
         </div>
-      )}
+      ) : null}
     </m.div>
   );
+}
+
+function cnThumb(active: boolean) {
+  return [
+    "relative h-12 w-12 overflow-hidden rounded-lg border-2 transition-all",
+    active
+      ? "border-blue-400 scale-110"
+      : "border-transparent opacity-60 hover:opacity-100",
+  ].join(" ");
 }

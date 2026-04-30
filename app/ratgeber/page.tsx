@@ -40,7 +40,7 @@ export default async function RatgeberPage() {
  const dict = (await getDictionary("de")) as any;
 
  return (
-  <main className="min-h-screen bg-background">
+  <main className="min-h-screen bg-[#07111f] text-white">
    <Breadcrumbs items={[{ label: "Ratgeber" }]} />
 
    <section className="px-6 pb-16 pt-8">

@@ -1,158 +1,178 @@
 "use client";
 
 import React, { useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck, HelpCircle } from "lucide-react";
-import { useCalculatorStore, ServiceType } from "@/store/calculatorStore";
-import { cn } from "@/lib/utils";
+import { AnimatePresence, m } from "framer-motion";
+import { ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, ShieldCheck } from "lucide-react";
+
+import { ServiceType, useCalculatorStore } from "@/store/calculatorStore";
 import FloxButton from "./ui/FloxButton";
 import { ValuationSummary } from "./ui/ValuationSummary";
 import { usePricingUpdate } from "@/hooks/usePricingUpdate";
+import { cn } from "@/lib/utils";
 
 interface IntakeWizardProps {
- dic: any;
- serviceType: ServiceType;
- steps: { id: number; title: string }[];
- renderStep: (step: number) => React.ReactNode;
- onClose: () => void;
- onFinish: () => void;
- hasInput: boolean;
+  dic: any;
+  serviceType: ServiceType;
+  steps: { id: number; title: string }[];
+  renderStep: (step: number) => React.ReactNode;
+  onClose: () => void;
+  onFinish: () => void;
+  hasInput: boolean;
 }
 
+const serviceLabels: Partial<Record<ServiceType, string>> = {
+  umzug: "Umzug",
+  reinigung: "Reinigung",
+  entsorgung: "Entrümpelung",
+  bueroumzug: "Büroumzug",
+};
+
 export const IntakeWizard: React.FC<IntakeWizardProps> = ({
- dic,
- serviceType,
- steps,
- renderStep,
- onClose,
- onFinish,
- hasInput
+  dic,
+  serviceType,
+  steps,
+  renderStep,
+  onClose,
+  onFinish,
+  hasInput,
 }) => {
- const currentMode = useCalculatorStore((s) => s.mode);
- const estimate = useCalculatorStore((s) => s.advancedEstimate);
- 
- // Trigger Reactive Pricing Updates
- usePricingUpdate(dic);
+  const estimate = useCalculatorStore((s) => s.advancedEstimate);
 
- const [currentStep, setCurrentStep] = useState(1);
+  usePricingUpdate(dic);
 
- const isLastStep = currentStep === steps.length;
+  const [currentStep, setCurrentStep] = useState(1);
+  const isLastStep = currentStep === steps.length;
 
- const handleNext = () => {
-  if (isLastStep) {
-   onFinish();
-  } else {
-   setCurrentStep((s) => s + 1);
-  }
- };
+  const handleNext = () => {
+    if (isLastStep) {
+      onFinish();
+      return;
+    }
 
- const handleBack = () => {
-  if (currentStep === 1) {
-   onClose();
-  } else {
-   setCurrentStep((s) => s - 1);
-  }
- };
+    setCurrentStep((step) => step + 1);
+  };
 
- return (
-  <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-8 xl:flex-row xl:items-start anim-fade-in">
-   {/* Container: Eingabe */}
-   <div className="w-full flex-[1.4]">
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-2xl p-6 shadow-2xl lg:p-12">
-     {/* Subtle Accent Glow */}
-     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.1),transparent_70%)]" />
+  const handleBack = () => {
+    if (currentStep === 1) {
+      onClose();
+      return;
+    }
 
-     {/* Wizard Header */}
-     <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
-      <div className="flex items-center justify-between mb-6">
-       <div className="flex flex-col gap-1">
-        <h2 className="text-2xl lg:text-3xl font-semibold text-white tracking-tight capitalize">
-         {serviceType} <span className="text-blue-500">Konfiguration</span>
-        </h2>
-        <p className="text-sm text-white/40 font-medium">Strukturierter Intake für Ihre Planung.</p>
-       </div>
-       <div className="hidden lg:flex items-center gap-2 rounded-xl bg-white/[0.03] px-3 py-1.5 border border-white/5">
-        <ShieldCheck size={14} className="text-blue-500/60" />
-        <span className="label-premium !text-white/40">Zertifizierte Sicherheit</span>
-       </div>
-      </div>
-      
-      {/* Progress Bar */}
-      <div className="flex gap-2">
-       {steps.map((step) => (
-        <div key={step.id} className="flex-1 space-y-2">
-          <div
-           className={cn(
-            "h-1 rounded-full transition-all duration-700",
-            step.id <= currentStep 
-             ? "bg-gradient-to-r from-blue-600 to-blue-400" 
-             : "bg-white/5"
-           )}
-          />
-         <span className={cn(
-          "block label-premium transition-colors duration-500",
-          step.id === currentStep ? "!text-blue-400/80" : "!text-white/10"
-         )}>
-          {step.title}
-         </span>
+    setCurrentStep((step) => step - 1);
+  };
+
+  return (
+    <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-8 xl:flex-row xl:items-start">
+      <div className="w-full flex-[1.35]">
+        <div className="glass-elevated relative overflow-hidden rounded-[2.7rem] p-6 shadow-[0_32px_100px_rgba(15,23,42,0.12)] lg:p-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.12),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(45,212,191,0.1),transparent_28%)]" />
+
+          <div className="relative z-10 border-b border-slate-200 pb-8">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+                  <ShieldCheck className="h-4 w-4" />
+                  Strukturierte Vorprüfung
+                </div>
+                <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 lg:text-4xl">
+                  {serviceLabels[serviceType] || "Service"} Schritt für Schritt vorbereiten
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Wir führen Sie ruhig durch die wichtigsten Angaben, damit aus wenigen Eckdaten
+                  eine glaubwürdige erste Einordnung wird.
+                </p>
+              </div>
+
+              <div className="rounded-[1.6rem] border border-slate-200 bg-white/92 px-4 py-4 shadow-sm shadow-slate-950/5">
+                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                  Fortschritt
+                </div>
+                <div className="mt-1 text-lg font-bold text-slate-950">
+                  Schritt {currentStep} von {steps.length}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-3 md:grid-cols-4">
+              {steps.map((step) => {
+                const isActive = step.id === currentStep;
+                const isDone = step.id < currentStep;
+
+                return (
+                  <div
+                    key={step.id}
+                    className={cn(
+                      "rounded-[1.5rem] border p-4 transition-all",
+                      isActive
+                        ? "border-blue-200 bg-blue-50 shadow-sm shadow-blue-950/5"
+                        : isDone
+                          ? "border-emerald-200 bg-emerald-50/80"
+                          : "border-slate-200 bg-white/80"
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "text-[10px] font-black uppercase tracking-[0.18em]",
+                        isActive
+                          ? "text-blue-700"
+                          : isDone
+                            ? "text-emerald-700"
+                            : "text-slate-400"
+                      )}
+                    >
+                      Schritt {step.id}
+                    </div>
+                    <div className="mt-2 text-sm font-bold text-slate-950">{step.title}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="relative z-10 min-h-[440px] pt-8">
+            <AnimatePresence mode="wait">
+              <m.div
+                key={currentStep}
+                initial={{ opacity: 0, x: 18 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -18 }}
+                transition={{ duration: 0.38, ease: "circOut" }}
+              >
+                {renderStep(currentStep)}
+              </m.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="relative z-10 mt-10 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="button"
+              onClick={handleBack}
+              className="group inline-flex items-center gap-3 rounded-2xl px-1 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-slate-500 transition-all hover:text-slate-900"
+            >
+              <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
+              {currentStep === 1 ? "Zurück zur Auswahl" : "Zurück"}
+            </button>
+
+            <FloxButton
+              onClick={handleNext}
+              variant={isLastStep ? "primary" : "secondary"}
+              rightIcon={isLastStep ? <CheckCircle2 size={18} /> : <ArrowRight size={18} />}
+              className="px-8 py-4 text-[11px]"
+            >
+              {isLastStep ? "Jetzt Konfiguration prüfen" : "Nächster Schritt"}
+            </FloxButton>
+          </div>
         </div>
-       ))}
+
+        <div className="mt-6 flex items-center gap-3 rounded-[1.6rem] border border-slate-200 bg-white/90 px-5 py-4 text-sm text-slate-600 shadow-sm shadow-slate-950/5">
+          <HelpCircle size={18} className="shrink-0 text-blue-600" />
+          Fragen zum Ablauf? Wir begleiten Sie gerne persönlich und ohne Portal-Chaos.
+        </div>
       </div>
-     </div>
 
-     {/* Content Area */}
-     <div className="relative z-10 min-h-[440px]">
-      <AnimatePresence mode="wait">
-       <m.div
-        key={currentStep}
-        initial={{ opacity: 0, x: 15 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -15 }}
-        transition={{ duration: 0.4, ease: "circOut" }}
-       >
-        {renderStep(currentStep)}
-       </m.div>
-      </AnimatePresence>
-     </div>
-
-     {/* Controls */}
-     <div className="relative z-10 mt-12 flex items-center justify-between border-t border-white/5 pt-10">
-      <button
-       onClick={handleBack}
-       className="group flex items-center gap-3 rounded-2xl px-6 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-white/30 transition-all hover:text-white hover:bg-white/5"
-      >
-       <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" /> 
-       {currentStep === 1 ? "Abbrechen" : "Zurück"}
-      </button>
-      
-      <FloxButton
-       onClick={handleNext}
-       variant={isLastStep ? "primary" : "secondary"}
-       rightIcon={isLastStep ? <CheckCircle2 size={18} /> : <ArrowRight size={18} />}
-       className="px-12"
-      >
-       {isLastStep ? "Jetzt Konfiguration prüfen" : "Nächster Schritt"}
-      </FloxButton>
-     </div>
+      <div className="sticky top-24 z-40 w-full shrink-0 xl:w-[460px]">
+        <ValuationSummary estimate={estimate} hasInput={hasInput} dic={dic} />
+      </div>
     </div>
-
-    {/* Support Hook */}
-    <div className="mt-8 flex items-center gap-4 px-6 opacity-40 hover:opacity-100 transition-opacity">
-     <HelpCircle size={18} className="text-white" />
-     <p className="text-[11px] font-medium text-white italic">
-      Fragen zum Ablauf? Wir beraten Sie auch gerne persönlich unter 0800-FLOXANT.
-     </p>
-    </div>
-   </div>
-
-   {/* Container: Valuation (Sidebar) */}
-   <div className="sticky top-24 z-40 w-full shrink-0 xl:w-[480px]">
-    <ValuationSummary 
-     estimate={estimate} 
-     hasInput={hasInput} 
-     dic={dic} 
-    />
-   </div>
-  </div>
- );
+  );
 };

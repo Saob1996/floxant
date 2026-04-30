@@ -51,7 +51,7 @@ export function DominanceLinkMap({ compact = false }: { compact?: boolean }) {
        <Compass className="h-4 w-4" />
        FLOXANT Suchpfade
       </div>
-      <h2 className={`${compact ? "mt-3 text-3xl" : "mt-4 text-4xl md:text-5xl"} font-semibold tracking-tight text-foreground`}>
+      <h2 className={`${compact ? "mt-3 text-3xl flox-display-section-tight" : "mt-4 text-4xl md:text-5xl flox-display-section"} font-semibold text-foreground`}>
        Die wichtigsten Seiten sauber verbunden.
       </h2>
      </div>

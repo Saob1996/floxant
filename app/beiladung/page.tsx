@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2, Repeat, Search, ShieldCheck, Truck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
@@ -17,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "beiladung",
-    title: "Beiladung Bayern ✓ Möbel-Mitnahme Region Regensburg | FLOXANT",
+    title: "Beiladung Bayern | Möbel-Mitnahme ab Regensburg | FLOXANT",
     description:
       "Professionelle Beiladung für Einzelmöbel ab Regensburg und in ganz Bayern. Nutzen Sie freie Kapazitäten für eine effiziente und kostengünstige Möbel-Mitnahme.",
   });
@@ -38,11 +39,11 @@ export default async function BeiladungPage() {
     },
     {
       q: "Für welche Transportgüter ist der Service geeignet?",
-      a: "Ideal für Einzelstücke wie Sofas, Schränke oder Klaviere sowie für 5-10 Umzugskartons, wenn kein kompletter LKW benötigt wird.",
+      a: "Ideal für Einzelstücke wie Sofas, Schränke oder Klaviere sowie für 5 bis 10 Umzugskartons, wenn kein kompletter LKW benötigt wird.",
     },
     {
       q: "Wann ist Beiladung die richtige Wahl?",
-      a: "Wenn Ihr Liefertermin um +- 3 Tage flexibel ist. Da wir bestehende Touren nutzen, koordinieren wir die Abholung und Zustellung innerhalb eines vereinbarten Zeitfensters.",
+      a: "Wenn Ihr Liefertermin flexibel ist. Da wir bestehende Touren nutzen, koordinieren wir die Abholung und Zustellung innerhalb eines vereinbarten Zeitfensters.",
     },
     {
       q: "Wie unterscheidet sich FLOXANT Beiladung vom Standardservice?",
@@ -50,7 +51,7 @@ export default async function BeiladungPage() {
     },
     {
       q: "Gibt es regionale Einschränkungen in Bayern?",
-      a: "Nein. Wir decken die gesamte Nord-Süd und Ost-West Achse in Bayern ab, mit Regensburg als zentralem Logistik-Hub für die Verteilung.",
+      a: "Nein. Wir decken die gesamte Nord-Süd- und Ost-West-Achse in Bayern ab, mit Regensburg als zentralem Logistik-Hub für die Verteilung.",
     },
   ];
 
@@ -80,31 +81,32 @@ export default async function BeiladungPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <main className="min-h-screen overflow-hidden bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Breadcrumbs lang="de" items={breadcrumbs} />
 
-      <section className="relative overflow-hidden px-6 pb-20 pt-16">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.06),transparent_50%)]" />
-        <div className="mx-auto max-w-6xl text-center">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-mono uppercase tracking-widest text-blue-400">
-            <Truck size={14} className="text-blue-500/60" />
+      <section className="section-glow relative px-6 pb-20 pt-10">
+        <div className="pointer-events-none absolute inset-0 opacity-45">
+          <FloxantSymbolLayer variant="backhaul" density="rich" />
+        </div>
+        <div className="relative mx-auto max-w-6xl text-center">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/88 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
+            <Truck size={14} />
             Beiladung Bayern
           </div>
-          <h1 className="mb-8 text-4xl font-bold tracking-tight md:text-6xl">
-            Professionelle Beiladung & Möbel-Mitnahme in Bayern
+          <h1 className="text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
+            Professionelle Beiladung und Möbel-Mitnahme in Bayern
           </h1>
-          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/50">
-            FLOXANT nutzt ungenutzte Laderaum-Ressourcen für Einzelstücke, Teilmengen und kleinere Transporte ab Regensburg und in ganz Bayern. Wir bieten eine semantisch klare und operativ sichere Lösung für professionelle Möbel-Mitnahme ohne die Kosten eines Exklusiv-Transports.
+          <p className="mx-auto mt-8 max-w-3xl text-xl leading-relaxed text-slate-600">
+            FLOXANT nutzt freie Laderaum-Ressourcen für Einzelstücke, Teilmengen und kleinere
+            Transporte ab Regensburg und in ganz Bayern. Das wirkt günstiger, aber trotzdem
+            professionell, klar und sauber organisiert.
           </p>
         </div>
       </section>
 
-      <section className="border-y border-white/5 bg-white/[0.01] px-6 py-20">
+      <section className="section-glow relative px-6 py-24">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
           {[
             { icon: Repeat, title: "Was ist das?", text: "Mitnahme auf bestehenden Touren mit freiem Laderaum." },
@@ -114,52 +116,54 @@ export default async function BeiladungPage() {
           ].map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
-                <Icon className="mb-5 h-8 w-8 text-blue-400" />
-                <h2 className="mb-3 text-xl font-bold tracking-tight">{item.title}</h2>
-                <p className="text-sm leading-relaxed text-white/60">{item.text}</p>
-              </div>
+              <article key={item.title} className="card-premium rounded-[2rem] p-8">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h2 className="mt-6 text-2xl font-bold text-slate-950">{item.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-slate-600">{item.text}</p>
+              </article>
             );
           })}
         </div>
       </section>
 
-      <section className="px-6 py-20">
+      <section className="section-glow relative px-6 py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-8 text-3xl font-bold">Häufige Fragen zur Beiladung</h2>
+          <h2 className="mb-10 text-3xl font-bold text-slate-950">Häufige Fragen zur Beiladung</h2>
           <div className="space-y-6">
             {faqItems.map((item) => (
-              <div key={item.q} className="rounded-3xl border border-white/10 bg-[#0B0B14] p-8">
-                <h3 className="mb-4 text-xl font-bold">{item.q}</h3>
-                <p className="text-white/60">{item.a}</p>
-              </div>
+              <article key={item.q} className="card-premium rounded-[2rem] p-8">
+                <h3 className="text-2xl font-bold text-slate-950">{item.q}</h3>
+                <p className="mt-4 text-base leading-8 text-slate-600">{item.a}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="booking" className="bg-slate-900/50 py-24">
-        <div className="mx-auto max-w-5xl px-6">
+      <section id="booking" className="section-glow relative px-6 py-24">
+        <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold">Beiladung anfragen</h2>
-            <p className="mt-4 text-white/50">
-              Geben Sie Strecke, Menge und Zeitfenster an. FLOXANT prüft, ob eine passende Tourkapazität vorhanden ist.
+            <h2 className="text-3xl font-bold text-slate-950">Beiladung anfragen</h2>
+            <p className="mt-4 text-slate-600">
+              Geben Sie Strecke, Menge und Zeitfenster an. FLOXANT prüft, ob eine passende
+              Tourkapazität vorhanden ist.
             </p>
           </div>
-          <div className="overflow-hidden rounded-3xl border border-white/5 bg-black/40 p-1 shadow-2xl backdrop-blur-xl">
-            <div className="p-4 md:p-8">
-              <SmartBookingWizard
-                dict={{
-                  common: dict.common,
-                  calculator: dict.calculator,
-                }}
-              />
-            </div>
+          <div className="glass-elevated rounded-[2.6rem] p-4 md:p-6">
+            <SmartBookingWizard
+              dict={{
+                common: dict.common,
+                calculator: dict.calculator,
+                booking: dict.booking,
+              }}
+            />
           </div>
         </div>
       </section>
 
-      <section className="border-t border-white/5 px-6 py-16">
+      <section className="section-glow relative px-6 pb-24 pt-8">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
             { href: "/umzug", label: "Standard-Umzug ansehen" },
@@ -170,9 +174,12 @@ export default async function BeiladungPage() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-2xl border border-white/10 bg-[#0B0B14] px-6 py-4 font-medium text-slate-300 transition-all hover:border-blue-500/40 hover:text-white"
+              className="card-premium premium-scan rounded-[1.8rem] px-6 py-5"
             >
-              {item.label}
+              <div className="text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
+                Weiterführend
+              </div>
+              <div className="mt-3 text-lg font-bold text-slate-950">{item.label}</div>
             </Link>
           ))}
         </div>

@@ -15,8 +15,10 @@ import { AuthorityMagnet } from "@/components/AuthorityMagnet";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CityServiceCluster } from "@/components/CityServiceCluster";
 import DualCalculator from "@/components/calculator/DualCalculator";
+import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { TrustBadge } from "@/components/trust/TrustBadge";
 import { getCityGeoData, BAVARIAN_CITIES_GEO } from "@/lib/geo-data";
+import { germanText, germanizeDeep } from "@/lib/german-text";
 import { applyCity } from "@/lib/specialty-page";
 import {
   buildBreadcrumbJsonLd,
@@ -129,7 +131,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
       primaryPath: "/entruempelung",
       calculatorHref: "/rechner?service=entsorgung",
       calculatorService: "entsorgung" as const,
-      audience: `Die Entrümpelung in ${city} ist für Haushalte, Erbfälle, Vermieter und Unternehmen gedacht, die Räume schnell, diskret und besenrein freibekommen müssen.`,
+      audience: `Die Entrümpelung in ${city} ist für Haushalte, Erbfälle, Vermieter und Unternehmen gedacht, die Räume schnell, diskret und besenrein frei bekommen müssen.`,
       timing: `Sie ist sinnvoll bei Wohnungsauflösungen, Kellerräumungen, Nachlassfällen oder vor Sanierung, Verkauf und Neuvermietung in ${city}.`,
       process: `Wir sichten Umfang und Zugangswege, trennen verwertbare Materialien, organisieren Abtransport und hinterlassen die Flächen in ${city} besenrein.`,
       difference: `Im Unterschied zur reinen Sperrmüllabholung umfasst der Service Sortierung, Tragearbeit, Transport und fachgerechte Entsorgung aus einer Hand.`,
@@ -159,7 +161,6 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
       { href: "/service-area-bayern", label: `Umzug in ${region} und Bayern` },
     ],
   };
-
 }
 
 export function SpecialtyPageLayout({
@@ -206,7 +207,6 @@ export function SpecialtyPageLayout({
     }))
     .filter((faq) => faq.q.trim() && faq.a.trim());
 
-  // Inject Budget FAQs for EEAT and conversion
   const budgetFaqs = (dict?.common?.budget_faqs || []) as Array<{ q: string; a: string }>;
   const injectedBudgetFaqs = budgetFaqs.map((faq) => ({
     q: applyCity(faq.q, city, neighborhoods),
@@ -223,17 +223,17 @@ export function SpecialtyPageLayout({
     return item;
   });
 
-  const contextBlocks = [
+  const contextBlocks = germanizeDeep([
     { title: "Was ist das?", text: heroText || `${serviceContext.name} in ${city} mit Fokus auf klare Leistungen und planbare Termine.` },
     { title: "Für wen ist das?", text: serviceContext.audience },
     { title: "Wann ist das sinnvoll?", text: serviceContext.timing },
     { title: "Wie läuft es ab?", text: serviceContext.process },
-  ];
+  ]);
 
   const nearbyCities = geo
     ? Object.values(BAVARIAN_CITIES_GEO)
-       .filter((entry) => entry.region === geo.region && entry.name !== city)
-       .slice(0, 6)
+        .filter((entry) => entry.region === geo.region && entry.name !== city)
+        .slice(0, 6)
     : [];
 
   const helpfulLinks = [
@@ -271,294 +271,252 @@ export function SpecialtyPageLayout({
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-slate-950">
+    <main className="relative min-h-screen overflow-hidden bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={localizedBreadcrumbs} />
 
-      <section className="relative overflow-hidden px-6 pb-20 pt-12 lg:pt-20">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/10 blur-[120px]" />
-          <div className="absolute right-0 top-1/4 h-[300px] w-[300px] rounded-full bg-blue-500/10 blur-[100px]" />
-          <div className="absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-indigo-600/5 blur-[110px]" />
+      <section className="flox-section overflow-hidden pb-10 pt-10 lg:pb-14">
+        <div className="pointer-events-none absolute inset-0">
+          <FloxantSymbolLayer variant="moving" density="soft" mode="hero" className="opacity-65" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl space-y-8 text-center">
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {heroBadge ? (
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 label-premium !text-primary shadow-sm backdrop-blur-md">
-                <Zap className="h-3 w-3" />
-                <span>{heroBadge}</span>
+        <div className="flox-shell relative grid gap-8 xl:grid-cols-[1.04fr_0.96fr] xl:items-center">
+          <div className="flox-panel px-7 py-8 sm:px-9 sm:py-9 xl:px-10 xl:py-10">
+            <div className="flex flex-wrap items-center gap-3">
+              {heroBadge ? (
+                <div className="flox-kicker">
+                  <Zap className="h-4 w-4" />
+                  {germanText(heroBadge, heroBadge)}
+                </div>
+              ) : null}
+              <TrustBadge type="expert" />
+              <Link
+                href="/anfrage-mit-preisrahmen"
+                className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5"
+              >
+                <Banknote className="h-4 w-4" />
+                Preisrahmen nennen
+              </Link>
+            </div>
+
+            <h1 className="mt-8 max-w-[14ch] flox-title-xl flox-display-hero text-slate-950">
+              {germanText(applyCity(heroTitle, city, neighborhoods), heroTitle)}
+              {highlightWord ? (
+                <span className="mt-2 block text-blue-600">{germanText(highlightWord, highlightWord)}</span>
+              ) : null}
+            </h1>
+
+            {heroText ? (
+              <p className="flox-body mt-6 max-w-2xl">
+                {germanText(applyCity(heroText, city, neighborhoods), heroText)}
+              </p>
+            ) : null}
+
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#wizard"
+                className="btn-premium flox-button-primary min-h-[3.65rem] px-8"
+              >
+                {germanText(ctaText || `${serviceContext.name} in ${city} anfragen`, ctaText || `${serviceContext.name} in ${city} anfragen`)}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link
+                href="/anfrage-mit-preisrahmen"
+                className="flox-button-secondary min-h-[3.65rem] px-8"
+              >
+                Projekt mit Preisrahmen
+              </Link>
+            </div>
+
+            {visibleChips.length > 0 ? (
+              <div className="mt-10 flex flex-wrap gap-3">
+                {visibleChips.map((chip, index) => {
+                  const Icon = chip.icon;
+                  return (
+                    <span
+                      key={`${chip.text}-${index}`}
+                      className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5"
+                    >
+                      <Icon className={chip.iconClassName || "h-4 w-4 text-blue-700"} />
+                      {germanText(chip.text, chip.text)}
+                    </span>
+                  );
+                })}
               </div>
             ) : null}
-            <TrustBadge type="expert" />
-            <Link 
-              href="/anfrage-mit-preisrahmen" 
-              className="inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/10 px-3 py-1 label-premium !text-blue-300 shadow-sm backdrop-blur-md transition-all hover:bg-blue-400/20"
-            >
-              <Banknote className="h-3 w-3" />
-              <span>Preisrahmen nennen</span>
-            </Link>
           </div>
 
-          <h1 className="mx-auto max-w-5xl text-4xl font-semibold leading-[1.1] tracking-tight text-white md:text-6xl xl:text-7xl">
-            {heroTitle}
-            {highlightWord && (
-              <span className="block mt-2 text-blue-500">{highlightWord}</span>
-            )}
-          </h1>
-
-          {heroText ? (
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-300 md:text-2xl">
-              {heroText}
-            </p>
-          ) : null}
-
-          <div className="relative mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-            <Image
-              src={heroImage}
-              alt={`${heroTitle} | FLOXANT`}
-              fill
-              className="object-cover"
-              priority
-              fetchPriority="high"
-              sizes="(min-width: 1280px) 1024px, 100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-          </div>
-
-          {visibleChips.length > 0 ? (
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              {visibleChips.map((chip, index) => {
-                const Icon = chip.icon;
-                if (!Icon) return null;
-                return (
-                  <span
-                    key={`${chip.text}-${index}`}
-                    className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white shadow-sm"
-                  >
-                    <Icon className={chip.iconClassName || "h-5 w-5 text-primary"} />
-                    {chip.text}
-                  </span>
-                );
-              })}
-            </div>
-          ) : null}
-
-          <div className="mt-12 flex flex-col items-center gap-6">
-            <a
-              href="#wizard"
-              className="group inline-flex items-center gap-4 rounded-xl bg-white px-8 py-4 text-lg font-bold text-zinc-950 shadow-[0_4px_24px_rgba(255,255,255,0.15)] ring-1 ring-white/50 transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-100"
-            >
-              {ctaText || `${serviceContext.name} in ${city} anfragen`}
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </a>
-
-            <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                <span>{dict.common?.trust_bar?.certified || "Geprüfter bayerischer Fachbetrieb"}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                <span>{dict.common?.trust_bar?.insurance || "Versicherungsschutz"}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                <span>
-                  {(dict.common?.trust_bar?.fixed_price || "Nachvollziehbarer Preisrahmen")
-                    .replace(/Festpreise ohne Überraschungen/g, "Nachvollziehbarer Preisrahmen")
-                    .replace(/Festpreis/g, "Preisrahmen")}
-                </span>
+          <div className="flox-panel p-4 shadow-[0_24px_52px_rgba(15,23,42,0.09)]">
+            <div className="relative overflow-hidden rounded-[1.6rem] border border-white/70 bg-white shadow-[0_14px_36px_rgba(15,23,42,0.08)]">
+              <div className="relative h-[430px]">
+                <Image
+                  src={heroImage}
+                  alt={`${heroTitle} | FLOXANT`}
+                  fill
+                  className="object-cover"
+                  priority
+                  fetchPriority="high"
+                  sizes="(min-width: 1280px) 1024px, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#0c1630]/22 via-transparent to-white/24" />
+                <div className="absolute left-5 top-5 rounded-[1.15rem] border border-white/75 bg-white/92 px-4 py-4 shadow-sm shadow-slate-950/5">
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                    {germanText(city, city)} · {germanText(geo?.region || "Bayern", geo?.region || "Bayern")}
+                  </div>
+                  <div className="mt-1 text-sm font-black text-slate-950">
+                    Regional geplant, klar umgesetzt
+                  </div>
+                </div>
+                <div className="absolute bottom-5 left-5 right-5 rounded-[1.2rem] border border-white/70 bg-white/92 px-5 py-5 shadow-sm shadow-slate-950/5">
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-700">
+                    Klarer Ablauf
+                  </div>
+                  <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
+                    Erst sauber einordnen, dann passend anfragen. So wird aus einem Klick ein ruhiger nächster Schritt mit Substanz.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-24 text-start relative bg-black/20">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-        <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-3xl font-bold text-white">
-            {applyCity(dict.common?.services_in_city || "Unsere Leistungen für {city}", city)}
-          </h2>
-
+      <section className="section-glow flox-section py-20">
+        <div className="flox-shell">
           {visibleCards.length > 0 ? (
-            <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+            <div className="mb-14 grid gap-4 md:grid-cols-2">
               {visibleCards.map((card, index) => {
                 const Icon = card.icon;
                 return (
-                  <div
+                  <article
                     key={`${card.title}-${index}`}
-                    className="rounded-3xl border border-white/10 bg-white/5 p-8 text-white shadow-md transition-all hover:border-primary/20"
+                    className="card-premium card-depth rounded-[1.45rem] p-6"
                   >
-                    <Icon className={card.iconClassName || "mb-6 h-10 w-10 text-primary"} />
-                    <h3 className="mb-4 text-2xl font-semibold">
-                      {applyCity(card.title, city, neighborhoods)}
-                    </h3>
-                    <ul className="space-y-3 text-slate-300">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] bg-blue-50 text-blue-700">
+                      <Icon className={card.iconClassName || "h-6 w-6"} />
+                    </div>
+                    <h2 className="mt-5 text-[1.35rem] font-bold tracking-tight text-slate-950">
+                      {germanText(applyCity(card.title, city, neighborhoods), card.title)}
+                    </h2>
+                    <ul className="mt-4 space-y-3 text-slate-700">
                       {card.lines.map((line, lineIndex) => (
                         <li key={`${line}-${lineIndex}`} className="flex gap-3">
-                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                          <span>{line}</span>
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+                          <span className="text-sm leading-7">{germanText(applyCity(line, city, neighborhoods), line)}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </article>
                 );
               })}
             </div>
           ) : null}
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {contextBlocks.map((block) => (
-              <div key={block.title} className="rounded-3xl border border-white/10 bg-[#0B0B14] p-8">
-                <h3 className="mb-4 text-xl font-semibold text-white">{block.title}</h3>
-                <p className="leading-relaxed text-slate-300">{block.text}</p>
+          <div className="mb-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {contextBlocks.map((block, index) => (
+              <div key={block.title} className={index === 0 ? "flox-panel rounded-[1.45rem] px-5 py-5" : "card-premium card-depth rounded-[1.45rem] p-5"}>
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  {germanText(block.title, block.title)}
+                </div>
+                <p className="mt-3 text-sm leading-7 text-slate-700">
+                  {germanText(block.text, block.text)}
+                </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 rounded-3xl border border-blue-500/20 bg-blue-500/5 p-8">
-            <h3 className="mb-3 text-xl font-semibold text-white">Wie unterscheidet sich der Service vom Standardfall?</h3>
-            <p className="text-slate-300">{serviceContext.difference}</p>
+          <div className="grid gap-4 lg:grid-cols-[1.02fr_0.98fr]">
+            <div className="flox-panel rounded-[1.8rem] px-7 py-7">
+              <h3 className="text-[1.8rem] font-bold tracking-tight text-slate-950">Wie unterscheidet sich der Service vom Standardfall?</h3>
+              <p className="mt-4 text-base leading-8 text-slate-700">{germanText(serviceContext.difference, serviceContext.difference)}</p>
+            </div>
+
+            <div className="flox-panel rounded-[1.8rem] px-7 py-7">
+              <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                <Banknote className="h-4 w-4" />
+                Budget & Planung
+              </div>
+              <h3 className="mt-4 text-[1.8rem] font-bold tracking-tight text-slate-950">Ihr Budget kann direkt mitgedacht werden</h3>
+              <p className="mt-4 text-base leading-8 text-slate-700">
+                Sie möchten nicht erst lange rechnen, sondern haben schon einen Zielrahmen für Ihr Projekt in {germanText(city, city)}? Ihre Preisvorstellung ergänzt die Vorprüfung und hilft, Leistung, Umfang und nächste Schritte realistischer einzuordnen.
+              </p>
+              <Link
+                href="/anfrage-mit-preisrahmen"
+                className="flox-button-secondary mt-7 min-h-[3.2rem] px-5"
+              >
+                Projekt mit Preisrahmen anfragen
+              </Link>
+            </div>
           </div>
 
           {sectionTitle || visibleParagraphs.length > 0 ? (
-            <div className="mt-16 space-y-6 text-lg leading-loose text-slate-300">
+            <div className="mt-16 rounded-[2.2rem] border border-slate-200 bg-white/96 px-7 py-7 shadow-[0_18px_46px_rgba(15,23,42,0.06)]">
               {sectionTitle ? (
-                <h2 className="text-3xl font-bold text-white">
-                  {applyCity(sectionTitle, city)}
+                <h2 className="flox-display-section-tight text-3xl font-bold text-slate-950">
+                  {germanText(applyCity(sectionTitle, city), sectionTitle)}
                 </h2>
               ) : null}
-              {visibleParagraphs.map((paragraph, index) => (
-                <p key={`${paragraph}-${index}`}>{applyCity(paragraph, city, neighborhoods)}</p>
-              ))}
+              <div className="mt-5 space-y-5 text-base leading-8 text-slate-700">
+                {visibleParagraphs.map((paragraph, index) => (
+                  <p key={`${paragraph}-${index}`}>
+                    {germanText(applyCity(paragraph, city, neighborhoods), paragraph)}
+                  </p>
+                ))}
+              </div>
             </div>
           ) : null}
-
-          {/* Global Budget CTA */}
-          <div className="mt-20 rounded-[2.5rem] border border-blue-500/20 bg-gradient-to-b from-blue-500/10 to-transparent p-10 text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/20 text-blue-400">
-              <Banknote size={32} />
-            </div>
-            <h2 className="mb-4 text-3xl font-bold text-white">
-              Ihr Budget, unsere Planung
-            </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-300">
-              Sie möchten nicht kalkulieren, sondern haben einen Zielrahmen für Ihr Projekt in {city}?
-              Ihre Preisvorstellung ergänzt die Vorprüfung und hilft, Leistung, Umfang und nächste Schritte realistisch einzuordnen.
-            </p>
-            <Link 
-              href="/anfrage-mit-preisrahmen" 
-              className="inline-flex h-12 items-center justify-center rounded-xl bg-blue-600 px-8 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
-            >
-              Projekt mit Preisrahmen anfragen
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="border-y border-white/5 bg-white/[0.02] px-6 py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03),transparent_70%)]" />
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
-          <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-bold uppercase text-emerald-400">
-              <Shield className="h-4 w-4" />
-              Sicherheit und Sorgfalt
+      <section className="section-glow flox-section py-20">
+        <div className="flox-shell max-w-none">
+          <div className="flox-section-heading mb-10">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+              Interne Wege
             </div>
-            <h3 className="text-2xl font-bold text-white">
-              {dict.common?.human_trust?.security_title || "Ihr Hab und Gut in sicheren Händen"}
-            </h3>
-            <p className="text-slate-300">
-              {dict.common?.human_trust?.security_text ||
-                "Unsere Teams arbeiten mit festen Prozessen, geeignetem Material und klarer Aufgabenverteilung."}
-            </p>
-          </div>
-          <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 label-premium !text-primary">
-              <MapPin className="h-4 w-4" />
-              Regionale Relevanz
-            </div>
-            <h3 className="text-2xl font-semibold text-white">
-              {applyCity(dict.common?.human_trust?.local_title || "Fest verwurzelt in {city}", city)}
-            </h3>
-            <p className="text-slate-300">
-              {applyCity(
-                dict.common?.human_trust?.local_text ||
-                  "Keine anonyme Vermittlung. FLOXANT plant Einsätze in {city} und der jeweiligen Region mit lokaler Ortskenntnis.",
-                city
-              )}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {resolvedFaqs.length > 0 ? (
-        <section className="px-6 py-24">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-3xl font-bold text-white">
-              Häufige Fragen zu {serviceContext.name} in {city}
+            <h2 className="mt-4 flox-display-section text-4xl font-bold text-slate-950 md:text-5xl">
+              Hilfreiche Seiten für {germanText(city, city)}
             </h2>
-            <div className="space-y-6">
-              {finalFaqs.map((faq) => (
-                <div key={faq.q} className="rounded-3xl border border-white/10 bg-[#0B0B14] p-8">
-                  <h3 className="mb-4 text-xl font-bold text-white">{faq.q}</h3>
-                  <p className="leading-relaxed text-slate-300">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="border-t border-white/5 bg-black/40 px-6 py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-3xl font-bold text-white">Hilfreiche Seiten für {city}</h2>
-              <p className="mt-3 max-w-3xl text-lg text-slate-300">
-                Starke interne Verbindungen zwischen Service, Rechner, Regionen und angrenzenden Leistungen helfen bei schneller Orientierung.
-              </p>
-            </div>
-            <Link href="/standorte" className="inline-flex items-center gap-2 font-bold text-primary hover:underline">
-              Alle Standorte anzeigen
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <p className="flox-body max-w-3xl">
+              Starke interne Verbindungen zwischen Service, Rechner, Regionen und angrenzenden Leistungen helfen bei schneller Orientierung und stärken die semantische Klarheit.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {helpfulLinks.map((link) => (
               <Link
                 key={`${link.href}-${link.label}`}
                 href={link.href}
-                className="rounded-3xl border border-white/10 bg-[#0B0B14] p-6 text-white transition-all hover:border-primary/40"
+                className="flox-link-card"
               >
-                <div className="mb-4 text-primary">
-                  <BookOpen className="h-6 w-6" />
-                </div>
-                <span className="block text-base font-bold leading-snug">{link.label}</span>
+                <BookOpen className="h-6 w-6 text-blue-700" />
+                <span className="mt-4 block text-base font-bold leading-7 text-slate-900">
+                  {germanText(link.label, link.label)}
+                </span>
               </Link>
             ))}
           </div>
 
           {nearbyCities.length > 0 ? (
-            <div className="mt-12">
-              <h3 className="mb-6 text-xl font-bold text-white">
-                Weitere relevante Orte in {geo?.region}
+            <div className="mt-12 rounded-[2.2rem] border border-slate-200 bg-white/96 px-7 py-7 shadow-[0_18px_46px_rgba(15,23,42,0.06)]">
+              <h3 className="text-2xl font-bold tracking-tight text-slate-950">
+                Weitere relevante Orte in {germanText(geo?.region || "Bayern", geo?.region || "Bayern")}
               </h3>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {nearbyCities.map((nearby) => (
                   <Link
                     key={nearby.name}
                     href={`${serviceContext.primaryPath}-${slugify(nearby.name)}`}
-                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 text-white transition-all hover:border-primary/40"
+                    className="flox-link-card flex items-center gap-4 px-4 py-4"
                   >
-                    <div className="rounded-xl bg-primary/10 p-3 text-primary">
-                      <MapPin className="h-5 w-5" />
+                    <div className="rounded-[1rem] bg-blue-50 p-3 text-blue-700">
+                      <MapPin className="h-4 w-4" />
                     </div>
                     <div>
-                      <div className="font-bold">{nearby.name}</div>
-                      <div className="text-xs uppercase tracking-widest text-slate-400">{geo?.region}</div>
+                      <div className="font-bold text-slate-900">{germanText(nearby.name, nearby.name)}</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
+                        {germanText(geo?.region || "Bayern", geo?.region || "Bayern")}
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -568,12 +526,42 @@ export function SpecialtyPageLayout({
         </div>
       </section>
 
-      <section className="px-6 py-16">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-black/20 shadow-lg">
+      {finalFaqs.length > 0 ? (
+        <section className="section-glow flox-section py-22">
+          <div className="flox-shell max-w-5xl">
+            <div className="mb-10 text-center">
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+                FAQ
+              </div>
+              <h2 className="mt-4 flox-display-section text-[2.2rem] font-bold text-slate-950 md:text-[2.8rem]">
+                Häufige Fragen zu {germanText(serviceContext.name, serviceContext.name)} in {germanText(city, city)}
+              </h2>
+            </div>
+            <div className="space-y-4">
+              {finalFaqs.map((faq, index) => (
+                <article
+                  key={faq.q}
+                  className="card-premium rounded-[1.45rem] p-7"
+                >
+                  <h3 className="text-[1.45rem] font-bold text-slate-950">
+                    {germanText(faq.q, faq.q)}
+                  </h3>
+                  <p className="mt-4 text-base leading-8 text-slate-700">
+                    {germanText(faq.a, faq.a)}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section-glow flox-section py-18">
+        <div className="flox-shell max-w-5xl overflow-hidden rounded-[2.3rem] border border-slate-200 bg-white shadow-[0_18px_46px_rgba(15,23,42,0.08)]">
           <iframe
             width="100%"
             height="420"
-            style={{ border: 0, filter: "grayscale(0.1) contrast(1.1)" }}
+            style={{ border: 0, filter: "grayscale(0.08) contrast(1.08)" }}
             loading="lazy"
             allowFullScreen
             referrerPolicy="no-referrer-when-downgrade"
@@ -582,20 +570,22 @@ export function SpecialtyPageLayout({
         </div>
       </section>
 
-      <section id="wizard" className="scroll-mt-24 px-6 py-24">
-        <div className="mx-auto max-w-6xl">
+      <section id="wizard" className="flox-section scroll-mt-24 py-22">
+        <div className="flox-shell max-w-6xl">
           <div className="mb-10 text-center">
             {wizardBadge ? (
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                 <Zap className="h-4 w-4" />
-                {wizardBadge}
+                {germanText(wizardBadge, wizardBadge)}
               </div>
             ) : null}
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
-              {applyCity(wizardTitle || `Jetzt ${serviceContext.name.toLowerCase()} für {city} anfragen`, city)}
+            <h2 className="flox-display-section text-4xl font-bold text-slate-950 md:text-5xl">
+              {germanText(applyCity(wizardTitle || `Jetzt ${serviceContext.name.toLowerCase()} für ${city} anfragen`, city), wizardTitle || `Jetzt ${serviceContext.name.toLowerCase()} für ${city} anfragen`)}
             </h2>
             {wizardText ? (
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">{wizardText}</p>
+              <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-700">
+                {germanText(wizardText, wizardText)}
+              </p>
             ) : null}
           </div>
 
@@ -604,18 +594,18 @@ export function SpecialtyPageLayout({
       </section>
 
       {neighborhoods.length > 0 ? (
-        <section className="border-t border-white/5 bg-white/[0.02] px-6 py-12">
-          <div className="mx-auto max-w-4xl text-center md:text-start">
-            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-muted-foreground">
-              {applyCity(dict.common?.neighborhoods_title || "Verfügbarkeit in {city} und Umgebung", city)}
+        <section className="border-t border-slate-200 bg-slate-50/70 px-6 py-12">
+          <div className="mx-auto max-w-4xl">
+            <h3 className="mb-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+              {germanText(applyCity(dict.common?.neighborhoods_title || "Verfügbarkeit in {city} und Umgebung", city), dict.common?.neighborhoods_title || "Verfügbarkeit in {city} und Umgebung")}
             </h3>
-            <div className="flex flex-wrap justify-center gap-2 md:justify-start">
+            <div className="flex flex-wrap gap-2">
               {neighborhoods.map((district) => (
                 <span
                   key={district}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-slate-300 md:text-xs"
+                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 shadow-sm shadow-slate-950/5"
                 >
-                  {city} {district}
+                  {germanText(city, city)} {germanText(district, district)}
                 </span>
               ))}
             </div>

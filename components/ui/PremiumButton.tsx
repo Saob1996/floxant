@@ -19,13 +19,13 @@ export function PremiumButton({
 }: PremiumButtonProps) {
   const variantClasses = {
     primary:
-      "bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.5)] ring-1 ring-white/20 hover:from-blue-500 hover:to-indigo-600 hover:shadow-[0_15px_40px_-5px_rgba(37,99,235,0.6)]",
+      "btn-premium border border-blue-500/10 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 text-white shadow-[0_18px_44px_rgba(37,99,235,0.22)] hover:-translate-y-0.5 hover:shadow-[0_24px_56px_rgba(37,99,235,0.28)]",
     secondary:
-      "border border-white/10 bg-[#161925] text-white shadow-inner hover:bg-[#1E2235] hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)]",
+      "border border-slate-200 bg-white/92 text-slate-900 shadow-sm shadow-slate-950/5 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/70 hover:text-blue-800",
     ghost:
-      "bg-transparent text-white/70 hover:bg-white/5 hover:text-white",
+      "border border-transparent bg-transparent text-slate-600 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-white/90 hover:text-slate-950",
     outline:
-      "border-2 border-blue-500/30 bg-transparent text-blue-400 hover:border-blue-400 hover:bg-blue-500/10 hover:text-white",
+      "border border-blue-200 bg-blue-50/70 text-blue-800 shadow-sm shadow-blue-950/5 hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-100/80",
   };
 
   const sizeClasses = {
@@ -42,8 +42,8 @@ export function PremiumButton({
       transition={{ duration: 0.18, ease: "easeOut" }}
       disabled={disabled}
       className={cn(
-        "group inline-flex items-center justify-center gap-3 rounded-xl font-bold tracking-wide transition-all duration-300",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0C10]",
+        "group inline-flex items-center justify-center gap-3 rounded-2xl font-bold tracking-[0.08em] transition-all duration-300",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/45 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
         "disabled:pointer-events-none disabled:opacity-40 disabled:grayscale",
         variantClasses[variant],
         sizeClasses[size],

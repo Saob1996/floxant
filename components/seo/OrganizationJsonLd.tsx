@@ -6,8 +6,9 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     "@id": `${company.url}/#organization`,
     name: company.name,
+    alternateName: ["FLOXANT Premium Services"],
     url: company.url,
-    logo: `${company.url}/logo-dark.png`,
+    logo: `${company.url}/logo_v10.png`,
     email: company.email,
     telephone: company.phoneRaw,
     address: {
@@ -15,29 +16,57 @@ export function OrganizationJsonLd() {
       streetAddress: company.streetAddress,
       addressLocality: company.city,
       postalCode: company.postalCode,
+      addressRegion: company.state,
       addressCountry: company.countryCode,
     },
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: company.phoneRaw,
-      contactType: "customer service",
-      areaServed: "DE",
-      availableLanguage: ["de"],
+    location: {
+      "@type": "Place",
+      name: `${company.name} ${company.city}`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: company.streetAddress,
+        addressLocality: company.city,
+        postalCode: company.postalCode,
+        addressRegion: company.state,
+        addressCountry: company.countryCode,
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: Number(company.geo.lat.toFixed(5)),
+        longitude: Number(company.geo.lng.toFixed(5)),
+      },
     },
-    description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung und Private-Client-Services mit Schwerpunkt Regensburg, Bayern und ausgewählten Einsätzen in Baden-Württemberg.",
-    areaServed: [
-      { "@type": "City", name: "Regensburg" },
-      { "@type": "State", name: "Bayern" },
-      { "@type": "State", name: "Baden-Württemberg" },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: company.phoneRaw,
+        email: company.email,
+        contactType: "customer service",
+        areaServed: "DE",
+        availableLanguage: ["de"],
+      },
     ],
+    description:
+      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Premium-Projekte mit Schwerpunkt Regensburg und Bayern.",
+    areaServed: company.primaryServiceAreas.map((area) => ({
+      "@type":
+        area === "Bayern" || area === "Baden-Württemberg"
+          ? "State"
+          : area === "Oberpfalz" || area === "Landkreis Regensburg"
+            ? "AdministrativeArea"
+            : "City",
+      name: area,
+    })),
     knowsAbout: [
       "Umzug",
       "Reinigung",
       "Entrümpelung",
       "Büroumzug",
       "Firmenentsorgung",
-      "FLOXANT Private Client",
+      "Gewerbereinigung",
+      "Hotelreinigung",
+      "Praxisreinigung",
+      "Private Client Service",
       "Wohnungsauflösung",
       "Endreinigung",
       "Beiladung",
@@ -45,18 +74,32 @@ export function OrganizationJsonLd() {
       "Express-Anfrage",
       "Preisvorstellung",
       "Preisrahmen",
+      "Google Maps Buchungslink",
       "Regensburg",
       "Bayern",
       "Baden-Württemberg",
     ],
     subjectOf: [
       { "@type": "WebPage", name: "FLOXANT Fakten", url: `${company.url}/floxant-fakten` },
+      { "@type": "WebPage", name: "Buchung starten", url: company.businessProfilePreferredUrl },
+      { "@type": "WebPage", name: "Kontakt Regensburg", url: company.contactUrl },
+      { "@type": "WebPage", name: "Standorte und Einsatzgebiet", url: company.locationsUrl },
+      { "@type": "WebPage", name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
       { "@type": "CreativeWork", name: "FLOXANT llms.txt", url: `${company.url}/llms.txt` },
     ],
-    sameAs: [
-      "https://www.instagram.com/floxant_logistik",
-      "https://www.facebook.com/floxant",
-    ],
+    sameAs: company.sameAs,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "FLOXANT Kernleistungen und Buchungswege",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Buchung", url: company.businessProfilePreferredUrl } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Umzug", url: `${company.url}/umzug` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Reinigung", url: `${company.url}/reinigung` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Entrümpelung", url: `${company.url}/entruempelung` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Private Client Service", url: `${company.url}/private-client-service` } },
+      ],
+    },
   };
 
   return (

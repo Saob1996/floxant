@@ -119,18 +119,29 @@ export function buildServiceJsonLd({
   serviceType,
   areaServed = ["Regensburg", "Bayern"],
 }: ServiceJsonLdInput) {
+  const url = absoluteUrl(path);
+
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${absoluteUrl(path)}#service`,
+    "@id": `${url}#service`,
     name: clean(name),
     description: clean(description),
     serviceType: clean(serviceType || name),
-    url: absoluteUrl(path),
+    url,
     areaServed: areaServed.map((area) => ({
       "@type": schemaPlaceType(area),
       name: clean(area),
     })),
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: url,
+      servicePhone: {
+        "@type": "ContactPoint",
+        telephone: company.phoneRaw,
+      },
+      availableLanguage: ["de"],
+    },
     provider: {
       "@type": "LocalBusiness",
       "@id": `${company.url}/#localbusiness`,

@@ -45,9 +45,12 @@ const FloxButton: React.FC<PremiumButtonProps> = ({
  }
 
  const variants = {
-  primary: "bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white shadow-[0_15px_40px_-10px_rgba(37,99,235,0.6)] border border-white/20",
-  secondary: "bg-white/5 backdrop-blur-xl text-white border border-white/10 hover:border-white/40 shadow-[0_10px_30px_rgba(0,0,0,0.3)]",
-  glass: "bg-white/[0.04] backdrop-blur-3xl text-white border border-white/5 hover:bg-white/[0.08] hover:border-white/20",
+  primary:
+   "bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 text-white shadow-[0_18px_48px_rgba(37,99,235,0.24)] border border-blue-300/20 hover:shadow-[0_24px_58px_rgba(37,99,235,0.32)]",
+  secondary:
+   "bg-white text-slate-950 border border-slate-200 hover:border-blue-200 hover:bg-blue-50 shadow-[0_14px_34px_rgba(15,23,42,0.08)]",
+  glass:
+   "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(244,248,255,0.98))] text-slate-900 border border-slate-200 hover:border-blue-200 hover:bg-blue-50 shadow-[0_14px_34px_rgba(15,23,42,0.07)]",
  };
 
  return (
@@ -60,7 +63,7 @@ const FloxButton: React.FC<PremiumButtonProps> = ({
    onClick={disabled ? undefined : onClick}
    disabled={disabled}
    className={cn(
-    "relative overflow-hidden group inline-flex items-center justify-center gap-2.5 px-10 py-5 font-bold uppercase tracking-widest rounded-2xl transition-all duration-300",
+    "relative overflow-hidden group inline-flex items-center justify-center gap-2.5 rounded-2xl px-10 py-5 font-bold uppercase tracking-widest transition-all duration-300",
     variants[variant],
     fullWidth ? "w-full" : "",
     disabled && "opacity-50 pointer-events-none shadow-none",
@@ -76,7 +79,7 @@ const FloxButton: React.FC<PremiumButtonProps> = ({
 
    {/* Modern Shimmer Effect */}
    <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite_ease-in-out]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite_ease-in-out]" />
    </div>
 
    <span className="relative z-10 flex items-center gap-3">
@@ -89,7 +92,7 @@ const FloxButton: React.FC<PremiumButtonProps> = ({
    </span>
 
    {/* Decorative Outer Border Glow on Hover */}
-   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl ring-2 ring-white/10 ring-inset shadow-[0_0_30px_rgba(37,99,235,0.2)]" />
+   <div className="absolute inset-0 pointer-events-none rounded-2xl ring-1 ring-white/40 opacity-0 shadow-[0_0_30px_rgba(37,99,235,0.16)] transition-opacity duration-500 group-hover:opacity-100" />
   </m.button>
  );
 };

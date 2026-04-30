@@ -80,7 +80,7 @@ export default async function AllInPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background text-white">
+  <main className="min-h-screen bg-[#07111f] text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

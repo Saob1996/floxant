@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { Truck, Trash2, Piano, Sparkles, Building2, PackageCheck } from "lucide-react";
+import { ArrowRight, Building2, PackageCheck, Piano, Sparkles, Trash2, Truck } from "lucide-react";
+
 import { company } from "@/lib/company";
+import { germanText } from "@/lib/german-text";
 
 interface CityServiceClusterProps {
   locale: string;
@@ -9,7 +11,7 @@ interface CityServiceClusterProps {
 }
 
 export function CityServiceCluster({ locale, city, citySlug }: CityServiceClusterProps) {
-  if (locale !== "de") return null; // DE-only SEO Gating
+  if (locale !== "de") return null;
 
   const incompleteServiceCitySlugs = new Set([
     "garmisch-partenkirchen",
@@ -19,98 +21,109 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
     "muenchen-schwabing",
     "nuernberg-gostenhof",
   ]);
+
   const useServiceFallbacks = incompleteServiceCitySlugs.has(citySlug);
 
   const services = [
     {
       title: "Umzug",
+      hint: `Umzug in ${city}`,
       href: `/umzug-${citySlug}`,
       icon: Truck,
-      color: "text-blue-500",
-      bg: "bg-blue-500/10",
+      tone: "bg-blue-50 text-blue-700",
     },
     {
       title: "Entrümpelung",
+      hint: `Entrümpelung in ${city}`,
       href: useServiceFallbacks ? "/entruempelung" : `/entruempelung-${citySlug}`,
       icon: Trash2,
-      color: "text-emerald-500",
-      bg: "bg-emerald-500/10",
+      tone: "bg-emerald-50 text-emerald-700",
     },
     {
       title: "Klaviertransport",
+      hint: `Klaviertransport in ${city}`,
       href: useServiceFallbacks ? "/klaviertransport" : `/klaviertransport-${citySlug}`,
       icon: Piano,
-      color: "text-amber-500",
-      bg: "bg-amber-500/10",
+      tone: "bg-amber-50 text-amber-700",
     },
     {
       title: "Reinigung",
+      hint: `Reinigung in ${city}`,
       href: useServiceFallbacks ? "/reinigung" : `/reinigung-${citySlug}`,
       icon: Sparkles,
-      color: "text-purple-500",
-      bg: "bg-purple-500/10",
+      tone: "bg-cyan-50 text-cyan-700",
     },
     {
       title: "Büroumzug",
+      hint: `Büroumzug in ${city}`,
       href: useServiceFallbacks ? "/bueroumzug" : `/bueroumzug-${citySlug}`,
       icon: Building2,
-      color: "text-slate-500",
-      bg: "bg-slate-500/10",
+      tone: "bg-indigo-50 text-indigo-700",
     },
     {
-      title: "Full-Service",
-      href: `/rechner`,
+      title: "Rechner",
+      hint: "Preisrahmen direkt einordnen",
+      href: "/rechner",
       icon: PackageCheck,
-      color: "text-rose-500",
-      bg: "bg-rose-500/10",
+      tone: "bg-slate-100 text-slate-800",
     },
   ];
 
   return (
-    <section className="border-t border-white/5 bg-black/40 py-24 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
-      
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-4 text-start">
-            <h3 className="text-3xl font-bold text-white tracking-tight">
-              Lokale Expertise in <span className="text-primary">{city}</span>
-            </h3>
-            <p className="text-lg text-white/40 max-w-2xl leading-relaxed">
-              {company.name} ist Ihr kompetenter Partner für alle Anliegen rund um Umzug, Logistik und Immobilien-Services in der Region {city}. Entdecken Sie unsere spezialisierten Fachbereiche vor Ort.
+    <section className="section-glow relative px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className="glass-elevated rounded-[1.8rem] px-7 py-7 md:px-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/90 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
+              Regionale Wege
+            </div>
+            <h2 className="mt-6 text-[2.2rem] font-bold tracking-tight text-slate-950 md:text-[2.7rem]">
+              Lokale Leistungen für {germanText(city, city)} klar gebündelt.
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700">
+              {company.name} verbindet für {germanText(city, city)} die wichtigsten Anfragewege zwischen
+              Umzug, Reinigung, Entrümpelung, Büroumzug und direkter Vorprüfung. So finden Kunden schneller
+              die richtige Leistung statt irgendeiner unklaren Sammelseite.
             </p>
           </div>
-          
-          <div className="hidden lg:block text-end space-y-1">
-            <div className="text-sm font-bold text-slate-400 uppercase tracking-widest">Servicestatus</div>
-            <div className="flex items-center gap-2 text-emerald-500 text-sm font-bold">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              Sofort verfügbar in {city}
+
+          <div className="card-premium rounded-[1.8rem] px-7 py-7 md:px-8">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+              Servicestatus
             </div>
+            <h3 className="mt-4 text-[1.6rem] font-bold tracking-tight text-slate-950">
+              {germanText(city, city)} ist fest im operativen Fokus.
+            </h3>
+            <p className="mt-4 text-base leading-7 text-slate-700">
+              Regensburg bleibt der Kern, Bayern ist sauber im Einsatzgebiet strukturiert. Für Kunden
+              bedeutet das klare Ansprechpartner, realistische Vorprüfung und direkte Links in die passende
+              Leistung.
+            </p>
+            <Link
+              href="/standorte"
+              className="mt-7 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700"
+            >
+              Alle Standorte ansehen
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <Link
-                key={service.href}
-                href={service.href}
-                className="group relative flex flex-col items-center p-6 bg-white/[0.02] border border-white/5 rounded-3xl transition-all hover:bg-white/[0.04] hover:-translate-y-1 hover:border-primary/20"
-              >
-                <div className={`mb-4 p-4 rounded-2xl ${service.bg} ${service.color} transition-transform group-hover:scale-110`}>
-                  <Icon className="w-8 h-8" />
+              <Link key={service.href} href={service.href} className="card-premium card-depth rounded-[1.35rem] p-5">
+                <div className={`flex h-11 w-11 items-center justify-center rounded-[1rem] ${service.tone}`}>
+                  <Icon className="h-5 w-5" />
                 </div>
-                <span className="text-sm font-bold text-white group-hover:text-primary transition-colors text-center">
-                  {service.title} in {city}
-                </span>
-                
-                <div className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
-                  Preise für {city} ansehen
+                <h3 className="mt-5 text-[1.28rem] font-bold tracking-tight text-slate-950">
+                  {germanText(service.title, service.title)}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{germanText(service.hint, service.hint)}</p>
+                <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  Seite öffnen
+                  <ArrowRight className="h-4 w-4" />
                 </div>
               </Link>
             );

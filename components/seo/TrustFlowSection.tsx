@@ -1,104 +1,131 @@
 import Link from "next/link";
-import { ArrowRight, CalendarCheck2, ClipboardCheck, MessageSquareText, ShieldCheck } from "lucide-react";
+import { ArrowRight, CircleDashed, FileCheck2, Handshake, ShieldCheck } from "lucide-react";
 
-const steps = [
- {
-  icon: ClipboardCheck,
-  label: "1",
-  title: "Angaben sauber erfassen",
-  text: "Service, Ort, Umfang, Zugang und Termin werden so abgefragt, dass daraus eine nutzbare Vorprüfung entsteht.",
- },
- {
-  icon: ShieldCheck,
-  label: "2",
-  title: "Preisrahmen ehrlich einordnen",
-  text: "FLOXANT zeigt Orientierung statt Scheingenauigkeit: Kostentreiber bleiben sichtbar und nachvollziehbar.",
- },
- {
-  icon: CalendarCheck2,
-  label: "3",
-  title: "Machbarkeit prüfen",
-  text: "Region, Zeitfenster, Team, Fahrzeug, Laufwege und Zusatzleistungen werden für die operative Planung zusammengeführt.",
- },
- {
-  icon: MessageSquareText,
-  label: "4",
-  title: "Nächsten Schritt abstimmen",
-  text: "Nach der Anfrage kann FLOXANT Rückfragen klären, Unterlagen ergänzen und den passenden Serviceweg bestätigen.",
- },
+const requestQualityLabel = "Sauberer Ablauf";
+
+const requestFlow = [
+  {
+    step: "01",
+    title: "Den passenden Einstieg wählen",
+    text: "Buchung, Rechner, B2B-Reinigung oder Private Client. So landet die Anfrage direkt im richtigen Kanal.",
+    Icon: CircleDashed,
+  },
+  {
+    step: "02",
+    title: "Eckdaten geordnet erfassen",
+    text: "Zugang, Umfang, Terminlage und Extras werden ruhig aufgenommen und nicht hektisch zusammengeschoben.",
+    Icon: FileCheck2,
+  },
+  {
+    step: "03",
+    title: "Mit echtem nächsten Schritt weitergehen",
+    text: "FLOXANT meldet sich mit klarer Einordnung zurück, nicht mit Fantasiepräzision oder Weiterleitungschaos.",
+    Icon: Handshake,
+  },
 ];
 
-const pathways = [
- { href: "/rechner", label: "Rechner starten", tone: "blue" },
- { href: "/express-anfrage", label: "Express-Check", tone: "amber" },
- { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden", tone: "blue" },
- { href: "/qualitaet-ablauf", label: "Ablauf verstehen", tone: "blue" },
+const trustPoints = [
+  "Klarer Weg statt Vergleichsportal-Hektik",
+  "Ruhige Führung statt Werbe-Lärm",
+  "Saubere Übergabe statt unklarer Weiterleitung",
 ];
 
-export function TrustFlowSection() {
- return (
-  <section className="relative overflow-hidden px-6 py-24">
-   <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300/25 to-transparent" />
-   <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.08),transparent_42%)]" />
+export function TrustFlowSection({ sectionId = "ablauf" }: { sectionId?: string }) {
+  return (
+    <section id={sectionId} className="section-glow relative px-6 pb-20">
+      <div className="mx-auto max-w-7xl space-y-5">
+        <div className="grid gap-5 xl:grid-cols-[0.96fr_1.04fr]">
+          <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+              So läuft die Anfrage
+            </div>
+            <h2 className="mt-4 max-w-[14ch] text-[1.9rem] font-bold flox-display-section text-slate-950 md:text-[2.45rem]">
+              Vertrauen entsteht durch Klarheit, nicht durch Lautstärke
+            </h2>
+            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
+              FLOXANT soll schon auf der Startseite zeigen, dass hier nicht mit Lockpreis-Sprache
+              oder Weiterleitungschaos gearbeitet wird, sondern mit einem professionellen,
+              freundlichen und nachvollziehbaren Ablauf.
+            </p>
+            <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
+              Kurz gesagt: lieber einmal gscheid führen als später zweimal hinterhertelefonieren.
+            </p>
 
-   <div className="relative mx-auto max-w-7xl">
-    <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
-     <div>
-      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700 ">
-       Anfrage-Qualität
-      </div>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-       Aus einem Klick wird ein belastbarer Plan.
-      </h2>
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/48">
-       FLOXANT führt Nutzer nicht in ein leeres Kontaktformular, sondern in eine strukturierte
-       Anfrage. Das verbessert Erfahrung, Vertrauen und die Qualität der späteren Abstimmung.
-      </p>
-     </div>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {trustPoints.map((point) => (
+                <div
+                  key={point}
+                  className="inline-flex items-center gap-2.5 rounded-full border border-blue-100 bg-blue-50/80 px-3.5 py-2"
+                >
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-blue-700" />
+                  <span className="text-sm font-semibold text-slate-800">{point}</span>
+                </div>
+              ))}
+            </div>
 
-     <div className="rounded-[2.2rem] border border-foreground/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-       {pathways.map((path) => (
-        <Link
-         key={path.href}
-         href={path.href}
-         className={
-          path.tone === "amber"
-           ? "group flex min-h-[92px] items-center justify-between rounded-[1.4rem] border border-amber-300/20 bg-amber-300/10 px-5 py-4 text-amber-50 transition hover:bg-amber-300/15"
-           : "group flex min-h-[92px] items-center justify-between rounded-[1.4rem] border border-blue-300/20 bg-blue-500/10 px-5 py-4 text-blue-900 transition hover:bg-blue-500/15"
-         }
-        >
-         <span className="text-sm font-bold">{path.label}</span>
-         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </Link>
-       ))}
-      </div>
-     </div>
-    </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/buchung"
+                className="btn-premium inline-flex h-11 items-center justify-center gap-2 rounded-[1rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-white"
+              >
+                Direkt anfragen
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/rechner"
+                className="inline-flex h-11 items-center justify-center rounded-[1rem] border border-slate-200 bg-white px-5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 transition-all hover:border-blue-200 hover:bg-blue-50"
+              >
+                Rechner starten
+              </Link>
+              <Link
+                href="/express-anfrage"
+                className="inline-flex h-11 items-center justify-center rounded-[1rem] border border-cyan-200 bg-cyan-50 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-cyan-900 transition-all hover:bg-cyan-100"
+              >
+                Express-Check
+              </Link>
+            </div>
+          </div>
 
-    <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-     {steps.map((step) => {
-      const Icon = step.icon;
-      return (
-       <article
-        key={step.title}
-        className="premium-scan rounded-[2rem] border border-foreground/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.052),rgba(255,255,255,0.018))] p-7"
-       >
-        <div className="flex items-center justify-between">
-         <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-foreground/10 bg-foreground/5 text-blue-700 ">
-          <Icon className="h-5 w-5" />
-         </div>
-         <span className="rounded-full border border-foreground/10 bg-white/[0.035] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/42">
-          Schritt {step.label}
-         </span>
+          <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+              Anfrage-Qualität zuerst
+            </div>
+            <h3 className="mt-4 max-w-[16ch] text-[1.75rem] font-bold flox-display-section-tight text-slate-950 md:text-[2.1rem]">
+              Ein guter Ablauf wirkt ruhiger, schneller und viel glaubwürdiger
+            </h3>
+            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
+              Erst die richtige Spur wählen, dann ordentlich vorprüfen und erst danach konkret
+              weitergehen. Genau das macht FLOXANT für Kunden verständlicher und für das Team
+              operativ sauberer.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {requestFlow.map((item) => {
+                const Icon = item.Icon;
+                return (
+                  <article key={item.step} className="card-premium card-depth rounded-[1.35rem] p-5 md:p-6">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] bg-blue-50 text-blue-700">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+                        {item.step}
+                      </span>
+                    </div>
+                    <div className="mt-5 text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+                      {requestQualityLabel}
+                    </div>
+                    <h4 className="mt-2 text-[1.18rem] font-bold leading-[1.1] tracking-tight text-slate-950">
+                      {item.title}
+                    </h4>
+                    <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         </div>
-        <h3 className="mt-7 text-2xl font-semibold tracking-tight text-foreground">{step.title}</h3>
-        <p className="mt-4 text-sm leading-relaxed text-foreground/46">{step.text}</p>
-       </article>
-      );
-     })}
-    </div>
-   </div>
-  </section>
- );
+      </div>
+    </section>
+  );
 }

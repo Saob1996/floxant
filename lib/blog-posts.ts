@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type BlogPostMeta = {
  slug: string;
  category: string;
@@ -7,7 +9,110 @@ export type BlogPostMeta = {
  featured?: boolean;
 };
 
-export const blogPosts: BlogPostMeta[] = [
+const rawBlogPosts: BlogPostMeta[] = [
+ {
+  slug: "regensburg-direkt-buchen-statt-vergleichsportal",
+  category: "Direktkontakt",
+  readTime: "6 Min.",
+  title: "In Regensburg direkt buchen statt vergleichen: warum klare Wege öfter besser passen",
+  description: "Warum feste Ansprechpartner, ein klarer Buchungslink und eine ruhige Vorprüfung in Regensburg oft besser konvertieren als verstreute Kontaktwege.",
+  featured: true,
+ },
+ {
+  slug: "google-maps-regensburg-direkt-anfragen",
+  category: "Google Maps",
+  readTime: "6 Min.",
+  title: "In Google Maps direkt anfragen: warum ein klarer Buchungsweg in Regensburg mehr Vertrauen schafft",
+  description: "Wie ein eindeutiger Buchungslink in Google Maps für Umzug, Reinigung und Entrümpelung in Regensburg mehr Klickvertrauen und passendere Anfragen erzeugt.",
+  featured: true,
+ },
+ {
+  slug: "umzugsfirma-regensburg-google-maps-vertrauen",
+  category: "Google Maps",
+  readTime: "6 Min.",
+  title: "Umzugsfirma in Regensburg über Google Maps finden: worauf Kunden wirklich achten",
+  description: "Warum klare Buchungswege, Ansprechpartner, Standortsignale und ehrliche Vorprüfung in Google Maps mehr Vertrauen schaffen als große Versprechen.",
+  featured: true,
+ },
+ {
+  slug: "anfrage-regensburg-richtig-stellen",
+  category: "Anfragehilfe",
+  readTime: "6 Min.",
+  title: "Anfrage in Regensburg richtig stellen: welche Angaben FLOXANT schneller helfen",
+  description: "Welche Angaben zu Ort, Umfang, Zugang, Termin und Budget aus einer Anfrage schneller einen klaren nächsten Schritt machen.",
+  featured: true,
+ },
+ {
+  slug: "google-unternehmensprofil-buchungslink-regensburg",
+  category: "Google Maps",
+  readTime: "6 Min.",
+  title: "Google-Unternehmensprofil in Regensburg: welcher Buchungslink Kunden wirklich hilft",
+  description: "Warum ein klarer direkter Buchungslink für Maps, Search und lokale Empfehlungen mehr Vertrauen und passendere Anfragen bringt.",
+  featured: true,
+ },
+ {
+  slug: "grosse-reinigungsauftraege-regensburg-buero-hotel-praxis",
+  category: "B2B Reinigung",
+  readTime: "7 Min.",
+  title: "Große Reinigungsaufträge in Regensburg: was Büro, Hotel und Praxis vorab klären sollten",
+  description: "Welche Angaben bei Turnus, Zugang, Zuständigkeit und Objektgröße helfen, damit aus einer Anfrage ein belastbarer B2B-Auftrag wird.",
+  featured: true,
+ },
+ {
+  slug: "lokaler-dienstleister-regensburg-vorteile",
+  category: "Regensburg",
+ readTime: "6 Min.",
+ title: "Lokaler Dienstleister in Regensburg: warum Nähe bei Planung und Umsetzung zählt",
+ description: "Warum regionale Nähe bei Umzug, Reinigung und Entrümpelung oft schnellere Abstimmung, sauberere Vorprüfung und weniger Reibung bringt.",
+  featured: true,
+ },
+ {
+  slug: "umzugsunternehmen-regensburg-auswahl",
+  category: "Auswahlhilfe",
+  readTime: "7 Min.",
+  title: "Umzugsunternehmen in Regensburg auswählen: worauf Kunden wirklich achten sollten",
+  description: "Welche Punkte bei Ansprechpartnern, Vorprüfung, Preisrahmen, Zugang und Ablauf helfen, damit aus einer Anfrage ein sauber geplanter Umzug wird.",
+  featured: true,
+ },
+ {
+  slug: "reinigungsfirma-regensburg-buero-praxis-auswahl",
+  category: "B2B Reinigung",
+  readTime: "7 Min.",
+  title: "Reinigungsfirma in Regensburg für Büro und Praxis auswählen",
+  description: "Wie Unternehmen, Praxen und Verwaltungen zwischen schnellen Klicks und wirklich passenden B2B-Angeboten unterscheiden können.",
+  featured: true,
+ },
+ {
+  slug: "unterhaltsreinigung-regensburg-buero-praxis-hotel",
+  category: "Gewerbereinigung",
+  readTime: "7 Min.",
+  title: "Unterhaltsreinigung in Regensburg: worauf Büro, Praxis und Hotel achten sollten",
+  description: "Welche Punkte bei Turnus, Zugang, Qualitätskontrolle und Ansprechpartnern für gewerbliche Reinigung wirklich zählen.",
+  featured: true,
+ },
+ {
+  slug: "private-client-umzug-bayern-diskret-planen",
+  category: "Private Client",
+  readTime: "6 Min.",
+  title: "Diskreter Private-Client-Umzug in Bayern: was wirklich wichtig ist",
+  description: "Wie Residenzen, Anwesen und hochwertige Interieurs ruhig, diskret und materialschonend geplant werden.",
+  featured: true,
+ },
+ {
+  slug: "family-office-umzug-bayern-diskret-abstimmen",
+  category: "Private Client",
+  readTime: "6 Min.",
+  title: "Family Office und Private Client in Bayern: wie diskrete Umzüge sauber abgestimmt werden",
+  description: "Wie Eigentümer, Assistenz und Family Office hochwertige Umzüge, Übergaben und Schutzbedarf ohne unnötige Reibung koordinieren.",
+  featured: true,
+ },
+ {
+  slug: "direkt-anfragen-statt-vergleichsportal-regensburg",
+  category: "Buchung",
+  readTime: "6 Min.",
+  title: "Direkt anfragen statt Vergleichsportal: warum klare Buchungswege besser sind",
+  description: "Weshalb direkte Anfragewege für Umzug, Reinigung und Entrümpelung oft schneller, ehrlicher und planbarer sind.",
+ },
  {
   slug: "leer-rueckfahrt-regensburg-firmen-moebeltransport",
   category: "Leer-Rückfahrt",
@@ -59,7 +164,7 @@ export const blogPosts: BlogPostMeta[] = [
   category: "Signatur-Services",
   readTime: "6 Min.",
   title: "FLOXANT Signatur-Services: wann welcher Zusatzservice passt",
-  description: "Beiladung, Express-Anfrage, Preisvorstellung und Schlüsselübergabe als klare Einstiege für konkrete Kundensituationen.",
+  description: "Beiladung, Express-Anfrage, Preisvorstellung und SchlüsselÜbergabe als klare Einstiege für konkrete Kundensituationen.",
   featured: true,
  },
  {
@@ -119,7 +224,7 @@ export const blogPosts: BlogPostMeta[] = [
   category: "Kombiservice",
   readTime: "7 Min.",
   title: "Umzug mit Reinigung in Regensburg: Wann sich der Kombiservice lohnt",
-  description: "Warum Umzug, Reinigung und Schlüsselübergabe oft besser als ein koordinierter Ablauf funktionieren.",
+  description: "Warum Umzug, Reinigung und SchlüsselÜbergabe oft besser als ein koordinierter Ablauf funktionieren.",
  },
  {
   slug: "preisvorstellung-umzug-anfrage",
@@ -132,7 +237,7 @@ export const blogPosts: BlogPostMeta[] = [
   slug: "schluesseluebergabe-ohne-stress",
   category: "Übergabe",
   readTime: "6 Min.",
-  title: "Schlüsselübergabe ohne Stress: so bleibt der Ablauf sauber",
+  title: "SchlüsselÜbergabe ohne Stress: so bleibt der Ablauf sauber",
   description: "Was bei Übergabe, Reinigung, Restmengen und Timing wirklich zählt.",
  },
  {
@@ -219,4 +324,46 @@ export const blogPosts: BlogPostMeta[] = [
   title: "Wohnungsauflösung: Was jetzt wirklich zu tun ist",
   description: "Die wichtigsten Schritte für Planung, Materialtrennung und Entsorgung.",
  },
+ {
+  slug: "google-maps-buchungslink-regensburg",
+  category: "Google Maps",
+  readTime: "6 Min.",
+  title: "Google Maps Buchungslink in Regensburg: worauf es ankommt",
+  description: "Wie ein klarer lokaler Buchungslink für mehr Vertrauen, bessere Klicks und passendere Anfragen sorgt.",
+  featured: true,
+ },
+ {
+  slug: "gewerbereinigung-regensburg-objekte-b2b",
+  category: "B2B Reinigung",
+  readTime: "7 Min.",
+  title: "Gewerbereinigung in Regensburg für große Objekte richtig anfragen",
+  description: "Warum Büro, Praxis, Hotel, Kanzlei und Objektbetrieb andere Signale brauchen als private Kleinaufträge.",
+  featured: true,
+ },
+ {
+  slug: "hausverwaltung-treppenhausreinigung-regensburg",
+  category: "Hausverwaltung",
+  readTime: "6 Min.",
+  title: "Treppenhausreinigung in Regensburg: worauf Hausverwaltungen wirklich achten",
+  description: "Welche Angaben zu Turnus, Zugang, Schlüssel, Objektstruktur und Ansprechpartnern helfen, damit aus einer Anfrage ein sauberer B2B-Ablauf wird.",
+  featured: true,
+ },
+ {
+  slug: "bueroreinigung-regensburg-angebot-einholen",
+  category: "B2B Reinigung",
+  readTime: "6 Min.",
+  title: "Büroreinigung in Regensburg anfragen: welche Angaben vor dem Angebot zählen",
+  description: "Welche Angaben zu Fläche, Turnus, Zugang, Randzeiten und Zuständigkeit aus einer Anfrage schneller ein belastbares Angebot machen.",
+  featured: true,
+ },
+ {
+  slug: "bueroumzug-bayern-ohne-betriebsstillstand",
+  category: "Büroumzug",
+  readTime: "7 Min.",
+  title: "Büroumzug in Bayern ohne Chaos: so bleibt der Betrieb besser handlungsfähig",
+  description: "Wie Arbeitsplätze, IT, Zugänge, Zeitfenster und interne Abstimmung geplant werden, damit ein Firmenumzug nicht unnötig bremst.",
+  featured: true,
+ },
 ];
+
+export const blogPosts = germanizeDeep(rawBlogPosts) as BlogPostMeta[];

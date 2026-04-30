@@ -13,6 +13,7 @@ import {
  MapPin,
  Plus,
  Trash2,
+ Truck,
  TrendingDown,
  TrendingUp,
  UserRoundCheck,
@@ -36,6 +37,8 @@ type OperationsControlPanelProps = {
 
 type OperationsPanel = "work_order" | "costs" | "decision" | "ledger";
 
+type RentalPresetId = "transporter_city" | "transporter_long" | "lkw_35" | "lkw_75";
+
 const defaultCostCategories = [
  "Diesel",
  "Kilometer / Strecke",
@@ -58,6 +61,43 @@ const defaultLedgerCategories = [
  "Material",
  "Entsorgung",
  "Sonstiges",
+];
+
+const vehicleRentalPresets: Array<{
+ id: RentalPresetId;
+ label: string;
+ dailyRate: number;
+ helper: string;
+ unit: string;
+}> = [
+ {
+  id: "transporter_city",
+  label: "Transporter kompakt",
+  dailyRate: 89,
+  helper: "Für kleine Touren, Kartons und leichte Mitnahme.",
+  unit: "Tag",
+ },
+ {
+  id: "transporter_long",
+  label: "Transporter lang",
+  dailyRate: 119,
+  helper: "Für Möbel, Kombitouren und längere Innenstadtstrecken.",
+  unit: "Tag",
+ },
+ {
+  id: "lkw_35",
+  label: "3,5-Tonner",
+  dailyRate: 149,
+  helper: "Für normale Umzüge und größere Ladungen.",
+  unit: "Tag",
+ },
+ {
+  id: "lkw_75",
+  label: "7,5-Tonner",
+  dailyRate: 239,
+  helper: "Für große Aufträge, Büroumzüge und mehrere Ladepunkte.",
+  unit: "Tag",
+ },
 ];
 
 function toNumber(value: unknown) {
@@ -134,6 +174,21 @@ function newCostLine(category = "Mitarbeiter"): OperationCostLine {
  };
 }
 
+function buildVehicleRentalLine(presetId: RentalPresetId, rentalDays: number): OperationCostLine {
+ const preset =
+  vehicleRentalPresets.find((entry) => entry.id === presetId) || vehicleRentalPresets[0];
+
+ return {
+  id: crypto.randomUUID(),
+  label: `Automiete ${preset.label}`,
+  category: "Fahrzeugmiete",
+  quantity: Math.max(1, Number(rentalDays) || 1),
+  unit: preset.unit,
+  unitCost: preset.dailyRate,
+  note: `Interner Mietsatz: ${preset.label}. ${preset.helper}`,
+ };
+}
+
 function newLedgerEntry(type: FinanceLedgerEntry["type"]): FinanceLedgerEntry {
  return {
   id: crypto.randomUUID(),
@@ -194,7 +249,7 @@ const panelCopy: Record<OperationsPanel, { eyebrow: string; title: string; descr
  costs: {
   eyebrow: "Interner Kostenrechner",
   title: "Auftragskosten realistisch kalkulieren.",
-  description: "Diesel, Kilometer, Mitarbeiter, Fahrzeug, Material und Sonderkosten bleiben ausschließlich intern.",
+  description: "Diesel, Kilometer, Automiete, Mitarbeiter, Material und Sonderkosten bleiben ausschließlich intern.",
  },
  decision: {
   eyebrow: "Chef-Preisprüfung",
@@ -221,6 +276,8 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
      { ...newCostLine("Mitarbeiter"), unit: "Std.", label: "Mitarbeiterstunden", unitCost: 0 },
     ]
  );
+ const [rentalPresetId, setRentalPresetId] = useState<RentalPresetId>("transporter_long");
+ const [rentalDays, setRentalDays] = useState(1);
  const [ledgerEntries, setLedgerEntries] = useState<FinanceLedgerEntry[]>(() =>
   booking.details?.admin?.ledgerEntries?.length
    ? booking.details.admin.ledgerEntries
@@ -307,6 +364,20 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
 
  function updateCommercialDecision(patch: Partial<CommercialDecision>) {
   setCommercialDecision((current) => ({ ...current, ...patch }));
+ }
+
+ function applyVehicleRentalPreset() {
+  const nextLine = buildVehicleRentalLine(rentalPresetId, rentalDays);
+
+  setCostLines((current) => {
+   const managedIndex = current.findIndex(
+    (line) => line.category === "Fahrzeugmiete" && (line.label.startsWith("Automiete ") || (line.note || "").startsWith("Interner Mietsatz:"))
+   );
+
+   if (managedIndex === -1) return [...current, nextLine];
+
+   return current.map((line, index) => (index === managedIndex ? { ...line, ...nextLine, id: line.id } : line));
+  });
  }
 
  function applyOfferPriceToIncome() {
@@ -558,7 +629,7 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
         <button
          type="button"
          onClick={() => setCostLines((current) => current.filter((item) => item.id !== line.id))}
-         className="mb-1 inline-flex h-10 items-center justify-center rounded-xl border border-red-300/10 bg-red-400/5 px-3 text-red-200/70 hover:text-red-100"
+         className="mb-1 inline-flex h-10 items-center justify-center rounded-xl border border-red-200 bg-red-50 px-3 text-red-700 hover:bg-red-100"
          aria-label="Kostenposition löschen"
         >
          <Trash2 className="h-4 w-4" />
@@ -571,24 +642,78 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
      </div>
     </div>
 
-    <div className="rounded-[2rem] border border-emerald-300/15 bg-[linear-gradient(135deg,rgba(16,185,129,0.09),rgba(255,255,255,0.02))] p-6">
-     <div className="mb-5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-600 ">
-      <Euro className="h-4 w-4" />
-      Gewinn / Verlust
+    <div className="space-y-6">
+     <div className="rounded-[2rem] border border-amber-200 bg-[linear-gradient(135deg,rgba(251,191,36,0.14),rgba(255,255,255,0.88))] p-6 shadow-sm shadow-slate-950/5">
+      <div className="mb-5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-amber-700">
+       <Truck className="h-4 w-4" />
+       Interne Automiete
+      </div>
+      <h3 className="text-xl font-bold text-slate-950">Fahrzeugmiete mit internem Tagessatz rechnen</h3>
+      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+       Hier legen Sie fest, welches Mietfahrzeug intern angesetzt wird. Der Betrag wird als eigene
+       Kostenposition im Kostenrechner geführt und bleibt sauber von Kundenpreis und Dokumenten getrennt.
+      </p>
+
+      <div className="mt-5 grid gap-3">
+       <OperationsSelect
+        label="Fahrzeugklasse"
+        value={rentalPresetId}
+        options={vehicleRentalPresets.map((preset) => [preset.id, `${preset.label} · ${formatEuro(preset.dailyRate)} / Tag`])}
+        onChange={(value) => setRentalPresetId(value as RentalPresetId)}
+       />
+       <div className="grid gap-3 md:grid-cols-[0.8fr_1.2fr]">
+        <OperationsField
+         label="Miettage"
+         type="number"
+         value={String(rentalDays)}
+         onChange={(value) => setRentalDays(Math.max(1, toNumber(value) || 1))}
+        />
+        <div className="rounded-2xl border border-amber-200 bg-white/85 p-4">
+         <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-700">Interner Mietsatz</p>
+         <p className="mt-2 text-2xl font-black text-slate-950">
+          {formatEuro((vehicleRentalPresets.find((preset) => preset.id === rentalPresetId)?.dailyRate || 0) * rentalDays)}
+         </p>
+         <p className="mt-2 text-xs leading-relaxed text-slate-600">
+          {(vehicleRentalPresets.find((preset) => preset.id === rentalPresetId)?.helper) || ""}
+         </p>
+        </div>
+       </div>
+
+       <div className="flex flex-wrap gap-2">
+        <button
+         type="button"
+         onClick={applyVehicleRentalPreset}
+         className="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-300 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-950 transition hover:bg-amber-200"
+        >
+         <Plus className="h-4 w-4" />
+         Automiete in Kostenrechner übernehmen
+        </button>
+        <span className="inline-flex items-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-[11px] leading-relaxed text-slate-600">
+         Dieser Betrag bleibt intern und wird nicht automatisch in Angebote oder Rechnungen übernommen.
+        </span>
+       </div>
+      </div>
      </div>
 
-     <div className="grid gap-3">
-      <FinanceMetric label="Einnahmen" value={totals.incomeTotal} tone="green" icon={TrendingUp} />
-      <FinanceMetric label="Kostenrechner" value={totals.costTotal} tone="red" icon={TrendingDown} />
-      <FinanceMetric label="Weitere Ausgaben" value={totals.ledgerExpenseTotal} tone="red" icon={TrendingDown} />
-      <div className={cn("rounded-2xl border p-5", totals.profit >= 0 ? "border-emerald-300/25 bg-emerald-400/10" : "border-red-300/20 bg-red-400/10")}>
-       <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/45">Ergebnis bis dato</p>
-       <p className={cn("mt-2 text-3xl font-black", totals.profit >= 0 ? "text-emerald-600 " : "text-red-200")}>
-        {formatEuro(totals.profit)}
-       </p>
-       <p className="mt-2 text-xs leading-relaxed text-foreground/45">
-        Positiv bedeutet: Auftrag wirkt nach aktuell eingetragenen Einnahmen und Kosten wirtschaftlich.
-       </p>
+     <div className="rounded-[2rem] border border-emerald-300/15 bg-[linear-gradient(135deg,rgba(16,185,129,0.09),rgba(255,255,255,0.02))] p-6">
+      <div className="mb-5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-600 ">
+       <Euro className="h-4 w-4" />
+       Gewinn / Verlust
+      </div>
+
+      <div className="grid gap-3">
+       <FinanceMetric label="Einnahmen" value={totals.incomeTotal} tone="green" icon={TrendingUp} />
+       <FinanceMetric label="Interne Kalkulation" value={totals.costTotal} tone="red" icon={TrendingDown} />
+       <FinanceMetric label="Weitere Ausgaben" value={totals.ledgerExpenseTotal} tone="red" icon={TrendingDown} />
+       <div className={cn("rounded-2xl border p-5", totals.profit >= 0 ? "border-emerald-300/25 bg-emerald-400/10" : "border-red-300/20 bg-red-400/10")}>
+        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/45">Ergebnis bis dato</p>
+        <p className={cn("mt-2 text-3xl font-black", totals.profit >= 0 ? "text-emerald-600 " : "text-red-700")}>
+         {formatEuro(totals.profit)}
+        </p>
+        <p className="mt-2 text-xs leading-relaxed text-foreground/45">
+         Positiv bedeutet: Auftrag wirkt nach aktuell eingetragenen Einnahmen, Automiete und internen Kosten wirtschaftlich.
+        </p>
+       </div>
       </div>
      </div>
     </div>
@@ -616,7 +741,7 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
         ? "border-emerald-300/25 bg-emerald-400/10 text-emerald-600 "
         : decisionPreview.needsNegotiation
          ? "border-amber-300/25 bg-amber-400/10 text-amber-500 "
-         : "border-foreground/10 bg-white/[0.04] text-foreground/45"
+         : "border-foreground/10 bg-white/[0.7] text-foreground/45"
       )}>
        {getDecisionLabel(decisionPreview.decision)}
       </span>
@@ -691,7 +816,7 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
       <FinanceMetric label="Angebotspreis" value={decisionPreview.offerPrice} tone="green" icon={TrendingUp} />
       <div className={cn("rounded-2xl border p-5", decisionPreview.profitAtOffer >= 0 ? "border-emerald-300/25 bg-emerald-400/10" : "border-red-300/20 bg-red-400/10")}>
        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/45">Erwartetes Ergebnis bei Angebotspreis</p>
-       <p className={cn("mt-2 text-3xl font-black", decisionPreview.profitAtOffer >= 0 ? "text-emerald-600 " : "text-red-200")}>
+       <p className={cn("mt-2 text-3xl font-black", decisionPreview.profitAtOffer >= 0 ? "text-emerald-600 " : "text-red-700")}>
         {formatEuro(decisionPreview.profitAtOffer)}
        </p>
        <p className="mt-2 text-xs leading-relaxed text-foreground/45">
@@ -718,7 +843,7 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
       <button type="button" onClick={() => setLedgerEntries((current) => [...current, newLedgerEntry("income")])} className="rounded-2xl bg-emerald-300 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-950">
        Einnahme hinzufügen
       </button>
-      <button type="button" onClick={() => setLedgerEntries((current) => [...current, newLedgerEntry("expense")])} className="rounded-2xl border border-red-300/15 bg-red-400/10 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-red-100">
+      <button type="button" onClick={() => setLedgerEntries((current) => [...current, newLedgerEntry("expense")])} className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.14em] text-red-700">
        Ausgabe hinzufügen
       </button>
      </div>
@@ -740,7 +865,7 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
         <button
          type="button"
          onClick={() => setLedgerEntries((current) => current.filter((item) => item.id !== entry.id))}
-         className="mb-1 inline-flex h-10 items-center justify-center rounded-xl border border-red-300/10 bg-red-400/5 px-3 text-red-200/70 hover:text-red-100"
+         className="mb-1 inline-flex h-10 items-center justify-center rounded-xl border border-red-200 bg-red-50 px-3 text-red-700 hover:bg-red-100"
          aria-label="Eintrag löschen"
         >
          <Trash2 className="h-4 w-4" />
@@ -792,7 +917,7 @@ function OperationsField({
     type={type}
     value={value}
     onChange={(event) => onChange(event.target.value)}
-    className="h-11 w-full rounded-xl border border-foreground/10 bg-[#070A10] px-3 text-sm text-foreground outline-none focus:border-blue-300/45"
+    className="h-11 w-full rounded-xl border border-foreground/10 bg-white px-3 text-sm text-foreground outline-none focus:border-blue-300/45"
    />
   </label>
  );
@@ -816,7 +941,7 @@ function OperationsTextarea({
     value={value}
     onChange={(event) => onChange(event.target.value)}
     placeholder={placeholder}
-    className="h-28 w-full resize-none rounded-xl border border-foreground/10 bg-[#070A10] px-3 py-3 text-sm text-foreground outline-none placeholder:text-foreground/20 focus:border-blue-300/45"
+    className="h-28 w-full resize-none rounded-xl border border-foreground/10 bg-white px-3 py-3 text-sm text-foreground outline-none placeholder:text-foreground/20 focus:border-blue-300/45"
    />
   </label>
  );
@@ -839,10 +964,10 @@ function OperationsSelect({
    <select
     value={value}
     onChange={(event) => onChange(event.target.value)}
-    className="h-11 w-full rounded-xl border border-foreground/10 bg-[#070A10] px-3 text-sm text-foreground outline-none focus:border-blue-300/45"
+    className="h-11 w-full rounded-xl border border-foreground/10 bg-white px-3 text-sm text-foreground outline-none focus:border-blue-300/45"
    >
     {options.map(([optionValue, optionLabel]) => (
-     <option key={optionValue} value={optionValue} className="bg-[#070A10]">
+     <option key={optionValue} value={optionValue} className="bg-white">
       {optionLabel}
      </option>
     ))}
@@ -866,9 +991,9 @@ function FinanceMetric({
   <div className="rounded-2xl border border-foreground/10 bg-foreground/5 p-4">
    <div className="flex items-center justify-between gap-3">
     <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/40">{label}</p>
-    <Icon className={cn("h-4 w-4", tone === "green" ? "text-emerald-600 " : "text-red-200")} />
+    <Icon className={cn("h-4 w-4", tone === "green" ? "text-emerald-600 " : "text-red-700")} />
    </div>
-   <p className={cn("mt-2 text-2xl font-black", tone === "green" ? "text-emerald-600 " : "text-red-200")}>
+   <p className={cn("mt-2 text-2xl font-black", tone === "green" ? "text-emerald-600 " : "text-red-700")}>
     {formatEuro(value)}
    </p>
   </div>

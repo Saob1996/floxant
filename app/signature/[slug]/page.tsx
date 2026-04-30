@@ -187,20 +187,20 @@ export default async function SignatureServicePage({
         </div>
       </section>
       {/* CTA Section */}
-      <section id="booking" className="bg-slate-900 py-24 border-t border-white/5">
+      <section id="booking" className="section-glow py-24">
         <div className="container px-4">
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{content.cta_title}</h2>
-            <p className="text-lg text-slate-400 max-w-xl mx-auto">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-950">{content.cta_title}</h2>
+            <p className="mx-auto max-w-xl text-lg text-slate-600">
               {content.cta_text}
             </p>
           </div>
-          <div className="relative z-10 mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0A0C10] p-1 shadow-2xl">
+          <div className="glass-elevated relative z-10 mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] p-1 shadow-[0_30px_90px_rgba(15,23,42,0.12)]">
             {/* Premium Mesh Gradient Background */}
             <div className="absolute inset-0 z-0 overflow-hidden opacity-30">
-              <div className="absolute -left-[10%] -top-[10%] h-[60%] w-[60%] animate-pulse rounded-full bg-blue-600/20 blur-[120px]" />
-              <div className="absolute -right-[10%] bottom-[0%] h-[50%] w-[50%] animate-bounce rounded-full bg-emerald-600/10 blur-[100px] [animation-duration:12s]" />
-              <div className="absolute left-[20%] top-[40%] h-[40%] w-[40%] animate-pulse rounded-full bg-purple-600/10 blur-[110px] [animation-duration:8s]" />
+              <div className="absolute -left-[10%] -top-[10%] h-[60%] w-[60%] animate-pulse rounded-full bg-blue-600/12 blur-[120px]" />
+              <div className="absolute -right-[10%] bottom-[0%] h-[50%] w-[50%] animate-bounce rounded-full bg-emerald-600/8 blur-[100px] [animation-duration:12s]" />
+              <div className="absolute left-[20%] top-[40%] h-[40%] w-[40%] animate-pulse rounded-full bg-purple-600/8 blur-[110px] [animation-duration:8s]" />
             </div>
             <div className="relative z-10 p-4 md:p-8">
               <SmartBookingWizard dict={dict} />

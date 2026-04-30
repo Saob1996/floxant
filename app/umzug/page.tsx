@@ -1,17 +1,14 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import {
-  ArrowRight,
   Banknote,
-  CheckCircle2,
   Clock,
   MapPin,
   Package,
   ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { SmartBookingWizard } from "@/components/SmartBookingWizard";
+import { PillarServicePage } from "@/components/PillarServicePage";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -83,214 +80,91 @@ export default async function UmzugPillarPage() {
     ],
   };
 
-  const cityLinks = [
-    { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-    { href: "/umzug-muenchen", label: "Umzug München" },
-    { href: "/umzug-nuernberg", label: "Umzug Nürnberg" },
-    { href: "/umzug-augsburg", label: "Umzug Augsburg" },
-    { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt" },
-    { href: "/umzug-weiden", label: "Umzug Weiden" },
-  ];
-
-  const serviceLinks = [
-    { href: "/rechner", label: "Umzug direkt kalkulieren" },
-    { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },
-    { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
-    { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
-    { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
-    { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
-  ];
-
   return (
-    <main className="min-h-screen bg-background">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <PillarServicePage
+        dict={dict}
+        breadcrumbs={breadcrumbs}
+        heroBadge="Umzug mit Fokus auf Regensburg und Bayern"
+        heroTitle="Umzugsunternehmen für Regensburg und Bayern"
+        heroIntro="FLOXANT organisiert Privat- und Firmenumzüge mit klaren Zuständigkeiten, planbaren Zeitfenstern und sauber abgestimmten Zusatzleistungen. Diese Seite erklärt, für wen der Service gedacht ist, wann er sinnvoll wird und wie der Ablauf funktioniert."
+        heroImageSrc="/assets/service-moving.png"
+        heroImageAlt="FLOXANT Umzug in Regensburg und Bayern"
+        heroCards={[
+          { label: "Planung", value: "Route, Volumen und Zugang sauber erfasst" },
+          { label: "Ehrlich", value: "Orientierungsrahmen statt Lockpreis" },
+          { label: "Regional", value: "Regensburg zuerst, Bayern aktiv" },
+        ]}
+        visualVariant="moving"
+        definitionCards={[
+          {
+            icon: Package,
+            title: "Was ist das?",
+            text: "Ein strukturierter Umzugsservice für Wohnungen, Häuser und Unternehmen mit klarer Einsatzplanung.",
+          },
+          {
+            icon: ShieldCheck,
+            title: "Für wen?",
+            text: "Für Privatkunden, Familien, Firmen und Hausverwaltungen in Regensburg und Bayern.",
+          },
+          {
+            icon: Clock,
+            title: "Wann sinnvoll?",
+            text: "Wenn Volumen, Tragewege, Zeitfenster oder Zusatzleistungen sauber koordiniert werden müssen.",
+          },
+          {
+            icon: Banknote,
+            title: "Wie läuft es ab?",
+            text: "Erst Datenaufnahme, dann Preisrahmen, danach konkrete Einsatzplanung mit Transport, Team und optionalen Modulen.",
+          },
+        ]}
+        differenceTitle="Was FLOXANT beim Umzug vom Standard unterscheidet"
+        differenceCards={[
+          {
+            icon: Sparkles,
+            title: "Klare Service-Definition",
+            text: "FLOXANT ist nicht nur Transport. Auf Wunsch greifen Planung, Tragearbeit, Schutzmaterial, Montage, Reinigung und Entrümpelung in einer sauberen Reihenfolge ineinander.",
+          },
+          {
+            icon: MapPin,
+            title: "Regionale Relevanz",
+            text: "Der Schwerpunkt liegt auf Regensburg und Bayern. Das hilft bei kurzen Wegen, realistischen Zeitfenstern und sinnvollen Empfehlungen für Standort, Strecke und Zusatzservices.",
+          },
+        ]}
+        costTitle="Kostenfaktoren, die für den Preisrahmen zählen"
+        costIntro="Entscheidend sind die Punkte, die den operativen Aufwand wirklich verändern. Genau diese Faktoren fragt FLOXANT ab, damit aus einem Bauchgefühl eine belastbare erste Einordnung wird."
+        costFactors={[
+          "Volumen und Objektgröße",
+          "Strecke zwischen Start und Ziel",
+          "Stockwerke, Aufzug und Tragewege",
+          "Montage, Verpackung und Halteverbotszonen",
+        ]}
+        calculatorTitle="Warum der Rechner hier wichtig ist"
+        calculatorText="Der FLOXANT Rechner sammelt genau die Informationen, die für einen glaubwürdigen Preisrahmen und die spätere Einsatzplanung wirklich zählen."
+        faqTitle="Häufige Fragen zum Umzug"
+        faqItems={faqItems}
+        bookingTitle="Umzug in Regensburg oder Bayern anfragen"
+        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Lieber gscheid planen als später zweimal erklären."
+        serviceLinksTitle="Wichtige interne Einstiege rund um den Umzug"
+        serviceLinks={[
+          { href: "/rechner", label: "Umzug direkt kalkulieren" },
+          { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },
+          { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
+          { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
+          { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
+          { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
+        ]}
+        cityLinksTitle="Umzug lokal in wichtigen Regionen"
+        cityLinks={[
+          { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+          { href: "/umzug-muenchen", label: "Umzug München" },
+          { href: "/umzug-nuernberg", label: "Umzug Nürnberg" },
+          { href: "/umzug-augsburg", label: "Umzug Augsburg" },
+          { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt" },
+          { href: "/umzug-weiden", label: "Umzug Weiden" },
+        ]}
       />
-
-      <Breadcrumbs lang="de" items={breadcrumbs} />
-
-      <section className="bg-gradient-to-b from-primary/5 to-background px-6 pb-20 pt-8">
-        <div className="mx-auto max-w-6xl space-y-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-            <MapPin className="h-4 w-4" />
-            <span>Umzug mit Fokus auf Regensburg und Bayern</span>
-          </div>
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Umzugsunternehmen für Regensburg und Bayern
-          </h1>
-          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-400">
-            FLOXANT organisiert Privat- und Firmenumzüge mit klaren Zuständigkeiten, planbaren Zeitfenstern und sauber abgestimmten Zusatzleistungen. Diese Seite erklärt, für wen der Service gedacht ist, wann er sinnvoll wird und wie der Ablauf funktioniert.
-          </p>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {[
-            {
-              icon: Package,
-              title: "Was ist das?",
-              text: "Ein strukturierter Umzugsservice für Wohnungen, Häuser und Unternehmen mit klarer Einsatzplanung.",
-            },
-            {
-              icon: ShieldCheck,
-              title: "Für wen?",
-              text: "Für Privatkunden, Familien, Firmen und Hausverwaltungen in Regensburg und Bayern.",
-            },
-            {
-              icon: Clock,
-              title: "Wann sinnvoll?",
-              text: "Wenn Volumen, Tragewege, Zeitfenster oder Zusatzleistungen sauber koordiniert werden müssen.",
-            },
-            {
-              icon: Banknote,
-              title: "Wie läuft es ab?",
-              text: "Erst Datenaufnahme, dann Preisrahmen, danach konkrete Einsatzplanung mit Transport, Team und optionalen Modulen.",
-            },
-          ].map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.title} className="rounded-3xl border border-white/10 bg-white/5 p-8">
-                <Icon className="mb-5 h-8 w-8 text-primary" />
-                <h2 className="mb-3 text-xl font-bold text-white">{item.title}</h2>
-                <p className="leading-relaxed text-slate-300">{item.text}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="bg-slate-900 py-20">
-        <div className="container mx-auto max-w-5xl px-4">
-          <h2 className="mb-8 text-4xl font-bold tracking-tight text-white">
-            Was FLOXANT beim Umzug vom Standard unterscheidet
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-              <h3 className="mb-4 text-2xl font-bold text-white">Klare Service-Definition</h3>
-              <p className="text-slate-300">
-                FLOXANT ist nicht nur Transport. Der Service deckt auf Wunsch Planung, Tragearbeit, Schutzmaterial, Montage, Reinigung und Entrümpelung in einer abgestimmten Reihenfolge ab.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-              <h3 className="mb-4 text-2xl font-bold text-white">Regionale Relevanz</h3>
-              <p className="text-slate-300">
-                Der Schwerpunkt liegt auf Regensburg und Bayern. Das hilft bei kurzen Wegen, realistischen Zeitfenstern und sinnvollen Empfehlungen für Standort, Strecke und Zusatzservices.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/5 bg-slate-950/50 py-20">
-        <div className="container mx-auto max-w-5xl px-4">
-          <h2 className="mb-8 text-4xl font-bold tracking-tight text-white">
-            Kostenfaktoren, die für den Preisrahmen zählen
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
-              <h3 className="mb-4 text-xl font-bold text-white">Wichtige Faktoren</h3>
-              <ul className="space-y-3 text-slate-300">
-                <li>Volumen und Objektgröße</li>
-                <li>Strecke zwischen Start und Ziel</li>
-                <li>Stockwerke, Aufzug und Tragewege</li>
-                <li>Montage, Verpackung und Halteverbotszonen</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl border border-primary/20 bg-primary/10 p-8 text-white">
-              <h3 className="mb-4 text-xl font-bold text-primary">Warum der Rechner wichtig ist</h3>
-              <p className="text-slate-300">
-                Der FLOXANT Rechner sammelt genau die Informationen, die für einen belastbaren Preisrahmen und spätere Einsatzplanung wirklich zählen. So entsteht keine Keyword-Fassade, sondern eine nutzbare Anfragebasis.
-              </p>
-              <Link
-                href="/rechner"
-                className="mt-6 inline-flex items-center gap-2 font-bold text-primary hover:underline"
-              >
-                Zum Rechner
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="mb-8 text-3xl font-bold text-white">Häufige Fragen zum Umzug</h2>
-          <div className="space-y-6">
-            {faqItems.map((item) => (
-              <div key={item.q} className="rounded-3xl border border-white/10 bg-[#0B0B14] p-8">
-                <h3 className="mb-4 text-xl font-bold text-white">{item.q}</h3>
-                <p className="text-slate-300">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="booking" className="bg-slate-900 py-24 border-t border-white/5">
-        <div className="container px-4">
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">
-              Umzug in Regensburg oder Bayern anfragen
-            </h2>
-            <p className="text-lg text-slate-400">
-              Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung.
-            </p>
-          </div>
-          <div className="relative z-10 mx-auto max-w-5xl overflow-hidden rounded-[2.5rem] border border-white/5 bg-[#0A0C10] p-1 shadow-2xl">
-            <div className="relative z-10 p-4 md:p-8">
-              <SmartBookingWizard
-                dict={{
-                  common: dict.common,
-                  calculator: dict.calculator,
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5 bg-slate-950 py-16">
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold tracking-tight text-white">
-              Wichtige interne Einstiege rund um den Umzug
-            </h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {serviceLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 font-medium text-slate-300 transition-all hover:border-primary hover:text-white"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5 bg-slate-950 py-16">
-        <div className="container mx-auto max-w-6xl px-4 text-center">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-white">
-            Umzug lokal in wichtigen Regionen
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {cityLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-slate-300 transition-all hover:border-primary hover:bg-primary/10 hover:text-primary"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
+    </>
   );
 }

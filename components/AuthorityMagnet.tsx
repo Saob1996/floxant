@@ -1,4 +1,7 @@
-import { MapPin, Activity, Search, Share2, CheckCircle2 } from "lucide-react";
+import { Activity, CheckCircle2, MapPin, Search, Share2 } from "lucide-react";
+
+import { company } from "@/lib/company";
+import { germanText } from "@/lib/german-text";
 import { applyCity } from "@/lib/specialty-page";
 
 interface AuthorityMagnetProps {
@@ -11,117 +14,163 @@ interface AuthorityMagnetProps {
 export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }: AuthorityMagnetProps) {
   const am = dic?.authority_magnet;
 
-  // Helper to safely apply city/region to localized strings
   const t = (text: string | undefined, fallback: string) => {
-    if (!text) return fallback;
-    let res = applyCity(text, city);
-    res = res.replace(/{region}/g, region);
-    return res;
+    if (!text) return germanText(fallback, fallback);
+    return germanText(applyCity(text, city).replace(/{region}/g, region), fallback);
   };
 
+  const planningSignals = [
+    {
+      title: t(am?.services?.family?.title, "Privatumzug mit sauberer Vorplanung"),
+      desc: t(
+        am?.services?.family?.desc,
+        `Für ${city} prüfen wir Zugang, Volumen, Strecke und mögliche Zusatzleistungen früh, damit der Ablauf später ruhig bleibt.`,
+      ),
+    },
+    {
+      title: t(am?.services?.commercial?.title, "Firmenprojekt mit klarem Zeitfenster"),
+      desc: t(
+        am?.services?.commercial?.desc,
+        `Gerade bei Firmen, Praxis oder Büro zählen in ${city} klare Übergänge, IT-Sicherheit und eine nachvollziehbare Terminführung.`,
+      ),
+    },
+    {
+      title: t(am?.services?.clearance?.title, "Räumung oder Entsorgung realistisch eingeordnet"),
+      desc: t(
+        am?.services?.clearance?.desc,
+        "Materialarten, Laufwege und Abtransport werden vorab sichtbar gemacht, statt erst später unklar zu werden.",
+      ),
+    },
+  ];
+
+  const usefulHints = [
+    {
+      title: t(am?.useful?.no_parking?.title, "Halteverbotszone früh klären"),
+      desc: t(
+        am?.useful?.no_parking?.desc,
+        `Wenn in ${city} enge Zufahrten oder knappe Ladezonen zu erwarten sind, spart eine frühe Klärung später viel Hektik.`,
+      ),
+    },
+    {
+      title: t(am?.useful?.registration?.title, "Behörden und Übergaben mitdenken"),
+      desc: t(
+        am?.useful?.registration?.desc,
+        "Gerade bei Wohnungswechsel, Firmenfläche oder Objektübergabe hilft ein sauberer Ablaufplan mit allen Fristen.",
+      ),
+    },
+    {
+      title: t(am?.useful?.insurance?.title, "Haftung und sensible Werte einordnen"),
+      desc: t(
+        am?.useful?.insurance?.desc,
+        "Bei hochwertigem Inventar, Technik oder Spezialmöbeln sollte die Absicherung früh angesprochen werden.",
+      ),
+    },
+  ];
+
   return (
-    <section className="py-20 px-6 bg-muted/10 border-y border-border/50">
-      <div className="max-w-5xl mx-auto space-y-16">
-        
-        {/* VIP / Link Magnet Intro */}
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
-            <Activity className="w-8 h-8 text-primary" /> 
-            {t(am?.title, `Transparenz & Lokale Expertise in ${city}`)}
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            {t(am?.subtitle, `Ein erfolgreicher Projektverlauf benötigt echte Vor-Ort-Kenntnisse. Um Ihnen maximale Transparenz zu bieten, prüfen wir stetig unsere Kapazitäten und dokumentieren unsere logistische Reichweite im Raum ${city}.`)}
-          </p>
-        </div>
-
-        {/* Phase 2: Local Proof Injection (Simulated Activity) */}
-        <div>
-          <h3 className="text-2xl font-bold mb-6">{t(am?.activity_title, "Aktuelle Planungs- & Flottenaktivität")}</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-5 rounded-2xl border border-border/50 bg-card shadow-sm hover:border-primary/30 transition-colors">
-              <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                <h4 className="font-semibold text-sm">{t(am?.services?.family?.title, "Privatumzug (Familie)")}</h4>
-              </div>
-              <p className="text-xs text-muted-foreground">{t(am?.services?.family?.desc, `Wird aktuell in ${city} geplant. Beinhaltet Full-Service mit Küchenmontage und Packmaterial-Bereitstellung.`)}</p>
+    <section className="section-glow relative px-6 py-24">
+      <div className="mx-auto max-w-6xl space-y-6">
+        <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
+          <div className="glass-elevated rounded-[1.8rem] px-7 py-7 md:px-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/90 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
+              <Activity className="h-4 w-4" />
+              {t(am?.title, `Lokale Stärke in ${city}`)}
             </div>
-            <div className="p-5 rounded-2xl border border-border/50 bg-card shadow-sm hover:border-primary/30 transition-colors">
-              <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                <h4 className="font-semibold text-sm">{t(am?.services?.commercial?.title, "Firmen-Relocation")}</h4>
-              </div>
-              <p className="text-xs text-muted-foreground">{t(am?.services?.commercial?.desc, "Kurzfristige Terminierung für ein Gewerbeobjekt. Fokussiert auf sicheren IT-Transport und Akten-Archivierung.")}</p>
-            </div>
-            <div className="p-5 rounded-2xl border border-border/50 bg-card shadow-sm hover:border-primary/30 transition-colors">
-              <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                <h4 className="font-semibold text-sm">{t(am?.services?.clearance?.title, "Fachgerechte Räumung")}</h4>
-              </div>
-              <p className="text-xs text-muted-foreground">{t(am?.services?.clearance?.desc, `Besichtigung in ${city} angemeldet. Zielsetzung: Besenreine Wohnungsauflösung mit zertifizierter Entsorgung.`)}</p>
-            </div>
-            <div className="p-5 rounded-2xl border border-border/50 bg-card shadow-sm hover:border-primary/30 transition-colors">
-              <div className="flex items-center gap-2 mb-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                <h4 className="font-semibold text-sm">{t(am?.services?.special?.title, "Möbel-Spezialtransport")}</h4>
-              </div>
-              <p className="text-xs text-muted-foreground">{t(am?.services?.special?.desc, `Turnusmäßige Beiladung über unsere wöchentlichen Routen durch die Region ${region}.`)}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Phase 4 & 5: Brand Search Triggers & Citation NAP */}
-        <div className="bg-gradient-to-br from-card to-background p-8 rounded-3xl border border-primary/10 shadow-sm flex flex-col md:flex-row gap-8 items-center">
-          <div className="flex-1">
-            <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Search className="w-5 h-5 text-primary" /> 
-              {t(am?.search_title, 'Gezielt nach "FLOXANT Erfahrungen" suchen')}
-            </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              {t(am?.search_desc, `Die Wahl des Dienstleisters für Ihren Umzug in ${city} ist absolute Vertrauenssache. Wir empfehlen unseren Kunden, unsere Bewertungen unabhängig zu prüfen. Geben Sie FLOXANT Umzug Erfahrungen in Ihre Suchmaschine ein und überzeugen Sie sich von unserer beständigen Qualität, regionalen Verlässlichkeit und den durchweg positiven Kundenresonanzen.`)}
+            <h2 className="mt-6 text-[2.2rem] font-bold tracking-tight text-slate-950 md:text-[2.7rem]">
+              {t(am?.subtitle, `Regensburg zuerst gedacht, für ${city} und ${region} sauber geplant.`)}
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700">
+              {t(
+                am?.search_desc,
+                `Wer in ${city} nicht nur irgendeinen Dienstleister, sondern einen planbaren Partner sucht, braucht klare lokale Signale: echte Kontaktwege, klare Zuständigkeiten und nachvollziehbare Leistungen.`,
+              )}
             </p>
+
+            <div className="mt-8 grid gap-3 md:grid-cols-3">
+              {planningSignals.map((signal) => (
+                <div key={signal.title} className="card-premium rounded-[1.2rem] p-5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] bg-blue-50 text-blue-700">
+                    <CheckCircle2 className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-[1.08rem] font-bold tracking-tight text-slate-950">{signal.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-700">{signal.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          {showNAP && (
-            <div className="flex-shrink-0 w-full md:w-[320px] p-5 bg-muted/30 rounded-2xl border border-border/80">
-              <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider mb-3">{t(am?.nap_title, "Zentrale Kontakt-Details (NAP)")}</p>
-              <p className="font-bold text-foreground">FLOXANT GmbH</p>
-              <p className="text-sm text-muted-foreground mt-1">Johanna-Kinkel-Straße 1 + 2</p>
-              <p className="text-sm text-muted-foreground">93049 Regensburg</p>
-              <p className="text-sm text-muted-foreground mt-2">{t(am?.nap_operating_area, `Einsatzgebiet: ${city} / ${region}`)}</p>
-              <div className="mt-4 pt-4 border-t border-border/50">
-                <a href="tel:+4915771105087" className="text-lg font-bold text-primary hover:underline">☎ 0157 71105087</a>
+
+          <div className="card-premium rounded-[1.8rem] px-7 py-7 md:px-8">
+            <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+              <Search className="h-4 w-4" />
+              {t(am?.search_title, 'Gezielt nach "FLOXANT Erfahrungen" suchen')}
+            </div>
+            <p className="mt-5 text-base leading-7 text-slate-700">
+              {t(
+                am?.search_desc,
+                `Wenn Kunden aus ${city} oder dem Umland nach FLOXANT suchen, sollen sie direkt sehen: klare Buchungswege, klare Kontaktpunkte und ein Unternehmen aus Regensburg mit Fokus auf Bayern.`,
+              )}
+            </p>
+
+            {showNAP ? (
+              <div className="mt-8 grid gap-4 md:grid-cols-2">
+                <div className="card-premium rounded-[1.2rem] p-5">
+                  <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                    <MapPin className="h-4 w-4" />
+                    Zentrale Kontaktbasis
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    <p className="text-lg font-bold text-slate-950">{company.name}</p>
+                    <p className="text-sm leading-7 text-slate-700">
+                      {germanText(company.streetAddress, company.streetAddress)}
+                      <br />
+                      {company.postalCode} {germanText(company.city, company.city)}
+                      <br />
+                      {germanText(company.country, company.country)}
+                    </p>
+                    <p className="pt-2 text-sm leading-7 text-slate-700">
+                      Einsatzgebiet: {germanText(city, city)} / {germanText(region, region)}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="card-premium rounded-[1.2rem] p-5">
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                    Direktkontakt
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    <a href={`tel:${company.phoneRaw}`} className="block text-lg font-bold text-slate-950 hover:text-blue-700">
+                      {company.phone}
+                    </a>
+                    <p className="text-sm leading-7 text-slate-700">{company.email}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-
-        {/* Phase 7: Content Shareability */}
-        <div>
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-            <Share2 className="w-6 h-6 text-primary" /> 
-            {t(am?.useful_title, `Wissenswertes für Ihren Start in ${city}`)}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-border/50 bg-card p-6 rounded-2xl hover:shadow-md transition-shadow">
-              <h4 className="font-bold mb-2">{t(am?.useful?.no_parking?.title, "Halteverbotszonen")}</h4>
-              <p className="text-sm text-muted-foreground">
-                {t(am?.useful?.no_parking?.desc, `Beantragen Sie (oder wir für Sie) frühzeitig eine amtliche Halteverbotszone beim zuständigen Amt in ${city}. Die Vorlaufzeit sollte idealerweise mind. 14 Tage betragen, um den Behördenweg rechtzeitig abzuschließen.`)}
-              </p>
-            </div>
-            <div className="border border-border/50 bg-card p-6 rounded-2xl hover:shadow-md transition-shadow">
-              <h4 className="font-bold mb-2">{t(am?.useful?.registration?.title, "Behörden-Ummeldung")}</h4>
-              <p className="text-sm text-muted-foreground">
-                {t(am?.useful?.registration?.desc, `Gemäß Bundesmeldegesetz haben Sie nach Bezug der neuen Wohnung 14 Tage Zeit, Ihren Wohnsitz beim Einwohnermeldeamt in ${city} umzumelden. Vergessen Sie nicht die Anmeldung Ihres Fahrzeugs!`)}
-              </p>
-            </div>
-            <div className="border border-border/50 bg-card p-6 rounded-2xl hover:shadow-md transition-shadow">
-              <h4 className="font-bold mb-2">{t(am?.useful?.insurance?.title, "Haftung & Versicherung")}</h4>
-              <p className="text-sm text-muted-foreground">
-                {t(am?.useful?.insurance?.desc, "Ein lizensierter Spediteur haftet nach § 451g HGB mit exakt 620 EUR pro Kubikmeter Ladevolumen. Bei Kunst, Antiquitäten oder hochpreisigem IT-Equipment empfehlen wir den Abschluss einer Transport-Zusatzversicherung.")}
-              </p>
-            </div>
+            ) : null}
           </div>
         </div>
 
+          <div className="rounded-[1.8rem] border border-slate-200 bg-white/96 px-7 py-7 shadow-[0_20px_48px_rgba(15,23,42,0.06)] md:px-8">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                <Share2 className="h-4 w-4" />
+                {t(am?.useful_title, `Wissenswertes für ${city}`)}
+              </div>
+              <h3 className="mt-4 text-[2rem] font-bold tracking-tight text-slate-950">
+                Klare Hinweise, die den nächsten Schritt leichter machen.
+              </h3>
+            </div>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {usefulHints.map((hint) => (
+              <article key={hint.title} className="card-premium rounded-[1.25rem] p-6">
+                <h4 className="text-lg font-bold tracking-tight text-slate-950">{hint.title}</h4>
+                <p className="mt-3 text-sm leading-7 text-slate-700">{hint.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
