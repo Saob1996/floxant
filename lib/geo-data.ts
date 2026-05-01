@@ -56,7 +56,7 @@ export const BAVARIAN_CITIES_GEO: Record<string, CityGeoData> = {
     wikidataId: "Q6927",
     region: "Oberpfalz"
   },
-  weieden: {
+  weiden: {
     name: "Weiden",
     lat: "49.6753",
     lng: "12.1601",

@@ -1,4 +1,5 @@
 import { germanizeDeep } from "@/lib/german-text";
+import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
 
 export type BlogPostMeta = {
  slug: string;
@@ -10,6 +11,62 @@ export type BlogPostMeta = {
 };
 
 const rawBlogPosts: BlogPostMeta[] = [
+ {
+  slug: "wohnungsuebergabe-komplettpaket",
+  category: "Signatur-Service",
+  readTime: "10 Min.",
+  title: "Wohnungsübergabe-Komplettpaket: Wenn Umzug, Reinigung und Schlüssel zusammenpassen müssen",
+  description: "Warum eine Wohnung nicht nur leer, sondern übergabebereit werden muss und wie FLOXANT Umzug, Endreinigung, Rest-Entrümpelung, Fotos und Schlüsselübergabe koordinieren kann.",
+  featured: true,
+ },
+ {
+  slug: "schluesseluebergabe-service",
+  category: "Signatur-Service",
+  readTime: "9 Min.",
+  title: "Schlüsselübergabe-Service: Wenn Sie nicht selbst vor Ort sein können",
+  description: "Warum ein Schlüsseltermin organisatorisch größer sein kann als er wirkt und wie FLOXANT Anwesenheit, Fotodokumentation und Abstimmung unterstützen kann.",
+  featured: true,
+ },
+ {
+  slug: "nicht-vor-ort-paket",
+  category: "Signatur-Service",
+  readTime: "10 Min.",
+  title: "Nicht-vor-Ort-Paket: Wenn die Wohnung noch offen ist",
+  description: "Wie FLOXANT Kunden helfen kann, wenn Wohnung, Keller, Schlüssel, Reinigung oder Restgegenstände nach dem Wegzug noch offen sind.",
+  featured: true,
+ },
+ {
+  slug: "kautionsschutz-vorbereitung",
+  category: "Signatur-Service",
+  readTime: "9 Min.",
+  title: "Kautionsschutz-Vorbereitung: Übergabeprobleme vorher erkennen",
+  description: "Keine Kautionsgarantie, sondern seriöse Vorbereitung: FLOXANT hilft, sichtbare Übergaberisiken vor dem Vermietertermin besser einzuordnen.",
+  featured: true,
+ },
+ {
+  slug: "uebergabe-check-vor-vermietertermin",
+  category: "Signatur-Service",
+  readTime: "9 Min.",
+  title: "Übergabe-Check vor dem Vermietertermin: Ist die Wohnung wirklich bereit?",
+  description: "Warum ein neutraler Blick vor der Übergabe hilft und wie FLOXANT Reinigung, Restpunkte, Fotos und nächste Schritte praktisch einordnet.",
+  featured: true,
+ },
+ {
+  slug: "fotodokumentation-umzug-reinigung",
+  category: "Signatur-Service",
+  readTime: "9 Min.",
+  title: "Fotodokumentation bei Umzug und Übergabe",
+  description: "Was dokumentiert ist, muss später weniger diskutiert werden: Fotos vor und nach Umzug, Reinigung oder Übergabe als ruhige Zustandsstütze.",
+  featured: true,
+ },
+ {
+  slug: "volumen-risiko-check-umzug",
+  category: "Signatur-Service",
+  readTime: "10 Min.",
+  title: "Volumen- und Risiko-Check: Warum der billigste Umzugspreis oft nicht der realistischste ist",
+  description: "Warum falsche Volumenschätzung zu Zusatzfahrten, Zeitdruck und Nachforderungen führen kann und wie FLOXANT Umzüge realistischer vorprüft.",
+  featured: true,
+ },
  {
   slug: "regensburg-direkt-buchen-statt-vergleichsportal",
   category: "Direktkontakt",
@@ -366,4 +423,20 @@ const rawBlogPosts: BlogPostMeta[] = [
  },
 ];
 
-export const blogPosts = germanizeDeep(rawBlogPosts) as BlogPostMeta[];
+const rawBlogPostSlugs = new Set(rawBlogPosts.map((post) => post.slug));
+
+const strategicBlogPostMetas: BlogPostMeta[] = strategicBlogArticles
+ .filter((article) => !rawBlogPostSlugs.has(article.slug))
+ .map((article) => ({
+  slug: article.slug,
+  category: article.category,
+  readTime: article.readTime,
+  title: article.title,
+  description: article.description,
+  featured: true,
+ }));
+
+export const blogPosts = germanizeDeep([
+ ...rawBlogPosts,
+ ...strategicBlogPostMetas,
+]) as BlogPostMeta[];

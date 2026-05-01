@@ -22,9 +22,9 @@ export const contactEntryPoints = [
   {
     icon: Mail,
     title: "Direkt anfragen",
-    text: "Für Kunden, die ohne Umweg in die Vorprüfung starten möchten. Genau deshalb eignet sich dieser Pfad auch als klarer Maps-Einstieg.",
+    text: "Für Kunden, die ihren Fall ohne Umweg schildern möchten: Leistung, Ort, Termin und Kontaktweg direkt angeben.",
     href: "/buchung",
-    action: "Buchung öffnen",
+    action: "Anfrage öffnen",
   },
   {
     icon: Zap,
@@ -42,6 +42,12 @@ export const contactEntryPoints = [
   },
 ];
 
+const mapsRankingSignals = [
+  "Adresse, Telefonnummer und Kontaktwege bleiben klar auffindbar.",
+  "Der lokale Schwerpunkt wird dort genannt, wo er für Anfahrt und Terminplanung relevant ist.",
+  "Kontakt, Rechner und Buchung führen ohne Sackgassen zu echten nächsten Schritten.",
+];
+
 export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
   return (
     <section className={`relative overflow-hidden px-6 ${compact ? "py-12" : "py-24"}`}>
@@ -57,10 +63,9 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
               FLOXANT erreichen und den passenden Einstieg wählen.
             </h2>
             <p className="mt-5 text-sm leading-relaxed text-slate-600 md:text-base">
-              Für Kunden ist wichtig, ob sie direkt buchen, erst kurz anfragen oder einen
-              Preisrahmen vorprüfen möchten. FLOXANT bündelt Telefon, WhatsApp, E-Mail,
-              Standort und Rechner als klare, crawlbare Kontaktwege. Kurz gesagt: erst
-              verständlich, dann verbindlich. So läuft&apos;s gscheid weiter.
+              Für Kunden ist wichtig, ob sie direkt anfragen, erst kurz Rückfragen stellen
+              oder einen Preisrahmen prüfen möchten. FLOXANT bündelt Telefon, WhatsApp,
+              E-Mail, Standort und Rechner so, dass der nächste Schritt schnell klar ist.
             </p>
 
             <div className="mt-8 grid gap-3">
@@ -148,13 +153,11 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
 
             <div className="rounded-[1.75rem] border border-blue-100 bg-blue-50 p-6 shadow-sm shadow-blue-950/5">
               <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                Bevorzugter Maps-Einstieg
+                Klarer Kontaktweg
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Für Google Maps und das Google-Unternehmensprofil ist die Buchungsseite der
-                sauberste direkte Link. Sie ist als dedizierte Anfrage- und Buchungsseite
-                aufgebaut, trennt Buchung, Express, Preisvorstellung und Kontakt klar und passt
-                damit besser zur tatsächlichen Nutzerabsicht.
+                Wer aus der lokalen Suche kommt, braucht keinen langen Umweg. Die Buchungsseite
+                führt direkt zu Leistung, Termin, Preisrahmen und Kontaktmöglichkeit.
               </p>
               <Link
                 href="/buchung"
@@ -166,6 +169,25 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
             </div>
 
             <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
+                Lokale Vertrauenspunkte
+              </div>
+              <h3 className="mt-3 text-xl font-semibold text-foreground">
+                Was den lokalen Eindruck stärkt
+              </h3>
+              <div className="mt-4 grid gap-3">
+                {mapsRankingSignals.map((signal) => (
+                  <div
+                    key={signal}
+                    className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-600"
+                  >
+                    {signal}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
               <div className="mb-3 flex items-center gap-2 text-blue-700">
                 <ShieldCheck className="h-4 w-4" />
                 <span className="text-[11px] font-bold uppercase tracking-[0.16em]">
@@ -173,13 +195,12 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
                 </span>
               </div>
               <h3 className="text-xl font-semibold text-foreground">
-                Regensburg zuerst, Bayern aktiv
+                Lokal erreichbar, regional realistisch
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                FLOXANT sitzt in Regensburg und prüft Anfragen für Regensburg, Bayern und passende
-                Einsätze im erweiterten Gebiet. Für die Planung zählen Serviceart, Ort, Umfang,
-                Zugang, Terminlage und gewünschter Kontaktweg. Kurz und freundlich gesagt:
-                lieber gscheid anfragen als später doppelt erklären.
+                FLOXANT prüft Anfragen nach Serviceart, Ort, Umfang, Zugang, Terminlage und
+                gewünschtem Kontaktweg. So bleibt die Reichweite realistisch und die Anfrage
+                für Kunden verständlich.
               </p>
             </div>
           </div>

@@ -35,7 +35,7 @@ const bookingPaths = [
     eyebrow: "Anfrage starten",
     href: "#buchungssystem",
     description:
-      "In wenigen Minuten Service, Orte, Termin und Extras sauber an FLOXANT senden.",
+      "In wenigen Minuten Service, Orte, Termin, Zugang und Übergabeziel sauber an FLOXANT senden.",
     Icon: Calculator,
   },
   {
@@ -66,7 +66,7 @@ const bookingPaths = [
 
 const requestFlowPoints = [
   "1. Anfrage absenden",
-  "2. Angaben werden geprüft",
+  "2. Angaben, Zugang und Zusatzleistungen werden geprüft",
   "3. Angebot oder Rückruf erhalten",
   "4. Termin nach Bestätigung verbindlich planen",
 ];
@@ -75,6 +75,7 @@ const bookingTrustSignals = [
   "Unverbindlich starten",
   "Klare Rückmeldung statt Rätselraten",
   "Persönlich aus Regensburg betreut",
+  "Starker Abschlussweg nach Google Maps",
 ];
 
 const bookingSteps = [
@@ -84,11 +85,11 @@ const bookingSteps = [
   },
   {
     name: "Angaben werden geprüft",
-    text: "Service, Orte, Termin, Umfang und Hinweise werden ordentlich erfasst, damit wir sauber prüfen können.",
+    text: "Service, Orte, Termin, Umfang, Zugang und Hinweise werden ordentlich erfasst, damit wir sauber prüfen können.",
   },
   {
     name: "Angebot oder Rückruf",
-    text: "Wir prüfen Aufwand, Zugang, Strecke und Terminlage und melden uns mit einer klaren Rückmeldung.",
+    text: "Wir prüfen Aufwand, Zugang, Strecke, Zusatzleistungen und Terminlage und melden uns mit einer klaren Rückmeldung.",
   },
   {
     name: "Termin verbindlich planen",
@@ -112,6 +113,46 @@ const bookingAdvantages = [
   {
     title: "Verbindlich erst nach Bestätigung",
     text: "Die Anfrage bleibt unverbindlich, bis Angebot oder Auftragsbestätigung gemeinsam abgestimmt sind.",
+  },
+] as const;
+
+const mapsBookingSignals = [
+  "Die Buchungsseite ist der bevorzugte direkte Einstieg für Google Maps und Empfehlungen.",
+  "Sie führt nicht in eine Sackgasse, sondern in Buchung, Express, Budget oder Spezialpfad.",
+  "Regensburg bleibt sichtbar als Basis, während Bayern über weitere Geldseiten mitgetragen wird.",
+];
+
+const bookingClosureSignals = [
+  {
+    title: "Mehr Abschluss nach Maps-Klick",
+    text: "Statt nur eine Telefonnummer zu sehen, startet der Kunde direkt im passenden Anfrageweg mit klaren nächsten Schritten.",
+  },
+  {
+    title: "Lokaler Kern bleibt eindeutig",
+    text: "Regensburg bleibt operativer Anker, Bayern wird über passende Service- und Standortpfade sauber mitgetragen.",
+  },
+  {
+    title: "Spezialfälle bleiben getrennt",
+    text: "Für Reinigung in Düsseldorf existiert ein eigener lokaler Reinigungsbereich statt verwässerter Mischkommunikation.",
+  },
+];
+
+const customerSegments = [
+  {
+    title: "Direkt buchen",
+    text: "Für Kunden, die schon wissen, was ansteht und den Fall sauber an FLOXANT übergeben wollen.",
+  },
+  {
+    title: "Express prüfen",
+    text: "Für eilige Fälle, bei denen wenige Angaben und ein schneller Rückruf wichtiger sind als Volltiefe.",
+  },
+  {
+    title: "Budget mitsenden",
+    text: "Für Kunden, die Preisrahmen, Wunschbudget oder kaufmännische Orientierung direkt offenlegen möchten.",
+  },
+  {
+    title: "Spezialweg wählen",
+    text: "Für Leer-Rückfahrt, B2B-Reinigung oder hochwertige Sonderfälle mit eigener Logik.",
   },
 ] as const;
 
@@ -210,7 +251,7 @@ export default async function BuchungPage() {
         "@id": `${bookingUrl}#buchungswege`,
         name: "FLOXANT Buchungswege",
         description:
-          "Crawlbare Einstiege für Buchungssystem, Express-Check, Preisvorstellung und Leer-Rückfahrt.",
+          "Direkte Einstiege für Buchung, Express-Check, Preisvorstellung und Leer-Rückfahrt.",
         itemListElement: bookingPaths.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -240,15 +281,14 @@ export default async function BuchungPage() {
               <MapPin className="h-4 w-4" />
               Schnell und unverbindlich anfragen
             </div>
-            <h1 className="mt-7 max-w-5xl text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
+            <h1 className="mt-7 max-w-[12ch] text-4xl font-bold leading-[0.98] tracking-[-0.024em] text-slate-950 md:text-6xl">
               FLOXANT Anfrage starten
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">
               Umzug, Reinigung oder Entsorgung in Regensburg und Bayern schnell anfragen. Sie senden
               Ihre Angaben direkt an FLOXANT, wir prüfen den Fall sauber und melden uns mit Angebot
-              oder Rückruf. So ist direkt klar, was gebraucht wird, was als Nächstes passiert und
-              wann ein Termin wirklich verbindlich wird. Kurz gesagt: lieber gleich gscheid
-              anfragen, dann läuft es für alle Seiten ruhiger.
+              oder Rückruf. Wichtig ist nicht nur der Preis, sondern ob Termin, Zugang, Team,
+              Fahrzeug, Reinigung und Übergabe realistisch zusammenpassen.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -286,6 +326,43 @@ export default async function BuchungPage() {
                   <CheckCircle2 className="h-3.5 w-3.5 text-blue-600" />
                   {signal}
                 </span>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <Link
+                href="/rechner"
+                className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950 hover:shadow-md"
+              >
+                Erst Preisrahmen prüfen
+              </Link>
+              <Link
+                href="/anfrage-mit-preisrahmen"
+                className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50 hover:text-slate-950 hover:shadow-md"
+              >
+                Budget direkt mitsenden
+              </Link>
+              <Link
+                href="/leerfahrt-rueckfahrt"
+                className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-cyan-200 hover:bg-cyan-50 hover:text-slate-950 hover:shadow-md"
+              >
+                Flexible Rückfahrt prüfen
+              </Link>
+            </div>
+            <div className="mt-6 grid gap-3 md:grid-cols-3">
+              {bookingClosureSignals.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-[1.25rem] border border-slate-200 bg-white/90 px-4 py-4 shadow-sm shadow-slate-950/5"
+                >
+                  <div className="text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
+                    Maps & Abschluss
+                  </div>
+                  <h2 className="mt-2 text-lg font-semibold tracking-tight text-slate-950">
+                    {item.title}
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -327,11 +404,11 @@ export default async function BuchungPage() {
             <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
               Kurz erklärt
             </div>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+            <h2 className="mt-3 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
               Was diese Buchungsseite sofort beantwortet
             </h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {[
               {
                 title: "Was ist das?",
@@ -355,6 +432,82 @@ export default async function BuchungPage() {
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-10">
+        <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <article className="rounded-[1.9rem] border border-slate-200 bg-slate-50 p-6 shadow-sm shadow-slate-950/5 md:p-8">
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+              Anfrage verständlich
+            </div>
+            <h2 className="mt-3 max-w-[15ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
+              Nicht irgendein Formular. Der klare Einstieg in eine realistische Prüfung.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-8 text-slate-700">
+              Diese Seite soll Kunden nicht verwirren, sondern sauber sortieren: direkt buchen,
+              schnell prüfen, Budget mitsenden oder in einen Spezialweg wechseln. Genau das macht
+              den Einstieg verständlicher und die Rückmeldung belastbarer.
+            </p>
+          </article>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {customerSegments.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
+              >
+                <h3 className="text-lg font-semibold text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-10">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(37,99,235,0.06),rgba(255,255,255,0.98))] p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="grid gap-5 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+            <div>
+              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Kontakt aus lokaler Suche
+              </div>
+              <h2 className="mt-3 max-w-[14ch] text-3xl font-semibold tracking-tight text-slate-950">
+                Warum diese Seite als direkter Anfrageweg funktioniert
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                Diese Seite erklärt den nächsten Schritt klar, nimmt direkte Anfragen auf und
+                trennt Buchung, Express, Budget und Spezialwege sauber voneinander.
+              </p>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {mapsBookingSignals.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4 text-sm leading-relaxed text-slate-600"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="rounded-[1.3rem] border border-emerald-200 bg-emerald-50 px-4 py-4 lg:col-span-2">
+              <div className="text-[11px] font-black uppercase tracking-[0.16em] text-emerald-800">
+                Separater Lokalbereich
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-emerald-950/80">
+                Reinigungsanfragen aus Düsseldorf laufen bewusst über den getrennten Bereich
+                FLOXANT Reinigung Düsseldorf, damit Regensburg/Bayern und Düsseldorf sich nicht
+                gegenseitig verwässern.
+              </p>
+              <Link
+                href="/duesseldorf/reinigung"
+                className="mt-3 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-emerald-800"
+              >
+                Düsseldorf Reinigung öffnen
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -458,7 +611,7 @@ export default async function BuchungPage() {
                 <Clock3 className="h-4 w-4" />
                 Direktes Buchungssystem
               </div>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+              <h2 className="mt-4 max-w-[13ch] text-3xl font-semibold leading-[1] tracking-[-0.022em] text-slate-950 md:text-5xl">
                 Anfrage bequem und klar absenden
               </h2>
             </div>
@@ -569,6 +722,12 @@ export default async function BuchungPage() {
                 eyebrow: "Preisrahmen",
                 title: "Rechner öffnen",
                 text: "Für Kunden, die Aufwand, Kostentreiber und Orientierungsrahmen zuerst sauber einordnen möchten.",
+              },
+              {
+                href: "/duesseldorf/reinigung",
+                eyebrow: "Lokal getrennt",
+                title: "Reinigung Düsseldorf",
+                text: "Eigener Reinigungsbereich für Düsseldorf mit separatem Kontakt, Rechner und lokaler NAP-Struktur.",
               },
             ].map((item) => (
               <Link

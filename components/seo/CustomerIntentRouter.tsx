@@ -48,11 +48,12 @@ export function CustomerIntentRouter({ compact = false }: { compact?: boolean })
        Entscheidungshilfe
       </div>
       <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
-       Der schnellste Weg zur passenden FLOXANT Anfrage.
+       Starten Sie dort, wo Ihr Fall gerade steht.
       </h2>
      </div>
      <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
-      Vier typische Startpunkte führen direkt zu den stärksten Service- und Conversion-Seiten, ohne dass Kunden lange suchen müssen.
+      Manche wissen schon genau, was gebraucht wird. Andere müssen erst Aufwand,
+      Termin und Preisrahmen einordnen. Diese Wege führen schneller zum richtigen Einstieg.
      </p>
     </div>
 

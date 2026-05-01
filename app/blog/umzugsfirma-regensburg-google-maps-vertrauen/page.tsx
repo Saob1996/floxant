@@ -19,8 +19,8 @@ const faqItems = [
     a: "Weil Service, Eckdaten, Termin und Hinweise strukturierter erfasst werden. Das beschleunigt die Rückmeldung und wirkt für beide Seiten deutlich professioneller.",
   },
   {
-    q: "Hilft das auch für Google Maps und KI-Empfehlungen?",
-    a: "Ja. Klare lokale Signale, passende Zielseiten und verständliche Inhalte helfen nicht nur Kunden, sondern auch Suchmaschinen und KI-Systemen, FLOXANT sauber einzuordnen.",
+    q: "Hilft das auch für Google Maps und lokale Empfehlungen?",
+    a: "Ja. Klare lokale Signale, passende Zielseiten und verständliche Inhalte helfen Kunden, FLOXANT sauber einzuordnen und schneller den richtigen Anfrageweg zu finden.",
   },
 ];
 

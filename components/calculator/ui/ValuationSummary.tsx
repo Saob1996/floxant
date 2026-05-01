@@ -137,6 +137,24 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
             </div>
           ) : null}
 
+          <div className="rounded-[1.6rem] border border-slate-200 bg-white/92 p-5 shadow-sm shadow-slate-950/5">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+              Warum dieser Rahmen?
+            </div>
+            <div className="mt-3 grid gap-2">
+              {[
+                "Region, Zugang und Zusatzleistungen verändern den realen Aufwand sofort.",
+                "Der Rahmen bleibt bewusst unverbindlich, damit keine künstliche Preisgenauigkeit entsteht.",
+                "Mit mehr Details wird die Einordnung ruhiger, enger und operativ belastbarer.",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-600" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <InfoTile label="Zeitansatz" value={estimate?.estimatedHours || "-"} icon={<Clock size={16} />} />
             <InfoTile label="Personal" value={estimate?.recommendedTeam || "-"} icon={<Users size={16} />} />

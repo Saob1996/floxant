@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "reinigung",
     title: "Reinigung Regensburg & Bayern | Übergabe & Endreinigung",
     description:
-      "Fachgerechte Reinigung für Wohnung, Haus und Gewerbe in Regensburg und Bayern: Übergabe, Endreinigung, Extras und klare Vorprüfung.",
+      "Fachgerechte Reinigung für Wohnung, Haus und Gewerbe in Regensburg und Bayern: Endreinigung, Übergabe, Abnahmefokus und realistische Vorprüfung.",
   });
 }
 
@@ -47,11 +47,15 @@ export default async function ReinigungPillarPage() {
     },
     {
       q: "Was unterscheidet die Leistung von normaler Unterhaltsreinigung?",
-      a: "FLOXANT fokussiert sichtbare Übergabefähigkeit, klare Leistungsgrenzen und eine planbare Abstimmung statt einer offenen Alltagsreinigung ohne definierte Zielqualität.",
+      a: "Reinigung nach dem Umzug ist keine normale Unterhaltsreinigung. Es geht um Abnahme, Eindruck, Details und oft um die Kaution. FLOXANT reinigt mit Blick auf Übergabe, nicht nur auf Oberfläche.",
     },
     {
       q: "Wie starte ich die Anfrage?",
-      a: "Über den FLOXANT Rechner. Dort lassen sich Flächen, Objekttyp und Reinigungsbedarf direkt erfassen und als Preisrahmen vorbereiten.",
+      a: "Über den FLOXANT Rechner oder die Buchungsseite. Dort lassen sich Flächen, Objekttyp, Zustand, Extras und Terminwunsch erfassen, damit der Aufwand realistisch geprüft werden kann.",
+    },
+    {
+      q: "Warum ist eine Wohnungsübergabe mehr als nur Reinigung?",
+      a: "Weil bei einer Übergabe nicht nur Sauberkeit zählt. Auch Restgegenstände, Schlüssel, Zustand, Fotos, Zeitfenster und Kommunikation mit Vermieter oder Hausverwaltung können entscheidend sein.",
     },
   ];
 
@@ -88,7 +92,7 @@ export default async function ReinigungPillarPage() {
         breadcrumbs={breadcrumbs}
         heroBadge="Reinigung mit Schwerpunkt Regensburg und Bayern"
         heroTitle="Reinigung in Regensburg und Bayern"
-        heroIntro="FLOXANT bietet Endreinigung, Gebäudereinigung und Objektservice für saubere Übergaben, Wohnungswechsel und laufende Objektbetreuung. Diese Seite erklärt klar, was der Service ist, für wen er gedacht ist und wie er vom Standardfall abweicht."
+        heroIntro="FLOXANT bietet Endreinigung, Gebäudereinigung und Objektservice für saubere Übergaben, Wohnungswechsel und laufende Objektbetreuung. Der Fokus liegt nicht auf einer vagen Oberflächenreinigung, sondern auf einem Ergebnis, das vor Schlüsselübergabe, Wohnungsabnahme oder Neuvermietung planbar ist."
         heroImageSrc="/assets/service-cleaning.png"
         heroImageAlt="FLOXANT Reinigung in Regensburg und Bayern"
         heroCards={[
@@ -101,7 +105,7 @@ export default async function ReinigungPillarPage() {
           {
             icon: Sparkles,
             title: "Was ist das?",
-            text: "Ein planbarer Reinigungsservice für Wohnungen, Häuser, Büros und Gewerbeflächen.",
+            text: "Ein planbarer Reinigungsservice für Wohnungen, Häuser, Büros und Gewerbeflächen mit klarem Abnahme- und Übergabefokus.",
           },
           {
             icon: Home,
@@ -111,7 +115,7 @@ export default async function ReinigungPillarPage() {
           {
             icon: Droplets,
             title: "Wann sinnvoll?",
-            text: "Vor Übergaben, nach Auszug, vor Wiedervermietung oder bei sensiblen Gewerbeflächen.",
+            text: "Vor Schlüsselübergabe, Wohnungsabnahme, Wiedervermietung, Verkauf oder bei sensiblen Gewerbeflächen.",
           },
           {
             icon: ShieldCheck,
@@ -124,16 +128,16 @@ export default async function ReinigungPillarPage() {
           {
             icon: Building,
             title: "Gewerbe und Verwaltung",
-            text: "Bei Büros, Praxen und Objektbetreuung zählen klare Leistungsverzeichnisse, feste Ansprechpartner und nachvollziehbare Terminplanung.",
+            text: "Bei Büros, Praxen und Objektbetreuung zählen klare Leistungsverzeichnisse, feste Ansprechpartner, nachvollziehbare Terminplanung und weniger Reibung mit Verwaltung oder Nutzern.",
           },
           {
             icon: Home,
             title: "Auszug und Übergabe",
-            text: "Vor Wohnungsübergaben oder Wiedervermietung muss Reinigung nicht nur sauber wirken, sondern praktisch und terminsicher erledigt sein.",
+            text: "Vor Wohnungsübergaben oder Wiedervermietung muss Reinigung nicht nur sauber wirken, sondern praktisch, terminsicher und für den nächsten Schritt nachvollziehbar erledigt sein.",
           },
         ]}
         costTitle="Wie sich der Service vom Standard unterscheidet"
-        costIntro="FLOXANT definiert vorab Flächen, Leistungsumfang, Termin und Besonderheiten. Das vermeidet Missverständnisse und macht Ergebnisse besser vergleichbar."
+        costIntro="FLOXANT definiert vorab Flächen, Leistungsumfang, Termin, Zustand und Besonderheiten. Das vermeidet Missverständnisse, schützt vor falschen Erwartungen und macht Ergebnisse besser vergleichbar."
         costFactors={[
           "Fläche und Objektart",
           "Zustand der Räume",
@@ -141,11 +145,11 @@ export default async function ReinigungPillarPage() {
           "Terminlage und Zugang zum Objekt",
         ]}
         calculatorTitle="Regionale Einordnung mit echter Vorprüfung"
-        calculatorText="Der Fokus auf Regensburg und Bayern macht Anfahrt, Einsatzplanung und Kombinationen mit Umzug oder Entrümpelung sinnvoller und realistischer."
+        calculatorText="Der Rechner liefert Orientierung statt Festpreisversprechen. Der finale Rahmen entsteht erst, wenn Fläche, Zustand, Küche, Bad, Fenster, Zugang und Termin geprüft sind."
         faqTitle="Häufige Fragen zur Reinigung"
         faqItems={faqItems}
         bookingTitle="Reinigung in Regensburg oder Bayern anfragen"
-        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. So bleibt es verständlich, freundlich und terminsicher."
+        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, ob es um Übergabe, Auszug, Neuvermietung oder laufende Objektbetreuung geht."
         serviceLinksTitle="Wichtige interne Einstiege rund um Reinigung"
         serviceLinks={[
           { href: "/rechner", label: "Reinigung direkt kalkulieren" },

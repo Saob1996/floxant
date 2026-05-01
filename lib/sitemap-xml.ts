@@ -122,6 +122,21 @@ function lastmodForRoute(route: string): string {
 function priorityForRoute(route: string): string {
   if (!route) return "1.0";
   if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "rechner", "buchung"].includes(route)) return "0.9";
+  if (route === "duesseldorf/reinigung") return "0.91";
+  if (
+    [
+      "duesseldorf/bueroreinigung",
+      "duesseldorf/wohnungsreinigung",
+      "duesseldorf/grundreinigung",
+      "duesseldorf/treppenhausreinigung",
+      "duesseldorf/endreinigung",
+    ].includes(route)
+  ) {
+    return "0.82";
+  }
+  if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) {
+    return "0.35";
+  }
   if (route === "leerfahrt-rueckfahrt") return "0.88";
   if (route === "einsatzgebiet-regensburg-200km") return "0.88";
   if (route === "standorte") return "0.88";
@@ -141,6 +156,9 @@ function priorityForRoute(route: string): string {
 
 function changefreqForRoute(route: string): string {
   if (!route) return "daily";
+  if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) return "yearly";
+  if (route === "duesseldorf/reinigung") return "weekly";
+  if (route.startsWith("duesseldorf/")) return "monthly";
   if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
   if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";
   return "weekly";

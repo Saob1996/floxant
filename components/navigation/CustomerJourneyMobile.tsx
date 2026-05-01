@@ -18,13 +18,13 @@ interface CustomerJourneyMobileProps {
 }
 
 const mobileLabelMap: Record<string, string> = {
-  ueberblick: "Ueberblick",
-  leistungen: "Leistung",
-  preis: "Preis",
-  kontakt: "Anfrage",
+  ueberblick: "Überblick",
+  leistungen: "Leistungen",
+  preis: "Kosten",
+  kontakt: "Anfragen",
   ablauf: "Ablauf",
   zusatzservices: "Extras",
-  region: "Region",
+  region: "Einsatzgebiet",
 };
 
 export function CustomerJourneyMobile({
@@ -55,12 +55,12 @@ export function CustomerJourneyMobile({
       <div className="fixed bottom-5 left-5 z-40 lg:hidden">
         <button
           type="button"
-          aria-label="Orientierung oeffnen"
+          aria-label="Schnellwahl öffnen"
           onClick={() => setDrawerOpen(true)}
           className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/96 px-4 py-3 text-sm font-semibold text-slate-800 shadow-[0_12px_26px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-slate-50"
         >
           <Compass className="h-4 w-4 text-blue-700" />
-          Orientierung
+          Schnellwahl
         </button>
       </div>
 
@@ -69,7 +69,7 @@ export function CustomerJourneyMobile({
           <>
             <m.button
               type="button"
-              aria-label="Orientierung schliessen"
+              aria-label="Schnellwahl schließen"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -86,14 +86,14 @@ export function CustomerJourneyMobile({
               <div className="rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-[0_30px_70px_rgba(15,23,42,0.22)]">
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-bold text-slate-950">Orientierung</p>
+                    <p className="text-sm font-bold text-slate-950">Schnellwahl</p>
                     <p className="mt-1 text-xs text-slate-500">
-                      Direkt zum passenden Schritt.
+                      Direkt zur Stelle, die Sie gerade brauchen.
                     </p>
                   </div>
                   <button
                     type="button"
-                    aria-label="Orientierung schliessen"
+                    aria-label="Schnellwahl schließen"
                     onClick={() => setDrawerOpen(false)}
                     className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-950"
                   >
@@ -108,7 +108,7 @@ export function CustomerJourneyMobile({
                       <button
                         key={item.key}
                         type="button"
-                        aria-label={`${germanizeText(mobileLabelMap[item.key] || item.label)} oeffnen`}
+                        aria-label={`${germanizeText(mobileLabelMap[item.key] || item.label)} öffnen`}
                         onClick={() => {
                           onSelect(item);
                           setDrawerOpen(false);
@@ -135,11 +135,11 @@ export function CustomerJourneyMobile({
                   <div className="mt-4 border-t border-slate-200 pt-4">
                     <button
                       type="button"
-                      aria-label="Mehr Orientierung umschalten"
+                      aria-label="Mehr Schnellwahl umschalten"
                       onClick={() => setShowMore((value) => !value)}
                       className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500"
                     >
-                      {showMore ? "Weniger Orientierung" : "Mehr Orientierung"}
+                      {showMore ? "Weniger anzeigen" : "Weitere Punkte anzeigen"}
                     </button>
                     {showMore ? (
                       <div className="mt-3 space-y-2">
@@ -147,7 +147,7 @@ export function CustomerJourneyMobile({
                           <button
                             key={item.key}
                             type="button"
-                            aria-label={`${germanizeText(mobileLabelMap[item.key] || item.label)} oeffnen`}
+                            aria-label={`${germanizeText(mobileLabelMap[item.key] || item.label)} öffnen`}
                             onClick={() => {
                               onSelect(item);
                               setDrawerOpen(false);
@@ -174,7 +174,7 @@ export function CustomerJourneyMobile({
                     onClick={() => setDrawerOpen(false)}
                   >
                     <MapPin className="h-3.5 w-3.5" />
-                    Kontakt oeffnen
+                    Kontakt öffnen
                   </Link>
                 </div>
               </div>

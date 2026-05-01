@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, type LucideIcon } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ClipboardCheck,
+  KeyRound,
+  PackageCheck,
+  type LucideIcon,
+} from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
@@ -85,7 +92,28 @@ export function PillarServicePage({
   cityLinksTitle,
   cityLinks,
 }: PillarServicePageProps) {
-
+  const handoverPackage = [
+    {
+      title: "Transport und Tragen",
+      text: "Möbel, Kartons und relevante Gegenstände werden nicht isoliert betrachtet, sondern im Zusammenhang mit Termin, Zugang und Übergabeziel.",
+      Icon: PackageCheck,
+    },
+    {
+      title: "Endreinigung nach Absprache",
+      text: "Reinigung wird mit Blick auf Abnahme, Eindruck und Nutzbarkeit geplant, nicht nur als lose Zusatzposition.",
+      Icon: CheckCircle2,
+    },
+    {
+      title: "Rest-Entrümpelung",
+      text: "Kleine Restmengen, Keller- oder Nebenflächen können eingeordnet werden, damit die Wohnung nicht halbfertig zurückbleibt.",
+      Icon: ClipboardCheck,
+    },
+    {
+      title: "Fotos, Schlüssel und Protokoll",
+      text: "Auf Wunsch werden Fotodokumentation, Schlüsselübergabe und ein einfacher Übergabehinweis als Abschlusslogik mitgedacht.",
+      Icon: KeyRound,
+    },
+  ] as const;
 
   return (
     <main className="min-h-screen overflow-hidden bg-background">
@@ -108,11 +136,12 @@ export function PillarServicePage({
         </div>
         <div className="flox-shell relative">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Service-Architektur</div>
-            <h2 className="mt-6 flox-title-lg text-slate-950">Was dieser Service wirklich leistet.</h2>
+            <div className="flox-kicker">Was Kunden wissen müssen</div>
+            <h2 className="mt-6 flox-title-lg text-slate-950">Leistung, Umfang und nächster Schritt auf einen Blick.</h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
-              Keine weiche Werbefläche, sondern eine klare Definition für Kunden, die Aufwand,
-              Ablauf und regionale Relevanz sauber verstehen wollen.
+              Hier geht es um die Fragen vor einer Anfrage: Was wird übernommen, wann ist
+              der Service sinnvoll, welche Angaben brauchen wir und wie kommen Sie ohne
+              Umwege zum passenden Einstieg?
             </p>
           </div>
 
@@ -162,8 +191,8 @@ export function PillarServicePage({
           </article>
 
           <article className="flox-panel-dark rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
-            <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Direkter Einstieg</div>
-            <h3 className="mt-6 text-[2rem] font-bold tracking-[-0.06em] text-white">
+            <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Schnell entscheiden</div>
+            <h3 className="mt-6 text-[2rem] font-bold tracking-[-0.025em] text-white">
               {germanText(calculatorTitle, calculatorTitle)}
             </h3>
             <p className="mt-4 text-base leading-8 text-slate-300">
@@ -185,8 +214,8 @@ export function PillarServicePage({
       <section id="ablauf" className="flox-section pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="flox-panel-dark rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
-            <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Warum FLOXANT</div>
-            <h2 className="mt-6 text-[clamp(2rem,4vw,3.3rem)] font-bold tracking-[-0.07em] text-white">
+            <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Warum der Ablauf zählt</div>
+            <h2 className="mt-6 text-[clamp(2rem,4vw,3.3rem)] font-bold tracking-[-0.025em] text-white">
               {germanText(differenceTitle, differenceTitle)}
             </h2>
             <div className="mt-6 space-y-3">
@@ -218,13 +247,13 @@ export function PillarServicePage({
 
           <article className="flox-panel rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Ablauf</div>
-            <h2 className="mt-6 flox-title-lg text-slate-950">Wie aus einer Anfrage ein sauber geführter Einsatz wird.</h2>
+            <h2 className="mt-6 flox-title-lg text-slate-950">So wird aus Ihrer Anfrage ein planbarer Einsatz.</h2>
             <div className="mt-6 flox-list-compact">
               {[
-                "Bedarf und Rahmen aufnehmen",
-                "Aufwand, Zugang und Termin realistisch prüfen",
-                "Rückmeldung oder Angebot sauber abstimmen",
-                "Erst danach verbindlich planen und durchfuehren",
+                "Kurz klären, was erledigt werden soll und welches Ergebnis am Ende zählt",
+                "Aufwand, Zugang, Laufwege, Termin und besondere Risiken realistisch prüfen",
+                "Rückmeldung oder Angebot mit klaren Leistungsgrenzen abstimmen",
+                "Erst danach verbindlich planen und sauber durchführen",
               ].map((step, index) => (
                 <div key={step} className="flox-list-item">
                   <span className="flox-list-step">{index + 1}</span>
@@ -236,10 +265,58 @@ export function PillarServicePage({
         </div>
       </section>
 
+      <section id="uebergabe-komplettpaket" className="flox-section pt-0">
+        <div className="flox-shell">
+          <div className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <div className="flox-kicker">Signatur-Service</div>
+                <h2 className="mt-6 flox-title-lg text-slate-950">
+                  Wohnungsübergabe-Komplettpaket
+                </h2>
+                <p className="mt-4 text-base leading-8 text-slate-700">
+                  Für alle, die eine Wohnung nicht nur verlassen, sondern sauber abschließen müssen:
+                  Umzug, Endreinigung, kleine Rest-Entrümpelung und Schlüsselübergabe können als ein
+                  abgestimmter Ablauf geprüft werden. Das ist besonders sinnvoll, wenn Termin,
+                  Vermieter, Hausverwaltung und Kaution zusammenhängen.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Link href="/buchung" className="flox-button-primary px-6">
+                    Übergabe vorbereiten lassen
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="/rechner" className="flox-button-secondary px-6">
+                    Kosten einschätzen
+                  </Link>
+                </div>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-2">
+                {handoverPackage.map((item) => {
+                  const Icon = item.Icon;
+                  return (
+                    <article
+                      key={item.title}
+                      className="rounded-[1.35rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-950/5"
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[0.9rem] bg-blue-50 text-blue-700">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <h3 className="mt-4 text-base font-semibold text-slate-950">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="zusatzservices" className="flox-section pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-2">
           <article className="flox-panel rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
-            <div className="flox-kicker">Weitere Wege</div>
+            <div className="flox-kicker">Direkt zum passenden Weg</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               {germanText(serviceLinksTitle, serviceLinksTitle)}
             </h2>
@@ -260,7 +337,7 @@ export function PillarServicePage({
           </article>
 
           <article id="region" className="flox-panel rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
-            <div className="flox-kicker">Region</div>
+            <div className="flox-kicker">Orte nur dort, wo sinnvoll</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               {germanText(cityLinksTitle, cityLinksTitle)}
             </h2>

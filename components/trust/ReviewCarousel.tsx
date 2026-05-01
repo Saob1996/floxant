@@ -57,7 +57,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
     summaryItems: [
       germanText(dic?.reviews?.summaryItem1, "Klare Vorprüfung statt Vergleichsportal-Hektik"),
       germanText(dic?.reviews?.summaryItem2, "Ruhige Kommunikation und verlässliche Terminführung"),
-      germanText(dic?.reviews?.summaryItem3, "Regensburg zuerst, Bayern sauber im Einsatz"),
+      germanText(dic?.reviews?.summaryItem3, "Lokale Planung mit realistisch geprüfter Reichweite"),
     ],
   };
 

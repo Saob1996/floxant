@@ -14,28 +14,28 @@ const confidenceSignals = [
  {
   icon: Banknote,
   title: "Preisrahmen statt Lockpreis",
-  text: "FLOXANT zeigt eine unverbindliche Orientierung und erklärt, welche Faktoren den Aufwand wirklich beeinflussen.",
+  text: "FLOXANT zeigt eine unverbindliche Orientierung und erklärt, welche Faktoren den Aufwand wirklich beeinflussen: Umfang, Zugang, Strecke, Extras und Termin.",
   href: "/kostenfaktoren",
   label: "Kostenfaktoren",
  },
  {
   icon: ClipboardCheck,
   title: "Anfrage mit nutzbaren Daten",
-  text: "Serviceart, Umfang, Zugang, Termin und Preisvorstellung werden so erfasst, dass daraus eine echte Vorprüfung entsteht.",
+  text: "Serviceart, Umfang, Zugang, Termin, Preisvorstellung und Übergabeziel werden so erfasst, dass daraus eine echte Prüfung entsteht.",
   href: "/rechner",
   label: "Rechner",
  },
  {
   icon: Route,
   title: "Ablauf statt Formular-Leere",
-  text: "Kunden sehen, was nach dem Absenden passiert: Prüfung, Rückfrage, Angebot, Bestätigung und saubere Umsetzung.",
+  text: "Kunden sehen, was nach dem Absenden passiert: Prüfung, Rückfrage, Angebot, Bestätigung und saubere Durchführung.",
   href: "/buchung-ablauf",
   label: "Buchung & Ablauf",
  },
  {
   icon: MapPinned,
-  title: "Regionale Einsatzlogik",
-  text: "Regensburg bleibt der operative Kern; Bayern und weitere Strecken werden nach Verfügbarkeit, Route und Machbarkeit geprüft.",
+  title: "Einsatzgebiet ehrlich geprüft",
+  text: "Regensburg ist die Basis. Weitere Orte werden nach Verfügbarkeit, Route und Machbarkeit geprüft, statt pauschal alles zu versprechen.",
   href: "/einsatzgebiet-regensburg-200km",
   label: "Einsatzgebiet",
  },
@@ -65,7 +65,7 @@ export function ServiceConfidencePanel({
  pagePath = "/",
  eyebrow = "Vertrauenssignale",
  title = "Warum FLOXANT vor der Anfrage mehr Klarheit gibt.",
- intro = "Diese Signale helfen Kunden, den passenden Dienstleister besser einzuschätzen: keine Scheingenauigkeit, keine falschen Garantien, sondern sauberer Ablauf und nachvollziehbare Vorprüfung.",
+ intro = "Diese Punkte helfen, eine Anfrage besser einzuordnen: keine Scheingenauigkeit, keine falschen Garantien, sondern ein nachvollziehbarer Ablauf und eine ehrliche Prüfung der Machbarkeit.",
 }: ServiceConfidencePanelProps) {
  const sectionId = "vertrauenssignale";
  const jsonLd = {
@@ -134,7 +134,7 @@ export function ServiceConfidencePanel({
 
     <div className="mt-6 grid gap-4 rounded-[2rem] border border-blue-100 bg-white/80 p-5 shadow-sm md:grid-cols-[1fr_auto_auto] md:items-center">
      <p className="text-sm leading-relaxed text-slate-600">
-      Starker nächster Schritt: erst Aufwand einordnen, dann mit FLOXANT abstimmen. So bleibt die Anfrage schnell, aber nicht blind.
+      Starker nächster Schritt: erst Aufwand, Zugang und Übergabeziel einordnen, dann mit FLOXANT abstimmen. So bleibt die Anfrage schnell, aber nicht blind.
      </p>
      <Link
       href="/rechner"

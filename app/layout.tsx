@@ -5,17 +5,13 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { generatePageSEO, viewport } from "@/lib/seo";
-import { JsonLd } from "@/components/JsonLd";
-import { Footer } from "@/components/Footer";
 import AuthProvider from "@/components/session-provider";
 import { MotionProvider } from "@/components/MotionProvider";
-import { FloxNavigation } from "@/components/FloxNavigation";
 import UtmCapture from "@/components/UtmCapture";
 import { getDictionary } from "@/get-dictionary";
 import { CookieBanner } from "@/components/CookieBanner";
-import MobileFloatingContact from "@/components/MobileFloatingContact";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { WebVitalsReporter } from "@/components/WebVitalsReporter";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 
 export { viewport };
 
@@ -58,8 +54,6 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const dict = await getDictionary("de");
-
   return (
     <html lang="de" dir="ltr" suppressHydrationWarning>
       <body
@@ -74,15 +68,10 @@ export default async function RootLayout({
         </a>
         <AuthProvider>
           <MotionProvider>
-            <JsonLd lang="de" />
             <WebVitalsReporter />
             <UtmCapture />
-            <FloxNavigation dic={dict} />
-            <div id="main-content">{children}</div>
-            <CookieBanner dic={dict} />
-            <Footer dic={dict} />
-            <MobileFloatingContact dic={dict} />
-            <WhatsAppButton dic={dict} />
+            <SiteChrome>{children}</SiteChrome>
+            <CookieBanner />
           </MotionProvider>
         </AuthProvider>
       </body>

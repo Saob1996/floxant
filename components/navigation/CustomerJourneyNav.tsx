@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Compass, Dot, MoreHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -23,22 +22,22 @@ const primaryOrder = ["ueberblick", "leistungen", "preis", "kontakt"] as const;
 const secondaryOrder = ["ablauf", "zusatzservices", "region"] as const;
 
 const primaryCopy: Record<string, { label: string; hint: string }> = {
-  ueberblick: { label: "Ueberblick", hint: "Fuer wen es passt" },
-  leistungen: { label: "Leistung", hint: "Umzug, Reinigung, Entsorgung" },
-  preis: { label: "Preis", hint: "Rechner oder Anfrage" },
-  kontakt: { label: "Anfrage", hint: "Kontakt oder WhatsApp" },
+  ueberblick: { label: "Überblick", hint: "Passt der Service zu meinem Fall?" },
+  leistungen: { label: "Leistungen", hint: "Was wird konkret übernommen?" },
+  preis: { label: "Kosten", hint: "Rechner, Budget oder Anfrage" },
+  kontakt: { label: "Anfragen", hint: "Direkt senden oder WhatsApp" },
 };
 
 const secondaryCopy: Record<string, { label: string; hint: string }> = {
-  ablauf: { label: "Ablauf", hint: "Von Anfrage bis Durchfuehrung" },
-  zusatzservices: { label: "Extras", hint: "Halteverbot, Schluesseluebergabe" },
-  region: { label: "Region", hint: "Regensburg und Bayern" },
+  ablauf: { label: "Ablauf", hint: "Was nach der Anfrage passiert" },
+  zusatzservices: { label: "Extras", hint: "Reinigung, Übergabe, Schlüssel" },
+  region: { label: "Einsatzgebiet", hint: "Nur wo Anfahrt und Termin Sinn ergeben" },
 };
 
 export function CustomerJourneyNav({
   items,
-  title = "Orientierung",
-  intro = "Direkt zum passenden Schritt.",
+  title = "Schnellwahl",
+  intro = "Direkt zur Stelle, die Sie gerade brauchen.",
 }: CustomerJourneyNavProps) {
   const router = useRouter();
   const [showMore, setShowMore] = useState(false);
@@ -104,7 +103,7 @@ export function CustomerJourneyNav({
                     <button
                       key={item.key}
                       type="button"
-                      aria-label={`${germanizeText(copy.label)} oeffnen`}
+                      aria-label={`${germanizeText(copy.label)} öffnen`}
                       onClick={() => handleSelect(item)}
                       className={cn(
                         "min-w-[152px] rounded-[1rem] border px-3.5 py-3 text-left transition",
@@ -126,7 +125,7 @@ export function CustomerJourneyNav({
                 <div className="relative shrink-0">
                   <button
                     type="button"
-                    aria-label="Mehr Orientierung oeffnen"
+                    aria-label="Weitere Schnellwahl öffnen"
                     aria-expanded={showMore}
                     onClick={() => setShowMore((value) => !value)}
                     className="inline-flex h-11 items-center gap-2 rounded-[1rem] border border-slate-200 bg-white px-3.5 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-600 transition hover:border-slate-300 hover:bg-slate-50"
@@ -149,7 +148,7 @@ export function CustomerJourneyNav({
                             <button
                               key={item.key}
                               type="button"
-                              aria-label={`${germanizeText(copy.label)} oeffnen`}
+                              aria-label={`${germanizeText(copy.label)} öffnen`}
                               onClick={() => handleSelect(item)}
                               className={cn(
                                 "w-full rounded-[1rem] border px-3.5 py-3 text-left transition",

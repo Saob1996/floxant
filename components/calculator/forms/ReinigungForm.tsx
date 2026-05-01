@@ -53,6 +53,21 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
         Objekt-Eckdaten
        </h3>
 
+       <div className="mb-6 flex flex-wrap gap-2">
+        {[
+         "Für Übergabe, laufende Betreuung und Objektservice",
+         "Fläche, Zustand und Extras steuern den Rahmen am stärksten",
+         "Je klarer der Zugang, desto belastbarer die Vorprüfung",
+        ].map((item) => (
+         <span
+          key={item}
+          className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-medium text-slate-600 shadow-sm shadow-slate-950/5"
+         >
+          {item}
+         </span>
+        ))}
+       </div>
+
        <div className="space-y-6">
         <FieldCard label="Zu reinigende Fläche">
          <div className="space-y-4">

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, ShieldCheck } from "lucide-react";
 
 import { ServiceType, useCalculatorStore } from "@/store/calculatorStore";
@@ -27,6 +28,19 @@ const serviceLabels: Partial<Record<ServiceType, string>> = {
   bueroumzug: "Büroumzug",
 };
 
+const serviceSwitchLinks: Array<{ href: string; label: string }> = [
+  { href: "/rechner?service=umzug", label: "Umzug" },
+  { href: "/rechner?service=reinigung", label: "Reinigung" },
+  { href: "/rechner?service=entsorgung", label: "Entsorgung" },
+  { href: "/rechner?service=bueroumzug", label: "Büroumzug" },
+];
+
+const conversionLinks = [
+  { href: "/buchung", label: "Direkt anfragen" },
+  { href: "/express-anfrage", label: "Express-Check" },
+  { href: "/anfrage-mit-preisrahmen", label: "Budget mitsenden" },
+];
+
 export const IntakeWizard: React.FC<IntakeWizardProps> = ({
   dic,
   serviceType,
@@ -42,6 +56,7 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
 
   const [currentStep, setCurrentStep] = useState(1);
   const isLastStep = currentStep === steps.length;
+  const progress = steps.length > 0 ? (currentStep / steps.length) * 100 : 0;
 
   const handleNext = () => {
     if (isLastStep) {
@@ -74,12 +89,12 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
                   <ShieldCheck className="h-4 w-4" />
                   Strukturierte Vorprüfung
                 </div>
-                <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 lg:text-4xl">
+                <h2 className="mt-5 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.022em] text-slate-950 lg:text-4xl">
                   {serviceLabels[serviceType] || "Service"} Schritt für Schritt vorbereiten
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Wir führen Sie ruhig durch die wichtigsten Angaben, damit aus wenigen Eckdaten
-                  eine glaubwürdige erste Einordnung wird.
+                  Wir führen Sie ruhig durch die wichtigsten Angaben. So werden Volumen, Fläche,
+                  Zugang, Zusatzleistungen und Terminlage sichtbar, bevor ein Auftrag verbindlich wird.
                 </p>
               </div>
 
@@ -127,6 +142,15 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
                 );
               })}
             </div>
+
+            <div className="mt-5">
+              <div className="h-2 overflow-hidden rounded-full bg-slate-200/80">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 transition-all duration-300"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="relative z-10 min-h-[440px] pt-8">
@@ -166,7 +190,47 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
 
         <div className="mt-6 flex items-center gap-3 rounded-[1.6rem] border border-slate-200 bg-white/90 px-5 py-4 text-sm text-slate-600 shadow-sm shadow-slate-950/5">
           <HelpCircle size={18} className="shrink-0 text-blue-600" />
-          Fragen zum Ablauf? Wir begleiten Sie gerne persönlich und ohne Portal-Chaos.
+          Fragen zum Ablauf? Beschreiben Sie kurz den Fall. Wir prüfen, welche Lösung realistisch ist.
+        </div>
+        <div className="mt-4 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="rounded-[1.6rem] border border-slate-200 bg-white/92 px-5 py-5 shadow-sm shadow-slate-950/5">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+              Service wechseln
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {serviceSwitchLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "rounded-full border px-3 py-2 text-[11px] font-semibold shadow-sm shadow-slate-950/5 transition",
+                    item.href.endsWith(`service=${serviceType}`)
+                      ? "border-blue-200 bg-blue-50 text-blue-700"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[1.6rem] border border-slate-200 bg-white/92 px-5 py-5 shadow-sm shadow-slate-950/5">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+              Schnellwege
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {conversionLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

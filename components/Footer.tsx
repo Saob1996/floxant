@@ -29,16 +29,17 @@ const regionLinks = [
   { href: "/service-area-bayern", label: "Bayern" },
   { href: "/standorte", label: "Standorte" },
   { href: "/blog", label: "Ratgeber" },
+  { href: "/sitemap.xml", label: "Sitemap XML" },
+  { href: "/llms.txt", label: "LLMs.txt" },
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
 ];
 
-export function Footer({ dic }: { dic?: any }) {
+export function Footer({ dic }: { dic?: any } = {}) {
   const pathname = usePathname();
 
   if (pathname === "/private-client-service" || pathname === "/villenservice") return null;
-  if (!dic) return null;
 
   return (
     <footer className="relative overflow-hidden px-6 pb-12 pt-24">
@@ -50,12 +51,12 @@ export function Footer({ dic }: { dic?: any }) {
               <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">
                 Letzter klarer Schritt
               </div>
-              <h2 className="mt-6 max-w-3xl text-[clamp(2.1rem,4vw,4rem)] font-bold tracking-[-0.07em] text-white">
+              <h2 className="mt-6 max-w-3xl text-[clamp(2.1rem,4vw,4rem)] font-bold tracking-[-0.025em] text-white">
                 Lieber direkt sauber anfragen als später alles doppelt erklären.
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-                FLOXANT führt Anfrage, Preisgefühl und Ausführung ruhig zusammen. Wenn es konkret wird,
-                lieber direkt und gscheid.
+                FLOXANT führt Anfrage, Preisgefühl und Ausführung ruhig zusammen.
+                Wenn es konkret wird, lieber direkt, klar und mit genug Angaben.
               </p>
             </div>
 
@@ -96,8 +97,8 @@ export function Footer({ dic }: { dic?: any }) {
                 FLOXANT
               </Link>
               <p className="mt-4 max-w-sm text-sm leading-7 text-slate-700">
-                Premium Service Operating System für Umzug, Reinigung und Entrümpelung
-                mit operativer Basis in Regensburg und klarer Reichweite in Bayern.
+                Umzug, Reinigung, Entrümpelung und Übergabevorbereitung mit klarer
+                Abstimmung, realistischer Prüfung und sichtbaren nächsten Schritten.
               </p>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">

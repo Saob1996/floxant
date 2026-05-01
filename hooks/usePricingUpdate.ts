@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useCalculatorStore } from "@/store/calculatorStore";
 import { 
  calculateUmzugAdvanced, 
@@ -20,21 +20,25 @@ export function usePricingUpdate(dic: any) {
    return;
   }
 
-  let estimate = null;
+  const timer = window.setTimeout(() => {
+   let estimate = null;
 
-  try {
-   if (serviceType === "umzug" || serviceType === "seniorenumzug") {
-    estimate = calculateUmzugAdvanced(umzugData, baseDetails, dic);
-   } else if (serviceType === "reinigung") {
-    estimate = calculateReinigungAdvanced(reinigungData, dic);
-   } else if (serviceType === "entsorgung") {
-    estimate = calculateEntsorgungAdvanced(entsorgungData, dic);
+   try {
+    if (serviceType === "umzug" || serviceType === "seniorenumzug") {
+     estimate = calculateUmzugAdvanced(umzugData, baseDetails, dic);
+    } else if (serviceType === "reinigung") {
+     estimate = calculateReinigungAdvanced(reinigungData, dic);
+    } else if (serviceType === "entsorgung") {
+     estimate = calculateEntsorgungAdvanced(entsorgungData, dic);
+    }
+   } catch (err) {
+    console.error("Pricing Engine Error:", err);
    }
-  } catch (err) {
-   console.error("Pricing Engine Error:", err);
-  }
 
-  setAdvancedEstimate(estimate);
+   setAdvancedEstimate(estimate);
+  }, 120);
+
+  return () => window.clearTimeout(timer);
  }, [
   serviceType, 
   umzugData, 

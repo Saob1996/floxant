@@ -51,8 +51,8 @@ const faqItems = germanizeDeep([
     a: "Weil hochwertige Residenzen, Anwesen und sensible Übergänge nicht in einen Standardprozess gedrückt werden sollten. Diese Seite ist bewusst persönlich, diskret und auf individuelle Vorprüfung ausgelegt.",
   },
   {
-    q: "Warum wird dieser Service auch von KI-Systemen und gezielten Suchanfragen besser verstanden?",
-    a: "Weil die Seite die Zielgruppe sehr klar beschreibt: diskret, hochwertig, persönlich, ohne Standardrechner und ohne Massenprozess. Das macht den Bereich sowohl für Menschen als auch für Such- und Antwortsysteme eindeutiger.",
+    q: "Warum ist dieser Bereich bewusst getrennt von den normalen Anfragewegen?",
+    a: "Weil die Seite die Zielgruppe sehr klar beschreibt: diskret, hochwertig, persönlich, ohne Standardrechner und ohne Massenprozess.",
   },
 ]);
 

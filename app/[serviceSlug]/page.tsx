@@ -8,6 +8,7 @@ import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "@/get-dictionary";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import ReviewCarousel from "@/components/trust/ReviewCarousel";
+import { buildWhatsAppHref, getWhatsAppContext } from "@/lib/whatsapp";
 const SERVICE_SLUGS = [
   "umzug",
   "bueroumzug",
@@ -65,6 +66,20 @@ function getServiceType(slug: ServiceSlug): string {
       return "DebrisRemovalService";
     default:
       return "Service";
+  }
+}
+
+function getProviderSchemaType(slug: ServiceSlug): string | string[] {
+  switch (slug) {
+    case "reinigung":
+      return "HouseCleaningService";
+    case "entruempelung":
+      return ["LocalBusiness", "ProfessionalService"];
+    case "montage":
+    case "halteverbotszone":
+      return "ProfessionalService";
+    default:
+      return "MovingCompany";
   }
 }
 
@@ -133,7 +148,7 @@ export default async function CoreServicePage({ params }: PageProps) {
       : null;
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
-    "@type": "MovingCompany",
+    "@type": getProviderSchemaType(serviceSlug),
     "@id": `${canonicalUrl}#localbusiness`,
     name: company.name,
     url: canonicalUrl,
@@ -159,7 +174,7 @@ export default async function CoreServicePage({ params }: PageProps) {
     name: content.hero_title || serviceSlug,
     description: content.hero_desc || content.meta_desc || "",
     provider: {
-      "@type": "MovingCompany",
+      "@type": getProviderSchemaType(serviceSlug),
       name: company.name,
       telephone: company.phoneRaw,
       email: company.email,
@@ -203,6 +218,10 @@ export default async function CoreServicePage({ params }: PageProps) {
   );
   const relatedServicesTitle = sanitizeString(servicesSection.title, "Weitere Leistungen");
   const hubNote = sanitizeString(area.hub_note);
+  const whatsappHref = buildWhatsAppHref(
+    company.phoneRaw,
+    getWhatsAppContext(`/${serviceSlug}`, serviceSlug).message
+  );
   return (
     <main className="min-h-screen bg-background">
       {faqJsonLd && (
@@ -242,6 +261,35 @@ export default async function CoreServicePage({ params }: PageProps) {
               {content.hero_desc}
             </p>
           )}
+        </div>
+      </section>
+      <section className="px-6 pb-12">
+        <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Realistisch statt Lockpreis",
+              text: "Ein Auftrag wird erst belastbar, wenn Umfang, Zugang, Terminlage und Zusatzleistungen zusammenpassen.",
+            },
+            {
+              title: "Klare Zuständigkeit",
+              text: "FLOXANT prüft, welcher Service wirklich gebraucht wird und welcher nächste Schritt sinnvoll ist.",
+            },
+            {
+              title: "Übergabe mitdenken",
+              text: "Wenn Reinigung, Restmengen, Schlüssel oder Dokumentation relevant sind, werden sie früh eingeordnet.",
+            },
+          ].map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[1.45rem] border border-slate-200 bg-white px-5 py-5 shadow-sm shadow-slate-950/5"
+            >
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-primary">
+                FLOXANT Prinzip
+              </div>
+              <h2 className="mt-3 text-lg font-semibold text-slate-950">{item.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+            </article>
+          ))}
         </div>
       </section>
       {(content.intro_title || content.intro_p1 || content.intro_p2) && (
@@ -423,7 +471,7 @@ export default async function CoreServicePage({ params }: PageProps) {
             <p className="text-sm text-muted-foreground">{whatsappCtaDesc}</p>
           </div>
           <a
-            href={`https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=Hallo%20FLOXANT%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ein%20Angebot.`}
+            href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
             className="whitespace-nowrap rounded-xl bg-[#25D366] px-8 py-4 font-bold text-white shadow-lg shadow-green-900/20 transition-all hover:bg-[#128C7E]"

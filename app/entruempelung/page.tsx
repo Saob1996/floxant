@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "entruempelung",
     title: "Entrümpelung in Regensburg und Bayern | FLOXANT",
     description:
-      "FLOXANT organisiert Entrümpelung, Wohnungsauflösung und fachgerechte Entsorgung in Regensburg und Bayern mit klarer Vorprüfung und besenreiner Übergabe.",
+      "FLOXANT organisiert Entrümpelung, Wohnungsauflösung und fachgerechte Entsorgung in Regensburg und Bayern mit realistischer Vorprüfung und besenreiner Übergabe.",
   });
 }
 
@@ -43,11 +43,15 @@ export default async function EntruempelungPillarPage() {
     },
     {
       q: "Für wen ist der Service sinnvoll?",
-      a: "Die Leistung ist für Haushalte, Vermieter, Erbfälle und Unternehmen gedacht, die Räume schnell, diskret und besenrein freibekommen müssen. Für normale Büro- und Gewerbegegenstände gibt es zusätzlich die gezielte Firmenentsorgung.",
+      a: "Die Leistung ist für Haushalte, Vermieter, Erbfälle und Unternehmen gedacht, die Räume schnell, diskret und besenrein freibekommen müssen. Besonders sinnvoll ist sie vor Umzug, Verkauf, Renovierung oder Wohnungsübergabe.",
     },
     {
       q: "Wovon hängt der Preisrahmen ab?",
-      a: "Entscheidend sind Volumen, Materialarten, Zugangswege, Laufstrecken, Demontage, Dringlichkeit und Sonderaufwand. Genau diese Punkte fließen in die Vorprüfung ein.",
+      a: "Entscheidend sind Volumen, Materialarten, Zugangswege, Laufstrecken, Demontage, Dringlichkeit und Sonderaufwand. Genau diese Punkte fließen in die Vorprüfung ein, damit es nicht am Einsatztag zu Nachforderungen kommt.",
+    },
+    {
+      q: "Was bedeutet Entrümpelung als Übergabevorbereitung?",
+      a: "Entrümpelung bedeutet nicht nur Wegtragen. Es geht darum, Räume wieder entscheidbar zu machen: trennen, tragen, entsorgen und die Fläche so hinterlassen, dass Reinigung, Renovierung oder Übergabe möglich werden.",
     },
     {
       q: "Wie starte ich die Anfrage?",
@@ -88,7 +92,7 @@ export default async function EntruempelungPillarPage() {
         breadcrumbs={breadcrumbs}
         heroBadge="Entrümpelung mit Schwerpunkt Regensburg und Bayern"
         heroTitle="Entrümpelung und Wohnungsauflösung in Regensburg und Bayern"
-        heroIntro="FLOXANT organisiert Räumungen für Wohnungen, Häuser, Keller und Gewerbeflächen. Diese Seite erklärt klar, was der Service ist, für wen er gedacht ist, wann er sinnvoll wird und wie fachgerechte Entsorgung eingebunden ist."
+        heroIntro="FLOXANT organisiert Räumungen für Wohnungen, Häuser, Keller und Gewerbeflächen. Entrümpelung bedeutet dabei nicht nur Wegtragen, sondern Räume wieder entscheidbar machen: trennen, tragen, entsorgen und den nächsten Schritt ermöglichen."
         heroImageSrc="/assets/service-clearance.png"
         heroImageAlt="FLOXANT Entrümpelung in Regensburg und Bayern"
         heroCards={[
@@ -101,7 +105,7 @@ export default async function EntruempelungPillarPage() {
           {
             icon: Trash2,
             title: "Was ist das?",
-            text: "Ein Service für Sichtung, Räumung, Tragearbeit, Abtransport und geregelte Entsorgung.",
+            text: "Ein Service für Sichtung, Räumung, Tragearbeit, Abtransport und geregelte Entsorgung mit klarer Übergabelogik.",
           },
           {
             icon: Home,
@@ -111,7 +115,7 @@ export default async function EntruempelungPillarPage() {
           {
             icon: Building2,
             title: "Wann sinnvoll?",
-            text: "Vor Verkauf, Sanierung, Übergabe, Neuvermietung oder wenn Keller und Nebenräume systematisch leer werden müssen.",
+            text: "Vor Umzug, Verkauf, Sanierung, Übergabe, Neuvermietung oder wenn Keller und Nebenräume systematisch leer werden müssen.",
           },
           {
             icon: ShieldCheck,
@@ -124,16 +128,16 @@ export default async function EntruempelungPillarPage() {
           {
             icon: Leaf,
             title: "Fachgerechte Entsorgung",
-            text: "Es geht nicht nur um das Wegtragen. FLOXANT trennt Materialien, organisiert Transport und denkt die spätere Entsorgung im Ablauf mit.",
+            text: "Es geht nicht nur um das Wegtragen. FLOXANT trennt Materialien, organisiert Transport und denkt Entsorgungswege und Flächenzustand im Ablauf mit.",
           },
           {
             icon: Home,
             title: "Diskretion und Übergabe",
-            text: "Gerade bei Nachlässen, Vermietung oder schwierigen Objektlagen zählen ruhige Kommunikation, klare Grenzen und besenreine Ergebnisse.",
+            text: "Gerade bei Nachlässen, Vermietung oder schwierigen Objektlagen zählen ruhige Kommunikation, klare Grenzen und ein Zustand, der Reinigung oder Übergabe ermöglicht.",
           },
         ]}
         costTitle="Regionale und operative Einordnung"
-        costIntro="Der Fokus auf Regensburg und Bayern hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung oder Umzug."
+        costIntro="Der Fokus auf Regensburg und Bayern hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
         costFactors={[
           "Volumen und Materialarten",
           "Zugang, Laufwege und Stockwerke",
@@ -141,11 +145,11 @@ export default async function EntruempelungPillarPage() {
           "Dringlichkeit und Terminfenster",
         ]}
         calculatorTitle="Direkter Einstieg mit echter Datenbasis"
-        calculatorText="Über den Rechner oder die passende Zusatzseite für Kleinmengen lässt sich der Bedarf schnell und sauber eingrenzen, statt nur grob beschrieben zu werden."
+        calculatorText="Über den Rechner oder die passende Zusatzseite für Kleinmengen lässt sich der Bedarf schnell und sauber eingrenzen. Der Preisrahmen bleibt Orientierung, bis Volumen, Zugang, Materialarten und Termin geprüft sind."
         faqTitle="Häufige Fragen zur Entrümpelung"
         faqItems={faqItems}
         bookingTitle="Entrümpelung in Regensburg oder Bayern anfragen"
-        bookingText="Nutzen Sie den Rechner für einen klaren Orientierungsrahmen und eine saubere Einsatzvorbereitung. So bleibt alles verständlich, ordentlich und nah an der Realität."
+        bookingText="Nutzen Sie den Rechner für einen klaren Orientierungsrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, was weg muss und welcher nächste Schritt danach ansteht: Übergabe, Verkauf, Renovierung oder Umzug."
         serviceLinksTitle="Wichtige interne Einstiege rund um Räumung und Entsorgung"
         serviceLinks={[
           { href: "/rechner", label: "Entrümpelung direkt einordnen" },

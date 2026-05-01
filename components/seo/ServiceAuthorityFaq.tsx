@@ -29,16 +29,16 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
    "Diese Fragen helfen Kunden und Suchsystemen zu verstehen, wann ein Umzug mit FLOXANT sinnvoll ist und welche Angaben vor der Anfrage wirklich zählen.",
   faqs: [
    {
+    q: "Warum kalkuliert FLOXANT nicht einfach den billigsten Umzugspreis?",
+    a: "Weil ein künstlich niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. Wir kalkulieren lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
+   },
+   {
     q: "Wann ist ein professioneller Umzug sinnvoller als ein Einzeltransport?",
     a: "Ein professioneller Umzug ist sinnvoll, wenn mehrere Faktoren zusammenkommen: Volumen, Etagen, lange Laufwege, Montage, enger Terminplan, empfindliches Inventar oder eine Übergabe mit Reinigung.",
    },
    {
     q: "Welche Angaben verbessern die erste Vorprüfung?",
     a: "Hilfreich sind Zimmerzahl, grobes Volumen, Start- und Zielort, Etagen, Aufzug, Laufwege, gewünschter Termin, Montagebedarf und besondere Gegenstände.",
-   },
-   {
-    q: "Warum nennt FLOXANT zuerst einen Preisrahmen?",
-    a: "Weil ein Umzug erst durch Zugang, Strecke, Umfang, Zeitfenster und Zusatzleistungen belastbar wird. Ein Preisrahmen ist ehrlicher als eine künstlich exakte Zahl.",
    },
   ],
   links: [
@@ -63,8 +63,8 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
     a: "Entscheidend sind Fläche, Objektart, Zustand, Möblierung, Fenster, Küche, Bad, Sonderflächen und Terminlage.",
    },
    {
-    q: "Wie unterscheidet sich FLOXANT von einer offenen Alltagsreinigung?",
-    a: "FLOXANT fokussiert definierte Ergebnisse, klare Leistungsgrenzen und planbare Übergabe statt unklarer Stundenarbeit ohne Zielbild.",
+    q: "Warum ist eine Wohnungsübergabe mehr als nur Reinigung?",
+    a: "Weil bei einer Übergabe nicht nur Sauberkeit zählt. Auch Restgegenstände, Schlüssel, Zustand, Fotos, Zeitfenster und Kommunikation mit Vermieter oder Hausverwaltung können entscheidend sein.",
    },
   ],
   links: [
@@ -89,8 +89,8 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
     a: "Wichtig sind Räume, geschätztes Volumen, Materialarten, Etagen, Aufzug, Laufwege, Demontagebedarf, Dringlichkeit und ob Sonderabfälle ausgeschlossen sind.",
    },
    {
-    q: "Welche Grenzen gelten bei Entsorgung?",
-    a: "FLOXANT fokussiert normale Haushalts-, Möbel-, Büro- und Gewerbegegenstände. Sonderabfälle oder erlaubnispflichtige Stoffe müssen separat geklärt werden.",
+    q: "Was bedeutet Entrümpelung im Übergabeprozess?",
+    a: "Entrümpelung bedeutet nicht nur Wegtragen. Es geht darum, Räume wieder entscheidbar zu machen: trennen, tragen, entsorgen und die Fläche so hinterlassen, dass der nächste Schritt möglich wird.",
    },
   ],
   links: [
@@ -133,16 +133,16 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
    "Der FLOXANT Rechner ist ein strukturierter Einstieg in die Vorprüfung. Er soll Klarheit schaffen, ohne einen künstlich sicheren Endpreis zu versprechen.",
   faqs: [
    {
-    q: "Warum ist der Rechner nicht als Festpreis gemeint?",
-    a: "Weil Zugang, Laufwege, Volumen, Fläche, Terminlage und Zusatzleistungen erst nach konkreter Prüfung vollständig belastbar sind.",
+    q: "Ist der Rechnerpreis verbindlich?",
+    a: "Nein. Der Rechner dient als Orientierung. Verbindlich wird ein Auftrag erst nach Prüfung der Angaben und schriftlicher Bestätigung.",
    },
    {
     q: "Was verbessert die Qualität der Einschätzung?",
     a: "Je genauer Service, Ort, Umfang, Etagen, Aufzug, Zusatzleistungen, Terminwunsch und Preisvorstellung angegeben werden, desto nutzbarer wird die Vorprüfung.",
    },
    {
-    q: "Wie wird die Preisvorstellung des Kunden genutzt?",
-    a: "Sie ergänzt die System-Einschätzung, überschreibt sie aber nicht. FLOXANT kann dadurch besser prüfen, ob Umfang, Budget und Umsetzung zusammenpassen.",
+    q: "Warum zeigt FLOXANT Orientierung statt Lockpreis?",
+    a: "Künstlich niedrige Preise helfen niemandem, wenn am Einsatztag ein Fahrzeug, Team oder Zeitfenster fehlt. Der Rechner macht Kostentreiber sichtbar und führt danach in die realistische Prüfung.",
    },
   ],
   links: [

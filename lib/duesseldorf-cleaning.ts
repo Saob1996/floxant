@@ -1,0 +1,197 @@
+import type { Metadata } from "next";
+
+export const DUESSELDORF_CLEANING = {
+  brand: "FLOXANT Reinigung Düsseldorf",
+  shortBrand: "FLOXANT Reinigung",
+  phoneDisplay: "015771105087",
+  phoneRaw: "+4915771105087",
+  email:
+    process.env.NEXT_PUBLIC_DUESSELDORF_CLEANING_EMAIL ||
+    process.env.DUESSELDORF_CLEANING_EMAIL ||
+    "reinigung-duesseldorf@floxant.de",
+  address: {
+    streetAddress: "Breite Str. 22",
+    postalCode: "40213",
+    city: "Düsseldorf",
+    country: "Deutschland",
+    countryCode: "DE",
+  },
+  urlBase: "https://www.floxant.de/duesseldorf",
+  mainPath: "/duesseldorf/reinigung",
+  districts: [
+    "Düsseldorf Innenstadt",
+    "Altstadt",
+    "Stadtmitte",
+    "Pempelfort",
+    "Flingern",
+    "Bilk",
+    "Oberbilk",
+    "Derendorf",
+    "Düsseltal",
+    "Benrath",
+    "Gerresheim",
+    "Kaiserswerth",
+  ],
+  nearbyAreas: ["Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath"],
+} as const;
+
+export const DUESSELDORF_CLEANING_SERVICES = [
+  {
+    slug: "wohnungsreinigung",
+    href: "/duesseldorf/wohnungsreinigung",
+    label: "Wohnungsreinigung",
+    shortLabel: "Wohnung",
+    description:
+      "Für bewohnte oder leere Wohnungen, wenn Küche, Bad, Böden, Fensterbereiche und schwer zugängliche Stellen wieder stimmig wirken sollen.",
+  },
+  {
+    slug: "bueroreinigung",
+    href: "/duesseldorf/bueroreinigung",
+    label: "Büroreinigung",
+    shortLabel: "Büro",
+    description:
+      "Für Büros, Praxen und kleine Gewerbeflächen mit klarer Abstimmung zu Zeiten, Umfang, Frequenz und laufendem Betrieb.",
+  },
+  {
+    slug: "grundreinigung",
+    href: "/duesseldorf/grundreinigung",
+    label: "Grundreinigung",
+    shortLabel: "Grundreinigung",
+    description:
+      "Für Flächen mit höherem Aufwand, wenn normale Unterhaltsreinigung nicht mehr ausreicht und Zustand, Material und Anspruch genauer geprüft werden müssen.",
+  },
+  {
+    slug: "treppenhausreinigung",
+    href: "/duesseldorf/treppenhausreinigung",
+    label: "Treppenhausreinigung",
+    shortLabel: "Treppenhaus",
+    description:
+      "Für Treppenhäuser, Eingangsbereiche und gemeinschaftlich genutzte Flächen, bei denen Regelmäßigkeit und ein sauberer Eindruck zählen.",
+  },
+  {
+    slug: "endreinigung",
+    href: "/duesseldorf/endreinigung",
+    label: "Endreinigung / Übergabereinigung",
+    shortLabel: "Endreinigung",
+    description:
+      "Für Rückgabe, Nachmieterwechsel oder neue Nutzung, wenn kleine Rückstände und vergessene Bereiche schnell sichtbar werden.",
+  },
+  {
+    slug: "reinigung",
+    href: "/duesseldorf/reinigung",
+    label: "Reinigung nach Auszug oder vor Einzug",
+    shortLabel: "Ein- und Auszug",
+    description:
+      "Für Einzug, Auszug und Schlüsselübergabe, wenn Zeitfenster knapp sind und der Zustand vor dem nächsten Schritt stimmen muss.",
+  },
+] as const;
+
+export const DUESSELDORF_CLEANING_PRICE_CONFIG = {
+  wohnungsreinigung: { minPerM2: 2.2, maxPerM2: 3.2, minimum: 89 },
+  bueroreinigung: { minPerM2: 1.8, maxPerM2: 2.8, minimum: 79 },
+  grundreinigung: { minPerM2: 3.2, maxPerM2: 5.2, minimum: 119 },
+  treppenhausreinigung: { minPerM2: 1.5, maxPerM2: 2.5, minimum: 69 },
+  uebergabereinigung: { minPerM2: 3.0, maxPerM2: 4.8, minimum: 89 },
+  endreinigung: { minPerM2: 3.2, maxPerM2: 5.0, minimum: 89 },
+} as const;
+
+export const DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE =
+  "Hallo FLOXANT Reinigung Düsseldorf, ich möchte eine unverbindliche Reinigungsanfrage stellen.";
+
+export function buildDuesseldorfCleaningWhatsAppHref(message: string) {
+  const phone = DUESSELDORF_CLEANING.phoneRaw.replace(/\D/g, "");
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
+export function getDuesseldorfCleaningUrl(path = "/reinigung") {
+  if (path.startsWith("/duesseldorf")) {
+    return `https://www.floxant.de${path}`;
+  }
+
+  return `${DUESSELDORF_CLEANING.urlBase}${path}`;
+}
+
+export function buildDuesseldorfCleaningMetadata(input: {
+  path: string;
+  title: string;
+  description: string;
+}): Metadata {
+  const canonical = getDuesseldorfCleaningUrl(input.path);
+
+  return {
+    title: input.title,
+    description: input.description,
+    alternates: {
+      canonical,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: "de_DE",
+      url: canonical,
+      title: input.title,
+      description: input.description,
+      siteName: DUESSELDORF_CLEANING.brand,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: input.title,
+      description: input.description,
+    },
+    other: {
+      "geo.region": "DE-NW",
+      "geo.placename": "Düsseldorf",
+      "geo.position": "51.2277;6.7735",
+      "search-intent": "Reinigungsdienst in Düsseldorf direkt anfragen",
+      "content-tags":
+        "FLOXANT Reinigung Düsseldorf, Reinigung Düsseldorf, Wohnungsreinigung Düsseldorf, Büroreinigung Düsseldorf, Grundreinigung Düsseldorf, Treppenhausreinigung Düsseldorf, Endreinigung Düsseldorf",
+      "business:contact_data:street_address":
+        DUESSELDORF_CLEANING.address.streetAddress,
+      "business:contact_data:postal_code":
+        DUESSELDORF_CLEANING.address.postalCode,
+      "business:contact_data:locality": DUESSELDORF_CLEANING.address.city,
+      "business:contact_data:country_name":
+        DUESSELDORF_CLEANING.address.country,
+      "business:contact_data:phone_number": DUESSELDORF_CLEANING.phoneRaw,
+      "business:contact_data:email": DUESSELDORF_CLEANING.email,
+      "service-area": "Düsseldorf, Neuss, Ratingen, Meerbusch, Hilden, Erkrath",
+      "primary-services":
+        "Wohnungsreinigung, Büroreinigung, Grundreinigung, Treppenhausreinigung, Übergabereinigung, Endreinigung",
+      "business-category": "CleaningService, LocalBusiness, Reinigungsdienst",
+      "local-seo-focus":
+        "Reinigungsdienst Düsseldorf für Wohnungen, Büros, Treppenhäuser, Grundreinigung und saubere Übergaben",
+      "ai-readable-summary":
+        "FLOXANT Reinigung Düsseldorf prüft Reinigungsanfragen für Wohnungsreinigung, Büroreinigung, Grundreinigung, Treppenhausreinigung und Endreinigung in Düsseldorf und nahen Orten realistisch nach Umfang, Zustand, Termin und Budget.",
+      "answer-engine-service-summary":
+        "Reinigung in Düsseldorf und Umgebung mit klaren Anfragewegen, sichtbaren lokalen Kontaktdaten, Preisrechner, WhatsApp und Budgetprüfung.",
+      "primary-conversion-url": canonical,
+      "google-business-profile-url": canonical,
+      "google-business-preferred-link": canonical,
+      "google-maps-contact-url": canonical,
+      "maps-booking-url": canonical,
+      "primary-cta": "Unverbindliche Reinigungsanfrage in Düsseldorf starten",
+      "direct-booking-action":
+        "Reinigungsart wählen, Preisrahmen prüfen, eigenes Budget nennen und unverbindlich per Formular oder WhatsApp anfragen.",
+      "booking-entry":
+        "Die Hauptseite /duesseldorf/reinigung ist der direkte Einstieg für Google Business Profile und lokale Reinigungsanfragen.",
+      "ctr-promise":
+        "Reinigung in Düsseldorf: klarer Fokus, schnelle Anfrage, lokale Adresse, Preisrechner und ehrliche Budgetprüfung.",
+      "visual-content-policy":
+        "Saubere Räume, Gebäudeflächen, Checklisten und Reinigungsfokus statt Transport- oder Möbelmotive.",
+      "maps-ranking-support":
+        "Klare Düsseldorfer NAP-Daten, lokale CleaningService-Signale, direkte Anfragewege und semantisch getrennte Reinigungsseiten.",
+      "maps-relevance-signals":
+        "Breite Str. 22 Düsseldorf, Telefon 015771105087, lokale CleaningService-Seiten, sichtbare Kontaktangaben und klare Serviceabgrenzung.",
+    },
+  };
+}

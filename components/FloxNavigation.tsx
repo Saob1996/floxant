@@ -25,24 +25,62 @@ import { cn } from "@/lib/utils";
 const SERVICE_GROUPS = [
   {
     label: "Kernleistungen",
-    description: "Die direkten Hauptwege für Umzug, Reinigung und Entrümpelung.",
+    description: "Direkt zu den Leistungen, die Kunden am häufigsten brauchen.",
     items: [
-      { label: "Umzug", href: "/umzug" },
-      { label: "Reinigung", href: "/reinigung" },
-      { label: "Entrümpelung", href: "/entruempelung" },
-      { label: "Büroumzug", href: "/bueroumzug" },
+      {
+        label: "Umzug",
+        href: "/umzug#leistungen",
+        description: "Transport, Tragen, Laufwege und Übergabe sauber planen.",
+      },
+      {
+        label: "Reinigung",
+        href: "/reinigung#leistungen",
+        description: "Endreinigung, Grundreinigung und Übergabe realistisch prüfen.",
+      },
+      {
+        label: "Entrümpelung",
+        href: "/entruempelung#leistungen",
+        description: "Räume frei bekommen, Mengen klären, Entsorgung abstimmen.",
+      },
+      {
+        label: "Büroumzug",
+        href: "/bueroumzug#wizard",
+        description: "Arbeitsplätze, Inventar und Terminfenster mit weniger Reibung.",
+      },
     ],
   },
   {
     label: "Spezialwege",
-    description: "Für B2B-Reinigung, Rückfahrten, Firmenentsorgung und Premium-Fälle.",
+    description: "Für Fälle, die mehr Abstimmung als eine normale Anfrage brauchen.",
     items: [
-      { label: "Gewerbereinigung", href: "/gewerbereinigung-regensburg" },
-      { label: "Firmenentsorgung", href: "/firmenentsorgung" },
-      { label: "Leer-Rückfahrt", href: "/leerfahrt-rueckfahrt" },
-      { label: "Private Client", href: "/private-client-service" },
+      {
+        label: "Gewerbereinigung",
+        href: "/gewerbereinigung-regensburg",
+        description: "Büro, Praxis, Objekt und laufender Betrieb mit klaren Terminen.",
+      },
+      {
+        label: "Firmenentsorgung",
+        href: "/firmenentsorgung",
+        description: "Inventar, Archiv, Altgeräte und Mengen geordnet abgeben.",
+      },
+      {
+        label: "Leer-Rückfahrt",
+        href: "/leerfahrt-rueckfahrt",
+        description: "Beiladung oder Rückfahrt prüfen, wenn Route und Menge passen.",
+      },
+      {
+        label: "Private Client",
+        href: "/private-client-service",
+        description: "Diskrete Betreuung für sensible Haushalte und hochwertige Räume.",
+      },
     ],
   },
+];
+
+const NAV_SHORTCUTS = [
+  { label: "Kosten einschätzen", href: "/rechner" },
+  { label: "Budget nennen", href: "/anfrage-mit-preisrahmen" },
+  { label: "Direkt anfragen", href: "/buchung" },
 ];
 
 const DESKTOP_LINKS = [
@@ -80,7 +118,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
   const mobileLinks = useMemo(() => germanizeDeep(MOBILE_LINKS) as typeof MOBILE_LINKS, []);
 
   const servicesActive = serviceGroups.some((group) =>
-    group.items.some((item) => pathname === item.href),
+    group.items.some((item) => pathname === item.href.split("#")[0]),
   );
 
   const clearHideTimer = () => {
@@ -196,7 +234,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
               FLOXANT
             </span>
             <span className="mt-0.5 hidden text-[0.52rem] font-black uppercase tracking-[0.18em] text-slate-500 xl:block">
-              Premium Service Operating System für Regensburg und Bayern
+              Umzug, Reinigung & Übergabe klar geplant
             </span>
           </span>
         </Link>
@@ -241,19 +279,20 @@ export function FloxNavigation({ dic }: { dic: any }) {
                     <div className="mb-4 grid gap-3 md:grid-cols-2">
                       <div className="rounded-[1.1rem] border border-blue-100 bg-blue-50/70 px-4 py-4">
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                          Direkt statt überladen
+                          Direkt zur passenden Stelle
                         </div>
                         <p className="mt-2 text-sm leading-6 text-slate-700">
-                          FLOXANT trennt Hauptwege, Spezialfälle und direkte Anfragepfade bewusst,
-                          damit Kunden schneller zum passenden Einstieg kommen.
+                          Wählen Sie nicht erst eine lange Seite. Springen Sie direkt zu Leistung,
+                          Rechner, Budget oder Anfrage.
                         </p>
                       </div>
                       <div className="rounded-[1.1rem] border border-slate-200 bg-white px-4 py-4">
                         <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
-                          Regensburg zuerst
+                          Lokal, wenn es hilft
                         </div>
                         <p className="mt-2 text-sm leading-6 text-slate-700">
-                          Operative Basis in Regensburg, sauber geführte Einsätze in Bayern.
+                          Regensburg ist dort sichtbar, wo Nähe, Termin und Anfahrt für Kunden
+                          wirklich wichtig sind.
                         </p>
                       </div>
                     </div>
@@ -270,14 +309,31 @@ export function FloxNavigation({ dic }: { dic: any }) {
                               <Link
                                 key={item.href}
                                 href={item.href}
-                                className="group flex items-center justify-between rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                                className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                               >
-                                <span>{item.label}</span>
-                                <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
+                                <span className="flex items-center justify-between gap-3 text-sm font-semibold">
+                                  <span>{item.label}</span>
+                                  <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
+                                </span>
+                                <span className="mt-1.5 block text-xs leading-5 text-slate-500">
+                                  {item.description}
+                                </span>
                               </Link>
                             ))}
                           </div>
                         </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-3 grid gap-2 rounded-[1.15rem] border border-blue-100 bg-blue-50/70 p-3 sm:grid-cols-3">
+                      {NAV_SHORTCUTS.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="inline-flex items-center justify-center rounded-[0.9rem] border border-blue-100 bg-white px-3 py-2.5 text-[11px] font-black uppercase tracking-[0.13em] text-blue-800 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+                        >
+                          {item.label}
+                        </Link>
                       ))}
                     </div>
                   </m.div>
@@ -380,10 +436,10 @@ export function FloxNavigation({ dic }: { dic: any }) {
 
               <div className="rounded-[1.35rem] border border-blue-100 bg-blue-50 px-5 py-5 text-sm leading-6 text-slate-700">
                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                  Regensburg zuerst
+                  Schnell entscheiden
                 </div>
                 <p className="mt-2">
-                  Klare Anfragewege, ruhige Vorprüfung und feste Ansprechpartner statt Sucherei.
+                  Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen.
                 </p>
               </div>
             </div>
@@ -411,14 +467,31 @@ export function FloxNavigation({ dic }: { dic: any }) {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="flex items-center justify-between rounded-[1rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                        className="rounded-[1rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                       >
-                        <span>{item.label}</span>
-                        <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
+                        <span className="flex items-center justify-between gap-3 text-sm font-semibold">
+                          <span>{item.label}</span>
+                          <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
+                        </span>
+                        <span className="mt-1.5 block text-xs leading-5 text-slate-500">
+                          {item.description}
+                        </span>
                       </Link>
                     ))}
                   </div>
                 </div>
+              ))}
+            </div>
+
+            <div className="mt-4 grid gap-2 sm:grid-cols-3">
+              {NAV_SHORTCUTS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-[1.05rem] border border-blue-100 bg-blue-50 px-3.5 py-3 text-center text-[11px] font-black uppercase tracking-[0.13em] text-blue-900"
+                >
+                  {item.label}
+                </Link>
               ))}
             </div>
 

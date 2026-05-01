@@ -77,7 +77,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
               {t(am?.title, `Lokale Stärke in ${city}`)}
             </div>
             <h2 className="mt-6 text-[2.2rem] font-bold tracking-tight text-slate-950 md:text-[2.7rem]">
-              {t(am?.subtitle, `Regensburg zuerst gedacht, für ${city} und ${region} sauber geplant.`)}
+              {t(am?.subtitle, `Für ${city} und ${region} nachvollziehbar geplant.`)}
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700">
               {t(

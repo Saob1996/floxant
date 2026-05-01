@@ -83,8 +83,8 @@ export function BlogArticlePage({
               {germanizeText(intro)}
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-500">
-              Wir halten es bewusst verständlich, direkt und ohne unnötiges Fachgerede. Wenn Sie
-              mögen, gern ganz unkompliziert: lesen, einordnen und danach einfach anfragen.
+              Der Beitrag ordnet Problem, Risiko und nächsten Schritt sachlich ein. Ziel ist eine
+              realistische Entscheidung, bevor ein Auftrag verbindlich geplant wird.
             </p>
           </header>
 
@@ -193,7 +193,7 @@ export function BlogArticlePage({
                   </p>
                   <p className="mt-3 text-xs leading-relaxed text-slate-500">
                     Kurz gesagt: lieber ehrlich und sauber vorprüfen als schnell irgendetwas
-                    versprechen. So läuft es am Ende für beide Seiten entspannter.
+                    versprechen. So bleibt der Ablauf für beide Seiten belastbarer.
                   </p>
                 </div>
               </div>

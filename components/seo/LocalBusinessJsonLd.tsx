@@ -1,4 +1,9 @@
 import { company } from "@/lib/company";
+import {
+  BAVARIA_DIRECT_DEMAND_LINKS,
+  BAVARIA_MAPS_SERVICE_INTENTS,
+  BAVARIA_METRO_DISTRICT_LINKS,
+} from "@/lib/bavaria-coverage";
 
 export function LocalBusinessJsonLd() {
   const geoLatitude = Number(company.geo.lat.toFixed(5));
@@ -6,7 +11,7 @@ export function LocalBusinessJsonLd() {
 
   const areaServed = company.primaryServiceAreas.map((area) => ({
     "@type":
-      area === "Bayern" || area === "Baden-Württemberg"
+      area === "Bayern" || area.startsWith("Baden")
         ? "State"
         : area === "Oberpfalz" || area === "Landkreis Regensburg"
           ? "AdministrativeArea"
@@ -18,13 +23,54 @@ export function LocalBusinessJsonLd() {
     { name: "Buchung und Anfrage", url: company.bookingUrl },
     { name: "Umzug", url: `${company.url}/umzug` },
     { name: "Reinigung", url: `${company.url}/reinigung` },
-    { name: "Entrümpelung", url: `${company.url}/entruempelung` },
-    { name: "Büroumzug", url: `${company.url}/bueroumzug` },
+    { name: "Entruempelung", url: `${company.url}/entruempelung` },
+    { name: "Bueroumzug", url: `${company.url}/bueroumzug` },
+    { name: "Einlagerung", url: `${company.url}/einlagerung` },
+    { name: "Akteneinlagerung Regensburg", url: `${company.url}/akteneinlagerung-regensburg` },
     { name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
     { name: "Firmenentsorgung", url: `${company.url}/firmenentsorgung` },
     { name: "Leer-Rückfahrt", url: `${company.url}/leerfahrt-rueckfahrt` },
     { name: "Private Client Service", url: `${company.url}/private-client-service` },
   ];
+
+  const mapsLandingPages = [
+    { name: "FLOXANT Buchung", url: company.mapsPreferredEntryUrl },
+    { name: "FLOXANT Kontakt", url: company.contactUrl },
+    { name: "FLOXANT Standorte", url: company.locationsUrl },
+    { name: "FLOXANT Servicegebiet Bayern", url: company.serviceAreaUrl },
+    { name: "FLOXANT Umzug Regensburg", url: `${company.url}/umzug-regensburg` },
+    { name: "FLOXANT Reinigung Regensburg", url: `${company.url}/reinigung-regensburg` },
+    { name: "FLOXANT Entruempelung Regensburg", url: `${company.url}/entruempelung-regensburg` },
+    { name: "FLOXANT Bueroumzug Regensburg", url: `${company.url}/bueroumzug-regensburg` },
+    { name: "FLOXANT Einlagerung", url: `${company.url}/einlagerung` },
+    { name: "FLOXANT Akteneinlagerung Regensburg", url: `${company.url}/akteneinlagerung-regensburg` },
+    { name: "FLOXANT Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
+  ];
+
+  const directDemandPages = BAVARIA_DIRECT_DEMAND_LINKS.map((item) => ({
+    name: `FLOXANT ${item.label}`,
+    url: `${company.url}${item.href}`,
+    description: item.note,
+  }));
+
+  const metroDistrictPages = BAVARIA_METRO_DISTRICT_LINKS.map((item) => ({
+    name: `FLOXANT ${item.label}`,
+    url: `${company.url}${item.href}`,
+    description: item.note,
+  }));
+
+  const mapsIntentPages = BAVARIA_MAPS_SERVICE_INTENTS.flatMap((intent) => [
+    {
+      name: `FLOXANT ${intent.title}`,
+      url: `${company.url}${intent.primary.href}`,
+      description: intent.description,
+    },
+    ...intent.supporting.map((item) => ({
+      name: `FLOXANT ${item.label}`,
+      url: `${company.url}${item.href}`,
+      description: intent.query,
+    })),
+  ]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -34,7 +80,7 @@ export function LocalBusinessJsonLd() {
     name: company.name,
     alternateName: ["FLOXANT Premium Services"],
     description:
-      "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg und Bayern.",
+      "FLOXANT bietet Umzug, Reinigung, Entruempelung, Bueroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rueckfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg und Bayern.",
     image: [
       `${company.url}/og.jpg`,
       `${company.url}/opengraph-image`,
@@ -43,12 +89,13 @@ export function LocalBusinessJsonLd() {
     logo: `${company.url}/logo_v10.png`,
     url: company.url,
     hasMap: company.mapsSearchUrl,
+    maps: company.mapsSearchUrl,
     telephone: company.phoneRaw,
     email: company.email,
     priceRange: "$$",
     currenciesAccepted: "EUR",
-    paymentAccepted: "Überweisung, Rechnung, Kartenzahlung nach Vereinbarung",
-    slogan: "Klare Vorprüfung statt Lockpreis.",
+    paymentAccepted: "Ueberweisung, Rechnung, Kartenzahlung nach Vereinbarung",
+    slogan: "Klare Vorpruefung statt Lockpreis.",
     address: {
       "@type": "PostalAddress",
       streetAddress: company.streetAddress,
@@ -70,20 +117,32 @@ export function LocalBusinessJsonLd() {
     knowsAbout: [
       "Umzugsunternehmen Regensburg",
       "Reinigungsfirma Regensburg",
-      "Entrümpelung Regensburg",
-      "Büroumzug Regensburg",
+      "Entruempelung Regensburg",
+      "Bueroumzug Regensburg",
+      "Einlagerung Regensburg",
+      "Akteneinlagerung Regensburg",
       "Firmenentsorgung Regensburg",
       "Gewerbereinigung Regensburg",
-      "Büroreinigung Regensburg",
+      "Bueroreinigung Regensburg",
       "Praxisreinigung Regensburg",
       "Hotelreinigung Regensburg",
       "Treppenhausreinigung Regensburg",
       "Private Client Service Bayern",
       "Beiladung",
       "Leer-Rückfahrt",
-      "Buchung über Google Maps",
+      "Buchung ueber Google Maps",
       "Direkter Buchungslink",
+      "Google Unternehmensprofil Regensburg",
       "Standorte Bayern",
+      "Servicegebiet Bayern",
+      "Umzug Muenchen",
+      "Reinigung Nuernberg",
+      "Umzug Landshut",
+      "Umzug Ingolstadt",
+      "Reinigung Bamberg",
+      "Entruempelung Rosenheim",
+      "Umzug Wuerzburg",
+      ...BAVARIA_MAPS_SERVICE_INTENTS.flatMap((intent) => [intent.title, intent.query]),
     ],
     contactPoint: [
       {
@@ -107,7 +166,12 @@ export function LocalBusinessJsonLd() {
       {
         "@type": "Action",
         name: "Buchung oder Anfrage starten",
-        target: company.businessProfilePreferredUrl,
+        target: company.mapsPreferredEntryUrl,
+      },
+      {
+        "@type": "ViewAction",
+        name: "Standort bei Google Maps ansehen",
+        target: company.mapsSearchUrl,
       },
       {
         "@type": "Action",
@@ -177,26 +241,29 @@ export function LocalBusinessJsonLd() {
       },
     ],
     subjectOf: [
-      {
+      ...mapsLandingPages.map((item) => ({
         "@type": "WebPage",
-        name: "FLOXANT Buchung",
-        url: company.businessProfilePreferredUrl,
-      },
-      {
+        name: item.name,
+        url: item.url,
+      })),
+      ...directDemandPages.map((item) => ({
         "@type": "WebPage",
-        name: "FLOXANT Kontakt",
-        url: company.contactUrl,
-      },
-      {
+        name: item.name,
+        url: item.url,
+        description: item.description,
+      })),
+      ...metroDistrictPages.map((item) => ({
         "@type": "WebPage",
-        name: "FLOXANT Standorte",
-        url: company.locationsUrl,
-      },
-      {
+        name: item.name,
+        url: item.url,
+        description: item.description,
+      })),
+      ...mapsIntentPages.map((item) => ({
         "@type": "WebPage",
-        name: "FLOXANT Gewerbereinigung Regensburg",
-        url: `${company.url}/gewerbereinigung-regensburg`,
-      },
+        name: item.name,
+        url: item.url,
+        description: item.description,
+      })),
       {
         "@type": "WebPage",
         name: "FLOXANT Leer-Rückfahrt Richtung Regensburg",
@@ -222,6 +289,18 @@ export function LocalBusinessJsonLd() {
         closes: "14:00",
       },
     ],
+    mentions: {
+      "@type": "ItemList",
+      name: "Direkte Bayern- und Stadtteilpfade",
+      itemListElement: [...directDemandPages, ...metroDistrictPages, ...mapsIntentPages].map(
+        (item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          url: item.url,
+        }),
+      ),
+    },
   };
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;

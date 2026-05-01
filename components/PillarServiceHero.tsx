@@ -10,6 +10,13 @@ type ServiceHeroCard = {
   value: string;
 };
 
+const quickJumps = [
+  { label: "Leistungen", href: "#leistungen" },
+  { label: "Kosten", href: "#preis" },
+  { label: "Ablauf", href: "#ablauf" },
+  { label: "Anfrage", href: "#kontakt" },
+];
+
 type PillarServiceHeroProps = {
   sectionId?: string;
   eyebrow: string;
@@ -52,7 +59,7 @@ export function PillarServiceHero({
             {germanText(eyebrow, eyebrow)}
           </div>
 
-          <h1 className="mt-7 flox-title-lg max-w-[13ch] text-slate-950">
+          <h1 className="mt-7 flox-title-lg max-w-[16ch] text-slate-950">
             {germanText(title, title)}
           </h1>
 
@@ -69,6 +76,23 @@ export function PillarServiceHero({
             <Link href={secondaryHref} className="flox-button-secondary px-6">
               {germanText(secondaryLabel, secondaryLabel)}
             </Link>
+          </div>
+
+          <div className="mt-5 rounded-[1.25rem] border border-slate-200 bg-slate-50/80 px-4 py-4">
+            <p className="text-xs font-semibold text-slate-600">
+              Nicht erst lange scrollen: direkt zu dem Punkt springen, der gerade wichtig ist.
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {quickJumps.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-slate-200 bg-white px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.13em] text-slate-700 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {cards.length > 0 ? (
@@ -105,18 +129,20 @@ export function PillarServiceHero({
             <div className="grid gap-3 p-4 md:grid-cols-2">
               <div className="rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-4">
                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                  Operative Basis
+                  Einsatzgebiet
                 </div>
                 <p className="mt-2 text-sm leading-6 text-slate-700">
-                  Regensburg als klarer Startpunkt, Bayern als sauber gefuehrter Einsatzraum.
+                  Regensburg ist die Basis. Weitere Orte werden geprüft, wenn Anfahrt,
+                  Termin und Umfang realistisch zusammenpassen.
                 </p>
               </div>
               <div className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4">
                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                  Naechster Schritt
+                  Nächster Schritt
                 </div>
                 <p className="mt-2 text-sm leading-6 text-slate-700">
-                  Erst Aufwand einordnen, dann Anfrage mit Substanz weiterfuehren.
+                  Wählen Sie Rechner, Budget oder Anfrage - je nachdem, wie klar der
+                  Auftrag schon ist.
                 </p>
               </div>
             </div>

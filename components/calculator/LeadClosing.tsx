@@ -85,13 +85,14 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
   const handleWhatsApp = () => {
     const range = estimate?.priceRange || { min: 0, max: 0 };
     const lines = [
-      `Neue Anfrage: ${serviceType || "service"}`,
-      `Kunde: ${leadDetails.customerName}`,
+      "Hallo FLOXANT,",
+      `ich moechte meine Vorpruefung fuer ${serviceType || "den Service"} per WhatsApp weiterfuehren.`,
+      `Name: ${leadDetails.customerName}`,
       `Telefon: ${leadDetails.customerPhone}`,
       `E-Mail: ${leadDetails.customerEmail}`,
-      `Rückruf: ${leadDetails.callbackTime || "jederzeit"}`,
+      `Rueckrufzeit: ${leadDetails.callbackTime || "jederzeit"}`,
       `System-Orientierungsrahmen: ${range.min} EUR - ${range.max} EUR`,
-      `Einordnung: ${estimate?.valuationStage || "Erste Einschätzung"}`,
+      `Einordnung: ${estimate?.valuationStage || "Erste Einschaetzung"}`,
       `Basis: ${estimate?.calculationBasis || "Individuell"}`,
       `Zeitansatz: ${estimate?.estimatedHours || "offen"}`,
       leadDetails.customerBudget.trim()
@@ -100,7 +101,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
       estimate?.topDrivers?.length
         ? `Wichtige Treiber: ${estimate.topDrivers.slice(0, 3).join(", ")}`
         : "",
-      "Hinweis: Vorläufige Vorprüfung, keine Preiszusage.",
+      "Hinweis: Vorlaeufige Vorpruefung, keine Preiszusage.",
     ].filter(Boolean);
 
     const message = encodeURIComponent(lines.join("\n"));
@@ -147,11 +148,11 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             Zurück zur Vorprüfung
           </button>
           <h2 className="mb-2 text-3xl font-bold tracking-tight text-slate-950">
-            Anfrage sauber abschließen
+            Anfrage realistisch prüfen lassen
           </h2>
           <p className="max-w-2xl text-base leading-7 text-slate-600">
             Ihre Konfiguration ist bereit für die fachliche Prüfung. Der Preisrahmen bleibt
-            unverbindlich und dient als belastbare Vorprüfung.
+            unverbindlich, bis Umfang, Zugang, Termin und Zusatzleistungen bestätigt sind.
           </p>
         </div>
 
@@ -207,7 +208,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             />
             <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
               Hilft uns, Leistungsumfang und Prioritäten besser einzuordnen. Überschreibt die
-              System-Einschätzung nicht.
+              System-Einschätzung nicht und ersetzt kein geprüftes Angebot.
             </p>
           </FieldBox>
 
@@ -268,7 +269,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
                   Wird übermittelt...
                 </span>
               ) : (
-                "Vorprüfung senden und prüfen lassen"
+                "Fall senden und realistisch prüfen lassen"
               )}
             </FloxButton>
 
@@ -277,16 +278,16 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
               onClick={handleWhatsApp}
               disabled={!canSend && !isError}
               className={cn(
-                "flex flex-1 items-center justify-center gap-3 rounded-2xl border px-8 py-4 text-[11px] font-black uppercase tracking-[0.14em] transition-all",
+                "flex flex-1 items-center justify-center gap-3 rounded-[1.35rem] border px-8 py-4 text-[11px] font-black uppercase tracking-[0.14em] transition-all",
                 isError
-                  ? "scale-[1.01] border-emerald-300 bg-emerald-600 text-white shadow-[0_16px_40px_rgba(5,150,105,0.22)]"
+                  ? "scale-[1.01] border-emerald-300 bg-[linear-gradient(135deg,#16a34a_0%,#059669_100%)] text-white shadow-[0_20px_44px_rgba(5,150,105,0.24)]"
                   : canSend
-                    ? "border-emerald-200 bg-emerald-50 text-emerald-700 hover:border-emerald-300 hover:bg-emerald-100"
+                    ? "border-emerald-200 bg-[linear-gradient(180deg,rgba(236,253,245,0.98),rgba(220,252,231,0.96))] text-emerald-800 shadow-[0_14px_34px_rgba(5,150,105,0.12)] hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_18px_40px_rgba(5,150,105,0.16)]"
                     : "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400"
               )}
             >
               <MessageSquare size={16} />
-              WhatsApp Direktkontakt
+              Preisrahmen per WhatsApp
             </button>
           </div>
         </form>

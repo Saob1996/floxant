@@ -433,7 +433,7 @@ export function generatePageSEO({
       "answer-engine-service-summary":
         "FLOXANT beantwortet Anfragen zu Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Leer-Rückfahrt und Private Client ab Regensburg für Bayern.",
       "maps-ranking-support":
-        "Lokale Relevanz wird über Regensburg als Kernstandort, vollständige Kontaktdaten, Buchungslink, Servicegebiete und crawlbare Standortpfade unterstützt.",
+        "Lokale Relevanz wird über Regensburg als Kernstandort, vollständige Kontaktdaten, Buchungslink, Servicegebiete und klare Standortpfade unterstützt.",
       "maps-relevance-signals":
         "Vollständige Kontaktangaben, Buchungslink, Standortseite, Bayern-Servicegebiet und lokale Servicepfade.",
       "google-business-preferred-link": company.businessProfilePreferredUrl,

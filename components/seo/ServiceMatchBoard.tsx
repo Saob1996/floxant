@@ -89,8 +89,8 @@ export function ServiceMatchBoard({ compact = false }: { compact?: boolean }) {
       </h2>
      </div>
      <p className="max-w-2xl text-sm leading-relaxed text-foreground/50 lg:ml-auto">
-      Der Vergleich führt Nutzer von der echten Situation direkt zum passenden Service. So entstehen klarere Anfragen,
-      bessere interne Links und stärkere Signale für Suchmaschinen und KI-Antwortsysteme.
+      Der Vergleich hilft, nicht erst die falsche Leistung zu öffnen. Wählen Sie die
+      Situation, die Ihrem Fall am nächsten kommt, und springen Sie direkt zum passenden Weg.
      </p>
     </div>
 
@@ -116,7 +116,7 @@ export function ServiceMatchBoard({ compact = false }: { compact?: boolean }) {
 
         <div className="mt-6 rounded-2xl border border-foreground/8 bg-foreground/5 p-4">
          <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/35">
-          wichtige Signale
+          Für die Einschätzung wichtig
          </div>
          <p className="mt-2 text-sm font-medium text-foreground/62">{row.signal}</p>
         </div>
@@ -124,9 +124,9 @@ export function ServiceMatchBoard({ compact = false }: { compact?: boolean }) {
         <div className="mt-auto flex flex-col gap-3 pt-7 sm:flex-row">
          <Link
           href={row.href}
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-blue-500 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 transition hover:bg-blue-400"
-         >
-          Service öffnen
+         className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-blue-500 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 transition hover:bg-blue-400"
+        >
+          Passenden Weg öffnen
           <ArrowRight className="h-3.5 w-3.5" />
          </Link>
          <Link

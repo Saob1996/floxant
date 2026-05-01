@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   CheckCircle2,
+  ClipboardCheck,
   Clock,
   Key,
   PackageOpen,
@@ -38,16 +39,17 @@ const serviceTargets: Record<string, { href: string; label: string; eyebrow: str
   cleaning_guarantee: { href: "/reinigung", label: "Reinigung", eyebrow: "Reiner Abschluss" },
   storage_rot: { href: "/einlagerung", label: "Einlagerung", eyebrow: "Zwischenlösung" },
   key_handover: { href: "/umzug-mit-reinigung", label: "Übergabe-Lösung", eyebrow: "Schlüsselübergabe" },
+  handover_bundle: { href: "/umzug-mit-reinigung", label: "Komplettpaket", eyebrow: "Wohnungsübergabe" },
 };
 
 const defaultCopy: Record<string, { title: string; desc: string }> = {
   ritual_exit: {
     title: "Strukturierter Auszug",
-    desc: "Für Kunden, die ihren Umzug nicht improvisieren, sondern mit klarer Reihenfolge, Übergang und belastbarer Vorbereitung lösen möchten.",
+    desc: "Ein Umzug scheitert selten am Tragen allein. FLOXANT ordnet Volumen, Zeitfenster, Laufwege und Zusatzaufgaben, bevor der Einsatztag kippt.",
   },
   clean_start: {
     title: "Umzug mit Reinigung",
-    desc: "Wenn Auszug, Endreinigung und Übergabe direkt ineinandergreifen sollen, statt mühsam über zwei getrennte Abläufe zu laufen.",
+    desc: "Wenn Auszug, Endreinigung und Übergabe direkt ineinandergreifen sollen, statt über zwei getrennte Anbieter und viele Rückfragen zu laufen.",
   },
   neighbour_kit: {
     title: "Beiladung und Teilmengen",
@@ -55,11 +57,11 @@ const defaultCopy: Record<string, { title: string; desc: string }> = {
   },
   first_48h: {
     title: "Express und kurzfristige Fälle",
-    desc: "Für Anfragen mit engem Zeitfenster, bei denen schnelle Vorprüfung und saubere operative Einordnung entscheidend sind.",
+    desc: "Für Anfragen mit engem Zeitfenster, bei denen schnelle Machbarkeitsprüfung wichtiger ist als eine pauschale Sofortzusage.",
   },
   bureaucracy: {
     title: "Preisvorstellung einbinden",
-    desc: "Wenn ein Budget oder Zielkorridor schon feststeht und Sie möchten, dass FLOXANT diesen Rahmen sauber in die Vorprüfung einordnet.",
+    desc: "Wenn ein Budget oder Zielkorridor schon feststeht und FLOXANT prüfen soll, welche Lösung realistisch ist: günstig, standard oder sorglos.",
   },
   furniture_opt: {
     title: "Montage und Demontage",
@@ -67,15 +69,19 @@ const defaultCopy: Record<string, { title: string; desc: string }> = {
   },
   cleaning_guarantee: {
     title: "Sauberer Abschluss",
-    desc: "Für Übergaben, Neuvermietung und Auszüge, bei denen sichtbare Reinigungsqualität ein Teil des Gesamterlebnisses ist.",
+    desc: "Reinigung nach dem Umzug ist keine normale Unterhaltsreinigung. Es geht um Abnahme, Eindruck, Details und oft um die Kaution.",
   },
   storage_rot: {
     title: "Einlagerung mit Plan",
     desc: "Wenn Übergaben, Zwischenmiete oder Bauverzug eine flexible Zwischenlösung erfordern, ohne am Umzugstag hektisch zu werden.",
   },
   key_handover: {
-    title: "Übergabe ohne Reibung",
-    desc: "Für Kunden, die die letzten Schritte wie Schlüssel, Restmengen und sauberen Objektzustand nicht dem Zufall überlassen möchten.",
+    title: "Schlüsselübergabe als Service",
+    desc: "Wenn Sie selbst nicht vor Ort sein können oder die Übergabe nicht zwischen Arbeit, Umzug und Vermieter koordinieren wollen.",
+  },
+  handover_bundle: {
+    title: "Wohnungsübergabe-Komplettpaket",
+    desc: "Umzug, Endreinigung, kleine Rest-Entrümpelung, Fotodokumentation und Schlüsselübergabe aus einer Hand, wenn eine Wohnung sauber abgeschlossen werden muss.",
   },
 };
 
@@ -94,6 +100,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
       { id: "cleaning_guarantee", icon: CheckCircle2, accent: "from-cyan-500 via-emerald-400 to-teal-400" },
       { id: "storage_rot", icon: RotateCw, accent: "from-violet-500 via-indigo-500 to-blue-400" },
       { id: "key_handover", icon: Key, accent: "from-blue-500 via-cyan-500 to-slate-500" },
+      { id: "handover_bundle", icon: ClipboardCheck, accent: "from-slate-900 via-blue-800 to-cyan-500" },
     ],
     [],
   );
@@ -130,8 +137,9 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
               Warum das hilft
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-700">
-              FLOXANT trennt Hauptservice, Spezialfall und direkten Einstieg klar. Genau dadurch wirkt die
-              Website ruhiger, und Kunden finden schneller den passenden nächsten Schritt.
+              FLOXANT trennt Hauptservice, Spezialfall und direkten Einstieg klar. Dadurch wird aus
+              Umzug, Reinigung und Entrümpelung ein kontrollierter Übergabeprozess statt ein loses
+              Nebeneinander von Dienstleistern.
             </p>
           </div>
         </div>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo } from "react";
 import { AnimatePresence, m } from "framer-motion";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -22,12 +23,13 @@ import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { germanizeDeep, germanizeText } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 import { ServiceType, useCalculatorStore } from "@/store/calculatorStore";
-import LeadClosing from "./LeadClosing";
-import { IntakeWizard } from "./IntakeWizard";
-import BueroumzugForm from "./forms/BueroumzugForm";
-import EntsorgungForm from "./forms/EntsorgungForm";
-import ReinigungForm from "./forms/ReinigungForm";
-import UmzugForm from "./forms/UmzugForm";
+
+const LeadClosing = dynamic(() => import("./LeadClosing"));
+const IntakeWizard = dynamic(() => import("./IntakeWizard").then((mod) => mod.IntakeWizard));
+const BueroumzugForm = dynamic(() => import("./forms/BueroumzugForm"));
+const EntsorgungForm = dynamic(() => import("./forms/EntsorgungForm"));
+const ReinigungForm = dynamic(() => import("./forms/ReinigungForm"));
+const UmzugForm = dynamic(() => import("./forms/UmzugForm"));
 
 const shellClasses =
   "glass-elevated relative overflow-hidden rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.99),rgba(247,250,255,0.99))] shadow-[0_22px_56px_rgba(15,23,42,0.07)]";
@@ -38,7 +40,7 @@ const serviceCards = [
     eyebrow: "Für Zuhause & Firmen",
     title: "Umzug",
     description:
-      "Privat- oder Firmenumzug mit realistischer Vorprüfung zu Volumen, Strecke, Zugang und Zusatzleistungen.",
+      "Privat- oder Firmenumzug mit realistischer Prüfung von Volumen, Strecke, Zugang, Zeitfenster und Übergabeaufgaben.",
     icon: Truck,
     gradient: "from-blue-600 via-blue-500 to-cyan-500",
     soft: "from-blue-50 via-white to-cyan-50",
@@ -50,7 +52,7 @@ const serviceCards = [
     eyebrow: "Für Objekt & Übergabe",
     title: "Reinigung",
     description:
-      "Reinigung mit sauberer Einordnung zu Fläche, Zustand, Extras, Objektart und Terminlage.",
+      "Reinigung mit sauberer Einordnung zu Fläche, Zustand, Extras, Objektart und Übergabeziel.",
     icon: Sparkles,
     gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     soft: "from-emerald-50 via-white to-cyan-50",
@@ -62,7 +64,7 @@ const serviceCards = [
     eyebrow: "Für Räumung & Abholung",
     title: "Entrümpelung",
     description:
-      "Entrümpelung und Entsorgung mit plausibler Vorprüfung zu Volumen, Materialarten, Zugang und Sonderaufwand.",
+      "Entrümpelung und Entsorgung mit plausibler Prüfung zu Volumen, Materialarten, Zugang und dem Zustand nach der Räumung.",
     icon: Trash2,
     gradient: "from-orange-500 via-amber-500 to-rose-500",
     soft: "from-orange-50 via-white to-rose-50",
@@ -117,10 +119,33 @@ const selectionSignals = [
 ];
 
 const qualityPromises = [
-  "Klarer Start ohne Fantasiepreise",
-  "Echte Vorprüfung statt Formular-Nebel",
+  "Orientierung statt Lockpreis",
+  "Realistisch statt nachträglich teuer",
   "Saubere Übergabe in den passenden Anfrageweg",
 ];
+
+const serviceSignals: Partial<Record<ServiceType, { eyebrow: string; title: string; text: string }>> = {
+  umzug: {
+    eyebrow: "Vorplanung",
+    title: "Umzug operativ vorbereitet",
+    text: "Volumen, Strecke, Zugang, Etagen, Parkmöglichkeit und Zusatzleistungen bleiben früh sichtbar, damit aus einem groben Vorhaben eine belastbare Anfrage wird.",
+  },
+  reinigung: {
+    eyebrow: "Objektlogik",
+    title: "Reinigung mit sauberer Leistungsbasis",
+    text: "Fläche, Zustand, Objektart, Küche, Bad, Fenster und Übergabeziel werden geordnet erfasst, damit später weniger Rückfragen entstehen.",
+  },
+  entsorgung: {
+    eyebrow: "Räumung",
+    title: "Entsorgung ohne Schätzchaos",
+    text: "Volumen, Materialarten, Zugang und Zielzustand der Fläche werden logisch sortiert, statt auf eine zu frühe Festpreisbehauptung reduziert zu werden.",
+  },
+  bueroumzug: {
+    eyebrow: "Firmenfluss",
+    title: "Büroumzug mit Betriebsrealität",
+    text: "Arbeitsplätze, IT, Archiv und Zeitfenster werden früh strukturiert, damit der nächste Schritt professionell und anschlussfähig bleibt.",
+  },
+};
 
 const visualVariantByService: Partial<Record<ServiceType, "moving" | "cleaning" | "clearance" | "office">> = {
   umzug: "moving",
@@ -194,8 +219,17 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
     () => germanizeDeep(qualityPromises) as typeof qualityPromises,
     [],
   );
+  const localizedServiceSignals = useMemo(
+    () => germanizeDeep(serviceSignals) as typeof serviceSignals,
+    [],
+  );
 
   const activeServiceConfig = localizedServiceCards.find((service) => service.id === activeService);
+  const activeServiceSignal = activeService ? localizedServiceSignals[activeService] : null;
+  const activateService = (service: ServiceType) => {
+    setServiceType(service);
+    setMode("advanced");
+  };
 
   const renderActiveForm = (step: number) => {
     switch (activeService) {
@@ -256,15 +290,14 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                     {germanizeText("Rechner mit ehrlicher Vorprüfung")}
                   </div>
 
-                  <h2 className="mt-6 max-w-4xl text-[2.1rem] font-bold leading-[0.98] tracking-[-0.05em] text-slate-950 md:text-[2.55rem]">
+                  <h2 className="mt-6 max-w-4xl text-[2.1rem] font-bold leading-[1] tracking-[-0.028em] text-slate-950 md:text-[2.55rem]">
                     Welcher Service passt heute wirklich zu Ihrem Vorhaben?
                   </h2>
 
                   <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-700">
                     Wählen Sie zuerst den passenden Service. FLOXANT zeigt keinen Lockpreis, sondern einen
-                    unverbindlichen Orientierungsrahmen mit den wichtigsten Kostentreibern. So bleibt die
-                    Anfrage verständlich, glaubwürdig und angenehm klar. Wenn&apos;s schnell gehen soll, bitte
-                    gern direkt gscheid einordnen.
+                    unverbindlichen Orientierungsrahmen mit den wichtigsten Kostentreibern. Künstlich niedrige
+                    Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team, Zeitfenster oder Übergabe fehlen.
                   </p>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -304,7 +337,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                     <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                       Klare Einordnung
                     </div>
-                    <h3 className="mt-3 text-[1.6rem] font-bold leading-[1.06] tracking-tight text-slate-950">
+                    <h3 className="mt-3 max-w-[15ch] text-[1.6rem] font-bold leading-[1.08] tracking-[-0.022em] text-slate-950">
                       Erst verstehen, dann sinnvoll weiterführen
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-slate-700">
@@ -341,11 +374,17 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
                       whileHover={{ y: -4 }}
-                      onClick={() => {
-                        setServiceType(service.id);
-                        setMode("advanced");
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${service.title} Rechner starten`}
+                      onClick={() => activateService(service.id)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          activateService(service.id);
+                        }
                       }}
-                    className={cn(
+                      className={cn(
                         "card-premium service-card-hover group relative cursor-pointer rounded-[1.35rem] p-5",
                         "bg-gradient-to-br",
                         service.soft,
@@ -392,10 +431,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
 
                         <button
                           type="button"
-                          onClick={() => {
-                            setServiceType(service.id);
-                            setMode("advanced");
-                          }}
+                          onClick={() => activateService(service.id)}
                           className="mt-5 inline-flex h-10 w-full items-center justify-between rounded-[1rem] border border-slate-200 bg-white/94 px-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:border-blue-200 hover:bg-white"
                         >
                           <span>Service starten</span>
@@ -413,13 +449,18 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                     <ShieldCheck className="h-4 w-4" />
                     Preiswahrheit statt Portal-Sprache
                   </div>
-                  <h3 className="mt-4 max-w-2xl text-[1.35rem] font-bold tracking-tight text-slate-950">
-                    Erst belastbar vorprüfen. Dann sauber weiterführen.
+                  <h3 className="mt-4 max-w-2xl text-[1.35rem] font-bold leading-[1.12] tracking-[-0.018em] text-slate-950">
+                    Erst realistisch einordnen. Dann sauber weiterführen.
                   </h3>
                   <p className="mt-3 max-w-3xl text-[14px] leading-6 text-slate-700">
-                    FLOXANT zeigt zuerst, welche Faktoren die Einordnung wirklich beeinflussen. So wirkt die
-                    Anfrage professionell, nicht künstlich exakt und für beide Seiten deutlich glaubwürdiger.
+                    FLOXANT zeigt zuerst, welche Faktoren die Einordnung wirklich beeinflussen:
+                    Aufwand, Strecke, Zugänglichkeit, Zusatzleistungen und Termin. So wird aus einer
+                    losen Preisfrage eine brauchbare Einsatzprüfung.
                   </p>
+
+                  <div className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    Danach direkt weiter in den passenden Weg
+                  </div>
 
                   <div className="mt-5 grid gap-3 md:grid-cols-3">
                     {["Klare Kostentreiber", "Ruhige Kundenführung", "Saubere Übergabe in die Anfrage"].map(
@@ -463,27 +504,66 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
               </div>
             </m.div>
           ) : (
-            <IntakeWizard
+            <m.div
               key="wizard"
-              dic={dic}
-              serviceType={activeService}
-              steps={activeServiceConfig?.steps.map((title, index) => ({ id: index + 1, title })) || []}
-              renderStep={renderActiveForm}
-              onClose={() => {
-                setServiceType(null);
-                setMode("selection");
-              }}
-              onFinish={() => setMode("lead")}
-              hasInput={
-                activeService === "umzug"
-                  ? hasUmzugInput
-                  : activeService === "reinigung"
-                    ? hasReinigungInput
-                    : activeService === "entsorgung"
-                      ? hasEntsorgungInput
-                      : hasBueroumzugInput
-              }
-            />
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.985 }}
+              className="space-y-5"
+            >
+              {activeServiceSignal ? (
+                <div className="glass-elevated rounded-[1.6rem] border border-slate-200 px-5 py-5">
+                  <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                        {activeServiceSignal.eyebrow}
+                      </div>
+                      <h3 className="mt-3 max-w-[18ch] text-[1.45rem] font-bold leading-[1.06] tracking-[-0.02em] text-slate-950">
+                        {activeServiceSignal.title}
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Link
+                        href="/buchung"
+                        className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-[11px] font-semibold text-blue-700 transition hover:bg-blue-100"
+                      >
+                        Direkt anfragen
+                      </Link>
+                      <Link
+                        href="/express-anfrage"
+                        className="rounded-full border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] font-semibold text-amber-900 transition hover:bg-amber-100"
+                      >
+                        Express-Check
+                      </Link>
+                    </div>
+                  </div>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">
+                    {activeServiceSignal.text}
+                  </p>
+                </div>
+              ) : null}
+
+              <IntakeWizard
+                dic={dic}
+                serviceType={activeService}
+                steps={activeServiceConfig?.steps.map((title, index) => ({ id: index + 1, title })) || []}
+                renderStep={renderActiveForm}
+                onClose={() => {
+                  setServiceType(null);
+                  setMode("selection");
+                }}
+                onFinish={() => setMode("lead")}
+                hasInput={
+                  activeService === "umzug"
+                    ? hasUmzugInput
+                    : activeService === "reinigung"
+                      ? hasReinigungInput
+                      : activeService === "entsorgung"
+                        ? hasEntsorgungInput
+                        : hasBueroumzugInput
+                }
+              />
+            </m.div>
           )}
         </AnimatePresence>
       </div>

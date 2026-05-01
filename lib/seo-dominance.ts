@@ -417,7 +417,7 @@ moneySnippets["/leistungen-vergleichen"] = {
 };
 
 moneySnippets["/service-area-bayern"] = {
- title: "FLOXANT Bayern | Regensburg zuerst, bayernweit tätig",
+ title: "FLOXANT Bayern | aus Regensburg bayernweit tätig",
  description:
   "FLOXANT arbeitet ab Regensburg für Bayern: Umzug, Reinigung, Entrümpelung, Büroumzug und Leerfahrt nach Strecke prüfen.",
  cluster: "geo",

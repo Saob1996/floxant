@@ -55,8 +55,8 @@ export default function BlogHubPage() {
       a: "Je nach Thema führt der nächste Schritt zum Rechner, zur Preisvorstellung, zur Buchungsseite, zur B2B-Reinigungsseite oder direkt zur passenden Service-Hauptseite.",
     },
     {
-      q: "Hilft der Blog auch für Google, Maps und KI-Antworten?",
-      a: "Ja. Die Beiträge sind so aufgebaut, dass sie Suchintention, lokale Einordnung, Service-Erklärung und klare Anschlusswege sichtbar machen. Das hilft echten Kunden genauso wie Suchmaschinen und KI-Systemen.",
+      q: "Hilft der Blog auch bei lokaler Suche und Google Maps?",
+      a: "Ja. Die Beiträge sind so aufgebaut, dass sie Suchintention, lokale Einordnung, Service-Erklärung und klare Anschlusswege sichtbar machen. Das hilft vor allem echten Kunden, die schnell verstehen wollen, welcher nächste Schritt passt.",
     },
     {
       q: "Welche Artikel helfen bei einer kaufnahen Entscheidung am meisten?",
@@ -235,8 +235,8 @@ export default function BlogHubPage() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
-              Diese Artikel helfen nicht nur Lesern, sondern auch Suchmaschinen und KI-Systemen,
-              FLOXANT regional sauber zu verstehen.
+              Diese Artikel helfen Lesern, FLOXANT regional sauber einzuordnen und schneller
+              den passenden nächsten Schritt zu finden.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -293,12 +293,12 @@ export default function BlogHubPage() {
                 Schnellantworten
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                Was Google, Maps und KI-Systeme hier klar verstehen sollen
+                Was Kunden hier schnell verstehen sollen
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
-              Klare Fragen, klare Antworten, klare Anschlusswege. Genau so entstehen bessere
-              Snippets, stärkere lokale Einordnung und mehr Vertrauen vor dem Klick.
+              Klare Fragen, klare Antworten, klare Anschlusswege. Genau so entsteht mehr
+              Vertrauen, bevor jemand Rechner, Buchung oder Kontakt öffnet.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

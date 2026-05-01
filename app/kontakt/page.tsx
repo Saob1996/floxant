@@ -12,6 +12,10 @@ import {
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
+  BAVARIA_DIRECT_DEMAND_LINKS,
+  BAVARIA_METRO_DISTRICT_LINKS,
+} from "@/lib/bavaria-coverage";
+import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
   buildWebPageJsonLd,
@@ -58,21 +62,42 @@ const preparationItems = [
 const localTrustCards = [
   {
     title: "Direkter Maps-Einstieg",
-    text: "Für Google Maps, Google Search und spontane Empfehlungen ist die Buchungsseite der klarste nächste Schritt.",
+    text: "Für Google Maps, Google Search und spontane Empfehlungen ist die Buchungsseite der klarste nächste Schritt mit direkter Vorprüfung statt Kontakt-Chaos.",
     href: "/buchung",
     cta: "Buchungsseite öffnen",
   },
   {
     title: "Regensburg als Basis",
-    text: "Adresse, Telefonnummer, Kontaktwege und Einsatzgebiet sind sauber gebündelt, damit Kunden und Suchsysteme FLOXANT lokal eindeutig einordnen können.",
+    text: "Adresse, Telefonnummer, Kontaktwege und Einsatzgebiet sind sauber gebündelt, damit Kunden und Suchsysteme FLOXANT lokal eindeutig zwischen Regensburg, Bayern und Spezialpfaden einordnen können.",
     href: company.mapsSearchUrl,
     cta: "Standort bei Google Maps",
   },
   {
     title: "Klare Wege statt Umwege",
-    text: "Kontakt, Rechner, Express und Preisvorstellung bleiben getrennt. Das macht die Anfrage einfacher und die spätere Bearbeitung sauberer.",
+    text: "Kontakt, Rechner, Express und Preisvorstellung bleiben getrennt. Das macht die Anfrage einfacher, erhöht die Abschlussquote und spart spätere Rückfragen.",
     href: "/rechner",
     cta: "Rechner ansehen",
+  },
+];
+
+const mapsReadyPoints = [
+  "Buchung als bevorzugter Link fuer Maps- und Unternehmensprofil-Klicks.",
+  "Kontaktseite mit Adresse, Telefon, WhatsApp und Standort als Vertrauenskern.",
+  "Standorte und Bayern-Hubs tragen die Reichweite, Regensburg bleibt der Hauptanker.",
+];
+
+const mapsClosingSignals = [
+  {
+    title: "Direkter Rückruf statt Leerlauf",
+    text: "Kunden sehen sofort, wie sie Buchung, WhatsApp oder Preisprüfung ohne Suchschleife starten.",
+  },
+  {
+    title: "Lokaler Vertrauenskern",
+    text: "Regensburg bleibt klar sichtbar als operative Basis, während Bayern über die richtigen Servicepfade mitgetragen wird.",
+  },
+  {
+    title: "Saubere Spezialabzweige",
+    text: "Für Reinigung in Düsseldorf gibt es bewusst einen getrennten lokalen Bereich statt widersprüchlicher Mischsignale.",
   },
 ];
 
@@ -188,13 +213,14 @@ export default function KontaktPage() {
             FLOXANT Kontakt Regensburg
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Kontakt, Buchung und klare Anfragewege aus Regensburg.
+            Kontakt, Buchung und lokale Anfragewege für Regensburg, Bayern und klare Spezialpfade.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
             FLOXANT bündelt die wichtigsten Kontaktwege für Umzug, Reinigung, Entrümpelung,
             Büroumzug und Spezialservices. Sie können direkt die Buchungsseite öffnen, eine
             Express-Anfrage senden oder persönlich per Telefon, WhatsApp und E-Mail Kontakt
-            aufnehmen. Kurz gesagt: lieber sauber starten als später doppelt erklären.
+            aufnehmen. Für Google Maps, Empfehlungen und lokale Suche ist diese Seite der
+            Vertrauenskern, während die Buchungsseite den stärksten Abschlussweg liefert.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -228,6 +254,22 @@ export default function KontaktPage() {
             >
               Standort ansehen
             </a>
+          </div>
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
+            {mapsClosingSignals.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[1.35rem] border border-white/65 bg-white/82 px-4 py-4 shadow-sm shadow-slate-950/5 backdrop-blur"
+              >
+                <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
+                  Maps & Vertrauen
+                </div>
+                <h2 className="mt-2 text-lg font-semibold tracking-tight text-slate-950">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -279,6 +321,76 @@ export default function KontaktPage() {
       </section>
 
       <ContactTrustPanel compact />
+
+      <section className="px-6 pb-12">
+        <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[0.88fr_1.12fr]">
+          <article className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+              Maps-Bereitschaft
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
+              Klare Signale fuer lokale Sichtbarkeit und direkte Anfragen
+            </h2>
+            <div className="mt-5 grid gap-3">
+              {mapsReadyPoints.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-600"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <div className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+              Bayern und Stadtteile
+            </div>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+              Direkte Marktpfade und Bezirke, die lokal mittragen
+            </h2>
+            <div className="mt-5 grid gap-3 md:grid-cols-2">
+              {BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 6).map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {BAVARIA_METRO_DISTRICT_LINKS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className="mt-5 rounded-[1.15rem] border border-emerald-200 bg-emerald-50 px-4 py-4">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-800">
+                Separater Reinigungsbereich
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-emerald-950/80">
+                Für lokale Reinigungsanfragen in Düsseldorf gibt es einen bewusst getrennten
+                Bereich ohne Regensburg- oder Umzugsvermischung.
+              </p>
+              <Link
+                href="/duesseldorf/reinigung"
+                className="mt-3 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-800"
+              >
+                Düsseldorf Reinigung ansehen
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="border-y border-slate-200 bg-slate-50/80 px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.86fr_1.14fr]">

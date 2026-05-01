@@ -102,7 +102,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
               "Direkter Kontakt ohne Umweg über unklare Sammelpfade",
               "Feste Ansprechpartner statt anonymer Weiterleitung",
               "Bessere Trennung zwischen Buchung, Express und Preisvorstellung",
-              "Klarere Signale für Google Maps, lokale Suche und KI-Systeme",
+              "Klarere Wege aus Google Maps, lokaler Suche und direkter Empfehlung",
               "Mehr Ruhe im Prozess und oft passendere Anfragen",
             ],
           },
@@ -116,7 +116,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
         ]}
         highlightPoints={[
           "Direkte Buchungswege schaffen oft mehr Vertrauen als verstreute Kontaktpfade.",
-          "Klare Trennung verbessert Nutzerführung, lokale Suche und KI-Lesbarkeit.",
+          "Klare Trennung verbessert Nutzerführung, lokale Suche und den Weg zur Anfrage.",
           "Für FLOXANT ist /buchung der wichtigste direkte Einstieg.",
         ]}
         ctas={[
