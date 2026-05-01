@@ -1889,12 +1889,41 @@ function OverviewWorkspace({
     },
   ];
 
+  const focusNotes = [
+    {
+      label: "Heute zuerst",
+      text: "Neue Leads, offene Preise und fehlende ABs nicht vermischen.",
+    },
+    {
+      label: "Ruhig prüfen",
+      text: "Erst Grunddaten, Budget und Risiko klären, dann planen.",
+    },
+    {
+      label: "Nächster Schritt",
+      text: "Jeder Vorgang braucht genau eine klare Folgeaktion.",
+    },
+  ];
+
   return (
     <section>
       <PageHeader
         title="Überblick"
         text="Heute offene Vorgänge, Entscheidungen und nächste Schritte."
       />
+
+      <div className="mb-5 grid gap-3 lg:grid-cols-3">
+        {focusNotes.map((item) => (
+          <div
+            key={item.label}
+            className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-blue-50/65 p-4 shadow-sm shadow-slate-950/5"
+          >
+            <p className="text-[10px] font-black uppercase tracking-[0.14em] text-blue-700">
+              {item.label}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         <KpiCard

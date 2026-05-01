@@ -40,7 +40,7 @@ const serviceCards = [
     eyebrow: "Für Zuhause & Firmen",
     title: "Umzug",
     description:
-      "Privat- oder Firmenumzug mit realistischer Prüfung von Volumen, Strecke, Zugang, Zeitfenster und Übergabeaufgaben.",
+      "Für Wohnungswechsel und Firmenumzüge, bei denen Volumen, Strecke, Zugang und Übergabe nicht erst am Einsatztag auffallen sollen.",
     icon: Truck,
     gradient: "from-blue-600 via-blue-500 to-cyan-500",
     soft: "from-blue-50 via-white to-cyan-50",
@@ -52,7 +52,7 @@ const serviceCards = [
     eyebrow: "Für Objekt & Übergabe",
     title: "Reinigung",
     description:
-      "Reinigung mit sauberer Einordnung zu Fläche, Zustand, Extras, Objektart und Übergabeziel.",
+      "Für Wohnungen, Büros und Übergaben, wenn Fläche, Zustand, Küche, Bad, Fenster und Termin vorher sauber eingeordnet werden sollen.",
     icon: Sparkles,
     gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     soft: "from-emerald-50 via-white to-cyan-50",
@@ -64,7 +64,7 @@ const serviceCards = [
     eyebrow: "Für Räumung & Abholung",
     title: "Entrümpelung",
     description:
-      "Entrümpelung und Entsorgung mit plausibler Prüfung zu Volumen, Materialarten, Zugang und dem Zustand nach der Räumung.",
+      "Für Keller, Wohnungen, Reste und größere Mengen, wenn klar werden muss, was weg kann, wie viel es ist und wie die Fläche danach aussehen soll.",
     icon: Trash2,
     gradient: "from-orange-500 via-amber-500 to-rose-500",
     soft: "from-orange-50 via-white to-rose-50",
@@ -76,7 +76,7 @@ const serviceCards = [
     eyebrow: "Für Teams & Standorte",
     title: "Büroumzug",
     description:
-      "Büro- und Firmenumzug mit Arbeitsplatzanzahl, IT, Archiv, Zugang, Teamlogik und Zeitfenstern im Blick.",
+      "Für Firmen, Praxen und Büros, wenn Arbeitsplätze, Technik, Archiv und Zeitfenster ohne unnötige Betriebsreibung geplant werden müssen.",
     icon: Briefcase,
     gradient: "from-cyan-600 via-blue-600 to-indigo-600",
     soft: "from-cyan-50 via-white to-indigo-50",
@@ -121,14 +121,20 @@ const activeServiceSwitchLinks = [
 
 const selectionSignals = [
   "Unverbindlicher Preisrahmen statt vorschnellem Festpreis",
-  "Die wichtigsten Faktoren werden je Service sauber abgefragt",
-  "Danach direkt weiter zu Anfrage, Budget oder Express-Check",
+  "Nur die Angaben, die für Ihren Service wirklich wichtig sind",
+  "Danach direkt weiter zu Anfrage, Budgetprüfung oder Express-Check",
 ];
 
 const qualityPromises = [
-  "Orientierung statt Lockpreis",
-  "Realistisch statt nachträglich teuer",
-  "Saubere Übergabe in den passenden Anfrageweg",
+  "Ruhiger Einstieg",
+  "Realistische Einordnung",
+  "Passender nächster Kontaktweg",
+];
+
+const comfortSignals = [
+  "Regensburg & Bayern klar einordnen",
+  "Reinigung, Umzug oder Entrümpelung gezielt starten",
+  "WhatsApp, Budget oder Buchung ohne Umweg wählen",
 ];
 
 const serviceSignals: Partial<Record<ServiceType, { eyebrow: string; title: string; text: string }>> = {
@@ -241,6 +247,10 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
     () => germanizeDeep(qualityPromises) as typeof qualityPromises,
     [],
   );
+  const localizedComfortSignals = useMemo(
+    () => germanizeDeep(comfortSignals) as typeof comfortSignals,
+    [],
+  );
   const localizedServiceSignals = useMemo(
     () => germanizeDeep(serviceSignals) as typeof serviceSignals,
     [],
@@ -306,7 +316,10 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
               className="space-y-8"
             >
               <div className="grid gap-5 xl:grid-cols-[1.08fr_0.92fr] xl:items-stretch">
-                <div className="glass-elevated rounded-[1.8rem] p-6 md:p-7 xl:p-7">
+                <div className="glass-elevated relative overflow-hidden rounded-[1.8rem] bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(239,246,255,0.82)_52%,rgba(236,253,245,0.66))] p-6 md:p-7 xl:p-7">
+                  <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-200/35 blur-3xl" />
+                  <div className="pointer-events-none absolute -bottom-20 left-10 h-44 w-44 rounded-full bg-emerald-200/30 blur-3xl" />
+                  <div className="relative">
                   <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
                     <Clock3 className="h-4 w-4" />
                     Sauber starten
@@ -321,6 +334,17 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                     die für eine realistische Einschätzung wichtig sind: Umfang, Ort, Zustand, Zugang,
                     Termin und mögliche Zusatzleistungen.
                   </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {localizedComfortSignals.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-white/80 bg-white/86 px-3 py-2 text-[11px] font-bold text-slate-700 shadow-sm shadow-slate-950/5"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                     <Link
@@ -351,6 +375,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                         </div>
                       </div>
                     ))}
+                  </div>
                   </div>
                 </div>
 

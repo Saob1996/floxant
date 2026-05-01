@@ -45,6 +45,10 @@ export async function generateMetadata(): Promise<Metadata> {
       "Büroumzug Rechner Bayern",
       "Umzug Kosten einschätzen",
       "Reinigung Preisrahmen",
+      "Kostenrechner Bayern",
+      "Preisvorschlag Umzug Reinigung",
+      "Entrümpelung Kosten Bayern",
+      "Reinigung Kosten Bayern",
       "FLOXANT Rechner",
     ],
   });
@@ -233,9 +237,18 @@ export default async function RechnerPage() {
   ];
 
   const routingSignals = [
-    "Für Preisgefühl und Aufwandseinordnung",
-    "Für Privatkunden, Vermieter, Hausverwaltungen und Firmen",
-    "Für Kunden, die vor der Anfrage Klarheit brauchen",
+    {
+      label: "Ruhiger Start",
+      text: "Sie müssen nicht sofort wissen, welcher Service perfekt passt. Der Rechner sortiert Umzug, Reinigung, Entrümpelung und Büroumzug zuerst nach Ihrem Fall.",
+    },
+    {
+      label: "Besser vorbereitet",
+      text: "Budget, Termin, Zugang, Fläche, Volumen und Fotos können anschließend sauber ergänzt werden, statt alles in eine unklare Nachricht zu packen.",
+    },
+    {
+      label: "Direkter nächster Schritt",
+      text: "Wenn der Rahmen passt, geht es ohne Umweg weiter zu Buchung, WhatsApp, Express-Check oder Preisvorschlag.",
+    },
   ];
 
   const professionalSignals = [
@@ -376,6 +389,14 @@ export default async function RechnerPage() {
       q: "Welche Regionen deckt der Rechner ab?",
       a: "Der Rechner ist vor allem für Regensburg, Bayern und passende planbare Einsätze gedacht. Entscheidend sind Strecke, Termin, Umfang und freie Kapazität.",
     },
+    {
+      q: "Warum ist der Rechner besser als eine reine Preisfrage?",
+      a: "Eine einzelne Preisfrage übersieht oft Zugang, Zeitfenster, Zusatzleistungen und Risiko. Der Rechner führt diese Punkte zusammen und hilft, aus einer losen Anfrage einen realistisch prüfbaren Auftrag zu machen.",
+    },
+    {
+      q: "Hilft der Rechner auch bei lokalen Suchen über Google Maps?",
+      a: "Ja, indirekt. Die Seite führt Nutzer von Suchintentionen wie Umzug, Reinigung, Entsorgung, Entrümpelung, Lagerung oder Büroumzug schneller zum passenden lokalen FLOXANT-Einstieg, statt alles über eine allgemeine Kontaktseite laufen zu lassen.",
+    },
   ];
 
   const marketGroups = BAVARIA_COVERAGE_GROUPS.map((group) => ({
@@ -451,6 +472,20 @@ export default async function RechnerPage() {
       },
       {
         "@type": "ItemList",
+        "@id": "https://www.floxant.de/rechner#suchabsichten",
+        name: "FLOXANT Rechner Suchabsichten",
+        description:
+          "Häufige Suchabsichten für Umzugskosten, Reinigungskosten, Entrümpelung, Entsorgung und Büroumzug im FLOXANT Rechner.",
+        itemListElement: calculatorIntentCards.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.title,
+          url: `https://www.floxant.de${item.href}`,
+          description: `${item.query}: ${item.text}`,
+        })),
+      },
+      {
+        "@type": "ItemList",
         "@id": "https://www.floxant.de/rechner#maps-service-intents",
         name: "FLOXANT Maps-Service-Intentionen",
         description:
@@ -473,6 +508,19 @@ export default async function RechnerPage() {
           "@type": "ListItem",
           position: index + 1,
           name: item.title,
+          description: item.text,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.floxant.de/rechner#kundenweg",
+        name: "FLOXANT Rechner Kundenweg",
+        description:
+          "Wie der FLOXANT Rechner Kunden von der ersten Preisfrage zu einem realistisch prüfbaren nächsten Schritt führt.",
+        itemListElement: routingSignals.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.label,
           description: item.text,
         })),
       },
@@ -755,10 +803,13 @@ export default async function RechnerPage() {
 
       <section className="section-glow relative content-auto px-6 pb-8">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <article className="glass-elevated rounded-[1.9rem] p-6 md:p-8">
+          <article className="glass-elevated relative overflow-hidden rounded-[1.9rem] bg-gradient-to-br from-white via-blue-50/55 to-emerald-50/45 p-6 md:p-8">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-blue-200/30 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-20 left-10 h-52 w-52 rounded-full bg-emerald-200/25 blur-2xl" />
+            <div className="relative">
             <div className="label-premium text-blue-700">Was Sie hier wirklich bekommen</div>
             <h2 className="mt-4 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
-              Erst Klarheit, dann der richtige nächste Schritt
+              Ein ruhiger Einstieg statt Preischaos
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
               Der Rechner ist ein sauberer Einstieg für Kunden, die Aufwand, Service-Fit und
@@ -768,12 +819,16 @@ export default async function RechnerPage() {
             <div className="mt-6 grid gap-3">
               {routingSignals.map((item) => (
                 <div
-                  key={item}
-                  className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm shadow-slate-950/5"
+                  key={item.label}
+                  className="rounded-[1.15rem] border border-white/80 bg-white/86 px-4 py-3 shadow-sm shadow-slate-950/5"
                 >
-                  {item}
+                  <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                    {item.label}
+                  </div>
+                  <p className="mt-1 text-sm leading-6 text-slate-700">{item.text}</p>
                 </div>
               ))}
+            </div>
             </div>
           </article>
 
@@ -804,18 +859,18 @@ export default async function RechnerPage() {
       </section>
 
       <section className="section-glow relative content-auto px-6 pb-12">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm shadow-slate-950/5 md:p-8">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(239,246,255,0.78)_48%,rgba(236,253,245,0.62))] p-7 shadow-sm shadow-slate-950/5 md:p-8">
           <div className="mb-8 max-w-3xl">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Häufige Service-Einstiege
+              Suche, Maps und direkte Anfrage
             </div>
             <h2 className="mt-3 max-w-[15ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
-              Ein Rechner, aber klare Einstiege für jede Suchabsicht
+              Aus der Suche direkt zum passenden Einstieg
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Wer nach Umzug, Reinigung, Entsorgung, Entrümpelung, Lagerung oder Büroumzug
-              sucht, braucht einen eindeutigen nächsten Schritt. Diese Übersicht führt direkt in
-              die passenden FLOXANT-Seiten.
+              sucht, will nicht erst eine allgemeine Website durchsuchen. Diese Übersicht führt
+              Kunden aus Google, Maps oder WhatsApp direkt zu dem Weg, der zum konkreten Anliegen passt.
             </p>
           </div>
 
