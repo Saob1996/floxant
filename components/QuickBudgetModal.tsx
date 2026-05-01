@@ -1,7 +1,8 @@
 "use client";
 
 import { m, AnimatePresence } from "framer-motion";
-import { X, Send, User, Mail, Phone, Banknote, ShieldCheck } from "lucide-react";
+import { AlertCircle, MessageSquare, X, Send, User, Mail, Phone, Banknote, ShieldCheck } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -20,16 +21,35 @@ const serviceOptions = [
   { value: "beiladung", label: "Beiladung" },
 ];
 
+function serviceFromContext(pathname: string, serviceParam: string | null) {
+  const source = `${pathname} ${serviceParam || ""}`.toLowerCase();
+
+  if (source.includes("reinigung")) return "reinigung";
+  if (source.includes("entsorgung") || source.includes("entruempelung") || source.includes("entrümpelung")) {
+    return "entsorgung";
+  }
+  if (source.includes("bueroumzug") || source.includes("büroumzug")) return "bueroumzug";
+  if (source.includes("firmenentsorgung")) return "firmenentsorgung";
+  if (source.includes("leerfahrt")) return "leerfahrt";
+  if (source.includes("beiladung")) return "beiladung";
+
+  return "umzug";
+}
+
 export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     service: "umzug",
     name: "",
     email: "",
     phone: "",
     budget: "",
+    message: "",
   });
 
   useEffect(() => {
@@ -38,6 +58,10 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
 
   useEffect(() => {
     if (!isOpen) return;
+
+    const service = serviceFromContext(pathname, searchParams.get("service"));
+    setFormData((current) => ({ ...current, service }));
+    setErrorMessage("");
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -52,21 +76,47 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, pathname, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const email = formData.email.trim();
+
+    if (
+      formData.name.trim().length < 2 ||
+      formData.phone.trim().length < 6 ||
+      formData.budget.trim().length < 2 ||
+      (email && !email.includes("@"))
+    ) {
+      setErrorMessage("Bitte Name, Telefon und einen Preisrahmen angeben. E-Mail ist optional.");
+      return;
+    }
+
     setIsSubmitting(true);
+    setErrorMessage("");
 
     const submitData = new FormData();
     submitData.append("type", "budget_inquiry");
     submitData.append("service", formData.service);
-    submitData.append("name", formData.name);
-    submitData.append("email", formData.email);
-    submitData.append("phone", formData.phone);
-    submitData.append("budget", formData.budget);
-    submitData.append("message", `Preisvorschlag über den Navigations-Button für ${formData.service}`);
-    submitData.append("details", JSON.stringify({ budget: formData.budget, service: formData.service, source: "nav_pinned_button" }));
+    submitData.append("name", formData.name.trim());
+    submitData.append("email", formData.email.trim());
+    submitData.append("phone", formData.phone.trim());
+    submitData.append("budget", formData.budget.trim());
+    submitData.append(
+      "message",
+      formData.message.trim() || `Preisvorschlag über den Navigations-Button für ${formData.service}`,
+    );
+    submitData.append(
+      "details",
+      JSON.stringify({
+        budget: formData.budget.trim(),
+        service: formData.service,
+        message: formData.message.trim(),
+        source: "nav_pinned_button",
+        entryPoint: pathname,
+        servicePresetFromUrl: searchParams.get("service"),
+      }),
+    );
     submitData.append("timestamp", new Date().toISOString());
 
     try {
@@ -80,11 +130,21 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
         setTimeout(() => {
           onClose();
           setIsSuccess(false);
-          setFormData({ service: "umzug", name: "", email: "", phone: "", budget: "" });
+          setFormData({
+            service: serviceFromContext(pathname, searchParams.get("service")),
+            name: "",
+            email: "",
+            phone: "",
+            budget: "",
+            message: "",
+          });
         }, 3000);
+      } else {
+        setErrorMessage("Der Budget-Check konnte gerade nicht gesendet werden. Bitte nutzen Sie alternativ WhatsApp.");
       }
     } catch (error) {
       console.error("Budget inquiry failed:", error);
+      setErrorMessage("Der Budget-Check konnte gerade nicht gesendet werden. Bitte nutzen Sie alternativ WhatsApp.");
     } finally {
       setIsSubmitting(false);
     }
@@ -188,11 +248,10 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                       <div className="absolute inset-y-0 left-5 flex items-center text-white/30 transition-colors group-focus-within:text-blue-400">
                         <Mail size={18} />
                       </div>
-                      <input
-                        required
+                    <input
                         type="email"
-                        aria-label="E-Mail-Adresse"
-                        placeholder="E-Mail-Adresse"
+                        aria-label="E-Mail-Adresse optional"
+                        placeholder="E-Mail optional"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 pl-14 pr-6 text-white outline-none transition-all focus:border-blue-500/50 focus:bg-white/10 focus:ring-4 focus:ring-blue-500/5"
@@ -222,12 +281,32 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                     <input
                       type="text"
                       aria-label="Preisvorstellung oder Zielbudget"
-                      placeholder="Preisvorstellung / Zielbudget (optional)"
+                      placeholder="Preisvorstellung / Zielbudget"
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 pl-14 pr-6 text-white outline-none transition-all focus:border-blue-500/50 focus:bg-white/10 focus:ring-4 focus:ring-blue-500/5"
                     />
                   </div>
+
+                  <label className="block">
+                    <span className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/30">
+                      <MessageSquare className="h-3.5 w-3.5 text-blue-400" />
+                      Kurzbeschreibung optional
+                    </span>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Was soll geprüft werden? Ort, Fläche, Termin, Umfang oder besondere Wünsche..."
+                      className="h-24 w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-all focus:border-blue-500/50 focus:bg-white/10 focus:ring-4 focus:ring-blue-500/5"
+                    />
+                  </label>
+
+                  {errorMessage ? (
+                    <div className="flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-6 text-red-100">
+                      <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                      {errorMessage}
+                    </div>
+                  ) : null}
 
                   <button
                     disabled={isSubmitting}
@@ -241,7 +320,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                   </button>
 
                   <p className="text-center text-[10px] uppercase tracking-widest text-white/20">
-                    Unverbindlich. Ihre Preisvorstellung ergänzt die Vorprüfung.
+                    Telefon reicht. E-Mail ist optional. Budget wird ehrlich geprüft.
                   </p>
                 </form>
               </>

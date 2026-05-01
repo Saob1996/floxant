@@ -21,6 +21,7 @@ export function PrivateClientInquiryForm() {
  const [form, setForm] = useState(initialState);
  const [isSubmitting, setIsSubmitting] = useState(false);
  const [isSuccess, setIsSuccess] = useState(false);
+ const [submitError, setSubmitError] = useState("");
 
  function update(field: keyof typeof form, value: string) {
   setForm((current) => ({ ...current, [field]: value }));
@@ -28,6 +29,7 @@ export function PrivateClientInquiryForm() {
 
  async function handleSubmit(event: React.FormEvent) {
   event.preventDefault();
+  setSubmitError("");
   setIsSubmitting(true);
 
   const details = {
@@ -103,7 +105,7 @@ export function PrivateClientInquiryForm() {
    setForm(initialState);
   } catch (error) {
    console.error("Private client inquiry failed:", error);
-   alert("Die diskrete Anfrage konnte nicht gesendet werden. Bitte kontaktieren Sie FLOXANT direkt telefonisch oder per E-Mail.");
+   setSubmitError("Die diskrete Anfrage konnte nicht gesendet werden. Bitte kontaktieren Sie FLOXANT direkt telefonisch oder per E-Mail.");
   } finally {
    setIsSubmitting(false);
   }
@@ -173,6 +175,12 @@ export function PrivateClientInquiryForm() {
       <Field label="Zeitfenster" value={form.preferredWindow} onChange={(value) => update("preferredWindow", value)} placeholder="z. B. nach Besichtigung, diskret am Wochenende, Etappenplan" />
       <Textarea label="Diskretion / Schutzbedarf" value={form.discretionNeeds} onChange={(value) => update("discretionNeeds", value)} placeholder="Zugang, Personal, Sichtschutz, Inventarliste, sensible Räume..." />
       <Textarea label="Hinweis optional" value={form.note} onChange={(value) => update("note", value)} placeholder="Was soll FLOXANT vor dem persönlichen Kontakt wissen?" />
+
+      {submitError ? (
+       <div className="rounded-2xl border border-red-300/25 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-100">
+        {submitError}
+       </div>
+      ) : null}
 
       <button
        type="submit"

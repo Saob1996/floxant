@@ -32,8 +32,16 @@ export async function POST(req: Request) {
  try {
   const incomingPayload: IntakePayload = await req.json();
   const normalizedService = normalizeService(incomingPayload.service?.type);
+  const normalizedContact = {
+   ...incomingPayload.contact,
+   fullName: String(incomingPayload.contact?.fullName || "").trim(),
+   email: String(incomingPayload.contact?.email || "").trim(),
+   phone: String(incomingPayload.contact?.phone || "").trim(),
+   notes: String(incomingPayload.contact?.notes || "").trim(),
+  };
   const payload: IntakePayload = {
    ...incomingPayload,
+   contact: normalizedContact,
    service: {
     ...incomingPayload.service,
     type: normalizedService as IntakePayload["service"]["type"],
@@ -44,7 +52,7 @@ export async function POST(req: Request) {
   if (!payload.contact.fullName || payload.contact.fullName.length < 2) {
    return NextResponse.json({ error: "Name ist zu kurz" }, { status: 400 });
   }
-  if (!payload.contact.email || !payload.contact.email.includes("@")) {
+  if (payload.contact.email && !payload.contact.email.includes("@")) {
    return NextResponse.json({ error: "Ungültige E-Mail Adresse" }, { status: 400 });
   }
   if (!payload.contact.phone || payload.contact.phone.length < 6) {
@@ -60,7 +68,7 @@ export async function POST(req: Request) {
    upgrades: JSON.stringify([]), // Not used in wizard yet
    details: payload, // Full structured JSON
    name: payload.contact.fullName,
-   email: payload.contact.email,
+   email: payload.contact.email || "",
    phone: payload.contact.phone,
    timestamp: payload.metadata.createdAt || new Date().toISOString(),
    status: "new"

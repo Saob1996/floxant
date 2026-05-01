@@ -63,7 +63,7 @@ export default async function Article() {
             <div className="space-y-4">
               {[
               { q: "Was kostet ein Umzug in Regensburg?", a: "Zwischen 400 und 2.500 Euro je nach Wohnungsgröße und Service." },
-              { q: "Gibt es Festpreise?", a: "Ja. FLOXANT bietet nach kostenloser Besichtigung ein verbindliches Festpreisangebot." }
+              { q: "Gibt es verbindliche Angebote?", a: "Ein Auftrag wird erst verbindlich, wenn Volumen, Zugang, Etagen, Termin, Strecke und Zusatzleistungen geprüft und bestätigt wurden." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">
                   <h3 className="font-bold mb-2">{item.q}</h3>

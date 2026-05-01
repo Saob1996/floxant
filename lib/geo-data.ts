@@ -304,12 +304,72 @@ export const BAVARIAN_CITIES_GEO: Record<string, CityGeoData> = {
     wikidataId: "Q1726",
     region: "Stadtbezirk München"
   },
+  "muenchen-haidhausen": {
+    name: "München Haidhausen",
+    lat: "48.1372",
+    lng: "11.6005",
+    zipCode: "81667",
+    neighborhoods: ["Au-Haidhausen", "Franzosenviertel", "Wiener Platz"],
+    regionCode: "DE-BY",
+    wikidataId: "Q1726",
+    region: "Stadtbezirk München"
+  },
+  "muenchen-sendling": {
+    name: "München Sendling",
+    lat: "48.1180",
+    lng: "11.5480",
+    zipCode: "81369",
+    neighborhoods: ["Sendling", "Harras", "Sendlinger Feld"],
+    regionCode: "DE-BY",
+    wikidataId: "Q1726",
+    region: "Stadtbezirk München"
+  },
+  "muenchen-maxvorstadt": {
+    name: "München Maxvorstadt",
+    lat: "48.1510",
+    lng: "11.5682",
+    zipCode: "80799",
+    neighborhoods: ["Königsplatz", "Universität", "Pinakotheken"],
+    regionCode: "DE-BY",
+    wikidataId: "Q1726",
+    region: "Stadtbezirk München"
+  },
   "nuernberg-gostenhof": {
     name: "Nürnberg Gostenhof",
     lat: "49.4478",
     lng: "11.0556",
     zipCode: "90429",
     neighborhoods: ["GoHo", "Bärenschanze"],
+    regionCode: "DE-BY",
+    wikidataId: "Q2090",
+    region: "Stadtbezirk Nürnberg"
+  },
+  "nuernberg-suedstadt": {
+    name: "Nürnberg Südstadt",
+    lat: "49.4380",
+    lng: "11.0820",
+    zipCode: "90459",
+    neighborhoods: ["Galgenhof", "Steinbühl", "Gibitzenhof"],
+    regionCode: "DE-BY",
+    wikidataId: "Q2090",
+    region: "Stadtbezirk Nürnberg"
+  },
+  "nuernberg-moegeldorf": {
+    name: "Nürnberg Mögeldorf",
+    lat: "49.4619",
+    lng: "11.1421",
+    zipCode: "90482",
+    neighborhoods: ["Mögeldorf", "Laufamholz", "Rehhof"],
+    regionCode: "DE-BY",
+    wikidataId: "Q2090",
+    region: "Stadtbezirk Nürnberg"
+  },
+  "nuernberg-ziegelstein": {
+    name: "Nürnberg Ziegelstein",
+    lat: "49.4940",
+    lng: "11.0995",
+    zipCode: "90411",
+    neighborhoods: ["Ziegelstein", "Buchenbühl", "Herrnhütte"],
     regionCode: "DE-BY",
     wikidataId: "Q2090",
     region: "Stadtbezirk Nürnberg"

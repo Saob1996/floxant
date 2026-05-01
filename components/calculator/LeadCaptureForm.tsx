@@ -39,6 +39,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
 
  const [isSubmitting, setIsSubmitting] = useState(false);
  const [isSuccess, setIsSuccess] = useState(false);
+ const [submitError, setSubmitError] = useState("");
 
  useEffect(() => {
   const timer = window.setInterval(() => {
@@ -55,11 +56,13 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
  }, [advancedEstimate, expressPriceRange]);
 
  const canSubmit = useMemo(() => {
+  const email = leadDetails.customerEmail.trim();
+  const emailLooksValid = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const hasContactData =
    leadDetails.customerName.trim().length >= 2 &&
-   leadDetails.customerEmail.trim().length >= 5 &&
    leadDetails.customerPhone.trim().length >= 6 &&
-   leadDetails.callbackTime.trim().length >= 2;
+   leadDetails.callbackTime.trim().length >= 2 &&
+   emailLooksValid;
 
   const hasEstimate = Boolean(advancedEstimate || expressPriceRange);
 
@@ -72,12 +75,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
   const hasEstimate = Boolean(advancedEstimate || expressPriceRange);
 
   if (!canSubmit || !serviceType || !hasEstimate) {
-   alert(
-    dic?.calculator?.error_submit || "Bitte füllen Sie alle Felder aus."
-   );
+   setSubmitError(dic?.calculator?.error_submit || "Bitte fuellen Sie Name, Telefon und Rueckrufzeit aus.");
    return;
   }
 
+  setSubmitError("");
   setIsSubmitting(true);
 
   try {
@@ -152,11 +154,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
    setIsSuccess(true);
   } catch (err) {
    console.error("Submit error:", err);
-   alert(
+   setSubmitError(
     err instanceof Error
      ? err.message
      : dic?.calculator?.error_submit ||
-     "Error during submit. Please try again."
+      "Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
    );
   } finally {
    setIsSubmitting(false);
@@ -222,7 +224,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       {dic?.calculator?.your_price_range || ""}
      </span>
      <span className="whitespace-nowrap text-2xl font-semibold tracking-tight text-white">
-      {priceRange.min}€ – {priceRange.max}€
+       {priceRange.min} EUR - {priceRange.max} EUR
      </span>
     </div>
    </div>
@@ -263,12 +265,11 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     </div>
 
     <FieldBox
-     label={dic?.calculator?.email_address || ""}
+     label={dic?.calculator?.email_address || "E-Mail optional"}
      icon={<Mail size={12} className="text-blue-300" />}
     >
      <input
-      required
-      type="email"
+       type="email"
       placeholder="max@beispiel.de"
       className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
       value={leadDetails.customerEmail}
@@ -277,6 +278,12 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       }
      />
     </FieldBox>
+
+    {submitError ? (
+     <div className="rounded-2xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm leading-relaxed text-red-100">
+      {submitError}
+     </div>
+    ) : null}
 
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
      <label className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/40">

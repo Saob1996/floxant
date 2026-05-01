@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Lock } from "lucide-react";
@@ -10,7 +9,6 @@ interface LoginFormProps {
 }
 export default function LoginForm({ dict }: LoginFormProps) {
   const t = dict.auth;
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,15 +19,12 @@ export default function LoginForm({ dict }: LoginFormProps) {
     const email = formData.get("email");
     const password = formData.get("password");
     try {
-      console.log("Attempting sign in...");
       const res = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
-      console.log("Sign in result:", res);
       if (res?.ok) {
-        console.log("Redirecting to dashboard via window.location...");
         window.location.href = "/dashboard";
       } else {
         setError(t.error_failed);

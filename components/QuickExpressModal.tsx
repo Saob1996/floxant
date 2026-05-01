@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, m } from "framer-motion";
-import { Calendar, CheckCircle2, Mail, MapPin, Phone, Send, Sparkles, Truck, User, X, Zap } from "lucide-react";
+import { AlertCircle, Calendar, CheckCircle2, Mail, MapPin, Phone, Send, Sparkles, Truck, User, X, Zap } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -19,10 +20,60 @@ const serviceOptions = [
  { value: "leerfahrt", label: "Leer-Rückfahrt" },
 ];
 
+function serviceFromContext(pathname: string, serviceParam: string | null) {
+ const source = `${pathname} ${serviceParam || ""}`.toLowerCase();
+
+ if (source.includes("reinigung")) return "reinigung";
+ if (source.includes("entsorgung") || source.includes("entruempelung") || source.includes("entrümpelung")) {
+  return "entsorgung";
+ }
+ if (source.includes("bueroumzug") || source.includes("büroumzug")) return "bueroumzug";
+ if (source.includes("firmenentsorgung")) return "firmenentsorgung";
+ if (source.includes("leerfahrt")) return "leerfahrt";
+
+ return "umzug";
+}
+
+function copyForService(service: string) {
+ if (service === "reinigung") {
+  return {
+   headline: "Reinigung schnell prüfen lassen.",
+   intro: "Für eilige Reinigungen reichen Ort, Terminwunsch und eine kurze Beschreibung. Fotos können danach per WhatsApp folgen.",
+   fromLabel: "Einsatzort / Stadtteil",
+   toLabel: "Objekt / Zugang optional",
+   notePlaceholder: "Wohnung, Büro, Übergabe, Fläche, Zustand, Fotos vorhanden, Schlüsselzugang...",
+   drivers: ["Serviceart", "Objektort", "Terminwunsch"],
+  };
+ }
+
+ if (service === "entsorgung" || service === "firmenentsorgung") {
+  return {
+   headline: "Räumung schnell prüfen lassen.",
+   intro: "Für eilige Entsorgung helfen Ort, Menge, Zugang und ein kurzer Hinweis zu Material oder Fotos.",
+   fromLabel: "Abholort / Einsatzort",
+   toLabel: "Ziel / Hinweis optional",
+   notePlaceholder: "Menge, Material, Etage, Aufzug, Fotos vorhanden, gewünschter Zeitraum...",
+   drivers: ["Serviceart", "Abholort", "Menge/Zugang"],
+  };
+ }
+
+ return {
+  headline: "Schnell prüfen, ohne langen Rechner.",
+  intro: "Für eilige Fälle reichen wenige Angaben. Der normale Rechner bleibt für detaillierte Orientierungsrahmen da.",
+  fromLabel: "Start / Abholort",
+  toLabel: "Ziel / Einsatzort",
+  notePlaceholder: "Was ist dringend? Volumen, Etage, Zeitfenster, Besonderheiten...",
+  drivers: ["Serviceart", "Route", "Terminwunsch"],
+ };
+}
+
 export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
+ const pathname = usePathname();
+ const searchParams = useSearchParams();
  const [mounted, setMounted] = useState(false);
  const [isSubmitting, setIsSubmitting] = useState(false);
  const [isSuccess, setIsSuccess] = useState(false);
+ const [errorMessage, setErrorMessage] = useState("");
  const [formData, setFormData] = useState({
   service: "umzug",
   fromAddress: "",
@@ -39,7 +90,11 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
  }, []);
 
  useEffect(() => {
-  if (!isOpen) return;
+ if (!isOpen) return;
+
+  const service = serviceFromContext(pathname, searchParams.get("service"));
+  setFormData((current) => ({ ...current, service }));
+  setErrorMessage("");
 
   const previousOverflow = document.body.style.overflow;
   document.body.style.overflow = "hidden";
@@ -54,7 +109,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
    document.body.style.overflow = previousOverflow;
    window.removeEventListener("keydown", handleKeyDown);
   };
- }, [isOpen, onClose]);
+ }, [isOpen, onClose, pathname, searchParams]);
 
  function update(field: keyof typeof formData, value: string) {
   setFormData((current) => ({ ...current, [field]: value }));
@@ -62,7 +117,21 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
 
  async function handleSubmit(event: React.FormEvent) {
   event.preventDefault();
+  const email = formData.email.trim();
+
+  if (
+   formData.fromAddress.trim().length < 2 ||
+   formData.name.trim().length < 2 ||
+   formData.phone.trim().length < 6 ||
+   (email && !email.includes("@"))
+  ) {
+   setErrorMessage("Bitte Einsatzort, Name und Telefonnummer angeben. E-Mail ist optional.");
+   return;
+  }
+
   setIsSubmitting(true);
+  setErrorMessage("");
+  const serviceCopy = copyForService(formData.service);
 
   const details = {
    contact: {
@@ -83,17 +152,19 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
     systemPriceRangeMax: 0,
     priceRangeMin: 0,
     priceRangeMax: 0,
-    valuationLabel: "Express-Eckdaten",
+   valuationLabel: "Express-Eckdaten",
     valuationStage: "Schnelle Machbarkeitsprüfung",
     accuracyState: "Erste Einschätzung",
-    topDrivers: ["Serviceart", "Route", "Terminwunsch"],
+    topDrivers: serviceCopy.drivers,
     priceExplanation:
      "Die Express-Anfrage enthält nur Eckdaten. FLOXANT prüft kurzfristig, ob Route, Team und Termin realistisch passen.",
     pricingSignals: {
-     inquiryMode: "quick_express",
-     serviceType: formData.service,
-     date: formData.date,
-    },
+    inquiryMode: "quick_express",
+    serviceType: formData.service,
+    date: formData.date,
+    entryPoint: pathname,
+    servicePresetFromUrl: searchParams.get("service"),
+   },
    },
    configuration: {
     requestContext: "quick_express",
@@ -107,6 +178,10 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
     intakeVersion: "1.2.0",
     source: "quick_express_modal",
     servicePresetFromUrl: formData.service,
+    clientContext: {
+     entryPoint: pathname,
+     servicePresetFromUrl: searchParams.get("service"),
+    },
    },
   };
 
@@ -133,7 +208,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
     onClose();
     setIsSuccess(false);
     setFormData({
-     service: "umzug",
+     service: serviceFromContext(pathname, searchParams.get("service")),
      fromAddress: "",
      toAddress: "",
      date: "",
@@ -143,15 +218,17 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
      note: "",
     });
    }, 2600);
-  } catch (error) {
-   console.error("Express inquiry failed:", error);
-   alert("Die Express-Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.");
-  } finally {
+ } catch (error) {
+  console.error("Express inquiry failed:", error);
+   setErrorMessage("Die Express-Anfrage konnte gerade nicht gesendet werden. Bitte nutzen Sie alternativ WhatsApp.");
+ } finally {
    setIsSubmitting(false);
   }
  }
 
  if (!mounted) return null;
+
+ const serviceCopy = copyForService(formData.service);
 
  return createPortal(
   <AnimatePresence>
@@ -199,14 +276,14 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
         <div className="mb-8">
          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-orange-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-orange-200">
           <Zap size={14} />
-          Express-Check mit Eckdaten
-         </div>
-         <h2 id="quick-express-title" className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-          Schnell prüfen, ohne langen Rechner.
-         </h2>
-         <p className="mt-4 max-w-xl text-white/50">
-          Für eilige Fälle reichen wenige Angaben. Der normale Rechner bleibt für detaillierte Orientierungsrahmen da.
-         </p>
+         Express-Check mit Eckdaten
+        </div>
+        <h2 id="quick-express-title" className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+          {serviceCopy.headline}
+        </h2>
+        <p className="mt-4 max-w-xl text-white/50">
+          {serviceCopy.intro}
+        </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -229,8 +306,8 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
          </div>
 
          <div className="grid gap-4 md:grid-cols-2">
-          <Field icon={MapPin} label="Start / Abholort" value={formData.fromAddress} onChange={(value) => update("fromAddress", value)} required />
-          <Field icon={Truck} label="Ziel / Einsatzort" value={formData.toAddress} onChange={(value) => update("toAddress", value)} />
+          <Field icon={MapPin} label={serviceCopy.fromLabel} value={formData.fromAddress} onChange={(value) => update("fromAddress", value)} required />
+          <Field icon={Truck} label={serviceCopy.toLabel} value={formData.toAddress} onChange={(value) => update("toAddress", value)} />
          </div>
 
          <Field icon={Calendar} label="Wunschtermin" value={formData.date} onChange={(value) => update("date", value)} type="date" />
@@ -250,10 +327,17 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
           <textarea
            value={formData.note}
            onChange={(event) => update("note", event.target.value)}
-           placeholder="Was ist dringend? Volumen, Etage, Zeitfenster, Besonderheiten..."
+           placeholder={serviceCopy.notePlaceholder}
            className="h-24 w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-all focus:border-orange-300/35 focus:bg-white/10"
           />
          </label>
+
+         {errorMessage ? (
+          <div className="flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-6 text-red-100">
+           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+           {errorMessage}
+          </div>
+         ) : null}
 
          <button
           disabled={isSubmitting}

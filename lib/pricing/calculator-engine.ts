@@ -238,8 +238,14 @@ export function calculateReinigungExpress(
  const area = Math.max(0, num(data.areaM2, 0));
  let price = Math.max(99, area * 3.8);
 
+ if (data.cleaningGoal === "grundreinigung") price *= 1.16;
+ if (data.cleaningGoal === "uebergabe") price *= 1.1;
+ if (data.cleaningGoal === "einzug") price *= 1.06;
+
  if (data.propertyType === "haus") price *= 1.15;
  if (data.propertyType === "buero") price *= 1.1;
+ if (data.propertyType === "praxis") price *= 1.1;
+ if (data.propertyType === "treppenhaus") price *= 0.94;
 
  let conditionMultiplier = 1;
  if (data.condition === "mittel") conditionMultiplier = 1.22;
@@ -579,12 +585,31 @@ export function calculateReinigungAdvanced(
 
  let price = Math.max(149, area * m2Rate);
 
+ if (data.cleaningGoal === "grundreinigung") {
+  price *= 1.16;
+  flags.push("Grundreinigung mit erhöhtem Detailgrad berücksichtigt");
+ } else if (data.cleaningGoal === "uebergabe") {
+  price *= 1.1;
+  flags.push("Übergabeorientierte Reinigung berücksichtigt");
+ } else if (data.cleaningGoal === "einzug") {
+  price *= 1.06;
+  flags.push("Einzugsnahe Reinigung berücksichtigt");
+ } else if (data.cleaningGoal === "unterhalt") {
+  flags.push("Laufende oder wiederkehrende Reinigung eingeordnet");
+ }
+
  if (data.propertyType === "haus") {
   price *= 1.12;
   flags.push("Hausstruktur mit Fluren oder Treppen berücksichtigt");
  } else if (data.propertyType === "buero") {
   price *= 1.08;
   flags.push("Gewerbliche Objektstruktur berücksichtigt");
+ } else if (data.propertyType === "praxis") {
+  price *= 1.1;
+  flags.push("Praxis- oder Kundenfläche berücksichtigt");
+ } else if (data.propertyType === "treppenhaus") {
+  price *= 0.94;
+  flags.push("Treppenhaus oder Gemeinschaftsfläche berücksichtigt");
  }
 
  let conditionMultiplier = 1;
@@ -648,7 +673,7 @@ export function calculateReinigungAdvanced(
  price *= getSeasonalMultiplier();
  price = minPrice(price, 130);
 
- const drivers: string[] = ["Fläche und Objektart", "Verschmutzungsgrad"];
+ const drivers: string[] = ["Reinigungsziel", "Fläche und Objektart", "Verschmutzungsgrad"];
 
  if (data.isFurnished) {
   drivers.push("Möblierung oder enge Objektstruktur");
@@ -677,7 +702,7 @@ export function calculateReinigungAdvanced(
   uncertaintyMultiplier,
   estimatedHours: formatHours(baseHours, baseHours + 2, dic),
   recommendedTeam,
-  calculationBasis: `${Math.round(area)} m2 Fläche | Zustand: ${data.condition || "mittel"}`,
+  calculationBasis: `${Math.round(area)} m2 Fläche | Ziel: ${data.cleaningGoal || "uebergabe"} | Zustand: ${data.condition || "mittel"}`,
   operationalFlags: flags,
   confidenceLevel,
   drivers,
@@ -685,6 +710,7 @@ export function calculateReinigungAdvanced(
    "Diese vorläufige Einschätzung basiert auf Ihren Angaben zu Fläche, Objektart, Zustand, Zusatzleistungen und Terminlage.",
   pricingSignals: makeSignals("reinigung", drivers, {
    areaM2: Math.round(area),
+   cleaningGoal: data.cleaningGoal,
    propertyType: data.propertyType,
    condition: data.condition,
    windowsCount,

@@ -22,9 +22,9 @@ export async function generateCityContent(city: string, service: string): Promis
    <p class="text-xl text-white font-light mb-6">Ein <strong>${serviceCap} in ${city}</strong> erfordert präzise Planung und transparente Kalkulation. Unsere Daten zeigen, dass die durchschnittlichen Kosten stark von Faktoren wie Stockwerk, Distanz und dem gebuchten Volumen abhängen.</p>
    
    <h2 class="text-2xl text-white font-medium mt-10 mb-4 border-b border-white/10 pb-2">Kostenübersicht für ${city}</h2>
-   <p class="mb-6">Im Raum ${city} variieren die Preise stark je nach Saison und Auslastung der Flotten. Mit dem <strong>FLOXANT Algorithmus</strong> berechnen wir Ihren Tarif millimetergenau in Echtzeit. Dadurch vermeiden wir systematisch Leerfahrten in benachbarten Postleitzahlengebieten und können Ihnen einen garantierten Festpreis anbieten, der nicht mehr nachverhandelt wird.</p>
+   <p class="mb-6">Im Raum ${city} variieren die Preise je nach Saison, Zugang, Terminlage, Volumen und Zusatzleistungen. FLOXANT prüft diese Angaben vor der verbindlichen Planung, damit aus einer ersten Anfrage kein künstlich niedriger Lockpreis wird.</p>
    
-   <h2 class="text-2xl text-white font-medium mt-10 mb-4 border-b border-white/10 pb-2">Was Sie bei in ${city} beachten sollten</h2>
+   <h2 class="text-2xl text-white font-medium mt-10 mb-4 border-b border-white/10 pb-2">Was Sie in ${city} beachten sollten</h2>
    <ul class="list-disc pl-5 space-y-3 mb-8">
     <li><strong>Parkplatzsituation:</strong> Holen Sie rechtzeitig Halteverbotszonen bei der lokalen Stadtverwaltung (Kreisverwaltungsreferat) in ${city} ein.</li>
     <li><strong>Volumenberechnung:</strong> Geben Sie im Konfigurator das exakte Volumen an, um die Dispositionslogistik, die LKW-Größe und die Teamstärke nicht zu gefährden.</li>

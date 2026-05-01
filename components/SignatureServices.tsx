@@ -110,7 +110,7 @@ export function SignatureServices({ dict }: SignatureServicesProps) {
   if (visibleServices.length === 0) return null;
 
   return (
-    <section id="extras" className="section-glow relative overflow-hidden px-6 py-24">
+    <section id="extras" className="section-glow content-auto relative overflow-hidden px-6 py-24">
       <div className="pointer-events-none absolute inset-0 opacity-26">
         <FloxantSymbolLayer variant="premium" density="soft" />
       </div>

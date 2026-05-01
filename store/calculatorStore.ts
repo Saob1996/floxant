@@ -15,6 +15,7 @@ export interface LeadDetails {
  customerName: string;
  customerEmail: string;
  customerPhone: string;
+ customerNote: string;
  callbackTime: string;
  customerBudget: string;
  wantsPhotosLink: boolean;
@@ -39,8 +40,12 @@ export interface UmzugExpressData {
  hasElevatorTo?: boolean;
 }
 
+export type CleaningGoal = "uebergabe" | "grundreinigung" | "unterhalt" | "einzug";
+export type CleaningPropertyType = "wohnung" | "haus" | "buero" | "praxis" | "treppenhaus" | "";
+
 export interface ReinigungExpressData {
- propertyType: "wohnung" | "haus" | "buero" | "";
+ cleaningGoal: CleaningGoal;
+ propertyType: CleaningPropertyType;
  areaM2: number;
  condition: "leicht" | "mittel" | "stark";
 }
@@ -224,6 +229,7 @@ const initialLeadDetails: LeadDetails = {
  customerName: "",
  customerEmail: "",
  customerPhone: "",
+ customerNote: "",
  callbackTime: "",
  customerBudget: "",
  wantsPhotosLink: false,
@@ -301,6 +307,7 @@ const initialKlaviertransportData: KlaviertransportAdvancedData = {
 };
 
 const initialReinigungData: ReinigungAdvancedData = {
+ cleaningGoal: "uebergabe",
  propertyType: "",
  areaM2: 0,
  condition: "mittel",

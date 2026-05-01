@@ -43,7 +43,7 @@ export default async function BlogArticle() {
           <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
             <p className="text-lg font-medium text-foreground">Bayern und Nordrhein-Westfalen sind durch Arbeitsmigration eng verbunden. Jedes Jahr ziehen tausende Menschen zwischen den beiden Bundesländern um. Die Distanz von rund 500-600 Kilometern macht den Transport zu einer logistischen Herausforderung – aber mit der richtigen Planung ist auch ein Fernumzug stressfrei machbar.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Was kostet ein Fernumzug Bayern → NRW?</h2>
-            <p>Die Kosten hängen primär vom Transportvolumen ab. Grobe Richtwerte: Ein 1-Zimmer-Apartment (ca. 20m³) kostet zwischen 1.200€ und 2.000€. Eine 3-Zimmer-Wohnung (ca. 50m³) liegt bei 2.500€ bis 4.500€. Full-Service mit Einpacken und Auspacken kostet naturgemäß mehr. Der Schlüssel: Holen Sie sich immer ein verbindliches Festpreisangebot nach Besichtigung.</p>
+            <p>Die Kosten hängen nicht nur von der Strecke ab, sondern vor allem von Volumen, Zugang, Etagen, Zeitfenster und Zusatzleistungen. Grobe Online-Spannen können eine erste Orientierung geben, ersetzen aber keine Prüfung des konkreten Falls. Wichtig ist ein Angebot, das nach Besichtigung oder sauberer Foto-/Datenprüfung verständlich bestätigt wird.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Beiladung: Die clevere Sparoption</h2>
             <p>Wenn Ihr Zeitplan flexibel ist, können Sie Ihre Möbel als Beiladung auf einem ohnehin fahrenden LKW mitnehmen lassen. FLOXANT fährt wöchentlich Routen zwischen Bayern und NRW – dadurch sinken die Kosten um bis zu 40%.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Zwischenlagerung: Wenn die Termine nicht passen</h2>
@@ -63,7 +63,7 @@ export default async function BlogArticle() {
           </div>
           <div className="mt-20 p-8 bg-primary/5 border border-primary/10 rounded-3xl text-center">
             <h3 className="text-2xl font-bold mb-4">Bereit für Ihren Umzug?</h3>
-            <p className="text-muted-foreground mb-6">Holen Sie sich jetzt Ihr unverbindliches Festpreisangebot bei FLOXANT.</p>
+            <p className="text-muted-foreground mb-6">Schildern Sie Strecke, Volumen, Zugang und Terminwunsch. FLOXANT prüft, welcher Ablauf realistisch planbar ist.</p>
             <Link href={"/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
               Angebot anfordern →
             </Link>

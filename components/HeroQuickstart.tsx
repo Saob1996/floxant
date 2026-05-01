@@ -76,14 +76,14 @@ export default function HeroQuickstart() {
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-blue-400">
-                  {status === "processing" ? "Analyzing Region..." : "Ready for Fulfillment"}
+                  {status === "processing" ? "Region wird geprüft" : "Weiter geht es"}
                 </span>
                 {status === "success" && <CheckCircle2 className="h-3 w-3 text-blue-400" />}
               </div>
               <p className="text-xs font-medium text-white/80">
-                {status === "processing" 
-                  ? "Regensburg Hub wird kontaktiert - Verfügbarkeit wird geprüft..." 
-                  : "Einsatzgebiet Regensburg/Bayern aktiv. Ihr persönlicher Rechner wird geladen."}
+                {status === "processing"
+                  ? "Wir prüfen, ob Ihr Einsatzort zum passenden FLOXANT Anfrageweg passt."
+                  : "Danke. Wir führen Sie jetzt direkt zum Anfragebereich."}
               </p>
             </div>
           </m.div>

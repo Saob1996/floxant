@@ -34,6 +34,29 @@ const emptyInquiry: InquiryState = {
   message: "",
 };
 
+const quickBackhaulPresets = [
+  {
+    label: "Büromöbel",
+    items: "Büromöbel, Stühle, Tische, Regale oder Archivkartons",
+    note: "Bitte Fotos, Etage und Ladefenster ergänzen.",
+  },
+  {
+    label: "Einzelstück",
+    items: "Einzelstück oder wenige Möbelstücke mit Maßen und Gewicht",
+    note: "Maße, Gewicht und Abholzeit helfen bei der Rückfahrt-Prüfung.",
+  },
+  {
+    label: "Paletten",
+    items: "Paletten, Kartons oder gewerbliche Teilmenge",
+    note: "Bitte Stückzahl, Maße und Stapelbarkeit angeben.",
+  },
+  {
+    label: "Wohnungsteil",
+    items: "Teilumzug, Kartons und ausgewählte Möbelstücke",
+    note: "Fotos und grobe Liste beschleunigen die Einschätzung.",
+  },
+] as const;
+
 function parseBudget(value: string) {
   const normalized = value.replace(/[^\d.,-]/g, "").replace(/\./g, "").replace(",", ".");
   const parsed = Number.parseFloat(normalized);
@@ -56,6 +79,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     let isMounted = true;
@@ -89,10 +113,29 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
     setForm((current) => ({ ...current, [field]: value }));
   }
 
+  function applyPreset(preset: (typeof quickBackhaulPresets)[number]) {
+    setForm((current) => ({
+      ...current,
+      items: current.items || preset.items,
+      message: current.message || preset.note,
+    }));
+  }
+
   async function submitInquiry(event: React.FormEvent) {
     event.preventDefault();
-    if (!form.name.trim() || !form.phone.trim() || !form.pickupLocation.trim() || !form.items.trim()) return;
+    const missing = [
+      !form.name.trim() ? "Name" : "",
+      !form.phone.trim() ? "Telefon" : "",
+      !form.pickupLocation.trim() ? "Abholort" : "",
+      !form.items.trim() ? "Transportgut" : "",
+    ].filter(Boolean);
 
+    if (missing.length) {
+      setSubmitError(`Bitte ergänzen: ${missing.join(", ")}.`);
+      return;
+    }
+
+    setSubmitError("");
     setIsSubmitting(true);
     setIsSuccess(false);
 
@@ -175,9 +218,8 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         ...emptyInquiry,
         offerId: activeOffer?.id || "",
       });
-    } catch (error) {
-      console.error("Backhaul inquiry failed:", error);
-      alert("Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie FLOXANT direkt.");
+    } catch {
+      setSubmitError("Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie FLOXANT direkt.");
     } finally {
       setIsSubmitting(false);
     }
@@ -254,7 +296,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
 
       <div
         id="leerfahrt-anfrage"
-        className="sticky top-28 h-fit rounded-[2.4rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(243,247,255,0.98))] p-6 shadow-[0_28px_90px_rgba(15,23,42,0.12)]"
+        className="h-fit rounded-[2.4rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(243,247,255,0.98))] p-6 shadow-[0_28px_90px_rgba(15,23,42,0.12)] lg:sticky lg:top-28"
       >
         <AnimatePresence mode="wait">
           {isSuccess ? (
@@ -297,6 +339,36 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
                 </p>
               </div>
 
+              {activeOffer ? (
+                <div className="rounded-[1.4rem] border border-emerald-200 bg-emerald-50/70 p-4">
+                  <div className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700">
+                    Ausgewählte Rückfahrt
+                  </div>
+                  <p className="mt-2 text-sm font-bold text-slate-950">{activeOffer.title}</p>
+                  <p className="mt-1 text-xs leading-5 text-slate-600">
+                    {activeOffer.origin} nach {activeOffer.destination}, {activeOffer.timeWindow || "nach Absprache"}
+                  </p>
+                </div>
+              ) : null}
+
+              <div>
+                <div className="mb-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                  Schnellprofil
+                </div>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {quickBackhaulPresets.map((preset) => (
+                    <button
+                      key={preset.label}
+                      type="button"
+                      onClick={() => applyPreset(preset)}
+                      className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-bold text-slate-800 transition hover:border-emerald-200 hover:bg-emerald-50"
+                    >
+                      {preset.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <Input label="Firma optional" value={form.company} onChange={(value) => updateField("company", value)} placeholder="z. B. Büro, Kanzlei, Agentur, Lager" />
               <Input label="Name" value={form.name} onChange={(value) => updateField("name", value)} required />
               <div className="grid gap-3 md:grid-cols-2">
@@ -309,6 +381,12 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
               <Textarea label="Was soll mit?" value={form.items} onChange={(value) => updateField("items", value)} required placeholder="Büroinventar, Möbel, Kartons, Paletten, Maschine, Einzelstück..." />
               <Input label="Preisvorstellung optional" value={form.budget} onChange={(value) => updateField("budget", value)} placeholder="z. B. 250 EUR" />
               <Textarea label="Hinweis optional" value={form.message} onChange={(value) => updateField("message", value)} placeholder="Etage, Aufzug, Ladezeiten, Fotos vorhanden..." />
+
+              {submitError ? (
+                <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+                  {submitError}
+                </div>
+              ) : null}
 
               <button
                 type="submit"

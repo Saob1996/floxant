@@ -20,7 +20,7 @@ interface CustomerJourneyMobileProps {
 const mobileLabelMap: Record<string, string> = {
   ueberblick: "Überblick",
   leistungen: "Leistungen",
-  preis: "Kosten",
+  preis: "Preis & Budget",
   kontakt: "Anfragen",
   ablauf: "Ablauf",
   zusatzservices: "Extras",
@@ -55,12 +55,12 @@ export function CustomerJourneyMobile({
       <div className="fixed bottom-5 left-5 z-40 lg:hidden">
         <button
           type="button"
-          aria-label="Schnellwahl öffnen"
+          aria-label="Direktwahl öffnen"
           onClick={() => setDrawerOpen(true)}
           className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/96 px-4 py-3 text-sm font-semibold text-slate-800 shadow-[0_12px_26px_rgba(15,23,42,0.12)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-slate-50"
         >
           <Compass className="h-4 w-4 text-blue-700" />
-          Schnellwahl
+          Direktwahl
         </button>
       </div>
 
@@ -86,9 +86,9 @@ export function CustomerJourneyMobile({
               <div className="rounded-[1.75rem] border border-slate-200 bg-white p-4 shadow-[0_30px_70px_rgba(15,23,42,0.22)]">
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-bold text-slate-950">Schnellwahl</p>
+                    <p className="text-sm font-bold text-slate-950">Direktwahl</p>
                     <p className="mt-1 text-xs text-slate-500">
-                      Direkt zur Stelle, die Sie gerade brauchen.
+                      Direkt zu Leistung, Preis oder Anfrage.
                     </p>
                   </div>
                   <button

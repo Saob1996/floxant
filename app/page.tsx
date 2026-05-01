@@ -126,6 +126,44 @@ const businessModelPillars = [
   },
 ];
 
+const offerTracks: RouteCard[] = [
+  {
+    label: "Schnell",
+    title: "Direkt anfragen",
+    text: "Wenn Service, Ort und Termin schon grob klar sind: Anfrage absenden und den Fall strukturiert prüfen lassen.",
+    href: "/buchung",
+    Icon: Zap,
+  },
+  {
+    label: "Orientierung",
+    title: "Kosten einschätzen",
+    text: "Wenn Sie erst wissen wollen, welche Faktoren Preis und Aufwand wirklich beeinflussen.",
+    href: "/rechner",
+    Icon: Banknote,
+  },
+  {
+    label: "Budget",
+    title: "Preisrahmen nennen",
+    text: "Wenn ein Zielbudget vorhanden ist und FLOXANT ehrlich prüfen soll, welcher Umfang realistisch ist.",
+    href: "/anfrage-mit-preisrahmen",
+    Icon: CheckCircle2,
+  },
+  {
+    label: "Sorglos",
+    title: "Übergabe vorbereiten",
+    text: "Wenn Umzug, Endreinigung, Restmengen, Fotos, Schlüssel und Übergabe zusammen gedacht werden müssen.",
+    href: "/umzug-mit-reinigung",
+    Icon: Sparkles,
+  },
+  {
+    label: "Gewerbe",
+    title: "Objekt & Betrieb",
+    text: "Für Büros, Praxen, Hausverwaltungen, Gewerbeflächen und Einsätze mit laufendem Betrieb.",
+    href: "/gewerbereinigung-regensburg",
+    Icon: Building2,
+  },
+];
+
 const regionLinks = [
   { label: "Regensburg", href: "/umzug-regensburg" },
   { label: "München", href: "/umzug-muenchen" },
@@ -211,6 +249,7 @@ export default function Home() {
     specialRoutes,
     trustPoints,
     businessModelPillars,
+    offerTracks,
     regionLinks,
     directEntryPaths,
     faqItems,
@@ -377,6 +416,49 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="mt-5 rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(15,23,42,0.96),rgba(18,38,70,0.96))] p-4 shadow-2xl shadow-slate-950/20 md:p-5">
+            <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+              <div className="px-2 py-2">
+                <div className="inline-flex rounded-full border border-white/10 bg-white/8 px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+                  Welcher Weg passt?
+                </div>
+                <h2 className="mt-4 max-w-[13ch] text-3xl font-bold leading-[1] tracking-[-0.018em] text-white md:text-4xl">
+                  Fünf Einstiege statt ein überladenes Formular.
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  Kunden sollen nicht suchen müssen. FLOXANT trennt schnelle Anfrage, Preisgefühl,
+                  Budget, Übergabe und Gewerbe sauber voneinander.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+                {content.offerTracks.map((track) => {
+                  const Icon = track.Icon;
+                  return (
+                    <Link
+                      key={track.href}
+                      href={track.href}
+                      className="group rounded-[1.35rem] border border-white/10 bg-white/[0.075] p-4 transition hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-white/[0.1]"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <span className="grid h-10 w-10 place-items-center rounded-[0.95rem] bg-white/10 text-cyan-200">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <ArrowRight className="h-4 w-4 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-cyan-200" />
+                      </div>
+                      <div className="mt-4 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+                        {track.label}
+                      </div>
+                      <h3 className="mt-2 text-base font-bold leading-tight tracking-tight text-white">
+                        {track.title}
+                      </h3>
+                      <p className="mt-2 text-xs leading-6 text-slate-300">{track.text}</p>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
           <div className="mt-4 rounded-[1.55rem] border border-slate-200 bg-white/88 px-5 py-4 shadow-sm shadow-slate-950/5">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
               Häufig gesuchte Einstiege
@@ -397,7 +479,7 @@ export default function Home() {
       </section>
 
       {/* ── SERVICE ARCHITECTURE ──────────────────────────────── */}
-      <section id="leistungen" className="flox-section pt-0">
+      <section id="leistungen" className="flox-section content-auto pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
             <div className="flox-kicker">Leistungen schnell einordnen</div>
@@ -449,7 +531,7 @@ export default function Home() {
         }}
       />
 
-      <section className="flox-section pt-0">
+      <section className="flox-section content-auto pt-0">
         <div className="flox-shell">
           <div className="flox-panel rounded-[2rem] px-6 py-6">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -487,7 +569,7 @@ export default function Home() {
       </section>
 
       {/* ── SERVICE SYSTEMS + TRUST (merged) ──────────────────── */}
-      <section id="geschaeftsmodell" className="flox-section pt-0">
+      <section id="geschaeftsmodell" className="flox-section content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Geschäftsmodell klar erklärt</div>
@@ -520,7 +602,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="preis" className="flox-section pt-0">
+      <section id="preis" className="flox-section content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[1.03fr_0.97fr]">
           <article className="flox-panel-dark rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Sofortiger Einstieg</div>
@@ -579,7 +661,7 @@ export default function Home() {
       </section>
 
       {/* ── OPERATIONS PROOF ──────────────────────────────────── */}
-      <section id="ablauf" className="flox-section pt-0">
+      <section id="ablauf" className="flox-section content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-2">
           <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Ablauf</div>
@@ -626,7 +708,7 @@ export default function Home() {
       <TrustFlowSection sectionId="vertrauen" />
       <LocalSeoSignalPanel sectionId="lokales-signal" />
 
-      <section id="region" className="flox-section pt-0">
+      <section id="region" className="flox-section content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Region</div>
@@ -670,7 +752,7 @@ export default function Home() {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────────────── */}
-      <section id="kontakt" className="flox-section pt-0">
+      <section id="kontakt" className="flox-section content-auto pt-0">
         <div className="flox-shell">
           <div className="flox-panel-dark rounded-[2.4rem] px-6 py-8 md:px-10 md:py-10">
             <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">

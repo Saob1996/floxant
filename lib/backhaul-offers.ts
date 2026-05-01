@@ -82,7 +82,7 @@ export function normalizeBackhaulOffer(record: any): BackhaulOffer {
   priceHint: asString(stored.priceHint, "fairer Rückfahrt-Preis nach Route und Volumen"),
   fairPriceNote: asString(
    stored.fairPriceNote,
-   "Der Preis hängt davon ab, ob Strecke, Datum, Volumen und Ladepunkte zur geplanten Rückfahrt Richtung Regensburg passen. Sinnvolle Stopps unterwegs sind möglich; ein Umweg wird vorab transparent besprochen."
+   "Der Preis hängt davon ab, ob Strecke, Datum, Volumen und Ladepunkte zur geplanten Rückfahrt Richtung Regensburg passen. Sinnvolle Stopps unterwegs sind möglich; ein Umweg wird vorab transparent besprochen.",
   ),
   status: asString(record?.status || stored.status, "active") as BackhaulOfferStatus,
   adminNote: asString(stored.adminNote),

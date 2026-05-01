@@ -52,7 +52,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Professionelle Reinigung beauftragen</h2>
-            <p className="text-muted-foreground leading-relaxed">Eine professionelle Endreinigung kostet 3 bis 5 Euro pro Quadratmeter. Der Vorteil: Abnahmegarantie und protokolliertes Ergebnis. FLOXANT bietet Reinigung als Kombi-Service zum Umzug an.</p>
+            <p className="text-muted-foreground leading-relaxed">Eine professionelle Endreinigung hängt stark von Fläche, Zustand, Küche, Bad, Fenstern und Termin ab. Der Vorteil liegt nicht in einer pauschalen Zusage, sondern in klarer Vorbereitung, nachvollziehbarer Reinigung und besserer Abstimmung vor der Übergabe. FLOXANT bietet Reinigung je nach Auftrag auch als Kombi-Service zum Umzug an.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Typische Stolperfallen</h2>
@@ -62,8 +62,8 @@ export default async function Article() {
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
             <div className="space-y-4">
               {[
-              { q: "Was kostet eine Endreinigung?", a: "3 bis 5 Euro pro Quadratmeter bei professioneller Reinigung." },
-              { q: "Muss ich nach dem Umzug besenrein übergeben?", a: "Ja. Das ist der Mindeststandard. Viele Vermieter erwarten mehr. Eine professionelle Reinigung gibt Sicherheit." }
+              { q: "Was kostet eine Endreinigung?", a: "Das hängt von Fläche, Zustand, Küche, Bad, Fenstern und Termin ab. Ein realistischer Preis entsteht erst nach Prüfung der Angaben." },
+              { q: "Muss ich nach dem Umzug besenrein übergeben?", a: "Häufig ist besenrein der Mindeststandard. Was konkret verlangt wird, hängt aber vom Mietvertrag und der Absprache mit Vermieter oder Hausverwaltung ab." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">
                   <h3 className="font-bold mb-2">{item.q}</h3>

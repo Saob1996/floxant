@@ -70,9 +70,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "leerfahrt-rueckfahrt",
-    title: "Leer-Rückfahrt Richtung Regensburg | Freie Transportkapazität fair nutzen",
+    title: "Leer-Rückfahrt & Beiladung Richtung Regensburg | FLOXANT",
     description:
-      "FLOXANT bietet freie Leer-Rückfahrten Richtung Regensburg und ca. 150 km Umkreis: faire Mitnahme für Möbel, Firmeninventar, Kartons, Paletten und flexible Teiltransporte mit sauber geprüfter Route.",
+      "FLOXANT prüft Leer-Rückfahrten, Beiladung und Rücktransporte Richtung Regensburg: freie Kapazität für Möbel, Firmeninventar, Kartons, Paletten und Teiltransporte fair nutzen.",
     keywords: [
       "Leer Rückfahrt Regensburg",
       "Leerfahrt Umzug Regensburg",
@@ -90,6 +90,24 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function LeerfahrtRueckfahrtPage() {
   const offers = await loadOffers();
+  const fitChecks = [
+    {
+      title: "Route passt",
+      text: "Der Abholort liegt sinnvoll auf dem Weg Richtung Regensburg oder im planbaren Umweg.",
+    },
+    {
+      title: "Termin bleibt flexibel",
+      text: "Je flexibler Datum und Zeitfenster sind, desto eher kann freie Fahrzeugkapazität genutzt werden.",
+    },
+    {
+      title: "Umfang ist klar",
+      text: "Fotos, Maße, Gewicht und Stückzahl helfen, Volumen und Ladezeit realistisch einzuschätzen.",
+    },
+    {
+      title: "Zugang ist machbar",
+      text: "Etage, Aufzug, Ladezone und kurze Wege entscheiden oft, ob der Rückfahrt-Preis fair bleibt.",
+    },
+  ];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -221,6 +239,39 @@ export default async function LeerfahrtRueckfahrtPage() {
               <p className="mt-4 text-sm leading-7 text-slate-600">{item.text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section-glow relative px-6 pb-16">
+        <div className="mx-auto max-w-7xl rounded-[2.2rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="mb-8 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-700">
+                Rückfahrt-Fit
+              </div>
+              <h2 className="mt-3 max-w-[14ch] text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                Wann eine Leer-Rückfahrt wirklich Sinn ergibt
+              </h2>
+            </div>
+            <p className="text-sm leading-7 text-slate-600">
+              Eine Rückfahrt ist dann stark, wenn sie nicht künstlich passend gerechnet wird. Route,
+              Termin, Volumen und Zugang müssen zusammen funktionieren. Wenn einer dieser Punkte
+              nicht passt, ist ein normaler Transport oder eine Beiladung oft ehrlicher.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {fitChecks.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-[1.55rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-emerald-50/40"
+              >
+                <ShieldCheck className="mb-4 h-6 w-6 text-emerald-600" />
+                <h3 className="text-lg font-bold text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

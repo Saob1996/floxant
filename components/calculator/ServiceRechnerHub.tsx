@@ -20,7 +20,7 @@ import {
 import { useSearchParams } from "next/navigation";
 
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
-import { germanizeDeep, germanizeText } from "@/lib/german-text";
+import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 import { ServiceType, useCalculatorStore } from "@/store/calculatorStore";
 
@@ -112,10 +112,17 @@ const quickLinks = [
   },
 ];
 
+const activeServiceSwitchLinks = [
+  { id: "umzug" as ServiceType, label: "Umzug", href: "/rechner?service=umzug#rechner-start" },
+  { id: "reinigung" as ServiceType, label: "Reinigung", href: "/rechner?service=reinigung#rechner-start" },
+  { id: "entsorgung" as ServiceType, label: "Entrümpelung", href: "/rechner?service=entsorgung#rechner-start" },
+  { id: "bueroumzug" as ServiceType, label: "Büroumzug", href: "/rechner?service=bueroumzug#rechner-start" },
+];
+
 const selectionSignals = [
-  "Unverbindlicher Orientierungsrahmen statt künstlicher Exaktheit",
-  "Service-spezifische Treiber für Umzug, Reinigung, Entrümpelung und Büro",
-  "Nahtloser Übergang in Anfrage, Preisvorstellung oder Express-Check",
+  "Unverbindlicher Preisrahmen statt vorschnellem Festpreis",
+  "Die wichtigsten Faktoren werden je Service sauber abgefragt",
+  "Danach direkt weiter zu Anfrage, Budget oder Express-Check",
 ];
 
 const qualityPromises = [
@@ -186,6 +193,21 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
     setServiceType(null);
     setMode("selection");
   }, [queryService, setMode, setServiceType]);
+
+  useEffect(() => {
+    if (!queryService || window.location.hash === "#rechner-start" || window.scrollY > 120) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById("rechner-start")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [queryService]);
 
   const umzugData = useCalculatorStore((state) => state.umzugData);
   const hasUmzugInput = useMemo(
@@ -287,7 +309,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                 <div className="glass-elevated rounded-[1.8rem] p-6 md:p-7 xl:p-7">
                   <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
                     <Clock3 className="h-4 w-4" />
-                    {germanizeText("Rechner mit ehrlicher Vorprüfung")}
+                    Sauber starten
                   </div>
 
                   <h2 className="mt-6 max-w-4xl text-[2.1rem] font-bold leading-[1] tracking-[-0.028em] text-slate-950 md:text-[2.55rem]">
@@ -295,9 +317,9 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                   </h2>
 
                   <p className="mt-5 max-w-2xl text-[15px] leading-7 text-slate-700">
-                    Wählen Sie zuerst den passenden Service. FLOXANT zeigt keinen Lockpreis, sondern einen
-                    unverbindlichen Orientierungsrahmen mit den wichtigsten Kostentreibern. Künstlich niedrige
-                    Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team, Zeitfenster oder Übergabe fehlen.
+                    Wählen Sie, was gerade wirklich gebraucht wird. FLOXANT fragt danach nur die Angaben ab,
+                    die für eine realistische Einschätzung wichtig sind: Umfang, Ort, Zustand, Zugang,
+                    Termin und mögliche Zusatzleistungen.
                   </p>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -434,7 +456,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                           onClick={() => activateService(service.id)}
                           className="mt-5 inline-flex h-10 w-full items-center justify-between rounded-[1rem] border border-slate-200 bg-white/94 px-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:border-blue-200 hover:bg-white"
                         >
-                          <span>Service starten</span>
+                          <span>Rechner starten</span>
                           <ArrowRight className="h-4 w-4 text-blue-600 transition-transform group-hover:translate-x-1" />
                         </button>
                       </div>
@@ -447,7 +469,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                 <div className="glass-elevated rounded-[1.4rem] p-5 xl:col-span-3">
                   <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
                     <ShieldCheck className="h-4 w-4" />
-                    Preiswahrheit statt Portal-Sprache
+                    Ehrlicher Preisrahmen
                   </div>
                   <h3 className="mt-4 max-w-2xl text-[1.35rem] font-bold leading-[1.12] tracking-[-0.018em] text-slate-950">
                     Erst realistisch einordnen. Dann sauber weiterführen.
@@ -455,7 +477,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                   <p className="mt-3 max-w-3xl text-[14px] leading-6 text-slate-700">
                     FLOXANT zeigt zuerst, welche Faktoren die Einordnung wirklich beeinflussen:
                     Aufwand, Strecke, Zugänglichkeit, Zusatzleistungen und Termin. So wird aus einer
-                    losen Preisfrage eine brauchbare Einsatzprüfung.
+                    losen Preisfrage eine brauchbare Anfragegrundlage.
                   </p>
 
                   <div className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -463,7 +485,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                   </div>
 
                   <div className="mt-5 grid gap-3 md:grid-cols-3">
-                    {["Klare Kostentreiber", "Ruhige Kundenführung", "Saubere Übergabe in die Anfrage"].map(
+                    {["Klare Kostentreiber", "Geführte nächste Angaben", "Saubere Übergabe in die Anfrage"].map(
                       (item) => (
                         <div
                           key={item}
@@ -535,11 +557,38 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       >
                         Express-Check
                       </Link>
+                      <Link
+                        href="/anfrage-mit-preisrahmen"
+                        className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] font-semibold text-emerald-800 transition hover:bg-emerald-100"
+                      >
+                        Budget nennen
+                      </Link>
                     </div>
                   </div>
                   <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">
                     {activeServiceSignal.text}
                   </p>
+                  <div className="mt-5 rounded-[1.15rem] border border-slate-200 bg-white/82 p-3">
+                    <div className="mb-3 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                      Service wechseln, ohne neu zu suchen
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {activeServiceSwitchLinks.map((item) => (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          className={cn(
+                            "rounded-full border px-3 py-2 text-[11px] font-black uppercase tracking-[0.13em] transition",
+                            activeService === item.id
+                              ? "border-blue-200 bg-blue-600 text-white shadow-sm shadow-blue-950/15"
+                              : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950",
+                          )}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ) : null}
 

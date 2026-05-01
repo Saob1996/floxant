@@ -24,11 +24,11 @@ export function serializeIntakeStore(state: CalculatorState): IntakePayload {
  const customerBudget = parseBudget(leadDetails.customerBudget || "");
 
  const contact = {
-  fullName: leadDetails.customerName,
-  email: leadDetails.customerEmail,
-  phone: leadDetails.customerPhone,
+  fullName: leadDetails.customerName.trim(),
+  email: leadDetails.customerEmail.trim(),
+  phone: leadDetails.customerPhone.trim(),
   callbackPreference: leadDetails.callbackTime || "jederzeit",
-  notes: "",
+  notes: leadDetails.customerNote.trim(),
  };
 
  const service = {
@@ -77,10 +77,13 @@ export function serializeIntakeStore(state: CalculatorState): IntakePayload {
  } else if (serviceType === "reinigung") {
   configuration = {
    locationContext: state.baseDetails.fromAddress,
+   cleaningGoal: reinigungData.cleaningGoal,
    sqm: reinigungData.areaM2,
    propertyType: reinigungData.propertyType,
    windowsCount: reinigungData.windowsCount,
    isFurnished: reinigungData.isFurnished,
+   keysHandover: reinigungData.keysHandover,
+   cleaningControl: reinigungData.cleaningGuarantee,
    cleaningFrequency: reinigungData.frequency,
    extras: reinigungData.extras,
    pricingSignals: advancedEstimate?.pricingSignals || {},

@@ -1,13 +1,21 @@
 "use client";
 
 import type { ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 
 import { JsonLd } from "@/components/JsonLd";
 import { Footer } from "@/components/Footer";
 import { FloxNavigation } from "@/components/FloxNavigation";
-import MobileFloatingContact from "@/components/MobileFloatingContact";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+
+const MobileFloatingContact = dynamic(() => import("@/components/MobileFloatingContact"), {
+  ssr: false,
+});
+
+const WhatsAppButton = dynamic(
+  () => import("@/components/WhatsAppButton").then((mod) => mod.WhatsAppButton),
+  { ssr: false },
+);
 
 export function SiteChrome({
   children,

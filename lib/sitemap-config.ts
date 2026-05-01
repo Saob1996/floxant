@@ -167,7 +167,13 @@ export const CITY_PAGES = [
   "umzug-hausen",
   "umzug-muenchen-schwabing",
   "umzug-muenchen-bogenhausen",
+  "umzug-muenchen-haidhausen",
+  "umzug-muenchen-sendling",
+  "umzug-muenchen-maxvorstadt",
   "umzug-nuernberg-gostenhof",
+  "umzug-nuernberg-suedstadt",
+  "umzug-nuernberg-moegeldorf",
+  "umzug-nuernberg-ziegelstein",
 ] as const;
 
 /** Service-specific city pages */

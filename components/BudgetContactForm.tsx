@@ -36,15 +36,33 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
     setStatus("loading");
     setErrorDetails(null);
 
+    const email = formData.email.trim();
+    const emailLooksValid = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const hasRequiredBasics =
+      formData.name.trim().length >= 2 &&
+      formData.phone.trim().length >= 6 &&
+      formData.budget.trim().length >= 2 &&
+      emailLooksValid;
+
+    if (!hasRequiredBasics) {
+      setErrorDetails(
+        emailLooksValid
+          ? "Bitte Name, Telefonnummer und Preisrahmen ausfüllen."
+          : "Bitte eine gültige E-Mail eintragen oder das Feld leer lassen.",
+      );
+      setStatus("error");
+      return;
+    }
+
     try {
       const fd = new FormData();
       fd.append("type", "budget_inquiry");
-      fd.append("name", formData.name);
-      fd.append("email", formData.email);
-      fd.append("phone", formData.phone);
+      fd.append("name", formData.name.trim());
+      fd.append("email", email);
+      fd.append("phone", formData.phone.trim());
       fd.append("service", formData.service);
-      fd.append("budget", formData.budget);
-      fd.append("message", formData.message);
+      fd.append("budget", formData.budget.trim());
+      fd.append("message", formData.message.trim());
       fd.append("timestamp", new Date().toISOString());
 
       const response = await fetch("/api/bookings", {
@@ -106,7 +124,8 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           </p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">
             Ihre Preisvorstellung wird als zusätzliches Signal gespeichert. Sie ersetzt keine
-            fachliche Vorprüfung und ist keine Preiszusage.
+            fachliche Vorprüfung und ist keine Preiszusage. Name, Telefon und Preisrahmen reichen
+            für den ersten Kontakt; E-Mail ist optional.
           </p>
         </div>
 
@@ -130,12 +149,11 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
 
           <div className="space-y-2">
             <label className="ml-1 text-xs font-bold uppercase tracking-widest text-slate-500">
-              E-Mail Adresse
+              E-Mail optional
             </label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
-                required
                 type="email"
                 placeholder="name@beispiel.de"
                 value={formData.email}

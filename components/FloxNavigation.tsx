@@ -12,15 +12,24 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
-import { QuickBudgetModal } from "@/components/QuickBudgetModal";
-import { QuickExpressModal } from "@/components/QuickExpressModal";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
+
+const QuickBudgetModal = dynamic(
+  () => import("@/components/QuickBudgetModal").then((mod) => mod.QuickBudgetModal),
+  { ssr: false },
+);
+
+const QuickExpressModal = dynamic(
+  () => import("@/components/QuickExpressModal").then((mod) => mod.QuickExpressModal),
+  { ssr: false },
+);
 
 const SERVICE_GROUPS = [
   {
@@ -78,26 +87,67 @@ const SERVICE_GROUPS = [
 ];
 
 const NAV_SHORTCUTS = [
-  { label: "Kosten einschätzen", href: "/rechner" },
+  { label: "Kosten einschätzen", href: "/rechner#rechner-start" },
   { label: "Budget nennen", href: "/anfrage-mit-preisrahmen" },
   { label: "Direkt anfragen", href: "/buchung" },
 ];
 
+const CALCULATOR_SHORTCUTS = [
+  {
+    label: "Umzug berechnen",
+    href: "/rechner?service=umzug#rechner-start",
+    hint: "Volumen, Etagen, Laufwege und Strecke.",
+  },
+  {
+    label: "Reinigung berechnen",
+    href: "/rechner?service=reinigung#rechner-start",
+    hint: "Fläche, Zustand, Objektart und Übergabeziel.",
+  },
+  {
+    label: "Entrümpelung berechnen",
+    href: "/rechner?service=entsorgung#rechner-start",
+    hint: "Menge, Zugang, Entsorgung und Restarbeiten.",
+  },
+];
+
+const LOCAL_INTENT_LINKS = [
+  {
+    label: "Umzug Regensburg",
+    href: "/umzug-regensburg",
+    hint: "Lokaler Umzugsservice mit Anfrageweg.",
+  },
+  {
+    label: "Reinigung Regensburg",
+    href: "/reinigung-regensburg",
+    hint: "Reinigung, Übergabe und Objektservice.",
+  },
+  {
+    label: "Entrümpelung Regensburg",
+    href: "/entruempelung-regensburg",
+    hint: "Räumung, Entsorgung und Vorbereitung.",
+  },
+  {
+    label: "Reinigung Düsseldorf",
+    href: "/duesseldorf/reinigung",
+    hint: "Eigene Reinigungsseite für Düsseldorf.",
+  },
+];
+
 const DESKTOP_LINKS = [
-  { label: "Startseite", href: "/" },
+  { label: "Start", href: "/" },
   { label: "Buchung", href: "/buchung" },
   { label: "Rechner", href: "/rechner" },
-  { label: "Bayern", href: "/service-area-bayern" },
-  { label: "Ratgeber", href: "/blog" },
+  { label: "Standorte", href: "/standorte" },
+  { label: "Wissen", href: "/blog" },
 ];
 
 const MOBILE_LINKS = [
-  { label: "Startseite", href: "/" },
+  { label: "Start", href: "/" },
   { label: "Buchung", href: "/buchung" },
   { label: "Rechner", href: "/rechner" },
-  { label: "Bayern", href: "/service-area-bayern" },
+  { label: "Standorte", href: "/standorte" },
   { label: "Kontakt", href: "/kontakt" },
-  { label: "Ratgeber", href: "/blog" },
+  { label: "Wissen", href: "/blog" },
 ];
 
 export function FloxNavigation({ dic }: { dic: any }) {
@@ -114,12 +164,17 @@ export function FloxNavigation({ dic }: { dic: any }) {
 
   const whatsappUrl = useMemo(() => `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`, []);
   const serviceGroups = useMemo(() => germanizeDeep(SERVICE_GROUPS) as typeof SERVICE_GROUPS, []);
+  const calculatorShortcuts = useMemo(
+    () => germanizeDeep(CALCULATOR_SHORTCUTS) as typeof CALCULATOR_SHORTCUTS,
+    [],
+  );
+  const localIntentLinks = useMemo(() => germanizeDeep(LOCAL_INTENT_LINKS) as typeof LOCAL_INTENT_LINKS, []);
   const desktopLinks = useMemo(() => germanizeDeep(DESKTOP_LINKS) as typeof DESKTOP_LINKS, []);
   const mobileLinks = useMemo(() => germanizeDeep(MOBILE_LINKS) as typeof MOBILE_LINKS, []);
 
-  const servicesActive = serviceGroups.some((group) =>
-    group.items.some((item) => pathname === item.href.split("#")[0]),
-  );
+  const servicesActive =
+    serviceGroups.some((group) => group.items.some((item) => pathname === item.href.split("#")[0])) ||
+    localIntentLinks.some((item) => pathname === item.href);
 
   const clearHideTimer = () => {
     if (hideTimerRef.current !== null) {
@@ -233,8 +288,8 @@ export function FloxNavigation({ dic }: { dic: any }) {
             <span className="block text-[0.92rem] font-black tracking-[0.16em] text-slate-950" translate="no">
               FLOXANT
             </span>
-            <span className="mt-0.5 hidden text-[0.52rem] font-black uppercase tracking-[0.18em] text-slate-500 xl:block">
-              Umzug, Reinigung & Übergabe klar geplant
+            <span className="mt-0.5 hidden text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-500 xl:block">
+              Klar geplant.
             </span>
           </span>
         </Link>
@@ -274,7 +329,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.985 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[680px] -translate-x-1/2 rounded-[1.45rem] p-4"
+                    className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[760px] -translate-x-1/2 rounded-[1.45rem] p-4"
                   >
                     <div className="mb-4 grid gap-3 md:grid-cols-2">
                       <div className="rounded-[1.1rem] border border-blue-100 bg-blue-50/70 px-4 py-4">
@@ -294,6 +349,62 @@ export function FloxNavigation({ dic }: { dic: any }) {
                           Regensburg ist dort sichtbar, wo Nähe, Termin und Anfahrt für Kunden
                           wirklich wichtig sind.
                         </p>
+                      </div>
+                    </div>
+
+                    <div className="mb-4 rounded-[1.15rem] border border-slate-200 bg-white p-3">
+                      <div className="mb-2 flex items-center justify-between gap-3 px-1">
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                          Rechner direkt öffnen
+                        </div>
+                        <span className="hidden text-[11px] font-semibold text-slate-400 sm:inline">
+                          ohne Umweg in den passenden Service
+                        </span>
+                      </div>
+                      <div className="grid gap-2 md:grid-cols-3">
+                        {calculatorShortcuts.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                          >
+                            <span className="flex items-center justify-between gap-3 text-sm font-black">
+                              <span>{item.label}</span>
+                              <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
+                            </span>
+                            <span className="mt-1.5 block text-xs leading-5 text-slate-500">
+                              {item.hint}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-4 rounded-[1.15rem] border border-blue-100 bg-blue-50/60 p-3">
+                      <div className="mb-2 flex items-center justify-between gap-3 px-1">
+                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                          Lokale Suchwege
+                        </div>
+                        <span className="hidden text-[11px] font-semibold text-blue-900/60 sm:inline">
+                          klare Seiten für Maps, SEO und schnelle Kundenwege
+                        </span>
+                      </div>
+                      <div className="grid gap-2 md:grid-cols-4">
+                        {localIntentLinks.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="rounded-[0.95rem] border border-blue-100 bg-white px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                          >
+                            <span className="flex items-center justify-between gap-3 text-sm font-black">
+                              <span>{item.label}</span>
+                              <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
+                            </span>
+                            <span className="mt-1.5 block text-xs leading-5 text-slate-500">
+                              {item.hint}
+                            </span>
+                          </Link>
+                        ))}
                       </div>
                     </div>
 
@@ -441,6 +552,45 @@ export function FloxNavigation({ dic }: { dic: any }) {
                 <p className="mt-2">
                   Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen.
                 </p>
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white p-4">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                Rechner direkt öffnen
+              </div>
+              <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                {calculatorShortcuts.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-[1rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-800 transition-all hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    <span className="text-sm font-black">{item.label}</span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-500">{item.hint}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4 rounded-[1.35rem] border border-blue-100 bg-blue-50/70 p-4">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Lokale Suchwege
+              </div>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                {localIntentLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-[1rem] border border-blue-100 bg-white px-3.5 py-3 text-slate-800 transition-all hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    <span className="flex items-center justify-between gap-3 text-sm font-black">
+                      <span>{item.label}</span>
+                      <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-500">{item.hint}</span>
+                  </Link>
+                ))}
               </div>
             </div>
 

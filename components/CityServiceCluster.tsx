@@ -18,8 +18,14 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
     "kulmbach",
     "lindau",
     "muenchen-bogenhausen",
+    "muenchen-haidhausen",
+    "muenchen-maxvorstadt",
+    "muenchen-sendling",
     "muenchen-schwabing",
     "nuernberg-gostenhof",
+    "nuernberg-moegeldorf",
+    "nuernberg-suedstadt",
+    "nuernberg-ziegelstein",
   ]);
 
   const useServiceFallbacks = incompleteServiceCitySlugs.has(citySlug);
@@ -78,26 +84,25 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
               Regionale Wege
             </div>
             <h2 className="mt-6 text-[2.2rem] font-bold tracking-tight text-slate-950 md:text-[2.7rem]">
-              Lokale Leistungen für {germanText(city, city)} klar gebündelt.
+              Direkt zur passenden Leistung in {germanText(city, city)}.
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700">
-              {company.name} verbindet für {germanText(city, city)} die wichtigsten Anfragewege zwischen
-              Umzug, Reinigung, Entrümpelung, Büroumzug und direkter Vorprüfung. So finden Kunden schneller
-              die richtige Leistung statt irgendeiner unklaren Sammelseite.
+              {company.name} bündelt für {germanText(city, city)} die wichtigsten Anfragewege zwischen
+              Umzug, Reinigung, Entrümpelung, Büroumzug und Rechner. So finden Kunden schneller
+              die richtige Leistung statt einer unklaren Sammelseite.
             </p>
           </div>
 
           <div className="card-premium rounded-[1.8rem] px-7 py-7 md:px-8">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Servicestatus
+              Nächster Schritt
             </div>
             <h3 className="mt-4 text-[1.6rem] font-bold tracking-tight text-slate-950">
-              {germanText(city, city)} ist fest im operativen Fokus.
+              Welche Anfrage passt für {germanText(city, city)}?
             </h3>
             <p className="mt-4 text-base leading-7 text-slate-700">
-              Regensburg bleibt der Kern, Bayern ist sauber im Einsatzgebiet strukturiert. Für Kunden
-              bedeutet das klare Ansprechpartner, realistische Vorprüfung und direkte Links in die passende
-              Leistung.
+              Regensburg bleibt die Basis. Für {germanText(city, city)} prüfen wir Serviceart,
+              Umfang, Termin und Route, bevor aus einer Anfrage eine planbare Durchführung wird.
             </p>
             <Link
               href="/standorte"
@@ -122,7 +127,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{germanText(service.hint, service.hint)}</p>
                 <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
-                  Seite öffnen
+                  Passende Seite öffnen
                   <ArrowRight className="h-4 w-4" />
                 </div>
               </Link>

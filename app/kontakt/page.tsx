@@ -40,7 +40,7 @@ const faqItems = [
   },
   {
     q: "Kann ich auch nur eine Preisvorstellung senden?",
-    a: "Ja. Die Preisvorstellung ergänzt den System-Orientierungsrahmen, ersetzt ihn aber nicht. Sie hilft bei der Einschätzung, ob Budget und Leistungsumfang zusammenpassen.",
+    a: "Ja. Die Preisvorstellung ergänzt die fachliche Einschätzung, ersetzt sie aber nicht. Sie hilft bei der Prüfung, ob Budget und Leistungsumfang zusammenpassen.",
   },
   {
     q: "Welche URL eignet sich für Google Maps oder das Google-Unternehmensprofil?",
@@ -61,43 +61,43 @@ const preparationItems = [
 
 const localTrustCards = [
   {
-    title: "Direkter Maps-Einstieg",
-    text: "Für Google Maps, Google Search und spontane Empfehlungen ist die Buchungsseite der klarste nächste Schritt mit direkter Vorprüfung statt Kontakt-Chaos.",
+    title: "Schnell anfragen",
+    text: "Wer schon weiß, worum es geht, landet direkt bei der Buchung: Leistung, Ort, Termin und Kontaktweg werden sauber abgefragt.",
     href: "/buchung",
     cta: "Buchungsseite öffnen",
   },
   {
     title: "Regensburg als Basis",
-    text: "Adresse, Telefonnummer, Kontaktwege und Einsatzgebiet sind sauber gebündelt, damit Kunden und Suchsysteme FLOXANT lokal eindeutig zwischen Regensburg, Bayern und Spezialpfaden einordnen können.",
+    text: "Adresse, Telefonnummer und Kontaktwege bleiben klar sichtbar. So wissen Kunden sofort, wo FLOXANT erreichbar ist und welcher Weg zur Anfrage passt.",
     href: company.mapsSearchUrl,
     cta: "Standort bei Google Maps",
   },
   {
     title: "Klare Wege statt Umwege",
-    text: "Kontakt, Rechner, Express und Preisvorstellung bleiben getrennt. Das macht die Anfrage einfacher, erhöht die Abschlussquote und spart spätere Rückfragen.",
+    text: "Kontakt, Rechner, Express und Preisvorstellung bleiben getrennt. Das macht die Anfrage einfacher und spart spätere Rückfragen.",
     href: "/rechner",
     cta: "Rechner ansehen",
   },
 ];
 
 const mapsReadyPoints = [
-  "Buchung als bevorzugter Link fuer Maps- und Unternehmensprofil-Klicks.",
-  "Kontaktseite mit Adresse, Telefon, WhatsApp und Standort als Vertrauenskern.",
-  "Standorte und Bayern-Hubs tragen die Reichweite, Regensburg bleibt der Hauptanker.",
+  "Buchung, WhatsApp und Telefon sind ohne Umwege erreichbar.",
+  "Adresse, Telefonnummer und E-Mail sind konsistent sichtbar.",
+  "Ort, Leistung und Kontaktweg bleiben für Kunden klar nachvollziehbar.",
 ];
 
 const mapsClosingSignals = [
   {
-    title: "Direkter Rückruf statt Leerlauf",
+    title: "Direkter Kontakt statt Leerlauf",
     text: "Kunden sehen sofort, wie sie Buchung, WhatsApp oder Preisprüfung ohne Suchschleife starten.",
   },
   {
-    title: "Lokaler Vertrauenskern",
-    text: "Regensburg bleibt klar sichtbar als operative Basis, während Bayern über die richtigen Servicepfade mitgetragen wird.",
+    title: "Vertrauen durch klare Angaben",
+    text: "Adresse, Telefonnummer, E-Mail und die nächsten Anfragewege sind sichtbar, statt in langen Texten versteckt zu sein.",
   },
   {
-    title: "Saubere Spezialabzweige",
-    text: "Für Reinigung in Düsseldorf gibt es bewusst einen getrennten lokalen Bereich statt widersprüchlicher Mischsignale.",
+    title: "Spezialbereiche sauber getrennt",
+    text: "Für Reinigung in Düsseldorf gibt es einen eigenen lokalen Bereich mit eigenem Kontaktweg und klarer Adresse.",
   },
 ];
 
@@ -213,14 +213,12 @@ export default function KontaktPage() {
             FLOXANT Kontakt Regensburg
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Kontakt, Buchung und lokale Anfragewege für Regensburg, Bayern und klare Spezialpfade.
+            Kontakt aufnehmen, Anfrage starten oder Preisrahmen prüfen.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
-            FLOXANT bündelt die wichtigsten Kontaktwege für Umzug, Reinigung, Entrümpelung,
-            Büroumzug und Spezialservices. Sie können direkt die Buchungsseite öffnen, eine
-            Express-Anfrage senden oder persönlich per Telefon, WhatsApp und E-Mail Kontakt
-            aufnehmen. Für Google Maps, Empfehlungen und lokale Suche ist diese Seite der
-            Vertrauenskern, während die Buchungsseite den stärksten Abschlussweg liefert.
+            Wählen Sie den Weg, der zu Ihrem Fall passt: direkt anfragen, erst den Preisrahmen
+            prüfen, Express-Kontakt nutzen oder per WhatsApp schreiben. Wichtig sind Service,
+            Ort, Umfang, Terminwunsch und ein Kontaktweg für die Rückmeldung.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -262,7 +260,7 @@ export default function KontaktPage() {
                 className="rounded-[1.35rem] border border-white/65 bg-white/82 px-4 py-4 shadow-sm shadow-slate-950/5 backdrop-blur"
               >
                 <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
-                  Maps & Vertrauen
+                  Schneller Kontakt
                 </div>
                 <h2 className="mt-2 text-lg font-semibold tracking-tight text-slate-950">
                   {item.title}
@@ -326,10 +324,10 @@ export default function KontaktPage() {
         <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[0.88fr_1.12fr]">
           <article className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Maps-Bereitschaft
+              Lokal erreichbar
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
-              Klare Signale fuer lokale Sichtbarkeit und direkte Anfragen
+              Alles, was für eine schnelle Anfrage wichtig ist
             </h2>
             <div className="mt-5 grid gap-3">
               {mapsReadyPoints.map((item) => (
@@ -345,10 +343,10 @@ export default function KontaktPage() {
 
           <div className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Bayern und Stadtteile
+              Lokale Einstiege
             </div>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
-              Direkte Marktpfade und Bezirke, die lokal mittragen
+              Häufige Servicepfade ohne lange Suche
             </h2>
             <div className="mt-5 grid gap-3 md:grid-cols-2">
               {BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 6).map((item) => (
@@ -377,8 +375,8 @@ export default function KontaktPage() {
                 Separater Reinigungsbereich
               </div>
               <p className="mt-2 text-sm leading-relaxed text-emerald-950/80">
-                Für lokale Reinigungsanfragen in Düsseldorf gibt es einen bewusst getrennten
-                Bereich ohne Regensburg- oder Umzugsvermischung.
+                Für lokale Reinigungsanfragen in Düsseldorf gibt es einen eigenen Bereich mit
+                Adresse, Rechner, Kontakt und klarer Reinigungspositionierung.
               </p>
               <Link
                 href="/duesseldorf/reinigung"

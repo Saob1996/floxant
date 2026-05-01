@@ -50,7 +50,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
             <p>
-              Der Tod eines engen Angehörigen ist eine psychische Ausnahmesituation. Die Auflösung des Hausstandes ist dabei oft der schwerste Schritt beim endgültigen Abschiednehmen. Doch das deutsche Vertragsrecht duldet keinen Stillstand. Wir haben diesen Leitfaden entwickelt, um Sie als zertifizierter Fachbetrieb für <a href={`/entruempelung`}>Wohnungsauflösungen in Bayern</a> sicher durch diesen Prozess zu navigieren.
+              Der Tod eines engen Angehörigen ist emotional und organisatorisch schwer. Oft müssen Familie, Mietvertrag, Schlüssel, Erinnerungsstücke und Räumung gleichzeitig geklärt werden. Dieser Leitfaden hilft, die nächsten Schritte ruhiger zu sortieren und zeigt, wann professionelle Unterstützung bei <a href={`/entruempelung`}>Wohnungsauflösungen in Bayern</a> sinnvoll sein kann.
             </p>
             <div className="bg-amber-50 border border-amber-200 p-6 rounded-2xl my-8">
               <h3 className="flex items-center gap-2 mt-0 text-amber-900"><Scale className="w-6 h-6" /> Wichtiger Haftungsausschluss</h3>
@@ -101,7 +101,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
                 <strong>Möbelverteilung in der Familie:</strong> Klären Sie zügig mit anderen Erben, wer welche Möbelstücke behält. Für den Transport an die neuen Standorte bieten sich <a href={`/kleintransporte`}>günstige Kleintransporte</a> oder Beiladungen an.
               </li>
               <li>
-                <strong>Kostenvoranschläge einholen:</strong> Rufen Sie nicht den erstbesten Lockvogel-Flyer aus dem Briefkasten an. Suchen Sie nach transparenten Festpreis-Angeboten ansässiger Speditionen.
+                <strong>Angebote realistisch prüfen:</strong> Achten Sie darauf, dass Menge, Zugang, Etagen, Entsorgung, Termine und besondere Gegenstände vor einer Zusage sauber geklärt werden.
               </li>
             </ol>
             <h2>Die Räumung der restlichen Wohnung</h2>

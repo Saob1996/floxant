@@ -63,7 +63,7 @@ export default async function BlogArticle() {
           </div>
           <div className="mt-20 p-8 bg-primary/5 border border-primary/10 rounded-3xl text-center">
             <h3 className="text-2xl font-bold mb-4">Bereit für Ihren Umzug?</h3>
-            <p className="text-muted-foreground mb-6">Holen Sie sich jetzt Ihr unverbindliches Festpreisangebot bei FLOXANT.</p>
+            <p className="text-muted-foreground mb-6">Schildern Sie kurz Haushalt, Termin und besondere Familiensituation. FLOXANT prüft, welcher Ablauf realistisch passt.</p>
             <Link href={"/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
               Angebot anfordern →
             </Link>

@@ -43,10 +43,12 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
   const [errorMessage, setErrorMessage] = useState("");
 
   const canSend = useMemo(() => {
+    const email = leadDetails.customerEmail.trim();
+
     return (
       leadDetails.customerName.trim().length >= 2 &&
       leadDetails.customerPhone.trim().length >= 6 &&
-      leadDetails.customerEmail.includes("@")
+      (!email || email.includes("@"))
     );
   }, [leadDetails]);
 
@@ -89,12 +91,13 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
       `ich moechte meine Vorpruefung fuer ${serviceType || "den Service"} per WhatsApp weiterfuehren.`,
       `Name: ${leadDetails.customerName}`,
       `Telefon: ${leadDetails.customerPhone}`,
-      `E-Mail: ${leadDetails.customerEmail}`,
+      leadDetails.customerEmail.trim() ? `E-Mail: ${leadDetails.customerEmail.trim()}` : "",
       `Rueckrufzeit: ${leadDetails.callbackTime || "jederzeit"}`,
       `System-Orientierungsrahmen: ${range.min} EUR - ${range.max} EUR`,
       `Einordnung: ${estimate?.valuationStage || "Erste Einschaetzung"}`,
       `Basis: ${estimate?.calculationBasis || "Individuell"}`,
       `Zeitansatz: ${estimate?.estimatedHours || "offen"}`,
+      leadDetails.customerNote.trim() ? `Kurznotiz: ${leadDetails.customerNote.trim()}` : "",
       leadDetails.customerBudget.trim()
         ? `Preisvorstellung: ${leadDetails.customerBudget.trim()}`
         : "",
@@ -123,8 +126,9 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
           Vorprüfung übergeben
         </h2>
         <p className="mx-auto mb-12 max-w-md text-base leading-7 text-slate-600">
-          FLOXANT prüft Ihre Angaben jetzt fachlich und meldet sich in der Regel noch am selben
-          Werktag persönlich bei Ihnen.
+          FLOXANT prüft Ihre Angaben jetzt fachlich und meldet sich über den schnellsten
+          passenden Kontaktweg bei Ihnen. Wenn E-Mail fehlt, läuft die Rückmeldung über Telefon
+          oder WhatsApp.
         </p>
         <FloxButton variant="secondary" onClick={() => window.location.reload()}>
           Fertig
@@ -154,6 +158,16 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             Ihre Konfiguration ist bereit für die fachliche Prüfung. Der Preisrahmen bleibt
             unverbindlich, bis Umfang, Zugang, Termin und Zusatzleistungen bestätigt sind.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {["Telefon reicht", "E-Mail optional", "WhatsApp als Fallback"].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-blue-100 bg-blue-50 px-3 py-2 text-[11px] font-bold text-blue-700"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
@@ -182,15 +196,32 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             </FieldBox>
           </div>
 
-          <FieldBox label="E-Mail Adresse" icon={<Mail size={14} className="text-blue-600" />}>
+          <FieldBox label="E-Mail optional" icon={<Mail size={14} className="text-blue-600" />}>
             <input
-              required
               disabled={isSubmitting}
               type="email"
-              placeholder="max@beispiel.de"
+              placeholder="max@beispiel.de, falls gewünscht"
               className="w-full bg-transparent font-semibold text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
               value={leadDetails.customerEmail}
               onChange={(e) => updateLeadDetails({ customerEmail: e.target.value })}
+            />
+            <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
+              Für schnelle Rückfragen reicht die Telefonnummer. Eine E-Mail hilft nur, wenn Sie
+              Unterlagen oder eine Zusammenfassung wünschen.
+            </p>
+          </FieldBox>
+
+          <FieldBox
+            label="Kurze Ergänzung optional"
+            icon={<MessageSquare size={14} className="text-blue-600" />}
+          >
+            <textarea
+              disabled={isSubmitting}
+              rows={3}
+              placeholder="z. B. Übergabetermin, Fotos vorhanden, Parkplatz schwierig, bitte erst nach 17 Uhr anrufen..."
+              className="w-full resize-none bg-transparent font-semibold leading-6 text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
+              value={leadDetails.customerNote}
+              onChange={(e) => updateLeadDetails({ customerNote: e.target.value })}
             />
           </FieldBox>
 
@@ -276,14 +307,11 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             <button
               type="button"
               onClick={handleWhatsApp}
-              disabled={!canSend && !isError}
               className={cn(
                 "flex flex-1 items-center justify-center gap-3 rounded-[1.35rem] border px-8 py-4 text-[11px] font-black uppercase tracking-[0.14em] transition-all",
                 isError
                   ? "scale-[1.01] border-emerald-300 bg-[linear-gradient(135deg,#16a34a_0%,#059669_100%)] text-white shadow-[0_20px_44px_rgba(5,150,105,0.24)]"
-                  : canSend
-                    ? "border-emerald-200 bg-[linear-gradient(180deg,rgba(236,253,245,0.98),rgba(220,252,231,0.96))] text-emerald-800 shadow-[0_14px_34px_rgba(5,150,105,0.12)] hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_18px_40px_rgba(5,150,105,0.16)]"
-                    : "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400"
+                  : "border-emerald-200 bg-[linear-gradient(180deg,rgba(236,253,245,0.98),rgba(220,252,231,0.96))] text-emerald-800 shadow-[0_14px_34px_rgba(5,150,105,0.12)] hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_18px_40px_rgba(5,150,105,0.16)]"
               )}
             >
               <MessageSquare size={16} />

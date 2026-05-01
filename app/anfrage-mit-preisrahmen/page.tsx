@@ -17,9 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "anfrage-mit-preisrahmen",
-    title: "Anfrage mit Preisvorstellung in Regensburg und Bayern | FLOXANT",
+    title: "Budget nennen | Preisrahmen für Umzug & Reinigung prüfen lassen",
     description:
-      "Teilen Sie FLOXANT Ihre Preisvorstellung für Umzug, Reinigung oder Entrümpelung mit. Die Angabe bleibt unverbindlich und ergänzt die spätere Vorprüfung.",
+      "Nennen Sie FLOXANT Ihren Preisrahmen für Umzug, Reinigung oder Entrümpelung. Wir prüfen ehrlich, welcher Umfang realistisch machbar ist.",
   });
 }
 
@@ -83,23 +83,37 @@ export default function BudgetPage() {
 
       <Breadcrumbs lang="de" items={breadcrumbs} />
 
-      <section className="section-glow relative px-6 pb-20 pt-10">
+      <section className="section-glow relative px-6 pb-16 pt-10">
         <div className="pointer-events-none absolute inset-0 opacity-45">
           <FloxantSymbolLayer variant="premium" density="soft" />
         </div>
-        <div className="relative mx-auto max-w-6xl text-center">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/88 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
-            <Banknote size={14} />
-            Preisvorstellung und Vorprüfung
+        <div className="relative mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+          <div>
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/88 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
+              <Banknote size={14} />
+              Preisvorstellung und Vorprüfung
+            </div>
+            <h1 className="max-w-[11ch] text-4xl font-bold leading-[0.98] tracking-[-0.024em] text-slate-950 md:text-7xl">
+              Ihr Rahmen. Unsere ehrliche Prüfung.
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+              Wenn Sie ein Zielbudget haben, nennen Sie es direkt. FLOXANT prüft, ob der
+              gewünschte Umfang realistisch machbar ist, welche Leistung Priorität hat und wo
+              Anpassungen sinnvoll wären.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {["Telefon reicht", "E-Mail optional", "Keine automatische Zusage"].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1rem] border border-slate-200 bg-white/88 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-700 shadow-sm shadow-slate-950/5"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="text-4xl font-bold tracking-tight text-slate-950 md:text-7xl">
-            Ihr Rahmen. Unsere ehrliche Vorprüfung.
-          </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-xl leading-relaxed text-slate-600">
-            Diese Seite ist für Kunden gedacht, die bereits ein Zielbudget oder eine
-            Preisvorstellung haben. FLOXANT nutzt diese Angabe nicht als Zusage, sondern
-            als zusätzliches Signal für die spätere Einsatzplanung in Regensburg und Bayern.
-          </p>
+
+          <BudgetContactForm />
         </div>
       </section>
 
@@ -136,11 +150,11 @@ export default function BudgetPage() {
         </div>
       </section>
 
-      <section className="section-glow relative px-6 py-24">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+      <section className="section-glow relative px-6 py-16">
+        <div className="mx-auto max-w-6xl">
           <div className="glass-elevated rounded-[2.4rem] p-8">
             <h2 className="text-3xl font-bold text-slate-950">Wie FLOXANT Ihre Preisvorstellung nutzt</h2>
-            <div className="mt-8 space-y-6 text-slate-600">
+            <div className="mt-8 grid gap-6 text-slate-600 md:grid-cols-2">
               <div>
                 <h3 className="text-lg font-semibold text-slate-950">1. Was ist das?</h3>
                 <p className="mt-2">
@@ -170,8 +184,6 @@ export default function BudgetPage() {
               </div>
             </div>
           </div>
-
-          <BudgetContactForm />
         </div>
       </section>
 

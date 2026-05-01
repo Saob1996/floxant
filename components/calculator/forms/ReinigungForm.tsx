@@ -5,9 +5,9 @@ import { AnimatePresence, m } from "framer-motion";
 import { CheckCircle2, Sparkles } from "lucide-react";
 
 import { useCalculatorStore } from "@/store/calculatorStore";
+import type { CleaningGoal, CleaningPropertyType, ReinigungAdvancedData } from "@/store/calculatorStore";
 import { cn } from "@/lib/utils";
 
-type PropertyType = "wohnung" | "haus" | "buero";
 type ConditionLevel = "leicht" | "mittel" | "stark";
 
 function parseNumber(value: string): number {
@@ -17,10 +17,118 @@ function parseNumber(value: string): number {
 }
 
 const cleaningExtras = [
- { id: "kueche_tiefenreinigung", title: "Küche+", icon: "K" },
- { id: "bad_kalk", title: "Bad Kalk", icon: "B" },
+ { id: "kueche_tiefenreinigung", title: "Küche intensiv", icon: "K" },
+ { id: "bad_kalk", title: "Bad / Kalk", icon: "B" },
  { id: "teppich", title: "Teppich", icon: "T" },
- { id: "fenster_glas", title: "Glas", icon: "G" },
+ { id: "fenster_glas", title: "Fenster / Glas", icon: "G" },
+];
+
+const cleaningGoals: Array<{
+ id: CleaningGoal;
+ title: string;
+ description: string;
+ signal: string;
+}> = [
+ {
+  id: "uebergabe",
+  title: "Übergabe / Auszug",
+  description: "Wenn Wohnung, Schlüssel und letzter Eindruck zusammenpassen müssen.",
+  signal: "Frist & Details",
+ },
+ {
+  id: "grundreinigung",
+  title: "Grundreinigung",
+  description: "Für stärkere Reinigung, sichtbare Rückstände und mehr Detailarbeit.",
+  signal: "Mehr Tiefe",
+ },
+ {
+  id: "unterhalt",
+  title: "Regelmäßig / Büro",
+  description: "Für laufende Reinigung mit planbarem Turnus und klaren Bereichen.",
+  signal: "Wiederkehrend",
+ },
+ {
+  id: "einzug",
+  title: "Einzug vorbereiten",
+  description: "Wenn Räume vor Nutzung sauber, ruhig und bezugsbereit wirken sollen.",
+  signal: "Vor Nutzung",
+ },
+];
+
+const propertyTypeOptions: Array<{ value: CleaningPropertyType; label: string }> = [
+ { value: "wohnung", label: "Wohnung" },
+ { value: "haus", label: "Haus" },
+ { value: "buero", label: "Büro / Gewerbe" },
+ { value: "praxis", label: "Praxis / Kundenfläche" },
+ { value: "treppenhaus", label: "Treppenhaus" },
+];
+
+const cleaningPresets: Array<{
+ title: string;
+ description: string;
+ patch: Partial<ReinigungAdvancedData>;
+}> = [
+ {
+  title: "Wohnung vor Übergabe",
+  description: "Auszug, Abnahme oder letzter sauberer Eindruck.",
+  patch: {
+   cleaningGoal: "uebergabe",
+   propertyType: "wohnung",
+   areaM2: 75,
+   condition: "mittel",
+   frequency: "einmalig",
+   windowsCount: 6,
+   isFurnished: false,
+   cleaningGuarantee: true,
+   extras: ["kueche_tiefenreinigung", "bad_kalk"],
+  },
+ },
+ {
+  title: "Büro laufend",
+  description: "Regelmäßige Reinigung ohne Betriebsstörung.",
+  patch: {
+   cleaningGoal: "unterhalt",
+   propertyType: "buero",
+   areaM2: 140,
+   condition: "leicht",
+   frequency: "regelmaessig",
+   windowsCount: 8,
+   isFurnished: true,
+   cleaningGuarantee: false,
+   extras: [],
+  },
+ },
+ {
+  title: "Grundreinigung",
+  description: "Mehr Detailarbeit bei sichtbarer Nutzung.",
+  patch: {
+   cleaningGoal: "grundreinigung",
+   propertyType: "wohnung",
+   areaM2: 90,
+   condition: "stark",
+   frequency: "einmalig",
+   windowsCount: 8,
+   isFurnished: false,
+   cleaningGuarantee: true,
+   uncertainCondition: true,
+   extras: ["kueche_tiefenreinigung", "bad_kalk", "fenster_glas"],
+  },
+ },
+ {
+  title: "Treppenhaus",
+  description: "Flächen, Turnus und Zugang schnell einordnen.",
+  patch: {
+   cleaningGoal: "unterhalt",
+   propertyType: "treppenhaus",
+   areaM2: 60,
+   condition: "mittel",
+   frequency: "regelmaessig",
+   windowsCount: 0,
+   isFurnished: false,
+   cleaningGuarantee: false,
+   extras: [],
+  },
+ },
 ];
 
 export default function ReinigungForm({ dic, currentStep }: { dic?: any; currentStep: number }) {
@@ -53,11 +161,40 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
         Objekt-Eckdaten
        </h3>
 
+       <div className="mb-6 rounded-[1.6rem] border border-emerald-100 bg-emerald-50/70 p-4">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+         <div>
+          <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700">
+           Schnellprofil
+          </div>
+          <p className="mt-1 text-sm leading-6 text-slate-700">
+           Wählen Sie einen typischen Startpunkt. Alle Werte bleiben danach frei anpassbar.
+          </p>
+         </div>
+        </div>
+        <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+         {cleaningPresets.map((preset) => (
+          <button
+           key={preset.title}
+           type="button"
+           onClick={() => updateReinigungData(preset.patch)}
+           className="group rounded-[1.15rem] border border-emerald-100 bg-white px-4 py-4 text-left shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-white hover:shadow-md"
+          >
+           <span className="block text-sm font-bold text-slate-950">{preset.title}</span>
+           <span className="mt-1 block text-xs leading-5 text-slate-600">{preset.description}</span>
+           <span className="mt-3 inline-flex text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700">
+            übernehmen
+           </span>
+          </button>
+         ))}
+        </div>
+       </div>
+
        <div className="mb-6 flex flex-wrap gap-2">
-        {[
-         "Für Übergabe, laufende Betreuung und Objektservice",
+       {[
+         "Ziel zuerst: Übergabe, Grundreinigung oder laufende Betreuung",
          "Fläche, Zustand und Extras steuern den Rahmen am stärksten",
-         "Je klarer der Zugang, desto belastbarer die Vorprüfung",
+         "Fotos und kurze Hinweise machen die Prüfung deutlich schneller",
         ].map((item) => (
          <span
           key={item}
@@ -69,6 +206,39 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
        </div>
 
        <div className="space-y-6">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+         {cleaningGoals.map((goal) => {
+          const active = reinigungData.cleaningGoal === goal.id;
+
+          return (
+           <button
+            key={goal.id}
+            type="button"
+            data-active={active}
+            onClick={() =>
+             updateReinigungData({
+              cleaningGoal: goal.id,
+              frequency: goal.id === "unterhalt" ? "regelmaessig" : "einmalig",
+              cleaningGuarantee: goal.id !== "unterhalt",
+             })
+            }
+            className={cn(
+             "calc-chip-card group flex min-h-[9.2rem] flex-col items-start justify-between rounded-[1.45rem] p-5 text-left hover:-translate-y-0.5",
+             active ? "text-emerald-800" : "text-slate-700",
+            )}
+           >
+            <span className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500 group-data-[active=true]:border-emerald-200 group-data-[active=true]:bg-emerald-50 group-data-[active=true]:text-emerald-700">
+             {goal.signal}
+            </span>
+            <span>
+             <span className="block text-base font-bold leading-tight text-slate-950">{goal.title}</span>
+             <span className="mt-2 block text-sm leading-6 text-slate-600">{goal.description}</span>
+            </span>
+           </button>
+          );
+         })}
+        </div>
+
         <FieldCard label="Zu reinigende Fläche">
          <div className="space-y-4">
           <div className="flex items-center gap-3">
@@ -106,16 +276,19 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
          <FieldCard label="Objektart">
-          <select
-           value={reinigungData.propertyType}
-           onChange={(event) =>
-            updateReinigungData({ propertyType: event.target.value as PropertyType })
+         <select
+          value={reinigungData.propertyType}
+          onChange={(event) =>
+            updateReinigungData({ propertyType: event.target.value as CleaningPropertyType })
            }
            className="calc-select text-sm"
           >
-           <option value="wohnung">Wohnung</option>
-           <option value="haus">Haus</option>
-           <option value="buero">Büro / Gewerbe</option>
+           <option value="">Bitte auswählen</option>
+           {propertyTypeOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+             {option.label}
+            </option>
+           ))}
           </select>
          </FieldCard>
          <FieldCard label="Fensteranzahl (ca.)">
@@ -138,7 +311,7 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
        <OptionCard
         checked={reinigungData.frequency === "regelmaessig"}
         title="Regelmäßige Reinigung"
-        description="Wiederkehrende Leistung mit anderem Aufwand als ein Einzeltermin."
+        description="Für Büros, Praxen, Treppenhäuser oder feste Turnusse mit planbarer Wiederholung."
         onChange={(checked) =>
          updateReinigungData({ frequency: checked ? "regelmaessig" : "einmalig" })
         }
@@ -146,7 +319,7 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
        <OptionCard
         checked={reinigungData.isFurnished}
         title="Objekt möbliert"
-        description="Inventar und enge Objektstruktur werden als Aufwandstreiber berücksichtigt."
+        description="Möbel, enge Bereiche und Inventar verändern Wege, Tempo und Detailaufwand."
         onChange={(checked) => updateReinigungData({ isFurnished: checked })}
        />
       </div>
@@ -175,9 +348,9 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
           }
           className="calc-select text-sm"
          >
-          <option value="leicht">Leicht / Normal</option>
-          <option value="mittel">Mittel / Sichtbar</option>
-          <option value="stark">Stark / Baustelle</option>
+         <option value="leicht">Leicht / Normal</option>
+          <option value="mittel">Normal / sichtbar genutzt</option>
+          <option value="stark">Stärker / nach Auszug oder Renovierung</option>
          </select>
         </FieldCard>
         <label className="calc-option-card flex cursor-pointer items-center gap-4 p-4">
@@ -197,6 +370,21 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
          </div>
         </label>
        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+       <OptionCard
+        checked={reinigungData.cleaningGuarantee}
+        title="Abnahmeorientierte Endkontrolle"
+        description="Keine Kautionsgarantie, aber ein zusätzlicher Blick auf Details vor Übergabe oder Nutzung."
+        onChange={(checked) => updateReinigungData({ cleaningGuarantee: checked })}
+       />
+       <OptionCard
+        checked={reinigungData.keysHandover}
+        title="Schlüsselübergabe abstimmen"
+        description="Sinnvoll, wenn Zugang, Rückgabe oder Ansprechpartner vor Ort geklärt werden müssen."
+        onChange={(checked) => updateReinigungData({ keysHandover: checked })}
+       />
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -228,8 +416,8 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
        <label className="calc-label">Besondere Hinweise</label>
        <textarea
         value={reinigungData.freeTextNote || ""}
-        onChange={(event) => updateReinigungData({ freeTextNote: event.target.value })}
-        placeholder="Details zu Haustieren, empfindlichen Oberflächen oder Zugang..."
+       onChange={(event) => updateReinigungData({ freeTextNote: event.target.value })}
+        placeholder="z. B. Übergabetermin, Fotos vorhanden, Haustiere, empfindliche Oberflächen, Schlüsselzugang oder Bereiche mit besonderem Aufwand..."
         className="calc-field calc-textarea h-28 p-4 text-sm"
        />
       </div>
@@ -239,9 +427,9 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
 
    <div className="flex items-start gap-3 rounded-[1.5rem] border border-blue-100 bg-blue-50 px-4 py-3">
     <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
-    <p className="text-xs leading-relaxed text-slate-600">
-     Je klarer Zustand und Sonderwünsche beschrieben sind, desto belastbarer wird die
-     Vorprüfung.
+   <p className="text-xs leading-relaxed text-slate-600">
+     Je klarer Ziel, Zustand und Termin beschrieben sind, desto schneller kann FLOXANT den Umfang
+     realistisch prüfen und den passenden Kontaktweg wählen.
     </p>
    </div>
   </div>

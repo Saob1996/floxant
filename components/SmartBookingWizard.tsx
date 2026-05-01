@@ -11,6 +11,7 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
+  MessageSquare,
   MapPin,
   PackageOpen,
   Shield,
@@ -203,9 +204,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     name: "",
     email: "",
     phone: "",
+    message: "",
   });
   const [files, setFiles] = useState<File[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     setInitialized(true);
@@ -227,6 +230,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         name: storeLead.customerName || "",
         email: storeLead.customerEmail || "",
         phone: storeLead.customerPhone || "",
+        message: "",
       });
     }
   }, [storeBase, storeLead, storeService]);
@@ -243,18 +247,17 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
   const isStepTwoValid = useMemo(() => {
     const hasStart = state.details.startAddress.trim().length >= 2;
-    const hasDate = state.details.date.trim().length > 0;
-    const hasEnd =
-      state.service !== "umzug" || state.details.endAddress.trim().length >= 2;
 
-    return Boolean(state.service && hasStart && hasDate && hasEnd);
+    return Boolean(state.service && hasStart);
   }, [state.details, state.service]);
 
   const isContactValid = useMemo(
-    () =>
-      formData.name.trim().length >= 2 &&
-      formData.email.trim().length >= 5 &&
-      formData.phone.trim().length >= 6,
+    () => {
+      const email = formData.email.trim();
+      const emailLooksValid = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      return formData.name.trim().length >= 2 && formData.phone.trim().length >= 6 && emailLooksValid;
+    },
     [formData]
   );
 
@@ -264,6 +267,15 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
   const currentServiceDrivers =
     state.service ? germanizeDeep(wizardServiceMeta[state.service].drivers) : [];
+
+  const primaryLocationLabel =
+    state.service === "reinigung"
+      ? "Adresse / Objektort"
+      : state.service === "entsorgung"
+        ? "Abholort / Einsatzort"
+        : state.service === "bueroumzug"
+          ? "Aktueller Firmenstandort"
+          : t?.form?.start_address || "Startadresse";
 
   const nextStep = () => {
     setState((prev) => ({
@@ -294,9 +306,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       name: "",
       email: "",
       phone: "",
+      message: "",
     });
     setFiles([]);
     setIsSuccess(false);
+    setSubmitError("");
     setIsSubmitting(false);
     setMode("selection");
   };
@@ -366,10 +380,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     e.preventDefault();
 
     if (!state.service || !isStepTwoValid || !isContactValid) {
-      alert(t?.error?.generic || "Ein Fehler ist aufgetreten");
+      setSubmitError(t?.error?.generic || "Bitte pruefen Sie die Angaben und ergaenzen Sie Name und Telefon.");
       return;
     }
 
+    setSubmitError("");
     setIsSubmitting(true);
 
     const createdAt = new Date().toISOString();
@@ -380,7 +395,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         callbackPreference: "jederzeit",
-        notes: "",
+        notes: formData.message.trim(),
       },
       service: {
         type: state.service,
@@ -411,6 +426,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           endAddress: state.details.endAddress.trim(),
           upgrades: state.upgrades,
           hasUploads: files.length > 0,
+          customerMessage: formData.message.trim(),
         },
       },
       configuration: {
@@ -423,6 +439,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         moveDate: state.details.date,
         date: state.details.date,
         selectedUpgrades: state.upgrades,
+        message: formData.message.trim(),
       },
       metadata: {
         createdAt,
@@ -461,14 +478,17 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       });
 
       if (!response.ok) {
-        alert(t?.error?.submit || "Fehler beim Senden");
-        return;
+        throw new Error(t?.error?.submit || "Die Anfrage konnte nicht gesendet werden.");
       }
 
       setIsSuccess(true);
     } catch (error) {
       console.error("Submission error:", error);
-      alert(t?.error?.generic || "Ein Fehler ist aufgetreten");
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : t?.error?.generic || "Die Anfrage konnte nicht gesendet werden."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -615,7 +635,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FieldBox
-              label={t?.form?.start_address || "Startadresse"}
+              label={primaryLocationLabel}
               icon={<MapPin className="h-4 w-4" />}
             >
               <input
@@ -635,8 +655,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
             {state.service === "umzug" && (
               <FieldBox
-                label={t?.form?.end_address || "Zieladresse"}
+                label={`${t?.form?.end_address || "Zieladresse"} optional`}
                 icon={<MapPin className="h-4 w-4" />}
+                required={false}
               >
                 <input
                   value={state.details.endAddress}
@@ -655,7 +676,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             )}
           </div>
 
-          <FieldBox label={t?.form?.date || "Wunschtermin"} icon={<Calendar className="h-4 w-4" />}>
+          <FieldBox
+            label={`${t?.form?.date || "Wunschtermin"} optional`}
+            icon={<Calendar className="h-4 w-4" />}
+            required={false}
+          >
             <input
               type="date"
               min={new Date().toISOString().split("T")[0]}
@@ -912,10 +937,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               />
             </FieldBox>
 
-            <FieldBox label={t?.form?.email || "E-Mail"}>
+            <FieldBox label={`${t?.form?.email || "E-Mail"} optional`} required={false}>
               <input
                 type="email"
-                required
                 value={formData.email}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, email: e.target.value }))
@@ -936,6 +960,18 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               }
               className="calc-input h-11"
               placeholder={t?.form?.placeholder_phone || defaultBooking.form.placeholder_phone}
+            />
+          </FieldBox>
+
+          <FieldBox label="Nachricht optional" icon={<MessageSquare className="h-4 w-4" />} required={false}>
+            <textarea
+              rows={3}
+              value={formData.message}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, message: e.target.value }))
+              }
+              className="calc-input min-h-24 resize-none py-3"
+              placeholder="Kurz beschreiben: Was ist wichtig, was ist offen, wann soll FLOXANT sich melden?"
             />
           </FieldBox>
 
@@ -968,6 +1004,12 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               </label>
             </div>
           </div>
+
+          {submitError ? (
+            <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+              {submitError}
+            </div>
+          ) : null}
 
           <div className="flex justify-center gap-4 pt-2">
             <PremiumButton variant="ghost" type="button" onClick={prevStep}>
@@ -1011,7 +1053,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           {successMessageTemplate.replace("{name}", formData.name || "")}
         </p>
         <p className="mb-8 text-sm text-slate-500">
-          {successEmailTemplate.replace("{email}", formData.email || "")}
+          {formData.email
+            ? successEmailTemplate.replace("{email}", formData.email)
+            : "Wir melden uns telefonisch oder per WhatsApp passend zu Ihrer Anfrage."}
         </p>
         <PremiumButton type="button" onClick={resetWizard}>
           {t?.buttons?.new_request || "Neue Anfrage"}
@@ -1107,10 +1151,12 @@ function FieldBox({
   label,
   icon,
   children,
+  required = true,
 }: {
   label: string;
   icon?: React.ReactNode;
   children: React.ReactNode;
+  required?: boolean;
 }) {
   return (
     <div className="calc-field space-y-3 rounded-[1.8rem]">
@@ -1121,7 +1167,7 @@ function FieldBox({
           </span>
         ) : null}
         {label}
-        <span className="text-red-400">*</span>
+        {required ? <span className="text-red-400">*</span> : null}
       </label>
       {children}
     </div>

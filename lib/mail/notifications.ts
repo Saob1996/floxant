@@ -30,9 +30,10 @@ export async function sendInternalIntakeNotification(payload: IntakePayload) {
   <div style="background: #F8FAFC; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
    <h3 style="margin-top: 0; font-size: 16px; color: #0052CC;">Kontaktdaten</h3>
    <p style="margin: 5px 0;"><strong>Name:</strong> ${contact.fullName}</p>
-   <p style="margin: 5px 0;"><strong>E-Mail:</strong> ${contact.email}</p>
+   <p style="margin: 5px 0;"><strong>E-Mail:</strong> ${contact.email || "nicht angegeben"}</p>
    <p style="margin: 5px 0;"><strong>Telefon:</strong> ${contact.phone}</p>
    <p style="margin: 5px 0;"><strong>Rückrufwunsch:</strong> ${contact.callbackPreference}</p>
+   <p style="margin: 5px 0;"><strong>Kurznotiz:</strong> ${contact.notes || "-"}</p>
   </div>
   <div style="background: #F8FAFC; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
    <h3 style="margin-top: 0; font-size: 16px; color: #0052CC;">Vorprüfung</h3>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, ShieldCheck } from "lucide-react";
@@ -29,10 +29,10 @@ const serviceLabels: Partial<Record<ServiceType, string>> = {
 };
 
 const serviceSwitchLinks: Array<{ href: string; label: string }> = [
-  { href: "/rechner?service=umzug", label: "Umzug" },
-  { href: "/rechner?service=reinigung", label: "Reinigung" },
-  { href: "/rechner?service=entsorgung", label: "Entsorgung" },
-  { href: "/rechner?service=bueroumzug", label: "Büroumzug" },
+  { href: "/rechner?service=umzug#rechner-start", label: "Umzug" },
+  { href: "/rechner?service=reinigung#rechner-start", label: "Reinigung" },
+  { href: "/rechner?service=entsorgung#rechner-start", label: "Entsorgung" },
+  { href: "/rechner?service=bueroumzug#rechner-start", label: "Büroumzug" },
 ];
 
 const conversionLinks = [
@@ -55,11 +55,23 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
   usePricingUpdate(dic);
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [actionHint, setActionHint] = useState("");
   const isLastStep = currentStep === steps.length;
   const progress = steps.length > 0 ? (currentStep / steps.length) * 100 : 0;
 
+  useEffect(() => {
+    setActionHint("");
+  }, [currentStep, hasInput, serviceType]);
+
   const handleNext = () => {
     if (isLastStep) {
+      if (!hasInput) {
+        setActionHint(
+          "Bitte ergänzen Sie zuerst die wichtigsten Eckdaten. So kann FLOXANT den Aufwand sinnvoll prüfen.",
+        );
+        return;
+      }
+
       onFinish();
       return;
     }
@@ -168,6 +180,14 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
           </div>
 
           <div className="relative z-10 mt-10 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            {actionHint ? (
+              <div
+                role="status"
+                className="rounded-[1.2rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-900 sm:max-w-md"
+              >
+                {actionHint}
+              </div>
+            ) : null}
             <button
               type="button"
               onClick={handleBack}
@@ -183,7 +203,7 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
               rightIcon={isLastStep ? <CheckCircle2 size={18} /> : <ArrowRight size={18} />}
               className="px-8 py-4 text-[11px]"
             >
-              {isLastStep ? "Jetzt Konfiguration prüfen" : "Nächster Schritt"}
+              {isLastStep ? "Zur Anfrage weiter" : "Nächster Schritt"}
             </FloxButton>
           </div>
         </div>
@@ -204,7 +224,7 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
                   href={item.href}
                   className={cn(
                     "rounded-full border px-3 py-2 text-[11px] font-semibold shadow-sm shadow-slate-950/5 transition",
-                    item.href.endsWith(`service=${serviceType}`)
+                    item.href.includes(`service=${serviceType}`)
                       ? "border-blue-200 bg-blue-50 text-blue-700"
                       : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                   )}
@@ -234,7 +254,7 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
         </div>
       </div>
 
-      <div className="sticky top-24 z-40 w-full shrink-0 xl:w-[460px]">
+      <div className="w-full shrink-0 xl:sticky xl:top-24 xl:z-40 xl:w-[460px]">
         <ValuationSummary estimate={estimate} hasInput={hasInput} dic={dic} />
       </div>
     </div>

@@ -328,6 +328,28 @@ export function SpecialtyPageLayout({
               </Link>
             </div>
 
+            <div className="mt-6 rounded-[1.35rem] border border-slate-200 bg-white/86 p-3 shadow-sm shadow-slate-950/5">
+              <div className="mb-3 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+                Direkt weiter ohne lange Suche
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { href: "#service-klarheit", label: "Leistung verstehen" },
+                  { href: "#wizard", label: "Anfrage starten" },
+                  { href: serviceContext.calculatorHref, label: "Rechner öffnen" },
+                  { href: "/anfrage-mit-preisrahmen", label: "Budget nennen" },
+                ].map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-[11px] font-black uppercase tracking-[0.13em] text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
             {visibleChips.length > 0 ? (
               <div className="mt-10 flex flex-wrap gap-3">
                 {visibleChips.map((chip, index) => {
@@ -372,7 +394,7 @@ export function SpecialtyPageLayout({
                     Klarer Ablauf
                   </div>
                   <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
-                    Erst sauber einordnen, dann passend anfragen. So wird aus einem Klick ein ruhiger nächster Schritt mit Substanz.
+                    Erst sauber einordnen, dann passend anfragen. So wird aus einem Klick ein ruhiger nächster Schritt mit klaren Angaben.
                   </p>
                 </div>
               </div>
@@ -381,7 +403,7 @@ export function SpecialtyPageLayout({
         </div>
       </section>
 
-      <section className="section-glow flox-section py-20">
+      <section id="service-klarheit" className="section-glow flox-section scroll-mt-24 py-20">
         <div className="flox-shell">
           {visibleCards.length > 0 ? (
             <div className="mb-14 grid gap-4 md:grid-cols-2">
@@ -472,13 +494,13 @@ export function SpecialtyPageLayout({
         <div className="flox-shell max-w-none">
           <div className="flox-section-heading mb-10">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
-              Interne Wege
+              Passende nächste Wege
             </div>
             <h2 className="mt-4 flox-display-section text-4xl font-bold text-slate-950 md:text-5xl">
               Hilfreiche Seiten für {germanText(city, city)}
             </h2>
             <p className="flox-body max-w-3xl">
-              Starke interne Verbindungen zwischen Service, Rechner, Regionen und angrenzenden Leistungen helfen bei schneller Orientierung und stärken die semantische Klarheit.
+              Diese Links führen zu Rechner, Hauptservice, Region und passenden Zusatzleistungen, damit Kunden schneller die richtige Seite öffnen.
             </p>
           </div>
 

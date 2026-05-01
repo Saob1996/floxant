@@ -22,16 +22,16 @@ const primaryOrder = ["ueberblick", "leistungen", "preis", "kontakt"] as const;
 const secondaryOrder = ["ablauf", "zusatzservices", "region"] as const;
 
 const primaryCopy: Record<string, { label: string; hint: string }> = {
-  ueberblick: { label: "Überblick", hint: "Passt der Service zu meinem Fall?" },
+  ueberblick: { label: "Überblick", hint: "Passt FLOXANT zu meinem Fall?" },
   leistungen: { label: "Leistungen", hint: "Was wird konkret übernommen?" },
-  preis: { label: "Kosten", hint: "Rechner, Budget oder Anfrage" },
+  preis: { label: "Preis & Budget", hint: "Rechner, Budget oder Anfrage" },
   kontakt: { label: "Anfragen", hint: "Direkt senden oder WhatsApp" },
 };
 
 const secondaryCopy: Record<string, { label: string; hint: string }> = {
   ablauf: { label: "Ablauf", hint: "Was nach der Anfrage passiert" },
   zusatzservices: { label: "Extras", hint: "Reinigung, Übergabe, Schlüssel" },
-  region: { label: "Einsatzgebiet", hint: "Nur wo Anfahrt und Termin Sinn ergeben" },
+  region: { label: "Einsatzgebiet", hint: "Wo Anfahrt und Termin realistisch passen" },
 };
 
 export function CustomerJourneyNav({

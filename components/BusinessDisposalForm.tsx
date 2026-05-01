@@ -39,6 +39,7 @@ export function BusinessDisposalForm() {
   const [form, setForm] = useState(initialState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   function update(field: keyof typeof form, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
@@ -46,6 +47,7 @@ export function BusinessDisposalForm() {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    setSubmitError("");
     setIsSubmitting(true);
 
     const budget = parseBudget(form.budget);
@@ -125,7 +127,7 @@ export function BusinessDisposalForm() {
       setForm(initialState);
     } catch (error) {
       console.error("Business disposal inquiry failed:", error);
-      alert("Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie FLOXANT direkt.");
+      setSubmitError("Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie FLOXANT direkt.");
     } finally {
       setIsSubmitting(false);
     }
@@ -224,6 +226,12 @@ export function BusinessDisposalForm() {
                   className="h-24 w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-950 outline-none transition focus:border-cyan-300 focus:bg-cyan-50/40"
                 />
               </label>
+
+              {submitError ? (
+                <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+                  {submitError}
+                </div>
+              ) : null}
 
               <button
                 type="submit"

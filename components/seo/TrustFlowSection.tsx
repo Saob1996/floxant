@@ -32,7 +32,7 @@ const trustPoints = [
 
 export function TrustFlowSection({ sectionId = "ablauf" }: { sectionId?: string }) {
   return (
-    <section id={sectionId} className="section-glow relative px-6 pb-20">
+    <section id={sectionId} className="section-glow content-auto relative px-6 pb-20">
       <div className="mx-auto max-w-7xl space-y-5">
         <div className="grid gap-5 xl:grid-cols-[0.96fr_1.04fr]">
           <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">

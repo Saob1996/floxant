@@ -126,6 +126,7 @@ export async function getSpecialtyPageData(options: {
           Object.values(BAVARIAN_CITIES_GEO).find(c => c.name === options.city);
   
   const neighborhoods = cityData?.neighborhoods || [];
+  const isDistrictPage = Boolean(cityData?.region?.toLowerCase().includes("stadtbezirk"));
   const resolvedSeoKey = options.seoKey || options.city.toLowerCase();
 
   // ENSURE SEO CONTENT IS NEVER UNDEFINED TO PREVENT BUILD CRASHES
@@ -139,7 +140,8 @@ export async function getSpecialtyPageData(options: {
     localeDict,
     content,
     fallback,
-    city: (localeDict.area?.cities as any)?.[options.city.toLowerCase()] || 
+    city: (localeDict.area?.cities as any)?.[options.city.toLowerCase()] ||
+       (isDistrictPage && cityData?.name ? germanizeText(cityData.name) : "") ||
        (localeDict.area?.cities as any)?.[cityData?.wikidataId === "Q1726" ? "munich" : ""] ||
        (localeDict.area?.cities as any)?.[cityData?.wikidataId === "Q2090" ? "nuremberg" : ""] ||
        options.city,

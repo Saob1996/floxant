@@ -1,78 +1,169 @@
-import { Metadata } from "next";
-import { getDictionary } from "@/get-dictionary";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { generatePageSEO } from "@/lib/seo";
-import Link from "next/link";
+
+const tips = [
+  {
+    title: "Terminfenster bewusst wählen",
+    text: "Monatsende, Wochenenden und sehr kurzfristige Termine sind oft enger geplant. Wer zeitlich etwas Spielraum hat, macht die Abstimmung häufig leichter.",
+  },
+  {
+    title: "Volumen ehrlich reduzieren",
+    text: "Jeder Gegenstand braucht Platz, Zeit und Handling. Vor dem Angebot sollte klar sein, was wirklich mitzieht, was verkauft wird und was entsorgt werden muss.",
+  },
+  {
+    title: "Zugang und Laufwege früh klären",
+    text: "Etagen, Aufzug, lange Wege, Innenhof, Parkmöglichkeit und Haltezone beeinflussen den Aufwand oft stärker als die Entfernung zwischen zwei Adressen.",
+  },
+  {
+    title: "Umzug und Entrümpelung zusammen denken",
+    text: "Wenn Keller, Balkon oder Garage offen bleiben, entsteht nach dem Umzug oft ein zweiter Einsatz. Eine kombinierte Planung kann Schnittstellen reduzieren.",
+  },
+  {
+    title: "Reinigung nicht zu spät planen",
+    text: "Wer erst nach dem Transport an Endreinigung und Übergabe denkt, gerät schnell in Zeitdruck. Besser ist ein Ablauf, der Auszug, Reinigung und Schlüsseltermin verbindet.",
+  },
+  {
+    title: "Fotos und Inventar vorbereiten",
+    text: "Gute Fotos, eine grobe Liste und klare Angaben helfen, den Aufwand realistischer einzuschätzen und unnötige Rückfragen zu vermeiden.",
+  },
+  {
+    title: "Preisrahmen statt Lockpreis prüfen",
+    text: "Ein niedriger Einstiegspreis hilft wenig, wenn Fahrzeug, Zeit oder Zuständigkeit später nicht passen. Realistische Vorprüfung schützt besser vor Überraschungen.",
+  },
+];
+
 export async function generateMetadata(): Promise<Metadata> {
-  var dict = await getDictionary("de");
-  const content = dict?.pages?.umzugskosten_senken_7_tipps || {};
-  const pageLocale = "de";
   return generatePageSEO({
-    pageLocale,
+    lang: "de",
     path: "blog/umzugskosten-senken-7-tipps",
-    title: content.meta_title,
-    description: content.meta_desc,
+    title: "Umzugskosten senken | 7 realistische Hebel ohne Lockpreis",
+    description:
+      "Sieben praktische Hebel, um Umzugskosten realistisch einzuordnen: Volumen, Termin, Zugang, Reinigung, Entrümpelung und Preisrahmen.",
+    keywords: [
+      "Umzugskosten senken",
+      "Umzug planen",
+      "Umzug Regensburg",
+      "Preisrahmen Umzug",
+      "Umzug Bayern",
+    ],
   });
 }
-export default async function BlogArticle() {
-  var dict = await getDictionary("de");
-  const content = (dict as any)?.pages?.service_umzug || {};
+
+export default function BlogArticle() {
   const articleJsonLd = {
-    "@context": "https://schema.org", "@type": "Article",
-    "headline": "7 bewährte Tipps, um Umzugskosten drastisch zu senken",
-    "description": "Umzugskosten sparen ohne Qualitätsverlust. 7 Profi-Tipps: vom richtigen Zeitpunkt über Beiladung bis zur cleveren Verpackung. Jetzt lesen!",
-    "author": { "@type": "Organization", "name": "FLOXANT" },
-    "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
-    "datePublished": "2026-03-18",
-    "dateModified": "2026-03-18",
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Umzugskosten senken: 7 realistische Hebel ohne Lockpreis",
+    description:
+      "Wie Kunden Umzugskosten besser steuern können, ohne sich auf künstlich niedrige Versprechen zu verlassen.",
+    author: { "@type": "Organization", name: "FLOXANT" },
+    publisher: { "@type": "Organization", name: "FLOXANT", url: "https://www.floxant.de" },
+    datePublished: "2026-03-18",
+    dateModified: "2026-05-01",
   };
+
   return (
-    <main className="min-h-screen bg-background">
-      <Breadcrumbs lang="de" items={[{ label: "Blog", href: "/blog" }, { label: "7 bewährte Tipps, um Ihre Umzugskosten zu senken" }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-      <article className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold tracking-tight text-foreground mb-8">7 bewährte Tipps, um Ihre Umzugskosten zu senken</h1>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-12">
-            <span>Von FLOXANT Redaktion</span>
-            <span>·</span>
-            <time dateTime="2026-03-18">18. März 2026</time>
-            <span>·</span>
-            <span>Lesezeit: 8 Min.</span>
-          </div>
-          <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
-            <p className="text-lg font-medium text-foreground">Ein Umzug muss nicht teuer sein. Mit diesen sieben Strategien reduzieren Sie die Kosten erheblich, ohne Abstriche bei Sicherheit und Qualität zu machen.</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">1. Umzugstermin klug wählen</h2>
-            <p>Monatsende, Freitag, Sommer – das sind die teuersten Zeiten für Umzüge. Wer unter der Woche oder Mitte des Monats umzieht, profitiert von deutlich niedrigeren Preisen. Im Winter sind Umzugsunternehmen weniger ausgelastet und bieten oft Sonderkonditionen an.</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">2. Rigoros entrümpeln</h2>
-            <p>Jeder Kubikmeter zählt. Weniger Volumen bedeutet: kleinerer LKW, weniger Träger, niedrigerer Preis. Verkaufen Sie gut erhaltene Möbel vorab auf lokalen Portalen. Was keinen Wert mehr hat, kann eine <Link href={"/entruempelung"} className="text-primary underline hover:text-primary/80">{dict.common.entruempelung}</Link> schnell und fachgerecht entsorgen.</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">3. Selbst packen, Profis tragen lassen</h2>
-            <p>Der teuerste Einzelposten ist oft der Einpack-Service. Wenn Sie selbst packen, sparen Sie 20–30% der Gesamtkosten. Investieren Sie in gute Kartons und Packpapier – defekte Güter sind am Ende teurer als professionelle Verpackung.</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">4. Beiladung nutzen</h2>
-            <p>Bei Fernumzügen (z.B. von Bayern nach NRW) können Sie stark sparen, wenn Ihr Umzugsgut als Beiladung auf einem ohnehin fahrenden LKW mitgenommen wird. FLOXANT bietet wöchentliche Routen durch ganz Deutschland an.</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">5. Verpackungsmaterial clever beschaffen</h2>
-            <p>Fragen Sie in lokalen Supermärkten nach Bananenkisten – die sind stabil und kostenlos. Handtücher und Bettwäsche eignen sich hervorragend als Polstermaterial für Geschirr und Gläser.</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">6. Umzugskosten steuerlich absetzen</h2>
-            <p>Beruflich bedingte Umzugskosten können Sie in der Steuererklärung als Werbungskosten geltend machen. Auch bei privaten Umzügen sind sogenannte haushaltsnahe Dienstleistungen absetzbar (20% der Arbeitskosten, max. 4.000€ pro Jahr).</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">7. Festpreisangebot einholen</h2>
-            <p>Der wichtigste Tipp überhaupt: Bestehen Sie auf einem <strong>verbindlichen Festpreis</strong> nach Besichtigung. Stundenbasierte Angebote führen fast immer zu einer höheren Endrechnung als erwartet. Bei <Link href={"/umzug"} className="text-primary underline hover:text-primary/80">FLOXANT</Link> erhalten Sie immer einen garantierten Festpreis.</p>
-          </div>
-          <div className="mt-20 p-8 bg-primary/5 border border-primary/10 rounded-3xl text-center">
-            <h3 className="text-2xl font-bold mb-4">Bereit für Ihren Umzug?</h3>
-            <p className="text-muted-foreground mb-6">Holen Sie sich jetzt Ihr unverbindliches Festpreisangebot bei FLOXANT.</p>
-            <Link href={"/umzug"} className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all shadow-lg">
-              Angebot anfordern →
-            </Link>
-          </div>
-          <div className="mt-12 border-t border-border pt-8">
-            <h4 className="font-bold mb-4">Weitere Artikel</h4>
-            <div className="flex flex-wrap gap-3">
-              <Link href={"/blog/umzug-kosten-regensburg"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzugskosten Regensburg</Link>
-              <Link href={"/blog/umzug-checkliste"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Checkliste</Link>
-              <Link href={"/blog/umzug-tipps-bayern"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Umzug Tipps Bayern</Link>
-              <Link href={"/ratgeber"} className="px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-primary transition-all">Alle Ratgeber</Link>
+    <main className="min-h-screen bg-[linear-gradient(180deg,#ffffff_0%,#f4f8ff_48%,#ffffff_100%)] text-slate-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <Breadcrumbs
+        lang="de"
+        items={[{ label: "Blog", href: "/blog" }, { label: "Umzugskosten senken" }]}
+      />
+
+      <article className="px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <header className="rounded-[2.4rem] border border-slate-200 bg-white p-7 shadow-[0_24px_80px_rgba(15,23,42,0.08)] md:p-10">
+            <div className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
+              Preisrahmen & Planung
             </div>
-          </div>
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.018em] text-slate-950 md:text-6xl">
+              Umzugskosten senken: 7 realistische Hebel ohne Lockpreis
+            </h1>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+              Viele Menschen fragen zuerst: Was kostet der Umzug? Sinnvoller ist oft die Frage:
+              Welche Faktoren lassen den Auftrag kippen oder unnötig teuer werden? Wer Volumen,
+              Zugang, Termin, Reinigung und Restaufgaben früh klärt, kann Kosten besser steuern.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link href="/rechner" className="flox-button-primary px-6">
+                Preisrahmen prüfen
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/anfrage-mit-preisrahmen" className="flox-button-secondary px-6">
+                Budget nennen
+              </Link>
+            </div>
+          </header>
+
+          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-slate-950 p-7 text-white shadow-xl shadow-slate-950/15 md:p-9">
+            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-200">
+              Die kurze Antwort
+            </div>
+            <p className="mt-4 max-w-4xl text-base leading-8 text-slate-200">
+              Umzugskosten sinken nicht durch den billigsten Werbepreis, sondern durch klare
+              Vorbereitung: weniger Volumen, bessere Zugänglichkeit, saubere Terminlogik und
+              realistische Abstimmung. FLOXANT kann in Regensburg und Bayern helfen, diese Punkte
+              vor der verbindlichen Planung sichtbar zu machen.
+            </p>
+          </section>
+
+          <section className="mt-8 grid gap-4 md:grid-cols-2">
+            {tips.map((tip, index) => (
+              <article
+                key={tip.title}
+                className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[1rem] bg-blue-50 text-sm font-bold text-blue-700">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h2 className="text-xl font-semibold tracking-tight text-slate-950">
+                      {tip.title}
+                    </h2>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{tip.text}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm shadow-slate-950/5 md:p-9">
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950">
+              Warum ein realistischer Preisrahmen ehrlicher ist
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-700">
+              Ein verbindlicher Auftrag sollte erst entstehen, wenn die wichtigsten Eckdaten
+              geprüft sind. Dazu gehören Möbelmenge, Laufwege, Parkmöglichkeit, Etagen, Fotos,
+              Strecke, Zusatzleistungen und Zeitfenster. Wenn diese Punkte fehlen, wirkt ein
+              Angebot zwar schnell, ist aber oft nicht belastbar.
+            </p>
+            <p className="mt-4 text-base leading-8 text-slate-700">
+              FLOXANT setzt deshalb auf Vorprüfung statt künstlich niedriger Einstiegslogik. Das
+              Ziel ist nicht, jeden Auftrag kleinzurechnen, sondern Umfang und Erwartung so
+              zusammenzubringen, dass der Einsatztag planbar bleibt.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {["Orientierung statt Lockpreis", "Fotos und Eckdaten helfen", "Verbindlich erst nach Prüfung"].map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-[1.1rem] border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-950"
+                  >
+                    <CheckCircle2 className="h-4 w-4 text-blue-700" />
+                    {item}
+                  </div>
+                ),
+              )}
+            </div>
+          </section>
         </div>
       </article>
     </main>

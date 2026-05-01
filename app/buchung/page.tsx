@@ -117,23 +117,23 @@ const bookingAdvantages = [
 ] as const;
 
 const mapsBookingSignals = [
-  "Die Buchungsseite ist der bevorzugte direkte Einstieg für Google Maps und Empfehlungen.",
-  "Sie führt nicht in eine Sackgasse, sondern in Buchung, Express, Budget oder Spezialpfad.",
-  "Regensburg bleibt sichtbar als Basis, während Bayern über weitere Geldseiten mitgetragen wird.",
+  "Wer aus der Suche kommt, sieht sofort die wichtigsten Anfragewege.",
+  "Buchung, Express, Budget und Spezialfälle bleiben klar getrennt.",
+  "Kontakt, Standort und Rückmeldung bleiben für Kunden nachvollziehbar.",
 ];
 
 const bookingClosureSignals = [
   {
-    title: "Mehr Abschluss nach Maps-Klick",
+    title: "Schneller zur richtigen Anfrage",
     text: "Statt nur eine Telefonnummer zu sehen, startet der Kunde direkt im passenden Anfrageweg mit klaren nächsten Schritten.",
   },
   {
-    title: "Lokaler Kern bleibt eindeutig",
-    text: "Regensburg bleibt operativer Anker, Bayern wird über passende Service- und Standortpfade sauber mitgetragen.",
+    title: "Kontakt bleibt nachvollziehbar",
+    text: "Kunden sehen, wie sie FLOXANT erreichen, welche Angaben helfen und wann aus einer Anfrage ein verbindlicher Termin wird.",
   },
   {
-    title: "Spezialfälle bleiben getrennt",
-    text: "Für Reinigung in Düsseldorf existiert ein eigener lokaler Reinigungsbereich statt verwässerter Mischkommunikation.",
+    title: "Spezialfälle bleiben sauber geführt",
+    text: "Für Reinigung in Düsseldorf gibt es einen eigenen lokalen Reinigungsbereich mit klarer Adresse, eigenem Rechner und direktem Kontakt.",
   },
 ];
 
@@ -412,7 +412,7 @@ export default async function BuchungPage() {
             {[
               {
                 title: "Was ist das?",
-                text: "Der direkte Anfrageweg von FLOXANT für Umzug, Reinigung und Entsorgung in Regensburg und Bayern.",
+                text: "Der direkte Anfrageweg von FLOXANT für Umzug, Reinigung, Entsorgung und passende Zusatzleistungen.",
               },
               {
                 title: "Für wen?",
@@ -424,7 +424,7 @@ export default async function BuchungPage() {
               },
               {
                 title: "Wichtige Grenze",
-                text: "Diese Seite ist kein Festpreisversprechen. Sie startet eine ehrliche Vorprüfung statt einer künstlich exakten Sofortzusage.",
+                text: "Diese Seite ist kein Festpreisversprechen. Sie startet eine ehrliche Vorprüfung statt einer vorschnellen Sofortzusage.",
               },
             ].map((item) => (
               <article key={item.title} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
@@ -496,9 +496,9 @@ export default async function BuchungPage() {
                 Separater Lokalbereich
               </div>
               <p className="mt-2 text-sm leading-relaxed text-emerald-950/80">
-                Reinigungsanfragen aus Düsseldorf laufen bewusst über den getrennten Bereich
-                FLOXANT Reinigung Düsseldorf, damit Regensburg/Bayern und Düsseldorf sich nicht
-                gegenseitig verwässern.
+                Reinigungsanfragen aus Düsseldorf laufen über den eigenen Bereich FLOXANT
+                Reinigung Düsseldorf: mit klarer Adresse, eigenem Rechner und direktem Kontakt
+                für Kunden vor Ort.
               </p>
               <Link
                 href="/duesseldorf/reinigung"
@@ -693,8 +693,8 @@ export default async function BuchungPage() {
               Von der Buchung direkt auf den richtigen Servicepfad
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Diese Verlinkung hilft Kunden beim Weiterklicken und stärkt gleichzeitig die
-              wichtigsten transaktionalen Seiten rund um FLOXANT.
+              Diese Wege helfen Kunden, nach der Anfrage direkt die passende Leistung oder den
+              nächsten sinnvollen Einstieg zu finden.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
