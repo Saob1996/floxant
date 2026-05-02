@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { AnimatePresence, m } from "framer-motion";
 import {
@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+import type { ReactNode, RefObject } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
@@ -44,7 +45,7 @@ const SERVICE_GROUPS = [
       {
         label: "Reinigung",
         href: "/reinigung#leistungen",
-        description: "Endreinigung, Grundreinigung und Übergabe realistisch prüfen.",
+        description: "Endreinigung, Grundreinigung und Übergabe realistisch einordnen.",
       },
       {
         label: "Entrümpelung",
@@ -75,7 +76,7 @@ const SERVICE_GROUPS = [
       {
         label: "Leer-Rückfahrt",
         href: "/leerfahrt-rueckfahrt",
-        description: "Beiladung oder Rückfahrt prüfen, wenn Route und Menge passen.",
+        description: "Beiladung oder Rückfahrt einordnen, wenn Route und Menge passen.",
       },
       {
         label: "Private Client",
@@ -84,12 +85,6 @@ const SERVICE_GROUPS = [
       },
     ],
   },
-];
-
-const NAV_SHORTCUTS = [
-  { label: "Kosten einschätzen", href: "/rechner#rechner-wizard" },
-  { label: "Budget nennen", href: "/anfrage-mit-preisrahmen" },
-  { label: "Direkt anfragen", href: "/buchung" },
 ];
 
 const CALCULATOR_SHORTCUTS = [
@@ -138,7 +133,7 @@ const DESKTOP_LINKS = [
   { label: "Buchung", href: "/buchung" },
   { label: "Rechner", href: "/rechner" },
   { label: "Standorte", href: "/standorte" },
-  { label: "Wissen", href: "/blog" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 const MOBILE_LINKS = [
@@ -150,13 +145,18 @@ const MOBILE_LINKS = [
   { label: "Wissen", href: "/blog" },
 ];
 
+type RouteLink = {
+  label: string;
+  href: string;
+};
+
+type ServiceGroup = (typeof SERVICE_GROUPS)[number];
+type ShortcutLink = (typeof CALCULATOR_SHORTCUTS)[number];
+
 export function FloxNavigation({ dic }: { dic: any }) {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const hideTimerRef = useRef<number | null>(null);
-  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [navVisible, setNavVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [budgetOpen, setBudgetOpen] = useState(false);
@@ -176,53 +176,12 @@ export function FloxNavigation({ dic }: { dic: any }) {
     serviceGroups.some((group) => group.items.some((item) => pathname === item.href.split("#")[0])) ||
     localIntentLinks.some((item) => pathname === item.href);
 
-  const clearHideTimer = () => {
-    if (hideTimerRef.current !== null) {
-      window.clearTimeout(hideTimerRef.current);
-      hideTimerRef.current = null;
-    }
-  };
-
-  const scheduleAutoHide = () => {
-    clearHideTimer();
-    hideTimerRef.current = window.setTimeout(() => {
-      if (window.scrollY > 72 && !menuOpen && !servicesOpen) {
-        setNavVisible(false);
-      }
-    }, 4600);
-  };
-
   useEffect(() => {
-    setMounted(true);
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 18);
-
-      if (currentScrollY <= 24) {
-        clearHideTimer();
-        setNavVisible(true);
-      } else if (currentScrollY < lastScrollY - 6) {
-        setNavVisible(true);
-        if (!menuOpen && !servicesOpen) {
-          scheduleAutoHide();
-        }
-      } else if (currentScrollY > lastScrollY + 12 && !menuOpen && !servicesOpen) {
-        clearHideTimer();
-        setNavVisible(false);
-      }
-
-      lastScrollY = currentScrollY;
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 18);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      clearHideTimer();
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [menuOpen, servicesOpen]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -233,13 +192,6 @@ export function FloxNavigation({ dic }: { dic: any }) {
       document.body.style.overflow = previousOverflow;
     };
   }, [menuOpen]);
-
-  useEffect(() => {
-    if (menuOpen || servicesOpen) {
-      clearHideTimer();
-      setNavVisible(true);
-    }
-  }, [menuOpen, servicesOpen]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -253,8 +205,19 @@ export function FloxNavigation({ dic }: { dic: any }) {
       }
     };
 
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setServicesOpen(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleOutside);
-    return () => document.removeEventListener("mousedown", handleOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, []);
 
   if (pathname === "/private-client-service" || pathname === "/villenservice") {
@@ -265,430 +228,60 @@ export function FloxNavigation({ dic }: { dic: any }) {
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed inset-x-3 z-50 mx-auto max-w-[1240px] transition-all duration-500 sm:inset-x-4",
-        "flox-nav-shell rounded-[1.35rem] px-2.5 py-2 sm:px-3",
-        navVisible ? "translate-y-0 opacity-100" : "-translate-y-[145%] opacity-0",
-        mounted && scrolled ? "top-3" : "top-4",
+        "fixed inset-x-3 top-3 z-50 mx-auto max-w-[1380px] transition-all duration-300 sm:inset-x-4",
+        "flox-nav-shell rounded-[1.45rem] px-2.5 py-2.5 sm:px-3",
+        scrolled && "shadow-[0_18px_46px_rgba(15,23,42,0.12)]",
       )}
     >
-      <div className="relative flex items-center gap-3">
-        <Link
-          href="/"
-          className="group flex min-w-[7.25rem] shrink-0 items-center gap-2.5"
-          onClick={() => {
-            setMenuOpen(false);
-            setServicesOpen(false);
-          }}
-          aria-label="FLOXANT Startseite"
-        >
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem] border border-blue-100/80 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)]">
-            <BrandLogo size={28} />
-          </span>
-          <span className="min-w-0 overflow-visible">
-            <span className="block whitespace-nowrap text-[0.84rem] font-black leading-none tracking-[0.11em] text-slate-950" translate="no">
-              FLOXANT
-            </span>
-            <span className="sr-only">
-              Klar geplant.
-            </span>
-          </span>
-        </Link>
+      <div className="relative z-10 flex min-h-12 items-center gap-2.5">
+        <BrandBlock />
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center min-[1320px]:flex" aria-label="Hauptnavigation">
-          <div className="flex items-center gap-0.5 rounded-full border border-slate-200 bg-white/96 p-1.5 shadow-sm shadow-slate-950/5">
-            <Link
-              href={desktopLinks[0].href}
-              className={cn("flox-nav-link", pathname === desktopLinks[0].href && "flox-nav-link-active")}
-            >
-              {desktopLinks[0].label}
-            </Link>
+        <DesktopNavigation
+          dic={dic}
+          pathname={pathname}
+          desktopLinks={desktopLinks}
+          serviceGroups={serviceGroups}
+          calculatorShortcuts={calculatorShortcuts}
+          localIntentLinks={localIntentLinks}
+          servicesOpen={servicesOpen}
+          servicesActive={servicesActive}
+          dropdownRef={dropdownRef}
+          setServicesOpen={setServicesOpen}
+        />
 
-            <div
-              ref={dropdownRef}
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <button
-                type="button"
-                aria-expanded={servicesOpen}
-                className={cn(
-                  "flox-nav-link inline-flex items-center gap-1.5",
-                  (servicesOpen || servicesActive) && "flox-nav-link-active",
-                )}
-                onClick={() => setServicesOpen((value) => !value)}
-              >
-                {dic?.nav?.services || "Leistungen"}
-                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", servicesOpen && "rotate-180")} />
-              </button>
+        <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 xl:block" aria-hidden="true" />
 
-              <AnimatePresence>
-                {servicesOpen ? (
-                  <m.div
-                    initial={{ opacity: 0, y: 8, scale: 0.985 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.985 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[760px] -translate-x-1/2 rounded-[1.45rem] p-4"
-                  >
-                    <div className="mb-4 grid gap-3 md:grid-cols-2">
-                      <div className="rounded-[1.1rem] border border-blue-100 bg-blue-50/70 px-4 py-4">
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                          Direkt zur passenden Stelle
-                        </div>
-                        <p className="mt-2 text-sm leading-6 text-slate-700">
-                          Wählen Sie nicht erst eine lange Seite. Springen Sie direkt zu Leistung,
-                          Rechner, Budget oder Anfrage.
-                        </p>
-                      </div>
-                      <div className="rounded-[1.1rem] border border-slate-200 bg-white px-4 py-4">
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
-                          Lokal, wenn es hilft
-                        </div>
-                        <p className="mt-2 text-sm leading-6 text-slate-700">
-                          Regensburg ist dort sichtbar, wo Nähe, Termin und Anfahrt für Kunden
-                          wirklich wichtig sind.
-                        </p>
-                      </div>
-                    </div>
+        <ContactActions whatsappUrl={whatsappUrl} />
 
-                    <div className="mb-4 rounded-[1.15rem] border border-slate-200 bg-white p-3">
-                      <div className="mb-2 flex items-center justify-between gap-3 px-1">
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
-                          Rechner direkt öffnen
-                        </div>
-                        <span className="hidden text-[11px] font-semibold text-slate-400 sm:inline">
-                          ohne Umweg in den passenden Service
-                        </span>
-                      </div>
-                      <div className="grid gap-2 md:grid-cols-3">
-                        {calculatorShortcuts.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
-                          >
-                            <span className="flex items-center justify-between gap-3 text-sm font-black">
-                              <span>{item.label}</span>
-                              <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
-                            </span>
-                            <span className="mt-1.5 block text-xs leading-5 text-slate-500">
-                              {item.hint}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+        <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 xl:block" aria-hidden="true" />
 
-                    <div className="mb-4 rounded-[1.15rem] border border-blue-100 bg-blue-50/60 p-3">
-                      <div className="mb-2 flex items-center justify-between gap-3 px-1">
-                        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                          Lokale Suchwege
-                        </div>
-                        <span className="hidden text-[11px] font-semibold text-blue-900/60 sm:inline">
-                          klare Seiten für Maps, SEO und schnelle Kundenwege
-                        </span>
-                      </div>
-                      <div className="grid gap-2 md:grid-cols-4">
-                        {localIntentLinks.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className="rounded-[0.95rem] border border-blue-100 bg-white px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
-                          >
-                            <span className="flex items-center justify-between gap-3 text-sm font-black">
-                              <span>{item.label}</span>
-                              <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
-                            </span>
-                            <span className="mt-1.5 block text-xs leading-5 text-slate-500">
-                              {item.hint}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+        <HeaderCTAs
+          onExpress={() => setExpressOpen(true)}
+          onBudget={() => setBudgetOpen(true)}
+        />
 
-                    <div className="grid gap-3 md:grid-cols-2">
-                      {serviceGroups.map((group) => (
-                        <div key={group.label} className="rounded-[1.15rem] border border-slate-200 bg-white p-4">
-                          <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                            {group.label}
-                          </div>
-                          <p className="mt-2 text-xs leading-5 text-slate-500">{group.description}</p>
-                          <div className="mt-3 grid gap-2">
-                            {group.items.map((item) => (
-                              <Link
-                                key={item.href}
-                                href={item.href}
-                                className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
-                              >
-                                <span className="flex items-center justify-between gap-3 text-sm font-semibold">
-                                  <span>{item.label}</span>
-                                  <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
-                                </span>
-                                <span className="mt-1.5 block text-xs leading-5 text-slate-500">
-                                  {item.description}
-                                </span>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-3 grid gap-2 rounded-[1.15rem] border border-blue-100 bg-blue-50/70 p-3 sm:grid-cols-3">
-                      {NAV_SHORTCUTS.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="inline-flex items-center justify-center rounded-[0.9rem] border border-blue-100 bg-white px-3 py-2.5 text-[11px] font-black uppercase tracking-[0.13em] text-blue-800 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </m.div>
-                ) : null}
-              </AnimatePresence>
-            </div>
-
-            {desktopLinks.slice(1).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn("flox-nav-link", pathname === item.href && "flox-nav-link-active")}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
-
-        <div className="hidden shrink-0 items-center gap-2 min-[1320px]:flex">
-          <Link
-            href="/kontakt"
-            className="hidden h-10 items-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-700 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800 min-[1320px]:inline-flex"
-          >
-            <MapPin className="h-3.5 w-3.5 text-blue-700" />
-            Kontakt
-          </Link>
-
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="grid h-10 w-10 place-items-center rounded-[0.95rem] border border-slate-200 bg-white text-slate-500 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-[#25D366]/20 hover:text-[#25D366]"
-            aria-label="WhatsApp"
-          >
-            <MessageCircle size={15} />
-          </a>
-
-          <a
-            href={`mailto:${company.email}`}
-            className="hidden h-10 w-10 place-items-center rounded-[0.95rem] border border-slate-200 bg-white text-slate-500 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700 min-[1440px]:grid"
-            aria-label="E-Mail"
-          >
-            <Mail size={15} />
-          </a>
-
-          <button
-            type="button"
-            onClick={() => setExpressOpen(true)}
-            className="flox-button-quiet min-h-10 rounded-[0.95rem] border-amber-200 bg-amber-50 px-3.5 text-[10px] text-amber-800"
-          >
-            <Zap className="h-3.5 w-3.5" />
-            Express-Check
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setBudgetOpen(true)}
-            className="flox-button-secondary hidden min-h-10 rounded-[0.95rem] px-3.5 text-[10px] min-[1280px]:inline-flex"
-          >
-            Budget nennen
-          </button>
-
-          <Link href="/buchung" className="flox-button-primary min-h-10 rounded-[0.95rem] px-4 text-[10px]">
-            Direkt anfragen
-          </Link>
-        </div>
-
-        <button
-          type="button"
-          className="ml-auto inline-flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:bg-slate-50 min-[1320px]:hidden"
-          onClick={() => setMenuOpen((value) => !value)}
-          aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <X size={17} /> : <Menu size={17} />}
-          <span>{menuOpen ? "Schließen" : "Menü"}</span>
-        </button>
+        <MobileHeaderActions
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
       </div>
 
-      <AnimatePresence>
-        {menuOpen ? (
-          <m.div
-            initial={{ opacity: 0, y: -8, scale: 0.985 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.985 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl min-[1320px]:hidden sm:inset-x-5 sm:p-5"
-          >
-            <div className="grid gap-3 sm:grid-cols-2">
-              <Link
-                href="/buchung"
-                className="flox-button-primary flex min-h-[86px] flex-col items-start justify-center rounded-[1.35rem] px-5 text-left normal-case tracking-normal"
-              >
-                <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
-                  Schnellster Weg
-                </span>
-                <span className="mt-2 text-xl font-black tracking-tight">Direkt anfragen</span>
-              </Link>
-
-              <div className="rounded-[1.35rem] border border-blue-100 bg-blue-50 px-5 py-5 text-sm leading-6 text-slate-700">
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                  Schnell entscheiden
-                </div>
-                <p className="mt-2">
-                  Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white p-4">
-              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
-                Rechner direkt öffnen
-              </div>
-              <div className="mt-3 grid gap-2 sm:grid-cols-3">
-                {calculatorShortcuts.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-[1rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-800 transition-all hover:border-blue-200 hover:bg-blue-50"
-                  >
-                    <span className="text-sm font-black">{item.label}</span>
-                    <span className="mt-1 block text-xs leading-5 text-slate-500">{item.hint}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 rounded-[1.35rem] border border-blue-100 bg-blue-50/70 p-4">
-              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                Lokale Suchwege
-              </div>
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                {localIntentLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-[1rem] border border-blue-100 bg-white px-3.5 py-3 text-slate-800 transition-all hover:border-blue-200 hover:bg-blue-50"
-                  >
-                    <span className="flex items-center justify-between gap-3 text-sm font-black">
-                      <span>{item.label}</span>
-                      <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
-                    </span>
-                    <span className="mt-1 block text-xs leading-5 text-slate-500">{item.hint}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 grid gap-3">
-              {mobileLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900 transition-all hover:border-blue-200 hover:bg-blue-50"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-4 grid gap-3">
-              {serviceGroups.map((group) => (
-                <div key={group.label} className="rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
-                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                    {group.label}
-                  </div>
-                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                    {group.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="rounded-[1rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
-                      >
-                        <span className="flex items-center justify-between gap-3 text-sm font-semibold">
-                          <span>{item.label}</span>
-                          <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
-                        </span>
-                        <span className="mt-1.5 block text-xs leading-5 text-slate-500">
-                          {item.description}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 grid gap-2 sm:grid-cols-3">
-              {NAV_SHORTCUTS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-[1.05rem] border border-blue-100 bg-blue-50 px-3.5 py-3 text-center text-[11px] font-black uppercase tracking-[0.13em] text-blue-900"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  setExpressOpen(true);
-                }}
-                className="rounded-[1.15rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm font-black text-amber-900"
-              >
-                Express-Check
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setMenuOpen(false);
-                  setBudgetOpen(true);
-                }}
-                className="rounded-[1.15rem] border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
-              >
-                Budget nennen
-              </button>
-            </div>
-
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-[#25D366]/20 bg-white px-4 py-4 text-sm font-black text-slate-900"
-              >
-                <MessageCircle size={18} className="text-[#25D366]" />
-                WhatsApp
-              </a>
-              <a
-                href={`mailto:${company.email}`}
-                className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900"
-              >
-                <Mail size={18} className="text-blue-700" />
-                E-Mail
-              </a>
-            </div>
-          </m.div>
-        ) : null}
-      </AnimatePresence>
+      <MobileNavDrawer
+        open={menuOpen}
+        whatsappUrl={whatsappUrl}
+        mobileLinks={mobileLinks}
+        serviceGroups={serviceGroups}
+        calculatorShortcuts={calculatorShortcuts}
+        localIntentLinks={localIntentLinks}
+        onExpress={() => {
+          setMenuOpen(false);
+          setExpressOpen(true);
+        }}
+        onBudget={() => {
+          setMenuOpen(false);
+          setBudgetOpen(true);
+        }}
+      />
 
       <QuickBudgetModal isOpen={budgetOpen} onClose={() => setBudgetOpen(false)} />
       <QuickExpressModal isOpen={expressOpen} onClose={() => setExpressOpen(false)} />
@@ -696,3 +289,506 @@ export function FloxNavigation({ dic }: { dic: any }) {
   );
 }
 
+function BrandBlock() {
+  return (
+    <Link
+      href="/"
+      className="group flex min-w-[8.45rem] shrink-0 items-center gap-2.5 rounded-[1.1rem] px-1.5 py-1 transition hover:bg-white/70 sm:min-w-[9.15rem]"
+      aria-label="FLOXANT Startseite"
+    >
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.95rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)]">
+        <BrandLogo size={28} />
+      </span>
+      <span className="min-w-0">
+        <span className="block whitespace-nowrap text-[0.84rem] font-black leading-none tracking-[0.14em] text-slate-950" translate="no">
+          FLOXANT
+        </span>
+        <span className="mt-1 hidden text-[0.57rem] font-black uppercase tracking-[0.2em] text-slate-400 sm:block">
+          Klar geplant
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+function DesktopNavigation({
+  dic,
+  pathname,
+  desktopLinks,
+  serviceGroups,
+  calculatorShortcuts,
+  localIntentLinks,
+  servicesOpen,
+  servicesActive,
+  dropdownRef,
+  setServicesOpen,
+}: {
+  dic: any;
+  pathname: string;
+  desktopLinks: RouteLink[];
+  serviceGroups: typeof SERVICE_GROUPS;
+  calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
+  localIntentLinks: typeof LOCAL_INTENT_LINKS;
+  servicesOpen: boolean;
+  servicesActive: boolean;
+  dropdownRef: RefObject<HTMLDivElement | null>;
+  setServicesOpen: (value: boolean | ((current: boolean) => boolean)) => void;
+}) {
+  return (
+    <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex" aria-label="Hauptnavigation">
+      <div className="flex min-w-0 items-center gap-0.5 rounded-[1.05rem] border border-slate-200 bg-white/92 p-1 shadow-sm shadow-slate-950/5">
+        <NavLink item={desktopLinks[0]} active={pathname === desktopLinks[0].href} />
+
+        <div
+          ref={dropdownRef}
+          className="relative"
+          onMouseEnter={() => setServicesOpen(true)}
+          onMouseLeave={() => setServicesOpen(false)}
+        >
+          <button
+            type="button"
+            aria-expanded={servicesOpen}
+            className={cn(
+              "flox-nav-link inline-flex items-center gap-1.5",
+              (servicesOpen || servicesActive) && "flox-nav-link-active",
+            )}
+            onClick={() => setServicesOpen((value) => !value)}
+          >
+            {dic?.nav?.services || "Leistungen"}
+            <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", servicesOpen && "rotate-180")} />
+          </button>
+
+          <ServicesDropdown
+            open={servicesOpen}
+            serviceGroups={serviceGroups}
+            calculatorShortcuts={calculatorShortcuts}
+            localIntentLinks={localIntentLinks}
+          />
+        </div>
+
+        {desktopLinks.slice(1).map((item) => (
+          <NavLink key={item.href} item={item} active={pathname === item.href} />
+        ))}
+      </div>
+    </nav>
+  );
+}
+
+function NavLink({ item, active }: { item: RouteLink; active: boolean }) {
+  return (
+    <Link href={item.href} className={cn("flox-nav-link", active && "flox-nav-link-active")}>
+      {item.label}
+    </Link>
+  );
+}
+
+function ServicesDropdown({
+  open,
+  serviceGroups,
+  calculatorShortcuts,
+  localIntentLinks,
+}: {
+  open: boolean;
+  serviceGroups: typeof SERVICE_GROUPS;
+  calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
+  localIntentLinks: typeof LOCAL_INTENT_LINKS;
+}) {
+  return (
+    <AnimatePresence>
+      {open ? (
+        <m.div
+          initial={{ opacity: 0, y: 8, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 6, scale: 0.985 }}
+          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[760px] -translate-x-1/2 rounded-[1.45rem] p-4"
+        >
+          <div className="mb-4 grid gap-3 md:grid-cols-2">
+            <HeaderInfoCard
+              tone="blue"
+              title="Direkt zur passenden Stelle"
+              text="Springen Sie direkt zu Leistung, Rechner, Budget oder Anfrage, ohne erst lange zu suchen."
+            />
+            <HeaderInfoCard
+              title="Lokal, wenn es hilft"
+              text="Regionale Wege bleiben dort sichtbar, wo Nähe, Termin und Anfahrt für Kunden wirklich zählen."
+            />
+          </div>
+
+          <ShortcutGrid
+            title="Rechner direkt öffnen"
+            description="ohne Umweg in den passenden Service"
+            items={calculatorShortcuts}
+          />
+
+          <div className="mt-4 rounded-[1.15rem] border border-blue-100 bg-blue-50/60 p-3">
+            <div className="mb-2 flex items-center justify-between gap-3 px-1">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Lokale Suchwege
+              </div>
+              <span className="hidden text-[11px] font-semibold text-blue-900/60 sm:inline">
+                klare Wege für lokale Anfragen und schnelle Orientierung
+              </span>
+            </div>
+            <div className="grid gap-2 md:grid-cols-4">
+              {localIntentLinks.map((item) => (
+                <MiniLinkCard key={item.href} item={item} tone="blue" />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {serviceGroups.map((group) => (
+              <ServiceGroupCard key={group.label} group={group} />
+            ))}
+          </div>
+        </m.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
+function HeaderInfoCard({
+  title,
+  text,
+  tone = "neutral",
+}: {
+  title: string;
+  text: string;
+  tone?: "blue" | "neutral";
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-[1.1rem] border px-4 py-4",
+        tone === "blue" ? "border-blue-100 bg-blue-50/70" : "border-slate-200 bg-white",
+      )}
+    >
+      <div className={cn("text-[10px] font-black uppercase tracking-[0.18em]", tone === "blue" ? "text-blue-700" : "text-slate-500")}>
+        {title}
+      </div>
+      <p className="mt-2 text-sm leading-6 text-slate-700">{text}</p>
+    </div>
+  );
+}
+
+function ShortcutGrid({
+  title,
+  description,
+  items,
+}: {
+  title: string;
+  description: string;
+  items: ShortcutLink[];
+}) {
+  return (
+    <div className="rounded-[1.15rem] border border-slate-200 bg-white p-3">
+      <div className="mb-2 flex items-center justify-between gap-3 px-1">
+        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+          {title}
+        </div>
+        <span className="hidden text-[11px] font-semibold text-slate-400 sm:inline">{description}</span>
+      </div>
+      <div className="grid gap-2 md:grid-cols-3">
+        {items.map((item) => (
+          <MiniLinkCard key={item.href} item={item} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MiniLinkCard({
+  item,
+  tone = "neutral",
+}: {
+  item: { label: string; href: string; hint: string };
+  tone?: "blue" | "neutral";
+}) {
+  return (
+    <Link
+      href={item.href}
+      className={cn(
+        "rounded-[0.95rem] border px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:text-slate-950",
+        tone === "blue"
+          ? "border-blue-100 bg-white hover:border-blue-200 hover:bg-blue-50"
+          : "border-slate-200 bg-slate-50 hover:border-blue-200 hover:bg-blue-50",
+      )}
+    >
+      <span className="flex items-center justify-between gap-3 text-sm font-black">
+        <span>{item.label}</span>
+        <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
+      </span>
+      <span className="mt-1.5 block text-xs leading-5 text-slate-500">{item.hint}</span>
+    </Link>
+  );
+}
+
+function ServiceGroupCard({ group }: { group: ServiceGroup }) {
+  return (
+    <div className="rounded-[1.15rem] border border-slate-200 bg-white p-4">
+      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+        {group.label}
+      </div>
+      <p className="mt-2 text-xs leading-5 text-slate-500">{group.description}</p>
+      <div className="mt-3 grid gap-2">
+        {group.items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+          >
+            <span className="flex items-center justify-between gap-3 text-sm font-semibold">
+              <span>{item.label}</span>
+              <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
+            </span>
+            <span className="mt-1.5 block text-xs leading-5 text-slate-500">{item.description}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ContactActions({ whatsappUrl }: { whatsappUrl: string }) {
+  return (
+    <div className="hidden shrink-0 items-center gap-1.5 rounded-[1.05rem] border border-slate-200 bg-white/82 p-1 shadow-sm shadow-slate-950/5 xl:flex">
+      <Link
+        href="/kontakt"
+        className="hidden h-9 items-center gap-1.5 rounded-[0.82rem] px-2.5 text-[10px] font-black uppercase tracking-[0.13em] text-slate-600 transition hover:bg-blue-50 hover:text-blue-800 min-[1420px]:inline-flex"
+      >
+        <MapPin className="h-3.5 w-3.5 text-blue-700" />
+        Kontakt
+      </Link>
+      <IconAction href={whatsappUrl} label="WhatsApp öffnen" external>
+        <MessageCircle size={15} />
+      </IconAction>
+      <IconAction href={`mailto:${company.email}`} label="E-Mail schreiben">
+        <Mail size={15} />
+      </IconAction>
+    </div>
+  );
+}
+
+function IconAction({
+  href,
+  label,
+  external = false,
+  children,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="grid h-9 w-9 place-items-center rounded-[0.82rem] text-slate-500 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-100"
+      aria-label={label}
+      title={label}
+    >
+      {children}
+    </a>
+  );
+}
+
+function HeaderCTAs({
+  onExpress,
+  onBudget,
+}: {
+  onExpress: () => void;
+  onBudget: () => void;
+}) {
+  return (
+    <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
+      <button
+        type="button"
+        onClick={onExpress}
+        className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-amber-200 bg-amber-50 px-3 text-[10px] font-black uppercase tracking-[0.14em] text-amber-800 shadow-sm shadow-amber-900/5 transition hover:-translate-y-0.5 hover:bg-amber-100 focus:outline-none focus:ring-4 focus:ring-amber-100"
+      >
+        <Zap className="h-3.5 w-3.5" />
+        <span className="min-[1460px]:hidden">Express</span>
+        <span className="hidden min-[1460px]:inline">Express-Check</span>
+      </button>
+
+      <button
+        type="button"
+        onClick={onBudget}
+        className="inline-flex h-10 items-center justify-center rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+      >
+        <span className="min-[1460px]:hidden">Budget</span>
+        <span className="hidden min-[1460px]:inline">Budget nennen</span>
+      </button>
+
+      <Link
+        href="/buchung"
+        className="inline-flex h-10 items-center justify-center rounded-[0.95rem] bg-gradient-to-r from-blue-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_15px_32px_rgba(37,99,235,0.26)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(37,99,235,0.32)] focus:outline-none focus:ring-4 focus:ring-blue-100"
+      >
+        Direkt anfragen
+      </Link>
+    </div>
+  );
+}
+
+function MobileHeaderActions({
+  menuOpen,
+  setMenuOpen,
+}: {
+  menuOpen: boolean;
+  setMenuOpen: (value: boolean | ((current: boolean) => boolean)) => void;
+}) {
+  return (
+    <div className="ml-auto flex items-center gap-2 xl:hidden">
+      <Link
+        href="/buchung"
+        className="hidden h-10 items-center justify-center rounded-[0.95rem] bg-blue-600 px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] sm:inline-flex"
+      >
+        Anfragen
+      </Link>
+      <button
+        type="button"
+        className="inline-flex h-10 items-center justify-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-slate-900 shadow-sm shadow-slate-950/5 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+        onClick={() => setMenuOpen((value) => !value)}
+        aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+        aria-expanded={menuOpen}
+      >
+        {menuOpen ? <X size={17} /> : <Menu size={17} />}
+        <span>{menuOpen ? "Zu" : "Menü"}</span>
+      </button>
+    </div>
+  );
+}
+
+function MobileNavDrawer({
+  open,
+  whatsappUrl,
+  mobileLinks,
+  serviceGroups,
+  calculatorShortcuts,
+  localIntentLinks,
+  onExpress,
+  onBudget,
+}: {
+  open: boolean;
+  whatsappUrl: string;
+  mobileLinks: RouteLink[];
+  serviceGroups: typeof SERVICE_GROUPS;
+  calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
+  localIntentLinks: typeof LOCAL_INTENT_LINKS;
+  onExpress: () => void;
+  onBudget: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {open ? (
+        <m.div
+          initial={{ opacity: 0, y: -8, scale: 0.985 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -6, scale: 0.985 }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl xl:hidden sm:inset-x-5 sm:p-5"
+        >
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Link
+              href="/buchung"
+              className="flex min-h-[86px] flex-col items-start justify-center rounded-[1.35rem] bg-gradient-to-r from-blue-600 to-sky-500 px-5 text-left text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
+            >
+              <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
+                Schnellster Weg
+              </span>
+              <span className="mt-2 text-xl font-black tracking-tight">Direkt anfragen</span>
+            </Link>
+
+            <div className="rounded-[1.35rem] border border-blue-100 bg-blue-50 px-5 py-5 text-sm leading-6 text-slate-700">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Schnell entscheiden
+              </div>
+              <p className="mt-2">
+                Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-2 sm:grid-cols-3">
+            {mobileLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-[1.05rem] border border-slate-200 bg-white px-4 py-3.5 text-sm font-black text-slate-900 transition hover:border-blue-200 hover:bg-blue-50"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white p-4">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+              Rechner direkt öffnen
+            </div>
+            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+              {calculatorShortcuts.map((item) => (
+                <MiniLinkCard key={item.href} item={item} />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-[1.35rem] border border-blue-100 bg-blue-50/70 p-4">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+              Lokale Suchwege
+            </div>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {localIntentLinks.map((item) => (
+                <MiniLinkCard key={item.href} item={item} tone="blue" />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-3">
+            {serviceGroups.map((group) => (
+              <ServiceGroupCard key={group.label} group={group} />
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={onExpress}
+              className="rounded-[1.15rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm font-black text-amber-900"
+            >
+              Express-Check
+            </button>
+            <button
+              type="button"
+              onClick={onBudget}
+              className="rounded-[1.15rem] border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
+            >
+              Budget nennen
+            </button>
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-[#25D366]/20 bg-white px-4 py-4 text-sm font-black text-slate-900"
+            >
+              <MessageCircle size={18} className="text-[#25D366]" />
+              WhatsApp
+            </a>
+            <a
+              href={`mailto:${company.email}`}
+              className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900"
+            >
+              <Mail size={18} className="text-blue-700" />
+              E-Mail
+            </a>
+          </div>
+        </m.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
