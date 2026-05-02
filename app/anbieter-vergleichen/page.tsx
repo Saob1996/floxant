@@ -18,7 +18,7 @@ import {
 const faqItems = [
  {
   q: "Wie vergleicht man Umzugsfirmen in Regensburg sinnvoll?",
-  a: "Sinnvoll ist ein Vergleich nach Preisrahmen, Zugang, Volumen, Strecke, Terminlage, Kommunikation und Ablauf. Ein sehr niedriger Onlinepreis ohne Kostentreiber ist oft weniger aussagekräftig als eine klare Vorprüfung.",
+  a: "Sinnvoll ist ein Vergleich nach Preisrahmen, Zugang, Volumen, Strecke, Terminlage, Kommunikation und Ablauf. Ein sehr niedriger Onlinepreis ohne Kostentreiber ist oft weniger aussagekräftig als eine klare Einschätzung.",
  },
  {
   q: "Woran erkennt man eine gute Reinigungsfirma?",
@@ -34,31 +34,31 @@ const faqItems = [
  },
  {
   q: "Wie positioniert sich FLOXANT im Vergleich zu anderen Anbietern?",
-  a: "FLOXANT setzt auf strukturierte Vorprüfung, unverbindlichen Orientierungsrahmen, sichtbare Kostentreiber, klare Servicewege und regionale Einordnung für Regensburg, Bayern und ausgewählte Spezialanfragen.",
+  a: "FLOXANT setzt auf strukturierte Einschätzung, unverbindlichen Orientierungsrahmen, sichtbare Kostentreiber, klare Servicewege und regionale Einordnung für Regensburg, Bayern und ausgewählte Spezialanfragen.",
  },
  {
   q: "Was ist der Unterschied zwischen FLOXANT und einem Vergleichsportal?",
-  a: "Ein Vergleichsportal ist oft ein Vermittlungsweg. FLOXANT ist der direkte Dienstleister mit eigener Vorprüfung: Anfrage, Preisrahmen, Zusatzleistungen, Region, Ablauf und spätere Umsetzung werden zusammen betrachtet.",
+  a: "Ein Vergleichsportal ist oft ein Vermittlungsweg. FLOXANT ist der direkte Dienstleister mit eigener Einschätzung: Anfrage, Preisrahmen, Zusatzleistungen, Region, Ablauf und spätere Umsetzung werden zusammen betrachtet.",
  },
  {
   q: "Wann ist FLOXANT besser als ein reiner Billigpreis?",
-  a: "Wenn der Auftrag reale Kostentreiber hat: Etagen, Laufwege, Montage, Termin, Zugang, Reinigung, Entsorgung, Büroinventar oder Leer-Rückfahrt. Dann ist eine ehrliche Vorprüfung wertvoller als ein sehr niedriger Einstiegspreis ohne Kontext.",
+  a: "Wenn der Auftrag reale Kostentreiber hat: Etagen, Laufwege, Montage, Termin, Zugang, Reinigung, Entsorgung, Büroinventar oder Leer-Rückfahrt. Dann ist eine ehrliche Einschätzung wertvoller als ein sehr niedriger Einstiegspreis ohne Kontext.",
  },
 ];
 
 const comparisonSteps = [
- "Nicht nur Preis ansehen, sondern prüfen, ob die Leistung vollständig beschrieben ist.",
+ "Nicht nur Preis ansehen, sondern klären, ob die Leistung vollständig beschrieben ist.",
  "Kostentreiber trennen: Volumen, Fläche, Zugang, Laufwege, Terminlage, Zusatzleistungen.",
  "Serviceweg wählen: Rechner, Preisvorstellung, Express, Leer-Rückfahrt oder direkter Hauptservice.",
- "Auf realistische Kommunikation achten: keine Festpreis-Anmutung ohne Prüfung.",
+ "Auf realistische Kommunikation achten: keine Festpreis-Anmutung ohne geklärten Umfang.",
 ];
 
 const comparisonMatrix = [
  {
   criterion: "Wer prüft die Anfrage?",
   portal: "Häufig Vermittlung oder Lead-Verteilung an mehrere Anbieter.",
-  cheap: "Oft nur kurzer Preisanker ohne vollständige Leistungsprüfung.",
-  floxant: "Direkte FLOXANT Vorprüfung mit Serviceart, Region, Umfang, Zugang und Termin.",
+  cheap: "Oft nur kurzer Preisanker ohne vollständige Leistungsklärung.",
+  floxant: "Direkte FLOXANT Einschätzung mit Serviceart, Region, Umfang, Zugang und Termin.",
  },
  {
   criterion: "Wie entsteht der Preis?",
@@ -86,7 +86,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "anbieter-vergleichen",
   title: "Umzugsfirma & Reinigungsfirma vergleichen | FLOXANT",
   description:
-   "Anbieter für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern vergleichen: Preisrahmen, Ablauf, Kostentreiber und Serviceklarheit prüfen.",
+   "Anbieter für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern vergleichen: Preisrahmen, Ablauf, Kostentreiber und Serviceklarheit einschätzen.",
  });
 }
 
@@ -149,14 +149,14 @@ export default function AnbieterVergleichenPage() {
     <div className="relative mx-auto max-w-6xl">
      <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600 ">
       <Scale className="h-4 w-4" />
-      Vergleich ohne Lockpreis-Falle
+      Vergleich mit klarem Preisrahmen
      </div>
      <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
       Anbieter für Umzug, Reinigung und Entrümpelung richtig vergleichen.
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
       Wer verschiedene Firmen in Regensburg oder Bayern vergleicht, sollte nicht nur auf einen
-      niedrigen Onlinepreis schauen. Entscheidend sind klare Leistung, realistische Vorprüfung,
+      niedrigen Onlinepreis schauen. Entscheidend sind klare Leistung, realistische Einschätzung,
       transparente Kostentreiber, Terminlogik und ein sauberer nächster Schritt.
      </p>
      <div className="mt-8 flex flex-wrap gap-3">
@@ -219,7 +219,7 @@ export default function AnbieterVergleichenPage() {
 
      <div className="mt-5 grid gap-3 md:grid-cols-3">
       <Link href="/rechner" className="rounded-[1.4rem] bg-blue-500 px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-foreground transition hover:bg-blue-400">
-       Preisrahmen prüfen
+       Preisrahmen einschätzen
       </Link>
       <Link href="/leerfahrt-rueckfahrt" className="rounded-[1.4rem] border border-emerald-300/20 bg-emerald-400/10 px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-emerald-500  transition hover:bg-emerald-400/15">
        Leer-Rückfahrt nutzen

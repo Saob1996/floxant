@@ -50,7 +50,7 @@ export default function FloxReinigungRechner({ dic }: { dic?: any }) {
        Premium Reinigungsrechner
       </h2>
       <p className="mt-2 text-sm text-white/50">
-       Detaillierte Vorprüfung für professionelle End- und Unterhaltsreinigung.
+       Detaillierte Einschätzung für professionelle End- und Unterhaltsreinigung.
       </p>
      </div>
 
@@ -65,7 +65,7 @@ export default function FloxReinigungRechner({ dic }: { dic?: any }) {
        className="bg-emerald-600 text-white hover:bg-emerald-500"
        rightIcon={<ArrowRight size={18} />}
       >
-       Vorprüfung weitergeben
+       Anfrage weitergeben
       </FloxButton>
      </div>
     </div>
@@ -90,7 +90,7 @@ export default function FloxReinigungRechner({ dic }: { dic?: any }) {
        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-emerald-500/10 text-4xl shadow-inner">
         R
        </div>
-       <h4 className="mb-4 text-center font-bold text-white">Vorprüfung wartet auf Daten</h4>
+       <h4 className="mb-4 text-center font-bold text-white">Einschätzung wartet auf Daten</h4>
        <div className="space-y-3">
         <CheckState active={reinigungData.areaM2 >= 20} label="Fläche (mind. 20 m2) angeben" />
         <CheckState active={reinigungData.propertyType !== ""} label="Objektart auswählen" />

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
-import { Phone, MessageCircle, Calculator } from "lucide-react";
+import { Phone, MessageCircle, Calculator, ClipboardCheck } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { company } from "@/lib/company";
@@ -10,6 +10,8 @@ import { company } from "@/lib/company";
 export default function MobileFloatingContact({ dic }: { dic?: any }) {
  const [isVisible, setIsVisible] = useState(false);
  const pathname = usePathname();
+ const isBookingPage = pathname === "/buchung";
+ const CenterIcon = isBookingPage ? ClipboardCheck : Calculator;
 
  useEffect(() => {
   const handleScroll = () => {
@@ -54,15 +56,15 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
        </a>
 
        <Link
-        href="/rechner"
+        href={isBookingPage ? "#buchungssystem" : "/rechner"}
         className="flex flex-col items-center justify-center rounded-2xl border border-primary/20 bg-primary px-2 py-3 text-center shadow-lg transition-colors hover:bg-primary/90"
-        aria-label="Zum Rechner"
+        aria-label={isBookingPage ? "Zum Anfrageformular" : "Zum Rechner"}
        >
-        <div className="mb-1 rounded-full bg-white/15 p-2.5">
-         <Calculator size={20} className="text-primary-foreground" />
+        <div className="mb-1 rounded-full bg-white/[0.15] p-2.5">
+         <CenterIcon size={20} className="text-primary-foreground" />
         </div>
         <span className="text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-         {dic?.common?.mobile_calc || "Rechner"}
+         {isBookingPage ? "Anfrage" : dic?.common?.mobile_calc || "Rechner"}
         </span>
        </Link>
 

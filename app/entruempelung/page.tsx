@@ -22,9 +22,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "entruempelung",
-    title: "Entrümpelung in Regensburg und Bayern | FLOXANT",
+    title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
     description:
-      "FLOXANT organisiert Entrümpelung, Wohnungsauflösung und fachgerechte Entsorgung in Regensburg und Bayern mit realistischer Vorprüfung und besenreiner Übergabe.",
+      "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
+    keywords: [
+      "Entrümpelung Regensburg",
+      "Wohnungsauflösung Regensburg",
+      "Entsorgung Regensburg",
+      "Keller entrümpeln Regensburg",
+      "Räumung Bayern",
+      "Entrümpelung Kosten Regensburg",
+      "Besenreine Übergabe",
+    ],
   });
 }
 

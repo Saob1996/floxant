@@ -13,6 +13,11 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import ServiceRechnerHub from "@/components/calculator/ServiceRechnerHub";
+import { BavariaRouteMap } from "@/components/operations/BavariaRouteMap";
+import { BudgetOperatingCta } from "@/components/operations/BudgetOperatingCta";
+import { OperatingProofStrip } from "@/components/operations/OperatingProofStrip";
+import { OperatingStatusBar } from "@/components/operations/OperatingStatusBar";
+import { MaskReveal, Reveal, TextReveal } from "@/components/ui/Reveal";
 import { getDictionary } from "@/get-dictionary";
 import {
   BAVARIA_DIRECT_DEMAND_LINKS,
@@ -34,9 +39,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "rechner",
-    title: "Kostenrechner für Umzug, Reinigung & Entrümpelung | FLOXANT",
+    title: "Kostenrechner Regensburg | Umzug, Reinigung & Entrümpelung",
     description:
-      "FLOXANT Kostenrechner für Regensburg und Bayern: Umzug, Reinigung, Entrümpelung oder Büroumzug wählen, Aufwand einschätzen und direkt anfragen.",
+      "Kosten für Umzug, Reinigung, Entrümpelung oder Büroumzug in Regensburg und Bayern einschätzen. FLOXANT prüft Aufwand, Zugang, Termin und Budget.",
     keywords: [
       "Umzug Rechner Regensburg",
       "Reinigung Rechner Regensburg",
@@ -49,6 +54,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "Preisvorschlag Umzug Reinigung",
       "Entrümpelung Kosten Bayern",
       "Reinigung Kosten Bayern",
+      "Umzugsfirma Regensburg Rechner",
+      "Reinigungsfirma Regensburg",
+      "Google Maps Umzug Regensburg",
+      "Service Regensburg Bayern",
+      "Bayern Umzug Reinigung Entrümpelung",
       "FLOXANT Rechner",
     ],
   });
@@ -84,7 +94,7 @@ function RechnerHeroVisual() {
     { label: "Service", value: "Was muss passieren?", icon: Sparkles },
     { label: "Aufwand", value: "Fläche, Volumen, Zugang", icon: Calculator },
     { label: "Ort", value: "Regensburg & Bayern", icon: MapPin },
-    { label: "Rahmen", value: "Preis realistisch prüfen", icon: Wallet },
+    { label: "Rahmen", value: "Preisrahmen einordnen", icon: Wallet },
   ];
 
   return (
@@ -103,7 +113,7 @@ function RechnerHeroVisual() {
         <div className="mb-5 flex items-center justify-between">
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Einsatzprüfung
+              Einsatz einordnen
             </p>
             <p className="mt-1 text-sm font-bold text-slate-950">Von Anfrage zu planbarem Rahmen</p>
           </div>
@@ -146,9 +156,9 @@ function RechnerHeroVisual() {
           <div className="flex items-start gap-3">
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
             <div>
-              <p className="text-sm font-black text-emerald-950">Kein Lockpreis</p>
+              <p className="text-sm font-black text-emerald-950">Ehrlicher Rahmen</p>
               <p className="mt-1 text-xs leading-5 text-emerald-800">
-                Erst Orientierung, dann Prüfung von Termin, Zugang und tatsächlichem Umfang.
+                Erst Orientierung, dann Einschätzung von Termin, Zugang und tatsächlichem Umfang.
               </p>
             </div>
           </div>
@@ -168,22 +178,22 @@ export default async function RechnerPage() {
   const serviceEntryLinks = [
     {
       label: "Umzug-Rechner",
-      href: "/rechner?service=umzug#rechner-start",
+      href: "/rechner?service=umzug#rechner-wizard",
       description: "Direkt in die erste Einordnung für Privat- und Firmenumzug einsteigen.",
     },
     {
       label: "Reinigungs-Rechner",
-      href: "/rechner?service=reinigung#rechner-start",
+      href: "/rechner?service=reinigung#rechner-wizard",
       description: "Direkt in die erste Einordnung für Reinigung, Übergabe und Objektservice einsteigen.",
     },
     {
       label: "Entsorgungs-Rechner",
-      href: "/rechner?service=entsorgung#rechner-start",
+      href: "/rechner?service=entsorgung#rechner-wizard",
       description: "Direkt in die erste Einordnung für Entrümpelung und Entsorgung einsteigen.",
     },
     {
       label: "Büroumzug-Rechner",
-      href: "/rechner?service=bueroumzug#rechner-start",
+      href: "/rechner?service=bueroumzug#rechner-wizard",
       description: "Direkt in die erste Einordnung für Büroumzug, Teamlogik und Firmenstandorte einsteigen.",
     },
   ] as const;
@@ -192,25 +202,25 @@ export default async function RechnerPage() {
     {
       title: "Umzug berechnen",
       query: "Umzug Kosten einschätzen",
-      href: "/rechner?service=umzug#rechner-start",
+      href: "/rechner?service=umzug#rechner-wizard",
       text: "Für Möbel, Kartons, Etagen, Laufwege, Strecke und Zusatzaufgaben.",
     },
     {
       title: "Reinigung berechnen",
-      query: "Reinigung Preisrahmen prüfen",
-      href: "/rechner?service=reinigung#rechner-start",
+      query: "Reinigung Preisrahmen einschätzen",
+      href: "/rechner?service=reinigung#rechner-wizard",
       text: "Für Wohnung, Büro, Grundreinigung, Übergabe und objektbezogene Reinigung.",
     },
     {
       title: "Entrümpelung berechnen",
       query: "Entsorgung und Räumung einordnen",
-      href: "/rechner?service=entsorgung#rechner-start",
+      href: "/rechner?service=entsorgung#rechner-wizard",
       text: "Für Keller, Wohnung, Restmengen, Entsorgung, Volumen und Zugang.",
     },
     {
-      title: "Büroumzug prüfen",
+      title: "Büroumzug planen",
       query: "Firmenumzug planbar machen",
-      href: "/rechner?service=bueroumzug#rechner-start",
+      href: "/rechner?service=bueroumzug#rechner-wizard",
       text: "Für Teams, Arbeitsplätze, Technik, Zeitfenster und Betriebsablauf.",
     },
   ] as const;
@@ -228,7 +238,7 @@ export default async function RechnerPage() {
     },
     {
       title: "Den realistischen Rahmen",
-      text: "Statt Lockpreis bekommen Sie eine ehrliche Einordnung mit Bandbreite, Kostentreibern und sinnvollen nächsten Schritten.",
+      text: "Statt vorschneller Zahl bekommen Sie eine ehrliche Einordnung mit Bandbreite, Kostentreibern und sinnvollen nächsten Schritten.",
     },
     {
       title: "Den passenden Folgeweg",
@@ -268,18 +278,18 @@ export default async function RechnerPage() {
 
   const decisionPathCards = [
     {
-      title: "Ich brauche zuerst ein Preisgefühl",
+      title: "Ich möchte erst Orientierung",
       text: "Starten Sie mit dem passenden Rechner, wenn Umfang, Ort und Termin noch eingeordnet werden müssen.",
-      href: "#rechner-start",
+      href: "#rechner-wizard",
       label: "Rechner starten",
       icon: Calculator,
       tone: "border-blue-100 bg-blue-50 text-blue-900",
     },
     {
       title: "Ich habe einen festen Preisrahmen",
-      text: "Nennen Sie Ihr Budget, damit FLOXANT prüfen kann, welcher Umfang dafür realistisch machbar ist.",
+      text: "Nennen Sie Ihr Budget, damit FLOXANT einschätzen kann, welcher Umfang dafür realistisch machbar ist.",
       href: "/anfrage-mit-preisrahmen",
-      label: "Budget prüfen lassen",
+      label: "Budget einschätzen lassen",
       icon: Wallet,
       tone: "border-emerald-100 bg-emerald-50 text-emerald-950",
     },
@@ -324,13 +334,31 @@ export default async function RechnerPage() {
     },
     {
       title: "Preisrahmen",
-      text: "Ein genanntes Budget hilft, Umfang und Machbarkeit ehrlich gegeneinander zu prüfen.",
+      text: "Ein genanntes Budget hilft, Umfang und Machbarkeit ehrlich gegeneinander einzuordnen.",
       icon: Wallet,
     },
     {
-      title: "Prüfung vor Zusage",
-      text: "Der Rechner gibt Orientierung. Verbindlich wird es erst nach Prüfung von Zustand, Umfang und Termin.",
+      title: "Einschätzung vor Zusage",
+      text: "Der Rechner gibt Orientierung. Verbindlich wird es erst nach Einschätzung von Zustand, Umfang und Termin.",
       icon: CheckCircle2,
+    },
+  ] as const;
+
+  const preparationCards = [
+    {
+      title: "Ort und Zugang",
+      text: "Stadt oder Stadtteil, Etage, Aufzug, Treppenhaus, Laufweg und Parkmöglichkeit helfen bei der ersten Einschätzung.",
+      icon: MapPin,
+    },
+    {
+      title: "Umfang und Zustand",
+      text: "Fläche, Volumen, Fotos oder kurze Videos machen sichtbar, ob es um Standard, Übergabe, Räumung oder Zusatzaufwand geht.",
+      icon: Calculator,
+    },
+    {
+      title: "Termin und Budget",
+      text: "Ein Wunschzeitraum und ein Preisrahmen helfen, schnell einzuschätzen, welcher Ablauf realistisch machbar ist.",
+      icon: Wallet,
     },
   ] as const;
 
@@ -367,7 +395,7 @@ export default async function RechnerPage() {
     },
     {
       q: "Ist der angezeigte Preis ein Endpreis?",
-      a: "Nein. Der Rechner dient als Orientierung. Verbindlich wird ein Auftrag erst nach Prüfung der Angaben, Umfang, Zugang, Termin, Zusatzleistungen und schriftlicher Bestätigung.",
+      a: "Nein. Der Rechner dient als Orientierung. Verbindlich wird ein Auftrag erst nach Einschätzung der Angaben, Umfang, Zugang, Termin, Zusatzleistungen und schriftlicher Bestätigung.",
     },
     {
       q: "Kann ich eine eigene Preisvorstellung angeben?",
@@ -391,11 +419,23 @@ export default async function RechnerPage() {
     },
     {
       q: "Warum ist der Rechner besser als eine reine Preisfrage?",
-      a: "Eine einzelne Preisfrage übersieht oft Zugang, Zeitfenster, Zusatzleistungen und Risiko. Der Rechner führt diese Punkte zusammen und hilft, aus einer losen Anfrage einen realistisch prüfbaren Auftrag zu machen.",
+      a: "Eine einzelne Preisfrage übersieht oft Zugang, Zeitfenster, Zusatzleistungen und Risiko. Der Rechner führt diese Punkte zusammen und hilft, aus einer losen Anfrage einen klar einschätzbaren Auftrag zu machen.",
     },
     {
       q: "Hilft der Rechner auch bei lokalen Suchen über Google Maps?",
       a: "Ja, indirekt. Die Seite führt Nutzer von Suchintentionen wie Umzug, Reinigung, Entsorgung, Entrümpelung, Lagerung oder Büroumzug schneller zum passenden lokalen FLOXANT-Einstieg, statt alles über eine allgemeine Kontaktseite laufen zu lassen.",
+    },
+    {
+      q: "Was fragt der Reinigungs-Rechner besonders ab?",
+      a: "Beim Reinigungs-Rechner zählen vor allem Reinigungsziel, Objektart, Fläche, Zustand, Fenster, Küche, Bad, Möblierung, Terminwunsch und mögliche Übergabeanforderungen. Diese Angaben helfen, Wohnungsreinigung, Büroreinigung, Grundreinigung oder Übergabereinigung sauberer einzuordnen.",
+    },
+    {
+      q: "Was sollte ich vor dem Rechner bereithalten?",
+      a: "Hilfreich sind Ort oder Stadtteil, Fläche oder Volumen, Etage, Aufzug, Parkmöglichkeit, Terminwunsch, grober Zustand und optional ein Budget. Fotos oder kurze Videos können später bei der Einschätzung sehr helfen.",
+    },
+    {
+      q: "Muss ich schon alle Details kennen?",
+      a: "Nein. Der Rechner funktioniert auch als erster Einstieg. Wenn einzelne Angaben fehlen, kann FLOXANT später gezielt nachfragen und den Preisrahmen realistischer einordnen.",
     },
   ];
 
@@ -409,6 +449,19 @@ export default async function RechnerPage() {
     href: item.href,
     note: item.note,
   }));
+
+  const regensburgCoreLinks = BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 6);
+
+  const localSeoTags = [
+    { label: "Umzug Regensburg", href: "/umzug-regensburg" },
+    { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
+    { label: "Entrümpelung Regensburg", href: "/entruempelung-regensburg" },
+    { label: "Büroumzug Regensburg", href: "/bueroumzug-regensburg" },
+    { label: "Wohnungsauflösung Regensburg", href: "/wohnungsaufloesung-regensburg" },
+    { label: "Beiladung Regensburg", href: "/beiladung-regensburg" },
+    { label: "Einlagerung Regensburg", href: "/einlagerung" },
+    { label: "Kostenrechner Bayern", href: "/rechner" },
+  ] as const;
 
   const businessModelSteps = [
     {
@@ -449,11 +502,11 @@ export default async function RechnerPage() {
         ],
       }),
       buildServiceJsonLd({
-        name: "FLOXANT Rechner und Vorprüfung",
+        name: "FLOXANT Rechner und Einschätzung",
         description:
           "Der FLOXANT Rechner ordnet Umzug, Reinigung, Entrümpelung und Büroumzug in einen nachvollziehbaren Orientierungsrahmen ein.",
         path: "/rechner",
-        serviceType: "Rechner und Vorprüfung",
+        serviceType: "Rechner und Einschätzung",
         areaServed: ["Regensburg", "Bayern"],
       }),
       {
@@ -500,6 +553,33 @@ export default async function RechnerPage() {
       },
       {
         "@type": "ItemList",
+        "@id": "https://www.floxant.de/rechner#regensburg-kernpfade",
+        name: "FLOXANT Regensburg Kernpfade",
+        description:
+          "Direkte lokale FLOXANT Einstiege für Regensburg: Umzug, Reinigung, Entrümpelung, Büroumzug, Einlagerung und Akteneinlagerung.",
+        itemListElement: regensburgCoreLinks.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.label,
+          url: `https://www.floxant.de${item.href}`,
+          description: item.note,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.floxant.de/rechner#lokale-tags",
+        name: "FLOXANT lokale Such-Tags",
+        description:
+          "Lokale Suchbegriffe und interne Links für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
+        itemListElement: localSeoTags.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.label,
+          url: `https://www.floxant.de${item.href}`,
+        })),
+      },
+      {
+        "@type": "ItemList",
         "@id": "https://www.floxant.de/rechner#preisfaktoren",
         name: "FLOXANT Rechner Preisfaktoren",
         description:
@@ -513,10 +593,23 @@ export default async function RechnerPage() {
       },
       {
         "@type": "ItemList",
+        "@id": "https://www.floxant.de/rechner#vorbereitung",
+        name: "FLOXANT Rechner Vorbereitung",
+        description:
+          "Welche Angaben Kunden vor dem FLOXANT Rechner für Umzug, Reinigung, Entrümpelung oder Büroumzug bereithalten können.",
+        itemListElement: preparationCards.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.title,
+          description: item.text,
+        })),
+      },
+      {
+        "@type": "ItemList",
         "@id": "https://www.floxant.de/rechner#kundenweg",
         name: "FLOXANT Rechner Kundenweg",
         description:
-          "Wie der FLOXANT Rechner Kunden von der ersten Preisfrage zu einem realistisch prüfbaren nächsten Schritt führt.",
+          "Wie der FLOXANT Rechner Kunden von der ersten Preisfrage zu einem realistisch einschätzbaren nächsten Schritt führt.",
         itemListElement: routingSignals.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -541,63 +634,80 @@ export default async function RechnerPage() {
         <div className="relative mx-auto max-w-7xl">
           <RechnerHeroVisual />
           <div className="relative z-10 max-w-4xl xl:max-w-[760px]">
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/88 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
-              <Calculator className="h-4 w-4" />
-              FLOXANT Rechner
-            </span>
-            <h1 className="mt-8 max-w-[14ch] text-4xl font-bold leading-[0.99] tracking-[-0.022em] text-slate-950 md:text-7xl">
-              Kosten und Aufwand zuerst sauber einschätzen
-            </h1>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
-              Wählen Sie Umzug, Reinigung, Entrümpelung oder Büroumzug. Der Rechner fragt die
-              Punkte ab, die später wirklich zählen: Fläche oder Volumen, Zugang, Termin,
-              Zusatzleistungen und Ort. Danach geht es direkt weiter in Anfrage, Budgetprüfung
-              oder Express-Check.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link
-                href="#rechner-start"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-[1.2rem] border border-blue-200 bg-white px-5 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700 shadow-sm shadow-slate-950/5 transition hover:bg-blue-50"
-              >
-                Passenden Rechner starten
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/88 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
                 <Calculator className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/buchung"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-[1.2rem] bg-blue-600 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-500"
-              >
-                Direkt anfragen
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/express-anfrage"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-[1.2rem] border border-amber-200 bg-amber-50 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-amber-900 transition hover:bg-amber-100"
-              >
-                <Zap className="h-4 w-4" />
-                Express-Check
-              </Link>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {serviceEntryLinks.map((item) => (
+                FLOXANT Rechner
+              </span>
+            </Reveal>
+            <TextReveal
+              as="h1"
+              text="Preisrahmen für Regensburg und Bayern sauber einschätzen"
+              className="mt-8 max-w-[15ch] text-4xl font-bold leading-[0.99] tracking-[-0.02em] text-slate-950 md:text-7xl"
+              delay={0.08}
+              wordDelay={0.055}
+            />
+            <MaskReveal delay={0.22}>
+              <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
+                Wählen Sie Umzug, Reinigung, Entrümpelung oder Büroumzug. FLOXANT fragt die
+                Punkte ab, die später wirklich zählen: Fläche oder Volumen, Zugang, Termin,
+                Zusatzleistungen und Ort. Danach geht es ohne Umweg weiter in Anfrage,
+                Budgeteinschätzung oder Express-Check.
+              </p>
+            </MaskReveal>
+            <Reveal delay={0.28}>
+              <OperatingStatusBar />
+            </Reveal>
+            <Reveal delay={0.34}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950 hover:shadow-md"
+                  href="#rechner-wizard"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[1.2rem] border border-blue-200 bg-white px-5 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700 shadow-sm shadow-slate-950/5 transition hover:bg-blue-50"
                 >
-                  {item.label}
+                  Passenden Rechner starten
+                  <Calculator className="h-4 w-4" />
                 </Link>
-              ))}
-            </div>
+                <Link
+                  href="/buchung"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[1.2rem] bg-blue-600 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-blue-900/20 transition hover:bg-blue-500"
+                >
+                  Direkt anfragen
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/express-anfrage"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[1.2rem] border border-amber-200 bg-amber-50 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-amber-900 transition hover:bg-amber-100"
+                >
+                  <Zap className="h-4 w-4" />
+                  Express-Check
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.38}>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {serviceEntryLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950 hover:shadow-md"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </Reveal>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              {calculatorIntentCards.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="group rounded-[1.35rem] border border-slate-200 bg-white/92 p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50/70 hover:shadow-xl hover:shadow-blue-950/10"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
+              {calculatorIntentCards.map((item, index) => (
+                <Reveal key={item.href} delay={0.44 + index * 0.06} className="h-full">
+                  <Link
+                    href={item.href}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/92 p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50/70 hover:shadow-xl hover:shadow-blue-950/10"
+                  >
+                    <span className="absolute right-4 top-4 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
+                    <div className="pr-12">
                       <p className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
                         {item.query}
                       </p>
@@ -605,12 +715,9 @@ export default async function RechnerPage() {
                         {item.title}
                       </h2>
                     </div>
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
-                      <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                </Link>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
+                  </Link>
+                </Reveal>
               ))}
             </div>
 
@@ -660,34 +767,42 @@ export default async function RechnerPage() {
                 text: "Der Rechner ersetzt keine finale Einsatzabstimmung, schafft aber eine bessere Grundlage für Termin, Team, Zugang, Preisrahmen und Angebot.",
               },
             ].map((item, index) => (
-              <article key={item.title} className="card-premium group relative overflow-hidden rounded-[2rem] p-8 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-950/10">
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400 opacity-0 transition group-hover:opacity-100" />
-                <div className="mb-4 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                  0{index + 1}
-                </div>
-                <h2 className="text-2xl font-bold text-slate-950">{item.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-slate-600">{item.text}</p>
-              </article>
+              <Reveal key={item.title} delay={index * 0.06} className="h-full">
+                <article className="card-premium group relative h-full overflow-hidden rounded-[2rem] p-8 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-950/10">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400 opacity-0 transition group-hover:opacity-100" />
+                  <div className="mb-4 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                    0{index + 1}
+                  </div>
+                  <h2 className="text-2xl font-bold text-slate-950">{item.title}</h2>
+                  <p className="mt-4 text-sm leading-7 text-slate-600">{item.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
+          <OperatingProofStrip />
         </div>
       </section>
 
-      <section id="rechner-start" className="section-glow relative scroll-mt-28 px-6 pb-14 pt-0">
+      <section id="rechner-einstieg" className="section-glow relative scroll-mt-28 px-6 pb-14 pt-0">
         <div className="mx-auto max-w-7xl">
           <div id="leistungen" className="relative -top-24 block h-0 w-0" />
           <div className="mb-8 grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
             <div>
               <span className="label-premium text-blue-700">Schnellstart</span>
-              <h2 className="mt-4 max-w-[15ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-5xl">
-                Erst rechnen. Dann direkt anfragen.
-              </h2>
+              <TextReveal
+                as="h2"
+                text="Erst rechnen. Dann direkt anfragen."
+                className="mt-4 max-w-[15ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-5xl"
+                wordDelay={0.055}
+              />
             </div>
-            <p className="max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
-              Sie können sofort mit Umzug, Reinigung, Entrümpelung oder Büroumzug starten.
-              Ausführliche Hinweise, regionale Wege und häufige Fragen stehen darunter, ohne den
-              Einstieg zu blockieren.
-            </p>
+            <Reveal delay={0.12}>
+              <p className="max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
+                Sie können sofort mit Umzug, Reinigung, Entrümpelung oder Büroumzug starten.
+                Ausführliche Hinweise, regionale Wege und häufige Fragen stehen darunter, ohne den
+                Einstieg zu blockieren.
+              </p>
+            </Reveal>
           </div>
           <div className="mb-6 rounded-[2rem] border border-slate-200 bg-white/92 p-4 shadow-sm shadow-slate-950/5 md:p-5">
             <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
@@ -705,27 +820,29 @@ export default async function RechnerPage() {
               </p>
             </div>
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-              {decisionPathCards.map((item) => {
+              {decisionPathCards.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`group rounded-[1.35rem] border p-4 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/10 ${item.tone}`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
+                  <Reveal key={item.href} delay={index * 0.06} className="h-full">
+                    <Link
+                      href={item.href}
+                      className={`group relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border p-4 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/10 ${item.tone}`}
+                    >
+                      <span className="absolute right-4 top-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-current/10 bg-white/54 text-current/70 transition group-hover:bg-white/82 group-hover:text-current">
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                      </span>
                       <Icon className="h-5 w-5 shrink-0" />
-                      <ArrowRight className="h-4 w-4 shrink-0 opacity-45 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
-                    </div>
-                    <h4 className="mt-4 text-base font-black leading-tight">{item.title}</h4>
-                    <p className="mt-2 text-sm leading-6 opacity-75">{item.text}</p>
-                    <span className="mt-4 inline-flex text-[11px] font-black uppercase tracking-[0.14em]">
-                      {item.label}
-                    </span>
-                  </Link>
+                      <h4 className="mt-4 pr-10 text-base font-black leading-tight">{item.title}</h4>
+                      <p className="mt-2 text-sm leading-6 opacity-75">{item.text}</p>
+                      <span className="mt-4 inline-flex text-[11px] font-black uppercase tracking-[0.14em]">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </Reveal>
                 );
               })}
             </div>
+            <BudgetOperatingCta className="mt-4" />
           </div>
           <div
             id="preisfaktoren"
@@ -736,9 +853,12 @@ export default async function RechnerPage() {
                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                   Preisfaktoren
                 </div>
-                <h3 className="mt-2 max-w-[14ch] text-2xl font-bold tracking-[-0.02em] text-slate-950">
-                  Was den Aufwand wirklich bewegt
-                </h3>
+                <TextReveal
+                  as="h3"
+                  text="Was den Aufwand wirklich bewegt"
+                  className="mt-2 max-w-[14ch] text-2xl font-bold tracking-[-0.02em] text-slate-950"
+                  wordDelay={0.05}
+                />
               </div>
               <p className="text-sm leading-6 text-slate-600">
                 Gute Einschätzungen entstehen nicht durch eine einzelne Zahl. Sie entstehen,
@@ -768,10 +888,10 @@ export default async function RechnerPage() {
             </div>
             <div className="mt-4 flex flex-col gap-2 border-t border-blue-100 pt-4 sm:flex-row sm:flex-wrap">
               <Link
-                href="#rechner-start"
+                href="#rechner-wizard"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-[1rem] bg-blue-600 px-4 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:bg-blue-500"
               >
-                Preisfaktoren im Rechner prüfen
+                Preisfaktoren verstehen
                 <Calculator className="h-4 w-4" />
               </Link>
               <Link
@@ -781,6 +901,43 @@ export default async function RechnerPage() {
                 Budget nennen
                 <Wallet className="h-4 w-4" />
               </Link>
+            </div>
+          </div>
+          <div
+            id="vorbereitung"
+            className="mb-6 scroll-mt-28 overflow-hidden rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94)_45%,rgba(236,253,245,0.64))] p-5 shadow-sm shadow-slate-950/5 md:p-6"
+          >
+            <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+              <div>
+                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700">
+                  Vor dem Start
+                </div>
+                <h3 className="mt-2 max-w-[15ch] text-2xl font-bold leading-[1.04] tracking-[-0.02em] text-slate-950 md:text-3xl">
+                  Drei Dinge machen die Einschätzung sofort besser
+                </h3>
+              </div>
+              <p className="text-sm leading-7 text-slate-600">
+                Sie müssen nicht alles perfekt wissen. Wenn diese Punkte grob vorhanden sind,
+                wird aus dem Rechner aber schneller eine brauchbare Anfrage für Umzug, Reinigung,
+                Entrümpelung oder Büroumzug.
+              </p>
+            </div>
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              {preparationCards.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article
+                    key={item.title}
+                    className="group rounded-[1.35rem] border border-white/80 bg-white/88 p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-950/10"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <h4 className="mt-4 text-sm font-black text-slate-950">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
           <div className="mb-6 grid gap-3 md:grid-cols-3">
@@ -797,6 +954,7 @@ export default async function RechnerPage() {
             ))}
           </div>
 
+          <div id="rechner-wizard" className="scroll-mt-28" />
           <ServiceRechnerHub dic={dict} />
         </div>
       </section>
@@ -855,6 +1013,66 @@ export default async function RechnerPage() {
               <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="regensburg-kern" className="section-glow relative content-auto px-6 pb-12">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(239,246,255,0.78)_48%,rgba(255,247,237,0.58))] p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div>
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Regensburg als Kern
+              </div>
+              <h2 className="mt-3 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
+                Regensburg zuerst. Bayern sauber angebunden.
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                FLOXANT wird lokal über konkrete Leistungen gefunden: Umzug, Reinigung,
+                Entrümpelung, Büroumzug, Einlagerung und Akteneinlagerung. Der Rechner verbindet
+                diese Regensburg-Kernpfade mit passenden Bayern-Seiten, ohne Nutzer in einer
+                allgemeinen Kontaktseite zu verlieren.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {localSeoTags.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-full border border-white/80 bg-white/90 px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-slate-700 shadow-sm shadow-slate-950/5 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {regensburgCoreLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group rounded-[1.35rem] border border-white/80 bg-white/88 p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-xl hover:shadow-blue-950/10"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                        Kernpfad Regensburg
+                      </div>
+                      <h3 className="mt-2 text-lg font-bold text-slate-950">
+                        {germanText(item.label, item.label)}
+                      </h3>
+                    </div>
+                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {germanText(item.note, item.note || "")}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="mt-6">
+            <BavariaRouteMap />
+          </div>
         </div>
       </section>
 
@@ -1053,8 +1271,8 @@ export default async function RechnerPage() {
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Niemand kann eine bestimmte Platzierung garantieren. Klar sichtbare Kontaktwege,
-              passende Standortseiten und nachvollziehbare Leistungen helfen aber Kunden und
-              Suchsystemen, FLOXANT richtig einzuordnen.
+              passende Standortseiten und nachvollziehbare Leistungen helfen Kunden aber,
+              schneller den richtigen FLOXANT Einstieg zu wählen.
             </p>
           </div>
 
@@ -1129,7 +1347,7 @@ export default async function RechnerPage() {
               },
               {
                 title: "Nächsten Schritt klar führen",
-                text: "Nach dem Rahmen geht es geordnet weiter in Buchung, Preisvorstellung oder Express-Prüfung statt in ein offenes Ende.",
+                text: "Nach dem Rahmen geht es geordnet weiter in Buchung, Preisvorstellung oder Express-Check statt in ein offenes Ende.",
                 icon: Sparkles,
               },
             ].map((item) => {

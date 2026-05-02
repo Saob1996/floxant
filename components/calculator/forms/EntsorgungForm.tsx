@@ -220,7 +220,7 @@ export default function EntsorgungForm({ dic, currentStep }: { dic?: any; curren
     <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
     <p className="text-xs leading-relaxed text-slate-600">
      Je klarer Volumen, Zugang und Materialarten beschrieben sind, desto belastbarer wird
-     die Vorprüfung.
+     die Einschätzung.
     </p>
    </div>
   </div>

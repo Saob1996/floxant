@@ -57,37 +57,37 @@ export const SEO_SUPPORT_ROUTES = [
 
 const moneySnippets: Record<string, Snippet> = {
  "/": {
-  title: "FLOXANT Regensburg | Umzug, Reinigung und Entrümpelung",
+  title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
   description:
-   "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, festen Ansprechpartnern und direktem Einstieg über Buchung, Rechner oder WhatsApp.",
+   "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT prüft Aufwand realistisch und führt direkt zur passenden Anfrage.",
   cluster: "money",
   intent: "Premium-Dienstleister für Umzug, Reinigung und Entrümpelung finden",
  },
  "/buchung": {
-  title: "FLOXANT Buchung | direkt Anfrage in Regensburg starten",
+  title: "FLOXANT Anfrage Regensburg | direkt starten",
   description:
-   "Direkter Buchungslink für Google Maps: Service wählen, Preisrahmen oder Express-Check starten und Anfrage sauber an FLOXANT senden.",
+   "Umzug, Reinigung, Entrümpelung oder Leer-Rückfahrt in Regensburg und Bayern unverbindlich anfragen: Service wählen, Eckdaten senden, Rückmeldung erhalten.",
   cluster: "conversion",
   intent: "Direkt aus Google Maps oder Google Search eine FLOXANT Anfrage starten",
  },
  "/rechner": {
-  title: "FLOXANT Rechner | Umzug & Reinigung Preisrahmen prüfen",
+  title: "Kostenrechner Regensburg | Umzug, Reinigung & Entrümpelung",
   description:
-   "In wenigen Angaben zur unverbindlichen Vorprüfung: Service wählen, Kostentreiber sehen, Preisvorstellung senden und Anfrage direkt starten.",
+   "Kosten für Umzug, Reinigung, Entrümpelung oder Büroumzug in Regensburg und Bayern einschätzen. FLOXANT prüft Aufwand, Zugang, Termin und Budget.",
   cluster: "conversion",
   intent: "Preisrahmen und Aufwand vor einer Anfrage einordnen",
  },
  "/umzug": {
-  title: "Umzug Regensburg & Bayern | Preisrahmen online prüfen",
+  title: "Umzug Regensburg | Umzugsfirma für Bayern",
   description:
-   "Privat- oder Firmenumzug geplant? FLOXANT prüft Volumen, Strecke, Zugang, Montage und Termin. Direkt unverbindlich anfragen.",
+   "Umzug in Regensburg und Bayern realistisch prüfen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
   cluster: "money",
   intent: "Umzugsunternehmen in Regensburg oder Bayern beauftragen",
  },
  "/reinigung": {
-  title: "Reinigung Regensburg & Bayern | Übergabe sicher planen",
+  title: "Reinigung Regensburg | Wohnung, Büro & Übergabe",
   description:
-   "Wohnung, Büro oder Übergabe reinigen lassen? FLOXANT prüft Fläche, Zustand, Küche, Bad und Fenster für eine klare Anfrage.",
+   "Reinigung in Regensburg und Bayern für Wohnung, Büro, Endreinigung und Übergabe. FLOXANT prüft Fläche, Zustand, Termin und Umfang realistisch.",
   cluster: "money",
   intent: "Reinigungsfirma für Übergabe oder Objektservice finden",
  },
@@ -99,9 +99,9 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Gewerbereinigung in Regensburg für Büro, Praxis oder Kanzlei anfragen",
  },
  "/entruempelung": {
-  title: "Entrümpelung Regensburg & Bayern | Räumung prüfen",
+  title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
   description:
-   "Wohnung, Keller, Büro oder Gewerbefläche räumen? FLOXANT prüft Volumen, Material, Zugang und Entsorgung sauber vor.",
+   "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
   cluster: "money",
   intent: "Entrümpelung oder Wohnungsauflösung anfragen",
  },
@@ -313,17 +313,17 @@ moneySnippets["/private-client-service"] = {
 };
 
 moneySnippets["/"] = {
- title: "FLOXANT Regensburg | Umzug, Reinigung und Entrümpelung",
+ title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
  description:
-  "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, festen Ansprechpartnern und direktem Einstieg über Buchung, Rechner oder WhatsApp.",
+  "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT prüft Aufwand realistisch und führt direkt zur passenden Anfrage.",
  cluster: "money",
  intent: "Direkten Dienstleister für Umzug, Reinigung und Entrümpelung mit Buchung finden",
 };
 
 moneySnippets["/buchung"] = {
- title: "FLOXANT Buchung Regensburg | Anfrage direkt starten",
+ title: "FLOXANT Anfrage Regensburg | direkt starten",
  description:
-  "Direkter Buchungslink für Google Maps: Umzug, Reinigung, Entrümpelung, Express-Check, Preisrahmen oder Leer-Rückfahrt sicher starten.",
+  "Umzug, Reinigung, Entrümpelung oder Leer-Rückfahrt in Regensburg und Bayern unverbindlich anfragen: Service wählen, Eckdaten senden, Rückmeldung erhalten.",
  cluster: "conversion",
  intent: "FLOXANT direkt aus Google Maps oder Google Search buchen oder anfragen",
 };
@@ -337,33 +337,33 @@ moneySnippets["/anbieter-vergleichen"] = {
 };
 
 moneySnippets["/rechner"] = {
- title: "FLOXANT Rechner Regensburg | Preisrahmen prüfen",
+ title: "Kostenrechner Regensburg | Umzug, Reinigung & Entrümpelung",
  description:
-  "Umzug, Reinigung oder Entrümpelung planen? FLOXANT zeigt einen unverbindlichen Preisrahmen mit Kostentreibern statt Lockpreis.",
+  "Kosten für Umzug, Reinigung, Entrümpelung oder Büroumzug in Regensburg und Bayern einschätzen. FLOXANT prüft Aufwand, Zugang, Termin und Budget.",
  cluster: "conversion",
  intent: "Kostenrahmen für Umzug, Reinigung oder Entrümpelung realistisch prüfen",
 };
 
 moneySnippets["/umzug"] = {
- title: "Umzug Regensburg | Preisrahmen & Termin prüfen",
+ title: "Umzug Regensburg | Umzugsfirma für Bayern",
  description:
-  "Volumen, Strecke, Etagen, Zugang, Montage und Terminlage prüfen lassen. Für Umzug in Regensburg und Bayern direkt anfragen.",
+  "Umzug in Regensburg und Bayern realistisch prüfen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
  cluster: "money",
  intent: "Umzugsunternehmen in Regensburg direkt anfragen",
 };
 
 moneySnippets["/reinigung"] = {
- title: "Endreinigung Regensburg | Übergabe sauber planen",
+ title: "Reinigung Regensburg | Wohnung, Büro & Übergabe",
  description:
-  "Wohnung, Haus oder Büro reinigen lassen: Fläche, Zustand, Fenster, Küche, Bad und Termin klar vorprüfen und direkt anfragen.",
+  "Reinigung in Regensburg und Bayern für Wohnung, Büro, Endreinigung und Übergabe. FLOXANT prüft Fläche, Zustand, Termin und Umfang realistisch.",
  cluster: "money",
  intent: "Reinigungsfirma in Regensburg für Übergabe oder Objektservice finden",
 };
 
 moneySnippets["/entruempelung"] = {
- title: "Entrümpelung Regensburg | Räumung fair prüfen",
+ title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
  description:
-  "Wohnung, Keller, Büro oder Gewerbefläche räumen: Volumen, Material, Zugang, Demontage und Entsorgung sauber klären lassen.",
+  "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
  cluster: "money",
  intent: "Entrümpelung oder Wohnungsauflösung in Regensburg anfragen",
 };

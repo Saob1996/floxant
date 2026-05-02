@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     pageLocale: pageLocale as Locale,
     path: `alternativen/${slug}`,
     title: `FLOXANT Vergleich in ${city} | Ablauf, Preisrahmen & Service`,
-    description: `Vergleichen Sie Anbieter in ${city} ohne Lockpreis-Logik: FLOXANT setzt auf klare Vorprüfung, nachvollziehbaren Preisrahmen und saubere Abstimmung.`,
+    description: `Vergleichen Sie Anbieter in ${city}: FLOXANT setzt auf klare Leistung, nachvollziehbaren Preisrahmen und saubere Abstimmung.`,
   });
 }
 export default async function AlternativenPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -35,25 +35,25 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
       Suchen Sie nach <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-orange-400">{competitor} in {city}?</span>
      </h1>
      <p className="text-lg text-white/60">
-      Bevor Sie blind buchen, vergleichen Sie Ablauf, Leistungsumfang und Preislogik. FLOXANT arbeitet mit unverbindlicher Vorprüfung, nachvollziehbarem Preisrahmen und klarer Abstimmung.
+      Bevor Sie buchen, vergleichen Sie Ablauf, Leistungsumfang und Preislogik. FLOXANT arbeitet mit unverbindlicher Einschätzung, nachvollziehbarem Preisrahmen und klarer Abstimmung.
      </p>
     </header>
     {/* The VS Matrix */}
     <section className="max-w-4xl mx-auto mb-20 bg-[#0B0B12] rounded-3xl border border-white/5 overflow-hidden">
      <div className="grid grid-cols-3 bg-white/5 p-4 border-b border-white/10 text-center font-medium">
-      <div className="text-start ps- text-white/40">Kriterium</div>
+      <div className="text-start text-white/40">Kriterium</div>
       <div className="text-white/60">{competitor}</div>
       <div className="text-blue-400 font-bold text-xl drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">FLOXANT</div>
      </div>
      <div className="divide-y divide-white/5">
       {[
        { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: 'Nachvollziehbarer Orientierungsrahmen' },
-       { label: 'Leistungsumfang', comp: 'Unklare Pauschale', flox: 'Service-Stufen nach Vorprüfung' },
+       { label: 'Leistungsumfang', comp: 'Unklare Pauschale', flox: 'Service-Stufen nach Einschätzung' },
        { label: 'Anfrage', comp: 'Lange Rückfragen', flox: 'Strukturierter Einstieg' },
        { label: 'Disposition', comp: 'Unklare Zuständigkeit', flox: 'Eigene Einsatzplanung' }
       ].map((row, i) => (
        <div key={i} className="grid grid-cols-3 p-4 text-center items-center hover:bg-white/5 transition-colors">
-         <div className="text-start ps- text-white/70 text-sm">{row.label}</div>
+         <div className="text-start text-white/70 text-sm">{row.label}</div>
          <div className="text-red-400/80 text-sm flex flex-col items-center gap-1">
           {row.comp}
          </div>
@@ -73,8 +73,8 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
       <div className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] bg-orange-600/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
      </div>
      <div className="relative z-10 max-w-4xl mx-auto text-center">
-      <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Überzeugen Sie sich selbst.</h2>
-      <p className="text-white/60 text-lg mb-12">Starten Sie eine unverbindliche Vorprüfung für {city}.</p>
+      <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Klären Sie den nächsten Schritt.</h2>
+      <p className="text-white/60 text-lg mb-12">Starten Sie eine unverbindliche Einschätzung für {city}.</p>
       <div className="relative group-calc">
        <div className="absolute -inset-1 bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-[2.5rem] blur-xl opacity-0 group-calc-hover:opacity-100 transition duration-1000" />
        <div className="relative bg-[#0A0C10] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl backdrop-blur-sm p-4 md:p-8 text-start">

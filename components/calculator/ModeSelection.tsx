@@ -24,7 +24,7 @@ export default function ModeSelection({ dic }: ModeSelectionProps) {
   {
    id: "umzug" as ServiceType,
    title: dic?.calculator?.service_umzug_title || "Umzug & Transport",
-   desc: dic?.calculator?.service_umzug_desc || "Professioneller Umzug mit nachvollziehbarer Vorprüfung zu Aufwand, Strecke und Zusatzleistungen.",
+   desc: dic?.calculator?.service_umzug_desc || "Professioneller Umzug mit nachvollziehbarer Einschätzung zu Aufwand, Strecke und Zusatzleistungen.",
    icon: Truck,
    color: "blue",
    features: ["Inventar und Volumen", "Zugang und Laufwege", "Montageleistungen"],
@@ -40,7 +40,7 @@ export default function ModeSelection({ dic }: ModeSelectionProps) {
   {
    id: "entsorgung" as ServiceType,
    title: dic?.calculator?.service_entsorgung_title || "Entrümpelung",
-   desc: dic?.calculator?.service_entsorgung_desc || "Entrümpelung und Entsorgung mit sauberer Vorprüfung zu Volumen, Zugang und Materialarten.",
+   desc: dic?.calculator?.service_entsorgung_desc || "Entrümpelung und Entsorgung mit sauberer Einschätzung zu Volumen, Zugang und Materialarten.",
    icon: Trash2,
    color: "orange",
    features: ["Volumen und Material", "Zugang und Laufweg", "Demontage und Dringlichkeit"],
@@ -48,10 +48,10 @@ export default function ModeSelection({ dic }: ModeSelectionProps) {
   {
    id: "budget" as any,
    title: "Preisvorschlag",
-   desc: "Haben Sie einen Zielrahmen? Nennen Sie Ihre Preisvorstellung als Zusatzinformation zur späteren Vorprüfung.",
+   desc: "Haben Sie einen Zielrahmen? Nennen Sie Ihre Preisvorstellung als Zusatzinformation zur späteren Einschätzung.",
    icon: Users,
    color: "blue",
-   features: ["Zielbudget optional", "Systemschätzung bleibt getrennt", "Bessere Einordnung"],
+   features: ["Zielbudget optional", "Systemrahmen bleibt getrennt", "Bessere Einordnung"],
    isLink: true,
    href: "/anfrage-mit-preisrahmen"
   },
@@ -93,7 +93,7 @@ export default function ModeSelection({ dic }: ModeSelectionProps) {
      transition={{ delay: 0.2 }}
      className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-white/50"
     >
-     {dic?.calculator?.selection_subtitle || "Wählen Sie Ihren Service für eine unverbindliche Vorprüfung mit realistischem Orientierungsrahmen."}
+     {dic?.calculator?.selection_subtitle || "Wählen Sie Ihren Service für eine unverbindliche Einschätzung mit realistischem Orientierungsrahmen."}
     </m.p>
    </div>
 

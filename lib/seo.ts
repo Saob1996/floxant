@@ -71,11 +71,11 @@ function resolveLocale(_input?: string): Locale {
 }
 
 function getDefaultTitle(_locale: Locale = "de") {
-  return "FLOXANT Regensburg | Umzug, Reinigung, Entrümpelung & Buchung";
+  return "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung";
 }
 
 function getDefaultDescription(_locale: Locale = "de") {
-  return "Umzug, Reinigung, Entrümpelung und Büroumzug in Regensburg und Bayern: direkt anfragen, Preisrahmen prüfen und klar buchen statt im Vergleichsportal zu landen.";
+  return "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: Aufwand realistisch prüfen, direkt anfragen und sauber planen.";
 }
 
 function getOgLocale(_locale: Locale = "de") {

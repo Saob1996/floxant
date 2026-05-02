@@ -22,9 +22,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "umzug",
-    title: "Umzug Regensburg & Bayern | Privat, Gewerbe, Planung",
+    title: "Umzug Regensburg | Umzugsfirma für Bayern",
     description:
-      "FLOXANT plant Umzüge in Regensburg und Bayern mit realistischer Vorprüfung, Transport, Zusatzleistungen und sauberer Übergabevorbereitung.",
+      "Umzug in Regensburg und Bayern realistisch einordnen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
+    keywords: [
+      "Umzug Regensburg",
+      "Umzugsfirma Regensburg",
+      "Umzugsunternehmen Bayern",
+      "Privatumzug Regensburg",
+      "Firmenumzug Regensburg",
+      "Umzug mit Reinigung",
+      "Umzug Kosten Regensburg",
+    ],
   });
 }
 
@@ -55,7 +64,7 @@ export default async function UmzugPillarPage() {
     },
     {
       q: "Warum kalkuliert FLOXANT nicht einfach den billigsten Umzugspreis?",
-      a: "Weil ein künstlich niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. FLOXANT kalkuliert lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
+      a: "Weil ein vorschnell niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. FLOXANT kalkuliert lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
     },
   ];
 
@@ -97,7 +106,7 @@ export default async function UmzugPillarPage() {
         heroImageAlt="FLOXANT Umzug in Regensburg und Bayern"
         heroCards={[
           { label: "Planung", value: "Route, Volumen und Zugang sauber erfasst" },
-          { label: "Ehrlich", value: "Orientierungsrahmen statt Lockpreis" },
+          { label: "Ehrlich", value: "Orientierungsrahmen mit Kontext" },
           { label: "Regional", value: "Lokaler Startpunkt, Reichweite realistisch geprüft" },
         ]}
         visualVariant="moving"
@@ -127,7 +136,7 @@ export default async function UmzugPillarPage() {
         differenceCards={[
           {
             icon: Sparkles,
-            title: "Durchführung statt Lockpreis",
+            title: "Durchführung statt Schnellpreis",
             text: "FLOXANT kalkuliert nicht nur Kilometer und Möbel, sondern die tatsächliche Durchführung: Volumen, Laufwege, Etagen, Fahrzeug, Team, Zeitfenster und Zusatzaufgaben.",
           },
           {
@@ -145,11 +154,11 @@ export default async function UmzugPillarPage() {
           "Montage, Verpackung und Halteverbotszonen",
         ]}
         calculatorTitle="Warum der Rechner hier wichtig ist"
-        calculatorText="Der FLOXANT Rechner liefert eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Volumen, Etagen, Laufwege, Parkmöglichkeit, Zusatzleistungen und Zeitfenster geprüft sind."
+        calculatorText="Der FLOXANT Rechner liefert eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Volumen, Etagen, Laufwege, Parkmöglichkeit, Zusatzleistungen und Zeitfenster eingeordnet sind."
         faqTitle="Häufige Fragen zum Umzug"
         faqItems={faqItems}
         bookingTitle="Umzug in Regensburg oder Bayern anfragen"
-        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Künstlich niedrige Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster fehlen."
+        bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Vorschnell niedrige Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster fehlen."
         serviceLinksTitle="Wichtige interne Einstiege rund um den Umzug"
         serviceLinks={[
           { href: "/rechner", label: "Umzug direkt kalkulieren" },

@@ -202,7 +202,7 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
          {`Schritt ${currentStep}: ${steps[currentStep - 1].title}`}
         </h2>
         <p className="mt-2 text-sm text-white/45">
-         Detaillierte Angaben für eine belastbare Vorprüfung.
+         Detaillierte Angaben für eine belastbare Einschätzung.
         </p>
        </div>
 
@@ -254,7 +254,7 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
          disabled={!canProceedToLead}
          className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-blue-500 disabled:opacity-40"
         >
-         {dic?.calculator?.finish_and_request || "Vorprüfung abschließen"}
+         {dic?.calculator?.finish_and_request || "Einschätzung abschließen"}
          <CheckCircle2 size={16} />
         </button>
        )}
@@ -354,7 +354,7 @@ export default function AdvancedCalculator({ dic }: { dic?: any }) {
        className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-white px-6 py-4.5 text-[16px] font-bold tracking-tight text-black transition-all hover:bg-blue-50 active:scale-[0.98] disabled:opacity-20"
       >
        <PhoneCall size={18} className="transition-transform group-hover:scale-110" />
-       {dic?.calculator?.fix_now_btn || "Vorprüfung abschließen"}
+       {dic?.calculator?.fix_now_btn || "Einschätzung abschließen"}
       </button>
       <p className="mt-4 text-center text-[10px] font-medium uppercase tracking-widest text-white/20">
        Unverbindlich und kostenlos

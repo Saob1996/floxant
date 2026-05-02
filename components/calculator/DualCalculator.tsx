@@ -98,7 +98,7 @@ export default function DualCalculator({
 
      {mode === "lead" ? (
       <CalculatorScene key="lead">
-       <BackButton onClick={() => setMode("advanced")} label="Zurück zur Vorprüfung" />
+       <BackButton onClick={() => setMode("advanced")} label="Zurück zur Einschätzung" />
        <LeadClosing dic={dic} onBack={() => setMode("advanced")} />
       </CalculatorScene>
      ) : null}

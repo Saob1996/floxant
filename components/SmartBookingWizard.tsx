@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
-  Banknote,
   Box,
   Calendar,
   CheckCircle2,
@@ -38,6 +38,35 @@ type ServiceType =
   | "akteneinlagerung"
   | "leerfahrt"
   | null;
+
+function normalizeBookingService(value: string | null): ServiceType {
+  if (!value) return null;
+
+  const normalized = value.trim().toLowerCase();
+
+  if (normalized === "entruempelung" || normalized === "entrümpelung") {
+    return "entsorgung";
+  }
+
+  if (
+    [
+      "umzug",
+      "reinigung",
+      "entsorgung",
+      "bueroumzug",
+      "seniorenumzug",
+      "klaviertransport",
+      "einlagerung",
+      "malerarbeiten",
+      "akteneinlagerung",
+      "leerfahrt",
+    ].includes(normalized)
+  ) {
+    return normalized as ServiceType;
+  }
+
+  return null;
+}
 
 interface BookingState {
   step: number;
@@ -102,6 +131,9 @@ const wizardServiceMeta: Record<
 
 function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const [initialized, setInitialized] = useState(false);
+  const searchParams = useSearchParams();
+  const queryService = searchParams.get("service");
+  const queryServicePreset = useMemo(() => normalizeBookingService(queryService), [queryService]);
   const storeService = useCalculatorStore((s) => s.serviceType);
   const storeBase = useCalculatorStore((s) => s.baseDetails);
   const storeLead = useCalculatorStore((s) => s.leadDetails);
@@ -111,15 +143,15 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     steps: {
       service: "Service",
       details: "Details",
-      upgrades: "Extras",
+      upgrades: "Zusatzmodule",
       contact: "Kontakt",
     },
     headings: {
       service_selection: "Leistung auswählen",
       service_subtitle: "Wählen Sie den passenden Einstieg für Ihre Anfrage",
       details_prefix: "Angaben zu",
-      upgrades_title: "Optionale Extras",
-      upgrades_subtitle: "Ergänzen Sie Ihre Anfrage bei Bedarf",
+      upgrades_title: "Passende Zusatzmodule",
+      upgrades_subtitle: "Ergänzen Sie nur, was für Ihren Auftrag wirklich relevant ist",
       summary_title: "Kontaktdaten",
       summary_subtitle: "Wir melden uns passend zu Ihrer Anfrage",
       success_title: "Anfrage gesendet",
@@ -212,10 +244,12 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
   useEffect(() => {
     setInitialized(true);
-    if (storeService) {
+    const presetService = queryServicePreset || (storeService as ServiceType);
+
+    if (presetService) {
       setState((prev) => ({
         ...prev,
-        service: storeService as ServiceType,
+        service: presetService,
         details: {
           ...prev.details,
           startAddress: storeBase.fromAddress || "",
@@ -233,7 +267,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         message: "",
       });
     }
-  }, [storeBase, storeLead, storeService]);
+  }, [queryServicePreset, storeBase, storeLead, storeService]);
 
   const steps = useMemo(
     () => [
@@ -409,7 +443,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         priceRangeMin: 0,
         priceRangeMax: 0,
         valuationLabel: "Anfrage mit Eckdaten",
-        valuationStage: "Vorprüfung gestartet",
+        valuationStage: "Anfrage wird geprüft",
         accuracyState: "Solide Vorplanung",
         topDrivers: [
           ...serviceMeta.drivers,
@@ -417,7 +451,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           ...(files.length ? ["Bildmaterial vorhanden"] : []),
         ].slice(0, 5),
         priceExplanation:
-          "Diese Anfrage enthält die wichtigsten Eckdaten für eine strukturierte Vorprüfung. FLOXANT prüft daraus Route, Termin, Zugang und Zusatzleistungen vor dem nächsten Schritt.",
+          "Diese Anfrage enthält die wichtigsten Eckdaten für eine strukturierte Einschätzung. FLOXANT prüft daraus Route, Termin, Zugang und Zusatzleistungen vor dem nächsten Schritt.",
         pricingSignals: {
           inquiryMode: "booking_page_wizard",
           serviceType: state.service,
@@ -521,7 +555,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         label: t?.services?.umzug?.label || "Umzug",
         desc: t?.services?.umzug?.desc || "Wohnungs- und Firmenumzug",
         icon: Box,
-        eyebrow: "Kernservice",
+        eyebrow: "Umzug",
         accent: "from-blue-600 to-cyan-500",
       },
       {
@@ -529,7 +563,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         label: t?.services?.reinigung?.label || "Reinigung",
         desc: t?.services?.reinigung?.desc || "Professionelle Reinigung",
         icon: Sparkles,
-        eyebrow: "Objektservice",
+        eyebrow: "Reinigung",
         accent: "from-teal-500 to-cyan-500",
       },
       {
@@ -537,23 +571,14 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         label: t?.services?.entsorgung?.label || "Entrümpelung",
         desc: t?.services?.entsorgung?.desc || "Räumung und Entsorgung",
         icon: Trash2,
-        eyebrow: "Räumung",
+        eyebrow: "Entrümpelung",
         accent: "from-orange-500 to-amber-400",
-      },
-      {
-        id: "budget",
-        label: "Preisvorschlag",
-        desc: "Haben Sie ein festes Budget? Nennen Sie uns Ihren Rahmen direkt und ohne Umweg.",
-        icon: Banknote,
-        isLink: true,
-        href: "/anfrage-mit-preisrahmen",
-        eyebrow: "Optional",
-        accent: "from-violet-600 to-blue-500",
       },
     ];
 
     return (
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="space-y-5">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
         {options.map((option) =>
           option.isLink ? (
             <Link
@@ -614,6 +639,24 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             </button>
           )
         )}
+        </div>
+        <div className="grid gap-3 rounded-[1.6rem] border border-slate-200 bg-slate-50 p-4 text-start md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700">
+              Eigener Anfrageweg
+            </div>
+            <p className="mt-1 text-sm leading-6 text-slate-600">
+              Sie haben einen festen Preisrahmen? Dann nutzen Sie den separaten Budget-Weg.
+            </p>
+          </div>
+          <Link
+            href="/anfrage-mit-preisrahmen"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
+          >
+            Budget nennen
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
       </div>
     );
   };
@@ -621,13 +664,13 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const renderDetails = () => (
     <div className="mx-auto max-w-4xl space-y-8">
       <div className="space-y-3 text-center">
-        <div className="calc-kicker justify-center">Vorprüfung mit Eckdaten</div>
+        <div className="calc-kicker justify-center">Eckdaten für die Einschätzung</div>
         <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
           {t?.headings?.details_prefix || "Angaben zu"} {currentServiceLabel}
         </h3>
         <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-500">
-          Geben Sie die wichtigsten Eckdaten an. Daraus entsteht eine geordnete Vorprüfung statt
-          einer unklaren Schnellschätzung.
+          Geben Sie die wichtigsten Eckdaten an. Daraus entsteht eine klare Grundlage für
+          Rückmeldung, Termin und nächsten Schritt.
         </p>
       </div>
 
@@ -710,11 +753,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         <aside className="card-premium rounded-[2rem] p-6">
           <div className="calc-kicker">Worauf wir achten</div>
           <h4 className="mt-4 text-xl font-bold text-slate-950">
-            {currentServiceLabel || "Ihre Anfrage"} wird nicht blind durchgewinkt
+            {currentServiceLabel || "Ihre Anfrage"} wird sauber eingeordnet
           </h4>
           <p className="mt-3 text-sm leading-7 text-slate-600">
-            Für einen belastbaren nächsten Schritt zählen bei FLOXANT vor allem die Punkte, die
-            später Aufwand, Personal und Ablauf wirklich beeinflussen.
+            Für den nächsten Schritt zählen vor allem die Punkte, die Aufwand, Team und Ablauf
+            wirklich beeinflussen.
           </p>
           <div className="mt-6 space-y-3">
             {currentServiceDrivers.map((driver) => (
@@ -912,13 +955,13 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             </div>
           ) : null}
 
-          <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white/88 p-4">
+          <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white/[0.88] p-4">
             <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
-              Preiswahrheit
+              Klare Einschätzung
             </div>
             <p className="mt-2 text-sm leading-7 text-slate-600">
-              Diese Anfrage startet als saubere Vorprüfung. Der nächste Schritt basiert auf Ihren
-              Daten, nicht auf einem Lockpreis.
+              Diese Anfrage startet als saubere Prüfung. Der nächste Schritt basiert auf Ihren
+              Angaben, nicht auf einer vorschnellen Zusage.
             </p>
           </div>
         </div>
@@ -1199,7 +1242,9 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
   return (
     <div ref={containerRef}>
       {isVisible ? (
-        <SmartBookingWizardInner dict={dict} />
+        <Suspense fallback={<div className="mx-auto min-h-[420px] w-full max-w-5xl rounded-[2.2rem] bg-white/70" />}>
+          <SmartBookingWizardInner dict={dict} />
+        </Suspense>
       ) : (
         <div className="mx-auto min-h-[400px] w-full max-w-5xl" />
       )}

@@ -66,7 +66,7 @@ export default function FloxUmzugRechner({ dic }: { dic?: any }) {
        Premium Umzugsrechner
       </h2>
       <p className="mt-2 text-sm text-white/50">
-       Detaillierte Vorprüfung für Wohnungs-, Haus- und Firmenumzüge.
+       Detaillierte Einschätzung für Wohnungs-, Haus- und Firmenumzüge.
       </p>
 
       <div className="mt-8 flex gap-2">
@@ -104,7 +104,7 @@ export default function FloxUmzugRechner({ dic }: { dic?: any }) {
         className="w-full sm:w-auto"
         rightIcon={<CheckCircle2 size={18} />}
        >
-        Vorprüfung abschließen
+        Einschätzung abschließen
        </FloxButton>
       )}
      </div>
@@ -136,7 +136,7 @@ export default function FloxUmzugRechner({ dic }: { dic?: any }) {
        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-500/10 text-4xl shadow-inner">
         U
        </div>
-       <h4 className="mb-4 text-center font-bold text-white">Vorprüfung wartet auf Daten</h4>
+       <h4 className="mb-4 text-center font-bold text-white">Einschätzung wartet auf Daten</h4>
        <div className="space-y-3">
         <CheckState active={(umzugData.fromAddressDetailed?.length || 0) > 8} label="Startadresse eingeben" />
         <CheckState active={(umzugData.toAddressDetailed?.length || 0) > 8} label="Zieladresse eingeben" />

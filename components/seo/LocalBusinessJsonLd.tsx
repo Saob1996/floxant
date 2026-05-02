@@ -95,7 +95,7 @@ export function LocalBusinessJsonLd() {
     priceRange: "$$",
     currenciesAccepted: "EUR",
     paymentAccepted: "Ueberweisung, Rechnung, Kartenzahlung nach Vereinbarung",
-    slogan: "Klare Vorpruefung statt Lockpreis.",
+    slogan: "Klare Einschaetzung statt vorschneller Preiszusage.",
     address: {
       "@type": "PostalAddress",
       streetAddress: company.streetAddress,

@@ -13,7 +13,7 @@ import { company } from "@/lib/company";
 const confidenceSignals = [
  {
   icon: Banknote,
-  title: "Preisrahmen statt Lockpreis",
+  title: "Preisrahmen mit Kontext",
   text: "FLOXANT zeigt eine unverbindliche Orientierung und erklärt, welche Faktoren den Aufwand wirklich beeinflussen: Umfang, Zugang, Strecke, Extras und Termin.",
   href: "/kostenfaktoren",
   label: "Kostenfaktoren",
@@ -124,7 +124,7 @@ export function ServiceConfidencePanel({
         <h3 className="mt-6 text-xl font-semibold tracking-tight text-slate-950">{item.title}</h3>
         <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.text}</p>
         <span className="mt-auto inline-flex items-center gap-2 pt-6 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-600">
-         Mehr prüfen
+         Mehr ansehen
          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
         </span>
        </Link>
@@ -134,7 +134,7 @@ export function ServiceConfidencePanel({
 
     <div className="mt-6 grid gap-4 rounded-[2rem] border border-blue-100 bg-white/80 p-5 shadow-sm md:grid-cols-[1fr_auto_auto] md:items-center">
      <p className="text-sm leading-relaxed text-slate-600">
-      Starker nächster Schritt: erst Aufwand, Zugang und Übergabeziel einordnen, dann mit FLOXANT abstimmen. So bleibt die Anfrage schnell, aber nicht blind.
+      Starker nächster Schritt: erst Aufwand, Zugang und Übergabeziel einordnen, dann mit FLOXANT abstimmen. So bleibt die Anfrage schnell und trotzdem sauber vorbereitet.
      </p>
      <Link
       href="/rechner"

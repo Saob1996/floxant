@@ -248,13 +248,13 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: 2.2rem;
+  min-height: 2.1rem;
   border-radius: 999px;
-  padding: 0 0.78rem;
+  padding: 0 0.68rem;
   font-family: var(--font-heading);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.085em;
   text-transform: uppercase;
   color: rgba(15, 23, 42, 0.7);
   white-space: nowrap;

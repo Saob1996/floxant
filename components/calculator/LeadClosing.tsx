@@ -5,9 +5,11 @@ import { AnimatePresence, m } from "framer-motion";
 import {
   AlertCircle,
   ArrowLeft,
+  Camera,
   CheckCircle2,
   Info,
   Mail,
+  MapPin,
   MessageSquare,
   Phone,
   PhoneCall,
@@ -26,6 +28,33 @@ import { cn } from "@/lib/utils";
 
 const CALLBACK_OPTIONS = ["jederzeit", "vormittags", "nachmittags", "abends"] as const;
 
+const serviceLabels: Record<string, string> = {
+  umzug: "Umzug",
+  reinigung: "Reinigung",
+  entsorgung: "Entrümpelung",
+  bueroumzug: "Büroumzug",
+};
+
+const successSteps = [
+  {
+    title: "Angaben einordnen",
+    text: "Wir ordnen Umfang, Termin, Zugang, Budget und offene Punkte fachlich ein, bevor etwas verbindlich wird.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Rückfrage klären",
+    text: "Wenn etwas fehlt, melden wir uns über den schnellsten sinnvollen Kontaktweg.",
+    icon: PhoneCall,
+  },
+  {
+    title: "Angebot vorbereiten",
+    text: "Erst nach der Einordnung entsteht eine belastbare Einschätzung oder ein konkreter nächster Schritt.",
+    icon: CheckCircle2,
+  },
+];
+
+const closingTrustBadges = ["Keine automatische Preiszusage", "Budget wird mitgedacht", "Fotos per WhatsApp möglich"];
+
 function formatEuro(value: number | undefined): string {
   return new Intl.NumberFormat("de-DE").format(value || 0);
 }
@@ -36,6 +65,8 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
   const leadDetails = store.leadDetails;
   const estimate = store.advancedEstimate;
   const updateLeadDetails = store.updateLeadDetails;
+  const range = estimate?.priceRange || { min: 0, max: 0 };
+  const serviceLabel = serviceLabels[serviceType || ""] || "Service";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -68,7 +99,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
         body: JSON.stringify(payload),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(result.error || "Übertragung fehlgeschlagen");
@@ -85,30 +116,30 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
   };
 
   const handleWhatsApp = () => {
-    const range = estimate?.priceRange || { min: 0, max: 0 };
     const lines = [
       "Hallo FLOXANT,",
-      `ich moechte meine Vorpruefung fuer ${serviceType || "den Service"} per WhatsApp weiterfuehren.`,
+      `ich möchte meine Anfrage für ${serviceLabel} per WhatsApp weiterführen.`,
       `Name: ${leadDetails.customerName}`,
       `Telefon: ${leadDetails.customerPhone}`,
       leadDetails.customerEmail.trim() ? `E-Mail: ${leadDetails.customerEmail.trim()}` : "",
-      `Rueckrufzeit: ${leadDetails.callbackTime || "jederzeit"}`,
-      `System-Orientierungsrahmen: ${range.min} EUR - ${range.max} EUR`,
-      `Einordnung: ${estimate?.valuationStage || "Erste Einschaetzung"}`,
+      `Rückrufzeit: ${leadDetails.callbackTime || "jederzeit"}`,
+      `Unverbindlicher Orientierungsrahmen: ${range.min} EUR - ${range.max} EUR`,
+      `Einordnung: ${estimate?.valuationStage || "Erste Einschätzung"}`,
       `Basis: ${estimate?.calculationBasis || "Individuell"}`,
       `Zeitansatz: ${estimate?.estimatedHours || "offen"}`,
       leadDetails.customerNote.trim() ? `Kurznotiz: ${leadDetails.customerNote.trim()}` : "",
       leadDetails.customerBudget.trim()
         ? `Preisvorstellung: ${leadDetails.customerBudget.trim()}`
         : "",
+      leadDetails.wantsPhotosLink ? "Fotos: Ich kann Bilder oder kurze Videos per WhatsApp senden." : "",
       estimate?.topDrivers?.length
         ? `Wichtige Treiber: ${estimate.topDrivers.slice(0, 3).join(", ")}`
         : "",
-      "Hinweis: Vorlaeufige Vorpruefung, keine Preiszusage.",
+      "Hinweis: Vorläufige Einschätzung, keine Preiszusage.",
     ].filter(Boolean);
 
     const message = encodeURIComponent(lines.join("\n"));
-    const phoneClean = company.phoneRaw.replace(/\+/g, "").replace(/\s/g, "");
+    const phoneClean = company.phoneRaw.replace(/\D/g, "");
     window.open(`https://wa.me/${phoneClean}?text=${message}`, "_blank");
   };
 
@@ -117,22 +148,73 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
       <m.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="glass-elevated rounded-[3rem] py-20 text-center shadow-[0_30px_90px_rgba(15,23,42,0.12)]"
+        className="glass-elevated relative overflow-hidden rounded-[3rem] p-8 shadow-[0_30px_90px_rgba(15,23,42,0.12)] lg:p-12"
       >
-        <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 text-emerald-600">
-          <CheckCircle2 size={40} />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.16),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.10),transparent_28%)]" />
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 text-emerald-600 shadow-[0_22px_60px_rgba(5,150,105,0.16)]">
+            <CheckCircle2 size={40} />
+          </div>
+          <div className="mb-3 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700">
+            Anfrage angekommen
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+            Anfrage ist bei FLOXANT
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            Wir ordnen Ihre Angaben jetzt nach Machbarkeit, offenen Punkten und realistischem Umfang ein.
+            Falls Fotos, ein enger Termin oder eine kurze Ergänzung helfen, können Sie direkt per
+            WhatsApp weiterschreiben.
+          </p>
+
+          <div className="mt-8 grid gap-3 md:grid-cols-3">
+            {successSteps.map((step) => {
+              const Icon = step.icon;
+
+              return (
+                <div
+                  key={step.title}
+                  className="rounded-[1.5rem] border border-slate-200 bg-white/90 p-5 text-left shadow-sm shadow-slate-950/5"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                    <Icon size={18} />
+                  </div>
+                  <h3 className="mt-4 text-sm font-black text-slate-950">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{step.text}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-8 rounded-[1.8rem] border border-blue-100 bg-blue-50/80 p-5 text-left">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                  Schnell ergänzen
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">
+                  Wenn Sie Fotos, Videos oder einen wichtigen Termin nachreichen möchten, nutzen Sie
+                  WhatsApp mit den vorbereiteten Angaben.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleWhatsApp}
+                className="inline-flex h-12 shrink-0 items-center justify-center gap-3 rounded-[1.1rem] bg-[linear-gradient(135deg,#16a34a_0%,#059669_100%)] px-5 text-[11px] font-black uppercase tracking-[0.14em] text-white shadow-[0_18px_40px_rgba(5,150,105,0.20)] transition hover:-translate-y-0.5"
+              >
+                <MessageSquare size={16} />
+                WhatsApp ergänzen
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <FloxButton variant="secondary" onClick={() => window.location.reload()}>
+              Neue Einschätzung starten
+            </FloxButton>
+          </div>
         </div>
-        <h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-950">
-          Vorprüfung übergeben
-        </h2>
-        <p className="mx-auto mb-12 max-w-md text-base leading-7 text-slate-600">
-          FLOXANT prüft Ihre Angaben jetzt fachlich und meldet sich über den schnellsten
-          passenden Kontaktweg bei Ihnen. Wenn E-Mail fehlt, läuft die Rückmeldung über Telefon
-          oder WhatsApp.
-        </p>
-        <FloxButton variant="secondary" onClick={() => window.location.reload()}>
-          Fertig
-        </FloxButton>
       </m.div>
     );
   }
@@ -149,17 +231,17 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-slate-900"
           >
             <ArrowLeft size={16} />
-            Zurück zur Vorprüfung
+            Zurück zur Einschätzung
           </button>
           <h2 className="mb-2 text-3xl font-bold tracking-tight text-slate-950">
-            Anfrage realistisch prüfen lassen
+            Anfrage realistisch einordnen lassen
           </h2>
           <p className="max-w-2xl text-base leading-7 text-slate-600">
-            Ihre Konfiguration ist bereit für die fachliche Prüfung. Der Preisrahmen bleibt
+            Ihre Konfiguration ist bereit für die fachliche Einschätzung. Der Preisrahmen bleibt
             unverbindlich, bis Umfang, Zugang, Termin und Zusatzleistungen bestätigt sind.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {["Telefon reicht", "E-Mail optional", "WhatsApp als Fallback"].map((item) => (
+            {closingTrustBadges.map((item) => (
               <span
                 key={item}
                 className="rounded-full border border-blue-100 bg-blue-50 px-3 py-2 text-[11px] font-bold text-blue-700"
@@ -243,6 +325,25 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             </p>
           </FieldBox>
 
+          <label className="flex cursor-pointer items-start gap-4 rounded-[1.7rem] border border-emerald-100 bg-[linear-gradient(135deg,rgba(236,253,245,0.96),rgba(255,255,255,0.92))] px-5 py-4 shadow-sm shadow-emerald-950/5">
+            <input
+              type="checkbox"
+              checked={leadDetails.wantsPhotosLink}
+              onChange={(event) => updateLeadDetails({ wantsPhotosLink: event.target.checked })}
+              className="mt-1 h-5 w-5 accent-emerald-500"
+            />
+            <span className="flex-1">
+              <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-700">
+                <Camera size={13} />
+                Fotos beschleunigen die Einschätzung
+              </span>
+              <span className="mt-2 block text-sm leading-6 text-slate-700">
+                Ich kann Bilder oder kurze Videos per WhatsApp senden, damit Zustand, Zugang,
+                Fläche oder Menge schneller realistisch eingeschätzt werden können.
+              </span>
+            </span>
+          </label>
+
           <div className="rounded-[2rem] border border-slate-200 bg-white/86 p-6 shadow-sm shadow-slate-950/5">
             <label className="mb-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
               <PhoneCall size={12} className="text-blue-600" />
@@ -300,7 +401,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
                   Wird übermittelt...
                 </span>
               ) : (
-                "Fall senden und realistisch prüfen lassen"
+                "Fall senden und realistisch einordnen lassen"
               )}
             </FloxButton>
 
@@ -318,9 +419,18 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
               Preisrahmen per WhatsApp
             </button>
           </div>
+          {!canSend ? (
+            <p className="text-center text-xs font-semibold leading-5 text-slate-500">
+              Für die Übermittlung reichen Name und Telefonnummer. Die E-Mail bleibt optional.
+            </p>
+          ) : null}
         </form>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-5 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+          <div className="flex items-center gap-2">
+            <MapPin size={14} className="text-blue-600" />
+            Regensburg & Bayern
+          </div>
           <div className="flex items-center gap-2">
             <ShieldCheck size={14} className="text-emerald-600" />
             DSGVO-konform
@@ -370,6 +480,19 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             </div>
           ) : null}
 
+          <div className="mt-6 grid gap-3 rounded-2xl border border-white/18 bg-white/12 p-4">
+            {[
+              ["Service", serviceLabel],
+              ["Rückruf", leadDetails.callbackTime || "jederzeit"],
+              ["Fotos", leadDetails.wantsPhotosLink ? "können folgen" : "optional"],
+            ].map(([label, value]) => (
+              <div key={label} className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-blue-100/78">{label}</span>
+                <span className="font-bold text-white">{value}</span>
+              </div>
+            ))}
+          </div>
+
           {estimate?.topDrivers?.length ? (
             <div className="mt-8 space-y-4 border-t border-white/14 pt-8">
               {estimate.topDrivers.map((driver) => (
@@ -388,7 +511,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
               <Info size={20} className="text-blue-600" />
             </div>
             <p className="text-sm leading-7 text-slate-600">
-              FLOXANT nutzt Ihre Angaben für die fachliche Vorprüfung, Rückfragen und die spätere
+              FLOXANT nutzt Ihre Angaben für die fachliche Einschätzung, Rückfragen und die spätere
               Angebotsvorbereitung. Keine Preiszusage, kein Spam, keine Weitergabe.
             </p>
           </div>

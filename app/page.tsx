@@ -58,9 +58,9 @@ const coreServices: RouteCard[] = [
     Icon: Trash2,
   },
   {
-    label: "Preis prüfen",
+    label: "Preisrahmen",
     title: "Rechner oder Budget",
-    text: "Orientierung statt Lockpreis: Aufwand, Zugang, Strecke, Extras und Terminlage zuerst sauber einschätzen.",
+    text: "Orientierung mit Kontext: Aufwand, Zugang, Strecke, Extras und Terminlage zuerst sauber einschätzen.",
     href: "/rechner",
     Icon: Banknote,
   },
@@ -106,8 +106,8 @@ const specialRoutes: RouteCard[] = [
 
 const trustPoints = [
   { title: "Ein Ansprechpartner", text: "Weniger Schnittstellen, weniger Risiko: Umzug, Reinigung, Entrümpelung und Übergabe können in einem Ablauf zusammenlaufen." },
-  { title: "Realistische Vorprüfung", text: "Volumen, Laufwege, Etagen, Parkmöglichkeit, Zeitfenster und Zusatzleistungen werden geprüft, bevor ein Auftrag verbindlich geplant wird." },
-  { title: "Keine Lockpreis-Hektik", text: "Künstlich niedrige Einstiegspreise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster nicht passen." },
+  { title: "Realistische Einschätzung", text: "Volumen, Laufwege, Etagen, Parkmöglichkeit, Zeitfenster und Zusatzleistungen werden eingeordnet, bevor ein Auftrag verbindlich geplant wird." },
+  { title: "Keine Preis-Hektik", text: "Vorschnell niedrige Einstiegspreise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster nicht passen." },
   { title: "Sauberer Abschluss", text: "Schlüssel, Fotodokumentation, Restmengen und Übergabeanforderungen werden früh mitgedacht, wenn sie zum Auftrag gehören." },
 ];
 
@@ -117,7 +117,7 @@ const businessModelPillars = [
     text: "FLOXANT denkt Wohnungswechsel als Prozess: Möbel, Reinigung, Entsorgung, Schlüssel und Übergabe müssen zusammen funktionieren.",
   },
   {
-    title: "Vorprüfung vor Preisversprechen",
+    title: "Einschätzung vor Preisversprechen",
     text: "Erst werden Aufwand, Region, Zugang, Timing und Zusatzleistungen sauber sortiert. Danach wird Angebot oder Abstimmung belastbar.",
   },
   {
@@ -130,7 +130,7 @@ const offerTracks: RouteCard[] = [
   {
     label: "Schnell",
     title: "Direkt anfragen",
-    text: "Wenn Service, Ort und Termin schon grob klar sind: Anfrage absenden und den Fall strukturiert prüfen lassen.",
+    text: "Wenn Service, Ort und Termin schon grob klar sind: Anfrage absenden und den Fall strukturiert einordnen lassen.",
     href: "/buchung",
     Icon: Zap,
   },
@@ -144,7 +144,7 @@ const offerTracks: RouteCard[] = [
   {
     label: "Budget",
     title: "Preisrahmen nennen",
-    text: "Wenn ein Zielbudget vorhanden ist und FLOXANT ehrlich prüfen soll, welcher Umfang realistisch ist.",
+    text: "Wenn ein Zielbudget vorhanden ist und FLOXANT ehrlich einordnen soll, welcher Umfang realistisch ist.",
     href: "/anfrage-mit-preisrahmen",
     Icon: CheckCircle2,
   },
@@ -184,7 +184,7 @@ const mapsIntentRoutes = [
 
 const directEntryPaths = [
   { label: "Buchung", href: "/buchung", description: "Direkter Anfrageweg für Kunden, die ihren Fall sofort an FLOXANT senden möchten." },
-  { label: "Rechner", href: "/rechner", description: "Vorprüfung für Preisrahmen, Aufwand und Service-Fit vor der eigentlichen Anfrage." },
+  { label: "Rechner", href: "/rechner", description: "Einschätzung für Preisrahmen, Aufwand und Service-Fit vor der eigentlichen Anfrage." },
   { label: "Express-Check", href: "/express-anfrage", description: "Schneller Weg für eilige Fälle mit wenigen Pflichtangaben." },
   { label: "Preisvorstellung", href: "/anfrage-mit-preisrahmen", description: "Direkter Weg für Kunden, die ihr Budget oder ihren Zielrahmen offen mitsenden möchten." },
   { label: "Kontakt", href: "/kontakt", description: "Kontaktweg für Telefon, WhatsApp und direkte Rückfrage." },
@@ -200,8 +200,8 @@ const faqItems = [
     a: "Für die meisten Fälle ist die Buchungsseite der direkteste Weg. Wenn Sie zuerst ein Preisgefühl möchten, passt der Rechner. Für sehr kurze Fälle eignet sich der Express-Check.",
   },
   {
-    q: "Warum arbeitet FLOXANT mit Vorprüfung statt mit Schnell-Festpreis?",
-    a: "Weil ein künstlich niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. FLOXANT kalkuliert lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
+    q: "Warum arbeitet FLOXANT mit Einschätzung statt mit Schnell-Festpreis?",
+    a: "Weil ein vorschnell niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. FLOXANT kalkuliert lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
   },
   {
     q: "Kann FLOXANT Umzug, Reinigung und Schlüsselübergabe zusammen übernehmen?",
@@ -225,9 +225,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "",
-    title: "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern",
+    title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
     description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung und Wohnungsübergabe in Regensburg und Bayern mit realistischer Vorprüfung, klarer Zuständigkeit und sauberem Abschluss.",
+      "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT ordnet Aufwand realistisch ein und führt direkt zur passenden Anfrage.",
     keywords: [
       "Umzug Regensburg",
       "Reinigung Regensburg",
@@ -285,7 +285,7 @@ export default function Home() {
         "@id": "https://www.floxant.de/#direkte-einstiege",
         name: "FLOXANT direkte Einstiege",
         description:
-          "Hauptwege für direkte Anfrage, Vorprüfung, Express-Check, Preisvorstellung und Kontakt.",
+      "Hauptwege für direkte Anfrage, Einschätzung, Express-Check, Preisvorstellung und Kontakt.",
         itemListElement: content.directEntryPaths.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -341,12 +341,12 @@ export default function Home() {
                   FLOXANT hilft in Regensburg und passenden Einsätzen in Bayern, wenn nicht nur
                   Möbel bewegt werden: Reinigung, Restmengen, Schlüssel, Fotos, Zeitfenster und
                   Übergabe müssen zusammenpassen. Dafür
-                  prüfen wir den Fall realistisch, bevor daraus ein verbindlicher Auftrag wird.
+                  ordnen wir den Fall realistisch ein, bevor daraus ein verbindlicher Auftrag wird.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Link href="/buchung" className="flox-button-primary px-6">
-                    Auftrag realistisch prüfen lassen
+                    Auftrag realistisch einordnen lassen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link href="/rechner" className="flox-button-secondary px-6">
@@ -780,7 +780,7 @@ export default function Home() {
                 <Link href="/rechner" className="flox-button-secondary min-h-[5.6rem] rounded-[1.4rem] border-white/12 bg-white/6 px-5 text-left normal-case tracking-normal text-white">
                   <span className="w-full">
                     <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
-                      Vorprüfung
+                      Einschätzung
                     </span>
                     <span className="mt-2 block text-xl font-black tracking-tight">Kosten einschätzen</span>
                   </span>

@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   name: "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern",
   short_name: "FLOXANT",
   description:
-   "FLOXANT ist Ihr Ansprechpartner für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, regionaler Planung und professioneller Einsatzkoordination.",
+   "FLOXANT ist Ihr Ansprechpartner für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Einschätzung, regionaler Planung und professioneller Einsatzkoordination.",
   start_url: "/",
   display: "standalone",
   background_color: "#0A0A0A",

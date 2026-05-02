@@ -30,14 +30,14 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   faqs: [
    {
     q: "Warum kalkuliert FLOXANT nicht einfach den billigsten Umzugspreis?",
-    a: "Weil ein künstlich niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. Wir kalkulieren lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
+    a: "Weil ein vorschnell niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. Wir kalkulieren lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
    },
    {
     q: "Wann ist ein professioneller Umzug sinnvoller als ein Einzeltransport?",
     a: "Ein professioneller Umzug ist sinnvoll, wenn mehrere Faktoren zusammenkommen: Volumen, Etagen, lange Laufwege, Montage, enger Terminplan, empfindliches Inventar oder eine Übergabe mit Reinigung.",
    },
    {
-    q: "Welche Angaben verbessern die erste Vorprüfung?",
+    q: "Welche Angaben verbessern die erste Einschätzung?",
     a: "Hilfreich sind Zimmerzahl, grobes Volumen, Start- und Zielort, Etagen, Aufzug, Laufwege, gewünschter Termin, Montagebedarf und besondere Gegenstände.",
    },
   ],
@@ -112,7 +112,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
    },
    {
     q: "Wann sollte eine Firma früher anfragen?",
-    a: "Sobald mehrere Arbeitsplätze, IT, Archiv, Etagenwechsel, Wochenendfenster oder enge Übergabetermine betroffen sind, sollte die Vorprüfung früh starten.",
+    a: "Sobald mehrere Arbeitsplätze, IT, Archiv, Etagenwechsel, Wochenendfenster oder enge Übergabetermine betroffen sind, sollte die Einschätzung früh starten.",
    },
    {
     q: "Kann Büroumzug mit Firmenentsorgung kombiniert werden?",
@@ -130,7 +130,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   eyebrow: "Preiswahrheit",
   title: "Was der Rechner leisten soll und was nicht",
   intro:
-   "Der FLOXANT Rechner ist ein strukturierter Einstieg in die Vorprüfung. Er soll Klarheit schaffen, ohne einen künstlich sicheren Endpreis zu versprechen.",
+   "Der FLOXANT Rechner ist ein strukturierter Einstieg in die Einschätzung. Er soll Klarheit schaffen, ohne einen scheinbar sicheren Endpreis zu versprechen.",
   faqs: [
    {
     q: "Ist der Rechnerpreis verbindlich?",
@@ -138,18 +138,18 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
    },
    {
     q: "Was verbessert die Qualität der Einschätzung?",
-    a: "Je genauer Service, Ort, Umfang, Etagen, Aufzug, Zusatzleistungen, Terminwunsch und Preisvorstellung angegeben werden, desto nutzbarer wird die Vorprüfung.",
+    a: "Je genauer Service, Ort, Umfang, Etagen, Aufzug, Zusatzleistungen, Terminwunsch und Preisvorstellung angegeben werden, desto nutzbarer wird die Einschätzung.",
    },
    {
-    q: "Warum zeigt FLOXANT Orientierung statt Lockpreis?",
-    a: "Künstlich niedrige Preise helfen niemandem, wenn am Einsatztag ein Fahrzeug, Team oder Zeitfenster fehlt. Der Rechner macht Kostentreiber sichtbar und führt danach in die realistische Prüfung.",
+    q: "Warum zeigt FLOXANT Orientierung statt vorschneller Preiszusage?",
+    a: "Vorschnell niedrige Preise helfen niemandem, wenn am Einsatztag ein Fahrzeug, Team oder Zeitfenster fehlt. Der Rechner macht Kostentreiber sichtbar und führt danach in die realistische Einordnung.",
    },
   ],
   links: [
    { href: "/anfrage-mit-preisrahmen", label: "Preisvorstellung senden" },
    { href: "/express-anfrage", label: "Express-Check mit wenigen Angaben" },
    { href: "/blog/preisrahmen-vorpruefung-statt-festpreis", label: "Preisrahmen verstehen" },
-   { href: "/qualitaet-ablauf", label: "Warum Vorprüfung wichtig ist" },
+   { href: "/qualitaet-ablauf", label: "Warum Einschätzung wichtig ist" },
   ],
  },
 };

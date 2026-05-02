@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AnimatePresence, m } from "framer-motion";
-import { Clock, Database, Info, ShieldCheck, TrendingUp, Users } from "lucide-react";
+import { Activity, Camera, Clock, Database, Info, MapPin, ShieldCheck, TrendingUp, Users } from "lucide-react";
 
 import { AdvancedEstimate, useCalculatorStore } from "@/store/calculatorStore";
 import { cn } from "@/lib/utils";
@@ -27,6 +27,26 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
   isMobile = false,
 }) => {
   const customerBudget = useCalculatorStore((state) => state.leadDetails.customerBudget);
+  const wantsPhotosLink = useCalculatorStore((state) => state.leadDetails.wantsPhotosLink);
+  const serviceType = useCalculatorStore((state) => state.serviceType);
+
+  const localSupportTiles = [
+    {
+      label: "Lokaler Rahmen",
+      value: serviceType === "reinigung" ? "Reinigung in Regensburg & Bayern" : "Regensburg & Bayern",
+      icon: <MapPin size={16} />,
+    },
+    {
+      label: "Fotos",
+      value: wantsPhotosLink ? "Kunde kann Bilder senden" : "Bilder später möglich",
+      icon: <Camera size={16} />,
+    },
+    {
+      label: "Einschätzung",
+      value: "Erst einordnen, dann Angebot",
+      icon: <ShieldCheck size={16} />,
+    },
+  ];
 
   if (!estimate && hasInput) return null;
 
@@ -50,8 +70,19 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
           <Database className="text-blue-600" size={20} />
           {isMobile ? "Einordnung" : dic?.calculator?.valuation_title || "Aktuelle Einordnung"}
         </h3>
-        <div className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-          {estimate?.valuationStage || "Erste Einschätzung"}
+        <div className="flex flex-wrap justify-end gap-2">
+          {hasInput ? (
+            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-50 motion-reduce:animate-none" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
+              Live
+            </div>
+          ) : null}
+          <div className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+            {estimate?.valuationStage || "Erste Einschätzung"}
+          </div>
         </div>
       </div>
 
@@ -61,12 +92,24 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
             1
           </div>
           <h4 className="mb-4 text-xl font-bold tracking-tight text-slate-950">
-            Vorprüfung startet hier
+            Einschätzung startet hier
           </h4>
           <p className="mx-auto max-w-[260px] text-sm leading-7 text-slate-600">
             Geben Sie die wichtigsten Eckdaten an. Daraus entsteht ein erster, unverbindlicher
             Orientierungsrahmen.
           </p>
+          <div className="mt-7 grid gap-2 text-left">
+            {[
+              "Regensburg und Bayern werden lokal eingeordnet.",
+              "Fotos, Stadtteil und Termin machen die Einschätzung schneller.",
+              "Der Rahmen bleibt ehrlich unverbindlich bis zur Bestätigung.",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white/88 px-4 py-3 text-xs leading-5 text-slate-600 shadow-sm shadow-slate-950/5">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <div className="relative z-10 space-y-7 pt-7">
@@ -83,6 +126,11 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
                 Unverbindlicher Orientierungsrahmen
               </span>
               <Tooltip text="Diese Einordnung basiert auf Ihren Angaben zu Umfang, Zugang, Region, Zusatzleistungen und Terminlage." />
+            </div>
+
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/14 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-blue-50">
+              <Activity size={12} />
+              Wird mit jeder Angabe schärfer
             </div>
 
             <div className="flex flex-wrap items-end gap-2 lg:gap-3">
@@ -158,6 +206,27 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
           <div className="grid grid-cols-2 gap-4">
             <InfoTile label="Zeitansatz" value={estimate?.estimatedHours || "-"} icon={<Clock size={16} />} />
             <InfoTile label="Personal" value={estimate?.recommendedTeam || "-"} icon={<Users size={16} />} />
+          </div>
+
+          <div className="grid gap-3">
+            {localSupportTiles.map((item) => (
+              <div
+                key={item.label}
+                className="flex items-start gap-3 rounded-[1.45rem] border border-slate-200 bg-white/92 px-4 py-4 shadow-sm shadow-slate-950/5"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  {item.icon}
+                </span>
+                <span>
+                  <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                    {item.label}
+                  </span>
+                  <span className="mt-1 block text-sm font-bold leading-5 text-slate-950">
+                    {item.value}
+                  </span>
+                </span>
+              </div>
+            ))}
           </div>
 
           <div className="flex items-start gap-4 rounded-[1.7rem] border border-emerald-200 bg-emerald-50 p-5">

@@ -22,9 +22,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "reinigung",
-    title: "Reinigung Regensburg & Bayern | Übergabe & Endreinigung",
+    title: "Reinigung Regensburg | Wohnung, Büro & Übergabe",
     description:
-      "Fachgerechte Reinigung für Wohnung, Haus und Gewerbe in Regensburg und Bayern: Endreinigung, Übergabe, Abnahmefokus und realistische Vorprüfung.",
+      "Reinigung in Regensburg und Bayern für Wohnung, Büro, Endreinigung und Übergabe. FLOXANT prüft Fläche, Zustand, Termin und Umfang realistisch.",
+    keywords: [
+      "Reinigung Regensburg",
+      "Reinigungsfirma Regensburg",
+      "Endreinigung Regensburg",
+      "Wohnungsreinigung Regensburg",
+      "Büroreinigung Regensburg",
+      "Übergabereinigung Bayern",
+      "Reinigung Kosten Regensburg",
+    ],
   });
 }
 

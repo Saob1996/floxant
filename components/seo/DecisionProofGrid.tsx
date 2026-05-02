@@ -9,7 +9,7 @@ const scenarios = [
   text: "FLOXANT ordnet Volumen, Zugang, Terminlage, Reinigung und mögliche Restmengen in einem Ablauf ein.",
   facts: ["Umzug", "Endreinigung", "Entrümpelung"],
   href: "/umzug-mit-reinigung",
-  action: "Kombiservice prüfen",
+  action: "Kombiservice ansehen",
  },
  {
   icon: Building2,
@@ -27,14 +27,14 @@ const scenarios = [
   text: "Wenn Route, Datum, Volumen und Umweg passen, kann eine Leer-Rückfahrt für Möbel, Kartons oder Büroinventar sinnvoll sein.",
   facts: ["Leer-Rückfahrt", "Beiladung", "Teiltransport"],
   href: "/leerfahrt-rueckfahrt",
-  action: "Rückfahrten prüfen",
+  action: "Rückfahrten ansehen",
  },
  {
   icon: PackageCheck,
   label: "Preisrahmen",
   title: "Erst Klarheit, dann Anfrage",
-  text: "Der Rechner zeigt keine künstliche Exaktheit, sondern einen unverbindlichen Orientierungsrahmen mit sichtbaren Kostentreibern.",
-  facts: ["Rechner", "Vorprüfung", "Preisvorstellung"],
+  text: "Der Rechner zeigt keine Scheingenauigkeit, sondern einen unverbindlichen Orientierungsrahmen mit sichtbaren Kostentreibern.",
+  facts: ["Rechner", "Einschätzung", "Preisvorstellung"],
   href: "/rechner",
   action: "Rechner starten",
  },
@@ -101,9 +101,9 @@ export function DecisionProofGrid() {
         <ShieldCheck className="h-5 w-5" />
        </div>
        <div>
-        <h3 className="text-xl font-semibold text-foreground">Kein Lockpreis, keine falsche Garantie.</h3>
+        <h3 className="text-xl font-semibold text-foreground">Keine vorschnelle Pauschale, keine falsche Garantie.</h3>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/48">
-         FLOXANT trennt Orientierung, Kundendaten, Preisvorstellung und spätere Abstimmung. Das macht die Anfrage ehrlicher und operativ nutzbarer.
+         FLOXANT trennt Orientierung, Kundendaten, Preisvorstellung und spätere Abstimmung. Das macht die Anfrage klarer und für die Umsetzung besser nutzbar.
         </p>
        </div>
       </div>

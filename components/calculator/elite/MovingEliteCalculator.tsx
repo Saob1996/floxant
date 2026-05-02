@@ -151,7 +151,7 @@ export default function MovingEliteCalculator({ dic }: Props) {
         onClick={() => setMode("lead")}
         className="flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-sm font-bold text-black transition-all hover:bg-blue-50 active:scale-95"
        >
-        Vorprüfung abschließen
+        Einschätzung abschließen
         <CheckCircle2 size={18} />
        </button>
       )}
@@ -174,12 +174,12 @@ export default function MovingEliteCalculator({ dic }: Props) {
      {!hasInput ? (
       <div className="py-12 text-center">
        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-3xl">U</div>
-       <p className="text-sm font-medium text-white/40">Geben Sie Ihre Daten ein für eine belastbare Vorprüfung.</p>
+       <p className="text-sm font-medium text-white/40">Geben Sie Ihre Daten ein für eine belastbare Einschätzung.</p>
       </div>
      ) : isRefreshing ? (
       <div className="flex h-48 flex-col items-center justify-center gap-4">
        <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-       <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Daten werden geprüft...</span>
+       <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Daten werden eingeordnet...</span>
       </div>
      ) : (
       <div className="space-y-6">
@@ -220,7 +220,7 @@ export default function MovingEliteCalculator({ dic }: Props) {
          Operative Einordnung
         </div>
         <p className="mt-2 text-[11px] leading-relaxed text-emerald-400/70">
-         Versicherungsschutz und professionelles Equipment sind Teil der fachlichen Prüfung, aber noch keine Preiszusage.
+         Versicherungsschutz und professionelles Equipment gehören zur fachlichen Einordnung, sind aber noch keine Preiszusage.
         </p>
        </div>
       </div>
@@ -232,7 +232,7 @@ export default function MovingEliteCalculator({ dic }: Props) {
        <CheckCircle2 size={24} />
        <Truck size={24} />
       </div>
-      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Unverbindliche Vorprüfung</p>
+      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Unverbindliche Einschätzung</p>
      </div>
     </div>
    </div>

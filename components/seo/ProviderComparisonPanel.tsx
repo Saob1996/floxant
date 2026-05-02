@@ -15,14 +15,14 @@ export const providerComparisonCriteria = [
  {
   icon: Banknote,
   title: "Preiswahrheit",
-  text: "Ein seriöser Anbieter erklärt Preisrahmen, Kostentreiber und Grenzen, statt mit scheinbar exakten Lockpreisen zu arbeiten.",
+  text: "Ein seriöser Anbieter erklärt Preisrahmen, Kostentreiber und Grenzen, statt vorschnell feste Zahlen zu versprechen.",
   href: "/kostenfaktoren",
-  signal: "Preisrahmen, Vorprüfung, keine Garantie-Sprache",
+  signal: "Preisrahmen, Einschätzung, keine Garantie-Sprache",
  },
  {
   icon: ClipboardCheck,
   title: "Ablaufklarheit",
-  text: "Kunden sollten erkennen, wie Anfrage, Prüfung, Rückmeldung, Termin und Umsetzung ablaufen.",
+  text: "Kunden sollten erkennen, wie Anfrage, Einschätzung, Rückmeldung, Termin und Umsetzung ablaufen.",
   href: "/qualitaet-ablauf",
   signal: "klarer Ablauf, sichtbare Vorbereitung",
  },
@@ -50,7 +50,7 @@ export const providerComparisonCriteria = [
  {
   icon: CalendarClock,
   title: "Terminrealismus",
-  text: "Kurzfristige Anfragen brauchen Machbarkeitsprüfung, keine pauschale Sofortzusage ohne Daten.",
+  text: "Kurzfristige Anfragen brauchen eine kurze Machbarkeitseinschätzung, keine pauschale Sofortzusage ohne Daten.",
   href: "/express-anfrage",
   signal: "Express-Check, Terminlage, Kapazität",
  },
@@ -73,7 +73,7 @@ export function ProviderComparisonPanel({ compact = false }: { compact?: boolean
      </div>
      <p className="max-w-2xl text-sm leading-relaxed text-foreground/50 lg:ml-auto">
       Diese Kriterien helfen beim Vergleich mit anderen Firmen, ohne Wettbewerber schlechtzureden.
-      FLOXANT positioniert sich über Klarheit, strukturierte Vorprüfung und nachvollziehbare Servicewege.
+      FLOXANT positioniert sich über Klarheit, strukturierte Einschätzung und nachvollziehbare Servicewege.
      </p>
     </div>
 
@@ -101,7 +101,7 @@ export function ProviderComparisonPanel({ compact = false }: { compact?: boolean
          <p className="mt-2 text-sm font-medium text-foreground/62">{criterion.signal}</p>
         </div>
         <span className="mt-auto inline-flex items-center gap-2 pt-7 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700 ">
-         Kriterium prüfen
+         Kriterium ansehen
          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
         </span>
        </Link>

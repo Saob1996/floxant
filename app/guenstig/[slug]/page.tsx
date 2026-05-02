@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   pageLocale: "de" as Locale,
   path: `guenstig/${slug}`,
   title: `${service} Preisrahmen in ${city} | FLOXANT`,
-  description: `Keine Lockpreis-Logik: FLOXANT ordnet ${service} in ${city} unverbindlich nach Umfang, Zugang und Region ein.`,
+  description: `Klarer Preisrahmen: FLOXANT ordnet ${service} in ${city} unverbindlich nach Umfang, Zugang und Region ein.`,
  });
 }
 export default async function PriceTrapPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -28,13 +28,13 @@ export default async function PriceTrapPage({ params }: { params: Promise<{ slug
    <div className="max-w-7xl mx-auto px-4 md:px-8">
     <header className="text-center mb-16 max-w-4xl mx-auto">
      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-6 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-      <Target size={14} /> Preisrahmen statt Lockpreis
+      <Target size={14} /> Preisrahmen mit Kontext
      </div>
      <h1 className="text-4xl md:text-6xl font-light mb-6 leading-tight">
       Was kostet ein <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">{service} in {city}</span> wirklich?
      </h1>
      <p className="text-lg text-white/50 max-w-2xl mx-auto">
-      Vorsicht vor unseriösen Lockangeboten unter 200€. Nutzen Sie den Rechner, um einen realistischen Orientierungsrahmen für Umfang, Zugang, Strecke und Zusatzleistungen zu erhalten.
+      Sehr niedrige Einstiegspreise wirken attraktiv, blenden aber oft wichtige Kostentreiber aus. Nutzen Sie den Rechner, um einen realistischen Orientierungsrahmen für Umfang, Zugang, Strecke und Zusatzleistungen zu erhalten.
      </p>
     </header>
     <section className="relative group mb-16">
@@ -54,8 +54,8 @@ export default async function PriceTrapPage({ params }: { params: Promise<{ slug
     <section className="mt-24 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
       {[
        { title: 'Kostentreiber sichtbar', desc: 'Umfang, Zugang, Strecke und Zusatzleistungen werden für '+city+' nachvollziehbar eingeordnet.', i: TrendingDown },
-       { title: 'Keine künstliche Exaktheit', desc: 'Der Rechner liefert Orientierung; verbindlich wird es erst nach finaler Abstimmung.', i: Euro },
-       { title: 'Routen sinnvoll prüfen', desc: 'Wenn Touren kombiniert werden können, besprechen wir den Vorteil transparent mit Ihnen.', i: Target }
+       { title: 'Keine Scheingenauigkeit', desc: 'Der Rechner liefert Orientierung; verbindlich wird es erst nach finaler Abstimmung.', i: Euro },
+       { title: 'Routen sinnvoll einordnen', desc: 'Wenn Touren kombiniert werden können, besprechen wir den Vorteil transparent mit Ihnen.', i: Target }
       ].map((t, idx) => (
        <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center">
         <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">

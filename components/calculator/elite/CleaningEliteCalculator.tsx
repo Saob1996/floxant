@@ -67,7 +67,7 @@ export default function CleaningEliteCalculator({ dic }: Props) {
       <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
        Elite <span className="text-emerald-500">Service Planung</span>
       </h2>
-      <p className="mt-2 text-sm text-white/40">Geben Sie Ihre Objektdaten für eine belastbare Vorprüfung an.</p>
+      <p className="mt-2 text-sm text-white/40">Geben Sie Ihre Objektdaten für eine belastbare Einschätzung an.</p>
      </div>
 
      <div className="relative z-10 min-h-[400px]">
@@ -90,7 +90,7 @@ export default function CleaningEliteCalculator({ dic }: Props) {
        onClick={() => setMode("lead")}
        className="flex items-center gap-2 rounded-2xl bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-900/20 transition-all hover:bg-emerald-500 active:scale-95"
       >
-       Vorprüfung abschließen
+       Einschätzung abschließen
        <ArrowRight size={18} />
       </button>
      </div>
@@ -112,12 +112,12 @@ export default function CleaningEliteCalculator({ dic }: Props) {
      {!hasInput ? (
       <div className="py-12 text-center">
        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-3xl">R</div>
-       <p className="text-sm font-medium text-white/40">Starten Sie mit den Objektdaten für eine belastbare Vorprüfung.</p>
+       <p className="text-sm font-medium text-white/40">Starten Sie mit den Objektdaten für eine belastbare Einschätzung.</p>
       </div>
      ) : isRefreshing ? (
       <div className="flex h-48 flex-col items-center justify-center gap-4">
        <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
-       <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Dienstleistung wird geprüft...</span>
+       <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Dienstleistung wird eingeordnet...</span>
       </div>
      ) : (
       <div className="space-y-6">
@@ -171,7 +171,7 @@ export default function CleaningEliteCalculator({ dic }: Props) {
        <CheckCircle2 size={24} />
        <Sparkles size={24} />
       </div>
-      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Vorprüfung in ganz Bayern</p>
+      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Einschätzung in ganz Bayern</p>
      </div>
     </div>
    </div>

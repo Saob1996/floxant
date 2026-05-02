@@ -653,6 +653,14 @@ function hasPriceSignal(booking: Booking) {
   );
 }
 
+function hasPhotoSignal(booking: Booking) {
+  return Boolean(
+    booking.file_urls.length > 0 ||
+      booking.details?.configuration?.wantsPhotosLink ||
+      booking.details?.metadata?.clientContext?.wantsPhotosLink,
+  );
+}
+
 function hasUsefulText(value: unknown) {
   if (typeof value === "number") return Number.isFinite(value) && value > 0;
   if (typeof value === "boolean") return false;
@@ -719,7 +727,7 @@ function getLeadQuality(booking: Booking): LeadQuality {
   if (!hasScope) missing.push("Fläche/Volumen/Umfang");
   if (!hasUsefulText(message)) missing.push("Kurzbeschreibung");
   if (!hasBudget(booking) && !hasPriceSignal(booking)) missing.push("Budget/Preisrahmen");
-  if (booking.file_urls.length === 0) missing.push("Fotos/Anhänge");
+  if (!hasPhotoSignal(booking)) missing.push("Fotos/Anhänge");
 
   const coreMissing = missing.filter((item) =>
     ["Kontakt", "Ort/Adresse", "Terminwunsch", "Fläche/Volumen/Umfang"].includes(item),
@@ -2366,6 +2374,7 @@ function BookingRow({ booking, onOpen }: { booking: Booking; onOpen: () => void 
       </td>
       <td className="px-4 py-3 text-sm text-slate-700">
         {getCustomerBudget(booking) ? formatCurrency(getCustomerBudget(booking)) : "Noch keine Einschätzung"}
+        <LeadSignalChips booking={booking} />
       </td>
       <td className="px-4 py-3">
         <LeadQualityBadge booking={booking} />
@@ -2400,6 +2409,7 @@ function MobileBookingCard({ booking, onOpen }: { booking: Booking; onOpen: () =
       </div>
       <div className="mt-3 grid gap-2 text-sm text-slate-600">
         <MiniLine label="Budget" value={getCustomerBudget(booking) ? formatCurrency(getCustomerBudget(booking)) : "Noch keine Einschätzung"} />
+        <LeadSignalChips booking={booking} />
         <MiniLine label="Ort" value={getMainLocation(booking)} />
         <div>
           <p className="mb-1 text-[11px] font-black uppercase tracking-[0.12em] text-slate-400">Prüfung</p>
@@ -3438,7 +3448,14 @@ function buildContextRows(booking: Booking) {
     ["Volumen", firstText([config.estimatedVolumeM3 && `${config.estimatedVolumeM3} m³`, config.cbm && `${config.cbm} m³`])],
     ["Etagen", firstText([config.fromFloor && `${config.fromFloor} / ${config.toFloor || 0}`])],
     ["Budget", getCustomerBudget(booking) ? formatCurrency(getCustomerBudget(booking)) : "Nicht angegeben"],
-    ["Anhänge", booking.file_urls.length ? `${booking.file_urls.length} Datei(en)` : "Keine Anhänge"],
+    [
+      "Anhänge",
+      booking.file_urls.length
+        ? `${booking.file_urls.length} Datei(en)`
+        : hasPhotoSignal(booking)
+          ? "Fotos per WhatsApp angeboten"
+          : "Keine Anhänge",
+    ],
   ];
 
   return rows
@@ -3645,7 +3662,14 @@ function DocumentsDetail({
 
       <Panel title="Anhänge" subtitle="Kundenfotos und Dateien.">
         {booking.file_urls.length === 0 ? (
-          <EmptyState text="Keine Anhänge vorhanden." />
+          hasPhotoSignal(booking) ? (
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-relaxed text-emerald-900">
+              Der Kunde hat angeboten, Fotos oder kurze Videos per WhatsApp zu senden. Beim
+              Nachfassen direkt Bilder von Zugang, Zustand, Menge oder Fläche anfordern.
+            </div>
+          ) : (
+            <EmptyState text="Keine Anhänge vorhanden." />
+          )
         ) : (
           <div className="grid gap-2">
             {booking.file_urls.map((url, index) => (
@@ -3865,6 +3889,41 @@ function CustomerQuickActions({ booking, compact = false }: { booking: Booking; 
           E-Mail
         </a>
       ) : null}
+    </div>
+  );
+}
+
+function LeadSignalChips({ booking }: { booking: Booking }) {
+  const signals = [
+    hasBudget(booking)
+      ? {
+          label: "Budget",
+          className: "border-blue-200 bg-blue-50 text-blue-700",
+        }
+      : null,
+    hasPhotoSignal(booking)
+      ? {
+          label: booking.file_urls.length ? "Fotos da" : "Fotos möglich",
+          className: "border-emerald-200 bg-emerald-50 text-emerald-700",
+        }
+      : null,
+  ].filter(Boolean) as Array<{ label: string; className: string }>;
+
+  if (!signals.length) return null;
+
+  return (
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      {signals.map((signal) => (
+        <span
+          key={signal.label}
+          className={cn(
+            "inline-flex rounded-full border px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.1em]",
+            signal.className,
+          )}
+        >
+          {signal.label}
+        </span>
+      ))}
     </div>
   );
 }

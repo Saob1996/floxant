@@ -17,9 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "anfrage-mit-preisrahmen",
-    title: "Budget nennen | Preisrahmen für Umzug & Reinigung prüfen lassen",
+    title: "Budget nennen | Preisrahmen für Umzug & Reinigung einschätzen",
     description:
-      "Nennen Sie FLOXANT Ihren Preisrahmen für Umzug, Reinigung oder Entrümpelung. Wir prüfen ehrlich, welcher Umfang realistisch machbar ist.",
+      "Nennen Sie FLOXANT Ihren Preisrahmen für Umzug, Reinigung oder Entrümpelung. Wir ordnen ehrlich ein, welcher Umfang realistisch machbar ist.",
   });
 }
 
@@ -32,11 +32,11 @@ export default function BudgetPage() {
   const faqItems = [
     {
       q: "Was ist eine Anfrage mit Preisvorstellung?",
-      a: "Sie teilen uns Ihren finanziellen Rahmen mit, damit FLOXANT die spätere Vorprüfung und die passende Leistungszusammenstellung besser einordnen kann.",
+      a: "Sie teilen uns Ihren finanziellen Rahmen mit, damit FLOXANT die spätere Einschätzung und die passende Leistungszusammenstellung besser einordnen kann.",
     },
     {
       q: "Ersetzt mein Budget die FLOXANT Einschätzung?",
-      a: "Nein. Ihre Preisvorstellung ergänzt die System- und Teamprüfung, ersetzt sie aber nicht. Im Backoffice bleiben beide Werte getrennt sichtbar.",
+      a: "Nein. Ihre Preisvorstellung ergänzt die System- und Team-Einschätzung, ersetzt sie aber nicht. Im Backoffice bleiben beide Werte getrennt sichtbar.",
     },
     {
       q: "Ist meine Anfrage damit verbindlich?",
@@ -69,7 +69,7 @@ export default function BudgetPage() {
       buildWebPageJsonLd({
         name: "Preisvorstellung und Budget-Anfrage | FLOXANT",
         description:
-          "Teilen Sie FLOXANT unverbindlich Ihr Zielbudget mit und lassen Sie die passende Vorprüfung vorbereiten.",
+          "Teilen Sie FLOXANT unverbindlich Ihr Zielbudget mit und lassen Sie die passende Einschätzung vorbereiten.",
         path: "/anfrage-mit-preisrahmen",
         about: ["Preisvorstellung", "Budgetplanung", "Umzug", "Reinigung", "Entrümpelung", "Bayern"],
       }),
@@ -91,13 +91,13 @@ export default function BudgetPage() {
           <div>
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/88 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm shadow-slate-950/5">
               <Banknote size={14} />
-              Preisvorstellung und Vorprüfung
+              Preisvorstellung und Einschätzung
             </div>
             <h1 className="max-w-[11ch] text-4xl font-bold leading-[0.98] tracking-[-0.024em] text-slate-950 md:text-7xl">
-              Ihr Rahmen. Unsere ehrliche Prüfung.
+              Ihr Rahmen. Unsere ehrliche Einschätzung.
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              Wenn Sie ein Zielbudget haben, nennen Sie es direkt. FLOXANT prüft, ob der
+              Wenn Sie ein Zielbudget haben, nennen Sie es direkt. FLOXANT ordnet ein, ob der
               gewünschte Umfang realistisch machbar ist, welche Leistung Priorität hat und wo
               Anpassungen sinnvoll wären.
             </p>
@@ -128,7 +128,7 @@ export default function BudgetPage() {
             {
               icon: ShieldCheck,
               title: "Keine falsche Preiszusage",
-              text: "Ihre Angabe bleibt unverbindlich. Erst die konkrete Vorprüfung zeigt, welche Leistung in diesem Rahmen sinnvoll umsetzbar ist.",
+              text: "Ihre Angabe bleibt unverbindlich. Erst die konkrete Einschätzung zeigt, welche Leistung in diesem Rahmen sinnvoll umsetzbar ist.",
             },
             {
               icon: Wallet,
@@ -165,7 +165,7 @@ export default function BudgetPage() {
                 <h3 className="text-lg font-semibold text-slate-950">2. Für wen ist das sinnvoll?</h3>
                 <p className="mt-2">
                   Für Kunden mit klarem Kostenkorridor, für sensible Projekte und für Fälle,
-                  in denen Varianten geprüft werden sollen.
+                  in denen Varianten eingeordnet werden sollen.
                 </p>
               </div>
               <div>

@@ -87,7 +87,7 @@ const SERVICE_GROUPS = [
 ];
 
 const NAV_SHORTCUTS = [
-  { label: "Kosten einschätzen", href: "/rechner#rechner-start" },
+  { label: "Kosten einschätzen", href: "/rechner#rechner-wizard" },
   { label: "Budget nennen", href: "/anfrage-mit-preisrahmen" },
   { label: "Direkt anfragen", href: "/buchung" },
 ];
@@ -95,17 +95,17 @@ const NAV_SHORTCUTS = [
 const CALCULATOR_SHORTCUTS = [
   {
     label: "Umzug berechnen",
-    href: "/rechner?service=umzug#rechner-start",
+    href: "/rechner?service=umzug#rechner-wizard",
     hint: "Volumen, Etagen, Laufwege und Strecke.",
   },
   {
     label: "Reinigung berechnen",
-    href: "/rechner?service=reinigung#rechner-start",
+    href: "/rechner?service=reinigung#rechner-wizard",
     hint: "Fläche, Zustand, Objektart und Übergabeziel.",
   },
   {
     label: "Entrümpelung berechnen",
-    href: "/rechner?service=entsorgung#rechner-start",
+    href: "/rechner?service=entsorgung#rechner-wizard",
     hint: "Menge, Zugang, Entsorgung und Restarbeiten.",
   },
 ];
@@ -265,8 +265,8 @@ export function FloxNavigation({ dic }: { dic: any }) {
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed inset-x-3 z-50 mx-auto max-w-[1320px] transition-all duration-500 sm:inset-x-5",
-        "flox-nav-shell rounded-[1.6rem] px-3 py-2.5 sm:px-4",
+        "fixed inset-x-3 z-50 mx-auto max-w-[1240px] transition-all duration-500 sm:inset-x-4",
+        "flox-nav-shell rounded-[1.35rem] px-2.5 py-2 sm:px-3",
         navVisible ? "translate-y-0 opacity-100" : "-translate-y-[145%] opacity-0",
         mounted && scrolled ? "top-3" : "top-4",
       )}
@@ -274,27 +274,27 @@ export function FloxNavigation({ dic }: { dic: any }) {
       <div className="relative flex items-center gap-3">
         <Link
           href="/"
-          className="group flex min-w-0 items-center gap-3"
+          className="group flex min-w-[7.25rem] shrink-0 items-center gap-2.5"
           onClick={() => {
             setMenuOpen(false);
             setServicesOpen(false);
           }}
           aria-label="FLOXANT Startseite"
         >
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[1rem] border border-blue-100/80 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)]">
-            <BrandLogo size={30} />
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem] border border-blue-100/80 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)]">
+            <BrandLogo size={28} />
           </span>
-          <span className="min-w-0">
-            <span className="block text-[0.92rem] font-black tracking-[0.16em] text-slate-950" translate="no">
+          <span className="min-w-0 overflow-visible">
+            <span className="block whitespace-nowrap text-[0.84rem] font-black leading-none tracking-[0.11em] text-slate-950" translate="no">
               FLOXANT
             </span>
-            <span className="mt-0.5 hidden text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-500 xl:block">
+            <span className="sr-only">
               Klar geplant.
             </span>
           </span>
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-center min-[1180px]:flex" aria-label="Hauptnavigation">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center min-[1320px]:flex" aria-label="Hauptnavigation">
           <div className="flex items-center gap-0.5 rounded-full border border-slate-200 bg-white/96 p-1.5 shadow-sm shadow-slate-950/5">
             <Link
               href={desktopLinks[0].href}
@@ -464,10 +464,10 @@ export function FloxNavigation({ dic }: { dic: any }) {
           </div>
         </nav>
 
-        <div className="hidden items-center gap-2 min-[1180px]:flex">
+        <div className="hidden shrink-0 items-center gap-2 min-[1320px]:flex">
           <Link
             href="/kontakt"
-            className="inline-flex h-10 items-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-700 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+            className="hidden h-10 items-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-700 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800 min-[1320px]:inline-flex"
           >
             <MapPin className="h-3.5 w-3.5 text-blue-700" />
             Kontakt
@@ -485,7 +485,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
 
           <a
             href={`mailto:${company.email}`}
-            className="grid h-10 w-10 place-items-center rounded-[0.95rem] border border-slate-200 bg-white text-slate-500 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700"
+            className="hidden h-10 w-10 place-items-center rounded-[0.95rem] border border-slate-200 bg-white text-slate-500 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700 min-[1440px]:grid"
             aria-label="E-Mail"
           >
             <Mail size={15} />
@@ -515,7 +515,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
 
         <button
           type="button"
-          className="ml-auto inline-flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:bg-slate-50 min-[1180px]:hidden"
+          className="ml-auto inline-flex h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:bg-slate-50 min-[1320px]:hidden"
           onClick={() => setMenuOpen((value) => !value)}
           aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
           aria-expanded={menuOpen}
@@ -532,7 +532,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.985 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl min-[1180px]:hidden sm:inset-x-5 sm:p-5"
+            className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl min-[1320px]:hidden sm:inset-x-5 sm:p-5"
           >
             <div className="grid gap-3 sm:grid-cols-2">
               <Link

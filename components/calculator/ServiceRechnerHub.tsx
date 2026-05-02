@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -8,8 +8,11 @@ import {
   ArrowRight,
   Banknote,
   Briefcase,
+  ClipboardCheck,
   CheckCircle2,
   Clock3,
+  MapPin,
+  MessageCircle,
   Repeat,
   ShieldCheck,
   Sparkles,
@@ -17,9 +20,10 @@ import {
   Truck,
   Zap,
 } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { PlzOperationScanner } from "@/components/operations/PlzOperationScanner";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 import { ServiceType, useCalculatorStore } from "@/store/calculatorStore";
@@ -44,7 +48,9 @@ const serviceCards = [
     icon: Truck,
     gradient: "from-blue-600 via-blue-500 to-cyan-500",
     soft: "from-blue-50 via-white to-cyan-50",
-    signal: "Belastbare Vorplanung",
+    signal: "Solide Vorbereitung",
+    operations:
+      "Teamgröße, Fahrzeugbedarf, Tragewege und Halteverbotszone werden berücksichtigt.",
     steps: ["Start", "Ziel", "Inventar", "Leistungen"],
   },
   {
@@ -57,6 +63,8 @@ const serviceCards = [
     gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     soft: "from-emerald-50 via-white to-cyan-50",
     signal: "Klare Leistungsbasis",
+    operations:
+      "Zustand, Fläche, Übergabeziel und Zusatzleistungen werden bewertet.",
     steps: ["Objekt", "Details"],
   },
   {
@@ -69,6 +77,8 @@ const serviceCards = [
     gradient: "from-orange-500 via-amber-500 to-rose-500",
     soft: "from-orange-50 via-white to-rose-50",
     signal: "Saubere Aufwandseinordnung",
+    operations:
+      "Volumen, Zugang, Entsorgung und mögliche Wertanrechnung werden geprüft.",
     steps: ["Material", "Logistik"],
   },
   {
@@ -81,6 +91,8 @@ const serviceCards = [
     gradient: "from-cyan-600 via-blue-600 to-indigo-600",
     soft: "from-cyan-50 via-white to-indigo-50",
     signal: "Operativ für Firmen gedacht",
+    operations:
+      "Arbeitsplätze, IT, Archiv, Zeitfenster und Betriebsunterbrechung werden eingeordnet.",
     steps: ["Standorte", "Büro", "Extras"],
   },
 ];
@@ -113,16 +125,16 @@ const quickLinks = [
 ];
 
 const activeServiceSwitchLinks = [
-  { id: "umzug" as ServiceType, label: "Umzug", href: "/rechner?service=umzug#rechner-start" },
-  { id: "reinigung" as ServiceType, label: "Reinigung", href: "/rechner?service=reinigung#rechner-start" },
-  { id: "entsorgung" as ServiceType, label: "Entrümpelung", href: "/rechner?service=entsorgung#rechner-start" },
-  { id: "bueroumzug" as ServiceType, label: "Büroumzug", href: "/rechner?service=bueroumzug#rechner-start" },
+  { id: "umzug" as ServiceType, label: "Umzug", href: "/rechner?service=umzug#rechner-wizard" },
+  { id: "reinigung" as ServiceType, label: "Reinigung", href: "/rechner?service=reinigung#rechner-wizard" },
+  { id: "entsorgung" as ServiceType, label: "Entrümpelung", href: "/rechner?service=entsorgung#rechner-wizard" },
+  { id: "bueroumzug" as ServiceType, label: "Büroumzug", href: "/rechner?service=bueroumzug#rechner-wizard" },
 ];
 
 const selectionSignals = [
-  "Unverbindlicher Preisrahmen statt vorschnellem Festpreis",
+  "Unverbindlicher Preisrahmen statt vorschneller Zusage",
   "Nur die Angaben, die für Ihren Service wirklich wichtig sind",
-  "Danach direkt weiter zu Anfrage, Budgetprüfung oder Express-Check",
+  "Danach direkt weiter zu Anfrage, Budgeteinschätzung oder Express-Check",
 ];
 
 const qualityPromises = [
@@ -139,7 +151,7 @@ const comfortSignals = [
 
 const serviceSignals: Partial<Record<ServiceType, { eyebrow: string; title: string; text: string }>> = {
   umzug: {
-    eyebrow: "Vorplanung",
+    eyebrow: "Vorbereitung",
     title: "Umzug operativ vorbereitet",
     text: "Volumen, Strecke, Zugang, Etagen, Parkmöglichkeit und Zusatzleistungen bleiben früh sichtbar, damit aus einem groben Vorhaben eine belastbare Anfrage wird.",
   },
@@ -150,14 +162,267 @@ const serviceSignals: Partial<Record<ServiceType, { eyebrow: string; title: stri
   },
   entsorgung: {
     eyebrow: "Räumung",
-    title: "Entsorgung ohne Schätzchaos",
-    text: "Volumen, Materialarten, Zugang und Zielzustand der Fläche werden logisch sortiert, statt auf eine zu frühe Festpreisbehauptung reduziert zu werden.",
+    title: "Entsorgung sauber einordnen",
+    text: "Volumen, Materialarten, Zugang und Zielzustand der Fläche werden logisch sortiert, statt zu früh eine feste Zahl zu behaupten.",
   },
   bueroumzug: {
     eyebrow: "Firmenfluss",
     title: "Büroumzug mit Betriebsrealität",
     text: "Arbeitsplätze, IT, Archiv und Zeitfenster werden früh strukturiert, damit der nächste Schritt professionell und anschlussfähig bleibt.",
   },
+};
+
+const serviceValueCards: Partial<Record<ServiceType, Array<{ label: string; text: string }>>> = {
+  umzug: [
+    {
+      label: "Volumen verstehen",
+      text: "Möbelmenge, Kartons und Etagen zeigen, ob Fahrzeug, Team und Zeitfenster zusammenpassen.",
+    },
+    {
+      label: "Zugang klären",
+      text: "Treppenhaus, Aufzug, Laufweg und Parkmöglichkeit entscheiden oft über den tatsächlichen Aufwand.",
+    },
+    {
+      label: "Übergabe mitdenken",
+      text: "Reinigung, Rest-Entrümpelung oder Schlüsselthemen können früh mitgedacht werden.",
+    },
+  ],
+  reinigung: [
+    {
+      label: "Ziel der Reinigung",
+      text: "Übergabe, Grundreinigung, Büro oder laufende Reinigung haben unterschiedliche Anforderungen.",
+    },
+    {
+      label: "Zustand sichtbar machen",
+      text: "Fläche, Küche, Bad, Fenster, Möblierung und Fotos helfen, den Aufwand fair einzuordnen.",
+    },
+    {
+      label: "Termin realistisch einordnen",
+      text: "Flexible Reinigung, diese Woche oder dringend verändert Planung, Team und Rückmeldung.",
+    },
+  ],
+  entsorgung: [
+    {
+      label: "Mengen einschätzen",
+      text: "Volumen, Materialarten und Sperrgut entscheiden, welche Kapazität und Entsorgung nötig sind.",
+    },
+    {
+      label: "Fläche danach",
+      text: "Besenrein, leer, übergabebereit oder nur Abholung: Das Ziel verändert den Aufwand.",
+    },
+    {
+      label: "Zugang planen",
+      text: "Keller, Dachboden, Garage, Innenhof oder lange Laufwege sollten früh sichtbar werden.",
+    },
+  ],
+  bueroumzug: [
+    {
+      label: "Betrieb schützen",
+      text: "Arbeitsplätze, Technik und Zeitfenster werden so eingeordnet, dass der Ablauf anschlussfähig bleibt.",
+    },
+    {
+      label: "Standorte sortieren",
+      text: "Start, Ziel, Zugang, Aufzug und Parken müssen für beide Standorte realistisch passen.",
+    },
+    {
+      label: "Extras sichtbar machen",
+      text: "Archiv, IT, Möbelmontage oder Entsorgung sollten nicht erst im Einsatz auftauchen.",
+    },
+  ],
+};
+
+const serviceOutcomeGuides: Partial<
+  Record<
+    ServiceType,
+    Array<{
+      label: string;
+      title: string;
+      text: string;
+      icon: React.ComponentType<{ className?: string }>;
+      tone: string;
+    }>
+  >
+> = {
+  umzug: [
+    {
+      label: "Ergebnis",
+      title: "Preisrahmen mit Kostentreibern",
+      text: "Sie sehen, welche Punkte den Aufwand treiben: Volumen, Strecke, Etagen, Laufwege und Zusatzleistungen.",
+      icon: ClipboardCheck,
+      tone: "border-blue-100 bg-blue-50 text-blue-800",
+    },
+    {
+      label: "Einordnung",
+      title: "Nicht nur Möbelmenge",
+      text: "FLOXANT ordnet ein, ob Team, Fahrzeug, Zeitfenster und Zugang realistisch zusammenpassen.",
+      icon: ShieldCheck,
+      tone: "border-slate-200 bg-white text-slate-800",
+    },
+    {
+      label: "Weiter",
+      title: "Anfrage ohne Neu-Erklären",
+      text: "Ihre Angaben können direkt in Anfrage, Budgeteinschätzung oder WhatsApp-Kontext übernommen werden.",
+      icon: MessageCircle,
+      tone: "border-emerald-100 bg-emerald-50 text-emerald-800",
+    },
+  ],
+  reinigung: [
+    {
+      label: "Ergebnis",
+      title: "Reinigungsrahmen mit klaren Angaben",
+      text: "Wohnung, Büro, Übergabe, Zustand, Küche, Bad und Fenster werden zu einer ersten Bandbreite verdichtet.",
+      icon: ClipboardCheck,
+      tone: "border-emerald-100 bg-emerald-50 text-emerald-800",
+    },
+    {
+      label: "Einordnung",
+      title: "Sauberkeit mit klarem Ziel",
+      text: "Wir unterscheiden, ob es um laufende Pflege, Grundreinigung oder Übergabe mit Detaildruck geht.",
+      icon: ShieldCheck,
+      tone: "border-slate-200 bg-white text-slate-800",
+    },
+    {
+      label: "Weiter",
+      title: "Fotos und Termin helfen sofort",
+      text: "Wenn der Rahmen passt, kann die Anfrage mit Fotos, Terminwunsch und Budget schneller geprüft werden.",
+      icon: MessageCircle,
+      tone: "border-blue-100 bg-blue-50 text-blue-800",
+    },
+  ],
+  entsorgung: [
+    {
+      label: "Ergebnis",
+      title: "Volumen und Zugang sichtbar",
+      text: "Menge, Material, Etage, Keller, Garage oder Laufweg werden früh als Aufwandstreiber sichtbar.",
+      icon: ClipboardCheck,
+      tone: "border-orange-100 bg-orange-50 text-orange-800",
+    },
+    {
+      label: "Einordnung",
+      title: "Fläche danach mitdenken",
+      text: "Nicht nur Abholung zählt, sondern auch, wie nutzbar oder übergabebereit der Raum danach sein soll.",
+      icon: ShieldCheck,
+      tone: "border-slate-200 bg-white text-slate-800",
+    },
+    {
+      label: "Weiter",
+      title: "Fotos reduzieren Rückfragen",
+      text: "Bilder von Menge, Zugang und Material helfen, Kapazität und Entsorgungsweg schneller einzuordnen.",
+      icon: MessageCircle,
+      tone: "border-amber-100 bg-amber-50 text-amber-900",
+    },
+  ],
+  bueroumzug: [
+    {
+      label: "Ergebnis",
+      title: "Firmenumzug planbarer machen",
+      text: "Arbeitsplätze, Technik, Archiv, Zeitfenster und Standortzugang werden als Ablauf statt nur als Strecke betrachtet.",
+      icon: ClipboardCheck,
+      tone: "border-cyan-100 bg-cyan-50 text-cyan-800",
+    },
+    {
+      label: "Einordnung",
+      title: "Betriebsreibung reduzieren",
+      text: "FLOXANT achtet darauf, welche Punkte den laufenden Betrieb, Mitarbeitende oder Termine beeinflussen.",
+      icon: ShieldCheck,
+      tone: "border-slate-200 bg-white text-slate-800",
+    },
+    {
+      label: "Weiter",
+      title: "Besser vorbereitet ins Gespräch",
+      text: "Nach der Einordnung liegen die wichtigsten Daten für Rückruf, Angebot oder Vor-Ort-Termin bereit.",
+      icon: MessageCircle,
+      tone: "border-blue-100 bg-blue-50 text-blue-800",
+    },
+  ],
+};
+
+const serviceLocalLinks: Partial<
+  Record<
+    ServiceType,
+    Array<{ label: string; href: string; text: string; tone: string }>
+  >
+> = {
+  umzug: [
+    {
+      label: "Umzug Regensburg",
+      href: "/umzug-regensburg",
+      text: "Lokaler Hauptpfad für Wohnungswechsel, Transport und Übergabe im Regensburger Raum.",
+      tone: "border-blue-200 bg-blue-50 text-blue-800",
+    },
+    {
+      label: "Umzug Bayern",
+      href: "/umzug-bayern",
+      text: "Für Einsätze außerhalb Regensburg, wenn Strecke, Termin und Umfang sinnvoll passen.",
+      tone: "border-cyan-200 bg-cyan-50 text-cyan-800",
+    },
+    {
+      label: "Umzug mit Reinigung",
+      href: "/umzug-mit-reinigung",
+      text: "Wenn Transport, Endreinigung und Übergabe zusammen gedacht werden sollen.",
+      tone: "border-emerald-200 bg-emerald-50 text-emerald-800",
+    },
+  ],
+  reinigung: [
+    {
+      label: "Reinigung Regensburg",
+      href: "/reinigung-regensburg",
+      text: "Für Wohnungsreinigung, Endreinigung und Übergabe im Regensburger Kerngebiet.",
+      tone: "border-emerald-200 bg-emerald-50 text-emerald-800",
+    },
+    {
+      label: "Gewerbereinigung",
+      href: "/gewerbereinigung-regensburg",
+      text: "Eigener Einstieg für Büros, Praxen, Kanzleien, Treppenhäuser und Objektflächen.",
+      tone: "border-blue-200 bg-blue-50 text-blue-800",
+    },
+    {
+      label: "Reinigung Bayern",
+      href: "/reinigung-bayern",
+      text: "Für passende Reinigungsanfragen in Bayern, wenn Umfang und Termin planbar sind.",
+      tone: "border-cyan-200 bg-cyan-50 text-cyan-800",
+    },
+  ],
+  entsorgung: [
+    {
+      label: "Entrümpelung Regensburg",
+      href: "/entruempelung-regensburg",
+      text: "Direkter Einstieg für Keller, Wohnung, Restmengen und besenreine Vorbereitung.",
+      tone: "border-orange-200 bg-orange-50 text-orange-800",
+    },
+    {
+      label: "Wohnungsauflösung",
+      href: "/wohnungsaufloesung-regensburg",
+      text: "Für komplette Auflösungen, Nachlass, Räumung und Übergabevorbereitung.",
+      tone: "border-amber-200 bg-amber-50 text-amber-900",
+    },
+    {
+      label: "Kleinmengen",
+      href: "/kleinmengen-entsorgung",
+      text: "Wenn nur Einzelstücke, Möbel oder kleine Restmengen abgeholt werden sollen.",
+      tone: "border-slate-200 bg-slate-50 text-slate-800",
+    },
+  ],
+  bueroumzug: [
+    {
+      label: "Büroumzug Regensburg",
+      href: "/bueroumzug-regensburg",
+      text: "Lokaler Firmenpfad für Arbeitsplätze, Technik, Archiv und Standortwechsel.",
+      tone: "border-blue-200 bg-blue-50 text-blue-800",
+    },
+    {
+      label: "Firmenentsorgung",
+      href: "/firmenentsorgung",
+      text: "Für Büroinventar, Restmengen, Aktenreste und saubere Gewerbeflächen.",
+      tone: "border-slate-200 bg-slate-50 text-slate-800",
+    },
+    {
+      label: "Büroumzug Bayern",
+      href: "/bueroumzug-bayern",
+      text: "Für planbare Firmenumzüge in Bayern mit Standort-, Team- und Zeitfensterlogik.",
+      tone: "border-cyan-200 bg-cyan-50 text-cyan-800",
+    },
+  ],
 };
 
 const visualVariantByService: Partial<Record<ServiceType, "moving" | "cleaning" | "clearance" | "office">> = {
@@ -167,7 +432,42 @@ const visualVariantByService: Partial<Record<ServiceType, "moving" | "cleaning" 
   bueroumzug: "office",
 };
 
+function normalizeServiceParam(value: string | null): ServiceType | null {
+  if (!value) {
+    return null;
+  }
+
+  const safeService = value.trim().toLowerCase();
+  const normalizedService =
+    safeService === "entruempelung" || safeService === "entrümpelung"
+      ? "entsorgung"
+      : safeService === "büroumzug" || safeService === "bueroumzug"
+        ? "bueroumzug"
+        : safeService;
+
+  return ["umzug", "reinigung", "entsorgung", "bueroumzug"].includes(normalizedService)
+    ? (normalizedService as ServiceType)
+    : null;
+}
+
+function buildWizardUrl(service: ServiceType | null) {
+  if (typeof window === "undefined") {
+    return `/rechner${service ? `?service=${service}` : ""}#rechner-wizard`;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  if (service) {
+    params.set("service", service);
+  } else {
+    params.delete("service");
+  }
+
+  const query = params.toString();
+  return `${window.location.pathname}${query ? `?${query}` : ""}#rechner-wizard`;
+}
+
 const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
+  const router = useRouter();
   const activeService = useCalculatorStore((state) => state.serviceType);
   const setServiceType = useCalculatorStore((state) => state.setServiceType);
   const currentMode = useCalculatorStore((state) => state.mode);
@@ -175,6 +475,14 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
 
   const searchParams = useSearchParams();
   const queryService = searchParams.get("service");
+  const queryServiceType = useMemo(() => normalizeServiceParam(queryService), [queryService]);
+
+  const replaceWizardUrl = useCallback(
+    (service: ServiceType | null) => {
+      router.replace(buildWizardUrl(service), { scroll: false });
+    },
+    [router],
+  );
 
   useEffect(() => {
     if (!queryService) {
@@ -182,38 +490,42 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
       setMode("selection");
       return;
     }
-    const safeService = queryService.trim().toLowerCase();
-    const normalizedService =
-      safeService === "entruempelung" || safeService === "entrümpelung"
-        ? "entsorgung"
-        : safeService === "büroumzug" || safeService === "bueroumzug"
-          ? "bueroumzug"
-          : safeService;
 
-    if (["umzug", "reinigung", "entsorgung", "bueroumzug"].includes(normalizedService)) {
-      setServiceType(normalizedService as ServiceType);
+    if (queryServiceType) {
+      setServiceType(queryServiceType);
       setMode("advanced");
       return;
     }
 
     setServiceType(null);
     setMode("selection");
-  }, [queryService, setMode, setServiceType]);
+  }, [queryService, queryServiceType, setMode, setServiceType]);
 
   useEffect(() => {
-    if (!queryService || window.location.hash === "#rechner-start" || window.scrollY > 120) {
+    if (!queryServiceType) {
       return;
     }
 
-    const frame = window.requestAnimationFrame(() => {
-      document.getElementById("rechner-start")?.scrollIntoView({
+    const scrollToWizard = () =>
+      document.getElementById("rechner-wizard")?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-    });
+
+    if (window.location.hash === "#rechner-start") {
+      replaceWizardUrl(queryServiceType);
+      const frame = window.requestAnimationFrame(scrollToWizard);
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    if (window.location.hash === "#rechner-wizard" || window.scrollY > 120) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(scrollToWizard);
 
     return () => window.cancelAnimationFrame(frame);
-  }, [queryService]);
+  }, [queryServiceType, replaceWizardUrl]);
 
   const umzugData = useCalculatorStore((state) => state.umzugData);
   const hasUmzugInput = useMemo(
@@ -255,12 +567,27 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
     () => germanizeDeep(serviceSignals) as typeof serviceSignals,
     [],
   );
+  const localizedServiceValueCards = useMemo(
+    () => germanizeDeep(serviceValueCards) as typeof serviceValueCards,
+    [],
+  );
 
   const activeServiceConfig = localizedServiceCards.find((service) => service.id === activeService);
   const activeServiceSignal = activeService ? localizedServiceSignals[activeService] : null;
+  const activeServiceValueCards = activeService ? localizedServiceValueCards[activeService] : null;
+  const activeServiceOutcomeGuides = activeService ? serviceOutcomeGuides[activeService] : null;
+  const activeServiceLocalLinks = activeService ? serviceLocalLinks[activeService] : null;
+
   const activateService = (service: ServiceType) => {
     setServiceType(service);
     setMode("advanced");
+    replaceWizardUrl(service);
+  };
+
+  const resetToSelection = () => {
+    setServiceType(null);
+    setMode("selection");
+    replaceWizardUrl(null);
   };
 
   const renderActiveForm = (step: number) => {
@@ -289,7 +616,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
           />
         </div>
         <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-14">
-          <LeadClosing dic={dic} onBack={() => setMode("express")} />
+          <LeadClosing dic={dic} onBack={() => setMode("advanced")} />
         </div>
       </div>
     );
@@ -432,11 +759,13 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                         }
                       }}
                       className={cn(
-                        "card-premium service-card-hover group relative cursor-pointer rounded-[1.35rem] p-5",
+                        "card-premium service-card-hover group relative cursor-pointer overflow-hidden rounded-[1.35rem] p-5 outline-none transition focus-visible:ring-4 focus-visible:ring-blue-100",
                         "bg-gradient-to-br",
                         service.soft,
                       )}
                     >
+                      <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/80 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 group-focus:opacity-100" />
+                      <span className="pointer-events-none absolute inset-0 rounded-[1.35rem] ring-1 ring-inset ring-blue-300/0 transition duration-300 group-hover:ring-blue-300/55 group-focus:ring-blue-300/55" />
                       <div className="relative z-10">
                         <div className="flex items-start justify-between gap-4">
                           <div>
@@ -476,14 +805,20 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                           ))}
                         </div>
 
-                        <button
-                          type="button"
-                          onClick={() => activateService(service.id)}
+                        <div className="mt-4 max-h-0 overflow-hidden rounded-[1rem] border border-white/80 bg-white/76 px-3 py-0 text-xs font-semibold leading-5 text-slate-600 opacity-0 transition-all duration-300 group-hover:max-h-28 group-hover:py-3 group-hover:opacity-100 group-focus:max-h-28 group-focus:py-3 group-focus:opacity-100">
+                          <span className="mb-1 block text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                            Worauf wir achten
+                          </span>
+                          {service.operations}
+                        </div>
+
+                        <div
+                          aria-hidden="true"
                           className="mt-5 inline-flex h-10 w-full items-center justify-between rounded-[1rem] border border-slate-200 bg-white/94 px-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 shadow-sm shadow-slate-950/5 transition-all hover:border-blue-200 hover:bg-white"
                         >
                           <span>Rechner starten</span>
                           <ArrowRight className="h-4 w-4 text-blue-600 transition-transform group-hover:translate-x-1" />
-                        </button>
+                        </div>
                       </div>
                     </m.article>
                   );
@@ -559,7 +894,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
               className="space-y-5"
             >
               {activeServiceSignal ? (
-                <div className="glass-elevated rounded-[1.6rem] border border-slate-200 px-5 py-5">
+                <div className="glass-elevated overflow-hidden rounded-[1.6rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94)_50%,rgba(239,246,255,0.72))] px-5 py-5">
                   <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
@@ -593,6 +928,102 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                   <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">
                     {activeServiceSignal.text}
                   </p>
+                  <PlzOperationScanner serviceLabel={activeServiceConfig?.title || "Service"} className="mt-5" />
+                  <details className="group mt-5 rounded-[1.2rem] border border-slate-200 bg-white/80 p-3 shadow-sm shadow-slate-950/5">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[11px] font-black uppercase tracking-[0.14em] text-slate-700 outline-none transition hover:text-blue-700 focus-visible:ring-4 focus-visible:ring-blue-100">
+                        <span>Einordnung und lokale Wege anzeigen</span>
+                      <ArrowRight className="h-4 w-4 transition group-open:rotate-90" />
+                    </summary>
+                    <div className="mt-4">
+                  {activeServiceOutcomeGuides?.length ? (
+                    <div className="mt-5 grid gap-3 lg:grid-cols-3">
+                      {activeServiceOutcomeGuides.map((item, index) => {
+                        const Icon = item.icon;
+
+                        return (
+                          <m.div
+                            key={item.title}
+                            initial={{ opacity: 0, y: 14 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.45, delay: index * 0.07, ease: "easeOut" }}
+                            className={`rounded-[1.2rem] border p-4 shadow-sm shadow-slate-950/5 ${item.tone}`}
+                          >
+                            <div className="flex items-start gap-3">
+                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/78 shadow-sm shadow-slate-950/5">
+                                <Icon className="h-4 w-4" />
+                              </span>
+                              <div>
+                                <div className="text-[10px] font-black uppercase tracking-[0.16em] opacity-70">
+                                  {item.label}
+                                </div>
+                                <p className="mt-1 text-sm font-black text-slate-950">{item.title}</p>
+                                <p className="mt-2 text-xs leading-5 text-slate-600">{item.text}</p>
+                              </div>
+                            </div>
+                          </m.div>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                  {activeServiceValueCards?.length ? (
+                    <div className="mt-5 grid gap-3 md:grid-cols-3">
+                      {activeServiceValueCards.map((item) => (
+                        <div
+                          key={item.label}
+                          className="rounded-[1.15rem] border border-white/80 bg-white/86 p-4 shadow-sm shadow-slate-950/5"
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                              <CheckCircle2 className="h-4 w-4" />
+                            </span>
+                            <div>
+                              <p className="text-sm font-black text-slate-950">{item.label}</p>
+                              <p className="mt-1 text-xs leading-5 text-slate-600">{item.text}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                  {activeServiceLocalLinks?.length ? (
+                    <div className="mt-5 overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/86 p-4 shadow-sm shadow-slate-950/5">
+                      <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+                        <div>
+                          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                            <MapPin className="h-3.5 w-3.5" />
+                            Lokale Suchwege
+                          </div>
+                          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                            Regensburg bleibt der Kern. Wenn Ort und Leistung schon feststehen,
+                            führen diese Seiten schneller zum passenden lokalen Einstieg.
+                          </p>
+                        </div>
+                        <Link
+                          href="/standorte"
+                          className="inline-flex h-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-4 text-[11px] font-black uppercase tracking-[0.14em] text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
+                        >
+                          Standorte
+                        </Link>
+                      </div>
+                      <div className="mt-4 grid gap-3 md:grid-cols-3">
+                        {activeServiceLocalLinks.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className={`group rounded-[1.15rem] border p-4 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-950/10 ${item.tone}`}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <span className="text-sm font-black text-slate-950">{item.label}</span>
+                              <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 opacity-45 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
+                            </div>
+                            <p className="mt-2 text-xs leading-5 opacity-75">{item.text}</p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                    </div>
+                  </details>
                   <div className="mt-5 rounded-[1.15rem] border border-slate-200 bg-white/82 p-3">
                     <div className="mb-3 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
                       Service wechseln, ohne neu zu suchen
@@ -622,10 +1053,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                 serviceType={activeService}
                 steps={activeServiceConfig?.steps.map((title, index) => ({ id: index + 1, title })) || []}
                 renderStep={renderActiveForm}
-                onClose={() => {
-                  setServiceType(null);
-                  setMode("selection");
-                }}
+                onClose={resetToSelection}
                 onFinish={() => setMode("lead")}
                 hasInput={
                   activeService === "umzug"

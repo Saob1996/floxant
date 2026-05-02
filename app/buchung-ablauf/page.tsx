@@ -19,7 +19,7 @@ import {
 const faqItems = [
  {
   q: "Kann ich bei FLOXANT direkt buchen?",
-  a: "Sie können direkt eine Anfrage oder Vorprüfung starten. Eine verbindliche Beauftragung entsteht erst, wenn Leistung, Termin, Preisrahmen und Dokumente sauber abgestimmt sind.",
+  a: "Sie können direkt eine Anfrage oder Einschätzung starten. Eine verbindliche Beauftragung entsteht erst, wenn Leistung, Termin, Preisrahmen und Dokumente sauber abgestimmt sind.",
  },
  {
   q: "Was ist der Unterschied zwischen Rechner und Buchung?",
@@ -31,7 +31,7 @@ const faqItems = [
  },
  {
   q: "Ist das Absenden der Anfrage kostenpflichtig?",
-  a: "Nein. Das Absenden startet die fachliche Prüfung. Kosten entstehen erst durch eine ausdrücklich abgestimmte Leistung oder Beauftragung.",
+  a: "Nein. Das Absenden startet die fachliche Einordnung. Kosten entstehen erst durch eine ausdrücklich abgestimmte Leistung oder Beauftragung.",
  },
  {
   q: "Warum ist der Ablauf für Kunden sicherer?",
@@ -41,7 +41,7 @@ const faqItems = [
 
 const clarityPoints = [
  "Sofort starten: Rechner, Express-Anfrage oder Preisvorstellung.",
- "Keine versteckte Sofortbindung durch das Absenden einer Vorprüfung.",
+ "Keine versteckte Sofortbindung durch das Absenden einer Anfrage.",
  "Dokumente bleiben kontrollierbar: erst Entwurf, dann Freigabe, dann Versand.",
  "System-Orientierungsrahmen und Kunden-Preisvorstellung bleiben getrennt sichtbar.",
 ];
@@ -126,7 +126,7 @@ export default function BuchungAblaufPage() {
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
       FLOXANT macht den Weg vom ersten Bedarf zur Umsetzung transparent: zuerst
-      Orientierungsrahmen und Vorprüfung, dann Rückfragen, Angebot, Auftragsbestätigung
+      Orientierungsrahmen und Einschätzung, dann Rückfragen, Angebot, Auftragsbestätigung
       und Rechnung. So bleibt der Prozess schnell, aber nicht übereilt.
      </p>
      <div className="mt-8 flex flex-wrap gap-3">

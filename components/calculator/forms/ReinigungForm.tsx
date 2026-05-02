@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AnimatePresence, m } from "framer-motion";
-import { CheckCircle2, Sparkles } from "lucide-react";
+import { Camera, CheckCircle2, MapPin, Sparkles, Wallet } from "lucide-react";
 
 import { useCalculatorStore } from "@/store/calculatorStore";
 import type { CleaningGoal, CleaningPropertyType, ReinigungAdvancedData } from "@/store/calculatorStore";
@@ -131,6 +131,24 @@ const cleaningPresets: Array<{
  },
 ];
 
+const localCleaningSignals = [
+ {
+  title: "Regensburg zuerst",
+  text: "Ort, Stadtteil, Zugang und Termin helfen, die Reinigung schneller realistisch einzuordnen.",
+  icon: MapPin,
+ },
+ {
+  title: "Fotos helfen sofort",
+  text: "Kurze Bilder von Küche, Bad, Boden, Fenstern oder Übergabestellen vermeiden Rückfragen.",
+  icon: Camera,
+ },
+ {
+  title: "Budget offen nennen",
+  text: "Ein Preisrahmen ist hilfreich, bleibt aber eine Prüfung und keine automatische Zusage.",
+  icon: Wallet,
+ },
+];
+
 export default function ReinigungForm({ dic, currentStep }: { dic?: any; currentStep: number }) {
  const reinigungData = useCalculatorStore((state) => state.reinigungData);
  const updateReinigungData = useCalculatorStore((state) => state.updateReinigungData);
@@ -172,6 +190,28 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
           </p>
          </div>
         </div>
+        <details className="group mt-4 rounded-[1.05rem] border border-emerald-100 bg-white/72 p-3 text-xs leading-5 text-slate-600">
+         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-black uppercase tracking-[0.14em] text-emerald-800 transition hover:text-emerald-700 [&::-webkit-details-marker]:hidden">
+          <span>Was hilft bei der Einschätzung?</span>
+          <CheckCircle2 className="h-4 w-4 transition group-open:rotate-12" />
+         </summary>
+         <div className="mt-3 grid gap-2 lg:grid-cols-3">
+          {localCleaningSignals.map((signal) => {
+           const Icon = signal.icon;
+           return (
+            <div key={signal.title} className="rounded-[0.95rem] border border-emerald-50 bg-emerald-50/50 p-3">
+             <div className="flex items-start gap-2">
+              <Icon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700" />
+              <div>
+               <p className="font-black text-slate-950">{signal.title}</p>
+               <p className="mt-1 text-slate-600">{signal.text}</p>
+              </div>
+             </div>
+            </div>
+           );
+          })}
+         </div>
+        </details>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
          {cleaningPresets.map((preset) => (
           <button
@@ -194,7 +234,7 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
        {[
          "Ziel zuerst: Übergabe, Grundreinigung oder laufende Betreuung",
          "Fläche, Zustand und Extras steuern den Rahmen am stärksten",
-         "Fotos und kurze Hinweise machen die Prüfung deutlich schneller",
+         "Regensburg, Stadtteil und Termin machen die Anfrage konkreter",
         ].map((item) => (
          <span
           key={item}
@@ -426,10 +466,10 @@ export default function ReinigungForm({ dic, currentStep }: { dic?: any; current
    </AnimatePresence>
 
    <div className="flex items-start gap-3 rounded-[1.5rem] border border-blue-100 bg-blue-50 px-4 py-3">
-    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
+   <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-blue-600" />
    <p className="text-xs leading-relaxed text-slate-600">
-     Je klarer Ziel, Zustand und Termin beschrieben sind, desto schneller kann FLOXANT den Umfang
-     realistisch prüfen und den passenden Kontaktweg wählen.
+     Je klarer Ziel, Zustand, Ort und Termin beschrieben sind, desto schneller kann FLOXANT den
+     Umfang realistisch prüfen und den passenden Kontaktweg wählen.
     </p>
    </div>
   </div>

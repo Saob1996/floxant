@@ -172,10 +172,20 @@ export function serializeIntakeStore(state: CalculatorState): IntakePayload {
   };
  }
 
+ configuration = {
+  ...configuration,
+  wantsPhotosLink: leadDetails.wantsPhotosLink,
+ };
+
  const metadata = {
-  createdAt: new Date().toISOString(),
-  intakeVersion: "1.1.0",
-  source: "intake_wizard",
+ createdAt: new Date().toISOString(),
+ intakeVersion: "1.1.0",
+ source: "intake_wizard",
+  clientContext: {
+   wantsPhotosLink: leadDetails.wantsPhotosLink,
+   customerBudgetProvided: Boolean(customerBudget),
+   entryPath: typeof window !== "undefined" ? window.location.pathname + window.location.search : undefined,
+  },
  };
 
  return {

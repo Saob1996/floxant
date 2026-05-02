@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/duesseldorf/reinigung",
     title: "Reinigung Düsseldorf | Wohnungen, Büros & Übergaben anfragen",
     description:
-      "FLOXANT Reinigung Düsseldorf prüft Reinigungsanfragen für Wohnungen, Büros und Übergaben realistisch. Mit WhatsApp-Anfrage, Preisrechner und Budgetprüfung.",
+      "FLOXANT Reinigung Düsseldorf ordnet Reinigungsanfragen für Wohnungen, Büros und Übergaben realistisch ein. Mit WhatsApp-Anfrage, Preisrechner und Budgetrahmen.",
   });
 }
 
@@ -35,7 +35,7 @@ const trustLine = [
   "Reinigung in Düsseldorf",
   "Wohnungen, Büros & Übergaben",
   "Anfrage per WhatsApp möglich",
-  "Budget ehrlich prüfen lassen",
+  "Budget ehrlich einordnen",
 ];
 
 const heroHighlights = [
@@ -45,14 +45,14 @@ const heroHighlights = [
     text: "Nicht jede Reinigung hat denselben Anspruch. Eine Wohnung vor der Übergabe braucht andere Details als ein Büro im laufenden Betrieb. Wir klären vorab, was wirklich zählt.",
   },
   {
-    label: "Schnelle Prüfung",
+    label: "Schnelle Einschätzung",
     title: "Direkter Kontakt statt langer Umwege",
-    text: "Sie schicken uns Fläche, Zustand, Terminwunsch und Fotos. Wir prüfen den Aufwand und melden uns mit einer realistischen Einschätzung zurück.",
+    text: "Sie schicken uns Fläche, Zustand, Terminwunsch und Fotos. Wir ordnen den Aufwand ein und melden uns mit einer realistischen Einschätzung zurück.",
   },
   {
     label: "Preisrahmen",
-    title: "Budget nennen, ehrlich prüfen lassen",
-    text: "Wenn Sie einen festen Preisrahmen haben, sagen Sie ihn direkt. Wir prüfen, ob der Auftrag dafür machbar ist oder welcher Umfang realistisch wäre.",
+    title: "Budget nennen, ehrlich einordnen lassen",
+    text: "Wenn Sie einen festen Preisrahmen haben, sagen Sie ihn direkt. Wir ordnen ein, ob der Auftrag dafür machbar ist oder welcher Umfang realistisch wäre.",
   },
 ];
 
@@ -76,11 +76,11 @@ const serviceIcons = [Home, Building2, Sparkles, Building, ClipboardCheck, Check
 const faqs = [
   {
     q: "Kann ich bei FLOXANT Reinigung Düsseldorf ein eigenes Budget nennen?",
-    a: "Ja. Sie können uns Ihren Preisrahmen direkt mitteilen. Wir prüfen dann ehrlich, ob der Auftrag dafür machbar ist, welcher Umfang möglich wäre oder ob der Aufwand realistisch höher liegt.",
+    a: "Ja. Sie können uns Ihren Preisrahmen direkt mitteilen. Wir ordnen dann ehrlich ein, ob der Auftrag dafür machbar ist, welcher Umfang möglich wäre oder ob der Aufwand realistisch höher liegt.",
   },
   {
     q: "Ist der Preisvorschlag automatisch verbindlich?",
-    a: "Nein. Ein Budget oder Preisvorschlag ist zunächst eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Umfang, Zustand, Termin und Leistung klar geprüft und bestätigt wurden.",
+    a: "Nein. Ein Budget oder Preisvorschlag ist zunächst eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Umfang, Zustand, Termin und Leistung klar eingeordnet und bestätigt wurden.",
   },
   {
     q: "Welche Informationen helfen für eine schnelle Einschätzung?",
@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     q: "Warum nennt FLOXANT nicht sofort einen festen Preis?",
-    a: "Weil Reinigung stark vom Zustand, Umfang, Termin und Anspruch abhängt. Ein sofortiger Pauschalpreis ohne Prüfung kann später zu falschen Erwartungen führen. Wir kalkulieren lieber realistisch.",
+    a: "Weil Reinigung stark vom Zustand, Umfang, Termin und Anspruch abhängt. Ein sofortiger Pauschalpreis ohne Einordnung kann später zu falschen Erwartungen führen. Wir kalkulieren lieber realistisch.",
   },
 ];
 
@@ -198,7 +198,7 @@ export default function DuesseldorfReinigungPage() {
                 href="#preisvorschlag"
                 className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-teal-200/35 bg-teal-300/15 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(20,184,166,0.18)] transition hover:-translate-y-0.5 hover:bg-teal-300/22"
               >
-                Eigenes Budget prüfen lassen
+                Eigenes Budget einordnen lassen
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
@@ -211,7 +211,7 @@ export default function DuesseldorfReinigungPage() {
               </a>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-              Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget - wir prüfen
+              Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget - wir ordnen
               ehrlich, ob und in welchem Umfang der Auftrag machbar ist.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -374,7 +374,7 @@ export default function DuesseldorfReinigungPage() {
               <p className="mt-4 text-base leading-8 text-slate-700">
                 Manche Kunden wissen nicht genau, was eine Reinigung kosten darf. Andere haben
                 bereits einen festen Preisrahmen. Beides ist in Ordnung. Wenn Sie uns Ihr Budget
-                nennen, prüfen wir ehrlich, ob der Auftrag dafür realistisch machbar ist, welcher
+                nennen, ordnen wir ehrlich ein, ob der Auftrag dafür realistisch machbar ist, welcher
                 Umfang möglich wäre oder welche Punkte angepasst werden müssten.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -382,7 +382,7 @@ export default function DuesseldorfReinigungPage() {
                   href="#rechner"
                   className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
                 >
-                  Eigenes Budget prüfen lassen
+                  Eigenes Budget einordnen lassen
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
@@ -397,7 +397,7 @@ export default function DuesseldorfReinigungPage() {
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {[
                   "Keine automatische Zusage",
-                  "Ehrliche Prüfung nach Umfang und Zustand",
+                  "Ehrliche Einschätzung nach Umfang und Zustand",
                   "Hilfreich mit Fotos, Fläche und Terminwunsch",
                 ].map((item) => (
                   <div
@@ -412,7 +412,7 @@ export default function DuesseldorfReinigungPage() {
 
             <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
               <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
-                So prüfen wir Ihre Anfrage
+                So ordnen wir Ihre Anfrage ein
               </div>
               <h2 className="mt-4 text-3xl font-bold tracking-[-0.02em] text-slate-950">
                 Erst klären, dann sauber planen
@@ -441,7 +441,7 @@ export default function DuesseldorfReinigungPage() {
 
           <article className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_20px_56px_rgba(15,23,42,0.06)]">
             <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
-              Keine Lockpreise
+              Keine vorschnellen Preisversprechen
             </div>
             <p className="mt-4 max-w-4xl text-base leading-8 text-slate-700">
               Ein sehr niedriger Preis klingt gut, bis der tatsächliche Aufwand sichtbar wird.
@@ -462,7 +462,7 @@ export default function DuesseldorfReinigungPage() {
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Der Rechner liefert eine erste Orientierung. Wenn Sie bereits einen Preisrahmen
-              im Kopf haben, tragen Sie ihn direkt mit ein. Wir prüfen dann, ob der gewünschte
+              im Kopf haben, tragen Sie ihn direkt mit ein. Wir ordnen dann ein, ob der gewünschte
               Umfang zum Budget, Zustand und Termin passt.
             </p>
           </div>

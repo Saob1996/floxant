@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   pageLocale: "de" as Locale,
   path: `angebote/${slug}`,
   title: `${service.charAt(0).toUpperCase() + service.slice(1)} Preisrahmen in ${city} | FLOXANT`,
-  description: `Unverbindliche Vorprüfung für ${service} in ${city}: Aufwand, Region und Kostentreiber strukturiert einordnen.`,
+  description: `Unverbindliche Einschätzung für ${service} in ${city}: Aufwand, Region und Kostentreiber strukturiert einordnen.`,
  });
 }
 export default async function ProgrammaticSeoCalculator({ params }: { params: Promise<{ slug: string }> }) {
@@ -34,7 +34,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
   },
   {
    question: `Ist die Einschätzung für ${city} verbindlich?`,
-   answer: `Nein. Die Einschätzung ist eine vorläufige Orientierung. Verbindlich wird ein Angebot erst nach finaler Prüfung der Angaben und Abstimmung des Leistungsumfangs.`
+   answer: `Nein. Die Einschätzung ist eine vorläufige Orientierung. Verbindlich wird ein Angebot erst nach finaler Einordnung der Angaben und Abstimmung des Leistungsumfangs.`
   }
  ];
  return (
@@ -49,7 +49,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
       {serviceType} <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400">Kosten in {city}</span>
      </h1>
      <p className="text-white/60 text-lg">
-      Starten Sie eine unverbindliche Vorprüfung für {city}. Ihre Angaben werden strukturiert eingeordnet, damit Aufwand, Region und Kostentreiber verständlich werden.
+      Starten Sie eine unverbindliche Einschätzung für {city}. Ihre Angaben werden strukturiert eingeordnet, damit Aufwand, Region und Kostentreiber verständlich werden.
      </p>
     </header>
     {/* DualCalculator Orchestrator automatically tracks user data now */}
@@ -84,7 +84,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
          <span>Fazit Dauer:</span> <span className="text-white font-medium">4.5 Stunden gesamt</span>
         </li>
         <li className="flex justify-between items-center pt-2 font-medium text-base">
-         <span>Orientierungsrahmen:</span> <span className="text-blue-400">nach Vorprüfung</span>
+         <span>Orientierungsrahmen:</span> <span className="text-blue-400">nach Einschätzung</span>
         </li>
        </ul>
       </div>

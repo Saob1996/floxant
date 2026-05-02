@@ -124,7 +124,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           </p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">
             Ihre Preisvorstellung wird als zusätzliches Signal gespeichert. Sie ersetzt keine
-            fachliche Vorprüfung und ist keine Preiszusage. Name, Telefon und Preisrahmen reichen
+            fachliche Einschätzung und ist keine Preiszusage. Name, Telefon und Preisrahmen reichen
             für den ersten Kontakt; E-Mail ist optional.
           </p>
         </div>
@@ -290,7 +290,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           <div className="h-1 w-1 rounded-full bg-slate-300" />
           <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase text-slate-500">
             <CheckCircle2 size={10} className="text-emerald-600" />
-            Für die Vorprüfung vorbereitet
+            Für die Einschätzung vorbereitet
           </div>
         </div>
       </form>

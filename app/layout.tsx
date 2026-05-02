@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
     "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern";
   const description =
     dict.metadata.global_desc ||
-    "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Vorprüfung, sauberer Einsatzplanung und belastbaren Anfragen.";
+    "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Einschätzung, sauberer Einsatzplanung und belastbaren Anfragen.";
 
   return generatePageSEO({
     lang: "de",
