@@ -20,6 +20,16 @@ export default function TrustBlock({
  const locationText = locationHint?.trim()
   ? (trust.location_template || "").replace("{location}", locationHint.trim())
   : trust.location_generic || "";
+ const trustLabels = {
+  googleReviews: trust.google_reviews || "Google-Signale prüfen",
+  googleReviewsDesc: trust.google_reviews_desc || "Bewertungen, Profil und direkte Kontaktwege sichtbar einordnen.",
+  personalConsultation: trust.personal_consultation || "Persönliche Vorprüfung",
+  personalConsultationDesc: trust.personal_consultation_desc || "Rückfragen, Zugang und Umfang werden vor der Planung sauber geklärt.",
+  regionalActive: trust.regional_active || "Regional erreichbar",
+  location:
+   locationText ||
+   "Regensburg als Basis, Bayern als klares Einsatzgebiet mit direktem Anfrageweg.",
+ };
 
  return (
   <div
@@ -71,10 +81,10 @@ export default function TrustBlock({
       ))}
      </div>
      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white">
-      {trust.google_reviews || ""}
+      {trustLabels.googleReviews}
      </p>
      <span className="text-[11px] leading-relaxed text-white/45">
-      {trust.google_reviews_desc || ""}
+      {trustLabels.googleReviewsDesc}
      </span>
     </div>
    </TrustCard>
@@ -84,12 +94,12 @@ export default function TrustBlock({
      <Users size={18} />
     </div>
 
-    <div className="min-w-0">
+   <div className="min-w-0">
      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white">
-      {trust.personal_consultation || ""}
+      {trustLabels.personalConsultation}
      </p>
      <span className="text-[11px] leading-relaxed text-white/45">
-      {trust.personal_consultation_desc || ""}
+      {trustLabels.personalConsultationDesc}
      </span>
     </div>
    </TrustCard>
@@ -103,11 +113,11 @@ export default function TrustBlock({
      <div className="mb-1 flex items-center gap-2">
       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white">
-       {trust.regional_active || ""}
+       {trustLabels.regionalActive}
       </p>
      </div>
      <span className="line-clamp-2 text-[11px] leading-relaxed text-white/45">
-      {locationText}
+      {trustLabels.location}
      </span>
     </div>
    </TrustCard>

@@ -25,15 +25,31 @@ const directLinks = [
   { href: "/kontakt", label: "Kontakt" },
 ];
 
-const regionLinks = [
+const localLinks = [
+  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+  { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+  { href: "/bueroumzug-regensburg", label: "Büroumzug Regensburg" },
   { href: "/service-area-bayern", label: "Bayern" },
   { href: "/standorte", label: "Standorte" },
-  { href: "/blog", label: "Ratgeber" },
-  { href: "/sitemap.xml", label: "Sitemap XML" },
-  { href: "/llms.txt", label: "LLMs.txt" },
+];
+
+const knowledgeLinks = [
+  { href: "/blog", label: "Ratgeber-Hub" },
+  { href: "/blog/umzug-kosten-regensburg", label: "Umzugskosten" },
+  { href: "/blog/wohnungsuebergabe-regensburg-vorbereiten", label: "Wohnungsübergabe" },
+  { href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", label: "Reinigungsfirma wählen" },
+  { href: "/leistungen-vergleichen", label: "Leistungen vergleichen" },
+  { href: "/kostenfaktoren", label: "Kostenfaktoren" },
+];
+
+const legalLinks = [
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
+  { href: "/buchungsbedingungen", label: "Buchungsbedingungen" },
+  { href: "/widerruf", label: "Widerruf" },
+  { href: "/sitemap.xml", label: "Sitemap XML" },
 ];
 
 export function Footer({ dic }: { dic?: any } = {}) {
@@ -91,7 +107,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
         </section>
 
         <section className="flox-panel rounded-[2.2rem] px-7 py-8 md:px-10 md:py-10">
-          <div className="grid gap-8 xl:grid-cols-[1.15fr_0.95fr_0.95fr_0.95fr]">
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.25fr_0.9fr_0.9fr_0.95fr_1.05fr_0.85fr]">
             <div className="xl:border-r xl:border-slate-200/80 xl:pr-8">
               <Link href="/" className="text-2xl font-black tracking-[0.16em] text-slate-950" translate="no">
                 FLOXANT
@@ -128,7 +144,9 @@ export function Footer({ dic }: { dic?: any } = {}) {
 
             <FooterColumn title="Leistungen" items={serviceLinks} />
             <FooterColumn title="Direkte Wege" items={directLinks} />
-            <FooterColumn title="Region & Recht" items={regionLinks} />
+            <FooterColumn title="Lokale Seiten" items={localLinks} />
+            <FooterColumn title="Ratgeber" items={knowledgeLinks} />
+            <FooterColumn title="Recht & Technik" items={legalLinks} />
           </div>
 
           <div className="mt-10 flex flex-col gap-4 border-t border-slate-200/90 pt-7 md:flex-row md:items-center md:justify-between">
@@ -137,6 +155,12 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 <ShieldCheck className="h-4 w-4 text-blue-600" />
                 Versicherter Transport und saubere Planung
               </div>
+              <Link href="/llms.txt" className="text-sm font-semibold text-slate-500 hover:text-blue-700">
+                LLMs.txt
+              </Link>
+              <Link href="/sitemap.xml" className="text-sm font-semibold text-slate-500 hover:text-blue-700">
+                Sitemap
+              </Link>
             </div>
 
             <div className="flex items-center gap-5">

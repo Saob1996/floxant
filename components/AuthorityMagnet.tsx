@@ -1,4 +1,5 @@
-import { Activity, CheckCircle2, MapPin, Search, Share2 } from "lucide-react";
+import Link from "next/link";
+import { Activity, ArrowRight, Banknote, CheckCircle2, ClipboardCheck, MapPin, PhoneCall, Search, Share2 } from "lucide-react";
 
 import { company } from "@/lib/company";
 import { germanText } from "@/lib/german-text";
@@ -65,6 +66,34 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
         "Bei hochwertigem Inventar, Technik oder Spezialmöbeln sollte die Absicherung früh angesprochen werden.",
       ),
     },
+  ];
+  const authorityActions = [
+    {
+      title: "Anfrage strukturiert starten",
+      desc: `Für ${city}, wenn Leistung, Ort und Termin schon grob feststehen.`,
+      href: "/buchung",
+      icon: ClipboardCheck,
+      tone: "bg-blue-50 text-blue-700",
+    },
+    {
+      title: "Preisrahmen nennen",
+      desc: "Für Projekte, bei denen Budget und Machbarkeit gemeinsam eingeordnet werden sollen.",
+      href: "/anfrage-mit-preisrahmen",
+      icon: Banknote,
+      tone: "bg-emerald-50 text-emerald-700",
+    },
+    {
+      title: "Kontakt direkt klären",
+      desc: "Für Rückfragen, Fotos, Sonderfälle oder schnelle Abstimmung vor der Planung.",
+      href: "/kontakt",
+      icon: PhoneCall,
+      tone: "bg-amber-50 text-amber-700",
+    },
+  ];
+  const localProofPoints = [
+    `Regensburg als Kontakt- und Planungsbasis`,
+    `${city} als sichtbares Einsatzgebiet`,
+    `${region} als regionaler Such- und Servicekontext`,
   ];
 
   return (
@@ -169,6 +198,56 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
                 <p className="mt-3 text-sm leading-7 text-slate-700">{hint.desc}</p>
               </article>
             ))}
+          </div>
+        </div>
+
+        <div className="rounded-[1.8rem] border border-slate-200 bg-slate-50/90 px-7 py-7 shadow-[0_20px_48px_rgba(15,23,42,0.05)] md:px-8">
+          <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr] xl:items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                <CheckCircle2 className="h-4 w-4" />
+                Lokale Vertrauenssignale
+              </div>
+              <h3 className="mt-4 text-[2rem] font-bold tracking-tight text-slate-950">
+                Warum FLOXANT für {germanText(city, city)} klar zuordenbar bleibt.
+              </h3>
+              <p className="mt-4 text-base leading-7 text-slate-700">
+                Gute lokale Seiten brauchen mehr als Keywords. Sie müssen zeigen, wer erreichbar ist,
+                welcher regionale Rahmen gilt und welcher nächste Schritt ohne Umweg möglich ist.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {localProofPoints.map((point) => (
+                  <span
+                    key={point}
+                    className="rounded-full border border-blue-100 bg-white px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-blue-700"
+                  >
+                    {germanText(point, point)}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {authorityActions.map((action) => {
+                const Icon = action.icon;
+                return (
+                  <Link
+                    key={action.href}
+                    href={action.href}
+                    className="group rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
+                  >
+                    <div className={`flex h-11 w-11 items-center justify-center rounded-[1rem] ${action.tone}`}>
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h4 className="mt-5 flex items-center gap-2 text-lg font-bold tracking-tight text-slate-950 transition-colors group-hover:text-blue-700">
+                      {action.title}
+                      <ArrowRight className="h-4 w-4" />
+                    </h4>
+                    <p className="mt-3 text-sm leading-7 text-slate-700">{action.desc}</p>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

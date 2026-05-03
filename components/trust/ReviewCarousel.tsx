@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
@@ -62,6 +63,23 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
   };
 
   const currentReview = fallbackReviews[currentIndex];
+  const decisionLinks = [
+    {
+      href: "/buchung",
+      title: "Anfrage starten",
+      text: "Wenn Leistung, Ort und Termin schon grob klar sind.",
+    },
+    {
+      href: "/anfrage-mit-preisrahmen",
+      title: "Preisrahmen nennen",
+      text: "Wenn Budget und Machbarkeit gemeinsam geprüft werden sollen.",
+    },
+    {
+      href: "/kontakt",
+      title: "Rückfrage klären",
+      text: "Wenn Fotos, Zugang oder Sonderfälle zuerst abgestimmt werden müssen.",
+    },
+  ];
 
   const handleNext = () => setCurrentIndex((prev) => (prev + 1) % fallbackReviews.length);
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + fallbackReviews.length) % fallbackReviews.length);
@@ -194,9 +212,20 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                 So fühlt sich der Prozess für Kunden planbar an, ohne Druck und ohne verwirrende
                 Vergleichsportal-Logik.
               </p>
-              <div className="mt-6 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
-                Klare Anfragewege
-                <ArrowRight className="h-4 w-4" />
+              <div className="mt-6 grid gap-2">
+                {decisionLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="group rounded-[1rem] border border-slate-200 bg-slate-50/80 px-4 py-3 transition-all hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    <span className="flex items-center justify-between gap-3 text-sm font-bold text-slate-950">
+                      {item.title}
+                      <ArrowRight className="h-4 w-4 text-blue-700 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                    <span className="mt-1 block text-xs leading-6 text-slate-600">{item.text}</span>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>

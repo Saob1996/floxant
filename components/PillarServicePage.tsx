@@ -114,11 +114,32 @@ export function PillarServicePage({
       Icon: KeyRound,
     },
   ] as const;
+  const jumpLinks = [
+    {
+      href: "#leistungen",
+      label: "Leistung verstehen",
+      text: "Worum es geht, wann der Service passt und was vor der Anfrage wichtig ist.",
+    },
+    {
+      href: "#preis",
+      label: "Preislogik",
+      text: "Welche Faktoren Aufwand, Einsatzplanung und Preisrahmen beeinflussen.",
+    },
+    {
+      href: "#ablauf",
+      label: "Ablauf prüfen",
+      text: "Wie aus einer ersten Anfrage ein planbarer und sauber abgestimmter Einsatz wird.",
+    },
+    {
+      href: "#booking",
+      label: "Direkt anfragen",
+      text: "Ohne Umweg in die Buchung wechseln, wenn Umfang und Ziel schon grob klar sind.",
+    },
+  ] as const;
 
   return (
     <main className="min-h-screen overflow-hidden bg-background">
       <Breadcrumbs lang="de" items={breadcrumbs} />
-
 
       <PillarServiceHero
         eyebrow={heroBadge}
@@ -129,6 +150,40 @@ export function PillarServicePage({
         cards={heroCards}
         visualVariant={visualVariant}
       />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <div className="rounded-[1.9rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.95),rgba(255,255,255,1))] p-4 shadow-sm shadow-slate-950/5">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="flox-kicker">Schnell zum richtigen Abschnitt</div>
+                <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
+                  Erst orientieren, dann anfragen.
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  Diese Sprungpunkte helfen dabei, Preislogik, Ablauf und den passenden Einstieg
+                  ohne Scroll-Suche direkt zu erreichen.
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+              {jumpLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group rounded-[1.35rem] border border-white bg-white px-4 py-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-semibold text-slate-950">{item.label}</span>
+                    <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="leistungen" className="flox-section">
         <div className="pointer-events-none absolute inset-0 opacity-28">
@@ -387,8 +442,12 @@ export function PillarServicePage({
             <div className="flox-kicker">FAQ</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">{germanText(faqTitle, faqTitle)}</h2>
             <div className="mt-6 grid gap-3">
-              {faqItems.map((item) => (
-                <details key={item.q} className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4">
+              {faqItems.map((item, index) => (
+                <details
+                  key={item.q}
+                  className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4"
+                  open={index === 0}
+                >
                   <summary className="cursor-pointer list-none text-base font-semibold text-slate-950">
                     {germanText(item.q, item.q)}
                   </summary>

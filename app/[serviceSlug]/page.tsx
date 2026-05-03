@@ -37,6 +37,131 @@ const RELATED_SERVICES: Record<ServiceSlug, readonly ServiceSlug[]> = {
   montage: ["umzug", "bueroumzug", "reinigung"],
   halteverbotszone: ["umzug", "bueroumzug", "fernumzug"],
 };
+
+const SERVICE_SUPPORT_LINKS: Record<
+  ServiceSlug,
+  ReadonlyArray<{ title: string; href: string; text: string }>
+> = {
+  umzug: [
+    {
+      title: "Direkt anfragen",
+      href: "/buchung?service=umzug#buchungssystem",
+      text: "Wenn Umfang, Zugang und Termin direkt sauber aufgenommen werden sollen.",
+    },
+    {
+      title: "Kostenrahmen prüfen",
+      href: "/rechner?service=umzug",
+      text: "Wenn vor der Anfrage erst Volumen, Strecke oder Preisgefühl sortiert werden müssen.",
+    },
+    {
+      title: "Ratgeber vertiefen",
+      href: "/blog",
+      text: "Wenn vorab noch Checklisten, Übergabe oder Ablauf besser eingeordnet werden sollen.",
+    },
+  ],
+  bueroumzug: [
+    {
+      title: "Firmenumzug anfragen",
+      href: "/buchung?service=umzug#buchungssystem",
+      text: "Wenn Büroflächen, Teamgröße und Zeitfenster strukturiert geprüft werden sollen.",
+    },
+    {
+      title: "Aufwand vorrechnen",
+      href: "/rechner?service=umzug",
+      text: "Wenn intern erst eine belastbare Größenordnung gebraucht wird.",
+    },
+    {
+      title: "Kontaktweg abstimmen",
+      href: "/kontakt",
+      text: "Wenn Rückfragen, Erreichbarkeit oder Standortthemen vorab geklärt werden sollen.",
+    },
+  ],
+  fernumzug: [
+    {
+      title: "Fernumzug anfragen",
+      href: "/buchung?service=umzug#buchungssystem",
+      text: "Wenn Strecke, Ladefenster und Zwischenstopps direkt mitgedacht werden sollen.",
+    },
+    {
+      title: "Rahmen kalkulieren",
+      href: "/rechner?service=umzug",
+      text: "Wenn Distanz und Volumen zuerst preislich eingeordnet werden müssen.",
+    },
+    {
+      title: "Standorte ansehen",
+      href: "/standorte",
+      text: "Wenn Einsatzgebiet und regionale Anschlüsse vorab wichtig sind.",
+    },
+  ],
+  reinigung: [
+    {
+      title: "Reinigung anfragen",
+      href: "/buchung?service=reinigung#buchungssystem",
+      text: "Wenn Fläche, Objektart und gewünschter Standard direkt geprüft werden sollen.",
+    },
+    {
+      title: "Leistungsweg prüfen",
+      href: "/rechner?service=reinigung",
+      text: "Wenn vor der Buchung noch Aufwand und Preisrahmen sortiert werden sollen.",
+    },
+    {
+      title: "Wissen vertiefen",
+      href: "/blog",
+      text: "Wenn Übergabe, Nachreinigung oder Kombination mit Räumung noch offen sind.",
+    },
+  ],
+  entruempelung: [
+    {
+      title: "Entrümpelung anfragen",
+      href: "/buchung?service=entsorgung#buchungssystem",
+      text: "Wenn Volumen, Zugang und Entsorgungsweg direkt sauber geprüft werden sollen.",
+    },
+    {
+      title: "Preislogik prüfen",
+      href: "/rechner?service=entsorgung",
+      text: "Wenn vor der Anfrage erst ein realistischer Rahmen gebraucht wird.",
+    },
+    {
+      title: "Kontakt aufnehmen",
+      href: "/kontakt",
+      text: "Wenn Fotos, Sonderfälle oder Rückfragen schnell abgestimmt werden sollen.",
+    },
+  ],
+  montage: [
+    {
+      title: "Montage anfragen",
+      href: "/buchung?service=umzug#buchungssystem",
+      text: "Wenn Möbel, Zusatzaufwand und Ablauf direkt gemeinsam geprüft werden sollen.",
+    },
+    {
+      title: "Projekt strukturieren",
+      href: "/kontakt",
+      text: "Wenn mehrere Bausteine oder besondere Stücke vorab besprochen werden müssen.",
+    },
+    {
+      title: "Weitere Services ansehen",
+      href: "/standorte",
+      text: "Wenn Montage mit Umzug, Reinigung oder regionalem Einsatz verbunden ist.",
+    },
+  ],
+  halteverbotszone: [
+    {
+      title: "Halteverbotszone anfragen",
+      href: "/buchung?service=umzug#buchungssystem",
+      text: "Wenn Halteweg, Datum und Straßensituation direkt eingeordnet werden sollen.",
+    },
+    {
+      title: "Ablauf verstehen",
+      href: "/kontakt",
+      text: "Wenn Abstimmung mit Umzug, Zugang und Zeitfenster vorab nötig ist.",
+    },
+    {
+      title: "Weitere Hilfe finden",
+      href: "/blog",
+      text: "Wenn vorab noch Fragen zu Vorbereitung und Übergabe offen sind.",
+    },
+  ],
+};
 type PageProps = {
   params: Promise<{ serviceSlug: string }>;
 };
@@ -218,6 +343,13 @@ export default async function CoreServicePage({ params }: PageProps) {
   );
   const relatedServicesTitle = sanitizeString(servicesSection.title, "Weitere Leistungen");
   const hubNote = sanitizeString(area.hub_note);
+  const supportLinks = SERVICE_SUPPORT_LINKS[serviceSlug];
+  const pageSections = [
+    { href: "#leistungen", title: "Leistungsbild", text: "Prinzipien und Einordnung auf einen Blick." },
+    { href: "#ablauf", title: "Ablauf", text: "So wird Anfrage, Prüfung und Umsetzung geführt." },
+    { href: "#faq", title: "FAQ", text: "Häufige Fragen direkt vor der Anfrage klären." },
+    { href: "#anfrage", title: "Anfrage", text: "Zum strukturierten Einstieg oder WhatsApp-Pfad." },
+  ];
   const whatsappHref = buildWhatsAppHref(
     company.phoneRaw,
     getWhatsAppContext(`/${serviceSlug}`, serviceSlug).message
@@ -263,7 +395,26 @@ export default async function CoreServicePage({ params }: PageProps) {
           )}
         </div>
       </section>
-      <section className="px-6 pb-12">
+      <section className="px-6 pb-10">
+        <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {pageSections.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="group rounded-[1.45rem] border border-slate-200 bg-white px-5 py-5 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-lg hover:shadow-slate-950/10"
+            >
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-primary/70">
+                Schnellstart
+              </div>
+              <h2 className="mt-3 text-lg font-semibold text-slate-950 transition-colors group-hover:text-primary">
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+      <section id="leistungen" className="px-6 pb-12">
         <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-3">
           {[
             {
@@ -331,7 +482,7 @@ export default async function CoreServicePage({ params }: PageProps) {
         </section>
       )}
       {(content.process_title || processSteps.length > 0) && (
-        <section className="px-6 py-20">
+        <section id="ablauf" className="px-6 py-20">
           <div className="mx-auto max-w-4xl">
             {content.process_title && (
               <h2 className="mb-12 text-center text-3xl font-bold text-slate-950">
@@ -361,6 +512,42 @@ export default async function CoreServicePage({ params }: PageProps) {
           </div>
         </section>
       )}
+      {faqs.length > 0 && (
+        <section id="faq" className="px-6 py-20">
+          <div className="mx-auto max-w-4xl">
+            <div className="mx-auto max-w-2xl text-center">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-primary/70">
+                Vor der Anfrage
+              </div>
+              <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">
+                Häufige Fragen zu {content.hero_title || serviceSlug}
+              </h2>
+              <p className="mt-4 text-base leading-8 text-slate-600">
+                Damit vor dem ersten Kontakt schon klar ist, wie FLOXANT prüft, einordnet und den nächsten sinnvollen Schritt auswählt.
+              </p>
+            </div>
+            <div className="mt-10 space-y-4">
+              {faqs.map((faq: any, index: number) => (
+                <details
+                  key={`${faq.q}-${index}`}
+                  open={index === 0}
+                  className="group rounded-[1.55rem] border border-slate-200 bg-white px-6 py-5 shadow-sm shadow-slate-950/5"
+                >
+                  <summary className="cursor-pointer list-none text-left text-lg font-semibold text-slate-950">
+                    <span className="flex items-center justify-between gap-4">
+                      <span>{faq.q}</span>
+                      <span className="text-xl leading-none text-primary transition-transform group-open:rotate-45">
+                        +
+                      </span>
+                    </span>
+                  </summary>
+                  <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
       {(content.guarantees_title || guarantees.length > 0) && (
         <section className="section-glow px-6 py-16">
           <div className="mx-auto max-w-3xl">
@@ -384,6 +571,39 @@ export default async function CoreServicePage({ params }: PageProps) {
           </div>
         </section>
       )}
+      <section className="px-6 py-14">
+        <div className="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-slate-50/90 px-6 py-7 shadow-sm shadow-slate-950/5 md:px-8">
+          <div className="max-w-2xl">
+            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-primary/70">
+              Weiterführend
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-slate-950">
+              Vor der Anfrage noch besser einordnen
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              Diese Wege helfen, wenn vor der eigentlichen Buchung noch Preislogik, Ablauf oder der passende Kontaktpfad sortiert werden sollen.
+            </p>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {supportLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.4rem] border border-slate-200 bg-white px-5 py-5 transition-all hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-lg hover:shadow-slate-950/10"
+              >
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-primary/70">
+                  Nächster Schritt
+                </div>
+                <h3 className="mt-3 flex items-center gap-2 text-lg font-semibold text-slate-950 transition-colors group-hover:text-primary">
+                  {item.title}
+                  <ChevronRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
       {hubNote && (
         <section className="px-6 py-12">
           <div className="mx-auto max-w-3xl">
@@ -487,7 +707,7 @@ export default async function CoreServicePage({ params }: PageProps) {
         </div>
       </section>
       {(content.cta_title || content.cta_text) && (
-        <section className="section-glow py-24 px-6 relative overflow-hidden">
+        <section id="anfrage" className="section-glow relative overflow-hidden px-6 py-24">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-40">
             <div className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-violet-600/10 blur-[120px] animate-pulse" />
             <div className="absolute -bottom-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-indigo-600/10 blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />

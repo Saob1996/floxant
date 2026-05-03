@@ -141,11 +141,18 @@ export function ServiceMatchBoard({ compact = false }: { compact?: boolean }) {
      })}
     </div>
 
-    <div className="mt-8 flex flex-col gap-4 rounded-[2rem] border border-foreground/10 bg-white/[0.03] p-6 md:flex-row md:items-center md:justify-between">
+    <div className="mt-8 grid gap-4 rounded-[2rem] border border-foreground/10 bg-white/[0.03] p-6 md:grid-cols-[1fr_auto_auto] md:items-center">
      <p className="max-w-3xl text-sm leading-relaxed text-foreground/54">
       Wenn mehrere Situationen zutreffen, ist der Rechner der sicherste Einstieg. Dort werden Serviceart,
       Region, Zugang, Termin und Preisvorstellung getrennt erfasst.
      </p>
+     <Link
+      href="/buchung"
+      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-500 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-950 hover:bg-blue-400"
+     >
+      Anfrage starten
+      <ArrowRight className="h-3.5 w-3.5" />
+     </Link>
      <Link
       href="/leistungen-vergleichen"
       className="inline-flex items-center justify-center gap-2 rounded-2xl border border-blue-300/20 bg-blue-500/10 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-800 hover:bg-blue-500/15"

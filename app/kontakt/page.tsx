@@ -101,6 +101,24 @@ const mapsClosingSignals = [
   },
 ];
 
+const supportingKnowledgeLinks = [
+  {
+    title: "Preisrahmen statt Schnellpreis besser verstehen",
+    href: "/blog/preisrahmen-vorpruefung-statt-festpreis",
+    text: "Hilft, wenn vor der Kontaktaufnahme noch unklar ist, wie realistisch ein Budget oder Zeitfenster ist.",
+  },
+  {
+    title: "Wohnungsübergabe sauber vorbereiten",
+    href: "/blog/wohnungsuebergabe-regensburg-vorbereiten",
+    text: "Sinnvoll, wenn Schlüssel, Fotos, Restmengen oder Reinigung vor dem Vermietertermin mitgedacht werden müssen.",
+  },
+  {
+    title: "Direkt anfragen statt Umwege über Portale",
+    href: "/blog/direkt-anfragen-statt-vergleichsportal-regensburg",
+    text: "Erklärt, warum ein klarer direkter Kontaktweg oft bessere Rückfragen und weniger Reibung erzeugt.",
+  },
+] as const;
+
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
@@ -269,6 +287,59 @@ export default function KontaktPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-4 grid gap-3 md:grid-cols-4">
+            {[
+              {
+                label: "Direkt zur Buchung",
+                href: "/buchung",
+                text: "Wenn der Fall klar ist und Sie ohne Umweg in die strukturierte Anfrage wollen.",
+              },
+              {
+                label: "Zum Rechner",
+                href: "/rechner",
+                text: "Wenn zuerst Aufwand, Zugang und Preisrahmen eingeordnet werden sollen.",
+              },
+              {
+                label: "Lokale Servicepfade",
+                href: "/standorte",
+                text: "Wenn erst die passende Stadt- oder Service-Seite für Regensburg und Bayern gefunden werden soll.",
+              },
+              {
+                label: "WhatsApp",
+                href: whatsappUrl,
+                text: "Wenn Fotos, kurze Rückfragen oder schnelle Abstimmung im Vordergrund stehen.",
+              },
+            ].map((item) =>
+              item.href.startsWith("http") ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-[1.35rem] border border-slate-200 bg-white/86 px-4 py-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-semibold text-slate-950">{item.label}</span>
+                    <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="group rounded-[1.35rem] border border-slate-200 bg-white/86 px-4 py-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-semibold text-slate-950">{item.label}</span>
+                    <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                </Link>
+              ),
+            )}
+          </div>
         </div>
       </section>
 
@@ -414,6 +485,44 @@ export default function KontaktPage() {
         </div>
       </section>
 
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-6xl rounded-[1.8rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.95),rgba(255,255,255,1))] p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                Vor dem Kontakt
+              </div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+                Erst kurz einordnen, dann schneller die richtige Rückmeldung bekommen.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-slate-600 lg:text-right">
+              Diese Inhalte helfen, Budget, Übergabe und direkte Anfragewege besser zu sortieren,
+              bevor Sie FLOXANT kontaktieren.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {supportingKnowledgeLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.45rem] border border-white bg-white px-5 py-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+              >
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  Ratgeber
+                </div>
+                <h3 className="mt-3 text-lg font-semibold tracking-tight text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                  Weiterlesen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-slate-200 px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
@@ -425,14 +534,17 @@ export default function KontaktPage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {faqItems.map((item) => (
-              <article
+            {faqItems.map((item, index) => (
+              <details
                 key={item.q}
                 className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
+                open={index === 0}
               >
-                <h3 className="text-lg font-semibold text-foreground">{item.q}</h3>
+                <summary className="cursor-pointer list-none text-lg font-semibold text-foreground">
+                  {item.q}
+                </summary>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
-              </article>
+              </details>
             ))}
           </div>
         </div>

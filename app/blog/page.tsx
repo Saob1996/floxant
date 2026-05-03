@@ -36,6 +36,45 @@ export default function BlogHubPage() {
   const normalizedBlogPosts = germanizeDeep(blogPosts);
   const featuredPosts = normalizedBlogPosts.filter((post) => post.featured);
   const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`;
+  const topicRoutes = [
+    {
+      href: "#empfohlen",
+      title: "Empfohlene Artikel",
+      text: "Die stärksten Einstiege für kaufnahe Themen, Preisrahmen und direkte Entscheidungen.",
+    },
+    {
+      href: "#lokale-antworten",
+      title: "Lokale Antworten",
+      text: "Beiträge für Regensburg, Bayern, Maps-Signale und saubere regionale Einordnung.",
+    },
+    {
+      href: "#alle-beitraege",
+      title: "Alle Beiträge",
+      text: "Das komplette Blog-Cluster für Suchintention, Nutzerführung und interne Pfade.",
+    },
+    {
+      href: "#faq",
+      title: "FAQ",
+      text: "Häufige Fragen direkt vor Rechner, Buchung oder Kontakt schneller klären.",
+    },
+  ];
+  const nextStepLinks = [
+    {
+      href: "/rechner",
+      title: "Preisrahmen prüfen",
+      text: "Wenn aus dem Lesen direkt eine erste Größenordnung für Aufwand und Budget werden soll.",
+    },
+    {
+      href: "/buchung",
+      title: "Anfrage sauber starten",
+      text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den strukturierten Einstieg sind.",
+    },
+    {
+      href: "/kontakt",
+      title: "Rückfragen klären",
+      text: "Wenn Sonderfälle, Erreichbarkeit, Fotos oder Standortthemen vorab abgestimmt werden müssen.",
+    },
+  ];
 
   const blogHubFaqItems = [
     {
@@ -178,6 +217,23 @@ export default function BlogHubPage() {
       </section>
 
       <section className="px-6 pb-10">
+        <div className="mx-auto mb-4 grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {topicRoutes.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200"
+            >
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                Schnellstart
+              </div>
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 transition-colors group-hover:text-blue-700">
+                {item.title}
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.text}</p>
+            </a>
+          ))}
+        </div>
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-5">
           {[
             {
@@ -223,7 +279,7 @@ export default function BlogHubPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-12">
+      <section id="lokale-antworten" className="px-6 pb-12">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm shadow-slate-950/5 md:p-9">
           <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -387,6 +443,40 @@ export default function BlogHubPage() {
       </section>
 
       <section className="px-6 pb-12">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-50/85 p-7 shadow-sm shadow-slate-950/5 md:p-9">
+          <div className="mb-7 max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+              Vor dem nächsten Klick
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+              Vom Artikel direkt in den passenden Anschlussweg
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              Der Blog soll nicht in einer Leseschleife enden. Diese Wege helfen, aus Information direkt eine sinnvolle nächste Aktion zu machen.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {nextStepLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.5rem] border border-slate-200 bg-white p-5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
+              >
+                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                  Nächster Schritt
+                </div>
+                <h3 className="mt-4 flex items-center gap-2 text-xl font-semibold text-slate-950 transition-colors group-hover:text-blue-700">
+                  {item.title}
+                  <ArrowRight className="h-4 w-4" />
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="empfohlen" className="px-6 pb-12">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex items-end justify-between gap-6">
             <div>
@@ -427,7 +517,7 @@ export default function BlogHubPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-20">
+      <section id="alle-beitraege" className="px-6 pb-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
@@ -466,7 +556,7 @@ export default function BlogHubPage() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 px-6 py-20">
+      <section id="faq" className="border-t border-slate-200 px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
@@ -477,14 +567,22 @@ export default function BlogHubPage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {blogHubFaqItems.map((item) => (
-              <div
+            {blogHubFaqItems.map((item, index) => (
+              <details
                 key={item.q}
-                className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
+                open={index === 0}
+                className="group rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
               >
-                <h3 className="text-lg font-semibold text-slate-950">{item.q}</h3>
+                <summary className="cursor-pointer list-none text-lg font-semibold text-slate-950">
+                  <span className="flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-xl leading-none text-blue-700 transition-transform group-open:rotate-45">
+                      +
+                    </span>
+                  </span>
+                </summary>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
-              </div>
+              </details>
             ))}
           </div>
         </div>

@@ -132,8 +132,8 @@ const DESKTOP_LINKS = [
   { label: "Start", href: "/" },
   { label: "Buchung", href: "/buchung" },
   { label: "Rechner", href: "/rechner" },
+  { label: "Wissen", href: "/blog" },
   { label: "Standorte", href: "/standorte" },
-  { label: "Kontakt", href: "/kontakt" },
 ];
 
 const MOBILE_LINKS = [

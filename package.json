@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
+    "build:turbo": "next build --turbopack",
     "start": "next start",
     "lint": "node scripts/run-eslint.cjs",
     "check:links": "node scripts/quality-gate.js links",
@@ -16,6 +17,7 @@
     "seo:ctr": "node scripts/ctr-opportunity-report.js",
     "seo:links": "node scripts/internal-link-graph.js",
     "seo:geo": "node scripts/geo-quality-report.js",
+    "seo:sitemap": "node scripts/generate-sitemap-routes.js",
     "make:blog": "node scripts/generate-blog.js"
   },
   "keywords": [],

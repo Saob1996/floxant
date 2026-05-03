@@ -416,6 +416,38 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            {[
+              {
+                title: "Erst den passenden Weg wählen",
+                text: "Buchung, Rechner, Budget oder Express bleiben getrennt, damit der Einstieg sofort verständlich bleibt.",
+                href: "/buchung",
+              },
+              {
+                title: "Lokale Leistung statt Suchchaos",
+                text: "Regensburg ist der Kern. Von dort aus führen Umzug, Reinigung und Entrümpelung sauber in die passenden Stadt- und Servicepfade.",
+                href: "/standorte",
+              },
+              {
+                title: "Übergabe von Anfang an mitdenken",
+                text: "Wenn Schlüssel, Restmengen, Reinigung oder Fotodokumentation wichtig sind, wird das früh in die Einordnung eingebaut.",
+                href: "/umzug-mit-reinigung",
+              },
+            ].map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group rounded-[1.45rem] border border-slate-200 bg-white/90 px-5 py-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-bold tracking-tight text-slate-950">{item.title}</h3>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
+              </Link>
+            ))}
+          </div>
+
           <div className="mt-5 rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(15,23,42,0.96),rgba(18,38,70,0.96))] p-4 shadow-2xl shadow-slate-950/20 md:p-5">
             <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
               <div className="px-2 py-2">
@@ -738,8 +770,12 @@ export default function Home() {
               Häufige Fragen zu Anfrage, Preis und Einsatzgebiet.
             </h2>
             <div className="mt-6 grid gap-3">
-              {content.faqItems.map((item) => (
-                <details key={item.q} className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4">
+              {content.faqItems.map((item, index) => (
+                <details
+                  key={item.q}
+                  className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4"
+                  open={index === 0}
+                >
                   <summary className="cursor-pointer list-none text-sm font-semibold text-slate-950">
                     {item.q}
                   </summary>

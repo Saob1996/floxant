@@ -97,6 +97,24 @@ const businessModelCards = [
   },
 ];
 
+const supportingLinks = [
+  {
+    title: "Direkt in die Buchung wechseln",
+    href: "/buchung",
+    text: "Wenn Ort und Leistung schon klar sind und der Standortpfad direkt in Conversion übergehen soll.",
+  },
+  {
+    title: "Erst den Rechner nutzen",
+    href: "/rechner",
+    text: "Wenn vor der Anfrage noch eingeordnet werden soll, welcher Rahmen für Strecke, Umfang und Termin realistisch ist.",
+  },
+  {
+    title: "Kontakt & Standort ansehen",
+    href: "/kontakt",
+    text: "Wenn Adresse, Telefonnummer und direkte Kontaktwege zuerst sichtbar werden sollen.",
+  },
+] as const;
+
 export default function StandortePage() {
   const totalLocationLinks = BAVARIA_COVERAGE_GROUPS.reduce(
     (sum, group) => sum + group.links.length,
@@ -320,6 +338,40 @@ export default function StandortePage() {
         </div>
       </section>
 
+      <section className="px-6 pb-10">
+        <div className="mx-auto max-w-6xl rounded-[1.8rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.95),rgba(255,255,255,1))] p-6 shadow-sm shadow-slate-950/5">
+          <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
+                Standort zu Anfrage
+              </div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+                Jeder Standortpfad sollte in den richtigen nächsten Schritt führen.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-slate-600 lg:text-right">
+              Diese drei Wege decken den häufigsten Übergang ab: direkt anfragen, zuerst einordnen
+              oder erst Adresse und Kontaktweg prüfen.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {supportingLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.45rem] border border-white bg-white px-5 py-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-lg font-semibold tracking-tight text-slate-950">{item.title}</h3>
+                  <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="px-6 pb-12">
         <div className="mx-auto mb-4 max-w-6xl">
           <div className="rounded-[1.8rem] border border-blue-100 bg-white p-6 shadow-sm shadow-slate-950/5">
@@ -535,14 +587,17 @@ export default function StandortePage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {faqItems.map((item) => (
-              <article
+            {faqItems.map((item, index) => (
+              <details
                 key={item.q}
                 className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
+                open={index === 0}
               >
-                <h3 className="text-lg font-semibold text-slate-950">{item.q}</h3>
+                <summary className="cursor-pointer list-none text-lg font-semibold text-slate-950">
+                  {item.q}
+                </summary>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
-              </article>
+              </details>
             ))}
           </div>
         </div>

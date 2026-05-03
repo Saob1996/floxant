@@ -22,8 +22,8 @@ const confidenceSignals = [
   icon: ClipboardCheck,
   title: "Anfrage mit nutzbaren Daten",
   text: "Serviceart, Umfang, Zugang, Termin, Preisvorstellung und Übergabeziel werden so erfasst, dass daraus eine echte Prüfung entsteht.",
-  href: "/rechner",
-  label: "Rechner",
+  href: "/buchung",
+  label: "Buchung",
  },
  {
   icon: Route,
@@ -132,13 +132,20 @@ export function ServiceConfidencePanel({
      })}
     </div>
 
-    <div className="mt-6 grid gap-4 rounded-[2rem] border border-blue-100 bg-white/80 p-5 shadow-sm md:grid-cols-[1fr_auto_auto] md:items-center">
+    <div className="mt-6 grid gap-4 rounded-[2rem] border border-blue-100 bg-white/80 p-5 shadow-sm md:grid-cols-[1fr_auto_auto_auto] md:items-center">
      <p className="text-sm leading-relaxed text-slate-600">
       Starker nächster Schritt: erst Aufwand, Zugang und Übergabeziel einordnen, dann mit FLOXANT abstimmen. So bleibt die Anfrage schnell und trotzdem sauber vorbereitet.
      </p>
      <Link
+      href="/buchung"
+      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-blue-700/25 hover:bg-blue-500"
+     >
+      Anfrage starten
+      <ArrowRight className="h-3.5 w-3.5" />
+     </Link>
+     <Link
       href="/rechner"
-      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-foreground shadow-lg shadow-blue-700/25 hover:bg-blue-500"
+      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700 hover:border-blue-200 hover:bg-blue-100"
      >
       Rechner starten
       <ArrowRight className="h-3.5 w-3.5" />

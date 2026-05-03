@@ -184,6 +184,24 @@ const detailCards = [
   },
 ] as const;
 
+const knowledgeLinks = [
+  {
+    title: "Umzug Kosten besser einschätzen",
+    href: "/blog/umzug-kosten-regensburg",
+    text: "Wenn vor der Anfrage noch unklar ist, welche Faktoren den Rahmen tatsächlich treiben.",
+  },
+  {
+    title: "Wohnungsübergabe sauber vorbereiten",
+    href: "/blog/wohnungsuebergabe-regensburg-vorbereiten",
+    text: "Wenn Übergabe, Reinigung, Restmengen und Schlüssel früh mitgedacht werden sollen.",
+  },
+  {
+    title: "Umzug mit Reinigung kombinieren",
+    href: "/blog/umzug-mit-reinigung-regensburg",
+    text: "Wenn der eigentliche Engpass nicht nur der Transport, sondern der ganze Abschluss ist.",
+  },
+] as const;
+
 const faqItems = [
   {
     q: "Ist das Absenden der Anfrage schon verbindlich?",
@@ -325,6 +343,43 @@ export default async function BuchungPage() {
             <div className="hidden lg:block">
               <QuickDecisionPanel />
             </div>
+          </div>
+
+          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                label: "Leistung wählen",
+                href: "#kernleistungen",
+                text: "Wenn zuerst klar sein soll, ob Umzug, Reinigung oder Entrümpelung passt.",
+              },
+              {
+                label: "Anfrageweg wählen",
+                href: "#anfragewege",
+                text: "Wenn Express, Budget oder WhatsApp der bessere Einstieg ist.",
+              },
+              {
+                label: "Direkt ins Formular",
+                href: "#buchungssystem",
+                text: "Wenn der Fall grob klar ist und Sie direkt senden möchten.",
+              },
+              {
+                label: "Vorher Orientierung",
+                href: "/rechner",
+                text: "Wenn Sie erst Aufwand, Zugang und Preisrahmen prüfen möchten.",
+              },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group rounded-[1.4rem] border border-slate-200 bg-white/88 px-4 py-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-semibold text-slate-950">{item.label}</span>
+                  <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+              </Link>
+            ))}
           </div>
 
           <CoreServicesGrid />
@@ -476,6 +531,45 @@ export default async function BuchungPage() {
         </div>
       </section>
 
+      <section id="wissen" className="px-4 py-14 sm:px-6">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.95),rgba(255,255,255,1))] p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Vor der Anfrage
+              </div>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                Erst kurz orientieren, dann sauber anfragen.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-slate-600 lg:text-right">
+              Diese Inhalte helfen, Preisrahmen, Übergabe und kombinierte Leistungen besser
+              einzuordnen, bevor Sie den Fall an FLOXANT senden.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {knowledgeLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.45rem] border border-white bg-white px-5 py-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+              >
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  Ratgeber
+                </div>
+                <h3 className="mt-3 text-lg font-bold tracking-tight text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                  Weiterlesen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-5xl">
           <div className="mb-7">
@@ -485,14 +579,17 @@ export default async function BuchungPage() {
             </h2>
           </div>
           <div className="space-y-3">
-            {faqItems.map((item) => (
-              <article
+            {faqItems.map((item, index) => (
+              <details
                 key={item.q}
                 className="rounded-[1.45rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5"
+                open={index === 0}
               >
-                <h3 className="text-lg font-bold text-slate-950">{item.q}</h3>
+                <summary className="cursor-pointer list-none text-lg font-bold text-slate-950">
+                  {item.q}
+                </summary>
                 <p className="mt-2 text-sm leading-7 text-slate-600">{item.a}</p>
-              </article>
+              </details>
             ))}
           </div>
         </div>

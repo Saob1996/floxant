@@ -181,15 +181,23 @@ export function ServiceAuthorityFaq({ service }: { service: ServiceAuthorityKey 
     </div>
 
     <div className="grid gap-5 lg:grid-cols-3">
-     {data.faqs.map((item) => (
-      <article
+     {data.faqs.map((item, index) => (
+      <details
        key={item.q}
-       className="rounded-[2rem] border border-slate-200 bg-[#f8fbff] p-7 shadow-sm"
+       open={index === 0}
+       className="group rounded-[2rem] border border-slate-200 bg-[#f8fbff] p-7 shadow-sm"
       >
        <HelpCircle className="mb-5 h-6 w-6 text-blue-600" />
-       <h3 className="text-xl font-semibold leading-snug text-slate-950">{item.q}</h3>
+       <summary className="cursor-pointer list-none text-xl font-semibold leading-snug text-slate-950">
+        <span className="flex items-start justify-between gap-4">
+         <span>{item.q}</span>
+         <span className="text-xl leading-none text-blue-700 transition-transform group-open:rotate-45">
+          +
+         </span>
+        </span>
+       </summary>
        <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.a}</p>
-      </article>
+      </details>
      ))}
     </div>
 
@@ -204,6 +212,25 @@ export function ServiceAuthorityFaq({ service }: { service: ServiceAuthorityKey 
        <ArrowRight className="h-4 w-4 text-blue-700 transition-transform group-hover:translate-x-1" />
       </Link>
      ))}
+    </div>
+
+    <div className="mt-8 grid gap-4 rounded-[2rem] border border-blue-100 bg-[#f8fbff] p-5 shadow-sm md:grid-cols-[1fr_auto_auto] md:items-center">
+     <p className="text-sm leading-relaxed text-slate-600">
+      Nach den Entscheidungsfragen führt der beste nächste Schritt in eine strukturierte Anfrage oder in eine kurze Rückfrage. So bleibt aus SEO-Sicht nicht nur die Antwort sichtbar, sondern auch der passende Anschluss.
+     </p>
+     <Link
+      href="/buchung"
+      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-blue-500"
+     >
+      Anfrage starten
+      <ArrowRight className="h-3.5 w-3.5" />
+     </Link>
+     <Link
+      href="/kontakt"
+      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-[11px] font-bold uppercase tracking-[0.16em] text-slate-700 hover:border-blue-200 hover:text-blue-700"
+     >
+      Rückfrage klären
+     </Link>
     </div>
    </div>
   </section>

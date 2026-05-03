@@ -6,21 +6,21 @@ import { m, AnimatePresence } from "framer-motion";
 
 // Static data isolated outside the component to prevent re-instantiation and optimize INP
 const activities = [
-  { type: "success", text: "Anfrage für Privatumzug eingegangen", location: "München" },
-  { type: "info", text: "LKW-Team wurde gerade disponiert", location: "Regensburg" },
-  { type: "review", text: "Neue 5-Sterne Bewertung veröffentlicht", location: "Nürnberg" },
-  { type: "success", text: "Entrümpelung erfolgreich abgeschlossen", location: "Augsburg" },
-  { type: "info", text: "Express-Angebot wurde angefordert", location: "Landshut" },
+  { type: "success", text: "Anfrageweg: Privatumzug vorbereiten", location: "München" },
+  { type: "info", text: "Planungssignal: Team und Route abstimmen", location: "Regensburg" },
+  { type: "review", text: "Qualitätssignal: Rückmeldung prüfen", location: "Nürnberg" },
+  { type: "success", text: "Serviceweg: Entrümpelung einordnen", location: "Augsburg" },
+  { type: "info", text: "Express-Pfad: Terminlage klären", location: "Landshut" },
 ];
 
 const ACTIVITIES_LOCALIZED: Record<string, typeof activities> = {
   de: activities,
   en: [
-    { type: "success", text: "New residential moving inquiry", location: "Munich" },
-    { type: "info", text: "Truck team has been dispatched", location: "Regensburg" },
-    { type: "review", text: "New 5-star review published", location: "Nuremberg" },
-    { type: "success", text: "Clearance successfully completed", location: "Augsburg" },
-    { type: "info", text: "Express quote requested", location: "Landshut" },
+    { type: "success", text: "Inquiry path: residential move", location: "Munich" },
+    { type: "info", text: "Planning signal: team and route", location: "Regensburg" },
+    { type: "review", text: "Quality signal: review feedback", location: "Nuremberg" },
+    { type: "success", text: "Service path: clearance planning", location: "Augsburg" },
+    { type: "info", text: "Express path: timing check", location: "Landshut" },
   ],
   ru: [
     { type: "success", text: "Поступил запрос на переезд", location: "Мюнхен" },
@@ -81,7 +81,7 @@ export default function LiveActivityFeed({ lang = "de" }: { lang?: string }) {
         </p>
        </div>
        <p className="truncate text-xs text-white/40">
-        {lang === "de" ? "vor wenigen Augenblicken" : lang === "ru" ? "несколько мгновений назад" : "just moments ago"}
+        {lang === "de" ? "häufiger Anfragepfad" : lang === "ru" ? "типичный путь запроса" : "common inquiry path"}
        </p>
       </div>
      </div>
@@ -149,9 +149,9 @@ export default function LiveActivityFeed({ lang = "de" }: { lang?: string }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ delay: 0.1, duration: 0.3 }}
-          className="truncate text-xs text-white/40"
+         className="truncate text-xs text-white/40"
         >
-         {lang === "de" ? "vor wenigen Augenblicken" : lang === "ru" ? "несколько мгновений назад" : "just moments ago"}
+         {lang === "de" ? "häufiger Anfragepfad" : lang === "ru" ? "типичный путь запроса" : "common inquiry path"}
         </m.p>
        </AnimatePresence>
       </div>

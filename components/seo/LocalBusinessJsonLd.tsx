@@ -23,8 +23,8 @@ export function LocalBusinessJsonLd() {
     { name: "Buchung und Anfrage", url: company.bookingUrl },
     { name: "Umzug", url: `${company.url}/umzug` },
     { name: "Reinigung", url: `${company.url}/reinigung` },
-    { name: "Entruempelung", url: `${company.url}/entruempelung` },
-    { name: "Bueroumzug", url: `${company.url}/bueroumzug` },
+    { name: "Entrümpelung", url: `${company.url}/entruempelung` },
+    { name: "Büroumzug", url: `${company.url}/bueroumzug` },
     { name: "Einlagerung", url: `${company.url}/einlagerung` },
     { name: "Akteneinlagerung Regensburg", url: `${company.url}/akteneinlagerung-regensburg` },
     { name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
@@ -40,8 +40,8 @@ export function LocalBusinessJsonLd() {
     { name: "FLOXANT Servicegebiet Bayern", url: company.serviceAreaUrl },
     { name: "FLOXANT Umzug Regensburg", url: `${company.url}/umzug-regensburg` },
     { name: "FLOXANT Reinigung Regensburg", url: `${company.url}/reinigung-regensburg` },
-    { name: "FLOXANT Entruempelung Regensburg", url: `${company.url}/entruempelung-regensburg` },
-    { name: "FLOXANT Bueroumzug Regensburg", url: `${company.url}/bueroumzug-regensburg` },
+    { name: "FLOXANT Entrümpelung Regensburg", url: `${company.url}/entruempelung-regensburg` },
+    { name: "FLOXANT Büroumzug Regensburg", url: `${company.url}/bueroumzug-regensburg` },
     { name: "FLOXANT Einlagerung", url: `${company.url}/einlagerung` },
     { name: "FLOXANT Akteneinlagerung Regensburg", url: `${company.url}/akteneinlagerung-regensburg` },
     { name: "FLOXANT Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
@@ -80,7 +80,7 @@ export function LocalBusinessJsonLd() {
     name: company.name,
     alternateName: ["FLOXANT Premium Services"],
     description:
-      "FLOXANT bietet Umzug, Reinigung, Entruempelung, Bueroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rueckfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg und Bayern.",
+      "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg und Bayern.",
     image: [
       `${company.url}/og.jpg`,
       `${company.url}/opengraph-image`,
@@ -94,8 +94,8 @@ export function LocalBusinessJsonLd() {
     email: company.email,
     priceRange: "$$",
     currenciesAccepted: "EUR",
-    paymentAccepted: "Ueberweisung, Rechnung, Kartenzahlung nach Vereinbarung",
-    slogan: "Klare Einschaetzung statt vorschneller Preiszusage.",
+    paymentAccepted: "Überweisung, Rechnung, Kartenzahlung nach Vereinbarung",
+    slogan: "Klare Einschätzung statt vorschneller Preiszusage.",
     address: {
       "@type": "PostalAddress",
       streetAddress: company.streetAddress,
@@ -117,8 +117,8 @@ export function LocalBusinessJsonLd() {
     knowsAbout: [
       "Umzugsunternehmen Regensburg",
       "Reinigungsfirma Regensburg",
-      "Entruempelung Regensburg",
-      "Bueroumzug Regensburg",
+      "Entrümpelung Regensburg",
+      "Büroumzug Regensburg",
       "Einlagerung Regensburg",
       "Akteneinlagerung Regensburg",
       "Firmenentsorgung Regensburg",
@@ -130,7 +130,7 @@ export function LocalBusinessJsonLd() {
       "Private Client Service Bayern",
       "Beiladung",
       "Leer-Rückfahrt",
-      "Buchung ueber Google Maps",
+      "Buchung über Google Maps",
       "Direkter Buchungslink",
       "Google Unternehmensprofil Regensburg",
       "Standorte Bayern",
@@ -303,5 +303,10 @@ export function LocalBusinessJsonLd() {
     },
   };
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
 }

@@ -383,6 +383,24 @@ export default async function RechnerPage() {
     },
   ] as const;
 
+  const knowledgeLinks = [
+    {
+      title: "Umzugskosten senken ohne Fehlkalkulation",
+      href: "/blog/umzugskosten-senken-7-tipps",
+      text: "Wenn Sie sparen wollen, ohne am Einsatztag von fehlender Zeit oder Kapazität überrascht zu werden.",
+    },
+    {
+      title: "Preisrahmen vor Festpreis besser verstehen",
+      href: "/blog/preisrahmen-vorpruefung-statt-festpreis",
+      text: "Warum ein sauberer Rahmen vor der eigentlichen Zusage oft belastbarer ist als ein schneller Fixpreis.",
+    },
+    {
+      title: "Volumen und Risiko richtig einordnen",
+      href: "/blog/volumen-risiko-check-umzug",
+      text: "Wenn Menge, Zugang und Zusatzaufwand den Unterschied zwischen Theorie und echtem Aufwand machen.",
+    },
+  ] as const;
+
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Rechner" },
@@ -1128,6 +1146,45 @@ export default async function RechnerPage() {
       </section>
 
       <section className="section-glow relative content-auto px-6 pb-12">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.95),rgba(255,255,255,1))] p-6 shadow-sm shadow-slate-950/5 md:p-8">
+          <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Vertiefung
+              </div>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                Erst den Rahmen verstehen, dann den Rechner nutzen.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-slate-600 lg:text-right">
+              Diese Beiträge schärfen genau die Fragen, die vor Preisrahmen, Volumen und
+              echter Einsatzplanung am häufigsten auftauchen.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {knowledgeLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.45rem] border border-white bg-white px-5 py-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+              >
+                <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  Ratgeber
+                </div>
+                <h3 className="mt-3 text-lg font-bold tracking-tight text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                  Weiterlesen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-glow relative content-auto px-6 pb-12">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl">
             <span className="label-premium text-blue-700">Bayern-Servicewege</span>
@@ -1377,19 +1434,22 @@ export default async function RechnerPage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {faqItems.map((item) => (
-              <article
+            {faqItems.map((item, index) => (
+              <details
                 key={item.q}
                 className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5"
+                open={index === 0}
               >
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 text-blue-700" />
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-950">{item.q}</h3>
+                    <summary className="cursor-pointer list-none text-lg font-semibold text-slate-950">
+                      {item.q}
+                    </summary>
                     <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.a}</p>
                   </div>
                 </div>
-              </article>
+              </details>
             ))}
           </div>
         </div>

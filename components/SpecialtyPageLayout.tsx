@@ -242,6 +242,45 @@ export function SpecialtyPageLayout({
     { href: serviceContext.primaryPath, label: `${serviceContext.name} als Hauptservice` },
     { href: serviceContext.calculatorHref, label: `${serviceContext.name} im Rechner anfragen` },
   ];
+  const pageRoutes = [
+    {
+      href: "#service-klarheit",
+      title: "Leistung einordnen",
+      text: "Verstehen, für wen der Service gedacht ist und wie er in der Praxis läuft.",
+    },
+    {
+      href: "#naechste-wege",
+      title: "Nächste Wege",
+      text: "Direkt zu Rechner, Hauptservice, Region oder ergänzenden Leistungen springen.",
+    },
+    {
+      href: "#faq",
+      title: "FAQ",
+      text: "Die häufigsten Fragen noch vor Anfrage und Vorprüfung sauber klären.",
+    },
+    {
+      href: "#wizard",
+      title: "Anfrage starten",
+      text: "Mit klaren Angaben direkt in den passenden Anfrage- oder Rechnerpfad gehen.",
+    },
+  ];
+  const planningLinks = [
+    {
+      href: serviceContext.calculatorHref,
+      title: `${serviceContext.name} vorrechnen`,
+      text: "Wenn zuerst Volumen, Preisrahmen oder Aufwand für den Standort besser eingeordnet werden sollen.",
+    },
+    {
+      href: "/anfrage-mit-preisrahmen",
+      title: "Budget direkt nennen",
+      text: "Wenn schon eine Zielgröße da ist und FLOXANT den passenden Rahmen daran spiegeln soll.",
+    },
+    {
+      href: "/kontakt",
+      title: "Rückfragen abstimmen",
+      text: `Wenn Zugang, Fotos, Sonderfälle oder Terminfenster in ${germanText(city, city)} vorab geklärt werden müssen.`,
+    },
+  ];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -403,6 +442,26 @@ export function SpecialtyPageLayout({
         </div>
       </section>
 
+      <section className="px-6 pb-12">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {pageRoutes.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="group rounded-[1.45rem] border border-slate-200 bg-white px-5 py-5 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
+            >
+              <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                Schnellstart
+              </div>
+              <h2 className="mt-3 text-lg font-semibold text-slate-950 transition-colors group-hover:text-blue-700">
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section id="service-klarheit" className="section-glow flox-section scroll-mt-24 py-20">
         <div className="flox-shell">
           {visibleCards.length > 0 ? (
@@ -487,10 +546,42 @@ export function SpecialtyPageLayout({
               </div>
             </div>
           ) : null}
+
+          <div className="mt-16 rounded-[2rem] border border-slate-200 bg-slate-50/90 px-7 py-7 shadow-sm shadow-slate-950/5">
+            <div className="max-w-2xl">
+              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                Vor der Anfrage
+              </div>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
+                Den passenden nächsten Schritt für {germanText(city, city)} wählen
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                Nicht jeder Einstieg passt zu jeder Situation. Diese Wege helfen, Preislogik, Rückfragen und Anfrageform schon vor der eigentlichen Buchung sauber zu trennen.
+              </p>
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {planningLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group rounded-[1.4rem] border border-slate-200 bg-white px-5 py-5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
+                >
+                  <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                    Nächster Schritt
+                  </div>
+                  <h3 className="mt-3 flex items-center gap-2 text-lg font-semibold text-slate-950 transition-colors group-hover:text-blue-700">
+                    {item.title}
+                    <ArrowRight className="h-4 w-4" />
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="section-glow flox-section py-20">
+      <section id="naechste-wege" className="section-glow flox-section py-20">
         <div className="flox-shell max-w-none">
           <div className="flox-section-heading mb-10">
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
@@ -549,7 +640,7 @@ export function SpecialtyPageLayout({
       </section>
 
       {finalFaqs.length > 0 ? (
-        <section className="section-glow flox-section py-22">
+        <section id="faq" className="section-glow flox-section py-22">
           <div className="flox-shell max-w-5xl">
             <div className="mb-10 text-center">
               <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
@@ -561,17 +652,23 @@ export function SpecialtyPageLayout({
             </div>
             <div className="space-y-4">
               {finalFaqs.map((faq, index) => (
-                <article
+                <details
                   key={faq.q}
-                  className="card-premium rounded-[1.45rem] p-7"
+                  open={index === 0}
+                  className="card-premium group rounded-[1.45rem] p-7"
                 >
-                  <h3 className="text-[1.45rem] font-bold text-slate-950">
-                    {germanText(faq.q, faq.q)}
-                  </h3>
+                  <summary className="cursor-pointer list-none text-[1.45rem] font-bold text-slate-950">
+                    <span className="flex items-center justify-between gap-4">
+                      <span>{germanText(faq.q, faq.q)}</span>
+                      <span className="text-xl leading-none text-blue-700 transition-transform group-open:rotate-45">
+                        +
+                      </span>
+                    </span>
+                  </summary>
                   <p className="mt-4 text-base leading-8 text-slate-700">
                     {germanText(faq.a, faq.a)}
                   </p>
-                </article>
+                </details>
               ))}
             </div>
           </div>
