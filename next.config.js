@@ -38,15 +38,7 @@ const umlautRedirectDestinationOverrides = new Map([
 
 const configuredBuildWorkers = Number(process.env.NEXT_BUILD_WORKERS || process.env.NEXT_BUILD_CPUS);
 const hasConfiguredBuildWorkers = Number.isFinite(configuredBuildWorkers) && configuredBuildWorkers > 0;
-const buildWorkerConfig = hasConfiguredBuildWorkers
-    ? {
-        experimental: {
-            cpus: configuredBuildWorkers,
-            staticGenerationMaxConcurrency: configuredBuildWorkers,
-            staticGenerationMinPagesPerWorker: 50,
-        },
-    }
-    : {};
+const buildWorkers = hasConfiguredBuildWorkers ? configuredBuildWorkers : 4;
 
 function buildUmlautRedirects() {
     const redirects = [
@@ -93,8 +85,12 @@ const nextConfig = {
         ignoreBuildErrors: true,
     },
 
-    // Default: no hard worker cap. Set NEXT_BUILD_WORKERS/NEXT_BUILD_CPUS only if a host needs throttling.
-    ...buildWorkerConfig,
+    // Safe default for the large FLOXANT route set. Override with NEXT_BUILD_WORKERS/NEXT_BUILD_CPUS if needed.
+    experimental: {
+        cpus: buildWorkers,
+        staticGenerationMaxConcurrency: buildWorkers,
+        staticGenerationMinPagesPerWorker: 50,
+    },
 
     compress: true,
 
@@ -133,6 +129,26 @@ const nextConfig = {
             },
             {
                 source: '/bg/:path*',
+                destination: '/:path*',
+                permanent: true,
+            },
+            {
+                source: '/vi',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/vi/:path*',
+                destination: '/:path*',
+                permanent: true,
+            },
+            {
+                source: '/tr',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/tr/:path*',
                 destination: '/:path*',
                 permanent: true,
             },
