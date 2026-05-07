@@ -77,10 +77,10 @@ const nextConfig = {
 
     reactStrictMode: true,
 
-    // Build stability on Windows: avoid EMFILE when Next tries to spawn a very high worker count.
+    // Faster production builds for the large FLOXANT route set.
     experimental: {
-        cpus: 1,
-        staticGenerationMaxConcurrency: 1,
+        cpus: 21,
+        staticGenerationMaxConcurrency: 21,
         staticGenerationMinPagesPerWorker: 50,
     },
 
