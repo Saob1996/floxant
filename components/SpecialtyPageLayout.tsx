@@ -16,6 +16,11 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CityServiceCluster } from "@/components/CityServiceCluster";
 import DualCalculator from "@/components/calculator/DualCalculator";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import {
+  PublicAuthorityModules,
+  type PublicAuthorityModuleId,
+} from "@/components/PublicAuthorityModules";
+import { SignatureServices, type SignatureServiceId } from "@/components/SignatureServices";
 import { TrustBadge } from "@/components/trust/TrustBadge";
 import { getCityGeoData, BAVARIAN_CITIES_GEO } from "@/lib/geo-data";
 import { germanText, germanizeDeep } from "@/lib/german-text";
@@ -64,6 +69,14 @@ type SpecialtyPageLayoutProps = {
   neighborhoods?: string[];
   heroImage?: string;
   highlightWord?: string;
+  signatureServices?: readonly SignatureServiceId[];
+  signatureBadge?: string;
+  signatureTitle?: string;
+  signatureSubtitle?: string;
+  authorityModules?: readonly PublicAuthorityModuleId[];
+  authorityBadge?: string;
+  authorityTitle?: string;
+  authoritySubtitle?: string;
 };
 
 function nonEmpty(values: Array<string | undefined | null>) {
@@ -163,7 +176,141 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
   };
 }
 
+function getRegensburgAuthorityContent(serviceName: string) {
+  const sharedTrust = [
+    "Regensburg ist der operative Kern; weitere Orte werden nach Route, Umfang und Kapazität geprüft.",
+    "Fotos von Zugang, Zustand, Menge oder Fläche verkürzen Rückfragen und machen Angebote belastbarer.",
+    "Budget und Preisrahmen sind willkommen, werden aber erst nach Umfang und Machbarkeit eingeordnet.",
+  ];
+
+  if (serviceName === "Reinigung") {
+    return {
+      eyebrow: "Lokale Reinigungssituationen",
+      title: "Typische Reinigungsfälle in Regensburg",
+      intro:
+        "Viele Reinigungsanfragen entstehen kurz vor Übergabe, Einzug oder Wiedervermietung. Entscheidend ist dann nicht ein schöner Werbesatz, sondern ob Fläche, Zustand, Termin und gewünschtes Ergebnis sauber geklärt sind.",
+      situations: [
+        {
+          title: "Endreinigung vor Wohnungsübergabe",
+          text: "Küche, Bad, Böden, Fensterbereiche und schwer erreichbare Stellen müssen vor dem Termin realistisch eingeordnet werden.",
+        },
+        {
+          title: "Reinigung nach Auszug",
+          text: "Wenn Möbel weg sind, werden Staub, Klebereste, Laufspuren oder vergessene Bereiche erst richtig sichtbar.",
+        },
+        {
+          title: "Kombi mit Umzug",
+          text: "Wenn Transport und Reinigung eng zusammenliegen, hilft ein gemeinsamer Ablauf statt zwei getrennter Dienstleister.",
+        },
+      ],
+      inputTitle: "Was Kunden vorab angeben sollten",
+      inputs: [
+        "Fläche in Quadratmetern oder Raumanzahl",
+        "Reinigungsziel: Übergabe, Grundreinigung, Büro oder laufender Objektbedarf",
+        "Fotos von Küche, Bad, Boden, Fenstern und starken Verschmutzungen",
+        "Terminwunsch und spätester Übergabetermin",
+      ],
+      faqs: [
+        {
+          q: "Kann FLOXANT Reinigung und Umzug in Regensburg kombinieren?",
+          a: "Ja, je nach Kapazität und Auftrag können Reinigung, Umzug, Restmengen und Übergabe gemeinsam geplant werden. Sinnvoll ist das besonders, wenn die Wohnung zeitnah zurückgegeben werden muss.",
+        },
+        {
+          q: "Sind Fotos für eine Reinigungsanfrage hilfreich?",
+          a: "Ja. Fotos von Küche, Bad, Böden, Fenstern und starken Verschmutzungen helfen, den Aufwand schneller und fairer einzuordnen.",
+        },
+      ],
+      trust: sharedTrust,
+    };
+  }
+
+  if (serviceName === "Entrümpelung") {
+    return {
+      eyebrow: "Lokale Räumungssituationen",
+      title: "Typische Entrümpelungsfälle in Regensburg",
+      intro:
+        "Bei Entrümpelung geht es selten nur ums Wegtragen. Wichtig sind Menge, Zugang, Material, Zielzustand und die Frage, ob danach noch gereinigt oder übergeben werden soll.",
+      situations: [
+        {
+          title: "Keller, Garage oder Dachboden",
+          text: "Laufwege, Treppen, Innenhof und Menge entscheiden, ob ein kleiner Einsatz reicht oder mehr Kapazität nötig ist.",
+        },
+        {
+          title: "Wohnung leer bekommen",
+          text: "Bei Auszug, Nachlass oder Neuvermietung zählt am Ende, ob die Fläche wirklich frei und nutzbar ist.",
+        },
+        {
+          title: "Entrümpelung plus Reinigung",
+          text: "Wenn Räume anschließend übergeben werden sollen, ist die Kombination aus Räumung und Reinigung oft ruhiger.",
+        },
+      ],
+      inputTitle: "Was den Preis beeinflusst",
+      inputs: [
+        "Menge oder geschätztes Volumen",
+        "Materialarten und schwere Gegenstände",
+        "Etage, Aufzug, Laufweg und Parkmöglichkeit",
+        "Fotos von Menge, Zugang und gewünschtem Zielzustand",
+      ],
+      faqs: [
+        {
+          q: "Kann ich Fotos statt langer Beschreibung senden?",
+          a: "Ja. Gerade bei Keller, Wohnung, Garage oder Dachboden helfen Fotos oft schneller als lange Telefonate, weil Menge und Zugang sichtbarer werden.",
+        },
+        {
+          q: "Kann FLOXANT nach der Entrümpelung auch reinigen?",
+          a: "Je nach Auftrag kann eine besenreine Vorbereitung oder anschließende Reinigung mitgedacht werden, wenn die Fläche danach übergeben oder weiter genutzt werden soll.",
+        },
+      ],
+      trust: sharedTrust,
+    };
+  }
+
+  return {
+    eyebrow: "Lokale Umzugssituationen",
+    title: "Typische Umzugssituationen in Regensburg",
+    intro:
+      "Ein Umzug in Regensburg scheitert selten an einem einzelnen Karton. Meist sind es Zugang, Parken, Timing, Reinigung, Restmengen oder Schlüsselübergabe, die den Ablauf anstrengend machen.",
+    situations: [
+      {
+        title: "Umzug mit Reinigung und Schlüsselübergabe",
+        text: "Wenn Auszug, Endreinigung und Übergabetermin dicht beieinanderliegen, braucht der Ablauf eine klare Reihenfolge.",
+      },
+      {
+        title: "Halteverbotszone in engen Straßen",
+        text: "Altstadt, Innenhöfe, schmale Zufahrten oder lange Laufwege sollten vor dem Angebot sichtbar sein.",
+      },
+      {
+        title: "Rückfahrt oder Leerfahrt nutzen",
+        text: "Wenn Route und Termin passen, kann freie Kapazität für einzelne Transporte oder Rückfahrten geprüft werden.",
+      },
+    ],
+    inputTitle: "Was ein realistisches Angebot verbessert",
+    inputs: [
+      "Fotos von Möbelmenge, Kartons, Treppenhaus und Zugang",
+      "Start, Ziel, Etagen, Aufzug und Parkmöglichkeit",
+      "Wunschtermin, Übergabetermin und mögliche Zeitfenster",
+      "Zusatzbedarf wie Reinigung, Rest-Entrümpelung oder Schlüsselübergabe",
+    ],
+    faqs: [
+      {
+        q: "Wie schnell bekomme ich ein Angebot für einen Umzug in Regensburg?",
+        a: "Das hängt davon ab, wie vollständig die Angaben sind. Ort, Termin, Umfang, Fotos und Zusatzleistungen helfen, schneller eine belastbare Rückmeldung zu geben.",
+      },
+      {
+        q: "Kann FLOXANT die Schlüsselübergabe unterstützen?",
+        a: "Ja, je nach Auftrag und Absprache kann die Schlüsselübergabe mit Protokoll, Fotos oder Übergabevorbereitung mitgedacht werden.",
+      },
+      {
+        q: "Arbeitet FLOXANT nur in Regensburg?",
+        a: "Regensburg ist der operative Kern. Einsätze in der Umgebung und in Bayern werden nach Strecke, Kapazität und Leistungsumfang geprüft.",
+      },
+    ],
+    trust: sharedTrust,
+  };
+}
+
 export function SpecialtyPageLayout({
+  lang,
   dict,
   heroBadge,
   heroTitle,
@@ -181,6 +328,14 @@ export function SpecialtyPageLayout({
   neighborhoods = [],
   heroImage = "/assets/service-moving.png",
   highlightWord,
+  signatureServices = [],
+  signatureBadge,
+  signatureTitle,
+  signatureSubtitle,
+  authorityModules = [],
+  authorityBadge,
+  authorityTitle,
+  authoritySubtitle,
 }: SpecialtyPageLayoutProps) {
   const visibleChips = chips.filter((chip) => chip.text?.trim());
   const visibleCards = cards
@@ -241,6 +396,7 @@ export function SpecialtyPageLayout({
     { href: "/standorte", label: "Alle Standorte und Einsatzgebiete" },
     { href: serviceContext.primaryPath, label: `${serviceContext.name} als Hauptservice` },
     { href: serviceContext.calculatorHref, label: `${serviceContext.name} im Rechner anfragen` },
+    { href: "/empfehlen", label: "FLOXANT mit Partnercode empfehlen" },
   ];
   const pageRoutes = [
     {
@@ -264,6 +420,17 @@ export function SpecialtyPageLayout({
       text: "Mit klaren Angaben direkt in den passenden Anfrage- oder Rechnerpfad gehen.",
     },
   ];
+  const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1]?.label;
+  const showRegensburgAuthority =
+    city === "Regensburg" &&
+    lastBreadcrumb === "Regensburg" &&
+    ["Umzug", "Reinigung", "Entrümpelung"].includes(serviceContext.name);
+  const regensburgAuthority = showRegensburgAuthority
+    ? getRegensburgAuthorityContent(serviceContext.name)
+    : null;
+  const faqItems = regensburgAuthority
+    ? [...finalFaqs, ...regensburgAuthority.faqs]
+    : finalFaqs;
   const planningLinks = [
     {
       href: serviceContext.calculatorHref,
@@ -305,7 +472,7 @@ export function SpecialtyPageLayout({
           item: item.href,
         })),
       ]),
-      ...(finalFaqs.length > 0 ? [buildFaqJsonLd(finalFaqs)] : []),
+      ...(faqItems.length > 0 ? [buildFaqJsonLd(faqItems)] : []),
     ],
   };
 
@@ -355,6 +522,9 @@ export function SpecialtyPageLayout({
               <a
                 href="#wizard"
                 className="btn-premium flox-button-primary min-h-[3.65rem] px-8"
+                data-event="start_booking"
+                data-service={serviceContext.name.toLowerCase()}
+                data-region={city}
               >
                 {germanText(ctaText || `${serviceContext.name} in ${city} anfragen`, ctaText || `${serviceContext.name} in ${city} anfragen`)}
                 <ArrowRight className="h-4 w-4" />
@@ -362,6 +532,9 @@ export function SpecialtyPageLayout({
               <Link
                 href="/anfrage-mit-preisrahmen"
                 className="flox-button-secondary min-h-[3.65rem] px-8"
+                data-event="submit_budget_request"
+                data-service={serviceContext.name.toLowerCase()}
+                data-region={city}
               >
                 Projekt mit Preisrahmen
               </Link>
@@ -382,6 +555,9 @@ export function SpecialtyPageLayout({
                     key={item.href}
                     href={item.href}
                     className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-[11px] font-black uppercase tracking-[0.13em] text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                    data-event={item.href.includes("rechner") ? "start_calculator" : item.href.includes("preisrahmen") ? "submit_budget_request" : "start_booking"}
+                    data-service={serviceContext.name.toLowerCase()}
+                    data-region={city}
                   >
                     {item.label}
                   </a>
@@ -461,6 +637,29 @@ export function SpecialtyPageLayout({
           ))}
         </div>
       </section>
+
+      {signatureServices.length > 0 ? (
+        <SignatureServices
+          locale={lang}
+          dict={dict}
+          serviceIds={signatureServices}
+          badge={signatureBadge}
+          title={signatureTitle}
+          subtitle={signatureSubtitle}
+          compact
+          source={`specialty_${serviceContext.name.toLowerCase()}_${citySlug}`}
+        />
+      ) : null}
+
+      {authorityModules.length > 0 ? (
+        <PublicAuthorityModules
+          moduleIds={authorityModules}
+          badge={authorityBadge}
+          title={authorityTitle}
+          subtitle={authoritySubtitle}
+          source={`authority_${serviceContext.name.toLowerCase()}_${citySlug}`}
+        />
+      ) : null}
 
       <section id="service-klarheit" className="section-glow flox-section scroll-mt-24 py-20">
         <div className="flox-shell">
@@ -545,6 +744,83 @@ export function SpecialtyPageLayout({
                 ))}
               </div>
             </div>
+          ) : null}
+
+          {regensburgAuthority ? (
+            <section className="mt-16 rounded-[2.2rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.92),rgba(255,255,255,0.98)_56%,rgba(236,253,245,0.58))] px-7 py-7 shadow-[0_18px_46px_rgba(15,23,42,0.06)]">
+              <div className="max-w-3xl">
+                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                  {regensburgAuthority.eyebrow}
+                </div>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                  {regensburgAuthority.title}
+                </h2>
+                <p className="mt-4 text-base leading-8 text-slate-700">
+                  {regensburgAuthority.intro}
+                </p>
+              </div>
+
+              <div className="mt-7 grid gap-4 lg:grid-cols-3">
+                {regensburgAuthority.situations.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-[1.45rem] border border-slate-200 bg-white/92 px-5 py-5 shadow-sm shadow-slate-950/5"
+                  >
+                    <h3 className="text-lg font-bold tracking-tight text-slate-950">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-6 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+                <article className="rounded-[1.45rem] border border-slate-200 bg-white/92 px-5 py-5 shadow-sm shadow-slate-950/5">
+                  <h3 className="text-xl font-bold tracking-tight text-slate-950">
+                    {regensburgAuthority.inputTitle}
+                  </h3>
+                  <div className="mt-4 grid gap-3">
+                    {regensburgAuthority.inputs.map((item) => (
+                      <div key={item} className="flex gap-3 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-700" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+
+                <article className="rounded-[1.45rem] border border-blue-100 bg-blue-950 px-5 py-5 text-white shadow-sm shadow-blue-950/10">
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+                    Lokales Vertrauen
+                  </div>
+                  <div className="mt-4 grid gap-3">
+                    {regensburgAuthority.trust.map((item) => (
+                      <div key={item} className="rounded-[1rem] border border-white/10 bg-white/8 px-4 py-3 text-sm leading-6 text-slate-200">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <a
+                      href="#wizard"
+                      className="inline-flex h-11 items-center justify-center rounded-full bg-white px-4 text-[11px] font-black uppercase tracking-[0.14em] text-slate-950 transition hover:-translate-y-0.5"
+                      data-event="start_booking"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-region="Regensburg"
+                    >
+                      Anfrage mit Fotos starten
+                    </a>
+                    <Link
+                      href="/anfrage-mit-preisrahmen"
+                      className="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-white/8 px-4 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-white/12"
+                      data-event="submit_budget_request"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-region="Regensburg"
+                    >
+                      Budget nennen
+                    </Link>
+                  </div>
+                </article>
+              </div>
+            </section>
           ) : null}
 
           <div className="mt-16 rounded-[2rem] border border-slate-200 bg-slate-50/90 px-7 py-7 shadow-sm shadow-slate-950/5">
@@ -639,7 +915,7 @@ export function SpecialtyPageLayout({
         </div>
       </section>
 
-      {finalFaqs.length > 0 ? (
+      {faqItems.length > 0 ? (
         <section id="faq" className="section-glow flox-section py-22">
           <div className="flox-shell max-w-5xl">
             <div className="mb-10 text-center">
@@ -651,7 +927,7 @@ export function SpecialtyPageLayout({
               </h2>
             </div>
             <div className="space-y-4">
-              {finalFaqs.map((faq, index) => (
+              {faqItems.map((faq, index) => (
                 <details
                   key={faq.q}
                   open={index === 0}

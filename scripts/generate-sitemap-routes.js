@@ -8,7 +8,31 @@ const outputFile = path.join(workspaceRoot, "lib", "sitemap-routes.ts");
 const pageFileNames = new Set(["page.ts", "page.tsx"]);
 const blockedSegments = new Set(["api", "admin", "dashboard", "login"]);
 const blockedPrefixes = ["/api", "/admin", "/dashboard", "/login", "/angebote", "/guenstig", "/feedback"];
-const legacyRedirectRoutes = new Set(["/villenservice"]);
+const nonSeoPublicRoutes = new Set([
+  "/impressum",
+  "/datenschutz",
+  "/agb",
+  "/widerruf",
+  "/buchungsbedingungen",
+  "/duesseldorf/reinigung/datenschutz",
+  "/duesseldorf/reinigung/agb",
+]);
+const legacyRedirectRoutes = new Set([
+  "/partnercode",
+  "/airbnb-reinigung-duesseldorf",
+  "/angebot-red-flag-scanner",
+  "/villenservice",
+  "/umzug-duesseldorf",
+  "/umzug-berlin",
+  "/umzug-bremen",
+  "/umzug-dortmund",
+  "/umzug-essen",
+  "/umzug-frankfurt",
+  "/umzug-hamburg",
+  "/umzug-koeln",
+  "/umzug-leipzig",
+  "/umzug-stuttgart",
+]);
 
 function isRouteGroup(segment) {
   return segment.startsWith("(") && segment.endsWith(")");
@@ -39,6 +63,7 @@ function getRouteFromDirectory(directory) {
 
 function isIndexableRoute(route) {
   if (legacyRedirectRoutes.has(route)) return false;
+  if (nonSeoPublicRoutes.has(route)) return false;
   if (/^\/alternativen\/[^/]+$/.test(route)) return false;
   if (/^\/signature\/[^/]+$/.test(route)) return false;
 

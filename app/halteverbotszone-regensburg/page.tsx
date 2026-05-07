@@ -81,6 +81,24 @@ export default async function HalteverbotszoneRegensburgPage({ params }: PagePro
         wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
         wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
         wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
+        signatureServices={[
+          "parking_zone",
+          "photo_check",
+          "budget_check",
+          "short_notice",
+        ]}
+        signatureTitle="Signature Services fuer Halteverbotszone und Zugang"
+        signatureSubtitle="Halteverbotszone, Fotos, Etage, Laufweg und kurzfristige Machbarkeit gehoeren zusammen, wenn ein Umzug in Regensburg nicht am Zugang scheitern soll."
+        authorityModules={[
+          "regensburg_core",
+          "price_transport",
+          "photo_check",
+          "budget_check",
+          "regensburg_200km",
+        ]}
+        authorityBadge="Zugang und Ladezone"
+        authorityTitle="Was vor einer Halteverbotszone in Regensburg geklaert werden sollte"
+        authoritySubtitle="Ob eine Halteverbotszone sinnvoll ist, haengt von Ort, Frist, Ladeweg, Fahrzeug, Termin und Umfang ab. FLOXANT formuliert bewusst keine Sofortzusage ohne Pruefung."
       />
   );
 }

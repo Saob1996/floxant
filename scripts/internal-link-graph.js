@@ -9,6 +9,14 @@ const SOURCE_ROOTS = ["app", "components", "lib"];
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js"]);
 const MONEY_ROUTES = [
   "/rechner",
+  "/buchung",
+  "/umzug-regensburg",
+  "/umzugsunternehmen-regensburg",
+  "/reinigung-regensburg",
+  "/endreinigung-regensburg",
+  "/entruempelung-regensburg",
+  "/kleintransport-regensburg",
+  "/duesseldorf/reinigung",
   "/umzug",
   "/reinigung",
   "/entruempelung",

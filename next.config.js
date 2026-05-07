@@ -32,6 +32,10 @@ const serviceRedirectPairs = [
     ['studentenumzug', 'studentenumzug'],
 ];
 
+const umlautRedirectDestinationOverrides = new Map([
+    ['/umzug-koeln', '/umzug-bayern'],
+]);
+
 function buildUmlautRedirects() {
     const redirects = [
         { source: '/entrümpelung', destination: '/entruempelung', permanent: true },
@@ -41,9 +45,10 @@ function buildUmlautRedirects() {
 
     for (const [sourceCity, destinationCity] of cityRedirectPairs) {
         for (const [sourceService, destinationService] of serviceRedirectPairs) {
+            const destinationPath = `/${destinationService}-${destinationCity}`;
             redirects.push({
                 source: `/${sourceService}-${sourceCity}`,
-                destination: `/${destinationService}-${destinationCity}`,
+                destination: umlautRedirectDestinationOverrides.get(destinationPath) ?? destinationPath,
                 permanent: true,
             });
         }
@@ -53,7 +58,6 @@ function buildUmlautRedirects() {
 }
 
 const nextConfig = {
-    // Performance: Optimize images with modern formats
     images: {
         remotePatterns: [
             {
@@ -68,16 +72,20 @@ const nextConfig = {
             },
         ],
         formats: ['image/avif', 'image/webp'],
-        minimumCacheTTL: 31536000, // 1 year
+        minimumCacheTTL: 31536000,
     },
 
-    // Performance: Enable React strict mode for better debugging
     reactStrictMode: true,
 
-    // Performance: Compress output
+    // Build stability on Windows: avoid EMFILE when Next tries to spawn a very high worker count.
+    experimental: {
+        cpus: 1,
+        staticGenerationMaxConcurrency: 1,
+        staticGenerationMinPagesPerWorker: 50,
+    },
+
     compress: true,
 
-    // SEO: Redirects for canonical URL normalization
     async redirects() {
         return [
             {
@@ -122,6 +130,91 @@ const nextConfig = {
                 permanent: true,
             },
             {
+                source: '/partnercode',
+                destination: '/empfehlen',
+                permanent: true,
+            },
+            {
+                source: '/airbnb-reinigung-duesseldorf',
+                destination: '/reinigung-moeblierte-wohnung-duesseldorf',
+                permanent: true,
+            },
+            {
+                source: '/duesseldorf/b2b-reinigung',
+                destination: '/duesseldorf/bueroreinigung',
+                permanent: true,
+            },
+            {
+                source: '/plattform-angebot-pruefen',
+                destination: '/plattform-auftrag-pruefen',
+                permanent: true,
+            },
+            {
+                source: '/angebot-von-plattform-pruefen',
+                destination: '/plattform-auftrag-pruefen',
+                permanent: true,
+            },
+            {
+                source: '/angebot-red-flag-scanner',
+                destination: '/angebotscheck#red-flag-scanner',
+                permanent: true,
+            },
+            {
+                source: '/guenstigeres-angebot-pruefen',
+                destination: '/angebot-guenstiger-pruefen',
+                permanent: true,
+            },
+            {
+                source: '/umzug-duesseldorf',
+                destination: '/duesseldorf/reinigung',
+                permanent: true,
+            },
+            {
+                source: '/umzug-dortmund',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-berlin',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-bremen',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-essen',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-frankfurt',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-hamburg',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-koeln',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-leipzig',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
+                source: '/umzug-stuttgart',
+                destination: '/umzug-bayern',
+                permanent: true,
+            },
+            {
                 source: '/signature/:slug',
                 destination: '/:slug',
                 permanent: true,
@@ -130,7 +223,6 @@ const nextConfig = {
         ];
     },
 
-    // Security & Performance headers
     async headers() {
         return [
             {
@@ -144,7 +236,6 @@ const nextConfig = {
                         key: 'X-Content-Type-Options',
                         value: 'nosniff',
                     },
-
                     {
                         key: 'X-Frame-Options',
                         value: 'SAMEORIGIN',
@@ -155,7 +246,6 @@ const nextConfig = {
                     },
                 ],
             },
-            // Long cache for static assets
             {
                 source: '/_next/static/:path*',
                 headers: [
@@ -183,7 +273,6 @@ const nextConfig = {
                     },
                 ],
             },
-            // Cache for images
             {
                 source: '/images/:path*',
                 headers: [
@@ -198,4 +287,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-

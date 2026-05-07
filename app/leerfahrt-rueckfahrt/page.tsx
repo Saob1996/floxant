@@ -5,8 +5,10 @@ import { ArrowRight, CalendarClock, MapPin, PackageOpen, Route, ShieldCheck, Tru
 import { BackhaulOffersBoard } from "@/components/BackhaulOffersBoard";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
+import { SignatureServices } from "@/components/SignatureServices";
 import { company } from "@/lib/company";
-import { FALLBACK_BACKHAUL_OFFERS, normalizeBackhaulOffer, type BackhaulOffer } from "@/lib/backhaul-offers";
+import { normalizeBackhaulOffer, type BackhaulOffer } from "@/lib/backhaul-offers";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -29,7 +31,7 @@ const faqItems = [
   },
   {
     q: "Für welche Richtungen ist der Service gedacht?",
-    a: "Der Schwerpunkt liegt auf deutschlandweiten Rückfahrten Richtung Regensburg sowie Zielorten im Umkreis von etwa 150 km um Regensburg. Besonders interessant sind flexible Termine aus Bayern, Franken, Baden-Württemberg, Hessen und angrenzenden Regionen.",
+    a: "Der Schwerpunkt liegt auf Rückfahrten Richtung Regensburg, Zielorten im Umkreis von etwa 200 km und Bayern nach Verfügbarkeit. Besonders interessant sind flexible Termine, wenn Route, Ladefläche und Zeitfenster ohnehin zusammenpassen.",
   },
   {
     q: "Ist der Service auch für Firmen und große Büros geeignet?",
@@ -60,9 +62,9 @@ async function loadOffers(): Promise<BackhaulOffer[]> {
 
     if (error) throw error;
     const offers = (data || []).map(normalizeBackhaulOffer).filter((offer) => offer.status === "active");
-    return offers.length ? offers : FALLBACK_BACKHAUL_OFFERS;
+    return offers;
   } catch {
-    return FALLBACK_BACKHAUL_OFFERS;
+    return [];
   }
 }
 
@@ -129,7 +131,7 @@ export default async function LeerfahrtRueckfahrtPage() {
           "Faire Rückfahrt-Preise für Umzugsgut, Firmeninventar, Möbel, Kartons, Paletten und Teilmengen, wenn Route und freie Fahrzeugkapazität passen.",
         path: "/leerfahrt-rueckfahrt",
         serviceType: "Leer-Rückfahrt",
-        areaServed: ["Regensburg", "Bayern", "Nürnberg", "München", "Deutschland"],
+        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Nürnberg", "München"],
       }),
       buildFaqJsonLd(faqItems),
       {
@@ -190,14 +192,23 @@ export default async function LeerfahrtRueckfahrtPage() {
               >
                 Beiladung vergleichen
               </Link>
+              <Link
+                href="/rueckfahrt-boerse#rueckfahrt-form"
+                className="inline-flex items-center justify-center rounded-2xl border border-emerald-200 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-emerald-800 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:bg-emerald-50"
+                data-event="start_route_check"
+                data-service="leerfahrt"
+                data-source="return_trip_page"
+              >
+                Strecke anfragen
+              </Link>
             </div>
           </div>
 
           <div className="glass-elevated premium-scan rounded-[2.7rem] p-6 shadow-[0_30px_90px_rgba(15,23,42,0.12)]">
             <div className="grid gap-4">
               {[
-                { icon: Route, label: "Richtung", value: "Deutschlandweit nach Regensburg" },
-                { icon: MapPin, label: "Zielgebiet", value: "Regensburg + ca. 150 km Umkreis" },
+                { icon: Route, label: "Richtung", value: "Richtung Regensburg und Bayern" },
+                { icon: MapPin, label: "Zielgebiet", value: "Regensburg + ca. 200 km Umkreis" },
                 { icon: PackageOpen, label: "Geeignet für", value: "Büroinventar, Möbel, Kartons, Paletten" },
                 { icon: CalendarClock, label: "Preislogik", value: "fair, wenn Route und Termin passen" },
               ].map((item) => {
@@ -275,18 +286,46 @@ export default async function LeerfahrtRueckfahrtPage() {
         </div>
       </section>
 
+      <SignatureServices
+        locale="de"
+        dict={{ signature_services: { items: {} } }}
+        serviceIds={["empty_return", "photo_check", "budget_check", "short_notice"]}
+        badge="Signature Service"
+        title="Leerfahrt und Rückfahrt funktionieren nur mit klaren Eckdaten"
+        subtitle="Strecke, Datum, Flexibilität, Umfang, Fotos und Zugang entscheiden, ob freie Kapazität wirklich genutzt werden kann. FLOXANT prüft Verfügbarkeit statt falsche Festpreise zu versprechen."
+        compact
+        source="leerfahrt_rueckfahrt_signature_services"
+      />
+
+      <PublicAuthorityModules
+        moduleIds={[
+          "empty_return_fit",
+          "photo_check",
+          "budget_check",
+          "price_transport",
+          "referral_partnercode",
+          "damage_control",
+          "regensburg_200km",
+          "bavaria_availability",
+        ]}
+        badge="Route und Preislogik"
+        title="Warum Leerfahrt nur mit Strecke, Datum und Umfang funktioniert"
+        subtitle="Freie Kapazitaet kann stark sein, aber nur wenn Route, Termin, Umfang, Zugang und Fotos zusammenpassen. FLOXANT formuliert bewusst keinen verbindlichen Preis ohne Pruefung."
+        source="empty_return_authority_modules"
+      />
+
       <section id="aktuelle-rueckfahrten" className="section-glow relative px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-700">Live-Angebote</div>
+              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-700">Rückfahrt-Börse</div>
               <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 md:text-5xl">
-                Aktuelle Leer-Rückfahrten und flexible Rücktransport-Anfragen
+                Gepflegte Leer-Rückfahrten und flexible Streckenprüfung
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600 md:text-right">
               Admin-gepflegte Rückfahrten erscheinen hier automatisch. Wenn aktuell keine konkrete
-              Tour eingetragen ist, bleibt der flexible Rückfahrt-Check sichtbar.
+              Tour eingetragen ist, bleibt die ehrliche Streckenprüfung über die Rückfahrt-Börse sichtbar.
             </p>
           </div>
 

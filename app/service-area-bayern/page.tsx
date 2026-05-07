@@ -224,6 +224,12 @@ export default async function ServiceAreaBayern() {
       cta: "Direkt anfragen",
     },
     {
+      title: "Rückfahrt-Börse für flexible Strecken",
+      text: "Für Kunden mit Start, Ziel, Datum und Umfang, die eine Leerfahrt oder Rückfahrt nach Verfügbarkeit prüfen lassen wollen.",
+      href: "/rueckfahrt-boerse",
+      cta: "Strecke prüfen",
+    },
+    {
       title: "Standorte für Bayern-Anfragen",
       text: "Für Kunden, die zuerst Reichweite, Nähe und Einsatzgebiet verstehen wollen.",
       href: "/standorte",
@@ -238,6 +244,7 @@ export default async function ServiceAreaBayern() {
     { href: "/bueroumzug-bayern", label: "Bueroumzug Bayern" },
     { href: "/standorte", label: "Standorte in Bayern" },
     { href: "/einsatzgebiet-regensburg-200km", label: "200-km-Einsatzgebiet" },
+    { href: "/rueckfahrt-boerse", label: "Rückfahrt-Börse" },
     { href: "/rechner", label: "Zum FLOXANT Rechner" },
   ];
 

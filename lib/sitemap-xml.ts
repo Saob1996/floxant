@@ -28,6 +28,33 @@ interface SitemapUrl {
   priority: string;
 }
 
+const LEGACY_REDIRECT_ROUTES = new Set([
+  "partnercode",
+  "airbnb-reinigung-duesseldorf",
+  "angebot-red-flag-scanner",
+  "villenservice",
+  "umzug-duesseldorf",
+  "umzug-berlin",
+  "umzug-bremen",
+  "umzug-dortmund",
+  "umzug-essen",
+  "umzug-frankfurt",
+  "umzug-hamburg",
+  "umzug-koeln",
+  "umzug-leipzig",
+  "umzug-stuttgart",
+]);
+
+const NON_SEO_PUBLIC_ROUTES = new Set([
+  "impressum",
+  "datenschutz",
+  "agb",
+  "widerruf",
+  "buchungsbedingungen",
+  "duesseldorf/reinigung/datenschutz",
+  "duesseldorf/reinigung/agb",
+]);
+
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (char) => {
     switch (char) {
@@ -72,6 +99,11 @@ function shouldSkipSitemapSegment(segment: string): boolean {
   );
 }
 
+function shouldSkipSitemapRoute(route: string): boolean {
+  const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+  return LEGACY_REDIRECT_ROUTES.has(normalizedRoute) || NON_SEO_PUBLIC_ROUTES.has(normalizedRoute);
+}
+
 function normalizeRouteSegments(segments: string[]): string[] {
   return segments.filter((segment) => !segment.startsWith("(") && !segment.endsWith(")"));
 }
@@ -88,8 +120,9 @@ function discoverStaticAppRoutes(): string[] {
 
     if (hasPage) {
       const routeSegments = normalizeRouteSegments(segments);
-      if (!routeSegments.some(shouldSkipSitemapSegment)) {
-        routes.add(routeSegments.join("/"));
+      const route = routeSegments.join("/");
+      if (!routeSegments.some(shouldSkipSitemapSegment) && !shouldSkipSitemapRoute(route)) {
+        routes.add(route);
       }
     }
 
@@ -121,8 +154,9 @@ function lastmodForRoute(route: string): string {
 
 function priorityForRoute(route: string): string {
   if (!route) return "1.0";
-  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "rechner", "buchung"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck"].includes(route)) return "0.9";
   if (route === "duesseldorf/reinigung") return "0.91";
+  if (route === "duesseldorf/bueroreinigung") return "0.9";
   if (
     [
       "duesseldorf/bueroreinigung",
@@ -157,7 +191,7 @@ function priorityForRoute(route: string): string {
 function changefreqForRoute(route: string): string {
   if (!route) return "daily";
   if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) return "yearly";
-  if (route === "duesseldorf/reinigung") return "weekly";
+  if (route === "duesseldorf/reinigung" || route === "duesseldorf/bueroreinigung") return "weekly";
   if (route.startsWith("duesseldorf/")) return "monthly";
   if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
   if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";
@@ -173,7 +207,7 @@ function addEntries(
   for (const route of routes) {
     const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
 
-    if (normalizedRoute.split("/").some(shouldSkipSitemapSegment)) {
+    if (normalizedRoute.split("/").some(shouldSkipSitemapSegment) || shouldSkipSitemapRoute(normalizedRoute)) {
       continue;
     }
 

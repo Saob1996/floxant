@@ -6,7 +6,6 @@ import { authOptions } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import {
  BackhaulOffer,
- FALLBACK_BACKHAUL_OFFERS,
  buildBackhaulOfferDetails,
  normalizeBackhaulOffer,
 } from "@/lib/backhaul-offers";
@@ -78,13 +77,13 @@ export async function GET(req: Request) {
    .map(normalizeBackhaulOffer)
    .filter((offer) => includeAll || offer.status === "active");
 
-  return NextResponse.json(offers.length ? offers : includeAll ? [] : FALLBACK_BACKHAUL_OFFERS);
+  return NextResponse.json(offers);
  } catch (error: any) {
   if (includeAll) {
    return NextResponse.json({ error: "Fetch failed", message: error.message }, { status: 500 });
   }
 
-  return NextResponse.json(FALLBACK_BACKHAUL_OFFERS);
+  return NextResponse.json([]);
  }
 }
 

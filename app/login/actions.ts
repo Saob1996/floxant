@@ -3,9 +3,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 export async function login(formData: FormData) {
   const password = formData.get("password");
-  // In a real app, use environment variable: process.env.ADMIN_PASSWORD
-  // For now, hardcoded as requested/implied for simplicity in this demo environment
-  const VALID_PASSWORD = "admin";
+  const VALID_PASSWORD = process.env.ADMIN_PASSWORD;
+
+  if (!VALID_PASSWORD) {
+    return { error: "Login ist nicht konfiguriert." };
+  }
+
   if (password === VALID_PASSWORD) {
     const cookieStore = await cookies();
     cookieStore.set("admin_session", "true", {

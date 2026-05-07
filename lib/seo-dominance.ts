@@ -14,6 +14,28 @@ type SnippetInput = {
 
 export const SEO_MONEY_ROUTES = [
  "/",
+ "/empfehlen",
+ "/angebotscheck",
+ "/angebot-guenstiger-pruefen",
+ "/plattform-auftrag-pruefen",
+ "/plan-b-service",
+ "/makler-vermieter-link",
+ "/mieterwechsel-service-regensburg",
+ "/wohnung-wieder-vermietbar",
+ "/immobilie-verkaufsbereit-machen",
+ "/nachlass-raeumung-regensburg",
+ "/diskreter-umzug-trennung-scheidung",
+ "/rueckfahrt-boerse",
+ "/uebergabeakte",
+ "/schadensbegrenzung",
+ "/keller-muellraum-rettung-regensburg",
+ "/einsatzradar-regensburg",
+ "/reinigung-moeblierte-wohnung-duesseldorf",
+ "/entsorgung-duesseldorf",
+ "/duesseldorf/reinigung",
+ "/duesseldorf/bueroreinigung",
+ "/duesseldorf/grundreinigung",
+ "/duesseldorf/treppenhausreinigung",
  "/buchung",
  "/rechner",
  "/umzug",
@@ -39,6 +61,28 @@ export const SEO_SUPPORT_ROUTES = [
  "/blog",
  "/ratgeber",
  "/floxant-fakten",
+ "/empfehlen",
+ "/angebotscheck",
+ "/angebot-guenstiger-pruefen",
+ "/plattform-auftrag-pruefen",
+ "/plan-b-service",
+ "/makler-vermieter-link",
+ "/mieterwechsel-service-regensburg",
+ "/wohnung-wieder-vermietbar",
+ "/immobilie-verkaufsbereit-machen",
+ "/nachlass-raeumung-regensburg",
+ "/diskreter-umzug-trennung-scheidung",
+ "/rueckfahrt-boerse",
+ "/uebergabeakte",
+ "/schadensbegrenzung",
+ "/keller-muellraum-rettung-regensburg",
+ "/einsatzradar-regensburg",
+ "/reinigung-moeblierte-wohnung-duesseldorf",
+ "/entsorgung-duesseldorf",
+ "/duesseldorf/reinigung",
+ "/duesseldorf/bueroreinigung",
+ "/duesseldorf/grundreinigung",
+ "/duesseldorf/treppenhausreinigung",
  "/buchung",
  "/gewerbereinigung-regensburg",
  "/beiladung",
@@ -61,9 +105,100 @@ const moneySnippets: Record<string, Snippet> = {
   description:
    "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT prüft Aufwand realistisch und führt direkt zur passenden Anfrage.",
   cluster: "money",
-  intent: "Premium-Dienstleister für Umzug, Reinigung und Entrümpelung finden",
+ intent: "Premium-Dienstleister für Umzug, Reinigung und Entrümpelung finden",
  },
- "/buchung": {
+ "/empfehlen": {
+  title: "FLOXANT empfehlen | 50 Euro Empfehlungsbonus",
+  description:
+   "FLOXANT weiterempfehlen: Partnercode oder Empfehlungslink teilen. Bei bestaetigtem und bezahltem Auftrag wird der 50 Euro Bonus geprueft.",
+  cluster: "conversion",
+ intent: "FLOXANT an Freunde, Vermieter, Makler oder Unternehmen empfehlen und Partnercode nutzen",
+ },
+"/angebotscheck": {
+  title: "Angebotscheck & Red-Flag-Scanner | FLOXANT",
+  description:
+   "Ist Ihr Angebot vollständig? FLOXANT prüft Umfang, Termin, Zugang, Zusatzkosten, Reinigung, Entsorgung und offene Punkte vor der Zusage.",
+ cluster: "conversion",
+  intent: "Vorhandenes Angebot mit Red-Flag-Scanner vor der Zusage prüfen und zweite Einschätzung anfragen",
+ },
+"/angebot-guenstiger-pruefen": {
+ title: "Angebot günstiger prüfen lassen | FLOXANT",
+ description:
+  "Vorhandenes Angebot, Preisrahmen, Fotos und Termin senden: FLOXANT prüft, ob nach Verfügbarkeit eine günstigere oder passendere Alternative möglich ist.",
+ cluster: "conversion",
+ intent: "Vorhandenes Angebot mit Preisrahmen senden und guenstigere oder passendere Alternative ohne Preisgarantie pruefen lassen",
+},
+"/makler-vermieter-link": {
+ title: "Fuer Makler & Vermieter | Objektfall direkt senden",
+ description:
+  "Direkter Objekt-Link fuer Makler, Vermieter, Eigentuemer und Hausverwaltungen: Fotos, Termin und offene Punkte an FLOXANT senden.",
+ cluster: "conversion",
+ intent: "Objektfall fuer Raeumung, Reinigung, Entsorgung oder Uebergabevorbereitung schnell an FLOXANT senden",
+},
+"/mieterwechsel-service-regensburg": {
+ title: "Mieterwechsel-Service Regensburg | Raeumung, Reinigung & Uebergabe",
+ description:
+  "FLOXANT unterstützt Vermieter, Hausverwaltungen und Makler beim Mieterwechsel: Raeumung, Entsorgung, Endreinigung und Uebergabevorbereitung.",
+ cluster: "money",
+ intent: "Mieterwechsel-Fall in Regensburg fuer Hausverwaltung, Vermieter oder Makler anfragen",
+},
+ "/wohnung-wieder-vermietbar": {
+  title: "Wohnung wieder vermietbar machen – Räumung, Reinigung & Entsorgung | FLOXANT",
+  description:
+   "Wohnung nach Auszug, Leerstand oder Mieterwechsel vorbereiten: FLOXANT prueft Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache.",
+  cluster: "money",
+  intent: "Wohnung nach Auszug fuer Besichtigung, Vermietung oder Nutzung vorbereiten lassen",
+ },
+ "/immobilie-verkaufsbereit-machen": {
+  title: "Immobilie verkaufsbereit machen - Raeumung, Reinigung & Entsorgung | FLOXANT",
+  description:
+   "Wohnung oder Haus vor Verkauf, Besichtigung oder Expose vorbereiten: FLOXANT prueft Raeumung, Entsorgung, Reinigung und Dokumentation.",
+  cluster: "money",
+  intent: "Immobilie vor Verkauf, Besichtigung oder Expose praktisch vorbereiten lassen",
+ },
+ "/nachlass-raeumung-regensburg": {
+  title: "Nachlass-Raeumung Regensburg | FLOXANT",
+  description:
+   "Wohnung, Haus, Keller oder Garage nach Erbfall diskret raeumen, entsorgen und reinigen lassen. FLOXANT prueft Umfang, Fotos, Freigabe und Termin.",
+  cluster: "money",
+  intent: "Nachlass- oder Erbfall-Wohnung in Regensburg diskret raeumen und reinigen lassen",
+ },
+ "/diskreter-umzug-trennung-scheidung": {
+  title: "Diskreter Umzug bei Trennung oder Scheidung | FLOXANT",
+  description:
+   "Diskreter Auszug in Regensburg: Rueckruf, sichere Kontaktmethode, Transport, Reinigung, Schluesseluebergabe und Uebergabeakte nach Absprache pruefen lassen.",
+  cluster: "money",
+  intent: "Diskreten Auszug bei Trennung, Scheidung oder sensibler privater Situation anfragen",
+ },
+ "/rueckfahrt-boerse": {
+  title: "Rückfahrt-Börse | Leerfahrt & Strecke prüfen",
+  description:
+   "Start, Ziel, Datum und Umfang eintragen. FLOXANT prüft Rückfahrt, Leerfahrt oder flexible Transportlösung ab Regensburg und Bayern.",
+  cluster: "conversion",
+  intent: "Flexible Transportstrecke für Rückfahrt oder Leerfahrt eintragen und prüfen lassen",
+ },
+ "/uebergabeakte": {
+  title: "FLOXANT Übergabeakte | Auszug dokumentieren",
+  description:
+   "Organisatorische Dokumentation für Auszug, Reinigung, Fotos, Schlüsselstatus und Übergabe nach Absprache. Keine Rechtsberatung.",
+ cluster: "conversion",
+ intent: "Übergabeakte für Auszug, Reinigung oder Schlüsselübergabe anfragen",
+ },
+"/schadensbegrenzung": {
+ title: "Schadensbegrenzung bei Umzug, Reinigung & Uebergabe | FLOXANT",
+ description:
+  "Wenn Umzug, Reinigung, Entruempelung oder Uebergabe kurzfristig kippen: Ort, Deadline, Fotos und offene Punkte senden.",
+ cluster: "conversion",
+ intent: "Akute Kipplage bei Umzug, Reinigung, Entruempelung oder Uebergabe nach Verfuegbarkeit pruefen lassen",
+},
+"/keller-muellraum-rettung-regensburg": {
+ title: "Keller- & Muellraum-Rettung Regensburg | FLOXANT",
+ description:
+  "Keller, Muellraum, Garage oder Nebenflaeche zugestellt? FLOXANT prueft Raeumung, Entsorgung und Reinigung fuer Hausverwaltung, WEG und Gewerbe.",
+ cluster: "money",
+ intent: "Keller, Muellraum oder Nebenflaeche in Regensburg mit Fotos und Freigabe pruefen lassen",
+},
+"/buchung": {
   title: "FLOXANT Anfrage Regensburg | direkt starten",
   description:
    "Umzug, Reinigung, Entrümpelung oder Leer-Rückfahrt in Regensburg und Bayern unverbindlich anfragen: Service wählen, Eckdaten senden, Rückmeldung erhalten.",
@@ -267,11 +402,11 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Beiladung statt Vollumzug prüfen",
  },
  "/umzug-mit-reinigung": {
-  title: "Umzug mit Reinigung | Übergabe ohne Doppelstress",
+  title: "Umzug mit Endreinigung Regensburg | FLOXANT",
   description:
-   "Umzug und Endreinigung zusammen planen: Transport, Restmengen, Küche, Bad, Fenster und Schlüsselübergabe sauber abstimmen.",
+   "Umzug und Endreinigung in Regensburg zusammen anfragen: Transport, Reinigung, Fotos, Schlüsselthemen und Übergabe sauber abstimmen.",
   cluster: "support",
-  intent: "Umzug und Endreinigung zusammen planen",
+  intent: "Umzug und Endreinigung in Regensburg zusammen planen",
  },
  "/express-anfrage": {
   title: "Express-Check Regensburg | schnelle Machbarkeit prüfen",
@@ -296,28 +431,220 @@ const moneySnippets: Record<string, Snippet> = {
  },
 };
 
-moneySnippets["/leerfahrt-rueckfahrt"] = {
- title: "Leerfahrt Regensburg | freie Rückfahrt fair nutzen",
+moneySnippets["/endreinigung-regensburg"] = {
+ title: "Endreinigung Regensburg | Auszug & Übergabe",
  description:
-  "Freie Ladefläche Richtung Regensburg nutzen: Möbel, Kartons, Paletten oder Büroinventar fair mitnehmen lassen, wenn Route und Datum passen.",
+  "Endreinigung in Regensburg für Wohnung, Auszug und Übergabe: Fläche, Zustand, Fotos, Termin und Budget realistisch prüfen lassen.",
+ cluster: "money",
+ intent: "Endreinigung in Regensburg vor Auszug oder Wohnungsübergabe anfragen",
+};
+
+moneySnippets["/halteverbotszone-regensburg"] = {
+ title: "Halteverbotszone Regensburg | Umzug besser planen",
+ description:
+  "Halteverbotszone für Umzug oder Transport in Regensburg nach Absprache prüfen: Ort, Frist, Ladeweg, Fahrzeug und Termin klären.",
+ cluster: "support",
+ intent: "Halteverbotszone für Umzug in Regensburg organisieren lassen",
+};
+
+moneySnippets["/duesseldorf/reinigung"] = {
+ title: "Reinigung Düsseldorf | Privat, Endreinigung & B2B",
+ description:
+  "Reinigung in Düsseldorf für Wohnung, Auszug, Endreinigung und B2B-Flächen. Fotos senden, Budget nennen und unverbindlich anfragen.",
+ cluster: "money",
+ intent: "Reinigung in Düsseldorf für privat oder B2B anfragen",
+};
+
+moneySnippets["/duesseldorf/bueroreinigung"] = {
+ title: "B2B-Reinigung Düsseldorf | Büros & kleine Unternehmen",
+ description:
+  "B2B-Reinigung in Düsseldorf für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz und Zeitfenster prüfen lassen.",
+ cluster: "money",
+ intent: "B2B-Reinigung in Düsseldorf für kleine Unternehmen anfragen",
+};
+
+moneySnippets["/duesseldorf/grundreinigung"] = {
+ title: "Grundreinigung Düsseldorf | Wohnung, Büro & Objekt",
+ description:
+  "Grundreinigung in Düsseldorf für Wohnungen, Büros und kleine Gewerbeflächen nach Absprache: Fläche, Zustand, Fotos, Termin und Budget prüfen lassen.",
+ cluster: "money",
+ intent: "Grundreinigung in Düsseldorf mit Fotos und Umfang anfragen",
+};
+
+moneySnippets["/duesseldorf/treppenhausreinigung"] = {
+ title: "Treppenhausreinigung Düsseldorf | Objekt & Hausverwaltung",
+ description:
+  "Treppenhausreinigung in Düsseldorf für kleinere Objekte und Hausverwaltungen nach Absprache: Zugang, Frequenz, Fläche und Fotos senden.",
+ cluster: "money",
+ intent: "Treppenhausreinigung in Düsseldorf für Objekt oder Hausverwaltung anfragen",
+};
+
+moneySnippets["/entsorgung-duesseldorf"] = {
+ title: "Entsorgung Düsseldorf | Möbel, Sperrmüll & Abholung",
+ description:
+  "Entsorgung in Düsseldorf für Möbel, Sperrmüll und kleinere Räumungen. Fotos, Umfang, Zugang und Budget unverbindlich senden.",
+ cluster: "money",
+ intent: "Entsorgung oder Möbelentsorgung in Düsseldorf anfragen",
+};
+
+moneySnippets["/reinigung-moeblierte-wohnung-duesseldorf"] = {
+ title: "Reinigung möblierte Wohnung Düsseldorf | Apartment & Gästewechsel",
+ description:
+  "Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf: Terminfenster, Fotos, Zugang und Zusatzwünsche prüfen lassen.",
+ cluster: "money",
+ intent: "Möblierte Wohnung oder Apartment-Reinigung in Düsseldorf anfragen",
+};
+
+moneySnippets["/schluesseluebergabe"] = {
+ title: "Schlüsselübergabe Service | Protokoll & Übergabe",
+ description:
+  "Schlüsselübergabe nach Umzug, Reinigung oder Auszug: Termin, Fotos, Übergabepunkte und Protokoll organisatorisch abstimmen.",
+ cluster: "support",
+ intent: "Schlüsselübergabe mit Übergabeprotokoll vorbereiten",
+};
+
+moneySnippets["/leerfahrt-rueckfahrt"] = {
+ title: "Leerfahrt & Rückfahrt anfragen | FLOXANT",
+ description:
+  "Leerfahrt oder Rückfahrt für Transport und Umzug anfragen: Strecke, Datum, Umfang und Flexibilität nennen. FLOXANT prüft Verfügbarkeit.",
  cluster: "money",
  intent: "Günstige Rückfahrt oder Beiladung Richtung Regensburg finden",
 };
 
-moneySnippets["/private-client-service"] = {
- title: "Private Client Bayern | diskreter Service für Anwesen",
+moneySnippets["/rueckfahrt-boerse"] = {
+ title: "Rückfahrt-Börse – Strecke eintragen | FLOXANT",
  description:
-  "Diskreter Premium-Service für Villen, Anwesen und hochwertige Haushalte: Umzug, Reinigung, Räumung und Entsorgung in Bayern und Baden-Württemberg.",
+  "Rückfahrt oder Leerfahrt prüfen lassen: Start, Ziel, Datum, Flexibilität, Umfang und Fotos senden. Keine Fake-Tour, sondern Verfügbarkeitsprüfung.",
+ cluster: "conversion",
+ intent: "Flexible Transportstrecke in der Rückfahrt-Börse prüfen lassen",
+};
+
+moneySnippets["/wohnung-wieder-vermietbar"] = {
+ title: "Wohnung wieder vermietbar machen – Räumung, Reinigung & Entsorgung | FLOXANT",
+ description:
+  "Wohnung nach Auszug, Leerstand oder Mieterwechsel vorbereiten: Raeumung, Entsorgung, Reinigung, Fotos und Uebergabeakte nach Absprache.",
+ cluster: "money",
+ intent: "Wohnung fuer Besichtigung, Nutzung oder Vermietung praktisch vorbereiten lassen",
+};
+
+moneySnippets["/immobilie-verkaufsbereit-machen"] = {
+ title: "Immobilie verkaufsbereit machen | FLOXANT",
+ description:
+  "Objekt vor Verkauf, Besichtigung oder Expose vorbereiten: Raeumung, Entsorgung, Reinigung, Fotos und Uebergabeakte nach Absprache.",
+ cluster: "money",
+ intent: "Immobilie fuer Verkauf, Besichtigung oder Expose durch Raeumung und Reinigung vorbereiten lassen",
+};
+
+moneySnippets["/nachlass-raeumung-regensburg"] = {
+ title: "Nachlass-Raeumung Regensburg | FLOXANT",
+ description:
+  "Wohnung, Haus, Keller oder Garage nach Erbfall diskret klaeren: Freigabe, Fotos, Raeumung, Entsorgung, Reinigung und Rueckruf nach Absprache.",
+ cluster: "money",
+ intent: "Nachlass-Raeumung oder Wohnungsaufloesung in Regensburg diskret anfragen",
+};
+
+moneySnippets["/diskreter-umzug-trennung-scheidung"] = {
+ title: "Diskreter Umzug bei Trennung oder Scheidung | FLOXANT",
+ description:
+  "Diskreter Auszug in Regensburg: Rueckruf, sichere Kontaktmethode, Transport, Reinigung, Schluesseluebergabe und Uebergabeakte nach Absprache.",
+ cluster: "money",
+ intent: "Diskreten Auszug in sensibler privater Situation mit Rueckruf und sicherer Kontaktmethode anfragen",
+};
+
+moneySnippets["/uebergabeakte"] = {
+ title: "FLOXANT Übergabeakte – Auszug & Übergabe dokumentieren",
+ description:
+  "Übergabeakte nach Absprache anfragen: erledigte Leistungen, Fotos, Schlüsselstatus und Hinweise organisatorisch dokumentieren lassen.",
+ cluster: "conversion",
+ intent: "Organisatorische Übergabeakte für Auszug oder Wohnungsübergabe anfragen",
+};
+
+moneySnippets["/schadensbegrenzung"] = {
+ title: "Schadensbegrenzung bei Umzug, Reinigung & Uebergabe | FLOXANT",
+ description:
+  "Plan gekippt? FLOXANT prueft kurzfristig Ort, Deadline, Fotos, offene Punkte und Machbarkeit fuer Umzug, Reinigung, Entruempelung oder Uebergabe.",
+ cluster: "conversion",
+ intent: "Kurzfristige Schadensbegrenzung ohne Notdienst-Garantie anfragen",
+};
+
+moneySnippets["/plan-b-service"] = {
+ title: "Plan-B-Service für Umzug, Reinigung & Übergabe | FLOXANT",
+ description:
+  "Ablauf unsicher? FLOXANT prüft nach Verfügbarkeit einen Ersatz- oder Ergänzungsplan für Umzug, Reinigung, Räumung, Entsorgung und Übergabe.",
+ cluster: "conversion",
+ intent: "Plan B für unsicheren Umzug, Reinigung oder Übergabe prüfen lassen",
+};
+
+moneySnippets["/plattform-auftrag-pruefen"] = {
+ title: "Plattform-Auftrag prüfen lassen | FLOXANT",
+ description:
+  "Bereits über Plattform oder Anbieter angefragt? FLOXANT prüft Umfang, Preis, Termin, Fotos und offene Punkte organisatorisch vor der Zusage.",
+ cluster: "conversion",
+ intent: "Plattform-Angebot oder Auftrag praktisch prüfen und zweite Einschätzung anfragen",
+};
+
+moneySnippets["/keller-muellraum-rettung-regensburg"] = {
+ title: "Keller- & Muellraum-Rettung Regensburg | FLOXANT",
+ description:
+  "Keller, Muellraum, Garage oder Nebenflaeche blockiert? Fotos, Freigabe, Zugang und Umfang senden; FLOXANT prueft Raeumung, Entsorgung und Reinigung.",
+ cluster: "money",
+ intent: "Objektflaeche fuer Hausverwaltung, WEG, Vermieter oder Gewerbe in Regensburg pruefen lassen",
+};
+
+moneySnippets["/einsatzradar-regensburg"] = {
+ title: "FLOXANT Einsatzradar Regensburg | Einsatzarten & Servicegebiet",
+ description:
+  "Typische und anonymisierte Einsatzarten im Raum Regensburg: Umzug, Reinigung, Entrümpelung, Rückfahrt, Übergabeakte und Objektservice.",
+ cluster: "geo",
+ intent: "Lokale FLOXANT Einsatzarten und Servicezonen rund um Regensburg ansehen",
+};
+
+moneySnippets["/private-client-service"] = {
+ title: "Premium Umzug & Service | diskret geplant",
+ description:
+  "Diskreter Premium-Service für hochwertige Kunden: Umzug, Reinigung, Übergabe und Koordination mit persönlicher Vorprüfung.",
  cluster: "money",
  intent: "Diskreten Luxusservice für hochwertige Privathaushalte finden",
 };
 
 moneySnippets["/"] = {
- title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
+ title: "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg",
  description:
-  "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT prüft Aufwand realistisch und führt direkt zur passenden Anfrage.",
+  "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg: FLOXANT bündelt Transport, Endreinigung, Räumung und Zusatzservices.",
  cluster: "money",
  intent: "Direkten Dienstleister für Umzug, Reinigung und Entrümpelung mit Buchung finden",
+};
+
+moneySnippets["/umzug-regensburg"] = {
+ title: "Umzug Regensburg – Transport, Reinigung & Übergabe",
+ description:
+  "Umzug in Regensburg mit Planung, Transport, Endreinigung, Schlüsselübergabe und Halteverbotszone nach Absprache. Fotos oder Budget senden.",
+ cluster: "money",
+ intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
+};
+
+moneySnippets["/reinigung-regensburg"] = {
+ title: "Reinigung Regensburg – Endreinigung & Übergabe",
+ description:
+  "Reinigung in Regensburg für Wohnung, Auszug und Übergabe. Fotos senden, Budget nennen und Aufwand realistisch prüfen lassen.",
+ cluster: "money",
+ intent: "Reinigung oder Endreinigung in Regensburg anfragen",
+};
+
+moneySnippets["/entruempelung-regensburg"] = {
+ title: "Entrümpelung Regensburg – Wohnung, Keller & Reinigung",
+ description:
+  "Entrümpelung in Regensburg für Wohnung, Keller, Garage und Sperrmüll. Fotos senden, Preisrahmen prüfen und Reinigung ergänzen.",
+ cluster: "money",
+ intent: "Entrümpelung in Regensburg anfragen",
+};
+
+moneySnippets["/kleintransport-regensburg"] = {
+ title: "Transport Regensburg – Möbel, Kleintransport & Rückfahrt",
+ description:
+  "Transport in Regensburg für Möbel und Einzelstücke. Route, Zugang, Fotos, Haltezone und Leerfahrt/Rückfahrt nach Verfügbarkeit prüfen.",
+ cluster: "money",
+ intent: "Transport oder Möbeltransport in Regensburg anfragen",
 };
 
 moneySnippets["/buchung"] = {
@@ -422,6 +749,14 @@ moneySnippets["/service-area-bayern"] = {
   "FLOXANT arbeitet ab Regensburg für Bayern: Umzug, Reinigung, Entrümpelung, Büroumzug und Leerfahrt nach Strecke prüfen.",
  cluster: "geo",
  intent: "FLOXANT Einsatzgebiet in Bayern und rund um Regensburg prüfen",
+};
+
+moneySnippets["/einsatzgebiet-regensburg-200km"] = {
+ title: "Servicegebiet Regensburg & Umgebung | FLOXANT",
+ description:
+  "Regensburg als Kern: Umzug, Reinigung, Entrümpelung und Transport in der Umgebung bis ca. 200 km und Bayern nach Verfügbarkeit prüfen.",
+ cluster: "geo",
+ intent: "FLOXANT Servicegebiet rund um Regensburg und Bayern einordnen",
 };
 
 const serviceCityPatterns = [

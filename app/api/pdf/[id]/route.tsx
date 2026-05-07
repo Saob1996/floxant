@@ -6,642 +6,461 @@ import { getServerSession } from "next-auth";
 import { Document, Page, StyleSheet, Text, View, renderToStream } from "@react-pdf/renderer";
 import { authOptions } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
-import { FloxDocument, FloxDocumentType } from "@/lib/types/intake";
-
-const BUSINESS = {
- name: "FLOXANT - Saleh Obid",
- street: "Johanna-Kinkel-Strasse 1 + 2",
- zip: "93049",
- city: "Regensburg",
- country: "Deutschland",
- phone: "+49 1577 1105087",
- email: "info@floxant.de",
- taxNumber: "103/5163/5231",
- vatId: "DE 45971484",
- bank: "Sparkasse Neuss",
- iban: "DE87 3055 0000 0093 7290 93",
-};
+import {
+ floxantDocumentSettings,
+ formatDateDE,
+ formatMoney,
+ getDocumentTitle,
+ normalizeDocument,
+ validateDocument,
+} from "@/lib/documents/document-core";
+import type { FloxDocument } from "@/lib/types/intake";
 
 const styles = StyleSheet.create({
  page: {
-  paddingTop: 44,
-  paddingBottom: 88,
-  paddingHorizontal: 40,
+  paddingTop: 42,
+  paddingBottom: 74,
+  paddingHorizontal: 42,
   fontFamily: "Helvetica",
-  fontSize: 10,
-  color: "#111827",
-  lineHeight: 1.4,
+  fontSize: 9.6,
+  color: "#0f172a",
+  lineHeight: 1.42,
+ },
+ fixedHeader: {
+  position: "absolute",
+  top: 18,
+  left: 42,
+  right: 42,
+  height: 15,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  borderBottomWidth: 0.6,
+  borderBottomColor: "#e2e8f0",
+  color: "#64748b",
+  fontSize: 7.4,
+ },
+ brand: {
+  fontSize: 25,
+  fontWeight: 800,
+  letterSpacing: 2.2,
+ },
+ brandLine: {
+  marginTop: 4,
+  fontSize: 8,
+  letterSpacing: 0.8,
+  color: "#64748b",
  },
  header: {
   flexDirection: "row",
   justifyContent: "space-between",
-  marginBottom: 28,
-  alignItems: "flex-start",
+  gap: 30,
+  marginBottom: 24,
  },
- brandTitle: {
-  fontSize: 23,
-  fontWeight: "bold",
-  letterSpacing: 1.2,
- },
- brandSubtitle: {
-  marginTop: 4,
+ businessBox: {
+  width: 190,
+  padding: 12,
+  borderWidth: 0.8,
+  borderColor: "#e2e8f0",
+  backgroundColor: "#f8fafc",
+  borderRadius: 8,
   fontSize: 8,
-  color: "#6b7280",
+  color: "#334155",
  },
- senderInfo: {
-  width: "45%",
-  textAlign: "right",
-  fontSize: 8,
-  color: "#4b5563",
+ senderLine: {
+  marginTop: 20,
+  width: 270,
+  paddingBottom: 3,
+  borderBottomWidth: 0.5,
+  borderBottomColor: "#cbd5e1",
+  color: "#64748b",
+  fontSize: 7,
+ },
+ recipient: {
+  marginTop: 8,
+  minHeight: 82,
+  fontSize: 10.2,
   lineHeight: 1.55,
  },
- recipientWrap: {
-  marginBottom: 26,
- },
- recipientLine: {
-  fontSize: 7,
-  color: "#9ca3af",
-  borderBottomWidth: 0.5,
-  borderBottomColor: "#d1d5db",
-  paddingBottom: 3,
-  marginBottom: 8,
- },
- recipientName: {
-  fontWeight: "bold",
-  fontSize: 11,
- },
- recipientText: {
-  marginTop: 2,
- },
  titleRow: {
-  borderBottomWidth: 1.5,
-  borderBottomColor: "#111827",
-  paddingBottom: 10,
-  marginBottom: 14,
- },
- docTitle: {
-  fontSize: 16,
-  fontWeight: "bold",
-  letterSpacing: 0.5,
- },
- metaGrid: {
   flexDirection: "row",
-  gap: 18,
-  marginTop: 10,
+  justifyContent: "space-between",
+  gap: 22,
+  paddingTop: 18,
+  borderTopWidth: 1.2,
+  borderTopColor: "#0f172a",
+  marginBottom: 18,
  },
- metaItem: {
-  minWidth: 96,
- },
- metaLabel: {
-  fontSize: 7,
-  fontWeight: "bold",
-  color: "#6b7280",
-  textTransform: "uppercase",
-  letterSpacing: 0.5,
- },
- metaValue: {
-  marginTop: 2,
-  fontSize: 9,
-  color: "#111827",
+ title: {
+  fontSize: 19,
+  fontWeight: 800,
+  letterSpacing: 0.2,
  },
  intro: {
-  marginBottom: 16,
+  marginTop: 13,
+  maxWidth: 330,
   fontSize: 10,
   lineHeight: 1.6,
+  color: "#334155",
+ },
+ meta: {
+  width: 190,
+  fontSize: 8.8,
+ },
+ metaRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  borderBottomWidth: 0.4,
+  borderBottomColor: "#e2e8f0",
+  paddingVertical: 4,
+  gap: 8,
+ },
+ metaLabel: {
+  color: "#64748b",
+  fontWeight: 700,
+ },
+ sectionTitle: {
+  marginTop: 14,
+  marginBottom: 8,
+  fontSize: 8.4,
+  fontWeight: 800,
+  letterSpacing: 1,
+  color: "#475569",
+  textTransform: "uppercase",
+ },
+ serviceCard: {
+  padding: 10,
+  borderWidth: 0.6,
+  borderColor: "#e2e8f0",
+  backgroundColor: "#f8fafc",
+  borderRadius: 7,
+  marginBottom: 7,
+ },
+ serviceTitle: {
+  fontSize: 10,
+  fontWeight: 800,
+ },
+ serviceText: {
+  marginTop: 5,
+  fontSize: 9,
+  lineHeight: 1.5,
+  color: "#334155",
  },
  tableHeader: {
   flexDirection: "row",
+  borderTopWidth: 1,
   borderBottomWidth: 1,
-  borderBottomColor: "#111827",
-  paddingBottom: 6,
-  marginBottom: 2,
+  borderColor: "#0f172a",
+  backgroundColor: "#f1f5f9",
+  paddingVertical: 7,
+  fontSize: 7.4,
+  fontWeight: 800,
+  color: "#334155",
  },
  tableRow: {
   flexDirection: "row",
-  borderBottomWidth: 0.5,
-  borderBottomColor: "#e5e7eb",
+  borderBottomWidth: 0.45,
+  borderBottomColor: "#e2e8f0",
   paddingVertical: 7,
-  minHeight: 26,
+  minHeight: 28,
  },
- colPos: { width: "8%", fontSize: 8.5 },
- colDesc: { width: "42%", fontSize: 8.8, paddingRight: 8 },
- colQty: { width: "12%", fontSize: 8.5, textAlign: "right" },
- colUnit: { width: "18%", fontSize: 8.5, textAlign: "right" },
- colTotal: { width: "20%", fontSize: 8.8, textAlign: "right", fontWeight: "bold" },
+ colPos: { width: "7%", paddingRight: 4 },
+ colDesc: { width: "40%", paddingRight: 8 },
+ colQty: { width: "12%", paddingRight: 6, textAlign: "right" },
+ colUnit: { width: "15%", paddingRight: 6, textAlign: "right" },
+ colTax: { width: "10%", paddingRight: 6, textAlign: "right" },
+ colTotal: { width: "16%", textAlign: "right", fontWeight: 700 },
  totalsWrap: {
-  marginTop: 16,
+  marginTop: 14,
   alignItems: "flex-end",
  },
  totalsBox: {
-  width: "48%",
+  width: 230,
+  borderWidth: 0.9,
+  borderColor: "#0f172a",
+  padding: 10,
+  borderRadius: 7,
  },
  totalRow: {
   flexDirection: "row",
   justifyContent: "space-between",
   paddingVertical: 3,
- },
- totalLabel: {
-  fontSize: 9,
-  color: "#4b5563",
- },
- totalValue: {
-  fontSize: 9,
+  borderBottomWidth: 0.35,
+  borderBottomColor: "#e2e8f0",
  },
  grandRow: {
   flexDirection: "row",
   justifyContent: "space-between",
-  marginTop: 5,
   paddingTop: 7,
-  borderTopWidth: 1.5,
-  borderTopColor: "#111827",
- },
- grandLabel: {
+  marginTop: 4,
   fontSize: 11,
-  fontWeight: "bold",
+  fontWeight: 800,
  },
- grandValue: {
-  fontSize: 11,
-  fontWeight: "bold",
- },
- section: {
-  marginBottom: 16,
-  padding: 12,
-  backgroundColor: "#f9fafb",
-  borderRadius: 4,
- },
- sectionTitle: {
-  fontSize: 8,
-  fontWeight: "bold",
-  color: "#4b5563",
-  marginBottom: 8,
-  paddingBottom: 4,
-  borderBottomWidth: 0.5,
-  borderBottomColor: "#d1d5db",
-  textTransform: "uppercase",
- },
- grid: {
-  flexDirection: "row",
-  flexWrap: "wrap",
- },
- gridItem: {
-  width: "50%",
-  marginBottom: 6,
-  paddingRight: 10,
- },
- gridLabel: {
-  fontSize: 7,
-  color: "#9ca3af",
- },
- gridValue: {
-  marginTop: 1,
-  fontSize: 9,
- },
- tagWrap: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-  marginTop: 8,
-  gap: 5,
- },
- tag: {
-  paddingVertical: 3,
-  paddingHorizontal: 7,
-  borderRadius: 999,
-  backgroundColor: "#eef2ff",
-  color: "#1d4ed8",
-  fontSize: 8,
- },
- signatureRow: {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  marginTop: 28,
-  gap: 20,
- },
- signatureBlock: {
-  width: "46%",
-  paddingTop: 20,
-  borderTopWidth: 0.7,
-  borderTopColor: "#9ca3af",
-  fontSize: 8,
-  color: "#6b7280",
- },
- legalNote: {
-  marginTop: 26,
-  fontSize: 8,
-  color: "#4b5563",
+ notes: {
+  marginTop: 18,
+  fontSize: 8.6,
   lineHeight: 1.55,
+  color: "#334155",
+ },
+ warningBox: {
+  marginTop: 16,
+  padding: 9,
+  borderWidth: 0.6,
+  borderColor: "#f59e0b",
+  backgroundColor: "#fffbeb",
+  borderRadius: 6,
+  fontSize: 8,
+  color: "#92400e",
  },
  footer: {
   position: "absolute",
-  bottom: 30,
-  left: 40,
-  right: 40,
-  borderTopWidth: 0.5,
-  borderTopColor: "#d1d5db",
-  paddingTop: 10,
-  fontSize: 7,
-  color: "#4b5563",
+  left: 42,
+  right: 42,
+  bottom: 28,
+  paddingTop: 8,
+  borderTopWidth: 0.55,
+  borderTopColor: "#cbd5e1",
   flexDirection: "row",
   justifyContent: "space-between",
-  lineHeight: 1.55,
+  gap: 16,
+  fontSize: 6.8,
+  lineHeight: 1.45,
+  color: "#475569",
  },
  footerCol: {
-  width: "31%",
+  width: "32%",
  },
- footerColRight: {
-  width: "34%",
-  textAlign: "right",
- },
- footerHeadline: {
-  fontWeight: "bold",
+ footerTitle: {
+  fontWeight: 800,
+  color: "#0f172a",
   marginBottom: 2,
  },
  pageNumber: {
   position: "absolute",
-  bottom: 15,
-  right: 40,
+  right: 42,
+  bottom: 14,
   fontSize: 7,
-  color: "#9ca3af",
+  color: "#94a3b8",
  },
 });
 
-type AdHocPdfRequest = {
- docType?: string;
- items?: Array<{
-  id?: string;
-  description?: string;
-  quantity?: number;
-  unit?: string;
-  unitPrice?: number;
-  taxRate?: number;
- }>;
- clientInfo?: {
-  name?: string;
-  email?: string;
-  phone?: string;
-  address?: string;
- };
- leistungsdatum?: string;
- introText?: string;
- conditions?: string;
- paymentTerms?: string;
- dueDate?: string;
- documentDate?: string;
-};
-
-function formatMoney(value: number) {
- return `${new Intl.NumberFormat("de-DE", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
- }).format(value)} EUR`;
+function text(value: unknown) {
+ return String(value || "").trim();
 }
 
-function formatDate(value?: string) {
- if (!value) return "";
- const parsed = new Date(value);
- if (Number.isNaN(parsed.getTime())) return value;
- return parsed.toLocaleDateString("de-DE");
+function recipientLines(doc: FloxDocument) {
+ const customer = doc.editableData.customer;
+ return [
+  customer?.companyName,
+  customer?.contactPerson ? `z. Hd. ${customer.contactPerson}` : "",
+  !customer?.companyName ? customer?.name : "",
+  customer?.street,
+  [customer?.zip, customer?.city].filter(Boolean).join(" "),
+  customer?.country && customer.country !== "Deutschland" ? customer.country : "",
+ ].filter(Boolean) as string[];
 }
 
-function toDocTitle(type: FloxDocumentType) {
- if (type === "invoice") return "RECHNUNG";
- if (type === "order_confirmation") return "AUFTRAGSBESTÄTIGUNG";
- if (type === "quote") return "ANGEBOT";
- return "ANFRAGE-ZUSAMMENFASSUNG";
+function servicePeriod(doc: FloxDocument) {
+ const data = doc.editableData;
+ if (data.servicePeriodStart && data.servicePeriodEnd) {
+  return `${formatDateDE(data.servicePeriodStart)} bis ${formatDateDE(data.servicePeriodEnd)}`;
+ }
+ if (data.serviceDate) return formatDateDE(data.serviceDate);
+ return "";
 }
 
-function normalizeDocType(input?: string): FloxDocumentType {
- if (!input) return "quote";
- if (input === "angebot" || input === "quote") return "quote";
- if (input === "auftragsbestaetigung" || input === "order_confirmation") return "order_confirmation";
- if (input === "rechnung" || input === "invoice") return "invoice";
- return "inquiry_summary";
-}
-
-function cloneLineItems(items: FloxDocument["editableData"]["items"] = []) {
- return items.map((item) => ({
-  ...item,
-  quantity: Number(item.quantity) || 0,
-  unitPrice: Number(item.unitPrice) || 0,
-  taxRate: Number(item.taxRate) || 19,
-  total: Number(item.total) || Number(item.quantity || 0) * Number(item.unitPrice || 0),
- }));
-}
-
-function calculateTotals(items: FloxDocument["editableData"]["items"]) {
- const net = items.reduce((sum, item) => sum + Number(item.quantity || 0) * Number(item.unitPrice || 0), 0);
- const tax = items.reduce(
-  (sum, item) => sum + Number(item.quantity || 0) * Number(item.unitPrice || 0) * ((Number(item.taxRate || 0) || 0) / 100),
-  0
+function BusinessInfo() {
+ return (
+  <View style={styles.businessBox}>
+   <Text style={{ fontWeight: 800 }}>FLOXANT</Text>
+   <Text>{floxantDocumentSettings.legalName}</Text>
+   <Text>{floxantDocumentSettings.streetAddress}</Text>
+   <Text>
+    {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+   </Text>
+   <Text>{floxantDocumentSettings.country}</Text>
+   <Text style={{ marginTop: 5 }}>{floxantDocumentSettings.phone}</Text>
+   <Text>{floxantDocumentSettings.email}</Text>
+   <Text>{floxantDocumentSettings.website.replace(/^https?:\/\//, "")}</Text>
+  </View>
  );
-
- return {
-  net,
-  tax,
-  gross: net + tax,
-  currency: "EUR",
- };
 }
 
-function buildFallbackDocument(bookingId: string, booking: any, body: AdHocPdfRequest): FloxDocument {
- const type = normalizeDocType(body.docType);
- const snapshot = booking?.details || {};
- const items = (body.items || [])
-  .filter((item) => (item.description || "").trim().length > 0)
-  .map((item, index) => {
-   const quantity = Number(item.quantity) || 1;
-   const unitPrice = Number(item.unitPrice) || 0;
-
-   return {
-    id: item.id || `row-${index + 1}`,
-    description: item.description?.trim() || "Leistung",
-    quantity,
-    unit: item.unit?.trim() || "Pauschale",
-    unitPrice,
-    taxRate: Number(item.taxRate) || 19,
-    total: quantity * unitPrice,
-   };
-  });
-
- const totals = calculateTotals(items);
- const documentDate = body.documentDate || new Date().toISOString();
- const dueDate = body.dueDate || body.leistungsdatum;
- const prefix = type === "invoice" ? "RE" : type === "order_confirmation" ? "AB" : type === "quote" ? "AG" : "ANF";
-
- return {
-  id: crypto.randomUUID(),
-  bookingId,
-  type,
-  number: `${prefix}-${bookingId.slice(0, 8).toUpperCase()}-LIVE`,
-  status: "draft",
-  version: 1,
-  snapshot: {
-   contact: {
-    fullName: body.clientInfo?.name || booking?.name || "Interessent",
-    email: body.clientInfo?.email || booking?.email || "",
-    phone: body.clientInfo?.phone || booking?.phone || "",
-    callbackPreference: "",
-    notes: body.clientInfo?.address || "",
-   },
-   service: snapshot.service || {
-    type: booking?.service || "service",
-    source: "dashboard_document_page",
-   },
-   valuation: snapshot.valuation || {
-    systemPriceRangeMin: 0,
-    systemPriceRangeMax: 0,
-    priceRangeMin: 0,
-    priceRangeMax: 0,
-    valuationLabel: "Orientierungsrahmen",
-    valuationStage: "Vorprüfung",
-    accuracyState: "Vorprüfung",
-    topDrivers: [],
-   },
-   configuration: snapshot.configuration || {},
-   timestamp: new Date().toISOString(),
-  },
-  editableData: {
-   title: toDocTitle(type),
-   introText:
-    body.introText ||
-    (type === "invoice"
-     ? "Wir berechnen Ihnen die folgenden Leistungen."
-     : type === "order_confirmation"
-      ? "Hiermit bestaetigen wir die vereinbarten Leistungen."
-      : type === "quote"
-       ? "Vielen Dank für Ihre Anfrage. Nach Ihrer Vorprüfung erhalten Sie hier den aktuellen Leistungsstand."
-       : "Zusammenfassung Ihrer Anfrage und Vorprüfung."),
-   items,
-   conditions:
-    body.conditions ||
-    (type === "invoice"
-     ? "Zahlbar gemaess Zahlungsbedingungen."
-     : type === "order_confirmation"
-      ? "Es gelten unsere vereinbarten Bedingungen und AGB."
-      : "Dieses Dokument dient Ihrer weiteren Planung."),
-   documentDate,
-   dueDate,
-   paymentTerms: body.paymentTerms || "",
-  },
-  totals,
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
- };
-}
-
-function SnapshotPdfDocument({ doc }: { doc: FloxDocument }) {
- const { snapshot, editableData, totals, type, number } = doc;
- const lineItemMode = type === "quote" || type === "order_confirmation" || type === "invoice";
- const topDrivers = snapshot.valuation?.topDrivers || [];
+function FloxPdfDocument({ document }: { document: FloxDocument }) {
+ const doc = normalizeDocument(document);
+ const warnings = validateDocument(doc);
+ const title = doc.editableData.title || getDocumentTitle(doc.type);
+ const period = servicePeriod(doc);
+ const dueDate = doc.editableData.paymentDueDate || doc.editableData.dueDate;
+ const notes = [
+  doc.editableData.conditions,
+  doc.editableData.notesText,
+  doc.editableData.paymentTerms ? `Zahlungsbedingungen: ${doc.editableData.paymentTerms}` : "",
+  doc.editableData.footerNote,
+ ].filter(Boolean);
 
  return (
-  <Document>
+  <Document title={`${title} ${doc.number}`} author="FLOXANT">
    <Page size="A4" style={styles.page} wrap>
-    <View style={styles.header} fixed>
-     <View>
-      <Text style={styles.brandTitle}>FLOXANT</Text>
-      <Text style={styles.brandSubtitle}>Premium Umzug · Reinigung · Entrümpelung</Text>
-     </View>
-
-     <View style={styles.senderInfo}>
-      <Text style={styles.footerHeadline}>{BUSINESS.name}</Text>
-      <Text>{BUSINESS.street}</Text>
-      <Text>
-       {BUSINESS.zip} {BUSINESS.city}
-      </Text>
-      <Text style={{ marginTop: 3 }}>Tel: {BUSINESS.phone}</Text>
-      <Text>E-Mail: {BUSINESS.email}</Text>
-     </View>
+    <View style={styles.fixedHeader} fixed>
+     <Text>FLOXANT Dokument</Text>
+     <Text>{doc.number}</Text>
     </View>
 
-    <View style={styles.recipientWrap}>
-     <Text style={styles.recipientLine}>
-      {BUSINESS.name} · {BUSINESS.street} · {BUSINESS.zip} {BUSINESS.city}
-     </Text>
-     <Text style={styles.recipientName}>{snapshot.contact.fullName}</Text>
-     {snapshot.contact.email ? <Text style={styles.recipientText}>{snapshot.contact.email}</Text> : null}
-     {snapshot.contact.phone ? <Text style={styles.recipientText}>{snapshot.contact.phone}</Text> : null}
-     {snapshot.contact.notes ? <Text style={styles.recipientText}>{snapshot.contact.notes}</Text> : null}
+    <View style={styles.header}>
+     <View>
+      <Text style={styles.brand}>FLOXANT</Text>
+      <Text style={styles.brandLine}>Umzug · Reinigung · Entrümpelung · Entsorgung</Text>
+      <Text style={styles.senderLine}>
+       {floxantDocumentSettings.legalName} · {floxantDocumentSettings.streetAddress} ·{" "}
+       {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+      </Text>
+      <View style={styles.recipient}>
+       {recipientLines(doc).map((line) => (
+        <Text key={line}>{line}</Text>
+       ))}
+      </View>
+     </View>
+     <BusinessInfo />
     </View>
 
     <View style={styles.titleRow}>
-     <Text style={styles.docTitle}>{editableData.title || toDocTitle(type)}</Text>
-     <View style={styles.metaGrid}>
-      <View style={styles.metaItem}>
+     <View>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.intro}>Sehr geehrte Damen und Herren,{"\n"}{doc.editableData.introText}</Text>
+     </View>
+     <View style={styles.meta}>
+      <View style={styles.metaRow}>
        <Text style={styles.metaLabel}>Nummer</Text>
-       <Text style={styles.metaValue}>{number}</Text>
+       <Text>{doc.number}</Text>
       </View>
-      <View style={styles.metaItem}>
-       <Text style={styles.metaLabel}>Dokumentdatum</Text>
-       <Text style={styles.metaValue}>{formatDate(editableData.documentDate || doc.createdAt)}</Text>
+      <View style={styles.metaRow}>
+       <Text style={styles.metaLabel}>Datum</Text>
+       <Text>{formatDateDE(doc.editableData.documentDate || doc.createdAt)}</Text>
       </View>
-      {type === "invoice" && editableData.dueDate ? (
-       <View style={styles.metaItem}>
-        <Text style={styles.metaLabel}>Fälligkeit</Text>
-        <Text style={styles.metaValue}>{formatDate(editableData.dueDate)}</Text>
+      {doc.type === "quote" ? (
+       <View style={styles.metaRow}>
+        <Text style={styles.metaLabel}>Gültig bis</Text>
+        <Text>{formatDateDE(doc.editableData.validUntil)}</Text>
+       </View>
+      ) : null}
+      {doc.type === "invoice" ? (
+       <View style={styles.metaRow}>
+        <Text style={styles.metaLabel}>Zahlbar bis</Text>
+        <Text>{formatDateDE(dueDate)}</Text>
+       </View>
+      ) : null}
+      {period ? (
+       <View style={styles.metaRow}>
+        <Text style={styles.metaLabel}>Leistung</Text>
+        <Text>{period}</Text>
+       </View>
+      ) : null}
+      {doc.editableData.performanceLocation ? (
+       <View style={styles.metaRow}>
+        <Text style={styles.metaLabel}>Ort</Text>
+        <Text>{doc.editableData.performanceLocation}</Text>
        </View>
       ) : null}
      </View>
     </View>
 
-    {editableData.introText ? <Text style={styles.intro}>{editableData.introText}</Text> : null}
+    <Text style={styles.sectionTitle}>Vereinbarte Services</Text>
+    {(doc.editableData.services || []).map((service, index) => (
+     <View key={service.id} style={styles.serviceCard} wrap={false}>
+      <Text style={styles.serviceTitle}>
+       {index + 1}. {service.title}
+      </Text>
+      {service.description ? <Text style={styles.serviceText}>{service.description}</Text> : null}
+      {service.location || service.notes ? (
+       <Text style={styles.serviceText}>{[service.location, service.notes].filter(Boolean).join(" · ")}</Text>
+      ) : null}
+     </View>
+    ))}
 
-    {lineItemMode ? (
-     <View>
-      <View style={styles.tableHeader}>
-       <Text style={styles.colPos}>Pos.</Text>
-       <Text style={styles.colDesc}>Leistung</Text>
-       <Text style={styles.colQty}>Menge</Text>
-       <Text style={styles.colUnit}>Einzelpreis</Text>
-       <Text style={styles.colTotal}>Gesamt</Text>
+    <Text style={styles.sectionTitle}>Positionen</Text>
+    <View style={styles.tableHeader} fixed={false}>
+     <Text style={styles.colPos}>Pos.</Text>
+     <Text style={styles.colDesc}>Beschreibung</Text>
+     <Text style={styles.colQty}>Menge</Text>
+     <Text style={styles.colUnit}>Einzel netto</Text>
+     <Text style={styles.colTax}>USt.</Text>
+     <Text style={styles.colTotal}>Gesamt netto</Text>
+    </View>
+    {doc.editableData.items.map((item, index) => (
+     <View key={item.id} style={styles.tableRow} wrap={false}>
+      <Text style={styles.colPos}>{index + 1}</Text>
+      <View style={styles.colDesc}>
+       <Text>{item.description}</Text>
+       {item.category ? <Text style={{ marginTop: 2, color: "#64748b", fontSize: 7.4 }}>{item.category}</Text> : null}
       </View>
+      <Text style={styles.colQty}>
+       {item.quantity} {item.unit}
+      </Text>
+      <Text style={styles.colUnit}>{formatMoney(item.unitPriceNet ?? item.unitPrice)}</Text>
+      <Text style={styles.colTax}>{item.taxRate}%</Text>
+      <Text style={styles.colTotal}>{formatMoney(item.lineTotalNet ?? item.total)}</Text>
+     </View>
+    ))}
 
-      {cloneLineItems(editableData.items).map((item, index) => (
-       <View key={item.id} style={styles.tableRow} wrap={false}>
-        <Text style={styles.colPos}>{index + 1}</Text>
-        <Text style={styles.colDesc}>{item.description}</Text>
-        <Text style={styles.colQty}>
-         {item.quantity} {item.unit}
-        </Text>
-        <Text style={styles.colUnit}>{formatMoney(item.unitPrice)}</Text>
-        <Text style={styles.colTotal}>{formatMoney(item.quantity * item.unitPrice)}</Text>
+    <View style={styles.totalsWrap} wrap={false}>
+     <View style={styles.totalsBox}>
+      {doc.totals.discountTotal ? (
+       <View style={styles.totalRow}>
+        <Text>Rabatt gesamt</Text>
+        <Text>{formatMoney(doc.totals.discountTotal)}</Text>
        </View>
+      ) : null}
+      <View style={styles.totalRow}>
+       <Text>Summe netto</Text>
+       <Text>{formatMoney(doc.totals.net)}</Text>
+      </View>
+      <View style={styles.totalRow}>
+       <Text>Umsatzsteuer</Text>
+       <Text>{formatMoney(doc.totals.tax)}</Text>
+      </View>
+      <View style={styles.grandRow}>
+       <Text>Gesamt brutto</Text>
+       <Text>{formatMoney(doc.totals.gross)}</Text>
+      </View>
+     </View>
+    </View>
+
+    {notes.length ? (
+     <View style={styles.notes} wrap={false}>
+      {notes.map((note) => (
+       <Text key={text(note)} style={{ marginBottom: 5 }}>
+        {text(note)}
+       </Text>
       ))}
-
-      <View style={styles.totalsWrap} wrap={false}>
-       <View style={styles.totalsBox}>
-        <View style={styles.totalRow}>
-         <Text style={styles.totalLabel}>Summe netto</Text>
-         <Text style={styles.totalValue}>{formatMoney(totals.net)}</Text>
-        </View>
-        <View style={styles.totalRow}>
-         <Text style={styles.totalLabel}>Umsatzsteuer</Text>
-         <Text style={styles.totalValue}>{formatMoney(totals.tax)}</Text>
-        </View>
-        <View style={styles.grandRow}>
-         <Text style={styles.grandLabel}>Gesamtbetrag brutto</Text>
-         <Text style={styles.grandValue}>{formatMoney(totals.gross)}</Text>
-        </View>
-       </View>
-      </View>
-
-      {type === "order_confirmation" ? (
-       <View style={styles.signatureRow} wrap={false}>
-        <View style={styles.signatureBlock}>
-         <Text>Ort, Datum</Text>
-        </View>
-        <View style={styles.signatureBlock}>
-         <Text>Unterschrift Auftraggeber</Text>
-        </View>
-       </View>
-      ) : null}
      </View>
-    ) : (
-     <View>
-      <View style={styles.section}>
-       <Text style={styles.sectionTitle}>Anfrage und Service</Text>
-       <View style={styles.grid}>
-        <View style={styles.gridItem}>
-         <Text style={styles.gridLabel}>Service</Text>
-         <Text style={styles.gridValue}>{String(snapshot.service?.type || "-")}</Text>
-        </View>
-        <View style={styles.gridItem}>
-         <Text style={styles.gridLabel}>Quelle</Text>
-         <Text style={styles.gridValue}>{String(snapshot.service?.source || "-")}</Text>
-        </View>
-       </View>
-      </View>
+    ) : null}
 
-      <View style={styles.section}>
-       <Text style={styles.sectionTitle}>Preisrahmen und Kundenwunsch</Text>
-       <View style={styles.grid}>
-        <View style={styles.gridItem}>
-         <Text style={styles.gridLabel}>System-Orientierungsrahmen</Text>
-         <Text style={styles.gridValue}>
-          {snapshot.valuation?.systemPriceRangeMin || 0} EUR - {snapshot.valuation?.systemPriceRangeMax || 0} EUR
-         </Text>
-        </View>
-        <View style={styles.gridItem}>
-         <Text style={styles.gridLabel}>Vorprüfungsstufe</Text>
-         <Text style={styles.gridValue}>{snapshot.valuation?.valuationStage || "-"}</Text>
-        </View>
-        <View style={styles.gridItem}>
-         <Text style={styles.gridLabel}>Preisvorstellung</Text>
-         <Text style={styles.gridValue}>
-          {snapshot.valuation?.customerBudget ? `${snapshot.valuation.customerBudget} EUR` : "Nicht angegeben"}
-         </Text>
-        </View>
-       </View>
-       {topDrivers.length > 0 ? (
-        <View style={styles.tagWrap}>
-         {topDrivers.map((driver) => (
-          <Text key={driver} style={styles.tag}>
-           {driver}
-          </Text>
-         ))}
-        </View>
-       ) : null}
-      </View>
-
-      <View style={styles.section}>
-       <Text style={styles.sectionTitle}>Konfiguration</Text>
-       <View style={styles.grid}>
-        {Object.entries(snapshot.configuration || {}).map(([key, value]) => {
-         if (value === null || value === undefined) return null;
-         if (typeof value === "object") return null;
-         if (key === "note") return null;
-
-         return (
-          <View key={key} style={styles.gridItem}>
-           <Text style={styles.gridLabel}>{key.replace(/([A-Z])/g, " $1")}</Text>
-           <Text style={styles.gridValue}>{String(value)}</Text>
-          </View>
-         );
-        })}
-       </View>
-       {snapshot.configuration?.note ? (
-        <View style={{ marginTop: 8 }}>
-         <Text style={styles.gridLabel}>Bemerkung</Text>
-         <Text style={styles.gridValue}>{snapshot.configuration.note}</Text>
-        </View>
-       ) : null}
-      </View>
+    {warnings.some((warning) => warning.level === "critical") && doc.status === "draft" ? (
+     <View style={styles.warningBox} wrap={false}>
+      <Text>Interne Entwurfswarnung: {warnings.map((warning) => warning.message).join(" ")}</Text>
      </View>
-    )}
-
-    <View style={styles.legalNote} wrap={false}>
-     <Text>
-      {editableData.conditions ||
-       (type === "invoice"
-        ? "Bitte geben Sie bei der Zahlung die Rechnungsnummer an."
-        : type === "order_confirmation"
-         ? "Es gelten die vereinbarten Bedingungen und AGB."
-         : type === "quote"
-          ? "Dieses Angebot dient der weiteren operativen Planung."
-          : "Diese Zusammenfassung basiert auf den bisher vorliegenden Angaben.")}
-     </Text>
-     {editableData.paymentTerms ? <Text style={{ marginTop: 5 }}>Zahlung: {editableData.paymentTerms}</Text> : null}
-    </View>
+    ) : null}
 
     <View style={styles.footer} fixed>
      <View style={styles.footerCol}>
-      <Text style={styles.footerHeadline}>{BUSINESS.name}</Text>
-      <Text>{BUSINESS.street}</Text>
+      <Text style={styles.footerTitle}>FLOXANT</Text>
+      <Text>{floxantDocumentSettings.legalName}</Text>
+      <Text>{floxantDocumentSettings.streetAddress}</Text>
       <Text>
-       {BUSINESS.zip} {BUSINESS.city}
+       {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
       </Text>
-      <Text>E-Mail: {BUSINESS.email}</Text>
      </View>
-
      <View style={styles.footerCol}>
-      <Text style={styles.footerHeadline}>Bankverbindung</Text>
-      <Text>{BUSINESS.bank}</Text>
-      <Text>IBAN: {BUSINESS.iban}</Text>
+      <Text style={styles.footerTitle}>Kontakt</Text>
+      <Text>{floxantDocumentSettings.phone}</Text>
+      <Text>{floxantDocumentSettings.email}</Text>
+      <Text>{floxantDocumentSettings.website}</Text>
      </View>
-
-     <View style={styles.footerColRight}>
-      <Text style={styles.footerHeadline}>Steuerliche Angaben</Text>
-      <Text>St.-Nr.: {BUSINESS.taxNumber}</Text>
-      <Text>USt-IdNr.: {BUSINESS.vatId}</Text>
+     <View style={styles.footerCol}>
+      <Text style={styles.footerTitle}>Steuer / Zahlung</Text>
+      <Text>{floxantDocumentSettings.vatId ? `USt-ID: ${floxantDocumentSettings.vatId}` : "USt-ID: nicht konfiguriert"}</Text>
+      <Text>{floxantDocumentSettings.taxNumber ? `St.-Nr.: ${floxantDocumentSettings.taxNumber}` : "Steuernummer: nicht konfiguriert"}</Text>
+      <Text>{floxantDocumentSettings.iban ? `IBAN: ${floxantDocumentSettings.iban}` : "IBAN: nicht konfiguriert"}</Text>
      </View>
     </View>
 
@@ -665,9 +484,7 @@ async function requireSession() {
 
 async function loadBooking(id: string) {
  const { data, error } = await supabase.from("bookings").select("*").eq("id", id).single();
- if (error || !data) {
-  return null;
- }
+ if (error || !data) return null;
  return data;
 }
 
@@ -695,35 +512,15 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
   return NextResponse.json({ error: "Document version not found" }, { status: 404 });
  }
 
- const stream = await renderToStream(<SnapshotPdfDocument doc={targetDoc} />);
+ const normalized = normalizeDocument(targetDoc);
+ const stream = await renderToStream(<FloxPdfDocument document={normalized} />);
 
  return new NextResponse(stream as unknown as BodyInit, {
   headers: {
    "Content-Type": "application/pdf",
-   "Content-Disposition": `inline; filename=${targetDoc.number}.pdf`,
+   "Content-Disposition": `inline; filename="${normalized.number || "floxant-dokument"}.pdf"`,
+   "Cache-Control": "private, no-store",
   },
  });
 }
 
-export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
- const authError = await requireSession();
- if (authError) return authError;
-
- const { id } = await params;
- const booking = await loadBooking(id);
-
- if (!booking) {
-  return NextResponse.json({ error: "Booking not found" }, { status: 404 });
- }
-
- const body = (await req.json()) as AdHocPdfRequest;
- const draftDoc = buildFallbackDocument(id, booking, body);
- const stream = await renderToStream(<SnapshotPdfDocument doc={draftDoc} />);
-
- return new NextResponse(stream as unknown as BodyInit, {
-  headers: {
-   "Content-Type": "application/pdf",
-   "Content-Disposition": `inline; filename=${draftDoc.number}.pdf`,
-  },
- });
-}

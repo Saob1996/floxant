@@ -10,9 +10,9 @@ import { MotionProvider } from "@/components/MotionProvider";
 import UtmCapture from "@/components/UtmCapture";
 import { getDictionary } from "@/get-dictionary";
 import { CookieBanner } from "@/components/CookieBanner";
-import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 import { WebVitalsReporter } from "@/components/WebVitalsReporter";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { GermanTextRuntimeNormalizer } from "@/components/GermanTextRuntimeNormalizer";
 
 export { viewport };
 
@@ -70,9 +70,9 @@ export default async function RootLayout({
         <AuthProvider>
           <MotionProvider>
             <WebVitalsReporter />
-            <WebSiteJsonLd />
             <UtmCapture />
             <SiteChrome>{children}</SiteChrome>
+            <GermanTextRuntimeNormalizer />
             <CookieBanner />
           </MotionProvider>
         </AuthProvider>

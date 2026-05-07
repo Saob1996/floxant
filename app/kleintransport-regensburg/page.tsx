@@ -8,19 +8,13 @@ interface PageProps {
   params: Promise<{}>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { seoContent, seoFallback, city } = await getSpecialtyPageData({
-    locale: "de",
-    baseKey: "service_umzug",
-    seoKey: "kleintransport_regensburg_spec",
-    city: "Regensburg",
-  });
-
+export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: `kleintransport-regensburg`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    title: "Transport Regensburg – Möbel, Kleintransport & Rückfahrt | FLOXANT",
+    description:
+      "Transport in Regensburg für Möbel, Einzelstücke und Kleintransport. Route, Zugang, Fotos, Haltezone und Leerfahrt/Rückfahrt nach Verfügbarkeit prüfen lassen.",
   });
 }
 
@@ -44,8 +38,7 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
       dict={localeDict}
       city={city}
       heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-      highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
+      heroTitle="Transport Regensburg für Möbel, Kleintransport und Rückfahrt"
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
       heroImage="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop"
@@ -89,6 +82,29 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
       wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
       wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
       wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
+      signatureServices={[
+        "empty_return",
+        "photo_check",
+        "parking_zone",
+        "budget_check",
+        "short_notice",
+      ]}
+      signatureTitle="Signature Services für Transport Regensburg"
+      signatureSubtitle="Bei Möbeltransport und Kleintransport zählen Strecke, Zugang, Zeitfenster, Fotos und freie Kapazität. FLOXANT prüft, was realistisch passt."
+      authorityModules={[
+        "regensburg_core",
+        "price_transport",
+        "offer_check",
+        "damage_control",
+        "empty_return_fit",
+        "route_board",
+        "photo_check",
+        "budget_check",
+        "regensburg_200km",
+      ]}
+      authorityBadge="Transport- und Routenautoritaet"
+      authorityTitle="Was Transport in Regensburg schneller einschaetzbar macht"
+      authoritySubtitle="Bei Moebeln, Einzelstuecken und Kleintransport entscheidet nicht nur die Strecke. Zugang, Etage, Fotos, Haltezone, Datum und freie Rueckfahrt-Kapazitaet zaehlen mit."
     />
   );
 }

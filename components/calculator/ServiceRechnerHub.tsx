@@ -763,6 +763,8 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                         "bg-gradient-to-br",
                         service.soft,
                       )}
+                      data-event={`select_service_${service.id === "entsorgung" ? "entruempelung" : service.id}`}
+                      data-source="rechner_service_selection"
                     >
                       <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/80 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 group-focus:opacity-100" />
                       <span className="pointer-events-none absolute inset-0 rounded-[1.35rem] ring-1 ring-inset ring-blue-300/0 transition duration-300 group-hover:ring-blue-300/55 group-focus:ring-blue-300/55" />
@@ -861,7 +863,13 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                 {localizedQuickLinks.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <Link key={item.href} href={item.href} className="card-premium group rounded-[1.35rem] p-5">
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="card-premium group rounded-[1.35rem] p-5"
+                      data-event={item.href.includes("preisrahmen") ? "submit_budget_request" : "start_booking"}
+                      data-source="rechner_quick_link"
+                    >
                       <div className="flex items-center justify-between gap-3">
                         <div
                           className={cn(
@@ -908,18 +916,24 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       <Link
                         href="/buchung"
                         className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-[11px] font-semibold text-blue-700 transition hover:bg-blue-100"
+                        data-event="start_booking"
+                        data-source="rechner_active_service"
                       >
                         Direkt anfragen
                       </Link>
                       <Link
                         href="/express-anfrage"
                         className="rounded-full border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] font-semibold text-amber-900 transition hover:bg-amber-100"
+                        data-event="start_booking"
+                        data-source="rechner_active_service"
                       >
                         Express-Check
                       </Link>
                       <Link
                         href="/anfrage-mit-preisrahmen"
                         className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] font-semibold text-emerald-800 transition hover:bg-emerald-100"
+                        data-event="submit_budget_request"
+                        data-source="rechner_active_service"
                       >
                         Budget nennen
                       </Link>

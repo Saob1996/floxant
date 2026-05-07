@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require("fs");
+const net = require("net");
 const path = require("path");
 const { spawn } = require("child_process");
 
@@ -9,8 +10,43 @@ const APP_DIR = path.join(ROOT, "app");
 const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
+function canListen(port) {
+  return new Promise((resolve) => {
+    const server = net.createServer();
+    server.once("error", () => resolve(false));
+    server.once("listening", () => {
+      server.close(() => resolve(true));
+    });
+    server.listen(port, "127.0.0.1");
+  });
+}
+
+async function findAvailablePort(startPort) {
+  for (let port = startPort; port < startPort + 80; port += 1) {
+    if (await canListen(port)) return port;
+  }
+  throw new Error(`No available local port found near ${startPort}`);
+}
+
 const PRIVATE_SEGMENTS = new Set(["api", "dashboard", "admin", "login"]);
-const LEGACY_REDIRECT_ROUTES = new Set(["/villenservice"]);
+const LEGACY_REDIRECT_ROUTES = new Set([
+  "/partnercode",
+  "/airbnb-reinigung-duesseldorf",
+  "/angebot-red-flag-scanner",
+  "/guenstigeres-angebot-pruefen",
+  "/duesseldorf/b2b-reinigung",
+  "/villenservice",
+  "/umzug-duesseldorf",
+  "/umzug-berlin",
+  "/umzug-bremen",
+  "/umzug-dortmund",
+  "/umzug-essen",
+  "/umzug-frankfurt",
+  "/umzug-hamburg",
+  "/umzug-koeln",
+  "/umzug-leipzig",
+  "/umzug-stuttgart",
+]);
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
 const STATIC_METADATA_ROUTES = [
@@ -40,6 +76,13 @@ const DOMINANCE_MONEY_ROUTES = [
   "/bueroumzug",
   "/firmenentsorgung",
   "/leerfahrt-rueckfahrt",
+  "/empfehlen",
+  "/angebot-guenstiger-pruefen",
+  "/makler-vermieter-link",
+  "/wohnung-wieder-vermietbar",
+  "/schadensbegrenzung",
+  "/keller-muellraum-rettung-regensburg",
+  "/uebergabeakte",
   "/private-client-service",
   "/service-area-bayern",
   "/einsatzgebiet-regensburg-200km",
@@ -53,6 +96,17 @@ const DOMINANCE_MONEY_ROUTES = [
 ];
 const IMPORTANT_ROUTES = [
   "/",
+  "/empfehlen",
+  "/angebotscheck",
+  "/angebot-guenstiger-pruefen",
+  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/makler-vermieter-link",
+  "/mieterwechsel-service-regensburg",
+  "/wohnung-wieder-vermietbar",
+  "/schadensbegrenzung",
+  "/keller-muellraum-rettung-regensburg",
+  "/rueckfahrt-boerse",
+  "/uebergabeakte",
   "/buchung",
   "/rechner",
   "/umzug",
@@ -74,6 +128,11 @@ const IMPORTANT_ROUTES = [
 ];
 
 const REDIRECT_EXPECTATIONS = [
+  ["/partnercode", "/empfehlen"],
+  ["/airbnb-reinigung-duesseldorf", "/reinigung-moeblierte-wohnung-duesseldorf"],
+  ["/angebot-red-flag-scanner", "/angebotscheck#red-flag-scanner"],
+  ["/guenstigeres-angebot-pruefen", "/angebot-guenstiger-pruefen"],
+  ["/duesseldorf/b2b-reinigung", "/duesseldorf/bueroreinigung"],
   ["/de", "/"],
   ["/de/umzug", "/umzug"],
   ["/entr%C3%BCmpelung", "/entruempelung"],
@@ -85,6 +144,16 @@ const REDIRECT_EXPECTATIONS = [
   ["/reinigung-m%C3%BCnchen", "/reinigung-muenchen"],
   ["/entr%C3%BCmpelung-m%C3%BCnchen", "/entruempelung-muenchen"],
   ["/villenservice", "/private-client-service"],
+  ["/umzug-duesseldorf", "/duesseldorf/reinigung"],
+  ["/umzug-berlin", "/umzug-bayern"],
+  ["/umzug-bremen", "/umzug-bayern"],
+  ["/umzug-dortmund", "/umzug-bayern"],
+  ["/umzug-essen", "/umzug-bayern"],
+  ["/umzug-frankfurt", "/umzug-bayern"],
+  ["/umzug-hamburg", "/umzug-bayern"],
+  ["/umzug-koeln", "/umzug-bayern"],
+  ["/umzug-leipzig", "/umzug-bayern"],
+  ["/umzug-stuttgart", "/umzug-bayern"],
   ["/signature/clean-start", "/clean-start"],
 ];
 
@@ -338,7 +407,7 @@ function runDominanceCheck() {
     }
   }
 
-  for (const href of ["/rechner", "/umzug", "/reinigung", "/entruempelung", "/bueroumzug", "/firmenentsorgung", "/leerfahrt-rueckfahrt", "/private-client-service"]) {
+  for (const href of ["/rechner", "/umzug", "/reinigung", "/entruempelung", "/bueroumzug", "/firmenentsorgung", "/leerfahrt-rueckfahrt", "/empfehlen", "/makler-vermieter-link", "/wohnung-wieder-vermietbar", "/schadensbegrenzung", "/keller-muellraum-rettung-regensburg", "/uebergabeakte", "/private-client-service"]) {
     if (!fileContains(footerPath, [`href: "${href}"`]) && !fileContains(footerPath, [`href="${href}"`])) {
       failures.push(`footer misses authority link: ${href}`);
     }
@@ -348,10 +417,19 @@ function runDominanceCheck() {
     "/": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "LocalBusinessJsonLd"],
     "/buchung": ["generatePageSEO", "buildFaqJsonLd", "SmartBookingWizard", "Google Maps"],
     "/rechner": ["generatePageSEO", "buildFaqJsonLd", "Orientierungsrahmen"],
+    "/empfehlen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "ReferralPartnerCodeForm"],
+    "/reinigung-moeblierte-wohnung-duesseldorf": ["buildDuesseldorfCleaningMetadata", "buildFaqJsonLd", "DuesseldorfApartmentCleaningForm", "Apartment-Reset"],
     "/umzug": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/reinigung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/entruempelung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/leerfahrt-rueckfahrt": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "BackhaulOffersBoard"],
+    "/rueckfahrt-boerse": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "ReturnTripBoardForm"],
+    "/makler-vermieter-link": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "RealtorLandlordLinkForm"],
+    "/wohnung-wieder-vermietbar": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "RentalReadyForm"],
+    "/angebot-guenstiger-pruefen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "CheaperAlternativeForm"],
+    "/schadensbegrenzung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "DamageControlForm"],
+    "/keller-muellraum-rettung-regensburg": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "CellarTrashroomRescueForm"],
+    "/uebergabeakte": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "HandoverFileForm"],
     "/private-client-service": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "PrivateClientInquiryForm"],
     "/qualitaet-ablauf": ["generatePageSEO", "buildFaqJsonLd", "Vorprüfung", "Preisrahmen"],
     "/praxisfaelle": ["generatePageSEO", "buildFaqJsonLd", "Entscheidungssituationen", "CustomerIntentRouter"],
@@ -473,9 +551,10 @@ async function waitForServer(baseUrl, child) {
 
 async function runHttpCheck() {
   const routes = [...discoverRoutes()].sort();
-  const baseUrl = `http://127.0.0.1:${DEFAULT_PORT}`;
+  const port = await findAvailablePort(DEFAULT_PORT);
+  const baseUrl = `http://127.0.0.1:${port}`;
   const nextBin = path.join(ROOT, "node_modules", "next", "dist", "bin", "next");
-  const child = spawn(process.execPath, [nextBin, "start", "-p", String(DEFAULT_PORT)], {
+  const child = spawn(process.execPath, [nextBin, "start", "-p", String(port)], {
     cwd: ROOT,
     stdio: ["ignore", "pipe", "pipe"],
     windowsHide: true,

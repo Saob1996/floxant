@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, MapPin, MessageSquare, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MapPin, MessageSquare, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { company } from "@/lib/company";
@@ -20,8 +20,15 @@ const directLinks = [
   { href: "/buchung", label: "Buchung" },
   { href: "/rechner", label: "Rechner" },
   { href: "/anfrage-mit-preisrahmen", label: "Budget nennen" },
+  { href: "/angebot-guenstiger-pruefen", label: "Guenstiger pruefen" },
   { href: "/express-anfrage", label: "Express-Check" },
+  { href: "/empfehlen", label: "Empfehlen" },
+  { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
+  { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
+  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Muellraum" },
   { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
+  { href: "/wohnung-wieder-vermietbar", label: "Objekt-Ready" },
+  { href: "/uebergabeakte", label: "Uebergabeakte" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -40,6 +47,8 @@ const knowledgeLinks = [
   { href: "/blog/wohnungsuebergabe-regensburg-vorbereiten", label: "Wohnungsübergabe" },
   { href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", label: "Reinigungsfirma wählen" },
   { href: "/leistungen-vergleichen", label: "Leistungen vergleichen" },
+  { href: "/anbieter-vergleichen", label: "Anbieter vergleichen" },
+  { href: "/praxisfaelle", label: "Praxisfälle" },
   { href: "/kostenfaktoren", label: "Kostenfaktoren" },
 ];
 
@@ -79,27 +88,32 @@ export function Footer({ dic }: { dic?: any } = {}) {
             <div className="grid gap-3 sm:grid-cols-2">
               <Link
                 href="/buchung"
-                className="flox-button-primary min-h-[5.5rem] rounded-[1.45rem] px-5 text-left normal-case tracking-normal"
+                className="group flex min-h-[5.25rem] items-center gap-4 rounded-[1.45rem] border border-cyan-300/25 bg-[linear-gradient(135deg,#0ea5e9_0%,#2563eb_100%)] px-5 text-left text-white shadow-[0_20px_48px_rgba(37,99,235,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_24px_58px_rgba(37,99,235,0.3)]"
               >
-                <span className="w-full">
-                  <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
-                    Schnellster Weg
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/16 text-white ring-1 ring-white/20 transition group-hover:bg-white/22">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-cyan-50/80">
+                    Anfrageweg
                   </span>
-                  <span className="mt-2 block text-xl font-black tracking-tight">Anfrage starten</span>
+                  <span className="mt-1 block text-xl font-black tracking-tight">Anfrage starten</span>
                 </span>
               </Link>
               <a
                 href={`https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flox-button-secondary min-h-[5.5rem] rounded-[1.45rem] border-white/12 bg-white/6 px-5 text-left normal-case tracking-normal text-white"
+                className="group flex min-h-[5.25rem] items-center gap-4 rounded-[1.45rem] border border-emerald-300/28 bg-white/[0.07] px-5 text-left text-white shadow-[0_18px_44px_rgba(2,6,23,0.16)] transition hover:-translate-y-0.5 hover:border-emerald-200/45 hover:bg-white/[0.11]"
               >
-                <span className="w-full">
-                  <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-300">
-                    <MessageSquare className="h-3.5 w-3.5" />
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-300/14 text-emerald-200 ring-1 ring-emerald-200/22 transition group-hover:bg-emerald-300/20">
+                  <MessageSquare className="h-4 w-4" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-emerald-200">
                     WhatsApp
                   </span>
-                  <span className="mt-2 block text-xl font-black tracking-tight">Schnell schreiben</span>
+                  <span className="mt-1 block text-xl font-black tracking-tight">Direkt schreiben</span>
                 </span>
               </a>
             </div>

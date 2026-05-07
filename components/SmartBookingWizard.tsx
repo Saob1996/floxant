@@ -68,6 +68,29 @@ function normalizeBookingService(value: string | null): ServiceType {
   return null;
 }
 
+function looksLikeDusseldorf(value: string) {
+  const normalized = value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  return (
+    normalized.includes("dusseldorf") ||
+    normalized.includes("duesseldorf") ||
+    /\b40[2-6]\d{2}\b/.test(normalized)
+  );
+}
+
+function normalizeTrackingValue(value: string | null) {
+  return (value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
 interface BookingState {
   step: number;
   service: ServiceType;
@@ -75,6 +98,9 @@ interface BookingState {
     startAddress: string;
     endAddress: string;
     date: string;
+    scope: string;
+    access: string;
+    budget: string;
   };
   upgrades: string[];
 }
@@ -133,11 +159,34 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const [initialized, setInitialized] = useState(false);
   const searchParams = useSearchParams();
   const queryService = searchParams.get("service");
+  const queryRegion = [searchParams.get("region"), searchParams.get("city"), searchParams.get("standort")]
+    .filter(Boolean)
+    .join(" ");
+  const isDusseldorfQueryContext = looksLikeDusseldorf(queryRegion);
   const queryServicePreset = useMemo(() => normalizeBookingService(queryService), [queryService]);
+  const isDusseldorfDisposalQueryContext =
+    isDusseldorfQueryContext && queryServicePreset === "entsorgung";
+  const isDusseldorfCleaningQueryContext =
+    isDusseldorfQueryContext && !isDusseldorfDisposalQueryContext;
   const storeService = useCalculatorStore((s) => s.serviceType);
   const storeBase = useCalculatorStore((s) => s.baseDetails);
   const storeLead = useCalculatorStore((s) => s.leadDetails);
   const setMode = useCalculatorStore((s) => s.setMode);
+  const queryUtmSource = searchParams.get("utm_source") || searchParams.get("source") || "";
+  const queryUtmMedium = searchParams.get("utm_medium") || "";
+  const queryUtmCampaign = searchParams.get("utm_campaign") || "";
+  const queryUtmContent = searchParams.get("utm_content") || "";
+  const queryGclid = searchParams.get("gclid") || "";
+  const queryReferralCode =
+    searchParams.get("ref") || searchParams.get("partner_code") || searchParams.get("referral_code") || "";
+  const normalizedSource = normalizeTrackingValue(queryUtmSource || storeLead?.utmSource || "");
+  const normalizedCampaign = normalizeTrackingValue(queryUtmCampaign || storeLead?.utmCampaign || "");
+  const isGoogleMapsContext = ["google_maps", "google_business_profile", "gbp", "maps"].some(
+    (value) => normalizedSource.includes(value),
+  );
+  const isGoogleAdsContext = ["google_ads", "adwords", "cpc"].some(
+    (value) => normalizedSource.includes(value) || normalizeTrackingValue(queryUtmMedium).includes(value),
+  );
 
   const defaultBooking = {
     steps: {
@@ -160,7 +209,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     },
     services: {
       umzug: { label: "Umzug", desc: "Wohnungs- und Firmenumzug" },
-      reinigung: { label: "Reinigung", desc: "Professionelle Reinigung" },
+      reinigung: { label: "Reinigung", desc: "Objekt, Zustand, Termin und Budget klaeren" },
       entsorgung: { label: "Entrümpelung", desc: "Räumung und Entsorgung" },
     },
     form: {
@@ -227,6 +276,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       startAddress: "",
       endAddress: "",
       date: "",
+      scope: "",
+      access: "",
+      budget: "",
     },
     upgrades: [],
   });
@@ -244,7 +296,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
   useEffect(() => {
     setInitialized(true);
-    const presetService = queryServicePreset || (storeService as ServiceType);
+    const presetService = isDusseldorfDisposalQueryContext
+      ? "entsorgung"
+      : isDusseldorfCleaningQueryContext
+        ? "reinigung"
+        : queryServicePreset || (storeService as ServiceType);
 
     if (presetService) {
       setState((prev) => ({
@@ -255,6 +311,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           startAddress: storeBase.fromAddress || "",
           endAddress: storeBase.toAddress || "",
           date: storeBase.moveDate || "",
+          scope: prev.details.scope,
+          access: prev.details.access,
+          budget: prev.details.budget,
         },
         step: 2,
       }));
@@ -267,7 +326,14 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         message: "",
       });
     }
-  }, [queryServicePreset, storeBase, storeLead, storeService]);
+  }, [
+    isDusseldorfCleaningQueryContext,
+    isDusseldorfDisposalQueryContext,
+    queryServicePreset,
+    storeBase,
+    storeLead,
+    storeService,
+  ]);
 
   const steps = useMemo(
     () => [
@@ -279,11 +345,16 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     [t]
   );
 
+  const isDusseldorfServiceConflict =
+    state.service !== "reinigung" &&
+    state.service !== "entsorgung" &&
+    looksLikeDusseldorf(`${state.details.startAddress} ${state.details.endAddress}`);
+
   const isStepTwoValid = useMemo(() => {
     const hasStart = state.details.startAddress.trim().length >= 2;
 
-    return Boolean(state.service && hasStart);
-  }, [state.details, state.service]);
+    return Boolean(state.service && hasStart && !isDusseldorfServiceConflict);
+  }, [isDusseldorfServiceConflict, state.details, state.service]);
 
   const isContactValid = useMemo(
     () => {
@@ -307,9 +378,44 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       ? "Adresse / Objektort"
       : state.service === "entsorgung"
         ? "Abholort / Einsatzort"
-        : state.service === "bueroumzug"
+        : state.service === "leerfahrt"
+          ? "Startort / Abholort"
+          : state.service === "bueroumzug"
           ? "Aktueller Firmenstandort"
           : t?.form?.start_address || "Startadresse";
+
+  const briefingLabels =
+    state.service === "reinigung"
+      ? {
+          scope: "Fläche / Reinigungsart optional",
+          scopePlaceholder: "z. B. 75 m², Endreinigung, Küche/Bad/Fenster",
+          access: "Zustand / Zugang optional",
+          accessPlaceholder: "z. B. leerstehend, möbliert, starke Verschmutzung",
+          budget: "Budget / Preisrahmen optional",
+        }
+      : state.service === "entsorgung"
+        ? {
+            scope: "Umfang / Objektart optional",
+            scopePlaceholder: "z. B. Keller, Garage, 12 m³, Sperrmüll",
+            access: "Etage / Zugang optional",
+            accessPlaceholder: "z. B. 2. OG ohne Aufzug, Innenhof, kurzer Laufweg",
+            budget: "Budget / Preisrahmen optional",
+          }
+        : state.service === "leerfahrt"
+          ? {
+              scope: "Strecke / Umfang optional",
+              scopePlaceholder: "z. B. Regensburg -> Muenchen, 8 Kartons, 1 Sofa",
+              access: "Terminflexibilitaet / Zugang optional",
+              accessPlaceholder: "z. B. flexibel diese Woche, EG, kurzer Laufweg",
+              budget: "Budget / Preisrahmen optional",
+            }
+          : {
+            scope: "Volumen / Wohnungsgröße optional",
+            scopePlaceholder: "z. B. 2 Zimmer, 45 Kartons, größere Möbel",
+            access: "Etage / Aufzug / Halteverbot optional",
+            accessPlaceholder: "z. B. 3. OG, Aufzug ja, Halteverbot prüfen",
+            budget: "Budget / Preisrahmen optional",
+          };
 
   const nextStep = () => {
     setState((prev) => ({
@@ -333,6 +439,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         startAddress: "",
         endAddress: "",
         date: "",
+        scope: "",
+        access: "",
+        budget: "",
       },
       upgrades: [],
     });
@@ -413,6 +522,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (isSubmitting) return;
+
     if (!state.service || !isStepTwoValid || !isContactValid) {
       setSubmitError(t?.error?.generic || "Bitte pruefen Sie die Angaben und ergaenzen Sie Name und Telefon.");
       return;
@@ -423,6 +534,44 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
     const createdAt = new Date().toISOString();
     const serviceMeta = wizardServiceMeta[state.service];
+    const bookingSource = isDusseldorfDisposalQueryContext
+      ? "duesseldorf_disposal_booking"
+      : isDusseldorfCleaningQueryContext
+        ? "duesseldorf_cleaning_booking"
+        : state.service === "leerfahrt" || normalizedCampaign.includes("leerfahrt")
+          ? "return_trip_booking"
+          : isGoogleAdsContext && state.service === "reinigung"
+            ? "google_ads_cleaning_regensburg"
+            : isGoogleMapsContext
+              ? "google_maps_booking"
+              : "booking_page_wizard";
+    const entryPoint = isDusseldorfDisposalQueryContext
+      ? "/buchung?service=entsorgung&region=duesseldorf"
+      : isDusseldorfCleaningQueryContext
+        ? "/buchung?service=reinigung&region=duesseldorf"
+        : "/buchung";
+    const regionPreset = isDusseldorfQueryContext ? "duesseldorf" : "";
+    const landingPage =
+      typeof window !== "undefined"
+        ? `${window.location.pathname}${window.location.search}`
+        : entryPoint;
+    const referrer = typeof document !== "undefined" ? document.referrer : "";
+    const attribution = {
+      landing_page: landingPage,
+      referrer,
+      utm_source: queryUtmSource || storeLead?.utmSource || "",
+      utm_medium: queryUtmMedium || storeLead?.utmMedium || "",
+      utm_campaign: queryUtmCampaign || storeLead?.utmCampaign || "",
+      utm_content: queryUtmContent,
+      gclid: queryGclid || storeLead?.gclid || "",
+      referral_code: queryReferralCode,
+      referral_source: queryReferralCode ? "partnercode_url" : "",
+      referral_landing_page: queryReferralCode ? landingPage : "",
+      service: state.service,
+      region: regionPreset || "regensburg_bayern",
+      lead_source: bookingSource,
+      created_at: createdAt,
+    };
     const details = {
       contact: {
         fullName: formData.name.trim(),
@@ -433,9 +582,10 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       },
       service: {
         type: state.service,
-        source: "booking_page_wizard",
-        entryPoint: "/buchung",
+        source: bookingSource,
+        entryPoint,
         presetFromUrl: state.service,
+        regionPreset,
       },
       valuation: {
         systemPriceRangeMin: 0,
@@ -447,43 +597,81 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         accuracyState: "Solide Vorplanung",
         topDrivers: [
           ...serviceMeta.drivers,
+          ...(state.details.scope.trim() ? ["Umfang angegeben"] : []),
+          ...(state.details.access.trim() ? ["Zugang beschrieben"] : []),
+          ...(state.details.budget.trim() ? ["Budget genannt"] : []),
           ...(state.upgrades.length ? ["Ausgewählte Extras"] : []),
           ...(files.length ? ["Bildmaterial vorhanden"] : []),
         ].slice(0, 5),
         priceExplanation:
           "Diese Anfrage enthält die wichtigsten Eckdaten für eine strukturierte Einschätzung. FLOXANT prüft daraus Route, Termin, Zugang und Zusatzleistungen vor dem nächsten Schritt.",
         pricingSignals: {
-          inquiryMode: "booking_page_wizard",
+          inquiryMode: bookingSource,
           serviceType: state.service,
+          regionPreset,
+          attribution,
+          referralCode: queryReferralCode,
           requestedDate: state.details.date,
           startAddress: state.details.startAddress.trim(),
           endAddress: state.details.endAddress.trim(),
+          scopeSummary: state.details.scope.trim(),
+          accessNotes: state.details.access.trim(),
+          customerBudgetText: state.details.budget.trim(),
           upgrades: state.upgrades,
           hasUploads: files.length > 0,
           customerMessage: formData.message.trim(),
         },
       },
       configuration: {
-        requestContext: "booking_page_wizard",
-        entryPoint: "/buchung",
+        requestContext: bookingSource,
+        entryPoint,
+        landingPage,
+        referrer,
+        leadSource: bookingSource,
+        attribution,
+        referralCode: queryReferralCode,
+        referralSource: queryReferralCode ? "partnercode_url" : "",
+        referralLandingPage: queryReferralCode ? landingPage : "",
+        utmSource: attribution.utm_source,
+        utmMedium: attribution.utm_medium,
+        utmCampaign: attribution.utm_campaign,
+        utmContent: attribution.utm_content,
+        regionPreset,
+        region: regionPreset,
         serviceLabel: serviceMeta.label,
         fromAddress: state.details.startAddress.trim(),
         location: state.details.startAddress.trim(),
         toAddress: state.details.endAddress.trim(),
         moveDate: state.details.date,
         date: state.details.date,
+        scopeSummary: state.details.scope.trim(),
+        accessNotes: state.details.access.trim(),
+        customerBudgetText: state.details.budget.trim(),
         selectedUpgrades: state.upgrades,
         message: formData.message.trim(),
       },
       metadata: {
         createdAt,
         intakeVersion: "1.3.0",
-        source: "booking_page_wizard",
+        source: bookingSource,
         servicePresetFromUrl: state.service,
+        regionPreset,
+        attribution,
         clientContext: {
-          entryPoint: "/buchung",
+          entryPoint,
+          landingPage,
+          referrer,
+          leadSource: bookingSource,
           bookingMode: "smart_wizard",
+          regionPreset,
           hasUploads: files.length > 0,
+          utmSource: queryUtmSource || storeLead?.utmSource || "",
+          utmMedium: queryUtmMedium || storeLead?.utmMedium || "",
+          utmCampaign: queryUtmCampaign || storeLead?.utmCampaign || "",
+          utmContent: queryUtmContent,
+          gclid: queryGclid || storeLead?.gclid || "",
+          referralCode: queryReferralCode,
+          referralSource: queryReferralCode ? "partnercode_url" : "",
         },
       },
     };
@@ -497,6 +685,24 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     submitData.append("email", formData.email.trim());
     submitData.append("phone", formData.phone.trim());
     submitData.append("timestamp", createdAt);
+    if (state.details.budget.trim()) {
+      submitData.append("budget", state.details.budget.trim());
+    }
+    if (regionPreset) {
+      submitData.append("region", regionPreset);
+    }
+    submitData.append("leadSource", bookingSource);
+    submitData.append("landingPage", attribution.landing_page);
+    submitData.append("referrer", attribution.referrer);
+    submitData.append("utmSource", attribution.utm_source);
+    submitData.append("utmMedium", attribution.utm_medium);
+    submitData.append("utmCampaign", attribution.utm_campaign);
+    submitData.append("utmContent", attribution.utm_content);
+    submitData.append("gclid", attribution.gclid);
+    if (queryReferralCode) {
+      submitData.append("referralCode", queryReferralCode);
+      submitData.append("partnerCode", queryReferralCode);
+    }
 
     try {
       if (files.length > 0) {
@@ -512,7 +718,14 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       });
 
       if (!response.ok) {
-        throw new Error(t?.error?.submit || "Die Anfrage konnte nicht gesendet werden.");
+        let errorMessage = t?.error?.submit || "Die Anfrage konnte nicht gesendet werden.";
+        try {
+          const payload = await response.json();
+          errorMessage = payload?.message || payload?.error || errorMessage;
+        } catch {
+          // Keep the user-facing fallback when the server response is not JSON.
+        }
+        throw new Error(errorMessage);
       }
 
       setIsSuccess(true);
@@ -561,7 +774,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       {
         id: "reinigung",
         label: t?.services?.reinigung?.label || "Reinigung",
-        desc: t?.services?.reinigung?.desc || "Professionelle Reinigung",
+        desc: t?.services?.reinigung?.desc || "Wohnung, Endreinigung oder Objekt sauber einordnen",
         icon: Sparkles,
         eyebrow: "Reinigung",
         accent: "from-teal-500 to-cyan-500",
@@ -576,15 +789,35 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       },
     ];
 
+    const visibleOptions = isDusseldorfDisposalQueryContext
+      ? options.filter((option) => option.id === "entsorgung")
+      : isDusseldorfCleaningQueryContext
+        ? options.filter((option) => option.id === "reinigung")
+        : options;
+
     return (
       <div className="space-y-5">
+        {isDusseldorfDisposalQueryContext ? (
+          <div className="rounded-[1.35rem] border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold leading-6 text-orange-950">
+            Dieser Duesseldorf-Einstieg ist auf Entsorgung ausgerichtet: Umfang,
+            Zugang, Fotos und Budget helfen bei der Pruefung.
+          </div>
+        ) : null}
+        {isDusseldorfCleaningQueryContext ? (
+          <div className="rounded-[1.35rem] border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-semibold leading-6 text-teal-950">
+            Dieser Düsseldorf-Einstieg wird hier nur als Reinigung geführt. Für andere
+            Leistungsarten bitte den Regensburg-Bereich nutzen.
+          </div>
+        ) : null}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {options.map((option) =>
+        {visibleOptions.map((option) =>
           option.isLink ? (
             <Link
               key={option.id}
               href={option.href || "/"}
               className="calc-option-card group rounded-[1.9rem] p-7"
+              data-event={`select_service_${option.id === "entsorgung" ? "entruempelung" : option.id}`}
+              data-source="booking_wizard"
             >
               <div className="flex items-start justify-between gap-4">
                 <div
@@ -617,6 +850,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                 }))
               }
               className="calc-option-card group rounded-[1.9rem] p-7 text-start"
+              data-event={`select_service_${option.id === "entsorgung" ? "entruempelung" : option.id}`}
+              data-source="booking_wizard"
             >
               <div className="flex items-start justify-between gap-4">
                 <div
@@ -652,6 +887,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           <Link
             href="/anfrage-mit-preisrahmen"
             className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
+            data-event="submit_budget_request"
+            data-source="booking_wizard"
           >
             Budget nennen
             <ArrowRight className="h-3.5 w-3.5" />
@@ -696,9 +933,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               />
             </FieldBox>
 
-            {state.service === "umzug" && (
+            {(state.service === "umzug" || state.service === "leerfahrt") && (
               <FieldBox
-                label={`${t?.form?.end_address || "Zieladresse"} optional`}
+                label={`${state.service === "leerfahrt" ? "Zielort / Richtung" : t?.form?.end_address || "Zieladresse"} optional`}
                 icon={<MapPin className="h-4 w-4" />}
                 required={false}
               >
@@ -737,6 +974,59 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               className="calc-input h-11"
             />
           </FieldBox>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <FieldBox label={briefingLabels.scope} icon={<PackageOpen className="h-4 w-4" />} required={false}>
+              <input
+                value={state.details.scope}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    details: { ...prev.details, scope: e.target.value },
+                  }))
+                }
+                className="calc-input h-11"
+                placeholder={briefingLabels.scopePlaceholder}
+              />
+            </FieldBox>
+
+            <FieldBox label={briefingLabels.access} icon={<Shield className="h-4 w-4" />} required={false}>
+              <input
+                value={state.details.access}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    details: { ...prev.details, access: e.target.value },
+                  }))
+                }
+                className="calc-input h-11"
+                placeholder={briefingLabels.accessPlaceholder}
+              />
+            </FieldBox>
+          </div>
+
+          <FieldBox label={briefingLabels.budget} icon={<Clock className="h-4 w-4" />} required={false}>
+            <input
+              value={state.details.budget}
+              onChange={(e) =>
+                setState((prev) => ({
+                  ...prev,
+                  details: { ...prev.details, budget: e.target.value },
+                }))
+              }
+              className="calc-input h-11"
+              placeholder="z. B. 800 €, bitte Machbarkeit prüfen"
+              data-event="submit_budget_request"
+              data-source="booking_wizard_budget_field"
+            />
+          </FieldBox>
+
+          {isDusseldorfServiceConflict ? (
+            <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
+              Dieser Düsseldorf-Einstieg ist bei FLOXANT nur für Reinigung vorgesehen.
+              Bitte wählen Sie Reinigung oder ändern Sie den Ort.
+            </div>
+          ) : null}
 
           <div className="flex justify-center gap-4 pt-2">
             <PremiumButton variant="ghost" onClick={prevStep} type="button">
@@ -857,6 +1147,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                 }
                 className="calc-chip-card relative rounded-[1.8rem] p-6 text-start"
                 data-active={isSelected ? "true" : "false"}
+                data-event="select_booking_upgrade"
+                data-upgrade={upgrade.id}
               >
                 <div className="mb-4 flex items-start justify-between">
                   <div
@@ -966,7 +1258,12 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           </div>
         </div>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form
+          className="space-y-4"
+          onSubmit={handleSubmit}
+          data-event="submit_booking"
+          data-service={state.service || "unknown"}
+        >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FieldBox label={t?.form?.name || "Name"}>
               <input
@@ -1031,6 +1328,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                 type="file"
                 multiple
                 accept="image/*"
+                data-event="upload_images"
+                data-source="booking_wizard"
                 onChange={(e) => {
                   if (e.target.files) {
                     setFiles(Array.from(e.target.files));
@@ -1108,7 +1407,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-8">
+    <div
+      className="mx-auto w-full max-w-5xl space-y-8"
+      data-event="start_booking"
+      data-source="booking_wizard"
+    >
       <div className="grid gap-3 sm:grid-cols-4">
         {steps.map((stepItem) => (
           <div

@@ -21,26 +21,8 @@ export interface BackhaulOffer {
  updatedAt: string;
 }
 
-export const FALLBACK_BACKHAUL_OFFERS: BackhaulOffer[] = [
- {
-  id: "fallback-regensburg-rueckfahrt",
-  title: "Flexible Leer-Rückfahrt für Firmen und Privatkunden nach Regensburg",
-  date: "",
-  timeWindow: "nach Absprache",
-  origin: "Deutschlandweit auf Anfrage",
-  destination: "Regensburg",
-  destinationRadius: "ca. 150 km um Regensburg",
-  routeAreas: ["Nürnberg", "München", "Ingolstadt", "Landshut", "Passau", "Stuttgart", "Frankfurt"],
-  vehicleType: "Transporter oder LKW nach Tour",
-  availableCapacity: "Büroinventar, Möbel, Kartons, Paletten, Einzelstücke",
-  priceHint: "fairer Rückfahrt-Preis nach Route und Volumen",
-  fairPriceNote:
-   "Wenn die Route zur ohnehin geplanten Rückfahrt passt, kann FLOXANT freie Fahrzeugkapazität fair anbieten. Liegt etwas sinnvoll unterwegs, prüfen wir den Umweg und besprechen den Mehrpreis transparent.",
-  status: "active",
-  createdAt: "2026-04-21T00:00:00.000Z",
-  updatedAt: "2026-04-21T00:00:00.000Z",
- },
-];
+// Intentionally empty: public pages must not show fake or assumed return trips.
+export const FALLBACK_BACKHAUL_OFFERS: BackhaulOffer[] = [];
 
 function asString(value: unknown, fallback = "") {
  const text = String(value || "").trim();

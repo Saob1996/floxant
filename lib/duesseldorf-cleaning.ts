@@ -47,10 +47,10 @@ export const DUESSELDORF_CLEANING_SERVICES = [
   {
     slug: "bueroreinigung",
     href: "/duesseldorf/bueroreinigung",
-    label: "Büroreinigung",
-    shortLabel: "Büro",
+    label: "B2B-Reinigung / Büro",
+    shortLabel: "B2B",
     description:
-      "Für Büros, Praxen und kleine Gewerbeflächen mit klarer Abstimmung zu Zeiten, Umfang, Frequenz und laufendem Betrieb.",
+      "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien, Praxisflächen nach Absprache und Gewerbeflächen mit klarer Abstimmung zu Fläche, Frequenz, Zeitfenster und Zugang.",
   },
   {
     slug: "grundreinigung",
@@ -121,6 +121,20 @@ export function buildDuesseldorfCleaningMetadata(input: {
   return {
     title: input.title,
     description: input.description,
+    keywords: [
+      "FLOXANT Reinigung Düsseldorf",
+      "Reinigung Düsseldorf",
+      "Wohnungsreinigung Düsseldorf",
+      "Büroreinigung Düsseldorf",
+      "B2B-Reinigung Düsseldorf",
+      "Gewerbereinigung Düsseldorf",
+      "Unterhaltsreinigung Düsseldorf",
+      "Reinigung kleine Unternehmen Düsseldorf",
+      "Grundreinigung Düsseldorf",
+      "Treppenhausreinigung Düsseldorf",
+      "Endreinigung Düsseldorf",
+      "Übergabereinigung Düsseldorf",
+    ],
     alternates: {
       canonical,
     },
@@ -154,24 +168,25 @@ export function buildDuesseldorfCleaningMetadata(input: {
       "geo.position": "51.2277;6.7735",
       "search-intent": "Reinigungsdienst in Düsseldorf direkt anfragen",
       "content-tags":
-        "FLOXANT Reinigung Düsseldorf, Reinigung Düsseldorf, Wohnungsreinigung Düsseldorf, Büroreinigung Düsseldorf, Grundreinigung Düsseldorf, Treppenhausreinigung Düsseldorf, Endreinigung Düsseldorf",
+        "FLOXANT Reinigung Düsseldorf, Reinigung Düsseldorf, Wohnungsreinigung Düsseldorf, Büroreinigung Düsseldorf, B2B-Reinigung Düsseldorf, Gewerbereinigung Düsseldorf, Unterhaltsreinigung Düsseldorf, Grundreinigung Düsseldorf, Treppenhausreinigung Düsseldorf, Endreinigung Düsseldorf",
       "business:contact_data:street_address":
         DUESSELDORF_CLEANING.address.streetAddress,
       "business:contact_data:postal_code":
         DUESSELDORF_CLEANING.address.postalCode,
       "business:contact_data:locality": DUESSELDORF_CLEANING.address.city,
+      "business:contact_data:region": "Nordrhein-Westfalen",
       "business:contact_data:country_name":
         DUESSELDORF_CLEANING.address.country,
       "business:contact_data:phone_number": DUESSELDORF_CLEANING.phoneRaw,
       "business:contact_data:email": DUESSELDORF_CLEANING.email,
       "service-area": "Düsseldorf, Neuss, Ratingen, Meerbusch, Hilden, Erkrath",
       "primary-services":
-        "Wohnungsreinigung, Büroreinigung, Grundreinigung, Treppenhausreinigung, Übergabereinigung, Endreinigung",
+        "Wohnungsreinigung, Büroreinigung, B2B-Reinigung, Gewerbereinigung, Unterhaltsreinigung, Grundreinigung, Treppenhausreinigung, Übergabereinigung, Endreinigung",
       "business-category": "CleaningService, LocalBusiness, Reinigungsdienst",
       "local-seo-focus":
-        "Reinigungsdienst Düsseldorf für Wohnungen, Büros, Treppenhäuser, Grundreinigung und saubere Übergaben",
+        "Reinigungsdienst Düsseldorf für Wohnungen, Büros, kleine Unternehmen, Gewerbeflächen, Treppenhäuser, Grundreinigung und saubere Übergaben",
       "ai-readable-summary":
-        "FLOXANT Reinigung Düsseldorf prüft Reinigungsanfragen für Wohnungsreinigung, Büroreinigung, Grundreinigung, Treppenhausreinigung und Endreinigung in Düsseldorf und nahen Orten realistisch nach Umfang, Zustand, Termin und Budget.",
+        "FLOXANT Reinigung Düsseldorf prüft Reinigungsanfragen für Wohnungsreinigung, Büroreinigung, B2B-Reinigung, Gewerbereinigung, Grundreinigung, Treppenhausreinigung und Endreinigung in Düsseldorf realistisch nach Umfang, Zustand, Termin und Budget.",
       "answer-engine-service-summary":
         "Reinigung in Düsseldorf und Umgebung mit klaren Anfragewegen, sichtbaren lokalen Kontaktdaten, Preisrechner, WhatsApp und Budgetprüfung.",
       "primary-conversion-url": canonical,
@@ -187,7 +202,7 @@ export function buildDuesseldorfCleaningMetadata(input: {
       "ctr-promise":
         "Reinigung in Düsseldorf: klarer Fokus, schnelle Anfrage, lokale Adresse, Preisrechner und ehrliche Budgetprüfung.",
       "visual-content-policy":
-        "Saubere Räume, Gebäudeflächen, Checklisten und Reinigungsfokus statt Transport- oder Möbelmotive.",
+        "Saubere Räume, Gebäudeflächen, Checklisten und Reinigungsfokus statt Möbel- oder Ladeflächenmotive.",
       "maps-ranking-support":
         "Klare Düsseldorfer NAP-Daten, lokale CleaningService-Signale, direkte Anfragewege und semantisch getrennte Reinigungsseiten.",
       "maps-relevance-signals":

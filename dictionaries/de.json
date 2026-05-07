@@ -422,11 +422,11 @@
   },
   "pages": {
     "umzug_spec": {
-      "meta_title": "Umzugsunternehmen {city} ✓ Festpreis ✓ Versichert | FLOXANT",
-      "meta_desc": "Professionelles Umzugsunternehmen in {city} & Bayern. Umzug, Entrümpelung und Reinigung zum Festpreis. Jetzt kostenloses Angebot anfragen!",
+      "meta_title": "Umzugsunternehmen {city} | Planung, Transport & Übergabe | FLOXANT",
+      "meta_desc": "Umzugsunternehmen in {city} und Bayern nach Verfügbarkeit. Umzug, Entrümpelung und Reinigung sauber vorprüfen und unverbindlich anfragen.",
       "hero_badge": "Umzugsservice",
       "hero_h1": "Umzug {city_district}",
-      "hero_p": "Ihr verlässliches Umzugsunternehmen für stressfreie Umzüge in {city} und ganz Bayern. Mit Festpreisgarantie und voller Versicherungsschutz.",
+      "hero_p": "Ihr verlässliches Umzugsunternehmen für {city} und Bayern nach Verfügbarkeit. Mit sauberer Vorprüfung, Preisrahmen und klarer Abstimmung vor dem Einsatz.",
       "badges": {
         "permit": "Genehmigungen",
         "signs": "Halteverbote",
@@ -443,7 +443,7 @@
       "service2": {
         "title": "Vorteile",
         "l1": "Kostenlose Besichtigung",
-        "l2": "Festpreisgarantie",
+        "l2": "Preisrahmen nach Prüfung",
         "l3": "Erfahrenes Team",
         "l4": "Termintreue"
       },
@@ -1546,7 +1546,7 @@
     },
     "fernumzug_bayern_nrw_tipps": {
       "meta_title": "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Tipps | FLOXANT Ratgeber",
-      "meta_desc": "Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+      "meta_desc": "Fernumzug von Regensburg oder Bayern nach Nordrhein-Westfalen? Alles über Kosten, Ablauf, Beiladung und saubere Planung. Unverbindlich anfragen oder Preisrahmen prüfen.",
       "faqs": []
     },
     "umzug_checkliste": {
@@ -4947,18 +4947,18 @@
       "link_senioren": "Seniorenumzug {city}",
       "link_halteverbot": "Reinigung {city}",
       "seo": {
-        "meta_title": "Entrümpelung {city} ✓ Besenrein ✓ Entsorgung | FLOXANT",
-        "meta_desc": "Diskret und schnell: Entrümpelung und Wohnungsauflösung mit zertifizierter Entsorgung in {city}. Hinterlassen Sie besenreine Räume. Direkt Festpreis anfragen."
+        "meta_title": "Entrümpelung {city} | Räumung & Übergabe | FLOXANT",
+        "meta_desc": "Diskret und sauber: Entrümpelung und Wohnungsauflösung mit geregelter Entsorgung in {city}. Räume leer und übergabebereit anfragen."
       }
     },
     "reinigung_spec": {
       "meta_title": "Endreinigung {city} | FLOXANT",
-      "meta_desc": "Professionelle Umzugsreinigung mit Abnahmegarantie in {city}.",
+      "meta_desc": "Professionelle Umzugsreinigung und Übergabevorbereitung in {city}.",
       "hero_badge": "Reinigungsfirma",
       "hero_h1": "Endreinigung",
-      "hero_p": "Sparen Sie sich den Putzstress nach dem Umzug. Wir reinigen Ihre Wohnung in {city} mit 100% Abnahmegarantie.",
+      "hero_p": "Sparen Sie sich den Putzstress nach dem Umzug. Wir reinigen Ihre Wohnung in {city} mit klarem Fokus auf Übergabevorbereitung und realistische Abstimmung.",
       "badges": {
-        "permit": "Abnahmegarantie",
+        "permit": "Übergabefokus",
         "signs": "Umweltfreundlich",
         "stressfree": "Tiefenrein"
       },

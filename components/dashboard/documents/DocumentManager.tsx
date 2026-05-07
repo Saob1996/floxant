@@ -283,7 +283,7 @@ export function DocumentManager({ bookingId, documents, onUpdate }: DocumentMana
             href={`/api/pdf/${bookingId}?documentId=${doc.id}`}
             target="_blank"
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-500 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
-            title="Download PDF"
+            title="PDF herunterladen"
             rel="noreferrer"
            >
             <Download className="h-3.5 w-3.5" />

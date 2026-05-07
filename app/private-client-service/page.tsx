@@ -144,6 +144,24 @@ export default function PrivateClientServicePage() {
     "Umsetzung mit Übergabeprotokoll",
   ]);
 
+  const premiumSignatureBlocks = germanizeDeep([
+    {
+      icon: KeyRound,
+      title: "Schlüssel, Übergabe und Protokoll",
+      text: "Für sensible Auszüge, Eigentümerwechsel oder Zweitwohnsitze, bei denen Zustand, Fotos, Schlüssel und Übergabetermin ruhig dokumentiert werden sollen.",
+    },
+    {
+      icon: Sparkles,
+      title: "Reinigung und Übergabe kombiniert",
+      text: "Wenn hochwertige Räume nicht nur transportiert, sondern sauber zurückgegeben oder für den nächsten Schritt vorbereitet werden müssen.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Diskrete Vorprüfung statt Standardformular",
+      text: "Objektart, Zugang, Besonderheiten, gewünschter Servicegrad und Rückrufwunsch werden zuerst vertraulich eingeordnet.",
+    },
+  ]);
+
   return (
     <main className="private-client min-h-screen overflow-hidden bg-[#040302] text-[#F6EBDD]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -221,6 +239,14 @@ export default function PrivateClientServicePage() {
               >
                 Persönlich sprechen
               </a>
+              <Link
+                href="/angebotscheck"
+                className="private-copy inline-flex h-14 items-center justify-center rounded-full border border-[#D8B76E]/22 px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8D2A2] transition hover:border-[#D8B76E]/50 hover:bg-[#D8B76E]/8"
+                data-event="start_offer_check"
+                data-source="private_client_hero"
+              >
+                Angebot diskret prüfen
+              </Link>
             </div>
           </div>
 
@@ -309,6 +335,46 @@ export default function PrivateClientServicePage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-7xl rounded-[2.4rem] border border-[#D8B76E]/14 bg-[#0A0604] p-8 md:p-10">
+          <div className="mb-8 max-w-3xl">
+            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.28em] text-[#D8B76E]">
+              Premium-Bausteine
+            </div>
+            <h2 className="mt-4 text-4xl font-medium tracking-tight text-[#F6EBDD] md:text-5xl">
+              Hochwertiger Service heißt: weniger Schnittstellen, mehr Kontrolle
+            </h2>
+            <p className="private-copy mt-5 text-sm leading-relaxed text-[#E6D8C3]/58">
+              FLOXANT verspricht keine künstlichen Luxus-Siegel. Entscheidend ist, dass sensible
+              Aufgaben wie Übergabe, Reinigung, Schutz, Schlüssel und Rückrufwunsch ruhig zusammen
+              geplant werden.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {premiumSignatureBlocks.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article key={item.title} className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-black/20 p-6">
+                  <Icon className="mb-5 h-6 w-6 text-[#D8B76E]" />
+                  <h3 className="text-2xl font-medium text-[#F6EBDD]">{item.title}</h3>
+                  <p className="private-copy mt-3 text-sm leading-relaxed text-[#E6D8C3]/56">{item.text}</p>
+                </article>
+              );
+            })}
+          </div>
+
+          <a
+            href="#private-anfrage"
+            className="private-copy mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D8B76E] px-6 text-[10px] font-bold uppercase tracking-[0.18em] text-[#120D08] transition hover:bg-[#F0D58B]"
+            data-event="open_premium_lead"
+            data-source="private_client_signature_services"
+          >
+            Premium-Anfrage vorbereiten
+          </a>
         </div>
       </section>
 
@@ -416,6 +482,20 @@ export default function PrivateClientServicePage() {
             <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Family Office & Private Client besser abstimmen</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
               Für Eigentümer, Family Offices und Assistenzen, die zuerst verstehen möchten, wie Zuständigkeiten, Diskretion und Schutzbedarf ruhig koordiniert werden.
+            </p>
+          </Link>
+          <Link href="/nachlass-raeumung-regensburg" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
+            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Diskret</div>
+            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Nachlass-Raeumung ruhig klaeren</h2>
+            <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
+              Fuer Angehoerige, Erben und Eigentuemer, wenn Freigabe, Zugang, Fotos, Raeumung und Reinigung sensibel abgestimmt werden sollen.
+            </p>
+          </Link>
+          <Link href="/diskreter-umzug-trennung-scheidung" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
+            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Rueckruf-First</div>
+            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Diskreter Auszug bei Trennung</h2>
+            <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
+              Fuer sensible private Auszugssituationen, wenn Rueckruf, sichere Kontaktmethode, Transport, Reinigung und Uebergabe ruhig abgestimmt werden sollen.
             </p>
           </Link>
           <Link href="/umzug" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">

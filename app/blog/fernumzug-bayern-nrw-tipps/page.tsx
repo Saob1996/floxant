@@ -20,7 +20,7 @@ export default async function BlogArticle() {
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Fernumzug von Bayern nach NRW: Ablauf, Kosten & Tipps",
-    "description": "Fernumzug von Regensburg/München nach Köln, Düsseldorf oder Dortmund? Alles über Kosten, Ablauf, Beiladung und clevere Spartipps.",
+    "description": "Fernumzug von Regensburg oder Bayern nach Nordrhein-Westfalen? Alles über Kosten, Ablauf, Beiladung und saubere Planung.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
     "datePublished": "2026-03-18",
@@ -41,7 +41,7 @@ export default async function BlogArticle() {
             <span>Lesezeit: 8 Min.</span>
           </div>
           <div className="prose prose-xl max-w-none text-muted-foreground leading-loose">
-            <p className="text-lg font-medium text-foreground">Bayern und Nordrhein-Westfalen sind durch Arbeitsmigration eng verbunden. Jedes Jahr ziehen tausende Menschen zwischen den beiden Bundesländern um. Die Distanz von rund 500-600 Kilometern macht den Transport zu einer logistischen Herausforderung – aber mit der richtigen Planung ist auch ein Fernumzug stressfrei machbar.</p>
+            <p className="text-lg font-medium text-foreground">Bayern und Nordrhein-Westfalen sind durch Arbeitsmigration eng verbunden. Wer aus Regensburg oder Bayern in Richtung NRW umzieht, muss Strecke, Volumen, Zugang, Zeitfenster und Übergabe sauber zusammenbringen. Die Distanz von rund 500-600 Kilometern macht den Transport anspruchsvoll, aber mit klarer Planung bleibt der Ablauf beherrschbar.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Was kostet ein Fernumzug Bayern → NRW?</h2>
             <p>Die Kosten hängen nicht nur von der Strecke ab, sondern vor allem von Volumen, Zugang, Etagen, Zeitfenster und Zusatzleistungen. Grobe Online-Spannen können eine erste Orientierung geben, ersetzen aber keine Prüfung des konkreten Falls. Wichtig ist ein Angebot, das nach Besichtigung oder sauberer Foto-/Datenprüfung verständlich bestätigt wird.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Beiladung: Die clevere Sparoption</h2>

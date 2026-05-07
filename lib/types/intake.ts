@@ -13,6 +13,7 @@ export interface IntakeServiceInfo {
  source: string; // e.g. "intake_wizard"
  entryPoint?: string;
  presetFromUrl?: string;
+ regionPreset?: string;
 }
 
 export interface IntakeValuation {
@@ -101,16 +102,66 @@ export interface IntakeAdminMeta {
  }>;
 }
 
-export type FloxDocumentType = 'inquiry_summary' | 'quote' | 'order_confirmation' | 'invoice';
-export type FloxDocumentStatus = 'draft' | 'generated' | 'approved' | 'sent' | 'paid' | 'cancelled';
+export type FloxDocumentType = "inquiry_summary" | "quote" | "order_confirmation" | "invoice";
+export type FloxDocumentStatus =
+  | "draft"
+  | "generated"
+  | "approved"
+  | "sent"
+  | "accepted"
+  | "rejected"
+  | "confirmed"
+  | "paid"
+  | "partially_paid"
+  | "overdue"
+  | "cancelled"
+  | "voided"
+  | "archived";
+
+export interface DocumentCustomerSnapshot {
+ id?: string;
+ customerType?: "private" | "company";
+ customerNumber?: string;
+ name: string;
+ companyName?: string;
+ contactPerson?: string;
+ street?: string;
+ zip?: string;
+ city?: string;
+ country?: string;
+ email?: string;
+ phone?: string;
+ vatId?: string;
+}
+
+export interface DocumentServiceBlock {
+ id: string;
+ title: string;
+ description?: string;
+ orderIndex: number;
+ serviceType?: string;
+ date?: string;
+ location?: string;
+ notes?: string;
+}
 
 export interface DocumentLineItem {
  id: string;
+ position?: number;
  description: string;
  quantity: number;
  unit: string;
  unitPrice: number;
+ unitPriceNet?: number;
+ discountPercent?: number;
+ discountAmountNet?: number;
  taxRate: number; // e.g. 19 for 19%
+ taxAmount?: number;
+ lineTotalNet?: number;
+ lineTotalGross?: number;
+ serviceId?: string;
+ category?: string;
+ orderIndex?: number;
  total: number;
 }
 
@@ -121,6 +172,11 @@ export interface FloxDocument {
  number: string; // e.g. AG-ID-V1
  status: FloxDocumentStatus;
  version: number;
+ leadId?: string;
+ customerId?: string;
+ relatedDocumentId?: string;
+ sourceDocumentId?: string;
+ sourceFlow?: "manual" | "lead" | "booking" | "derived";
  
  // Snapshot data at time of creation
  snapshot: {
@@ -134,12 +190,23 @@ export interface FloxDocument {
  // Admin editable fields (especially for quotes/invoices)
  editableData: {
   title?: string;
+  documentNumber?: string;
+  publicRemark?: string;
+  internalNote?: string;
+  serviceDate?: string;
+  servicePeriodStart?: string;
+  servicePeriodEnd?: string;
+  performanceLocation?: string;
+  customer?: DocumentCustomerSnapshot;
+  services?: DocumentServiceBlock[];
   introText?: string;
   items: DocumentLineItem[];
   conditions?: string;
+  notesText?: string;
   validUntil?: string;
   documentDate?: string;
   dueDate?: string;
+  paymentDueDate?: string;
   paymentTerms?: string;
   terms?: string;
   footerNote?: string;
@@ -147,6 +214,7 @@ export interface FloxDocument {
 
  totals: {
   net: number;
+  discountTotal?: number;
   tax: number;
   gross: number;
   currency: string;
@@ -176,6 +244,7 @@ export interface IntakePayload {
   intakeVersion: string;
   source: string;
   servicePresetFromUrl?: string;
+  regionPreset?: string;
   clientContext?: any;
  };
 }

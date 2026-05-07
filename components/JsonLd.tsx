@@ -45,7 +45,6 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "unverbindliche Vorprüfung",
           "Regensburg",
           "Bayern",
-          "Baden-Württemberg",
           "Umzugsunternehmen",
           "Reinigungsfirma",
         ],

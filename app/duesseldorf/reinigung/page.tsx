@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 
 import { DuesseldorfCleaningCalculator } from "@/components/duesseldorf/DuesseldorfCleaningCalculator";
+import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
+import { SignatureServices } from "@/components/SignatureServices";
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_SERVICES,
@@ -25,9 +27,9 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf | Wohnungen, Büros & Übergaben anfragen",
+    title: "Reinigung Düsseldorf – Privat, Endreinigung & B2B | FLOXANT",
     description:
-      "FLOXANT Reinigung Düsseldorf ordnet Reinigungsanfragen für Wohnungen, Büros und Übergaben realistisch ein. Mit WhatsApp-Anfrage, Preisrechner und Budgetrahmen.",
+      "Reinigung Düsseldorf für Wohnung, Auszug, Endreinigung und B2B-Flächen. Fotos senden, Budget nennen und unverbindlich anfragen.",
   });
 }
 
@@ -37,6 +39,7 @@ const trustLine = [
   "Anfrage per WhatsApp möglich",
   "Budget ehrlich einordnen",
 ];
+const duesseldorfBookingHref = "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
 
 const heroHighlights = [
   {
@@ -74,6 +77,10 @@ const focusCards = [
 const serviceIcons = [Home, Building2, Sparkles, Building, ClipboardCheck, CheckCircle2];
 
 const faqs = [
+  {
+    q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
+    a: "Nein. In Düsseldorf liegt der Fokus auf Reinigung und separat auf Entsorgung. Umzugsleistungen werden dort nicht als lokaler Hauptservice beworben.",
+  },
   {
     q: "Kann ich bei FLOXANT Reinigung Düsseldorf ein eigenes Budget nennen?",
     a: "Ja. Sie können uns Ihren Preisrahmen direkt mitteilen. Wir ordnen dann ehrlich ein, ob der Auftrag dafür machbar ist, welcher Umfang möglich wäre oder ob der Aufwand realistisch höher liegt.",
@@ -178,7 +185,7 @@ export default function DuesseldorfReinigungPage() {
               FLOXANT Reinigung Düsseldorf
             </div>
             <h1 className="duesseldorf-hero-title mt-5 max-w-[17ch] text-[clamp(2.55rem,5.4vw,5rem)] font-bold">
-              Reinigung in Düsseldorf für Wohnungen, Büros und Übergaben
+              Reinigung Düsseldorf für Wohnung, Auszug und B2B-Flächen
             </h1>
             <p className="duesseldorf-hero-copy mt-5 max-w-3xl text-lg">
               Eine gute Reinigung beginnt nicht erst mit dem Wischen, sondern mit klarer
@@ -188,15 +195,21 @@ export default function DuesseldorfReinigungPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                href="#rechner"
+                href={duesseldorfBookingHref}
                 className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-[0_14px_34px_rgba(255,255,255,0.16)] transition hover:-translate-y-0.5"
+                data-event="start_booking"
+                data-service="reinigung"
+                data-region="duesseldorf"
               >
-                Unverbindlich Preis berechnen
+                Reinigung anfragen
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#preisvorschlag"
                 className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-teal-200/35 bg-teal-300/15 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(20,184,166,0.18)] transition hover:-translate-y-0.5 hover:bg-teal-300/22"
+                data-event="submit_budget_request"
+                data-service="reinigung"
+                data-region="duesseldorf"
               >
                 Eigenes Budget einordnen lassen
                 <ArrowRight className="h-4 w-4" />
@@ -206,9 +219,28 @@ export default function DuesseldorfReinigungPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-[1.2rem] border border-white/14 bg-white/8 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
+                data-event="click_whatsapp"
+                data-service="reinigung"
+                data-region="duesseldorf"
               >
                 Per WhatsApp anfragen
               </a>
+              <Link
+                href="/entsorgung-duesseldorf"
+                className="inline-flex items-center justify-center rounded-[1.2rem] border border-white/14 bg-white/8 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
+                data-event="internal_link_disposal_duesseldorf"
+                data-region="duesseldorf"
+              >
+                Entsorgung separat
+              </Link>
+              <Link
+                href="/reinigung-moeblierte-wohnung-duesseldorf"
+                className="inline-flex items-center justify-center rounded-[1.2rem] border border-cyan-200/35 bg-cyan-300/15 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-cyan-300/22"
+                data-event="internal_link_duesseldorf_apartment_cleaning"
+                data-region="duesseldorf"
+              >
+                Moeblierte Wohnung reinigen
+              </Link>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
               Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget - wir ordnen
@@ -279,14 +311,21 @@ export default function DuesseldorfReinigungPage() {
           </div>
         </section>
 
-        <section id="leistungen" className="pt-12">
-          <div className="mb-8 max-w-3xl">
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+        <section
+          id="leistungen"
+          className="relative z-10 mt-12 rounded-[2.35rem] border border-slate-200 bg-white/95 p-5 shadow-[0_28px_90px_rgba(15,23,42,0.12)] sm:p-8"
+        >
+          <div className="mb-8 max-w-4xl">
+            <div className="inline-flex rounded-full border border-teal-100 bg-teal-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-teal-800">
               Leistungen
             </div>
-            <h2 className="mt-4 text-4xl font-bold tracking-[-0.03em] text-slate-950">
-              Reinigungsleistungen für Wohnungen, Büros und saubere Übergaben
+            <h2 className="mt-5 max-w-3xl text-3xl font-black leading-tight tracking-[-0.035em] text-slate-950 sm:text-4xl lg:text-5xl">
+              Reinigung in Düsseldorf: Wohnung, Büro und Übergabe
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
+              Wählen Sie den passenden Einstieg. FLOXANT prüft Fläche, Zustand,
+              Termin, Fotos und Budget vorab, bevor ein Auftrag bestätigt wird.
+            </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -314,6 +353,40 @@ export default function DuesseldorfReinigungPage() {
             })}
           </div>
         </section>
+
+        <SignatureServices
+          locale="de"
+          dict={{ signature_services: { items: {} } }}
+          serviceIds={[
+            "duesseldorf_b2b_cleaning",
+            "handover_ready",
+            "budget_check",
+            "photo_check",
+            "duesseldorf_disposal",
+          ]}
+          badge="Düsseldorf Reinigung"
+          title="Private und B2B-Reinigung klar getrennt anfragen"
+          subtitle="Düsseldorf bleibt ein eigener Reinigungsbereich: Wohnungsreinigung, Endreinigung, Büroreinigung, Fotos und Budget werden ohne Umzugslogik eingeordnet."
+          compact
+          source="duesseldorf_cleaning_signature_services"
+        />
+
+        <PublicAuthorityModules
+          moduleIds={[
+            "duesseldorf_cleaning_private",
+            "duesseldorf_cleaning_b2b",
+            "duesseldorf_apartment_cleaning",
+            "price_cleaning",
+            "damage_control",
+            "offer_check",
+            "photo_check",
+            "budget_check",
+          ]}
+          badge="Duesseldorf Content-Cluster"
+          title="Private Reinigung und B2B-Reinigung sauber getrennt"
+          subtitle="Duesseldorf bleibt ein eigener Reinigungsbereich. Wohnungsreinigung, Endreinigung, Bueroflaechen, Fotos und Budget werden ohne Umzugslogik eingeordnet."
+          source="duesseldorf_cleaning_authority_modules"
+        />
 
         <section id="einsatzgebiet" className="pt-12">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
@@ -381,6 +454,9 @@ export default function DuesseldorfReinigungPage() {
                 <a
                   href="#rechner"
                   className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+                  data-event="submit_budget_request"
+                  data-service="reinigung"
+                  data-region="duesseldorf"
                 >
                   Eigenes Budget einordnen lassen
                   <ArrowRight className="h-4 w-4" />
@@ -390,6 +466,9 @@ export default function DuesseldorfReinigungPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900 transition hover:-translate-y-0.5 hover:bg-emerald-100"
+                  data-event="click_whatsapp"
+                  data-service="reinigung"
+                  data-region="duesseldorf"
                 >
                   Budget per WhatsApp senden
                 </a>

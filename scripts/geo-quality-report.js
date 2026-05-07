@@ -11,6 +11,16 @@ const NON_GEO_ROUTES = new Set([
   "umzug-mit-reinigung",
   "reinigung-preis-rechner",
   "entruempelung-kosten-regensburg",
+  "umzug-duesseldorf",
+  "umzug-berlin",
+  "umzug-bremen",
+  "umzug-dortmund",
+  "umzug-essen",
+  "umzug-frankfurt",
+  "umzug-hamburg",
+  "umzug-koeln",
+  "umzug-leipzig",
+  "umzug-stuttgart",
 ]);
 
 function main() {

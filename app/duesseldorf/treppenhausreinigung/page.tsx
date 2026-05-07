@@ -21,7 +21,7 @@ export default function DuesseldorfTreppenhausreinigungPage() {
       bullets={[
         "Sinnvoll für Eigentümer, Hausverwaltungen oder kleinere Objekte mit regelmäßigem Reinigungsbedarf.",
         "Laufwege, Etagen und sichtbare Eingangsflächen werden im Anfrageweg sauber eingeordnet.",
-        "Keine Entsorgungs- oder Transportlogik, sondern klare Gebäudereinigung.",
+        "Keine Mischleistung, sondern klare Gebäudereinigung für gemeinschaftliche Bereiche.",
       ]}
       localFocus={["Derendorf", "Pempelfort", "Bilk", "Oberbilk", "Neuss", "Meerbusch"]}
     />

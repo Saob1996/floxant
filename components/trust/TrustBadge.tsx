@@ -22,8 +22,8 @@ const badgeConfig = {
     iconTone: "text-emerald-600",
   },
   expert: {
-    de: "Zertifiziertes Expertenteam",
-    en: "Certified expert team",
+    de: "Eingespieltes Einsatzteam",
+    en: "Experienced service team",
     icon: Award,
     tone:
       "border-blue-200 bg-blue-50/90 text-blue-800",

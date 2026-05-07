@@ -50,7 +50,7 @@ export function OrganizationJsonLd() {
       "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Premium-Projekte mit Schwerpunkt Regensburg und Bayern.",
     areaServed: company.primaryServiceAreas.map((area) => ({
       "@type":
-        area === "Bayern" || area === "Baden-Württemberg"
+        area === "Bayern"
           ? "State"
           : area === "Oberpfalz" || area === "Landkreis Regensburg"
             ? "AdministrativeArea"
@@ -77,7 +77,6 @@ export function OrganizationJsonLd() {
       "Google Maps Buchungslink",
       "Regensburg",
       "Bayern",
-      "Baden-Württemberg",
     ],
     subjectOf: [
       { "@type": "WebPage", name: "FLOXANT Fakten", url: `${company.url}/floxant-fakten` },

@@ -34,10 +34,13 @@ export function DuesseldorfServicePage({
           <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300">
             {description}
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/duesseldorf/reinigung#rechner"
               className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-white px-5 py-3 text-sm font-bold text-slate-950"
+              data-event="start_calculator"
+              data-service="reinigung"
+              data-region="duesseldorf"
             >
               Unverbindlich Preis berechnen
               <ArrowRight className="h-4 w-4" />
@@ -49,9 +52,20 @@ export function DuesseldorfServicePage({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-[1.2rem] border border-white/14 bg-white/8 px-5 py-3 text-sm font-bold text-white"
+              data-event="click_whatsapp"
+              data-service="reinigung"
+              data-region="duesseldorf"
             >
               Per WhatsApp anfragen
             </a>
+            <Link
+              href="/reinigung-moeblierte-wohnung-duesseldorf"
+              className="inline-flex items-center justify-center rounded-[1.2rem] border border-cyan-200/25 bg-cyan-300/12 px-5 py-3 text-sm font-bold text-white"
+              data-event="internal_link_duesseldorf_apartment_cleaning"
+              data-region="duesseldorf"
+            >
+              Apartment-Reinigung
+            </Link>
           </div>
         </section>
 
@@ -96,4 +110,3 @@ export function DuesseldorfServicePage({
     </main>
   );
 }
-

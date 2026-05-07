@@ -96,7 +96,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
         }));
       })
       .catch(() => {
-        // Static fallback remains visible when live backhaul data is unavailable.
+        // No fake fallback routes: customers can still submit a route for review.
       });
 
     return () => {
@@ -228,6 +228,27 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   return (
     <div className="grid gap-8 lg:grid-cols-[1.03fr_0.97fr]">
       <div className="space-y-4">
+        {offers.length === 0 ? (
+          <div className="rounded-[2rem] border border-dashed border-emerald-300 bg-emerald-50/70 p-6">
+            <Truck className="mb-4 h-7 w-7 text-emerald-700" />
+            <h3 className="text-2xl font-bold tracking-tight text-slate-950">
+              Aktuell keine konkrete Rückfahrt veröffentlicht
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              FLOXANT zeigt hier nur echte, gepflegte Rückfahrten. Wenn keine Tour eingetragen ist,
+              können Sie trotzdem Start, Ziel, Datum und Umfang über die Rückfahrt-Börse prüfen lassen.
+            </p>
+            <a
+              href="/rueckfahrt-boerse#rueckfahrt-form"
+              className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-700 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
+              data-event="start_route_check"
+              data-source="backhaul_empty_state"
+            >
+              Flexible Strecke eintragen
+            </a>
+          </div>
+        ) : null}
+
         {offers.map((offer, index) => {
           const isSelected = activeOffer?.id === offer.id;
 

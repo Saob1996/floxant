@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import {
   ArrowRight,
   Calculator,
@@ -658,13 +659,9 @@ export default async function RechnerPage() {
                 FLOXANT Rechner
               </span>
             </Reveal>
-            <TextReveal
-              as="h1"
-              text="Preisrahmen für Regensburg und Bayern sauber einschätzen"
-              className="mt-8 max-w-[15ch] text-4xl font-bold leading-[0.99] tracking-[-0.02em] text-slate-950 md:text-7xl"
-              delay={0.08}
-              wordDelay={0.055}
-            />
+            <h1 className="mt-8 max-w-[15ch] text-4xl font-bold leading-[0.99] tracking-[-0.02em] text-slate-950 md:text-7xl">
+              Preisrahmen für Regensburg und Bayern sauber einschätzen
+            </h1>
             <MaskReveal delay={0.22}>
               <p className="mt-7 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">
                 Wählen Sie Umzug, Reinigung, Entrümpelung oder Büroumzug. FLOXANT fragt die
@@ -973,7 +970,15 @@ export default async function RechnerPage() {
           </div>
 
           <div id="rechner-wizard" className="scroll-mt-28" />
-          <ServiceRechnerHub dic={dict} />
+          <Suspense
+            fallback={
+              <div className="rounded-[1.6rem] border border-slate-200 bg-white p-6 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5">
+                Rechner wird geladen...
+              </div>
+            }
+          >
+            <ServiceRechnerHub dic={dict} />
+          </Suspense>
         </div>
       </section>
 

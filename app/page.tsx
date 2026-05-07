@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { Einsatzradar } from "@/components/Einsatzradar";
+import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SignatureServices } from "@/components/SignatureServices";
 import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
@@ -23,6 +25,11 @@ import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
 import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
 import { BAVARIA_DIRECT_DEMAND_LINKS } from "@/lib/bavaria-coverage";
 import { company } from "@/lib/company";
+import {
+  einsatzradarFilters,
+  einsatzradarRegionZones,
+  getPublishedEinsatzradarEntries,
+} from "@/lib/einsatzradar-data";
 import { germanizeDeep, germanizeText } from "@/lib/german-text";
 import { generatePageSEO } from "@/lib/seo";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
@@ -40,21 +47,21 @@ const coreServices: RouteCard[] = [
     label: "Umzug",
     title: "Privat- und Firmenumzug",
     text: "Nicht nur tragen: Volumen, Laufwege, Zeitfenster, Fahrzeug und Zusatzaufgaben werden vor dem Einsatztag realistisch eingeordnet.",
-    href: "/umzug",
+    href: "/umzug-regensburg",
     Icon: Truck,
   },
   {
     label: "Reinigung",
     title: "Reinigung mit System",
     text: "Für Endreinigung, Übergabe, Objektflächen und saubere Abnahme, wenn Eindruck, Details und Termin wirklich zählen.",
-    href: "/reinigung",
+    href: "/reinigung-regensburg",
     Icon: Sparkles,
   },
   {
     label: "Entrümpelung",
     title: "Räumung und Entsorgung",
     text: "Räume wieder entscheidbar machen: sortieren, tragen, entsorgen und die Fläche für den nächsten Schritt vorbereiten.",
-    href: "/entruempelung",
+    href: "/entruempelung-regensburg",
     Icon: Trash2,
   },
   {
@@ -165,28 +172,53 @@ const offerTracks: RouteCard[] = [
 ];
 
 const regionLinks = [
-  { label: "Regensburg", href: "/umzug-regensburg" },
-  { label: "München", href: "/umzug-muenchen" },
-  { label: "Nürnberg", href: "/umzug-nuernberg" },
-  { label: "Augsburg", href: "/umzug-augsburg" },
-  { label: "Passau", href: "/reinigung-passau" },
-  { label: "Bayern & Orte", href: "/service-area-bayern" },
+  { label: "Servicegebiet Regensburg & Umgebung", href: "/einsatzgebiet-regensburg-200km" },
+  { label: "FLOXANT Einsatzradar", href: "/einsatzradar-regensburg" },
+  { label: "Umzug Regensburg", href: "/umzug-regensburg" },
+  { label: "Umzugsunternehmen Regensburg", href: "/umzugsunternehmen-regensburg" },
+  { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
+  { label: "Entruempelung Regensburg", href: "/entruempelung-regensburg" },
+  { label: "Transport Regensburg", href: "/kleintransport-regensburg" },
+  { label: "Leerfahrt/Rueckfahrt Bayern", href: "/leerfahrt-rueckfahrt" },
+  { label: "Bayern nach Verfuegbarkeit", href: "/service-area-bayern" },
+  { label: "Direkte Anfrage mit Ort/PLZ", href: "/buchung#buchungssystem" },
 ];
 
 const mapsIntentRoutes = [
   { label: "Umzug Regensburg", href: "/umzug-regensburg" },
+  { label: "Umzugsunternehmen Regensburg", href: "/umzugsunternehmen-regensburg" },
   { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
+  { label: "Endreinigung Regensburg", href: "/endreinigung-regensburg" },
   { label: "Entrümpelung Regensburg", href: "/entruempelung-regensburg" },
+  { label: "Kleintransport Regensburg", href: "/kleintransport-regensburg" },
   { label: "Büroumzug Regensburg", href: "/bueroumzug-regensburg" },
   { label: "Einlagerung", href: "/einlagerung" },
   { label: "Akteneinlagerung Regensburg", href: "/akteneinlagerung-regensburg" },
 ];
 
 const directEntryPaths = [
+  { label: "FLOXANT empfehlen", href: "/empfehlen", description: "Partnercode und Empfehlungslink fuer Kunden, Freunde, Vermieter, Makler und Unternehmen mit 50-Euro-Bonus nach Pruefung." },
+  { label: "Makler-/Vermieter-Link", href: "/makler-vermieter-link", description: "Kurzer Akquise-Link fuer Makler, Vermieter, Eigentuemer und Hausverwaltungen, um Objektfaelle mit Fotos, Termin und offenen Punkten direkt zu senden." },
+  { label: "Mieterwechsel", href: "/mieterwechsel-service-regensburg", description: "B2B-Einstieg fuer Hausverwaltungen, Vermieter, Makler und Eigentuemer mit Raeumung, Reinigung und Uebergabevorbereitung." },
+  { label: "Wohnung wieder vermietbar", href: "/wohnung-wieder-vermietbar", description: "Objekt-Ready-Service fuer Vermieter, Makler, Eigentuemer und Hausverwaltungen: Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache." },
+  { label: "Immobilie verkaufsbereit machen", href: "/immobilie-verkaufsbereit-machen", description: "Property-Ready-Service fuer Eigentuemer, Makler und Erbengemeinschaften: Objekt vor Verkauf, Besichtigung oder Expose mit Fotos, Raeumung, Reinigung und Entsorgung pruefen lassen." },
+  { label: "Nachlass-Raeumung Regensburg", href: "/nachlass-raeumung-regensburg", description: "Diskreter Service fuer Angehoerige, Erben, Eigentuemer und Bevollmaechtigte: Wohnung, Haus, Keller oder Garage nach Erbfall ruhig klaeren lassen." },
+  { label: "Diskreter Umzug bei Trennung", href: "/diskreter-umzug-trennung-scheidung", description: "Rueckruf-First-Service fuer sensible private Auszuege: Transport, Reinigung, Schluesseluebergabe und Uebergabeakte nach Absprache pruefen lassen." },
+  { label: "Schadensbegrenzung", href: "/schadensbegrenzung", description: "Rettungsmodus, wenn Umzug, Reinigung, Entruempelung oder Uebergabe kurzfristig kippen und offene Punkte schnell geprueft werden muessen." },
+  { label: "Plan-B-Service", href: "/plan-b-service", description: "Backup-Control fuer Kunden mit unsicherem Ablauf: Ersatztransport, Reinigungs-Backup, Raeumungs-Backup oder Uebergabe-Backup nach Verfuegbarkeit pruefen." },
+  { label: "Keller-/Muellraum-Rettung", href: "/keller-muellraum-rettung-regensburg", description: "Objektflaechen fuer Hausverwaltung, WEG, Vermieter und Gewerbe: Fotos, Freigabe, Zugang, Raeumung, Entsorgung und Reinigung pruefen." },
+  { label: "FLOXANT Einsatzradar", href: "/einsatzradar-regensburg", description: "Typische Einsatzarten und grobe Servicezonen im Raum Regensburg ansehen: ohne Kundendaten, ohne exakte Adressen, ohne Fake-Live-Karte." },
+  { label: "Rückfahrt-Börse", href: "/rueckfahrt-boerse", description: "Strecke mit Start, Ziel, Datum, Umfang und Flexibilität eintragen und Rückfahrt/Leerfahrt nach Verfügbarkeit prüfen lassen." },
+  { label: "Uebergabeakte", href: "/uebergabeakte", description: "FLOXANT Uebergabe-Dossier 2.0 fuer Auszug, Reinigung, Fotos, Schluesselstatus, offene Hinweise und Aktenstatus nach Absprache." },
   { label: "Buchung", href: "/buchung", description: "Direkter Anfrageweg für Kunden, die ihren Fall sofort an FLOXANT senden möchten." },
   { label: "Rechner", href: "/rechner", description: "Einschätzung für Preisrahmen, Aufwand und Service-Fit vor der eigentlichen Anfrage." },
+  { label: "Angebotscheck + Red-Flag-Scanner", href: "/angebotscheck#red-flag-scanner", description: "Angebot vor Zusage scannen: Umfang, Zugang, Zusatzkosten, Reinigung, Entsorgung und offene Punkte sichtbar machen." },
+  { label: "Plattform-Auftrag prüfen", href: "/plattform-auftrag-pruefen", description: "Neutraler Einstieg für Kunden mit Plattform- oder Anbieterangebot: Angebot, Screenshot, Preis, Termin und offene Punkte praktisch prüfen lassen." },
   { label: "Express-Check", href: "/express-anfrage", description: "Schneller Weg für eilige Fälle mit wenigen Pflichtangaben." },
   { label: "Preisvorstellung", href: "/anfrage-mit-preisrahmen", description: "Direkter Weg für Kunden, die ihr Budget oder ihren Zielrahmen offen mitsenden möchten." },
+  { label: "Umzugsunternehmen Regensburg", href: "/umzugsunternehmen-regensburg", description: "Money Page für Nutzer, die gezielt ein lokales Umzugsunternehmen suchen." },
+  { label: "Endreinigung Regensburg", href: "/endreinigung-regensburg", description: "Schneller Einstieg für Auszug, Übergabe und saubere Wohnungsrückgabe." },
+  { label: "Kleintransport Regensburg", href: "/kleintransport-regensburg", description: "Einstieg für Möbel, Einzelstücke und kleinere Transporte in der Kernregion." },
   { label: "Kontakt", href: "/kontakt", description: "Kontaktweg für Telefon, WhatsApp und direkte Rückfrage." },
 ] as const;
 
@@ -225,9 +257,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "",
-    title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
+    title: "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg",
     description:
-      "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT ordnet Aufwand realistisch ein und führt direkt zur passenden Anfrage.",
+      "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg: FLOXANT bündelt Transport, Endreinigung, Räumung und Zusatzservices mit Anfrage in wenigen Schritten.",
     keywords: [
       "Umzug Regensburg",
       "Reinigung Regensburg",
@@ -254,6 +286,7 @@ export default function Home() {
     directEntryPaths,
     faqItems,
   });
+  const radarEntries = getPublishedEinsatzradarEntries();
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -333,26 +366,43 @@ export default function Home() {
               <div>
                 <div className="flox-kicker">Umzug, Reinigung und Übergabe aus einer Hand</div>
 
-                <h1 className="mt-7 flox-title-xl flox-display-hero max-w-[14ch] text-slate-950">
-                  Wenn ein Wechsel sauber abgeschlossen werden muss.
+                <h1 className="mt-7 flox-title-xl flox-display-hero max-w-[16ch] text-slate-950">
+                  Umzug, Reinigung & Entrümpelung in Regensburg - organisiert aus einer Hand.
                 </h1>
 
                 <p className="flox-body mt-5 max-w-2xl">
-                  FLOXANT hilft in Regensburg und passenden Einsätzen in Bayern, wenn nicht nur
-                  Möbel bewegt werden: Reinigung, Restmengen, Schlüssel, Fotos, Zeitfenster und
-                  Übergabe müssen zusammenpassen. Dafür
-                  ordnen wir den Fall realistisch ein, bevor daraus ein verbindlicher Auftrag wird.
+                  FLOXANT hilft in Regensburg, der Umgebung bis ca. 200 km und Bayern nach
+                  Verfügbarkeit, wenn mehr als nur ein Transport gebraucht wird: Reinigung,
+                  Restmengen, Schlüssel, Fotos, Zeitfenster und Übergabe müssen zusammenpassen.
+                  Dafür ordnen wir den Fall realistisch ein, bevor daraus ein verbindlicher Auftrag wird.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <Link href="/buchung" className="flox-button-primary px-6">
+                  <Link
+                    href="/buchung"
+                    className="flox-button-primary px-6"
+                    data-event="start_booking"
+                    data-source="homepage_hero"
+                  >
                     Auftrag realistisch einordnen lassen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="/rechner" className="flox-button-secondary px-6">
+                  <Link
+                    href="/rechner"
+                    className="flox-button-secondary px-6"
+                    data-event="start_calculator"
+                    data-source="homepage_hero"
+                  >
                     Kosten einschätzen
                   </Link>
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flox-button-quiet px-6">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flox-button-quiet px-6"
+                    data-event="click_whatsapp"
+                    data-source="homepage_hero"
+                  >
                     <MessageCircle className="h-4 w-4" />
                     WhatsApp
                   </a>
@@ -375,12 +425,13 @@ export default function Home() {
           </div>
 
           {/* Decision Bar */}
-          <div className="mt-5 grid gap-3 lg:grid-cols-5">
+          <div className="mt-5 grid gap-3 lg:grid-cols-6">
             {[
-              { label: "Umzug", href: "/umzug#leistungen" },
-              { label: "Reinigung", href: "/reinigung#leistungen" },
-              { label: "Entrümpelung", href: "/entruempelung#leistungen" },
+              { label: "Umzug Regensburg", href: "/umzug-regensburg" },
+              { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
+              { label: "Entrümpelung Regensburg", href: "/entruempelung-regensburg" },
               { label: "Preis prüfen", href: "/rechner" },
+              { label: "Angebot prüfen", href: "/angebotscheck" },
               { label: "Direkt anfragen", href: "/buchung" },
             ].map((item) => (
               <Link
@@ -552,15 +603,53 @@ export default function Home() {
 
       <SignatureServices
         locale="de"
+        source="homepage_signature_services"
         dict={{
           signature_services: {
             badge: "Signatur-Services",
-            title: "Wenn der Umzug nicht das eigentliche Problem ist",
+            title: "Signature Services, die FLOXANT vom Standardanbieter trennen",
             subtitle:
-              "Viele Aufträge kippen nicht beim Tragen, sondern bei Timing, Reinigung, Restmengen, Schlüssel und Übergabe. Diese FLOXANT Wege lösen genau diese kritischen Übergangspunkte.",
+              "Viele Aufträge kippen nicht beim Tragen, sondern bei Timing, Reinigung, Restmengen, Schlüssel, Haltezone, Fotos und Übergabe. Diese Bausteine machen genau diese Engpässe sichtbar.",
             items: {},
           },
         }}
+      />
+
+      <Einsatzradar
+        entries={radarEntries}
+        filters={einsatzradarFilters}
+        zones={einsatzradarRegionZones}
+        variant="compact"
+        maxItems={6}
+        showFilters={false}
+        showZones={false}
+        title="FLOXANT Einsatzradar Regensburg"
+        subtitle="Typische Einsatzarten im Raum Regensburg: Reinigung, Entruempelung, Umzug, Rueckfahrt, Uebergabe und Objektvorbereitung ohne Kundendaten oder Fake-Live-Karte."
+        source="homepage_einsatzradar_teaser"
+      />
+
+      <PublicAuthorityModules
+        moduleIds={[
+          "regensburg_core",
+          "regensburg_200km",
+          "bavaria_availability",
+          "move_cleaning_combo",
+          "clear_cleaning_combo",
+            "rental_ready",
+            "realtor_landlord_link",
+            "referral_partnercode",
+            "damage_control",
+          "cellar_trashroom_rescue",
+          "handover_file",
+          "photo_check",
+          "budget_check",
+          "route_board",
+          "premium_discreet",
+        ]}
+        badge="Lokale Autoritaet"
+        title="Warum FLOXANT in Regensburg anders wirkt als ein Standardanbieter"
+        subtitle="Die Startseite zeigt jetzt die Themen, nach denen Kunden wirklich entscheiden: Region, Verfuegbarkeit, Fotos, Budget, kombinierte Services und ein ruhiger Premium-Pfad fuer sensible Projekte."
+        source="homepage_local_authority_modules"
       />
 
       <section className="flox-section content-auto pt-0">
@@ -619,6 +708,14 @@ export default function Home() {
               </Link>
               <Link href="/rechner" className="flox-button-secondary px-6">
                 Kosten einschätzen
+              </Link>
+            </div>
+            <div className="mt-5 flex flex-col gap-2 text-sm font-semibold text-slate-700 sm:flex-row sm:flex-wrap">
+              <Link href="/praxisfaelle" className="rounded-full border border-slate-200 bg-white px-4 py-2 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
+                Praxisfälle ansehen
+              </Link>
+              <Link href="/anbieter-vergleichen" className="rounded-full border border-slate-200 bg-white px-4 py-2 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
+                Anbieter fair vergleichen
               </Link>
             </div>
           </article>

@@ -5,6 +5,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { company } from "@/lib/company";
+import {
+ calculateDocumentTotals,
+ extractCustomerFromBooking,
+ extractServicesFromBooking,
+ normalizeItems,
+ suggestDocumentNumber,
+} from "@/lib/documents/document-core";
 import { sendDocumentMail } from "@/lib/mail";
 import {
  CommercialDecision,
@@ -86,28 +93,11 @@ function buildProfitability(costLines: OperationCostLine[] = [], ledgerEntries: 
 }
 
 function cloneItems(items: DocumentLineItem[] = []) {
- return items.map((item) => ({
-  ...item,
-  quantity: Number(item.quantity) || 0,
-  unitPrice: Number(item.unitPrice) || 0,
-  taxRate: Number(item.taxRate) || 19,
-  total: Number(item.quantity || 0) * Number(item.unitPrice || 0),
- }));
+ return normalizeItems(items);
 }
 
 function calculateTotals(items: DocumentLineItem[]) {
- const net = items.reduce((sum, item) => sum + Number(item.quantity || 0) * Number(item.unitPrice || 0), 0);
- const tax = items.reduce(
-  (sum, item) => sum + Number(item.quantity || 0) * Number(item.unitPrice || 0) * ((Number(item.taxRate || 0) || 0) / 100),
-  0
- );
-
- return {
-  net,
-  tax,
-  gross: net + tax,
-  currency: "EUR",
- };
+ return calculateDocumentTotals(items);
 }
 
 function findLatestDoc(documents: FloxDocument[], type: FloxDocumentType) {
@@ -117,7 +107,7 @@ function findLatestDoc(documents: FloxDocument[], type: FloxDocumentType) {
 }
 
 function getTypePrefix(type: FloxDocumentType) {
- if (type === "quote") return "AG";
+ if (type === "quote") return "ANG";
  if (type === "order_confirmation") return "AB";
  if (type === "invoice") return "RE";
  return "ANF";
@@ -154,17 +144,20 @@ function buildDefaultItems(current: BookingRecord) {
  const rangeMin = Number(current.details?.valuation?.systemPriceRangeMin) || 0;
  const description = `${current.service || "Service"} - ${current.details?.valuation?.valuationStage || "Vorprüfung"}`;
 
- return [
+ return normalizeItems([
   {
    id: crypto.randomUUID(),
    description,
    quantity: 1,
-   unit: "Pauschale",
+   unit: "pauschal",
    unitPrice: rangeMin,
+   unitPriceNet: rangeMin,
+   discountPercent: 0,
+   discountAmountNet: 0,
    taxRate: 19,
    total: rangeMin,
   },
- ];
+ ]);
 }
 
 function buildDocumentTemplate(
@@ -185,18 +178,20 @@ function buildDocumentTemplate(
  const items = inheritedSource ? cloneItems(inheritedSource.editableData.items) : buildDefaultItems(current);
  const totals = inheritedSource ? { ...inheritedSource.totals } : calculateTotals(items);
  const version = documents.filter((doc) => doc.type === documentType).length + 1;
- const number = `${getTypePrefix(documentType)}-${current.id.slice(0, 8).toUpperCase()}-V${version}`;
  const now = new Date();
+ const number = suggestDocumentNumber(documentType, documents, now);
  const dueDate = new Date(now);
  dueDate.setDate(now.getDate() + 14);
 
  return {
   id: crypto.randomUUID(),
   bookingId: current.id,
+  leadId: current.id,
   type: documentType,
   number,
   status: "draft" as const,
   version,
+  sourceFlow: "lead" as const,
   snapshot: {
    contact: current.details?.contact || {
     fullName: current.name,
@@ -223,12 +218,22 @@ function buildDocumentTemplate(
   },
   editableData: {
    title: getTypeLabel(documentType),
+   documentNumber: number,
+   customer: inheritedSource?.editableData?.customer || extractCustomerFromBooking(current),
+   services: inheritedSource?.editableData?.services || extractServicesFromBooking(current),
    introText: inheritedSource?.editableData?.introText || getDefaultIntro(documentType),
    items,
    conditions: inheritedSource?.editableData?.conditions || getDefaultConditions(documentType),
    validUntil: documentType === "quote" ? dueDate.toISOString() : undefined,
    documentDate: now.toISOString(),
+   serviceDate: current.details?.configuration?.desiredDate || current.details?.configuration?.date || "",
+   performanceLocation:
+    current.details?.configuration?.objectLocation ||
+    current.details?.configuration?.cityOrZip ||
+    current.details?.configuration?.location ||
+    "",
    dueDate: documentType === "invoice" ? dueDate.toISOString() : undefined,
+   paymentDueDate: documentType === "invoice" ? dueDate.toISOString() : undefined,
    paymentTerms:
     inheritedSource?.editableData?.paymentTerms ||
     (documentType === "invoice" ? "Banküberweisung innerhalb von 14 Tagen." : undefined),

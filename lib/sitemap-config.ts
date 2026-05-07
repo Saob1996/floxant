@@ -240,16 +240,6 @@ export const SERVICE_CITY_PAGES = [
   "entruempelung-fuerth",
   "entruempelung-kaufbeuren",
   "entruempelung-memmingen",
-  "umzug-berlin",
-  "umzug-hamburg",
-  "umzug-koeln",
-  "umzug-frankfurt",
-  "umzug-stuttgart",
-  "umzug-duesseldorf",
-  "umzug-leipzig",
-  "umzug-dortmund",
-  "umzug-essen",
-  "umzug-bremen",
   "umzug-reinigung-regensburg",
   "reinigung-fuerth",
   "reinigung-erlangen",
@@ -283,7 +273,21 @@ export const HUB_PAGES = [
   "alternativen",
   "standorte",
   "buchung",
+  "empfehlen",
+  "angebotscheck",
+  "makler-vermieter-link",
+  "mieterwechsel-service-regensburg",
+  "wohnung-wieder-vermietbar",
+  "immobilie-verkaufsbereit-machen",
+  "nachlass-raeumung-regensburg",
+  "diskreter-umzug-trennung-scheidung",
+  "schadensbegrenzung",
+  "keller-muellraum-rettung-regensburg",
+  "rueckfahrt-boerse",
+  "uebergabeakte",
   "kontakt",
+  "entsorgung-duesseldorf",
+  "reinigung-moeblierte-wohnung-duesseldorf",
   "duesseldorf/reinigung",
   "duesseldorf/bueroreinigung",
   "duesseldorf/wohnungsreinigung",
@@ -386,16 +390,8 @@ export const SIGNATURE_SERVICES = [
   "schluesseluebergabe",
 ] as const;
 
-/** Legal pages */
-export const LEGAL_PAGES = [
-  "impressum",
-  "datenschutz",
-  "agb",
-  "duesseldorf/reinigung/datenschutz",
-  "duesseldorf/reinigung/agb",
-  "widerruf",
-  "buchungsbedingungen",
-] as const;
+/** Legal pages stay crawlable, but are intentionally excluded from sitemap.xml. */
+export const LEGAL_PAGES = [] as const;
 
 export interface SitemapUrl {
   loc: string;

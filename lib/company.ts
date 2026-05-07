@@ -38,7 +38,6 @@ export const company = {
     "Augsburg",
     "Landshut",
     "Passau",
-    "Baden-Württemberg",
   ],
   keyGeoTargets: [
     "Regensburg",
@@ -52,7 +51,6 @@ export const company = {
     "Schwandorf",
     "Oberpfalz",
     "Bayern",
-    "Baden-Württemberg",
   ],
   primaryCategories: [
     "Umzugsunternehmen",

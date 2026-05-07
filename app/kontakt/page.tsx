@@ -78,6 +78,12 @@ const localTrustCards = [
     href: "/rechner",
     cta: "Rechner ansehen",
   },
+  {
+    title: "FLOXANT empfehlen",
+    text: "Kunden, Freunde, Vermieter oder Makler koennen einen Partnercode teilen. Der 50-Euro-Bonus wird nur bei bestaetigtem und bezahltem Auftrag geprueft.",
+    href: "/empfehlen",
+    cta: "Empfehlungslink ansehen",
+  },
 ];
 
 const mapsReadyPoints = [

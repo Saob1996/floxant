@@ -89,6 +89,26 @@ export default async function EndreinigungRegensburgPage({ params }: PageProps) 
       wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
       wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
       wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
+      signatureServices={[
+        "handover_ready",
+        "photo_check",
+        "budget_check",
+        "move_cleaning",
+        "short_notice",
+      ]}
+      signatureTitle="Signature Services fuer Endreinigung Regensburg"
+      signatureSubtitle="Endreinigung wird belastbarer, wenn Uebergabeziel, Zustand, Fotos, Termin und Budget frueh sichtbar sind."
+      authorityModules={[
+        "regensburg_core",
+        "price_cleaning",
+        "photo_check",
+        "budget_check",
+        "handover_preparation",
+        "move_cleaning_combo",
+      ]}
+      authorityBadge="Endreinigung als Uebergabe-Cluster"
+      authorityTitle="Was vor einer Endreinigung in Regensburg geklaert werden sollte"
+      authoritySubtitle="FLOXANT staerkt diese Seite als Ads- und SEO-tauglichen Einstieg: Flaeche, Zustand, Fotos, Termin, Budget und Wohnungsuebergabe werden konkret abgefragt statt nur allgemein beworben."
     />
   );
 }
