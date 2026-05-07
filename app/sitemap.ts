@@ -6,7 +6,7 @@ import { sitemapRoutes } from "@/lib/sitemap-routes";
 type SitemapEntry = MetadataRoute.Sitemap[number];
 type ChangeFrequency = NonNullable<SitemapEntry["changeFrequency"]>;
 
-const lastModified = new Date("2026-05-03T00:00:00.000Z");
+const lastModified = new Date("2026-05-07T00:00:00.000Z");
 const highPriorityRoutes = new Set([
   "/",
   "/empfehlen",

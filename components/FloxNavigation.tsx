@@ -85,6 +85,32 @@ const SERVICE_GROUPS = [
       },
     ],
   },
+  {
+    label: "FLOXANT Signature",
+    description: "Wenn der Auftrag mehr Orientierung, Backup oder Dokumentation braucht.",
+    items: [
+      {
+        label: "Plan-B-Service",
+        href: "/plan-b-service",
+        description: "Backup prüfen lassen, wenn Ablauf, Anbieter oder Termin unsicher sind.",
+      },
+      {
+        label: "Übergabeakte",
+        href: "/uebergabeakte",
+        description: "Leistungen, Fotos, Schlüsselstatus und Hinweise sauber bündeln.",
+      },
+      {
+        label: "Diskreter Auszug",
+        href: "/diskreter-umzug-trennung-scheidung",
+        description: "Ruhige Anfrage für sensible Auszugs- und Übergabesituationen.",
+      },
+      {
+        label: "Plattform-Auftrag prüfen",
+        href: "/plattform-auftrag-pruefen",
+        description: "Angebot, Screenshot oder offene Punkte direkt einordnen lassen.",
+      },
+    ],
+  },
 ];
 
 const CALCULATOR_SHORTCUTS = [
@@ -125,6 +151,11 @@ const LOCAL_INTENT_LINKS = [
     label: "Reinigung Düsseldorf",
     href: "/duesseldorf/reinigung",
     hint: "Eigene Reinigungsseite für Düsseldorf.",
+  },
+  {
+    label: "Einsatzradar",
+    href: "/einsatzradar-regensburg",
+    hint: "Typische Einsatzarten und Servicezonen.",
   },
 ];
 
@@ -401,7 +432,7 @@ function ServicesDropdown({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 6, scale: 0.985 }}
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[760px] -translate-x-1/2 rounded-[1.45rem] p-4"
+          className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[920px] -translate-x-1/2 rounded-[1.45rem] p-4"
         >
           <div className="mb-4 grid gap-3 md:grid-cols-2">
             <HeaderInfoCard
@@ -430,14 +461,14 @@ function ServicesDropdown({
                 klare Wege für lokale Anfragen und schnelle Orientierung
               </span>
             </div>
-            <div className="grid gap-2 md:grid-cols-4">
+            <div className="grid gap-2 md:grid-cols-5">
               {localIntentLinks.map((item) => (
                 <MiniLinkCard key={item.href} item={item} tone="blue" />
               ))}
             </div>
           </div>
 
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
             {serviceGroups.map((group) => (
               <ServiceGroupCard key={group.label} group={group} />
             ))}

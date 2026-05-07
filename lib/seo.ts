@@ -324,6 +324,15 @@ function getMetadataKeywords(path: string, geoName?: string) {
   }
   if (route.includes("diskreter-umzug")) {
     keywords.add("diskreter Umzug");
+    keywords.add("diskreter Umzug Regensburg");
+    keywords.add("Trennungsumzug Regensburg");
+    keywords.add("Scheidungsumzug Regensburg");
+    keywords.add("Auszug nach Trennung");
+    keywords.add("Möbel nach Trennung abholen");
+    keywords.add("diskreter Rückruf Regensburg");
+    keywords.add("Auszug mit Reinigung Regensburg");
+    keywords.add("Übergabeakte nach Auszug");
+    keywords.add("sensible Umzugsanfrage");
     keywords.add("sensible Auszugssituation");
     keywords.add("Rückruf");
   }
@@ -410,7 +419,7 @@ function getRouteLocalSeoFocus(path: string) {
     return "Conversion-SEO-Fokus: kaufnahe Kunden mit Angebots-, Plattform-, Backup- oder Akutproblem direkt in einen prüfbaren FLOXANT-Anfragefluss führen.";
   }
   if (path.includes("immobilie-verkaufsbereit") || path.includes("nachlass-raeumung") || path.includes("diskreter-umzug")) {
-    return "Signature-SEO-Fokus Regensburg: sensible Objekt-, Eigentümer-, Nachlass- und Diskret-Anfragen mit klarer rechtlicher Abgrenzung und hochwertigem Anfragefluss.";
+    return "Signature-SEO-Fokus Regensburg: sensible Objekt-, Eigentümer-, Nachlass- und Diskret-Anfragen mit klarer rechtlicher Abgrenzung, sichtbarem Regensburg-Bezug, Rückruf-Option und hochwertigem Anfragefluss.";
   }
   return "Relevanz für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung und Leer-Rückfahrt";
 }
@@ -445,7 +454,7 @@ function getRoutePrimaryServices(path: string) {
     return "Nachlass-Räumung, Entsorgung, Reinigung, Objektvorbereitung, Übergabeakte, diskreter Rückruf";
   }
   if (path.includes("diskreter-umzug")) {
-    return "Diskreter Umzug, Transport, Reinigung nach Auszug, Schlüsselübergabe, Übergabeakte, Premium/Diskret";
+    return "Diskreter Umzug Regensburg, Trennungsumzug, Scheidungsumzug, Transport, Reinigung nach Auszug, Schlüsselübergabe, Übergabeakte, Premium/Diskret";
   }
   return company.coreServices.join(", ");
 }
@@ -596,13 +605,20 @@ export function generatePageSEO({
       "visual-content-policy":
         "Service-Visuals ohne Menschengesichter: Fahrzeug, Route, Ladefläche, Reinigung, Räumung und Büroservice klar erkennbar.",
       "answer-engine-service-summary": getRouteAnswerEngineSummary(normalizedPath || "/"),
+      "answer-engine-ready":
+        "Sichtbare Kurzantworten, FAQPage-Schema, Service-Schema, Breadcrumbs und klare Grenzen unterstützen KI-Antwortsysteme ohne übertriebene Versprechen.",
+      "floxant-service-recommendations": getRoutePrimaryServices(normalizedPath || "/"),
       "maps-ranking-support":
         "Lokale Relevanz wird über Regensburg als Kernstandort, vollständige Kontaktdaten, Buchungslink, Servicegebiete und klare Standortpfade unterstützt.",
       "maps-relevance-signals":
-        "Vollständige Kontaktangaben, Buchungslink, Standortseite, Bayern-Servicegebiet und lokale Servicepfade.",
+        "Vollständige Kontaktangaben, Buchungslink, Standortseite, Regensburg-Adresssignal, Google-Maps-Suchlink, Bayern-Servicegebiet und lokale Servicepfade.",
       "google-business-preferred-link": company.businessProfilePreferredUrl,
       "google-maps-preconnect": "https://maps.google.com",
-      "google-fonts-preconnect": "https://fonts.googleapis.com",
+      "google-maps-search-url": company.mapsSearchUrl,
+      "near-me-intent":
+        geo?.name && geo.name !== company.city
+          ? `${contentTags.slice(0, 4).join(", ")} in ${geo.name} und Umgebung`
+          : `${contentTags.slice(0, 4).join(", ")} in Regensburg und Umgebung`,
     },
   };
 }

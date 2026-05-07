@@ -1,6 +1,5 @@
 ﻿import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -15,20 +14,6 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import { GermanTextRuntimeNormalizer } from "@/components/GermanTextRuntimeNormalizer";
 
 export { viewport };
-
-const fontSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-const fontHeading = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
 
 export const runtime = "nodejs";
 export const revalidate = 3600;
@@ -60,8 +45,6 @@ export default async function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased text-foreground flox-site-light",
-          fontSans.variable,
-          fontHeading.variable,
         )}
       >
         <a href="#main-content" className="skip-to-content">

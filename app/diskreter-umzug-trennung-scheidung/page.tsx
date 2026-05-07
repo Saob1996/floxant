@@ -9,7 +9,9 @@ import {
   FileCheck2,
   Home,
   KeyRound,
+  MapPin,
   MessageCircle,
+  Navigation,
   Phone,
   ShieldCheck,
   Sparkles,
@@ -32,7 +34,7 @@ export const metadata: Metadata = generatePageSEO({
   path,
   title: "Diskreter Umzug bei Trennung oder Scheidung | FLOXANT",
   description:
-    "FLOXANT prueft diskrete Umzuege und sensible Auszuege in Regensburg und Umgebung: Transport, Reinigung, Schluesseluebergabe und Uebergabeakte nach Absprache.",
+    "FLOXANT prüft diskrete Umzüge und sensible Auszüge in Regensburg und Umgebung: Transport, Reinigung, Schlüsselübergabe und Übergabeakte nach Absprache.",
   keywords: [
     "diskreter umzug regensburg",
     "trennungsumzug regensburg",
@@ -40,58 +42,134 @@ export const metadata: Metadata = generatePageSEO({
     "auszug nach trennung",
     "umzug bei trennung",
     "diskreter auszug",
+    "diskreter auszug regensburg",
     "privater umzug diskret",
     "umzug sensible situation",
     "auszug aus gemeinsamer wohnung",
-    "moebel abholen nach trennung",
+    "möbel abholen nach trennung",
     "reinigung nach trennungsauszug",
-    "schluesseluebergabe nach auszug",
+    "schlüsselübergabe nach auszug",
     "premium umzug diskret",
+    "diskreter rückruf regensburg",
+    "auszug mit reinigung regensburg",
+    "sensible umzugsanfrage",
+    "diskreter möbeltransport",
+    "übergabeakte nach auszug",
   ],
 });
 
-const whatsappHref =
-  "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20moechte%20eine%20diskrete%20Anfrage%20stellen.%20Es%20geht%20um%20einen%20Auszug%20%2F%20Transport%20%2F%20Reinigung%20in%20%5BOrt%5D.%20Ich%20moechte%20Details%20ruhig%20abstimmen.%20Rueckruf%20oder%20WhatsApp%20ist%20moeglich.";
-const callbackWhatsappHref =
-  "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20moechte%20einen%20diskreten%20Rueckruf%20fuer%20eine%20sensible%20Auszugssituation%20anfragen.%20Ort%20und%20Zeitraum%20kann%20ich%20nennen.";
+const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(
+  "Hallo FLOXANT, ich möchte eine diskrete Anfrage stellen. Es geht um einen Auszug / Transport / Reinigung in [Ort]. Ich möchte Details ruhig abstimmen. Rückruf oder WhatsApp ist möglich.",
+)}`;
+const callbackWhatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(
+  "Hallo FLOXANT, ich möchte einen diskreten Rückruf für eine sensible Auszugssituation anfragen. Ort und Zeitraum kann ich nennen.",
+)}`;
 const phoneHref = "tel:+4915771105087";
 
-const statusSteps = ["Rueckruf", "Zeitfenster", "Umfang", "Transport", "Reinigung", "Uebergabe"];
+const statusSteps = ["Rückruf", "Zeitfenster", "Umfang", "Transport", "Reinigung", "Übergabe"];
+
+const localSearchSignals = [
+  {
+    title: "Regensburg als Kern",
+    text: "Die Seite nennt Regensburg klar als operative Basis und führt sensible Anfragen in einen direkten Rückruf- oder Formularweg.",
+  },
+  {
+    title: "Umgebung sauber eingeordnet",
+    text: "Anfragen aus der Umgebung werden nach Ort, Zeitraum, Umfang, Zugang und Verfügbarkeit geprüft.",
+  },
+  {
+    title: "Google-Maps-tauglicher Einstieg",
+    text: "Kontakt, Telefon, Buchungsweg, Standortbezug und Servicegebiet sind sichtbar statt in versteckten Footer-Links verteilt.",
+  },
+  {
+    title: "Klare Düsseldorf-Grenze",
+    text: "Düsseldorf bleibt bei FLOXANT Reinigung und Entsorgung. Diese Seite sendet kein Düsseldorf-Umzug-Signal.",
+  },
+];
+
+const answerEngineBlocks = [
+  {
+    question: "Was bietet FLOXANT bei einem diskreten Auszug?",
+    answer:
+      "FLOXANT prüft Transport, Möbelabholung, Reinigung, Schlüsselübergabe, Übergabeakte und Rückruf nach Ort, Zeitraum, Umfang, Zugang und Verfügbarkeit.",
+  },
+  {
+    question: "Muss ich private Details erklären?",
+    answer:
+      "Nein. Für die erste Anfrage reichen Ort, Zeitraum, grober Umfang und gewünschte Kontaktmethode. Private Konfliktdetails sind nicht nötig.",
+  },
+  {
+    question: "Ist das ein Rechts- oder Sicherheitsservice?",
+    answer:
+      "Nein. FLOXANT übernimmt keine Rechtsberatung, keine Konfliktlösung und keinen Sicherheitsdienst. Es geht um praktische Organisation nach Absprache.",
+  },
+];
+
+const recommendedFloxantServices = [
+  {
+    title: "Diskreter Rückruf",
+    text: "Wenn Details besser telefonisch und ruhig geklärt werden sollen.",
+    href: "#diskret-form",
+    cta: "Rückruf anfragen",
+    Icon: Phone,
+  },
+  {
+    title: "Auszug + Reinigung",
+    text: "Wenn nach dem Transport auch Endreinigung oder Übergabevorbereitung offen ist.",
+    href: "/umzug-mit-reinigung",
+    cta: "Kombination ansehen",
+    Icon: Sparkles,
+  },
+  {
+    title: "Übergabeakte",
+    text: "Wenn Leistungen, Fotos, Schlüsselstatus und Hinweise gebündelt werden sollen.",
+    href: "/uebergabeakte",
+    cta: "Übergabeakte prüfen",
+    Icon: FileCheck2,
+  },
+  {
+    title: "Plan-B-Service",
+    text: "Wenn der aktuelle Ablauf unsicher wirkt und ein zweiter Plan geprüft werden soll.",
+    href: "/plan-b-service",
+    cta: "Plan B prüfen",
+    Icon: CalendarClock,
+  },
+];
 
 const discretionBlocks = [
   {
-    title: "Rueckruf statt langer Erklaerung",
-    text: "Die erste Anfrage darf kurz bleiben. Details koennen telefonisch ruhiger geklaert werden.",
+    title: "Rückruf statt langer Erklärung",
+    text: "Die erste Anfrage darf kurz bleiben. Details können telefonisch ruhiger geklärt werden.",
     Icon: Phone,
   },
   {
     title: "Klares Zeitfenster",
-    text: "FLOXANT prueft Zeitfenster, Ort, Zugang und Umfang statt eine Sofortzusage zu versprechen.",
+    text: "FLOXANT prüft Zeitfenster, Ort, Zugang und Umfang statt eine Sofortzusage zu versprechen.",
     Icon: CalendarClock,
   },
   {
-    title: "Umfang vorab klaeren",
-    text: "Moebel, Kartons, persoenliche Gegenstaende und Fotos helfen bei einer realistischen Einschaetzung.",
+    title: "Umfang vorab klären",
+    text: "Möbel, Kartons, persönliche Gegenstände und Fotos helfen bei einer realistischen Einschätzung.",
     Icon: Box,
   },
   {
     title: "Transport / Umzug",
-    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfuegbarkeit, keine Duesseldorf-Umzug-Logik.",
+    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit, keine Düsseldorf-Umzug-Logik.",
     Icon: Truck,
   },
   {
     title: "Reinigung nach Auszug",
-    text: "Endreinigung, sichtbare Flaechen oder Uebergabevorbereitung koennen nach Absprache ergaenzt werden.",
+    text: "Endreinigung, sichtbare Flächen oder Übergabevorbereitung können nach Absprache ergänzt werden.",
     Icon: Sparkles,
   },
   {
-    title: "Schluessel & Uebergabe",
-    text: "Schluesselstatus, Uebergabeakte und Foto-Dokumentation sind Zusatzoptionen nach Absprache.",
+    title: "Schlüssel & Übergabe",
+    text: "Schlüsselstatus, Übergabeakte und Foto-Dokumentation sind Zusatzoptionen nach Absprache.",
     Icon: KeyRound,
   },
   {
     title: "Sichere Kontaktmethode",
-    text: "Telefon, WhatsApp, E-Mail oder nur bestimmte Uhrzeiten koennen angegeben werden.",
+    text: "Telefon, WhatsApp, E-Mail oder nur bestimmte Uhrzeiten können angegeben werden.",
     Icon: ShieldCheck,
   },
   {
@@ -105,59 +183,59 @@ const packages = [
   {
     title: "Diskreter Auszug",
     forWhom: "Wenn ein Auszug aus einer gemeinsamen Wohnung ruhig geplant werden muss.",
-    includes: ["Transport / Umzug", "Zeitfenster", "Umfang / Fotos", "Rueckruf"],
-    cta: "Diskreten Auszug pruefen",
+    includes: ["Transport / Umzug", "Zeitfenster", "Umfang / Fotos", "Rückruf"],
+    cta: "Diskreten Auszug prüfen",
     Icon: Home,
   },
   {
-    title: "Moebel & persoenliche Gegenstaende",
-    forWhom: "Wenn einzelne Moebel, Kartons oder private Gegenstaende abgeholt werden sollen.",
+    title: "Möbel & persönliche Gegenstände",
+    forWhom: "Wenn einzelne Möbel, Kartons oder private Gegenstände abgeholt werden sollen.",
     includes: ["Transport", "Zugang / Etage", "Gegenstandsliste", "Zeitfenster"],
-    cta: "Abholung pruefen",
+    cta: "Abholung prüfen",
     Icon: Box,
   },
   {
     title: "Auszug + Reinigung",
-    forWhom: "Wenn nach dem Auszug Reinigung oder Uebergabevorbereitung offen ist.",
-    includes: ["Transport", "Endreinigung", "Uebergabevorbereitung", "Fotos optional"],
+    forWhom: "Wenn nach dem Auszug Reinigung oder Übergabevorbereitung offen ist.",
+    includes: ["Transport", "Endreinigung", "Übergabevorbereitung", "Fotos optional"],
     cta: "Auszug + Reinigung anfragen",
     Icon: Sparkles,
   },
   {
-    title: "Schluessel & Uebergabe",
-    forWhom: "Wenn Schluessel, Uebergabetermin oder Dokumentation relevant sind.",
-    includes: ["Schluesseluebergabe nach Absprache", "Uebergabeakte", "Foto-Dokumentation nach Absprache"],
-    cta: "Uebergabe abstimmen",
+    title: "Schlüssel & Übergabe",
+    forWhom: "Wenn Schlüssel, Übergabetermin oder Dokumentation relevant sind.",
+    includes: ["Schlüsselübergabe nach Absprache", "Übergabeakte", "Foto-Dokumentation nach Absprache"],
+    cta: "Übergabe abstimmen",
     Icon: KeyRound,
   },
   {
     title: "Premium/Diskret",
     forWhom: "Wenn die Situation hochwertig, sensibel oder komplex abgestimmt werden soll.",
-    includes: ["Rueckruf", "Planung", "Zusatzservices", "diskrete Abstimmung"],
-    cta: "Premium-Rueckruf anfragen",
+    includes: ["Rückruf", "Planung", "Zusatzservices", "diskrete Abstimmung"],
+    cta: "Premium-Rückruf anfragen",
     Icon: ShieldCheck,
   },
 ];
 
 const notIncluded = [
   "keine Rechtsberatung oder Scheidungsberatung",
-  "keine Mediation oder Konfliktloesung",
+  "keine Mediation oder Konfliktlösung",
   "keine psychologische Beratung",
   "keine Sicherheitsdienstleistung und kein Schutzversprechen",
-  "keine Unterstuetzung bei heimlichem oder rechtswidrigem Entfernen fremder Gegenstaende",
+  "keine Unterstützung bei heimlichem oder rechtswidrigem Entfernen fremder Gegenstände",
   "keine Gewalt- oder Gefahrensituation als Erstkontakt",
-  "keine Garantie fuer Soforteinsatz",
-  "keine Kautions-, Uebergabe- oder Abnahmegarantie",
+  "keine Garantie für Soforteinsatz",
+  "keine Kautions-, Übergabe- oder Abnahmegarantie",
 ];
 
 const relatedLinks = [
   { href: "/private-client-service", label: "Premium-/Diskret-Service" },
   { href: "/umzug-regensburg", label: "Umzug Regensburg" },
   { href: "/reinigung-regensburg", label: "Reinigung nach Auszug" },
-  { href: "/uebergabeakte", label: "Uebergabeakte ergaenzen" },
-  { href: "/schluesseluebergabe", label: "Schluesseluebergabe abstimmen" },
+  { href: "/uebergabeakte", label: "Übergabeakte ergänzen" },
+  { href: "/schluesseluebergabe", label: "Schlüsselübergabe abstimmen" },
   { href: "/schadensbegrenzung", label: "Wenn der Plan bereits gekippt ist" },
-  { href: "/plan-b-service", label: "Plan B pruefen lassen" },
+  { href: "/plan-b-service", label: "Plan B prüfen lassen" },
   { href: "/immobilie-verkaufsbereit-machen", label: "Objekt nach Auszug vorbereiten" },
   { href: "/buchung", label: "Anfrage starten" },
   { href: "/rechner", label: "Preisrahmen einschaetzen" },
@@ -170,48 +248,48 @@ const faqItems = [
     a: "Ein diskreter Umzug ist eine ruhig abgestimmte Auszugs- oder Transportanfrage, bei der Kontaktweg, Zeitfenster, Umfang, Fotos und Zusatzleistungen sensibel behandelt werden.",
   },
   {
-    q: "Ist das fuer Trennung oder Scheidung geeignet?",
-    a: "Ja, wenn es um praktische und organisatorische Leistungen wie Transport, Reinigung, Schluesseluebergabe oder Uebergabeakte geht. FLOXANT uebernimmt keine rechtlichen oder persoenlichen Konfliktfragen.",
+    q: "Ist das für Trennung oder Scheidung geeignet?",
+    a: "Ja, wenn es um praktische und organisatorische Leistungen wie Transport, Reinigung, Schlüsselübergabe oder Übergabeakte geht. FLOXANT übernimmt keine rechtlichen oder persönlichen Konfliktfragen.",
   },
   {
-    q: "Muss ich Details zur privaten Situation erklaeren?",
-    a: "Nein. Fuer die erste Anfrage reichen Ort, Zeitraum, grober Umfang und gewuenschte Kontaktmethode. Details koennen spaeter telefonisch geklaert werden.",
+    q: "Muss ich Details zur privaten Situation erklären?",
+    a: "Nein. Für die erste Anfrage reichen Ort, Zeitraum, grober Umfang und gewünschte Kontaktmethode. Details können später telefonisch geklärt werden.",
   },
   {
-    q: "Kann ich Rueckruf statt Formular waehlen?",
-    a: "Ja. Das Formular fragt bewusst nach Rueckrufzeitfenster und sicherer Kontaktmethode, damit nicht alles schriftlich erklaert werden muss.",
+    q: "Kann ich Rückruf statt Formular wählen?",
+    a: "Ja. Das Formular fragt bewusst nach Rückrufzeitfenster und sicherer Kontaktmethode, damit nicht alles schriftlich erklärt werden muss.",
   },
   {
-    q: "Kann FLOXANT Moebel oder persoenliche Gegenstaende abholen?",
-    a: "Ja, nach Absprache und nur wenn Berechtigung, Zugang, Eigentumsfragen, Umfang und Termin geklaert sind.",
+    q: "Kann FLOXANT Möbel oder persönliche Gegenstände abholen?",
+    a: "Ja, nach Absprache und nur wenn Berechtigung, Zugang, Eigentumsfragen, Umfang und Termin geklärt sind.",
   },
   {
-    q: "Muss ich berechtigt sein, die Gegenstaende abzuholen?",
-    a: "Ja. FLOXANT unterstuetzt keine heimliche oder rechtswidrige Abholung und prueft keine Eigentumsstreitigkeiten.",
+    q: "Muss ich berechtigt sein, die Gegenstände abzuholen?",
+    a: "Ja. FLOXANT unterstützt keine heimliche oder rechtswidrige Abholung und prüft keine Eigentumsstreitigkeiten.",
   },
   {
-    q: "Uebernimmt FLOXANT rechtliche Fragen?",
-    a: "Nein. FLOXANT bietet keine Rechtsberatung, Scheidungsberatung, Mediation oder Konfliktloesung.",
+    q: "Übernimmt FLOXANT rechtliche Fragen?",
+    a: "Nein. FLOXANT bietet keine Rechtsberatung, Scheidungsberatung, Mediation oder Konfliktlösung.",
   },
   {
     q: "Ist FLOXANT ein Sicherheitsdienst?",
     a: "Nein. Bei Gefahr, Gewalt, Bedrohung oder akutem Sicherheitsrisiko sind Polizei, Notruf oder geeignete Beratungsstellen der richtige Erstkontakt.",
   },
   {
-    q: "Kann Reinigung nach dem Auszug ergaenzt werden?",
-    a: "Ja. Reinigung, Endreinigung oder Uebergabevorbereitung koennen nach Ort, Zustand, Zeitfenster und Verfuegbarkeit geprueft werden.",
+    q: "Kann Reinigung nach dem Auszug ergänzt werden?",
+    a: "Ja. Reinigung, Endreinigung oder Übergabevorbereitung können nach Ort, Zustand, Zeitfenster und Verfügbarkeit geprüft werden.",
   },
   {
-    q: "Kann Schluesseluebergabe ergaenzt werden?",
-    a: "Ja, Schluesseluebergabe kann nach Absprache organisatorisch abgestimmt werden, sofern Zugang, Berechtigung und Empfaenger klar sind.",
+    q: "Kann Schlüsselübergabe ergänzt werden?",
+    a: "Ja, Schlüsselübergabe kann nach Absprache organisatorisch abgestimmt werden, sofern Zugang, Berechtigung und Empfänger klar sind.",
   },
   {
-    q: "Kann eine Uebergabeakte ergaenzt werden?",
-    a: "Ja. Eine Uebergabeakte kann Leistungen, Fotos, Schluesselstatus und Hinweise nach Absprache organisatorisch buendeln.",
+    q: "Kann eine Übergabeakte ergänzt werden?",
+    a: "Ja. Eine Übergabeakte kann Leistungen, Fotos, Schlüsselstatus und Hinweise nach Absprache organisatorisch bündeln.",
   },
   {
-    q: "In welchem Gebiet ist das moeglich?",
-    a: "Regensburg ist der Kern. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf prueft FLOXANT nur Reinigung und Entsorgung, keine Umzugsleistung.",
+    q: "In welchem Gebiet ist das möglich?",
+    a: "Regensburg ist der Kern. Umgebung Regensburg und Bayern werden nach Verfügbarkeit geprüft. Für Düsseldorf prüft FLOXANT nur Reinigung und Entsorgung, keine Umzugsleistung.",
   },
 ];
 
@@ -221,27 +299,31 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Diskreter Umzug bei Trennung oder Scheidung",
       description:
-        "Diskrete Auszugs-, Transport-, Reinigungs- und Uebergabeanfrage fuer sensible private Situationen im Raum Regensburg.",
+        "Diskrete Auszugs-, Transport-, Reinigungs- und Übergabeanfrage für sensible private Situationen im Raum Regensburg.",
       path,
       about: [
         "diskreter Umzug Regensburg",
         "Trennungsumzug",
         "Scheidungsumzug",
         "sensibler Auszug",
-        "Auszug mit Reinigung und Uebergabe",
+        "Auszug mit Reinigung und Übergabe",
+        "diskreter Rückruf Regensburg",
+        "Übergabeakte nach Auszug",
+        "Plan-B-Service",
       ],
       potentialActions: [
-        { name: "Diskreten Rueckruf anfragen", target: `${path}#diskret-form` },
+        { name: "Diskreten Rückruf anfragen", target: `${path}#diskret-form` },
         { name: "Diskret per WhatsApp anfragen", target: callbackWhatsappHref, type: "ContactAction" },
+        { name: "FLOXANT Service-Empfehlung prüfen", target: `${path}#ki-antworten` },
       ],
     }),
     buildServiceJsonLd({
-      name: "FLOXANT Diskret-Modus fuer sensible Auszuege",
+      name: "FLOXANT Diskret-Modus für sensible Auszüge",
       description:
-        "Praktische und organisatorische Unterstuetzung fuer diskreten Auszug, Transport, Reinigung, Schluesseluebergabe und Uebergabeakte nach Absprache. Keine Rechtsberatung, keine Sicherheitsdienstleistung und keine Konfliktloesung.",
+        "Praktische und organisatorische Unterstützung für diskreten Auszug, Transport, Reinigung, Schlüsselübergabe und Übergabeakte nach Absprache. Keine Rechtsberatung, keine Sicherheitsdienstleistung und keine Konfliktlösung.",
       path,
-      serviceType: "Diskreter Auszug, Umzug, Transport, Reinigung und Uebergabe nach Absprache",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit"],
+      serviceType: "Diskreter Auszug, Umzug, Transport, Reinigung und Übergabe nach Absprache",
+      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -273,8 +355,8 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Diskreter Umzug bei Trennung oder Scheidung
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn ein Auszug ruhig, vertraulich und klar abgestimmt werden muss, prueft FLOXANT Transport,
-                Reinigung, Entruempelung, Schluesseluebergabe und Uebergabeakte nach Absprache.
+                Wenn ein Auszug ruhig, vertraulich und klar abgestimmt werden muss, prüft FLOXANT Transport,
+                Reinigung, Entrümpelung, Schlüsselübergabe und Übergabeakte nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link
@@ -282,7 +364,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800"
                   data-event="start_discreet_move_lead"
                 >
-                  Diskreten Rueckruf anfragen
+                  Diskreten Rückruf anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
@@ -304,9 +386,9 @@ export default function DiskreterUmzugTrennungScheidungPage() {
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-stone-600">
                 <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Regensburg und Umgebung</span>
-                <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Rueckruf-First</span>
+                <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Rückruf-First</span>
                 <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Keine Rechtsberatung</span>
-                <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Berechtigung muss geklaert sein</span>
+                <span className="rounded-full border border-stone-200 bg-white px-3 py-2">Berechtigung muss geklärt sein</span>
               </div>
             </div>
 
@@ -315,10 +397,10 @@ export default function DiskreterUmzugTrennungScheidungPage() {
               <div className="relative rounded-[2rem] border border-stone-200 bg-white p-5 shadow-2xl shadow-stone-950/10">
                 <div className="rounded-[1.5rem] bg-stone-950 p-5 text-white">
                   <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">Diskretionslogik</div>
-                  <h2 className="mt-2 text-3xl font-black tracking-tight">Ruhige Anfrage, klare naechste Schritte</h2>
+                  <h2 className="mt-2 text-3xl font-black tracking-tight">Ruhige Anfrage, klare nächste Schritte</h2>
                   <p className="mt-3 text-sm leading-7 text-stone-300">
-                    FLOXANT prueft praktische Machbarkeit: Ort, Zeitfenster, Umfang, Kontaktweg, Transport, Reinigung,
-                    Schluessel und Uebergabe. Persoenliche Konfliktfragen bleiben bewusst ausserhalb des Services.
+                    FLOXANT prüft praktische Machbarkeit: Ort, Zeitfenster, Umfang, Kontaktweg, Transport, Reinigung,
+                    Schlüssel und Übergabe. Persönliche Konfliktfragen bleiben bewusst außerhalb des Services.
                   </p>
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
@@ -335,9 +417,9 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {[
-                    "Sichere Kontaktmethode und Rueckrufzeitfenster koennen angegeben werden.",
-                    "Kurze Anfrage reicht; keine sensiblen Details im Freitext noetig.",
-                    "Reinigung, Schluesseluebergabe und Uebergabeakte koennen ergaenzt werden.",
+                    "Sichere Kontaktmethode und Rückrufzeitfenster können angegeben werden.",
+                    "Kurze Anfrage reicht; keine sensiblen Details im Freitext nötig.",
+                    "Reinigung, Schlüsselübergabe und Übergabeakte können ergänzt werden.",
                     "Keine heimliche Abholung, keine Rechts- oder Sicherheitsberatung.",
                   ].map((item) => (
                     <div key={item} className="rounded-[1rem] border border-stone-200 bg-stone-50 p-4 text-sm font-bold leading-6 text-stone-700">
@@ -352,6 +434,100 @@ export default function DiskreterUmzugTrennungScheidungPage() {
         </section>
 
         <section className="px-4 py-10 sm:px-6">
+          <div className="mx-auto max-w-7xl rounded-[2rem] border border-stone-200 bg-white/90 p-6 shadow-sm shadow-stone-950/5 lg:p-8">
+            <div className="grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-stone-600">
+                  <MapPin className="h-4 w-4" />
+                  Local SEO & Maps
+                </div>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-stone-950">
+                  Regensburg klar sichtbar, Anfrageweg direkt erreichbar
+                </h2>
+                <p className="mt-4 text-base leading-8 text-stone-700">
+                  Für lokale Suche und Google Maps zählt nicht nur ein Keyword. Entscheidend ist, dass Standort, Leistung,
+                  Kontaktweg und nächster Schritt sauber zusammenpassen. Diese Seite führt sensible Auszüge deshalb
+                  direkt zu Rückruf, WhatsApp, Telefon oder Formular, ohne falsche Notdienst- oder Sicherheitsversprechen.
+                </p>
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Link
+                    href="/kontakt"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-stone-950 px-5 text-sm font-black text-white transition hover:bg-stone-800"
+                  >
+                    Kontakt & Standort
+                    <Navigation className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/einsatzgebiet-regensburg-200km"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-white"
+                  >
+                    Servicegebiet ansehen
+                  </Link>
+                </div>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {localSearchSignals.map((signal) => (
+                  <article key={signal.title} className="rounded-[1.25rem] border border-stone-200 bg-stone-50 p-5">
+                    <h3 className="text-base font-black tracking-tight text-stone-950">{signal.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-stone-700">{signal.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="ki-antworten" className="px-4 py-10 sm:px-6">
+          <div className="mx-auto max-w-7xl rounded-[2.1rem] border border-stone-200 bg-white p-6 shadow-sm shadow-stone-950/5 lg:p-8">
+            <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+              <div>
+                <div className="inline-flex rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-stone-600">
+                  KI-Antworten & Servicefinder
+                </div>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-stone-950">
+                  Klare Kurzantworten, damit Google, KI-Systeme und Kunden FLOXANT richtig einordnen
+                </h2>
+                <p className="mt-4 text-base leading-8 text-stone-700">
+                  Diese Seite beantwortet die wichtigsten Fragen direkt sichtbar: Was FLOXANT übernimmt, was bewusst
+                  nicht versprochen wird und welcher FLOXANT-Service zum Fall passt. Das hilft Menschen, Suchmaschinen
+                  und KI-Antwortsystemen, den richtigen Einstieg zu empfehlen.
+                </p>
+              </div>
+
+              <div className="grid gap-3">
+                {answerEngineBlocks.map((item) => (
+                  <article key={item.question} className="rounded-[1.3rem] border border-stone-200 bg-stone-50 p-5">
+                    <h3 className="text-base font-black text-stone-950">{item.question}</h3>
+                    <p className="mt-2 text-sm leading-7 text-stone-700">{item.answer}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {recommendedFloxantServices.map((service) => {
+                const Icon = service.Icon;
+                return (
+                  <Link
+                    key={service.title}
+                    href={service.href}
+                    className="group rounded-[1.45rem] border border-stone-200 bg-white p-5 shadow-sm shadow-stone-950/5 transition hover:-translate-y-1 hover:border-stone-400 hover:bg-stone-50"
+                  >
+                    <Icon className="h-6 w-6 text-stone-700" />
+                    <h3 className="mt-4 text-lg font-black tracking-tight text-stone-950">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-stone-600">{service.text}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-stone-900">
+                      {service.cta}
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-10 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Diskretions-Bausteine</div>
@@ -359,8 +535,8 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Was bei einem diskreten Auszug wichtig sein kann
               </h2>
               <p className="mt-3 text-base leading-8 text-stone-700">
-                Manche Auszuege brauchen nicht mehr Laerm, sondern mehr Ruhe, klare Abstimmung und wenig unnoetige
-                Erklaerungen.
+                Manche Auszüge brauchen nicht mehr Lärm, sondern mehr Ruhe, klare Abstimmung und wenig unnötige
+                Erklärungen.
               </p>
             </div>
             <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -381,30 +557,30 @@ export default function DiskreterUmzugTrennungScheidungPage() {
         <section className="px-4 py-10 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="rounded-[2rem] bg-stone-950 p-7 text-white">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">Rueckruf-First</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight">Sie moechten nicht alles schriftlich erklaeren?</h2>
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">Rückruf-First</div>
+              <h2 className="mt-3 text-3xl font-black tracking-tight">Sie möchten nicht alles schriftlich erklären?</h2>
               <p className="mt-4 text-base leading-8 text-stone-300">
-                Sensible Auszuege brauchen oft ruhige Abstimmung. Nennen Sie nur Kontaktweg, Ort, Zeitraum und groben
-                Anlass. FLOXANT klaert Details ueber den gewuenschten sicheren Kontaktweg.
+                Sensible Auszüge brauchen oft ruhige Abstimmung. Nennen Sie nur Kontaktweg, Ort, Zeitraum und groben
+                Anlass. FLOXANT klärt Details über den gewünschten sicheren Kontaktweg.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="#diskret-form" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-stone-950" data-event="start_discreet_move_lead">
-                  Diskreten Rueckruf anfragen
+                  Diskreten Rückruf anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={callbackWhatsappHref} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-4 text-sm font-black text-emerald-50" data-event="click_discreet_whatsapp">
-                  Rueckruf per WhatsApp anfragen
+                  Rückruf per WhatsApp anfragen
                   <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {[
-                "nur noetigste Angaben im Formular",
-                "Rueckrufzeitfenster und Kontaktmethode angeben",
-                "Details muessen nicht per E-Mail erklaert werden",
+                "nur nötigste Angaben im Formular",
+                "Rückrufzeitfenster und Kontaktmethode angeben",
+                "Details müssen nicht per E-Mail erklärt werden",
                 "kurzer Anlass reicht: diskreter Auszug, private Trennung, sensible Situation oder Premium-Abstimmung",
-                "Fotos optional, wenn sie die Einschaetzung erleichtern",
+                "Fotos optional, wenn sie die Einschätzung erleichtern",
                 "keine sensiblen Details in URL-Parametern oder Analytics-Events",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 rounded-[1.25rem] border border-stone-200 bg-white p-4 text-sm font-bold leading-6 text-stone-700">
@@ -422,7 +598,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Service-Pakete</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Diskrete Pakete ohne Festpreis- oder Sofortgarantie</h2>
               <p className="mt-3 text-base leading-8 text-stone-700">
-                Jede Anfrage wird nach Ort, Termin, Umfang, Fotos, Zugang und Kapazitaet geprueft.
+                Jede Anfrage wird nach Ort, Termin, Umfang, Fotos, Zugang und Kapazität geprüft.
               </p>
             </div>
             <div className="grid gap-4 lg:grid-cols-5">
@@ -463,12 +639,12 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <p>
                   Wenn Gefahr, Gewalt, Bedrohung oder ein akutes Sicherheitsrisiko besteht, kontaktieren Sie bitte
                   Polizei, Notruf oder geeignete Beratungsstellen. FLOXANT kann nur die praktische Machbarkeit von
-                  Transport, Reinigung, Entruempelung, Entsorgung, Schluesseluebergabe und organisatorischer Abstimmung
-                  pruefen.
+                  Transport, Reinigung, Entrümpelung, Entsorgung, Schlüsselübergabe und organisatorischer Abstimmung
+                  prüfen.
                 </p>
                 <p>
-                  Gegenstaende duerfen nur abgeholt werden, wenn Berechtigung und Eigentumsfragen geklaert sind. FLOXANT
-                  unterstuetzt keine heimliche oder rechtswidrige Abholung.
+                  Gegenstände dürfen nur abgeholt werden, wenn Berechtigung und Eigentumsfragen geklärt sind. FLOXANT
+                  unterstützt keine heimliche oder rechtswidrige Abholung.
                 </p>
               </div>
             </div>
@@ -480,7 +656,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Anfrage starten</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">
-                Rueckruf, Kontaktweg, Zeitraum und Umfang senden
+                Rückruf, Kontaktweg, Zeitraum und Umfang senden
               </h2>
               <p className="mt-4 text-base leading-8 text-stone-700">
                 Das Formular ist bewusst kurz. Es erzwingt keine privaten Details und fragt Berechtigung sowie
@@ -490,13 +666,13 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <Phone className="mb-2 h-5 w-5 text-stone-700" />
                   <p className="text-sm leading-7 text-stone-700">
-                    Rueckrufzeitfenster und Kontakt-Hinweise helfen, die Abstimmung diskret zu halten.
+                    Rückrufzeitfenster und Kontakt-Hinweise helfen, die Abstimmung diskret zu halten.
                   </p>
                 </div>
                 <div className="rounded-[1.25rem] border border-stone-200 bg-white p-4">
                   <FileCheck2 className="mb-2 h-5 w-5 text-stone-700" />
                   <p className="text-sm leading-7 text-stone-700">
-                    Berechtigung muss geklaert sein. FLOXANT prueft keine Eigentumsstreitigkeiten und keine rechtlichen
+                    Berechtigung muss geklärt sein. FLOXANT prüft keine Eigentumsstreitigkeiten und keine rechtlichen
                     Fragen.
                   </p>
                 </div>
@@ -510,10 +686,10 @@ export default function DiskreterUmzugTrennungScheidungPage() {
           <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="rounded-[2rem] border border-stone-200 bg-white p-7">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Grenzen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Was FLOXANT nicht uebernimmt</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Was FLOXANT nicht übernimmt</h2>
               <p className="mt-4 text-base leading-8 text-stone-700">
-                Der Diskret-Modus bleibt ein praktischer Service fuer Auszug, Transport, Reinigung und Uebergabe. Er ist
-                keine Beratung, keine Konfliktloesung und kein Sicherheitsangebot.
+                Der Diskret-Modus bleibt ein praktischer Service für Auszug, Transport, Reinigung und Übergabe. Er ist
+                keine Beratung, keine Konfliktlösung und kein Sicherheitsangebot.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -530,10 +706,10 @@ export default function DiskreterUmzugTrennungScheidungPage() {
         <section className="px-4 py-10 sm:px-6">
           <div className="mx-auto max-w-7xl rounded-[2rem] border border-stone-200 bg-white p-7 shadow-sm">
             <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Verknuepfte FLOXANT Wege</div>
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Verknüpfte FLOXANT Wege</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Wenn der Fall anders gelagert ist</h2>
               <p className="mt-3 text-sm leading-7 text-stone-600">
-                Diese Links fuehren zu verwandten, aber klar getrennten Services. Kein Footer-Spam, keine aggressive
+                Diese Links führen zu verwandten, aber klar getrennten Services. Kein Footer-Spam, keine aggressive
                 Scheidungs-Optik.
               </p>
             </div>
@@ -552,7 +728,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
           <div className="mx-auto max-w-4xl">
             <div className="text-center">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Haeufige Fragen zum diskreten Auszug</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Häufige Fragen zum diskreten Auszug</h2>
             </div>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (
@@ -572,13 +748,13 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-300">FLOXANT Diskret-Modus</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight">Diskrete Anfrage ruhig starten</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-stone-300">
-                  Senden Sie Ort, Zeitraum, Kontaktweg und groben Umfang. FLOXANT prueft nach Absprache, was praktisch
+                  Senden Sie Ort, Zeitraum, Kontaktweg und groben Umfang. FLOXANT prüft nach Absprache, was praktisch
                   machbar ist.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link href="#diskret-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-stone-950" data-event="start_discreet_move_lead">
-                  Rueckruf anfragen
+                  Rückruf anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-6 text-sm font-black text-emerald-50" data-event="click_discreet_whatsapp">
@@ -594,7 +770,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
 
         <div className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-2 rounded-2xl border border-stone-200 bg-white/95 p-2 shadow-2xl shadow-stone-950/20 backdrop-blur md:hidden">
           <Link href="#diskret-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-4 text-xs font-black text-white" data-event="start_discreet_move_lead">
-            Rueckruf
+            Rückruf
           </Link>
           <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-xs font-black text-emerald-800" data-event="click_discreet_whatsapp">
             WhatsApp

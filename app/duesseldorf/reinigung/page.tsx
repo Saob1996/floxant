@@ -193,10 +193,10 @@ export default function DuesseldorfReinigungPage() {
               welchem Anspruch? Genau das klären wir vorab, damit aus einer Anfrage ein
               sauber planbarer Einsatz wird.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-[1.05fr_1fr_0.95fr]">
               <a
                 href={duesseldorfBookingHref}
-                className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-[0_14px_34px_rgba(255,255,255,0.16)] transition hover:-translate-y-0.5"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-slate-950 shadow-[0_18px_42px_rgba(255,255,255,0.18)] ring-1 ring-white/40 transition hover:-translate-y-0.5 hover:bg-slate-50"
                 data-event="start_booking"
                 data-service="reinigung"
                 data-region="duesseldorf"
@@ -205,29 +205,33 @@ export default function DuesseldorfReinigungPage() {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="#preisvorschlag"
-                className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-teal-200/35 bg-teal-300/15 px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_rgba(20,184,166,0.18)] transition hover:-translate-y-0.5 hover:bg-teal-300/22"
-                data-event="submit_budget_request"
-                data-service="reinigung"
-                data-region="duesseldorf"
-              >
-                Eigenes Budget einordnen lassen
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
                 href={whatsappHeroHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-[1.2rem] border border-white/14 bg-white/8 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-emerald-200/60 bg-emerald-300/18 px-5 py-3 text-sm font-black text-emerald-50 shadow-[0_18px_42px_rgba(16,185,129,0.18)] transition hover:-translate-y-0.5 hover:bg-emerald-300/26"
                 data-event="click_whatsapp"
                 data-service="reinigung"
                 data-region="duesseldorf"
               >
                 Per WhatsApp anfragen
+                <ArrowRight className="h-4 w-4" />
               </a>
+              <a
+                href="#preisvorschlag"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-white/18 bg-white/10 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/16"
+                data-event="submit_budget_request"
+                data-service="reinigung"
+                data-region="duesseldorf"
+              >
+                Budget einordnen lassen
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+              <span className="font-semibold text-slate-300">Passende Zusatzwege:</span>
               <Link
                 href="/entsorgung-duesseldorf"
-                className="inline-flex items-center justify-center rounded-[1.2rem] border border-white/14 bg-white/8 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/12"
+                className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/14 bg-white/8 px-4 text-xs font-bold text-white transition hover:bg-white/12"
                 data-event="internal_link_disposal_duesseldorf"
                 data-region="duesseldorf"
               >
@@ -235,11 +239,11 @@ export default function DuesseldorfReinigungPage() {
               </Link>
               <Link
                 href="/reinigung-moeblierte-wohnung-duesseldorf"
-                className="inline-flex items-center justify-center rounded-[1.2rem] border border-cyan-200/35 bg-cyan-300/15 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-cyan-300/22"
+                className="inline-flex min-h-10 items-center justify-center rounded-full border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
                 data-event="internal_link_duesseldorf_apartment_cleaning"
                 data-region="duesseldorf"
               >
-                Moeblierte Wohnung reinigen
+                Möblierte Wohnung reinigen
               </Link>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
@@ -382,9 +386,9 @@ export default function DuesseldorfReinigungPage() {
             "photo_check",
             "budget_check",
           ]}
-          badge="Duesseldorf Content-Cluster"
+          badge="Düsseldorf Content-Cluster"
           title="Private Reinigung und B2B-Reinigung sauber getrennt"
-          subtitle="Duesseldorf bleibt ein eigener Reinigungsbereich. Wohnungsreinigung, Endreinigung, Bueroflaechen, Fotos und Budget werden ohne Umzugslogik eingeordnet."
+          subtitle="Düsseldorf bleibt ein eigener Reinigungsbereich. Wohnungsreinigung, Endreinigung, Büroflächen, Fotos und Budget werden ohne Umzugslogik eingeordnet."
           source="duesseldorf_cleaning_authority_modules"
         />
 

@@ -1,4 +1,5 @@
 import { company } from "@/lib/company";
+import { germanizeDeep } from "@/lib/german-text";
 import {
   BAVARIA_DIRECT_DEMAND_LINKS,
   BAVARIA_MAPS_SERVICE_INTENTS,
@@ -306,7 +307,7 @@ export function LocalBusinessJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(germanizeDeep(jsonLd)) }}
     />
   );
 }

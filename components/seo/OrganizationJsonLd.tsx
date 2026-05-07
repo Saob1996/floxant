@@ -1,4 +1,5 @@
 import { company } from "@/lib/company";
+import { germanizeDeep } from "@/lib/german-text";
 
 export function OrganizationJsonLd() {
   const jsonLd = {
@@ -104,7 +105,7 @@ export function OrganizationJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(germanizeDeep(jsonLd)) }}
     />
   );
 }
