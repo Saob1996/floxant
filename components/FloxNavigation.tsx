@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   ChevronDown,
   Mail,
-  MapPin,
   Menu,
   MessageCircle,
   X,
@@ -14,7 +13,7 @@ import {
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import type { ReactNode, RefObject } from "react";
+import type { RefObject } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
@@ -400,7 +399,6 @@ export function PublicHeader({
     >
       <div className="relative z-10 flex min-h-12 items-center gap-2.5">
         <BrandBlock variant={variant} />
-        <LocalProofPill variant={variant} />
 
         <DesktopNavigation
           dic={dic}
@@ -414,16 +412,6 @@ export function PublicHeader({
           dropdownRef={dropdownRef}
           setServicesOpen={setServicesOpen}
         />
-
-        {!isDuesseldorf ? (
-          <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 min-[1680px]:block" aria-hidden="true" />
-        ) : null}
-
-        {!isDuesseldorf ? <ContactActions whatsappUrl={whatsappUrl} /> : null}
-
-        {!isDuesseldorf ? (
-          <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 min-[1680px]:block" aria-hidden="true" />
-        ) : null}
 
         <HeaderCTAs
           variant={variant}
@@ -472,7 +460,7 @@ function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
   return (
     <Link
       href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
-      className="group flex min-w-[8.15rem] shrink-0 items-center gap-2.5 rounded-[1.1rem] px-1.5 py-1 transition hover:bg-white/70 sm:min-w-[8.8rem]"
+      className="group flex min-w-[10.8rem] shrink-0 items-center gap-2.5 rounded-[1.1rem] px-1.5 py-1 transition hover:bg-white/70 sm:min-w-[12rem]"
       aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung" : "FLOXANT Startseite"}
     >
       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.95rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)]">
@@ -485,26 +473,10 @@ function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
         <span className="mt-1 hidden text-[0.57rem] font-black uppercase tracking-[0.2em] text-slate-400 sm:block">
           {isDuesseldorf ? "Düsseldorf · Reinigung" : "Regensburg · Bayern"}
         </span>
-        <span className="mt-1 hidden max-w-[10.5rem] truncate text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-400 min-[1500px]:block">
+        <span className="mt-1 hidden max-w-[10.5rem] truncate text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-400 min-[1320px]:block">
           {isDuesseldorf ? "Entsorgung separat · keine Umzüge" : "200 km · Bayern nach Verfügbarkeit"}
         </span>
       </span>
-    </Link>
-  );
-}
-
-function LocalProofPill({ variant }: { variant: PublicHeaderVariant }) {
-  if (variant === "duesseldorf") {
-    return null;
-  }
-
-  return (
-    <Link
-      href="/service-area-bayern"
-      className="hidden shrink-0 rounded-[1rem] border border-blue-100 bg-blue-50/80 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-blue-800 shadow-sm shadow-blue-900/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white min-[1660px]:inline-flex"
-      aria-label="Servicegebiet Regensburg, Umgebung 200 Kilometer und Bayern nach Verfügbarkeit öffnen"
-    >
-      Regensburg · 200 km · Bayern
     </Link>
   );
 }
@@ -745,51 +717,6 @@ function ServiceGroupCard({ group }: { group: ServiceGroup }) {
         ))}
       </div>
     </div>
-  );
-}
-
-function ContactActions({ whatsappUrl }: { whatsappUrl: string }) {
-  return (
-    <div className="hidden shrink-0 items-center gap-1.5 rounded-[1.05rem] border border-slate-200 bg-white/82 p-1 shadow-sm shadow-slate-950/5 min-[1680px]:flex">
-      <Link
-        href="/kontakt"
-        className="hidden h-9 items-center gap-1.5 rounded-[0.82rem] px-2.5 text-[10px] font-black uppercase tracking-[0.13em] text-slate-600 transition hover:bg-blue-50 hover:text-blue-800 min-[1420px]:inline-flex"
-      >
-        <MapPin className="h-3.5 w-3.5 text-blue-700" />
-        Kontakt
-      </Link>
-      <IconAction href={whatsappUrl} label="WhatsApp öffnen" external>
-        <MessageCircle size={15} />
-      </IconAction>
-      <IconAction href={`mailto:${company.email}`} label="E-Mail schreiben">
-        <Mail size={15} />
-      </IconAction>
-    </div>
-  );
-}
-
-function IconAction({
-  href,
-  label,
-  external = false,
-  children,
-}: {
-  href: string;
-  label: string;
-  external?: boolean;
-  children: ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className="grid h-9 w-9 place-items-center rounded-[0.82rem] text-slate-500 transition hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-100"
-      aria-label={label}
-      title={label}
-    >
-      {children}
-    </a>
   );
 }
 
