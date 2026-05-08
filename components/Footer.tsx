@@ -20,15 +20,15 @@ const directLinks = [
   { href: "/buchung", label: "Buchung" },
   { href: "/rechner", label: "Rechner" },
   { href: "/anfrage-mit-preisrahmen", label: "Budget nennen" },
-  { href: "/angebot-guenstiger-pruefen", label: "Guenstiger pruefen" },
+  { href: "/angebot-guenstiger-pruefen", label: "Günstiger prüfen" },
   { href: "/express-anfrage", label: "Express-Check" },
   { href: "/empfehlen", label: "Empfehlen" },
   { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
   { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
-  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Muellraum" },
+  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum" },
   { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
   { href: "/wohnung-wieder-vermietbar", label: "Objekt-Ready" },
-  { href: "/uebergabeakte", label: "Uebergabeakte" },
+  { href: "/uebergabeakte", label: "Übergabeakte" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 

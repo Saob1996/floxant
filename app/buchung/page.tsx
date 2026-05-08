@@ -869,7 +869,7 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#buchungssystem"
-                  className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-[0_18px_46px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5"
+                  className="flox-readable-cta-dark inline-flex items-center justify-center gap-2 rounded-[1.2rem] px-5 py-3 text-sm font-bold transition hover:-translate-y-0.5"
                   data-event="start_booking"
                   data-service="reinigung"
                   data-region="duesseldorf"

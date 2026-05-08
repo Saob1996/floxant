@@ -135,7 +135,7 @@ const LOCAL_INTENT_LINKS = [
   {
     label: "Umzug Regensburg",
     href: "/umzug-regensburg",
-    hint: "Lokaler Umzugsservice mit Anfrageweg.",
+    hint: "Operativer Kern für Umzug, Transport und Übergabe.",
   },
   {
     label: "Reinigung Regensburg",
@@ -148,23 +148,137 @@ const LOCAL_INTENT_LINKS = [
     hint: "Räumung, Entsorgung und Vorbereitung.",
   },
   {
-    label: "Reinigung Düsseldorf",
-    href: "/duesseldorf/reinigung",
-    hint: "Eigene Reinigungsseite für Düsseldorf.",
+    label: "Servicegebiet Bayern",
+    href: "/service-area-bayern",
+    hint: "Regensburg, Umgebung 200 km und Bayern nach Verfügbarkeit.",
   },
   {
     label: "Einsatzradar",
     href: "/einsatzradar-regensburg",
-    hint: "Typische Einsatzarten und Servicezonen.",
+    hint: "Typische Einsatzarten, Zonen und lokale FLOXANT-Signale.",
+  },
+  {
+    label: "Angebot günstiger prüfen",
+    href: "/angebot-guenstiger-pruefen",
+    hint: "Vorhandenes Angebot senden und Alternative prüfen lassen.",
+  },
+  {
+    label: "Reinigung Düsseldorf",
+    href: "/duesseldorf/reinigung",
+    hint: "Düsseldorf nur für Reinigung und Entsorgung.",
+  },
+  {
+    label: "Apartment Düsseldorf",
+    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+    hint: "Möblierte Wohnungen, Apartments und Kurzzeitvermietung reinigen lassen.",
   },
 ];
 
 const DESKTOP_LINKS = [
   { label: "Start", href: "/" },
-  { label: "Buchung", href: "/buchung" },
-  { label: "Rechner", href: "/rechner" },
   { label: "Wissen", href: "/blog" },
   { label: "Standorte", href: "/standorte" },
+];
+
+const DUESSELDORF_SERVICE_GROUPS = [
+  {
+    label: "Düsseldorf Reinigung",
+    description: "Reinigungswege für Wohnungen, Apartments und kleine Gewerbeflächen.",
+    items: [
+      {
+        label: "Reinigung Düsseldorf",
+        href: "/duesseldorf/reinigung",
+        description: "Wohnung, Auszug, Einzug und Übergabe sauber anfragen.",
+      },
+      {
+        label: "Wohnungsreinigung",
+        href: "/duesseldorf/wohnungsreinigung",
+        description: "Wohnungen mit Zustand, Fläche, Termin und Fotos einordnen.",
+      },
+      {
+        label: "Apartment-Reinigung",
+        href: "/reinigung-moeblierte-wohnung-duesseldorf",
+        description: "Möblierte Wohnungen, Apartments und Gästewechsel.",
+      },
+      {
+        label: "Endreinigung",
+        href: "/duesseldorf/endreinigung",
+        description: "Reinigung vor Rückgabe, Einzug oder Objektwechsel.",
+      },
+    ],
+  },
+  {
+    label: "B2B und Objekt",
+    description: "Für kleine Unternehmen, Hausverwaltungen und Gewerbeflächen.",
+    items: [
+      {
+        label: "B2B / Büroreinigung",
+        href: "/duesseldorf/bueroreinigung",
+        description: "Büro, Agentur, Studio, Kanzlei und Gewerbefläche.",
+      },
+      {
+        label: "Grundreinigung",
+        href: "/duesseldorf/grundreinigung",
+        description: "Wenn normale Reinigung nicht reicht.",
+      },
+      {
+        label: "Treppenhausreinigung",
+        href: "/duesseldorf/treppenhausreinigung",
+        description: "Treppenhaus, Eingangsbereich und Gemeinschaftsflächen.",
+      },
+      {
+        label: "Entsorgung Düsseldorf",
+        href: "/entsorgung-duesseldorf",
+        description: "Möbel, Gegenstände und Reste separat anfragen.",
+      },
+    ],
+  },
+];
+
+const DUESSELDORF_SHORTCUTS = [
+  {
+    label: "Reinigung anfragen",
+    href: "/duesseldorf/reinigung#kontakt",
+    hint: "Objekt, Termin, Fläche und Fotos senden.",
+  },
+  {
+    label: "B2B anfragen",
+    href: "/duesseldorf/bueroreinigung#b2b-reinigung-form",
+    hint: "Firma, Frequenz, Zeitfenster und Fläche nennen.",
+  },
+  {
+    label: "Apartment senden",
+    href: "/reinigung-moeblierte-wohnung-duesseldorf#apartment-reinigung-form",
+    hint: "Gästewechsel, Check-in, Check-out und Fotos.",
+  },
+];
+
+const DUESSELDORF_LOCAL_INTENT_LINKS = [
+  {
+    label: "B2B-Reinigung Düsseldorf",
+    href: "/duesseldorf/bueroreinigung",
+    hint: "Kleine Unternehmen, Büros, Agenturen und Studios.",
+  },
+  {
+    label: "Apartment Düsseldorf",
+    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+    hint: "Möblierte Wohnung, Kurzzeitvermietung und Gästewechsel.",
+  },
+  {
+    label: "Grundreinigung Düsseldorf",
+    href: "/duesseldorf/grundreinigung",
+    hint: "Stärkerer Zustand oder Objektwechsel.",
+  },
+  {
+    label: "Entsorgung Düsseldorf",
+    href: "/entsorgung-duesseldorf",
+    hint: "Separat für Möbel, Gegenstände und Restmengen.",
+  },
+];
+
+const DUESSELDORF_DESKTOP_LINKS = [
+  { label: "Reinigung", href: "/duesseldorf/reinigung" },
+  { label: "Kontakt", href: "/duesseldorf/reinigung#kontakt" },
 ];
 
 const MOBILE_LINKS = [
@@ -183,8 +297,15 @@ type RouteLink = {
 
 type ServiceGroup = (typeof SERVICE_GROUPS)[number];
 type ShortcutLink = (typeof CALCULATOR_SHORTCUTS)[number];
+export type PublicHeaderVariant = "default" | "duesseldorf";
 
-export function FloxNavigation({ dic }: { dic: any }) {
+export function PublicHeader({
+  dic = {},
+  variant = "default",
+}: {
+  dic?: any;
+  variant?: PublicHeaderVariant;
+}) {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -192,16 +313,29 @@ export function FloxNavigation({ dic }: { dic: any }) {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [budgetOpen, setBudgetOpen] = useState(false);
   const [expressOpen, setExpressOpen] = useState(false);
+  const isDuesseldorf = variant === "duesseldorf";
 
   const whatsappUrl = useMemo(() => `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`, []);
-  const serviceGroups = useMemo(() => germanizeDeep(SERVICE_GROUPS) as typeof SERVICE_GROUPS, []);
+  const serviceGroups = useMemo(
+    () => germanizeDeep(isDuesseldorf ? DUESSELDORF_SERVICE_GROUPS : SERVICE_GROUPS),
+    [isDuesseldorf],
+  ) as typeof SERVICE_GROUPS;
   const calculatorShortcuts = useMemo(
-    () => germanizeDeep(CALCULATOR_SHORTCUTS) as typeof CALCULATOR_SHORTCUTS,
-    [],
-  );
-  const localIntentLinks = useMemo(() => germanizeDeep(LOCAL_INTENT_LINKS) as typeof LOCAL_INTENT_LINKS, []);
-  const desktopLinks = useMemo(() => germanizeDeep(DESKTOP_LINKS) as typeof DESKTOP_LINKS, []);
-  const mobileLinks = useMemo(() => germanizeDeep(MOBILE_LINKS) as typeof MOBILE_LINKS, []);
+    () => germanizeDeep(isDuesseldorf ? DUESSELDORF_SHORTCUTS : CALCULATOR_SHORTCUTS),
+    [isDuesseldorf],
+  ) as typeof CALCULATOR_SHORTCUTS;
+  const localIntentLinks = useMemo(
+    () => germanizeDeep(isDuesseldorf ? DUESSELDORF_LOCAL_INTENT_LINKS : LOCAL_INTENT_LINKS),
+    [isDuesseldorf],
+  ) as typeof LOCAL_INTENT_LINKS;
+  const desktopLinks = useMemo(
+    () => germanizeDeep(isDuesseldorf ? DUESSELDORF_DESKTOP_LINKS : DESKTOP_LINKS),
+    [isDuesseldorf],
+  ) as typeof DESKTOP_LINKS;
+  const mobileLinks = useMemo(
+    () => germanizeDeep(isDuesseldorf ? DUESSELDORF_DESKTOP_LINKS : MOBILE_LINKS),
+    [isDuesseldorf],
+  ) as typeof MOBILE_LINKS;
 
   const servicesActive =
     serviceGroups.some((group) => group.items.some((item) => pathname === item.href.split("#")[0])) ||
@@ -265,7 +399,8 @@ export function FloxNavigation({ dic }: { dic: any }) {
       )}
     >
       <div className="relative z-10 flex min-h-12 items-center gap-2.5">
-        <BrandBlock />
+        <BrandBlock variant={variant} />
+        <LocalProofPill variant={variant} />
 
         <DesktopNavigation
           dic={dic}
@@ -280,13 +415,19 @@ export function FloxNavigation({ dic }: { dic: any }) {
           setServicesOpen={setServicesOpen}
         />
 
-        <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 xl:block" aria-hidden="true" />
+        {!isDuesseldorf ? (
+          <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 min-[1680px]:block" aria-hidden="true" />
+        ) : null}
 
-        <ContactActions whatsappUrl={whatsappUrl} />
+        {!isDuesseldorf ? <ContactActions whatsappUrl={whatsappUrl} /> : null}
 
-        <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 xl:block" aria-hidden="true" />
+        {!isDuesseldorf ? (
+          <div className="hidden h-9 w-px shrink-0 bg-slate-200/80 min-[1680px]:block" aria-hidden="true" />
+        ) : null}
 
         <HeaderCTAs
+          variant={variant}
+          whatsappUrl={whatsappUrl}
           onExpress={() => setExpressOpen(true)}
           onBudget={() => setBudgetOpen(true)}
         />
@@ -304,6 +445,7 @@ export function FloxNavigation({ dic }: { dic: any }) {
         serviceGroups={serviceGroups}
         calculatorShortcuts={calculatorShortcuts}
         localIntentLinks={localIntentLinks}
+        variant={variant}
         onExpress={() => {
           setMenuOpen(false);
           setExpressOpen(true);
@@ -320,12 +462,18 @@ export function FloxNavigation({ dic }: { dic: any }) {
   );
 }
 
-function BrandBlock() {
+export function FloxNavigation({ dic }: { dic: any }) {
+  return <PublicHeader dic={dic} />;
+}
+
+function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
+  const isDuesseldorf = variant === "duesseldorf";
+
   return (
     <Link
-      href="/"
-      className="group flex min-w-[8.45rem] shrink-0 items-center gap-2.5 rounded-[1.1rem] px-1.5 py-1 transition hover:bg-white/70 sm:min-w-[9.15rem]"
-      aria-label="FLOXANT Startseite"
+      href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
+      className="group flex min-w-[8.15rem] shrink-0 items-center gap-2.5 rounded-[1.1rem] px-1.5 py-1 transition hover:bg-white/70 sm:min-w-[8.8rem]"
+      aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung" : "FLOXANT Startseite"}
     >
       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.95rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)]">
         <BrandLogo size={28} />
@@ -335,9 +483,28 @@ function BrandBlock() {
           FLOXANT
         </span>
         <span className="mt-1 hidden text-[0.57rem] font-black uppercase tracking-[0.2em] text-slate-400 sm:block">
-          Klar geplant
+          {isDuesseldorf ? "Düsseldorf · Reinigung" : "Regensburg · Bayern"}
+        </span>
+        <span className="mt-1 hidden max-w-[10.5rem] truncate text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-400 min-[1500px]:block">
+          {isDuesseldorf ? "Entsorgung separat · keine Umzüge" : "200 km · Bayern nach Verfügbarkeit"}
         </span>
       </span>
+    </Link>
+  );
+}
+
+function LocalProofPill({ variant }: { variant: PublicHeaderVariant }) {
+  if (variant === "duesseldorf") {
+    return null;
+  }
+
+  return (
+    <Link
+      href="/service-area-bayern"
+      className="hidden shrink-0 rounded-[1rem] border border-blue-100 bg-blue-50/80 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-blue-800 shadow-sm shadow-blue-900/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white min-[1660px]:inline-flex"
+      aria-label="Servicegebiet Regensburg, Umgebung 200 Kilometer und Bayern nach Verfügbarkeit öffnen"
+    >
+      Regensburg · 200 km · Bayern
     </Link>
   );
 }
@@ -367,7 +534,7 @@ function DesktopNavigation({
 }) {
   return (
     <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex" aria-label="Hauptnavigation">
-      <div className="flex min-w-0 items-center gap-0.5 rounded-[1.05rem] border border-slate-200 bg-white/92 p-1 shadow-sm shadow-slate-950/5">
+      <div className="flex max-w-full min-w-0 items-center gap-0.5 overflow-visible rounded-[1.05rem] border border-slate-200 bg-white/92 p-1 shadow-sm shadow-slate-950/5">
         <NavLink item={desktopLinks[0]} active={pathname === desktopLinks[0].href} />
 
         <div
@@ -458,10 +625,10 @@ function ServicesDropdown({
                 Lokale Suchwege
               </div>
               <span className="hidden text-[11px] font-semibold text-blue-900/60 sm:inline">
-                klare Wege für lokale Anfragen und schnelle Orientierung
+                Serviceempfehlungen für Regensburg, Bayern und kaufnahe Anfragen
               </span>
             </div>
-            <div className="grid gap-2 md:grid-cols-5">
+            <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
               {localIntentLinks.map((item) => (
                 <MiniLinkCard key={item.href} item={item} tone="blue" />
               ))}
@@ -583,7 +750,7 @@ function ServiceGroupCard({ group }: { group: ServiceGroup }) {
 
 function ContactActions({ whatsappUrl }: { whatsappUrl: string }) {
   return (
-    <div className="hidden shrink-0 items-center gap-1.5 rounded-[1.05rem] border border-slate-200 bg-white/82 p-1 shadow-sm shadow-slate-950/5 xl:flex">
+    <div className="hidden shrink-0 items-center gap-1.5 rounded-[1.05rem] border border-slate-200 bg-white/82 p-1 shadow-sm shadow-slate-950/5 min-[1680px]:flex">
       <Link
         href="/kontakt"
         className="hidden h-9 items-center gap-1.5 rounded-[0.82rem] px-2.5 text-[10px] font-black uppercase tracking-[0.13em] text-slate-600 transition hover:bg-blue-50 hover:text-blue-800 min-[1420px]:inline-flex"
@@ -627,12 +794,47 @@ function IconAction({
 }
 
 function HeaderCTAs({
+  variant,
+  whatsappUrl,
   onExpress,
   onBudget,
 }: {
+  variant: PublicHeaderVariant;
+  whatsappUrl: string;
   onExpress: () => void;
   onBudget: () => void;
 }) {
+  if (variant === "duesseldorf") {
+    return (
+      <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
+        <a
+          href={`tel:${company.phoneRaw}`}
+          className="inline-flex h-10 items-center justify-center rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50 focus:outline-none focus:ring-4 focus:ring-teal-100"
+          data-event="click_duesseldorf_header_phone"
+        >
+          Anrufen
+        </a>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-emerald-200 bg-emerald-50 px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-emerald-800 shadow-sm shadow-emerald-900/5 transition hover:-translate-y-0.5 hover:bg-emerald-100 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+          data-event="click_duesseldorf_header_whatsapp"
+        >
+          <MessageCircle className="h-3.5 w-3.5" />
+          WhatsApp
+        </a>
+        <Link
+          href="/duesseldorf/reinigung#kontakt"
+          className="inline-flex h-10 items-center justify-center rounded-[0.95rem] bg-gradient-to-r from-teal-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_15px_32px_rgba(20,184,166,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,184,166,0.3)] focus:outline-none focus:ring-4 focus:ring-teal-100"
+          data-event="start_duesseldorf_cleaning_lead"
+        >
+          Anfrage starten
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
       <button
@@ -700,6 +902,7 @@ function MobileNavDrawer({
   serviceGroups,
   calculatorShortcuts,
   localIntentLinks,
+  variant,
   onExpress,
   onBudget,
 }: {
@@ -709,9 +912,12 @@ function MobileNavDrawer({
   serviceGroups: typeof SERVICE_GROUPS;
   calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
   localIntentLinks: typeof LOCAL_INTENT_LINKS;
+  variant: PublicHeaderVariant;
   onExpress: () => void;
   onBudget: () => void;
 }) {
+  const isDuesseldorf = variant === "duesseldorf";
+
   return (
     <AnimatePresence>
       {open ? (
@@ -724,13 +930,15 @@ function MobileNavDrawer({
         >
           <div className="grid gap-3 sm:grid-cols-2">
             <Link
-              href="/buchung"
+              href={isDuesseldorf ? "/duesseldorf/reinigung#kontakt" : "/buchung"}
               className="flex min-h-[86px] flex-col items-start justify-center rounded-[1.35rem] bg-gradient-to-r from-blue-600 to-sky-500 px-5 text-left text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
             >
               <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
-                Schnellster Weg
+                {isDuesseldorf ? "Düsseldorf" : "Schnellster Weg"}
               </span>
-              <span className="mt-2 text-xl font-black tracking-tight">Direkt anfragen</span>
+              <span className="mt-2 text-xl font-black tracking-tight">
+                {isDuesseldorf ? "Reinigung anfragen" : "Direkt anfragen"}
+              </span>
             </Link>
 
             <div className="rounded-[1.35rem] border border-blue-100 bg-blue-50 px-5 py-5 text-sm leading-6 text-slate-700">
@@ -738,7 +946,9 @@ function MobileNavDrawer({
                 Schnell entscheiden
               </div>
               <p className="mt-2">
-                Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen.
+                {isDuesseldorf
+                  ? "Düsseldorf bleibt klar: Reinigung und Entsorgung, keine Umzüge."
+                  : "Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen."}
               </p>
             </div>
           </div>
@@ -757,7 +967,7 @@ function MobileNavDrawer({
 
           <div className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white p-4">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
-              Rechner direkt öffnen
+              {isDuesseldorf ? "Direkte Einstiege" : "Rechner direkt öffnen"}
             </div>
             <div className="mt-3 grid gap-2 sm:grid-cols-3">
               {calculatorShortcuts.map((item) => (
@@ -783,22 +993,24 @@ function MobileNavDrawer({
             ))}
           </div>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              onClick={onExpress}
-              className="rounded-[1.15rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm font-black text-amber-900"
-            >
-              Express-Check
-            </button>
-            <button
-              type="button"
-              onClick={onBudget}
-              className="rounded-[1.15rem] border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
-            >
-              Budget nennen
-            </button>
-          </div>
+          {!isDuesseldorf ? (
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={onExpress}
+                className="rounded-[1.15rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm font-black text-amber-900"
+              >
+                Express-Check
+              </button>
+              <button
+                type="button"
+                onClick={onBudget}
+                className="rounded-[1.15rem] border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
+              >
+                Budget nennen
+              </button>
+            </div>
+          ) : null}
 
           <div className="mt-4 grid grid-cols-2 gap-3">
             <a

@@ -196,7 +196,7 @@ export default function DuesseldorfReinigungPage() {
             <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-[1.05fr_1fr_0.95fr]">
               <a
                 href={duesseldorfBookingHref}
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-slate-950 shadow-[0_18px_42px_rgba(255,255,255,0.18)] ring-1 ring-white/40 transition hover:-translate-y-0.5 hover:bg-slate-50"
+                className="flox-readable-cta-light inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-black transition hover:-translate-y-0.5"
                 data-event="start_booking"
                 data-service="reinigung"
                 data-region="duesseldorf"

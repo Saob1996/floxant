@@ -6,6 +6,13 @@
 const fs = require("fs");
 const path = require("path");
 
+if (process.env.FLOXANT_ENABLE_BULK_CITY_PAGES !== "1") {
+  console.log(
+    "Bulk city-page generation is disabled. Set FLOXANT_ENABLE_BULK_CITY_PAGES=1 only for a deliberate SEO expansion."
+  );
+  process.exit(0);
+}
+
 const APP_DIR = path.join(__dirname, "..", "app");
 
 // Slugs to exclude (not actual city pages)

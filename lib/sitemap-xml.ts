@@ -11,6 +11,7 @@ import {
   LEGAL_PAGES,
   HUB_PAGES,
 } from "./sitemap-config";
+import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 
@@ -28,21 +29,14 @@ interface SitemapUrl {
   priority: string;
 }
 
+const APP_PAGE_CANDIDATES = ["page.tsx", "page.ts", "page.jsx", "page.js", "route.ts", "route.tsx"] as const;
+
 const LEGACY_REDIRECT_ROUTES = new Set([
   "partnercode",
   "airbnb-reinigung-duesseldorf",
   "angebot-red-flag-scanner",
   "villenservice",
   "umzug-duesseldorf",
-  "umzug-berlin",
-  "umzug-bremen",
-  "umzug-dortmund",
-  "umzug-essen",
-  "umzug-frankfurt",
-  "umzug-hamburg",
-  "umzug-koeln",
-  "umzug-leipzig",
-  "umzug-stuttgart",
 ]);
 
 const NON_SEO_PUBLIC_ROUTES = new Set([
@@ -140,9 +134,8 @@ function discoverStaticAppRoutes(): string[] {
 function lastmodForRoute(route: string): string {
   const routeSegments = route ? route.split("/") : [];
   const appRouteDir = join(process.cwd(), "app", ...routeSegments);
-  const pageCandidates = ["page.tsx", "page.ts", "page.jsx", "page.js", "route.ts", "route.tsx"];
 
-  for (const fileName of pageCandidates) {
+  for (const fileName of APP_PAGE_CANDIDATES) {
     const candidate = join(appRouteDir, fileName);
     if (existsSync(candidate)) {
       return statSync(candidate).mtime.toISOString().split("T")[0];
@@ -150,6 +143,15 @@ function lastmodForRoute(route: string): string {
   }
 
   return LASTMOD;
+}
+
+function appRouteExists(route: string): boolean {
+  if (dynamicLocalSeoRouteSet.has(`/${route}`)) return true;
+
+  const routeSegments = route ? route.split("/") : [];
+  const appRouteDir = join(process.cwd(), "app", ...routeSegments);
+
+  return APP_PAGE_CANDIDATES.some((fileName) => existsSync(join(appRouteDir, fileName)));
 }
 
 function priorityForRoute(route: string): string {
@@ -211,6 +213,11 @@ function addEntries(
       continue;
     }
 
+    // Do not let historic config arrays re-add deleted bulk city pages.
+    if (normalizedRoute && !appRouteExists(normalizedRoute)) {
+      continue;
+    }
+
     urls.push({
       pagePath: normalizedRoute,
       loc: buildAbsoluteUrl(normalizedRoute),
@@ -244,6 +251,14 @@ export function generateSitemapResponse(): Response {
 
   // Service + city pages
   addEntries(urls, SERVICE_CITY_PAGES, "0.9", "weekly");
+
+  // Historic local SEO route set, now served dynamically through app/[serviceSlug].
+  addEntries(
+    urls,
+    dynamicLocalSeoRoutes.map((entry) => entry.route),
+    "0.76",
+    "monthly"
+  );
 
   // Bavaria authority pages
   addEntries(urls, BAVARIA_AUTHORITY_PAGES, "0.9", "weekly");

@@ -7,6 +7,7 @@ const { spawn } = require("child_process");
 
 const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, "app");
+const DYNAMIC_LOCAL_ROUTES_PATH = path.join(ROOT, "lib", "local-seo-routes.ts");
 const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
@@ -37,15 +38,6 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "/duesseldorf/b2b-reinigung",
   "/villenservice",
   "/umzug-duesseldorf",
-  "/umzug-berlin",
-  "/umzug-bremen",
-  "/umzug-dortmund",
-  "/umzug-essen",
-  "/umzug-frankfurt",
-  "/umzug-hamburg",
-  "/umzug-koeln",
-  "/umzug-leipzig",
-  "/umzug-stuttgart",
 ]);
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
@@ -144,17 +136,11 @@ const REDIRECT_EXPECTATIONS = [
   ["/reinigung-m%C3%BCnchen", "/reinigung-muenchen"],
   ["/entr%C3%BCmpelung-m%C3%BCnchen", "/entruempelung-muenchen"],
   ["/villenservice", "/private-client-service"],
-  ["/umzug-duesseldorf", "/duesseldorf/reinigung"],
-  ["/umzug-berlin", "/umzug-bayern"],
-  ["/umzug-bremen", "/umzug-bayern"],
-  ["/umzug-dortmund", "/umzug-bayern"],
-  ["/umzug-essen", "/umzug-bayern"],
-  ["/umzug-frankfurt", "/umzug-bayern"],
-  ["/umzug-hamburg", "/umzug-bayern"],
-  ["/umzug-koeln", "/umzug-bayern"],
-  ["/umzug-leipzig", "/umzug-bayern"],
-  ["/umzug-stuttgart", "/umzug-bayern"],
   ["/signature/clean-start", "/clean-start"],
+];
+
+const GONE_EXPECTATIONS = [
+  "/umzug-duesseldorf",
 ];
 
 function isPrivateSegment(segment) {
@@ -174,6 +160,21 @@ function routeFromSegments(segments) {
   const publicSegments = segments.filter((segment) => !segment.startsWith("(") && !segment.endsWith(")"));
   const route = `/${publicSegments.join("/")}`;
   return route === "/" ? "/" : route.replace(/\/$/, "");
+}
+
+function loadDynamicLocalSeoRoutes() {
+  if (!fs.existsSync(DYNAMIC_LOCAL_ROUTES_PATH)) return [];
+
+  const source = fs.readFileSync(DYNAMIC_LOCAL_ROUTES_PATH, "utf8");
+  const routes = [];
+  const routeRegex = /"route":\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = routeRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  return routes;
 }
 
 function discoverRoutes({ includePrivate = false } = {}) {
@@ -202,6 +203,10 @@ function discoverRoutes({ includePrivate = false } = {}) {
 
   for (const route of STATIC_METADATA_ROUTES) {
     routes.add(route);
+  }
+
+  for (const route of loadDynamicLocalSeoRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
   }
 
   return routes;
@@ -588,14 +593,22 @@ async function runHttpCheck() {
       if (!statusOk || !targetOk) failures.push(`${response.status} ${source} -> ${location || "(no location)"}`);
     }
 
+    for (const route of GONE_EXPECTATIONS) {
+      const response = await fetch(`${baseUrl}${route}`, { redirect: "manual" });
+      const robots = response.headers.get("x-robots-tag") || "";
+      if (response.status !== 410 || !robots.includes("noindex")) {
+        failures.push(`${response.status} ${route} expected 410 noindex`);
+      }
+    }
+
     if (failures.length) {
-      console.log(`HTTP_CHECK_FAILED checked=${routes.length} redirects=${REDIRECT_EXPECTATIONS.length}`);
+      console.log(`HTTP_CHECK_FAILED checked=${routes.length} redirects=${REDIRECT_EXPECTATIONS.length} gone=${GONE_EXPECTATIONS.length}`);
       console.log(failures.join("\n"));
       process.exitCode = 1;
       return;
     }
 
-    console.log(`HTTP_200_AND_REDIRECTS_OK checked=${routes.length} redirects=${REDIRECT_EXPECTATIONS.length}`);
+    console.log(`HTTP_200_REDIRECTS_AND_GONE_OK checked=${routes.length} redirects=${REDIRECT_EXPECTATIONS.length} gone=${GONE_EXPECTATIONS.length}`);
   } finally {
     child.kill("SIGTERM");
   }

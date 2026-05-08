@@ -399,7 +399,7 @@ export function DuesseldorfB2BCleaningForm() {
             type="submit"
             disabled={isSubmitting}
             data-event="submit_b2b_cleaning_lead"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-black transition"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
             B2B-Reinigung anfragen

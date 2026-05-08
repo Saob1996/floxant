@@ -22,9 +22,9 @@ const PHONE_TEL = "+4915771105087";
 const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
-const roleOptions = ["Host", "Vermieter", "Eigentuemer", "Betreiber", "B2B / Unternehmen", "Sonstiges"];
+const roleOptions = ["Host", "Vermieter", "Eigentümer", "Betreiber", "B2B / Unternehmen", "Sonstiges"];
 const objectTypeOptions = [
-  "moeblierte Wohnung",
+  "möblierte Wohnung",
   "Apartment",
   "Business Apartment",
   "Ferienwohnung / Kurzzeitvermietung",
@@ -32,41 +32,48 @@ const objectTypeOptions = [
   "sonstiges",
 ];
 const cleaningTypeOptions = [
-  "Gaestewechsel",
+  "Gästewechsel",
   "Endreinigung",
   "Grundreinigung",
-  "regelmaessige Reinigung",
+  "regelmäßige Reinigung",
   "vor Check-in",
   "nach Check-out",
   "Auszugsreinigung",
 ];
-const frequencyOptions = ["einmalig", "woechentlich", "nach Buchung/Gaestewechsel", "monatlich", "nach Absprache"];
+const frequencyOptions = ["einmalig", "wöchentlich", "nach Buchung/Gästewechsel", "monatlich", "nach Absprache"];
 
 const statusCards = [
   {
-    value: "Gaestewechsel",
-    title: "Gaestewechsel steht an",
-    text: "Zeitfenster, Check-out, naechster Check-in und sichtbare Flaechen sauber klaeren.",
+    value: "Gästewechsel",
+    title: "Gästewechsel steht an",
+    text: "Zeitfenster, Check-out, nächster Check-in und sichtbare Flächen sauber klären.",
     Icon: RefreshCcw,
   },
   {
     value: "Endreinigung",
     title: "Endreinigung",
-    text: "Moeblierte Wohnung nach Nutzung, Auszug oder vor neuer Nutzung pruefen lassen.",
+    text: "Möblierte Wohnung nach Nutzung, Auszug oder vor neuer Nutzung prüfen lassen.",
     Icon: Home,
   },
   {
-    value: "regelmaessige Reinigung",
+    value: "regelmäßige Reinigung",
     title: "Wiederkehrend",
-    text: "Frequenz, Einheiten, Zugang und Ansprechpartner fuer Betreiber oder B2B erfassen.",
+    text: "Frequenz, Einheiten, Zugang und Ansprechpartner für Betreiber oder B2B erfassen.",
     Icon: Clock3,
   },
   {
-    value: "Zusatzwuensche",
-    title: "Zusatzwuensche",
-    text: "Waesche, Schluessel, Fotos oder kleiner Inventarhinweis nur nach Absprache.",
+    value: "Zusatzwünsche",
+    title: "Zusatzwünsche",
+    text: "Wäsche, Schlüssel, Fotos oder kleiner Inventarhinweis nur nach Absprache.",
     Icon: KeyRound,
   },
+];
+
+const formGuidance = [
+  "Ort / PLZ",
+  "Zeitfenster",
+  "Objektart",
+  "Fotos optional",
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -86,9 +93,9 @@ function validatePhotos(files: File[]) {
 
 export function DuesseldorfApartmentCleaningForm() {
   const [role, setRole] = useState("Host");
-  const [objectType, setObjectType] = useState("moeblierte Wohnung");
-  const [cleaningType, setCleaningType] = useState("Gaestewechsel");
-  const [frequency, setFrequency] = useState("nach Buchung/Gaestewechsel");
+  const [objectType, setObjectType] = useState("möblierte Wohnung");
+  const [cleaningType, setCleaningType] = useState("Gästewechsel");
+  const [frequency, setFrequency] = useState("nach Buchung/Gästewechsel");
   const [laundryRequested, setLaundryRequested] = useState("unklar");
   const [keyRequested, setKeyRequested] = useState("unklar");
   const [photoDocumentation, setPhotoDocumentation] = useState("ja");
@@ -101,7 +108,7 @@ export function DuesseldorfApartmentCleaningForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich moechte eine Reinigung fuer eine moeblierte Wohnung / ein Apartment in Duesseldorf anfragen. Es geht um [Gaestewechsel/Endreinigung/regelmaessige Reinigung]. Termin, Fotos und Objektangaben kann ich senden.",
+        "Hallo FLOXANT, ich möchte eine Reinigung für eine möblierte Wohnung / ein Apartment in Düsseldorf anfragen. Es geht um [Gästewechsel/Endreinigung/regelmäßige Reinigung]. Termin, Fotos und Objektangaben kann ich senden.",
       ),
     [],
   );
@@ -128,11 +135,11 @@ export function DuesseldorfApartmentCleaningForm() {
       return;
     }
     if (phone && phone.length < 6) {
-      setErrorMessage("Bitte pruefen Sie die Telefonnummer.");
+      setErrorMessage("Bitte prüfen Sie die Telefonnummer.");
       return;
     }
     if (!objectLocation) {
-      setErrorMessage("Bitte Objektort oder PLZ in Duesseldorf angeben.");
+      setErrorMessage("Bitte Objektort oder PLZ in Düsseldorf angeben.");
       return;
     }
     if (!desiredDate) {
@@ -140,11 +147,11 @@ export function DuesseldorfApartmentCleaningForm() {
       return;
     }
     if (message.length < 10) {
-      setErrorMessage("Bitte beschreiben Sie kurz Objekt, Situation oder Zusatzwuensche.");
+      setErrorMessage("Bitte beschreiben Sie kurz Objekt, Situation oder Zusatzwünsche.");
       return;
     }
     if (formData.get("privacy") !== "on") {
-      setErrorMessage("Bitte bestaetigen Sie den Datenschutz-Hinweis.");
+      setErrorMessage("Bitte bestätigen Sie den Datenschutz-Hinweis.");
       return;
     }
 
@@ -196,9 +203,9 @@ export function DuesseldorfApartmentCleaningForm() {
 
       form.reset();
       setRole("Host");
-      setObjectType("moeblierte Wohnung");
-      setCleaningType("Gaestewechsel");
-      setFrequency("nach Buchung/Gaestewechsel");
+      setObjectType("möblierte Wohnung");
+      setCleaningType("Gästewechsel");
+      setFrequency("nach Buchung/Gästewechsel");
       setLaundryRequested("unklar");
       setKeyRequested("unklar");
       setPhotoDocumentation("ja");
@@ -215,26 +222,36 @@ export function DuesseldorfApartmentCleaningForm() {
   const isSubmitting = submitState === "submitting";
 
   return (
-    <div id="apartment-reinigung-form" className="rounded-[2rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 sm:p-7">
+    <div id="apartment-reinigung-form" className="rounded-[2.15rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 ring-1 ring-white sm:p-7">
       <div>
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Apartment-Status</div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-cyan-800">
+          Apartment-Status
+        </div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Was ist Ihre Situation?</h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          FLOXANT fragt bewusst nach Zeitfenster, Objektart, Fotos und Zusatzwuenschen, damit Gaestewechsel oder Endreinigung in Duesseldorf realistisch geprueft werden koennen.
+          FLOXANT fragt bewusst nach Zeitfenster, Objektart, Fotos und Zusatzwünschen, damit Gästewechsel oder Endreinigung in Düsseldorf realistisch geprüft werden können.
         </p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-4">
+          {formGuidance.map((item, index) => (
+            <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">Angabe {index + 1}</div>
+              <div className="mt-1 text-xs font-black text-slate-800">{item}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-5 grid gap-3 lg:grid-cols-4">
         {statusCards.map((item) => {
           const Icon = item.Icon;
-          const active = cleaningType === item.value || (item.value === "Zusatzwuensche" && (laundryRequested === "ja" || keyRequested === "ja" || inventoryNote === "ja"));
+          const active = cleaningType === item.value || (item.value === "Zusatzwünsche" && (laundryRequested === "ja" || keyRequested === "ja" || inventoryNote === "ja"));
           return (
             <button
               key={item.title}
               type="button"
               onClick={() => {
-                if (item.value !== "Zusatzwuensche") setCleaningType(item.value);
-                if (item.value === "Zusatzwuensche") {
+                if (item.value !== "Zusatzwünsche") setCleaningType(item.value);
+                if (item.value === "Zusatzwünsche") {
                   setLaundryRequested("ja");
                   setKeyRequested("ja");
                 }
@@ -242,10 +259,13 @@ export function DuesseldorfApartmentCleaningForm() {
               data-event="select_apartment_cleaning_type"
               data-cleaning-type={item.value}
               className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
-                active ? "border-cyan-700 bg-cyan-50 shadow-lg shadow-cyan-950/10" : "border-slate-200 bg-white hover:border-cyan-200"
+                active ? "border-cyan-700 bg-cyan-50 shadow-lg shadow-cyan-950/10 ring-2 ring-cyan-100" : "border-slate-200 bg-white hover:border-cyan-200 hover:shadow-md hover:shadow-cyan-950/5"
               }`}
             >
-              <Icon className="h-5 w-5 text-cyan-700" />
+              <div className="flex items-center justify-between gap-3">
+                <Icon className="h-5 w-5 text-cyan-700" />
+                {active ? <span className="rounded-full bg-cyan-700 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-white">aktiv</span> : null}
+              </div>
               <div className="mt-3 text-sm font-black text-slate-950">{item.title}</div>
               <p className="mt-2 text-xs leading-5 text-slate-600">{item.text}</p>
             </button>
@@ -276,7 +296,7 @@ export function DuesseldorfApartmentCleaningForm() {
             <input name="email" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder={EMAIL} />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Objektort / PLZ in Duesseldorf*
+            Objektort / PLZ in Düsseldorf*
             <input name="objectLocation" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 40213, Bilk, Pempelfort" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -313,11 +333,11 @@ export function DuesseldorfApartmentCleaningForm() {
             <input name="checkoutTime" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 10:00" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Naechster Check-in
+            Nächster Check-in
             <input name="nextCheckinTime" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 16:00" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Flaeche ca.
+            Fläche ca.
             <input name="areaM2" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 62 m2" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -328,11 +348,11 @@ export function DuesseldorfApartmentCleaningForm() {
 
         <div className="grid gap-4 md:grid-cols-4">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Baeder
+            Bäder
             <input name="bathroomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 1" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Kueche
+            Küche
             <select name="kitchenPresent" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               <option>ja</option>
               <option>nein</option>
@@ -340,7 +360,7 @@ export function DuesseldorfApartmentCleaningForm() {
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Moebliert
+            Möbliert
             <select name="furnishedStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               <option>ja</option>
               <option>nein</option>
@@ -359,8 +379,8 @@ export function DuesseldorfApartmentCleaningForm() {
         </div>
 
         <div className="grid gap-3 md:grid-cols-5">
-          <OptionSelect label="Waeschewechsel" value={laundryRequested} onChange={setLaundryRequested} eventName="select_laundry_request" Icon={Shirt} />
-          <OptionSelect label="Schluesselkoordination" value={keyRequested} onChange={setKeyRequested} eventName="select_key_coordination_request" Icon={KeyRound} />
+          <OptionSelect label="Wäschewechsel" value={laundryRequested} onChange={setLaundryRequested} eventName="select_laundry_request" Icon={Shirt} />
+          <OptionSelect label="Schlüsselkoordination" value={keyRequested} onChange={setKeyRequested} eventName="select_key_coordination_request" Icon={KeyRound} />
           <OptionSelect label="Foto-Dokumentation" value={photoDocumentation} onChange={setPhotoDocumentation} eventName="upload_apartment_photos" Icon={Camera} />
           <OptionSelect label="Inventarhinweis" value={inventoryNote} onChange={setInventoryNote} Icon={CheckCircle2} />
           <OptionSelect label="Kleine Entsorgung" value={smallDisposal} onChange={setSmallDisposal} Icon={Home} />
@@ -373,14 +393,14 @@ export function DuesseldorfApartmentCleaningForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Budget / Preisrahmen optional
-            <textarea name="budget" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. Preisrahmen pro Einsatz, monatlich oder bitte pruefen" />
+            <textarea name="budget" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. Preisrahmen pro Einsatz, monatlich oder bitte prüfen" />
           </label>
         </div>
 
         <div className="rounded-[1.75rem] border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-sky-50/70 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Bad, Kueche, Boeden, sichtbare Flaechen oder Zugang."
+            description="Bad, Küche, Böden, sichtbare Flächen oder Zugang."
             helper="Keine Zugangscodes oder personenbezogenen Daten in Dateinamen verwenden."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
@@ -391,30 +411,30 @@ export function DuesseldorfApartmentCleaningForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="Was soll gereinigt werden? Wann ist Check-out/Check-in? Welche Zusatzwuensche gibt es?" />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="Was soll gereinigt werden? Wann ist Check-out/Check-in? Welche Zusatzwünsche gibt es?" />
         </label>
 
         <div className="grid gap-3 md:grid-cols-2">
           <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
-            Rueckruf zur Termin- und Objektklaerung gewuenscht.
+            Rückruf zur Termin- und Objektklärung gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
-            WhatsApp fuer Rueckfragen bevorzugt.
+            WhatsApp für Rückfragen bevorzugt.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
-          Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist klar: Waeschewechsel, Schluesselkoordination, Inventarhinweis und kleine Entsorgung erfolgen nur nach Absprache und Verfuegbarkeit.
+          Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist klar: Wäschewechsel, Schlüsselkoordination, Inventarhinweis und kleine Entsorgung erfolgen nur nach Absprache und Verfügbarkeit.
         </label>
 
         {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage zur Reinigung einer moeblierten Wohnung in Duesseldorf ist eingegangen. FLOXANT prueft Objektart, Terminfenster, Reinigungsumfang und Zusatzwuensche. Falls Angaben fehlen, melden wir uns mit Rueckfragen.
+            Danke. Ihre Anfrage zur Reinigung einer möblierten Wohnung in Düsseldorf ist eingegangen. FLOXANT prüft Objektart, Terminfenster, Reinigungsumfang und Zusatzwünsche. Falls Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -423,7 +443,7 @@ export function DuesseldorfApartmentCleaningForm() {
             type="submit"
             disabled={isSubmitting}
             data-event="submit_apartment_cleaning_lead"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-black transition"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
             Apartment-Reinigung anfragen

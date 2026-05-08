@@ -17,10 +17,10 @@ import {
   Shield,
   Sparkles,
   Trash2,
-  Upload,
   Users,
 } from "lucide-react";
 
+import { UploadDropCard } from "@/components/UploadDropCard";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
@@ -741,17 +741,6 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     }
   };
 
-  const renderPhotosLabel = () => {
-    const template =
-      t?.form?.photos_count || defaultBooking.form.photos_count || "{count} Dateien ausgewählt";
-
-    return files.length > 0
-      ? template.replace("{count}", String(files.length))
-      : t?.form?.photos_placeholder ||
-          defaultBooking.form.photos_placeholder ||
-          "Fotos hinzufügen";
-  };
-
   const renderServiceSelection = () => {
     const options: Array<{
       id: string;
@@ -1315,36 +1304,17 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             />
           </FieldBox>
 
-          <div className="calc-field space-y-3 rounded-[1.8rem]">
-            <label className="flex items-center gap-2 text-sm font-semibold text-slate-950">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
-                <Upload className="h-4 w-4" />
-              </span>
-              {t?.form?.photos || "Fotos"}
-            </label>
-            <div className="relative">
-              <input
-                id="smart-booking-file-upload"
-                type="file"
-                multiple
-                accept="image/*"
-                data-event="upload_images"
-                data-source="booking_wizard"
-                onChange={(e) => {
-                  if (e.target.files) {
-                    setFiles(Array.from(e.target.files));
-                  }
-                }}
-                className="hidden"
-              />
-              <label
-                htmlFor="smart-booking-file-upload"
-                className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/85 p-4 text-slate-950 transition-all hover:border-blue-300 hover:bg-blue-50/70"
-              >
-                <Upload className="h-5 w-5 text-slate-400" />
-                <span className="text-sm text-slate-500">{renderPhotosLabel()}</span>
-              </label>
-            </div>
+          <div className="rounded-[1.8rem] border border-blue-100 bg-blue-50/45 p-3 shadow-sm shadow-slate-950/5">
+            <UploadDropCard
+              title={t?.form?.photos || "Fotos optional"}
+              description="Fotos von Menge, Zugang, Etage, Räumen oder Zustand helfen bei der Einschätzung."
+              helper="JPG, PNG oder WebP hochladen. Bitte keine Zugangscodes oder sensiblen Daten im Dateinamen verwenden."
+              accept="image/jpeg,image/png,image/webp"
+              files={files}
+              dataEvent="upload_images"
+              tone="blue"
+              onFilesChange={setFiles}
+            />
           </div>
 
           {submitError ? (

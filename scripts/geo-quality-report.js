@@ -6,6 +6,10 @@ const path = require("path");
 const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, "app");
 const PREFIXES = ["umzug-", "reinigung-", "entruempelung-", "bueroumzug-", "wohnungsaufloesung-"];
+const DUESSELDORF_SPECIAL_ROUTES = new Set([
+  "reinigung-moeblierte-wohnung-duesseldorf",
+  "entsorgung-duesseldorf",
+]);
 const NON_GEO_ROUTES = new Set([
   "umzug-kosten-rechner",
   "umzug-mit-reinigung",
@@ -21,7 +25,24 @@ const NON_GEO_ROUTES = new Set([
   "umzug-koeln",
   "umzug-leipzig",
   "umzug-stuttgart",
+  ...DUESSELDORF_SPECIAL_ROUTES,
 ]);
+
+function scoreDuesseldorfSpecialRoute(routeName) {
+  const pageFile = path.join(APP_DIR, routeName, "page.tsx");
+  if (!fs.existsSync(pageFile)) return null;
+
+  const text = fs.readFileSync(pageFile, "utf8");
+  const score = [
+    text.includes("buildDuesseldorfCleaningMetadata") || text.includes("generatePageSEO"),
+    text.includes("Düsseldorf"),
+    text.includes("CleaningService") || text.includes("Service"),
+    text.includes("FAQ") || text.includes("buildFaqJsonLd"),
+    text.includes("keine Umzugsleistung") || text.includes("keine Umzüge"),
+  ].filter(Boolean).length;
+
+  return { route: `/${routeName}`, score };
+}
 
 function main() {
   const entries = fs.readdirSync(APP_DIR, { withFileTypes: true });
@@ -53,10 +74,17 @@ function main() {
     const weak = items.filter((item) => item.score < 4);
     return { prefix, count: items.length, weak };
   });
+  const duesseldorfSpecials = Array.from(DUESSELDORF_SPECIAL_ROUTES)
+    .map(scoreDuesseldorfSpecialRoute)
+    .filter(Boolean);
 
   console.log("GEO_QUALITY_REPORT");
   for (const group of byPrefix) {
     console.log(`${group.prefix} pages=${group.count} weak=${group.weak.length}`);
+  }
+  if (duesseldorfSpecials.length) {
+    const weak = duesseldorfSpecials.filter((item) => item.score < 4);
+    console.log(`duesseldorf-special pages=${duesseldorfSpecials.length} weak=${weak.length}`);
   }
 
   const weakPages = byPrefix.flatMap((group) => group.weak).slice(0, 50);

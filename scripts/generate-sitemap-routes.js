@@ -3,6 +3,7 @@ const path = require("node:path");
 
 const workspaceRoot = process.cwd();
 const appDirectory = path.join(workspaceRoot, "app");
+const dynamicLocalRoutesFile = path.join(workspaceRoot, "lib", "local-seo-routes.ts");
 const outputFile = path.join(workspaceRoot, "lib", "sitemap-routes.ts");
 
 const pageFileNames = new Set(["page.ts", "page.tsx"]);
@@ -23,15 +24,6 @@ const legacyRedirectRoutes = new Set([
   "/angebot-red-flag-scanner",
   "/villenservice",
   "/umzug-duesseldorf",
-  "/umzug-berlin",
-  "/umzug-bremen",
-  "/umzug-dortmund",
-  "/umzug-essen",
-  "/umzug-frankfurt",
-  "/umzug-hamburg",
-  "/umzug-koeln",
-  "/umzug-leipzig",
-  "/umzug-stuttgart",
 ]);
 
 function isRouteGroup(segment) {
@@ -95,7 +87,23 @@ function collectRoutes(directory) {
   return routes;
 }
 
-const routes = Array.from(new Set(collectRoutes(appDirectory))).sort((routeA, routeB) =>
+function collectDynamicLocalSeoRoutes() {
+  if (!fs.existsSync(dynamicLocalRoutesFile)) return [];
+
+  const source = fs.readFileSync(dynamicLocalRoutesFile, "utf8");
+  const routes = [];
+  const routeRegex = /"route":\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = routeRegex.exec(source))) {
+    const route = match[1];
+    if (isIndexableRoute(route)) routes.push(route);
+  }
+
+  return routes;
+}
+
+const routes = Array.from(new Set([...collectRoutes(appDirectory), ...collectDynamicLocalSeoRoutes()])).sort((routeA, routeB) =>
   routeA.localeCompare(routeB),
 );
 

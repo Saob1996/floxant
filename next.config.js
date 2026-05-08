@@ -32,9 +32,7 @@ const serviceRedirectPairs = [
     ['studentenumzug', 'studentenumzug'],
 ];
 
-const umlautRedirectDestinationOverrides = new Map([
-    ['/umzug-koeln', '/umzug-bayern'],
-]);
+const umlautRedirectDestinationOverrides = new Map();
 
 const configuredBuildWorkers = Number(process.env.NEXT_BUILD_WORKERS || process.env.NEXT_BUILD_CPUS);
 const hasConfiguredBuildWorkers = Number.isFinite(configuredBuildWorkers) && configuredBuildWorkers > 0;
@@ -85,7 +83,7 @@ const nextConfig = {
         ignoreBuildErrors: true,
     },
 
-    // Safe default for the large FLOXANT route set. Override with NEXT_BUILD_WORKERS/NEXT_BUILD_CPUS if needed.
+    // Safe default for local Windows/Vercel stability. Increase with NEXT_BUILD_WORKERS/NEXT_BUILD_CPUS if needed.
     experimental: {
         cpus: buildWorkers,
         staticGenerationMaxConcurrency: buildWorkers,
@@ -190,56 +188,6 @@ const nextConfig = {
             {
                 source: '/guenstigeres-angebot-pruefen',
                 destination: '/angebot-guenstiger-pruefen',
-                permanent: true,
-            },
-            {
-                source: '/umzug-duesseldorf',
-                destination: '/duesseldorf/reinigung',
-                permanent: true,
-            },
-            {
-                source: '/umzug-dortmund',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-berlin',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-bremen',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-essen',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-frankfurt',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-hamburg',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-koeln',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-leipzig',
-                destination: '/umzug-bayern',
-                permanent: true,
-            },
-            {
-                source: '/umzug-stuttgart',
-                destination: '/umzug-bayern',
                 permanent: true,
             },
             {

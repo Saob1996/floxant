@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { germanizeText } from "@/lib/german-text";
 
-const SKIP_TAGS = new Set(["SCRIPT", "STYLE", "TEXTAREA", "INPUT", "SELECT", "OPTION", "CODE", "PRE"]);
+const SKIP_TAGS = new Set(["SCRIPT", "STYLE", "TEXTAREA", "INPUT", "SELECT", "CODE", "PRE"]);
 const PUBLIC_SKIP_PATHS = ["/dashboard", "/admin", "/login", "/api"];
 
 function shouldSkipNode(node: Node) {

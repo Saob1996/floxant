@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronRight, Clock, Shield, Star, Truck, Zap } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
@@ -9,6 +9,28 @@ import { getDictionary } from "@/get-dictionary";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import ReviewCarousel from "@/components/trust/ReviewCarousel";
 import { buildWhatsAppHref, getWhatsAppContext } from "@/lib/whatsapp";
+import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import {
+  getSpecialtyPageData,
+  resolveField,
+  resolveNestedField,
+} from "@/lib/specialty-page";
+import { germanizeText } from "@/lib/german-text";
+import {
+  dynamicLocalSeoRoutes,
+  getDynamicLocalSeoRoute,
+  type DynamicLocalSeoRoute,
+} from "@/lib/local-seo-routes";
+
+export const revalidate = 86400;
+export const dynamicParams = true;
+
+export function generateStaticParams() {
+  return dynamicLocalSeoRoutes.map((entry) => ({
+    serviceSlug: entry.route.replace(/^\//, ""),
+  }));
+}
+
 const SERVICE_SLUGS = [
   "umzug",
   "bueroumzug",
@@ -220,12 +242,159 @@ function getLocalizedCityLabel(cities: any, key: string, fallback: string): stri
   return cities?.[key] || fallback;
 }
 
+function getLocalSeoBreadcrumbs(route: DynamicLocalSeoRoute) {
+  const serviceLabel = germanizeText(route.label);
+
+  switch (route.service) {
+    case "bueroumzug":
+      return [
+        { label: "Home", href: "/" },
+        { label: "Umzug", href: "/umzug" },
+        { label: serviceLabel, href: "/bueroumzug" },
+        { label: germanizeText(route.city) },
+      ];
+    case "wohnungsaufloesung":
+      return [
+        { label: "Home", href: "/" },
+        { label: "Entrümpelung", href: "/entruempelung" },
+        { label: serviceLabel, href: "/wohnungsaufloesung-bayern" },
+        { label: germanizeText(route.city) },
+      ];
+    case "halteverbotszone":
+      return [
+        { label: "Home", href: "/" },
+        { label: "Umzug", href: "/umzug" },
+        { label: serviceLabel, href: "/halteverbotszone-regensburg" },
+        { label: germanizeText(route.city) },
+      ];
+    case "klaviertransport":
+      return [
+        { label: "Home", href: "/" },
+        { label: "Umzug", href: "/umzug" },
+        { label: serviceLabel, href: "/klaviertransport" },
+        { label: germanizeText(route.city) },
+      ];
+    case "seniorenumzug":
+      return [
+        { label: "Home", href: "/" },
+        { label: "Umzug", href: "/umzug" },
+        { label: serviceLabel, href: "/seniorenumzug" },
+        { label: germanizeText(route.city) },
+      ];
+    case "studentenumzug":
+      return [
+        { label: "Home", href: "/" },
+        { label: "Umzug", href: "/umzug" },
+        { label: serviceLabel, href: "/studentenumzug-bayern" },
+        { label: germanizeText(route.city) },
+      ];
+    case "reinigung":
+      return [
+        { label: "Home", href: "/" },
+        { label: serviceLabel, href: "/reinigung" },
+        { label: germanizeText(route.city) },
+      ];
+    case "entruempelung":
+      return [
+        { label: "Home", href: "/" },
+        { label: serviceLabel, href: "/entruempelung" },
+        { label: germanizeText(route.city) },
+      ];
+    case "umzug":
+    default:
+      return [
+        { label: "Home", href: "/" },
+        { label: serviceLabel, href: "/umzug" },
+        { label: germanizeText(route.city) },
+      ];
+  }
+}
+
+async function generateLocalSeoMetadata(route: DynamicLocalSeoRoute): Promise<Metadata> {
+  const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+    locale: "de",
+    baseKey: route.baseKey,
+    city: route.city,
+  });
+  const resolvedCity = germanizeText(city);
+
+  return generatePageSEO({
+    lang: "de",
+    path: route.route.replace(/^\//, ""),
+    title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, resolvedCity, "de"),
+    description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, resolvedCity, "de"),
+  });
+}
+
+async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
+  const locale = "de";
+  const { localeDict, content, fallback, city } = await getSpecialtyPageData({
+    locale,
+    baseKey: route.baseKey,
+    city: route.city,
+  });
+  const resolvedCity = germanizeText(city);
+
+  return (
+    <SpecialtyPageLayout
+      lang="de"
+      dict={localeDict}
+      city={resolvedCity}
+      heroBadge={resolveField(content.hero_badge, fallback.hero_badge, resolvedCity, "de")}
+      heroTitle={resolveField(content.hero_h1, fallback.hero_h1, resolvedCity, "de")}
+      heroText={resolveField(content.hero_p, fallback.hero_p, resolvedCity, "de")}
+      ctaText={resolveField(content.cta, fallback.cta, resolvedCity, "de")}
+      breadcrumbs={getLocalSeoBreadcrumbs(route)}
+      chips={[
+        { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", resolvedCity) },
+        { icon: Shield, text: resolveNestedField(content.badges, fallback.badges, "signs", resolvedCity) },
+        { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", resolvedCity) },
+      ]}
+      cards={[
+        {
+          icon: Star,
+          title: resolveNestedField(content.service1, fallback.service1, "title", resolvedCity),
+          lines: [
+            resolveNestedField(content.service1, fallback.service1, "l1", resolvedCity),
+            resolveNestedField(content.service1, fallback.service1, "l2", resolvedCity),
+            resolveNestedField(content.service1, fallback.service1, "l3", resolvedCity),
+            resolveNestedField(content.service1, fallback.service1, "l4", resolvedCity),
+          ],
+        },
+        {
+          icon: Zap,
+          title: resolveNestedField(content.service2, fallback.service2, "title", resolvedCity),
+          lines: [
+            resolveNestedField(content.service2, fallback.service2, "l1", resolvedCity),
+            resolveNestedField(content.service2, fallback.service2, "l2", resolvedCity),
+            resolveNestedField(content.service2, fallback.service2, "l3", resolvedCity),
+            resolveNestedField(content.service2, fallback.service2, "l4", resolvedCity),
+          ],
+        },
+      ]}
+      sectionTitle={resolveField(content.section2_h2, fallback.section2_h2, resolvedCity, "de")}
+      sectionParagraphs={[
+        resolveField(content.section2_p1, fallback.section2_p1, resolvedCity, "de"),
+        resolveField(content.section2_p2, fallback.section2_p2, resolvedCity, "de"),
+      ]}
+      wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, resolvedCity, "de")}
+      wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, resolvedCity, "de")}
+      wizardText={resolveField(content.wizard_p, fallback.wizard_p, resolvedCity, "de")}
+    />
+  );
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ serviceSlug: string }>;
 }): Promise<Metadata> {
   const { serviceSlug } = await params;
+  const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
+  if (localSeoRoute) {
+    return generateLocalSeoMetadata(localSeoRoute);
+  }
+
   if (!isValidServiceSlug(serviceSlug)) {
     notFound();
   }
@@ -240,6 +409,11 @@ export async function generateMetadata({
 }
 export default async function CoreServicePage({ params }: PageProps) {
   const { serviceSlug } = await params;
+  const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
+  if (localSeoRoute) {
+    return renderLocalSeoPage(localSeoRoute);
+  }
+
   if (!isValidServiceSlug(serviceSlug)) {
     notFound();
   }

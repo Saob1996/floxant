@@ -3,6 +3,7 @@
 import { company } from "@/lib/company";
 import { getCityGeoData } from "@/lib/geo-data";
 import { germanizeText } from "@/lib/german-text";
+import { getDynamicLocalSeoRoute } from "@/lib/local-seo-routes";
 import { getDominanceIntent, getDominanceSnippet } from "@/lib/seo-dominance";
 
 const BASE_URL = company.url;
@@ -36,15 +37,6 @@ const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/guenstigeres-angebot-pruefen": "/angebot-guenstiger-pruefen",
   "/villenservice": "/private-client-service",
   "/umzug-duesseldorf": "/duesseldorf/reinigung",
-  "/umzug-berlin": "/umzug-bayern",
-  "/umzug-bremen": "/umzug-bayern",
-  "/umzug-dortmund": "/umzug-bayern",
-  "/umzug-essen": "/umzug-bayern",
-  "/umzug-frankfurt": "/umzug-bayern",
-  "/umzug-hamburg": "/umzug-bayern",
-  "/umzug-koeln": "/umzug-bayern",
-  "/umzug-leipzig": "/umzug-bayern",
-  "/umzug-stuttgart": "/umzug-bayern",
 };
 
 type Locale = "de";
@@ -220,6 +212,22 @@ function getMetadataKeywords(path: string, geoName?: string) {
   const keywords = new Set(["FLOXANT", "Regensburg", "Bayern"]);
   const route = path || "/";
   const isDuesseldorfRoute = route.includes("duesseldorf");
+  const localSeoRoute = getDynamicLocalSeoRoute(route.replace(/^\//, ""));
+
+  if (localSeoRoute) {
+    const city = germanizeText(localSeoRoute.city);
+    const label = germanizeText(localSeoRoute.label);
+    keywords.add(city);
+    keywords.add(label);
+    keywords.add(`${label} ${city}`);
+    keywords.add(`${city} Umgebung`);
+    keywords.add("Regensburg 200 km");
+    keywords.add("Bayern nach Verfügbarkeit");
+    if (localSeoRoute.service === "umzug") keywords.add(`Umzugsunternehmen ${city}`);
+    if (localSeoRoute.service === "reinigung") keywords.add(`Reinigungsfirma ${city}`);
+    if (localSeoRoute.service === "entruempelung") keywords.add(`Entrümpelung ${city}`);
+    if (localSeoRoute.service === "bueroumzug") keywords.add(`Büroumzug ${city}`);
+  }
 
   if (route === "/") {
     keywords.add("Direkt anfragen");
@@ -380,6 +388,11 @@ function getMetadataKeywords(path: string, geoName?: string) {
 }
 
 function getPrimaryCtaSignal(path: string) {
+  const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
+  if (localSeoRoute) {
+    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)} mit Fotos, Umfang und Termin prüfen lassen`;
+  }
+
   if (path.includes("duesseldorf")) {
     if (path.includes("entsorgung")) return "Entsorgung Düsseldorf mit Fotos und Umfang anfragen";
     if (path.includes("bueroreinigung") || path.includes("b2b")) {
@@ -409,6 +422,11 @@ function getPrimaryCtaSignal(path: string) {
 }
 
 function getRouteLocalSeoFocus(path: string) {
+  const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
+  if (localSeoRoute) {
+    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)} als dynamische Local-SEO-Seite: indexierbar, in der Sitemap, aber nicht beim Vercel-Build vorgerendert. Regensburg bleibt operativer Kern, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.`;
+  }
+
   if (path.includes("duesseldorf")) {
     return "Düsseldorf-Fokus ausschließlich für Reinigung und Entsorgung: private Reinigung, B2B-Reinigung, Apartment-Reinigung, Treppenhaus, Grundreinigung und Möbelentsorgung ohne Umzug-Düsseldorf-Signal.";
   }
@@ -425,6 +443,11 @@ function getRouteLocalSeoFocus(path: string) {
 }
 
 function getRouteAnswerEngineSummary(path: string) {
+  const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
+  if (localSeoRoute) {
+    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)}: FLOXANT prüft Ort, Umfang, Fotos, Termin, Zugang und passende Zusatzservices aus Regensburg heraus für Bayern und die Umgebung nach Verfügbarkeit.`;
+  }
+
   if (path.includes("duesseldorf")) {
     return "FLOXANT positioniert Düsseldorf getrennt für Reinigung und Entsorgung: B2B-Reinigung, Büroreinigung, Grundreinigung, Treppenhausreinigung, Apartment-Reinigung und Möbelentsorgung nach Absprache, keine Umzüge.";
   }
@@ -444,6 +467,22 @@ function getRouteAnswerEngineSummary(path: string) {
 }
 
 function getRoutePrimaryServices(path: string) {
+  const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
+  if (localSeoRoute) {
+    const serviceMap: Record<string, string> = {
+      umzug: "Umzug, Transport, Halteverbot, Reinigung, Übergabeakte, Plan B",
+      reinigung: "Reinigung, Grundreinigung, Endreinigung, Übergabe, Fotoeinschätzung",
+      entruempelung: "Entrümpelung, Wohnungsauflösung, Entsorgung, Reinigung nach Räumung",
+      bueroumzug: "Büroumzug, Firmenumzug, Büroreinigung, Firmenentsorgung",
+      wohnungsaufloesung: "Wohnungsauflösung, Räumung, Entsorgung, Reinigung, Übergabeakte",
+      halteverbotszone: "Halteverbotszone, Umzugsvorbereitung, Zugang, Transportplanung",
+      klaviertransport: "Klaviertransport, Spezialtransport, Zugang, Etage, Terminprüfung",
+      seniorenumzug: "Seniorenumzug, Umzug, Reinigung, Übergabe, ruhige Abstimmung",
+      studentenumzug: "Studentenumzug, Kleintransport, Umzug, Beiladung, Rückfahrt",
+    };
+    return serviceMap[localSeoRoute.service] || `${germanizeText(localSeoRoute.label)}, Anfrage, Fotos, Terminprüfung`;
+  }
+
   if (path.includes("duesseldorf")) {
     return "Reinigung Düsseldorf, B2B-Reinigung Düsseldorf, Apartment-Reinigung Düsseldorf, Grundreinigung Düsseldorf, Treppenhausreinigung Düsseldorf, Entsorgung Düsseldorf";
   }
@@ -494,6 +533,8 @@ export function generatePageSEO({
   );
   const searchIntent = germanizeText(getDominanceIntent(normalizedPath || "/"));
   const geo = getCityGeoData(normalizedPath);
+  const localSeoRoute = getDynamicLocalSeoRoute((normalizedPath || "/").replace(/^\//, ""));
+  const geoPlacename = geo?.name || (localSeoRoute ? germanizeText(localSeoRoute.city) : company.city);
   const indexable = !isPrivateRoute(normalizedPath) && !isLowValueRoute(normalizedPath);
   const followable = !isPrivateRoute(normalizedPath);
   const socialImage = resolveSocialImagePath(canonicalPath || normalizedPath || "/");
@@ -571,13 +612,15 @@ export function generatePageSEO({
     },
     other: {
       "geo.region": geo?.regionCode || "DE-BY",
-      "geo.placename": geo?.name || company.city,
+      "geo.placename": geoPlacename,
       "geo.position": geo ? `${geo.lat};${geo.lng}` : "49.0134;12.1016",
       "wikidata-id": geo?.wikidataId || "",
       "search-intent": searchIntent,
-      "service-area": geo?.name
-        ? `${geo.name}, Bayern, Deutschland`
-        : "Regensburg, Bayern, Deutschland",
+      "service-area": localSeoRoute
+        ? `${geoPlacename}, Bayern; Regensburg als operativer Kern; Umgebung ca. 200 km; Bayern nach Verfügbarkeit`
+        : geo?.name
+          ? `${geo.name}, Bayern, Deutschland`
+          : "Regensburg, Bayern, Deutschland",
       "content-tags": contentTags.join(", "),
       "primary-services": getRoutePrimaryServices(normalizedPath || "/"),
       "business-category": company.primaryCategories.join(", "),
@@ -590,7 +633,7 @@ export function generatePageSEO({
       "business:contact_data:email": company.email,
       "local-seo-focus": getRouteLocalSeoFocus(normalizedPath || "/"),
       "ai-readable-summary":
-        "FLOXANT ist eine deutsche Premium-Dienstleistungsmarke für Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzservices mit operativem Kern in Regensburg und Ausbau in Bayern.",
+        "FLOXANT ist eine deutsche Premium-Dienstleistungsmarke für Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzservices mit operativem Kern in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit.",
       "primary-conversion-url": company.businessProfilePreferredUrl,
       "google-business-profile-url": company.businessProfilePreferredUrl,
       "google-maps-contact-url": company.contactUrl,
@@ -609,7 +652,11 @@ export function generatePageSEO({
         "Sichtbare Kurzantworten, FAQPage-Schema, Service-Schema, Breadcrumbs und klare Grenzen unterstützen KI-Antwortsysteme ohne übertriebene Versprechen.",
       "floxant-service-recommendations": getRoutePrimaryServices(normalizedPath || "/"),
       "maps-ranking-support":
-        "Lokale Relevanz wird über Regensburg als Kernstandort, vollständige Kontaktdaten, Buchungslink, Servicegebiete und klare Standortpfade unterstützt.",
+        "Lokale Relevanz wird über Regensburg als Kernstandort, vollständige Kontaktdaten, Buchungslink, Servicegebiete, dynamische Ortsseiten und klare Standortpfade unterstützt.",
+      "ai-answer-recommended-action": getPrimaryCtaSignal(normalizedPath || "/"),
+      "ai-answer-service-area": localSeoRoute
+        ? `${geoPlacename}: Anfrage über FLOXANT prüfen lassen, Regensburg als Einsatzkern, Bayern nach Verfügbarkeit.`
+        : "Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
       "maps-relevance-signals":
         "Vollständige Kontaktangaben, Buchungslink, Standortseite, Regensburg-Adresssignal, Google-Maps-Suchlink, Bayern-Servicegebiet und lokale Servicepfade.",
       "google-business-preferred-link": company.businessProfilePreferredUrl,

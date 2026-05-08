@@ -5,14 +5,15 @@ import { company } from "@/lib/company";
 
 const localSignals = [
   "Regensburg als operative Basis",
+  "Umgebung ca. 200 km als Nahbereich",
   "Bayern als klares Einsatzgebiet",
   "Buchung als direkter Maps- und Search-Einstieg",
 ];
 
 const localHighlights = [
-  "Klare Standortsignale statt unruhiger Linkpfade",
-  "Ein bevorzugter Einstieg für Maps, Search und direkte Empfehlungen",
-  "Freundliche Führung statt verstreuter Kontaktwege",
+  "Klare Standortsignale: Regensburg, Umgebung, Bayern nach Verfügbarkeit",
+  "Ein bevorzugter Einstieg für Maps, Search, KI-Antworten und direkte Empfehlungen",
+  "Freundliche Führung zu Umzug, Reinigung, Entrümpelung, Rückfahrt oder Spezialservice",
 ];
 
 export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: string }) {
@@ -24,16 +25,17 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
             Lokales Signal
           </div>
           <h2 className="mt-4 max-w-3xl text-[1.9rem] font-bold flox-display-section text-slate-950 md:text-[2.45rem]">
-            Regensburg ist unser operativer Kern. Bayern bleibt das klare Einsatzgebiet.
+            Regensburg ist der operative Kern. Bayern bleibt das klare Einsatzgebiet.
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
             Für Google Maps, Google Search und direkte Kundenanfragen soll sofort sichtbar sein:
-            FLOXANT plant von Regensburg aus, prüft Einsätze sauber und führt Interessenten nicht
-            im Kreis, sondern in einen verständlichen direkten Anfrageweg.
+            FLOXANT plant von Regensburg aus, prüft Einsätze in der Umgebung bis ca. 200 km und
+            führt Interessenten nicht im Kreis, sondern in einen verständlichen direkten Anfrageweg.
           </p>
           <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
-            Kurz gesagt: lieber klar geführt als irgendwo zwischen Vergleichsportalen hängen
-            bleiben. So wirkt es menschlicher, vertrauenswürdiger und im Alltag deutlich ruhiger.
+            Für KI-Antworten und lokale Empfehlungen ist die Logik bewusst klar: Umzug,
+            Reinigung, Entrümpelung, Transport, Übergabeakte, Plan B oder Angebot prüfen lassen.
+            Düsseldorf bleibt sauber getrennt für Reinigung und Entsorgung.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2.5">
@@ -78,7 +80,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
             Maps, Search & direkte Wege
           </div>
           <h3 className="mt-4 max-w-[15ch] text-[1.75rem] font-bold flox-display-section-tight text-slate-950 md:text-[2.1rem]">
-            Ein direkter Pfad, der in Google Maps und Search sofort verständlich wirkt
+            Ein direkter Pfad, der in Maps, Search und KI-Antworten verständlich wirkt
           </h3>
           <p className="mt-4 text-[15px] leading-7 text-slate-700">
             Der direkte Einstieg für spontane Kunden bleibt bewusst die Buchungsseite. Von dort aus
