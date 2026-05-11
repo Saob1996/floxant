@@ -106,51 +106,6 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: '/de',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/de/:path*',
-                destination: '/:path*',
-                permanent: true,
-            },
-            {
-                source: '/en/:path*',
-                destination: '/:path*',
-                permanent: true,
-            },
-            {
-                source: '/ru/:path*',
-                destination: '/:path*',
-                permanent: true,
-            },
-            {
-                source: '/bg/:path*',
-                destination: '/:path*',
-                permanent: true,
-            },
-            {
-                source: '/vi',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/vi/:path*',
-                destination: '/:path*',
-                permanent: true,
-            },
-            {
-                source: '/tr',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/tr/:path*',
-                destination: '/:path*',
-                permanent: true,
-            },
-            {
                 source: '/villenservice',
                 destination: '/private-client-service',
                 permanent: true,

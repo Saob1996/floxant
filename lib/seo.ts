@@ -33,6 +33,7 @@ const LOW_VALUE_NOINDEX_PREFIXES = ["/angebote", "/guenstig", "/feedback"];
 const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/partnercode": "/empfehlen",
   "/airbnb-reinigung-duesseldorf": "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/duesseldorf/b2b-reinigung": "/duesseldorf/bueroreinigung",
   "/angebot-red-flag-scanner": "/angebotscheck",
   "/guenstigeres-angebot-pruefen": "/angebot-guenstiger-pruefen",
   "/villenservice": "/private-client-service",
@@ -94,7 +95,7 @@ function normalizePath(path: string) {
   const withoutLocale = withoutParameters
     .replace(/^\/+/, "")
     .replace(/\/+$/, "")
-    .replace(/^(de|en|ru|bg)(\/|$)/, "");
+    .replace(/^(de|en|ru|bg|vi|tr)(\/|$)/, "");
 
   return withoutLocale ? `/${withoutLocale}` : "";
 }

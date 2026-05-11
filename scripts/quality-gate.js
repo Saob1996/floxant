@@ -38,6 +38,7 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "/duesseldorf/b2b-reinigung",
   "/villenservice",
   "/umzug-duesseldorf",
+  "/seo-gone",
 ]);
 const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
@@ -127,6 +128,10 @@ const REDIRECT_EXPECTATIONS = [
   ["/duesseldorf/b2b-reinigung", "/duesseldorf/bueroreinigung"],
   ["/de", "/"],
   ["/de/umzug", "/umzug"],
+  ["/en/umzug-regensburg", "/umzug-regensburg"],
+  ["/bg/umzug-landshut", "/umzug-landshut"],
+  ["/vi/ratgeber/wann-lohnt-sich-umzugsfirma", "/ratgeber/wann-lohnt-sich-umzugsfirma"],
+  ["/tr/reinigung-regensburg", "/reinigung-regensburg"],
   ["/entr%C3%BCmpelung", "/entruempelung"],
   ["/entr%C3%BCmpelung-regensburg", "/entruempelung-regensburg"],
   ["/umzug-n%C3%BCrnberg", "/umzug-nuernberg"],
@@ -141,6 +146,13 @@ const REDIRECT_EXPECTATIONS = [
 
 const GONE_EXPECTATIONS = [
   "/umzug-duesseldorf",
+  "/de/umzug-duesseldorf",
+  "/en/umzug-duesseldorf",
+  "/ru/wissen/halteverbotszone-duesseldorf",
+  "/de/wissen/halteverbotszone-duesseldorf",
+  "/halteverbotszone-duesseldorf",
+  "/transport-duesseldorf",
+  "/entruempelung-duesseldorf",
 ];
 
 function isPrivateSegment(segment) {

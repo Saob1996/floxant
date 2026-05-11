@@ -34,10 +34,29 @@ const APP_PAGE_CANDIDATES = ["page.tsx", "page.ts", "page.jsx", "page.js", "rout
 const LEGACY_REDIRECT_ROUTES = new Set([
   "partnercode",
   "airbnb-reinigung-duesseldorf",
+  "duesseldorf/b2b-reinigung",
   "angebot-red-flag-scanner",
   "villenservice",
   "umzug-duesseldorf",
+  "seo-gone",
 ]);
+
+const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
+  "umzug",
+  "umzugs",
+  "bueroumzug",
+  "transport",
+  "kleintransport",
+  "klaviertransport",
+  "halteverbotszone",
+  "beiladung",
+  "rueckfahrt",
+  "leerfahrt",
+  "seniorenumzug",
+  "studentenumzug",
+  "entruempelung",
+  "wohnungsaufloesung",
+] as const;
 
 const NON_SEO_PUBLIC_ROUTES = new Set([
   "impressum",
@@ -95,7 +114,18 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
-  return LEGACY_REDIRECT_ROUTES.has(normalizedRoute) || NON_SEO_PUBLIC_ROUTES.has(normalizedRoute);
+  return (
+    LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
+    NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||
+    isForbiddenDuesseldorfMovingRoute(normalizedRoute)
+  );
+}
+
+function isForbiddenDuesseldorfMovingRoute(route: string): boolean {
+  const normalizedRoute = route.toLowerCase();
+  if (!normalizedRoute.includes("duesseldorf")) return false;
+
+  return DUESSELDORF_FORBIDDEN_SERVICE_TERMS.some((term) => normalizedRoute.includes(term));
 }
 
 function normalizeRouteSegments(segments: string[]): string[] {

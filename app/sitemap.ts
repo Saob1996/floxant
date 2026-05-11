@@ -50,6 +50,45 @@ const highPriorityRoutes = new Set([
   "/standorte",
 ]);
 
+const redirectOnlyRoutes = new Set([
+  "/duesseldorf/b2b-reinigung",
+  "/umzug-duesseldorf",
+  "/seo-gone",
+]);
+
+const forbiddenDuesseldorfServiceTerms = [
+  "umzug",
+  "umzugs",
+  "bueroumzug",
+  "transport",
+  "kleintransport",
+  "klaviertransport",
+  "halteverbotszone",
+  "beiladung",
+  "rueckfahrt",
+  "leerfahrt",
+  "seniorenumzug",
+  "studentenumzug",
+  "entruempelung",
+  "wohnungsaufloesung",
+] as const;
+
+function isForbiddenDuesseldorfMovingRoute(route: string) {
+  const normalizedRoute = route.toLowerCase();
+  if (!normalizedRoute.includes("duesseldorf")) return false;
+
+  return forbiddenDuesseldorfServiceTerms.some((term) => normalizedRoute.includes(term));
+}
+
+function isIndexableSitemapRoute(route: string) {
+  if (!route.startsWith("/")) return false;
+  if (/^\/(de|en|ru|bg|vi|tr)(\/|$)/.test(route)) return false;
+  if (redirectOnlyRoutes.has(route)) return false;
+  if (isForbiddenDuesseldorfMovingRoute(route)) return false;
+
+  return true;
+}
+
 function getPriority(route: string) {
   if (route === "/") return 1;
   if (highPriorityRoutes.has(route)) return 0.95;
@@ -76,6 +115,7 @@ function getChangeFrequency(route: string): ChangeFrequency {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return sitemapRoutes
+    .filter(isIndexableSitemapRoute)
     .map((route) => ({
       url: new URL(route, company.url).toString(),
       lastModified,
