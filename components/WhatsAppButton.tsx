@@ -41,7 +41,7 @@ export function WhatsAppButton(_props: { dic?: any }) {
   }
 
   return (
-    <div className="fixed bottom-28 right-5 z-[70] flex items-center gap-3 md:bottom-8 md:right-8">
+    <div className="fixed bottom-28 right-5 z-[70] hidden items-center gap-3 lg:flex md:bottom-8 md:right-8">
       <AnimatePresence>
         {showTooltip && (
           <m.div

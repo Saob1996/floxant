@@ -104,7 +104,11 @@ export function buildDuesseldorfCleaningWhatsAppHref(message: string) {
 }
 
 export function getDuesseldorfCleaningUrl(path = "/reinigung") {
-  if (path.startsWith("/duesseldorf")) {
+  if (
+    path.startsWith("/duesseldorf") ||
+    path.startsWith("/reinigung-moeblierte-wohnung-duesseldorf") ||
+    path.startsWith("/entsorgung-duesseldorf")
+  ) {
     return `https://www.floxant.de${path}`;
   }
 

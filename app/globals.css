@@ -122,6 +122,29 @@
     color: hsl(var(--foreground));
   }
 
+  html,
+  body {
+    max-width: 100%;
+  }
+
+  main,
+  header,
+  footer {
+    max-width: 100%;
+  }
+
+  img,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body::before {
     content: "";
     position: fixed;
@@ -300,6 +323,12 @@
 .flox-nav-link-active::after {
   opacity: 1;
   transform: scaleX(1);
+}
+
+@media (max-width: 359px) {
+  .flox-nav-shell button[aria-expanded] span {
+    display: none;
+  }
 }
 
 .glass {

@@ -392,12 +392,12 @@ export function PublicHeader({
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed inset-x-3 top-3 z-50 mx-auto max-w-[1380px] transition-all duration-300 sm:inset-x-4",
-        "flox-nav-shell rounded-[1.45rem] px-2.5 py-2.5 sm:px-3",
+        "fixed inset-x-2 top-2 z-50 mx-auto max-w-[1380px] transition-all duration-300 sm:inset-x-4 sm:top-3",
+        "flox-nav-shell rounded-[1.25rem] px-2 py-2 sm:rounded-[1.45rem] sm:px-3 sm:py-2.5",
         scrolled && "shadow-[0_18px_46px_rgba(15,23,42,0.12)]",
       )}
     >
-      <div className="relative z-10 flex min-h-12 items-center gap-2.5">
+      <div className="relative z-10 flex min-h-11 items-center gap-1.5 sm:min-h-12 sm:gap-2.5">
         <BrandBlock variant={variant} />
 
         <DesktopNavigation
@@ -460,17 +460,17 @@ function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
   return (
     <Link
       href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
-      className="group flex min-w-[10.8rem] shrink-0 items-center gap-2.5 rounded-[1.1rem] px-1.5 py-1 transition hover:bg-white/70 sm:min-w-[12rem]"
+      className="group flex min-w-0 max-w-[calc(100%-4.7rem)] flex-1 items-center gap-2 rounded-[1.05rem] px-1 py-1 transition hover:bg-white/70 sm:min-w-[12rem] sm:max-w-none sm:flex-none sm:gap-2.5 sm:px-1.5 xl:shrink-0"
       aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung" : "FLOXANT Startseite"}
     >
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.95rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)]">
-        <BrandLogo size={28} />
+      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[0.9rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)] sm:h-10 sm:w-10 sm:rounded-[0.95rem]">
+        <BrandLogo size={26} />
       </span>
       <span className="min-w-0">
         <span className="block whitespace-nowrap text-[0.84rem] font-black leading-none tracking-[0.14em] text-slate-950" translate="no">
           FLOXANT
         </span>
-        <span className="mt-1 hidden text-[0.57rem] font-black uppercase tracking-[0.2em] text-slate-400 sm:block">
+        <span className="mt-1 hidden truncate text-[0.57rem] font-black uppercase tracking-[0.18em] text-slate-400 min-[390px]:block sm:tracking-[0.2em]">
           {isDuesseldorf ? "Düsseldorf · Reinigung" : "Regensburg · Bayern"}
         </span>
         <span className="mt-1 hidden max-w-[10.5rem] truncate text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-400 min-[1320px]:block">
@@ -801,7 +801,7 @@ function MobileHeaderActions({
   setMenuOpen: (value: boolean | ((current: boolean) => boolean)) => void;
 }) {
   return (
-    <div className="ml-auto flex items-center gap-2 xl:hidden">
+    <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 xl:hidden">
       <Link
         href="/buchung"
         className="hidden h-10 items-center justify-center rounded-[0.95rem] bg-blue-600 px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] sm:inline-flex"
@@ -810,7 +810,7 @@ function MobileHeaderActions({
       </Link>
       <button
         type="button"
-        className="inline-flex h-10 items-center justify-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[11px] font-black uppercase tracking-[0.15em] text-slate-900 shadow-sm shadow-slate-950/5 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+        className="inline-flex h-10 items-center justify-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3 text-[11px] font-black uppercase tracking-[0.12em] text-slate-900 shadow-sm shadow-slate-950/5 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100 min-[380px]:px-3.5 min-[380px]:tracking-[0.15em]"
         onClick={() => setMenuOpen((value) => !value)}
         aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
         aria-expanded={menuOpen}

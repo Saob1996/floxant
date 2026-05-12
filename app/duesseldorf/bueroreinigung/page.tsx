@@ -508,19 +508,6 @@ export default function DuesseldorfBueroreinigungPage() {
         </div>
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-[90] border-t border-slate-800/80 bg-[#09111f]/96 px-3 py-3 pb-7 shadow-[0_-16px_48px_rgba(3,7,18,0.45)] backdrop-blur lg:hidden">
-        <div className="mx-auto grid max-w-md grid-cols-3 gap-2">
-          <a href="#b2b-reinigung-form" className="flex items-center justify-center rounded-2xl bg-white px-3 py-3 text-xs font-black text-slate-950">
-            Anfrage
-          </a>
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" data-event="click_b2b_cleaning_whatsapp" className="flex items-center justify-center rounded-2xl bg-emerald-500 px-3 py-3 text-xs font-black text-slate-950">
-            WhatsApp
-          </a>
-          <a href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`} data-event="click_b2b_cleaning_phone" className="flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 px-3 py-3 text-xs font-black text-white">
-            Anrufen
-          </a>
-        </div>
-      </div>
     </main>
   );
 }

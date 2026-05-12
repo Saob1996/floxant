@@ -223,7 +223,7 @@ export function PlanGekipptTrigger() {
   }
 
   return (
-    <div className="fixed bottom-36 right-4 z-[88] sm:right-5 md:bottom-32 md:right-8" data-event="view_plan_gekippt_button">
+    <div className="fixed bottom-36 right-4 z-[88] hidden sm:block sm:right-5 md:bottom-32 md:right-8" data-event="view_plan_gekippt_button">
       <AnimatePresence>
         {panelOpen ? (
           <m.div

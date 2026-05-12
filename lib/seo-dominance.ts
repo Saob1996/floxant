@@ -763,39 +763,193 @@ const serviceCityPatterns = [
  {
   prefix: "/umzug-",
   service: "Umzug",
-  title: (city: string) => `Umzug ${city} | Preisrahmen direkt prüfen`,
-  description: (city: string) =>
-   `Umzug in ${city}? FLOXANT prüft Volumen, Zugang, Strecke und Extras. Unverbindlichen Preisrahmen erhalten und Anfrage starten.`,
+  titles: [
+   (city: string) => `Umzug ${city} | Preisrahmen direkt prüfen`,
+   (city: string) => `Umzugsfirma ${city} | Aufwand sauber prüfen`,
+   (city: string) => `Umzugsservice ${city} | Strecke & Termin klären`,
+   (city: string) => `Umzug in ${city} | FLOXANT Anfrage starten`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Umzug in ${city}: FLOXANT prüft Volumen, Zugang, Strecke, Termin und Extras. Anfrage mit Fotos oder Preisrahmen strukturiert starten.`,
+   (city: string) =>
+    `Umzugsfirma für ${city} gesucht? FLOXANT klärt Etagen, Laufwege, Möbelumfang, Strecke und Zusatzleistungen nach Verfügbarkeit.`,
+   (city: string) =>
+    `Umzugsservice ${city}: Strecke, Transportumfang, Haltezone, Reinigung und Übergabe realistisch einschätzen lassen und direkt anfragen.`,
+   (city: string) =>
+    `FLOXANT prüft Umzüge in ${city} mit Fokus auf Volumen, Zugang, Zeitfenster, Zusatzleistungen und nachvollziehbaren Preisrahmen.`,
+  ],
  },
  {
   prefix: "/reinigung-",
   service: "Reinigung",
-  title: (city: string) => `Reinigung ${city} | Übergabe sauber planen`,
-  description: (city: string) =>
-   `Reinigung in ${city}? FLOXANT prüft Fläche, Zustand, Objektart und Extras. Für Endreinigung, Übergabe und Objektservice.`,
+  titles: [
+   (city: string) => `Reinigung ${city} | Übergabe sauber planen`,
+   (city: string) => `Reinigungsfirma ${city} | Objekt prüfen lassen`,
+   (city: string) => `Endreinigung ${city} | Fläche & Termin klären`,
+   (city: string) => `Wohnungsreinigung ${city} | FLOXANT Anfrage`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Reinigung in ${city}: FLOXANT prüft Fläche, Zustand, Objektart, Termin und Extras für Endreinigung, Übergabe und Objektservice.`,
+   (city: string) =>
+    `Reinigungsfirma für ${city} gesucht? Fotos, Fläche, Verschmutzung, Zeitfenster und Übergabeanforderungen direkt prüfen lassen.`,
+   (city: string) =>
+    `Endreinigung in ${city}: Wohnungszustand, Räume, Bad, Küche, Böden und Übergabetermin klar erfassen und Anfrage starten.`,
+   (city: string) =>
+    `FLOXANT prüft Reinigungsanfragen in ${city} für Wohnung, Büro, Grundreinigung und saubere Übergabe nach Verfügbarkeit.`,
+  ],
  },
  {
   prefix: "/entruempelung-",
   service: "Entrümpelung",
-  title: (city: string) => `Entrümpelung ${city} | Räumung prüfen`,
-  description: (city: string) =>
-   `Entrümpelung in ${city}? FLOXANT prüft Volumen, Material, Zugang und Laufwege. Räumung und Entsorgung sauber anfragen.`,
+  titles: [
+   (city: string) => `Entrümpelung ${city} | Räumung prüfen`,
+   (city: string) => `Räumung ${city} | Entsorgung klar anfragen`,
+   (city: string) => `Keller entrümpeln ${city} | FLOXANT prüft`,
+   (city: string) => `Entrümpelungsservice ${city} | Fotos senden`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Entrümpelung in ${city}: FLOXANT prüft Volumen, Material, Zugang, Laufwege und Entsorgung. Fotos senden und Umfang klären.`,
+   (city: string) =>
+    `Räumung in ${city} anfragen: Keller, Wohnung, Garage oder Nebenfläche mit Zugang, Menge, Termin und Entsorgung prüfen lassen.`,
+   (city: string) =>
+    `Entrümpelungsservice ${city}: Möbel, Sperrmüll, Kellerflächen und normale Gegenstände nach Absprache einschätzen und anfragen.`,
+   (city: string) =>
+    `FLOXANT prüft Entrümpelung in ${city} mit Fotoeinschätzung, Mengenprüfung, Zugangsklärung und optionaler Reinigung danach.`,
+  ],
  },
  {
   prefix: "/bueroumzug-",
   service: "Büroumzug",
-  title: (city: string) => `Büroumzug ${city} | Firmenumzug klar planen`,
-  description: (city: string) =>
-   `Büroumzug in ${city}? Arbeitsplätze, IT, Archiv, Zugang und Zeitfenster strukturiert prüfen und Firmenanfrage starten.`,
+  titles: [
+   (city: string) => `Büroumzug ${city} | Firmenumzug klar planen`,
+   (city: string) => `Firmenumzug ${city} | Büro & Archiv prüfen`,
+   (city: string) => `Büroumzug in ${city} | Zeitfenster klären`,
+   (city: string) => `Office-Umzug ${city} | FLOXANT Anfrage`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Büroumzug in ${city}: Arbeitsplätze, IT, Archiv, Zugang, Zeitfenster und Zusatzleistungen strukturiert prüfen und anfragen.`,
+   (city: string) =>
+    `Firmenumzug ${city}: FLOXANT klärt Bürogröße, Möbel, Kartons, Technik, Aufzug, Laufwege und Termin nach Verfügbarkeit.`,
+   (city: string) =>
+    `Büro in ${city} umziehen: Umfang, Etagen, sensible Unterlagen, Zeitfenster und Reinigung nach dem Umzug sauber abstimmen.`,
+   (city: string) =>
+    `FLOXANT prüft Büroumzüge in ${city} für kleine Teams, Praxen, Kanzleien und Gewerbeflächen mit klarer Ablaufplanung.`,
+  ],
  },
  {
   prefix: "/wohnungsaufloesung-",
   service: "Wohnungsauflösung",
-  title: (city: string) => `Wohnungsauflösung ${city} | Räumung planen`,
-  description: (city: string) =>
-   `Wohnungsauflösung in ${city}? Räume, Mengen, Zugang, Entsorgung und Übergabe sauber vorprüfen und Anfrage vorbereiten.`,
+  titles: [
+   (city: string) => `Wohnungsauflösung ${city} | Räumung planen`,
+   (city: string) => `Wohnung räumen ${city} | Entsorgung prüfen`,
+   (city: string) => `Haushaltsauflösung ${city} | FLOXANT Anfrage`,
+   (city: string) => `Wohnungsräumung ${city} | Umfang klären`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Wohnungsauflösung in ${city}: Räume, Mengen, Zugang, Entsorgung, Reinigung und Übergabe sauber vorprüfen und Anfrage vorbereiten.`,
+   (city: string) =>
+    `Wohnung in ${city} räumen lassen: FLOXANT prüft Möbel, Hausrat, Keller, Laufwege, Termin und Entsorgung nach Absprache.`,
+   (city: string) =>
+    `Haushaltsauflösung ${city}: Fotos, Räume, Nebenflächen, Schlüsselstatus und gewünschte Reinigung strukturiert senden und prüfen lassen.`,
+   (city: string) =>
+   `FLOXANT prüft Wohnungsräumungen in ${city} für Eigentümer, Vermieter, Erben und Hausverwaltungen mit klarer Objektvorbereitung.`,
+  ],
+ },
+ {
+  prefix: "/halteverbotszone-",
+  service: "Halteverbotszone",
+  titles: [
+   (city: string) => `Halteverbotszone ${city} | Umzug planen`,
+   (city: string) => `Halteverbot ${city} | Zugang prüfen lassen`,
+   (city: string) => `Umzug Haltezone ${city} | FLOXANT Anfrage`,
+   (city: string) => `Halteverbotszone in ${city} | Termin klären`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Halteverbotszone in ${city}: Datum, Adresse, Ladeweg, Fahrzeuggröße und Vorlaufzeit strukturiert prüfen und Umzug besser vorbereiten.`,
+   (city: string) =>
+    `Halteverbot für ${city} anfragen: FLOXANT klärt Zugang, Laufwege, Fahrzeug, Terminfenster und mögliche Abstimmung nach Verfügbarkeit.`,
+   (city: string) =>
+    `Umzug in ${city} mit Haltezone planen: Engstellen, Ladefläche, Etage, Trageweg und Zeitfenster vorab realistisch einordnen.`,
+   (city: string) =>
+    `FLOXANT prüft Halteverbotszonen in ${city} als Baustein für Umzug, Transport, Büroumzug oder größere Objektanfragen.`,
+  ],
+ },
+ {
+  prefix: "/klaviertransport-",
+  service: "Klaviertransport",
+  titles: [
+   (city: string) => `Klaviertransport ${city} | Zugang prüfen`,
+   (city: string) => `Klavier transportieren ${city} | FLOXANT`,
+   (city: string) => `Pianotransport ${city} | Etage & Termin klären`,
+   (city: string) => `Klaviertransport in ${city} | Anfrage starten`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Klaviertransport in ${city}: Etage, Treppenhaus, Gewicht, Zugang, Strecke, Termin und Fotos vorab prüfen lassen.`,
+   (city: string) =>
+    `Klavier oder Piano in ${city} transportieren: FLOXANT klärt Trageweg, Schutzbedarf, Fahrzeug, Helfer und Machbarkeit nach Absprache.`,
+   (city: string) =>
+    `Pianotransport ${city}: Fotos, Maße, Start, Ziel, Aufzug, Treppen und Terminfenster senden, damit der Aufwand prüfbar wird.`,
+   (city: string) =>
+    `FLOXANT prüft Klaviertransporte in ${city} als Spezialtransport mit Zugangsklärung, Terminprüfung und realistischer Einschätzung.`,
+  ],
+ },
+ {
+  prefix: "/seniorenumzug-",
+  service: "Seniorenumzug",
+  titles: [
+   (city: string) => `Seniorenumzug ${city} | ruhig planen`,
+   (city: string) => `Umzug für Senioren ${city} | FLOXANT`,
+   (city: string) => `Senioren-Umzug ${city} | Ablauf klären`,
+   (city: string) => `Seniorenumzug in ${city} | Rückruf möglich`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Seniorenumzug in ${city}: Umfang, Möbel, Kartons, Termin, Reinigung, Übergabe und Angehörigen-Abstimmung ruhig prüfen lassen.`,
+   (city: string) =>
+    `Umzug für Senioren in ${city}: FLOXANT klärt Zugang, Möbelumfang, Zeitfenster, Zusatzservices und Rückruf nach Absprache.`,
+   (city: string) =>
+    `Senioren-Umzug ${city}: Fotos, Zimmer, Etage, Aufzug, Hilfe durch Angehörige und Übergabeziel strukturiert senden.`,
+   (city: string) =>
+    `FLOXANT prüft Seniorenumzüge in ${city} mit ruhiger Planung, Transport, Reinigung und Übergabe nach Verfügbarkeit.`,
+  ],
+ },
+ {
+  prefix: "/studentenumzug-",
+  service: "Studentenumzug",
+  titles: [
+   (city: string) => `Studentenumzug ${city} | klein & klar planen`,
+   (city: string) => `Umzug für Studenten ${city} | FLOXANT`,
+   (city: string) => `Studenten-Umzug ${city} | Beiladung prüfen`,
+   (city: string) => `Studentenumzug in ${city} | Anfrage starten`,
+  ],
+  descriptions: [
+   (city: string) =>
+    `Studentenumzug in ${city}: Kartons, Möbel, Etage, Strecke, Beiladung und Terminfenster kompakt prüfen lassen.`,
+   (city: string) =>
+    `Umzug für Studenten in ${city}: FLOXANT klärt kleinen Transport, Zugang, Budget, Fotos und mögliche Rückfahrt nach Verfügbarkeit.`,
+   (city: string) =>
+    `Studenten-Umzug ${city}: WG-Zimmer, Einzelmöbel, Kartons, Start, Ziel und Zeitfenster schnell in eine Anfrage bringen.`,
+   (city: string) =>
+    `FLOXANT prüft Studentenumzüge in ${city} als kleine Umzugs- oder Transportanfrage mit klarer Preisrahmen-Vorprüfung.`,
+  ],
  },
 ] as const;
+
+function variantIndex(value: string, count: number) {
+ if (count <= 1) return 0;
+ let hash = 0;
+ for (let index = 0; index < value.length; index += 1) {
+  hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+ }
+ return hash % count;
+}
 
 function normalizeRoute(path: string) {
  const cleanPath = (path || "/").split("?")[0].split("#")[0].replace(/\/+$/, "");
@@ -829,9 +983,11 @@ export function getDominanceSnippet(path: string, fallback: SnippetInput): Snipp
   if (!route.startsWith(pattern.prefix)) continue;
 
   const city = titleCaseCity(route.slice(pattern.prefix.length));
+  const title = pattern.titles[variantIndex(route, pattern.titles.length)](city);
+  const description = pattern.descriptions[variantIndex(`${route}:description`, pattern.descriptions.length)](city);
   return {
-   title: pattern.title(city),
-   description: pattern.description(city),
+   title,
+   description,
   };
  }
 
