@@ -176,7 +176,26 @@ export function CheaperAlternativeForm() {
   const isSubmitting = submitState === "submitting";
 
   return (
-    <div id="guenstiger-form" className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-950/10 sm:p-7">
+    <div
+      id="guenstiger-form"
+      className="rounded-[2.25rem] border border-blue-100 bg-white p-5 shadow-2xl shadow-slate-950/10 ring-1 ring-blue-50 sm:p-7"
+    >
+      <div className="mb-5 grid gap-4 rounded-[1.75rem] border border-slate-200 bg-slate-950 p-5 text-white sm:grid-cols-[1fr_auto] sm:items-center">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-200">Angebots-Prüfstand</p>
+          <h2 className="mt-2 text-2xl font-black tracking-[-0.04em]">Angebot senden und Alternative prüfen lassen</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+            Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang und Termin. FLOXANT prüft, ob eine
+            günstigere, klarere oder passendere Lösung nach Verfügbarkeit möglich ist.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-[0.12em]">
+          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Upload optional</span>
+          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Budget möglich</span>
+          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Ohne Preisgarantie</span>
+        </div>
+      </div>
+
       <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50 p-4 text-sm leading-6 text-blue-950">
         <div className="flex items-start gap-3">
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
@@ -332,10 +351,10 @@ export function CheaperAlternativeForm() {
             type="submit"
             disabled={isSubmitting}
             data-event="submit_cheaper_alternative_lead"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 text-sm font-black text-white shadow-lg shadow-blue-900/20 transition hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Alternative prüfen lassen
+            Angebot prüfen & Alternative anfragen
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}

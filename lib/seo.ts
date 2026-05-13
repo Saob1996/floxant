@@ -91,7 +91,7 @@ function getDescriptionExpansion(path: string, geoPlacename: string) {
   }
 
   if (path.includes("angebot-guenstiger")) {
-    return "Vorhandenes Angebot, Fotos, Termin und Budget senden; FLOXANT prüft ohne Preisgarantie.";
+    return "Angebot einer anderen Firma, Fotos, Termin und Budget senden; FLOXANT prüft günstiger oder passender ohne Preisgarantie.";
   }
   if (path.includes("plattform-auftrag")) {
     return "Plattform-Angebot, Screenshot, Preisrahmen und offene Punkte praktisch prüfen lassen.";
@@ -363,9 +363,11 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("zweite Einschätzung");
   }
   if (route.includes("angebot-guenstiger") || route.includes("guenstigeres-angebot")) {
+    keywords.add("Angebot anderer Firma prüfen");
     keywords.add("Angebot günstiger prüfen");
     keywords.add("günstigeres Angebot prüfen lassen");
     keywords.add("Alternative zum Angebot prüfen");
+    keywords.add("Angebot mit Budget prüfen");
     keywords.add("Preisrahmen vergleichen");
   }
   if (route.includes("angebotscheck")) {
@@ -459,7 +461,7 @@ function getPrimaryCtaSignal(path: string) {
     return "Reinigung Düsseldorf ohne Umzug-Signal anfragen";
   }
   if (path.includes("plan-b")) return "Plan B mit Ort, Termin, Fotos und offenen Punkten prüfen";
-  if (path.includes("angebot-guenstiger")) return "Angebot, Preisrahmen und günstigere Alternative prüfen lassen";
+  if (path.includes("angebot-guenstiger")) return "Angebot anderer Firma, Preisrahmen und günstigere Alternative prüfen lassen";
   if (path.includes("plattform-auftrag")) return "Plattform-Angebot oder Auftrag organisatorisch prüfen lassen";
   if (path.includes("einsatzradar")) return "Lokale Einsatzarten ansehen und eigenen Fall prüfen lassen";
   if (path.includes("express")) return "Express-Check mit wenigen Eckdaten starten";
@@ -519,7 +521,7 @@ function getRouteAnswerEngineSummary(path: string) {
     return "FLOXANT prüft Plattform- oder Anbieterangebote organisatorisch auf Umfang, Termin, Preisrahmen, Fotos und offene Punkte, ohne Plattformen rechtlich zu bewerten.";
   }
   if (path.includes("angebot-guenstiger")) {
-    return "FLOXANT prüft vorhandene Angebote, Preisrahmen, Fotos und offene Punkte organisatorisch und schaut nach Verfügbarkeit, ob eine günstigere oder passendere Alternative möglich ist - ohne Preisgarantie.";
+    return "FLOXANT prüft Angebote anderer Firmen, Preisrahmen, Fotos und offene Punkte organisatorisch und schaut nach Verfügbarkeit, ob eine günstigere, klarere oder passendere Alternative möglich ist - ohne Preisgarantie.";
   }
   return "FLOXANT beantwortet Anfragen zu Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Leer-Rückfahrt und Private Client ab Regensburg für Bayern.";
 }
@@ -572,7 +574,7 @@ function getSearchDemandCluster(path: string) {
     return "Düsseldorf Reinigung, Wohnungsreinigung, Endreinigung, Apartment-Reinigung";
   }
 
-  if (path.includes("angebot-guenstiger")) return "Angebot prüfen, günstigeres Angebot, Preisrahmen, zweite Einschätzung";
+  if (path.includes("angebot-guenstiger")) return "Angebot anderer Firma prüfen, günstigeres Angebot, Preisrahmen, Budget, zweite Einschätzung";
   if (path.includes("plattform-auftrag")) return "Plattform-Angebot prüfen, MyHammer, Check24, Direktanfrage, Plan B";
   if (path.includes("plan-b")) return "Plan B Umzug, Ersatzanbieter, Reinigungs-Backup, Übergabe absichern";
   if (path.includes("schadensbegrenzung")) return "akute Schadensbegrenzung, Plan gekippt, Übergabe gefährdet";
@@ -595,7 +597,7 @@ function getCustomerProblemSignal(path: string) {
   if (path.includes("duesseldorf")) {
     return "Kunde sucht Reinigung oder Entsorgung in Düsseldorf und braucht eine klare Anfrage ohne Umzugssignal.";
   }
-  if (path.includes("angebot-guenstiger")) return "Kunde hat bereits ein Angebot und möchte prüfen, ob FLOXANT nach Verfügbarkeit klarer oder günstiger anbieten kann.";
+  if (path.includes("angebot-guenstiger")) return "Kunde hat bereits ein Angebot einer anderen Firma und möchte prüfen, ob FLOXANT nach Verfügbarkeit klarer, passender oder günstiger anbieten kann.";
   if (path.includes("plattform-auftrag")) return "Kunde hat über Plattform oder anderen Anbieter angefragt und will Umfang, Preis, Termin oder offene Punkte klären.";
   if (path.includes("plan-b")) return "Kunde spürt Risiko im Ablauf und möchte vor dem Kippen einen Ersatz- oder Ergänzungsplan prüfen.";
   if (path.includes("schadensbegrenzung")) return "Kunde hat eine akute Kipplage und muss schnell klären, ob praktische Hilfe möglich ist.";

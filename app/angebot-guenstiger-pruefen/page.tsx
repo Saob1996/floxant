@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
+  AlertTriangle,
   ArrowRight,
   BadgeEuro,
   Camera,
   CheckCircle2,
+  ClipboardCheck,
+  Euro,
   FileSearch,
-  Info,
+  FileText,
+  MessagesSquare,
+  Route,
+  SearchCheck,
   ShieldCheck,
-  SlidersHorizontal,
+  Sparkles,
   UploadCloud,
+  Zap,
 } from "lucide-react";
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
@@ -26,86 +33,173 @@ const path = "/angebot-guenstiger-pruefen";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Angebot günstiger prüfen lassen | FLOXANT",
+  title: "Angebot prüfen & günstiger anfragen | FLOXANT",
   description:
-    "Vorhandenes Angebot senden und prüfen lassen, ob FLOXANT eine günstigere, klarere oder passendere Alternative für Umzug, Reinigung, Entrümpelung oder Entsorgung anbieten kann.",
+    "Angebot einer anderen Firma prüfen lassen: FLOXANT klärt Preis, Umfang, Termin, Fotos und offene Punkte und prüft eine günstigere oder passendere Alternative.",
   keywords: [
+    "angebot einer anderen firma prüfen",
     "angebot günstiger prüfen",
-    "günstigeres angebot umzug",
+    "günstigeres angebot prüfen lassen",
+    "umzugsangebot prüfen lassen",
     "umzugsangebot günstiger",
-    "reinigungsangebot günstiger",
-    "angebot alternative prüfen",
-    "zweite einschätzung preis angebot",
+    "reinigungsangebot prüfen",
+    "entrümpelung angebot prüfen",
+    "angebot hochladen prüfen",
+    "zweite einschätzung angebot",
+    "preisangebot vergleichen lassen",
+    "alternative zum angebot prüfen",
+    "FLOXANT günstiger anfragen",
     "angebot mit budget prüfen",
+    "angebot preisrahmen prüfen",
     "entsorgung angebot düsseldorf prüfen",
   ],
 });
 
 const whatsappHref =
-  "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20m%C3%B6chte%20pr%C3%BCfen%20lassen%2C%20ob%20eine%20g%C3%BCnstigere%20oder%20passendere%20Alternative%20m%C3%B6glich%20ist.%20Es%20geht%20um%20%5BService%5D%20in%20%5BOrt%5D.%20Angebot%2FFotos%2FPreis%20kann%20ich%20senden.";
+  "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20habe%20ein%20Angebot%20von%20einer%20anderen%20Firma%20und%20m%C3%B6chte%20pr%C3%BCfen%20lassen%2C%20ob%20FLOXANT%20eine%20g%C3%BCnstigere%20oder%20passendere%20Alternative%20anbieten%20kann.%20Es%20geht%20um%20%5BService%5D%20in%20%5BOrt%5D.%20Angebot%2C%20Fotos%20und%20Preis%20kann%20ich%20senden.";
+
+const statusSteps = [
+  { label: "Angebot", detail: "Upload oder Text" },
+  { label: "Preis", detail: "Rahmen klären" },
+  { label: "Umfang", detail: "Leistung prüfen" },
+  { label: "Fotos", detail: "optional senden" },
+  { label: "Alternative", detail: "FLOXANT prüft" },
+];
 
 const checkSteps = [
   {
-    title: "1. Angebot oder Preisrahmen senden",
-    text: "PDF, Screenshot, Angebotsbild oder Angebotstext. Wenn kein Dokument vorhanden ist, reichen Preis, Ort, Termin und Umfang.",
+    title: "Angebot hochladen oder Text senden",
+    text: "PDF, Screenshot, Foto oder Angebotstext reichen. Wenn noch kein Dokument vorliegt, helfen Preis, Ort, Termin und Umfang.",
     Icon: UploadCloud,
   },
   {
-    title: "2. Umfang und Lücken klären",
-    text: "FLOXANT prüft praktisch, ob Leistung, Fotos, Etage, Zugang, Zusatzservices, Termin und Budget zusammenpassen.",
-    Icon: SlidersHorizontal,
+    title: "Preis und Leistungsumfang sortieren",
+    text: "FLOXANT prüft, was enthalten ist, was fehlt und ob wichtige Punkte wie Zugang, Etage, Reinigung oder Entsorgung klar sind.",
+    Icon: FileSearch,
   },
   {
-    title: "3. Alternative nach Verfügbarkeit prüfen",
-    text: "Wenn es realistisch ist, kann FLOXANT eine günstigere, klarere oder passendere eigene Einschätzung vorbereiten.",
+    title: "Eigene Alternative prüfen",
+    text: "Wenn Ort, Termin, Kapazität und Umfang passen, prüft FLOXANT eine günstigere, klarere oder passendere eigene Anfrage.",
     Icon: BadgeEuro,
   },
 ];
 
-const usefulData = [
-  "vorhandener Angebotspreis",
-  "Wunschbudget oder Zielrahmen",
-  "Ort / PLZ und Termin",
-  "Serviceart und Umfang",
-  "Fotos von Zugang, Menge oder Zustand",
-  "unklare Punkte im Angebot",
-  "Düsseldorf nur Reinigung/Entsorgung",
-  "Telefon oder E-Mail für Rückfragen",
+const proofCards = [
+  {
+    label: "Für wen?",
+    title: "Kunden mit vorhandenem Angebot",
+    text: "Sie haben bereits einen Preis oder eine Zusage im Blick, möchten aber vor der Entscheidung eine zweite praktische Einschätzung.",
+    Icon: FileText,
+  },
+  {
+    label: "Was wird geprüft?",
+    title: "Preis, Umfang, Termin und Lücken",
+    text: "Nicht nur der Endpreis zählt. Entscheidend ist, ob Leistung, Zugang, Fotos, Zusatzkosten und Termin realistisch zusammenpassen.",
+    Icon: ClipboardCheck,
+  },
+  {
+    label: "Ergebnis",
+    title: "Günstiger, klarer oder ehrlicher",
+    text: "Manchmal ist eine günstigere Alternative möglich. Manchmal wird sichtbar, dass das vorhandene Angebot wichtige Punkte offen lässt.",
+    Icon: SearchCheck,
+  },
 ];
 
-const boundaries = [
-  "keine Preisgarantie",
-  "keine Aussage, dass FLOXANT immer billiger ist",
-  "keine Rechtsberatung",
-  "keine Anbieter- oder Plattformbewertung",
-  "keine Aufforderung zum Vertragsbruch",
-  "keine Düsseldorf-Umzugspositionierung",
+const evaluationMatrix = [
+  ["Preis", "Ist der genannte Preis nachvollziehbar oder wirkt er zu knapp/zu hoch?"],
+  ["Leistungsumfang", "Sind Tragen, Etagen, Laufwege, Reinigung, Entsorgung und Zusatzleistungen klar?"],
+  ["Termin", "Ist das Zeitfenster realistisch und für Übergabe, Auszug oder Objektwechsel passend?"],
+  ["Fotos & Zustand", "Wurden Menge, Verschmutzung, Volumen, Fläche oder Zugang wirklich berücksichtigt?"],
+  ["Zusatzkosten", "Sind Wartezeit, Zusatzfahrt, Haltezone, Entsorgung oder Spezialaufwand geklärt?"],
+  ["FLOXANT Alternative", "Kann FLOXANT nach Verfügbarkeit eine passendere Anfrage oder ein eigenes Angebot vorbereiten?"],
+];
+
+const alternativeLevers = [
+  {
+    title: "Leistungen sauber trennen",
+    text: "Manchmal wird es klarer, wenn Umzug, Reinigung, Entsorgung und Übergabe einzeln geprüft statt pauschal vermischt werden.",
+    Icon: Sparkles,
+  },
+  {
+    title: "Fotos statt Risikoaufschlag",
+    text: "Gute Fotos können Rückfragen reduzieren und helfen, den Aufwand realistischer einzuschätzen.",
+    Icon: Camera,
+  },
+  {
+    title: "Route oder Rückfahrt nutzen",
+    text: "Bei Transport und Umzug kann eine passende Strecke oder Rückfahrt den Preisrahmen verbessern, wenn Kapazität vorhanden ist.",
+    Icon: Route,
+  },
+  {
+    title: "Budget offen nennen",
+    text: "Ein ehrlicher Zielrahmen hilft zu prüfen, ob Umfang, Termin oder Leistungsbausteine angepasst werden können.",
+    Icon: Euro,
+  },
+];
+
+const serviceTargets = [
+  {
+    title: "Umzug & Transport",
+    text: "Volumen, Etage, Strecke, Haltezone, Rückfahrt und Reinigung nach Auszug prüfen.",
+    href: "/umzug-regensburg",
+    cta: "Umzug Regensburg ansehen",
+  },
+  {
+    title: "Reinigung & Übergabe",
+    text: "Endreinigung, Grundreinigung, Wohnungsübergabe, Fotos und Terminfenster einordnen.",
+    href: "/reinigung-regensburg",
+    cta: "Reinigung Regensburg ansehen",
+  },
+  {
+    title: "Entrümpelung & Entsorgung",
+    text: "Menge, Material, Zugang, Keller, Garage, Sperrmüll und Reinigung danach klären.",
+    href: "/entruempelung-regensburg",
+    cta: "Entrümpelung ansehen",
+  },
+  {
+    title: "Düsseldorf separat",
+    text: "In Düsseldorf prüft FLOXANT nur Reinigung und Entsorgung, keine Umzüge.",
+    href: "/duesseldorf/reinigung",
+    cta: "Düsseldorf Reinigung",
+  },
+];
+
+const safeBoundaries = [
+  "keine Preisgarantie und keine Aussage, dass FLOXANT immer billiger ist",
+  "keine rechtliche Bewertung eines bestehenden Vertrags",
+  "keine Diffamierung anderer Firmen oder Plattformen",
+  "keine Aufforderung, bestehende Vereinbarungen zu brechen",
+  "Düsseldorf bleibt Reinigung und Entsorgung, keine Umzug-Positionierung",
 ];
 
 const faqItems = [
   {
-    q: "Prüft FLOXANT, ob ein Angebot günstiger geht?",
-    a: "Ja, organisatorisch und praktisch. FLOXANT prüft anhand von Angebot, Ort, Termin, Umfang, Fotos und Kapazität, ob eine günstigere, klarere oder passendere Alternative möglich ist.",
+    q: "Kann ich ein Angebot einer anderen Firma prüfen lassen?",
+    a: "Ja. FLOXANT prüft organisatorisch und praktisch, ob Preis, Umfang, Termin, Fotos, Zugang und Zusatzleistungen nachvollziehbar sind und ob nach Verfügbarkeit eine eigene Alternative möglich ist.",
   },
   {
-    q: "Garantiert FLOXANT einen niedrigeren Preis?",
-    a: "Nein. Es gibt keine Preisgarantie. Manchmal ist ein günstigerer Preis möglich, manchmal zeigt die Prüfung, dass Umfang oder Termin realistisch teurer sind.",
+    q: "Kann FLOXANT etwas günstiger anbieten?",
+    a: "Möglich, aber nicht garantiert. Manchmal ist ein günstigerer oder besser passender Preisrahmen möglich. Manchmal zeigt die Prüfung, dass der vorhandene Preis realistisch ist oder wichtige Leistungen fehlen.",
   },
   {
-    q: "Muss ich ein Angebot hochladen?",
-    a: "Nein. Ein Upload hilft, ist aber optional. Sie können auch Preis, Termin, Ort, Umfang und offene Punkte in Textform senden.",
+    q: "Muss ich das Angebot hochladen?",
+    a: "Nein. Ein Upload hilft, ist aber optional. Sie können auch Angebotstext, Preis, Ort, Termin, Umfang, Fotos und offene Punkte in das Formular schreiben.",
   },
   {
-    q: "Bewertet FLOXANT meinen Anbieter?",
-    a: "Nein. FLOXANT bewertet keine Anbieter oder Plattformen rechtlich. Geprüft werden nur Auftrag, Umfang, Preisrahmen und praktische Machbarkeit.",
+    q: "Bewertet FLOXANT die andere Firma?",
+    a: "Nein. FLOXANT bewertet keine Anbieter rechtlich und macht keine Konkurrenzdiffamierung. Geprüft werden nur Auftrag, Umfang, Preisrahmen und praktische Machbarkeit.",
   },
   {
-    q: "Funktioniert das für Reinigung und Entrümpelung?",
-    a: "Ja. Die Prüfung ist für Umzug, Reinigung, Entrümpelung, Transport, Entsorgung und Kombinationen gedacht.",
+    q: "Für welche Leistungen funktioniert die Prüfung?",
+    a: "Für Umzug, Reinigung, Entrümpelung, Transport, Entsorgung und Kombinationen. In Düsseldorf nur für Reinigung und Entsorgung.",
   },
   {
-    q: "Funktioniert das für Düsseldorf?",
-    a: "Ja, aber nur für Reinigung und Entsorgung. FLOXANT positioniert in Düsseldorf keinen Umzugsservice.",
+    q: "Was braucht FLOXANT für eine schnelle Rückmeldung?",
+    a: "Am hilfreichsten sind Angebot oder Screenshot, Ort/PLZ, Termin, Serviceart, Fotos, vorhandener Preis, Zielbudget und eine kurze Beschreibung der unklaren Punkte.",
+  },
+  {
+    q: "Ist das eine Rechtsberatung?",
+    a: "Nein. Vertragsfragen, Kündigungen oder rechtliche Bewertungen müssen eigenständig oder fachlich geklärt werden. FLOXANT prüft nur eine praktische Alternative.",
   },
   {
     q: "Was passiert nach dem Absenden?",
@@ -117,27 +211,39 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     buildWebPageJsonLd({
-      name: "Angebot günstiger prüfen lassen",
+      name: "Angebot einer anderen Firma prüfen lassen",
       description:
-        "Praktische Prüfung vorhandener Angebote und Preisrahmen mit Option auf eine günstigere oder passendere FLOXANT-Alternative nach Verfügbarkeit.",
+        "Praktische Prüfung vorhandener Angebote mit Option auf eine günstigere, klarere oder passendere FLOXANT Alternative nach Verfügbarkeit.",
       path,
-      about: ["Angebotscheck", "Preisrahmen", "zweite Einschätzung", "günstigere Alternative"],
+      about: [
+        "Angebot prüfen",
+        "günstigeres Angebot",
+        "Preisrahmen",
+        "zweite Einschätzung",
+        "Umzugsangebot prüfen",
+        "Reinigungsangebot prüfen",
+      ],
       potentialActions: [
-        { name: "Alternative prüfen lassen", target: `${path}#guenstiger-form` },
+        { name: "Angebot hochladen und Alternative prüfen", target: `${path}#guenstiger-form` },
         { name: "Angebot per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
       ],
     }),
     buildServiceJsonLd({
-      name: "FLOXANT Angebot günstiger prüfen",
+      name: "FLOXANT Angebot prüfen und Alternative anfragen",
       description:
-        "Organisatorische und praktische Prüfung, ob auf Basis von Angebot, Ort, Termin, Umfang und Fotos eine günstigere oder passendere Alternative möglich ist. Keine Preisgarantie.",
+        "FLOXANT prüft anhand von Angebot, Ort, Termin, Umfang, Fotos und Preisrahmen, ob eine günstigere, klarere oder passendere Alternative möglich ist. Keine Preisgarantie.",
       path,
-      serviceType: "Angebot günstiger oder passender prüfen",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfügbarkeit", "Düsseldorf Reinigung und Entsorgung"],
+      serviceType: "Angebot prüfen, Preisrahmen klären und Alternative nach Verfügbarkeit anfragen",
+      areaServed: [
+        "Regensburg",
+        "Umgebung Regensburg ca. 200 km",
+        "Bayern nach Verfügbarkeit",
+        "Düsseldorf Reinigung und Entsorgung",
+      ],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
-      { name: "Angebot günstiger prüfen", item: path },
+      { name: "Angebot prüfen und Alternative anfragen", item: path },
     ]),
     buildFaqJsonLd(faqItems),
   ],
@@ -147,87 +253,228 @@ export default function AngebotGuenstigerPruefenPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#dbeafe_0,transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_46%,#f8fafc_100%)] text-slate-950" data-event="view_cheaper_alternative_page">
-        <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+      <main
+        className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#dbeafe_0,transparent_34rem),radial-gradient(circle_at_80%_10%,#dcfce7_0,transparent_28rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950"
+        data-event="view_cheaper_alternative_page"
+      >
+        <section className="relative px-4 pb-14 pt-28 sm:px-6 lg:pb-20 lg:pt-32">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-blue-800 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-blue-800 shadow-sm">
                 <BadgeEuro className="h-4 w-4" />
-                FLOXANT Preis-Alternative
+                FLOXANT Angebotsprüfung
               </div>
-              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                Angebot günstiger prüfen lassen
+              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.05em] text-slate-950 sm:text-5xl lg:text-6xl">
+                Angebot einer anderen Firma prüfen lassen
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Sie haben bereits ein Angebot, aber Preis, Umfang oder Zusatzleistungen wirken nicht passend?
-                FLOXANT prüft, ob eine günstigere, klarere oder sinnvollere Alternative nach Verfügbarkeit möglich ist.
+                Sie haben bereits ein Angebot für Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung?
+                FLOXANT prüft Preis, Umfang, Termin, Fotos und offene Punkte und schaut, ob eine günstigere,
+                klarere oder passendere Alternative möglich ist.
               </p>
+
+              <div className="mt-6 grid gap-2 rounded-[1.35rem] border border-slate-200 bg-white/90 p-2 shadow-sm shadow-slate-950/5 sm:grid-cols-2 lg:grid-cols-3">
+                {statusSteps.map((step, index) => (
+                  <div
+                    key={step.label}
+                    className="flex min-h-[3.35rem] items-center gap-2.5 rounded-[1rem] bg-slate-50 px-3 py-2 text-slate-700"
+                  >
+                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-blue-600 text-[11px] font-black text-white">
+                      {index + 1}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-xs font-black uppercase tracking-[0.08em] text-slate-900">
+                        {step.label}
+                      </span>
+                      <span className="mt-0.5 block text-[11px] font-bold leading-4 text-slate-500">{step.detail}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#guenstiger-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="start_cheaper_alternative_lead">
-                  Alternative prüfen lassen
+                <Link
+                  href="#guenstiger-form"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white shadow-[0_18px_36px_rgba(15,23,42,0.2)] transition hover:-translate-y-0.5 hover:bg-blue-700"
+                  data-event="start_cheaper_alternative_lead"
+                >
+                  Angebot hochladen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_cheaper_alternative_whatsapp">
-                  Angebot per WhatsApp senden
+                <a
+                  href={whatsappHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:-translate-y-0.5 hover:bg-emerald-100"
+                  data-event="click_cheaper_alternative_whatsapp"
+                >
+                  Per WhatsApp senden
+                  <MessagesSquare className="h-4 w-4" />
                 </a>
               </div>
+
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Preisgarantie</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Praktische Prüfung</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Anbieterbewertung</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Upload oder Text möglich</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf nur Reinigung/Entsorgung</span>
               </div>
             </div>
 
             <div className="relative">
-              <div className="absolute -inset-4 rounded-[2.5rem] bg-blue-500/10 blur-2xl" />
+              <div className="absolute -inset-5 rounded-[2.8rem] bg-blue-500/10 blur-2xl" />
               <div className="relative rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-950/10">
-                <div className="grid gap-3">
+                <div className="rounded-[1.5rem] bg-slate-950 p-5 text-white">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Prüfstand</p>
+                      <p className="mt-2 text-2xl font-black tracking-tight">Kann FLOXANT es besser passend machen?</p>
+                    </div>
+                    <SearchCheck className="h-10 w-10 text-blue-300" />
+                  </div>
+                  <p className="mt-4 text-sm leading-6 text-slate-200">
+                    Ziel ist nicht „billig um jeden Preis“, sondern ein realistisch geprüfter Ablauf mit klaren Leistungen,
+                    sauberem Preisrahmen und weniger Überraschungen.
+                  </p>
+                </div>
+
+                <div className="mt-4 grid gap-3">
                   {checkSteps.map((step) => {
                     const Icon = step.Icon;
                     return (
                       <div key={step.title} className="rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4">
-                        <Icon className="h-5 w-5 text-blue-700" />
-                        <p className="mt-3 text-sm font-black text-slate-950">{step.title}</p>
-                        <p className="mt-1 text-xs leading-5 text-slate-600">{step.text}</p>
+                        <div className="flex items-start gap-3">
+                          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-blue-600 text-white">
+                            <Icon className="h-5 w-5" />
+                          </span>
+                          <div>
+                            <p className="text-sm font-black text-slate-950">{step.title}</p>
+                            <p className="mt-1 text-xs leading-5 text-slate-600">{step.text}</p>
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
-                </div>
-                <div className="mt-4 rounded-[1.35rem] border border-amber-200 bg-amber-50 p-4 text-xs leading-5 text-amber-900">
-                  <div className="flex items-start gap-2">
-                    <Info className="mt-0.5 h-4 w-4 shrink-0" />
-                    <p>
-                      Wenn ein Angebot bereits unterschrieben oder rechtlich bindend ist, klären Sie Vertragsfragen bitte selbst oder fachlich. FLOXANT prüft nur eine praktische Alternative.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
+        <section className="px-4 py-12 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-4 lg:grid-cols-3">
+              {proofCards.map((card) => {
+                const Icon = card.Icon;
+                return (
+                  <div key={card.title} className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5">
+                    <span className="inline-flex rounded-full bg-blue-50 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-blue-800">
+                      {card.label}
+                    </span>
+                    <Icon className="mt-5 h-7 w-7 text-blue-700" />
+                    <h2 className="mt-4 text-xl font-black tracking-tight text-slate-950">{card.title}</h2>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">{card.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-14 sm:px-6">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-700 shadow-sm">
+                <FileSearch className="h-4 w-4 text-blue-700" />
+                Angebots-Matrix
+              </div>
+              <h2 className="mt-6 text-3xl font-black tracking-[-0.035em] text-slate-950">
+                Nicht nur den Preis vergleichen, sondern die Lücken erkennen
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                Viele Angebote wirken zunächst günstig oder teuer, weil nicht dieselben Leistungen verglichen werden.
+                FLOXANT prüft die praktischen Punkte, die später häufig zu Nachfragen, Zusatzkosten oder Stress führen.
+              </p>
+              <div className="mt-5 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900">
+                <div className="flex gap-3">
+                  <AlertTriangle className="mt-1 h-5 w-5 shrink-0" />
+                  <p>
+                    Wenn Sie bereits verbindlich beauftragt haben, klären Sie Vertragsfragen bitte selbst oder fachlich.
+                    FLOXANT übernimmt keine Rechtsberatung und bewertet keine andere Firma.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-3">
+              {evaluationMatrix.map(([title, text]) => (
+                <div key={title} className="grid gap-3 rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5 sm:grid-cols-[10rem_1fr]">
+                  <p className="text-sm font-black text-slate-950">{title}</p>
+                  <p className="text-sm leading-6 text-slate-600">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5">
-                <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-blue-800">
-                  <FileSearch className="h-4 w-4" />
-                  Was FLOXANT braucht
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-blue-800">
+                <Zap className="h-4 w-4" />
+                Wie ein besserer Preisrahmen entstehen kann
+              </div>
+              <h2 className="mt-6 text-3xl font-black tracking-[-0.035em] text-slate-950">
+                Günstiger wird es nicht durch Weglassen, sondern durch saubere Prüfung
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                FLOXANT versucht nicht, ein Angebot blind zu unterbieten. Sinnvoller ist: Umfang sichtbar machen,
+                unnötige Risiken reduzieren, passende Bausteine wählen und verfügbare Kapazität prüfen.
+              </p>
+            </div>
+            <div className="mt-7 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {alternativeLevers.map((item) => {
+                const Icon = item.Icon;
+                return (
+                  <div key={item.title} className="rounded-[1.6rem] border border-slate-200 bg-white p-5 shadow-lg shadow-slate-950/5">
+                    <Icon className="h-6 w-6 text-blue-700" />
+                    <h3 className="mt-4 text-base font-black text-slate-950">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-14 sm:px-6">
+          <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5 lg:p-8">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                  Für diese Angebote geeignet
                 </div>
                 <h2 className="mt-5 text-3xl font-black tracking-[-0.035em] text-slate-950">
-                  Einfach klären, nicht lange erklären
+                  Umzug, Reinigung, Entrümpelung, Transport und Entsorgung
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-slate-600">
-                  Am schnellsten ist die Prüfung, wenn Angebot, Preisrahmen, Termin und Fotos zusammenkommen. Wenn etwas fehlt, kann FLOXANT trotzdem mit Rückfragen starten.
+                  Die Seite bündelt Kunden, die schon ein Angebot haben, aber nicht sicher sind, ob Preis und Umfang
+                  gut zusammenpassen. Von hier geht es direkt in die passende Geldseite oder in das Formular.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
-                {usefulData.map((item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-700" />
-                    {item}
-                  </div>
+                {serviceTargets.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="group rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    <h3 className="text-sm font-black text-slate-950">{item.title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-slate-600">{item.text}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-blue-700">
+                      {item.cta}
+                      <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -239,24 +486,39 @@ export default function AngebotGuenstigerPruefenPage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-700 shadow-sm">
                 <Camera className="h-4 w-4 text-blue-700" />
-                Upload + Kundendaten
+                Upload + Kundeninformation
               </div>
               <h2 className="mt-6 text-3xl font-black tracking-[-0.035em] text-slate-950">
-                Angebot, Fotos und Kundeninformation senden
+                Angebot, Fotos und Kundendaten senden
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Die Seite ist bewusst kürzer als ein Vollformular: Name, Kontakt, Ort, Termin, Angebotspreis, Zielbudget, Upload und kurze Beschreibung reichen für die erste Prüfung.
+                Die Anfrage ist bewusst kurz gehalten: Name, Kontakt, Ort, Termin, Angebotspreis, Zielbudget,
+                Upload und eine kurze Beschreibung reichen für die erste Prüfung.
               </p>
               <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-white p-4">
-                <p className="text-sm font-black text-slate-950">Wichtig</p>
+                <p className="text-sm font-black text-slate-950">Saubere Grenzen</p>
                 <ul className="mt-3 grid gap-2 text-sm leading-6 text-slate-600">
-                  {boundaries.map((item) => (
+                  {safeBoundaries.map((item) => (
                     <li key={item} className="flex gap-2">
                       <ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-slate-500" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <Link
+                  href="/angebotscheck"
+                  className="rounded-[1.1rem] border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-black text-blue-800 transition hover:bg-blue-100"
+                >
+                  Nur Angebot prüfen?
+                </Link>
+                <Link
+                  href="/plan-b-service"
+                  className="rounded-[1.1rem] border border-amber-100 bg-amber-50 px-4 py-3 text-sm font-black text-amber-900 transition hover:bg-amber-100"
+                >
+                  Ablauf ist unsicher?
+                </Link>
               </div>
             </div>
             <CheaperAlternativeForm />
@@ -265,7 +527,9 @@ export default function AngebotGuenstigerPruefenPage() {
 
         <section className="px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-5xl">
-            <h2 className="text-3xl font-black tracking-[-0.035em] text-slate-950">Häufige Fragen</h2>
+            <h2 className="text-3xl font-black tracking-[-0.035em] text-slate-950">
+              Häufige Fragen zur Angebots-Alternative
+            </h2>
             <div className="mt-6 grid gap-3">
               {faqItems.map((item) => (
                 <details key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">

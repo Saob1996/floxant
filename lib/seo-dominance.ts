@@ -122,11 +122,11 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Vorhandenes Angebot mit Red-Flag-Scanner vor der Zusage prüfen und zweite Einschätzung anfragen",
  },
 "/angebot-guenstiger-pruefen": {
- title: "Angebot günstiger prüfen lassen | FLOXANT",
+ title: "Angebot prüfen & günstiger anfragen | FLOXANT",
  description:
-  "Vorhandenes Angebot, Preisrahmen, Fotos und Termin senden: FLOXANT prüft, ob nach Verfügbarkeit eine günstigere oder passendere Alternative möglich ist.",
+  "Angebot einer anderen Firma prüfen lassen: FLOXANT klärt Preis, Umfang, Termin, Fotos und offene Punkte und prüft eine günstigere oder passendere Alternative.",
  cluster: "conversion",
- intent: "Vorhandenes Angebot mit Preisrahmen senden und guenstigere oder passendere Alternative ohne Preisgarantie pruefen lassen",
+ intent: "Angebot einer anderen Firma prüfen, Preisrahmen klären und günstigere oder passendere Alternative ohne Preisgarantie anfragen",
 },
 "/makler-vermieter-link": {
  title: "Fuer Makler & Vermieter | Objektfall direkt senden",
