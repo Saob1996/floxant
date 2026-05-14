@@ -31,12 +31,17 @@ export default function robots(): MetadataRoute.Robots {
         disallow: publicDisallow,
       },
       {
+        userAgent: ["Bingbot", "BingPreview", "msnbot", "YandexBot", "DuckDuckBot"],
+        allow: "/",
+        disallow: publicDisallow,
+      },
+      {
         userAgent: ["PerplexityBot", "Perplexity-User", "ClaudeBot", "Claude-SearchBot"],
         allow: "/",
         disallow: publicDisallow,
       },
       {
-        userAgent: ["Grok", "GrokBot", "DeepSeekBot"],
+        userAgent: ["Grok", "GrokBot", "DeepSeekBot", "Applebot", "YouBot", "CCBot"],
         allow: "/",
         disallow: publicDisallow,
       },

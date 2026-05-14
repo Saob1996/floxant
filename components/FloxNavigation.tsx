@@ -3,13 +3,30 @@
 import { AnimatePresence, m } from "framer-motion";
 import {
   ArrowUpRight,
+  BriefcaseBusiness,
+  Calculator,
+  Camera,
   ChevronDown,
+  CheckCircle2,
+  ClipboardCheck,
+  Euro,
+  FileSearch,
+  Home,
   Mail,
+  MapPin,
   Menu,
   MessageCircle,
+  Phone,
+  Route,
+  ShieldCheck,
+  Sparkles,
+  Truck,
+  UploadCloud,
   X,
   Zap,
+  type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
@@ -30,6 +47,20 @@ const QuickExpressModal = dynamic(
   () => import("@/components/QuickExpressModal").then((mod) => mod.QuickExpressModal),
   { ssr: false },
 );
+
+type HeaderStoryStep = {
+  label: string;
+  text: string;
+  icon: LucideIcon;
+};
+
+type HeaderVisualCard = {
+  title: string;
+  text: string;
+  image: string;
+  href: string;
+  icon: LucideIcon;
+};
 
 const SERVICE_GROUPS = [
   {
@@ -289,6 +320,90 @@ const MOBILE_LINKS = [
   { label: "Wissen", href: "/blog" },
 ];
 
+const HEADER_STORY_STEPS: HeaderStoryStep[] = [
+  {
+    label: "Fall senden",
+    text: "Fotos, Angebot oder kurze Eckdaten reichen für den ersten Blick.",
+    icon: UploadCloud,
+  },
+  {
+    label: "Machbarkeit prüfen",
+    text: "Ort, Termin, Umfang, Zugang und passende Leistung werden eingeordnet.",
+    icon: FileSearch,
+  },
+  {
+    label: "klarer nächster Schritt",
+    text: "Anfrage, Rechner, Budget oder Direktkontakt führen zur passenden Lösung.",
+    icon: CheckCircle2,
+  },
+];
+
+const DUESSELDORF_STORY_STEPS: HeaderStoryStep[] = [
+  {
+    label: "Objekt senden",
+    text: "Fläche, Zustand, Fotos, Frequenz und Zeitfenster reichen zum Start.",
+    icon: Camera,
+  },
+  {
+    label: "Reinigung prüfen",
+    text: "Düsseldorf ist klar auf Reinigung und Entsorgung ausgerichtet.",
+    icon: Sparkles,
+  },
+  {
+    label: "Angebot klären",
+    text: "FLOXANT prüft Objekt, Zugang, Termin und realistischen Umfang.",
+    icon: ClipboardCheck,
+  },
+];
+
+const HEADER_VISUAL_CARDS: HeaderVisualCard[] = [
+  {
+    title: "Umzug",
+    text: "Route, Etagen, Volumen und Übergabe strukturiert planen.",
+    image: "/assets/service-moving.png",
+    href: "/umzug-regensburg",
+    icon: Truck,
+  },
+  {
+    title: "Reinigung",
+    text: "Wohnung, Büro, Endreinigung und saubere Übergabe einschätzen.",
+    image: "/assets/service-cleaning.png",
+    href: "/reinigung-regensburg",
+    icon: Sparkles,
+  },
+  {
+    title: "Entrümpelung",
+    text: "Mengen, Zugang, Entsorgung und Reinigung nach Absprache klären.",
+    image: "/assets/service-clearance.png",
+    href: "/entruempelung-regensburg",
+    icon: Home,
+  },
+];
+
+const DUESSELDORF_VISUAL_CARDS: HeaderVisualCard[] = [
+  {
+    title: "B2B-Reinigung",
+    text: "Büro, Agentur, Studio, Kanzlei oder kleine Gewerbefläche.",
+    image: "/assets/service-cleaning.png",
+    href: "/duesseldorf/bueroreinigung",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Apartment",
+    text: "Möblierte Wohnung, Gästewechsel und objektbezogene Reinigung.",
+    image: "/assets/floxant-hero-neu-gedacht.png",
+    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+    icon: Home,
+  },
+  {
+    title: "Entsorgung",
+    text: "Gegenstände und Restmengen separat zur Reinigung prüfen.",
+    image: "/assets/service-clearance.png",
+    href: "/entsorgung-duesseldorf",
+    icon: Route,
+  },
+];
+
 type RouteLink = {
   label: string;
   href: string;
@@ -327,6 +442,14 @@ export function PublicHeader({
     () => germanizeDeep(isDuesseldorf ? DUESSELDORF_LOCAL_INTENT_LINKS : LOCAL_INTENT_LINKS),
     [isDuesseldorf],
   ) as typeof LOCAL_INTENT_LINKS;
+  const storySteps = useMemo(
+    () => (isDuesseldorf ? DUESSELDORF_STORY_STEPS : HEADER_STORY_STEPS),
+    [isDuesseldorf],
+  );
+  const visualCards = useMemo(
+    () => (isDuesseldorf ? DUESSELDORF_VISUAL_CARDS : HEADER_VISUAL_CARDS),
+    [isDuesseldorf],
+  );
   const desktopLinks = useMemo(
     () => germanizeDeep(isDuesseldorf ? DUESSELDORF_DESKTOP_LINKS : DESKTOP_LINKS),
     [isDuesseldorf],
@@ -392,8 +515,8 @@ export function PublicHeader({
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed inset-x-2 top-2 z-50 mx-auto max-w-[1380px] transition-all duration-300 sm:inset-x-4 sm:top-3",
-        "flox-nav-shell rounded-[1.25rem] px-2 py-2 sm:rounded-[1.45rem] sm:px-3 sm:py-2.5",
+        "fixed inset-x-2 top-2 z-50 mx-auto max-w-[1420px] transition-all duration-300 sm:inset-x-4 sm:top-3",
+        "flox-nav-shell rounded-[1.25rem] px-2 py-2 sm:rounded-[1.55rem] sm:px-3 sm:py-2.5",
         scrolled && "shadow-[0_18px_46px_rgba(15,23,42,0.12)]",
       )}
     >
@@ -407,6 +530,8 @@ export function PublicHeader({
           serviceGroups={serviceGroups}
           calculatorShortcuts={calculatorShortcuts}
           localIntentLinks={localIntentLinks}
+          storySteps={storySteps}
+          visualCards={visualCards}
           servicesOpen={servicesOpen}
           servicesActive={servicesActive}
           dropdownRef={dropdownRef}
@@ -423,6 +548,7 @@ export function PublicHeader({
         <MobileHeaderActions
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          variant={variant}
         />
       </div>
 
@@ -433,6 +559,8 @@ export function PublicHeader({
         serviceGroups={serviceGroups}
         calculatorShortcuts={calculatorShortcuts}
         localIntentLinks={localIntentLinks}
+        storySteps={storySteps}
+        visualCards={visualCards}
         variant={variant}
         onExpress={() => {
           setMenuOpen(false);
@@ -460,20 +588,21 @@ function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
   return (
     <Link
       href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
-      className="group flex min-w-0 max-w-[calc(100%-4.7rem)] flex-1 items-center gap-2 rounded-[1.05rem] px-1 py-1 transition hover:bg-white/70 sm:min-w-[12rem] sm:max-w-none sm:flex-none sm:gap-2.5 sm:px-1.5 xl:shrink-0"
-      aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung" : "FLOXANT Startseite"}
+      className="group flex min-w-0 max-w-[calc(100%-4.7rem)] flex-1 items-center gap-2 rounded-[1.1rem] px-1 py-1 transition hover:bg-white/75 sm:min-w-[13.25rem] sm:max-w-none sm:flex-none sm:gap-2.5 sm:px-1.5 xl:min-w-[14.25rem] xl:shrink-0"
+      aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung und Entsorgung" : "FLOXANT Startseite Regensburg Bayern"}
     >
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[0.9rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)] sm:h-10 sm:w-10 sm:rounded-[0.95rem]">
+      <span className="relative grid h-9 w-9 shrink-0 place-items-center rounded-[0.9rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)] sm:h-10 sm:w-10 sm:rounded-[0.95rem]">
         <BrandLogo size={26} />
+        <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-white bg-gradient-to-br from-blue-500 to-cyan-400 shadow-sm" />
       </span>
       <span className="min-w-0">
-        <span className="block whitespace-nowrap text-[0.84rem] font-black leading-none tracking-[0.14em] text-slate-950" translate="no">
+        <span className="block whitespace-nowrap text-[0.84rem] font-black leading-none tracking-[0.14em] text-slate-950 sm:text-[0.88rem]" translate="no">
           FLOXANT
         </span>
-        <span className="mt-1 hidden truncate text-[0.57rem] font-black uppercase tracking-[0.18em] text-slate-400 min-[390px]:block sm:tracking-[0.2em]">
+        <span className="mt-1 hidden truncate text-[0.57rem] font-black uppercase tracking-[0.18em] text-blue-800 min-[390px]:block sm:tracking-[0.2em]">
           {isDuesseldorf ? "Düsseldorf · Reinigung" : "Regensburg · Bayern"}
         </span>
-        <span className="mt-1 hidden max-w-[10.5rem] truncate text-[0.54rem] font-black uppercase tracking-[0.14em] text-slate-400 min-[1320px]:block">
+        <span className="mt-1 hidden max-w-[12rem] truncate text-[0.52rem] font-black uppercase tracking-[0.14em] text-slate-500 min-[1380px]:block">
           {isDuesseldorf ? "Entsorgung separat · keine Umzüge" : "200 km · Bayern nach Verfügbarkeit"}
         </span>
       </span>
@@ -488,6 +617,8 @@ function DesktopNavigation({
   serviceGroups,
   calculatorShortcuts,
   localIntentLinks,
+  storySteps,
+  visualCards,
   servicesOpen,
   servicesActive,
   dropdownRef,
@@ -499,13 +630,15 @@ function DesktopNavigation({
   serviceGroups: typeof SERVICE_GROUPS;
   calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
   localIntentLinks: typeof LOCAL_INTENT_LINKS;
+  storySteps: HeaderStoryStep[];
+  visualCards: HeaderVisualCard[];
   servicesOpen: boolean;
   servicesActive: boolean;
   dropdownRef: RefObject<HTMLDivElement | null>;
   setServicesOpen: (value: boolean | ((current: boolean) => boolean)) => void;
 }) {
   return (
-    <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex" aria-label="Hauptnavigation">
+    <nav className="hidden min-w-0 flex-1 items-center justify-center 2xl:flex" aria-label="Hauptnavigation">
       <div className="flex max-w-full min-w-0 items-center gap-0.5 overflow-visible rounded-[1.05rem] border border-slate-200 bg-white/92 p-1 shadow-sm shadow-slate-950/5">
         <NavLink item={desktopLinks[0]} active={pathname === desktopLinks[0].href} />
 
@@ -533,6 +666,8 @@ function DesktopNavigation({
             serviceGroups={serviceGroups}
             calculatorShortcuts={calculatorShortcuts}
             localIntentLinks={localIntentLinks}
+            storySteps={storySteps}
+            visualCards={visualCards}
           />
         </div>
 
@@ -557,11 +692,15 @@ function ServicesDropdown({
   serviceGroups,
   calculatorShortcuts,
   localIntentLinks,
+  storySteps,
+  visualCards,
 }: {
   open: boolean;
   serviceGroups: typeof SERVICE_GROUPS;
   calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
   localIntentLinks: typeof LOCAL_INTENT_LINKS;
+  storySteps: HeaderStoryStep[];
+  visualCards: HeaderVisualCard[];
 }) {
   return (
     <AnimatePresence>
@@ -571,29 +710,30 @@ function ServicesDropdown({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 6, scale: 0.985 }}
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flox-nav-panel absolute left-1/2 top-full mt-3 w-[920px] -translate-x-1/2 rounded-[1.45rem] p-4"
+          className="flox-nav-panel absolute left-1/2 top-full mt-3 max-h-[calc(100vh-7.5rem)] w-[min(1040px,calc(100vw-2rem))] -translate-x-1/2 overflow-y-auto rounded-[1.6rem] p-4"
         >
-          <div className="mb-4 grid gap-3 md:grid-cols-2">
-            <HeaderInfoCard
-              tone="blue"
-              title="Direkt zur passenden Stelle"
-              text="Springen Sie direkt zu Leistung, Rechner, Budget oder Anfrage, ohne erst lange zu suchen."
-            />
-            <HeaderInfoCard
-              title="Lokal, wenn es hilft"
-              text="Regionale Wege bleiben dort sichtbar, wo Nähe, Termin und Anfahrt für Kunden wirklich zählen."
-            />
+          <div className="grid gap-4 lg:grid-cols-[0.92fr_1.35fr]">
+            <HeaderStoryPanel storySteps={storySteps} visualCards={visualCards} />
+
+            <div className="grid gap-4">
+              <ShortcutGrid
+                title="Schnell zum passenden Einstieg"
+                description="Rechner, Anfrage oder direkte Prüfung"
+                items={calculatorShortcuts}
+              />
+
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                {serviceGroups.map((group) => (
+                  <ServiceGroupCard key={group.label} group={group} />
+                ))}
+              </div>
+            </div>
           </div>
 
-          <ShortcutGrid
-            title="Rechner direkt öffnen"
-            description="ohne Umweg in den passenden Service"
-            items={calculatorShortcuts}
-          />
-
-          <div className="mt-4 rounded-[1.15rem] border border-blue-100 bg-blue-50/60 p-3">
+          <div className="mt-4 rounded-[1.25rem] border border-blue-100 bg-blue-50/70 p-3">
             <div className="mb-2 flex items-center justify-between gap-3 px-1">
-              <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-800">
+                <MapPin className="h-3.5 w-3.5" />
                 Lokale Suchwege
               </div>
               <span className="hidden text-[11px] font-semibold text-blue-900/60 sm:inline">
@@ -606,38 +746,86 @@ function ServicesDropdown({
               ))}
             </div>
           </div>
-
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            {serviceGroups.map((group) => (
-              <ServiceGroupCard key={group.label} group={group} />
-            ))}
-          </div>
         </m.div>
       ) : null}
     </AnimatePresence>
   );
 }
 
-function HeaderInfoCard({
-  title,
-  text,
-  tone = "neutral",
+function HeaderStoryPanel({
+  storySteps,
+  visualCards,
 }: {
-  title: string;
-  text: string;
-  tone?: "blue" | "neutral";
+  storySteps: HeaderStoryStep[];
+  visualCards: HeaderVisualCard[];
 }) {
+  const heroCard = visualCards[0];
+
   return (
-    <div
-      className={cn(
-        "rounded-[1.1rem] border px-4 py-4",
-        tone === "blue" ? "border-blue-100 bg-blue-50/70" : "border-slate-200 bg-white",
-      )}
-    >
-      <div className={cn("text-[10px] font-black uppercase tracking-[0.18em]", tone === "blue" ? "text-blue-700" : "text-slate-500")}>
-        {title}
+    <div className="relative isolate overflow-hidden rounded-[1.35rem] bg-slate-950 p-4 text-white shadow-[0_22px_44px_rgba(15,23,42,0.18)]">
+      <div className="absolute inset-0 opacity-45">
+        <Image
+          src={heroCard.image}
+          alt=""
+          fill
+          sizes="360px"
+          className="object-cover"
+          priority={false}
+        />
       </div>
-      <p className="mt-2 text-sm leading-6 text-slate-700">{text}</p>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(56,189,248,0.38),transparent_28%),linear-gradient(135deg,rgba(2,6,23,0.96),rgba(15,23,42,0.78))]" />
+      <div className="relative">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
+          <ShieldCheck className="h-3.5 w-3.5" />
+          FLOXANT Service-Kompass
+        </div>
+        <h3 className="mt-5 text-2xl font-black leading-tight tracking-tight">
+          Erst verstehen, dann passend anfragen.
+        </h3>
+        <p className="mt-3 max-w-sm text-sm leading-6 text-slate-200">
+          Finden Sie schnell den passenden Weg: Rechner, Angebot prüfen, WhatsApp oder direkte Anfrage.
+        </p>
+
+        <div className="mt-5 grid gap-2">
+          {storySteps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div key={step.label} className="flex gap-3 rounded-[1rem] border border-white/12 bg-white/10 p-3 backdrop-blur">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[0.8rem] bg-white text-blue-700 shadow-sm">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <span>
+                  <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100">
+                    {index + 1}. {step.label}
+                  </span>
+                  <span className="mt-1 block text-xs leading-5 text-slate-200">{step.text}</span>
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-5 grid grid-cols-3 gap-2">
+          {visualCards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <Link
+                key={card.title}
+                href={card.href}
+                className="rounded-[0.95rem] border border-white/12 bg-white/10 p-2.5 transition hover:-translate-y-0.5 hover:bg-white/15"
+              >
+                <Icon className="h-4 w-4 text-cyan-100" />
+                <div className="mt-2 text-[10px] font-black uppercase tracking-[0.12em] text-white">
+                  {card.title}
+                </div>
+                <p className="mt-1 hidden text-[10px] leading-4 text-slate-300 min-[1020px]:block">
+                  {card.text}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
@@ -654,7 +842,8 @@ function ShortcutGrid({
   return (
     <div className="rounded-[1.15rem] border border-slate-200 bg-white p-3">
       <div className="mb-2 flex items-center justify-between gap-3 px-1">
-        <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">
+          <Calculator className="h-3.5 w-3.5 text-blue-700" />
           {title}
         </div>
         <span className="hidden text-[11px] font-semibold text-slate-400 sm:inline">{description}</span>
@@ -679,14 +868,14 @@ function MiniLinkCard({
     <Link
       href={item.href}
       className={cn(
-        "rounded-[0.95rem] border px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:text-slate-950",
+        "min-w-0 rounded-[0.95rem] border px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:text-slate-950",
         tone === "blue"
           ? "border-blue-100 bg-white hover:border-blue-200 hover:bg-blue-50"
           : "border-slate-200 bg-slate-50 hover:border-blue-200 hover:bg-blue-50",
       )}
     >
-      <span className="flex items-center justify-between gap-3 text-sm font-black">
-        <span>{item.label}</span>
+      <span className="flex items-center justify-between gap-3 text-sm font-black leading-snug">
+        <span className="min-w-0">{item.label}</span>
         <ArrowUpRight className="h-3.5 w-3.5 text-blue-700" />
       </span>
       <span className="mt-1.5 block text-xs leading-5 text-slate-500">{item.hint}</span>
@@ -708,8 +897,8 @@ function ServiceGroupCard({ group }: { group: ServiceGroup }) {
             href={item.href}
             className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
           >
-            <span className="flex items-center justify-between gap-3 text-sm font-semibold">
-              <span>{item.label}</span>
+            <span className="flex items-center justify-between gap-3 text-sm font-semibold leading-snug">
+              <span className="min-w-0">{item.label}</span>
               <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
             </span>
             <span className="mt-1.5 block text-xs leading-5 text-slate-500">{item.description}</span>
@@ -733,19 +922,20 @@ function HeaderCTAs({
 }) {
   if (variant === "duesseldorf") {
     return (
-      <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
+      <div className="hidden shrink-0 items-center gap-2 2xl:flex">
         <a
           href={`tel:${company.phoneRaw}`}
-          className="inline-flex h-10 items-center justify-center rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50 focus:outline-none focus:ring-4 focus:ring-teal-100"
+          className="flox-card-lift inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50 focus:outline-none focus:ring-4 focus:ring-teal-100"
           data-event="click_duesseldorf_header_phone"
         >
+          <Phone className="h-3.5 w-3.5 text-teal-700" />
           Anrufen
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-emerald-200 bg-emerald-50 px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-emerald-800 shadow-sm shadow-emerald-900/5 transition hover:-translate-y-0.5 hover:bg-emerald-100 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+          className="flox-card-lift inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-emerald-200 bg-emerald-50 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-emerald-800 shadow-sm shadow-emerald-900/5 transition hover:-translate-y-0.5 hover:bg-emerald-100 focus:outline-none focus:ring-4 focus:ring-emerald-100"
           data-event="click_duesseldorf_header_whatsapp"
         >
           <MessageCircle className="h-3.5 w-3.5" />
@@ -753,7 +943,7 @@ function HeaderCTAs({
         </a>
         <Link
           href="/duesseldorf/reinigung#kontakt"
-          className="inline-flex h-10 items-center justify-center rounded-[0.95rem] bg-gradient-to-r from-teal-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_15px_32px_rgba(20,184,166,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,184,166,0.3)] focus:outline-none focus:ring-4 focus:ring-teal-100"
+          className="flox-magnetic-cta inline-flex h-10 items-center justify-center whitespace-nowrap rounded-[0.95rem] bg-gradient-to-r from-teal-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_15px_32px_rgba(20,184,166,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,184,166,0.3)] focus:outline-none focus:ring-4 focus:ring-teal-100"
           data-event="start_duesseldorf_cleaning_lead"
         >
           Anfrage starten
@@ -763,31 +953,37 @@ function HeaderCTAs({
   }
 
   return (
-    <div className="hidden shrink-0 items-center gap-1.5 xl:flex">
+    <div className="hidden shrink-0 items-center gap-2 2xl:flex">
       <button
         type="button"
         onClick={onExpress}
-        className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-amber-200 bg-amber-50 px-3 text-[10px] font-black uppercase tracking-[0.14em] text-amber-800 shadow-sm shadow-amber-900/5 transition hover:-translate-y-0.5 hover:bg-amber-100 focus:outline-none focus:ring-4 focus:ring-amber-100"
+        className="flox-magnetic-cta inline-flex h-10 min-w-[6.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-[0.95rem] border border-amber-300 bg-gradient-to-r from-amber-300 to-orange-300 px-3.5 text-[10px] font-black uppercase tracking-[0.09em] text-slate-950 shadow-[0_14px_30px_rgba(245,158,11,0.24)] transition hover:-translate-y-0.5 hover:from-amber-200 hover:to-orange-200 focus:outline-none focus:ring-4 focus:ring-amber-100"
+        aria-label="Express-Check mit wenigen Eckdaten öffnen"
       >
         <Zap className="h-3.5 w-3.5" />
-        <span className="min-[1460px]:hidden">Express</span>
-        <span className="hidden min-[1460px]:inline">Express-Check</span>
+        <span className="min-[1360px]:hidden">Express</span>
+        <span className="hidden min-[1360px]:inline">Express-Check</span>
       </button>
 
       <button
         type="button"
         onClick={onBudget}
-        className="inline-flex h-10 items-center justify-center rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+        className="flox-readable-cta-light inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+        aria-label="Budget oder vorhandenen Preisrahmen nennen"
       >
-        <span className="min-[1460px]:hidden">Budget</span>
-        <span className="hidden min-[1460px]:inline">Budget nennen</span>
+        <Euro className="h-3.5 w-3.5 text-blue-700" />
+        <span className="min-[1360px]:hidden">Budget</span>
+        <span className="hidden min-[1360px]:inline">Budget nennen</span>
       </button>
 
       <Link
         href="/buchung"
-        className="inline-flex h-10 items-center justify-center rounded-[0.95rem] bg-gradient-to-r from-blue-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_15px_32px_rgba(37,99,235,0.26)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(37,99,235,0.32)] focus:outline-none focus:ring-4 focus:ring-blue-100"
+        className="flox-magnetic-cta inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-[0.95rem] bg-gradient-to-r from-blue-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_15px_32px_rgba(37,99,235,0.26)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(37,99,235,0.32)] focus:outline-none focus:ring-4 focus:ring-blue-100"
+        aria-label="Direkte FLOXANT Anfrage starten"
       >
-        Direkt anfragen
+        <MessageCircle className="h-3.5 w-3.5" />
+        <span className="min-[1360px]:hidden">Anfrage</span>
+        <span className="hidden min-[1360px]:inline">Direkt anfragen</span>
       </Link>
     </div>
   );
@@ -796,17 +992,21 @@ function HeaderCTAs({
 function MobileHeaderActions({
   menuOpen,
   setMenuOpen,
+  variant,
 }: {
   menuOpen: boolean;
   setMenuOpen: (value: boolean | ((current: boolean) => boolean)) => void;
+  variant: PublicHeaderVariant;
 }) {
+  const isDuesseldorf = variant === "duesseldorf";
+
   return (
-    <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 xl:hidden">
+    <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 2xl:hidden">
       <Link
-        href="/buchung"
-        className="hidden h-10 items-center justify-center rounded-[0.95rem] bg-blue-600 px-3.5 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] sm:inline-flex"
+        href={isDuesseldorf ? "/duesseldorf/reinigung#kontakt" : "/buchung"}
+        className="hidden h-10 items-center justify-center whitespace-nowrap rounded-[0.95rem] bg-blue-600 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] sm:inline-flex"
       >
-        Anfragen
+        {isDuesseldorf ? "Kontakt" : "Anfragen"}
       </Link>
       <button
         type="button"
@@ -829,6 +1029,8 @@ function MobileNavDrawer({
   serviceGroups,
   calculatorShortcuts,
   localIntentLinks,
+  storySteps,
+  visualCards,
   variant,
   onExpress,
   onBudget,
@@ -839,6 +1041,8 @@ function MobileNavDrawer({
   serviceGroups: typeof SERVICE_GROUPS;
   calculatorShortcuts: typeof CALCULATOR_SHORTCUTS;
   localIntentLinks: typeof LOCAL_INTENT_LINKS;
+  storySteps: HeaderStoryStep[];
+  visualCards: HeaderVisualCard[];
   variant: PublicHeaderVariant;
   onExpress: () => void;
   onBudget: () => void;
@@ -853,13 +1057,14 @@ function MobileNavDrawer({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -6, scale: 0.985 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl xl:hidden sm:inset-x-5 sm:p-5"
+          className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl 2xl:hidden sm:inset-x-5 sm:p-5"
         >
           <div className="grid gap-3 sm:grid-cols-2">
             <Link
               href={isDuesseldorf ? "/duesseldorf/reinigung#kontakt" : "/buchung"}
-              className="flex min-h-[86px] flex-col items-start justify-center rounded-[1.35rem] bg-gradient-to-r from-blue-600 to-sky-500 px-5 text-left text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
+              className="relative isolate flex min-h-[96px] flex-col items-start justify-center overflow-hidden rounded-[1.35rem] bg-gradient-to-r from-blue-600 to-sky-500 px-5 text-left text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
             >
+              <span className="absolute -right-8 -top-10 h-28 w-28 rounded-full bg-white/16 blur-xl" />
               <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
                 {isDuesseldorf ? "Düsseldorf" : "Schnellster Weg"}
               </span>
@@ -870,7 +1075,7 @@ function MobileNavDrawer({
 
             <div className="rounded-[1.35rem] border border-blue-100 bg-blue-50 px-5 py-5 text-sm leading-6 text-slate-700">
               <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                Schnell entscheiden
+                Klar entscheiden
               </div>
               <p className="mt-2">
                 {isDuesseldorf
@@ -878,6 +1083,53 @@ function MobileNavDrawer({
                   : "Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen."}
               </p>
             </div>
+          </div>
+
+          <div className="mt-4 grid gap-2">
+            {storySteps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.label} className="flex gap-3 rounded-[1.15rem] border border-slate-200 bg-white p-3.5">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem] bg-blue-50 text-blue-700">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                      {index + 1}. {step.label}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-600">{step.text}</span>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            {visualCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="relative min-h-[82px] overflow-hidden rounded-[1.1rem] border border-slate-200 bg-slate-950 p-3 text-white"
+                >
+                  <Image
+                    src={card.image}
+                    alt=""
+                    fill
+                    sizes="120px"
+                    className="object-cover opacity-30"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-br from-slate-950/90 to-slate-900/50" />
+                  <span className="relative">
+                    <Icon className="h-4 w-4 text-cyan-100" />
+                    <span className="mt-2 block text-[10px] font-black uppercase tracking-[0.1em]">
+                      {card.title}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
           </div>
 
           <div className="mt-4 grid gap-2 sm:grid-cols-3">
@@ -925,7 +1177,7 @@ function MobileNavDrawer({
               <button
                 type="button"
                 onClick={onExpress}
-                className="rounded-[1.15rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm font-black text-amber-900"
+                className="rounded-[1.15rem] border border-amber-300 bg-amber-400 px-4 py-4 text-sm font-black text-slate-950 shadow-[0_12px_28px_rgba(245,158,11,0.18)]"
               >
                 Express-Check
               </button>

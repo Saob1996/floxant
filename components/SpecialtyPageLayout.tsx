@@ -2,8 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  BadgeEuro,
   BookOpen,
   CheckCircle2,
+  ClipboardCheck,
+  FileSearch,
   type LucideIcon,
   MapPin,
   Shield,
@@ -15,6 +18,7 @@ import { AuthorityMagnet } from "@/components/AuthorityMagnet";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CityServiceCluster } from "@/components/CityServiceCluster";
 import DualCalculator from "@/components/calculator/DualCalculator";
+import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import {
   PublicAuthorityModules,
@@ -309,6 +313,12 @@ function getRegensburgAuthorityContent(serviceName: string) {
   };
 }
 
+function getOfferCheckBlogHref(serviceName: string) {
+  if (serviceName === "Reinigung") return "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf";
+  if (serviceName === "Entrümpelung") return "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf";
+  return "/blog/umzugsangebot-pruefen-regensburg-bayern";
+}
+
 export function SpecialtyPageLayout({
   lang,
   dict,
@@ -393,6 +403,9 @@ export function SpecialtyPageLayout({
 
   const helpfulLinks = [
     ...serviceContext.relatedLinks,
+    { href: "/angebot-guenstiger-pruefen", label: `Angebot für ${city} günstiger oder passender prüfen` },
+    { href: getOfferCheckBlogHref(serviceContext.name), label: `${serviceContext.name}-Angebot richtig prüfen` },
+    { href: "/angebotscheck", label: `Angebot für ${city} vor Zusage prüfen` },
     { href: "/standorte", label: "Alle Standorte und Einsatzgebiete" },
     { href: serviceContext.primaryPath, label: `${serviceContext.name} als Hauptservice` },
     { href: serviceContext.calculatorHref, label: `${serviceContext.name} im Rechner anfragen` },
@@ -408,6 +421,11 @@ export function SpecialtyPageLayout({
       href: "#naechste-wege",
       title: "Nächste Wege",
       text: "Direkt zu Rechner, Hauptservice, Region oder ergänzenden Leistungen springen.",
+    },
+    {
+      href: "#angebot-pruefen",
+      title: "Angebot prüfen",
+      text: "Vorhandenes Angebot vergleichen und eine FLOXANT-Alternative nach Verfügbarkeit anfragen.",
     },
     {
       href: "#faq",
@@ -428,9 +446,19 @@ export function SpecialtyPageLayout({
   const regensburgAuthority = showRegensburgAuthority
     ? getRegensburgAuthorityContent(serviceContext.name)
     : null;
+  const offerCheckFaqs = [
+    {
+      q: `Kann FLOXANT ein vorhandenes ${serviceContext.name}-Angebot in ${city} prüfen?`,
+      a: `Ja. FLOXANT prüft ein vorhandenes ${serviceContext.name}-Angebot in ${city} organisatorisch nach Preis, Umfang, Termin, Fotos, Zugang, Zusatzkosten und passendem nächsten Schritt. Das ist keine Rechtsberatung und keine Preisgarantie.`,
+    },
+    {
+      q: `Kann FLOXANT für ${city} eine günstigere oder passendere Alternative anbieten?`,
+      a: `Möglich, aber nicht garantiert. Wenn Ort, Termin, Umfang, Fotos und Kapazität passen, prüft FLOXANT, ob für ${city} eine klarere, günstigere oder besser passende Alternative realistisch ist.`,
+    },
+  ];
   const faqItems = regensburgAuthority
-    ? [...finalFaqs, ...regensburgAuthority.faqs]
-    : finalFaqs;
+    ? [...finalFaqs, ...offerCheckFaqs, ...regensburgAuthority.faqs]
+    : [...finalFaqs, ...offerCheckFaqs];
   const planningLinks = [
     {
       href: serviceContext.calculatorHref,
@@ -448,6 +476,32 @@ export function SpecialtyPageLayout({
       text: `Wenn Zugang, Fotos, Sonderfälle oder Terminfenster in ${germanText(city, city)} vorab geklärt werden müssen.`,
     },
   ];
+  const offerCheckCards = [
+    {
+      href: "/angebot-guenstiger-pruefen",
+      title: `${serviceContext.name}-Angebot in ${city} prüfen`,
+      text: "Preis, Umfang, Termin, Fotos, Zugang und Zusatzkosten prüfen lassen, bevor eine Entscheidung fällt.",
+      Icon: FileSearch,
+    },
+    {
+      href: "/angebot-guenstiger-pruefen#guenstiger-form",
+      title: "Günstiger oder passender anfragen",
+      text: "FLOXANT prüft nach Verfügbarkeit, ob eine klarere, günstigere oder besser passende Alternative möglich ist.",
+      Icon: BadgeEuro,
+    },
+    {
+      href: "/angebotscheck",
+      title: "Lücken im Angebot erkennen",
+      text: "Red Flags wie Etage, Laufweg, Reinigung, Entsorgung, Zeitfenster oder Zusatzkosten vor Zusage einordnen.",
+      Icon: ClipboardCheck,
+    },
+  ];
+  const storyVariant =
+    serviceContext.name === "Reinigung"
+      ? "cleaning"
+      : serviceContext.name === "Entrümpelung"
+        ? "clearance"
+        : "operations";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -463,7 +517,24 @@ export function SpecialtyPageLayout({
         name: `${heroTitle} | FLOXANT`,
         description: heroText || `${serviceContext.name} in ${city}.`,
         path: serviceContext.pagePath,
-        about: [serviceContext.name, city, geo?.region || "Bayern"],
+        about: [
+          serviceContext.name,
+          city,
+          geo?.region || "Bayern",
+          "Angebot prüfen",
+          "Preisrahmen",
+          "FLOXANT Alternative",
+        ],
+        potentialActions: [
+          {
+            name: `${serviceContext.name}-Angebot in ${city} prüfen lassen`,
+            target: "/angebot-guenstiger-pruefen#guenstiger-form",
+          },
+          {
+            name: `${serviceContext.name} in ${city} direkt anfragen`,
+            target: `${serviceContext.pagePath}#wizard`,
+          },
+        ],
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
@@ -617,6 +688,18 @@ export function SpecialtyPageLayout({
           </div>
         </div>
       </section>
+
+      <FloxantStorytellingSection
+        variant={storyVariant}
+        eyebrow={`${serviceContext.name} verständlich planen`}
+        title={`${serviceContext.name} in ${germanText(city, city)}: erst klären, dann passend anfragen.`}
+        intro={`FLOXANT macht die wichtigsten Punkte sichtbar, bevor Kunden buchen: Ort, Termin, Umfang, Fotos, Budget und Zusatzleistungen. So wird ${serviceContext.name} in ${germanText(city, city)} nicht zur Ratesache, sondern zu einem klaren nächsten Schritt.`}
+        regionLabel={`${germanText(city, city)} · ${germanText(geo?.region || "Bayern", geo?.region || "Bayern")} · FLOXANT nach Verfügbarkeit`}
+        primaryHref="#wizard"
+        primaryLabel={`${serviceContext.name} anfragen`}
+        secondaryHref="/angebot-guenstiger-pruefen"
+        secondaryLabel="Angebot prüfen"
+      />
 
       <section className="px-6 pb-12">
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -854,6 +937,57 @@ export function SpecialtyPageLayout({
               ))}
             </div>
           </div>
+
+          <section
+            id="angebot-pruefen"
+            className="mt-8 overflow-hidden rounded-[2rem] border border-blue-100 bg-[linear-gradient(135deg,#ffffff_0%,#eff6ff_54%,#ecfeff_100%)] px-7 py-7 shadow-[0_18px_46px_rgba(15,23,42,0.06)]"
+          >
+            <div className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-800 shadow-sm">
+                  <BadgeEuro className="h-4 w-4" />
+                  Angebot prüfen
+                </div>
+                <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
+                  Schon ein Angebot für {germanText(city, city)} bekommen?
+                </h2>
+                <p className="mt-3 text-sm leading-7 text-slate-700">
+                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzservices. In Düsseldorf bleibt die Prüfung auf Reinigung und Entsorgung begrenzt.
+                </p>
+                <p className="mt-3 text-xs font-bold leading-6 text-slate-500">
+                  Keine Preisgarantie, keine Rechtsberatung und keine Bewertung anderer Anbieter. FLOXANT prüft nur, ob nach Verfügbarkeit eine klarere, günstigere oder passendere Alternative möglich ist.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {offerCheckCards.map((item) => {
+                  const Icon = item.Icon;
+                  return (
+                    <Link
+                      key={item.title}
+                      href={item.href}
+                      className="group rounded-[1.35rem] border border-white/80 bg-white/92 p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
+                      data-event="click_offer_check_from_local_page"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-region={city}
+                    >
+                      <span className="grid h-10 w-10 place-items-center rounded-[1rem] bg-blue-50 text-blue-700">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <h3 className="mt-4 text-sm font-black leading-6 text-slate-950 transition-colors group-hover:text-blue-700">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-xs leading-6 text-slate-600">{item.text}</p>
+                      <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-blue-700">
+                        Öffnen
+                        <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 

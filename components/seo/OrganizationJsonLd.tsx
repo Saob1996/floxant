@@ -102,8 +102,30 @@ export function OrganizationJsonLd() {
       { "@type": "WebPage", name: "B2B-Reinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` },
       { "@type": "WebPage", name: "Apartment-Reinigung Düsseldorf", url: `${company.url}/reinigung-moeblierte-wohnung-duesseldorf` },
       { "@type": "CreativeWork", name: "FLOXANT llms.txt", url: `${company.url}/llms.txt` },
+      { "@type": "Dataset", name: "FLOXANT Service Graph", url: `${company.url}/service-graph.json` },
     ],
     sameAs: company.sameAs,
+    slogan: "Umzug, Reinigung, Entrümpelung, Entsorgung und Angebotsprüfung direkt anfragen.",
+    keywords:
+      "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Angebot anderer Firma prüfen, B2B-Reinigung Düsseldorf, Entsorgung Düsseldorf, FLOXANT Bayern",
+    knowsLanguage: ["de"],
+    potentialAction: [
+      {
+        "@type": "ContactAction",
+        name: "FLOXANT Anfrage starten",
+        target: company.businessProfilePreferredUrl,
+      },
+      {
+        "@type": "Action",
+        name: "Kostenrahmen prüfen",
+        target: `${company.url}/rechner`,
+      },
+      {
+        "@type": "Action",
+        name: "Angebot anderer Firma prüfen",
+        target: `${company.url}/angebot-guenstiger-pruefen`,
+      },
+    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "FLOXANT Kernleistungen und Buchungswege",
@@ -118,6 +140,7 @@ export function OrganizationJsonLd() {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "B2B-Reinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Apartment-Reinigung Düsseldorf", url: `${company.url}/reinigung-moeblierte-wohnung-duesseldorf` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Entsorgung Düsseldorf", url: `${company.url}/entsorgung-duesseldorf` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "FLOXANT Service Graph", url: `${company.url}/service-graph.json` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Private Client Service", url: `${company.url}/private-client-service` } },
       ],
     },

@@ -68,6 +68,62 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "duesseldorf/reinigung/agb",
 ]);
 
+const MACHINE_READABLE_ROUTES = ["llms.txt", "service-graph.json"] as const;
+
+const dynamicLocalRouteByPath = new Map(
+  dynamicLocalSeoRoutes.map((entry) => [entry.route.replace(/^\/+|\/+$/g, ""), entry]),
+);
+
+const regensburgCoreSitemapCities = new Set([
+  "regensburg",
+  "neutraubling",
+  "lappersdorf",
+  "pentling",
+  "obertraubling",
+  "regenstauf",
+  "sinzing",
+  "bad-abbach",
+  "nittendorf",
+  "wenzenbach",
+  "tegernheim",
+  "barbing",
+  "donaustauf",
+  "zeitlarn",
+]);
+
+const bayernHubSitemapCities = new Set([
+  "muenchen",
+  "muenchen-schwabing",
+  "nuernberg",
+  "augsburg",
+  "ingolstadt",
+  "landshut",
+  "passau",
+  "wuerzburg",
+  "bamberg",
+  "bayreuth",
+  "erlangen",
+  "fuerth",
+  "coburg",
+  "rosenheim",
+  "straubing",
+  "schwandorf",
+  "kelheim",
+  "amberg",
+]);
+
+const highValueLocalSitemapServices = new Set([
+  "umzug",
+  "reinigung",
+  "entruempelung",
+  "bueroumzug",
+  "wohnungsaufloesung",
+]);
+
+function getDynamicLocalSitemapRoute(route: string) {
+  return dynamicLocalRouteByPath.get(route.replace(/^\/+|\/+$/g, ""));
+}
+
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (char) => {
     switch (char) {
@@ -186,7 +242,16 @@ function appRouteExists(route: string): boolean {
 
 function priorityForRoute(route: string): string {
   if (!route) return "1.0";
-  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck"].includes(route)) return "0.9";
+  if (route === "service-graph.json") return "0.82";
+  if (route === "llms.txt") return "0.82";
+  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
+  const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
+  if (dynamicLocalRoute) {
+    if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";
+    if (regensburgCoreSitemapCities.has(dynamicLocalRoute.citySlug)) return "0.84";
+    if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "0.8";
+    return highValueLocalSitemapServices.has(dynamicLocalRoute.service) ? "0.77" : "0.74";
+  }
   if (route === "duesseldorf/reinigung") return "0.91";
   if (route === "duesseldorf/bueroreinigung") return "0.9";
   if (
@@ -222,6 +287,15 @@ function priorityForRoute(route: string): string {
 
 function changefreqForRoute(route: string): string {
   if (!route) return "daily";
+  if (route === "service-graph.json" || route === "llms.txt") return "weekly";
+  const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
+  if (dynamicLocalRoute) {
+    if (dynamicLocalRoute.citySlug === "regensburg" || regensburgCoreSitemapCities.has(dynamicLocalRoute.citySlug)) {
+      return "weekly";
+    }
+    if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "weekly";
+    return "monthly";
+  }
   if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) return "yearly";
   if (route === "duesseldorf/reinigung" || route === "duesseldorf/bueroreinigung") return "weekly";
   if (route.startsWith("duesseldorf/")) return "monthly";
@@ -275,6 +349,9 @@ export function generateSitemapResponse(): Response {
 
   // Core services
   addEntries(urls, CORE_SERVICES, "0.9", "weekly");
+
+  // Machine-readable AI/search discovery routes.
+  addEntries(urls, MACHINE_READABLE_ROUTES, "0.82", "weekly");
 
   // City pages
   addEntries(urls, CITY_PAGES, "0.9", "daily");

@@ -9,9 +9,11 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 
 import { PillarServiceHero } from "@/components/PillarServiceHero";
+import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import type { FloxantVisualVariant } from "@/components/FloxantServiceVisual";
 import { germanText } from "@/lib/german-text";
@@ -136,6 +138,8 @@ export function PillarServicePage({
       text: "Ohne Umweg in die Buchung wechseln, wenn Umfang und Ziel schon grob klar sind.",
     },
   ] as const;
+  const storyVariant =
+    visualVariant === "cleaning" ? "cleaning" : visualVariant === "clearance" ? "clearance" : "operations";
 
   return (
     <main className="min-h-screen overflow-hidden bg-background">
@@ -150,6 +154,20 @@ export function PillarServicePage({
         cards={heroCards}
         visualVariant={visualVariant}
       />
+
+      <FloxantStorytellingSection
+        variant={storyVariant}
+        eyebrow="FLOXANT Story"
+        title="So wird aus einer groben Idee ein sauber planbarer Auftrag."
+        intro="Kunden müssen nicht alles perfekt vorbereiten. FLOXANT hilft, aus Fotos, Ort, Termin, Umfang und Budget einen klaren nächsten Schritt zu machen."
+        primaryHref="/buchung"
+        primaryLabel="Anfrage starten"
+        secondaryHref="/angebot-guenstiger-pruefen"
+        secondaryLabel="Angebot prüfen"
+        className="pt-8"
+      />
+
+      <SearchDominanceExperience variant="pillar" className="py-8" />
 
       <section className="flox-section pt-0">
         <div className="flox-shell">

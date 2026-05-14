@@ -12,7 +12,11 @@ import {
 } from "lucide-react";
 
 import { DuesseldorfCleaningCalculator } from "@/components/duesseldorf/DuesseldorfCleaningCalculator";
+import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
+import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
+import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
+import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { SignatureServices } from "@/components/SignatureServices";
 import {
   DUESSELDORF_CLEANING,
@@ -278,6 +282,24 @@ export default function DuesseldorfReinigungPage() {
             </div>
           </div>
         </section>
+
+        <FloxantStorytellingSection
+          variant="duesseldorf"
+          eyebrow="Düsseldorf Reinigung sichtbar erklärt"
+          title="Von Fläche, Fotos und Zeitfenster zur passenden Reinigungsanfrage."
+          intro="Kunden sollen sofort verstehen, welche Angaben FLOXANT für Düsseldorf braucht: Objektart, Fläche, Zustand, Termin, Frequenz, Zugang und Fotos. So wird aus einer offenen Reinigungsfrage ein klarer nächster Schritt."
+          primaryHref="/duesseldorf/reinigung#kontakt"
+          primaryLabel="Reinigung anfragen"
+          secondaryHref="/duesseldorf/bueroreinigung"
+          secondaryLabel="B2B-Reinigung"
+          className="py-12"
+        />
+
+        <FloxantNextStepPanel variant="duesseldorf" className="py-8" />
+
+        <SearchDominanceExperience variant="duesseldorf" className="py-8" />
+
+        <AiServiceRecommendationPanel variant="duesseldorf" className="pb-10 pt-0" />
 
         <section className="grid gap-6 pt-10 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">

@@ -476,16 +476,20 @@ export default function WohnungWiederVermietbarPage() {
           </div>
         </section>
 
-        <div className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-2 rounded-[1.25rem] border border-slate-200 bg-white/95 p-2 shadow-2xl shadow-slate-950/20 backdrop-blur md:hidden">
-          <Link href="#wohnung-ready-form" className="rounded-xl bg-slate-950 px-3 py-3 text-center text-xs font-black text-white" data-event="start_rental_ready_lead">
+        <div className="flox-mobile-action-wrap z-40 md:hidden">
+          <div className="flox-mobile-action-shell">
+            <div className="flox-mobile-action-grid">
+          <Link href="#wohnung-ready-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_rental_ready_lead">
             Objekt
           </Link>
-          <a href={whatsappHref} className="rounded-xl bg-emerald-600 px-3 py-3 text-center text-xs font-black text-white" data-event="click_rental_ready_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_rental_ready_whatsapp">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="rounded-xl bg-orange-600 px-3 py-3 text-center text-xs font-black text-white" data-event="click_rental_ready_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_rental_ready_phone">
             Anrufen
           </a>
+            </div>
+          </div>
         </div>
       </main>
     </>

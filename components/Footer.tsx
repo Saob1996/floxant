@@ -172,6 +172,9 @@ export function Footer({ dic }: { dic?: any } = {}) {
               <Link href="/llms.txt" className="text-sm font-semibold text-slate-500 hover:text-blue-700">
                 LLMs.txt
               </Link>
+              <Link href="/service-graph.json" className="text-sm font-semibold text-slate-500 hover:text-blue-700">
+                Service Graph
+              </Link>
               <Link href="/sitemap.xml" className="text-sm font-semibold text-slate-500 hover:text-blue-700">
                 Sitemap
               </Link>

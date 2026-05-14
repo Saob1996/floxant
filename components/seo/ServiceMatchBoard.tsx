@@ -10,6 +10,8 @@ import {
  Sparkles,
 } from "lucide-react";
 
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+
 export const serviceComparisonRows = [
  {
   icon: Home,
@@ -95,48 +97,49 @@ export function ServiceMatchBoard({ compact = false }: { compact?: boolean }) {
     </div>
 
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-     {serviceComparisonRows.map((row) => {
+     {serviceComparisonRows.map((row, index) => {
       const Icon = row.icon;
       return (
-       <article
-        key={row.situation}
-        className="premium-scan group flex min-h-[360px] flex-col rounded-[2rem] border border-foreground/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-7 transition-all hover:-translate-y-1 hover:border-blue-300/25"
-       >
-        <div className="flex items-center justify-between gap-4">
-         <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-foreground/10 bg-foreground/5 text-blue-700 ">
-          <Icon className="h-5 w-5" />
-         </div>
-         <span className="rounded-full border border-blue-300/15 bg-blue-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-800 ">
-          {row.bestFit}
-         </span>
-        </div>
-
-        <h3 className="mt-7 text-2xl font-semibold tracking-tight text-foreground">{row.situation}</h3>
-        <p className="mt-4 text-sm leading-relaxed text-foreground/50">{row.text}</p>
-
-        <div className="mt-6 rounded-2xl border border-foreground/8 bg-foreground/5 p-4">
-         <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/35">
-          Für die Einschätzung wichtig
-         </div>
-         <p className="mt-2 text-sm font-medium text-foreground/62">{row.signal}</p>
-        </div>
-
-        <div className="mt-auto flex flex-col gap-3 pt-7 sm:flex-row">
-         <Link
-          href={row.href}
-         className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-blue-500 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 transition hover:bg-blue-400"
+       <AnimateOnScroll key={row.situation} delay={index * 70}>
+        <article
+         className="premium-scan group flex min-h-[360px] flex-col rounded-[2rem] border border-foreground/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-7 transition-all hover:-translate-y-1 hover:border-blue-300/25"
         >
-          Passenden Weg öffnen
-          <ArrowRight className="h-3.5 w-3.5" />
-         </Link>
-         <Link
-          href={row.supportHref}
-          className="inline-flex flex-1 items-center justify-center rounded-2xl border border-foreground/10 bg-white/[0.035] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-foreground/62 transition hover:bg-white/[0.07] hover:text-foreground"
+         <div className="flex items-center justify-between gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-foreground/10 bg-foreground/5 text-blue-700 ">
+           <Icon className="h-5 w-5" />
+          </div>
+          <span className="rounded-full border border-blue-300/15 bg-blue-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-800 ">
+           {row.bestFit}
+          </span>
+         </div>
+
+         <h3 className="mt-7 text-2xl font-semibold tracking-tight text-foreground">{row.situation}</h3>
+         <p className="mt-4 text-sm leading-relaxed text-foreground/50">{row.text}</p>
+
+         <div className="mt-6 rounded-2xl border border-foreground/8 bg-foreground/5 p-4">
+          <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/35">
+           Für die Einschätzung wichtig
+          </div>
+          <p className="mt-2 text-sm font-medium text-foreground/62">{row.signal}</p>
+         </div>
+
+         <div className="mt-auto flex flex-col gap-3 pt-7 sm:flex-row">
+          <Link
+           href={row.href}
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-blue-500 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-950 transition hover:bg-blue-400"
          >
-          {row.supportLabel}
-         </Link>
-        </div>
-       </article>
+           Passenden Weg öffnen
+           <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+          <Link
+           href={row.supportHref}
+           className="inline-flex flex-1 items-center justify-center rounded-2xl border border-foreground/10 bg-white/[0.035] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-foreground/62 transition hover:bg-white/[0.07] hover:text-foreground"
+          >
+           {row.supportLabel}
+          </Link>
+         </div>
+        </article>
+       </AnimateOnScroll>
       );
      })}
     </div>

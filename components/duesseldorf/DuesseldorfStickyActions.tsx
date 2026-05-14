@@ -21,14 +21,15 @@ export function DuesseldorfStickyActions() {
         : "/duesseldorf/reinigung#kontakt";
 
   return (
-    <div className="fixed inset-x-2 bottom-2 z-[95] lg:hidden">
-      <div className="mx-auto grid max-w-md grid-cols-3 gap-2 rounded-[1.35rem] border border-slate-700/70 bg-[#09111f]/96 p-2 shadow-[0_-16px_48px_rgba(3,7,18,0.36)] backdrop-blur">
+    <div className="flox-mobile-action-wrap z-[95] lg:hidden">
+      <div className="flox-mobile-action-shell">
+        <div className="flox-mobile-action-grid">
         <Link
           href={requestHref}
-          className="flex min-h-[4.35rem] flex-col items-center justify-center rounded-[1rem] bg-white px-2 py-2.5 text-center text-[11px] font-black text-slate-950"
+          className="flox-mobile-action flox-mobile-action-primary"
         >
-          <ClipboardCheck className="mb-1 h-4 w-4" />
-          Anfrage
+          <ClipboardCheck />
+          Anfragen
         </Link>
         <a
           href={buildDuesseldorfCleaningWhatsAppHref(
@@ -36,18 +37,19 @@ export function DuesseldorfStickyActions() {
           )}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-[4.35rem] flex-col items-center justify-center rounded-[1rem] bg-emerald-500 px-2 py-2.5 text-center text-[11px] font-black text-slate-950 shadow-[0_16px_38px_rgba(16,185,129,0.24)]"
+          className="flox-mobile-action flox-mobile-action-whatsapp"
         >
-          <MessageCircle className="mb-1 h-4 w-4" />
+          <MessageCircle />
           WhatsApp
         </a>
         <a
           href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
-          className="flex min-h-[4.35rem] flex-col items-center justify-center rounded-[1rem] border border-slate-700 bg-slate-900 px-2 py-2.5 text-center text-[11px] font-black text-white"
+          className="flox-mobile-action flox-mobile-action-light"
         >
-          <Phone className="mb-1 h-4 w-4" />
+          <Phone />
           Anrufen
         </a>
+        </div>
       </div>
     </div>
   );

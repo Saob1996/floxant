@@ -1,4 +1,5 @@
 import { company } from "@/lib/company";
+import { germanizeDeep } from "@/lib/german-text";
 
 export function JsonLd({ lang = "de" }: { lang?: string }) {
   const graph = {
@@ -47,9 +48,33 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "Bayern",
           "Umzugsunternehmen",
           "Reinigungsfirma",
+          "Angebot anderer Firma prüfen",
+          "Umzugsangebot prüfen",
+          "Reinigungsangebot prüfen",
+          "Entsorgungsangebot prüfen",
+          "B2B-Reinigung Düsseldorf",
+          "Google Maps Buchung",
+          "KI-Antworten für lokale Dienstleistungen",
+        ],
+        slogan: "Umzug, Reinigung, Entrümpelung und Angebotsprüfung direkt anfragen.",
+        keywords:
+          "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Angebot prüfen lassen, FLOXANT, Bayern, Düsseldorf Reinigung",
+        knowsLanguage: ["de"],
+        areaServed: [
+          { "@type": "City", name: "Regensburg" },
+          { "@type": "AdministrativeArea", name: "Landkreis Regensburg" },
+          { "@type": "State", name: "Bayern" },
+          {
+            "@type": "City",
+            name: "Düsseldorf",
+            description: "Nur Reinigung und Entsorgung, keine Umzüge.",
+          },
         ],
         subjectOf: [
           { "@type": "WebPage", name: "FLOXANT Fakten", url: `${company.url}/floxant-fakten` },
+          { "@type": "Dataset", name: "FLOXANT Service Graph", url: `${company.url}/service-graph.json` },
+          { "@type": "WebPage", name: "Angebot anderer Firma prüfen", url: `${company.url}/angebot-guenstiger-pruefen` },
+          { "@type": "WebPage", name: "Plan-B-Service", url: `${company.url}/plan-b-service` },
           { "@type": "CreativeWork", name: "FLOXANT llms.txt", url: `${company.url}/llms.txt` },
         ],
         sameAs: [
@@ -70,6 +95,23 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           areaServed: "DE-BY",
           availableLanguage: ["de"],
         },
+        potentialAction: [
+          {
+            "@type": "ContactAction",
+            name: "FLOXANT direkt anfragen",
+            target: company.businessProfilePreferredUrl,
+          },
+          {
+            "@type": "Action",
+            name: "Preisrahmen prüfen",
+            target: `${company.url}/rechner`,
+          },
+          {
+            "@type": "Action",
+            name: "Angebot anderer Firma prüfen",
+            target: `${company.url}/angebot-guenstiger-pruefen`,
+          },
+        ],
       },
       {
         "@type": "WebSite",
@@ -80,9 +122,38 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
         publisher: {
           "@id": `${company.url}/#organization`,
         },
+        potentialAction: [
+          {
+            "@type": "Action",
+            name: "Buchung starten",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${company.url}/buchung`,
+            },
+          },
+          {
+            "@type": "Action",
+            name: "Kostenrahmen prüfen",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${company.url}/rechner`,
+            },
+          },
+          {
+            "@type": "Action",
+            name: "Angebot prüfen und Alternative anfragen",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${company.url}/angebot-guenstiger-pruefen`,
+            },
+          },
+        ],
         about: [
           { "@type": "Thing", name: "Umzug" },
           { "@type": "Thing", name: "Reinigung" },
+          { "@type": "Thing", name: "Angebotsprüfung" },
+          { "@type": "Thing", name: "Preisrahmen" },
+          { "@type": "Thing", name: "Google Maps Buchung" },
           { "@type": "Thing", name: "Entrümpelung" },
           { "@type": "Place", name: "Regensburg" },
           { "@type": "AdministrativeArea", name: "Bayern" },
@@ -104,6 +175,9 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           { "@type": "WebPage", name: "Express-Anfrage", url: `${company.url}/express-anfrage` },
           { "@type": "WebPage", name: "Anfrage mit Preisvorstellung", url: `${company.url}/anfrage-mit-preisrahmen` },
           { "@type": "WebPage", name: "Kleinmengen-Entsorgung", url: `${company.url}/kleinmengen-entsorgung` },
+          { "@type": "WebPage", name: "Reinigung Düsseldorf", url: `${company.url}/duesseldorf/reinigung` },
+          { "@type": "WebPage", name: "Büroreinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` },
+          { "@type": "WebPage", name: "Entsorgung Düsseldorf", url: `${company.url}/entsorgung-duesseldorf` },
           { "@type": "WebPage", name: "FLOXANT Blog", url: `${company.url}/blog` },
         ],
       },
@@ -113,7 +187,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(germanizeDeep(graph)) }}
     />
   );
 }

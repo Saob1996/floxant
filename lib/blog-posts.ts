@@ -1,4 +1,5 @@
 import { germanizeDeep } from "@/lib/german-text";
+import { offerCheckBlogArticles } from "@/lib/offer-check-blog-articles";
 import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
 
 export type BlogPostMeta = {
@@ -436,7 +437,17 @@ const strategicBlogPostMetas: BlogPostMeta[] = strategicBlogArticles
   featured: true,
  }));
 
+const offerCheckBlogPostMetas: BlogPostMeta[] = offerCheckBlogArticles.map((article) => ({
+ slug: article.slug,
+ category: article.category,
+ readTime: article.readTime,
+ title: article.title,
+ description: article.description,
+ featured: true,
+}));
+
 export const blogPosts = germanizeDeep([
  ...rawBlogPosts,
+ ...offerCheckBlogPostMetas,
  ...strategicBlogPostMetas,
 ]) as BlogPostMeta[];

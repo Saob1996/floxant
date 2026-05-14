@@ -318,16 +318,20 @@ export default function RueckfahrtBoersePage() {
           </div>
         </section>
 
-        <div className="fixed inset-x-3 bottom-3 z-30 grid grid-cols-3 gap-2 lg:hidden">
-          <Link href="#rueckfahrt-form" className="inline-flex min-h-11 items-center justify-center rounded-xl bg-slate-950 px-3 text-xs font-black text-white" data-event="start_route_check">
+        <div className="flox-mobile-action-wrap z-30 lg:hidden">
+          <div className="flox-mobile-action-shell">
+            <div className="flox-mobile-action-grid">
+          <Link href="#rueckfahrt-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_route_check">
             Strecke
           </Link>
-          <a href={whatsappHref} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-600 px-3 text-xs font-black text-white" data-event="click_return_trip_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_return_trip_whatsapp">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-xs font-black text-slate-800" data-event="click_return_trip_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_return_trip_phone">
             Anrufen
           </a>
+            </div>
+          </div>
         </div>
       </main>
     </>

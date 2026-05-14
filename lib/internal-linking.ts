@@ -15,6 +15,21 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       relevanceScore: 100,
     },
     {
+      url: "/angebot-guenstiger-pruefen",
+      anchorText: `Angebot für ${city} günstiger oder passender prüfen lassen`,
+      relevanceScore: 98,
+    },
+    {
+      url: "/angebotscheck",
+      anchorText: `Angebot für ${city} vor Zusage auf Lücken prüfen`,
+      relevanceScore: 94,
+    },
+    {
+      url: "/blog/angebot-anderer-firma-pruefen-regensburg",
+      anchorText: `Ratgeber: Angebot einer anderen Firma für ${city} prüfen lassen`,
+      relevanceScore: 91,
+    },
+    {
       url: "/service-area-bayern",
       anchorText: `Servicegebiet in Bayern für ${city} prüfen`,
       relevanceScore: 88,
@@ -30,6 +45,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
     return [
       ...baseLinks,
       { url: "/reinigung", anchorText: "Reinigung in Bayern erklärt", relevanceScore: 95 },
+      { url: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Reinigungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/umzug-mit-reinigung", anchorText: "Umzug mit Reinigung kombinieren", relevanceScore: 82 },
       { url: "/reinigung-regensburg", anchorText: "Reinigung Regensburg", relevanceScore: 78 },
     ];
@@ -39,6 +55,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
     return [
       ...baseLinks,
       { url: "/entruempelung", anchorText: "Entrümpelung in Bayern erklärt", relevanceScore: 95 },
+      { url: "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Entsorgungs- oder Entrümpelungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/firmenentsorgung", anchorText: "Firmenentsorgung und Büroentsorgung prüfen", relevanceScore: 90 },
       { url: "/kleinmengen-entsorgung", anchorText: "Kleinmengen fachgerecht entsorgen", relevanceScore: 84 },
       { url: "/entruempelung-regensburg", anchorText: "Entrümpelung Regensburg", relevanceScore: 78 },
@@ -77,6 +94,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
   return [
     ...baseLinks,
     { url: "/umzug", anchorText: "Umzug in Bayern erklärt", relevanceScore: 95 },
+    { url: "/blog/umzugsangebot-pruefen-regensburg-bayern", anchorText: `Umzugsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
     { url: "/beiladung", anchorText: "Beiladung für Einzelstücke prüfen", relevanceScore: 82 },
     { url: "/umzug-regensburg", anchorText: "Umzug Regensburg", relevanceScore: 78 },
   ];

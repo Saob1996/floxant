@@ -257,6 +257,11 @@ export default function BlogHubPage() {
               text: "Direkt anfragen, statt erst lange nach dem richtigen Einstieg zu suchen.",
             },
             {
+              href: "/angebot-guenstiger-pruefen",
+              title: "Angebote prüfen",
+              text: "Vorhandenes Umzugs-, Reinigungs- oder Entsorgungsangebot prüfen und Alternative anfragen.",
+            },
+            {
               href: "/standorte",
               title: "Standorte",
               text: "Regensburg, Bayern und lokale Einsatzgebiete schnell einordnen.",

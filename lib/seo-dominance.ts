@@ -103,7 +103,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/": {
   title: "FLOXANT Regensburg | Umzug, Reinigung & Entrümpelung",
   description:
-   "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: FLOXANT prüft Aufwand realistisch und führt direkt zur passenden Anfrage.",
+   "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: Fotos senden, Preisrahmen prüfen, Angebot vergleichen und direkt anfragen.",
   cluster: "money",
  intent: "Premium-Dienstleister für Umzug, Reinigung und Entrümpelung finden",
  },
@@ -115,18 +115,18 @@ const moneySnippets: Record<string, Snippet> = {
  intent: "FLOXANT an Freunde, Vermieter, Makler oder Unternehmen empfehlen und Partnercode nutzen",
  },
 "/angebotscheck": {
-  title: "Angebotscheck & Red-Flag-Scanner | FLOXANT",
+  title: "Angebot prüfen lassen | FLOXANT Angebotscheck",
   description:
-   "Ist Ihr Angebot vollständig? FLOXANT prüft Umfang, Termin, Zugang, Zusatzkosten, Reinigung, Entsorgung und offene Punkte vor der Zusage.",
+   "Angebot vor Zusage prüfen lassen: FLOXANT prüft Umfang, Preis, Termin, Zugang, Fotos, Zusatzkosten, Reinigung und Entsorgung.",
  cluster: "conversion",
   intent: "Vorhandenes Angebot mit Red-Flag-Scanner vor der Zusage prüfen und zweite Einschätzung anfragen",
  },
 "/angebot-guenstiger-pruefen": {
- title: "Angebot prüfen & günstiger anfragen | FLOXANT",
+ title: "Angebot prüfen & Alternative anfragen | FLOXANT",
  description:
-  "Angebot einer anderen Firma prüfen lassen: FLOXANT klärt Preis, Umfang, Termin, Fotos und offene Punkte und prüft eine günstigere oder passendere Alternative.",
+  "Angebot einer anderen Firma prüfen lassen: Preis, Umfang, Fotos, Termin und Budget senden. FLOXANT prüft eine günstigere oder passendere Alternative.",
  cluster: "conversion",
- intent: "Angebot einer anderen Firma prüfen, Preisrahmen klären und günstigere oder passendere Alternative ohne Preisgarantie anfragen",
+ intent: "Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot einer anderen Firma prüfen und günstigere oder passendere Alternative ohne Preisgarantie anfragen",
 },
 "/makler-vermieter-link": {
  title: "Fuer Makler & Vermieter | Objektfall direkt senden",
@@ -199,30 +199,30 @@ const moneySnippets: Record<string, Snippet> = {
  intent: "Keller, Muellraum oder Nebenflaeche in Regensburg mit Fotos und Freigabe pruefen lassen",
 },
 "/buchung": {
-  title: "FLOXANT Anfrage Regensburg | direkt starten",
+  title: "FLOXANT direkt anfragen | Regensburg & Bayern",
   description:
-   "Umzug, Reinigung, Entrümpelung oder Leer-Rückfahrt in Regensburg und Bayern unverbindlich anfragen: Service wählen, Eckdaten senden, Rückmeldung erhalten.",
+   "Direkte FLOXANT Anfrage starten: Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung wählen, Fotos senden, Budget nennen und Rückmeldung erhalten.",
   cluster: "conversion",
   intent: "Direkt aus Google Maps oder Google Search eine FLOXANT Anfrage starten",
  },
  "/rechner": {
-  title: "Kostenrechner Regensburg | Umzug, Reinigung & Entrümpelung",
+  title: "FLOXANT Kostenrechner | Preisrahmen prüfen",
   description:
-   "Kosten für Umzug, Reinigung, Entrümpelung oder Büroumzug in Regensburg und Bayern einschätzen. FLOXANT prüft Aufwand, Zugang, Termin und Budget.",
+   "Preisrahmen für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
   cluster: "conversion",
   intent: "Preisrahmen und Aufwand vor einer Anfrage einordnen",
  },
  "/umzug": {
-  title: "Umzug Regensburg | Umzugsfirma für Bayern",
+  title: "Umzug Regensburg | Fotos senden & Preis prüfen",
   description:
-   "Umzug in Regensburg und Bayern realistisch prüfen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
+   "Umzug in Regensburg und Bayern prüfen lassen: Volumen, Etagen, Laufwege, Fotos, vorhandenes Angebot, Zusatzleistungen und Übergabe sauber planen.",
   cluster: "money",
   intent: "Umzugsunternehmen in Regensburg oder Bayern beauftragen",
  },
  "/reinigung": {
-  title: "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+  title: "Reinigung Regensburg | Endreinigung & Übergabe",
   description:
-   "Reinigung in Regensburg und Bayern für Wohnung, Büro, Endreinigung und Übergabe. FLOXANT prüft Fläche, Zustand, Termin und Umfang realistisch.",
+   "Reinigung in Regensburg und Bayern: Wohnung, Büro, Endreinigung und Übergabe mit Fläche, Zustand, Fotos, Termin und Budget prüfen lassen.",
   cluster: "money",
   intent: "Reinigungsfirma für Übergabe oder Objektservice finden",
  },
@@ -234,9 +234,9 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Gewerbereinigung in Regensburg für Büro, Praxis oder Kanzlei anfragen",
  },
  "/entruempelung": {
-  title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
+  title: "Entrümpelung Regensburg | Räumung & Entsorgung",
   description:
-   "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
+   "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern: Fotos, Volumen, Zugang, Material und Reinigung danach prüfen.",
   cluster: "money",
   intent: "Entrümpelung oder Wohnungsauflösung anfragen",
  },
@@ -448,9 +448,9 @@ moneySnippets["/halteverbotszone-regensburg"] = {
 };
 
 moneySnippets["/duesseldorf/reinigung"] = {
- title: "Reinigung Düsseldorf | Privat, Endreinigung & B2B",
+ title: "Reinigung Düsseldorf | Wohnung, Büro & Übergabe",
  description:
-  "Reinigung in Düsseldorf für Wohnung, Auszug, Endreinigung und B2B-Flächen. Fotos senden, Budget nennen und unverbindlich anfragen.",
+  "Reinigung in Düsseldorf für Wohnung, Auszug, Endreinigung und B2B-Flächen. Fotos, Fläche, Termin und Budget senden. Keine Umzüge in Düsseldorf.",
  cluster: "money",
  intent: "Reinigung in Düsseldorf für privat oder B2B anfragen",
 };
@@ -458,7 +458,7 @@ moneySnippets["/duesseldorf/reinigung"] = {
 moneySnippets["/duesseldorf/bueroreinigung"] = {
  title: "B2B-Reinigung Düsseldorf | Büros & kleine Unternehmen",
  description:
-  "B2B-Reinigung in Düsseldorf für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz und Zeitfenster prüfen lassen.",
+  "B2B-Reinigung in Düsseldorf für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz, Fotos und Zeitfenster senden.",
  cluster: "money",
  intent: "B2B-Reinigung in Düsseldorf für kleine Unternehmen anfragen",
 };
@@ -482,7 +482,7 @@ moneySnippets["/duesseldorf/treppenhausreinigung"] = {
 moneySnippets["/entsorgung-duesseldorf"] = {
  title: "Entsorgung Düsseldorf | Möbel, Sperrmüll & Abholung",
  description:
-  "Entsorgung in Düsseldorf für Möbel, Sperrmüll und kleinere Räumungen. Fotos, Umfang, Zugang und Budget unverbindlich senden.",
+  "Entsorgung in Düsseldorf für Möbel, Sperrmüll und kleinere Räumungen: Fotos, Umfang, Zugang, Termin und Budget senden. Reinigung separat möglich.",
  cluster: "money",
  intent: "Entsorgung oder Möbelentsorgung in Düsseldorf anfragen",
 };
@@ -490,7 +490,7 @@ moneySnippets["/entsorgung-duesseldorf"] = {
 moneySnippets["/reinigung-moeblierte-wohnung-duesseldorf"] = {
  title: "Reinigung möblierte Wohnung Düsseldorf | Apartment & Gästewechsel",
  description:
-  "Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf: Terminfenster, Fotos, Zugang und Zusatzwünsche prüfen lassen.",
+  "Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf: Terminfenster, Fotos, Zugang, Wäschewunsch und Budget prüfen lassen.",
  cluster: "money",
  intent: "Möblierte Wohnung oder Apartment-Reinigung in Düsseldorf anfragen",
 };
@@ -648,9 +648,9 @@ moneySnippets["/kleintransport-regensburg"] = {
 };
 
 moneySnippets["/buchung"] = {
- title: "FLOXANT Anfrage Regensburg | direkt starten",
+ title: "FLOXANT direkt anfragen | Regensburg & Bayern",
  description:
-  "Umzug, Reinigung, Entrümpelung oder Leer-Rückfahrt in Regensburg und Bayern unverbindlich anfragen: Service wählen, Eckdaten senden, Rückmeldung erhalten.",
+  "Direkte FLOXANT Anfrage starten: Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung wählen, Fotos senden, Budget nennen und Rückmeldung erhalten.",
  cluster: "conversion",
  intent: "FLOXANT direkt aus Google Maps oder Google Search buchen oder anfragen",
 };
@@ -664,33 +664,33 @@ moneySnippets["/anbieter-vergleichen"] = {
 };
 
 moneySnippets["/rechner"] = {
- title: "Kostenrechner Regensburg | Umzug, Reinigung & Entrümpelung",
+ title: "FLOXANT Kostenrechner | Preisrahmen prüfen",
  description:
-  "Kosten für Umzug, Reinigung, Entrümpelung oder Büroumzug in Regensburg und Bayern einschätzen. FLOXANT prüft Aufwand, Zugang, Termin und Budget.",
+  "Preisrahmen für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
  cluster: "conversion",
  intent: "Kostenrahmen für Umzug, Reinigung oder Entrümpelung realistisch prüfen",
 };
 
 moneySnippets["/umzug"] = {
- title: "Umzug Regensburg | Umzugsfirma für Bayern",
+ title: "Umzug Regensburg | Fotos senden & Preis prüfen",
  description:
-  "Umzug in Regensburg und Bayern realistisch prüfen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
+  "Umzug in Regensburg und Bayern prüfen lassen: Volumen, Etagen, Laufwege, Fotos, vorhandenes Angebot, Zusatzleistungen und Übergabe sauber planen.",
  cluster: "money",
  intent: "Umzugsunternehmen in Regensburg direkt anfragen",
 };
 
 moneySnippets["/reinigung"] = {
- title: "Reinigung Regensburg | Wohnung, Büro & Übergabe",
+ title: "Reinigung Regensburg | Endreinigung & Übergabe",
  description:
-  "Reinigung in Regensburg und Bayern für Wohnung, Büro, Endreinigung und Übergabe. FLOXANT prüft Fläche, Zustand, Termin und Umfang realistisch.",
+  "Reinigung in Regensburg und Bayern: Wohnung, Büro, Endreinigung und Übergabe mit Fläche, Zustand, Fotos, Termin und Budget prüfen lassen.",
  cluster: "money",
  intent: "Reinigungsfirma in Regensburg für Übergabe oder Objektservice finden",
 };
 
 moneySnippets["/entruempelung"] = {
- title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
+ title: "Entrümpelung Regensburg | Räumung & Entsorgung",
  description:
-  "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
+  "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern: Fotos, Volumen, Zugang, Material und Reinigung danach prüfen.",
  cluster: "money",
  intent: "Entrümpelung oder Wohnungsauflösung in Regensburg anfragen",
 };
@@ -942,6 +942,97 @@ const serviceCityPatterns = [
  },
 ] as const;
 
+const regensburgCoreCitySlugs = new Set([
+ "regensburg",
+ "neutraubling",
+ "lappersdorf",
+ "pentling",
+ "obertraubling",
+ "regenstauf",
+ "sinzing",
+ "bad-abbach",
+ "nittendorf",
+ "wenzenbach",
+ "tegernheim",
+ "barbing",
+ "donaustauf",
+ "zeitlarn",
+]);
+
+const bayernHubCitySlugs = new Set([
+ "muenchen",
+ "muenchen-schwabing",
+ "nuernberg",
+ "augsburg",
+ "ingolstadt",
+ "landshut",
+ "passau",
+ "wuerzburg",
+ "bamberg",
+ "bayreuth",
+ "erlangen",
+ "fuerth",
+ "coburg",
+ "rosenheim",
+ "straubing",
+ "schwandorf",
+]);
+
+function getCitySlugFromLocalRoute(route: string, prefix: string) {
+ return route.slice(prefix.length).replace(/\/+$/, "");
+}
+
+function getLocalCoverageSentence(route: string, prefix: string, city: string) {
+ const citySlug = getCitySlugFromLocalRoute(route, prefix);
+
+ if (citySlug === "regensburg") {
+  return "Regensburg ist der operative Kern; Angebot, Fotos, Termin und Budget werden direkt passend zur Leistung geprüft";
+ }
+
+ if (regensburgCoreCitySlugs.has(citySlug)) {
+  return `${city} liegt im direkten Regensburg-Nahbereich; Strecke, Zugang, Fotos und Kapazität werden vor Anfrage sauber eingeordnet`;
+ }
+
+ if (bayernHubCitySlugs.has(citySlug)) {
+  return `${city} wird als Bayern-Strecke nach Verfügbarkeit geprüft; Rückfahrt, Zeitfenster und Umfang zählen besonders`;
+ }
+
+ return `${city} wird über den FLOXANT-Regensburg-Radius geprüft; Ort, Fotos und Preisrahmen helfen bei der schnellen Einschätzung`;
+}
+
+function getLocalServiceSentence(service: string) {
+ if (service === "Reinigung") {
+  return "Reinigungsangebot, Übergabeziel, Fläche und Zustand können direkt mitgesendet werden";
+ }
+
+ if (service === "Entrümpelung" || service === "Wohnungsauflösung") {
+  return "Räumungsangebot, Menge, Zugang, Entsorgung und Reinigung danach können gemeinsam geprüft werden";
+ }
+
+ if (service === "Halteverbotszone") {
+  return "Haltezone, Ladeweg, Fahrzeuggröße und Umzugstermin werden als Vorbereitungsbaustein geklärt";
+ }
+
+ if (service === "Klaviertransport") {
+  return "Etage, Treppenhaus, Maße, Schutzbedarf und Strecke werden vor Zusage realistisch geprüft";
+ }
+
+ if (service === "Seniorenumzug") {
+  return "Rückruf, Angehörigen-Abstimmung, Reinigung und Übergabe können ruhig mitgedacht werden";
+ }
+
+ if (service === "Studentenumzug") {
+  return "Budget, Beiladung, Einzelmöbel, Kartons und Zeitfenster werden kompakt eingeordnet";
+ }
+
+ return "Vorhandene Angebote können zusätzlich günstiger, klarer oder passender geprüft werden";
+}
+
+function strengthenLocalDescription(route: string, prefix: string, service: string, city: string, description: string) {
+ const base = description.replace(/\s*[.!?]\s*$/, "");
+ return `${base}. ${getLocalCoverageSentence(route, prefix, city)}. ${getLocalServiceSentence(service)}.`;
+}
+
 function variantIndex(value: string, count: number) {
  if (count <= 1) return 0;
  let hash = 0;
@@ -984,7 +1075,8 @@ export function getDominanceSnippet(path: string, fallback: SnippetInput): Snipp
 
   const city = titleCaseCity(route.slice(pattern.prefix.length));
   const title = pattern.titles[variantIndex(route, pattern.titles.length)](city);
-  const description = pattern.descriptions[variantIndex(`${route}:description`, pattern.descriptions.length)](city);
+  const baseDescription = pattern.descriptions[variantIndex(`${route}:description`, pattern.descriptions.length)](city);
+  const description = strengthenLocalDescription(route, pattern.prefix, pattern.service, city, baseDescription);
   return {
    title,
    description,

@@ -620,16 +620,20 @@ export default function ImmobilieVerkaufsbereitPage() {
           </div>
         </section>
 
-        <div className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-2 rounded-2xl border border-stone-200 bg-white/95 p-2 shadow-2xl shadow-stone-950/20 backdrop-blur md:hidden">
-          <Link href="#property-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-4 text-xs font-black text-white" data-event="start_property_ready_lead">
+        <div className="flox-mobile-action-wrap z-40 md:hidden">
+          <div className="flox-mobile-action-shell">
+            <div className="flox-mobile-action-grid">
+          <Link href="#property-ready-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_property_ready_lead">
             Objekt vorbereiten
           </Link>
-          <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-xs font-black text-emerald-800" data-event="click_property_ready_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_property_ready_whatsapp">
             WhatsApp
           </a>
-          <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 text-xs font-black text-amber-900" data-event="click_property_ready_phone">
+          <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="click_property_ready_phone">
             Anrufen
           </a>
+            </div>
+          </div>
         </div>
       </main>
     </>

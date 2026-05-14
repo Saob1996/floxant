@@ -179,6 +179,13 @@ export default function FloxantFactsPage() {
        llms.txt ansehen
        <FileText className="h-4 w-4" />
       </a>
+      <a
+       href="/service-graph.json"
+       className="inline-flex items-center gap-2 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/15 hover:text-white"
+      >
+       Service Graph ansehen
+       <FileText className="h-4 w-4" />
+      </a>
      </div>
     </div>
    </section>

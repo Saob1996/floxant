@@ -44,6 +44,8 @@ const TEXT_EXTENSIONS = new Set([".tsx", ".ts", ".jsx", ".js", ".json", ".md"]);
 const SOURCE_ROOTS = ["app", "components", "lib"];
 const STATIC_METADATA_ROUTES = [
   "/robots.txt",
+  "/service-graph.json",
+  "/indexnow-key.txt",
   "/seo-image/floxant",
   "/seo-image/buchung",
   "/seo-image/rechner",
@@ -116,6 +118,7 @@ const IMPORTANT_ROUTES = [
   "/buchung-ablauf",
   "/kontakt",
   "/llms.txt",
+  "/service-graph.json",
   "/sitemap.xml",
   "/robots.txt",
 ];
@@ -397,6 +400,7 @@ function runDominanceCheck() {
   const sitemapPath = path.join(ROOT, "lib", "sitemap-xml.ts");
   const footerPath = path.join(ROOT, "components", "Footer.tsx");
   const llmsPath = path.join(ROOT, "app", "llms.txt", "route.ts");
+  const serviceGraphPath = path.join(ROOT, "lib", "ai-service-graph.ts");
   const localBusinessPath = path.join(ROOT, "components", "seo", "LocalBusinessJsonLd.tsx");
   const localSignalPath = path.join(ROOT, "components", "seo", "LocalSeoSignalPanel.tsx");
   const layoutPath = path.join(ROOT, "app", "layout.tsx");
@@ -405,12 +409,14 @@ function runDominanceCheck() {
   const trustFlowPath = path.join(ROOT, "components", "seo", "TrustFlowSection.tsx");
   const serviceAuthorityFaqPath = path.join(ROOT, "components", "seo", "ServiceAuthorityFaq.tsx");
   const seoImageRoutePath = path.join(ROOT, "app", "seo-image", "[slug]", "route.tsx");
+  const searchDominancePath = path.join(ROOT, "components", "seo", "SearchDominanceExperience.tsx");
+  const manifestPath = path.join(ROOT, "app", "manifest.ts");
 
   for (const route of DOMINANCE_MONEY_ROUTES) {
     if (!routes.has(route)) failures.push(`missing money route: ${route}`);
   }
 
-  if (!fileContains(seoPath, ["getDominanceSnippet", "robots", "canonical"])) {
+  if (!fileContains(seoPath, ["getDominanceSnippet", "robots", "canonical", "serp-click-reasons", "commercial-keyword-cluster", "semantic-search-tags", "ai-citation-safe-answer", "service-click-hook", "dc.subject", "dominance-proof-signal", "answer-engine-query-targets", "serp-dominance-layers", "map-ranking-action-signal", "search-result-click-promise", "ai-recommendation-trigger", "google-search-appearance-signal", "serp-sitelink-targets", "customer-attraction-hook", "post-click-action-stack", "conversion-path-summary", "local-trust-proof-stack", "map-pack-decision-signal", "ai-next-step-recommendation", "special-service-discovery-signal", "special-service-sitelink-cluster"])) {
     failures.push("central metadata does not use dominance snippets, robots and canonical logic");
   }
 
@@ -431,7 +437,7 @@ function runDominanceCheck() {
   }
 
   const pageRequirements = {
-    "/": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "LocalBusinessJsonLd"],
+    "/": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "LocalBusinessJsonLd", "SearchDominanceExperience", "besondere-services", "specialServiceGroups"],
     "/buchung": ["generatePageSEO", "buildFaqJsonLd", "SmartBookingWizard", "Google Maps"],
     "/rechner": ["generatePageSEO", "buildFaqJsonLd", "Orientierungsrahmen"],
     "/empfehlen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "ReferralPartnerCodeForm"],
@@ -443,7 +449,7 @@ function runDominanceCheck() {
     "/rueckfahrt-boerse": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "ReturnTripBoardForm"],
     "/makler-vermieter-link": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "RealtorLandlordLinkForm"],
     "/wohnung-wieder-vermietbar": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "RentalReadyForm"],
-    "/angebot-guenstiger-pruefen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "CheaperAlternativeForm"],
+    "/angebot-guenstiger-pruefen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "CheaperAlternativeForm", "SearchDominanceExperience"],
     "/schadensbegrenzung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "DamageControlForm"],
     "/keller-muellraum-rettung-regensburg": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "CellarTrashroomRescueForm"],
     "/uebergabeakte": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "HandoverFileForm"],
@@ -473,12 +479,33 @@ function runDominanceCheck() {
     failures.push("blog metadata registry missing");
   }
 
-  if (!fileContains(llmsPath, ["Leer-Rückfahrt", "Private Client", "Büroumzug", "unverbindlichen Orientierungsrahmen"])) {
+  if (!fileContains(llmsPath, ["Leer-Rückfahrt", "Private Client", "Büroumzug", "unverbindlichen Orientierungsrahmen", "service-graph.json"])) {
     failures.push("llms.txt route is missing AI-readable core service context");
+  }
+
+  if (
+    !fileContains(serviceGraphPath, [
+      "floxantServiceGraph",
+      "Regensburg",
+      "Düsseldorf",
+      "Angebot anderer Firma prüfen",
+      "keine Düsseldorf-Umzüge",
+      "keine Preisgarantie",
+    ])
+  ) {
+    failures.push("AI service graph is missing region, offer-check or safety rules");
   }
 
   if (!fileContains(localBusinessPath, ["department", "openingHoursSpecification", "Leer-Rückfahrt", "areaServed"])) {
     failures.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
+  }
+
+  if (!fileContains(searchDominancePath, ["SearchDominanceExperience", "Google, Maps & KI", "Angebot hochladen", "Düsseldorf ohne Umzugs-Signal", "Suchergebnis-Vorschau", "KI-Antwort", "Dominanz-Matrix", "Klick-Gründe im Suchergebnis", "Sitelinks", "flox-dominance-panel", "Nach dem Klick sofort handlungsfähig", "flox-search-action-strip", "Maps, Vertrauen und schnelle Entscheidung", "flox-local-trust-deck"])) {
+    failures.push("Search dominance experience component is missing visible conversion and AI/search signals");
+  }
+
+  if (!fileContains(manifestPath, ["shortcuts", "Angebot prüfen lassen", "Reinigung Düsseldorf", "germanizeDeep"])) {
+    failures.push("manifest is missing mobile discovery shortcuts or German normalization");
   }
 
   if (!fileContains(routeToPageFile("/"), ["LocalSeoSignalPanel"]) || !fileContains(localSignalPath, ["Google Maps", "company.address", "company.phone"])) {

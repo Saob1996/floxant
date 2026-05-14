@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { company } from "@/lib/company";
 import { germanizeDeep, germanizeText } from "@/lib/german-text";
 
@@ -55,6 +56,35 @@ function toAnchorId(value: string) {
     .slice(0, 64);
 }
 
+function resolveStoryVariant(title: string, intro: string) {
+  const signal = germanizeText(`${title} ${intro}`).toLowerCase();
+
+  if (signal.includes("düsseldorf")) return "duesseldorf" as const;
+  if (
+    signal.includes("angebot") ||
+    signal.includes("preis") ||
+    signal.includes("vergleich") ||
+    signal.includes("plattform") ||
+    signal.includes("red flag")
+  ) {
+    return "offer" as const;
+  }
+  if (signal.includes("reinigung") || signal.includes("übergabe") || signal.includes("büro")) {
+    return "cleaning" as const;
+  }
+  if (
+    signal.includes("entrümp") ||
+    signal.includes("entsorgung") ||
+    signal.includes("wohnungsauflösung") ||
+    signal.includes("nachlass") ||
+    signal.includes("keller")
+  ) {
+    return "clearance" as const;
+  }
+
+  return "operations" as const;
+}
+
 export function BlogArticlePage({
   breadcrumbs,
   date,
@@ -78,6 +108,7 @@ export function BlogArticlePage({
     ...section,
     id: `${toAnchorId(section.title) || "abschnitt"}-${index + 1}`,
   }));
+  const storyVariant = resolveStoryVariant(title, intro);
 
   return (
     <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_18%_0%,rgba(59,130,246,0.12),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
@@ -140,6 +171,18 @@ export function BlogArticlePage({
               </div>
             </div>
           </header>
+
+          <FloxantStorytellingSection
+            variant={storyVariant}
+            eyebrow="FLOXANT erklärt den nächsten Schritt"
+            title="Vom Ratgeber direkt zur passenden FLOXANT-Anfrage."
+            intro="Der Beitrag soll nicht nur informieren. Er zeigt, welche Angaben für eine echte Einschätzung wichtig sind und welcher FLOXANT-Weg danach sinnvoll ist: Rechner, Angebot prüfen, Budget nennen oder direkt anfragen."
+            primaryHref={normalizedCtas[0]?.href || "/buchung"}
+            primaryLabel={normalizedCtas[0]?.label || "Direkt anfragen"}
+            secondaryHref="/angebot-guenstiger-pruefen"
+            secondaryLabel="Angebot prüfen"
+            className="border-b border-slate-200 py-10"
+          />
 
           <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="p-8 md:p-12">

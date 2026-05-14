@@ -73,6 +73,67 @@ const forbiddenDuesseldorfServiceTerms = [
   "wohnungsaufloesung",
 ] as const;
 
+const regensburgCoreSitemapCities = new Set([
+  "regensburg",
+  "neutraubling",
+  "lappersdorf",
+  "pentling",
+  "obertraubling",
+  "regenstauf",
+  "sinzing",
+  "bad-abbach",
+  "nittendorf",
+  "wenzenbach",
+  "tegernheim",
+  "barbing",
+  "donaustauf",
+  "zeitlarn",
+]);
+
+const bayernHubSitemapCities = new Set([
+  "muenchen",
+  "muenchen-schwabing",
+  "nuernberg",
+  "augsburg",
+  "ingolstadt",
+  "landshut",
+  "passau",
+  "wuerzburg",
+  "bamberg",
+  "bayreuth",
+  "erlangen",
+  "fuerth",
+  "coburg",
+  "rosenheim",
+  "straubing",
+  "schwandorf",
+  "kelheim",
+  "amberg",
+]);
+
+const localServicePrefixes = [
+  "umzug",
+  "reinigung",
+  "entruempelung",
+  "bueroumzug",
+  "wohnungsaufloesung",
+  "halteverbotszone",
+  "klaviertransport",
+  "seniorenumzug",
+  "studentenumzug",
+] as const;
+
+function getLocalServiceRouteParts(route: string) {
+  for (const service of localServicePrefixes) {
+    const prefix = `/${service}-`;
+    if (route.startsWith(prefix)) {
+      return { service, citySlug: route.slice(prefix.length) };
+    }
+  }
+
+  return null;
+}
+
 function isForbiddenDuesseldorfMovingRoute(route: string) {
   const normalizedRoute = route.toLowerCase();
   if (!normalizedRoute.includes("duesseldorf")) return false;
@@ -91,10 +152,18 @@ function isIndexableSitemapRoute(route: string) {
 
 function getPriority(route: string) {
   if (route === "/") return 1;
+  if (route === "/service-graph.json" || route === "/llms.txt") return 0.82;
   if (highPriorityRoutes.has(route)) return 0.95;
   if (route === "/blog" || route === "/wissen") return 0.86;
-  if (/^\/(umzug|reinigung|entruempelung|bueroumzug|wohnungsaufloesung)-/.test(route)) {
-    return 0.78;
+  const localRouteParts = getLocalServiceRouteParts(route);
+  if (localRouteParts) {
+    if (localRouteParts.citySlug === "regensburg") return 0.88;
+    if (regensburgCoreSitemapCities.has(localRouteParts.citySlug)) return 0.84;
+    if (bayernHubSitemapCities.has(localRouteParts.citySlug)) return 0.8;
+    if (["umzug", "reinigung", "entruempelung", "bueroumzug", "wohnungsaufloesung"].includes(localRouteParts.service)) {
+      return 0.77;
+    }
+    return 0.74;
   }
   if (route.startsWith("/blog/") || route.startsWith("/wissen/") || route.startsWith("/ratgeber/")) {
     return 0.68;
@@ -104,9 +173,14 @@ function getPriority(route: string) {
 }
 
 function getChangeFrequency(route: string): ChangeFrequency {
+  if (route === "/service-graph.json" || route === "/llms.txt") return "weekly";
   if (route === "/" || highPriorityRoutes.has(route)) return "weekly";
   if (route === "/blog" || route.startsWith("/blog/")) return "weekly";
-  if (/^\/(umzug|reinigung|entruempelung|bueroumzug|wohnungsaufloesung)-/.test(route)) {
+  const localRouteParts = getLocalServiceRouteParts(route);
+  if (localRouteParts) {
+    if (localRouteParts.citySlug === "regensburg") return "weekly";
+    if (regensburgCoreSitemapCities.has(localRouteParts.citySlug)) return "weekly";
+    if (bayernHubSitemapCities.has(localRouteParts.citySlug)) return "weekly";
     return "monthly";
   }
   if (/^\/(agb|datenschutz|impressum|widerruf|buchungsbedingungen)$/.test(route)) return "yearly";

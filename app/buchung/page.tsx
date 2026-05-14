@@ -23,8 +23,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
+import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { getDictionary } from "@/get-dictionary";
 import { company } from "@/lib/company";
@@ -417,17 +419,23 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "buchung",
-    title: "FLOXANT Anfrage | Umzug, Reinigung & Entrümpelung starten",
+    title: "FLOXANT Anfrage Regensburg & Bayern | Umzug, Reinigung, Entrümpelung",
     description:
-      "FLOXANT Anfrage aus Regensburg: Umzug, Reinigung oder Entrümpelung wählen, Express-Check nutzen, Budget nennen oder direkt per WhatsApp starten.",
+      "FLOXANT Anfrage aus Regensburg direkt starten: Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung wählen, Fotos senden, Budget nennen und Rückmeldung erhalten.",
     keywords: [
       "FLOXANT Anfrage",
       "Umzug anfragen Regensburg",
       "Reinigung anfragen Regensburg",
       "Entrümpelung anfragen Regensburg",
+      "Transport anfragen Regensburg",
+      "Entsorgung anfragen Regensburg",
       "Buchung Regensburg",
       "Express Check Umzug",
       "Budget Preisvorschlag",
+      "Google Maps Anfrage Regensburg",
+      "Direkt anfragen FLOXANT",
+      "Anfrage mit Fotos senden",
+      "Angebot anderer Firma prüfen",
       "Schlüsselübergabe",
       "Halteverbotszone Regensburg",
       "Beiladung Bayern",
@@ -606,6 +614,10 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
           <CoreServicesGrid />
         </div>
       </section>
+
+      <FloxantNextStepPanel variant="booking" className="pb-12 pt-0" />
+
+      <AiServiceRecommendationPanel variant="default" className="pb-12 pt-0" />
 
       <section id="anfragewege" className="px-4 pb-12 sm:px-6 lg:hidden">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-950 p-4 text-white shadow-[0_26px_90px_rgba(15,23,42,0.18)] md:rounded-[2.4rem] md:p-6">

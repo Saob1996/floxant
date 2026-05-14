@@ -250,7 +250,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="quick-express-title"
-      className="relative z-[10000] w-full max-w-2xl max-h-[calc(100dvh-4rem)] overflow-y-auto rounded-[2rem] border border-orange-200/15 bg-[#0B0D12] p-6 shadow-2xl md:max-h-[calc(100dvh-5rem)] md:rounded-[2.5rem] md:p-10"
+      className="relative z-[10000] w-full max-w-2xl max-h-[calc(100dvh-4rem)] overflow-y-auto rounded-[2rem] border border-orange-200/20 bg-[#0B0D12] p-6 shadow-2xl md:max-h-[calc(100dvh-5rem)] md:rounded-[2.5rem] md:p-10"
      >
       <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-orange-400/10 blur-3xl" />
 
@@ -258,7 +258,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
        type="button"
        aria-label="Express-Dialog schließen"
        onClick={onClose}
-       className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/5 bg-white/5 text-white/40 transition-all hover:bg-white/10 hover:text-white"
+       className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-slate-100 transition-all hover:bg-white/15 hover:text-white"
       >
        <X size={20} />
       </button>
@@ -274,34 +274,52 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
       ) : (
        <>
         <div className="mb-8">
-         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-orange-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-orange-200">
+         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-300/25 bg-orange-300/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-orange-100">
           <Zap size={14} />
          Express-Check mit Eckdaten
         </div>
         <h2 id="quick-express-title" className="text-3xl font-bold tracking-tight text-white md:text-4xl">
           {serviceCopy.headline}
         </h2>
-        <p className="mt-4 max-w-xl text-white/50">
+        <p className="mt-4 max-w-xl text-slate-300">
           {serviceCopy.intro}
         </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
          <div className="grid gap-3 sm:grid-cols-3">
-          {serviceOptions.map((option) => (
-           <button
-            key={option.value}
-            type="button"
-            onClick={() => update("service", option.value)}
-            className={[
-             "rounded-2xl border px-4 py-3 text-sm font-bold transition-all",
-             formData.service === option.value
-              ? "border-orange-300/35 bg-orange-400/10 text-orange-100"
-              : "border-white/10 bg-white/[0.03] text-white/55 hover:text-white",
-            ].join(" ")}
-           >
-            {option.label}
-           </button>
+         {serviceOptions.map((option) => (
+           (() => {
+            const isSelected = formData.service === option.value;
+
+            return (
+             <button
+              key={option.value}
+              type="button"
+              onClick={() => update("service", option.value)}
+              style={{
+               color: isSelected ? "#0f172a" : "#f8fafc",
+               WebkitTextFillColor: isSelected ? "#0f172a" : "#f8fafc",
+              }}
+              className={[
+               "relative rounded-2xl border px-4 py-3 text-sm font-black transition-all focus:outline-none focus:ring-4 focus:ring-orange-300/20",
+               isSelected
+                ? "border-orange-300 bg-orange-300 shadow-[0_12px_26px_rgba(251,146,60,0.18)]"
+                : "border-slate-500 bg-slate-900 hover:border-orange-300/70 hover:bg-slate-800",
+              ].join(" ")}
+             >
+              <span
+               className="relative z-10 block truncate"
+               style={{
+                color: isSelected ? "#0f172a" : "#f8fafc",
+                WebkitTextFillColor: isSelected ? "#0f172a" : "#f8fafc",
+               }}
+              >
+               {option.label}
+              </span>
+             </button>
+            );
+           })()
           ))}
          </div>
 
@@ -320,7 +338,10 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
          <Field icon={Mail} label="E-Mail optional" value={formData.email} onChange={(value) => update("email", value)} type="email" />
 
          <label className="block">
-          <span className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/30">
+          <span
+           className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.14em] text-slate-200"
+           style={{ color: "#e2e8f0", WebkitTextFillColor: "#e2e8f0" }}
+          >
            <Sparkles className="h-3.5 w-3.5 text-orange-200" />
            Kurznotiz optional
           </span>
@@ -328,7 +349,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
            value={formData.note}
            onChange={(event) => update("note", event.target.value)}
            placeholder={serviceCopy.notePlaceholder}
-           className="h-24 w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-all focus:border-orange-300/35 focus:bg-white/10"
+           className="h-24 w-full resize-none rounded-2xl border border-slate-600 bg-slate-900 px-4 py-3 text-sm text-white placeholder:text-slate-300 outline-none transition-all focus:border-orange-300 focus:bg-slate-800"
           />
          </label>
 
@@ -342,7 +363,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
          <button
           disabled={isSubmitting}
           type="submit"
-          className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-orange-300 font-bold uppercase tracking-wider text-slate-950 shadow-xl shadow-orange-900/20 transition-all hover:bg-orange-200 disabled:opacity-50"
+          className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-orange-300 font-black uppercase tracking-[0.08em] text-slate-950 shadow-xl shadow-orange-900/20 transition-all hover:bg-orange-200 disabled:opacity-50"
          >
           {isSubmitting ? "Wird gesendet..." : "Express prüfen lassen"}
           {!isSubmitting && <Send size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />}
@@ -375,7 +396,10 @@ function Field({
 }) {
  return (
   <label className="block">
-   <span className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/30">
+   <span
+    className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.14em] text-slate-200"
+    style={{ color: "#e2e8f0", WebkitTextFillColor: "#e2e8f0" }}
+   >
     <Icon className="h-3.5 w-3.5 text-orange-200" />
     {label}
    </span>
@@ -384,7 +408,7 @@ function Field({
     type={type}
     value={value}
     onChange={(event) => onChange(event.target.value)}
-    className="h-14 w-full rounded-2xl border border-white/10 bg-white/5 px-4 text-white outline-none transition-all focus:border-orange-300/35 focus:bg-white/10"
+    className="h-14 w-full rounded-2xl border border-slate-600 bg-slate-900 px-4 text-white placeholder:text-slate-300 outline-none transition-all focus:border-orange-300 focus:bg-slate-800"
    />
   </label>
  );

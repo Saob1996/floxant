@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 
+import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import {
   DUESSELDORF_CLEANING,
   buildDuesseldorfCleaningWhatsAppHref,
@@ -68,6 +69,18 @@ export function DuesseldorfServicePage({
             </Link>
           </div>
         </section>
+
+        <FloxantStorytellingSection
+          variant="duesseldorf"
+          eyebrow="Düsseldorf Reinigung klar erklärt"
+          title="Objekt, Fläche, Frequenz und Zeitfenster statt unklarer Reinigungsanfrage."
+          intro="FLOXANT macht Düsseldorf bewusst schlank: Reinigung und Entsorgung nach Absprache, keine Umzüge. Kleine Unternehmen, Wohnungen und Objektflächen bekommen einen klaren Anfrageweg."
+          primaryHref="/duesseldorf/reinigung#kontakt"
+          primaryLabel="Reinigung anfragen"
+          secondaryHref="/entsorgung-duesseldorf"
+          secondaryLabel="Entsorgung ergänzen"
+          className="-mx-4 py-10 sm:-mx-6"
+        />
 
         <section className="grid gap-6 pt-10 lg:grid-cols-[1.04fr_0.96fr]">
           <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">

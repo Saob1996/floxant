@@ -483,16 +483,20 @@ export default function KellerMuellraumRettungPage() {
           </div>
         </section>
 
-        <div className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-2xl shadow-slate-950/15 backdrop-blur md:hidden">
-          <Link href="#keller-muellraum-form" className="rounded-xl bg-slate-950 px-3 py-3 text-center text-xs font-black text-white" data-event="start_cellar_trashroom_lead">
+        <div className="flox-mobile-action-wrap z-40 md:hidden">
+          <div className="flox-mobile-action-shell">
+            <div className="flox-mobile-action-grid">
+          <Link href="#keller-muellraum-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_cellar_trashroom_lead">
             Pruefen
           </Link>
-          <a href={whatsappHref} className="rounded-xl bg-emerald-600 px-3 py-3 text-center text-xs font-black text-white" data-event="click_cellar_trashroom_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_cellar_trashroom_whatsapp">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="rounded-xl bg-amber-600 px-3 py-3 text-center text-xs font-black text-white" data-event="click_cellar_trashroom_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_cellar_trashroom_phone">
             Anrufen
           </a>
+            </div>
+          </div>
         </div>
       </main>
     </>

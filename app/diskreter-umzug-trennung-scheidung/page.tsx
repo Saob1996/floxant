@@ -768,16 +768,20 @@ export default function DiskreterUmzugTrennungScheidungPage() {
           </div>
         </section>
 
-        <div className="fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-2 rounded-2xl border border-stone-200 bg-white/95 p-2 shadow-2xl shadow-stone-950/20 backdrop-blur md:hidden">
-          <Link href="#diskret-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-4 text-xs font-black text-white" data-event="start_discreet_move_lead">
+        <div className="flox-mobile-action-wrap z-40 md:hidden">
+          <div className="flox-mobile-action-shell">
+            <div className="flox-mobile-action-grid">
+          <Link href="#diskret-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_discreet_move_lead">
             Rückruf
           </Link>
-          <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-xs font-black text-emerald-800" data-event="click_discreet_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_discreet_whatsapp">
             WhatsApp
           </a>
-          <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-4 text-xs font-black text-stone-800" data-event="click_discreet_phone">
+          <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="click_discreet_phone">
             Anrufen
           </a>
+            </div>
+          </div>
         </div>
       </main>
     </>

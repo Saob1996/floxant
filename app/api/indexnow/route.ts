@@ -1,4 +1,5 @@
 import { company } from "@/lib/company";
+import { getIndexNowKey } from "@/lib/indexnow";
 
 export const dynamic = "force-dynamic";
 
@@ -32,15 +33,8 @@ function toUrlList(body: IndexNowRequestBody) {
 }
 
 export async function POST(request: Request) {
- const key = process.env.INDEXNOW_KEY?.trim();
+ const key = getIndexNowKey();
  const secret = process.env.INDEXNOW_SUBMIT_SECRET?.trim();
-
- if (!key) {
-  return Response.json(
-   { ok: false, error: "INDEXNOW_KEY fehlt. Bitte in Vercel und lokal als Environment Variable setzen." },
-   { status: 503 },
-  );
- }
 
  if (secret && request.headers.get("x-indexnow-secret") !== secret) {
   return Response.json({ ok: false, error: "IndexNow Secret fehlt oder ist ungültig." }, { status: 401 });

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Building2, Home, PackageCheck, Route, Sparkles } from "lucide-react";
 
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+
 const routes = [
  {
   icon: Home,
@@ -58,29 +60,30 @@ export function CustomerIntentRouter({ compact = false }: { compact?: boolean })
     </div>
 
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-     {routes.map((item) => {
+     {routes.map((item, index) => {
       const Icon = item.icon;
       return (
-       <Link
-        key={item.href}
-        href={item.href}
-        className="premium-scan group flex min-h-[300px] flex-col rounded-[2rem] border border-slate-200 bg-white/80 p-7 transition-all hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-900/5"
-       >
-        <div className="flex items-center justify-between gap-4">
-         <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 text-blue-600">
-          <Icon className="h-5 w-5" />
+       <AnimateOnScroll key={item.href} delay={index * 80}>
+        <Link
+         href={item.href}
+         className="premium-scan group flex min-h-[300px] flex-col rounded-[2rem] border border-slate-200 bg-white/80 p-7 transition-all hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-900/5"
+        >
+         <div className="flex items-center justify-between gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-100 bg-blue-50 text-blue-600">
+           <Icon className="h-5 w-5" />
+          </div>
+          <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+           {item.label}
+          </span>
          </div>
-         <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
-          {item.label}
+         <h3 className="mt-7 text-2xl font-semibold tracking-tight text-slate-950">{item.title}</h3>
+         <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.text}</p>
+         <span className="mt-auto inline-flex items-center gap-2 pt-7 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
+          {item.action}
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
          </span>
-        </div>
-        <h3 className="mt-7 text-2xl font-semibold tracking-tight text-slate-950">{item.title}</h3>
-        <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.text}</p>
-        <span className="mt-auto inline-flex items-center gap-2 pt-7 text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">
-         {item.action}
-         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </span>
-       </Link>
+        </Link>
+       </AnimateOnScroll>
       );
      })}
     </div>

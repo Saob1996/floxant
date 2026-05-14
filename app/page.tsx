@@ -17,11 +17,15 @@ import {
 
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { Einsatzradar } from "@/components/Einsatzradar";
+import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
+import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SignatureServices } from "@/components/SignatureServices";
+import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
+import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
 import { BAVARIA_DIRECT_DEMAND_LINKS } from "@/lib/bavaria-coverage";
 import { company } from "@/lib/company";
@@ -40,6 +44,14 @@ type RouteCard = {
   text: string;
   href: string;
   Icon: LucideIcon;
+};
+
+type SpecialServiceGroup = RouteCard & {
+  keywords: string[];
+  links: {
+    label: string;
+    href: string;
+  }[];
 };
 
 const coreServices: RouteCard[] = [
@@ -222,6 +234,93 @@ const directEntryPaths = [
   { label: "Kontakt", href: "/kontakt", description: "Kontaktweg für Telefon, WhatsApp und direkte Rückfrage." },
 ] as const;
 
+const specialServiceGroups: SpecialServiceGroup[] = [
+  {
+    label: "Angebot & Preis",
+    title: "Angebot anderer Firma prüfen",
+    text: "Für Kunden, die bereits ein Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot haben und eine klarere, passendere oder mögliche günstigere FLOXANT-Alternative prüfen möchten.",
+    href: "/angebot-guenstiger-pruefen",
+    Icon: Banknote,
+    keywords: ["Angebot prüfen", "Preisrahmen", "Alternative"],
+    links: [
+      { label: "Angebot günstiger prüfen", href: "/angebot-guenstiger-pruefen" },
+      { label: "Angebotscheck", href: "/angebotscheck#red-flag-scanner" },
+      { label: "Plattform-Auftrag prüfen", href: "/plattform-auftrag-pruefen" },
+      { label: "Budget nennen", href: "/anfrage-mit-preisrahmen" },
+    ],
+  },
+  {
+    label: "Backup & Rettung",
+    title: "Wenn der Ablauf unsicher wird",
+    text: "Für Plan-B-Situationen, gekippte Termine, offene Reinigung, Entsorgung, Übergabe oder kurzfristige Lücken vor dem eigentlichen Schaden.",
+    href: "/plan-b-service",
+    Icon: Zap,
+    keywords: ["Plan B", "Schadensbegrenzung", "Express"],
+    links: [
+      { label: "Plan-B-Service", href: "/plan-b-service" },
+      { label: "Schadensbegrenzung", href: "/schadensbegrenzung" },
+      { label: "Express-Check", href: "/express-anfrage" },
+      { label: "Rückfahrt-Börse", href: "/rueckfahrt-boerse" },
+    ],
+  },
+  {
+    label: "Objekt & Übergabe",
+    title: "Immobilie, Mieterwechsel und Übergabe vorbereiten",
+    text: "Für Vermieter, Eigentümer, Makler, Hausverwaltungen und Kunden, die Objekt, Wohnung, Keller oder Übergabe sauber abschließen möchten.",
+    href: "/immobilie-verkaufsbereit-machen",
+    Icon: Building2,
+    keywords: ["Objektservice", "Übergabeakte", "Mieterwechsel"],
+    links: [
+      { label: "Immobilie verkaufsbereit machen", href: "/immobilie-verkaufsbereit-machen" },
+      { label: "Wohnung wieder vermietbar", href: "/wohnung-wieder-vermietbar" },
+      { label: "Mieterwechsel-Service", href: "/mieterwechsel-service-regensburg" },
+      { label: "Übergabeakte", href: "/uebergabeakte" },
+    ],
+  },
+  {
+    label: "Diskret & sensibel",
+    title: "Ruhige Hilfe für sensible Situationen",
+    text: "Für Nachlass, Erbfall, private Trennung, diskrete Auszüge oder Premium-Anfragen, bei denen Rückruf, Ruhe und klare Grenzen wichtiger sind als laute Werbung.",
+    href: "/nachlass-raeumung-regensburg",
+    Icon: Crown,
+    keywords: ["Diskret", "Nachlass", "Premium"],
+    links: [
+      { label: "Nachlass-Räumung", href: "/nachlass-raeumung-regensburg" },
+      { label: "Diskreter Umzug", href: "/diskreter-umzug-trennung-scheidung" },
+      { label: "Private Client", href: "/private-client-service" },
+      { label: "Makler-/Vermieter-Link", href: "/makler-vermieter-link" },
+    ],
+  },
+  {
+    label: "Region & Local Proof",
+    title: "Regensburg, 200 km und Bayern sichtbar machen",
+    text: "Für lokale Suchanfragen, Google Maps, Einsatzgebiet, Servicegebiet und typische Einsatzarten im Raum Regensburg ohne Fake-Live-Karte.",
+    href: "/einsatzradar-regensburg",
+    Icon: MessageCircle,
+    keywords: ["Regensburg", "200 km", "Bayern"],
+    links: [
+      { label: "Einsatzradar Regensburg", href: "/einsatzradar-regensburg" },
+      { label: "Einsatzgebiet 200 km", href: "/einsatzgebiet-regensburg-200km" },
+      { label: "Servicegebiet Bayern", href: "/service-area-bayern" },
+      { label: "Standorte", href: "/standorte" },
+    ],
+  },
+  {
+    label: "Düsseldorf getrennt",
+    title: "Düsseldorf nur Reinigung und Entsorgung",
+    text: "Für B2B-Reinigung, Wohnungsreinigung, Treppenhaus, Grundreinigung, möblierte Wohnung und Entsorgung in Düsseldorf, ohne Umzugssignal.",
+    href: "/duesseldorf/reinigung",
+    Icon: Sparkles,
+    keywords: ["Düsseldorf", "Reinigung", "Entsorgung"],
+    links: [
+      { label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" },
+      { label: "B2B-Reinigung Düsseldorf", href: "/duesseldorf/bueroreinigung" },
+      { label: "Möblierte Wohnung", href: "/reinigung-moeblierte-wohnung-duesseldorf" },
+      { label: "Entsorgung Düsseldorf", href: "/entsorgung-duesseldorf" },
+    ],
+  },
+];
+
 const faqItems = [
   {
     q: "Welche Leistungen übernimmt FLOXANT in Regensburg und Bayern?",
@@ -251,19 +350,32 @@ const faqItems = [
     q: "Gibt es auch Wege für Gewerbe oder sensible Projekte?",
     a: "Ja. Für B2B-Reinigung gibt es eine eigene Seite, für diskrete Premium-Fälle den Private-Client-Pfad und für flexible Transporte die Leer-Rückfahrt.",
   },
+  {
+    q: "Welche besonderen FLOXANT-Seiten helfen bei speziellen Situationen?",
+    a: "Besonders wichtig sind Angebotsprüfung, Plan-B-Service, Schadensbegrenzung, Immobilie verkaufsbereit machen, Nachlass-Räumung, diskreter Umzug, Einsatzradar, Rückfahrt-Börse, Übergabeakte und Düsseldorf Reinigung/Entsorgung. Diese Seiten führen Kunden gezielt zum passenden Anfrageweg statt nur zu einer allgemeinen Servicebeschreibung.",
+  },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "",
-    title: "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg",
+    title: "FLOXANT Regensburg – Umzug, Reinigung & Spezialservices",
     description:
-      "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg: FLOXANT bündelt Transport, Endreinigung, Räumung und Zusatzservices mit Anfrage in wenigen Schritten.",
+      "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung, Plan B, Übergabe, Objektservice und Düsseldorf Reinigung/Entsorgung mit klaren Anfragewegen.",
     keywords: [
       "Umzug Regensburg",
       "Reinigung Regensburg",
       "Entrümpelung Regensburg",
+      "Entsorgung Regensburg",
+      "Angebot anderer Firma prüfen",
+      "Umzugsangebot prüfen",
+      "Reinigungsangebot prüfen",
+      "Plan B Service Umzug Reinigung",
+      "Immobilie verkaufsbereit machen",
+      "Nachlass Räumung Regensburg",
+      "diskreter Umzug Regensburg",
+      "Übergabeakte",
       "Umzugsunternehmen Bayern",
       "Gewerbereinigung Regensburg",
       "Buchung Regensburg",
@@ -284,6 +396,7 @@ export default function Home() {
     offerTracks,
     regionLinks,
     directEntryPaths,
+    specialServiceGroups,
     faqItems,
   });
   const radarEntries = getPublishedEinsatzradarEntries();
@@ -329,6 +442,20 @@ export default function Home() {
       },
       {
         "@type": "ItemList",
+        "@id": "https://www.floxant.de/#besondere-services",
+        name: "Besondere FLOXANT Seiten und Services",
+        description:
+          "Gruppierte Spezialseiten für Angebotsprüfung, Plan B, Objektservice, diskrete Anfragen, Regensburg/Bayern-Local-SEO und Düsseldorf Reinigung/Entsorgung.",
+        itemListElement: content.specialServiceGroups.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.title,
+          url: `https://www.floxant.de${item.href}`,
+          description: item.text,
+        })),
+      },
+      {
+        "@type": "ItemList",
         "@id": "https://www.floxant.de/#lokale-servicepfade",
         name: "FLOXANT lokale Servicepfade",
         description:
@@ -350,7 +477,7 @@ export default function Home() {
       <LocalBusinessJsonLd />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(germanizeDeep(jsonLd)) }}
       />
 
       {/* ── HERO ──────────────────────────────────────────────── */}
@@ -562,6 +689,25 @@ export default function Home() {
       </section>
 
       {/* ── SERVICE ARCHITECTURE ──────────────────────────────── */}
+      <FloxantStorytellingSection
+        variant="operations"
+        eyebrow="FLOXANT jetzt verständlich"
+        title="Umzug, Reinigung, Entrümpelung und Übergabe als klarer Ablauf."
+        intro="Statt Kunden mit vielen Einzelleistungen allein zu lassen, zeigt FLOXANT den nächsten sinnvollen Schritt: Fotos senden, Ort und Termin klären, Angebot prüfen, Budget nennen oder direkt anfragen."
+        regionLabel="Regensburg · Umgebung 200 km · Bayern nach Verfügbarkeit · Düsseldorf nur Reinigung/Entsorgung"
+        primaryHref="/buchung"
+        primaryLabel="Direkt anfragen"
+        secondaryHref="/angebot-guenstiger-pruefen"
+        secondaryLabel="Angebot prüfen"
+        className="pt-6"
+      />
+
+      <FloxantNextStepPanel variant="booking" className="py-8" />
+
+      <SearchDominanceExperience variant="default" className="py-8" />
+
+      <AiServiceRecommendationPanel variant="default" className="pb-10 pt-0" />
+
       <section id="leistungen" className="flox-section content-auto pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
@@ -597,6 +743,101 @@ export default function Home() {
                 </article>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section id="besondere-services" className="flox-section content-auto pt-0">
+        <div className="flox-shell">
+          <div className="relative overflow-hidden rounded-[2.45rem] border border-slate-200 bg-slate-950 px-5 py-6 text-white shadow-[0_34px_100px_rgba(15,23,42,0.18)] md:px-8 md:py-8">
+            <div className="pointer-events-none absolute -left-20 top-4 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+            <div className="pointer-events-none absolute -right-12 -top-16 h-72 w-72 rounded-full bg-cyan-300/16 blur-3xl" />
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent" />
+
+            <div className="relative grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-100/20 bg-cyan-300/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
+                  <Sparkles className="h-4 w-4" />
+                  Besondere FLOXANT Seiten & Services
+                </div>
+                <h2 className="flox-gradient-title mt-5 max-w-[13ch] text-3xl font-black leading-[1.02] tracking-[-0.045em] md:text-5xl">
+                  Die Seiten, die Kunden wirklich weiterbringen.
+                </h2>
+              </div>
+              <p className="max-w-3xl text-sm font-semibold leading-7 text-slate-200 md:text-base md:leading-8">
+                FLOXANT soll nicht wie ein normaler Umzugs- oder Reinigungsanbieter wirken.
+                Diese Spezialseiten holen kaufnahe Situationen ab: vorhandenes Angebot,
+                Plan B, Objektübergabe, Nachlass, diskreter Auszug, lokale Regensburg-Suche
+                und Düsseldorf-Reinigung ohne Umzugssignal.
+              </p>
+            </div>
+
+            <div className="relative mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {content.specialServiceGroups.map((group, index) => {
+                const Icon = group.Icon;
+
+                return (
+                  <article
+                    key={group.title}
+                    className="flox-special-service-card group rounded-[1.65rem] border border-white/10 bg-white/[0.075] p-4 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.1] md:p-5"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[1rem] bg-white text-blue-700 shadow-sm">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <div>
+                          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100">
+                            {group.label}
+                          </div>
+                          <div className="mt-1 text-xs font-black uppercase tracking-[0.12em] text-slate-400">
+                            Ebene {index + 1}
+                          </div>
+                        </div>
+                      </div>
+                      <Link
+                        href={group.href}
+                        className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/10 text-cyan-100 transition group-hover:translate-x-0.5 group-hover:bg-white group-hover:text-blue-700"
+                        aria-label={`${group.title} öffnen`}
+                      >
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+
+                    <h3 className="mt-5 text-xl font-black leading-tight tracking-[-0.025em] text-white">
+                      {group.title}
+                    </h3>
+                    <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
+                      {group.text}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {group.keywords.map((keyword) => (
+                        <span
+                          key={`${group.title}-${keyword}`}
+                          className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-cyan-50"
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-5 grid gap-2">
+                      {group.links.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="flex items-center justify-between gap-3 rounded-[1rem] border border-white/10 bg-white/[0.06] px-3 py-3 text-sm font-bold text-slate-100 transition hover:border-cyan-200/30 hover:bg-white/[0.1]"
+                        >
+                          <span>{item.label}</span>
+                          <ArrowRight className="h-3.5 w-3.5 shrink-0 text-cyan-100" />
+                        </Link>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
