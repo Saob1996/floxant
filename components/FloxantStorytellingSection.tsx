@@ -278,17 +278,14 @@ export function FloxantStorytellingSection({
 
       <div className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
         <AnimateOnScroll>
-          <div className="relative overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white/90 p-6 shadow-[0_28px_84px_rgba(15,23,42,0.1)] backdrop-blur md:p-8">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-blue-200/40 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 left-8 h-40 w-40 rounded-full bg-cyan-200/30 blur-3xl" />
-
+          <div className="flox-panel-frame p-6 md:p-8">
             <div className="relative">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-800">
+              <div className="flox-tag-soft">
                 <Sparkles className="h-4 w-4" />
                 {eyebrow || config.badge}
               </div>
 
-              <h2 className="flox-ink-gradient-title mt-6 max-w-3xl text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              <h2 className="flox-ink-gradient-title flox-title-lg flox-display-section mt-6 max-w-3xl">
                 {displayTitle}
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
@@ -299,20 +296,20 @@ export function FloxantStorytellingSection({
                 {config.metrics.map((metric) => (
                   <div
                     key={`${metric.value}-${metric.label}`}
-                    className="flox-card-lift rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4"
+                    className="flox-surface-card px-4 py-4"
                   >
-                    <div className="text-xl font-black tracking-[-0.03em] text-slate-950">
+                    <div className="flox-card-title-lg text-slate-950">
                       {metric.value}
                     </div>
-                    <div className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                    <div className="flox-card-copy-sm mt-1 text-slate-500">
                       {metric.label}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="flox-proof-rail mt-7 rounded-[1.45rem] border border-slate-800 bg-slate-950 p-4 pl-5 text-white">
-                <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+              <div className="flox-proof-rail mt-7 rounded-[var(--flox-radius-lg)] border border-slate-800 bg-slate-950 p-4 pl-5 text-white">
+                <div className="flox-overline text-cyan-200">
                   So wirkt die Anfrage sofort klarer
                 </div>
                 <div className="mt-3 grid gap-2 text-sm font-semibold text-slate-100">
@@ -333,16 +330,16 @@ export function FloxantStorytellingSection({
                   const Icon = step.icon;
                   return (
                     <AnimateOnScroll key={step.title} delay={index * 90}>
-                      <article className="flox-click-card flox-card-lift h-full rounded-[1.35rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5 transition">
+                      <article className="flox-click-card flox-action-card h-full p-4">
                         <div
                           className={cn(
-                            "grid h-11 w-11 place-items-center rounded-[1rem] bg-gradient-to-br text-white",
+                            "flox-icon-tile h-11 w-11 bg-gradient-to-br text-white",
                             config.accent,
                           )}
                         >
                           <Icon className="h-5 w-5" />
                         </div>
-                        <h3 className="mt-4 text-base font-black tracking-tight text-slate-950">
+                        <h3 className="flox-card-title mt-4 text-slate-950">
                           {step.title}
                         </h3>
                         <p className="mt-2 text-sm leading-6 text-slate-600">{step.text}</p>
@@ -356,7 +353,7 @@ export function FloxantStorytellingSection({
                 <Link
                   href={displayPrimaryHref}
                   className={cn(
-                    "flox-magnetic-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r px-6 text-sm font-black text-white shadow-[0_18px_40px_rgba(37,99,235,0.18)] transition hover:-translate-y-0.5",
+                    "flox-button-primary min-h-12 px-6",
                     config.accent,
                   )}
                 >
@@ -365,7 +362,7 @@ export function FloxantStorytellingSection({
                 </Link>
                 <Link
                   href={displaySecondaryHref}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-900 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50"
+                  className="flox-button-secondary min-h-12 px-6"
                 >
                   {displaySecondaryLabel}
                 </Link>
@@ -378,12 +375,12 @@ export function FloxantStorytellingSection({
           <div className="relative">
             <div
               className={cn(
-                "absolute -inset-6 rounded-[3rem] bg-gradient-to-br opacity-20 blur-3xl",
+                "absolute -inset-4 rounded-[var(--flox-radius-frame)] bg-gradient-to-br opacity-[0.12] blur-2xl",
                 config.accent,
               )}
             />
-            <div className="relative overflow-hidden rounded-[2.3rem] border border-white/70 bg-white p-4 shadow-[0_34px_96px_rgba(15,23,42,0.14)]">
-              <div className="relative min-h-[430px] overflow-hidden rounded-[1.85rem] bg-slate-950">
+            <div className="flox-panel-frame relative p-4">
+              <div className="relative min-h-[430px] overflow-hidden rounded-[var(--flox-radius-panel)] bg-slate-950">
                 <Image
                   src={config.image}
                   alt=""
@@ -393,28 +390,28 @@ export function FloxantStorytellingSection({
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/54 via-slate-950/10 to-white/12" />
 
-                <div className="absolute left-4 top-4 rounded-[1.2rem] border border-white/40 bg-white/94 px-4 py-3 text-slate-950 shadow-sm shadow-slate-950/10 backdrop-blur">
-                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-800">
+                <div className="absolute left-4 top-4 rounded-[var(--flox-radius-md)] border border-white/40 bg-white/94 px-4 py-3 text-slate-950 shadow-sm shadow-slate-950/10 backdrop-blur">
+                  <div className="flox-overline text-blue-800">
                     Region / Kontext
                   </div>
-                  <div className="mt-1 max-w-[16rem] text-sm font-black leading-5">
+                  <div className="flox-card-title mt-1 max-w-[16rem]">
                     {displayRegion}
                   </div>
                 </div>
 
-                <div className="absolute right-4 top-4 hidden rounded-[1.2rem] border border-cyan-100/30 bg-slate-950/70 px-4 py-3 text-white shadow-[0_18px_42px_rgba(2,6,23,0.24)] backdrop-blur sm:block">
-                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
+                <div className="absolute right-4 top-4 hidden rounded-[var(--flox-radius-md)] border border-cyan-100/30 bg-slate-950/70 px-4 py-3 text-white shadow-[0_18px_42px_rgba(2,6,23,0.24)] backdrop-blur sm:block">
+                  <div className="flox-overline text-cyan-100">
                     FLOXANT Dominanz
                   </div>
-                  <div className="mt-1 text-sm font-black">sichtbar · prüfbar · direkt</div>
+                  <div className="flox-card-title mt-1 text-white">sichtbar · prüfbar · direkt</div>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 rounded-[1.35rem] border border-white/30 bg-slate-950/82 p-4 text-white shadow-[0_18px_42px_rgba(2,6,23,0.24)] backdrop-blur">
+                <div className="absolute bottom-4 left-4 right-4 rounded-[var(--flox-radius-lg)] border border-white/30 bg-slate-950/82 p-4 text-white shadow-[0_18px_42px_rgba(2,6,23,0.24)] backdrop-blur">
                   <div className="flex flex-wrap gap-2">
                     {config.chips.map((chip) => (
                       <span
                         key={chip}
-                        className="flox-search-chip rounded-full border border-white/16 bg-white/12 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-cyan-50"
+                        className="flox-tag-dark flox-search-chip flox-card-copy-sm"
                       >
                         {chip}
                       </span>

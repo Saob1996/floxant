@@ -430,6 +430,11 @@ export default async function CoreServicePage({ params }: PageProps) {
   const forWhomItems = content.for_whom_items ?? [];
   const guarantees = content.guarantees ?? [];
   const canonicalUrl = `${company.url}/${serviceSlug}`;
+  const regensburgServiceArea = [
+    { "@type": "City", name: "Regensburg" },
+    { "@type": "AdministrativeArea", name: "Umgebung Regensburg ca. 200 km" },
+    { "@type": "State", name: "Bayern" },
+  ];
   const faqJsonLd =
     faqs.length > 0
       ? {
@@ -453,10 +458,7 @@ export default async function CoreServicePage({ params }: PageProps) {
     url: canonicalUrl,
     telephone: company.phoneRaw,
     email: company.email,
-    areaServed: {
-      "@type": "State",
-      name: "Bayern",
-    },
+    areaServed: regensburgServiceArea,
     address: {
       "@type": "PostalAddress",
       streetAddress: company.streetAddress,
@@ -486,10 +488,7 @@ export default async function CoreServicePage({ params }: PageProps) {
         addressCountry: company.countryCode,
       },
     },
-    areaServed: {
-      "@type": "State",
-      name: "Bayern",
-    },
+    areaServed: regensburgServiceArea,
   };
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",

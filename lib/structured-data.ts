@@ -64,7 +64,16 @@ function schemaPlaceType(area: string) {
     return "State";
   }
 
-  if (normalized.includes("oberpfalz") || normalized.includes("niederbayern")) {
+  if (
+    normalized.includes("oberpfalz") ||
+    normalized.includes("niederbayern") ||
+    normalized.includes("umgebung") ||
+    normalized.includes("200 km") ||
+    normalized.includes("nahbereich") ||
+    normalized.includes("servicegebiet") ||
+    normalized.includes("nach verfügbarkeit") ||
+    normalized.includes("nach verfuegbarkeit")
+  ) {
     return "AdministrativeArea";
   }
 
@@ -117,7 +126,7 @@ export function buildServiceJsonLd({
   description,
   path,
   serviceType,
-  areaServed = ["Regensburg", "Bayern"],
+  areaServed = ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
 }: ServiceJsonLdInput) {
   const url = absoluteUrl(path);
 

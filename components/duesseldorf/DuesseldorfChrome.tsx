@@ -40,8 +40,8 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
             </div>
             <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600">
               Termine nur nach vorheriger Anfrage oder Absprache. Diese Düsseldorf-Sektion ist
-              bewusst auf Reinigungsleistungen und Entsorgung ausgerichtet. Düsseldorf sendet bei
-              FLOXANT keine Umzug-Signale; Umzug, Transport und Entrümpelung bleiben in Regensburg
+              bewusst auf Reinigungsleistungen ausgerichtet. Eine vorhandene Entsorgungsseite
+              bleibt separat. Düsseldorf sendet bei FLOXANT keine Umzug-Signale; Umzug, Transport und Entrümpelung bleiben in Regensburg
               und Bayern sauber getrennt positioniert.
             </p>
           </div>

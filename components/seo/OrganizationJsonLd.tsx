@@ -48,12 +48,15 @@ export function OrganizationJsonLd() {
       },
     ],
     description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Premium-Projekte mit operativem Kern in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit. Düsseldorf ist separat für Reinigung und Entsorgung positioniert.",
+      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Premium-Projekte mit operativem Kern in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit. Düsseldorf ist separat für Reinigung positioniert; Entsorgung wird nur auf einer eigenen vorhandenen Seite geführt.",
     areaServed: company.primaryServiceAreas.map((area) => ({
       "@type":
         area === "Bayern"
           ? "State"
-          : area === "Oberpfalz" || area === "Landkreis Regensburg"
+          : area === "Oberpfalz" ||
+              area === "Landkreis Regensburg" ||
+              area.includes("200 km") ||
+              area.includes("Umgebung")
             ? "AdministrativeArea"
             : "City",
       name: area,
@@ -65,6 +68,7 @@ export function OrganizationJsonLd() {
       "Büroumzug",
       "Firmenentsorgung",
       "Gewerbereinigung",
+      "Umzug im 200-km-Umkreis Regensburg",
       "Hotelreinigung",
       "Praxisreinigung",
       "Private Client Service",
@@ -79,7 +83,13 @@ export function OrganizationJsonLd() {
       "Angebot günstiger prüfen",
       "Angebotscheck",
       "Plan-B-Service",
+      "Schlüsselübergabe Service",
+      "Übergabeprotokoll",
+      "Halteverbotszone organisieren",
+      "Leer-Rückfahrt / Rückladung",
       "Übergabeakte",
+      "Auszug vorbereiten",
+      "Übergabe vorbereiten",
       "Nachlass-Räumung",
       "Immobilie verkaufsbereit machen",
       "Diskreter Umzug",
@@ -98,7 +108,13 @@ export function OrganizationJsonLd() {
       { "@type": "WebPage", name: "Standorte und Einsatzgebiet", url: company.locationsUrl },
       { "@type": "WebPage", name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
       { "@type": "WebPage", name: "Einsatzradar Regensburg", url: `${company.url}/einsatzradar-regensburg` },
+      { "@type": "WebPage", name: "Einsatzgebiet Regensburg ca. 200 km", url: `${company.url}/einsatzgebiet-regensburg-200km` },
       { "@type": "WebPage", name: "Servicegebiet Bayern", url: `${company.url}/service-area-bayern` },
+      { "@type": "WebPage", name: "Schlüsselübergabe Service", url: `${company.url}/schluesseluebergabe` },
+      { "@type": "WebPage", name: "Übergabeakte", url: `${company.url}/uebergabeakte` },
+      { "@type": "WebPage", name: "Halteverbotszone Regensburg", url: `${company.url}/halteverbotszone-regensburg` },
+      { "@type": "WebPage", name: "Umzug mit Reinigung", url: `${company.url}/umzug-mit-reinigung` },
+      { "@type": "WebPage", name: "Leer-Rückfahrt / Rückladung", url: `${company.url}/rueckfahrt-boerse` },
       { "@type": "WebPage", name: "B2B-Reinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` },
       { "@type": "WebPage", name: "Apartment-Reinigung Düsseldorf", url: `${company.url}/reinigung-moeblierte-wohnung-duesseldorf` },
       { "@type": "CreativeWork", name: "FLOXANT llms.txt", url: `${company.url}/llms.txt` },
@@ -107,7 +123,7 @@ export function OrganizationJsonLd() {
     sameAs: company.sameAs,
     slogan: "Umzug, Reinigung, Entrümpelung, Entsorgung und Angebotsprüfung direkt anfragen.",
     keywords:
-      "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Angebot anderer Firma prüfen, B2B-Reinigung Düsseldorf, Entsorgung Düsseldorf, FLOXANT Bayern",
+      "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Umzug im 200-km-Umkreis Regensburg, Schlüsselübergabe, Übergabeprotokoll, Angebot anderer Firma prüfen, B2B-Reinigung Düsseldorf, FLOXANT Bayern",
     knowsLanguage: ["de"],
     potentialAction: [
       {
@@ -136,6 +152,10 @@ export function OrganizationJsonLd() {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Entrümpelung", url: `${company.url}/entruempelung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Plan-B-Service", url: `${company.url}/plan-b-service` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Schlüsselübergabe Service", url: `${company.url}/schluesseluebergabe` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Übergabeprotokoll und Übergabeakte", url: `${company.url}/uebergabeakte` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Halteverbotszone Regensburg", url: `${company.url}/halteverbotszone-regensburg` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Leer-Rückfahrt / Rückladung", url: `${company.url}/rueckfahrt-boerse` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Angebot günstiger prüfen", url: `${company.url}/angebot-guenstiger-pruefen` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "B2B-Reinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Apartment-Reinigung Düsseldorf", url: `${company.url}/reinigung-moeblierte-wohnung-duesseldorf` } },

@@ -20,12 +20,11 @@ import { Einsatzradar } from "@/components/Einsatzradar";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
+import { ServiceRequestCompass } from "@/components/ServiceRequestCompass";
 import { SignatureServices } from "@/components/SignatureServices";
-import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
-import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
 import { BAVARIA_DIRECT_DEMAND_LINKS } from "@/lib/bavaria-coverage";
 import { company } from "@/lib/company";
@@ -44,6 +43,7 @@ type RouteCard = {
   text: string;
   href: string;
   Icon: LucideIcon;
+  trackingChannel?: "booking" | "whatsapp" | "phone";
 };
 
 type SpecialServiceGroup = RouteCard & {
@@ -183,6 +183,65 @@ const offerTracks: RouteCard[] = [
   },
 ];
 
+const contactConversionTracks: RouteCard[] = [
+  {
+    label: "Jederzeit senden",
+    title: "Fall kurz schildern",
+    text: "Service, Ort, Termin, Fotos und Budget können Sie jederzeit senden. FLOXANT prüft den Fall und meldet sich mit dem passenden nächsten Schritt.",
+    href: "/buchung?utm_source=homepage_24h&urgency=24h&contact=callback#buchungssystem",
+    Icon: Zap,
+    trackingChannel: "booking",
+  },
+  {
+    label: "Schnelle Rückfrage",
+    title: "WhatsApp mit Fotos",
+    text: "Ideal, wenn es eilig ist: kurze Nachricht, Ort, Wunschtermin, Fotos oder vorhandenes Angebot schicken.",
+    href: `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich moechte eine 24h-Anfrage stellen. Ort, Termin und Service:")}`,
+    Icon: MessageCircle,
+    trackingChannel: "whatsapp",
+  },
+  {
+    label: "Telefon",
+    title: "Direkt anrufen",
+    text: "Wenn ein Termin kippt, eine Übergabe naht oder sofort etwas geklärt werden muss, ist Telefon der schnellste Weg.",
+    href: `tel:${company.phoneRaw}`,
+    Icon: CheckCircle2,
+    trackingChannel: "phone",
+  },
+];
+
+const heroActionCards: RouteCard[] = [
+  {
+    label: "Schnell anfragen",
+    title: "Fall senden",
+    text: "Kurzfristiger Umzug, Reinigung, Entrümpelung oder Übergabe: Angaben senden und Rückrufweg wählen.",
+    href: "/buchung?utm_source=homepage_decision&urgency=24h&contact=callback#buchungssystem",
+    Icon: Zap,
+    trackingChannel: "booking",
+  },
+  {
+    label: "Direkt schreiben",
+    title: "WhatsApp mit Fotos",
+    text: "Fotos, Ort, Termin und offene Punkte direkt schicken, wenn Sie schnell Klarheit brauchen.",
+    href: `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich moechte meinen Fall kurz einschaetzen lassen. Fotos/Ort/Termin:")}`,
+    Icon: MessageCircle,
+    trackingChannel: "whatsapp",
+  },
+  {
+    label: "Preisgefühl",
+    title: "Budget klären",
+    text: "Wenn Sie zuerst wissen möchten, welcher Rahmen realistisch ist.",
+    href: "/anfrage-mit-preisrahmen?utm_source=homepage_decision",
+    Icon: Banknote,
+  },
+];
+
+const heroTrustBadges = [
+  { label: "Rückruf möglich", text: "Fall senden und passenden Kontaktweg wählen." },
+  { label: "Fotos willkommen", text: "Bilder sparen Rückfragen und machen den Aufwand klarer." },
+  { label: "24h online", text: "Anfrage jederzeit senden, auch abends oder am Wochenende." },
+];
+
 const regionLinks = [
   { label: "Servicegebiet Regensburg & Umgebung", href: "/einsatzgebiet-regensburg-200km" },
   { label: "FLOXANT Einsatzradar", href: "/einsatzradar-regensburg" },
@@ -228,7 +287,7 @@ const directEntryPaths = [
   { label: "Plattform-Auftrag prüfen", href: "/plattform-auftrag-pruefen", description: "Neutraler Einstieg für Kunden mit Plattform- oder Anbieterangebot: Angebot, Screenshot, Preis, Termin und offene Punkte praktisch prüfen lassen." },
   { label: "Express-Check", href: "/express-anfrage", description: "Schneller Weg für eilige Fälle mit wenigen Pflichtangaben." },
   { label: "Preisvorstellung", href: "/anfrage-mit-preisrahmen", description: "Direkter Weg für Kunden, die ihr Budget oder ihren Zielrahmen offen mitsenden möchten." },
-  { label: "Umzugsunternehmen Regensburg", href: "/umzugsunternehmen-regensburg", description: "Money Page für Nutzer, die gezielt ein lokales Umzugsunternehmen suchen." },
+  { label: "Umzugsunternehmen Regensburg", href: "/umzugsunternehmen-regensburg", description: "Informationen fuer alle, die gezielt ein lokales Umzugsunternehmen suchen." },
   { label: "Endreinigung Regensburg", href: "/endreinigung-regensburg", description: "Schneller Einstieg für Auszug, Übergabe und saubere Wohnungsrückgabe." },
   { label: "Kleintransport Regensburg", href: "/kleintransport-regensburg", description: "Einstieg für Möbel, Einzelstücke und kleinere Transporte in der Kernregion." },
   { label: "Kontakt", href: "/kontakt", description: "Kontaktweg für Telefon, WhatsApp und direkte Rückfrage." },
@@ -292,9 +351,9 @@ const specialServiceGroups: SpecialServiceGroup[] = [
     ],
   },
   {
-    label: "Region & Local Proof",
-    title: "Regensburg, 200 km und Bayern sichtbar machen",
-    text: "Für lokale Suchanfragen, Google Maps, Einsatzgebiet, Servicegebiet und typische Einsatzarten im Raum Regensburg ohne Fake-Live-Karte.",
+    label: "Region & Einsatzgebiet",
+    title: "Regensburg, Umgebung und Bayern einordnen",
+    text: "Fuer Kunden, die wissen moechten, ob FLOXANT in ihrem Ort helfen kann und welche Leistungen dort sinnvoll planbar sind.",
     href: "/einsatzradar-regensburg",
     Icon: MessageCircle,
     keywords: ["Regensburg", "200 km", "Bayern"],
@@ -307,21 +366,25 @@ const specialServiceGroups: SpecialServiceGroup[] = [
   },
   {
     label: "Düsseldorf getrennt",
-    title: "Düsseldorf nur Reinigung und Entsorgung",
-    text: "Für B2B-Reinigung, Wohnungsreinigung, Treppenhaus, Grundreinigung, möblierte Wohnung und Entsorgung in Düsseldorf, ohne Umzugssignal.",
+    title: "Düsseldorf klar als Reinigungsspur",
+    text: "Fuer B2B-Reinigung, Wohnungsreinigung, Treppenhaus, Grundreinigung und moeblierte Wohnungen in Duesseldorf. Entsorgung bleibt ein separater vorhandener Zusatzweg.",
     href: "/duesseldorf/reinigung",
     Icon: Sparkles,
-    keywords: ["Düsseldorf", "Reinigung", "Entsorgung"],
+    keywords: ["Düsseldorf", "Reinigung", "B2B"],
     links: [
       { label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" },
       { label: "B2B-Reinigung Düsseldorf", href: "/duesseldorf/bueroreinigung" },
       { label: "Möblierte Wohnung", href: "/reinigung-moeblierte-wohnung-duesseldorf" },
-      { label: "Entsorgung Düsseldorf", href: "/entsorgung-duesseldorf" },
+      { label: "Entsorgung separat", href: "/entsorgung-duesseldorf" },
     ],
   },
 ];
 
 const faqItems = [
+  {
+    q: "Kann ich FLOXANT 24 Stunden am Tag kontaktieren?",
+    a: "Ja. Die Online-Anfrage und WhatsApp sind als 24h-Kontaktweg sichtbar. FLOXANT prueft eingehende Faelle nach Verfuegbarkeit und meldet sich mit dem passenden naechsten Schritt.",
+  },
   {
     q: "Welche Leistungen übernimmt FLOXANT in Regensburg und Bayern?",
     a: "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Büroumzug, Gewerbereinigung, Firmenentsorgung, Leer-Rückfahrt und Übergabevorbereitung in einem klar geführten System.",
@@ -344,7 +407,7 @@ const faqItems = [
   },
   {
     q: "Ist FLOXANT nur in Regensburg aktiv?",
-    a: "Regensburg ist der operative Kern. Von dort aus führt FLOXANT Einsätze in Bayern sauber weiter, wenn Strecke, Verfügbarkeit und Leistungsumfang sinnvoll zusammenpassen.",
+    a: "Regensburg ist der operative Kern. Von dort aus prüft FLOXANT Einsätze in der Umgebung bis ca. 200 km und in Bayern, wenn Strecke, Verfügbarkeit und Leistungsumfang sinnvoll zusammenpassen.",
   },
   {
     q: "Gibt es auch Wege für Gewerbe oder sensible Projekte?",
@@ -352,7 +415,7 @@ const faqItems = [
   },
   {
     q: "Welche besonderen FLOXANT-Seiten helfen bei speziellen Situationen?",
-    a: "Besonders wichtig sind Angebotsprüfung, Plan-B-Service, Schadensbegrenzung, Immobilie verkaufsbereit machen, Nachlass-Räumung, diskreter Umzug, Einsatzradar, Rückfahrt-Börse, Übergabeakte und Düsseldorf Reinigung/Entsorgung. Diese Seiten führen Kunden gezielt zum passenden Anfrageweg statt nur zu einer allgemeinen Servicebeschreibung.",
+    a: "Besonders wichtig sind Angebotsprüfung, Plan-B-Service, Schadensbegrenzung, Immobilie verkaufsbereit machen, Nachlass-Räumung, diskreter Umzug, Einsatzradar, Rückfahrt-Börse, Schlüsselübergabe, Übergabeakte und Düsseldorf Reinigung. Diese Seiten führen Kunden gezielt zum passenden Anfrageweg statt nur zu einer allgemeinen Servicebeschreibung.",
   },
 ];
 
@@ -362,8 +425,11 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "",
     title: "FLOXANT Regensburg – Umzug, Reinigung & Spezialservices",
     description:
-      "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung, Plan B, Übergabe, Objektservice und Düsseldorf Reinigung/Entsorgung mit klaren Anfragewegen.",
+      "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung, Plan B, Übergabe, Objektservice und Düsseldorf Reinigung mit klaren Anfragewegen.",
     keywords: [
+      "24h Umzugsservice Regensburg",
+      "24 Stunden Umzug Reinigung Entruempelung",
+      "FLOXANT 24h Anfrage",
       "Umzug Regensburg",
       "Reinigung Regensburg",
       "Entrümpelung Regensburg",
@@ -394,6 +460,9 @@ export default function Home() {
     trustPoints,
     businessModelPillars,
     offerTracks,
+    contactConversionTracks,
+    heroActionCards,
+    heroTrustBadges,
     regionLinks,
     directEntryPaths,
     specialServiceGroups,
@@ -406,7 +475,7 @@ export default function Home() {
       buildWebPageJsonLd({
         name: "FLOXANT Startseite",
         description:
-          "Operative Kontrolle für Umzug, Reinigung, Entrümpelung und Wohnungsübergabe in Regensburg und Bayern.",
+          "Operative Kontrolle für Umzug, Reinigung, Entrümpelung und Wohnungsübergabe in Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
         path: "/",
         about: [
           "Umzug",
@@ -414,17 +483,22 @@ export default function Home() {
           "Entrümpelung",
           "Gewerbereinigung",
           "Büroumzug",
+          "Schlüsselübergabe",
+          "Übergabeprotokoll",
+          "Halteverbotszone",
+          "Plan-B-Service",
           "Regensburg",
+          "Umgebung Regensburg ca. 200 km",
           "Bayern",
         ],
       }),
       buildServiceJsonLd({
         name: "FLOXANT Umzug, Reinigung und Entrümpelung",
         description:
-          "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Büroumzug, Übergabevorbereitung und direkte Anfragewege mit operativem Kern in Regensburg und Einsatzgebiet Bayern.",
+          "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Büroumzug, Übergabevorbereitung und direkte Anfragewege mit operativem Kern in Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
         path: "/",
         serviceType: "Umzug, Reinigung und Entrümpelung",
-        areaServed: ["Regensburg", "Bayern"],
+        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
       }),
       {
         "@type": "ItemList",
@@ -445,7 +519,7 @@ export default function Home() {
         "@id": "https://www.floxant.de/#besondere-services",
         name: "Besondere FLOXANT Seiten und Services",
         description:
-          "Gruppierte Spezialseiten für Angebotsprüfung, Plan B, Objektservice, diskrete Anfragen, Regensburg/Bayern-Local-SEO und Düsseldorf Reinigung/Entsorgung.",
+          "Gruppierte Spezialseiten fuer Angebotspruefung, Plan B, Objektservice, diskrete Anfragen, Regensburg/Bayern-Servicegebiet und Duesseldorf Reinigung.",
         itemListElement: content.specialServiceGroups.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -457,7 +531,7 @@ export default function Home() {
       {
         "@type": "ItemList",
         "@id": "https://www.floxant.de/#lokale-servicepfade",
-        name: "FLOXANT lokale Servicepfade",
+        name: "FLOXANT lokale Servicewege",
         description:
           "Lokale Regensburg- und Bayern-Pfade für Umzug, Reinigung, Entrümpelung, Büroumzug und Einlagerung.",
         itemListElement: mapsIntentRoutes.map((item, index) => ({
@@ -470,9 +544,11 @@ export default function Home() {
       buildFaqJsonLd(content.faqItems),
     ],
   };
+  const primaryCoreServices = content.coreServices.slice(0, 3);
+  const supportCoreServices = content.coreServices.slice(3);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background">
+    <main className="flox-home-page relative min-h-screen overflow-hidden bg-background">
       <OrganizationJsonLd />
       <LocalBusinessJsonLd />
       <script
@@ -481,68 +557,213 @@ export default function Home() {
       />
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section id="ueberblick" className="relative overflow-hidden px-6 pb-16 pt-12 lg:pb-20 lg:pt-18">
+      <section id="ueberblick" className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:pb-20 lg:pt-20">
         <div className="pointer-events-none absolute inset-0">
           <div className="flox-grid-backdrop" />
           <FloxantSymbolLayer variant="moving" density="soft" mode="hero" className="opacity-30" />
         </div>
 
         <div className="flox-shell relative">
-          <div className="flox-panel rounded-[2.4rem] px-6 py-7 sm:px-9 sm:py-9 xl:px-10 xl:py-10">
-            <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr] xl:items-center">
-              <div>
+          <div className="flox-hero-stage px-5 py-6 sm:px-8 sm:py-8 xl:px-10 xl:py-10">
+            <div className="grid gap-7 xl:grid-cols-[minmax(0,1.04fr)_minmax(360px,0.76fr)] xl:items-start">
+              <div className="flox-hero-copy">
+                <div className="flox-hero-kicker-row">
+                  <span>Regensburg / Bayern</span>
+                  <span>Umzug / Reinigung / Entr&uuml;mpelung</span>
+                </div>
                 <div className="flox-kicker">Umzug, Reinigung und Übergabe aus einer Hand</div>
 
-                <h1 className="mt-7 flox-title-xl flox-display-hero max-w-[16ch] text-slate-950">
-                  Umzug, Reinigung & Entrümpelung in Regensburg - organisiert aus einer Hand.
+                <h1 className="mt-7 flox-title-xl flox-display-hero max-w-[19ch] text-slate-950 sm:max-w-[16ch]">
+                  Umzug, Reinigung & Entrümpelung in Regensburg.
                 </h1>
 
                 <p className="flox-body mt-5 max-w-2xl">
-                  FLOXANT hilft in Regensburg, der Umgebung bis ca. 200 km und Bayern nach
-                  Verfügbarkeit, wenn mehr als nur ein Transport gebraucht wird: Reinigung,
-                  Restmengen, Schlüssel, Fotos, Zeitfenster und Übergabe müssen zusammenpassen.
-                  Dafür ordnen wir den Fall realistisch ein, bevor daraus ein verbindlicher Auftrag wird.
+                  Alles aus einer Hand: Senden Sie Ort, Termin, Fotos oder offene Fragen.
+                  FLOXANT prüft den Aufwand und meldet sich mit einem klaren nächsten Schritt.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <div className="flox-hero-action-grid mt-8">
                   <Link
-                    href="/buchung"
-                    className="flox-button-primary px-6"
+                    href="/buchung?utm_source=homepage_hero&urgency=24h&contact=callback#buchungssystem"
+                    className="flox-cta-choice flox-cta-choice-compact flox-cta-choice-primary"
                     data-event="start_booking"
                     data-source="homepage_hero"
+                    data-contact-channel="booking"
+                    data-intent="hero_24h_booking"
+                    data-priority="hot"
                   >
-                    Auftrag realistisch einordnen lassen
-                    <ArrowRight className="h-4 w-4" />
+                    <span className="flox-cta-choice-icon">
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
+                    <span className="flox-cta-choice-body">
+                      <span className="flox-cta-choice-title">Anfrage senden</span>
+                      <span className="flox-cta-choice-copy">Fall kurz schildern</span>
+                    </span>
+                    <span className="flox-cta-choice-arrow">
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
                   </Link>
                   <Link
-                    href="/rechner"
-                    className="flox-button-secondary px-6"
+                    href="/rechner?utm_source=homepage_hero"
+                    className="flox-cta-choice flox-cta-choice-compact flox-cta-choice-light"
                     data-event="start_calculator"
                     data-source="homepage_hero"
+                    data-intent="hero_price_orientation"
+                    data-priority="warm"
                   >
-                    Kosten einschätzen
+                    <span className="flox-cta-choice-icon">
+                      <Banknote className="h-4 w-4" />
+                    </span>
+                    <span className="flox-cta-choice-body">
+                      <span className="flox-cta-choice-title">Kosten einschätzen</span>
+                      <span className="flox-cta-choice-copy">Preisrahmen prüfen</span>
+                    </span>
+                    <span className="flox-cta-choice-arrow">
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
                   </Link>
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flox-button-quiet px-6"
+                    className="flox-cta-choice flox-cta-choice-compact flox-cta-choice-whatsapp"
                     data-event="click_whatsapp"
                     data-source="homepage_hero"
+                    data-contact-channel="whatsapp"
+                    data-intent="hero_direct_contact"
+                    data-priority="hot"
                   >
-                    <MessageCircle className="h-4 w-4" />
-                    WhatsApp
+                    <span className="flox-cta-choice-icon">
+                      <MessageCircle className="h-4 w-4" />
+                    </span>
+                    <span className="flox-cta-choice-body">
+                      <span className="flox-cta-choice-title">WhatsApp</span>
+                      <span className="flox-cta-choice-copy">Direkt schreiben</span>
+                    </span>
+                    <span className="flox-cta-choice-arrow">
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
                   </a>
+                </div>
+
+                <div className="flox-hero-proof-strip mt-6">
+                  {content.heroTrustBadges.map((badge) => (
+                    <div
+                      key={badge.label}
+                      className="flox-hero-proof-item"
+                    >
+                      <div className="flox-overline text-blue-700">
+                        {badge.label}
+                      </div>
+                      <p className="flox-card-copy-sm mt-2 text-slate-600">{badge.text}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="grid gap-3 md:grid-cols-3">
+              <div className="space-y-3">
+                <div className="flox-hero-console p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="flox-overline text-blue-700">
+                        Schnelle Hilfe
+                      </div>
+                      <h2 className="flox-card-title-lg mt-2 max-w-[16ch] text-slate-950">
+                        Wie möchten Sie starten?
+                      </h2>
+                    </div>
+                    <span className="hidden items-center rounded-[var(--flox-radius-xs)] border border-emerald-200 bg-emerald-50 px-3 py-2 font-semibold text-emerald-700 sm:inline-flex">
+                      24h online
+                    </span>
+                  </div>
+
+                  <div className="mt-4 grid gap-2.5">
+                    {content.heroActionCards.map((track, index) => {
+                      const Icon = track.Icon;
+                      const isExternal = track.href.startsWith("http") || track.href.startsWith("tel:");
+                      const isDirectContact =
+                        track.trackingChannel === "booking" || track.trackingChannel === "whatsapp";
+                      const eventName =
+                        track.trackingChannel === "whatsapp"
+                          ? "click_whatsapp"
+                          : track.trackingChannel === "booking"
+                            ? "start_booking"
+                            : "start_price_frame";
+                      const accentClassName =
+                        [
+                          "bg-blue-600 text-white group-hover:bg-blue-700",
+                          "bg-emerald-500 text-white group-hover:bg-emerald-600",
+                          "bg-amber-400 text-slate-950 group-hover:bg-amber-500",
+                        ][index] ?? "bg-slate-950 text-white group-hover:bg-blue-700";
+                      const className =
+                        index === 0
+                          ? "flox-hero-action-primary group grid min-h-[6rem] grid-cols-[auto_1fr_auto] items-center gap-3 px-3.5 py-3.5 text-left"
+                          : "flox-hero-action-secondary group grid min-h-[5.75rem] grid-cols-[auto_1fr_auto] items-center gap-3 px-3.5 py-3.5 text-left";
+                      const body = (
+                        <>
+                          <span className={`flox-icon-tile h-10 w-10 transition ${accentClassName}`}>
+                            <Icon className="h-4 w-4" />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="flox-action-meta block text-blue-700">
+                              {track.label}
+                            </span>
+                            <span className="flox-action-title mt-1 block text-slate-950">
+                              {track.title}
+                            </span>
+                            <span className="flox-card-copy-sm mt-1 block text-slate-600">
+                              {track.text}
+                            </span>
+                          </span>
+                          <ArrowRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                        </>
+                      );
+
+                      return isExternal ? (
+                        <a
+                          key={track.href}
+                          href={track.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={className}
+                          data-event={eventName}
+                          data-source="homepage_decision_panel"
+                          data-contact-channel={track.trackingChannel}
+                          data-intent={isDirectContact ? "hero_direct_conversion" : "hero_price_orientation"}
+                          data-priority={isDirectContact ? "hot" : "warm"}
+                        >
+                          {body}
+                        </a>
+                      ) : (
+                        <Link
+                          key={track.href}
+                          href={track.href}
+                          className={className}
+                          data-event={eventName}
+                          data-source="homepage_decision_panel"
+                          data-contact-channel={track.trackingChannel}
+                          data-intent={isDirectContact ? "hero_direct_conversion" : "hero_price_orientation"}
+                          data-priority={isDirectContact ? "hot" : "warm"}
+                        >
+                          {body}
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  <div className="flox-hero-note flox-card-copy-sm mt-4 px-4 py-3 text-slate-700">
+                    Senden Sie lieber zu früh als zu spät. Mit Ort, Termin und Fotos lässt sich der
+                    nächste Schritt schneller einschätzen.
+                  </div>
+                </div>
+
+                <div className="flox-hero-metric-strip">
                 {[
-                  ["Lokal erreichbar", "Kurze Wege dort, wo Anfahrt und Termin wirklich zählen."],
-                  ["Reichweite geprüft", "Weitere Orte werden nach Route, Umfang und Kapazität eingeordnet."],
-                  ["Übergabe im Blick", "Leistung, Schlüssel, Fotos und nächster Schritt bleiben sichtbar."],
+                  ["Lokal erreichbar", "Kurze Wege, wenn Anfahrt und Termin wirklich zählen."],
+                  ["Ehrlich geplant", "Ort, Umfang und Verfügbarkeit werden vorab sauber geprüft."],
+                  ["Übergabe im Blick", "Schlüssel, Fotos, Restmengen und nächster Schritt bleiben geklärt."],
                 ].map(([label, text]) => (
-                  <div key={label} className="flox-metric">
+                  <div key={label} className="flox-hero-metric">
                     <div className="flox-metric-label">{label}</div>
                     <p className="mt-2 text-sm leading-6 text-slate-700">{text}</p>
                   </div>
@@ -550,21 +771,27 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
 
           {/* Decision Bar */}
-          <div className="mt-5 grid gap-3 lg:grid-cols-6">
+          <div className="flox-hero-route-strip mt-5">
             {[
               { label: "Umzug Regensburg", href: "/umzug-regensburg" },
               { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
               { label: "Entrümpelung Regensburg", href: "/entruempelung-regensburg" },
-              { label: "Preis prüfen", href: "/rechner" },
+              { label: "Preis prüfen", href: "/rechner?utm_source=homepage_decision_bar" },
               { label: "Angebot prüfen", href: "/angebotscheck" },
-              { label: "Direkt anfragen", href: "/buchung" },
+              { label: "Direkt anfragen", href: "/buchung?utm_source=homepage_decision_bar&urgency=24h&contact=callback#buchungssystem" },
             ].map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="flox-panel group relative overflow-hidden rounded-[1.35rem] px-4 py-4 transition duration-300 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/10"
+                className="flox-hero-route-card group px-4 py-4"
+                data-event={item.href.includes("buchung") ? "start_booking" : "click_home_decision_bar"}
+                data-source="homepage_decision_bar"
+                data-contact-channel={item.href.includes("buchung") ? "booking" : undefined}
+                data-intent={item.href.includes("buchung") ? "decision_bar_direct_booking" : "decision_bar_navigation"}
+                data-priority={item.href.includes("buchung") ? "hot" : "warm"}
               >
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 opacity-0 transition group-hover:opacity-100" />
                 <div className="flex items-center justify-between gap-3">
@@ -575,50 +802,131 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-4 overflow-hidden rounded-[1.55rem] border border-blue-100 bg-white/90 shadow-lg shadow-slate-950/5">
+          <div id="kontakt-24h" className="flox-priority-contact-band mt-5 scroll-mt-24">
+            <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="bg-slate-950 px-5 py-5 text-white sm:px-6">
+                <div className="flox-tag-dark">
+                  Jederzeit erreichbar
+                </div>
+                <h2 className="flox-card-title-lg mt-4 max-w-[14ch] text-white">
+                  Schicken Sie Ihren Fall, sobald es dringend wird.
+                </h2>
+                <p className="flox-section-copy mt-3 text-slate-300">
+                  Ob abends, am Wochenende oder kurz vor der Übergabe: Senden Sie die wichtigsten
+                  Angaben, Fotos oder Fragen. FLOXANT prüft, was realistisch machbar ist, und meldet
+                  sich mit einem klaren Vorschlag für den nächsten Schritt.
+                </p>
+              </div>
+
+              <div className="flox-contact-track-grid grid gap-3 p-4 sm:grid-cols-3 sm:p-5">
+                {content.contactConversionTracks.map((track) => {
+                  const Icon = track.Icon;
+                  const isExternal = track.href.startsWith("http") || track.href.startsWith("tel:");
+                  const className =
+                    "flox-contact-track-card group flex h-full min-h-[12rem] flex-col justify-between px-4 py-4 text-left";
+                  const body = (
+                    <>
+                      <div>
+                        <div className="flex items-start justify-between gap-3">
+                          <span className="flox-icon-tile h-10 w-10 bg-blue-600 text-white">
+                            <Icon className="h-4 w-4" />
+                          </span>
+                          <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
+                        </div>
+                        <div className="flox-action-meta mt-4 text-blue-700">
+                          {track.label}
+                        </div>
+                        <h3 className="flox-action-title mt-2 text-slate-950">
+                          {track.title}
+                        </h3>
+                        <p className="flox-card-copy-sm mt-2 text-slate-600">
+                          {track.text}
+                        </p>
+                      </div>
+                      <span className="flox-action-meta mt-4 inline-flex text-slate-950">
+                        Kontakt starten
+                      </span>
+                    </>
+                  );
+
+                  return isExternal ? (
+                    <a
+                      key={track.href}
+                      href={track.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                      data-event="click_24h_contact"
+                      data-source="homepage_24h_conversion"
+                      data-contact-channel={track.trackingChannel}
+                      data-intent="24h_contact_conversion"
+                      data-priority="hot"
+                    >
+                      {body}
+                    </a>
+                  ) : (
+                    <Link
+                      key={track.href}
+                      href={track.href}
+                      className={className}
+                      data-event="click_24h_contact"
+                      data-source="homepage_24h_conversion"
+                      data-contact-channel={track.trackingChannel}
+                      data-intent="24h_contact_conversion"
+                      data-priority="hot"
+                    >
+                      {body}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="flox-bridge-note mt-4">
             <div className="grid gap-0 lg:grid-cols-[1.12fr_0.88fr]">
               <div className="px-5 py-4 text-sm leading-7 text-slate-700 sm:px-6">
-                Wer schon weiß, was gebraucht wird, startet direkt über{" "}
-                <Link href="/buchung" className="font-semibold text-blue-700 underline decoration-blue-200 underline-offset-4 transition hover:text-blue-900">
-                  Buchung
+                Wer schon weiß, was gebraucht wird, startet direkt mit einer{" "}
+                <Link href="/buchung" className="flox-subtle-link font-semibold text-blue-700 underline decoration-blue-200 hover:text-blue-900">
+                  Anfrage
                 </Link>
-                . Wer zuerst Klarheit zu Aufwand und Rahmen will, nutzt den{" "}
-                <Link href="/rechner" className="font-semibold text-blue-700 underline decoration-blue-200 underline-offset-4 transition hover:text-blue-900">
+                . Wer zuerst ein Gefühl für Aufwand und Preisrahmen möchte, nutzt den{" "}
+                <Link href="/rechner" className="flox-subtle-link font-semibold text-blue-700 underline decoration-blue-200 hover:text-blue-900">
                   Rechner
                 </Link>
                 .
               </div>
               <div className="border-t border-blue-100 bg-blue-50/70 px-5 py-4 text-sm leading-7 text-slate-700 lg:border-l lg:border-t-0 sm:px-6">
-                Spezialfälle wie Gewerbe, Premium-Betreuung oder flexible Transporte bleiben separat sauber erreichbar.
+                Bei Gewerbe, sensiblen Fällen oder flexiblen Transporten führt FLOXANT Sie zum passenden Kontaktweg.
               </div>
             </div>
           </div>
 
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="flox-support-route-grid mt-4">
             {[
               {
-                title: "Erst den passenden Weg wählen",
-                text: "Buchung, Rechner, Budget oder Express bleiben getrennt, damit der Einstieg sofort verständlich bleibt.",
+                title: "Den richtigen Start finden",
+                text: "Direkte Anfrage, Preisrahmen oder Express-Fall: Sie wählen den Weg, der zu Ihrer Situation passt.",
                 href: "/buchung",
               },
               {
-                title: "Lokale Leistung statt Suchchaos",
-                text: "Regensburg ist der Kern. Von dort aus führen Umzug, Reinigung und Entrümpelung sauber in die passenden Stadt- und Servicepfade.",
+                title: "Hilfe aus der Region",
+                text: "Regensburg ist der Kern. Von dort aus prüft FLOXANT Umzug, Reinigung und Entrümpelung in der Umgebung bis ca. 200 km und in Bayern nach Ort, Umfang und Termin.",
                 href: "/standorte",
               },
               {
-                title: "Übergabe von Anfang an mitdenken",
-                text: "Wenn Schlüssel, Restmengen, Reinigung oder Fotodokumentation wichtig sind, wird das früh in die Einordnung eingebaut.",
+                title: "Übergabe mitdenken",
+                text: "Wenn Schlüssel, Restmengen, Reinigung oder Fotos wichtig sind, wird das direkt bei der Anfrage berücksichtigt.",
                 href: "/umzug-mit-reinigung",
               },
             ].map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
-                className="group rounded-[1.45rem] border border-slate-200 bg-white/90 px-5 py-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
+                className="flox-support-route-card group px-5 py-5"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-base font-bold tracking-tight text-slate-950">{item.title}</h3>
+                  <h3 className="flox-card-title text-slate-950">{item.title}</h3>
                   <ArrowRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
@@ -626,18 +934,18 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-5 rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(15,23,42,0.96),rgba(18,38,70,0.96))] p-4 shadow-2xl shadow-slate-950/20 md:p-5">
+          <div className="flox-cta-band flox-offer-hub mt-5 p-4 md:p-5">
             <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
               <div className="px-2 py-2">
-                <div className="inline-flex rounded-full border border-white/10 bg-white/8 px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
-                  Welcher Weg passt?
+                <div className="flox-tag-dark">
+                  Einfach starten
                 </div>
-                <h2 className="mt-4 max-w-[13ch] text-3xl font-bold leading-[1] tracking-[-0.018em] text-white md:text-4xl">
-                  Fünf Einstiege statt ein überladenes Formular.
+                <h2 className="flox-title-lg flox-display-section mt-4 max-w-[13ch] text-white">
+                  Der passende Start ohne langes Suchen.
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-slate-300">
-                  Kunden sollen nicht suchen müssen. FLOXANT trennt schnelle Anfrage, Preisgefühl,
-                  Budget, Übergabe und Gewerbe sauber voneinander.
+                  Wählen Sie, was gerade am besten hilft: direkt anfragen, Kosten einschätzen,
+                  Budget nennen, Übergabe vorbereiten oder Gewerbefall besprechen.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
@@ -647,18 +955,18 @@ export default function Home() {
                     <Link
                       key={track.href}
                       href={track.href}
-                      className="group rounded-[1.35rem] border border-white/10 bg-white/[0.075] p-4 transition hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-white/[0.1]"
+                      className="flox-action-card-dark group p-4"
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <span className="grid h-10 w-10 place-items-center rounded-[0.95rem] bg-white/10 text-cyan-200">
+                        <span className="flox-icon-tile-dark h-10 w-10">
                           <Icon className="h-4 w-4" />
                         </span>
                         <ArrowRight className="h-4 w-4 text-slate-500 transition group-hover:translate-x-0.5 group-hover:text-cyan-200" />
                       </div>
-                      <div className="mt-4 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+                      <div className="flox-action-meta mt-4 text-cyan-200">
                         {track.label}
                       </div>
-                      <h3 className="mt-2 text-base font-bold leading-tight tracking-tight text-white">
+                      <h3 className="flox-action-title mt-2 text-white">
                         {track.title}
                       </h3>
                       <p className="mt-2 text-xs leading-6 text-slate-300">{track.text}</p>
@@ -669,8 +977,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-4 rounded-[1.55rem] border border-slate-200 bg-white/88 px-5 py-4 shadow-sm shadow-slate-950/5">
-            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+          <div className="flox-search-entry-strip mt-4 px-5 py-4">
+            <div className="flox-overline text-blue-700">
               Häufig gesuchte Einstiege
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -678,7 +986,7 @@ export default function Home() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-[11px] font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950 hover:shadow-sm"
+                  className="flox-command-link"
                 >
                   {item.label}
                 </Link>
@@ -688,29 +996,102 @@ export default function Home() {
         </div>
       </section>
 
+      <ServiceRequestCompass />
+
       {/* ── SERVICE ARCHITECTURE ──────────────────────────────── */}
       <FloxantStorytellingSection
         variant="operations"
-        eyebrow="FLOXANT jetzt verständlich"
-        title="Umzug, Reinigung, Entrümpelung und Übergabe als klarer Ablauf."
-        intro="Statt Kunden mit vielen Einzelleistungen allein zu lassen, zeigt FLOXANT den nächsten sinnvollen Schritt: Fotos senden, Ort und Termin klären, Angebot prüfen, Budget nennen oder direkt anfragen."
-        regionLabel="Regensburg · Umgebung 200 km · Bayern nach Verfügbarkeit · Düsseldorf nur Reinigung/Entsorgung"
+        eyebrow="So hilft FLOXANT"
+        title="Umzug, Reinigung, Entrümpelung und Übergabe gut vorbereitet."
+        intro="Sie müssen nicht erst herausfinden, welcher Service passt. Senden Sie Fotos, Ort, Termin, ein vorhandenes Angebot oder Ihr Budget. FLOXANT schaut sich den Fall an und führt Sie zum passenden nächsten Schritt."
+        regionLabel="Regensburg · Umgebung 200 km · Bayern nach Verfügbarkeit · Düsseldorf Reinigung getrennt"
         primaryHref="/buchung"
         primaryLabel="Direkt anfragen"
         secondaryHref="/angebot-guenstiger-pruefen"
         secondaryLabel="Angebot prüfen"
-        className="pt-6"
+        className="flox-story-flow pt-6"
       />
 
-      <FloxantNextStepPanel variant="booking" className="py-8" />
+      <FloxantNextStepPanel variant="booking" className="flox-next-step-flow py-8" />
 
-      <SearchDominanceExperience variant="default" className="py-8" />
-
-      <AiServiceRecommendationPanel variant="default" className="pb-10 pt-0" />
-
-      <section id="leistungen" className="flox-section content-auto pt-0">
+      <section id="kontakt-gruende" className="flox-section flox-section-tight content-auto py-8">
         <div className="flox-shell">
-          <div className="max-w-3xl">
+          <div className="flox-editorial-grid">
+            <div className="flox-section-intro">
+              <div className="flox-kicker">Warum jetzt Kontakt aufnehmen?</div>
+              <h2 className="flox-title-lg flox-display-section mt-5 max-w-[14ch] text-slate-950">
+                Je früher wir den Fall kennen, desto besser lässt er sich planen.
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
+                Ein kurzer Kontakt reicht oft, um Unsicherheit aus dem Ablauf zu nehmen. Senden Sie
+                Ort, Termin, Fotos, groben Umfang oder ein vorhandenes Angebot. FLOXANT sagt Ihnen,
+                welcher nächste Schritt sinnvoll ist.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Link
+                  href="/buchung?utm_source=homepage_contact_reasons&urgency=24h&contact=callback#buchungssystem"
+                  className="flox-button-primary px-6"
+                  data-event="start_booking"
+                  data-source="homepage_contact_reasons"
+                  data-contact-channel="booking"
+                  data-intent="contact_reason_booking"
+                  data-priority="hot"
+                >
+                  Fall schildern
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flox-button-secondary px-6"
+                  data-event="click_whatsapp"
+                  data-source="homepage_contact_reasons"
+                  data-contact-channel="whatsapp"
+                  data-intent="contact_reason_whatsapp"
+                  data-priority="hot"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp schreiben
+                </a>
+              </div>
+            </div>
+
+            <div className="flox-reason-grid">
+              {[
+                ["Termin naht", "Wenn Auszug, Reinigung oder Übergabe schon bald ansteht."],
+                ["Aufwand unklar", "Wenn Menge, Laufwege, Etagen oder Restarbeiten schwer einzuschaetzen sind."],
+                ["Angebot liegt vor", "Wenn Sie wissen möchten, ob Umfang, Preis und Zusatzpunkte plausibel sind."],
+                ["Alles aus einer Hand", "Wenn Transport, Reinigung, Entsorgung und Schlüsselübergabe zusammenpassen müssen."],
+              ].map(([title, text], index) => {
+                const iconClassName =
+                  [
+                    "bg-blue-50 text-blue-700",
+                    "bg-emerald-50 text-emerald-700",
+                    "bg-amber-50 text-amber-700",
+                    "bg-slate-100 text-slate-700",
+                  ][index] ?? "bg-blue-50 text-blue-700";
+
+                return (
+                  <div key={title} className="flox-reason-card group px-4 py-4">
+                    <div className="flox-card-title flex items-center gap-2 text-slate-950">
+                      <span className={`flox-icon-tile h-8 w-8 ${iconClassName}`}>
+                        <CheckCircle2 className="h-4 w-4" />
+                      </span>
+                      {title}
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="leistungen" className="flox-section flox-section-major content-auto pt-0">
+        <div className="flox-shell">
+          <div className="flox-section-intro max-w-3xl">
             <div className="flox-kicker">Leistungen schnell einordnen</div>
             <h2 className="mt-6 flox-title-lg flox-display-section max-w-[16ch] text-slate-950">
               Was FLOXANT übernimmt - und wann welcher Weg passt.
@@ -722,53 +1103,75 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 xl:grid-cols-4">
-            {content.coreServices.map((route) => {
+          <div className="flox-service-architecture mt-10">
+            <div className="grid gap-4 lg:grid-cols-3">
+              {primaryCoreServices.map((route) => {
+                const Icon = route.Icon;
+                return (
+                  <article key={route.title} className="flox-service-priority-card group p-6">
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400 opacity-0 transition duration-300 group-hover:opacity-100" />
+                    <div className="flox-icon-tile h-12 w-12 transition duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="flox-overline mt-5 text-blue-700">
+                      {route.label}
+                    </div>
+                    <h3 className="flox-card-title-lg mt-3 text-slate-950">{route.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-700">{route.text}</p>
+                    <Link href={route.href} className="flox-row-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                      Weiter
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </article>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {supportCoreServices.map((route) => {
               const Icon = route.Icon;
               return (
-                <article key={route.title} className="flox-panel group relative overflow-hidden rounded-[1.8rem] p-6 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-950/10">
+                <article key={route.title} className="flox-service-support-card group p-5">
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400 opacity-0 transition duration-300 group-hover:opacity-100" />
-                  <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] bg-blue-50 text-blue-700 transition duration-300 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white">
+                  <div className="flox-icon-tile h-11 w-11 transition duration-300 group-hover:bg-blue-600 group-hover:text-white">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <div className="mt-5 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                  <div className="flox-overline mt-5 text-blue-700">
                     {route.label}
                   </div>
-                  <h3 className="mt-3 text-[1.5rem] font-bold tracking-tight text-slate-950">{route.title}</h3>
+                  <h3 className="flox-card-title-lg mt-3 text-slate-950">{route.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-700">{route.text}</p>
-                  <Link href={route.href} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 transition hover:text-blue-900">
+                  <Link href={route.href} className="flox-row-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
                     Weiter
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </article>
               );
-            })}
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="besondere-services" className="flox-section content-auto pt-0">
+      <section id="besondere-services" className="flox-section flox-section-contrast content-auto pt-0">
         <div className="flox-shell">
-          <div className="relative overflow-hidden rounded-[2.45rem] border border-slate-200 bg-slate-950 px-5 py-6 text-white shadow-[0_34px_100px_rgba(15,23,42,0.18)] md:px-8 md:py-8">
-            <div className="pointer-events-none absolute -left-20 top-4 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
-            <div className="pointer-events-none absolute -right-12 -top-16 h-72 w-72 rounded-full bg-cyan-300/16 blur-3xl" />
+          <div className="flox-cta-band px-5 py-6 text-white md:px-8 md:py-8">
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent" />
 
             <div className="relative grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-100/20 bg-cyan-300/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
+                <div className="flox-tag-dark">
                   <Sparkles className="h-4 w-4" />
-                  Besondere FLOXANT Seiten & Services
+                  Hilfe für besondere Situationen
                 </div>
-                <h2 className="flox-gradient-title mt-5 max-w-[13ch] text-3xl font-black leading-[1.02] tracking-[-0.045em] md:text-5xl">
-                  Die Seiten, die Kunden wirklich weiterbringen.
+                <h2 className="flox-gradient-title flox-title-lg flox-display-section mt-5 max-w-[13ch]">
+                  Wenn ein normaler Auftrag nicht reicht.
                 </h2>
               </div>
               <p className="max-w-3xl text-sm font-semibold leading-7 text-slate-200 md:text-base md:leading-8">
-                FLOXANT soll nicht wie ein normaler Umzugs- oder Reinigungsanbieter wirken.
-                Diese Spezialseiten holen kaufnahe Situationen ab: vorhandenes Angebot,
-                Plan B, Objektübergabe, Nachlass, diskreter Auszug, lokale Regensburg-Suche
-                und Düsseldorf-Reinigung ohne Umzugssignal.
+                Manche Situationen brauchen mehr Ruhe und Vorbereitung: ein vorhandenes Angebot,
+                ein gekippter Plan, eine bevorstehende Übergabe, Nachlass, diskreter Auszug oder
+                ein Objekt, das wieder sauber nutzbar werden soll. Genau dafür gibt es eigene Wege.
               </p>
             </div>
 
@@ -779,32 +1182,32 @@ export default function Home() {
                 return (
                   <article
                     key={group.title}
-                    className="flox-special-service-card group rounded-[1.65rem] border border-white/10 bg-white/[0.075] p-4 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.1] md:p-5"
+                    className="flox-action-card-dark flox-special-service-card group p-4 md:p-5"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[1rem] bg-white text-blue-700 shadow-sm">
+                        <span className="flox-icon-tile h-11 w-11 bg-white text-blue-700 shadow-sm">
                           <Icon className="h-5 w-5" />
                         </span>
                         <div>
-                          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100">
+                          <div className="flox-action-meta text-cyan-100">
                             {group.label}
                           </div>
-                          <div className="mt-1 text-xs font-black uppercase tracking-[0.12em] text-slate-400">
-                            Ebene {index + 1}
+                          <div className="flox-card-copy-sm mt-1 text-slate-400">
+                            Service {index + 1}
                           </div>
                         </div>
                       </div>
                       <Link
                         href={group.href}
-                        className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/10 text-cyan-100 transition group-hover:translate-x-0.5 group-hover:bg-white group-hover:text-blue-700"
+                        className="flox-icon-tile-dark h-10 w-10 transition group-hover:translate-x-0.5 group-hover:bg-white group-hover:text-blue-700"
                         aria-label={`${group.title} öffnen`}
                       >
                         <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>
 
-                    <h3 className="mt-5 text-xl font-black leading-tight tracking-[-0.025em] text-white">
+                    <h3 className="flox-card-title-lg mt-5 text-white">
                       {group.title}
                     </h3>
                     <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">
@@ -815,7 +1218,7 @@ export default function Home() {
                       {group.keywords.map((keyword) => (
                         <span
                           key={`${group.title}-${keyword}`}
-                          className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.12em] text-cyan-50"
+                          className="flox-tag-dark flox-card-copy-sm"
                         >
                           {keyword}
                         </span>
@@ -827,7 +1230,7 @@ export default function Home() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="flex items-center justify-between gap-3 rounded-[1rem] border border-white/10 bg-white/[0.06] px-3 py-3 text-sm font-bold text-slate-100 transition hover:border-cyan-200/30 hover:bg-white/[0.1]"
+                          className="flox-action-card-dark flex items-center justify-between gap-3 px-3 py-3 text-sm font-bold text-slate-100"
                         >
                           <span>{item.label}</span>
                           <ArrowRight className="h-3.5 w-3.5 shrink-0 text-cyan-100" />
@@ -845,12 +1248,13 @@ export default function Home() {
       <SignatureServices
         locale="de"
         source="homepage_signature_services"
+        className="flox-signature-flow"
         dict={{
           signature_services: {
-            badge: "Signatur-Services",
-            title: "Signature Services, die FLOXANT vom Standardanbieter trennen",
+            badge: "Besondere Hilfe",
+            title: "Wenn Timing, Reinigung, Restmengen oder Übergabe zusammenpassen müssen",
             subtitle:
-              "Viele Aufträge kippen nicht beim Tragen, sondern bei Timing, Reinigung, Restmengen, Schlüssel, Haltezone, Fotos und Übergabe. Diese Bausteine machen genau diese Engpässe sichtbar.",
+              "Viele Aufträge werden erst schwierig, wenn Details fehlen: Schlüssel, Haltezone, Fotos, Restmengen, Reinigung oder ein fester Übergabetermin. FLOXANT denkt diese Punkte früh mit.",
             items: {},
           },
         }}
@@ -864,8 +1268,8 @@ export default function Home() {
         maxItems={6}
         showFilters={false}
         showZones={false}
-        title="FLOXANT Einsatzradar Regensburg"
-        subtitle="Typische Einsatzarten im Raum Regensburg: Reinigung, Entruempelung, Umzug, Rueckfahrt, Uebergabe und Objektvorbereitung ohne Kundendaten oder Fake-Live-Karte."
+        title="Typische FLOXANT Hilfe in Regensburg"
+        subtitle="Beispiele, bei denen FLOXANT im Raum Regensburg helfen kann: Reinigung, Entrümpelung, Umzug, Rückfahrt, Übergabe und Objektvorbereitung."
         source="homepage_einsatzradar_teaser"
       />
 
@@ -887,39 +1291,39 @@ export default function Home() {
           "route_board",
           "premium_discreet",
         ]}
-        badge="Lokale Autoritaet"
-        title="Warum FLOXANT in Regensburg anders wirkt als ein Standardanbieter"
-        subtitle="Die Startseite zeigt jetzt die Themen, nach denen Kunden wirklich entscheiden: Region, Verfuegbarkeit, Fotos, Budget, kombinierte Services und ein ruhiger Premium-Pfad fuer sensible Projekte."
+        badge="Lokale Hilfe"
+        title="Warum FLOXANT in Regensburg gut zu komplexen Fällen passt"
+        subtitle="Sie bekommen keine lose Liste von Leistungen, sondern eine ruhige Einordnung: Region, Verfügbarkeit, Fotos, Budget, kombinierte Services und sensible Projekte werden von Anfang an mitgedacht."
         source="homepage_local_authority_modules"
       />
 
-      <section className="flox-section content-auto pt-0">
+      <section className="flox-section flox-section-index content-auto pt-0">
         <div className="flox-shell">
-          <div className="flox-panel rounded-[2rem] px-6 py-6">
+          <div className="flox-link-directory-panel px-6 py-6">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
-                <div className="flox-kicker">Maps und lokale Suche</div>
+                <div className="flox-kicker">Regensburg und Bayern</div>
                 <h2 className="mt-3 flox-title-lg flox-display-section max-w-[16ch] text-slate-950">
-                  Die stärksten direkten Regensburg- und Bayern-Pfade auf einen Blick
+                  Finden Sie direkt die Hilfe, die zu Ort und Aufgabe passt.
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-slate-700">
-                  Diese Seiten decken die konkreten Suchintentionen ab, die für lokale Dienstleister
-                  besonders wertvoll sind: Umzug, Reinigung, Entrümpelung, Büroumzug und Einlagerung.
+                  Ob Umzug, Reinigung, Entrümpelung, Büroumzug oder Einlagerung: Die passenden
+                  Seiten führen schnell zu Informationen und Kontakt.
                 </p>
               </div>
               <Link href="/standorte" className="flox-button-secondary px-6">
                 Alle Standorte
               </Link>
             </div>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="flox-link-directory-grid mt-6">
               {BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 8).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-[1.45rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200"
+                  className="flox-directory-card px-4 py-4"
                 >
-                  <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                    Lokalpfad
+                  <div className="flox-overline text-blue-700">
+                    Vor Ort
                   </div>
                   <div className="mt-2 text-base font-semibold text-slate-950">{item.label}</div>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{item.note}</p>
@@ -931,16 +1335,16 @@ export default function Home() {
       </section>
 
       {/* ── SERVICE SYSTEMS + TRUST (merged) ──────────────────── */}
-      <section id="geschaeftsmodell" className="flox-section content-auto pt-0">
+      <section id="geschaeftsmodell" className="flox-section flox-section-pair content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
-          <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
-            <div className="flox-kicker">Geschäftsmodell klar erklärt</div>
+          <article className="flox-panel flox-lead-panel px-6 py-6 md:px-8 md:py-8">
+            <div className="flox-kicker">So arbeitet FLOXANT</div>
             <h2 className="mt-6 flox-title-lg flox-display-section max-w-[15ch] text-slate-950">
-              FLOXANT ist nicht der billigste Helfer. FLOXANT ist geordnete Service-Führung.
+              Nicht einfach nur Helfer buchen, sondern den Ablauf richtig vorbereiten.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
-              Für Kunden heißt das: weniger Schnittstellen, klarere Verantwortung, realistischere
-              Kalkulation und deutlich bessere Vorbereitung für den Einsatztag.
+              Für Sie heißt das: weniger Abstimmung mit mehreren Stellen, klarere Verantwortung,
+              realistische Planung und bessere Vorbereitung für den Einsatztag.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href="/buchung" className="flox-button-primary px-6">
@@ -952,10 +1356,10 @@ export default function Home() {
               </Link>
             </div>
             <div className="mt-5 flex flex-col gap-2 text-sm font-semibold text-slate-700 sm:flex-row sm:flex-wrap">
-              <Link href="/praxisfaelle" className="rounded-full border border-slate-200 bg-white px-4 py-2 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
+              <Link href="/praxisfaelle" className="flox-command-link">
                 Praxisfälle ansehen
               </Link>
-              <Link href="/anbieter-vergleichen" className="rounded-full border border-slate-200 bg-white px-4 py-2 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
+              <Link href="/anbieter-vergleichen" className="flox-command-link">
                 Anbieter fair vergleichen
               </Link>
             </div>
@@ -963,8 +1367,8 @@ export default function Home() {
 
           <div className="grid gap-4 md:grid-cols-3">
             {content.businessModelPillars.map((item) => (
-              <article key={item.title} className="flox-panel rounded-[1.7rem] p-6">
-                <h3 className="text-[1.18rem] font-bold tracking-tight text-slate-950">{item.title}</h3>
+              <article key={item.title} className="flox-system-pillar-card p-6">
+                <h3 className="flox-card-title text-slate-950">{item.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
               </article>
             ))}
@@ -972,11 +1376,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="preis" className="flox-section content-auto pt-0">
+      <section id="preis" className="flox-section flox-section-pair content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[1.03fr_0.97fr]">
-          <article className="flox-panel-dark rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+          <article className="flox-panel-dark flox-conversion-panel px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Sofortiger Einstieg</div>
-            <h2 className="mt-6 max-w-[15ch] text-[clamp(2rem,4vw,3.4rem)] font-bold flox-display-section text-white">
+            <h2 className="flox-title-lg flox-display-section mt-6 max-w-[15ch] text-white">
               Nicht jeder Kunde braucht denselben Weg.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
@@ -991,26 +1395,26 @@ export default function Home() {
                   <Link
                     key={item.title}
                     href={item.href}
-                    className="rounded-[1.3rem] border border-white/10 bg-white/6 px-4 py-4 transition hover:border-cyan-300/30 hover:bg-white/8"
+                    className="flox-action-card-dark flox-special-route-card px-4 py-4"
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-[0.95rem] bg-white/8 text-cyan-200">
+                      <div className="flox-icon-tile-dark h-10 w-10">
                         <Icon className="h-4 w-4" />
                       </div>
-                      <ArrowRight className="mt-1 h-4 w-4 text-slate-400" />
+                      <ArrowRight className="flox-special-route-arrow mt-1 h-4 w-4" />
                     </div>
-                    <div className="mt-4 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+                    <div className="flox-action-meta flox-special-route-meta mt-4">
                       {item.label}
                     </div>
-                    <h3 className="mt-2 text-lg font-semibold tracking-tight text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-slate-300">{item.text}</p>
+                    <h3 className="flox-card-title flox-special-route-title mt-2">{item.title}</h3>
+                    <p className="flox-special-route-copy mt-2 text-sm leading-7">{item.text}</p>
                   </Link>
                 );
               })}
             </div>
           </article>
 
-          <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+          <article className="flox-panel flox-support-panel px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Warum FLOXANT</div>
             <h2 className="mt-6 flox-title-lg flox-display-section max-w-[15ch] text-slate-950">
               Weniger Schnittstellen. Weniger Risiko. Besser planbar.
@@ -1031,9 +1435,9 @@ export default function Home() {
       </section>
 
       {/* ── OPERATIONS PROOF ──────────────────────────────────── */}
-      <section id="ablauf" className="flox-section content-auto pt-0">
+      <section id="ablauf" className="flox-section flox-section-pair content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-2">
-          <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+          <article className="flox-panel flox-process-panel px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Ablauf</div>
             <h2 className="mt-6 flox-title-lg flox-display-section max-w-[16ch] text-slate-950">
               Vertrauen entsteht durch Struktur, nicht durch Lautstärke.
@@ -1053,7 +1457,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+          <article className="flox-panel flox-process-panel px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Operative Stärke</div>
             <h2 className="mt-6 flox-title-lg flox-display-section max-w-[15ch] text-slate-950">
               FLOXANT denkt kombinierte Services von Anfang an mit.
@@ -1065,7 +1469,7 @@ export default function Home() {
                 "Regionale Führung ab Regensburg macht Übergabe und Abstimmung realistischer.",
                 "Schlüsselübergabe, Fotodokumentation und Protokoll können von Anfang an mitgedacht werden.",
               ].map((item) => (
-                <div key={item} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-7 text-slate-700">
+                <div key={item} className="flox-process-note px-4 py-4 text-sm leading-7 text-slate-700">
                   {item}
                 </div>
               ))}
@@ -1078,23 +1482,24 @@ export default function Home() {
       <TrustFlowSection sectionId="vertrauen" />
       <LocalSeoSignalPanel sectionId="lokales-signal" />
 
-      <section id="region" className="flox-section content-auto pt-0">
+      <section id="region" className="flox-section flox-section-index content-auto pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+          <article className="flox-link-directory-panel px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">Region</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Regensburg ist der Kern. Bayern bleibt das klare Einsatzgebiet.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
-              Diese Klarheit hilft Kunden und Suchmaschinen gleichermaßen, FLOXANT als
-              lokales Service-System mit echter operativer Basis zu verstehen.
+              Die Umgebung bis ca. 200 km rund um Regensburg wird zuerst geprüft; Bayern
+              bleibt nach Verfügbarkeit möglich. Diese Klarheit hilft Kunden und Suchmaschinen,
+              FLOXANT als lokales Service-System mit echter operativer Basis zu verstehen.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {content.regionLinks.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50"
+                  className="flox-command-link flox-command-link-large"
                 >
                   {item.label}
                 </Link>
@@ -1102,7 +1507,7 @@ export default function Home() {
             </div>
           </article>
 
-          <div className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
+          <div className="flox-faq-panel px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">FAQ</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Häufige Fragen zu Anfrage, Preis und Einsatzgebiet.
@@ -1111,7 +1516,7 @@ export default function Home() {
               {content.faqItems.map((item, index) => (
                 <details
                   key={item.q}
-                  className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4"
+                  className="flox-faq-card px-4 py-4"
                   open={index === 0}
                 >
                   <summary className="cursor-pointer list-none text-sm font-semibold text-slate-950">
@@ -1126,13 +1531,13 @@ export default function Home() {
       </section>
 
       {/* ── FINAL CTA ─────────────────────────────────────────── */}
-      <section id="kontakt" className="flox-section content-auto pt-0">
+      <section id="kontakt" className="flox-section flox-section-final content-auto pt-0">
         <div className="flox-shell">
-          <div className="flox-panel-dark rounded-[2.4rem] px-6 py-8 md:px-10 md:py-10">
+          <div className="flox-panel-dark px-6 py-8 md:px-10 md:py-10">
             <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
               <div>
                 <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Direkt anfragen</div>
-                <h2 className="mt-6 max-w-[15ch] text-[clamp(2.2rem,4vw,4rem)] font-bold flox-display-hero text-white">
+                <h2 className="flox-title-lg flox-display-hero mt-6 max-w-[15ch] text-white">
                   Der nächste Schritt soll sich klar anfühlen, nicht billig.
                 </h2>
                 <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
@@ -1142,21 +1547,31 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Link href="/buchung" className="flox-button-primary min-h-[5.6rem] rounded-[1.4rem] px-5 text-left normal-case tracking-normal">
-                  <span className="w-full">
-                    <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white/74">
-                      Hauptpfad
-                    </span>
-                    <span className="mt-2 block text-xl font-black tracking-tight">Fall schildern</span>
+              <div className="flox-cta-choice-grid">
+                <Link href="/buchung" className="flox-cta-choice flox-cta-choice-primary">
+                  <span className="flox-cta-choice-icon">
+                    <MessageCircle className="h-5 w-5" />
+                  </span>
+                  <span className="flox-cta-choice-body">
+                    <span className="flox-cta-choice-eyebrow">Hauptpfad</span>
+                    <span className="flox-cta-choice-title">Fall schildern</span>
+                    <span className="flox-cta-choice-copy">Direkt zur Anfrage</span>
+                  </span>
+                  <span className="flox-cta-choice-arrow">
+                    <ArrowRight className="h-4 w-4" />
                   </span>
                 </Link>
-                <Link href="/rechner" className="flox-button-secondary min-h-[5.6rem] rounded-[1.4rem] border-white/12 bg-white/6 px-5 text-left normal-case tracking-normal text-white">
-                  <span className="w-full">
-                    <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
-                      Einschätzung
-                    </span>
-                    <span className="mt-2 block text-xl font-black tracking-tight">Kosten einschätzen</span>
+                <Link href="/rechner" className="flox-cta-choice flox-cta-choice-light">
+                  <span className="flox-cta-choice-icon">
+                    <Banknote className="h-5 w-5" />
+                  </span>
+                  <span className="flox-cta-choice-body">
+                    <span className="flox-cta-choice-eyebrow">Einschätzung</span>
+                    <span className="flox-cta-choice-title">Kosten einschätzen</span>
+                    <span className="flox-cta-choice-copy">Rechner öffnen</span>
+                  </span>
+                  <span className="flox-cta-choice-arrow">
+                    <ArrowRight className="h-4 w-4" />
                   </span>
                 </Link>
               </div>

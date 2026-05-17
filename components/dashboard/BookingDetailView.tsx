@@ -111,6 +111,88 @@ function formatValuationRange(booking: Booking) {
   return `${new Intl.NumberFormat("de-DE").format(min)} EUR - ${new Intl.NumberFormat("de-DE").format(max)} EUR`;
 }
 
+type LeadRoutingSummary = {
+ priority?: string;
+ score?: number;
+ responseSla?: string;
+ nextAction?: string;
+ reasons?: string[];
+ tags?: string[];
+};
+
+type ConversionJourneySummary = {
+ journeyId?: string;
+ lastEventName?: string;
+ lastSource?: string;
+ lastChannel?: string;
+ lastIntent?: string;
+ lastPriority?: string;
+};
+
+function getLeadRouting(booking: Booking): LeadRoutingSummary | null {
+ const details = booking.details as any;
+ return (
+  details?.admin?.leadRouting ||
+  details?.configuration?.leadRouting ||
+  details?.metadata?.clientContext?.leadRouting ||
+  details?.valuation?.pricingSignals?.leadRouting ||
+  null
+ );
+}
+
+function getConversionJourney(booking: Booking): ConversionJourneySummary | null {
+ const details = booking.details as any;
+ return (
+  details?.metadata?.conversionJourney ||
+  details?.configuration?.conversionJourney ||
+  details?.valuation?.pricingSignals?.conversionJourney ||
+  details?.metadata?.clientContext?.conversionJourney ||
+  null
+ );
+}
+
+function formatConversionJourney(journey: ConversionJourneySummary | null) {
+ if (!journey) return "Nicht erfasst";
+ const parts = [journey.lastChannel, journey.lastSource, journey.lastEventName].filter(Boolean);
+ return germanizeText(parts.join(" / ") || journey.journeyId || "Erfasst");
+}
+
+function getPriorityTone(priority?: string) {
+ switch (priority) {
+  case "critical":
+   return "border-red-200 bg-red-50 text-red-700";
+  case "hot":
+   return "border-orange-200 bg-orange-50 text-orange-700";
+  case "warm":
+   return "border-amber-200 bg-amber-50 text-amber-700";
+  default:
+   return "border-slate-200 bg-slate-50 text-slate-600";
+ }
+}
+
+function getPriorityPanelTone(priority?: string) {
+ switch (priority) {
+  case "critical":
+   return "border-red-200 bg-red-50";
+  case "hot":
+   return "border-orange-200 bg-orange-50";
+  case "warm":
+   return "border-amber-200 bg-amber-50";
+  default:
+   return "border-slate-200 bg-white";
+ }
+}
+
+function formatPriorityLabel(priority?: string) {
+ const labels: Record<string, string> = {
+  critical: "Sofort",
+  hot: "Heiss",
+  warm: "Warm",
+  normal: "Normal",
+ };
+ return labels[priority || "normal"] || "Normal";
+}
+
 export function BookingDetailView({
  booking,
  initialTab = "overview",
@@ -127,6 +209,8 @@ export function BookingDetailView({
  const [error, setError] = useState<string | null>(null);
  const [activeTab, setActiveTab] = useState<DetailTab>(initialTab);
  const sourceMeta = useMemo(() => getInquirySourceMeta(booking), [booking]);
+ const leadRouting = useMemo(() => getLeadRouting(booking), [booking]);
+ const conversionJourney = useMemo(() => getConversionJourney(booking), [booking]);
 
  const history = useMemo(() => booking.details?.admin?.history || [], [booking.details?.admin?.history]);
 
@@ -304,6 +388,12 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
       <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 font-semibold text-slate-600">
        Systemrahmen: {formatValuationRange(booking)}
       </span>
+      {leadRouting ? (
+       <span className={cn("rounded-full border px-3 py-1.5 font-semibold", getPriorityTone(leadRouting.priority))}>
+        Prioritaet: {formatPriorityLabel(leadRouting.priority)}
+        {typeof leadRouting.score === "number" ? ` (${leadRouting.score})` : ""}
+       </span>
+      ) : null}
      </div>
 
      <div className="mt-5 grid gap-3 xl:grid-cols-[0.92fr_0.92fr_1.26fr]">
@@ -354,6 +444,8 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
           <InfoLink label="Telefon" value={booking.phone} href={`tel:${booking.phone}`} align="end" />
           <InfoCell label="Kanal" value={sourceMeta.label} />
           <InfoCell label="Einstieg" value={sourceMeta.entryPoint} align="end" />
+          <InfoCell label="Kontakt-Signal" value={formatConversionJourney(conversionJourney)} />
+          <InfoCell label="Journey-ID" value={conversionJourney?.journeyId ? conversionJourney.journeyId.slice(0, 18) : "Nicht erfasst"} align="end" />
           <button
            type="button"
            onClick={handleDelete}
@@ -365,6 +457,49 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
           </button>
          </div>
         </section>
+
+        {leadRouting ? (
+         <section className="space-y-4">
+          <div className="flex items-center gap-2 text-slate-500">
+           <AlertTriangle className="h-4 w-4" />
+           <h3 className="text-[10px] font-bold uppercase tracking-[0.2em]">Lead-Priorisierung</h3>
+          </div>
+
+          <div className={cn("space-y-4 rounded-2xl border p-6 shadow-sm shadow-slate-950/5", getPriorityPanelTone(leadRouting.priority))}>
+           <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">Prioritaet</p>
+             <p className="mt-1 text-2xl font-black tracking-tight text-slate-950">
+              {formatPriorityLabel(leadRouting.priority)}
+              {typeof leadRouting.score === "number" ? (
+               <span className="ml-2 text-sm font-bold text-slate-500">Score {leadRouting.score}</span>
+              ) : null}
+             </p>
+            </div>
+            <span className={cn("rounded-full border px-3 py-1.5 text-[10px] font-black uppercase tracking-wider", getPriorityTone(leadRouting.priority))}>
+             {leadRouting.responseSla || "Regulaere Vorpruefung"}
+            </span>
+           </div>
+
+           <div className="rounded-xl border border-white/70 bg-white/75 p-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">Naechster Schritt</p>
+            <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-950">
+             {leadRouting.nextAction || "Anfrage im normalen Backoffice-Prozess bearbeiten."}
+            </p>
+           </div>
+
+           {leadRouting.reasons?.length ? (
+            <div className="flex flex-wrap gap-2">
+             {leadRouting.reasons.slice(0, 4).map((reason) => (
+              <span key={reason} className="rounded-md bg-white px-2.5 py-1 text-[10px] font-bold text-slate-600 shadow-sm shadow-slate-950/5">
+               {germanizeText(reason)}
+              </span>
+             ))}
+            </div>
+           ) : null}
+          </div>
+         </section>
+        ) : null}
 
         <section className="space-y-4">
          <div className="flex items-center gap-2 text-slate-500">

@@ -4,45 +4,47 @@ import { MapPin, Navigation, PhoneCall } from "lucide-react";
 import { company } from "@/lib/company";
 
 const localSignals = [
-  "Regensburg als operative Basis",
-  "Umgebung ca. 200 km als Nahbereich",
-  "Bayern als klares Einsatzgebiet",
-  "Buchung als direkter Maps- und Search-Einstieg",
+  "24h Online-Anfrage und WhatsApp",
+  "Regensburg als Startpunkt",
+  "Umgebung ca. 200 km nach Absprache",
+  "Bayern nach Verfügbarkeit",
+  "Direkte Anfrage ohne Umwege",
 ];
 
 const localHighlights = [
-  "Klare Standortsignale: Regensburg, Umgebung, Bayern nach Verfügbarkeit",
-  "Ein bevorzugter Einstieg für Maps, Search, KI-Antworten und direkte Empfehlungen",
-  "Freundliche Führung zu Umzug, Reinigung, Entrümpelung, Rückfahrt oder Spezialservice",
+  "Sie koennen Fall, Fotos, Termin und Budget jederzeit senden.",
+  "FLOXANT prüft Ort, Umfang und Verfügbarkeit ehrlich vorab.",
+  "Umzug, Reinigung, Entrümpelung und Übergabe können zusammen gedacht werden.",
+  "Bei Rückfragen bleiben Telefon, WhatsApp und Anfrageformular direkt erreichbar.",
 ];
 
 export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: string }) {
   return (
     <section id={sectionId} className="section-glow relative px-6 pb-22">
       <div className="mx-auto grid max-w-7xl gap-5 xl:grid-cols-[1.02fr_0.98fr]">
-        <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
-          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
-            Lokales Signal
+        <div className="glass-elevated px-6 py-6 md:px-8 md:py-8">
+          <div className="flox-overline text-blue-700">
+            Servicegebiet
           </div>
-          <h2 className="mt-4 max-w-3xl text-[1.9rem] font-bold flox-display-section text-slate-950 md:text-[2.45rem]">
-            Regensburg ist der operative Kern. Bayern bleibt das klare Einsatzgebiet.
+          <h2 className="flox-title-lg flox-display-section mt-4 max-w-3xl text-slate-950">
+            Regensburg ist der Startpunkt. Bayern ist nach Verfügbarkeit möglich.
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
-            Für Google Maps, Google Search und direkte Kundenanfragen soll sofort sichtbar sein:
-            FLOXANT plant von Regensburg aus, prüft Einsätze in der Umgebung bis ca. 200 km und
-            führt Interessenten nicht im Kreis, sondern in einen verständlichen direkten Anfrageweg.
+            FLOXANT plant von Regensburg aus und prüft Einsätze in der Umgebung bis ca. 200 km
+            sowie in Bayern nach Termin, Umfang und Strecke. So wissen Sie schnell, ob Ihr Fall
+            sinnvoll eingeordnet werden kann.
           </p>
           <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
-            Für KI-Antworten und lokale Empfehlungen ist die Logik bewusst klar: Umzug,
-            Reinigung, Entrümpelung, Transport, Übergabeakte, Plan B oder Angebot prüfen lassen.
-            Düsseldorf bleibt sauber getrennt für Reinigung und Entsorgung.
+            Wichtig ist nicht nur die Entfernung, sondern der Ablauf: Umzug, Reinigung,
+            Entrümpelung, Transport, Übergabe, Plan B oder Angebotsprüfung werden passend
+            zum Auftrag besprochen. Düsseldorf bleibt getrennt für Reinigung; Entsorgung bleibt eine eigene vorhandene Seite.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2.5">
             {localSignals.map((signal) => (
               <span
                 key={signal}
-                className="rounded-full border border-blue-100 bg-blue-50/80 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-blue-800"
+                className="flox-tag-soft"
               >
                 {signal}
               </span>
@@ -50,24 +52,24 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
           </div>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="card-premium rounded-[1.25rem] p-5">
-              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+            <div className="card-premium p-5">
+              <div className="flox-overline flex items-center gap-2 text-blue-700">
                 <MapPin className="h-3.5 w-3.5" />
                 Adresse
               </div>
               <p className="mt-3 text-[1rem] font-semibold leading-8 text-slate-950">{company.address}</p>
             </div>
 
-            <div className="card-premium rounded-[1.25rem] p-5">
-              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+            <div className="card-premium p-5">
+              <div className="flox-overline flex items-center gap-2 text-blue-700">
                 <PhoneCall className="h-3.5 w-3.5" />
                 Direkter Kontakt
               </div>
               <div className="mt-3 space-y-1.5 text-[1rem] font-semibold leading-8 text-slate-950">
-                <a href={`tel:${company.phoneRaw}`} className="block hover:text-blue-700">
+                <a href={`tel:${company.phoneRaw}`} className="flox-subtle-link block hover:text-blue-700">
                   {company.phone}
                 </a>
-                <a href={`mailto:${company.email}`} className="block hover:text-blue-700">
+                <a href={`mailto:${company.email}`} className="flox-subtle-link block hover:text-blue-700">
                   {company.email}
                 </a>
               </div>
@@ -75,34 +77,34 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
           </div>
         </div>
 
-        <div className="glass-elevated rounded-[1.9rem] px-6 py-6 md:px-8 md:py-8">
-          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
-            Maps, Search & direkte Wege
+        <div className="glass-elevated px-6 py-6 md:px-8 md:py-8">
+          <div className="flox-overline text-blue-700">
+            Kontakt ohne Umwege
           </div>
-          <h3 className="mt-4 max-w-[15ch] text-[1.75rem] font-bold flox-display-section-tight text-slate-950 md:text-[2.1rem]">
-            Ein direkter Pfad, der in Maps, Search und KI-Antworten verständlich wirkt
+          <h3 className="flox-title-lg flox-display-section-tight mt-4 max-w-[15ch] text-slate-950">
+            Schnell zum passenden Kontaktweg
           </h3>
           <p className="mt-4 text-[15px] leading-7 text-slate-700">
-            Der direkte Einstieg für spontane Kunden bleibt bewusst die Buchungsseite. Von dort aus
-            bleiben Buchung, Express-Check, Preisvorstellung und Kontakt sauber getrennt. Genau das
-            wirkt für Kunden ruhiger, verständlicher und oft auch klickstärker.
+            Wenn Sie schon wissen, was gebraucht wird, starten Sie direkt mit der Anfrage. Wenn noch
+            Unsicherheit besteht, helfen Rechner, Express-Check, Preisrahmen oder Kontakt weiter.
+            So bleibt der Start ruhig und verständlich.
           </p>
 
-          <div className="mt-6 rounded-[1.1rem] border border-blue-100 bg-blue-50/75 px-4 py-3.5 text-sm font-mono text-blue-800">
-            {company.businessProfilePreferredUrl}
+          <div className="flox-info-panel mt-6 px-4 py-3.5 text-sm font-mono">
+            Regensburg · Umgebung ca. 200 km · Bayern nach Verfügbarkeit
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <Link
               href="/buchung"
-              className="btn-premium inline-flex h-11 items-center justify-center gap-2 rounded-[1rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-5 text-[11px] font-black uppercase tracking-[0.16em] text-white"
+              className="flox-button-primary h-11 px-5"
             >
-              Buchungsseite öffnen
+              Anfrage öffnen
               <Navigation className="h-4 w-4" />
             </Link>
             <Link
               href="/kontakt"
-              className="inline-flex h-11 items-center justify-center rounded-[1rem] border border-slate-200 bg-white px-5 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 transition-all hover:border-blue-200 hover:bg-blue-50"
+              className="flox-button-secondary h-11 px-5"
             >
               Kontakt & Standort
             </Link>
@@ -112,7 +114,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
             {localHighlights.map((item) => (
               <div
                 key={item}
-                className="rounded-[1.05rem] border border-slate-200 bg-white/92 px-4 py-4 shadow-sm shadow-slate-950/5"
+                className="flox-surface-card px-4 py-4"
               >
                 <p className="text-sm leading-6 text-slate-700">{item}</p>
               </div>

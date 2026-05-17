@@ -2,7 +2,13 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import sharp from "sharp";
 import { authOptions } from "@/lib/auth";
+import {
+ enrichIntakeWithConversionJourney,
+ getConversionJourneyIdFromDetails,
+} from "@/lib/conversion-journey";
+import { attachLeadRouting } from "@/lib/lead-routing";
 import { sendInternalIntakeNotification } from "@/lib/mail/notifications";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { supabase } from "@/lib/supabase";
 import { IntakePayload } from "@/lib/types/intake";
 
@@ -161,6 +167,34 @@ function isStructuredIntakePayload(value: unknown): value is IntakePayload {
    "valuation" in (value as Record<string, unknown>) &&
    "metadata" in (value as Record<string, unknown>)
  );
+}
+
+function getConversionJourneyId(details: IntakePayload) {
+ return getConversionJourneyIdFromDetails(details);
+}
+
+async function linkConversionEventsToBooking(bookingId: string, details: IntakePayload, service: string) {
+ const journeyId = getConversionJourneyId(details);
+ if (!journeyId || !bookingId) return;
+
+ try {
+  const { error } = await getSupabaseAdmin()
+   .from("conversion_events")
+   .update({
+    booking_id: bookingId,
+    booking_service: service,
+    converted_at: new Date().toISOString(),
+   })
+   .eq("journey_id", journeyId)
+   .is("booking_id", null)
+   .gte("created_at", new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString());
+
+  if (error) {
+   console.warn("Conversion journey link failed:", error.message);
+  }
+ } catch (error) {
+  console.warn("Conversion journey link skipped:", error);
+ }
 }
 
 function payloadText(payload: any, key: string) {
@@ -3027,7 +3061,7 @@ function buildLeadAttribution(payload: any, normalizedService: string) {
  };
 }
 
-function enrichDetailsWithAttribution(details: IntakePayload, payload: any): IntakePayload {
+function enrichDetailsWithAttribution(details: IntakePayload, payload: any, cookieHeader?: string | null): IntakePayload {
  const normalizedService = normalizeService(payload.service || details.service?.type);
  const payloadAttribution = buildLeadAttribution(payload, normalizedService);
  const leadSource =
@@ -3038,7 +3072,7 @@ function enrichDetailsWithAttribution(details: IntakePayload, payload: any): Int
  const attribution = { ...payloadAttribution, lead_source: leadSource };
  const regionPreset = attribution.region || details.service?.regionPreset || details.metadata?.regionPreset || "";
 
- return {
+ const enrichedDetails: IntakePayload = {
   ...details,
   service: {
    ...details.service,
@@ -3091,6 +3125,8 @@ function enrichDetailsWithAttribution(details: IntakePayload, payload: any): Int
    },
   },
  };
+
+ return enrichIntakeWithConversionJourney(enrichedDetails, payload, cookieHeader);
 }
 
 function buildBookingWizardDetails(payload: any): IntakePayload {
@@ -3246,6 +3282,7 @@ function collectFormFiles(formData: FormData, fieldNames: string[]) {
 export async function POST(req: Request) {
  try {
   const contentType = req.headers.get("content-type") || "";
+  const cookieHeader = req.headers.get("cookie");
   let payload: any = {};
   let fileUrls: string[] = [];
 
@@ -3943,7 +3980,7 @@ export async function POST(req: Request) {
        : buildBookingWizardDetails(payload)
      : payload.details || {};
   const details = isStructuredIntakePayload(rawDetails)
-   ? enrichDetailsWithAttribution(rawDetails, payload)
+   ? attachLeadRouting(enrichDetailsWithAttribution(rawDetails, payload, cookieHeader))
    : rawDetails;
 
   const booking = {
@@ -3969,6 +4006,10 @@ export async function POST(req: Request) {
     },
     { status: 500 }
    );
+  }
+
+  if (data?.[0]?.id && isStructuredIntakePayload(details)) {
+   await linkConversionEventsToBooking(String(data[0].id), details, String(booking.service));
   }
 
   if (

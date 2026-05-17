@@ -14,7 +14,10 @@ export function LocalBusinessJsonLd() {
     "@type":
       area === "Bayern" || area.startsWith("Baden")
         ? "State"
-        : area === "Oberpfalz" || area === "Landkreis Regensburg"
+        : area === "Oberpfalz" ||
+            area === "Landkreis Regensburg" ||
+            area.includes("200 km") ||
+            area.includes("Umgebung")
           ? "AdministrativeArea"
           : "City",
     name: area,
@@ -31,6 +34,10 @@ export function LocalBusinessJsonLd() {
     { name: "Gewerbereinigung Regensburg", url: `${company.url}/gewerbereinigung-regensburg` },
     { name: "Firmenentsorgung", url: `${company.url}/firmenentsorgung` },
     { name: "Leer-Rückfahrt", url: `${company.url}/leerfahrt-rueckfahrt` },
+    { name: "Leer-Rückfahrt / Rückladung", url: `${company.url}/rueckfahrt-boerse` },
+    { name: "Umzug mit Reinigung", url: `${company.url}/umzug-mit-reinigung` },
+    { name: "Schlüsselübergabe", url: `${company.url}/schluesseluebergabe` },
+    { name: "Halteverbotszone Regensburg", url: `${company.url}/halteverbotszone-regensburg` },
     { name: "Private Client Service", url: `${company.url}/private-client-service` },
     { name: "Angebotscheck", url: `${company.url}/angebotscheck` },
     { name: "Angebot günstiger prüfen", url: `${company.url}/angebot-guenstiger-pruefen` },
@@ -91,7 +98,7 @@ export function LocalBusinessJsonLd() {
     name: company.name,
     alternateName: ["FLOXANT Premium Services"],
     description:
-      "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg und Bayern.",
+      "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
     image: [
       `${company.url}/og.jpg`,
       `${company.url}/opengraph-image`,
@@ -134,6 +141,10 @@ export function LocalBusinessJsonLd() {
       "Akteneinlagerung Regensburg",
       "Firmenentsorgung Regensburg",
       "Gewerbereinigung Regensburg",
+      "Umzug im 200-km-Umkreis Regensburg",
+      "Kurzfristiger Umzug Regensburg",
+      "Umzug mit Reinigung",
+      "Umzug mit Übergabe",
       "Bueroreinigung Regensburg",
       "Praxisreinigung Regensburg",
       "Hotelreinigung Regensburg",
@@ -143,13 +154,19 @@ export function LocalBusinessJsonLd() {
       "Angebotscheck",
       "Plan-B-Service",
       "Schadensbegrenzung",
+      "Schlüsselübergabe Service",
+      "Übergabeprotokoll",
+      "Halteverbotszone organisieren",
       "Übergabeakte",
+      "Auszug vorbereiten",
+      "Übergabe vorbereiten",
       "Immobilie verkaufsbereit machen",
       "Nachlass-Räumung Regensburg",
       "Düsseldorf Reinigung",
       "Düsseldorf B2B-Reinigung",
       "Düsseldorf Entsorgung",
       "Leer-Rückfahrt",
+      "Rückladung",
       "Buchung über Google Maps",
       "Direkter Buchungslink",
       "Google Unternehmensprofil Regensburg",
@@ -172,14 +189,42 @@ export function LocalBusinessJsonLd() {
         contactType: "customer support",
         areaServed: ["DE"],
         availableLanguage: ["de"],
+        hoursAvailable: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
       },
       {
         "@type": "ContactPoint",
         telephone: company.phoneRaw,
         email: company.email,
         contactType: "sales",
-        areaServed: ["Regensburg", "Bayern"],
+        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
         availableLanguage: ["de"],
+        hoursAvailable: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
       },
     ],
     potentialAction: [
@@ -298,15 +343,9 @@ export function LocalBusinessJsonLd() {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:00",
-        closes: "18:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "14:00",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "00:00",
+        closes: "23:59",
       },
     ],
     mentions: {

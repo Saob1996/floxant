@@ -222,7 +222,7 @@ export function DuesseldorfApartmentCleaningForm() {
   const isSubmitting = submitState === "submitting";
 
   return (
-    <div id="apartment-reinigung-form" className="rounded-[2.15rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 ring-1 ring-white sm:p-7">
+    <div id="apartment-reinigung-form" className="min-w-0 rounded-[2.15rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 ring-1 ring-white sm:p-7">
       <div>
         <div className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-cyan-800">
           Apartment-Status
@@ -231,17 +231,17 @@ export function DuesseldorfApartmentCleaningForm() {
         <p className="mt-2 text-sm leading-6 text-slate-600">
           FLOXANT fragt bewusst nach Zeitfenster, Objektart, Fotos und Zusatzwünschen, damit Gästewechsel oder Endreinigung in Düsseldorf realistisch geprüft werden können.
         </p>
-        <div className="mt-4 grid gap-2 sm:grid-cols-4">
+        <div className="mt-4 grid grid-cols-2 gap-2">
           {formGuidance.map((item, index) => (
-            <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+            <div key={item} className="min-w-0 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
               <div className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">Angabe {index + 1}</div>
-              <div className="mt-1 text-xs font-black text-slate-800">{item}</div>
+              <div className="mt-1 text-xs font-black leading-5 text-slate-800">{item}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="mt-5 grid gap-3 lg:grid-cols-4">
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
         {statusCards.map((item) => {
           const Icon = item.Icon;
           const active = cleaningType === item.value || (item.value === "Zusatzwünsche" && (laundryRequested === "ja" || keyRequested === "ja" || inventoryNote === "ja"));
@@ -258,7 +258,7 @@ export function DuesseldorfApartmentCleaningForm() {
               }}
               data-event="select_apartment_cleaning_type"
               data-cleaning-type={item.value}
-              className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
+              className={`min-w-0 rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
                 active ? "border-cyan-700 bg-cyan-50 shadow-lg shadow-cyan-950/10 ring-2 ring-cyan-100" : "border-slate-200 bg-white hover:border-cyan-200 hover:shadow-md hover:shadow-cyan-950/5"
               }`}
             >
@@ -266,111 +266,111 @@ export function DuesseldorfApartmentCleaningForm() {
                 <Icon className="h-5 w-5 text-cyan-700" />
                 {active ? <span className="rounded-full bg-cyan-700 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-white">aktiv</span> : null}
               </div>
-              <div className="mt-3 text-sm font-black text-slate-950">{item.title}</div>
+              <div className="mt-3 text-sm font-black leading-5 text-slate-950">{item.title}</div>
               <p className="mt-2 text-xs leading-5 text-slate-600">{item.text}</p>
             </button>
           );
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_apartment_cleaning_lead">
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+      <form className="mt-7 grid min-w-0 gap-4" onSubmit={handleSubmit} data-event="start_apartment_cleaning_lead">
+        <div className="grid min-w-0 gap-4">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Name*
-            <input name="name" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="Ansprechpartner" />
+            <input name="name" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="Ansprechpartner" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Rolle*
-            <select name="roleType" value={role} onChange={(event) => setRole(event.target.value)} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
+            <select name="roleType" value={role} onChange={(event) => setRole(event.target.value)} className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               {roleOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Telefon
-            <input name="phone" type="tel" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder={PHONE_DISPLAY} />
+            <input name="phone" type="tel" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder={PHONE_DISPLAY} />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             E-Mail
-            <input name="email" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder={EMAIL} />
+            <input name="email" type="email" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder={EMAIL} />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Objektort / PLZ in Düsseldorf*
-            <input name="objectLocation" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 40213, Bilk, Pempelfort" />
+            <input name="objectLocation" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 40213, Bilk, Pempelfort" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Objektart*
-            <select name="objectType" value={objectType} onChange={(event) => setObjectType(event.target.value)} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
+            <select name="objectType" value={objectType} onChange={(event) => setObjectType(event.target.value)} className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               {objectTypeOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Reinigungsart*
             <select
               name="cleaningType"
               value={cleaningType}
               onChange={(event) => setCleaningType(event.target.value)}
               data-event="select_apartment_cleaning_type"
-              className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700"
+              className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700"
             >
               {cleaningTypeOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Termin / Zeitfenster*
-            <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. Freitag 10-14 Uhr" />
+            <input name="desiredDate" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. Freitag 10-14 Uhr" />
           </label>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-4">
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+        <div className="grid min-w-0 gap-4">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Check-out-Zeit
-            <input name="checkoutTime" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 10:00" />
+            <input name="checkoutTime" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 10:00" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Nächster Check-in
-            <input name="nextCheckinTime" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 16:00" />
+            <input name="nextCheckinTime" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 16:00" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Fläche ca.
-            <input name="areaM2" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 62 m2" />
+            <input name="areaM2" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 62 m2" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Zimmer
-            <input name="roomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 2" />
+            <input name="roomsCount" inputMode="numeric" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 2" />
           </label>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-4">
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+        <div className="grid min-w-0 gap-4">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Bäder
-            <input name="bathroomsCount" inputMode="numeric" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 1" />
+            <input name="bathroomsCount" inputMode="numeric" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. 1" />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Küche
-            <select name="kitchenPresent" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
+            <select name="kitchenPresent" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               <option>ja</option>
               <option>nein</option>
               <option>unklar</option>
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Möbliert
-            <select name="furnishedStatus" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
+            <select name="furnishedStatus" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               <option>ja</option>
               <option>nein</option>
               <option>teilweise</option>
               <option>unklar</option>
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Frequenz
-            <select name="recurringFrequency" value={frequency} onChange={(event) => setFrequency(event.target.value)} data-event="select_recurring_frequency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
+            <select name="recurringFrequency" value={frequency} onChange={(event) => setFrequency(event.target.value)} data-event="select_recurring_frequency" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               {frequencyOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
@@ -378,7 +378,7 @@ export function DuesseldorfApartmentCleaningForm() {
           </label>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-5">
+        <div className="grid min-w-0 gap-3">
           <OptionSelect label="Wäschewechsel" value={laundryRequested} onChange={setLaundryRequested} eventName="select_laundry_request" Icon={Shirt} />
           <OptionSelect label="Schlüsselkoordination" value={keyRequested} onChange={setKeyRequested} eventName="select_key_coordination_request" Icon={KeyRound} />
           <OptionSelect label="Foto-Dokumentation" value={photoDocumentation} onChange={setPhotoDocumentation} eventName="upload_apartment_photos" Icon={Camera} />
@@ -386,14 +386,14 @@ export function DuesseldorfApartmentCleaningForm() {
           <OptionSelect label="Kleine Entsorgung" value={smallDisposal} onChange={setSmallDisposal} Icon={Home} />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+        <div className="grid min-w-0 gap-4">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Zugangshinweise
-            <textarea name="accessNotes" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="Keine Zugangscodes im Formular erzwingen. Zugang, Etage, Ansprechpartner oder Absprachen kurz nennen." />
+            <textarea name="accessNotes" rows={3} className="w-full min-w-0 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="Keine Zugangscodes im Formular erzwingen. Zugang, Etage, Ansprechpartner oder Absprachen kurz nennen." />
           </label>
-          <label className="grid gap-2 text-sm font-bold text-slate-800">
+          <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Budget / Preisrahmen optional
-            <textarea name="budget" rows={3} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. Preisrahmen pro Einsatz, monatlich oder bitte prüfen" />
+            <textarea name="budget" rows={3} className="w-full min-w-0 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="z. B. Preisrahmen pro Einsatz, monatlich oder bitte prüfen" />
           </label>
         </div>
 
@@ -409,12 +409,12 @@ export function DuesseldorfApartmentCleaningForm() {
           />
         </div>
 
-        <label className="grid gap-2 text-sm font-bold text-slate-800">
+        <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="Was soll gereinigt werden? Wann ist Check-out/Check-in? Welche Zusatzwünsche gibt es?" />
+          <textarea name="message" rows={4} className="w-full min-w-0 rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-cyan-700" placeholder="Was soll gereinigt werden? Wann ist Check-out/Check-in? Welche Zusatzwünsche gibt es?" />
         </label>
 
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid min-w-0 gap-3">
           <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
             Rückruf zur Termin- und Objektklärung gewünscht.
@@ -438,7 +438,7 @@ export function DuesseldorfApartmentCleaningForm() {
           </div>
         ) : null}
 
-        <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto]">
+        <div className="grid min-w-0 gap-3">
           <button
             type="submit"
             disabled={isSubmitting}
@@ -476,12 +476,12 @@ function OptionSelect({
   Icon: typeof Camera;
 }) {
   return (
-    <label className="grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-xs font-black text-slate-800">
-      <span className="flex items-center gap-2">
+    <label className="grid min-w-0 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-xs font-black text-slate-800">
+      <span className="flex min-w-0 items-center gap-2">
         <Icon className="h-4 w-4 text-cyan-700" />
-        {label}
+        <span className="min-w-0 truncate">{label}</span>
       </span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} data-event={eventName} className="min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold outline-none transition focus:border-cyan-700">
+      <select value={value} onChange={(event) => onChange(event.target.value)} data-event={eventName} className="min-h-10 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold outline-none transition focus:border-cyan-700">
         <option>ja</option>
         <option>nein</option>
         <option>unklar</option>

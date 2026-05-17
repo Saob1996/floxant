@@ -5,6 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import {
+  AlertTriangle,
   Archive,
   ArrowRight,
   BriefcaseBusiness,
@@ -28,6 +29,7 @@ import {
   Route,
   Search,
   Settings2,
+  Trash2,
   Truck,
   UserRound,
   X,
@@ -287,6 +289,46 @@ type PriorityTask = {
   nextStep: string;
   booking?: Booking;
   tab?: WorkspaceTab;
+};
+
+type ConversionEventSummary = {
+  total: number;
+  last24h: number;
+  hot: number;
+  directContact: number;
+  bookingStarts: number;
+  linkedBookings: number;
+  unlinkedHot: number;
+  conversionRate: number;
+  topSources: Array<{ label: string; value: number }>;
+  sourcePerformance: Array<{
+    label: string;
+    value: number;
+    linked: number;
+    hot: number;
+    unlinkedHot: number;
+    conversionRate: number;
+  }>;
+  topChannels: Array<{ label: string; value: number }>;
+  openHotEvents: Array<{
+    event_name?: string | null;
+    source?: string | null;
+    channel?: string | null;
+    path?: string | null;
+    priority?: string | null;
+    score?: number | null;
+    created_at?: string | null;
+  }>;
+  recent: Array<{
+    event_name?: string | null;
+    source?: string | null;
+    channel?: string | null;
+    path?: string | null;
+    booking_id?: string | null;
+    priority?: string | null;
+    score?: number | null;
+    created_at?: string | null;
+  }>;
 };
 
 const WORKSPACE_TABS: WorkspaceTab[] = [
@@ -756,6 +798,7 @@ function normalizeBooking(raw: any): Booking {
       intakeVersion: cleanOptionalText(metadata.intakeVersion || "dashboard"),
       source: cleanOptionalText(metadata.source || serviceInfo.source || "dashboard"),
       servicePresetFromUrl: cleanOptionalText(metadata.servicePresetFromUrl),
+      conversionJourney: germanizeDeep(asRecord(metadata.conversionJourney)),
       clientContext: germanizeDeep(clientContext),
     },
   });
@@ -1017,6 +1060,50 @@ function getSourceLabel(booking: Booking) {
   };
 
   return map[String(source)] || cleanText(source, "Direkte Anfrage");
+}
+
+function getProcessLabel(booking: Booking) {
+  const config = booking.details?.configuration || {};
+  const clientContext = booking.details?.metadata?.clientContext || {};
+  const pricingSignals = booking.details?.valuation?.pricingSignals || {};
+  const conversionJourney =
+    config.conversionJourney ||
+    pricingSignals.conversionJourney ||
+    booking.details?.metadata?.conversionJourney ||
+    {};
+  const rawProcess = firstText(
+    [
+      config.requestContext,
+      clientContext.leadSource,
+      clientContext.sourceComponent,
+      config.calculatorMode ? `Rechner ${config.calculatorMode}` : "",
+      booking.details?.valuation?.valuationStage,
+    ],
+    "",
+  );
+  const lastSignal = firstText(
+    [
+      conversionJourney.lastEventName,
+      config.conversionLastEvent,
+      clientContext.conversionLastEvent,
+    ],
+    "",
+  );
+  const channel = firstText(
+    [
+      conversionJourney.lastChannel,
+      config.conversionLastChannel,
+      clientContext.conversionLastChannel,
+    ],
+    "",
+  );
+
+  if (lastSignal && channel) return `${rawProcess || getSourceLabel(booking)} · ${channel} · ${lastSignal}`;
+  if (lastSignal) return `${rawProcess || getSourceLabel(booking)} · ${lastSignal}`;
+  if (config.conversionJourneyId || clientContext.conversionJourneyId || conversionJourney.journeyId) {
+    return `${rawProcess || getSourceLabel(booking)} · Journey verknuepft`;
+  }
+  return cleanText(rawProcess, getSourceLabel(booking));
 }
 
 function getSourceSignalText(booking: Booking) {
@@ -3775,8 +3862,10 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
   const [activeTab, setActiveTab] = useState<WorkspaceTab>("overview");
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [backhaulOffers, setBackhaulOffers] = useState<BackhaulOffer[]>([]);
+  const [conversionSummary, setConversionSummary] = useState<ConversionEventSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [inquiryFilter, setInquiryFilter] = useState<InquiryFilter>("all");
@@ -3811,9 +3900,10 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
       setError(null);
 
       try {
-        const [bookingResponse, backhaulResponse] = await Promise.all([
+        const [bookingResponse, backhaulResponse, conversionResponse] = await Promise.all([
           fetch("/api/bookings"),
           fetch("/api/backhauls?all=1"),
+          fetch("/api/conversion-events"),
         ]);
 
         if (!bookingResponse.ok) {
@@ -3822,6 +3912,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
 
         const bookingData = await bookingResponse.json();
         const backhaulData = backhaulResponse.ok ? await backhaulResponse.json() : [];
+        const conversionData = conversionResponse.ok ? await conversionResponse.json() : null;
 
         if (!mounted) return;
 
@@ -3829,6 +3920,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
         setBackhaulOffers(
           Array.isArray(backhaulData) ? germanizeDeep(backhaulData) : [],
         );
+        setConversionSummary(conversionData);
       } catch (loadError: any) {
         if (mounted) setError(loadError?.message || "Dashboard konnte nicht geladen werden.");
       } finally {
@@ -3866,6 +3958,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
           booking.phone,
           getServiceLabel(booking.service),
           getSourceLabel(booking),
+          getProcessLabel(booking),
           getMainLocation(booking),
           booking.details?.contact?.notes,
           booking.details?.admin?.nextAction,
@@ -4124,12 +4217,14 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
     const response = await fetch(`/api/bookings/${bookingId}`, { method: "DELETE" });
     const payload = await response.json();
 
-    if (!response.ok) {
-      throw new Error(payload.error || "Löschen fehlgeschlagen");
+    if (!response.ok || payload?.ok === false) {
+      throw new Error(payload.error || "Anfrage konnte nicht gelöscht werden.");
     }
 
     setBookings((current) => current.filter((booking) => booking.id !== bookingId));
     if (selectedBooking?.id === bookingId) setSelectedBooking(null);
+    setError(null);
+    setSuccessMessage("Diese Anfrage wurde gelöscht.");
   }
 
   async function reloadBackhauls() {
@@ -4268,6 +4363,11 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                 {error}
               </div>
             ) : null}
+            {successMessage ? (
+              <div className="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-800">
+                {successMessage}
+              </div>
+            ) : null}
 
             {activeTab === "overview" ? (
               <OverviewWorkspace
@@ -4287,6 +4387,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                 conversionLeadCount={conversionLeadCount}
                 objectSystemLeadCount={objectSystemLeadCount}
                 duesseldorfRevenueLeadCount={duesseldorfRevenueLeadCount}
+                conversionSummary={conversionSummary}
                 priorityTasks={priorityTasks}
                 onOpenTask={(task) => {
                   if (task.booking) {
@@ -4551,6 +4652,7 @@ function OverviewWorkspace({
   conversionLeadCount,
   objectSystemLeadCount,
   duesseldorfRevenueLeadCount,
+  conversionSummary,
   priorityTasks,
   onOpenTask,
   onShortcut,
@@ -4571,6 +4673,7 @@ function OverviewWorkspace({
   conversionLeadCount: number;
   objectSystemLeadCount: number;
   duesseldorfRevenueLeadCount: number;
+  conversionSummary: ConversionEventSummary | null;
   priorityTasks: PriorityTask[];
   onOpenTask: (task: PriorityTask) => void;
   onShortcut: (tab: WorkspaceTab, filter?: InquiryFilter) => void;
@@ -4689,6 +4792,23 @@ function OverviewWorkspace({
       tone: "border-cyan-200 bg-cyan-50 text-cyan-950",
     },
   ];
+  const conversionMetrics = [
+    { label: "Klicks 7 Tage", value: conversionSummary?.total ?? 0, hint: "Alle erfassten Kontakt- und Anfrageaktionen." },
+    { label: "Letzte 24h", value: conversionSummary?.last24h ?? 0, hint: "Frische Kontaktabsicht im Tagesfenster." },
+    { label: "Heisse Klicks", value: conversionSummary?.hot ?? 0, hint: "Als hot oder critical klassifiziert." },
+    { label: "Zugeordnet", value: conversionSummary?.linkedBookings ?? 0, hint: "Journeys, die zu einem Vorgang gehoeren." },
+    { label: "Anfragequote", value: `${conversionSummary?.conversionRate ?? 0}%`, hint: "Zuordnung von Klick-Journeys zu Vorgängen." },
+    { label: "Heiss offen", value: conversionSummary?.unlinkedHot ?? 0, hint: "Kaufnahe Klicks ohne verknuepfte Anfrage." },
+    { label: "Direktkontakt", value: conversionSummary?.directContact ?? 0, hint: "Telefon und WhatsApp statt nur Navigation." },
+    { label: "Formularstart", value: conversionSummary?.bookingStarts ?? 0, hint: "Buchung oder Formular als naechster Schritt." },
+  ];
+  const conversionChannels = conversionSummary?.topChannels?.length
+    ? conversionSummary.topChannels
+    : [{ label: "Noch keine Daten", value: 0 }];
+  const sourcePerformance = conversionSummary?.sourcePerformance?.length
+    ? conversionSummary.sourcePerformance
+    : [{ label: "Noch keine Daten", value: 0, linked: 0, hot: 0, unlinkedHot: 0, conversionRate: 0 }];
+  const openHotEvents = conversionSummary?.openHotEvents?.length ? conversionSummary.openHotEvents : [];
 
   return (
     <section>
@@ -4808,6 +4928,85 @@ function OverviewWorkspace({
                 <p className="mt-2 text-sm leading-6 opacity-80">{lane.text}</p>
               </button>
             ))}
+          </div>
+        </Panel>
+      </div>
+
+      <div className="mt-5">
+        <Panel
+          title="Kontakt-Signale"
+          subtitle="Welche Klicks wirklich Richtung Anfrage, WhatsApp oder Telefon gehen."
+        >
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {conversionMetrics.map((item) => (
+              <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
+                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-500">{item.label}</p>
+                <p className="mt-2 text-3xl font-black tracking-[-0.04em] text-slate-950">
+                  {loading ? "..." : item.value}
+                </p>
+                <p className="mt-2 text-xs leading-5 text-slate-500">{item.hint}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-3 grid gap-3 xl:grid-cols-3">
+            <div className="rounded-2xl border border-blue-100 bg-blue-50/80 p-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-blue-700">Top-Kanaele</p>
+              <div className="mt-3 grid gap-2">
+                {conversionChannels.map((item) => (
+                  <div key={item.label} className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-700">
+                    <span>{item.label}</span>
+                    <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-blue-700">
+                      {item.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700">Quellen-Performance</p>
+              <div className="mt-3 grid gap-2">
+                {sourcePerformance.map((item) => (
+                  <div key={item.label} className="rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-700">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="truncate">{item.label}</span>
+                      <span className="rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-emerald-700">
+                        {item.conversionRate}%
+                      </span>
+                    </div>
+                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                      {item.value} Klicks · {item.linked} zugeordnet · {item.unlinkedHot} heiss offen
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-orange-100 bg-orange-50/80 p-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-orange-700">Heisse Klicks offen</p>
+              <div className="mt-3 grid gap-2">
+                {openHotEvents.length ? (
+                  openHotEvents.map((item, index) => (
+                    <div key={`${item.created_at || "event"}-${index}`} className="rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-700">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="truncate">{item.channel || item.event_name || "Kontakt"}</span>
+                        <span className="rounded-full bg-orange-50 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-orange-700">
+                          {item.score || 0}
+                        </span>
+                      </div>
+                      <p className="mt-1 truncate text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                        {(item.source || "unknown")} · {formatDateTime(item.created_at || "")}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="rounded-xl bg-white px-3 py-3 text-sm font-bold text-slate-500">
+                    Keine offenen heissen Klicks im Zeitraum.
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </Panel>
       </div>
@@ -5234,6 +5433,9 @@ function BookingRow({ booking, onOpen }: { booking: Booking; onOpen: () => void 
       <td className="px-4 py-3 text-sm text-slate-700">{getServiceLabel(booking.service)}</td>
       <td className="px-4 py-3">
         <div className="text-sm text-slate-700">{getSourceLabel(booking)}</div>
+        <div className="mt-1 max-w-[220px] truncate text-[11px] font-semibold text-blue-700">
+          {getProcessLabel(booking)}
+        </div>
         <div className="mt-1 max-w-[180px] truncate text-xs text-slate-500">{getMainLocation(booking)}</div>
         <RegionBadge booking={booking} />
         <LeadRevenueBadge booking={booking} compact />
@@ -5275,12 +5477,14 @@ function MobileBookingCard({ booking, onOpen }: { booking: Booking; onOpen: () =
         <div className="min-w-0">
           <h3 className="truncate text-base font-bold text-slate-950">{booking.name}</h3>
           <p className="mt-1 text-xs text-slate-500">{getServiceLabel(booking.service)} · {getSourceLabel(booking)}</p>
+          <p className="mt-1 truncate text-[11px] font-semibold text-blue-700">{getProcessLabel(booking)}</p>
         </div>
         <StatusPill status={booking.status} />
       </div>
       <div className="mt-3 grid gap-2 text-sm text-slate-600">
         <MiniLine label="Budget" value={getCustomerBudget(booking) ? formatCurrency(getCustomerBudget(booking)) : "Noch keine Einschätzung"} />
         <LeadSignalChips booking={booking} />
+        <MiniLine label="Prozess" value={getProcessLabel(booking)} />
         <MiniLine label="Ort" value={getMainLocation(booking)} />
         <MiniLine label="Alter" value={getLeadAgeLabel(booking.timestamp)} />
         <RegionBadge booking={booking} />
@@ -6103,6 +6307,7 @@ function RequestDetailPanel({
   const [nextAction, setNextAction] = useState(booking.details?.admin?.nextAction || "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   useEffect(() => {
     setStatus(booking.status);
@@ -6148,15 +6353,20 @@ function RequestDetailPanel({
     }
   }
 
-  async function deleteBooking() {
-    if (!window.confirm(`Anfrage von ${booking.name} wirklich löschen?`)) return;
+  function requestDeleteBooking() {
+    setError(null);
+    setDeleteDialogOpen(true);
+  }
+
+  async function confirmDeleteBooking() {
     setSaving(true);
     setError(null);
     try {
       await onDelete(booking.id);
+      setDeleteDialogOpen(false);
       onClose();
     } catch (deleteError: any) {
-      setError(deleteError?.message || "Löschen fehlgeschlagen.");
+      setError(deleteError?.message || "Anfrage konnte nicht gelöscht werden.");
       setSaving(false);
     }
   }
@@ -6241,7 +6451,7 @@ function RequestDetailPanel({
               setNextAction={setNextAction}
               saving={saving}
               onSave={saveMeta}
-              onDelete={deleteBooking}
+              onDelete={requestDeleteBooking}
             />
           ) : null}
           {activeTab === "documents" ? (
@@ -6250,6 +6460,62 @@ function RequestDetailPanel({
           {activeTab === "history" ? <HistoryDetail booking={booking} /> : null}
         </div>
       </aside>
+      {deleteDialogOpen ? (
+        <DeleteBookingDialog
+          saving={saving}
+          onCancel={() => setDeleteDialogOpen(false)}
+          onConfirm={confirmDeleteBooking}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function DeleteBookingDialog({
+  saving,
+  onCancel,
+  onConfirm,
+}: {
+  saving: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-[60] grid place-items-center bg-slate-950/45 px-4" role="alertdialog" aria-modal="true" aria-labelledby="delete-booking-title" aria-describedby="delete-booking-text">
+      <div className="w-full max-w-md rounded-2xl border border-red-100 bg-white p-5 shadow-2xl shadow-slate-950/25">
+        <div className="flex items-start gap-3">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-700">
+            <AlertTriangle className="h-5 w-5" />
+          </span>
+          <div className="min-w-0">
+            <h3 id="delete-booking-title" className="text-lg font-black tracking-tight text-slate-950">
+              Anfrage wirklich löschen?
+            </h3>
+            <p id="delete-booking-text" className="mt-2 text-sm leading-6 text-slate-600">
+              Diese Aktion entfernt die Anfrage aus dem Dashboard. Dieser Schritt kann nicht automatisch rückgängig gemacht werden.
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+          <button
+            type="button"
+            onClick={onCancel}
+            disabled={saving}
+            className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 transition hover:bg-slate-50 disabled:opacity-60"
+          >
+            Abbrechen
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            disabled={saving}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-red-600 px-4 text-sm font-bold text-white transition hover:bg-red-700 disabled:opacity-60"
+          >
+            <Trash2 className="h-4 w-4" />
+            {saving ? "Löschen..." : "Löschen"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -6463,9 +6729,12 @@ function buildContextRows(booking: Booking) {
           ? "Fotos per WhatsApp angeboten"
           : "Keine Anhänge",
     ],
+    ["Prozess", getProcessLabel(booking)],
     ["Lead-Quelle", firstText([config.leadSource, booking.details?.metadata?.clientContext?.leadSource, booking.details?.service?.source])],
     ["Source-Komponente", firstText([config.sourceComponent, booking.details?.metadata?.clientContext?.sourceComponent])],
     ["Source-Kontext", firstText([config.sourceContext, booking.details?.metadata?.clientContext?.sourceContext])],
+    ["Journey", firstText([config.conversionJourneyId, config.conversionJourney?.journeyId, booking.details?.metadata?.conversionJourney?.journeyId, booking.details?.metadata?.clientContext?.conversionJourneyId])],
+    ["Letztes Signal", firstText([config.conversionLastEvent, config.conversionJourney?.lastEventName, booking.details?.metadata?.conversionJourney?.lastEventName, booking.details?.metadata?.clientContext?.conversionLastEvent])],
     ["Quellseite", firstText([config.sourcePage, booking.details?.metadata?.clientContext?.sourcePage])],
     ["Landingpage", firstText([config.landingPage, booking.details?.metadata?.clientContext?.landingPage, booking.details?.service?.entryPoint])],
     [
@@ -6487,7 +6756,7 @@ function buildContextRows(booking: Booking) {
   return rows
     .map(([label, value]) => ({ label, value }))
     .filter((row) => row.value && row.value !== "Nicht angegeben")
-    .slice(0, 14);
+    .slice(0, 18);
 }
 
 function PriceDetail({ booking }: { booking: Booking }) {
@@ -6698,8 +6967,9 @@ function PlanningDetail({
             type="button"
             onClick={onDelete}
             disabled={saving}
-            className="inline-flex h-11 items-center justify-center rounded-xl border border-red-200 bg-red-50 px-4 text-sm font-bold text-red-700 transition hover:bg-red-100 disabled:opacity-60"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 text-sm font-bold text-red-700 transition hover:bg-red-100 disabled:opacity-60"
           >
+            <Trash2 className="h-4 w-4" />
             Anfrage löschen
           </button>
         </div>

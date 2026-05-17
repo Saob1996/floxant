@@ -511,7 +511,14 @@ export function SpecialtyPageLayout({
         description: heroText || `${serviceContext.name} in ${city} mit FLOXANT.`,
         path: serviceContext.pagePath,
         serviceType: `${serviceContext.name} in ${city}`,
-        areaServed: [city, geo?.region || "Bayern"],
+        areaServed: Array.from(
+          new Set([
+            city,
+            "Regensburg",
+            "Umgebung Regensburg ca. 200 km",
+            geo?.region || "Bayern",
+          ]),
+        ),
       }),
       buildWebPageJsonLd({
         name: `${heroTitle} | FLOXANT`,
@@ -952,7 +959,7 @@ export function SpecialtyPageLayout({
                   Schon ein Angebot für {germanText(city, city)} bekommen?
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-slate-700">
-                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzservices. In Düsseldorf bleibt die Prüfung auf Reinigung und Entsorgung begrenzt.
+                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzservices. In Düsseldorf bleibt die Prüfung auf Reinigung begrenzt; Entsorgung ist nur als eigene vorhandene Seite getrennt geführt.
                 </p>
                 <p className="mt-3 text-xs font-bold leading-6 text-slate-500">
                   Keine Preisgarantie, keine Rechtsberatung und keine Bewertung anderer Anbieter. FLOXANT prüft nur, ob nach Verfügbarkeit eine klarere, günstigere oder passendere Alternative möglich ist.

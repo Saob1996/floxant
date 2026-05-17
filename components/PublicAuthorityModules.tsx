@@ -391,9 +391,9 @@ export function PublicAuthorityModules({
   if (modules.length === 0) return null;
 
   return (
-    <section className="flox-section content-auto py-14">
+    <section className="flox-section flox-authority-section content-auto py-14">
       <div className="flox-shell">
-        <div className="mb-8 max-w-3xl">
+        <div className="flox-section-intro mb-8 max-w-3xl">
           <div className="flox-kicker">{badge}</div>
           <h2 className="mt-4 flox-title-lg flox-display-section text-slate-950">
             {title}
@@ -408,37 +408,37 @@ export function PublicAuthorityModules({
             return (
               <article
                 key={`${source}-${item.title}`}
-                className="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-950/10"
+                className="flox-authority-card group p-6"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-[1rem] bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
+                  <span className="flox-icon-tile h-12 w-12 transition group-hover:bg-blue-600 group-hover:text-white">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
+                  <span className="flox-tag text-slate-500">
                     {item.badge}
                   </span>
                 </div>
-                <h3 className="mt-5 text-xl font-bold tracking-tight text-slate-950">
+                <h3 className="flox-card-title-lg mt-5 text-slate-950">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
                 <Link
                   href={item.href}
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-700 transition hover:text-blue-950"
+                  className="flox-row-link mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-700"
                   data-event={item.event || "internal_authority_link"}
                   data-source={source}
                   data-service={item.service}
                   data-region={item.region}
                 >
                   {item.cta}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>
             );
           })}
         </div>
 
-        <div className="mt-6 rounded-[1.45rem] border border-blue-100 bg-blue-50/70 px-5 py-4 text-sm leading-7 text-blue-950">
+        <div className="flox-authority-note mt-6 px-5 py-4 text-sm leading-7">
           <div className="flex gap-3">
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
             <p>

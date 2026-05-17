@@ -31,6 +31,7 @@ export const company = {
   primaryServiceAreas: [
     "Regensburg",
     "Landkreis Regensburg",
+    "Umgebung Regensburg ca. 200 km",
     "Oberpfalz",
     "Bayern",
     "München",
@@ -42,6 +43,7 @@ export const company = {
   keyGeoTargets: [
     "Regensburg",
     "Landkreis Regensburg",
+    "Umgebung Regensburg ca. 200 km",
     "Nürnberg",
     "München",
     "Augsburg",
@@ -68,6 +70,12 @@ export const company = {
     "Firmenentsorgung",
     "Gewerbereinigung",
     "Leer-Rückfahrt",
+    "Rückladung",
+    "Schlüsselübergabe",
+    "Übergabeprotokoll",
+    "Halteverbotszone Koordination",
+    "Plan-B-Service",
+    "Übergabevorbereitung",
     "Private Client Service",
   ],
 };

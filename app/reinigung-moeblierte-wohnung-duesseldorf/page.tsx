@@ -194,7 +194,7 @@ const answerEngineCards = [
   {
     question: "Was tun, wenn vor der Reinigung noch Gegenstände weg müssen?",
     answer:
-      "Entsorgung Düsseldorf separat anfragen. Reinigung und Entsorgung bleiben getrennte, klare Leistungen.",
+      "Entsorgung Düsseldorf separat anfragen. Reinigung bleibt der Fokus dieser Seite; Entsorgung ist ein eigener Zusatzweg.",
     cta: "Entsorgung ergänzen",
     href: "/entsorgung-duesseldorf",
   },
@@ -311,7 +311,7 @@ const faqs = [
   },
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert, nicht für Umzüge.",
+    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung ausgerichtet; Entsorgung bleibt ein eigener Zusatzweg. Umzüge werden dort nicht positioniert.",
   },
 ];
 
@@ -525,7 +525,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 </h2>
                 <p className="mt-4 text-base leading-8 text-slate-700">
                   Für KI-Antworten, Google Maps und Kunden ist die Trennung wichtig:
-                  Düsseldorf steht bei FLOXANT für Reinigung und Entsorgung, nicht für Umzug.
+                  Düsseldorf steht bei FLOXANT für Reinigung; Entsorgung bleibt separat. Nicht für Umzug.
                   Wählen Sie den passenden Einstieg, damit Ort, Objektart, Frequenz, Fotos und Zeitfenster direkt klar sind.
                 </p>
               </div>
@@ -698,7 +698,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">Düsseldorf-Abgrenzung</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Diese Seite ist nur für Reinigung in Düsseldorf.</h2>
                 <p className="mt-4 text-sm leading-7 text-cyan-950">
-                  Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Keine Umzugsleistung als Schwerpunkt für Düsseldorf.
+                  Düsseldorf ist bei FLOXANT für Reinigung positioniert. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung bleibt ein separater Zusatzweg; keine Umzugsleistung als Schwerpunkt für Düsseldorf.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link href="/duesseldorf/reinigung" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">

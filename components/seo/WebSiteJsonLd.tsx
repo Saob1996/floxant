@@ -38,6 +38,36 @@ export function WebSiteJsonLd() {
         name: "Servicegebiet Bayern",
         url: company.serviceAreaUrl,
       },
+      {
+        "@type": "WebPage",
+        name: "Einsatzgebiet Regensburg ca. 200 km",
+        url: `${company.url}/einsatzgebiet-regensburg-200km`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Umzug Regensburg",
+        url: `${company.url}/umzug-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Reinigung Regensburg",
+        url: `${company.url}/reinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Entrümpelung Regensburg",
+        url: `${company.url}/entruempelung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Schlüsselübergabe",
+        url: `${company.url}/schluesseluebergabe`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Übergabeakte",
+        url: `${company.url}/uebergabeakte`,
+      },
     ],
     potentialAction: [
       {

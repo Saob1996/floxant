@@ -87,6 +87,14 @@ export interface IntakeAdminMeta {
  costLines?: OperationCostLine[];
  ledgerEntries?: FinanceLedgerEntry[];
  commercialDecision?: CommercialDecision;
+ leadRouting?: {
+  priority: "critical" | "hot" | "warm" | "normal";
+  score: number;
+  responseSla: string;
+  nextAction: string;
+  reasons: string[];
+  tags: string[];
+ };
  profitability?: {
   incomeTotal: number;
   expenseTotal: number;
@@ -242,9 +250,10 @@ export interface IntakePayload {
  metadata: {
   createdAt: string;
   intakeVersion: string;
-  source: string;
-  servicePresetFromUrl?: string;
-  regionPreset?: string;
-  clientContext?: any;
- };
+ source: string;
+ servicePresetFromUrl?: string;
+ regionPreset?: string;
+ conversionJourney?: any;
+ clientContext?: any;
+};
 }

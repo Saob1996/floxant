@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
-import { Calculator, ClipboardCheck, MessageCircle, Phone } from "lucide-react";
+import { ClipboardCheck, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -36,17 +36,16 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
  const isBookingPage = pathname === "/buchung";
  const isDuesseldorfPage = Boolean(pathname?.startsWith("/duesseldorf"));
  const isDuesseldorfDisposalPage = pathname === "/entsorgung-duesseldorf";
- const usesBookingStart = isBookingPage || isDuesseldorfPage || isDuesseldorfDisposalPage;
  const centerHref = isBookingPage
   ? "#buchungssystem"
   : isDuesseldorfDisposalPage
    ? "/buchung?service=entsorgung&region=duesseldorf&utm_source=mobile_cta#buchungssystem"
    : isDuesseldorfPage
     ? "/buchung?service=reinigung&region=duesseldorf#buchungssystem"
-    : "/rechner";
- const centerEvent = usesBookingStart ? "start_booking" : "start_calculator";
- const centerLabel = usesBookingStart ? "Anfrage" : dic?.common?.mobile_calc || "Rechner";
- const CenterIcon = usesBookingStart ? ClipboardCheck : Calculator;
+    : "/buchung?utm_source=mobile_cta&urgency=24h&contact=callback#buchungssystem";
+ const centerEvent = "start_booking";
+ const centerLabel = "Anfrage";
+ const CenterIcon = ClipboardCheck;
  const whatsappText = isDuesseldorfDisposalPage
   ? "Hallo FLOXANT, ich m\u00f6chte Entsorgung in D\u00fcsseldorf anfragen."
   : isDuesseldorfPage
@@ -94,6 +93,9 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
         aria-label="WhatsApp Chat"
         data-event="click_whatsapp"
         data-source="mobile_floating_contact"
+        data-contact-channel="whatsapp"
+        data-intent="mobile_direct_contact"
+        data-priority="hot"
        >
         <MessageCircle />
         {dic?.common?.mobile_chat || "WhatsApp"}
@@ -102,9 +104,12 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
        <Link
         href={centerHref}
         className="flox-mobile-action flox-mobile-action-primary"
-        aria-label={usesBookingStart ? "Zum Anfrageformular" : "Zum Rechner"}
+        aria-label="Zum Anfrageformular"
         data-event={centerEvent}
         data-source="mobile_floating_contact"
+        data-contact-channel="booking"
+        data-intent="mobile_booking_start"
+        data-priority="hot"
        >
         <CenterIcon />
         {centerLabel}
@@ -116,6 +121,9 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
         aria-label="Jetzt anrufen"
         data-event="click_phone"
         data-source="mobile_floating_contact"
+        data-contact-channel="phone"
+        data-intent="mobile_direct_contact"
+        data-priority="hot"
        >
         <Phone />
         {dic?.common?.mobile_call || "Anrufen"}

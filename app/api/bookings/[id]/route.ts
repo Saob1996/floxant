@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { company } from "@/lib/company";
 import {
  calculateDocumentTotals,
@@ -51,6 +52,8 @@ type PatchPayload = {
  fromDocumentId?: string;
  updatedDoc?: FloxDocument;
 };
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function normalizeCostLines(lines: OperationCostLine[] = []) {
  return lines.map((line) => ({
@@ -265,10 +268,45 @@ function appendHistory(
 async function requireSession() {
  const session = await getServerSession(authOptions);
  if (!session) {
-  return { session: null, response: NextResponse.json({ error: "Unauthorized" }, { status: 401 }) };
+  return { session: null, response: NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 }) };
  }
 
  return { session, response: null };
+}
+
+function isValidBookingId(id: string) {
+ return UUID_PATTERN.test(id);
+}
+
+function isMissingConversionEventsTable(error: { code?: string; message?: string; details?: string | null }) {
+ const text = `${error.code || ""} ${error.message || ""} ${error.details || ""}`.toLowerCase();
+ return (
+  error.code === "42P01" ||
+  error.code === "PGRST205" ||
+  (text.includes("conversion_events") &&
+   (text.includes("does not exist") ||
+    text.includes("schema cache") ||
+    text.includes("could not find") ||
+    text.includes("not found")))
+ );
+}
+
+async function detachConversionEventsFromBooking(bookingId: string) {
+ try {
+  const { error } = await getSupabaseAdmin()
+   .from("conversion_events")
+   .update({
+    booking_id: null,
+    converted_at: null,
+   })
+   .eq("booking_id", bookingId);
+
+  if (error && !isMissingConversionEventsTable(error)) {
+   console.warn("Conversion event unlink failed before booking delete:", error.message);
+  }
+ } catch (error) {
+  console.warn("Conversion event unlink skipped before booking delete:", error);
+ }
 }
 
 async function loadBooking(id: string) {
@@ -510,20 +548,29 @@ export async function DELETE(_: Request, { params }: { params: Promise<{ id: str
 
  try {
   const { id } = await params;
+
+  if (!isValidBookingId(id)) {
+   return NextResponse.json({ ok: false, error: "Ungültige Anfrage-ID." }, { status: 400 });
+  }
+
   const booking = await loadBooking(id);
 
   if (!booking) {
-   return NextResponse.json({ error: "Booking not found" }, { status: 404 });
+   return NextResponse.json({ ok: false, error: "Anfrage nicht gefunden." }, { status: 404 });
   }
+
+  await detachConversionEventsFromBooking(id);
 
   const { error } = await supabase.from("bookings").delete().eq("id", id);
 
   if (error) {
-   return NextResponse.json({ error: "Delete failed", details: error.message }, { status: 500 });
+   console.warn("Booking delete failed:", error.message);
+   return NextResponse.json({ ok: false, error: "Anfrage konnte nicht gelöscht werden." }, { status: 500 });
   }
 
-  return NextResponse.json({ success: true, id });
- } catch (error: any) {
-  return NextResponse.json({ error: "Internal Server Error", details: error?.message }, { status: 500 });
+  return NextResponse.json({ ok: true, id });
+ } catch (error) {
+  console.warn("Booking delete rejected:", error);
+  return NextResponse.json({ ok: false, error: "Anfrage konnte nicht gelöscht werden." }, { status: 500 });
  }
 }

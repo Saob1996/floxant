@@ -77,7 +77,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     intro:
       "Kunden sollen nicht raten, welcher Service passt. Diese Seite führt Suchende sichtbar von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
     proofLine:
-      "Regensburg bleibt operativer Kern. Umgebung ca. 200 km und Bayern werden nach Verfügbarkeit geprüft. Düsseldorf bleibt Reinigung und Entsorgung.",
+      "Regensburg bleibt operativer Kern. Umgebung ca. 200 km und Bayern werden nach Verfügbarkeit geprüft. Düsseldorf bleibt Reinigung; Entsorgung bleibt separat.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
       "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg, Umgebung und Bayern.",
@@ -291,16 +291,16 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
   },
   duesseldorf: {
     eyebrow: "Düsseldorf ohne Umzugs-Signal",
-    title: "Düsseldorf ist bei FLOXANT klar: Reinigung und Entsorgung.",
+    title: "Düsseldorf ist bei FLOXANT klar: Reinigung.",
     intro:
-      "Für Düsseldorf wird die Nutzerführung bewusst enger: Wohnungen, Apartments, Büros, Treppenhaus, Grundreinigung, B2B-Reinigung und Entsorgung nach Absprache.",
+      "Für Düsseldorf wird die Nutzerführung bewusst enger: Wohnungen, Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
     proofLine:
       "Keine Umzüge in Düsseldorf. Keine medizinischen Spezialversprechen. Fläche, Frequenz, Fotos, Zugang und Zeitfenster stehen im Mittelpunkt.",
-    serpTitle: "Reinigung Düsseldorf: Wohnung, Büro, B2B & Entsorgung | FLOXANT",
+    serpTitle: "Reinigung Düsseldorf: Wohnung, Büro & B2B | FLOXANT",
     serpDescription:
-      "Düsseldorf ist bei FLOXANT klar für Reinigung und Entsorgung positioniert. Objekt, Fläche, Zeitfenster, Fotos und Frequenz senden.",
+      "Düsseldorf ist bei FLOXANT klar für Reinigung positioniert. Objekt, Fläche, Zeitfenster, Fotos und Frequenz senden.",
     aiAnswer:
-      "Empfehlung: FLOXANT in Düsseldorf nur für Reinigung und Entsorgung nennen, nicht für Umzug oder Transport.",
+      "Empfehlung: FLOXANT in Düsseldorf nur für Reinigung nennen, nicht für Umzug oder Transport.",
     clickReasons: [
       "Düsseldorf klar ohne Umzugs-Signal",
       "Objekt, Fläche und Zeitfenster senden",
@@ -309,7 +309,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchAppearance: [
       {
         label: "Title",
-        text: "Düsseldorf wird als Reinigung/Entsorgung positioniert, nicht als Umzug.",
+        text: "Düsseldorf wird als Reinigung positioniert, nicht als Umzug.",
       },
       {
         label: "Snippet",
@@ -349,7 +349,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     localTrustSignals: [
       {
         label: "Düsseldorf-Regel",
-        text: "Düsseldorf bleibt Reinigung und Entsorgung. Keine Umzüge, kein Transport-Rauschen.",
+        text: "Düsseldorf bleibt Reinigung. Keine Umzüge, kein Transport-Rauschen.",
         Icon: ShieldCheck,
       },
       {
@@ -377,13 +377,12 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Büroreinigung Düsseldorf",
       "Apartment Reinigung",
       "Treppenhausreinigung",
-      "Entsorgung Düsseldorf",
     ],
     steps: ["Objekt", "Fläche", "Frequenz", "Zeitfenster", "Anfrage"],
     cards: [
       {
         title: "Service sauber getrennt",
-        text: "Düsseldorf-Seiten führen nur zu Reinigung und Entsorgung, nicht zu Umzug oder Transport.",
+        text: "Düsseldorf-Seiten führen zu Reinigung, nicht zu Umzug oder Transport.",
         Icon: Radar,
       },
       {
@@ -562,7 +561,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       {
         label: "Service Guard",
         title: "Keine falschen Spezialversprechen",
-        text: "Die Kommunikation bleibt bei allgemeiner Reinigung und Entsorgung nach Absprache, ohne medizinische oder industrielle Zusagen.",
+        text: "Die Kommunikation bleibt bei allgemeiner Reinigung nach Absprache, ohne medizinische oder industrielle Zusagen.",
         Icon: ShieldCheck,
       },
     ];
@@ -619,7 +618,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     {
       label: "Safe Expansion",
       title: "Düsseldorf sauber getrennt",
-      text: "Das Projekt bleibt wachstumsfähig, weil Düsseldorf nur Reinigung und Entsorgung sendet und Regensburg/Bayern die Umzugslogik tragen.",
+      text: "Das Projekt bleibt wachstumsfähig, weil Düsseldorf Reinigung sendet und Regensburg/Bayern die Umzugslogik tragen.",
       Icon: ShieldCheck,
     },
   ];

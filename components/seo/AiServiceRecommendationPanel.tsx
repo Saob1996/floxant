@@ -41,7 +41,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
     intro:
       "Diese sichtbaren Kurzantworten erklären Suchmaschinen, KI-Systemen und Kunden, welcher FLOXANT-Service zu welcher Situation passt. So bleibt die Seite nicht nur schön, sondern auch verständlich, zitierfähig und conversionstark.",
     boundary:
-      "Regensburg ist der operative Kern. Umgebung ca. 200 km und Bayern werden nach Ort, Termin, Umfang und Kapazität geprüft. Düsseldorf bleibt sauber getrennt für Reinigung und Entsorgung.",
+      "Regensburg ist der operative Kern. Umgebung ca. 200 km und Bayern werden nach Ort, Termin, Umfang und Kapazität geprüft. Düsseldorf bleibt sauber getrennt für Reinigung; Entsorgung bleibt separat.",
     recommendations: [
       {
         query: "Ich brauche Umzug, Reinigung oder Entrümpelung in Regensburg.",
@@ -96,7 +96,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
       {
         query: "Gilt das auch für Reinigung oder Entsorgung?",
         answer:
-          "Ja. Angebotsprüfung passt für Umzug, Reinigung, Entrümpelung und Entsorgung. In Düsseldorf nur Reinigung und Entsorgung.",
+          "Ja. Angebotsprüfung passt für Umzug, Reinigung, Entrümpelung und Entsorgung. In Düsseldorf nur Reinigung; Entsorgung nur über die vorhandene eigene Seite.",
         href: "/plattform-auftrag-pruefen",
         label: "Plattformfall prüfen",
         Icon: CheckCircle2,
@@ -139,11 +139,11 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
   },
   duesseldorf: {
     eyebrow: "KI-Antworten Düsseldorf",
-    title: "Düsseldorf bedeutet bei FLOXANT: Reinigung und Entsorgung, keine Umzüge.",
+    title: "Düsseldorf bedeutet bei FLOXANT: Reinigung, keine Umzüge.",
     intro:
-      "Diese Kurzantwort macht die lokale Positionierung eindeutig: FLOXANT Düsseldorf ist für Wohnungen, möblierte Apartments, Büros, Treppenhäuser, Grundreinigung, B2B-Reinigung und Entsorgung nach Absprache gedacht.",
+      "Diese Kurzantwort macht die lokale Positionierung eindeutig: FLOXANT Düsseldorf ist für Wohnungen, möblierte Apartments, Büros, Treppenhäuser, Grundreinigung und B2B-Reinigung gedacht.",
     boundary:
-      "Keine Düsseldorf-Umzug-Signale: Umzug, Transport und Entrümpelung als Hauptmarkt bleiben Regensburg/Bayern. Düsseldorf bleibt Reinigung und Entsorgung.",
+      "Keine Düsseldorf-Umzug-Signale: Umzug, Transport und Entrümpelung als Hauptmarkt bleiben Regensburg/Bayern. Düsseldorf bleibt Reinigung; Entsorgung bleibt separat.",
     recommendations: [
       {
         query: "Ich suche Reinigung in Düsseldorf.",

@@ -31,17 +31,26 @@ export async function sendInternalIntakeNotification(payload: IntakePayload) {
  const { contact, service, valuation, configuration, metadata } = payload;
  const serviceType = String(service.type || "service");
  const serviceDisplayName = serviceType.charAt(0).toUpperCase() + serviceType.slice(1);
+ const leadRouting = payload.admin?.leadRouting || configuration?.leadRouting || metadata?.clientContext?.leadRouting;
+ const leadPriority = String(leadRouting?.priority || configuration?.leadPriority || "normal").toUpperCase();
  const wantsPhotosLink = Boolean(configuration?.wantsPhotosLink || metadata?.clientContext?.wantsPhotosLink);
  const customerBudgetText = valuation.customerBudget
   ? `${valuation.customerBudget.toLocaleString()} EUR`
   : "-";
  const sourcePath = metadata?.clientContext?.entryPath || service.entryPoint || "-";
- const subject = `Neue ${serviceDisplayName}-Anfrage: ${contact.fullName}`;
+ const subject = `[${leadPriority}] Neue ${serviceDisplayName}-Anfrage: ${contact.fullName}`;
  const safeConfiguration = escapeHtml(JSON.stringify(configuration, null, 2));
 
  const html = `
   <div style="font-family: sans-serif; color: #333; max-width: 640px; margin: auto; border: 1px solid #EEE; padding: 20px; border-radius: 12px;">
    <h2 style="color: #0066FF; margin-top: 0;">Neue Service-Anfrage</h2>
+   <div style="background: #ECFEFF; border: 1px solid #BAE6FD; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+    <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #075985;">Lead-Prioritaet: ${escapeHtml(leadPriority)}</h3>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>Score:</strong> ${escapeHtml(leadRouting?.score ?? "-")}</p>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>SLA:</strong> ${escapeHtml(leadRouting?.responseSla || "-")}</p>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>Naechster Schritt:</strong> ${escapeHtml(leadRouting?.nextAction || "-")}</p>
+    <p style="margin: 8px 0 0 0; font-size: 12px; color: #334155;"><strong>Gruende:</strong> ${escapeHtml((leadRouting?.reasons || []).join(", ") || "-")}</p>
+   </div>
    <p style="font-size: 14px; color: #666;">Ein neuer Lead wurde über den FLOXANT Rechner generiert.</p>
   <div style="background: #F8FAFC; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
    <h3 style="margin-top: 0; font-size: 16px; color: #0052CC;">Kontaktdaten</h3>

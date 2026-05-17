@@ -25,10 +25,11 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  --font-sans: "Aptos", "Segoe UI Variable Text", "Segoe UI", "DIN Alternate", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: "Bahnschrift", "Aptos Display", "Segoe UI Variable Display", "Trebuchet MS", var(--font-sans);
-  --font-accent: "Aptos Display", "Bahnschrift", "Segoe UI Variable Display", var(--font-heading);
-  --font-mono: "Cascadia Mono", "SFMono-Regular", "Consolas", ui-monospace, monospace;
+  --font-sans: "Segoe UI Variable Text", "Aptos", "Inter", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Aptos Display", "Segoe UI Variable Display", "SF Pro Display", "Segoe UI", var(--font-sans);
+  --font-accent: "Aptos Display", "Segoe UI Variable Display", "SF Pro Display", var(--font-heading);
+  --font-label: "Segoe UI Variable Text", "Aptos", "Inter", var(--font-sans);
+  --font-mono: "Cascadia Code", "Cascadia Mono", "SFMono-Regular", "Consolas", ui-monospace, monospace;
 }
 
 @layer base {
@@ -52,7 +53,48 @@
     --border: 214 28% 88%;
     --input: 214 28% 88%;
     --ring: 220 91% 56%;
-    --radius: 1.15rem;
+    --radius: 0.86rem;
+    --flox-container: 82rem;
+    --flox-section-y: clamp(3.75rem, 6vw, 5.75rem);
+    --flox-radius-xs: 0.42rem;
+    --flox-radius-sm: 0.58rem;
+    --flox-radius-md: 0.78rem;
+    --flox-radius-lg: 0.98rem;
+    --flox-radius-xl: 1.16rem;
+    --flox-radius-panel: 1.34rem;
+    --flox-radius-frame: 1.52rem;
+    --flox-border-soft: rgba(100, 116, 139, 0.2);
+    --flox-border-strong: rgba(51, 65, 85, 0.34);
+    --flox-border-accent: rgba(37, 99, 235, 0.24);
+    --flox-surface: rgba(255, 255, 255, 0.96);
+    --flox-surface-muted: rgba(248, 250, 252, 0.96);
+    --flox-surface-raised: #ffffff;
+    --flox-surface-command: rgba(241, 245, 249, 0.92);
+    --flox-surface-dark: #08111f;
+    --flox-ink: rgb(7, 15, 28);
+    --flox-ink-soft: rgb(71, 85, 105);
+    --flox-ink-muted: rgb(100, 116, 139);
+    --flox-accent: rgb(29, 78, 216);
+    --flox-accent-2: rgb(8, 145, 178);
+    --flox-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.045);
+    --flox-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.055);
+    --flox-shadow-md: 0 16px 34px rgba(15, 23, 42, 0.075);
+    --flox-shadow-lg: 0 24px 56px rgba(15, 23, 42, 0.105);
+    --flox-shadow-dark: 0 24px 58px rgba(2, 6, 23, 0.38);
+    --flox-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --flox-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --flox-duration-fast: 140ms;
+    --flox-duration-base: 180ms;
+    --flox-focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.16), 0 0 0 6px rgba(191, 219, 254, 0.34);
+    --flox-leading-display: 0.98;
+    --flox-leading-heading: 1.08;
+    --flox-leading-copy: 1.72;
+    --flox-leading-compact: 1.56;
+    --flox-weight-display: 790;
+    --flox-weight-heading: 760;
+    --flox-weight-copy: 450;
+    --flox-weight-label: 760;
+    --flox-tracking: 0;
   }
 
   .dark {
@@ -99,6 +141,47 @@
     --border: 214 28% 88%;
     --input: 214 28% 88%;
     --ring: 220 91% 56%;
+    --flox-container: 82rem;
+    --flox-section-y: clamp(3.75rem, 6vw, 5.75rem);
+    --flox-radius-xs: 0.42rem;
+    --flox-radius-sm: 0.58rem;
+    --flox-radius-md: 0.78rem;
+    --flox-radius-lg: 0.98rem;
+    --flox-radius-xl: 1.16rem;
+    --flox-radius-panel: 1.34rem;
+    --flox-radius-frame: 1.52rem;
+    --flox-border-soft: rgba(100, 116, 139, 0.2);
+    --flox-border-strong: rgba(51, 65, 85, 0.34);
+    --flox-border-accent: rgba(37, 99, 235, 0.24);
+    --flox-surface: rgba(255, 255, 255, 0.96);
+    --flox-surface-muted: rgba(248, 250, 252, 0.96);
+    --flox-surface-raised: #ffffff;
+    --flox-surface-command: rgba(241, 245, 249, 0.92);
+    --flox-surface-dark: #08111f;
+    --flox-ink: rgb(7, 15, 28);
+    --flox-ink-soft: rgb(71, 85, 105);
+    --flox-ink-muted: rgb(100, 116, 139);
+    --flox-accent: rgb(29, 78, 216);
+    --flox-accent-2: rgb(8, 145, 178);
+    --flox-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.045);
+    --flox-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.055);
+    --flox-shadow-md: 0 16px 34px rgba(15, 23, 42, 0.075);
+    --flox-shadow-lg: 0 24px 56px rgba(15, 23, 42, 0.105);
+    --flox-shadow-dark: 0 24px 58px rgba(2, 6, 23, 0.38);
+    --flox-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --flox-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --flox-duration-fast: 140ms;
+    --flox-duration-base: 180ms;
+    --flox-focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.16), 0 0 0 6px rgba(191, 219, 254, 0.34);
+    --flox-leading-display: 0.98;
+    --flox-leading-heading: 1.08;
+    --flox-leading-copy: 1.72;
+    --flox-leading-compact: 1.56;
+    --flox-weight-display: 790;
+    --flox-weight-heading: 760;
+    --flox-weight-copy: 450;
+    --flox-weight-label: 760;
+    --flox-tracking: 0;
   }
 
   html {
@@ -114,14 +197,13 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    font-variation-settings: "opsz" 18;
+    font-feature-settings: "kern", "liga", "calt", "cv02", "cv03", "cv04", "cv11";
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 17;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
-    background:
-      radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.055), transparent 20%),
-      radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.045), transparent 16%),
-      linear-gradient(180deg, #f7faff 0%, #fbfdff 44%, #ffffff 100%);
+    background: linear-gradient(180deg, #f6f8fb 0%, #fbfcfe 44%, #ffffff 100%);
     color: hsl(var(--foreground));
   }
 
@@ -158,8 +240,12 @@
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: radial-gradient(circle at center top, rgba(148, 163, 184, 0.08), transparent 58%);
-    opacity: 0.45;
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.026) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.026) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: linear-gradient(180deg, rgba(15, 23, 42, 0.35), transparent 72%);
+    opacity: 0.7;
   }
 
   ::selection {
@@ -174,9 +260,10 @@
   h5,
   h6 {
     font-family: var(--font-heading);
-    font-weight: 850;
-    letter-spacing: -0.052em;
-    line-height: 1;
+    font-weight: var(--flox-weight-heading);
+    font-feature-settings: "kern", "liga", "calt";
+    letter-spacing: var(--flox-tracking);
+    line-height: var(--flox-leading-heading);
     color: hsl(var(--foreground));
     text-wrap: balance;
   }
@@ -190,8 +277,9 @@
   }
 
   p {
+    font-weight: var(--flox-weight-copy);
     line-height: 1.68;
-    letter-spacing: 0.002em;
+    letter-spacing: var(--flox-tracking);
     text-wrap: pretty;
   }
 
@@ -216,13 +304,13 @@
   top: 1rem;
   z-index: 9999;
   transform: translateY(-150%);
-  border-radius: 999px;
+  border-radius: var(--flox-radius-md);
   background: hsl(var(--foreground));
   color: hsl(var(--background));
   padding: 0.8rem 1rem;
   font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-transform: uppercase;
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2);
 }
@@ -235,19 +323,21 @@
 
 .font-mono {
   font-family: var(--font-mono);
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
 }
 
 .label-premium {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.12;
+  text-transform: none;
+  letter-spacing: var(--flox-tracking);
   color: hsl(var(--muted-foreground));
 }
 
 .tracking-os {
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .os-bar,
@@ -255,15 +345,12 @@
   position: relative;
   isolation: isolate;
   overflow: visible;
-  background:
-    radial-gradient(circle at 8% 10%, rgba(37, 99, 235, 0.08), transparent 24%),
-    radial-gradient(circle at 92% 12%, rgba(6, 182, 212, 0.08), transparent 22%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.985) 0%, rgba(248, 251, 255, 0.965) 100%);
-  border: 1px solid rgba(209, 221, 240, 0.96);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.94) 100%);
+  border: 1px solid var(--flox-border-soft);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.98) inset,
-    0 18px 42px rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(20px) saturate(140%);
+    0 1px 0 rgba(255, 255, 255, 0.82) inset,
+    var(--flox-shadow-sm);
+  backdrop-filter: blur(18px) saturate(118%);
 }
 
 .os-bar::before,
@@ -272,18 +359,16 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 34%),
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent 24%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 42%);
 }
 
 .flox-nav-panel {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.995) 0%, rgba(247, 250, 255, 0.99) 100%);
-  border: 1px solid rgba(214, 224, 239, 0.94);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.985) 0%, rgba(248, 250, 252, 0.985) 100%);
+  border: 1px solid var(--flox-border-soft);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.98) inset,
-    0 20px 44px rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(20px) saturate(140%);
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-md);
+  backdrop-filter: blur(18px) saturate(118%);
 }
 
 .flox-nav-panel::-webkit-scrollbar {
@@ -295,25 +380,135 @@
   background: rgba(148, 163, 184, 0.42);
 }
 
+.flox-header-premium {
+  border-color: rgba(71, 85, 105, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.985), rgba(248, 250, 252, 0.955)),
+    rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    0 18px 50px rgba(15, 23, 42, 0.105);
+}
+
+.flox-header-premium::after {
+  content: "";
+  position: absolute;
+  inset: 0 1rem auto;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), rgba(8, 145, 178, 0.14), transparent);
+}
+
+.flox-brand-lockup {
+  border: 1px solid transparent;
+}
+
+@media (hover: hover) {
+  .flox-brand-lockup:hover {
+    border-color: rgba(203, 213, 225, 0.78);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: var(--flox-shadow-xs);
+  }
+}
+
+.flox-nav-segment {
+  border-radius: var(--flox-radius-lg);
+  border: 1px solid rgba(203, 213, 225, 0.82);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.86)),
+    rgba(255, 255, 255, 0.88);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    0 8px 22px rgba(15, 23, 42, 0.055);
+}
+
+.flox-mega-panel {
+  isolation: isolate;
+  border-color: rgba(71, 85, 105, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(248, 250, 252, 0.98)),
+    rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 28px 70px rgba(15, 23, 42, 0.16);
+}
+
+.flox-mega-grid,
+.flox-mega-main {
+  min-width: 0;
+}
+
+.flox-mega-story {
+  min-height: 100%;
+  border-radius: var(--flox-radius-panel);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.flox-mega-section,
+.flox-service-group-card,
+.flox-mega-local {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--flox-radius-panel);
+  border: 1px solid rgba(203, 213, 225, 0.78);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.94)),
+    rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-service-group-card::before,
+.flox-mega-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.42), rgba(8, 145, 178, 0.16), transparent);
+  opacity: 0.76;
+}
+
+.flox-mega-local {
+  border-color: rgba(37, 99, 235, 0.16);
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.82), rgba(255, 255, 255, 0.96)),
+    rgba(239, 246, 255, 0.72);
+}
+
+.flox-mega-link {
+  border-radius: var(--flox-radius-sm);
+  background: rgba(248, 250, 252, 0.82);
+}
+
+.flox-nav-entry-primary {
+  border-color: rgba(37, 99, 235, 0.26);
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.96), rgba(255, 255, 255, 0.94)),
+    rgba(239, 246, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
 .flox-nav-link {
   position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 2.1rem;
-  border-radius: 999px;
+  border-radius: var(--flox-radius-sm);
   padding: 0 0.72rem;
   font-family: var(--font-heading);
-  font-size: 0.59rem;
-  font-weight: 800;
-  letter-spacing: 0.085em;
-  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 720;
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
   color: rgba(15, 23, 42, 0.7);
   white-space: nowrap;
   transition:
-    color 180ms ease,
-    background 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    color var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard),
+    transform var(--flox-duration-fast) var(--flox-ease-out);
 }
 
 .flox-nav-link::after {
@@ -326,17 +521,16 @@
   background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.92), transparent);
   opacity: 0;
   transform: scaleX(0.78);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition:
+    opacity var(--flox-duration-base) var(--flox-ease-standard),
+    transform var(--flox-duration-base) var(--flox-ease-out);
 }
 
 .flox-nav-link:hover,
 .flox-nav-link-active {
   color: rgba(15, 23, 42, 0.96);
-  background: rgba(246, 249, 255, 0.98);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.96) inset,
-    0 12px 24px rgba(37, 99, 235, 0.08);
-  transform: translateY(-1px);
+  background-color: rgba(246, 249, 255, 0.98);
+  box-shadow: var(--flox-shadow-xs);
 }
 
 .flox-nav-link:hover::after,
@@ -345,18 +539,35 @@
   transform: scaleX(1);
 }
 
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-nav-link:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-nav-link:active {
+  transform: translateY(0);
+}
+
+.flox-nav-link:focus-visible {
+  outline: none;
+  color: rgba(15, 23, 42, 0.96);
+  background-color: rgba(239, 246, 255, 0.96);
+  box-shadow: var(--flox-focus-ring);
+}
+
 @media (min-width: 1280px) and (max-width: 1379px) {
   .flox-nav-link {
     min-height: 2rem;
     padding-inline: 0.58rem;
-    font-size: 0.56rem;
-    letter-spacing: 0.075em;
+    font-size: 0.64rem;
+    letter-spacing: var(--flox-tracking);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .flox-nav-shell::before {
-    animation: flox-header-glow 9s ease-in-out infinite alternate;
+    opacity: 1;
   }
 }
 
@@ -373,17 +584,16 @@
 
 .flox-story-section {
   isolation: isolate;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(59, 130, 246, 0.07), transparent 28rem),
-    radial-gradient(circle at 86% 16%, rgba(34, 197, 94, 0.05), transparent 25rem),
-    linear-gradient(180deg, rgba(248, 250, 252, 0.88), rgba(255, 255, 255, 0.96));
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(255, 255, 255, 0.96));
 }
 
 .flox-story-shape {
   position: absolute;
-  border-radius: 999px;
-  filter: blur(2px);
-  opacity: 0.82;
+  border-radius: var(--flox-radius-panel);
+  border: 1px solid var(--flox-border-soft);
+  filter: none;
+  opacity: 0.32;
+  transform: rotate(8deg);
 }
 
 .flox-story-shape-a {
@@ -453,9 +663,9 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(191, 219, 254, 0.6);
-  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--flox-border-soft);
+  backdrop-filter: blur(14px) saturate(112%);
 }
 
 .glass::before {
@@ -464,18 +674,19 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 36%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 44%);
 }
 
 .glass-elevated {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.99) 0%, rgba(250, 252, 255, 0.99) 100%);
-  border: 1px solid rgba(214, 224, 239, 0.95);
+  border-radius: var(--flox-radius-frame);
+  background: linear-gradient(180deg, var(--flox-surface-raised) 0%, var(--flox-surface-muted) 100%);
+  border: 1px solid var(--flox-border-soft);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.98) inset,
-    0 12px 28px rgba(15, 23, 42, 0.05);
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
 }
 
 .glass-elevated::before {
@@ -484,20 +695,19 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.46), transparent 26%),
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.035), transparent 18%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), transparent 34%);
 }
 
 .card-premium {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.995) 0%, rgba(251, 253, 255, 0.995) 100%);
-  border: 1px solid rgba(214, 224, 239, 0.95);
+  border-radius: var(--flox-radius-lg);
+  background: linear-gradient(180deg, var(--flox-surface-raised) 0%, rgba(248, 250, 252, 0.985) 100%);
+  border: 1px solid var(--flox-border-soft);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.96) inset,
-    0 7px 18px rgba(15, 23, 42, 0.04);
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
   transition:
     transform 220ms ease,
     border-color 220ms ease,
@@ -511,30 +721,26 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.38), transparent 24%),
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.02), transparent 16%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), transparent 30%);
 }
 
 .card-premium:hover {
-  transform: translateY(-3px);
-  border-color: rgba(147, 197, 253, 0.95);
+  transform: translateY(-1px);
+  border-color: var(--flox-border-strong);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.98) inset,
-    0 14px 28px rgba(15, 23, 42, 0.06);
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-sm);
 }
 
 .surface-dark {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top left, rgba(96, 165, 250, 0.12), transparent 22%),
-    linear-gradient(180deg, #16233a 0%, #1a2941 100%);
-  border: 1px solid rgba(96, 165, 250, 0.12);
+  background: linear-gradient(180deg, #07111f 0%, #111d2d 100%);
+  border: 1px solid rgba(148, 163, 184, 0.16);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 14px 28px rgba(15, 23, 42, 0.1);
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    var(--flox-shadow-dark);
 }
 
 .surface-dark::before {
@@ -542,9 +748,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 34%),
-    radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.12), transparent 20%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 38%);
 }
 
 .calc-surface {
@@ -565,9 +769,7 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.54), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.08), transparent 24%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.54), transparent 34%);
 }
 
 .calc-kicker {
@@ -575,28 +777,28 @@
   align-items: center;
   gap: 0.55rem;
   color: #64748b;
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: var(--flox-weight-label);
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
 }
 
 .calc-field,
 .calc-option-card,
 .calc-check-row,
 .calc-chip-card {
-  border: 1px solid rgba(203, 213, 225, 0.96);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.985), rgba(248, 250, 252, 0.985));
+  border: 1px solid var(--flox-border-soft);
+  background: linear-gradient(180deg, var(--flox-surface-raised), rgba(248, 250, 252, 0.985));
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.96) inset,
-    0 10px 24px rgba(15, 23, 42, 0.04);
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
 }
 
 .calc-field,
 .calc-option-card,
 .calc-chip-card {
-  border-radius: 1.2rem;
+  border-radius: var(--flox-radius-lg);
 }
 
 .calc-field {
@@ -625,17 +827,15 @@
 .calc-field:hover {
   border-color: rgba(147, 197, 253, 0.95);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.98) inset,
-    0 15px 30px rgba(15, 23, 42, 0.065);
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-sm);
 }
 
 .calc-field:focus-within,
 .calc-option-card:focus-within,
 .calc-check-row:focus-within {
   border-color: rgba(59, 130, 246, 0.42);
-  background:
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(245, 249, 255, 0.99));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(245, 249, 255, 0.99));
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.98) inset,
     0 0 0 4px rgba(191, 219, 254, 0.55),
@@ -646,9 +846,7 @@
 .calc-check-row[data-active="true"],
 .calc-chip-card[data-active="true"] {
   border-color: rgba(59, 130, 246, 0.34);
-  background:
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 24%),
-    linear-gradient(180deg, rgba(239, 246, 255, 0.98), rgba(255, 255, 255, 0.99));
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.98), rgba(255, 255, 255, 0.99));
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.98) inset,
     0 14px 28px rgba(37, 99, 235, 0.08);
@@ -656,10 +854,11 @@
 
 .calc-label {
   color: #64748b;
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: var(--flox-weight-label);
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
 }
 
 .calc-input,
@@ -675,7 +874,7 @@
 
 .calc-input {
   min-height: 3.1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .calc-select {
@@ -744,8 +943,8 @@
 .flox-button-quiet:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 4px rgba(191, 219, 254, 0.7),
-    0 18px 38px rgba(37, 99, 235, 0.16);
+    var(--flox-focus-ring),
+    var(--flox-shadow-sm);
 }
 
 .grid-dna {
@@ -774,8 +973,8 @@
   position: absolute;
   inset-inline: 22%;
   bottom: 0;
-  height: 64px;
-  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.03), transparent 72%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -881,10 +1080,10 @@
   content: "";
   position: absolute;
   inset: auto 18% -14px;
-  height: 22px;
-  border-radius: 999px;
-  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.12), transparent 72%);
-  filter: blur(14px);
+  height: 1px;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.12), transparent);
+  filter: none;
   opacity: 0;
   transition: opacity 240ms ease;
   pointer-events: none;
@@ -975,15 +1174,333 @@
 
 .flox-shell {
   position: relative;
-  width: min(100%, 84rem);
+  width: min(100%, var(--flox-container));
   margin-inline: auto;
-  padding-inline: clamp(0.1rem, 1vw, 0.4rem);
+  padding-inline: 0;
 }
 
 .flox-section {
   position: relative;
   padding-inline: clamp(1rem, 2vw, 1.5rem);
-  padding-block: clamp(4rem, 7vw, 6.5rem);
+  padding-block: var(--flox-section-y);
+}
+
+.flox-home-page {
+  background:
+    linear-gradient(180deg, rgba(246, 248, 251, 0.96) 0%, rgba(255, 255, 255, 0.98) 42%, #ffffff 100%),
+    hsl(var(--background));
+}
+
+.flox-section.flox-section-tight {
+  padding-block: clamp(2.75rem, 4.2vw, 4.25rem);
+}
+
+.flox-section.flox-section-major {
+  padding-block: clamp(4rem, 6vw, 6.25rem);
+}
+
+.flox-section.flox-section-contrast {
+  padding-block: clamp(3rem, 5vw, 5rem);
+}
+
+.flox-section.flox-section-index {
+  padding-block: clamp(2.75rem, 4.5vw, 4.75rem);
+}
+
+.flox-section.flox-section-pair {
+  padding-block: clamp(2.85rem, 4.6vw, 4.9rem);
+}
+
+.flox-section.flox-section-final {
+  padding-block: clamp(3.4rem, 5.5vw, 6rem);
+}
+
+.flox-story-flow {
+  padding-bottom: clamp(3rem, 5vw, 4.75rem);
+}
+
+.flox-next-step-flow {
+  padding-block: clamp(2.25rem, 4vw, 3.6rem);
+}
+
+.flox-section-intro {
+  position: relative;
+}
+
+.flox-section-intro::after {
+  content: "";
+  display: block;
+  width: min(9rem, 38vw);
+  height: 1px;
+  margin-top: 1.25rem;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.42), rgba(8, 145, 178, 0.18), transparent);
+}
+
+.flox-editorial-grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.4rem);
+  align-items: center;
+  border-block: 1px solid rgba(191, 219, 254, 0.62);
+  background:
+    linear-gradient(90deg, rgba(239, 246, 255, 0.52), rgba(255, 255, 255, 0.74) 42%, rgba(248, 250, 252, 0.62)),
+    rgba(255, 255, 255, 0.68);
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(0.25rem, 1vw, 0.75rem);
+}
+
+.flox-reason-grid,
+.flox-support-route-grid,
+.flox-link-directory-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.flox-service-architecture {
+  position: relative;
+}
+
+.flox-priority-contact-band,
+.flox-bridge-note,
+.flox-search-entry-strip,
+.flox-link-directory-panel,
+.flox-faq-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--flox-radius-frame);
+  border: 1px solid var(--flox-border-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.96)),
+    var(--flox-surface-raised);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-priority-contact-band {
+  border-color: rgba(51, 65, 85, 0.22);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    var(--flox-shadow-sm);
+}
+
+.flox-bridge-note {
+  border-radius: var(--flox-radius-panel);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(239, 246, 255, 0.62)),
+    rgba(255, 255, 255, 0.88);
+}
+
+.flox-contact-track-card,
+.flox-support-route-card,
+.flox-service-priority-card,
+.flox-service-support-card,
+.flox-reason-card,
+.flox-system-pillar-card,
+.flox-directory-card,
+.flox-process-note,
+.flox-faq-card,
+.flox-authority-card,
+.flox-radar-card,
+.flox-signature-card,
+.flox-signature-close,
+.flox-authority-note,
+.flox-radar-footnote {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--flox-radius-lg);
+  border: 1px solid var(--flox-border-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.94)),
+    rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-contact-track-card,
+.flox-support-route-card,
+.flox-service-priority-card,
+.flox-service-support-card,
+.flox-reason-card,
+.flox-directory-card,
+.flox-authority-card,
+.flox-radar-card,
+.flox-signature-card {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-contact-track-card,
+.flox-service-priority-card {
+  border-color: rgba(37, 99, 235, 0.2);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.985), rgba(239, 246, 255, 0.72)),
+    rgba(255, 255, 255, 0.96);
+}
+
+.flox-service-support-card,
+.flox-system-pillar-card,
+.flox-process-note,
+.flox-faq-card {
+  border-radius: var(--flox-radius-md);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.flox-reason-card {
+  border-radius: var(--flox-radius-md);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(248, 250, 252, 0.82)),
+    rgba(255, 255, 255, 0.82);
+}
+
+.flox-link-directory-panel,
+.flox-search-entry-strip {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.82)),
+    rgba(255, 255, 255, 0.88);
+}
+
+.flox-directory-card {
+  border-radius: var(--flox-radius-md);
+  background: rgba(248, 250, 252, 0.76);
+  box-shadow: none;
+}
+
+.flox-signature-flow {
+  padding-block: clamp(3.2rem, 5.2vw, 5.4rem) !important;
+}
+
+.flox-signature-header {
+  align-items: end;
+}
+
+.flox-radar-section {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(248, 250, 252, 0.8), rgba(255, 255, 255, 0.92)),
+    rgba(255, 255, 255, 0.82);
+}
+
+.flox-radar-section-compact {
+  padding-block: clamp(2.7rem, 4.5vw, 4.5rem);
+}
+
+.flox-radar-header {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.72);
+}
+
+.flox-authority-section {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.72)),
+    rgba(255, 255, 255, 0.86);
+}
+
+.flox-authority-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.9)),
+    rgba(255, 255, 255, 0.92);
+}
+
+.flox-authority-note,
+.flox-radar-footnote,
+.flox-signature-close {
+  border-color: rgba(37, 99, 235, 0.16);
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.78), rgba(255, 255, 255, 0.92)),
+    rgba(239, 246, 255, 0.68);
+}
+
+.flox-lead-panel,
+.flox-support-panel,
+.flox-process-panel {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-conversion-panel {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 20px 52px rgba(2, 6, 23, 0.32);
+}
+
+.flox-offer-hub {
+  border-radius: var(--flox-radius-frame);
+}
+
+@media (min-width: 768px) {
+  .flox-reason-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flox-support-route-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .flox-link-directory-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .flox-editorial-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .flox-link-directory-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (hover: hover) {
+  .flox-contact-track-card:hover,
+  .flox-support-route-card:hover,
+  .flox-service-priority-card:hover,
+  .flox-service-support-card:hover,
+  .flox-reason-card:hover,
+  .flox-directory-card:hover,
+  .flox-authority-card:hover,
+  .flox-radar-card:hover,
+  .flox-signature-card:hover {
+    border-color: var(--flox-border-accent);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      var(--flox-shadow-sm);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-contact-track-card:hover,
+  .flox-support-route-card:hover,
+  .flox-service-priority-card:hover,
+  .flox-service-support-card:hover,
+  .flox-reason-card:hover,
+  .flox-directory-card:hover,
+  .flox-authority-card:hover,
+  .flox-radar-card:hover,
+  .flox-signature-card:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-contact-track-card:focus-visible,
+.flox-support-route-card:focus-visible,
+.flox-service-priority-card:focus-visible,
+.flox-service-support-card:focus-visible,
+.flox-directory-card:focus-visible,
+.flox-authority-card:focus-visible {
+  outline: none;
+  border-color: var(--flox-border-accent);
+  box-shadow:
+    var(--flox-focus-ring),
+    var(--flox-shadow-sm);
 }
 
 .flox-grid-backdrop {
@@ -991,23 +1508,24 @@
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, rgba(15, 23, 42, 0.18), transparent 90%);
-  opacity: 0.3;
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: linear-gradient(180deg, rgba(15, 23, 42, 0.16), transparent 88%);
+  opacity: 0.42;
 }
 
 .flox-panel {
   position: relative;
   overflow: hidden;
-  border-radius: 2rem;
-  border: 1px solid rgba(205, 219, 238, 0.96);
+  border-radius: var(--flox-radius-frame);
+  border: 1px solid var(--flox-border-soft);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.985) 0%, rgba(247, 250, 255, 0.99) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.985)),
+    var(--flox-surface-raised);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.98) inset,
-    0 20px 48px rgba(15, 23, 42, 0.07);
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-sm);
   transition:
     transform 260ms ease,
     border-color 260ms ease,
@@ -1020,41 +1538,41 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.54) 0%, transparent 28%),
-    radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 28%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, transparent 32%);
 }
 
 .flox-panel::after {
   content: "";
   position: absolute;
-  inset: auto 12% 0 12%;
+  inset: auto 10% 0 10%;
   height: 1px;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.42), transparent);
-  opacity: 0.72;
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.12), transparent);
+  opacity: 0.52;
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .flox-panel:hover {
-    transform: translateY(-2px);
-    border-color: rgba(147, 197, 253, 0.96);
+    transform: translateY(-1px);
+    border-color: var(--flox-border-strong);
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.98) inset,
-      0 26px 64px rgba(15, 23, 42, 0.1);
+      0 1px 0 rgba(255, 255, 255, 0.88) inset,
+      var(--flox-shadow-lg);
   }
 }
 
 .flox-panel-dark {
   position: relative;
   overflow: hidden;
-  border-radius: 2rem;
-  border: 1px solid rgba(56, 189, 248, 0.16);
+  border-radius: var(--flox-radius-frame);
+  border: 1px solid rgba(148, 163, 184, 0.16);
   background:
-    linear-gradient(180deg, rgba(10, 20, 40, 0.99) 0%, rgba(16, 30, 56, 0.99) 100%);
+    radial-gradient(circle at 22% 0%, rgba(37, 99, 235, 0.2), transparent 34%),
+    linear-gradient(180deg, #07111f 0%, #111d2d 100%);
+  color: rgb(226 232 240);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 30px 72px rgba(6, 12, 25, 0.44);
+    var(--flox-shadow-dark);
 }
 
 .flox-panel-dark::before {
@@ -1062,16 +1580,14 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 24%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 30%);
 }
 
 .flox-panel-dark :where(h1, h2, h3, h4, h5, h6),
 .surface-dark :where(h1, h2, h3, h4, h5, h6),
 .duesseldorf-hero :where(h1, h2, h3, h4, h5, h6) {
   color: rgb(248 250 252);
-  text-shadow: 0 12px 34px rgba(2, 6, 23, 0.36);
+  text-shadow: none;
 }
 
 .flox-panel-dark :where(p, li, span, div),
@@ -1092,31 +1608,70 @@
   color: rgb(203 213 225) !important;
 }
 
+.flox-panel-dark :where(.text-slate-400, .text-slate-300),
+.surface-dark :where(.text-slate-400, .text-slate-300),
+.duesseldorf-hero :where(.text-slate-400, .text-slate-300) {
+  color: rgb(226 232 240) !important;
+}
+
+.flox-panel-dark .flox-button-secondary,
+.surface-dark .flox-button-secondary,
+.duesseldorf-hero .flox-button-secondary {
+  border-color: rgba(226, 232, 240, 0.82);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(226, 232, 240, 0.96)),
+    rgb(248 250 252);
+  color: rgb(15 23 42) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.82) inset,
+    0 14px 30px rgba(2, 6, 23, 0.2);
+}
+
+.flox-panel-dark .flox-button-secondary :where(svg, span),
+.surface-dark .flox-button-secondary :where(svg, span),
+.duesseldorf-hero .flox-button-secondary :where(svg, span) {
+  color: currentColor !important;
+}
+
+.flox-panel-dark .flox-button-quiet,
+.surface-dark .flox-button-quiet,
+.duesseldorf-hero .flox-button-quiet {
+  border-color: rgba(148, 163, 184, 0.34);
+  background: rgba(15, 23, 42, 0.34);
+  color: rgb(248 250 252) !important;
+}
+
+.flox-panel-dark .flox-button-quiet :where(svg, span),
+.surface-dark .flox-button-quiet :where(svg, span),
+.duesseldorf-hero .flox-button-quiet :where(svg, span) {
+  color: currentColor !important;
+}
+
 input[type="file"] {
   min-height: 3.25rem;
   width: 100%;
   cursor: pointer;
-  border-radius: 1rem;
-  border: 1px solid rgb(191 219 254);
-  background: linear-gradient(180deg, rgb(255 255 255), rgb(248 250 252));
+  border-radius: var(--flox-radius-md);
+  border: 1px solid var(--flox-border-soft);
+  background: linear-gradient(180deg, var(--flox-surface-raised), rgb(248 250 252));
   color: rgb(15 23 42);
   font-size: 0.82rem;
   font-weight: 700;
   line-height: 1.4;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--flox-shadow-xs);
 }
 
 input[type="file"]::file-selector-button {
   min-height: 3.1rem;
   margin-right: 1rem;
   border: 0;
-  border-right: 1px solid rgb(191 219 254);
-  border-radius: 0.95rem 0 0 0.95rem;
-  background: linear-gradient(135deg, rgb(37 99 235), rgb(14 165 233));
+  border-right: 1px solid var(--flox-border-soft);
+  border-radius: var(--flox-radius-md) 0 0 var(--flox-radius-md);
+  background: linear-gradient(135deg, var(--flox-accent), var(--flox-accent-2));
   padding-inline: 1.05rem;
   color: white;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 }
 
 input[type="file"]:hover {
@@ -1128,64 +1683,149 @@ input[type="file"]:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(191, 219, 254, 0.98);
-  background: rgba(255, 255, 255, 0.94);
-  padding: 0.72rem 1.05rem;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgb(37 99 235);
-  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.08);
+  border-radius: var(--flox-radius-xs);
+  border: 1px solid var(--flox-border-soft);
+  background: var(--flox-surface-command);
+  padding: 0.58rem 0.78rem;
+  font-family: var(--font-label);
+  font-size: 0.74rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.12;
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
+  color: var(--flox-accent);
+  box-shadow: none;
 }
 
 .flox-kicker::before {
   content: "";
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 2px;
+  height: 0.9rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgb(37 99 235), rgb(34 211 238));
-  box-shadow: 0 0 0 0.28rem rgba(59, 130, 246, 0.11);
+  background: currentColor;
+  box-shadow: none;
 }
 
 .flox-title-xl {
   font-family: var(--font-accent);
-  font-size: clamp(2.9rem, 5.8vw, 6.2rem);
-  line-height: 0.94;
-  letter-spacing: -0.032em;
-  font-weight: 900;
-  font-variation-settings: "wdth" 96, "wght" 850;
+  font-size: 3.05rem;
+  line-height: 1;
+  letter-spacing: var(--flox-tracking);
+  font-weight: var(--flox-weight-display);
+  font-variation-settings: "opsz" 42, "wght" 790;
 }
 
 .flox-title-lg {
   font-family: var(--font-accent);
-  font-size: clamp(2.1rem, 4vw, 3.9rem);
-  line-height: 0.98;
-  letter-spacing: -0.024em;
-  font-weight: 880;
-  font-variation-settings: "wdth" 96, "wght" 820;
+  font-size: 2.15rem;
+  line-height: 1.04;
+  letter-spacing: var(--flox-tracking);
+  font-weight: var(--flox-weight-heading);
+  font-variation-settings: "opsz" 36, "wght" 760;
 }
 
 .flox-display-hero {
   font-family: var(--font-accent);
-  line-height: 0.95;
-  letter-spacing: -0.028em;
+  line-height: var(--flox-leading-display);
+  letter-spacing: var(--flox-tracking);
   text-wrap: balance;
 }
 
 .flox-display-section {
   font-family: var(--font-accent);
-  line-height: 0.98;
-  letter-spacing: -0.022em;
+  line-height: 1.02;
+  letter-spacing: var(--flox-tracking);
   text-wrap: balance;
 }
 
 .flox-display-section-tight {
   font-family: var(--font-accent);
-  line-height: 1.01;
-  letter-spacing: -0.018em;
+  line-height: 1.04;
+  letter-spacing: var(--flox-tracking);
   text-wrap: balance;
+}
+
+@media (min-width: 640px) {
+  .flox-title-xl {
+    font-size: 4.25rem;
+    line-height: 0.98;
+  }
+
+  .flox-title-lg {
+    font-size: 2.75rem;
+    line-height: 1.03;
+  }
+}
+
+@media (min-width: 1024px) {
+  .flox-title-xl {
+    font-size: 5.25rem;
+    line-height: 0.97;
+  }
+
+  .flox-title-lg {
+    font-size: 3.35rem;
+    line-height: 1.02;
+  }
+}
+
+@media (min-width: 1280px) {
+  .flox-title-xl {
+    font-size: 5.85rem;
+  }
+
+  .flox-title-lg {
+    font-size: 3.75rem;
+  }
+}
+
+.flox-overline,
+.flox-action-meta {
+  font-family: var(--font-label);
+  font-size: 0.74rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.14;
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
+}
+
+.flox-card-title,
+.flox-action-title {
+  font-family: var(--font-heading);
+  font-size: 1.03rem;
+  font-weight: var(--flox-weight-heading);
+  line-height: 1.18;
+  letter-spacing: var(--flox-tracking);
+}
+
+.flox-card-title-lg {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: var(--flox-weight-heading);
+  line-height: 1.14;
+  letter-spacing: var(--flox-tracking);
+}
+
+.flox-card-copy,
+.flox-card-copy-sm,
+.flox-section-copy {
+  font-weight: var(--flox-weight-copy);
+  letter-spacing: var(--flox-tracking);
+}
+
+.flox-card-copy {
+  font-size: 0.95rem;
+  line-height: 1.62;
+}
+
+.flox-card-copy-sm {
+  font-size: 0.86rem;
+  line-height: 1.56;
+}
+
+.flox-section-copy {
+  font-size: 1rem;
+  line-height: var(--flox-leading-copy);
 }
 
 .flox-gradient-title {
@@ -1221,11 +1861,11 @@ input[type="file"]:hover {
 .flox-click-card::before {
   content: "";
   position: absolute;
-  inset: -30% auto auto -20%;
-  width: 9rem;
-  height: 9rem;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.14), transparent 68%);
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.26), transparent 36%);
   opacity: 0;
   transition: opacity 260ms ease, transform 260ms ease;
 }
@@ -1307,10 +1947,7 @@ input[type="file"]:hover {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.16), transparent 34%),
-    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.84));
+  background: linear-gradient(135deg, rgba(7, 17, 31, 0.96), rgba(17, 29, 45, 0.9));
 }
 
 .flox-dominance-panel::before {
@@ -1360,10 +1997,7 @@ input[type="file"]:hover {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 4% 12%, rgba(59, 130, 246, 0.14), transparent 28%),
-    radial-gradient(circle at 96% 0%, rgba(34, 211, 238, 0.12), transparent 24%),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.64));
+  background: linear-gradient(135deg, rgba(7, 17, 31, 0.88), rgba(17, 29, 45, 0.72));
 }
 
 .flox-search-action-strip::before {
@@ -1395,10 +2029,7 @@ input[type="file"]:hover {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.14), transparent 28%),
-    radial-gradient(circle at 92% 20%, rgba(59, 130, 246, 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.76), rgba(15, 23, 42, 0.56));
+  background: linear-gradient(135deg, rgba(7, 17, 31, 0.82), rgba(15, 23, 42, 0.64));
 }
 
 .flox-local-trust-deck::before {
@@ -1456,12 +2087,12 @@ input[type="file"]:hover {
 .flox-special-service-card::before {
   content: "";
   position: absolute;
-  inset: -45% auto auto -24%;
+  inset: 0;
   z-index: -1;
-  width: 13rem;
-  height: 13rem;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.17), transparent 68%);
+  width: auto;
+  height: auto;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 36%);
   opacity: 0;
   transform: scale(0.85);
   transition:
@@ -1485,9 +2116,7 @@ input[type="file"]:hover {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.09), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
 }
 
 .flox-serp-preview-card h3 {
@@ -1548,24 +2177,28 @@ input[type="file"]:hover {
 @media (max-width: 1024px) {
   .flox-title-xl,
   .flox-display-hero {
-    line-height: 0.98;
-    letter-spacing: -0.024em;
+    line-height: 1;
+    letter-spacing: var(--flox-tracking);
   }
 
   .flox-title-lg,
   .flox-display-section {
-    line-height: 1;
-    letter-spacing: -0.018em;
+    line-height: 1.04;
+    letter-spacing: var(--flox-tracking);
   }
 }
 
 @media (max-width: 640px) {
+  .flox-title-xl {
+    font-size: 2.56rem;
+  }
+
   .flox-title-xl,
   .flox-title-lg,
   .flox-display-hero,
   .flox-display-section,
   .flox-display-section-tight {
-    letter-spacing: -0.014em;
+    letter-spacing: var(--flox-tracking);
   }
 
   .flox-display-hero {
@@ -1578,10 +2211,29 @@ input[type="file"]:hover {
   }
 }
 
+@media (max-width: 400px) {
+  .flox-title-xl {
+    font-size: 2.34rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .flox-title-xl {
+    font-size: 2.12rem;
+  }
+}
+
 .flox-body {
-  font-size: clamp(1rem, 1.2vw, 1.08rem);
-  line-height: 1.9;
-  color: rgb(71 85 105);
+  font-size: 1rem;
+  font-weight: var(--flox-weight-copy);
+  line-height: var(--flox-leading-copy);
+  color: var(--flox-ink-soft);
+}
+
+@media (min-width: 768px) {
+  .flox-body {
+    font-size: 1.0625rem;
+  }
 }
 
 .content-auto {
@@ -1596,70 +2248,924 @@ input[type="file"]:hover {
   align-items: center;
   justify-content: center;
   gap: 0.65rem;
-  border-radius: 1.15rem;
-  min-height: 3.45rem;
+  border-radius: var(--flox-radius-md);
+  min-height: 3.35rem;
   padding-inline: 1.3rem;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: 0.92rem;
+  font-weight: var(--flox-weight-label);
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    color var(--flox-duration-base) var(--flox-ease-standard),
+    opacity var(--flox-duration-fast) var(--flox-ease-standard);
 }
 
 .flox-button-primary {
-  background: linear-gradient(135deg, rgb(37 99 235) 0%, rgb(14 165 233) 100%);
+  border: 1px solid rgba(29, 78, 216, 0.92);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 42%),
+    linear-gradient(135deg, var(--flox-accent) 0%, var(--flox-accent-2) 100%);
   color: white;
-  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.24);
-}
-
-.flox-button-primary:hover,
-.flox-button-secondary:hover,
-.flox-button-quiet:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 22px 46px rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 14px 30px rgba(29, 78, 216, 0.22);
 }
 
 .flox-button-secondary {
-  border: 1px solid rgba(208, 221, 240, 0.96);
-  background: rgba(255, 255, 255, 0.94);
-  color: rgb(15 23 42);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--flox-border-soft);
+  background: linear-gradient(180deg, var(--flox-surface-raised), rgba(248, 250, 252, 0.985));
+  color: var(--flox-ink);
+  box-shadow: var(--flox-shadow-xs);
 }
 
 .flox-button-quiet {
-  border: 1px solid rgba(37, 99, 235, 0.14);
+  border: 1px solid var(--flox-border-accent);
+  background: rgba(241, 245, 249, 0.92);
+  color: var(--flox-accent);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-button-primary:hover,
+  .flox-button-secondary:hover,
+  .flox-button-quiet:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--flox-shadow-sm);
+  }
+}
+
+.flox-button-primary:active,
+.flox-button-secondary:active,
+.flox-button-quiet:active {
+  transform: translateY(0);
+  opacity: 0.94;
+}
+
+.flox-hero-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--flox-radius-frame);
+  border: 1px solid rgba(71, 85, 105, 0.24);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.96) 54%, rgba(239, 246, 255, 0.9) 100%),
+    var(--flox-surface-raised);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 26px 68px rgba(15, 23, 42, 0.12);
+}
+
+.flox-hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(37, 99, 235, 0.13), transparent 36%, rgba(8, 145, 178, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), transparent 42%);
+}
+
+.flox-hero-stage > * {
+  position: relative;
+  z-index: 1;
+}
+
+.flox-hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 4px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.82), rgba(8, 145, 178, 0.52), rgba(16, 185, 129, 0.34));
+}
+
+.flox-hero-copy {
+  min-width: 0;
+  padding-block: 0.25rem;
+}
+
+.flox-hero-kicker-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.75rem;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.2;
+  letter-spacing: var(--flox-tracking);
+  color: rgb(29, 78, 216);
+}
+
+.flox-hero-kicker-row + .flox-kicker {
+  margin-top: 1.15rem;
+}
+
+.flox-hero-kicker-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.35rem;
+}
+
+.flox-hero-kicker-row span:not(:last-child) {
+  padding-right: 0.75rem;
+  border-right: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.flox-hero-cta-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.flox-hero-primary-cta {
+  min-height: 3.65rem;
+  padding-inline: 1.55rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 18px 42px rgba(29, 78, 216, 0.28);
+}
+
+.flox-hero-secondary-cta {
+  min-height: 3.45rem;
+}
+
+.flox-hero-proof-strip {
+  display: grid;
+  overflow: hidden;
+  border-radius: var(--flox-radius-panel);
+  border: 1px solid rgba(203, 213, 225, 0.82);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-hero-proof-item {
+  min-width: 0;
+  padding: 1rem;
+}
+
+.flox-hero-proof-item + .flox-hero-proof-item {
+  border-top: 1px solid rgba(203, 213, 225, 0.72);
+}
+
+.flox-hero-console {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--flox-radius-panel);
+  border: 1px solid rgba(71, 85, 105, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.985), rgba(248, 250, 252, 0.965)),
+    rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 18px 44px rgba(15, 23, 42, 0.1);
+}
+
+.flox-hero-console::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.72), rgba(8, 145, 178, 0.32), transparent);
+}
+
+.flox-hero-action-primary,
+.flox-hero-action-secondary,
+.flox-hero-note,
+.flox-hero-route-card,
+.flox-hero-metric {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--flox-border-soft);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-hero-action-primary,
+.flox-hero-action-secondary,
+.flox-hero-route-card {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-hero-action-primary {
+  border-radius: var(--flox-radius-lg);
+  border-color: rgba(37, 99, 235, 0.28);
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.98), rgba(255, 255, 255, 0.96)),
+    rgba(239, 246, 255, 0.92);
+}
+
+.flox-hero-action-secondary,
+.flox-hero-note {
+  border-radius: var(--flox-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.94)),
+    rgba(255, 255, 255, 0.9);
+}
+
+.flox-hero-note {
+  border-color: rgba(203, 213, 225, 0.78);
+}
+
+.flox-hero-metric-strip {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.flox-hero-metric {
+  border-radius: var(--flox-radius-lg);
+  border-color: rgba(203, 213, 225, 0.8);
+  background: rgba(255, 255, 255, 0.76);
+  padding: 1rem;
+}
+
+.flox-hero-route-strip {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.flox-hero-route-card {
+  display: block;
+  min-height: 4.45rem;
+  border-radius: var(--flox-radius-md);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92)),
+    rgba(255, 255, 255, 0.92);
+}
+
+@media (min-width: 640px) {
+  .flox-hero-cta-cluster {
+    flex-flow: row wrap;
+  }
+
+  .flox-hero-proof-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .flox-hero-proof-item + .flox-hero-proof-item {
+    border-top: 0;
+    border-left: 1px solid rgba(203, 213, 225, 0.72);
+  }
+
+  .flox-hero-metric-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .flox-hero-route-strip {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .flox-hero-metric-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .flox-hero-metric-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (hover: hover) {
+  .flox-hero-action-primary:hover,
+  .flox-hero-action-secondary:hover,
+  .flox-hero-route-card:hover {
+    border-color: var(--flox-border-accent);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      var(--flox-shadow-sm);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-hero-action-primary:hover,
+  .flox-hero-action-secondary:hover,
+  .flox-hero-route-card:hover {
+    transform: translateY(-1px);
+  }
+
+  .flox-hero-action-primary:hover :where(.lucide-arrow-right, .lucide-arrow-up-right),
+  .flox-hero-action-secondary:hover :where(.lucide-arrow-right, .lucide-arrow-up-right),
+  .flox-hero-route-card:hover :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+    transform: translate3d(2px, -1px, 0);
+  }
+}
+
+.flox-hero-action-primary:focus-visible,
+.flox-hero-action-secondary:focus-visible,
+.flox-hero-route-card:focus-visible {
+  outline: none;
+  border-color: var(--flox-border-accent);
+  box-shadow:
+    var(--flox-focus-ring),
+    var(--flox-shadow-sm);
+}
+
+.flox-hero-action-primary:active,
+.flox-hero-action-secondary:active,
+.flox-hero-route-card:active {
+  transform: translateY(0);
+}
+
+.flox-hero-action-primary :where(.lucide-arrow-right, .lucide-arrow-up-right),
+.flox-hero-action-secondary :where(.lucide-arrow-right, .lucide-arrow-up-right),
+.flox-hero-route-card :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-surface-card,
+.flox-action-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--flox-radius-lg);
+  border: 1px solid var(--flox-border-soft);
+  background:
+    linear-gradient(180deg, var(--flox-surface-raised), rgba(248, 250, 252, 0.985)),
+    var(--flox-surface);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-surface-card::before,
+.flox-action-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.12), transparent 28%, transparent 72%, rgba(8, 145, 178, 0.08));
+  opacity: 0;
+  transition: opacity var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-surface-card-interactive,
+.flox-action-card {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+@media (hover: hover) {
+  .flox-surface-card-interactive:hover,
+  .flox-action-card:hover {
+    border-color: var(--flox-border-strong);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      var(--flox-shadow-sm);
+  }
+
+  .flox-surface-card-interactive:hover::before,
+  .flox-action-card:hover::before {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-surface-card-interactive:hover,
+  .flox-action-card:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-surface-card-interactive:focus-visible,
+.flox-action-card:focus-visible {
+  outline: none;
+  border-color: var(--flox-border-accent);
+  box-shadow:
+    var(--flox-focus-ring),
+    var(--flox-shadow-sm);
+}
+
+.flox-action-card:active {
+  transform: translateY(0);
+}
+
+.flox-action-card-dark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--flox-radius-lg);
+  border: 1px solid rgba(226, 232, 240, 0.2);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.075)),
+    rgba(15, 23, 42, 0.18);
+  color: rgb(226 232 240);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 14px 30px rgba(2, 6, 23, 0.18);
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    background var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-action-card-dark :where(.flox-action-meta, .flox-overline) {
+  color: rgb(125 211 252) !important;
+}
+
+.flox-action-card-dark :where(.flox-card-title, .flox-card-title-lg, h3) {
+  color: rgb(255 255 255) !important;
+}
+
+.flox-action-card-dark :where(p) {
+  color: rgb(203 213 225) !important;
+}
+
+.flox-action-card-dark :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+  color: rgb(148 163 184) !important;
+}
+
+.flox-panel-dark .flox-special-route-card {
+  border-color: rgba(226, 232, 240, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.088)),
+    rgba(30, 41, 59, 0.46);
+}
+
+.flox-panel-dark .flox-special-route-card .flox-icon-tile-dark {
+  border-color: rgba(203, 213, 225, 0.34);
+  background: rgba(226, 232, 240, 0.12);
+  color: rgb(207 250 254) !important;
+}
+
+.flox-panel-dark .flox-special-route-card .flox-icon-tile-dark svg {
+  color: rgb(207 250 254) !important;
+  stroke-width: 2.25;
+}
+
+.flox-panel-dark .flox-special-route-card .flox-special-route-arrow {
+  color: rgb(186 230 253) !important;
+  opacity: 0.92;
+}
+
+.flox-panel-dark .flox-special-route-card .flox-special-route-meta {
+  color: rgb(103 232 249) !important;
+  opacity: 1;
+}
+
+.flox-panel-dark .flox-special-route-card .flox-special-route-title {
+  color: rgb(255 255 255) !important;
+}
+
+.flox-panel-dark .flox-special-route-card .flox-special-route-copy {
+  color: rgb(226 232 240) !important;
+}
+
+@media (hover: hover) {
+  .flox-action-card-dark:hover {
+    border-color: rgba(125, 211, 252, 0.44);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.095)),
+      rgba(15, 23, 42, 0.16);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 18px 42px rgba(2, 6, 23, 0.24);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-action-card-dark:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-action-card-dark:focus-visible {
+  outline: none;
+  border-color: rgba(125, 211, 252, 0.42);
+  box-shadow:
+    0 0 0 3px rgba(125, 211, 252, 0.16),
+    0 0 0 6px rgba(14, 165, 233, 0.18);
+}
+
+.flox-action-card-dark:active {
+  transform: translateY(0);
+}
+
+.flox-panel-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--flox-radius-frame);
+  border: 1px solid var(--flox-border-soft);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.98)),
+    var(--flox-surface-raised);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    var(--flox-shadow-sm);
+}
+
+.flox-panel-frame-dark,
+.flox-cta-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--flox-radius-frame);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(37, 99, 235, 0.24), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(8, 145, 178, 0.18), transparent 30%),
+    linear-gradient(180deg, #07111f 0%, #111d2d 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    var(--flox-shadow-dark);
+}
+
+.flox-tag,
+.flox-tag-soft,
+.flox-tag-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: var(--flox-radius-xs);
+  border: 1px solid var(--flox-border-soft);
+  padding: 0.42rem 0.64rem;
+  font-family: var(--font-label);
+  font-size: 0.74rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.15;
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
+}
+
+.flox-tag {
+  background: var(--flox-surface-command);
+  color: rgb(51 65 85);
+}
+
+.flox-tag-soft {
+  border-color: var(--flox-border-accent);
   background: rgba(239, 246, 255, 0.9);
-  color: rgb(30 64 175);
+  color: var(--flox-accent);
+}
+
+.flox-tag-dark {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgb(207 250 254);
+}
+
+.flox-icon-tile,
+.flox-icon-tile-dark {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: var(--flox-radius-sm);
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-icon-tile {
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  background: rgba(239, 246, 255, 0.92);
+  color: var(--flox-accent);
+}
+
+.flox-icon-tile.bg-blue-600 {
+  border-color: rgba(37, 99, 235, 0.36);
+  background: rgb(37 99 235);
+  color: white;
+}
+
+.flox-icon-tile.bg-white {
+  border-color: rgba(255, 255, 255, 0.82);
+  background: white;
+  color: var(--flox-accent);
+}
+
+.flox-icon-tile.bg-gradient-to-r {
+  border-color: transparent;
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  color: white;
+}
+
+.flox-icon-tile.bg-gradient-to-br {
+  border-color: transparent;
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  color: white;
+}
+
+.flox-signature-icon {
+  border-color: rgba(255, 255, 255, 0.86);
+  color: #ffffff !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 14px 30px rgba(15, 23, 42, 0.18);
+}
+
+.flox-signature-icon svg {
+  color: #ffffff !important;
+  stroke-width: 2.35;
+  filter: drop-shadow(0 1px 1px rgba(2, 6, 23, 0.22));
+}
+
+@media (hover: hover) {
+  .group:hover .flox-icon-tile {
+    border-color: rgba(37, 99, 235, 0.3);
+    background: var(--flox-accent);
+    color: white;
+  }
+
+  .group:hover .flox-icon-tile-dark {
+    border-color: rgba(125, 211, 252, 0.34);
+    background: rgba(255, 255, 255, 0.12);
+    color: rgb(240 249 255);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .group:hover .flox-icon-tile,
+  .group:hover .flox-icon-tile-dark {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-icon-tile-dark {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgb(207 250 254);
+}
+
+.flox-command-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: var(--flox-radius-sm);
+  border: 1px solid var(--flox-border-soft);
+  background: var(--flox-surface-command);
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.15;
+  color: rgb(51 65 85);
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+@media (hover: hover) {
+  .flox-command-link:hover {
+    border-color: var(--flox-border-accent);
+    background: rgba(239, 246, 255, 0.92);
+    color: var(--flox-accent);
+    box-shadow: var(--flox-shadow-xs);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-command-link:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-command-link:focus-visible {
+  outline: none;
+  border-color: var(--flox-border-accent);
+  box-shadow: var(--flox-focus-ring);
+}
+
+.flox-command-link:active {
+  transform: translateY(0);
+}
+
+.flox-command-link-active,
+.flox-command-link.flox-command-link-active {
+  border-color: rgb(15 23 42);
+  background: rgb(15 23 42);
+  color: white;
+}
+
+.flox-command-link-large {
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.flox-info-panel,
+.flox-warning-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--flox-radius-lg);
+  padding: 1rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.78) inset,
+    var(--flox-shadow-xs);
+}
+
+.flox-info-panel {
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(224, 242, 254, 0.84)),
+    rgba(239, 246, 255, 0.92);
+  color: rgb(23 37 84);
+}
+
+.flox-warning-panel {
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 235, 0.95), rgba(254, 243, 199, 0.74)),
+    rgba(255, 251, 235, 0.92);
+  color: rgb(120 53 15);
+}
+
+.flox-subtle-link,
+.flox-row-link,
+.flox-row-link-dark,
+.flox-nav-action {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    color var(--flox-duration-base) var(--flox-ease-standard),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-subtle-link {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.flox-subtle-link:focus-visible,
+.flox-row-link:focus-visible,
+.flox-row-link-dark:focus-visible,
+.flox-nav-action:focus-visible {
+  outline: none;
+  box-shadow: var(--flox-focus-ring);
+}
+
+.flox-row-link {
+  border-radius: var(--flox-radius-sm);
+}
+
+@media (hover: hover) {
+  .flox-row-link:hover {
+    color: rgb(29 78 216);
+  }
+
+  .flox-row-link-dark:hover {
+    color: rgb(207 250 254);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-row-link:hover :where(.lucide-arrow-right, .lucide-arrow-up-right),
+  .flox-row-link-dark:hover :where(.lucide-arrow-right, .lucide-arrow-up-right),
+  .flox-action-card:hover :where(.lucide-arrow-right, .lucide-arrow-up-right),
+  .flox-action-card-dark:hover :where(.lucide-arrow-right, .lucide-arrow-up-right),
+  .flox-command-link:hover :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+    transform: translate3d(2px, -1px, 0);
+  }
+}
+
+.flox-row-link :where(.lucide-arrow-right, .lucide-arrow-up-right),
+.flox-row-link-dark :where(.lucide-arrow-right, .lucide-arrow-up-right),
+.flox-action-card :where(.lucide-arrow-right, .lucide-arrow-up-right),
+.flox-action-card-dark :where(.lucide-arrow-right, .lucide-arrow-up-right),
+.flox-command-link :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    color var(--flox-duration-base) var(--flox-ease-standard),
+    opacity var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-nav-action {
+  border-radius: var(--flox-radius-md);
+}
+
+.flox-nav-action:focus-visible {
+  outline: none;
+  box-shadow: var(--flox-focus-ring);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-nav-action:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.flox-nav-action:active {
+  transform: translateY(0);
+}
+
+.flox-nav-entry {
+  display: block;
+  min-width: 0;
+  border-radius: var(--flox-radius-md);
+  border: 1px solid var(--flox-border-soft);
+  background: var(--flox-surface-command);
+  padding: 0.86rem;
+  color: rgb(51 65 85);
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    color var(--flox-duration-base) var(--flox-ease-standard),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-nav-entry-blue {
+  border-color: rgba(37, 99, 235, 0.16);
+  background: rgba(239, 246, 255, 0.72);
+}
+
+@media (hover: hover) {
+  .flox-nav-entry:hover {
+    border-color: var(--flox-border-accent);
+    background: rgba(239, 246, 255, 0.92);
+    color: var(--flox-ink);
+    box-shadow: var(--flox-shadow-xs);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-nav-entry:hover {
+    transform: translateY(-1px);
+  }
+
+  .flox-nav-entry:hover :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+    transform: translate3d(2px, -1px, 0);
+  }
+}
+
+.flox-nav-entry:focus-visible {
+  outline: none;
+  border-color: var(--flox-border-accent);
+  box-shadow: var(--flox-focus-ring);
+}
+
+.flox-nav-entry:active {
+  transform: translateY(0);
+}
+
+.flox-nav-entry :where(.lucide-arrow-right, .lucide-arrow-up-right) {
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    color var(--flox-duration-base) var(--flox-ease-standard);
 }
 
 .flox-metric {
-  border-radius: 1.45rem;
-  border: 1px solid rgba(214, 224, 239, 0.96);
-  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--flox-radius-lg);
+  border: 1px solid var(--flox-border-soft);
+  background:
+    linear-gradient(180deg, var(--flox-surface-raised), rgba(248, 250, 252, 0.985)),
+    var(--flox-surface);
   padding: 1.1rem 1.1rem 1.15rem;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86) inset,
+    var(--flox-shadow-xs);
 }
 
 .flox-metric-label {
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: 0.74rem;
+  font-weight: var(--flox-weight-label);
+  line-height: 1.16;
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
   color: rgb(37 99 235);
 }
 
 .flox-metric-value {
   margin-top: 0.55rem;
-  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
-  font-weight: 800;
+  font-size: 1.45rem;
+  font-weight: var(--flox-weight-heading);
   line-height: 1.08;
-  letter-spacing: -0.05em;
-  color: rgb(15 23 42);
+  letter-spacing: var(--flox-tracking);
+  color: var(--flox-ink);
 }
 
 .flox-list-compact > * + * {
@@ -1670,9 +3176,9 @@ input[type="file"]:hover {
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
-  border-radius: 1.2rem;
-  border: 1px solid rgba(214, 224, 239, 0.92);
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--flox-radius-md);
+  border: 1px solid var(--flox-border-soft);
+  background: var(--flox-surface);
   padding: 1rem 1.05rem;
 }
 
@@ -1687,11 +3193,11 @@ input[type="file"]:hover {
 .flox-link-card {
   position: relative;
   overflow: hidden;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(214, 224, 239, 0.96);
-  background: rgba(255, 255, 255, 0.94);
+  border-radius: var(--flox-radius-md);
+  border: 1px solid var(--flox-border-soft);
+  background: var(--flox-surface-command);
   padding: 1.15rem;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--flox-shadow-xs);
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -1701,9 +3207,9 @@ input[type="file"]:hover {
 
 .flox-link-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(147, 197, 253, 0.98);
-  background: rgba(248, 251, 255, 0.98);
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
+  border-color: var(--flox-border-strong);
+  background: var(--flox-surface-raised);
+  box-shadow: var(--flox-shadow-sm);
 }
 
 .flox-list-step {
@@ -1713,9 +3219,9 @@ input[type="file"]:hover {
   flex: 0 0 1.7rem;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, 0.1);
-  color: rgb(37 99 235);
+  border-radius: var(--flox-radius-xs);
+  background: rgba(29, 78, 216, 0.1);
+  color: var(--flox-accent);
   font-size: 0.7rem;
   font-weight: 800;
 }
@@ -1724,22 +3230,23 @@ input[type="file"]:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(214, 224, 239, 0.96);
-  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--flox-radius-xs);
+  border: 1px solid var(--flox-border-soft);
+  background: var(--flox-surface);
   padding: 0.72rem 0.92rem;
   font-size: 0.68rem;
+  font-family: var(--font-label);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--flox-tracking);
+  text-transform: none;
   color: rgb(71 85 105);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--flox-shadow-xs);
 }
 
 .flox-divider {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.42), transparent);
+  background: linear-gradient(90deg, transparent, rgba(71, 85, 105, 0.24), transparent);
 }
 
 .flox-orbit {
@@ -1747,16 +3254,17 @@ input[type="file"]:hover {
   inset: auto 6% 8% auto;
   height: 7rem;
   width: 7rem;
-  border-radius: 999px;
+  border-radius: var(--flox-radius-panel);
   border: 1px solid rgba(37, 99, 235, 0.14);
-  opacity: 0.7;
+  opacity: 0.38;
+  transform: rotate(8deg);
 }
 
 .flox-orbit::before,
 .flox-orbit::after {
   content: "";
   position: absolute;
-  border-radius: inherit;
+  border-radius: calc(var(--flox-radius-panel) - 0.35rem);
   border: 1px solid rgba(14, 165, 233, 0.12);
   inset: 11%;
 }
@@ -1878,7 +3386,7 @@ input[type="file"]:hover {
   padding: 0 0.9rem;
   font-size: 0.75rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   transition:
     background-color 160ms ease,
@@ -1971,13 +3479,13 @@ input[type="file"]:hover {
 .flox-mobile-action-shell {
   width: min(100%, 27rem);
   margin-inline: auto;
-  border: 1px solid rgba(203, 213, 225, 0.92);
-  border-radius: 1.45rem;
+  border: 1px solid var(--flox-border-soft);
+  border-radius: var(--flox-radius-xl);
   background: rgba(255, 255, 255, 0.97);
   padding: 0.42rem;
   box-shadow:
-    0 -18px 46px rgba(15, 23, 42, 0.17),
-    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+    0 -14px 34px rgba(15, 23, 42, 0.13),
+    0 1px 0 rgba(255, 255, 255, 0.88) inset;
   backdrop-filter: blur(18px);
 }
 
@@ -1995,13 +3503,13 @@ input[type="file"]:hover {
   align-items: center;
   justify-content: center;
   gap: 0.28rem;
-  border-radius: 1rem;
+  border-radius: var(--flox-radius-md);
   padding: 0.55rem 0.45rem;
   text-align: center;
   font-size: 0.68rem;
   font-weight: 900;
   line-height: 1.05;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   overflow-wrap: anywhere;
   -webkit-text-fill-color: currentColor;
   text-decoration: none;
@@ -2019,10 +3527,10 @@ input[type="file"]:hover {
 }
 
 .flox-mobile-action-primary {
-  border: 1px solid rgb(37, 99, 235);
-  background: linear-gradient(135deg, rgb(37, 99, 235), rgb(6, 182, 212));
+  border: 1px solid rgba(29, 78, 216, 0.92);
+  background: linear-gradient(135deg, var(--flox-accent), var(--flox-accent-2));
   color: #ffffff !important;
-  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.24);
+  box-shadow: 0 10px 22px rgba(29, 78, 216, 0.22);
 }
 
 .flox-mobile-action-dark {
@@ -2033,15 +3541,15 @@ input[type="file"]:hover {
 
 .flox-mobile-action-whatsapp {
   border: 1px solid rgb(110, 231, 183);
-  background: rgb(16, 185, 129);
+  background: rgb(18, 183, 106);
   color: rgb(2, 44, 34) !important;
-  box-shadow: 0 12px 26px rgba(16, 185, 129, 0.18);
+  box-shadow: 0 10px 22px rgba(16, 185, 129, 0.16);
 }
 
 .flox-mobile-action-light {
-  border: 1px solid rgb(203, 213, 225);
+  border: 1px solid var(--flox-border-soft);
   background: rgb(248, 250, 252);
-  color: rgb(15, 23, 42) !important;
+  color: var(--flox-ink) !important;
 }
 
 .flox-mobile-action:active {
@@ -2147,10 +3655,7 @@ input[type="file"]:hover {
 .duesseldorf-hero {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top left, rgba(45, 212, 191, 0.22), transparent 26%),
-    radial-gradient(circle at top right, rgba(59, 130, 246, 0.2), transparent 28%),
-    linear-gradient(135deg, rgba(8, 18, 34, 0.98), rgba(14, 28, 52, 0.98));
+  background: linear-gradient(135deg, rgba(8, 18, 34, 0.98), rgba(14, 28, 52, 0.98));
 }
 
 .duesseldorf-hero::before {
@@ -2158,33 +3663,364 @@ input[type="file"]:hover {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 26%),
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 34%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%);
 }
 
 .duesseldorf-hero-title {
   color: rgba(248, 250, 252, 0.98);
   line-height: 1.02;
-  letter-spacing: -0.018em;
+  letter-spacing: 0;
   text-wrap: balance;
-  text-shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+  text-shadow: none;
 }
 
 .duesseldorf-hero-copy {
   color: rgba(226, 232, 240, 0.94);
   line-height: 1.78;
-  text-shadow: 0 6px 20px rgba(2, 6, 23, 0.22);
+  text-shadow: none;
 }
 
 @media (max-width: 768px) {
   .duesseldorf-hero-title {
     line-height: 1.04;
-    letter-spacing: -0.012em;
+    letter-spacing: 0;
   }
 
   .duesseldorf-hero-copy {
     font-size: 1rem;
     line-height: 1.72;
   }
+}
+
+.flox-whatsapp-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(134, 239, 172, 0.6);
+  background:
+    linear-gradient(135deg, #22c55e 0%, #10b981 46%, #047857 100%);
+  color: #ffffff !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.24) inset,
+    0 24px 58px rgba(4, 120, 87, 0.32),
+    0 0 0 1px rgba(16, 185, 129, 0.16);
+}
+
+.flox-whatsapp-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.28), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 54%);
+}
+
+.flox-whatsapp-cta,
+.flox-whatsapp-cta :where(span, div, svg) {
+  color: #ffffff !important;
+}
+
+.flox-whatsapp-cta__icon {
+  background: #ffffff;
+  color: #047857 !important;
+  box-shadow:
+    0 14px 32px rgba(4, 120, 87, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.54);
+}
+
+.flox-whatsapp-cta__icon svg {
+  color: #047857 !important;
+}
+
+.flox-whatsapp-cta__eyebrow {
+  color: rgba(236, 253, 245, 0.88) !important;
+}
+
+.flox-whatsapp-cta__title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(4, 47, 46, 0.28);
+}
+
+.flox-whatsapp-cta__subline {
+  color: rgba(236, 253, 245, 0.9) !important;
+}
+
+.flox-whatsapp-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.24) inset,
+    0 24px 58px rgba(4, 120, 87, 0.32),
+    0 0 0 4px rgba(110, 231, 183, 0.32);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-whatsapp-cta:hover {
+    transform: translateY(-2px);
+    border-color: rgba(187, 247, 208, 0.86);
+    background:
+      linear-gradient(135deg, #34d399 0%, #10b981 42%, #059669 100%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.28) inset,
+      0 28px 68px rgba(4, 120, 87, 0.38),
+      0 0 0 1px rgba(16, 185, 129, 0.22);
+  }
+
+  .flox-whatsapp-cta:hover .flox-whatsapp-cta__icon {
+    transform: scale(1.04);
+  }
+}
+
+.flox-cta-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 44rem;
+  margin-inline-start: auto;
+}
+
+.flox-hero-action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.75rem), 1fr));
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 45rem;
+}
+
+.flox-cta-choice {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 7.15rem;
+  overflow: hidden;
+  border-radius: 1.24rem;
+  padding: 1rem;
+  text-align: left;
+  text-decoration: none;
+  color: #ffffff;
+  -webkit-text-fill-color: currentColor;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 22px 48px rgba(2, 6, 23, 0.2);
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    border-color var(--flox-duration-base) var(--flox-ease-standard),
+    background-color var(--flox-duration-base) var(--flox-ease-standard),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-cta-choice::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 44%),
+    radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.28), transparent 26%);
+}
+
+.flox-cta-choice :where(span, svg) {
+  -webkit-text-fill-color: currentColor;
+}
+
+.flox-cta-choice-icon,
+.flox-cta-choice-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.flox-cta-choice-icon {
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 14px 30px rgba(2, 6, 23, 0.16);
+  transition: transform var(--flox-duration-fast) var(--flox-ease-out);
+}
+
+.flox-cta-choice-arrow {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: currentColor;
+  opacity: 0.9;
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    background-color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-cta-choice-body {
+  min-width: 0;
+}
+
+.flox-cta-choice-compact {
+  min-height: 5.45rem;
+  border-radius: 1.05rem;
+  gap: 0.72rem;
+  padding: 0.82rem 0.88rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 16px 34px rgba(2, 6, 23, 0.13);
+}
+
+.flox-cta-choice-compact .flox-cta-choice-icon {
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 0.82rem;
+}
+
+.flox-cta-choice-compact .flox-cta-choice-arrow {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.flox-cta-choice-compact .flox-cta-choice-title {
+  margin-top: 0;
+  font-size: 1rem;
+  line-height: 1.14;
+}
+
+.flox-cta-choice-compact .flox-cta-choice-copy {
+  margin-top: 0.22rem;
+  font-size: 0.76rem;
+}
+
+.flox-cta-choice-eyebrow {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.flox-cta-choice-title {
+  display: block;
+  margin-top: 0.28rem;
+  font-family: var(--font-heading);
+  font-size: 1.16rem;
+  font-weight: 820;
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.flox-cta-choice-copy {
+  display: block;
+  margin-top: 0.36rem;
+  font-size: 0.82rem;
+  font-weight: 760;
+  line-height: 1.22;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.flox-cta-choice-primary {
+  border: 1px solid rgba(125, 211, 252, 0.42);
+  background:
+    linear-gradient(135deg, #2563eb 0%, #0ea5e9 52%, #0891b2 100%);
+  color: #ffffff !important;
+}
+
+.flox-cta-choice-light {
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  color: #07111f !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 42px rgba(2, 6, 23, 0.18);
+}
+
+.flox-cta-choice-light::before {
+  background:
+    linear-gradient(180deg, rgba(37, 99, 235, 0.05), transparent 52%),
+    radial-gradient(circle at 12% 8%, rgba(14, 165, 233, 0.12), transparent 28%);
+}
+
+.flox-cta-choice-light .flox-cta-choice-icon {
+  background: #e0f2fe;
+  color: #075985;
+  box-shadow: 0 12px 26px rgba(8, 145, 178, 0.16);
+}
+
+.flox-cta-choice-light .flox-cta-choice-arrow {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.flox-cta-choice-light .flox-cta-choice-eyebrow {
+  color: #2563eb;
+}
+
+.flox-cta-choice-light .flox-cta-choice-title {
+  color: #07111f;
+}
+
+.flox-cta-choice-light .flox-cta-choice-copy {
+  color: #475569;
+}
+
+.flox-cta-choice-whatsapp {
+  border: 1px solid rgba(134, 239, 172, 0.58);
+  background:
+    linear-gradient(135deg, #22c55e 0%, #10b981 48%, #047857 100%);
+  color: #ffffff !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 24px 54px rgba(4, 120, 87, 0.34);
+}
+
+.flox-cta-choice-whatsapp .flox-cta-choice-icon {
+  background: #ffffff;
+  color: #047857;
+  box-shadow: 0 14px 30px rgba(4, 120, 87, 0.32);
+}
+
+.flox-cta-choice-whatsapp .flox-cta-choice-arrow {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.flox-cta-choice:focus-visible {
+  outline: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 22px 48px rgba(2, 6, 23, 0.2),
+    0 0 0 4px rgba(125, 211, 252, 0.22);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-cta-choice:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.24) inset,
+      0 28px 62px rgba(2, 6, 23, 0.26);
+  }
+
+  .flox-cta-choice:hover .flox-cta-choice-icon {
+    transform: scale(1.04);
+  }
+
+  .flox-cta-choice:hover .flox-cta-choice-arrow {
+    transform: translateX(2px);
+    background: rgba(255, 255, 255, 0.22);
+  }
+}
+
+.flox-cta-choice:active {
+  transform: translateY(0);
 }

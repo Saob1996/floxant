@@ -1,4 +1,8 @@
 import { CalculatorState } from "@/store/calculatorStore";
+import {
+ enrichIntakeWithConversionJourney,
+ readBrowserConversionJourneySnapshot,
+} from "@/lib/conversion-journey";
 import { IntakePayload } from "@/lib/types/intake";
 
 function parseBudget(value: string): number | null {
@@ -188,11 +192,15 @@ export function serializeIntakeStore(state: CalculatorState): IntakePayload {
   },
  };
 
- return {
+ const payload: IntakePayload = {
   contact,
   service,
   valuation,
   configuration,
   metadata,
  };
+
+ return enrichIntakeWithConversionJourney(payload, {
+  conversionJourney: readBrowserConversionJourneySnapshot(),
+ });
 }

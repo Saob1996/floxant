@@ -39,6 +39,68 @@ type ServiceType =
   | "leerfahrt"
   | null;
 
+type StoredConversionEvent = {
+  event?: string;
+  source?: string;
+  channel?: string;
+  href?: string;
+  path?: string;
+  search?: string;
+  timestamp?: number;
+  journeyId?: string;
+  eventId?: string;
+  dataset?: {
+    intent?: string;
+    priority?: string;
+    contactChannel?: string;
+  };
+};
+
+const JOURNEY_ID_KEY = "floxant:journey_id";
+const LAST_CONVERSION_KEY = "floxant:last_conversion_event";
+const CONVERSION_HISTORY_KEY = "floxant:conversion_history";
+
+function parseStoredConversionEvent(value: string | null): StoredConversionEvent | null {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(value);
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function readConversionJourneySnapshot() {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const journeyId = window.localStorage.getItem(JOURNEY_ID_KEY) || "";
+    const lastEvent = parseStoredConversionEvent(window.localStorage.getItem(LAST_CONVERSION_KEY));
+    const rawHistory = JSON.parse(window.localStorage.getItem(CONVERSION_HISTORY_KEY) || "[]");
+    const recentEvents: StoredConversionEvent[] = Array.isArray(rawHistory)
+      ? rawHistory.filter((item) => item && typeof item === "object").slice(0, 6)
+      : [];
+    const lastSignal = lastEvent || recentEvents[0] || null;
+
+    if (!journeyId && !lastSignal && recentEvents.length === 0) return null;
+
+    return {
+      journeyId: journeyId || lastSignal?.journeyId || "",
+      lastEvent: lastSignal,
+      recentEvents,
+      lastEventName: lastSignal?.event || "",
+      lastSource: lastSignal?.source || "",
+      lastChannel: lastSignal?.channel || lastSignal?.dataset?.contactChannel || "",
+      lastIntent: lastSignal?.dataset?.intent || "",
+      lastPriority: lastSignal?.dataset?.priority || "",
+      lastPath: lastSignal?.path || "",
+      lastHref: lastSignal?.href || "",
+    };
+  } catch {
+    return null;
+  }
+}
+
 function normalizeBookingService(value: string | null): ServiceType {
   if (!value) return null;
 
@@ -177,10 +239,13 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const queryUtmCampaign = searchParams.get("utm_campaign") || "";
   const queryUtmContent = searchParams.get("utm_content") || "";
   const queryGclid = searchParams.get("gclid") || "";
+  const queryUrgency = searchParams.get("urgency") || searchParams.get("dringlichkeit") || "";
+  const queryPreferredContact = searchParams.get("contact") || searchParams.get("kontakt") || "";
   const queryReferralCode =
     searchParams.get("ref") || searchParams.get("partner_code") || searchParams.get("referral_code") || "";
   const normalizedSource = normalizeTrackingValue(queryUtmSource || storeLead?.utmSource || "");
   const normalizedCampaign = normalizeTrackingValue(queryUtmCampaign || storeLead?.utmCampaign || "");
+  const normalizedUrgency = normalizeTrackingValue(queryUrgency);
   const isGoogleMapsContext = ["google_maps", "google_business_profile", "gbp", "maps"].some(
     (value) => normalizedSource.includes(value),
   );
@@ -540,6 +605,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         ? "duesseldorf_cleaning_booking"
         : state.service === "leerfahrt" || normalizedCampaign.includes("leerfahrt")
           ? "return_trip_booking"
+          : normalizedUrgency.includes("24h") || normalizedSource.includes("homepage_24h")
+            ? "homepage_24h_booking"
           : isGoogleAdsContext && state.service === "reinigung"
             ? "google_ads_cleaning_regensburg"
             : isGoogleMapsContext
@@ -556,6 +623,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         ? `${window.location.pathname}${window.location.search}`
         : entryPoint;
     const referrer = typeof document !== "undefined" ? document.referrer : "";
+    const conversionJourney = readConversionJourneySnapshot();
     const attribution = {
       landing_page: landingPage,
       referrer,
@@ -564,9 +632,17 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       utm_campaign: queryUtmCampaign || storeLead?.utmCampaign || "",
       utm_content: queryUtmContent,
       gclid: queryGclid || storeLead?.gclid || "",
+      urgency: queryUrgency,
+      preferred_contact: queryPreferredContact,
       referral_code: queryReferralCode,
       referral_source: queryReferralCode ? "partnercode_url" : "",
       referral_landing_page: queryReferralCode ? landingPage : "",
+      conversion_journey_id: conversionJourney?.journeyId || "",
+      conversion_last_event: conversionJourney?.lastEventName || "",
+      conversion_last_source: conversionJourney?.lastSource || "",
+      conversion_last_channel: conversionJourney?.lastChannel || "",
+      conversion_last_intent: conversionJourney?.lastIntent || "",
+      conversion_last_priority: conversionJourney?.lastPriority || "",
       service: state.service,
       region: regionPreset || "regensburg_bayern",
       lead_source: bookingSource,
@@ -600,6 +676,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           ...(state.details.scope.trim() ? ["Umfang angegeben"] : []),
           ...(state.details.access.trim() ? ["Zugang beschrieben"] : []),
           ...(state.details.budget.trim() ? ["Budget genannt"] : []),
+          ...(queryUrgency ? ["Dringlichkeit aus Einstieg"] : []),
           ...(state.upgrades.length ? ["Ausgewählte Extras"] : []),
           ...(files.length ? ["Bildmaterial vorhanden"] : []),
         ].slice(0, 5),
@@ -610,6 +687,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           serviceType: state.service,
           regionPreset,
           attribution,
+          conversionJourney,
           referralCode: queryReferralCode,
           requestedDate: state.details.date,
           startAddress: state.details.startAddress.trim(),
@@ -617,6 +695,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           scopeSummary: state.details.scope.trim(),
           accessNotes: state.details.access.trim(),
           customerBudgetText: state.details.budget.trim(),
+          urgency: queryUrgency,
+          preferredContact: queryPreferredContact,
           upgrades: state.upgrades,
           hasUploads: files.length > 0,
           customerMessage: formData.message.trim(),
@@ -629,6 +709,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         referrer,
         leadSource: bookingSource,
         attribution,
+        conversionJourney,
         referralCode: queryReferralCode,
         referralSource: queryReferralCode ? "partnercode_url" : "",
         referralLandingPage: queryReferralCode ? landingPage : "",
@@ -647,6 +728,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         scopeSummary: state.details.scope.trim(),
         accessNotes: state.details.access.trim(),
         customerBudgetText: state.details.budget.trim(),
+        urgency: queryUrgency,
+        preferredContact: queryPreferredContact,
         selectedUpgrades: state.upgrades,
         message: formData.message.trim(),
       },
@@ -657,6 +740,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         servicePresetFromUrl: state.service,
         regionPreset,
         attribution,
+        conversionJourney,
         clientContext: {
           entryPoint,
           landingPage,
@@ -670,6 +754,14 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           utmCampaign: queryUtmCampaign || storeLead?.utmCampaign || "",
           utmContent: queryUtmContent,
           gclid: queryGclid || storeLead?.gclid || "",
+          urgency: queryUrgency,
+          preferredContact: queryPreferredContact,
+          conversionJourneyId: conversionJourney?.journeyId || "",
+          conversionLastEvent: conversionJourney?.lastEventName || "",
+          conversionLastSource: conversionJourney?.lastSource || "",
+          conversionLastChannel: conversionJourney?.lastChannel || "",
+          conversionLastIntent: conversionJourney?.lastIntent || "",
+          conversionLastPriority: conversionJourney?.lastPriority || "",
           referralCode: queryReferralCode,
           referralSource: queryReferralCode ? "partnercode_url" : "",
         },
@@ -699,6 +791,14 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     submitData.append("utmCampaign", attribution.utm_campaign);
     submitData.append("utmContent", attribution.utm_content);
     submitData.append("gclid", attribution.gclid);
+    submitData.append("urgency", queryUrgency);
+    submitData.append("preferredContact", queryPreferredContact);
+    submitData.append("conversionJourneyId", conversionJourney?.journeyId || "");
+    submitData.append("conversionLastEvent", conversionJourney?.lastEventName || "");
+    submitData.append("conversionLastSource", conversionJourney?.lastSource || "");
+    submitData.append("conversionLastChannel", conversionJourney?.lastChannel || "");
+    submitData.append("conversionLastIntent", conversionJourney?.lastIntent || "");
+    submitData.append("conversionLastPriority", conversionJourney?.lastPriority || "");
     if (queryReferralCode) {
       submitData.append("referralCode", queryReferralCode);
       submitData.append("partnerCode", queryReferralCode);
@@ -1252,6 +1352,10 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           onSubmit={handleSubmit}
           data-event="submit_booking"
           data-service={state.service || "unknown"}
+          data-source={queryUtmSource || "booking_wizard"}
+          data-contact-channel={queryPreferredContact || "form"}
+          data-intent={queryUrgency ? "urgent_booking_submit" : "booking_submit"}
+          data-priority={queryUrgency ? "hot" : "normal"}
         >
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FieldBox label={t?.form?.name || "Name"}>

@@ -208,7 +208,7 @@ export default function EinsatzradarRegensburgPage() {
         filters={einsatzradarFilters}
         zones={einsatzradarRegionZones}
         title="Typische Einsatzarten im FLOXANT Radar"
-        subtitle="Filterbare Einsatzkarten mit grober Region, Problem, FLOXANT-Loesung, Signature-Service und passender Zielseite."
+        subtitle="Filterbare Einsatzkarten mit grober Region, Problem, FLOXANT-Lösung, Signature-Service und passender Zielseite."
         source="einsatzradar_page"
         ctaHref="/buchung#buchungssystem"
         ctaLabel="Eigenen Fall senden"

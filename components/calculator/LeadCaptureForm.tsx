@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { m } from "framer-motion";
 import { useCalculatorStore } from "@/store/calculatorStore";
+import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
 import {
  User,
  Phone,
@@ -21,6 +22,12 @@ const CALLBACK_OPTIONS = [
  "nachmittags",
  "abends",
 ] as const;
+
+function parseBudget(value: string) {
+ const normalized = value.replace(/[^\d.,-]/g, "").replace(/\./g, "").replace(",", ".");
+ const parsed = Number.parseFloat(normalized);
+ return Number.isFinite(parsed) && parsed > 0 ? Math.round(parsed) : null;
+}
 
 export default function LeadCaptureForm({ dic }: { dic?: any }) {
  const serviceType = useCalculatorStore((s) => s.serviceType);
@@ -98,30 +105,79 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
 
    // Get additional service data from store directly to ensure latest state
    const state = useCalculatorStore.getState();
+   const estimate = advancedEstimate || { priceRange: expressPriceRange, type: "express" };
+   const customerBudget = parseBudget(state.leadDetails.customerBudget || "");
+   const calculatorInputs = {
+    umzug: serviceType === "umzug" ? state.umzugData : null,
+    reinigung: serviceType === "reinigung" ? state.reinigungData : null,
+    entsorgung: serviceType === "entsorgung" ? state.entsorgungData : null,
+    bueroumzug: serviceType === "bueroumzug" ? state.bueroumzugData : null,
+    seniorenumzug: serviceType === "seniorenumzug" ? state.seniorenumzugData : null,
+    klaviertransport: serviceType === "klaviertransport" ? state.klaviertransportData : null,
+    einlagerung: serviceType === "einlagerung" ? state.einlagerungData : null,
+    malerarbeiten: serviceType === "malerarbeiten" ? state.malerarbeitenData : null,
+    akteneinlagerung: serviceType === "akteneinlagerung" ? state.akteneinlagerungData : null,
+   };
 
+   formData.append("type", "booking_wizard");
    formData.append("service", serviceType);
    formData.append("upgrades", JSON.stringify([]));
    formData.append(
     "details",
     JSON.stringify({
-     calculator_inputs: {
-      umzug: serviceType === "umzug" ? state.umzugData : null,
-      reinigung: serviceType === "reinigung" ? state.reinigungData : null,
-      entsorgung: serviceType === "entsorgung" ? state.entsorgungData : null,
-      bueroumzug: serviceType === "bueroumzug" ? state.bueroumzugData : null,
-      seniorenumzug: serviceType === "seniorenumzug" ? state.seniorenumzugData : null,
-      klaviertransport: serviceType === "klaviertransport" ? state.klaviertransportData : null,
+     contact: {
+      fullName: leadDetails.customerName.trim(),
+      email: leadDetails.customerEmail.trim(),
+      phone: leadDetails.customerPhone.trim(),
+      callbackPreference: leadDetails.callbackTime || "jederzeit",
+      notes: leadDetails.customerNote || "",
      },
-     estimate_data: advancedEstimate || { priceRange: expressPriceRange, type: "express" },
-     calculator_mode: mode,
-     time_to_convert_seconds: timeOnPage,
-     device_type:
-      typeof window !== "undefined" && window.innerWidth < 768
-       ? "mobile"
-       : "desktop",
-     callback_time: leadDetails.callbackTime,
-     wants_photos_link: leadDetails.wantsPhotosLink,
-     customer_details: leadDetails,
+     service: {
+      type: serviceType,
+      source: "calculator_lead",
+      entryPoint: typeof window !== "undefined" ? window.location.pathname : "/rechner",
+      presetFromUrl: serviceType,
+     },
+     valuation: {
+      systemPriceRangeMin: estimate?.priceRange?.min || 0,
+      systemPriceRangeMax: estimate?.priceRange?.max || 0,
+      priceRangeMin: estimate?.priceRange?.min || 0,
+      priceRangeMax: estimate?.priceRange?.max || 0,
+      valuationLabel: "Rechner-Anfrage",
+      valuationStage: advancedEstimate?.valuationStage || "Rechner-Einschaetzung",
+      accuracyState: advancedEstimate?.confidenceLevel || "Rechner-Einschaetzung",
+      topDrivers: advancedEstimate?.topDrivers || advancedEstimate?.operationalDrivers || [],
+      customerBudget,
+      priceSuggestion: customerBudget,
+      priceExplanation: advancedEstimate?.priceExplanation || "Die Anfrage stammt aus dem FLOXANT-Rechner und wird operativ geprueft.",
+      pricingSignals: {
+       ...(advancedEstimate?.pricingSignals || {}),
+       calculatorMode: mode,
+       timeToConvertSeconds: timeOnPage,
+       calculatorInputs,
+      },
+     },
+     configuration: {
+      requestContext: "calculator_lead",
+      calculatorMode: mode,
+      timeToConvertSeconds: timeOnPage,
+      deviceType: typeof window !== "undefined" && window.innerWidth < 768 ? "mobile" : "desktop",
+      callbackTime: leadDetails.callbackTime,
+      wantsPhotosLink: leadDetails.wantsPhotosLink,
+      customerBudgetText: state.leadDetails.customerBudget || "",
+      calculatorInputs,
+     },
+     metadata: {
+      createdAt: new Date().toISOString(),
+      intakeVersion: "calculator-legacy-2.0",
+      source: "calculator_lead",
+      servicePresetFromUrl: serviceType,
+      clientContext: {
+       calculatorMode: mode,
+       timeToConvertSeconds: timeOnPage,
+       wantsPhotosLink: leadDetails.wantsPhotosLink,
+      },
+     },
     })
    );
 
@@ -129,6 +185,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
    formData.append("email", leadDetails.customerEmail.trim());
    formData.append("phone", leadDetails.customerPhone.trim());
    formData.append("timestamp", new Date().toISOString());
+   appendConversionJourneyToFormData(formData);
 
    const res = await fetch("/api/bookings", {
     method: "POST",

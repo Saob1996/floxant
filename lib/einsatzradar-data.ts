@@ -1,3 +1,5 @@
+import { germanizeText } from "@/lib/german-text";
+
 export type EinsatzradarServiceType =
   | "umzug"
   | "reinigung"
@@ -59,7 +61,48 @@ export type EinsatzradarFilter = {
 
 const timestamp = "2026-05-06T00:00:00.000Z";
 
-export const einsatzradarFilters: EinsatzradarFilter[] = [
+function radarText(value: string) {
+  return germanizeText(value).normalize("NFC");
+}
+
+function normalizeList(values: string[]) {
+  return values.map(radarText);
+}
+
+function normalizeFilter(filter: EinsatzradarFilter): EinsatzradarFilter {
+  return {
+    ...filter,
+    label: radarText(filter.label),
+  };
+}
+
+function normalizeZone(zone: EinsatzradarZone): EinsatzradarZone {
+  return {
+    ...zone,
+    title: radarText(zone.title),
+    label: radarText(zone.label),
+    description: radarText(zone.description),
+    examples: normalizeList(zone.examples),
+    services: normalizeList(zone.services),
+  };
+}
+
+function normalizeEntry(entry: EinsatzradarEntry): EinsatzradarEntry {
+  return {
+    ...entry,
+    title: radarText(entry.title),
+    approximate_location: radarText(entry.approximate_location),
+    direction_or_area: radarText(entry.direction_or_area),
+    timeframe_label: radarText(entry.timeframe_label),
+    description: radarText(entry.description),
+    included_services: normalizeList(entry.included_services),
+    signature_services: normalizeList(entry.signature_services),
+    customer_type: radarText(entry.customer_type),
+    cta_label: radarText(entry.cta_label),
+  };
+}
+
+export const einsatzradarFilters: EinsatzradarFilter[] = ([
   { id: "all", label: "Alle" },
   { id: "umzug", label: "Umzug" },
   { id: "reinigung", label: "Reinigung" },
@@ -71,9 +114,9 @@ export const einsatzradarFilters: EinsatzradarFilter[] = [
   { id: "hausverwaltung", label: "Hausverwaltung" },
   { id: "duesseldorf_reinigung", label: "Duesseldorf Reinigung" },
   { id: "duesseldorf_entsorgung", label: "Duesseldorf Entsorgung" },
-];
+] satisfies EinsatzradarFilter[]).map(normalizeFilter);
 
-export const einsatzradarRegionZones: EinsatzradarZone[] = [
+export const einsatzradarRegionZones: EinsatzradarZone[] = ([
   {
     id: "regensburg_core",
     title: "Regensburg Core",
@@ -114,9 +157,9 @@ export const einsatzradarRegionZones: EinsatzradarZone[] = [
     examples: ["Duesseldorf Reinigung", "Duesseldorf Entsorgung"],
     services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung", "Entsorgung"],
   },
-];
+] satisfies EinsatzradarZone[]).map(normalizeZone);
 
-export const einsatzradarEntries: EinsatzradarEntry[] = [
+export const einsatzradarEntries: EinsatzradarEntry[] = ([
   {
     id: "endreinigung-wohnungsuebergabe-regensburg",
     title: "Endreinigung vor Wohnungsuebergabe",
@@ -306,7 +349,7 @@ export const einsatzradarEntries: EinsatzradarEntry[] = [
     updated_at: timestamp,
     visibility_status: "published",
   },
-];
+] satisfies EinsatzradarEntry[]).map(normalizeEntry);
 
 export const einsatzradarFaq = [
   {
@@ -337,7 +380,10 @@ export const einsatzradarFaq = [
     q: "Kann mein Auftrag spaeter im Einsatzradar erscheinen?",
     a: "Nur nach Zustimmung, anonymisiert, ohne personenbezogene Daten und ohne exakte Adresse. Ohne Freigabe bleibt der Auftrag intern.",
   },
-];
+].map((item) => ({
+  q: radarText(item.q),
+  a: radarText(item.a),
+}));
 
 export function getPublishedEinsatzradarEntries() {
   return einsatzradarEntries.filter((entry) => entry.visibility_status === "published");

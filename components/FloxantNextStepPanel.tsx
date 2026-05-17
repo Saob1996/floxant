@@ -148,11 +148,11 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
   },
   duesseldorf: {
     eyebrow: "Düsseldorf klar getrennt",
-    title: "Reinigung und Entsorgung anfragen. Keine Umzüge.",
+    title: "Reinigung anfragen. Keine Umzüge.",
     intro:
-      "Für Düsseldorf positioniert FLOXANT bewusst Reinigung und Entsorgung: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
+      "Für Düsseldorf positioniert FLOXANT bewusst Reinigung: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
     signal:
-      "Diese Trennung hilft Kunden und Suchmaschinen: Düsseldorf bedeutet Reinigung und Entsorgung, Regensburg/Bayern bleibt der Kern für Umzug, Reinigung, Entrümpelung und Transport.",
+      "Diese Trennung hilft Kunden und Suchmaschinen: Düsseldorf bedeutet Reinigung, Regensburg/Bayern bleibt der Kern für Umzug, Reinigung, Entrümpelung und Transport.",
     primaryHref: "/duesseldorf/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/entsorgung-duesseldorf",
@@ -193,19 +193,15 @@ export function FloxantNextStepPanel({ variant = "booking", className }: Floxant
 
   return (
     <section className={cn("relative px-4 py-10 sm:px-6 lg:py-14", className)}>
-      <div className="pointer-events-none absolute inset-x-0 top-8 mx-auto h-48 max-w-5xl rounded-full bg-blue-300/10 blur-3xl" />
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white/90 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur md:rounded-[2.6rem] md:p-6 lg:p-8">
-        <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-cyan-200/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-16 h-60 w-60 rounded-full bg-blue-200/30 blur-3xl" />
-
+      <div className="flox-panel-frame relative mx-auto max-w-7xl p-4 md:p-6 lg:p-8">
         <div className="relative grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
-          <AnimateOnScroll className="flex h-full flex-col justify-between rounded-[1.7rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_20px_60px_rgba(15,23,42,0.14)] md:p-7">
+          <AnimateOnScroll className="flox-panel-dark flex h-full flex-col justify-between p-5 text-white md:p-7">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
+              <div className="flox-tag-dark">
                 <CheckCircle2 className="h-4 w-4" />
                 {config.eyebrow}
               </div>
-              <h2 className="flox-gradient-title mt-5 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.025em] md:text-5xl">
+              <h2 className="flox-gradient-title flox-title-lg flox-display-section mt-5 max-w-[14ch]">
                 {config.title}
               </h2>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-200 md:text-base">
@@ -220,14 +216,14 @@ export function FloxantNextStepPanel({ variant = "booking", className }: Floxant
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={config.primaryHref}
-                className="flox-magnetic-cta inline-flex min-h-12 items-center justify-center gap-2 rounded-[1.15rem] bg-white px-5 py-3 text-sm font-black text-slate-950 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-blue-50"
+                className="flox-button-primary min-h-12 px-5 py-3"
               >
                 {config.primaryLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href={config.secondaryHref}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[1.15rem] border border-white/16 bg-white/8 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/14"
+                className="flox-button-secondary min-h-12 px-5 py-3"
               >
                 {config.secondaryLabel}
               </Link>
@@ -242,21 +238,21 @@ export function FloxantNextStepPanel({ variant = "booking", className }: Floxant
                 <AnimateOnScroll key={card.title} delay={index * 90} className="h-full">
                   <Link
                     href={card.href}
-                    className="flox-click-card flox-card-lift group flex h-full min-h-[15rem] flex-col justify-between rounded-[1.55rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/10"
+                    className="flox-action-card flox-click-card group flex h-full min-h-[15rem] flex-col justify-between p-5"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-4">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <span className="flox-icon-tile h-12 w-12 transition group-hover:bg-blue-600 group-hover:text-white">
                           <Icon className="h-5 w-5" />
                         </span>
                         <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-700" />
                       </div>
-                      <h3 className="mt-5 text-xl font-bold leading-tight tracking-[-0.02em] text-slate-950">
+                      <h3 className="flox-card-title-lg mt-5 text-slate-950">
                         {card.title}
                       </h3>
                       <p className="mt-3 text-sm leading-6 text-slate-600">{card.text}</p>
                     </div>
-                    <span className="mt-5 inline-flex w-fit rounded-full border border-blue-100 bg-blue-50 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-blue-700">
+                    <span className="flox-tag-soft mt-5 w-fit">
                       {card.label}
                     </span>
                   </Link>

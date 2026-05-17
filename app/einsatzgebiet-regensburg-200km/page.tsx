@@ -225,6 +225,7 @@ export default async function RegensburgServiceArea200KmPage() {
         serviceType: "Servicegebiet fuer Umzug, Reinigung, Entruempelung und Transport",
         areaServed: [
           "Regensburg",
+          "Umgebung Regensburg ca. 200 km",
           "Neutraubling",
           "Lappersdorf",
           "Pentling",
@@ -407,7 +408,7 @@ export default async function RegensburgServiceArea200KmPage() {
         showFilters={true}
         showZones={true}
         title="Einsatzarten im Servicegebiet Regensburg"
-        subtitle="Grobe Zonen und typische Anfragen im Kernmarkt: keine Adressen, keine Live-Behauptung, nur sichere Einsatzlogik fuer Ort, Umfang, Termin und Verfuegbarkeit."
+        subtitle="Grobe Zonen und typische Anfragen im Kernmarkt: keine Adressen, keine Live-Behauptung, nur sichere Einsatzlogik für Ort, Umfang, Termin und Verfügbarkeit."
         source="service_area_einsatzradar"
       />
 

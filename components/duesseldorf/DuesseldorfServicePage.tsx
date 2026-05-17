@@ -74,7 +74,7 @@ export function DuesseldorfServicePage({
           variant="duesseldorf"
           eyebrow="Düsseldorf Reinigung klar erklärt"
           title="Objekt, Fläche, Frequenz und Zeitfenster statt unklarer Reinigungsanfrage."
-          intro="FLOXANT macht Düsseldorf bewusst schlank: Reinigung und Entsorgung nach Absprache, keine Umzüge. Kleine Unternehmen, Wohnungen und Objektflächen bekommen einen klaren Anfrageweg."
+          intro="FLOXANT macht Düsseldorf bewusst schlank: Reinigung nach Absprache, keine Umzüge. Kleine Unternehmen, Wohnungen und Objektflächen bekommen einen klaren Anfrageweg."
           primaryHref="/duesseldorf/reinigung#kontakt"
           primaryLabel="Reinigung anfragen"
           secondaryHref="/entsorgung-duesseldorf"

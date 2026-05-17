@@ -195,7 +195,7 @@ const LOCAL_INTENT_LINKS = [
   {
     label: "Reinigung Düsseldorf",
     href: "/duesseldorf/reinigung",
-    hint: "Düsseldorf nur für Reinigung und Entsorgung.",
+    hint: "Düsseldorf primär für Reinigung; Entsorgung separat.",
   },
   {
     label: "Apartment Düsseldorf",
@@ -346,7 +346,7 @@ const DUESSELDORF_STORY_STEPS: HeaderStoryStep[] = [
   },
   {
     label: "Reinigung prüfen",
-    text: "Düsseldorf ist klar auf Reinigung und Entsorgung ausgerichtet.",
+    text: "Düsseldorf ist klar auf Reinigung ausgerichtet; Entsorgung bleibt separat.",
     icon: Sparkles,
   },
   {
@@ -515,8 +515,8 @@ export function PublicHeader({
     <header
       suppressHydrationWarning
       className={cn(
-        "fixed inset-x-2 top-2 z-50 mx-auto max-w-[1420px] transition-all duration-300 sm:inset-x-4 sm:top-3",
-        "flox-nav-shell rounded-[1.25rem] px-2 py-2 sm:rounded-[1.55rem] sm:px-3 sm:py-2.5",
+        "fixed inset-x-2 top-2 z-50 mx-auto max-w-[1420px] transition-[transform,box-shadow,border-color,background-color] duration-200 ease-[var(--flox-ease-standard)] sm:inset-x-4 sm:top-3",
+        "flox-nav-shell flox-header-premium rounded-[1.25rem] px-2 py-2 sm:rounded-[1.55rem] sm:px-3 sm:py-2.5",
         scrolled && "shadow-[0_18px_46px_rgba(15,23,42,0.12)]",
       )}
     >
@@ -588,8 +588,8 @@ function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
   return (
     <Link
       href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
-      className="group flex min-w-0 max-w-[calc(100%-4.7rem)] flex-1 items-center gap-2 rounded-[1.1rem] px-1 py-1 transition hover:bg-white/75 sm:min-w-[13.25rem] sm:max-w-none sm:flex-none sm:gap-2.5 sm:px-1.5 xl:min-w-[14.25rem] xl:shrink-0"
-      aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung und Entsorgung" : "FLOXANT Startseite Regensburg Bayern"}
+      className="flox-nav-action flox-brand-lockup group flex min-w-0 max-w-[calc(100%-4.7rem)] flex-1 items-center gap-2 px-1 py-1 sm:min-w-[13.25rem] sm:max-w-none sm:flex-none sm:gap-2.5 sm:px-1.5 xl:min-w-[14.25rem] xl:shrink-0"
+      aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung" : "FLOXANT Startseite Regensburg Bayern"}
     >
       <span className="relative grid h-9 w-9 shrink-0 place-items-center rounded-[0.9rem] border border-blue-100/90 bg-white shadow-[0_10px_22px_rgba(15,23,42,0.07)] sm:h-10 sm:w-10 sm:rounded-[0.95rem]">
         <BrandLogo size={26} />
@@ -603,7 +603,7 @@ function BrandBlock({ variant }: { variant: PublicHeaderVariant }) {
           {isDuesseldorf ? "Düsseldorf · Reinigung" : "Regensburg · Bayern"}
         </span>
         <span className="mt-1 hidden max-w-[12rem] truncate text-[0.52rem] font-black uppercase tracking-[0.14em] text-slate-500 min-[1380px]:block">
-          {isDuesseldorf ? "Entsorgung separat · keine Umzüge" : "200 km · Bayern nach Verfügbarkeit"}
+          {isDuesseldorf ? "Reinigung · keine Umzüge" : "200 km · Bayern nach Verfügbarkeit"}
         </span>
       </span>
     </Link>
@@ -638,8 +638,8 @@ function DesktopNavigation({
   setServicesOpen: (value: boolean | ((current: boolean) => boolean)) => void;
 }) {
   return (
-    <nav className="hidden min-w-0 flex-1 items-center justify-center 2xl:flex" aria-label="Hauptnavigation">
-      <div className="flex max-w-full min-w-0 items-center gap-0.5 overflow-visible rounded-[1.05rem] border border-slate-200 bg-white/92 p-1 shadow-sm shadow-slate-950/5">
+    <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex" aria-label="Hauptnavigation">
+      <div className="flox-nav-segment flex max-w-full min-w-0 items-center gap-0.5 overflow-visible p-1">
         <NavLink item={desktopLinks[0]} active={pathname === desktopLinks[0].href} />
 
         <div
@@ -710,12 +710,12 @@ function ServicesDropdown({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 6, scale: 0.985 }}
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flox-nav-panel absolute left-1/2 top-full mt-3 max-h-[calc(100vh-7.5rem)] w-[min(1040px,calc(100vw-2rem))] -translate-x-1/2 overflow-y-auto rounded-[1.6rem] p-4"
+          className="flox-nav-panel flox-mega-panel absolute left-1/2 top-full mt-3 max-h-[calc(100vh-7.5rem)] w-[min(1120px,calc(100vw-2rem))] -translate-x-1/2 overflow-y-auto rounded-[1.45rem] p-3"
         >
-          <div className="grid gap-4 lg:grid-cols-[0.92fr_1.35fr]">
+          <div className="flox-mega-grid grid gap-3 lg:grid-cols-[0.86fr_1.38fr]">
             <HeaderStoryPanel storySteps={storySteps} visualCards={visualCards} />
 
-            <div className="grid gap-4">
+            <div className="flox-mega-main grid gap-3">
               <ShortcutGrid
                 title="Schnell zum passenden Einstieg"
                 description="Rechner, Anfrage oder direkte Prüfung"
@@ -730,7 +730,7 @@ function ServicesDropdown({
             </div>
           </div>
 
-          <div className="mt-4 rounded-[1.25rem] border border-blue-100 bg-blue-50/70 p-3">
+          <div className="flox-mega-local mt-3 p-3">
             <div className="mb-2 flex items-center justify-between gap-3 px-1">
               <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-800">
                 <MapPin className="h-3.5 w-3.5" />
@@ -762,7 +762,7 @@ function HeaderStoryPanel({
   const heroCard = visualCards[0];
 
   return (
-    <div className="relative isolate overflow-hidden rounded-[1.35rem] bg-slate-950 p-4 text-white shadow-[0_22px_44px_rgba(15,23,42,0.18)]">
+    <div className="flox-mega-story relative isolate overflow-hidden bg-slate-950 p-4 text-white shadow-[0_22px_44px_rgba(15,23,42,0.18)]">
       <div className="absolute inset-0 opacity-45">
         <Image
           src={heroCard.image}
@@ -812,7 +812,7 @@ function HeaderStoryPanel({
               <Link
                 key={card.title}
                 href={card.href}
-                className="rounded-[0.95rem] border border-white/12 bg-white/10 p-2.5 transition hover:-translate-y-0.5 hover:bg-white/15"
+                className="flox-action-card-dark group p-2.5"
               >
                 <Icon className="h-4 w-4 text-cyan-100" />
                 <div className="mt-2 text-[10px] font-black uppercase tracking-[0.12em] text-white">
@@ -840,7 +840,7 @@ function ShortcutGrid({
   items: ShortcutLink[];
 }) {
   return (
-    <div className="rounded-[1.15rem] border border-slate-200 bg-white p-3">
+    <div className="flox-mega-section p-3">
       <div className="mb-2 flex items-center justify-between gap-3 px-1">
         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">
           <Calculator className="h-3.5 w-3.5 text-blue-700" />
@@ -868,10 +868,8 @@ function MiniLinkCard({
     <Link
       href={item.href}
       className={cn(
-        "min-w-0 rounded-[0.95rem] border px-3.5 py-3 text-slate-700 transition-all hover:-translate-y-0.5 hover:text-slate-950",
-        tone === "blue"
-          ? "border-blue-100 bg-white hover:border-blue-200 hover:bg-blue-50"
-          : "border-slate-200 bg-slate-50 hover:border-blue-200 hover:bg-blue-50",
+        "flox-nav-entry flox-mega-link",
+        tone === "blue" && "flox-nav-entry-blue",
       )}
     >
       <span className="flex items-center justify-between gap-3 text-sm font-black leading-snug">
@@ -885,21 +883,21 @@ function MiniLinkCard({
 
 function ServiceGroupCard({ group }: { group: ServiceGroup }) {
   return (
-    <div className="rounded-[1.15rem] border border-slate-200 bg-white p-4">
+    <div className="flox-service-group-card p-4">
       <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
         {group.label}
       </div>
       <p className="mt-2 text-xs leading-5 text-slate-500">{group.description}</p>
       <div className="mt-3 grid gap-2">
-        {group.items.map((item) => (
+        {group.items.map((item, index) => (
           <Link
             key={item.href}
             href={item.href}
-            className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3.5 py-3 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+            className={cn("flox-nav-entry flox-mega-link group", index === 0 && "flox-nav-entry-primary")}
           >
             <span className="flex items-center justify-between gap-3 text-sm font-semibold leading-snug">
               <span className="min-w-0">{item.label}</span>
-              <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-700" />
+              <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-blue-700" />
             </span>
             <span className="mt-1.5 block text-xs leading-5 text-slate-500">{item.description}</span>
           </Link>
@@ -922,10 +920,10 @@ function HeaderCTAs({
 }) {
   if (variant === "duesseldorf") {
     return (
-      <div className="hidden shrink-0 items-center gap-2 2xl:flex">
+      <div className="hidden shrink-0 items-center gap-2 xl:flex">
         <a
           href={`tel:${company.phoneRaw}`}
-          className="flox-card-lift inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50 focus:outline-none focus:ring-4 focus:ring-teal-100"
+          className="flox-nav-action inline-flex h-10 items-center justify-center gap-1.5 border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-slate-800 shadow-sm shadow-slate-950/5 hover:border-teal-200 hover:bg-teal-50"
           data-event="click_duesseldorf_header_phone"
         >
           <Phone className="h-3.5 w-3.5 text-teal-700" />
@@ -935,7 +933,7 @@ function HeaderCTAs({
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flox-card-lift inline-flex h-10 items-center justify-center gap-1.5 rounded-[0.95rem] border border-emerald-200 bg-emerald-50 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-emerald-800 shadow-sm shadow-emerald-900/5 transition hover:-translate-y-0.5 hover:bg-emerald-100 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+          className="flox-nav-action inline-flex h-10 items-center justify-center gap-1.5 border border-emerald-200 bg-emerald-50 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-emerald-800 shadow-sm shadow-emerald-900/5 hover:bg-emerald-100"
           data-event="click_duesseldorf_header_whatsapp"
         >
           <MessageCircle className="h-3.5 w-3.5" />
@@ -943,7 +941,7 @@ function HeaderCTAs({
         </a>
         <Link
           href="/duesseldorf/reinigung#kontakt"
-          className="flox-magnetic-cta inline-flex h-10 items-center justify-center whitespace-nowrap rounded-[0.95rem] bg-gradient-to-r from-teal-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_15px_32px_rgba(20,184,166,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(20,184,166,0.3)] focus:outline-none focus:ring-4 focus:ring-teal-100"
+          className="flox-nav-action inline-flex h-10 items-center justify-center whitespace-nowrap border border-teal-600 bg-gradient-to-r from-teal-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_15px_32px_rgba(20,184,166,0.24)] hover:border-teal-500"
           data-event="start_duesseldorf_cleaning_lead"
         >
           Anfrage starten
@@ -953,11 +951,11 @@ function HeaderCTAs({
   }
 
   return (
-    <div className="hidden shrink-0 items-center gap-2 2xl:flex">
+    <div className="hidden shrink-0 items-center gap-2 xl:flex">
       <button
         type="button"
         onClick={onExpress}
-        className="flox-magnetic-cta inline-flex h-10 min-w-[6.5rem] items-center justify-center gap-1.5 whitespace-nowrap rounded-[0.95rem] border border-amber-300 bg-gradient-to-r from-amber-300 to-orange-300 px-3.5 text-[10px] font-black uppercase tracking-[0.09em] text-slate-950 shadow-[0_14px_30px_rgba(245,158,11,0.24)] transition hover:-translate-y-0.5 hover:from-amber-200 hover:to-orange-200 focus:outline-none focus:ring-4 focus:ring-amber-100"
+        className="flox-nav-action inline-flex h-10 min-w-[6.5rem] items-center justify-center gap-1.5 whitespace-nowrap border border-amber-300 bg-gradient-to-r from-amber-300 to-orange-300 px-3.5 text-[10px] font-black uppercase tracking-[0.09em] text-slate-950 shadow-[0_14px_30px_rgba(245,158,11,0.24)] hover:from-amber-200 hover:to-orange-200"
         aria-label="Express-Check mit wenigen Eckdaten öffnen"
       >
         <Zap className="h-3.5 w-3.5" />
@@ -968,7 +966,7 @@ function HeaderCTAs({
       <button
         type="button"
         onClick={onBudget}
-        className="flox-readable-cta-light inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-[0.95rem] border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-slate-800 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 focus:outline-none focus:ring-4 focus:ring-blue-100"
+        className="flox-nav-action inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap border border-slate-200 bg-white px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-slate-800 shadow-sm shadow-slate-950/5 hover:border-blue-200 hover:bg-blue-50"
         aria-label="Budget oder vorhandenen Preisrahmen nennen"
       >
         <Euro className="h-3.5 w-3.5 text-blue-700" />
@@ -978,7 +976,7 @@ function HeaderCTAs({
 
       <Link
         href="/buchung"
-        className="flox-magnetic-cta inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap rounded-[0.95rem] bg-gradient-to-r from-blue-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_15px_32px_rgba(37,99,235,0.26)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(37,99,235,0.32)] focus:outline-none focus:ring-4 focus:ring-blue-100"
+        className="flox-nav-action inline-flex h-10 items-center justify-center gap-1.5 whitespace-nowrap border border-blue-600 bg-gradient-to-r from-blue-600 to-sky-500 px-4 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_15px_32px_rgba(37,99,235,0.26)] hover:border-blue-500"
         aria-label="Direkte FLOXANT Anfrage starten"
       >
         <MessageCircle className="h-3.5 w-3.5" />
@@ -1001,16 +999,16 @@ function MobileHeaderActions({
   const isDuesseldorf = variant === "duesseldorf";
 
   return (
-    <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 2xl:hidden">
+    <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 xl:hidden">
       <Link
         href={isDuesseldorf ? "/duesseldorf/reinigung#kontakt" : "/buchung"}
-        className="hidden h-10 items-center justify-center whitespace-nowrap rounded-[0.95rem] bg-blue-600 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] sm:inline-flex"
+        className="flox-nav-action hidden h-10 items-center justify-center whitespace-nowrap border border-blue-600 bg-blue-600 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] hover:bg-blue-700 sm:inline-flex"
       >
         {isDuesseldorf ? "Kontakt" : "Anfragen"}
       </Link>
       <button
         type="button"
-        className="inline-flex h-10 items-center justify-center gap-2 rounded-[0.95rem] border border-slate-200 bg-white px-3 text-[11px] font-black uppercase tracking-[0.12em] text-slate-900 shadow-sm shadow-slate-950/5 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-blue-100 min-[380px]:px-3.5 min-[380px]:tracking-[0.15em]"
+        className="flox-nav-action inline-flex h-10 items-center justify-center gap-2 border border-slate-200 bg-white px-3 text-[11px] font-black uppercase tracking-[0.12em] text-slate-900 shadow-sm shadow-slate-950/5 hover:bg-slate-50 min-[380px]:px-3.5 min-[380px]:tracking-[0.15em]"
         onClick={() => setMenuOpen((value) => !value)}
         aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
         aria-expanded={menuOpen}
@@ -1057,12 +1055,12 @@ function MobileNavDrawer({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -6, scale: 0.985 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl 2xl:hidden sm:inset-x-5 sm:p-5"
+          className="flox-nav-panel fixed inset-x-3 top-[5.4rem] z-[60] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] p-4 shadow-2xl xl:hidden sm:inset-x-5 sm:p-5"
         >
           <div className="grid gap-3 sm:grid-cols-2">
             <Link
               href={isDuesseldorf ? "/duesseldorf/reinigung#kontakt" : "/buchung"}
-              className="relative isolate flex min-h-[96px] flex-col items-start justify-center overflow-hidden rounded-[1.35rem] bg-gradient-to-r from-blue-600 to-sky-500 px-5 text-left text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)]"
+              className="flox-nav-action relative isolate flex min-h-[96px] flex-col items-start justify-center overflow-hidden border border-blue-600 bg-gradient-to-r from-blue-600 to-sky-500 px-5 text-left text-white shadow-[0_18px_38px_rgba(37,99,235,0.24)] hover:border-blue-500"
             >
               <span className="absolute -right-8 -top-10 h-28 w-28 rounded-full bg-white/16 blur-xl" />
               <span className="text-[10px] font-black uppercase tracking-[0.18em] text-white/72">
@@ -1079,7 +1077,7 @@ function MobileNavDrawer({
               </div>
               <p className="mt-2">
                 {isDuesseldorf
-                  ? "Düsseldorf bleibt klar: Reinigung und Entsorgung, keine Umzüge."
+                  ? "Düsseldorf bleibt klar: Reinigung, keine Umzüge."
                   : "Erst passenden Weg wählen, dann mit Rechner, Budget oder Anfrage sauber weitergehen."}
               </p>
             </div>
@@ -1089,7 +1087,7 @@ function MobileNavDrawer({
             {storySteps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <div key={step.label} className="flex gap-3 rounded-[1.15rem] border border-slate-200 bg-white p-3.5">
+                <div key={step.label} className="flox-surface-card flex gap-3 p-3.5">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem] bg-blue-50 text-blue-700">
                     <Icon className="h-4 w-4" />
                   </span>
@@ -1111,7 +1109,7 @@ function MobileNavDrawer({
                 <Link
                   key={card.title}
                   href={card.href}
-                  className="relative min-h-[82px] overflow-hidden rounded-[1.1rem] border border-slate-200 bg-slate-950 p-3 text-white"
+                  className="flox-action-card-dark relative min-h-[82px] p-3 text-white"
                 >
                   <Image
                     src={card.image}
@@ -1137,7 +1135,7 @@ function MobileNavDrawer({
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-[1.05rem] border border-slate-200 bg-white px-4 py-3.5 text-sm font-black text-slate-900 transition hover:border-blue-200 hover:bg-blue-50"
+                className="flox-nav-entry text-sm font-black text-slate-900"
               >
                 {item.label}
               </Link>
@@ -1177,14 +1175,14 @@ function MobileNavDrawer({
               <button
                 type="button"
                 onClick={onExpress}
-                className="rounded-[1.15rem] border border-amber-300 bg-amber-400 px-4 py-4 text-sm font-black text-slate-950 shadow-[0_12px_28px_rgba(245,158,11,0.18)]"
+                className="flox-nav-action border border-amber-300 bg-amber-400 px-4 py-4 text-sm font-black text-slate-950 shadow-[0_12px_28px_rgba(245,158,11,0.18)]"
               >
                 Express-Check
               </button>
               <button
                 type="button"
                 onClick={onBudget}
-                className="rounded-[1.15rem] border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
+                className="flox-nav-action border border-blue-200 bg-blue-50 px-4 py-4 text-sm font-black text-blue-900"
               >
                 Budget nennen
               </button>
@@ -1196,14 +1194,14 @@ function MobileNavDrawer({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-[#25D366]/20 bg-white px-4 py-4 text-sm font-black text-slate-900"
+              className="flox-nav-action flex items-center justify-center gap-2 border border-[#25D366]/20 bg-white px-4 py-4 text-sm font-black text-slate-900"
             >
               <MessageCircle size={18} className="text-[#25D366]" />
               WhatsApp
             </a>
             <a
               href={`mailto:${company.email}`}
-              className="flex items-center justify-center gap-2 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900"
+              className="flox-nav-action flex items-center justify-center gap-2 border border-slate-200 bg-white px-4 py-4 text-sm font-black text-slate-900"
             >
               <Mail size={18} className="text-blue-700" />
               E-Mail

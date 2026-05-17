@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -70,7 +68,7 @@ interface SignatureServicesProps {
   className?: string;
 }
 
-export const signatureServiceCatalog: Record<SignatureServiceId, SignatureServiceCatalogItem> = {
+export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, SignatureServiceCatalogItem>> = Object.freeze({
   key_handover: {
     title: "Schlüsselübergabe mit Übergabeprotokoll",
     desc: "Für Auszug, Reinigung oder Umzug, wenn Schlüssel, Zustand, Fotos und Übergabetermin nicht nebenbei laufen sollen.",
@@ -224,9 +222,9 @@ export const signatureServiceCatalog: Record<SignatureServiceId, SignatureServic
     icon: Trash2,
     accent: "from-orange-600 via-amber-500 to-slate-700",
   },
-};
+});
 
-const defaultServiceIds: SignatureServiceId[] = [
+const defaultServiceIds = Object.freeze([
   "key_handover",
   "parking_zone",
   "empty_return",
@@ -240,7 +238,31 @@ const defaultServiceIds: SignatureServiceId[] = [
   "discreet_move",
   "plan_b_service",
   "premium_discreet",
-];
+] satisfies SignatureServiceId[]);
+
+const signatureIconBackgrounds = Object.freeze({
+  key_handover: "linear-gradient(135deg, #2563eb 0%, #06b6d4 58%, #475569 100%)",
+  parking_zone: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 56%, #06b6d4 100%)",
+  empty_return: "linear-gradient(135deg, #10b981 0%, #14b8a6 54%, #06b6d4 100%)",
+  move_cleaning: "linear-gradient(135deg, #06b6d4 0%, #34d399 52%, #2dd4bf 100%)",
+  clear_cleaning: "linear-gradient(135deg, #f97316 0%, #f59e0b 55%, #facc15 100%)",
+  handover_ready: "linear-gradient(135deg, #3b82f6 0%, #6366f1 55%, #475569 100%)",
+  photo_check: "linear-gradient(135deg, #0ea5e9 0%, #2563eb 56%, #22d3ee 100%)",
+  budget_check: "linear-gradient(135deg, #059669 0%, #14b8a6 52%, #2563eb 100%)",
+  platform_order_check: "linear-gradient(135deg, #1d4ed8 0%, #06b6d4 55%, #475569 100%)",
+  property_ready_service: "linear-gradient(135deg, #0c0a09 0%, #b45309 55%, #a8a29e 100%)",
+  estate_clearance: "linear-gradient(135deg, #0c0a09 0%, #44403c 55%, #f59e0b 100%)",
+  discreet_move: "linear-gradient(135deg, #0c0a09 0%, #44403c 55%, #06b6d4 100%)",
+  short_notice: "linear-gradient(135deg, #f59e0b 0%, #f97316 54%, #f87171 100%)",
+  plan_b_service: "linear-gradient(135deg, #020617 0%, #0e7490 54%, #f59e0b 100%)",
+  premium_discreet: "linear-gradient(135deg, #020617 0%, #1e3a8a 55%, #f59e0b 100%)",
+  duesseldorf_b2b_cleaning: "linear-gradient(135deg, #0d9488 0%, #06b6d4 55%, #2563eb 100%)",
+  duesseldorf_disposal: "linear-gradient(135deg, #ea580c 0%, #f59e0b 55%, #334155 100%)",
+} satisfies Record<SignatureServiceId, string>);
+
+function normalizeSignatureText(value: string) {
+  return germanText(value, value).normalize("NFC");
+}
 
 export function SignatureServices({
   dict,
@@ -254,8 +276,8 @@ export function SignatureServices({
 }: SignatureServicesProps) {
   const t = dict?.signature_services || { items: {}, badge: "", title: "", subtitle: "" };
   const items: Record<string, ServiceContent> = t.items || {};
-  const selectedIds = (serviceIds?.length ? serviceIds : defaultServiceIds).filter(
-    (id) => signatureServiceCatalog[id],
+  const selectedIds = [...(serviceIds?.length ? serviceIds : defaultServiceIds)].filter(
+    (id): id is SignatureServiceId => Boolean(signatureServiceCatalog[id]),
   );
 
   if (selectedIds.length === 0) return null;
@@ -271,12 +293,12 @@ export function SignatureServices({
       </div>
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-10 grid gap-5 lg:grid-cols-[0.96fr_1.04fr] lg:items-end">
+        <div className="flox-signature-header mb-10 grid gap-5 lg:grid-cols-[0.96fr_1.04fr] lg:items-end">
           <div className="max-w-3xl">
-            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">
+            <div className="flox-overline text-blue-700">
               {germanText(badge || t.badge, "FLOXANT Signature Services")}
             </div>
-            <h2 className="mt-4 text-[2.15rem] font-bold tracking-tight text-slate-950 md:text-[2.65rem]">
+            <h2 className="flox-title-lg flox-display-section mt-4 text-slate-950">
               {germanText(
                 title || t.title,
                 "Zusatzservices, die Übergabe, Preis und Zeitdruck greifbar machen",
@@ -290,8 +312,8 @@ export function SignatureServices({
             </p>
           </div>
 
-          <div className="glass-elevated rounded-[1.2rem] px-5 py-5">
-            <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+          <div className="glass-elevated px-5 py-5">
+            <div className="flox-overline text-blue-700">
               Warum das Kunden hilft
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-700">
@@ -307,36 +329,41 @@ export function SignatureServices({
             const service = signatureServiceCatalog[id];
             const Icon = service.icon;
             const content = items[id];
+            const eyebrow = normalizeSignatureText(service.eyebrow);
+            const serviceTitle = normalizeSignatureText(service.title);
+            const serviceDesc = normalizeSignatureText(service.desc);
+            const serviceLabel = normalizeSignatureText(service.label);
 
             return (
-              <article key={id} className="card-premium card-depth rounded-[1.35rem] p-5 md:p-6">
+              <article key={id} className="flox-signature-card card-premium card-depth p-5 md:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-[1rem] bg-gradient-to-r ${service.accent} text-white shadow-[0_14px_28px_rgba(15,23,42,0.1)]`}
+                    className="flox-icon-tile flox-signature-icon h-11 w-11"
+                    style={{ background: signatureIconBackgrounds[id] }}
                   >
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
-                    {service.eyebrow}
+                  <span className="flox-tag text-slate-500">
+                    {eyebrow}
                   </span>
                 </div>
 
-                <h3 className="mt-5 text-[1.28rem] font-bold leading-[1.1] tracking-tight text-slate-950">
-                  {germanText(content?.title, service.title)}
+                <h3 className="flox-card-title-lg mt-5 text-slate-950">
+                  {germanText(content?.title, serviceTitle)}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-700">
-                  {germanText(content?.desc, service.desc)}
+                  {germanText(content?.desc, serviceDesc)}
                 </p>
 
                 <div className="mt-6 border-t border-slate-200 pt-5">
                   <Link
                     href={service.href}
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-900 transition-all hover:border-blue-200 hover:bg-blue-50"
+                    className="flox-command-link text-slate-900"
                     data-event="signature_service_click"
                     data-signature-service={id}
                     data-source={source}
                   >
-                    {service.label}
+                    {serviceLabel}
                     <ArrowUpRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
@@ -345,7 +372,7 @@ export function SignatureServices({
           })}
         </div>
 
-        <div className="mt-8 rounded-[1.4rem] border border-slate-200 bg-white/86 px-5 py-4 shadow-sm shadow-slate-950/5">
+        <div className="flox-signature-close mt-8 px-5 py-4">
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <div className="flex items-start gap-3 text-sm leading-7 text-slate-700">
               <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-blue-700" />
@@ -356,7 +383,7 @@ export function SignatureServices({
             </div>
             <Link
               href="/buchung"
-              className="inline-flex shrink-0 items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-[11px] font-black uppercase tracking-[0.15em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+              className="flox-button-primary shrink-0 px-5 py-3"
               data-event="start_booking"
               data-source={`${source}_signature_footer`}
             >
