@@ -727,7 +727,7 @@ export function SearchDominanceExperience({
               </div>
             </AnimateOnScroll>
 
-            <AnimateOnScroll delay={102} className="flox-search-action-strip rounded-[1.65rem] border border-white/10 bg-white/[0.07] p-4 text-white backdrop-blur md:p-5">
+            <AnimateOnScroll delay={102} className="flox-search-action-strip rounded-[1.65rem] p-4 backdrop-blur md:p-5">
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
@@ -737,7 +737,7 @@ export function SearchDominanceExperience({
                     Kein Rätselraten: FLOXANT zeigt den nächsten Schritt.
                   </h3>
                 </div>
-                <span className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-50">
+                <span className="flox-search-deck-badge rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em]">
                   Anfrage · Rechner · Upload · Region
                 </span>
               </div>
@@ -750,17 +750,17 @@ export function SearchDominanceExperience({
                     <Link
                       key={action.label}
                       href={action.href}
-                      className="flox-search-action-card group rounded-[1.2rem] border border-white/10 bg-white/[0.08] p-3.5 text-white transition hover:-translate-y-0.5 hover:bg-white/[0.12]"
+                      className="flox-search-action-card group rounded-[1.2rem] p-4 transition"
                       data-event="click_search_dominance_action"
                     >
                       <div className="flex items-center justify-between gap-3">
-                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem] bg-white text-blue-700 shadow-sm">
+                        <span className="flox-search-action-icon grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem]">
                           <Icon className="h-4 w-4" />
                         </span>
-                        <ArrowRight className="h-4 w-4 text-cyan-100 transition group-hover:translate-x-0.5" />
+                        <ArrowRight className="flox-search-action-arrow h-4 w-4 transition group-hover:translate-x-0.5" />
                       </div>
-                      <div className="mt-3 text-sm font-black leading-tight">{action.label}</div>
-                      <p className="mt-1.5 text-xs font-semibold leading-5 text-slate-300">
+                      <div className="flox-search-action-title mt-3 text-sm font-black leading-tight">{action.label}</div>
+                      <p className="flox-search-action-copy mt-1.5 text-xs font-semibold leading-5">
                         {action.text}
                       </p>
                     </Link>
@@ -769,7 +769,7 @@ export function SearchDominanceExperience({
               </div>
             </AnimateOnScroll>
 
-            <AnimateOnScroll delay={108} className="flox-local-trust-deck rounded-[1.65rem] border border-white/10 bg-white/[0.06] p-4 text-white backdrop-blur md:p-5">
+            <AnimateOnScroll delay={108} className="flox-local-trust-deck rounded-[1.65rem] p-4 backdrop-blur md:p-5">
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-100">
@@ -779,7 +779,7 @@ export function SearchDominanceExperience({
                     Kunden erkennen sofort, warum FLOXANT der richtige nächste Klick ist.
                   </h3>
                 </div>
-                <span className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-emerald-50">
+                <span className="flox-local-trust-badge rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em]">
                   NAP · Fotos · Ort · Budget
                 </span>
               </div>
@@ -791,17 +791,17 @@ export function SearchDominanceExperience({
                   return (
                     <div
                       key={signal.label}
-                      className="flox-local-trust-card rounded-[1.2rem] border border-white/10 bg-white/[0.08] p-3.5"
+                      className="flox-local-trust-card rounded-[1.2rem] p-4"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[0.9rem] bg-emerald-300/14 text-emerald-100 ring-1 ring-emerald-100/15">
+                        <span className="flox-local-trust-icon grid h-9 w-9 shrink-0 place-items-center rounded-[0.9rem]">
                           <Icon className="h-4 w-4" />
                         </span>
-                        <div className="text-sm font-black leading-tight text-white">
+                        <div className="flox-local-trust-title text-sm font-black leading-tight">
                           {signal.label}
                         </div>
                       </div>
-                      <p className="mt-3 text-xs font-semibold leading-5 text-slate-300">
+                      <p className="flox-local-trust-copy mt-3 text-xs font-semibold leading-5">
                         {signal.text}
                       </p>
                     </div>

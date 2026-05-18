@@ -2015,7 +2015,14 @@ input[type="file"]:hover {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(7, 17, 31, 0.88), rgba(17, 29, 45, 0.72));
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(14, 165, 233, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(7, 17, 31, 0.96), rgba(15, 23, 42, 0.9) 54%, rgba(12, 74, 110, 0.72));
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 24px 70px rgba(2, 6, 23, 0.22);
 }
 
 .flox-search-action-strip::before {
@@ -2027,10 +2034,32 @@ input[type="file"]:hover {
   background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.62), transparent);
 }
 
+.flox-search-deck-badge,
+.flox-local-trust-badge {
+  border: 1px solid rgba(226, 232, 240, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgb(226, 232, 240);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .flox-search-action-card {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  min-height: 11.6rem;
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045)),
+    rgba(15, 23, 42, 0.42);
+  color: #ffffff !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 18px 42px rgba(2, 6, 23, 0.16);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .flox-search-action-card::after {
@@ -2043,11 +2072,39 @@ input[type="file"]:hover {
   transition: opacity 180ms ease;
 }
 
+.flox-search-action-icon {
+  background: linear-gradient(135deg, #e0f2fe, #ffffff);
+  color: #075985 !important;
+  box-shadow:
+    0 12px 24px rgba(14, 165, 233, 0.18),
+    inset 0 0 0 1px rgba(14, 165, 233, 0.16);
+}
+
+.flox-search-action-arrow {
+  color: rgb(125, 211, 252) !important;
+}
+
+.flox-search-action-title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(2, 6, 23, 0.28);
+}
+
+.flox-search-action-copy {
+  color: rgb(203, 213, 225) !important;
+}
+
 .flox-local-trust-deck {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(7, 17, 31, 0.82), rgba(15, 23, 42, 0.64));
+  border: 1px solid rgba(110, 231, 183, 0.2);
+  background:
+    radial-gradient(circle at 88% 0%, rgba(16, 185, 129, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(7, 17, 31, 0.96), rgba(15, 23, 42, 0.9) 52%, rgba(6, 78, 59, 0.72));
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 24px 70px rgba(2, 6, 23, 0.22);
 }
 
 .flox-local-trust-deck::before {
@@ -2076,6 +2133,15 @@ input[type="file"]:hover {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  min-height: 12.25rem;
+  border: 1px solid rgba(110, 231, 183, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045)),
+    rgba(15, 23, 42, 0.4);
+  color: #ffffff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 18px 42px rgba(2, 6, 23, 0.15);
   transition:
     transform 220ms ease,
     border-color 220ms ease,
@@ -2091,6 +2157,25 @@ input[type="file"]:hover {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(110, 231, 183, 0.56), transparent);
   opacity: 0.72;
+}
+
+.flox-local-trust-icon {
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(16, 185, 129, 0.38), rgba(15, 118, 110, 0.24));
+  color: rgb(167, 243, 208) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(167, 243, 208, 0.22),
+    0 12px 24px rgba(5, 150, 105, 0.16);
+}
+
+.flox-local-trust-title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(2, 6, 23, 0.28);
+}
+
+.flox-local-trust-copy {
+  color: rgb(203, 213, 225) !important;
 }
 
 .flox-special-service-card {
