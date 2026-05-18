@@ -26,8 +26,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
   --font-sans: "Segoe UI Variable Text", "Aptos", "Inter", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: "Aptos Display", "Segoe UI Variable Display", "SF Pro Display", "Segoe UI", var(--font-sans);
-  --font-accent: "Aptos Display", "Segoe UI Variable Display", "SF Pro Display", var(--font-heading);
+  --font-heading: "Bahnschrift", "Aptos Display", "Segoe UI Variable Display", "SF Pro Display", "Segoe UI", var(--font-sans);
+  --font-accent: "Bahnschrift", "Aptos Display", "Segoe UI Variable Display", "SF Pro Display", var(--font-heading);
   --font-label: "Segoe UI Variable Text", "Aptos", "Inter", var(--font-sans);
   --font-mono: "Cascadia Code", "Cascadia Mono", "SFMono-Regular", "Consolas", ui-monospace, monospace;
 }
@@ -76,6 +76,15 @@
     --flox-ink-muted: rgb(100, 116, 139);
     --flox-accent: rgb(29, 78, 216);
     --flox-accent-2: rgb(8, 145, 178);
+    --flox-brand-ink: #07111f;
+    --flox-brand-ink-2: #102033;
+    --flox-brand-blue: #1d4ed8;
+    --flox-brand-sky: #0ea5e9;
+    --flox-brand-teal: #0f766e;
+    --flox-brand-green: #059669;
+    --flox-brand-gold: #d6a638;
+    --flox-brand-line: rgba(125, 211, 252, 0.34);
+    --flox-whatsapp-mark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2325D366'/%3E%3Cpath fill='%23fff' d='M16.05 7.35c-4.68 0-8.48 3.73-8.48 8.34 0 1.45.39 2.86 1.12 4.1l-1.18 4.35 4.52-1.15a8.6 8.6 0 0 0 4.02.99c4.68 0 8.48-3.73 8.48-8.34s-3.8-8.29-8.48-8.29Zm0 15.1a7.1 7.1 0 0 1-3.61-.99l-.26-.15-2.68.68.72-2.58-.18-.27a6.7 6.7 0 0 1-1.08-3.5c0-3.75 3.18-6.78 7.09-6.78s7.09 3.03 7.09 6.78-3.18 6.81-7.09 6.81Z'/%3E%3Cpath fill='%23fff' d='M20.08 17.62c-.22-.11-1.31-.64-1.51-.71-.2-.08-.35-.11-.5.11-.14.22-.57.71-.7.86-.13.15-.26.16-.48.05a5.78 5.78 0 0 1-1.7-1.04 6.26 6.26 0 0 1-1.17-1.43c-.12-.22 0-.34.1-.45.1-.1.22-.26.34-.4.11-.13.15-.23.22-.38.08-.15.04-.29-.02-.4-.05-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.42c-.15 0-.4.05-.6.27-.2.22-.78.76-.78 1.85 0 1.08.8 2.13.91 2.28.11.15 1.57 2.38 3.82 3.33.53.23.95.37 1.27.47.54.17 1.03.15 1.42.09.43-.07 1.31-.53 1.5-1.05.18-.52.18-.96.13-1.05-.06-.1-.21-.16-.43-.27Z'/%3E%3C/svg%3E");
     --flox-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.045);
     --flox-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.055);
     --flox-shadow-md: 0 16px 34px rgba(15, 23, 42, 0.075);
@@ -163,6 +172,15 @@
     --flox-ink-muted: rgb(100, 116, 139);
     --flox-accent: rgb(29, 78, 216);
     --flox-accent-2: rgb(8, 145, 178);
+    --flox-brand-ink: #07111f;
+    --flox-brand-ink-2: #102033;
+    --flox-brand-blue: #1d4ed8;
+    --flox-brand-sky: #0ea5e9;
+    --flox-brand-teal: #0f766e;
+    --flox-brand-green: #059669;
+    --flox-brand-gold: #d6a638;
+    --flox-brand-line: rgba(125, 211, 252, 0.34);
+    --flox-whatsapp-mark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2325D366'/%3E%3Cpath fill='%23fff' d='M16.05 7.35c-4.68 0-8.48 3.73-8.48 8.34 0 1.45.39 2.86 1.12 4.1l-1.18 4.35 4.52-1.15a8.6 8.6 0 0 0 4.02.99c4.68 0 8.48-3.73 8.48-8.34s-3.8-8.29-8.48-8.29Zm0 15.1a7.1 7.1 0 0 1-3.61-.99l-.26-.15-2.68.68.72-2.58-.18-.27a6.7 6.7 0 0 1-1.08-3.5c0-3.75 3.18-6.78 7.09-6.78s7.09 3.03 7.09 6.78-3.18 6.81-7.09 6.81Z'/%3E%3Cpath fill='%23fff' d='M20.08 17.62c-.22-.11-1.31-.64-1.51-.71-.2-.08-.35-.11-.5.11-.14.22-.57.71-.7.86-.13.15-.26.16-.48.05a5.78 5.78 0 0 1-1.7-1.04 6.26 6.26 0 0 1-1.17-1.43c-.12-.22 0-.34.1-.45.1-.1.22-.26.34-.4.11-.13.15-.23.22-.38.08-.15.04-.29-.02-.4-.05-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.42c-.15 0-.4.05-.6.27-.2.22-.78.76-.78 1.85 0 1.08.8 2.13.91 2.28.11.15 1.57 2.38 3.82 3.33.53.23.95.37 1.27.47.54.17 1.03.15 1.42.09.43-.07 1.31-.53 1.5-1.05.18-.52.18-.96.13-1.05-.06-.1-.21-.16-.43-.27Z'/%3E%3C/svg%3E");
     --flox-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.045);
     --flox-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.055);
     --flox-shadow-md: 0 16px 34px rgba(15, 23, 42, 0.075);
@@ -3540,10 +3558,37 @@ input[type="file"]:hover {
 }
 
 .flox-mobile-action-whatsapp {
-  border: 1px solid rgb(110, 231, 183);
-  background: rgb(18, 183, 106);
-  color: rgb(2, 44, 34) !important;
-  box-shadow: 0 10px 22px rgba(16, 185, 129, 0.16);
+  position: relative;
+  border: 1px solid rgba(37, 211, 102, 0.82);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(135deg, #25d366 0%, #16a34a 52%, #075e54 100%);
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(4, 47, 46, 0.28);
+  box-shadow:
+    0 12px 26px rgba(7, 94, 84, 0.28),
+    0 0 0 1px rgba(37, 211, 102, 0.16) inset;
+}
+
+.flox-mobile-action-whatsapp > svg {
+  display: none;
+}
+
+.flox-mobile-action-whatsapp::before {
+  content: "";
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background-color: #25d366;
+  background-image: var(--flox-whatsapp-mark-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.75rem 1.75rem;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.94),
+    0 9px 22px rgba(4, 47, 46, 0.28);
 }
 
 .flox-mobile-action-light {
@@ -3723,15 +3768,38 @@ input[type="file"]:hover {
 }
 
 .flox-whatsapp-cta__icon {
-  background: #ffffff;
-  color: #047857 !important;
+  width: 3.75rem !important;
+  height: 3.75rem !important;
+  background:
+    radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.28), transparent 30%),
+    linear-gradient(135deg, #25d366 0%, #16a34a 54%, #075e54 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 1rem !important;
+  color: #ffffff !important;
   box-shadow:
-    0 14px 32px rgba(4, 120, 87, 0.34),
-    0 0 0 1px rgba(255, 255, 255, 0.54);
+    0 16px 34px rgba(4, 120, 87, 0.42),
+    0 0 0 1px rgba(37, 211, 102, 0.38);
 }
 
 .flox-whatsapp-cta__icon svg {
-  color: #047857 !important;
+  display: none !important;
+}
+
+.flox-whatsapp-cta__icon::before {
+  display: none !important;
+}
+
+.flox-whatsapp-cta__mark {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background-image: var(--flox-whatsapp-mark-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2.5rem 2.5rem;
+  filter: drop-shadow(0 2px 2px rgba(4, 47, 46, 0.26));
 }
 
 .flox-whatsapp-cta__eyebrow {
@@ -3745,6 +3813,54 @@ input[type="file"]:hover {
 
 .flox-whatsapp-cta__subline {
   color: rgba(236, 253, 245, 0.9) !important;
+}
+
+.flox-whatsapp-tooltip {
+  border: 1px solid rgba(37, 211, 102, 0.72);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(37, 211, 102, 0.24), transparent 34%),
+    linear-gradient(135deg, #075e54 0%, #064e3b 55%, #042f2e 100%) !important;
+  color: #ffffff !important;
+}
+
+.flox-whatsapp-tooltip,
+.flox-whatsapp-tooltip :where(span, svg) {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.flox-whatsapp-tooltip__pill {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.95);
+  color: #075e54 !important;
+  box-shadow: 0 8px 20px rgba(4, 47, 46, 0.16);
+}
+
+.flox-whatsapp-tooltip__pill :where(svg, path, circle) {
+  color: inherit !important;
+}
+
+.flox-whatsapp-tooltip__title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(4, 47, 46, 0.4);
+}
+
+.flox-whatsapp-tooltip__mark {
+  border-radius: 999px !important;
+  background: #25d366;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.95),
+    0 10px 24px rgba(4, 47, 46, 0.28);
+}
+
+.flox-whatsapp-tooltip__text {
+  color: rgba(236, 253, 245, 0.96) !important;
+}
+
+.flox-whatsapp-tooltip__arrow {
+  border-right: 1px solid rgba(37, 211, 102, 0.72);
+  border-top: 1px solid rgba(37, 211, 102, 0.72);
+  background: #064e3b;
 }
 
 .flox-whatsapp-cta:focus-visible {
@@ -3985,14 +4101,87 @@ input[type="file"]:hover {
 }
 
 .flox-cta-choice-whatsapp .flox-cta-choice-icon {
-  background: #ffffff;
-  color: #047857;
-  box-shadow: 0 14px 30px rgba(4, 120, 87, 0.32);
+  border-radius: 999px;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.94),
+    0 14px 30px rgba(4, 120, 87, 0.32);
+}
+
+.flox-cta-choice-whatsapp .flox-cta-choice-icon svg {
+  display: none !important;
+}
+
+.flox-cta-choice-whatsapp .flox-cta-choice-icon::before {
+  content: "";
+  display: block;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 999px;
+  background-image: var(--flox-whatsapp-mark-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2.15rem 2.15rem;
+  filter: drop-shadow(0 1px 1px rgba(4, 47, 46, 0.18));
 }
 
 .flox-cta-choice-whatsapp .flox-cta-choice-arrow {
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
+}
+
+a[href*="wa.me"] :where(.lucide-message-circle, .lucide-message-square) {
+  display: none !important;
+}
+
+a[href*="wa.me"] :where(.flox-icon-tile, .flox-cta-choice-icon) {
+  position: relative;
+  border-radius: 999px !important;
+  background: #25d366 !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.94),
+    0 12px 28px rgba(7, 94, 84, 0.3) !important;
+}
+
+a[href*="wa.me"] :where(.flox-icon-tile, .flox-cta-choice-icon)::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background-image: var(--flox-whatsapp-mark-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2rem 2rem;
+}
+
+a[href*="wa.me"] :where(.flox-icon-tile, .flox-cta-choice-icon) > svg {
+  display: none !important;
+}
+
+a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-action):has(> svg) {
+  border-color: rgba(37, 211, 102, 0.74) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.18), transparent 34%),
+    linear-gradient(135deg, #25d366 0%, #16a34a 54%, #075e54 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 16px 34px rgba(7, 94, 84, 0.24);
+}
+
+a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-action):has(> svg)::before {
+  content: "";
+  display: inline-block;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background-image: var(--flox-whatsapp-mark-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.35rem 1.35rem;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.92);
 }
 
 .flox-cta-choice:focus-visible {
@@ -4023,4 +4212,1201 @@ input[type="file"]:hover {
 
 .flox-cta-choice:active {
   transform: translateY(0);
+}
+
+/* FLOXANT brand layer: stronger identity without changing routes or content structure. */
+.flox-brand-hero {
+  background:
+    linear-gradient(135deg, rgba(7, 17, 31, 0.98) 0%, rgba(16, 32, 51, 0.98) 46%, rgba(6, 78, 89, 0.9) 100%),
+    var(--flox-brand-ink);
+}
+
+.flox-brand-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(186, 230, 253, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 230, 253, 0.07) 1px, transparent 1px),
+    linear-gradient(120deg, transparent 0 48%, rgba(214, 166, 56, 0.12) 48% 49%, transparent 49% 100%);
+  background-size: 88px 88px, 88px 88px, 420px 420px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent 92%);
+}
+
+.flox-brand-hero .flox-hero-stage {
+  border-color: rgba(186, 230, 253, 0.24);
+  background:
+    linear-gradient(135deg, rgba(7, 17, 31, 0.98) 0%, rgba(13, 30, 51, 0.96) 55%, rgba(15, 118, 110, 0.86) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 34px 80px rgba(2, 6, 23, 0.38);
+}
+
+.flox-header-premium {
+  border-color: rgba(7, 17, 31, 0.22);
+  background:
+    linear-gradient(90deg, rgba(214, 166, 56, 0.08), transparent 24%, rgba(14, 165, 233, 0.08) 64%, rgba(5, 150, 105, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(248, 250, 252, 0.94));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 56px rgba(7, 17, 31, 0.14);
+}
+
+.flox-header-premium::before {
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.55;
+}
+
+.flox-header-premium::after {
+  inset: auto 1rem 0;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+}
+
+.flox-brand-lockup {
+  border-color: rgba(15, 23, 42, 0.08);
+  border-radius: 0.95rem;
+  background:
+    linear-gradient(90deg, rgba(7, 17, 31, 0.045), rgba(255, 255, 255, 0.72));
+}
+
+.flox-brand-lockup > span:first-child {
+  border-color: rgba(15, 23, 42, 0.16);
+  background:
+    linear-gradient(135deg, #07111f, #102033 52%, #0f766e);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.16) inset,
+    0 14px 30px rgba(7, 17, 31, 0.18);
+}
+
+.flox-brand-watermark {
+  position: absolute !important;
+  right: -0.2em;
+  bottom: 0.05em;
+  z-index: 0 !important;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.055);
+  font-family: var(--font-heading);
+  font-size: clamp(4.8rem, 12vw, 10.5rem);
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: 0;
+  transform: rotate(-2deg);
+  white-space: nowrap;
+}
+
+.flox-brand-coordinate {
+  position: absolute !important;
+  top: 1.2rem;
+  right: 1.25rem;
+  z-index: 1 !important;
+  pointer-events: none;
+  border: 1px solid rgba(186, 230, 253, 0.24);
+  background: rgba(7, 17, 31, 0.46);
+  padding: 0.5rem 0.7rem;
+  color: rgba(226, 232, 240, 0.78);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.flox-brand-hero .flox-hero-stage::before {
+  background:
+    linear-gradient(90deg, rgba(125, 211, 252, 0.18), transparent 42%, rgba(214, 166, 56, 0.12)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 46%);
+}
+
+.flox-brand-hero .flox-hero-stage::after {
+  height: 5px;
+  background: linear-gradient(90deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+}
+
+.flox-brand-hero .flox-hero-kicker-row,
+.flox-brand-hero .flox-kicker,
+.flox-brand-hero .flox-overline {
+  color: rgb(125 211 252);
+}
+
+.flox-brand-hero .flox-kicker {
+  border-color: rgba(186, 230, 253, 0.28);
+  background: rgba(7, 17, 31, 0.58);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+.flox-brand-hero .flox-hero-kicker-row span:not(:last-child) {
+  border-color: rgba(186, 230, 253, 0.28);
+}
+
+.flox-brand-hero .flox-title-xl,
+.flox-brand-hero .flox-display-hero {
+  color: rgb(248 250 252) !important;
+  text-shadow: 0 16px 44px rgba(2, 6, 23, 0.34);
+}
+
+.flox-brand-hero .flox-body {
+  color: rgb(219 234 254);
+  font-weight: 640;
+}
+
+.flox-brand-hero .flox-hero-proof-strip {
+  border-color: rgba(186, 230, 253, 0.24);
+  background: rgba(7, 17, 31, 0.56);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 18px 44px rgba(2, 6, 23, 0.24);
+}
+
+.flox-brand-hero .flox-hero-proof-item + .flox-hero-proof-item {
+  border-color: rgba(186, 230, 253, 0.18);
+}
+
+.flox-brand-hero .flox-hero-proof-item p {
+  color: rgb(203 213 225) !important;
+}
+
+.flox-brand-system-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(186, 230, 253, 0.22);
+  border-radius: 1rem;
+  background:
+    linear-gradient(90deg, rgba(7, 17, 31, 0.72), rgba(13, 30, 51, 0.6)),
+    rgba(7, 17, 31, 0.68);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.07) inset,
+    0 20px 46px rgba(2, 6, 23, 0.22);
+  backdrop-filter: blur(12px);
+}
+
+.flox-brand-system-cell {
+  position: relative;
+  min-height: 5.1rem;
+  padding: 1rem 1.1rem 1rem 1.25rem;
+  color: rgb(241, 245, 249);
+}
+
+.flox-brand-system-cell + .flox-brand-system-cell {
+  border-left: 1px solid rgba(186, 230, 253, 0.16);
+}
+
+.flox-brand-system-cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  background: linear-gradient(180deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+}
+
+.flox-brand-system-cell span {
+  display: block;
+  color: rgb(125, 211, 252);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.flox-brand-system-cell strong {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.flox-brand-system-cell small {
+  display: block;
+  margin-top: 0.38rem;
+  color: rgb(203, 213, 225);
+  font-size: 0.76rem;
+  font-weight: 720;
+  line-height: 1.4;
+}
+
+.flox-hero-brand-visual {
+  position: relative;
+  min-height: clamp(15rem, 24vw, 20rem);
+  overflow: hidden;
+  border-radius: 1.05rem;
+  border: 1px solid rgba(226, 232, 240, 0.28);
+  background: var(--flox-brand-ink);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 24px 58px rgba(2, 6, 23, 0.28);
+}
+
+.flox-hero-brand-visual::before,
+.flox-hero-brand-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.flox-hero-brand-visual::before {
+  background: linear-gradient(90deg, rgba(7, 17, 31, 0.86), rgba(7, 17, 31, 0.18) 46%, rgba(7, 17, 31, 0.08));
+}
+
+.flox-hero-brand-visual::after {
+  background:
+    linear-gradient(180deg, transparent 0 68%, rgba(7, 17, 31, 0.82) 100%),
+    linear-gradient(135deg, rgba(214, 166, 56, 0.2), transparent 30%);
+}
+
+.flox-hero-brand-caption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  max-width: 24rem;
+  border-left: 3px solid var(--flox-brand-gold);
+  background: rgba(7, 17, 31, 0.78);
+  padding: 0.9rem 1rem;
+  color: white;
+  backdrop-filter: blur(14px);
+}
+
+.flox-hero-brand-caption strong {
+  display: block;
+  margin-top: 0.28rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  line-height: 1.28;
+}
+
+.flox-brand-hero .flox-hero-console,
+.flox-brand-hero .flox-hero-metric {
+  border-color: rgba(226, 232, 240, 0.78);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.94)),
+    #ffffff;
+}
+
+.flox-brand-hero .flox-hero-note {
+  border-color: rgba(14, 165, 233, 0.18);
+  background: linear-gradient(90deg, rgba(240, 249, 255, 0.92), rgba(255, 255, 255, 0.88));
+}
+
+.flox-brand-hero .flox-cta-choice {
+  min-height: 5.35rem;
+  border-radius: 0.72rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 20px 46px rgba(2, 6, 23, 0.24);
+}
+
+.flox-brand-hero .flox-cta-choice::after {
+  content: "";
+  position: absolute;
+  left: 0.62rem;
+  top: 0.62rem;
+  bottom: 0.62rem;
+  z-index: 0;
+  width: 3px;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.flox-brand-hero .flox-cta-choice > * {
+  position: relative;
+  z-index: 1;
+}
+
+.flox-brand-hero .flox-cta-choice-icon,
+.flox-brand-hero .flox-cta-choice-arrow {
+  border-radius: 0.58rem;
+}
+
+.flox-brand-hero .flox-cta-choice-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+}
+
+.flox-brand-hero .flox-hero-action-primary,
+.flox-brand-hero .flox-hero-action-secondary {
+  border-radius: 0.82rem;
+}
+
+.flox-brand-hero .flox-hero-action-primary {
+  border: 1px solid rgba(125, 211, 252, 0.5);
+  background:
+    linear-gradient(90deg, rgba(29, 78, 216, 0.1), transparent 48%),
+    #ffffff;
+}
+
+.flox-brand-hero .flox-hero-action-secondary {
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.flox-brand-hero .flox-hero-route-card {
+  border-radius: 0.78rem;
+  border-color: rgba(15, 23, 42, 0.16);
+  background:
+    linear-gradient(180deg, #ffffff, #f8fafc),
+    #ffffff;
+}
+
+.flox-cta-choice::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 46%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 34%);
+}
+
+.flox-cta-choice-primary {
+  border-color: rgba(186, 230, 253, 0.62);
+  background:
+    linear-gradient(135deg, #1d4ed8 0%, #0ea5e9 46%, #0f766e 100%);
+}
+
+.flox-cta-choice-whatsapp {
+  border-color: rgba(187, 247, 208, 0.72);
+  background:
+    linear-gradient(135deg, #16a34a 0%, #059669 48%, #0f766e 100%);
+}
+
+.flox-cta-choice-light {
+  border-color: rgba(214, 166, 56, 0.34);
+}
+
+.flox-button-primary {
+  border-color: rgba(125, 211, 252, 0.6);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    linear-gradient(135deg, var(--flox-brand-blue) 0%, var(--flox-brand-sky) 48%, var(--flox-brand-teal) 100%);
+}
+
+.flox-button-secondary {
+  border-color: rgba(15, 23, 42, 0.14);
+  background:
+    linear-gradient(180deg, #ffffff, #f1f5f9),
+    #ffffff;
+}
+
+.flox-contact-track-card,
+.flox-service-priority-card,
+.flox-service-support-card,
+.flox-support-route-card,
+.flox-reason-card,
+.flox-system-pillar-card,
+.flox-directory-card {
+  border-color: rgba(71, 85, 105, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92)),
+    #ffffff;
+}
+
+.flox-contact-track-card::before,
+.flox-service-priority-card::before,
+.flox-support-route-card::before,
+.flox-reason-card::before,
+.flox-directory-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+  opacity: 0.72;
+}
+
+.flox-service-priority-card .flox-icon-tile,
+.flox-contact-track-card .flox-icon-tile,
+.flox-reason-card .flox-icon-tile {
+  border: 1px solid rgba(14, 165, 233, 0.22);
+  background: rgba(240, 249, 255, 0.96);
+  color: var(--flox-brand-blue);
+}
+
+.flox-story-section {
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.76), rgba(255, 255, 255, 0.98)),
+    #ffffff;
+}
+
+.flox-story-copy-panel {
+  border-color: rgba(71, 85, 105, 0.22);
+}
+
+.flox-story-image-frame {
+  border-color: rgba(7, 17, 31, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(226, 232, 240, 0.72));
+}
+
+.flox-story-image-card {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 28px 70px rgba(2, 6, 23, 0.22);
+}
+
+.flox-story-step-icon {
+  border: 1px solid rgba(186, 230, 253, 0.34);
+  background:
+    linear-gradient(135deg, var(--flox-brand-blue), var(--flox-brand-sky) 52%, var(--flox-brand-teal)) !important;
+  color: white !important;
+  box-shadow: 0 14px 30px rgba(29, 78, 216, 0.18);
+}
+
+.flox-story-step-icon svg {
+  color: white !important;
+  stroke-width: 2.25;
+}
+
+.flox-brand-signature-row {
+  display: inline-flex;
+  max-width: min(100%, 28rem);
+  align-items: center;
+  gap: 0.82rem;
+  border: 1px solid rgba(186, 230, 253, 0.24);
+  background:
+    linear-gradient(90deg, rgba(2, 6, 23, 0.58), rgba(15, 118, 110, 0.24)),
+    rgba(7, 17, 31, 0.56);
+  padding: 0.55rem 0.7rem 0.55rem 0.58rem;
+  color: white;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 14px 34px rgba(2, 6, 23, 0.18);
+}
+
+.flox-brand-sigil {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(214, 166, 56, 0.44);
+  background:
+    linear-gradient(135deg, rgba(214, 166, 56, 0.2), transparent 38%),
+    linear-gradient(135deg, #07111f, #102033 52%, #0f766e);
+  color: rgb(248, 250, 252);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 12px 26px rgba(2, 6, 23, 0.26);
+}
+
+.flox-brand-signature-row strong,
+.flox-brand-signature-row small {
+  display: block;
+  letter-spacing: 0;
+}
+
+.flox-brand-signature-row strong {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.flox-brand-signature-row small {
+  margin-top: 0.22rem;
+  color: rgb(186, 230, 253);
+  font-size: 0.72rem;
+  font-weight: 820;
+  line-height: 1.24;
+}
+
+.flox-brand-signature-row + .flox-kicker {
+  margin-top: 1rem;
+}
+
+.flox-brand-section {
+  position: relative;
+}
+
+.flox-brand-section::before {
+  content: "FLOXANT";
+  position: absolute;
+  right: max(1rem, calc((100vw - var(--flox-container)) / 2));
+  top: 1.5rem;
+  pointer-events: none;
+  color: rgba(15, 23, 42, 0.035);
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 9vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.flox-brand-logic-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, #07111f, #102033 58%, #0f766e),
+    var(--flox-brand-ink);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 26px 68px rgba(15, 23, 42, 0.18);
+}
+
+.flox-brand-logic-cell {
+  position: relative;
+  min-height: 8.2rem;
+  padding: 1.35rem 1.45rem 1.45rem;
+  color: white;
+}
+
+.flox-brand-logic-cell + .flox-brand-logic-cell {
+  border-left: 1px solid rgba(186, 230, 253, 0.18);
+}
+
+.flox-brand-logic-cell::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+}
+
+.flox-brand-logic-cell span {
+  display: inline-grid;
+  width: 2.05rem;
+  height: 2.05rem;
+  place-items: center;
+  border: 1px solid rgba(186, 230, 253, 0.26);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgb(125, 211, 252);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.flox-brand-logic-cell strong {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.12;
+}
+
+.flox-brand-logic-cell small {
+  display: block;
+  margin-top: 0.6rem;
+  color: rgb(203, 213, 225);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.flox-contact-track-card::after,
+.flox-service-priority-card::after,
+.flox-service-support-card::after,
+.flox-reason-card::after,
+.flox-directory-card::after {
+  content: "F";
+  position: absolute;
+  right: 1rem;
+  bottom: 0.85rem;
+  pointer-events: none;
+  color: rgba(15, 23, 42, 0.045);
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+.flox-service-priority-card,
+.flox-service-support-card,
+.flox-contact-track-card,
+.flox-reason-card,
+.flox-directory-card {
+  overflow: hidden;
+}
+
+.flox-service-priority-card .flox-card-title-lg,
+.flox-service-support-card .flox-card-title-lg,
+.flox-reason-card .flox-card-title {
+  position: relative;
+  z-index: 1;
+}
+
+.flox-story-shape {
+  border-radius: 0.8rem;
+  filter: none;
+  opacity: 0.2;
+}
+
+.flox-story-shape-a {
+  transform: rotate(-10deg) skewX(-8deg);
+}
+
+.flox-story-shape-b {
+  transform: rotate(9deg) skewX(7deg);
+}
+
+.flox-exit-modal {
+  isolation: isolate;
+  border-radius: 1.55rem;
+  border: 1px solid rgba(186, 230, 253, 0.22);
+  background:
+    linear-gradient(135deg, rgba(7, 17, 31, 0.98), rgba(16, 32, 51, 0.98) 54%, rgba(15, 118, 110, 0.9)),
+    var(--flox-brand-ink);
+  color: white;
+}
+
+.flox-exit-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(186, 230, 253, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 230, 253, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.62), transparent 82%);
+}
+
+.flox-exit-modal::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+}
+
+.flox-exit-modal-mark {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(125, 211, 252, 0.34);
+  background: rgba(14, 165, 233, 0.13);
+  color: rgb(186 230 253);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.24);
+}
+
+.flox-exit-modal-proof {
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.14);
+  background: rgba(2, 6, 23, 0.38);
+  color: rgb(226 232 240);
+}
+
+.flox-exit-primary,
+.flox-exit-whatsapp {
+  display: inline-flex;
+  min-height: 3.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.62rem;
+  border-radius: 0.95rem;
+  font-family: var(--font-label);
+  font-weight: 820;
+  line-height: 1.1;
+  transition:
+    transform var(--flox-duration-fast) var(--flox-ease-out),
+    box-shadow var(--flox-duration-base) var(--flox-ease-standard),
+    border-color var(--flox-duration-base) var(--flox-ease-standard);
+}
+
+.flox-exit-primary {
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  background: #ffffff;
+  color: var(--flox-brand-ink);
+  box-shadow: 0 22px 48px rgba(2, 6, 23, 0.28);
+}
+
+.flox-exit-whatsapp {
+  border: 1px solid rgba(187, 247, 208, 0.42);
+  background: linear-gradient(135deg, #16a34a, #059669 52%, #0f766e);
+  color: white;
+  text-decoration: none;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .flox-exit-primary:hover,
+  .flox-exit-whatsapp:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 767px) {
+  .flox-brand-coordinate {
+    display: none;
+  }
+
+  .flox-brand-watermark {
+    right: -0.35em;
+    bottom: 0.16em;
+    font-size: clamp(4rem, 25vw, 7rem);
+    opacity: 0.72;
+  }
+
+  .flox-brand-system-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .flox-brand-system-cell + .flox-brand-system-cell {
+    border-top: 1px solid rgba(186, 230, 253, 0.16);
+    border-left: 0;
+  }
+
+  .flox-brand-system-cell {
+    min-height: auto;
+    padding-block: 0.9rem;
+  }
+
+  .flox-brand-section::before {
+    display: none;
+  }
+
+  .flox-brand-signature-row {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .flox-brand-logic-board {
+    grid-template-columns: 1fr;
+  }
+
+  .flox-brand-logic-cell {
+    min-height: auto;
+  }
+
+  .flox-brand-logic-cell + .flox-brand-logic-cell {
+    border-top: 1px solid rgba(186, 230, 253, 0.18);
+    border-left: 0;
+  }
+
+  .flox-hero-brand-visual {
+    min-height: 14rem;
+  }
+}
+
+/* Radical hero refresh: lighter, sharper brand canvas and less card-on-card weight. */
+.flox-brand-hero {
+  background:
+    radial-gradient(circle at 14% 0%, rgba(14, 165, 233, 0.18), transparent 32rem),
+    radial-gradient(circle at 86% 8%, rgba(5, 150, 105, 0.16), transparent 28rem),
+    linear-gradient(135deg, #f8fbff 0%, #eef7ff 42%, #f7fbf7 100%) !important;
+  color: #07111f;
+}
+
+.flox-brand-hero::before {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.038) 1px, transparent 1px),
+    linear-gradient(126deg, transparent 0 48%, rgba(214, 166, 56, 0.18) 48% 48.35%, transparent 48.35% 100%);
+  background-size: 74px 74px, 74px 74px, 520px 520px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.78), transparent 90%);
+}
+
+.flox-brand-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(44rem, 46vw);
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 20%, rgba(7, 17, 31, 0.06) 20% 100%),
+    linear-gradient(180deg, rgba(14, 165, 233, 0.12), rgba(5, 150, 105, 0.08));
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.flox-brand-hero .flox-hero-stage {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.flox-brand-hero .flox-hero-stage::before,
+.flox-brand-hero .flox-hero-stage::after {
+  display: none;
+}
+
+.flox-hero-layout {
+  position: relative;
+  align-items: stretch !important;
+}
+
+.flox-hero-copy {
+  position: relative;
+  display: flex;
+  min-height: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: clamp(4.75rem, 7vw, 6.25rem) 0 clamp(3rem, 5vw, 4.75rem);
+}
+
+.flox-hero-copy::before {
+  content: "";
+  position: absolute;
+  left: -1.35rem;
+  top: clamp(4.9rem, 7vw, 6.4rem);
+  bottom: clamp(3.6rem, 5vw, 5rem);
+  width: 5px;
+  background: linear-gradient(180deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+  box-shadow: 0 0 34px rgba(14, 165, 233, 0.28);
+}
+
+.flox-brand-watermark {
+  left: -0.08em;
+  right: auto;
+  bottom: -0.02em;
+  color: rgba(7, 17, 31, 0.036);
+  font-size: 8rem;
+  letter-spacing: 0;
+  transform: none;
+  -webkit-text-stroke: 1px rgba(14, 165, 233, 0.05);
+}
+
+.flox-brand-coordinate {
+  border: 1px solid rgba(7, 17, 31, 0.11);
+  border-radius: 0.65rem 0.12rem 0.65rem 0.12rem;
+  background: rgba(255, 255, 255, 0.76);
+  color: rgba(7, 17, 31, 0.68);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+}
+
+.flox-brand-hero .flox-hero-kicker-row {
+  gap: 0.7rem 0.95rem;
+  color: #0f766e;
+}
+
+.flox-brand-hero .flox-hero-kicker-row span {
+  min-height: 1.85rem;
+  border: 1px solid rgba(15, 118, 110, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.45rem 0.72rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.flox-brand-hero .flox-hero-kicker-row span:not(:last-child) {
+  border-right: 1px solid rgba(15, 118, 110, 0.14);
+  padding-right: 0.72rem;
+}
+
+.flox-brand-signature-row {
+  width: fit-content;
+  border-color: rgba(7, 17, 31, 0.13);
+  border-radius: 0.85rem 0.18rem 0.85rem 0.18rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(236, 253, 245, 0.62)),
+    rgba(255, 255, 255, 0.7);
+  color: #07111f;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+}
+
+.flox-brand-sigil {
+  border-radius: 0.48rem 0.08rem 0.48rem 0.08rem;
+  background:
+    linear-gradient(135deg, #07111f 0%, #102033 54%, #0f766e 100%);
+}
+
+.flox-brand-hero .flox-kicker {
+  width: fit-content;
+  border: 0;
+  border-left: 4px solid var(--flox-brand-gold);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.15rem 0 0.15rem 0.8rem;
+  color: #0f766e;
+  box-shadow: none;
+}
+
+.flox-brand-hero .flox-title-xl,
+.flox-brand-hero .flox-display-hero {
+  color: #07111f !important;
+  text-shadow: none;
+}
+
+.flox-brand-hero .flox-display-hero {
+  font-size: 3.45rem;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.flox-hero-accent-word {
+  background: linear-gradient(90deg, #1d4ed8, #0ea5e9 48%, #0f766e);
+  background-clip: text;
+  color: transparent !important;
+  -webkit-background-clip: text;
+}
+
+.flox-brand-hero .flox-body {
+  max-width: 42rem;
+  color: #334155;
+  font-size: 1.08rem;
+  font-weight: 680;
+}
+
+.flox-brand-hero .flox-hero-action-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) minmax(0, 0.95fr);
+  gap: 0.85rem;
+}
+
+.flox-brand-hero .flox-cta-choice {
+  min-height: 5.25rem;
+  border-radius: 1rem 0.28rem 1rem 0.28rem;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+}
+
+.flox-brand-hero .flox-cta-choice::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+  opacity: 0.9;
+}
+
+.flox-brand-hero .flox-cta-choice-primary {
+  border-color: rgba(7, 17, 31, 0.14);
+  background:
+    linear-gradient(135deg, #07111f 0%, #102033 54%, #1d4ed8 100%) !important;
+}
+
+.flox-brand-hero .flox-cta-choice-light {
+  border-color: rgba(15, 23, 42, 0.14);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.9)) !important;
+}
+
+.flox-brand-hero .flox-cta-choice-whatsapp {
+  border-color: rgba(5, 150, 105, 0.38);
+  background:
+    linear-gradient(135deg, #059669 0%, #0f766e 58%, #064e3b 100%) !important;
+}
+
+.flox-brand-hero .flox-cta-choice-whatsapp .flox-cta-choice-icon {
+  border-radius: 999px;
+  background: #25d366;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.95),
+    0 14px 30px rgba(4, 120, 87, 0.34);
+}
+
+.flox-brand-hero .flox-hero-proof-strip {
+  border: 0;
+  border-top: 1px solid rgba(7, 17, 31, 0.1);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.flox-brand-hero .flox-hero-proof-item {
+  padding: 1rem 1rem 0 0;
+}
+
+.flox-brand-hero .flox-hero-proof-item p {
+  color: #475569 !important;
+}
+
+.flox-hero-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: clamp(3.1rem, 5.5vw, 4.9rem);
+}
+
+.flox-hero-side::before {
+  content: "";
+  position: absolute;
+  inset: 1.2rem -1.1rem 1.2rem 4rem;
+  z-index: -1;
+  border-radius: 2rem 0.45rem 2rem 0.45rem;
+  background:
+    linear-gradient(135deg, rgba(7, 17, 31, 0.92), rgba(15, 118, 110, 0.78)),
+    #07111f;
+  box-shadow: 0 34px 84px rgba(7, 17, 31, 0.22);
+}
+
+.flox-hero-brand-visual {
+  min-height: 24rem;
+  border: 1px solid rgba(7, 17, 31, 0.12);
+  border-radius: 2rem 0.45rem 2rem 0.45rem;
+  background: #07111f;
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.2);
+}
+
+.flox-hero-brand-visual::before {
+  background:
+    linear-gradient(90deg, rgba(7, 17, 31, 0.74), transparent 54%),
+    linear-gradient(180deg, transparent 42%, rgba(7, 17, 31, 0.72));
+}
+
+.flox-hero-brand-visual::after {
+  inset: auto 0 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+  opacity: 1;
+}
+
+.flox-hero-brand-caption {
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  border-left: 0;
+  border-radius: 0.95rem 0.18rem 0.95rem 0.18rem;
+  background: rgba(7, 17, 31, 0.82);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.28);
+}
+
+.flox-brand-hero .flox-hero-console {
+  border-color: rgba(186, 230, 253, 0.2);
+  border-radius: 1.35rem 0.35rem 1.35rem 0.35rem;
+  background:
+    linear-gradient(135deg, rgba(7, 17, 31, 0.98), rgba(16, 32, 51, 0.96) 54%, rgba(15, 118, 110, 0.86)),
+    #07111f;
+  color: white;
+  box-shadow: 0 26px 72px rgba(7, 17, 31, 0.22);
+}
+
+.flox-brand-hero .flox-hero-console::before {
+  height: 5px;
+  background: linear-gradient(90deg, var(--flox-brand-gold), var(--flox-brand-sky), var(--flox-brand-green));
+}
+
+.flox-brand-hero .flox-hero-console h2,
+.flox-brand-hero .flox-hero-console .flox-action-title {
+  color: white !important;
+}
+
+.flox-brand-hero .flox-hero-console .flox-overline,
+.flox-brand-hero .flox-hero-console .flox-action-meta {
+  color: rgb(125 211 252) !important;
+}
+
+.flox-brand-hero .flox-hero-console .flox-card-copy-sm {
+  color: rgb(203 213 225) !important;
+}
+
+.flox-brand-hero .flox-hero-action-primary,
+.flox-brand-hero .flox-hero-action-secondary,
+.flox-brand-hero .flox-hero-note {
+  border-color: rgba(226, 232, 240, 0.16);
+  border-radius: 0.95rem 0.25rem 0.95rem 0.25rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.07)),
+    rgba(15, 23, 42, 0.28);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 18px 38px rgba(2, 6, 23, 0.2);
+}
+
+.flox-brand-hero .flox-hero-action-primary {
+  border-color: rgba(125, 211, 252, 0.42);
+}
+
+.flox-brand-hero .flox-hero-action-primary .flox-icon-tile,
+.flox-brand-hero .flox-hero-action-secondary .flox-icon-tile {
+  border-radius: 0.78rem 0.18rem 0.78rem 0.18rem;
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.25);
+}
+
+.flox-brand-hero .flox-hero-action-primary :where(.lucide-arrow-right),
+.flox-brand-hero .flox-hero-action-secondary :where(.lucide-arrow-right) {
+  color: rgb(186, 230, 253) !important;
+}
+
+.flox-brand-hero .flox-hero-note {
+  color: rgb(226, 232, 240) !important;
+}
+
+.flox-brand-hero .flox-hero-metric {
+  border: 1px solid rgba(7, 17, 31, 0.12);
+  border-radius: 0.95rem 0.2rem 0.95rem 0.2rem;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+}
+
+.flox-brand-system-strip {
+  border-radius: 1rem 0.28rem 1rem 0.28rem;
+}
+
+.flox-hero-route-strip {
+  border-top: 1px solid rgba(7, 17, 31, 0.1);
+  padding-top: 1rem;
+}
+
+.flox-hero-route-card {
+  min-height: 3.8rem;
+  border-radius: 0.85rem 0.18rem 0.85rem 0.18rem;
+  border-color: rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+}
+
+@media (min-width: 768px) {
+  .flox-brand-hero .flox-display-hero {
+    font-size: 4.8rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .flox-brand-hero .flox-display-hero {
+    font-size: 5.6rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .flox-brand-hero .flox-display-hero {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 1279px) {
+  .flox-hero-copy {
+    min-height: auto;
+    padding-top: 1rem;
+  }
+
+  .flox-hero-side::before {
+    inset: 2rem -0.75rem 1rem 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .flox-brand-hero::after {
+    display: none;
+  }
+
+  .flox-hero-copy::before {
+    display: none;
+  }
+
+  .flox-brand-hero .flox-display-hero {
+    font-size: 3rem;
+  }
+
+  .flox-brand-hero .flox-hero-action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flox-hero-side::before {
+    display: none;
+  }
+
+  .flox-hero-brand-visual,
+  .flox-brand-hero .flox-hero-console,
+  .flox-brand-hero .flox-cta-choice {
+    border-radius: 1rem;
+  }
 }

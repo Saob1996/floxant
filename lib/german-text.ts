@@ -1,4 +1,27 @@
 const suspiciousMojibakePattern = /[\u00c2\u00c3\u00e2\u00ef\ufffd]/;
+const machineValueKeys = new Set([
+  "@id",
+  "id",
+  "url",
+  "href",
+  "src",
+  "path",
+  "item",
+  "target",
+  "website",
+  "mapsUrl",
+  "serviceUrl",
+  "canonical",
+  "canonicalPage",
+  "canonicalPages",
+  "supportPages",
+  "localPriorityPages",
+  "primaryConversionPaths",
+  "language",
+  "locale",
+  "market",
+  "schemaVersion",
+]);
 
 const chr = (...codes: number[]) => String.fromCharCode(...codes);
 
@@ -268,20 +291,29 @@ export function germanText(value: string | null | undefined, fallback: string) {
   return germanizeText(raw || fallback);
 }
 
-export function germanizeDeep<T>(value: T): T {
+function isMachineString(value: string) {
+  const trimmed = value.trim();
+  return /^(https?:|mailto:|tel:|sms:|whatsapp:|\/|#)/i.test(trimmed);
+}
+
+export function germanizeDeep<T>(value: T, parentKey?: string): T {
   if (typeof value === "string") {
+    if ((parentKey && machineValueKeys.has(parentKey)) || isMachineString(value)) {
+      return value as T;
+    }
+
     return germanizeText(value) as T;
   }
 
   if (Array.isArray(value)) {
-    return value.map((item) => germanizeDeep(item)) as T;
+    return value.map((item) => germanizeDeep(item, parentKey)) as T;
   }
 
   if (value && typeof value === "object") {
     return Object.fromEntries(
       Object.entries(value as Record<string, unknown>).map(([key, nestedValue]) => [
         key,
-        germanizeDeep(nestedValue),
+        germanizeDeep(nestedValue, key),
       ]),
     ) as T;
   }

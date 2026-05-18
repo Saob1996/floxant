@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -19,12 +20,14 @@ import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { Einsatzradar } from "@/components/Einsatzradar";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
+import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { ServiceRequestCompass } from "@/components/ServiceRequestCompass";
 import { SignatureServices } from "@/components/SignatureServices";
 import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
+import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
 import { BAVARIA_DIRECT_DEMAND_LINKS } from "@/lib/bavaria-coverage";
 import { company } from "@/lib/company";
@@ -557,7 +560,7 @@ export default function Home() {
       />
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section id="ueberblick" className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:pb-20 lg:pt-20">
+      <section id="ueberblick" className="flox-brand-hero relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 lg:pb-20 lg:pt-20">
         <div className="pointer-events-none absolute inset-0">
           <div className="flox-grid-backdrop" />
           <FloxantSymbolLayer variant="moving" density="soft" mode="hero" className="opacity-30" />
@@ -565,21 +568,30 @@ export default function Home() {
 
         <div className="flox-shell relative">
           <div className="flox-hero-stage px-5 py-6 sm:px-8 sm:py-8 xl:px-10 xl:py-10">
-            <div className="grid gap-7 xl:grid-cols-[minmax(0,1.04fr)_minmax(360px,0.76fr)] xl:items-start">
+            <div aria-hidden="true" className="flox-brand-watermark">FLOXANT</div>
+            <div aria-hidden="true" className="flox-brand-coordinate">REG / BAY / 200 KM</div>
+            <div className="flox-hero-layout grid gap-7 xl:grid-cols-[minmax(0,1.04fr)_minmax(360px,0.76fr)] xl:items-start">
               <div className="flox-hero-copy">
                 <div className="flox-hero-kicker-row">
                   <span>Regensburg / Bayern</span>
                   <span>Umzug / Reinigung / Entr&uuml;mpelung</span>
                 </div>
+                <div className="flox-brand-signature-row mt-4" aria-label="FLOXANT Einsatzsystem">
+                  <span className="flox-brand-sigil" aria-hidden="true">F</span>
+                  <span>
+                    <strong>FLOXANT Einsatzsystem</strong>
+                    <small>Regensburg · Bayern · Übergabe im Blick</small>
+                  </span>
+                </div>
                 <div className="flox-kicker">Umzug, Reinigung und Übergabe aus einer Hand</div>
 
                 <h1 className="mt-7 flox-title-xl flox-display-hero max-w-[19ch] text-slate-950 sm:max-w-[16ch]">
-                  Umzug, Reinigung & Entrümpelung in Regensburg.
+                  FLOXANT <span className="flox-hero-accent-word">koordiniert</span> Umzug, Reinigung & Entrümpelung.
                 </h1>
 
                 <p className="flox-body mt-5 max-w-2xl">
-                  Alles aus einer Hand: Senden Sie Ort, Termin, Fotos oder offene Fragen.
-                  FLOXANT prüft den Aufwand und meldet sich mit einem klaren nächsten Schritt.
+                  Regensburg ist der Startpunkt. Senden Sie Ort, Termin, Fotos oder offene Fragen.
+                  FLOXANT prüft Umzug, Reinigung, Entrümpelung und Übergabe als einen klaren Ablauf.
                 </p>
 
                 <div className="flox-hero-action-grid mt-8">
@@ -634,7 +646,7 @@ export default function Home() {
                     data-priority="hot"
                   >
                     <span className="flox-cta-choice-icon">
-                      <MessageCircle className="h-4 w-4" />
+                      <WhatsAppMark className="h-7 w-7" />
                     </span>
                     <span className="flox-cta-choice-body">
                       <span className="flox-cta-choice-title">WhatsApp</span>
@@ -661,7 +673,22 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="flox-hero-side space-y-3">
+                <div className="flox-hero-brand-visual">
+                  <Image
+                    src="/assets/floxant-hero-neu-gedacht.png"
+                    alt="Symbolbild für einen organisierten FLOXANT Umzug mit Servicefahrzeug in Regensburg"
+                    fill
+                    priority
+                    sizes="(min-width: 1280px) 430px, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="flox-hero-brand-caption">
+                    <span className="flox-overline">FLOXANT Einsatzsystem</span>
+                    <strong>Ort, Fotos, Termin und Übergabe werden früh zusammengeführt.</strong>
+                  </div>
+                </div>
+
                 <div className="flox-hero-console p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -702,7 +729,11 @@ export default function Home() {
                       const body = (
                         <>
                           <span className={`flox-icon-tile h-10 w-10 transition ${accentClassName}`}>
-                            <Icon className="h-4 w-4" />
+                            {track.trackingChannel === "whatsapp" ? (
+                              <WhatsAppMark className="h-7 w-7" />
+                            ) : (
+                              <Icon className="h-4 w-4" />
+                            )}
                           </span>
                           <span className="min-w-0 flex-1">
                             <span className="flox-action-meta block text-blue-700">
@@ -770,6 +801,19 @@ export default function Home() {
                 ))}
               </div>
             </div>
+            <div className="flox-brand-system-strip mt-6" aria-label="FLOXANT Service-System">
+              {[
+                ["01", "Prüfen", "Ort · Termin · Fotos"],
+                ["02", "Einordnen", "Umzug · Reinigung · Entrümpelung"],
+                ["03", "Klären", "Anfrage · Rückruf · nächster Schritt"],
+              ].map(([step, title, text]) => (
+                <div key={step} className="flox-brand-system-cell">
+                  <span>{step}</span>
+                  <strong>{title}</strong>
+                  <small>{text}</small>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -828,8 +872,16 @@ export default function Home() {
                     <>
                       <div>
                         <div className="flex items-start justify-between gap-3">
-                          <span className="flox-icon-tile h-10 w-10 bg-blue-600 text-white">
-                            <Icon className="h-4 w-4" />
+                          <span
+                            className={`flox-icon-tile h-10 w-10 text-white ${
+                              track.trackingChannel === "whatsapp" ? "bg-[#25D366]" : "bg-blue-600"
+                            }`}
+                          >
+                            {track.trackingChannel === "whatsapp" ? (
+                              <WhatsAppMark className="h-7 w-7" />
+                            ) : (
+                              <Icon className="h-4 w-4" />
+                            )}
                           </span>
                           <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
                         </div>
@@ -1002,8 +1054,8 @@ export default function Home() {
       <FloxantStorytellingSection
         variant="operations"
         eyebrow="So hilft FLOXANT"
-        title="Umzug, Reinigung, Entrümpelung und Übergabe gut vorbereitet."
-        intro="Sie müssen nicht erst herausfinden, welcher Service passt. Senden Sie Fotos, Ort, Termin, ein vorhandenes Angebot oder Ihr Budget. FLOXANT schaut sich den Fall an und führt Sie zum passenden nächsten Schritt."
+        title="Erst verstehen, dann sauber lösen: FLOXANT führt den ganzen Übergang."
+        intro="Sie schicken, was schon da ist: Fotos, Ort, Termin, Angebot oder Budget. Daraus entsteht kein Ratespiel, sondern ein klarer Ablauf für Umzug, Reinigung, Entrümpelung und Übergabe."
         regionLabel="Regensburg · Umgebung 200 km · Bayern nach Verfügbarkeit · Düsseldorf Reinigung getrennt"
         primaryHref="/buchung"
         primaryLabel="Direkt anfragen"
@@ -1014,7 +1066,7 @@ export default function Home() {
 
       <FloxantNextStepPanel variant="booking" className="flox-next-step-flow py-8" />
 
-      <section id="kontakt-gruende" className="flox-section flox-section-tight content-auto py-8">
+      <section id="kontakt-gruende" className="flox-section flox-section-tight flox-brand-section content-auto py-8">
         <div className="flox-shell">
           <div className="flox-editorial-grid">
             <div className="flox-section-intro">
@@ -1051,7 +1103,7 @@ export default function Home() {
                   data-intent="contact_reason_whatsapp"
                   data-priority="hot"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <WhatsAppMark className="h-5 w-5" />
                   WhatsApp schreiben
                 </a>
               </div>
@@ -1089,7 +1141,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="leistungen" className="flox-section flox-section-major content-auto pt-0">
+      <section id="leistungen" className="flox-section flox-section-major flox-brand-section flox-service-brand-section content-auto pt-0">
         <div className="flox-shell">
           <div className="flox-section-intro max-w-3xl">
             <div className="flox-kicker">Leistungen schnell einordnen</div>
@@ -1101,6 +1153,20 @@ export default function Home() {
               Hier sehen Sie, ob Umzug, Reinigung, Entrümpelung, Preisprüfung oder Lagerung der
               richtige nächste Schritt ist.
             </p>
+          </div>
+
+          <div className="flox-brand-logic-board mt-8" aria-label="FLOXANT Leistungslogik">
+            {[
+              ["F1", "Fall verstehen", "Ort, Umfang, Fotos und Termin werden zuerst sauber eingeordnet."],
+              ["F2", "Service bündeln", "Umzug, Reinigung, Entrümpelung und Übergabe greifen als Ablauf zusammen."],
+              ["F3", "Nächsten Schritt führen", "Anfrage, Rechner, Rückruf oder WhatsApp bleiben klar unterscheidbar."],
+            ].map(([code, title, text]) => (
+              <div key={code} className="flox-brand-logic-cell">
+                <span>{code}</span>
+                <strong>{title}</strong>
+                <small>{text}</small>
+              </div>
+            ))}
           </div>
 
           <div className="flox-service-architecture mt-10">
@@ -1479,6 +1545,7 @@ export default function Home() {
       </section>
 
       {/* ── REGION + FAQ ──────────────────────────────────────── */}
+      <SearchDominanceExperience variant="default" className="content-auto pt-0" />
       <TrustFlowSection sectionId="vertrauen" />
       <LocalSeoSignalPanel sectionId="lokales-signal" />
 

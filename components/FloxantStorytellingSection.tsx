@@ -278,7 +278,7 @@ export function FloxantStorytellingSection({
 
       <div className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
         <AnimateOnScroll>
-          <div className="flox-panel-frame p-6 md:p-8">
+          <div className="flox-panel-frame flox-story-copy-panel p-6 md:p-8">
             <div className="relative">
               <div className="flox-tag-soft">
                 <Sparkles className="h-4 w-4" />
@@ -333,7 +333,7 @@ export function FloxantStorytellingSection({
                       <article className="flox-click-card flox-action-card h-full p-4">
                         <div
                           className={cn(
-                            "flox-icon-tile h-11 w-11 bg-gradient-to-br text-white",
+                            "flox-icon-tile flox-story-step-icon h-11 w-11 bg-gradient-to-br text-white",
                             config.accent,
                           )}
                         >
@@ -379,8 +379,8 @@ export function FloxantStorytellingSection({
                 config.accent,
               )}
             />
-            <div className="flox-panel-frame relative p-4">
-              <div className="relative min-h-[430px] overflow-hidden rounded-[var(--flox-radius-panel)] bg-slate-950">
+            <div className="flox-panel-frame flox-story-image-frame relative p-4">
+              <div className="flox-story-image-card relative min-h-[430px] overflow-hidden rounded-[var(--flox-radius-panel)] bg-slate-950">
                 <Image
                   src={config.image}
                   alt=""

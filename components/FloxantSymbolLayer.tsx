@@ -26,16 +26,25 @@ export function FloxantSymbolLayer({
   const palette = accents[variant];
   const hero = mode === "hero";
   const rich = density === "rich";
+  const plateOpacity = hero ? 0.78 : 0.5;
 
   return (
     <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
       <div
-        className="absolute -left-20 top-0 h-56 w-56 rounded-full blur-3xl"
-        style={{ background: `radial-gradient(circle, ${palette.glow} 0%, transparent 70%)`, opacity: hero ? 0.9 : 0.75 }}
+        className="absolute -left-16 top-10 h-40 w-80 -rotate-6 rounded-[2.2rem] border"
+        style={{
+          borderColor: palette.primary,
+          background: `linear-gradient(135deg, ${palette.glow} 0%, transparent 68%)`,
+          opacity: plateOpacity,
+        }}
       />
       <div
-        className="absolute right-0 top-10 h-64 w-64 rounded-full blur-3xl"
-        style={{ background: `radial-gradient(circle, ${palette.glow} 0%, transparent 72%)`, opacity: hero ? 0.7 : 0.55 }}
+        className="absolute right-[-4rem] top-16 h-56 w-96 rotate-6 rounded-[2.4rem] border"
+        style={{
+          borderColor: palette.secondary,
+          background: `linear-gradient(225deg, ${palette.glow} 0%, transparent 72%)`,
+          opacity: hero ? 0.62 : 0.42,
+        }}
       />
 
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1200 820" fill="none">
@@ -50,6 +59,20 @@ export function FloxantSymbolLayer({
           </linearGradient>
         </defs>
 
+        <path
+          d="M74 188 H420 L470 238 H816"
+          stroke={palette.primary}
+          strokeOpacity={hero ? "0.14" : "0.09"}
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M730 620 H1042 L1096 566"
+          stroke={palette.secondary}
+          strokeOpacity={hero ? "0.16" : "0.1"}
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
         <path
           d="M-20 640 C220 596 388 716 650 652 C854 602 1012 470 1200 412"
           stroke={`url(#stroke-a-${variant})`}
@@ -69,7 +92,17 @@ export function FloxantSymbolLayer({
           rx={hero ? 156 : 132}
           ry={hero ? 114 : 96}
           stroke={palette.primary}
-          strokeOpacity={hero ? "0.08" : "0.05"}
+          strokeOpacity={hero ? "0.05" : "0.035"}
+          strokeWidth="1"
+        />
+        <rect
+          x="842"
+          y="128"
+          width={hero ? 260 : 220}
+          height={hero ? 150 : 128}
+          rx="28"
+          stroke={palette.secondary}
+          strokeOpacity={hero ? "0.09" : "0.055"}
           strokeWidth="1"
         />
 

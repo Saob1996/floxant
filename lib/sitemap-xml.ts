@@ -454,6 +454,11 @@ ${uniqueUrls
 </urlset>`;
 
   return new Response(xml, {
-    headers: { "Content-Type": "application/xml" },
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
+      "X-Content-Type-Options": "nosniff",
+      "X-Robots-Tag": "index, follow",
+    },
   });
 }

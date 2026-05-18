@@ -1,5 +1,6 @@
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
+import { getSchemaKnowAboutAliases } from "@/lib/search-intent-aliases";
 import {
   BAVARIA_DIRECT_DEMAND_LINKS,
   BAVARIA_MAPS_SERVICE_INTENTS,
@@ -9,6 +10,7 @@ import {
 export function LocalBusinessJsonLd() {
   const geoLatitude = Number(company.geo.lat.toFixed(5));
   const geoLongitude = Number(company.geo.lng.toFixed(5));
+  const multilingualAliases = getSchemaKnowAboutAliases(48);
 
   const areaServed = company.primaryServiceAreas.map((area) => ({
     "@type":
@@ -179,6 +181,7 @@ export function LocalBusinessJsonLd() {
       "Reinigung Bamberg",
       "Entruempelung Rosenheim",
       "Umzug Wuerzburg",
+      ...multilingualAliases,
       ...BAVARIA_MAPS_SERVICE_INTENTS.flatMap((intent) => [intent.title, intent.query]),
     ],
     contactPoint: [

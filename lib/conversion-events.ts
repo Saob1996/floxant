@@ -7,6 +7,9 @@ export type ConversionEventInput = {
  href?: unknown;
  path?: unknown;
  label?: unknown;
+ priority?: unknown;
+ intent?: unknown;
+ contactChannel?: unknown;
  journeyId?: unknown;
  eventId?: unknown;
  referrer?: unknown;
@@ -62,7 +65,7 @@ function readUtm(input: ConversionEventInput, key: string) {
 }
 
 function inferChannel(input: ConversionEventInput) {
- const explicit = normalize(input.channel || readDataset(input, "contactChannel") || readDataset(input, "channel"));
+ const explicit = normalize(input.channel || input.contactChannel || readDataset(input, "contactChannel") || readDataset(input, "channel"));
  const event = normalize(input.event);
  const href = normalize(input.href);
 
@@ -92,8 +95,8 @@ export function classifyConversionEvent(input: ConversionEventInput): Conversion
  const href = readText(input, "href");
  const journeyId = readText(input, "journeyId");
  const eventId = readText(input, "eventId");
- const priorityFlag = normalize(readDataset(input, "priority"));
- const intentFlag = normalize(readDataset(input, "intent"));
+ const priorityFlag = normalize(input.priority || readDataset(input, "priority"));
+ const intentFlag = normalize(input.intent || readDataset(input, "intent"));
  const combined = normalize(
   [
    event,
@@ -131,6 +134,15 @@ export function classifyConversionEvent(input: ConversionEventInput): Conversion
  }
  if (/(critical|hot|priority|high)/.test(priorityFlag)) {
   addSignal(state, 16, "priority_cta");
+ }
+ if (/(view high intent page|page dwell|booking page dwell|calculator page dwell|offer check page dwell|urgent plan page dwell|signature service page dwell|service area page dwell|duesseldorf cleaning page dwell)/.test(combined)) {
+  addSignal(state, 18, "high_intent_page_dwell");
+ }
+ if (/(angebot guenstiger|angebotscheck|plattform auftrag|plan b|schadensbegrenzung|buchung|rechner)/.test(combined)) {
+  addSignal(state, 10, "commercial_page_intent");
+ }
+ if (/((regensburg|bayern|duesseldorf).*(umzug|reinigung|entruempelung|entsorgung|bueroumzug|cleaning|moving|decluttering|disposal)|(umzug|reinigung|entruempelung|entsorgung|bueroumzug|cleaning|moving|decluttering|disposal).*(regensburg|bayern|duesseldorf))/.test(combined)) {
+  addSignal(state, 8, "local_service_context");
  }
 
  const priority: ConversionPriority =

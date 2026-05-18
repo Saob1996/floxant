@@ -34,6 +34,7 @@ import type { RefObject } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
+import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
@@ -936,7 +937,7 @@ function HeaderCTAs({
           className="flox-nav-action inline-flex h-10 items-center justify-center gap-1.5 border border-emerald-200 bg-emerald-50 px-3.5 text-[10px] font-black uppercase tracking-[0.1em] text-emerald-800 shadow-sm shadow-emerald-900/5 hover:bg-emerald-100"
           data-event="click_duesseldorf_header_whatsapp"
         >
-          <MessageCircle className="h-3.5 w-3.5" />
+          <WhatsAppMark className="h-5 w-5" />
           WhatsApp
         </a>
         <Link
@@ -1196,7 +1197,7 @@ function MobileNavDrawer({
               rel="noopener noreferrer"
               className="flox-nav-action flex items-center justify-center gap-2 border border-[#25D366]/20 bg-white px-4 py-4 text-sm font-black text-slate-900"
             >
-              <MessageCircle size={18} className="text-[#25D366]" />
+              <WhatsAppMark className="h-6 w-6" />
               WhatsApp
             </a>
             <a

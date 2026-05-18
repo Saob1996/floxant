@@ -1,6 +1,8 @@
 import { company } from "@/lib/company";
+import { getSchemaKnowAboutAliases } from "@/lib/search-intent-aliases";
 
 export function WebSiteJsonLd() {
+  const multilingualAliases = getSchemaKnowAboutAliases(36);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -9,11 +11,12 @@ export function WebSiteJsonLd() {
     name: company.name,
     alternateName: "FLOXANT Regensburg",
     inLanguage: "de-DE",
+    keywords: multilingualAliases.join(", "),
     publisher: {
       "@type": "Organization",
       "@id": `${company.url}/#organization`,
     },
-    about: company.coreServices.map((service) => ({
+    about: [...company.coreServices, ...multilingualAliases].map((service) => ({
       "@type": "Thing",
       name: service,
     })),

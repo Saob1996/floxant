@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ClipboardCheck, MessageCircle, Phone } from "lucide-react";
+import { ClipboardCheck, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
+import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE,
@@ -39,7 +40,7 @@ export function DuesseldorfStickyActions() {
           rel="noopener noreferrer"
           className="flox-mobile-action flox-mobile-action-whatsapp"
         >
-          <MessageCircle />
+          <WhatsAppMark className="flox-whatsapp-mark" />
           WhatsApp
         </a>
         <a

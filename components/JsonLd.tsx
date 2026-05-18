@@ -1,7 +1,9 @@
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
+import { getSchemaKnowAboutAliases } from "@/lib/search-intent-aliases";
 
 export function JsonLd({ lang = "de" }: { lang?: string }) {
+  const multilingualAliases = getSchemaKnowAboutAliases(36);
   const graph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -53,12 +55,21 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "Reinigungsangebot prüfen",
           "Entsorgungsangebot prüfen",
           "B2B-Reinigung Düsseldorf",
+          ...multilingualAliases,
           "Google Maps Buchung",
           "KI-Antworten für lokale Dienstleistungen",
         ],
         slogan: "Umzug, Reinigung, Entrümpelung und Angebotsprüfung direkt anfragen.",
-        keywords:
-          "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Angebot prüfen lassen, FLOXANT, Bayern, Düsseldorf Reinigung",
+        keywords: [
+          "Umzug Regensburg",
+          "Reinigung Regensburg",
+          "Entrümpelung Regensburg",
+          "Angebot prüfen lassen",
+          "FLOXANT",
+          "Bayern",
+          "Düsseldorf Reinigung",
+          ...multilingualAliases.slice(0, 18),
+        ].join(", "),
         knowsLanguage: ["de"],
         areaServed: [
           { "@type": "City", name: "Regensburg" },

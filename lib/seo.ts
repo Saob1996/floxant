@@ -5,6 +5,7 @@ import { getCityGeoData } from "@/lib/geo-data";
 import { germanizeText } from "@/lib/german-text";
 import { getDynamicLocalSeoRoute } from "@/lib/local-seo-routes";
 import { getDominanceIntent, getDominanceSnippet } from "@/lib/seo-dominance";
+import { getRouteMultilingualIntentSummary } from "@/lib/search-intent-aliases";
 
 const BASE_URL = company.url;
 const OG_IMAGE = `${BASE_URL}/opengraph-image`;
@@ -1687,6 +1688,8 @@ export function generatePageSEO({
       "local-seo-focus": getRouteLocalSeoFocus(normalizedPath || "/"),
       "local-map-pack-intent": getMapPackSupportSignal(normalizedPath || "/", geoPlacename),
       "service-region-policy": getServiceRegionPolicy(normalizedPath || "/"),
+      "multilingual-search-intent":
+        getRouteMultilingualIntentSummary(normalizedPath || "/", geoPlacename),
       "meta-description-short": safeDescription,
       "meta-description-long": getLongMetaDescription(normalizedPath || "/", safeDescription, geoPlacename),
       "ai-readable-summary":

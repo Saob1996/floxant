@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import {
  cleanJourneyId,
  CONVERSION_JOURNEY_COOKIE,
@@ -9,6 +10,7 @@ import {
 } from "@/lib/conversion-journey";
 
 const CONVERSION_HISTORY_KEY = "floxant:conversion_history";
+const HIGH_INTENT_DWELL_MS = 14000;
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
 
 function persistJourneyCookie(journeyId: string) {
@@ -120,7 +122,62 @@ function eventNameFor(element: HTMLElement, href: string) {
  return "click_link";
 }
 
+function getHighIntentPageSignal(pathname: string) {
+ const path = pathname || "/";
+ const isDuesseldorf = path.includes("duesseldorf");
+
+ if (path === "/buchung") {
+  return { path, source: "booking_page_dwell", label: "Buchungsseite aktiv gelesen", priority: "hot", intent: "booking_review" };
+ }
+ if (path === "/rechner") {
+  return { path, source: "calculator_page_dwell", label: "Rechner aktiv gelesen", priority: "hot", intent: "price_orientation" };
+ }
+ if (["/angebot-guenstiger-pruefen", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
+  return { path, source: "offer_check_page_dwell", label: "Angebotsprüfung aktiv gelesen", priority: "hot", intent: "offer_check" };
+ }
+ if (["/plan-b-service", "/schadensbegrenzung"].includes(path)) {
+  return { path, source: "urgent_plan_page_dwell", label: "Plan-B-Seite aktiv gelesen", priority: "hot", intent: "urgent_plan_b" };
+ }
+ if (
+  path.includes("immobilie-verkaufsbereit") ||
+  path.includes("nachlass-raeumung") ||
+  path.includes("diskreter-umzug") ||
+  path.includes("uebergabeakte") ||
+  path.includes("mieterwechsel")
+ ) {
+  return { path, source: "signature_service_page_dwell", label: "Spezialservice aktiv gelesen", priority: "warm", intent: "signature_service" };
+ }
+ if (isDuesseldorf && path.includes("reinigung")) {
+  return { path, source: "duesseldorf_cleaning_page_dwell", label: "Düsseldorf-Reinigung aktiv gelesen", priority: "warm", intent: "duesseldorf_cleaning_only" };
+ }
+ if (
+  path.startsWith("/umzug") ||
+  path.startsWith("/reinigung") ||
+  path.startsWith("/entruempelung") ||
+  path.startsWith("/bueroumzug") ||
+  path.includes("service-area-bayern") ||
+  path.includes("einsatzgebiet-regensburg-200km")
+ ) {
+  return { path, source: "service_area_page_dwell", label: "Service-/Ortsseite aktiv gelesen", priority: "warm", intent: "local_service_review" };
+ }
+
+ return null;
+}
+
+function rememberDwellSignal(path: string) {
+ const key = `floxant:conversion_dwell:${path}`;
+ try {
+  if (sessionStorage.getItem(key)) return false;
+  sessionStorage.setItem(key, "1");
+  return true;
+ } catch {
+  return true;
+ }
+}
+
 export function ConversionEventReporter() {
+ const pathname = usePathname();
+
  useEffect(() => {
   function handleClick(event: MouseEvent) {
    const target = event.target instanceof Element ? event.target : null;
@@ -160,6 +217,31 @@ export function ConversionEventReporter() {
    document.removeEventListener("submit", handleSubmit, true);
   };
  }, []);
+
+ useEffect(() => {
+  const signal = getHighIntentPageSignal(pathname || window.location.pathname);
+  if (!signal) return;
+
+  const timer = window.setTimeout(() => {
+   if (!rememberDwellSignal(signal.path)) return;
+
+   sendConversionEvent({
+    event: "view_high_intent_page",
+    source: signal.source,
+    channel: "engagement",
+    label: signal.label,
+    dataset: {
+     priority: signal.priority,
+     intent: signal.intent,
+     source: signal.source,
+     channel: "engagement",
+     label: signal.label,
+    },
+   });
+  }, HIGH_INTENT_DWELL_MS);
+
+  return () => window.clearTimeout(timer);
+ }, [pathname]);
 
  return null;
 }

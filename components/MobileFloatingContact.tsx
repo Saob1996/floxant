@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
-import { ClipboardCheck, MessageCircle, Phone } from "lucide-react";
+import { ClipboardCheck, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
 
 const PAGES_WITH_OWN_MOBILE_CTA = new Set([
@@ -97,7 +98,7 @@ export default function MobileFloatingContact({ dic }: { dic?: any }) {
         data-intent="mobile_direct_contact"
         data-priority="hot"
        >
-        <MessageCircle />
+        <WhatsAppMark className="flox-whatsapp-mark" />
         {dic?.common?.mobile_chat || "WhatsApp"}
        </a>
 

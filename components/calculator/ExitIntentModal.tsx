@@ -1,189 +1,152 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
-import { PhoneCall, Clock3, ArrowRight, MessageCircle } from "lucide-react";
+import { AnimatePresence, m } from "framer-motion";
+import { ArrowRight, CheckCircle2, Clock3, MessageCircle, PhoneCall } from "lucide-react";
 import { useCalculatorStore } from "@/store/calculatorStore";
 import { company } from "@/lib/company";
+
+const PROMPT_DELAY_MS = 120000;
+const PROMPT_SEEN_KEY = "floxant_exit_prompt_seen_v2";
 
 export default function ExitIntentModal() {
  const mode = useCalculatorStore((s) => s.mode);
  const setMode = useCalculatorStore((s) => s.setMode);
-
  const [isVisible, setIsVisible] = useState(false);
- const [canShow, setCanShow] = useState(false);
 
- const whatsappUrl = useMemo(
-    () => `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`,
-  []
- );
-
- // Time-gate the trigger: Only allow showing after 30s in advanced mode
- useEffect(() => {
-  if (mode !== "advanced") {
-   setCanShow(false);
-   return;
-  }
-
-  const timer = setTimeout(() => {
-   setCanShow(true);
-  }, 240000); // 4 minutes wait (240s)
-
-  return () => clearTimeout(timer);
- }, [mode]);
+ const whatsappUrl = useMemo(() => {
+  const phone = company.phoneRaw.replace(/\D/g, "");
+  const text = encodeURIComponent(
+   "Hallo FLOXANT, ich habe noch eine Frage vor dem Absenden meiner Anfrage."
+  );
+  return `https://wa.me/${phone}?text=${text}`;
+ }, []);
 
  useEffect(() => {
   if (typeof window === "undefined") return;
-  if (mode !== "advanced" || !canShow) return;
 
-  const exitRecord = localStorage.getItem("floxant_exit_suppressed");
-  if (exitRecord) {
-   const { expiry } = JSON.parse(exitRecord);
-   if (Date.now() < expiry) return;
-  }
+  const isEligibleMode = mode === "express" || mode === "advanced";
+  if (!isEligibleMode) return;
+  if (localStorage.getItem(PROMPT_SEEN_KEY)) return;
 
-  // Session-level suppression (non-persistent, just for the current tab)
-  if (sessionStorage.getItem("floxant_exit_session_seen")) return;
+  const timer = window.setTimeout(() => {
+   if (localStorage.getItem(PROMPT_SEEN_KEY)) return;
 
-  const handleMouseLeave = (e: MouseEvent) => {
-   // sensitivity check: e.clientY < 3 for clearly leaving top
-   if (e.clientY < 3) {
-    setIsVisible(true);
-    // Mark as seen in this session
-    sessionStorage.setItem("floxant_exit_session_seen", "true");
-    // Persistent suppression for 7 days
-    const weekFromNow = Date.now() + 7 * 24 * 60 * 60 * 1000;
-    localStorage.setItem(
-     "floxant_exit_suppressed",
-     JSON.stringify({ expiry: weekFromNow })
-    );
-   }
+   localStorage.setItem(PROMPT_SEEN_KEY, new Date().toISOString());
+   setIsVisible(true);
+  }, PROMPT_DELAY_MS);
+
+  return () => window.clearTimeout(timer);
+ }, [mode]);
+
+ useEffect(() => {
+  if (!isVisible || typeof document === "undefined") return;
+
+  const previousOverflow = document.body.style.overflow;
+  const handleKeyDown = (event: KeyboardEvent) => {
+   if (event.key === "Escape") setIsVisible(false);
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-   if (e.key === "Escape") {
-    setIsVisible(false);
-   }
-  };
-
-  document.addEventListener("mouseleave", handleMouseLeave);
+  document.body.style.overflow = "hidden";
   document.addEventListener("keydown", handleKeyDown);
 
   return () => {
-   document.removeEventListener("mouseleave", handleMouseLeave);
-   document.removeEventListener("keydown", handleKeyDown);
-  };
- }, [mode, canShow]);
-
- useEffect(() => {
-  if (!isVisible) return;
-
-  const previousOverflow = document.body.style.overflow;
-  document.body.style.overflow = "hidden";
-
-  return () => {
    document.body.style.overflow = previousOverflow;
+   document.removeEventListener("keydown", handleKeyDown);
   };
  }, [isVisible]);
 
  const closeModal = () => {
+  if (typeof window !== "undefined") {
+   localStorage.setItem(PROMPT_SEEN_KEY, new Date().toISOString());
+  }
   setIsVisible(false);
-  // Ensure it stays closed for 7 days if the user manually closes it
-  const weekFromNow = Date.now() + 7 * 24 * 60 * 60 * 1000;
-  localStorage.setItem(
-   "floxant_exit_suppressed",
-   JSON.stringify({ expiry: weekFromNow })
-  );
  };
-
- if (!isVisible) return null;
 
  return (
   <AnimatePresence>
-   <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-    <m.button
-     type="button"
-     aria-label="Overlay schließen"
-     initial={{ opacity: 0 }}
-     animate={{ opacity: 1 }}
-     exit={{ opacity: 0 }}
-     onClick={closeModal}
-     className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-    />
+   {isVisible ? (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+     <m.button
+      type="button"
+      aria-label="Hinweis schließen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={closeModal}
+      className="absolute inset-0 bg-slate-950/76 backdrop-blur-md"
+     />
 
-    <m.div
-     role="dialog"
-     aria-modal="true"
-     initial={{ opacity: 0, scale: 0.96, y: 20 }}
-     animate={{ opacity: 1, scale: 1, y: 0 }}
-     exit={{ opacity: 0, scale: 0.96, y: 20 }}
-     transition={{ duration: 0.22, ease: "easeOut" }}
-     className="relative w-full max-w-lg overflow-hidden rounded-[28px] border border-white/10 bg-[#11131A] p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
-    >
-     <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[90px]" />
-     <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-violet-500/10 blur-[90px]" />
-
-     <div className="relative z-10">
-      <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-blue-400/15 bg-blue-400/10 text-blue-300">
-       <PhoneCall size={30} />
+     <m.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="floxant-exit-title"
+      initial={{ opacity: 0, scale: 0.97, y: 16 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.97, y: 16 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      className="flox-exit-modal relative w-full max-w-lg overflow-hidden p-6 text-center shadow-[0_34px_90px_rgba(2,6,23,0.48)] md:p-8"
+     >
+      <div className="flox-exit-modal-mark mx-auto mb-6">
+       <PhoneCall className="h-7 w-7" />
       </div>
 
-      <h2 className="mb-3 text-3xl font-semibold tracking-tight text-white">
+      <h2 id="floxant-exit-title" className="flox-card-title-lg text-white md:text-3xl">
        Noch Fragen vor dem Absenden?
       </h2>
 
-      <p className="mx-auto mb-8 max-w-sm text-sm leading-relaxed text-white/55">
-       Sie können Ihre Anfrage jetzt direkt übermitteln oder kurz per
-       WhatsApp klären, falls noch Angaben fehlen. So kommen Sie schneller
-       zu einer belastbaren Rückmeldung.
+      <p className="mx-auto mt-4 max-w-sm text-sm font-semibold leading-7 text-slate-300">
+       Sie können die Anfrage direkt senden oder eine kurze Rückfrage per WhatsApp klären.
+       FLOXANT prüft danach den passenden nächsten Schritt.
       </p>
 
-      <div className="mb-8 grid grid-cols-1 gap-3 rounded-2xl border border-white/10 bg-[#0B0D12] p-4 text-start">
+      <div className="flox-exit-modal-proof mt-7 grid gap-3 p-4 text-left">
        <div className="flex items-center gap-3">
-        <Clock3 size={18} className="shrink-0 text-blue-300" />
-        <span className="text-sm text-white/85">
-         Unverbindliche Anfrage statt sofortiger Verpflichtung
-        </span>
+        <Clock3 className="h-5 w-5 shrink-0 text-cyan-200" />
+        <span>Kein Sofortauftrag, sondern eine unverbindliche Prüfung.</span>
        </div>
        <div className="flex items-center gap-3">
-        <MessageCircle size={18} className="shrink-0 text-blue-300" />
-        <span className="text-sm text-white/85">
-         Rückfragen können später noch ergänzt werden
-        </span>
+        <MessageCircle className="h-5 w-5 shrink-0 text-emerald-200" />
+        <span>Fehlende Angaben können später ergänzt werden.</span>
        </div>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="mt-7 flex flex-col gap-3">
        <button
+        type="button"
         onClick={() => {
          setMode("lead");
          closeModal();
         }}
-        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-white py-4 font-medium text-black transition-colors hover:bg-white/95"
+        className="flox-exit-primary group"
        >
+        <CheckCircle2 className="h-5 w-5" />
         Anfrage jetzt absenden
-        <ArrowRight size={18} />
+        <ArrowRight className="h-5 w-5 transition group-hover:translate-x-0.5" />
        </button>
 
        <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-[#0B0D12] py-4 font-medium text-white transition-colors hover:border-blue-400/25 hover:bg-white/[0.03]"
+        onClick={closeModal}
+        className="flox-exit-whatsapp"
        >
+        <MessageCircle className="h-5 w-5" />
         Kurz per WhatsApp klären
        </a>
 
        <button
+        type="button"
         onClick={closeModal}
-        className="w-full py-3 text-sm text-white/45 transition-colors hover:text-white"
+        className="py-3 text-sm font-bold text-slate-400 transition hover:text-white"
        >
         Weiter ohne Unterbrechung
        </button>
       </div>
-     </div>
-    </m.div>
-   </div>
+     </m.div>
+    </div>
+   ) : null}
   </AnimatePresence>
  );
 }

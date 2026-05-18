@@ -48,6 +48,10 @@ const HIDE_EXACT = new Set([
   "/duesseldorf/reinigung/impressum",
 ]);
 
+const PLAN_PROMPT_DELAY_MS = 120000;
+const PLAN_PROMPT_SEEN_KEY = "floxant_plan_gekippt_seen_v1";
+const PLAN_PROMPT_DISMISSED_KEY = "floxant_plan_gekippt_dismissed";
+
 const CONTEXT_COPY: Record<PlanContext, TriggerCopy> = {
   standard: {
     context: "standard",
@@ -176,6 +180,7 @@ export function PlanGekipptTrigger() {
   const [visible, setVisible] = useState(false);
   const [panelOpen, setPanelOpen] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [delayComplete, setDelayComplete] = useState(false);
   const [selectedContext, setSelectedContext] = useState<PlanContext>("standard");
 
   const routeContext = useMemo(() => inferContext(pathname || "/", searchParams.get("service")), [pathname, searchParams]);
@@ -187,11 +192,36 @@ export function PlanGekipptTrigger() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    setDismissed(sessionStorage.getItem("floxant_plan_gekippt_dismissed") === "1");
+    const wasDismissed = sessionStorage.getItem(PLAN_PROMPT_DISMISSED_KEY) === "1";
+    const wasSeen = localStorage.getItem(PLAN_PROMPT_SEEN_KEY) === "1";
+    setDismissed(wasDismissed || wasSeen);
   }, []);
 
   useEffect(() => {
     if (shouldHide(pathname || "") || dismissed) {
+      setDelayComplete(false);
+      setVisible(false);
+      return;
+    }
+
+    if (typeof window !== "undefined" && localStorage.getItem(PLAN_PROMPT_SEEN_KEY) === "1") {
+      setDismissed(true);
+      setDelayComplete(false);
+      setVisible(false);
+      return;
+    }
+
+    setDelayComplete(false);
+    const timer = window.setTimeout(() => {
+      localStorage.setItem(PLAN_PROMPT_SEEN_KEY, "1");
+      setDelayComplete(true);
+    }, PLAN_PROMPT_DELAY_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [pathname, dismissed]);
+
+  useEffect(() => {
+    if (shouldHide(pathname || "") || dismissed || !delayComplete) {
       setVisible(false);
       return;
     }
@@ -200,7 +230,7 @@ export function PlanGekipptTrigger() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname, dismissed]);
+  }, [pathname, dismissed, delayComplete]);
 
   if (shouldHide(pathname || "") || dismissed || !visible) return null;
 
@@ -219,7 +249,10 @@ export function PlanGekipptTrigger() {
   function dismiss() {
     setDismissed(true);
     setPanelOpen(false);
-    if (typeof window !== "undefined") sessionStorage.setItem("floxant_plan_gekippt_dismissed", "1");
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(PLAN_PROMPT_DISMISSED_KEY, "1");
+      localStorage.setItem(PLAN_PROMPT_SEEN_KEY, "1");
+    }
   }
 
   return (
@@ -231,24 +264,24 @@ export function PlanGekipptTrigger() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-3 w-[min(calc(100vw-2rem),25rem)] overflow-hidden rounded-[1.55rem] border border-amber-200 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.2)]"
+            className="mb-3 w-[min(calc(100vw-2rem),25rem)] overflow-hidden rounded-[1rem] border border-cyan-200/25 bg-slate-950 text-white shadow-[0_28px_80px_rgba(2,6,23,0.34)]"
             data-event="open_plan_gekippt_panel"
           >
-            <div className="border-b border-amber-100 bg-[linear-gradient(135deg,#fff7ed_0%,#ffffff_70%)] p-4">
+            <div className="border-b border-cyan-200/10 bg-[linear-gradient(135deg,rgba(15,23,42,0.98)_0%,rgba(15,118,110,0.82)_100%)] p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-amber-800">
+                  <div className="inline-flex items-center gap-2 rounded-[0.55rem] border border-cyan-200/20 bg-white/8 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-100">
                     <ShieldAlert className="h-3.5 w-3.5" />
                     {activeCopy.eyebrow}
                   </div>
-                  <h2 className="mt-3 text-lg font-black tracking-tight text-slate-950">{activeCopy.title}</h2>
-                  <p className="mt-1.5 text-xs leading-5 text-slate-600">{activeCopy.teaser}</p>
+                  <h2 className="mt-3 text-lg font-black tracking-tight text-white">{activeCopy.title}</h2>
+                  <p className="mt-1.5 text-xs leading-5 text-slate-200">{activeCopy.teaser}</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => setPanelOpen(false)}
                   aria-label="Plan-B Panel schließen"
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:bg-slate-50"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-[0.7rem] border border-white/10 bg-white/8 text-slate-200 transition hover:bg-white/12"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -266,8 +299,8 @@ export function PlanGekipptTrigger() {
                     data-context={context}
                     className={`rounded-xl border px-3 py-2.5 text-left text-xs font-black transition ${
                       selectedContext === context
-                        ? "border-amber-300 bg-amber-50 text-amber-950"
-                        : "border-slate-200 bg-slate-50 text-slate-700 hover:border-amber-200"
+                        ? "border-cyan-200/50 bg-cyan-400/12 text-cyan-50"
+                        : "border-white/10 bg-white/6 text-slate-200 hover:border-cyan-200/30"
                     }`}
                   >
                     {CONTEXT_COPY[context].title}
@@ -280,7 +313,7 @@ export function PlanGekipptTrigger() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 text-xs font-black text-slate-950 transition hover:bg-emerald-400"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.72rem] bg-emerald-500 px-4 text-xs font-black text-white transition hover:bg-emerald-400"
                   data-event="click_plan_gekippt_whatsapp"
                   data-context={selectedContext}
                 >
@@ -289,7 +322,7 @@ export function PlanGekipptTrigger() {
                 </a>
                 <a
                   href={targetHref}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-xs font-black text-white transition hover:bg-amber-700"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.72rem] border border-cyan-200/20 bg-white px-4 text-xs font-black text-slate-950 transition hover:bg-cyan-50"
                   data-event="start_plan_gekippt_form"
                   data-context={selectedContext}
                 >
@@ -298,15 +331,15 @@ export function PlanGekipptTrigger() {
                 </a>
               </div>
 
-              <div className="mt-3 flex items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-[11px] leading-5 text-slate-600">
-                <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-700" />
+              <div className="mt-3 flex items-start gap-2 rounded-[0.72rem] border border-white/10 bg-white/6 px-3 py-2.5 text-[11px] leading-5 text-slate-300">
+                <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-200" />
                 Keine Sofortzusage ohne Prüfung. Machbarkeit hängt von Ort, Termin, Umfang und Kapazität ab.
               </div>
 
               <button
                 type="button"
                 onClick={dismiss}
-                className="mt-3 text-[11px] font-bold text-slate-400 transition hover:text-slate-700"
+                className="mt-3 text-[11px] font-bold text-slate-400 transition hover:text-white"
               >
                 Für diese Sitzung ausblenden
               </button>
@@ -318,17 +351,17 @@ export function PlanGekipptTrigger() {
       <button
         type="button"
         onClick={() => setPanelOpen((value) => !value)}
-        className="group flex max-w-[18rem] items-center gap-3 rounded-[1.3rem] border border-amber-200 bg-[linear-gradient(135deg,#ffffff_0%,#fff7ed_100%)] px-3.5 py-3 text-left shadow-[0_20px_60px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:border-amber-300"
+        className="group flex max-w-[18rem] items-center gap-3 rounded-[0.9rem] border border-cyan-200/30 bg-[linear-gradient(135deg,#07111f_0%,#102033_56%,#0f766e_100%)] px-3.5 py-3 text-left text-white shadow-[0_20px_60px_rgba(2,6,23,0.24)] transition hover:-translate-y-0.5 hover:border-cyan-200/60"
         data-event="click_plan_gekippt_button"
         data-context={routeContext}
         aria-expanded={panelOpen}
       >
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-100 text-amber-800 transition group-hover:bg-amber-200">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[0.72rem] bg-white text-emerald-700 transition group-hover:bg-cyan-50">
           <ShieldAlert className="h-5 w-5" />
         </span>
         <span className="min-w-0">
-          <span className="block text-sm font-black leading-tight text-slate-950">{primaryCopy.title}</span>
-          <span className="mt-0.5 hidden text-[11px] font-semibold leading-snug text-slate-500 sm:block">
+          <span className="block text-sm font-black leading-tight text-white">{primaryCopy.title}</span>
+          <span className="mt-0.5 hidden text-[11px] font-semibold leading-snug text-cyan-100 sm:block">
             Ort, Termin, Fotos senden
           </span>
         </span>

@@ -58,6 +58,14 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
                 Adresse
               </div>
               <p className="mt-3 text-[1rem] font-semibold leading-8 text-slate-950">{company.address}</p>
+              <a
+                href={company.mapsSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex text-sm font-black text-blue-700 underline-offset-4 hover:underline"
+              >
+                Google Maps / Standort öffnen
+              </a>
             </div>
 
             <div className="card-premium p-5">
