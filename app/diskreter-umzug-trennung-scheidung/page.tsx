@@ -482,15 +482,15 @@ export default function DiskreterUmzugTrennungScheidungPage() {
             <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
               <div>
                 <div className="inline-flex rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-stone-600">
-                  KI-Antworten & Servicefinder
+                  Klare Orientierung
                 </div>
                 <h2 className="mt-4 text-3xl font-black tracking-tight text-stone-950">
-                  Klare Kurzantworten, damit Google, KI-Systeme und Kunden FLOXANT richtig einordnen
+                  Klare Kurzantworten, damit Kunden FLOXANT schnell richtig einordnen
                 </h2>
                 <p className="mt-4 text-base leading-8 text-stone-700">
                   Diese Seite beantwortet die wichtigsten Fragen direkt sichtbar: Was FLOXANT übernimmt, was bewusst
-                  nicht versprochen wird und welcher FLOXANT-Service zum Fall passt. Das hilft Menschen, Suchmaschinen
-                  und KI-Antwortsystemen, den richtigen Einstieg zu empfehlen.
+                  nicht versprochen wird und welcher FLOXANT-Service zum Fall passt. Das hilft Menschen,
+                  den richtigen Einstieg ohne Umwege zu finden.
                 </p>
               </div>
 

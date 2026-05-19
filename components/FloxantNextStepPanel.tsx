@@ -42,49 +42,49 @@ type PanelConfig = {
 
 const panelConfigs: Record<NextStepVariant, PanelConfig> = {
   booking: {
-    eyebrow: "FLOXANT nächster Schritt",
-    title: "Nicht lange suchen. Den passenden Start wählen.",
+    eyebrow: "Nächster Schritt",
+    title: "Schnell zur richtigen Anfrage.",
     intro:
-      "Kunden kommen mit sehr unterschiedlichen Fragen: Preis, Termin, Fotos, Anbieter-Angebot oder akuter Zeitdruck. FLOXANT führt diese Fälle in klare Einstiege, damit die Anfrage schneller prüfbar wird.",
+      "Wählen Sie den Einstieg, der zu Ihrer Situation passt. FLOXANT fragt nur die Angaben ab, die für den nächsten Schritt wirklich helfen.",
     signal:
-      "Für Google, KI-Antworten und Kunden ist klar: FLOXANT prüft Umzug, Reinigung, Entrümpelung, Entsorgung und Zusatzservices mit Ort, Umfang, Fotos und Budget.",
+      "Ort, Termin, Umfang und Fotos reichen oft für die erste Einordnung. Danach melden wir uns mit der passenden Rückfrage oder dem nächsten Schritt.",
     primaryHref: "/buchung#buchungssystem",
-    primaryLabel: "Direkt anfragen",
+    primaryLabel: "Anfrage senden",
     secondaryHref: "/rechner#rechner-wizard",
-    secondaryLabel: "Erst rechnen",
+    secondaryLabel: "Kosten einschätzen",
     cards: [
       {
-        title: "Fall direkt senden",
+        title: "Anfrage senden",
         text: "Wenn Leistung, Ort und Termin grob klar sind.",
         href: "/buchung#buchungssystem",
-        label: "Anfrage öffnen",
+        label: "Jetzt anfragen",
         Icon: ClipboardCheck,
       },
       {
-        title: "Preisrahmen prüfen",
-        text: "Wenn Umfang, Zugang oder Budget noch unsicher sind.",
+        title: "Kosten einschätzen",
+        text: "Wenn Umfang, Zugang oder Budget noch offen sind.",
         href: "/rechner#rechner-wizard",
-        label: "Rechner starten",
+        label: "Einschätzung starten",
         Icon: Calculator,
       },
       {
-        title: "Fotos ergänzen",
-        text: "Wenn Zustand, Menge oder Fläche besser sichtbar werden sollen.",
+        title: "Fotos mitsenden",
+        text: "Wenn Zustand, Menge oder Fläche sichtbar werden sollen.",
         href: "/buchung#buchungssystem",
-        label: "Mit Fotos senden",
+        label: "Fotos anhängen",
         Icon: Camera,
       },
     ],
   },
   calculator: {
-    eyebrow: "Vom Rechner zur echten Anfrage",
-    title: "Orientierung ist gut. Prüfbarkeit bringt den Auftrag weiter.",
+    eyebrow: "Kosten einschätzen",
+    title: "Erst einordnen. Dann gezielt anfragen.",
     intro:
-      "Der Rechner sortiert Preisfaktoren. Danach braucht FLOXANT die entscheidenden Eckdaten: Ort, Termin, Zugang, Fläche oder Volumen, Fotos und gewünschte Leistung.",
+      "Die Einschätzung hilft, wenn noch nicht alles feststeht. Danach reichen Ort, Termin, Zugang, Fläche oder Volumen und ein paar Fotos.",
     signal:
-      "So entsteht ein sauberer Weg von Suchanfrage, Rechner und Maps-Intent bis zur konkreten FLOXANT-Anfrage.",
+      "So entsteht aus einer groben Idee eine Anfrage, die wir sinnvoll beantworten können.",
     primaryHref: "#rechner-wizard",
-    primaryLabel: "Rechner starten",
+    primaryLabel: "Kosten einschätzen",
     secondaryHref: "/buchung",
     secondaryLabel: "Direkt anfragen",
     cards: [
@@ -97,13 +97,13 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
       },
       {
         title: "Budget nennen",
-        text: "Wenn ein Preisrahmen vorhanden ist und realistisch geprüft werden soll.",
+        text: "Wenn ein gewünschter Rahmen vorhanden ist und eingeordnet werden soll.",
         href: "/anfrage-mit-preisrahmen",
         label: "Budget senden",
         Icon: Banknote,
       },
       {
-        title: "Express prüfen",
+        title: "Express-Anfrage",
         text: "Wenn Termin, Zugang oder Übergabe kurzfristig geklärt werden müssen.",
         href: "/express-anfrage",
         label: "Express-Check",
@@ -112,12 +112,12 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     ],
   },
   offer: {
-    eyebrow: "Angebotsprüfung mit FLOXANT",
-    title: "Angebot hochladen. Lücken erkennen. Alternative prüfen.",
+    eyebrow: "Angebot prüfen",
+    title: "Vorhandenes Angebot verständlich prüfen lassen.",
     intro:
-      "Wenn ein Angebot einer anderen Firma unklar wirkt, prüft FLOXANT praktisch: Preis, Umfang, Termin, Fotos, Zusatzleistungen und ob eine klarere oder günstigere Alternative möglich ist.",
+      "Wenn ein Angebot einer anderen Firma unklar wirkt, prüfen wir Preis, Umfang, Termin, Fotos und Zusatzleistungen praktisch ein.",
     signal:
-      "Die Seite stärkt Suchanfragen wie Angebot prüfen lassen, Umzugsangebot vergleichen, Reinigungsangebot prüfen und Entsorgungsangebot einschätzen.",
+      "Sie sehen schneller, ob Leistungen fehlen, Kosten unklar sind oder der Umfang sauber beschrieben ist.",
     primaryHref: "/angebot-guenstiger-pruefen#guenstiger-form",
     primaryLabel: "Angebot hochladen",
     secondaryHref: "/plattform-auftrag-pruefen",
@@ -131,7 +131,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
         Icon: UploadCloud,
       },
       {
-        title: "Red Flags prüfen",
+        title: "Unklare Punkte finden",
         text: "Etage, Laufweg, MwSt., Zusatzkosten und Termin sauber klären.",
         href: "/angebotscheck#red-flag-scanner",
         label: "Check starten",
@@ -147,12 +147,12 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     ],
   },
   duesseldorf: {
-    eyebrow: "Düsseldorf klar getrennt",
-    title: "Reinigung anfragen. Keine Umzüge.",
+    eyebrow: "Düsseldorf",
+    title: "Reinigung anfragen. Klar getrennt.",
     intro:
-      "Für Düsseldorf positioniert FLOXANT bewusst Reinigung: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
+      "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
     signal:
-      "Diese Trennung hilft Kunden und Suchmaschinen: Düsseldorf bedeutet Reinigung, Regensburg/Bayern bleibt der Kern für Umzug, Reinigung, Entrümpelung und Transport.",
+      "Düsseldorf bleibt sauber getrennt. Regensburg/Bayern bleibt der Kern für Umzug, Reinigung, Entrümpelung und Transport.",
     primaryHref: "/duesseldorf/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/entsorgung-duesseldorf",
@@ -169,14 +169,14 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
         title: "B2B-Reinigung",
         text: "Für kleine Büros, Agenturen, Studios und Gewerbeflächen.",
         href: "/duesseldorf/bueroreinigung",
-        label: "B2B prüfen",
+        label: "Gewerbe anfragen",
         Icon: ClipboardCheck,
       },
       {
         title: "Direkt schreiben",
         text: "Wenn Fläche, Frequenz, Fotos oder Zeitfenster schon vorliegen.",
         href: "/buchung?service=reinigung&region=duesseldorf#buchungssystem",
-        label: "Daten senden",
+        label: "Anfrage senden",
         Icon: MessageCircle,
       },
     ],
@@ -193,37 +193,52 @@ export function FloxantNextStepPanel({ variant = "booking", className }: Floxant
 
   return (
     <section className={cn("relative px-4 py-10 sm:px-6 lg:py-14", className)}>
-      <div className="flox-panel-frame relative mx-auto max-w-7xl p-4 md:p-6 lg:p-8">
-        <div className="relative grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
-          <AnimateOnScroll className="flox-panel-dark flex h-full flex-col justify-between p-5 text-white md:p-7">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-3 shadow-[0_28px_90px_rgba(15,23,42,0.12)] md:p-4 lg:p-5">
+        <div className="relative grid gap-4 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
+          <AnimateOnScroll className="relative flex h-full min-h-[26rem] flex-col justify-between overflow-hidden rounded-[1.55rem] bg-slate-950 p-5 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] md:p-7">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(37,99,235,0.24),transparent_30%),radial-gradient(circle_at_82%_78%,rgba(16,185,129,0.18),transparent_32%)]" />
             <div>
-              <div className="flox-tag-dark">
+              <div className="relative inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.16em] text-cyan-100">
                 <CheckCircle2 className="h-4 w-4" />
                 {config.eyebrow}
               </div>
-              <h2 className="flox-gradient-title flox-title-lg flox-display-section mt-5 max-w-[14ch]">
+              <h2 className="relative mt-5 max-w-[13ch] text-3xl font-black leading-tight text-white md:text-4xl">
                 {config.title}
               </h2>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-200 md:text-base">
+              <p className="relative mt-5 max-w-2xl text-sm font-semibold leading-7 text-slate-200 md:text-base">
                 {config.intro}
               </p>
             </div>
 
-            <div className="flox-proof-rail mt-6 rounded-[1.35rem] border border-white/10 bg-white/8 p-4 pl-5 text-sm leading-6 text-slate-200">
+            <div className="relative mt-6 rounded-[1.35rem] border border-white/10 bg-white/8 p-4 text-sm font-semibold leading-6 text-slate-200">
               {config.signal}
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="relative mt-5 grid gap-2 sm:grid-cols-2">
+              {[
+                "Region zuerst",
+                "Leistung trennen",
+                "Fotos erlauben",
+                "Rückruf klären",
+              ].map((signal) => (
+                <div key={signal} className="inline-flex min-h-11 items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 text-xs font-black text-slate-100">
+                  <CheckCircle2 className="h-4 w-4" />
+                  <span>{signal}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={config.primaryHref}
-                className="flox-button-primary min-h-12 px-5 py-3"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-cyan-200"
               >
                 {config.primaryLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href={config.secondaryHref}
-                className="flox-button-secondary min-h-12 px-5 py-3"
+                className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/15 bg-white/8 px-5 py-3 text-sm font-black text-white transition hover:bg-white/14 focus:outline-none focus:ring-2 focus:ring-cyan-200"
               >
                 {config.secondaryLabel}
               </Link>
@@ -238,21 +253,21 @@ export function FloxantNextStepPanel({ variant = "booking", className }: Floxant
                 <AnimateOnScroll key={card.title} delay={index * 90} className="h-full">
                   <Link
                     href={card.href}
-                    className="flox-action-card flox-click-card group flex h-full min-h-[15rem] flex-col justify-between p-5"
+                    className="group flex h-full min-h-[18rem] flex-col justify-between overflow-hidden rounded-[1.45rem] border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-[0_18px_45px_rgba(15,23,42,0.1)] focus:outline-none focus:ring-2 focus:ring-blue-500 md:min-h-[26rem] lg:min-h-[26rem]"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-4">
-                        <span className="flox-icon-tile h-12 w-12 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <span className="grid h-12 w-12 place-items-center rounded-2xl border border-blue-100 bg-white text-blue-700 shadow-sm transition group-hover:bg-blue-600 group-hover:text-white">
                           <Icon className="h-5 w-5" />
                         </span>
                         <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-700" />
                       </div>
-                      <h3 className="flox-card-title-lg mt-5 text-slate-950">
+                      <h3 className="mt-5 text-2xl font-black leading-tight text-slate-950">
                         {card.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-600">{card.text}</p>
+                      <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{card.text}</p>
                     </div>
-                    <span className="flox-tag-soft mt-5 w-fit">
+                    <span className="mt-5 inline-flex min-h-10 w-fit items-center rounded-xl border border-blue-200 bg-white px-3 text-xs font-black text-blue-700 transition group-hover:border-blue-700 group-hover:bg-blue-700 group-hover:text-white">
                       {card.label}
                     </span>
                   </Link>

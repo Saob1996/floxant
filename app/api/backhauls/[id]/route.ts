@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { BackhaulOffer, buildBackhaulOfferDetails, normalizeBackhaulOffer } from "@/lib/backhaul-offers";
 
 async function requireSession() {
@@ -16,7 +16,7 @@ async function requireSession() {
 }
 
 async function loadOffer(id: string) {
- const { data, error } = await supabase
+ const { data, error } = await getSupabaseAdmin()
   .from("bookings")
   .select("*")
   .eq("id", id)
@@ -56,7 +56,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 
   const details = buildBackhaulOfferDetails(updated, session.user?.email || "dashboard");
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseAdmin()
    .from("bookings")
    .update({
     name: updated.title,
@@ -94,7 +94,7 @@ export async function DELETE(_: Request, { params }: { params: Promise<{ id: str
    updatedAt: new Date().toISOString(),
   };
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseAdmin()
    .from("bookings")
    .update({
     status: "archived",

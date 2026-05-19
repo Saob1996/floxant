@@ -36,7 +36,7 @@ export default function BudgetPage() {
     },
     {
       q: "Ersetzt mein Budget die FLOXANT Einschätzung?",
-      a: "Nein. Ihre Preisvorstellung ergänzt die System- und Team-Einschätzung, ersetzt sie aber nicht. Im Backoffice bleiben beide Werte getrennt sichtbar.",
+      a: "Nein. Ihre Preisvorstellung ergänzt die Prüfung durch FLOXANT, ersetzt sie aber nicht. Budget und Einschätzung bleiben getrennt nachvollziehbar.",
     },
     {
       q: "Ist meine Anfrage damit verbindlich?",

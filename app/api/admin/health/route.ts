@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
 export async function GET() {
  const session = await getServerSession(authOptions);
@@ -24,7 +24,7 @@ export async function GET() {
 
  try {
   const start = Date.now();
-  const { error } = await supabase.from('bookings').select('id').limit(1);
+  const { error } = await getSupabaseAdmin().from('bookings').select('id').limit(1);
   health.database.latency = Date.now() - start;
   health.database.status = error ? "error" : "connected";
  } catch (e) {

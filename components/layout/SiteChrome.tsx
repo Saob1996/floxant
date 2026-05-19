@@ -23,6 +23,11 @@ const PlanGekipptTrigger = dynamic(
   { ssr: false },
 );
 
+const GlobalRequestCenter = dynamic(
+  () => import("@/components/GlobalRequestCenter").then((mod) => mod.GlobalRequestCenter),
+  { ssr: false },
+);
+
 export function SiteChrome({
   children,
 }: {
@@ -47,6 +52,7 @@ export function SiteChrome({
       {!isDuesseldorfSection ? <Footer /> : null}
       {!isDuesseldorfSection ? <MobileFloatingContact /> : null}
       {!isDuesseldorfSection ? <WhatsAppButton /> : null}
+      <GlobalRequestCenter />
       <PlanGekipptTrigger />
     </>
   );

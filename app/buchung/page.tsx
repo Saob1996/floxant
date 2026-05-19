@@ -20,6 +20,7 @@ import {
   Truck,
   UsersRound,
   Zap,
+  type LucideIcon,
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -47,17 +48,51 @@ const duesseldorfWhatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, 
 )}`;
 
 const duesseldorfDisposalWhatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
-  "Hallo FLOXANT, ich moechte Entsorgung in Duesseldorf anfragen. Ich kann Umfang, Zugang, Termin, Budget und Fotos senden.",
+  "Hallo FLOXANT, ich möchte Entsorgung in Düsseldorf anfragen. Ich kann Umfang, Zugang, Termin, Budget und Fotos senden.",
 )}`;
 
 type BuchungPageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
+type BookingServicePreset = "umzug" | "reinigung" | "entsorgung" | "leerfahrt" | null;
+type BookingRegionPreset = "regensburg-bayern" | "duesseldorf";
+type DecisionPathItem = {
+  title: string;
+  label: string;
+  description: string;
+  href: string;
+  Icon: LucideIcon;
+  variant: "primary" | "warm" | "mint" | "neutral";
+  external?: boolean;
+};
+
 function getSearchParamValue(params: Record<string, string | string[] | undefined>, key: string) {
   const value = params[key];
   if (Array.isArray(value)) return value[0] || "";
   return value || "";
+}
+
+function getBookingServicePreset(value: string): BookingServicePreset {
+  const normalized = value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  if (normalized.includes("reinigung") || normalized.includes("clean")) return "reinigung";
+  if (
+    normalized.includes("entsorgung") ||
+    normalized.includes("entruempelung") ||
+    normalized.includes("entrumpelung") ||
+    normalized.includes("raeumung") ||
+    normalized.includes("raumung")
+  ) {
+    return "entsorgung";
+  }
+  if (normalized.includes("leerfahrt") || normalized.includes("rueckfahrt") || normalized.includes("ruckfahrt")) return "leerfahrt";
+  if (normalized.includes("umzug") || normalized.includes("moving") || normalized.includes("move")) return "umzug";
+
+  return null;
 }
 
 function looksLikeDuesseldorfIntent(value: string) {
@@ -109,7 +144,7 @@ const coreServices = [
     title: "Umzug",
     label: "Kernleistung",
     description: "Privat- und Firmenumzüge in Regensburg und Bayern.",
-    href: "/buchung?service=umzug#buchungssystem",
+    href: "/buchung?service=umzug&entry=direkt#buchungssystem",
     cta: "Umzug anfragen",
     Icon: Truck,
     tone: "from-blue-600 via-blue-500 to-cyan-400",
@@ -118,7 +153,7 @@ const coreServices = [
     title: "Reinigung",
     label: "Kernleistung",
     description: "Wohnungs-, Büro- und Objektreinigung mit klarem Leistungsfokus.",
-    href: "/buchung?service=reinigung#buchungssystem",
+    href: "/buchung?service=reinigung&entry=direkt#buchungssystem",
     cta: "Reinigung anfragen",
     Icon: Sparkles,
     tone: "from-teal-500 via-cyan-500 to-blue-400",
@@ -127,70 +162,68 @@ const coreServices = [
     title: "Entrümpelung",
     label: "Kernleistung",
     description: "Räumung, Abtransport und fachgerechte Entsorgung.",
-    href: "/buchung?service=entsorgung#buchungssystem",
+    href: "/buchung?service=entsorgung&entry=direkt#buchungssystem",
     cta: "Entrümpelung anfragen",
     Icon: Trash2,
     tone: "from-orange-500 via-amber-400 to-yellow-300",
   },
 ] as const;
 
-const inquiryPaths = [
+const primaryInquiryPaths = [
   {
-    title: "Anfrage starten",
-    label: "Strukturiert",
-    description: "Für vollständige Angaben und eine saubere Prüfung.",
-    href: "#buchungssystem",
+    title: "Anfrage senden",
+    label: "Direkter Start",
+    description: "Leistung wählen und die Anfrage sofort senden.",
+    href: "/buchung?entry=direkt#buchungssystem",
     Icon: ClipboardCheck,
     variant: "primary",
   },
   {
     title: "Express-Check",
-    label: "Eilig",
-    description: "Für knappe Termine und schnelle Machbarkeit.",
-    href: "/express-anfrage",
+    label: "Zeitdruck",
+    description: "Wenn Termin, Zugang oder Übergabe schnell geklärt werden sollen.",
+    href: "/buchung?entry=express&urgency=express#buchungssystem",
     Icon: Zap,
     variant: "warm",
   },
   {
-    title: "Schadensbegrenzung",
-    label: "Plan kippt",
-    description: "Wenn kurz vor Auszug, Reinigung oder Uebergabe noch etwas offen ist.",
-    href: "/schadensbegrenzung",
-    Icon: AlertTriangle,
-    variant: "warm",
-  },
-    {
-      title: "Keller/Muellraum",
-      label: "Objektflaeche",
-      description: "Wenn Keller, Muellraum, Garage oder Nebenflaeche blockiert sind.",
-      href: "/keller-muellraum-rettung-regensburg",
-      Icon: Trash2,
-      variant: "warm",
-    },
-    {
-      title: "Makler/Vermieter",
-      label: "Objekt-Link",
-      description: "Kurzer B2B-Link, wenn ein Objektfall direkt gesendet werden soll.",
-      href: "/makler-vermieter-link",
-      Icon: UsersRound,
-      variant: "neutral",
-    },
-  {
-    title: "Budget nennen",
-    label: "Preisrahmen",
-    description: "Wenn Sie einen Rahmen haben und Machbarkeit prüfen möchten.",
-    href: "/anfrage-mit-preisrahmen",
+    title: "Kosten einschätzen",
+    label: "Erste Orientierung",
+    description: "Budget nennen und realistisch einordnen lassen.",
+    href: "/buchung?entry=budget#buchungssystem",
     Icon: Banknote,
     variant: "mint",
   },
+] as const;
+
+const secondaryRequestCases = [
   {
-    title: "WhatsApp",
-    label: "Direkt",
-    description: "Für Rückfragen, Fotos oder kurze Abstimmung.",
-    href: whatsappUrl,
-    Icon: MessageCircle,
-    variant: "neutral",
-    external: true,
+    title: "Fotos ergänzen",
+    text: "Zugang, Menge, Zustand oder Angebot direkt im Formular mitschicken.",
+    action: "/buchung?entry=fotos#buchungssystem",
+    detail: "/angebot-guenstiger-pruefen",
+    Icon: ClipboardCheck,
+  },
+  {
+    title: "Schadensbegrenzung",
+    text: "Wenn Termin, Anbieter oder Ablauf kippt und schnell ein Plan B gebraucht wird.",
+    action: "/buchung?entry=schadensbegrenzung&urgency=express#buchungssystem",
+    detail: "/schadensbegrenzung",
+    Icon: AlertTriangle,
+  },
+  {
+    title: "Keller/Müllraum",
+    text: "Nebenflächen, Garage, Keller oder Müllraum als Objektfall senden.",
+    action: "/buchung?service=entsorgung&entry=keller_muellraum#buchungssystem",
+    detail: "/keller-muellraum-rettung-regensburg",
+    Icon: Trash2,
+  },
+  {
+    title: "Makler/Vermieter",
+    text: "Objektfall mit Übergabe, Fotos, Reinigung oder Räumung strukturiert starten.",
+    action: "/buchung?entry=objektfall#buchungssystem",
+    detail: "/makler-vermieter-link",
+    Icon: UsersRound,
   },
 ] as const;
 
@@ -215,19 +248,19 @@ const signatureServices = [
   },
   {
     title: "Immobilie verkaufsbereit",
-    text: "Objekt vor Verkauf, Besichtigung oder Expose mit Fotos, Raeumung und Reinigung pruefen.",
+    text: "Objekt vor Verkauf, Besichtigung oder Exposé mit Fotos, Räumung und Reinigung prüfen.",
     href: "/immobilie-verkaufsbereit-machen",
     Icon: FileCheck2,
   },
   {
-    title: "Nachlass-Raeumung",
-    text: "Wohnung, Haus, Keller oder Garage nach Erbfall diskret mit Fotos, Freigabe und Rueckruf klaeren.",
+    title: "Nachlassräumung",
+    text: "Wohnung, Haus, Keller oder Garage nach Erbfall diskret mit Fotos, Freigabe und Rückruf klären.",
     href: "/nachlass-raeumung-regensburg",
     Icon: FileCheck2,
   },
   {
     title: "Diskreter Auszug",
-    text: "Sensible private Auszugssituation mit Rueckruf, sicherer Kontaktmethode, Transport, Reinigung und Uebergabe klaeren.",
+    text: "Sensible private Auszugssituation mit Rückruf, sicherer Kontaktmethode, Transport, Reinigung und Übergabe klären.",
     href: "/diskreter-umzug-trennung-scheidung",
     Icon: ShieldCheck,
   },
@@ -262,8 +295,8 @@ const signatureServices = [
     Icon: ClipboardCheck,
   },
   {
-    title: "Budget-Anfrage",
-    text: "Preisrahmen offen nennen und realistisch prüfen lassen.",
+    title: "Kostenrahmen",
+    text: "Budget offen nennen und realistisch einordnen lassen.",
     href: "/anfrage-mit-preisrahmen",
     Icon: Banknote,
   },
@@ -272,6 +305,25 @@ const signatureServices = [
     text: "Kurzer Weg für Zeitdruck, Zugang und schnelle Rückmeldung.",
     href: "/express-anfrage",
     Icon: Zap,
+  },
+] as const;
+
+const signatureServiceGroups = [
+  {
+    title: "Übergabe & Dokumentation",
+    items: ["Schlüsselübergabe", "FLOXANT Übergabeakte", "Halteverbotszone", "Foto-Prüfung"],
+  },
+  {
+    title: "Reinigung & Objektvorbereitung",
+    items: ["Wohnung wieder vermietbar", "Immobilie verkaufsbereit", "Umzug + Endreinigung"],
+  },
+  {
+    title: "Entrümpelung & Nebenflächen",
+    items: ["Entrümpelung + Reinigung", "Nachlassräumung"],
+  },
+  {
+    title: "Sonderfall & Zeitdruck",
+    items: ["Diskreter Auszug", "Leerfahrt / Rückfahrt", "Kostenrahmen", "Express-Check"],
   },
 ] as const;
 
@@ -296,10 +348,10 @@ const detailCards = [
   },
   {
     title: "Anfragewege",
-    text: "Express, Budget, WhatsApp und Google Maps Einstieg sind Kontaktwege. So wählen Kunden schneller den passenden Start.",
+    text: "Express, WhatsApp, Google Maps und Kosteneinschätzung bleiben getrennte Wege. So wählen Kunden schneller den passenden Start.",
   },
   {
-    title: "Signature-Services",
+    title: "Besondere Leistungen",
     text: "Schlüssel, Protokoll, Halteverbotszone oder Beiladung lösen die Punkte, an denen Aufträge oft hängen bleiben.",
   },
 ] as const;
@@ -336,12 +388,12 @@ const faqItems = [
     a: "Der Express-Check passt, wenn Termin, Zugang oder Übergabe schnell eingeschätzt werden sollen.",
   },
   {
-    q: "Ist Budget nennen eine eigene Leistung?",
-    a: "Nein. Budget nennen ist ein Anfrageweg. Sie teilen Ihren Preisrahmen mit und FLOXANT prüft, welcher Umfang dafür realistisch ist.",
+    q: "Ist eine Kosteneinschätzung eine eigene Leistung?",
+    a: "Nein. Sie teilen Ihren Kostenrahmen mit und FLOXANT ordnet ein, welcher Umfang dafür realistisch ist.",
   },
   {
     q: "Welche Leistungen kann ich hier anfragen?",
-    a: "Umzug, Reinigung und Entrümpelung sowie passende Signature-Services wie Schlüsselübergabe, Halteverbotszone, Seniorenumzug, Rückfahrt oder Schwertransport.",
+    a: "Umzug, Reinigung und Entrümpelung sowie passende Zusatzleistungen wie Schlüsselübergabe, Halteverbotszone, Seniorenumzug, Rückfahrt oder Schwertransport.",
   },
   {
     q: "Kann ich auch direkt per WhatsApp starten?",
@@ -356,8 +408,8 @@ const duesseldorfBookingProof = [
     Icon: Sparkles,
   },
   {
-    title: "Budget und Fotos helfen",
-    text: "Fläche, Zustand, Terminwunsch, Fotos und ein Preisrahmen machen die Einschätzung schneller und realistischer.",
+    title: "Kostenrahmen und Fotos helfen",
+    text: "Fläche, Zustand, Terminwunsch, Fotos und ein Budget machen die Einschätzung schneller und realistischer.",
     Icon: Banknote,
   },
   {
@@ -370,7 +422,7 @@ const duesseldorfBookingProof = [
 const duesseldorfBookingFaqItems = [
   {
     q: "Kann ich über diese Buchungsseite andere Leistungsarten anfragen?",
-    a: "Nein. Dieser Einstieg ist bewusst nur auf Reinigung in Düsseldorf ausgelegt. Andere Leistungsarten werden hier nicht als lokaler Düsseldorf-Flow geführt.",
+    a: "Nein. Dieser Einstieg ist bewusst nur auf Reinigung in Düsseldorf ausgelegt. Andere Leistungen werden hier nicht als lokaler Düsseldorfer Anfrageweg geführt.",
   },
   {
     q: "Welche Reinigungsarten kann ich in Düsseldorf anfragen?",
@@ -378,19 +430,19 @@ const duesseldorfBookingFaqItems = [
   },
   {
     q: "Was sollte ich für eine schnelle Einschätzung angeben?",
-    a: "Hilfreich sind Fläche, Adresse oder Stadtteil, Terminwunsch, Reinigungsziel, Fotos vom Zustand und ein Budget, falls es einen festen Preisrahmen gibt.",
+    a: "Hilfreich sind Fläche, Adresse oder Stadtteil, Terminwunsch, Reinigungsziel, Fotos vom Zustand und ein Budget, falls es eine feste Vorstellung gibt.",
   },
 ] as const;
 
 const duesseldorfDisposalBookingProof = [
   {
     title: "Nur Entsorgung in diesem Einstieg",
-    text: "Der Flow sammelt Umfang, Zugang, Fotos und Budget fuer Moebel, Sperrmuell oder regulaer entsorgbare Gegenstaende.",
+    text: "Die Anfrage sammelt Umfang, Zugang, Fotos und Budget für Möbel, Sperrmüll oder regulär entsorgbare Gegenstände.",
     Icon: Trash2,
   },
   {
-    title: "Fotos machen die Pruefung schneller",
-    text: "Bilder von Menge, Etage, Laufweg und Materialart helfen bei einer realistischen Einschaetzung.",
+    title: "Fotos machen die Prüfung schneller",
+    text: "Bilder von Menge, Etage, Laufweg und Materialart helfen bei einer realistischen Einschätzung.",
     Icon: ClipboardCheck,
   },
   {
@@ -402,15 +454,15 @@ const duesseldorfDisposalBookingProof = [
 
 const duesseldorfDisposalBookingFaqItems = [
   {
-    q: "Welche Entsorgung kann ich in Duesseldorf anfragen?",
-    a: "Moebel, Sperrmuell, Haushaltsgegenstaende, kleinere Raeumungen und regulaer entsorgbare Gegenstaende koennen nach Umfang, Zugang und Fotos geprueft werden.",
+    q: "Welche Entsorgung kann ich in Düsseldorf anfragen?",
+    a: "Möbel, Sperrmüll, Haushaltsgegenstände, kleinere Räumungen und regulär entsorgbare Gegenstände können nach Umfang, Zugang und Fotos geprüft werden.",
   },
   {
     q: "Ist das ein Umzugsangebot?",
-    a: "Nein. Dieser Einstieg ist fuer Entsorgung in Duesseldorf gedacht. Andere Leistungsarten werden hier nicht als lokaler Hauptservice beworben.",
+    a: "Nein. Dieser Einstieg ist für Entsorgung in Düsseldorf gedacht. Andere Leistungen werden hier nicht als lokaler Hauptservice beworben.",
   },
   {
-    q: "Was braucht FLOXANT fuer eine schnelle Einschaetzung?",
+    q: "Was braucht FLOXANT für eine schnelle Einschätzung?",
     a: "Hilfreich sind Fotos, Umfang, Etage, Aufzug oder Laufweg, Terminwunsch, Materialart und ein Budgetrahmen, falls vorhanden.",
   },
 ] as const;
@@ -475,6 +527,12 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
   }
 
   const heroLabel = isGoogleMapsBookingFlow ? "Google Maps Anfrage" : "Anfrage starten";
+  const initialBookingService = getBookingServicePreset(serviceIntent);
+  const initialBookingRegion: BookingRegionPreset = "regensburg-bayern";
+  const initialBookingEntry =
+    getSearchParamValue(resolvedSearchParams, "entry") ||
+    getSearchParamValue(resolvedSearchParams, "weg") ||
+    (isGoogleMapsBookingFlow ? "google_maps" : "direkt");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -486,7 +544,7 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
       buildWebPageJsonLd({
         name: "FLOXANT Anfrage starten",
         description:
-          "Klar priorisierter Anfragebereich für Umzug, Reinigung, Entrümpelung, Express-Check, Budgeteinschätzung und passende Signature-Services.",
+          "Klar priorisierter Anfragebereich für Umzug, Reinigung, Entrümpelung, Express-Anfrage, Kosteneinschätzung und passende Zusatzleistungen.",
         path: "/buchung",
         about: [
           "Umzug",
@@ -494,7 +552,7 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
           "Entrümpelung",
           "Buchung",
           "Express-Check",
-          "Budget-Anfrage",
+          "Kostenrahmen",
           "Schlüsselübergabe",
           "Regensburg",
           "Bayern",
@@ -503,7 +561,7 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
       buildServiceJsonLd({
         name: "FLOXANT Anfrage- und Buchungszentrum",
         description:
-          "Zentraler Einstieg für unverbindliche Anfragen, Einschätzung, Express-Check und Preisrahmen bei FLOXANT.",
+          "Zentraler Einstieg für unverbindliche Anfragen, Einschätzung, Express-Anfrage und Kostenorientierung bei FLOXANT.",
         path: "/buchung",
         serviceType: "Umzug, Reinigung, Entrümpelung, Anfrage und Beratung",
         areaServed: ["Regensburg", "Bayern"],
@@ -525,7 +583,7 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#f3f7fb_42%,#eef4f8_100%)] text-foreground">
+    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f8fbff_0%,#f3f7fb_42%,#eef4f8_100%)] pb-28 text-foreground">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={[{ label: "Anfrage starten" }]} />
 
@@ -542,17 +600,17 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
                 <MapPin className="h-4 w-4" />
                 {heroLabel}
               </div>
-              <h1 className="mt-6 max-w-[13ch] text-4xl font-bold leading-[0.98] tracking-[-0.025em] text-slate-950 md:text-6xl">
-                Umzug, Reinigung und Entrümpelung. Klar organisiert aus Regensburg.
+              <h1 className="mt-6 max-w-[12ch] text-4xl font-bold leading-[0.98] tracking-[-0.025em] text-slate-950 md:text-6xl">
+                Was brauchen Sie?
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 md:text-lg md:leading-8">
-                Schnell anfragen, Aufwand realistisch einschätzen lassen und sauber Rückmeldung erhalten.
+                Wählen Sie Umzug, Reinigung oder Entrümpelung. Die Anfrage übernimmt den gewählten Kontext direkt.
               </p>
 
               {isGoogleMapsBookingFlow ? (
                 <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold leading-6 text-blue-900">
-                  Aus Google Maps kommend? Waehlen Sie direkt den Service, nennen Sie Ort
-                  oder PLZ und senden Sie optional Fotos fuer eine schnellere Pruefung.
+                  Aus Google Maps kommend? Wählen Sie direkt die Leistung, nennen Sie Ort
+                  oder PLZ und senden Sie optional Fotos für eine schnellere Prüfung.
                 </div>
               ) : null}
 
@@ -574,40 +632,11 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {[
-              {
-                label: "Leistung wählen",
-                href: "#kernleistungen",
-                text: "Wenn zuerst klar sein soll, ob Umzug, Reinigung oder Entrümpelung passt.",
-              },
-              {
-                label: "Anfrageweg wählen",
-                href: "#anfragewege",
-                text: "Wenn Express, Budget oder WhatsApp der bessere Einstieg ist.",
-              },
-              {
-                label: "Direkt ins Formular",
-                href: "#buchungssystem",
-                text: "Wenn der Fall grob klar ist und Sie direkt senden möchten.",
-              },
-              {
-                label: "Vorher Orientierung",
-                href: "/rechner",
-                text: "Wenn Sie erst Aufwand, Zugang und Preisrahmen prüfen möchten.",
-              },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="group rounded-[1.4rem] border border-slate-200 bg-white/88 px-4 py-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-sm font-semibold text-slate-950">{item.label}</span>
-                  <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-blue-700" />
-                </div>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
-              </Link>
+          <div id="anfragewege" className="relative -top-28 h-0" />
+
+          <div className="mt-5 grid gap-3 lg:hidden">
+            {primaryInquiryPaths.map((item) => (
+              <DecisionPathCard key={item.title} item={item} compact />
             ))}
           </div>
 
@@ -615,71 +644,77 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
         </div>
       </section>
 
+      <BookingWizardSection
+        dict={dict}
+        initialService={initialBookingService}
+        initialRegion={initialBookingRegion}
+        initialEntry={initialBookingEntry}
+      />
+
+      <SecondaryRequestCases />
+
       <FloxantNextStepPanel variant="booking" className="pb-12 pt-0" />
 
       <AiServiceRecommendationPanel variant="default" className="pb-12 pt-0" />
-
-      <section id="anfragewege" className="px-4 pb-12 sm:px-6 lg:hidden">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-950 p-4 text-white shadow-[0_26px_90px_rgba(15,23,42,0.18)] md:rounded-[2.4rem] md:p-6">
-          <div className="grid gap-5 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
-            <div className="p-3 md:p-5">
-              <div className="text-[11px] font-black uppercase tracking-[0.18em] text-cyan-200">
-                Wie möchten Sie starten?
-              </div>
-              <h2 className="mt-3 max-w-[12ch] text-3xl font-bold leading-[1] tracking-[-0.02em] md:text-5xl">
-                Ein Ziel. Vier saubere Wege.
-              </h2>
-              <p className="mt-4 max-w-md text-sm leading-7 text-slate-300">
-                Anfragewege sind bewusst getrennt von Leistungen. So sehen Sie sofort, ob normaler Start, Express, Budget oder WhatsApp passt.
-              </p>
-            </div>
-
-            <div className="grid gap-3 md:grid-cols-2">
-              {inquiryPaths.map((item) => (
-                <DecisionPathCard key={item.title} item={item} compact />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section id="signature-services" className="px-4 pb-12 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
-                Signature-Services
+                Besondere Leistungen
               </div>
               <h2 className="mt-3 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-5xl">
-                Das macht FLOXANT besonderer als ein Standardauftrag.
+                Das macht FLOXANT präziser als einen Standardauftrag.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600 md:text-right">
-              Diese Module lösen die typischen Schnittstellen: Schlüssel, Zugang, Übergabe, Rückfahrt, Sondertransport und Preisrahmen.
+              Diese Leistungen lösen typische Schnittstellen: Schlüssel, Zugang, Übergabe, Rückfahrt, Sondertransport und Kostenrahmen.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {signatureServices.map((item) => {
-              const Icon = item.Icon;
+          <div className="grid gap-4 lg:grid-cols-2">
+            {signatureServiceGroups.map((group) => (
+              <section key={group.title} className="rounded-[1.6rem] border border-slate-200 bg-white/90 p-4 shadow-sm shadow-slate-950/5">
+                <h3 className="text-lg font-black tracking-tight text-slate-950">{group.title}</h3>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {signatureServices
+                    .filter((item) => (group.items as readonly string[]).includes(item.title))
+                    .map((item) => {
+                      const Icon = item.Icon;
 
-              return (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className="group rounded-[1.55rem] border border-slate-200 bg-white/90 p-5 shadow-sm shadow-slate-950/5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-xl hover:shadow-blue-950/10"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-white">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-600" />
-                  </div>
-                  <h3 className="mt-5 text-lg font-bold tracking-tight text-slate-950">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
-                </Link>
-              );
-            })}
+                      return (
+                        <article key={item.title} className="rounded-[1.15rem] border border-slate-200 bg-slate-50 p-4">
+                          <div className="flex items-start justify-between gap-4">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white">
+                              <Icon className="h-4 w-4" />
+                            </span>
+                            <Link
+                              href={item.href}
+                              className="text-xs font-black text-slate-500 underline-offset-4 hover:text-blue-700 hover:underline"
+                            >
+                            Ansehen
+                            </Link>
+                          </div>
+                          <h4 className="mt-4 text-base font-bold tracking-tight text-slate-950">{item.title}</h4>
+                          <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                          <Link
+                            href={getSignatureActionHref(item.title)}
+                            className="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-3 text-xs font-black uppercase tracking-[0.12em] text-blue-700 transition hover:bg-blue-50"
+                            data-event="start_booking"
+                            data-source="booking_signature_service"
+                            data-label={item.title}
+                            data-request-center="ignore"
+                          >
+                            Anfrage vorbereiten
+                            <ArrowRight className="h-3.5 w-3.5" />
+                          </Link>
+                        </article>
+                      );
+                    })}
+                </div>
+              </section>
+            ))}
           </div>
         </div>
       </section>
@@ -699,9 +734,9 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
           "cellar_trashroom_rescue",
           "empty_return_fit",
         ]}
-        badge={isGoogleMapsBookingFlow ? "Google Maps Anfrage" : "Anfrage-Qualitaet"}
-        title="Was eine schnelle Anfrage fuer FLOXANT besser verwertbar macht"
-        subtitle="Die Buchungsseite bleibt kurz, zeigt aber klar, welche Angaben helfen: Ort, Service, Termin, Fotos, Budget und passende Zusatzservices wie Reinigung, Entruempelung oder Rueckfahrt."
+        badge={isGoogleMapsBookingFlow ? "Google Maps Anfrage" : "Anfragequalität"}
+        title="Was eine schnelle Anfrage für FLOXANT besser verwertbar macht"
+        subtitle="Die Buchungsseite bleibt kurz und zeigt klar, welche Angaben helfen: Ort, Leistung, Termin, Fotos, Budget und passende Zusatzleistungen wie Reinigung, Entrümpelung oder Rückfahrt."
         source={isGoogleMapsBookingFlow ? "gbp_booking_authority_modules" : "booking_authority_modules"}
       />
 
@@ -737,41 +772,6 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
         </div>
       </section>
 
-      <section id="kontakt" className="px-4 pb-14 sm:px-6">
-        <div className="mx-auto max-w-6xl">
-          <div id="buchungssystem" className="relative -top-28 block h-0 w-0" />
-          <div className="mb-6 grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
-            <div>
-              <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
-                <Clock3 className="h-4 w-4" />
-                Anfrageformular
-              </div>
-              <h2 className="mt-3 max-w-[12ch] text-3xl font-bold leading-[1] tracking-[-0.022em] text-slate-950 md:text-5xl">
-                Leistung wählen. Fall senden.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-sm leading-7 text-slate-600 lg:text-right">
-              Der Klick auf eine Kernleistung springt direkt hierher und wählt den passenden Service vor. Sie ergänzen nur noch Ort, Termin, Hinweise und Kontakt.
-            </p>
-          </div>
-
-          <div className="calc-surface relative overflow-hidden rounded-[2.2rem] p-3 shadow-[0_28px_80px_rgba(15,23,42,0.1)] sm:p-5">
-            <div className="pointer-events-none absolute inset-0 opacity-16">
-              <FloxantSymbolLayer variant="moving" density="soft" className="opacity-70" />
-            </div>
-            <div className="relative">
-              <SmartBookingWizard
-                dict={{
-                  common: dict.common,
-                  calculator: dict.calculator,
-                  booking: dict.booking,
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="details" className="border-y border-slate-200 bg-white/60 px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 md:grid-cols-3">
@@ -797,7 +797,7 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600 lg:text-right">
-              Diese Inhalte helfen, Preisrahmen, Übergabe und kombinierte Leistungen besser
+              Diese Inhalte helfen, Kostenrahmen, Übergabe und kombinierte Leistungen besser
               einzuordnen, bevor Sie den Fall an FLOXANT senden.
             </p>
           </div>
@@ -848,13 +848,14 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
           </div>
         </div>
       </section>
+      <BookingStickyActions whatsappHref={whatsappUrl} budgetHref="/buchung?entry=budget#buchungssystem" />
     </main>
   );
 }
 
 function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
   return (
-    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f7fffd_0%,#f6fafc_48%,#eef5f8_100%)] text-foreground">
+    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f7fffd_0%,#f6fafc_48%,#eef5f8_100%)] pb-28 text-foreground">
       <Breadcrumbs items={[{ label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" }, { label: "Anfrage" }]} />
 
       <section className="relative px-4 pb-12 pt-8 sm:px-6 lg:pb-16">
@@ -901,11 +902,12 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
                   WhatsApp mit Fotos starten
                 </a>
                 <Link
-                  href="/duesseldorf/reinigung#preisvorschlag"
+                  href="/buchung?service=reinigung&region=duesseldorf&entry=budget#buchungssystem"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-teal-200"
                   data-event="submit_budget_request"
                   data-service="reinigung"
                   data-region="duesseldorf"
+                  data-request-center="ignore"
                 >
                   Budget einordnen lassen
                 </Link>
@@ -968,8 +970,8 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-slate-600 lg:text-right">
-              Der Wizard ist für diesen Einstieg auf Reinigung in Düsseldorf vorbereitet.
-              Andere Leistungsarten werden hier nicht als lokaler Düsseldorf-Flow geführt.
+              Diese Anfrage ist auf Reinigung in Düsseldorf vorbereitet.
+              Andere Leistungen werden hier nicht als lokaler Düsseldorfer Anfrageweg geführt.
             </p>
           </div>
 
@@ -984,6 +986,10 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
                   calculator: dict.calculator,
                   booking: dict.booking,
                 }}
+                initialService="reinigung"
+                initialRegion="duesseldorf"
+                initialEntry="direkt"
+                forceVisible
               />
             </div>
           </div>
@@ -1014,14 +1020,18 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
           </div>
         </div>
       </section>
+      <BookingStickyActions
+        whatsappHref={duesseldorfWhatsappUrl}
+        budgetHref="/buchung?service=reinigung&region=duesseldorf&entry=budget#buchungssystem"
+      />
     </main>
   );
 }
 
 function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
   return (
-    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fffaf4_0%,#f8fbff_48%,#eef5f8_100%)] text-foreground">
-      <Breadcrumbs items={[{ label: "Entsorgung Duesseldorf", href: "/entsorgung-duesseldorf" }, { label: "Anfrage" }]} />
+    <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fffaf4_0%,#f8fbff_48%,#eef5f8_100%)] pb-28 text-foreground">
+      <Breadcrumbs items={[{ label: "Entsorgung Düsseldorf", href: "/entsorgung-duesseldorf" }, { label: "Anfrage" }]} />
 
       <section className="relative px-4 pb-12 pt-8 sm:px-6 lg:pb-16">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[680px] bg-[radial-gradient(circle_at_75%_0%,rgba(249,115,22,0.16),transparent_58%),radial-gradient(circle_at_15%_22%,rgba(37,99,235,0.12),transparent_42%)]" />
@@ -1034,15 +1044,15 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
             <div className="rounded-[2rem] border border-white/80 bg-white/[0.88] p-6 shadow-[0_26px_80px_rgba(15,23,42,0.08)] backdrop-blur md:rounded-[2.6rem] md:p-9">
               <div className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-orange-700">
                 <Trash2 className="h-4 w-4" />
-                Duesseldorf - Entsorgung
+                Düsseldorf - Entsorgung
               </div>
               <h1 className="mt-6 max-w-[13ch] text-4xl font-bold leading-[0.98] tracking-[-0.025em] text-slate-950 md:text-6xl">
-                Entsorgung Duesseldorf unverbindlich anfragen.
+                Entsorgung Düsseldorf unverbindlich anfragen.
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 md:text-lg md:leading-8">
-                Fuer Moebel, Sperrmuell, Haushaltsgegenstaende oder kleine Raeumungen zaehlen
-                Umfang, Zugang, Etage, Termin und Fotos. FLOXANT prueft diese Angaben, bevor
-                ein Angebot oder Rueckruf entsteht.
+                Für Möbel, Sperrmüll, Haushaltsgegenstände oder kleine Räumungen zählen
+                Umfang, Zugang, Etage, Termin und Fotos. FLOXANT prüft diese Angaben, bevor
+                ein Angebot oder Rückruf entsteht.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
@@ -1067,13 +1077,14 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
                   WhatsApp mit Fotos starten
                 </a>
                 <Link
-                  href="/entsorgung-duesseldorf#preislogik"
+                  href="/buchung?service=entsorgung&region=duesseldorf&entry=budget#buchungssystem"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-orange-200"
                   data-event="submit_budget_request"
                   data-service="entsorgung"
                   data-region="duesseldorf"
+                  data-request-center="ignore"
                 >
-                  Preislogik ansehen
+                  Kosten einschätzen
                 </Link>
               </div>
             </div>
@@ -1081,10 +1092,10 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
             <aside className="rounded-[2rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_26px_80px_rgba(15,23,42,0.2)] md:rounded-[2.6rem]">
               <div className="px-2 pt-2">
                 <div className="text-[11px] font-black uppercase tracking-[0.18em] text-orange-200">
-                  Anfragequalitaet
+                  Anfragequalität
                 </div>
                 <h2 className="mt-2 text-2xl font-bold tracking-tight">
-                  Umfang sichtbar machen, schneller pruefbar werden.
+                  Umfang sichtbar machen. Rückmeldung beschleunigen.
                 </h2>
               </div>
               <div className="mt-5 grid gap-3">
@@ -1125,7 +1136,7 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-slate-600 lg:text-right">
-              Der Wizard ist fuer diesen Einstieg auf Entsorgung in Duesseldorf vorbereitet.
+              Diese Anfrage ist auf Entsorgung in Düsseldorf vorbereitet.
               Reinigung bleibt separat; andere lokale Hauptservices werden hier nicht beworben.
             </p>
           </div>
@@ -1141,6 +1152,10 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
                   calculator: dict.calculator,
                   booking: dict.booking,
                 }}
+                initialService="entsorgung"
+                initialRegion="duesseldorf"
+                initialEntry="direkt"
+                forceVisible
               />
             </div>
           </div>
@@ -1152,7 +1167,7 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
           <div className="mb-7">
             <div className="text-[11px] font-black uppercase tracking-[0.18em] text-orange-700">FAQ</div>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
-              Haeufige Fragen zur Entsorgungsanfrage Duesseldorf
+              Häufige Fragen zur Entsorgungsanfrage Düsseldorf
             </h2>
           </div>
           <div className="space-y-3">
@@ -1171,6 +1186,10 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
           </div>
         </div>
       </section>
+      <BookingStickyActions
+        whatsappHref={duesseldorfDisposalWhatsappUrl}
+        budgetHref="/buchung?service=entsorgung&region=duesseldorf&entry=budget#buchungssystem"
+      />
     </main>
   );
 }
@@ -1181,14 +1200,14 @@ function QuickDecisionPanel() {
       <div className="mb-4 flex items-center justify-between gap-4 px-2 pt-2">
         <div>
           <div className="text-[11px] font-black uppercase tracking-[0.18em] text-cyan-200">
-            Start wählen
+            Anfrageweg wählen
           </div>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight">Wie starten?</h2>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight">Was passt jetzt?</h2>
         </div>
         <ShieldCheck className="h-6 w-6 text-cyan-200" />
       </div>
       <div className="grid gap-3">
-        {inquiryPaths.map((item) => (
+        {primaryInquiryPaths.map((item) => (
           <DecisionPathCard key={item.title} item={item} />
         ))}
       </div>
@@ -1209,7 +1228,7 @@ function CoreServicesGrid() {
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-6 text-slate-600 sm:text-right">
-          Drei klare Startpunkte. Budget, Express und WhatsApp bleiben klar getrennte Anfragewege.
+          Drei klare Startpunkte. Kosten, Express und WhatsApp bleiben klar getrennte Anfragewege.
         </p>
       </div>
 
@@ -1224,6 +1243,7 @@ function CoreServicesGrid() {
               className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-950/10"
               data-event={`select_service_${service.href.includes("entsorgung") ? "entruempelung" : service.href.includes("reinigung") ? "reinigung" : "umzug"}`}
               data-source="booking_core_services"
+              data-request-center="ignore"
             >
               <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.tone}`} />
               <div className="flex items-start justify-between gap-4">
@@ -1252,7 +1272,7 @@ function DecisionPathCard({
   item,
   compact = false,
 }: {
-  item: (typeof inquiryPaths)[number];
+  item: DecisionPathItem;
   compact?: boolean;
 }) {
   const Icon = item.Icon;
@@ -1306,12 +1326,205 @@ function DecisionPathCard({
       {content}
     </a>
   ) : item.href.startsWith("#") ? (
-    <a href={item.href} className={className} data-event={eventName} data-source="booking_decision_path">
+    <a href={item.href} className={className} data-event={eventName} data-source="booking_decision_path" data-request-center="ignore">
       {content}
     </a>
   ) : (
-    <Link href={item.href} className={className} data-event={eventName} data-source="booking_decision_path">
+    <Link
+      href={item.href}
+      className={className}
+      data-event={eventName}
+      data-source="booking_decision_path"
+      data-request-center={item.href.startsWith("/buchung") ? "ignore" : undefined}
+    >
       {content}
     </Link>
+  );
+}
+
+function getSignatureActionHref(title: string) {
+  const normalized = title
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  if (normalized.includes("reinigung") || normalized.includes("vermietbar") || normalized.includes("verkaufsbereit")) {
+    return "/buchung?service=reinigung&entry=zusatzservice#buchungssystem";
+  }
+
+  if (normalized.includes("entruempel") || normalized.includes("nachlass")) {
+    return "/buchung?service=entsorgung&entry=zusatzservice#buchungssystem";
+  }
+
+  if (normalized.includes("leerfahrt") || normalized.includes("ruckfahrt") || normalized.includes("rueckfahrt")) {
+    return "/buchung?service=leerfahrt&entry=rueckfahrt#buchungssystem";
+  }
+
+  if (normalized.includes("budget") || normalized.includes("kostenrahmen")) {
+    return "/buchung?entry=budget#buchungssystem";
+  }
+
+  if (normalized.includes("express")) {
+    return "/buchung?entry=express&urgency=express#buchungssystem";
+  }
+
+  return "/buchung?service=umzug&entry=zusatzservice#buchungssystem";
+}
+
+function BookingWizardSection({
+  dict,
+  initialService,
+  initialRegion,
+  initialEntry,
+  eyebrow = "Anfrage",
+  title = "Leistung wählen. Eckdaten senden.",
+  description = "Der Klick auf eine Kernleistung springt direkt hierher und wählt den passenden Service vor. Sie ergänzen nur noch Ort, Termin, Hinweise und Kontakt.",
+}: {
+  dict: any;
+  initialService: BookingServicePreset;
+  initialRegion: BookingRegionPreset;
+  initialEntry: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+}) {
+  return (
+    <section id="kontakt" className="px-4 pb-14 sm:px-6">
+      <div className="mx-auto max-w-6xl">
+        <div id="buchungssystem" className="relative -top-28 block h-0 w-0" />
+        <div className="mb-6 grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+          <div>
+            <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+              <Clock3 className="h-4 w-4" />
+              {eyebrow}
+            </div>
+            <h2 className="mt-3 max-w-[12ch] text-3xl font-bold leading-[1] tracking-[-0.022em] text-slate-950 md:text-5xl">
+              {title}
+            </h2>
+          </div>
+          <p className="max-w-2xl text-sm leading-7 text-slate-600 lg:text-right">
+            {description}
+          </p>
+        </div>
+
+        <div className="calc-surface relative overflow-hidden rounded-[2.2rem] p-3 shadow-[0_28px_80px_rgba(15,23,42,0.1)] sm:p-5">
+          <div className="pointer-events-none absolute inset-0 opacity-16">
+            <FloxantSymbolLayer variant="moving" density="soft" className="opacity-70" />
+          </div>
+          <div className="relative">
+            <SmartBookingWizard
+              dict={{
+                common: dict.common,
+                calculator: dict.calculator,
+                booking: dict.booking,
+              }}
+              initialService={initialService}
+              initialRegion={initialRegion}
+              initialEntry={initialEntry}
+              forceVisible
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SecondaryRequestCases() {
+  return (
+    <section id="sonderfaelle" className="px-4 pb-12 sm:px-6">
+      <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 md:p-7">
+        <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
+              Weitere Anfragewege
+            </div>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
+              Sonderfall wählen, dann direkt ins Formular.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-sm leading-7 text-slate-600 lg:text-right">
+            Diese Wege bleiben erhalten, führen aber nicht mehr in ein Labyrinth. Der Hauptbutton setzt den Kontext und startet die Anfrage.
+          </p>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {secondaryRequestCases.map((item) => {
+            const Icon = item.Icon;
+
+            return (
+              <article key={item.title} className="rounded-[1.45rem] border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-blue-700 shadow-sm">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <Link href={item.detail} className="text-xs font-black text-slate-500 underline-offset-4 hover:text-blue-700 hover:underline">
+                    Ansehen
+                  </Link>
+                </div>
+                <h3 className="mt-4 text-lg font-bold tracking-tight text-slate-950">{item.title}</h3>
+                <p className="mt-2 min-h-[4.5rem] text-sm leading-6 text-slate-600">{item.text}</p>
+                <Link
+                  href={item.action}
+                  className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-700"
+                  data-event="start_booking"
+                  data-source="booking_secondary_case"
+                  data-request-center="ignore"
+                >
+                  Mit Anfrage starten
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BookingStickyActions({
+  whatsappHref,
+  budgetHref,
+}: {
+  whatsappHref: string;
+  budgetHref: string;
+}) {
+  return (
+    <nav
+      aria-label="Schneller Anfragezugang"
+      className="fixed inset-x-3 bottom-[max(0.8rem,env(safe-area-inset-bottom))] z-[65] mx-auto flex max-w-2xl items-center gap-2 rounded-[1.2rem] border border-slate-200 bg-white/96 p-2 shadow-[0_18px_58px_rgba(15,23,42,0.2)] backdrop-blur md:bottom-5"
+    >
+      <a
+        href="#buchungssystem"
+        className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-slate-950 px-3 text-sm font-black text-white transition hover:bg-blue-700"
+        data-event="start_booking"
+        data-source="booking_sticky"
+        data-request-center="ignore"
+      >
+        Anfrage starten
+        <ArrowRight className="h-4 w-4" />
+      </a>
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 text-sm font-black text-white shadow-[0_10px_26px_rgba(37,211,102,0.22)] transition hover:bg-[#16a34a]"
+        data-event="click_whatsapp"
+        data-source="booking_sticky"
+      >
+        <MessageCircle className="h-4 w-4" />
+        <span className="hidden sm:inline">WhatsApp</span>
+      </a>
+      <Link
+        href={budgetHref}
+        className="hidden min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-black text-slate-900 transition hover:bg-blue-50 sm:inline-flex"
+        data-event="submit_budget_request"
+        data-source="booking_sticky"
+        data-request-center="ignore"
+      >
+        Kosten einschätzen
+      </Link>
+    </nav>
   );
 }

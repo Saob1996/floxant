@@ -103,7 +103,7 @@ export default function BlogGoogleBusinessProfileBookingPage() {
               "Klare lokale Zuordnung statt allgemeiner Sammelseite",
               "Direkte Handlungsoptionen ohne erneutes Suchen",
               "Saubere Verbindung zwischen Google Maps, Suchintention und Anfrageweg",
-              "Mehr Klarheit für Kunden und bessere interne Zuordnung im Backoffice",
+              "Mehr Klarheit für Kunden und bessere Zuordnung der Anfrage",
             ],
           },
           {

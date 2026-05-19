@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import {
  BackhaulOffer,
  buildBackhaulOfferDetails,
@@ -60,7 +60,7 @@ export async function GET(req: Request) {
  }
 
  try {
-  let query = supabase
+  let query = getSupabaseAdmin()
    .from("bookings")
    .select("*")
    .eq("service", "leerfahrt_offer")
@@ -107,7 +107,7 @@ export async function POST(req: Request) {
    details,
   };
 
-  const { data, error } = await supabase.from("bookings").insert([booking]).select().single();
+  const { data, error } = await getSupabaseAdmin().from("bookings").insert([booking]).select().single();
   if (error) throw error;
 
   return NextResponse.json(normalizeBackhaulOffer(data));

@@ -5,7 +5,6 @@ import {
 } from "@/lib/conversion-journey";
 import { attachLeadRouting } from "@/lib/lead-routing";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
-import { supabase } from "@/lib/supabase";
 import { sendInternalIntakeNotification } from "@/lib/mail/notifications";
 import { IntakePayload } from "@/lib/types/intake";
 
@@ -129,7 +128,7 @@ export async function POST(req: Request) {
   };
 
   // 3. Supabase Storage
-  const { data: dbData, error: dbError } = await supabase
+  const { data: dbData, error: dbError } = await getSupabaseAdmin()
    .from('bookings')
    .insert([booking])
    .select();

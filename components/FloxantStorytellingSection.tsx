@@ -310,17 +310,17 @@ export function FloxantStorytellingSection({
 
               <div className="flox-proof-rail mt-7 rounded-[var(--flox-radius-lg)] border border-slate-800 bg-slate-950 p-4 pl-5 text-white">
                 <div className="flox-overline text-cyan-200">
-                  So wirkt die Anfrage sofort klarer
+                  So wird Ihre Anfrage schneller einschätzbar
                 </div>
                 <div className="mt-3 grid gap-2 text-sm font-semibold text-slate-100">
                   <div className="flox-type-line">
-                    <span>Fotos statt langer Erklärung.</span>
+                    <span>Fotos zeigen, was Worte oft nicht erklären.</span>
                   </div>
                   <div className="flox-type-line flox-type-line-delay-1">
-                    <span>Ort, Termin und Umfang prüfen.</span>
+                    <span>Ort und Termin nennen.</span>
                   </div>
                   <div className="flox-type-line flox-type-line-delay-2">
-                    <span>Passenden FLOXANT-Weg wählen.</span>
+                    <span>FLOXANT meldet sich mit dem passenden nächsten Schritt.</span>
                   </div>
                 </div>
               </div>
@@ -401,9 +401,9 @@ export function FloxantStorytellingSection({
 
                 <div className="absolute right-4 top-4 hidden rounded-[var(--flox-radius-md)] border border-cyan-100/30 bg-slate-950/70 px-4 py-3 text-white shadow-[0_18px_42px_rgba(2,6,23,0.24)] backdrop-blur sm:block">
                   <div className="flox-overline text-cyan-100">
-                    FLOXANT Dominanz
+                    Klarer Start
                   </div>
-                  <div className="flox-card-title mt-1 text-white">sichtbar · prüfbar · direkt</div>
+                  <div className="flox-card-title mt-1 text-white">Fotos · Ort · Termin</div>
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 rounded-[var(--flox-radius-lg)] border border-white/30 bg-slate-950/82 p-4 text-white shadow-[0_18px_42px_rgba(2,6,23,0.24)] backdrop-blur">
@@ -418,8 +418,9 @@ export function FloxantStorytellingSection({
                     ))}
                   </div>
                   <p className="mt-4 text-sm leading-6 text-slate-200">
-                    Kein Fake-Einsatz, keine künstliche Live-Karte: Die Visualisierung erklärt den
-                    FLOXANT-Ablauf und führt Kunden schneller zur passenden Anfrage.
+                    Sie sehen auf einen Blick, was FLOXANT für die Einschätzung braucht:
+                    Fotos, Ort, Termin und Service. So startet die Anfrage verständlich
+                    und ohne langes Hin und Her.
                   </p>
                 </div>
               </div>

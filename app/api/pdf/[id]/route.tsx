@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { Document, Page, StyleSheet, Text, View, renderToStream } from "@react-pdf/renderer";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import {
  floxantDocumentSettings,
  formatDateDE,
@@ -483,7 +483,7 @@ async function requireSession() {
 }
 
 async function loadBooking(id: string) {
- const { data, error } = await supabase.from("bookings").select("*").eq("id", id).single();
+ const { data, error } = await getSupabaseAdmin().from("bookings").select("*").eq("id", id).single();
  if (error || !data) return null;
  return data;
 }
@@ -523,4 +523,3 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
   },
  });
 }
-

@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import {
  buildDocumentFromInput,
  getDocumentTypeLabel,
@@ -47,7 +47,7 @@ async function requireSession() {
 }
 
 async function loadBookings() {
- const { data, error } = await supabase.from("bookings").select("*").order("timestamp", { ascending: false });
+ const { data, error } = await getSupabaseAdmin().from("bookings").select("*").order("timestamp", { ascending: false });
  if (error) throw error;
  return (data || []) as BookingRecord[];
 }
@@ -197,7 +197,7 @@ export async function POST(req: Request) {
     },
    };
 
-   const { data, error } = await supabase
+   const { data, error } = await getSupabaseAdmin()
     .from("bookings")
     .update({ details: updatedDetails })
     .eq("id", sourceBooking.id)
@@ -225,7 +225,7 @@ export async function POST(req: Request) {
    details: buildManualDetails(),
   };
 
-  const { data: inserted, error: insertError } = await supabase
+  const { data: inserted, error: insertError } = await getSupabaseAdmin()
    .from("bookings")
    .insert([insertPayload])
    .select()
@@ -242,7 +242,7 @@ export async function POST(req: Request) {
   });
   const updatedDetails = buildManualDetails(storedDocument);
 
-  const { data: updated, error: updateError } = await supabase
+  const { data: updated, error: updateError } = await getSupabaseAdmin()
    .from("bookings")
    .update({ details: updatedDetails })
    .eq("id", inserted.id)
@@ -258,4 +258,3 @@ export async function POST(req: Request) {
   return NextResponse.json({ error: "Dokument konnte nicht erstellt werden.", details: error?.message }, { status: 500 });
  }
 }
-

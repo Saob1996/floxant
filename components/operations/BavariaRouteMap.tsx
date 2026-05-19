@@ -29,15 +29,15 @@ export function BavariaRouteMap() {
       <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-            Routenlogik
+            Region im Blick
           </div>
           <h3 className="mt-1 text-xl font-bold tracking-[-0.02em] text-slate-950">
             Regensburg als Hub, Bayern als Einsatzraum.
           </h3>
         </div>
         <p className="max-w-xl text-xs leading-5 text-slate-600">
-          Abstrakte Darstellung: keine Google Map, sondern eine ruhige Visualisierung der
-          regionalen Serviceprüfung.
+          Regensburg ist der Startpunkt. Ob Ihr Ort passt, klärt FLOXANT nach Strecke,
+          Termin und Verfügbarkeit.
         </p>
       </div>
 

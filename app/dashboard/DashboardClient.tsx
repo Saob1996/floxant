@@ -4416,6 +4416,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                 inquiryFilter={inquiryFilter}
                 setInquiryFilter={setInquiryFilter}
                 onOpen={openBooking}
+                onDelete={handleDeleteBooking}
               />
             ) : null}
 
@@ -5178,6 +5179,7 @@ function InquiriesWorkspace({
   inquiryFilter,
   setInquiryFilter,
   onOpen,
+  onDelete,
 }: {
   loading: boolean;
   allBookings: Booking[];
@@ -5187,6 +5189,7 @@ function InquiriesWorkspace({
   inquiryFilter: InquiryFilter;
   setInquiryFilter: (value: InquiryFilter) => void;
   onOpen: (booking: Booking) => void;
+  onDelete: (bookingId: string) => Promise<void>;
 }) {
   const filterCounts = useMemo(
     () =>
@@ -5370,7 +5373,7 @@ function InquiriesWorkspace({
         ) : bookings.length === 0 ? (
           <EmptyState text="Keine passenden Anfragen gefunden." />
         ) : (
-          <BookingsTable bookings={bookings} onOpen={onOpen} />
+          <BookingsTable bookings={bookings} onOpen={onOpen} onDelete={onDelete} />
         )}
       </div>
     </section>
@@ -5380,10 +5383,31 @@ function InquiriesWorkspace({
 function BookingsTable({
   bookings,
   onOpen,
+  onDelete,
 }: {
   bookings: Booking[];
   onOpen: (booking: Booking) => void;
+  onDelete: (bookingId: string) => Promise<void>;
 }) {
+  const [deleteTarget, setDeleteTarget] = useState<Booking | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  async function confirmDelete() {
+    if (!deleteTarget) return;
+
+    setDeleting(true);
+    setDeleteError(null);
+    try {
+      await onDelete(deleteTarget.id);
+      setDeleteTarget(null);
+    } catch (error: any) {
+      setDeleteError(error?.message || "Anfrage konnte nicht gelöscht werden.");
+    } finally {
+      setDeleting(false);
+    }
+  }
+
   return (
     <>
       <div className="hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-950/5 md:block">
@@ -5404,7 +5428,12 @@ function BookingsTable({
             </thead>
             <tbody className="divide-y divide-slate-100">
               {bookings.map((booking) => (
-                <BookingRow key={booking.id} booking={booking} onOpen={() => onOpen(booking)} />
+                <BookingRow
+                  key={booking.id}
+                  booking={booking}
+                  onOpen={() => onOpen(booking)}
+                  onDelete={() => setDeleteTarget(booking)}
+                />
               ))}
             </tbody>
           </table>
@@ -5413,14 +5442,40 @@ function BookingsTable({
 
       <div className="grid gap-3 md:hidden">
         {bookings.map((booking) => (
-          <MobileBookingCard key={booking.id} booking={booking} onOpen={() => onOpen(booking)} />
+          <MobileBookingCard
+            key={booking.id}
+            booking={booking}
+            onOpen={() => onOpen(booking)}
+            onDelete={() => setDeleteTarget(booking)}
+          />
         ))}
       </div>
+      {deleteTarget ? (
+        <DeleteBookingDialog
+          saving={deleting}
+          error={deleteError}
+          onCancel={() => {
+            if (!deleting) {
+              setDeleteTarget(null);
+              setDeleteError(null);
+            }
+          }}
+          onConfirm={confirmDelete}
+        />
+      ) : null}
     </>
   );
 }
 
-function BookingRow({ booking, onOpen }: { booking: Booking; onOpen: () => void }) {
+function BookingRow({
+  booking,
+  onOpen,
+  onDelete,
+}: {
+  booking: Booking;
+  onOpen: () => void;
+  onDelete: () => void;
+}) {
   return (
     <tr className="align-top transition hover:bg-blue-50/40">
       <td className="px-4 py-3">
@@ -5456,21 +5511,42 @@ function BookingRow({ booking, onOpen }: { booking: Booking; onOpen: () => void 
       </td>
       <td className="px-4 py-3 text-sm text-slate-700">{getNextStep(booking)}</td>
       <td className="px-4 py-3 text-right">
-        <button
-          type="button"
-          onClick={onOpen}
-          className="inline-flex h-9 items-center justify-center rounded-lg bg-blue-600 px-3 text-xs font-bold text-white transition hover:bg-blue-700"
-          data-event="open_dashboard_lead"
-          data-source="dashboard_lead_table"
-        >
-          Öffnen
-        </button>
+        <div className="flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onOpen}
+            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-slate-950 px-3 text-xs font-bold text-white transition hover:bg-blue-700"
+            data-event="open_dashboard_lead"
+            data-source="dashboard_lead_table"
+          >
+            Öffnen
+            <ArrowRight className="h-3.5 w-3.5" />
+          </button>
+          <button
+            type="button"
+            onClick={onDelete}
+            className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 text-xs font-bold text-red-700 transition hover:bg-red-100"
+            data-event="delete_dashboard_lead_start"
+            data-source="dashboard_lead_table"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+            Löschen
+          </button>
+        </div>
       </td>
     </tr>
   );
 }
 
-function MobileBookingCard({ booking, onOpen }: { booking: Booking; onOpen: () => void }) {
+function MobileBookingCard({
+  booking,
+  onOpen,
+  onDelete,
+}: {
+  booking: Booking;
+  onOpen: () => void;
+  onDelete: () => void;
+}) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
       <div className="flex items-start justify-between gap-3">
@@ -5496,15 +5572,28 @@ function MobileBookingCard({ booking, onOpen }: { booking: Booking; onOpen: () =
         <MiniLine label="Nächster Schritt" value={getNextStep(booking)} />
       </div>
       <CustomerQuickActions booking={booking} />
-      <button
-        type="button"
-        onClick={onOpen}
-        className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white"
-        data-event="open_dashboard_lead"
-        data-source="dashboard_mobile_lead_card"
-      >
-        Öffnen
-      </button>
+      <div className="mt-4 grid gap-2 sm:grid-cols-2">
+        <button
+          type="button"
+          onClick={onOpen}
+          className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-slate-950 text-sm font-bold text-white"
+          data-event="open_dashboard_lead"
+          data-source="dashboard_mobile_lead_card"
+        >
+          Öffnen
+          <ArrowRight className="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          onClick={onDelete}
+          className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 text-sm font-bold text-red-700"
+          data-event="delete_dashboard_lead_start"
+          data-source="dashboard_mobile_lead_card"
+        >
+          <Trash2 className="h-4 w-4" />
+          Löschen
+        </button>
+      </div>
     </div>
   );
 }
@@ -6473,10 +6562,12 @@ function RequestDetailPanel({
 
 function DeleteBookingDialog({
   saving,
+  error,
   onCancel,
   onConfirm,
 }: {
   saving: boolean;
+  error?: string | null;
   onCancel: () => void;
   onConfirm: () => void;
 }) {
@@ -6496,6 +6587,11 @@ function DeleteBookingDialog({
             </p>
           </div>
         </div>
+        {error ? (
+          <div className="mt-4 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700">
+            {error}
+          </div>
+        ) : null}
         <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <button
             type="button"

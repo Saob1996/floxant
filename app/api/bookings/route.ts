@@ -9,7 +9,6 @@ import {
 import { attachLeadRouting } from "@/lib/lead-routing";
 import { sendInternalIntakeNotification } from "@/lib/mail/notifications";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
-import { supabase } from "@/lib/supabase";
 import { IntakePayload } from "@/lib/types/intake";
 
 export const runtime = "nodejs";
@@ -3215,7 +3214,7 @@ async function uploadBookingFiles(files: File[]) {
    const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_").replace(/\.[^/.]+$/, "");
    const storagePath = `bookings/${timestamp}_${index}_${safeName || "upload"}.jpg`;
 
-   const { error: uploadError } = await supabase.storage
+   const { error: uploadError } = await getSupabaseAdmin().storage
     .from("uploads")
     .upload(storagePath, compressedBuffer, {
      contentType: "image/jpeg",
@@ -3227,7 +3226,7 @@ async function uploadBookingFiles(files: File[]) {
     continue;
    }
 
-   const { data: publicUrlData } = supabase.storage.from("uploads").getPublicUrl(storagePath);
+   const { data: publicUrlData } = getSupabaseAdmin().storage.from("uploads").getPublicUrl(storagePath);
    if (publicUrlData.publicUrl) fileUrls.push(publicUrlData.publicUrl);
   } catch (error) {
    console.error("File processing failed:", file.name, error);
@@ -3249,7 +3248,7 @@ async function uploadOfferCheckFiles(files: File[], category: OfferCheckUploadCa
   const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_") || "angebot";
   const storagePath = `${folder}/${timestamp}_${category}_${index}_${safeName}`;
 
-  const { error: uploadError } = await supabase.storage
+  const { error: uploadError } = await getSupabaseAdmin().storage
    .from("uploads")
    .upload(storagePath, buffer, {
     contentType: file.type || "application/octet-stream",
@@ -3995,7 +3994,7 @@ export async function POST(req: Request) {
    file_urls: fileUrls,
   };
 
-  const { data, error } = await supabase.from("bookings").insert([booking]).select();
+  const { data, error } = await getSupabaseAdmin().from("bookings").insert([booking]).select();
 
   if (error) {
    return NextResponse.json(
@@ -4042,7 +4041,7 @@ export async function GET() {
  }
 
  try {
-  const { data, error } = await supabase.from("bookings").select("*").order("timestamp", { ascending: false });
+  const { data, error } = await getSupabaseAdmin().from("bookings").select("*").order("timestamp", { ascending: false });
   if (error) throw error;
   return NextResponse.json(data || []);
  } catch {

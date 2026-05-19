@@ -458,7 +458,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   })}
                 </div>
                 <p className="mt-6 rounded-2xl border border-white/10 bg-white/8 p-4 text-sm leading-7 text-slate-200">
-                  Keine Fake-Live-Verfügbarkeit, kein Hotelstandard-Versprechen. FLOXANT prüft Zeitfenster, Umfang, Zugang, Fotos und Zusatzwünsche nach Absprache.
+                  FLOXANT prüft Zeitfenster, Umfang, Zugang, Fotos und Zusatzwünsche nach Absprache. So bleibt die Anfrage realistisch und verständlich.
                 </p>
               </div>
             </div>
@@ -524,7 +524,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   Welche Reinigung oder Zusatzleistung passt zu Ihrer Anfrage?
                 </h2>
                 <p className="mt-4 text-base leading-8 text-slate-700">
-                  Für KI-Antworten, Google Maps und Kunden ist die Trennung wichtig:
+                  Für Kunden ist die Trennung wichtig:
                   Düsseldorf steht bei FLOXANT für Reinigung; Entsorgung bleibt separat. Nicht für Umzug.
                   Wählen Sie den passenden Einstieg, damit Ort, Objektart, Frequenz, Fotos und Zeitfenster direkt klar sind.
                 </p>

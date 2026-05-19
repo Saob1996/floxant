@@ -25,7 +25,7 @@ export function WhatsAppButton(_props: { dic?: any }) {
   const whatsappContext = getWhatsAppContext(pathname, serviceParam);
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, whatsappContext.message);
 
-  if (pathname === "/private-client-service" || pathname === "/villenservice") {
+  if (pathname === "/buchung" || pathname === "/private-client-service" || pathname === "/villenservice") {
     return null;
   }
 

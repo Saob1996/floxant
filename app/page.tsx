@@ -281,7 +281,7 @@ const directEntryPaths = [
   { label: "Schadensbegrenzung", href: "/schadensbegrenzung", description: "Rettungsmodus, wenn Umzug, Reinigung, Entruempelung oder Uebergabe kurzfristig kippen und offene Punkte schnell geprueft werden muessen." },
   { label: "Plan-B-Service", href: "/plan-b-service", description: "Backup-Control fuer Kunden mit unsicherem Ablauf: Ersatztransport, Reinigungs-Backup, Raeumungs-Backup oder Uebergabe-Backup nach Verfuegbarkeit pruefen." },
   { label: "Keller-/Muellraum-Rettung", href: "/keller-muellraum-rettung-regensburg", description: "Objektflaechen fuer Hausverwaltung, WEG, Vermieter und Gewerbe: Fotos, Freigabe, Zugang, Raeumung, Entsorgung und Reinigung pruefen." },
-  { label: "FLOXANT Einsatzradar", href: "/einsatzradar-regensburg", description: "Typische Einsatzarten und grobe Servicezonen im Raum Regensburg ansehen: ohne Kundendaten, ohne exakte Adressen, ohne Fake-Live-Karte." },
+  { label: "FLOXANT Einsatzradar", href: "/einsatzradar-regensburg", description: "Typische Einsatzarten und grobe Servicezonen im Raum Regensburg ansehen: ohne Kundendaten und ohne exakte Adressen." },
   { label: "Rückfahrt-Börse", href: "/rueckfahrt-boerse", description: "Strecke mit Start, Ziel, Datum, Umfang und Flexibilität eintragen und Rückfahrt/Leerfahrt nach Verfügbarkeit prüfen lassen." },
   { label: "Uebergabeakte", href: "/uebergabeakte", description: "FLOXANT Uebergabe-Dossier 2.0 fuer Auszug, Reinigung, Fotos, Schluesselstatus, offene Hinweise und Aktenstatus nach Absprache." },
   { label: "Buchung", href: "/buchung", description: "Direkter Anfrageweg für Kunden, die ihren Fall sofort an FLOXANT senden möchten." },

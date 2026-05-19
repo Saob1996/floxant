@@ -164,7 +164,7 @@ export default function RueckfahrtBoersePage() {
                 </div>
                 <div className="mt-5 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-5">
                   <MapPinned className="h-7 w-7 text-emerald-700" />
-                  <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Nachfrage-System statt Fake-Live-Karte</h2>
+                  <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Strecke prüfen statt lange raten</h2>
                   <p className="mt-3 text-sm leading-7 text-slate-700">
                     FLOXANT veröffentlicht keine erfundenen Touren. Ihre Strecke wird praktisch geprüft:
                     Route, Termin, Umfang, Fotos, Zugang und mögliche freie Kapazität müssen zusammenpassen.

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  BadgeCheck,
   Building2,
   CheckCircle2,
   ClipboardCheck,
+  Clock3,
   MapPin,
   MessageCircle,
   Sparkles,
@@ -32,16 +34,16 @@ const duesseldorfServices = [
 
 export function ServiceRequestCompass() {
   const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
-    "Hallo FLOXANT, ich moechte eine Anfrage stellen. Region, Service, Ort und Termin:",
+    "Hallo FLOXANT, ich möchte eine Anfrage stellen. Region, Leistung, Ort und Termin:",
   )}`;
 
   return (
     <section id="anfrage-kompass" className="flox-section flox-section-tight content-auto py-8">
       <div className="flox-shell">
-        <div className="flox-panel-frame overflow-hidden p-4 md:p-6 lg:p-7">
+        <div className="flox-panel-frame flox-service-compass-board overflow-hidden p-4 md:p-6 lg:p-7">
           <div className="grid gap-5 xl:grid-cols-[0.84fr_1.16fr] xl:items-stretch">
-            <div className="flox-panel-dark relative overflow-hidden p-5 text-white md:p-7">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.22),transparent_34%),radial-gradient(circle_at_84%_72%,rgba(16,185,129,0.12),transparent_34%)]" />
+            <div className="flox-panel-dark flox-service-compass-primer relative overflow-hidden p-5 text-white md:p-7">
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.24),transparent_34%),radial-gradient(circle_at_84%_72%,rgba(16,185,129,0.18),transparent_34%)]" />
               <div className="relative">
                 <div className="flox-tag-dark">
                   <ClipboardCheck className="h-4 w-4" />
@@ -61,15 +63,20 @@ export function ServiceRequestCompass() {
                     ["24h online", "Anfrage jederzeit senden, Rückmeldung nach Prüfung."],
                     ["Fotos helfen", "Zugang, Zustand, Menge und Fläche schneller klären."],
                     ["Kein Umzug Düsseldorf", "Düsseldorf bleibt Reinigung und passende Ergänzung."],
-                    ["Dashboard-ready", "Klick, Anfrage und Rechner bleiben intern nachvollziehbar."],
-                  ].map(([label, text]) => (
-                    <div key={label} className="rounded-[1.15rem] border border-white/10 bg-white/8 p-3">
+                    ["Sauber angekommen", "Ihre Anfrage bleibt sortiert und gut nachvollziehbar."],
+                  ].map(([label, text], index) => {
+                    const SignalIcon = [Clock3, Sparkles, BadgeCheck, ClipboardCheck][index] ?? CheckCircle2;
+
+                    return (
+                    <div key={label} className="flox-service-compass-signal rounded-[1.15rem] border border-white/10 bg-white/8 p-3">
+                      <SignalIcon className="mb-2 h-4 w-4 text-cyan-100" />
                       <p className="text-[10px] font-black uppercase tracking-[0.16em] text-cyan-100">
                         {label}
                       </p>
                       <p className="mt-2 text-xs leading-5 text-slate-300">{text}</p>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -158,7 +165,7 @@ function ServiceRegionColumn({
   source: string;
 }) {
   return (
-    <div className="flox-action-card flex h-full flex-col p-5">
+    <div className="flox-action-card flox-service-region-column flex h-full flex-col p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="flox-overline text-blue-700">{eyebrow}</div>
@@ -175,12 +182,12 @@ function ServiceRegionColumn({
           <Link
             key={service.href}
             href={service.href}
-            className="group grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-[1rem] border border-slate-200 bg-white px-3 py-3 text-left transition hover:border-blue-200 hover:bg-blue-50/70"
+            className="flox-service-region-link group grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-[1rem] border border-slate-200 bg-white px-3 py-3 text-left transition hover:border-blue-200 hover:bg-blue-50/70"
             data-event="click_service_compass_link"
             data-source={source}
             data-label={service.label}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-[0.8rem] bg-slate-100 text-slate-700">
+            <span className="flox-service-region-link-icon flex h-8 w-8 items-center justify-center rounded-[0.8rem] bg-slate-100 text-slate-700">
               {service.label.includes("Ent") ? (
                 <Trash2 className="h-4 w-4" />
               ) : service.label.includes("B2B") || service.label.includes("Gewerbe") ? (

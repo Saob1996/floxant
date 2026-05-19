@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import {
  buildDocumentFromInput,
  getDocumentTypeLabel,
@@ -38,13 +38,13 @@ async function requireSession() {
 }
 
 async function loadBooking(id: string) {
- const { data, error } = await supabase.from("bookings").select("*").eq("id", id).single();
+ const { data, error } = await getSupabaseAdmin().from("bookings").select("*").eq("id", id).single();
  if (error || !data) return null;
  return data as BookingRecord;
 }
 
 async function loadAllDocuments() {
- const { data } = await supabase.from("bookings").select("details");
+ const { data } = await getSupabaseAdmin().from("bookings").select("details");
  return ((data || []) as Array<{ details?: IntakePayload }>).flatMap((entry) => entry.details?.admin?.docs || []);
 }
 
@@ -172,7 +172,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ bookin
    },
   };
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabaseAdmin()
    .from("bookings")
    .update({
     status: booking.service === "manual_document" ? "document_draft" : booking.status,

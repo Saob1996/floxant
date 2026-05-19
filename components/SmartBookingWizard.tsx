@@ -167,8 +167,44 @@ interface BookingState {
   upgrades: string[];
 }
 
+type RequestFlowVariant = "express" | "budget" | "upload" | "detailed";
+
+type WizardStepItem = {
+  number: number;
+  displayNumber: number;
+  title: string;
+};
+
+function getRequestFlowVariant(entry: string, urgency: string): RequestFlowVariant {
+  const value = `${entry} ${urgency}`;
+
+  if (
+    value.includes("express") ||
+    value.includes("24h") ||
+    value.includes("sofort") ||
+    value.includes("schaden") ||
+    value.includes("plan_b")
+  ) {
+    return "express";
+  }
+
+  if (value.includes("budget") || value.includes("preis") || value.includes("rechner") || value.includes("kosten")) {
+    return "budget";
+  }
+
+  if (value.includes("foto") || value.includes("upload") || value.includes("angebot")) {
+    return "upload";
+  }
+
+  return "detailed";
+}
+
 interface SmartBookingWizardProps {
   dict: any;
+  initialService?: ServiceType;
+  initialRegion?: "regensburg-bayern" | "duesseldorf";
+  initialEntry?: string;
+  forceVisible?: boolean;
 }
 
 const wizardServiceMeta: Record<
@@ -217,15 +253,19 @@ const wizardServiceMeta: Record<
   },
 };
 
-function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
+function SmartBookingWizardInner({ dict, initialService, initialRegion, initialEntry }: SmartBookingWizardProps) {
   const [initialized, setInitialized] = useState(false);
   const searchParams = useSearchParams();
   const queryService = searchParams.get("service");
   const queryRegion = [searchParams.get("region"), searchParams.get("city"), searchParams.get("standort")]
     .filter(Boolean)
     .join(" ");
-  const isDusseldorfQueryContext = looksLikeDusseldorf(queryRegion);
-  const queryServicePreset = useMemo(() => normalizeBookingService(queryService), [queryService]);
+  const isDusseldorfQueryContext =
+    initialRegion === "duesseldorf" || (!initialRegion && looksLikeDusseldorf(queryRegion));
+  const queryServicePreset = useMemo(
+    () => normalizeBookingService(initialService || queryService),
+    [initialService, queryService],
+  );
   const isDusseldorfDisposalQueryContext =
     isDusseldorfQueryContext && queryServicePreset === "entsorgung";
   const isDusseldorfCleaningQueryContext =
@@ -241,11 +281,19 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const queryGclid = searchParams.get("gclid") || "";
   const queryUrgency = searchParams.get("urgency") || searchParams.get("dringlichkeit") || "";
   const queryPreferredContact = searchParams.get("contact") || searchParams.get("kontakt") || "";
+  const queryEntry = initialEntry || searchParams.get("entry") || searchParams.get("weg") || "";
   const queryReferralCode =
     searchParams.get("ref") || searchParams.get("partner_code") || searchParams.get("referral_code") || "";
   const normalizedSource = normalizeTrackingValue(queryUtmSource || storeLead?.utmSource || "");
   const normalizedCampaign = normalizeTrackingValue(queryUtmCampaign || storeLead?.utmCampaign || "");
   const normalizedUrgency = normalizeTrackingValue(queryUrgency);
+  const normalizedEntry = normalizeTrackingValue(queryEntry);
+  const requestFlow = getRequestFlowVariant(normalizedEntry, normalizedUrgency);
+  const isExpressFlow = requestFlow === "express";
+  const isBudgetFlow = requestFlow === "budget";
+  const isUploadFlow = requestFlow === "upload";
+  const isDetailedFlow = requestFlow === "detailed";
+  const shouldSkipUpgrades = !isDetailedFlow;
   const isGoogleMapsContext = ["google_maps", "google_business_profile", "gbp", "maps"].some(
     (value) => normalizedSource.includes(value),
   );
@@ -255,17 +303,17 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
 
   const defaultBooking = {
     steps: {
-      service: "Service",
-      details: "Details",
-      upgrades: "Zusatzmodule",
+      service: "Leistung",
+      details: "Eckdaten",
+      upgrades: "Extras",
       contact: "Kontakt",
     },
     headings: {
-      service_selection: "Leistung auswählen",
-      service_subtitle: "Wählen Sie den passenden Einstieg für Ihre Anfrage",
+      service_selection: "Womit dürfen wir starten?",
+      service_subtitle: "Wählen Sie Ihre Hauptleistung.",
       details_prefix: "Angaben zu",
-      upgrades_title: "Passende Zusatzmodule",
-      upgrades_subtitle: "Ergänzen Sie nur, was für Ihren Auftrag wirklich relevant ist",
+      upgrades_title: "Passende Extras",
+      upgrades_subtitle: "Ergänzen Sie nur, was für Ihren Auftrag wirklich relevant ist.",
       summary_title: "Kontaktdaten",
       summary_subtitle: "Wir melden uns passend zu Ihrer Anfrage",
       success_title: "Anfrage gesendet",
@@ -274,7 +322,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     },
     services: {
       umzug: { label: "Umzug", desc: "Wohnungs- und Firmenumzug" },
-      reinigung: { label: "Reinigung", desc: "Objekt, Zustand, Termin und Budget klaeren" },
+      reinigung: { label: "Reinigung", desc: "Objekt, Zustand, Termin und Budget klären" },
       entsorgung: { label: "Entrümpelung", desc: "Räumung und Entsorgung" },
     },
     form: {
@@ -358,14 +406,21 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [detailsExpanded, setDetailsExpanded] = useState(false);
+  const [contactExpanded, setContactExpanded] = useState(() => isDetailedFlow || isUploadFlow);
+  const [todayInputValue, setTodayInputValue] = useState("");
+
+  useEffect(() => {
+    setTodayInputValue(new Date().toISOString().split("T")[0]);
+  }, []);
 
   useEffect(() => {
     setInitialized(true);
-    const presetService = isDusseldorfDisposalQueryContext
+    const presetService = initialService || (isDusseldorfDisposalQueryContext
       ? "entsorgung"
       : isDusseldorfCleaningQueryContext
         ? "reinigung"
-        : queryServicePreset || (storeService as ServiceType);
+        : queryServicePreset || (storeService as ServiceType));
 
     if (presetService) {
       setState((prev) => ({
@@ -394,21 +449,47 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   }, [
     isDusseldorfCleaningQueryContext,
     isDusseldorfDisposalQueryContext,
+    initialService,
     queryServicePreset,
     storeBase,
     storeLead,
     storeService,
   ]);
 
-  const steps = useMemo(
-    () => [
-      { number: 1, title: t?.steps?.service || "Service" },
-      { number: 2, title: t?.steps?.details || "Details" },
-      { number: 3, title: t?.steps?.upgrades || "Extras" },
-      { number: 4, title: t?.steps?.contact || "Kontakt" },
-    ],
-    [t]
-  );
+  useEffect(() => {
+    if (isDetailedFlow || isUploadFlow) {
+      setContactExpanded(true);
+      return;
+    }
+    setDetailsExpanded(false);
+    setContactExpanded(false);
+  }, [isDetailedFlow, isUploadFlow]);
+
+  const steps = useMemo<WizardStepItem[]>(() => {
+    const detailTitle =
+      requestFlow === "express"
+        ? "2 Fragen"
+        : requestFlow === "budget"
+          ? "Preisrahmen"
+          : requestFlow === "upload"
+            ? "Prüfung"
+            : t?.steps?.details || "Details";
+
+    if (shouldSkipUpgrades) {
+      return [
+        { number: 1, displayNumber: 1, title: t?.steps?.service || "Service" },
+        { number: 2, displayNumber: 2, title: detailTitle },
+        { number: 4, displayNumber: 3, title: t?.steps?.contact || "Kontakt" },
+      ];
+    }
+
+    return [
+      { number: 1, displayNumber: 1, title: t?.steps?.service || "Service" },
+      { number: 2, displayNumber: 2, title: detailTitle },
+      { number: 3, displayNumber: 3, title: t?.steps?.upgrades || "Extras" },
+      { number: 4, displayNumber: 4, title: t?.steps?.contact || "Kontakt" },
+    ];
+  }, [requestFlow, shouldSkipUpgrades, t]);
 
   const isDusseldorfServiceConflict =
     state.service !== "reinigung" &&
@@ -435,9 +516,6 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     state.service &&
     germanizeDeep(t?.services?.[state.service]?.label || wizardServiceMeta[state.service].label);
 
-  const currentServiceDrivers =
-    state.service ? germanizeDeep(wizardServiceMeta[state.service].drivers) : [];
-
   const primaryLocationLabel =
     state.service === "reinigung"
       ? "Adresse / Objektort"
@@ -452,47 +530,235 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const briefingLabels =
     state.service === "reinigung"
       ? {
-          scope: "Fläche / Reinigungsart optional",
+          scope: "Fläche / Reinigungsart falls bekannt",
           scopePlaceholder: "z. B. 75 m², Endreinigung, Küche/Bad/Fenster",
-          access: "Zustand / Zugang optional",
+          access: "Zustand / Zugang falls bekannt",
           accessPlaceholder: "z. B. leerstehend, möbliert, starke Verschmutzung",
-          budget: "Budget / Preisrahmen optional",
+          budget: "Budget / Preisrahmen falls bekannt",
         }
       : state.service === "entsorgung"
         ? {
-            scope: "Umfang / Objektart optional",
+            scope: "Umfang / Objektart falls bekannt",
             scopePlaceholder: "z. B. Keller, Garage, 12 m³, Sperrmüll",
-            access: "Etage / Zugang optional",
+            access: "Etage / Zugang falls bekannt",
             accessPlaceholder: "z. B. 2. OG ohne Aufzug, Innenhof, kurzer Laufweg",
-            budget: "Budget / Preisrahmen optional",
+            budget: "Budget / Preisrahmen falls bekannt",
           }
         : state.service === "leerfahrt"
           ? {
-              scope: "Strecke / Umfang optional",
-              scopePlaceholder: "z. B. Regensburg -> Muenchen, 8 Kartons, 1 Sofa",
-              access: "Terminflexibilitaet / Zugang optional",
+              scope: "Strecke / Umfang falls bekannt",
+              scopePlaceholder: "z. B. Regensburg -> München, 8 Kartons, 1 Sofa",
+              access: "Terminflexibilität / Zugang falls bekannt",
               accessPlaceholder: "z. B. flexibel diese Woche, EG, kurzer Laufweg",
-              budget: "Budget / Preisrahmen optional",
+              budget: "Budget / Preisrahmen falls bekannt",
             }
           : {
-            scope: "Volumen / Wohnungsgröße optional",
+            scope: "Volumen / Wohnungsgröße falls bekannt",
             scopePlaceholder: "z. B. 2 Zimmer, 45 Kartons, größere Möbel",
-            access: "Etage / Aufzug / Halteverbot optional",
+            access: "Etage / Aufzug / Halteverbot falls bekannt",
             accessPlaceholder: "z. B. 3. OG, Aufzug ja, Halteverbot prüfen",
-            budget: "Budget / Preisrahmen optional",
+            budget: "Budget / Preisrahmen falls bekannt",
           };
+
+  const flowDetailsIntro = useMemo(() => {
+    if (isExpressFlow) {
+      return {
+        kicker: "Express-Start",
+        title: `${currentServiceLabel || "Anfrage"} schnell einordnen`,
+        subtitle: "Nur Ort und Anliegen. Danach reicht Name und Telefon für den Rückruf.",
+        badge: "2 kurze Fragen",
+        scopeLabel: "Was muss schnell geklärt werden?",
+        scopePlaceholder: "z. B. heute noch Rückruf, Termin kippt, Übergabe steht an",
+      };
+    }
+
+    if (isBudgetFlow) {
+      return {
+        kicker: "Kostenrahmen",
+        title: "Kosten grob einschätzen lassen",
+        subtitle: "Ort, Umfang und Preisgefühl reichen für eine erste realistische Einordnung.",
+        badge: "3 Fragen",
+        scopeLabel: briefingLabels.scope,
+        scopePlaceholder: briefingLabels.scopePlaceholder,
+      };
+    }
+
+    if (isUploadFlow) {
+      return {
+        kicker: "Prüfung",
+        title: "Fotos oder Angebot richtig zuordnen",
+        subtitle: "Ort und kurzer Kontext reichen. Die Dateien ergänzen Sie im letzten Schritt.",
+        badge: "2 Fragen",
+        scopeLabel: "Was sollen wir prüfen?",
+        scopePlaceholder: "z. B. vorhandenes Angebot, Fotos vom Objekt, unsichere Menge",
+      };
+    }
+
+    return {
+      kicker: "Anfrage",
+      title: `${currentServiceLabel || "Service"} sauber vorbereiten`,
+      subtitle: "Erst der wichtigste Ort. Weitere Details kommen Schritt für Schritt.",
+      badge: "geführt",
+      scopeLabel: briefingLabels.scope,
+      scopePlaceholder: briefingLabels.scopePlaceholder,
+    };
+  }, [
+    briefingLabels.access,
+    briefingLabels.budget,
+    briefingLabels.scope,
+    briefingLabels.scopePlaceholder,
+    currentServiceLabel,
+    isBudgetFlow,
+    isExpressFlow,
+    isUploadFlow,
+  ]);
+
+  const showDestinationField =
+    isDetailedFlow && (state.service === "umzug" || state.service === "leerfahrt");
+  const showFlowScopeField = !isDetailedFlow;
+  const showFlowBudgetField = isBudgetFlow;
+  const optionalDetailFieldCount = 3;
+
+  const detailsGuide = useMemo(() => {
+    if (isExpressFlow) {
+      return {
+        title: "Schnell starten, Details später.",
+        required: "Ort und kurzer Hinweis reichen für den ersten Rückruf.",
+        optional: "Mehr Angaben sind nicht nötig, wenn es schnell gehen soll.",
+      };
+    }
+
+    if (isBudgetFlow) {
+      return {
+        title: "Preisrahmen ohne langes Formular.",
+        required: "Ort, Umfang und Budget reichen für die erste Einordnung.",
+        optional: "Fotos und Nachricht können später ergänzt werden.",
+      };
+    }
+
+    if (isUploadFlow) {
+      return {
+        title: "Erst zuordnen, dann Dateien senden.",
+        required: "Ort und Prüfgrund reichen, die Dateien kommen im Kontakt-Schritt.",
+        optional: "Weitere Angaben können im Rückruf geklärt werden.",
+      };
+    }
+
+    if (state.service === "reinigung") {
+      return {
+        title: "Erst Objekt und Termin, Details danach.",
+        required: "Adresse oder Objektort reicht als Pflichtangabe.",
+        optional: "Fläche, Zustand, Fotos und Budget können Sie ergänzen, wenn Sie es wissen.",
+      };
+    }
+
+    if (state.service === "entsorgung") {
+      return {
+        title: "Erst Abholort, dann Menge und Zugang.",
+        required: "Der Einsatzort reicht, damit FLOXANT den Fall zuordnen kann.",
+        optional: "Menge, Etage, Fotos und Budget machen die Rückmeldung schneller.",
+      };
+    }
+
+    if (state.service === "leerfahrt") {
+      return {
+        title: "Erst Richtung nennen, Details danach.",
+        required: "Startort oder Abholort reicht als erster Fixpunkt.",
+        optional: "Zielrichtung, Terminflexibilität und Ladeumfang helfen bei freier Kapazität.",
+      };
+    }
+
+    return {
+      title: "Erst Auszugsort, dann Ziel, Datum und Umfang.",
+      required: "Startadresse oder Ort reicht, um die Anfrage zu beginnen.",
+      optional: "Zielort, Datum, Wohnungsgröße, Zugang und Budget können Sie danach ergänzen.",
+    };
+  }, [isBudgetFlow, isExpressFlow, isUploadFlow, state.service]);
+
+  const contactReadiness = useMemo(
+    () => {
+      const email = formData.email.trim();
+
+      return [
+        {
+          label: "Name",
+          ready: formData.name.trim().length >= 2,
+          text: "damit wir Sie richtig zuordnen",
+        },
+        {
+          label: "Telefon",
+          ready: formData.phone.trim().length >= 6,
+          text: "für schnelle Rückfragen",
+        },
+        {
+          label: "E-Mail",
+          ready: !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+          text: "optional, aber hilfreich",
+        },
+      ];
+    },
+    [formData.email, formData.name, formData.phone],
+  );
+
+  const visibleContactReadiness = useMemo(
+    () =>
+      contactExpanded
+        ? contactReadiness
+        : contactReadiness.filter((item) => item.label !== "E-Mail"),
+    [contactExpanded, contactReadiness],
+  );
+
+  const contactIntro = useMemo(() => {
+    if (isExpressFlow) {
+      return {
+        kicker: "Express-Rückruf",
+        title: "Nur Name und Telefon.",
+        subtitle: "Damit wir schnell nachfragen können. E-Mail, Fotos und Nachricht bleiben optional.",
+        badge: "schnell",
+        expandLabel: "Nachricht oder Fotos ergänzen",
+      };
+    }
+
+    if (isBudgetFlow) {
+      return {
+        kicker: "Rückmeldung zum Preisrahmen",
+        title: "Kontakt für die Einschätzung.",
+        subtitle: "Name und Telefon reichen. Fotos oder eine kurze Nachricht können den Preisrahmen verbessern.",
+        badge: "mittel",
+        expandLabel: "E-Mail, Nachricht oder Fotos ergänzen",
+      };
+    }
+
+    if (isUploadFlow) {
+      return {
+        kicker: "Fotos / Angebot",
+        title: "Dateien und Kontakt senden.",
+        subtitle: "Laden Sie Fotos oder ein vorhandenes Angebot hoch, damit FLOXANT sauber prüfen kann.",
+        badge: "Prüfung",
+        expandLabel: "Dateien anzeigen",
+      };
+    }
+
+    return {
+      kicker: "Letzter Schritt",
+      title: "Kontakt und Details senden.",
+      subtitle: "Je klarer die Angaben sind, desto gezielter fällt die Rückmeldung aus.",
+      badge: "detailliert",
+      expandLabel: "Optionale Angaben anzeigen",
+    };
+  }, [isBudgetFlow, isExpressFlow, isUploadFlow]);
 
   const nextStep = () => {
     setState((prev) => ({
       ...prev,
-      step: Math.min(prev.step + 1, 4),
+      step: prev.step === 2 && shouldSkipUpgrades ? 4 : Math.min(prev.step + 1, 4),
     }));
   };
 
   const prevStep = () => {
     setState((prev) => ({
       ...prev,
-      step: Math.max(prev.step - 1, 1),
+      step: prev.step === 4 && shouldSkipUpgrades ? 2 : Math.max(prev.step - 1, 1),
     }));
   };
 
@@ -520,6 +786,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     setIsSuccess(false);
     setSubmitError("");
     setIsSubmitting(false);
+    setDetailsExpanded(false);
+    setContactExpanded(isDetailedFlow || isUploadFlow);
     setMode("selection");
   };
 
@@ -590,7 +858,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
     if (isSubmitting) return;
 
     if (!state.service || !isStepTwoValid || !isContactValid) {
-      setSubmitError(t?.error?.generic || "Bitte pruefen Sie die Angaben und ergaenzen Sie Name und Telefon.");
+      setSubmitError(t?.error?.generic || "Bitte prüfen Sie die Angaben und ergänzen Sie Name und Telefon.");
       return;
     }
 
@@ -603,6 +871,16 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       ? "duesseldorf_disposal_booking"
       : isDusseldorfCleaningQueryContext
         ? "duesseldorf_cleaning_booking"
+        : normalizedEntry.includes("budget")
+          ? "booking_budget_request"
+        : normalizedEntry.includes("express")
+          ? "booking_express_check"
+        : normalizedEntry.includes("foto") || normalizedEntry.includes("upload")
+          ? "booking_photo_upload_request"
+        : normalizedEntry.includes("schaden") || normalizedEntry.includes("plan_b")
+          ? "booking_plan_b_request"
+        : normalizedEntry.includes("keller") || normalizedEntry.includes("muellraum")
+          ? "booking_object_area_request"
         : state.service === "leerfahrt" || normalizedCampaign.includes("leerfahrt")
           ? "return_trip_booking"
           : normalizedUrgency.includes("24h") || normalizedSource.includes("homepage_24h")
@@ -643,6 +921,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       conversion_last_channel: conversionJourney?.lastChannel || "",
       conversion_last_intent: conversionJourney?.lastIntent || "",
       conversion_last_priority: conversionJourney?.lastPriority || "",
+      entry: normalizedEntry || "direkt",
       service: state.service,
       region: regionPreset || "regensburg_bayern",
       lead_source: bookingSource,
@@ -660,6 +939,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         type: state.service,
         source: bookingSource,
         entryPoint,
+        entry: normalizedEntry || "direkt",
         presetFromUrl: state.service,
         regionPreset,
       },
@@ -737,6 +1017,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         createdAt,
         intakeVersion: "1.3.0",
         source: bookingSource,
+        entry: normalizedEntry || "direkt",
         servicePresetFromUrl: state.service,
         regionPreset,
         attribution,
@@ -746,6 +1027,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           landingPage,
           referrer,
           leadSource: bookingSource,
+          entry: normalizedEntry || "direkt",
           bookingMode: "smart_wizard",
           regionPreset,
           hasUploads: files.length > 0,
@@ -784,6 +1066,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       submitData.append("region", regionPreset);
     }
     submitData.append("leadSource", bookingSource);
+    submitData.append("entry", normalizedEntry || "direkt");
     submitData.append("landingPage", attribution.landing_page);
     submitData.append("referrer", attribution.referrer);
     submitData.append("utmSource", attribution.utm_source);
@@ -888,8 +1171,8 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       <div className="space-y-5">
         {isDusseldorfDisposalQueryContext ? (
           <div className="rounded-[1.35rem] border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold leading-6 text-orange-950">
-            Dieser Duesseldorf-Einstieg ist auf Entsorgung ausgerichtet: Umfang,
-            Zugang, Fotos und Budget helfen bei der Pruefung.
+            Dieser Düsseldorf-Einstieg ist auf Entsorgung ausgerichtet: Umfang,
+            Zugang, Fotos und Budget helfen bei der Prüfung.
           </div>
         ) : null}
         {isDusseldorfCleaningQueryContext ? (
@@ -931,13 +1214,14 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             <button
               key={option.id}
               type="button"
-              onClick={() =>
+              onClick={() => {
+                setDetailsExpanded(false);
                 setState((prev) => ({
                   ...prev,
                   service: option.id as ServiceType,
                   step: 2,
-                }))
-              }
+                }));
+              }}
               className="calc-option-card group rounded-[1.9rem] p-7 text-start"
               data-event={`select_service_${option.id === "entsorgung" ? "entruempelung" : option.id}`}
               data-source="booking_wizard"
@@ -970,7 +1254,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               Eigener Anfrageweg
             </div>
             <p className="mt-1 text-sm leading-6 text-slate-600">
-              Sie haben einen festen Preisrahmen? Dann nutzen Sie den separaten Budget-Weg.
+              Sie haben eine feste Preisvorstellung? Dann senden Sie den Kostenrahmen direkt mit.
             </p>
           </div>
           <Link
@@ -979,7 +1263,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             data-event="submit_budget_request"
             data-source="booking_wizard"
           >
-            Budget nennen
+            Kostenrahmen senden
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -990,18 +1274,32 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const renderDetails = () => (
     <div className="mx-auto max-w-4xl space-y-8">
       <div className="space-y-3 text-center">
-        <div className="calc-kicker justify-center">Eckdaten für die Einschätzung</div>
+        <div className="calc-kicker justify-center">{flowDetailsIntro.kicker}</div>
         <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
-          {t?.headings?.details_prefix || "Angaben zu"} {currentServiceLabel}
+          {flowDetailsIntro.title}
         </h3>
         <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-500">
-          Geben Sie die wichtigsten Eckdaten an. Daraus entsteht eine klare Grundlage für
-          Rückmeldung, Termin und nächsten Schritt.
+          {flowDetailsIntro.subtitle}
         </p>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
-        <div className="space-y-6">
+      <div className="space-y-6">
+          <div className="rounded-[1.4rem] border border-blue-100 bg-blue-50/70 p-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  Nur das Wichtigste
+                </p>
+                <h4 className="mt-1 text-base font-black text-slate-950">{detailsGuide.title}</h4>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{detailsGuide.required}</p>
+              </div>
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-[11px] font-black text-emerald-700">
+                <CheckCircle2 className="h-4 w-4" />
+                {flowDetailsIntro.badge}
+              </span>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FieldBox
               label={primaryLocationLabel}
@@ -1022,9 +1320,9 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               />
             </FieldBox>
 
-            {(state.service === "umzug" || state.service === "leerfahrt") && (
+            {showDestinationField ? (
               <FieldBox
-                label={`${state.service === "leerfahrt" ? "Zielort / Richtung" : t?.form?.end_address || "Zieladresse"} optional`}
+                label={`${state.service === "leerfahrt" ? "Zielort / Richtung" : t?.form?.end_address || "Zieladresse"} falls bekannt`}
                 icon={<MapPin className="h-4 w-4" />}
                 required={false}
               >
@@ -1042,29 +1340,86 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                   }
                 />
               </FieldBox>
-            )}
+            ) : null}
+
+            {showFlowScopeField ? (
+              <FieldBox
+                label={flowDetailsIntro.scopeLabel}
+                icon={isExpressFlow ? <MessageSquare className="h-4 w-4" /> : <PackageOpen className="h-4 w-4" />}
+              >
+                <input
+                  value={state.details.scope}
+                  onChange={(e) =>
+                    setState((prev) => ({
+                      ...prev,
+                      details: { ...prev.details, scope: e.target.value },
+                    }))
+                  }
+                  className="calc-input h-11"
+                  placeholder={flowDetailsIntro.scopePlaceholder}
+                />
+              </FieldBox>
+            ) : null}
+
+            {showFlowBudgetField ? (
+              <FieldBox label={briefingLabels.budget} icon={<Clock className="h-4 w-4" />}>
+                <input
+                  value={state.details.budget}
+                  onChange={(e) =>
+                    setState((prev) => ({
+                      ...prev,
+                      details: { ...prev.details, budget: e.target.value },
+                    }))
+                  }
+                  className="calc-input h-11"
+                  placeholder="z. B. 800 EUR, realistisch prüfen"
+                  data-event="submit_budget_request"
+                  data-source="booking_wizard_budget_field"
+                />
+              </FieldBox>
+            ) : null}
           </div>
 
-          <FieldBox
-            label={`${t?.form?.date || "Wunschtermin"} optional`}
-            icon={<Calendar className="h-4 w-4" />}
-            required={false}
-          >
-            <input
-              type="date"
-              min={new Date().toISOString().split("T")[0]}
-              value={state.details.date}
-              onChange={(e) =>
-                setState((prev) => ({
-                  ...prev,
-                  details: { ...prev.details, date: e.target.value },
-                }))
-              }
-              className="calc-input h-11"
-            />
-          </FieldBox>
+          {isDetailedFlow ? detailsExpanded ? (
+            <div className="space-y-6 rounded-[1.4rem] border border-slate-200 bg-white p-4">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
+                    Falls bekannt
+                  </p>
+                  <p className="mt-1 text-sm font-black leading-6 text-slate-950">
+                    {optionalDetailFieldCount} weitere Fragen, nur wenn Sie es schon wissen.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setDetailsExpanded(false)}
+                  className="inline-flex min-h-9 w-fit items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3 text-xs font-black text-slate-700 transition hover:bg-white"
+                >
+                  Kürzer anzeigen
+                </button>
+              </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <FieldBox
+                label={`${t?.form?.date || "Wunschtermin"} falls bekannt`}
+                icon={<Calendar className="h-4 w-4" />}
+                required={false}
+              >
+                <input
+                  type="date"
+                  min={todayInputValue || undefined}
+                  value={state.details.date}
+                  onChange={(e) =>
+                    setState((prev) => ({
+                      ...prev,
+                      details: { ...prev.details, date: e.target.value },
+                    }))
+                  }
+                  className="calc-input h-11"
+                />
+              </FieldBox>
+
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FieldBox label={briefingLabels.scope} icon={<PackageOpen className="h-4 w-4" />} required={false}>
               <input
                 value={state.details.scope}
@@ -1093,22 +1448,27 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               />
             </FieldBox>
           </div>
-
-          <FieldBox label={briefingLabels.budget} icon={<Clock className="h-4 w-4" />} required={false}>
-            <input
-              value={state.details.budget}
-              onChange={(e) =>
-                setState((prev) => ({
-                  ...prev,
-                  details: { ...prev.details, budget: e.target.value },
-                }))
-              }
-              className="calc-input h-11"
-              placeholder="z. B. 800 €, bitte Machbarkeit prüfen"
-              data-event="submit_budget_request"
-              data-source="booking_wizard_budget_field"
-            />
-          </FieldBox>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setDetailsExpanded(true)}
+              className="flex w-full items-center justify-between gap-4 rounded-[1.4rem] border border-slate-200 bg-white p-4 text-left transition hover:border-blue-200 hover:bg-blue-50/40"
+            >
+              <span>
+                <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
+                  Optional
+                </span>
+                <span className="mt-1 block text-sm font-black text-slate-950">
+                  Weitere {optionalDetailFieldCount} Fragen öffnen
+                </span>
+                <span className="mt-1 block text-sm font-semibold leading-6 text-slate-500">
+                  Datum, Umfang und Zugang ergänzen. Ein Ort reicht weiter für den Start.
+                </span>
+              </span>
+              <ArrowRight className="h-4 w-4 shrink-0 text-blue-700" />
+            </button>
+          ) : null}
 
           {isDusseldorfServiceConflict ? (
             <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
@@ -1129,28 +1489,6 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           </div>
         </div>
 
-        <aside className="card-premium rounded-[2rem] p-6">
-          <div className="calc-kicker">Worauf wir achten</div>
-          <h4 className="mt-4 text-xl font-bold text-slate-950">
-            {currentServiceLabel || "Ihre Anfrage"} wird sauber eingeordnet
-          </h4>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
-            Für den nächsten Schritt zählen vor allem die Punkte, die Aufwand, Team und Ablauf
-            wirklich beeinflussen.
-          </p>
-          <div className="mt-6 space-y-3">
-            {currentServiceDrivers.map((driver) => (
-              <div
-                key={driver}
-                className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/86 px-4 py-3"
-              >
-                <CheckCircle2 className="h-4 w-4 text-blue-700" />
-                <span className="text-sm font-medium text-slate-700">{driver}</span>
-              </div>
-            ))}
-          </div>
-        </aside>
-      </div>
     </div>
   );
 
@@ -1204,17 +1542,39 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
         ? item.service.includes(state.service || "")
         : item.service === state.service
     );
+    const selectedUpgradeCount = state.upgrades.length;
+    const upgradeIntro = "Wählen Sie nur, was wirklich gebraucht wird. Sonst einfach weiter.";
+    const continueLabel =
+      selectedUpgradeCount > 0
+        ? `${selectedUpgradeCount} Zusatzwunsch${selectedUpgradeCount > 1 ? "e" : ""} übernehmen`
+        : "Ohne Extras weiter";
 
     return (
       <div className="space-y-8">
         <div className="space-y-3 text-center">
-          <div className="calc-kicker justify-center">Zusatzwünsche</div>
+          <div className="calc-kicker justify-center">Optional</div>
           <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
-            {t?.headings?.upgrades_title || "Optionale Extras"}
+            Brauchen Sie noch etwas?
           </h3>
           <p className="text-slate-500">
-            {t?.headings?.upgrades_subtitle || "Ergänzen Sie Ihre Anfrage bei Bedarf"}
+            Kein Muss. Wenn nichts passt, gehen Sie direkt weiter.
           </p>
+        </div>
+
+        <div className="rounded-[1.5rem] border border-emerald-100 bg-emerald-50/60 p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700">
+                Kurze Auswahl
+              </p>
+              <p className="mt-1 text-sm font-semibold leading-6 text-emerald-950">
+                {upgradeIntro}
+              </p>
+            </div>
+            <span className="inline-flex w-fit rounded-full border border-white bg-white px-3 py-1.5 text-[11px] font-black text-emerald-800 shadow-sm">
+              {selectedUpgradeCount > 0 ? `${selectedUpgradeCount} ausgewählt` : "keine Auswahl nötig"}
+            </span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -1238,6 +1598,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                 data-active={isSelected ? "true" : "false"}
                 data-event="select_booking_upgrade"
                 data-upgrade={upgrade.id}
+                aria-pressed={isSelected}
               >
                 <div className="mb-4 flex items-start justify-between">
                   <div
@@ -1248,22 +1609,42 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                   >
                     <Icon className="h-5 w-5" />
                   </div>
-                  {isSelected ? <CheckCircle2 className="h-5 w-5 text-blue-600" /> : null}
+                  <span
+                    className={cn(
+                      "rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em]",
+                      isSelected
+                        ? "border-blue-200 bg-blue-50 text-blue-700"
+                        : "border-slate-200 bg-slate-50 text-slate-500",
+                    )}
+                  >
+                    {isSelected ? "Ausgewählt" : "Optional"}
+                  </span>
                 </div>
                 <h4 className="text-lg font-semibold text-slate-950">{upgrade.title}</h4>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{upgrade.desc}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  {upgrade.desc || "Nur auswählen, wenn dieser Punkt für Ihre Anfrage wirklich wichtig ist."}
+                </p>
               </button>
             );
           })}
         </div>
 
-        <div className="flex justify-center gap-4 pt-2">
+        <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row">
           <PremiumButton variant="ghost" onClick={prevStep} type="button">
             <ArrowLeft className="h-4 w-4" />
             {t?.buttons?.back || "Zurück"}
           </PremiumButton>
+          {selectedUpgradeCount > 0 ? (
+            <button
+              type="button"
+              onClick={() => setState((prev) => ({ ...prev, upgrades: [] }))}
+              className="inline-flex min-h-11 items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 text-sm font-black text-slate-700 transition hover:bg-slate-50"
+            >
+              Auswahl löschen
+            </button>
+          ) : null}
           <PremiumButton onClick={nextStep} type="button">
-            {t?.buttons?.finish || "Weiter"}
+            {continueLabel}
             <ArrowRight className="h-4 w-4" />
           </PremiumButton>
         </div>
@@ -1274,12 +1655,12 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
   const renderContact = () => (
     <div className="mx-auto max-w-4xl space-y-8">
       <div className="space-y-3 text-center">
-        <div className="calc-kicker justify-center">Letzter Schritt</div>
+        <div className="calc-kicker justify-center">{contactIntro.kicker}</div>
         <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
-          {t?.headings?.summary_title || "Kontaktdaten"}
+          {contactIntro.title}
         </h3>
         <p className="text-slate-500">
-          {t?.headings?.summary_subtitle || "Wir melden uns passend zu Ihrer Anfrage"}
+          {contactIntro.subtitle}
         </p>
       </div>
 
@@ -1336,15 +1717,6 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
             </div>
           ) : null}
 
-          <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white/[0.88] p-4">
-            <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
-              Klare Einschätzung
-            </div>
-            <p className="mt-2 text-sm leading-7 text-slate-600">
-              Diese Anfrage startet als saubere Prüfung. Der nächste Schritt basiert auf Ihren
-              Angaben, nicht auf einer vorschnellen Zusage.
-            </p>
-          </div>
         </div>
 
         <form
@@ -1357,6 +1729,42 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
           data-intent={queryUrgency ? "urgent_booking_submit" : "booking_submit"}
           data-priority={queryUrgency ? "hot" : "normal"}
         >
+          <div className="rounded-[1.6rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
+                  {contactIntro.kicker}
+                </p>
+                <h4 className="mt-1 text-base font-black text-slate-950">
+                  {contactIntro.title}
+                </h4>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                  {contactIntro.subtitle}
+                </p>
+              </div>
+              <span className="inline-flex w-fit rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-[11px] font-black text-blue-700">
+                {contactIntro.badge}
+              </span>
+            </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-3">
+              {visibleContactReadiness.map((item) => (
+                <div
+                  key={item.label}
+                  className={cn(
+                    "rounded-2xl border px-3 py-3",
+                    item.ready ? "border-emerald-200 bg-emerald-50 text-emerald-950" : "border-slate-200 bg-slate-50 text-slate-700",
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className={cn("h-4 w-4", item.ready ? "text-emerald-600" : "text-slate-300")} />
+                    <span className="text-xs font-black">{item.label}</span>
+                  </div>
+                  <p className="mt-1 text-[11px] font-semibold leading-5 opacity-80">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <FieldBox label={t?.form?.name || "Name"}>
               <input
@@ -1370,60 +1778,88 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
               />
             </FieldBox>
 
-            <FieldBox label={`${t?.form?.email || "E-Mail"} optional`} required={false}>
+            <FieldBox label={t?.form?.phone || "Telefon"}>
               <input
-                type="email"
-                value={formData.email}
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, phone: e.target.value }))
+                }
+                className="calc-input h-11"
+                placeholder={t?.form?.placeholder_phone || defaultBooking.form.placeholder_phone}
+              />
+            </FieldBox>
+          </div>
+
+          {!contactExpanded ? (
+            <button
+              type="button"
+              onClick={() => setContactExpanded(true)}
+              className="flex w-full items-center justify-between gap-4 rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 text-left text-sm font-black text-slate-900 transition hover:border-blue-200 hover:bg-blue-50/40"
+            >
+              <span>
+                <span className="block text-[10px] uppercase tracking-[0.16em] text-slate-400">
+                  Optional
+                </span>
+                {contactIntro.expandLabel}
+              </span>
+              <ArrowRight className="h-4 w-4 text-blue-700" />
+            </button>
+          ) : (
+            <div className="space-y-4 rounded-[1.6rem] border border-slate-200 bg-white p-4">
+              <FieldBox label={`${t?.form?.email || "E-Mail"} falls gewünscht`} required={false}>
+                <input
+                  type="email"
+                  value={formData.email}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, email: e.target.value }))
                 }
                 className="calc-input h-11"
                 placeholder={t?.form?.placeholder_email || defaultBooking.form.placeholder_email}
-              />
-            </FieldBox>
-          </div>
+                />
+              </FieldBox>
 
-          <FieldBox label={t?.form?.phone || "Telefon"}>
-            <input
-              type="tel"
-              required
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, phone: e.target.value }))
-              }
-              className="calc-input h-11"
-              placeholder={t?.form?.placeholder_phone || defaultBooking.form.placeholder_phone}
-            />
-          </FieldBox>
+              <FieldBox label="Nachricht falls bekannt" icon={<MessageSquare className="h-4 w-4" />} required={false}>
+                <textarea
+                  rows={3}
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, message: e.target.value }))
+                  }
+                  className="calc-input min-h-24 resize-none py-3"
+                  placeholder="Kurz beschreiben: Was ist wichtig, was ist offen, wann soll FLOXANT sich melden?"
+                />
+              </FieldBox>
 
-          <FieldBox label="Nachricht optional" icon={<MessageSquare className="h-4 w-4" />} required={false}>
-            <textarea
-              rows={3}
-              value={formData.message}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, message: e.target.value }))
-              }
-              className="calc-input min-h-24 resize-none py-3"
-              placeholder="Kurz beschreiben: Was ist wichtig, was ist offen, wann soll FLOXANT sich melden?"
-            />
-          </FieldBox>
-
-          <div className="rounded-[1.8rem] border border-blue-100 bg-blue-50/45 p-3 shadow-sm shadow-slate-950/5">
-            <UploadDropCard
-              title={t?.form?.photos || "Fotos optional"}
-              description="Fotos von Menge, Zugang, Etage, Räumen oder Zustand helfen bei der Einschätzung."
-              helper="JPG, PNG oder WebP hochladen. Bitte keine Zugangscodes oder sensiblen Daten im Dateinamen verwenden."
-              accept="image/jpeg,image/png,image/webp"
-              files={files}
-              dataEvent="upload_images"
-              tone="blue"
-              onFilesChange={setFiles}
-            />
-          </div>
+              <div className="rounded-[1.8rem] border border-blue-100 bg-blue-50/45 p-3 shadow-sm shadow-slate-950/5">
+                <UploadDropCard
+                  title={isUploadFlow ? "Fotos oder Angebot hinzufügen" : t?.form?.photos || "Fotos optional"}
+                  description={
+                    isUploadFlow
+                      ? "Laden Sie Bilder, ein vorhandenes Angebot oder relevante Objektfotos hoch."
+                      : "Fotos von Menge, Zugang, Etage, Räumen oder Zustand helfen bei der Einschätzung."
+                  }
+                  helper="JPG, PNG oder WebP hochladen. Bitte keine Zugangscodes oder sensiblen Daten im Dateinamen verwenden."
+                  accept="image/jpeg,image/png,image/webp"
+                  files={files}
+                  dataEvent="upload_images"
+                  tone="blue"
+                  onFilesChange={setFiles}
+                />
+              </div>
+            </div>
+          )}
 
           {submitError ? (
             <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
               {submitError}
+            </div>
+          ) : null}
+
+          {!isContactValid ? (
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+              Bitte Name und Telefonnummer eintragen. Dann kann FLOXANT sinnvoll zurückmelden.
             </div>
           ) : null}
 
@@ -1486,7 +1922,7 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
       data-event="start_booking"
       data-source="booking_wizard"
     >
-      <div className="grid gap-3 sm:grid-cols-4">
+      <div className={cn("grid gap-3", steps.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4")}>
         {steps.map((stepItem) => (
           <div
             key={stepItem.number}
@@ -1506,11 +1942,11 @@ function SmartBookingWizardInner({ dict }: SmartBookingWizardProps) {
                     : "border-slate-200 bg-white text-slate-400"
                 )}
               >
-                {stepItem.number}
+                {stepItem.displayNumber}
               </div>
               <div>
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
-                  Schritt {stepItem.number}
+                  Schritt {stepItem.displayNumber}
                 </div>
                 <div
                   className={cn(
@@ -1594,7 +2030,7 @@ function FieldBox({
   );
 }
 
-export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
+export function SmartBookingWizard({ dict, initialService, initialRegion, initialEntry, forceVisible = false }: SmartBookingWizardProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -1618,9 +2054,14 @@ export function SmartBookingWizard({ dict }: SmartBookingWizardProps) {
 
   return (
     <div ref={containerRef}>
-      {isVisible ? (
+      {isVisible || forceVisible ? (
         <Suspense fallback={<div className="mx-auto min-h-[420px] w-full max-w-5xl rounded-[2.2rem] bg-white/70" />}>
-          <SmartBookingWizardInner dict={dict} />
+          <SmartBookingWizardInner
+            dict={dict}
+            initialService={initialService}
+            initialRegion={initialRegion}
+            initialEntry={initialEntry}
+          />
         </Suspense>
       ) : (
         <div className="mx-auto min-h-[400px] w-full max-w-5xl" />
