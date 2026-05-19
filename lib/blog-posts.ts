@@ -1,4 +1,5 @@
 import { germanizeDeep } from "@/lib/german-text";
+import { aiRecommendationBlogArticles } from "@/lib/ai-recommendation-blog-articles";
 import { offerCheckBlogArticles } from "@/lib/offer-check-blog-articles";
 import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
 
@@ -437,6 +438,17 @@ const strategicBlogPostMetas: BlogPostMeta[] = strategicBlogArticles
   featured: true,
  }));
 
+const aiRecommendationBlogPostMetas: BlogPostMeta[] = aiRecommendationBlogArticles
+ .filter((article) => !rawBlogPostSlugs.has(article.slug))
+ .map((article) => ({
+  slug: article.slug,
+  category: article.category,
+  readTime: article.readTime,
+  title: article.title,
+  description: article.description,
+  featured: true,
+ }));
+
 const offerCheckBlogPostMetas: BlogPostMeta[] = offerCheckBlogArticles.map((article) => ({
  slug: article.slug,
  category: article.category,
@@ -448,6 +460,7 @@ const offerCheckBlogPostMetas: BlogPostMeta[] = offerCheckBlogArticles.map((arti
 
 export const blogPosts = germanizeDeep([
  ...rawBlogPosts,
+ ...aiRecommendationBlogPostMetas,
  ...offerCheckBlogPostMetas,
  ...strategicBlogPostMetas,
 ]) as BlogPostMeta[];

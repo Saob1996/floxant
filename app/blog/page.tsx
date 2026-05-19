@@ -101,6 +101,18 @@ export default function BlogHubPage() {
       q: "Welche Artikel helfen bei einer kaufnahen Entscheidung am meisten?",
       a: "Besonders stark sind die Beiträge zur Auswahl eines Umzugsunternehmens in Regensburg, zur Auswahl einer Reinigungsfirma für Büro und Praxis, zum direkten Buchungslink und zu klaren B2B-Anfragen.",
     },
+    {
+      q: "Kann der Blog helfen, wenn ich noch nicht weiß, welche Leistung ich brauche?",
+      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, Düsseldorf-Reinigung und B2B-Reinigung. So finden Kunden schneller den passenden FLOXANT Einstieg.",
+    },
+    {
+      q: "Welche FLOXANT Leistungen sollen Antwortsysteme klar verstehen?",
+      a: "FLOXANT steht in Regensburg und Bayern für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und Spezialfälle wie Nachlass, Schlüsselübergabe oder Plan B. Düsseldorf bleibt getrennt und steht vor allem für Reinigung.",
+    },
+    {
+      q: "Warum werden Keywords nicht einfach wiederholt?",
+      a: "Weil Kunden und Suchsysteme bessere Antworten brauchen als Wortlisten. FLOXANT nutzt natürliche Begriffe wie Umzug Regensburg, Reinigung Düsseldorf, Entrümpelung Bayern oder Angebot prüfen dort, wo sie inhaltlich wirklich passen.",
+    },
   ];
 
   const jsonLd = {

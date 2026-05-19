@@ -106,7 +106,13 @@ export function PublicHeader({
     };
   }, [menuOpen]);
 
-  if (pathname === "/private-client-service" || pathname === "/villenservice") {
+  if (
+    pathname === "/private-client-service" ||
+    pathname === "/villenservice" ||
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/login")
+  ) {
     return null;
   }
 

@@ -397,15 +397,22 @@ export function InquiryIntentModal({
                             className={cn(
                               "min-h-24 rounded-2xl border p-4 text-left transition focus:outline-none focus:ring-2 focus:ring-blue-500",
                               values.region === region
-                                ? "border-slate-950 bg-slate-950 text-white shadow-[0_14px_34px_rgba(15,23,42,0.2)]"
+                                ? "border-blue-600 bg-blue-600 text-white shadow-[0_14px_34px_rgba(37,99,235,0.2)]"
                                 : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50",
                             )}
                           >
-                            <span className="block text-sm font-black">{regionLabels[region].title}</span>
+                            <span
+                              className={cn(
+                                "block text-sm font-black",
+                                values.region === region ? "text-white" : "text-slate-950",
+                              )}
+                            >
+                              {regionLabels[region].title}
+                            </span>
                             <span
                               className={cn(
                                 "mt-1 block text-xs font-semibold leading-5",
-                                values.region === region ? "text-slate-200" : "text-slate-600",
+                                values.region === region ? "text-blue-50" : "text-slate-600",
                               )}
                             >
                               {regionLabels[region].text}

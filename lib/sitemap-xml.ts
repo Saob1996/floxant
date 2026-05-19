@@ -11,6 +11,7 @@ import {
   LEGAL_PAGES,
   HUB_PAGES,
 } from "./sitemap-config";
+import { blogPosts } from "./blog-posts";
 import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
@@ -332,6 +333,21 @@ function addEntries(
   }
 }
 
+function addBlogEntries(urls: SitemapUrl[]): void {
+  for (const post of blogPosts) {
+    const route = `blog/${post.slug}`;
+    if (shouldSkipSitemapRoute(route)) continue;
+
+    urls.push({
+      pagePath: route,
+      loc: buildAbsoluteUrl(route),
+      lastmod: LASTMOD,
+      changefreq: "weekly",
+      priority: "0.68",
+    });
+  }
+}
+
 /**
  * Generates the full flat German sitemap.
  */
@@ -381,6 +397,7 @@ export function generateSitemapResponse(): Response {
 
   // Ratgeber / Blog pages
   addEntries(urls, RATGEBER_PAGES, "0.6", "weekly");
+  addBlogEntries(urls);
 
   // Legal pages
   addEntries(urls, LEGAL_PAGES, "0.3", "yearly");

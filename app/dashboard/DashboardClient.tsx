@@ -410,27 +410,27 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "entsorgung", label: "Entrümpelung" },
   { id: "b2b-cleaning", label: "B2B-Reinigung" },
   { id: "return-trip", label: "Rückfahrt" },
-  { id: "route-board", label: "Rueckfahrt-Boerse" },
-  { id: "high-flexibility", label: "Hohe Flexibilitaet" },
+  { id: "route-board", label: "Rückfahrt-Börse" },
+  { id: "high-flexibility", label: "Hohe Flexibilität" },
   { id: "fixed-date", label: "Fixes Datum" },
   { id: "regensburg-start", label: "Start Regensburg" },
   { id: "regensburg-destination", label: "Ziel Regensburg" },
   { id: "bavaria-route", label: "Bayern-Strecke" },
-  { id: "corridor-munich", label: "Muenchen" },
-  { id: "corridor-nuremberg", label: "Nuernberg" },
+  { id: "corridor-munich", label: "München" },
+  { id: "corridor-nuremberg", label: "Nürnberg" },
   { id: "corridor-straubing", label: "Straubing" },
   { id: "corridor-passau", label: "Passau" },
   { id: "corridor-ingolstadt", label: "Ingolstadt" },
   { id: "offer-check", label: "Angebotscheck" },
-  { id: "cheaper-alternative", label: "Guenstiger pruefen" },
-  { id: "cheaper-with-offer", label: "Guenstiger mit Angebot" },
-  { id: "cheaper-with-price", label: "Guenstiger mit Preis" },
-  { id: "cheaper-with-budget", label: "Guenstiger mit Budget" },
+  { id: "cheaper-alternative", label: "Günstiger prüfen" },
+  { id: "cheaper-with-offer", label: "Günstiger mit Angebot" },
+  { id: "cheaper-with-price", label: "Günstiger mit Preis" },
+  { id: "cheaper-with-budget", label: "Günstiger mit Budget" },
   { id: "red-flag-scanner", label: "Red-Flag-Scanner" },
-  { id: "red-flag-high", label: "Hoher Klaerungsbedarf" },
+  { id: "red-flag-high", label: "Hoher Klärungsbedarf" },
   { id: "red-flag-upload", label: "Red-Flag mit Upload" },
   { id: "red-flag-price", label: "mit Angebotspreis" },
-  { id: "red-flag-duesseldorf", label: "Duesseldorf Red-Flag" },
+  { id: "red-flag-duesseldorf", label: "Düsseldorf Red-Flag" },
   { id: "platform-order", label: "Plattform-Auftrag" },
   { id: "platform-myhammer", label: "MyHammer optional" },
   { id: "platform-check24", label: "Check24 optional" },
@@ -441,25 +441,25 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "platform-provider-unclear", label: "Anbieter unklar" },
   { id: "platform-aborted", label: "Auftrag abgebrochen" },
   { id: "platform-regensburg", label: "Plattform Regensburg" },
-  { id: "platform-duesseldorf", label: "Plattform Duesseldorf" },
+  { id: "platform-duesseldorf", label: "Plattform Düsseldorf" },
   { id: "tenant-turnover", label: "Mieterwechsel" },
-  { id: "handover-file", label: "Uebergabeakte" },
-  { id: "handover-key", label: "mit Schluessel" },
+  { id: "handover-file", label: "Übergabeakte" },
+  { id: "handover-key", label: "mit Schlüssel" },
   { id: "handover-cleaning", label: "Akte + Endreinigung" },
-  { id: "handover-clearance", label: "Akte + Entruempelung" },
+  { id: "handover-clearance", label: "Akte + Entrümpelung" },
   { id: "handover-tenant", label: "Akte + Mieterwechsel" },
-  { id: "handover-date", label: "mit Uebergabetermin" },
-  { id: "handover-recipient", label: "Empfaenger geklaert" },
+  { id: "handover-date", label: "mit Übergabetermin" },
+  { id: "handover-recipient", label: "Empfänger geklärt" },
   { id: "handover-open", label: "Akte offen" },
   { id: "handover-photos-missing", label: "Fotos fehlen" },
-  { id: "handover-key-unclear", label: "Schluessel unklar" },
+  { id: "handover-key-unclear", label: "Schlüssel unklar" },
   { id: "handover-premium", label: "Premium-Akte" },
   { id: "rental-ready", label: "Wohnung vermietbar" },
   { id: "rental-viewing", label: "mit Besichtigung" },
-  { id: "rental-handover", label: "mit Uebergabe" },
+  { id: "rental-handover", label: "mit Übergabe" },
   { id: "rental-multiple-units", label: "mehrere Einheiten" },
   { id: "property-ready-service", label: "Immobilie verkaufsbereit" },
-  { id: "property-ready-owner", label: "Property Eigentuemer" },
+  { id: "property-ready-owner", label: "Property Eigentümer" },
   { id: "property-ready-realtor", label: "Property Makler" },
   { id: "property-ready-estate", label: "Nachlass / Erbfall" },
   { id: "property-ready-manager", label: "Property Hausverwaltung" },
@@ -467,26 +467,26 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "property-ready-viewing", label: "Besichtigung bald" },
   { id: "property-ready-expose", label: "Expose bald" },
   { id: "property-ready-premium", label: "Property Premium/Diskret" },
-  { id: "property-ready-combined", label: "Raeumung + Reinigung" },
+  { id: "property-ready-combined", label: "Räumung + Reinigung" },
   { id: "property-ready-regensburg", label: "Property Regensburg" },
-  { id: "estate-clearance", label: "Nachlass-Raeumung" },
-  { id: "estate-callback", label: "Nachlass Rueckruf" },
+  { id: "estate-clearance", label: "Nachlass-Räumung" },
+  { id: "estate-callback", label: "Nachlass Rückruf" },
   { id: "estate-inheritance-group", label: "Erbengemeinschaft" },
   { id: "estate-clearance-open", label: "Nachlass Freigabe unklar" },
-  { id: "estate-key-unclear", label: "Nachlass Schluessel unklar" },
+  { id: "estate-key-unclear", label: "Nachlass Schlüssel unklar" },
   { id: "estate-photos", label: "Nachlass mit Fotos" },
   { id: "estate-sale", label: "Nachlass Verkauf" },
   { id: "estate-rental", label: "Nachlass Vermietung" },
   { id: "estate-premium", label: "Nachlass Premium/Diskret" },
   { id: "estate-regensburg", label: "Nachlass Regensburg" },
   { id: "discreet-move", label: "Diskreter Trennungsumzug" },
-  { id: "discreet-callback", label: "Diskret Rueckruf" },
+  { id: "discreet-callback", label: "Diskret Rückruf" },
   { id: "discreet-safe-time", label: "Sichere Kontaktzeit" },
   { id: "discreet-premium", label: "Diskret Premium" },
   { id: "discreet-cleaning", label: "Auszug + Reinigung" },
-  { id: "discreet-items", label: "Moebelabholung" },
-  { id: "discreet-key", label: "Schluesseluebergabe" },
-  { id: "discreet-handover-file", label: "Diskret Uebergabeakte" },
+  { id: "discreet-items", label: "Möbelabholung" },
+  { id: "discreet-key", label: "Schlüsselübergabe" },
+  { id: "discreet-handover-file", label: "Diskret Übergabeakte" },
   { id: "discreet-regensburg", label: "Diskret Regensburg" },
   { id: "damage-control", label: "Schadensbegrenzung" },
   { id: "damage-plan-gekippt", label: "Plan gekippt" },
@@ -494,11 +494,11 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "damage-whatsapp-preferred", label: "WhatsApp bevorzugt" },
   { id: "damage-today", label: "Heute" },
   { id: "damage-tomorrow", label: "Morgen" },
-  { id: "damage-handover", label: "Uebergabe bald" },
+  { id: "damage-handover", label: "Übergabe bald" },
   { id: "damage-move", label: "Umzug gekippt" },
   { id: "damage-cleaning", label: "Reinigung gekippt" },
-  { id: "damage-clearance", label: "Entruempelung offen" },
-  { id: "damage-duesseldorf", label: "Duesseldorf akut" },
+  { id: "damage-clearance", label: "Entrümpelung offen" },
+  { id: "damage-duesseldorf", label: "Düsseldorf akut" },
   { id: "plan-b-service", label: "Plan-B-Service" },
   { id: "plan-b-high-risk", label: "Plan B hoch/kritisch" },
   { id: "plan-b-with-offer", label: "Plan B mit Angebot" },
@@ -506,9 +506,9 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "plan-b-phone", label: "Plan B mit Telefon" },
   { id: "plan-b-transport", label: "Transport unsicher" },
   { id: "plan-b-cleaning", label: "Reinigung unsicher" },
-  { id: "plan-b-handover", label: "Uebergabe unsicher" },
-  { id: "plan-b-duesseldorf", label: "Duesseldorf Plan B" },
-  { id: "cellar-trashroom", label: "Keller/Muellraum" },
+  { id: "plan-b-handover", label: "Übergabe unsicher" },
+  { id: "plan-b-duesseldorf", label: "Düsseldorf Plan B" },
+  { id: "cellar-trashroom", label: "Keller/Müllraum" },
   { id: "cellar-property-manager", label: "Keller Hausverwaltung" },
   { id: "cellar-weg", label: "Keller WEG" },
   { id: "cellar-business", label: "Keller Gewerbe" },
@@ -518,27 +518,27 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "realtor-landlord-link", label: "Makler/Vermieter-Link" },
   { id: "object-case-realtor", label: "Objektfall Makler" },
   { id: "object-case-landlord", label: "Objektfall Vermieter" },
-  { id: "object-case-owner", label: "Objektfall Eigentuemer" },
+  { id: "object-case-owner", label: "Objektfall Eigentümer" },
   { id: "object-case-property-manager", label: "Objektfall Verwaltung" },
   { id: "object-case-viewing", label: "Besichtigung" },
-  { id: "object-case-handover", label: "Uebergabe" },
+  { id: "object-case-handover", label: "Übergabe" },
   { id: "object-case-multiple", label: "Mehrere Objekte" },
   { id: "object-case-direct-source", label: "Direkt/QR/WhatsApp" },
   { id: "referral-partnercode", label: "Empfehlungen" },
   { id: "referral-new-code", label: "Neuer Partnercode" },
   { id: "referral-with-person", label: "Mit empfohlener Person" },
   { id: "referral-without-person", label: "Ohne empfohlene Person" },
-  { id: "referral-bonus-review", label: "Bonus pruefbar" },
+  { id: "referral-bonus-review", label: "Bonus prüfbar" },
   { id: "referral-bonus-payout", label: "Bonus auszahlen" },
   { id: "referral-not-eligible", label: "Nicht bonusberechtigt" },
   { id: "referral-regensburg", label: "Empfehlung Regensburg" },
-  { id: "referral-duesseldorf", label: "Empfehlung Duesseldorf" },
+  { id: "referral-duesseldorf", label: "Empfehlung Düsseldorf" },
   { id: "referral-b2b", label: "B2B-Empfehlung" },
   { id: "property-manager", label: "Hausverwaltung" },
   { id: "landlord", label: "Vermieter" },
   { id: "realtor", label: "Makler" },
-  { id: "owner", label: "Eigentuemer" },
-  { id: "urgent-handover", label: "Dringende Uebergabe" },
+  { id: "owner", label: "Eigentümer" },
+  { id: "urgent-handover", label: "Dringende Übergabe" },
   { id: "recurring-tenant", label: "Wiederkehrend" },
   { id: "today", label: "Heute neu" },
   { id: "unhandled", label: "Unbearbeitet" },
@@ -547,30 +547,30 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "with-photos", label: "Fotos vorhanden" },
   { id: "needs-info", label: "Angaben fehlen" },
   { id: "duesseldorf-cleaning", label: "Düsseldorf-Reinigung" },
-  { id: "duesseldorf-b2b-cleaning", label: "Duesseldorf B2B" },
-  { id: "b2b-office", label: "B2B Buero" },
+  { id: "duesseldorf-b2b-cleaning", label: "Düsseldorf B2B" },
+  { id: "b2b-office", label: "B2B Büro" },
   { id: "b2b-agency-studio", label: "Agentur/Studio" },
   { id: "b2b-law-office", label: "Kanzlei" },
-  { id: "b2b-practice", label: "Praxisflaeche" },
+  { id: "b2b-practice", label: "Praxisfläche" },
   { id: "b2b-staircase", label: "Treppenhaus" },
-  { id: "b2b-recurring", label: "B2B regelmaessig" },
+  { id: "b2b-recurring", label: "B2B regelmäßig" },
   { id: "b2b-one-time", label: "B2B einmalig" },
-  { id: "b2b-with-area", label: "B2B mit Flaeche" },
+  { id: "b2b-with-area", label: "B2B mit Fläche" },
   { id: "b2b-with-photos", label: "B2B mit Fotos" },
   { id: "b2b-with-phone", label: "B2B mit Telefon" },
-  { id: "b2b-recurring-potential", label: "Wiederkehrend moeglich" },
-  { id: "duesseldorf-apartment-cleaning", label: "Ddorf Apartment" },
-  { id: "apartment-guest-turnover", label: "Gaestewechsel" },
+  { id: "b2b-recurring-potential", label: "Wiederkehrend möglich" },
+  { id: "duesseldorf-apartment-cleaning", label: "Düsseldorf Apartment" },
+  { id: "apartment-guest-turnover", label: "Gästewechsel" },
   { id: "apartment-final-cleaning", label: "Apartment Endreinigung" },
-  { id: "apartment-recurring", label: "Apartment regelmaessig" },
+  { id: "apartment-recurring", label: "Apartment regelmäßig" },
   { id: "apartment-b2b", label: "Apartment B2B" },
   { id: "apartment-checkin-time", label: "mit Check-in" },
-  { id: "apartment-laundry", label: "mit Waeschewunsch" },
-  { id: "apartment-key", label: "Schluesselkoordination" },
-  { id: "duesseldorf-disposal", label: "Duesseldorf-Entsorgung" },
+  { id: "apartment-laundry", label: "mit Wäschewunsch" },
+  { id: "apartment-key", label: "Schlüsselkoordination" },
+  { id: "duesseldorf-disposal", label: "Düsseldorf-Entsorgung" },
   { id: "conversion-trigger", label: "Conversion-Trigger" },
   { id: "object-system", label: "Objekt-System" },
-  { id: "duesseldorf-revenue", label: "Duesseldorf Umsatz" },
+  { id: "duesseldorf-revenue", label: "Düsseldorf Umsatz" },
   { id: "regensburg-umzug", label: "Regensburg-Umzug" },
   { id: "regensburg-bayern", label: "Regensburg/Bayern" },
   { id: "high-score", label: "High Score" },
@@ -584,6 +584,234 @@ const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "won", label: "Angenommen" },
   { id: "lost", label: "Verloren" },
 ];
+
+const priorityInquiryFilterIds: InquiryFilter[] = [
+  "all",
+  "new",
+  "unhandled",
+  "with-phone",
+  "with-photos",
+  "needs-info",
+  "budget",
+  "umzug",
+  "reinigung",
+  "entsorgung",
+  "b2b-cleaning",
+  "duesseldorf-cleaning",
+  "regensburg-umzug",
+];
+
+const inquiryFilterGroups: Array<{ title: string; description: string; ids: InquiryFilter[] }> = [
+  {
+    title: "Status",
+    description: "Aktueller Bearbeitungsstand.",
+    ids: ["today", "in-progress", "rueckfrage", "angebot-gesendet", "won", "lost", "high-score", "premium"],
+  },
+  {
+    title: "Routen",
+    description: "Rückfahrten, Bayern-Strecken und Korridore.",
+    ids: [
+      "return-trip",
+      "route-board",
+      "high-flexibility",
+      "fixed-date",
+      "regensburg-start",
+      "regensburg-destination",
+      "bavaria-route",
+      "corridor-munich",
+      "corridor-nuremberg",
+      "corridor-straubing",
+      "corridor-passau",
+      "corridor-ingolstadt",
+      "regensburg-bayern",
+    ],
+  },
+  {
+    title: "Angebote prüfen",
+    description: "Fremdangebote, Preisrahmen und Plattformfälle.",
+    ids: [
+      "offer-check",
+      "cheaper-alternative",
+      "cheaper-with-offer",
+      "cheaper-with-price",
+      "cheaper-with-budget",
+      "red-flag-scanner",
+      "red-flag-high",
+      "red-flag-upload",
+      "red-flag-price",
+      "red-flag-duesseldorf",
+      "platform-order",
+      "platform-myhammer",
+      "platform-check24",
+      "platform-other",
+      "platform-with-offer",
+      "platform-with-price",
+      "platform-with-photos",
+      "platform-provider-unclear",
+      "platform-aborted",
+      "platform-regensburg",
+      "platform-duesseldorf",
+    ],
+  },
+  {
+    title: "Übergabe & Immobilien",
+    description: "Mieterwechsel, Akten, Verkauf und Vermietung.",
+    ids: [
+      "tenant-turnover",
+      "handover-file",
+      "handover-key",
+      "handover-cleaning",
+      "handover-clearance",
+      "handover-tenant",
+      "handover-date",
+      "handover-recipient",
+      "handover-open",
+      "handover-photos-missing",
+      "handover-key-unclear",
+      "handover-premium",
+      "rental-ready",
+      "rental-viewing",
+      "rental-handover",
+      "rental-multiple-units",
+      "property-ready-service",
+      "property-ready-owner",
+      "property-ready-realtor",
+      "property-ready-estate",
+      "property-ready-manager",
+      "property-ready-photos",
+      "property-ready-viewing",
+      "property-ready-expose",
+      "property-ready-premium",
+      "property-ready-combined",
+      "property-ready-regensburg",
+    ],
+  },
+  {
+    title: "Nachlass & Diskret",
+    description: "Räumung, Rückruf, sensible Kontaktwege.",
+    ids: [
+      "estate-clearance",
+      "estate-callback",
+      "estate-inheritance-group",
+      "estate-clearance-open",
+      "estate-key-unclear",
+      "estate-photos",
+      "estate-sale",
+      "estate-rental",
+      "estate-premium",
+      "estate-regensburg",
+      "discreet-move",
+      "discreet-callback",
+      "discreet-safe-time",
+      "discreet-premium",
+      "discreet-cleaning",
+      "discreet-items",
+      "discreet-key",
+      "discreet-handover-file",
+      "discreet-regensburg",
+    ],
+  },
+  {
+    title: "Plan B",
+    description: "Akute Fälle, gekippte Pläne und Ersatzkapazität.",
+    ids: [
+      "damage-control",
+      "damage-plan-gekippt",
+      "damage-button-source",
+      "damage-whatsapp-preferred",
+      "damage-today",
+      "damage-tomorrow",
+      "damage-handover",
+      "damage-move",
+      "damage-cleaning",
+      "damage-clearance",
+      "damage-duesseldorf",
+      "plan-b-service",
+      "plan-b-high-risk",
+      "plan-b-with-offer",
+      "plan-b-with-photos",
+      "plan-b-phone",
+      "plan-b-transport",
+      "plan-b-cleaning",
+      "plan-b-handover",
+      "plan-b-duesseldorf",
+    ],
+  },
+  {
+    title: "Objekte & Partner",
+    description: "Hausverwaltungen, Makler, Empfehlungen und Objektfälle.",
+    ids: [
+      "cellar-trashroom",
+      "cellar-property-manager",
+      "cellar-weg",
+      "cellar-business",
+      "cellar-clearance-open",
+      "cellar-hazard-open",
+      "cellar-cleaning",
+      "realtor-landlord-link",
+      "object-case-realtor",
+      "object-case-landlord",
+      "object-case-owner",
+      "object-case-property-manager",
+      "object-case-viewing",
+      "object-case-handover",
+      "object-case-multiple",
+      "object-case-direct-source",
+      "referral-partnercode",
+      "referral-new-code",
+      "referral-with-person",
+      "referral-without-person",
+      "referral-bonus-review",
+      "referral-bonus-payout",
+      "referral-not-eligible",
+      "referral-regensburg",
+      "referral-duesseldorf",
+      "referral-b2b",
+      "property-manager",
+      "landlord",
+      "realtor",
+      "owner",
+      "urgent-handover",
+      "recurring-tenant",
+    ],
+  },
+  {
+    title: "Düsseldorf & Quellen",
+    description: "Reinigung in Düsseldorf, Ads, Maps und Auslöser.",
+    ids: [
+      "duesseldorf-b2b-cleaning",
+      "b2b-office",
+      "b2b-agency-studio",
+      "b2b-law-office",
+      "b2b-practice",
+      "b2b-staircase",
+      "b2b-recurring",
+      "b2b-one-time",
+      "b2b-with-area",
+      "b2b-with-photos",
+      "b2b-with-phone",
+      "b2b-recurring-potential",
+      "duesseldorf-apartment-cleaning",
+      "apartment-guest-turnover",
+      "apartment-final-cleaning",
+      "apartment-recurring",
+      "apartment-b2b",
+      "apartment-checkin-time",
+      "apartment-laundry",
+      "apartment-key",
+      "duesseldorf-disposal",
+      "conversion-trigger",
+      "object-system",
+      "duesseldorf-revenue",
+      "google-maps",
+      "google-ads",
+    ],
+  },
+];
+
+const inquiryFilterById = Object.fromEntries(
+  inquiryFilters.map((filter) => [filter.id, filter]),
+) as Record<InquiryFilter, { id: InquiryFilter; label: string }>;
 
 const documentRows: Array<{
   type: FloxDocumentType;
@@ -614,57 +842,57 @@ const initialBackhaulForm: Partial<BackhaulOffer> = {
 
 const STATUS_OPTIONS = [
   { value: "new", label: "Neu" },
-  { value: "besichtigung_fotos_noetig", label: "Besichtigung/Fotos noetig" },
+  { value: "besichtigung_fotos_noetig", label: "Besichtigung/Fotos nötig" },
   { value: "in_pruefung", label: "In Prüfung" },
-  { value: "scanner_ergebnis_pruefen", label: "Scanner-Ergebnis pruefen" },
+  { value: "scanner_ergebnis_pruefen", label: "Scanner-Ergebnis prüfen" },
   { value: "rueckfrage_noetig", label: "Rückfrage nötig" },
-  { value: "angebot_pruefen", label: "Angebot pruefen" },
+  { value: "angebot_pruefen", label: "Angebot prüfen" },
   { value: "alternative_einschaetzung_moeglich", label: "Alternative Einschätzung möglich" },
-  { value: "strecke_pruefen", label: "Strecke pruefen" },
-  { value: "passende_tour_moeglich", label: "Passende Tour moeglich" },
+  { value: "strecke_pruefen", label: "Strecke prüfen" },
+  { value: "passende_tour_moeglich", label: "Passende Tour möglich" },
   { value: "keine_passende_tour_aktuell", label: "Keine passende Tour aktuell" },
-  { value: "dokumentationsumfang_klaeren", label: "Dokumentationsumfang klaeren" },
+  { value: "dokumentationsumfang_klaeren", label: "Dokumentationsumfang klären" },
   { value: "akte_nicht_gestartet", label: "Akte nicht gestartet" },
   { value: "akte_daten_fehlen", label: "Akte: Daten fehlen" },
   { value: "mit_service_kombinieren", label: "Mit Service kombinieren" },
   { value: "akte_in_vorbereitung", label: "Akte in Vorbereitung" },
-  { value: "akte_fotos_pruefen", label: "Akte: Fotos pruefen" },
+  { value: "akte_fotos_pruefen", label: "Akte: Fotos prüfen" },
   { value: "akte_bereit_zur_freigabe", label: "Akte bereit zur Freigabe" },
   { value: "akte_abgeschlossen", label: "Akte abgeschlossen" },
-  { value: "diskret_pruefen", label: "Diskret pruefen" },
-  { value: "rueckruf_noetig", label: "Rueckruf noetig" },
-  { value: "objektstatus_pruefen", label: "Objektstatus pruefen" },
-  { value: "objekt_pruefen", label: "Objekt pruefen" },
-  { value: "flaeche_frequenz_klaeren", label: "Flaeche/Frequenz klaeren" },
-  { value: "regelmaessiger_auftrag_moeglich", label: "Regelmaessiger Auftrag moeglich" },
-  { value: "fotos_besichtigung_noetig", label: "Fotos/Besichtigung noetig" },
+  { value: "diskret_pruefen", label: "Diskret prüfen" },
+  { value: "rueckruf_noetig", label: "Rückruf nötig" },
+  { value: "objektstatus_pruefen", label: "Objektstatus prüfen" },
+  { value: "objekt_pruefen", label: "Objekt prüfen" },
+  { value: "flaeche_frequenz_klaeren", label: "Fläche/Frequenz klären" },
+  { value: "regelmaessiger_auftrag_moeglich", label: "Regelmäßiger Auftrag möglich" },
+  { value: "fotos_besichtigung_noetig", label: "Fotos/Besichtigung nötig" },
   { value: "in_vorbereitung", label: "In Vorbereitung" },
-  { value: "wiederkehrender_kontakt_moeglich", label: "Wiederkehrender Kontakt moeglich" },
-  { value: "sofort_pruefen", label: "Sofort pruefen" },
-  { value: "kapazitaet_pruefen", label: "Kapazitaet pruefen" },
+  { value: "wiederkehrender_kontakt_moeglich", label: "Wiederkehrender Kontakt möglich" },
+  { value: "sofort_pruefen", label: "Sofort prüfen" },
+  { value: "kapazitaet_pruefen", label: "Kapazität prüfen" },
   { value: "machbar", label: "Machbar" },
   { value: "nicht_machbar", label: "Nicht machbar" },
-  { value: "umfang_pruefen", label: "Umfang pruefen" },
-  { value: "fotos_noetig", label: "Fotos noetig" },
-  { value: "freigabe_klaeren", label: "Freigabe klaeren" },
-  { value: "problemstoffe_klaeren", label: "Problemstoffe klaeren" },
-  { value: "zugang_klaeren", label: "Zugang klaeren" },
-  { value: "leistungen_klaeren", label: "Leistungen klaeren" },
+  { value: "umfang_pruefen", label: "Umfang prüfen" },
+  { value: "fotos_noetig", label: "Fotos nötig" },
+  { value: "freigabe_klaeren", label: "Freigabe klären" },
+  { value: "problemstoffe_klaeren", label: "Problemstoffe klären" },
+  { value: "zugang_klaeren", label: "Zugang klären" },
+  { value: "leistungen_klaeren", label: "Leistungen klären" },
   { value: "angebot_vorbereiten", label: "Angebot vorbereiten" },
   { value: "beauftragt", label: "Beauftragt" },
-  { value: "objektfall_pruefen", label: "Objektfall pruefen" },
-  { value: "terminfenster_pruefen", label: "Terminfenster pruefen" },
-  { value: "zusatzleistungen_klaeren", label: "Zusatzleistungen klaeren" },
+  { value: "objektfall_pruefen", label: "Objektfall prüfen" },
+  { value: "terminfenster_pruefen", label: "Terminfenster prüfen" },
+  { value: "zusatzleistungen_klaeren", label: "Zusatzleistungen klären" },
   { value: "einmalauftrag", label: "Einmalauftrag" },
-  { value: "wiederkehrender_auftrag_moeglich", label: "Wiederkehrender Auftrag moeglich" },
+  { value: "wiederkehrender_auftrag_moeglich", label: "Wiederkehrender Auftrag möglich" },
   { value: "partnercode_erstellt", label: "Partnercode erstellt" },
   { value: "empfehlung_eingegangen", label: "Empfehlung eingegangen" },
   { value: "empfohlene_person_angefragt", label: "Empfohlene Person angefragt" },
-  { value: "auftrag_in_pruefung", label: "Auftrag in Pruefung" },
-  { value: "auftrag_bestaetigt", label: "Auftrag bestaetigt" },
-  { value: "auftrag_durchgefuehrt", label: "Auftrag durchgefuehrt" },
+  { value: "auftrag_in_pruefung", label: "Auftrag in Prüfung" },
+  { value: "auftrag_bestaetigt", label: "Auftrag bestätigt" },
+  { value: "auftrag_durchgefuehrt", label: "Auftrag durchgeführt" },
   { value: "auftrag_bezahlt", label: "Auftrag bezahlt" },
-  { value: "bonus_pruefbar", label: "Bonus pruefbar" },
+  { value: "bonus_pruefbar", label: "Bonus prüfbar" },
   { value: "bonus_freigegeben", label: "Bonus freigegeben" },
   { value: "bonus_ausgezahlt", label: "Bonus ausgezahlt" },
   { value: "nicht_bonusberechtigt", label: "Nicht bonusberechtigt" },
@@ -939,22 +1167,22 @@ function getServiceLabel(service: string) {
     bueroumzug: "Büroumzug",
     reinigung: "Reinigung",
     b2b_reinigung: "B2B-Reinigung",
-    duesseldorf_b2b_reinigung: "Duesseldorf B2B-Reinigung",
-    duesseldorf_b2b_cleaning: "Duesseldorf B2B-Reinigung",
-    duesseldorf_moeblierte_wohnung_reinigung: "Duesseldorf moeblierte Wohnung",
+    duesseldorf_b2b_reinigung: "Düsseldorf B2B-Reinigung",
+    duesseldorf_b2b_cleaning: "Düsseldorf B2B-Reinigung",
+    duesseldorf_moeblierte_wohnung_reinigung: "Düsseldorf möblierte Wohnung",
     entsorgung: "Entrümpelung",
     transport: "Transport",
     kombination: "Kombination",
     mieterwechsel_service: "Mieterwechsel",
-    uebergabeakte: "Uebergabeakte",
+    uebergabeakte: "Übergabeakte",
     wohnung_wieder_vermietbar: "Wohnung wieder vermietbar",
     immobilie_verkaufsbereit: "Immobilie verkaufsbereit",
-    nachlass_raeumung: "Nachlass-Raeumung",
+    nachlass_raeumung: "Nachlass-Räumung",
     diskreter_trennungsumzug: "Diskreter Trennungsumzug",
     discreet_move: "Diskreter Trennungsumzug",
     schadensbegrenzung: "Schadensbegrenzung",
     plan_b_service: "Plan-B-Service",
-    keller_muellraum_rettung: "Keller-/Muellraum-Rettung",
+    keller_muellraum_rettung: "Keller-/Müllraum-Rettung",
     makler_vermieter_link: "Makler-/Vermieter-Link",
     referral_partnercode: "Empfehlung / Partnercode",
     firmenentsorgung: "Firmenentsorgung",
@@ -979,33 +1207,33 @@ function getSourceLabel(booking: Booking) {
     booking_page_wizard: "Buchung",
     google_maps_booking: "Google Maps Buchung",
     google_ads_cleaning_regensburg: "Google Ads Reinigung",
-    duesseldorf_cleaning_booking: "Duesseldorf Reinigung",
-    duesseldorf_b2b_cleaning: "Duesseldorf B2B-Reinigung",
-    duesseldorf_b2b_reinigung: "Duesseldorf B2B-Reinigung",
-    duesseldorf_b2b_cleaning_form: "Duesseldorf B2B-Reinigung",
-    b2b_reinigung_duesseldorf: "Duesseldorf B2B-Reinigung",
-    bueroreinigung_duesseldorf: "Duesseldorf B2B-Reinigung",
-    gewerbereinigung_duesseldorf: "Duesseldorf B2B-Reinigung",
-    duesseldorf_apartment_cleaning: "Duesseldorf Apartment-Reinigung",
-    duesseldorf_moeblierte_wohnung_reinigung: "Duesseldorf Apartment-Reinigung",
-    apartment_cleaning_duesseldorf: "Duesseldorf Apartment-Reinigung",
-    airbnb_reinigung_duesseldorf: "Duesseldorf Apartment-Reinigung",
-    duesseldorf_disposal_booking: "Duesseldorf Entsorgung",
-    return_trip_booking: "Rueckfahrt",
-    return_trip_board: "Rueckfahrt-Boerse",
-    route_board: "Rueckfahrt-Boerse",
-    rueckfahrt_boerse: "Rueckfahrt-Boerse",
+    duesseldorf_cleaning_booking: "Düsseldorf Reinigung",
+    duesseldorf_b2b_cleaning: "Düsseldorf B2B-Reinigung",
+    duesseldorf_b2b_reinigung: "Düsseldorf B2B-Reinigung",
+    duesseldorf_b2b_cleaning_form: "Düsseldorf B2B-Reinigung",
+    b2b_reinigung_duesseldorf: "Düsseldorf B2B-Reinigung",
+    bueroreinigung_duesseldorf: "Düsseldorf B2B-Reinigung",
+    gewerbereinigung_duesseldorf: "Düsseldorf B2B-Reinigung",
+    duesseldorf_apartment_cleaning: "Düsseldorf Apartment-Reinigung",
+    duesseldorf_moeblierte_wohnung_reinigung: "Düsseldorf Apartment-Reinigung",
+    apartment_cleaning_duesseldorf: "Düsseldorf Apartment-Reinigung",
+    airbnb_reinigung_duesseldorf: "Düsseldorf Apartment-Reinigung",
+    duesseldorf_disposal_booking: "Düsseldorf Entsorgung",
+    return_trip_booking: "Rückfahrt",
+    return_trip_board: "Rückfahrt-Börse",
+    route_board: "Rückfahrt-Börse",
+    rueckfahrt_boerse: "Rückfahrt-Börse",
     offer_check: "Angebotscheck",
-    cheaper_alternative: "Guenstiger pruefen",
-    cheaper_alternative_page: "Guenstiger pruefen",
-    angebot_guenstiger_pruefen: "Guenstiger pruefen",
+    cheaper_alternative: "Günstiger prüfen",
+    cheaper_alternative_page: "Günstiger prüfen",
+    angebot_guenstiger_pruefen: "Günstiger prüfen",
     platform_order_check: "Plattform-Auftrag",
     platform_order_page: "Plattform-Auftrag",
     plattform_auftrag: "Plattform-Auftrag",
     red_flag_scanner: "Red-Flag-Scanner",
-    handover_file: "Uebergabeakte",
-    uebergabeakte: "Uebergabeakte",
-    uebergabeakte_service: "Uebergabeakte",
+    handover_file: "Übergabeakte",
+    uebergabeakte: "Übergabeakte",
+    uebergabeakte_service: "Übergabeakte",
     rental_ready_service: "Wohnung wieder vermietbar",
     rental_ready: "Wohnung wieder vermietbar",
     wohnung_wieder_vermietbar: "Wohnung wieder vermietbar",
@@ -1013,10 +1241,10 @@ function getSourceLabel(booking: Booking) {
     property_ready: "Immobilie verkaufsbereit",
     immobilie_verkaufsbereit: "Immobilie verkaufsbereit",
     verkaufsbereit_service: "Immobilie verkaufsbereit",
-    estate_clearance_service: "Nachlass-Raeumung",
-    estate_clearance: "Nachlass-Raeumung",
-    nachlass_raeumung: "Nachlass-Raeumung",
-    nachlass_raeumung_light: "Nachlass-Raeumung",
+    estate_clearance_service: "Nachlass-Räumung",
+    estate_clearance: "Nachlass-Räumung",
+    nachlass_raeumung: "Nachlass-Räumung",
+    nachlass_raeumung_light: "Nachlass-Räumung",
     discreet_move_service: "Diskreter Trennungsumzug",
     discreet_move: "Diskreter Trennungsumzug",
     diskreter_trennungsumzug: "Diskreter Trennungsumzug",
@@ -1028,9 +1256,9 @@ function getSourceLabel(booking: Booking) {
     plan_b_service: "Plan-B-Service",
     plan_b_form: "Plan-B-Formular",
     backup_service: "Plan-B-Service",
-    cellar_trashroom_rescue: "Keller-/Muellraum-Rettung",
-    keller_muellraum_rettung: "Keller-/Muellraum-Rettung",
-    muellraum_rettung: "Muellraum-Rettung",
+    cellar_trashroom_rescue: "Keller-/Müllraum-Rettung",
+    keller_muellraum_rettung: "Keller-/Müllraum-Rettung",
+    muellraum_rettung: "Müllraum-Rettung",
     realtor_landlord_link: "Makler-/Vermieter-Link",
     makler_vermieter_link: "Makler-/Vermieter-Link",
     object_case_link: "Objektfall-Link",
@@ -1367,9 +1595,9 @@ function isRegensburgMoveLead(booking: Booking) {
 }
 
 function getRegionLabel(booking: Booking) {
-  if (isDuesseldorfDisposalLead(booking)) return "Duesseldorf Entsorgung";
-  if (isDuesseldorfB2BCleaningLead(booking)) return "Duesseldorf B2B";
-  if (isDuesseldorfApartmentCleaningLead(booking)) return "Duesseldorf Apartment";
+  if (isDuesseldorfDisposalLead(booking)) return "Düsseldorf Entsorgung";
+  if (isDuesseldorfB2BCleaningLead(booking)) return "Düsseldorf B2B";
+  if (isDuesseldorfApartmentCleaningLead(booking)) return "Düsseldorf Apartment";
   if (isDuesseldorfCleaningLead(booking)) return "Düsseldorf Reinigung";
   if (isRegensburgBavariaLead(booking)) return "Regensburg/Bayern";
   return "Region prüfen";
@@ -1740,7 +1968,7 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isOfferCheckLead(booking) && hasOfferCheckUpload(booking)) add(15, "Angebot oder Fotos hochgeladen");
   if (isOfferCheckLead(booking) && hasBudget(booking)) add(10, "Preisangabe vorhanden");
   if (isCheaperAlternativeLead(booking)) add(30, "Preis-Alternative/kaufnah");
-  if (isCheaperAlternativeLead(booking) && hasCheaperAlternativeOffer(booking)) add(15, "Angebot fuer Alternative hochgeladen");
+  if (isCheaperAlternativeLead(booking) && hasCheaperAlternativeOffer(booking)) add(15, "Angebot für Alternative hochgeladen");
   if (isCheaperAlternativeLead(booking) && hasCheaperAlternativePrice(booking)) add(10, "Angebotspreis vorhanden");
   if (isCheaperAlternativeLead(booking) && hasCheaperAlternativeBudget(booking)) add(10, "Zielbudget vorhanden");
   if (isPlatformOrderLead(booking)) add(25, "Plattform-Auftrag/kaufnah");
@@ -1748,20 +1976,20 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isPlatformOrderLead(booking) && hasPlatformPrice(booking)) add(10, "Angebotspreis vorhanden");
   if (isPlatformOrderLead(booking) && hasPlatformPhotos(booking)) add(10, "Fotos vorhanden");
   if (isPlatformOrderLead(booking) && (hasPlatformProviderUnclear(booking) || hasPlatformAborted(booking))) add(15, "Anbieter/Plattformweg unklar");
-  if (isPlatformOrderLead(booking) && isPlatformDuesseldorf(booking)) add(10, "Duesseldorf Reinigung/Entsorgung");
+  if (isPlatformOrderLead(booking) && isPlatformDuesseldorf(booking)) add(10, "Düsseldorf Reinigung/Entsorgung");
   if (isRedFlagScannerLead(booking)) add(25, "Red-Flag-Scanner/Vor-Zusage-Lead");
-  if (isRedFlagScannerLead(booking) && hasHighRedFlagScore(booking)) add(20, "hoher Klaerungsbedarf");
+  if (isRedFlagScannerLead(booking) && hasHighRedFlagScore(booking)) add(20, "hoher Klärungsbedarf");
   if (isRedFlagScannerLead(booking) && hasRedFlagOfferPrice(booking)) add(10, "Angebotspreis vorhanden");
-  if (isRedFlagScannerLead(booking) && hasRedFlagDuesseldorf(booking)) add(10, "Duesseldorf Reinigung/Entsorgung");
+  if (isRedFlagScannerLead(booking) && hasRedFlagDuesseldorf(booking)) add(10, "Düsseldorf Reinigung/Entsorgung");
   if (isTenantTurnoverLead(booking)) add(25, "Mieterwechsel/Wiederholungspotenzial");
   if (isTenantTurnoverLead(booking) && getTenantTurnoverRole(booking).includes("hausverwaltung")) add(20, "Hausverwaltung");
-  if (isTenantTurnoverLead(booking) && hasRecurringTenantPotential(booking)) add(15, "Wiederkehrende Faelle moeglich");
+  if (isTenantTurnoverLead(booking) && hasRecurringTenantPotential(booking)) add(15, "Wiederkehrende Fälle möglich");
   if (isTenantTurnoverLead(booking) && Number(config.unitsCount || 0) > 1) add(15, "mehrere Einheiten");
-  if (isTenantTurnoverLead(booking) && isUrgentTenantTurnover(booking)) add(10, "dringender Uebergabetermin");
+  if (isTenantTurnoverLead(booking) && isUrgentTenantTurnover(booking)) add(10, "dringender Übergabetermin");
   if (isRentalReadyLead(booking)) add(25, "Objekt-Ready/vermietbar vorbereiten");
   if (isRentalReadyLead(booking) && isHighValueRentalRole(booking)) add(15, "Vermieter/Hausverwaltung/Makler");
   if (isRentalReadyLead(booking) && hasRentalReadyViewingDate(booking)) add(15, "Besichtigungstermin vorhanden");
-  if (isRentalReadyLead(booking) && hasRentalReadyHandoverDate(booking)) add(15, "Uebergabetermin vorhanden");
+  if (isRentalReadyLead(booking) && hasRentalReadyHandoverDate(booking)) add(15, "Übergabetermin vorhanden");
   if (isRentalReadyLead(booking) && hasRentalReadyCombinedServices(booking)) add(15, "Raeumung + Reinigung kombiniert");
   if (isRentalReadyLead(booking) && Number(config.unitsCount || 0) > 1) add(15, "mehrere Einheiten");
   if (isPropertyReadyLead(booking)) add(30, "Immobilie verkaufsbereit/Verkaufs-Intent");
@@ -1774,8 +2002,8 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isPropertyReadyLead(booking) && hasPropertyReadyRegensburg(booking)) add(10, "Regensburg/Umgebung");
   if (isPropertyReadyLead(booking) && hasPropertyReadyEstateCase(booking)) add(10, "Nachlass/Erbfall mit Fristpotenzial");
   if (isEstateClearanceLead(booking)) add(30, "Nachlass-Raeumung/Diskret-Fall");
-  if (isEstateClearanceLead(booking) && normalizePhoneForContact(booking.phone)) add(15, "Telefon/Rueckruf moeglich");
-  if (isEstateClearanceLead(booking) && hasEstateCallback(booking)) add(15, "Rueckruf gewuenscht");
+  if (isEstateClearanceLead(booking) && normalizePhoneForContact(booking.phone)) add(15, "Telefon/Rückruf möglich");
+  if (isEstateClearanceLead(booking) && hasEstateCallback(booking)) add(15, "Rückruf gewünscht");
   if (isEstateClearanceLead(booking) && hasPhotoSignal(booking)) add(15, "Fotos vorhanden");
   if (isEstateClearanceLead(booking) && hasEstateRegensburg(booking)) add(10, "Regensburg/Umgebung");
   if (isEstateClearanceLead(booking) && hasEstateSaleGoal(booking)) add(10, "Verkauf/Besichtigung/Objektvorbereitung");
@@ -1790,12 +2018,12 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
     add(10, "Makler/Verwaltung/Eigentuemer");
   }
   if (isDiscreetMoveLead(booking)) add(30, "Diskreter Trennungsumzug/sensible Anfrage");
-  if (isDiscreetMoveLead(booking) && normalizePhoneForContact(booking.phone)) add(15, "Telefon/Rueckruf moeglich");
-  if (isDiscreetMoveLead(booking) && hasDiscreetCallback(booking)) add(15, "Rueckrufzeitfenster vorhanden");
+  if (isDiscreetMoveLead(booking) && normalizePhoneForContact(booking.phone)) add(15, "Telefon/Rückruf möglich");
+  if (isDiscreetMoveLead(booking) && hasDiscreetCallback(booking)) add(15, "Rückrufzeitfenster vorhanden");
   if (isDiscreetMoveLead(booking) && hasDiscreetSafeTime(booking)) add(10, "sichere Kontaktzeit");
   if (isDiscreetMoveLead(booking) && hasPhotoSignal(booking)) add(10, "Fotos vorhanden");
   if (isDiscreetMoveLead(booking) && hasDiscreetCleaning(booking)) add(10, "Auszug + Reinigung");
-  if (isDiscreetMoveLead(booking) && (hasDiscreetKey(booking) || hasDiscreetHandoverFile(booking))) add(10, "Schluessel/Uebergabe relevant");
+  if (isDiscreetMoveLead(booking) && (hasDiscreetKey(booking) || hasDiscreetHandoverFile(booking))) add(10, "Schlüssel/Übergabe relevant");
   if (isDiscreetMoveLead(booking) && hasDiscreetPremium(booking)) add(15, "Premium/Diskret ausgewaehlt");
   if (isDiscreetMoveLead(booking) && hasDiscreetRegensburg(booking)) add(10, "Regensburg/Umgebung");
   if (isPlanBServiceLead(booking)) add(35, "Plan-B/Backup-Lead");
@@ -1803,15 +2031,15 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isPlanBServiceLead(booking) && hasPlanBPhotos(booking)) add(15, "Fotos vorhanden");
   if (isPlanBServiceLead(booking) && hasPlanBOffer(booking)) add(15, "bestehendes Angebot vorhanden");
   if (isPlanBServiceLead(booking) && (hasPlanBTransport(booking) || hasPlanBCleaning(booking) || hasPlanBHandover(booking))) add(10, "konkreter Backup-Bereich");
-  if (isPlanBServiceLead(booking) && hasPlanBDuesseldorf(booking)) add(10, "Duesseldorf Reinigung/Entsorgung Backup");
+  if (isPlanBServiceLead(booking) && hasPlanBDuesseldorf(booking)) add(10, "Düsseldorf Reinigung/Entsorgung Backup");
   if (isDamageControlLead(booking)) add(35, "Schadensbegrenzung/Akut-Lead");
   if (isDamageControlLead(booking) && isDamagePlanButtonLead(booking)) add(15, "Plan gekippt Button");
   if (isDamageControlLead(booking) && (hasDamageToday(booking) || hasDamageTomorrow(booking))) add(20, "Deadline heute/morgen");
-  if (isDamageControlLead(booking) && hasDamageHandover(booking)) add(15, "Uebergabe bald/offen");
+  if (isDamageControlLead(booking) && hasDamageHandover(booking)) add(15, "Übergabe bald/offen");
   if (isDamageControlLead(booking) && hasPhotoSignal(booking)) add(15, "Fotos/Angebot vorhanden");
   if (isDamageControlLead(booking) && (hasDamageMove(booking) || hasDamageCleaning(booking) || hasDamageClearance(booking))) add(10, "konkreter Problemtyp");
   if (isDamageControlLead(booking) && hasDamageWhatsAppPreferred(booking)) add(10, "WhatsApp bevorzugt");
-  if (isDamageControlLead(booking) && hasDamageDuesseldorf(booking)) add(10, "Duesseldorf Reinigung/Entsorgung akut");
+  if (isDamageControlLead(booking) && hasDamageDuesseldorf(booking)) add(10, "Düsseldorf Reinigung/Entsorgung akut");
   if (isCellarTrashroomLead(booking)) add(30, "Keller-/Muellraum-Rettung");
   if (isCellarTrashroomLead(booking) && hasCellarHighValueRole(booking)) add(15, "Hausverwaltung/WEG/Gewerbe/Vermieter");
   if (isCellarTrashroomLead(booking) && hasPhotoSignal(booking)) add(15, "Fotos vorhanden");
@@ -1822,7 +2050,7 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isRealtorLandlordLinkLead(booking) && isHighValueObjectCaseRole(booking)) add(15, "Makler/Vermieter/Verwaltung");
   if (isRealtorLandlordLinkLead(booking) && hasPhotoSignal(booking)) add(15, "Objektfotos vorhanden");
   if (isRealtorLandlordLinkLead(booking) && hasObjectCaseViewingDate(booking)) add(15, "Besichtigungstermin vorhanden");
-  if (isRealtorLandlordLinkLead(booking) && hasObjectCaseHandoverDate(booking)) add(15, "Uebergabetermin vorhanden");
+  if (isRealtorLandlordLinkLead(booking) && hasObjectCaseHandoverDate(booking)) add(15, "Übergabetermin vorhanden");
   if (isRealtorLandlordLinkLead(booking) && hasObjectCaseMultipleUnits(booking)) add(15, "mehrere Objekte/Einheiten");
   if (isRealtorLandlordLinkLead(booking) && hasObjectCaseCombinedServices(booking)) add(15, "Raeumung + Reinigung kombiniert");
   if (isRealtorLandlordLinkLead(booking) && hasDirectObjectCaseSource(booking)) add(10, "Direkte Akquise/QR/WhatsApp");
@@ -1832,22 +2060,22 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isReferralPartnercodeLead(booking) && isReferralB2B(booking)) add(15, "B2B-/Objekt-Empfehlung");
   if (isReferralPartnercodeLead(booking) && isReferralRegensburg(booking)) add(10, "Regensburg/Umgebung");
   if (isReferralPartnercodeLead(booking) && isReferralBonusReview(booking)) add(10, "Bonus pruefbar");
-  if (isDuesseldorfB2BCleaningLead(booking)) add(35, "Duesseldorf B2B-Reinigung");
+  if (isDuesseldorfB2BCleaningLead(booking)) add(35, "Düsseldorf B2B-Reinigung");
   if (isDuesseldorfB2BCleaningLead(booking) && config.companyName) add(10, "Firma angegeben");
-  if (isDuesseldorfB2BCleaningLead(booking) && hasB2BArea(booking)) add(10, "Flaeche angegeben");
-  if (isDuesseldorfB2BCleaningLead(booking) && hasDuesseldorfB2BRecurringPotential(booking)) add(15, "wiederkehrender Auftrag moeglich");
+  if (isDuesseldorfB2BCleaningLead(booking) && hasB2BArea(booking)) add(10, "Fläche angegeben");
+  if (isDuesseldorfB2BCleaningLead(booking) && hasDuesseldorfB2BRecurringPotential(booking)) add(15, "wiederkehrender Auftrag möglich");
   if (isDuesseldorfB2BCleaningLead(booking) && hasUsefulText(config.timeWindow)) add(10, "Zeitfenster vorhanden");
   if (isDuesseldorfB2BCleaningLead(booking) && hasPhotoSignal(booking)) add(10, "Objektfotos vorhanden");
-  if (isDuesseldorfB2BCleaningLead(booking) && (Number(config.roomsCount || 0) > 1 || Number(config.sanitaryCount || 0) > 0)) add(10, "mehrere Raeume/Sanitaer");
-  if (isDuesseldorfApartmentCleaningLead(booking)) add(30, "Duesseldorf Apartment-Reinigung");
+  if (isDuesseldorfB2BCleaningLead(booking) && (Number(config.roomsCount || 0) > 1 || Number(config.sanitaryCount || 0) > 0)) add(10, "mehrere Räume/Sanitär");
+  if (isDuesseldorfApartmentCleaningLead(booking)) add(30, "Düsseldorf Apartment-Reinigung");
   if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentCheckinTime(booking)) add(15, "Check-in/Check-out-Zeitfenster");
-  if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentRecurring(booking)) add(20, "wiederkehrende Reinigung moeglich");
+  if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentRecurring(booking)) add(20, "wiederkehrende Reinigung möglich");
   if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentB2B(booking)) add(15, "B2B/Betreiber-Potenzial");
-  if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentLaundry(booking)) add(8, "Waeschewunsch klaeren");
-  if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentKeyCoordination(booking)) add(8, "Schluesselkoordination klaeren");
-  if (isHandoverFileLead(booking)) add(25, "Uebergabeakte/Signature-Produkt");
-  if (isHandoverFileLead(booking) && hasHandoverTerm(booking)) add(15, "Uebergabetermin vorhanden");
-  if (isHandoverFileLead(booking) && getHandoverServicesText(booking).includes("schluessel")) add(15, "Schluesselstatus/Schluesseluebergabe");
+  if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentLaundry(booking)) add(8, "Wäschewunsch klären");
+  if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentKeyCoordination(booking)) add(8, "Schlüsselkoordination klären");
+  if (isHandoverFileLead(booking)) add(25, "Übergabeakte/Signature-Produkt");
+  if (isHandoverFileLead(booking) && hasHandoverTerm(booking)) add(15, "Übergabetermin vorhanden");
+  if (isHandoverFileLead(booking) && getHandoverServicesText(booking).includes("schluessel")) add(15, "Schlüsselstatus/Schlüsselübergabe");
   if (isHandoverFileLead(booking) && getHandoverServicesText(booking).includes("endreinigung")) add(10, "Endreinigung kombiniert");
   if (isHandoverFileLead(booking) && getHandoverServicesText(booking).includes("mieterwechsel")) add(15, "Mieterwechsel verknuepft");
   if (isHandoverFileLead(booking) && hasHandoverRecipient(booking)) add(10, "Empfaenger der Akte geklaert");
@@ -1863,9 +2091,9 @@ function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   if (isRouteBoardLead(booking) && Array.isArray(config.selectedAddons) && config.selectedAddons.length > 0) {
     add(10, "Zusatzservice angefragt");
   }
-  if (isDuesseldorfDisposalLead(booking) && hasPhotoSignal(booking)) add(15, "Duesseldorf Entsorgung mit Fotos");
+  if (isDuesseldorfDisposalLead(booking) && hasPhotoSignal(booking)) add(15, "Düsseldorf Entsorgung mit Fotos");
   if (isB2BCleaning(booking) && (hasB2BArea(booking) || hasB2BInterval(booking))) {
-    add(10, "B2B-Reinigung mit Flaeche/Frequenz");
+    add(10, "B2B-Reinigung mit Fläche/Frequenz");
   }
 
   if (!normalizePhoneForContact(booking.phone) && !hasUsefulText(booking.email)) {
@@ -3507,18 +3735,18 @@ function getNextStep(booking: Booking) {
   if (!booking.phone && !booking.email) return "Kontakt ergänzen";
   if (quality.tone === "thin") return quality.nextQuestion;
   if (quality.tone === "needs-info" && booking.status === "new") return quality.nextQuestion;
-  if (isDuesseldorfB2BCleaningLead(booking)) return "Objekt, Flaeche, Frequenz und Zeitfenster pruefen";
-  if (isDuesseldorfApartmentCleaningLead(booking)) return "Terminfenster, Zugang und Zusatzwuensche pruefen";
-  if (isPlatformOrderLead(booking)) return "Plattformfall, Angebot und offene Punkte pruefen";
-  if (isReferralPartnercodeLead(booking)) return "Partnercode, Auftrag und Bonusstatus pruefen";
-  if (isPropertyReadyLead(booking)) return "Objektstatus, Fotos, Besichtigung und Zugang pruefen";
-  if (isDiscreetMoveLead(booking)) return "Diskret Rueckruf, Kontaktweg, Berechtigung und Umfang pruefen";
-  if (isEstateClearanceLead(booking)) return "Diskret Rueckruf, Freigabe, Fotos und Umfang pruefen";
-  if (isRealtorLandlordLinkLead(booking)) return "Objektfall, Fotos und Termin pruefen";
-  if (isCellarTrashroomLead(booking)) return "Freigabe, Fotos und Umfang pruefen";
-  if (isPlanBServiceLead(booking)) return "Risiko, Backup-Paket und Kapazitaet pruefen";
-  if (isDamageControlLead(booking)) return "Sofort Machbarkeit pruefen";
-  if (isRentalReadyLead(booking)) return "Objektstatus pruefen";
+  if (isDuesseldorfB2BCleaningLead(booking)) return "Objekt, Fläche, Frequenz und Zeitfenster prüfen";
+  if (isDuesseldorfApartmentCleaningLead(booking)) return "Terminfenster, Zugang und Zusatzwünsche prüfen";
+  if (isPlatformOrderLead(booking)) return "Plattformfall, Angebot und offene Punkte prüfen";
+  if (isReferralPartnercodeLead(booking)) return "Partnercode, Auftrag und Bonusstatus prüfen";
+  if (isPropertyReadyLead(booking)) return "Objektstatus, Fotos, Besichtigung und Zugang prüfen";
+  if (isDiscreetMoveLead(booking)) return "Diskret Rückruf, Kontaktweg, Berechtigung und Umfang prüfen";
+  if (isEstateClearanceLead(booking)) return "Diskret Rückruf, Freigabe, Fotos und Umfang prüfen";
+  if (isRealtorLandlordLinkLead(booking)) return "Objektfall, Fotos und Termin prüfen";
+  if (isCellarTrashroomLead(booking)) return "Freigabe, Fotos und Umfang prüfen";
+  if (isPlanBServiceLead(booking)) return "Risiko, Backup-Paket und Kapazität prüfen";
+  if (isDamageControlLead(booking)) return "Sofort Machbarkeit prüfen";
+  if (isRentalReadyLead(booking)) return "Objektstatus prüfen";
   if (isHandoverFileLead(booking)) return "Dokumentationsumfang klaeren";
   if (booking.status === "new") return "Anfrage prüfen";
   if (hasBudget(booking)) return "Preisrahmen prüfen";
@@ -4101,7 +4329,7 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
         pushBooking(
           booking,
           `High Score ${revenue.score}`,
-          revenue.reasons[0] || "Kontakt, Termin und naechsten Schritt sofort pruefen",
+          revenue.reasons[0] || "Kontakt, Termin und nächsten Schritt sofort prüfen",
           "inquiries",
         ),
       );
@@ -5206,6 +5434,9 @@ function InquiriesWorkspace({
   const hasActiveSearch = searchTerm.trim().length > 0;
   const hasActiveFilter = inquiryFilter !== "all";
   const hasActiveLimit = hasActiveSearch || hasActiveFilter;
+  const priorityFilters = priorityInquiryFilterIds.map((id) => inquiryFilterById[id]).filter(Boolean);
+  const isPriorityFilterActive = priorityInquiryFilterIds.includes(inquiryFilter);
+  const activeFilterLabel = inquiryFilterById[inquiryFilter]?.label || "Alle";
   const triageCards: Array<{
     id: InquiryFilter;
     label: string;
@@ -5269,8 +5500,8 @@ function InquiriesWorkspace({
         text="Neue Kundenanfragen suchen, filtern und öffnen."
       />
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
-        <div className="mb-4 grid gap-3 md:grid-cols-4 xl:grid-cols-8">
+      <div className="rounded-[1.65rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
+        <div className="mb-4 grid gap-3 md:grid-cols-4 2xl:grid-cols-8">
           {triageCards.map((item) => {
             const active = inquiryFilter === item.id;
             return (
@@ -5281,7 +5512,7 @@ function InquiriesWorkspace({
                 data-event="select_dashboard_filter"
                 data-filter={item.id}
                 className={cn(
-                  "rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-950/5",
+                  "min-h-[7.6rem] rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-950/5",
                   item.tone,
                   active ? "ring-2 ring-blue-300" : "",
                 )}
@@ -5298,7 +5529,7 @@ function InquiriesWorkspace({
           })}
         </div>
 
-        <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+        <div className="grid gap-3 xl:grid-cols-[minmax(280px,420px)_1fr] xl:items-start">
           <div className="relative w-full xl:max-w-md">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
@@ -5318,32 +5549,106 @@ function InquiriesWorkspace({
               </button>
             ) : null}
           </div>
-          <div className="flex flex-wrap gap-2">
-            {inquiryFilters.map((filter) => (
-              <button
-                key={filter.id}
-                type="button"
-                onClick={() => setInquiryFilter(filter.id)}
-                data-event="select_dashboard_filter"
-                data-filter={filter.id}
-                className={cn(
-                  "rounded-lg border px-3 py-2 text-xs font-bold transition",
-                  inquiryFilter === filter.id
-                    ? "border-blue-600 bg-blue-600 text-white"
-                    : "border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50",
-                )}
-              >
-                <span>{filter.label}</span>
-                <span
+          <div className="min-w-0">
+            <div className="flex flex-wrap gap-2">
+              {priorityFilters.map((filter) => (
+                <button
+                  key={filter.id}
+                  type="button"
+                  onClick={() => setInquiryFilter(filter.id)}
+                  data-event="select_dashboard_filter"
+                  data-filter={filter.id}
                   className={cn(
-                    "ml-2 rounded-full px-1.5 py-0.5 text-[10px]",
-                    inquiryFilter === filter.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500",
+                    "inline-flex h-9 items-center gap-2 rounded-full border px-3 text-xs font-black transition",
+                    inquiryFilter === filter.id
+                      ? "border-slate-950 bg-slate-950 text-white shadow-sm"
+                      : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700",
                   )}
                 >
-                  {filterCounts[filter.id] || 0}
+                  <span>{filter.label}</span>
+                  <span
+                    className={cn(
+                      "rounded-full px-1.5 py-0.5 text-[10px]",
+                      inquiryFilter === filter.id ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500",
+                    )}
+                  >
+                    {filterCounts[filter.id] || 0}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <details
+              className={cn(
+                "group mt-3 rounded-2xl border bg-slate-50/80",
+                !isPriorityFilterActive && hasActiveFilter ? "border-blue-200 ring-2 ring-blue-100" : "border-slate-200",
+              )}
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-black text-slate-900 outline-none transition marker:hidden hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500">
+                <span>Spezialfilter</span>
+                <span className="flex items-center gap-2 text-xs font-bold text-slate-500">
+                  {!isPriorityFilterActive && hasActiveFilter ? activeFilterLabel : "nach Bereich öffnen"}
+                  <ArrowRight className="h-4 w-4 transition group-open:rotate-90" />
                 </span>
-              </button>
-            ))}
+              </summary>
+              <div className="grid max-h-[38rem] gap-3 overflow-y-auto border-t border-slate-200 p-3 lg:grid-cols-2 2xl:grid-cols-3">
+                {inquiryFilterGroups.map((group) => (
+                  <section key={group.title} className="rounded-2xl border border-slate-200 bg-white p-3">
+                    <div className="mb-3">
+                      <h3 className="text-xs font-black uppercase tracking-[0.12em] text-slate-950">{group.title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">{group.description}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.ids.map((id) => {
+                        const filter = inquiryFilterById[id];
+                        if (!filter) return null;
+                        const count = filterCounts[id] || 0;
+                        return (
+                          <button
+                            key={filter.id}
+                            type="button"
+                            onClick={() => setInquiryFilter(filter.id)}
+                            data-event="select_dashboard_filter"
+                            data-filter={filter.id}
+                            className={cn(
+                              "inline-flex min-h-8 items-center gap-1.5 rounded-full border px-2.5 text-[11px] font-bold transition",
+                              inquiryFilter === filter.id
+                                ? "border-blue-600 bg-blue-600 text-white"
+                                : "border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700",
+                            )}
+                          >
+                            <span>{filter.label}</span>
+                            <span
+                              className={cn(
+                                "rounded-full px-1.5 py-0.5 text-[10px]",
+                                inquiryFilter === filter.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500",
+                              )}
+                            >
+                              {count}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </details>
+
+            <label className="mt-3 block sm:hidden">
+              <span className="sr-only">Filter wählen</span>
+              <select
+                value={inquiryFilter}
+                onChange={(event) => setInquiryFilter(event.target.value as InquiryFilter)}
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-blue-300"
+              >
+                {inquiryFilters.map((filter) => (
+                  <option key={filter.id} value={filter.id}>
+                    {filter.label} ({filterCounts[filter.id] || 0})
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
         </div>
 
@@ -6702,8 +7007,8 @@ function buildContextRows(booking: Booking) {
     ["B2B-Frequenz", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.recurringFrequency]) : ""],
     ["B2B-Zeitfenster", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.timeWindow]) : ""],
     ["Starttermin", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.desiredStartDate]) : ""],
-    ["Sanitaerbereiche", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.sanitaryCount]) : ""],
-    ["Kueche/Pausenbereich", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.kitchenOrBreakroom]) : ""],
+    ["Sanitärbereiche", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.sanitaryCount]) : ""],
+    ["Küche/Pausenbereich", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.kitchenOrBreakroom]) : ""],
     ["Bodenart", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.floorType]) : ""],
     ["Regelrechnung", isDuesseldorfB2BCleaningLead(booking) ? firstText([config.regularInvoiceRequested]) : ""],
     ["Apartment-Reinigungsart", firstText([config.cleaningType])],
@@ -6711,33 +7016,33 @@ function buildContextRows(booking: Booking) {
     ["Naechster Check-in", firstText([config.nextCheckinTime])],
     ["Frequenz", firstText([config.recurringFrequency])],
     ["Waeschewechsel", firstText([config.laundryChangeRequested])],
-    ["Schluesselkoordination", firstText([config.keyCoordinationRequested])],
+    ["Schlüsselkoordination", firstText([config.keyCoordinationRequested])],
     ["Foto-Dokumentation", firstText([config.photoDocumentationRequested])],
     ["Inventarhinweis", firstText([config.inventoryNoteRequested])],
     ["Kleine Entsorgung", firstText([config.disposalSmallItemsRequested])],
     ["Baeder", firstText([config.bathroomsCount])],
     ["Kueche", firstText([config.kitchenPresent])],
     ["Moebliert", firstText([config.furnishedStatus])],
-    ["Uebergabetermin", firstText([config.handoverDate])],
+    ["Übergabetermin", firstText([config.handoverDate])],
     ["Mieterwechsel-Leistungen", Array.isArray(config.selectedServices) ? config.selectedServices.join(", ") : firstText([config.selectedServices])],
     ["Objektziel", firstText([config.goalType])],
     ["Objektstatus", firstText([config.objectStatus])],
     ["Nachlass-Status", firstText([config.estateStatus])],
     ["Beteiligte", firstText([config.involvedParties])],
-    ["Diskreter Rueckruf", firstText([config.callbackWanted ? "ja" : ""])],
+    ["Diskreter Rückruf", firstText([config.callbackWanted ? "ja" : ""])],
     ["Sichere Kontaktmethode", firstText([config.safeContactMethod])],
-    ["Rueckrufzeitfenster", firstText([config.callbackTimeWindow])],
+    ["Rückrufzeitfenster", firstText([config.callbackTimeWindow])],
     ["Kontakt-Hinweis", getDashboardStringArray(config.contactRestrictions).join(", ")],
     ["Berechtigung bestaetigt", firstText([config.authorizationConfirmed ? "ja" : ""])],
     ["Diskret-Anfrageart", firstText([config.requestType])],
     ["Reinigung gewuenscht", firstText([config.cleaningRequested ? "ja" : ""])],
     ["Entsorgung gewuenscht", firstText([config.disposalRequested ? "ja" : ""])],
-    ["Uebergabeakte gewuenscht", firstText([config.handoverFileRequested ? "ja" : ""])],
-    ["Betroffene Flaeche", firstText([config.areaType])],
+    ["Übergabeakte gewünscht", firstText([config.handoverFileRequested ? "ja" : ""])],
+    ["Betroffene Fläche", firstText([config.areaType])],
     ["Problemstoffe", firstText([config.hazardousMaterialsStatus])],
     ["Freigabe", firstText([config.legalClearanceStatus])],
     ["Gegenstandsarten", Array.isArray(config.itemTypes) ? config.itemTypes.join(", ") : firstText([config.itemTypes])],
-    ["Flaechengroesse", firstText([config.areaSize && `${config.areaSize} m2`])],
+    ["Flächengröße", firstText([config.areaSize && `${config.areaSize} m2`])],
     ["Problemtyp", firstText([config.problemType])],
     ["Schadenslage", firstText([config.damageSituation])],
     ["Plan-B-Risiko", firstText([config.riskLevel])],
@@ -6755,9 +7060,9 @@ function buildContextRows(booking: Booking) {
     ["Exportstatus", firstText([config.exportStatus])],
     ["Quellflow", firstText([config.sourceFlow])],
     ["Objektlabel", firstText([config.objectLabel])],
-    ["Schluesselstatus", firstText([config.keyStatus])],
-    ["Schluesseltermin", firstText([config.keyHandoverDate])],
-    ["Schluessel-Empfaenger", firstText([config.keyHandoverRecipient])],
+    ["Schlüsselstatus", firstText([config.keyStatus])],
+    ["Schlüsseltermin", firstText([config.keyHandoverDate])],
+    ["Schlüssel-Empfänger", firstText([config.keyHandoverRecipient])],
     ["Empfaenger Akte", firstText([config.recipientType])],
     ["Dokumentationsumfang", firstText([config.documentationScope])],
     ["Dossier-Bausteine", getDashboardStringArray(config.documentationScopeItems).join(", ")],
@@ -6794,7 +7099,7 @@ function buildContextRows(booking: Booking) {
         : hasOfferCheckUpload(booking)
           ? `${Number(config.offerUploadCount || 0) + Number(config.photoUploadCount || 0)} ${
               isHandoverFileLead(booking)
-                ? "Uebergabeakte-Foto(s)"
+                ? "Übergabeakte-Foto(s)"
                 : isPlatformOrderLead(booking)
                   ? "Plattform-Auftrag-Datei(en)"
                 : isPropertyReadyLead(booking)
@@ -6904,7 +7209,7 @@ function HandoverDossierBuilder({ booking }: { booking: Booking }) {
   const services = Array.isArray(config.selectedServices) ? config.selectedServices.join(", ") : firstText([config.selectedServices]);
 
   return (
-    <Panel title="Uebergabeakte-Builder" subtitle="Interne Dossier-Struktur fuer Objekt, Leistungen, Fotos, Schluessel und Hinweise.">
+    <Panel title="Übergabeakte-Builder" subtitle="Interne Dossier-Struktur für Objekt, Leistungen, Fotos, Schlüssel und Hinweise.">
       <div data-event="dashboard_open_handover_builder" className="grid gap-4">
         <div className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
@@ -6937,7 +7242,7 @@ function HandoverDossierBuilder({ booking }: { booking: Booking }) {
             ["Bereiche", photoSections.join(", ") || "Noch nicht festgelegt"],
             ["Fotohinweis", firstText([config.photoNotes])],
           ]} />
-          <PlanningCard title="Schluessel & Hinweise" items={[
+          <PlanningCard title="Schlüssel & Hinweise" items={[
             ["Status", firstText([config.keyStatus])],
             ["Empfaenger", firstText([config.keyHandoverRecipient, config.recipientType])],
             ["Offene Punkte", openItems.join(", ") || firstText([config.visibleNotes, config.publicNotes])],
