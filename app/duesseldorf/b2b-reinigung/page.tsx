@@ -1,5 +1,21 @@
-import { permanentRedirect } from "next/navigation";
+import type { Metadata } from "next";
 
-export default function DuesseldorfB2BReinigungRedirect() {
-  permanentRedirect("/duesseldorf/bueroreinigung");
+import { DuesseldorfServicePage } from "@/components/duesseldorf/DuesseldorfServicePage";
+import { getDuesseldorfServicePage } from "@/lib/duesseldorf-service-pages";
+import { buildDuesseldorfCleaningMetadata } from "@/lib/duesseldorf-cleaning";
+
+export const revalidate = 3600;
+
+const page = getDuesseldorfServicePage("b2b-reinigung");
+
+export async function generateMetadata(): Promise<Metadata> {
+  return buildDuesseldorfCleaningMetadata({
+    path: page.path,
+    title: page.metaTitle,
+    description: page.metaDescription,
+  });
+}
+
+export default function DuesseldorfB2BReinigungPage() {
+  return <DuesseldorfServicePage {...page} />;
 }

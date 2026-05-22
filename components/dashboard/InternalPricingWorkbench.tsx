@@ -297,7 +297,7 @@ export function InternalPricingWorkbench({
             onChange={(checked) => setField("assemblyService", checked)}
           />
           <ToggleField
-            label="Halteverbotszone"
+            label="Zugang / Parken"
             checked={Boolean(form.noParkingZone)}
             onChange={(checked) => setField("noParkingZone", checked)}
           />

@@ -108,7 +108,7 @@ export default async function EndreinigungRegensburgPage({ params }: PageProps) 
       ]}
       authorityBadge="Endreinigung als Uebergabe-Cluster"
       authorityTitle="Was vor einer Endreinigung in Regensburg geklaert werden sollte"
-      authoritySubtitle="FLOXANT staerkt diese Seite als Ads- und SEO-tauglichen Einstieg: Flaeche, Zustand, Fotos, Termin, Budget und Wohnungsuebergabe werden konkret abgefragt statt nur allgemein beworben."
+      authoritySubtitle="FLOXANT staerkt diese Seite als klaren Einstieg: Flaeche, Zustand, Fotos, Termin, Budget und Wohnungsuebergabe werden konkret abgefragt statt nur allgemein beworben."
     />
   );
 }

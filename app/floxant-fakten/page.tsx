@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, FileText, Info, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, Info, MapPin, ShieldCheck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { company } from "@/lib/company";
@@ -88,7 +88,7 @@ export default function FloxantFactsPage() {
    buildWebPageJsonLd({
     name: "FLOXANT Fakten für Umzug, Reinigung und Entrümpelung",
     description:
-     "Kompakte Faktenquelle zu FLOXANT, Kernleistungen, Region, Preislogik und kanonischen Seiten.",
+     "Kompakte Faktenquelle zu FLOXANT, Kernleistungen, Region, Preislogik und wichtigen Einstiegsseiten.",
     path: "/floxant-fakten",
     about: [
      "FLOXANT",
@@ -161,8 +161,8 @@ export default function FloxantFactsPage() {
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/58">
       Diese Seite bündelt die wichtigsten Informationen über FLOXANT in klarer Sprache:
-      Leistungen, Region, Preislogik, Grenzen und kanonische Einstiegsseiten. Sie hilft
-      Kunden und lokalen Suchsystemen, FLOXANT korrekt einzuordnen.
+      Leistungen, Region, Preislogik, Grenzen und wichtige Einstiegsseiten. Sie hilft
+      Kunden, den passenden FLOXANT-Weg schnell einzuordnen.
      </p>
      <div className="mt-8 flex flex-wrap gap-3">
       <Link
@@ -172,20 +172,6 @@ export default function FloxantFactsPage() {
        Rechner öffnen
        <ArrowRight className="h-4 w-4" />
       </Link>
-      <a
-       href="/llms.txt"
-       className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/[0.08] hover:text-white"
-      >
-       llms.txt ansehen
-       <FileText className="h-4 w-4" />
-      </a>
-      <a
-       href="/service-graph.json"
-       className="inline-flex items-center gap-2 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/15 hover:text-white"
-      >
-       Service Graph ansehen
-       <FileText className="h-4 w-4" />
-      </a>
      </div>
     </div>
    </section>

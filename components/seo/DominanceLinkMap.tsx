@@ -56,7 +56,7 @@ export function DominanceLinkMap({ compact = false }: { compact?: boolean }) {
       </h2>
      </div>
      <p className="max-w-xl text-sm leading-relaxed text-foreground/45 md:text-right">
-      Diese interne Karte verteilt Autorität auf Money Pages und hilft Nutzern, von Recherche direkt zur passenden Anfrage zu kommen.
+      Diese Übersicht verbindet wichtige Leistungsseiten und hilft Nutzern, von der Recherche direkt zur passenden Anfrage zu kommen.
      </p>
     </div>
 

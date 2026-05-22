@@ -26,10 +26,8 @@ const serviceRedirectPairs = [
     ['entrümpelung', 'entruempelung'],
     ['büroumzug', 'bueroumzug'],
     ['wohnungsauflösung', 'wohnungsaufloesung'],
-    ['halteverbotszone', 'halteverbotszone'],
     ['klaviertransport', 'klaviertransport'],
     ['seniorenumzug', 'seniorenumzug'],
-    ['studentenumzug', 'studentenumzug'],
 ];
 
 const umlautRedirectDestinationOverrides = new Map();
@@ -118,11 +116,6 @@ const nextConfig = {
             {
                 source: '/airbnb-reinigung-duesseldorf',
                 destination: '/reinigung-moeblierte-wohnung-duesseldorf',
-                permanent: true,
-            },
-            {
-                source: '/duesseldorf/b2b-reinigung',
-                destination: '/duesseldorf/bueroreinigung',
                 permanent: true,
             },
             {

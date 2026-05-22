@@ -38,7 +38,6 @@ const SERVICE_SLUGS = [
   "reinigung",
   "entruempelung",
   "montage",
-  "halteverbotszone",
 ] as const;
 type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 const SLUG_TO_KEY: Record<ServiceSlug, string> = {
@@ -48,16 +47,14 @@ const SLUG_TO_KEY: Record<ServiceSlug, string> = {
   reinigung: "service_reinigung",
   entruempelung: "service_entruempelung",
   montage: "service_montage",
-  halteverbotszone: "service_halteverbotszone",
 };
 const RELATED_SERVICES: Record<ServiceSlug, readonly ServiceSlug[]> = {
-  umzug: ["fernumzug", "montage", "halteverbotszone"],
-  bueroumzug: ["fernumzug", "halteverbotszone", "montage"],
-  fernumzug: ["umzug", "bueroumzug", "halteverbotszone"],
+  umzug: ["fernumzug", "montage", "reinigung"],
+  bueroumzug: ["fernumzug", "montage", "reinigung"],
+  fernumzug: ["umzug", "bueroumzug", "montage"],
   reinigung: ["entruempelung", "umzug", "montage"],
   entruempelung: ["reinigung", "umzug", "montage"],
   montage: ["umzug", "bueroumzug", "reinigung"],
-  halteverbotszone: ["umzug", "bueroumzug", "fernumzug"],
 };
 
 const SERVICE_SUPPORT_LINKS: Record<
@@ -90,7 +87,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     {
       title: "Aufwand vorrechnen",
       href: "/rechner?service=umzug",
-      text: "Wenn intern erst eine belastbare Größenordnung gebraucht wird.",
+      text: "Wenn zuerst eine belastbare Größenordnung gebraucht wird.",
     },
     {
       title: "Kontaktweg abstimmen",
@@ -166,23 +163,6 @@ const SERVICE_SUPPORT_LINKS: Record<
       text: "Wenn Montage mit Umzug, Reinigung oder regionalem Einsatz verbunden ist.",
     },
   ],
-  halteverbotszone: [
-    {
-      title: "Halteverbotszone anfragen",
-      href: "/buchung?service=umzug#buchungssystem",
-      text: "Wenn Halteweg, Datum und Straßensituation direkt eingeordnet werden sollen.",
-    },
-    {
-      title: "Ablauf verstehen",
-      href: "/kontakt",
-      text: "Wenn Abstimmung mit Umzug, Zugang und Zeitfenster vorab nötig ist.",
-    },
-    {
-      title: "Weitere Hilfe finden",
-      href: "/blog",
-      text: "Wenn vorab noch Fragen zu Vorbereitung und Übergabe offen sind.",
-    },
-  ],
 };
 type PageProps = {
   params: Promise<{ serviceSlug: string }>;
@@ -223,8 +203,6 @@ function getProviderSchemaType(slug: ServiceSlug): string | string[] {
     case "entruempelung":
       return ["LocalBusiness", "ProfessionalService"];
     case "montage":
-    case "halteverbotszone":
-      return "ProfessionalService";
     default:
       return "MovingCompany";
   }
@@ -260,13 +238,6 @@ function getLocalSeoBreadcrumbs(route: DynamicLocalSeoRoute) {
         { label: serviceLabel, href: "/wohnungsaufloesung-bayern" },
         { label: germanizeText(route.city) },
       ];
-    case "halteverbotszone":
-      return [
-        { label: "Home", href: "/" },
-        { label: "Umzug", href: "/umzug" },
-        { label: serviceLabel, href: "/halteverbotszone-regensburg" },
-        { label: germanizeText(route.city) },
-      ];
     case "klaviertransport":
       return [
         { label: "Home", href: "/" },
@@ -279,13 +250,6 @@ function getLocalSeoBreadcrumbs(route: DynamicLocalSeoRoute) {
         { label: "Home", href: "/" },
         { label: "Umzug", href: "/umzug" },
         { label: serviceLabel, href: "/seniorenumzug" },
-        { label: germanizeText(route.city) },
-      ];
-    case "studentenumzug":
-      return [
-        { label: "Home", href: "/" },
-        { label: "Umzug", href: "/umzug" },
-        { label: serviceLabel, href: "/studentenumzug-bayern" },
         { label: germanizeText(route.city) },
       ];
     case "reinigung":

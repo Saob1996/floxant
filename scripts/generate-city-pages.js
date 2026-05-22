@@ -36,6 +36,7 @@ const EXCLUDE_SLUGS = new Set([
   "koeln",
   "leipzig",
   "stuttgart",
+  "lindau",
   // Munich sub-districts (handle separately)
   "muenchen-bogenhausen",
   "muenchen-schwabing",

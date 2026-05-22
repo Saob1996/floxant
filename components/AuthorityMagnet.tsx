@@ -46,7 +46,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
 
   const usefulHints = [
     {
-      title: t(am?.useful?.no_parking?.title, "Halteverbotszone früh klären"),
+      title: t(am?.useful?.no_parking?.title, "Zugang früh klären"),
       desc: t(
         am?.useful?.no_parking?.desc,
         `Wenn in ${city} enge Zufahrten oder knappe Ladezonen zu erwarten sind, spart eine frühe Klärung später viel Hektik.`,

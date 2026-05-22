@@ -265,12 +265,6 @@ const signatureServices = [
     Icon: ShieldCheck,
   },
   {
-    title: "Halteverbotszone",
-    text: "Park- und Zugangsthemen früh berücksichtigen.",
-    href: "/halteverbotszone-regensburg",
-    Icon: MapPin,
-  },
-  {
     title: "Umzug + Endreinigung",
     text: "Transport, Reinigung und Übergabe gemeinsam vorbereiten.",
     href: "/umzug-mit-reinigung",
@@ -311,7 +305,7 @@ const signatureServices = [
 const signatureServiceGroups = [
   {
     title: "Übergabe & Dokumentation",
-    items: ["Schlüsselübergabe", "FLOXANT Übergabeakte", "Halteverbotszone", "Foto-Prüfung"],
+    items: ["Schlüsselübergabe", "FLOXANT Übergabeakte", "Zugangsprüfung", "Foto-Prüfung"],
   },
   {
     title: "Reinigung & Objektvorbereitung",
@@ -352,7 +346,7 @@ const detailCards = [
   },
   {
     title: "Besondere Leistungen",
-    text: "Schlüssel, Protokoll, Halteverbotszone oder Beiladung lösen die Punkte, an denen Aufträge oft hängen bleiben.",
+    text: "Schlüssel, Protokoll, Zugang oder Beiladung lösen die Punkte, an denen Aufträge oft hängen bleiben.",
   },
 ] as const;
 
@@ -393,7 +387,7 @@ const faqItems = [
   },
   {
     q: "Welche Leistungen kann ich hier anfragen?",
-    a: "Umzug, Reinigung und Entrümpelung sowie passende Zusatzleistungen wie Schlüsselübergabe, Halteverbotszone, Seniorenumzug, Rückfahrt oder Schwertransport.",
+    a: "Umzug, Reinigung und Entrümpelung sowie passende Zusatzleistungen wie Schlüsselübergabe, Seniorenumzug, Rückfahrt oder Schwertransport.",
   },
   {
     q: "Kann ich auch direkt per WhatsApp starten?",
@@ -489,7 +483,6 @@ export async function generateMetadata(): Promise<Metadata> {
       "Anfrage mit Fotos senden",
       "Angebot anderer Firma prüfen",
       "Schlüsselübergabe",
-      "Halteverbotszone Regensburg",
       "Beiladung Bayern",
     ],
   });

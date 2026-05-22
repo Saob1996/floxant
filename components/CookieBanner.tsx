@@ -79,11 +79,11 @@ export function CookieBanner({ dic }: { dic?: any }) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setIsVisible(true)}
-            className="fixed bottom-6 start-6 z-[90] p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:bg-white/20 transition-all group"
+            className="fixed bottom-5 start-5 z-[90] rounded-full border border-slate-200 bg-white/95 p-3 text-slate-900 shadow-[0_16px_34px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_42px_rgba(15,23,42,0.22)] group"
             title={dic?.cookie?.settings || "Cookie Einstellungen"}
             aria-label={dic?.cookie?.settings || "Cookie Einstellungen anpassen"}
           >
-            <Shield className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+            <Shield className="w-5 h-5 text-slate-800 transition-colors group-hover:text-blue-700" />
           </m.button>
         )}
       </AnimatePresence>
@@ -91,18 +91,18 @@ export function CookieBanner({ dic }: { dic?: any }) {
       <AnimatePresence>
         {isVisible && (
           <m.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0 }}
-            className="fixed inset-x-0 bottom-0 z-[100] p-4 md:p-6 pointer-events-none"
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            exit={{ y: 20 }}
+            className="fixed inset-x-0 bottom-0 z-[100] p-3 sm:p-4 md:p-6 pointer-events-none"
           >
-            <div className="max-w-4xl mx-auto bg-[#0a0a0a]/96 backdrop-blur-xl border border-white/15 rounded-2xl p-6 md:p-8 shadow-2xl pointer-events-auto text-white">
+            <div className="mx-auto max-h-[calc(100dvh-1.5rem)] max-w-3xl overflow-y-auto rounded-[1.35rem] border border-white/20 bg-[#0b111b] p-5 text-white shadow-[0_24px_90px_rgba(2,6,23,0.45)] ring-1 ring-black/20 pointer-events-auto md:p-7">
               {!showSettings ? (
                 // Basic View
                 <div className="flex flex-col gap-6">
                   <div className="flex gap-4 items-start">
-                    <div className="p-3 bg-primary/10 rounded-xl shrink-0 hidden sm:block">
-                      <Shield className="w-6 h-6 text-primary" />
+                    <div className="hidden shrink-0 rounded-xl border border-blue-300/20 bg-blue-400/14 p-3 sm:block">
+                      <Shield className="w-6 h-6 text-blue-200" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold mb-2 text-white" style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>{dic?.cookie?.title || "Ihre Privatsphäre ist uns wichtig"}</h3>
@@ -112,16 +112,16 @@ export function CookieBanner({ dic }: { dic?: any }) {
                     </div>
                   </div>
                   
-                  <div className="flex flex-col items-center justify-between gap-4 pt-4 border-t border-white/5 sm:flex-row">
-                    <div className="flex gap-4 text-xs text-slate-300">
+                  <div className="flex flex-col items-stretch justify-between gap-4 border-t border-white/10 pt-4 lg:flex-row lg:items-center">
+                    <div className="flex gap-4 text-xs font-semibold text-slate-200">
                       <a href="/datenschutz" className="transition-colors hover:text-white hover:underline" style={{ color: "#cbd5e1", WebkitTextFillColor: "#cbd5e1" }}>{dic?.cookie?.privacy || "Datenschutz"}</a>
                       <a href="/impressum" className="transition-colors hover:text-white hover:underline" style={{ color: "#cbd5e1", WebkitTextFillColor: "#cbd5e1" }}>{dic?.cookie?.imprint || "Impressum"}</a>
                     </div>
                     
-                    <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                    <div className="grid w-full gap-3 sm:grid-cols-3 lg:flex lg:w-auto">
                       <button
                         onClick={() => setShowSettings(true)}
-                        className="px-5 py-2.5 text-sm font-bold bg-slate-800 border border-slate-600 hover:bg-slate-700 rounded-xl transition-colors"
+                        className="min-h-11 rounded-xl border border-slate-500 bg-slate-800 px-5 py-2.5 text-sm font-bold transition-colors hover:bg-slate-700"
                         style={{ color: "#f8fafc", WebkitTextFillColor: "#f8fafc" }}
                       >
                         {dic?.cookie?.settings || "Einstellungen"}
@@ -129,14 +129,14 @@ export function CookieBanner({ dic }: { dic?: any }) {
                       {/* Note: In Germany (DSGVO/TTDSG), 'Reject' and 'Accept' must be visually comparable */}
                       <button
                         onClick={handleAcceptNecessary}
-                        className="px-5 py-2.5 text-sm font-bold bg-neutral-800 border border-neutral-600 hover:bg-neutral-700 rounded-xl transition-colors"
+                        className="min-h-11 rounded-xl border border-slate-500 bg-neutral-800 px-5 py-2.5 text-sm font-bold transition-colors hover:bg-neutral-700"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                       >
                         {dic?.cookie?.essential_only || "Nur Essenzielle"}
                       </button>
                       <PremiumButton
                         onClick={handleAcceptAll}
-                        className="whitespace-nowrap px-8 text-white"
+                        className="min-h-11 whitespace-nowrap px-6 text-white"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                       >
                         <span style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>
@@ -154,25 +154,25 @@ export function CookieBanner({ dic }: { dic?: any }) {
                       <Settings2 className="w-5 h-5 text-primary" />
                       {dic?.cookie?.settings || "Cookie Einstellungen"}
                     </h3>
-                    <button onClick={() => setShowSettings(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors text-slate-100" style={{ color: "#f8fafc", WebkitTextFillColor: "#f8fafc" }}>
+                    <button onClick={() => setShowSettings(false)} className="rounded-full p-2 text-slate-100 transition-colors hover:bg-white/12" style={{ color: "#f8fafc", WebkitTextFillColor: "#f8fafc" }} aria-label="Cookie Einstellungen schließen">
                       <X className="w-5 h-5" />
                     </button>
                   </div>
                   
-                  <div className="space-y-4 max-h-[50vh] overflow-y-auto pe- custom-scrollbar">
+                  <div className="custom-scrollbar max-h-[50vh] space-y-4 overflow-y-auto pe-1">
                     {/* Essential */}
-                    <div className="flex items-start justify-between p-4 bg-white/5 rounded-xl border border-white/10">
+                    <div className="flex flex-col gap-3 rounded-xl border border-white/12 bg-white/6 p-4 sm:flex-row sm:items-start sm:justify-between">
                       <div className="pe-">
                         <h4 className="font-bold mb-1 text-white">Essenziell</h4>
                         <p className="text-xs text-slate-300">Diese Cookies sind für die Grundfunktionen der Website zwingend erforderlich.</p>
                       </div>
-                      <div className="flex items-center gap-2 text-primary text-sm font-bold bg-primary/10 px-3 py-1 rounded-full shrink-0">
+                      <div className="flex shrink-0 items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/14 px-3 py-1 text-sm font-bold text-blue-100">
                         <Check className="w-4 h-4" /> Immer aktiv
                       </div>
                     </div>
                     
                     {/* Analytics */}
-                    <div className="flex items-start justify-between p-4 bg-white/5 rounded-xl border border-white/10 transition-colors">
+                    <div className="flex items-start justify-between gap-4 rounded-xl border border-white/12 bg-white/6 p-4 transition-colors">
                       <div className="pe- cursor-pointer" onClick={() => setPreferences(p => ({ ...p, analytics: !p.analytics }))}>
                         <h4 className="font-bold mb-1 text-white">Analyse & Performance</h4>
                         <p className="text-xs text-slate-300">Helfen uns zu verstehen, wie Besucher mit der Website interagieren (z.B. Google Analytics).</p>
@@ -184,7 +184,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
                     </div>
 
                     {/* Marketing */}
-                    <div className="flex items-start justify-between p-4 bg-white/5 rounded-xl border border-white/10 transition-colors">
+                    <div className="flex items-start justify-between gap-4 rounded-xl border border-white/12 bg-white/6 p-4 transition-colors">
                       <div className="pe- cursor-pointer" onClick={() => setPreferences(p => ({ ...p, marketing: !p.marketing }))}>
                         <h4 className="font-bold mb-1 text-white">Marketing</h4>
                         <p className="text-xs text-slate-300">Werden verwendet, um Besuchern relevante Werbung anzuzeigen (z.B. Google Ads).</p>
@@ -196,17 +196,17 @@ export function CookieBanner({ dic }: { dic?: any }) {
                     </div>
                   </div>
 
-                  <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
+                  <div className="flex flex-col justify-end gap-3 border-t border-white/10 pt-4 sm:flex-row">
                     <button
                       onClick={handleAcceptAll}
-                      className="px-5 py-2.5 text-sm font-bold hover:bg-white/10 rounded-xl transition-colors"
+                      className="min-h-11 rounded-xl px-5 py-2.5 text-sm font-bold transition-colors hover:bg-white/10"
                       style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                     >
                       Alle auswählen
                     </button>
                     <PremiumButton
                       onClick={handleSaveSettings}
-                      className="px-8 text-white"
+                      className="min-h-11 px-8 text-white"
                       style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                     >
                       <span style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>

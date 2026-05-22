@@ -16,6 +16,7 @@ import {
   Sparkles,
   SquareStack,
   TimerReset,
+  Workflow,
   type LucideIcon,
 } from "lucide-react";
 
@@ -35,9 +36,9 @@ const pageUrl = "https://www.floxant.de/duesseldorf/bueroreinigung";
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: pagePath,
-    title: "B2B-Reinigung Düsseldorf - Büros & kleine Unternehmen | FLOXANT",
+    title: "B2B-Reinigung Düsseldorf - Büro, Hotel & Firma | FLOXANT",
     description:
-      "Büroreinigung und B2B-Reinigung in Düsseldorf für kleine Unternehmen, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz, Zeitfenster und Fotos senden.",
+      "Büroreinigung, Hotelreinigung und B2B-Reinigung in Düsseldorf für Firmen, Hotels, Kanzleien, Studios und Gewerbeflächen: Fläche, Turnus, Zeitfenster und Fotos senden.",
   });
 }
 
@@ -47,6 +48,12 @@ const targetGroups = [
     text: "Regelmäßige Reinigung ohne überdimensionierten Großvertrag: Fläche, Frequenz, Zeitfenster und Umfang einfach senden.",
     cta: "Büroreinigung anfragen",
     Icon: Building2,
+  },
+  {
+    title: "Hotels & Boardinghouses",
+    text: "Lobby, Flure, Frühstücksbereiche, Sanitär und Gästebereiche nach Turnus, Belegung und Zeitfenster prüfen lassen.",
+    cta: "Hotelreinigung anfragen",
+    Icon: Workflow,
   },
   {
     title: "Agenturen & Studios",
@@ -82,6 +89,9 @@ const targetGroups = [
 
 const serviceBlocks = [
   "Büroreinigung",
+  "Hotelreinigung nach Absprache",
+  "Lobby, Flure und Frühstücksbereich",
+  "Boardinghouse- und Apartmenthaus-Reinigung",
   "Unterhaltsreinigung nach Absprache",
   "Reinigung kleiner Gewerbeflächen",
   "Agentur-/Studio-Reinigung",
@@ -100,6 +110,7 @@ const serviceBlocks = [
 
 const objectChecks = [
   { label: "Büro", detail: "Arbeitsplätze, Besprechungsräume, Küche, Sanitär.", Icon: Building2 },
+  { label: "Hotel", detail: "Lobby, Flure, Gästebereiche, Frühstücksbereich.", Icon: Workflow },
   { label: "Agentur / Studio", detail: "Kreativfläche, Kundenbereich, Pausenbereich.", Icon: Layers3 },
   { label: "Kanzlei", detail: "ruhige Zeitfenster, diskreter Zugang, Flächenumfang.", Icon: ClipboardList },
   { label: "Praxisfläche", detail: "nur allgemeine Reinigung nach Absprache.", Icon: ShieldCheck },
@@ -136,11 +147,15 @@ const boundaryItems = [
 const faqItems = [
   {
     q: "Für welche Unternehmen ist die B2B-Reinigung gedacht?",
-    a: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien, Hausverwaltungen, Treppenhäuser und kleinere Gewerbeflächen in Düsseldorf. FLOXANT prüft Umfang, Fläche, Frequenz, Zeitfenster und Zugang nach Absprache.",
+    a: "Für kleine Unternehmen, Hotels, Boardinghouses, Büros, Agenturen, Studios, Kanzleien, Hausverwaltungen, Treppenhäuser und kleinere Gewerbeflächen in Düsseldorf. FLOXANT prüft Umfang, Fläche, Frequenz, Zeitfenster und Zugang nach Absprache.",
   },
   {
     q: "Reinigt FLOXANT Büros in Düsseldorf?",
     a: "Ja, Büroreinigung in Düsseldorf kann angefragt werden. Wichtig sind Objektart, Fläche, Anzahl der Räume, Sanitär- und Küchenbereiche, gewünschte Frequenz und ein realistisches Zeitfenster.",
+  },
+  {
+    q: "Ist Hotelreinigung in Düsseldorf möglich?",
+    a: "Ja, Hotelreinigung, Boardinghouse-Reinigung oder Apartmenthaus-Reinigung kann nach Objektprüfung angefragt werden. Wichtig sind Anzahl der Bereiche, Turnus, Belegung, Lobby, Flure, Sanitär, Frühstücksbereich, Zeitfenster und Fotos.",
   },
   {
     q: "Sind regelmäßige Reinigungen möglich?",
@@ -164,7 +179,7 @@ const faqItems = [
   },
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt B2B-Reinigung für kleine Unternehmen und Gewerbeflächen in Düsseldorf.",
+    a: "Nein. Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt B2B-Reinigung, Büroreinigung und Hotelreinigung für Unternehmen und Gewerbeflächen in Düsseldorf.",
   },
   {
     q: "Kann Entsorgung ergänzt werden?",
@@ -179,11 +194,13 @@ function buildJsonLd() {
       buildWebPageJsonLd({
         name: "B2B-Reinigung Düsseldorf für kleine Unternehmen",
         description:
-          "FLOXANT prüft B2B-Reinigung, Büroreinigung, Treppenhausreinigung und Gewerbeflächenreinigung in Düsseldorf nach Fläche, Frequenz, Zeitfenster und Zugang.",
+          "FLOXANT prüft B2B-Reinigung, Büroreinigung, Hotelreinigung, Treppenhausreinigung und Gewerbeflächenreinigung in Düsseldorf nach Fläche, Frequenz, Zeitfenster und Zugang.",
         path: pagePath,
         about: [
           "B2B-Reinigung Düsseldorf",
           "Büroreinigung Düsseldorf",
+          "Hotelreinigung Düsseldorf",
+          "Hotel Reinigung Düsseldorf",
           "Gewerbeflächenreinigung",
           "regelmäßige Reinigung",
           "Treppenhausreinigung Düsseldorf",
@@ -197,8 +214,8 @@ function buildJsonLd() {
         "@id": `${pageUrl}#service`,
         name: "B2B-Reinigung / Büroreinigung Düsseldorf nach Absprache",
         description:
-          "B2B-Reinigung, Büroreinigung und Gewerbeflächenreinigung in Düsseldorf für kleine Unternehmen nach Prüfung von Fläche, Frequenz, Zeitfenster, Zugang und Umfang.",
-        serviceType: "B2B-Reinigung / Büroreinigung / Gewerbeflächenreinigung Düsseldorf nach Absprache",
+          "B2B-Reinigung, Büroreinigung, Hotelreinigung und Gewerbeflächenreinigung in Düsseldorf für kleine Unternehmen, Hotels und Objekte nach Prüfung von Fläche, Frequenz, Zeitfenster, Zugang und Umfang.",
+        serviceType: "B2B-Reinigung / Büroreinigung / Hotelreinigung / Gewerbeflächenreinigung Düsseldorf nach Absprache",
         url: pageUrl,
         areaServed: [{ "@type": "City", name: "Düsseldorf" }],
         provider: {
@@ -231,7 +248,7 @@ function buildJsonLd() {
 
 export default function DuesseldorfBueroreinigungPage() {
   const whatsappHref = buildDuesseldorfCleaningWhatsAppHref(
-    "Hallo FLOXANT, ich möchte eine B2B-Reinigung in Düsseldorf anfragen. Es geht um [Büro/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Frequenz, Zeitfenster und Fotos kann ich senden.",
+    "Hallo FLOXANT, ich möchte eine B2B-Reinigung in Düsseldorf anfragen. Es geht um [Büro/Hotel/Boardinghouse/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
   );
   const jsonLd = buildJsonLd();
 
@@ -245,13 +262,13 @@ export default function DuesseldorfBueroreinigungPage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-white/80 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-cyan-800 shadow-sm">
               <Building2 className="h-4 w-4" />
-              FLOXANT Business-Cleaning OS Düsseldorf
+              FLOXANT Business-Cleaning Düsseldorf
             </div>
-            <h1 className="mt-6 max-w-[13ch] text-[clamp(2.55rem,6vw,5.6rem)] font-black leading-[0.94] tracking-[-0.045em] text-slate-950">
-              B2B-Reinigung Düsseldorf für kleine Unternehmen
+            <h1 className="mt-6 max-w-[14ch] text-[clamp(2.55rem,6vw,5.6rem)] font-black leading-[0.94] tracking-tight text-slate-950">
+              B2B-Reinigung Düsseldorf für Büro, Hotel und Firma
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700 md:text-lg">
-              Für Büros, Agenturen, Studios, Kanzleien und kleine Gewerbeflächen: FLOXANT prüft regelmäßige Reinigung, Grundreinigung und objektbezogene Reinigung in Düsseldorf nach Absprache.
+              Für Büros, Hotels, Boardinghouses, Agenturen, Studios, Kanzleien und kleine Gewerbeflächen: FLOXANT prüft regelmäßige Reinigung, Grundreinigung und objektbezogene Reinigung in Düsseldorf nach Absprache.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
@@ -304,14 +321,14 @@ export default function DuesseldorfBueroreinigungPage() {
               </div>
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-3">
-              {["Büro", "Agentur", "Kanzlei", "Studio", "Treppenhaus", "Gewerbefläche"].map((item) => (
+              {["Büro", "Hotel", "Boardinghouse", "Kanzlei", "Studio", "Gewerbefläche"].map((item) => (
                 <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
                   {item}
                 </div>
               ))}
             </div>
             <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-7 text-amber-900">
-              Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt B2B-Reinigung für kleine Unternehmen und Gewerbeflächen in Düsseldorf.
+              Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt B2B-Reinigung, Büroreinigung und Hotelreinigung in Düsseldorf.
             </div>
           </div>
         </div>
@@ -338,7 +355,7 @@ export default function DuesseldorfBueroreinigungPage() {
               Für kleine Unternehmen statt anonyme Großdienstleister
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Kleine Unternehmen brauchen oft keine überdimensionierte Konzernlösung, sondern einen klaren Anfrageprozess: Was ist das Objekt, wie groß ist die Fläche, wie oft soll gereinigt werden und wann passt es betrieblich?
+                Kleine Unternehmen, Hotels und Objektbetreiber brauchen oft keine überdimensionierte Konzernlösung, sondern einen klaren Anfrageprozess: Was ist das Objekt, wie groß ist die Fläche, wie oft soll gereinigt werden und wann passt es betrieblich?
             </p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -391,7 +408,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 Büroreinigung, Unterhaltsreinigung und Gewerbereinigung in Düsseldorf
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Der Fokus liegt auf allgemeiner Büroreinigung, Unterhaltsreinigung und Gewerbeflächenreinigung für kleine Unternehmen. FLOXANT prüft Fläche, Frequenz, Zeitfenster, Zugang und Budget. Spezialleistungen wie medizinische Desinfektion, Reinraum, Gefahrstoff oder 24/7-Zusage werden nicht behauptet.
+                Der Fokus liegt auf allgemeiner Büroreinigung, Hotelreinigung, Unterhaltsreinigung und Gewerbeflächenreinigung für kleine Unternehmen. FLOXANT prüft Fläche, Frequenz, Zeitfenster, Zugang und Budget. Spezialleistungen wie medizinische Desinfektion, Reinraum, Gefahrstoff oder 24/7-Zusage werden nicht behauptet.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/duesseldorf/reinigung" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
@@ -399,6 +416,9 @@ export default function DuesseldorfBueroreinigungPage() {
                 </Link>
                 <Link href="/duesseldorf/grundreinigung" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
                   Grundreinigung Düsseldorf
+                </Link>
+                <Link href="/duesseldorf/hotelreinigung" className="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-800 hover:bg-emerald-100">
+                  Hotelreinigung Düsseldorf
                 </Link>
                 <Link href="/duesseldorf/treppenhausreinigung" className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
                   Treppenhausreinigung
@@ -429,7 +449,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 Reinigung und Entsorgung. Keine Umzüge.
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite ist ausschließlich für B2B-Reinigung kleiner Unternehmen, Büros, Studios, Kanzleien, Treppenhäuser und Gewerbeflächen gedacht.
+                Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite ist ausschließlich für B2B-Reinigung kleiner Unternehmen, Hotels, Büros, Studios, Kanzleien, Treppenhäuser und Gewerbeflächen gedacht.
               </p>
             </div>
             <div className="rounded-[2rem] border border-amber-200 bg-amber-50 p-6">

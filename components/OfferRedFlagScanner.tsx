@@ -84,11 +84,11 @@ const redFlagCategories: RedFlagCategory[] = [
   },
   {
     id: "parken",
-    title: "Halteverbot / Parken",
+    title: "Zugang / Parken",
     text: "Parken entscheidet, ob der Ablauf planbar bleibt.",
     questions: [
-      { id: "parken_halteverbot", label: "Halteverbot noetig ist" },
-      { id: "parken_organisation", label: "Wer das Halteverbot organisiert" },
+      { id: "parken_halteverbot", label: "Zugang oder Parken geklaert ist" },
+      { id: "parken_organisation", label: "Wer die Zugangslage prueft" },
       { id: "parken_situation", label: "Park- oder Zugangssituation beschrieben ist" },
       { id: "parken_kosten", label: "Zusatzkosten fuer Parken geregelt sind" },
     ],

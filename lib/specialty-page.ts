@@ -31,7 +31,7 @@ const TRUST_HOOKS_CARE: Record<string, string[]> = {
 
 const CITY_NARRATIVES: Record<string, Record<string, string>> = {
   de: {
-    regensburg: "Als UNESCO-Welterbestadt mit ihren engen historischen Gassen erfordert ein Umzug in Regensburg besondere Sorgfalt und oft eine präzise Planung von Halteverbotszonen direkt vor dem Portal.",
+    regensburg: "Als UNESCO-Welterbestadt mit ihren engen historischen Gassen erfordert ein Umzug in Regensburg besondere Sorgfalt und oft eine präzise Planung von Zugang und Laufwegen.",
     muenchen: "In der dynamischen Millionenmetropole München sind Parkplatznot und strikte Zeitfenster Teil des Alltags – unser Team ist auf die logistischen Herausforderungen der Landeshauptstadt spezialisiert.",
     nuernberg: "Vom modernen Business-Tower bis zum historischen Fachwerkhaus in der Altstadt: Wir kennen die logistischen Wege in der Frankenmetropole Nürnberg in- und auswendig.",
     augsburg: "In der Fuggerstadt Augsburg verbinden wir Tradition mit moderner Logistik, um Ihren Standortwechsel so stressfrei wie möglich zu gestalten.",

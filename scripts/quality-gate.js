@@ -35,7 +35,6 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "/airbnb-reinigung-duesseldorf",
   "/angebot-red-flag-scanner",
   "/guenstigeres-angebot-pruefen",
-  "/duesseldorf/b2b-reinigung",
   "/villenservice",
   "/umzug-duesseldorf",
   "/seo-gone",
@@ -128,7 +127,6 @@ const REDIRECT_EXPECTATIONS = [
   ["/airbnb-reinigung-duesseldorf", "/reinigung-moeblierte-wohnung-duesseldorf"],
   ["/angebot-red-flag-scanner", "/angebotscheck#red-flag-scanner"],
   ["/guenstigeres-angebot-pruefen", "/angebot-guenstiger-pruefen"],
-  ["/duesseldorf/b2b-reinigung", "/duesseldorf/bueroreinigung"],
   ["/de", "/"],
   ["/de/umzug", "/umzug"],
   ["/en/umzug-regensburg", "/umzug-regensburg"],
@@ -330,6 +328,7 @@ function runSeoCheck() {
   const files = sourceFiles();
   const mojibake = [];
   const riskyClaims = [];
+  const publicLanguageIssues = [];
   const importantMissing = [];
   const suspiciousPatterns = [
     { pattern: /[\u00c3\u00c2\u00e2]/g, label: "mojibake" },
@@ -341,6 +340,20 @@ function runSeoCheck() {
     /\b100%\s*Abnahmegarantie\b/gi,
     /\bdie beste Wahl\b/gi,
   ];
+  const publicLanguagePatterns = [
+    { pattern: /\b(studentenumzug|student moving|no parking zone|halteverbotszone)\b/gi, label: "removed service signal" },
+    { pattern: /\b(llms\.txt ansehen|Service Graph ansehen|Admin Login|Sitemap XML|Recht & Technik)\b/gi, label: "visible internal/technical label" },
+    { pattern: /\b(Interne Wege|interne Wege|Wichtige interne|Direkte interne|Money Page|Internal Link|Answer Engine|SEO-Hauptseite|Local-SEO Anfrageweg)\b/gi, label: "customer-facing internal/seo wording" },
+  ];
+  const isCustomerFacingFile = (relativeFile) =>
+    (relativeFile.startsWith("app" + path.sep) || relativeFile.startsWith("components" + path.sep)) &&
+    !relativeFile.startsWith(path.join("app", "api") + path.sep) &&
+    !relativeFile.startsWith(path.join("app", "dashboard") + path.sep) &&
+    !relativeFile.startsWith(path.join("app", "admin") + path.sep) &&
+    !relativeFile.startsWith(path.join("app", "llms.txt") + path.sep) &&
+    !relativeFile.startsWith(path.join("app", "service-graph.json") + path.sep) &&
+    !relativeFile.startsWith(path.join("components", "dashboard") + path.sep) &&
+    !relativeFile.includes(`${path.sep}JsonLd.`);
 
   for (const file of files) {
     const relativeFile = path.relative(ROOT, file);
@@ -363,15 +376,26 @@ function runSeoCheck() {
         riskyClaims.push(`${relativeFile}:${lineForIndex(text, match.index)}: ${match[0]}`);
       }
     }
+
+    if (isCustomerFacingFile(relativeFile)) {
+      for (const { pattern, label } of publicLanguagePatterns) {
+        pattern.lastIndex = 0;
+        let match;
+        while ((match = pattern.exec(text))) {
+          publicLanguageIssues.push(`${relativeFile}:${lineForIndex(text, match.index)}: ${label}: ${match[0]}`);
+        }
+      }
+    }
   }
 
   for (const route of IMPORTANT_ROUTES) {
     if (!discoverRoutes().has(route)) importantMissing.push(route);
   }
 
-  if (mojibake.length || riskyClaims.length || importantMissing.length) {
+  if (mojibake.length || riskyClaims.length || publicLanguageIssues.length || importantMissing.length) {
     if (mojibake.length) console.log(`MOJIBAKE_SUSPECTS\n${mojibake.slice(0, 120).join("\n")}`);
     if (riskyClaims.length) console.log(`RISKY_SEO_OR_PRICE_CLAIMS\n${riskyClaims.slice(0, 120).join("\n")}`);
+    if (publicLanguageIssues.length) console.log(`PUBLIC_LANGUAGE_GUARD\n${publicLanguageIssues.slice(0, 120).join("\n")}`);
     if (importantMissing.length) console.log(`IMPORTANT_ROUTES_MISSING\n${importantMissing.join("\n")}`);
     process.exitCode = 1;
     return;
@@ -500,7 +524,7 @@ function runDominanceCheck() {
     failures.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
   }
 
-  if (!fileContains(searchDominancePath, ["SearchDominanceExperience", "Google, Maps & KI", "Angebot hochladen", "Düsseldorf ohne Umzugs-Signal", "Suchergebnis-Vorschau", "KI-Antwort", "Dominanz-Matrix", "Klick-Gründe im Suchergebnis", "Sitelinks", "flox-dominance-panel", "Nach dem Klick sofort handlungsfähig", "flox-search-action-strip", "Maps, Vertrauen und schnelle Entscheidung", "flox-local-trust-deck"])) {
+  if (!fileContains(searchDominancePath, ["SearchDominanceExperience", "Google, Maps & klare Antworten", "Angebot hochladen", "Düsseldorf ohne Umzugs-Signal", "Suchergebnis-Vorschau", "Kurzantwort für Kunden", "Stärken im Vergleich", "Klick-Gründe im Suchergebnis", "Direkte Wege", "flox-dominance-panel", "Nach dem Klick sofort handlungsfähig", "flox-search-action-strip", "Maps, Vertrauen und schnelle Entscheidung", "flox-local-trust-deck"])) {
     failures.push("Search dominance experience component is missing visible conversion and AI/search signals");
   }
 

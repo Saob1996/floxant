@@ -17,6 +17,7 @@ import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSect
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
+import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { SignatureServices } from "@/components/SignatureServices";
 import {
   DUESSELDORF_CLEANING,
@@ -31,14 +32,15 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf – Privat, Endreinigung & B2B | FLOXANT",
+    title: "Reinigung Düsseldorf, Stadtteile & Umgebung | FLOXANT",
     description:
-      "Reinigung Düsseldorf für Wohnung, Auszug, Endreinigung und B2B-Flächen. Fotos senden, Budget nennen und unverbindlich anfragen.",
+      "Reinigung Düsseldorf für Wohnung, Auszug, Endreinigung, Hotel und B2B. Stadtteile, Neuss, Ratingen, Meerbusch, Mettmann und Duisburg nach Fotos prüfen.",
   });
 }
 
 const trustLine = [
   "Reinigung in Düsseldorf",
+  "Stadtteile & Umgebung",
   "Wohnungen, Büros & Übergaben",
   "Anfrage per WhatsApp möglich",
   "Budget ehrlich einordnen",
@@ -60,6 +62,11 @@ const heroHighlights = [
     label: "Preisrahmen",
     title: "Budget nennen, ehrlich einordnen lassen",
     text: "Wenn Sie einen festen Preisrahmen haben, sagen Sie ihn direkt. Wir ordnen ein, ob der Auftrag dafür machbar ist oder welcher Umfang realistisch wäre.",
+  },
+  {
+    label: "Düsseldorf Umgebung",
+    title: "Stadtteile und nahe Orte sauber einordnen",
+    text: "Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen sowie Neuss, Ratingen, Meerbusch, Mettmann und Duisburg werden nach Objekt, Zugang und Termin geprüft.",
   },
 ];
 
@@ -249,6 +256,22 @@ export default function DuesseldorfReinigungPage() {
               >
                 Möblierte Wohnung reinigen
               </Link>
+              <Link
+                href="/duesseldorf/reinigung-stadtteile-umgebung"
+                className="inline-flex min-h-10 items-center justify-center rounded-full border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
+                data-event="internal_link_duesseldorf_districts"
+                data-region="duesseldorf"
+              >
+                Stadtteile & Umgebung
+              </Link>
+              <Link
+                href="/duesseldorf/vielleicht-guenstiger"
+                className="inline-flex min-h-10 items-center justify-center rounded-full border border-emerald-200/35 bg-emerald-300/14 px-4 text-xs font-bold text-emerald-50 transition hover:bg-emerald-300/22"
+                data-event="internal_link_duesseldorf_offer_check"
+                data-region="duesseldorf"
+              >
+                Vielleicht günstiger?
+              </Link>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
               Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget - wir ordnen
@@ -300,6 +323,21 @@ export default function DuesseldorfReinigungPage() {
         <SearchDominanceExperience variant="duesseldorf" className="py-8" />
 
         <AiServiceRecommendationPanel variant="duesseldorf" className="pb-10 pt-0" />
+
+        <SearchIntentExpansion
+          route="/duesseldorf/reinigung"
+          city="Düsseldorf"
+          serviceName="Reinigung"
+          market="duesseldorf"
+          relatedLinks={(DUESSELDORF_CLEANING_SERVICES.map((item) => ({
+            href: item.href,
+            label: item.label,
+          })) as { href: string; label: string }[]).concat([
+            { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile & Umgebung" },
+            { href: "/duesseldorf/vielleicht-guenstiger", label: "Vielleicht günstiger?" },
+          ] as { href: string; label: string }[])}
+          className="pt-4"
+        />
 
         <section className="grid gap-6 pt-10 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
@@ -356,7 +394,7 @@ export default function DuesseldorfReinigungPage() {
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {DUESSELDORF_CLEANING_SERVICES.map((item, index) => {
-              const Icon = serviceIcons[index];
+              const Icon = serviceIcons[index % serviceIcons.length] || Sparkles;
               return (
                 <article
                   key={item.href}

@@ -98,7 +98,7 @@ export default function BlogBueroumzugBayernPage() {
             bullets: [
               "Wie viele Arbeitsplätze, Besprechungsräume oder Sonderbereiche sind betroffen?",
               "Welche IT oder sensible Technik braucht Abstimmung mit internen Verantwortlichen?",
-              "Wie eng sind Zeitfenster, Zugänge, Aufzüge, Laufwege oder Haltezonen?",
+              "Wie eng sind Zeitfenster, Zugänge, Aufzüge oder Laufwege?",
               "Welche Montage-, Demontage- oder Aufbauarbeiten sollen mitgedacht werden?",
             ],
           },

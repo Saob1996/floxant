@@ -53,7 +53,7 @@ const redFlags = [
   "Ist die Etage berücksichtigt?",
   "Ist der Trageweg berücksichtigt?",
   "Gibt es einen Aufzug?",
-  "Ist Halteverbot nötig?",
+  "Ist Zugang oder Parken geklärt?",
   "Ist das Volumen realistisch?",
   "Sind Zusatzfahrten möglich?",
   "Ist Reinigung enthalten oder ausgeschlossen?",
@@ -78,7 +78,7 @@ const checkAreas = [
   },
   {
     title: "Zusatzservices",
-    text: "Reinigung, Entsorgung, Halteverbot, Schlüsselübergabe oder Übergabevorbereitung sollten nicht erst am Einsatztag auffallen.",
+    text: "Reinigung, Entsorgung, Zugang, Schlüsselübergabe oder Übergabevorbereitung sollten nicht erst am Einsatztag auffallen.",
     Icon: KeyRound,
   },
   {
@@ -374,7 +374,7 @@ export default function AngebotscheckPage() {
               {[
                 { title: "Keine Konkurrenz-Diffamierung", text: "Die Prüfung bleibt neutral und bezieht sich auf Angaben, Umfang und offene Rückfragen.", Icon: ShieldCheck },
                 { title: "Keine Fake-Garantien", text: "FLOXANT verspricht keinen besseren Preis, sondern eine nachvollziehbare zweite Einschätzung.", Icon: BadgeCheck },
-                { title: "Signature Services mitdenken", text: "Schlüsselübergabe, Halteverbot, Reinigung oder Entsorgung werden sichtbar, wenn sie für den Auftrag relevant sind.", Icon: Sparkles },
+                { title: "Signature Services mitdenken", text: "Schlüsselübergabe, Zugang, Reinigung oder Entsorgung werden sichtbar, wenn sie für den Auftrag relevant sind.", Icon: Sparkles },
               ].map((item) => {
                 const Icon = item.Icon;
                 return (

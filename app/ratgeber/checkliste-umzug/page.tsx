@@ -52,7 +52,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">4 Wochen vorher</h2>
-            <p className="text-muted-foreground leading-relaxed">Beginnen Sie mit dem Packen selten genutzter Gegenstände. Organisieren Sie Umzugskartons und Verpackungsmaterial. Beantragen Sie eine Halteverbotszone für Be- und Entladung.</p>
+            <p className="text-muted-foreground leading-relaxed">Beginnen Sie mit dem Packen selten genutzter Gegenstände. Organisieren Sie Umzugskartons und Verpackungsmaterial. Klären Sie Zugang, Laufwege und Parkmöglichkeit für Be- und Entladung.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Am Umzugstag</h2>

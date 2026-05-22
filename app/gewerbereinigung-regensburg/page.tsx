@@ -74,6 +74,8 @@ const targetGroups = [
 
 const serviceScope = [
   "Unterhaltsreinigung",
+  "Hotelreinigung",
+  "Büroreinigung",
   "Sanitärreinigung",
   "Küchen- & Pausenbereich",
   "Bodenpflege & Hartbodenreinigung",
@@ -104,9 +106,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung-regensburg",
-    title: "Gewerbereinigung Regensburg für Büro, Praxis und Objektbetrieb | FLOXANT",
+    title: "Gewerbereinigung Regensburg | Büro, Hotel, Praxis & B2B | FLOXANT",
     description:
-      "Gewerbereinigung in Regensburg für Büros, Praxen, Kanzleien, Hotels und Hausverwaltungen. Klare Absprache, feste Ansprechpartner und dokumentierter Leistungsumfang.",
+      "Gewerbereinigung, Büroreinigung und Hotelreinigung in Regensburg für B2B, Praxen, Kanzleien und Hausverwaltungen. Objekt, Turnus und Fotos direkt senden.",
     keywords: [
       "Gewerbereinigung Regensburg",
       "Büroreinigung Regensburg",
@@ -116,6 +118,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "gewerbliche Reinigung Regensburg",
       "Objektreinigung Regensburg",
       "Kanzleireinigung Regensburg",
+      "Hotelreinigung Regensburg",
+      "B2B Reinigung Regensburg",
     ],
   });
 }
@@ -150,6 +154,8 @@ export default function GewerbereinigungRegensburgPage() {
         about: [
           "Gewerbereinigung",
           "Büroreinigung",
+          "Hotelreinigung",
+          "B2B-Reinigung",
           "Praxisreinigung",
           "Unterhaltsreinigung",
           "Regensburg",
@@ -160,7 +166,7 @@ export default function GewerbereinigungRegensburgPage() {
   };
 
   const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
-    "Hallo FLOXANT, wir möchten eine gewerbliche Reinigung in Regensburg anfragen.",
+    "Hallo FLOXANT, wir möchten eine gewerbliche Reinigung in Regensburg anfragen. Es geht um [Büro/Hotel/Praxis/Kanzlei/Objekt]. Fläche, Turnus, Zeitfenster und Fotos können wir senden.",
   )}`;
 
   return (
@@ -193,8 +199,8 @@ export default function GewerbereinigungRegensburgPage() {
                 Gewerbereinigung Regensburg
               </div>
 
-              <h1 className="mt-6 max-w-[16ch] text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[0.96] tracking-[-0.07em] text-slate-950">
-                Planbare Reinigung für gewerbliche Flächen in Regensburg
+              <h1 className="mt-6 max-w-[17ch] text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[0.96] tracking-tight text-slate-950">
+                Gewerbereinigung für Büro, Hotel und Praxis in Regensburg
               </h1>
 
               <p className="mt-5 max-w-[56ch] text-base leading-8 text-slate-700">
@@ -203,7 +209,7 @@ export default function GewerbereinigungRegensburgPage() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2.5">
-                {["Büro", "Praxis", "Objekt", "Hausverwaltung"].map((item) => (
+                {["Büro", "Hotel", "Praxis", "B2B"].map((item) => (
                   <span key={item} className="flox-chip">{item}</span>
                 ))}
               </div>

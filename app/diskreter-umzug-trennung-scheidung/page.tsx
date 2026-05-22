@@ -439,7 +439,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-stone-600">
                   <MapPin className="h-4 w-4" />
-                  Local SEO & Maps
+                  Lokale Suche & Maps
                 </div>
                 <h2 className="mt-4 text-3xl font-black tracking-tight text-stone-950">
                   Regensburg klar sichtbar, Anfrageweg direkt erreichbar

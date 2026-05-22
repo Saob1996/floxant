@@ -15,6 +15,7 @@ import { buildDuesseldorfCleaningIntakePayload } from "@/lib/duesseldorf-cleanin
 type ServiceValue =
   | "wohnungsreinigung"
   | "bueroreinigung"
+  | "hotelreinigung"
   | "grundreinigung"
   | "treppenhausreinigung"
   | "uebergabereinigung"
@@ -254,6 +255,7 @@ export function DuesseldorfCleaningCalculator() {
             >
               <option value="wohnungsreinigung">Wohnungsreinigung</option>
               <option value="bueroreinigung">Büroreinigung</option>
+              <option value="hotelreinigung">Hotelreinigung</option>
               <option value="grundreinigung">Grundreinigung</option>
               <option value="treppenhausreinigung">Treppenhausreinigung</option>
               <option value="uebergabereinigung">Übergabereinigung</option>

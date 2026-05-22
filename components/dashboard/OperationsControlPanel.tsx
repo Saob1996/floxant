@@ -577,7 +577,7 @@ export function OperationsControlPanel({ booking, onSave, initialPanel = "work_o
       <OperationsTextarea label="Hinweise für Teamleiter" value={workOrder.teamInstructions || ""} onChange={(value) => updateWorkOrder("teamInstructions", value)} placeholder="Was muss das Team unbedingt wissen?" />
      </div>
      <div className="lg:col-span-4">
-      <OperationsTextarea label="Zugang / Parken / Besonderheiten" value={workOrder.accessNotes || ""} onChange={(value) => updateWorkOrder("accessNotes", value)} placeholder="Stockwerk, Aufzug, Laufweg, Haltezone, enge Treppe, Schlüssel, Ansprechpartner vor Ort ..." />
+      <OperationsTextarea label="Zugang / Parken / Besonderheiten" value={workOrder.accessNotes || ""} onChange={(value) => updateWorkOrder("accessNotes", value)} placeholder="Stockwerk, Aufzug, Laufweg, enge Treppe, Schlüssel, Ansprechpartner vor Ort ..." />
      </div>
     </div>
    </div>

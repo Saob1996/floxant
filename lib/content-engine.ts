@@ -27,7 +27,7 @@ export async function generateCityContent(city: string, service: string): Promis
    
    <h2 class="text-2xl text-white font-medium mt-10 mb-4 border-b border-white/10 pb-2">Was Sie in ${city} beachten sollten</h2>
    <ul class="list-disc pl-5 space-y-3 mb-8">
-    <li><strong>Parkplatzsituation:</strong> Holen Sie rechtzeitig Halteverbotszonen bei der lokalen Stadtverwaltung (Kreisverwaltungsreferat) in ${city} ein.</li>
+    <li><strong>Zugangssituation:</strong> Prüfen Sie früh, wie Ladeweg, Etage und Parkmöglichkeit in ${city} realistisch aussehen.</li>
     <li><strong>Volumenberechnung:</strong> Geben Sie Mengen und besondere Stücke möglichst genau an, damit Fahrzeuggröße, Teamstärke und Zeitfenster realistisch geplant werden können.</li>
     <li><strong>Zugänge und Besonderheiten:</strong> Weisen Sie früh auf Aufzüge, lange Wege, sensible Möbel oder enge Treppenhäuser hin, damit der Ablauf sauber vorbereitet werden kann.</li>
    </ul>

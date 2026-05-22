@@ -16,7 +16,7 @@ const tips = [
   },
   {
     title: "Zugang und Laufwege früh klären",
-    text: "Etagen, Aufzug, lange Wege, Innenhof, Parkmöglichkeit und Haltezone beeinflussen den Aufwand oft stärker als die Entfernung zwischen zwei Adressen.",
+    text: "Etagen, Aufzug, lange Wege, Innenhof, Parkmöglichkeit und Zugang beeinflussen den Aufwand oft stärker als die Entfernung zwischen zwei Adressen.",
   },
   {
     title: "Umzug und Entrümpelung zusammen denken",

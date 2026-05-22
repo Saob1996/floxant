@@ -20,7 +20,7 @@ export const serviceComparisonRows = [
   href: "/umzug",
   supportHref: "/umzug-mit-reinigung",
   supportLabel: "Umzug mit Reinigung",
-  text: "Passend, wenn Transport, Volumen, Strecke, Zugang, Montage oder Haltezone geplant werden müssen.",
+  text: "Passend, wenn Transport, Volumen, Strecke, Zugang, Montage oder Zeitfenster geplant werden müssen.",
   signal: "Volumen, Zimmer, Strecke, Etagen",
  },
  {

@@ -52,7 +52,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Schritt 4–5: Packen & Vorbereiten</h2>
-            <p className="text-muted-foreground leading-relaxed">4. Packmaterial besorgen und Zimmer für Zimmer packen. 5. Halteverbotszone beantragen und Nachsendeauftrag einrichten.</p>
+            <p className="text-muted-foreground leading-relaxed">4. Packmaterial besorgen und Zimmer für Zimmer packen. 5. Zugang, Laufwege und Nachsendeauftrag einrichten.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Schritt 6–7: Umzugstag & Nachbereitung</h2>

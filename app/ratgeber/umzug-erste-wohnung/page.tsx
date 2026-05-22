@@ -26,7 +26,7 @@ export default async function Article() {
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Erste Wohnung: Umzug richtig planen",
-    "description": "Der erste eigene Umzug: Tipps für Studierende und Berufseinsteiger.",
+    "description": "Der erste eigene Umzug: Tipps für Berufseinsteiger, junge Haushalte und kleine Wohnungen.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "logo": { "@type": "ImageObject", "url": "https://www.floxant.de/logo_v10.png" } },
     "datePublished": "2026-03-01",
@@ -55,14 +55,14 @@ export default async function Article() {
             <p className="text-muted-foreground leading-relaxed">Bett, Schreibtisch, Kühlschrank und Grundausstattung für die Küche. Der Rest kommt mit der Zeit. Weniger ist am Anfang mehr.</p>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Studentenumzug mit FLOXANT</h2>
-            <p className="text-muted-foreground leading-relaxed">FLOXANT bietet spezielle Studentenumzüge in Regensburg und ganz Bayern an. Klein, schnell, günstig – perfekt für WG-Zimmer und Einzimmerwohnungen.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Kleinen Privatumzug realistisch planen</h2>
+            <p className="text-muted-foreground leading-relaxed">FLOXANT prüft auch kleine Umzüge in Regensburg und Bayern nach Umfang, Zugang, Termin und Strecke. Wichtig ist eine ehrliche Einschätzung: wenige Möbel bedeuten oft weniger Volumen, aber nicht automatisch weniger Aufwand bei Treppenhaus, Parken oder Übergabe.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
             <div className="space-y-4">
               {[
-              { q: "Was kostet ein Studentenumzug?", a: "Ab ca. 200 Euro für kleine Wohnungen und Einzelzimmer." },
+              { q: "Was kostet ein kleiner Umzug?", a: "Das hängt von Volumen, Etage, Laufweg, Strecke und Termin ab. Für eine realistische Einschätzung helfen Fotos und eine kurze Beschreibung." },
               { q: "Brauche ich eine Umzugsfirma für ein WG-Zimmer?", a: "Nicht zwingend, aber bei Möbeltransport spart es Zeit und schont die Nerven." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">

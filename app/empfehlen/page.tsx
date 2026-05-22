@@ -93,7 +93,7 @@ const audiences = [
 ];
 
 const services = [
-  ["Umzug Regensburg", "Privatumzug, Transport, Halteverbot und Uebergabe nach Absprache.", "/umzug-regensburg"],
+  ["Umzug Regensburg", "Privatumzug, Transport, Zugang und Uebergabe nach Absprache.", "/umzug-regensburg"],
   ["Reinigung Regensburg", "Wohnungsreinigung, Endreinigung, Grundreinigung und Uebergabevorbereitung.", "/reinigung-regensburg"],
   ["Entruempelung Regensburg", "Wohnung, Keller, Garage oder Objektflaeche mit Fotoeinschaetzung.", "/entruempelung-regensburg"],
   ["Transport Regensburg", "Moebeltransport, Kleintransport und flexible Strecken nach Verfuegbarkeit.", "/kleintransport-regensburg"],

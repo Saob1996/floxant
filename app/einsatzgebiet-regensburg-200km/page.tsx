@@ -77,7 +77,7 @@ const serviceLinks = [
   {
     title: "Umzug in Regensburg und Umgebung",
     text:
-      "Privatumzug, Transport, Etagen, Haltezone, Reinigung und Schluesselthemen werden aus Regensburg heraus geplant.",
+      "Privatumzug, Transport, Etagen, Zugang, Reinigung und Schluesselthemen werden aus Regensburg heraus geplant.",
     href: "/umzug-regensburg",
     cta: "Umzug anfragen",
     Icon: Truck,

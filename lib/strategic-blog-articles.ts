@@ -227,7 +227,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Schlüsselübergabe-Service ist sinnvoll, wenn Sie am Übergabetermin nicht selbst vor Ort sein können oder die letzten Aufgaben nicht mehr persönlich koordinieren möchten. FLOXANT kann in Regensburg und Bayern nach Vereinbarung Anwesenheit, Schlüsselübergabe, Fotodokumentation und Abstimmung unterstützen. Besonders hilfreich ist das für Berufstätige, Studenten, Kunden außerhalb der Stadt und Menschen mit engen Fristen.",
+          "Ein Schlüsselübergabe-Service ist sinnvoll, wenn Sie am Übergabetermin nicht selbst vor Ort sein können oder die letzten Aufgaben nicht mehr persönlich koordinieren möchten. FLOXANT kann in Regensburg und Bayern nach Vereinbarung Anwesenheit, Schlüsselübergabe, Fotodokumentation und Abstimmung unterstützen. Besonders hilfreich ist das für Berufstätige, Kunden außerhalb der Stadt und Menschen mit engen Fristen.",
         ],
       },
       {
@@ -259,7 +259,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         bullets: [
           "Kunden, die bereits außerhalb von Regensburg oder Bayern wohnen",
           "Berufstätige mit festen Arbeitszeiten und wenig Flexibilität",
-          "Studenten, die nach dem Auszug nicht mehr vor Ort sind",
+          "Kunden, die nach dem Auszug nicht mehr vor Ort sind",
           "Familien, die Umzug und Alltag nicht zusätzlich belasten wollen",
           "Kunden mit engem Vermietertermin oder kurzfristigem Abschlussdruck",
         ],
@@ -340,8 +340,8 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         a: "Fotos helfen sehr, weil Zustand, Restmengen und mögliche Risiken vorab besser eingeschätzt werden können.",
       },
       {
-        q: "Ist der Service auch für Studenten sinnvoll?",
-        a: "Ja. Gerade Studenten verlassen die Stadt oft schnell und können nicht für jeden Übergabetermin noch einmal anreisen.",
+        q: "Ist der Service auch bei einem kleinen Auszug sinnvoll?",
+        a: "Ja. Gerade bei kleinen Wohnungen wird die Übergabe oft unterschätzt, weil Reinigung, Schlüssel und Restarbeiten trotzdem verbindlich bleiben.",
       },
     ],
   },
@@ -378,7 +378,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Das Nicht-vor-Ort-Paket ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. FLOXANT kann in Regensburg und Bayern nach Absprache Zustand prüfen, Fotos senden, Restarbeiten organisieren, Reinigung oder Entrümpelung vorbereiten und die Schlüsselübergabe unterstützen. Besonders sinnvoll ist das für Ex-Studenten, Berufsumzüge, internationale Kunden und Menschen mit wenig Zeit.",
+          "Das Nicht-vor-Ort-Paket ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. FLOXANT kann in Regensburg und Bayern nach Absprache Zustand prüfen, Fotos senden, Restarbeiten organisieren, Reinigung oder Entrümpelung vorbereiten und die Schlüsselübergabe unterstützen. Besonders sinnvoll ist das für Berufsumzüge, internationale Kunden und Menschen mit wenig Zeit.",
         ],
       },
       {
@@ -408,7 +408,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
           "Das Paket ist für Menschen gedacht, die nicht mehr einfach kurz vorbeifahren können. Es reduziert nicht jede Verantwortung, aber es schafft eine handlungsfähige Struktur vor Ort.",
         ],
         bullets: [
-          "Ex-Studenten nach Studienende oder Wohnheimwechsel",
+          "Kunden nach Ortswechsel oder befristeter Wohnung",
           "Berufsumzüge mit schnellem Start in einer neuen Stadt",
           "Kunden nach Fernumzug oder Auslandsumzug",
           "Familien, die nicht noch einmal anreisen möchten",
@@ -1013,7 +1013,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         bullets: [
           "Volumen, Möbelmenge und Anzahl der Kartons",
           "Etagen, Aufzug, Treppenhaus und Laufwege",
-          "Parkmöglichkeit, Haltezone und Distanz zum Eingang",
+          "Parkmöglichkeit, Zugang und Distanz zum Eingang",
           "Demontage, Montage, Verpackung und empfindliche Gegenstände",
           "Zusatzleistungen wie Reinigung, Rest-Entrümpelung oder Schlüsselübergabe",
           "Terminfenster, Dringlichkeit und regionale Strecke",
@@ -1396,7 +1396,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
           "Mieter kurz vor Schlüsselübergabe",
           "Kunden nach anstrengendem Umzug",
           "Berufstätige mit wenig Zeit für Nacharbeiten",
-          "Studenten oder Fernumzügler, die die Stadt verlassen",
+          "Fernumzügler, die die Stadt verlassen",
           "Familien, die mehrere Aufgaben gleichzeitig koordinieren müssen",
         ],
       },
@@ -1770,7 +1770,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Remote Move-Out Service ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. FLOXANT kann in Regensburg und Bayern nach Vereinbarung Schlüsselzugang, Fotos, Restarbeiten, Reinigung, Entrümpelung und Übergabevorbereitung koordinieren. Besonders hilfreich ist das für Berufsumzüge, Studenten, Fernumzüge und Kunden, die nicht noch einmal anreisen möchten.",
+          "Ein Remote Move-Out Service ist sinnvoll, wenn Sie bereits weggezogen sind, aber die alte Wohnung organisatorisch noch offen ist. FLOXANT kann in Regensburg und Bayern nach Vereinbarung Schlüsselzugang, Fotos, Restarbeiten, Reinigung, Entrümpelung und Übergabevorbereitung koordinieren. Besonders hilfreich ist das für Berufsumzüge, Fernumzüge und Kunden, die nicht noch einmal anreisen möchten.",
         ],
       },
       {
@@ -1808,7 +1808,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         ],
         bullets: [
           "Berufsumzug mit Starttermin in einer anderen Stadt",
-          "Studenten, die nach Semesterende weggezogen sind",
+          "Kunden, die nach einem befristeten Aufenthalt weggezogen sind",
           "internationale Kunden oder Fernumzüge",
           "Familien, die nicht noch einmal anreisen können",
           "Wohnungen mit offenem Keller, Balkon, Reinigung oder Schlüsseltermin",
@@ -1837,7 +1837,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Remote Move-Out schließt die Lücke zwischen Wegzug und echter Wohnungsübergabe. FLOXANT hilft, wenn Kunden nicht mehr vor Ort sind, aber Reinigung, Reste, Fotos, Schlüssel oder Übergabetermin noch offen bleiben. Der Wert liegt in klarer Abstimmung und realistischer Durchführung. Besonders sinnvoll ist das für Berufsumzüge, Studenten, Fernumzüge und zeitkritische Auszüge.",
+          "Remote Move-Out schließt die Lücke zwischen Wegzug und echter Wohnungsübergabe. FLOXANT hilft, wenn Kunden nicht mehr vor Ort sind, aber Reinigung, Reste, Fotos, Schlüssel oder Übergabetermin noch offen bleiben. Der Wert liegt in klarer Abstimmung und realistischer Durchführung. Besonders sinnvoll ist das für Berufsumzüge, Fernumzüge und zeitkritische Auszüge.",
         ],
       },
     ],
@@ -1872,7 +1872,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         a: "Ja, wenn Kapazität, Umfang und Reihenfolge passen. Die Kombination muss vorab geprüft werden.",
       },
       {
-        q: "Ist der Service für Studenten geeignet?",
+        q: "Ist der Service für kleine Wohnungen geeignet?",
         a: "Ja, besonders wenn die Stadt bereits verlassen wurde und noch Schlüssel, Reinigung oder Restgegenstände offen sind.",
       },
       {
@@ -2279,136 +2279,6 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         q: "Kann FLOXANT mit Angehörigen aus der Ferne abstimmen?",
         a: "Ja, wenn Ansprechpartner, Kommunikationsweg, Schlüsselzugang und Entscheidungen klar geregelt sind.",
-      },
-    ],
-  },
-  {
-    slug: "studenten-umzug-wohnungsuebergabe",
-    category: "Zielgruppe",
-    readTime: "9 Min.",
-    date: "1. Mai 2026",
-    datePublished: "2026-05-01",
-    title:
-      "Studenten-Umzug und Wohnungsübergabe: Wenn Frist, Kaution und Entfernung zusammenkommen",
-    metaTitle: "Studenten-Umzug und Wohnungsübergabe | FLOXANT",
-    description:
-      "Warum Studenten-Umzüge oft an Übergabe, Kaution, Entfernung und Restaufgaben hängen und wie FLOXANT kleine Transporte, Reinigung und Schlüsselservice unterstützen kann.",
-    intro:
-      "Studenten-Umzüge wirken oft klein. Ein paar Kartons, ein Bett, ein Schreibtisch. Schwierig wird es meistens danach: Frist, Kaution, WG-Zimmer, Schlüssel, Reinigung, Kellerreste und die Frage, ob man überhaupt noch in der Stadt ist.",
-    about: ["Studentenumzug", "Wohnungsübergabe", "Kaution", "Schlüsselübergabe", "Regensburg", "Bayern"],
-    keywords: ["Studenten Umzug", "WG Umzug", "Wohnungsübergabe Studenten", "FLOXANT"],
-    sections: [
-      {
-        title: "Die kurze Antwort",
-        paragraphs: [
-          "Ein Studenten-Umzug wird riskant, wenn kleine Transporte, Reinigung, Kaution, Schlüssel und Entfernung zusammenkommen. FLOXANT kann in Regensburg und Bayern helfen, indem Umzug, Restarbeiten, Reinigung und Schlüsselthemen nach Bedarf realistisch geprüft werden. Besonders sinnvoll ist das für Studenten, die kurzfristig ausziehen oder die Stadt bereits verlassen.",
-        ],
-      },
-      {
-        title: "Warum kleine Umzüge trotzdem komplex sind",
-        paragraphs: [
-          "Viele Kunden merken erst spät, dass ein Studentenumzug nicht an der Menge scheitert, sondern an Fristen. Der Transport ist überschaubar, aber Übergabe, Reinigung, Kaution und Schlüsseltermin sind trotzdem verbindlich.",
-          "Gerade bei WG-Zimmern oder kleinen Wohnungen bleiben Aufgaben oft bis zum letzten Tag liegen. Dann entsteht Druck, obwohl der Umzug selbst klein aussieht.",
-        ],
-      },
-      {
-        title: "Kaution und Entfernung verändern den Aufwand",
-        paragraphs: [
-          "Wer nach dem Studium, Semesterende oder Praktikum die Stadt verlässt, kann nicht einfach später noch einmal kurz vorbeikommen. Jede offene Aufgabe wird schwieriger, sobald Entfernung dazukommt.",
-          "Das Risiko entsteht nicht durch eine einzelne Aufgabe, sondern durch die Schnittstellen dazwischen: Reinigung, Schlüssel, Restmöbel, Keller, Übergabe und Fotos müssen rechtzeitig passen.",
-        ],
-      },
-      {
-        title: "Warum nur billig selten die beste Frage ist",
-        paragraphs: [
-          "Natürlich zählt Budget. Aber ein niedriger Preis hilft wenig, wenn dadurch am Einsatztag Zeit, Fahrzeug, Personal oder Zuständigkeit fehlen. Gerade kleine Umzüge werden manchmal zu knapp geplant.",
-          "FLOXANT trennt deshalb Orientierung und verbindliche Planung. Erst wird geprüft, was wirklich offen ist, dann kann der nächste Schritt sauber entschieden werden.",
-        ],
-      },
-      {
-        title: "Wie FLOXANT helfen kann",
-        paragraphs: [
-          "FLOXANT kann kleine Transporte, Tragen, Rest-Entrümpelung, Reinigung und Schlüsselübergabe nach Absprache unterstützen. Wichtig ist, dass Umfang, Zugang und Termin realistisch sind.",
-          "Für Studenten ist besonders wertvoll, wenn nicht mehrere Anbieter gesucht werden müssen, sondern der Abschluss der Wohnung als Ganzes betrachtet wird.",
-        ],
-      },
-      {
-        title: "Typische Situationen",
-        paragraphs: [
-          "Studentische Umzüge haben oft weniger Volumen, aber hohe Fristdichte.",
-        ],
-        bullets: [
-          "WG-Zimmer muss vor Semesterende übergeben werden",
-          "Kaution hängt von Reinigung und Schlüsselabgabe ab",
-          "Kunde ist schon in einer anderen Stadt",
-          "kleine Möbel, Kartons oder Kellerreste bleiben offen",
-          "Eltern oder Freunde sollen nicht alles koordinieren müssen",
-        ],
-      },
-      {
-        title: "Was FLOXANT übernehmen kann",
-        paragraphs: [
-          "Der Umfang wird bewusst klein und klar gehalten, wenn der Fall klein ist. Wichtig ist trotzdem, die Übergabe nicht zu unterschätzen.",
-        ],
-        bullets: [
-          "kleine Transporte und Tragehilfe",
-          "Reinigung vor Übergabe nach Absprache",
-          "Rest-Entrümpelung geeigneter Gegenstände",
-          "Schlüsselübergabe oder Nicht-vor-Ort-Abstimmung",
-          "Fotodokumentation relevanter Punkte",
-        ],
-      },
-      {
-        title: "Was vorab geklärt werden muss",
-        paragraphs: [
-          "Gerade bei kleinen Budgets helfen klare Angaben. Wer Fotos, Etage, Menge und Termin früh sendet, bekommt schneller eine realistische Einschätzung.",
-        ],
-        bullets: sharedClarification,
-      },
-      {
-        title: "Zusammenfassung",
-        paragraphs: [
-          "Studenten-Umzug und Wohnungsübergabe sind oft kleiner im Volumen, aber nicht kleiner im Risiko. Fristen, Kaution, Reinigung, Schlüssel und Entfernung können schnell zusammenkommen. FLOXANT hilft, kleine Transporte und Übergabepunkte in Regensburg und Bayern realistisch zu prüfen. Besonders sinnvoll ist das, wenn der Auszug kurzfristig ist oder der Kunde nicht mehr vor Ort sein kann.",
-        ],
-      },
-    ],
-    highlightTitle: "Klein im Volumen, groß in der Frist",
-    highlightPoints: [
-      "Kleine Umzüge können trotzdem Übergaberisiken haben.",
-      "Kaution, Reinigung und Schlüssel sollten früh mitgedacht werden.",
-      "Nicht-vor-Ort-Lösungen helfen, wenn die Stadt schon verlassen wurde.",
-    ],
-    ctas: [
-      { href: "/umzug", label: "Kleinen Umzug anfragen" },
-      { href: "/reinigung", label: "Reinigung vor Übergabe prüfen" },
-      { href: "/blog/nicht-vor-ort-paket", label: "Nicht-vor-Ort-Paket lesen" },
-      { href: "/buchung", label: "Studenten-Fall prüfen lassen" },
-    ],
-    faqTitle: "FAQ zum Studenten-Umzug",
-    faqItems: [
-      {
-        q: "Übernimmt FLOXANT auch kleine Umzüge?",
-        a: "Ja, wenn Umfang, Strecke, Zugang und Kapazität passen. Kleine Umzüge werden trotzdem vorab geprüft.",
-      },
-      {
-        q: "Kann FLOXANT ein WG-Zimmer reinigen?",
-        a: "Reinigung kann nach Absprache möglich sein. Umfang, Zustand und Termin müssen vorher geklärt werden.",
-      },
-      {
-        q: "Kann die Schlüsselübergabe übernommen werden?",
-        a: "Nach Vereinbarung kann FLOXANT Schlüsselthemen oder Anwesenheit unterstützen, wenn Zugang und Verantwortung klar geregelt sind.",
-      },
-      {
-        q: "Ist der Service auch geeignet, wenn ich schon weggezogen bin?",
-        a: "Ja, besonders dann kann das Nicht-vor-Ort-Paket sinnvoll sein.",
-      },
-      {
-        q: "Kann FLOXANT Kaution garantieren?",
-        a: "Nein. FLOXANT kann aber helfen, vermeidbare Übergabeprobleme durch Reinigung, Restarbeiten und Fotos besser vorzubereiten.",
-      },
-      {
-        q: "Welche Angaben braucht FLOXANT für einen kleinen Umzug?",
-        a: "Fotos, Menge, Etage, Zieladresse, Termin, Schlüsselzugang und gewünschte Zusatzleistungen sind besonders hilfreich.",
       },
     ],
   },

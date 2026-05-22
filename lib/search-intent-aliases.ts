@@ -157,14 +157,14 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
   {
     id: "duesseldorf-cleaning-only",
     market: "duesseldorf-cleaning",
-    serviceScope: ["Reinigung Düsseldorf", "B2B-Reinigung Düsseldorf", "Büroreinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
-    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/bueroreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
+    serviceScope: ["Reinigung Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "B2B-Reinigung Düsseldorf", "Büroreinigung Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
+    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
     excludedIntents: ["moving Düsseldorf", "relocation Düsseldorf", "Umzug Düsseldorf", "Transport Düsseldorf", "Büroumzug Düsseldorf"],
     aliases: [
       {
         language: "en",
         label: "Englische Suchbegriffe",
-        terms: ["cleaning service Düsseldorf", "office cleaning Düsseldorf", "apartment cleaning Düsseldorf", "deep cleaning Düsseldorf", "staircase cleaning Düsseldorf"],
+        terms: ["cleaning service Düsseldorf", "office cleaning Düsseldorf", "hotel cleaning Düsseldorf", "boardinghouse cleaning Düsseldorf", "apartment cleaning Düsseldorf", "deep cleaning Düsseldorf", "staircase cleaning Düsseldorf"],
       },
       {
         language: "ru",

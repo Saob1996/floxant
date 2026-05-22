@@ -151,7 +151,7 @@ export default async function UmzugPillarPage() {
           "Volumen und Objektgröße",
           "Strecke zwischen Start und Ziel",
           "Stockwerke, Aufzug und Tragewege",
-          "Montage, Verpackung und Halteverbotszonen",
+          "Montage, Verpackung und Zugang",
         ]}
         calculatorTitle="Warum der Rechner hier wichtig ist"
         calculatorText="Der FLOXANT Rechner liefert eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Volumen, Etagen, Laufwege, Parkmöglichkeit, Zusatzleistungen und Zeitfenster eingeordnet sind."
@@ -159,7 +159,7 @@ export default async function UmzugPillarPage() {
         faqItems={faqItems}
         bookingTitle="Umzug in Regensburg oder Bayern anfragen"
         bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Vorschnell niedrige Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster fehlen."
-        serviceLinksTitle="Wichtige interne Einstiege rund um den Umzug"
+        serviceLinksTitle="Wichtige passende Einstiege rund um den Umzug"
         serviceLinks={[
           { href: "/rechner", label: "Umzug direkt kalkulieren" },
           { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },

@@ -81,7 +81,7 @@ export default function BueroumzugRegensburgBlogPage() {
        "Arbeitsplätze und Möbelmenge",
        "IT, Monitore, Kabel und sensible Ausstattung",
        "Akten, Archiv und Beschriftung",
-       "Zeitfenster, Zugang, Aufzug und Haltezone",
+       "Zeitfenster, Zugang, Aufzug und Laufwege",
       ],
      },
      {

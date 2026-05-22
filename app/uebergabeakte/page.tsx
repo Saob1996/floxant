@@ -65,7 +65,7 @@ const dossierParts = [
 const dossierStructure = [
   {
     title: "A. Objekt",
-    text: "Objektart, Objektlabel, Ort/PLZ, interne Adresse optional, Etage, Räume, Nebenräume und Zugangshinweise.",
+    text: "Objektart, Objektlabel, Ort/PLZ, zusätzliche Adresse optional, Etage, Räume, Nebenräume und Zugangshinweise.",
   },
   {
     title: "B. Auftraggeber",
@@ -85,7 +85,7 @@ const dossierStructure = [
   },
   {
     title: "F. Hinweise",
-    text: "Sichtbare Hinweise, offene Punkte, Kundennotizen, interne Notizen und eine öffentliche Zusammenfassung.",
+    text: "Sichtbare Hinweise, offene Punkte, Kundennotizen, Teamnotizen und eine öffentliche Zusammenfassung.",
   },
   {
     title: "G. Rechtlicher Hinweis",
@@ -382,7 +382,7 @@ export default function UebergabeaktePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Datenstruktur</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Aus Marketing wird System: klare Bausteine fuer die Akte</h2>
               <p className="mt-3 text-base leading-8 text-slate-700">
-                Die Uebergabeakte wird intern als Dossier-Struktur vorbereitet. So koennen Objekt, Leistungen, Fotos, Schluesselstatus und Hinweise spaeter sauber bearbeitet oder exportiert werden.
+                Die Uebergabeakte wird als klare Dossier-Struktur vorbereitet. So koennen Objekt, Leistungen, Fotos, Schluesselstatus und Hinweise spaeter sauber bearbeitet oder exportiert werden.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

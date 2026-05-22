@@ -86,7 +86,7 @@ export default function BlogExpressUmzugPage() {
      {
       title: "Was kurzfristig oft unterschätzt wird",
       paragraphs: [
-       "Besonders kritisch sind Haltezonen, enge Treppenhäuser, Montagearbeiten und empfindliche Gegenstände. Gerade bei Eile werden diese Punkte gerne zu spät genannt.",
+       "Besonders kritisch sind Zugang, enge Treppenhäuser, Montagearbeiten und empfindliche Gegenstände. Gerade bei Eile werden diese Punkte gerne zu spät genannt.",
       ],
      },
      {

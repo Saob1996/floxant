@@ -43,7 +43,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Warum der Endpreis allein nicht reicht",
         paragraphs: [
-          "Zwei Angebote können denselben Preis nennen und trotzdem völlig unterschiedliche Leistungen enthalten. Bei einem Umzug können Etage, Laufweg, Haltezone, Zusatzfahrt oder Reinigung fehlen. Bei Reinigung können Zustand, Fläche, Übergabeziel oder Sonderbereiche offen bleiben. Bei Entsorgung ist oft unklar, welches Material und welche Menge wirklich gemeint sind.",
+          "Zwei Angebote können denselben Preis nennen und trotzdem völlig unterschiedliche Leistungen enthalten. Bei einem Umzug können Etage, Laufweg, Zugang, Zusatzfahrt oder Reinigung fehlen. Bei Reinigung können Zustand, Fläche, Übergabeziel oder Sonderbereiche offen bleiben. Bei Entsorgung ist oft unklar, welches Material und welche Menge wirklich gemeint sind.",
           "Deshalb prüft FLOXANT nicht nur den Preis, sondern den Zusammenhang: Serviceart, Ort, Termin, Fotos, Zugang, Umfang und Zielbudget.",
         ],
         bullets: [
@@ -106,7 +106,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     description:
       "Umzugsangebot prüfen lassen: FLOXANT klärt Preis, Volumen, Etage, Laufweg, Strecke, Rückfahrt, Reinigung und Übergabe für Regensburg, Umgebung und Bayern.",
     intro:
-      "Bei Umzugsangeboten entstehen die größten Missverständnisse selten beim Preis selbst. Häufig fehlen Volumen, Etage, Laufwege, Haltezone, Zusatzfahrt, Montage, Reinigung oder Übergabe. FLOXANT hilft, diese Punkte vor einer Entscheidung praktisch einzuordnen.",
+      "Bei Umzugsangeboten entstehen die größten Missverständnisse selten beim Preis selbst. Häufig fehlen Volumen, Etage, Laufwege, Zugang, Zusatzfahrt, Montage, Reinigung oder Übergabe. FLOXANT hilft, diese Punkte vor einer Entscheidung praktisch einzuordnen.",
     about: ["Umzugsangebot", "Umzug Regensburg", "Umzug Bayern", "Rückfahrt", "Übergabe", "Preisrahmen"],
     keywords: [
       "Umzugsangebot prüfen",
@@ -126,7 +126,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Typische Lücken in Umzugsangeboten",
         paragraphs: [
-          "Ein niedriger Preis kann seriös sein, wenn alle Eckdaten stimmen. Er kann aber riskant werden, wenn wichtige Angaben fehlen. Gerade Etage, Trageweg, Aufzug, Sperrgut, Montage, Keller, Haltezone und Zusatzfahrt verändern den Aufwand deutlich.",
+          "Ein niedriger Preis kann seriös sein, wenn alle Eckdaten stimmen. Er kann aber riskant werden, wenn wichtige Angaben fehlen. Gerade Etage, Trageweg, Aufzug, Sperrgut, Montage, Keller, Zugang und Zusatzfahrt verändern den Aufwand deutlich.",
         ],
         bullets: [
           "Volumen oder Möbelmenge ist zu grob geschätzt",

@@ -555,8 +555,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           : {
             scope: "Volumen / Wohnungsgröße falls bekannt",
             scopePlaceholder: "z. B. 2 Zimmer, 45 Kartons, größere Möbel",
-            access: "Etage / Aufzug / Halteverbot falls bekannt",
-            accessPlaceholder: "z. B. 3. OG, Aufzug ja, Halteverbot prüfen",
+            access: "Etage / Aufzug / Zugang falls bekannt",
+            accessPlaceholder: "z. B. 3. OG, Aufzug ja, langer Laufweg",
             budget: "Budget / Preisrahmen falls bekannt",
           };
 

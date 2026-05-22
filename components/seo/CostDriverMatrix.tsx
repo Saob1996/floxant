@@ -7,7 +7,7 @@ export const costDriverGroups = [
   service: "Umzug",
   href: "/umzug",
   intro: "Beim Umzug bestimmen nicht nur Kilometer den Aufwand, sondern vor allem Zugang, Volumen und Koordination.",
-  drivers: ["Volumen und Zimmer", "Strecke und Zielort", "Etagen, Aufzug und Laufwege", "Montage, Haltezone und Zeitfenster"],
+  drivers: ["Volumen und Zimmer", "Strecke und Zielort", "Etagen, Aufzug und Laufwege", "Montage, Zugang und Zeitfenster"],
  },
  {
   icon: Sparkles,

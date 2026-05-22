@@ -25,13 +25,15 @@ const nonSeoPublicRoutes = new Set([
 const legacyRedirectRoutes = new Set([
   "/partnercode",
   "/airbnb-reinigung-duesseldorf",
-  "/duesseldorf/b2b-reinigung",
   "/angebot-red-flag-scanner",
   "/guenstigeres-angebot-pruefen",
   "/villenservice",
   "/umzug-duesseldorf",
   "/seo-gone",
 ]);
+const removedServicePrefixes = [
+  "/halteverbotszone",
+];
 
 function isRouteGroup(segment) {
   return segment.startsWith("(") && segment.endsWith(")");
@@ -62,6 +64,7 @@ function getRouteFromDirectory(directory) {
 
 function isIndexableRoute(route) {
   if (legacyRedirectRoutes.has(route)) return false;
+  if (removedServicePrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}-`))) return false;
   if (nonSeoPublicRoutes.has(route)) return false;
   if (/^\/alternativen\/[^/]+$/.test(route)) return false;
   if (/^\/signature\/[^/]+$/.test(route)) return false;

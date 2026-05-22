@@ -107,7 +107,7 @@ const openItems = [
   "Entruempelung",
   "Schluesseluebergabe",
   "Uebergabeprotokoll / Uebergabeakte",
-  "Halteverbot",
+  "Zugang / Parken",
   "Fahrzeugbedarf",
   "Rueckfahrt / Leerfahrt",
   "Fotos vorhanden",

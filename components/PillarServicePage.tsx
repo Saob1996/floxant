@@ -14,6 +14,7 @@ import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 
 import { PillarServiceHero } from "@/components/PillarServiceHero";
 import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
+import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import type { FloxantVisualVariant } from "@/components/FloxantServiceVisual";
 import { germanText } from "@/lib/german-text";
@@ -168,6 +169,14 @@ export function PillarServicePage({
       />
 
       <SearchDominanceExperience variant="pillar" className="py-8" />
+
+      <SearchIntentExpansion
+        route={breadcrumbs[breadcrumbs.length - 1]?.href || `/${heroBadge.toLowerCase().replace(/\s+/g, "-")}`}
+        city="Regensburg"
+        serviceName={heroTitle}
+        relatedLinks={[...serviceLinks, ...cityLinks].slice(0, 6)}
+        className="pt-4"
+      />
 
       <section className="flox-section pt-0">
         <div className="flox-shell">

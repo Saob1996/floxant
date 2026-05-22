@@ -144,7 +144,7 @@ function driverListFromBreakdown(breakdown: CostBreakdownItem[], input: Internal
     extras.push("Etagen ohne Aufzug");
   }
   if (input.walkingDistanceMeters > 30) extras.push("Langer Laufweg");
-  if (input.noParkingZone) extras.push("Halteverbotszone");
+  if (input.noParkingZone) extras.push("Zugang / Parken");
 
   return [...new Set([...biggest, ...extras])].slice(0, 5);
 }

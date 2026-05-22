@@ -23,6 +23,7 @@ const EXCLUDE_SLUGS = new Set([
   "koeln",
   "leipzig",
   "stuttgart",
+  "lindau",
   "muenchen-bogenhausen",
   "muenchen-schwabing",
   "nuernberg-gostenhof",
@@ -37,8 +38,6 @@ const SERVICES = [
   { prefix: "seniorenumzug", baseKey: "seniorenumzug_spec", label: "Seniorenumzug", href: "/seniorenumzug", parent: "Umzug", parentHref: "/umzug" },
   { prefix: "klaviertransport", baseKey: "klaviertransport_spec", label: "Klaviertransport", href: "/klaviertransport", parent: "Umzug", parentHref: "/umzug" },
   { prefix: "wohnungsaufloesung", baseKey: "entruempelung_spec", label: "Wohnungsauflösung", href: "/wohnungsaufloesung-bayern", parent: "Entrümpelung", parentHref: "/entruempelung" },
-  { prefix: "studentenumzug", baseKey: "umzug_spec", label: "Studentenumzug", href: "/studentenumzug-bayern", parent: "Umzug", parentHref: "/umzug" },
-  { prefix: "halteverbotszone", baseKey: "service_halteverbotszone", label: "Halteverbotszone", href: "/halteverbotszone-regensburg", parent: "Umzug", parentHref: "/umzug" },
 ];
 
 function slugToCity(slug) {

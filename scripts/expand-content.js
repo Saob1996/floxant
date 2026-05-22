@@ -11,8 +11,8 @@ const BLOG_CONTENT = [
 
 Ein Umzug in Regensburg – sei es innerhalb der Altstadt oder in den Landkreis – erfordert Fingerspitzengefühl. Enge Gassen, Parkplatznot und die Koordination von Teams können stressig sein.
 
-### 1. Frühzeitig Halteverbote planen
-Besonders in den zentrumsnahen Lagen Regensburgs ist eine offizielle Halteverbotszone unerlässlich. Wir von FLOXANT kümmern uns um die behördliche Genehmigung und die Aufstellung der Schilder.
+### 1. Zugang und Laufwege früh planen
+Besonders in den zentrumsnahen Lagen Regensburgs sind kurze Ladewege und klare Zugangsinformationen wichtig. Wir von FLOXANT prüfen diese Punkte vorab in der Anfrage.
 
 ### 2. Das richtige Volumen kalkulieren
 Viele unterschätzen die Menge an Kartons. Nutzen Sie unseren Online-Rechner, um eine erste Einschätzung zu erhalten.

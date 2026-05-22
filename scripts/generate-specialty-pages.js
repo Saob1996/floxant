@@ -1,7 +1,6 @@
 /**
  * FLOXANT Specialty Services City Page Generator
  * Expands: Büroumzug, Seniorenumzug, Klaviertransport, Wohnungsauflösung,
- *          Studentenumzug, Kleintransport, Halteverbotszone
  * to match the same city coverage as the core services.
  */
 const fs = require("fs");
@@ -132,37 +131,6 @@ const SPECIALTY_SERVICES = [
       "kelheim", "neumarkt", "coburg", "ansbach",
       "starnberg", "erding", "schwabach", "forchheim",
       "neutraubling", "lappersdorf", "regenstauf",
-    ],
-  },
-  {
-    prefix: "studentenumzug",
-    baseKey: "umzug_spec", // reuse umzug content
-    seoKeyPattern: null,
-    parentLabel: "Studentenumzug",
-    parentHref: "/studentenumzug-bayern",
-    breadcrumbParent: "Umzug",
-    breadcrumbParentHref: "/umzug",
-    // University cities in Bavaria
-    cities: [
-      "muenchen", "nuernberg", "augsburg", "wuerzburg", "erlangen",
-      "bamberg", "bayreuth", "passau", "landshut", "ingolstadt",
-      "amberg", "deggendorf", "coburg", "ansbach", "schweinfurt",
-      "kempten", "rosenheim", "freising",
-    ],
-  },
-  {
-    prefix: "halteverbotszone",
-    baseKey: "service_halteverbotszone",
-    seoKeyPattern: null,
-    parentLabel: "Halteverbotszone",
-    parentHref: "/halteverbotszone-regensburg",
-    breadcrumbParent: "Umzug",
-    breadcrumbParentHref: "/umzug",
-    cities: [
-      "augsburg", "ingolstadt", "landshut", "passau", "straubing",
-      "bamberg", "bayreuth", "wuerzburg", "erlangen", "fuerth",
-      "schweinfurt", "rosenheim", "amberg", "weiden", "deggendorf",
-      "schwandorf", "freising", "dachau", "kempten", "ansbach",
     ],
   },
 ];

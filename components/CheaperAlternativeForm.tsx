@@ -21,6 +21,8 @@ const standardServices = [
 
 const duesseldorfServices = [
   { value: "reinigung", label: "Düsseldorf Reinigung" },
+  { value: "b2b_reinigung", label: "Düsseldorf B2B-Reinigung" },
+  { value: "hotelreinigung", label: "Düsseldorf Hotelreinigung" },
   { value: "entsorgung", label: "Düsseldorf Entsorgung" },
 ];
 
@@ -37,6 +39,15 @@ const concernOptions = [
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
+type CheaperAlternativeFormProps = {
+  defaultRegion?: string;
+  defaultService?: string;
+  defaultCityOrZip?: string;
+  defaultMessage?: string;
+  sourceComponent?: string;
+  landingPageFallback?: string;
+};
+
 function getUtmValue(key: string) {
   if (typeof window === "undefined") return "";
   return new URLSearchParams(window.location.search).get(key) || "";
@@ -50,9 +61,16 @@ function validateFiles(files: File[], allowedTypes: string[]) {
   return "";
 }
 
-export function CheaperAlternativeForm() {
-  const [region, setRegion] = useState("regensburg");
-  const [service, setService] = useState("umzug");
+export function CheaperAlternativeForm({
+  defaultRegion = "regensburg",
+  defaultService = "umzug",
+  defaultCityOrZip = "",
+  defaultMessage = "",
+  sourceComponent = "cheaper_alternative_page",
+  landingPageFallback = "/angebot-guenstiger-pruefen",
+}: CheaperAlternativeFormProps = {}) {
+  const [region, setRegion] = useState(defaultRegion);
+  const [service, setService] = useState(defaultService);
   const [selectedConcerns, setSelectedConcerns] = useState<string[]>([]);
   const [offerFiles, setOfferFiles] = useState<File[]>([]);
   const [photoFiles, setPhotoFiles] = useState<File[]>([]);
@@ -72,7 +90,7 @@ export function CheaperAlternativeForm() {
 
   function updateRegion(nextRegion: string) {
     setRegion(nextRegion);
-    if (nextRegion === "duesseldorf" && !["reinigung", "entsorgung"].includes(service)) {
+    if (nextRegion === "duesseldorf" && !duesseldorfServices.some((item) => item.value === service)) {
       setService("reinigung");
     }
   }
@@ -133,13 +151,13 @@ export function CheaperAlternativeForm() {
     formData.set("leadSubtype", "cheaper_alternative");
     formData.set("leadSource", "cheaper_alternative");
     formData.set("source", "cheaper_alternative");
-    formData.set("sourceComponent", "cheaper_alternative_page");
+    formData.set("sourceComponent", sourceComponent);
     formData.set("service", service);
     formData.set("region", region);
     formData.set("selectedAddons", JSON.stringify(selectedConcerns));
     formData.set("platformSituation", "Günstigere oder passendere Alternative prüfen");
     formData.set("timestamp", new Date().toISOString());
-    formData.set("landingPage", typeof window === "undefined" ? "/angebot-guenstiger-pruefen" : `${window.location.pathname}${window.location.search}`);
+    formData.set("landingPage", typeof window === "undefined" ? landingPageFallback : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
     formData.set("utmSource", getUtmValue("utm_source"));
     formData.set("utmMedium", getUtmValue("utm_medium"));
@@ -241,7 +259,7 @@ export function CheaperAlternativeForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Ort / PLZ*
-            <input name="cityOrZip" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
+            <input name="cityOrZip" defaultValue={defaultCityOrZip} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Termin / Zeitraum*
@@ -316,7 +334,7 @@ export function CheaperAlternativeForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was ist am Angebot zu teuer, unklar oder nicht passend? Welche Leistung soll FLOXANT alternativ prüfen?" />
+          <textarea name="message" rows={4} defaultValue={defaultMessage} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was ist am Angebot zu teuer, unklar oder nicht passend? Welche Leistung soll FLOXANT alternativ prüfen?" />
         </label>
 
         <div className="grid gap-3 sm:grid-cols-2">

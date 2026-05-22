@@ -50,8 +50,6 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
 
  const liftLabel = dic?.calculator?.lift || "Aufzug";
  const narrowStairsLabel = dic?.calculator?.narrow_stairs || "Enge Treppe";
- const noParkingZoneLabel = dic?.footer?.no_parking_zone || "Halteverbotszone";
-
  const toggleHeavyItem = (item: string) => {
   const exists = umzugData.heavyItems.includes(item);
   updateStoreData({
@@ -133,12 +131,6 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
          onChange: (checked) => updateStoreData({ narrowStairsFrom: checked }),
          tip: "Erfordert spezielles Handling.",
         },
-        {
-         checked: !!umzugData.noParkingZoneFrom,
-         label: noParkingZoneLabel,
-         onChange: (checked) => updateStoreData({ noParkingZoneFrom: checked }),
-         tip: "Wichtig für einen reibungslosen Ablauf.",
-        },
        ]}
       />
      </m.div>
@@ -164,7 +156,6 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
           hasElevatorTo: umzugData.hasElevatorFrom,
           narrowStairsTo: umzugData.narrowStairsFrom,
           walkingDistanceTo: umzugData.walkingDistanceFrom,
-          noParkingZoneTo: umzugData.noParkingZoneFrom,
          })
         }
         className="rounded-xl bg-blue-600 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_24px_rgba(37,99,235,0.2)] transition-all hover:bg-blue-500"
@@ -201,12 +192,6 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
          label: narrowStairsLabel,
          onChange: (checked) => updateStoreData({ narrowStairsTo: checked }),
          tip: "Erfordert spezielles Handling.",
-        },
-        {
-         checked: !!umzugData.noParkingZoneTo,
-         label: noParkingZoneLabel,
-         onChange: (checked) => updateStoreData({ noParkingZoneTo: checked }),
-         tip: "Vermeidet Bußgelder und Verzögerungen.",
         },
        ]}
       />

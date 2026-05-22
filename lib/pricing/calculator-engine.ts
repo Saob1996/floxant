@@ -399,12 +399,12 @@ export function calculateUmzugAdvanced(
 
  if (data.noParkingZoneFrom) {
   price += 85;
-  flags.push("Haltezone am Auszugsort einplanen");
+  flags.push("Zugang am Auszugsort einplanen");
  }
 
  if (data.noParkingZoneTo) {
   price += 85;
-  flags.push("Haltezone am Einzugsort einplanen");
+  flags.push("Zugang am Einzugsort einplanen");
  }
 
  if (data.packingService) {
@@ -919,7 +919,7 @@ export function calculateBueroumzugAdvanced(
 
  if (data.noParkingZoneFrom || data.noParkingZoneTo) {
   price += 95 * Number(data.noParkingZoneFrom) + 95 * Number(data.noParkingZoneTo);
-  flags.push("Haltezonen berücksichtigt");
+  flags.push("Zugang und Parken berücksichtigt");
  }
 
  price *= getGlobalMultiplier(base);

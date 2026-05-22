@@ -78,7 +78,7 @@ export default async function RatgeberPage() {
       </div>
       <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
        <BookOpen className="h-4 w-4 text-blue-400" />
-       <h2 className="mt-4 text-lg font-semibold text-white">Direkte interne Einstiege</h2>
+       <h2 className="mt-4 text-lg font-semibold text-white">Direkte Einstiege</h2>
        <p className="mt-2 text-sm leading-relaxed text-white/45">
         Jeder Beitrag führt sauber weiter zu Rechner, Services oder passenden Spezialseiten.
        </p>

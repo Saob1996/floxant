@@ -204,7 +204,7 @@ const mapsRankingSignals = [
   "Düsseldorf-Adresse und Telefonnummer sichtbar",
   "klare CleaningService-Positionierung",
   "direkte Anfragewege: Formular, WhatsApp, Telefon",
-  "lokale Leistungsseiten intern verknüpft",
+  "lokale Leistungsseiten klar verknüpft",
   "keine widersprüchlichen Umzug-Düsseldorf-Signale",
 ];
 

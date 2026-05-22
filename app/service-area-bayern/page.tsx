@@ -35,7 +35,7 @@ const faqItems = [
   },
   {
     q: "Welche Seite eignet sich fuer Google Maps oder das Google-Unternehmensprofil am besten?",
-    a: "Fuer direkte Anfragen ist die Buchungsseite der staerkste Einstieg. Die Bayern-Seite hilft vor allem bei regionaler Einordnung, interner Verlinkung und klarer Suchintention.",
+    a: "Fuer direkte Anfragen ist die Buchungsseite der staerkste Einstieg. Die Bayern-Seite hilft vor allem bei regionaler Einordnung, klaren Verbindungen und passender Suchintention.",
   },
   {
     q: "Warum zeigt diese Seite Regionen statt pauschal ueberall alles zu versprechen?",

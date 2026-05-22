@@ -33,7 +33,10 @@ export const SEO_MONEY_ROUTES = [
  "/reinigung-moeblierte-wohnung-duesseldorf",
  "/entsorgung-duesseldorf",
  "/duesseldorf/reinigung",
+ "/duesseldorf/reinigung-stadtteile-umgebung",
+ "/duesseldorf/vielleicht-guenstiger",
  "/duesseldorf/bueroreinigung",
+ "/duesseldorf/hotelreinigung",
  "/duesseldorf/grundreinigung",
  "/duesseldorf/treppenhausreinigung",
  "/buchung",
@@ -80,7 +83,10 @@ export const SEO_SUPPORT_ROUTES = [
  "/reinigung-moeblierte-wohnung-duesseldorf",
  "/entsorgung-duesseldorf",
  "/duesseldorf/reinigung",
+ "/duesseldorf/reinigung-stadtteile-umgebung",
+ "/duesseldorf/vielleicht-guenstiger",
  "/duesseldorf/bueroreinigung",
+ "/duesseldorf/hotelreinigung",
  "/duesseldorf/grundreinigung",
  "/duesseldorf/treppenhausreinigung",
  "/buchung",
@@ -439,14 +445,6 @@ moneySnippets["/endreinigung-regensburg"] = {
  intent: "Endreinigung in Regensburg vor Auszug oder Wohnungsübergabe anfragen",
 };
 
-moneySnippets["/halteverbotszone-regensburg"] = {
- title: "Halteverbotszone Regensburg | Umzug besser planen",
- description:
-  "Halteverbotszone für Umzug oder Transport in Regensburg nach Absprache prüfen: Ort, Frist, Ladeweg, Fahrzeug und Termin klären.",
- cluster: "support",
- intent: "Halteverbotszone für Umzug in Regensburg organisieren lassen",
-};
-
 moneySnippets["/duesseldorf/reinigung"] = {
  title: "Reinigung Düsseldorf | Wohnung, Büro & Übergabe",
  description:
@@ -456,11 +454,35 @@ moneySnippets["/duesseldorf/reinigung"] = {
 };
 
 moneySnippets["/duesseldorf/bueroreinigung"] = {
- title: "B2B-Reinigung Düsseldorf | Büros & kleine Unternehmen",
+ title: "B2B-Reinigung Düsseldorf | Büro, Hotel & Firma",
  description:
-  "B2B-Reinigung in Düsseldorf für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz, Fotos und Zeitfenster senden.",
+  "B2B-Reinigung in Düsseldorf für Büros, Hotels, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz, Fotos und Zeitfenster senden.",
  cluster: "money",
- intent: "B2B-Reinigung in Düsseldorf für kleine Unternehmen anfragen",
+ intent: "B2B-Reinigung in Düsseldorf für Firma, Büro oder Hotel anfragen",
+};
+
+moneySnippets["/duesseldorf/hotelreinigung"] = {
+ title: "Hotelreinigung Düsseldorf | Lobby, Zimmer & Flure",
+ description:
+  "Hotelreinigung in Düsseldorf für Hotels, Boardinghouses und Apartmenthäuser: Lobby, Flure, Zimmer nach Absprache, Turnus, Fotos und Zeitfenster senden.",
+ cluster: "money",
+ intent: "Hotelreinigung in Düsseldorf für Beherbergung oder Boardinghouse anfragen",
+};
+
+moneySnippets["/duesseldorf/reinigung-stadtteile-umgebung"] = {
+ title: "Reinigung Düsseldorf Stadtteile & Umgebung",
+ description:
+  "Reinigung in Düsseldorf, Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, Neuss, Ratingen, Meerbusch, Mettmann und Duisburg anfragen.",
+ cluster: "money",
+ intent: "Reinigung in Düsseldorf Stadtteilen oder naher Umgebung anfragen",
+};
+
+moneySnippets["/duesseldorf/vielleicht-guenstiger"] = {
+ title: "Angebot prüfen Düsseldorf | Vielleicht günstiger",
+ description:
+  "Düsseldorfer Reinigungsangebot hochladen: FLOXANT prüft Preis, Fläche, Turnus, Fotos und eine mögliche günstigere oder passendere Alternative.",
+ cluster: "conversion",
+ intent: "Reinigungsangebot in Düsseldorf hochladen und günstiger prüfen lassen",
 };
 
 moneySnippets["/duesseldorf/grundreinigung"] = {
@@ -618,7 +640,7 @@ moneySnippets["/"] = {
 moneySnippets["/umzug-regensburg"] = {
  title: "Umzug Regensburg – Transport, Reinigung & Übergabe",
  description:
-  "Umzug in Regensburg mit Planung, Transport, Endreinigung, Schlüsselübergabe und Halteverbotszone nach Absprache. Fotos oder Budget senden.",
+  "Umzug in Regensburg mit Planung, Transport, Endreinigung, Schlüsselübergabe und realistischem Zugang. Fotos oder Budget senden.",
  cluster: "money",
  intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
 };
@@ -642,7 +664,7 @@ moneySnippets["/entruempelung-regensburg"] = {
 moneySnippets["/kleintransport-regensburg"] = {
  title: "Transport Regensburg – Möbel, Kleintransport & Rückfahrt",
  description:
-  "Transport in Regensburg für Möbel und Einzelstücke. Route, Zugang, Fotos, Haltezone und Leerfahrt/Rückfahrt nach Verfügbarkeit prüfen.",
+  "Transport in Regensburg für Möbel und Einzelstücke. Route, Zugang, Fotos und Leerfahrt/Rückfahrt nach Verfügbarkeit prüfen.",
  cluster: "money",
  intent: "Transport oder Möbeltransport in Regensburg anfragen",
 };
@@ -775,7 +797,7 @@ const serviceCityPatterns = [
    (city: string) =>
     `Umzugsfirma für ${city} gesucht? FLOXANT klärt Etagen, Laufwege, Möbelumfang, Strecke und Zusatzleistungen nach Verfügbarkeit.`,
    (city: string) =>
-    `Umzugsservice ${city}: Strecke, Transportumfang, Haltezone, Reinigung und Übergabe realistisch einschätzen lassen und direkt anfragen.`,
+    `Umzugsservice ${city}: Strecke, Transportumfang, Zugang, Reinigung und Übergabe realistisch einschätzen lassen und direkt anfragen.`,
    (city: string) =>
     `FLOXANT prüft Umzüge in ${city} mit Fokus auf Volumen, Zugang, Zeitfenster, Zusatzleistungen und nachvollziehbaren Preisrahmen.`,
   ],
@@ -861,26 +883,6 @@ const serviceCityPatterns = [
   ],
  },
  {
-  prefix: "/halteverbotszone-",
-  service: "Halteverbotszone",
-  titles: [
-   (city: string) => `Halteverbotszone ${city} | Umzug planen`,
-   (city: string) => `Halteverbot ${city} | Zugang prüfen lassen`,
-   (city: string) => `Umzug Haltezone ${city} | FLOXANT Anfrage`,
-   (city: string) => `Halteverbotszone in ${city} | Termin klären`,
-  ],
-  descriptions: [
-   (city: string) =>
-    `Halteverbotszone in ${city}: Datum, Adresse, Ladeweg, Fahrzeuggröße und Vorlaufzeit strukturiert prüfen und Umzug besser vorbereiten.`,
-   (city: string) =>
-    `Halteverbot für ${city} anfragen: FLOXANT klärt Zugang, Laufwege, Fahrzeug, Terminfenster und mögliche Abstimmung nach Verfügbarkeit.`,
-   (city: string) =>
-    `Umzug in ${city} mit Haltezone planen: Engstellen, Ladefläche, Etage, Trageweg und Zeitfenster vorab realistisch einordnen.`,
-   (city: string) =>
-    `FLOXANT prüft Halteverbotszonen in ${city} als Baustein für Umzug, Transport, Büroumzug oder größere Objektanfragen.`,
-  ],
- },
- {
   prefix: "/klaviertransport-",
   service: "Klaviertransport",
   titles: [
@@ -918,26 +920,6 @@ const serviceCityPatterns = [
     `Senioren-Umzug ${city}: Fotos, Zimmer, Etage, Aufzug, Hilfe durch Angehörige und Übergabeziel strukturiert senden.`,
    (city: string) =>
     `FLOXANT prüft Seniorenumzüge in ${city} mit ruhiger Planung, Transport, Reinigung und Übergabe nach Verfügbarkeit.`,
-  ],
- },
- {
-  prefix: "/studentenumzug-",
-  service: "Studentenumzug",
-  titles: [
-   (city: string) => `Studentenumzug ${city} | klein & klar planen`,
-   (city: string) => `Umzug für Studenten ${city} | FLOXANT`,
-   (city: string) => `Studenten-Umzug ${city} | Beiladung prüfen`,
-   (city: string) => `Studentenumzug in ${city} | Anfrage starten`,
-  ],
-  descriptions: [
-   (city: string) =>
-    `Studentenumzug in ${city}: Kartons, Möbel, Etage, Strecke, Beiladung und Terminfenster kompakt prüfen lassen.`,
-   (city: string) =>
-    `Umzug für Studenten in ${city}: FLOXANT klärt kleinen Transport, Zugang, Budget, Fotos und mögliche Rückfahrt nach Verfügbarkeit.`,
-   (city: string) =>
-    `Studenten-Umzug ${city}: WG-Zimmer, Einzelmöbel, Kartons, Start, Ziel und Zeitfenster schnell in eine Anfrage bringen.`,
-   (city: string) =>
-    `FLOXANT prüft Studentenumzüge in ${city} als kleine Umzugs- oder Transportanfrage mit klarer Preisrahmen-Vorprüfung.`,
   ],
  },
 ] as const;
@@ -1009,20 +991,12 @@ function getLocalServiceSentence(service: string) {
   return "Räumungsangebot, Menge, Zugang, Entsorgung und Reinigung danach können gemeinsam geprüft werden";
  }
 
- if (service === "Halteverbotszone") {
-  return "Haltezone, Ladeweg, Fahrzeuggröße und Umzugstermin werden als Vorbereitungsbaustein geklärt";
- }
-
  if (service === "Klaviertransport") {
   return "Etage, Treppenhaus, Maße, Schutzbedarf und Strecke werden vor Zusage realistisch geprüft";
  }
 
  if (service === "Seniorenumzug") {
   return "Rückruf, Angehörigen-Abstimmung, Reinigung und Übergabe können ruhig mitgedacht werden";
- }
-
- if (service === "Studentenumzug") {
-  return "Budget, Beiladung, Einzelmöbel, Kartons und Zeitfenster werden kompakt eingeordnet";
  }
 
  return "Vorhandene Angebote können zusätzlich günstiger, klarer oder passender geprüft werden";

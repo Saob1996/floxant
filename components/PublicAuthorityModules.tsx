@@ -180,7 +180,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     badge: "Preislogik",
     title: "Transport braucht Strecke, Zugang und Umfang",
     text:
-      "Einzelstuecke wirken klein, koennen aber wegen Etage, Gewicht, Ladeweg oder Haltezone mehr Planung brauchen. Fotos und Masse machen den Rahmen klarer.",
+      "Einzelstuecke wirken klein, koennen aber wegen Etage, Gewicht, Ladeweg oder Zugang mehr Planung brauchen. Fotos und Masse machen den Rahmen klarer.",
     href: "/kleintransport-regensburg#wizard",
     cta: "Transport anfragen",
     Icon: Truck,

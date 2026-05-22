@@ -79,7 +79,7 @@ export default async function BlogUmzugCheckliste() {
               <ul className="list-none ps-0 space-y-3">
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Starten Sie mit der Entrümpelung.</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Kaufen oder mieten Sie hochwertige Umzugskartons.</li>
-                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Beantragen Sie die Halteverbotszone.</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Klären Sie Zugang, Laufweg und Parkmöglichkeit.</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Einrichten eines Nachsendeauftrags.</li>
               </ul>
             </div>

@@ -50,7 +50,7 @@ const serviceCards = [
     soft: "from-blue-50 via-white to-cyan-50",
     signal: "Solide Vorbereitung",
     operations:
-      "Teamgröße, Fahrzeugbedarf, Tragewege und Halteverbotszone werden berücksichtigt.",
+      "Teamgröße, Fahrzeugbedarf, Tragewege und Zugang werden berücksichtigt.",
     steps: ["Start", "Ziel", "Inventar", "Leistungen"],
   },
   {

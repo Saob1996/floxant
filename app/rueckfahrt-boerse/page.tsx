@@ -303,7 +303,7 @@ export default function RueckfahrtBoersePage() {
             </div>
             <div className="mt-8 flex flex-col gap-3 rounded-[1.5rem] border border-slate-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h3 className="text-lg font-black text-slate-950">SEO-Hauptseite oder Börse?</h3>
+                <h3 className="text-lg font-black text-slate-950">Allgemeine Seite oder Börse?</h3>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
                   Die bestehende Leerfahrt/Rückfahrt-Seite bleibt der allgemeine Signature-Service. Die Rückfahrt-Börse ist der schnelle Strecke-eintragen-Flow.
                 </p>

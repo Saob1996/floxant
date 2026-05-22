@@ -120,8 +120,8 @@
     "useful_title": "Wissenswertes für Ihren Start in {city}",
     "useful": {
       "no_parking": {
-        "title": "Halteverbotszonen",
-        "desc": "Beantragen Sie (oder wir für Sie) frühzeitig eine amtliche Halteverbotszone beim zuständigen Amt in {city}. Die Vorlaufzeit sollte idealerweise mind. 14 Tage betragen, um den Behördenweg rechtzeitig abzuschließen."
+        "title": "Zugang und Parken",
+        "desc": "Beantragen Sie (oder wir für Sie) frühzeitig eine amtliche Zugang und Parken beim zuständigen Amt in {city}. Die Vorlaufzeit sollte idealerweise mind. 14 Tage betragen, um den Behördenweg rechtzeitig abzuschließen."
       },
       "registration": {
         "title": "Behörden-Ummeldung",
@@ -303,7 +303,7 @@
       },
       "clean_shield": {
         "title": "Bureaucracy Shield",
-        "desc": "Halteverbotszonen & Service."
+        "desc": "Zugang und Parken & Service."
       }
     },
     "error": {
@@ -339,7 +339,7 @@
     "cleaning_clearance_header": "Reinigung & Räumung",
     "locations_header": "Standorte",
     "special_header": "Spezial",
-    "no_parking_zone": "Halteverbotszone",
+    "no_parking_zone": "Zugang und Parken",
     "storage_label": "Einlagerung",
     "painting_label": "Malerarbeiten",
     "piano_label": "Klaviertransport",
@@ -350,7 +350,6 @@
     "clearance_bavaria": "Entrümpelung Bayern",
     "apartment_clearance": "Wohnungsauflösung",
     "moving_24h": "24h Umzug",
-    "student_moving": "Studentenumzug",
     "family_moving": "Familienumzug",
     "senior_moving": "Seniorenumzug",
     "moving_costs": "Umzugskosten",
@@ -429,7 +428,7 @@
       "hero_p": "Ihr verlässliches Umzugsunternehmen für {city} und Bayern nach Verfügbarkeit. Mit sauberer Vorprüfung, Preisrahmen und klarer Abstimmung vor dem Einsatz.",
       "badges": {
         "permit": "Genehmigungen",
-        "signs": "Halteverbote",
+        "signs": "Zugang und Parken",
         "stressfree": "Stressfrei"
       },
       "cta": "Umzug anfragen",
@@ -736,7 +735,7 @@
       "services": {
         "city": {
           "title": "Stadtumzüge München",
-          "desc": "Schnell und effizient innerhalb des Stadtgebiets. Wir kennen die Wege und organisieren bei Bedarf Halteverbotszonen."
+          "desc": "Schnell und effizient innerhalb des Stadtgebiets. Wir kennen die Wege und organisieren bei Bedarf Zugang und Parken."
         },
         "remote": {
           "title": "Fernumzüge ab München",
@@ -748,7 +747,7 @@
         }
       },
       "details_title": "München-Spezial: Was Sie beachten sollten",
-      "details_text": "Jede Stadt hat ihre Eigenheiten, und München macht hier keine Ausnahme. Die Parkplatzsituation ist in vielen Vierteln angespannt. Für einen reibungslosen Ablauf ist die Einrichtung einer offiziellen Halteverbotszone oft unerlässlich. Wir übernehmen gerne die Beantragung bei den Münchner Behörden für Sie, inklusive der rechtzeitigen Aufstellung der Schilder.",
+      "details_text": "Jede Stadt hat ihre Eigenheiten, und München macht hier keine Ausnahme. Die Parkplatzsituation ist in vielen Vierteln angespannt. Für einen reibungslosen Ablauf ist die Einrichtung einer offiziellen Zugang und Parken oft unerlässlich. Wir übernehmen gerne die Beantragung bei den Münchner Behörden für Sie, inklusive der rechtzeitigen Aufstellung der Schilder.",
       "remote_title": "Umzug von Bayern in ganz Deutschland",
       "remote_text": "Viele unserer Kunden ziehen beruflich von München in andere Metropolregionen wie Regensburg, Köln, Frankfurt oder Berlin. Gerade bei solchen Langstreckenumzügen (Fernumzüge) ist eine professionelle Planung das A und O. Wir sorgen dafür, dass Ihr Inventar sicher verpackt, versichert und pünktlich am Zielort ankommt. Dank unserer regelmäßigen Touren zwischen Bayern und NRW können wir oft attraktive Beiladungsmöglichkeiten oder effiziente Direktfahrten anbieten.",
       "pricing_title": "Transparente Preise ohne Überraschungen",
@@ -768,7 +767,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von München?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab München an?",
@@ -1068,49 +1067,6 @@
       "cta_title": "Montage beauftragen",
       "cta_text": "Professionelle Montage ohne Kompromisse. Kontaktieren Sie uns für ein Angebot."
     },
-    "service_halteverbotszone": {
-      "meta_title": "Halteverbotszone – Offizielle Genehmigung und Einrichtung",
-      "meta_desc": "FLOXANT beantragt und richtet Halteverbotszonen ein. Behördliche Abwicklung für Regensburg, Bayern und deutschlandweit.",
-      "badge": "Logistik",
-      "hero_title": "Halteverbotszone",
-      "hero_desc": "Freie Zufahrt ist die Grundlage jedes reibungslosen Umzugs. Wir kümmern uns um die behördliche Genehmigung.",
-      "intro_title": "Halteverbotszonen – rechtzeitig und rechtssicher",
-      "intro_p1": "In vielen Stadtgebieten – besonders in Innenstadtlagen von Regensburg, München oder Nürnberg – ist das Einrichten einer offiziellen Halteverbotszone unverzichtbar für einen reibungslosen Umzug. Ohne reservierten Parkplatz verlieren Sie wertvolle Zeit und riskieren Verzögerungen.",
-      "intro_p2": "FLOXANT übernimmt den gesamten Prozess: Beantragung bei der zuständigen Behörde, Aufstellung der Schilder mit gesetzlicher Vorlaufzeit und Abbau nach Ihrem Umzug. Sie müssen sich um nichts kümmern.",
-      "for_whom_title": "Für wen ist dieser Service?",
-      "for_whom_items": [
-        "Umzüge in Innenstadtlagen ohne Privatparkplatz",
-        "Gewerbeumzüge mit größerem Fahrzeugbedarf",
-        "Jeden Standortwechsel, der Zufahrtssicherheit erfordert"
-      ],
-      "process_title": "Unser Ablauf",
-      "process_steps": [
-        {
-          "title": "Beantragung",
-          "desc": "Einreichung bei der zuständigen Straßenverkehrsbehörde mit allen erforderlichen Unterlagen."
-        },
-        {
-          "title": "Genehmigung",
-          "desc": "Nachverfolgung und Bestätigung der Genehmigung."
-        },
-        {
-          "title": "Aufstellung",
-          "desc": "Platzierung der Halteverbotsschilder mit gesetzlicher Vorlaufzeit (mind. 72 Stunden)."
-        },
-        {
-          "title": "Abbau",
-          "desc": "Entfernung der Schilder nach Abschluss des Umzugs."
-        }
-      ],
-      "guarantees_title": "Unsere Garantien",
-      "guarantees": [
-        "Vollständige behördliche Abwicklung",
-        "Rechtzeitige Aufstellung der Beschilderung",
-        "Komplettservice ohne eigenen Aufwand"
-      ],
-      "cta_title": "Halteverbotszone beantragen",
-      "cta_text": "Sichern Sie sich freie Zufahrt für Ihren Umzugstag. Wir übernehmen die gesamte Organisation."
-    },
     "reinigung_regensburg": {
       "meta_title": "Reinigung Regensburg – Professionelle Endreinigung in der Oberpfalz",
       "meta_desc": "FLOXANT bietet professionelle Endreinigung in Regensburg und Umgebung. Besenreine Übergabe nach Vermieterstandards. Diskret und zuverlässig.",
@@ -1276,12 +1232,12 @@
     },
     "sig_bureaucracy": {
       "meta_title": "Bürokratie-Schutz – Behördliche Formalitäten delegieren",
-      "meta_desc": "Der FLOXANT Bürokratie-Schutz übernimmt die behördlichen Formalitäten rund um Ihren Umzug. Halteverbotszone, Ummeldung, Nachsendeauftrag.",
+      "meta_desc": "Der FLOXANT Bürokratie-Schutz übernimmt die behördlichen Formalitäten rund um Ihren Umzug. Zugang und Parken, Ummeldung, Nachsendeauftrag.",
       "badge": "Signature Experience",
       "hero_title": "Bürokratie-Schutz",
       "hero_desc": "Behördengänge und Formalitäten gehören zu jedem Umzug. Wir nehmen Ihnen diese Last ab – vollständig und rechtssicher.",
       "story_title": "Bürokratie muss nicht Ihre Angelegenheit sein",
-      "story_p1": "Ein Umzug bringt eine Welle an Formalitäten mit sich: Halteverbotszone beantragen, Wohnsitz ummelden, Nachsendeauftrag einrichten, Versorgungsunternehmen informieren. Der Bürokratie-Schutz bündelt all diese Aufgaben und erledigt sie für Sie.",
+      "story_p1": "Ein Umzug bringt eine Welle an Formalitäten mit sich: Zugang und Parken beantragen, Wohnsitz ummelden, Nachsendeauftrag einrichten, Versorgungsunternehmen informieren. Der Bürokratie-Schutz bündelt all diese Aufgaben und erledigt sie für Sie.",
       "story_p2": "Unser Team ist mit den Abläufen in Regensburg und ganz Bayern vertraut. Wir kennen die zuständigen Ämter, die Formulare und die Fristen. Sie erhalten eine vollständige Dokumentation aller erledigten Schritte.",
       "purpose_title": "Organisatorischer Wert",
       "purpose_text": "Bürokratie ist einer der größten Stressfaktoren bei Umzügen. Die Delegation an erfahrene Fachleute reduziert Fehler, spart Zeit und gibt Ihnen Sicherheit.",
@@ -1510,11 +1466,6 @@
       "meta_desc": "FLOXANT Servicegebiet: Ganz Bayern mit Schwerpunkt Regensburg, Nürnberg, München, Feucht & Oberpfalz. Umzug, Reinigung, Entrümpelung – bayernweit verfügbar. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
       "faqs": []
     },
-    "studentenumzug_regensburg": {
-      "meta_title": "Studentenumzug Regensburg | Günstig & Zuverlässig | FLOXANT",
-      "meta_desc": "Studentenumzug in Regensburg – flexibel, günstig und professionell. Bordsteinkante zu Bordsteinkante oder Rundum-Service. FLOXANT – Ihr Umzugspartner für Studierende. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-      "faqs": []
-    },
     "umzugskosten_bayern": {
       "meta_title": "Umzugskosten Bayern | Preise & Festpreisangebot | FLOXANT",
       "meta_desc": "Was kostet ein Umzug in Bayern? Preisübersicht für Regensburg, Nürnberg, München. Transparente Festpreise ohne versteckte Kosten. Jetzt kostenloses Angebot anfordern! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
@@ -1560,7 +1511,7 @@
         },
         {
           "q": "Wie kann ich bei den Umzugskosten sparen?",
-          "a": "Sie senken die Kosten erheblich, indem Sie vorab rigoros entrümpeln, Umzugskartons selbst packen und die Halteverbotszone (falls erlaubt) selbst organisieren. Buchen Sie bei FLOXANT nur den Transport und Beladeservice."
+          "a": "Sie senken die Kosten erheblich, indem Sie vorab rigoros entrümpeln, Umzugskartons selbst packen und die Zugang und Parken (falls erlaubt) selbst organisieren. Buchen Sie bei FLOXANT nur den Transport und Beladeservice."
         },
         {
           "q": "Was kostet ein Umzug in Regensburg?",
@@ -1741,21 +1692,6 @@
         }
       ]
     },
-    "halteverbotszone_muenchen": {
-      "meta_title": "Halteverbotszone München – Beantragung & Aufstellung | FLOXANT",
-      "meta_desc": "Halteverbotszone in München beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-      "faqs": []
-    },
-    "halteverbotszone_nuernberg": {
-      "meta_title": "Halteverbotszone Nürnberg – Beantragung & Aufstellung | FLOXANT",
-      "meta_desc": "Halteverbotszone in Nürnberg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-      "faqs": []
-    },
-    "halteverbotszone_regensburg": {
-      "meta_title": "Halteverbotszone Regensburg – Beantragung & Aufstellung | FLOXANT",
-      "meta_desc": "Halteverbotszone in Regensburg beantragen: Wir übernehmen die behördliche Genehmigung und stellen die Schilder auf. Rechtskonform, fristgerecht, stressfrei. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
-      "faqs": []
-    },
     "klaviertransport_muenchen": {
       "meta_title": "Klaviertransport & Tresortransport München | FLOXANT Schwertransporte",
       "meta_desc": "Klaviertransport, Flügeltransport und Tresortransport in München. Spezialisiertes Equipment, geschultes Team, volle Versicherung. Jetzt anfragen! Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
@@ -1868,7 +1804,7 @@
     "umzug_erste_wohnung": {
       "faqs": [
         {
-          "q": "Was kostet ein Studentenumzug?",
+          "q": "Was kostet ein kleiner Umzug?",
           "a": "Ab ca. 200 Euro für kleine Wohnungen und Einzelzimmer."
         },
         {
@@ -2163,7 +2099,7 @@
         },
         {
           "q": "Was beinhaltet ein Full-Service Umzugsservice?",
-          "a": "Ein Full-Service Umzugsservice umfasst das komplette Ein- und Auspacken aller Gegenstände, den sicheren Möbelabbau und -aufbau, den Transport sowie die Beantragung von Halteverbotszonen. Sie lehnen sich zurück, die Umzugsfirma erledigt alles."
+          "a": "Ein Full-Service Umzugsservice umfasst das komplette Ein- und Auspacken aller Gegenstände, den sicheren Möbelabbau und -aufbau, den Transport sowie die Beantragung von Zugang und Parken. Sie lehnen sich zurück, die Umzugsfirma erledigt alles."
         },
         {
           "q": "Wann sollte ich den Umzug planen?",
@@ -2183,8 +2119,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Abensberg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Abensberg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Abensberg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Abensberg an?",
@@ -2201,7 +2137,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Altdorf bei Nürnberg?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Altdorf bei Nürnberg verfügbar?",
@@ -2229,8 +2165,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Alteglofsheim realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Alteglofsheim?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Alteglofsheim?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Alteglofsheim an?",
@@ -2254,8 +2190,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Altenthann realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Altenthann?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Altenthann?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Altenthann an?",
@@ -2275,7 +2211,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Amberg?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Amberg an?",
@@ -2295,8 +2231,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Aufhausen realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Aufhausen?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Aufhausen?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Aufhausen an?",
@@ -2316,7 +2252,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Augsburg?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Augsburg an?",
@@ -2336,8 +2272,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Bad Abbach realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Bad Abbach?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Bad Abbach?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Bad Abbach an?",
@@ -2361,8 +2297,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Barbing realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Barbing?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Barbing?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Barbing an?",
@@ -2393,8 +2329,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Beratzhausen realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Beratzhausen?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Beratzhausen?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Beratzhausen an?",
@@ -2411,7 +2347,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Berching?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Berching verfügbar?",
@@ -2439,8 +2375,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Bernhardswald realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Bernhardswald?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Bernhardswald?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Bernhardswald an?",
@@ -2464,8 +2400,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Brennberg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Brennberg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Brennberg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Brennberg an?",
@@ -2489,8 +2425,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Brunn realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Brunn?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Brunn?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Brunn an?",
@@ -2514,8 +2450,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Burglengenfeld realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Burglengenfeld?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Burglengenfeld?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Burglengenfeld an?",
@@ -2532,7 +2468,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Dachau?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Dachau verfügbar?",
@@ -2560,8 +2496,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Deuerling realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Deuerling?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Deuerling?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Deuerling an?",
@@ -2578,7 +2514,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Dietfurt an der Altmühl?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Dietfurt an der Altmühl verfügbar?",
@@ -2606,8 +2542,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Donaustauf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Donaustauf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Donaustauf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Donaustauf an?",
@@ -2631,8 +2567,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Duggendorf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Duggendorf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Duggendorf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Duggendorf an?",
@@ -2649,7 +2585,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Erding?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Erding verfügbar?",
@@ -2677,8 +2613,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Ergoldsbach realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Ergoldsbach?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Ergoldsbach?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Ergoldsbach an?",
@@ -2695,7 +2631,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Erlangen?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Erlangen verfügbar?",
@@ -2728,7 +2664,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Freising?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Freising verfügbar?",
@@ -2749,7 +2685,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Freystadt?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Freystadt verfügbar?",
@@ -2770,7 +2706,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Friedberg?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Friedberg verfügbar?",
@@ -2791,7 +2727,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Fürstenfeldbruck?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Fürstenfeldbruck verfügbar?",
@@ -2812,7 +2748,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Fürth?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Fürth verfügbar?",
@@ -2840,8 +2776,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Geiselhöring realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Geiselhöring?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Geiselhöring?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Geiselhöring an?",
@@ -2858,7 +2794,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Geisenfeld?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Geisenfeld verfügbar?",
@@ -2886,8 +2822,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Hagelstadt realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Hagelstadt?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Hagelstadt?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Hagelstadt an?",
@@ -2911,8 +2847,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Hemau realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Hemau?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Hemau?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Hemau an?",
@@ -2929,7 +2865,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Herzogenaurach?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Herzogenaurach verfügbar?",
@@ -2957,8 +2893,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Hohenfels realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Hohenfels?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Hohenfels?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Hohenfels an?",
@@ -2982,8 +2918,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Holzheim am Forst realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Holzheim am Forst?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Holzheim am Forst?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Holzheim am Forst an?",
@@ -3003,7 +2939,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Ingolstadt?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Ingolstadt an?",
@@ -3023,8 +2959,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Kallmünz realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Kallmünz?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Kallmünz?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Kallmünz an?",
@@ -3048,8 +2984,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Kelheim realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Kelheim?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Kelheim?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Kelheim an?",
@@ -3066,7 +3002,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Kissing?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Kissing verfügbar?",
@@ -3094,8 +3030,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Köfering realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Köfering?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Köfering?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Köfering an?",
@@ -3112,7 +3048,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Königsbrunn?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Königsbrunn verfügbar?",
@@ -3140,8 +3076,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Laaber realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Laaber?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Laaber?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Laaber an?",
@@ -3165,7 +3101,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Landshut?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Landshut an?",
@@ -3185,8 +3121,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Langquaid realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Langquaid?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Langquaid?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Langquaid an?",
@@ -3210,8 +3146,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Lappersdorf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Lappersdorf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Lappersdorf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Lappersdorf an?",
@@ -3228,7 +3164,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Lauf an der Pegnitz?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Lauf an der Pegnitz verfügbar?",
@@ -3256,8 +3192,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Lupburg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Lupburg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Lupburg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Lupburg an?",
@@ -3274,7 +3210,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Mainburg?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Mainburg verfügbar?",
@@ -3302,8 +3238,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Mallersdorf-Pfaffenberg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Mallersdorf-Pfaffenberg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Mallersdorf-Pfaffenberg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Mallersdorf-Pfaffenberg an?",
@@ -3320,7 +3256,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Mammendorf?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Mammendorf verfügbar?",
@@ -3348,8 +3284,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Maxhütte-Haidhof realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Maxhütte-Haidhof?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Maxhütte-Haidhof?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Maxhütte-Haidhof an?",
@@ -3366,7 +3302,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Mering?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Mering verfügbar?",
@@ -3394,8 +3330,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Mintraching realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Mintraching?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Mintraching?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Mintraching an?",
@@ -3419,8 +3355,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Mötzing realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Mötzing?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Mötzing?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Mötzing an?",
@@ -3437,7 +3373,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Moosburg an der Isar?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Moosburg an der Isar verfügbar?",
@@ -3465,8 +3401,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Neufahrn in Niederbayern realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Neufahrn in Niederbayern?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Neufahrn in Niederbayern?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Neufahrn in Niederbayern an?",
@@ -3487,7 +3423,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Neumarkt i.d. OPf.?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Neumarkt i.d. OPf. an?",
@@ -3507,8 +3443,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Neustadt an der Donau realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Neustadt an der Donau?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Neustadt an der Donau?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Neustadt an der Donau an?",
@@ -3531,8 +3467,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Neutraubling realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Neutraubling?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Neutraubling?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Neutraubling an?",
@@ -3556,8 +3492,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Nittenau realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Nittenau?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Nittenau?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Nittenau an?",
@@ -3581,8 +3517,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Nittendorf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Nittendorf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Nittendorf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Nittendorf an?",
@@ -3602,7 +3538,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Nürnberg?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Nürnberg an?",
@@ -3619,7 +3555,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Oberasbach?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Oberasbach verfügbar?",
@@ -3651,8 +3587,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Obertraubling realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Obertraubling?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Obertraubling?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Obertraubling an?",
@@ -3669,7 +3605,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Olching?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Olching verfügbar?",
@@ -3697,8 +3633,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Parsberg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Parsberg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Parsberg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Parsberg an?",
@@ -3718,7 +3654,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Passau?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Passau an?",
@@ -3738,8 +3674,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Pentling realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Pentling?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Pentling?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Pentling an?",
@@ -3763,8 +3699,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Pettendorf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Pettendorf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Pettendorf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Pettendorf an?",
@@ -3781,7 +3717,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Pfaffenhofen an der Ilm?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Pfaffenhofen an der Ilm verfügbar?",
@@ -3809,8 +3745,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Pfatter realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Pfatter?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Pfatter?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Pfatter an?",
@@ -3834,8 +3770,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Pfeffenhausen realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Pfeffenhausen?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Pfeffenhausen?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Pfeffenhausen an?",
@@ -3859,8 +3795,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Pielenhofen realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Pielenhofen?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Pielenhofen?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Pielenhofen an?",
@@ -3877,7 +3813,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Postbauer-Heng?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Postbauer-Heng verfügbar?",
@@ -3934,7 +3870,7 @@
       "hero_text": "Ihr zuverlässiger Partner für stressfreie Umzüge in der Domstadt und der gesamten Oberpfalz. Professionell, versichert und zum garantierten Festpreis.",
       "section1_title": "Umziehen im Herzen der Oberpfalz",
       "section1_p1": "Regensburg ist nicht nur UNESCO-Welterbe, sondern auch eine Stadt mit ganz eigenen logistischen Herausforderungen. Von den engen Gassen der Altstadt bis hin zu den modernen Stadtteilen wie Burgweinting – wir kennen jeden Winkel und wissen, worauf es ankommt.",
-      "section1_p2": "Als lokales Umzugsunternehmen mit Sitz in Regensburg bieten wir Ihnen nicht nur den reinen Transport, sondern ein Rundum-Sorglos-Paket. Wir kümmern uns um Halteverbotszonen, professionelles Verpackungsmaterial und den fachgerechten Möbelabbau.",
+      "section1_p2": "Als lokales Umzugsunternehmen mit Sitz in Regensburg bieten wir Ihnen nicht nur den reinen Transport, sondern ein Rundum-Sorglos-Paket. Wir kümmern uns um Zugang und Parken, professionelles Verpackungsmaterial und den fachgerechten Möbelabbau.",
       "standort_title": "Unser Standort-Konzept",
       "standort_text": "Unser operativer Stützpunkt in Regensburg ermöglicht uns extrem kurze Reaktionszeiten und eine detaillierte Vorort-Kenntnis für alle Stadtteile und das Umland.",
       "skills_title": "Unsere Kompetenzen für Regensburg",
@@ -3946,8 +3882,8 @@
       "module_p1": "Ob Full-Service-Umzug inklusive Einpacken oder reiner Möbeltransport – Sie entscheiden, welche Leistungen Sie benötigen. Wir passen uns Ihrem Budget und Ihren Anforderungen an.",
       "longdistance_title": "Fernumzüge ab Regensburg",
       "longdistance_text": "Wir organisieren Ihren Umzug von Regensburg in jede Stadt Deutschlands oder Europas. Effizient geplant und sicher ausgeführt.",
-      "students_title": "Service für Studenten und Senioren",
-      "students_text": "Attraktive Konditionen für Studenten und einfühlsame Betreuung bei Seniorenumzügen. Wir helfen jedem, gut im neuen Zuhause anzukommen.",
+      "students_title": "Service für Senioren und Familien",
+      "students_text": "Faire Planung für Familien und einfühlsame Betreuung bei Seniorenumzügen. Wir helfen jedem, gut im neuen Zuhause anzukommen.",
       "faq_title": "Häufige Fragen zum Umzug in Regensburg",
       "faq_extra1_q": "Wie lange dauert ein Umzug in Regensburg?",
       "faq_extra1_a": "In der Regel ist ein lokaler Umzug (bis 3 Zimmer) in Regensburg innerhalb eines Tages abgeschlossen. Wir planen den Zeitbedarf individuell für Sie.",
@@ -3980,8 +3916,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Regenstauf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Regenstauf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Regenstauf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Regenstauf an?",
@@ -4005,8 +3941,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Riekofen realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Riekofen?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Riekofen?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Riekofen an?",
@@ -4023,7 +3959,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Roth?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Roth verfügbar?",
@@ -4051,8 +3987,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Rottenburg an der Laaber realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Rottenburg an der Laaber?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Rottenburg an der Laaber?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Rottenburg an der Laaber an?",
@@ -4076,8 +4012,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Saal an der Donau realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Saal an der Donau?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Saal an der Donau?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Saal an der Donau an?",
@@ -4101,8 +4037,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Schierling realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Schierling?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Schierling?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Schierling an?",
@@ -4119,7 +4055,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Schwabach?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Schwabach verfügbar?",
@@ -4143,7 +4079,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Schwandorf?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Schwandorf an?",
@@ -4163,8 +4099,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Seubersdorf realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Seubersdorf?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Seubersdorf?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Seubersdorf an?",
@@ -4188,8 +4124,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Sinzing realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Sinzing?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Sinzing?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Sinzing an?",
@@ -4210,7 +4146,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Straubing?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Straubing an?",
@@ -4230,8 +4166,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Sünching realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Sünching?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Sünching?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Sünching an?",
@@ -4255,8 +4191,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Tegernheim realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Tegernheim?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Tegernheim?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Tegernheim an?",
@@ -4280,8 +4216,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Teublitz realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Teublitz?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Teublitz?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Teublitz an?",
@@ -4305,8 +4241,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Thalmassing realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Thalmassing?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Thalmassing?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Thalmassing an?",
@@ -4330,8 +4266,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Velburg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Velburg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Velburg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Velburg an?",
@@ -4348,7 +4284,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Vohburg an der Donau?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Vohburg an der Donau verfügbar?",
@@ -4373,7 +4309,7 @@
         },
         {
           "q": "Macht FLOXANT auch Umzüge in der Altstadt von Weiden i.d. OPf.?",
-          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Halteverbotszonen."
+          "a": "Ja, wir sind auf schwierige Logistik wie enge Gassen oder viele Treppen spezialisiert und kümmern uns um alle Zugang und Parken."
         },
         {
           "q": "Bieten Sie Fernumzüge ab Weiden i.d. OPf. an?",
@@ -4386,7 +4322,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Wendelstein?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Wendelstein verfügbar?",
@@ -4414,8 +4350,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Wenzenbach realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Wenzenbach?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Wenzenbach?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Wenzenbach an?",
@@ -4439,8 +4375,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Wiesent realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Wiesent?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Wiesent?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Wiesent an?",
@@ -4464,8 +4400,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Wörth an der Donau realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Wörth an der Donau?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Wörth an der Donau?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Wörth an der Donau an?",
@@ -4489,8 +4425,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Wolfsegg realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Wolfsegg?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Wolfsegg?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Wolfsegg an?",
@@ -4507,7 +4443,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Wolnzach?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Wolnzach verfügbar?",
@@ -4535,8 +4471,8 @@
           "a": "Da sich unsere Disposition im nahen Regensburg befindet, können wir oft auch sehr kurzfristige Umzüge oder Notfall-Termine in Zeitlarn realisieren."
         },
         {
-          "q": "Kümmern Sie sich um Halteverbotszonen in Zeitlarn?",
-          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Halteverbotsschilder durch die lokalen Behörden."
+          "q": "Kümmern Sie sich um Zugang und Parken in Zeitlarn?",
+          "a": "Ja, absolut. Wenn Parkraum vor Ihrer Haustür knapp ist, organisieren wir die offizielle Beantragung sowie das Aufstellen der Zugangshinweise durch die lokalen Behörden."
         },
         {
           "q": "Bieten Sie auch Küchenmontage in Zeitlarn an?",
@@ -4553,7 +4489,7 @@
       "faqs": [
         {
           "q": "Was kostet ein Umzug in Zirndorf?",
-          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein Studentenumzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
+          "a": "Die Kosten hängen von Wohnungsgröße, Etage und Entfernung ab. Ein kleiner Umzug startet bei günstigen Einstiegspreisen. Familien erhalten ein maßgeschneidertes Festpreisangebot nach kostenloser Besichtigung."
         },
         {
           "q": "Wie schnell ist FLOXANT in Zirndorf verfügbar?",
@@ -4657,43 +4593,7 @@
       "wizard_p": "Teilen Sie uns Gewicht, Maße und Standort mit – wir kalkulieren den sicheren Transport.",
       "link_umzug": "Umzug {city}",
       "link_senioren": "Seniorenumzug {city}",
-      "link_halteverbot": "Halteverbotszone {city}"
-    },
-    "halteverbotszone": {
-      "meta_title": "Halteverbotszone {city} | FLOXANT",
-      "meta_desc": "Halteverbotszone für Ihren Umzug in {city} einrichten lassen.",
-      "hero_badge": "Behördenservice",
-      "hero_h1": "Halteverbotszone",
-      "hero_p": "Vermeiden Sie Knöllchen und lange Tragewege. Wir kümmern uns um den Antrag und die Aufstellung der Halteverbotszone in {city}.",
-      "badges": {
-        "permit": "Behördliche Genehmigung",
-        "signs": "Auf- & Abbau",
-        "stressfree": "Stressfrei parken"
-      },
-      "cta": "Halteverbotszone anfragen",
-      "service1": {
-        "title": "Komplettservice",
-        "l1": "Antragstellung bei der Stadt",
-        "l2": "Miete der Schilder für {city}",
-        "l3": "Aufstellung 72h vorher",
-        "l4": "Abbau nach dem Umzug"
-      },
-      "service2": {
-        "title": "Schildermiete",
-        "l1": "Sie beantragen die Genehmigung",
-        "l2": "Wir liefern die Schilder",
-        "l3": "Sie stellen auf",
-        "l4": "Wir holen ab"
-      },
-      "section2_h2": "Halteverbotszone in {city} bestellen",
-      "section2_p1": "In {city} benötigen die Behörden im Schnitt 14 Tage Vorlauf.",
-      "section2_p2": "Überlassen Sie uns die Bürokratie.",
-      "wizard_badge": "Stadtservice",
-      "wizard_h2": "Halteverbotszone {city} einrichten",
-      "wizard_p": "Nennen Sie uns die Ladeadresse in {city}.",
-      "link_umzug": "Umzug {city}",
-      "link_senioren": "Seniorenumzug {city}",
-      "link_halteverbot": "Klaviertransport {city}"
+      "link_halteverbot": "Zugang und Parken {city}"
     },
     "seniorenumzug": {
       "meta_title": "Seniorenumzug {city} | FLOXANT",
@@ -4728,43 +4628,7 @@
       "wizard_h2": "Seniorenumzug {city} anfragen",
       "wizard_p": "Kostenfreier Besichtigungstermin in {city}.",
       "link_umzug": "Umzug {city}",
-      "link_senioren": "Halteverbotszone {city}",
-      "link_halteverbot": "Entrümpelung {city}"
-    },
-    "studentenumzug": {
-      "meta_title": "Studentenumzug {city} | FLOXANT",
-      "meta_desc": "Günstiger Studentenumzug in {city}. Flexibel, schnell und für den schmalen Geldbeutel.",
-      "hero_badge": "Studentenrabatt",
-      "hero_h1": "Studentenumzug",
-      "hero_p": "Knappes Budget? Kein Problem. Wir bieten günstige Studentenumzüge in {city} – ob nur als Transporter mit Fahrer oder mit Tragehelfern.",
-      "badges": {
-        "permit": "Schnelle Abwicklung",
-        "signs": "Günstige Tarife",
-        "stressfree": "Flexibel"
-      },
-      "cta": "Studentenumzug anfragen",
-      "service1": {
-        "title": "Transporter & Fahrer",
-        "l1": "WG packt und trägt",
-        "l2": "Wir fahren den LKW",
-        "l3": "Möbeldecken dabei",
-        "l4": "Sprit inklusive"
-      },
-      "service2": {
-        "title": "Komplettumzug",
-        "l1": "Wir erledigen alles",
-        "l2": "Studentenrabatt greift",
-        "l3": "Möbelmontage",
-        "l4": "Schnelle Durchführung"
-      },
-      "section2_h2": "Studentenumzug in {city}",
-      "section2_p1": "Egal ob Studentenwohnheim oder WG-Zimmer in {city}.",
-      "section2_p2": "Buche jetzt deinen günstigen Umzug.",
-      "wizard_badge": "Rabattaktion",
-      "wizard_h2": "Studentenumzug {city} anfragen",
-      "wizard_p": "Hol dir deinen günstigen Preis.",
-      "link_umzug": "Umzug {city}",
-      "link_senioren": "Kleintransporte {city}",
+      "link_senioren": "Zugang und Parken {city}",
       "link_halteverbot": "Entrümpelung {city}"
     },
     "familienumzug": {
@@ -4861,7 +4725,7 @@
       "service2": {
         "title": "Kleine Umzüge",
         "l1": "1-Zimmer Wohnung",
-        "l2": "Studenten",
+        "l2": "Kunden",
         "l3": "WG Zimmer",
         "l4": "Büroumzug"
       },
@@ -5112,8 +4976,8 @@
       "meta_title": "Umzugsunternehmen Schweinfurt ✓ Festpreis ✓ Versichert | FLOXANT",
       "faqs": [
         {
-          "q": "Kümmern Sie sich auch um Halteverbote in Schweinfurt?",
-          "a": "Ja, wir übernehmen die Beantragung und Aufstellung von Halteverbotszonen in Schweinfurt für einen reibungslosen Ablauf."
+          "q": "Kümmern Sie sich auch um Zugang und Parken in Schweinfurt?",
+          "a": "Ja, wir übernehmen die Beantragung und Aufstellung von Zugang und Parken in Schweinfurt für einen reibungslosen Ablauf."
         }
       ]
     },
@@ -5229,8 +5093,8 @@
       "meta_title": "Umzugsunternehmen Deggendorf ✓ Festpreis ✓ Versichert | FLOXANT",
       "faqs": [
         {
-          "q": "Sind Sie auch für Studentenumzüge in Deggendorf verfügbar?",
-          "a": "Ja, wir bieten auch kleinere Transporte und Studentenumzüge in der Hochschulstadt Deggendorf zum fairen Preis an."
+          "q": "Sind Sie auch für kleine Umzüge in Deggendorf verfügbar?",
+          "a": "Ja, wir bieten auch kleinere Transporte und kleine Umzüge in der Hochschulstadt Deggendorf zum fairen Preis an."
         }
       ]
     },
@@ -5238,8 +5102,8 @@
       "meta_title": "Umzugsunternehmen Vilshofen ✓ Festpreis ✓ Versichert | FLOXANT",
       "faqs": [
         {
-          "q": "Kümmern Sie sich auch um Halteverbote in Vilshofen?",
-          "a": "Ja, wir übernehmen die Beantragung und die Aufstellung der Halteverbotszonen für Ihren Umzug in Vilshofen."
+          "q": "Kümmern Sie sich auch um Zugang und Parken in Vilshofen?",
+          "a": "Ja, wir übernehmen die Beantragung und die Aufstellung der Zugang und Parken für Ihren Umzug in Vilshofen."
         }
       ]
     },
@@ -5461,7 +5325,7 @@
         "l1": "Einzelne Schränke & Betten",
         "l2": "Umzugskartons (Kleinstmenge)",
         "l3": "Gebrauchtmobilität",
-        "l4": "Studentische Logistik"
+        "l4": "Flexible Kleinteil-Logistik"
       },
       "section2_h2": "Spar-Logistik für Regensburg und Bayern",
       "section2_p1": "Beiladung in Regensburg ist die intelligente Art zu transportieren. Wenn wir ohnehin von Regensburg nach München oder Nürnberg fahren, nehmen wir Ihr Gut einfach mit.",
@@ -5469,40 +5333,6 @@
       "wizard_badge": "Eco-Check",
       "wizard_h2": "Beiladungs-Platz reservieren",
       "wizard_p": "Prüfen Sie, ob auf Ihrer Wunschroute aktuell Fläche frei ist."
-    },
-    "studentenumzug_regensburg_spec": {
-      "meta_title": "Studentenumzug Regensburg ✓ Günstig ✓ WG-Service | FLOXANT",
-      "meta_desc": "Dein Umzug in Regensburg zum fairen Studenten-Preis. WG-Umzug, Einzeltransporte oder Mini-Logistik. Stressfrei studieren, wir tragen!",
-      "hero_h1": "Studentenumzug in ",
-      "hero_h1_highlight": "Regensburg",
-      "hero_p": "Stressfrei in die Uni-Stadt Regensburg. Wir ziehen dich und deine WG unkompliziert um – passend zum studentischen Budget.",
-      "hero_badge": "Studi-Tarif 2026",
-      "cta": "Preis berechnen",
-      "badges": {
-        "permit": "WG-Special",
-        "signs": "Fix-Termin",
-        "stressfree": "Studi-Rabatt"
-      },
-      "service1": {
-        "title": "Unsere Pakete",
-        "l1": "Nur LKW + Fahrer (Selbsttrager)",
-        "l2": "Full-Service WG-Umzug",
-        "l3": "Kartonverleih (Günstig)",
-        "l4": "Mini-Logistik für Möbeltaxi"
-      },
-      "service2": {
-        "title": "Deine Vorteile",
-        "l1": "Faire Kalkulation ohne Abzocke",
-        "l2": "Hilfe beim Möbel-Handling",
-        "l3": "Flexible Termine am Wochenende",
-        "l4": "Erfahrene Teams"
-      },
-      "section2_h2": "Dein Start in Regensburg ohne Rückenprobleme",
-      "section2_p1": "Ein Umzug zum Studium in Regensburg muss nicht teuer sein. Wir bieten maßgeschneiderte Lösungen für Studierende an der Uni oder OTH.",
-      "section2_p2": "Egal ob Einzelzimmer oder ganze Wohngemeinschaft – FLOXANT bringt deine Sachen sicher in dein neues Zuhause in der Regensburger Altstadt oder im Galgenberg.",
-      "wizard_badge": "Fix-Preis",
-      "wizard_h2": "Studenten-Angebot anfordern",
-      "wizard_p": "Kurze Info zum Umfang reicht, wir melden uns mit dem Studi-Special."
     },
     "bueroumzug_regensburg_spec": {
       "meta_title": "Büroumzug Regensburg ✓ Firmenlogistik ✓ No-Downtime | FLOXANT",
@@ -5632,7 +5462,7 @@
         "desc": "Fachgerechter Auf- und Abbau Ihrer Möbel und Küchen."
       },
       {
-        "title": "Halteverbotszone",
+        "title": "Zugang und Parken",
         "desc": "Behördliche Genehmigung und Einrichtung der Zonen."
       }
     ]
@@ -5756,7 +5586,7 @@
     "lift": "Aufzug",
     "no_lift": "Kein Aufzug",
     "distance_parking": "Laufweg zum LKW",
-    "parking_available": "Halteverbotszone vorhanden",
+    "parking_available": "Zugang und Parken vorhanden",
     "service_scope": "Leistungsumfang",
     "packing_service": "Einpackservice",
     "disassembly": "Demontage",
@@ -5894,8 +5724,8 @@
     "flag_walking_distance_to": "Einzug: Laufweg",
     "flag_narrow_stairs_from": "Auszug: Enges Treppenhaus (Tragezuschlag)",
     "flag_narrow_stairs_to": "Einzug: Enges Treppenhaus (Tragezuschlag)",
-    "flag_no_parking_from": "Auszug: Halteverbotszone inkl. Anmeldung",
-    "flag_no_parking_to": "Einzug: Halteverbotszone inkl. Anmeldung",
+    "flag_no_parking_from": "Auszug: Zugang und Parken inkl. Anmeldung",
+    "flag_no_parking_to": "Einzug: Zugang und Parken inkl. Anmeldung",
     "flag_time_guarantee": "Termingarantie für Wunschdatum eingepreist",
     "flag_weekend_surcharge": "Wochenendzuschlag",
     "flag_urgent_surcharge": "Dringender Termin (Expresszuschlag einkalkuliert)",
@@ -5972,7 +5802,7 @@
     "seo_p3": "Fordern Sie noch heute Ihr kostenloses Festpreisangebot an – bequem per Online-Rechner, WhatsApp oder Telefon. Wir sind in Ihrer Nähe: Ob in Regensburg, Straubing, Schwandorf, Amberg, Kelheim, Neumarkt oder Cham – unsere mobilen Teams sind täglich in Ihrer Region im Einsatz und sorgen für höchste Kundenzufriedenheit durch Pünktlichkeit und Sorgfalt.",
     "seo_p4": "Unser Entrümpelungsservice umfasst die vollständige Haushaltsauflösung, Wohnungsauflösung und diskrete Räumung von Messie-Objekten in ganz Bayern. Wir arbeiten umweltbewusst, trennen Wertstoffe fachgerecht und hinterlassen Ihre Räumlichkeiten besenrein. Verlassen Sie sich bei Wohnungsauflösungen in München, Nürnberg oder Regensburg auf unsere Expertise und unseren diskreten Umgang mit sensiblen Nachlässen.",
     "seo_p5": "Mit der professionellen Endreinigung von FLOXANT sichern Sie sich Ihre Mietkaution. Wir reinigen streng nach den Standards führender Hausverwaltungen und bieten eine kostenlose Nachreinigungs-Garantie, falls es bei der Übergabe Beanstandungen geben sollte. Von der Baureinigung bis zur gewerblichen Büroreinigung in Regensburg, Neutraubling, Lappersdorf und Umgebung bieten wir Ihnen Sauberkeit auf höchstem Niveau.",
-    "seo_p6": "Seit unserer Gründung vertrauen uns tausende Kunden in über 100 Städten Bayerns. Wir verbinden traditionelle Werte wie Fleiß und Verlässlichkeit mit modernster Logistikplanung. Unsere Kernkompetenzen für 2026: Umzug, Entrümpelung, Reinigung, Möbelmontage, Halteverbotszonen und Spezialtransporte wie Klaviertransporte. Alles aus einer Hand, alles zum garantierten Bestpreis.",
+    "seo_p6": "Seit unserer Gründung vertrauen uns tausende Kunden in über 100 Städten Bayerns. Wir verbinden traditionelle Werte wie Fleiß und Verlässlichkeit mit modernster Logistikplanung. Unsere Kernkompetenzen für 2026: Umzug, Entrümpelung, Reinigung, Möbelmontage, Zugang und Parken und Spezialtransporte wie Klaviertransporte. Alles aus einer Hand, alles zum garantierten Bestpreis.",
     "faq_q1": "Was kostet ein Umzug in {city}?",
     "faq_a1": "Ein Umzug in {city} kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße, Etage und Entfernung. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung – ohne versteckte Kosten.",
     "faq_q2": "Bietet FLOXANT auch Reinigung und Entrümpelung in {city}?",
@@ -5983,7 +5813,7 @@
     "faq_a4": "In {city} bieten wir oft kurzfristige Termine innerhalb von 24 bis 48 Stunden an. Kontaktieren Sie uns für eine sofortige Kapazitätsprüfung.",
     "faq_q5": "Was kostet eine Entrümpelung in {city}?",
     "faq_a5": "Die Kosten hängen vom Volumen ab. Kleinere Räumungen in {city} starten ab ca. 200 Euro, komplette Wohnungsauflösungen ab ca. 800 Euro. Inklusive fachgerechter Entsorgung.",
-    "faq_q6": "Wird das Halteverbot in {city} von Ihnen organisiert?",
+    "faq_q6": "Wird das Zugang in {city} von Ihnen organisiert?",
     "faq_a6": "Ja. Wir übernehmen die komplette Beantragung bei der Stadtverwaltung {city}, inklusive fristgerechter Aufstellung und Abholung der Schilder.",
     "faq_q7": "Gibt es eine Abnahmegarantie für die Reinigung in {city}?",
     "faq_a7": "Absolut. Unsere Endreinigung in {city} erfolgt nach strengen Standards. Sollte Ihr Vermieter nicht zufrieden sein, reinigen wir kostenlos nach.",
@@ -6091,7 +5921,7 @@
       },
       "umzug_erste_wohnung": {
         "title": "Erste Wohnung: Umzug richtig planen",
-        "desc": "Der erste eigene Umzug: Was Studierende und Berufseinsteiger wissen müssen."
+        "desc": "Der erste eigene Umzug: Was Kunden und Berufseinsteiger wissen müssen."
       }
     }
   },

@@ -9,7 +9,7 @@ const dossierTabs = [
     label: "Objekt",
     title: "Wohnung · Raum Regensburg",
     text: "Objektart, Zeitraum, Nebenraeume und Zugang werden als organisatorischer Rahmen festgehalten.",
-    items: ["Wohnung", "3 Raeume", "Keller nach Absprache", "Zugangshinweis intern"],
+    items: ["Wohnung", "3 Raeume", "Keller nach Absprache", "Zugangshinweis fürs Team"],
     Icon: ClipboardList,
   },
   {
@@ -40,7 +40,7 @@ const dossierTabs = [
     id: "notes",
     label: "Hinweise",
     title: "Offene Hinweise",
-    text: "Sichtbare Hinweise und offene Punkte werden getrennt von internen Notizen gefuehrt.",
+    text: "Sichtbare Hinweise und offene Punkte werden getrennt von Teamnotizen gefuehrt.",
     items: ["Balkon pruefen", "Muellraum nicht Teil des Auftrags", "Empfaenger noch offen"],
     Icon: ShieldAlert,
   },

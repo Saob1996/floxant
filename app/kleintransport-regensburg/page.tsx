@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: `kleintransport-regensburg`,
     title: "Transport Regensburg – Möbel, Kleintransport & Rückfahrt | FLOXANT",
     description:
-      "Transport in Regensburg für Möbel, Einzelstücke und Kleintransport. Route, Zugang, Fotos, Haltezone und Leerfahrt/Rückfahrt nach Verfügbarkeit prüfen lassen.",
+      "Transport in Regensburg für Möbel, Einzelstücke und Kleintransport. Route, Zugang, Fotos und Leerfahrt/Rückfahrt nach Verfügbarkeit prüfen lassen.",
   });
 }
 
@@ -85,7 +85,6 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
       signatureServices={[
         "empty_return",
         "photo_check",
-        "parking_zone",
         "budget_check",
         "short_notice",
       ]}
@@ -104,7 +103,7 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
       ]}
       authorityBadge="Transport- und Routenautoritaet"
       authorityTitle="Was Transport in Regensburg schneller einschaetzbar macht"
-      authoritySubtitle="Bei Moebeln, Einzelstuecken und Kleintransport entscheidet nicht nur die Strecke. Zugang, Etage, Fotos, Haltezone, Datum und freie Rueckfahrt-Kapazitaet zaehlen mit."
+      authoritySubtitle="Bei Moebeln, Einzelstuecken und Kleintransport entscheidet nicht nur die Strecke. Zugang, Etage, Fotos, Datum und freie Rueckfahrt-Kapazitaet zaehlen mit."
     />
   );
 }

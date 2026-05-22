@@ -6001,7 +6001,7 @@ function PricingForm({
         <div className="mt-4 flex flex-wrap gap-2">
           <TogglePill
             active={Boolean(input.noParkingZone)}
-            label="Haltezone"
+            label="Zugang / Parken"
             onClick={() => setInput((current) => ({ ...current, noParkingZone: !current.noParkingZone }))}
           />
           <TogglePill

@@ -7,8 +7,12 @@ import {
   CheckCircle2,
   ClipboardCheck,
   FileSearch,
+  Mail,
   type LucideIcon,
   MapPin,
+  MessageSquare,
+  Phone,
+  Route,
   Shield,
   Zap,
   Banknote,
@@ -20,6 +24,8 @@ import { CityServiceCluster } from "@/components/CityServiceCluster";
 import DualCalculator from "@/components/calculator/DualCalculator";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
+import { company } from "@/lib/company";
 import {
   PublicAuthorityModules,
   type PublicAuthorityModuleId,
@@ -280,7 +286,7 @@ function getRegensburgAuthorityContent(serviceName: string) {
         text: "Wenn Auszug, Endreinigung und Übergabetermin dicht beieinanderliegen, braucht der Ablauf eine klare Reihenfolge.",
       },
       {
-        title: "Halteverbotszone in engen Straßen",
+        title: "Zugang in engen Straßen",
         text: "Altstadt, Innenhöfe, schmale Zufahrten oder lange Laufwege sollten vor dem Angebot sichtbar sein.",
       },
       {
@@ -317,6 +323,215 @@ function getOfferCheckBlogHref(serviceName: string) {
   if (serviceName === "Reinigung") return "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf";
   if (serviceName === "Entrümpelung") return "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf";
   return "/blog/umzugsangebot-pruefen-regensburg-bayern";
+}
+
+type LocalIssueCard = {
+  title: string;
+  text: string;
+  Icon: LucideIcon;
+};
+
+type LocalPriceItem = {
+  label: string;
+  text: string;
+};
+
+type LocalDistrictNote = {
+  title: string;
+  text: string;
+};
+
+function uniqueStrings(values: string[]) {
+  return Array.from(
+    new Set(values.map((value) => germanText(value, value).trim()).filter(Boolean)),
+  );
+}
+
+function humanList(values: string[]) {
+  const clean = uniqueStrings(values).slice(0, 4);
+  if (clean.length === 0) return "der Umgebung";
+  if (clean.length === 1) return clean[0];
+  if (clean.length === 2) return `${clean[0]} und ${clean[1]}`;
+  return `${clean.slice(0, -1).join(", ")} und ${clean[clean.length - 1]}`;
+}
+
+function getLocalAreaNames(
+  city: string,
+  neighborhoods: string[],
+  nearbyCities: Array<{ name: string }>,
+  region: string,
+) {
+  const directAreas = neighborhoods.length > 0 ? neighborhoods : nearbyCities.map((entry) => entry.name);
+  const clean = uniqueStrings(directAreas).filter((entry) => entry.toLowerCase() !== city.toLowerCase());
+  return clean.length > 0 ? clean.slice(0, 4) : [region];
+}
+
+function getLocalIssueCards(serviceName: string, city: string, areaText: string): LocalIssueCard[] {
+  if (serviceName === "Reinigung") {
+    return [
+      {
+        title: "Übergabetermin und Zustand",
+        text: `In ${city} entscheidet oft der Abnahmetermin, wie viel Reinigung realistisch in ein Zeitfenster passt. Fotos von Küche, Bad, Boden und Fenstern machen den Aufwand in ${areaText} schneller einschätzbar.`,
+        Icon: ClipboardCheck,
+      },
+      {
+        title: "Zugang zum Objekt",
+        text: `Hausverwaltung, Schlüsselübergabe, Aufzug und Parkmöglichkeit werden vorab geklärt, damit das Team nicht erst vor Ort auf fehlende Zugänge oder lange Laufwege reagieren muss.`,
+        Icon: MapPin,
+      },
+      {
+        title: "Kombination mit Umzug",
+        text: `Wenn Auszug und Reinigung nah beieinanderliegen, wird die Reihenfolge geplant: erst leerräumen, dann reinigen, dann Übergabe vorbereiten. Das spart Rückfragen am selben Tag.`,
+        Icon: Route,
+      },
+    ];
+  }
+
+  if (serviceName === "Entrümpelung") {
+    return [
+      {
+        title: "Menge und Material",
+        text: `Für ${city} zählen nicht nur Quadratmeter, sondern Materialarten, Gewicht und Trennaufwand. Keller, Dachboden, Garage oder Wohnung werden deshalb anders kalkuliert als ein einzelner Sperrmüllposten.`,
+        Icon: ClipboardCheck,
+      },
+      {
+        title: "Etagen und Laufwege",
+        text: `Enge Treppenhäuser, Innenhöfe oder längere Wege in ${areaText} verändern Teamgröße, Fahrzeugwahl und Zeitbedarf. Genau diese Punkte werden vor dem Angebot abgefragt.`,
+        Icon: MapPin,
+      },
+      {
+        title: "Besenreiner Zielzustand",
+        text: `Bei Wohnungsauflösung, Nachlass oder Neuvermietung reicht Abtransport allein oft nicht. Wichtig ist, wie frei und sauber die Fläche am Ende übergeben werden soll.`,
+        Icon: Shield,
+      },
+    ];
+  }
+
+  if (serviceName === "Büroumzug") {
+    return [
+      {
+        title: "Betrieb und Zeitfenster",
+        text: `In ${city} müssen Arbeitsplätze, Besprechungsräume und Empfang oft so wechseln, dass der Betrieb möglichst kurz unterbrochen wird. Dafür werden Zeitfenster und Prioritäten früh sortiert.`,
+        Icon: ClipboardCheck,
+      },
+      {
+        title: "IT, Akten und Inventar",
+        text: `Schreibtische, Technik, Akten, Archiv und sensible Unterlagen brauchen eine andere Reihenfolge als ein privater Umzug. Die Planung trennt deshalb Tragegut, Schutzbedarf und Zuständigkeiten.`,
+        Icon: Shield,
+      },
+      {
+        title: "Anfahrt und Ladezone",
+        text: `Gewerbestandorte in ${areaText} brauchen häufig klare Ladefenster. Park- oder Lieferzonen werden mitgedacht, damit der Ablauf am Umzugstag nicht an der Bordsteinkante hängen bleibt.`,
+        Icon: Route,
+      },
+    ];
+  }
+
+  return [
+    {
+      title: "Parken und Laufwege",
+      text: `Für einen Umzug in ${city} sind Innenhöfe, enge Straßen, Treppenhäuser und lange Wege oft wichtiger als die reine Entfernung. Diese Punkte werden vorab abgefragt, nicht erst am Fahrzeug.`,
+      Icon: MapPin,
+    },
+    {
+      title: "Etage, Aufzug und Tragegut",
+      text: `Möbel, Kartons, Waschmaschine oder einzelne schwere Stücke verändern Teamgröße und Zeitplan. Angaben zu Etage, Aufzug und Zugang in ${areaText} machen das Angebot belastbarer.`,
+      Icon: ClipboardCheck,
+    },
+    {
+      title: "Übergabe, Reinigung und Restmengen",
+      text: `Wenn Schlüsselübergabe, Endreinigung oder kleine Restmengen mitlaufen, wird der Ablauf anders sortiert als bei einem reinen Transport. So bleibt der letzte Tag planbar.`,
+      Icon: Shield,
+    },
+  ];
+}
+
+function getTravelLogic(city: string, region: string) {
+  if (city === company.city) {
+    return `In ${city} wird die Anfahrt besonders kurz gehalten, weil FLOXANT hier den operativen Ausgangspunkt hat. Termine lassen sich dadurch leichter mit Besichtigung, Fotos oder kurzfristigen Rückfragen verbinden.`;
+  }
+
+  return `Für ${city} wird die Anfahrt ab Regensburg mit Strecke, Teamverfügbarkeit und möglicher Kombination mit weiteren Touren in ${region} geprüft. Kurze Wege im Ort, gute Parkmöglichkeit und klare Zeitfenster helfen, den Preisrahmen ruhiger zu halten.`;
+}
+
+function getPriceLogicItems(serviceName: string, city: string, areaText: string, region: string): LocalPriceItem[] {
+  if (serviceName === "Reinigung") {
+    return [
+      { label: "Fläche", text: `Räume, Quadratmeter, Fenster, Küche und Bad bestimmen die Grunddauer in ${city}.` },
+      { label: "Zustand", text: `Kalk, Fett, Staub, Klebereste oder starke Nutzung verändern den Aufwand deutlicher als die Adresse.` },
+      { label: "Ziel", text: "Übergabe, Grundreinigung, Bürofläche oder Wiedervermietung werden getrennt bewertet." },
+      { label: "Anfahrt", text: getTravelLogic(city, region) },
+    ];
+  }
+
+  if (serviceName === "Entrümpelung") {
+    return [
+      { label: "Volumen", text: `Menge, Gewicht und Materialarten bestimmen, welches Fahrzeug und welche Entsorgung für ${city} sinnvoll sind.` },
+      { label: "Zugang", text: `Etage, Aufzug, Treppenhaus, Hof und Parkmöglichkeit in ${areaText} beeinflussen die Tragezeit.` },
+      { label: "Trennung", text: "Verwertbares, Restmüll, Holz, Metall und Sonderfälle werden nicht pauschal in einen Topf geworfen." },
+      { label: "Anfahrt", text: getTravelLogic(city, region) },
+    ];
+  }
+
+  if (serviceName === "Büroumzug") {
+    return [
+      { label: "Arbeitsplätze", text: `Schreibtische, Technik, Akten und Möbelanzahl bilden die Grundlage für die Planung in ${city}.` },
+      { label: "Zeitfenster", text: "Abend, Wochenende, laufender Betrieb oder kurze Sperrzeiten verändern Teamgröße und Vorbereitung." },
+      { label: "Schutz", text: "IT, sensible Unterlagen, Aufzug, Böden und Wandbereiche werden als eigener Aufwand betrachtet." },
+      { label: "Anfahrt", text: getTravelLogic(city, region) },
+    ];
+  }
+
+  return [
+    { label: "Volumen", text: `Kartons, Möbel, Küche, Keller und Einzelstücke bestimmen Fahrzeuggröße und Team für ${city}.` },
+    { label: "Zugang", text: `Etage, Aufzug, Laufweg, Innenhof und Parkmöglichkeit in ${areaText} wirken direkt auf die Tragezeit.` },
+    { label: "Leistungen", text: "Einpacken, Montage, Reinigung oder Entsorgung werden getrennt aufgenommen." },
+    { label: "Anfahrt", text: getTravelLogic(city, region) },
+  ];
+}
+
+function getLocalFaqs(serviceName: string, city: string, areaText: string, region: string) {
+  const serviceLower = serviceName.toLowerCase();
+  return [
+    {
+      q: `Welche Angaben braucht FLOXANT für ${serviceName} in ${city}?`,
+      a: `Hilfreich sind Start- und Zieladresse, Terminwunsch, Fotos, Umfang, Etage, Aufzug, Parkmöglichkeit und Besonderheiten in ${areaText}. Je genauer diese Punkte sind, desto schneller lässt sich der Einsatz realistisch planen.`,
+    },
+    {
+      q: `Wie wirkt sich die Anfahrt auf den Preis in ${city} aus?`,
+      a: getTravelLogic(city, region),
+    },
+    {
+      q: `Warum fragt FLOXANT nach Stadtteilen oder Umgebung statt nur nach ${city}?`,
+      a: `Die Lage verändert Zugang, Parken, Zeitfenster und Laufwege. Deshalb wird ${serviceLower} in ${city} anders geplant, wenn der Einsatz zum Beispiel in ${areaText} liegt oder zusätzlich ein Ort in der Umgebung eingebunden wird.`,
+    },
+  ];
+}
+
+function getLocalDistrictNotes(serviceName: string, city: string, areas: string[]): LocalDistrictNote[] {
+  const focus = [
+    {
+      title: "Zugang und Parken",
+      text: `Bei ${serviceName} in ${city} wird hier besonders auf Zufahrt, Haltemöglichkeit und Laufweg geachtet.`,
+    },
+    {
+      title: "Zeitfenster und Übergabe",
+      text: `Termin, Schlüssel, Hausverwaltung oder Übergabe werden vorab geklärt, damit der Einsatz nicht am Zugang scheitert.`,
+    },
+    {
+      title: "Umfang und Zusatzleistungen",
+      text: `Fotos, Menge, Etage und Zusatzwünsche helfen, Team, Fahrzeug und Preisrahmen passend zu wählen.`,
+    },
+    {
+      title: "Route und Umgebung",
+      text: `Wenn ein weiterer Ort angebunden wird, zählt die konkrete Strecke mehr als eine pauschale Ortsliste.`,
+    },
+  ];
+
+  return areas.slice(0, 4).map((area, index) => ({
+    title: `${area}: ${focus[index % focus.length].title}`,
+    text: focus[index % focus.length].text,
+  }));
 }
 
 export function SpecialtyPageLayout({
@@ -362,7 +577,8 @@ export function SpecialtyPageLayout({
   const isBavariaPage =
     city.toLowerCase().includes("bayern") ||
     breadcrumbs.some((item) => item.label.toLowerCase().includes("bayern") || item.href?.endsWith("-bayern"));
-  const serviceContext = getServiceContext(serviceSignal, city, citySlug, geo?.region || "Bayern", isBavariaPage);
+  const regionName = geo?.region || "Bayern";
+  const serviceContext = getServiceContext(serviceSignal, city, citySlug, regionName, isBavariaPage);
 
   const rawFaqs = (dict?.faqs || []) as Array<{ q: string; a: string }>;
   const resolvedFaqs = rawFaqs
@@ -400,6 +616,15 @@ export function SpecialtyPageLayout({
         .filter((entry) => entry.region === geo.region && entry.name !== city)
         .slice(0, 6)
     : [];
+  const localAreaNames = getLocalAreaNames(city, neighborhoods, nearbyCities, regionName);
+  const localAreaText = humanList(localAreaNames);
+  const localIssueCards = getLocalIssueCards(serviceContext.name, city, localAreaText);
+  const localPriceItems = getPriceLogicItems(serviceContext.name, city, localAreaText, regionName);
+  const localFaqs = getLocalFaqs(serviceContext.name, city, localAreaText, regionName);
+  const localDistrictNotes = getLocalDistrictNotes(serviceContext.name, city, localAreaNames);
+  const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
+    `Hallo FLOXANT, ich habe eine Anfrage zu ${serviceContext.name} in ${city}.`,
+  )}`;
 
   const helpfulLinks = [
     ...serviceContext.relatedLinks,
@@ -457,8 +682,8 @@ export function SpecialtyPageLayout({
     },
   ];
   const faqItems = regensburgAuthority
-    ? [...finalFaqs, ...offerCheckFaqs, ...regensburgAuthority.faqs]
-    : [...finalFaqs, ...offerCheckFaqs];
+    ? [...localFaqs, ...finalFaqs, ...offerCheckFaqs, ...regensburgAuthority.faqs]
+    : [...localFaqs, ...finalFaqs, ...offerCheckFaqs];
   const planningLinks = [
     {
       href: serviceContext.calculatorHref,
@@ -492,7 +717,7 @@ export function SpecialtyPageLayout({
     {
       href: "/angebotscheck",
       title: "Lücken im Angebot erkennen",
-      text: "Red Flags wie Etage, Laufweg, Reinigung, Entsorgung, Zeitfenster oder Zusatzkosten vor Zusage einordnen.",
+      text: "Etage, Laufweg, Reinigung, Entsorgung, Zeitfenster oder Zusatzkosten vor Zusage einordnen.",
       Icon: ClipboardCheck,
     },
   ];
@@ -708,6 +933,14 @@ export function SpecialtyPageLayout({
         secondaryLabel="Angebot prüfen"
       />
 
+      <SearchIntentExpansion
+        route={serviceContext.pagePath}
+        city={city}
+        serviceName={serviceContext.name}
+        relatedLinks={helpfulLinks}
+        className="pt-4"
+      />
+
       <section className="px-6 pb-12">
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-4">
           {pageRoutes.map((item) => (
@@ -835,6 +1068,120 @@ export function SpecialtyPageLayout({
               </div>
             </div>
           ) : null}
+
+          <section className="mt-16 overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white/96 shadow-[0_18px_46px_rgba(15,23,42,0.06)]">
+            <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
+              <div className="px-7 py-7">
+                <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                  <MapPin className="h-4 w-4" />
+                  Lokal geplant
+                </div>
+                <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                  {serviceContext.name} in {germanText(city, city)} mit echter Ortslogik
+                </h2>
+                <div className="mt-5 space-y-4 text-base leading-8 text-slate-700">
+                  <p>
+                    Eine gute Anfrage für {germanText(serviceContext.name, serviceContext.name)} in {germanText(city, city)} beginnt nicht mit einer pauschalen Stadtliste. Wichtig sind die konkreten Wege vor Ort: Zugang, Etage, Parken, Menge, Termin und die Frage, ob zusätzlich Reinigung, Entsorgung oder Übergabe eingebunden werden sollen.
+                  </p>
+                  <p>
+                    Für {germanText(localAreaText, localAreaText)} werden deshalb nicht einfach Ortsnamen gesammelt. Diese Lageangaben helfen, Laufwege, Zufahrten, Haltemöglichkeiten und Zeitfenster realistischer einzuschätzen. So entsteht ein Angebot, das zum tatsächlichen Auftrag passt und nicht nur zur Stadt im Seitentitel.
+                  </p>
+                </div>
+
+                <div className="mt-7 grid gap-4 md:grid-cols-3">
+                  {localIssueCards.map((item) => {
+                    const Icon = item.Icon;
+                    return (
+                      <article key={item.title} className="rounded-[1.35rem] border border-slate-200 bg-slate-50 px-5 py-5">
+                        <div className="grid h-11 w-11 place-items-center rounded-[1rem] bg-white text-blue-700 shadow-sm shadow-slate-950/5">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <h3 className="mt-4 text-base font-bold tracking-tight text-slate-950">{item.title}</h3>
+                        <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+                      </article>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Link
+                    href={serviceContext.primaryPath}
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-slate-950 px-5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
+                  >
+                    Zur Übersicht {germanText(serviceContext.name, serviceContext.name)}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href="#wizard"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 text-xs font-black uppercase tracking-[0.14em] text-slate-800 transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700"
+                    data-event="start_booking"
+                    data-service={serviceContext.name.toLowerCase()}
+                    data-region={city}
+                  >
+                    Anfrage für {germanText(city, city)}
+                  </a>
+                </div>
+              </div>
+
+              <aside className="border-t border-slate-200 bg-slate-50/80 px-7 py-7 lg:border-l lg:border-t-0">
+                <div className="rounded-[1.6rem] border border-white bg-white px-5 py-5 shadow-sm shadow-slate-950/5">
+                  <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+                    <Route className="h-4 w-4" />
+                    Preis und Anfahrt
+                  </div>
+                  <div className="mt-5 space-y-3">
+                    {localPriceItems.map((item) => (
+                      <div key={item.label} className="rounded-[1.1rem] border border-slate-200 bg-slate-50 px-4 py-4">
+                        <div className="text-sm font-black text-slate-950">{item.label}</div>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-[1.6rem] bg-slate-950 px-5 py-5 text-white shadow-sm shadow-slate-950/10">
+                  <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-200">
+                    Direkt erreichbar
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-slate-200">
+                    Kurze Rückfrage zu {germanText(serviceContext.name, serviceContext.name)} in {germanText(city, city)}? Telefon, WhatsApp, E-Mail und Formular sind sichtbar erreichbar.
+                  </p>
+                  <div className="mt-5 grid gap-3">
+                    <a
+                      href={`tel:${company.phoneRaw}`}
+                      className="inline-flex min-h-11 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 text-sm font-bold text-white transition hover:bg-white/12"
+                      data-event="click_local_page_phone"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-region={city}
+                    >
+                      <Phone className="h-4 w-4 text-cyan-200" />
+                      {company.phone}
+                    </a>
+                    <a
+                      href={whatsappHref}
+                      className="inline-flex min-h-11 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 text-sm font-bold text-white transition hover:bg-white/12"
+                      data-event="click_local_page_whatsapp"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-region={city}
+                    >
+                      <MessageSquare className="h-4 w-4 text-cyan-200" />
+                      WhatsApp öffnen
+                    </a>
+                    <a
+                      href={`mailto:${company.email}`}
+                      className="inline-flex min-h-11 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 text-sm font-bold text-white transition hover:bg-white/12"
+                      data-event="click_local_page_email"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-region={city}
+                    >
+                      <Mail className="h-4 w-4 text-cyan-200" />
+                      {company.email}
+                    </a>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </section>
 
           {regensburgAuthority ? (
             <section className="mt-16 rounded-[2.2rem] border border-blue-100 bg-[linear-gradient(135deg,rgba(239,246,255,0.92),rgba(255,255,255,0.98)_56%,rgba(236,253,245,0.58))] px-7 py-7 shadow-[0_18px_46px_rgba(15,23,42,0.06)]">
@@ -1129,20 +1476,26 @@ export function SpecialtyPageLayout({
         </div>
       </section>
 
-      {neighborhoods.length > 0 ? (
+      {localDistrictNotes.length > 0 ? (
         <section className="border-t border-slate-200 bg-slate-50/70 px-6 py-12">
-          <div className="mx-auto max-w-4xl">
-            <h3 className="mb-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
-              {germanText(applyCity(dict.common?.neighborhoods_title || "Verfügbarkeit in {city} und Umgebung", city), dict.common?.neighborhoods_title || "Verfügbarkeit in {city} und Umgebung")}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {neighborhoods.map((district) => (
-                <span
-                  key={district}
-                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 shadow-sm shadow-slate-950/5"
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                Lokale Einsatzhinweise für {germanText(city, city)}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                Diese Orte werden nicht als bloße Liste gezeigt. Sie stehen für typische Unterschiede bei Zugang, Parken, Termin und Strecke, die den Ablauf in {germanText(city, city)} wirklich verändern können.
+              </p>
+            </div>
+            <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {localDistrictNotes.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[1.35rem] border border-slate-200 bg-white px-5 py-5 shadow-sm shadow-slate-950/5"
                 >
-                  {germanText(city, city)} {germanText(district, district)}
-                </span>
+                  <h4 className="text-base font-bold tracking-tight text-slate-950">{item.title}</h4>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+                </article>
               ))}
             </div>
           </div>

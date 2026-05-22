@@ -51,7 +51,7 @@ const addonOptions = [
   "Entsorgung",
   "Schlüsselübergabe",
   "Übergabeakte",
-  "Halteverbot",
+  "Zugang / Parken",
   "Rückfahrt/Leerfahrt",
   "Premium/Rückruf",
 ];

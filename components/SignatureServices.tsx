@@ -9,7 +9,6 @@ import {
   ClipboardCheck,
   FileSearch,
   Key,
-  MapPin,
   PackageOpen,
   RotateCw,
   Shield,
@@ -24,7 +23,6 @@ import { germanText } from "@/lib/german-text";
 
 export type SignatureServiceId =
   | "key_handover"
-  | "parking_zone"
   | "empty_return"
   | "move_cleaning"
   | "clear_cleaning"
@@ -77,15 +75,6 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     eyebrow: "Übergabe",
     icon: Key,
     accent: "from-blue-600 via-cyan-500 to-slate-500",
-  },
-  parking_zone: {
-    title: "Halteverbotszone nach Absprache",
-    desc: "Für enge Straßen, lange Laufwege oder sensible Ladezonen, bevor der Umzug am Zugang scheitert.",
-    href: "/halteverbotszone-regensburg",
-    label: "Halteverbot prüfen",
-    eyebrow: "Zugang",
-    icon: MapPin,
-    accent: "from-slate-800 via-blue-700 to-cyan-500",
   },
   empty_return: {
     title: "Leerfahrt / Rückfahrt nach Verfügbarkeit",
@@ -226,7 +215,6 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
 
 const defaultServiceIds = Object.freeze([
   "key_handover",
-  "parking_zone",
   "empty_return",
   "move_cleaning",
   "clear_cleaning",
@@ -242,7 +230,6 @@ const defaultServiceIds = Object.freeze([
 
 const signatureIconBackgrounds = Object.freeze({
   key_handover: "linear-gradient(135deg, #2563eb 0%, #06b6d4 58%, #475569 100%)",
-  parking_zone: "linear-gradient(135deg, #0f172a 0%, #1d4ed8 56%, #06b6d4 100%)",
   empty_return: "linear-gradient(135deg, #10b981 0%, #14b8a6 54%, #06b6d4 100%)",
   move_cleaning: "linear-gradient(135deg, #06b6d4 0%, #34d399 52%, #2dd4bf 100%)",
   clear_cleaning: "linear-gradient(135deg, #f97316 0%, #f59e0b 55%, #facc15 100%)",
@@ -307,7 +294,7 @@ export function SignatureServices({
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-700">
               {germanText(
                 subtitle || t.subtitle,
-                "Diese Bausteine sind keine Deko. Sie lösen typische Engpässe: Schlüssel, Haltezone, Rückfahrt, Fotos, Budget, Reinigung und die letzten Meter bis zur Übergabe.",
+                "Diese Bausteine sind keine Deko. Sie lösen typische Engpässe: Schlüssel, Zugang, Rückfahrt, Fotos, Budget, Reinigung und die letzten Meter bis zur Übergabe.",
               )}
             </p>
           </div>

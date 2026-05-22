@@ -72,7 +72,7 @@ type SearchDominanceConfig = {
 
 const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
   default: {
-    eyebrow: "Klarer Weg von Suche bis Anfrage",
+    eyebrow: "Google, Maps & klare Antworten",
     title: "Vom Suchbegriff zur echten FLOXANT-Anfrage.",
     intro:
       "Kunden sollen nicht raten, welcher Service passt. Diese Seite führt Suchende sichtbar von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
@@ -90,15 +90,15 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
     searchAppearance: [
       {
-        label: "Title",
+        label: "Titel",
         text: "Marke, Regensburg und Kernservices stehen sofort sichtbar im Treffer.",
       },
       {
-        label: "Snippet",
+        label: "Kurztext",
         text: "Fotos, Termin, Budget und direkte Anfrage liefern einen konkreten Klickgrund.",
       },
       {
-        label: "Sitelinks",
+        label: "Direkte Wege",
         text: "Buchung, Rechner und Angebotsprüfung führen schnell zum passenden Einstieg.",
       },
     ],
@@ -181,7 +181,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
   },
   offer: {
-    eyebrow: "Angebotsprüfung als Conversion-Hebel",
+    eyebrow: "Angebotsprüfung als klarer zweiter Weg",
     title: "Kunden mit fremdem Angebot brauchen einen klaren zweiten Weg.",
     intro:
       "Wer schon ein Angebot hat, ist kaufnah. FLOXANT macht daraus keinen aggressiven Preisangriff, sondern eine praktische Prüfung von Preis, Umfang, Termin, Fotos, Budget und möglicher Alternative.",
@@ -199,15 +199,15 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
     searchAppearance: [
       {
-        label: "Title",
+        label: "Titel",
         text: "Die kaufnahe Suche nach Angebotsprüfung wird direkt getroffen.",
       },
       {
-        label: "Snippet",
+        label: "Kurztext",
         text: "Upload, Preis, Umfang, Fotos und mögliche Alternative stehen im Vordergrund.",
       },
       {
-        label: "Sitelinks",
+        label: "Direkte Wege",
         text: "Upload, Red-Flag-Check und Plattform-Auftrag führen ohne Umweg weiter.",
       },
     ],
@@ -308,15 +308,15 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
     searchAppearance: [
       {
-        label: "Title",
+        label: "Titel",
         text: "Düsseldorf wird als Reinigung positioniert, nicht als Umzug.",
       },
       {
-        label: "Snippet",
+        label: "Kurztext",
         text: "Objekt, Fläche, Frequenz, Zeitfenster und Fotos machen die Anfrage konkret.",
       },
       {
-        label: "Sitelinks",
+        label: "Direkte Wege",
         text: "B2B, Wohnung, Apartment, Treppenhaus und Entsorgung bleiben getrennt.",
       },
     ],
@@ -416,15 +416,15 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
     searchAppearance: [
       {
-        label: "Title",
+        label: "Titel",
         text: "Leistung, Ort und FLOXANT-Serviceversprechen werden sauber verbunden.",
       },
       {
-        label: "Snippet",
+        label: "Kurztext",
         text: "Kosten, Fotos, Termin und direkte Anfrage beantworten die Suchabsicht.",
       },
       {
-        label: "Sitelinks",
+        label: "Direkte Wege",
         text: "Rechner, Buchung, Angebotsprüfung und Zusatzservices bleiben nah dran.",
       },
     ],
@@ -461,7 +461,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: Search,
       },
       {
-        label: "Interne Stärke",
+        label: "Starke Wege",
         text: "Rechner, Buchung, Angebotsprüfung und Zusatzservices bleiben logisch verknüpft.",
         Icon: ArrowRight,
       },
@@ -490,7 +490,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     steps: ["Leistung", "Ort", "Umfang", "Budget", "Buchung"],
     cards: [
       {
-        title: "Nicht nur SEO, sondern Entscheidung",
+        title: "Nicht nur Text, sondern Entscheidung",
         text: "Der Abschnitt zeigt Kunden sofort, welche Angaben FLOXANT braucht und welcher Einstieg sinnvoll ist.",
         Icon: Search,
       },
@@ -512,19 +512,19 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
   if (variant === "offer") {
     return [
       {
-        label: "Buyer Intent",
+        label: "Konkrete Anfrage",
         title: "Kaufbereite Nutzer abholen",
         text: "Wer bereits ein Angebot hat, sucht nicht Theorie, sondern Prüfung, Klarheit und eine mögliche FLOXANT-Alternative.",
         Icon: MousePointerClick,
       },
       {
-        label: "Local Radius",
+        label: "Region",
         title: "Regensburg und Bayern bündeln",
         text: "Die Angebotsprüfung verbindet Umzug, Reinigung, Entrümpelung, Entsorgung, Ort, Termin und Budget mit einem direkten Anfrageweg.",
         Icon: MapPin,
       },
       {
-        label: "Trust Guard",
+        label: "Saubere Prüfung",
         title: "Sicher statt aggressiv",
         text: "Keine Preisgarantie und keine Konkurrenzdiffamierung: FLOXANT prüft praktisch, ob Umfang und Alternative passen.",
         Icon: ShieldCheck,
@@ -541,25 +541,25 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
   if (variant === "duesseldorf") {
     return [
       {
-        label: "Region Rule",
+        label: "Düsseldorf-Regel",
         title: "Düsseldorf ohne Umzugsrauschen",
         text: "Die Seite stärkt Reinigung, B2B-Reinigung, Apartment-Reinigung, Treppenhaus und Entsorgung, ohne falsche Umzugssignale.",
         Icon: Radar,
       },
       {
-        label: "B2B Fit",
+        label: "B2B-Passung",
         title: "B2B und Objektklarheit",
         text: "Fläche, Frequenz, Zeitfenster, Fotos und Zugang sind genau die Angaben, die kleine Unternehmen wirklich brauchen.",
         Icon: CheckCircle2,
       },
       {
-        label: "Map Action",
+        label: "Kontaktweg",
         title: "Maps-nahe Anfrage",
         text: "Nutzer werden schnell zu Telefon, WhatsApp und Objektanfrage geführt, statt in generischen Texten stecken zu bleiben.",
         Icon: MapPin,
       },
       {
-        label: "Service Guard",
+        label: "Leistungsgrenze",
         title: "Keine falschen Spezialversprechen",
         text: "Die Kommunikation bleibt bei allgemeiner Reinigung nach Absprache, ohne medizinische oder industrielle Zusagen.",
         Icon: ShieldCheck,
@@ -570,25 +570,25 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
   if (variant === "pillar") {
     return [
       {
-        label: "Money Page",
+        label: "Kernseite",
         title: "Jede Geldseite bekommt Richtung",
         text: "Leistung, Ort, Preisrahmen, Fotos und Angebot sind auf jeder Kernseite als Entscheidungspfad sichtbar.",
         Icon: Search,
       },
       {
-        label: "Internal Link",
-        title: "Interne Wege werden stärker",
+        label: "Passende Wege",
+        title: "Wichtige Wege werden stärker",
         text: "Rechner, Buchung, Angebotsprüfung und Zusatzservices sind nicht versteckt, sondern logisch verknüpft.",
         Icon: ArrowRight,
       },
       {
-        label: "Answer Engine",
-        title: "KI kann FLOXANT zitieren",
+        label: "Klare Antwort",
+        title: "FLOXANT bleibt klar erklärbar",
         text: "Sichtbare Kurzantworten und klare Grenzen machen die Empfehlung belastbarer als reine Keyword-Blöcke.",
         Icon: BrainCircuit,
       },
       {
-        label: "Conversion",
+        label: "Nächster Schritt",
         title: "Kunden finden den nächsten Schritt",
         text: "Jede Seite zeigt einen klaren Weg zu Anfrage, Preisrahmen, Fotos oder Angebotsprüfung, statt nur Leistungen aufzuzählen.",
         Icon: MousePointerClick,
@@ -598,25 +598,25 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
 
   return [
     {
-      label: "Brand Signal",
+      label: "Marke",
       title: "Marke und Service sofort erkennbar",
       text: "FLOXANT wirkt als geführter Servicepfad: nicht nur Umzug oder Reinigung, sondern Prüfung, Budget, Fotos und Anfrage.",
       Icon: Sparkles,
     },
     {
-      label: "Local Core",
+      label: "Lokaler Kern",
       title: "Regensburg als Kernsignal",
       text: "Der operative Kern, 200-km-Nahbereich und Bayern nach Verfügbarkeit werden sichtbar und wiederholbar erklärt.",
       Icon: MapPin,
     },
     {
-      label: "Click Reason",
+      label: "Klickgrund",
       title: "Direkter Klickgrund",
       text: "Kunden sehen sofort, ob Rechner, Buchung, Angebotsprüfung oder WhatsApp der passende nächste Schritt ist.",
       Icon: MousePointerClick,
     },
     {
-      label: "Safe Expansion",
+      label: "Saubere Trennung",
       title: "Düsseldorf sauber getrennt",
       text: "Das Projekt bleibt wachstumsfähig, weil Düsseldorf Reinigung sendet und Regensburg/Bayern die Umzugslogik tragen.",
       Icon: ShieldCheck,
@@ -731,14 +731,14 @@ export function SearchDominanceExperience({
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
-                    Nach dem Klick sofort handlungsfähig
+                  Nach dem Klick sofort handlungsfähig
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
                     Kein Rätselraten: FLOXANT zeigt den nächsten Schritt.
                   </h3>
                 </div>
                 <span className="flox-search-deck-badge rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em]">
-                  Anfrage · Rechner · Upload · Region
+                  Anfrage · Rechner · Fotos · Region
                 </span>
               </div>
 
@@ -773,14 +773,14 @@ export function SearchDominanceExperience({
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-100">
-                    Maps, Vertrauen und schnelle Entscheidung
+                  Maps, Vertrauen und schnelle Entscheidung
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
                     Kunden erkennen sofort, warum FLOXANT der richtige nächste Klick ist.
                   </h3>
                 </div>
                 <span className="flox-local-trust-badge rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em]">
-                  NAP · Fotos · Ort · Budget
+                  Adresse · Fotos · Ort · Budget
                 </span>
               </div>
 
@@ -868,7 +868,7 @@ export function SearchDominanceExperience({
               <div className="flox-proof-rail rounded-[1.55rem] border border-cyan-200/20 bg-cyan-300/10 p-5 pl-6 text-white">
                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
                   <BrainCircuit className="h-3.5 w-3.5" />
-                  Klare Antwort für Kunden
+                  Kurzantwort für Kunden
                 </div>
                 <p className="mt-4 text-sm font-semibold leading-7 text-cyan-50">
                   {config.aiAnswer}
@@ -883,7 +883,7 @@ export function SearchDominanceExperience({
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
-                    Dominanz-Matrix
+                    Stärken im Vergleich
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
                     Warum FLOXANT der bessere Klick ist.

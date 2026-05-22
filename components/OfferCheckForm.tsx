@@ -31,7 +31,7 @@ const addonOptions = [
   "Entrümpelung",
   "Entsorgung",
   "Schlüsselübergabe",
-  "Halteverbotszone",
+  "Zugang / Parken",
   "Leerfahrt/Rückfahrt",
   "Premium-Abstimmung",
 ];

@@ -159,7 +159,7 @@ export default async function EntruempelungPillarPage() {
         faqItems={faqItems}
         bookingTitle="Entrümpelung in Regensburg oder Bayern anfragen"
         bookingText="Nutzen Sie den Rechner für einen klaren Orientierungsrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, was weg muss und welcher nächste Schritt danach ansteht: Übergabe, Verkauf, Renovierung oder Umzug."
-        serviceLinksTitle="Wichtige interne Einstiege rund um Räumung und Entsorgung"
+        serviceLinksTitle="Wichtige passende Einstiege rund um Räumung und Entsorgung"
         serviceLinks={[
           { href: "/rechner", label: "Entrümpelung direkt einordnen" },
           { href: "/firmenentsorgung", label: "Firmenentsorgung für Büros und Gewerbe" },

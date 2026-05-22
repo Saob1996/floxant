@@ -222,7 +222,7 @@ export function BusinessDisposalForm() {
                 <textarea
                   value={form.note}
                   onChange={(event) => update("note", event.target.value)}
-                  placeholder="Was soll weg? Gibt es interne Zeitfenster, Gebäuderegeln oder sensible Bereiche?"
+                  placeholder="Was soll weg? Gibt es betriebliche Zeitfenster, Gebäuderegeln oder sensible Bereiche?"
                   className="h-24 w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-950 outline-none transition focus:border-cyan-300 focus:bg-cyan-50/40"
                 />
               </label>

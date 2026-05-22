@@ -73,7 +73,6 @@ export const company = {
     "Rückladung",
     "Schlüsselübergabe",
     "Übergabeprotokoll",
-    "Halteverbotszone Koordination",
     "Plan-B-Service",
     "Übergabevorbereitung",
     "Private Client Service",

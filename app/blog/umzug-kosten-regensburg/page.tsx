@@ -87,7 +87,7 @@ export default function BlogUmzugKosten() {
      {
       title: "Warum Regensburg oft anders kalkuliert wird als das Umland",
       paragraphs: [
-       "In zentralen Lagen spielen Halteverbotszonen, begrenzte Ladezonen und historische Gebäudestrukturen eine Rolle. Im Umland sind die Wege auf dem Grundstück häufig kürzer, dafür können Strecken und Anfahrten länger werden.",
+       "In zentralen Lagen spielen begrenzte Ladezonen, enge Zufahrten und historische Gebäudestrukturen eine Rolle. Im Umland sind die Wege auf dem Grundstück häufig kürzer, dafür können Strecken und Anfahrten länger werden.",
       ],
      },
      {

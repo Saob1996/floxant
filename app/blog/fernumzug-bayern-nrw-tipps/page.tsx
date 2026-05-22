@@ -55,7 +55,7 @@ export default async function BlogArticle() {
               <li>✅ Kita/Schulplatz am neuen Wohnort organisieren</li>
               <li>✅ Hausarzt, Zahnarzt und Tierarzt am neuen Ort finden</li>
               <li>✅ Nachsendeauftrag bei der Post einrichten (6 Monate)</li>
-              <li>✅ Halteverbotszone an beiden Standorten beantragen</li>
+              <li>Zugang, Laufwege und Parkmöglichkeit an beiden Standorten klären</li>
               <li>✅ Zählerstände an beiden Wohnungen dokumentieren</li>
             </ul>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Ummeldefristen nicht vergessen</h2>

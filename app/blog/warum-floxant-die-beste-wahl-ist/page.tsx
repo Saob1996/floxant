@@ -77,7 +77,7 @@ export default function BlogPost() {
      {
       title: "Klare Leistungen statt ungenauer Versprechen",
       paragraphs: [
-       "Kunden sollten sofort verstehen, welche Leistungen enthalten sind und welche Punkte separat geprüft werden. Dazu gehören Transport, Tragewege, Montage, Haltezone, Zusatzleistungen, Reinigung und Entsorgung.",
+       "Kunden sollten sofort verstehen, welche Leistungen enthalten sind und welche Punkte separat geprüft werden. Dazu gehören Transport, Tragewege, Montage, Zugang, Zusatzleistungen, Reinigung und Entsorgung.",
        "Je klarer ein Anbieter die Grenzen der ersten Einschätzung erklärt, desto weniger Missverständnisse entstehen später im Ablauf.",
       ],
      },

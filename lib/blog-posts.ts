@@ -318,14 +318,14 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Checkliste",
   readTime: "6 Min.",
   title: "Umzug-Checkliste: die wichtigsten Schritte vor dem Termin",
-  description: "Eine kompakte Reihenfolge für Vorbereitung, Kartons, Zugang, Haltezone, Übergabe und letzte Abstimmung.",
+  description: "Eine kompakte Reihenfolge für Vorbereitung, Kartons, Zugang, Übergabe und letzte Abstimmung.",
  },
  {
   slug: "umzug-regensburg-tipps",
   category: "Regensburg",
   readTime: "6 Min.",
   title: "Umzug in Regensburg: lokale Tipps für Planung und Zugang",
-  description: "Was bei Altstadt, Etagen, Haltezonen, Laufwegen und Terminplanung in Regensburg besonders wichtig ist.",
+  description: "Was bei Altstadt, Etagen, Zugang, Laufwegen und Terminplanung in Regensburg besonders wichtig ist.",
  },
  {
   slug: "umzug-tipps-bayern",

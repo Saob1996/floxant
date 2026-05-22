@@ -26,8 +26,6 @@ export default function BueroumzugForm({
  const updateBaseDetails = useCalculatorStore((state) => state.updateBaseDetails);
 
  const liftLabel = dic?.calculator?.lift || "Aufzug";
- const noParkingZoneLabel = dic?.footer?.no_parking_zone || "Halteverbotszone";
-
  return (
   <div className="space-y-8">
    <AnimatePresence mode="wait">
@@ -66,13 +64,6 @@ export default function BueroumzugForm({
            updateBueroumzugData({ hasElevatorFrom: checked }),
           tip: "Spart Zeit und schont die Möbel.",
          },
-         {
-          checked: !!bueroumzugData.noParkingZoneFrom,
-          label: noParkingZoneLabel,
-          onChange: (checked) =>
-           updateBueroumzugData({ noParkingZoneFrom: checked }),
-          tip: "Wichtig für einen reibungslosen Ablauf.",
-         },
         ]}
        />
 
@@ -98,13 +89,6 @@ export default function BueroumzugForm({
           label: liftLabel,
           onChange: (checked) => updateBueroumzugData({ hasElevatorTo: checked }),
           tip: "Spart Zeit und schont die Möbel.",
-         },
-         {
-          checked: !!bueroumzugData.noParkingZoneTo,
-          label: noParkingZoneLabel,
-          onChange: (checked) =>
-           updateBueroumzugData({ noParkingZoneTo: checked }),
-          tip: "Vermeidet Bußgelder und Verzögerungen.",
          },
         ]}
        />

@@ -105,7 +105,7 @@ export default function BlogAnfrageRegensburgRichtigStellenPage() {
               "Serviceart: Umzug, Reinigung, Entrümpelung, Büroumzug oder Spezialfall",
               "Ort und Strecke: Start, Ziel oder genaue Objektadresse in Regensburg oder Bayern",
               "Umfang: Wohnfläche, Volumen, Räume, Arbeitsplätze oder Materialarten",
-              "Zugang: Etage, Aufzug, Laufweg, Haltezone, Zeitfenster oder Objektregeln",
+              "Zugang: Etage, Aufzug, Laufweg, Zeitfenster oder Objektregeln",
               "Terminlage: Wunschdatum, flexibel oder kurzfristig",
               "Optionales Budget: hilfreich, aber nie Ersatz für die Vorprüfung",
             ],

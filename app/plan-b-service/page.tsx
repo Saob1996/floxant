@@ -62,7 +62,7 @@ const triageOptions = [
   },
   {
     title: "Angebot wirkt unvollstaendig",
-    text: "Unklare Etage, Zusatzkosten, Reinigung, Entsorgung oder Halteverbot sollten vor Zusage sichtbar werden.",
+    text: "Unklare Etage, Zusatzkosten, Reinigung, Entsorgung oder Zugang sollten vor Zusage sichtbar werden.",
     solution: "Angebotscheck, Red-Flag-Scanner",
   },
   {

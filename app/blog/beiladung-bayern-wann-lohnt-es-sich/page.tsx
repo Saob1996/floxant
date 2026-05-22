@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Wann lohnt sich Beiladung in Bayern?",
-  a: "Beiladung lohnt sich, wenn kein kompletter Umzug nötig ist, aber trotzdem ein professioneller Transport gewünscht wird. Typisch sind einzelne Sofas, Studentenumzüge, Nachsendungen oder Teilmengen.",
+  a: "Beiladung lohnt sich, wenn kein kompletter Umzug nötig ist, aber trotzdem ein professioneller Transport gewünscht wird. Typisch sind einzelne Sofas, kleinere Privatumzüge, Nachsendungen oder Teilmengen.",
  },
  {
   q: "Wann ist Beiladung nicht passend?",
@@ -78,7 +78,7 @@ export default function BlogBeiladungBayernPage() {
      {
       title: "Was ist Beiladung und für wen ist sie gedacht?",
       paragraphs: [
-       "Beiladung ist ideal für Personen, die kein volles Fahrzeug benötigen, aber trotzdem eine professionelle Transportlösung suchen. Typisch sind einzelne Möbel, Kartons, kleine Studentenumzüge oder Restmengen.",
+       "Beiladung ist ideal für Personen, die kein volles Fahrzeug benötigen, aber trotzdem eine professionelle Transportlösung suchen. Typisch sind einzelne Möbel, Kartons, kleine Privatumzüge oder Restmengen.",
       ],
      },
      {

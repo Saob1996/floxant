@@ -52,7 +52,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Faktoren, die den Preis beeinflussen</h2>
-            <p className="text-muted-foreground leading-relaxed">Die Etage ohne Aufzug, die Entfernung zum neuen Wohnort, Sperrgut wie Klaviere oder Tresore, und Zusatzleistungen wie Verpackung oder Möbelmontage beeinflussen den Endpreis erheblich. Eine Halteverbotszone verkürzt die Laufwege und spart Zeit.</p>
+            <p className="text-muted-foreground leading-relaxed">Die Etage ohne Aufzug, die Entfernung zum neuen Wohnort, Sperrgut wie Klaviere oder Tresore, und Zusatzleistungen wie Verpackung oder Möbelmontage beeinflussen den Endpreis erheblich. Kurze Laufwege und klare Zugangsdaten sparen Zeit.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Spartipps für Ihren Umzug</h2>

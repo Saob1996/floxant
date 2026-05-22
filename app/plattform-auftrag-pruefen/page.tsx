@@ -102,7 +102,7 @@ const redFlags = [
   "Ist das Volumen realistisch beschrieben?",
   "Sind Start und Ziel eindeutig?",
   "Sind Fahrzeuge oder Fahrten klar?",
-  "Ist Halteverbot nötig und geregelt?",
+  "Ist Zugang oder Parken nötig und geregelt?",
   "Ist Reinigung enthalten oder ausgeschlossen?",
   "Ist Entrümpelung oder Entsorgung enthalten oder ausgeschlossen?",
   "Sind Mehrwertsteuer und Zahlungsbedingungen klar?",

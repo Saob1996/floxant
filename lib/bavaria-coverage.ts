@@ -159,7 +159,6 @@ export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = [
       { href: "/umzug-kaufbeuren", label: "Kaufbeuren" },
       { href: "/umzug-neu-ulm", label: "Neu-Ulm" },
       { href: "/umzug-guenzburg", label: "Guenzburg" },
-      { href: "/umzug-lindau", label: "Lindau" },
       { href: "/reinigung-kempten", label: "Reinigung Kempten" },
       { href: "/entruempelung-kempten", label: "Entruempelung Kempten" },
     ],
@@ -231,7 +230,7 @@ export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = [
   {
     href: "/umzug-muenchen-maxvorstadt",
     label: "Muenchen Maxvorstadt",
-    note: "Starker Suchpfad fuer Studierende, Berufsumzuege und Innenstadtlagen.",
+    note: "Starker Suchpfad fuer erste Wohnungen, Berufsumzuege und Innenstadtlagen.",
   },
   {
     href: "/umzug-nuernberg-gostenhof",

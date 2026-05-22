@@ -35,7 +35,6 @@ const APP_PAGE_CANDIDATES = ["page.tsx", "page.ts", "page.jsx", "page.js", "rout
 const LEGACY_REDIRECT_ROUTES = new Set([
   "partnercode",
   "airbnb-reinigung-duesseldorf",
-  "duesseldorf/b2b-reinigung",
   "angebot-red-flag-scanner",
   "villenservice",
   "umzug-duesseldorf",
@@ -54,7 +53,6 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
   "rueckfahrt",
   "leerfahrt",
   "seniorenumzug",
-  "studentenumzug",
   "entruempelung",
   "wohnungsaufloesung",
 ] as const;
@@ -68,6 +66,10 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "duesseldorf/reinigung/datenschutz",
   "duesseldorf/reinigung/agb",
 ]);
+
+const REMOVED_SERVICE_ROUTE_PREFIXES = [
+  "halteverbotszone",
+] as const;
 
 const MACHINE_READABLE_ROUTES = ["llms.txt", "service-graph.json"] as const;
 
@@ -173,6 +175,7 @@ function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   return (
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
+    REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
     NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||
     isForbiddenDuesseldorfMovingRoute(normalizedRoute)
   );
@@ -254,10 +257,26 @@ function priorityForRoute(route: string): string {
     return highValueLocalSitemapServices.has(dynamicLocalRoute.service) ? "0.77" : "0.74";
   }
   if (route === "duesseldorf/reinigung") return "0.91";
+  if (route === "duesseldorf/reinigung-stadtteile-umgebung") return "0.9";
+  if (route === "duesseldorf/vielleicht-guenstiger") return "0.9";
+  if (route === "duesseldorf/hotelreinigung") return "0.9";
   if (route === "duesseldorf/bueroreinigung") return "0.9";
+  if (route === "duesseldorf/b2b-reinigung") return "0.9";
+  if (route === "duesseldorf/entsorgung") return "0.88";
   if (
     [
       "duesseldorf/bueroreinigung",
+      "duesseldorf/b2b-reinigung",
+      "duesseldorf/firmenreinigung",
+      "duesseldorf/gewerbereinigung",
+      "duesseldorf/hotelreinigung",
+      "duesseldorf/reinigung-stadtteile-umgebung",
+      "duesseldorf/vielleicht-guenstiger",
+      "duesseldorf/kanzleireinigung",
+      "duesseldorf/praxisreinigung",
+      "duesseldorf/krankenhausreinigung",
+      "duesseldorf/kellerreinigung",
+      "duesseldorf/entsorgung",
       "duesseldorf/wohnungsreinigung",
       "duesseldorf/grundreinigung",
       "duesseldorf/treppenhausreinigung",
@@ -298,7 +317,15 @@ function changefreqForRoute(route: string): string {
     return "monthly";
   }
   if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) return "yearly";
-  if (route === "duesseldorf/reinigung" || route === "duesseldorf/bueroreinigung") return "weekly";
+  if (
+    route === "duesseldorf/reinigung" ||
+    route === "duesseldorf/reinigung-stadtteile-umgebung" ||
+    route === "duesseldorf/vielleicht-guenstiger" ||
+    route === "duesseldorf/hotelreinigung" ||
+    route === "duesseldorf/bueroreinigung" ||
+    route === "duesseldorf/b2b-reinigung" ||
+    route === "duesseldorf/entsorgung"
+  ) return "weekly";
   if (route.startsWith("duesseldorf/")) return "monthly";
   if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
   if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";

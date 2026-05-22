@@ -1841,6 +1841,20 @@ input[type="file"]:hover {
   line-height: 1.56;
 }
 
+:where(a, button, [role="button"]) :where(svg) {
+  flex-shrink: 0;
+  stroke-width: 2.25;
+}
+
+:where(a, button, [role="button"]) :where(svg, span) {
+  -webkit-text-fill-color: currentColor;
+}
+
+:where(.flox-panel-dark, .surface-dark, .flox-conversion-panel, .duesseldorf-hero, [class*="bg-slate-950"], [class*="bg-neutral-950"], [class*="bg-[#0"]) :where(.text-white\/40, .text-white\/45, .text-white\/50, .text-white\/55, .text-slate-400) {
+  color: rgba(226, 232, 240, 0.9) !important;
+  -webkit-text-fill-color: rgba(226, 232, 240, 0.9) !important;
+}
+
 .flox-section-copy {
   font-size: 1rem;
   line-height: var(--flox-leading-copy);
@@ -2503,8 +2517,8 @@ input[type="file"]:hover {
   display: grid;
   overflow: hidden;
   border-radius: var(--flox-radius-panel);
-  border: 1px solid rgba(203, 213, 225, 0.82);
-  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.78);
+  background: rgba(255, 255, 255, 0.88);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.88) inset,
     var(--flox-shadow-xs);
@@ -2517,6 +2531,15 @@ input[type="file"]:hover {
 
 .flox-hero-proof-item + .flox-hero-proof-item {
   border-top: 1px solid rgba(203, 213, 225, 0.72);
+}
+
+.flox-hero-proof-item .flox-overline {
+  color: rgb(29 78 216) !important;
+}
+
+.flox-hero-proof-item .flox-card-copy-sm {
+  color: rgb(51 65 85) !important;
+  font-weight: 650;
 }
 
 .flox-hero-console {
@@ -3598,6 +3621,10 @@ input[type="file"]:hover {
   gap: 0.42rem;
 }
 
+.flox-duesseldorf-action-wrap .flox-mobile-action-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .flox-mobile-action {
   display: flex;
   min-width: 0;
@@ -3690,6 +3717,59 @@ input[type="file"]:hover {
   .flox-mobile-action {
     min-height: 3.55rem;
     font-size: 0.62rem;
+  }
+}
+
+.flox-duesseldorf-action-wrap {
+  pointer-events: none;
+}
+
+.flox-duesseldorf-action-wrap .flox-mobile-action-shell,
+.flox-duesseldorf-action-wrap .flox-mobile-action {
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .flox-duesseldorf-action-wrap {
+    left: 50%;
+    right: auto;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    width: min(41rem, calc(100vw - 2rem));
+    transform: translateX(-50%);
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-shell {
+    width: 100%;
+    border-radius: 1.1rem;
+    padding: 0.45rem;
+    box-shadow:
+      0 18px 44px rgba(15, 23, 42, 0.18),
+      0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-grid {
+    grid-template-columns: 0.95fr 1.08fr 0.82fr 0.92fr;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action {
+    min-height: 3.2rem;
+    flex-direction: row;
+    gap: 0.45rem;
+    border-radius: 0.82rem;
+    padding: 0.62rem 0.75rem;
+    font-size: 0.78rem;
+    line-height: 1.1;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-whatsapp::before {
+    width: 1.45rem;
+    height: 1.45rem;
+    background-size: 1.45rem 1.45rem;
   }
 }
 
@@ -3808,6 +3888,67 @@ input[type="file"]:hover {
   color: rgba(226, 232, 240, 0.94);
   line-height: 1.78;
   text-shadow: none;
+}
+
+.duesseldorf-hero :where(.text-slate-300, .text-slate-400, [class*="text-white/"]) {
+  color: rgba(226, 232, 240, 0.96) !important;
+  -webkit-text-fill-color: rgba(226, 232, 240, 0.96) !important;
+}
+
+.duesseldorf-hero :where(a, button)[class*="bg-white/"] {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  color: rgb(248 250 252) !important;
+  -webkit-text-fill-color: rgb(248 250 252) !important;
+}
+
+.duesseldorf-hero :where(a, button)[class*="bg-white/"] :where(span, svg) {
+  color: currentColor !important;
+  opacity: 1;
+}
+
+.duesseldorf-service-hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(135deg, rgba(7, 17, 29, 0.99), rgba(15, 23, 42, 0.98)),
+    #08111f !important;
+  color: rgb(248 250 252) !important;
+}
+
+.duesseldorf-service-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(20, 184, 166, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 34%);
+}
+
+.duesseldorf-service-hero :where(h1, h2, h3, p, div, span, a, svg) {
+  -webkit-text-fill-color: currentColor;
+}
+
+.duesseldorf-service-hero :where(h1, h2, h3) {
+  color: rgb(255 255 255) !important;
+}
+
+.duesseldorf-service-hero :where(p) {
+  color: rgb(226 232 240) !important;
+}
+
+.duesseldorf-service-hero :where(a[href*="wa.me"]) {
+  background: linear-gradient(135deg, #34d399, #16a34a) !important;
+  color: rgb(2 44 34) !important;
+  border-color: rgba(110, 231, 183, 0.96) !important;
+}
+
+.duesseldorf-service-hero :where(a[href*="reinigung-moeblierte"]) {
+  color: rgb(248 250 252) !important;
+  border-color: rgba(165, 243, 252, 0.42) !important;
+  background: rgba(8, 145, 178, 0.2) !important;
 }
 
 @media (max-width: 768px) {

@@ -28,6 +28,7 @@ import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
 import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
+import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
 import { BAVARIA_DIRECT_DEMAND_LINKS } from "@/lib/bavaria-coverage";
 import { company } from "@/lib/company";
@@ -488,7 +489,7 @@ export default function Home() {
           "Büroumzug",
           "Schlüsselübergabe",
           "Übergabeprotokoll",
-          "Halteverbotszone",
+          "Zugang & Ablauf",
           "Plan-B-Service",
           "Regensburg",
           "Umgebung Regensburg ca. 200 km",
@@ -1050,6 +1051,21 @@ export default function Home() {
 
       <ServiceRequestCompass />
 
+      <SearchIntentExpansion
+        route="/"
+        city="Regensburg"
+        serviceName="Umzug, Reinigung und Entrümpelung"
+        relatedLinks={[
+          { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+          { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+          { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+          { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
+          { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+          { href: "/buchung", label: "Direkt anfragen" },
+        ]}
+        className="pt-4"
+      />
+
       {/* ── SERVICE ARCHITECTURE ──────────────────────────────── */}
       <FloxantStorytellingSection
         variant="operations"
@@ -1320,7 +1336,7 @@ export default function Home() {
             badge: "Besondere Hilfe",
             title: "Wenn Timing, Reinigung, Restmengen oder Übergabe zusammenpassen müssen",
             subtitle:
-              "Viele Aufträge werden erst schwierig, wenn Details fehlen: Schlüssel, Haltezone, Fotos, Restmengen, Reinigung oder ein fester Übergabetermin. FLOXANT denkt diese Punkte früh mit.",
+              "Viele Aufträge werden erst schwierig, wenn Details fehlen: Schlüssel, Zugang, Fotos, Restmengen, Reinigung oder ein fester Übergabetermin. FLOXANT denkt diese Punkte früh mit.",
             items: {},
           },
         }}

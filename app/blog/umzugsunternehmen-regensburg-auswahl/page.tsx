@@ -16,11 +16,11 @@ const faqItems = [
   },
   {
     q: "Warum ist ein schneller Festpreis online oft kein gutes Signal?",
-    a: "Weil Volumen, Etagen, Laufwege, Haltezone, Terminlage und Zusatzleistungen oft erst kurz eingeordnet werden müssen. Ein belastbarer erster Rahmen ist meist seriöser als ein künstlich exakter Schnellpreis.",
+    a: "Weil Volumen, Etagen, Laufwege, Zugang, Terminlage und Zusatzleistungen oft erst kurz eingeordnet werden müssen. Ein belastbarer erster Rahmen ist meist seriöser als ein künstlich exakter Schnellpreis.",
   },
   {
     q: "Hilft eine lokale Firma in Regensburg wirklich?",
-    a: "Oft ja. Regionale Nähe vereinfacht Rückfragen, Besichtigung, Zufahrtseinschätzung und Terminabstimmung. Gerade in Regensburg mit Altstadt, Etagen und kurzen Haltezonen ist das ein echter Vorteil.",
+    a: "Oft ja. Regionale Nähe vereinfacht Rückfragen, Besichtigung, Zufahrtseinschätzung und Terminabstimmung. Gerade in Regensburg mit Altstadt, Etagen und engen Zugängen ist das ein echter Vorteil.",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function BlogUmzugsunternehmenRegensburgAuswahlPage() {
           {
             title: "Nicht nur auf die erste Zahl schauen",
             paragraphs: [
-              "Ein Umzug besteht nicht nur aus Kartons und Kilometern. Etagen, Laufwege, Haltezone, Möbelmontage, Terminlage und Zusatzleistungen verändern den Aufwand schnell.",
+              "Ein Umzug besteht nicht nur aus Kartons und Kilometern. Etagen, Laufwege, Zugang, Möbelmontage, Terminlage und Zusatzleistungen verändern den Aufwand schnell.",
               "Ein gutes Umzugsunternehmen erklärt diese Punkte früh und macht sichtbar, was bereits eingeschätzt werden kann und was erst nach kurzer Vorprüfung belastbar wird.",
             ],
           },
@@ -102,14 +102,14 @@ export default function BlogUmzugsunternehmenRegensburgAuswahlPage() {
           {
             title: "Warum lokale Erfahrung in Regensburg hilft",
             paragraphs: [
-              "In Regensburg spielen Altstadt, enge Zufahrten, Halteverbotszonen und kurze Wegefenster oft eine größere Rolle als in einfachen Neubaugebieten. Regionale Kenntnis spart Rückfragen und macht die Vorprüfung glaubwürdiger.",
+              "In Regensburg spielen Altstadt, enge Zufahrten und kurze Wegefenster oft eine größere Rolle als in einfachen Neubaugebieten. Regionale Kenntnis spart Rückfragen und macht die Vorprüfung glaubwürdiger.",
               "Kurz gesagt: lieber gscheid geplant als später improvisiert. Genau das schafft mehr Ruhe für Kunden und Team.",
             ],
           },
         ]}
         highlightPoints={[
           "Ein sauberer Preisrahmen ist meist seriöser als ein schneller Festpreis-Klick.",
-          "Regionale Kenntnis hilft bei Zugang, Haltezone und Timing in Regensburg.",
+          "Regionale Kenntnis hilft bei Zugang, Laufwegen und Timing in Regensburg.",
           "Gute Anbieter machen Aufwand, Grenzen und nächsten Schritt sichtbar.",
         ]}
         ctas={[

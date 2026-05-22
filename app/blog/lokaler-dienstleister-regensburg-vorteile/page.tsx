@@ -81,7 +81,7 @@ export default function BlogLokalerDienstleisterPage() {
       title: "Regional heißt oft: weniger Umweg, mehr Klarheit",
       paragraphs: [
        "Wenn Anbieter, Einsatzgebiet und Kunde näher beieinander liegen, wird vieles einfacher. Besichtigung, Rückruf, kleine Planänderungen und operative Einordnung laufen oft schneller und verständlicher.",
-       "Gerade in Regensburg und Umgebung kann ein lokaler Partner viel direkter einschätzen, was bei Zufahrt, Haltezone, Altbau, Innenstadtlage oder Terminfenster realistisch ist.",
+       "Gerade in Regensburg und Umgebung kann ein lokaler Partner viel direkter einschätzen, was bei Zufahrt, Zugang, Altbau, Innenstadtlage oder Terminfenster realistisch ist.",
       ],
      },
      {

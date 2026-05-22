@@ -216,7 +216,7 @@ export function ServiceAuthorityFaq({ service }: { service: ServiceAuthorityKey 
 
     <div className="mt-8 grid gap-4 rounded-[2rem] border border-blue-100 bg-[#f8fbff] p-5 shadow-sm md:grid-cols-[1fr_auto_auto] md:items-center">
      <p className="text-sm leading-relaxed text-slate-600">
-      Nach den Entscheidungsfragen führt der beste nächste Schritt in eine strukturierte Anfrage oder in eine kurze Rückfrage. So bleibt aus SEO-Sicht nicht nur die Antwort sichtbar, sondern auch der passende Anschluss.
+      Nach den Entscheidungsfragen führt der beste nächste Schritt in eine strukturierte Anfrage oder in eine kurze Rückfrage. So bleibt nicht nur die Antwort sichtbar, sondern auch der passende Anschluss.
      </p>
      <Link
       href="/buchung"

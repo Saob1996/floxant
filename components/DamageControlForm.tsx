@@ -53,7 +53,7 @@ const openItemOptions = [
   "Entrümpelung",
   "Schlüsselübergabe",
   "Übergabeprotokoll / Übergabeakte",
-  "Halteverbot",
+  "Zugang / Parken",
   "Fahrzeugbedarf",
   "Rückfahrt / Leerfahrt",
   "Fotos vorhanden",
@@ -66,7 +66,7 @@ const addonOptions = [
   "Entsorgung",
   "Schlüsselübergabe",
   "Übergabeakte",
-  "Halteverbotszone",
+  "Zugang / Parken",
   "Leerfahrt/Rückfahrt",
   "Premium/Rückruf",
 ];
@@ -93,7 +93,7 @@ const damageDefaults = {
     urgency: "Morgen",
     situation: "move_kipped",
     openItems: ["Transport", "Tragen", "Möbel / Kartons", "Fahrzeugbedarf", "Fotos vorhanden"],
-    addons: ["Halteverbotszone", "Leerfahrt/Rückfahrt", "Premium/Rückruf"],
+    addons: ["Zugang / Parken", "Leerfahrt/Rückfahrt", "Premium/Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, mein Umzug läuft nicht wie geplant. Ort/Strecke: [Ort], Deadline: [Datum]. Fotos und Umfang kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },

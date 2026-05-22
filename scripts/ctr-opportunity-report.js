@@ -63,7 +63,7 @@ const CLUSTERS = [
     id: "signature",
     label: "Signature Services",
     target: "/schluesseluebergabe",
-    patterns: ["schluesseluebergabe", "schlüsselübergabe", "wohnungsuebergabe", "wohnungsübergabe", "uebergabeprotokoll", "übergabeprotokoll", "halteverbotszone", "leerfahrt", "rueckfahrt", "rückfahrt", "umzug und reinigung"],
+    patterns: ["schluesseluebergabe", "schlüsselübergabe", "wohnungsuebergabe", "wohnungsübergabe", "uebergabeprotokoll", "übergabeprotokoll", "leerfahrt", "rueckfahrt", "rückfahrt", "umzug und reinigung"],
   },
   {
     id: "brand",

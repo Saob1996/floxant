@@ -312,7 +312,7 @@ export function CommercialCleaningLeadForm() {
      <li>Klare Einordnung nach Objektart, Fläche, Turnus und Zugangslogik</li>
      <li>Sauber getrennt von privaten Kleinstaufträgen</li>
      <li>Direkte Übergabe ins Dashboard ohne Pflicht-Rechner</li>
-     <li>Kundenbudget bleibt sichtbar, überschreibt aber nie die interne Prüfung</li>
+     <li>Kundenbudget bleibt sichtbar, ersetzt aber nie die fachliche Prüfung</li>
     </ul>
 
     <div className="mt-8 rounded-[1.5rem] border border-slate-200 bg-white p-5">
