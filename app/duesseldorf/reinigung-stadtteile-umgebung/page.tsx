@@ -12,53 +12,53 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildServiceJsonLd, buildWebPage
 export const revalidate = 3600;
 
 const path = "/duesseldorf/reinigung-stadtteile-umgebung";
-const title = "Reinigung Düsseldorf Stadtteile & Umgebung";
+const title = "Reinigungsfirma Düsseldorf für Stadtteile und Umgebung";
 const description =
-  "Reinigung in Düsseldorf nach Stadtteil und Umgebung: Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen, Neuss, Ratingen, Meerbusch, Mettmann und Duisburg.";
+  "Reinigungsfirma Düsseldorf für Büro, Hotel, Wohnung und Objekt: Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, Neuss, Ratingen, Meerbusch, Mettmann und Duisburg.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path,
-    title: "Reinigung Düsseldorf Stadtteile & Umgebung | FLOXANT",
+    title: "Reinigungsfirma Düsseldorf Stadtteile & Umgebung | FLOXANT",
     description,
   });
 }
 
 const districtGroups = [
   {
-    title: "Innenstadt und zentrale Lagen",
+    title: "Innenstadt und zentrale Geschäftslagen",
     areas: ["Altstadt", "Stadtmitte", "Pempelfort", "Carlstadt", "Derendorf", "Golzheim"],
-    text: "Zentrale Lagen brauchen kurze Abstimmung zu Lieferzone, Zugang, Etage, Hausordnung und Zeitfenster. Besonders bei Büros, Kanzleien, Hotels und Übergabereinigung entscheidet die Lage über den Aufwand.",
+    text: "In zentralen Geschäftslagen zählen planbare Zeitfenster, diskreter Zugang, Lieferzone, Etage, Hausordnung und ein verlässlicher Ansprechpartner. Besonders bei Büros, Kanzleien, Hotels und Übergabereinigung entscheidet diese Vorprüfung über Qualität, Ablauf und Preisrahmen.",
   },
   {
-    title: "Bilk, MedienHafen und linksrheinische Nähe",
+    title: "Bilk, MedienHafen und linksrheinische Objekte",
     areas: ["Bilk", "Unterbilk", "MedienHafen", "Oberkassel", "Lörick", "Heerdt"],
-    text: "Hier sind gemischte Objekte häufig: Wohnung, Apartment, Büro, Praxis, Hotelnähe oder Gewerbefläche. Fotos, Flächenangabe und gewünschter Turnus helfen, die Anfrage schnell einzuordnen.",
+    text: "Hier treffen Wohnungen, Apartments, Büros, Praxen, Hotellerie und Gewerbeflächen häufig aufeinander. Für eine seriöse Einschätzung braucht FLOXANT Fläche, Nutzung, Turnus, Boden- und Sanitärbereiche, Fotos und den gewünschten Qualitätsstandard.",
   },
   {
-    title: "Süd, Ost und ruhige Wohnlagen",
+    title: "Süd, Ost und anspruchsvolle Wohnlagen",
     areas: ["Benrath", "Eller", "Gerresheim", "Grafenberg", "Lierenfeld", "Kaiserswerth"],
-    text: "Bei Wohnungsreinigung, Endreinigung, Kellerreinigung und Treppenhausreinigung zählen Zugang, Parkmöglichkeit, Keller-/Nebenräume und gewünschter Fertigstellungstermin.",
+    text: "Bei Wohnungsreinigung, Endreinigung, Kellerreinigung und Treppenhausreinigung zählen Zustand, Zugang, Parkmöglichkeit, Keller- und Nebenräume sowie der gewünschte Fertigstellungstermin. Fotos verhindern Missverständnisse und beschleunigen die Rückmeldung.",
   },
   {
-    title: "Nahe Umgebung",
+    title: "Nahe Umgebung mit Düsseldorfer Bezug",
     areas: ["Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg", "Hilden", "Erkrath"],
-    text: "Anfragen aus der Nähe werden nach Ort, Objekt, Termin, Fotos und Kapazität geprüft. FLOXANT bleibt dabei klar auf Reinigung und Düsseldorfer Entsorgung begrenzt.",
+    text: "Anfragen aus der Umgebung werden professionell nach Ort, Objektart, Termin, Fotos, Zugang und Kapazität geprüft. FLOXANT bleibt dabei klar auf Reinigung und Düsseldorfer Entsorgung begrenzt; Umzug und Transport werden nicht als Düsseldorfer Leistung beworben.",
   },
 ] as const;
 
 const faqItems = [
   {
-    q: "Welche Düsseldorfer Stadtteile sind für Reinigung relevant?",
-    a: "FLOXANT prüft Reinigungsanfragen unter anderem für Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen, Derendorf, Benrath, Gerresheim und Kaiserswerth.",
+    q: "Welche Düsseldorfer Stadtteile sind für professionelle Reinigung relevant?",
+    a: "FLOXANT prüft Reinigungsanfragen unter anderem für Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen, Derendorf, Benrath, Gerresheim und Kaiserswerth. Wichtig sind Objektart, Fläche, Zustand, Turnus und Zugang.",
   },
   {
     q: "Gilt das auch für Neuss, Ratingen, Meerbusch, Mettmann und Duisburg?",
     a: "Ja, Anfragen aus der direkten Umgebung können geprüft werden, wenn Objektart, Ort, Fläche, Termin, Zugang und Fotos vorliegen.",
   },
   {
-    q: "Warum ist der Stadtteil für den Preis wichtig?",
-    a: "Parkmöglichkeit, Lieferzone, Etage, Aufzug, Hausordnung, Zeitfenster und Objektart verändern den Aufwand. Deshalb wird nicht pauschal nach Stadtname kalkuliert.",
+    q: "Warum ist der Stadtteil für Angebot und Ablauf wichtig?",
+    a: "Parkmöglichkeit, Lieferzone, Etage, Aufzug, Hausordnung, Zeitfenster, Objektart und gewünschter Standard verändern den Aufwand. Deshalb kalkuliert FLOXANT nicht pauschal nach Stadtname, sondern nach prüfbaren Objektdaten.",
   },
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
@@ -108,13 +108,13 @@ export default function DuesseldorfStadtteileUmgebungPage() {
       <section className="mx-auto max-w-7xl rounded-[1.5rem] border border-white/10 bg-slate-950 p-6 text-white shadow-[0_24px_70px_rgba(7,17,29,0.28)] sm:p-8">
         <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-[11px] font-black uppercase tracking-normal text-cyan-100">
           <Navigation className="h-4 w-4" />
-          Düsseldorf Stadtteile und Nähe
+          Reinigungsfirma Düsseldorf
         </div>
         <h1 className="mt-6 max-w-4xl text-[clamp(2.25rem,5vw,4.9rem)] font-black leading-[0.98] tracking-tight">
-          Reinigung in Düsseldorf, den Stadtteilen und der nahen Umgebung
+          Professionelle Reinigung in Düsseldorf, den Stadtteilen und der nahen Umgebung
         </h1>
         <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200">
-          FLOXANT stärkt Düsseldorf nicht mit leeren Städte-Blöcken, sondern mit echten lokalen Entscheidungspunkten: Stadtteil, Objektart, Zugang, Fotos, Flächen, Turnus, Zeitfenster und Nähe zu Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg.
+          FLOXANT steht in Düsseldorf für klar geprüfte Reinigung statt pauschaler Versprechen. Für Büro, Hotel, Wohnung, Kanzlei, Praxis, Treppenhaus oder Gewerbefläche werden Stadtteil, Objektart, Zugang, Fotos, Fläche, Turnus, Zeitfenster und Nähe zu Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg sauber eingeordnet.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link href="/duesseldorf/reinigung#kontakt" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-slate-100">
@@ -156,7 +156,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
               <Building2 className="mb-3 h-5 w-5 text-cyan-700" />
               {service.label}
               <span className="mt-2 flex items-center gap-1 text-xs text-slate-500 group-hover:text-cyan-800">
-                Stadtteil prüfen <ArrowRight className="h-3.5 w-3.5" />
+                Objekt prüfen <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>
           ))}
@@ -177,7 +177,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
 
       <section className="mx-auto mt-8 max-w-7xl rounded-[1.25rem] border border-slate-200 bg-white p-6 shadow-sm">
         <p className="text-sm leading-7 text-slate-700">
-          Adresse Düsseldorf: {DUESSELDORF_CLEANING.address.streetAddress}, {DUESSELDORF_CLEANING.address.postalCode} {DUESSELDORF_CLEANING.address.city}. Anfragen aus Düsseldorf und Umgebung werden nach Objekt, Stadtteil, Umfang, Fotos und Termin geprüft.
+          Adresse Düsseldorf: {DUESSELDORF_CLEANING.address.streetAddress}, {DUESSELDORF_CLEANING.address.postalCode} {DUESSELDORF_CLEANING.address.city}. Anfragen aus Düsseldorf und Umgebung werden nach Objektart, Stadtteil, Umfang, Fotos, Zugang, Turnus und Termin geprüft, damit Kunden eine belastbare und professionelle Rückmeldung erhalten.
         </p>
       </section>
     </main>

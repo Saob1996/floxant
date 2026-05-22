@@ -21,6 +21,8 @@ export const CORE_SERVICES = [
   "firmenentsorgung",
   "private-client-service",
   "reinigung",
+  "notfallreinigung-24h",
+  "reinigung-nach-veranstaltung",
   "entruempelung",
   "kleintransporte",
 ] as const;
@@ -277,6 +279,8 @@ export const HUB_PAGES = [
   "nachlass-raeumung-regensburg",
   "diskreter-umzug-trennung-scheidung",
   "schadensbegrenzung",
+  "notfallreinigung-24h",
+  "reinigung-nach-veranstaltung",
   "keller-muellraum-rettung-regensburg",
   "rueckfahrt-boerse",
   "uebergabeakte",

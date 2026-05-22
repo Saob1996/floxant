@@ -63,6 +63,8 @@ export const company = {
   coreServices: [
     "Umzug",
     "Reinigung",
+    "Notfallreinigung 24h",
+    "Reinigung nach Veranstaltung",
     "Entrümpelung",
     "Büroumzug",
     "Einlagerung",

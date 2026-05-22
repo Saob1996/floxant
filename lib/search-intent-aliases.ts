@@ -45,13 +45,13 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
   {
     id: "cleaning-regensburg-bayern",
     market: "regensburg-bayern",
-    serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Übergabereinigung"],
-    canonicalPages: ["/reinigung-regensburg", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
+    serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Übergabereinigung", "Notfallreinigung", "Reinigung nach Veranstaltung"],
+    canonicalPages: ["/reinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
     aliases: [
       {
         language: "en",
         label: "Englische Suchbegriffe",
-        terms: ["cleaning service Regensburg", "cleaning company Regensburg", "office cleaning Regensburg", "end cleaning Bavaria", "apartment handover cleaning Regensburg"],
+        terms: ["cleaning service Regensburg", "emergency cleaning Regensburg", "event cleaning Bavaria", "party cleaning Regensburg", "office cleaning Regensburg", "end cleaning Bavaria", "apartment handover cleaning Regensburg"],
       },
       {
         language: "ru",
@@ -184,6 +184,76 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     ],
   },
 ];
+
+multilingualSearchIntentGroups.push({
+  id: "duesseldorf-cleaning-b2b-dominance",
+  market: "duesseldorf-cleaning",
+  serviceScope: [
+    "Reinigungsfirma Düsseldorf",
+    "Büroreinigung Düsseldorf",
+    "B2B-Reinigung Düsseldorf",
+    "Firmenreinigung Düsseldorf",
+    "Gewerbereinigung Düsseldorf",
+    "Hotelreinigung Düsseldorf",
+    "Kanzleireinigung Düsseldorf",
+    "Praxisreinigung Düsseldorf",
+    "Kellerreinigung Düsseldorf",
+    "Entsorgung Düsseldorf",
+    "Endreinigung Düsseldorf",
+    "Reinigung Altstadt Düsseldorf",
+    "Reinigung Stadtmitte Düsseldorf",
+    "Reinigung Pempelfort Düsseldorf",
+    "Reinigung Bilk Düsseldorf",
+    "Reinigung Oberkassel Düsseldorf",
+    "Reinigung MedienHafen Düsseldorf",
+    "Reinigung Neuss",
+    "Reinigung Ratingen",
+    "Reinigung Meerbusch",
+    "Reinigung Mettmann",
+    "Reinigung Duisburg",
+  ],
+  canonicalPages: [
+    "/duesseldorf/reinigung",
+    "/duesseldorf/reinigung-stadtteile-umgebung",
+    "/duesseldorf/vielleicht-guenstiger",
+    "/duesseldorf/bueroreinigung",
+    "/duesseldorf/b2b-reinigung",
+    "/duesseldorf/firmenreinigung",
+    "/duesseldorf/gewerbereinigung",
+    "/duesseldorf/hotelreinigung",
+    "/duesseldorf/kanzleireinigung",
+    "/duesseldorf/praxisreinigung",
+    "/duesseldorf/kellerreinigung",
+    "/duesseldorf/entsorgung",
+    "/duesseldorf/grundreinigung",
+    "/duesseldorf/treppenhausreinigung",
+    "/duesseldorf/endreinigung",
+    "/duesseldorf/wohnungsreinigung",
+    "/reinigung-moeblierte-wohnung-duesseldorf",
+  ],
+  excludedIntents: [
+    "Umzug Düsseldorf",
+    "Transport Düsseldorf",
+    "Büroumzug Düsseldorf",
+    "moving Düsseldorf",
+    "relocation Düsseldorf",
+  ],
+  aliases: [
+    {
+      language: "en",
+      label: "Englische Suchbegriffe",
+      terms: [
+        "cleaning company Düsseldorf",
+        "commercial cleaning Düsseldorf",
+        "office cleaning Düsseldorf",
+        "hotel cleaning Düsseldorf",
+        "law office cleaning Düsseldorf",
+        "practice cleaning Düsseldorf",
+        "cleaning Neuss Ratingen Meerbusch",
+      ],
+    },
+  ],
+});
 
 export function getSchemaKnowAboutAliases(limit = 60) {
   return multilingualSearchIntentGroups

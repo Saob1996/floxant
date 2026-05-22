@@ -162,6 +162,8 @@ export default async function ReinigungPillarPage() {
         serviceLinksTitle="Wichtige passende Einstiege rund um Reinigung"
         serviceLinks={[
           { href: "/rechner", label: "Reinigung direkt kalkulieren" },
+          { href: "/notfallreinigung-24h", label: "Notfallreinigung 24h anfragen" },
+          { href: "/reinigung-nach-veranstaltung", label: "Reinigung nach Veranstaltung oder Party" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/express-anfrage", label: "Kurzfristige Reinigung anfragen" },
           { href: "/anfrage-mit-preisrahmen", label: "Reinigung mit Preisrahmen planen" },

@@ -248,7 +248,7 @@ function priorityForRoute(route: string): string {
   if (!route) return "1.0";
   if (route === "service-graph.json") return "0.82";
   if (route === "llms.txt") return "0.82";
-  if (["umzug", "reinigung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
     if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";
@@ -283,7 +283,7 @@ function priorityForRoute(route: string): string {
       "duesseldorf/endreinigung",
     ].includes(route)
   ) {
-    return "0.82";
+    return "0.88";
   }
   if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) {
     return "0.35";
@@ -326,7 +326,7 @@ function changefreqForRoute(route: string): string {
     route === "duesseldorf/b2b-reinigung" ||
     route === "duesseldorf/entsorgung"
   ) return "weekly";
-  if (route.startsWith("duesseldorf/")) return "monthly";
+  if (route.startsWith("duesseldorf/")) return "weekly";
   if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "weekly";
   if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "yearly";
   return "weekly";

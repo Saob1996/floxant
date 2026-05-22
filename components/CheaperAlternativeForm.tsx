@@ -83,7 +83,7 @@ export function CheaperAlternativeForm({
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        `Hallo FLOXANT, ich möchte prüfen lassen, ob eine günstigere oder passendere Alternative möglich ist. Es geht um ${selectedServiceLabel} in ${region === "duesseldorf" ? "Düsseldorf" : "[Ort]"}. Angebot/Fotos/Preis kann ich senden.`,
+        `Hallo FLOXANT, ich möchte prüfen lassen, ob eine wirtschaftlichere oder passendere Alternative möglich ist. Es geht um ${selectedServiceLabel} in ${region === "duesseldorf" ? "Düsseldorf" : "[Ort]"}. Angebot, Fotos und Preis kann ich senden.`,
       ),
     [region, selectedServiceLabel],
   );
@@ -203,8 +203,8 @@ export function CheaperAlternativeForm({
           <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-200">Angebots-Prüfstand</p>
           <h2 className="mt-2 text-2xl font-black tracking-[-0.04em]">Angebot senden und Alternative prüfen lassen</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-            Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang und Termin. FLOXANT prüft, ob eine
-            günstigere, klarere oder passendere Lösung nach Verfügbarkeit möglich ist.
+            Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang und Termin. FLOXANT prüft, ob Preis,
+            Leistung, Zeitfenster und Objektanforderung zusammenpassen und ob eine wirtschaftlichere Alternative möglich ist.
           </p>
         </div>
         <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-[0.12em]">
@@ -218,7 +218,7 @@ export function CheaperAlternativeForm({
         <div className="flex items-start gap-3">
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
           <p>
-            FLOXANT prüft, ob auf Basis von Angebot, Ort, Termin, Umfang, Fotos und Kapazität eine günstigere,
+            FLOXANT prüft, ob auf Basis von Angebot, Ort, Termin, Umfang, Fotos und Kapazität eine wirtschaftlichere,
             klarere oder passendere Alternative möglich ist. Es gibt keine Preisgarantie und keine Abwertung anderer Anbieter.
           </p>
         </div>
@@ -360,7 +360,7 @@ export function CheaperAlternativeForm({
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Angebot, Preisrahmen, Ort, Termin, Umfang und Verfügbarkeit. Wenn eine günstigere oder passendere Alternative möglich ist oder Rückfragen nötig sind, melden wir uns.
+            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Angebot, Preisrahmen, Ort, Termin, Umfang und Verfügbarkeit. Wenn eine wirtschaftlichere oder passendere Alternative möglich ist oder Rückfragen nötig sind, melden wir uns.
           </div>
         ) : null}
 

@@ -116,13 +116,13 @@ export function DuesseldorfServicePage({
                 Schnelle B2B-Rückmeldung
               </div>
               <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-                Mehr Chancen auf Kontakt: kurze Anfrage mit Objekt, Fläche und Fotos
+                Geschäftliche Reinigungsanfrage direkt prüfbar machen
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-700">
-                Für Hotels, Büros, Firmen, Kanzleien, Praxen und Gewerbeflächen reicht für den ersten
-                Schritt eine klare Kurzinfo: Objektart, Düsseldorfer Stadtteil, ungefähre Fläche,
-                gewünschter Turnus, Zeitfenster und Fotos. Damit kann FLOXANT schneller prüfen,
-                ob der Auftrag passt und welcher nächste Schritt sinnvoll ist.
+                Für Hotels, Büros, Firmen, Kanzleien, Praxen und Gewerbeflächen zählt eine schnelle,
+                belastbare Einordnung. Senden Sie Objektart, Düsseldorfer Stadtteil, Fläche,
+                gewünschten Turnus, Zeitfenster und Fotos. So kann FLOXANT professionell prüfen,
+                ob der Auftrag realistisch planbar ist und wie eine saubere Angebotsgrundlage entsteht.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
@@ -138,12 +138,13 @@ export function DuesseldorfServicePage({
                 </a>
                 <a
                   href="#kontakt"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] border border-slate-200 bg-slate-950 px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] border border-slate-800 bg-slate-950 px-5 text-sm font-black !text-white shadow-[0_10px_24px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-slate-800"
                   data-event="click_b2b_contact_anchor"
                   data-region="duesseldorf"
+                  style={{ color: "#ffffff" }}
                 >
-                  Kontakt öffnen
-                  <ArrowRight className="h-4 w-4" />
+                  Direkt Kontakt aufnehmen
+                  <ArrowRight className="h-4 w-4 text-white" />
                 </a>
               </div>
             </article>

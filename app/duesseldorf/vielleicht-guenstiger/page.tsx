@@ -9,14 +9,14 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildServiceJsonLd, buildWebPage
 export const revalidate = 3600;
 
 const path = "/duesseldorf/vielleicht-guenstiger";
-const title = "Das kann vielleicht günstiger sein in Düsseldorf";
+const title = "Reinigungsangebot Düsseldorf professionell prüfen lassen";
 const description =
-  "Düsseldorfer Reinigungsangebot hochladen und prüfen lassen: FLOXANT vergleicht Preis, Fläche, Turnus, Fotos und kann eine passendere Alternative anbieten.";
+  "Reinigungsangebot aus Düsseldorf hochladen: FLOXANT prüft Preis, Leistungsumfang, Fläche, Turnus, Fotos und eine mögliche passendere Alternative.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path,
-    title: "Angebot prüfen Düsseldorf | Vielleicht günstiger | FLOXANT",
+    title: "Reinigungsangebot prüfen Düsseldorf | Alternative | FLOXANT",
     description,
   });
 }
@@ -38,12 +38,12 @@ const areas = [
 
 const faqItems = [
   {
-    q: "Kann FLOXANT ein Reinigungsangebot aus Düsseldorf prüfen?",
-    a: "Ja. Sie können ein vorhandenes Angebot, Fotos oder die wichtigsten Eckdaten senden. FLOXANT prüft Preis, Leistung, Fläche, Turnus, Zeitfenster und offene Punkte praktisch, nicht rechtlich.",
+    q: "Kann FLOXANT ein Reinigungsangebot aus Düsseldorf fachlich einordnen?",
+    a: "Ja. Sie können ein vorhandenes Angebot, Fotos oder die wichtigsten Eckdaten senden. FLOXANT prüft Preis, Leistungsumfang, Fläche, Turnus, Zeitfenster, Zugang und offene Punkte aus praktischer Sicht eines Reinigungsdienstleisters.",
   },
   {
-    q: "Kann es wirklich günstiger werden?",
-    a: "Möglich, aber nicht garantiert. Manchmal ist eine günstigere oder klarere Alternative möglich, manchmal zeigt die Prüfung, dass der vorhandene Preis realistisch ist oder wichtige Leistungen fehlen.",
+    q: "Kann eine Alternative wirtschaftlicher sein?",
+    a: "Möglich, aber nicht garantiert. Entscheidend sind Fläche, Zustand, Turnus, Zeitfenster, Zugang, Fotos und Kapazität. Manchmal ist eine wirtschaftlichere Lösung möglich, manchmal zeigt die Prüfung, dass der vorhandene Preis nachvollziehbar ist.",
   },
   {
     q: "Gilt diese Seite für Neuss, Ratingen, Meerbusch, Mettmann und Duisburg?",
@@ -62,7 +62,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung Düsseldorf", item: "/duesseldorf/reinigung" },
-        { name: "Vielleicht günstiger", item: path },
+        { name: "Angebot prüfen Düsseldorf", item: path },
       ]),
       buildWebPageJsonLd({
         name: title,
@@ -71,7 +71,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
         about: [
           "Angebot prüfen Düsseldorf",
           "Reinigungsangebot Düsseldorf prüfen",
-          "Reinigungsangebot günstiger prüfen",
+          "Reinigungsangebot wirtschaftlich prüfen",
           "Düsseldorf Reinigung Alternative",
         ],
         potentialActions: [{ name: "Angebot hochladen", target: `${path}#guenstiger-form`, type: "ContactAction" }],
@@ -79,7 +79,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
       buildServiceJsonLd({
         name: "Reinigungsangebot Düsseldorf prüfen",
         description:
-          "FLOXANT prüft Reinigungsangebote in Düsseldorf und Umgebung nach Preis, Umfang, Fläche, Turnus, Fotos, Zugang und Termin.",
+          "FLOXANT prüft Reinigungsangebote in Düsseldorf und Umgebung nach Preis, Leistungsumfang, Fläche, Turnus, Fotos, Zugang und Termin.",
         path,
         serviceType: "Angebotsprüfung für Reinigung Düsseldorf",
         areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg"],
@@ -99,16 +99,16 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             Düsseldorf Angebot prüfen
           </div>
           <h1 className="mt-6 text-[clamp(2.25rem,5vw,4.8rem)] font-black leading-[0.98] tracking-tight">
-            Das kann vielleicht günstiger sein.
+            Reinigungsangebot prüfen lassen, bevor Sie zusagen.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200">
-            Wenn Sie bereits ein Reinigungsangebot aus Düsseldorf oder der Nähe haben, laden Sie es hoch oder senden Sie die Eckdaten. FLOXANT prüft, ob eine günstigere, klarere oder passendere Alternative möglich ist.
+            Wenn Sie bereits ein Angebot für Büroreinigung, Hotelreinigung, Grundreinigung oder Wohnungsreinigung in Düsseldorf haben, laden Sie es hoch oder senden Sie die Eckdaten. FLOXANT prüft, ob Preis, Leistung und Ablauf zusammenpassen und ob eine klarere oder wirtschaftlichere Alternative möglich ist.
           </p>
           <div className="mt-7 grid gap-3">
             {[
-              "Angebot, Screenshot oder PDF hochladen",
-              "Fläche, Turnus, Stadtteil, Zeitfenster und Fotos ergänzen",
-              "FLOXANT prüft eine mögliche Alternative ohne Preisgarantie",
+              "Angebot, Screenshot oder PDF sicher übermitteln",
+              "Fläche, Turnus, Stadtteil, Zugang, Zeitfenster und Fotos ergänzen",
+              "FLOXANT prüft Preis, Umfang und eine mögliche Alternative ohne Preisgarantie",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 py-3 text-sm font-bold text-slate-100">
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
@@ -132,7 +132,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           defaultRegion="duesseldorf"
           defaultService="reinigung"
           defaultCityOrZip="Düsseldorf"
-          defaultMessage="Ich habe ein Reinigungsangebot und möchte prüfen lassen, ob FLOXANT eine günstigere, klarere oder passendere Alternative anbieten kann."
+          defaultMessage="Ich habe ein Reinigungsangebot und möchte prüfen lassen, ob FLOXANT eine wirtschaftlichere, klarere oder passendere Alternative anbieten kann."
           sourceComponent="duesseldorf_cheaper_alternative_page"
           landingPageFallback={path}
         />
@@ -145,7 +145,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             Stadtteil, Zugang und Nähe entscheiden mit
           </h2>
           <p className="mt-4 text-sm leading-7 text-slate-700">
-            Bei Reinigungsangeboten zählt nicht nur der Quadratmeterpreis. Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen oder Derendorf haben andere Park- und Zugangslogik als Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg. Deshalb prüft FLOXANT Angebot, Ort, Termin, Fotos und Umfang zusammen.
+            Bei professioneller Reinigung zählt nicht nur der Quadratmeterpreis. Entscheidend sind Objektart, gewünschter Qualitätsstandard, Turnus, Zugang, Boden- und Sanitärflächen, Zeitfenster und Dokumentation. Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen oder Derendorf haben andere Park- und Zugangslogik als Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg. Deshalb prüft FLOXANT Angebot, Ort, Termin, Fotos und Umfang zusammen.
           </p>
         </article>
         <article className="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 p-6">
@@ -167,7 +167,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           Wichtig
         </div>
         <p className="mt-3 text-sm leading-7 text-slate-700">
-          Diese Seite ist bewusst für Düsseldorf-Reinigung und nahe Reinigungsanfragen gebaut. Sie ersetzt keine Rechtsberatung, garantiert keinen niedrigeren Preis und bewertet keine andere Firma. Sie schafft einen schnellen Weg, damit Kunden FLOXANT mit Angebot, Fotos und Preisrahmen kontaktieren können.
+          Diese Seite ist für Düsseldorfer Reinigungsangebote gebaut. Sie ersetzt keine Rechtsberatung, garantiert keinen niedrigeren Preis und bewertet keine andere Firma. Sie schafft einen professionellen Anfrageweg, damit Unternehmen, Verwaltungen, Hotels und Privatkunden FLOXANT mit Angebot, Fotos, Objektangaben und Preisrahmen kontaktieren können.
         </p>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {faqItems.map((item) => (

@@ -36,13 +36,25 @@ export const SEO_MONEY_ROUTES = [
  "/duesseldorf/reinigung-stadtteile-umgebung",
  "/duesseldorf/vielleicht-guenstiger",
  "/duesseldorf/bueroreinigung",
+ "/duesseldorf/b2b-reinigung",
+ "/duesseldorf/firmenreinigung",
+ "/duesseldorf/gewerbereinigung",
  "/duesseldorf/hotelreinigung",
+ "/duesseldorf/kanzleireinigung",
+ "/duesseldorf/praxisreinigung",
+ "/duesseldorf/krankenhausreinigung",
+ "/duesseldorf/kellerreinigung",
+ "/duesseldorf/entsorgung",
+ "/duesseldorf/wohnungsreinigung",
  "/duesseldorf/grundreinigung",
  "/duesseldorf/treppenhausreinigung",
+ "/duesseldorf/endreinigung",
  "/buchung",
  "/rechner",
  "/umzug",
  "/reinigung",
+ "/notfallreinigung-24h",
+ "/reinigung-nach-veranstaltung",
  "/gewerbereinigung-regensburg",
  "/entruempelung",
  "/bueroumzug",
@@ -86,11 +98,23 @@ export const SEO_SUPPORT_ROUTES = [
  "/duesseldorf/reinigung-stadtteile-umgebung",
  "/duesseldorf/vielleicht-guenstiger",
  "/duesseldorf/bueroreinigung",
+ "/duesseldorf/b2b-reinigung",
+ "/duesseldorf/firmenreinigung",
+ "/duesseldorf/gewerbereinigung",
  "/duesseldorf/hotelreinigung",
+ "/duesseldorf/kanzleireinigung",
+ "/duesseldorf/praxisreinigung",
+ "/duesseldorf/krankenhausreinigung",
+ "/duesseldorf/kellerreinigung",
+ "/duesseldorf/entsorgung",
+ "/duesseldorf/wohnungsreinigung",
  "/duesseldorf/grundreinigung",
  "/duesseldorf/treppenhausreinigung",
+ "/duesseldorf/endreinigung",
  "/buchung",
  "/gewerbereinigung-regensburg",
+ "/notfallreinigung-24h",
+ "/reinigung-nach-veranstaltung",
  "/beiladung",
  "/umzug-mit-reinigung",
  "/express-anfrage",
@@ -231,6 +255,20 @@ const moneySnippets: Record<string, Snippet> = {
    "Reinigung in Regensburg und Bayern: Wohnung, Büro, Endreinigung und Übergabe mit Fläche, Zustand, Fotos, Termin und Budget prüfen lassen.",
   cluster: "money",
   intent: "Reinigungsfirma für Übergabe oder Objektservice finden",
+ },
+ "/notfallreinigung-24h": {
+  title: "Notfallreinigung 24h | schnell Fotos senden",
+  description:
+   "Dringende Reinigung für Wohnung, Büro, Gewerbe, Veranstaltung oder Übergabe: Ort, Fotos, Termin und Zugang senden. FLOXANT prüft schnell.",
+  cluster: "money",
+  intent: "Dringende Reinigung bei Zeitdruck, Party, Übergabe oder Objektproblem anfragen",
+ },
+ "/reinigung-nach-veranstaltung": {
+  title: "Reinigung nach Veranstaltung & Party | FLOXANT",
+  description:
+   "Reinigung nach Party, Firmenfeier, Empfang, Seminar oder Event: Böden, Sanitär, Küche, Müll, Geruch und Übergabe professionell prüfen lassen.",
+  cluster: "money",
+  intent: "Reinigung nach Veranstaltung, Party, Firmenfeier oder Anlass anfragen",
  },
  "/gewerbereinigung-regensburg": {
   title: "Gewerbereinigung Regensburg | Büro, Praxis, Kanzlei",
@@ -461,6 +499,30 @@ moneySnippets["/duesseldorf/bueroreinigung"] = {
  intent: "B2B-Reinigung in Düsseldorf für Firma, Büro oder Hotel anfragen",
 };
 
+moneySnippets["/duesseldorf/b2b-reinigung"] = {
+ title: "B2B-Reinigung Düsseldorf | Firma, Büro & Objekt",
+ description:
+  "B2B-Reinigung Düsseldorf für Büro, Firma, Kanzlei, Praxis, Hotel und Gewerbefläche. Stadtteil, Fläche, Turnus, Fotos und Ansprechpartner senden.",
+ cluster: "money",
+ intent: "B2B-Reinigung in Düsseldorf für kleine Unternehmen und Objektflächen anfragen",
+};
+
+moneySnippets["/duesseldorf/firmenreinigung"] = {
+ title: "Firmenreinigung Düsseldorf | Büro, Studio & Gewerbe",
+ description:
+  "Firmenreinigung in Düsseldorf für kleine Unternehmen, Studios, Agenturen und Gewerbeflächen: Fläche, Räume, Turnus, Zugang und Fotos prüfen lassen.",
+ cluster: "money",
+ intent: "Firmenreinigung in Düsseldorf für kleine Unternehmen anfragen",
+};
+
+moneySnippets["/duesseldorf/gewerbereinigung"] = {
+ title: "Gewerbereinigung Düsseldorf | Objekt & Betrieb",
+ description:
+  "Gewerbereinigung Düsseldorf für Büros, Läden, Studios, Hotels und Objektflächen. Nutzung, Fläche, Sanitär, Zeitfenster und Fotos senden.",
+ cluster: "money",
+ intent: "Gewerbereinigung in Düsseldorf für Objekt oder Betrieb anfragen",
+};
+
 moneySnippets["/duesseldorf/hotelreinigung"] = {
  title: "Hotelreinigung Düsseldorf | Lobby, Zimmer & Flure",
  description:
@@ -469,20 +531,68 @@ moneySnippets["/duesseldorf/hotelreinigung"] = {
  intent: "Hotelreinigung in Düsseldorf für Beherbergung oder Boardinghouse anfragen",
 };
 
-moneySnippets["/duesseldorf/reinigung-stadtteile-umgebung"] = {
- title: "Reinigung Düsseldorf Stadtteile & Umgebung",
+moneySnippets["/duesseldorf/kanzleireinigung"] = {
+ title: "Kanzleireinigung Düsseldorf | diskret & planbar",
  description:
-  "Reinigung in Düsseldorf, Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, Neuss, Ratingen, Meerbusch, Mettmann und Duisburg anfragen.",
+  "Kanzleireinigung in Düsseldorf für Empfang, Büros, Besprechungsräume und Sanitär: diskrete Zeitfenster, Zugang, Fläche und Fotos abstimmen.",
  cluster: "money",
- intent: "Reinigung in Düsseldorf Stadtteilen oder naher Umgebung anfragen",
+ intent: "Kanzleireinigung in Düsseldorf für Kanzlei oder Beratung anfragen",
+};
+
+moneySnippets["/duesseldorf/praxisreinigung"] = {
+ title: "Praxisreinigung Düsseldorf | Fläche sauber prüfen",
+ description:
+  "Praxisreinigung Düsseldorf für allgemeine Praxisflächen nach Absprache: Empfang, Wartebereich, Sanitär, Boden, Turnus, Zugang und Fotos senden.",
+ cluster: "money",
+ intent: "Praxisreinigung in Düsseldorf für allgemeine Flächen anfragen",
+};
+
+moneySnippets["/duesseldorf/krankenhausreinigung"] = {
+ title: "Krankenhaus-nahe Reinigung Düsseldorf | Nebenflächen",
+ description:
+  "Reinigung für Krankenhaus- und Klinik-Nebenflächen in Düsseldorf nach Prüfung: Büros, Flure, Sanitär, Aufenthaltsbereiche, Zugang und Fotos.",
+ cluster: "money",
+ intent: "Krankenhaus-nahe Reinigung in Düsseldorf für Nebenflächen prüfen lassen",
+};
+
+moneySnippets["/duesseldorf/kellerreinigung"] = {
+ title: "Kellerreinigung Düsseldorf | Keller & Nebenräume",
+ description:
+  "Kellerreinigung Düsseldorf für Keller, Abstellräume und Nebenflächen: Zustand, Fotos, Zugang, Entsorgung und Termin realistisch prüfen lassen.",
+ cluster: "money",
+ intent: "Kellerreinigung in Düsseldorf mit Fotos und Zugang anfragen",
+};
+
+moneySnippets["/duesseldorf/entsorgung"] = {
+ title: "Entsorgung Düsseldorf | Möbel, Keller & Restmengen",
+ description:
+  "Entsorgung in Düsseldorf für Möbel, Keller, Sperrmüll und kleine Firmenmengen: Fotos, Umfang, Material, Zugang und Termin senden.",
+ cluster: "money",
+ intent: "Entsorgung in Düsseldorf für Möbel, Keller oder Firmenreste anfragen",
+};
+
+moneySnippets["/duesseldorf/wohnungsreinigung"] = {
+ title: "Wohnungsreinigung Düsseldorf | Wohnung & Übergabe",
+ description:
+  "Wohnungsreinigung Düsseldorf für bewohnte oder leere Wohnungen: Küche, Bad, Böden, Flächen, Zustand, Fotos und Termin prüfen lassen.",
+ cluster: "money",
+ intent: "Wohnungsreinigung in Düsseldorf mit Fotos und Termin anfragen",
+};
+
+moneySnippets["/duesseldorf/reinigung-stadtteile-umgebung"] = {
+ title: "Reinigungsfirma Düsseldorf | Stadtteile & Umgebung",
+ description:
+  "Professionelle Reinigung in Düsseldorf für Büro, Hotel, Wohnung und Objekt: Altstadt, Stadtmitte, Pempelfort, Neuss, Ratingen und Meerbusch.",
+ cluster: "money",
+ intent: "Professionelle Reinigungsfirma in Düsseldorf Stadtteilen oder naher Umgebung anfragen",
 };
 
 moneySnippets["/duesseldorf/vielleicht-guenstiger"] = {
- title: "Angebot prüfen Düsseldorf | Vielleicht günstiger",
+ title: "Reinigungsangebot prüfen Düsseldorf | Alternative",
  description:
-  "Düsseldorfer Reinigungsangebot hochladen: FLOXANT prüft Preis, Fläche, Turnus, Fotos und eine mögliche günstigere oder passendere Alternative.",
+  "Reinigungsangebot aus Düsseldorf hochladen: FLOXANT prüft Preis, Leistung, Fläche, Turnus, Fotos und eine mögliche wirtschaftlichere Alternative.",
  cluster: "conversion",
- intent: "Reinigungsangebot in Düsseldorf hochladen und günstiger prüfen lassen",
+ intent: "Reinigungsangebot in Düsseldorf hochladen und Alternative prüfen lassen",
 };
 
 moneySnippets["/duesseldorf/grundreinigung"] = {
@@ -499,6 +609,14 @@ moneySnippets["/duesseldorf/treppenhausreinigung"] = {
   "Treppenhausreinigung in Düsseldorf für kleinere Objekte und Hausverwaltungen nach Absprache: Zugang, Frequenz, Fläche und Fotos senden.",
  cluster: "money",
  intent: "Treppenhausreinigung in Düsseldorf für Objekt oder Hausverwaltung anfragen",
+};
+
+moneySnippets["/duesseldorf/endreinigung"] = {
+ title: "Endreinigung Düsseldorf | Auszug & Übergabe",
+ description:
+  "Endreinigung Düsseldorf für Auszug, Rückgabe oder Objektwechsel: Fläche, Zustand, Küche, Bad, Fotos, Termin und Übergabeziel senden.",
+ cluster: "money",
+ intent: "Endreinigung oder Übergabereinigung in Düsseldorf anfragen",
 };
 
 moneySnippets["/entsorgung-duesseldorf"] = {

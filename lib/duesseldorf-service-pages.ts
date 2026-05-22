@@ -26,12 +26,20 @@ const commonLinks = [
   { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
   { href: "/duesseldorf/b2b-reinigung", label: "B2B-Reinigung Düsseldorf" },
+  { href: "/duesseldorf/firmenreinigung", label: "Firmenreinigung Düsseldorf" },
+  { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
+  { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung Düsseldorf" },
+  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile & Umgebung" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Vielleicht günstiger?" },
+  { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung Düsseldorf" },
+  { href: "/duesseldorf/endreinigung", label: "Endreinigung Düsseldorf" },
+  { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf" },
   { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung Düsseldorf" },
   { href: "/duesseldorf/kellerreinigung", label: "Kellerreinigung Düsseldorf" },
   { href: "/duesseldorf/entsorgung", label: "Entsorgung Düsseldorf" },
+  { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung Düsseldorf" },
 ];
 
 function faq(service: string, detail: string) {
