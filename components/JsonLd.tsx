@@ -1,5 +1,6 @@
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
+import { serviceGraphDatasetJsonLd } from "@/lib/schema-datasets";
 import { getSchemaKnowAboutAliases } from "@/lib/search-intent-aliases";
 
 export function JsonLd({ lang = "de" }: { lang?: string }) {
@@ -113,7 +114,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
         ],
         subjectOf: [
           { "@type": "WebPage", name: "FLOXANT Fakten", url: `${company.url}/floxant-fakten` },
-          { "@type": "Dataset", name: "FLOXANT Service Graph", url: `${company.url}/service-graph.json` },
+          serviceGraphDatasetJsonLd,
           { "@type": "WebPage", name: "Angebot anderer Firma prüfen", url: `${company.url}/angebot-guenstiger-pruefen` },
           { "@type": "WebPage", name: "Plan-B-Service", url: `${company.url}/plan-b-service` },
           { "@type": "CreativeWork", name: "FLOXANT llms.txt", url: `${company.url}/llms.txt` },

@@ -425,6 +425,7 @@ function runDominanceCheck() {
   const footerPath = path.join(ROOT, "components", "Footer.tsx");
   const llmsPath = path.join(ROOT, "app", "llms.txt", "route.ts");
   const serviceGraphPath = path.join(ROOT, "lib", "ai-service-graph.ts");
+  const schemaDatasetsPath = path.join(ROOT, "lib", "schema-datasets.ts");
   const localBusinessPath = path.join(ROOT, "components", "seo", "LocalBusinessJsonLd.tsx");
   const localSignalPath = path.join(ROOT, "components", "seo", "LocalSeoSignalPanel.tsx");
   const layoutPath = path.join(ROOT, "app", "layout.tsx");
@@ -518,6 +519,26 @@ function runDominanceCheck() {
     ])
   ) {
     failures.push("AI service graph is missing region, offer-check or safety rules");
+  }
+
+  if (
+    !fileContains(schemaDatasetsPath, [
+      '"@type": "Dataset"',
+      "FLOXANT Service Graph",
+      "description:",
+      "service-graph.json",
+    ])
+  ) {
+    failures.push("service graph Dataset JSON-LD is missing a required description");
+  }
+
+  for (const file of [
+    path.join(ROOT, "components", "JsonLd.tsx"),
+    path.join(ROOT, "components", "seo", "OrganizationJsonLd.tsx"),
+  ]) {
+    if (!fileContains(file, ["serviceGraphDatasetJsonLd"])) {
+      failures.push(`structured data does not use shared Dataset helper: ${path.relative(ROOT, file)}`);
+    }
   }
 
   if (!fileContains(localBusinessPath, ["department", "openingHoursSpecification", "Leer-Rückfahrt", "areaServed"])) {

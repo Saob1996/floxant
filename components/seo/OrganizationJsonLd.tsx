@@ -1,5 +1,6 @@
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
+import { serviceGraphDatasetJsonLd } from "@/lib/schema-datasets";
 
 export function OrganizationJsonLd() {
   const jsonLd = {
@@ -150,7 +151,7 @@ export function OrganizationJsonLd() {
       { "@type": "WebPage", name: "Endreinigung Düsseldorf", url: `${company.url}/duesseldorf/endreinigung` },
       { "@type": "WebPage", name: "Apartment-Reinigung Düsseldorf", url: `${company.url}/reinigung-moeblierte-wohnung-duesseldorf` },
       { "@type": "CreativeWork", name: "FLOXANT llms.txt", url: `${company.url}/llms.txt` },
-      { "@type": "Dataset", name: "FLOXANT Service Graph", url: `${company.url}/service-graph.json` },
+      serviceGraphDatasetJsonLd,
     ],
     sameAs: company.sameAs,
     slogan: "Umzug, Reinigung, Entrümpelung, Entsorgung und Angebotsprüfung direkt anfragen.",
