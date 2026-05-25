@@ -526,10 +526,12 @@ function runDominanceCheck() {
       '"@type": "Dataset"',
       "FLOXANT Service Graph",
       "description:",
+      "creator:",
+      "license:",
       "service-graph.json",
     ])
   ) {
-    failures.push("service graph Dataset JSON-LD is missing a required description");
+    failures.push("service graph Dataset JSON-LD is missing required/recommended metadata");
   }
 
   for (const file of [
