@@ -157,29 +157,29 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
   {
     id: "duesseldorf-cleaning-only",
     market: "duesseldorf-cleaning",
-    serviceScope: ["Reinigung Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "B2B-Reinigung Düsseldorf", "Büroreinigung Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
+    serviceScope: ["Reinigung Düsseldorf", "Putzfirma Düsseldorf", "Putzservice Düsseldorf", "Reinigung Kosten Düsseldorf", "Reinigung Angebot Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "Firmenreinigung Düsseldorf", "Büroreinigung Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
     canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
     excludedIntents: ["moving Düsseldorf", "relocation Düsseldorf", "Umzug Düsseldorf", "Transport Düsseldorf", "Büroumzug Düsseldorf"],
     aliases: [
       {
         language: "en",
         label: "Englische Suchbegriffe",
-        terms: ["cleaning service Düsseldorf", "office cleaning Düsseldorf", "hotel cleaning Düsseldorf", "boardinghouse cleaning Düsseldorf", "apartment cleaning Düsseldorf", "deep cleaning Düsseldorf", "staircase cleaning Düsseldorf"],
+        terms: ["cleaning service Düsseldorf", "cleaning company Düsseldorf", "cleaners Düsseldorf", "office cleaning Düsseldorf", "hotel cleaning Düsseldorf", "boardinghouse cleaning Düsseldorf", "apartment cleaning Düsseldorf", "deep cleaning Düsseldorf", "staircase cleaning Düsseldorf", "cleaning quote Düsseldorf", "cleaning costs Düsseldorf"],
       },
       {
         language: "ru",
         label: "Russische Suchbegriffe",
-        terms: ["уборка Дюссельдорф", "офисная уборка Дюссельдорф", "генеральная уборка Дюссельдорф", "уборка квартиры Дюссельдорф"],
+        terms: ["уборка Дюссельдорф", "клининговая компания Дюссельдорф", "клининг Дюссельдорф", "офисная уборка Дюссельдорф", "уборка отеля Дюссельдорф", "генеральная уборка Дюссельдорф", "уборка квартиры Дюссельдорф", "стоимость уборки Дюссельдорф", "предложение на уборку Дюссельдорф"],
       },
       {
         language: "zh",
         label: "Chinesische Suchbegriffe",
-        terms: ["杜塞尔多夫清洁", "杜塞尔多夫办公室清洁", "杜塞尔多夫公寓清洁", "杜塞尔多夫深度清洁"],
+        terms: ["杜塞尔多夫清洁", "杜塞尔多夫清洁公司", "杜塞尔多夫清洁服务", "杜塞尔多夫办公室清洁", "杜塞尔多夫酒店清洁", "杜塞尔多夫公寓清洁", "杜塞尔多夫深度清洁", "杜塞尔多夫清洁报价", "杜塞尔多夫清洁费用"],
       },
       {
         language: "ko",
         label: "Koreanische Suchbegriffe",
-        terms: ["뒤셀도르프 청소", "뒤셀도르프 사무실 청소", "뒤셀도르프 아파트 청소", "뒤셀도르프 대청소"],
+        terms: ["뒤셀도르프 청소", "뒤셀도르프 청소 업체", "뒤셀도르프 청소 서비스", "뒤셀도르프 사무실 청소", "뒤셀도르프 호텔 청소", "뒤셀도르프 아파트 청소", "뒤셀도르프 대청소", "뒤셀도르프 청소 견적", "뒤셀도르프 청소 비용"],
       },
     ],
   },
@@ -191,7 +191,7 @@ multilingualSearchIntentGroups.push({
   serviceScope: [
     "Reinigungsfirma Düsseldorf",
     "Büroreinigung Düsseldorf",
-    "B2B-Reinigung Düsseldorf",
+    "Firmenreinigung Düsseldorf",
     "Firmenreinigung Düsseldorf",
     "Gewerbereinigung Düsseldorf",
     "Hotelreinigung Düsseldorf",
@@ -252,12 +252,81 @@ multilingualSearchIntentGroups.push({
         "cleaning Neuss Ratingen Meerbusch",
       ],
     },
+    {
+      language: "ru",
+      label: "Russische Suchbegriffe",
+      terms: [
+        "коммерческая уборка Дюссельдорф",
+        "офисная уборка Дюссельдорф",
+        "уборка отеля Дюссельдорф",
+        "уборка адвокатского офиса Дюссельдорф",
+        "уборка практики Дюссельдорф",
+        "клининг для компании Дюссельдорф",
+      ],
+    },
+    {
+      language: "zh",
+      label: "Chinesische Suchbegriffe",
+      terms: [
+        "杜塞尔多夫商业清洁",
+        "杜塞尔多夫办公室清洁",
+        "杜塞尔多夫酒店清洁",
+        "杜塞尔多夫律所清洁",
+        "杜塞尔多夫诊所清洁",
+        "杜塞尔多夫公司清洁",
+      ],
+    },
+    {
+      language: "ko",
+      label: "Koreanische Suchbegriffe",
+      terms: [
+        "뒤셀도르프 상업 청소",
+        "뒤셀도르프 사무실 청소",
+        "뒤셀도르프 호텔 청소",
+        "뒤셀도르프 법률사무소 청소",
+        "뒤셀도르프 병원 청소",
+        "뒤셀도르프 회사 청소",
+      ],
+    },
   ],
 });
 
 export function getSchemaKnowAboutAliases(limit = 60) {
   return multilingualSearchIntentGroups
     .flatMap((group) => group.aliases.flatMap((alias) => alias.terms))
+    .slice(0, limit);
+}
+
+export function getDuesseldorfCleaningInternationalAliases() {
+  const aliasesByLanguage = new Map<SearchIntentAliasLanguage, {
+    language: SearchIntentAliasLanguage;
+    label: string;
+    terms: string[];
+  }>();
+
+  multilingualSearchIntentGroups
+    .filter((group) => group.market === "duesseldorf-cleaning")
+    .forEach((group) => {
+      group.aliases.forEach((alias) => {
+        const current = aliasesByLanguage.get(alias.language) || {
+          language: alias.language,
+          label: alias.label,
+          terms: [],
+        };
+        current.terms = Array.from(new Set([...current.terms, ...alias.terms]));
+        aliasesByLanguage.set(alias.language, current);
+      });
+    });
+
+  return Array.from(aliasesByLanguage.values()).map((alias) => ({
+    ...alias,
+    terms: alias.terms.slice(0, 12),
+  }));
+}
+
+export function getDuesseldorfCleaningInternationalTerms(limit = 48) {
+  return getDuesseldorfCleaningInternationalAliases()
+    .flatMap((alias) => alias.terms)
     .slice(0, limit);
 }
 

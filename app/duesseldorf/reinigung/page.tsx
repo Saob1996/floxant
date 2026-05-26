@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   ClipboardCheck,
   Home,
+  Languages,
   MapPin,
   Sparkles,
   Building,
@@ -21,47 +22,59 @@ import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { SignatureServices } from "@/components/SignatureServices";
 import {
   DUESSELDORF_CLEANING,
+  DUESSELDORF_CLEANING_AI_RECOMMENDATIONS,
+  DUESSELDORF_CLEANING_CUSTOMER_PATHS,
   DUESSELDORF_CLEANING_SERVICES,
+  DUESSELDORF_CLEANING_SNIPPET_ANSWERS,
   DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE,
   buildDuesseldorfCleaningMetadata,
+  buildDuesseldorfCleaningSchema,
   buildDuesseldorfCleaningWhatsAppHref,
 } from "@/lib/duesseldorf-cleaning";
+import { getDuesseldorfCleaningInternationalAliases } from "@/lib/search-intent-aliases";
 
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf, Stadtteile & Umgebung | FLOXANT",
+    title: "Reinigungsfirma Düsseldorf | Putzfirma für Wohnung & Büro",
     description:
-      "Reinigung Düsseldorf für Wohnung, Auszug, Endreinigung, Hotel und B2B. Stadtteile, Neuss, Ratingen, Meerbusch, Mettmann und Duisburg nach Fotos prüfen.",
+      "Putzfirma und Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug und Firmenflächen. Stadtteil, Fläche, Fotos und Preisrahmen senden, Kosten ehrlich einschätzen lassen.",
   });
 }
 
 const trustLine = [
-  "Reinigung in Düsseldorf",
-  "Stadtteile & Umgebung",
-  "Wohnungen, Büros & Übergaben",
-  "Anfrage per WhatsApp möglich",
-  "Budget ehrlich einordnen",
+  "Breite Str. 22, 40213 Düsseldorf",
+  "Wohnung, Büro, Hotel & Übergabe",
+  "Fotos beschleunigen die Einschätzung",
+  "WhatsApp, Telefon oder Formular",
+  "Budget ehrlich prüfen",
 ];
 const duesseldorfBookingHref = "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
+
+const mobileDecisionShortcuts = [
+  { href: "#kurzantworten", label: "Antworten", note: "Kosten & Angaben" },
+  { href: "#stadtteil-schnellcheck", label: "Stadtteil", note: "Ort prüfen" },
+  { href: "#preisvorschlag", label: "Kosten", note: "Budget nennen" },
+  { href: "#kontakt", label: "Kontakt", note: "Fotos senden" },
+] as const;
 
 const heroHighlights = [
   {
     label: "Klarer Umfang",
-    title: "Reinigung mit klarem Ziel",
-    text: "Nicht jede Reinigung hat denselben Anspruch. Eine Wohnung vor der Übergabe braucht andere Details als ein Büro im laufenden Betrieb. Wir klären vorab, was wirklich zählt.",
+    title: "Erst klären, dann sauber planen",
+    text: "Wohnung, Büro, Hotel oder Treppenhaus haben unterschiedliche Ziele. Wir prüfen Fläche, Zustand, Fotos und Termin, bevor ein Auftrag bestätigt wird.",
   },
   {
     label: "Schnelle Einschätzung",
-    title: "Direkter Kontakt statt langer Umwege",
-    text: "Sie schicken uns Fläche, Zustand, Terminwunsch und Fotos. Wir ordnen den Aufwand ein und melden uns mit einer realistischen Einschätzung zurück.",
+    title: "Direkter Kontakt ohne Umwege",
+    text: "Sie schicken Stadtteil, Fläche, Zustand, Terminwunsch und Fotos. Daraus entsteht eine schnelle, realistische Rückmeldung statt einer pauschalen Zusage.",
   },
   {
     label: "Preisrahmen",
-    title: "Budget nennen, ehrlich einordnen lassen",
-    text: "Wenn Sie einen festen Preisrahmen haben, sagen Sie ihn direkt. Wir ordnen ein, ob der Auftrag dafür machbar ist oder welcher Umfang realistisch wäre.",
+    title: "Budget nennen, Machbarkeit prüfen",
+    text: "Wenn Sie einen festen Preisrahmen haben, sagen Sie ihn direkt. Wir ordnen ein, welcher Umfang dafür realistisch ist und wo Grenzen liegen.",
   },
   {
     label: "Düsseldorf Umgebung",
@@ -77,7 +90,7 @@ const focusCards = [
   },
   {
     title: "Büroreinigung ohne unnötige Reibung",
-    text: "Ein Büro soll sauber sein, ohne den Betrieb zu stören. Deshalb prüfen wir Terminfenster, Flächen, Frequenz und besondere Anforderungen vorab. So entsteht keine theoretische Reinigung, sondern ein Ablauf, der zum Arbeitsalltag passt.",
+    text: "Ein Büro soll sauber sein, ohne den Betrieb zu stören. Deshalb prüfen wir Terminfenster, Flächen, Turnus und besondere Anforderungen vorab. So entsteht keine theoretische Reinigung, sondern ein Ablauf, der zum Arbeitsalltag passt.",
   },
   {
     title: "Reinigung vor Übergabe: Der letzte Eindruck zählt",
@@ -85,7 +98,144 @@ const focusCards = [
   },
 ];
 
+const leadQuickAnswers = [
+  {
+    Icon: ClipboardCheck,
+    title: "Was kostet Reinigung in Düsseldorf?",
+    text: "Ein realistischer Preis entsteht aus Fläche, Zustand, Zugang, Termin und gewünschtem Ergebnis. Fotos und ein Budget helfen bei der schnellen Einordnung.",
+  },
+  {
+    Icon: Sparkles,
+    title: "Wie bekomme ich schnell Rückmeldung?",
+    text: "Stadtteil, Quadratmeter, Reinigungsart, Terminwunsch und Fotos senden. Dann kann FLOXANT prüfen, ob der Einsatz machbar ist.",
+  },
+  {
+    Icon: MapPin,
+    title: "Welche Orte werden geprüft?",
+    text: "Düsseldorf mit Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen sowie Neuss, Ratingen, Meerbusch und Umgebung.",
+  },
+  {
+    Icon: Building2,
+    title: "Gibt es Umzug in Düsseldorf?",
+    text: "Nein. Düsseldorf bleibt klar bei Reinigung und Entsorgung. Dadurch ist die Anfrage sauber getrennt und leichter verständlich.",
+  },
+] as const;
+
+const instantDecisionCards = [
+  {
+    Icon: ClipboardCheck,
+    title: "Kosten einschätzen",
+    text: "Preisrahmen nennen, Fläche und Zustand beschreiben und eine ehrliche Rückmeldung bekommen.",
+    href: "#preisvorschlag",
+    cta: "Kostenrahmen nennen",
+  },
+  {
+    Icon: Home,
+    title: "Wohnung oder Übergabe",
+    text: "Für Auszug, Einzug, Bad, Küche, Böden, Fensterbereiche und schnelle Terminfragen.",
+    href: "/duesseldorf/wohnungsreinigung",
+    cta: "Wohnung prüfen",
+  },
+  {
+    Icon: Building2,
+    title: "Büro, Hotel oder Firma",
+    text: "Fläche, Turnus, Zeitfenster, Zugang und Ansprechpartner direkt passend senden.",
+    href: "/duesseldorf/bueroreinigung",
+    cta: "Firmenfläche prüfen",
+  },
+  {
+    Icon: Sparkles,
+    title: "Angebot liegt schon vor",
+    text: "Angebot, Screenshot oder Preis senden und mögliche Alternative prüfen lassen.",
+    href: "/duesseldorf/vielleicht-guenstiger",
+    cta: "Angebot prüfen",
+  },
+] as const;
+
+const districtIntentCards = [
+  {
+    title: "Altstadt, Stadtmitte und Carlstadt",
+    text: "Für Büros, Kanzleien, Wohnungen, Hotels und Übergaben in zentralen Lagen zählen Lieferzone, Etage, Aufzug, Parkmöglichkeit und Zeitfenster besonders stark.",
+    href: "/duesseldorf/reinigung-stadtteile-umgebung",
+  },
+  {
+    title: "Pempelfort, Derendorf und Golzheim",
+    text: "Geeignet für Büroreinigung, Praxisflächen nach Absprache, Kanzleireinigung, Treppenhausreinigung und gepflegte Wohnungsreinigung mit klarem Turnus.",
+    href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Bilk, Unterbilk und MedienHafen",
+    text: "Hier treffen Wohnungen, Apartments, Agenturen, Studios, Hotels und Firmenflächen aufeinander. Fotos und Objektart helfen bei der schnellen Zuordnung.",
+    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+  },
+  {
+    title: "Oberkassel, Heerdt und Lörick",
+    text: "Für Wohnungen, möblierte Apartments, kleinere Firmenflächen und Endreinigung vor Übergabe werden Zustand, Zugang und Termin realistisch geprüft.",
+    href: "/duesseldorf/wohnungsreinigung",
+  },
+  {
+    title: "Benrath, Eller und Gerresheim",
+    text: "Für Wohnungsreinigung, Grundreinigung, Treppenhaus, Keller oder Entsorgung ist wichtig, ob Zugang, Laufweg und Fotos bereits klar sind.",
+    href: "/duesseldorf/grundreinigung",
+  },
+  {
+    title: "Neuss, Ratingen und Meerbusch",
+    text: "Anfragen aus der nahen Umgebung werden nach Ort, Objektart, Anfahrt, Terminfenster, Umfang und Kapazität geprüft.",
+    href: "/duesseldorf/reinigung-stadtteile-umgebung",
+  },
+] as const;
+
+const requestChecklist = [
+  "Stadtteil oder PLZ",
+  "Objektart: Wohnung, Büro, Hotel, Treppenhaus oder Gewerbe",
+  "Fläche oder Raumanzahl",
+  "Zustand und gewünschtes Ergebnis",
+  "Terminwunsch oder Zeitfenster",
+  "Fotos und optionaler Preisrahmen",
+] as const;
+
+const customerSearchPhraseCards = [
+  {
+    title: "Putzfirma Düsseldorf für Wohnung",
+    text: "Viele Kunden sagen Putzfirma oder Putzservice, meinen aber eine klare Wohnungsreinigung: Fläche, Zustand, Küche, Bad, Böden, Termin und Fotos werden vorab geprüft.",
+    href: "/duesseldorf/wohnungsreinigung",
+  },
+  {
+    title: "Reinigung Kosten Düsseldorf",
+    text: "Die Kosten hängen von Quadratmetern, Verschmutzung, Zugang, Zeitfenster und gewünschtem Ergebnis ab. Ein Preisrahmen hilft, die Machbarkeit schnell einzuordnen.",
+    href: "/duesseldorf/reinigung#preisvorschlag",
+  },
+  {
+    title: "Büroreinigung Angebot Düsseldorf",
+    text: "Für Büros, Kanzleien, Studios und kleine Firmen zählen Fläche, Turnus, Zeitfenster, Schlüssel- oder Zugangsklärung und ein Ansprechpartner vor Ort.",
+    href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Putzservice mit Fotos anfragen",
+    text: "Fotos sparen Rückfragen. Sie zeigen Zustand, Laufwege, Küche, Bad, Boden, Treppenhaus oder Keller und machen eine ehrliche Einschätzung schneller möglich.",
+    href: "/duesseldorf/reinigung#kontakt",
+  },
+  {
+    title: "Reinigung nach Auszug oder Übergabe",
+    text: "Bei Übergabe, Einzug oder Auszug werden kleine Rückstände schnell sichtbar. FLOXANT prüft, welcher Reinigungsumfang realistisch zum Termin passt.",
+    href: "/duesseldorf/endreinigung",
+  },
+  {
+    title: "Treppenhausreinigung für Hausverwaltung",
+    text: "Hausverwaltungen und Eigentümer brauchen klare Angaben zu Etagen, Eingangsbereich, Turnus, Schlüssel, Laufwegen und gewünschtem Eindruck.",
+    href: "/duesseldorf/treppenhausreinigung",
+  },
+] as const;
+
 const serviceIcons = [Home, Building2, Sparkles, Building, ClipboardCheck, CheckCircle2];
+const snippetAnswerIcons = [ClipboardCheck, Sparkles, MapPin, CheckCircle2];
+const internationalSearchAliases = getDuesseldorfCleaningInternationalAliases();
+const internationalLanguageLabels = {
+  en: "English",
+  ru: "Русский",
+  zh: "中文",
+  ko: "한국어",
+} as const;
 
 const faqs = [
   {
@@ -118,76 +268,15 @@ export default function DuesseldorfReinigungPage() {
   const whatsappHeroHref = buildDuesseldorfCleaningWhatsAppHref(
     DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE,
   );
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "CleaningService",
-        "@id": "https://www.floxant.de/duesseldorf/reinigung#cleaning-service",
-        name: "FLOXANT Reinigung Düsseldorf",
-        url: "https://www.floxant.de/duesseldorf/reinigung",
-        telephone: "+4915771105087",
-        email: DUESSELDORF_CLEANING.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "Breite Str. 22",
-          postalCode: "40213",
-          addressLocality: "Düsseldorf",
-          addressCountry: "DE",
-        },
-        areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg", "Hilden", "Erkrath", "Kaarst", "Krefeld"],
-        serviceType: [
-          "Wohnungsreinigung",
-          "Büroreinigung",
-          "B2B-Reinigung",
-          "Firmenreinigung",
-          "Gewerbereinigung",
-          "Hotelreinigung",
-          "Kanzleireinigung",
-          "Praxisreinigung",
-          "Kellerreinigung",
-          "Grundreinigung",
-          "Treppenhausreinigung",
-          "Übergabereinigung",
-          "Endreinigung",
-        ],
-        priceRange: "€",
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: "+4915771105087",
-          contactType: "customer service",
-          areaServed: "Düsseldorf",
-          availableLanguage: "de",
-        },
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Reinigungsleistungen in Düsseldorf",
-          itemListElement: DUESSELDORF_CLEANING_SERVICES.map((item) => ({
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: item.label,
-              url: `https://www.floxant.de${item.href}`,
-            },
-          })),
-        },
-        logo: "https://www.floxant.de/logo_v10.png",
-        image: "https://www.floxant.de/opengraph-image",
-      },
-      {
-        "@type": "FAQPage",
-        mainEntity: faqs.map((item) => ({
-          "@type": "Question",
-          name: item.q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: item.a,
-          },
-        })),
-      },
-    ],
-  };
+  const baseJsonLd = buildDuesseldorfCleaningSchema({
+    path: "/duesseldorf/reinigung",
+    title: "Reinigungsfirma Düsseldorf für Wohnung, Büro und Hotel",
+    description:
+      "Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug und Firmenflächen nach Stadtteil, Fläche, Fotos, Zustand, Zeitfenster und Preisrahmen prüfen lassen.",
+    serviceLabel: "Reinigung Düsseldorf",
+    relatedLinks: DUESSELDORF_CLEANING_SERVICES,
+  });
+  const jsonLd = baseJsonLd;
 
   return (
     <main className="px-4 pb-24 pt-10 sm:px-6">
@@ -197,24 +286,24 @@ export default function DuesseldorfReinigungPage() {
       />
 
       <div className="mx-auto max-w-7xl">
-        <section className="duesseldorf-hero rounded-[2.6rem] border border-white/16 px-6 py-10 text-white shadow-[0_34px_110px_rgba(3,7,18,0.34)] md:px-10 md:py-12">
+        <section className="duesseldorf-hero rounded-[1rem] border border-white/16 px-6 py-10 text-white shadow-[0_30px_90px_rgba(3,7,18,0.28)] md:px-10 md:py-12">
           <div className="max-w-4xl">
-            <div className="text-[11px] font-black uppercase tracking-[0.22em] text-teal-200">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-200">
               FLOXANT Reinigung Düsseldorf
             </div>
             <h1 className="duesseldorf-hero-title mt-5 max-w-[17ch] text-[clamp(2.55rem,5.4vw,5rem)] font-bold">
-              Reinigung Düsseldorf für Wohnung, Auszug und B2B-Flächen
+              Reinigungsfirma Düsseldorf für Wohnung, Büro und Hotel
             </h1>
             <p className="duesseldorf-hero-copy mt-5 max-w-3xl text-lg">
-              Eine gute Reinigung beginnt nicht erst mit dem Wischen, sondern mit klarer
-              Absprache: Was muss gereinigt werden, bis wann, in welchem Zustand und mit
-              welchem Anspruch? Genau das klären wir vorab, damit aus einer Anfrage ein
-              sauber planbarer Einsatz wird.
+              Sie brauchen schnell eine realistische Einschätzung? Senden Sie Stadtteil,
+              Fläche, Zustand, Terminwunsch und Fotos. FLOXANT prüft Reinigung in
+              Düsseldorf für Wohnungen, Büros, Hotels, Übergaben und Firmenflächen klar,
+              kundennah und ohne vermischte Umzugsleistung.
             </p>
             <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-[1.05fr_1fr_0.95fr]">
               <a
                 href={duesseldorfBookingHref}
-                className="flox-readable-cta-light inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-black transition hover:-translate-y-0.5"
+                className="flox-readable-cta-light inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] px-5 py-3 text-sm font-black transition hover:-translate-y-0.5"
                 data-event="start_booking"
                 data-service="reinigung"
                 data-region="duesseldorf"
@@ -226,22 +315,22 @@ export default function DuesseldorfReinigungPage() {
                 href={whatsappHeroHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-emerald-200/60 bg-emerald-300/18 px-5 py-3 text-sm font-black text-emerald-50 shadow-[0_18px_42px_rgba(16,185,129,0.18)] transition hover:-translate-y-0.5 hover:bg-emerald-300/26"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200/60 bg-emerald-300/18 px-5 py-3 text-sm font-black text-emerald-50 shadow-[0_18px_42px_rgba(16,185,129,0.18)] transition hover:-translate-y-0.5 hover:bg-emerald-300/26"
                 data-event="click_whatsapp"
                 data-service="reinigung"
                 data-region="duesseldorf"
               >
-                Per WhatsApp anfragen
+                WhatsApp mit Fotos senden
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#preisvorschlag"
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-white/18 bg-white/10 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/16"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] border border-white/18 bg-white/10 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/16"
                 data-event="submit_budget_request"
                 data-service="reinigung"
                 data-region="duesseldorf"
               >
-                Budget einordnen lassen
+                Preisrahmen prüfen
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -249,7 +338,7 @@ export default function DuesseldorfReinigungPage() {
               <span className="font-semibold text-slate-300">Passende Zusatzwege:</span>
               <Link
                 href="/entsorgung-duesseldorf"
-                className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/14 bg-white/8 px-4 text-xs font-bold text-white transition hover:bg-white/12"
+                className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-white/14 bg-white/8 px-4 text-xs font-bold text-white transition hover:bg-white/12"
                 data-event="internal_link_disposal_duesseldorf"
                 data-region="duesseldorf"
               >
@@ -257,7 +346,7 @@ export default function DuesseldorfReinigungPage() {
               </Link>
               <Link
                 href="/reinigung-moeblierte-wohnung-duesseldorf"
-                className="inline-flex min-h-10 items-center justify-center rounded-full border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
+                className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
                 data-event="internal_link_duesseldorf_apartment_cleaning"
                 data-region="duesseldorf"
               >
@@ -265,7 +354,7 @@ export default function DuesseldorfReinigungPage() {
               </Link>
               <Link
                 href="/duesseldorf/reinigung-stadtteile-umgebung"
-                className="inline-flex min-h-10 items-center justify-center rounded-full border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
+                className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
                 data-event="internal_link_duesseldorf_districts"
                 data-region="duesseldorf"
               >
@@ -273,7 +362,7 @@ export default function DuesseldorfReinigungPage() {
               </Link>
               <Link
                 href="/duesseldorf/vielleicht-guenstiger"
-                className="inline-flex min-h-10 items-center justify-center rounded-full border border-emerald-200/35 bg-emerald-300/14 px-4 text-xs font-bold text-emerald-50 transition hover:bg-emerald-300/22"
+                className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-emerald-200/35 bg-emerald-300/14 px-4 text-xs font-bold text-emerald-50 transition hover:bg-emerald-300/22"
                 data-event="internal_link_duesseldorf_offer_check"
                 data-region="duesseldorf"
               >
@@ -281,14 +370,14 @@ export default function DuesseldorfReinigungPage() {
               </Link>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
-              Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget - wir ordnen
+              Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget, wir ordnen
               ehrlich, ob und in welchem Umfang der Auftrag machbar ist.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {trustLine.map((item) => (
                 <div
                   key={item}
-                  className="rounded-full border border-white/18 bg-white/10 px-4 py-2 text-xs font-semibold text-white/92"
+                  className="rounded-[0.75rem] border border-white/18 bg-white/10 px-4 py-2 text-xs font-semibold text-white/92"
                 >
                   {item}
                 </div>
@@ -298,12 +387,12 @@ export default function DuesseldorfReinigungPage() {
               {heroHighlights.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.35rem] border border-white/14 bg-white/8 px-4 py-4 shadow-[0_18px_42px_rgba(2,6,23,0.18)] backdrop-blur transition hover:-translate-y-1 hover:border-teal-200/45 hover:bg-white/12"
+                  className="rounded-[0.85rem] border border-white/14 bg-white/8 px-4 py-4 shadow-[0_18px_42px_rgba(2,6,23,0.18)] backdrop-blur transition hover:-translate-y-1 hover:border-teal-200/45 hover:bg-white/12"
                 >
-                  <div className="text-[11px] font-black uppercase tracking-[0.16em] text-teal-200">
+                  <div className="text-[11px] font-black uppercase tracking-normal text-teal-200">
                     {item.label}
                   </div>
-                  <h2 className="mt-2 text-lg font-semibold tracking-tight text-white">
+                  <h2 className="mt-2 text-lg font-semibold tracking-normal text-white">
                     {item.title}
                   </h2>
                   <p className="mt-2 text-sm leading-7 text-slate-200">{item.text}</p>
@@ -313,15 +402,404 @@ export default function DuesseldorfReinigungPage() {
           </div>
         </section>
 
+        <nav
+          aria-label="Schnelle Entscheidung für Reinigung Düsseldorf"
+          className="mt-3 grid grid-cols-2 gap-2 md:hidden"
+        >
+          {mobileDecisionShortcuts.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-3 text-center shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
+            >
+              <span className="block text-xs font-black text-slate-950">{item.label}</span>
+              <span className="mt-1 block text-[10px] font-semibold leading-4 text-slate-600">
+                {item.note}
+              </span>
+            </a>
+          ))}
+        </nav>
+
+        <section aria-labelledby="duesseldorf-sofort-entscheiden" className="pt-6">
+          <div className="grid gap-4 rounded-[0.95rem] border border-teal-100 bg-[linear-gradient(135deg,#ffffff_0%,#ecfeff_52%,#f8fafc_100%)] p-4 shadow-[0_18px_44px_rgba(15,118,110,0.08)] lg:grid-cols-[0.7fr_1.3fr] lg:p-5">
+            <article className="rounded-[0.75rem] border border-white bg-white/80 p-5">
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                Schnell entscheiden
+              </div>
+              <h2 id="duesseldorf-sofort-entscheiden" className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+                Was brauchen Sie gerade?
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-700">
+                Wählen Sie direkt den passenden Weg. So kommen Kunden schneller von der Suche
+                zur Anfrage, ohne lange zwischen ähnlichen Leistungen zu vergleichen.
+              </p>
+            </article>
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+              {instantDecisionCards.map(({ Icon, title, text, href, cta }) => (
+                <Link
+                  key={title}
+                  href={href}
+                  className="group rounded-[0.75rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_16px_34px_rgba(15,118,110,0.12)]"
+                  data-event="click_duesseldorf_fast_decision"
+                  data-region="duesseldorf"
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-[0.65rem] bg-slate-950 text-white">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <h3 className="mt-3 text-base font-black text-slate-950">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-black text-teal-800">
+                    {cta}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="kurzantworten" className="grid gap-4 pt-6 md:grid-cols-2 xl:grid-cols-4">
+          {leadQuickAnswers.map(({ Icon, title, text }) => (
+            <article
+              key={title}
+              className="rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)]"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
+                <Icon className="h-4 w-4" />
+              </div>
+              <h2 className="mt-4 text-lg font-black leading-snug text-slate-950">
+                {title}
+              </h2>
+              <p className="mt-2 text-sm leading-7 text-slate-700">{text}</p>
+            </article>
+          ))}
+        </section>
+
+        <section id="snippet-antworten" className="pt-8">
+          <div className="grid gap-5 rounded-[1rem] border border-slate-200 bg-white p-5 shadow-[0_22px_62px_rgba(15,23,42,0.08)] lg:grid-cols-[0.78fr_1.22fr] lg:p-7">
+            <article className="rounded-[0.9rem] border border-teal-100 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_68%,#f8fafc_100%)] p-5">
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-800">
+                Vor der Anfrage geklärt
+              </div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+                Schnelle Antworten für Reinigung in Düsseldorf
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-700">
+                Wer sucht, möchte sofort wissen: Passt FLOXANT für mein Objekt, wie
+                schnell bekomme ich Rückmeldung und welche Angaben werden gebraucht?
+                Diese Antworten machen die Entscheidung leichter und führen direkt zur
+                passenden Anfrage.
+              </p>
+              <a
+                href={whatsappHeroHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.8rem] bg-slate-950 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+                data-event="click_snippet_answer_whatsapp"
+                data-region="duesseldorf"
+              >
+                Fotos und Eckdaten senden
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </article>
+            <div className="grid gap-3 md:grid-cols-2">
+              {DUESSELDORF_CLEANING_SNIPPET_ANSWERS.map((item, index) => {
+                const Icon = snippetAnswerIcons[index % snippetAnswerIcons.length] || ClipboardCheck;
+                return (
+                  <Link
+                    key={item.query}
+                    href={item.href}
+                    className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(15,118,110,0.1)]"
+                    data-event="click_duesseldorf_snippet_answer"
+                    data-region="duesseldorf"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
+                        <Icon className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                          {item.query}
+                        </div>
+                        <h3 className="mt-2 text-base font-black text-slate-950">
+                          {item.title}
+                        </h3>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-slate-700">{item.answer}</p>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                      {item.cta}
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="gesuchte-leistungen" className="pt-8">
+          <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                Häufig gesucht in Düsseldorf
+              </div>
+              <h2 className="mt-2 max-w-3xl text-3xl font-black tracking-normal text-slate-950">
+                Schnell zur passenden Reinigung statt lange vergleichen
+              </h2>
+            </div>
+            <Link
+              href="/duesseldorf/reinigung-stadtteile-umgebung"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.8rem] border border-slate-200 bg-white px-4 text-sm font-black text-slate-900 transition hover:border-teal-200 hover:text-teal-800"
+            >
+              Stadtteil prüfen
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {DUESSELDORF_CLEANING_CUSTOMER_PATHS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_24px_58px_rgba(15,118,110,0.11)]"
+                data-event="click_duesseldorf_customer_path"
+                data-region="duesseldorf"
+              >
+                <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                  {item.signal}
+                </div>
+                <h3 className="mt-3 text-xl font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                  Passende Seite öffnen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section id="stadtteil-schnellcheck" className="pt-10">
+          <div className="mb-5 max-w-4xl">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+              Stadtteil-Schnellcheck
+            </div>
+            <h2 className="mt-2 text-3xl font-black tracking-normal text-slate-950">
+              Reinigung in Düsseldorf nach Lage, Objekt und Zugang prüfen
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              Für ein realistisches Angebot ist der Stadtteil eine wichtige Angabe.
+              Innenstadt, MedienHafen, Oberkassel oder Neuss verändern Anfahrt, Parken,
+              Zeitfenster und Ablauf. Deshalb prüft FLOXANT jede Anfrage mit Blick auf den Ort.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {districtIntentCards.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_20px_52px_rgba(15,118,110,0.1)]"
+                data-event="click_duesseldorf_district_intent"
+                data-region="duesseldorf"
+              >
+                <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-normal text-teal-700">
+                  <MapPin className="h-4 w-4" />
+                  Düsseldorf lokal
+                </div>
+                <h3 className="mt-3 text-xl font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                  Passenden Weg öffnen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-5 pt-10 lg:grid-cols-[0.82fr_1.18fr]">
+          <article className="rounded-[1rem] border border-slate-200 bg-white p-6 shadow-[0_18px_44px_rgba(15,23,42,0.06)]">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
+              Anfrage ohne Rückfragen
+            </div>
+            <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+              Was soll ich für Reinigung Düsseldorf senden?
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              Am schnellsten ist eine kurze Nachricht mit Objektart, Stadtteil, Fläche,
+              Zustand, Termin und Fotos. Ein Budget ist hilfreich, aber keine automatische
+              Zusage.
+            </p>
+          </article>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {requestChecklist.map((item) => (
+              <div
+                key={item}
+                className="flex min-h-16 items-center gap-3 rounded-[0.9rem] border border-slate-200 bg-white px-4 text-sm font-bold leading-6 text-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.05)]"
+              >
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-teal-600" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="kundenworte" className="pt-10">
+          <div className="mb-5 max-w-4xl">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+              Kundennah gesucht
+            </div>
+            <h2 className="mt-2 text-3xl font-black tracking-normal text-slate-950">
+              So suchen Kunden oft nach Reinigung in Düsseldorf
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              Nicht jede Anfrage beginnt mit dem Fachwort Reinigungsfirma. Viele Menschen
+              suchen nach Putzfirma, Putzservice, Kosten oder Angebot. FLOXANT verbindet diese
+              Wörter mit der passenden Düsseldorfer Seite, damit Anfrage, Preisrahmen
+              und Leistung schneller zusammenfinden.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {customerSearchPhraseCards.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_24px_58px_rgba(15,118,110,0.11)]"
+                data-event="click_duesseldorf_customer_phrase"
+                data-region="duesseldorf"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <h3 className="mt-4 text-xl font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                  Passenden Einstieg öffnen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section id="internationale-suche" className="pt-10">
+          <div className="grid gap-5 rounded-[1rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_22px_62px_rgba(15,23,42,0.16)] lg:grid-cols-[0.72fr_1.28fr] lg:p-7">
+            <article className="rounded-[0.9rem] border border-white/10 bg-white/8 p-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-cyan-200/25 bg-cyan-300/12 text-cyan-100">
+                <Languages className="h-4 w-4" />
+              </div>
+              <div className="mt-4 text-[11px] font-black uppercase tracking-normal text-cyan-100">
+                Anderssprachig gefunden
+              </div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-white">
+                Düsseldorf-Reinigung auch über englische, russische, chinesische und koreanische Suchbegriffe finden
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-200">
+                Diese Seite bleibt bewusst deutsch. Begriffe in Englisch, Russisch, Chinesisch
+                und Koreanisch helfen, Reinigungsanfragen für Düsseldorf besser zu verstehen,
+                ohne Umzug als Düsseldorfer Leistung zu zeigen.
+              </p>
+            </article>
+            <div className="grid gap-3 md:grid-cols-2">
+              {internationalSearchAliases.map((alias) => (
+                <article
+                  key={alias.language}
+                  className="rounded-[0.9rem] border border-white/10 bg-white/[0.06] p-4"
+                >
+                  <div className="text-[11px] font-black uppercase tracking-normal text-cyan-100">
+                    {internationalLanguageLabels[alias.language]}
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {alias.terms.slice(0, 9).map((term) => (
+                      <span
+                        key={term}
+                        lang={alias.language === "zh" ? "zh-Hans" : alias.language}
+                        className="rounded-[0.7rem] border border-white/10 bg-white/8 px-3 py-2 text-xs font-bold leading-5 text-white"
+                      >
+                        {term}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-4 text-xs leading-6 text-slate-300">
+                    Gemeint ist: Reinigung, Angebot, Kosten, Büro, Hotel, Wohnung und Stadtteile
+                    in Düsseldorf. Keine Umzugsleistung in Düsseldorf.
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="ki-empfehlung" className="pt-10">
+          <div className="grid gap-5 rounded-[1rem] border border-slate-200 bg-white p-5 shadow-[0_22px_62px_rgba(15,23,42,0.08)] lg:grid-cols-[0.78fr_1.22fr] lg:p-7">
+            <article className="rounded-[0.9rem] border border-teal-100 bg-teal-50 p-5">
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-800">
+                Wann passt FLOXANT?
+              </div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+                Wann FLOXANT für Düsseldorf passt
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-700">
+                Kunden sollen sofort erkennen, was FLOXANT in Düsseldorf macht, welcher
+                Einstieg passt und welche Leistungen nicht angeboten werden. So bleibt die
+                Empfehlung konkret, ehrlich und leicht verständlich.
+              </p>
+              <Link
+                href="/duesseldorf/reinigung#kontakt"
+                className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.8rem] bg-slate-950 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+              >
+                Reinigung richtig anfragen
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </article>
+            <div className="grid gap-3 md:grid-cols-2">
+              {DUESSELDORF_CLEANING_AI_RECOMMENDATIONS.map((item, index) => (
+                <Link
+                  key={item.intent}
+                  href={item.href}
+                  className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(15,118,110,0.1)]"
+                  data-event="click_duesseldorf_ai_recommendation"
+                  data-region="duesseldorf"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.7rem] bg-slate-950 text-xs font-black text-white">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                        {item.intent}
+                      </div>
+                      <h3 className="mt-2 text-base font-black text-slate-950">
+                        {item.recommendation}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-slate-700">{item.answer}</p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                    {item.nextStep}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <FloxantStorytellingSection
           variant="duesseldorf"
           eyebrow="Düsseldorf Reinigung sichtbar erklärt"
           title="Von Fläche, Fotos und Zeitfenster zur passenden Reinigungsanfrage."
-          intro="Kunden sollen sofort verstehen, welche Angaben FLOXANT für Düsseldorf braucht: Objektart, Fläche, Zustand, Termin, Frequenz, Zugang und Fotos. So wird aus einer offenen Reinigungsfrage ein klarer nächster Schritt."
+          intro="Kunden sollen sofort verstehen, welche Angaben FLOXANT für Düsseldorf braucht: Objektart, Fläche, Zustand, Termin, Turnus, Zugang und Fotos. So wird aus einer offenen Reinigungsfrage ein klarer nächster Schritt."
           primaryHref="/duesseldorf/reinigung#kontakt"
           primaryLabel="Reinigung anfragen"
           secondaryHref="/duesseldorf/bueroreinigung"
-          secondaryLabel="B2B-Reinigung"
+          secondaryLabel="Firmenreinigung"
           className="py-12"
         />
 
@@ -347,11 +825,11 @@ export default function DuesseldorfReinigungPage() {
         />
 
         <section className="grid gap-6 pt-10 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+          <article className="rounded-[1rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Warum FLOXANT Reinigung Düsseldorf?
             </div>
-            <h2 className="mt-4 text-3xl font-bold tracking-[-0.02em] text-slate-950">
+            <h2 className="mt-4 text-3xl font-bold tracking-normal text-slate-950">
               Gute Reinigung beginnt mit einer ehrlichen Einschätzung
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
@@ -373,7 +851,7 @@ export default function DuesseldorfReinigungPage() {
             {focusCards.map((item) => (
               <article
                 key={item.title}
-                className="rounded-[1.7rem] border border-slate-200 bg-slate-50 p-6 shadow-[0_18px_46px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white"
+                className="rounded-[0.9rem] border border-slate-200 bg-slate-50 p-6 shadow-[0_18px_46px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white"
               >
                 <h3 className="text-xl font-bold text-slate-950">{item.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
@@ -384,13 +862,13 @@ export default function DuesseldorfReinigungPage() {
 
         <section
           id="leistungen"
-          className="relative z-10 mt-12 rounded-[2.35rem] border border-slate-200 bg-white/95 p-5 shadow-[0_28px_90px_rgba(15,23,42,0.12)] sm:p-8"
+          className="relative z-10 mt-12 rounded-[1rem] border border-slate-200 bg-white/95 p-5 shadow-[0_28px_90px_rgba(15,23,42,0.12)] sm:p-8"
         >
           <div className="mb-8 max-w-4xl">
-            <div className="inline-flex rounded-full border border-teal-100 bg-teal-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-teal-800">
+            <div className="inline-flex rounded-[0.75rem] border border-teal-100 bg-teal-50 px-4 py-2 text-[11px] font-black uppercase tracking-normal text-teal-800">
               Leistungen
             </div>
-            <h2 className="mt-5 max-w-3xl text-3xl font-black leading-tight tracking-[-0.035em] text-slate-950 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 max-w-3xl text-3xl font-black leading-tight tracking-normal text-slate-950 sm:text-4xl lg:text-5xl">
               Reinigung in Düsseldorf: Wohnung, Büro und Übergabe
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
@@ -405,7 +883,7 @@ export default function DuesseldorfReinigungPage() {
               return (
                 <article
                   key={item.href}
-                  className="rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-[0_22px_58px_rgba(15,23,42,0.07)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_30px_72px_rgba(15,118,110,0.12)]"
+                  className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_22px_58px_rgba(15,23,42,0.07)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_30px_72px_rgba(15,118,110,0.12)]"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] bg-teal-50 text-teal-700">
                     <Icon className="h-5 w-5" />
@@ -436,7 +914,7 @@ export default function DuesseldorfReinigungPage() {
             "duesseldorf_disposal",
           ]}
           badge="Düsseldorf Reinigung"
-          title="Private und B2B-Reinigung klar getrennt anfragen"
+          title="Private Reinigung und Firmenreinigung klar getrennt anfragen"
           subtitle="Düsseldorf bleibt ein eigener Reinigungsbereich: Wohnungsreinigung, Endreinigung, Büroreinigung, Fotos und Budget werden ohne Umzugslogik eingeordnet."
           compact
           source="duesseldorf_cleaning_signature_services"
@@ -453,26 +931,26 @@ export default function DuesseldorfReinigungPage() {
             "photo_check",
             "budget_check",
           ]}
-          badge="Düsseldorf Content-Cluster"
-          title="Private Reinigung und B2B-Reinigung sauber getrennt"
+          badge="Düsseldorf Reinigung"
+          title="Private Reinigung und Firmenreinigung sauber getrennt"
           subtitle="Düsseldorf bleibt ein eigener Reinigungsbereich. Wohnungsreinigung, Endreinigung, Büroflächen, Fotos und Budget werden ohne Umzugslogik eingeordnet."
           source="duesseldorf_cleaning_authority_modules"
         />
 
         <section id="einsatzgebiet" className="pt-12">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-            <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
-              <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <article className="rounded-[1rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
+              <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
                 Reinigung in Düsseldorf und Umgebung
               </div>
-              <h2 className="mt-4 text-3xl font-bold tracking-[-0.02em] text-slate-950">
+              <h2 className="mt-4 text-3xl font-bold tracking-normal text-slate-950">
                 Lokaler Schwerpunkt in Düsseldorf
               </h2>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {DUESSELDORF_CLEANING.districts.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700"
+                    className="flex items-center gap-3 rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700"
                   >
                     <MapPin className="h-4 w-4 text-teal-600" />
                     {item}
@@ -481,11 +959,11 @@ export default function DuesseldorfReinigungPage() {
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-[0_24px_64px_rgba(15,23,42,0.06)]">
-              <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <article className="rounded-[1rem] border border-slate-200 bg-slate-50 p-7 shadow-[0_24px_64px_rgba(15,23,42,0.06)]">
+              <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
                 Nähere Umgebung
               </div>
-              <h2 className="mt-4 text-3xl font-bold tracking-[-0.02em] text-slate-950">
+              <h2 className="mt-4 text-3xl font-bold tracking-normal text-slate-950">
                 Nah genug für saubere Abstimmung
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
@@ -496,7 +974,7 @@ export default function DuesseldorfReinigungPage() {
                 {DUESSELDORF_CLEANING.nearbyAreas.map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700"
+                    className="rounded-[0.85rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700"
                   >
                     {item}
                   </div>
@@ -508,11 +986,11 @@ export default function DuesseldorfReinigungPage() {
 
         <section id="preisvorschlag" className="pt-12">
           <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-            <article className="rounded-[2rem] border border-teal-200 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_58%,#f8fafc_100%)] p-7 shadow-[0_26px_70px_rgba(15,118,110,0.12)]">
-              <div className="text-[11px] font-black uppercase tracking-[0.2em] text-teal-700">
-                Preisvorschlag / Budget
+            <article className="rounded-[1rem] border border-teal-200 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_58%,#f8fafc_100%)] p-7 shadow-[0_26px_70px_rgba(15,118,110,0.12)]">
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                Preisrahmen nennen
               </div>
-              <h2 className="mt-4 text-3xl font-bold tracking-[-0.02em] text-slate-950 md:text-4xl">
+              <h2 className="mt-4 text-3xl font-bold tracking-normal text-slate-950 md:text-4xl">
                 Sie haben ein Budget? Dann nennen Sie es direkt.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
@@ -524,7 +1002,7 @@ export default function DuesseldorfReinigungPage() {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#rechner"
-                  className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+                  className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
                   data-event="submit_budget_request"
                   data-service="reinigung"
                   data-region="duesseldorf"
@@ -536,7 +1014,7 @@ export default function DuesseldorfReinigungPage() {
                   href={whatsappHeroHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-[1.2rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900 transition hover:-translate-y-0.5 hover:bg-emerald-100"
+                  className="inline-flex items-center justify-center rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900 transition hover:-translate-y-0.5 hover:bg-emerald-100"
                   data-event="click_whatsapp"
                   data-service="reinigung"
                   data-region="duesseldorf"
@@ -552,7 +1030,7 @@ export default function DuesseldorfReinigungPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.1rem] border border-teal-100 bg-white/80 px-4 py-3 text-sm font-semibold leading-6 text-slate-700"
+                    className="rounded-[0.85rem] border border-teal-100 bg-white/80 px-4 py-3 text-sm font-semibold leading-6 text-slate-700"
                   >
                     {item}
                   </div>
@@ -560,11 +1038,11 @@ export default function DuesseldorfReinigungPage() {
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
-              <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <article className="rounded-[1rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
+              <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
                 So ordnen wir Ihre Anfrage ein
               </div>
-              <h2 className="mt-4 text-3xl font-bold tracking-[-0.02em] text-slate-950">
+              <h2 className="mt-4 text-3xl font-bold tracking-normal text-slate-950">
                 Erst klären, dann sauber planen
               </h2>
               <div className="mt-6 grid gap-3 md:grid-cols-2">
@@ -579,7 +1057,7 @@ export default function DuesseldorfReinigungPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex gap-3 rounded-[1.15rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-7 text-slate-700"
+                    className="flex gap-3 rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-7 text-slate-700"
                   >
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-teal-600" />
                     <span>{item}</span>
@@ -589,8 +1067,8 @@ export default function DuesseldorfReinigungPage() {
             </article>
           </div>
 
-          <article className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_20px_56px_rgba(15,23,42,0.06)]">
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+          <article className="mt-6 rounded-[1rem] border border-slate-200 bg-white p-7 shadow-[0_20px_56px_rgba(15,23,42,0.06)]">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Keine vorschnellen Preisversprechen
             </div>
             <p className="mt-4 max-w-4xl text-base leading-8 text-slate-700">
@@ -604,10 +1082,10 @@ export default function DuesseldorfReinigungPage() {
 
         <section id="rechner" className="pt-12">
           <div className="mb-8 max-w-3xl">
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Reinigungsrechner
             </div>
-            <h2 className="mt-4 text-4xl font-bold tracking-[-0.03em] text-slate-950">
+            <h2 className="mt-4 text-4xl font-bold tracking-normal text-slate-950">
               Reinigungsaufwand einschätzen und Budget mitgeben
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
@@ -622,8 +1100,8 @@ export default function DuesseldorfReinigungPage() {
 
         <section id="kontakt" className="pt-12">
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <article className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,#0f172a_0%,#132238_100%)] p-7 text-white shadow-[0_28px_72px_rgba(15,23,42,0.22)]">
-              <div className="text-[11px] font-black uppercase tracking-[0.2em] text-teal-300">
+            <article className="rounded-[1rem] border border-slate-200 bg-[linear-gradient(135deg,#0f172a_0%,#132238_100%)] p-7 text-white shadow-[0_28px_72px_rgba(15,23,42,0.22)]">
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-300">
                 FLOXANT Reinigung Düsseldorf
               </div>
               <div className="mt-5 space-y-2 text-base leading-8 text-slate-200">
@@ -641,20 +1119,20 @@ export default function DuesseldorfReinigungPage() {
               </p>
             </article>
 
-            <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
-              <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <article className="rounded-[1rem] border border-slate-200 bg-white p-7 shadow-[0_24px_64px_rgba(15,23,42,0.08)]">
+              <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
                 Lokale Folgeseiten
               </div>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <Link
                   href="/duesseldorf/reinigung/datenschutz"
-                  className="rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:bg-white"
+                  className="rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:bg-white"
                 >
                   Datenschutz Düsseldorf
                 </Link>
                 <Link
                   href="/duesseldorf/reinigung/agb"
-                  className="rounded-[1.2rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:bg-white"
+                  className="rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:bg-white"
                 >
                   AGB Düsseldorf
                 </Link>
@@ -663,7 +1141,7 @@ export default function DuesseldorfReinigungPage() {
                 {faqs.map((item) => (
                   <details
                     key={item.q}
-                    className="rounded-[1.2rem] border border-slate-200 bg-white px-4 py-4"
+                    className="rounded-[0.85rem] border border-slate-200 bg-white px-4 py-4"
                   >
                     <summary className="cursor-pointer list-none text-sm font-semibold text-slate-950">
                       {item.q}

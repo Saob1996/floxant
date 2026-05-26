@@ -96,7 +96,7 @@ export function DuesseldorfB2BCleaningForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich möchte eine B2B-Reinigung in Düsseldorf anfragen. Es geht um [Büro/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Frequenz, Zeitfenster und Fotos kann ich senden.",
+        "Hallo FLOXANT, ich möchte eine Firmenreinigung in Düsseldorf anfragen. Es geht um [Büro/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Häufigkeit, Zeitfenster und Fotos kann ich senden.",
       ),
     [],
   );
@@ -211,10 +211,10 @@ export function DuesseldorfB2BCleaningForm() {
   const isSubmitting = submitState === "submitting";
 
   return (
-    <div id="b2b-reinigung-form" className="rounded-[2rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 sm:p-7">
+    <div id="b2b-reinigung-form" className="rounded-[0.95rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 sm:p-7">
       <div>
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Business-Cleaning Anfrage</div>
-        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">B2B-Reinigung mit Fläche, Frequenz und Zeitfenster anfragen</h2>
+        <div className="text-xs font-black uppercase tracking-normal text-cyan-700">Firmenreinigung anfragen</div>
+        <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">Firmenreinigung mit Fläche, Häufigkeit und Zeitfenster anfragen</h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
           FLOXANT fragt bewusst nach Objektart, Fläche, Frequenz, Zeitfenster und Zugang. So bleibt die Anfrage für kleine Unternehmen in Düsseldorf prüfbar.
         </p>
@@ -231,7 +231,7 @@ export function DuesseldorfB2BCleaningForm() {
               onClick={() => setObjectType(item.value)}
               data-event="select_b2b_object_type"
               data-object-type={item.value}
-              className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
+              className={`rounded-[0.85rem] border p-4 text-left transition hover:-translate-y-0.5 ${
                 active ? "border-cyan-700 bg-cyan-50 shadow-lg shadow-cyan-950/10" : "border-slate-200 bg-white hover:border-cyan-200"
               }`}
             >
@@ -354,7 +354,7 @@ export function DuesseldorfB2BCleaningForm() {
           <OptionSelect label="regelmäßige Rechnung gewünscht" value={regularInvoice} onChange={setRegularInvoice} />
         </div>
 
-        <div className="rounded-[1.75rem] border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-sky-50/70 p-4 shadow-sm shadow-slate-950/5">
+        <div className="rounded-[0.9rem] border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-sky-50/70 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
             description="Räume, Böden, Sanitärbereiche, Küche oder Zugang."
@@ -371,26 +371,26 @@ export function DuesseldorfB2BCleaningForm() {
         </Field>
 
         <div className="grid gap-3 md:grid-cols-2">
-          <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
+          <label className="flex items-start gap-3 rounded-[0.8rem] border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
             Rückruf zur Objekt- und Frequenzklärung gewünscht.
           </label>
-          <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
+          <label className="flex items-start gap-3 rounded-[0.8rem] border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
             WhatsApp für Rückfragen bevorzugt.
           </label>
         </div>
 
-        <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
+        <label className="flex items-start gap-3 rounded-[0.8rem] border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
           Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist klar: Umfang, feste Zeiten und regelmäßige Reinigung werden nach Objekt, Zugang, Kapazität und Absprache geprüft.
         </label>
 
-        {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
+        {errorMessage ? <div className="rounded-[0.8rem] border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
         {submitState === "success" ? (
-          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
+          <div className="rounded-[0.8rem] border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre B2B-Reinigungsanfrage für Düsseldorf ist eingegangen. FLOXANT prüft Objektart, Fläche, Frequenz, Zeitfenster und gewünschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
+            Danke. Ihre Anfrage für Firmenreinigung in Düsseldorf ist eingegangen. FLOXANT prüft Objektart, Fläche, Häufigkeit, Zeitfenster und gewünschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
           </div>
         ) : null}
 
@@ -399,16 +399,16 @@ export function DuesseldorfB2BCleaningForm() {
             type="submit"
             disabled={isSubmitting}
             data-event="submit_b2b_cleaning_lead"
-            className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-black transition"
+            className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] px-6 text-sm font-black transition"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            B2B-Reinigung anfragen
+            Firmenreinigung anfragen
           </button>
-          <a href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`} data-event="click_b2b_cleaning_whatsapp" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100">
+          <a href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`} data-event="click_b2b_cleaning_whatsapp" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100">
             <MessageCircle className="h-4 w-4" />
             WhatsApp
           </a>
-          <a href={`mailto:${EMAIL}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 text-sm font-black text-slate-800 transition hover:bg-slate-50">
+          <a href={`mailto:${EMAIL}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-slate-200 bg-white px-5 text-sm font-black text-slate-800 transition hover:bg-slate-50">
             <Mail className="h-4 w-4" />
             E-Mail
           </a>
@@ -441,9 +441,9 @@ function OptionSelect({
   onChange: (value: string) => void;
 }) {
   return (
-    <label className="grid gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-xs font-black text-slate-800">
+    <label className="grid gap-2 rounded-[0.8rem] border border-slate-200 bg-slate-50 p-3 text-xs font-black text-slate-800">
       {label}
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-h-10 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold outline-none transition focus:border-cyan-700">
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-h-10 rounded-[0.7rem] border border-slate-200 bg-white px-3 text-xs font-bold outline-none transition focus:border-cyan-700">
         <option>ja</option>
         <option>nein</option>
         <option>unklar</option>

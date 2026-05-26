@@ -54,7 +54,7 @@ export function DecisionProofGrid() {
       </h2>
      </div>
      <p className="max-w-2xl text-lg leading-relaxed text-foreground/48 lg:ml-auto">
-      Diese Szenarien verbinden Suchintention, Service und Anfrageweg. Kunden müssen nicht raten,
+      Diese Beispiele verbinden Anliegen, Service und Anfrageweg. Kunden müssen nicht raten,
       ob sie Umzug, Reinigung, Entrümpelung, Büroumzug oder Leer-Rückfahrt brauchen.
      </p>
     </div>

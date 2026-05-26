@@ -3428,7 +3428,7 @@ input[type="file"]:hover {
 
 .duesseldorf-input {
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 0.78rem;
   border: 1px solid rgb(203 213 225);
   background: rgb(248 250 252);
   padding: 0.9rem 1rem;
@@ -3621,7 +3621,8 @@ input[type="file"]:hover {
   gap: 0.42rem;
 }
 
-.flox-duesseldorf-action-wrap .flox-mobile-action-grid {
+.flox-duesseldorf-action-wrap .flox-mobile-action-grid,
+.flox-regensburg-action-wrap .flox-mobile-action-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -3640,7 +3641,9 @@ input[type="file"]:hover {
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  word-break: keep-all;
   -webkit-text-fill-color: currentColor;
   text-decoration: none;
   transition:
@@ -3648,6 +3651,26 @@ input[type="file"]:hover {
     border-color 180ms ease,
     background-color 180ms ease,
     box-shadow 180ms ease;
+}
+
+.flox-mobile-action-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+}
+
+.flox-mobile-action-label {
+  min-width: 0;
+}
+
+.flox-mobile-action-note {
+  display: none;
+  font-size: 0.62rem;
+  font-weight: 750;
+  line-height: 1.1;
+  opacity: 0.76;
 }
 
 .flox-mobile-action svg {
@@ -3672,9 +3695,7 @@ input[type="file"]:hover {
 .flox-mobile-action-whatsapp {
   position: relative;
   border: 1px solid rgba(37, 211, 102, 0.82);
-  background:
-    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.22), transparent 34%),
-    linear-gradient(135deg, #25d366 0%, #16a34a 52%, #075e54 100%);
+  background: linear-gradient(135deg, #25d366 0%, #16a34a 52%, #075e54 100%);
   color: #ffffff !important;
   text-shadow: 0 1px 1px rgba(4, 47, 46, 0.28);
   box-shadow:
@@ -3720,56 +3741,146 @@ input[type="file"]:hover {
   }
 }
 
-.flox-duesseldorf-action-wrap {
+.flox-duesseldorf-action-wrap,
+.flox-regensburg-action-wrap {
   pointer-events: none;
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action-shell,
-.flox-duesseldorf-action-wrap .flox-mobile-action {
+.flox-duesseldorf-action-wrap .flox-mobile-action,
+.flox-regensburg-action-wrap .flox-mobile-action-shell,
+.flox-regensburg-action-wrap .flox-mobile-action {
   pointer-events: auto;
 }
 
+.flox-duesseldorf-action-wrap,
+.flox-regensburg-action-wrap {
+  bottom: max(0.4rem, env(safe-area-inset-bottom));
+}
+
+.flox-duesseldorf-action-wrap .flox-mobile-action-shell,
+.flox-regensburg-action-wrap .flox-mobile-action-shell {
+  width: min(100%, 24.25rem);
+  border-radius: 0.95rem;
+  padding: 0.28rem;
+}
+
+.flox-duesseldorf-action-wrap .flox-mobile-action-grid,
+.flox-regensburg-action-wrap .flox-mobile-action-grid {
+  gap: 0.3rem;
+}
+
+.flox-duesseldorf-action-wrap .flox-mobile-action,
+.flox-regensburg-action-wrap .flox-mobile-action {
+  min-height: 3rem;
+  border-radius: 0.68rem;
+  padding: 0.36rem 0.22rem;
+  font-size: 0.6rem;
+}
+
+.flox-duesseldorf-action-wrap .flox-mobile-action svg,
+.flox-regensburg-action-wrap .flox-mobile-action svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.flox-duesseldorf-action-wrap .flox-mobile-action-whatsapp::before,
+.flox-regensburg-action-wrap .flox-mobile-action-whatsapp::before {
+  width: 1.32rem;
+  height: 1.32rem;
+  background-size: 1.32rem 1.32rem;
+}
+
 @media (min-width: 1024px) {
-  .flox-duesseldorf-action-wrap {
+  .flox-duesseldorf-action-wrap,
+  .flox-regensburg-action-wrap {
     left: 50%;
     right: auto;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    width: min(41rem, calc(100vw - 2rem));
+    bottom: max(0.85rem, env(safe-area-inset-bottom));
+    width: min(34rem, calc(100vw - 2rem));
     transform: translateX(-50%);
   }
 
-  .flox-duesseldorf-action-wrap .flox-mobile-action-shell {
+  .flox-duesseldorf-action-wrap .flox-mobile-action-shell,
+  .flox-regensburg-action-wrap .flox-mobile-action-shell {
     width: 100%;
-    border-radius: 1.1rem;
-    padding: 0.45rem;
+    border-radius: 0.95rem;
+    padding: 0.36rem;
     box-shadow:
-      0 18px 44px rgba(15, 23, 42, 0.18),
+      0 14px 34px rgba(15, 23, 42, 0.15),
       0 1px 0 rgba(255, 255, 255, 0.9) inset;
   }
 
-  .flox-duesseldorf-action-wrap .flox-mobile-action-grid {
-    grid-template-columns: 0.95fr 1.08fr 0.82fr 0.92fr;
+  .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
+  .flox-regensburg-action-wrap .flox-mobile-action-grid {
+    grid-template-columns: 0.95fr 1.05fr 0.82fr 0.92fr;
   }
 
-  .flox-duesseldorf-action-wrap .flox-mobile-action {
-    min-height: 3.2rem;
+  .flox-duesseldorf-action-wrap .flox-mobile-action,
+  .flox-regensburg-action-wrap .flox-mobile-action {
+    min-height: 2.85rem;
     flex-direction: row;
-    gap: 0.45rem;
-    border-radius: 0.82rem;
-    padding: 0.62rem 0.75rem;
-    font-size: 0.78rem;
+    gap: 0.38rem;
+    border-radius: 0.72rem;
+    padding: 0.5rem 0.58rem;
+    font-size: 0.74rem;
     line-height: 1.1;
   }
 
-  .flox-duesseldorf-action-wrap .flox-mobile-action svg {
-    width: 1rem;
-    height: 1rem;
+  .flox-duesseldorf-action-wrap .flox-mobile-action-copy,
+  .flox-regensburg-action-wrap .flox-mobile-action-copy {
+    align-items: flex-start;
   }
 
-  .flox-duesseldorf-action-wrap .flox-mobile-action-whatsapp::before {
-    width: 1.45rem;
-    height: 1.45rem;
-    background-size: 1.45rem 1.45rem;
+  .flox-duesseldorf-action-wrap .flox-mobile-action svg,
+  .flox-regensburg-action-wrap .flox-mobile-action svg {
+    width: 0.92rem;
+    height: 0.92rem;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-whatsapp::before,
+  .flox-regensburg-action-wrap .flox-mobile-action-whatsapp::before {
+    width: 1.26rem;
+    height: 1.26rem;
+    background-size: 1.26rem 1.26rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .flox-duesseldorf-action-wrap,
+  .flox-regensburg-action-wrap {
+    left: auto;
+    right: max(1rem, calc((100vw - var(--flox-container)) / 2 - 9.2rem));
+    top: 50%;
+    bottom: auto;
+    width: 8.4rem;
+    transform: translateY(-50%);
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
+  .flox-regensburg-action-wrap .flox-mobile-action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action,
+  .flox-regensburg-action-wrap .flox-mobile-action {
+    min-height: 2.9rem;
+    justify-content: flex-start;
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 1880px) {
+  .flox-duesseldorf-action-wrap,
+  .flox-regensburg-action-wrap {
+    right: max(1.25rem, calc((100vw - var(--flox-container)) / 2 - 12.6rem));
+    width: 11rem;
+  }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-note,
+  .flox-regensburg-action-wrap .flox-mobile-action-note {
+    display: block;
   }
 }
 
@@ -3802,39 +3913,61 @@ input[type="file"]:hover {
   color: currentColor !important;
 }
 
-/* Also catch Tailwind opacity variants such as bg-white/90 + text-white/90.
-   The leading-space selectors avoid matching hover:bg-white/... utilities. */
-:where(a, button)[class^="bg-white"][class*="text-white"],
-:where(a, button)[class*=" bg-white"][class*="text-white"],
-:where(a, button)[class^="bg-slate-50"][class*="text-white"],
-:where(a, button)[class*=" bg-slate-50"][class*="text-white"],
-:where(a, button)[class^="bg-slate-100"][class*="text-white"],
-:where(a, button)[class*=" bg-slate-100"][class*="text-white"],
-:where(a, button)[class^="bg-neutral-50"][class*="text-white"],
-:where(a, button)[class*=" bg-neutral-50"][class*="text-white"],
-:where(a, button)[class^="bg-zinc-50"][class*="text-white"],
-:where(a, button)[class*=" bg-zinc-50"][class*="text-white"],
-:where(a, button)[class^="bg-gray-50"][class*="text-white"],
-:where(a, button)[class*=" bg-gray-50"][class*="text-white"],
-:where(a, button)[class^="from-white"][class*="text-white"],
-:where(a, button)[class*=" from-white"][class*="text-white"] {
+/* Also catch Tailwind opacity variants that are visually light, without changing
+   subtle white overlays on dark Düsseldorf sections. */
+:where(a, button)[class~="bg-white/70"][class*="text-white"],
+:where(a, button)[class~="bg-white/75"][class*="text-white"],
+:where(a, button)[class~="bg-white/80"][class*="text-white"],
+:where(a, button)[class~="bg-white/85"][class*="text-white"],
+:where(a, button)[class~="bg-white/90"][class*="text-white"],
+:where(a, button)[class~="bg-white/95"][class*="text-white"],
+:where(a, button)[class~="bg-white/96"][class*="text-white"],
+:where(a, button)[class~="bg-slate-50/70"][class*="text-white"],
+:where(a, button)[class~="bg-slate-50/80"][class*="text-white"],
+:where(a, button)[class~="bg-slate-50/90"][class*="text-white"],
+:where(a, button)[class~="bg-slate-100/70"][class*="text-white"],
+:where(a, button)[class~="bg-slate-100/80"][class*="text-white"],
+:where(a, button)[class~="bg-slate-100/90"][class*="text-white"],
+:where(a, button)[class~="bg-neutral-50/70"][class*="text-white"],
+:where(a, button)[class~="bg-neutral-50/80"][class*="text-white"],
+:where(a, button)[class~="bg-neutral-50/90"][class*="text-white"],
+:where(a, button)[class~="bg-zinc-50/70"][class*="text-white"],
+:where(a, button)[class~="bg-zinc-50/80"][class*="text-white"],
+:where(a, button)[class~="bg-zinc-50/90"][class*="text-white"],
+:where(a, button)[class~="bg-gray-50/70"][class*="text-white"],
+:where(a, button)[class~="bg-gray-50/80"][class*="text-white"],
+:where(a, button)[class~="bg-gray-50/90"][class*="text-white"],
+:where(a, button)[class~="from-white/70"][class*="text-white"],
+:where(a, button)[class~="from-white/80"][class*="text-white"],
+:where(a, button)[class~="from-white/90"][class*="text-white"] {
   color: rgb(15 23 42) !important;
 }
 
-:where(a, button)[class^="bg-white"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" bg-white"][class*="text-white"] :where(span, svg),
-:where(a, button)[class^="bg-slate-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" bg-slate-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class^="bg-slate-100"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" bg-slate-100"][class*="text-white"] :where(span, svg),
-:where(a, button)[class^="bg-neutral-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" bg-neutral-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class^="bg-zinc-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" bg-zinc-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class^="bg-gray-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" bg-gray-50"][class*="text-white"] :where(span, svg),
-:where(a, button)[class^="from-white"][class*="text-white"] :where(span, svg),
-:where(a, button)[class*=" from-white"][class*="text-white"] :where(span, svg) {
+:where(a, button)[class~="bg-white/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-white/75"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-white/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-white/85"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-white/90"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-white/95"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-white/96"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-slate-50/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-slate-50/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-slate-50/90"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-slate-100/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-slate-100/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-slate-100/90"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-neutral-50/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-neutral-50/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-neutral-50/90"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-zinc-50/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-zinc-50/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-zinc-50/90"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-gray-50/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-gray-50/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="bg-gray-50/90"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="from-white/70"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="from-white/80"][class*="text-white"] :where(span, svg),
+:where(a, button)[class~="from-white/90"][class*="text-white"] :where(span, svg) {
   color: currentColor !important;
 }
 
@@ -3865,7 +3998,10 @@ input[type="file"]:hover {
 .duesseldorf-hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(8, 18, 34, 0.98), rgba(14, 28, 52, 0.98));
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(135deg, rgba(8, 18, 34, 0.99), rgba(12, 36, 50, 0.98) 52%, rgba(10, 22, 42, 0.99)),
+    #08111f;
 }
 
 .duesseldorf-hero::before {
@@ -3907,9 +4043,16 @@ input[type="file"]:hover {
   opacity: 1;
 }
 
+.duesseldorf-offer-title {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+}
+
 .duesseldorf-service-hero {
   position: relative;
   isolation: isolate;
+  border-radius: 1rem;
   background:
     linear-gradient(135deg, rgba(7, 17, 29, 0.99), rgba(15, 23, 42, 0.98)),
     #08111f !important;
@@ -3923,7 +4066,7 @@ input[type="file"]:hover {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 14% 12%, rgba(20, 184, 166, 0.16), transparent 30%),
+    linear-gradient(90deg, rgba(20, 184, 166, 0.14), transparent 38%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 34%);
 }
 
@@ -4389,9 +4532,7 @@ a[href*="wa.me"] :where(.flox-icon-tile, .flox-cta-choice-icon) > svg {
 
 a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-action):has(> svg) {
   border-color: rgba(37, 211, 102, 0.74) !important;
-  background:
-    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.18), transparent 34%),
-    linear-gradient(135deg, #25d366 0%, #16a34a 54%, #075e54 100%) !important;
+  background: linear-gradient(135deg, #25d366 0%, #16a34a 54%, #075e54 100%) !important;
   color: #ffffff !important;
   box-shadow: 0 16px 34px rgba(7, 94, 84, 0.24);
 }

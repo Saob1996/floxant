@@ -28,7 +28,7 @@ const regensburgServices = [
 const duesseldorfServices = [
   { label: "Wohnungsreinigung", href: "/duesseldorf/reinigung", text: "Auszug, Grundreinigung oder Übergabe." },
   { label: "Möblierte Wohnung", href: "/reinigung-moeblierte-wohnung-duesseldorf", text: "Gästewechsel, Endreinigung und sichtbare Flächen." },
-  { label: "B2B-Reinigung", href: "/duesseldorf/bueroreinigung", text: "Büro, Praxis, Studio oder Treppenhaus." },
+  { label: "Firmenreinigung", href: "/duesseldorf/bueroreinigung", text: "Büro, Praxis, Studio oder Treppenhaus." },
   { label: "Entsorgung prüfen", href: "/entsorgung-duesseldorf", text: "Nur ergänzend, wenn Umfang und Zugang passen." },
 ];
 
@@ -190,7 +190,7 @@ function ServiceRegionColumn({
             <span className="flox-service-region-link-icon flex h-8 w-8 items-center justify-center rounded-[0.8rem] bg-slate-100 text-slate-700">
               {service.label.includes("Ent") ? (
                 <Trash2 className="h-4 w-4" />
-              ) : service.label.includes("B2B") || service.label.includes("Gewerbe") ? (
+              ) : service.label.includes("Firma") || service.label.includes("Gewerbe") ? (
                 <Building2 className="h-4 w-4" />
               ) : service.label.includes("Umzug") ? (
                 <Truck className="h-4 w-4" />

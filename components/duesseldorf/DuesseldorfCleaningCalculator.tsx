@@ -196,7 +196,7 @@ export function DuesseldorfCleaningCalculator() {
 
   if (success) {
     return (
-      <div className="rounded-[2rem] border border-emerald-200 bg-[linear-gradient(180deg,rgba(236,253,245,0.98),rgba(255,255,255,0.98))] p-8 shadow-[0_28px_72px_rgba(16,185,129,0.14)]">
+      <div className="rounded-[1rem] border border-emerald-200 bg-[linear-gradient(180deg,rgba(236,253,245,0.98),rgba(255,255,255,0.98))] p-8 shadow-[0_28px_72px_rgba(16,185,129,0.14)]">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
           <CheckCircle2 className="h-8 w-8" />
         </div>
@@ -215,7 +215,7 @@ export function DuesseldorfCleaningCalculator() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-emerald-500 px-5 py-3 text-sm font-bold text-slate-950"
+            className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-500 px-5 py-3 text-sm font-bold text-slate-950"
             data-event="click_whatsapp"
             data-service="reinigung"
             data-region="duesseldorf"
@@ -225,7 +225,7 @@ export function DuesseldorfCleaningCalculator() {
           </a>
           <a
             href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
-            className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-900"
+            className="inline-flex items-center justify-center rounded-[0.85rem] border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-900"
             data-event="click_phone"
             data-service="reinigung"
             data-region="duesseldorf"
@@ -241,7 +241,7 @@ export function DuesseldorfCleaningCalculator() {
     <div className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
       <form
         onSubmit={handleSubmit}
-        className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-8"
+        className="rounded-[1rem] border border-slate-200 bg-white p-6 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-8"
         data-event="submit_budget_request"
         data-service="reinigung"
         data-region="duesseldorf"
@@ -317,7 +317,7 @@ export function DuesseldorfCleaningCalculator() {
         </div>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <label className="rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4">
+          <label className="rounded-[0.85rem] border border-slate-200 bg-slate-50 p-4">
             <span className="text-sm font-semibold text-slate-900">Küche intensiv</span>
             <div className="mt-3 flex gap-2">
               <Toggle active={!kitchenIntensive} onClick={() => setKitchenIntensive(false)}>
@@ -328,7 +328,7 @@ export function DuesseldorfCleaningCalculator() {
               </Toggle>
             </div>
           </label>
-          <label className="rounded-[1.35rem] border border-slate-200 bg-slate-50 p-4">
+          <label className="rounded-[0.85rem] border border-slate-200 bg-slate-50 p-4">
             <span className="text-sm font-semibold text-slate-900">Bad intensiv</span>
             <div className="mt-3 flex gap-2">
               <Toggle active={!bathroomIntensive} onClick={() => setBathroomIntensive(false)}>
@@ -403,7 +403,7 @@ export function DuesseldorfCleaningCalculator() {
         </Field>
 
         {error ? (
-          <div className="mt-4 rounded-[1.35rem] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="mt-4 rounded-[0.85rem] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
             {error}
           </div>
         ) : null}
@@ -412,7 +412,7 @@ export function DuesseldorfCleaningCalculator() {
           <button
             type="submit"
             disabled={submitting || !name.trim() || !phone.trim()}
-            className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
             data-event="submit_budget_request"
             data-service="reinigung"
             data-region="duesseldorf"
@@ -424,7 +424,7 @@ export function DuesseldorfCleaningCalculator() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900"
+            className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900"
             data-event="click_whatsapp"
             data-service="reinigung"
             data-region="duesseldorf"
@@ -435,8 +435,8 @@ export function DuesseldorfCleaningCalculator() {
         </div>
       </form>
 
-      <aside className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,#0f172a_0%,#132238_100%)] p-6 text-white shadow-[0_28px_72px_rgba(15,23,42,0.2)] md:p-8">
-        <div className="text-[11px] font-black uppercase tracking-[0.18em] text-teal-300">
+      <aside className="rounded-[1rem] border border-slate-200 bg-[linear-gradient(180deg,#0f172a_0%,#132238_100%)] p-6 text-white shadow-[0_28px_72px_rgba(15,23,42,0.2)] md:p-8">
+        <div className="text-[11px] font-black uppercase tracking-normal text-teal-300">
           Unverbindliche Ersteinschätzung
         </div>
         <h3 className="mt-4 text-3xl font-bold">
@@ -459,14 +459,14 @@ export function DuesseldorfCleaningCalculator() {
           ].map((item) => (
             <div
               key={item}
-              className="rounded-[1.15rem] border border-white/10 bg-white/6 px-4 py-3 text-sm text-slate-100"
+              className="rounded-[0.85rem] border border-white/10 bg-white/6 px-4 py-3 text-sm text-slate-100"
             >
               {item}
             </div>
           ))}
         </div>
 
-        <div className="mt-8 rounded-[1.5rem] border border-white/10 bg-white/6 p-5">
+        <div className="mt-8 rounded-[0.95rem] border border-white/10 bg-white/6 p-5">
           <div className="text-sm font-semibold text-white">Was der Rechner bewusst nicht tut</div>
           <p className="mt-3 text-sm leading-7 text-slate-300">
             Er ersetzt kein geprüftes Angebot und bestätigt keinen Endpreis automatisch.
@@ -510,8 +510,8 @@ function Toggle({
       onClick={onClick}
       className={
         active
-          ? "rounded-full bg-slate-950 px-4 py-2 text-xs font-bold text-white"
-          : "rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700"
+          ? "rounded-[0.75rem] bg-slate-950 px-4 py-2 text-xs font-bold text-white"
+          : "rounded-[0.75rem] border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700"
       }
     >
       {children}

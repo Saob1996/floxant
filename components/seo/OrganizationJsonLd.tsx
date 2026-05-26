@@ -98,7 +98,7 @@ export function OrganizationJsonLd() {
       "Nachlass-Räumung",
       "Immobilie verkaufsbereit machen",
       "Diskreter Umzug",
-      "B2B-Reinigung Düsseldorf",
+      "Firmenreinigung Düsseldorf",
       "Büroreinigung Düsseldorf",
       "Firmenreinigung Düsseldorf",
       "Gewerbereinigung Düsseldorf",
@@ -138,8 +138,8 @@ export function OrganizationJsonLd() {
       { "@type": "WebPage", name: "Übergabeakte", url: `${company.url}/uebergabeakte` },
       { "@type": "WebPage", name: "Umzug mit Reinigung", url: `${company.url}/umzug-mit-reinigung` },
       { "@type": "WebPage", name: "Leer-Rückfahrt / Rückladung", url: `${company.url}/rueckfahrt-boerse` },
-      { "@type": "WebPage", name: "B2B-Reinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` },
-      { "@type": "WebPage", name: "Düsseldorf B2B-Reinigung eigene Seite", url: `${company.url}/duesseldorf/b2b-reinigung` },
+      { "@type": "WebPage", name: "Firmenreinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` },
+      { "@type": "WebPage", name: "Düsseldorf Firmenreinigung eigene Seite", url: `${company.url}/duesseldorf/b2b-reinigung` },
       { "@type": "WebPage", name: "Firmenreinigung Düsseldorf", url: `${company.url}/duesseldorf/firmenreinigung` },
       { "@type": "WebPage", name: "Gewerbereinigung Düsseldorf", url: `${company.url}/duesseldorf/gewerbereinigung` },
       { "@type": "WebPage", name: "Reinigung Düsseldorf Stadtteile und Umgebung", url: `${company.url}/duesseldorf/reinigung-stadtteile-umgebung` },
@@ -156,7 +156,7 @@ export function OrganizationJsonLd() {
     sameAs: company.sameAs,
     slogan: "Umzug, Reinigung, Entrümpelung, Entsorgung und Angebotsprüfung direkt anfragen.",
     keywords:
-      "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Angebot anderer Firma prüfen, B2B-Reinigung Düsseldorf, Büroreinigung Düsseldorf, Firmenreinigung Düsseldorf, Gewerbereinigung Düsseldorf, Hotelreinigung Düsseldorf, Kanzleireinigung Düsseldorf, Praxisreinigung Düsseldorf, Reinigung Neuss, Reinigung Ratingen, Reinigung Meerbusch, Reinigung Mettmann, Reinigung Duisburg, Angebot prüfen Düsseldorf, FLOXANT Bayern",
+      "Umzug Regensburg, Reinigung Regensburg, Entrümpelung Regensburg, Angebot anderer Firma prüfen, Firmenreinigung Düsseldorf, Büroreinigung Düsseldorf, Gewerbereinigung Düsseldorf, Hotelreinigung Düsseldorf, Kanzleireinigung Düsseldorf, Praxisreinigung Düsseldorf, Reinigung Neuss, Reinigung Ratingen, Reinigung Meerbusch, Reinigung Mettmann, Reinigung Duisburg, Angebot prüfen Düsseldorf, FLOXANT Bayern",
     knowsLanguage: ["de"],
     potentialAction: [
       {
@@ -191,7 +191,7 @@ export function OrganizationJsonLd() {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Übergabeprotokoll und Übergabeakte", url: `${company.url}/uebergabeakte` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Leer-Rückfahrt / Rückladung", url: `${company.url}/rueckfahrt-boerse` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Angebot günstiger prüfen", url: `${company.url}/angebot-guenstiger-pruefen` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "B2B-Reinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Firmenreinigung Düsseldorf", url: `${company.url}/duesseldorf/bueroreinigung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Firmenreinigung Düsseldorf", url: `${company.url}/duesseldorf/firmenreinigung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gewerbereinigung Düsseldorf", url: `${company.url}/duesseldorf/gewerbereinigung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Kanzleireinigung Düsseldorf", url: `${company.url}/duesseldorf/kanzleireinigung` } },

@@ -194,10 +194,10 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     accent: "from-slate-950 via-blue-900 to-amber-500",
   },
   duesseldorf_b2b_cleaning: {
-    title: "B2B-Reinigung Düsseldorf",
-    desc: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen, wenn Fläche, Frequenz, Zeitfenster und Zugang klar geprüft werden sollen.",
+    title: "Firmenreinigung Düsseldorf",
+    desc: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen, wenn Fläche, Turnus, Zeitfenster und Zugang klar geprüft werden sollen.",
     href: "/duesseldorf/bueroreinigung",
-    label: "B2B-Reinigung",
+    label: "Firmenreinigung",
     eyebrow: "Düsseldorf",
     icon: BriefcaseBusiness,
     accent: "from-teal-600 via-cyan-500 to-blue-500",

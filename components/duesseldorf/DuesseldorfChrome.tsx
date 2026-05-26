@@ -8,16 +8,16 @@ import {
 } from "@/lib/duesseldorf-cleaning";
 
 const duesseldorfTrustLinks = [
-  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile & Umgebung" },
-  { href: "/duesseldorf/vielleicht-guenstiger", label: "Vielleicht günstiger?" },
+  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
+  { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung" },
-  { href: "/duesseldorf/bueroreinigung", label: "B2B-Reinigung" },
+  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
 ] as const;
 
 const duesseldorfDominanceLinks = [
   { href: "/duesseldorf/reinigung", label: "Reinigungsfirma Düsseldorf" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-  { href: "/duesseldorf/b2b-reinigung", label: "B2B-Reinigung Düsseldorf" },
+  { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung Düsseldorf" },
   { href: "/duesseldorf/firmenreinigung", label: "Firmenreinigung Düsseldorf" },
   { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
@@ -56,20 +56,22 @@ const duesseldorfNearbySignals = [
 
 export function DuesseldorfChrome({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen overflow-x-clip bg-[linear-gradient(180deg,#07111d_0%,#0b1726_14%,#0f1b2d_22%,#f3f7fb_22%,#f8fbff_100%)] pt-24 lg:pt-28">
+    <div className="min-h-screen overflow-x-clip bg-[linear-gradient(180deg,#07111d_0,#0b1726_9rem,#f3f7fb_18rem,#f8fbff_100%)] pt-24 lg:pt-28">
       {children}
 
       <section className="border-y border-slate-200 bg-slate-950 px-4 py-8 text-white">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1fr_1.25fr] lg:items-center">
           <div>
             <div className="text-[11px] font-black uppercase tracking-normal text-cyan-200">
-              Düsseldorf stärker finden
+              Düsseldorf schnell einordnen
             </div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight">
-              Reinigung in Düsseldorf, Stadtteilen und naher Umgebung
+            <h2 className="mt-2 text-2xl font-black tracking-normal">
+              Reinigungsanfrage nach Objekt, Stadtteil und Termin
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-300">
-              Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen sowie Neuss, Ratingen, Meerbusch, Mettmann und Duisburg werden nach Objekt, Zugang, Fotos und Zeitfenster geprüft.
+              Wohnung, Büro, Hotel, Treppenhaus oder Entsorgung: Senden Sie Ort, Fläche,
+              Fotos und Zeitfenster. FLOXANT prüft Düsseldorf und nahe Orte nach realem
+              Aufwand statt nach Pauschalversprechen.
             </p>
           </div>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
@@ -77,7 +79,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex min-h-14 items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-sm font-black text-white transition hover:bg-white/14"
+                className="group flex min-h-14 items-center justify-between gap-3 rounded-[0.85rem] border border-cyan-100/20 bg-slate-900/75 px-4 py-3 text-sm font-black !text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:bg-slate-800"
               >
                 <span>{item.label}</span>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-cyan-200 transition group-hover:text-white" />
@@ -91,22 +93,22 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1.15fr_0.9fr_0.8fr]">
           <div>
             <div className="text-[11px] font-black uppercase tracking-normal text-cyan-700">
-              Düsseldorf sauber abdecken
+              Passenden Einstieg wählen
             </div>
-            <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">
-              Direkte Einstiege für Reinigung, B2B und Angebotsprüfung
+            <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
+              Direkte Wege für Wohnung, Büro, Hotel und Angebot
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-              FLOXANT bündelt die Düsseldorfer Reinigungsseiten so, dass Kunden nicht raten
-              müssen: Objektart wählen, Stadtteil oder Nachbarort nennen, Fotos senden und eine
-              konkrete Rückmeldung zu Aufwand, Zugang, Turnus und Preisrahmen erhalten.
+              Kunden müssen nicht raten, welche Seite passt: Objektart wählen, Stadtteil oder
+              Nachbarort nennen, Fotos senden und eine konkrete Rückmeldung zu Aufwand,
+              Zugang, Turnus und Preisrahmen erhalten.
             </p>
             <div className="mt-5 grid gap-2 sm:grid-cols-2">
               {duesseldorfDominanceLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex min-h-12 items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-slate-950"
+                  className="group flex min-h-12 items-center justify-between gap-3 rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-slate-950"
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-cyan-700" />
@@ -115,7 +117,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+          <div className="rounded-[1rem] border border-slate-200 bg-slate-50 p-5">
             <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Stadtteile
             </div>
@@ -128,7 +130,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                 <Link
                   key={district}
                   href="/duesseldorf/reinigung-stadtteile-umgebung"
-                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-cyan-200 hover:text-cyan-800"
+                  className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-cyan-200 hover:text-cyan-800"
                 >
                   Reinigung {district}
                 </Link>
@@ -136,7 +138,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] border border-cyan-100 bg-cyan-50 p-5">
+          <div className="rounded-[1rem] border border-cyan-100 bg-cyan-50 p-5">
             <div className="text-[11px] font-black uppercase tracking-normal text-cyan-700">
               Nahe Umgebung
             </div>
@@ -149,7 +151,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                 <Link
                   key={area}
                   href="/duesseldorf/reinigung-stadtteile-umgebung"
-                  className="rounded-full border border-cyan-100 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-cyan-300 hover:text-cyan-800"
+                  className="rounded-[0.75rem] border border-cyan-100 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-cyan-300 hover:text-cyan-800"
                 >
                   Reinigung {area}
                 </Link>
@@ -162,7 +164,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
       <footer className="border-t border-slate-200 bg-white/96 px-4 pb-32 pt-14 lg:pb-36">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_1.05fr_0.8fr]">
           <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               FLOXANT Reinigung Düsseldorf
             </div>
             <h2 className="mt-3 text-2xl font-bold text-slate-950">
@@ -194,7 +196,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Leistungen in Düsseldorf
             </div>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -202,7 +204,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-white hover:text-slate-950"
+                  className="group flex items-center justify-between gap-3 rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-white hover:text-slate-950"
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-slate-900" />
@@ -212,7 +214,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
           </div>
 
           <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-500">
+            <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Recht und Kontakt
             </div>
             <div className="mt-4 space-y-2">
@@ -230,7 +232,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-white hover:text-slate-950"
+                  className="group flex items-center justify-between rounded-[0.85rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-white hover:text-slate-950"
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight className="h-4 w-4 text-slate-400 transition group-hover:text-slate-900" />

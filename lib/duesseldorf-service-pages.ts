@@ -23,23 +23,23 @@ const commonBoundary =
   "Düsseldorf ist bei FLOXANT ein eigener Standortbereich für Reinigung und Entsorgung. Umzug, Transport und ähnliche Umzugsleistungen werden in Düsseldorf nicht beworben und nicht mit Regensburg vermischt.";
 
 const commonLinks = [
-  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-  { href: "/duesseldorf/b2b-reinigung", label: "B2B-Reinigung Düsseldorf" },
-  { href: "/duesseldorf/firmenreinigung", label: "Firmenreinigung Düsseldorf" },
-  { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
-  { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
-  { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung Düsseldorf" },
-  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
-  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile & Umgebung" },
-  { href: "/duesseldorf/vielleicht-guenstiger", label: "Vielleicht günstiger?" },
-  { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung Düsseldorf" },
-  { href: "/duesseldorf/endreinigung", label: "Endreinigung Düsseldorf" },
-  { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf" },
-  { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung Düsseldorf" },
-  { href: "/duesseldorf/kellerreinigung", label: "Kellerreinigung Düsseldorf" },
-  { href: "/duesseldorf/entsorgung", label: "Entsorgung Düsseldorf" },
-  { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung Düsseldorf" },
+  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf anfragen" },
+  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung prüfen" },
+  { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung planen" },
+  { href: "/duesseldorf/firmenreinigung", label: "Firmenreinigung einschätzen" },
+  { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung prüfen" },
+  { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung anfragen" },
+  { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung diskret planen" },
+  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung abklären" },
+  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
+  { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+  { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung anfragen" },
+  { href: "/duesseldorf/endreinigung", label: "Endreinigung vorbereiten" },
+  { href: "/duesseldorf/grundreinigung", label: "Grundreinigung einschätzen" },
+  { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung anfragen" },
+  { href: "/duesseldorf/kellerreinigung", label: "Kellerreinigung prüfen" },
+  { href: "/duesseldorf/entsorgung", label: "Entsorgung separat prüfen" },
+  { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung prüfen" },
 ];
 
 function faq(service: string, detail: string) {
@@ -63,32 +63,32 @@ export const duesseldorfServicePages = {
   "b2b-reinigung": {
     slug: "b2b-reinigung",
     path: "/duesseldorf/b2b-reinigung",
-    metaTitle: "B2B-Reinigung Düsseldorf | Büro, Hotel & Firma | FLOXANT",
+    metaTitle: "Firmenreinigung Düsseldorf | Büro, Hotel & Firma | FLOXANT",
     metaDescription:
-      "B2B-Reinigung Düsseldorf für Büros, Hotels, Kanzleien, kleine Firmen, Praxen und Objektflächen. Fotos, Fläche und Turnus direkt senden.",
-    kicker: "FLOXANT B2B-Reinigung Düsseldorf",
-    title: "B2B-Reinigung in Düsseldorf",
+      "Firmenreinigung Düsseldorf für Büros, Hotels, Kanzleien, kleine Firmen, Praxen und Objektflächen. Fotos, Fläche und Turnus direkt senden.",
+    kicker: "FLOXANT Firmenreinigung Düsseldorf",
+    title: "Firmenreinigung in Düsseldorf",
     description:
       "Für kleine Unternehmen, Büros, Hotels, Kanzleien, Praxen nach Absprache, Studios und Objektflächen, wenn Reinigung schnell einschätzbar, sauber geplant und direkt anfragbar sein soll.",
-    serviceLabel: "B2B-Reinigung",
+    serviceLabel: "Firmenreinigung",
     contentSections: [
       {
-        title: "B2B-Reinigung mit Düsseldorfer Alltag",
+        title: "Firmenreinigung mit Düsseldorfer Alltag",
         paragraphs: [
-          "B2B-Reinigung in Düsseldorf braucht eine andere Einordnung als eine private Wohnungsreinigung. In einer Kanzlei, Agentur, Praxis oder kleinen Firma stören falsche Uhrzeiten, unklare Schlüsselwege und schlecht abgestimmte Ansprechpartner sofort den Betrieb. Deshalb wird zuerst geklärt, ob vor Arbeitsbeginn, nach Feierabend, am Wochenende oder in einem engen Zeitfenster gereinigt werden soll.",
+          "Firmenreinigung in Düsseldorf braucht eine andere Einordnung als eine private Wohnungsreinigung. In einer Kanzlei, Agentur, Praxis oder kleinen Firma stören falsche Uhrzeiten, unklare Schlüsselwege und schlecht abgestimmte Ansprechpartner sofort den Betrieb. Deshalb wird zuerst geklärt, ob vor Arbeitsbeginn, nach Feierabend, am Wochenende oder in einem engen Zeitfenster gereinigt werden soll.",
           "Besonders in Stadtmitte, Pempelfort, Derendorf, Bilk und rund um den MedienHafen sind Zugang, Parkmöglichkeit, Lieferzone und Hausordnung oft wichtiger als die reine Quadratmeterzahl. FLOXANT fragt deshalb nach Fotos, Etage, Aufzug, Kontaktperson vor Ort, empfindlichen Bereichen und gewünschter Häufigkeit. Daraus entsteht eine Anfrage, die wirklich zu Düsseldorf passt.",
         ],
       },
       {
         title: "Was vor dem Angebot geklärt wird",
         paragraphs: [
-          "Bei B2B-Flächen geht es meist um Arbeitsplätze, Besprechungsräume, Küchen, Sanitärbereiche, Empfang, Flure, Hotel-Lobby, Frühstücksbereich und manchmal auch kleine Lager- oder Nebenräume. Manche Flächen müssen repräsentativ wirken, andere sollen vor allem zuverlässig nutzbar bleiben. Diese Unterschiede verändern Aufwand, Material, Zeitfenster und Preisrahmen.",
+          "Bei Firmenflächen geht es meist um Arbeitsplätze, Besprechungsräume, Küchen, Sanitärbereiche, Empfang, Flure, Hotel-Lobby, Frühstücksbereich und manchmal auch kleine Lager- oder Nebenräume. Manche Flächen müssen repräsentativ wirken, andere sollen vor allem zuverlässig nutzbar bleiben. Diese Unterschiede verändern Aufwand, Material, Zeitfenster und Preisrahmen.",
           "Wenn zusätzlich alte Möbel, Aktenregale oder kleinere Gegenstände entfernt werden sollen, wird das als Düsseldorfer Entsorgung getrennt betrachtet. So bleibt die Reinigungsseite sauber verständlich und wird nicht mit Transport, Büroumzug oder Regensburg vermischt.",
         ],
       },
     ],
     bullets: [
-      "Büros, Hotels, Kanzleien, Studios, kleine Firmen und Objektflächen werden nach Fläche, Frequenz, Zeitfenster und Zugang eingeordnet.",
+      "Büros, Hotels, Kanzleien, Studios, kleine Firmen und Objektflächen werden nach Fläche, Turnus, Zeitfenster und Zugang eingeordnet.",
       "Die Anfrage bleibt bei Reinigung und Entsorgung in Düsseldorf; Umzug und Büroumzug werden ausdrücklich ausgeschlossen.",
       "Fotos, Ansprechpartner, gewünschter Turnus und Budget helfen, den Aufwand vor einem Angebot realistisch zu prüfen.",
     ],
@@ -99,8 +99,8 @@ export const duesseldorfServicePages = {
       "Zugang, Schlüsselregelung, Ansprechpartner und Parkmöglichkeit an der Breite Str. / Innenstadt-Umgebung wirken auf die Einsatzlogik.",
     ],
     faqItems: faq(
-      "B2B-Reinigung",
-      "Bei B2B-Flächen sind zusätzlich Frequenz, Ansprechpartner, gewünschtes Zeitfenster und sensible Bereiche wichtig.",
+      "Firmenreinigung",
+      "Bei Firmenflächen sind zusätzlich Turnus, Ansprechpartner, gewünschtes Zeitfenster und sensible Bereiche wichtig.",
     ),
     relatedLinks: commonLinks,
     boundaryText: commonBoundary,
@@ -154,12 +154,12 @@ export const duesseldorfServicePages = {
       },
     ],
     relatedLinks: [
-      { href: "/duesseldorf/b2b-reinigung", label: "B2B-Reinigung Düsseldorf" },
-      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
-      { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung Düsseldorf" },
-      { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf" },
-      { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung Düsseldorf" },
-      { href: "/duesseldorf/entsorgung", label: "Entsorgung Düsseldorf" },
+      { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung planen" },
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung prüfen" },
+      { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung prüfen" },
+      { href: "/duesseldorf/grundreinigung", label: "Grundreinigung einschätzen" },
+      { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung anfragen" },
+      { href: "/duesseldorf/entsorgung", label: "Entsorgung separat prüfen" },
     ],
     boundaryText: commonBoundary,
   },
@@ -192,7 +192,7 @@ export const duesseldorfServicePages = {
     ],
     bullets: [
       "Geeignet für kleine Firmen, Agenturen, Beratungen, Studios und Nebenflächen mit klarem Reinigungsbedarf.",
-      "Der Umfang wird nach Fläche, Nutzung, Frequenz und Zeitfenster geprüft, nicht pauschal über einen Stadtnamen verkauft.",
+      "Der Umfang wird nach Fläche, Nutzung, Turnus und Zeitfenster geprüft, nicht pauschal über einen Stadtnamen verkauft.",
       "Düsseldorf bleibt als eigener Reinigungsstandort sichtbar: Breite Str. 22, 40213 Düsseldorf.",
     ],
     localFocus: ["Innenstadt", "Flingern", "Derendorf", "Oberbilk", "Ratingen", "Meerbusch"],
@@ -283,11 +283,11 @@ export const duesseldorfServicePages = {
     bullets: [
       "Empfang, Besprechungsräume, Arbeitsplätze, Sanitär und Küche werden mit ruhigen Zeitfenstern geplant.",
       "Vertrauliche Unterlagen, Schlüsselzugang und Ansprechpartner werden nicht improvisiert, sondern vorab geklärt.",
-      "Die Seite erzeugt bewusst kein Büroumzug-Signal: Es geht ausschließlich um Reinigung in Düsseldorf.",
+      "Diese Seite macht klar: Es geht ausschließlich um Reinigung in Düsseldorf, nicht um Büroumzug.",
     ],
     localFocus: ["Carlstadt", "Stadtmitte", "Pempelfort", "Königsallee-Umfeld", "Derendorf", "Oberkassel"],
     priceLogic: [
-      "Raumstruktur, Besprechungsbereiche, Sanitär, Küche und gewünschte Frequenz bestimmen den Aufwand.",
+      "Raumstruktur, Besprechungsbereiche, Sanitär, Küche und gewünschter Turnus bestimmen den Aufwand.",
       "Diskrete Zeitfenster vor oder nach Kanzleibetrieb werden separat eingeordnet.",
       "Zugang, Schlüsselregelung und Ansprechpartner sind wichtig, damit Reinigung ohne Störung möglich ist.",
     ],
@@ -334,7 +334,7 @@ export const duesseldorfServicePages = {
     priceLogic: [
       "Empfang, Wartebereich, Behandlungsnähe, Sanitär und Nebenräume werden getrennt betrachtet.",
       "Hygieneanforderungen müssen klar beschrieben werden; Spezialdesinfektion wird nicht pauschal zugesagt.",
-      "Frequenz, Zeitfenster und Zugang entscheiden, ob eine regelmäßige Reinigung sinnvoll planbar ist.",
+      "Turnus, Zeitfenster und Zugang entscheiden, ob eine regelmäßige Reinigung sinnvoll planbar ist.",
     ],
     faqItems: faq(
       "Praxisreinigung",
@@ -365,7 +365,7 @@ export const duesseldorfServicePages = {
       {
         title: "Welche Prüfung vor jeder Zusage nötig ist",
         paragraphs: [
-          "Vor einer Antwort müssen Art der Fläche, Nutzung, Risiko, Reinigungsziel, gewünschte Häufigkeit, interne Vorgaben, Ansprechpartner und erlaubte Zeitfenster bekannt sein. Fotos helfen nur, wenn sie zulässig sind und keine sensiblen Informationen zeigen.",
+          "Vor einer Antwort müssen Art der Fläche, Nutzung, Risiko, Reinigungsziel, gewünschte Häufigkeit, eigene Vorgaben, Ansprechpartner und erlaubte Zeitfenster bekannt sein. Fotos helfen nur, wenn sie zulässig sind und keine sensiblen Informationen zeigen.",
           "Diese klare Grenze ist wichtig, weil Suchende oft sehr unterschiedliche Dinge meinen, wenn sie Krankenhausreinigung schreiben. FLOXANT hält Düsseldorf hier bei allgemeiner Reinigung nach Prüfung und vermeidet jedes Versprechen, das eine Spezialzulassung oder besondere Eignung voraussetzen würde.",
         ],
       },
@@ -437,7 +437,7 @@ export const duesseldorfServicePages = {
   entsorgung: {
     slug: "entsorgung",
     path: "/duesseldorf/entsorgung",
-    metaTitle: "Entsorgung Düsseldorf | Möbel, Sperrmüll & B2B | FLOXANT",
+    metaTitle: "Entsorgung Düsseldorf | Möbel, Sperrmüll & Firma | FLOXANT",
     metaDescription:
       "Entsorgung Düsseldorf für Möbel, Sperrmüll, Keller, Nebenräume und kleines Firmeninventar. Eigener Düsseldorfer Standort, getrennt von Umzug.",
     kicker: "FLOXANT Entsorgung Düsseldorf",
@@ -462,7 +462,7 @@ export const duesseldorfServicePages = {
       },
     ],
     bullets: [
-      "Geeignet für regulär entsorgbare Gegenstände, Möbel, Haushaltsgegenstände, Nebenräume und kleines B2B-Inventar.",
+      "Geeignet für regulär entsorgbare Gegenstände, Möbel, Haushaltsgegenstände, Nebenräume und kleines Firmeninventar.",
       "Gefahrstoffe, Asbest, Chemikalien und kontaminierte Materialien werden nicht zugesagt.",
       "Reinigung kann als separater Düsseldorfer Weg ergänzt werden, ohne Umzugssignale zu erzeugen.",
     ],

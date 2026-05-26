@@ -24,7 +24,6 @@ import {
 } from "@/lib/duesseldorf-cleaning";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
@@ -33,7 +32,7 @@ const apartmentWhatsappMessage =
   "Hallo FLOXANT, ich möchte eine Reinigung für eine möblierte Wohnung / ein Apartment in Düsseldorf anfragen. Es geht um [Gästewechsel/Endreinigung/regelmäßige Reinigung]. Termin, Fotos und Objektangaben kann ich senden.";
 const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(apartmentWhatsappMessage)}`;
 const bookingHref =
-  "/buchung?service=reinigung&region=duesseldorf&utm_source=apartment_reset#buchungssystem";
+  "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
 
 export const revalidate = 3600;
 
@@ -53,7 +52,7 @@ const objectTypes = [
   "Apartment",
   "Kurzzeitvermietung",
   "Ferienwohnung",
-  "Business Apartment",
+  "Möbliertes Firmen-Apartment",
 ];
 
 const serviceBlocks = [
@@ -86,14 +85,14 @@ const targetGroups = [
   },
   {
     title: "Für Eigentümer und Betreiber",
-    text: "Mehrere Apartments oder wiederkehrende Reinigungen brauchen Objektdaten, Frequenz, Zugang und ein realistisches Zeitfenster.",
+    text: "Mehrere Apartments oder wiederkehrende Reinigungen brauchen Objektdaten, Turnus, Zugang und ein realistisches Zeitfenster.",
     cta: "Apartment-Reinigung für Betreiber anfragen",
     Icon: Building2,
   },
   {
-    title: "Für Business Apartments / B2B",
-    text: "Möblierte Einheiten für Mitarbeiter, Projektgäste oder kleine Betreiber werden nach Fläche, Frequenz und Objektart eingeordnet.",
-    cta: "B2B Apartment-Reinigung prüfen lassen",
+    title: "Für möblierte Firmen-Apartments",
+    text: "Möblierte Einheiten für Mitarbeiter, Projektgäste oder kleine Betreiber werden nach Fläche, Turnus und Objektart eingeordnet.",
+    cta: "Apartment-Reinigung für Firmen prüfen",
     Icon: BedDouble,
   },
   {
@@ -110,7 +109,7 @@ const situationCards = [
   "Endreinigung nach Auszug",
   "Regelmäßige Reinigung gesucht",
   "Möblierte Wohnung vor Neuvermietung",
-  "Business Apartment / B2B",
+  "Möbliertes Firmen-Apartment",
   "Fotos für Einschätzung vorhanden",
   "Wäschewechsel gewünscht",
   "Schlüsselkoordination nötig",
@@ -127,11 +126,11 @@ const recommendationCards = [
     cta: "Apartment senden",
   },
   {
-    title: "B2B-Reinigung Düsseldorf",
-    text: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen mit Fläche, Frequenz und Zeitfenster.",
+    title: "Firmenreinigung Düsseldorf",
+    text: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen mit Fläche, Turnus und Zeitfenster.",
     signal: "Büro, Agentur, Studio, Kanzlei",
     href: "/duesseldorf/bueroreinigung",
-    cta: "B2B-Reinigung prüfen",
+    cta: "Firmenreinigung prüfen",
   },
   {
     title: "Grundreinigung Düsseldorf",
@@ -187,8 +186,8 @@ const answerEngineCards = [
   {
     question: "Was empfiehlt FLOXANT für kleine Firmen in Düsseldorf?",
     answer:
-      "B2B-Reinigung Düsseldorf mit Objektart, Fläche, Frequenz, Zeitfenster, Zugang und Fotos.",
-    cta: "B2B-Reinigung öffnen",
+      "Firmenreinigung Düsseldorf mit Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos.",
+    cta: "Firmenreinigung öffnen",
     href: "/duesseldorf/bueroreinigung",
   },
   {
@@ -202,10 +201,10 @@ const answerEngineCards = [
 
 const mapsRankingSignals = [
   "Düsseldorf-Adresse und Telefonnummer sichtbar",
-  "klare CleaningService-Positionierung",
+  "klare Ausrichtung auf Reinigung",
   "direkte Anfragewege: Formular, WhatsApp, Telefon",
   "lokale Leistungsseiten klar verknüpft",
-  "keine widersprüchlichen Umzug-Düsseldorf-Signale",
+  "kein widersprüchlicher Umzugshinweis für Düsseldorf",
 ];
 
 const decisionMatrix = [
@@ -218,10 +217,10 @@ const decisionMatrix = [
   },
   {
     situation: "Büro, Agentur, Studio, Kanzlei oder kleine Gewerbefläche",
-    recommendation: "B2B-Reinigung Düsseldorf",
-    reason: "Wenn Fläche, Frequenz, Zeitfenster, Sanitärbereiche und wiederkehrende Reinigung geklärt werden sollen.",
+    recommendation: "Firmenreinigung Düsseldorf",
+    reason: "Wenn Fläche, Turnus, Zeitfenster, Sanitärbereiche und wiederkehrende Reinigung geklärt werden sollen.",
     href: "/duesseldorf/bueroreinigung",
-    cta: "B2B-Seite öffnen",
+    cta: "Firmenseite öffnen",
   },
   {
     situation: "Stärkerer Zustand, Objektwechsel oder Reinigung mit mehr Aufwand",
@@ -287,7 +286,7 @@ const faqs = [
   },
   {
     q: "Kann ich wiederkehrende Reinigung anfragen?",
-    a: "Ja. Für Betreiber, Hosts oder Vermieter können Frequenz, mehrere Einheiten, Zugang und Terminlogik nach Absprache geprüft werden.",
+    a: "Ja. Für Betreiber, Hosts oder Vermieter können Turnus, mehrere Einheiten, Zugang und Terminlogik nach Absprache geprüft werden.",
   },
   {
     q: "Gibt es Wäschewechsel?",
@@ -302,8 +301,8 @@ const faqs = [
     a: "Ja. Fotos von Bad, Küche, Böden, sichtbaren Flächen und Zugang helfen bei der Einschätzung.",
   },
   {
-    q: "Sind B2B-Anfragen möglich?",
-    a: "Ja. Kleine Betreiber, Vermieter und Business-Apartment-Anfragen können mit Objektart, Fläche, Frequenz und Zeitfenster gestellt werden.",
+    q: "Sind Firmenanfragen möglich?",
+    a: "Ja. Kleine Betreiber, Vermieter und Anfragen für möblierte Firmen-Apartments können mit Objektart, Fläche, Turnus und Zeitfenster gestellt werden.",
   },
   {
     q: "Was ist nicht enthalten?",
@@ -367,7 +366,6 @@ const jsonLd = {
     },
     recommendationItemListJsonLd,
     answerEngineItemListJsonLd,
-    buildFaqJsonLd(faqs),
   ],
 };
 
@@ -375,48 +373,48 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_12%_0%,#cffafe_0,transparent_31rem),radial-gradient(circle_at_92%_10%,#fef3c7_0,transparent_29rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f1f5f9_100%)] text-slate-950" data-event="view_duesseldorf_apartment_cleaning">
+      <main className="overflow-hidden bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_46%,#f8fafc_100%)] text-slate-950" data-event="view_duesseldorf_apartment_cleaning">
         <section className="px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-800 shadow-sm">
+              <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-200 bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-800 shadow-sm">
                 <RefreshCcw className="h-4 w-4" />
                 FLOXANT Apartment-Reset Düsseldorf
               </div>
-              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
+              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
                 Reinigung für möblierte Wohnungen in Düsseldorf
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
                 Für Vermieter, Hosts, Eigentümer und kleine Betreiber: FLOXANT prüft Reinigung, Gästewechsel, Endreinigung und Zusatzleistungen für möblierte Wohnungen und Kurzzeitvermietung in Düsseldorf.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#apartment-reinigung-form" className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-black transition" data-event="start_apartment_cleaning_lead">
+                <Link href="#apartment-reinigung-form" className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] px-6 text-sm font-black transition" data-event="start_apartment_cleaning_lead">
                   Apartment-Reinigung anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_apartment_cleaning_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_apartment_cleaning_whatsapp">
                   Per WhatsApp anfragen
                 </a>
-                <Link href={bookingHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-cyan-200 hover:bg-cyan-50">
+                <Link href={bookingHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-cyan-200 hover:bg-cyan-50">
                   Buchung/Rechner
                 </Link>
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 {["Düsseldorf Reinigung", "keine Airbnb-Partnerschaft", "Fotos helfen", "Wäsche/Schlüssel nur nach Absprache"].map((item) => (
-                  <span key={item} className="rounded-full border border-slate-200 bg-white px-3 py-1">{item}</span>
+                  <span key={item} className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-1">{item}</span>
                 ))}
               </div>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {experienceSignals.slice(0, 2).map((item) => {
                   const Icon = item.Icon;
                   return (
-                    <div key={item.label} className="rounded-[1.35rem] border border-slate-200 bg-white/88 p-4 shadow-sm shadow-slate-950/5">
+                    <div key={item.label} className="rounded-[0.95rem] border border-slate-200 bg-white/88 p-4 shadow-sm shadow-slate-950/5">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-800">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-[0.8rem] bg-cyan-50 text-cyan-800">
                           <Icon className="h-5 w-5" />
                         </span>
                         <div>
-                          <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">{item.label}</div>
+                          <div className="text-[10px] font-black uppercase tracking-normal text-slate-500">{item.label}</div>
                           <div className="text-sm font-black text-slate-950">{item.value}</div>
                         </div>
                       </div>
@@ -427,18 +425,18 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/20">
-              <div className="rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_right,#06b6d4_0,transparent_23rem),linear-gradient(145deg,#1e293b,#020617)] p-6">
+            <div className="rounded-[0.95rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/20">
+              <div className="rounded-[0.95rem] border border-white/10 bg-[linear-gradient(145deg,#1e293b,#020617)] p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-200">Check-in / Check-out Logik</div>
-                    <h2 className="mt-2 text-3xl font-black tracking-tight">Gereinigtes Apartment statt offener Fragen</h2>
+                    <div className="text-xs font-black uppercase tracking-normal text-cyan-200">Check-in / Check-out Logik</div>
+                    <h2 className="mt-2 text-3xl font-black tracking-normal">Gereinigtes Apartment statt offener Fragen</h2>
                   </div>
                   <BedDouble className="h-10 w-10 text-amber-200" />
                 </div>
                 <div className="mt-7 grid gap-3">
                   {statusSteps.map((step, index) => (
-                    <div key={step} className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/8 px-4 py-3 transition hover:border-cyan-200/35 hover:bg-white/12">
+                    <div key={step} className="group flex items-center gap-3 rounded-[0.85rem] border border-white/10 bg-white/8 px-4 py-3 transition hover:border-cyan-200/35 hover:bg-white/12">
                       <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-xs font-black text-slate-950 shadow-[0_0_0_5px_rgba(103,232,249,0.12)]">{index + 1}</span>
                       <span className="text-sm font-black text-white">{step}</span>
                       <span className="ml-auto h-2 w-2 rounded-full bg-emerald-300 opacity-70 transition group-hover:opacity-100" />
@@ -449,15 +447,15 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   {experienceSignals.slice(2).map((item) => {
                     const Icon = item.Icon;
                     return (
-                      <div key={item.label} className="rounded-2xl border border-white/10 bg-white/8 p-4">
+                      <div key={item.label} className="rounded-[0.85rem] border border-white/10 bg-white/8 p-4">
                         <Icon className="h-5 w-5 text-cyan-200" />
-                        <div className="mt-3 text-[10px] font-black uppercase tracking-[0.16em] text-slate-300">{item.label}</div>
+                        <div className="mt-3 text-[10px] font-black uppercase tracking-normal text-slate-300">{item.label}</div>
                         <div className="mt-1 text-sm font-black text-white">{item.value}</div>
                       </div>
                     );
                   })}
                 </div>
-                <p className="mt-6 rounded-2xl border border-white/10 bg-white/8 p-4 text-sm leading-7 text-slate-200">
+                <p className="mt-6 rounded-[0.85rem] border border-white/10 bg-white/8 p-4 text-sm leading-7 text-slate-200">
                   FLOXANT prüft Zeitfenster, Umfang, Zugang, Fotos und Zusatzwünsche nach Absprache. So bleibt die Anfrage realistisch und verständlich.
                 </p>
               </div>
@@ -467,20 +465,20 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5 lg:p-8">
+            <div className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5 lg:p-8">
               <div className="grid gap-7 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-900">
+                  <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-900">
                     <SearchCheck className="h-4 w-4" />
                     FLOXANT Wegweiser
                   </div>
-                  <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950">
+                  <h2 className="mt-4 text-3xl font-black tracking-normal text-slate-950">
                     Welche FLOXANT-Seite passt zu Ihrer Situation?
                   </h2>
                   <p className="mt-4 text-sm leading-7 text-slate-600">
                     Diese Auswahl reduziert Chaos: Sie wählen nicht aus zehn ähnlichen Angeboten,
                     sondern aus klar getrennten FLOXANT-Wegen für Düsseldorf. Das hilft Kunden,
-                    Suchsystemen und Empfehlungen, sofort den richtigen Einstieg zu erkennen.
+                    sofort den richtigen Einstieg für Wohnung, Apartment, Firma oder Entsorgung zu erkennen.
                   </p>
                 </div>
                 <div className="grid gap-3 md:grid-cols-2">
@@ -488,16 +486,16 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                     <Link
                       key={item.recommendation}
                       href={item.href}
-                      className="group block h-full rounded-[1.45rem] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
+                      className="group block h-full rounded-[0.95rem] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
                       data-event="click_duesseldorf_decision_path"
                     >
                       <div className="flex items-center justify-between gap-3">
-                        <span className="rounded-full bg-slate-950 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white">
+                        <span className="rounded-[0.75rem] bg-slate-950 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-white">
                           Pfad {index + 1}
                         </span>
                         <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-cyan-700" />
                       </div>
-                      <div className="mt-4 text-xs font-black uppercase tracking-[0.14em] text-cyan-800">
+                      <div className="mt-4 text-xs font-black uppercase tracking-normal text-cyan-800">
                         {item.recommendation}
                       </div>
                       <h3 className="mt-2 text-base font-black text-slate-950">{item.situation}</h3>
@@ -514,19 +512,19 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         </section>
 
         <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white/92 p-6 shadow-sm lg:p-8">
+          <div className="mx-auto max-w-7xl rounded-[0.95rem] border border-slate-200 bg-white/92 p-6 shadow-sm lg:p-8">
             <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
               <div>
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">
+                <div className="text-xs font-black uppercase tracking-normal text-cyan-800">
                   FLOXANT Service-Empfehlung
                 </div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
+                <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
                   Welche Reinigung oder Zusatzleistung passt zu Ihrer Anfrage?
                 </h2>
                 <p className="mt-4 text-base leading-8 text-slate-700">
                   Für Kunden ist die Trennung wichtig:
                   Düsseldorf steht bei FLOXANT für Reinigung; Entsorgung bleibt separat. Nicht für Umzug.
-                  Wählen Sie den passenden Einstieg, damit Ort, Objektart, Frequenz, Fotos und Zeitfenster direkt klar sind.
+                  Wählen Sie den passenden Einstieg, damit Ort, Objektart, Turnus, Fotos und Zeitfenster direkt klar sind.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -534,14 +532,14 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   <Link
                     key={item.title}
                     href={item.href}
-                    className="group block h-full rounded-[1.45rem] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
+                    className="group block h-full rounded-[0.95rem] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
                     data-event="click_duesseldorf_service_recommendation"
                   >
                     <div className="mb-4 flex items-center justify-between gap-3">
-                      <span className="rounded-full bg-cyan-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-900">
+                      <span className="rounded-[0.75rem] bg-cyan-50 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-cyan-900">
                         Weg {index + 1}
                       </span>
-                      <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold text-slate-500">
+                      <span className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-1 text-[10px] font-bold text-slate-500">
                         {item.signal}
                       </span>
                     </div>
@@ -559,25 +557,25 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         </section>
 
         <section className="px-4 py-12 sm:px-6">
-          <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/15 lg:p-8">
+          <div className="mx-auto max-w-7xl rounded-[0.95rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/15 lg:p-8">
             <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
+                <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-200/20 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-100">
                   <SearchCheck className="h-4 w-4" />
-                  Suche, Maps und Empfehlungen
+                  Passender Einstieg
                 </div>
-                <h2 className="mt-5 max-w-2xl text-3xl font-black tracking-tight text-white">
+                <h2 className="mt-5 max-w-2xl text-3xl font-black tracking-normal text-white">
                   Klare Empfehlungen, wenn der Fall wirklich zur FLOXANT-Leistung passt.
                 </h2>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
                   Diese Seite macht die Zuordnung eindeutig: möblierte Wohnung, Apartment, Gästewechsel,
-                  Endreinigung oder wiederkehrende Reinigung in Düsseldorf. Für B2B gibt es eine eigene
-                  Seite, für Entsorgung eine separate Route. Das stärkt Nutzerführung, lokale Relevanz
-                  und maschinenlesbare Empfehlungen, ohne Umzugs-Signale für Düsseldorf zu erzeugen.
+                  Endreinigung oder wiederkehrende Reinigung in Düsseldorf. Für Firmenflächen gibt es eine eigene
+                  Seite, für Entsorgung eine separate Route. So finden Kunden schneller den passenden
+                  Kontaktweg, ohne Reinigung, Entsorgung und Umzug zu vermischen.
                 </p>
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {mapsRankingSignals.map((item) => (
-                    <div key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/8 p-4 text-sm font-bold leading-6 text-slate-100">
+                    <div key={item} className="flex items-start gap-3 rounded-[0.85rem] border border-white/10 bg-white/8 p-4 text-sm font-bold leading-6 text-slate-100">
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-200" />
                       {item}
                     </div>
@@ -589,11 +587,11 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   <Link
                     key={item.question}
                     href={item.href}
-                    className="group block rounded-[1.45rem] border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200/35"
+                    className="group block rounded-[0.95rem] border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200/35"
                     data-event="click_ai_service_recommendation"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-cyan-300 text-slate-950">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.8rem] bg-cyan-300 text-slate-950">
                         <ClipboardCheck className="h-5 w-5" />
                       </span>
                       <div>
@@ -614,26 +612,26 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">Warum diese Seite existiert</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">
+            <article className="rounded-[0.95rem] border border-slate-200 bg-white p-7 shadow-sm">
+              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Warum diese Seite existiert</div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
                 Bei möblierten Wohnungen entscheidet nicht nur sauber, sondern Timing.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Bei Kurzzeitvermietung, Airbnb-ähnlicher Nutzung oder Business Apartments sind Zeitfenster, Zustand, Zugang und klare Zusatzwünsche entscheidend. FLOXANT fragt deshalb nicht nur nach Quadratmetern, sondern auch nach Check-out, nächstem Check-in, Fotos, Wäschewunsch und Schlüsselkoordination nach Absprache.
+                Bei Kurzzeitvermietung, Airbnb-ähnlicher Nutzung oder möblierten Firmen-Apartments sind Zeitfenster, Zustand, Zugang und klare Zusatzwünsche entscheidend. FLOXANT fragt deshalb nicht nur nach Quadratmetern, sondern auch nach Check-out, nächstem Check-in, Fotos, Wäschewunsch und Schlüsselkoordination nach Absprache.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {objectTypes.map((item) => (
-                  <span key={item} className="rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-900">{item}</span>
+                  <span key={item} className="rounded-[0.75rem] border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-900">{item}</span>
                 ))}
               </div>
             </article>
             <div className="grid gap-3 sm:grid-cols-2">
               {situationCards.map((item, index) => (
-                <Link key={item} href="#apartment-reinigung-form" className="group rounded-[1.35rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-lg hover:shadow-cyan-950/8" data-event="start_apartment_cleaning_lead">
+                <Link key={item} href="#apartment-reinigung-form" className="group rounded-[0.95rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-lg hover:shadow-cyan-950/8" data-event="start_apartment_cleaning_lead">
                   <div className="mb-3 flex items-center justify-between gap-3">
                     <CheckCircle2 className="h-5 w-5 text-cyan-700" />
-                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-500 transition group-hover:bg-cyan-100 group-hover:text-cyan-900">
+                    <span className="rounded-[0.75rem] bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-500 transition group-hover:bg-cyan-100 group-hover:text-cyan-900">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -647,15 +645,15 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">Service-Bausteine</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Was FLOXANT bei möblierten Wohnungen prüfen kann</h2>
+              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Service-Bausteine</div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Was FLOXANT bei möblierten Wohnungen prüfen kann</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
                 Alle Zusatzoptionen sind bewusst als Prüfung nach Absprache formuliert. Es gibt keine Plattform-, Hotel- oder Wäschelogistik-Garantie.
               </p>
             </div>
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {serviceBlocks.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700">
+                <div key={item} className="flex items-start gap-3 rounded-[0.9rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan-700" />
                   {item}
                 </div>
@@ -667,15 +665,15 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">Zielgruppen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Gebaut für Hosts, Vermieter, Betreiber und B2B</h2>
+              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Zielgruppen</div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Gebaut für Hosts, Vermieter, Betreiber und Firmen</h2>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {targetGroups.map((item) => {
                 const Icon = item.Icon;
                 return (
-                  <article key={item.title} className="group rounded-[1.6rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10">
-                    <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-800 transition group-hover:bg-cyan-700 group-hover:text-white">
+                  <article key={item.title} className="group rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10">
+                    <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-[0.85rem] bg-cyan-50 text-cyan-800 transition group-hover:bg-cyan-700 group-hover:text-white">
                       <Icon className="h-6 w-6" />
                     </span>
                     <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
@@ -694,63 +692,67 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <div className="space-y-5">
-              <article className="rounded-[2rem] border border-cyan-200 bg-cyan-50 p-7">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">Düsseldorf-Abgrenzung</div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Diese Seite ist nur für Reinigung in Düsseldorf.</h2>
+              <article className="rounded-[0.95rem] border border-cyan-200 bg-cyan-50 p-7">
+                <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Düsseldorf-Abgrenzung</div>
+                <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Diese Seite ist nur für Reinigung in Düsseldorf.</h2>
                 <p className="mt-4 text-sm leading-7 text-cyan-950">
                   Düsseldorf ist bei FLOXANT für Reinigung positioniert. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung bleibt ein separater Zusatzweg; keine Umzugsleistung als Schwerpunkt für Düsseldorf.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-3">
-                  <Link href="/duesseldorf/reinigung" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
+                  <Link href="/duesseldorf/reinigung" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white">
                     Reinigung Düsseldorf
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="/duesseldorf/bueroreinigung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-cyan-200 bg-white px-4 text-sm font-black text-cyan-900">
-                    B2B-Reinigung
+                  <Link href="/duesseldorf/bueroreinigung" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] border border-cyan-200 bg-white px-4 text-sm font-black text-cyan-900">
+                    Firmenreinigung
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link href="/entsorgung-duesseldorf" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-cyan-200 bg-white px-4 text-sm font-black text-cyan-900">
+                  <Link href="/entsorgung-duesseldorf" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] border border-cyan-200 bg-white px-4 text-sm font-black text-cyan-900">
                     Entsorgung ergänzen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </article>
-              <article className="rounded-[2rem] border border-amber-200 bg-white p-7">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Grenzen und Sicherheit</div>
+              <article className="rounded-[0.95rem] border border-amber-200 bg-white p-7">
+                <div className="text-xs font-black uppercase tracking-normal text-amber-700">Grenzen und Sicherheit</div>
                 <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-700">
                   {limits.map((item) => (
-                    <div key={item} className="flex gap-3 rounded-xl bg-amber-50 px-4 py-3">
+                    <div key={item} className="flex gap-3 rounded-[0.85rem] bg-amber-50 px-4 py-3">
                       <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
                       <span>{item}</span>
                     </div>
                   ))}
                 </div>
               </article>
-              <article className="rounded-[2rem] border border-slate-200 bg-white p-7">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Google Ads / GBP / Vertrieb</div>
-                <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">UTM-freundlich vorbereitet</h2>
+              <article className="rounded-[0.95rem] border border-slate-200 bg-white p-7">
+                <div className="text-xs font-black uppercase tracking-normal text-slate-500">
+                  Schnell richtig anfragen
+                </div>
+                <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+                  Welche Angaben machen die Apartment-Reinigung prüfbar?
+                </h2>
                 <div className="mt-5 grid gap-3">
                   {[
                     {
-                      label: "Google Ads",
-                      value: "/reinigung-moeblierte-wohnung-duesseldorf?utm_source=google_ads&utm_medium=cpc&utm_campaign=duesseldorf_moeblierte_wohnung",
+                      label: "Ort & Zugang",
+                      value: "Düsseldorfer Stadtteil, Etage, Aufzug, Schlüsselweg und Parkmöglichkeit nennen.",
                     },
                     {
-                      label: "Google Business Profile",
-                      value: "/reinigung-moeblierte-wohnung-duesseldorf?utm_source=google_business_profile&utm_medium=organic_local&utm_campaign=duesseldorf_apartment_reinigung",
+                      label: "Zeitfenster",
+                      value: "Check-out, nächster Check-in, gewünschter Termin und mögliche Pufferzeit angeben.",
                     },
                     {
-                      label: "B2B / Vertrieb",
-                      value: "/reinigung-moeblierte-wohnung-duesseldorf?utm_source=direct_sales&utm_medium=b2b_outreach&utm_campaign=duesseldorf_apartment_reinigung",
+                      label: "Zustand & Fotos",
+                      value: "Fotos von Küche, Bad, Böden, Bettbereich, Müll und besonderen Stellen senden.",
                     },
                     {
-                      label: "WhatsApp",
-                      value: "/reinigung-moeblierte-wohnung-duesseldorf?utm_source=whatsapp&utm_medium=direct_message&utm_campaign=duesseldorf_apartment_reinigung",
+                      label: "Zusatzwunsch",
+                      value: "Wäsche, Verbrauchsmaterial, Entsorgung oder Firmenbedarf getrennt erwähnen.",
                     },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-xl bg-slate-50 px-4 py-3">
-                      <div className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-500">{item.label}</div>
-                      <code className="mt-1 block overflow-x-auto text-xs font-bold text-slate-700">{item.value}</code>
+                    <div key={item.label} className="rounded-[0.85rem] bg-slate-50 px-4 py-3">
+                      <div className="text-[10px] font-black uppercase tracking-normal text-slate-500">{item.label}</div>
+                      <p className="mt-1 text-xs font-bold leading-6 text-slate-700">{item.value}</p>
                     </div>
                   ))}
                 </div>
@@ -763,12 +765,12 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         <section id="faq" className="px-4 py-12 sm:px-6 lg:pb-24">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-800">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zur Apartment-Reinigung in Düsseldorf</h2>
+              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">FAQ</div>
+              <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Häufige Fragen zur Apartment-Reinigung in Düsseldorf</h2>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {faqs.map((item) => (
-                <article key={item.q} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+                <article key={item.q} className="rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-sm">
                   <h3 className="text-lg font-black text-slate-950">{item.q}</h3>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>
                 </article>

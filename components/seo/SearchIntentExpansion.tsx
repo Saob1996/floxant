@@ -99,12 +99,12 @@ export function SearchIntentExpansion({
           })}
         </div>
 
-        <div className="mt-5 grid gap-4 rounded-[1.8rem] border border-blue-100 bg-[linear-gradient(135deg,#eff6ff,#ffffff)] p-5 shadow-sm shadow-slate-950/5 md:grid-cols-[1fr_auto] md:items-center">
-          <p className="text-sm leading-7 text-slate-700">
-            Der beste Klick ist der, der direkt zur passenden Hauptseite führt. Diese klaren Wege
-            verbinden die Suchsituation mit Anfrage, Preisrahmen, Angebot oder Kontakt.
+        <div className="mt-5 grid gap-4 rounded-[1.8rem] border border-blue-100 bg-[linear-gradient(135deg,#eff6ff,#ffffff)] p-5 shadow-sm shadow-slate-950/5 md:grid-cols-1 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
+          <p className="max-w-3xl text-sm leading-7 text-slate-700">
+            Am schnellsten finden Sie den richtigen Weg, wenn die Seite direkt zu Ihrem Anliegen
+            passt: Anfrage senden, Preisrahmen nennen, Angebot prüfen oder Kontakt aufnehmen.
           </p>
-          <div className="flex flex-wrap gap-2 md:justify-end">
+          <div className="flex flex-wrap gap-2 xl:justify-end">
             {profile.links.map((link) => (
               <Link
                 key={link.href}

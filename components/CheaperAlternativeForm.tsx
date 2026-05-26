@@ -21,7 +21,7 @@ const standardServices = [
 
 const duesseldorfServices = [
   { value: "reinigung", label: "Düsseldorf Reinigung" },
-  { value: "b2b_reinigung", label: "Düsseldorf B2B-Reinigung" },
+  { value: "b2b_reinigung", label: "Düsseldorf Firmenreinigung" },
   { value: "hotelreinigung", label: "Düsseldorf Hotelreinigung" },
   { value: "entsorgung", label: "Düsseldorf Entsorgung" },
 ];
@@ -33,7 +33,7 @@ const concernOptions = [
   "Termin knapp",
   "Reinigung fehlt",
   "Entsorgung fehlt",
-  "Fotos/Umfang wurden nicht berücksichtigt",
+  "Fotos oder Umfang wurden nicht berücksichtigt",
   "Ich möchte eine klare Alternative",
 ];
 
@@ -83,7 +83,7 @@ export function CheaperAlternativeForm({
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        `Hallo FLOXANT, ich möchte prüfen lassen, ob eine wirtschaftlichere oder passendere Alternative möglich ist. Es geht um ${selectedServiceLabel} in ${region === "duesseldorf" ? "Düsseldorf" : "[Ort]"}. Angebot, Fotos und Preis kann ich senden.`,
+        `Hallo FLOXANT, ich möchte prüfen lassen, ob eine wirtschaftlichere oder passendere Alternative möglich ist. Es geht um ${selectedServiceLabel} in ${region === "duesseldorf" ? "Düsseldorf" : "[Ort]"}. Angebot, Fotos und Preisrahmen kann ich senden.`,
       ),
     [region, selectedServiceLabel],
   );
@@ -196,25 +196,25 @@ export function CheaperAlternativeForm({
   return (
     <div
       id="guenstiger-form"
-      className="rounded-[2.25rem] border border-blue-100 bg-white p-5 shadow-2xl shadow-slate-950/10 ring-1 ring-blue-50 sm:p-7"
+      className="rounded-[1rem] border border-blue-100 bg-white p-5 shadow-2xl shadow-slate-950/10 ring-1 ring-blue-50 sm:p-7"
     >
-      <div className="mb-5 grid gap-4 rounded-[1.75rem] border border-slate-200 bg-slate-950 p-5 text-white sm:grid-cols-[1fr_auto] sm:items-center">
+      <div className="mb-5 grid gap-4 rounded-[0.95rem] border border-slate-200 bg-slate-950 p-5 text-white sm:grid-cols-[1fr_auto] sm:items-center">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-200">Angebots-Prüfstand</p>
-          <h2 className="mt-2 text-2xl font-black tracking-[-0.04em]">Angebot senden und Alternative prüfen lassen</h2>
+          <p className="text-xs font-black uppercase tracking-normal text-blue-200">Angebot prüfen</p>
+          <h2 className="mt-2 text-2xl font-black tracking-normal">Angebot senden und Alternative prüfen lassen</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
             Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang und Termin. FLOXANT prüft, ob Preis,
-            Leistung, Zeitfenster und Objektanforderung zusammenpassen und ob eine wirtschaftlichere Alternative möglich ist.
+            Leistung, Zeitfenster und die Anforderungen vor Ort zusammenpassen und ob eine wirtschaftlichere Alternative möglich ist.
           </p>
         </div>
-        <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-[0.12em]">
-          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Upload optional</span>
+        <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-normal">
+          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Datei möglich</span>
           <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Budget möglich</span>
           <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2">Ohne Preisgarantie</span>
         </div>
       </div>
 
-      <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50 p-4 text-sm leading-6 text-blue-950">
+      <div className="rounded-[0.95rem] border border-blue-100 bg-blue-50 p-4 text-sm leading-6 text-blue-950">
         <div className="flex items-start gap-3">
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
           <p>
@@ -244,7 +244,7 @@ export function CheaperAlternativeForm({
               <option value="regensburg">Regensburg</option>
               <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="duesseldorf">Düsseldorf: Reinigung/Entsorgung</option>
+              <option value="duesseldorf">Düsseldorf: Reinigung oder Entsorgung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -274,10 +274,10 @@ export function CheaperAlternativeForm({
             <input name="budget" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. bis 800 EUR, falls realistisch" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Anbieter / Plattform optional
+            Woher kommt das Angebot?
             <select name="offerSourceType" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               <option value="">Bitte wählen</option>
-              <option value="plattform">Plattform</option>
+              <option value="plattform">Online-Plattform</option>
               <option value="lokaler_anbieter">Lokaler Anbieter</option>
               <option value="anderes_unternehmen">Anderes Unternehmen</option>
               <option value="nicht_angeben">Möchte ich nicht angeben</option>
@@ -285,7 +285,7 @@ export function CheaperAlternativeForm({
           </label>
         </div>
 
-        <div className="rounded-[1.75rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
+        <div className="rounded-[0.95rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
           <div className="mb-4">
             <p className="text-sm font-black text-slate-950">Angebot und Fotos senden</p>
             <p className="mt-1 text-xs leading-5 text-slate-600">
@@ -317,10 +317,10 @@ export function CheaperAlternativeForm({
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Angebotstext optional einfügen
-          <textarea name="offerText" rows={4} data-event="paste_cheaper_alternative_offer_text" className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Falls Sie keinen Upload nutzen möchten, können Sie den wichtigsten Angebotstext hier einfügen." />
+          <textarea name="offerText" rows={4} data-event="paste_cheaper_alternative_offer_text" className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Falls Sie keine Datei hochladen möchten, können Sie den wichtigsten Angebotstext hier einfügen." />
         </label>
 
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
+        <div className="rounded-[0.95rem] border border-slate-200 bg-slate-50 p-4">
           <p className="text-sm font-black text-slate-900">Was soll geprüft werden?</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {concernOptions.map((concern) => (
@@ -372,7 +372,7 @@ export function CheaperAlternativeForm({
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 text-sm font-black text-white shadow-lg shadow-blue-900/20 transition hover:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Angebot prüfen & Alternative anfragen
+            Angebot prüfen und Alternative anfragen
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}

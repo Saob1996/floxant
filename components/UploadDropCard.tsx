@@ -65,7 +65,7 @@ export function UploadDropCard({
   return (
     <label
       aria-label={`${cleanTitle}: Dateien auswählen`}
-      className={`group grid min-h-[11rem] cursor-pointer gap-4 rounded-[1.45rem] border border-dashed p-4 text-left shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-950/10 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 ${classes.card}`}
+      className={`group relative grid min-h-[11rem] cursor-pointer gap-4 rounded-[0.9rem] border border-dashed p-4 text-left shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-950/10 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 ${classes.card}`}
     >
       <input
         type="file"
@@ -73,7 +73,7 @@ export function UploadDropCard({
         multiple={multiple}
         data-event={dataEvent}
         onChange={(event) => onFilesChange(Array.from(event.target.files || []))}
-        className="sr-only"
+        className="absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 opacity-0 [clip:rect(0,0,0,0)]"
       />
 
       <span className="flex items-start gap-3">
@@ -89,7 +89,7 @@ export function UploadDropCard({
       <span className="grid gap-3">
         <span className="grid gap-2 sm:grid-cols-[auto_1fr] sm:items-center">
           <span className={`inline-flex min-h-11 items-center justify-center rounded-full px-4 text-xs font-black shadow-sm transition ${classes.button}`}>
-            Dateien wählen
+            Dateien auswählen
           </span>
           <span className={`min-w-0 truncate rounded-full border px-3 py-2.5 text-xs font-bold ${classes.summary}`}>
             {getFileSummary(files)}

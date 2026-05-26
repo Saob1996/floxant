@@ -13,8 +13,10 @@ import {
 
 export function DuesseldorfStickyActions() {
   const pathname = usePathname();
-  const requestHref = pathname?.includes("bueroreinigung") || pathname?.includes("b2b-reinigung")
+  const requestHref = pathname?.includes("bueroreinigung")
     ? "#b2b-reinigung-form"
+    : pathname?.includes("b2b-reinigung")
+      ? "#kontakt"
     : pathname?.includes("treppenhausreinigung") ||
         pathname?.includes("grundreinigung") ||
         pathname?.includes("firmenreinigung") ||
@@ -38,7 +40,10 @@ export function DuesseldorfStickyActions() {
             aria-label="Düsseldorfer Anfrage starten"
           >
             <ClipboardCheck />
-            Anfragen
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Anfrage</span>
+              <span className="flox-mobile-action-note">Daten senden</span>
+            </span>
           </Link>
           <a
             href={buildDuesseldorfCleaningWhatsAppHref(
@@ -50,7 +55,10 @@ export function DuesseldorfStickyActions() {
             aria-label="FLOXANT Düsseldorf per WhatsApp anfragen"
           >
             <WhatsAppMark className="flox-whatsapp-mark" />
-            WhatsApp
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">WhatsApp</span>
+              <span className="flox-mobile-action-note">Fotos senden</span>
+            </span>
           </a>
           <a
             href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
@@ -58,15 +66,21 @@ export function DuesseldorfStickyActions() {
             aria-label="FLOXANT Düsseldorf anrufen"
           >
             <Phone />
-            Anrufen
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Anrufen</span>
+              <span className="flox-mobile-action-note">Direkt sprechen</span>
+            </span>
           </a>
           <Link
             href="/duesseldorf/vielleicht-guenstiger"
             className="flox-mobile-action flox-mobile-action-dark"
-            aria-label="Düsseldorfer Angebot vielleicht günstiger prüfen"
+            aria-label="Düsseldorfer Reinigungskosten oder Angebot prüfen lassen"
           >
             <BadgeEuro />
-            Günstiger?
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Günstiger?</span>
+              <span className="flox-mobile-action-note">Angebot prüfen</span>
+            </span>
           </Link>
         </div>
       </div>

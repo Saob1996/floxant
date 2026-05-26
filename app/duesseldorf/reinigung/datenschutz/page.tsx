@@ -17,8 +17,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function DuesseldorfDatenschutzPage() {
   return (
     <main className="px-4 pb-24 pt-12 sm:px-6">
-      <div className="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-10">
-        <h1 className="text-4xl font-bold tracking-[-0.03em] text-slate-950">
+      <div className="mx-auto max-w-4xl rounded-[1rem] border border-slate-200 bg-white p-8 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-10">
+        <h1 className="text-4xl font-bold tracking-normal text-slate-950">
           Datenschutzhinweise für FLOXANT Reinigung Düsseldorf
         </h1>
         <div className="mt-8 space-y-8 text-sm leading-8 text-slate-700">
@@ -65,11 +65,11 @@ export default function DuesseldorfDatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-slate-950">Speicherung im internen Dashboard / CRM</h2>
+            <h2 className="text-xl font-semibold text-slate-950">Speicherung zur Bearbeitung Ihrer Anfrage</h2>
             <p className="mt-2">
-              Anfragen aus dem Formular werden im internen FLOXANT-Dashboard beziehungsweise
-              CRM gespeichert, damit Bearbeitung, Rückmeldung und spätere Zuordnung des
-              Vorgangs möglich bleiben.
+              Anfragen aus dem Formular werden in den dafür genutzten FLOXANT-Systemen
+              gespeichert, damit Rückfragen, Angebote, Termine und Nachweise nachvollziehbar
+              bearbeitet werden können.
             </p>
           </section>
 

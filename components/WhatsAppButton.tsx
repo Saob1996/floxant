@@ -5,6 +5,7 @@ import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { company } from "@/lib/company";
+import { PAGES_WITH_OWN_MOBILE_CTA } from "@/lib/floating-contact-pages";
 import { buildWhatsAppHref, getWhatsAppContext } from "@/lib/whatsapp";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 
@@ -14,6 +15,7 @@ export function WhatsAppButton(_props: { dic?: any }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const [serviceParam, setServiceParam] = useState<string | null>(null);
   const pathname = usePathname();
+  const isRegensburgPage = Boolean(pathname?.toLowerCase().includes("regensburg"));
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -25,7 +27,12 @@ export function WhatsAppButton(_props: { dic?: any }) {
   const whatsappContext = getWhatsAppContext(pathname, serviceParam);
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, whatsappContext.message);
 
-  if (pathname === "/buchung" || pathname === "/private-client-service" || pathname === "/villenservice") {
+  if (
+    pathname === "/buchung" ||
+    pathname === "/private-client-service" ||
+    pathname === "/villenservice" ||
+    (isRegensburgPage && !PAGES_WITH_OWN_MOBILE_CTA.has(pathname || ""))
+  ) {
     return null;
   }
 

@@ -150,7 +150,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     eyebrow: "Düsseldorf",
     title: "Reinigung anfragen. Klar getrennt.",
     intro:
-      "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
+      "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
     signal:
       "Düsseldorf bleibt sauber getrennt. Regensburg/Bayern bleibt der Kern für Umzug, Reinigung, Entrümpelung und Transport.",
     primaryHref: "/duesseldorf/reinigung#kontakt",
@@ -166,7 +166,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
         Icon: Sparkles,
       },
       {
-        title: "B2B-Reinigung",
+        title: "Firmenreinigung",
         text: "Für kleine Büros, Agenturen, Studios und Gewerbeflächen.",
         href: "/duesseldorf/bueroreinigung",
         label: "Gewerbe anfragen",

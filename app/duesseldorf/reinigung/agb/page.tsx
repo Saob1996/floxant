@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function DuesseldorfAgbPage() {
   return (
     <main className="px-4 pb-24 pt-12 sm:px-6">
-      <div className="mx-auto max-w-4xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-10">
-        <h1 className="text-4xl font-bold tracking-[-0.03em] text-slate-950">
+      <div className="mx-auto max-w-4xl rounded-[1rem] border border-slate-200 bg-white p-8 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-10">
+        <h1 className="text-4xl font-bold tracking-normal text-slate-950">
           AGB / Leistungsbedingungen für FLOXANT Reinigung Düsseldorf
         </h1>
         <div className="mt-8 space-y-8 text-sm leading-8 text-slate-700">

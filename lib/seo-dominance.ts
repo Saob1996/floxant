@@ -486,25 +486,25 @@ moneySnippets["/endreinigung-regensburg"] = {
 moneySnippets["/duesseldorf/reinigung"] = {
  title: "Reinigung Düsseldorf | Wohnung, Büro & Übergabe",
  description:
-  "Reinigung in Düsseldorf für Wohnung, Auszug, Endreinigung und B2B-Flächen. Fotos, Fläche, Termin und Budget senden. Keine Umzüge in Düsseldorf.",
+  "Reinigung in Düsseldorf für Wohnung, Auszug, Endreinigung und Gewerbeflächen. Fotos, Fläche, Termin und Budget senden. Keine Umzüge in Düsseldorf.",
  cluster: "money",
- intent: "Reinigung in Düsseldorf für privat oder B2B anfragen",
+ intent: "Reinigung in Düsseldorf für privat, Büro oder Firma anfragen",
 };
 
 moneySnippets["/duesseldorf/bueroreinigung"] = {
- title: "B2B-Reinigung Düsseldorf | Büro, Hotel & Firma",
+ title: "Firmenreinigung Düsseldorf | Büro, Hotel & Firma",
  description:
-  "B2B-Reinigung in Düsseldorf für Büros, Hotels, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Frequenz, Fotos und Zeitfenster senden.",
+  "Firmenreinigung in Düsseldorf für Büros, Hotels, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Häufigkeit, Fotos und Zeitfenster senden.",
  cluster: "money",
- intent: "B2B-Reinigung in Düsseldorf für Firma, Büro oder Hotel anfragen",
+ intent: "Firmenreinigung in Düsseldorf für Firma, Büro oder Hotel anfragen",
 };
 
 moneySnippets["/duesseldorf/b2b-reinigung"] = {
- title: "B2B-Reinigung Düsseldorf | Firma, Büro & Objekt",
+ title: "Firmenreinigung Düsseldorf | Firma, Büro & Objekt",
  description:
-  "B2B-Reinigung Düsseldorf für Büro, Firma, Kanzlei, Praxis, Hotel und Gewerbefläche. Stadtteil, Fläche, Turnus, Fotos und Ansprechpartner senden.",
+  "Firmenreinigung Düsseldorf für Büro, Firma, Kanzlei, Praxis, Hotel und Gewerbefläche. Stadtteil, Fläche, Turnus, Fotos und Ansprechpartner senden.",
  cluster: "money",
- intent: "B2B-Reinigung in Düsseldorf für kleine Unternehmen und Objektflächen anfragen",
+ intent: "Firmenreinigung in Düsseldorf für kleine Unternehmen und Objektflächen anfragen",
 };
 
 moneySnippets["/duesseldorf/firmenreinigung"] = {

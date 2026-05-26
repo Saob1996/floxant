@@ -317,7 +317,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     badge: "Privat",
     title: "Reinigung Duesseldorf fuer Wohnung und Auszug",
     text:
-      "Bei Wohnungsreinigung, Endreinigung und Reinigung nach Auszug zaehlen Flaeche, Zustand, Termin, Fotos und ein klares Uebergabeziel.",
+      "Bei Wohnungsreinigung, Endreinigung und Reinigung nach Auszug zählen Fläche, Zustand, Termin, Fotos und ein klares Übergabeziel.",
     href: "/duesseldorf/reinigung#leistungen",
     cta: "Private Reinigung ansehen",
     Icon: Home,
@@ -325,21 +325,21 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     region: "duesseldorf",
   },
   duesseldorf_cleaning_b2b: {
-    badge: "B2B",
-    title: "B2B-Reinigung Duesseldorf mit Objektangaben",
+    badge: "Firma",
+    title: "Firmenreinigung Düsseldorf mit Objektangaben",
     text:
-      "Bueros und kleine Gewerbeflaechen brauchen Angaben zu Objektart, Flaeche, Frequenz, Zeitfenster und besonderen Bereichen, damit der Ablauf zum Betrieb passt.",
+      "Büros und kleine Gewerbeflächen brauchen Angaben zu Objektart, Fläche, Turnus, Zeitfenster und besonderen Bereichen, damit der Ablauf zum Betrieb passt.",
     href: "/duesseldorf/reinigung#leistungen",
-    cta: "B2B-Reinigung anfragen",
+    cta: "Firmenreinigung anfragen",
     Icon: BriefcaseBusiness,
     service: "reinigung_b2b",
     region: "duesseldorf",
   },
   duesseldorf_apartment_cleaning: {
     badge: "Apartment-Reset",
-    title: "Moeblierte Wohnung und Kurzzeitvermietung reinigen",
+    title: "Möblierte Wohnung und Kurzzeitvermietung reinigen",
     text:
-      "Fuer Hosts, Vermieter und kleine Betreiber in Duesseldorf: Gaestewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwuensche werden ohne Airbnb-Partnerschaftsversprechen geprueft.",
+      "Für Hosts, Vermieter und kleine Betreiber in Düsseldorf: Gästewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwünsche werden ohne Airbnb-Partnerschaftsversprechen geprüft.",
     href: "/reinigung-moeblierte-wohnung-duesseldorf",
     cta: "Apartment-Reinigung ansehen",
     Icon: Sparkles,
@@ -349,9 +349,9 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
   },
   duesseldorf_disposal_private: {
     badge: "Privat",
-    title: "Entsorgung Duesseldorf mit Fotoeinschaetzung",
+    title: "Entsorgung Düsseldorf mit Fotoeinschätzung",
     text:
-      "Moebel, Sperrmuell, Haushaltsgegenstaende oder kleine Raeumungen werden nach Umfang, Zugang, Etage, Materialart und Fotos geprueft.",
+      "Möbel, Sperrmüll, Haushaltsgegenstände oder kleine Räumungen werden nach Umfang, Zugang, Etage, Materialart und Fotos geprüft.",
     href: "/entsorgung-duesseldorf#preislogik",
     cta: "Entsorgung einordnen",
     Icon: Trash2,
@@ -359,12 +359,12 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     region: "duesseldorf",
   },
   duesseldorf_disposal_b2b: {
-    badge: "B2B",
-    title: "Inventar und Nebenraeume fuer kleine Unternehmen",
+    badge: "Firma",
+    title: "Inventar und Nebenräume für kleine Unternehmen",
     text:
-      "Bei Bueromoebeln, Lagerbereichen oder Inventar zaehlen Menge, Zugang, Termin, Materialart und ob eine Reinigung separat sinnvoll ist.",
+      "Bei Büromöbeln, Lagerbereichen oder Inventar zählen Menge, Zugang, Termin, Materialart und ob eine Reinigung separat sinnvoll ist.",
     href: "/entsorgung-duesseldorf",
-    cta: "B2B-Entsorgung pruefen",
+    cta: "Firmenentsorgung prüfen",
     Icon: BriefcaseBusiness,
     service: "entsorgung_b2b",
     region: "duesseldorf",
@@ -381,7 +381,7 @@ type PublicAuthorityModulesProps = {
 
 export function PublicAuthorityModules({
   moduleIds,
-  badge = "Content-Cluster",
+  badge = "Themenbereich",
   title = "Was Kunden vor der Anfrage wirklich wissen muessen",
   subtitle = "Kurze Module statt Textwand: lokale Einordnung, Preislogik, Fotos, Budget und passende Signature Services werden direkt auf der Seite sichtbar.",
   source = "public_authority_modules",

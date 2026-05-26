@@ -19,11 +19,13 @@ import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SignatureServices } from "@/components/SignatureServices";
 import { company } from "@/lib/company";
+import {
+  buildDuesseldorfCleaningProviderJsonLd,
+  buildDuesseldorfServiceJsonLd,
+} from "@/lib/duesseldorf-cleaning";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
-  buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
@@ -117,7 +119,8 @@ export default function EntsorgungDuesseldorfPage() {
         path: pagePath,
         about: ["Entsorgung", "Möbelentsorgung", "Sperrmüll", "Düsseldorf", "Fotos", "Budget"],
       }),
-      buildServiceJsonLd({
+      buildDuesseldorfCleaningProviderJsonLd(),
+      buildDuesseldorfServiceJsonLd({
         name: "FLOXANT Entsorgung Düsseldorf",
         description:
           "Entsorgung von Möbeln, Sperrmüll, Haushaltsgegenständen und regulär entsorgbaren Gegenständen in Düsseldorf nach Umfang, Zugang und Fotos.",
@@ -125,7 +128,6 @@ export default function EntsorgungDuesseldorfPage() {
         serviceType: "Entsorgung",
         areaServed: ["Düsseldorf", "Umgebung Düsseldorf"],
       }),
-      buildFaqJsonLd([...faqs]),
     ],
   };
 
@@ -135,14 +137,14 @@ export default function EntsorgungDuesseldorfPage() {
       <Breadcrumbs items={[{ label: "Entsorgung Düsseldorf" }]} />
 
       <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[760px] bg-[radial-gradient(circle_at_76%_0%,rgba(249,115,22,0.18),transparent_56%),radial-gradient(circle_at_14%_20%,rgba(37,99,235,0.12),transparent_42%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[760px] bg-[linear-gradient(135deg,rgba(249,115,22,0.13),rgba(255,255,255,0.28)_42%,rgba(37,99,235,0.08))]" />
         <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-22">
           <FloxantSymbolLayer variant="moving" density="soft" />
         </div>
 
         <div className="relative mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.06fr_0.94fr] lg:items-stretch">
-          <div className="rounded-[2.2rem] border border-white/80 bg-white/[0.9] p-6 shadow-[0_28px_80px_rgba(15,23,42,0.08)] backdrop-blur md:rounded-[2.8rem] md:p-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-orange-700">
+          <div className="rounded-[1.1rem] border border-white/80 bg-white/[0.9] p-6 shadow-[0_28px_80px_rgba(15,23,42,0.08)] backdrop-blur md:p-10">
+            <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-orange-100 bg-orange-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-orange-700">
               <Trash2 className="h-4 w-4" />
               Entsorgung Düsseldorf
             </div>
@@ -197,7 +199,7 @@ export default function EntsorgungDuesseldorfPage() {
             </div>
           </div>
 
-          <aside className="rounded-[2.2rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-[0_28px_80px_rgba(15,23,42,0.18)] md:rounded-[2.8rem] md:p-8">
+          <aside className="rounded-[1.1rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-[0_28px_80px_rgba(15,23,42,0.18)] md:p-8">
             <div className="text-[11px] font-black uppercase tracking-[0.18em] text-orange-200">
               Was wir vor dem Angebot prüfen
             </div>
@@ -270,7 +272,7 @@ export default function EntsorgungDuesseldorfPage() {
       />
 
       <section id="preislogik" className="px-4 py-12 sm:px-6">
-        <div className="mx-auto max-w-7xl rounded-[2.4rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 md:p-9">
+        <div className="mx-auto max-w-7xl rounded-[1.1rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 md:p-9">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>
               <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-orange-700">
@@ -292,7 +294,7 @@ export default function EntsorgungDuesseldorfPage() {
       </section>
 
       <section className="px-4 py-12 sm:px-6">
-        <div className="mx-auto max-w-7xl rounded-[2.4rem] border border-red-100 bg-red-50 p-6 md:p-9">
+        <div className="mx-auto max-w-7xl rounded-[1.1rem] border border-red-100 bg-red-50 p-6 md:p-9">
           <div className="grid gap-6 md:grid-cols-[0.7fr_1.3fr] md:items-center">
             <div>
               <div className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-red-700">
@@ -305,7 +307,7 @@ export default function EntsorgungDuesseldorfPage() {
             </div>
             <div className="flex flex-wrap gap-2">
               {excludedItems.map((item) => (
-                <span key={item} className="rounded-full border border-red-200 bg-white px-3 py-2 text-sm font-bold text-red-800">
+                <span key={item} className="rounded-[0.75rem] border border-red-200 bg-white px-3 py-2 text-sm font-bold text-red-800">
                   {item}
                 </span>
               ))}
@@ -315,7 +317,7 @@ export default function EntsorgungDuesseldorfPage() {
       </section>
 
       <section className="px-4 py-12 sm:px-6">
-        <div className="mx-auto max-w-7xl rounded-[2.4rem] bg-slate-950 p-6 text-white shadow-[0_28px_90px_rgba(15,23,42,0.2)] md:p-9">
+        <div className="mx-auto max-w-7xl rounded-[1.1rem] bg-slate-950 p-6 text-white shadow-[0_28px_90px_rgba(15,23,42,0.2)] md:p-9">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <div className="text-[11px] font-black uppercase tracking-[0.18em] text-orange-200">
@@ -383,8 +385,8 @@ function ServiceListCard({
   items: readonly string[];
 }) {
   return (
-    <article className="rounded-[2.2rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 md:p-8">
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-orange-700">
+    <article className="rounded-[1rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 md:p-8">
+      <div className="flex h-12 w-12 items-center justify-center rounded-[0.85rem] bg-orange-50 text-orange-700">
         <Icon className="h-5 w-5" />
       </div>
       <div className="mt-5 text-[11px] font-black uppercase tracking-[0.18em] text-orange-700">

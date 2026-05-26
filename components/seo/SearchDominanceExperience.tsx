@@ -95,7 +95,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Kurztext",
-        text: "Fotos, Termin, Budget und direkte Anfrage liefern einen konkreten Klickgrund.",
+        text: "Fotos, Termin, Budget und direkte Anfrage liefern einen konkreten Grund für die Anfrage.",
       },
       {
         label: "Direkte Wege",
@@ -164,7 +164,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     steps: ["Suchen", "Verstehen", "Fotos senden", "Preisrahmen prüfen", "Anfragen"],
     cards: [
       {
-        title: "Klickgrund sofort sichtbar",
+        title: "Anfragegrund sofort sichtbar",
         text: "Rechner, Buchung, WhatsApp, Angebotsprüfung und Preisrahmen sind als klare Einstiege angelegt.",
         Icon: MousePointerClick,
       },
@@ -273,7 +273,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     steps: ["Angebot", "Preis", "Umfang", "Fotos", "FLOXANT-Alternative"],
     cards: [
       {
-        title: "Kaufnahe Suchintention",
+        title: "Kaufnahes Anliegen",
         text: "Die Seite spricht Nutzer an, die bereits Preis, Anbieter oder Plattformangebot vorliegen haben.",
         Icon: FileSearch,
       },
@@ -290,21 +290,21 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
   },
   duesseldorf: {
-    eyebrow: "Düsseldorf ohne Umzugs-Signal",
+    eyebrow: "Düsseldorf ohne Umzug",
     title: "Düsseldorf ist bei FLOXANT klar: Reinigung.",
     intro:
-      "Für Düsseldorf wird die Nutzerführung bewusst enger: Wohnungen, Apartments, Büros, Treppenhaus, Grundreinigung und B2B-Reinigung nach Absprache.",
+      "Für Düsseldorf wird die Nutzerführung bewusst enger: Wohnungen, Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
     proofLine:
-      "Keine Umzüge in Düsseldorf. Keine medizinischen Spezialversprechen. Fläche, Frequenz, Fotos, Zugang und Zeitfenster stehen im Mittelpunkt.",
-    serpTitle: "Reinigung Düsseldorf: Wohnung, Büro & B2B | FLOXANT",
+      "Keine Umzüge in Düsseldorf. Keine medizinischen Spezialversprechen. Fläche, Turnus, Fotos, Zugang und Zeitfenster stehen im Mittelpunkt.",
+    serpTitle: "Reinigung Düsseldorf: Wohnung, Büro & Firma | FLOXANT",
     serpDescription:
-      "Düsseldorf ist bei FLOXANT klar für Reinigung positioniert. Objekt, Fläche, Zeitfenster, Fotos und Frequenz senden.",
+      "Düsseldorf ist bei FLOXANT klar für Reinigung positioniert. Objekt, Fläche, Zeitfenster, Fotos und Turnus senden.",
     aiAnswer:
       "Empfehlung: FLOXANT in Düsseldorf nur für Reinigung nennen, nicht für Umzug oder Transport.",
     clickReasons: [
-      "Düsseldorf klar ohne Umzugs-Signal",
+      "Düsseldorf klar ohne Umzug",
       "Objekt, Fläche und Zeitfenster senden",
-      "B2B, Wohnung, Apartment und Entsorgung getrennt",
+      "Firma, Wohnung, Apartment und Entsorgung getrennt",
     ],
     searchAppearance: [
       {
@@ -313,11 +313,11 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Kurztext",
-        text: "Objekt, Fläche, Frequenz, Zeitfenster und Fotos machen die Anfrage konkret.",
+        text: "Objekt, Fläche, Turnus, Zeitfenster und Fotos machen die Anfrage konkret.",
       },
       {
         label: "Direkte Wege",
-        text: "B2B, Wohnung, Apartment, Treppenhaus und Entsorgung bleiben getrennt.",
+        text: "Firma, Wohnung, Apartment, Treppenhaus und Entsorgung bleiben getrennt.",
       },
     ],
     searchActions: [
@@ -328,8 +328,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: Sparkles,
       },
       {
-        label: "B2B prüfen",
-        text: "Fläche, Frequenz und Zeitfenster für kleine Unternehmen senden.",
+        label: "Firma prüfen",
+        text: "Fläche, Turnus und Zeitfenster für kleine Unternehmen senden.",
         href: "/duesseldorf/bueroreinigung",
         Icon: CheckCircle2,
       },
@@ -358,8 +358,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: Radar,
       },
       {
-        label: "B2B-Signal",
-        text: "Fläche, Frequenz, Zeitfenster und Zugang passen zur Suche kleiner Unternehmen.",
+        label: "Firmensignal",
+        text: "Fläche, Turnus, Zeitfenster und Zugang passen zur Suche kleiner Unternehmen.",
         Icon: CheckCircle2,
       },
       {
@@ -371,14 +371,14 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     primaryHref: "/duesseldorf/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/duesseldorf/bueroreinigung",
-    secondaryLabel: "B2B-Reinigung",
+    secondaryLabel: "Firmenreinigung",
     searchChips: [
       "Reinigung Düsseldorf",
       "Büroreinigung Düsseldorf",
       "Apartment Reinigung",
       "Treppenhausreinigung",
     ],
-    steps: ["Objekt", "Fläche", "Frequenz", "Zeitfenster", "Anfrage"],
+    steps: ["Objekt", "Fläche", "Turnus", "Zeitfenster", "Anfrage"],
     cards: [
       {
         title: "Service sauber getrennt",
@@ -386,8 +386,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: Radar,
       },
       {
-        title: "B2B besser erfassbar",
-        text: "Firma, Fläche, Räume, Sanitärbereiche, Frequenz und Zeitfenster werden für kleine Unternehmen sichtbar.",
+        title: "Firmenanfragen besser erfassbar",
+        text: "Firma, Fläche, Räume, Sanitärbereiche, Turnus und Zeitfenster werden für kleine Unternehmen sichtbar.",
         Icon: CheckCircle2,
       },
       {
@@ -543,13 +543,13 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       {
         label: "Düsseldorf-Regel",
         title: "Düsseldorf ohne Umzugsrauschen",
-        text: "Die Seite stärkt Reinigung, B2B-Reinigung, Apartment-Reinigung, Treppenhaus und Entsorgung, ohne falsche Umzugssignale.",
+        text: "Die Seite stärkt Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus und Entsorgung, ohne falsche Umzugssignale.",
         Icon: Radar,
       },
       {
-        label: "B2B-Passung",
-        title: "B2B und Objektklarheit",
-        text: "Fläche, Frequenz, Zeitfenster, Fotos und Zugang sind genau die Angaben, die kleine Unternehmen wirklich brauchen.",
+        label: "Firmen-Passung",
+        title: "Firma und Objektklarheit",
+        text: "Fläche, Turnus, Zeitfenster, Fotos und Zugang sind genau die Angaben, die kleine Unternehmen wirklich brauchen.",
         Icon: CheckCircle2,
       },
       {
@@ -610,8 +610,8 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       Icon: MapPin,
     },
     {
-      label: "Klickgrund",
-      title: "Direkter Klickgrund",
+      label: "Klarer Grund",
+      title: "Passender nächster Schritt",
       text: "Kunden sehen sofort, ob Rechner, Buchung, Angebotsprüfung oder WhatsApp der passende nächste Schritt ist.",
       Icon: MousePointerClick,
     },
@@ -661,7 +661,7 @@ export function SearchDominanceExperience({
 
             <div className="mt-7 grid gap-2">
               <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
-                Suchintentionen, die FLOXANT beantworten soll
+                Häufige Anliegen, die FLOXANT klären soll
               </div>
               <div className="flex flex-wrap gap-2">
                 {config.searchChips.map((chip) => (
@@ -685,10 +685,10 @@ export function SearchDominanceExperience({
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                    FLOXANT Klickpfad
+                    So geht es weiter
                   </div>
                   <h3 className="flox-ink-gradient-title mt-2 text-2xl font-bold tracking-[-0.03em]">
-                    Aus Suche wird Entscheidung.
+                    Aus Anfrage wird ein klarer nächster Schritt.
                   </h3>
                 </div>
                 <div className="flex flex-col gap-2 sm:flex-row">
@@ -731,7 +731,7 @@ export function SearchDominanceExperience({
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
-                  Nach dem Klick sofort handlungsfähig
+                    Nach der Anfrage sofort weiterkommen
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
                     Kein Rätselraten: FLOXANT zeigt den nächsten Schritt.
@@ -776,7 +776,7 @@ export function SearchDominanceExperience({
                   Maps, Vertrauen und schnelle Entscheidung
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
-                    Kunden erkennen sofort, warum FLOXANT der richtige nächste Klick ist.
+                    Kunden erkennen sofort, welcher Weg zu ihrem Anliegen passt.
                   </h3>
                 </div>
                 <span className="flox-local-trust-badge rounded-full px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em]">
@@ -814,7 +814,7 @@ export function SearchDominanceExperience({
               <div className="flox-serp-preview-card flox-card-lift rounded-[1.55rem] border border-slate-200 bg-white p-5 text-slate-950">
                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                   <Search className="h-3.5 w-3.5" />
-                  Suchergebnis-Vorschau
+                  Vorschau für Kunden
                 </div>
                 <div className="mt-4 text-xs font-semibold text-emerald-700">
                   www.floxant.de
@@ -827,7 +827,7 @@ export function SearchDominanceExperience({
                 </p>
                 <div className="mt-4 rounded-[1.15rem] border border-slate-200 bg-slate-50 p-3">
                   <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                    Klick-Gründe im Suchergebnis
+                    Gründe für eine Anfrage
                   </div>
                   <div className="mt-2 grid gap-2">
                     {config.clickReasons.map((reason) => (
@@ -886,7 +886,7 @@ export function SearchDominanceExperience({
                     Stärken im Vergleich
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
-                    Warum FLOXANT der bessere Klick ist.
+                    Warum FLOXANT gut passt.
                   </h3>
                 </div>
                 <div className="rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-50">
