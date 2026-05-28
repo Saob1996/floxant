@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
+  Banknote,
   Building2,
   CalendarClock,
+  Camera,
   CheckCircle2,
   ClipboardList,
   Clock3,
@@ -11,6 +13,7 @@ import {
   FileText,
   Layers3,
   Languages,
+  MapPin,
   MessageCircle,
   Phone,
   ShieldCheck,
@@ -34,7 +37,7 @@ import {
   getDuesseldorfCleaningInternationalAliases,
   type SearchIntentAliasLanguage,
 } from "@/lib/search-intent-aliases";
-import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 export const revalidate = 3600;
 
@@ -126,6 +129,84 @@ const b2bDecisionCards = [
     text: "Ein Preisrahmen hängt von Fläche, Turnus, Zustand und Zeitfenster ab. Vorhandene Angebote oder Budgets können separat geprüft werden.",
     href: "/duesseldorf/vielleicht-guenstiger",
     cta: "Kosten einordnen",
+  },
+] as const;
+
+const b2bSearchIntentCards = [
+  {
+    query: "Büroreinigung Düsseldorf Angebot",
+    title: "Angebot prüfbar vorbereiten",
+    text: "Für Büro, Kanzlei, Agentur oder Studio: Fläche, Räume, Turnus, Stadtteil, Fotos und Budget direkt zusammenfassen.",
+    href: "#bueroreinigung-anfragefelder",
+    cta: "Angebotsangaben ansehen",
+  },
+  {
+    query: "Büro putzen lassen nach Feierabend",
+    title: "Zeitfenster ohne Betriebsstörung",
+    text: "Nach Feierabend, vor Arbeitsbeginn oder am Wochenende wird nach Zugang, Umfang und verfügbarer Kapazität geprüft.",
+    href: "#b2b-reinigung-form",
+    cta: "Zeitfenster senden",
+  },
+  {
+    query: "Unterhaltsreinigung Büro Düsseldorf Kosten",
+    title: "Turnus und Kosten realistisch einordnen",
+    text: "Wöchentlich, zwei- bis dreimal pro Woche oder monatlich: Kosten hängen an Fläche, Zustand, Sanitär/Küche und Zeitfenster.",
+    href: "/duesseldorf/vielleicht-guenstiger",
+    cta: "Kosten/Budget prüfen",
+  },
+  {
+    query: "Putzfirma für kleine Firma Düsseldorf",
+    title: "Kleine Firmen statt Großvertrag",
+    text: "Für kleine Teams, Büros, Studios und Gewerbeflächen, wenn ein schlanker, klarer Anfrageweg wichtiger ist als ein großer Vertrag.",
+    href: "#b2b-reinigung-form",
+    cta: "Firmenfall senden",
+  },
+  {
+    query: "Kanzlei Agentur Studio Reinigung Düsseldorf",
+    title: "Objektart sauber trennen",
+    text: "Kanzlei, Agentur, Studio, Praxisfläche oder Treppenhaus brauchen unterschiedliche Angaben zu Zugang, Ruhezeiten und Bereichen.",
+    href: "#schnell-entscheiden",
+    cta: "Passenden Weg wählen",
+  },
+  {
+    query: "Büroreinigung mit Fotos per WhatsApp",
+    title: "Fotos verkürzen Rückfragen",
+    text: "Bilder von Arbeitsplatz, Küche, Sanitär, Laufwegen, Böden und Zugang helfen bei Umfang, Termin und Preisrahmen.",
+    href: "#bueroreinigung-anfragefelder",
+    cta: "Foto-Check ansehen",
+  },
+] as const;
+
+const b2bRequestChecklist = [
+  {
+    label: "Stadtteil & Zugang",
+    value: "Düsseldorfer Stadtteil oder PLZ, Etage, Aufzug, Schlüsselweg, Parkmöglichkeit und Ansprechpartner nennen.",
+    Icon: MapPin,
+  },
+  {
+    label: "Fläche & Räume",
+    value: "Quadratmeter, Anzahl der Büros, Meetingräume, Empfang, Flure, Lager oder Nebenflächen grob beschreiben.",
+    Icon: SquareStack,
+  },
+  {
+    label: "Sanitär, Küche, Böden",
+    value: "Sanitärbereiche, Teeküche, Bodenarten, sichtbare Flächen und besondere Stellen separat erwähnen.",
+    Icon: Layers3,
+  },
+  {
+    label: "Turnus & Zeitfenster",
+    value: "Einmalig, wöchentlich, mehrmals pro Woche, vor Arbeitsbeginn, nach Feierabend oder Wochenende angeben.",
+    Icon: CalendarClock,
+  },
+  {
+    label: "Fotos & Zustand",
+    value: "Fotos von Räumen, Laufwegen, Boden, Küche, Sanitär, Eingang und Zustand beschleunigen die Einschätzung.",
+    Icon: Camera,
+  },
+  {
+    label: "Budget & Angebot",
+    value: "Preisrahmen, vorhandenes Angebot oder offene Punkte mitschicken, damit die Rückmeldung konkreter wird.",
+    Icon: Banknote,
   },
 ] as const;
 
@@ -265,6 +346,32 @@ function buildJsonLd() {
         { name: "Reinigung Düsseldorf", item: "/duesseldorf/reinigung" },
         { name: "Büroreinigung Düsseldorf", item: pagePath },
       ]),
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${pagePath}#b2b-click-intents`,
+        name: "Kundensuchen zur Büroreinigung Düsseldorf",
+        itemListElement: b2bSearchIntentCards.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.query,
+          description: item.text,
+          url: item.href.startsWith("#")
+            ? `https://www.floxant.de${pagePath}${item.href}`
+            : `https://www.floxant.de${item.href}`,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${pagePath}#bueroreinigung-request-fields`,
+        name: "Anfrageangaben für Büroreinigung Düsseldorf",
+        itemListElement: b2bRequestChecklist.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.label,
+          description: item.value,
+          url: `https://www.floxant.de${pagePath}#bueroreinigung-anfragefelder`,
+        })),
+      },
     ],
   };
 }
@@ -274,10 +381,12 @@ export default function DuesseldorfBueroreinigungPage() {
     "Hallo FLOXANT, ich möchte eine Büro- oder Firmenreinigung in Düsseldorf anfragen. Es geht um [Büro/Hotel/Boardinghouse/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
   );
   const jsonLd = buildJsonLd();
+  const faqJsonLd = buildFaqJsonLd(faqItems);
 
   return (
     <main className="min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f5fbfb_0%,#ffffff_45%,#eef7f6_100%)] pb-28 text-slate-950">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-16 lg:pt-14" data-event="view_duesseldorf_b2b_cleaning">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[720px] bg-[linear-gradient(135deg,rgba(20,184,166,0.14),rgba(248,250,252,0.3)_42%,rgba(59,130,246,0.08))]" />
@@ -357,6 +466,29 @@ export default function DuesseldorfBueroreinigungPage() {
         </div>
       </section>
 
+      <nav
+        aria-label="Schnelle Auswahl für Büroreinigung Düsseldorf"
+        className="mx-auto -mt-6 grid max-w-7xl grid-cols-4 gap-2 px-4 sm:px-6 md:hidden"
+      >
+        {[
+          { href: "#bueroreinigung-klick-einstiege", label: "Suche", note: "B2B" },
+          { href: "#bueroreinigung-anfragefelder", label: "Senden", note: "Angaben" },
+          { href: "#b2b-reinigung-form", label: "Formular", note: "Fotos" },
+          { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten", note: "Budget" },
+        ].map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="rounded-[0.75rem] border border-slate-200 bg-white px-3 py-3 text-center shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
+          >
+            <span className="block text-xs font-black text-slate-950">{item.label}</span>
+            <span className="mt-1 block text-[10px] font-semibold leading-4 text-slate-600">
+              {item.note}
+            </span>
+          </Link>
+        ))}
+      </nav>
+
       <section className="px-4 py-8 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 md:grid-cols-5">
@@ -365,6 +497,57 @@ export default function DuesseldorfBueroreinigungPage() {
                 <div className="text-[11px] font-black uppercase tracking-normal text-cyan-700">{item}</div>
                 <p className="mt-2 text-sm leading-6 text-slate-600">vor Angebot sauber klären</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="bueroreinigung-klick-einstiege" className="px-4 py-12 sm:px-6">
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+          <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5 md:p-8">
+            <div className="text-xs font-black uppercase tracking-normal text-cyan-800">
+              Kunden suchen so
+            </div>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+              Büroreinigung mit Kosten, Turnus und Zeitfenster direkt einordnen
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              Viele Firmen suchen nicht nach einem perfekten Fachbegriff, sondern nach
+              einer konkreten Situation: Büro nach Feierabend reinigen, Kosten verstehen,
+              Unterhaltsreinigung starten oder Fotos per WhatsApp senden.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <a href="#bueroreinigung-anfragefelder" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="click_b2b_intent_checklist">
+                Angaben vorbereiten
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="click_b2b_intent_whatsapp">
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp mit Fotos
+              </a>
+            </div>
+          </article>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {b2bSearchIntentCards.map((item) => (
+              <Link
+                key={item.query}
+                href={item.href}
+                className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-xl hover:shadow-cyan-950/10"
+                data-event="click_b2b_cleaning_search_intent"
+                data-region="duesseldorf"
+              >
+                <div className="text-[11px] font-black uppercase tracking-normal text-cyan-800">
+                  {item.query}
+                </div>
+                <h3 className="mt-3 text-base font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
+                  {item.cta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -565,6 +748,43 @@ export default function DuesseldorfBueroreinigungPage() {
       <section className="px-4 py-12 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.94fr_1.06fr]">
           <aside className="space-y-5">
+            <div id="bueroreinigung-anfragefelder" className="scroll-mt-28 rounded-[1rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5">
+              <div className="text-xs font-black uppercase tracking-normal text-cyan-800">
+                Schnell richtig senden
+              </div>
+              <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+                Welche Angaben machen Büroreinigung prüfbar?
+              </h2>
+              <div className="mt-5 grid gap-3">
+                {b2bRequestChecklist.map((item, index) => {
+                  const Icon = item.Icon;
+                  return (
+                    <div key={item.label} className="rounded-[0.85rem] border border-slate-200 bg-slate-50 p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.75rem] bg-cyan-50 text-cyan-800">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black text-slate-500">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <h3 className="mt-3 text-sm font-black text-slate-950">{item.label}</h3>
+                      <p className="mt-2 text-xs font-bold leading-6 text-slate-700">{item.value}</p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <a href="#b2b-reinigung-form" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="click_b2b_checklist_form">
+                  Formular öffnen
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="click_b2b_checklist_whatsapp">
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
+                </a>
+              </div>
+            </div>
             <div className="rounded-[1rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5">
               <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Düsseldorf-Abgrenzung</div>
               <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">

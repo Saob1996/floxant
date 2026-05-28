@@ -9,22 +9,78 @@ import {
 
 const duesseldorfTrustLinks = [
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
+  { href: "/duesseldorf/reinigung#kontakt", label: "Fotos senden" },
+  { href: "/duesseldorf/reinigung#anfrage-checkliste", label: "Was senden?" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
+  { href: "/duesseldorf/it-raum-reinigung", label: "IT-Raum" },
+  { href: "/duesseldorf/fensterreinigung", label: "Fenster" },
+  { href: "/duesseldorf/baureinigung", label: "Baustaub" },
+  { href: "/duesseldorf/teppichreinigung", label: "Teppich" },
+  { href: "/duesseldorf/unterhaltsreinigung", label: "Unterhalt" },
+  { href: "/duesseldorf/ladenreinigung", label: "Laden" },
+  { href: "/duesseldorf/sonderreinigung", label: "Sonderfall" },
 ] as const;
 
 const duesseldorfDominanceLinks = [
   { href: "/duesseldorf/reinigung", label: "Reinigungsfirma Düsseldorf" },
+  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Reinigung in meiner Nähe" },
+  { href: "/duesseldorf/reinigung#kontakt", label: "Reinigung per WhatsApp" },
+  { href: "/duesseldorf/reinigung#preisvorschlag", label: "Reinigung Kosten Düsseldorf" },
+  { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+  { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung Düsseldorf" },
+  { href: "/duesseldorf/endreinigung", label: "Endreinigung Düsseldorf" },
+  { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung Düsseldorf" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-  { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung Düsseldorf" },
+  { href: "/duesseldorf/b2b-reinigung", label: "B2B-Reinigung Düsseldorf" },
   { href: "/duesseldorf/firmenreinigung", label: "Firmenreinigung Düsseldorf" },
+  { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung Düsseldorf" },
+  { href: "/duesseldorf/baureinigung", label: "Baureinigung Düsseldorf" },
+  { href: "/duesseldorf/teppichreinigung", label: "Teppichreinigung Düsseldorf" },
+  { href: "/duesseldorf/unterhaltsreinigung", label: "Unterhaltsreinigung Düsseldorf" },
+  { href: "/duesseldorf/ladenreinigung", label: "Ladenreinigung Düsseldorf" },
+  { href: "/duesseldorf/sonderreinigung", label: "Sonderreinigung Düsseldorf" },
   { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
   { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung Düsseldorf" },
   { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+  { href: "/duesseldorf/it-raum-reinigung", label: "IT-Raum Reinigung Düsseldorf" },
   { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf" },
-  { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen lassen" },
+  { href: "/entsorgung-duesseldorf", label: "Möbelentsorgung Düsseldorf" },
+] as const;
+
+const duesseldorfCustomerNeedLinks = [
+  {
+    href: "/duesseldorf/reinigung#kontakt",
+    label: "Ich brauche Reinigung diese Woche",
+    text: "Stadtteil, Objekt, Termin und Fotos direkt senden.",
+  },
+  {
+    href: "/duesseldorf/vielleicht-guenstiger",
+    label: "Ich habe schon ein Angebot",
+    text: "Preis, Umfang und offene Punkte ohne Preisgarantie prüfen.",
+  },
+  {
+    href: "/entsorgung-duesseldorf",
+    label: "Möbel oder Sperrmüll müssen raus",
+    text: "Fotos, Etage, Laufweg und Materialart für Entsorgung senden.",
+  },
+  {
+    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+    label: "Apartment nach Check-out reinigen",
+    text: "Zeitfenster, Zugang, Fotos und Zusatzwünsche klar nennen.",
+  },
+  {
+    href: "/duesseldorf/ladenreinigung",
+    label: "Laden vor Öffnung sauber bekommen",
+    text: "Verkaufsfläche, Eingang, Schaufenster und Zeitfenster senden.",
+  },
+  {
+    href: "/duesseldorf/sonderreinigung",
+    label: "Stärkere Verschmutzung einordnen",
+    text: "Zustand, Ursache, Fotos und klare Grenzen vorab senden.",
+  },
 ] as const;
 
 const duesseldorfDistrictSignals = [
@@ -74,7 +130,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               Aufwand statt nach Pauschalversprechen.
             </p>
           </div>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-6">
             {duesseldorfTrustLinks.map((item) => (
               <Link
                 key={item.href}
@@ -83,6 +139,41 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               >
                 <span>{item.label}</span>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-cyan-200 transition group-hover:text-white" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-4 py-8">
+        <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.78fr_1.22fr]">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-normal text-cyan-700">
+              Kunden sagen oft
+            </div>
+            <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
+              Direkte Wege nach echter Anfrage-Sprache
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+              Viele Klicks entstehen nicht über perfekte Fachbegriffe, sondern über konkrete
+              Situationen. Diese Einstiege führen Kunden schneller zur passenden Düsseldorfer
+              Seite und reduzieren falsche Anfragen.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {duesseldorfCustomerNeedLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-[0.85rem] border border-slate-200 bg-slate-50 p-4 text-sm transition hover:-translate-y-0.5 hover:border-cyan-200 hover:bg-white hover:shadow-[0_14px_30px_rgba(8,145,178,0.1)]"
+                data-event="click_duesseldorf_customer_need"
+                data-region="duesseldorf"
+              >
+                <span className="flex items-center justify-between gap-3 font-black text-slate-950">
+                  {item.label}
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-cyan-700" />
+                </span>
+                <span className="mt-2 block leading-6 text-slate-600">{item.text}</span>
               </Link>
             ))}
           </div>

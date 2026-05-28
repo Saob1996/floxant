@@ -110,9 +110,10 @@ export default function BlogUnterhaltsreinigungPage() {
      "Lokale Nähe in Regensburg hilft bei Abstimmung, Änderungen und Sonderlagen.",
     ]}
     ctas={[
+     { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg ansehen" },
+     { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg ansehen" },
      { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg ansehen" },
      { href: "/kontakt", label: "Direkt Kontakt aufnehmen" },
-     { href: "/buchung", label: "Anfrageweg öffnen" },
     ]}
     faqTitle="FAQ zur Unterhaltsreinigung"
     faqItems={faqItems}

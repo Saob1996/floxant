@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
+  BadgeEuro,
   Building2,
+  Camera,
   CheckCircle2,
   ClipboardCheck,
+  Clock3,
   Home,
   Languages,
   MapPin,
+  MessageCircle,
   Sparkles,
   Building,
 } from "lucide-react";
@@ -20,10 +24,13 @@ import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommen
 import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { SignatureServices } from "@/components/SignatureServices";
+import { buildFaqJsonLd } from "@/lib/structured-data";
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_AI_RECOMMENDATIONS,
+  DUESSELDORF_CLEANING_CLICK_INTENTS,
   DUESSELDORF_CLEANING_CUSTOMER_PATHS,
+  DUESSELDORF_CLEANING_REQUEST_FIELDS,
   DUESSELDORF_CLEANING_SERVICES,
   DUESSELDORF_CLEANING_SNIPPET_ANSWERS,
   DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE,
@@ -38,9 +45,9 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigungsfirma Düsseldorf | Putzfirma für Wohnung & Büro",
+    title: "Reinigung Düsseldorf | Wohnung, Büro & Endreinigung | FLOXANT",
     description:
-      "Putzfirma und Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug und Firmenflächen. Stadtteil, Fläche, Fotos und Preisrahmen senden, Kosten ehrlich einschätzen lassen.",
+      "Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug und Übergabe. Stadtteil, Fläche, Fotos und Budget senden, Kosten ehrlich einschätzen lassen.",
   });
 }
 
@@ -48,13 +55,14 @@ const trustLine = [
   "Breite Str. 22, 40213 Düsseldorf",
   "Wohnung, Büro, Hotel & Übergabe",
   "Fotos beschleunigen die Einschätzung",
+  "Stadtteil oder PLZ genügt zum Start",
   "WhatsApp, Telefon oder Formular",
   "Budget ehrlich prüfen",
 ];
 const duesseldorfBookingHref = "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
 
 const mobileDecisionShortcuts = [
-  { href: "#kurzantworten", label: "Antworten", note: "Kosten & Angaben" },
+  { href: "#anfrage-checkliste", label: "Senden", note: "Angaben" },
   { href: "#stadtteil-schnellcheck", label: "Stadtteil", note: "Ort prüfen" },
   { href: "#preisvorschlag", label: "Kosten", note: "Budget nennen" },
   { href: "#kontakt", label: "Kontakt", note: "Fotos senden" },
@@ -125,14 +133,14 @@ const instantDecisionCards = [
   {
     Icon: ClipboardCheck,
     title: "Kosten einschätzen",
-    text: "Preisrahmen nennen, Fläche und Zustand beschreiben und eine ehrliche Rückmeldung bekommen.",
+    text: "Budget nennen, Fläche und Zustand beschreiben und eine ehrliche Rückmeldung bekommen.",
     href: "#preisvorschlag",
-    cta: "Kostenrahmen nennen",
+    cta: "Budget nennen",
   },
   {
     Icon: Home,
     title: "Wohnung oder Übergabe",
-    text: "Für Auszug, Einzug, Bad, Küche, Böden, Fensterbereiche und schnelle Terminfragen.",
+    text: "Für Auszug, Einzug, Bad, Küche, Böden, Fensterbereiche, Schlüsselübergabe und schnelle Terminfragen.",
     href: "/duesseldorf/wohnungsreinigung",
     cta: "Wohnung prüfen",
   },
@@ -146,7 +154,7 @@ const instantDecisionCards = [
   {
     Icon: Sparkles,
     title: "Angebot liegt schon vor",
-    text: "Angebot, Screenshot oder Preis senden und mögliche Alternative prüfen lassen.",
+    text: "Angebot, Screenshot oder Preis senden und eine mögliche Alternative prüfen lassen.",
     href: "/duesseldorf/vielleicht-guenstiger",
     cta: "Angebot prüfen",
   },
@@ -185,16 +193,14 @@ const districtIntentCards = [
   },
 ] as const;
 
-const requestChecklist = [
-  "Stadtteil oder PLZ",
-  "Objektart: Wohnung, Büro, Hotel, Treppenhaus oder Gewerbe",
-  "Fläche oder Raumanzahl",
-  "Zustand und gewünschtes Ergebnis",
-  "Terminwunsch oder Zeitfenster",
-  "Fotos und optionaler Preisrahmen",
-] as const;
+const requestChecklist = DUESSELDORF_CLEANING_REQUEST_FIELDS;
 
 const customerSearchPhraseCards = [
+  {
+    title: "Reinigungsfirma in meiner Nähe",
+    text: "Wer nach Reinigung in der Nähe sucht, braucht zuerst eine schnelle Ortsprüfung. Stadtteil oder PLZ, Objektart, Zugang, Termin und Fotos machen die Rückmeldung deutlich konkreter.",
+    href: "/duesseldorf/reinigung-stadtteile-umgebung",
+  },
   {
     title: "Putzfirma Düsseldorf für Wohnung",
     text: "Viele Kunden sagen Putzfirma oder Putzservice, meinen aber eine klare Wohnungsreinigung: Fläche, Zustand, Küche, Bad, Böden, Termin und Fotos werden vorab geprüft.",
@@ -216,6 +222,11 @@ const customerSearchPhraseCards = [
     href: "/duesseldorf/reinigung#kontakt",
   },
   {
+    title: "Kurzfristige Reinigung Düsseldorf",
+    text: "Wenn ein Termin näher rückt, zählt Klarheit: Stadtteil, Fläche, Schlüsselzugang, Zustand und Fotos direkt mitsenden. Eine Zusage gibt es erst nach Machbarkeitsprüfung.",
+    href: "/duesseldorf/reinigung#kontakt",
+  },
+  {
     title: "Reinigung nach Auszug oder Übergabe",
     text: "Bei Übergabe, Einzug oder Auszug werden kleine Rückstände schnell sichtbar. FLOXANT prüft, welcher Reinigungsumfang realistisch zum Termin passt.",
     href: "/duesseldorf/endreinigung",
@@ -229,6 +240,7 @@ const customerSearchPhraseCards = [
 
 const serviceIcons = [Home, Building2, Sparkles, Building, ClipboardCheck, CheckCircle2];
 const snippetAnswerIcons = [ClipboardCheck, Sparkles, MapPin, CheckCircle2];
+const clickIntentIcons = [MapPin, Clock3, BadgeEuro, Camera, MessageCircle];
 const internationalSearchAliases = getDuesseldorfCleaningInternationalAliases();
 const internationalLanguageLabels = {
   en: "English",
@@ -270,19 +282,24 @@ export default function DuesseldorfReinigungPage() {
   );
   const baseJsonLd = buildDuesseldorfCleaningSchema({
     path: "/duesseldorf/reinigung",
-    title: "Reinigungsfirma Düsseldorf für Wohnung, Büro und Hotel",
+    title: "Reinigung Düsseldorf für Wohnung, Büro und Endreinigung",
     description:
-      "Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug und Firmenflächen nach Stadtteil, Fläche, Fotos, Zustand, Zeitfenster und Preisrahmen prüfen lassen.",
+      "Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug, Übergabe und Firmenflächen nach Stadtteil, Fläche, Fotos, Zustand, Zeitfenster und Budget prüfen lassen.",
     serviceLabel: "Reinigung Düsseldorf",
     relatedLinks: DUESSELDORF_CLEANING_SERVICES,
   });
   const jsonLd = baseJsonLd;
+  const faqJsonLd = buildFaqJsonLd(faqs);
 
   return (
     <main className="px-4 pb-24 pt-10 sm:px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="mx-auto max-w-7xl">
@@ -292,13 +309,14 @@ export default function DuesseldorfReinigungPage() {
               FLOXANT Reinigung Düsseldorf
             </div>
             <h1 className="duesseldorf-hero-title mt-5 max-w-[17ch] text-[clamp(2.55rem,5.4vw,5rem)] font-bold">
-              Reinigungsfirma Düsseldorf für Wohnung, Büro und Hotel
+              Reinigungsfirma Düsseldorf für Wohnung, Büro und Endreinigung
             </h1>
             <p className="duesseldorf-hero-copy mt-5 max-w-3xl text-lg">
-              Sie brauchen schnell eine realistische Einschätzung? Senden Sie Stadtteil,
-              Fläche, Zustand, Terminwunsch und Fotos. FLOXANT prüft Reinigung in
-              Düsseldorf für Wohnungen, Büros, Hotels, Übergaben und Firmenflächen klar,
-              kundennah und ohne vermischte Umzugsleistung.
+              Sie suchen eine Putzfirma oder Reinigungsfirma in Düsseldorf und möchten
+              ohne langes Hin und Her wissen, ob es passt? Senden Sie Stadtteil oder PLZ,
+              Fläche, Zustand, Terminwunsch und Fotos. FLOXANT prüft Wohnungen, Büros,
+              Hotels, Übergaben und Firmenflächen klar, kundennah und ohne vermischte
+              Umzugsleistung.
             </p>
             <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-[1.05fr_1fr_0.95fr]">
               <a
@@ -454,6 +472,53 @@ export default function DuesseldorfReinigungPage() {
                   </span>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="klick-einstiege" className="pt-6">
+          <div className="grid gap-4 rounded-[1rem] border border-slate-200 bg-white p-5 shadow-[0_20px_56px_rgba(15,23,42,0.07)] lg:grid-cols-[0.7fr_1.3fr] lg:p-6">
+            <article className="rounded-[0.85rem] border border-slate-200 bg-slate-50 p-5">
+              <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+                Klicknahe Suchfragen
+              </div>
+              <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+                Wenn Kunden schnell entscheiden wollen
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-700">
+                Viele Besucher suchen nicht theoretisch, sondern mit Zeitdruck: in der Nähe,
+                heute oder diese Woche, per WhatsApp, mit Fotos oder vor der Übergabe. Diese
+                Einstiege führen direkt zur passenden Aktion.
+              </p>
+            </article>
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {DUESSELDORF_CLEANING_CLICK_INTENTS.map((item, index) => {
+                const Icon = clickIntentIcons[index % clickIntentIcons.length] || CheckCircle2;
+                return (
+                  <Link
+                    key={item.searchPhrase}
+                    href={item.href}
+                    className="group rounded-[0.85rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_18px_42px_rgba(15,118,110,0.1)]"
+                    data-event="click_duesseldorf_high_intent_entry"
+                    data-region="duesseldorf"
+                  >
+                    <span className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <div className="mt-3 text-[11px] font-black uppercase tracking-normal text-teal-700">
+                      {item.searchPhrase}
+                    </div>
+                    <h3 className="mt-2 text-base font-black leading-snug text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.answer}</p>
+                    <span className="mt-3 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                      {item.cta}
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -621,7 +686,7 @@ export default function DuesseldorfReinigungPage() {
           </div>
         </section>
 
-        <section className="grid gap-5 pt-10 lg:grid-cols-[0.82fr_1.18fr]">
+        <section id="anfrage-checkliste" className="grid gap-5 pt-10 lg:grid-cols-[0.82fr_1.18fr]">
           <article className="rounded-[1rem] border border-slate-200 bg-white p-6 shadow-[0_18px_44px_rgba(15,23,42,0.06)]">
             <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
               Anfrage ohne Rückfragen
@@ -638,11 +703,16 @@ export default function DuesseldorfReinigungPage() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {requestChecklist.map((item) => (
               <div
-                key={item}
+                key={item.field}
                 className="flex min-h-16 items-center gap-3 rounded-[0.9rem] border border-slate-200 bg-white px-4 text-sm font-bold leading-6 text-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.05)]"
               >
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-teal-600" />
-                {item}
+                <span>
+                  <span className="block text-slate-950">{item.field}</span>
+                  <span className="block text-xs font-semibold leading-5 text-slate-600">
+                    {item.title}
+                  </span>
+                </span>
               </div>
             ))}
           </div>
@@ -658,9 +728,9 @@ export default function DuesseldorfReinigungPage() {
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-700">
               Nicht jede Anfrage beginnt mit dem Fachwort Reinigungsfirma. Viele Menschen
-              suchen nach Putzfirma, Putzservice, Kosten oder Angebot. FLOXANT verbindet diese
-              Wörter mit der passenden Düsseldorfer Seite, damit Anfrage, Preisrahmen
-              und Leistung schneller zusammenfinden.
+              suchen nach Putzfirma, Putzservice, Reinigung in der Nähe, Kosten, WhatsApp
+              oder Angebot. FLOXANT verbindet diese Wörter mit dem passenden Düsseldorfer
+              Einstieg, damit Ort, Preisrahmen und Leistung schneller zusammenfinden.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

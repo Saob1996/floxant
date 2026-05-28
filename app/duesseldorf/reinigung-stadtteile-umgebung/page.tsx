@@ -3,11 +3,14 @@ import Link from "next/link";
 import {
   ArrowRight,
   Building2,
+  Camera,
   CheckCircle2,
+  Clock3,
   Languages,
   MapPin,
   MessageCircle,
   Navigation,
+  Send,
 } from "lucide-react";
 
 import {
@@ -23,7 +26,7 @@ import {
   getDuesseldorfCleaningInternationalAliases,
   type SearchIntentAliasLanguage,
 } from "@/lib/search-intent-aliases";
-import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 export const revalidate = 3600;
 
@@ -96,9 +99,61 @@ const localDecisionItems = [
 ] as const;
 
 const localMobileShortcuts = [
-  { href: "#stadtteil-schnellcheck", label: "Stadtteil", note: "Ort & Zugang" },
-  { href: "#lokale-schnellantworten", label: "Antworten", note: "kurz erklärt" },
-  { href: "/duesseldorf/reinigung#kontakt", label: "Kontakt", note: "Fotos senden" },
+  { href: "#lokale-klickfaelle", label: "Nähe", note: "Suchwege" },
+  { href: "#stadtteil-schnellcheck", label: "Ort", note: "Zugang" },
+  { href: "#lokale-schnellantworten", label: "FAQ", note: "kurz" },
+  { href: "#stadtteil-anfrage", label: "Senden", note: "Fotos" },
+] as const;
+
+const localClickCaseItems = [
+  {
+    query: "Putzfirma in meiner Nähe Düsseldorf",
+    title: "Nähe heißt: Stadtteil plus Objekt",
+    answer:
+      "Bitte Stadtteil oder PLZ, Objektart, Fläche, Etage, Aufzug und Parkmöglichkeit nennen. So wird aus einer Nähe-Suche eine prüfbare Anfrage.",
+    href: "#stadtteil-anfrage",
+    cta: "Nähe-Anfrage vorbereiten",
+  },
+  {
+    query: "Reinigung heute oder diese Woche Düsseldorf",
+    title: "Terminfenster ehrlich prüfen",
+    answer:
+      "Kurzfristige Reinigung hängt an Objektumfang, Fotos, Zugang und freiem Zeitfenster. Ein konkretes Datum hilft mehr als nur 'schnell'.",
+    href: "/duesseldorf/reinigung#kontakt",
+    cta: "Termin mit Fotos senden",
+  },
+  {
+    query: "Reinigungsfirma Altstadt, Stadtmitte, Pempelfort",
+    title: "Zentrale Lagen brauchen Zugangsdaten",
+    answer:
+      "In zentralen Lagen sind Lieferzone, Parken, Hausordnung, Etage, Aufzug und Ansprechpartner wichtig, besonders für Büro, Kanzlei, Hotel und Praxis.",
+    href: "#stadtteil-schnellcheck",
+    cta: "Stadtteil prüfen",
+  },
+  {
+    query: "Wohnungsreinigung Bilk, Oberkassel, Derendorf",
+    title: "Wohnung, Auszug oder Übergabe sauber trennen",
+    answer:
+      "Für Wohnungen zählen Zustand, Bad, Küche, Böden, Fotos, Schlüsselweg, Termin und ob Endreinigung oder regelmäßige Reinigung gemeint ist.",
+    href: "/duesseldorf/wohnungsreinigung",
+    cta: "Wohnungsreinigung öffnen",
+  },
+  {
+    query: "Reinigung Neuss, Ratingen, Meerbusch",
+    title: "Umgebung nach Machbarkeit einordnen",
+    answer:
+      "Nahe Orte werden mit Ort, Strecke, Objektart, Fotos, Zugang und Kapazität geprüft. Es gibt keine pauschale Zusage ohne Objektdaten.",
+    href: "#stadtteil-anfrage",
+    cta: "Umgebung senden",
+  },
+  {
+    query: "Reinigung per WhatsApp mit Fotos Düsseldorf",
+    title: "Fotos verkürzen Rückfragen",
+    answer:
+      "Bilder von Eingang, Bad, Küche, Boden, Sanitärbereichen, Laufwegen und besonderen Stellen helfen bei Aufwand, Termin und Preisrahmen.",
+    href: "#stadtteil-anfrage",
+    cta: "Fotoangaben ansehen",
+  },
 ] as const;
 
 const localSearchAnswerItems = [
@@ -134,6 +189,39 @@ const serviceAreaClickLinks = [
   { label: "Endreinigung Oberkassel", href: "/duesseldorf/endreinigung" },
   { label: "Treppenhausreinigung Derendorf", href: "/duesseldorf/treppenhausreinigung" },
   { label: "Entsorgung Düsseldorf Umgebung", href: "/duesseldorf/entsorgung" },
+] as const;
+
+const localRequestFields = [
+  {
+    label: "Stadtteil oder PLZ",
+    value: "Zum Beispiel Altstadt, Stadtmitte, Bilk, Oberkassel, Pempelfort, Neuss, Ratingen oder Meerbusch.",
+    Icon: MapPin,
+  },
+  {
+    label: "Objekt und Nutzung",
+    value: "Wohnung, Büro, Praxis, Kanzlei, Hotel, Treppenhaus, Keller oder Gewerbefläche mit grober Fläche nennen.",
+    Icon: Building2,
+  },
+  {
+    label: "Zugang und Parken",
+    value: "Etage, Aufzug, Schlüsselweg, Lieferzone, Parkmöglichkeit, Hausordnung und Ansprechpartner ergänzen.",
+    Icon: Navigation,
+  },
+  {
+    label: "Termin und Turnus",
+    value: "Wunschdatum, Uhrzeit, kurzfristiger Bedarf, wiederkehrender Turnus oder Übergabetermin kurz beschreiben.",
+    Icon: Clock3,
+  },
+  {
+    label: "Fotos und Zustand",
+    value: "Fotos von Eingang, Laufweg, Bad, Küche, Böden, Sanitärbereichen und besonderen Stellen mitsenden.",
+    Icon: Camera,
+  },
+  {
+    label: "Budget oder Angebot",
+    value: "Falls vorhanden: Preisrahmen, Vergleichsangebot oder offene Punkte angeben, damit die Rückmeldung konkreter wird.",
+    Icon: Send,
+  },
 ] as const;
 
 const internationalSearchAliases = getDuesseldorfCleaningInternationalAliases();
@@ -220,12 +308,40 @@ export default function DuesseldorfStadtteileUmgebungPage() {
           },
         })),
       },
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${path}#local-click-cases`,
+        name: "Kundennah gesuchte Reinigungsfälle in Düsseldorf",
+        itemListElement: localClickCaseItems.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.query,
+          description: item.answer,
+          url: item.href.startsWith("#")
+            ? `https://www.floxant.de${path}${item.href}`
+            : `https://www.floxant.de${item.href}`,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${path}#local-request-fields`,
+        name: "Angaben für Reinigungsanfragen nach Stadtteil und Umgebung",
+        itemListElement: localRequestFields.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.label,
+          description: item.value,
+          url: `https://www.floxant.de${path}#stadtteil-anfrage`,
+        })),
+      },
     ],
   };
+  const faqJsonLd = buildFaqJsonLd(faqItems);
 
   return (
     <main className="px-4 pb-28 pt-10 sm:px-6 lg:pb-32">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="mx-auto max-w-7xl rounded-[1rem] border border-white/10 bg-slate-950 p-6 text-white shadow-[0_24px_70px_rgba(7,17,29,0.28)] sm:p-8">
         <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-[11px] font-black uppercase tracking-normal text-cyan-100">
@@ -256,7 +372,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
 
       <nav
         aria-label="Schnelle Auswahl für Reinigung nach Stadtteil"
-        className="mx-auto mt-3 grid max-w-7xl grid-cols-3 gap-2 md:hidden"
+        className="mx-auto mt-3 grid max-w-7xl grid-cols-4 gap-2 md:hidden"
       >
         {localMobileShortcuts.map((item) => (
           <Link
@@ -271,6 +387,54 @@ export default function DuesseldorfStadtteileUmgebungPage() {
           </Link>
         ))}
       </nav>
+
+      <section id="lokale-klickfaelle" className="mx-auto mt-8 grid max-w-7xl scroll-mt-28 gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+        <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="text-[11px] font-black uppercase tracking-normal text-cyan-800">
+            In der Nähe gesucht
+          </div>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+            Von Suchwort zur passenden Düsseldorfer Anfrage
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-700">
+            Wer nach Reinigung in der Nähe sucht, braucht keine lange Stadtseite, sondern
+            einen klaren Weg: Ort nennen, Objekt erklären, Fotos senden und Machbarkeit
+            prüfen lassen.
+          </p>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <Link href="#stadtteil-anfrage" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white">
+              Angaben vorbereiten
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800">
+              <MessageCircle className="h-4 w-4" />
+              Fotos senden
+            </a>
+          </div>
+        </article>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {localClickCaseItems.map((item) => (
+            <Link
+              key={item.query}
+              href={item.href}
+              className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(8,145,178,0.12)]"
+              data-event="click_duesseldorf_area_customer_intent"
+              data-region="duesseldorf"
+            >
+              <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-normal text-cyan-800">
+                <MapPin className="h-4 w-4" />
+                {item.query}
+              </div>
+              <h3 className="mt-3 text-base font-black text-slate-950">{item.title}</h3>
+              <p className="mt-2 text-sm leading-7 text-slate-700">{item.answer}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
+                {item.cta}
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section id="stadtteil-schnellcheck" className="mx-auto mt-8 grid max-w-7xl gap-5 lg:grid-cols-[0.78fr_1.22fr]">
         <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
@@ -385,6 +549,51 @@ export default function DuesseldorfStadtteileUmgebungPage() {
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section id="stadtteil-anfrage" className="mx-auto mt-8 grid max-w-7xl scroll-mt-28 gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+        <article className="rounded-[0.95rem] border border-slate-800 bg-slate-950 p-6 text-white shadow-[0_16px_38px_rgba(15,23,42,0.14)]">
+          <div className="text-[11px] font-black uppercase tracking-normal text-cyan-100">
+            Anfrage schneller prüfbar machen
+          </div>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-white">
+            Diese Angaben sparen Rückfragen bei Stadtteil und Umgebung.
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-200">
+            Je klarer Ort, Zugang, Fotos und Termin sind, desto schneller kann FLOXANT
+            Düsseldorf, Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg realistisch
+            einordnen. Bitte keine Zugangscodes offen in Formulartexte schreiben.
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-400 px-4 text-sm font-black text-slate-950" data-event="click_duesseldorf_area_whatsapp_fields">
+              <MessageCircle className="h-4 w-4" />
+              Per WhatsApp senden
+            </a>
+            <Link href="/duesseldorf/reinigung#kontakt" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-white/15 bg-white/10 px-4 text-sm font-black text-white" data-event="click_duesseldorf_area_contact_fields">
+              Formular öffnen
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </article>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {localRequestFields.map((item, index) => {
+            const Icon = item.Icon;
+            return (
+              <article key={item.label} className="rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="flex items-start justify-between gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.8rem] bg-cyan-50 text-cyan-800">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-500">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-base font-black text-slate-950">{item.label}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{item.value}</p>
+              </article>
+            );
+          })}
         </div>
       </section>
 

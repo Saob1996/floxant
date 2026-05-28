@@ -110,9 +110,10 @@ export default function BlogCommercialCleaningB2BPage() {
      "Eine klare B2B-Seite kann Ads-Verluste reduzieren und hochwertigere Anfragen bringen.",
     ]}
     ctas={[
+     { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },
+     { href: "/praxisreinigung-regensburg", label: "Praxisreinigung prüfen" },
      { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
      { href: "/buchung", label: "Direkte Anfrage starten" },
-     { href: "/kontakt", label: "Kontakt in Regensburg" },
     ]}
     faqTitle="FAQ zur Gewerbereinigung für große Objekte"
     faqItems={faqItems}

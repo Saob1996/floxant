@@ -19,7 +19,13 @@ Regeln: menschlich, lokal, konkret. Keine Fake-Kunden, keine erfundenen Zahlen, 
 | Budget nennen | Preisunsicherheit blockiert Anfrage | Preisrahmen ehrlich pruefen | Budget senden | `/anfrage-mit-preisrahmen` | Notiz mit Budget | Umzug Preisrahmen | Conversion |
 | Leerfahrt nutzen | Flexible Transporte koennen guenstiger passen | Route und Datum pruefen | Strecke anfragen | `/leerfahrt-rueckfahrt` | Karte Route | Leerfahrt Rueckfahrt | Leerfahrt |
 | Wohnungsuebergabe | Letzter Eindruck entscheidet | Reinigung, Restmengen und Protokoll abstimmen | Uebergabe planen | `/blog/wohnungsuebergabe-regensburg-vorbereiten` | Checkliste | Wohnungsuebergabe Regensburg | Guide |
-| Bueroreinigung | Betrieb soll nicht gestoert werden | Flaeche, Frequenz, Zeitfenster klaeren | Reinigung anfragen | `/gewerbereinigung-regensburg` | Buero | Bueroreinigung Regensburg | B2B |
+| Bueroreinigung | Betrieb soll nicht gestoert werden | Flaeche, Frequenz, Zeitfenster klaeren | Reinigung anfragen | `/bueroreinigung-regensburg` | Buero | Bueroreinigung Regensburg | B2B |
+| Praxisreinigung | Praxisbetrieb braucht ruhige Zeiten | Praxisart, Raumliste und Grenzen klaeren | Praxis anfragen | `/praxisreinigung-regensburg` | Wartebereich | Praxisreinigung Regensburg | B2B |
+| Hotelreinigung | Gaestebereiche muessen schnell wieder sauber sein | Zimmerzahl, Lobby, Flure, Check-out und Fotos klaeren | Hotel anfragen | `/hotelreinigung-regensburg` | Hotelzimmer/Lobby | Hotelreinigung Regensburg | B2B |
+| Fensterreinigung | Glas und Rahmen sollen wieder ordentlich wirken | Fensterzahl, Etage, innen/aussen und Fotos klaeren | Fotos senden | `/fensterreinigung-regensburg` | Fenster/Glasflaeche | Fensterreinigung Regensburg | B2B |
+| Baureinigung | Nach Renovierung bleibt Baustaub sichtbar | Bauzustand, Flaeche, Boden, Fenster und Fotos klaeren | Bauzustand senden | `/baureinigung-regensburg` | Renovierter Raum | Baureinigung Regensburg | B2B |
+| Teppichreinigung | Teppich, Sofa oder Polster haben Flecken | Material, Flecken, Stueckzahl und Fotos klaeren | Materialfotos senden | `/teppichreinigung-regensburg` | Teppich/Polster | Teppichreinigung Regensburg | B2B |
+| Treppenhausreinigung | Hausverwaltung braucht festen Turnus | Eingaenge, Etagen, Zugang und Fotos klaeren | Objekt anfragen | `/treppenhausreinigung-regensburg` | Hauseingang | Treppenhausreinigung Regensburg | B2B |
 | Umzug kurzfristig | Termin ist eng | Machbarkeit mit Daten schnell pruefen | Express-Check | `/express-anfrage` | Kalender | kurzfristiger Umzug | Express |
 | Entruempelung + Reinigung | Nach Raeumung bleibt Uebergabe offen | Kombi aus Raeumung und Reinigung | Kombi anfragen | `/entruempelung-regensburg` | leerer Raum | Entruempelung Reinigung | Kombi |
 | Transport Einzelstueck | Nicht jeder Fall ist Vollumzug | Umfang und Zugang pruefen | Transport anfragen | `/kleintransport-regensburg` | Moebelstueck | Moebeltransport Regensburg | Transport |
@@ -83,4 +89,3 @@ Regeln: menschlich, lokal, konkret. Keine Fake-Kunden, keine erfundenen Zahlen, 
 | Fotos helfen | Umfang unklar | Bildmaterial macht Planung schneller | Fotos senden | `/buchung?service=leerfahrt&utm_source=gbp` | Upload | Leerfahrt Angebot | Conversion |
 | Fairer Preis | Keine Lockpreise | Preis haengt von Route und Umweg ab | Budget nennen | `/leerfahrt-rueckfahrt` | Preisnotiz | Rueckfahrt Preis | Preis |
 | Beiladung vergleichen | Begriff unklar | Beiladung und Rueckfahrt erklaeren | Mehr erfahren | `/beiladung` | Transporter | Beiladung Bayern | Support |
-

@@ -17,6 +17,8 @@ import {
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_AI_RECOMMENDATIONS,
+  DUESSELDORF_CLEANING_CLICK_INTENTS,
+  DUESSELDORF_CLEANING_REQUEST_FIELDS,
   DUESSELDORF_CLEANING_SNIPPET_ANSWERS,
   buildDuesseldorfCleaningSchema,
   buildDuesseldorfCleaningWhatsAppHref,
@@ -26,6 +28,7 @@ import {
   type SearchIntentAliasLanguage,
 } from "@/lib/search-intent-aliases";
 import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
+import { buildFaqJsonLd } from "@/lib/structured-data";
 
 type ServicePageProps = {
   path?: string;
@@ -44,11 +47,35 @@ type ServicePageProps = {
   relatedLinks?: readonly { href: string; label: string }[];
   boundaryText?: string;
   serviceLabel?: string;
+  customerIntentItems?: readonly {
+    searchPhrase: string;
+    title: string;
+    answer: string;
+    href: string;
+    cta: string;
+    signal?: string;
+  }[];
+  requestFieldItems?: readonly {
+    field: string;
+    title: string;
+    text: string;
+  }[];
+  snippetAnswerItems?: readonly {
+    query: string;
+    title: string;
+    answer: string;
+    href: string;
+    cta?: string;
+    signals?: readonly string[];
+  }[];
 };
 
 const fallbackRelatedLinks = [
   { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf anfragen" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung prüfen" },
+  { href: "/duesseldorf/unterhaltsreinigung", label: "Unterhaltsreinigung planen" },
+  { href: "/duesseldorf/ladenreinigung", label: "Ladenreinigung prüfen" },
+  { href: "/duesseldorf/sonderreinigung", label: "Sonderreinigung prüfen" },
   { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung planen" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung einschätzen" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
@@ -74,6 +101,31 @@ const heroProofItems = [
     text: "Düsseldorf bleibt Reinigung und Entsorgung.",
   },
 ] as const;
+
+const serviceConfidenceItems = [
+  {
+    Icon: MapPin,
+    title: "Stadtteil zuerst",
+    text: "PLZ, Etage, Parken und Zugang machen die Rückmeldung konkreter.",
+  },
+  {
+    Icon: Camera,
+    title: "Fotos sparen Zeit",
+    text: "Bilder von Zustand, Laufwegen und Flächen reduzieren Rückfragen.",
+  },
+  {
+    Icon: Banknote,
+    title: "Budget offen nennen",
+    text: "Preisrahmen hilft bei der Einordnung, ist aber keine Zusage.",
+  },
+  {
+    Icon: Clock3,
+    title: "Termin ehrlich prüfen",
+    text: "Kurzfristige Einsätze werden nach Kapazität und Umfang bewertet.",
+  },
+] as const;
+
+const clickIntentIcons = [MapPin, Clock3, Banknote, Camera, MessageCircle] as const;
 
 const internationalLanguageLabels: Record<SearchIntentAliasLanguage, string> = {
   en: "Englisch",
@@ -121,13 +173,25 @@ export function DuesseldorfServicePage({
   relatedLinks = [],
   boundaryText = "Düsseldorf ist bei FLOXANT klar für Reinigung und Entsorgung positioniert. Umzug, Transport und ähnliche Umzugsleistungen werden hier nicht beworben.",
   serviceLabel = "Reinigung",
+  customerIntentItems = [],
+  requestFieldItems = [],
+  snippetAnswerItems: customSnippetAnswerItems = [],
 }: ServicePageProps) {
   const visibleLinks = relatedLinks.length > 0 ? relatedLinks : fallbackRelatedLinks;
   const isCommercialIntent = /B2B|Büro|Firma|Gewerbe|Kanzlei|Praxis|Hotel|Krankenhaus/i.test(serviceLabel);
   const whatsappMessage = `Hallo FLOXANT Reinigung Düsseldorf, ich möchte ${title} anfragen. Objektart, Stadtteil, Fläche, Turnus/Zeitfenster und Fotos kann ich senden.`;
   const activeFaqItems = faqItems.length > 0 ? faqItems : buildDefaultFaqItems(serviceLabel, title);
   const internationalSearchAliases = getDuesseldorfCleaningInternationalAliases();
-  const serviceSnippetAnswerItems = DUESSELDORF_CLEANING_SNIPPET_ANSWERS.slice(0, 4);
+  const serviceSnippetAnswerItems =
+    customSnippetAnswerItems.length > 0
+      ? customSnippetAnswerItems
+      : DUESSELDORF_CLEANING_SNIPPET_ANSWERS.slice(0, 4);
+  const serviceClickIntentItems =
+    customerIntentItems.length > 0
+      ? customerIntentItems
+      : DUESSELDORF_CLEANING_CLICK_INTENTS.slice(0, 5);
+  const serviceRequestFields =
+    requestFieldItems.length > 0 ? requestFieldItems : DUESSELDORF_CLEANING_REQUEST_FIELDS;
   const quickAnswers = [
     {
       Icon: Banknote,
@@ -178,14 +242,15 @@ export function DuesseldorfServicePage({
       title: "Wo prüfe ich Kosten oder ein vorhandenes Angebot?",
       text: "Wenn Sie schon einen Preis, ein Angebot oder eine Budgetgrenze haben, führt die Angebotsprüfung schneller zur passenden Einordnung.",
       href: "/duesseldorf/vielleicht-guenstiger",
-      cta: "Angebot prüfen",
+      cta: "Kosten/Budget prüfen",
       external: false,
     },
   ] as const;
   const mobileShortcutItems = [
     { href: "#schnell-entscheiden", label: "Passt?", note: "Weg wählen" },
-    { href: "#kontakt", label: "Kontakt", note: "Daten senden" },
-    { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten?", note: "Angebot prüfen" },
+    { href: "#anfrage-checkliste", label: "Senden", note: "Angaben" },
+    { href: "#kontakt", label: "Kontakt", note: "Fotos senden" },
+    { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten?", note: "Budget prüfen" },
   ] as const;
   const jsonLd = buildDuesseldorfCleaningSchema({
     path,
@@ -193,13 +258,21 @@ export function DuesseldorfServicePage({
     description: metaDescription || description,
     serviceLabel,
     relatedLinks: visibleLinks,
+    requestFieldItems: serviceRequestFields,
+    clickIntentItems: serviceClickIntentItems,
+    snippetAnswerItems: serviceSnippetAnswerItems,
   });
+  const faqJsonLd = buildFaqJsonLd(activeFaqItems);
 
   return (
     <main className="overflow-x-clip px-4 pb-28 pt-10 sm:px-6 lg:pb-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="mx-auto max-w-6xl">
@@ -253,19 +326,19 @@ export function DuesseldorfServicePage({
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
-              href="/reinigung-moeblierte-wohnung-duesseldorf"
+              href="#kunden-suchen"
               className="inline-flex min-h-12 items-center justify-center rounded-[0.8rem] border border-cyan-100/35 bg-cyan-200/16 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-cyan-200/24"
-              data-event="internal_link_duesseldorf_apartment_cleaning"
+              data-event="click_duesseldorf_service_customer_questions"
               data-region="duesseldorf"
             >
-              Apartment-Reinigung
+              Kundenfragen ansehen
             </Link>
           </div>
         </section>
 
         <nav
           aria-label="Schnelle Auswahl für Düsseldorfer Reinigungsanfragen"
-          className="mt-3 grid grid-cols-3 gap-2 md:hidden"
+          className="mt-3 grid grid-cols-4 gap-2 md:hidden"
         >
           {mobileShortcutItems.map((item) => (
             <Link
@@ -280,6 +353,23 @@ export function DuesseldorfServicePage({
             </Link>
           ))}
         </nav>
+
+        <section className="grid gap-3 pt-6 md:grid-cols-4">
+          {serviceConfidenceItems.map(({ Icon, title: itemTitle, text }) => (
+            <article
+              key={itemTitle}
+              className="rounded-[0.85rem] border border-slate-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)]"
+            >
+              <div className="flex h-9 w-9 items-center justify-center rounded-[0.7rem] border border-teal-100 bg-teal-50 text-teal-700">
+                <Icon className="h-4 w-4" />
+              </div>
+              <h2 className="mt-3 text-base font-black tracking-normal text-slate-950">
+                {itemTitle}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-700">{text}</p>
+            </article>
+          ))}
+        </section>
 
         <section className="grid gap-4 pt-6 md:grid-cols-3">
           {quickAnswers.map(({ Icon, title: itemTitle, text }) => (
@@ -325,6 +415,52 @@ export function DuesseldorfServicePage({
                 <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="kunden-suchen" className="grid gap-4 pt-6 lg:grid-cols-[0.72fr_1.28fr]">
+          <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+              Kundennah gesucht
+            </div>
+            <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
+              Häufige Klickmotive für {serviceLabel} in Düsseldorf
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-700">
+              Kunden formulieren selten perfekt. Sie suchen nach Nähe, Kosten, WhatsApp,
+              Fotos, kurzfristigem Termin oder Übergabe. Diese Einstiege führen direkt
+              zur passenden Handlung.
+            </p>
+          </article>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {serviceClickIntentItems.map((item, index) => {
+              const Icon = clickIntentIcons[index % clickIntentIcons.length] || CheckCircle2;
+
+              return (
+                <Link
+                  key={item.searchPhrase}
+                  href={item.href}
+                  className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
+                  data-event="click_duesseldorf_service_customer_intent"
+                  data-region="duesseldorf"
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-[0.7rem] border border-teal-100 bg-teal-50 text-teal-700">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <div className="mt-3 text-[11px] font-black uppercase tracking-normal text-teal-700">
+                    {item.searchPhrase}
+                  </div>
+                  <h3 className="mt-2 text-base font-black tracking-normal text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">{item.answer}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                    {item.cta}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
@@ -384,6 +520,66 @@ export function DuesseldorfServicePage({
                 </Link>
               );
             })}
+          </div>
+        </section>
+
+        <section id="anfrage-checkliste" className="grid gap-4 pt-6 lg:grid-cols-[0.76fr_1.24fr]">
+          <article className="rounded-[0.95rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-[0_18px_44px_rgba(15,23,42,0.14)]">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-200">
+              Anfrage in 60 Sekunden vorbereiten
+            </div>
+            <h2 className="mt-3 text-2xl font-bold tracking-normal">
+              Was FLOXANT für {serviceLabel} in Düsseldorf zuerst braucht
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              Je klarer Ort, Objekt, Fläche, Fotos und Zeitfenster sind, desto schneller
+              wird aus einer Suche nach Reinigungsfirma, Putzfirma oder Kosten eine
+              prüfbare Anfrage.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href={buildDuesseldorfCleaningWhatsAppHref(whatsappMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] bg-emerald-400 px-5 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
+                data-event="click_duesseldorf_service_checklist_whatsapp"
+                data-region="duesseldorf"
+              >
+                Angaben per WhatsApp senden
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="#kontakt"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] border border-white/15 bg-white/10 px-5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/15"
+                data-event="click_duesseldorf_service_checklist_contact"
+                data-region="duesseldorf"
+              >
+                Kontaktwege öffnen
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </article>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {serviceRequestFields.map((item, index) => (
+              <article
+                key={item.field}
+                className="rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)]"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="rounded-[0.7rem] border border-teal-100 bg-teal-50 px-3 py-2 text-[11px] font-black uppercase tracking-normal text-teal-800">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <CheckCircle2 className="h-5 w-5 text-teal-700" />
+                </div>
+                <div className="mt-4 text-[11px] font-black uppercase tracking-normal text-teal-700">
+                  {item.field}
+                </div>
+                <h3 className="mt-2 text-base font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
+              </article>
+            ))}
           </div>
         </section>
 

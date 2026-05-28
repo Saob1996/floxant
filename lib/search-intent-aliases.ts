@@ -45,13 +45,13 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
   {
     id: "cleaning-regensburg-bayern",
     market: "regensburg-bayern",
-    serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Übergabereinigung", "Notfallreinigung", "Reinigung nach Veranstaltung"],
-    canonicalPages: ["/reinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
+    serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Büroreinigung Regensburg", "Büroreinigung Regensburg Angebot", "Büroreinigung Kosten Regensburg", "Büro Reinigungskraft Regensburg", "Büroreinigung nach Feierabend Regensburg", "Praxisreinigung Regensburg", "Arztpraxis Reinigung Regensburg", "Praxisreinigung Angebot Regensburg", "Reinigung Praxisräume Regensburg", "Praxisreinigung nach Praxisschluss Regensburg", "Hotelreinigung Regensburg", "Hotel Reinigung Firma Regensburg", "Zimmerreinigung Regensburg", "Hotel Unterhaltsreinigung Regensburg", "Pension Reinigung Regensburg", "Boardinghouse Reinigung Regensburg", "Lobby Reinigung Regensburg", "Fensterreinigung Regensburg", "Glasreinigung Regensburg", "Baureinigung Regensburg", "Bauendreinigung Regensburg", "Baufeinreinigung Regensburg", "Reinigung nach Renovierung Regensburg", "Handwerkerstaub entfernen Regensburg", "Teppichreinigung Regensburg", "Teppichbodenreinigung Regensburg", "Polsterreinigung Regensburg", "Sofa reinigen lassen Regensburg", "Bürostühle reinigen Regensburg", "Treppenhausreinigung Regensburg", "Hausverwaltung Reinigung Regensburg", "Treppenhausreinigung Kosten Regensburg", "Treppenhaus reinigen lassen Regensburg", "WEG Reinigung Regensburg", "Mehrfamilienhaus Reinigung Regensburg", "Unterhaltsreinigung Regensburg", "Grundreinigung Regensburg", "Wohnung Grundreinigung Regensburg", "Büro Grundreinigung Regensburg", "Grundreinigung nach Auszug Regensburg", "starke Verschmutzung reinigen Regensburg", "Reinigungsplan Buero Regensburg", "Objektreinigung Regensburg", "Übergabereinigung", "Notfallreinigung", "Reinigung nach Veranstaltung"],
+    canonicalPages: ["/reinigung-regensburg", "/bueroreinigung-regensburg", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
     aliases: [
       {
         language: "en",
         label: "Englische Suchbegriffe",
-        terms: ["cleaning service Regensburg", "emergency cleaning Regensburg", "event cleaning Bavaria", "party cleaning Regensburg", "office cleaning Regensburg", "end cleaning Bavaria", "apartment handover cleaning Regensburg"],
+        terms: ["cleaning service Regensburg", "office cleaning Regensburg", "office cleaning quote Regensburg", "office cleaning cost Regensburg", "office cleaner Regensburg", "after hours office cleaning Regensburg", "medical office cleaning Regensburg", "doctor office cleaning Regensburg", "practice cleaning quote Regensburg", "after hours practice cleaning Regensburg", "hotel cleaning Regensburg", "hotel room cleaning Regensburg", "guesthouse cleaning Regensburg", "boardinghouse cleaning Regensburg", "lobby cleaning Regensburg", "window cleaning Regensburg", "glass cleaning Regensburg", "post construction cleaning Regensburg", "construction cleaning Regensburg", "builders clean Regensburg", "renovation cleaning Regensburg", "construction final cleaning Regensburg", "remove construction dust Regensburg", "carpet cleaning Regensburg", "office carpet cleaning Regensburg", "upholstery cleaning Regensburg", "sofa cleaning Regensburg", "staircase cleaning Regensburg", "apartment building cleaning Regensburg", "property management cleaning Regensburg", "common area cleaning Regensburg", "deep cleaning Regensburg", "apartment deep cleaning Regensburg", "office deep cleaning Regensburg", "move out deep cleaning Regensburg", "maintenance cleaning Regensburg", "regular office cleaning Regensburg", "cleaning schedule office Regensburg", "emergency cleaning Regensburg", "event cleaning Bavaria", "party cleaning Regensburg", "end cleaning Bavaria", "apartment handover cleaning Regensburg"],
       },
       {
         language: "ru",
@@ -157,14 +157,14 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
   {
     id: "duesseldorf-cleaning-only",
     market: "duesseldorf-cleaning",
-    serviceScope: ["Reinigung Düsseldorf", "Putzfirma Düsseldorf", "Putzservice Düsseldorf", "Reinigung Kosten Düsseldorf", "Reinigung Angebot Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "Firmenreinigung Düsseldorf", "Büroreinigung Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
-    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
+    serviceScope: ["Reinigung Düsseldorf", "Putzfirma Düsseldorf", "Putzservice Düsseldorf", "Reinigung Kosten Düsseldorf", "Reinigung Angebot Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "Firmenreinigung Düsseldorf", "Büroreinigung Düsseldorf", "Unterhaltsreinigung Düsseldorf", "Gebäudereinigung Düsseldorf", "Objektreinigung Düsseldorf", "Reinigungskraft Büro Düsseldorf", "Ladenreinigung Düsseldorf", "Geschäftsreinigung Düsseldorf", "Shop Reinigung Düsseldorf", "Reinigung Verkaufsfläche Düsseldorf", "Sonderreinigung Düsseldorf", "Intensivreinigung Düsseldorf", "starke Verschmutzung reinigen Düsseldorf", "Reinigung nach Leerstand Düsseldorf", "Reinigung nach Mieterwechsel Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Baureinigung Düsseldorf", "Bauendreinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf", "Teppichreinigung Düsseldorf", "Teppichbodenreinigung Düsseldorf", "Polsterreinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
+    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/unterhaltsreinigung", "/duesseldorf/ladenreinigung", "/duesseldorf/sonderreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/baureinigung", "/duesseldorf/teppichreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
     excludedIntents: ["moving Düsseldorf", "relocation Düsseldorf", "Umzug Düsseldorf", "Transport Düsseldorf", "Büroumzug Düsseldorf"],
     aliases: [
       {
         language: "en",
         label: "Englische Suchbegriffe",
-        terms: ["cleaning service Düsseldorf", "cleaning company Düsseldorf", "cleaners Düsseldorf", "office cleaning Düsseldorf", "hotel cleaning Düsseldorf", "boardinghouse cleaning Düsseldorf", "apartment cleaning Düsseldorf", "deep cleaning Düsseldorf", "staircase cleaning Düsseldorf", "cleaning quote Düsseldorf", "cleaning costs Düsseldorf"],
+        terms: ["cleaning service Düsseldorf", "cleaning company Düsseldorf", "cleaners Düsseldorf", "office cleaning Düsseldorf", "regular office cleaning Düsseldorf", "building cleaning Düsseldorf", "maintenance cleaning Düsseldorf", "shop cleaning Düsseldorf", "retail cleaning Düsseldorf", "store cleaning Düsseldorf", "showroom cleaning Düsseldorf", "special cleaning Düsseldorf", "intensive cleaning Düsseldorf", "deep cleaning Düsseldorf", "vacant property cleaning Düsseldorf", "hotel cleaning Düsseldorf", "boardinghouse cleaning Düsseldorf", "apartment cleaning Düsseldorf", "staircase cleaning Düsseldorf", "post renovation cleaning Düsseldorf", "construction cleaning Düsseldorf", "carpet cleaning Düsseldorf", "upholstery cleaning Düsseldorf", "cleaning quote Düsseldorf", "cleaning costs Düsseldorf"],
       },
       {
         language: "ru",
@@ -186,6 +186,117 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
 ];
 
 multilingualSearchIntentGroups.push({
+  id: "cleaning-regensburg-carpet-upholstery",
+  market: "regensburg-bayern",
+  serviceScope: [
+    "Teppichreinigung Regensburg",
+    "Teppichbodenreinigung Regensburg",
+    "Polsterreinigung Regensburg",
+    "Sofa reinigen lassen Regensburg",
+    "Bürostühle reinigen Regensburg",
+    "Teppichreinigung Kosten Regensburg",
+  ],
+  canonicalPages: ["/teppichreinigung-regensburg", "/grundreinigung-regensburg", "/bueroreinigung-regensburg", "/hotelreinigung-regensburg", "/praxisreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  aliases: [
+    {
+      language: "en",
+      label: "Englische Suchbegriffe",
+      terms: ["carpet cleaning Regensburg", "office carpet cleaning Regensburg", "upholstery cleaning Regensburg", "sofa cleaning Regensburg", "office chair cleaning Regensburg", "carpet cleaning cost Regensburg"],
+    },
+    {
+      language: "ru",
+      label: "Russische Suchbegriffe",
+      terms: ["чистка ковров Регенсбург", "чистка дивана Регенсбург", "чистка мягкой мебели Регенсбург"],
+    },
+    {
+      language: "zh",
+      label: "Chinesische Suchbegriffe",
+      terms: ["雷根斯堡地毯清洁", "雷根斯堡沙发清洁", "雷根斯堡软垫清洁"],
+    },
+    {
+      language: "ko",
+      label: "Koreanische Suchbegriffe",
+      terms: ["레겐스부르크 카펫 청소", "레겐스부르크 소파 청소", "레겐스부르크 의자 청소"],
+    },
+  ],
+});
+
+multilingualSearchIntentGroups.push({
+  id: "cleaning-regensburg-construction",
+  market: "regensburg-bayern",
+  serviceScope: [
+    "Baureinigung Regensburg",
+    "Bauendreinigung Regensburg",
+    "Baufeinreinigung Regensburg",
+    "Reinigung nach Renovierung Regensburg",
+    "Handwerkerstaub entfernen Regensburg",
+    "Wohnung nach Sanierung reinigen Regensburg",
+    "Baustaub Reinigung Regensburg",
+  ],
+  canonicalPages: ["/baureinigung-regensburg", "/grundreinigung-regensburg", "/fensterreinigung-regensburg", "/gewerbereinigung-regensburg", "/endreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  aliases: [
+    {
+      language: "en",
+      label: "Englische Suchbegriffe",
+      terms: ["post construction cleaning Regensburg", "construction cleaning Regensburg", "builders clean Regensburg", "renovation cleaning Regensburg", "construction final cleaning Regensburg", "remove construction dust Regensburg"],
+    },
+    {
+      language: "ru",
+      label: "Russische Suchbegriffe",
+      terms: ["уборка после ремонта Регенсбург", "строительная уборка Регенсбург", "убрать строительную пыль Регенсбург"],
+    },
+    {
+      language: "zh",
+      label: "Chinesische Suchbegriffe",
+      terms: ["雷根斯堡装修后清洁", "雷根斯堡施工后清洁", "雷根斯堡清理建筑灰尘"],
+    },
+    {
+      language: "ko",
+      label: "Koreanische Suchbegriffe",
+      terms: ["레겐스부르크 공사 후 청소", "레겐스부르크 리모델링 후 청소", "레겐스부르크 건설 먼지 청소"],
+    },
+  ],
+});
+
+multilingualSearchIntentGroups.push({
+  id: "cleaning-regensburg-window",
+  market: "regensburg-bayern",
+  serviceScope: [
+    "Fensterreinigung Regensburg",
+    "Glasreinigung Regensburg",
+    "Fenster putzen lassen Regensburg",
+    "Schaufensterreinigung Regensburg",
+    "Glasreinigung Regensburg Buero",
+    "Fensterreinigung Kosten Regensburg",
+    "Fensterreinigung vor Uebergabe Regensburg",
+    "Rahmen reinigen Regensburg",
+  ],
+  canonicalPages: ["/fensterreinigung-regensburg", "/gewerbereinigung-regensburg", "/bueroreinigung-regensburg", "/grundreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  aliases: [
+    {
+      language: "en",
+      label: "Englische Suchbegriffe",
+      terms: ["window cleaning Regensburg", "glass cleaning Regensburg", "office window cleaning Regensburg", "storefront window cleaning Regensburg", "window cleaning cost Regensburg", "move out window cleaning Regensburg"],
+    },
+    {
+      language: "ru",
+      label: "Russische Suchbegriffe",
+      terms: ["мойка окон Регенсбург", "чистка стекла Регенсбург", "мойка витрин Регенсбург"],
+    },
+    {
+      language: "zh",
+      label: "Chinesische Suchbegriffe",
+      terms: ["雷根斯堡窗户清洁", "雷根斯堡玻璃清洁", "雷根斯堡橱窗清洁"],
+    },
+    {
+      language: "ko",
+      label: "Koreanische Suchbegriffe",
+      terms: ["레겐스부르크 창문 청소", "레겐스부르크 유리 청소", "레겐스부르크 상점 유리 청소"],
+    },
+  ],
+});
+
+multilingualSearchIntentGroups.push({
   id: "duesseldorf-cleaning-b2b-dominance",
   market: "duesseldorf-cleaning",
   serviceScope: [
@@ -194,6 +305,25 @@ multilingualSearchIntentGroups.push({
     "Firmenreinigung Düsseldorf",
     "Firmenreinigung Düsseldorf",
     "Gewerbereinigung Düsseldorf",
+    "Unterhaltsreinigung Düsseldorf",
+    "Gebäudereinigung Düsseldorf",
+    "Objektreinigung Düsseldorf",
+    "Reinigungsplan Büro Düsseldorf",
+    "Ladenreinigung Düsseldorf",
+    "Geschäftsreinigung Düsseldorf",
+    "Shop Reinigung Düsseldorf",
+    "Reinigung Verkaufsfläche Düsseldorf",
+    "Sonderreinigung Düsseldorf",
+    "Intensivreinigung Düsseldorf",
+    "starke Verschmutzung reinigen Düsseldorf",
+    "Reinigung nach Leerstand Düsseldorf",
+    "Reinigung nach Mieterwechsel Düsseldorf",
+    "Baureinigung Düsseldorf",
+    "Bauendreinigung Düsseldorf",
+    "Reinigung nach Renovierung Düsseldorf",
+    "Teppichreinigung Düsseldorf",
+    "Teppichbodenreinigung Düsseldorf",
+    "Polsterreinigung Düsseldorf",
     "Hotelreinigung Düsseldorf",
     "Kanzleireinigung Düsseldorf",
     "Praxisreinigung Düsseldorf",
@@ -217,12 +347,19 @@ multilingualSearchIntentGroups.push({
     "/duesseldorf/reinigung-stadtteile-umgebung",
     "/duesseldorf/vielleicht-guenstiger",
     "/duesseldorf/bueroreinigung",
+    "/duesseldorf/unterhaltsreinigung",
+    "/duesseldorf/ladenreinigung",
+    "/duesseldorf/sonderreinigung",
     "/duesseldorf/b2b-reinigung",
     "/duesseldorf/firmenreinigung",
     "/duesseldorf/gewerbereinigung",
     "/duesseldorf/hotelreinigung",
     "/duesseldorf/kanzleireinigung",
     "/duesseldorf/praxisreinigung",
+    "/duesseldorf/it-raum-reinigung",
+    "/duesseldorf/fensterreinigung",
+    "/duesseldorf/baureinigung",
+    "/duesseldorf/teppichreinigung",
     "/duesseldorf/kellerreinigung",
     "/duesseldorf/entsorgung",
     "/duesseldorf/grundreinigung",
@@ -246,9 +383,16 @@ multilingualSearchIntentGroups.push({
         "cleaning company Düsseldorf",
         "commercial cleaning Düsseldorf",
         "office cleaning Düsseldorf",
+        "shop cleaning Düsseldorf",
+        "retail cleaning Düsseldorf",
+        "store cleaning Düsseldorf",
+        "special cleaning Düsseldorf",
+        "intensive cleaning Düsseldorf",
         "hotel cleaning Düsseldorf",
         "law office cleaning Düsseldorf",
         "practice cleaning Düsseldorf",
+        "post renovation cleaning Düsseldorf",
+        "construction cleaning Düsseldorf",
         "cleaning Neuss Ratingen Meerbusch",
       ],
     },

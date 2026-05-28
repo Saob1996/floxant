@@ -123,6 +123,7 @@ export default function BlogLargeCommercialCleaningPage() {
           "Eine kurze Vorprüfung spart später Reibung, Zeit und falsche Erwartungen.",
         ]}
         ctas={[
+          { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },
           { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
           { href: "/kontakt", label: "Kontakt ansehen" },

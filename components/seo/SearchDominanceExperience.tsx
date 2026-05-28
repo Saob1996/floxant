@@ -542,7 +542,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     return [
       {
         label: "Düsseldorf-Regel",
-        title: "Düsseldorf ohne Umzugsrauschen",
+        title: "Düsseldorf ohne Umzugs-Signal",
         text: "Die Seite stärkt Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus und Entsorgung, ohne falsche Umzugssignale.",
         Icon: Radar,
       },
@@ -731,7 +731,7 @@ export function SearchDominanceExperience({
               <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100">
-                    Nach der Anfrage sofort weiterkommen
+                    Nach dem Klick sofort handlungsfähig
                   </div>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.03em] text-white">
                     Kein Rätselraten: FLOXANT zeigt den nächsten Schritt.
@@ -814,7 +814,7 @@ export function SearchDominanceExperience({
               <div className="flox-serp-preview-card flox-card-lift rounded-[1.55rem] border border-slate-200 bg-white p-5 text-slate-950">
                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                   <Search className="h-3.5 w-3.5" />
-                  Vorschau für Kunden
+                  Suchergebnis-Vorschau
                 </div>
                 <div className="mt-4 text-xs font-semibold text-emerald-700">
                   www.floxant.de
@@ -827,7 +827,7 @@ export function SearchDominanceExperience({
                 </p>
                 <div className="mt-4 rounded-[1.15rem] border border-slate-200 bg-slate-50 p-3">
                   <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                    Gründe für eine Anfrage
+                    Klick-Gründe im Suchergebnis
                   </div>
                   <div className="mt-2 grid gap-2">
                     {config.clickReasons.map((reason) => (

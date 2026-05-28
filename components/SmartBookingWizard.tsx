@@ -153,6 +153,24 @@ function normalizeTrackingValue(value: string | null) {
     .replace(/^_+|_+$/g, "");
 }
 
+const REGENSBURG_CLEANING_BOOKING_SOURCES = new Set([
+  "gewerbereinigung_regensburg",
+  "bueroreinigung_regensburg",
+  "buroreinigung_regensburg",
+  "praxisreinigung_regensburg",
+  "hotelreinigung_regensburg",
+  "fensterreinigung_regensburg",
+  "baureinigung_regensburg",
+  "teppichreinigung_regensburg",
+  "treppenhausreinigung_regensburg",
+  "unterhaltsreinigung_regensburg",
+  "grundreinigung_regensburg",
+]);
+
+function getRegensburgCleaningBookingSource(...values: string[]) {
+  return values.find((value) => REGENSBURG_CLEANING_BOOKING_SOURCES.has(value)) || "";
+}
+
 interface BookingState {
   step: number;
   service: ServiceType;
@@ -867,6 +885,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
     const createdAt = new Date().toISOString();
     const serviceMeta = wizardServiceMeta[state.service];
+    const servicePageBookingSource = getRegensburgCleaningBookingSource(normalizedSource, normalizedEntry);
     const bookingSource = isDusseldorfDisposalQueryContext
       ? "duesseldorf_disposal_booking"
       : isDusseldorfCleaningQueryContext
@@ -889,6 +908,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             ? "google_ads_cleaning_regensburg"
             : isGoogleMapsContext
               ? "google_maps_booking"
+            : servicePageBookingSource
+              ? servicePageBookingSource
               : "booking_page_wizard";
     const entryPoint = isDusseldorfDisposalQueryContext
       ? "/buchung?service=entsorgung&region=duesseldorf"

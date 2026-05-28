@@ -93,7 +93,7 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbEntry[]) {
   };
 }
 
-export function buildFaqJsonLd(items: FaqEntry[]) {
+export function buildFaqJsonLd(items: readonly FaqEntry[]) {
   const faqItems = items
     .map((item) => {
       const question = clean(item.q || item.question || "");

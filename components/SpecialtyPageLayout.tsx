@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import {
   ArrowRight,
   BadgeEuro,
@@ -87,6 +88,7 @@ type SpecialtyPageLayoutProps = {
   authorityBadge?: string;
   authorityTitle?: string;
   authoritySubtitle?: string;
+  children?: ReactNode;
 };
 
 function nonEmpty(values: Array<string | undefined | null>) {
@@ -561,6 +563,7 @@ export function SpecialtyPageLayout({
   authorityBadge,
   authorityTitle,
   authoritySubtitle,
+  children,
 }: SpecialtyPageLayoutProps) {
   const visibleChips = chips.filter((chip) => chip.text?.trim());
   const visibleCards = cards
@@ -1344,6 +1347,8 @@ export function SpecialtyPageLayout({
           </section>
         </div>
       </section>
+
+      {children}
 
       <section id="naechste-wege" className="section-glow flox-section py-20">
         <div className="flox-shell max-w-none">

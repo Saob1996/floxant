@@ -10,6 +10,22 @@ import { IntakePayload } from "@/lib/types/intake";
 
 function normalizeService(service: unknown) {
  const raw = String(service || "umzug").trim().toLowerCase();
+ const compact = raw.replace(/[\s-]+/g, "_");
+ const regensburgCleaningServices = new Set([
+  "gewerbereinigung_regensburg",
+  "bueroreinigung_regensburg",
+  "buroreinigung_regensburg",
+  "büroreinigung_regensburg",
+  "praxisreinigung_regensburg",
+  "hotelreinigung_regensburg",
+  "fensterreinigung_regensburg",
+  "baureinigung_regensburg",
+  "teppichreinigung_regensburg",
+  "treppenhausreinigung_regensburg",
+  "unterhaltsreinigung_regensburg",
+  "grundreinigung_regensburg",
+ ]);
+ if (regensburgCleaningServices.has(compact)) return compact.replace("büro", "buero");
  if (raw === "reinigung") return "reinigung";
  if (
   raw === "duesseldorf_moeblierte_wohnung_reinigung" ||

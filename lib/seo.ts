@@ -193,6 +193,15 @@ function resolveSocialImagePath(path: string) {
     "/umzug": "umzug",
     "/reinigung": "reinigung",
     "/gewerbereinigung-regensburg": "reinigung",
+    "/bueroreinigung-regensburg": "reinigung",
+    "/praxisreinigung-regensburg": "reinigung",
+    "/hotelreinigung-regensburg": "reinigung",
+    "/fensterreinigung-regensburg": "reinigung",
+    "/baureinigung-regensburg": "reinigung",
+    "/teppichreinigung-regensburg": "reinigung",
+    "/treppenhausreinigung-regensburg": "reinigung",
+    "/unterhaltsreinigung-regensburg": "reinigung",
+    "/grundreinigung-regensburg": "reinigung",
     "/entruempelung": "entruempelung",
     "/bueroumzug": "bueroumzug",
     "/firmenentsorgung": "firmenentsorgung",
@@ -347,7 +356,28 @@ function getMetadataKeywords(path: string, geoName?: string) {
     }
   }
 
-  if (route.includes("reinigung")) keywords.add("Reinigung");
+  if (route.includes("reinigung")) {
+    keywords.add("Reinigung");
+    if (!isDuesseldorfPath) {
+      keywords.add("Reinigung Kosten Regensburg");
+      keywords.add("Reinigungsfirma Regensburg");
+      keywords.add("Putzfirma Regensburg");
+      keywords.add("Putzservice Regensburg");
+      keywords.add("Gebäudereinigung Regensburg");
+      keywords.add("Reinigung Angebot Regensburg");
+      keywords.add("Reinigung Altstadt Regensburg");
+      keywords.add("Reinigung Innenstadt Regensburg");
+      keywords.add("Reinigung Kumpfmühl Regensburg");
+      keywords.add("Reinigung Galgenberg Regensburg");
+      keywords.add("Reinigung Westenviertel Regensburg");
+      keywords.add("Reinigung Prüfening Regensburg");
+      keywords.add("Reinigung Gewerbepark Regensburg");
+      keywords.add("Reinigung Neutraubling");
+      keywords.add("Reinigung Barbing");
+      keywords.add("Reinigung Lappersdorf");
+      keywords.add("Reinigung Wenzenbach");
+    }
+  }
   if (route.includes("umzug")) keywords.add("Wohnungsübergabe");
   keywords.add("direkt anfragen");
   keywords.add("ohne Vergleichsportal");

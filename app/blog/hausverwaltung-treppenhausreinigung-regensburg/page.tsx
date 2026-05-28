@@ -116,9 +116,9 @@ export default function BlogHausverwaltungTreppenhausPage() {
           "Für Regensburg sind lokale Nähe und saubere Objektkommunikation starke Vertrauenshebel.",
         ]}
         ctas={[
+          { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung anfragen" },
           { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
-          { href: "/kontakt", label: "Kontaktwege ansehen" },
-          { href: "/buchung", label: "Direkt anfragen" },
+          { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service prüfen" },
         ]}
         faqTitle="FAQ zur Treppenhausreinigung für Hausverwaltungen"
         faqItems={faqItems}

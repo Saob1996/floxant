@@ -113,9 +113,9 @@ export default function BlogReinigungsfirmaRegensburgAuswahlPage() {
           "Eine gute Landingpage filtert bereits vor der Anfrage auf passende Objekte.",
         ]}
         ctas={[
+          { href: "/praxisreinigung-regensburg", label: "Praxisreinigung prüfen" },
           { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
-          { href: "/kontakt", label: "Kontakt ansehen" },
         ]}
         faqTitle="FAQ zur Auswahl einer Reinigungsfirma in Regensburg"
         faqItems={faqItems}

@@ -47,6 +47,14 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       { url: "/reinigung", anchorText: "Reinigung in Bayern erklärt", relevanceScore: 95 },
       { url: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Reinigungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/umzug-mit-reinigung", anchorText: "Umzug mit Reinigung kombinieren", relevanceScore: 82 },
+      { url: "/bueroreinigung-regensburg", anchorText: "Büroreinigung Regensburg", relevanceScore: 84 },
+      { url: "/praxisreinigung-regensburg", anchorText: "Praxisreinigung Regensburg", relevanceScore: 83 },
+      { url: "/hotelreinigung-regensburg", anchorText: "Hotelreinigung Regensburg", relevanceScore: 83 },
+      { url: "/fensterreinigung-regensburg", anchorText: "Fensterreinigung Regensburg", relevanceScore: 82 },
+      { url: "/baureinigung-regensburg", anchorText: "Baureinigung Regensburg", relevanceScore: 82 },
+      { url: "/teppichreinigung-regensburg", anchorText: "Teppichreinigung Regensburg", relevanceScore: 82 },
+      { url: "/treppenhausreinigung-regensburg", anchorText: "Treppenhausreinigung Regensburg", relevanceScore: 82 },
+      { url: "/grundreinigung-regensburg", anchorText: "Grundreinigung Regensburg", relevanceScore: 81 },
       { url: "/reinigung-regensburg", anchorText: "Reinigung Regensburg", relevanceScore: 78 },
     ];
   }

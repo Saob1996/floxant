@@ -4,12 +4,12 @@ import { ArrowRight, BadgeEuro, CheckCircle2, FileSearch, MapPin, UploadCloud } 
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
 import {
-  DUESSELDORF_CLEANING,
+  buildDuesseldorfCleaningWhatsAppHref,
   buildDuesseldorfCleaningMetadata,
   buildDuesseldorfCleaningProviderJsonLd,
   buildDuesseldorfServiceJsonLd,
 } from "@/lib/duesseldorf-cleaning";
-import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 export const revalidate = 3600;
 
@@ -60,6 +60,43 @@ const faqItems = [
   },
 ] as const;
 
+const offerCheckIntentItems = [
+  {
+    query: "Reinigungsangebot Düsseldorf prüfen",
+    title: "Angebot vor der Zusage einordnen lassen",
+    text: "Senden Sie Angebot, Screenshot oder Preisangaben zusammen mit Stadtteil, Fläche, Turnus, Zugang und Fotos.",
+    href: "#guenstiger-form",
+    cta: "Angebot senden",
+    external: false,
+  },
+  {
+    query: "Reinigung Kosten Düsseldorf vergleichen",
+    title: "Preis, Umfang und offene Punkte sauber trennen",
+    text: "Ein Preis ist erst verständlich, wenn Leistung, Zeitfenster, Zustand und Zusatzpunkte klar sind.",
+    href: "#kosten-check",
+    cta: "Kostenpunkte prüfen",
+    external: false,
+  },
+  {
+    query: "Putzfirma Angebot per WhatsApp prüfen",
+    title: "Fotos und Angebot schnell per WhatsApp vorbereiten",
+    text: "Gerade bei unklaren Angeboten helfen Fotos, PDF, Screenshot, Objektart und Budget für eine schnelle Rückfrage.",
+    href: buildDuesseldorfCleaningWhatsAppHref(
+      "Hallo FLOXANT Reinigung Düsseldorf, ich möchte ein Reinigungsangebot prüfen lassen. Angebot/Screenshot, Fotos, Fläche, Stadtteil, Termin und Budget kann ich senden.",
+    ),
+    cta: "WhatsApp öffnen",
+    external: true,
+  },
+  {
+    query: "Alternative Reinigungsfirma Düsseldorf",
+    title: "Alternative nur prüfen, wenn Umfang und Kapazität passen",
+    text: "FLOXANT ist kein Vergleichsportal. Geprüft wird, ob eine klarere oder passendere Alternative realistisch möglich ist.",
+    href: "/duesseldorf/reinigung",
+    cta: "Reinigung ansehen",
+    external: false,
+  },
+] as const;
+
 export default function DuesseldorfVielleichtGuenstigerPage() {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -90,12 +127,34 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
         serviceType: "Angebotsprüfung für Reinigung Düsseldorf",
         areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg"],
       }),
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${path}#offer-check-intents`,
+        name: "Kaufnahe Suchabsichten für Reinigungsangebote in Düsseldorf",
+        itemListElement: offerCheckIntentItems.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.query,
+          url: item.href.startsWith("#")
+            ? `https://www.floxant.de${path}${item.href}`
+            : item.href.startsWith("http")
+              ? item.href
+              : `https://www.floxant.de${item.href}`,
+          item: {
+            "@type": "Thing",
+            name: item.title,
+            description: item.text,
+          },
+        })),
+      },
     ],
   };
+  const faqJsonLd = buildFaqJsonLd(faqItems);
 
   return (
     <main className="px-4 pb-28 pt-10 sm:px-6 lg:pb-32">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="mx-auto grid w-full min-w-0 max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div className="min-w-0 rounded-[0.95rem] border border-white/10 bg-slate-950 p-6 text-white shadow-[0_24px_70px_rgba(7,17,29,0.28)] sm:p-8">
@@ -143,6 +202,65 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
         />
       </section>
 
+      <section className="mx-auto mt-8 grid max-w-7xl gap-5 lg:grid-cols-[0.76fr_1.24fr]">
+        <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="text-[11px] font-black uppercase tracking-normal text-emerald-700">
+            Kaufnahe Suchfragen
+          </div>
+          <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+            Wenn Kunden vor der Zusage noch unsicher sind
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-700">
+            Viele suchen nicht nach einer langen Erklärung, sondern nach einer zweiten
+            Einordnung: Ist der Preis nachvollziehbar, fehlen Leistungen, lohnt sich eine
+            Alternative und welche Fotos werden gebraucht?
+          </p>
+        </article>
+        <div className="grid gap-3 md:grid-cols-2">
+          {offerCheckIntentItems.map((item) => {
+            const className =
+              "group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-emerald-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(5,150,105,0.12)]";
+            const content = (
+              <>
+                <div className="text-[11px] font-black uppercase tracking-normal text-emerald-800">
+                  {item.query}
+                </div>
+                <h3 className="mt-3 text-base font-black text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-emerald-800">
+                  {item.cta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </>
+            );
+
+            return item.external ? (
+              <a
+                key={item.query}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+                data-event="click_duesseldorf_offer_check_intent"
+                data-region="duesseldorf"
+              >
+                {content}
+              </a>
+            ) : (
+              <Link
+                key={item.query}
+                href={item.href}
+                className={className}
+                data-event="click_duesseldorf_offer_check_intent"
+                data-region="duesseldorf"
+              >
+                {content}
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
       <section className="mx-auto mt-10 grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
         <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="text-[11px] font-black uppercase tracking-normal text-emerald-700">Düsseldorf und Umgebung</div>
@@ -166,7 +284,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
         </article>
       </section>
 
-      <section className="mx-auto mt-8 max-w-7xl rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
+      <section id="kosten-check" className="mx-auto mt-8 max-w-7xl rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-normal text-slate-500">
           <FileSearch className="h-4 w-4" />
           Wichtig

@@ -58,6 +58,51 @@ export function WebSiteJsonLd() {
       },
       {
         "@type": "WebPage",
+        name: "Büroreinigung Regensburg",
+        url: `${company.url}/bueroreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Praxisreinigung Regensburg",
+        url: `${company.url}/praxisreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Hotelreinigung Regensburg",
+        url: `${company.url}/hotelreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Fensterreinigung Regensburg",
+        url: `${company.url}/fensterreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Baureinigung Regensburg",
+        url: `${company.url}/baureinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Teppichreinigung Regensburg",
+        url: `${company.url}/teppichreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Treppenhausreinigung Regensburg",
+        url: `${company.url}/treppenhausreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Unterhaltsreinigung Regensburg",
+        url: `${company.url}/unterhaltsreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Grundreinigung Regensburg",
+        url: `${company.url}/grundreinigung-regensburg`,
+      },
+      {
+        "@type": "WebPage",
         name: "Entrümpelung Regensburg",
         url: `${company.url}/entruempelung-regensburg`,
       },

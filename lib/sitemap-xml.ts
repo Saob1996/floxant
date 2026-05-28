@@ -248,7 +248,7 @@ function priorityForRoute(route: string): string {
   if (!route) return "1.0";
   if (route === "service-graph.json") return "0.82";
   if (route === "llms.txt") return "0.82";
-  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "bueroreinigung-regensburg", "praxisreinigung-regensburg", "hotelreinigung-regensburg", "fensterreinigung-regensburg", "baureinigung-regensburg", "teppichreinigung-regensburg", "treppenhausreinigung-regensburg", "unterhaltsreinigung-regensburg", "grundreinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
     if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";
@@ -261,6 +261,8 @@ function priorityForRoute(route: string): string {
   if (route === "duesseldorf/vielleicht-guenstiger") return "0.9";
   if (route === "duesseldorf/hotelreinigung") return "0.9";
   if (route === "duesseldorf/bueroreinigung") return "0.9";
+  if (route === "duesseldorf/ladenreinigung") return "0.9";
+  if (route === "duesseldorf/sonderreinigung") return "0.9";
   if (route === "duesseldorf/b2b-reinigung") return "0.9";
   if (route === "duesseldorf/entsorgung") return "0.88";
   if (
@@ -268,12 +270,19 @@ function priorityForRoute(route: string): string {
       "duesseldorf/bueroreinigung",
       "duesseldorf/b2b-reinigung",
       "duesseldorf/firmenreinigung",
+      "duesseldorf/fensterreinigung",
+      "duesseldorf/baureinigung",
+      "duesseldorf/teppichreinigung",
+      "duesseldorf/unterhaltsreinigung",
+      "duesseldorf/ladenreinigung",
+      "duesseldorf/sonderreinigung",
       "duesseldorf/gewerbereinigung",
       "duesseldorf/hotelreinigung",
       "duesseldorf/reinigung-stadtteile-umgebung",
       "duesseldorf/vielleicht-guenstiger",
       "duesseldorf/kanzleireinigung",
       "duesseldorf/praxisreinigung",
+      "duesseldorf/it-raum-reinigung",
       "duesseldorf/krankenhausreinigung",
       "duesseldorf/kellerreinigung",
       "duesseldorf/entsorgung",

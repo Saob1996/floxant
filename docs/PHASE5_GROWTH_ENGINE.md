@@ -14,7 +14,13 @@ Ziel: mehr lokale Nachfrage erzeugen, ohne die stabile SEO-Struktur zu veränder
 | Entrümpelung Keller | Keller ist voll, Umfang schwer einschätzbar | Fotos und Zugang vorab prüfen | Entrümpelung anfragen | /entruempelung-regensburg | Regensburg Entrümpelung |
 | Entrümpelung plus Reinigung | Räume müssen leer und nutzbar werden | Räumung und Reinigung kombinieren | Kombi prüfen | /entruempelung-regensburg | Regensburg Entrümpelung |
 | Reinigung vor Auszug | Wohnung muss sauber zurückgegeben werden | Endreinigung und Übergabevorbereitung | Reinigung anfragen | /reinigung-regensburg | Regensburg Reinigung |
-| Büroreinigung Regensburg | Objekt braucht planbaren Ablauf | Fläche, Intervall und Zugang klären | Objekt anfragen | /gewerbereinigung-regensburg | B2B Reinigung |
+| Büroreinigung Regensburg | Objekt braucht planbaren Ablauf | Fläche, Intervall und Zugang klären | Objekt anfragen | /bueroreinigung-regensburg | B2B Reinigung |
+| Praxisreinigung Regensburg | Praxis darf im Betrieb nicht gestört werden | Praxisart, Raumliste, Zeitfenster und Grenzen klären | Praxis anfragen | /praxisreinigung-regensburg | B2B Reinigung |
+| Hotelreinigung Regensburg | Hotel, Pension oder Boardinghouse braucht saubere Gästebereiche | Zimmerzahl, Lobby, Flure, Check-out und Fotos klären | Hotel anfragen | /hotelreinigung-regensburg | B2B Reinigung |
+| Fensterreinigung Regensburg | Glas, Rahmen oder Schaufenster wirken schnell ungepflegt | Fensterzahl, Etage, Zugang und Fotos klären | Fotos senden | /fensterreinigung-regensburg | B2B Reinigung |
+| Baureinigung Regensburg | Nach Renovierung bleibt Baustaub sichtbar | Bauzustand, Fläche, Boden, Fenster und Fotos klären | Bauzustand senden | /baureinigung-regensburg | B2B Reinigung |
+| Teppichreinigung Regensburg | Teppich, Sofa oder Polster brauchen Materialprüfung | Material, Flecken, Stückzahl und Fotos klären | Materialfotos senden | /teppichreinigung-regensburg | B2B Reinigung |
+| Treppenhausreinigung Regensburg | Hausverwaltung braucht wiederholbaren Turnus | Eingänge, Etagen, Zugang und Fotos klären | Objekt anfragen | /treppenhausreinigung-regensburg | B2B Reinigung |
 | Schlüsselübergabe | Kunde kann nicht selbst vor Ort sein | Übergabe mit Protokoll unterstützen | Übergabe anfragen | /schluesseluebergabe | Signature |
 | Leerfahrt/Rückfahrt | Einzeltransport soll wirtschaftlich bleiben | freie Route nach Verfügbarkeit prüfen | Rückfahrt anfragen | /leerfahrt-rueckfahrt | Transport |
 | Transport Regensburg | Möbel oder Einzelstücke müssen raus | Zugang, Strecke und Volumen prüfen | Transport anfragen | /kleintransport-regensburg | Regensburg Transport |

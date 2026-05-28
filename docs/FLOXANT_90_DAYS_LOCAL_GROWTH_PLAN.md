@@ -56,8 +56,13 @@ Ziel: lokale Rankingkraft, Klickrate und Anfragequalität verbessern, ohne die s
 | Budget nennen statt raten | `/anfrage-mit-preisrahmen` | Preisrahmen prüfen | `/rechner` | Budget senden |
 | Regensburg zuerst, Bayern nach Verfügbarkeit | `/einsatzgebiet-regensburg-200km` | Servicegebiet verstehen | `/umzug-regensburg` | Ort prüfen |
 | Möbeltransport Regensburg | `/kleintransport-regensburg` | Einzeltransport | `/rechner` | Transport anfragen |
-| Büroreinigung Regensburg | `/gewerbereinigung-regensburg` | B2B Reinigung | `/buchung` | Objekt anfragen |
-| Treppenhausreinigung Regensburg | `/gewerbereinigung-regensburg` | Hausverwaltung | `/blog/hausverwaltung-treppenhausreinigung-regensburg` | Anfrage senden |
+| Büroreinigung Regensburg | `/bueroreinigung-regensburg` | B2B Reinigung | `/gewerbereinigung-regensburg` | Objekt anfragen |
+| Praxisreinigung Regensburg | `/praxisreinigung-regensburg` | Praxisreinigung | `/unterhaltsreinigung-regensburg` | Praxis anfragen |
+| Hotelreinigung Regensburg | `/hotelreinigung-regensburg` | Hotel/Pension/Boardinghouse | `/gewerbereinigung-regensburg` | Hotel anfragen |
+| Fensterreinigung Regensburg | `/fensterreinigung-regensburg` | Glas/Fenster/Rahmen | `/gewerbereinigung-regensburg` | Fotos senden |
+| Baureinigung Regensburg | `/baureinigung-regensburg` | Bauendreinigung/Renovierung | `/grundreinigung-regensburg` | Bauzustand senden |
+| Teppichreinigung Regensburg | `/teppichreinigung-regensburg` | Teppich/Polster/Sofa | `/grundreinigung-regensburg` | Materialfotos senden |
+| Treppenhausreinigung Regensburg | `/treppenhausreinigung-regensburg` | Hausverwaltung | `/blog/hausverwaltung-treppenhausreinigung-regensburg` | Anfrage senden |
 | Düsseldorf Wohnungsreinigung | `/duesseldorf/reinigung` | Reinigung Düsseldorf | `/buchung?service=reinigung&region=duesseldorf#buchungssystem` | Reinigung anfragen |
 | Düsseldorf Endreinigung | `/duesseldorf/reinigung` | Übergabe Düsseldorf | `/duesseldorf/reinigung#preisvorschlag` | Budget nennen |
 | Düsseldorf Büroreinigung | `/duesseldorf/reinigung` | Gewerbe-Reinigung | `/duesseldorf/reinigung` | Fotos senden |

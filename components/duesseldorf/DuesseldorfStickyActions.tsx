@@ -11,24 +11,39 @@ import {
   buildDuesseldorfCleaningWhatsAppHref,
 } from "@/lib/duesseldorf-cleaning";
 
+function getDuesseldorfRequestHref(pathname: string | null) {
+  if (pathname?.includes("vielleicht-guenstiger")) return "#guenstiger-form";
+  if (pathname?.includes("reinigung-stadtteile-umgebung")) return "#stadtteil-anfrage";
+  if (pathname?.includes("bueroreinigung")) return "#b2b-reinigung-form";
+  if (pathname?.includes("b2b-reinigung")) return "#kontakt";
+  if (
+    pathname?.includes("treppenhausreinigung") ||
+    pathname?.includes("grundreinigung") ||
+    pathname?.includes("firmenreinigung") ||
+    pathname?.includes("gewerbereinigung") ||
+    pathname?.includes("fensterreinigung") ||
+    pathname?.includes("baureinigung") ||
+    pathname?.includes("teppichreinigung") ||
+    pathname?.includes("unterhaltsreinigung") ||
+    pathname?.includes("ladenreinigung") ||
+    pathname?.includes("sonderreinigung") ||
+    pathname?.includes("hotelreinigung") ||
+    pathname?.includes("kanzleireinigung") ||
+    pathname?.includes("praxisreinigung") ||
+    pathname?.includes("it-raum-reinigung") ||
+    pathname?.includes("krankenhausreinigung") ||
+    pathname?.includes("kellerreinigung") ||
+    pathname?.includes("entsorgung")
+  ) {
+    return "#kontakt";
+  }
+
+  return "/duesseldorf/reinigung#kontakt";
+}
+
 export function DuesseldorfStickyActions() {
   const pathname = usePathname();
-  const requestHref = pathname?.includes("bueroreinigung")
-    ? "#b2b-reinigung-form"
-    : pathname?.includes("b2b-reinigung")
-      ? "#kontakt"
-    : pathname?.includes("treppenhausreinigung") ||
-        pathname?.includes("grundreinigung") ||
-        pathname?.includes("firmenreinigung") ||
-        pathname?.includes("gewerbereinigung") ||
-        pathname?.includes("hotelreinigung") ||
-        pathname?.includes("kanzleireinigung") ||
-        pathname?.includes("praxisreinigung") ||
-        pathname?.includes("krankenhausreinigung") ||
-        pathname?.includes("kellerreinigung") ||
-        pathname?.includes("entsorgung")
-      ? "#kontakt"
-      : "/duesseldorf/reinigung#kontakt";
+  const requestHref = getDuesseldorfRequestHref(pathname);
 
   return (
     <div className="flox-mobile-action-wrap flox-duesseldorf-action-wrap z-[95]">
@@ -42,7 +57,7 @@ export function DuesseldorfStickyActions() {
             <ClipboardCheck />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anfrage</span>
-              <span className="flox-mobile-action-note">Daten senden</span>
+              <span className="flox-mobile-action-note">Fotos senden</span>
             </span>
           </Link>
           <a
@@ -78,8 +93,8 @@ export function DuesseldorfStickyActions() {
           >
             <BadgeEuro />
             <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Günstiger?</span>
-              <span className="flox-mobile-action-note">Angebot prüfen</span>
+              <span className="flox-mobile-action-label">Kosten</span>
+              <span className="flox-mobile-action-note">Budget prüfen</span>
             </span>
           </Link>
         </div>

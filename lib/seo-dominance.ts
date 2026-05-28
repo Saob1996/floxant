@@ -38,10 +38,17 @@ export const SEO_MONEY_ROUTES = [
  "/duesseldorf/bueroreinigung",
  "/duesseldorf/b2b-reinigung",
  "/duesseldorf/firmenreinigung",
+ "/duesseldorf/fensterreinigung",
+ "/duesseldorf/baureinigung",
+ "/duesseldorf/teppichreinigung",
+ "/duesseldorf/unterhaltsreinigung",
+ "/duesseldorf/ladenreinigung",
+ "/duesseldorf/sonderreinigung",
  "/duesseldorf/gewerbereinigung",
  "/duesseldorf/hotelreinigung",
  "/duesseldorf/kanzleireinigung",
  "/duesseldorf/praxisreinigung",
+ "/duesseldorf/it-raum-reinigung",
  "/duesseldorf/krankenhausreinigung",
  "/duesseldorf/kellerreinigung",
  "/duesseldorf/entsorgung",
@@ -56,6 +63,15 @@ export const SEO_MONEY_ROUTES = [
  "/notfallreinigung-24h",
  "/reinigung-nach-veranstaltung",
  "/gewerbereinigung-regensburg",
+ "/bueroreinigung-regensburg",
+ "/praxisreinigung-regensburg",
+ "/hotelreinigung-regensburg",
+ "/fensterreinigung-regensburg",
+ "/baureinigung-regensburg",
+ "/teppichreinigung-regensburg",
+ "/treppenhausreinigung-regensburg",
+ "/unterhaltsreinigung-regensburg",
+ "/grundreinigung-regensburg",
  "/entruempelung",
  "/bueroumzug",
  "/firmenentsorgung",
@@ -100,10 +116,17 @@ export const SEO_SUPPORT_ROUTES = [
  "/duesseldorf/bueroreinigung",
  "/duesseldorf/b2b-reinigung",
  "/duesseldorf/firmenreinigung",
+ "/duesseldorf/fensterreinigung",
+ "/duesseldorf/baureinigung",
+ "/duesseldorf/teppichreinigung",
+ "/duesseldorf/unterhaltsreinigung",
+ "/duesseldorf/ladenreinigung",
+ "/duesseldorf/sonderreinigung",
  "/duesseldorf/gewerbereinigung",
  "/duesseldorf/hotelreinigung",
  "/duesseldorf/kanzleireinigung",
  "/duesseldorf/praxisreinigung",
+ "/duesseldorf/it-raum-reinigung",
  "/duesseldorf/krankenhausreinigung",
  "/duesseldorf/kellerreinigung",
  "/duesseldorf/entsorgung",
@@ -113,6 +136,15 @@ export const SEO_SUPPORT_ROUTES = [
  "/duesseldorf/endreinigung",
  "/buchung",
  "/gewerbereinigung-regensburg",
+ "/bueroreinigung-regensburg",
+ "/praxisreinigung-regensburg",
+ "/hotelreinigung-regensburg",
+ "/fensterreinigung-regensburg",
+ "/baureinigung-regensburg",
+ "/teppichreinigung-regensburg",
+ "/treppenhausreinigung-regensburg",
+ "/unterhaltsreinigung-regensburg",
+ "/grundreinigung-regensburg",
  "/notfallreinigung-24h",
  "/reinigung-nach-veranstaltung",
  "/beiladung",
@@ -271,11 +303,74 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Reinigung nach Veranstaltung, Party, Firmenfeier oder Anlass anfragen",
  },
  "/gewerbereinigung-regensburg": {
-  title: "Gewerbereinigung Regensburg | Büro, Praxis, Kanzlei",
-  description:
-   "Gewerbereinigung in Regensburg für Büros, Praxen, Kanzleien, Treppenhäuser und Immobilien. Direkte B2B-Anfrage statt Streuklicks.",
+ title: "Gewerbereinigung Regensburg | Büro, Praxis, Hotel",
+ description:
+   "Gewerbereinigung Regensburg für Büro, Praxis, Hotel, Fenster, Bau, Teppich, Treppenhaus und IT-Raum: Altstadt, Gewerbepark, Neutraubling, Fotos senden.",
   cluster: "money",
-  intent: "Gewerbereinigung in Regensburg für Büro, Praxis oder Kanzlei anfragen",
+  intent: "Gewerbereinigung in Regensburg für Büro, Praxis, Hotel, Treppenhaus, Glas, Bau oder IT-Raum anfragen",
+ },
+ "/bueroreinigung-regensburg": {
+  title: "Büroreinigung Regensburg | Angebot & Kosten",
+  description:
+   "Büroreinigung Regensburg für Büro, Kanzlei, Agentur und Verwaltung: Fläche, Turnus, Küche, Sanitär, Zeitfenster und Fotos senden.",
+  cluster: "money",
+  intent: "Büroreinigung in Regensburg mit Angebot, Kostenfaktoren und Turnus anfragen",
+ },
+ "/praxisreinigung-regensburg": {
+  title: "Praxisreinigung Regensburg | Angebot & Turnus",
+  description:
+   "Praxisreinigung Regensburg für Empfang, Wartebereich, Büro, Sanitär und Nebenflächen: Turnus, Zeitfenster, Fotos und Angebot prüfen.",
+  cluster: "money",
+  intent: "Praxisreinigung oder Arztpraxis Reinigung in Regensburg mit Turnus und Leistungsgrenzen anfragen",
+ },
+ "/hotelreinigung-regensburg": {
+  title: "Hotelreinigung Regensburg | Zimmer, Lobby & Turnus",
+  description:
+   "Hotelreinigung Regensburg für Hotel, Pension, Boardinghouse, Lobby, Flure und Zimmer: Turnus, Check-out, Zeitfenster und Fotos senden.",
+  cluster: "money",
+  intent: "Hotelreinigung in Regensburg für Hotel, Pension, Boardinghouse oder Apartmenthaus anfragen",
+ },
+ "/fensterreinigung-regensburg": {
+  title: "Fensterreinigung Regensburg | Glas, Rahmen & Angebot",
+  description:
+   "Fensterreinigung Regensburg für Glas, Rahmen, Büro, Praxis, Hotel, Wohnung und Schaufenster: Fensterzahl, Etage, Zugang und Fotos senden.",
+  cluster: "money",
+  intent: "Fensterreinigung oder Glasreinigung in Regensburg mit Kostenfaktoren und Angebot anfragen",
+ },
+ "/baureinigung-regensburg": {
+  title: "Baureinigung Regensburg | Bauendreinigung & Staub",
+  description:
+   "Baureinigung Regensburg nach Renovierung, Sanierung oder Handwerkern: Bauzustand, Baustaub, Fenster, Boden, Zugang und Fotos senden.",
+  cluster: "money",
+  intent: "Baureinigung, Bauendreinigung, Baufeinreinigung oder Reinigung nach Renovierung in Regensburg anfragen",
+ },
+ "/teppichreinigung-regensburg": {
+  title: "Teppichreinigung Regensburg | Polster & Sofa",
+  description:
+   "Teppichreinigung Regensburg fuer Teppichboden, Sofa, Polster und Buerostuehle: Material, Flecken, Fotos, Zugang und Termin senden.",
+  cluster: "money",
+  intent: "Teppichreinigung, Teppichbodenreinigung, Polsterreinigung oder Sofa-Reinigung in Regensburg anfragen",
+ },
+ "/treppenhausreinigung-regensburg": {
+  title: "Treppenhausreinigung Regensburg | Hausverwaltung",
+  description:
+   "Treppenhausreinigung Regensburg für Hausverwaltung, WEG, Mietshaus und Objekt: Eingänge, Etagen, Aufzug, Turnus, Zugang und Fotos senden.",
+  cluster: "money",
+  intent: "Treppenhausreinigung in Regensburg für Hausverwaltung, WEG oder Mietshaus anfragen",
+ },
+ "/unterhaltsreinigung-regensburg": {
+  title: "Unterhaltsreinigung Regensburg | Büro & Objekt",
+  description:
+   "Unterhaltsreinigung Regensburg für Büro, Praxis, Kanzlei und Treppenhaus: Turnus, Fläche, Reinigungsplan, Fotos und Angebot prüfen.",
+  cluster: "money",
+  intent: "Regelmäßige Unterhaltsreinigung in Regensburg mit Turnus und Reinigungsplan anfragen",
+ },
+ "/grundreinigung-regensburg": {
+  title: "Grundreinigung Regensburg | Wohnung & Büro",
+  description:
+   "Grundreinigung Regensburg für Wohnung, Büro, Küche, Bad, Einzug, Auszug und starke Verschmutzung: Fotos, Fläche und Angebot prüfen.",
+  cluster: "money",
+  intent: "Grundreinigung in Regensburg für Wohnung, Büro, Auszug oder starke Verschmutzung anfragen",
  },
  "/entruempelung": {
   title: "Entrümpelung Regensburg | Räumung & Entsorgung",
@@ -515,6 +610,54 @@ moneySnippets["/duesseldorf/firmenreinigung"] = {
  intent: "Firmenreinigung in Düsseldorf für kleine Unternehmen anfragen",
 };
 
+moneySnippets["/duesseldorf/fensterreinigung"] = {
+ title: "Fensterreinigung Düsseldorf | Glas & Rahmen",
+ description:
+  "Fensterreinigung Düsseldorf für Fenster, Rahmen, Glasflächen und Schaufenster: Anzahl, Etage, Zugang, Fotos und Zeitfenster senden.",
+ cluster: "money",
+ intent: "Fensterreinigung und Glasreinigung in Düsseldorf mit Fotos anfragen",
+};
+
+moneySnippets["/duesseldorf/baureinigung"] = {
+ title: "Baureinigung Düsseldorf | Renovierung & Staub",
+ description:
+  "Baureinigung Düsseldorf nach Renovierung, Umbau oder Handwerkern: Baustaub, Schutzfolien, Boden, Fensterrahmen, Fotos und Übergabeziel senden.",
+ cluster: "money",
+ intent: "Baureinigung und Reinigung nach Renovierung in Düsseldorf anfragen",
+};
+
+moneySnippets["/duesseldorf/teppichreinigung"] = {
+ title: "Teppichreinigung Düsseldorf | Polster & Sofa",
+ description:
+  "Teppichreinigung und Polsterreinigung Düsseldorf: Teppichboden, Sofa, Bürostühle, Flecken, Material, Fotos und Zeitfenster senden.",
+ cluster: "money",
+ intent: "Teppich- und Polsterreinigung in Düsseldorf nach Fotos anfragen",
+};
+
+moneySnippets["/duesseldorf/unterhaltsreinigung"] = {
+ title: "Unterhaltsreinigung Düsseldorf | Büro & Objekt",
+ description:
+  "Unterhaltsreinigung und Gebäudereinigung Düsseldorf: Büro, Praxis, Kanzlei, Treppenhaus, Turnus, Fläche, Fotos und Reinigungsplan senden.",
+ cluster: "money",
+ intent: "Regelmäßige Unterhalts- und Gebäudereinigung in Düsseldorf anfragen",
+};
+
+moneySnippets["/duesseldorf/ladenreinigung"] = {
+ title: "Ladenreinigung Düsseldorf | Geschäft & Fläche",
+ description:
+  "Ladenreinigung und Geschäftsreinigung Düsseldorf: Verkaufsfläche, Eingang, Schaufenster, Umkleide, Lager, Öffnungszeiten, Fotos und Angebot senden.",
+ cluster: "money",
+ intent: "Laden- und Geschäftsreinigung in Düsseldorf anfragen",
+};
+
+moneySnippets["/duesseldorf/sonderreinigung"] = {
+ title: "Sonderreinigung Düsseldorf | Intensiv & Zustand",
+ description:
+  "Sonderreinigung und Intensivreinigung Düsseldorf: starke Verschmutzung, Leerstand, Mieterwechsel, Fotos, Grenzen und Angebot prüfen.",
+ cluster: "money",
+ intent: "Sonderreinigung und Intensivreinigung in Düsseldorf anfragen",
+};
+
 moneySnippets["/duesseldorf/gewerbereinigung"] = {
  title: "Gewerbereinigung Düsseldorf | Objekt & Betrieb",
  description:
@@ -545,6 +688,14 @@ moneySnippets["/duesseldorf/praxisreinigung"] = {
   "Praxisreinigung Düsseldorf für allgemeine Praxisflächen nach Absprache: Empfang, Wartebereich, Sanitär, Boden, Turnus, Zugang und Fotos senden.",
  cluster: "money",
  intent: "Praxisreinigung in Düsseldorf für allgemeine Flächen anfragen",
+};
+
+moneySnippets["/duesseldorf/it-raum-reinigung"] = {
+ title: "IT-Raum Reinigung Düsseldorf | Serverraum prüfen",
+ description:
+  "IT-Raum- und Serverraum-nahe Reinigung in Düsseldorf nach Prüfung: Staub, Boden, Zugang, Zeitfenster, Tabubereiche und Fotos abstimmen.",
+ cluster: "money",
+ intent: "IT-Raum Reinigung in Düsseldorf mit klaren Grenzen prüfen lassen",
 };
 
 moneySnippets["/duesseldorf/krankenhausreinigung"] = {
@@ -622,7 +773,7 @@ moneySnippets["/duesseldorf/endreinigung"] = {
 moneySnippets["/entsorgung-duesseldorf"] = {
  title: "Entsorgung Düsseldorf | Möbel, Sperrmüll & Abholung",
  description:
-  "Entsorgung in Düsseldorf für Möbel, Sperrmüll und kleinere Räumungen: Fotos, Umfang, Zugang, Termin und Budget senden. Reinigung separat möglich.",
+  "Entsorgung in Düsseldorf für Möbel, Sperrmüll, Haushaltsgegenstände, Keller und kleinere Räumungen: Umfang, Zugang, Etage, Fotos, Termin und Budget senden. Reinigung separat möglich.",
  cluster: "money",
  intent: "Entsorgung oder Möbelentsorgung in Düsseldorf anfragen",
 };
@@ -764,11 +915,11 @@ moneySnippets["/umzug-regensburg"] = {
 };
 
 moneySnippets["/reinigung-regensburg"] = {
- title: "Reinigung Regensburg – Endreinigung & Übergabe",
+ title: "Reinigung Regensburg – Büro, Grund & Fenster",
  description:
-  "Reinigung in Regensburg für Wohnung, Auszug und Übergabe. Fotos senden, Budget nennen und Aufwand realistisch prüfen lassen.",
+  "Reinigung Regensburg für Büro, Grundreinigung, Fenster, Teppich, Bau, Praxis, Hotel und Treppenhaus: Altstadt, Gewerbepark, Umgebung, Fotos senden.",
  cluster: "money",
- intent: "Reinigung oder Endreinigung in Regensburg anfragen",
+ intent: "Reinigung in Regensburg mit passender Spezialleistung, Fotos, Fläche und Termin anfragen",
 };
 
 moneySnippets["/entruempelung-regensburg"] = {

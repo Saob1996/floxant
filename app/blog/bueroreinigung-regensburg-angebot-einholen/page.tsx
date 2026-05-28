@@ -122,6 +122,7 @@ export default function BlogBueroreinigungRegensburgAngebotEinholenPage() {
           "Eine gute Büroreinigungs-Anfrage spart Rückfragen und macht die spätere Umsetzung stabiler.",
         ]}
         ctas={[
+          { href: "/bueroreinigung-regensburg", label: "Büroreinigung anfragen" },
           { href: "/gewerbereinigung-regensburg", label: "Zur B2B-Reinigungsseite" },
           { href: "/buchung", label: "Direkt anfragen" },
           { href: "/kontakt", label: "Kontakt & Standort" },

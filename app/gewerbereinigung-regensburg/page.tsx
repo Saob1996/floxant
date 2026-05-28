@@ -18,7 +18,17 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCleaningClickDecisionPanel";
+import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
+import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
+import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
 import { company } from "@/lib/company";
+import {
+  regensburgCleaningLocalAreas,
+  regensburgCleaningLocalFaqs,
+  regensburgCleaningServices,
+  regensburgCleaningSnippetFaqs,
+} from "@/lib/regensburg-cleaning-services";
 import { generatePageSEO } from "@/lib/seo";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
@@ -79,6 +89,9 @@ const serviceScope = [
   "Sanitärreinigung",
   "Küchen- & Pausenbereich",
   "Bodenpflege & Hartbodenreinigung",
+  "Fenster- & Glasreinigung nach Prüfung",
+  "Baureinigung nach Renovierung",
+  "Teppich- & Polsterreinigung nach Materialprüfung",
   "Glasflächen (optional)",
   "Sonderreinigung nach Absprache",
 ];
@@ -106,15 +119,30 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung-regensburg",
-    title: "Gewerbereinigung Regensburg | Büro, Hotel, Praxis & B2B | FLOXANT",
+    title: "Gewerbereinigung Regensburg | Büro, Praxis, Hotel & Service-Finder | FLOXANT",
     description:
-      "Gewerbereinigung, Büroreinigung und Hotelreinigung in Regensburg für B2B, Praxen, Kanzleien und Hausverwaltungen. Objekt, Turnus und Fotos direkt senden.",
+      "Gewerbereinigung Regensburg: Büroreinigung, Praxisreinigung, Hotelreinigung, Fenster, Bau, Teppich, Treppenhaus und IT-Raum nach Prüfung direkt anfragen.",
     keywords: [
       "Gewerbereinigung Regensburg",
       "Büroreinigung Regensburg",
       "Praxisreinigung Regensburg",
       "Unterhaltsreinigung Regensburg",
+      "Fensterreinigung Regensburg",
+      "Baureinigung Regensburg",
+      "Teppichreinigung Regensburg",
+      "Treppenhausreinigung Regensburg",
+      "Grundreinigung Regensburg",
+      "IT Raum Reinigung Regensburg",
       "Reinigungsfirma Regensburg",
+      "Putzfirma Regensburg",
+      "Putzservice Regensburg",
+      "Reinigung Kosten Regensburg",
+      "Gebäudereinigung Regensburg",
+      "Reinigung Altstadt Regensburg",
+      "Reinigung Innenstadt Regensburg",
+      "Reinigung Gewerbepark Regensburg",
+      "Reinigung Neutraubling",
+      "Reinigung Lappersdorf",
       "gewerbliche Reinigung Regensburg",
       "Objektreinigung Regensburg",
       "Kanzleireinigung Regensburg",
@@ -144,12 +172,12 @@ export default function GewerbereinigungRegensburgPage() {
         path: "/gewerbereinigung-regensburg",
         serviceType:
           "Gewerbereinigung, Unterhaltsreinigung, Büroreinigung, Praxisreinigung und Objektservice in Regensburg",
-        areaServed: ["Regensburg", "Regensburg Umgebung"],
+        areaServed: ["Regensburg", "Altstadt Regensburg", "Innenstadt Regensburg", "Kumpfmühl", "Galgenberg", "Gewerbepark Regensburg", "Neutraubling", "Barbing", "Lappersdorf", "Wenzenbach"],
       }),
       buildWebPageJsonLd({
         name: "Gewerbereinigung in Regensburg für Büro, Praxis und Objektbetrieb",
         description:
-          "Angebotsseite für gewerbliche Reinigung in Regensburg und Umgebung.",
+          "Angebotsseite für gewerbliche Reinigung in Regensburg mit Service-Finder, kundennahen Suchbegriffen, Spezialseiten, FAQ und direktem B2B-Formular.",
         path: "/gewerbereinigung-regensburg",
         about: [
           "Gewerbereinigung",
@@ -158,10 +186,47 @@ export default function GewerbereinigungRegensburgPage() {
           "B2B-Reinigung",
           "Praxisreinigung",
           "Unterhaltsreinigung",
+          "Fensterreinigung",
+          "Baureinigung",
+          "Teppichreinigung",
+          "Treppenhausreinigung",
+          "Grundreinigung",
+          "IT-Raum Reinigung",
+          "Reinigung Altstadt Regensburg",
+          "Reinigung Innenstadt Regensburg",
+          "Reinigung Gewerbepark Regensburg",
+          "Reinigung Neutraubling",
+          "Reinigung Lappersdorf",
           "Regensburg",
         ],
+        potentialActions: [
+          { name: "Gewerbereinigung anfragen", target: "/gewerbereinigung-regensburg#kontaktformular", type: "ContactAction" },
+          { name: "Passende Reinigungsleistung finden", target: "/gewerbereinigung-regensburg#reinigungsservice-regensburg", type: "Action" },
+        ],
       }),
-      buildFaqJsonLd(faqItems),
+      {
+        "@type": "ItemList",
+        name: "Reinigungsservices in Regensburg",
+        itemListElement: regensburgCleaningServices.map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: service.label,
+          url: `${company.url}${service.href.split("#")[0]}`,
+          description: `${service.intro} ${service.clickHook} ${service.goodFor}`,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        name: "Reinigung in Regensburg Stadtteilen und Umgebung",
+        itemListElement: regensburgCleaningLocalAreas.map((area, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: area.intent,
+          url: `${company.url}${area.href.split("#")[0]}`,
+          description: `${area.area}: ${area.text}`,
+        })),
+      },
+      buildFaqJsonLd([...faqItems, ...regensburgCleaningSnippetFaqs, ...regensburgCleaningLocalFaqs]),
     ],
   };
 
@@ -265,6 +330,10 @@ export default function GewerbereinigungRegensburgPage() {
         </div>
       </section>
 
+      <RegensburgCleaningServiceHub />
+      <RegensburgCleaningClickDecisionPanel />
+      <RegensburgCleaningLocalSignals />
+
       {/* ── 2. ENTSCHEIDUNGSMODUL ──────────────────────────────── */}
       <section id="zielgruppen" className="flox-section pt-0">
         <div className="flox-shell">
@@ -324,6 +393,33 @@ export default function GewerbereinigungRegensburgPage() {
                 Angebot anfragen
                 <ArrowRight className="h-4 w-4" />
               </a>
+              <Link href="/bueroreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Büroreinigung
+              </Link>
+              <Link href="/praxisreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Praxisreinigung
+              </Link>
+              <Link href="/hotelreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Hotelreinigung
+              </Link>
+              <Link href="/fensterreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Fensterreinigung
+              </Link>
+              <Link href="/baureinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Baureinigung
+              </Link>
+              <Link href="/teppichreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Teppichreinigung
+              </Link>
+              <Link href="/treppenhausreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Treppenhaus
+              </Link>
+              <Link href="/unterhaltsreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Unterhaltsreinigung
+              </Link>
+              <Link href="/grundreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+                Grundreinigung
+              </Link>
               <Link href="/rechner" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
                 Preis prüfen
               </Link>
@@ -419,6 +515,8 @@ export default function GewerbereinigungRegensburgPage() {
           </article>
         </div>
       </section>
+
+      <RegensburgCleaningSnippetAnswers />
 
       {/* ── FAQ ─────────────────────────────────────────────────── */}
       <section className="flox-section pt-0">

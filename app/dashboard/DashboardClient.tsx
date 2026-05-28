@@ -1167,6 +1167,17 @@ function getServiceLabel(service: string) {
     bueroumzug: "Büroumzug",
     reinigung: "Reinigung",
     b2b_reinigung: "B2B-Reinigung",
+    gewerbereinigung_regensburg: "Gewerbereinigung Regensburg",
+    bueroreinigung_regensburg: "Büroreinigung Regensburg",
+    buroreinigung_regensburg: "Büroreinigung Regensburg",
+    praxisreinigung_regensburg: "Praxisreinigung Regensburg",
+    hotelreinigung_regensburg: "Hotelreinigung Regensburg",
+    fensterreinigung_regensburg: "Fensterreinigung Regensburg",
+    baureinigung_regensburg: "Baureinigung Regensburg",
+    teppichreinigung_regensburg: "Teppichreinigung Regensburg",
+    treppenhausreinigung_regensburg: "Treppenhausreinigung Regensburg",
+    unterhaltsreinigung_regensburg: "Unterhaltsreinigung Regensburg",
+    grundreinigung_regensburg: "Grundreinigung Regensburg",
     duesseldorf_b2b_reinigung: "Düsseldorf B2B-Reinigung",
     duesseldorf_b2b_cleaning: "Düsseldorf B2B-Reinigung",
     duesseldorf_moeblierte_wohnung_reinigung: "Düsseldorf möblierte Wohnung",
@@ -1278,6 +1289,16 @@ function getSourceLabel(booking: Booking) {
     quick_express: "Express",
     intake_wizard: "Rechner",
     gewerbereinigung_regensburg: "B2B-Reinigung",
+    bueroreinigung_regensburg: "Büroreinigung Regensburg",
+    buroreinigung_regensburg: "Büroreinigung Regensburg",
+    praxisreinigung_regensburg: "Praxisreinigung Regensburg",
+    hotelreinigung_regensburg: "Hotelreinigung Regensburg",
+    fensterreinigung_regensburg: "Fensterreinigung Regensburg",
+    baureinigung_regensburg: "Baureinigung Regensburg",
+    teppichreinigung_regensburg: "Teppichreinigung Regensburg",
+    treppenhausreinigung_regensburg: "Treppenhausreinigung Regensburg",
+    unterhaltsreinigung_regensburg: "Unterhaltsreinigung Regensburg",
+    grundreinigung_regensburg: "Grundreinigung Regensburg",
     private_client_page: "Private Client",
     business_disposal_page: "Firmenentsorgung",
     backhaul_page: "Rückfahrt",
@@ -1346,6 +1367,11 @@ function getSourceSignalText(booking: Booking) {
       booking.details?.metadata?.clientContext?.utmCampaign,
       booking.details?.configuration?.requestContext,
       booking.details?.configuration?.entryPoint,
+      booking.details?.configuration?.sourcePage,
+      booking.details?.configuration?.leadSource,
+      booking.details?.configuration?.requestedService,
+      booking.details?.configuration?.serviceLabel,
+      booking.details?.configuration?.serviceSlug,
     ]
       .filter(Boolean)
       .join(" "),
@@ -1427,14 +1453,23 @@ function getDuesseldorfB2BText(booking: Booking) {
       config.requestContext,
       config.sourceComponent,
       config.entryPoint,
+      config.sourcePage,
+      config.leadSource,
       config.region,
       config.regionPreset,
       config.companyName,
+      config.requestedService,
+      config.serviceLabel,
+      config.serviceSlug,
+      config.serviceCategory,
       config.objectType,
+      config.propertyType,
       config.cleaningType,
       config.recurringFrequency,
+      config.cadence,
       config.timeWindow,
       config.objectLocation,
+      config.location,
     ]
       .filter(Boolean)
       .join(" "),
@@ -1655,6 +1690,9 @@ function getB2BAreaLabel(booking: Booking) {
       config.areaM2 && `${config.areaM2} m²`,
       config.squareMeters && `${config.squareMeters} m²`,
       config.propertySize && `${config.propertySize} m²`,
+      config.areaRange,
+      config.spaceRange,
+      config.propertySizeRange,
     ],
     "Fläche offen",
   );
@@ -3528,12 +3566,28 @@ function isB2BCleaning(booking: Booking) {
   const service = booking.service.toLowerCase();
   const source = getSourceLabel(booking).toLowerCase();
   const config = booking.details?.configuration || {};
+  const serviceSignal = getDuesseldorfB2BText(booking);
+  const hasRegensburgServicePageSignal = [
+    "gewerbereinigung",
+    "bueroreinigung",
+    "buroreinigung",
+    "praxisreinigung",
+    "hotelreinigung",
+    "fensterreinigung",
+    "baureinigung",
+    "teppichreinigung",
+    "treppenhausreinigung",
+    "unterhaltsreinigung",
+    "grundreinigung",
+  ].some((term) => serviceSignal.includes(term));
   if (isDuesseldorfB2BCleaningLead(booking)) return true;
   if (isDuesseldorfApartmentCleaningLead(booking) && hasApartmentB2B(booking)) return true;
   return (
     service === "b2b_reinigung" ||
     source.includes("b2b") ||
     source.includes("gewerbe") ||
+    config.requestContext === "commercial_cleaning_service" ||
+    hasRegensburgServicePageSignal ||
     Boolean(config.companyName && service.includes("reinigung"))
   );
 }
@@ -3737,6 +3791,7 @@ function getNextStep(booking: Booking) {
   if (quality.tone === "needs-info" && booking.status === "new") return quality.nextQuestion;
   if (isDuesseldorfB2BCleaningLead(booking)) return "Objekt, Fläche, Frequenz und Zeitfenster prüfen";
   if (isDuesseldorfApartmentCleaningLead(booking)) return "Terminfenster, Zugang und Zusatzwünsche prüfen";
+  if (isB2BCleaning(booking)) return "Service, Objekt, Fläche, Turnus und Fotos prüfen";
   if (isPlatformOrderLead(booking)) return "Plattformfall, Angebot und offene Punkte prüfen";
   if (isReferralPartnercodeLead(booking)) return "Partnercode, Auftrag und Bonusstatus prüfen";
   if (isPropertyReadyLead(booking)) return "Objektstatus, Fotos, Besichtigung und Zugang prüfen";
@@ -4188,6 +4243,12 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
           getSourceLabel(booking),
           getProcessLabel(booking),
           getMainLocation(booking),
+          booking.details?.service?.source,
+          booking.details?.service?.entryPoint,
+          booking.details?.configuration?.requestedService,
+          booking.details?.configuration?.serviceLabel,
+          booking.details?.configuration?.serviceSlug,
+          booking.details?.configuration?.sourcePage,
           booking.details?.contact?.notes,
           booking.details?.admin?.nextAction,
         ]
@@ -6991,6 +7052,10 @@ function CustomerDetail({ booking }: { booking: Booking }) {
 function buildContextRows(booking: Booking) {
   const config = booking.details?.configuration || {};
   const rows = [
+    ["Angefragter Service", firstText([config.requestedService, config.serviceLabel, getServiceLabel(booking.service)])],
+    ["Service-Seite", firstText([config.sourcePage, config.entryPoint, booking.details?.service?.entryPoint])],
+    ["Größenordnung", firstText([config.areaRange, config.spaceRange, config.propertySizeRange])],
+    ["Turnus/Anlass", firstText([config.cadence, config.recurringFrequency, config.cleaningFrequency])],
     ["Rolle", firstText([config.roleType])],
     ["Firma/Organisation", firstText([config.companyName])],
     ["Partnercode", firstText([config.partnerCode, config.referralCode])],

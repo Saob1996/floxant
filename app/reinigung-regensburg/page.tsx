@@ -1,7 +1,19 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
+import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCleaningClickDecisionPanel";
+import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
+import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
+import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { company } from "@/lib/company";
+import {
+    regensburgCleaningLocalAreas,
+    regensburgCleaningLocalFaqs,
+    regensburgCleaningServices,
+    regensburgCleaningSnippetFaqs,
+} from "@/lib/regensburg-cleaning-services";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
+import { buildFaqJsonLd } from "@/lib/structured-data";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
@@ -9,17 +21,32 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { seoContent, seoFallback, city } = await getSpecialtyPageData({
-        locale: "de",
-        baseKey: "reinigung_spec",
-        city: "Regensburg",
-    });
-
     return generatePageSEO({
         lang: "de",
         path: "reinigung-regensburg",
-        title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
-        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+        title: "Reinigung Regensburg | Büro, Grund, Fenster & B2B | FLOXANT",
+        description:
+            "Reinigung Regensburg: Büroreinigung, Grundreinigung, Fensterreinigung, Teppich, Bau, Praxis, Hotel und Treppenhaus. Fotos, Fläche und Termin senden.",
+        keywords: [
+            "Reinigung Regensburg",
+            "Reinigungsfirma Regensburg",
+            "Putzfirma Regensburg",
+            "Putzservice Regensburg",
+            "Reinigung Kosten Regensburg",
+            "Reinigung Altstadt Regensburg",
+            "Reinigung Innenstadt Regensburg",
+            "Reinigung Gewerbepark Regensburg",
+            "Reinigung Neutraubling",
+            "Reinigung Lappersdorf",
+            "Büroreinigung Regensburg",
+            "Grundreinigung Regensburg",
+            "Fensterreinigung Regensburg",
+            "Teppichreinigung Regensburg",
+            "Baureinigung Regensburg",
+            "Praxisreinigung Regensburg",
+            "Hotelreinigung Regensburg",
+            "Treppenhausreinigung Regensburg",
+        ],
     });
 }
 
@@ -36,7 +63,41 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
         city: "Regensburg",
     });
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "ItemList",
+                name: "Reinigungsleistungen in Regensburg",
+                itemListElement: regensburgCleaningServices.map((service, index) => ({
+                    "@type": "ListItem",
+                    position: index + 1,
+                    name: service.label,
+                    url: `${company.url}${service.href.split("#")[0]}`,
+                    description: `${service.intro} ${service.clickHook} ${service.goodFor}`,
+                })),
+            },
+            {
+                "@type": "ItemList",
+                name: "Reinigung in Regensburg Stadtteilen und Umgebung",
+                itemListElement: regensburgCleaningLocalAreas.map((area, index) => ({
+                    "@type": "ListItem",
+                    position: index + 1,
+                    name: area.intent,
+                    url: `${company.url}${area.href.split("#")[0]}`,
+                    description: `${area.area}: ${area.text}`,
+                })),
+            },
+            buildFaqJsonLd([...regensburgCleaningSnippetFaqs, ...regensburgCleaningLocalFaqs]),
+        ],
+    };
+
     return (
+        <>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <SpecialtyPageLayout
                 lang="de"
                 dict={localeDict}
@@ -81,6 +142,12 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
-            />
+            >
+                <RegensburgCleaningServiceHub />
+                <RegensburgCleaningClickDecisionPanel />
+                <RegensburgCleaningLocalSignals />
+                <RegensburgCleaningSnippetAnswers />
+            </SpecialtyPageLayout>
+        </>
     );
 }
