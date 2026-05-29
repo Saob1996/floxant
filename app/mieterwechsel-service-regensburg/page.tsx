@@ -362,7 +362,7 @@ export default function MieterwechselServiceRegensburgPage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-200">Wiederkehrende Zusammenarbeit</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight">Für Hausverwaltungen zählt ein wiederholbarer Ablauf</h2>
                 <p className="mt-4 text-base leading-8 text-slate-300">
-                  Wenn mehrere Wohnungen oder wiederkehrende Wechsel anstehen, kann FLOXANT Ansprechpartner, Fotos, Schlüsselstatus, Objektart und Leistungsbausteine sauber erfassen. Das ersetzt kein CRM, aber es macht die erste operative Prüfung schneller.
+                  Wenn mehrere Wohnungen oder wiederkehrende Wechsel anstehen, kann FLOXANT Ansprechpartner, Fotos, Schlüsselstatus, Objektart und Leistungsbausteine sauber erfassen. Das ersetzt kein CRM, aber es macht die erste Einordnung schneller.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">

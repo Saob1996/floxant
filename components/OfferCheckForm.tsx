@@ -18,7 +18,7 @@ const allServiceOptions = [
   { value: "transport", label: "Transport" },
   { value: "entsorgung", label: "Entsorgung" },
   { value: "kombination", label: "Kombination" },
-  { value: "private_client", label: "Premium/Diskret" },
+  { value: "private_client", label: "Sensible Anfrage" },
 ];
 
 const duesseldorfServiceOptions = [
@@ -33,7 +33,7 @@ const addonOptions = [
   "Schlüsselübergabe",
   "Zugang / Parken",
   "Leerfahrt/Rückfahrt",
-  "Premium-Abstimmung",
+  "Diskrete Abstimmung",
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";

@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "beiladung",
     title: "Beiladung Bayern | Möbel-Mitnahme ab Regensburg | FLOXANT",
     description:
-      "Professionelle Beiladung für Einzelmöbel ab Regensburg und in ganz Bayern. Nutzen Sie freie Kapazitäten für eine effiziente und kostengünstige Möbel-Mitnahme.",
+      "Beiladung für Einzelmöbel ab Regensburg und in Bayern. FLOXANT prüft freie Kapazitäten, Strecke, Umfang und passendes Zeitfenster.",
   });
 }
 
@@ -35,7 +35,7 @@ export default async function BeiladungPage() {
   const faqItems = [
     {
       q: "Was genau versteht man unter Beiladung?",
-      a: "Beiladung ist die professionelle Mitnahme von Einzelstücken oder Teilmengen auf bereits geplanten Touren mit freiem Laderaum. Dies optimiert die Auslastung und senkt die Kosten für den Kunden.",
+      a: "Beiladung bedeutet: Einzelstücke oder kleine Mengen fahren auf einer passenden Tour mit, wenn Strecke, Terminfenster und freier Laderaum zusammenpassen.",
     },
     {
       q: "Für welche Transportgüter ist der Service geeignet?",
@@ -47,11 +47,11 @@ export default async function BeiladungPage() {
     },
     {
       q: "Wie unterscheidet sich FLOXANT Beiladung vom Standardservice?",
-      a: "Die logistische Abwicklung ist gebündelt. Sie erhalten denselben Schutz und dieselbe Professionalität wie beim Voll-Umzug, aber zu Konditionen für Teilmengen.",
+      a: "Die Anfrage wird wie ein kleiner Transport geprüft: Was soll mit, wie schwer ist es, wo liegt es, wie flexibel ist der Termin und welcher Schutz ist nötig.",
     },
     {
       q: "Gibt es regionale Einschränkungen in Bayern?",
-      a: "Nein. Wir decken die gesamte Nord-Süd- und Ost-West-Achse in Bayern ab, mit Regensburg als zentralem Logistik-Hub für die Verteilung.",
+      a: "Jede Strecke wird einzeln geprüft. Regensburg ist die Basis, Bayern ist möglich, wenn Route, Zeitfenster und Kapazität passen.",
     },
   ];
 
@@ -96,12 +96,12 @@ export default async function BeiladungPage() {
             Beiladung Bayern
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
-            Professionelle Beiladung und Möbel-Mitnahme in Bayern
+            Beiladung und Möbel-Mitnahme in Bayern
           </h1>
           <p className="mx-auto mt-8 max-w-3xl text-xl leading-relaxed text-slate-600">
-            FLOXANT nutzt freie Laderaum-Ressourcen für Einzelstücke, Teilmengen und kleinere
-            Transporte ab Regensburg und in ganz Bayern. Das wirkt günstiger, aber trotzdem
-            professionell, klar und sauber organisiert.
+            FLOXANT prüft freie Ladefläche für Einzelstücke, Teilmengen und kleinere Transporte
+            ab Regensburg und in Bayern. Sinnvoll ist das vor allem, wenn der Termin etwas flexibel ist
+            und kein ganzer Umzug gefahren werden muss.
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default async function BeiladungPage() {
           {[
             { icon: Repeat, title: "Was ist das?", text: "Mitnahme auf bestehenden Touren mit freiem Laderaum." },
             { icon: Search, title: "Für wen?", text: "Für Einzelmöbel, kleine Mengen und flexible Transportfenster." },
-            { icon: ShieldCheck, title: "Wann sinnvoll?", text: "Wenn kein kompletter Umzugsservice benötigt wird, aber der Transport professionell bleiben soll." },
+            { icon: ShieldCheck, title: "Wann sinnvoll?", text: "Wenn kein kompletter Umzug nötig ist, aber Möbel oder Kartons trotzdem sicher mitfahren sollen." },
             { icon: CheckCircle2, title: "Wie läuft es ab?", text: "Stücke und Strecke angeben, Kapazität prüfen, passendes Zeitfenster abstimmen." },
           ].map((item) => {
             const Icon = item.icon;

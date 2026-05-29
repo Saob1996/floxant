@@ -65,12 +65,12 @@ export const serviceComparisonRows = [
  },
  {
   icon: Crown,
-  situation: "Anwesen oder hochwertiger Haushalt",
+  situation: "Anwesen oder sensibler Haushalt",
   bestFit: "Private Client",
   href: "/private-client-service",
   supportHref: "/qualitaet-ablauf",
   supportLabel: "Qualität & Ablauf",
-  text: "Passend, wenn Diskretion, ruhige Abstimmung, hochwertige Räume und besondere Sorgfalt entscheidend sind.",
+  text: "Passend, wenn Diskretion, ruhige Abstimmung, sensible Räume und besondere Sorgfalt entscheidend sind.",
   signal: "Diskretion, Zugang, Schutz, Abstimmung",
  },
 ];

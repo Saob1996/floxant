@@ -73,11 +73,11 @@ type SearchDominanceConfig = {
 const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
   default: {
     eyebrow: "Google, Maps & klare Antworten",
-    title: "Vom Suchbegriff zur echten FLOXANT-Anfrage.",
+    title: "Vom ersten Problem zur passenden FLOXANT-Anfrage.",
     intro:
-      "Kunden sollen nicht raten, welcher Service passt. Diese Seite führt Suchende sichtbar von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
+      "Niemand soll raten, welcher Service passt. Diese Seite fuehrt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen naechsten Schritt.",
     proofLine:
-      "Regensburg bleibt operativer Kern. Umgebung ca. 200 km und Bayern werden nach Verfügbarkeit geprüft. Düsseldorf bleibt Reinigung; Entsorgung bleibt separat.",
+      "Regensburg bleibt der Ausgangspunkt. Umgebung ca. 200 km und Bayern werden nach Verfügbarkeit geprüft. Düsseldorf bleibt Reinigung; Entsorgung bleibt separat.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
       "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg, Umgebung und Bayern.",
@@ -606,7 +606,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     {
       label: "Lokaler Kern",
       title: "Regensburg als Kernsignal",
-      text: "Der operative Kern, 200-km-Nahbereich und Bayern nach Verfügbarkeit werden sichtbar und wiederholbar erklärt.",
+      text: "Regensburg, 200-km-Nahbereich und Bayern nach Verfügbarkeit werden sichtbar und wiederholbar erklärt.",
       Icon: MapPin,
     },
     {

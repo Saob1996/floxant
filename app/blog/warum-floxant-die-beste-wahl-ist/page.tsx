@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Warum sollte ein Anbieter keinen harten Online-Endpreis versprechen?",
-  a: "Weil Umzug, Reinigung und Entrümpelung stark von Volumen, Zugang, Strecke, Zustand, Terminlage und Zusatzleistungen abhängen. Ein ehrlicher Preisrahmen ist belastbarer als eine künstlich exakte Zahl.",
+  a: "Weil Umzug, Reinigung und Entrümpelung stark von Volumen, Zugang, Strecke, Zustand, Terminlage und Zusatzleistungen abhängen. Ein ehrlicher Preisrahmen ist belastbarer als eine scheinbar exakte Zahl.",
  },
  {
   q: "Wann passt FLOXANT besonders gut?",
@@ -82,7 +82,7 @@ export default function BlogPost() {
       ],
      },
      {
-      title: "Preisrahmen statt künstlicher Exaktheit",
+      title: "Preisrahmen statt Scheingenauigkeit",
       paragraphs: [
        "Ein Online-Rechner kann eine gute erste Orientierung geben. Er sollte aber nicht so wirken, als wäre jedes Detail bereits final geprüft.",
        "Seriös ist ein Preisrahmen dann, wenn sichtbar erklärt wird, welche Faktoren ihn beeinflussen: Volumen, Zugang, Strecke, Terminlage und Zusatzleistungen.",

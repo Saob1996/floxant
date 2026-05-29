@@ -100,7 +100,7 @@ export default function BlogUnterhaltsreinigungPage() {
       title: "Warum Regensburg lokal ein echter Vorteil sein kann",
       paragraphs: [
        "Kurze Wege, schnellere Abstimmung und bessere Objektkenntnis helfen vor allem dann, wenn sich Termine, Turnus oder Sonderlagen kurzfristig ändern.",
-       "Für Hausverwaltungen, Hotels oder Praxen ist ein erreichbarer regionaler Partner oft wertvoller als ein anonymer Lead-Anbieter mit viel Marketing und wenig operativer Nähe.",
+       "Für Hausverwaltungen, Hotels oder Praxen ist ein erreichbarer regionaler Ansprechpartner oft wertvoller als ein anonymes Portal mit viel Werbung und wenig Nähe.",
       ],
      },
     ]}

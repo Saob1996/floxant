@@ -24,7 +24,7 @@ export default function ModeSelection({ dic }: ModeSelectionProps) {
   {
    id: "umzug" as ServiceType,
    title: dic?.calculator?.service_umzug_title || "Umzug & Transport",
-   desc: dic?.calculator?.service_umzug_desc || "Professioneller Umzug mit nachvollziehbarer Einschätzung zu Aufwand, Strecke und Zusatzleistungen.",
+   desc: dic?.calculator?.service_umzug_desc || "Umzug mit nachvollziehbarer Einschätzung zu Aufwand, Strecke und Zusatzleistungen.",
    icon: Truck,
    color: "blue",
    features: ["Inventar und Volumen", "Zugang und Laufwege", "Montageleistungen"],

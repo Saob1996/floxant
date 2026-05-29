@@ -59,7 +59,7 @@ export default function BlogArticle() {
     "@type": "Article",
     headline: "Umzugskosten senken: 7 realistische Hebel ohne Lockpreis",
     description:
-      "Wie Kunden Umzugskosten besser steuern können, ohne sich auf künstlich niedrige Versprechen zu verlassen.",
+      "Wie Kunden Umzugskosten besser steuern können, ohne sich auf unrealistisch niedrige Versprechen zu verlassen.",
     author: { "@type": "Organization", name: "FLOXANT" },
     publisher: { "@type": "Organization", name: "FLOXANT", url: "https://www.floxant.de" },
     datePublished: "2026-03-18",
@@ -146,7 +146,7 @@ export default function BlogArticle() {
               Angebot zwar schnell, ist aber oft nicht belastbar.
             </p>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              FLOXANT setzt deshalb auf Vorprüfung statt künstlich niedriger Einstiegslogik. Das
+              FLOXANT setzt deshalb auf Vorprüfung statt unrealistisch niedriger Einstiegslogik. Das
               Ziel ist nicht, jeden Auftrag kleinzurechnen, sondern Umfang und Erwartung so
               zusammenzubringen, dass der Einsatztag planbar bleibt.
             </p>

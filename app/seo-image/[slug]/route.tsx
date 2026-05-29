@@ -24,7 +24,7 @@ const imageProfiles: Record<
  },
  rechner: {
   eyebrow: "FLOXANT Rechner",
-  title: "Orientierungsrahmen statt künstlicher Exaktheit.",
+  title: "Orientierungsrahmen statt Scheingenauigkeit.",
   subtitle: "Umzug, Reinigung, Entrümpelung und Büroumzug mit sichtbaren Kostentreibern.",
   chips: ["Unverbindlich", "Vorprüfung", "Preisvorstellung"],
   accent: "#38bdf8",
@@ -80,7 +80,7 @@ const imageProfiles: Record<
  },
  "private-client-service": {
   eyebrow: "Private Client",
-  title: "Diskreter Service für Anwesen und hochwertige Haushalte.",
+  title: "Diskreter Service für Anwesen und sensible Haushalte.",
   subtitle: "Umzug, Reinigung und Räumung mit ruhiger Abstimmung in Bayern und Baden-Württemberg.",
   chips: ["Diskretion", "Anwesen", "Hochwertig"],
   accent: "#d6b56d",
@@ -189,7 +189,7 @@ imageProfiles["leerfahrt-rueckfahrt"] = {
 imageProfiles["private-client-service"] = {
  eyebrow: "Private Client Bayern",
  title: "Diskreter Luxusservice für Anwesen.",
- subtitle: "Umzug, Reinigung, Räumung und reguläre Entsorgung für hochwertige Privathaushalte.",
+  subtitle: "Umzug, Reinigung, Räumung und reguläre Entsorgung für sensible Privathaushalte.",
  chips: ["Diskret", "Villen", "Family Office"],
  accent: "#d8b76e",
 };
@@ -211,7 +211,7 @@ imageProfiles.buchung = {
 };
 
 imageProfiles["anbieter-vergleichen"] = {
- eyebrow: "Direkt statt Leadbörse",
+ eyebrow: "Direkt statt Portalrunde",
  title: "FLOXANT gegen Portale richtig vergleichen.",
  subtitle: "Klare Vorprüfung, sichtbare Kostentreiber und Verantwortung statt anonymer Anfrageverteilung.",
  chips: ["Vergleich", "Preiswahrheit", "Ablauf"],

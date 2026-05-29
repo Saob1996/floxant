@@ -14,7 +14,7 @@ export type CoverageGroup = {
 export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
   { href: "/umzug-regensburg", label: "Umzug Regensburg", note: "Lokaler Kernpfad fuer direkte Nachfrage." },
   { href: "/reinigung-regensburg", label: "Reinigung Regensburg", note: "Starker Uebergabe- und Objektservice-Einstieg." },
-  { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg", note: "Raeumung und Entsorgung mit klarer regionaler Suchintention." },
+  { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg", note: "Raeumung und Entsorgung fuer Anfragen aus der Region." },
   { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg", note: "Firmen- und Standortwechsel mit lokalem Anker." },
   { href: "/einlagerung", label: "Einlagerung Regensburg", note: "Lagerung und Zwischenloesungen mit direkter lokaler Suchabsicht." },
   { href: "/akteneinlagerung-regensburg", label: "Akteneinlagerung Regensburg", note: "Gezielter B2B-Lagerpfad fuer Archive und Dokumente." },
@@ -22,13 +22,13 @@ export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
   { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt", note: "Starker Donau- und Wirtschaftsraum fuer planbare Umzuege." },
   { href: "/umzug-muenchen", label: "Umzug Muenchen", note: "Starker Metropolpfad fuer Umzuege in Oberbayern." },
   { href: "/umzug-muenchen-schwabing", label: "Umzug Muenchen Schwabing", note: "Stadtteilpfad fuer verdichtete urbane Nachfrage." },
-  { href: "/umzug-muenchen-bogenhausen", label: "Umzug Muenchen Bogenhausen", note: "Lokaler Premium-Pfad fuer hochwertige Wohnlagen." },
+  { href: "/umzug-muenchen-bogenhausen", label: "Umzug Muenchen Bogenhausen", note: "Lokaler Einstieg fuer anspruchsvolle Wohnlagen." },
   { href: "/umzug-muenchen-haidhausen", label: "Umzug Muenchen Haidhausen", note: "Innenstadtnaher Stadtteilpfad fuer enge Zeitfenster und Altbau-Lagen." },
   { href: "/umzug-muenchen-sendling", label: "Umzug Muenchen Sendling", note: "Starker Stadtteilpfad fuer Wohnungen, Familien und dichte Ladezonen." },
   { href: "/umzug-muenchen-maxvorstadt", label: "Umzug Muenchen Maxvorstadt", note: "Universitaets- und Innenstadtlage mit hoher Wechsel- und Kleintransportnachfrage." },
   { href: "/reinigung-muenchen", label: "Reinigung Muenchen", note: "Direkter Einstieg fuer Objekt-, End- und Uebergabereinigung." },
-  { href: "/umzug-nuernberg", label: "Umzug Nuernberg", note: "Wichtiger Marktpfad fuer Mittelfranken." },
-  { href: "/umzug-nuernberg-gostenhof", label: "Umzug Nuernberg Gostenhof", note: "Urbaner Bezirks-Hebel fuer lokale Suchintention." },
+  { href: "/umzug-nuernberg", label: "Umzug Nuernberg", note: "Wichtiger Einstieg fuer Mittelfranken." },
+  { href: "/umzug-nuernberg-gostenhof", label: "Umzug Nuernberg Gostenhof", note: "Urbaner Bezirk mit vielen Wohnungswechseln." },
   { href: "/umzug-nuernberg-suedstadt", label: "Umzug Nuernberg Suedstadt", note: "Dichter Stadtteilpfad fuer schnelle Wohnungswechsel und Zugangspruefung." },
   { href: "/umzug-nuernberg-moegeldorf", label: "Umzug Nuernberg Moegeldorf", note: "Oestlicher Stadtteilpfad fuer Wohnlagen, Familien und Umzuege mit Planung." },
   { href: "/umzug-nuernberg-ziegelstein", label: "Umzug Nuernberg Ziegelstein", note: "Noerdlicher Stadtteilpfad mit direktem Maps- und Servicebezug." },
@@ -46,7 +46,7 @@ export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
   { href: "/entruempelung-rosenheim", label: "Entruempelung Rosenheim", note: "Suedostbayerischer Pfad fuer Raeumung und Entsorgung." },
   { href: "/bueroumzug-landshut", label: "Bueroumzug Landshut", note: "B2B-Pfad fuer Standorte, Teams und Archive in Niederbayern." },
   { href: "/bueroumzug-ingolstadt", label: "Bueroumzug Ingolstadt", note: "Firmenumzugspfad fuer Wirtschaftsraum, Teams und technische Standorte." },
-  { href: "/umzug-wuerzburg", label: "Umzug Wuerzburg", note: "Mainfranken-Pfad fuer weite Markt- und Fernumzugsanfragen." },
+  { href: "/umzug-wuerzburg", label: "Umzug Wuerzburg", note: "Mainfranken-Einstieg fuer Fernumzug und planbare Strecken." },
   { href: "/reinigung-bamberg", label: "Reinigung Bamberg", note: "Direkter Stadtpfad fuer Uebergabe und Objektpflege in Oberfranken." },
   { href: "/umzug-bayreuth", label: "Umzug Bayreuth", note: "Oberfraenkischer Nachfragepfad fuer planbare Standortwechsel." },
   { href: "/entruempelung-schweinfurt", label: "Entruempelung Schweinfurt", note: "Unterfraenkischer Raeumungspfad fuer Haushalte und Betriebe." },
@@ -65,7 +65,7 @@ export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = [
     id: "oberpfalz",
     region: "Regensburg und Oberpfalz",
     description:
-      "Operativer Kern mit dichter Nachfrage fuer Umzug, Reinigung, Entruempelung und Bueroumzug rund um Regensburg.",
+      "Regensburger Basis mit kurzen Wegen fuer Umzug, Reinigung, Entruempelung und Bueroumzug.",
     links: [
       { href: "/umzug-regensburg", label: "Regensburg" },
       { href: "/umzug-landkreis-regensburg", label: "Landkreis Regensburg" },
@@ -191,7 +191,7 @@ export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = [
     id: "franken-nord",
     region: "Oberfranken, Unterfranken und Fernachsen",
     description:
-      "Bayernweite Sichtbarkeit mit starken Hubs fuer Suchvolumen, Vergleichsintention und hochwertige Regionalpfade.",
+      "Weitere Bayern-Regionen fuer planbare Anfragen rund um Bamberg, Bayreuth, Schweinfurt und Wuerzburg.",
     links: [
       { href: "/umzug-bamberg", label: "Bamberg" },
       { href: "/umzug-bayreuth", label: "Bayreuth" },
@@ -210,12 +210,12 @@ export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = [
   {
     href: "/umzug-muenchen-schwabing",
     label: "Muenchen Schwabing",
-    note: "Verdichteter Stadtbezirk fuer Premium- und Wohnlagenanfragen.",
+    note: "Verdichteter Stadtbezirk mit vielen Wohnungs- und Objektanfragen.",
   },
   {
     href: "/umzug-muenchen-bogenhausen",
     label: "Muenchen Bogenhausen",
-    note: "Starker Stadtteilpfad fuer hochwertige Wohn- und Objektlagen.",
+    note: "Starker Stadtteileinstieg fuer Wohn- und Objektlagen.",
   },
   {
     href: "/umzug-muenchen-haidhausen",
@@ -230,12 +230,12 @@ export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = [
   {
     href: "/umzug-muenchen-maxvorstadt",
     label: "Muenchen Maxvorstadt",
-    note: "Starker Suchpfad fuer erste Wohnungen, Berufsumzuege und Innenstadtlagen.",
+    note: "Starker Einstieg fuer erste Wohnungen, Berufsumzuege und Innenstadtlagen.",
   },
   {
     href: "/umzug-nuernberg-gostenhof",
     label: "Nuernberg Gostenhof",
-    note: "Urbaner Stadtbezirk mit klarer lokaler Suchintention.",
+    note: "Urbaner Stadtbezirk mit vielen direkten Umzugsanfragen.",
   },
   {
     href: "/umzug-nuernberg-suedstadt",
@@ -250,7 +250,7 @@ export const BAVARIA_METRO_DISTRICT_LINKS: CoverageLink[] = [
   {
     href: "/umzug-nuernberg-ziegelstein",
     label: "Nuernberg Ziegelstein",
-    note: "Noerdlicher Stadtteilpfad fuer lokale Suchintention und direkte Servicewege.",
+    note: "Noerdlicher Stadtteil mit direktem Einstieg fuer Umzug und Abstimmung.",
   },
 ];
 
@@ -409,7 +409,7 @@ export const BAVARIA_REGENSBURG_PROXIMITY_LINKS: CoverageLink[] = [
   { href: "/umzug-bad-abbach", label: "Bad Abbach", note: "Suedlicher Nahraum mit hoher Wohn- und Uebergabenachfrage." },
   { href: "/umzug-sinzing", label: "Sinzing", note: "Suedwestlicher Nahraum Richtung Donau und Autobahn." },
   { href: "/umzug-tegernheim", label: "Tegernheim", note: "Stadtnahe Nachfrage am Donaurand." },
-  { href: "/umzug-donaustauf", label: "Donaustauf", note: "Nahe Ortslage mit klarer lokaler Suchintention." },
+  { href: "/umzug-donaustauf", label: "Donaustauf", note: "Nahe Ortslage mit direktem Bezug zu Regensburg." },
 ];
 
 const CORE_SERVICE_CITY_SPOTLIGHTS = [

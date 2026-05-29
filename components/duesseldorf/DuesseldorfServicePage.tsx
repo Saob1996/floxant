@@ -27,6 +27,9 @@ import {
   getDuesseldorfCleaningInternationalAliases,
   type SearchIntentAliasLanguage,
 } from "@/lib/search-intent-aliases";
+import { DuesseldorfCleaningConversionLift } from "@/components/duesseldorf/DuesseldorfCleaningConversionLift";
+import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
+import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { buildFaqJsonLd } from "@/lib/structured-data";
 
@@ -71,13 +74,21 @@ type ServicePageProps = {
 };
 
 const fallbackRelatedLinks = [
+  { href: "/duesseldorf/kurzfristige-reinigung", label: "Kurzfristige Reinigung prüfen" },
+  { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung-Reinigung planen" },
+  { href: "/duesseldorf/schluesseluebergabe-reinigung", label: "Schlüsselübergabe-Reinigung anfragen" },
   { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf anfragen" },
+  { href: "/duesseldorf/putzfirma", label: "Putzfirma Düsseldorf prüfen" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung prüfen" },
+  { href: "/duesseldorf/reinigungskraft-buero", label: "Reinigungskraft Büro planen" },
   { href: "/duesseldorf/unterhaltsreinigung", label: "Unterhaltsreinigung planen" },
+  { href: "/duesseldorf/gebaeudereinigung", label: "Gebäudereinigung prüfen" },
+  { href: "/duesseldorf/objektreinigung", label: "Objektreinigung planen" },
   { href: "/duesseldorf/ladenreinigung", label: "Ladenreinigung prüfen" },
   { href: "/duesseldorf/sonderreinigung", label: "Sonderreinigung prüfen" },
   { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung planen" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung einschätzen" },
+  { href: "/duesseldorf/reinigung-nach-renovierung", label: "Nach Renovierung reinigen" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
   { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung anfragen" },
@@ -354,6 +365,18 @@ export function DuesseldorfServicePage({
           ))}
         </nav>
 
+        <DuesseldorfCleaningConversionLift serviceLabel={serviceLabel} compact />
+        <DuesseldorfCleaningBuyerJourney
+          serviceLabel={serviceLabel}
+          compact
+          focusHrefs={[path, ...visibleLinks.map((link) => link.href)]}
+        />
+        <DuesseldorfCleaningDecisionGuide
+          serviceLabel={serviceLabel}
+          compact
+          focusHrefs={[path, ...visibleLinks.map((link) => link.href), "/duesseldorf/vielleicht-guenstiger"]}
+        />
+
         <section className="grid gap-3 pt-6 md:grid-cols-4">
           {serviceConfidenceItems.map(({ Icon, title: itemTitle, text }) => (
             <article
@@ -424,10 +447,10 @@ export function DuesseldorfServicePage({
               Kundennah gesucht
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-              Häufige Klickmotive für {serviceLabel} in Düsseldorf
+              Häufige Gründe für {serviceLabel} in Düsseldorf
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Kunden formulieren selten perfekt. Sie suchen nach Nähe, Kosten, WhatsApp,
+              Kunden formulieren selten mit Fachbegriffen. Sie suchen nach Nähe, Kosten, WhatsApp,
               Fotos, kurzfristigem Termin oder Übergabe. Diese Einstiege führen direkt
               zur passenden Handlung.
             </p>
@@ -473,7 +496,7 @@ export function DuesseldorfServicePage({
               Schnell erkennen, welcher Weg für {serviceLabel} passt
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Kunden suchen oft mit konkreten Fragen: Kosten, Fotos, Angebot, Stadtteil
+              Kunden kommen oft mit konkreten Fragen: Kosten, Fotos, Angebot, Stadtteil
               oder schneller Kontakt. Diese Einstiege führen direkt zur richtigen nächsten
               Handlung, ohne die Düsseldorfer Seite mit Umzugsthemen zu vermischen.
             </p>
@@ -630,9 +653,9 @@ export function DuesseldorfServicePage({
               Wann FLOXANT für diese Düsseldorfer Reinigung passt
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Kunden sollen schnell erkennen, wann FLOXANT passt: Ort, Objektart,
-              Fläche, Zustand, Fotos, Termin und die klare Grenze zu Umzug oder Transport.
-              So wird die Anfrage für {serviceLabel} verständlich.
+              Wenn Ort, Objektart, Fläche, Zustand, Fotos und Termin klar sind, können
+              wir den Auftrag besser einschätzen. Wichtig ist auch die Grenze: In
+              Düsseldorf prüfen wir Reinigung, nicht Umzug oder Transport.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2">
@@ -714,7 +737,7 @@ export function DuesseldorfServicePage({
               <p className="mt-4 text-sm leading-7 text-slate-700">
                 Für Hotels, Büros, Firmen, Kanzleien, Praxen und Gewerbeflächen zählt eine schnelle,
                 belastbare Einordnung. Senden Sie Objektart, Düsseldorfer Stadtteil, Fläche,
-                gewünschten Turnus, Zeitfenster und Fotos. So kann FLOXANT professionell prüfen,
+                gewünschten Turnus, Zeitfenster und Fotos. So kann FLOXANT sauber prüfen,
                 ob der Auftrag realistisch planbar ist und wie eine saubere Angebotsgrundlage entsteht.
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

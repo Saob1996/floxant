@@ -23,6 +23,7 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -341,6 +342,19 @@ export default function UnterhaltsreinigungRegensburgPage() {
         </div>
       </section>
 
+      <RegensburgCleaningBuyerPath
+        serviceLabel="Unterhaltsreinigung Regensburg"
+        headline="Regelmäßige Reinigung braucht einen Plan, den Kunden sofort verstehen."
+        intro="Unterhaltsreinigung wird besser angefragt, wenn Objektart, Turnus, Raumliste, Sanitär, Küche, Schlüsselzugang und Starttermin klar sind. Genau darauf führt der Regensburg-Kundenweg hin."
+        focusHrefs={[
+          "/bueroreinigung-regensburg",
+          "/praxisreinigung-regensburg",
+          "/treppenhausreinigung-regensburg",
+          "/gewerbereinigung-regensburg",
+        ]}
+        bookingHref="/buchung?service=reinigung&city=regensburg&source=unterhaltsreinigung_regensburg#buchungssystem"
+      />
+
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
@@ -487,9 +501,9 @@ export default function UnterhaltsreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell">
           <div className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für Suchende und bessere Snippet-Chancen.
+              Kurze Antworten fuer eine bessere Anfrage.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

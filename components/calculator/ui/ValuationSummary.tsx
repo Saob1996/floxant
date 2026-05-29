@@ -192,8 +192,8 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
             <div className="mt-3 grid gap-2">
               {[
                 "Region, Zugang und Zusatzleistungen verändern den realen Aufwand sofort.",
-                "Der Rahmen bleibt bewusst unverbindlich, damit keine künstliche Preisgenauigkeit entsteht.",
-                "Mit mehr Details wird die Einordnung ruhiger, enger und operativ belastbarer.",
+                "Der Rahmen bleibt bewusst unverbindlich, damit keine falsche Preisgenauigkeit entsteht.",
+                "Mit mehr Details wird die Einordnung ruhiger, genauer und belastbarer.",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-600" />

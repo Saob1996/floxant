@@ -24,6 +24,7 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -346,6 +347,19 @@ export default function BueroreinigungRegensburgPage() {
         </div>
       </section>
 
+      <RegensburgCleaningBuyerPath
+        serviceLabel="Büroreinigung Regensburg"
+        headline="Wenn das Büro sauber wirken muss, soll die Anfrage nicht hängen bleiben."
+        intro="Büro-Kunden in Regensburg wollen schnell wissen, welche Angaben zählen: Fläche, Räume, Turnus, Küche, Sanitär, Zugang und Fotos. Dieser Block führt direkt zu den passenden nächsten Wegen."
+        focusHrefs={[
+          "/unterhaltsreinigung-regensburg",
+          "/fensterreinigung-regensburg",
+          "/teppichreinigung-regensburg",
+          "/gewerbereinigung-regensburg",
+        ]}
+        bookingHref="/buchung?service=reinigung&city=regensburg&source=bueroreinigung_regensburg#buchungssystem"
+      />
+
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
@@ -354,7 +368,7 @@ export default function BueroreinigungRegensburgPage() {
               Die Seite spricht die Wörter an, mit denen Büro-Kunden suchen.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Suchende wollen kein allgemeines Reinigungsversprechen. Sie
+              Viele Kunden wollen kein allgemeines Reinigungsversprechen. Sie
               suchen Büroreinigung Regensburg, Angebot, Kosten, Reinigungskraft,
               nach Feierabend, Küche, Sanitär und einen Reinigungsplan, der zum
               Arbeitsalltag passt.
@@ -473,9 +487,9 @@ export default function BueroreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für Suchende mit Angebotsabsicht.
+              Kurze Antworten fuer eine bessere Anfrage.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

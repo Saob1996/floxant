@@ -100,7 +100,7 @@ export default async function ExpressPage() {
             Express-Anfrage & Notfall-Service in Regensburg & Bayern
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-slate-600">
-            Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit priorisierter Kapazitätslogik. Wir bieten eine verlässliche Anlaufstelle für Notfall-Einsätze auf dem gewohnt hohen Premium-Niveau in ganz Bayern.
+            Wenn Zeitfenster kippen und schnelle Ergebnisse zählen: FLOXANT prüft kurzfristige Umzüge, Reinigungen und Räumungen mit klarer Rückmeldung zu Kapazität, Ort und Umfang. Sie bekommen eine erreichbare Anlaufstelle für eilige Fälle in Regensburg und Bayern.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link

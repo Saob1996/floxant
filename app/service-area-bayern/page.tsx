@@ -12,6 +12,7 @@ import {
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { getDictionary } from "@/get-dictionary";
 import {
@@ -31,11 +32,11 @@ import {
 const faqItems = [
   {
     q: "Ist FLOXANT in ganz Bayern aktiv?",
-    a: "FLOXANT arbeitet mit Regensburg als operativem Kern und Bayern als geplantem Einsatzgebiet. Ob ein Einsatz passt, haengt weiterhin von Strecke, Umfang, Terminlage und Kapazitaet ab.",
+    a: "FLOXANT arbeitet von Regensburg aus und prueft Bayern-Anfragen nach Strecke, Umfang, Terminlage und freier Kapazitaet.",
   },
   {
-    q: "Welche Seite eignet sich fuer Google Maps oder das Google-Unternehmensprofil am besten?",
-    a: "Fuer direkte Anfragen ist die Buchungsseite der staerkste Einstieg. Die Bayern-Seite hilft vor allem bei regionaler Einordnung, klaren Verbindungen und passender Suchintention.",
+    q: "Welche Seite eignet sich am besten fuer direkte Anfragen?",
+    a: "Fuer direkte Anfragen ist die Buchungsseite der beste Einstieg. Die Bayern-Seite hilft vor allem dabei, Region, Strecke und passende Leistung vorher einzuordnen.",
   },
   {
     q: "Warum zeigt diese Seite Regionen statt pauschal ueberall alles zu versprechen?",
@@ -61,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "Entruempelung Bayern",
       "Bueroumzug Bayern",
       "Regensburg Bayern Dienstleister",
-      "Google Maps Buchungslink Regensburg",
+      "Dienstleister Regensburg Anfrage",
     ],
   });
 }
@@ -121,7 +122,7 @@ export default async function ServiceAreaBayern() {
     {
       name: "Regensburg und Oberpfalz",
       desc:
-        "Das operative Zentrum mit kurzer Reaktionszeit und dichtem Einsatznetz fuer Umzug, Reinigung, Entruempelung und Bueroumzug.",
+        "Die Regensburger Basis mit kurzer Abstimmung fuer Umzug, Reinigung, Entruempelung und Bueroumzug.",
       links: [
         { href: "/umzug-regensburg", label: "Umzug Regensburg" },
         { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
@@ -176,7 +177,7 @@ export default async function ServiceAreaBayern() {
     {
       name: "Franken Nord und Bayern-West",
       desc:
-        "Mehr Sichtbarkeit fuer grosse Vergleichsmaerkte wie Bamberg, Bayreuth, Schweinfurt und Wuerzburg mit sauberer Verlinkung.",
+        "Weitere Regionen wie Bamberg, Bayreuth, Schweinfurt und Wuerzburg, wenn Strecke, Umfang und Termin sinnvoll passen.",
       links: [
         { href: "/umzug-bamberg", label: "Umzug Bamberg" },
         { href: "/reinigung-bayreuth", label: "Reinigung Bayreuth" },
@@ -199,14 +200,14 @@ export default async function ServiceAreaBayern() {
     },
     {
       title: "Klare Vorpruefung",
-      text: "Lieber ein ehrlicher erster Rahmen als eine kuenstlich perfekte Zahl ohne Substanz.",
+      text: "Lieber ein ehrlicher erster Rahmen als eine Zahl ohne belastbare Grundlage.",
       Icon: ShieldCheck,
     },
   ];
 
   const quickFacts = [
     "Bayern heisst bei FLOXANT nicht ueberall alles versprechen, sondern jede Region sauber nach Aufwand und Weg einordnen.",
-    "Regensburg bleibt der operative Kern, Bayern ist das geplante Ausbaugebiet mit klaren Prioritaeten.",
+    "Regensburg bleibt die Basis, Bayern wird nach Strecke, Umfang und Termin sauber eingeordnet.",
     "Wer direkt anfragen moechte, nutzt die Buchung. Wer erst Orientierung braucht, nimmt den passenden Einstieg weiter unten.",
   ];
 
@@ -436,7 +437,7 @@ export default async function ServiceAreaBayern() {
               Der Nahraum macht die Bayern-Reichweite glaubwürdig
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              Bayernweite Sichtbarkeit funktioniert besser, wenn der Kern dicht und plausibel ist.
+              Bayernweite Anfragen funktionieren besser, wenn die Basis klar und plausibel bleibt.
               Diese Orte bilden die direkte Regensburg-Zone für schnelle lokale Anfragen.
             </p>
           </div>
@@ -462,7 +463,7 @@ export default async function ServiceAreaBayern() {
               Die wichtigsten Regionen für Anfragen in Bayern
             </h2>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              Statt unübersichtlicher Listen arbeitet FLOXANT mit klaren regionalen Clustern.
+              Statt unuebersichtlicher Listen arbeitet FLOXANT mit klaren regionalen Bereichen.
               So verstehen Kunden und Google schneller, wo Umzug, Reinigung, Entrümpelung und
               Büroumzug realistisch eingeordnet werden.
             </p>
@@ -505,7 +506,7 @@ export default async function ServiceAreaBayern() {
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600 md:text-right">
               Wer schon weiß, wonach er sucht, soll nicht erst im Menü herumirren. Deshalb
-              führen die wichtigsten Bayern-Cluster direkt auf die passenden Kernseiten.
+              fuehren die wichtigsten Bayern-Bereiche direkt auf die passenden Kernseiten.
             </p>
           </div>
 
@@ -564,11 +565,11 @@ export default async function ServiceAreaBayern() {
               Metropolpfade
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Zusaetzliche Signalpfade fuer urbane Bezirke
+              Zusaetzliche Einstiege fuer grosse Stadtlagen
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Diese Seiten geben Muenchen und Nuernberg noch klarere Unterstrukturen und staerken
-              die Relevanz fuer dichte Stadtlagen mit eigener Suchintention.
+              Diese Seiten helfen, Anfragen aus Muenchen und Nuernberg genauer einzuordnen,
+              besonders wenn Stadtteil, Zugang, Strecke oder Objektart wichtig sind.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -599,7 +600,7 @@ export default async function ServiceAreaBayern() {
             <p className="mt-4 text-lg leading-8 text-slate-600">
               Nutzen Sie den Einstieg unten, wenn Standort, Service und Preisrahmen regional
               sauber vorbereitet werden sollen. So geht Ihre Anfrage klarer rein und deutlich
-              professioneller weiter.
+              klarer weiter.
             </p>
           </div>
 
@@ -616,6 +617,19 @@ export default async function ServiceAreaBayern() {
           </div>
         </div>
       </section>
+
+      <PsychologicalCleaningInternalLinks
+        title="Spezial-Reinigung aus dem Regensburger Einsatzgebiet"
+        intro="Diese Problemseiten verbinden Bayern-Reichweite mit konkreten Situationen: Uebergabe, Baustaub, Geruch, Eile und diskrete Hilfe."
+        focusSlugs={[
+          "panikfrei-in-24h",
+          "baustaub-ende",
+          "geruchslos-protokoll",
+          "vermieter-schockschutz-reinigung",
+          "sichtbar-sauber-protokoll",
+          "atemruhig-reinigung",
+        ]}
+      />
 
       <section className="border-t border-slate-200 bg-slate-50/80 px-6 py-20">
         <div className="mx-auto max-w-5xl">

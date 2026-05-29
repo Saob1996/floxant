@@ -24,12 +24,28 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": {
+    "production": [
+      "Chrome >= 111",
+      "Edge >= 111",
+      "Firefox >= 115",
+      "Safari >= 16.4",
+      "iOS >= 16.4",
+      "Android >= 111"
+    ],
+    "development": [
+      "last 1 Chrome version",
+      "last 1 Firefox version",
+      "last 1 Safari version"
+    ]
+  },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.1",
     "@react-pdf/renderer": "^4.3.2",
     "@supabase/supabase-js": "^2.95.3",
     "@tailwindcss/postcss": "^4.1.18",
     "clsx": "^2.1.1",
+    "critters": "^0.0.23",
     "framer-motion": "^12.31.0",
     "lucide-react": "^0.563.0",
     "negotiator": "^1.0.0",

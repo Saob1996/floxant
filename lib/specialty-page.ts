@@ -11,9 +11,9 @@ import { germanizeText } from "@/lib/german-text";
 const TRUST_HOOKS_CARE: Record<string, string[]> = {
   de: [
     "Wir wissen, wie viel Ihnen Ihr Hab und Gut bedeutet und gehen mit Ihren Möbeln um wie mit unseren eigenen.",
-    "Stressfrei ankommen: Unser Team übernimmt das schwere Heben für Sie, damit Sie entspannt in Ihr neues Zuhause starten.",
+    "Wir übernehmen das schwere Heben, damit Sie sich auf Zugang, Schlüssel und die nächsten Schritte konzentrieren können.",
     "Sicherheit hat Priorität – jeder Handgriff sitzt, damit Ihre Wertsachen wohlbehalten am Ziel ankommen.",
-    "Ein Umzug ist Vertrauenssache. Wir begleiten Sie mit Sorgfalt und professioneller Planung durch den gesamten Prozess."
+    "Ein Umzug ist Vertrauenssache. Wir planen Zugang, Laufwege, Termin und Umfang vorab, damit am Einsatztag weniger offen bleibt."
   ],
   ru: [
     "Мы понимаем, как много значат для вас ваши вещи, и относимся к вашей мебели так же бережно, как к своей собственной.",
@@ -34,11 +34,11 @@ const CITY_NARRATIVES: Record<string, Record<string, string>> = {
     regensburg: "Als UNESCO-Welterbestadt mit ihren engen historischen Gassen erfordert ein Umzug in Regensburg besondere Sorgfalt und oft eine präzise Planung von Zugang und Laufwegen.",
     muenchen: "In der dynamischen Millionenmetropole München sind Parkplatznot und strikte Zeitfenster Teil des Alltags – unser Team ist auf die logistischen Herausforderungen der Landeshauptstadt spezialisiert.",
     nuernberg: "Vom modernen Business-Tower bis zum historischen Fachwerkhaus in der Altstadt: Wir kennen die logistischen Wege in der Frankenmetropole Nürnberg in- und auswendig.",
-    augsburg: "In der Fuggerstadt Augsburg verbinden wir Tradition mit moderner Logistik, um Ihren Standortwechsel so stressfrei wie möglich zu gestalten.",
+    augsburg: "In Augsburg zählen Zufahrt, Haltemöglichkeiten und klare Zeitfenster. Genau diese Punkte werden vorab eingeordnet.",
     ingolstadt: "Als dynamisches Zentrum an der Donau erfordert Ingolstadt schlagkräftige Teams, die sowohl Privat- als auch Firmenumzüge termingerecht abwickeln.",
     landshut: "In der niederbayerischen Hauptstadt Landshut sind wir Ihr verlässlicher Partner, der regionale Verbundenheit mit höchster Servicequalität vereint.",
     passau: "In der geschichtsträchtigen Dreiflüssestadt Passau fordern die engen Gassen der Altstadt und die Uferbereiche von Donau, Inn und Ilz höchste logistische Präzision.",
-    straubing: "Als Herz des Gäubodens erfordert Straubing eine effiziente Logistik, die sowohl die ländlichen Regionen als auch das moderne Industriezentrum perfekt vernetzt.",
+    straubing: "In Straubing treffen Stadt, Gewerbe und Umland aufeinander. Strecke, Zugang und Zeitfenster sollten deshalb sauber geklärt sein.",
   },
   ru: {
     regensburg: "Как город всемирного наследия ЮНЕСКО с его узкими историческими улочками, переезд в Регенсбурге требует особой тщательности и часто точного планирования зон запрета парковки прямо у входа.",
@@ -60,10 +60,10 @@ const CITY_NARRATIVES: Record<string, Record<string, string>> = {
 
 const TRUST_HOOKS_LOCAL: Record<string, string[]> = {
   de: [
-    "Als Ihr Partner direkt aus der Region kennen wir jeden Winkel und sorgen für kurze Wege und faire Preise.",
-    "Persönlich, nah und verlässlich: Wir sind Ihr lokales Team vor Ort, das die Gegebenheiten Ihrer Stadt perfekt kennt.",
-    "Keine anonyme Plattform – wir sind ein echtes Team aus der Nachbarschaft, das für Qualität und Handschlagqualität steht.",
-    "Kurze Anfahrtswege und echte Ortskenntnis machen uns zu Ihrem ersten Ansprechpartner für Logistik in dieser Region."
+    "Wir prüfen Ort, Zufahrt und Umfang konkret, statt nur pauschal eine Region zu versprechen.",
+    "Persönlich, nah und verlässlich: Wir kennen die typischen Zufahrten, Laufwege und Abstimmungen vor Ort.",
+    "Keine anonyme Plattform: Sie sprechen mit einem erreichbaren Team, das den Auftrag konkret einordnet.",
+    "Kurze Anfahrtswege und echte Ortskenntnis machen Termine und Rückfragen einfacher."
   ],
   ru: [
     "Как ваш локальный партнер в регионе, мы знаем каждый уголок и обеспечиваем короткие маршруты и честные цены.",

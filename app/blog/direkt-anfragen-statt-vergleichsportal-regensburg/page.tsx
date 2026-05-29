@@ -107,7 +107,7 @@ export default function BlogDirektAnfragenPage() {
     highlightPoints={[
      "Direkte Anfragewege behalten mehr Kontext und sorgen für bessere Vorprüfung.",
      "Vergleichsportale sind schnell, aber nicht immer sauber genug für komplexere Services.",
-     "Eine gute Buchungsseite reduziert Missverständnisse und erhöht Klickvertrauen.",
+     "Eine gute Buchungsseite reduziert Missverständnisse und macht den nächsten Schritt leichter.",
     ]}
     ctas={[
      { href: "/buchung", label: "Buchungsseite öffnen" },

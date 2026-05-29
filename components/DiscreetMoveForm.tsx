@@ -53,9 +53,9 @@ const requestTypeOptions = [
   },
   {
     value: "premium_diskret",
-    title: "Premium/Diskret",
-    text: "Sensible, hochwertige oder komplexere Abstimmung mit Rueckruf priorisieren.",
-    services: ["Premium-/Diskret-Abstimmung", "Rueckruf"],
+    title: "Sensible Abstimmung",
+    text: "Sensible oder komplexere Abstimmung mit Rueckruf priorisieren.",
+    services: ["Diskrete Abstimmung", "Rueckruf"],
   },
   {
     value: "telefonisch_klaeren",
@@ -81,7 +81,7 @@ const serviceOptions = [
   "Entruempelung / Entsorgung nach Absprache",
   "Schluesseluebergabe nach Absprache",
   "Uebergabeakte / Foto-Dokumentation",
-  "Premium-/Diskret-Abstimmung",
+  "Diskrete Abstimmung",
   "Rueckruf",
 ];
 
@@ -107,9 +107,9 @@ const packageOptions = [
     cta: "Uebergabe abstimmen",
   },
   {
-    title: "Premium/Diskret",
+    title: "Sensible Abstimmung",
     text: "Rueckruf, Planung, Zusatzservices und diskrete Abstimmung fuer komplexe Faelle.",
-    cta: "Premium-Rueckruf anfragen",
+    cta: "Diskreten Rueckruf anfragen",
   },
 ];
 

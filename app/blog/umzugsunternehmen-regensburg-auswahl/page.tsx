@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     q: "Warum ist ein schneller Festpreis online oft kein gutes Signal?",
-    a: "Weil Volumen, Etagen, Laufwege, Zugang, Terminlage und Zusatzleistungen oft erst kurz eingeordnet werden müssen. Ein belastbarer erster Rahmen ist meist seriöser als ein künstlich exakter Schnellpreis.",
+    a: "Weil Volumen, Etagen, Laufwege, Zugang, Terminlage und Zusatzleistungen oft erst kurz eingeordnet werden müssen. Ein belastbarer erster Rahmen ist meist seriöser als ein scheinbar exakter Schnellpreis.",
   },
   {
     q: "Hilft eine lokale Firma in Regensburg wirklich?",

@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     pageLocale,
     path: 'blog/umzug-planen-schritt-fuer-schritt',
     title: "Umzug planen: In 10 Schritten zum Ziel | FLOXANT",
-    description: "Unser ultimativer Leitfaden für Ihre Umzugsplanung. Schritt für Schritt von der Kündigung bis zur Einweihung.",
+    description: "Umzug planen: Kündigung, Kartons, Zugang, Parken, Transport, Ummeldung und Übergabe Schritt für Schritt vorbereiten.",
   });
 }
 
@@ -34,7 +34,7 @@ export default async function BlogUmzugPlanen() {
               <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> 15 Min. Lesezeit</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900">
-              Umzug planen: Der ultimative Leitfaden in 10 Schritten
+              Umzug planen: 10 Schritte, die wirklich helfen
             </h1>
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none">
@@ -59,7 +59,7 @@ export default async function BlogUmzugPlanen() {
               </ul>
             </div>
 
-            <p>Noch Fragen? Kontaktieren Sie unsere Experten.</p>
+            <p>Noch Fragen? Senden Sie uns Ort, Umfang, Etage, Termin und ein paar Fotos.</p>
             <Link href="/umzug" className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full no-underline">
               Zum Umzugsservice
             </Link>

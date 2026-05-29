@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     q: "Warum ist eine ruhige Abstimmung hier wichtiger als ein schneller Rechner?",
-    a: "Weil hochwertige Objekte, Kunst, Designmöbel, Zweitwohnsitze, Personal und sensible Übergaben nicht in eine Standardlogik passen. Erst die Vorprüfung schafft einen belastbaren Ablauf.",
+    a: "Weil sensible Objekte, Kunst, Designmöbel, Zweitwohnsitze, Personal und Übergaben nicht in eine Standardlogik passen. Erst die Vorprüfung schafft einen belastbaren Ablauf.",
   },
   {
     q: "Welche Punkte sollten vorab geklärt werden?",
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "blog/family-office-umzug-bayern-diskret-abstimmen",
     title: "Family Office und Private Client in Bayern | Diskrete Umzüge sauber abstimmen",
     description:
-      "Wie Eigentümer, Assistenz und Family Office hochwertige Umzüge, Übergaben und Schutzbedarf in Bayern diskret und sauber koordinieren.",
+      "Wie Eigentümer, Assistenz und Family Office sensible Umzüge, Übergaben und Schutzbedarf in Bayern diskret und sauber koordinieren.",
     keywords: [
       "Family Office Umzug Bayern",
       "Private Client Bayern diskret",
@@ -48,7 +48,7 @@ export default function BlogFamilyOfficeUmzugBayernPage() {
       buildWebPageJsonLd({
         name: "Family Office und Private Client in Bayern",
         description:
-          "Ratgeber für diskrete Abstimmung zwischen Eigentümer, Assistenz und Family Office bei hochwertigen Umzügen in Bayern.",
+          "Ratgeber für diskrete Abstimmung zwischen Eigentümer, Assistenz und Family Office bei sensiblen Umzügen in Bayern.",
         path: "/blog/family-office-umzug-bayern-diskret-abstimmen",
         about: ["Family Office", "Private Client", "Diskretion", "Residenz", "Bayern"],
       }),
@@ -63,7 +63,7 @@ export default function BlogFamilyOfficeUmzugBayernPage() {
       buildArticleJsonLd({
         headline: "Family Office und Private Client in Bayern: wie diskrete Umzüge sauber abgestimmt werden",
         description:
-          "Ein FLOXANT Artikel zu Zuständigkeiten, Diskretion und Schutzkonzepten für hochwertige Privatumzüge in Bayern.",
+          "Ein FLOXANT Artikel zu Zuständigkeiten, Diskretion und Schutzkonzepten für sensible Privatumzüge in Bayern.",
         path: "/blog/family-office-umzug-bayern-diskret-abstimmen",
         datePublished: "2026-04-28",
       }),
@@ -82,19 +82,19 @@ export default function BlogFamilyOfficeUmzugBayernPage() {
         date="28. April 2026"
         readTime="6 Min."
         title="Family Office und Private Client in Bayern: wie diskrete Umzüge sauber abgestimmt werden"
-        intro="Bei hochwertigen Privathaushalten entscheidet selten nur die Logistik. Wichtiger sind Zuständigkeiten, Diskretion, Objektverständnis und ein Ablauf, der für Eigentümer, Assistenz und Family Office ruhig und belastbar bleibt."
+        intro="Bei sensiblen Privathaushalten entscheidet selten nur die Logistik. Wichtiger sind Zuständigkeiten, Diskretion, Objektverständnis und ein Ablauf, der für Eigentümer, Assistenz und Family Office ruhig und belastbar bleibt."
         sections={[
           {
             title: "Warum Abstimmung hier mehr zählt als Geschwindigkeit",
             paragraphs: [
-              "Bei einem hochwertigen Umzug oder einer sensiblen Übergabe geht es oft nicht darum, möglichst schnell irgendeinen Dienstleister zu finden. Es geht darum, dass alle Beteiligten denselben Plan sehen und der Ablauf ruhig bleibt.",
+              "Bei einem sensiblen Umzug oder einer sensiblen Übergabe geht es oft nicht darum, möglichst schnell irgendeinen Dienstleister zu finden. Es geht darum, dass alle Beteiligten denselben Plan sehen und der Ablauf ruhig bleibt.",
               "Wenn Eigentümer, Assistenz, Family Office, Hausverwaltung oder Sicherheitsdienste beteiligt sind, muss klar sein, wer freigibt, wer erreichbar ist und welche Bereiche besonders geschützt werden.",
             ],
           },
           {
             title: "Welche Punkte vorab sauber geklärt werden sollten",
             paragraphs: [
-              "Je hochwertiger das Objekt, desto wichtiger ist die Vorprüfung. Das spart Nachfragen und verhindert Reibung im entscheidenden Moment.",
+              "Je sensibler das Objekt, desto wichtiger ist die Vorprüfung. Das spart Nachfragen und verhindert Reibung im entscheidenden Moment.",
             ],
             bullets: [
               "Ansprechpartner und Freigabewege eindeutig festlegen",
@@ -106,7 +106,7 @@ export default function BlogFamilyOfficeUmzugBayernPage() {
           {
             title: "Warum FLOXANT hier bewusst nicht mit Standardrechner arbeitet",
             paragraphs: [
-              "Ein Standardrechner kann bei hochwertigen Objekten den falschen Eindruck erzeugen. Schutzbedarf, Diskretion, Teamzuschnitt und Kommunikationswege sind hier oft wichtiger als eine schnelle Zahl.",
+              "Ein Standardrechner kann bei sensiblen Objekten den falschen Eindruck erzeugen. Schutzbedarf, Diskretion, Teamzuschnitt und Kommunikationswege sind hier oft wichtiger als eine schnelle Zahl.",
               "Deshalb bleibt der Private-Client-Bereich bewusst getrennt: persönlich, diskret und auf saubere Vorprüfung ausgelegt. Kurz gesagt: lieber erst gscheid abstimmen, dann ruhig umsetzen.",
             ],
           },

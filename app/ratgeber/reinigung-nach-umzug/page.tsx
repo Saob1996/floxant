@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/reinigung-nach-umzug',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Reinigung nach dem Umzug",
   });
 }
 export default async function Article() {
@@ -25,8 +25,8 @@ export default async function Article() {
   };
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
-    "headline": "Reinigung nach Umzug: Tipps vom Profi",
-    "description": "Professionelle Reinigung nach dem Umzug für die Wohnungsübergabe. Tipps und Kosten.",
+    "headline": "Reinigung nach Umzug: was vor der Übergabe wichtig ist",
+    "description": "Reinigung nach dem Umzug für die Wohnungsübergabe: Küche, Bad, Böden, Fenster, Vertrag und realistische Kosten.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "logo": { "@type": "ImageObject", "url": "https://www.floxant.de/logo_v10.png" } },
     "datePublished": "2026-03-01",
@@ -34,14 +34,14 @@ export default async function Article() {
   };
   return (
     <main className="min-h-screen bg-background">
-      <Breadcrumbs lang="de" items={[{ label: "Ratgeber", href: `/ratgeber` }, { label: "Reinigung nach Umzug: Tipps vom Profi" }]} />
+      <Breadcrumbs lang="de" items={[{ label: "Ratgeber", href: `/ratgeber` }, { label: "Reinigung nach Umzug" }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <section className="pt-8 pb-12 px-6 bg-gradient-to-b from-muted/20 to-background">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <span className="text-sm font-medium text-primary">FLOXANT Ratgeber</span>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">Reinigung nach Umzug: Tipps vom Profi</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Die Endreinigung ist entscheidend für eine problemlose Wohnungsübergabe. So machen Sie es richtig.</p>
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">Reinigung nach Umzug: was vor der Übergabe wichtig ist</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Küche, Bad, Böden, Fenster und Nebenräume fallen bei der Übergabe schnell auf. Gute Vorbereitung spart Rückfragen.</p>
         </div>
       </section>
       <section className="py-16 px-6">
@@ -51,8 +51,8 @@ export default async function Article() {
             <p className="text-muted-foreground leading-relaxed">Alle Räume saugen und wischen, Küche und Bad gründlich reinigen, Fenster putzen, Heizkörper abwischen, Einbauschränke auswischen. Der Standard ist „besenrein" – doch oft wird mehr erwartet.</p>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Professionelle Reinigung beauftragen</h2>
-            <p className="text-muted-foreground leading-relaxed">Eine professionelle Endreinigung hängt stark von Fläche, Zustand, Küche, Bad, Fenstern und Termin ab. Der Vorteil liegt nicht in einer pauschalen Zusage, sondern in klarer Vorbereitung, nachvollziehbarer Reinigung und besserer Abstimmung vor der Übergabe. FLOXANT bietet Reinigung je nach Auftrag auch als Kombi-Service zum Umzug an.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Reinigung beauftragen</h2>
+            <p className="text-muted-foreground leading-relaxed">Eine Endreinigung hängt stark von Fläche, Zustand, Küche, Bad, Fenstern und Termin ab. Der Vorteil liegt nicht in einer pauschalen Zusage, sondern in klarer Vorbereitung, nachvollziehbarer Reinigung und besserer Abstimmung vor der Übergabe. FLOXANT bietet Reinigung je nach Auftrag auch als Kombi-Service zum Umzug an.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Typische Stolperfallen</h2>

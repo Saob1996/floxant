@@ -63,7 +63,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
       title: t(am?.useful?.insurance?.title, "Haftung und sensible Werte einordnen"),
       desc: t(
         am?.useful?.insurance?.desc,
-        "Bei hochwertigem Inventar, Technik oder Spezialmöbeln sollte die Absicherung früh angesprochen werden.",
+        "Bei wertvollem Inventar, Technik oder Spezialmöbeln sollte die Absicherung früh angesprochen werden.",
       ),
     },
   ];

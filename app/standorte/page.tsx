@@ -48,8 +48,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const faqItems = [
   {
-    q: "Wo liegt der operative Kern von FLOXANT?",
-    a: "Der operative Kern liegt in Regensburg. Von dort aus prueft FLOXANT Anfragen in Bayern und passende Einsaetze im erweiterten Gebiet nach Strecke, Termin und Kapazitaet.",
+    q: "Wo ist FLOXANT vor Ort am staerksten?",
+    a: "Die staerkste Basis liegt in Regensburg. Von dort aus prueft FLOXANT Anfragen in Bayern und passende Einsaetze im erweiterten Gebiet nach Strecke, Termin und Kapazitaet.",
   },
   {
     q: "Heisst jede Stadt auf dieser Seite, dass jeder Einsatz automatisch zugesagt ist?",
@@ -64,19 +64,19 @@ const faqItems = [
 const regionalSignalCards = [
   {
     title: "Regensburg als Standortsignal",
-    text: "Adresse, Kontaktwege und direkter Buchungsweg geben Google Maps, Google Search und Kunden einen klaren lokalen Anker.",
+    text: "Adresse, Telefonnummer, WhatsApp und Buchungsweg zeigen sofort, dass FLOXANT wirklich vor Ort erreichbar ist.",
     href: company.contactUrl,
     cta: "Kontakt ansehen",
   },
   {
     title: "Bayern als Einsatzgebiet",
-    text: "Die Standortseite verbindet Staedte, Regionen und Servicepfade logisch, ohne Suchintentionen zu vermischen oder Thin Content zu erzeugen.",
+    text: "Die Standortseite zeigt Staedte und Regionen so, dass Kunden schnell sehen, ob ihr Ort sinnvoll angefragt werden kann.",
     href: "/service-area-bayern",
     cta: "Bayern-Seite oeffnen",
   },
   {
     title: "Direkter Buchungsweg",
-    text: "Fuer Maps, Empfehlungen und spontane Anfragen ist /buchung der sauberste und staerkste Conversion-Pfad.",
+    text: "Wer schon weiss, worum es geht, soll ohne Umwege Anfrage, Fotos, Termin und Rueckrufwunsch senden koennen.",
     href: company.bookingUrl,
     cta: "Buchung starten",
   },
@@ -84,16 +84,16 @@ const regionalSignalCards = [
 
 const businessModelCards = [
   {
-    title: "Direktpfad statt Lead-Boerse",
-    text: "FLOXANT fuehrt Standortsignal, Rechner und Buchung auf denselben klaren Anfrageweg. Das macht das Geschaeftsmodell fuer Kunden sofort verstaendlich.",
+    title: "Direkt an FLOXANT statt ueber Umwege",
+    text: "Kunden landen nicht in einer anonymen Weiterleitung. Die Anfrage kommt bei FLOXANT an und kann sauber geprueft werden.",
   },
   {
-    title: "Regensburg fuehrt, Bayern skaliert",
-    text: "Der lokale Kern bleibt sichtbar, waehrend Bayern ueber echte Marktpfade, Bezirke und Service-Kombinationen erweitert wird.",
+    title: "Regensburg bleibt die Basis",
+    text: "Von Regensburg aus pruefen wir, welche Einsaetze in Bayern nach Strecke, Umfang und Termin sinnvoll machbar sind.",
   },
   {
-    title: "Jeder Pfad endet in Conversion",
-    text: "Standorte sollen nicht nur ranken, sondern in Buchung, Kontakt, WhatsApp oder Vorpruefung weiterleiten.",
+    title: "Jede Seite fuehrt zum naechsten Schritt",
+    text: "Wer den passenden Ort gefunden hat, kommt direkt zu Buchung, Kontakt, WhatsApp oder einer kurzen Vorpruefung.",
   },
 ];
 
@@ -101,7 +101,7 @@ const supportingLinks = [
   {
     title: "Direkt in die Buchung wechseln",
     href: "/buchung",
-    text: "Wenn Ort und Leistung schon klar sind und der Standortpfad direkt in Conversion übergehen soll.",
+    text: "Wenn Ort und Leistung schon klar sind und die Anfrage direkt an FLOXANT gehen soll.",
   },
   {
     title: "Erst den Rechner nutzen",
@@ -150,7 +150,7 @@ export default function StandortePage() {
       buildFaqJsonLd(faqItems),
       {
         "@type": "ItemList",
-        name: "FLOXANT Maps-Service-Suchintentionen",
+        name: "FLOXANT Servicewege fuer regionale Anfragen",
         description:
           "Direkte Servicepfade fuer Maps-Suchen wie Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung und Bueroumzug.",
         itemListElement: BAVARIA_MAPS_SERVICE_INTENTS.map((intent, index) => ({
@@ -247,7 +247,7 @@ export default function StandortePage() {
                     className="rounded-[1.45rem] border border-slate-200 bg-white/92 p-4 shadow-sm shadow-slate-950/5"
                   >
                     <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                      Geschaeftsmodell
+                      So laeuft es
                     </div>
                     <h2 className="mt-2 text-base font-semibold text-slate-950">{item.title}</h2>
                     <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
@@ -265,7 +265,7 @@ export default function StandortePage() {
                 },
                 {
                   icon: Sparkles,
-                  title: "Klare Suchintention",
+                  title: "Klare Auswahl",
                   text: "Diese Seite verbindet Staedte, Leistungen und direkte Anfragewege ohne unnoetiges Durcheinander.",
                 },
                 {
@@ -376,15 +376,15 @@ export default function StandortePage() {
         <div className="mx-auto mb-4 max-w-6xl">
           <div className="rounded-[1.8rem] border border-blue-100 bg-white p-6 shadow-sm shadow-slate-950/5">
             <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-              Google Maps Service-Intentionen
+                  Haeufig gesuchte Leistungen
             </div>
             <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-slate-950">
-              Wenn Kunden nur den Service suchen, soll der richtige FLOXANT-Pfad sofort passen
+              Wenn Kunden nur den Service suchen, soll der richtige FLOXANT-Bereich sofort passen
             </h2>
             <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-600">
-              Diese Matrix trennt die wichtigsten Maps-Suchen sauber: Umzug, Reinigung,
+              Diese Uebersicht trennt die wichtigsten Anfragen sauber: Umzug, Reinigung,
               Entruempelung, Entsorgung, Lagerung, Bueroumzug und Gewerbereinigung bekommen
-              eindeutige Einstiege statt gemischter Signale.
+              eindeutige Einstiege statt langer Suche.
             </p>
             <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {BAVARIA_MAPS_SERVICE_INTENTS.map((intent) => (
@@ -452,11 +452,11 @@ export default function StandortePage() {
               Regensburg Nahraum
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Stadtnahe Orte, die das lokale Maps-Signal verdichten
+              Stadtnahe Orte rund um Regensburg
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Der Kern bleibt Regensburg. Diese umliegenden Orte helfen, lokale Suchanfragen
-              rund um Stadt, Landkreis und direkte Einsatzkorridore sichtbar sauber zu fuehren.
+              Der Kern bleibt Regensburg. Diese umliegenden Orte helfen Kunden aus Stadt,
+              Landkreis und nahen Einsatzkorridoren, schneller den passenden Einstieg zu finden.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -517,11 +517,11 @@ export default function StandortePage() {
               Metropolpfade
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Stadtteile und urbane Nachfragepfade mit eigener Signalwirkung
+              Stadtteile und groessere Orte mit eigenem Bedarf
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Diese Bezirksseiten helfen bei klaren Suchintentionen in dichten Stadtlagen und
-              staerken die lokale Relevanz ueber die grossen Bayern-Hubs hinaus.
+              Diese Bezirksseiten helfen, Anfragen in dichten Stadtlagen genauer einzuordnen,
+              statt jede Anfrage ueber eine allgemeine Bayern-Seite laufen zu lassen.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">

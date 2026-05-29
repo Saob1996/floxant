@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/wann-lohnt-sich-umzugsfirma',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Wann eine Umzugsfirma sinnvoll ist",
   });
 }
 export default async function Article() {
@@ -41,18 +41,18 @@ export default async function Article() {
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <span className="text-sm font-medium text-primary">FLOXANT Ratgeber</span>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">Wann lohnt sich eine Umzugsfirma?</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Selber machen oder Profis beauftragen? Die Antwort hängt von mehreren Faktoren ab.</p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Selber machen oder Hilfe beauftragen? Die Antwort hängt von mehreren Faktoren ab.</p>
         </div>
       </section>
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Zeitfaktor</h2>
-            <p className="text-muted-foreground leading-relaxed">Ein Umzug mit Freunden dauert oft doppelt so pageLocale wie mit Profis. Die gesparte Arbeitszeit übersteigt häufig die Kosten der Umzugsfirma.</p>
+            <p className="text-muted-foreground leading-relaxed">Ein Umzug mit Freunden dauert oft länger als gedacht. Entscheidend sind Volumen, Etage, Laufweg, Fahrzeuggröße, Termin und wer am Ende wirklich verfügbar ist.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Schadensrisiko</h2>
-            <p className="text-muted-foreground leading-relaxed">Ohne Erfahrung passieren Schäden an Möbeln, Wänden und Böden. Eine professionelle Umzugsfirma ist versichert – bei Privatumzügen zahlen Sie Schäden aus eigener Tasche.</p>
+            <p className="text-muted-foreground leading-relaxed">Ohne passende Ausrüstung passieren schnell Schäden an Möbeln, Wänden und Böden. Klären Sie vorab, wer trägt, wer fährt, wie geschützt wird und welche Haftung im Schadenfall gilt.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Fazit</h2>

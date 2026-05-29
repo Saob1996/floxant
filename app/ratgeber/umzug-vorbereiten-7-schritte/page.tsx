@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-vorbereiten-7-schritte',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Umzug in 7 Schritten vorbereiten",
   });
 }
 export default async function Article() {
@@ -26,7 +26,7 @@ export default async function Article() {
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Umzug vorbereiten in 7 Schritten",
-    "description": "7 einfache Schritte für die perfekte Umzugsvorbereitung. Planung, Packen, Transport.",
+    "description": "7 einfache Schritte für eine ruhige Umzugsvorbereitung. Planung, Packen, Transport.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "logo": { "@type": "ImageObject", "url": "https://www.floxant.de/logo_v10.png" } },
     "datePublished": "2026-03-01",

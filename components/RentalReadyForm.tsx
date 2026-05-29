@@ -60,7 +60,7 @@ const serviceOptions = [
   "Übergabeakte",
   "Schlüsselkoordination",
   "Mieterwechsel-Service",
-  "Premium/Diskret",
+  "Diskrete Abstimmung",
 ];
 
 const statusOptions = [

@@ -68,7 +68,7 @@ const addonOptions = [
   "Übergabeakte",
   "Zugang / Parken",
   "Leerfahrt/Rückfahrt",
-  "Premium/Rückruf",
+  "Diskreter Rückruf",
 ];
 
 const previousSourceOptions = [
@@ -93,7 +93,7 @@ const damageDefaults = {
     urgency: "Morgen",
     situation: "move_kipped",
     openItems: ["Transport", "Tragen", "Möbel / Kartons", "Fahrzeugbedarf", "Fotos vorhanden"],
-    addons: ["Zugang / Parken", "Leerfahrt/Rückfahrt", "Premium/Rückruf"],
+    addons: ["Zugang / Parken", "Leerfahrt/Rückfahrt", "Diskreter Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, mein Umzug läuft nicht wie geplant. Ort/Strecke: [Ort], Deadline: [Datum]. Fotos und Umfang kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
@@ -120,7 +120,7 @@ const damageDefaults = {
     urgency: "Morgen",
     situation: "vehicle_too_small",
     openItems: ["Transport", "Möbel / Kartons", "Fahrzeugbedarf", "Rückfahrt / Leerfahrt", "Fotos vorhanden"],
-    addons: ["Leerfahrt/Rückfahrt", "Premium/Rückruf"],
+    addons: ["Leerfahrt/Rückfahrt", "Diskreter Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, ich habe kurzfristig ein Transportproblem. Start/Ziel: [Ort], Deadline: [Datum]. Umfang und Fotos kann ich senden.",
   },
@@ -138,7 +138,7 @@ const damageDefaults = {
     urgency: "Morgen",
     situation: "cleaning_not_ready",
     openItems: ["Reinigung", "Bad / Küche / Böden", "Fotos vorhanden", "Budget vorhanden"],
-    addons: ["Endreinigung", "Premium/Rückruf"],
+    addons: ["Endreinigung", "Diskreter Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Düsseldorf. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
@@ -147,7 +147,7 @@ const damageDefaults = {
     urgency: "Morgen",
     situation: "clearance_open",
     openItems: ["Sperrmüll / Entsorgung", "Möbel / Kartons", "Fotos vorhanden", "Budget vorhanden"],
-    addons: ["Entsorgung", "Premium/Rückruf"],
+    addons: ["Entsorgung", "Diskreter Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Entsorgung in Düsseldorf. Umfang, Zugang, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
@@ -156,7 +156,7 @@ const damageDefaults = {
     urgency: "Morgen",
     situation: "cleaning_not_ready",
     openItems: ["Reinigung", "Bad / Küche / Böden", "Fotos vorhanden"],
-    addons: ["Endreinigung", "Premium/Rückruf"],
+    addons: ["Endreinigung", "Diskreter Rückruf"],
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Reinigung für eine möblierte Wohnung / ein Apartment in Düsseldorf. Termin, Fotos und Objektangaben kann ich senden.",
   },

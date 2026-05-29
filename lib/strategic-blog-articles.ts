@@ -248,7 +248,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Wie FLOXANT den Service versteht",
         paragraphs: [
           "FLOXANT setzt genau an dieser Schnittstelle an: nicht nur einen Schlüssel weitergeben, sondern die Übergabesituation so vorbereiten, dass wichtige Punkte sichtbar bleiben. Nach Vereinbarung kann FLOXANT vor Ort sein, Fotos erstellen, Schlüssel übergeben und Rückmeldungen strukturiert weitergeben.",
-          "Das ersetzt keine rechtliche Prüfung und keine Entscheidung des Vermieters. Es schafft aber operative Klarheit in einem Moment, in dem viele Kunden nicht selbst anwesend sein können.",
+          "Das ersetzt keine rechtliche Prüfung und keine Entscheidung des Vermieters. Es schafft aber praktische Klarheit in einem Moment, in dem viele Kunden nicht selbst anwesend sein können.",
         ],
       },
       {
@@ -556,7 +556,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Wie FLOXANT sichtbare Risiken einordnet",
         paragraphs: [
           "FLOXANT kann nach Absprache prüfen, welche Punkte vor dem Übergabetermin noch auffallen: sichtbare Verschmutzung, Reste, offene Räume, fehlende Ordnung oder Bereiche, die fotografisch dokumentiert werden sollten.",
-          "Die Einschätzung bleibt praktisch und ehrlich. FLOXANT kann Hinweise geben, was operativ sinnvoll ist, ersetzt aber keine rechtliche Beratung und keine Entscheidung des Vermieters.",
+          "Die Einschätzung bleibt praktisch und ehrlich. FLOXANT kann Hinweise geben, was sinnvoll ist, ersetzt aber keine rechtliche Beratung und keine Entscheidung des Vermieters.",
         ],
       },
       {
@@ -589,7 +589,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Was vorab geklärt werden muss",
         paragraphs: [
-          "Je näher der Vermietertermin rückt, desto wichtiger werden klare Angaben. Eine ehrliche Lagebeschreibung ist besser als ein künstlich schöner erster Eindruck.",
+          "Je näher der Vermietertermin rückt, desto wichtiger werden klare Angaben. Eine ehrliche Lagebeschreibung ist besser als ein geschönter erster Eindruck.",
         ],
         bullets: sharedClarification,
       },
@@ -624,7 +624,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Ist das eine rechtliche Beratung?",
-        a: "Nein. FLOXANT arbeitet operativ und dokumentierend. Mietrechtliche Fragen sollten bei Bedarf separat geklärt werden.",
+        a: "Nein. FLOXANT arbeitet praktisch und dokumentierend. Mietrechtliche Fragen sollten bei Bedarf separat geklärt werden.",
       },
       {
         q: "Wann sollte ich den Service anfragen?",
@@ -694,7 +694,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Warum ein Check kein Schönreden ist",
         paragraphs: [
           "Ein guter Übergabe-Check sagt nicht einfach, dass alles gut ist. Er macht sichtbar, was noch offen sein könnte. Das ist wirtschaftlich sinnvoll, weil Nacharbeit vor dem Termin meist kontrollierbarer ist als Diskussion während der Übergabe.",
-          "FLOXANT bewertet nicht mietrechtlich. Der Check ist eine operative Einschätzung: Was fällt sichtbar auf, was sollte fotografiert werden, wo wäre Reinigung oder Rest-Entrümpelung sinnvoll?",
+          "FLOXANT bewertet nicht mietrechtlich. Der Check ist eine praktische Einschätzung: Was fällt sichtbar auf, was sollte fotografiert werden, wo wäre Reinigung oder Rest-Entrümpelung sinnvoll?",
         ],
       },
       {
@@ -760,7 +760,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     faqItems: [
       {
         q: "Ist der Übergabe-Check eine Wohnungsabnahme?",
-        a: "Nein. Der Check ist eine operative Sichtprüfung und Vorbereitung. Die eigentliche Abnahme erfolgt durch Vermieter, Hausverwaltung oder die vereinbarten Parteien.",
+        a: "Nein. Der Check ist eine Sichtprüfung und Vorbereitung. Die eigentliche Abnahme erfolgt durch Vermieter, Hausverwaltung oder die vereinbarten Parteien.",
       },
       {
         q: "Kann FLOXANT nach dem Check direkt reinigen?",
@@ -982,7 +982,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Warum normale Schnellangebote riskant sein können",
         paragraphs: [
           "Schnellangebote haben ihren Platz, wenn der Fall einfach und sauber beschrieben ist. Riskant werden sie, wenn komplexe Umzüge wie einfache Transporte behandelt werden. Dann wird aus dem gewünschten Schnäppchen ein unklarer Auftrag.",
-          "Der Kunde sucht zunächst einen Preis, aber kauft am Ende Verantwortungsübernahme. Genau deshalb ist eine realistische Vorprüfung wirtschaftlich oft wertvoller als ein künstlich niedriger Einstiegspreis.",
+          "Der Kunde sucht zunächst einen Preis, aber kauft am Ende Verantwortungsübernahme. Genau deshalb ist eine realistische Vorprüfung wirtschaftlich oft wertvoller als ein unrealistisch niedriger Einstiegspreis.",
         ],
       },
       {
@@ -1022,7 +1022,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Was vorab geklärt werden muss",
         paragraphs: [
-          "Ein realistischer Check braucht keine perfekte Vorbereitung, aber ehrliche Daten. Fotos sind oft stärker als lange Beschreibungen, weil sie Volumen und Zugang schneller sichtbar machen.",
+          "Ein realistischer Check braucht keine vollständige Vorbereitung, aber ehrliche Daten. Fotos sind oft stärker als lange Beschreibungen, weil sie Volumen und Zugang schneller sichtbar machen.",
         ],
         bullets: sharedClarification,
       },
@@ -1069,7 +1069,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Für welche Regionen gilt der Check?",
-        a: "FLOXANT arbeitet mit operativem Kern in Regensburg und passenden Einsätzen in Bayern, soweit Strecke, Kapazität und Auftrag sinnvoll zusammenpassen.",
+        a: "FLOXANT arbeitet von Regensburg aus und prüft passende Einsätze in Bayern, soweit Strecke, Kapazität und Auftrag sinnvoll zusammenpassen.",
       },
     ],
   },
@@ -1198,7 +1198,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Für welche Region ist FLOXANT passend?",
-        a: "FLOXANT arbeitet mit operativem Kern in Regensburg und passenden Einsätzen in Bayern, wenn Strecke, Kapazität und Umfang sinnvoll zusammenpassen.",
+        a: "FLOXANT arbeitet von Regensburg aus und prüft passende Einsätze in Bayern, wenn Strecke, Kapazität und Umfang sinnvoll zusammenpassen.",
       },
     ],
   },
@@ -1254,7 +1254,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wie FLOXANT kalkuliert",
         paragraphs: [
-          "FLOXANT arbeitet mit Vorprüfung statt künstlich niedriger Einstiegspreise. Umfang, Zugang, Strecke, Zusatzleistungen, Terminlage und Übergabeanforderungen werden sichtbar gemacht, bevor ein Auftrag verbindlich geplant wird.",
+          "FLOXANT arbeitet mit Vorprüfung statt unrealistisch niedriger Einstiegspreise. Umfang, Zugang, Strecke, Zusatzleistungen, Terminlage und Übergabeanforderungen werden sichtbar gemacht, bevor ein Auftrag verbindlich geplant wird.",
           "Das ist nicht immer der schnellste Weg zur niedrigsten Zahl. Es ist aber der bessere Weg zu einer belastbaren Entscheidung.",
         ],
       },
@@ -1294,7 +1294,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein billiges Umzugsangebot kann gut sein, wenn es sauber geprüft ist. Es wird riskant, wenn es zentrale Faktoren ausblendet. FLOXANT positioniert sich nicht über künstliche Lockpreise, sondern über realistische Vorprüfung. Das hilft Kunden, den Auftrag wirtschaftlich und organisatorisch besser zu verstehen.",
+          "Ein billiges Umzugsangebot kann gut sein, wenn es sauber geprüft ist. Es wird riskant, wenn es zentrale Faktoren ausblendet. FLOXANT positioniert sich nicht über Lockpreise, sondern über realistische Vorprüfung. Das hilft Kunden, den Auftrag wirtschaftlich und organisatorisch besser zu verstehen.",
         ],
       },
     ],
@@ -1423,7 +1423,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Eine Wohnung übergabebereit zu machen bedeutet mehr als Putzen. Entscheidend sind Restgegenstände, Nebenflächen, Schlüssel, Fotos, Zählerstände und eine klare Reihenfolge. FLOXANT hilft, diese Punkte in Regensburg und Bayern operativ zu sortieren. Das ist besonders stark, wenn der Termin nah ist und aus vielen kleinen offenen Aufgaben ein großes Risiko wird.",
+          "Eine Wohnung übergabebereit zu machen bedeutet mehr als Putzen. Entscheidend sind Restgegenstände, Nebenflächen, Schlüssel, Fotos, Zählerstände und eine klare Reihenfolge. FLOXANT hilft, diese Punkte in Regensburg und Bayern praktisch zu sortieren. Das ist besonders stark, wenn der Termin nah ist und aus vielen kleinen offenen Aufgaben ein großes Risiko wird.",
         ],
       },
     ],
@@ -1675,7 +1675,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Was FLOXANT übernehmen kann",
         paragraphs: [
-          "Der konkrete Umfang hängt von Menge, Material, Zugang und Entsorgbarkeit ab. FLOXANT kann die operativen Schritte strukturieren, die eine Wohnungsübergabe häufig blockieren.",
+          "Der konkrete Umfang hängt von Menge, Material, Zugang und Entsorgbarkeit ab. FLOXANT kann die Schritte strukturieren, die eine Wohnungsübergabe häufig blockieren.",
         ],
         bullets: [
           "Räumung geeigneter Restgegenstände nach Prüfung",
@@ -1798,7 +1798,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Wie FLOXANT den Remote-Abschluss strukturiert",
         paragraphs: [
           "FLOXANT prüft zuerst Zugang, Schlüssel, Fotos, Zustand, Restmengen, Termin und gewünschten Abschluss. Danach wird entschieden, welche Schritte realistisch sind: Sichtprüfung, Reinigung, Rest-Entrümpelung, Dokumentation oder Schlüsselübergabe.",
-          "Das ersetzt keine rechtliche Vertretung und keine Garantie auf Abnahme. Es schafft aber eine operative Lösung für Kunden, die nicht mehr selbst vor Ort sein können.",
+          "Das ersetzt keine rechtliche Vertretung und keine Garantie auf Abnahme. Es schafft aber eine praktische Lösung für Kunden, die nicht mehr selbst vor Ort sein können.",
         ],
       },
       {
@@ -1844,7 +1844,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     highlightTitle: "Wenn die Wohnung noch offen ist, aber Sie nicht mehr da sind",
     highlightPoints: [
       "Remote heißt: Zugang, Fotos und Zuständigkeit müssen besonders sauber geklärt werden.",
-      "FLOXANT kann Restarbeiten und Übergabepunkte operativ bündeln.",
+      "FLOXANT kann Restarbeiten und Übergabepunkte bündeln.",
       "Der Service hilft, zusätzliche Fahrten und improvisierte Lösungen zu vermeiden.",
     ],
     ctas: [
@@ -1980,7 +1980,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein Seniorenumzug für Angehörige ist ein Übergang mit praktischer und emotionaler Last. FLOXANT kann helfen, Transport, Entrümpelung, Reinigung und Übergabevorbereitung realistisch zu bündeln. Das ersetzt keine familiären Entscheidungen, nimmt aber operative Aufgaben aus dem Druck. Besonders hilfreich ist das, wenn Angehörige wenig Zeit haben oder nicht vor Ort sind.",
+          "Ein Seniorenumzug für Angehörige ist ein Übergang mit praktischer und emotionaler Last. FLOXANT kann helfen, Transport, Entrümpelung, Reinigung und Übergabevorbereitung realistisch zu bündeln. Das ersetzt keine familiären Entscheidungen, nimmt aber konkrete Aufgaben aus dem Druck. Besonders hilfreich ist das, wenn Angehörige wenig Zeit haben oder nicht vor Ort sind.",
         ],
       },
     ],
@@ -2082,14 +2082,14 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
           "Trennung oder private Konfliktsituation",
           "Umzug aus beruflichen oder persönlichen Gründen ohne Aufmerksamkeit",
           "kurzfristiger Auszug mit enger Abstimmung",
-          "hochwertige Gegenstände oder Private-Client-Umfeld",
+          "wertvolle Gegenstände oder sensibler Privathaushalt",
           "Wohnungsübergabe mit möglichst wenig Reibung",
         ],
       },
       {
         title: "Was FLOXANT übernehmen kann",
         paragraphs: [
-          "Der konkrete Umfang hängt vom Fall ab. Wichtig ist, dass die Durchführung professionell bleibt und die Kommunikation auf das Nötige reduziert wird.",
+          "Der konkrete Umfang hängt vom Fall ab. Wichtig ist, dass die Durchführung sauber bleibt und die Kommunikation auf das Nötige reduziert wird.",
         ],
         bullets: [
           "sachliche Vorprüfung von Umfang, Zugang und Zeitfenster",
@@ -2109,7 +2109,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein diskreter Umzug ist kein Sondertheater, sondern professionelle Zurückhaltung. FLOXANT kann sensible Umzüge in Regensburg und Bayern ruhig planen, wenn Zugang, Zeitfenster, Kommunikation und Umfang klar sind. Der Vorteil liegt in weniger Reibung, weniger unnötigen Fragen und mehr Kontrolle über den Ablauf. Besonders sinnvoll ist das in privaten Belastungssituationen oder bei vertraulichen Umzügen.",
+          "Ein diskreter Umzug ist kein Sondertheater, sondern ruhige Zurückhaltung. FLOXANT kann sensible Umzüge in Regensburg und Bayern ruhig planen, wenn Zugang, Zeitfenster, Kommunikation und Umfang klar sind. Der Vorteil liegt in weniger Reibung, weniger unnötigen Fragen und mehr Kontrolle über den Ablauf. Besonders sinnvoll ist das in privaten Belastungssituationen oder bei vertraulichen Umzügen.",
         ],
       },
     ],
@@ -2171,7 +2171,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Eine Nachlassräumung ist sinnvoll professionell zu begleiten, wenn emotionale Entscheidungen, Räumung, Entsorgung, Reinigung und Übergabe zusammenkommen. FLOXANT kann in Regensburg und Bayern helfen, indem praktische Schritte respektvoll, klar und nach Absprache umgesetzt werden. Besonders passend ist das für Angehörige, die eine Wohnung nicht allein räumen und vorbereiten können.",
+          "Eine Nachlassräumung ist sinnvoll zu begleiten, wenn emotionale Entscheidungen, Räumung, Entsorgung, Reinigung und Übergabe zusammenkommen. FLOXANT kann in Regensburg und Bayern helfen, indem praktische Schritte respektvoll, klar und nach Absprache umgesetzt werden. Besonders passend ist das für Angehörige, die eine Wohnung nicht allein räumen und vorbereiten können.",
         ],
       },
       {
@@ -2184,7 +2184,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Das Risiko liegt zwischen Gefühl und Frist",
         paragraphs: [
-          "Nachlasssituationen haben selten den perfekten Zeitpunkt. Fristen laufen, Miete läuft weiter, Angehörige wohnen vielleicht weiter weg und die emotionale Energie ist begrenzt.",
+          "Nachlasssituationen kommen selten zum passenden Zeitpunkt. Fristen laufen, Miete läuft weiter, Angehörige wohnen vielleicht weiter weg und die emotionale Energie ist begrenzt.",
           "Das Risiko entsteht nicht durch eine einzelne Aufgabe, sondern durch die Schnittstellen dazwischen: Sortierung, Räumung, Entsorgung, Reinigung, Fotos, Schlüssel und Übergabe müssen in eine sinnvolle Reihenfolge kommen.",
         ],
       },
@@ -2368,7 +2368,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein Berufsumzug mit wenig Zeit ist ein Koordinationsproblem. Transport allein löst nicht automatisch Reinigung, Schlüssel, Restmengen und Übergabe. FLOXANT hilft Kunden in Regensburg und Bayern, die alte Wohnung kontrollierter abzuschließen, während der neue berufliche Abschnitt beginnt. Das schafft keine Wunder, aber deutlich mehr operative Klarheit.",
+          "Ein Berufsumzug mit wenig Zeit ist ein Koordinationsproblem. Transport allein löst nicht automatisch Reinigung, Schlüssel, Restmengen und Übergabe. FLOXANT hilft Kunden in Regensburg und Bayern, die alte Wohnung kontrollierter abzuschließen, während der neue berufliche Abschnitt beginnt. Das schafft keine Wunder, aber deutlich mehr Klarheit.",
         ],
       },
     ],
@@ -2459,7 +2459,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Das Risiko liegt in der Schnittstelle",
         paragraphs: [
           "Mieter, Eigentümer, Nachmieter, Handwerker und Verwaltung haben oft unterschiedliche Zeitfenster. Wenn Räumung, Reinigung, Fotos und Schlüssel nicht zusammenpassen, verzögert sich der nächste Schritt.",
-          "Das Risiko entsteht nicht durch eine einzelne Aufgabe, sondern durch die Schnittstellen dazwischen. Genau dort kann ein operativer Dienstleister entlasten.",
+          "Das Risiko entsteht nicht durch eine einzelne Aufgabe, sondern durch die Schnittstellen dazwischen. Genau dort kann ein gut erreichbarer Dienstleister entlasten.",
         ],
       },
       {
@@ -2492,7 +2492,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Was FLOXANT übernehmen kann",
         paragraphs: [
-          "Der Umfang wird objektbezogen vereinbart. FLOXANT hilft besonders dort, wo mehrere kleine operative Aufgaben die Verwaltung binden.",
+          "Der Umfang wird objektbezogen vereinbart. FLOXANT hilft besonders dort, wo mehrere kleine Aufgaben die Verwaltung binden.",
         ],
         bullets: [
           "Rest-Entrümpelung geeigneter Gegenstände",
@@ -2520,7 +2520,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Zustand, Zugang und Restmengen werden sichtbar gemacht.",
       "Räumung, Reinigung und Fotos können zusammen geplant werden.",
-      "FLOXANT reduziert operative Rückfragen zwischen Auszug und Neuvermietung.",
+      "FLOXANT reduziert Rückfragen zwischen Auszug und Neuvermietung.",
     ],
     ctas: [
       { href: "/gewerbereinigung-regensburg", label: "Gewerbliche Reinigung prüfen" },
@@ -2536,7 +2536,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Übernimmt FLOXANT rechtliche Bewertungen?",
-        a: "Nein. FLOXANT unterstützt operativ und dokumentierend, ersetzt aber keine rechtliche Prüfung.",
+        a: "Nein. FLOXANT unterstützt praktisch und dokumentierend, ersetzt aber keine rechtliche Prüfung.",
       },
       {
         q: "Kann ein Kellerabteil geräumt werden?",
@@ -2578,7 +2578,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Warum der erste Eindruck operativ vorbereitet werden muss",
+        title: "Warum der erste Eindruck vorbereitet werden muss",
         paragraphs: [
           "Viele Kunden merken erst spät, dass ein Objekt nicht an der Immobilie selbst scheitert, sondern an dem Zustand, in dem es gezeigt wird. Ein guter Grundriss wirkt schlechter, wenn Kartons, alte Möbel oder ungeputzte Bereiche die Wahrnehmung blockieren.",
           "Makler brauchen deshalb nicht immer große Maßnahmen, sondern manchmal schnelle, präzise Vorbereitungen, die Räume wieder lesbar machen.",
@@ -2594,7 +2594,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Warum Makler nicht alles selbst koordinieren sollten",
         paragraphs: [
-          "Makler können viel organisieren, aber jede zusätzliche operative Aufgabe bindet Zeit und Aufmerksamkeit. Wenn separate Helfer für Räumung, Reinigung und Zugang koordiniert werden müssen, entsteht Reibung.",
+          "Makler können viel organisieren, aber jede zusätzliche Aufgabe bindet Zeit und Aufmerksamkeit. Wenn separate Helfer für Räumung, Reinigung und Zugang koordiniert werden müssen, entsteht Reibung.",
           "FLOXANT kann diese praktischen Punkte nach Absprache bündeln, damit der Makler stärker beim Vertrieb und weniger bei Restarbeiten hängt.",
         ],
       },
@@ -2602,7 +2602,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Wie FLOXANT Objekte vorbereitet",
         paragraphs: [
           "FLOXANT prüft Zustand, Zugang, Umfang, Frist und Ziel: Besichtigung, Fototermin, Übergabe oder Neuvermietung. Danach wird entschieden, ob Räumung, Reinigung, Tragen oder Dokumentation sinnvoll ist.",
-          "Der Fokus liegt nicht auf künstlicher Inszenierung, sondern auf Klarheit: Räume sollen sauberer, freier und besser einschätzbar werden.",
+          "Der Fokus liegt nicht auf Inszenierung, sondern auf Klarheit: Räume sollen sauberer, freier und besser einschätzbar werden.",
         ],
       },
       {
@@ -2649,7 +2649,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Unordnung schwächt den ersten Eindruck stärker als viele denken.",
       "Räumung und Reinigung vor Fotos oder Besichtigung schaffen Klarheit.",
-      "FLOXANT bündelt praktische Vorbereitung ohne Marketing-Theater.",
+      "FLOXANT bündelt praktische Vorbereitung ohne leere Versprechen.",
     ],
     ctas: [
       { href: "/entruempelung", label: "Objekt räumen lassen" },
@@ -2673,7 +2673,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Kann FLOXANT mit Eigentümern oder Mietern abstimmen?",
-        a: "Nach Vereinbarung kann eine operative Abstimmung erfolgen. Zuständigkeit und Freigaben müssen klar sein.",
+        a: "Nach Vereinbarung kann eine Abstimmung erfolgen. Zuständigkeit und Freigaben müssen klar sein.",
       },
       {
         q: "Gibt es Fotodokumentation?",
@@ -2731,7 +2731,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wie FLOXANT Rückgabevorbereitung versteht",
         paragraphs: [
-          "Rückgabevorbereitung bedeutet nicht automatisch Rückbau im technischen Sinn. Es bedeutet, die Fläche operativ so vorzubereiten, dass Übergabe, Reinigung oder nächste Nutzung realistischer werden.",
+          "Rückgabevorbereitung bedeutet nicht automatisch Rückbau im technischen Sinn. Es bedeutet, die Fläche so vorzubereiten, dass Übergabe, Reinigung oder nächste Nutzung realistischer werden.",
           "Nach Absprache können Transport, Rest-Entrümpelung, Reinigung, Fotodokumentation und Schlüsselthemen zusammen geplant werden. Grenzen und Zuständigkeiten werden dabei klar benannt.",
         ],
       },
@@ -2771,7 +2771,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Ein Gewerbe-Auszug ist ein operativer Übergang zwischen alter und neuer Nutzung. FLOXANT kann Unternehmen in Regensburg und Bayern helfen, Transport, Räumung, Reinigung und Rückgabevorbereitung realistischer zu koordinieren. Der Wert liegt in weniger Improvisation und klareren Zuständigkeiten. Besonders sinnvoll ist das bei Büros, Praxen, Kanzleien und Gewerbeflächen mit engem Zeitfenster.",
+          "Ein Gewerbe-Auszug ist ein Übergang zwischen alter und neuer Nutzung. FLOXANT kann Unternehmen in Regensburg und Bayern helfen, Transport, Räumung, Reinigung und Rückgabevorbereitung realistischer zu koordinieren. Der Wert liegt in weniger Improvisation und klareren Zuständigkeiten. Besonders sinnvoll ist das bei Büros, Praxen, Kanzleien und Gewerbeflächen mit engem Zeitfenster.",
         ],
       },
     ],
@@ -2867,7 +2867,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
         title: "Wie FLOXANT in Regensburg koordiniert",
         paragraphs: [
           "FLOXANT prüft Volumen, Zugang, Etage, Laufweg, Parkmöglichkeit, Restmengen, Reinigung und Übergabeanforderungen. Danach kann der Auftrag sinnvoll eingeordnet werden: nur Umzug, nur Reinigung, Entrümpelung oder eine kombinierte Lösung.",
-          "Der operative Kern liegt in Regensburg. Für passende Einsätze in Bayern wird geprüft, ob Strecke, Umfang und Kapazität zusammenpassen.",
+          "Der feste Ausgangspunkt liegt in Regensburg. Für passende Einsätze in Bayern wird geprüft, ob Strecke, Umfang und Kapazität zusammenpassen.",
         ],
       },
       {
@@ -3105,7 +3105,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Entrümpelung und Endreinigung sollten in Bayern zusammen geplant werden, wenn eine Wohnung nach Auszug nicht nur leer, sondern übergabebereit werden muss. FLOXANT kann mit operativem Kern in Regensburg passende Einsätze in Bayern prüfen und je nach Auftrag Räumung, Reinigung, Fotos, Schlüssel und Übergabevorbereitung verbinden. Besonders sinnvoll ist das bei engen Fristen, Restmengen oder Kunden, die nicht alles selbst koordinieren können.",
+          "Entrümpelung und Endreinigung sollten in Bayern zusammen geplant werden, wenn eine Wohnung nach Auszug nicht nur leer, sondern übergabebereit werden muss. FLOXANT kann von Regensburg aus passende Einsätze in Bayern prüfen und je nach Auftrag Räumung, Reinigung, Fotos, Schlüssel und Übergabevorbereitung verbinden. Besonders sinnvoll ist das bei engen Fristen, Restmengen oder Kunden, die nicht alles selbst koordinieren können.",
         ],
       },
       {
@@ -3132,7 +3132,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wie FLOXANT in Bayern unterstützt",
         paragraphs: [
-          "FLOXANT prüft, ob ein Einsatz in Bayern operativ sinnvoll ist und welche Leistung tatsächlich gebraucht wird. Je nach Auftrag können Rest-Entrümpelung, Endreinigung, Übergabe-Check, Fotodokumentation und Schlüsselthemen zusammen betrachtet werden.",
+          "FLOXANT prüft, ob ein Einsatz in Bayern sinnvoll ist und welche Leistung tatsächlich gebraucht wird. Je nach Auftrag können Rest-Entrümpelung, Endreinigung, Übergabe-Check, Fotodokumentation und Schlüsselthemen zusammen betrachtet werden.",
           "Der Fokus liegt auf realistischem Abschluss: Was muss passieren, damit die Wohnung nicht nur bearbeitet, sondern besser übergabefähig wird?",
         ],
       },
@@ -3172,7 +3172,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Zusammenfassung",
         paragraphs: [
-          "Entrümpelung und Endreinigung in Bayern sollten dort kombiniert gedacht werden, wo eine Wohnung wirklich abschließbar werden muss. FLOXANT prüft passende Einsätze aus Regensburg heraus realistisch nach Umfang, Strecke und Termin. Der Nutzen liegt in weniger Schnittstellen zwischen Räumung, Reinigung und Übergabe. So entsteht keine künstliche Garantie, aber ein deutlich klarerer Abschlussprozess.",
+          "Entrümpelung und Endreinigung in Bayern sollten dort kombiniert gedacht werden, wo eine Wohnung wirklich abschließbar werden muss. FLOXANT prüft passende Einsätze aus Regensburg heraus realistisch nach Umfang, Strecke und Termin. Der Nutzen liegt in weniger Schnittstellen zwischen Räumung, Reinigung und Übergabe. So entsteht keine falsche Garantie, aber ein deutlich klarerer Abschlussprozess.",
         ],
       },
     ],

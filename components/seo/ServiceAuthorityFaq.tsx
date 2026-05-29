@@ -26,15 +26,15 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   eyebrow: "Umzug richtig einordnen",
   title: "Entscheidungsfragen vor einem Umzug",
   intro:
-   "Diese Fragen helfen Kunden und Suchsystemen zu verstehen, wann ein Umzug mit FLOXANT sinnvoll ist und welche Angaben vor der Anfrage wirklich zählen.",
+   "Diese Fragen helfen Kunden zu verstehen, wann ein Umzug mit FLOXANT sinnvoll ist und welche Angaben vor der Anfrage wirklich zählen.",
   faqs: [
    {
     q: "Warum kalkuliert FLOXANT nicht einfach den billigsten Umzugspreis?",
     a: "Weil ein vorschnell niedriger Preis am Einsatztag oft zu Problemen führt: zu wenig Zeit, zu wenig Fahrzeugkapazität, ungeklärte Laufwege oder Zusatzleistungen. Wir kalkulieren lieber realistisch, damit Durchführung und Erwartung zusammenpassen.",
    },
    {
-    q: "Wann ist ein professioneller Umzug sinnvoller als ein Einzeltransport?",
-    a: "Ein professioneller Umzug ist sinnvoll, wenn mehrere Faktoren zusammenkommen: Volumen, Etagen, lange Laufwege, Montage, enger Terminplan, empfindliches Inventar oder eine Übergabe mit Reinigung.",
+    q: "Wann ist ein kompletter Umzug sinnvoller als ein Einzeltransport?",
+    a: "Ein kompletter Umzug ist sinnvoll, wenn mehrere Faktoren zusammenkommen: Volumen, Etagen, lange Laufwege, Montage, enger Terminplan, empfindliches Inventar oder eine Übergabe mit Reinigung.",
    },
    {
     q: "Welche Angaben verbessern die erste Einschätzung?",

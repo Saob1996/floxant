@@ -167,7 +167,7 @@ const moneySnippets: Record<string, Snippet> = {
   description:
    "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg und Bayern: Fotos senden, Preisrahmen prüfen, Angebot vergleichen und direkt anfragen.",
   cluster: "money",
- intent: "Premium-Dienstleister für Umzug, Reinigung und Entrümpelung finden",
+ intent: "Verlässlichen Dienstleister für Umzug, Reinigung und Entrümpelung finden",
  },
  "/empfehlen": {
   title: "FLOXANT empfehlen | 50 Euro Empfehlungsbonus",
@@ -298,7 +298,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/reinigung-nach-veranstaltung": {
   title: "Reinigung nach Veranstaltung & Party | FLOXANT",
   description:
-   "Reinigung nach Party, Firmenfeier, Empfang, Seminar oder Event: Böden, Sanitär, Küche, Müll, Geruch und Übergabe professionell prüfen lassen.",
+   "Reinigung nach Party, Firmenfeier, Empfang, Seminar oder Event: Böden, Sanitär, Küche, Müll, Geruch und Übergabe sauber prüfen lassen.",
   cluster: "money",
   intent: "Reinigung nach Veranstaltung, Party, Firmenfeier oder Anlass anfragen",
  },
@@ -401,11 +401,11 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Günstige Rückfahrt oder Beiladung Richtung Regensburg finden",
  },
  "/private-client-service": {
-  title: "Private Client Bayern | diskreter Premium-Service",
+  title: "Private Client Bayern | diskrete Abstimmung",
   description:
-   "Diskreter Service für hochwertige Häuser und Anwesen: Umzug, Reinigung, Räumung und Entsorgung in Bayern und Baden-Württemberg.",
+   "Diskreter Service für sensible Häuser und Anwesen: Umzug, Reinigung, Räumung und Entsorgung in Bayern und Baden-Württemberg.",
   cluster: "money",
-  intent: "Diskreten Premium-Service für hochwertige Privathaushalte finden",
+  intent: "Diskrete Hilfe für sensible Privathaushalte finden",
  },
  "/service-area-bayern": {
   title: "FLOXANT Bayern | Umzug & Reinigung ab Regensburg",
@@ -891,11 +891,11 @@ moneySnippets["/einsatzradar-regensburg"] = {
 };
 
 moneySnippets["/private-client-service"] = {
- title: "Premium Umzug & Service | diskret geplant",
+ title: "Diskreter Umzug & Service | ruhig geplant",
  description:
-  "Diskreter Premium-Service für hochwertige Kunden: Umzug, Reinigung, Übergabe und Koordination mit persönlicher Vorprüfung.",
+  "Diskreter Service für sensible Kunden: Umzug, Reinigung, Übergabe und Koordination mit persönlicher Vorprüfung.",
  cluster: "money",
- intent: "Diskreten Luxusservice für hochwertige Privathaushalte finden",
+ intent: "Diskrete Hilfe für sensible Privathaushalte finden",
 };
 
 moneySnippets["/"] = {
@@ -1237,7 +1237,7 @@ function getLocalCoverageSentence(route: string, prefix: string, city: string) {
  const citySlug = getCitySlugFromLocalRoute(route, prefix);
 
  if (citySlug === "regensburg") {
-  return "Regensburg ist der operative Kern; Angebot, Fotos, Termin und Budget werden direkt passend zur Leistung geprüft";
+  return "Regensburg ist der feste Ausgangspunkt; Angebot, Fotos, Termin und Budget werden direkt passend zur Leistung geprüft";
  }
 
  if (regensburgCoreCitySlugs.has(citySlug)) {

@@ -369,7 +369,7 @@ export default function PraxisreinigungRegensburgPage() {
               Die Seite spricht die Wörter an, mit denen Praxisinhaber suchen.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Suchende wollen keine allgemeine Gebäudereinigung. Sie suchen
+              Viele Kunden wollen keine allgemeine Gebaeudereinigung. Sie suchen
               Praxisreinigung Regensburg, Arztpraxis Reinigung, Angebot, Turnus,
               Wartebereich, Sanitär und Reinigung nach Praxisschluss.
             </p>
@@ -487,9 +487,9 @@ export default function PraxisreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für Suchende mit Angebotsabsicht.
+              Kurze Antworten fuer eine bessere Anfrage.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

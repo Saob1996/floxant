@@ -69,13 +69,13 @@ export default function SignaturServicesBlogPage() {
     date="20. April 2026"
     readTime="6 Min."
     title="FLOXANT Signatur-Services: Wann welcher Zusatzservice passt"
-    intro="Nicht jede Anfrage ist ein sauberer Standardfall. Genau dafür gibt es die FLOXANT Signatur-Services: keine künstlichen Produktideen, sondern klare Einstiege für Situationen, die Kunden schnell wiedererkennen."
+    intro="Nicht jede Anfrage ist ein sauberer Standardfall. Genau dafür gibt es die FLOXANT Signatur-Services: keine erfundenen Produktideen, sondern klare Einstiege für Situationen, die Kunden schnell wiedererkennen."
     sections={[
      {
       title: "Warum Zusatzservices klare Namen brauchen",
       paragraphs: [
        "Kunden suchen nicht immer nach dem Oberbegriff. Oft suchen sie nach dem konkreten Problem: Schlüsselübergabe, Beiladung, kurzfristiger Termin, Preisvorstellung oder Umzug mit Reinigung.",
-       "Wenn diese Situationen klar benannt sind, finden Nutzer schneller den richtigen Einstieg. Gleichzeitig versteht Google besser, welche Unterthemen zur Marke gehören.",
+       "Wenn diese Situationen klar benannt sind, finden Kunden schneller den richtigen Einstieg. Niemand muss erst raten, ob der eigene Fall gemeint ist.",
       ],
      },
      {
@@ -94,7 +94,7 @@ export default function SignaturServicesBlogPage() {
       title: "Wie Kunden den richtigen Einstieg wählen",
       paragraphs: [
        "Wer nur grob wissen will, was möglich ist, startet mit dem Rechner. Wer bereits ein Zielbudget hat, nutzt die Anfrage mit Preisrahmen. Wer konkrete Restmengen oder Übergaben hat, steigt direkt über den passenden Spezialservice ein.",
-       "So bleibt der Prozess kurz, aber nicht oberflächlich: Der richtige Einstieg sammelt genau die Daten, die später für die operative Planung zählen.",
+       "So bleibt der Prozess kurz, aber nicht oberflächlich: Der richtige Einstieg sammelt genau die Daten, die später für die Planung zählen.",
       ],
      },
     ]}

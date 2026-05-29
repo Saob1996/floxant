@@ -75,7 +75,7 @@ export default function EinsatzradarRegensburgPage() {
         description:
           "Typische Einsatzarten fuer Umzug, Reinigung, Entruempelung, Transport, Uebergabe, Rueckfahrt und Objektvorbereitung im Raum Regensburg.",
         path,
-        serviceType: "Local-SEO Einsatzarten und Servicezonen fuer FLOXANT Regensburg",
+        serviceType: "Einsatzarten und Servicezonen fuer FLOXANT Regensburg",
         areaServed: ["Regensburg", "Umgebung Regensburg", "Bayern nach Verfuegbarkeit", "Duesseldorf Reinigung und Entsorgung"],
       }),
       buildBreadcrumbJsonLd([
@@ -107,7 +107,7 @@ export default function EinsatzradarRegensburgPage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm">
               <Radar className="h-4 w-4" />
-              FLOXANT Operations Radar
+              FLOXANT Einsatzübersicht
             </div>
             <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
               FLOXANT Einsatzradar für Regensburg und Umgebung
@@ -119,7 +119,7 @@ export default function EinsatzradarRegensburgPage() {
             </p>
             <div className="mt-7 grid gap-2 text-sm font-bold text-slate-700 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                "Regensburg Core",
+                "Regensburg direkt",
                 "Umgebung ca. 200 km",
                 "Bayern nach Verfügbarkeit",
                 "Düsseldorf nur Reinigung/Entsorgung",

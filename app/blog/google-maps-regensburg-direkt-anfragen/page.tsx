@@ -12,7 +12,7 @@ import {
 const faqItems = [
   {
     q: "Warum ist ein klarer Buchungslink in Google Maps so wichtig?",
-    a: "Weil Kunden in Maps meist sehr schnell entscheiden. Wenn der nächste Schritt sofort verständlich ist, wirkt der Anbieter greifbarer, professioneller und vertrauenswürdiger.",
+    a: "Weil Kunden in Maps meist sehr schnell entscheiden. Wenn der nächste Schritt sofort verständlich ist, wirkt der Anbieter greifbarer und verlässlicher.",
   },
   {
     q: "Hilft das auch gegen unpassende Anfragen?",
@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Welche Seite ist bei FLOXANT dafür gedacht?",
-    a: "Die zentrale Seite dafür ist /buchung. Sie ist als direkter Einstieg für Google Maps, Search und lokale Empfehlungen gedacht.",
+    a: "Die zentrale Seite dafür ist /buchung. Sie ist als direkter Einstieg für Google Maps, Suche und lokale Empfehlungen gedacht.",
   },
 ];
 
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "blog/google-maps-regensburg-direkt-anfragen",
     title: "In Google Maps direkt anfragen: klarer Buchungsweg für Regensburg",
     description:
-      "Warum ein eindeutiger Buchungsweg in Google Maps für Regensburg mehr Vertrauen, bessere Klicks und passendere Anfragen schafft.",
+      "Warum ein eindeutiger Buchungsweg in Google Maps für Regensburg mehr Vertrauen und passendere Anfragen schafft.",
     keywords: [
       "Google Maps Regensburg direkt anfragen",
       "Buchungslink Google Maps Regensburg",
@@ -98,8 +98,8 @@ export default function BlogGoogleMapsRegensburgDirektAnfragenPage() {
             ],
             bullets: [
               "Service und Anfrageweg sind sofort klar",
-              "Der Einstieg wirkt professioneller als ein allgemeines Sammelformular",
-              "Maps, Search und Website senden dasselbe Signal",
+              "Der Einstieg wirkt klarer als ein allgemeines Sammelformular",
+              "Maps, Suche und Website zeigen denselben nächsten Schritt",
               "Buchung, Express, Budget und Spezialseiten bleiben logisch getrennt",
               "Kunden fühlen sich eher geführt als weitergereicht",
             ],
@@ -108,14 +108,14 @@ export default function BlogGoogleMapsRegensburgDirektAnfragenPage() {
             title: "Wie FLOXANT das für Regensburg aufbaut",
             paragraphs: [
               "FLOXANT nutzt /buchung als klaren direkten Einstieg für Regensburg, Google Maps und lokale Empfehlungen. Kontakt, Standort, B2B-Reinigung und Private Client bleiben trotzdem als eigene Wege bestehen.",
-              "Kurz gesagt: lieber gscheid sortiert als laut beworben. Genau das schafft oft die besseren Klicks und die passenderen Anfragen.",
+              "Kurz gesagt: lieber gscheid sortiert als laut beworben. Genau das schafft oft die passenderen Anfragen.",
             ],
           },
         ]}
         highlightPoints={[
           "Google Maps braucht einen klaren nächsten Schritt, nicht nur Sichtbarkeit.",
-          "Ein direkter Buchungsweg erhöht oft das Klickvertrauen.",
-          "Sauber getrennte Zielseiten helfen Kunden und Suchsystemen zugleich.",
+          "Ein direkter Buchungsweg macht den nächsten Schritt leichter.",
+          "Sauber getrennte Zielseiten helfen Kunden, schneller richtig anzufragen.",
         ]}
         ctas={[
           { href: "/buchung", label: "Direkt zur Buchung" },

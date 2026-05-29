@@ -73,7 +73,7 @@ const districtGroups = [
   {
     title: "Nahe Umgebung mit Düsseldorfer Bezug",
     areas: ["Neuss", "Ratingen", "Meerbusch", "Mettmann", "Duisburg", "Hilden", "Erkrath"],
-    text: "Anfragen aus der Umgebung werden professionell nach Ort, Objektart, Termin, Fotos, Zugang und Kapazität geprüft. FLOXANT bleibt dabei klar auf Reinigung und Düsseldorfer Entsorgung begrenzt; Umzug und Transport werden nicht als Düsseldorfer Leistung beworben.",
+    text: "Anfragen aus der Umgebung werden nach Ort, Objektart, Termin, Fotos, Zugang und Kapazität geprüft. FLOXANT bleibt dabei klar auf Reinigung und Düsseldorfer Entsorgung begrenzt; Umzug und Transport werden nicht als Düsseldorfer Leistung beworben.",
   },
 ] as const;
 
@@ -229,7 +229,7 @@ const visibleSnippetAnswers = DUESSELDORF_CLEANING_SNIPPET_ANSWERS.slice(0, 3);
 
 const faqItems = [
   {
-    q: "Welche Düsseldorfer Stadtteile sind für professionelle Reinigung relevant?",
+    q: "Welche Düsseldorfer Stadtteile sind für Reinigung relevant?",
     a: "FLOXANT prüft Reinigungsanfragen unter anderem für Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen, Derendorf, Benrath, Gerresheim und Kaiserswerth. Wichtig sind Objektart, Fläche, Zustand, Turnus und Zugang.",
   },
   {
@@ -349,7 +349,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
           Reinigungsfirma Düsseldorf
         </div>
         <h1 className="mt-6 max-w-4xl text-[clamp(2.25rem,5vw,4.9rem)] font-black leading-[0.98] tracking-normal">
-          Professionelle Reinigung in Düsseldorf, den Stadtteilen und der nahen Umgebung
+          Reinigung in Düsseldorf, den Stadtteilen und der nahen Umgebung
         </h1>
         <p className="mt-6 max-w-3xl text-base leading-8 text-slate-200">
           FLOXANT steht in Düsseldorf für klar geprüfte Reinigung statt pauschaler Versprechen. Für Büro, Hotel, Wohnung, Kanzlei, Praxis, Treppenhaus oder Gewerbefläche werden Stadtteil, Objektart, Zugang, Fotos, Fläche, Turnus, Zeitfenster und Nähe zu Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg sauber eingeordnet.
@@ -672,7 +672,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
 
       <section className="mx-auto mt-8 max-w-7xl rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
         <p className="text-sm leading-7 text-slate-700">
-          Adresse Düsseldorf: {DUESSELDORF_CLEANING.address.streetAddress}, {DUESSELDORF_CLEANING.address.postalCode} {DUESSELDORF_CLEANING.address.city}. Anfragen aus Düsseldorf und Umgebung werden nach Objektart, Stadtteil, Umfang, Fotos, Zugang, Turnus und Termin geprüft, damit Kunden eine belastbare und professionelle Rückmeldung erhalten.
+          Adresse Düsseldorf: {DUESSELDORF_CLEANING.address.streetAddress}, {DUESSELDORF_CLEANING.address.postalCode} {DUESSELDORF_CLEANING.address.city}. Anfragen aus Düsseldorf und Umgebung werden nach Objektart, Stadtteil, Umfang, Fotos, Zugang, Turnus und Termin geprüft, damit Kunden eine belastbare Rückmeldung erhalten.
         </p>
       </section>
     </main>

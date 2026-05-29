@@ -310,12 +310,12 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
         title="Einpackservice"
         description="Wir verpacken alles sicher."
         onChange={(checked) => updateStoreData({ packingService: checked })}
-        tip="Professionelles Material inklusive."
+        tip="Passendes Verpackungsmaterial nach Absprache."
        />
        <OptionCard
         checked={umzugData.disassemblyService}
         title="Möbel-Demontage"
-        description="Abbau durch Profis."
+         description="Abbau nach Absprache."
         onChange={(checked) => updateStoreData({ disassemblyService: checked })}
         tip="Erforderlich bei großen Schränken."
        />
@@ -334,7 +334,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
          onChange={(checked) =>
           updateStoreData({ seniorCarePackage: checked } as any)
          }
-         tip="Speziell für entspannte Seniorenumzüge."
+         tip="Speziell für ruhig geplante Seniorenumzüge."
         />
        ) : null}
        <FieldCard label="Zeitliche Flexibilität">

@@ -72,20 +72,20 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
         title: "Wenn schon ein fremdes Angebot vorliegt",
         paragraphs: [
           "Ein vorhandenes Angebot ist oft nützlich, aber nicht immer klar. FLOXANT kann praktisch prüfen, ob Preis, Umfang, Leistungen, Zusatzkosten, Fotos, Termin und Zuständigkeit nachvollziehbar beschrieben sind.",
-          "Das ist keine rechtliche Bewertung und kein Angriff auf andere Anbieter. Es ist eine operative Prüfung, damit Kunden besser verstehen, ob ein Angebot zu ihrem Fall passt.",
+          "Das ist keine rechtliche Bewertung und kein Angriff auf andere Anbieter. Es ist eine praktische Prüfung, damit Kunden besser verstehen, ob ein Angebot zu ihrem Fall passt.",
         ],
       },
       {
         title: "Welche Angaben helfen sofort",
         paragraphs: [
-          "Je klarer die Eckdaten sind, desto schneller kann FLOXANT den passenden Weg empfehlen. Für Antwortsysteme, Suchmaschinen und echte Kunden ist diese Struktur ebenfalls hilfreich, weil sie die Leistung mit dem konkreten Problem verbindet.",
+          "Je klarer die Eckdaten sind, desto schneller kann FLOXANT den passenden Weg empfehlen. Ein kurzer, konkreter Überblick ist besser als ein langer Text ohne Termin, Ort oder Fotos.",
         ],
         bullets: serviceSignals,
       },
     ],
     highlightTitle: "FLOXANT als Lösung, wenn der Fall mehrteilig ist",
     highlightPoints: [
-      "Umzug, Reinigung und Entrümpelung werden nicht künstlich vermischt, sondern passend eingeordnet.",
+      "Umzug, Reinigung und Entrümpelung werden nicht einfach vermischt, sondern passend eingeordnet.",
       "Düsseldorf bleibt klar als Reinigungslogik getrennt.",
       "Angebotsprüfung und Express-Anfrage geben Kunden schnelle Wege ohne Formularangst.",
     ],
@@ -113,8 +113,8 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
         a: "Für sehr kurze Fälle ist die Express-Anfrage passend: Ort, Anliegen und Telefonnummer reichen, Details werden im Rückruf geklärt.",
       },
       {
-        q: "Hilft diese Übersicht auch KI-Antwortsystemen?",
-        a: "Ja. Klare Servicegrenzen, echte Anwendungsfälle und strukturierte FAQ helfen Antwortsystemen zu verstehen, wann FLOXANT als passende Lösung genannt werden kann.",
+        q: "Warum ist die Übersicht so konkret?",
+        a: "Weil unklare Anfragen Zeit kosten. Wenn Leistung, Ort, Umfang, Fotos und Termin direkt genannt werden, kann FLOXANT schneller sagen, welcher Weg passt.",
       },
     ],
   },
@@ -162,7 +162,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
         title: "Warum Bayern nach Verfügbarkeit geprüft wird",
         paragraphs: [
           "Bayernweite Einsätze müssen ehrlich geplant werden. Strecke, Umfang, Termin, Fahrzeug, Team und Rückfahrt entscheiden darüber, ob ein Einsatz sinnvoll ist. FLOXANT verspricht deshalb nicht pauschal alles überall, sondern prüft Machbarkeit.",
-          "Diese klare regionale Aussage ist für Kunden und Suchsysteme wichtig: Regensburg ist der Kern, Bayern wird nach Strecke, Auftrag und Kapazität eingeordnet.",
+          "Diese klare regionale Aussage ist wichtig: Regensburg ist die Basis, Bayern wird nach Strecke, Auftrag und Kapazität eingeordnet.",
         ],
       },
       {
@@ -180,7 +180,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
         bullets: serviceSignals,
       },
     ],
-    highlightTitle: "Regensburg als operativer Kern",
+    highlightTitle: "Regensburg als Basis",
     highlightPoints: [
       "Umzug, Reinigung und Entrümpelung werden regional ehrlich eingeordnet.",
       "Kombinationen werden nach Reihenfolge und Machbarkeit geprüft.",
@@ -246,7 +246,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Warum die Trennung wichtig ist",
         paragraphs: [
-          "Kunden müssen sofort verstehen, was angeboten wird. Suchsysteme müssen ebenfalls erkennen, dass Düsseldorf bei FLOXANT nicht mit Regensburg/Bayern vermischt wird. Deshalb wird Düsseldorf als Reinigungsstandort erklärt und nicht als allgemeiner Umzugsstandort dargestellt.",
+          "Kunden müssen sofort verstehen, was angeboten wird. Deshalb wird Düsseldorf bei FLOXANT klar als Reinigungsstandort erklärt und nicht mit Regensburg/Bayern vermischt.",
         ],
       },
       {
@@ -274,7 +274,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Keine Vermischung mit Regensburg/Bayern.",
       "Klare Reinigungsseiten für Wohnung, Büro, Grundreinigung und Treppenhaus.",
-      "Kunden und Suchsysteme erkennen sofort die richtige Zuständigkeit.",
+      "Kunden erkennen sofort die richtige Zuständigkeit.",
     ],
     ctas: [
       { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf anfragen" },
@@ -298,7 +298,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Warum ist die Trennung von Regensburg wichtig?",
-        a: "Damit Kunden, Google und Antwortsysteme verstehen, dass Regensburg/Bayern die Hauptlogik für Umzug und Entrümpelung ist, während Düsseldorf für Reinigung steht.",
+        a: "Damit niemand falsche Erwartungen hat: Regensburg und Bayern sind vor allem für Umzug, Reinigung und Entrümpelung relevant. Düsseldorf ist bei FLOXANT klar auf Reinigung ausgerichtet.",
       },
     ],
   },
@@ -376,7 +376,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Ist das eine Rechtsberatung?",
-        a: "Nein. Es geht nicht um rechtliche Bewertung, sondern um eine operative Einschätzung, ob ein Angebot nachvollziehbar und vollständig wirkt.",
+        a: "Nein. Es geht nicht um rechtliche Bewertung, sondern um eine praktische Einschätzung, ob ein Angebot nachvollziehbar und vollständig wirkt.",
       },
       {
         q: "Kann FLOXANT danach selbst anbieten?",

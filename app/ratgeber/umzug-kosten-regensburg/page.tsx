@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-kosten-regensburg',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Umzug Kosten Regensburg",
   });
 }
 export default async function Article() {

@@ -38,7 +38,7 @@ const faqItems = [
  },
  {
   q: "Gilt der Qualitätsprozess auch für Firmen und Private Client?",
-  a: "Ja. Bei Firmen zählen zusätzlich Zeitfenster, Inventar, IT, Archiv und Betriebsruhe. Bei Private Client stehen Diskretion, Schutz hochwertiger Gegenstände und ruhige Abstimmung im Vordergrund.",
+  a: "Ja. Bei Firmen zählen zusätzlich Zeitfenster, Inventar, IT, Archiv und Betriebsruhe. Bei Private Client stehen Diskretion, Schutz wertvoller Gegenstände und ruhige Abstimmung im Vordergrund.",
  },
 ];
 
@@ -71,7 +71,7 @@ const serviceLinks = [
  { href: "/entruempelung", label: "Entrümpelung mit geregelter Entsorgung" },
  { href: "/bueroumzug", label: "Büroumzug mit Zeitfenster und Betriebsruhe" },
  { href: "/firmenentsorgung", label: "Firmenentsorgung für Büroinventar" },
- { href: "/private-client-service", label: "Private Client für hochwertige Haushalte" },
+ { href: "/private-client-service", label: "Private Client für sensible Haushalte" },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {

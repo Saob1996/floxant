@@ -265,7 +265,7 @@ export default async function LeerfahrtRueckfahrtPage() {
               </h2>
             </div>
             <p className="text-sm leading-7 text-slate-600">
-              Eine Rückfahrt ist dann stark, wenn sie nicht künstlich passend gerechnet wird. Route,
+              Eine Rückfahrt ist dann stark, wenn sie nicht passend gerechnet wird, obwohl die Route nicht stimmt. Route,
               Termin, Volumen und Zugang müssen zusammen funktionieren. Wenn einer dieser Punkte
               nicht passt, ist ein normaler Transport oder eine Beiladung oft ehrlicher.
             </p>

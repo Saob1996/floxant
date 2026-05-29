@@ -368,7 +368,7 @@ export default function HotelreinigungRegensburgPage() {
               Die Seite spricht die Wörter an, mit denen Hotelbetreiber suchen.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Suchende wollen keine allgemeine Reinigungsfirma. Sie suchen
+              Viele Kunden wollen keine allgemeine Reinigungsfirma. Sie suchen
               Hotelreinigung Regensburg, Zimmerreinigung, Pension Reinigung,
               Boardinghouse Reinigung, Lobby, Frühstücksbereich, Turnus, Kosten
               und ein Angebot, das zum Gästealltag passt.
@@ -487,7 +487,7 @@ export default function HotelreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten für Betreiber mit Angebotsabsicht.
             </h2>

@@ -68,7 +68,7 @@ type AuthorityModule = {
 const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
   regensburg_core: {
     badge: "Lokaler Kern",
-    title: "Regensburg ist der operative Ausgangspunkt",
+    title: "Regensburg ist der Ausgangspunkt",
     text:
       "Viele Anfragen werden schneller klar, wenn Ort, Termin, Zugang und Ziel der Uebergabe von Regensburg aus eingeordnet werden. Bayern bleibt wichtig, aber Regensburg ist der erste Schwerpunkt.",
     href: "/umzug-regensburg",
@@ -305,13 +305,13 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
   },
   premium_discreet: {
     badge: "Diskret",
-    title: "Premium-Service braucht ruhige Vorpruefung",
+    title: "Sensible Aufträge brauchen ruhige Vorpruefung",
     text:
-      "Bei hochwertigen Haushalten zaehlen Zugang, Schutzbedarf, Diskretion, Werte, Reinigung und Rueckrufwunsch mehr als ein schneller Standardrechner.",
+      "Bei sensiblen Haushalten zaehlen Zugang, Schutzbedarf, Diskretion, Werte, Reinigung und Rueckrufwunsch mehr als ein schneller Standardrechner.",
     href: "/private-client-service",
-    cta: "Premium-Pfad ansehen",
+    cta: "Diskreten Pfad ansehen",
     Icon: ShieldCheck,
-    service: "premium",
+    service: "diskret",
   },
   duesseldorf_cleaning_private: {
     badge: "Privat",

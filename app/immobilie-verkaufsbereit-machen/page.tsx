@@ -89,7 +89,7 @@ const statusCards = [
   {
     title: "Eigentuemer wohnt nicht vor Ort",
     text: "Fotos, Zugang, Schluesselstatus und Rueckmeldung machen den Fall besser steuerbar.",
-    services: ["Schluesselstatus", "Dokumentation", "Premium/Diskret"],
+    services: ["Schluesselstatus", "Dokumentation", "Diskrete Abstimmung"],
     Icon: KeyRound,
   },
   {
@@ -118,7 +118,7 @@ const serviceBlocks = [
   "Foto-Dokumentation nach Absprache",
   "Uebergabeakte als Zusatz",
   "Schluesselkoordination nach Absprache",
-  "Premium-/Diskret-Service",
+  "Diskrete Abstimmung",
   "Makler-/Vermieter-Link verknuepfen",
   "Mieterwechsel-Service verknuepfen",
   "Wohnung wieder vermietbar verknuepfen",
@@ -188,7 +188,7 @@ const packages = [
     cta: "Objektfall senden",
   },
   {
-    title: "Diskret/Premium",
+    title: "Diskrete Abstimmung",
     forText: "Sensible Eigentuemer-, Verkaufs-, Trennungs- oder Nachlasssituation.",
     includes: ["Rueckruf", "diskrete Abstimmung", "Raeumung/Reinigung/Entsorgung nach Absprache"],
     cta: "Diskrete Anfrage starten",
@@ -240,7 +240,7 @@ const faqItems = [
   },
   {
     q: "Uebernimmt FLOXANT Renovierungen?",
-    a: "Diese Seite behauptet keine Renovierung, Reparatur oder Malerarbeiten. Geprueft werden nur sichtbar angebotene und operativ verfuegbare Leistungen.",
+    a: "Diese Seite behauptet keine Renovierung, Reparatur oder Malerarbeiten. Geprueft werden nur Leistungen, die FLOXANT wirklich anbietet und einplanen kann.",
   },
   {
     q: "Kann FLOXANT vor Besichtigung reinigen?",
@@ -268,7 +268,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der operative Kern. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Duesseldorf bleibt separat auf Reinigung und Entsorgung begrenzt.",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Duesseldorf bleibt separat auf Reinigung und Entsorgung begrenzt.",
   },
   {
     q: "Ist kurzfristige Vorbereitung moeglich?",

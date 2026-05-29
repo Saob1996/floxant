@@ -31,12 +31,12 @@ const faqItems = [
  },
  {
   q: "Warum ist dieser Vergleich für Regensburg und Bayern relevant?",
-  a: "FLOXANT arbeitet mit operativem Kern in Regensburg und erweitertem Einsatzgebiet Bayern. Die richtige Servicewahl hängt deshalb immer auch von Region, Strecke, Terminlage und Umfang ab.",
+  a: "FLOXANT arbeitet von Regensburg aus und prüft passende Einsätze in Bayern. Die richtige Servicewahl hängt deshalb immer auch von Region, Strecke, Terminlage und Umfang ab.",
  },
 ];
 
 const decisionPrinciples = [
- "Erst die Situation klären: Transport, Reinigung, Räumung, Firma, Route oder hochwertiger Haushalt.",
+ "Erst die Situation klären: Transport, Reinigung, Räumung, Firma, Route oder sensibler Privathaushalt.",
  "Dann die Kostentreiber trennen: Volumen, Fläche, Zugang, Laufwege, Material, Termin und Zusatzleistungen.",
  "Danach den richtigen Einstieg wählen: Service-Seite, Rechner, Preisvorstellung oder Spezialservice.",
 ];

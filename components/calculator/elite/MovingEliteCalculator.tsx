@@ -110,7 +110,7 @@ export default function MovingEliteCalculator({ dic }: Props) {
       <div className="block sm:flex items-center justify-between">
        <div>
         <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-         Elite <span className="text-blue-500">Planung</span>
+         Umzug <span className="text-blue-500">planen</span>
         </h2>
         <p className="mt-2 text-sm text-white/40">
          {steps[currentStep - 1].title} - Schritt {currentStep} von 3
@@ -217,10 +217,10 @@ export default function MovingEliteCalculator({ dic }: Props) {
        <div className="rounded-2xl bg-emerald-500/5 p-4 ring-1 ring-emerald-500/20">
         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-emerald-400">
          <ShieldCheck size={14} />
-         Operative Einordnung
+         Konkrete Einordnung
         </div>
         <p className="mt-2 text-[11px] leading-relaxed text-emerald-400/70">
-         Versicherungsschutz und professionelles Equipment gehören zur fachlichen Einordnung, sind aber noch keine Preiszusage.
+         Versicherungsschutz und passendes Material gehören zur fachlichen Einordnung, sind aber noch keine Preiszusage.
         </p>
        </div>
       </div>

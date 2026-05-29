@@ -364,7 +364,7 @@ export default function TeppichreinigungRegensburgPage() {
           <div className="max-w-3xl">
             <div className="flox-kicker">Kundensuchen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Suchende wollen wissen: lässt sich mein Teppich oder Sofa sinnvoll reinigen?
+              Kunden wollen wissen: laesst sich mein Teppich oder Sofa sinnvoll reinigen?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Viele Kunden suchen ganz konkret nach Teppichbodenreinigung Büro,
@@ -489,9 +489,9 @@ export default function TeppichreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für mehr Klicks und weniger falsche Erwartungen.
+              Kurze Antworten, damit Zustand, Material und Preisrahmen klarer werden.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

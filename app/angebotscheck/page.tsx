@@ -96,7 +96,7 @@ const serviceScopes = [
   "Entsorgung",
   "Umzug + Endreinigung",
   "Entrümpelung + Reinigung",
-  "Premium/Diskret-Service",
+  "Sensible Anfrage",
 ];
 
 const faqItems = [

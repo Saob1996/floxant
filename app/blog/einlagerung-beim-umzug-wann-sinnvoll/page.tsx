@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Welche Angaben braucht FLOXANT dafür?",
-  a: "Wichtig sind Volumen, Dauer, Abholbedarf, besondere Gegenstände und die operative Einbindung in den restlichen Umzug.",
+  a: "Wichtig sind Volumen, Dauer, Abholbedarf, besondere Gegenstände und die Verbindung zum restlichen Umzug.",
  },
 ];
 
@@ -92,7 +92,7 @@ export default function BlogEinlagerungPage() {
      {
       title: "Wie FLOXANT Einlagerung einordnet",
       paragraphs: [
-       "Für eine gute Vorprüfung zählen Volumen, Dauer, Abholung, besondere Gegenstände und die operative Verbindung zum restlichen Projekt. Erst daraus lässt sich ein plausibler Orientierungsrahmen ableiten.",
+       "Für eine gute Vorprüfung zählen Volumen, Dauer, Abholung, besondere Gegenstände und die Verbindung zum restlichen Projekt. Erst daraus lässt sich ein plausibler Orientierungsrahmen ableiten.",
       ],
      },
     ]}

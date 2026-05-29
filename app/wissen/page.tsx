@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{}> }) {
     lang: "de",
     path: "wissen",
     title: "Ratgeber & Wissen rund um Umzug, Reinigung & Entrümpelung | FLOXANT",
-    description: "Wertvolle Tipps für Ihren Umzug, professionelle Reinigung und fachgerechte Entrümpelung in Bayern. Jetzt informieren!",
+    description: "Praktische Hinweise für Umzug, Reinigung und Entrümpelung in Bayern.",
   });
 }
 export default async function WissenLandingPage() {
@@ -18,15 +18,15 @@ export default async function WissenLandingPage() {
           <BookOpen size={18} /> FLOXANT Wissen
         </div>
         <h1 className="text-4xl md:text-6xl font-light mb-8">
-          Expertenwissen für Ihren <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Neuanfang.</span>
+          Ratgeber für Umzug, Reinigung und <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">Entrümpelung.</span>
         </h1>
         <p className="text-xl text-white/60 mb-12 leading-relaxed">
-          Entdecken Sie hilfreiche Ratgeber, Checklisten und tiefgreifende Artikel zu den Themen Umzug, Reinigung und Entrümpelung. Fachmännisch aufbereitet für Ihren Erfolg.
+          Hier finden Sie klare Hinweise zu Aufwand, Kosten, Zugang, Übergabe und Vorbereitung. Ohne leere Versprechen.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-start">
           {[
             { title: "Umzugskosten senken", href: "/umzugskosten-bayern", desc: "Wie Sie systematisch bei Ihrem nächsten Umzug sparen können." },
-            { title: "Richtig Entrümpeln", href: "/ratgeber/entruempelung-kosten-pro-m3", desc: "Schritt-für-Schritt Anleitung zur stressfreien Haushaltsauflösung." },
+            { title: "Richtig Entrümpeln", href: "/ratgeber/entruempelung-kosten-pro-m3", desc: "Schritt-für-Schritt Anleitung für Haushaltsauflösung, Keller und Restmengen." },
           ].map((item) => (
             <Link 
               key={item.href} 

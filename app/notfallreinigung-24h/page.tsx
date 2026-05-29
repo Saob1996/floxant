@@ -285,7 +285,7 @@ export default function Notfallreinigung24hPage() {
             </div>
             <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 p-7">
               <ShieldCheck className="h-8 w-8 text-amber-700" />
-              <h2 className="mt-5 text-2xl font-black text-slate-950">Professionelle Grenze statt falsches Versprechen</h2>
+              <h2 className="mt-5 text-2xl font-black text-slate-950">Klare Grenze statt falsches Versprechen</h2>
               <p className="mt-4 leading-8 text-slate-800">
                 FLOXANT nimmt dringende Situationen ernst, verspricht aber keinen blinden Soforteinsatz ohne Pruefung. Das ist im
                 Interesse des Kunden: Erst wenn Zustand, Zugang, Zeitfenster und Ergebnisziel klar sind, kann ein Reinigungsfall

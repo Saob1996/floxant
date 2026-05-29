@@ -44,7 +44,7 @@ const relatedServices = [
   },
   {
     href: "/private-client-service",
-    title: "Diskreter Premium-Service",
+    title: "Diskreter Schlüssel-Service",
     text: "Wenn Rueckruf, Abstimmung und sensible Objektuebergabe ruhiger gefuehrt werden sollen.",
   },
   {

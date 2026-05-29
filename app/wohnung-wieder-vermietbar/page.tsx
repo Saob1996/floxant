@@ -184,7 +184,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service möglich?",
-    a: "Regensburg ist der operative Kern. Anfragen aus der Umgebung und Bayern werden nach Verfügbarkeit, Termin, Umfang und Fotos geprüft.",
+    a: "Regensburg ist der feste Ausgangspunkt. Anfragen aus der Umgebung und Bayern werden nach Verfügbarkeit, Termin, Umfang und Fotos geprüft.",
   },
   {
     q: "Kann das kurzfristig geprüft werden?",

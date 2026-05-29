@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
+import { RegensburgCleaningConversionLift } from "@/components/RegensburgCleaningConversionLift";
 import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCleaningClickDecisionPanel";
 import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
 import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
@@ -7,13 +8,19 @@ import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleanin
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { company } from "@/lib/company";
 import {
+    regensburgCleaningBuyerPaths,
     regensburgCleaningLocalAreas,
     regensburgCleaningLocalFaqs,
     regensburgCleaningServices,
     regensburgCleaningSnippetFaqs,
 } from "@/lib/regensburg-cleaning-services";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
-import { buildFaqJsonLd } from "@/lib/structured-data";
+import {
+    buildBreadcrumbJsonLd,
+    buildFaqJsonLd,
+    buildServiceJsonLd,
+    buildWebPageJsonLd,
+} from "@/lib/structured-data";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
@@ -66,6 +73,59 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@graph": [
+            buildBreadcrumbJsonLd([
+                { name: "FLOXANT", item: "/" },
+                { name: "Reinigung", item: "/reinigung" },
+                { name: "Reinigung Regensburg", item: "/reinigung-regensburg" },
+            ]),
+            buildServiceJsonLd({
+                name: "Reinigung Regensburg",
+                description:
+                    "Reinigung in Regensburg fuer Buero, Praxis, Hotel, Fenster, Teppich, Treppenhaus, Baustaub, Grundreinigung, Uebergabe und kurzfristige Situationen.",
+                path: "/reinigung-regensburg",
+                serviceType:
+                    "Reinigungsfirma, Putzfirma, Gebaeudereinigung, Gewerbereinigung und Spezialreinigung in Regensburg",
+                areaServed: [
+                    "Regensburg",
+                    "Altstadt Regensburg",
+                    "Innenstadt Regensburg",
+                    "Kumpfmuehl",
+                    "Galgenberg",
+                    "Gewerbepark Regensburg",
+                    "Neutraubling",
+                    "Barbing",
+                    "Lappersdorf",
+                    "Wenzenbach",
+                    "Oberpfalz",
+                    "Bayern",
+                ],
+            }),
+            buildWebPageJsonLd({
+                name: "Reinigung Regensburg mit Service-Finder und direkter Anfrage",
+                description:
+                    "Kundennaher Einstieg fuer Reinigung in Regensburg: passende Leistung finden, Fotos senden, Termin klaeren und ohne Umweg anfragen.",
+                path: "/reinigung-regensburg",
+                about: [
+                    "Reinigung Regensburg",
+                    "Reinigungsfirma Regensburg",
+                    "Putzfirma Regensburg",
+                    "Bueroreinigung Regensburg",
+                    "Gewerbereinigung Regensburg",
+                    "Fensterreinigung Regensburg",
+                    "Grundreinigung Regensburg",
+                    "Baureinigung Regensburg",
+                    "Wohnungsuebergabe Reinigung",
+                    "kurzfristige Reinigung Regensburg",
+                    "Regensburg",
+                    "Oberpfalz",
+                    "Bayern",
+                ],
+                potentialActions: [
+                    { name: "Reinigung in Regensburg anfragen", target: "/buchung?service=reinigung&city=regensburg#buchungssystem", type: "ContactAction" },
+                    { name: "WhatsApp mit Fotos senden", target: `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`, type: "ContactAction" },
+                    { name: "Passende Reinigungsleistung finden", target: "/reinigung-regensburg#reinigungsservice-regensburg", type: "Action" },
+                ],
+            }),
             {
                 "@type": "ItemList",
                 name: "Reinigungsleistungen in Regensburg",
@@ -78,6 +138,28 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 })),
             },
             {
+                "@type": "OfferCatalog",
+                name: "FLOXANT Reinigung Regensburg Servicekatalog",
+                url: `${company.url}/reinigung-regensburg`,
+                itemListElement: regensburgCleaningServices.map((service, index) => ({
+                    "@type": "Offer",
+                    position: index + 1,
+                    name: service.label,
+                    url: `${company.url}${service.href.split("#")[0]}`,
+                    category: "Reinigung Regensburg",
+                    availability: "https://schema.org/InStock",
+                    itemOffered: {
+                        "@type": "Service",
+                        name: service.label,
+                        description: `${service.intro} ${service.goodFor}`,
+                        areaServed: {
+                            "@type": "City",
+                            name: "Regensburg",
+                        },
+                    },
+                })),
+            },
+            {
                 "@type": "ItemList",
                 name: "Reinigung in Regensburg Stadtteilen und Umgebung",
                 itemListElement: regensburgCleaningLocalAreas.map((area, index) => ({
@@ -87,6 +169,44 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     url: `${company.url}${area.href.split("#")[0]}`,
                     description: `${area.area}: ${area.text}`,
                 })),
+            },
+            {
+                "@type": "ItemList",
+                name: "Klicknahe Reinigungswege in Regensburg",
+                itemListElement: regensburgCleaningBuyerPaths.map((path, index) => ({
+                    "@type": "ListItem",
+                    position: index + 1,
+                    name: path.label,
+                    url: `${company.url}${path.href.split("#")[0]}`,
+                    description: `${path.customerPhrase} ${path.answer}`,
+                })),
+            },
+            {
+                "@type": "LocalBusiness",
+                "@id": `${company.url}/#localbusiness`,
+                name: company.name,
+                url: company.url,
+                telephone: company.phoneRaw,
+                image: `${company.url}/opengraph-image`,
+                priceRange: "nach Vorpruefung",
+                address: {
+                    "@type": "PostalAddress",
+                    streetAddress: company.streetAddress,
+                    addressLocality: company.city,
+                    postalCode: company.postalCode,
+                    addressRegion: company.state,
+                    addressCountry: company.countryCode,
+                },
+                geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: company.geo.lat,
+                    longitude: company.geo.lng,
+                },
+                areaServed: company.primaryServiceAreas.map((area) => ({
+                    "@type": "AdministrativeArea",
+                    name: area,
+                })),
+                sameAs: company.sameAs,
             },
             buildFaqJsonLd([...regensburgCleaningSnippetFaqs, ...regensburgCleaningLocalFaqs]),
         ],
@@ -144,6 +264,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
                 <RegensburgCleaningServiceHub />
+                <RegensburgCleaningConversionLift />
                 <RegensburgCleaningClickDecisionPanel />
                 <RegensburgCleaningLocalSignals />
                 <RegensburgCleaningSnippetAnswers />

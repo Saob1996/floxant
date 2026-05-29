@@ -367,7 +367,7 @@ export default function TreppenhausreinigungRegensburgPage() {
               Die Seite spricht die Wörter an, mit denen Hausverwaltungen suchen.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Suchende wollen kein allgemeines Reinigungsversprechen. Sie
+              Viele Kunden wollen kein allgemeines Reinigungsversprechen. Sie
               suchen Treppenhausreinigung Regensburg, Hausverwaltung Reinigung,
               Kosten, Turnus, WEG, Mietshaus, Aufzug, Kellerflur, Müllraum und
               einen klaren Ansprechpartner.
@@ -486,7 +486,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten für Hausverwaltungen mit Angebotsabsicht.
             </h2>

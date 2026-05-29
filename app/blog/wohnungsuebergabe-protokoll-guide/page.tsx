@@ -47,12 +47,12 @@ export default async function BlogArticle() {
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Fotos als Beweismittel</h2>
             <p>Fotografieren Sie jeden Raum systematisch. Achten Sie besonders auf bestehende Schäden (Kratzer im Parkett, Risse in Fliesen, Verfärbungen an Wänden). Diese Fotos sollten mit Zeitstempel versehen sein und idealerweise im Beisein des Vermieters aufgenommen werden.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Besenrein: Was bedeutet das wirklich?</h2>
-            <p>"Besenrein" ist juristisch definiert als: grobe Verschmutzungen entfernt, Böden gefegt, keine persönlichen Gegenstände zurückgelassen. Es bedeutet ausdrücklich <strong>nicht</strong> "professionell gereinigt". Dennoch empfehlen wir eine gründliche <Link href={"/reinigung"} className="text-primary underline hover:text-primary/80">Endreinigung</Link>, um Diskussionen zu vermeiden.</p>
+            <p>"Besenrein" bedeutet in der Praxis: grobe Verschmutzungen entfernt, Böden gefegt, keine persönlichen Gegenstände zurückgelassen. Es bedeutet ausdrücklich <strong>nicht</strong> gründlich gereinigt. Eine saubere <Link href={"/reinigung"} className="text-primary underline hover:text-primary/80">Endreinigung</Link> kann Diskussionen bei der Übergabe vermeiden.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Schönheitsreparaturen: Müssen Sie renovieren?</h2>
             <p>Starre Fristenklauseln in Mietverträgen (z.B. "alle 3 Jahre streichen") sind seit dem BGH-Urteil von 2015 unwirksam. Prüfen Sie Ihren Mietvertrag sorgfältig. Im Zweifel hat der Mieterverein die Antwort.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Kaution: Wann bekommen Sie Ihr Geld zurück?</h2>
             <p>Der Vermieter darf die Kaution bis zu 6 Monate nach Auszug einbehalten, um eventuelle Nebenkostennabrechnungen abzuwarten. Nach Ablauf dieser Frist haben Sie Anspruch auf vollständige Rückzahlung (abzüglich berechtigter Abzüge).</p>
-            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Profi-Tipp: Kombinieren Sie Umzug und Endreinigung</h2>
+            <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Praktischer Tipp: Umzug und Endreinigung zusammen planen</h2>
             <p>Wenn die Möbelpacker gerade den letzten Schrank verladen haben, steht das Reinigungsteam schon bereit. Bei <Link href={"/umzug"} className="text-primary underline hover:text-primary/80">FLOXANT</Link> bieten wir diesen Kombi-Service aus einer Hand – das spart Ihnen einen zusätzlichen Termin und oft auch Geld.</p>
           </div>
           <div className="mt-20 p-8 bg-primary/5 border border-primary/10 rounded-3xl text-center">

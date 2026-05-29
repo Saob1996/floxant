@@ -63,7 +63,7 @@ export default function FloxUmzugRechner({ dic }: { dic?: any }) {
      <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight text-white md:text-3xl">
        <Truck className="text-blue-500" strokeWidth={2.5} size={28} />
-       Premium Umzugsrechner
+       Umzugskosten einschätzen
       </h2>
       <p className="mt-2 text-sm text-white/50">
        Detaillierte Einschätzung für Wohnungs-, Haus- und Firmenumzüge.

@@ -12,11 +12,11 @@ import {
 const faqItems = [
   {
     q: "Warum ist ein direkter Buchungsweg oft besser als ein allgemeiner Kontaktpfad?",
-    a: "Weil Kunden schneller verstehen, was als Nächstes passiert. Ein klarer Buchungsweg wirkt ruhiger, professioneller und reduziert unnötige Rückfragen.",
+    a: "Weil Kunden schneller verstehen, was als Nächstes passiert. Ein klarer Buchungsweg wirkt ruhiger und reduziert unnötige Rückfragen.",
   },
   {
     q: "Hilft das auch bei Google Maps und lokaler Suche?",
-    a: "Ja. Wenn Buchung, Kontakt und Standort klar zusammenpassen, wirkt der Anbieter für Nutzer und Suchsysteme greifbarer und lokaler.",
+    a: "Ja. Wenn Buchung, Kontakt und Standort klar zusammenpassen, wirkt der Anbieter für Nutzer greifbarer und lokaler.",
   },
   {
     q: "Welche FLOXANT Seite ist dafür der wichtigste Einstieg?",
@@ -110,7 +110,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
             title: "Wie FLOXANT das für Regensburg aufbaut",
             paragraphs: [
               "FLOXANT nutzt /buchung als klaren Haupteinstieg für direkte Anfragen. Kontakt, Standort, B2B-Reinigung und Private Client bleiben bewusst eigene Wege, damit nichts durcheinandergeht.",
-              "So bleibt die Anfrage für Kunden verständlich und für das Team operativ sauber. Oder, kurz gesagt: lieber gscheid und klar als laut und hektisch.",
+              "So bleibt die Anfrage für Kunden verständlich und für das Team sauber einzuordnen. Oder, kurz gesagt: lieber gscheid und klar als laut und hektisch.",
             ],
           },
         ]}

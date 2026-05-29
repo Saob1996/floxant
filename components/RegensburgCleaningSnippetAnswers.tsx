@@ -16,14 +16,14 @@ export function RegensburgCleaningSnippetAnswers() {
             <div>
               <div className="flox-kicker">
                 <Camera className="h-4 w-4" />
-                FAQ & Snippet-Chancen
+                Kurze Antworten
               </div>
               <h2 className="mt-6 flox-title-lg text-slate-950">
-                Kurze Antworten, die vor dem Klick helfen.
+                Kurze Antworten, die vor der Anfrage helfen.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Diese Antworten sprechen typische Suchfragen direkt an und
-                machen klar, was Kunden senden sollen: Service, Ort, Fläche,
+                Diese Antworten sprechen typische Fragen direkt an und
+                machen klar, welche Angaben helfen: Service, Ort, Fläche,
                 Turnus, Zugang und Fotos.
               </p>
             </div>

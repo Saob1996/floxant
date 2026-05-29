@@ -1,6 +1,7 @@
 import { germanizeDeep } from "@/lib/german-text";
 import { aiRecommendationBlogArticles } from "@/lib/ai-recommendation-blog-articles";
 import { offerCheckBlogArticles } from "@/lib/offer-check-blog-articles";
+import { psychologicalCleaningBlogArticles } from "@/lib/psychological-cleaning-pages";
 import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
 
 export type BlogPostMeta = {
@@ -82,7 +83,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Google Maps",
   readTime: "6 Min.",
   title: "In Google Maps direkt anfragen: warum ein klarer Buchungsweg in Regensburg mehr Vertrauen schafft",
-  description: "Wie ein eindeutiger Buchungslink in Google Maps für Umzug, Reinigung und Entrümpelung in Regensburg mehr Klickvertrauen und passendere Anfragen erzeugt.",
+  description: "Wie ein eindeutiger Buchungslink in Google Maps für Umzug, Reinigung und Entrümpelung in Regensburg den nächsten Schritt leichter macht.",
   featured: true,
  },
  {
@@ -106,7 +107,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Google Maps",
   readTime: "6 Min.",
   title: "Google-Unternehmensprofil in Regensburg: welcher Buchungslink Kunden wirklich hilft",
-  description: "Warum ein klarer direkter Buchungslink für Maps, Search und lokale Empfehlungen mehr Vertrauen und passendere Anfragen bringt.",
+  description: "Warum ein klarer direkter Buchungslink für Maps, Suche und lokale Empfehlungen den Kontakt für Kunden leichter macht.",
   featured: true,
  },
  {
@@ -138,7 +139,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "B2B Reinigung",
   readTime: "7 Min.",
   title: "Reinigungsfirma in Regensburg für Büro und Praxis auswählen",
-  description: "Wie Unternehmen, Praxen und Verwaltungen zwischen schnellen Klicks und wirklich passenden B2B-Angeboten unterscheiden können.",
+  description: "Wie Unternehmen, Praxen und Verwaltungen zwischen schnellen Anfragen und wirklich passenden B2B-Angeboten unterscheiden können.",
   featured: true,
  },
  {
@@ -154,7 +155,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Private Client",
   readTime: "6 Min.",
   title: "Diskreter Private-Client-Umzug in Bayern: was wirklich wichtig ist",
-  description: "Wie Residenzen, Anwesen und hochwertige Interieurs ruhig, diskret und materialschonend geplant werden.",
+  description: "Wie Residenzen, Anwesen und sensible Interieurs ruhig, diskret und materialschonend geplant werden.",
   featured: true,
  },
  {
@@ -162,7 +163,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Private Client",
   readTime: "6 Min.",
   title: "Family Office und Private Client in Bayern: wie diskrete Umzüge sauber abgestimmt werden",
-  description: "Wie Eigentümer, Assistenz und Family Office hochwertige Umzüge, Übergaben und Schutzbedarf ohne unnötige Reibung koordinieren.",
+  description: "Wie Eigentümer, Assistenz und Family Office sensible Umzüge, Übergaben und Schutzbedarf ohne unnötige Reibung koordinieren.",
   featured: true,
  },
  {
@@ -200,7 +201,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Preiswahrheit",
   readTime: "7 Min.",
   title: "Preisrahmen statt Festpreis: warum Vorprüfung ehrlicher ist",
-  description: "Warum Umzug, Reinigung und Entrümpelung zuerst eine belastbare Vorprüfung statt künstlich exakter Onlinepreise brauchen.",
+  description: "Warum Umzug, Reinigung und Entrümpelung zuerst eine belastbare Vorprüfung statt scheinbar exakter Onlinepreise brauchen.",
   featured: true,
  },
  {
@@ -388,7 +389,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Google Maps",
   readTime: "6 Min.",
   title: "Google Maps Buchungslink in Regensburg: worauf es ankommt",
-  description: "Wie ein klarer lokaler Buchungslink für mehr Vertrauen, bessere Klicks und passendere Anfragen sorgt.",
+  description: "Wie ein klarer lokaler Buchungslink Vertrauen schafft und passendere Anfragen bringt.",
   featured: true,
  },
  {
@@ -458,9 +459,21 @@ const offerCheckBlogPostMetas: BlogPostMeta[] = offerCheckBlogArticles.map((arti
  featured: true,
 }));
 
+const psychologicalCleaningBlogPostMetas: BlogPostMeta[] = psychologicalCleaningBlogArticles
+ .filter((article) => !rawBlogPostSlugs.has(article.slug))
+ .map((article) => ({
+  slug: article.slug,
+  category: article.category,
+  readTime: article.readTime,
+  title: article.title,
+  description: article.description,
+  featured: true,
+ }));
+
 export const blogPosts = germanizeDeep([
  ...rawBlogPosts,
  ...aiRecommendationBlogPostMetas,
  ...offerCheckBlogPostMetas,
+ ...psychologicalCleaningBlogPostMetas,
  ...strategicBlogPostMetas,
 ]) as BlogPostMeta[];

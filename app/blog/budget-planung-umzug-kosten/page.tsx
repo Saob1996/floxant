@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Kann FLOXANT jede Leistung an ein Budget anpassen?",
-  a: "Nein. Manche Anforderungen haben feste operative Grenzen. FLOXANT kann aber erklären, welche Leistungen im Rahmen sinnvoll priorisiert werden können.",
+  a: "Nein. Manche Anforderungen haben feste Grenzen. FLOXANT kann aber erklären, welche Leistungen im Rahmen sinnvoll priorisiert werden können.",
  },
  {
   q: "Was ist besser: Budget nennen oder Rechner starten?",
@@ -69,12 +69,12 @@ export default function BudgetPlanungUmzugKostenPage() {
     date="20. April 2026"
     readTime="6 Min."
     title="Budgetplanung beim Umzug: Preisvorstellung richtig nutzen"
-    intro="Ein Zielbudget kann sehr hilfreich sein, wenn es richtig eingeordnet wird. Es ist kein Ersatz für die operative Prüfung, aber ein gutes Signal dafür, welche Lösung für den Kunden wirklich passend ist."
+    intro="Ein Zielbudget kann sehr hilfreich sein, wenn es richtig eingeordnet wird. Es ist kein Ersatz für die konkrete Prüfung, aber ein gutes Signal dafür, welche Lösung für den Kunden wirklich passend ist."
     sections={[
      {
       title: "Budget ist ein Rahmen, kein Endpreis",
       paragraphs: [
-       "Wer ein Budget nennt, macht die Planung oft einfacher. Gleichzeitig darf daraus kein künstliches Preisversprechen entstehen. Ein Umzug, eine Reinigung oder eine Entrümpelung braucht immer die Prüfung der konkreten Daten.",
+       "Wer ein Budget nennt, macht die Planung oft einfacher. Gleichzeitig darf daraus kein falsches Preisversprechen entstehen. Ein Umzug, eine Reinigung oder eine Entrümpelung braucht immer die Prüfung der konkreten Daten.",
        "Deshalb trennt FLOXANT Preisvorstellung und System-Einschätzung. Der Kunde zeigt seinen Zielrahmen, FLOXANT prüft den realistischen Aufwand.",
       ],
      },

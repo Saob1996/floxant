@@ -27,7 +27,7 @@ const requestTypes = [
   "Sonstiges",
 ];
 
-const addonOptions = ["Reinigung", "Entrümpelung", "Entsorgung", "Schlüsselübergabe", "Premium-Abstimmung"];
+const addonOptions = ["Reinigung", "Entrümpelung", "Entsorgung", "Schlüsselübergabe", "Diskrete Abstimmung"];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 

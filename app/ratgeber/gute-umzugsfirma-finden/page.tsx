@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/gute-umzugsfirma-finden',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Umzugsfirma finden",
   });
 }
 export default async function Article() {

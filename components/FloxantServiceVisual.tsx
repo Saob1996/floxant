@@ -56,10 +56,10 @@ const visualConfig: Record<FloxantVisualVariant, VisualConfig> = {
     chipClassName: "bg-blue-600 text-white",
     surfaceClassName:
       "bg-[radial-gradient(circle_at_16%_12%,rgba(37,99,235,0.16),transparent_38%),linear-gradient(180deg,#ffffff,#eef5ff)]",
-    detailIntro: "Transport und Ablauf werden als klarer Operations-Flow vorbereitet.",
+    detailIntro: "Transport und Ablauf werden mit klaren Schritten vorbereitet.",
     details: ["Volumen sichtbar", "Strecke geordnet", "Zugang mitgedacht"],
     flow: ["Aufnahme", "Vorpruefung", "Durchfuehrung", "Uebergabe"],
-    metaLabel: "Operations Frame",
+    metaLabel: "Planungsrahmen",
     metaValue: "Regensburg · Bayern",
   },
   cleaning: {
@@ -98,7 +98,7 @@ const visualConfig: Record<FloxantVisualVariant, VisualConfig> = {
     chipClassName: "bg-indigo-600 text-white",
     surfaceClassName:
       "bg-[radial-gradient(circle_at_16%_12%,rgba(79,70,229,0.16),transparent_38%),linear-gradient(180deg,#ffffff,#eef2ff)]",
-    detailIntro: "Betrieb und Team werden in einer operativen Struktur verbunden.",
+    detailIntro: "Betrieb und Team werden mit klaren Zuständigkeiten verbunden.",
     details: ["Arbeitsplaetze", "IT & Archiv", "Zeitfenster"],
     flow: ["Inventar", "Route", "Team", "Uebergabe"],
     metaLabel: "Projektmodus",
@@ -121,16 +121,16 @@ const visualConfig: Record<FloxantVisualVariant, VisualConfig> = {
   premium: {
     icon: Crown,
     kicker: "Private Client",
-    title: "Diskretion, Auftreten und Ablauf werden so gefuehrt, wie es hochwertige Projekte verlangen.",
+    title: "Diskretion, Auftreten und Ablauf werden ruhig abgestimmt, wenn ein Auftrag sensibel ist.",
     accent: "from-stone-950 via-stone-800 to-amber-500",
     chipClassName: "bg-stone-950 text-amber-400",
     surfaceClassName:
       "bg-[radial-gradient(circle_at_16%_12%,rgba(217,119,6,0.14),transparent_38%),linear-gradient(180deg,#ffffff,#fff7ed)]",
-    detailIntro: "Ein Premium-Fall braucht Ruhe, Verbindlichkeit und kontrollierte Kommunikation.",
+    detailIntro: "Ein sensibler Fall braucht Ruhe, Verbindlichkeit und kontrollierte Kommunikation.",
     details: ["Diskret geplant", "Anwesen respektiert", "Team gefuehrt"],
     flow: ["Briefing", "Abstimmung", "Durchfuehrung", "Uebergabe"],
     metaLabel: "Servicelevel",
-    metaValue: "White Glove",
+    metaValue: "Diskret",
   },
 };
 

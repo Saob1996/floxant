@@ -60,7 +60,7 @@ const serviceOptions = [
   "Uebergabeakte",
   "Schluesselkoordination",
   "Makler-/Vermieter-Link",
-  "Premium/Diskret",
+  "Diskrete Abstimmung",
   "Rueckruf",
 ];
 
@@ -387,7 +387,7 @@ export function PropertyReadyForm() {
                   key={service}
                   type="button"
                   onClick={() => toggleService(service)}
-                  data-event={service === "Premium/Diskret" ? "select_property_ready_package" : undefined}
+                  data-event={service === "Diskrete Abstimmung" ? "select_property_ready_package" : undefined}
                   className={`rounded-xl border px-3 py-3 text-left text-xs font-black transition ${
                     active ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-700 hover:border-amber-300"
                   }`}

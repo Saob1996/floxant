@@ -194,7 +194,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet arbeitet FLOXANT?",
-    a: "Regensburg ist der operative Kern. Anfragen aus der Umgebung und Bayern werden nach Verfuegbarkeit, Umfang und Termin geprueft.",
+    a: "Regensburg ist der feste Ausgangspunkt. Anfragen aus der Umgebung und Bayern werden nach Verfuegbarkeit, Umfang und Termin geprueft.",
   },
 ];
 

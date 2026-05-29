@@ -47,10 +47,10 @@ export default function FloxReinigungRechner({ dic }: { dic?: any }) {
      <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight text-white md:text-3xl">
        <Sparkles className="text-emerald-500" strokeWidth={2.5} size={28} />
-       Premium Reinigungsrechner
+       Reinigungsrechner
       </h2>
       <p className="mt-2 text-sm text-white/50">
-       Detaillierte Einschätzung für professionelle End- und Unterhaltsreinigung.
+       Einschätzung für Endreinigung, Unterhaltsreinigung und den passenden nächsten Schritt.
       </p>
      </div>
 

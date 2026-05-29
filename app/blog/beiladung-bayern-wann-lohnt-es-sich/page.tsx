@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Wann lohnt sich Beiladung in Bayern?",
-  a: "Beiladung lohnt sich, wenn kein kompletter Umzug nötig ist, aber trotzdem ein professioneller Transport gewünscht wird. Typisch sind einzelne Sofas, kleinere Privatumzüge, Nachsendungen oder Teilmengen.",
+  a: "Beiladung lohnt sich, wenn kein kompletter Umzug nötig ist, aber Möbel oder Kartons trotzdem sauber mitfahren sollen. Typisch sind einzelne Sofas, kleinere Privatumzüge, Nachsendungen oder Teilmengen.",
  },
  {
   q: "Wann ist Beiladung nicht passend?",
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "blog/beiladung-bayern-wann-lohnt-es-sich",
   title: "Beiladung in Bayern richtig einordnen | FLOXANT",
   description:
-   "Beiladung für Bayern richtig einordnen: Vorteile, Grenzen, Preisfaktoren und wann ein eigener Umzug operativ sinnvoller ist.",
+   "Beiladung für Bayern richtig einordnen: Vorteile, Grenzen, Preisfaktoren und wann ein eigener Umzug sinnvoller ist.",
  });
 }
 
@@ -78,7 +78,7 @@ export default function BlogBeiladungBayernPage() {
      {
       title: "Was ist Beiladung und für wen ist sie gedacht?",
       paragraphs: [
-       "Beiladung ist ideal für Personen, die kein volles Fahrzeug benötigen, aber trotzdem eine professionelle Transportlösung suchen. Typisch sind einzelne Möbel, Kartons, kleine Privatumzüge oder Restmengen.",
+       "Beiladung ist ideal, wenn kein volles Fahrzeug benötigt wird, aber einzelne Möbel, Kartons, kleine Privatumzüge oder Restmengen mitfahren sollen.",
       ],
      },
      {
@@ -90,13 +90,13 @@ export default function BlogBeiladungBayernPage() {
        "Wirtschaftlich für kleinere Transportmengen",
        "Sinnvoll bei flexiblen Terminfenstern",
        "Gut für Einzelmöbel und Teilmengen",
-       "Professioneller Transport statt improvisierter Eigenlösung",
+       "Sauberer Transport statt improvisierter Eigenlösung",
       ],
      },
      {
       title: "Wann ein eigener Umzug oder Kleintransport besser ist",
       paragraphs: [
-       "Wenn mehrere Stockwerke, lange Laufwege, Montage, ein enger Wunschtermin oder großer Umfang dazukommen, verliert Beiladung schnell ihren Vorteil. Dann ist ein eigener Einsatz operativ klarer und planbarer.",
+       "Wenn mehrere Stockwerke, lange Laufwege, Montage, ein enger Wunschtermin oder großer Umfang dazukommen, verliert Beiladung schnell ihren Vorteil. Dann ist ein eigener Einsatz klarer und planbarer.",
       ],
      },
     ]}

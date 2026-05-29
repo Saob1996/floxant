@@ -54,7 +54,7 @@ export function ServiceRequestCompass() {
                 </h2>
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
                   FLOXANT führt Kunden schneller zum passenden Anfrageweg. Regensburg und Bayern
-                  bleiben der operative Kern für Umzug, Reinigung, Entrümpelung und Übergabe.
+                  bleiben der Ausgangspunkt für Umzug, Reinigung, Entrümpelung und Übergabe.
                   Düsseldorf bleibt klar auf Reinigung und passende Ergänzungen getrennt.
                 </p>
 

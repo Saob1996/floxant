@@ -65,7 +65,7 @@ export default function CleaningEliteCalculator({ dic }: Props) {
 
      <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
       <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-       Elite <span className="text-emerald-500">Service Planung</span>
+       Reinigung <span className="text-emerald-500">planen</span>
       </h2>
       <p className="mt-2 text-sm text-white/40">Geben Sie Ihre Objektdaten für eine belastbare Einschätzung an.</p>
      </div>

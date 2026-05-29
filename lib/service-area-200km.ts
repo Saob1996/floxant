@@ -21,7 +21,7 @@ export const SERVICE_AREA_ZONES: ServiceAreaZone[] = [
     description:
       "Kurze Wege fuer Umzug, Reinigung, Entruempelung, Bueroumzug und Express-Anfragen im direkten Regensburger Umfeld.",
     cities: [
-      { name: "Regensburg", slug: "regensburg", distance: "0 km", role: "Operations Hub" },
+      { name: "Regensburg", slug: "regensburg", distance: "0 km", role: "Ausgangspunkt" },
       { name: "Lappersdorf", slug: "lappersdorf", distance: "7 km", role: "Nahbereich" },
       { name: "Neutraubling", slug: "neutraubling", distance: "10 km", role: "Nahbereich" },
       { name: "Obertraubling", slug: "obertraubling", distance: "12 km", role: "Nahbereich" },
@@ -98,7 +98,7 @@ export const SERVICE_AREA_SERVICES = [
     name: "Umzug",
     href: "/umzug",
     slugPrefix: "umzug",
-    description: "Privatumzug, Familienumzug, Seniorenumzug, Teilumzug und Fernumzug mit Regensburg als operativem Kern.",
+    description: "Privatumzug, Familienumzug, Seniorenumzug, Teilumzug und Fernumzug mit Regensburg als festem Ausgangspunkt.",
   },
   {
     name: "Entruempelung",

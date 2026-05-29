@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Ist eine spezialisierte B2B-Landingpage sinnvoll?",
-    a: "Ja. Sie filtert besser auf passende Anfragen, spricht Entscheider klarer an und reduziert Streuverluste durch private Einmalklicks.",
+    a: "Ja. Gewerbliche Kunden finden schneller die passenden Informationen: Flächen, Turnus, Randzeiten, Schlüssel, Ansprechpartner und Rückmeldung.",
   },
 ];
 

@@ -70,15 +70,14 @@ export function RegensburgCleaningClickDecisionPanel() {
           <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker">
               <CheckCircle2 className="h-4 w-4" />
-              Klickentscheidung
+              Richtige Anfrage
             </div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Schneller zur richtigen Reinigungsanfrage in Regensburg.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Gute SEO bringt Besucher nur auf die Seite. Mehr Anfragen entstehen, wenn Kunden
-              ihre Situation sofort wiederfinden: Kosten, laufende Reinigung, Auszug,
-              Fenster, Teppich, Baustaub oder Treppenhaus.
+              Mehr Anfragen entstehen, wenn Kunden ihre Situation sofort wiederfinden:
+              Kosten, laufende Reinigung, Auszug, Fenster, Teppich, Baustaub oder Treppenhaus.
             </p>
 
             <div className="mt-6 grid gap-3">

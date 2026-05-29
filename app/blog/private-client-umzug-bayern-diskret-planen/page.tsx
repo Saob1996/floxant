@@ -11,7 +11,7 @@ import {
 const faqItems = [
  {
   q: "Was ist bei einem Private-Client-Umzug anders als bei einem normalen Umzug?",
-  a: "Es geht stärker um Diskretion, Materialschutz, Abstimmung mit Eigentümern oder Assistenz, sensible Räume, hochwertige Oberflächen und ruhige, planbare Abläufe.",
+  a: "Es geht stärker um Diskretion, Materialschutz, Abstimmung mit Eigentümern oder Assistenz, sensible Räume, empfindliche Oberflächen und ruhige, planbare Abläufe.",
  },
  {
   q: "Warum gibt es dafür keinen öffentlichen Rechner?",
@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Für wen ist so ein Service wirklich gedacht?",
-  a: "Für Anwesen, Residenzen, große Häuser, hochwertige Interieurs und Privathaushalte mit besonderem Koordinations- oder Diskretionsbedarf.",
+  a: "Für Anwesen, Residenzen, große Häuser und Privathaushalte mit besonderem Koordinations- oder Diskretionsbedarf.",
  },
 ];
 
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "blog/private-client-umzug-bayern-diskret-planen",
   title: "Diskreter Private-Client-Umzug in Bayern | FLOXANT",
   description:
-   "Wie Private-Client-Umzüge in Bayern ruhig, diskret und materialschonend geplant werden – für Anwesen, Residenzen und hochwertige Interieurs.",
+   "Wie Private-Client-Umzüge in Bayern ruhig, diskret und materialschonend geplant werden, für Anwesen, Residenzen und sensible Interieurs.",
   keywords: [
    "Private Client Umzug Bayern",
    "diskreter Umzug Anwesen",
@@ -45,7 +45,7 @@ export default function BlogPrivateClientUmzugPage() {
   "@graph": [
    buildWebPageJsonLd({
     name: "Diskreter Private-Client-Umzug in Bayern",
-    description: "Ratgeber für ruhige, diskrete und materialschonende Umzugsplanung bei hochwertigen Privathaushalten.",
+    description: "Ratgeber für ruhige, diskrete und materialschonende Umzugsplanung bei sensiblen Privathaushalten.",
     path: "/blog/private-client-umzug-bayern-diskret-planen",
     about: ["Private Client", "Diskretion", "Anwesen", "Residenz", "Bayern"],
    }),
@@ -56,7 +56,7 @@ export default function BlogPrivateClientUmzugPage() {
    ]),
    buildArticleJsonLd({
     headline: "Diskreter Private-Client-Umzug in Bayern: was wirklich wichtig ist",
-    description: "Ein FLOXANT Artikel zu Diskretion, Schutzkonzept und Ablauf bei hochwertigen Privathaushalten.",
+    description: "Ein FLOXANT Artikel zu Diskretion, Schutzkonzept und Ablauf bei sensiblen Privathaushalten.",
     path: "/blog/private-client-umzug-bayern-diskret-planen",
     datePublished: "2026-04-26",
    }),
@@ -75,12 +75,12 @@ export default function BlogPrivateClientUmzugPage() {
     date="26. April 2026"
     readTime="6 Min."
     title="Diskreter Private-Client-Umzug in Bayern: was wirklich wichtig ist"
-    intro="Bei hochwertigen Privathaushalten geht es selten nur um Kartons und Transport. Oft stehen Designmöbel, sensible Oberflächen, ruhige Zeitfenster, Diskretion und ein sehr klarer Ablauf im Mittelpunkt. Genau dort trennt sich Standardservice von echter Private-Client-Planung."
+    intro="Bei sensiblen Privathaushalten geht es selten nur um Kartons und Transport. Oft stehen Designmöbel, empfindliche Oberflächen, ruhige Zeitfenster, Diskretion und ein sehr klarer Ablauf im Mittelpunkt. Genau dort trennt sich Standardservice von echter Private-Client-Planung."
     sections={[
      {
       title: "Worum es bei gehobenen Privathaushalten wirklich geht",
       paragraphs: [
-       "Wer ein Anwesen, ein großes Haus oder ein hochwertiges Interieur umzieht, möchte vor allem eins: Kontrolle ohne Hektik. Nicht laut, nicht improvisiert, nicht mit unnötigem Kommen und Gehen.",
+       "Wer ein Anwesen, ein großes Haus oder ein empfindliches Interieur umzieht, möchte vor allem eins: Kontrolle ohne Hektik. Nicht laut, nicht improvisiert, nicht mit unnötigem Kommen und Gehen.",
        "Deshalb beginnt ein guter Private-Client-Service nicht mit Preisversprechen, sondern mit einem ruhigen Verständnis von Objekt, Zugang, Schutzbedarf und gewünschter Kommunikation.",
       ],
      },
@@ -99,7 +99,7 @@ export default function BlogPrivateClientUmzugPage() {
      {
       title: "Warum persönliche Vorprüfung hier sinnvoller ist als ein Rechner",
       paragraphs: [
-       "Ein Standardrechner kann bei hochwertigen Haushalten leicht den falschen Eindruck erzeugen. Die operative Wahrheit liegt eher in Schutzbedarf, Teamzuschnitt, Zugängen, Materialmix und Diskretion als in einer schnellen Zahl.",
+       "Ein Standardrechner kann bei sensiblen Haushalten leicht den falschen Eindruck erzeugen. Entscheidend sind eher Schutzbedarf, Teamzuschnitt, Zugänge, Materialmix und Diskretion als eine schnelle Zahl.",
        "Eine persönliche Vorprüfung ist deshalb oft der bessere erste Schritt – ruhig, direkt und ohne unnötiges Hin und Her.",
       ],
      },

@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "de",
     path: "kinder-umzugsbox",
     title: content.meta_title || "Kinder-Umzugsbox | FLOXANT",
-    description: content.meta_desc || "Kinder-Umzugsbox – Professioneller Service von FLOXANT in Bayern.",
+    description: content.meta_desc || "Kinder-Umzugsbox von FLOXANT in Bayern mit ruhiger Vorbereitung.",
   });
 }
 
@@ -54,7 +54,7 @@ export default async function KinderUmzugsboxPage() {
         </div>
         <div className="mx-auto max-w-4xl text-center">
           <span className="label-premium text-blue-700 mb-6 block">
-            {content.badge || "Premium Service"}
+            {content.badge || "FLOXANT Service"}
           </span>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-slate-950 mb-6 leading-[1.05]">
             {content.hero_title || "Kinder-Umzugsbox"}
@@ -101,7 +101,7 @@ export default async function KinderUmzugsboxPage() {
       <section className="py-16 px-6 section-glow">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-xl font-semibold text-slate-500 mb-8 text-center">
-            Weitere Premium Services
+            Weitere passende Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {relatedServices.map((s: any) => {

@@ -49,7 +49,7 @@ const serviceLabels: Record<EinsatzradarServiceType, string> = {
   uebergabeakte: "Übergabeakte",
   mieterwechsel: "Mieterwechsel",
   hausverwaltung: "Hausverwaltung",
-  premium: "Premium",
+  premium: "Diskrete Abstimmung",
   duesseldorf_reinigung: "Düsseldorf Reinigung",
   duesseldorf_entsorgung: "Düsseldorf Entsorgung",
 };
@@ -64,7 +64,7 @@ export function Einsatzradar({
   zones = [],
   variant = "full",
   title = "FLOXANT Einsatzradar",
-  subtitle = "Typische Einsatzarten, grobe Regionen und passende FLOXANT Einstiege ohne Kundendaten.",
+  subtitle = "Typische Einsatzarten, grobe Regionen und passende Anfragewege ohne Kundendaten.",
   maxItems,
   showFilters = true,
   showZones = true,
@@ -99,7 +99,7 @@ export function Einsatzradar({
           <div className="max-w-3xl">
             <div className="flox-tag-soft">
               <Radar className="h-4 w-4" />
-              Operations Radar
+              Einsatzübersicht
             </div>
             <h2 className={isCompact ? "flox-title-lg flox-display-section mt-4 text-slate-950" : "flox-title-lg flox-display-section mt-5 text-slate-950"}>
               {title}

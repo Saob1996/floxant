@@ -127,7 +127,7 @@ const serviceLinks = [
 const faqItems = [
   {
     q: "Arbeitet FLOXANT nur in Regensburg?",
-    a: "Nein. Regensburg ist der operative Kern. Anfragen aus der direkten Umgebung und aus Bayern werden nach Ort, Strecke, Termin, Umfang, Zugang und Kapazitaet geprueft.",
+    a: "Nein. FLOXANT sitzt in Regensburg. Anfragen aus der direkten Umgebung und aus Bayern werden nach Ort, Strecke, Termin, Umfang, Zugang und Kapazitaet geprueft.",
   },
   {
     q: "Welche Orte in der Naehe von Regensburg sind relevant?",
@@ -201,7 +201,7 @@ export default async function RegensburgServiceArea200KmPage() {
       buildWebPageJsonLd({
         name: "Servicegebiet Regensburg und Umgebung",
         description:
-          "Oeffentliche Servicegebiet-Seite fuer FLOXANT mit Regensburg als operativem Kern, direkter Umgebung, ca. 200-km-Nahbereich und Bayern nach Verfuegbarkeit.",
+          "Oeffentliche Servicegebiet-Seite fuer FLOXANT mit Sitz in Regensburg, direkter Umgebung, ca. 200-km-Nahbereich und Bayern nach Verfuegbarkeit.",
         path: pagePath,
         about: [
           "Regensburg",
@@ -265,13 +265,13 @@ export default async function RegensburgServiceArea200KmPage() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
               <MapPin className="h-4 w-4" />
-              Regensburg als operativer Kern
+              Regensburg als Ausgangspunkt
             </div>
             <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
               Servicegebiet Regensburg und Umgebung fuer Umzug, Reinigung und Entruempelung
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
-              FLOXANT sitzt operativ in Regensburg. Deshalb sind Anfragen aus dem direkten Umfeld
+              FLOXANT sitzt in Regensburg. Deshalb sind Anfragen aus dem direkten Umfeld
               besonders gut planbar. Fuer laengere Strecken innerhalb Bayerns pruefen wir Termin,
               Umfang, Fahrzeugbedarf, Zugang, Fotos und moegliche Rueckfahrten, bevor etwas
               verbindlich zugesagt wird.
@@ -443,7 +443,7 @@ export default async function RegensburgServiceArea200KmPage() {
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600">
               <p>
-                Das Servicegebiet hilft bei der Orientierung. Die operative Pruefung bleibt aber
+                Das Servicegebiet hilft bei der Orientierung. Die konkrete Pruefung bleibt aber
                 konkret: Ort, PLZ, Etage, Zugang, Fotos, Termin und gewuenschte Zusatzservices
                 entscheiden, ob ein Einsatz realistisch passt.
               </p>

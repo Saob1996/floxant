@@ -10,8 +10,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     pageLocale,
     path: 'blog/umzug-tipps-bayern',
-    title: "12 Experten Umzugs-Tipps für Bayern | FLOXANT",
-    description: "Unsere Profi-Tipps helfen Ihnen, bei Ihrem Umzug in Bayern Zeit, Nerven und Geld zu sparen.",
+    title: "12 Umzugs-Tipps aus der Praxis in Bayern | FLOXANT",
+    description: "Konkrete Umzugs-Tipps aus dem Alltag: Zugang, Kartons, Parken, Laufwege und Vorbereitung in Bayern besser planen.",
   });
 }
 
@@ -39,7 +39,7 @@ export default async function BlogUmzugTippsBayern() {
             </h1>
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none">
-            <p>Mit Erfahrung aus hunderten Einsätzen als Premium-Umzugsspedition in Bayern haben wir die besten Hacks unserer Möbelpacker zusammengestellt.</p>
+            <p>Aus vielen Umzügen in Bayern wissen wir: Meist entscheidet nicht der große Trick, sondern die Vorbereitung. Kartons, Zugang, Parken, Laufwege und Reihenfolge müssen vorher klar sein.</p>
             
             <h3>Tipp 1: Teller hochkant einpacken</h3>
             <p>Stellen Sie Teller immer hochkant in den gut ausgepolsterten Karton, um Glasbruch zu vermeiden.</p>
@@ -51,8 +51,8 @@ export default async function BlogUmzugTippsBayern() {
             <p>Nutzen Sie Müllsäcke oder Kleiderboxen, um Hängekleidung direkt mit dem Bügel zu transportieren.</p>
             
             <div className="bg-blue-50 p-8 rounded-3xl border border-blue-100 my-12">
-              <h3 className="mt-0 font-bold text-blue-900">Profi-Beratung gewünscht?</h3>
-              <p className="text-blue-800">Wir planen Ihren Umzug individuell und stressfrei.</p>
+              <h3 className="mt-0 font-bold text-blue-900">Umzug kurz einordnen lassen?</h3>
+              <p className="text-blue-800">Senden Sie Ort, Umfang, Etage, Parkmöglichkeit und Termin. Wir prüfen, was realistisch ist.</p>
               <a href="/rechner" className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full no-underline hover:bg-blue-700">
                 Jetzt Kosten berechnen
               </a>

@@ -11,7 +11,7 @@ import {
 const faqItems = [
  {
   q: "Warum ist Regensburg für FLOXANT so wichtig?",
-  a: "Regensburg ist der operative Kern. Von dort lassen sich Umzug, Reinigung und Entrümpelung regional sauber planen und in Bayern ausbauen.",
+  a: "Regensburg ist der Ausgangspunkt. Von dort lassen sich Umzug, Reinigung und Entrümpelung regional sauber planen und in Bayern ausbauen.",
  },
  {
   q: "Bedient FLOXANT ganz Bayern?",
@@ -50,7 +50,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
    ]),
    buildArticleJsonLd({
     headline: "Regensburg und Bayern: Servicegebiet richtig planen",
-    description: "Ein FLOXANT Artikel über regionale Verfügbarkeit, Strecken und operative Planung.",
+    description: "Ein FLOXANT Artikel über regionale Verfügbarkeit, Strecken und realistische Planung.",
     path: "/blog/regensburg-bayern-servicegebiet-richtig-planen",
     datePublished: "2026-04-20",
    }),
@@ -69,7 +69,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
     date="20. April 2026"
     readTime="6 Min."
     title="Regensburg und Bayern: Servicegebiet richtig planen"
-    intro="Bei lokalen Dienstleistungen zählt nicht nur die Leistung selbst, sondern auch die Region. Regensburg ist für FLOXANT der operative Kern, Bayern der Ausbau. Diese Einordnung macht Termine, Strecken und Preisrahmen realistischer."
+    intro="Bei lokalen Dienstleistungen zählt nicht nur die Leistung selbst, sondern auch die Region. Regensburg ist für FLOXANT der Ausgangspunkt, Bayern der Ausbau. Diese Einordnung macht Termine, Strecken und Preisrahmen realistischer."
     sections={[
      {
       title: "Warum Region mehr ist als ein Keyword",
@@ -79,7 +79,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
       ],
      },
      {
-      title: "Regensburg als operativer Kern",
+      title: "Regensburg als Ausgangspunkt",
       paragraphs: [
        "Regensburg ist der natürliche Schwerpunkt für FLOXANT. Hier lassen sich viele Anfragen schneller prüfen, Wege besser einschätzen und Zusatzleistungen wie Reinigung, Beiladung oder Entrümpelung enger koordinieren.",
       ],
@@ -101,7 +101,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
     highlightPoints={[
      "Regensburg ist der Kern, Bayern der Ausbau.",
      "Regionale Einordnung beeinflusst Termin, Route und Preisrahmen.",
-     "Starke Local-SEO-Seiten brauchen echte operative Erklärung.",
+     "Starke Ortsseiten brauchen echte Erklärung statt bloßer Städtenamen.",
     ]}
     ctas={[
      { href: "/service-area-bayern", label: "Servicegebiet Bayern" },

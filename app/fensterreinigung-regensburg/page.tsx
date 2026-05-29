@@ -368,7 +368,7 @@ export default function FensterreinigungRegensburgPage() {
           <div className="max-w-3xl">
             <div className="flox-kicker">Kundensuchen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Suchende wollen schnell wissen: passt das zu meinen Fenstern?
+              Kunden wollen schnell wissen: passt das zu meinen Fenstern?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Viele Kunden suchen nicht nur nach Reinigungsfirma. Sie schreiben
@@ -494,9 +494,9 @@ export default function FensterreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für mehr Klicks und weniger Unsicherheit.
+              Kurze Antworten, damit Umfang und Termin schneller klar werden.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

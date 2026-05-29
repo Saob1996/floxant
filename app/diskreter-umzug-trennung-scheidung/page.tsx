@@ -71,7 +71,7 @@ const statusSteps = ["Rückruf", "Zeitfenster", "Umfang", "Transport", "Reinigun
 const localSearchSignals = [
   {
     title: "Regensburg als Kern",
-    text: "Die Seite nennt Regensburg klar als operative Basis und führt sensible Anfragen in einen direkten Rückruf- oder Formularweg.",
+    text: "Die Seite nennt Regensburg klar als Ausgangspunkt und führt sensible Anfragen in einen direkten Rückruf- oder Formularweg.",
   },
   {
     title: "Umgebung sauber eingeordnet",
@@ -209,10 +209,10 @@ const packages = [
     Icon: KeyRound,
   },
   {
-    title: "Premium/Diskret",
-    forWhom: "Wenn die Situation hochwertig, sensibel oder komplex abgestimmt werden soll.",
+    title: "Diskrete Abstimmung",
+    forWhom: "Wenn die Situation sensibel ist und ruhig abgestimmt werden soll.",
     includes: ["Rückruf", "Planung", "Zusatzservices", "diskrete Abstimmung"],
-    cta: "Premium-Rückruf anfragen",
+    cta: "Diskreten Rückruf anfragen",
     Icon: ShieldCheck,
   },
 ];
@@ -229,7 +229,7 @@ const notIncluded = [
 ];
 
 const relatedLinks = [
-  { href: "/private-client-service", label: "Premium-/Diskret-Service" },
+  { href: "/private-client-service", label: "Diskrete Abstimmung" },
   { href: "/umzug-regensburg", label: "Umzug Regensburg" },
   { href: "/reinigung-regensburg", label: "Reinigung nach Auszug" },
   { href: "/uebergabeakte", label: "Übergabeakte ergänzen" },
@@ -579,7 +579,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 "nur nötigste Angaben im Formular",
                 "Rückrufzeitfenster und Kontaktmethode angeben",
                 "Details müssen nicht per E-Mail erklärt werden",
-                "kurzer Anlass reicht: diskreter Auszug, private Trennung, sensible Situation oder Premium-Abstimmung",
+                "kurzer Anlass reicht: diskreter Auszug, private Trennung, sensible Situation oder diskrete Abstimmung",
                 "Fotos optional, wenn sie die Einschätzung erleichtern",
                 "keine sensiblen Details in URL-Parametern oder Analytics-Events",
               ].map((item) => (

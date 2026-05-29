@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/moebeltransport-sicher',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Moebeltransport vorbereiten",
   });
 }
 export default async function Article() {
@@ -51,7 +51,7 @@ export default async function Article() {
             <p className="text-muted-foreground leading-relaxed">Demontierbare Möbel auseinanderbauen und Schrauben in beschrifteten Beuteln aufbewahren. Polstermöbel mit Decken umwickeln, Glastüren mit Luftpolsterfolie schützen.</p>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Professioneller Transport</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Sicherer Transport</h2>
             <p className="text-muted-foreground leading-relaxed">Ladungssicherung im Transporter mit Gurten und Antirutschmatten. Schwere Stücke zuerst laden, zerbrechliche Teile oben und fixiert.</p>
           </div>
           <div>

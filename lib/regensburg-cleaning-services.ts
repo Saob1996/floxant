@@ -249,3 +249,245 @@ export const regensburgCleaningLocalFaqs = [
     a: "Ja. Fotos von Räumen, Fenstern, Boden, Treppenhaus, Küche, Bad, Teppich oder Baustaub helfen, die Anfrage schneller einzuordnen und Rückfragen zu reduzieren.",
   },
 ];
+export type RegensburgCleaningSearchSituation = {
+  eyebrow: string;
+  customerSays: string;
+  answer: string;
+  href: string;
+  cta: string;
+  proofPoints: string[];
+};
+
+export const regensburgCleaningSearchSituations: RegensburgCleaningSearchSituation[] = [
+  {
+    eyebrow: "Kurzfristig",
+    customerSays: "Die Wohnung muss diese Woche noch sauber sein.",
+    answer:
+      "FLOXANT klaert zuerst Termin, Zugang, Flaeche, Fotos und Ziel: Uebergabe, Einzug, Besuch oder Wiedervermietung.",
+    href: "/panikfrei-in-24h",
+    cta: "Kurzfristige Hilfe pruefen",
+    proofPoints: ["Termin und Deadline", "Fotos vom Zustand", "Schluessel oder Zugang"],
+  },
+  {
+    eyebrow: "Gewerbe",
+    customerSays: "Unser Buero soll montags wieder ordentlich wirken.",
+    answer:
+      "Fuer Buero, Kanzlei, Praxis oder Objektbetrieb zaehlen Turnus, Randzeiten und klar abgegrenzte Leistungen.",
+    href: "/bueroreinigung-regensburg",
+    cta: "Bueroreinigung oeffnen",
+    proofPoints: ["Turnus", "Raumliste", "Randzeiten"],
+  },
+  {
+    eyebrow: "Uebergabe",
+    customerSays: "Der Vermieter kommt und ich will keinen Streit.",
+    answer:
+      "Vor Uebergabe werden sichtbare Risikostellen priorisiert: Kueche, Bad, Boden, Fensterbereiche, Nebenflaechen und Fotodokumentation.",
+    href: "/vermieter-schockschutz-reinigung",
+    cta: "Uebergabe vorbereiten",
+    proofPoints: ["Kueche und Bad", "Nebenraeume", "Fotos vor Termin"],
+  },
+  {
+    eyebrow: "Baustaub",
+    customerSays: "Nach den Handwerkern ist ueberall Staub.",
+    answer:
+      "Bei Renovierung, Umbau oder Baufeinreinigung entscheidet die Bauphase. FLOXANT trennt Staub, Boden, Fenster/Rahmen und Restmaterial sauber.",
+    href: "/baustaub-ende",
+    cta: "Baustaub-Ende ansehen",
+    proofPoints: ["Bauphase", "Boden und Rahmen", "Einzug oder Uebergabe"],
+  },
+  {
+    eyebrow: "Geruch",
+    customerSays: "Es riecht unangenehm, aber ich weiss nicht woher.",
+    answer:
+      "Geruch wird nicht nur ueberdeckt. FLOXANT fragt Quelle, Raum, Material, Kueche, Bad, Textilien und Lueftungssituation ab.",
+    href: "/geruchslos-protokoll",
+    cta: "Geruch einordnen",
+    proofPoints: ["Quelle vermuten", "Material nennen", "Fotos senden"],
+  },
+  {
+    eyebrow: "Diskret",
+    customerSays: "Mir ist die Situation peinlich.",
+    answer:
+      "Bei belasteten oder sehr privaten Raeumen zaehlt ruhige Kommunikation, keine Bewertung, klare Grenzen und ein geschuetzter Anfrageweg.",
+    href: "/anti-scham-reinigung",
+    cta: "Diskret anfragen",
+    proofPoints: ["ruhiger Erstkontakt", "keine Vorwuerfe", "klare naechste Schritte"],
+  },
+];
+
+export const regensburgCleaningSnippetTargets = [
+  {
+    query: "Reinigungsfirma Regensburg kurzfristig",
+    answer:
+      "Senden Sie Ort, Flaeche, Fotos, Termin und Ziel. FLOXANT prueft, ob kurzfristige Reinigung in Regensburg realistisch ist.",
+    href: "/panikfrei-in-24h",
+  },
+  {
+    query: "Putzfirma Regensburg Wohnung Uebergabe",
+    answer:
+      "Vor der Wohnungsuebergabe zaehlen sichtbare Bereiche: Kueche, Bad, Boden, Fensterbereiche, Keller, Balkon und Dokumentation.",
+    href: "/sichtbar-sauber-protokoll",
+  },
+  {
+    query: "Bueroreinigung Regensburg Angebot",
+    answer:
+      "Ein gutes Angebot braucht Flaeche, Turnus, Raumliste, Randzeiten, Zugang und Ansprechpartner statt nur einen Quadratmeterpreis.",
+    href: "/bueroreinigung-regensburg",
+  },
+  {
+    query: "Baustaub Reinigung Regensburg",
+    answer:
+      "Nach Renovierung oder Sanierung sollten Bauphase, Staubmenge, Boden, Fenster, Rahmen, Restmaterial und Deadline vorab geklaert werden.",
+    href: "/baustaub-ende",
+  },
+];
+
+export const regensburgCleaningTrustPromises = [
+  "Keine pauschalen Lockpreise ohne Objektblick.",
+  "Fotos sind willkommen, weil sie Rueckfragen und falsche Erwartungen reduzieren.",
+  "Regensburg, Oberpfalz und Bayern werden natuerlich eingeordnet, nicht als Keyword-Liste.",
+  "WhatsApp, Telefon und Buchung bleiben als kurze Wege sichtbar.",
+  "Bewertungen und echte Erfahrungen sollten im Google Profil geprueft werden, ohne erfundene Sterne im Markup.",
+];
+
+export type RegensburgCleaningBuyerPath = {
+  label: string;
+  href: string;
+  customerPhrase: string;
+  problem: string;
+  answer: string;
+  send: string[];
+  cta: string;
+};
+
+export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
+  {
+    label: "Büroreinigung ohne Betriebsstörung",
+    href: "/bueroreinigung-regensburg",
+    customerPhrase: "Unser Büro soll sauber wirken, aber der Betrieb darf nicht leiden.",
+    problem: "Kunden suchen nach Angebot, Kosten, Reinigungskraft, Randzeiten und klarer Raumliste.",
+    answer:
+      "FLOXANT ordnet Fläche, Arbeitsplätze, Küche, Sanitär, Meetingräume, Zugang und Turnus vor dem Angebot sauber ein.",
+    send: ["m² und Raumliste", "Turnus und Randzeit", "Fotos von Küche, Sanitär und Empfang"],
+    cta: "Büroreinigung prüfen",
+  },
+  {
+    label: "Unterhaltsreinigung mit Plan",
+    href: "/unterhaltsreinigung-regensburg",
+    customerPhrase: "Wir brauchen regelmäßige Reinigung, die nicht jedes Mal neu erklärt werden muss.",
+    problem: "Bei laufenden Objekten zählen Plan, Ansprechpartner, Leistungsumfang und verlässlicher Rhythmus.",
+    answer:
+      "Der Turnus wird nach Nutzung, Objektart, Raumliste, Zeitfenster und Zugang aufgebaut, nicht nur nach Quadratmetern.",
+    send: ["Objektart", "Frequenz", "Leistungsverzeichnis oder Wünsche"],
+    cta: "Turnus abstimmen",
+  },
+  {
+    label: "Gewerbereinigung richtig starten",
+    href: "/gewerbereinigung-regensburg",
+    customerPhrase: "Wir suchen eine Reinigungsfirma für Büro, Praxis, Hotel oder Objekt.",
+    problem: "B2B-Kunden vergleichen oft erst grob und brauchen dann eine klare Zuordnung der passenden Leistung.",
+    answer:
+      "Der Service-Finder trennt Büro, Praxis, Hotel, Bau, Fenster, Teppich, Treppenhaus, Grundreinigung und sensible Technikflächen.",
+    send: ["Objektart", "Fläche und Turnus", "Ansprechpartner und Zugang"],
+    cta: "Gewerbereinigung öffnen",
+  },
+  {
+    label: "Praxis und Empfang sauber halten",
+    href: "/praxisreinigung-regensburg",
+    customerPhrase: "Empfang, Wartebereich und Nebenflächen sollen verlässlich sauber sein.",
+    problem: "Praxis-Kunden suchen nach Vertrauen, Planbarkeit und klaren Grenzen, ohne falsche Spezialversprechen.",
+    answer:
+      "FLOXANT fragt Praxisart, Öffnungszeiten, Empfang, Wartebereich, Sanitär, Personalflächen und Tabubereiche ab.",
+    send: ["Praxisart", "Öffnungszeiten", "Bereiche und Grenzen"],
+    cta: "Praxisreinigung prüfen",
+  },
+  {
+    label: "Grundreinigung vor Einzug oder Übergabe",
+    href: "/grundreinigung-regensburg",
+    customerPhrase: "Es muss wieder richtig sauber werden, nicht nur oberflächlich.",
+    problem: "Kunden wollen wissen, ob Kueche, Bad, Boden, starke Verschmutzung oder Auszug realistisch machbar sind.",
+    answer:
+      "FLOXANT prüft Zustand, Ziel, Termin, Material und Fotos, bevor Erwartungen oder Preise versprochen werden.",
+    send: ["Zustand und Ziel", "m² und Termin", "Fotos von Küche, Bad und Boden"],
+    cta: "Grundreinigung öffnen",
+  },
+  {
+    label: "Baustaub nach Renovierung beenden",
+    href: "/baustaub-ende",
+    customerPhrase: "Nach den Handwerkern ist überall feiner Staub.",
+    problem: "Baustaub, Baufeinreinigung, Renovierungsreinigung und Übergabetermin werden oft durcheinander gesucht.",
+    answer:
+      "Die Anfrage trennt Bauphase, Reststaub, Boden, Fenster/Rahmen, Restmaterial, Zugang und Deadline.",
+    send: ["Bauphase", "Staubfotos", "Einzug oder Übergabe"],
+    cta: "Baustaub einordnen",
+  },
+  {
+    label: "Sichtbar sauber vor Besuch oder Abnahme",
+    href: "/sichtbar-sauber-protokoll",
+    customerPhrase: "Es muss auf den ersten Blick ordentlich sein.",
+    problem: "Vor Besuch, Übergabe oder Besichtigung zählen sichtbare Stellen mehr als lange Leistungslisten.",
+    answer:
+      "Küche, Bad, Boden, Eingangsbereich, Fensterzonen und Nebenflächen werden so priorisiert, dass der erste Eindruck trägt.",
+    send: ["Anlass", "sichtbare Problemstellen", "Termin und Fotos"],
+    cta: "Sichtbar-sauber planen",
+  },
+  {
+    label: "Fenster und Glas sichtbar machen",
+    href: "/fensterreinigung-regensburg",
+    customerPhrase: "Fenster, Schaufenster oder Glasflächen fallen sofort auf.",
+    problem: "Für Glasreinigung braucht es mehr als die Frage nach einem Stückpreis.",
+    answer:
+      "Fensterzahl, Innen/Außen, Etage, Rahmenwunsch, Zugang und Sichtbarkeit werden vorab abgefragt.",
+    send: ["Fensterzahl", "innen/außen", "Etage und Zugang"],
+    cta: "Fenster anfragen",
+  },
+  {
+    label: "Treppenhaus für Hausverwaltung",
+    href: "/treppenhausreinigung-regensburg",
+    customerPhrase: "Mieter sollen sehen, dass sich jemand kümmert.",
+    problem: "Hausverwaltungen brauchen klare Zuständigkeit statt loser Absprachen.",
+    answer:
+      "FLOXANT fragt Eingänge, Etagen, Aufzug, Kellerflur, Müllraum, Schlüssel und Turnus gezielt ab.",
+    send: ["Eingänge und Etagen", "Zugang", "gewünschter Turnus"],
+    cta: "Treppenhaus planen",
+  },
+  {
+    label: "Teppich, Polster und Geruch prüfen",
+    href: "/teppichreinigung-regensburg",
+    customerPhrase: "Flecken oder Geruch sollen weg, aber das Material ist unklar.",
+    problem: "Textile Flächen brauchen Materialblick, Fotos und realistische Grenzen.",
+    answer:
+      "Flecken, Geruch, Laufwege, Stückzahl, Trocknungsfenster und Material werden vor einer Zusage geprüft.",
+    send: ["Material", "Fleckenfotos", "Fläche oder Stückzahl"],
+    cta: "Teppich/Polster prüfen",
+  },
+  {
+    label: "Diskrete Übergabe ohne Streit",
+    href: "/vermieter-schockschutz-reinigung",
+    customerPhrase: "Der Vermieter kommt bald und ich will keinen Ärger.",
+    problem: "Vor Übergabe geht es um sichtbare Risikostellen, Zeitdruck und ruhige Kommunikation.",
+    answer:
+      "Küche, Bad, Boden, Fensterbereiche, Nebenräume und Fotos werden nach Stresspotenzial priorisiert.",
+    send: ["Übergabetermin", "Fotos der Risikostellen", "Schlüssel- oder Zugangslage"],
+    cta: "Übergabe vorbereiten",
+  },
+];
+
+export const regensburgCleaningDecisionProofs = [
+  {
+    label: "Fotos statt Rätselraten",
+    text: "Bilder von Boden, Küche, Bad, Fenstern, Treppenhaus, Teppich oder Baustaub machen die Antwort schneller und ehrlicher.",
+  },
+  {
+    label: "Service sauber zuordnen",
+    text: "Büro, Unterhalt, Grundreinigung, Bau, Fenster, Teppich und Treppenhaus werden getrennt statt als Sammelversprechen verkauft.",
+  },
+  {
+    label: "Regensburg konkret",
+    text: "Stadtteil, Zugang, Parken, Etage und Umgebung in der Oberpfalz werden natürlich abgefragt, weil sie den Ablauf verändern.",
+  },
+  {
+    label: "Keine falschen Sterne",
+    text: "Bewertungen bleiben als Hinweis sichtbar, aber es wird kein erfundenes Rating-Markup erzeugt.",
+  },
+];

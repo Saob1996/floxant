@@ -8,8 +8,11 @@ import {
   Building2,
   CheckCircle2,
   Crown,
+  KeyRound,
   MessageCircle,
+  Radio,
   Sparkles,
+  Smartphone,
   Trash2,
   Truck,
   Zap,
@@ -21,6 +24,7 @@ import { Einsatzradar } from "@/components/Einsatzradar";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
+import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { ServiceRequestCompass } from "@/components/ServiceRequestCompass";
 import { SignatureServices } from "@/components/SignatureServices";
@@ -98,6 +102,27 @@ const coreServices: RouteCard[] = [
 
 const specialRoutes: RouteCard[] = [
   {
+    label: "Immobilienbetreuung",
+    title: "Immobilie betreuen statt Einzelauftrag suchen",
+    text: "Schluessel, Uebergaben, Leerstand, Reinigung, Dokumentation und Vor-Ort-Aufgaben aus einer Hand.",
+    href: "/property-operations",
+    Icon: Building2,
+  },
+  {
+    label: "Soforthilfe",
+    title: "Objekt-Springer",
+    text: "Kurzfristige Hilfe, wenn Personal, Hausmeister, Zugang oder eine kleine Vor-Ort-Aufgabe plötzlich ausfällt.",
+    href: "/objekt-springer",
+    Icon: Radio,
+  },
+  {
+    label: "Vor-Ort-Pruefung",
+    title: "Jemand schaut wirklich nach",
+    text: "Foto-Dokumentation, Objektkontrolle, Materialpruefung und Rueckmeldung, wenn eine Nachricht allein nicht reicht.",
+    href: "/human-api",
+    Icon: Smartphone,
+  },
+  {
     label: "Direkter Pfad",
     title: "Buchung statt Sucherei",
     text: "Sauberer Einstieg für Kunden, die Umzug, Reinigung oder Entsorgung direkt anfragen wollen.",
@@ -112,9 +137,9 @@ const specialRoutes: RouteCard[] = [
     Icon: Building2,
   },
   {
-    label: "Diskreter Sonderweg",
+    label: "Diskrete Anfrage",
     title: "Private Client",
-    text: "Für hochwertige sensible Projekte mit ruhiger Führung und exakter Abstimmung.",
+    text: "Fuer sensible Projekte mit Rueckruf, klarer Abstimmung und ruhigem Ablauf.",
     href: "/private-client-service",
     Icon: Crown,
   },
@@ -124,6 +149,13 @@ const specialRoutes: RouteCard[] = [
     text: "Freie Kapazität auf Rückfahrten für Transport ohne Vollumzug nutzen.",
     href: "/leerfahrt-rueckfahrt",
     Icon: Briefcase,
+  },
+  {
+    label: "Leerstand",
+    title: "Leerstandsmanagement",
+    text: "Kontrollen, Lüften, Fotos und Zustandsberichte für Immobilien, die nicht unbeobachtet bleiben sollen.",
+    href: "/leerstandsmanagement",
+    Icon: KeyRound,
   },
 ];
 
@@ -276,6 +308,13 @@ const directEntryPaths = [
   { label: "Makler-/Vermieter-Link", href: "/makler-vermieter-link", description: "Kurzer Akquise-Link fuer Makler, Vermieter, Eigentuemer und Hausverwaltungen, um Objektfaelle mit Fotos, Termin und offenen Punkten direkt zu senden." },
   { label: "Mieterwechsel", href: "/mieterwechsel-service-regensburg", description: "B2B-Einstieg fuer Hausverwaltungen, Vermieter, Makler und Eigentuemer mit Raeumung, Reinigung und Uebergabevorbereitung." },
   { label: "Wohnung wieder vermietbar", href: "/wohnung-wieder-vermietbar", description: "Objekt-Ready-Service fuer Vermieter, Makler, Eigentuemer und Hausverwaltungen: Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache." },
+  { label: "Immobilienbetreuung", href: "/property-operations", description: "Einstieg fuer Immobilienbetreuung mit Schluesselmanagement, Uebergaben, Leerstandskontrolle, Reinigung, Dokumentation und dringenden Einsaetzen." },
+  { label: "Objekt-Springer", href: "/objekt-springer", description: "Kurzfristige Hilfe, wenn Personal ausfaellt, eine Reinigungskraft fehlt, der Hausmeister nicht da ist oder ein Objekt schnell geprueft werden muss." },
+  { label: "Vor-Ort-Pruefung", href: "/human-api", description: "Reale Hilfe fuer Aufgaben, die aus der Ferne nicht sicher geklaert werden koennen: Fotos, Kontrolle, Materialpruefung und Bestandsaufnahme." },
+  { label: "Erledigungsservice fuer Unternehmen", href: "/business-errand-service", description: "Kleine Unternehmensaufgaben abgeben: Dokumente abholen, Schluessel transportieren, Material uebergeben und Vor-Ort-Kontrollen." },
+  { label: "Leerstandsmanagement", href: "/leerstandsmanagement", description: "Regelmaessige Kontrolle leerstehender Wohnungen mit Lueften, Fotos, Dokumentation und Zustandsbericht fuer Regensburg, Oberpfalz und Bayern." },
+  { label: "Airbnb Turnover Express", href: "/airbnb-turnover-express", description: "Gaestewechsel-Service fuer Hosts mit Reinigung, Kontrolle, Fotos, Schluesselmanagement und Vorbereitung fuer den naechsten Gast." },
+  { label: "Urlaubsretter", href: "/urlaubsretter", description: "Hilfe kurz vor der Reise fuer Schluesseluebergabe, Wohnungscheck, Reinigung, letzte Besorgungen und Uebergaben." },
   { label: "Immobilie verkaufsbereit machen", href: "/immobilie-verkaufsbereit-machen", description: "Property-Ready-Service fuer Eigentuemer, Makler und Erbengemeinschaften: Objekt vor Verkauf, Besichtigung oder Expose mit Fotos, Raeumung, Reinigung und Entsorgung pruefen lassen." },
   { label: "Nachlass-Raeumung Regensburg", href: "/nachlass-raeumung-regensburg", description: "Diskreter Service fuer Angehoerige, Erben, Eigentuemer und Bevollmaechtigte: Wohnung, Haus, Keller oder Garage nach Erbfall ruhig klaeren lassen." },
   { label: "Diskreter Umzug bei Trennung", href: "/diskreter-umzug-trennung-scheidung", description: "Rueckruf-First-Service fuer sensible private Auszuege: Transport, Reinigung, Schluesseluebergabe und Uebergabeakte nach Absprache pruefen lassen." },
@@ -298,6 +337,20 @@ const directEntryPaths = [
 ] as const;
 
 const specialServiceGroups: SpecialServiceGroup[] = [
+  {
+    label: "Immobilienbetreuung",
+    title: "FLOXANT hilft, wenn vor Ort etwas erledigt werden muss",
+    text: "Fuer Kunden, die nicht nur Reinigung, Umzug oder Entruempelung suchen, sondern jemanden, der Schluessel, Kontrollen, Fotos, Uebergaben und dringende Objektaufgaben praktisch uebernimmt.",
+    href: "/property-operations",
+    Icon: Building2,
+    keywords: ["Immobilienbetreuung", "Vor-Ort-Pruefung", "Objekt-Springer"],
+    links: [
+      { label: "Immobilienbetreuung", href: "/property-operations" },
+      { label: "Objekt-Springer", href: "/objekt-springer" },
+      { label: "Vor-Ort-Pruefung", href: "/human-api" },
+      { label: "Leerstandsmanagement", href: "/leerstandsmanagement" },
+    ],
+  },
   {
     label: "Angebot & Preis",
     title: "Angebot anderer Firma prüfen",
@@ -343,10 +396,10 @@ const specialServiceGroups: SpecialServiceGroup[] = [
   {
     label: "Diskret & sensibel",
     title: "Ruhige Hilfe für sensible Situationen",
-    text: "Für Nachlass, Erbfall, private Trennung, diskrete Auszüge oder Premium-Anfragen, bei denen Rückruf, Ruhe und klare Grenzen wichtiger sind als laute Werbung.",
+    text: "Für Nachlass, Erbfall, private Trennung oder diskrete Auszüge, bei denen Rückruf, Ruhe und klare Grenzen wichtiger sind als laute Werbung.",
     href: "/nachlass-raeumung-regensburg",
     Icon: Crown,
-    keywords: ["Diskret", "Nachlass", "Premium"],
+    keywords: ["Diskret", "Nachlass", "sensibel"],
     links: [
       { label: "Nachlass-Räumung", href: "/nachlass-raeumung-regensburg" },
       { label: "Diskreter Umzug", href: "/diskreter-umzug-trennung-scheidung" },
@@ -371,12 +424,15 @@ const specialServiceGroups: SpecialServiceGroup[] = [
   {
     label: "Düsseldorf getrennt",
     title: "Düsseldorf klar als Reinigungsspur",
-    text: "Fuer B2B-Reinigung, Wohnungsreinigung, Treppenhaus, Grundreinigung und moeblierte Wohnungen in Duesseldorf. Entsorgung bleibt ein separater vorhandener Zusatzweg.",
+    text: "Fuer kurzfristige Reinigung, Schluesseluebergabe, Hausverwaltung, B2B-Reinigung, Wohnungsreinigung und moeblierte Wohnungen in Duesseldorf. Entsorgung bleibt ein separater vorhandener Zusatzweg.",
     href: "/duesseldorf/reinigung",
     Icon: Sparkles,
     keywords: ["Düsseldorf", "Reinigung", "B2B"],
     links: [
       { label: "Reinigung Düsseldorf", href: "/duesseldorf/reinigung" },
+      { label: "Kurzfristig", href: "/duesseldorf/kurzfristige-reinigung" },
+      { label: "Schlüsselübergabe", href: "/duesseldorf/schluesseluebergabe-reinigung" },
+      { label: "Hausverwaltung", href: "/duesseldorf/hausverwaltung-reinigung" },
       { label: "B2B-Reinigung Düsseldorf", href: "/duesseldorf/bueroreinigung" },
       { label: "Möblierte Wohnung", href: "/reinigung-moeblierte-wohnung-duesseldorf" },
       { label: "Entsorgung separat", href: "/entsorgung-duesseldorf" },
@@ -411,11 +467,11 @@ const faqItems = [
   },
   {
     q: "Ist FLOXANT nur in Regensburg aktiv?",
-    a: "Regensburg ist der operative Kern. Von dort aus prüft FLOXANT Einsätze in der Umgebung bis ca. 200 km und in Bayern, wenn Strecke, Verfügbarkeit und Leistungsumfang sinnvoll zusammenpassen.",
+    a: "Regensburg ist die Basis. Von dort aus prüft FLOXANT Einsätze in der Umgebung bis ca. 200 km und in Bayern, wenn Strecke, Verfügbarkeit und Leistungsumfang sinnvoll zusammenpassen.",
   },
   {
     q: "Gibt es auch Wege für Gewerbe oder sensible Projekte?",
-    a: "Ja. Für B2B-Reinigung gibt es eine eigene Seite, für diskrete Premium-Fälle den Private-Client-Pfad und für flexible Transporte die Leer-Rückfahrt.",
+    a: "Ja. Für B2B-Reinigung gibt es eine eigene Seite, für diskrete oder sensible Fälle den Private-Client-Pfad und für flexible Transporte die Leer-Rückfahrt.",
   },
   {
     q: "Welche besonderen FLOXANT-Seiten helfen bei speziellen Situationen?",
@@ -499,7 +555,7 @@ export default function Home() {
       buildServiceJsonLd({
         name: "FLOXANT Umzug, Reinigung und Entrümpelung",
         description:
-          "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Büroumzug, Übergabevorbereitung und direkte Anfragewege mit operativem Kern in Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+          "FLOXANT bündelt Umzug, Reinigung, Entrümpelung, Büroumzug, Übergabevorbereitung und direkte Anfragewege mit Basis in Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
         path: "/",
         serviceType: "Umzug, Reinigung und Entrümpelung",
         areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
@@ -802,7 +858,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="flox-brand-system-strip mt-6" aria-label="FLOXANT Service-System">
+            <div className="flox-brand-system-strip mt-6" aria-label="FLOXANT Anfrageablauf">
               {[
                 ["01", "Prüfen", "Ort · Termin · Fotos"],
                 ["02", "Einordnen", "Umzug · Reinigung · Entrümpelung"],
@@ -1051,6 +1107,19 @@ export default function Home() {
 
       <ServiceRequestCompass />
 
+      <PsychologicalCleaningInternalLinks
+        title="Spezial-Reinigung fuer die Momente, in denen es menschlich wird"
+        intro="Wenn Vermietertermin, Geruch, Baustaub, Familienbesuch oder Montagmorgen-Druck im Raum stehen, fuehren diese Einstiege direkt zur passenden Hilfe."
+        focusSlugs={[
+          "vermieter-schockschutz-reinigung",
+          "panikfrei-in-24h",
+          "reset-reinigung",
+          "baustaub-ende",
+          "anti-scham-reinigung",
+          "montagmorgen-effekt",
+        ]}
+      />
+
       <SearchIntentExpansion
         route="/"
         city="Regensburg"
@@ -1061,6 +1130,8 @@ export default function Home() {
           { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
           { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
           { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+          { href: "/duesseldorf/kurzfristige-reinigung", label: "Kurzfristig Düsseldorf" },
+          { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung Düsseldorf" },
           { href: "/buchung", label: "Direkt anfragen" },
         ]}
         className="pt-4"
@@ -1466,7 +1537,7 @@ export default function Home() {
               Nicht jeder Kunde braucht denselben Weg.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-              FLOXANT trennt direkte Anfrage, Preisgefühl, B2B-Reinigung und Premium-Fälle
+              FLOXANT trennt direkte Anfrage, Preisgefühl, B2B-Reinigung und sensible Fälle
               sauber voneinander, statt alles in einem einzigen Formular zu verstecken.
             </p>
 
@@ -1575,7 +1646,7 @@ export default function Home() {
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
               Die Umgebung bis ca. 200 km rund um Regensburg wird zuerst geprüft; Bayern
               bleibt nach Verfügbarkeit möglich. Diese Klarheit hilft Kunden und Suchmaschinen,
-              FLOXANT als lokales Service-System mit echter operativer Basis zu verstehen.
+              FLOXANT als lokalen Dienstleister mit echter Basis in Regensburg zu verstehen.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {content.regionLinks.map((item) => (

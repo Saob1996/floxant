@@ -9,6 +9,9 @@ import { company } from "@/lib/company";
 const serviceLinks = [
   { href: "/umzug", label: "Umzug" },
   { href: "/reinigung", label: "Reinigung" },
+  { href: "/property-operations", label: "Immobilienbetreuung" },
+  { href: "/objekt-springer", label: "Objekt-Springer" },
+  { href: "/human-api", label: "Vor-Ort-Prüfung" },
   { href: "/firmenentsorgung", label: "Firmenentsorgung" },
   { href: "/entruempelung", label: "Entrümpelung" },
   { href: "/bueroumzug", label: "Büroumzug" },
@@ -25,11 +28,30 @@ const directLinks = [
   { href: "/empfehlen", label: "Empfehlen" },
   { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
   { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
+  { href: "/leerstandsmanagement", label: "Leerstand" },
+  { href: "/business-errand-service", label: "Erledigungsservice" },
+  { href: "/airbnb-turnover-express", label: "Airbnb Wechsel" },
+  { href: "/urlaubsretter", label: "Urlaubsretter" },
   { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum" },
   { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
   { href: "/wohnung-wieder-vermietbar", label: "Objekt-Ready" },
   { href: "/uebergabeakte", label: "Übergabeakte" },
   { href: "/kontakt", label: "Kontakt" },
+];
+
+const problemLinks = [
+  { href: "/sichtbar-sauber-protokoll", label: "Sichtbar sauber" },
+  { href: "/vermieter-schockschutz-reinigung", label: "Vermieter-Schockschutz" },
+  { href: "/schluesselruhe-service", label: "Schlüsselruhe" },
+  { href: "/panikfrei-in-24h", label: "Panikfrei in 24h" },
+  { href: "/reset-reinigung", label: "Reset-Reinigung" },
+  { href: "/geruchslos-protokoll", label: "Geruchslos-Protokoll" },
+  { href: "/anti-scham-reinigung", label: "Anti-Scham-Reinigung" },
+  { href: "/mama-kommt-morgen-service", label: "Mama kommt morgen" },
+  { href: "/hidden-dirt-check", label: "Hidden Dirt Check" },
+  { href: "/montagmorgen-effekt", label: "Montagmorgen-Effekt" },
+  { href: "/atemruhig-reinigung", label: "Atemruhig-Reinigung" },
+  { href: "/baustaub-ende", label: "Baustaub-Ende" },
 ];
 
 const localLinks = [
@@ -43,6 +65,7 @@ const localLinks = [
 
 const knowledgeLinks = [
   { href: "/blog", label: "Ratgeber-Hub" },
+  { href: "/blog/haeufige-gruende-fuer-kautionsabzuege", label: "Kautionsabzuege" },
   { href: "/blog/umzug-kosten-regensburg", label: "Umzugskosten" },
   { href: "/blog/wohnungsuebergabe-regensburg-vorbereiten", label: "Wohnungsübergabe" },
   { href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", label: "Reinigungsfirma wählen" },
@@ -124,7 +147,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
         </section>
 
         <section className="flox-panel rounded-[2.2rem] px-7 py-8 md:px-10 md:py-10">
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.25fr_0.9fr_0.9fr_0.95fr_1.05fr_0.85fr]">
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.2fr_0.85fr_0.85fr_0.85fr_0.9fr_0.9fr_0.75fr]">
             <div className="xl:border-r xl:border-slate-200/80 xl:pr-8">
               <Link href="/" className="text-2xl font-black tracking-[0.16em] text-slate-950" translate="no">
                 FLOXANT
@@ -161,6 +184,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
 
             <FooterColumn title="Leistungen" items={serviceLinks} />
             <FooterColumn title="Direkte Wege" items={directLinks} />
+            <FooterColumn title="Problemhilfe" items={problemLinks} />
             <FooterColumn title="Lokale Seiten" items={localLinks} />
             <FooterColumn title="Ratgeber" items={knowledgeLinks} />
             <FooterColumn title="Rechtliches" items={legalLinks} />

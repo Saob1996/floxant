@@ -22,6 +22,7 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -360,12 +361,25 @@ export default function BaureinigungRegensburgPage() {
         </div>
       </section>
 
+      <RegensburgCleaningBuyerPath
+        serviceLabel="Baureinigung Regensburg"
+        headline="Nach Renovierung zählt ein klarer Weg, nicht noch mehr Rückfragen."
+        intro="Bei Baustaub, Bauendreinigung und Handwerkerstaub suchen Kunden meist unter Zeitdruck. FLOXANT fragt Bauphase, Fotos, Boden, Fenster, Restmaterial, Zugang und Übergabetermin gezielt ab."
+        focusHrefs={[
+          "/baustaub-ende",
+          "/grundreinigung-regensburg",
+          "/fensterreinigung-regensburg",
+          "/gewerbereinigung-regensburg",
+        ]}
+        bookingHref="/buchung?service=reinigung&city=regensburg&source=baureinigung_regensburg#buchungssystem"
+      />
+
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
             <div className="flox-kicker">Kundensuchen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Suchende wollen schnell wissen: passt das zu meinem Bauzustand?
+              Kunden wollen schnell wissen: passt das zu meinem Bauzustand?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Viele Kunden suchen nicht nach einem Fachwort, sondern nach einem
@@ -490,9 +504,9 @@ export default function BaureinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">FAQ & Snippets</div>
+            <div className="flox-kicker">Haeufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für mehr Klicks und weniger Unsicherheit.
+              Kurze Antworten, damit die Anfrage schneller klar wird.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

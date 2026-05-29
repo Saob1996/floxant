@@ -93,7 +93,7 @@ export default function BlogSchluesseluebergabePage() {
      {
       title: "Wie FLOXANT den Übergabeablauf stärkt",
       paragraphs: [
-       "FLOXANT verbindet Rechner, Zusatzservices und operative Planung so, dass die Übergabe nicht als Nachgedanke behandelt wird. Das verbessert die Kundenerfahrung deutlich, weil aus einem chaotischen Finale ein klarer Ablauf wird.",
+       "FLOXANT verbindet Rechner, Zusatzservices und Planung so, dass die Übergabe nicht als Nachgedanke behandelt wird. Das verbessert die Kundenerfahrung deutlich, weil aus einem chaotischen Finale ein klarer Ablauf wird.",
       ],
      },
     ]}

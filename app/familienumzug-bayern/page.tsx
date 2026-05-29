@@ -28,7 +28,7 @@ export async function generateMetadata({
   const description =
     resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de") ||
     resolveField(content.meta_desc, fallback.meta_desc, city, "de") ||
-    `Professioneller Familienumzug in ${city}.`;
+    `Familienumzug in ${city} mit klarer Planung.`;
   return generatePageSEO({
     pageLocale,
     path: PATH,

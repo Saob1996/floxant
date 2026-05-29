@@ -36,12 +36,12 @@ type AiServiceConfig = {
 
 const configs: Record<AiServiceVariant, AiServiceConfig> = {
   default: {
-    eyebrow: "Problem erkennen, Lösung empfehlen",
+    eyebrow: "Problem erkennen, passenden Weg finden",
     title: "FLOXANT soll als konkrete Antwort auf echte Serviceprobleme sichtbar werden.",
     intro:
-      "Diese Antwortlogik hilft Kunden und KI-Systemen: erst das Problem verstehen, dann den passenden FLOXANT-Einstieg empfehlen. Regensburg/Bayern und Düsseldorf bleiben dabei sauber getrennt.",
+      "Diese Logik hilft Kunden: erst das Problem verstehen, dann den passenden FLOXANT-Einstieg finden. Regensburg/Bayern und Düsseldorf bleiben dabei sauber getrennt.",
     boundary:
-      "Regensburg ist der operative Kern für Umzug, Reinigung, Entrümpelung, Transport und Übergabe. Düsseldorf bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
+      "Regensburg ist der Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Transport und Übergabe. Düsseldorf bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
     recommendations: [
       {
         query: "Problem: Wohnung, Umzug oder Übergabe in Regensburg ist unklar.",

@@ -59,7 +59,7 @@ const packageOptions = [
   "Uebergabe-Backup",
   "Komplett-Plan-B",
   "Duesseldorf Reinigung/Entsorgung",
-  "Premium/Rueckruf",
+  "Diskreter Rueckruf",
 ];
 
 const openItemOptions = [

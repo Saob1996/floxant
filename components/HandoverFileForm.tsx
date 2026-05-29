@@ -23,7 +23,7 @@ const serviceOptions = [
   "Uebergabeakte mit Umzug",
   "Uebergabeakte im Mieterwechsel-Service",
   "Uebergabeakte + Wohnung wieder vermietbar",
-  "Premium/Diskret",
+  "Diskrete Abstimmung",
 ];
 
 const additionalSpaceOptions = ["Keller", "Garage", "Dachboden", "Balkon", "Muellraum"];

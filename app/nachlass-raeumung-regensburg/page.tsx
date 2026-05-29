@@ -195,7 +195,7 @@ const relatedLinks = [
   { href: "/immobilie-verkaufsbereit-machen", label: "Nachlass-Objekt vorbereiten" },
   { href: "/wohnung-wieder-vermietbar", label: "Wohnung wieder vermietbar machen" },
   { href: "/uebergabeakte", label: "Uebergabeakte ergaenzen" },
-  { href: "/private-client-service", label: "Premium-/Diskret-Service" },
+  { href: "/private-client-service", label: "Diskrete Abstimmung" },
   { href: "/keller-muellraum-rettung-regensburg", label: "Keller, Garage oder Nebenraeume klaeren" },
   { href: "/makler-vermieter-link", label: "Makler-/Vermieter-Fall senden" },
   { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service" },
@@ -252,7 +252,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der operative Kern. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Duesseldorf bleibt getrennt auf Reinigung und Entsorgung begrenzt.",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Duesseldorf bleibt getrennt auf Reinigung und Entsorgung begrenzt.",
   },
 ];
 

@@ -11,7 +11,7 @@ import {
 const faqItems = [
  {
   q: "Sollte ich bei einer Anfrage überhaupt eine Preisvorstellung nennen?",
-  a: "Ja, wenn sie als Orientierung gemeint ist. Eine gute Preisvorstellung hilft bei der Priorisierung, ersetzt aber keine operative Vorprüfung.",
+  a: "Ja, wenn sie als Orientierung gemeint ist. Eine gute Preisvorstellung hilft bei der Priorisierung, ersetzt aber keine konkrete Vorprüfung.",
  },
  {
   q: "Wird mein Budget bei FLOXANT als Preiszusage behandelt?",
@@ -69,7 +69,7 @@ export default function BlogPreisvorstellungPage() {
     date="20. April 2026"
     readTime="6 Min."
     title="Preisvorstellung bei der Umzugsanfrage: sinnvoll oder riskant?"
-    intro="Viele Kunden möchten nicht erst am Ende über Geld sprechen. Das ist verständlich. Entscheidend ist aber, wie eine Preisvorstellung kommuniziert wird: als Orientierung für die Planung, nicht als Forderung nach einem künstlich passenden Endpreis."
+    intro="Viele Kunden möchten nicht erst am Ende über Geld sprechen. Das ist verständlich. Entscheidend ist aber, wie eine Preisvorstellung kommuniziert wird: als Orientierung für die Planung, nicht als Forderung nach einem passend gerechneten Endpreis."
     sections={[
      {
       title: "Warum eine Preisvorstellung hilfreich sein kann",
@@ -86,8 +86,8 @@ export default function BlogPreisvorstellungPage() {
      {
       title: "Wo die Grenze liegt",
       paragraphs: [
-       "Ein Budget ist kein Preis. Ohne Angaben zu Umfang, Zugang, Terminlage und Zusatzleistungen wäre jede exakte Zahl eher Marketing als Produktwahrheit.",
-       "Deshalb führt FLOXANT Preisvorstellung und System-Einschätzung getrennt. So bleibt sichtbar, was der Kunde wünscht und was operativ plausibel ist.",
+       "Ein Budget ist kein Preis. Ohne Angaben zu Umfang, Zugang, Terminlage und Zusatzleistungen wäre jede exakte Zahl unseriös.",
+       "Deshalb führt FLOXANT Preisvorstellung und Einschätzung getrennt. So bleibt sichtbar, was der Kunde wünscht und was praktisch plausibel ist.",
       ],
      },
      {

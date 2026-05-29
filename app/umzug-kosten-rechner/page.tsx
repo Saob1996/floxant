@@ -28,11 +28,11 @@ export default async function UmzugKostenRechnerPage() {
     </header>
     {/* Start Calculator in Umzug Mode */}
     <DualCalculator initialService="umzug" />
-    {/* Dynamic SEO Content Layer */}
+    {/* Calculator context */}
     <section className="mt-32 max-w-4xl mx-auto prose prose-invert">
      <h2 className="text-3xl font-light">{(dict as any).pages?.calc_umzug?.h2}</h2>
      <p className="text-white/70">
-      Die Berechnung der Umzugskosten hängt von mehreren Faktoren ab. Unser Algorithmus berücksichtigt:
+      Die Einschätzung der Umzugskosten hängt von mehreren Faktoren ab. Wichtig sind vor allem:
      </p>
      <ul className="text-white/60">
       <li><strong>Die Wohnfläche und Anzahl der Zimmer:</strong> Hiermit ermitteln wir das ungefähre Volumen an Umzugsgut.</li>

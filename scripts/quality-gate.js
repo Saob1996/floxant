@@ -8,6 +8,16 @@ const { spawn } = require("child_process");
 const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, "app");
 const DYNAMIC_LOCAL_ROUTES_PATH = path.join(ROOT, "lib", "local-seo-routes.ts");
+const DYNAMIC_BLOG_SOURCE_FILES = [
+  path.join(ROOT, "lib", "ai-recommendation-blog-articles.ts"),
+  path.join(ROOT, "lib", "offer-check-blog-articles.ts"),
+  path.join(ROOT, "lib", "strategic-blog-articles.ts"),
+];
+const PSYCHOLOGICAL_CLEANING_PAGES_PATH = path.join(
+  ROOT,
+  "lib",
+  "psychological-cleaning-pages.ts",
+);
 const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
@@ -156,21 +166,24 @@ const GONE_EXPECTATIONS = [
   "/entruempelung-duesseldorf",
 ];
 
+function isRouteGroup(segment) {
+  return segment.startsWith("(") && segment.endsWith(")");
+}
+
 function isPrivateSegment(segment) {
   return (
     PRIVATE_SEGMENTS.has(segment) ||
     segment.startsWith("_") ||
-    segment.startsWith("[") ||
-    segment.startsWith("(")
+    segment.startsWith("[")
   );
 }
 
 function isNonRoutableSegment(segment) {
-  return segment.startsWith("_") || segment.startsWith("[") || segment.startsWith("(");
+  return segment.startsWith("_") || segment.startsWith("[");
 }
 
 function routeFromSegments(segments) {
-  const publicSegments = segments.filter((segment) => !segment.startsWith("(") && !segment.endsWith(")"));
+  const publicSegments = segments.filter((segment) => !isRouteGroup(segment));
   const route = `/${publicSegments.join("/")}`;
   return route === "/" ? "/" : route.replace(/\/$/, "");
 }
@@ -186,6 +199,38 @@ function loadDynamicLocalSeoRoutes() {
   while ((match = routeRegex.exec(source))) {
     routes.push(match[1]);
   }
+
+  return routes;
+}
+
+function collectSlugRoutesFromFile(filePath, slugPattern, routePrefix) {
+  if (!fs.existsSync(filePath)) return [];
+
+  const source = fs.readFileSync(filePath, "utf8");
+  const routes = [];
+  let match;
+
+  while ((match = slugPattern.exec(source))) {
+    routes.push(`${routePrefix}/${match[1]}`);
+  }
+
+  return routes;
+}
+
+function loadDynamicBlogRoutes() {
+  const routes = [];
+
+  for (const filePath of DYNAMIC_BLOG_SOURCE_FILES) {
+    routes.push(...collectSlugRoutesFromFile(filePath, /slug:\s*"([^"]+)"/g, "/blog"));
+  }
+
+  routes.push(
+    ...collectSlugRoutesFromFile(
+      PSYCHOLOGICAL_CLEANING_PAGES_PATH,
+      /articleSlug:\s*"([^"]+)"/g,
+      "/blog",
+    ),
+  );
 
   return routes;
 }
@@ -219,6 +264,10 @@ function discoverRoutes({ includePrivate = false } = {}) {
   }
 
   for (const route of loadDynamicLocalSeoRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
+  for (const route of loadDynamicBlogRoutes()) {
     if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
   }
 

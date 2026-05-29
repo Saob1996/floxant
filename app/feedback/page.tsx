@@ -48,7 +48,7 @@ export default function SmartReviewPage() {
       Qualitätskontrolle
      </div>
      <h1 className="text-3xl font-light mb-4">Wie war Ihr Umzug mit FLOXANT?</h1>
-     <p className="text-white/50 mb-10">Ehrliches Feedback hilft uns, unseren Algorithmus und den Dispositionsservice zu perfektionieren.</p>
+     <p className="text-white/50 mb-10">Ehrliches Feedback hilft uns, Rückmeldung, Planung und Durchführung weiter zu verbessern.</p>
      <div className="flex justify-center gap-2 mb-10">
       {[1, 2, 3, 4, 5].map((star) => (
        <button

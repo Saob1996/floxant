@@ -258,7 +258,7 @@ export default async function RechnerPage() {
   const routingSignals = [
     {
       label: "Ruhiger Start",
-      text: "Sie müssen nicht sofort wissen, welcher Service perfekt passt. Der Rechner sortiert Umzug, Reinigung, Entrümpelung und Büroumzug zuerst nach Ihrem Fall.",
+      text: "Sie müssen nicht sofort wissen, welcher Service passt. Der Rechner sortiert Umzug, Reinigung, Entrümpelung und Büroumzug zuerst nach Ihrem Fall.",
     },
     {
       label: "Besser vorbereitet",
@@ -449,8 +449,8 @@ export default async function RechnerPage() {
       a: "Eine einzelne Preisfrage übersieht oft Zugang, Zeitfenster, Zusatzleistungen und Risiko. Der Rechner führt diese Punkte zusammen und hilft, aus einer losen Anfrage einen klar einschätzbaren Auftrag zu machen.",
     },
     {
-      q: "Hilft der Rechner auch bei lokalen Suchen über Google Maps?",
-      a: "Ja, indirekt. Die Seite führt Nutzer von Suchintentionen wie Umzug, Reinigung, Entsorgung, Entrümpelung, Lagerung oder Büroumzug schneller zum passenden lokalen FLOXANT-Einstieg, statt alles über eine allgemeine Kontaktseite laufen zu lassen.",
+      q: "Hilft der Rechner auch, wenn ich noch nicht weiss, welche Leistung passt?",
+      a: "Ja. Der Rechner fuehrt von Umzug, Reinigung, Entsorgung, Entruempelung, Lagerung oder Bueroumzug schneller zum passenden FLOXANT-Einstieg, statt alles ueber eine allgemeine Kontaktseite laufen zu lassen.",
     },
     {
       q: "Was fragt der Reinigungs-Rechner besonders ab?",
@@ -944,7 +944,7 @@ export default async function RechnerPage() {
                 </h3>
               </div>
               <p className="text-sm leading-7 text-slate-600">
-                Sie müssen nicht alles perfekt wissen. Wenn diese Punkte grob vorhanden sind,
+                Sie müssen nicht alles genau wissen. Wenn diese Punkte grob vorhanden sind,
                 wird aus dem Rechner aber schneller eine brauchbare Anfrage für Umzug, Reinigung,
                 Entrümpelung oder Büroumzug.
               </p>
@@ -1209,7 +1209,7 @@ export default async function RechnerPage() {
               Direkte Wege aus Bayern in den passenden Rechner
             </h2>
             <p className="mt-5 text-lg leading-8 text-slate-600">
-              Regensburg bleibt der operative Kern. Gleichzeitig sollen Kunden aus Bayern
+              Regensburg bleibt der feste Ausgangspunkt. Gleichzeitig sollen Kunden aus Bayern
               sofort sehen, welche Orte, Regionen und Leistungen bei FLOXANT sauber
               angefragt werden können.
             </p>

@@ -12,7 +12,7 @@ import {
 const faqItems = [
   {
     q: "Welche Angaben braucht FLOXANT für ein sauberes Angebot zur Büroreinigung?",
-    a: "Am wichtigsten sind Fläche, gewünschter Turnus, Nutzung der Räume, Zugangszeiten, sensible Bereiche, Ansprechpartner vor Ort und gewünschter Leistungsumfang. Damit kann FLOXANT schneller prüfen, ob die Anfrage operativ und wirtschaftlich sauber passt.",
+    a: "Am wichtigsten sind Fläche, gewünschter Turnus, Nutzung der Räume, Zugangszeiten, sensible Bereiche, Ansprechpartner vor Ort und gewünschter Leistungsumfang. Damit kann FLOXANT schneller prüfen, ob die Anfrage praktisch und wirtschaftlich passt.",
   },
   {
     q: "Warum reicht eine Quadratmeterzahl allein nicht aus?",

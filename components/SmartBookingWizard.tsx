@@ -607,7 +607,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         title: "Fotos oder Angebot richtig zuordnen",
         subtitle: "Ort und kurzer Kontext reichen. Die Dateien ergänzen Sie im letzten Schritt.",
         badge: "2 Fragen",
-        scopeLabel: "Was sollen wir prüfen?",
+        scopeLabel: "Worum geht es?",
         scopePlaceholder: "z. B. vorhandenes Angebot, Fotos vom Objekt, unsichere Menge",
       };
     }

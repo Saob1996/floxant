@@ -11,7 +11,7 @@ import {
 const faqItems = [
  {
   q: "Warum ist ein klarer Buchungslink für Google Maps wichtig?",
-  a: "Weil Nutzer in Maps oder im Google-Unternehmensprofil nicht erst auf einer allgemeinen Startseite suchen wollen. Ein klarer Link führt schneller zum passenden Anfrageweg und erhöht das Klickvertrauen.",
+  a: "Weil Nutzer in Maps oder im Google-Unternehmensprofil nicht erst auf einer allgemeinen Startseite suchen wollen. Ein klarer Link führt schneller zum passenden Anfrageweg.",
  },
  {
   q: "Sollte der Maps-Link direkt auf WhatsApp gehen?",
@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Verbessert eine gute Buchungsseite auch die lokale Einordnung?",
-  a: "Ja. Sie verbindet Regensburg, Buchung, Anfrage, Servicearten und klare nächste Schritte auf einer einzigen URL. Das hilft Nutzern und Suchsystemen gleichermaßen.",
+  a: "Ja. Sie verbindet Regensburg, Buchung, Anfrage, Servicearten und klare nächste Schritte auf einer einzigen URL. Das hilft vor allem den Menschen, die gerade wirklich anfragen wollen.",
  },
 ];
 
@@ -45,7 +45,7 @@ export default function BlogGoogleMapsBookingPage() {
   "@graph": [
    buildWebPageJsonLd({
     name: "Google Maps Buchungslink in Regensburg",
-    description: "Ratgeber zu Buchungslinks, lokaler Suchintention und klaren Anfragewegen für Google Maps.",
+    description: "Ratgeber zu Buchungslinks, lokalen Anfragen und klaren Kontaktwegen in Google Maps.",
     path: "/blog/google-maps-buchungslink-regensburg",
     about: ["Google Maps", "Buchungslink", "Regensburg", "lokale Anfrage"],
    }),
@@ -56,7 +56,7 @@ export default function BlogGoogleMapsBookingPage() {
    ]),
    buildArticleJsonLd({
     headline: "Google Maps Buchungslink in Regensburg: worauf es für klare Anfragen ankommt",
-    description: "Ein FLOXANT Artikel zu lokalen Buchungslinks, Klickvertrauen und direkter Vorprüfung.",
+    description: "Ein FLOXANT Artikel zu lokalen Buchungslinks, klaren Kontaktwegen und direkter Vorprüfung.",
     path: "/blog/google-maps-buchungslink-regensburg",
     datePublished: "2026-04-27",
    }),
@@ -87,7 +87,7 @@ export default function BlogGoogleMapsBookingPage() {
      {
       title: "Warum eine allgemeine Startseite oft zu viel Reibung erzeugt",
       paragraphs: [
-       "Wenn Nutzer erst in Menüs, Unterseiten oder unklaren Formularen landen, sinkt die Chance auf eine starke Anfrage. Maps-Nutzer kommen meist mit einer sehr klaren lokalen Intention.",
+       "Wenn Nutzer erst in Menüs, Unterseiten oder unklaren Formularen landen, wird die Anfrage unnötig schwer. Viele kommen aus Maps, weil sie direkt Kontakt aufnehmen möchten.",
       ],
       bullets: [
        "Sie möchten schnell einen passenden Weg statt vieler Optionen",
@@ -107,7 +107,7 @@ export default function BlogGoogleMapsBookingPage() {
     highlightPoints={[
      "Ein Maps-Link sollte direkt in einen lokalen Anfrageweg führen.",
      "Klare Trennung zwischen Buchung, Express und Preisvorstellung erhöht Vertrauen.",
-     "Lokale Suchintention funktioniert besser mit einer fokussierten Zielseite als mit einer unklaren Startseite.",
+     "Eine klare Zielseite hilft mehr als eine Startseite, auf der man erst suchen muss.",
     ]}
     ctas={[
      { href: "/buchung", label: "Buchungsseite öffnen" },

@@ -24,7 +24,7 @@ export default function PaintingForm({ dic, currentStep = 1 }: { dic?: any; curr
 
  const qualities = [
   { id: "standard", label: "Standard", desc: "Solide Markenfarbe (weiß)", color: "text-blue-400" },
-  { id: "premium", label: "Premium", desc: "Besonders deckend & abwaschbar", color: "text-purple-400" },
+  { id: "premium", label: "Stark deckend", desc: "Besonders deckend & abwaschbar", color: "text-purple-400" },
   { id: "bio", label: "Öko / Bio", desc: "Emissionsfrei & Allergikerfreundlich", color: "text-emerald-400" },
  ];
 

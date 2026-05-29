@@ -11,8 +11,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     pageLocale,
     path: 'blog/umzug-checkliste',
-    title: "Die ultimative Umzug Checkliste | FLOXANT Blog",
-    description: "Vom Packen bis zur Ummeldung: Unsere interaktive Umzug Checkliste bewahrt Sie vor dem Chaos.",
+    title: "Umzug Checkliste | FLOXANT Blog",
+    description: "Vom Packen bis zur Ummeldung: eine klare Umzug Checkliste für bessere Vorbereitung.",
   });
 }
 
@@ -21,7 +21,7 @@ export default async function BlogUmzugCheckliste() {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Die ultimative Umzug Checkliste: Zeitplan & Tipps",
+    "headline": "Umzug Checkliste: Zeitplan und wichtige Punkte",
     "author": { "@type": "Organization", "name": "FLOXANT Redaktion" },
     "datePublished": "2024-03-26T08:00:00+01:00",
   };
@@ -45,15 +45,15 @@ export default async function BlogUmzugCheckliste() {
               <span className="flex items-center gap-1"><UserCircle className="w-4 h-4" /> FLOXANT Umzugsprofis</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
-              Die ultimative Umzug Checkliste: Schritt für Schritt zum neuen Zuhause
+              Umzug Checkliste: Schritt für Schritt zum neuen Zuhause
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed border-s-4 border-blue-600 ps-4">
-              Nichts verursacht mehr Stress als ein unkoordinierter Umzug. Mit unserem chronologischen Zeitplan haken Sie alles stressfrei ab.
+              Ein Umzug wird leichter, wenn Kündigung, Kartons, Zugang, Parkmöglichkeit und Ummeldung rechtzeitig geklärt sind.
             </p>
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none">
             <p>
-              Unsere Erfahrung beweist: Gute Logistik verzeiht fast jeden Fehler – schlechte Planung verzeiht nichts.
+              Gute Vorbereitung spart Rückfragen. Vor allem Zugang, Laufwege, Volumen und Termin sollten früh geklärt sein.
             </p>
             <div className="bg-slate-900 text-white p-8 rounded-3xl my-10 shadow-xl">
               <h2 className="text-3xl text-white mt-0 mb-6 flex items-center gap-3"><Clock className="text-blue-500 w-8 h-8" /> Purer Vorlauf (3 Monate vorher)</h2>
@@ -78,7 +78,7 @@ export default async function BlogUmzugCheckliste() {
             <div className="bg-slate-50 p-6 rounded-2xl border my-6">
               <ul className="list-none ps-0 space-y-3">
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Starten Sie mit der Entrümpelung.</li>
-                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Kaufen oder mieten Sie hochwertige Umzugskartons.</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Nutzen Sie stabile Umzugskartons und beschriften Sie diese klar.</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Klären Sie Zugang, Laufweg und Parkmöglichkeit.</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-emerald-600" /> Einrichten eines Nachsendeauftrags.</li>
               </ul>
@@ -86,7 +86,7 @@ export default async function BlogUmzugCheckliste() {
             <div className="bg-primary/5 p-8 rounded-2xl border-blue-600/20 border mt-12 text-center">
               <Lightbulb className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="mt-0">Haben Sie das Wichtigste schon erledigt?</h3>
-              <p className="mb-6">Sichern Sie sich jetzt Ihren Wunschtermin bei FLOXANT.</p>
+              <p className="mb-6">Senden Sie die wichtigsten Eckdaten und lassen Sie den Rahmen prüfen.</p>
               <a href="/rechner" className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors no-underline">
                 Jetzt anfragen
               </a>

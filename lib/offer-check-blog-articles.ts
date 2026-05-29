@@ -63,7 +63,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Regionale Einordnung",
         paragraphs: [
-          "Regensburg ist der operative Kern. Angebote aus der Umgebung und aus Bayern werden nach Strecke, Termin, Umfang und Kapazität geprüft. Düsseldorf bleibt getrennt: Dort prüft FLOXANT nur Reinigung; Entsorgung nur über die vorhandene eigene Seite, keine Umzüge.",
+          "Regensburg ist der feste Ausgangspunkt. Angebote aus der Umgebung und aus Bayern werden nach Strecke, Termin, Umfang und Kapazität geprüft. Düsseldorf bleibt getrennt: Dort prüft FLOXANT nur Reinigung; Entsorgung nur über die vorhandene eigene Seite, keine Umzüge.",
           "Wer schnell eine zweite Einschätzung möchte, sollte Angebot oder Screenshot, Ort/PLZ, Termin, Fotos und Zielbudget senden.",
         ],
       },
@@ -171,7 +171,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Gilt das auch für Bayern?",
-        a: "Ja, Bayern wird nach Verfügbarkeit, Strecke, Termin, Umfang und Kapazität geprüft. Regensburg bleibt der operative Kern.",
+        a: "Ja, Bayern wird nach Verfügbarkeit, Strecke, Termin, Umfang und Kapazität geprüft. Regensburg bleibt der feste Ausgangspunkt.",
       },
     ],
   },

@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     pageLocale: pageLocale as any,
     path: 'ratgeber/checkliste-umzug',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Umzug vorbereiten",
   });
 }
 export default async function Article() {
@@ -25,8 +25,8 @@ export default async function Article() {
   };
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
-    "headline": "Checkliste für stressfreien Umzug",
-    "description": "Die ultimative Umzug-Checkliste: Schritt für Schritt zum perfekten Umzug ohne Stress.",
+    "headline": "Checkliste für einen gut vorbereiteten Umzug",
+    "description": "Umzug-Checkliste: Kündigung, Kartons, Zugang, Parken, Zählerstände und Übergabe rechtzeitig klären.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "logo": { "@type": "ImageObject", "url": "https://www.floxant.de/logo_v10.png" } },
     "datePublished": "2026-03-01",
@@ -34,13 +34,13 @@ export default async function Article() {
   };
   return (
     <main className="min-h-screen bg-background">
-      <Breadcrumbs lang="de" items={[{ label: "Ratgeber", href: `/ratgeber` }, { label: "Checkliste für stressfreien Umzug" }]} />
+      <Breadcrumbs lang="de" items={[{ label: "Ratgeber", href: `/ratgeber` }, { label: "Checkliste für den Umzug" }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <section className="pt-8 pb-12 px-6 bg-gradient-to-b from-muted/20 to-background">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <span className="text-sm font-medium text-primary">FLOXANT Ratgeber</span>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">Checkliste für einen stressfreien Umzug</h1>
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">Checkliste für einen gut vorbereiteten Umzug</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Ein Umzug erfordert vorausschauende Planung. Mit unserer Checkliste behalten Sie den Überblick über alle wichtigen Aufgaben – von der Kündigung bis zum Einleben.</p>
         </div>
       </section>

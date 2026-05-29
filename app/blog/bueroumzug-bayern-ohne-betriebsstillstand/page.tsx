@@ -11,12 +11,12 @@ import {
 
 const faqItems = [
   {
-    q: "Was macht einen Büroumzug operativ besonders heikel?",
+    q: "Was macht einen Büroumzug besonders heikel?",
     a: "Vor allem Arbeitsplätze, IT, Archiv, interne Zuständigkeiten, Zugang, Betriebszeiten und die Frage, wie wenig der laufende Betrieb gestört werden soll.",
   },
   {
     q: "Braucht ein Büroumzug immer einen öffentlichen Preisrechner?",
-    a: "Nicht zwingend. Für die erste Orientierung kann ein Rechner helfen, aber bei Firmenumzügen ist die operative Vorprüfung meist wichtiger als eine scheinbar exakte Online-Zahl.",
+    a: "Nicht zwingend. Für die erste Orientierung kann ein Rechner helfen, aber bei Firmenumzügen ist die konkrete Vorprüfung meist wichtiger als eine scheinbar exakte Online-Zahl.",
   },
   {
     q: "Für wen ist dieser Beitrag besonders relevant?",
@@ -87,7 +87,7 @@ export default function BlogBueroumzugBayernPage() {
             title: "Warum ein Firmenumzug anders geplant werden muss",
             paragraphs: [
               "Bei Büros reicht es nicht, nur Volumen und Strecke zu betrachten. Entscheidend ist, wie viele Arbeitsplätze betroffen sind, welche Technik mitzieht und wie sauber der Übergang organisiert wird.",
-              "Gerade in Bayern mit längeren Fahrten, mehreren Ansprechpartnern oder Außenstellen ist die operative Vorbereitung oft wichtiger als jede Werbezahl.",
+              "Gerade in Bayern mit längeren Fahrten, mehreren Ansprechpartnern oder Außenstellen ist die konkrete Vorbereitung oft wichtiger als jede Werbezahl.",
             ],
           },
           {

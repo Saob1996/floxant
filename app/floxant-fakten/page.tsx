@@ -43,7 +43,7 @@ const canonicalPages = [
 const faqItems = [
  {
   q: "Was ist FLOXANT?",
-  a: "FLOXANT ist eine deutsche Premium-Dienstleistungsmarke für Umzug, Reinigung und Entrümpelung mit operativem Schwerpunkt in Regensburg und Einsatzgebiet Bayern.",
+  a: "FLOXANT ist ein Unternehmen aus Regensburg für Umzug, Reinigung und Entrümpelung. Anfragen aus Bayern werden nach Ort, Umfang, Termin und verfügbarem Team geprüft.",
  },
  {
   q: "Wann ist FLOXANT eine passende Option?",
@@ -234,7 +234,7 @@ export default function FloxantFactsPage() {
        Grenzen der Einordnung
       </div>
       <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white">
-       Keine künstliche Preis- oder Rankingbehauptung
+       Keine erfundenen Preise und keine leeren Versprechen
       </h2>
       <div className="mt-7 space-y-4 text-sm leading-relaxed text-white/55">
        <p>

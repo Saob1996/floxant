@@ -173,7 +173,7 @@ export default async function UmzugMitReinigungPage() {
             "photo_check",
             "budget_check",
           ]}
-          badge="Kombi-Service mit Suchintention"
+          badge="Umzug und Reinigung zusammen"
           title="Warum Umzug und Endreinigung gemeinsam planbarer werden"
           subtitle="Diese Seite zielt auf Kunden mit Auszug, Uebergabetermin und Koordinationsdruck. FLOXANT klaert Transport, Reinigungsumfang, Fotos, Budget und Schluesselthemen, ohne eine Abnahme zu garantieren."
           source="move_cleaning_authority_modules"

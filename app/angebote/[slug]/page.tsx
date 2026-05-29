@@ -78,7 +78,7 @@ export default async function ProgrammaticSeoCalculator({ params }: { params: Pr
          <span>Objekt / Umfang:</span> <span className="text-white font-medium">75m² Wohnung / Mittel</span>
         </li>
         <li className="flex justify-between items-center border-b border-white/5 pb-3">
-         <span>Einsatzteam:</span> <span className="text-white font-medium flex items-center gap-2">3 Experten</span>
+         <span>Einsatzteam:</span> <span className="text-white font-medium flex items-center gap-2">3 Personen</span>
         </li>
         <li className="flex justify-between items-center border-b border-white/5 pb-3">
          <span>Fazit Dauer:</span> <span className="text-white font-medium">4.5 Stunden gesamt</span>

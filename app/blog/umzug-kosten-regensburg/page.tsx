@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Warum ist ein Preisband oft sinnvoller als eine einzelne Zahl?",
-  a: "Viele Umzüge verändern sich noch durch genaue Inventarlisten, Zugangssituationen oder Terminfragen. Ein sauberer Orientierungsrahmen ist deshalb ehrlicher als eine künstlich exakte Zahl.",
+  a: "Viele Umzüge verändern sich noch durch genaue Inventarlisten, Zugangssituationen oder Terminfragen. Ein sauberer Orientierungsrahmen ist deshalb ehrlicher als eine scheinbar exakte Zahl.",
  },
  {
   q: "Wann sollte ich den Rechner statt einer offenen Anfrage nutzen?",

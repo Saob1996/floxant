@@ -84,6 +84,8 @@ const nextConfig = {
     // Safe default for local Windows/Vercel stability. Increase with NEXT_BUILD_WORKERS/NEXT_BUILD_CPUS if needed.
     experimental: {
         cpus: buildWorkers,
+        inlineCss: true,
+        optimizeCss: true,
         staticGenerationMaxConcurrency: buildWorkers,
         staticGenerationMinPagesPerWorker: 50,
     },

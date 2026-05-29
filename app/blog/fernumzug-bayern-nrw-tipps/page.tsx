@@ -47,7 +47,7 @@ export default async function BlogArticle() {
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Beiladung: Die clevere Sparoption</h2>
             <p>Wenn Ihr Zeitplan flexibel ist, können Sie Ihre Möbel als Beiladung auf einem ohnehin fahrenden LKW mitnehmen lassen. FLOXANT fährt wöchentlich Routen zwischen Bayern und NRW – dadurch sinken die Kosten um bis zu 40%.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Zwischenlagerung: Wenn die Termine nicht passen</h2>
-            <p>Häufig überschneiden sich Mietverträge nicht perfekt. In diesem Fall bietet sich eine temporäre Zwischenlagerung an. Achten Sie auf einen trockenen, versicherten Lagerraum. FLOXANT bietet kurzfristige Lageroptionen in Regensburg an.</p>
+            <p>Häufig überschneiden sich Mietverträge nicht sauber. In diesem Fall bietet sich eine temporäre Zwischenlagerung an. Achten Sie auf einen trockenen, versicherten Lagerraum. FLOXANT bietet kurzfristige Lageroptionen in Regensburg an.</p>
             <h2 className="text-3xl font-bold text-foreground mt-16 mb-6">Checkliste: Fernumzug organisieren</h2>
             <ul className="space-y-3 text-lg">
               <li>✅ Frühzeitig kündigen (3 Monate Kündigungsfrist beachten)</li>

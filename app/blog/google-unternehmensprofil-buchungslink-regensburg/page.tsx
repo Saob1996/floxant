@@ -19,8 +19,8 @@ const faqItems = [
     a: "Nur dann, wenn es der einzige sinnvolle Kontaktweg ist. Für Dienstleister mit mehreren Einstiegen ist eine klare Buchungsseite oft besser, weil Kunden dort Express, Preisvorstellung, Rechner und Direktanfrage sauber unterscheiden können.",
   },
   {
-    q: "Hilft ein guter Profil-Link auch für Google Maps und Search?",
-    a: "Ja. Er verbessert vor allem die Nutzerführung, das Klickvertrauen und die Chance auf passendere Anfragen. Für die lokale Sichtbarkeit zählen zusätzlich vollständige Profilangaben, Bewertungen, Fotos und regionale Relevanz.",
+    q: "Hilft ein guter Profil-Link auch für Google Maps und die Suche?",
+    a: "Ja. Er macht den nächsten Schritt leichter und führt eher zu passenden Anfragen. Für die lokale Sichtbarkeit zählen zusätzlich vollständige Profilangaben, Bewertungen, Fotos und regionale Relevanz.",
   },
 ];
 
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "blog/google-unternehmensprofil-buchungslink-regensburg",
     title: "Google-Unternehmensprofil in Regensburg: welcher Buchungslink wirklich hilft | FLOXANT",
     description:
-      "Warum ein klarer Buchungslink im Google-Unternehmensprofil mehr Vertrauen schafft und aus Maps-Klicks passendere Anfragen macht.",
+      "Warum ein klarer Buchungslink im Google-Unternehmensprofil mehr Vertrauen schafft und passendere Anfragen bringt.",
     keywords: [
       "Google Unternehmensprofil Buchungslink Regensburg",
       "Google Maps Buchung Regensburg",
@@ -47,7 +47,7 @@ export default function BlogGoogleBusinessProfileBookingPage() {
       buildWebPageJsonLd({
         name: "Google-Unternehmensprofil in Regensburg: welcher Buchungslink wirklich hilft",
         description:
-          "Ratgeber zu Business-Profile-Link, Google Maps, lokaler Nutzerführung und direkter Anfrage.",
+          "Ratgeber zum Link im Google-Unternehmensprofil, Google Maps, lokaler Nutzerführung und direkter Anfrage.",
         path: "/blog/google-unternehmensprofil-buchungslink-regensburg",
         about: ["Google Unternehmensprofil", "Google Maps", "Buchungslink", "Regensburg"],
       }),
@@ -97,12 +97,12 @@ export default function BlogGoogleBusinessProfileBookingPage() {
           {
             title: "Was ein guter Link leisten sollte",
             paragraphs: [
-              "Ein guter Business-Profile-Link trennt Buchung, Express, Preisvorstellung und direkten Kontakt sauber. So sehen Kunden sofort, welcher Weg zu ihrer Situation passt.",
+              "Ein guter Link im Unternehmensprofil trennt Buchung, Express, Preisvorstellung und direkten Kontakt sauber. So sehen Kunden sofort, welcher Weg zu ihrer Situation passt.",
             ],
             bullets: [
               "Klare lokale Zuordnung statt allgemeiner Sammelseite",
               "Direkte Handlungsoptionen ohne erneutes Suchen",
-              "Saubere Verbindung zwischen Google Maps, Suchintention und Anfrageweg",
+              "Saubere Verbindung zwischen Google Maps, Anfrageweg und Rückmeldung",
               "Mehr Klarheit für Kunden und bessere Zuordnung der Anfrage",
             ],
           },

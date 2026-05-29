@@ -25,7 +25,7 @@ const fallbackReviews: ReviewItem[] = [
     date: "März 2026",
   },
   {
-    text: "Die Kommunikation war schnell, die Einordnung verständlich und die Durchführung professionell. Genau so wünscht man sich das als Firma.",
+    text: "Die Kommunikation war schnell, die Einordnung verständlich und die Durchführung sauber. Genau so wünscht man sich das als Firma.",
     context: "Unternehmen aus Bayern",
     service: "Büroumzug",
     location: "Niederbayern",

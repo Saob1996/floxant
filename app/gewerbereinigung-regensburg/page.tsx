@@ -18,12 +18,14 @@ import {
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { RegensburgCleaningConversionLift } from "@/components/RegensburgCleaningConversionLift";
 import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCleaningClickDecisionPanel";
 import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
 import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
 import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
 import { company } from "@/lib/company";
 import {
+  regensburgCleaningBuyerPaths,
   regensburgCleaningLocalAreas,
   regensburgCleaningLocalFaqs,
   regensburgCleaningServices,
@@ -216,6 +218,28 @@ export default function GewerbereinigungRegensburgPage() {
         })),
       },
       {
+        "@type": "OfferCatalog",
+        name: "Gewerbliche Reinigung Regensburg Servicekatalog",
+        url: `${company.url}/gewerbereinigung-regensburg`,
+        itemListElement: regensburgCleaningServices.map((service, index) => ({
+          "@type": "Offer",
+          position: index + 1,
+          name: service.label,
+          url: `${company.url}${service.href.split("#")[0]}`,
+          category: "Gewerbereinigung Regensburg",
+          availability: "https://schema.org/InStock",
+          itemOffered: {
+            "@type": "Service",
+            name: service.label,
+            description: `${service.intro} ${service.goodFor}`,
+            areaServed: {
+              "@type": "City",
+              name: "Regensburg",
+            },
+          },
+        })),
+      },
+      {
         "@type": "ItemList",
         name: "Reinigung in Regensburg Stadtteilen und Umgebung",
         itemListElement: regensburgCleaningLocalAreas.map((area, index) => ({
@@ -224,6 +248,17 @@ export default function GewerbereinigungRegensburgPage() {
           name: area.intent,
           url: `${company.url}${area.href.split("#")[0]}`,
           description: `${area.area}: ${area.text}`,
+        })),
+      },
+      {
+        "@type": "ItemList",
+        name: "Klicknahe Reinigungswege fuer Gewerbereinigung Regensburg",
+        itemListElement: regensburgCleaningBuyerPaths.map((path, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: path.label,
+          url: `${company.url}${path.href.split("#")[0]}`,
+          description: `${path.customerPhrase} ${path.problem} ${path.answer}`,
         })),
       },
       buildFaqJsonLd([...faqItems, ...regensburgCleaningSnippetFaqs, ...regensburgCleaningLocalFaqs]),
@@ -331,6 +366,7 @@ export default function GewerbereinigungRegensburgPage() {
       </section>
 
       <RegensburgCleaningServiceHub />
+      <RegensburgCleaningConversionLift />
       <RegensburgCleaningClickDecisionPanel />
       <RegensburgCleaningLocalSignals />
 
@@ -484,7 +520,7 @@ export default function GewerbereinigungRegensburgPage() {
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               FLOXANT ist kein bundesweiter Reinigungskonzern, sondern ein regional
-              geführtes Unternehmen mit operativer Basis in Regensburg. Das macht
+              geführtes Unternehmen mit Sitz und festen Abläufen in Regensburg. Das macht
               Abstimmung, Erreichbarkeit und Reaktionszeit verlässlicher als bei
               überregionalen Anbietern.
             </p>

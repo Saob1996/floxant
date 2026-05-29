@@ -8,10 +8,14 @@ import {
 } from "@/lib/duesseldorf-cleaning";
 
 const duesseldorfTrustLinks = [
+  { href: "/duesseldorf/reinigung#duesseldorf-reinigung-klickgruende", label: "Schnell anfragen" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
   { href: "/duesseldorf/reinigung#kontakt", label: "Fotos senden" },
   { href: "/duesseldorf/reinigung#anfrage-checkliste", label: "Was senden?" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen" },
+  { href: "/duesseldorf/kurzfristige-reinigung", label: "Kurzfristig" },
+  { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung" },
+  { href: "/duesseldorf/schluesseluebergabe-reinigung", label: "Schlüssel" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
   { href: "/duesseldorf/it-raum-reinigung", label: "IT-Raum" },
@@ -29,6 +33,9 @@ const duesseldorfDominanceLinks = [
   { href: "/duesseldorf/reinigung#kontakt", label: "Reinigung per WhatsApp" },
   { href: "/duesseldorf/reinigung#preisvorschlag", label: "Reinigung Kosten Düsseldorf" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+  { href: "/duesseldorf/kurzfristige-reinigung", label: "Kurzfristige Reinigung Düsseldorf" },
+  { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung Reinigung Düsseldorf" },
+  { href: "/duesseldorf/schluesseluebergabe-reinigung", label: "Schlüsselübergabe Reinigung Düsseldorf" },
   { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung Düsseldorf" },
   { href: "/duesseldorf/endreinigung", label: "Endreinigung Düsseldorf" },
   { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung Düsseldorf" },
@@ -52,9 +59,24 @@ const duesseldorfDominanceLinks = [
 
 const duesseldorfCustomerNeedLinks = [
   {
-    href: "/duesseldorf/reinigung#kontakt",
+    href: "/duesseldorf/schluesseluebergabe-reinigung",
+    label: "Schlüsselübergabe steht an",
+    text: "Termin, Zustand, Küche, Bad, Boden und Fotos direkt klären.",
+  },
+  {
+    href: "/duesseldorf/baureinigung",
+    label: "Handwerkerstaub ist überall",
+    text: "Baustaub, Fensterrahmen, Boden und Übergabeziel prüfen lassen.",
+  },
+  {
+    href: "/duesseldorf/kurzfristige-reinigung",
     label: "Ich brauche Reinigung diese Woche",
     text: "Stadtteil, Objekt, Termin und Fotos direkt senden.",
+  },
+  {
+    href: "/duesseldorf/hausverwaltung-reinigung",
+    label: "Hausverwaltung braucht Ruhe",
+    text: "Eingang, Treppenhaus, Turnus, Schlüsselweg und Beschwerden sauber einordnen.",
   },
   {
     href: "/duesseldorf/vielleicht-guenstiger",
@@ -155,7 +177,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               Direkte Wege nach echter Anfrage-Sprache
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-              Viele Klicks entstehen nicht über perfekte Fachbegriffe, sondern über konkrete
+              Viele Anfragen beginnen nicht mit Fachbegriffen, sondern mit konkreten
               Situationen. Diese Einstiege führen Kunden schneller zur passenden Düsseldorfer
               Seite und reduzieren falsche Anfragen.
             </p>

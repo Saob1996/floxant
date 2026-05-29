@@ -22,6 +22,7 @@ import {
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
+import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -355,6 +356,19 @@ export default function GrundreinigungRegensburgPage() {
         </div>
       </section>
 
+      <RegensburgCleaningBuyerPath
+        serviceLabel="Grundreinigung Regensburg"
+        headline="Wenn normal putzen nicht reicht, muss die Anfrage schnell Klarheit bringen."
+        intro="Bei Einzug, Auszug, Leerstand, Küche, Bad, Boden oder starker Verschmutzung zählen Fotos, Ziel, Zustand, Termin und Zugang. Die passenden Wege helfen Kunden, ohne Umwege richtig anzufragen."
+        focusHrefs={[
+          "/vermieter-schockschutz-reinigung",
+          "/sichtbar-sauber-protokoll",
+          "/baustaub-ende",
+          "/fensterreinigung-regensburg",
+        ]}
+        bookingHref="/buchung?service=reinigung&city=regensburg&source=grundreinigung_regensburg#buchungssystem"
+      />
+
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
@@ -521,7 +535,7 @@ export default function GrundreinigungRegensburgPage() {
           <div className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
             <div className="flox-kicker">FAQ</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten für bessere Klickentscheidung.
+              Kurze Antworten, damit die Anfrage von Anfang an besser passt.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (

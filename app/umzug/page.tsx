@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -47,7 +48,7 @@ export default async function UmzugPillarPage() {
 
   const faqItems = [
     {
-      q: "Was umfasst ein professioneller Umzug mit FLOXANT?",
+      q: "Was umfasst ein Umzug mit FLOXANT?",
       a: "FLOXANT plant Transport, Tragewege, Zeitfenster und Zusatzmodule wie Montage, Reinigung, Rest-Entrümpelung oder Schlüsselübergabe in einem klaren Ablauf.",
     },
     {
@@ -146,7 +147,7 @@ export default async function UmzugPillarPage() {
           },
         ]}
         costTitle="Kostenfaktoren, die für den Preisrahmen zählen"
-        costIntro="Entscheidend sind die Punkte, die den operativen Aufwand wirklich verändern. Genau diese Faktoren fragt FLOXANT ab, damit aus einem Bauchgefühl eine belastbare erste Einordnung wird."
+        costIntro="Entscheidend sind die Punkte, die Aufwand und Zeit wirklich verändern. Genau diese Faktoren fragt FLOXANT ab, damit aus einem Bauchgefühl eine belastbare erste Einordnung wird."
         costFactors={[
           "Volumen und Objektgröße",
           "Strecke zwischen Start und Ziel",
@@ -164,6 +165,9 @@ export default async function UmzugPillarPage() {
           { href: "/rechner", label: "Umzug direkt kalkulieren" },
           { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
+          { href: "/urlaubsretter", label: "Urlaubsretter vor Reise oder Übergabe" },
+          { href: "/business-errand-service", label: "Erledigungsservice fuer Schluessel und Dokumente" },
+          { href: "/property-operations", label: "Immobilienbetreuung mit Uebergaben und Objektstatus" },
           { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
           { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
           { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
@@ -176,6 +180,18 @@ export default async function UmzugPillarPage() {
           { href: "/umzug-augsburg", label: "Umzug Augsburg" },
           { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt" },
           { href: "/umzug-weiden", label: "Umzug Weiden" },
+        ]}
+      />
+      <PsychologicalCleaningInternalLinks
+        title="Reinigung und Uebergabe nach dem Umzug"
+        intro="Wenn Transport, Schluessel, alte Wohnung und Restpunkte zusammenkommen, fuehren diese Spezialseiten zu weniger Stress vor der Uebergabe."
+        focusSlugs={[
+          "schluesselruhe-service",
+          "vermieter-schockschutz-reinigung",
+          "panikfrei-in-24h",
+          "sichtbar-sauber-protokoll",
+          "mama-kommt-morgen-service",
+          "reset-reinigung",
         ]}
       />
     </>

@@ -93,7 +93,7 @@ export default function BlogLargeCommercialCleaningPage() {
           {
             title: "Warum große Anfragen oft an kleinen Details hängen",
             paragraphs: [
-              "Ob Bürohaus, Hotel, Praxis oder größere Objektstruktur: Der Unterschied zwischen einer guten Anfrage und einer unklaren Klickspur liegt oft in wenigen Angaben. Wenn diese früh sauber erfasst werden, wird der Weg zum Angebot deutlich belastbarer.",
+              "Ob Bürohaus, Hotel, Praxis oder größere Objektstruktur: Der Unterschied zwischen einer guten Anfrage und einer unklaren Anfrage liegt oft in wenigen Angaben. Wenn diese früh sauber erfasst werden, wird der Weg zum Angebot deutlich belastbarer.",
               "Genau deshalb lohnt sich bei größeren Reinigungsaufträgen eine kurze Vorprüfung statt eines ungenauen Schnellpreises.",
             ],
           },

@@ -57,7 +57,7 @@ export default async function RatgeberPage() {
 
       <p className="max-w-2xl text-lg leading-relaxed text-white/50">
        Der FLOXANT Ratgeber sammelt die stärksten Hilfen für Umzug, Reinigung und Entrümpelung in Regensburg
-       und Bayern. Statt Fuelltext finden Sie hier direkt nutzbare Anleitungen, Preislogik und operative Tipps.
+       und Bayern. Statt Fuelltext finden Sie hier direkt nutzbare Anleitungen, Preislogik und praktische Tipps.
       </p>
      </div>
 

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -163,6 +164,10 @@ export default async function ReinigungPillarPage() {
         serviceLinks={[
           { href: "/rechner", label: "Reinigung direkt kalkulieren" },
           { href: "/notfallreinigung-24h", label: "Notfallreinigung 24h anfragen" },
+          { href: "/objekt-springer", label: "Objekt-Springer bei Personalausfall" },
+          { href: "/airbnb-turnover-express", label: "Airbnb Turnover Express für Gästewechsel" },
+          { href: "/leerstandsmanagement", label: "Leerstandsmanagement mit Kontrollfotos" },
+          { href: "/property-operations", label: "Immobilienbetreuung fuer Objektaufgaben" },
           { href: "/reinigung-nach-veranstaltung", label: "Reinigung nach Veranstaltung oder Party" },
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/express-anfrage", label: "Kurzfristige Reinigung anfragen" },
@@ -178,6 +183,18 @@ export default async function ReinigungPillarPage() {
           { href: "/reinigung-augsburg", label: "Reinigung Augsburg" },
           { href: "/reinigung-landshut", label: "Reinigung Landshut" },
           { href: "/reinigung-passau", label: "Reinigung Passau" },
+        ]}
+      />
+      <PsychologicalCleaningInternalLinks
+        title="Problemnahe Reinigung in Regensburg"
+        intro="Diese Spezialseiten helfen, wenn Reinigung nicht nur sauber, sondern konfliktarm, diskret und terminsicher werden muss."
+        focusSlugs={[
+          "sichtbar-sauber-protokoll",
+          "vermieter-schockschutz-reinigung",
+          "geruchslos-protokoll",
+          "atemruhig-reinigung",
+          "hidden-dirt-check",
+          "baustaub-ende",
         ]}
       />
     </>

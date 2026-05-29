@@ -11,11 +11,11 @@ import {
 const faqItems = [
  {
   q: "Warum nennt FLOXANT zuerst einen Preisrahmen?",
-  a: "Weil Umzug, Reinigung und Entrümpelung von Volumen, Zugang, Terminlage, Materialarten und Zusatzleistungen abhängen. Ein Preisrahmen ist ehrlicher als ein künstlich exakter Online-Endpreis.",
+  a: "Weil Umzug, Reinigung und Entrümpelung von Volumen, Zugang, Terminlage, Materialarten und Zusatzleistungen abhängen. Ein Preisrahmen ist ehrlicher als ein scheinbar exakter Online-Endpreis.",
  },
  {
   q: "Ist ein Preisrahmen schlechter als ein Festpreis?",
-  a: "Nein. Der Preisrahmen ist die erste Einordnung. Ein konkretes Angebot kann folgen, wenn die operativen Details ausreichend geprüft wurden.",
+  a: "Nein. Der Preisrahmen ist die erste Einordnung. Ein konkretes Angebot kann folgen, wenn Umfang, Zugang, Termin und Zusatzleistungen ausreichend geprüft wurden.",
  },
  {
   q: "Welche Angaben machen die Einschätzung besser?",

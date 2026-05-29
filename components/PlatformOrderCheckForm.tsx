@@ -53,7 +53,7 @@ const addonOptions = [
   "Übergabeakte",
   "Zugang / Parken",
   "Rückfahrt/Leerfahrt",
-  "Premium/Rückruf",
+  "Diskreter Rückruf",
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";

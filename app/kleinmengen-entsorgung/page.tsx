@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "kleinmengen-entsorgung",
     title: "Kleinmengen-Entsorgung Bayern | Bauschutt & Sperrmüll",
     description:
-      "Fachgerechte Entsorgung von Kleinmengen wie Renovierungsabfällen oder Sperrmüll in Bayern. Die effiziente Lösung zwischen Hausmüll und Container.",
+      "Entsorgung von Kleinmengen wie Renovierungsabfällen oder Sperrmüll in Bayern. Sinnvoll, wenn Hausmüll zu wenig und Container zu groß ist.",
   });
 }
 
@@ -41,12 +41,12 @@ export default async function EntsorgungPage() {
       a: "Sperrmüll, Altholz, Bauschutt (sortenrein), Fliesenreste und allgemeiner Siedlungsabfall. Gefährliche Stoffe wie Asbest oder Farben sind ausgeschlossen.",
     },
     {
-      q: "Warum ist FLOXANT effizienter als ein eigener Container?",
-      a: "Für kleine Mengen ist die Container-Stellung oft zu teuer und nimmt zu viel Platz ein. Wir holen die sortierten Materialien direkt ab und erledigen die Entsorgung am selben Tag.",
+      q: "Wann ist FLOXANT sinnvoller als ein eigener Container?",
+      a: "Für kleine Mengen ist ein Container oft zu groß, zu teuer oder wegen Platzmangel unpraktisch. FLOXANT prüft Menge, Material und Abholort und kann die Abholung passend einplanen.",
     },
     {
       q: "Bieten Sie den Service in ganz Bayern an?",
-      a: "Ja, wir nutzen unsere Logistik-Touren in Bayern, um die Abholung von Kleinmengen effizient einzuplanen, wobei Regensburg unser zentraler Verteilungspunkt ist.",
+      a: "Ja, nach Prüfung. Entscheidend sind Abholort, Menge, Material, Termin und passende Tour. Regensburg bleibt die Basis.",
     },
     {
       q: "Wie läuft die Anfrage für die Entsorgung ab?",
@@ -99,7 +99,7 @@ export default async function EntsorgungPage() {
             Kleinmengen-Entsorgung in Regensburg & Bayern
           </h1>
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/50">
-            FLOXANT schließt die operative Lücke zwischen Hausmüll und teurem Großcontainer. Wir entsorgen Renovierungsreste, Bauschutt-Teilmengen und Sperrmüll fachgerecht, schnell und transparent in ganz Bayern, mit Regensburg als zentralem Logistik-Knotenpunkt.
+            FLOXANT hilft, wenn es für den Hausmüll zu viel und für einen Großcontainer zu klein ist. Wir entsorgen Renovierungsreste, Bauschutt-Teilmengen und Sperrmüll fachgerecht, schnell und transparent in ganz Bayern, mit Regensburg als Ausgangspunkt.
           </p>
         </div>
       </section>

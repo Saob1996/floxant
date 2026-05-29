@@ -10,7 +10,7 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     "@id": `${company.url}/#organization`,
     name: company.name,
-    alternateName: ["FLOXANT Premium Services"],
+    alternateName: ["FLOXANT Service Regensburg"],
     url: company.url,
     logo: `${company.url}/logo_v10.png`,
     email: company.email,
@@ -51,7 +51,7 @@ export function OrganizationJsonLd() {
       },
     ],
     description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Premium-Projekte mit operativem Kern in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit. Düsseldorf ist separat für Reinigung positioniert; Entsorgung wird nur auf einer eigenen vorhandenen Seite geführt.",
+      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Abstimmungen mit festem Ausgangspunkt in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit. Düsseldorf ist separat für Reinigung positioniert; Entsorgung wird nur auf einer eigenen vorhandenen Seite geführt.",
     areaServed: company.primaryServiceAreas.map((area) => ({
       "@type":
         area === "Bayern"

@@ -36,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Für welche Region ist FLOXANT erreichbar?",
-    a: "Der operative Kern liegt in Regensburg. FLOXANT prüft Anfragen in Bayern und passende Einsätze im erweiterten Einsatzgebiet nach Strecke, Termin und Kapazität.",
+    a: "FLOXANT sitzt in Regensburg. Anfragen aus Bayern werden nach Strecke, Termin, Umfang und verfügbarem Team geprüft.",
   },
   {
     q: "Kann ich auch nur eine Preisvorstellung senden?",
@@ -47,8 +47,8 @@ const faqItems = [
     a: "Für direkte Anfragen eignet sich vor allem die Buchungsseite. Sie bündelt Buchung, Express-Check, Preisvorstellung und klare nächste Schritte in einem einzigen sauberen Einstieg.",
   },
   {
-    q: "Gibt es auch einen gezielten Kontaktweg für Firmen oder hochwertige Projekte?",
-    a: "Ja. Für gewerbliche Reinigung ist die B2B-Seite in Regensburg gedacht. Für diskrete hochwertige Anfragen gibt es den separaten Private-Client-Bereich.",
+    q: "Gibt es auch einen gezielten Kontaktweg für Firmen oder sensible Anfragen?",
+    a: "Ja. Für gewerbliche Reinigung gibt es die B2B-Seite in Regensburg. Wenn es um sensible private Themen geht, ist der Private-Client-Bereich der ruhigere Einstieg.",
   },
 ];
 

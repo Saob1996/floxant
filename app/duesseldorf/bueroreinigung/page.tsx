@@ -25,6 +25,8 @@ import {
 } from "lucide-react";
 
 import { DuesseldorfB2BCleaningForm } from "@/components/DuesseldorfB2BCleaningForm";
+import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
+import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_SNIPPET_ANSWERS,
@@ -489,6 +491,34 @@ export default function DuesseldorfBueroreinigungPage() {
         ))}
       </nav>
 
+      <div className="px-4 pb-4 pt-2 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <DuesseldorfCleaningBuyerJourney
+            serviceLabel="Büroreinigung Düsseldorf"
+            compact
+            focusHrefs={[
+              "/duesseldorf/bueroreinigung",
+              "/duesseldorf/firmenreinigung",
+              "/duesseldorf/b2b-reinigung",
+              "/duesseldorf/kanzleireinigung",
+              "/duesseldorf/praxisreinigung",
+              "/duesseldorf/treppenhausreinigung",
+              "/duesseldorf/vielleicht-guenstiger",
+            ]}
+          />
+          <DuesseldorfCleaningDecisionGuide
+            serviceLabel="Büroreinigung Düsseldorf"
+            compact
+            focusHrefs={[
+              "/duesseldorf/bueroreinigung",
+              "/duesseldorf/vielleicht-guenstiger",
+              "/duesseldorf/reinigung#kontakt",
+              "/duesseldorf/ladenreinigung",
+            ]}
+          />
+        </div>
+      </div>
+
       <section className="px-4 py-8 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 md:grid-cols-5">
@@ -512,7 +542,7 @@ export default function DuesseldorfBueroreinigungPage() {
               Büroreinigung mit Kosten, Turnus und Zeitfenster direkt einordnen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              Viele Firmen suchen nicht nach einem perfekten Fachbegriff, sondern nach
+              Viele Firmen suchen nicht nach einem Fachbegriff, sondern nach
               einer konkreten Situation: Büro nach Feierabend reinigen, Kosten verstehen,
               Unterhaltsreinigung starten oder Fotos per WhatsApp senden.
             </p>

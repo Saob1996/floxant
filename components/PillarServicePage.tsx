@@ -160,7 +160,7 @@ export function PillarServicePage({
         variant={storyVariant}
         eyebrow="FLOXANT Story"
         title="So wird aus einer groben Idee ein sauber planbarer Auftrag."
-        intro="Kunden müssen nicht alles perfekt vorbereiten. FLOXANT hilft, aus Fotos, Ort, Termin, Umfang und Budget einen klaren nächsten Schritt zu machen."
+        intro="Kunden müssen nicht alles vollständig vorbereiten. FLOXANT hilft, aus Fotos, Ort, Termin, Umfang und Budget einen klaren nächsten Schritt zu machen."
         primaryHref="/buchung"
         primaryLabel="Anfrage starten"
         secondaryHref="/angebot-guenstiger-pruefen"

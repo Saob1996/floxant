@@ -49,7 +49,7 @@ const faqItems = [
   },
   {
     q: "Ist die Seite auch fuer Unternehmen geeignet?",
-    a: "Ja. Gerade Bueros, Kanzleien, Praxen, Hotels, Apartmenthaeuser, Agenturen und Gewerbeflaechen profitieren von einer klaren Anfrage, weil nach einem Anlass oft wenig Zeit bleibt und die Flaeche schnell wieder professionell wirken muss.",
+    a: "Ja. Gerade Bueros, Kanzleien, Praxen, Hotels, Apartmenthaeuser, Agenturen und Gewerbeflaechen brauchen nach einem Anlass oft schnell wieder saubere Raeume fuer Kunden, Mitarbeitende oder Gaeste.",
   },
 ];
 
@@ -64,7 +64,7 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "Reinigung nach Veranstaltung, Party und Anlass",
       description:
-        "Professionelle Reinigung nach Party, Firmenfeier, Event, Empfang, Seminar oder Objektanlass mit Fotos, Flaeche, Zugang und Termin pruefen lassen.",
+        "Reinigung nach Party, Firmenfeier, Event, Empfang, Seminar oder Objektanlass mit Fotos, Flaeche, Zugang und Termin pruefen lassen.",
       path,
       serviceType: "Eventreinigung",
       areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Duesseldorf Reinigung nach Verfuegbarkeit"],
@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "reinigung-nach-veranstaltung",
     title: "Reinigung nach Veranstaltung, Party & Event | FLOXANT",
     description:
-      "Reinigung nach Veranstaltung, Party, Firmenfeier oder Event: Boeden, Sanitaer, Kueche, Muell, Geruch und Uebergabe professionell pruefen lassen.",
+      "Reinigung nach Veranstaltung, Party, Firmenfeier oder Event: Boeden, Sanitaer, Kueche, Muell, Geruch und Uebergabe konkret pruefen lassen.",
     keywords: [
       "Reinigung nach Veranstaltung",
       "Reinigung nach Party",
@@ -138,7 +138,7 @@ export default function ReinigungNachVeranstaltungPage() {
     {
       icon: Building2,
       title: "Firmenfeier, Empfang oder Kundentermin",
-      text: "Wenn Empfang, Meetingraum, Bueroflaeche, Sanitaer, Kueche und Kundenbereiche am naechsten Tag wieder professionell wirken muessen.",
+      text: "Wenn Empfang, Meetingraum, Bueroflaeche, Sanitaer, Kueche und Kundenbereiche am naechsten Tag wieder sauber und nutzbar sein muessen.",
     },
     {
       icon: CalendarClock,
@@ -247,7 +247,7 @@ export default function ReinigungNachVeranstaltungPage() {
         <section className="border-y border-slate-200 bg-white/85">
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <SectionTitle
-              label="Professioneller Ablauf"
+              label="Ablauf"
               title="Nach dem Anlass muss die Flaeche wieder fuehrbar sein"
               text="FLOXANT betrachtet Eventreinigung als Objektvorbereitung. Es geht um sichtbare Sauberkeit, hygienische Basis, geordnete Restmengen, gute Luft und eine klare Rueckmeldung, ob etwas ausserhalb der normalen Reinigung liegt."
             />

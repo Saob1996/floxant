@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Warum sollte diese Seite private Kleinaufträge nicht anziehen?",
-  a: "Weil sie gezielt auf gewerbliche Suchintention gebaut ist. Das spart Streuverlust in Google Ads und sorgt für passendere Leads.",
+    a: "Weil gewerbliche Kunden andere Fragen haben als private Haushalte: Fläche, Turnus, Zugang, Ansprechpartner, Zeitfenster und Zuständigkeit müssen klar sein.",
  },
  {
   q: "Kann man auch größere oder sensiblere Objekte anfragen?",
@@ -75,7 +75,7 @@ export default function BlogCommercialCleaningB2BPage() {
     date="27. April 2026"
     readTime="7 Min."
     title="Gewerbereinigung in Regensburg für große Objekte richtig anfragen"
-    intro="Nicht jede Reinigungsanfrage ist gleich wertvoll oder gleich passend. Wer Büro, Praxis, Hotel, Kanzlei, Treppenhaus oder Verwaltungsflächen wirtschaftlich sinnvoll betreuen will, braucht eine Seite und einen Anfrageweg, die genau diese Suchintention treffen."
+    intro="Nicht jede Reinigungsanfrage ist gleich. Wer Büro, Praxis, Hotel, Kanzlei, Treppenhaus oder Verwaltungsflächen betreuen lassen will, braucht klare Angaben zu Fläche, Turnus, Zugang und Verantwortlichkeit."
     sections={[
      {
       title: "Warum B2B-Reinigung anders gesucht wird",
@@ -97,17 +97,17 @@ export default function BlogCommercialCleaningB2BPage() {
       ],
      },
      {
-      title: "Wie eine gute B2B-Seite Streuverlust reduziert",
+      title: "Warum gewerbliche Anfragen anders sortiert werden müssen",
       paragraphs: [
-       "Wenn die Seite klar sagt, dass sie für gewerbliche Anfragen gedacht ist, klicken weniger unpassende Privatkunden. Das macht Google Ads effizienter und verbessert gleichzeitig die Qualität der Leads.",
-       "Kurz gesagt: nicht für jeden alles sagen, sondern für die richtigen Kunden das Richtige. So wird aus Klickverkehr eher ein Auftrag. Und das ist am Ende die bessere Rechnung.",
+       "Wenn klar gesagt wird, für welche Objekte die Reinigung gedacht ist, entstehen weniger falsche Rückfragen. Ein Büro braucht andere Planung als eine einzelne Wohnung.",
+       "Kurz gesagt: lieber früh sauber einordnen als später erklären, warum Termin, Turnus oder Zugang nicht passen.",
       ],
      },
     ]}
     highlightPoints={[
      "B2B-Reinigung braucht eine andere Ansprache als private Einzelaufträge.",
      "Objektart, Turnus, Zugang und Verantwortlichkeit sind stärkere Signale als reine Fläche.",
-     "Eine klare B2B-Seite kann Ads-Verluste reduzieren und hochwertigere Anfragen bringen.",
+     "Eine klare B2B-Seite kann falsche Anfragen reduzieren und passendere Anfragen bringen.",
     ]}
     ctas={[
      { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },

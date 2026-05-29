@@ -184,11 +184,11 @@ const faqItems = [
   },
   {
     q: "Werden Renovierungen uebernommen?",
-    a: "Nur sichtbar angebotene und operativ verfuegbare Leistungen werden geprueft. Diese Seite behauptet keine Renovierungs-, Reparatur- oder Maklerleistungen.",
+    a: "Nur Leistungen, die FLOXANT wirklich anbietet und einplanen kann, werden geprueft. Diese Seite behauptet keine Renovierungs-, Reparatur- oder Maklerleistungen.",
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der operative Kern. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf nur Reinigung und Entsorgung, keine Umzugssignale.",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf nur Reinigung und Entsorgung, keine Umzugssignale.",
   },
   {
     q: "Kann der Link wiederholt genutzt werden?",
@@ -440,7 +440,7 @@ export default function MaklerVermieterLinkPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/private-client-service" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
-                  Premium/Diskret
+                  Diskrete Abstimmung
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

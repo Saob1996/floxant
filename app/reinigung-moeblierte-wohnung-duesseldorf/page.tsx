@@ -65,7 +65,7 @@ const serviceBlocks = [
   "Grundreinigung nach Absprache",
   "Fotoeinschätzung oder Fotos nach Absprache",
   "kleiner Inventarhinweis nach Absprache",
-  "Wäschewechsel nur falls operativ verfügbar",
+  "Wäschewechsel nur nach Absprache und Verfügbarkeit",
   "Schlüsselkoordination nur nach Absprache",
   "Entsorgung kleiner Gegenstände nach Absprache",
   "wiederkehrende Reinigung nach Terminplan",
@@ -391,7 +391,7 @@ const faqs = [
   },
   {
     q: "Gibt es Wäschewechsel?",
-    a: "Nur nach Absprache und operativer Verfügbarkeit. Diese Seite behauptet keinen garantierten Wäscheservice.",
+    a: "Nur nach Absprache und Verfügbarkeit. Diese Seite behauptet keinen garantierten Wäscheservice.",
   },
   {
     q: "Kann FLOXANT Schlüssel koordinieren?",

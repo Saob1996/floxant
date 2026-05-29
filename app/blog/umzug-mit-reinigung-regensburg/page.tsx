@@ -94,7 +94,7 @@ export default function BlogUmzugMitReinigungRegensburgPage() {
       title: "Wie FLOXANT den Aufwand einordnet",
       paragraphs: [
        "Im Rechner werden Transport- und Reinigungsfaktoren nicht vermischt, sondern gemeinsam eingeordnet. Relevante Punkte sind Volumen, Zugang, Fläche, Zustand, Extras und Terminlage.",
-       "So entsteht ein unverbindlicher Orientierungsrahmen, der die Kombination realistisch abbildet, ohne künstliche Präzision zu behaupten.",
+       "So entsteht ein unverbindlicher Orientierungsrahmen, der die Kombination realistisch abbildet, ohne Scheingenauigkeit zu behaupten.",
       ],
      },
     ]}

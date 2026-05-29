@@ -182,7 +182,7 @@ export function CommercialCleaningLeadForm() {
      customerBudget: budgetValue,
      priceSuggestion: budgetValue,
      priceExplanation:
-      `Direkte Anfrage zu ${serviceContext.label} ohne Rechner. Die operative Einordnung erfolgt nach Service, Objektart, Fläche, Zugang, Turnus und Leistungsumfang.`,
+      `Direkte Anfrage zu ${serviceContext.label} ohne Rechner. Die Einordnung erfolgt nach Service, Objektart, Fläche, Zugang, Turnus und Leistungsumfang.`,
      pricingSignals: {
       requestedService: serviceContext.label,
       serviceLabel: serviceContext.label,

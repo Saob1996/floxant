@@ -17,6 +17,9 @@ import {
 } from "lucide-react";
 
 import { DuesseldorfCleaningCalculator } from "@/components/duesseldorf/DuesseldorfCleaningCalculator";
+import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
+import { DuesseldorfCleaningConversionLift } from "@/components/duesseldorf/DuesseldorfCleaningConversionLift";
+import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
@@ -29,6 +32,7 @@ import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_AI_RECOMMENDATIONS,
   DUESSELDORF_CLEANING_CLICK_INTENTS,
+  DUESSELDORF_CLEANING_CONVERSION_TRUST_ITEMS,
   DUESSELDORF_CLEANING_CUSTOMER_PATHS,
   DUESSELDORF_CLEANING_REQUEST_FIELDS,
   DUESSELDORF_CLEANING_SERVICES,
@@ -138,6 +142,27 @@ const instantDecisionCards = [
     cta: "Budget nennen",
   },
   {
+    Icon: Clock3,
+    title: "Heute oder morgen",
+    text: "Wenn der Termin drückt, zählen Fotos, Stadtteil, Schlüsselzugang und klare Prioritäten.",
+    href: "/duesseldorf/kurzfristige-reinigung",
+    cta: "Machbarkeit prüfen",
+  },
+  {
+    Icon: MessageCircle,
+    title: "Nicht vor Ort",
+    text: "Schlüsselweg, Berechtigung, Ansprechpartner und Rückmeldung vorab sauber klären.",
+    href: "/duesseldorf/schluesseluebergabe-reinigung",
+    cta: "Schlüsselweg klären",
+  },
+  {
+    Icon: Building,
+    title: "Hausverwaltung",
+    text: "Eingang, Treppenhaus, Kellerflur, Turnus und Beschwerden strukturiert anfragen.",
+    href: "/duesseldorf/hausverwaltung-reinigung",
+    cta: "Objekt planen",
+  },
+  {
     Icon: Home,
     title: "Wohnung oder Übergabe",
     text: "Für Auszug, Einzug, Bad, Küche, Böden, Fensterbereiche, Schlüsselübergabe und schnelle Terminfragen.",
@@ -204,7 +229,7 @@ const customerSearchPhraseCards = [
   {
     title: "Putzfirma Düsseldorf für Wohnung",
     text: "Viele Kunden sagen Putzfirma oder Putzservice, meinen aber eine klare Wohnungsreinigung: Fläche, Zustand, Küche, Bad, Böden, Termin und Fotos werden vorab geprüft.",
-    href: "/duesseldorf/wohnungsreinigung",
+    href: "/duesseldorf/putzfirma",
   },
   {
     title: "Reinigung Kosten Düsseldorf",
@@ -217,14 +242,49 @@ const customerSearchPhraseCards = [
     href: "/duesseldorf/bueroreinigung",
   },
   {
+    title: "Reinigungskraft Büro Düsseldorf",
+    text: "Viele Firmen suchen nach einer Person, brauchen aber einen verlässlichen Ablauf: Raumliste, Randzeit, Schlüsselweg, Ansprechpartner, Fotos und klarer Turnus.",
+    href: "/duesseldorf/reinigungskraft-buero",
+  },
+  {
     title: "Putzservice mit Fotos anfragen",
     text: "Fotos sparen Rückfragen. Sie zeigen Zustand, Laufwege, Küche, Bad, Boden, Treppenhaus oder Keller und machen eine ehrliche Einschätzung schneller möglich.",
     href: "/duesseldorf/reinigung#kontakt",
   },
   {
+    title: "Reinigung heute Düsseldorf",
+    text: "Wenn es wirklich schnell gehen muss, entscheiden Deadline, Stadtteil, Fotos, Zugang und Prioritäten. FLOXANT prüft erst die Machbarkeit, bevor Erwartungen entstehen.",
+    href: "/duesseldorf/kurzfristige-reinigung",
+  },
+  {
     title: "Kurzfristige Reinigung Düsseldorf",
     text: "Wenn ein Termin näher rückt, zählt Klarheit: Stadtteil, Fläche, Schlüsselzugang, Zustand und Fotos direkt mitsenden. Eine Zusage gibt es erst nach Machbarkeitsprüfung.",
-    href: "/duesseldorf/reinigung#kontakt",
+    href: "/duesseldorf/kurzfristige-reinigung",
+  },
+  {
+    title: "Putzfirma in meiner Nähe Düsseldorf",
+    text: "Für Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel und nahe Orte hilft zuerst die lokale Einordnung: PLZ, Zugang, Etage und Fotos.",
+    href: "/duesseldorf/reinigung-stadtteile-umgebung",
+  },
+  {
+    title: "Hausverwaltung Reinigung Düsseldorf",
+    text: "Wenn Eingang, Treppenhaus, Kellerflur oder Müllbereich Beschwerden auslösen, helfen Bereichsliste, Turnus, Schlüsselweg, Fotos und Ansprechpartner.",
+    href: "/duesseldorf/hausverwaltung-reinigung",
+  },
+  {
+    title: "WEG Reinigung Düsseldorf",
+    text: "Eigentümer und Verwaltungen brauchen keine vagen Zusagen, sondern klare Bereiche, Turnus, Zugang, Fotostand und Grenzen zu Hausmeisterdienst.",
+    href: "/duesseldorf/hausverwaltung-reinigung",
+  },
+  {
+    title: "Reinigung mit Schlüsselübergabe",
+    text: "Wenn Sie nicht vor Ort sein können, braucht die Reinigung einen klaren Schlüsselweg: Zugang, Berechtigung, Fotos, Deadline und Rückmeldung.",
+    href: "/duesseldorf/schluesseluebergabe-reinigung",
+  },
+  {
+    title: "Reinigung nicht vor Ort Düsseldorf",
+    text: "Für Auszug, Besichtigung oder Einzug aus der Ferne sind Schlüssel, Berechtigung, Ansprechpartner und Rückmeldung wichtiger als ein allgemeiner Preis.",
+    href: "/duesseldorf/schluesseluebergabe-reinigung",
   },
   {
     title: "Reinigung nach Auszug oder Übergabe",
@@ -261,6 +321,18 @@ const faqs = [
   {
     q: "Ist der Preisvorschlag automatisch verbindlich?",
     a: "Nein. Ein Budget oder Preisvorschlag ist zunächst eine Orientierung. Verbindlich wird ein Auftrag erst, wenn Umfang, Zustand, Termin und Leistung klar eingeordnet und bestätigt wurden.",
+  },
+  {
+    q: "Kann FLOXANT kurzfristige Reinigung in Düsseldorf heute oder morgen prüfen?",
+    a: "Ja, nach Kapazität und nur mit klaren Eckdaten: Stadtteil, Objektart, Fläche, Fotos, Zugang, Deadline und Prioritäten. Eine 24/7-Sofortgarantie wird nicht versprochen.",
+  },
+  {
+    q: "Kann die Reinigung organisiert werden, wenn ich nicht vor Ort bin?",
+    a: "Das kann geprüft werden, wenn Schlüsselweg, Berechtigung, Ansprechpartner, Fotos, Termin und Rückmeldung vorher eindeutig geklärt sind.",
+  },
+  {
+    q: "Welche Angaben braucht eine Hausverwaltung für eine Reinigungsanfrage?",
+    a: "Hilfreich sind Objektadresse oder Stadtteil, Eingänge, Etagen, Treppenhaus, Kellerflur, Müllbereich, Turnus, Schlüsselweg, Ansprechpartner und Fotos von Beschwerden oder Problemstellen.",
   },
   {
     q: "Welche Informationen helfen für eine schnelle Einschätzung?",
@@ -437,6 +509,69 @@ export default function DuesseldorfReinigungPage() {
             </a>
           ))}
         </nav>
+
+        <DuesseldorfCleaningConversionLift serviceLabel="Reinigung Düsseldorf" />
+        <DuesseldorfCleaningBuyerJourney
+          serviceLabel="Reinigung Düsseldorf"
+          focusHrefs={[
+            "/duesseldorf/kurzfristige-reinigung",
+            "/duesseldorf/schluesseluebergabe-reinigung",
+            "/duesseldorf/hausverwaltung-reinigung",
+            "/duesseldorf/wohnungsreinigung",
+            "/duesseldorf/endreinigung",
+            "/duesseldorf/bueroreinigung",
+            "/duesseldorf/unterhaltsreinigung",
+            "/duesseldorf/ladenreinigung",
+            "/duesseldorf/baureinigung",
+            "/duesseldorf/fensterreinigung",
+            "/duesseldorf/vielleicht-guenstiger",
+          ]}
+        />
+        <DuesseldorfCleaningDecisionGuide
+          serviceLabel="Reinigung Düsseldorf"
+          focusHrefs={[
+            "/duesseldorf/kurzfristige-reinigung",
+            "/duesseldorf/schluesseluebergabe-reinigung",
+            "/duesseldorf/hausverwaltung-reinigung",
+            "/duesseldorf/vielleicht-guenstiger",
+            "/duesseldorf/endreinigung",
+            "/duesseldorf/bueroreinigung",
+            "/duesseldorf/ladenreinigung",
+            "/duesseldorf/sonderreinigung",
+          ]}
+        />
+
+        <section id="vertrauen-klickgruende" className="pt-6">
+          <div className="mb-5 max-w-4xl">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+              Was vor der Anfrage hilft
+            </div>
+            <h2 className="mt-2 text-3xl font-black tracking-normal text-slate-950">
+              Je klarer die Lage, desto schneller können wir antworten
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              Ein paar Fotos, der Stadtteil, der gewünschte Termin und der Zugang zum
+              Objekt reichen oft für den Start. Wenn etwas nicht machbar ist, sagen wir
+              das lieber früh als zu spät.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {DUESSELDORF_CLEANING_CONVERSION_TRUST_ITEMS.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)]"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <h3 className="mt-4 text-lg font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section aria-labelledby="duesseldorf-sofort-entscheiden" className="pt-6">
           <div className="grid gap-4 rounded-[0.95rem] border border-teal-100 bg-[linear-gradient(135deg,#ffffff_0%,#ecfeff_52%,#f8fafc_100%)] p-4 shadow-[0_18px_44px_rgba(15,118,110,0.08)] lg:grid-cols-[0.7fr_1.3fr] lg:p-5">
@@ -816,9 +951,9 @@ export default function DuesseldorfReinigungPage() {
                 Wann FLOXANT für Düsseldorf passt
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-700">
-                Kunden sollen sofort erkennen, was FLOXANT in Düsseldorf macht, welcher
-                Einstieg passt und welche Leistungen nicht angeboten werden. So bleibt die
-                Empfehlung konkret, ehrlich und leicht verständlich.
+                Wenn es um Reinigung in Düsseldorf geht, prüfen wir zuerst den Fall:
+                Wohnung, Büro, Hausverwaltung, Übergabe, Fenster, Baustaub oder Entsorgung.
+                Danach sagen wir klar, was möglich ist und was nicht dazugehört.
               </p>
               <Link
                 href="/duesseldorf/reinigung#kontakt"
@@ -863,9 +998,9 @@ export default function DuesseldorfReinigungPage() {
 
         <FloxantStorytellingSection
           variant="duesseldorf"
-          eyebrow="Düsseldorf Reinigung sichtbar erklärt"
-          title="Von Fläche, Fotos und Zeitfenster zur passenden Reinigungsanfrage."
-          intro="Kunden sollen sofort verstehen, welche Angaben FLOXANT für Düsseldorf braucht: Objektart, Fläche, Zustand, Termin, Turnus, Zugang und Fotos. So wird aus einer offenen Reinigungsfrage ein klarer nächster Schritt."
+          eyebrow="Düsseldorf Reinigung"
+          title="Fotos, Termin und Adresse reichen oft für den ersten Schritt."
+          intro="Schicken Sie kurz, was gereinigt werden soll: Objektart, Fläche, Zustand, Termin, Zugang und ein paar Fotos. Wir prüfen den Aufwand und melden uns mit einer ehrlichen Einschätzung."
           primaryHref="/duesseldorf/reinigung#kontakt"
           primaryLabel="Reinigung anfragen"
           secondaryHref="/duesseldorf/bueroreinigung"

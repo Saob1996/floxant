@@ -40,8 +40,8 @@ export default async function NotfallUmzugBayern() {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Wasserschaden, Brand, Räumungsklage oder familiäre Krise – wenn ein sofortiger
-            Umzug nötig ist, steht FLOXANT bereit. Schnell einsatzbereit, diskret und
-            professionell wie immer.
+            Umzug nötig ist, steht FLOXANT bereit. Schnell erreichbar, diskret und
+            mit einem klaren nächsten Schritt.
           </p>
           <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
             <Phone className="w-5 h-5" /> +49 1577 1105087

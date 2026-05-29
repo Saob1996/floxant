@@ -93,9 +93,9 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
   if (service.includes("villa") || service.includes("luxus") || service.includes("private") || service.includes("anwesen")) {
     return [
       ...baseLinks,
-      { url: "/private-client-service", anchorText: "FLOXANT Private Client für Anwesen und hochwertige Häuser", relevanceScore: 98 },
+      { url: "/private-client-service", anchorText: "FLOXANT Private Client für Anwesen und sensible Haushalte", relevanceScore: 98 },
       { url: "/umzug", anchorText: "Umzug mit Schutzkonzept einordnen", relevanceScore: 82 },
-      { url: "/reinigung", anchorText: "Reinigung für hochwertige Objekte prüfen", relevanceScore: 80 },
+      { url: "/reinigung", anchorText: "Reinigung für sensible Objekte prüfen", relevanceScore: 80 },
     ];
   }
 

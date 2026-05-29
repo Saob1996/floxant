@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     q: "Warum ist ein direkter Buchungsweg besser als ein allgemeines Kontaktformular?",
-    a: "Weil Service, Eckdaten, Termin und Hinweise strukturierter erfasst werden. Das beschleunigt die Rückmeldung und wirkt für beide Seiten deutlich professioneller.",
+    a: "Weil Service, Eckdaten, Termin und Hinweise strukturierter erfasst werden. Das beschleunigt die Rückmeldung und macht den nächsten Schritt für beide Seiten klarer.",
   },
   {
     q: "Hilft das auch für Google Maps und lokale Empfehlungen?",
@@ -102,23 +102,23 @@ export default function BlogUmzugsfirmaRegensburgGoogleMapsVertrauenPage() {
             bullets: [
               "Ein eindeutiger direkter Link statt mehrere unklare Pfade",
               "Standort, Kontakt und Einsatzgebiet klar sichtbar",
-              "Anfrage mit Vorprüfung statt künstlichem Festpreisversprechen",
-              "Saubere Trennung zwischen Buchung, Express, B2B und Premium-Anfrage",
+              "Anfrage mit Vorprüfung statt falschem Festpreisversprechen",
+              "Saubere Trennung zwischen Buchung, Express, B2B und diskreter Anfrage",
               "Lokale Texte für Regensburg und Bayern ohne übertriebene Keyword-Masse",
-              "FAQ, die echte Fragen beantwortet und nicht nur Rankings imitieren soll",
+              "FAQ, die echte Fragen beantwortet und nicht nur Werbesätze wiederholt",
             ],
           },
           {
             title: "Was FLOXANT daraus praktisch macht",
             paragraphs: [
-              "FLOXANT nutzt /buchung als direkten Einstieg für Maps, Search und Empfehlungen. Kontakt, Standort, B2B-Reinigung und Private Client bleiben trotzdem als eigene Zielseiten sauber getrennt.",
+              "FLOXANT nutzt /buchung als direkten Einstieg für Maps, Suche und Empfehlungen. Kontakt, Standort, B2B-Reinigung und Private Client bleiben trotzdem als eigene Zielseiten sauber getrennt.",
               "Das wirkt für Kunden ruhiger, klarer und greifbarer. Oder kurz bayerisch gesagt: lieber gscheid geführt als irgendwo im Formularnebel hängen bleiben.",
             ],
           },
         ]}
         highlightPoints={[
           "Ein klarer Buchungslink stärkt Vertrauen und Orientierung.",
-          "Lokale Signale helfen sowohl Kunden als auch Suchmaschinen.",
+          "Lokale Signale helfen Kunden, schneller Vertrauen zu fassen.",
           "Getrennte Zielseiten sind oft überzeugender als ein einziger Sammelpfad.",
         ]}
         ctas={[

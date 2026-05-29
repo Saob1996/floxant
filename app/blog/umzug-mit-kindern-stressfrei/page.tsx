@@ -20,7 +20,7 @@ export default async function BlogArticle() {
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Umzug mit Kindern: So wird der Wohnungswechsel zum Abenteuer",
-    "description": "Umzug mit Kindern stressfrei gestalten. Alter-spezifische Tipps, Einbeziehung ins Packen, Schulwechsel-Vorbereitung und emotionale Unterstützung.",
+    "description": "Umzug mit Kindern vorbereiten: Packen, Schule, Betreuung, vertraute Dinge und die ersten Tage in der neuen Wohnung klar planen.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "url": "https://www.floxant.de" },
     "datePublished": "2026-03-18",
@@ -28,11 +28,11 @@ export default async function BlogArticle() {
   };
   return (
     <main className="min-h-screen bg-background">
-      <Breadcrumbs lang="de" items={[{ label: "Blog", href: "/blog" }, { label: "Umzug mit Kindern: So wird der Wohnungswechsel stressfrei" }]} />
+      <Breadcrumbs lang="de" items={[{ label: "Blog", href: "/blog" }, { label: "Umzug mit Kindern vorbereiten" }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       <article className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold tracking-tight text-foreground mb-8">Umzug mit Kindern: So wird der Wohnungswechsel stressfrei</h1>
+          <h1 className="text-5xl font-bold tracking-tight text-foreground mb-8">Umzug mit Kindern: was Familien vorher klären sollten</h1>
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-12">
             <span>Von FLOXANT Redaktion</span>
             <span>·</span>

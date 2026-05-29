@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowRight, BadgeEuro, CheckCircle2, FileSearch, MapPin, UploadCloud } from "lucide-react";
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
+import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
+import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import {
   buildDuesseldorfCleaningWhatsAppHref,
   buildDuesseldorfCleaningMetadata,
@@ -202,6 +204,32 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
         />
       </section>
 
+      <div className="mx-auto mt-8 max-w-7xl">
+        <DuesseldorfCleaningBuyerJourney
+          serviceLabel="Reinigungsangebot Düsseldorf prüfen"
+          compact
+          focusHrefs={[
+            "/duesseldorf/vielleicht-guenstiger",
+            "/duesseldorf/reinigung",
+            "/duesseldorf/gewerbereinigung",
+            "/duesseldorf/bueroreinigung",
+            "/duesseldorf/grundreinigung",
+            "/duesseldorf/wohnungsreinigung",
+            "/duesseldorf/entsorgung",
+          ]}
+        />
+        <DuesseldorfCleaningDecisionGuide
+          serviceLabel="Reinigungsangebot Düsseldorf prüfen"
+          compact
+          focusHrefs={[
+            "/duesseldorf/vielleicht-guenstiger",
+            "/duesseldorf/reinigung#kontakt",
+            "/duesseldorf/bueroreinigung",
+            "/duesseldorf/sonderreinigung",
+          ]}
+        />
+      </div>
+
       <section className="mx-auto mt-8 grid max-w-7xl gap-5 lg:grid-cols-[0.76fr_1.24fr]">
         <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="text-[11px] font-black uppercase tracking-normal text-emerald-700">
@@ -268,7 +296,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             Stadtteil, Zugang und Nähe entscheiden mit
           </h2>
           <p className="mt-4 text-sm leading-7 text-slate-700">
-            Bei professioneller Reinigung zählt nicht nur der Quadratmeterpreis. Entscheidend sind Objektart, gewünschter Qualitätsstandard, Turnus, Zugang, Boden- und Sanitärflächen, Zeitfenster und Dokumentation. Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen oder Derendorf haben andere Park- und Zugangslogik als Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg. Deshalb prüft FLOXANT Angebot, Ort, Termin, Fotos und Umfang zusammen.
+            Bei Reinigung zählt nicht nur der Quadratmeterpreis. Entscheidend sind Objektart, gewünschter Qualitätsstandard, Turnus, Zugang, Boden- und Sanitärflächen, Zeitfenster und Dokumentation. Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen oder Derendorf haben andere Park- und Zugangslogik als Neuss, Ratingen, Meerbusch, Mettmann oder Duisburg. Deshalb prüft FLOXANT Angebot, Ort, Termin, Fotos und Umfang zusammen.
           </p>
         </article>
         <article className="rounded-[0.95rem] border border-emerald-200 bg-emerald-50 p-6">
@@ -290,7 +318,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           Wichtig
         </div>
         <p className="mt-3 text-sm leading-7 text-slate-700">
-          Diese Seite ist für Düsseldorfer Reinigungsangebote gebaut. Sie ersetzt keine Rechtsberatung, garantiert keinen niedrigeren Preis und bewertet keine andere Firma. Sie schafft einen professionellen Anfrageweg, damit Unternehmen, Verwaltungen, Hotels und Privatkunden FLOXANT mit Angebot, Fotos, Objektangaben und Preisrahmen kontaktieren können.
+          Diese Seite ist für Düsseldorfer Reinigungsangebote gebaut. Sie ersetzt keine Rechtsberatung, garantiert keinen niedrigeren Preis und bewertet keine andere Firma. Sie schafft einen klaren Anfrageweg, damit Unternehmen, Verwaltungen, Hotels und Privatkunden FLOXANT mit Angebot, Fotos, Objektangaben und Preisrahmen kontaktieren können.
         </p>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {faqItems.map((item) => (

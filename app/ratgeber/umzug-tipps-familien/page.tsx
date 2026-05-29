@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-tipps-familien',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Umzug mit Familie vorbereiten",
   });
 }
 export default async function Article() {
@@ -26,7 +26,7 @@ export default async function Article() {
   const articleJsonLd = {
     "@context": "https://schema.org", "@type": "Article",
     "headline": "Umzug Tipps für Familien",
-    "description": "Umzug mit Kindern: praktische Tipps für Familien. So wird der Umzug stressfrei.",
+    "description": "Umzug mit Kindern: praktische Tipps für Familien, damit Packen, Betreuung, Schule und erste Tage besser vorbereitet sind.",
     "author": { "@type": "Organization", "name": "FLOXANT" },
     "publisher": { "@type": "Organization", "name": "FLOXANT", "logo": { "@type": "ImageObject", "url": "https://www.floxant.de/logo_v10.png" } },
     "datePublished": "2026-03-01",

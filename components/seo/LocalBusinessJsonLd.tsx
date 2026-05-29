@@ -138,7 +138,7 @@ export function LocalBusinessJsonLd() {
     "@id": `${company.url}/#localbusiness`,
     mainEntityOfPage: company.contactUrl,
     name: company.name,
-    alternateName: ["FLOXANT Premium Services"],
+    alternateName: ["FLOXANT Service Regensburg"],
     description:
       "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Anfragewege mit Schwerpunkt Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
     image: [

@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Sind Express-Anfragen immer teurer?",
-  a: "Oft ja, weil die Planung enger ist und operative Reserve gebraucht wird. Wie stark sich das auswirkt, hängt aber vom tatsächlichen Umfang ab.",
+  a: "Oft ja, weil die Planung enger ist und freie Kapazität gebraucht wird. Wie stark sich das auswirkt, hängt aber vom tatsächlichen Umfang ab.",
  },
  {
   q: "Wie kann ich eine Express-Anfrage sinnvoll vorbereiten?",
@@ -92,7 +92,7 @@ export default function BlogExpressUmzugPage() {
      {
       title: "Wie FLOXANT Express sinnvoll einordnet",
       paragraphs: [
-       "Express heißt bei FLOXANT nicht blind zusagen, sondern schnell vorprüfen. So bleibt die Kundenerfahrung professionell und die Erwartung vor dem Klick oder der Anfrage realistisch.",
+       "Express heißt bei FLOXANT nicht blind zusagen, sondern schnell vorprüfen. So bleibt die Erwartung vor der Anfrage realistisch.",
       ],
      },
     ]}

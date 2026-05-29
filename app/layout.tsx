@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { generatePageSEO, viewport } from "@/lib/seo";
-import AuthProvider from "@/components/session-provider";
 import { MotionProvider } from "@/components/MotionProvider";
 import UtmCapture from "@/components/UtmCapture";
 import { getDictionary } from "@/get-dictionary";
@@ -50,15 +49,13 @@ export default async function RootLayout({
         <a href="#main-content" className="skip-to-content">
           Direkt zum Inhalt springen
         </a>
-        <AuthProvider>
-          <MotionProvider>
-            <WebVitalsReporter />
-            <ConversionEventReporter />
-            <UtmCapture />
-            <SiteChrome>{children}</SiteChrome>
-            <CookieBanner />
-          </MotionProvider>
-        </AuthProvider>
+        <MotionProvider>
+          <WebVitalsReporter />
+          <ConversionEventReporter />
+          <UtmCapture />
+          <SiteChrome>{children}</SiteChrome>
+          <CookieBanner />
+        </MotionProvider>
       </body>
     </html>
   );

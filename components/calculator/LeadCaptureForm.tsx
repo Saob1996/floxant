@@ -149,7 +149,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       topDrivers: advancedEstimate?.topDrivers || advancedEstimate?.operationalDrivers || [],
       customerBudget,
       priceSuggestion: customerBudget,
-      priceExplanation: advancedEstimate?.priceExplanation || "Die Anfrage stammt aus dem FLOXANT-Rechner und wird operativ geprueft.",
+      priceExplanation: advancedEstimate?.priceExplanation || "Die Anfrage stammt aus dem FLOXANT-Rechner und wird konkret geprueft.",
       pricingSignals: {
        ...(advancedEstimate?.pricingSignals || {}),
        calculatorMode: mode,

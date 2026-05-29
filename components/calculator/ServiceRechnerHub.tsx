@@ -152,7 +152,7 @@ const comfortSignals = [
 const serviceSignals: Partial<Record<ServiceType, { eyebrow: string; title: string; text: string }>> = {
   umzug: {
     eyebrow: "Vorbereitung",
-    title: "Umzug operativ vorbereitet",
+    title: "Umzug gut vorbereitet",
     text: "Volumen, Strecke, Zugang, Etagen, Parkmöglichkeit und Zusatzleistungen bleiben früh sichtbar, damit aus einem groben Vorhaben eine belastbare Anfrage wird.",
   },
   reinigung: {
@@ -168,7 +168,7 @@ const serviceSignals: Partial<Record<ServiceType, { eyebrow: string; title: stri
   bueroumzug: {
     eyebrow: "Firmenfluss",
     title: "Büroumzug mit Betriebsrealität",
-    text: "Arbeitsplätze, IT, Archiv und Zeitfenster werden früh strukturiert, damit der nächste Schritt professionell und anschlussfähig bleibt.",
+    text: "Arbeitsplätze, IT, Archiv und Zeitfenster werden früh strukturiert, damit der nächste Schritt klar und anschlussfähig bleibt.",
   },
 };
 

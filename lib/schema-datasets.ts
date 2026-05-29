@@ -56,9 +56,17 @@ export const serviceGraphDatasetJsonLd = {
     "Servicegebiet",
   ],
   datePublished: "2026-05-20",
-  dateModified: "2026-05-28",
+  dateModified: "2026-05-29",
 } as const;
 
 export const serviceGraphDatasetReference = {
   "@id": serviceGraphDatasetJsonLd["@id"],
+  "@type": serviceGraphDatasetJsonLd["@type"],
+  name: serviceGraphDatasetJsonLd.name,
+  description: serviceGraphDatasetJsonLd.description,
+  creator: serviceGraphDatasetJsonLd.creator,
+  publisher: serviceGraphDatasetJsonLd.publisher,
+  license: serviceGraphDatasetJsonLd.license,
+  url: serviceGraphDatasetJsonLd.url,
+  isAccessibleForFree: serviceGraphDatasetJsonLd.isAccessibleForFree,
 } as const;

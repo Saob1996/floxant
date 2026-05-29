@@ -138,7 +138,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "Boardinghouse Reinigung Düsseldorf",
           ...multilingualAliases,
           "Google Maps Buchung",
-          "KI-Antworten für lokale Dienstleistungen",
+          "Kurze Antworten für lokale Dienstleistungen",
         ],
         slogan: "Umzug, Reinigung, Entrümpelung und Angebotsprüfung direkt anfragen.",
         keywords: [

@@ -70,7 +70,7 @@ const faqItems = [
  },
  {
   q: "Welche Region steht im Mittelpunkt?",
-  a: "Regensburg ist der operative Kern. Bayern und das erweiterte Einsatzgebiet werden je nach Strecke, Termin, Serviceart und Machbarkeit geprüft.",
+  a: "Regensburg ist der feste Ausgangspunkt. Bayern und das erweiterte Einsatzgebiet werden je nach Strecke, Termin, Serviceart und Machbarkeit geprüft.",
  },
 ];
 
@@ -140,7 +140,7 @@ export default function PraxisfaellePage() {
       Typische Fälle, in denen FLOXANT besonders sinnvoll wird.
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/56">
-      Diese Seite zeigt keine künstlichen Bewertungen und keine erfundenen Referenzen. Sie erklärt
+      Diese Seite zeigt keine erfundenen Bewertungen und keine erfundenen Referenzen. Sie erklärt
       typische Situationen, in denen Kunden Umzug, Reinigung, Entrümpelung, Büroumzug,
       Firmenentsorgung oder Leer-Rückfahrt sauber einordnen müssen.
      </p>

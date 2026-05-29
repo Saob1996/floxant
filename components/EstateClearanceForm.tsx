@@ -90,7 +90,7 @@ const serviceOptions = [
   "Uebergabeakte / Foto-Dokumentation",
   "Schluesselkoordination",
   "Diskreter Rueckruf",
-  "Premium/Diskret",
+  "Diskrete Abstimmung",
 ];
 
 const urgencyOptions = [

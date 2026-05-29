@@ -66,13 +66,13 @@ export function OperatingProofStrip() {
       <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
           <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-            Operativer Nachweis
+            Nachvollziehbarer Ablauf
           </div>
           <h2 className="mt-2 text-2xl font-bold tracking-[-0.02em] text-slate-950">
             Klare Schritte, sichtbar geführt.
           </h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Keine künstlichen Live-Zahlen. Nur die echten Schritte, die eine Anfrage für FLOXANT
+            Keine erfundenen Live-Zahlen. Nur die echten Schritte, die eine Anfrage für FLOXANT
             besser prüfbar machen.
           </p>
         </div>

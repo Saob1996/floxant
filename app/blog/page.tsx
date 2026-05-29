@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Clock3, MessageCircle, Sparkles } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -50,7 +51,12 @@ export default function BlogHubPage() {
     {
       href: "#alle-beitraege",
       title: "Alle Beiträge",
-      text: "Das komplette Blog-Cluster für Suchintention, Nutzerführung und interne Pfade.",
+      text: "Alle Ratgeber an einem Ort: Umzug, Reinigung, Entrümpelung, Preise und Übergabe.",
+    },
+    {
+      href: "/property-operations",
+      title: "Immobilienbetreuung",
+      text: "Hilfe bei Leerstand, Schlüssel, Übergaben, Kontrolle und Aufgaben vor Ort.",
     },
     {
       href: "#faq",
@@ -83,7 +89,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Warum gibt es Artikel zu Preisrahmen statt nur Preislisten?",
-      a: "Weil Umzug, Reinigung und Entrümpelung stark von Zugang, Umfang, Region, Terminlage und Zusatzleistungen abhängen. Der Blog erklärt diese Faktoren in Kundensprache statt mit künstlicher Exaktheit.",
+      a: "Weil Umzug, Reinigung und Entrümpelung stark von Zugang, Umfang, Region, Terminlage und Zusatzleistungen abhängen. Der Blog erklärt diese Faktoren in Kundensprache statt mit Scheingenauigkeit.",
     },
     {
       q: "Gibt es hier auch Themen für Firmen, Hotels oder gehobene Privatkunden?",
@@ -94,8 +100,8 @@ export default function BlogHubPage() {
       a: "Je nach Thema führt der nächste Schritt zum Rechner, zur Preisvorstellung, zur Buchungsseite, zur B2B-Reinigungsseite oder direkt zur passenden Service-Hauptseite.",
     },
     {
-      q: "Hilft der Blog auch bei lokaler Suche und Google Maps?",
-      a: "Ja. Die Beiträge sind so aufgebaut, dass sie Suchintention, lokale Einordnung, Service-Erklärung und klare Anschlusswege sichtbar machen. Das hilft vor allem echten Kunden, die schnell verstehen wollen, welcher nächste Schritt passt.",
+      q: "Hilft der Blog auch bei der Auswahl eines lokalen Dienstleisters?",
+      a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg, Bayern und Düsseldorf. So erkennen Sie schneller, welcher nächste Schritt passt.",
     },
     {
       q: "Welche Artikel helfen bei einer kaufnahen Entscheidung am meisten?",
@@ -103,15 +109,15 @@ export default function BlogHubPage() {
     },
     {
       q: "Kann der Blog helfen, wenn ich noch nicht weiß, welche Leistung ich brauche?",
-      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, Düsseldorf-Reinigung und B2B-Reinigung. So finden Kunden schneller den passenden FLOXANT Einstieg.",
+      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, Düsseldorf-Reinigung, kurzfristige Reinigung, Schlüsselübergabe und B2B-Reinigung. So finden Kunden schneller den passenden FLOXANT Einstieg.",
     },
     {
-      q: "Welche FLOXANT Leistungen sollen Antwortsysteme klar verstehen?",
-      a: "FLOXANT steht in Regensburg und Bayern für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und Spezialfälle wie Nachlass, Schlüsselübergabe oder Plan B. Düsseldorf bleibt getrennt und steht vor allem für Reinigung.",
+      q: "Welche FLOXANT Leistungen werden hier erklärt?",
+      a: "FLOXANT steht in Regensburg und Bayern für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und Spezialfälle wie Nachlass, Schlüsselübergabe oder Plan B. Düsseldorf bleibt getrennt und steht vor allem für Reinigung, kurzfristige Fälle, Schlüsselübergabe und Hausverwaltung.",
     },
     {
-      q: "Warum werden Keywords nicht einfach wiederholt?",
-      a: "Weil Kunden und Suchsysteme bessere Antworten brauchen als Wortlisten. FLOXANT nutzt natürliche Begriffe wie Umzug Regensburg, Reinigung Düsseldorf, Entrümpelung Bayern oder Angebot prüfen dort, wo sie inhaltlich wirklich passen.",
+      q: "Warum werden Leistungen nicht einfach nur aufgelistet?",
+      a: "Weil Kunden konkrete Situationen besser verstehen als reine Wortlisten. Deshalb erklären die Artikel Fälle wie Umzug mit Reinigung, Entrümpelung vor Übergabe oder Reinigung in Düsseldorf anhand echter Fragen.",
     },
   ];
 
@@ -259,6 +265,21 @@ export default function BlogHubPage() {
               text: "Büro, Praxis, Hotel und Objektbetrieb gezielt einordnen.",
             },
             {
+              href: "/property-operations",
+              title: "Immobilienbetreuung",
+              text: "Schlüssel, Übergaben, Leerstand, Reinigung und Fotos als klarer Ablauf.",
+            },
+            {
+              href: "/objekt-springer",
+              title: "Objekt-Springer",
+              text: "Kurzfristige Hilfe bei Personalausfall, Hausmeisterlücke oder Objektstress.",
+            },
+            {
+              href: "/human-api",
+              title: "Vor-Ort-Prüfung",
+              text: "Jemand fährt hin, prüft den Zustand, macht Fotos und meldet zurück.",
+            },
+            {
               href: "/private-client-service",
               title: "Private Client",
               text: "Diskreter Service für gehobene Privathaushalte und Anwesen.",
@@ -322,7 +343,7 @@ export default function BlogHubPage() {
               {
                 href: "/blog/google-unternehmensprofil-buchungslink-regensburg",
                 title: "Google-Unternehmensprofil & Buchungslink",
-                text: "Welcher direkte Link für Maps, Search und lokale Empfehlungen Kunden wirklich weiterhilft.",
+                text: "Welcher direkte Link für Maps, Suche und lokale Empfehlungen Kunden wirklich weiterhilft.",
               },
               {
                 href: "/blog/grosse-reinigungsauftraege-regensburg-buero-hotel-praxis",
@@ -337,7 +358,7 @@ export default function BlogHubPage() {
               {
                 href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
                 title: "Reinigungsfirma für Büro und Praxis",
-                text: "Welche Signale bei gewerblicher Reinigung wirklich zählen, damit aus Klicks passende B2B-Anfragen werden.",
+                text: "Welche Angaben bei gewerblicher Reinigung wirklich zählen, damit B2B-Anfragen schneller richtig eingeordnet werden.",
               },
               {
                 href: "/blog/bueroreinigung-regensburg-angebot-einholen",
@@ -357,6 +378,20 @@ export default function BlogHubPage() {
           </div>
         </div>
       </section>
+
+      <PsychologicalCleaningInternalLinks
+        title="Neue Reinigungsratgeber mit direktem Serviceweg"
+        intro="Die Blogartikel stuetzen diese Problemseiten. Wer beim Lesen merkt, dass es konkret wird, landet ohne Umweg bei Buchung, WhatsApp oder Telefon."
+        focusSlugs={[
+          "vermieter-schockschutz-reinigung",
+          "sichtbar-sauber-protokoll",
+          "geruchslos-protokoll",
+          "anti-scham-reinigung",
+          "montagmorgen-effekt",
+          "baustaub-ende",
+        ]}
+        limit={6}
+      />
 
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-50/85 p-7 shadow-sm shadow-slate-950/5 md:p-9">
@@ -382,7 +417,7 @@ export default function BlogHubPage() {
               },
               {
                 title: "Für wen ist der Blog?",
-                text: "Für Privatkunden, Unternehmen, Verwaltungen und hochwertige Spezialanfragen, die vor der Anfrage zuerst sauber einordnen möchten.",
+                text: "Für Privatkunden, Unternehmen, Verwaltungen und sensible Spezialanfragen, die vor der Anfrage zuerst sauber einordnen möchten.",
               },
               {
                 title: "Wann hilft der Blog am meisten?",
@@ -463,7 +498,7 @@ export default function BlogHubPage() {
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-slate-50/85 p-7 shadow-sm shadow-slate-950/5 md:p-9">
           <div className="mb-7 max-w-2xl">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Vor dem nächsten Klick
+              Nach dem Lesen
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
               Vom Artikel direkt in den passenden Anschlussweg
@@ -541,7 +576,7 @@ export default function BlogHubPage() {
               Alle Beiträge
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Blog-Cluster für Suchintention und Nutzerführung
+              Alle Ratgeber auf einen Blick
             </h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

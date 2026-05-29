@@ -73,7 +73,7 @@ const dossierStructure = [
   },
   {
     title: "C. Leistungen",
-    text: "Reinigung, Endreinigung, Umzug, Entrümpelung, Entsorgung, Schlüsselübergabe, Mieterwechsel oder Premium-Service.",
+    text: "Reinigung, Endreinigung, Umzug, Entrümpelung, Entsorgung, Schlüsselübergabe, Mieterwechsel oder eine sensible Abstimmung.",
   },
   {
     title: "D. Fotos",
@@ -146,10 +146,10 @@ const audiences = [
     Icon: UsersRound,
   },
   {
-    title: "Für Premium-Kunden",
+    title: "Für sensible Fälle",
     text:
       "Bei sensiblen Abläufen können Rückruf, Planung, Schlüsselkoordination und Dokumentationsumfang ruhiger abgestimmt werden.",
-    cta: "Premium-Übergabeakte anfragen",
+    cta: "Ruhige Abstimmung anfragen",
     Icon: LockKeyhole,
   },
 ];
@@ -167,7 +167,7 @@ const combinations = [
   { href: "/keller-muellraum-rettung-regensburg", title: "Mit Keller-/Müllraum-Rettung", text: "Wenn Nebenflächen, Keller oder Müllraum nach Freigabe geräumt und dokumentiert werden sollen." },
   { href: "/schadensbegrenzung", title: "Mit Schadensbegrenzung", text: "Wenn kurz vor Übergabe noch Reinigung, Räumung, Schlüssel oder Fotos offen sind." },
   { href: "/angebotscheck", title: "Mit Angebotscheck", text: "Wenn vor Auftragserteilung geklärt werden soll, ob Dokumentation oder Übergabeakte sinnvoll ist." },
-  { href: "/private-client-service", title: "Mit Premium/Diskret", text: "Für sensible Objekt- oder Auszugssituationen mit mehr Abstimmung und Rückrufwunsch." },
+  { href: "/private-client-service", title: "Mit diskreter Abstimmung", text: "Für sensible Objekt- oder Auszugssituationen mit mehr Abstimmung und Rückrufwunsch." },
 ];
 
 const faqItems = [
@@ -380,7 +380,7 @@ export default function UebergabeaktePage() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-7 max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Datenstruktur</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Aus Marketing wird System: klare Bausteine fuer die Akte</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Klare Bausteine, damit die Übergabe nachvollziehbar bleibt</h2>
               <p className="mt-3 text-base leading-8 text-slate-700">
                 Die Uebergabeakte wird als klare Dossier-Struktur vorbereitet. So koennen Objekt, Leistungen, Fotos, Schluesselstatus und Hinweise spaeter sauber bearbeitet oder exportiert werden.
               </p>
@@ -428,7 +428,7 @@ export default function UebergabeaktePage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-200">Kombinationen</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight">Die Übergabeakte wird stark, wenn sie mit echten Leistungen verbunden ist</h2>
                 <p className="mt-4 text-base leading-8 text-slate-300">
-                  Nicht als Papierprodukt ohne Substanz, sondern als Zusatz zu Reinigung, Entrümpelung, Schlüsselübergabe, Mieterwechsel oder Premium-Abstimmung.
+                  Nicht als Papierprodukt ohne Substanz, sondern als Zusatz zu Reinigung, Entrümpelung, Schlüsselübergabe, Mieterwechsel oder sensibler Abstimmung.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">

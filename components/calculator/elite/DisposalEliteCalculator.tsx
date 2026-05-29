@@ -59,9 +59,9 @@ export default function DisposalEliteCalculator({ dic }: Props) {
      {/* Header */}
      <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
       <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-       Elite <span className="text-amber-500">Räumungs-Planer</span>
+       Räumung <span className="text-amber-500">planen</span>
       </h2>
-      <p className="mt-2 text-sm text-white/40">Detaillierte Erfassung Ihrer Entsorgungs-Anforderungen.</p>
+      <p className="mt-2 text-sm text-white/40">Menge, Material, Zugang und Termin sauber erfassen.</p>
      </div>
 
      <div className="relative z-10 min-h-[400px]">

@@ -185,10 +185,10 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     accent: "from-slate-950 via-cyan-700 to-amber-500",
   },
   premium_discreet: {
-    title: "Premium- und Diskret-Service",
-    desc: "Für hochwertige Haushalte, sensible Übergänge und Kunden, die Koordination, Schutz und Rückrufwunsch ruhiger führen wollen.",
+    title: "Diskrete Abstimmung",
+    desc: "Für sensible Haushalte, sensible Übergänge und Kunden, die Koordination, Schutz und Rückrufwunsch ruhiger führen wollen.",
     href: "/private-client-service",
-    label: "Premium anfragen",
+    label: "Diskret anfragen",
     eyebrow: "Diskret",
     icon: Shield,
     accent: "from-slate-950 via-blue-900 to-amber-500",

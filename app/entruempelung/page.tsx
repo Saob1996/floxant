@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -145,7 +146,7 @@ export default async function EntruempelungPillarPage() {
             text: "Gerade bei Nachlässen, Vermietung oder schwierigen Objektlagen zählen ruhige Kommunikation, klare Grenzen und ein Zustand, der Reinigung oder Übergabe ermöglicht.",
           },
         ]}
-        costTitle="Regionale und operative Einordnung"
+        costTitle="Regionale Einordnung"
         costIntro="Der Fokus auf Regensburg und Bayern hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
         costFactors={[
           "Volumen und Materialarten",
@@ -165,6 +166,9 @@ export default async function EntruempelungPillarPage() {
           { href: "/firmenentsorgung", label: "Firmenentsorgung für Büros und Gewerbe" },
           { href: "/kleinmengen-entsorgung", label: "Kleinmengen-Entsorgung prüfen" },
           { href: "/umzug-mit-reinigung", label: "Räumung mit Reinigung kombinieren" },
+          { href: "/leerstandsmanagement", label: "Leerstand nach Räumung kontrollieren" },
+          { href: "/objekt-springer", label: "Objekt-Springer für kurzfristige Objektaufgaben" },
+          { href: "/property-operations", label: "Immobilienbetreuung nach Räumung und Übergabe" },
           { href: "/entruempelung-kosten-regensburg", label: "Kosten in Regensburg einordnen" },
           { href: "/umzug", label: "Umzug und Räumung zusammen planen" },
         ]}
@@ -176,6 +180,18 @@ export default async function EntruempelungPillarPage() {
           { href: "/entruempelung-augsburg", label: "Entrümpelung Augsburg" },
           { href: "/entruempelung-landshut", label: "Entrümpelung Landshut" },
           { href: "/entruempelung-passau", label: "Entrümpelung Passau" },
+        ]}
+      />
+      <PsychologicalCleaningInternalLinks
+        title="Wenn Raeumung und Reinigung zusammen Druck machen"
+        intro="Nach Entruempelung, Auszug oder Kellerstress helfen diese Einstiege, Restschmutz, Geruch, Uebergabe und Diskretion sauber zu klaeren."
+        focusSlugs={[
+          "reset-reinigung",
+          "anti-scham-reinigung",
+          "geruchslos-protokoll",
+          "vermieter-schockschutz-reinigung",
+          "sichtbar-sauber-protokoll",
+          "baustaub-ende",
         ]}
       />
     </>

@@ -10,7 +10,7 @@ return generatePageSEO({
     pageLocale: pageLocale as any,
     path: 'ratgeber/umzug-versicherung',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Umzug und Versicherung",
   });
 }
 export default async function Article() {
@@ -48,7 +48,7 @@ export default async function Article() {
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Gesetzliche Haftung der Umzugsfirma</h2>
-            <p className="text-muted-foreground leading-relaxed">Nach § 451e HGB haftet die Umzugsfirma gesetzlich mit 620 Euro pro Kubikmeter. Das deckt selten den Vollwert hochwertiger Möbel.</p>
+            <p className="text-muted-foreground leading-relaxed">Nach § 451e HGB haftet die Umzugsfirma gesetzlich mit 620 Euro pro Kubikmeter. Das deckt nicht immer den tatsächlichen Wert einzelner Möbel oder Gegenstände.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Allgefahrenversicherung</h2>

@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Was ist ein unverbindlicher Orientierungsrahmen?",
-  a: "Ein Orientierungsrahmen ist eine erste Einschätzung auf Basis der eingegebenen Daten. Er hilft bei Planung und Budgetgefühl, ersetzt aber keine finale operative Prüfung.",
+  a: "Ein Orientierungsrahmen ist eine erste Einschätzung auf Basis der eingegebenen Daten. Er hilft bei Planung und Budgetgefühl, ersetzt aber keine endgültige Prüfung durch FLOXANT.",
  },
  {
   q: "Welche Angaben verbessern die Einschätzung am meisten?",
@@ -36,7 +36,7 @@ const faqItems = [
 ];
 
 const principles = [
- "Keine Lockpreise und keine künstlich exakten Euro-Versprechen.",
+ "Keine Lockpreise und keine scheinbar exakten Euro-Versprechen.",
  "Sichtbare Kostentreiber statt versteckter Pauschalannahmen.",
  "Kundenbudget und System-Einschätzung bleiben sauber getrennt.",
  "Der Rechner ist Einstieg in die Vorprüfung, nicht finales Angebot.",
@@ -162,7 +162,7 @@ export default function KostenfaktorenPage() {
       <p>
        Das Ziel ist nicht, den niedrigsten Fantasiepreis zu zeigen, sondern eine realistische
        Vorplanung zu ermöglichen. Dadurch werden spätere Rückfragen klarer und die Anfrage
-       operativ nutzbarer.
+       für die weitere Abstimmung nutzbarer.
       </p>
      </div>
     </div>

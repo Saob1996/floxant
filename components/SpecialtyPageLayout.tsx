@@ -190,7 +190,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
 
 function getRegensburgAuthorityContent(serviceName: string) {
   const sharedTrust = [
-    "Regensburg ist der operative Kern; weitere Orte werden nach Route, Umfang und Kapazität geprüft.",
+    "Regensburg ist der feste Ausgangspunkt; weitere Orte werden nach Route, Umfang und Kapazität geprüft.",
     "Fotos von Zugang, Zustand, Menge oder Fläche verkürzen Rückfragen und machen Angebote belastbarer.",
     "Budget und Preisrahmen sind willkommen, werden aber erst nach Umfang und Machbarkeit eingeordnet.",
   ];
@@ -314,7 +314,7 @@ function getRegensburgAuthorityContent(serviceName: string) {
       },
       {
         q: "Arbeitet FLOXANT nur in Regensburg?",
-        a: "Regensburg ist der operative Kern. Einsätze in der Umgebung und in Bayern werden nach Strecke, Kapazität und Leistungsumfang geprüft.",
+        a: "Regensburg ist der feste Ausgangspunkt. Einsätze in der Umgebung und in Bayern werden nach Strecke, Kapazität und Leistungsumfang geprüft.",
       },
     ],
     trust: sharedTrust,
@@ -450,7 +450,7 @@ function getLocalIssueCards(serviceName: string, city: string, areaText: string)
 
 function getTravelLogic(city: string, region: string) {
   if (city === company.city) {
-    return `In ${city} wird die Anfahrt besonders kurz gehalten, weil FLOXANT hier den operativen Ausgangspunkt hat. Termine lassen sich dadurch leichter mit Besichtigung, Fotos oder kurzfristigen Rückfragen verbinden.`;
+    return `In ${city} wird die Anfahrt besonders kurz gehalten, weil FLOXANT hier seinen Ausgangspunkt hat. Termine lassen sich dadurch leichter mit Besichtigung, Fotos oder kurzfristigen Rückfragen verbinden.`;
   }
 
   return `Für ${city} wird die Anfahrt ab Regensburg mit Strecke, Teamverfügbarkeit und möglicher Kombination mit weiteren Touren in ${region} geprüft. Kurze Wege im Ort, gute Parkmöglichkeit und klare Zeitfenster helfen, den Preisrahmen ruhiger zu halten.`;

@@ -48,7 +48,7 @@ export default function FloxEntsorgungRechner({ dic }: { dic?: any }) {
      <div className="relative z-10 mb-10 border-b border-white/5 pb-8">
       <h2 className="flex items-center gap-3 text-2xl font-bold tracking-tight text-white md:text-3xl">
        <Trash2 className="text-orange-500" strokeWidth={2.5} size={28} />
-       Premium Entsorgungsrechner
+       Entsorgung einschätzen
       </h2>
       <p className="mt-2 text-sm text-white/50">
        Detaillierte Einschätzung für Entrümpelung, Sperrmüll und Materialentsorgung.

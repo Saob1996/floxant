@@ -55,7 +55,7 @@ const serviceOptions = [
   "Schluesselkoordination",
   "Mieterwechsel-Service",
   "Wohnung wieder vermietbar",
-  "Premium/Diskret",
+  "Diskrete Abstimmung",
 ];
 
 const objectCaseCards = [

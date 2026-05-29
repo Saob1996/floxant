@@ -44,7 +44,7 @@ const proofItems = [
 const faqItems = [
   {
     q: "Ist FLOXANT ein Umzugsunternehmen in Regensburg?",
-    a: "Ja. FLOXANT organisiert Umzüge mit operativem Kern in Regensburg und verbindet Transport, Reinigung, Entrümpelung und Übergabevorbereitung, wenn der Fall das braucht.",
+    a: "Ja. FLOXANT organisiert Umzüge von Regensburg aus und verbindet Transport, Reinigung, Entrümpelung und Übergabevorbereitung, wenn der Fall das braucht.",
   },
   {
     q: "Kann ich Umzug und Reinigung zusammen anfragen?",
@@ -189,8 +189,8 @@ export default function UmzugsunternehmenRegensburgPage() {
               Erst Aufwand einordnen, dann Angebot prüfen.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Für Google und für Kunden ist diese Seite der klare Suchtreffer für
-              „Umzugsunternehmen Regensburg“. Die operative Anfrage läuft trotzdem über
+              Diese Seite ist der direkte Einstieg für
+              „Umzugsunternehmen Regensburg“. Die Anfrage läuft danach über
               Rechner, Buchung oder WhatsApp, damit der Fall vollständig ankommt.
             </p>
           </article>

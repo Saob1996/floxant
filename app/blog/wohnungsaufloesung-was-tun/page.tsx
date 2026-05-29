@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     pageLocale,
     path: 'blog/wohnungsaufloesung-was-tun',
     title: dict.seo?.dynamic_city_title || "Umzugsunternehmen",
-    description: dict.seo?.dynamic_city_desc || "Professioneller Umzug",
+    description: dict.seo?.dynamic_city_desc || "Wohnungsaufloesung im Todesfall",
   });
 }
 export default async function BlogWohnungsaufloesungTodesfall() {
@@ -39,7 +39,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
               <span className="flex items-center gap-1"><CalendarDays className="w-4 h-4" /> 30. März 2024</span>
               <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> 11 Min. Lesezeit</span>
-              <span className="flex items-center gap-1"><UserCircle className="w-4 h-4" /> FLOXANT Experten</span>
+              <span className="flex items-center gap-1"><UserCircle className="w-4 h-4" /> FLOXANT Redaktion</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 leading-tight">
               Wohnungsauflösung im Todesfall: Was Angehörige jetzt tun müssen
@@ -50,7 +50,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
           </header>
           <div className="prose prose-lg md:prose-xl prose-slate max-w-none hover:prose-a:text-primary">
             <p>
-              Der Tod eines engen Angehörigen ist emotional und organisatorisch schwer. Oft müssen Familie, Mietvertrag, Schlüssel, Erinnerungsstücke und Räumung gleichzeitig geklärt werden. Dieser Leitfaden hilft, die nächsten Schritte ruhiger zu sortieren und zeigt, wann professionelle Unterstützung bei <a href={`/entruempelung`}>Wohnungsauflösungen in Bayern</a> sinnvoll sein kann.
+              Der Tod eines engen Angehörigen ist emotional und organisatorisch schwer. Oft müssen Familie, Mietvertrag, Schlüssel, Erinnerungsstücke und Räumung gleichzeitig geklärt werden. Dieser Leitfaden hilft, die nächsten Schritte ruhiger zu sortieren und zeigt, wann Unterstützung bei <a href={`/entruempelung`}>Wohnungsauflösungen in Bayern</a> sinnvoll sein kann.
             </p>
             <div className="bg-amber-50 border border-amber-200 p-6 rounded-2xl my-8">
               <h3 className="flex items-center gap-2 mt-0 text-amber-900"><Scale className="w-6 h-6" /> Wichtiger Haftungsausschluss</h3>
@@ -106,17 +106,17 @@ export default async function BlogWohnungsaufloesungTodesfall() {
             </ol>
             <h2>Die Räumung der restlichen Wohnung</h2>
             <p>
-              Der Rest (oft über 80% des Hausstandes) muss nun fristgerecht aus der Wohnung. Sie können dies selbst tun (Container mieten, tagelang Möbel schleppen, demontieren) oder die Profis beauftragen.
+              Der Rest des Hausstandes muss nun fristgerecht aus der Wohnung. Sie können selbst Container organisieren, Möbel tragen und demontieren. Oder Sie geben Räumung, Transport und Entsorgung ab, wenn Zeit, Kraft oder Zugang nicht passen.
             </p>
             <p>
-              Ein professioneller Entrümpler übernimmt die absolute Restentleerung der Zimmer. Tapeten, Teppichböden, fest verbaute Deckenpaneele oder schwere Einbauküchen werden auf Wunsch fachmännisch demontiert und dem Recyclingkreislauf (Holz, Metall, Restmüll) auf bayerischen Wertstoffhöfen zugeführt. Am Ende wird die Wohnung "besenrein" übergeben. 
+              Bei einer beauftragten Räumung werden Möbel, Restmengen und vereinbarte Einbauten nach Absprache entfernt. Tapeten, Teppichböden, fest verbaute Deckenpaneele oder schwere Einbauküchen müssen vorher klar benannt werden, weil sie Aufwand und Entsorgung verändern. Am Ende wird die Wohnung in dem vereinbarten Zustand übergeben.
             </p>
             <p>
-              Besonders bei Extremfällen (z.B. Vernachlässigung) bieten Full-Service Anbieter wie FLOXANT auch die abschließende, hygienische <a href={`/reinigung`}>Grundreinigung</a> an, um die Wohnung sofort wieder an den Vermieter übergeben zu können.
+              Wenn die Wohnung stark verschmutzt ist, kann nach der Räumung auch eine <a href={`/reinigung`}>Grundreinigung</a> sinnvoll sein. Ob das nötig ist, hängt von Zustand, Mietvertrag, Vermietertermin und Fotos ab.
             </p>
             <div className="bg-primary/5 p-8 rounded-2xl border-primary/20 border mt-12 text-center">
               <h3 className="mt-0">Benötigen Sie diskrete Unterstützung?</h3>
-              <p className="mb-6">Wir von FLOXANT gehen bei Trauerfällen mit höchster Sensibilität, Pietät und Diskretion im Hausflur vor. Wir begutachten den aufzulösenden Haushalt kostenlos per Videoanruf und fixieren den Preis.</p>
+              <p className="mb-6">Bei Trauerfällen achten wir auf ruhige Abstimmung, klare Schritte und Diskretion im Hausflur. Senden Sie Fotos, Ort, Etage, Zugang und Terminwunsch. Danach prüfen wir den Aufwand und nennen den nächsten sinnvollen Schritt.</p>
               <a href={`/rechner`} className="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-colors no-underline">
                 Anfrage für Haushaltsauflösung <ArrowRight className="w-5 h-5" />
               </a>
