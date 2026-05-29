@@ -1012,6 +1012,16 @@
   animation: os-fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.flox-reveal-static {
+  animation: os-fade-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flox-reveal-static {
+    animation: none;
+  }
+}
+
 @keyframes hero-fade-in {
   from {
     opacity: 0;

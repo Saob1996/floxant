@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatePresence, m } from "framer-motion";
 import {
   ArrowRight,
   FileSearch,
@@ -213,21 +212,12 @@ export function PublicHeader({
         </div>
       </div>
 
-      <AnimatePresence>
-        {menuOpen ? (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.16 }}
+      {menuOpen ? (
+          <div
             className="fixed inset-0 z-[9001] bg-slate-950/34 backdrop-blur-sm lg:hidden"
             onClick={() => setMenuOpen(false)}
           >
-            <m.div
-              initial={{ opacity: 0, y: -14, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            <div
               className="mx-3 mt-[5.4rem] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] border border-white/70 bg-white p-3 text-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.28)]"
               onClick={(event) => event.stopPropagation()}
             >
@@ -318,10 +308,9 @@ export function PublicHeader({
                   Anrufen
                 </a>
               </div>
-            </m.div>
-          </m.div>
+            </div>
+          </div>
         ) : null}
-      </AnimatePresence>
     </header>
   );
 }

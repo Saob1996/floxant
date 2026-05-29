@@ -1,10 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { InquiryIntentModal } from "@/components/inquiry/InquiryIntentModal";
 import type { InquiryIntent, InquiryRegion } from "@/components/inquiry/inquiry-config";
+
+const InquiryIntentModal = dynamic(
+  () => import("@/components/inquiry/InquiryIntentModal").then((mod) => mod.InquiryIntentModal),
+  { ssr: false },
+);
 
 type RequestCenterDetail = {
   intent?: InquiryIntent | "anfrage" | "budget" | "rechner" | "upload";
@@ -50,7 +55,7 @@ export function GlobalRequestCenter() {
     return () => window.removeEventListener(requestCenterEventName, handleOpen);
   }, [isPrivatePath]);
 
-  if (isPrivatePath) return null;
+  if (isPrivatePath || !open || !intent) return null;
 
   return (
     <InquiryIntentModal

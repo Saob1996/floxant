@@ -1,10 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { m, AnimatePresence } from "framer-motion";
 import { Shield, Check, X, Settings2 } from "lucide-react";
-import Link from "next/link";
-import { PremiumButton } from "./ui/PremiumButton";
 
 type ConsentState = {
   necessary: boolean;
@@ -51,7 +48,6 @@ export function CookieBanner({ dic }: { dic?: any }) {
     setIsVisible(false);
     setShowSettings(false);
     setShowTrigger(true);
-    // Here you would trigger analytics logic (e.g. init GTM)
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent('cookie_consent_updated', { detail: state }));
     }
@@ -71,29 +67,19 @@ export function CookieBanner({ dic }: { dic?: any }) {
 
   return (
     <>
-      {/* Small persistent trigger button bottom left */}
-      <AnimatePresence>
-        {showTrigger && !isVisible && (
-          <m.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
+      {showTrigger && !isVisible && (
+          <button
             onClick={() => setIsVisible(true)}
             className="fixed bottom-5 start-5 z-[90] rounded-full border border-slate-200 bg-white/95 p-3 text-slate-900 shadow-[0_16px_34px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_42px_rgba(15,23,42,0.22)] group"
             title={dic?.cookie?.settings || "Cookie Einstellungen"}
             aria-label={dic?.cookie?.settings || "Cookie Einstellungen anpassen"}
           >
             <Shield className="w-5 h-5 text-slate-800 transition-colors group-hover:text-blue-700" />
-          </m.button>
+          </button>
         )}
-      </AnimatePresence>
 
-      <AnimatePresence>
-        {isVisible && (
-          <m.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            exit={{ y: 20 }}
+      {isVisible && (
+          <div
             className="fixed inset-x-0 bottom-0 z-[100] p-1.5 pointer-events-none sm:p-4 md:p-6"
           >
             <div className="mx-auto max-h-[72dvh] max-w-[calc(100vw-0.75rem)] overflow-y-auto rounded-[0.8rem] border border-white/20 bg-[#0b111b] p-2.5 text-white shadow-[0_24px_90px_rgba(2,6,23,0.45)] ring-1 ring-black/20 pointer-events-auto sm:max-h-[calc(100dvh-2rem)] sm:max-w-3xl sm:p-5 md:p-7">
@@ -134,15 +120,15 @@ export function CookieBanner({ dic }: { dic?: any }) {
                       >
                         {dic?.cookie?.essential_only || "Nur Essenzielle"}
                       </button>
-                      <PremiumButton
+                      <button
                         onClick={handleAcceptAll}
-                        className="min-h-9 whitespace-nowrap px-2 text-[10px] text-white sm:min-h-11 sm:px-6 sm:text-sm"
+                        className="min-h-9 whitespace-nowrap rounded-[0.68rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-2 text-[10px] font-bold text-white transition-colors hover:from-blue-700 hover:to-cyan-600 sm:min-h-11 sm:px-6 sm:text-sm"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                       >
                         <span style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>
                           {dic?.cookie?.accept_all || "Alle akzeptieren"}
                         </span>
-                      </PremiumButton>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -212,22 +198,21 @@ export function CookieBanner({ dic }: { dic?: any }) {
                     >
                       Alle auswählen
                     </button>
-                    <PremiumButton
+                    <button
                       onClick={handleSaveSettings}
-                      className="min-h-10 px-8 text-white sm:min-h-11"
+                      className="min-h-10 rounded-[0.75rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-8 text-sm font-bold text-white transition-colors hover:from-blue-700 hover:to-cyan-600 sm:min-h-11"
                       style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                     >
                       <span style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>
                         {dic?.cookie?.save || "Auswahl speichern"}
                       </span>
-                    </PremiumButton>
+                    </button>
                   </div>
                 </div>
               )}
             </div>
-          </m.div>
+          </div>
         )}
-      </AnimatePresence>
     </>
   );
 }
