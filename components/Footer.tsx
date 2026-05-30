@@ -89,7 +89,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
   if (pathname === "/private-client-service" || pathname === "/villenservice") return null;
 
   return (
-    <footer className="relative overflow-hidden px-6 pb-12 pt-24">
+    <footer className="relative overflow-x-clip px-4 pb-12 pt-24 sm:px-6">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.06),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]" />
       <div className="relative mx-auto max-w-7xl space-y-6">
         <section className="flox-panel-dark rounded-[2.2rem] px-7 py-8 md:px-10 md:py-10">
@@ -146,9 +146,9 @@ export function Footer({ dic }: { dic?: any } = {}) {
           </div>
         </section>
 
-        <section className="flox-panel rounded-[2.2rem] px-7 py-8 md:px-10 md:py-10">
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-[1.2fr_0.85fr_0.85fr_0.85fr_0.9fr_0.9fr_0.75fr]">
-            <div className="xl:border-r xl:border-slate-200/80 xl:pr-8">
+        <section className="flox-panel rounded-[2.2rem] px-5 py-8 sm:px-7 md:px-10 md:py-10">
+          <div className="grid min-w-0 gap-8 xl:grid-cols-[minmax(0,17rem)_minmax(0,1fr)]">
+            <div className="min-w-0 xl:border-r xl:border-slate-200/80 xl:pr-8">
               <Link href="/" className="text-2xl font-black tracking-[0.16em] text-slate-950" translate="no">
                 FLOXANT
               </Link>
@@ -182,12 +182,14 @@ export function Footer({ dic }: { dic?: any } = {}) {
               </div>
             </div>
 
-            <FooterColumn title="Leistungen" items={serviceLinks} />
-            <FooterColumn title="Direkte Wege" items={directLinks} />
-            <FooterColumn title="Problemhilfe" items={problemLinks} />
-            <FooterColumn title="Lokale Seiten" items={localLinks} />
-            <FooterColumn title="Ratgeber" items={knowledgeLinks} />
-            <FooterColumn title="Rechtliches" items={legalLinks} />
+            <div className="grid min-w-0 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
+              <FooterColumn title="Leistungen" items={serviceLinks} />
+              <FooterColumn title="Direkte Wege" items={directLinks} />
+              <FooterColumn title="Problemhilfe" items={problemLinks} />
+              <FooterColumn title="Lokale Seiten" items={localLinks} />
+              <FooterColumn title="Ratgeber" items={knowledgeLinks} />
+              <FooterColumn title="Rechtliches" items={legalLinks} />
+            </div>
           </div>
 
           <div className="mt-10 flex flex-col gap-4 border-t border-slate-200/90 pt-7 md:flex-row md:items-center md:justify-between">
@@ -218,17 +220,17 @@ function FooterColumn({
   items: Array<{ href: string; label: string }>;
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <div className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">{title}</div>
       <div className="space-y-2">
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="group flex items-center justify-between rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+            className="group flex min-w-0 items-center justify-between gap-3 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
           >
-            <span>{item.label}</span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-slate-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-700" />
+            <span className="min-w-0 [overflow-wrap:anywhere]">{item.label}</span>
+            <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-700" />
           </Link>
         ))}
       </div>
