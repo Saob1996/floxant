@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
-import { getDictionary } from "@/get-dictionary";
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
@@ -9,8 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: "Rechtliche Informationen und Impressum von Floxant. Ihr Partner für Umzug, Reinigung & Entrümpelung in Bayern.",
   });
 }
-export default async function Impressum() {
-  const dict = await getDictionary("de");
+export default function Impressum() {
   return (
     <main className="min-h-screen bg-background">
       <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto space-y-8">
@@ -30,14 +28,14 @@ export default async function Impressum() {
             <h2 className="text-xl font-semibold text-foreground mb-2">Kontakt</h2>
             <p>
               Telefon: +49 1577 1105087<br />
-              E-Mail: [wird ergänzt]
+              E-Mail: <a href="mailto:info@floxant.de" className="underline hover:text-foreground">info@floxant.de</a>
             </p>
           </section>
           <section>
             <h2 className="text-xl font-semibold text-foreground mb-2">Umsatzsteuer</h2>
             <p>
-              Umsatzsteuer-Identifikationsnummer gemäß §27a UStG:<br />
-              wird beantragt
+              Steuerliche Angaben St. Nr.: 103/5163/5231<br />
+              USt-IdNr.: DE 45971484
             </p>
           </section>
           <section>

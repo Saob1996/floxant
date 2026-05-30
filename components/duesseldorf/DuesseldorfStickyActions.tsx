@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ClipboardCheck, Phone } from "lucide-react";
+import { BadgeEuro, ClipboardCheck, FileSearch, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
@@ -57,7 +57,7 @@ export function DuesseldorfStickyActions() {
             <ClipboardCheck />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anfrage</span>
-              <span className="flox-mobile-action-note">Fotos senden</span>
+              <span className="flox-mobile-action-note">Fall schildern</span>
             </span>
           </Link>
           <a
@@ -83,13 +83,24 @@ export function DuesseldorfStickyActions() {
             <Phone />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anrufen</span>
-              <span className="flox-mobile-action-note">Direkt sprechen</span>
+              <span className="flox-mobile-action-note">Kurz klären</span>
             </span>
           </a>
           <Link
             href="/duesseldorf/vielleicht-guenstiger"
+            className="flox-mobile-action flox-mobile-action-offer"
+            aria-label="Bestehendes Reinigungsangebot einer anderen Firma prüfen lassen"
+          >
+            <FileSearch />
+            <span className="flox-mobile-action-copy">
+              <span className="flox-mobile-action-label">Angebot</span>
+              <span className="flox-mobile-action-note">Prüfen lassen</span>
+            </span>
+          </Link>
+          <Link
+            href="/duesseldorf/reinigung#preisvorschlag"
             className="flox-mobile-action flox-mobile-action-dark"
-            aria-label="Düsseldorfer Reinigungskosten oder Angebot prüfen lassen"
+            aria-label="Düsseldorfer Reinigungskosten oder Budget prüfen lassen"
           >
             <BadgeEuro />
             <span className="flox-mobile-action-copy">

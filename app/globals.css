@@ -3632,8 +3632,9 @@ input[type="file"]:hover {
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
-.flox-regensburg-action-wrap .flox-mobile-action-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.flox-regensburg-action-wrap .flox-mobile-action-grid,
+.flox-universal-action-wrap .flox-mobile-action-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .flox-mobile-action {
@@ -3702,6 +3703,15 @@ input[type="file"]:hover {
   color: #ffffff !important;
 }
 
+.flox-mobile-action-offer {
+  border: 1px solid rgba(8, 47, 73, 0.18);
+  background: linear-gradient(135deg, rgb(240, 249, 255), rgb(236, 253, 245));
+  color: rgb(8, 47, 73) !important;
+  box-shadow:
+    0 10px 22px rgba(8, 47, 73, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
 .flox-mobile-action-whatsapp {
   position: relative;
   border: 1px solid rgba(37, 211, 102, 0.82);
@@ -3752,36 +3762,43 @@ input[type="file"]:hover {
 }
 
 .flox-duesseldorf-action-wrap,
-.flox-regensburg-action-wrap {
+.flox-regensburg-action-wrap,
+.flox-universal-action-wrap {
   pointer-events: none;
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action-shell,
 .flox-duesseldorf-action-wrap .flox-mobile-action,
 .flox-regensburg-action-wrap .flox-mobile-action-shell,
-.flox-regensburg-action-wrap .flox-mobile-action {
+.flox-regensburg-action-wrap .flox-mobile-action,
+.flox-universal-action-wrap .flox-mobile-action-shell,
+.flox-universal-action-wrap .flox-mobile-action {
   pointer-events: auto;
 }
 
 .flox-duesseldorf-action-wrap,
-.flox-regensburg-action-wrap {
+.flox-regensburg-action-wrap,
+.flox-universal-action-wrap {
   bottom: max(0.4rem, env(safe-area-inset-bottom));
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action-shell,
-.flox-regensburg-action-wrap .flox-mobile-action-shell {
-  width: min(100%, 24.25rem);
+.flox-regensburg-action-wrap .flox-mobile-action-shell,
+.flox-universal-action-wrap .flox-mobile-action-shell {
+  width: min(100%, 29rem);
   border-radius: 0.95rem;
   padding: 0.28rem;
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
-.flox-regensburg-action-wrap .flox-mobile-action-grid {
+.flox-regensburg-action-wrap .flox-mobile-action-grid,
+.flox-universal-action-wrap .flox-mobile-action-grid {
   gap: 0.3rem;
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action,
-.flox-regensburg-action-wrap .flox-mobile-action {
+.flox-regensburg-action-wrap .flox-mobile-action,
+.flox-universal-action-wrap .flox-mobile-action {
   min-height: 3rem;
   border-radius: 0.68rem;
   padding: 0.36rem 0.22rem;
@@ -3789,13 +3806,15 @@ input[type="file"]:hover {
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action svg,
-.flox-regensburg-action-wrap .flox-mobile-action svg {
+.flox-regensburg-action-wrap .flox-mobile-action svg,
+.flox-universal-action-wrap .flox-mobile-action svg {
   width: 0.9rem;
   height: 0.9rem;
 }
 
 .flox-duesseldorf-action-wrap .flox-mobile-action-whatsapp::before,
-.flox-regensburg-action-wrap .flox-mobile-action-whatsapp::before {
+.flox-regensburg-action-wrap .flox-mobile-action-whatsapp::before,
+.flox-universal-action-wrap .flox-mobile-action-whatsapp::before {
   width: 1.32rem;
   height: 1.32rem;
   background-size: 1.32rem 1.32rem;
@@ -3803,16 +3822,18 @@ input[type="file"]:hover {
 
 @media (min-width: 1024px) {
   .flox-duesseldorf-action-wrap,
-  .flox-regensburg-action-wrap {
+  .flox-regensburg-action-wrap,
+  .flox-universal-action-wrap {
     left: 50%;
     right: auto;
     bottom: max(0.85rem, env(safe-area-inset-bottom));
-    width: min(34rem, calc(100vw - 2rem));
+    width: min(41rem, calc(100vw - 2rem));
     transform: translateX(-50%);
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action-shell,
-  .flox-regensburg-action-wrap .flox-mobile-action-shell {
+  .flox-regensburg-action-wrap .flox-mobile-action-shell,
+  .flox-universal-action-wrap .flox-mobile-action-shell {
     width: 100%;
     border-radius: 0.95rem;
     padding: 0.36rem;
@@ -3822,12 +3843,14 @@ input[type="file"]:hover {
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
-  .flox-regensburg-action-wrap .flox-mobile-action-grid {
-    grid-template-columns: 0.95fr 1.05fr 0.82fr 0.92fr;
+  .flox-regensburg-action-wrap .flox-mobile-action-grid,
+  .flox-universal-action-wrap .flox-mobile-action-grid {
+    grid-template-columns: 0.95fr 1.05fr 0.82fr 0.95fr 0.88fr;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action,
-  .flox-regensburg-action-wrap .flox-mobile-action {
+  .flox-regensburg-action-wrap .flox-mobile-action,
+  .flox-universal-action-wrap .flox-mobile-action {
     min-height: 2.85rem;
     flex-direction: row;
     gap: 0.38rem;
@@ -3838,18 +3861,21 @@ input[type="file"]:hover {
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action-copy,
-  .flox-regensburg-action-wrap .flox-mobile-action-copy {
+  .flox-regensburg-action-wrap .flox-mobile-action-copy,
+  .flox-universal-action-wrap .flox-mobile-action-copy {
     align-items: flex-start;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action svg,
-  .flox-regensburg-action-wrap .flox-mobile-action svg {
+  .flox-regensburg-action-wrap .flox-mobile-action svg,
+  .flox-universal-action-wrap .flox-mobile-action svg {
     width: 0.92rem;
     height: 0.92rem;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action-whatsapp::before,
-  .flox-regensburg-action-wrap .flox-mobile-action-whatsapp::before {
+  .flox-regensburg-action-wrap .flox-mobile-action-whatsapp::before,
+  .flox-universal-action-wrap .flox-mobile-action-whatsapp::before {
     width: 1.26rem;
     height: 1.26rem;
     background-size: 1.26rem 1.26rem;
@@ -3858,38 +3884,49 @@ input[type="file"]:hover {
 
 @media (min-width: 1600px) {
   .flox-duesseldorf-action-wrap,
-  .flox-regensburg-action-wrap {
+  .flox-regensburg-action-wrap,
+  .flox-universal-action-wrap {
     left: auto;
-    right: max(1rem, calc((100vw - var(--flox-container)) / 2 - 9.2rem));
+    right: max(1rem, calc((100vw - var(--flox-container)) / 2 - 10.7rem));
     top: 50%;
     bottom: auto;
-    width: 8.4rem;
+    width: 10rem;
     transform: translateY(-50%);
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action-grid,
-  .flox-regensburg-action-wrap .flox-mobile-action-grid {
+  .flox-regensburg-action-wrap .flox-mobile-action-grid,
+  .flox-universal-action-wrap .flox-mobile-action-grid {
     grid-template-columns: 1fr;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action,
-  .flox-regensburg-action-wrap .flox-mobile-action {
+  .flox-regensburg-action-wrap .flox-mobile-action,
+  .flox-universal-action-wrap .flox-mobile-action {
     min-height: 2.9rem;
     justify-content: flex-start;
     text-align: left;
     white-space: normal;
   }
+
+  .flox-duesseldorf-action-wrap .flox-mobile-action-note,
+  .flox-regensburg-action-wrap .flox-mobile-action-note,
+  .flox-universal-action-wrap .flox-mobile-action-note {
+    display: block;
+  }
 }
 
 @media (min-width: 1880px) {
   .flox-duesseldorf-action-wrap,
-  .flox-regensburg-action-wrap {
-    right: max(1.25rem, calc((100vw - var(--flox-container)) / 2 - 12.6rem));
-    width: 11rem;
+  .flox-regensburg-action-wrap,
+  .flox-universal-action-wrap {
+    right: max(1.25rem, calc((100vw - var(--flox-container)) / 2 - 13.6rem));
+    width: 12.2rem;
   }
 
   .flox-duesseldorf-action-wrap .flox-mobile-action-note,
-  .flox-regensburg-action-wrap .flox-mobile-action-note {
+  .flox-regensburg-action-wrap .flox-mobile-action-note,
+  .flox-universal-action-wrap .flox-mobile-action-note {
     display: block;
   }
 }

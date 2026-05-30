@@ -7,11 +7,6 @@ const MobileFloatingContact = dynamic(() => import("@/components/MobileFloatingC
   ssr: false,
 });
 
-const WhatsAppButton = dynamic(
-  () => import("@/components/WhatsAppButton").then((mod) => mod.WhatsAppButton),
-  { ssr: false },
-);
-
 const PlanGekipptTrigger = dynamic(
   () => import("@/components/PlanGekipptTrigger").then((mod) => mod.PlanGekipptTrigger),
   { ssr: false },
@@ -44,7 +39,6 @@ export function DeferredSiteWidgets({ showFloatingContact }: { showFloatingConta
   return (
     <>
       {showFloatingContact ? <MobileFloatingContact /> : null}
-      {showFloatingContact ? <WhatsAppButton /> : null}
       <PlanGekipptTrigger />
     </>
   );
