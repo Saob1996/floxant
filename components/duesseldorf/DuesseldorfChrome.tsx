@@ -152,14 +152,14 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               Aufwand statt nach Pauschalversprechen.
             </p>
           </div>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(8.75rem,1fr))]">
             {duesseldorfTrustLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="group flex min-h-14 items-center justify-between gap-3 rounded-[0.85rem] border border-cyan-100/20 bg-slate-900/75 px-4 py-3 text-sm font-black !text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:bg-slate-800"
+                className="group flex min-h-14 items-center justify-between gap-3 rounded-[0.85rem] border border-cyan-100/20 bg-slate-900/75 px-4 py-3 text-[13px] font-black leading-tight !text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] transition hover:bg-slate-800 sm:text-sm"
               >
-                <span>{item.label}</span>
+                <span className="min-w-0 [overflow-wrap:anywhere]">{item.label}</span>
                 <ArrowUpRight className="h-4 w-4 shrink-0 text-cyan-200 transition group-hover:text-white" />
               </Link>
             ))}
