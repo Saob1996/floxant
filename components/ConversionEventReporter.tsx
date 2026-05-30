@@ -8,10 +8,26 @@ import {
  JOURNEY_ID_STORAGE_KEY,
  LAST_CONVERSION_STORAGE_KEY,
 } from "@/lib/conversion-journey";
+import {
+ getGoogleAdsConversionTarget,
+ type GoogleAdsConversionName,
+} from "@/lib/google-ads-conversions";
 
 const CONVERSION_HISTORY_KEY = "floxant:conversion_history";
 const HIGH_INTENT_DWELL_MS = 14000;
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
+const TRACKED_LINK_SELECTOR = [
+ "[data-event]",
+ "a[href^='tel:']",
+ "a[href^='mailto:']",
+ "a[href*='wa.me']",
+ "a[href*='whatsapp']",
+ "a[href*='vielleicht-guenstiger']",
+ "a[href*='angebot-guenstiger']",
+ "a[href*='angebotscheck']",
+ "a[href*='anliegen=rueckruf']",
+ "a[href*='rueckruf']",
+].join(",");
 
 function persistJourneyCookie(journeyId: string) {
  const safeId = cleanJourneyId(journeyId);
@@ -114,11 +130,74 @@ function sendConversionEvent(payload: Record<string, unknown>) {
  });
 }
 
+function normalizeForTracking(value: unknown) {
+ return String(value ?? "")
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, " ")
+  .trim();
+}
+
+function hasMarketingConsent() {
+ try {
+  const raw = localStorage.getItem("cookie_consent");
+  if (!raw) return false;
+  if (raw === "all") return true;
+  if (!raw.startsWith("{")) return false;
+  return JSON.parse(raw)?.marketing === true;
+ } catch {
+  return false;
+ }
+}
+
+function inferGoogleAdsConversion(payload: Record<string, unknown>): GoogleAdsConversionName | null {
+ const event = normalizeForTracking(payload.event);
+ const href = normalizeForTracking(payload.href);
+ const label = normalizeForTracking(payload.label);
+ const channel = normalizeForTracking(payload.channel);
+ const combined = `${event} ${href} ${label} ${channel}`;
+
+ if (event.includes("form success") || event.includes("submit form success") || event.includes("booking success")) return "form_success";
+ if (href.startsWith("tel") || channel === "phone" || event.includes("phone") || event.includes("call")) return "phone";
+ if (href.includes("wa me") || href.includes("whatsapp") || channel === "whatsapp" || event.includes("whatsapp")) return "whatsapp";
+ if (combined.includes("angebot") || combined.includes("offer check") || combined.includes("vielleicht guenstiger") || combined.includes("angebotscheck")) return "offer_check";
+ if (combined.includes("ruckruf") || combined.includes("callback")) return "callback";
+ if (event.includes("start booking") || event.includes("booking") || event.includes("anfrage")) return "booking_start";
+ return null;
+}
+
+function sendGoogleAdsConversion(payload: Record<string, unknown>) {
+ if (!hasMarketingConsent()) return;
+ if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+
+ const conversionName = inferGoogleAdsConversion(payload);
+ if (!conversionName) return;
+
+ const sendTo = getGoogleAdsConversionTarget(conversionName);
+ if (!sendTo) return;
+
+ window.gtag("event", "conversion", {
+  send_to: sendTo,
+  transport_type: "beacon",
+  event_category: "google_ads",
+  event_label: conversionName,
+  page_path: window.location.pathname,
+ });
+}
+
+function trackConversion(payload: Record<string, unknown>) {
+ sendConversionEvent(payload);
+ sendGoogleAdsConversion(payload);
+}
+
 function eventNameFor(element: HTMLElement, href: string) {
  if (element.dataset.event) return element.dataset.event;
  if (href.startsWith("tel:")) return "click_phone";
  if (href.startsWith("mailto:")) return "click_email";
  if (href.includes("wa.me") || href.includes("whatsapp")) return "click_whatsapp";
+ if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebotscheck")) return "click_offer_check";
+ if (href.includes("rueckruf") || href.includes("anliegen=rueckruf")) return "click_callback_request";
  return "click_link";
 }
 
@@ -181,11 +260,11 @@ export function ConversionEventReporter() {
  useEffect(() => {
   function handleClick(event: MouseEvent) {
    const target = event.target instanceof Element ? event.target : null;
-   const element = target?.closest<HTMLElement>("[data-event],a[href^='tel:'],a[href^='mailto:'],a[href*='wa.me'],a[href*='whatsapp']");
+   const element = target?.closest<HTMLElement>(TRACKED_LINK_SELECTOR);
    if (!element) return;
 
    const href = element instanceof HTMLAnchorElement ? element.href : "";
-   sendConversionEvent({
+   trackConversion({
     event: eventNameFor(element, href),
     source: element.dataset.source || "",
     channel: element.dataset.contactChannel || element.dataset.channel || "",
@@ -199,7 +278,7 @@ export function ConversionEventReporter() {
    const form = event.target instanceof HTMLFormElement ? event.target : null;
    if (!form) return;
 
-   sendConversionEvent({
+   trackConversion({
     event: form.dataset.event || "submit_form",
     source: form.dataset.source || "form",
     channel: form.dataset.contactChannel || "form",
@@ -219,13 +298,62 @@ export function ConversionEventReporter() {
  }, []);
 
  useEffect(() => {
+  const nativeFetch = window.fetch.bind(window);
+
+  window.fetch = async (input, init) => {
+   const response = await nativeFetch(input, init);
+
+   try {
+    const url = typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url;
+    const requestUrl = new URL(url, window.location.origin);
+    const method = String(init?.method || (typeof input === "object" && "method" in input ? input.method : "GET")).toUpperCase();
+    const isLeadEndpoint = requestUrl.pathname === "/api/bookings" || requestUrl.pathname === "/api/intake";
+
+    if (method === "POST" && isLeadEndpoint && response.ok) {
+     let successful = true;
+     try {
+      const data = await response.clone().json();
+      successful = data?.success !== false && data?.ok !== false;
+     } catch {
+      successful = true;
+     }
+
+     if (successful) {
+      trackConversion({
+       event: "submit_form_success",
+       source: "api_success",
+       channel: "form",
+       href: requestUrl.pathname,
+       label: "Formular erfolgreich abgeschickt",
+       dataset: {
+        source: "api_success",
+        channel: "form",
+        priority: "hot",
+        intent: "lead_success",
+       },
+      });
+     }
+    }
+   } catch {
+    // Tracking must not change fetch behavior.
+   }
+
+   return response;
+  };
+
+  return () => {
+   window.fetch = nativeFetch;
+  };
+ }, []);
+
+ useEffect(() => {
   const signal = getHighIntentPageSignal(pathname || window.location.pathname);
   if (!signal) return;
 
   const timer = window.setTimeout(() => {
    if (!rememberDwellSignal(signal.path)) return;
 
-   sendConversionEvent({
+   trackConversion({
     event: "view_high_intent_page",
     source: signal.source,
     channel: "engagement",

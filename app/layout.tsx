@@ -9,6 +9,7 @@ import UtmCapture from "@/components/UtmCapture";
 import { getDictionary } from "@/get-dictionary";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ConversionEventReporter } from "@/components/ConversionEventReporter";
+import { GoogleAdsTag } from "@/components/GoogleAdsTag";
 import { WebVitalsReporter } from "@/components/WebVitalsReporter";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 
@@ -51,6 +52,7 @@ export default async function RootLayout({
         </a>
         <MotionProvider>
           <WebVitalsReporter />
+          <GoogleAdsTag />
           <ConversionEventReporter />
           <UtmCapture />
           <SiteChrome>{children}</SiteChrome>
