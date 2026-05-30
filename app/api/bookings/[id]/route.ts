@@ -3,6 +3,7 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { enrichBookingFileUrls } from "@/lib/booking-attachments";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { company } from "@/lib/company";
 import {
@@ -325,7 +326,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
   return NextResponse.json({ error: "Booking not found" }, { status: 404 });
  }
 
- return NextResponse.json(booking);
+ return NextResponse.json(enrichBookingFileUrls(booking));
 }
 
 export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {

@@ -3,6 +3,11 @@ import { getServerSession } from "next-auth";
 import sharp from "sharp";
 import { authOptions } from "@/lib/auth";
 import {
+ enrichBookingFileUrls,
+ getUploadMetadataPublicUrls,
+ getUploadPublicUrl,
+} from "@/lib/booking-attachments";
+import {
  enrichIntakeWithConversionJourney,
  getConversionJourneyIdFromDetails,
 } from "@/lib/conversion-journey";
@@ -23,6 +28,7 @@ type OfferCheckUploadCategory = "offer" | "photo";
 type OfferCheckUploadMetadata = {
  originalName: string;
  storagePath: string;
+ publicUrl?: string;
  contentType: string;
  size: number;
  category: OfferCheckUploadCategory;
@@ -3278,6 +3284,7 @@ async function uploadOfferCheckFiles(files: File[], category: OfferCheckUploadCa
   metadata.push({
    originalName: safeName,
    storagePath,
+   publicUrl: getUploadPublicUrl(storagePath),
    contentType: file.type || "application/octet-stream",
    size: file.size,
    category,
@@ -3900,6 +3907,7 @@ export async function POST(req: Request) {
     upgrades: formData.get("upgrades") ? JSON.parse(String(formData.get("upgrades"))) : [],
     details: formData.get("details") ? JSON.parse(String(formData.get("details"))) : {},
    };
+   fileUrls = Array.from(new Set([...fileUrls, ...getUploadMetadataPublicUrls(offerUploadMetadata)]));
   }
 
   const contactName = String(payload.name || "").trim();
@@ -4059,7 +4067,7 @@ export async function GET() {
  try {
   const { data, error } = await getSupabaseAdmin().from("bookings").select("*").order("timestamp", { ascending: false });
   if (error) throw error;
-  return NextResponse.json(data || []);
+  return NextResponse.json((data || []).map(enrichBookingFileUrls));
  } catch {
   return NextResponse.json({ error: "Fetch failed" }, { status: 500 });
  }
