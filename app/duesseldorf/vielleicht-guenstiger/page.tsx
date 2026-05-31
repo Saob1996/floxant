@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BadgeEuro, CheckCircle2, FileSearch, MapPin, UploadCloud } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeEuro,
+  Building2,
+  CalendarClock,
+  CheckCircle2,
+  ClipboardList,
+  FileSearch,
+  KeyRound,
+  MapPin,
+  RotateCcw,
+  Store,
+  UploadCloud,
+} from "lucide-react";
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
 import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
@@ -18,12 +31,12 @@ export const revalidate = 3600;
 const path = "/duesseldorf/vielleicht-guenstiger";
 const title = "Reinigungsangebot Düsseldorf prüfen lassen";
 const description =
-  "Reinigungsangebot, Screenshot oder Preis aus Düsseldorf senden: FLOXANT prüft Kosten, Umfang, Fotos, Termin und mögliche Alternative ohne Preisgarantie.";
+  "Reinigungsangebot, Screenshot oder Preis aus Düsseldorf senden: FLOXANT prüft Kosten, Umfang, Turnus, Fotos, Termin und mögliche Alternative ohne Preisgarantie.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path,
-    title: "Angebot prüfen Düsseldorf | Reinigung, Kosten & Alternative | FLOXANT",
+    title: "Reinigungsangebot prüfen Düsseldorf | Vielleicht günstiger | FLOXANT",
     description,
   });
 }
@@ -59,6 +72,10 @@ const faqItems = [
   {
     q: "Prüft FLOXANT darüber auch Umzüge in Düsseldorf?",
     a: "Nein. Düsseldorf bleibt bei FLOXANT für Reinigung und Entsorgung getrennt. Umzug, Transport und Büroumzug werden hier nicht als Düsseldorfer Leistung beworben.",
+  },
+  {
+    q: "Kann FLOXANT beim Wechsel der Putzfirma helfen?",
+    a: "Ja, wenn Objektart, Fläche, Turnus, Zeitfenster, Schlüsselweg und vorhandener Leistungsumfang klar sind. FLOXANT prüft dann praktisch, ob ein sauberer Wechsel oder ein besser passender Reinigungsplan möglich ist.",
   },
 ] as const;
 
@@ -97,6 +114,67 @@ const offerCheckIntentItems = [
     cta: "Reinigung ansehen",
     external: false,
   },
+] as const;
+
+const savingsLevers = [
+  {
+    title: "Turnus statt Pauschale prüfen",
+    text: "Bei Büros, Kanzleien, Praxen und Hausverwaltungen kann der richtige Rhythmus wichtiger sein als ein niedriger Quadratmeterpreis.",
+    Icon: CalendarClock,
+  },
+  {
+    title: "Leistungslücken sichtbar machen",
+    text: "Sanitär, Küche, Glas, Müllraum, Kellerflur, Treppenhaus, Sonderflächen und Nachweise sollten nicht erst nach der Zusage auftauchen.",
+    Icon: ClipboardList,
+  },
+  {
+    title: "Schlüsselweg und Fotodoku nutzen",
+    text: "Wenn Zugang, Rückmeldung und Fotos geklärt sind, wird die Reinigung planbarer und der Kunde muss nicht ständig vor Ort sein.",
+    Icon: KeyRound,
+  },
+  {
+    title: "Putzfirma-Wechsel ordnen",
+    text: "FLOXANT prüft, ob ein Wechsel mit Bestandsangebot, Objektzustand, Turnus und Starttermin realistisch sauber aufgesetzt werden kann.",
+    Icon: RotateCcw,
+  },
+] as const;
+
+const highValueFunnels = [
+  {
+    title: "Büro, Kanzlei oder Praxis",
+    query: "Büroreinigung Angebot Düsseldorf prüfen",
+    text: "Fläche, Raumliste, Sanitär, Küche, Zeitfenster, Schlüsselweg und Turnus sauber vergleichen.",
+    href: "/duesseldorf/bueroreinigung",
+    Icon: Building2,
+  },
+  {
+    title: "Hausverwaltung / WEG",
+    query: "Hausverwaltung Reinigung Düsseldorf Angebot",
+    text: "Treppenhaus, Eingänge, Kellerflur, Müllraum, Beschwerden, Fotos und wiederkehrende Reinigung prüfen.",
+    href: "/duesseldorf/hausverwaltung-reinigung",
+    Icon: KeyRound,
+  },
+  {
+    title: "Laden / Showroom",
+    query: "Ladenreinigung Düsseldorf Preis prüfen",
+    text: "Verkaufsfläche, Glas, Boden, Öffnungszeiten und Reinigung vor Geschäftsstart einordnen.",
+    href: "/duesseldorf/ladenreinigung",
+    Icon: Store,
+  },
+  {
+    title: "Mieterwechsel / Übergabe",
+    query: "Endreinigung Düsseldorf Angebot prüfen",
+    text: "Wohnung, Übergabetermin, Schlüssel, Fotos, Restpunkte und mögliche Entsorgung getrennt prüfen.",
+    href: "/duesseldorf/endreinigung",
+    Icon: ClipboardList,
+  },
+] as const;
+
+const offerCheckSteps = [
+  "Angebot oder Screenshot senden",
+  "Fläche, Objektart, Stadtteil und Turnus ergänzen",
+  "Offene Leistungen und Zusatzkosten markieren",
+  "FLOXANT prüft mögliche Alternative ohne Preisgarantie",
 ] as const;
 
 export default function DuesseldorfVielleichtGuenstigerPage() {
@@ -149,6 +227,22 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           },
         })),
       },
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${path}#high-value-funnels`,
+        name: "Düsseldorfer Reinigungsangebote mit hohem Kaufinteresse",
+        itemListElement: highValueFunnels.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.query,
+          url: `https://www.floxant.de${item.href}`,
+          item: {
+            "@type": "Service",
+            name: item.title,
+            description: item.text,
+          },
+        })),
+      },
     ],
   };
   const faqJsonLd = buildFaqJsonLd(faqItems);
@@ -165,16 +259,16 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             Düsseldorf Angebot prüfen
           </div>
           <h1 className="duesseldorf-offer-title mt-6 max-w-full break-words text-[2rem] font-black leading-[1.05] tracking-normal sm:text-5xl lg:text-6xl xl:text-7xl">
-            Angebot prüfen lassen, bevor Sie zusagen.
+            Vielleicht günstiger? Erst Angebot prüfen lassen.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200">
-            Wenn Sie bereits ein Angebot für Büroreinigung, Hotelreinigung, Grundreinigung oder Wohnungsreinigung in Düsseldorf haben, laden Sie es hoch oder senden Sie die Eckdaten. FLOXANT prüft, ob Preis, Leistung und Ablauf zusammenpassen und ob eine klarere oder wirtschaftlichere Alternative möglich ist.
+            Wenn Sie bereits ein Angebot für Büroreinigung, Hotelreinigung, Grundreinigung, Hausverwaltung oder Wohnungsreinigung in Düsseldorf haben, laden Sie es hoch oder senden Sie die Eckdaten. FLOXANT prüft Preis, Turnus, Leistung, Stadtteil, Zugang und Ablauf und klärt, ob eine klarere oder wirtschaftlichere Alternative möglich ist.
           </p>
           <div className="mt-7 grid min-w-0 gap-3">
             {[
               "Angebot, Screenshot oder PDF sicher übermitteln",
-              "Fläche, Turnus, Stadtteil, Zugang, Zeitfenster und Fotos ergänzen",
-              "FLOXANT prüft Preis, Umfang und eine mögliche Alternative ohne Preisgarantie",
+              "Fläche, Objektart, Turnus, Stadtteil, Zugang, Zeitfenster und Fotos ergänzen",
+              "FLOXANT prüft Preishebel, Umfang und eine mögliche Alternative ohne Preisgarantie",
             ].map((item) => (
               <div key={item} className="flex min-w-0 gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 py-3 text-sm font-bold text-slate-100">
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
@@ -229,6 +323,86 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           ]}
         />
       </div>
+
+      <section className="mx-auto mt-8 grid max-w-7xl gap-5 lg:grid-cols-[0.82fr_1.18fr]">
+        <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="text-[11px] font-black uppercase tracking-normal text-emerald-700">
+            Vielleicht günstiger, aber sauber
+          </div>
+          <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+            FLOXANT prüft nicht nur den Preis, sondern den Preishebel.
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-700">
+            Ein Reinigungsangebot wird oft teuer oder unklar, weil Turnus, Flächen, Zugang, Sonderbereiche oder
+            Nachweise nicht sauber getrennt sind. Genau dort setzt der FLOXANT-Check an: erst verstehen, dann
+            eine mögliche Alternative prüfen.
+          </p>
+          <div className="mt-5 grid gap-2">
+            {offerCheckSteps.map((item, index) => (
+              <div key={item} className="flex items-center gap-3 rounded-[0.85rem] border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-950">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-xs font-black text-white">
+                  {index + 1}
+                </span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {savingsLevers.map((item) => {
+            const Icon = item.Icon;
+            return (
+              <article key={item.title} className="rounded-[0.95rem] border border-slate-200 bg-slate-50 p-5 shadow-sm">
+                <Icon className="h-5 w-5 text-emerald-700" />
+                <h3 className="mt-3 text-base font-black text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section id="high-value-funnels" className="mx-auto mt-8 max-w-7xl rounded-[0.95rem] border border-slate-200 bg-slate-950 p-6 text-white shadow-[0_22px_60px_rgba(15,23,42,0.18)]">
+        <div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-normal text-emerald-200">
+              Stärkere Einstiege für Düsseldorf
+            </div>
+            <h2 className="mt-3 text-2xl font-black tracking-normal text-white">
+              Der Check wird nach Objektart verkauft, nicht als allgemeiner Vergleich.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-200">
+              So wird die Seite kaufnäher: Kunden erkennen ihren Fall sofort und landen trotzdem im gleichen
+              Upload-Funnel. Das stärkt besonders Firmen, Hausverwaltungen, Ladenflächen und Übergaben.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {highValueFunnels.map((item) => {
+              const Icon = item.Icon;
+              return (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="group rounded-[0.9rem] border border-white/10 bg-white/[0.08] p-4 transition hover:-translate-y-0.5 hover:border-emerald-300/50 hover:bg-white/[0.12]"
+                  data-event="click_duesseldorf_offer_check_high_value_funnel"
+                >
+                  <Icon className="h-5 w-5 text-emerald-200" />
+                  <div className="mt-3 text-[10px] font-black uppercase tracking-normal text-emerald-100">
+                    {item.query}
+                  </div>
+                  <h3 className="mt-2 text-base font-black text-white">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-200/85">{item.text}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-emerald-200">
+                    Bereich öffnen
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <section className="mx-auto mt-8 grid max-w-7xl gap-5 lg:grid-cols-[0.76fr_1.24fr]">
         <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">

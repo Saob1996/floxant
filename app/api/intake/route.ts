@@ -158,9 +158,12 @@ export async function POST(req: Request) {
   }
 
   // 4. Resend Notification (Triggered after successful DB save)
+  const newId = dbData && dbData[0] ? String(dbData[0].id) : "unknown";
   let mailSent = false;
   try {
-   const mailResult = await sendInternalIntakeNotification(payload);
+   const mailResult = await sendInternalIntakeNotification(payload, {
+    bookingId: newId !== "unknown" ? newId : undefined,
+   });
    mailSent = mailResult.success;
    if (!mailResult.success) {
     console.error("Mail Notification failed, but DB saved:", mailResult.error);
@@ -168,8 +171,6 @@ export async function POST(req: Request) {
   } catch (mailErr) {
    console.error("Critical Mail Error:", mailErr);
   }
-
-  const newId = dbData && dbData[0] ? dbData[0].id : "unknown";
 
   if (newId !== "unknown") {
    await linkConversionEventsToBooking(String(newId), payload, String(payload.service.type));

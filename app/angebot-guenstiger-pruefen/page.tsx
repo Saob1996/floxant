@@ -187,10 +187,10 @@ const serviceTargets = [
     cta: "Entrümpelung ansehen",
   },
   {
-    title: "Düsseldorf separat",
-    text: "In Düsseldorf prüft FLOXANT Reinigungsangebote; Entsorgung nur über die vorhandene eigene Seite, keine Umzüge.",
-    href: "/duesseldorf/reinigung",
-    cta: "Düsseldorf Reinigung",
+    title: "Düsseldorf Reinigungsangebot prüfen",
+    text: "In Düsseldorf prüft FLOXANT Preis, Turnus, Fläche, Objektart und mögliche Alternative für Reinigung; keine Umzüge.",
+    href: "/duesseldorf/vielleicht-guenstiger",
+    cta: "Vielleicht günstiger prüfen",
   },
 ];
 
@@ -316,6 +316,7 @@ const localRadiusLinks = [
   { href: "/entruempelung-regensburg", label: "Entsorgungsangebot Regensburg" },
   { href: "/entruempelung-kelheim", label: "Entsorgungsangebot Kelheim" },
   { href: "/entruempelung-schwandorf", label: "Entsorgungsangebot Schwandorf" },
+  { href: "/duesseldorf/vielleicht-guenstiger", label: "Düsseldorf Angebot prüfen" },
   { href: "/duesseldorf/reinigung", label: "Düsseldorf Reinigung prüfen" },
   { href: "/entsorgung-duesseldorf", label: "Düsseldorf Entsorgung prüfen" },
 ];

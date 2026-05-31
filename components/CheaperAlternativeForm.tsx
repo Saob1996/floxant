@@ -22,6 +22,12 @@ const standardServices = [
 const duesseldorfServices = [
   { value: "reinigung", label: "Düsseldorf Reinigung" },
   { value: "b2b_reinigung", label: "Düsseldorf Firmenreinigung" },
+  { value: "hausverwaltung_reinigung", label: "Düsseldorf Hausverwaltung / WEG" },
+  { value: "mieterwechsel_reinigung", label: "Düsseldorf Mieterwechsel" },
+  { value: "kanzlei_praxis_reinigung", label: "Düsseldorf Kanzlei / Praxis" },
+  { value: "laden_showroom_reinigung", label: "Düsseldorf Laden / Showroom" },
+  { value: "airbnb_business_apartment", label: "Düsseldorf möblierte Wohnung" },
+  { value: "treppenhaus_muellraum", label: "Düsseldorf Treppenhaus / Müllraum" },
   { value: "hotelreinigung", label: "Düsseldorf Hotelreinigung" },
   { value: "entsorgung", label: "Düsseldorf Entsorgung" },
 ];
@@ -31,10 +37,22 @@ const concernOptions = [
   "Leistungsumfang unklar",
   "Zusatzkosten unklar",
   "Termin knapp",
+  "Turnus oder Häufigkeit unklar",
+  "Fläche oder Objektart passt nicht",
+  "Putzfirma wechseln",
+  "Dokumentation / Nachweis fehlt",
   "Reinigung fehlt",
   "Entsorgung fehlt",
   "Fotos oder Umfang wurden nicht berücksichtigt",
   "Ich möchte eine klare Alternative",
+];
+
+const goalOptions = [
+  { value: "guenstiger_pruefen", label: "Vielleicht günstiger prüfen" },
+  { value: "umfang_klaeren", label: "Leistungsumfang klären" },
+  { value: "anbieter_wechseln", label: "Anbieter wechseln" },
+  { value: "plan_b", label: "Plan B wegen Termin oder Unsicherheit" },
+  { value: "b2b_turnus", label: "B2B-Turnus / Reinigungsplan prüfen" },
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -156,6 +174,7 @@ export function CheaperAlternativeForm({
     formData.set("region", region);
     formData.set("selectedAddons", JSON.stringify(selectedConcerns));
     formData.set("platformSituation", "Günstigere oder passendere Alternative prüfen");
+    formData.set("offerCheckIntent", String(formData.get("offerCheckGoal") || "guenstiger_pruefen"));
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", typeof window === "undefined" ? landingPageFallback : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
@@ -203,8 +222,8 @@ export function CheaperAlternativeForm({
           <p className="text-xs font-black uppercase tracking-normal text-blue-200">Angebot prüfen</p>
           <h2 className="mt-2 text-2xl font-black tracking-normal">Angebot senden und Alternative prüfen lassen</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-            Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang und Termin. FLOXANT prüft, ob Preis,
-            Leistung, Zeitfenster und die Anforderungen vor Ort zusammenpassen und ob eine wirtschaftlichere Alternative möglich ist.
+            Laden Sie ein Angebot hoch oder beschreiben Sie Preis, Umfang, Turnus und Termin. FLOXANT prüft, ob Preis,
+            Leistung, Zeitfenster und die Anforderungen vor Ort zusammenpassen und ob eine wirtschaftlichere, klarere oder passendere Alternative möglich ist.
           </p>
         </div>
         <div className="flex flex-wrap gap-2 text-xs font-black uppercase tracking-normal">
@@ -226,6 +245,16 @@ export function CheaperAlternativeForm({
 
       <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="start_cheaper_alternative_lead">
         <div className="grid gap-4 md:grid-cols-2">
+          <label className="grid gap-2 text-sm font-bold text-slate-800 md:col-span-2">
+            Was ist Ihr Ziel?
+            <select name="offerCheckGoal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+              {goalOptions.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
             <input name="name" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Ihr Name" />
@@ -283,13 +312,21 @@ export function CheaperAlternativeForm({
               <option value="nicht_angeben">Möchte ich nicht angeben</option>
             </select>
           </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Objektart / Fläche
+            <input name="objectScope" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Büro 280 m², Wohnung 72 m²" />
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-800">
+            Turnus / Zeitfenster
+            <input name="cleaningFrequency" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. 2x pro Woche, nach Feierabend" />
+          </label>
         </div>
 
         <div className="rounded-[0.95rem] border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/70 p-4 shadow-sm shadow-slate-950/5">
           <div className="mb-4">
             <p className="text-sm font-black text-slate-950">Angebot und Fotos senden</p>
             <p className="mt-1 text-xs leading-5 text-slate-600">
-              Angebot, Screenshot oder Preisangaben helfen. Fotos sind optional, machen Umfang und Zustand aber klarer.
+              Angebot, Screenshot oder Preisangaben helfen. Fotos sind optional, machen Umfang, Zustand, Zugang und mögliche Preishebel aber klarer.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -334,7 +371,7 @@ export function CheaperAlternativeForm({
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Kurze Beschreibung*
-          <textarea name="message" rows={4} defaultValue={defaultMessage} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was ist am Angebot zu teuer, unklar oder nicht passend? Welche Leistung soll FLOXANT alternativ prüfen?" />
+          <textarea name="message" rows={4} defaultValue={defaultMessage} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was ist am Angebot zu teuer, unklar oder nicht passend? Welche Leistung, welcher Turnus oder welcher Preisrahmen soll FLOXANT alternativ prüfen?" />
         </label>
 
         <div className="grid gap-3 sm:grid-cols-2">

@@ -4040,7 +4040,10 @@ export async function POST(req: Request) {
    process.env.RESEND_API_KEY &&
    process.env.INTAKE_NOTIFICATION_EMAIL
   ) {
-   const notification = await sendInternalIntakeNotification(details);
+   const notification = await sendInternalIntakeNotification(details, {
+    bookingId: data?.[0]?.id ? String(data[0].id) : undefined,
+    attachmentUrls: fileUrls,
+   });
    if (!notification.success) {
     console.error("Internal intake notification failed:", notification.error);
    }
