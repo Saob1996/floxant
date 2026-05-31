@@ -367,9 +367,24 @@ const customerSearchPhraseCards = [
     href: "/duesseldorf/reinigung",
   },
   {
+    title: "Reinigungsfirma Düsseldorf in der Nähe",
+    text: "Für Nähe-Suchen zählen Stadtteil oder PLZ, Objektart, Zugang, Fotos und Termin mehr als ein allgemeiner Begriff. FLOXANT prüft Düsseldorf und nahe Orte sauber nach Machbarkeit.",
+    href: "/blog/reinigungsfirma-duesseldorf-in-der-naehe-stadtteile",
+  },
+  {
+    title: "Reinigungsunternehmen vergleichen",
+    text: "Wenn mehrere Angebote vorliegen, sollten Umfang, Turnus, Zeitfenster, Zusatzpunkte und Fotos vergleichbar sein. Erst dann wird der Preis wirklich verständlich.",
+    href: "/blog/reinigungsunternehmen-duesseldorf-anbieter-vergleichen",
+  },
+  {
     title: "Büroreinigung Reinigungsfirma Düsseldorf",
     text: "Für Büro, Agentur, Kanzlei, kleine Firma oder Praxisfläche werden Raumliste, Turnus, Sanitär, Küche, Zeitfenster und Zugang konkret geprüft.",
     href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Büro reinigen Düsseldorf",
+    text: "Für Büro reinigen, Büroreinigung Preise oder ein vorhandenes Büroreinigungsangebot zählen Raumliste, Sanitär, Küche, Turnus, Zeitfenster und Zugang.",
+    href: "/blog/buero-reinigen-duesseldorf-bueroreinigung-angebot",
   },
   {
     title: "Bodenreinigung Düsseldorf",
@@ -380,6 +395,11 @@ const customerSearchPhraseCards = [
     title: "Reinigung Hauseingang Düsseldorf",
     text: "Hauseingang, Treppenhaus, Flur und Kellerbereich brauchen klare Angaben zu Etagen, Turnus, Schlüsselweg, Fotos und Ansprechpartner.",
     href: "/duesseldorf/treppenhausreinigung",
+  },
+  {
+    title: "Treppenhausreinigungen Düsseldorf",
+    text: "Für Hausverwaltung, WEG, Eingang, Etagen, Kellerflur und Müllbereich helfen Turnus, Fotos, Schlüsselweg und klare Bereichsliste.",
+    href: "/blog/treppenhausreinigungen-duesseldorf-hauseingang-hausverwaltung",
   },
   {
     title: "Veranstaltungsreinigung Düsseldorf",
@@ -395,6 +415,11 @@ const customerSearchPhraseCards = [
     title: "Reinigungsfirma Düsseldorf Preise",
     text: "Preise werden realistischer, wenn Fläche, Zustand, Objektart, Turnus, Zugang und Fotos vorliegen. Ein vorhandenes Angebot kann separat eingeordnet werden.",
     href: "/duesseldorf/vielleicht-guenstiger",
+  },
+  {
+    title: "Reinigungsfirma Düsseldorf Kosten",
+    text: "Kosten sind erst vergleichbar, wenn Fläche, Zustand, Objektart, Turnus, Zugang, Fotos und gewünschtes Ergebnis zusammen vorliegen.",
+    href: "/blog/reinigungsfirma-duesseldorf-preise-kosten-angebot-pruefen",
   },
   {
     title: "Gewerbeobjekt Reinigung",

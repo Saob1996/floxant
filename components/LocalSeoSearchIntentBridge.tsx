@@ -63,6 +63,15 @@ function localSearchIntents({
           label: "Angebot prüfen",
         },
         {
+          title: `Entrümpelung ${city} Angebot prüfen`,
+          text: "Wenn schon ein Preis vorliegt, zählen Räume, Menge, Zugang, Freigabe, Fotos, Entsorgung, Endzustand und ob danach Reinigung gebraucht wird.",
+          href:
+            city === "Regensburg"
+              ? "/blog/entruempelung-regensburg-angebot-haushaltsaufloesung-pruefen"
+              : "/angebot-guenstiger-pruefen",
+          label: "Angebot einordnen",
+        },
+        {
           title: "Nach Räumung sauber abschließen",
           text: "Wenn die Fläche anschließend übergeben wird, sollten Räumung, Fotos, Reinigung und Schlüssel in derselben Reihenfolge geplant werden.",
           href: "/blog/entruempelungsfirma-finden-regensburg-germering",
@@ -71,8 +80,8 @@ function localSearchIntents({
         {
           title: `Praxisentrümpelung ${city}`,
           text: "Bei Praxisräumen zählen Freigabe, Möbel, Akten, Wartebereich, Keller, Zugang, Fotos und die Frage, ob danach gereinigt oder übergeben werden soll.",
-          href: currentHref,
-          label: "Praxisfall prüfen",
+          href: city === "Nürnberg" ? "/blog/praxisentruempelung-nuernberg-richtig-anfragen" : currentHref,
+          label: city === "Nürnberg" ? "Praxis-Ratgeber" : "Praxisfall prüfen",
         },
         {
           title: `Haushaltsauflösung ${city}`,
@@ -197,6 +206,15 @@ function localSearchIntents({
           text: "Ein Festpreis ist nur belastbar, wenn Volumen, Etage, Laufweg, Haltezone, Termin, Zusatzleistungen und Fotos vorab wirklich geprüft sind.",
           href: "/angebot-guenstiger-pruefen",
           label: "Festpreis prüfen",
+        },
+        {
+          title: `Umzugsangebot ${city} prüfen`,
+          text: "Ein Angebot wird vergleichbar, wenn Start/Ziel, Volumen, Fotos, Etage, Laufweg, Strecke, Haltezone, Termin und Zusatzleistungen sichtbar sind.",
+          href:
+            city === "München"
+              ? "/blog/umzugsangebot-muenchen-pruefen-festpreis-guenstiger"
+              : "/angebot-guenstiger-pruefen",
+          label: "Angebot prüfen",
         },
         {
           title: `Umzug organisieren ${city}`,

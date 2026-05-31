@@ -6199,3 +6199,44 @@ a[href*="wa.me"]:not(.flox-cta-choice):not(.flox-whatsapp-cta):not(.flox-mobile-
     border-radius: 1rem;
   }
 }
+
+.flox-blog-article-shell {
+  max-width: calc(100vw - 2rem) !important;
+}
+
+.flox-blog-article-title {
+  max-width: 18.75rem !important;
+  overflow-wrap: break-word;
+  text-wrap: wrap !important;
+}
+
+.flox-blog-article-intro {
+  max-width: 20rem !important;
+  overflow-wrap: break-word;
+  text-wrap: wrap !important;
+}
+
+.flox-blog-article-note {
+  max-width: 20rem !important;
+  overflow-wrap: break-word;
+  text-wrap: wrap !important;
+}
+
+@media (min-width: 640px) {
+  .flox-blog-article-shell {
+    max-width: 72rem !important;
+  }
+
+  .flox-blog-article-title {
+    max-width: 56rem !important;
+    text-wrap: balance !important;
+  }
+
+  .flox-blog-article-intro {
+    max-width: 48rem !important;
+  }
+
+  .flox-blog-article-note {
+    max-width: 42rem !important;
+  }
+}

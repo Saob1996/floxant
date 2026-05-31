@@ -228,6 +228,148 @@ function servicePriceSignals(serviceName: string, route: string) {
   ];
 }
 
+function routeDominanceBoosters(route: string, city: string, serviceName: string) {
+  const lower = `${route} ${city} ${serviceName}`.toLowerCase();
+
+  if (route === "/duesseldorf/reinigung") {
+    return {
+      shortTail: [
+        "Reinigungsbetrieb Düsseldorf",
+        "Reinigungsunternehmen Düsseldorf",
+        "Reinigungsdienst Düsseldorf",
+        "Reinigungsfirmen Düsseldorf",
+        "Putzfirmen Düsseldorf",
+      ],
+      longTail: [
+        "Büroreinigung Reinigungsfirma Düsseldorf für kleine Firmen und Praxen",
+        "Reinigungsfirma Angebot in Düsseldorf mit Fotos und Preisrahmen prüfen lassen",
+        "professionelle Wohnungsreinigung Düsseldorf vor Auszug oder Übergabe anfragen",
+      ],
+      localTriggers: [
+        "Hauseingang, Treppenhaus, Boden, Büro und Gewerbefläche werden nach Objektart getrennt eingeordnet.",
+        "Neuss, Ratingen, Meerbusch, Mettmann und Duisburg werden als nahe Umgebung nach Verfügbarkeit geprüft.",
+      ],
+      priceSignals: [
+        "Reinigungsfirma Düsseldorf Preise und Kosten hängen von Fläche, Zustand, Turnus, Zugang und Fotos ab.",
+        "Ein vorhandenes Reinigungsangebot kann über die Düsseldorfer Angebotsprüfung eingeordnet werden.",
+      ],
+      links: [
+        { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+        { href: "/duesseldorf/grundreinigung", label: "Boden und Grundreinigung" },
+        { href: "/duesseldorf/treppenhausreinigung", label: "Hauseingang und Treppenhaus" },
+        { href: "/blog/reinigungsbetrieb-reinigungsunternehmen-duesseldorf-kosten", label: "Reinigungsbetrieb Ratgeber" },
+      ],
+    };
+  }
+
+  if (route === "/umzug-muenchen") {
+    return {
+      shortTail: [
+        "Umzug München Festpreis",
+        "Fernumzug München",
+        "Umzug organisieren München",
+        "günstige Umzüge in München",
+      ],
+      longTail: [
+        "Unterstützung für Umzug mobil München mit Fotos und Route prüfen lassen",
+        "Umzugsservice Angebot München vor Zusage nach Volumen und Laufweg einordnen",
+        "Fernumzug aus München mit Rückfahrt, Strecke und Zusatzleistungen planen",
+      ],
+      localTriggers: [
+        "München verlangt oft Haltezone, Etage, Laufweg, Aufzug, Parkmöglichkeit und saubere Zeitfenster.",
+        "Thalkirchen, Schwabing, Sendling, Bogenhausen und Umland werden nach Strecke und Kapazität geprüft.",
+      ],
+      priceSignals: [
+        "Ein Festpreis ist erst sinnvoll, wenn Volumen, Fotos, Start, Ziel, Etage, Strecke und Termin klar sind.",
+        "Günstiger wird seriös nur nach Umfang, Route, Rückfahrt und Verfügbarkeit geprüft.",
+      ],
+      links: [
+        { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
+        { href: "/blog/umzug-muenchen-festpreis-fernumzug-organisieren", label: "Festpreis und Fernumzug" },
+        { href: "/blog/fernumzug-bayern-nrw-tipps", label: "Fernumzug Ratgeber" },
+      ],
+    };
+  }
+
+  if (route === "/entruempelung-regensburg" || route === "/wohnungsaufloesung-regensburg") {
+    return {
+      shortTail: [
+        "Haushaltsauflösung Regensburg",
+        "Hausauflösung Regensburg",
+        "Regensburg Entrümpelung",
+        "Container mieten Regensburg",
+      ],
+      longTail: [
+        "Haushaltsauflösung Regensburg mit Tragen, Sortieren, Entsorgung und Reinigung danach",
+        "Container mieten Regensburg oder Entrümpelung mit Team nach Fotos entscheiden",
+        "Entrümpelungsfirma Regensburg für Wohnung, Keller, Nachlass oder Restmengen finden",
+      ],
+      localTriggers: [
+        "Altstadt, Etage, Kellerzugang, Innenhof, Parken und Sperrmülllogik verändern den Aufwand stark.",
+        "Container lohnt nicht immer, wenn Tragearbeit, Sortierung, Fotos und Abschlussreinigung nötig sind.",
+      ],
+      priceSignals: [
+        "Kosten entstehen aus Volumen, Material, Etage, Laufweg, Demontage, Entsorgung und Reinigung danach.",
+        "Fotos helfen schneller als pauschale Kubikmeter-Schätzungen.",
+      ],
+      links: [
+        { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+        { href: "/kleinmengen-entsorgung", label: "Container Alternative" },
+        { href: "/blog/haushaltsaufloesung-regensburg-container-mieten-alternative", label: "Container oder Team?" },
+      ],
+    };
+  }
+
+  if (route === "/entruempelung-nuernberg") {
+    return {
+      shortTail: ["Praxisentrümpelung Nürnberg", "Entrümpelung Nürnberg", "Büro räumen Nürnberg"],
+      longTail: [
+        "Praxisentrümpelung Nürnberg nach Fotos, Räumen, Möbeln und Entsorgung prüfen lassen",
+        "Praxis oder Büro in Nürnberg räumen und Restmengen sauber einordnen",
+        "Entrümpelungsangebot Nürnberg vor Zusage nach Zugang und Material prüfen lassen",
+      ],
+      localTriggers: [
+        "Praxisräume brauchen klare Trennung von Möbeln, Akten, Technik, Restmengen und möglicher Reinigung danach.",
+      ],
+      priceSignals: [
+        "Praxisentrümpelung wird erst nach Volumen, Etage, Laufweg, Material, Fotos und Termin realistisch.",
+      ],
+      links: [
+        { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
+        { href: "/blog/praxisentruempelung-nuernberg-richtig-anfragen", label: "Praxisentrümpelung Ratgeber" },
+      ],
+    };
+  }
+
+  if (lower.includes("bueroreinigung") && lower.includes("duesseldorf")) {
+    return {
+      shortTail: [
+        "Büro reinigen Düsseldorf",
+        "Büroreinigung Düsseldorf Preise",
+        "Büroreinigung Reinigungsfirma Düsseldorf",
+      ],
+      longTail: [
+        "Büro reinigen Düsseldorf mit Raumliste, Sanitär, Küche, Turnus und Zugang anfragen",
+        "Büroreinigung Angebot Düsseldorf vor Zusage nach Umfang und Zeitfenster prüfen",
+      ],
+      localTriggers: ["Kanzlei, Agentur, Praxis, Studio und kleine Firma brauchen unterschiedliche Turnuslogik."],
+      priceSignals: ["Büroreinigung Preise hängen von Fläche, Frequenz, Sanitär, Küche, Zugang und Zeitfenster ab."],
+      links: [
+        { href: "/duesseldorf/vielleicht-guenstiger", label: "Büroreinigung Angebot prüfen" },
+        { href: "/blog/buero-reinigen-duesseldorf-bueroreinigung-angebot", label: "Büro reinigen Ratgeber" },
+      ],
+    };
+  }
+
+  return {
+    shortTail: [],
+    longTail: [],
+    localTriggers: [],
+    priceSignals: [],
+    links: [],
+  };
+}
+
 function mergeLinks(route: string, relatedLinks?: readonly SearchIntentLink[]) {
   const base = route.includes("duesseldorf") ? duesseldorfLinks : defaultLinks;
   return uniqueLinks([...(relatedLinks || []), ...base]).slice(0, 6);
@@ -254,11 +396,12 @@ export function buildSearchIntentProfile({
   const resolvedCity = germanizeText(city || localRoute?.city || (normalizedRoute.includes("duesseldorf") ? "Düsseldorf" : "Regensburg"));
   const resolvedService = germanizeText(localRoute?.label || detectService(normalizedRoute, serviceName));
   const isDuesseldorf = market === "duesseldorf" || normalizedRoute.includes("duesseldorf") || resolvedCity === "Düsseldorf";
+  const dominanceBoosters = routeDominanceBoosters(normalizedRoute, resolvedCity, resolvedService);
 
-  const shortTail = serviceShortTail(resolvedService, resolvedCity, normalizedRoute);
-  const longTail = serviceLongTail(resolvedService, resolvedCity, normalizedRoute);
-  const localTriggers = serviceLocalTriggers(resolvedService, resolvedCity, normalizedRoute);
-  const priceSignals = servicePriceSignals(resolvedService, normalizedRoute);
+  const shortTail = [...dominanceBoosters.shortTail, ...serviceShortTail(resolvedService, resolvedCity, normalizedRoute)];
+  const longTail = [...dominanceBoosters.longTail, ...serviceLongTail(resolvedService, resolvedCity, normalizedRoute)];
+  const localTriggers = [...dominanceBoosters.localTriggers, ...serviceLocalTriggers(resolvedService, resolvedCity, normalizedRoute)];
+  const priceSignals = [...dominanceBoosters.priceSignals, ...servicePriceSignals(resolvedService, normalizedRoute)];
 
   return {
     city: resolvedCity,
@@ -274,7 +417,7 @@ export function buildSearchIntentProfile({
     longTail: unique(longTail),
     localTriggers: unique(localTriggers),
     priceSignals: unique(priceSignals),
-    links: mergeLinks(normalizedRoute, relatedLinks),
+    links: mergeLinks(normalizedRoute, [...dominanceBoosters.links, ...(relatedLinks || [])]),
   };
 }
 

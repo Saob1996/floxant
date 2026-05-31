@@ -119,11 +119,11 @@ export function PublicHeader({
     <header className="fixed inset-x-0 top-0 z-[9000] px-3 pt-3 text-slate-950 sm:px-5">
       <div
         className={cn(
-          "mx-auto max-w-[1380px] rounded-[1.45rem] border border-white/70 bg-white/[0.88] px-3 py-3 shadow-[0_20px_70px_rgba(15,23,42,0.16)] backdrop-blur-2xl transition duration-300 sm:px-4",
+          "mx-auto w-full min-w-0 max-w-[1380px] rounded-[1.45rem] border border-white/70 bg-white/[0.88] px-3 py-3 shadow-[0_20px_70px_rgba(15,23,42,0.16)] backdrop-blur-2xl transition duration-300 sm:px-4",
           scrolled && "border-slate-200/80 bg-white/[0.94] shadow-[0_18px_52px_rgba(15,23,42,0.2)]",
         )}
       >
-        <div className="grid grid-cols-[1fr_auto] items-center gap-3 xl:grid-cols-[minmax(260px,0.9fr)_auto_minmax(250px,0.8fr)]">
+        <div className="relative grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 xl:grid-cols-[minmax(260px,0.9fr)_auto_minmax(250px,0.8fr)]">
           <Link
             href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
             className="group flex min-w-0 items-center gap-3 rounded-2xl px-1 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -132,7 +132,7 @@ export function PublicHeader({
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[1rem] bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)]">
               <BrandLogo size={28} />
             </span>
-            <span className="min-w-0 max-[430px]:hidden">
+            <span className="hidden min-w-0 sm:block">
               <span className="block text-sm font-black tracking-[0.18em]" translate="no">
                 FLOXANT
               </span>
@@ -184,22 +184,22 @@ export function PublicHeader({
             </Link>
           </div>
 
-          <div className="flex items-center justify-end gap-2 lg:hidden">
+          <div className="absolute right-11 top-1/2 flex -translate-y-1/2 items-center justify-end gap-2 lg:hidden">
             <Link
               href={OFFER_CHECK_ROUTE}
-              className="inline-flex h-11 items-center justify-center rounded-2xl border border-slate-200 bg-white px-3 text-[12px] font-black text-slate-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Angebot prüfen"
             >
-              Angebot prüfen
+              <FileSearch className="h-4 w-4" />
             </Link>
             <button
               type="button"
               onClick={() => setMenuOpen((value) => !value)}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 text-[12px] font-black text-white shadow-[0_12px_30px_rgba(15,23,42,0.24)] focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-[12px] font-black text-white shadow-[0_12px_30px_rgba(15,23,42,0.24)] focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label={menuOpen ? "Menü schließen" : "Anfragemenü öffnen"}
               aria-expanded={menuOpen}
             >
               {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-              Anfrage
             </button>
           </div>
         </div>

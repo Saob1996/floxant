@@ -112,13 +112,15 @@ export function BlogArticlePage({
 
   return (
     <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_18%_0%,rgba(59,130,246,0.12),transparent_28%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] text-slate-900">
-      <div className="relative mx-auto max-w-6xl px-4 pb-24 pt-10">
+      <div className="relative mx-auto max-w-6xl overflow-hidden px-4 pb-24 pt-10">
         <div className="mb-8">
           <Breadcrumbs items={normalizedBreadcrumbs} />
         </div>
 
-        <article className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(15,23,42,0.08)]">
-          <header className="relative border-b border-slate-200 p-8 md:p-12">
+        <article
+          className="flox-blog-article-shell mx-auto w-full overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(15,23,42,0.08)]"
+        >
+          <header className="relative min-w-0 border-b border-slate-200 p-6 sm:p-8 md:p-12">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-300/50 to-transparent" />
 
             <div className="mb-5 flex flex-wrap items-center gap-4 text-sm text-slate-500">
@@ -133,13 +135,19 @@ export function BlogArticlePage({
               </span>
             </div>
 
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            <h1
+              className="flox-blog-article-title w-full min-w-0 break-words text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl md:text-6xl"
+            >
               {germanizeText(title)}
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">
+            <p
+              className="flox-blog-article-intro mt-6 break-words text-base leading-relaxed text-slate-600 sm:text-lg"
+            >
               {germanizeText(intro)}
             </p>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-500">
+            <p
+              className="flox-blog-article-note mt-4 break-words text-sm leading-relaxed text-slate-500"
+            >
               Der Beitrag ordnet Problem, Risiko und nächsten Schritt sachlich ein. Ziel ist eine
               realistische Entscheidung, bevor ein Auftrag verbindlich geplant wird.
             </p>
@@ -185,7 +193,7 @@ export function BlogArticlePage({
           />
 
           <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_320px]">
-            <div className="p-8 md:p-12">
+            <div className="p-6 sm:p-8 md:p-12">
               {sectionAnchors.length ? (
                 <nav
                   aria-label="Inhaltsverzeichnis"

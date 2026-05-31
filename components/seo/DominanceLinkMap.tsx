@@ -39,6 +39,30 @@ const clusters = [
    { href: "/blog", label: "Blog und Ratgeber" },
   ],
  },
+ {
+  title: "Düsseldorf Reinigung",
+  intro: "Kaufnahe Wege für Preise, Büro, Treppenhaus, Hauseingang und passende Angebotsprüfung.",
+  links: [
+   { href: "/duesseldorf/reinigung", label: "Reinigungsfirma Düsseldorf" },
+   { href: "/duesseldorf/bueroreinigung", label: "Büro reinigen Düsseldorf" },
+   { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+   { href: "/duesseldorf/treppenhausreinigung", label: "Hauseingang & Treppenhaus" },
+   { href: "/blog/reinigungsfirma-duesseldorf-in-der-naehe-stadtteile", label: "Reinigung in der Nähe" },
+   { href: "/blog/reinigungsunternehmen-duesseldorf-anbieter-vergleichen", label: "Anbieter vergleichen" },
+   { href: "/blog/reinigungsfirma-duesseldorf-preise-kosten-angebot-pruefen", label: "Preise & Kosten einordnen" },
+   { href: "/blog/buero-reinigen-duesseldorf-bueroreinigung-angebot", label: "Büroreinigung Angebot" },
+  ],
+ },
+ {
+  title: "Angebot-Verstärker",
+  intro: "Kaufnahe Suchwege für München, Regensburg, Düsseldorf und vorhandene Angebote.",
+  links: [
+   { href: "/angebot-guenstiger-pruefen", label: "Angebot günstiger prüfen" },
+   { href: "/blog/umzugsangebot-muenchen-pruefen-festpreis-guenstiger", label: "München Festpreis prüfen" },
+   { href: "/blog/entruempelung-regensburg-angebot-haushaltsaufloesung-pruefen", label: "Entrümpelung Angebot Regensburg" },
+   { href: "/blog/besseres-guenstigeres-angebot-floxant-pruefen", label: "Besseres Angebot finden" },
+  ],
+ },
 ];
 
 export function DominanceLinkMap({ compact = false }: { compact?: boolean }) {
