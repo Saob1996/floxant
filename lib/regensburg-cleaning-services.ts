@@ -19,7 +19,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "building",
     intro: "Für Büros, Kanzleien, Agenturen und Verwaltungsflächen mit regelmäßigem Ablauf.",
     clickHook: "Kunden sehen sofort: saubere Arbeitsplätze, Empfang, Küche und Sanitär ohne Störung im Tagesbetrieb.",
-    customerWords: ["Büroreinigung Angebot", "Büro reinigen lassen", "Reinigungskraft Büro"],
+    customerWords: ["Büroreinigung Regensburg", "Büroreinigung Angebot", "Büro reinigen lassen", "Reinigungskraft Büro", "Reinigung Firmen"],
     goodFor: "Arbeitsplätze, Küche, Sanitär, Meetingräume, Empfang und Flure.",
     askFor: ["m² und Raumliste", "Turnus", "Randzeiten"],
     cta: "Büroreinigung prüfen",
@@ -31,7 +31,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "stethoscope",
     intro: "Für Praxisräume, Empfang, Wartebereich, Personalflächen und Nebenräume.",
     clickHook: "Patienten und Team merken zuerst Empfang, Wartebereich und Sanitär. Genau diese Flächen werden sauber abgegrenzt.",
-    customerWords: ["Arztpraxis Reinigung", "Praxisreinigung Angebot", "Reinigung Praxisräume"],
+    customerWords: ["Praxisreinigung Regensburg", "Arztpraxis Reinigung", "Praxisreinigung Angebot", "Reinigung Praxisräume"],
     goodFor: "Planbare Praxisflächen ohne pauschale Spezialdesinfektions-Zusage.",
     askFor: ["Praxisart", "Öffnungszeiten", "Hygienebereiche"],
     cta: "Praxisreinigung anfragen",
@@ -43,7 +43,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "hotel",
     intro: "Für Hotels, Pensionen, Boardinghouses, Lobby, Flure und Gästezonen.",
     clickHook: "Für Gäste zählt der erste Eindruck in Lobby, Flur und Zimmernähe. Der Ablauf richtet sich nach Check-out und Betrieb.",
-    customerWords: ["Hotel Reinigung Firma", "Zimmerreinigung", "Pension Reinigung"],
+    customerWords: ["Hotelreinigung", "Hotelreinigung Regensburg", "Hotel Reinigung Firma", "Zimmerreinigung", "Pension Reinigung"],
     goodFor: "Zimmernahe Abläufe, Allgemeinflächen und klare Check-out-Zeitfenster.",
     askFor: ["Zimmerzahl", "Turnus", "Check-out-Zeiten"],
     cta: "Hotelreinigung klären",
@@ -91,7 +91,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "stairs",
     intro: "Für Hausverwaltung, WEG, Mietshaus, Eingänge und Gemeinschaftsflächen.",
     clickHook: "Hausverwaltung und Mieter brauchen klare Zuständigkeit: Eingang, Etagen, Aufzug, Kellerflur und Turnus.",
-    customerWords: ["Hausverwaltung Reinigung", "WEG Reinigung", "Mehrfamilienhaus reinigen"],
+    customerWords: ["Treppenreinigung", "Hausverwaltung Reinigung", "WEG Reinigung", "Mehrfamilienhaus reinigen"],
     goodFor: "Etagen, Aufzug, Kellerflur, Müllraum, Turnus und Ansprechpartner.",
     askFor: ["Eingänge", "Etagen", "Zugang"],
     cta: "Treppenhaus planen",
@@ -103,7 +103,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "repeat",
     intro: "Für regelmäßige Objektpflege mit wiederkehrendem Reinigungsplan.",
     clickHook: "Wenn Reinigung planbar sein soll, zählen Frequenz, Leistungsverzeichnis und feste Ansprechpartner mehr als Einzelaktionen.",
-    customerWords: ["Gebäudereinigung", "Objektreinigung", "Reinigungsplan Büro"],
+    customerWords: ["Gewerbereinigung", "Gebäudereinigung", "Objektreinigung", "Reinigungsplan Büro", "zuverlässiger Reinigungsservice"],
     goodFor: "Büro, Praxis, Kanzlei, Hotel, Treppenhaus und laufende Flächen.",
     askFor: ["Objektart", "Frequenz", "Leistungsverzeichnis"],
     cta: "Turnus abstimmen",
@@ -115,7 +115,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "sparkles",
     intro: "Für Einzug, Auszug, Leerstand, Küche, Bad, Büro und starke Verschmutzung.",
     clickHook: "Bei Leerstand, Auszug oder starker Verschmutzung entscheidet der Zustand. Fotos sparen Rückfragen und falsche Erwartungen.",
-    customerWords: ["Grundreinigung Kosten", "Wohnung Grundreinigung", "nach Auszug reinigen"],
+    customerWords: ["Reinigungsfirma Regensburg Privathaushalt", "Wohnungsreinigungen", "Grundreinigung Kosten", "Wohnung Grundreinigung", "nach Auszug reinigen", "Schlüsselübergabeprotokoll Reinigungsfirma"],
     goodFor: "Zustand, Ziel, Termin, Fotos und Grenzen ehrlich vorab klären.",
     askFor: ["Zustand", "m²", "Fotos und Deadline"],
     cta: "Grundreinigung öffnen",
@@ -316,6 +316,36 @@ export const regensburgCleaningSearchSituations: RegensburgCleaningSearchSituati
 ];
 
 export const regensburgCleaningSnippetTargets = [
+  {
+    query: "Angebot Reinigung Regensburg",
+    answer:
+      "Ein Reinigungsangebot wird klarer, wenn Objektart, Flaeche, Zustand, Turnus, Fotos, Zugang und Termin zusammen vorliegen.",
+    href: "/angebot-guenstiger-pruefen",
+  },
+  {
+    query: "Reinigungsfirma Regensburg Privathaushalt",
+    answer:
+      "Fuer private Wohnungen zaehlen Kueche, Bad, Boden, Fensterbereiche, Zustand, Uebergabeziel und Fotos. FLOXANT fuehrt zur passenden Wohnungs- oder Grundreinigung.",
+    href: "/grundreinigung-regensburg",
+  },
+  {
+    query: "Zuverlaessiger Reinigungsservice Regensburg",
+    answer:
+      "Zuverlaessigkeit entsteht durch klare Angaben: Objekt, Flaeche, Turnus, Ansprechpartner, Zeitfenster, Zugang und Fotos vor der Zusage.",
+    href: "/reinigung-regensburg",
+  },
+  {
+    query: "Treppenreinigung Regensburg",
+    answer:
+      "Fuer Treppenhaus, Eingang, Kellerflur und gemeinschaftliche Flaechen sind Etagen, Turnus, Zugang, Ansprechpartner und Fotos wichtig.",
+    href: "/treppenhausreinigung-regensburg",
+  },
+  {
+    query: "Hotelreinigung Regensburg",
+    answer:
+      "Bei Hotel, Pension oder Boardinghouse werden Zimmernaehe, Lobby, Flure, Check-out-Zeiten, Allgemeinflaechen, Zugang und Fotos vorab geklaert.",
+    href: "/hotelreinigung-regensburg",
+  },
   {
     query: "Reinigungsfirma Regensburg kurzfristig",
     answer:

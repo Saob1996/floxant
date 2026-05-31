@@ -306,15 +306,49 @@ function getMetadataKeywords(path: string, geoName?: string) {
     if (localSeoRoute.service === "umzug") {
       keywords.add(`Umzugsunternehmen ${city}`);
       keywords.add(`Umzugsangebot ${city} prüfen`);
+      keywords.add(`günstiger Umzug ${city}`);
+      keywords.add(`Umzug ${city} preiswert`);
+      keywords.add(`Umzugsservice Angebot ${city}`);
+      if (city === "München") {
+        keywords.add("Umzug München Festpreis");
+        keywords.add("Fernumzug München");
+        keywords.add("Umzug organisieren München");
+        keywords.add("Unterstützung für Umzug mobil München");
+      }
     }
     if (localSeoRoute.service === "reinigung") {
       keywords.add(`Reinigungsfirma ${city}`);
       keywords.add(`Reinigungsangebot ${city} prüfen`);
+      keywords.add(`Reinigung nach Umzug ${city}`);
+      keywords.add(`Reinigung ${city} sofort Termin`);
+      keywords.add(`Angebot Reinigung ${city}`);
     }
     if (localSeoRoute.service === "entruempelung") {
       keywords.add(`Entrümpelung ${city}`);
+      keywords.add(`Entrümpelungsfirma finden ${city}`);
       keywords.add(`Entrümpelungsangebot ${city} prüfen`);
       keywords.add(`Entsorgungsangebot ${city} prüfen`);
+      keywords.add(`Praxisentrümpelung ${city}`);
+      if (city === "Regensburg") {
+        keywords.add("Haushaltsauflösung Regensburg");
+        keywords.add("Hausauflösung Regensburg");
+        keywords.add("Regensburg Entrümpelung");
+        keywords.add("Container mieten Regensburg");
+      }
+    }
+    if (localSeoRoute.service === "wohnungsaufloesung") {
+      keywords.add(`Wohnungsauflösung ${city}`);
+      keywords.add(`Haushaltsauflösung ${city}`);
+      keywords.add(`zu Wohnungsauflösung ${city}`);
+    }
+    if (localSeoRoute.service === "seniorenumzug") {
+      keywords.add(`Umzug im Alter ${city}`);
+      keywords.add(`Umzugshelfer für Senioren ${city}`);
+      keywords.add(`Seniorenumzug ${city} Angebot`);
+    }
+    if (localSeoRoute.service === "klaviertransport") {
+      keywords.add(`Klaviertransport ${city}`);
+      keywords.add(`Klaviertransport ${city} Angebot`);
     }
     if (localSeoRoute.service === "bueroumzug") keywords.add(`Büroumzug ${city}`);
   }
@@ -332,6 +366,21 @@ function getMetadataKeywords(path: string, geoName?: string) {
   if (isDuesseldorfPath) {
     keywords.add("Düsseldorf");
     keywords.add("Reinigung Düsseldorf");
+    keywords.add("Reinigungsbetrieb Düsseldorf");
+    keywords.add("Reinigungsunternehmen Düsseldorf");
+    keywords.add("Reinigungsdienst Düsseldorf");
+    keywords.add("Reinigungsfirmen Düsseldorf");
+    keywords.add("Putzfirmen Düsseldorf");
+    keywords.add("Büroreinigung Reinigungsfirma Düsseldorf");
+    keywords.add("Büroreinigung in Düsseldorf");
+    keywords.add("Büro reinigen Düsseldorf");
+    keywords.add("Reinigung Hauseingang Düsseldorf");
+    keywords.add("Bodenreinigung Düsseldorf");
+    keywords.add("Veranstaltungsreinigung Düsseldorf");
+    keywords.add("professionelle Wohnungsreinigung Düsseldorf");
+    keywords.add("Reinigungsfirma Düsseldorf Preise");
+    keywords.add("Reinigungsfirma Düsseldorf Kosten");
+    keywords.add("Gewerbeobjekt Reinigung");
     keywords.add("Fotos senden");
     keywords.add("Budget prüfen");
     if (route.includes("bueroreinigung") || route.includes("b2b") || route.includes("hotelreinigung")) {
@@ -344,6 +393,21 @@ function getMetadataKeywords(path: string, geoName?: string) {
     }
     if (route.includes("treppenhaus")) keywords.add("Treppenhausreinigung Düsseldorf");
     if (route.includes("grundreinigung")) keywords.add("Grundreinigung Düsseldorf");
+    if (route.includes("praxisreinigung")) {
+      keywords.add("Praxisreinigung Düsseldorf");
+      keywords.add("Praxis Reinigung Düsseldorf");
+      keywords.add("Praxisreinigung Neuss");
+    }
+    if (route.includes("wohnungsreinigung")) {
+      keywords.add("Wohnungsreinigung Düsseldorf");
+      keywords.add("Reinigungsfirma Düsseldorf Privathaushalt");
+      keywords.add("Wohnung reinigen lassen Düsseldorf");
+    }
+    if (route.includes("putzfirma")) {
+      keywords.add("Putzfirma Düsseldorf");
+      keywords.add("Putzfirma in der Nähe Düsseldorf");
+      keywords.add("Putzfirma Düsseldorf Privathaushalt");
+    }
     if (route.includes("moeblierte") || route.includes("apartment")) {
       keywords.add("möblierte Wohnung Reinigung");
       keywords.add("Apartment Reinigung Düsseldorf");
@@ -361,8 +425,17 @@ function getMetadataKeywords(path: string, geoName?: string) {
     if (!isDuesseldorfPath) {
       keywords.add("Reinigung Kosten Regensburg");
       keywords.add("Reinigungsfirma Regensburg");
+      keywords.add("Reinigungsfirma Regensburg Privathaushalt");
       keywords.add("Putzfirma Regensburg");
       keywords.add("Putzservice Regensburg");
+      keywords.add("zuverlässiger Reinigungsservice");
+      keywords.add("Reinigung Firmen");
+      keywords.add("Angebot Reinigung");
+      keywords.add("Angebot für Reinigungsarbeiten");
+      keywords.add("Wohnungsreinigungen");
+      keywords.add("Hotelreinigung");
+      keywords.add("Treppenreinigung");
+      keywords.add("Schlüsselübergabeprotokoll Reinigungsfirma");
       keywords.add("Gebäudereinigung Regensburg");
       keywords.add("Reinigung Angebot Regensburg");
       keywords.add("Reinigung Altstadt Regensburg");
@@ -433,6 +506,14 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("Angebot unterbieten lassen ohne Garantie");
     keywords.add("anderes Angebot vergleichen lassen");
     keywords.add("Umzugsangebot Alternative");
+    keywords.add("Umzugsservice Angebot");
+    keywords.add("günstig Umzug");
+    keywords.add("guenstig Umzug");
+    keywords.add("günstige Umzüge");
+    keywords.add("guenstige Umzüge");
+    keywords.add("Umzüge preiswert");
+    keywords.add("Angebot Reinigung");
+    keywords.add("Angebot für Reinigungsarbeiten");
     keywords.add("Reinigungsangebot günstiger prüfen");
     keywords.add("Reinigungsangebot prüfen lassen");
     keywords.add("Entsorgungsangebot prüfen lassen");
@@ -451,12 +532,29 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("Entsorgung Angebot anderer Firma prüfen");
     keywords.add("FLOXANT Alternative Angebot");
     keywords.add("ChatGPT Dienstleister Empfehlung");
+    keywords.add("besseres Angebot finden");
+    keywords.add("günstigeres Angebot bekommen");
+    keywords.add("bessere Alternative Angebot");
+    keywords.add("Website Angebot prüfen");
+    keywords.add("KI Empfehlung Dienstleister");
+    keywords.add("ChatGPT Firma Empfehlung");
+    keywords.add("Gemini Dienstleister Empfehlung");
+    keywords.add("FLOXANT Düsseldorf Regensburg");
+    keywords.add("FLOXANT Angebot prüfen");
+    keywords.add("welche Website Angebot günstiger");
   }
   if (
     route.includes("angebot-anderer-firma") ||
     route.includes("umzugsangebot-pruefen") ||
     route.includes("reinigungsangebot-pruefen") ||
-    route.includes("entsorgungsangebot-pruefen")
+    route.includes("entsorgungsangebot-pruefen") ||
+    route.includes("besseres-guenstigeres-angebot") ||
+    route.includes("ki-empfehlung-dienstleister") ||
+    route.includes("floxant-duesseldorf-regensburg") ||
+    route.includes("reinigungsbetrieb-reinigungsunternehmen") ||
+    route.includes("grundreinigung-bodenreinigung-hauseingang") ||
+    route.includes("umzug-muenchen-festpreis") ||
+    route.includes("haushaltsaufloesung-regensburg-container")
   ) {
     keywords.add("Angebot anderer Firma prüfen");
     keywords.add("Angebotsprüfung Regensburg");
@@ -466,6 +564,12 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("Entsorgungsangebot prüfen");
     keywords.add("Regensburg 200 km");
     keywords.add("KI Antwort Serviceempfehlung");
+    keywords.add("FLOXANT Düsseldorf Regensburg");
+    keywords.add("Website Angebot prüfen");
+    keywords.add("Reinigungsbetrieb Düsseldorf");
+    keywords.add("Bodenreinigung Düsseldorf");
+    keywords.add("Umzug München Festpreis");
+    keywords.add("Container mieten Regensburg");
   }
   if (route.includes("angebotscheck")) {
     keywords.add("Angebotscheck");

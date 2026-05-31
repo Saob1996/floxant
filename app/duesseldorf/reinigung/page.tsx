@@ -49,9 +49,9 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf | Wohnung, Büro & Endreinigung | FLOXANT",
+    title: "Reinigungsfirma Düsseldorf | Putzfirma, Büro & Grundreinigung | FLOXANT",
     description:
-      "Reinigung in Düsseldorf für Wohnung, Büro, Hotel, Auszug und Übergabe. Stadtteil, Fläche, Fotos und Budget senden, Kosten ehrlich einschätzen lassen.",
+      "Putzfirma und Reinigungsfirma in Düsseldorf für Wohnung, Büro, Praxis, Grundreinigung, Treppenhaus und Gewerbeflächen. Stadtteil, Fläche, Fotos und Termin senden.",
   });
 }
 
@@ -227,9 +227,19 @@ const customerSearchPhraseCards = [
     href: "/duesseldorf/reinigung-stadtteile-umgebung",
   },
   {
+    title: "Grundreinigung in Düsseldorf",
+    text: "Wenn normale Reinigung nicht reicht, zählen Zustand und Details: Küche, Bad, Böden, Ecken, Fensterbereiche und stärkere Verschmutzung mit Fotos, Fläche und Termin einordnen.",
+    href: "/duesseldorf/grundreinigung",
+  },
+  {
     title: "Putzfirma Düsseldorf für Wohnung",
     text: "Viele Kunden sagen Putzfirma oder Putzservice, meinen aber eine klare Wohnungsreinigung: Fläche, Zustand, Küche, Bad, Böden, Termin und Fotos werden vorab geprüft.",
     href: "/duesseldorf/putzfirma",
+  },
+  {
+    title: "Reinigungsfirma Düsseldorf Privathaushalt",
+    text: "Für Wohnungen, Apartments und private Übergaben helfen klare Angaben zu Räumen, Bad, Küche, Böden, Zugang, Termin und gewünschtem Ergebnis.",
+    href: "/duesseldorf/wohnungsreinigung",
   },
   {
     title: "Reinigung Kosten Düsseldorf",
@@ -242,9 +252,54 @@ const customerSearchPhraseCards = [
     href: "/duesseldorf/bueroreinigung",
   },
   {
+    title: "Büro- und Praxisreinigung",
+    text: "Für Büro, Kanzlei und allgemeine Praxisflächen werden Raumliste, Turnus, Zeitfenster, Sanitär, Empfang, Zugang und Ansprechpartner vorab geklärt.",
+    href: "/duesseldorf/praxisreinigung",
+  },
+  {
+    title: "Praxisreinigung Düsseldorf",
+    text: "Für Empfang, Wartebereich, Personalräume und Sanitärflächen zählt ein ruhiger Ablauf mit klaren Grenzen. Praxisart, Fläche, Öffnungszeiten, Zugang und Fotos helfen bei der Prüfung.",
+    href: "/duesseldorf/praxisreinigung",
+  },
+  {
+    title: "Wohnungsreinigung Düsseldorf",
+    text: "Wenn eine Wohnung wieder sauber wirken soll, werden Küche, Bad, Böden, Fensterbereiche, Zustand, Termin und gewünschtes Ergebnis vorab eingeordnet.",
+    href: "/duesseldorf/wohnungsreinigung",
+  },
+  {
+    title: "Hotelreinigung Düsseldorf",
+    text: "Für Hotel, Boardinghouse oder Apartmenthaus werden Lobby, Flure, Gästebereiche, Sanitär, Zeitfenster und Kapazität nach Objektangaben geprüft.",
+    href: "/duesseldorf/hotelreinigung",
+  },
+  {
+    title: "Grundreinigung Düsseldorf",
+    text: "Bei stärkerer Verschmutzung, Leerstand oder Objektwechsel entscheidet der Zustand. Fotos von Küche, Bad, Boden und Problemstellen machen die Einschätzung schneller.",
+    href: "/duesseldorf/grundreinigung",
+  },
+  {
+    title: "Büro putzen Düsseldorf",
+    text: "Ob Einzelbüro, Agentur oder kleine Firmenfläche: wichtig sind Raumgröße, Arbeitszeiten, Sanitär, Küche, Schlüsselweg und ein sauberer Starttermin.",
+    href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Praxisreinigung Neuss",
+    text: "Anfragen aus Neuss und naher Umgebung werden nach Fläche, Nutzung, Terminfenster, Zugang und gewünschtem Reinigungsumfang geprüft.",
+    href: "/duesseldorf/reinigung-stadtteile-umgebung",
+  },
+  {
     title: "Reinigungskraft Büro Düsseldorf",
     text: "Viele Firmen suchen nach einer Person, brauchen aber einen verlässlichen Ablauf: Raumliste, Randzeit, Schlüsselweg, Ansprechpartner, Fotos und klarer Turnus.",
     href: "/duesseldorf/reinigungskraft-buero",
+  },
+  {
+    title: "Gewerbeflächen reinigen",
+    text: "Bei Laden, Showroom, Lager, Büro oder gemischter Fläche entscheidet der richtige Umfang: Boden, Glas, Sanitär, Laufwege, Öffnungszeiten und Turnus.",
+    href: "/duesseldorf/gewerbereinigung",
+  },
+  {
+    title: "Gebäudereinigung Düsseldorf Pempelfort",
+    text: "Für Pempelfort und zentrale Stadtteile werden Objektart, Etagen, Zugang, Eingänge, Treppenhaus, Büro- oder Wohnflächen und Terminfenster eingeordnet.",
+    href: "/duesseldorf/gebaeudereinigung",
   },
   {
     title: "Putzservice mit Fotos anfragen",
@@ -295,6 +350,56 @@ const customerSearchPhraseCards = [
     title: "Treppenhausreinigung für Hausverwaltung",
     text: "Hausverwaltungen und Eigentümer brauchen klare Angaben zu Etagen, Eingangsbereich, Turnus, Schlüssel, Laufwegen und gewünschtem Eindruck.",
     href: "/duesseldorf/treppenhausreinigung",
+  },
+  {
+    title: "Reinigungsdienst für Treppenhäuser Düsseldorf",
+    text: "Für Treppenhaus, Eingänge, Kellerflur und Müllbereich helfen Fotos, Etagenzahl, Turnus, Schlüsselweg und eine klare Liste der wiederkehrenden Aufgaben.",
+    href: "/duesseldorf/treppenhausreinigung",
+  },
+  {
+    title: "Reinigungsfirma Angebot prüfen",
+    text: "Wenn bereits ein Angebot vorliegt, können Preis, Umfang, Turnus, Zusatzpunkte und mögliche Alternative mit Fotos und Objektangaben besser eingeordnet werden.",
+    href: "/duesseldorf/vielleicht-guenstiger",
+  },
+  {
+    title: "Reinigungsbetrieb Düsseldorf",
+    text: "Wer nach Reinigungsbetrieb, Reinigungsunternehmen oder Reinigungsdienst sucht, kann direkt Objektart, Stadtteil, Fläche, Termin und Fotos senden. FLOXANT ordnet die passende Reinigungsseite zu.",
+    href: "/duesseldorf/reinigung",
+  },
+  {
+    title: "Büroreinigung Reinigungsfirma Düsseldorf",
+    text: "Für Büro, Agentur, Kanzlei, kleine Firma oder Praxisfläche werden Raumliste, Turnus, Sanitär, Küche, Zeitfenster und Zugang konkret geprüft.",
+    href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Bodenreinigung Düsseldorf",
+    text: "Bei Bodenreinigung zählen Material, Laufspuren, Verschmutzung, Fläche, Möbelstand, Fotos und ob normale Reinigung oder Grundreinigung passender ist.",
+    href: "/duesseldorf/grundreinigung",
+  },
+  {
+    title: "Reinigung Hauseingang Düsseldorf",
+    text: "Hauseingang, Treppenhaus, Flur und Kellerbereich brauchen klare Angaben zu Etagen, Turnus, Schlüsselweg, Fotos und Ansprechpartner.",
+    href: "/duesseldorf/treppenhausreinigung",
+  },
+  {
+    title: "Veranstaltungsreinigung Düsseldorf",
+    text: "Nach Veranstaltung, Empfang, Praxisabend oder Firmenfeier sind Fläche, Müll, Sanitär, Boden, Deadline und nächste Nutzung wichtig.",
+    href: "/duesseldorf/sonderreinigung",
+  },
+  {
+    title: "Professionelle Wohnungsreinigung Düsseldorf",
+    text: "Für Auszug, Einzug, möblierte Wohnung oder Übergabe werden Küche, Bad, Böden, Fensterbereiche, Zustand, Termin und Schlüsselzugang geprüft.",
+    href: "/duesseldorf/wohnungsreinigung",
+  },
+  {
+    title: "Reinigungsfirma Düsseldorf Preise",
+    text: "Preise werden realistischer, wenn Fläche, Zustand, Objektart, Turnus, Zugang und Fotos vorliegen. Ein vorhandenes Angebot kann separat eingeordnet werden.",
+    href: "/duesseldorf/vielleicht-guenstiger",
+  },
+  {
+    title: "Gewerbeobjekt Reinigung",
+    text: "Bei Gewerbeobjekten geht es um Büro, Eingang, Sanitär, Flure, Verkaufsfläche, Turnus, Zeitfenster und Ansprechpartner statt um einen pauschalen Blindpreis.",
+    href: "/duesseldorf/objektreinigung",
   },
 ] as const;
 

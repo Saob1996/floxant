@@ -182,7 +182,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
               </div>
             </div>
 
-            <div className="grid min-w-0 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
+            <div className="grid min-w-0 gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))]">
               <FooterColumn title="Leistungen" items={serviceLinks} />
               <FooterColumn title="Direkte Wege" items={directLinks} />
               <FooterColumn title="Problemhilfe" items={problemLinks} />
@@ -227,9 +227,9 @@ function FooterColumn({
           <Link
             key={item.href}
             href={item.href}
-            className="group flex min-w-0 items-center justify-between gap-3 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+            className="group flex min-w-0 items-center justify-between gap-3 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold leading-5 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
           >
-            <span className="min-w-0 [overflow-wrap:anywhere]">{item.label}</span>
+            <span className="min-w-0 break-normal hyphens-none [overflow-wrap:normal] [word-break:normal]">{item.label}</span>
             <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-700" />
           </Link>
         ))}

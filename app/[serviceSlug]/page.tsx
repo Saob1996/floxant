@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2, ChevronRight, Clock, Shield, Star, Truck, Zap } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "@/get-dictionary";
@@ -344,7 +345,13 @@ async function renderLocalSeoPage(route: DynamicLocalSeoRoute) {
       wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, resolvedCity, "de")}
       wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, resolvedCity, "de")}
       wizardText={resolveField(content.wizard_p, fallback.wizard_p, resolvedCity, "de")}
-    />
+    >
+      <LocalSeoSearchIntentBridge
+        service={route.service}
+        city={resolvedCity}
+        currentHref={route.route}
+      />
+    </SpecialtyPageLayout>
   );
 }
 

@@ -170,6 +170,24 @@ const highValueFunnels = [
   },
 ] as const;
 
+const duesseldorfOfferGuides = [
+  {
+    title: "Grundreinigung in Düsseldorf",
+    text: "Wann ein Angebot für Grundreinigung wirklich passt und welche Fotos, Flächen und Terminangaben helfen.",
+    href: "/blog/grundreinigung-duesseldorf-angebot-kosten-pruefen",
+  },
+  {
+    title: "Büro- und Praxisreinigung",
+    text: "Wie Firmen, Kanzleien und Praxisflächen Turnus, Raumliste, Zugang und Preisrahmen sauber einordnen.",
+    href: "/blog/buero-praxisreinigung-duesseldorf-angebot",
+  },
+  {
+    title: "Treppenhausreinigung für Hausverwaltung",
+    text: "Worauf Hausverwaltungen und WEGs bei Etagen, Eingängen, Kellerflur, Müllbereich und Turnus achten sollten.",
+    href: "/blog/treppenhausreinigung-duesseldorf-hausverwaltung-angebot",
+  },
+] as const;
+
 const offerCheckSteps = [
   "Angebot oder Screenshot senden",
   "Fläche, Objektart, Stadtteil und Turnus ergänzen",
@@ -239,6 +257,22 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           item: {
             "@type": "Service",
             name: item.title,
+            description: item.text,
+          },
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `https://www.floxant.de${path}#offer-check-guides`,
+        name: "Ratgeber zur Angebotsprüfung für Reinigung in Düsseldorf",
+        itemListElement: duesseldorfOfferGuides.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.title,
+          url: `https://www.floxant.de${item.href}`,
+          item: {
+            "@type": "Article",
+            headline: item.title,
             description: item.text,
           },
         })),
@@ -367,14 +401,15 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
         <div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
             <div className="text-[11px] font-black uppercase tracking-normal text-emerald-200">
-              Stärkere Einstiege für Düsseldorf
+              Passender Reinigungsfall in Düsseldorf
             </div>
             <h2 className="mt-3 text-2xl font-black tracking-normal text-white">
-              Der Check wird nach Objektart verkauft, nicht als allgemeiner Vergleich.
+              Wählen Sie den Fall, der Ihrem Angebot am nächsten kommt.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-200">
-              So wird die Seite kaufnäher: Kunden erkennen ihren Fall sofort und landen trotzdem im gleichen
-              Upload-Funnel. Das stärkt besonders Firmen, Hausverwaltungen, Ladenflächen und Übergaben.
+              Ob Büro, Hausverwaltung, Ladenfläche oder Übergabe: Sie senden Angebot, Objektart, Stadtteil,
+              Fläche und Turnus. FLOXANT prüft, ob Umfang und Preis zusammenpassen und ob eine Alternative
+              realistisch ist.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -401,6 +436,43 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-8 max-w-7xl">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="text-[11px] font-black uppercase tracking-normal text-emerald-700">
+              Ratgeber für Ihr Angebot
+            </div>
+            <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
+              Mehr Sicherheit vor der Zusage.
+            </h2>
+          </div>
+          <Link
+            href="/blog"
+            className="inline-flex w-fit items-center gap-2 rounded-[0.75rem] border border-slate-200 px-4 py-2 text-sm font-black text-slate-900 transition hover:border-emerald-300 hover:text-emerald-800"
+          >
+            Alle Ratgeber
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {duesseldorfOfferGuides.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50"
+              data-event="click_duesseldorf_offer_check_blog_guide"
+            >
+              <h3 className="text-base font-black text-slate-950">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-700">{item.text}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-emerald-800">
+                Ratgeber lesen
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
