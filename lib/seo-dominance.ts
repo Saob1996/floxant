@@ -33,6 +33,9 @@ export const SEO_MONEY_ROUTES = [
  "/reinigung-moeblierte-wohnung-duesseldorf",
  "/entsorgung-duesseldorf",
  "/duesseldorf/reinigung",
+ "/duesseldorf/putzfirma",
+ "/duesseldorf/hausverwaltung-reinigung",
+ "/duesseldorf/reinigungskraft-buero",
  "/duesseldorf/reinigung-stadtteile-umgebung",
  "/duesseldorf/vielleicht-guenstiger",
  "/duesseldorf/bueroreinigung",
@@ -42,6 +45,8 @@ export const SEO_MONEY_ROUTES = [
  "/duesseldorf/baureinigung",
  "/duesseldorf/teppichreinigung",
  "/duesseldorf/unterhaltsreinigung",
+ "/duesseldorf/gebaeudereinigung",
+ "/duesseldorf/objektreinigung",
  "/duesseldorf/ladenreinigung",
  "/duesseldorf/sonderreinigung",
  "/duesseldorf/gewerbereinigung",
@@ -59,7 +64,25 @@ export const SEO_MONEY_ROUTES = [
  "/buchung",
  "/rechner",
  "/umzug",
+ "/umzug-regensburg",
+ "/umzugsunternehmen-regensburg",
+ "/umzug-aufhausen",
+ "/umzug-friedberg",
+ "/umzug-forchheim",
+ "/umzug-neumarkt",
+ "/umzug-ingolstadt",
+ "/umzug-weiden",
+ "/umzug-muenchen",
+ "/umzug-nuernberg",
+ "/klaviertransport-regensburg",
+ "/klaviertransport",
+ "/klaviertransport-muenchen",
+ "/klaviertransport-nuernberg",
+ "/seniorenumzug-bayern",
+ "/seniorenumzug-nuernberg",
+ "/seniorenumzug-erlangen",
  "/reinigung",
+ "/reinigung-muenchen",
  "/notfallreinigung-24h",
  "/reinigung-nach-veranstaltung",
  "/gewerbereinigung-regensburg",
@@ -73,8 +96,18 @@ export const SEO_MONEY_ROUTES = [
  "/unterhaltsreinigung-regensburg",
  "/grundreinigung-regensburg",
  "/entruempelung",
+ "/entruempelung-bayern",
+ "/entruempelung-regensburg",
+ "/entruempelung-nuernberg",
+ "/entruempelung-landshut",
+ "/wohnungsaufloesung-regensburg",
+ "/wohnungsaufloesung-bayern",
  "/bueroumzug",
+ "/bueroumzug-regensburg",
+ "/bueroumzug-nuernberg",
  "/firmenentsorgung",
+ "/kleinmengen-entsorgung",
+ "/geruchslos-protokoll",
  "/leerfahrt-rueckfahrt",
  "/private-client-service",
  "/service-area-bayern",
@@ -111,6 +144,9 @@ export const SEO_SUPPORT_ROUTES = [
  "/reinigung-moeblierte-wohnung-duesseldorf",
  "/entsorgung-duesseldorf",
  "/duesseldorf/reinigung",
+ "/duesseldorf/putzfirma",
+ "/duesseldorf/hausverwaltung-reinigung",
+ "/duesseldorf/reinigungskraft-buero",
  "/duesseldorf/reinigung-stadtteile-umgebung",
  "/duesseldorf/vielleicht-guenstiger",
  "/duesseldorf/bueroreinigung",
@@ -120,6 +156,8 @@ export const SEO_SUPPORT_ROUTES = [
  "/duesseldorf/baureinigung",
  "/duesseldorf/teppichreinigung",
  "/duesseldorf/unterhaltsreinigung",
+ "/duesseldorf/gebaeudereinigung",
+ "/duesseldorf/objektreinigung",
  "/duesseldorf/ladenreinigung",
  "/duesseldorf/sonderreinigung",
  "/duesseldorf/gewerbereinigung",
@@ -148,10 +186,36 @@ export const SEO_SUPPORT_ROUTES = [
  "/notfallreinigung-24h",
  "/reinigung-nach-veranstaltung",
  "/beiladung",
+ "/umzug-regensburg",
+ "/umzugsunternehmen-regensburg",
+ "/umzug-aufhausen",
+ "/umzug-friedberg",
+ "/umzug-forchheim",
+ "/umzug-neumarkt",
+ "/umzug-ingolstadt",
+ "/umzug-weiden",
+ "/umzug-muenchen",
+ "/umzug-nuernberg",
+ "/klaviertransport-regensburg",
+ "/klaviertransport",
+ "/klaviertransport-muenchen",
+ "/klaviertransport-nuernberg",
+ "/seniorenumzug-bayern",
+ "/seniorenumzug-nuernberg",
+ "/seniorenumzug-erlangen",
  "/umzug-mit-reinigung",
  "/express-anfrage",
  "/anfrage-mit-preisrahmen",
  "/kleinmengen-entsorgung",
+ "/entruempelung-regensburg",
+ "/entruempelung-nuernberg",
+ "/entruempelung-bayern",
+ "/entruempelung-landshut",
+ "/wohnungsaufloesung-regensburg",
+ "/wohnungsaufloesung-bayern",
+ "/bueroumzug-regensburg",
+ "/bueroumzug-nuernberg",
+ "/geruchslos-protokoll",
  "/qualitaet-ablauf",
  "/praxisfaelle",
  "/kostenfaktoren",
@@ -184,9 +248,9 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Vorhandenes Angebot mit Red-Flag-Scanner vor der Zusage prüfen und zweite Einschätzung anfragen",
  },
 "/angebot-guenstiger-pruefen": {
- title: "Angebot prüfen & Alternative anfragen | FLOXANT",
+ title: "Angebot prüfen: Reinigung & Umzug | FLOXANT",
  description:
-  "Angebot einer anderen Firma prüfen lassen: Preis, Umfang, Fotos, Termin und Budget senden. FLOXANT prüft eine günstigere oder passendere Alternative.",
+  "Reinigungsfirma-Angebot, Umzugsangebot oder Entsorgungspreis prüfen: Preis, Umfang, Fotos, Termin und Budget senden. Alternative anfragen.",
  cluster: "conversion",
  intent: "Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot einer anderen Firma prüfen und günstigere oder passendere Alternative ohne Preisgarantie anfragen",
 },
@@ -317,16 +381,16 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Büroreinigung in Regensburg mit Angebot, Kostenfaktoren und Turnus anfragen",
  },
  "/praxisreinigung-regensburg": {
-  title: "Praxisreinigung Regensburg | Angebot & Turnus",
+  title: "Praxisreinigung Regensburg | Arztpraxis & Angebot",
   description:
-   "Praxisreinigung Regensburg für Empfang, Wartebereich, Büro, Sanitär und Nebenflächen: Turnus, Zeitfenster, Fotos und Angebot prüfen.",
+   "Praxisreinigung und Arztpraxis-Reinigung Regensburg: Empfang, Wartebereich, Büro, Sanitär, Turnus, Zeitfenster, Fotos und Angebot prüfen.",
   cluster: "money",
   intent: "Praxisreinigung oder Arztpraxis Reinigung in Regensburg mit Turnus und Leistungsgrenzen anfragen",
  },
  "/hotelreinigung-regensburg": {
-  title: "Hotelreinigung Regensburg | Zimmer, Lobby & Turnus",
+  title: "Hotelreinigung Regensburg | Hotel & Angebot prüfen",
   description:
-   "Hotelreinigung Regensburg für Hotel, Pension, Boardinghouse, Lobby, Flure und Zimmer: Turnus, Check-out, Zeitfenster und Fotos senden.",
+   "Hotelreinigung Regensburg für Hotel, Pension, Boardinghouse, Lobby, Flure und Zimmer: Turnus, Check-out, Zeitfenster, Fotos und Angebot senden.",
   cluster: "money",
   intent: "Hotelreinigung in Regensburg für Hotel, Pension, Boardinghouse oder Apartmenthaus anfragen",
  },
@@ -578,18 +642,26 @@ moneySnippets["/endreinigung-regensburg"] = {
  intent: "Endreinigung in Regensburg vor Auszug oder Wohnungsübergabe anfragen",
 };
 
-moneySnippets["/duesseldorf/reinigung"] = {
- title: "Reinigung Düsseldorf | Wohnung, Büro & Übergabe",
+moneySnippets["/duesseldorf/putzfirma"] = {
+ title: "Putzservice Düsseldorf | Privathaushalt & Angebot",
  description:
-  "Reinigung in Düsseldorf für Wohnung, Auszug, Endreinigung und Gewerbeflächen. Fotos, Fläche, Termin und Budget senden. Keine Umzüge in Düsseldorf.",
+  "Putzdienst und Putzfirma Düsseldorf für Privathaushalt, Wohnung, Büro oder Objekt: Stadtteil, Fotos, Termin und Angebot senden.",
+ cluster: "money",
+ intent: "Putzservice oder Putzfirma in Düsseldorf einfach anfragen",
+};
+
+moneySnippets["/duesseldorf/reinigung"] = {
+ title: "Reinigung Düsseldorf | Firma, Putzdienst & Angebot",
+ description:
+  "Reinigung Düsseldorf: Putzdienst, Reinigungsservice, Wohnungsreinigung, Büro, Hotel und Angebot mit Fotos einfach prüfen.",
  cluster: "money",
  intent: "Reinigung in Düsseldorf für privat, Büro oder Firma anfragen",
 };
 
 moneySnippets["/duesseldorf/bueroreinigung"] = {
- title: "Firmenreinigung Düsseldorf | Büro, Hotel & Firma",
+ title: "Büroreinigung Düsseldorf | Firma & Angebot prüfen",
  description:
-  "Firmenreinigung in Düsseldorf für Büros, Hotels, Agenturen, Studios, Kanzleien und Gewerbeflächen: Fläche, Häufigkeit, Fotos und Zeitfenster senden.",
+  "Büro reinigen in Düsseldorf: Reinigungsfirma für Büro, Praxis oder Firma mit Fläche, Turnus, Fotos, Zeitfenster und Angebot prüfen.",
  cluster: "money",
  intent: "Firmenreinigung in Düsseldorf für Firma, Büro oder Hotel anfragen",
 };
@@ -610,10 +682,42 @@ moneySnippets["/duesseldorf/firmenreinigung"] = {
  intent: "Firmenreinigung in Düsseldorf für kleine Unternehmen anfragen",
 };
 
-moneySnippets["/duesseldorf/fensterreinigung"] = {
- title: "Fensterreinigung Düsseldorf | Glas & Rahmen",
+moneySnippets["/duesseldorf/gebaeudereinigung"] = {
+ title: "Gebäudereinigung Düsseldorf Pempelfort | Angebot",
  description:
-  "Fensterreinigung Düsseldorf für Fenster, Rahmen, Glasflächen und Schaufenster: Anzahl, Etage, Zugang, Fotos und Zeitfenster senden.",
+  "Gebäudereinigung Düsseldorf, Pempelfort, Altstadt und Umgebung: Büro, Praxis, Treppenhaus, Objekt, Fotos und Turnus prüfen.",
+ cluster: "money",
+ intent: "Gebäudereinigung in Düsseldorf oder Pempelfort anfragen",
+};
+
+moneySnippets["/duesseldorf/objektreinigung"] = {
+ title: "Objektreinigung Düsseldorf | Fläche & Turnus prüfen",
+ description:
+  "Objektreinigung Düsseldorf für Gewerbeflächen, Hausflur, Büro, Laden und Nebenflächen: Fläche, Turnus, Zugang und Fotos senden.",
+ cluster: "money",
+ intent: "Objektreinigung in Düsseldorf mit Objektart und Turnus anfragen",
+};
+
+moneySnippets["/duesseldorf/hausverwaltung-reinigung"] = {
+ title: "Hausverwaltung Reinigung Düsseldorf | WEG & Hilden",
+ description:
+  "Reinigung für Hausverwaltung, WEG, Hauseingang und Treppenhaus in Düsseldorf sowie Hilden nach Machbarkeit: Fotos, Turnus und Zugang senden.",
+ cluster: "money",
+ intent: "Hausverwaltungs- oder Treppenhausreinigung in Düsseldorf und Umgebung prüfen",
+};
+
+moneySnippets["/duesseldorf/reinigungskraft-buero"] = {
+ title: "Büro reinigen Düsseldorf | Reinigungskraft prüfen",
+ description:
+  "Büro reinigen in Düsseldorf: Raumliste, Sanitär, Küche, Turnus, Zeitfenster, Fotos und Angebot für Reinigungskraft oder Firma klären.",
+ cluster: "money",
+ intent: "Büroreinigung oder Reinigungskraft für Büro in Düsseldorf anfragen",
+};
+
+moneySnippets["/duesseldorf/fensterreinigung"] = {
+ title: "Fensterreiniger Düsseldorf | Glasreinigung prüfen",
+ description:
+  "Fensterreiniger und Glasreinigung Düsseldorf für Fenster, Rahmen, Glasflächen und Schaufenster: Anzahl, Etage, Zugang, Fotos und Termin senden.",
  cluster: "money",
  intent: "Fensterreinigung und Glasreinigung in Düsseldorf mit Fotos anfragen",
 };
@@ -635,9 +739,9 @@ moneySnippets["/duesseldorf/teppichreinigung"] = {
 };
 
 moneySnippets["/duesseldorf/unterhaltsreinigung"] = {
- title: "Unterhaltsreinigung Düsseldorf | Büro & Objekt",
+ title: "Angebot Unterhaltsreinigung | Büro & Objekt",
  description:
-  "Unterhaltsreinigung und Gebäudereinigung Düsseldorf: Büro, Praxis, Kanzlei, Treppenhaus, Turnus, Fläche, Fotos und Reinigungsplan senden.",
+  "Angebot Unterhaltsreinigung in Düsseldorf prüfen: Büro, Praxis, Kanzlei, Treppenhaus, Turnus, Fläche, Fotos und Reinigungsplan senden.",
  cluster: "money",
  intent: "Regelmäßige Unterhalts- und Gebäudereinigung in Düsseldorf anfragen",
 };
@@ -659,17 +763,17 @@ moneySnippets["/duesseldorf/sonderreinigung"] = {
 };
 
 moneySnippets["/duesseldorf/gewerbereinigung"] = {
- title: "Gewerbereinigung Düsseldorf | Objekt & Betrieb",
+ title: "Gewerbeflächen reinigen Düsseldorf | Angebot",
  description:
-  "Gewerbereinigung Düsseldorf für Büros, Läden, Studios, Hotels und Objektflächen. Nutzung, Fläche, Sanitär, Zeitfenster und Fotos senden.",
+  "Gewerbeflächen reinigen Düsseldorf: Büro, Laden, Hotel, Studio, Sanitär, Turnus, Zeitfenster, Fotos und Angebot prüfen.",
  cluster: "money",
  intent: "Gewerbereinigung in Düsseldorf für Objekt oder Betrieb anfragen",
 };
 
 moneySnippets["/duesseldorf/hotelreinigung"] = {
- title: "Hotelreinigung Düsseldorf | Lobby, Zimmer & Flure",
+ title: "Hotelreinigung Düsseldorf | Fotos & Turnus prüfen",
  description:
-  "Hotelreinigung in Düsseldorf für Hotels, Boardinghouses und Apartmenthäuser: Lobby, Flure, Zimmer nach Absprache, Turnus, Fotos und Zeitfenster senden.",
+  "Hotelreinigung Düsseldorf für Hotel, Boardinghouse und Apartmenthaus: Lobby, Flure, Zimmer nach Absprache, Turnus, Fotos und Angebot.",
  cluster: "money",
  intent: "Hotelreinigung in Düsseldorf für Beherbergung oder Boardinghouse anfragen",
 };
@@ -683,9 +787,9 @@ moneySnippets["/duesseldorf/kanzleireinigung"] = {
 };
 
 moneySnippets["/duesseldorf/praxisreinigung"] = {
- title: "Praxisreinigung Düsseldorf | Fläche sauber prüfen",
+ title: "Praxisreinigung Düsseldorf | Angebot & Termin prüfen",
  description:
-  "Praxisreinigung Düsseldorf für allgemeine Praxisflächen nach Absprache: Empfang, Wartebereich, Sanitär, Boden, Turnus, Zugang und Fotos senden.",
+  "Praxisreinigung Düsseldorf für Praxis, Therapie, Empfang, Wartebereich und Sanitär: Fläche, Turnus, Termin, Zugang, Fotos und Angebot senden.",
  cluster: "money",
  intent: "Praxisreinigung in Düsseldorf für allgemeine Flächen anfragen",
 };
@@ -723,9 +827,9 @@ moneySnippets["/duesseldorf/entsorgung"] = {
 };
 
 moneySnippets["/duesseldorf/wohnungsreinigung"] = {
- title: "Wohnungsreinigung Düsseldorf | Wohnung & Übergabe",
+ title: "Professionelle Wohnungsreinigung Düsseldorf | Fotos",
  description:
-  "Wohnungsreinigung Düsseldorf für bewohnte oder leere Wohnungen: Küche, Bad, Böden, Flächen, Zustand, Fotos und Termin prüfen lassen.",
+  "Professionelle Wohnungsreinigung Düsseldorf für bewohnte oder leere Wohnungen: Küche, Bad, Böden, Zustand, Fotos und Termin prüfen.",
  cluster: "money",
  intent: "Wohnungsreinigung in Düsseldorf mit Fotos und Termin anfragen",
 };
@@ -747,17 +851,17 @@ moneySnippets["/duesseldorf/vielleicht-guenstiger"] = {
 };
 
 moneySnippets["/duesseldorf/grundreinigung"] = {
- title: "Grundreinigung Düsseldorf | Wohnung, Büro & Objekt",
+ title: "Bodenreinigung Düsseldorf | Grundreinigung prüfen",
  description:
-  "Grundreinigung in Düsseldorf für Wohnungen, Büros und kleine Gewerbeflächen nach Absprache: Fläche, Zustand, Fotos, Termin und Budget prüfen lassen.",
+  "Bodenreinigung und Grundreinigung Düsseldorf: Fläche, Boden, Zustand, Fotos, Termin, Kostenfaktoren und Angebot direkt prüfen.",
  cluster: "money",
  intent: "Grundreinigung in Düsseldorf mit Fotos und Umfang anfragen",
 };
 
 moneySnippets["/duesseldorf/treppenhausreinigung"] = {
- title: "Treppenhausreinigung Düsseldorf | Objekt & Hausverwaltung",
+ title: "Treppenreinigung Düsseldorf | Hilden & WEG prüfen",
  description:
-  "Treppenhausreinigung in Düsseldorf für kleinere Objekte und Hausverwaltungen nach Absprache: Zugang, Frequenz, Fläche und Fotos senden.",
+  "Treppenhaus- und Treppenreinigung Düsseldorf, Hilden nach Machbarkeit: Hausverwaltung, WEG, Etagen, Turnus, Zugang und Fotos.",
  cluster: "money",
  intent: "Treppenhausreinigung in Düsseldorf für Objekt oder Hausverwaltung anfragen",
 };
@@ -779,17 +883,17 @@ moneySnippets["/entsorgung-duesseldorf"] = {
 };
 
 moneySnippets["/reinigung-moeblierte-wohnung-duesseldorf"] = {
- title: "Reinigung möblierte Wohnung Düsseldorf | Apartment & Gästewechsel",
+ title: "Apartment Düsseldorf wöchentliche Reinigung | Angebot",
  description:
-  "Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf: Terminfenster, Fotos, Zugang, Wäschewunsch und Budget prüfen lassen.",
+  "Apartment oder möblierte Wohnung Düsseldorf mit wöchentlicher Reinigung: Zugang, Turnus, Fotos, Terminfenster und Angebot prüfen.",
  cluster: "money",
  intent: "Möblierte Wohnung oder Apartment-Reinigung in Düsseldorf anfragen",
 };
 
 moneySnippets["/schluesseluebergabe"] = {
- title: "Schlüsselübergabe Service | Protokoll & Übergabe",
+ title: "Schlüsselübergabeprotokoll Reinigungsfirma | FLOXANT",
  description:
-  "Schlüsselübergabe nach Umzug, Reinigung oder Auszug: Termin, Fotos, Übergabepunkte und Protokoll organisatorisch abstimmen.",
+  "Schlüsselübergabeprotokoll mit Reinigungsfirma vorbereiten: Fotos, Reinigung, Übergabepunkte, Termin und Rückmeldung sauber abstimmen.",
  cluster: "support",
  intent: "Schlüsselübergabe mit Übergabeprotokoll vorbereiten",
 };
@@ -907,27 +1011,235 @@ moneySnippets["/"] = {
 };
 
 moneySnippets["/umzug-regensburg"] = {
- title: "Umzug Regensburg – Transport, Reinigung & Übergabe",
+ title: "Umzug Regensburg | Umzugsunternehmen & Angebot",
  description:
-  "Umzug in Regensburg mit Planung, Transport, Endreinigung, Schlüsselübergabe und realistischem Zugang. Fotos oder Budget senden.",
+  "Umzug Regensburg: Möbel, Etage, Strecke, Termin, Fotos und Preisrahmen senden. FLOXANT prüft Umzugsunternehmen, Transport und Übergabe.",
  cluster: "money",
  intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
 };
 
 moneySnippets["/reinigung-regensburg"] = {
- title: "Reinigung Regensburg – Büro, Grund & Fenster",
+ title: "Reinigung Regensburg | Professionell & Angebot",
  description:
-  "Reinigung Regensburg für Büro, Grundreinigung, Fenster, Teppich, Bau, Praxis, Hotel und Treppenhaus: Altstadt, Gewerbepark, Umgebung, Fotos senden.",
+  "Professionelle Reinigung Regensburg: Putzdienst, Privathaushalt, Büro, Praxis, Grundreinigung und Angebot mit Fotos prüfen.",
  cluster: "money",
  intent: "Reinigung in Regensburg mit passender Spezialleistung, Fotos, Fläche und Termin anfragen",
 };
 
-moneySnippets["/entruempelung-regensburg"] = {
- title: "Entrümpelung Regensburg – Wohnung, Keller & Reinigung",
+moneySnippets["/klaviertransport-regensburg"] = {
+ title: "Klaviertransport Regensburg | Angebot mit Fotos prüfen",
  description:
-  "Entrümpelung in Regensburg für Wohnung, Keller, Garage und Sperrmüll. Fotos senden, Preisrahmen prüfen und Reinigung ergänzen.",
+  "Klaviertransport Regensburg: Klavier, Piano oder Flügel mit Etage, Treppenhaus, Strecke, Fotos und Termin prüfen lassen. Anfrage direkt senden.",
  cluster: "money",
- intent: "Entrümpelung in Regensburg anfragen",
+ intent: "Klaviertransport in Regensburg mit Fotos, Etage und Termin anfragen",
+};
+
+moneySnippets["/klaviertransport"] = {
+ title: "Klaviertransport Bayern | München, Nürnberg & Regensburg",
+ description:
+  "Klaviertransport in Bayern prüfen: München, Nürnberg, Regensburg oder Bayreuth nach Route, Etage, Treppenhaus, Fotos und Termin.",
+ cluster: "money",
+ intent: "Klaviertransport in Bayern mit Fotos, Etage und Strecke anfragen",
+};
+
+moneySnippets["/klaviertransport-muenchen"] = {
+ title: "Günstiger Klaviertransport München | Fotos prüfen",
+ description:
+  "Klaviertransport München: Instrument, Etage, Treppenhaus, Aufzug, Strecke, Fotos, Termin und Preisrahmen realistisch prüfen.",
+ cluster: "money",
+ intent: "Klaviertransport in München mit Fotos und Preisrahmen anfragen",
+};
+
+moneySnippets["/klaviertransport-nuernberg"] = {
+ title: "Klaviertransporte Nürnberg | Zugang & Angebot prüfen",
+ description:
+  "Klaviertransport Nürnberg: Klavier, Piano oder Flügel mit Etage, Zugang, Treppenhaus, Fotos, Strecke und Termin prüfen lassen.",
+ cluster: "money",
+ intent: "Klaviertransport in Nürnberg mit Fotos, Strecke und Termin anfragen",
+};
+
+moneySnippets["/umzug-aufhausen"] = {
+ title: "Umzug Aufhausen | Fotos senden & Termin prüfen",
+ description:
+  "Umzug Aufhausen: Start, Ziel, Möbelmenge, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft Strecke, Aufwand und Preisrahmen.",
+ cluster: "money",
+ intent: "Umzug in Aufhausen mit Fotos und Preisrahmen anfragen",
+};
+
+moneySnippets["/umzug-neumarkt"] = {
+ title: "Umzugsunternehmen Neumarkt i.d.OPf. | Anfrage starten",
+ description:
+  "Umzug Neumarkt i.d.OPf.: Möbelmenge, Etage, Strecke, Termin, Fotos und Zusatzleistungen senden. FLOXANT prüft den Ablauf ab Regensburg/Bayern.",
+ cluster: "money",
+ intent: "Umzugsunternehmen in Neumarkt in der Oberpfalz anfragen",
+};
+
+moneySnippets["/umzug-ingolstadt"] = {
+ title: "Umzug Ingolstadt | Fotos & Angebot prüfen",
+ description:
+  "Umzug Ingolstadt: Möbelmenge, Etage, Strecke, Termin, Fotos und Zusatzleistungen senden. FLOXANT prüft Bayern-Route.",
+ cluster: "money",
+ intent: "Umzug in Ingolstadt mit Strecke und Preisrahmen anfragen",
+};
+
+moneySnippets["/umzug-weiden"] = {
+ title: "Umzugsunternehmen Weiden i.d.OPf. | Anfrage prüfen",
+ description:
+  "Umzug Weiden i.d.OPf.: Start, Ziel, Möbelmenge, Etage, Fotos, Termin und Preisrahmen senden. FLOXANT prüft Bayern-Route.",
+ cluster: "money",
+ intent: "Umzugsunternehmen in Weiden in der Oberpfalz mit Fotos und Termin anfragen",
+};
+
+moneySnippets["/umzug-muenchen"] = {
+ title: "Umzug München | günstig, privat & in der Nähe",
+ description:
+  "Umzug München, Privatumzug, Eilumzug oder Umzug in der Nähe: Volumen, Etage, Fotos, Strecke, Termin und Angebot prüfen.",
+ cluster: "money",
+ intent: "Umzug in München mit Fotos, Termin und Preisrahmen anfragen",
+};
+
+moneySnippets["/umzug-nuernberg"] = {
+ title: "Privatumzug Nürnberg | Umzug & Angebot prüfen",
+ description:
+  "Privatumzug Nürnberg: Wohnung, Möbel, Kartons, Etage, Strecke, Fotos, Termin und mögliches Angebot vor Zusage prüfen.",
+ cluster: "money",
+ intent: "Privatumzug in Nürnberg mit Fotos und Angebot anfragen",
+};
+
+moneySnippets["/umzugsunternehmen-regensburg"] = {
+ title: "Umzugsunternehmen Regensburg | Fotos & Angebot prüfen",
+ description:
+  "Umzugsunternehmen Regensburg: Etage, Strecke, Möbel, Fotos, Termin und Preisrahmen senden. FLOXANT prüft Ablauf, Reinigung und Übergabe.",
+ cluster: "money",
+ intent: "Umzugsunternehmen in Regensburg mit Fotos, Preisrahmen und Zusatzleistungen anfragen",
+};
+
+moneySnippets["/umzug-friedberg"] = {
+ title: "Umziehen Friedberg | Umzug & Angebot prüfen",
+ description:
+  "Umziehen in Friedberg: Start, Ziel, Möbelmenge, Etage, Fotos und Termin senden. FLOXANT prüft Bayern-Route und Preisrahmen.",
+ cluster: "money",
+ intent: "Umzug oder Umziehen in Friedberg mit Fotos und Termin anfragen",
+};
+
+moneySnippets["/umzug-forchheim"] = {
+ title: "Umziehen Forchheim | Umzug & Angebot prüfen",
+ description:
+  "Umziehen in Forchheim: Möbel, Etage, Strecke, Fotos, Termin und Preisrahmen senden. FLOXANT prüft Machbarkeit in Bayern.",
+ cluster: "money",
+ intent: "Umzug oder Umziehen in Forchheim mit Preisrahmen und Fotos anfragen",
+};
+
+moneySnippets["/seniorenumzug-bayern"] = {
+ title: "Umzug im Alter Bayern | ruhig planen & Rückruf",
+ description:
+  "Seniorenumzug Bayern: Möbel, Zimmer, Angehörige, Reinigung, Übergabe, Rückruf und Termin ruhig klären. FLOXANT prüft Verfügbarkeit.",
+ cluster: "money",
+ intent: "Umzug im Alter in Bayern mit Angehörigen-Abstimmung anfragen",
+};
+
+moneySnippets["/seniorenumzug-nuernberg"] = {
+ title: "Umzugshelfer für Senioren Nürnberg | ruhig anfragen",
+ description:
+  "Seniorenumzug Nürnberg: Zimmer, Möbel, Etage, Aufzug, Angehörige, Reinigung und Übergabe strukturiert senden. Rückruf möglich.",
+ cluster: "money",
+ intent: "Umzugshelfer für Senioren in Nürnberg anfragen",
+};
+
+moneySnippets["/seniorenumzug-erlangen"] = {
+ title: "Umzugshelfer für Senioren Erlangen | ruhig planen",
+ description:
+  "Seniorenumzug Erlangen: Zimmer, Möbel, Angehörige, Etage, Reinigung, Übergabe, Rückruf und Termin ruhig prüfen lassen.",
+ cluster: "money",
+ intent: "Umzugshelfer für Senioren in Erlangen mit Rückruf und Übergabe anfragen",
+};
+
+moneySnippets["/reinigung-muenchen"] = {
+ title: "Reinigungsservice München buchen | Termin prüfen",
+ description:
+  "Reinigungsservice München buchen oder nach Umzug reinigen lassen: Fläche, Zustand, Fotos, Zugang, Deadline und Termin prüfen.",
+ cluster: "money",
+ intent: "Reinigung in München mit kurzfristigem Termin und Fotos anfragen",
+};
+
+moneySnippets["/bueroumzug-regensburg"] = {
+ title: "Büroumzug Regensburg | Firma & Angebot prüfen",
+ description:
+  "Büroumzug Regensburg: Arbeitsplätze, Möbel, Akten, IT-nahe Bereiche, Zeitfenster, Fotos, Entsorgung und Angebot prüfen.",
+ cluster: "money",
+ intent: "Büroumzug in Regensburg mit Zeitfenster, Entsorgung und Angebot anfragen",
+};
+
+moneySnippets["/bueroumzug-nuernberg"] = {
+ title: "Büroumzug Nürnberg | Firma & Angebot prüfen",
+ description:
+  "Büroumzug Nürnberg: Arbeitsplätze, Möbel, Akten, Technik, Zeitfenster, Zugang, Fotos und Entsorgung alter Büromöbel prüfen.",
+ cluster: "money",
+ intent: "Büroumzug oder Firmenumzug in Nürnberg anfragen",
+};
+
+moneySnippets["/entruempelung-regensburg"] = {
+ title: "Entrümpelung Regensburg | Hausauflösung & Angebot",
+ description:
+  "Entrümpelung, Hausauflösung, Wohnungsauflösung oder Container-Alternative Regensburg: Räume, Keller, Fotos, Zugang und Angebot prüfen.",
+ cluster: "money",
+ intent: "Entrümpelung, Haushaltsauflösung oder Wohnungsauflösung in Regensburg anfragen",
+};
+
+moneySnippets["/entruempelung-nuernberg"] = {
+ title: "Praxisentrümpelung Nürnberg | Räume & Angebot",
+ description:
+  "Praxisentrümpelung Nürnberg: Praxisräume, Möbel, Akten, Technik, Freigabe, Fotos, Entsorgung und Reinigung danach prüfen.",
+ cluster: "money",
+ intent: "Praxisentrümpelung in Nürnberg mit Fotos und Entsorgung anfragen",
+};
+
+moneySnippets["/entruempelung-bayern"] = {
+ title: "Entrümpelungsfirma Bayern finden | Fotos prüfen",
+ description:
+  "Entrümpelungsfirma in Bayern finden: Forchheim, Regensburg, München oder Nürnberg mit Räumen, Fotos, Zugang und Termin prüfen.",
+ cluster: "geo",
+ intent: "Entrümpelungsfirma in Bayern mit Fotos und Umfang anfragen",
+};
+
+moneySnippets["/entruempelung-landshut"] = {
+ title: "Küchenentsorgung Landshut | Möbel & Restmengen",
+ description:
+  "Küchenentsorgung Landshut nach Fotos prüfen: Küchenmöbel, Elektrogeräte nach Absprache, Etage, Zugang, Demontage und Termin.",
+ cluster: "money",
+ intent: "Küchenentsorgung oder Entrümpelung in Landshut anfragen",
+};
+
+moneySnippets["/wohnungsaufloesung-regensburg"] = {
+ title: "Hausauflösung Regensburg | Wohnung räumen lassen",
+ description:
+  "Wohnungsauflösung und Hausauflösung Regensburg, auch Bielingplatz: Räume, Keller, Möbel, Fotos, Zugang, Termin und Entsorgung prüfen.",
+ cluster: "money",
+ intent: "Wohnungsauflösung oder Hausauflösung in Regensburg mit Fotos und Entsorgung anfragen",
+};
+
+moneySnippets["/wohnungsaufloesung-bayern"] = {
+ title: "Haus- und Wohnungsräumung Bayern | Angebot",
+ description:
+  "Haus- und Wohnungsräumung Bayern: Haushalt auflösen lassen mit Räumen, Möbeln, Keller, Fotos, Entsorgung, Reinigung und Termin.",
+ cluster: "geo",
+ intent: "Hausräumung oder Wohnungsauflösung in Bayern anfragen",
+};
+
+moneySnippets["/kleinmengen-entsorgung"] = {
+ title: "Container Alternative | Kleinmengen & Grünschnitt prüfen",
+ description:
+  "Kleinmengen, Möbel, Küche, Restmengen oder Grünschnitt nach Fotos prüfen: Ort, Material, Zugang, Menge und Entsorgungsweg klären.",
+ cluster: "support",
+ intent: "Kleine Entsorgung oder Container-Alternative mit Fotos prüfen lassen",
+};
+
+moneySnippets["/geruchslos-protokoll"] = {
+ title: "Geruchsbeseitigung Wohnung | München nach Prüfung",
+ description:
+  "Geruchsproblem in Wohnung oder Objekt prüfen: Ursache, Fläche, Fotos, Lüftung, Reinigung, Grenzen und Termin realistisch einordnen.",
+ cluster: "support",
+ intent: "Geruchsproblem in Wohnung oder Objekt nach Fotos prüfen lassen",
 };
 
 moneySnippets["/kleintransport-regensburg"] = {

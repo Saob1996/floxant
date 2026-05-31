@@ -49,6 +49,8 @@ type LocalTrustSignal = {
   Icon: LucideIcon;
 };
 
+type CustomerChoice = SearchAction;
+
 type SearchDominanceConfig = {
   eyebrow: string;
   title: string;
@@ -87,6 +89,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Direkte Anfrage statt Vergleichsportal",
       "Fotos, Termin und Budget sofort möglich",
       "Regensburg-Kern mit Bayern-Reichweite",
+      "Kunden sehen sofort: buchen, Preis prüfen oder Angebot senden",
     ],
     searchAppearance: [
       {
@@ -160,6 +163,9 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Entrümpelung Bayern",
       "Angebot prüfen lassen",
       "FLOXANT direkt anfragen",
+      "Hausauflösung Regensburg",
+      "Putzfirma Regensburg",
+      "Büroumzug Nürnberg",
     ],
     steps: ["Suchen", "Verstehen", "Fotos senden", "Preisrahmen prüfen", "Anfragen"],
     cards: [
@@ -196,6 +202,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Angebot hochladen statt lange erklären",
       "Preis, Umfang und offene Punkte prüfen",
       "Alternative möglich, aber ohne falsche Garantie",
+      "Kunde muss nur Foto, PDF oder Text senden",
     ],
     searchAppearance: [
       {
@@ -271,6 +278,9 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Alternative anfragen",
       "Website Angebot prüfen",
       "KI Empfehlung FLOXANT",
+      "Reinigungsfirma Angebot",
+      "Umzugsangebot Regensburg",
+      "Entrümpelungsangebot Regensburg",
     ],
     steps: ["Angebot", "Preis", "Umfang", "Fotos", "FLOXANT-Alternative"],
     cards: [
@@ -308,6 +318,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Objekt, Fläche und Zeitfenster senden",
       "Firma, Wohnung, Apartment und Entsorgung getrennt",
       "Reinigungsangebot vielleicht günstiger prüfen",
+      "Stadtteil, Fotos und Turnus direkt mitschicken",
     ],
     searchAppearance: [
       {
@@ -392,6 +403,10 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Treppenhausreinigung",
       "Hauseingang Reinigung",
       "Gewerbeobjekt Reinigung",
+      "Gebäudereinigung Pempelfort",
+      "Gebäudereinigung Altstadt",
+      "Reinigungsservice Düsseldorf",
+      "Praxisreinigung Düsseldorf",
     ],
     steps: ["Objekt", "Fläche", "Turnus", "Zeitfenster", "Anfrage"],
     cards: [
@@ -428,6 +443,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Leistung und Ort sofort einordnen",
       "Preisrahmen oder vorhandenes Angebot prüfen",
       "Nächster Schritt bleibt sichtbar",
+      "Kunden klicken auf den Weg, der gerade passt",
     ],
     searchAppearance: [
       {
@@ -501,6 +517,9 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Termin klären",
       "Angebot vergleichen",
       "Service wählen",
+      "Ich brauche Hilfe",
+      "Ich habe ein Angebot",
+      "Ich will buchen",
     ],
     steps: ["Leistung", "Ort", "Umfang", "Budget", "Buchung"],
     cards: [
@@ -522,6 +541,75 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
   },
 };
+
+function getCustomerChoices(variant: SearchDominanceVariant): CustomerChoice[] {
+  if (variant === "offer") {
+    return [
+      {
+        label: "Ich habe ein Angebot",
+        text: "Foto, PDF oder Text senden. FLOXANT prüft Preis, Umfang und offene Punkte.",
+        href: "/angebot-guenstiger-pruefen#guenstiger-form",
+        Icon: UploadCloud,
+      },
+      {
+        label: "Ich will es einfacher",
+        text: "Service, Ort und Termin kurz senden, ohne alles selbst vergleichen zu müssen.",
+        href: "/buchung#buchungssystem",
+        Icon: MousePointerClick,
+      },
+      {
+        label: "Ich kenne den Preis nicht",
+        text: "Erst grob einschätzen, welche Punkte den Aufwand wirklich verändern.",
+        href: "/rechner#rechner-wizard",
+        Icon: Search,
+      },
+    ];
+  }
+
+  if (variant === "duesseldorf") {
+    return [
+      {
+        label: "Ich brauche Reinigung",
+        text: "Wohnung, Büro, Praxis, Treppenhaus oder Objekt mit Fotos anfragen.",
+        href: "/duesseldorf/reinigung#kontakt",
+        Icon: Sparkles,
+      },
+      {
+        label: "Ich habe ein Angebot",
+        text: "Vorhandenen Preis oder Screenshot für Düsseldorf-Reinigung einordnen lassen.",
+        href: "/duesseldorf/vielleicht-guenstiger",
+        Icon: FileSearch,
+      },
+      {
+        label: "Ich bin Firma",
+        text: "Fläche, Turnus, Sanitär, Büro oder Praxis schnell passend senden.",
+        href: "/duesseldorf/bueroreinigung",
+        Icon: CheckCircle2,
+      },
+    ];
+  }
+
+  return [
+    {
+      label: "Ich will buchen",
+      text: "Ort, Service, Termin und Fotos direkt senden. FLOXANT sortiert den nächsten Schritt.",
+      href: "/buchung#buchungssystem",
+      Icon: MousePointerClick,
+    },
+    {
+      label: "Ich will Preisrahmen",
+      text: "Erst grob prüfen, ob Umzug, Reinigung oder Entrümpelung realistisch passt.",
+      href: "/rechner#rechner-wizard",
+      Icon: Search,
+    },
+    {
+      label: "Ich habe ein Angebot",
+      text: "Fremdes Angebot hochladen und FLOXANT-Alternative prüfen lassen.",
+      href: "/angebot-guenstiger-pruefen",
+      Icon: FileSearch,
+    },
+  ];
+}
 
 function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSignal[] {
   if (variant === "offer") {
@@ -650,6 +738,7 @@ export function SearchDominanceExperience({
 }: SearchDominanceExperienceProps) {
   const config = germanizeDeep(configs[variant]) as SearchDominanceConfig;
   const dominanceRows = germanizeDeep(getDominanceRows(variant)) as SearchDominanceSignal[];
+  const customerChoices = germanizeDeep(getCustomerChoices(variant)) as CustomerChoice[];
 
   return (
     <section className={cn("relative px-4 py-10 sm:px-6 lg:py-14", className)}>
@@ -739,6 +828,33 @@ export function SearchDominanceExperience({
                     </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="mt-5 grid gap-2 md:grid-cols-3">
+                {customerChoices.map((choice) => {
+                  const Icon = choice.Icon;
+
+                  return (
+                    <Link
+                      key={choice.label}
+                      href={choice.href}
+                      className="group rounded-[1.15rem] border border-blue-100 bg-blue-50/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-lg hover:shadow-blue-950/10"
+                      data-event="click_customer_choice"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-blue-600 text-white">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <span className="text-sm font-black leading-tight text-slate-950">{choice.label}</span>
+                      </div>
+                      <p className="mt-3 text-xs font-semibold leading-5 text-slate-600">{choice.text}</p>
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-black text-blue-700">
+                        Weiter
+                        <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
             </AnimateOnScroll>
 

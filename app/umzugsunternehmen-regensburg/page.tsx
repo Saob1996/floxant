@@ -10,9 +10,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "umzugsunternehmen-regensburg",
-    title: "Umzugsunternehmen Regensburg | FLOXANT Planung, Transport & Übergabe",
+    title: "Umzugsunternehmen Regensburg | Fotos & Angebot prüfen",
     description:
-      "Umzugsunternehmen in Regensburg für Planung, Transport, Reinigung, Entrümpelung und Übergabe. FLOXANT prüft Aufwand, Termin und Preisrahmen sauber.",
+      "Umzugsunternehmen Regensburg: Möbel, Etage, Strecke, Termin, Fotos und Preisrahmen senden. FLOXANT prüft Transport, Reinigung und Übergabe.",
     keywords: [
       "Umzugsunternehmen Regensburg",
       "Umzugsfirma Regensburg",

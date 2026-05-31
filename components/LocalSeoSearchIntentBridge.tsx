@@ -36,11 +36,44 @@ function localSearchIntents({
           label: "Reinigung anfragen",
         },
         {
+          title: `Putzfirma ${city} ohne langes Suchen`,
+          text: "Kunden können einfach sagen, was gereinigt werden soll: Wohnung, Büro, Treppenhaus, Praxis oder Objekt. FLOXANT sortiert den passenden Einstieg.",
+          href: currentHref,
+          label: "Passenden Einstieg wählen",
+        },
+        {
+          title: `Reinigung für Firmen ${city}`,
+          text: "Für Büro, Praxis, Laden, Objekt oder Treppenhaus zählen Fläche, Turnus, Zeitfenster, Zugang und Fotos. So wird aus Suche eine klare Anfrage.",
+          href:
+            city === "Düsseldorf"
+              ? "/duesseldorf/bueroreinigung"
+              : city === "Regensburg"
+                ? "/bueroreinigung-regensburg"
+                : currentHref,
+          label: "Firmenreinigung prüfen",
+        },
+        {
           title: `Angebot Reinigung ${city}`,
           text: "Ein Reinigungsangebot wird erst klar, wenn Fläche, Objektart, Zustand, Zugang, Termin, Fotos und gewünschtes Ergebnis zusammenpassen.",
           href: "/angebot-guenstiger-pruefen",
           label: "Angebot prüfen",
         },
+        ...(city === "Regensburg"
+          ? [
+              {
+                title: "Praxisreinigung Regensburg",
+                text: "Empfang, Wartebereich, Büro, Personalraum und Sanitär werden nach Fläche, Turnus, Zeitfenster und Fotos eingeordnet.",
+                href: "/praxisreinigung-regensburg",
+                label: "Praxis anfragen",
+              },
+              {
+                title: "Treppenhausreinigung Regensburg",
+                text: "Für Hausverwaltung, Mietshaus oder WEG helfen Eingänge, Etagen, Kellerflur, Turnus, Zugang und Fotos.",
+                href: "/treppenhausreinigung-regensburg",
+                label: "Treppenhaus prüfen",
+              },
+            ]
+          : []),
         {
           title: `Reinigung ${city} sofort Termin`,
           text: "Kurzfristige Termine werden nach Machbarkeit geprüft. Ort, Fotos, Deadline, Zugang und Prioritäten sollten direkt mitgesendet werden.",
@@ -90,6 +123,23 @@ function localSearchIntents({
           label: "Auflösung einordnen",
         },
         {
+          title: "Haushalt auflösen lassen",
+          text: "Wenn nicht klar ist, ob Entrümpelung, Entsorgung, Nachlassräumung oder Reinigung gebraucht wird, reicht eine kurze Beschreibung mit Fotos.",
+          href:
+            city === "Neutraubling"
+              ? "/wohnungsaufloesung-neutraubling"
+              : city === "Regensburg"
+                ? "/wohnungsaufloesung-regensburg"
+                : currentHref,
+          label: "Haushalt schildern",
+        },
+        {
+          title: `Hausauflösung ${city} einfach starten`,
+          text: "Nicht jedes Detail muss sofort perfekt sein. Zimmer, Keller, Fotos, grobe Menge und Termin reichen für den ersten sinnvollen Schritt.",
+          href: city === "Regensburg" ? "/blog/haushaltsaufloesung-regensburg-container-mieten-alternative" : currentHref,
+          label: "Ersten Schritt klären",
+        },
+        {
           title: `Container mieten ${city} oder Abholung?`,
           text: "Nicht jeder Fall braucht einen Container. FLOXANT prüft, ob Kleinmengen, Tragearbeit, Entsorgung, Zugang und Reinigung danach sinnvoller zusammenpassen.",
           href: "/kleinmengen-entsorgung",
@@ -109,6 +159,18 @@ function localSearchIntents({
           text: "FLOXANT nimmt Teamgröße, Möbel, Kartons, sensible Bereiche, Ansprechpartner und Terminfenster getrennt auf, damit der Umzug planbar bleibt.",
           href: currentHref,
           label: "Firmenumzug ansehen",
+        },
+        {
+          title: `Büroumzug ${city} einfach buchen`,
+          text: "Arbeitsplätze, Möbel, Kartons, Etage, Zeitfenster und Ansprechpartner senden. FLOXANT prüft den Ablauf ohne lange Vorbesprechung.",
+          href: currentHref,
+          label: "Büro-Umzug starten",
+        },
+        {
+          title: `Büroumzug ${city} mit Entsorgung`,
+          text: "Wenn alte Möbel, Akten, Technik oder Restmengen mit weg sollen, kann der Firmenumzug direkt mit Entsorgung eingeordnet werden.",
+          href: "/firmenentsorgung",
+          label: "Entsorgung mitdenken",
         },
         {
           title: "Vorhandenes Angebot einordnen",
@@ -190,10 +252,28 @@ function localSearchIntents({
           label: "Preislogik lesen",
         },
         {
+          title: `Umzug ${city} direkt starten`,
+          text: "Sie müssen nicht alles perfekt vorbereiten. Start, Ziel, grobe Menge, Termin und Fotos reichen für die erste sinnvolle Prüfung.",
+          href: "/buchung#buchungssystem",
+          label: "Jetzt Anfrage senden",
+        },
+        {
           title: `Umzugsservice Angebot ${city}`,
           text: "FLOXANT prüft Ort, Strecke, Möbelmenge, Zugang, Helferbedarf, Rückfahrt und Übergabe, bevor ein Angebot sinnvoll verglichen wird.",
           href: "/angebot-guenstiger-pruefen",
           label: "Angebot prüfen",
+        },
+        {
+          title: `Umzug mit Abbau ${city}`,
+          text: "Wenn Schrank, Bett, Küchenmodule oder Büromöbel abgebaut werden müssen, sollten Fotos und Anzahl direkt mitgesendet werden.",
+          href: currentHref,
+          label: "Abbau mit angeben",
+        },
+        {
+          title: `Komplettumzug ${city}`,
+          text: "Transport, Tragen, Abbau, Reinigung, Restmengen und Übergabe können als Ablauf zusammen gedacht werden, wenn die Eckdaten klar sind.",
+          href: "/umzug-mit-reinigung",
+          label: "Komplettweg ansehen",
         },
         {
           title: `Umzug ${city} preiswert planen`,
@@ -251,12 +331,13 @@ export function LocalSeoSearchIntentBridge({
             Häufige Suchwege
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 md:text-4xl">
-            Direkter zur passenden Anfrage in {city}
+            Wählen, klicken, kurz schildern: Anfrage in {city} starten
           </h2>
           <p className="mt-3 text-sm leading-7 text-slate-600">
             Viele Kunden suchen nicht nach einer perfekten Fachbezeichnung, sondern nach
-            Preis, Angebot, Hilfe im Alter, Reinigung nach Umzug oder schneller Klärung.
-            Diese Einstiege führen ohne Umweg zur richtigen Prüfung.
+            schneller Hilfe, Preis, Angebot, Reinigung, Umzug, Auflösung oder einem Termin.
+            Diese Einstiege sind bewusst einfach formuliert und führen direkt zu Anfrage,
+            Preisrahmen oder Angebotsprüfung.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">

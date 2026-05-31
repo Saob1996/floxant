@@ -3406,9 +3406,9 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     datePublished: "2026-05-31",
     title:
       "Reinigung nach Umzug: Angebot in Regensburg, München und Bayern richtig prüfen",
-    metaTitle: "Reinigung nach Umzug Angebot prüfen | FLOXANT",
+    metaTitle: "Reinigung nach Umzug München & Regensburg | Angebot",
     description:
-      "Warum Reinigungsangebote nach Umzug mit Fotos, Fläche, Zustand, Termin und Übergabeziel geprüft werden sollten.",
+      "Reinigung nach Umzug in München, Regensburg und Bayern: Angebot, Fotos, Fläche, Zustand, Termin und Übergabeziel prüfen lassen.",
     intro:
       "Nach einem Umzug soll eine Wohnung oft schnell sauber, übergabefähig oder wieder nutzbar sein. Ob ein Reinigungsangebot passt, hängt von Fläche, Zustand, Küche, Bad, Böden, Zugang, Fotos und Deadline ab.",
     about: ["Reinigung", "Reinigung nach Umzug", "Regensburg", "München", "Angebot prüfen"],
