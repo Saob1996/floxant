@@ -80,3 +80,16 @@ export const company = {
     "Private Client Service",
   ],
 };
+
+export const duesseldorfCompany = {
+  name: "FLOXANT Reinigung Düsseldorf",
+  email: process.env.NEXT_PUBLIC_DUESSELDORF_CLEANING_EMAIL || company.email,
+  phone: company.phone,
+  phoneRaw: company.phoneRaw,
+  streetAddress: "Breite Str. 22",
+  postalCode: "40213",
+  city: "Düsseldorf",
+  country: "Deutschland",
+  countryCode: "DE",
+  url: "https://www.floxant.de/duesseldorf/reinigung",
+};

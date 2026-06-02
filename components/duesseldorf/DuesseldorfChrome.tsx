@@ -81,7 +81,7 @@ const duesseldorfCustomerNeedLinks = [
   {
     href: "/duesseldorf/vielleicht-guenstiger",
     label: "Ich habe schon ein Angebot",
-    text: "Preis, Umfang und offene Punkte ohne Preisgarantie prüfen.",
+    text: "Preis, Umfang und offene Punkte sachlich einordnen lassen.",
   },
   {
     href: "/entsorgung-duesseldorf",

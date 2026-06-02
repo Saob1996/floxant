@@ -291,56 +291,13 @@ type PriorityTask = {
   tab?: WorkspaceTab;
 };
 
-type ConversionEventSummary = {
-  total: number;
-  last24h: number;
-  hot: number;
-  directContact: number;
-  bookingStarts: number;
-  linkedBookings: number;
-  unlinkedHot: number;
-  conversionRate: number;
-  topSources: Array<{ label: string; value: number }>;
-  sourcePerformance: Array<{
-    label: string;
-    value: number;
-    linked: number;
-    hot: number;
-    unlinkedHot: number;
-    conversionRate: number;
-  }>;
-  topChannels: Array<{ label: string; value: number }>;
-  openHotEvents: Array<{
-    event_name?: string | null;
-    source?: string | null;
-    channel?: string | null;
-    path?: string | null;
-    priority?: string | null;
-    score?: number | null;
-    created_at?: string | null;
-  }>;
-  recent: Array<{
-    event_name?: string | null;
-    source?: string | null;
-    channel?: string | null;
-    path?: string | null;
-    booking_id?: string | null;
-    priority?: string | null;
-    score?: number | null;
-    created_at?: string | null;
-  }>;
-};
-
 const WORKSPACE_TABS: WorkspaceTab[] = [
   "overview",
   "inquiries",
   "price-review",
   "planning",
   "documents",
-  "return-trips",
-  "b2b-cleaning",
   "follow-up",
-  "settings",
 ];
 
 const TAB_ALIASES: Record<string, WorkspaceTab> = {
@@ -405,184 +362,16 @@ const workspaceMeta: Record<
 
 const inquiryFilters: Array<{ id: InquiryFilter; label: string }> = [
   { id: "all", label: "Alle" },
-  { id: "umzug", label: "Umzug" },
-  { id: "reinigung", label: "Reinigung" },
-  { id: "entsorgung", label: "Entrümpelung" },
-  { id: "b2b-cleaning", label: "B2B-Reinigung" },
-  { id: "return-trip", label: "Rückfahrt" },
-  { id: "route-board", label: "Rückfahrt-Börse" },
-  { id: "high-flexibility", label: "Hohe Flexibilität" },
-  { id: "fixed-date", label: "Fixes Datum" },
-  { id: "regensburg-start", label: "Start Regensburg" },
-  { id: "regensburg-destination", label: "Ziel Regensburg" },
-  { id: "bavaria-route", label: "Bayern-Strecke" },
-  { id: "corridor-munich", label: "München" },
-  { id: "corridor-nuremberg", label: "Nürnberg" },
-  { id: "corridor-straubing", label: "Straubing" },
-  { id: "corridor-passau", label: "Passau" },
-  { id: "corridor-ingolstadt", label: "Ingolstadt" },
-  { id: "offer-check", label: "Angebotscheck" },
-  { id: "cheaper-alternative", label: "Günstiger prüfen" },
-  { id: "cheaper-with-offer", label: "Günstiger mit Angebot" },
-  { id: "cheaper-with-price", label: "Günstiger mit Preis" },
-  { id: "cheaper-with-budget", label: "Günstiger mit Budget" },
-  { id: "red-flag-scanner", label: "Red-Flag-Scanner" },
-  { id: "red-flag-high", label: "Hoher Klärungsbedarf" },
-  { id: "red-flag-upload", label: "Red-Flag mit Upload" },
-  { id: "red-flag-price", label: "mit Angebotspreis" },
-  { id: "red-flag-duesseldorf", label: "Düsseldorf Red-Flag" },
-  { id: "platform-order", label: "Plattform-Auftrag" },
-  { id: "platform-myhammer", label: "MyHammer optional" },
-  { id: "platform-check24", label: "Check24 optional" },
-  { id: "platform-other", label: "Andere Plattform" },
-  { id: "platform-with-offer", label: "Plattform mit Angebot" },
-  { id: "platform-with-price", label: "Plattform mit Preis" },
-  { id: "platform-with-photos", label: "Plattform mit Fotos" },
-  { id: "platform-provider-unclear", label: "Anbieter unklar" },
-  { id: "platform-aborted", label: "Auftrag abgebrochen" },
-  { id: "platform-regensburg", label: "Plattform Regensburg" },
-  { id: "platform-duesseldorf", label: "Plattform Düsseldorf" },
-  { id: "tenant-turnover", label: "Mieterwechsel" },
-  { id: "handover-file", label: "Übergabeakte" },
-  { id: "handover-key", label: "mit Schlüssel" },
-  { id: "handover-cleaning", label: "Akte + Endreinigung" },
-  { id: "handover-clearance", label: "Akte + Entrümpelung" },
-  { id: "handover-tenant", label: "Akte + Mieterwechsel" },
-  { id: "handover-date", label: "mit Übergabetermin" },
-  { id: "handover-recipient", label: "Empfänger geklärt" },
-  { id: "handover-open", label: "Akte offen" },
-  { id: "handover-photos-missing", label: "Fotos fehlen" },
-  { id: "handover-key-unclear", label: "Schlüssel unklar" },
-  { id: "handover-premium", label: "Premium-Akte" },
-  { id: "rental-ready", label: "Wohnung vermietbar" },
-  { id: "rental-viewing", label: "mit Besichtigung" },
-  { id: "rental-handover", label: "mit Übergabe" },
-  { id: "rental-multiple-units", label: "mehrere Einheiten" },
-  { id: "property-ready-service", label: "Immobilie verkaufsbereit" },
-  { id: "property-ready-owner", label: "Property Eigentümer" },
-  { id: "property-ready-realtor", label: "Property Makler" },
-  { id: "property-ready-estate", label: "Nachlass / Erbfall" },
-  { id: "property-ready-manager", label: "Property Hausverwaltung" },
-  { id: "property-ready-photos", label: "Property mit Fotos" },
-  { id: "property-ready-viewing", label: "Besichtigung bald" },
-  { id: "property-ready-expose", label: "Expose bald" },
-  { id: "property-ready-premium", label: "Property Premium/Diskret" },
-  { id: "property-ready-combined", label: "Räumung + Reinigung" },
-  { id: "property-ready-regensburg", label: "Property Regensburg" },
-  { id: "estate-clearance", label: "Nachlass-Räumung" },
-  { id: "estate-callback", label: "Nachlass Rückruf" },
-  { id: "estate-inheritance-group", label: "Erbengemeinschaft" },
-  { id: "estate-clearance-open", label: "Nachlass Freigabe unklar" },
-  { id: "estate-key-unclear", label: "Nachlass Schlüssel unklar" },
-  { id: "estate-photos", label: "Nachlass mit Fotos" },
-  { id: "estate-sale", label: "Nachlass Verkauf" },
-  { id: "estate-rental", label: "Nachlass Vermietung" },
-  { id: "estate-premium", label: "Nachlass Premium/Diskret" },
-  { id: "estate-regensburg", label: "Nachlass Regensburg" },
-  { id: "discreet-move", label: "Diskreter Trennungsumzug" },
-  { id: "discreet-callback", label: "Diskret Rückruf" },
-  { id: "discreet-safe-time", label: "Sichere Kontaktzeit" },
-  { id: "discreet-premium", label: "Diskret Premium" },
-  { id: "discreet-cleaning", label: "Auszug + Reinigung" },
-  { id: "discreet-items", label: "Möbelabholung" },
-  { id: "discreet-key", label: "Schlüsselübergabe" },
-  { id: "discreet-handover-file", label: "Diskret Übergabeakte" },
-  { id: "discreet-regensburg", label: "Diskret Regensburg" },
-  { id: "damage-control", label: "Schadensbegrenzung" },
-  { id: "damage-plan-gekippt", label: "Plan gekippt" },
-  { id: "damage-button-source", label: "Quelle: Button" },
-  { id: "damage-whatsapp-preferred", label: "WhatsApp bevorzugt" },
-  { id: "damage-today", label: "Heute" },
-  { id: "damage-tomorrow", label: "Morgen" },
-  { id: "damage-handover", label: "Übergabe bald" },
-  { id: "damage-move", label: "Umzug gekippt" },
-  { id: "damage-cleaning", label: "Reinigung gekippt" },
-  { id: "damage-clearance", label: "Entrümpelung offen" },
-  { id: "damage-duesseldorf", label: "Düsseldorf akut" },
-  { id: "plan-b-service", label: "Plan-B-Service" },
-  { id: "plan-b-high-risk", label: "Plan B hoch/kritisch" },
-  { id: "plan-b-with-offer", label: "Plan B mit Angebot" },
-  { id: "plan-b-with-photos", label: "Plan B mit Fotos" },
-  { id: "plan-b-phone", label: "Plan B mit Telefon" },
-  { id: "plan-b-transport", label: "Transport unsicher" },
-  { id: "plan-b-cleaning", label: "Reinigung unsicher" },
-  { id: "plan-b-handover", label: "Übergabe unsicher" },
-  { id: "plan-b-duesseldorf", label: "Düsseldorf Plan B" },
-  { id: "cellar-trashroom", label: "Keller/Müllraum" },
-  { id: "cellar-property-manager", label: "Keller Hausverwaltung" },
-  { id: "cellar-weg", label: "Keller WEG" },
-  { id: "cellar-business", label: "Keller Gewerbe" },
-  { id: "cellar-clearance-open", label: "Freigabe unklar" },
-  { id: "cellar-hazard-open", label: "Problemstoffe unklar" },
-  { id: "cellar-cleaning", label: "Reinigung danach" },
-  { id: "realtor-landlord-link", label: "Makler/Vermieter-Link" },
-  { id: "object-case-realtor", label: "Objektfall Makler" },
-  { id: "object-case-landlord", label: "Objektfall Vermieter" },
-  { id: "object-case-owner", label: "Objektfall Eigentümer" },
-  { id: "object-case-property-manager", label: "Objektfall Verwaltung" },
-  { id: "object-case-viewing", label: "Besichtigung" },
-  { id: "object-case-handover", label: "Übergabe" },
-  { id: "object-case-multiple", label: "Mehrere Objekte" },
-  { id: "object-case-direct-source", label: "Direkt/QR/WhatsApp" },
-  { id: "referral-partnercode", label: "Empfehlungen" },
-  { id: "referral-new-code", label: "Neuer Partnercode" },
-  { id: "referral-with-person", label: "Mit empfohlener Person" },
-  { id: "referral-without-person", label: "Ohne empfohlene Person" },
-  { id: "referral-bonus-review", label: "Bonus prüfbar" },
-  { id: "referral-bonus-payout", label: "Bonus auszahlen" },
-  { id: "referral-not-eligible", label: "Nicht bonusberechtigt" },
-  { id: "referral-regensburg", label: "Empfehlung Regensburg" },
-  { id: "referral-duesseldorf", label: "Empfehlung Düsseldorf" },
-  { id: "referral-b2b", label: "B2B-Empfehlung" },
-  { id: "property-manager", label: "Hausverwaltung" },
-  { id: "landlord", label: "Vermieter" },
-  { id: "realtor", label: "Makler" },
-  { id: "owner", label: "Eigentümer" },
-  { id: "urgent-handover", label: "Dringende Übergabe" },
-  { id: "recurring-tenant", label: "Wiederkehrend" },
-  { id: "today", label: "Heute neu" },
+  { id: "new", label: "Neu" },
   { id: "unhandled", label: "Unbearbeitet" },
-  { id: "budget", label: "Budget vorhanden" },
   { id: "with-phone", label: "Telefon vorhanden" },
   { id: "with-photos", label: "Fotos vorhanden" },
   { id: "needs-info", label: "Angaben fehlen" },
-  { id: "duesseldorf-cleaning", label: "Düsseldorf-Reinigung" },
-  { id: "duesseldorf-b2b-cleaning", label: "Düsseldorf B2B" },
-  { id: "b2b-office", label: "B2B Büro" },
-  { id: "b2b-agency-studio", label: "Agentur/Studio" },
-  { id: "b2b-law-office", label: "Kanzlei" },
-  { id: "b2b-practice", label: "Praxisfläche" },
-  { id: "b2b-staircase", label: "Treppenhaus" },
-  { id: "b2b-recurring", label: "B2B regelmäßig" },
-  { id: "b2b-one-time", label: "B2B einmalig" },
-  { id: "b2b-with-area", label: "B2B mit Fläche" },
-  { id: "b2b-with-photos", label: "B2B mit Fotos" },
-  { id: "b2b-with-phone", label: "B2B mit Telefon" },
-  { id: "b2b-recurring-potential", label: "Wiederkehrend möglich" },
-  { id: "duesseldorf-apartment-cleaning", label: "Düsseldorf Apartment" },
-  { id: "apartment-guest-turnover", label: "Gästewechsel" },
-  { id: "apartment-final-cleaning", label: "Apartment Endreinigung" },
-  { id: "apartment-recurring", label: "Apartment regelmäßig" },
-  { id: "apartment-b2b", label: "Apartment B2B" },
-  { id: "apartment-checkin-time", label: "mit Check-in" },
-  { id: "apartment-laundry", label: "mit Wäschewunsch" },
-  { id: "apartment-key", label: "Schlüsselkoordination" },
-  { id: "duesseldorf-disposal", label: "Düsseldorf-Entsorgung" },
-  { id: "conversion-trigger", label: "Conversion-Trigger" },
-  { id: "object-system", label: "Objekt-System" },
-  { id: "duesseldorf-revenue", label: "Düsseldorf Umsatz" },
-  { id: "regensburg-umzug", label: "Regensburg-Umzug" },
-  { id: "regensburg-bayern", label: "Regensburg/Bayern" },
-  { id: "high-score", label: "High Score" },
-  { id: "google-maps", label: "Google Maps" },
-  { id: "google-ads", label: "Google Ads" },
-  { id: "premium", label: "Premium" },
-  { id: "new", label: "Neu" },
-  { id: "in-progress", label: "In Bearbeitung" },
-  { id: "rueckfrage", label: "Rückfrage nötig" },
-  { id: "angebot-gesendet", label: "Angebot gesendet" },
-  { id: "won", label: "Angenommen" },
-  { id: "lost", label: "Verloren" },
+  { id: "budget", label: "Budget vorhanden" },
+  { id: "umzug", label: "Umzug" },
+  { id: "reinigung", label: "Reinigung" },
+  { id: "entsorgung", label: "Entrümpelung" },
+  { id: "duesseldorf-cleaning", label: "Düsseldorf" },
 ];
 
 const priorityInquiryFilterIds: InquiryFilter[] = [
@@ -596,217 +385,7 @@ const priorityInquiryFilterIds: InquiryFilter[] = [
   "umzug",
   "reinigung",
   "entsorgung",
-  "b2b-cleaning",
   "duesseldorf-cleaning",
-  "regensburg-umzug",
-];
-
-const inquiryFilterGroups: Array<{ title: string; description: string; ids: InquiryFilter[] }> = [
-  {
-    title: "Status",
-    description: "Aktueller Bearbeitungsstand.",
-    ids: ["today", "in-progress", "rueckfrage", "angebot-gesendet", "won", "lost", "high-score", "premium"],
-  },
-  {
-    title: "Routen",
-    description: "Rückfahrten, Bayern-Strecken und Korridore.",
-    ids: [
-      "return-trip",
-      "route-board",
-      "high-flexibility",
-      "fixed-date",
-      "regensburg-start",
-      "regensburg-destination",
-      "bavaria-route",
-      "corridor-munich",
-      "corridor-nuremberg",
-      "corridor-straubing",
-      "corridor-passau",
-      "corridor-ingolstadt",
-      "regensburg-bayern",
-    ],
-  },
-  {
-    title: "Angebote prüfen",
-    description: "Fremdangebote, Preisrahmen und Plattformfälle.",
-    ids: [
-      "offer-check",
-      "cheaper-alternative",
-      "cheaper-with-offer",
-      "cheaper-with-price",
-      "cheaper-with-budget",
-      "red-flag-scanner",
-      "red-flag-high",
-      "red-flag-upload",
-      "red-flag-price",
-      "red-flag-duesseldorf",
-      "platform-order",
-      "platform-myhammer",
-      "platform-check24",
-      "platform-other",
-      "platform-with-offer",
-      "platform-with-price",
-      "platform-with-photos",
-      "platform-provider-unclear",
-      "platform-aborted",
-      "platform-regensburg",
-      "platform-duesseldorf",
-    ],
-  },
-  {
-    title: "Übergabe & Immobilien",
-    description: "Mieterwechsel, Akten, Verkauf und Vermietung.",
-    ids: [
-      "tenant-turnover",
-      "handover-file",
-      "handover-key",
-      "handover-cleaning",
-      "handover-clearance",
-      "handover-tenant",
-      "handover-date",
-      "handover-recipient",
-      "handover-open",
-      "handover-photos-missing",
-      "handover-key-unclear",
-      "handover-premium",
-      "rental-ready",
-      "rental-viewing",
-      "rental-handover",
-      "rental-multiple-units",
-      "property-ready-service",
-      "property-ready-owner",
-      "property-ready-realtor",
-      "property-ready-estate",
-      "property-ready-manager",
-      "property-ready-photos",
-      "property-ready-viewing",
-      "property-ready-expose",
-      "property-ready-premium",
-      "property-ready-combined",
-      "property-ready-regensburg",
-    ],
-  },
-  {
-    title: "Nachlass & Diskret",
-    description: "Räumung, Rückruf, sensible Kontaktwege.",
-    ids: [
-      "estate-clearance",
-      "estate-callback",
-      "estate-inheritance-group",
-      "estate-clearance-open",
-      "estate-key-unclear",
-      "estate-photos",
-      "estate-sale",
-      "estate-rental",
-      "estate-premium",
-      "estate-regensburg",
-      "discreet-move",
-      "discreet-callback",
-      "discreet-safe-time",
-      "discreet-premium",
-      "discreet-cleaning",
-      "discreet-items",
-      "discreet-key",
-      "discreet-handover-file",
-      "discreet-regensburg",
-    ],
-  },
-  {
-    title: "Plan B",
-    description: "Akute Fälle, gekippte Pläne und Ersatzkapazität.",
-    ids: [
-      "damage-control",
-      "damage-plan-gekippt",
-      "damage-button-source",
-      "damage-whatsapp-preferred",
-      "damage-today",
-      "damage-tomorrow",
-      "damage-handover",
-      "damage-move",
-      "damage-cleaning",
-      "damage-clearance",
-      "damage-duesseldorf",
-      "plan-b-service",
-      "plan-b-high-risk",
-      "plan-b-with-offer",
-      "plan-b-with-photos",
-      "plan-b-phone",
-      "plan-b-transport",
-      "plan-b-cleaning",
-      "plan-b-handover",
-      "plan-b-duesseldorf",
-    ],
-  },
-  {
-    title: "Objekte & Partner",
-    description: "Hausverwaltungen, Makler, Empfehlungen und Objektfälle.",
-    ids: [
-      "cellar-trashroom",
-      "cellar-property-manager",
-      "cellar-weg",
-      "cellar-business",
-      "cellar-clearance-open",
-      "cellar-hazard-open",
-      "cellar-cleaning",
-      "realtor-landlord-link",
-      "object-case-realtor",
-      "object-case-landlord",
-      "object-case-owner",
-      "object-case-property-manager",
-      "object-case-viewing",
-      "object-case-handover",
-      "object-case-multiple",
-      "object-case-direct-source",
-      "referral-partnercode",
-      "referral-new-code",
-      "referral-with-person",
-      "referral-without-person",
-      "referral-bonus-review",
-      "referral-bonus-payout",
-      "referral-not-eligible",
-      "referral-regensburg",
-      "referral-duesseldorf",
-      "referral-b2b",
-      "property-manager",
-      "landlord",
-      "realtor",
-      "owner",
-      "urgent-handover",
-      "recurring-tenant",
-    ],
-  },
-  {
-    title: "Düsseldorf & Quellen",
-    description: "Reinigung in Düsseldorf, Ads, Maps und Auslöser.",
-    ids: [
-      "duesseldorf-b2b-cleaning",
-      "b2b-office",
-      "b2b-agency-studio",
-      "b2b-law-office",
-      "b2b-practice",
-      "b2b-staircase",
-      "b2b-recurring",
-      "b2b-one-time",
-      "b2b-with-area",
-      "b2b-with-photos",
-      "b2b-with-phone",
-      "b2b-recurring-potential",
-      "duesseldorf-apartment-cleaning",
-      "apartment-guest-turnover",
-      "apartment-final-cleaning",
-      "apartment-recurring",
-      "apartment-b2b",
-      "apartment-checkin-time",
-      "apartment-laundry",
-      "apartment-key",
-      "duesseldorf-disposal",
-      "conversion-trigger",
-      "object-system",
-      "duesseldorf-revenue",
-      "google-maps",
-      "google-ads",
-    ],
-  },
 ];
 
 const inquiryFilterById = Object.fromEntries(
@@ -4145,7 +3724,6 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
   const [activeTab, setActiveTab] = useState<WorkspaceTab>("overview");
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [backhaulOffers, setBackhaulOffers] = useState<BackhaulOffer[]>([]);
-  const [conversionSummary, setConversionSummary] = useState<ConversionEventSummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -4183,10 +3761,9 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
       setError(null);
 
       try {
-        const [bookingResponse, backhaulResponse, conversionResponse] = await Promise.all([
+        const [bookingResponse, backhaulResponse] = await Promise.all([
           fetch("/api/bookings"),
           fetch("/api/backhauls?all=1"),
-          fetch("/api/conversion-events"),
         ]);
 
         if (!bookingResponse.ok) {
@@ -4195,7 +3772,6 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
 
         const bookingData = await bookingResponse.json();
         const backhaulData = backhaulResponse.ok ? await backhaulResponse.json() : [];
-        const conversionData = conversionResponse.ok ? await conversionResponse.json() : null;
 
         if (!mounted) return;
 
@@ -4203,7 +3779,6 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
         setBackhaulOffers(
           Array.isArray(backhaulData) ? germanizeDeep(backhaulData) : [],
         );
-        setConversionSummary(conversionData);
       } catch (loadError: any) {
         if (mounted) setError(loadError?.message || "Dashboard konnte nicht geladen werden.");
       } finally {
@@ -4315,7 +3890,6 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
     return !decision || decision === "review";
   }).length;
   const abOpenCount = bookings.filter(hasOrderConfirmationOpen).length;
-  const activeBackhaulsCount = backhaulOffers.filter((offer) => offer.status === "active").length;
   const todayLeadCount = activeBookings.filter((booking) => {
     const created = new Date(booking.timestamp);
     const now = new Date();
@@ -4328,40 +3902,6 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
   const openLeadCount = activeBookings.filter((booking) => !isClosed(booking)).length;
   const acceptedLeadCount = activeBookings.filter((booking) => booking.status === "angenommen").length;
   const lostLeadCount = activeBookings.filter((booking) => ["abgelehnt", "storniert"].includes(booking.status)).length;
-  const duesseldorfCleaningCount = activeBookings.filter(isDuesseldorfCleaningLead).length;
-  const regensburgBavariaCount = activeBookings.filter(isRegensburgBavariaLead).length;
-  const highScoreLeadCount = activeBookings.filter(
-    (booking) => !isClosed(booking) && getLeadRevenueScore(booking).priority === "high",
-  ).length;
-  const conversionLeadCount = activeBookings.filter(
-    (booking) =>
-      !isClosed(booking) &&
-      (isOfferCheckLead(booking) ||
-        isCheaperAlternativeLead(booking) ||
-        isRedFlagScannerLead(booking) ||
-        isPlatformOrderLead(booking) ||
-        isPlanBServiceLead(booking) ||
-        isDamageControlLead(booking) ||
-        isReferralPartnercodeLead(booking)),
-  ).length;
-  const objectSystemLeadCount = activeBookings.filter(
-    (booking) =>
-      !isClosed(booking) &&
-      (isTenantTurnoverLead(booking) ||
-        isRentalReadyLead(booking) ||
-        isPropertyReadyLead(booking) ||
-        isEstateClearanceLead(booking) ||
-        isHandoverFileLead(booking) ||
-        isRealtorLandlordLinkLead(booking) ||
-        isCellarTrashroomLead(booking)),
-  ).length;
-  const duesseldorfRevenueLeadCount = activeBookings.filter(
-    (booking) =>
-      !isClosed(booking) &&
-      (isDuesseldorfB2BCleaningLead(booking) ||
-        isDuesseldorfApartmentCleaningLead(booking) ||
-        isDuesseldorfDisposalLead(booking)),
-  ).length;
 
   const priorityTasks = useMemo<PriorityTask[]>(() => {
     const tasks: PriorityTask[] = [];
@@ -4420,23 +3960,8 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
       .slice(0, 2)
       .forEach((booking) => pushBooking(booking, "Nachfassen", "Kundenkontakt setzen", "follow-up"));
 
-    backhaulOffers
-      .filter((offer) => offer.status === "active")
-      .slice(0, 1)
-      .forEach((offer) => {
-        if (tasks.length < 5) {
-          tasks.push({
-            id: `backhaul-${offer.id}`,
-            customer: offer.title,
-            reason: "Rückfahrt aktiv",
-            nextStep: "Route und freie Kapazität prüfen",
-            tab: "return-trips",
-          });
-        }
-      });
-
     return tasks.slice(0, 5);
-  }, [backhaulOffers, bookings, followUpBookings, priceReviewBookings]);
+  }, [bookings, followUpBookings, priceReviewBookings]);
 
   const selectedPriceBooking =
     priceReviewBookings.find((booking) => booking.id === selectedPriceBookingId) ||
@@ -4665,18 +4190,10 @@ export default function DashboardClient({ dict }: DashboardClientProps) {
                 priceReviewOpenCount={priceReviewOpenCount}
                 abOpenCount={abOpenCount}
                 followUpCount={followUpBookings.length}
-                activeBackhaulsCount={activeBackhaulsCount}
                 todayLeadCount={todayLeadCount}
                 openLeadCount={openLeadCount}
                 acceptedLeadCount={acceptedLeadCount}
                 lostLeadCount={lostLeadCount}
-                duesseldorfCleaningCount={duesseldorfCleaningCount}
-                regensburgBavariaCount={regensburgBavariaCount}
-                highScoreLeadCount={highScoreLeadCount}
-                conversionLeadCount={conversionLeadCount}
-                objectSystemLeadCount={objectSystemLeadCount}
-                duesseldorfRevenueLeadCount={duesseldorfRevenueLeadCount}
-                conversionSummary={conversionSummary}
                 priorityTasks={priorityTasks}
                 onOpenTask={(task) => {
                   if (task.booking) {
@@ -4931,18 +4448,10 @@ function OverviewWorkspace({
   priceReviewOpenCount,
   abOpenCount,
   followUpCount,
-  activeBackhaulsCount,
   todayLeadCount,
   openLeadCount,
   acceptedLeadCount,
   lostLeadCount,
-  duesseldorfCleaningCount,
-  regensburgBavariaCount,
-  highScoreLeadCount,
-  conversionLeadCount,
-  objectSystemLeadCount,
-  duesseldorfRevenueLeadCount,
-  conversionSummary,
   priorityTasks,
   onOpenTask,
   onShortcut,
@@ -4952,18 +4461,10 @@ function OverviewWorkspace({
   priceReviewOpenCount: number;
   abOpenCount: number;
   followUpCount: number;
-  activeBackhaulsCount: number;
   todayLeadCount: number;
   openLeadCount: number;
   acceptedLeadCount: number;
   lostLeadCount: number;
-  duesseldorfCleaningCount: number;
-  regensburgBavariaCount: number;
-  highScoreLeadCount: number;
-  conversionLeadCount: number;
-  objectSystemLeadCount: number;
-  duesseldorfRevenueLeadCount: number;
-  conversionSummary: ConversionEventSummary | null;
   priorityTasks: PriorityTask[];
   onOpenTask: (task: PriorityTask) => void;
   onShortcut: (tab: WorkspaceTab, filter?: InquiryFilter) => void;
@@ -5046,60 +4547,6 @@ function OverviewWorkspace({
     },
   ];
 
-  const revenueLanes: Array<{
-    label: string;
-    value: number;
-    text: string;
-    filter: InquiryFilter;
-    tone: string;
-  }> = [
-    {
-      label: "High-Score-Leads",
-      value: highScoreLeadCount,
-      text: "Kaufnahe Vorgänge mit Telefon, Termin, Fotos, Quelle oder starkem Service-Intent.",
-      filter: "high-score",
-      tone: "border-emerald-200 bg-emerald-50 text-emerald-900",
-    },
-    {
-      label: "Conversion-Trigger",
-      value: conversionLeadCount,
-      text: "Angebotscheck, Red-Flag, Plattform, Plan B, Schadensbegrenzung oder Empfehlung.",
-      filter: "conversion-trigger",
-      tone: "border-blue-200 bg-blue-50 text-blue-900",
-    },
-    {
-      label: "Objekt-System",
-      value: objectSystemLeadCount,
-      text: "Mieterwechsel, Übergabeakte, Immobilie verkaufsbereit, Nachlass oder Objektfall.",
-      filter: "object-system",
-      tone: "border-amber-200 bg-amber-50 text-amber-950",
-    },
-    {
-      label: "Düsseldorf Umsatz",
-      value: duesseldorfRevenueLeadCount,
-      text: "B2B-Reinigung, Apartment-Reinigung oder Entsorgung ohne Umzug-Signal.",
-      filter: "duesseldorf-revenue",
-      tone: "border-cyan-200 bg-cyan-50 text-cyan-950",
-    },
-  ];
-  const conversionMetrics = [
-    { label: "Klicks 7 Tage", value: conversionSummary?.total ?? 0, hint: "Alle erfassten Kontakt- und Anfrageaktionen." },
-    { label: "Letzte 24h", value: conversionSummary?.last24h ?? 0, hint: "Frische Kontaktabsicht im Tagesfenster." },
-    { label: "Heisse Klicks", value: conversionSummary?.hot ?? 0, hint: "Als hot oder critical klassifiziert." },
-    { label: "Zugeordnet", value: conversionSummary?.linkedBookings ?? 0, hint: "Journeys, die zu einem Vorgang gehoeren." },
-    { label: "Anfragequote", value: `${conversionSummary?.conversionRate ?? 0}%`, hint: "Zuordnung von Klick-Journeys zu Vorgängen." },
-    { label: "Heiss offen", value: conversionSummary?.unlinkedHot ?? 0, hint: "Kaufnahe Klicks ohne verknuepfte Anfrage." },
-    { label: "Direktkontakt", value: conversionSummary?.directContact ?? 0, hint: "Telefon und WhatsApp statt nur Navigation." },
-    { label: "Formularstart", value: conversionSummary?.bookingStarts ?? 0, hint: "Buchung oder Formular als naechster Schritt." },
-  ];
-  const conversionChannels = conversionSummary?.topChannels?.length
-    ? conversionSummary.topChannels
-    : [{ label: "Noch keine Daten", value: 0 }];
-  const sourcePerformance = conversionSummary?.sourcePerformance?.length
-    ? conversionSummary.sourcePerformance
-    : [{ label: "Noch keine Daten", value: 0, linked: 0, hot: 0, unlinkedHot: 0, conversionRate: 0 }];
-  const openHotEvents = conversionSummary?.openHotEvents?.length ? conversionSummary.openHotEvents : [];
-
   return (
     <section>
       <PageHeader
@@ -5121,7 +4568,7 @@ function OverviewWorkspace({
         ))}
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard
           icon={Inbox}
           label="Neue Anfragen"
@@ -5154,24 +4601,14 @@ function OverviewWorkspace({
           tone="orange"
           onClick={() => onShortcut("follow-up")}
         />
-        <KpiCard
-          icon={Truck}
-          label="Rückfahrten aktiv"
-          hint="Freie Kapazitäten und Routen prüfen."
-          value={activeBackhaulsCount}
-          tone="emerald"
-          onClick={() => onShortcut("return-trips")}
-        />
       </div>
 
-      <div className="mt-5 grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+      <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         {[
           { label: "Heute neu", value: todayLeadCount, hint: "Frische Leads im Tagesfenster." },
           { label: "Offen gesamt", value: openLeadCount, hint: "Noch nicht abgeschlossen." },
           { label: "Angenommen", value: acceptedLeadCount, hint: "Gewonnene Vorgänge." },
           { label: "Verloren", value: lostLeadCount, hint: "Abgelehnt oder storniert." },
-          { label: "Düsseldorf", value: duesseldorfCleaningCount, hint: "Nur Reinigung isoliert." },
-          { label: "Regensburg/Bayern", value: regensburgBavariaCount, hint: "Kernregion und Einsatzgebiet." },
         ].map((item) => (
           <div
             key={item.label}
@@ -5186,119 +4623,6 @@ function OverviewWorkspace({
             <p className="mt-1 text-xs leading-5 text-slate-500">{item.hint}</p>
           </div>
         ))}
-      </div>
-
-      <div className="mt-5">
-        <Panel
-          title="Revenue-Radar"
-          subtitle="Die wichtigsten Kundengeneratoren aus den neuen FLOXANT-Flows."
-        >
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {revenueLanes.map((lane) => (
-              <button
-                key={lane.label}
-                type="button"
-                onClick={() => onShortcut("inquiries", lane.filter)}
-                className={cn(
-                  "rounded-2xl border p-4 text-left shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-950/10",
-                  lane.tone,
-                )}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] opacity-75">
-                    {lane.label}
-                  </p>
-                  <span className="rounded-full bg-white/70 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em]">
-                    Öffnen
-                  </span>
-                </div>
-                <p className="mt-3 text-3xl font-black tracking-[-0.04em]">
-                  {loading ? "..." : lane.value}
-                </p>
-                <p className="mt-2 text-sm leading-6 opacity-80">{lane.text}</p>
-              </button>
-            ))}
-          </div>
-        </Panel>
-      </div>
-
-      <div className="mt-5">
-        <Panel
-          title="Kontakt-Signale"
-          subtitle="Welche Klicks wirklich Richtung Anfrage, WhatsApp oder Telefon gehen."
-        >
-          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-            {conversionMetrics.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
-                <p className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-500">{item.label}</p>
-                <p className="mt-2 text-3xl font-black tracking-[-0.04em] text-slate-950">
-                  {loading ? "..." : item.value}
-                </p>
-                <p className="mt-2 text-xs leading-5 text-slate-500">{item.hint}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-3 grid gap-3 xl:grid-cols-3">
-            <div className="rounded-2xl border border-blue-100 bg-blue-50/80 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-blue-700">Top-Kanaele</p>
-              <div className="mt-3 grid gap-2">
-                {conversionChannels.map((item) => (
-                  <div key={item.label} className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-700">
-                    <span>{item.label}</span>
-                    <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-blue-700">
-                      {item.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-emerald-700">Quellen-Performance</p>
-              <div className="mt-3 grid gap-2">
-                {sourcePerformance.map((item) => (
-                  <div key={item.label} className="rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-700">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="truncate">{item.label}</span>
-                      <span className="rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-emerald-700">
-                        {item.conversionRate}%
-                      </span>
-                    </div>
-                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
-                      {item.value} Klicks · {item.linked} zugeordnet · {item.unlinkedHot} heiss offen
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-orange-100 bg-orange-50/80 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.14em] text-orange-700">Heisse Klicks offen</p>
-              <div className="mt-3 grid gap-2">
-                {openHotEvents.length ? (
-                  openHotEvents.map((item, index) => (
-                    <div key={`${item.created_at || "event"}-${index}`} className="rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-700">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="truncate">{item.channel || item.event_name || "Kontakt"}</span>
-                        <span className="rounded-full bg-orange-50 px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-orange-700">
-                          {item.score || 0}
-                        </span>
-                      </div>
-                      <p className="mt-1 truncate text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
-                        {(item.source || "unknown")} · {formatDateTime(item.created_at || "")}
-                      </p>
-                    </div>
-                  ))
-                ) : (
-                  <div className="rounded-xl bg-white px-3 py-3 text-sm font-bold text-slate-500">
-                    Keine offenen heissen Klicks im Zeitraum.
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </Panel>
       </div>
 
       <div className="mt-5">
@@ -5496,63 +4820,6 @@ function InquiriesWorkspace({
   const hasActiveFilter = inquiryFilter !== "all";
   const hasActiveLimit = hasActiveSearch || hasActiveFilter;
   const priorityFilters = priorityInquiryFilterIds.map((id) => inquiryFilterById[id]).filter(Boolean);
-  const isPriorityFilterActive = priorityInquiryFilterIds.includes(inquiryFilter);
-  const activeFilterLabel = inquiryFilterById[inquiryFilter]?.label || "Alle";
-  const triageCards: Array<{
-    id: InquiryFilter;
-    label: string;
-    text: string;
-    tone: string;
-  }> = [
-    {
-      id: "new",
-      label: "Neu",
-      text: "Frisch eingegangene Anfragen zuerst prüfen.",
-      tone: "border-blue-100 bg-blue-50 text-blue-900",
-    },
-    {
-      id: "with-phone",
-      label: "Telefon da",
-      text: "Sofort anrufen oder WhatsApp öffnen.",
-      tone: "border-sky-100 bg-sky-50 text-sky-900",
-    },
-    {
-      id: "with-photos",
-      label: "Fotos da",
-      text: "Umfang schneller prüfen und Preisrahmen ableiten.",
-      tone: "border-emerald-100 bg-emerald-50 text-emerald-900",
-    },
-    {
-      id: "needs-info",
-      label: "Angaben fehlen",
-      text: "Erst Kontakt, Ort, Umfang oder Termin nachfragen.",
-      tone: "border-amber-100 bg-amber-50 text-amber-900",
-    },
-    {
-      id: "budget",
-      label: "Budget vorhanden",
-      text: "Preisrahmen mit Aufwand und Risiko abgleichen.",
-      tone: "border-emerald-100 bg-emerald-50 text-emerald-900",
-    },
-    {
-      id: "b2b-cleaning",
-      label: "B2B-Reinigung",
-      text: "Objekt, Fläche, Intervall und Ansprechpartner klären.",
-      tone: "border-cyan-100 bg-cyan-50 text-cyan-950",
-    },
-    {
-      id: "duesseldorf-cleaning",
-      label: "Düsseldorf",
-      text: "Separat prüfen: nur Reinigung, keine Umzug-Zuordnung.",
-      tone: "border-teal-100 bg-teal-50 text-teal-950",
-    },
-    {
-      id: "regensburg-umzug",
-      label: "Regensburg Umzug",
-      text: "High-Intent-Leads aus Kernregion priorisieren.",
-      tone: "border-indigo-100 bg-indigo-50 text-indigo-950",
-    },
-  ];
 
   return (
     <section>
@@ -5562,34 +4829,6 @@ function InquiriesWorkspace({
       />
 
       <div className="rounded-[1.65rem] border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/5">
-        <div className="mb-4 grid gap-3 md:grid-cols-4 2xl:grid-cols-8">
-          {triageCards.map((item) => {
-            const active = inquiryFilter === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setInquiryFilter(item.id)}
-                data-event="select_dashboard_filter"
-                data-filter={item.id}
-                className={cn(
-                  "min-h-[7.6rem] rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 hover:shadow-md hover:shadow-slate-950/5",
-                  item.tone,
-                  active ? "ring-2 ring-blue-300" : "",
-                )}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-sm font-black">{item.label}</span>
-                  <span className="rounded-full bg-white/80 px-2 py-1 text-xs font-black">
-                    {filterCounts[item.id] || 0}
-                  </span>
-                </div>
-                <p className="mt-2 text-xs leading-5 opacity-80">{item.text}</p>
-              </button>
-            );
-          })}
-        </div>
-
         <div className="grid gap-3 xl:grid-cols-[minmax(280px,420px)_1fr] xl:items-start">
           <div className="relative w-full xl:max-w-md">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -5639,63 +4878,6 @@ function InquiriesWorkspace({
               ))}
             </div>
 
-            <details
-              className={cn(
-                "group mt-3 rounded-2xl border bg-slate-50/80",
-                !isPriorityFilterActive && hasActiveFilter ? "border-blue-200 ring-2 ring-blue-100" : "border-slate-200",
-              )}
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-black text-slate-900 outline-none transition marker:hidden hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500">
-                <span>Spezialfilter</span>
-                <span className="flex items-center gap-2 text-xs font-bold text-slate-500">
-                  {!isPriorityFilterActive && hasActiveFilter ? activeFilterLabel : "nach Bereich öffnen"}
-                  <ArrowRight className="h-4 w-4 transition group-open:rotate-90" />
-                </span>
-              </summary>
-              <div className="grid max-h-[38rem] gap-3 overflow-y-auto border-t border-slate-200 p-3 lg:grid-cols-2 2xl:grid-cols-3">
-                {inquiryFilterGroups.map((group) => (
-                  <section key={group.title} className="rounded-2xl border border-slate-200 bg-white p-3">
-                    <div className="mb-3">
-                      <h3 className="text-xs font-black uppercase tracking-[0.12em] text-slate-950">{group.title}</h3>
-                      <p className="mt-1 text-xs leading-5 text-slate-500">{group.description}</p>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.ids.map((id) => {
-                        const filter = inquiryFilterById[id];
-                        if (!filter) return null;
-                        const count = filterCounts[id] || 0;
-                        return (
-                          <button
-                            key={filter.id}
-                            type="button"
-                            onClick={() => setInquiryFilter(filter.id)}
-                            data-event="select_dashboard_filter"
-                            data-filter={filter.id}
-                            className={cn(
-                              "inline-flex min-h-8 items-center gap-1.5 rounded-full border px-2.5 text-[11px] font-bold transition",
-                              inquiryFilter === filter.id
-                                ? "border-blue-600 bg-blue-600 text-white"
-                                : "border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700",
-                            )}
-                          >
-                            <span>{filter.label}</span>
-                            <span
-                              className={cn(
-                                "rounded-full px-1.5 py-0.5 text-[10px]",
-                                inquiryFilter === filter.id ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500",
-                              )}
-                            >
-                              {count}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </section>
-                ))}
-              </div>
-            </details>
-
             <label className="mt-3 block sm:hidden">
               <span className="sr-only">Filter wählen</span>
               <select
@@ -5703,7 +4885,7 @@ function InquiriesWorkspace({
                 onChange={(event) => setInquiryFilter(event.target.value as InquiryFilter)}
                 className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-blue-300"
               >
-                {inquiryFilters.map((filter) => (
+                {priorityFilters.map((filter) => (
                   <option key={filter.id} value={filter.id}>
                     {filter.label} ({filterCounts[filter.id] || 0})
                   </option>
@@ -6346,12 +5528,12 @@ function DocumentStatusTable({
             <div className="flex flex-wrap gap-2">
               {doc ? (
                 <a
-                  href={`/api/pdf/${booking.id}?documentId=${doc.id}`}
+                  href={`/api/pdf/${booking.id}?documentId=${doc.id}&download=1`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex h-9 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-xs font-bold text-slate-700 transition hover:bg-slate-50"
                 >
-                  Anzeigen
+                  PDF herunterladen
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               ) : null}
@@ -7472,12 +6654,12 @@ function DocumentsDetail({
                   <div className="flex flex-wrap gap-2">
                     {doc ? (
                       <a
-                        href={`/api/pdf/${booking.id}?documentId=${doc.id}`}
+                        href={`/api/pdf/${booking.id}?documentId=${doc.id}&download=1`}
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex h-9 items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-bold text-slate-700"
                       >
-                        Anzeigen
+                        PDF herunterladen
                       </a>
                     ) : (
                       <button

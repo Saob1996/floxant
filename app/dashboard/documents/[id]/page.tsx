@@ -129,13 +129,13 @@ export default function DocumentWorkbenchPage() {
 
   return (
    <a
-    href={`/api/pdf/${booking.id}?documentId=${doc.id}`}
+    href={`/api/pdf/${booking.id}?documentId=${doc.id}&download=1`}
     target="_blank"
     className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-400 hover:text-blue-300"
     rel="noreferrer"
    >
     <Download className="h-3.5 w-3.5" />
-    {doc.number}
+    PDF herunterladen · {doc.number}
    </a>
   );
  }

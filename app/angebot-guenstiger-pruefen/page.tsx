@@ -482,11 +482,11 @@ const localRadiusLinks = [
 ];
 
 const safeBoundaries = [
-  "keine Preisgarantie und keine Aussage, dass FLOXANT immer billiger ist",
-  "keine rechtliche Bewertung eines bestehenden Vertrags",
-  "keine Diffamierung anderer Firmen oder Plattformen",
-  "keine Aufforderung, bestehende Vereinbarungen zu brechen",
-  "Düsseldorf bleibt Reinigung; Entsorgung nur auf eigener vorhandener Seite, keine Umzug-Positionierung",
+  "Wir prüfen Ihr vorhandenes Angebot ehrlich und nachvollziehbar, ohne pauschales Billiger-Versprechen.",
+  "Sie bekommen eine praktische zweite Einschätzung zu Umfang, Termin, Fotos, Zugang und Preisrahmen.",
+  "Der Vergleich bleibt respektvoll: Wir machen andere Anbieter nicht schlecht.",
+  "Bestehende Vereinbarungen bleiben Ihre Entscheidung; wir zeigen nur, welche Alternative nach Prüfung möglich ist.",
+  "Für Düsseldorf bearbeiten wir Reinigung und passende Entsorgungsanfragen. Umzüge betreuen wir dort nicht.",
 ];
 
 const siteUrl = "https://www.floxant.de";
@@ -1114,7 +1114,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 Upload und eine kurze Beschreibung reichen für die erste Prüfung.
               </p>
               <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-white p-4">
-                <p className="text-sm font-black text-slate-950">Saubere Grenzen</p>
+                <p className="text-sm font-black text-slate-950">Fair geprüft, klar erklärt</p>
                 <ul className="mt-3 grid gap-2 text-sm leading-6 text-slate-600">
                   {safeBoundaries.map((item) => (
                     <li key={item} className="flex gap-2">

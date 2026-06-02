@@ -542,9 +542,9 @@ export function DocumentSystemClient() {
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
             Speichern
            </button>
-           <a href={`/api/pdf/${selected.bookingId}?documentId=${selected.document.id}`} target="_blank" rel="noreferrer" className="action-secondary">
+           <a href={`/api/pdf/${selected.bookingId}?documentId=${selected.document.id}&download=1`} target="_blank" rel="noreferrer" className="action-secondary">
             <Download className="h-4 w-4" />
-            PDF
+            PDF herunterladen
            </a>
            <button type="button" onClick={() => window.print()} className="action-secondary">
             <Printer className="h-4 w-4" />

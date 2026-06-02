@@ -7,13 +7,13 @@ import { Document, Page, StyleSheet, Text, View, renderToStream } from "@react-p
 import { authOptions } from "@/lib/auth";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import {
- floxantDocumentSettings,
  formatDateDE,
  formatMoney,
+ getDocumentBusinessSettings,
  getDocumentTitle,
  normalizeDocument,
- validateDocument,
 } from "@/lib/documents/document-core";
+import type { FloxantDocumentSettings } from "@/lib/documents/document-core";
 import type { FloxDocument } from "@/lib/types/intake";
 
 const styles = StyleSheet.create({
@@ -268,26 +268,34 @@ function servicePeriod(doc: FloxDocument) {
  return "";
 }
 
-function BusinessInfo() {
+function sanitizeFileName(value: string) {
+ return String(value || "floxant-dokument")
+  .replace(/[^\w.-]+/g, "-")
+  .replace(/-+/g, "-")
+  .replace(/^-|-$/g, "")
+  .slice(0, 90);
+}
+
+function BusinessInfo({ business }: { business: FloxantDocumentSettings }) {
  return (
   <View style={styles.businessBox}>
    <Text style={{ fontWeight: 800 }}>FLOXANT</Text>
-   <Text>{floxantDocumentSettings.legalName}</Text>
-   <Text>{floxantDocumentSettings.streetAddress}</Text>
+   <Text>{business.legalName}</Text>
+   <Text>{business.streetAddress}</Text>
    <Text>
-    {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+    {business.postalCode} {business.city}
    </Text>
-   <Text>{floxantDocumentSettings.country}</Text>
-   <Text style={{ marginTop: 5 }}>{floxantDocumentSettings.phone}</Text>
-   <Text>{floxantDocumentSettings.email}</Text>
-   <Text>{floxantDocumentSettings.website.replace(/^https?:\/\//, "")}</Text>
+   <Text>{business.country}</Text>
+   <Text style={{ marginTop: 5 }}>{business.phone}</Text>
+   <Text>{business.email}</Text>
+   <Text>{business.website.replace(/^https?:\/\//, "")}</Text>
   </View>
  );
 }
 
 function FloxPdfDocument({ document }: { document: FloxDocument }) {
  const doc = normalizeDocument(document);
- const warnings = validateDocument(doc);
+ const business = getDocumentBusinessSettings(doc);
  const title = doc.editableData.title || getDocumentTitle(doc.type);
  const period = servicePeriod(doc);
  const dueDate = doc.editableData.paymentDueDate || doc.editableData.dueDate;
@@ -311,8 +319,8 @@ function FloxPdfDocument({ document }: { document: FloxDocument }) {
       <Text style={styles.brand}>FLOXANT</Text>
       <Text style={styles.brandLine}>Umzug · Reinigung · Entrümpelung · Entsorgung</Text>
       <Text style={styles.senderLine}>
-       {floxantDocumentSettings.legalName} · {floxantDocumentSettings.streetAddress} ·{" "}
-       {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+       {business.legalName} · {business.streetAddress} ·{" "}
+       {business.postalCode} {business.city}
       </Text>
       <View style={styles.recipient}>
        {recipientLines(doc).map((line) => (
@@ -320,7 +328,7 @@ function FloxPdfDocument({ document }: { document: FloxDocument }) {
        ))}
       </View>
      </View>
-     <BusinessInfo />
+     <BusinessInfo business={business} />
     </View>
 
     <View style={styles.titleRow}>
@@ -435,32 +443,26 @@ function FloxPdfDocument({ document }: { document: FloxDocument }) {
      </View>
     ) : null}
 
-    {warnings.some((warning) => warning.level === "critical") && doc.status === "draft" ? (
-     <View style={styles.warningBox} wrap={false}>
-      <Text>Interne Entwurfswarnung: {warnings.map((warning) => warning.message).join(" ")}</Text>
-     </View>
-    ) : null}
-
     <View style={styles.footer} fixed>
      <View style={styles.footerCol}>
       <Text style={styles.footerTitle}>FLOXANT</Text>
-      <Text>{floxantDocumentSettings.legalName}</Text>
-      <Text>{floxantDocumentSettings.streetAddress}</Text>
+      <Text>{business.legalName}</Text>
+      <Text>{business.streetAddress}</Text>
       <Text>
-       {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+       {business.postalCode} {business.city}
       </Text>
      </View>
      <View style={styles.footerCol}>
       <Text style={styles.footerTitle}>Kontakt</Text>
-      <Text>{floxantDocumentSettings.phone}</Text>
-      <Text>{floxantDocumentSettings.email}</Text>
-      <Text>{floxantDocumentSettings.website}</Text>
+      <Text>{business.phone}</Text>
+      <Text>{business.email}</Text>
+      <Text>{business.website}</Text>
      </View>
      <View style={styles.footerCol}>
       <Text style={styles.footerTitle}>Steuer / Zahlung</Text>
-      <Text>{floxantDocumentSettings.vatId ? `USt-ID: ${floxantDocumentSettings.vatId}` : "USt-ID: nicht konfiguriert"}</Text>
-      <Text>{floxantDocumentSettings.taxNumber ? `St.-Nr.: ${floxantDocumentSettings.taxNumber}` : "Steuernummer: nicht konfiguriert"}</Text>
-      <Text>{floxantDocumentSettings.iban ? `IBAN: ${floxantDocumentSettings.iban}` : "IBAN: nicht konfiguriert"}</Text>
+      <Text>{business.vatId ? `USt-ID: ${business.vatId}` : "USt-ID: nicht konfiguriert"}</Text>
+      <Text>{business.taxNumber ? `St.-Nr.: ${business.taxNumber}` : "Steuernummer: nicht konfiguriert"}</Text>
+      <Text>{business.iban ? `IBAN: ${business.iban}` : "IBAN: nicht konfiguriert"}</Text>
      </View>
     </View>
 
@@ -514,11 +516,13 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
 
  const normalized = normalizeDocument(targetDoc);
  const stream = await renderToStream(<FloxPdfDocument document={normalized} />);
+ const fileName = sanitizeFileName(`FLOXANT-${normalized.number || "dokument"}.pdf`);
+ const disposition = searchParams.get("view") === "1" ? "inline" : "attachment";
 
  return new NextResponse(stream as unknown as BodyInit, {
   headers: {
    "Content-Type": "application/pdf",
-   "Content-Disposition": `inline; filename="${normalized.number || "floxant-dokument"}.pdf"`,
+   "Content-Disposition": `${disposition}; filename="${fileName}"`,
    "Cache-Control": "private, no-store",
   },
  });

@@ -136,7 +136,7 @@ export function PublicHeader({
               <span className="block text-sm font-black tracking-[0.18em]" translate="no">
                 FLOXANT
               </span>
-              <span className="mt-1 hidden max-w-[23rem] truncate text-[12px] font-semibold text-slate-600 sm:block">
+              <span className="mt-1 hidden max-w-[23rem] truncate text-[11px] font-semibold text-slate-600 sm:block">
                 Umzug, Reinigung und Entrümpelung – direkt richtig anfragen.
               </span>
               <span className="mt-1 block truncate text-[11px] font-bold text-slate-600 sm:hidden">

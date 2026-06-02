@@ -280,10 +280,11 @@ export function DocumentManager({ bookingId, documents, onUpdate }: DocumentMana
            <div className="mx-1 hidden h-6 w-px bg-slate-200 md:block" />
 
            <a
-            href={`/api/pdf/${bookingId}?documentId=${doc.id}`}
+            href={`/api/pdf/${bookingId}?documentId=${doc.id}&download=1`}
             target="_blank"
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-500 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
             title="PDF herunterladen"
+            aria-label={`${doc.number} als PDF herunterladen`}
             rel="noreferrer"
            >
             <Download className="h-3.5 w-3.5" />

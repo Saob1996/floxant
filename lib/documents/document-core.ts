@@ -1,4 +1,4 @@
-import { company } from "@/lib/company";
+import { company, duesseldorfCompany } from "@/lib/company";
 import type {
  DocumentCustomerSnapshot,
  DocumentLineItem,
@@ -93,15 +93,84 @@ export const floxantDocumentSettings = {
  bankName: process.env.FLOXANT_BANK_NAME || "",
  iban: process.env.FLOXANT_IBAN || "",
  bic: process.env.FLOXANT_BIC || "",
- taxMode: process.env.FLOXANT_TAX_MODE || "standard_vat",
+  taxMode: process.env.FLOXANT_TAX_MODE || "standard_vat",
 };
 
-export function getMissingBusinessData() {
+export type FloxantDocumentSettings = typeof floxantDocumentSettings;
+
+function normalizeRegionSignal(value: unknown) {
+ return String(value || "")
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .toLowerCase();
+}
+
+export function isDuesseldorfDocument(doc?: Partial<FloxDocument>) {
+ const config = doc?.snapshot?.configuration || {};
+ const service = doc?.snapshot?.service;
+ const customer = doc?.editableData?.customer;
+ const selectedServices = Array.isArray(config.selectedServices)
+  ? config.selectedServices.join(" ")
+  : config.selectedServices;
+ const serviceSignals = (doc?.editableData?.services || [])
+  .map((item) => [item.title, item.description, item.location, item.serviceType, item.notes].filter(Boolean).join(" "))
+  .join(" ");
+
+ const signal = normalizeRegionSignal(
+  [
+   service?.type,
+   service?.source,
+   service?.entryPoint,
+   service?.presetFromUrl,
+   service?.regionPreset,
+   config.cityOrZip,
+   config.objectLocation,
+   config.location,
+   config.address,
+   config.addressOptionalInternal,
+   config.fromAddress,
+   config.toAddress,
+   config.startLocation,
+   config.targetAddress,
+   config.sourcePage,
+   config.serviceSlug,
+   config.requestedService,
+   config.serviceLabel,
+   selectedServices,
+   doc?.editableData?.title,
+   doc?.editableData?.performanceLocation,
+   doc?.editableData?.notesText,
+   customer?.street,
+   customer?.city,
+   serviceSignals,
+  ]
+   .filter(Boolean)
+   .join(" "),
+ );
+
+ return signal.includes("dusseldorf") || signal.includes("duesseldorf") || signal.includes("40213");
+}
+
+export function getDocumentBusinessSettings(doc?: Partial<FloxDocument>): FloxantDocumentSettings {
+ if (!isDuesseldorfDocument(doc)) return floxantDocumentSettings;
+
+ return {
+  ...floxantDocumentSettings,
+  streetAddress: duesseldorfCompany.streetAddress,
+  postalCode: duesseldorfCompany.postalCode,
+  city: duesseldorfCompany.city,
+  country: duesseldorfCompany.country,
+  email: duesseldorfCompany.email || floxantDocumentSettings.email,
+  website: duesseldorfCompany.url || company.url,
+ };
+}
+
+export function getMissingBusinessData(settings: FloxantDocumentSettings = floxantDocumentSettings) {
  const missing: string[] = [];
- if (!floxantDocumentSettings.streetAddress) missing.push("FLOXANT-Adresse");
- if (!floxantDocumentSettings.vatId && !floxantDocumentSettings.taxNumber) missing.push("Steuerangaben");
- if (!floxantDocumentSettings.bankName) missing.push("Bankname");
- if (!floxantDocumentSettings.iban) missing.push("IBAN");
+ if (!settings.streetAddress) missing.push("FLOXANT-Adresse");
+ if (!settings.vatId && !settings.taxNumber) missing.push("Steuerangaben");
+ if (!settings.bankName) missing.push("Bankname");
+ if (!settings.iban) missing.push("IBAN");
  return missing;
 }
 
@@ -508,7 +577,7 @@ export function validateDocument(doc: FloxDocument) {
  const normalized = normalizeDocument(doc);
  const warnings: Array<{ level: "critical" | "warning"; message: string }> = [];
  const customer = normalized.editableData.customer;
- const settingsMissing = getMissingBusinessData();
+ const settingsMissing = getMissingBusinessData(getDocumentBusinessSettings(normalized));
 
  if (!normalized.number) warnings.push({ level: "critical", message: "Dokumentnummer fehlt." });
  if (!normalized.editableData.documentDate) warnings.push({ level: "critical", message: "Dokumentdatum fehlt." });

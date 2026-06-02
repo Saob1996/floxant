@@ -24,6 +24,7 @@ const TRACKED_LINK_SELECTOR = [
  "a[href*='whatsapp']",
  "a[href*='vielleicht-guenstiger']",
  "a[href*='angebot-guenstiger']",
+ "a[href*='angebot-vergleichen']",
  "a[href*='angebotscheck']",
  "a[href*='anliegen=rueckruf']",
  "a[href*='rueckruf']",
@@ -161,7 +162,7 @@ function inferGoogleAdsConversion(payload: Record<string, unknown>): GoogleAdsCo
  if (event.includes("form success") || event.includes("submit form success") || event.includes("booking success")) return "form_success";
  if (href.startsWith("tel") || channel === "phone" || event.includes("phone") || event.includes("call")) return "phone";
  if (href.includes("wa me") || href.includes("whatsapp") || channel === "whatsapp" || event.includes("whatsapp")) return "whatsapp";
- if (combined.includes("angebot") || combined.includes("offer check") || combined.includes("vielleicht guenstiger") || combined.includes("angebotscheck")) return "offer_check";
+ if (combined.includes("angebot") || combined.includes("offer check") || combined.includes("offer comparison") || combined.includes("vielleicht guenstiger") || combined.includes("angebotscheck")) return "offer_check";
  if (combined.includes("ruckruf") || combined.includes("callback")) return "callback";
  if (event.includes("start booking") || event.includes("booking") || event.includes("anfrage")) return "booking_start";
  return null;
@@ -196,7 +197,7 @@ function eventNameFor(element: HTMLElement, href: string) {
  if (href.startsWith("tel:")) return "click_phone";
  if (href.startsWith("mailto:")) return "click_email";
  if (href.includes("wa.me") || href.includes("whatsapp")) return "click_whatsapp";
- if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebotscheck")) return "click_offer_check";
+ if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebot-vergleichen") || href.includes("angebotscheck")) return "click_offer_check";
  if (href.includes("rueckruf") || href.includes("anliegen=rueckruf")) return "click_callback_request";
  return "click_link";
 }
@@ -211,7 +212,7 @@ function getHighIntentPageSignal(pathname: string) {
  if (path === "/rechner") {
   return { path, source: "calculator_page_dwell", label: "Rechner aktiv gelesen", priority: "hot", intent: "price_orientation" };
  }
- if (["/angebot-guenstiger-pruefen", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
+ if (["/angebot-guenstiger-pruefen", "/angebot-vergleichen-duesseldorf", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
   return { path, source: "offer_check_page_dwell", label: "Angebotsprüfung aktiv gelesen", priority: "hot", intent: "offer_check" };
  }
  if (["/plan-b-service", "/schadensbegrenzung"].includes(path)) {

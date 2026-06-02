@@ -792,8 +792,8 @@ export function SpecialtyPageLayout({
           <FloxantSymbolLayer variant="moving" density="soft" mode="hero" className="opacity-65" />
         </div>
 
-        <div className="flox-shell relative grid gap-8 xl:grid-cols-[1.04fr_0.96fr] xl:items-center">
-          <div className="flox-panel px-7 py-8 sm:px-9 sm:py-9 xl:px-10 xl:py-10">
+        <div className="flox-shell relative grid min-w-0 gap-8 xl:grid-cols-[1.04fr_0.96fr] xl:items-center">
+          <div className="flox-panel min-w-0 px-7 py-8 sm:px-9 sm:py-9 xl:px-10 xl:py-10">
             <div className="flex flex-wrap items-center gap-3">
               {heroBadge ? (
                 <div className="flox-kicker">
@@ -811,7 +811,7 @@ export function SpecialtyPageLayout({
               </Link>
             </div>
 
-            <h1 className="mt-8 max-w-[14ch] flox-title-xl flox-display-hero text-slate-950">
+            <h1 lang="de" className="mt-8 max-w-full min-w-0 break-words hyphens-auto flox-title-xl flox-display-hero text-slate-950 [overflow-wrap:anywhere] md:max-w-[15ch] xl:max-w-[14ch]">
               {germanText(applyCity(heroTitle, city, neighborhoods), heroTitle)}
               {highlightWord ? (
                 <span className="mt-2 block text-blue-600">{germanText(highlightWord, highlightWord)}</span>

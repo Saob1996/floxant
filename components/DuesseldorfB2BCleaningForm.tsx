@@ -27,17 +27,21 @@ const objectTypeOptions = [
   "Agentur",
   "Studio",
   "Kanzlei",
-  "Praxisfläche nach Absprache",
+  "Arztpraxis",
+  "Praxisfläche",
   "Treppenhaus",
+  "Hausverwaltung / Objekt",
   "Gewerbefläche",
   "Sonstiges",
 ];
 const cleaningTypeOptions = [
+  "Gewerbereinigung",
   "Büroreinigung",
-  "regelmäßige Reinigung",
+  "Praxisreinigung",
   "Unterhaltsreinigung",
-  "Grundreinigung",
   "Treppenhausreinigung",
+  "regelmäßige Reinigung",
+  "Grundreinigung",
   "Sanitär/Küche/Böden",
   "einmalige Reinigung",
   "Reinigung nach Auszug/Objektwechsel",
@@ -61,10 +65,10 @@ const timeWindowOptions = [
 ];
 
 const quickObjects = [
-  { value: "Büro", title: "Büro", text: "Kleine Teams, klare Fläche, einfache Frequenz.", Icon: Building2 },
-  { value: "Agentur", title: "Agentur/Studio", text: "Arbeitsräume, Meetingflächen und Pausenbereiche.", Icon: Clock3 },
-  { value: "Kanzlei", title: "Kanzlei", text: "Ruhige Zeitfenster und seriöse Objektlogik.", Icon: CalendarClock },
-  { value: "Treppenhaus", title: "Treppenhaus", text: "Gemeinschaftsflächen nach Zugang und Turnus.", Icon: CheckCircle2 },
+  { value: "Büro", title: "Büro", text: "Arbeitsplätze, Meetingräume, Küche und Sanitär.", Icon: Building2 },
+  { value: "Arztpraxis", title: "Praxis", text: "Empfang, Wartebereich und Behandlungsräume.", Icon: Clock3 },
+  { value: "Kanzlei", title: "Kanzlei", text: "Diskrete Zeitfenster und gepflegte Besprechungsräume.", Icon: CalendarClock },
+  { value: "Treppenhaus", title: "Treppenhaus", text: "Eingang, Etagen, Geländer und Gemeinschaftsflächen.", Icon: CheckCircle2 },
 ];
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -82,9 +86,17 @@ function validatePhotos(files: File[]) {
   return "";
 }
 
-export function DuesseldorfB2BCleaningForm() {
+type DuesseldorfB2BCleaningFormProps = {
+  context?: "bueroreinigung" | "gewerbereinigung";
+};
+
+export function DuesseldorfB2BCleaningForm({
+  context = "bueroreinigung",
+}: DuesseldorfB2BCleaningFormProps = {}) {
   const [objectType, setObjectType] = useState("Büro");
-  const [cleaningType, setCleaningType] = useState("Büroreinigung");
+  const [cleaningType, setCleaningType] = useState(
+    context === "gewerbereinigung" ? "Gewerbereinigung" : "Büroreinigung",
+  );
   const [frequency, setFrequency] = useState("wöchentlich");
   const [timeWindow, setTimeWindow] = useState("nach Feierabend");
   const [smallDisposal, setSmallDisposal] = useState("nein");
@@ -96,10 +108,25 @@ export function DuesseldorfB2BCleaningForm() {
   const whatsappText = useMemo(
     () =>
       encodeURIComponent(
-        "Hallo FLOXANT, ich möchte eine Firmenreinigung in Düsseldorf anfragen. Es geht um [Büro/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Häufigkeit, Zeitfenster und Fotos kann ich senden.",
+        "Hallo FLOXANT, ich möchte eine Gewerbereinigung in Düsseldorf anfragen. Es geht um [Büro/Praxis/Kanzlei/Gewerbeobjekt/Treppenhaus]. Fläche, Häufigkeit, Zeitfenster und Fotos kann ich senden.",
       ),
     [],
   );
+
+  const formCopy = {
+    eyebrow: context === "gewerbereinigung" ? "Gewerbereinigung anfragen" : "Reinigung für Unternehmen anfragen",
+    title:
+      context === "gewerbereinigung"
+        ? "Objekt kurz beschreiben und unverbindliche Rückmeldung erhalten"
+        : "Reinigung kurz einordnen und Rückmeldung erhalten",
+    intro:
+      "Teilen Sie uns kurz mit, um welches Objekt es geht, wann gereinigt werden soll und wie wir Sie erreichen. Fotos sind hilfreich, aber nicht zwingend.",
+    success:
+      context === "gewerbereinigung"
+        ? "Danke. Ihre Anfrage zur Gewerbereinigung in Düsseldorf ist eingegangen. FLOXANT prüft Objektart, Fläche, Turnus, Zeitfenster und gewünschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen."
+        : "Danke. Ihre Anfrage für Reinigung in Düsseldorf ist eingegangen. FLOXANT prüft Objektart, Fläche, Turnus, Zeitfenster und gewünschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen.",
+    submit: context === "gewerbereinigung" ? "Unverbindliches Angebot erhalten" : "Kostenlose Anfrage senden",
+  };
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -154,10 +181,10 @@ export function DuesseldorfB2BCleaningForm() {
       return;
     }
 
-    formData.set("type", "duesseldorf_b2b_cleaning");
-    formData.set("lead_type", "duesseldorf_b2b_reinigung");
+    formData.set("type", context === "gewerbereinigung" ? "duesseldorf_gewerbereinigung" : "duesseldorf_b2b_cleaning");
+    formData.set("lead_type", context === "gewerbereinigung" ? "duesseldorf_gewerbereinigung" : "duesseldorf_b2b_reinigung");
     formData.set("leadSubtype", "b2b");
-    formData.set("service", "b2b_reinigung");
+    formData.set("service", context === "gewerbereinigung" ? "gewerbereinigung" : "b2b_reinigung");
     formData.set("region", "duesseldorf");
     formData.set("objectType", objectType);
     formData.set("cleaningType", cleaningType);
@@ -167,10 +194,23 @@ export function DuesseldorfB2BCleaningForm() {
     formData.set("disposalSmallItemsRequested", smallDisposal);
     formData.set("regularInvoiceRequested", regularInvoice);
     formData.set("timestamp", new Date().toISOString());
-    formData.set("leadSource", "duesseldorf_b2b_cleaning");
+    formData.set(
+      "leadSource",
+      context === "gewerbereinigung" ? "duesseldorf_gewerbereinigung" : "duesseldorf_b2b_cleaning",
+    );
     formData.set("sourceComponent", "duesseldorf_b2b_cleaning_form");
-    formData.set("sourceContext", "duesseldorf_b2b_reinigung");
-    formData.set("landingPage", typeof window === "undefined" ? "/duesseldorf/bueroreinigung" : `${window.location.pathname}${window.location.search}`);
+    formData.set(
+      "sourceContext",
+      context === "gewerbereinigung" ? "duesseldorf_gewerbereinigung_landingpage" : "duesseldorf_b2b_reinigung",
+    );
+    formData.set(
+      "landingPage",
+      typeof window === "undefined"
+        ? context === "gewerbereinigung"
+          ? "/duesseldorf/gewerbereinigung"
+          : "/duesseldorf/bueroreinigung"
+        : `${window.location.pathname}${window.location.search}`,
+    );
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);
     formData.set("utmSource", getQueryValue("utm_source"));
     formData.set("utmMedium", getQueryValue("utm_medium"));
@@ -195,7 +235,7 @@ export function DuesseldorfB2BCleaningForm() {
 
       form.reset();
       setObjectType("Büro");
-      setCleaningType("Büroreinigung");
+      setCleaningType(context === "gewerbereinigung" ? "Gewerbereinigung" : "Büroreinigung");
       setFrequency("wöchentlich");
       setTimeWindow("nach Feierabend");
       setSmallDisposal("nein");
@@ -213,10 +253,10 @@ export function DuesseldorfB2BCleaningForm() {
   return (
     <div id="b2b-reinigung-form" className="rounded-[0.95rem] border border-cyan-200 bg-white p-5 shadow-2xl shadow-cyan-950/10 sm:p-7">
       <div>
-        <div className="text-xs font-black uppercase tracking-normal text-cyan-700">Firmenreinigung anfragen</div>
-        <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">Firmenreinigung mit Fläche, Häufigkeit und Zeitfenster anfragen</h2>
+        <div className="text-xs font-black uppercase tracking-normal text-cyan-700">{formCopy.eyebrow}</div>
+        <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">{formCopy.title}</h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          FLOXANT fragt bewusst nach Objektart, Fläche, Frequenz, Zeitfenster und Zugang. So bleibt die Anfrage für kleine Unternehmen in Düsseldorf prüfbar.
+          {formCopy.intro}
         </p>
       </div>
 
@@ -229,7 +269,7 @@ export function DuesseldorfB2BCleaningForm() {
               key={item.title}
               type="button"
               onClick={() => setObjectType(item.value)}
-              data-event="select_b2b_object_type"
+              data-event={context === "gewerbereinigung" ? "select_gewerbereinigung_object_type" : "select_b2b_object_type"}
               data-object-type={item.value}
               className={`rounded-[0.85rem] border p-4 text-left transition hover:-translate-y-0.5 ${
                 active ? "border-cyan-700 bg-cyan-50 shadow-lg shadow-cyan-950/10" : "border-slate-200 bg-white hover:border-cyan-200"
@@ -243,13 +283,17 @@ export function DuesseldorfB2BCleaningForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_b2b_cleaning_lead">
+      <form
+        className="mt-7 grid gap-4"
+        onSubmit={handleSubmit}
+        data-event={context === "gewerbereinigung" ? "start_gewerbereinigung_duesseldorf_lead" : "start_b2b_cleaning_lead"}
+      >
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Ansprechpartner*">
             <input name="name" className="duesseldorf-input" placeholder="Name" autoComplete="name" />
           </Field>
           <Field label="Firma / Organisation*">
-            <input name="companyName" className="duesseldorf-input" placeholder="z. B. Agentur, Kanzlei, Studio" autoComplete="organization" />
+            <input name="companyName" className="duesseldorf-input" placeholder="z. B. Firma, Praxis, Kanzlei, Verwaltung" autoComplete="organization" />
           </Field>
           <Field label="Rolle*">
             <select name="roleType" className="duesseldorf-input">
@@ -259,7 +303,7 @@ export function DuesseldorfB2BCleaningForm() {
             </select>
           </Field>
           <Field label="Objektort / PLZ in Düsseldorf*">
-            <input name="objectLocation" className="duesseldorf-input" placeholder="z. B. 40213, Flingern, Bilk" />
+            <input name="objectLocation" className="duesseldorf-input" placeholder="z. B. 40213, Pempelfort, Bilk" />
           </Field>
           <Field label="Telefon">
             <input name="phone" type="tel" className="duesseldorf-input" placeholder={PHONE_DISPLAY} autoComplete="tel" />
@@ -292,7 +336,7 @@ export function DuesseldorfB2BCleaningForm() {
               name="recurringFrequency"
               value={frequency}
               onChange={(event) => setFrequency(event.target.value)}
-              data-event="select_b2b_frequency"
+              data-event={context === "gewerbereinigung" ? "select_gewerbereinigung_frequency" : "select_b2b_frequency"}
               className="duesseldorf-input"
             >
               {frequencyOptions.map((item) => (
@@ -308,7 +352,7 @@ export function DuesseldorfB2BCleaningForm() {
               name="timeWindow"
               value={timeWindow}
               onChange={(event) => setTimeWindow(event.target.value)}
-              data-event="select_b2b_time_window"
+              data-event={context === "gewerbereinigung" ? "select_gewerbereinigung_time_window" : "select_b2b_time_window"}
               className="duesseldorf-input"
             >
               {timeWindowOptions.map((item) => (
@@ -357,40 +401,41 @@ export function DuesseldorfB2BCleaningForm() {
         <div className="rounded-[0.9rem] border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-sky-50/70 p-4 shadow-sm shadow-slate-950/5">
           <UploadDropCard
             title="Fotos optional"
-            description="Räume, Böden, Sanitärbereiche, Küche oder Zugang."
-            helper="Keine Zugangscodes oder personenbezogenen Daten in Dateinamen verwenden."
+            description="Räume, Böden, Sanitärbereiche, Küche, Eingang oder Treppenhaus."
+            helper="JPG, PNG oder WebP. Zugangscodes bitte nicht im Formular senden."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
-            dataEvent="upload_b2b_cleaning_photos"
+            dataEvent={context === "gewerbereinigung" ? "upload_gewerbereinigung_duesseldorf_photos" : "upload_b2b_cleaning_photos"}
+            tone="emerald"
             onFilesChange={setPhotos}
           />
         </div>
 
         <Field label="Kurze Beschreibung*">
-          <textarea name="message" rows={4} className="duesseldorf-input min-h-[132px] py-3" placeholder="Was soll regelmäßig oder einmalig gereinigt werden? Welche Flächen, Frequenz, Zeitfenster oder offenen Punkte gibt es?" />
+          <textarea name="message" rows={4} className="duesseldorf-input min-h-[132px] py-3" placeholder="Was soll gereinigt werden? Welche Flächen, Uhrzeiten oder Besonderheiten sollen wir kennen?" />
         </Field>
 
         <div className="grid gap-3 md:grid-cols-2">
           <label className="flex items-start gap-3 rounded-[0.8rem] border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="callbackWanted" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
-            Rückruf zur Objekt- und Frequenzklärung gewünscht.
+          Rückruf zur kurzen Abstimmung gewünscht.
           </label>
           <label className="flex items-start gap-3 rounded-[0.8rem] border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
             <input name="whatsappPreferred" type="checkbox" value="true" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
-            WhatsApp für Rückfragen bevorzugt.
+          WhatsApp für Fotos oder Rückfragen bevorzugt.
           </label>
         </div>
 
         <label className="flex items-start gap-3 rounded-[0.8rem] border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-cyan-700" />
-          Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist klar: Umfang, feste Zeiten und regelmäßige Reinigung werden nach Objekt, Zugang, Kapazität und Absprache geprüft.
+          Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet. Mir ist klar: Umfang, feste Zeiten und regelmäßige Reinigung werden nach Objekt, Zugang und Absprache geprüft.
         </label>
 
         {errorMessage ? <div className="rounded-[0.8rem] border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
         {submitState === "success" ? (
           <div className="rounded-[0.8rem] border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-bold leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage für Firmenreinigung in Düsseldorf ist eingegangen. FLOXANT prüft Objektart, Fläche, Häufigkeit, Zeitfenster und gewünschte Leistungen. Wenn Angaben fehlen, melden wir uns mit Rückfragen.
+            {formCopy.success}
           </div>
         ) : null}
 
@@ -398,22 +443,37 @@ export function DuesseldorfB2BCleaningForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_b2b_cleaning_lead"
+            data-event={context === "gewerbereinigung" ? "submit_gewerbereinigung_duesseldorf_lead" : "submit_b2b_cleaning_lead"}
             className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] px-6 text-sm font-black transition"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            Firmenreinigung anfragen
+            {formCopy.submit}
           </button>
-          <a href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`} data-event="click_b2b_cleaning_whatsapp" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100">
+          <a
+            href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
+            data-event={context === "gewerbereinigung" ? "click_gewerbereinigung_duesseldorf_whatsapp_form" : "click_b2b_cleaning_whatsapp"}
+            data-contact-channel="whatsapp"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
+          >
             <MessageCircle className="h-4 w-4" />
             WhatsApp
           </a>
-          <a href={`mailto:${EMAIL}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-slate-200 bg-white px-5 text-sm font-black text-slate-800 transition hover:bg-slate-50">
+          <a
+            href={`mailto:${EMAIL}`}
+            data-event={context === "gewerbereinigung" ? "click_gewerbereinigung_duesseldorf_email_form" : "click_b2b_cleaning_email"}
+            data-contact-channel="email"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-slate-200 bg-white px-5 text-sm font-black text-slate-800 transition hover:bg-slate-50"
+          >
             <Mail className="h-4 w-4" />
             E-Mail
           </a>
         </div>
-        <a href={`tel:${PHONE_TEL}`} data-event="click_b2b_cleaning_phone" className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-cyan-800">
+        <a
+          href={`tel:${PHONE_TEL}`}
+          data-event={context === "gewerbereinigung" ? "click_gewerbereinigung_duesseldorf_phone_form" : "click_b2b_cleaning_phone"}
+          data-contact-channel="phone"
+          className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-cyan-800"
+        >
           <Phone className="h-4 w-4" />
           Telefonisch nachfragen: {PHONE_DISPLAY}
         </a>

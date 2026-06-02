@@ -53,6 +53,8 @@ export function DuesseldorfStickyActions() {
             href={requestHref}
             className="flox-mobile-action flox-mobile-action-primary"
             aria-label="Düsseldorfer Anfrage starten"
+            data-event="click_duesseldorf_sticky_request"
+            data-contact-channel="form"
           >
             <ClipboardCheck />
             <span className="flox-mobile-action-copy">
@@ -68,6 +70,8 @@ export function DuesseldorfStickyActions() {
             rel="noopener noreferrer"
             className="flox-mobile-action flox-mobile-action-whatsapp"
             aria-label="FLOXANT Düsseldorf per WhatsApp anfragen"
+            data-event="click_duesseldorf_sticky_whatsapp"
+            data-contact-channel="whatsapp"
           >
             <WhatsAppMark className="flox-whatsapp-mark" />
             <span className="flox-mobile-action-copy">
@@ -79,6 +83,8 @@ export function DuesseldorfStickyActions() {
             href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
             className="flox-mobile-action flox-mobile-action-light"
             aria-label="FLOXANT Düsseldorf anrufen"
+            data-event="click_duesseldorf_sticky_phone"
+            data-contact-channel="phone"
           >
             <Phone />
             <span className="flox-mobile-action-copy">
@@ -90,6 +96,8 @@ export function DuesseldorfStickyActions() {
             href="/duesseldorf/vielleicht-guenstiger"
             className="flox-mobile-action flox-mobile-action-offer"
             aria-label="Bestehendes Reinigungsangebot einer anderen Firma prüfen lassen"
+            data-event="click_duesseldorf_sticky_offer_check"
+            data-contact-channel="offer_check"
           >
             <FileSearch />
             <span className="flox-mobile-action-copy">
@@ -101,6 +109,8 @@ export function DuesseldorfStickyActions() {
             href="/duesseldorf/reinigung#preisvorschlag"
             className="flox-mobile-action flox-mobile-action-dark"
             aria-label="Düsseldorfer Reinigungskosten oder Budget prüfen lassen"
+            data-event="click_duesseldorf_sticky_budget_check"
+            data-contact-channel="budget_check"
           >
             <BadgeEuro />
             <span className="flox-mobile-action-copy">

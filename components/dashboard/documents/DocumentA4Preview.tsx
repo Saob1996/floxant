@@ -1,9 +1,9 @@
 "use client";
 
 import {
- floxantDocumentSettings,
  formatDateDE,
  formatMoney,
+ getDocumentBusinessSettings,
  getDocumentTitle,
  getMissingBusinessData,
  normalizeDocument,
@@ -41,7 +41,8 @@ function periodLabel(document: FloxDocument) {
 export function DocumentA4Preview({ document, compact = false }: DocumentA4PreviewProps) {
  const doc = normalizeDocument(document);
  const warnings = validateDocument(doc);
- const missingBusinessData = getMissingBusinessData();
+ const business = getDocumentBusinessSettings(doc);
+ const missingBusinessData = getMissingBusinessData(business);
  const customer = doc.editableData.customer;
  const title = doc.editableData.title || getDocumentTitle(doc.type);
  const dueDate = doc.editableData.paymentDueDate || doc.editableData.dueDate;
@@ -122,8 +123,8 @@ export function DocumentA4Preview({ document, compact = false }: DocumentA4Previ
        Umzug · Reinigung · Entrümpelung · Entsorgung
       </p>
       <p className="mt-8 max-w-[75mm] border-b border-slate-300 pb-1 text-[9px] text-slate-500">
-       {floxantDocumentSettings.legalName} · {floxantDocumentSettings.streetAddress} ·{" "}
-       {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+       {business.legalName} · {business.streetAddress} ·{" "}
+       {business.postalCode} {business.city}
       </p>
       <div className="mt-3 min-h-[34mm] text-sm leading-6">
        {recipientLines(doc).map((line) => (
@@ -134,15 +135,15 @@ export function DocumentA4Preview({ document, compact = false }: DocumentA4Previ
 
      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs leading-6">
       <p className="font-black uppercase tracking-[0.16em] text-slate-500">FLOXANT</p>
-      <p className="mt-2 font-bold">{floxantDocumentSettings.legalName}</p>
-      <p>{floxantDocumentSettings.streetAddress}</p>
+      <p className="mt-2 font-bold">{business.legalName}</p>
+      <p>{business.streetAddress}</p>
       <p>
-       {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+       {business.postalCode} {business.city}
       </p>
-      <p>{floxantDocumentSettings.country}</p>
-      <p className="mt-2">{floxantDocumentSettings.phone}</p>
-      <p>{floxantDocumentSettings.email}</p>
-      <p>{floxantDocumentSettings.website.replace(/^https?:\/\//, "")}</p>
+      <p>{business.country}</p>
+      <p className="mt-2">{business.phone}</p>
+      <p>{business.email}</p>
+      <p>{business.website.replace(/^https?:\/\//, "")}</p>
      </div>
     </header>
 
@@ -283,23 +284,23 @@ export function DocumentA4Preview({ document, compact = false }: DocumentA4Previ
      <div className="grid gap-4 sm:grid-cols-3">
       <div>
        <p className="font-black text-slate-700">FLOXANT</p>
-       <p>{floxantDocumentSettings.legalName}</p>
-       <p>{floxantDocumentSettings.streetAddress}</p>
+       <p>{business.legalName}</p>
+       <p>{business.streetAddress}</p>
        <p>
-        {floxantDocumentSettings.postalCode} {floxantDocumentSettings.city}
+        {business.postalCode} {business.city}
        </p>
       </div>
       <div>
        <p className="font-black text-slate-700">Kontakt</p>
-       <p>{floxantDocumentSettings.phone}</p>
-       <p>{floxantDocumentSettings.email}</p>
-       <p>{floxantDocumentSettings.website}</p>
+       <p>{business.phone}</p>
+       <p>{business.email}</p>
+       <p>{business.website}</p>
       </div>
       <div>
        <p className="font-black text-slate-700">Steuer / Zahlung</p>
-       <p>{floxantDocumentSettings.vatId ? `USt-ID: ${floxantDocumentSettings.vatId}` : "USt-ID: nicht konfiguriert"}</p>
-       <p>{floxantDocumentSettings.taxNumber ? `St.-Nr.: ${floxantDocumentSettings.taxNumber}` : "Steuernummer: nicht konfiguriert"}</p>
-       <p>{floxantDocumentSettings.iban ? `IBAN: ${floxantDocumentSettings.iban}` : "IBAN: nicht konfiguriert"}</p>
+       <p>{business.vatId ? `USt-ID: ${business.vatId}` : "USt-ID: nicht konfiguriert"}</p>
+       <p>{business.taxNumber ? `St.-Nr.: ${business.taxNumber}` : "Steuernummer: nicht konfiguriert"}</p>
+       <p>{business.iban ? `IBAN: ${business.iban}` : "IBAN: nicht konfiguriert"}</p>
       </div>
      </div>
      {customer?.email || customer?.phone ? (
@@ -323,4 +324,3 @@ export function DocumentA4Preview({ document, compact = false }: DocumentA4Previ
   </div>
  );
 }
-
