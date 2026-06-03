@@ -6,6 +6,7 @@ import { ArrowRight, MapPin } from "lucide-react";
 
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import {
+  floxantCategoryDescriptions,
   floxantCategoryLabels,
   floxantRegions,
   getServicesByRegionAndCategory,
@@ -69,8 +70,13 @@ export function FloxServicesMegaMenu({
 
                   return (
                     <details key={`${regionId}-${category}`} className="rounded-lg bg-slate-50" open={category === "normal"}>
-                      <summary className="cursor-pointer list-none px-3 py-3 text-xs font-black uppercase tracking-normal text-slate-600">
-                        {floxantCategoryLabels[category]}
+                      <summary className="cursor-pointer list-none px-3 py-3">
+                        <span className="block text-xs font-black uppercase tracking-normal text-slate-700">
+                          {floxantCategoryLabels[category]}
+                        </span>
+                        <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+                          {floxantCategoryDescriptions[category]}
+                        </span>
                       </summary>
                       <div className="grid gap-2 px-2 pb-2">
                         {services.map((service) => (
@@ -153,9 +159,14 @@ export function FloxServicesMegaMenu({
           return (
             <section key={category}>
               <div className="mb-2 flex items-center justify-between gap-3">
-                <h3 className="text-xs font-black uppercase tracking-normal text-slate-500">
-                  {floxantCategoryLabels[category]}
-                </h3>
+                <div>
+                  <h3 className="text-xs font-black uppercase tracking-normal text-slate-700">
+                    {floxantCategoryLabels[category]}
+                  </h3>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                    {floxantCategoryDescriptions[category]}
+                  </p>
+                </div>
               </div>
               <div className="grid gap-2 lg:grid-cols-3">
                 {services.map((service) => (

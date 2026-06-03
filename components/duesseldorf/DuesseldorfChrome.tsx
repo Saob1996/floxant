@@ -5,14 +5,16 @@ import { ArrowRight, MapPin, MessageCircle, Phone } from "lucide-react";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { duesseldorfCompany } from "@/lib/company";
 import {
-  floxantServices,
+  floxantCategoryDescriptions,
+  floxantCategoryLabels,
+  getServicesByRegionAndCategory,
+  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
+const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
+
 export function DuesseldorfChrome({ children }: { children: ReactNode }) {
-  const footerServices = floxantServices.filter(
-    (service) => service.region === "duesseldorf" && service.category !== "signature",
-  );
   const whatsappHref = buildWhatsAppHref(
     duesseldorfCompany.phoneRaw,
     [
@@ -79,15 +81,33 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
               Direkte Services
             </p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {footerServices.slice(0, 6).map((service) => (
-                <FloxServiceCard
-                  key={service.id}
-                  service={service}
-                  compact
-                  source="duesseldorf_footer"
-                />
-              ))}
+            <div className="mt-4 grid gap-4">
+              {categoryOrder.map((category) => {
+                const services = getServicesByRegionAndCategory("duesseldorf", category);
+                if (!services.length) return null;
+
+                return (
+                  <section key={category} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                    <h3 className="text-xs font-black uppercase tracking-normal text-slate-800">
+                      {floxantCategoryLabels[category]}
+                    </h3>
+                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                      {floxantCategoryDescriptions[category]}
+                    </p>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                      {services.slice(0, 4).map((service) => (
+                        <FloxServiceCard
+                          key={service.id}
+                          service={service}
+                          compact
+                          source={`duesseldorf_footer_${category}`}
+                          className="shadow-none"
+                        />
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -179,7 +179,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     }
 
     const composedMessage = [
-      "Google-Ads-Anfrage: Reinigungsangebot in Düsseldorf prüfen lassen.",
+      "Anfrage: Reinigungsangebot in Düsseldorf prüfen lassen.",
       companyName ? `Firma: ${companyName}` : "",
       cityOrZip ? `Ort: ${cityOrZip}` : "",
       requestedService ? `Leistung: ${requestedService}` : "",
@@ -255,7 +255,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
   return (
     <form
       id="angebot-pruefen"
-      className="grid scroll-mt-32 gap-5 rounded-lg border border-slate-200 bg-white p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6"
+      className="grid scroll-mt-32 gap-6 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6 lg:p-8"
       onSubmit={handleSubmit}
       data-event="form_submit"
       data-source="google_ads_offer_comparison_landingpage"
@@ -274,7 +274,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Name*
           <input name="name" autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Vorname Nachname" />
@@ -333,7 +333,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           }}
           onDragLeave={() => setDragActive(false)}
           onDrop={handleDrop}
-          className={`grid min-h-40 cursor-pointer place-items-center rounded-lg border border-dashed p-5 text-center transition focus:outline-none focus:ring-4 focus:ring-blue-100 ${
+          className={`grid min-h-44 cursor-pointer place-items-center rounded-lg border border-dashed p-5 text-center transition focus:outline-none focus:ring-4 focus:ring-blue-100 ${
             dragActive
               ? "border-blue-600 bg-blue-50"
               : "border-slate-300 bg-slate-50 hover:border-blue-500 hover:bg-white"

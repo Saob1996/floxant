@@ -7,14 +7,18 @@ import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { RegionSelector } from "@/components/RegionSelector";
 import { company } from "@/lib/company";
 import {
+  floxantCategoryDescriptions,
+  floxantCategoryLabels,
   floxantRegions,
-  getFeaturedServices,
+  getServicesByRegionAndCategory,
+  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
+const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -117,9 +121,6 @@ function JsonLd() {
 }
 
 export default function HomePage() {
-  const duesseldorfServices = getFeaturedServices("duesseldorf", 6);
-  const regensburgServices = getFeaturedServices("regensburg", 6);
-
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
@@ -221,8 +222,6 @@ export default function HomePage() {
           <div className="grid gap-6 lg:grid-cols-2">
             {(["duesseldorf", "regensburg"] as const).map((regionId) => {
               const region = floxantRegions[regionId];
-              const services =
-                regionId === "duesseldorf" ? duesseldorfServices : regensburgServices;
 
               return (
                 <section key={regionId} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
@@ -250,15 +249,47 @@ export default function HomePage() {
                     </Link>
                   </div>
 
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                    {services.map((service) => (
-                      <FloxServiceCard
-                        key={service.id}
-                        service={service}
-                        compact
-                        source={`homepage_${regionId}_preview`}
-                      />
-                    ))}
+                  <div className="mt-6 grid gap-4">
+                    {categoryOrder.map((category) => {
+                      const categoryServices = getServicesByRegionAndCategory(regionId, category);
+                      if (!categoryServices.length) return null;
+
+                      return (
+                        <div key={`${regionId}-${category}`} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                          <div className="mb-3">
+                            <h3 className="text-xs font-black uppercase tracking-normal text-slate-800">
+                              {floxantCategoryLabels[category]}
+                            </h3>
+                            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                              {floxantCategoryDescriptions[category]}
+                            </p>
+                          </div>
+                          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                            {categoryServices.slice(0, 3).map((service) => (
+                              <FloxServiceCard
+                                key={service.id}
+                                service={service}
+                                compact
+                                source={`homepage_${regionId}_${category}`}
+                              />
+                            ))}
+                          </div>
+                          {categoryServices.length > 3 ? (
+                            <Link
+                              href={region.href}
+                              data-event="region_select"
+                              data-region={regionId}
+                              data-category={category}
+                              data-source={`homepage_${regionId}_${category}_more`}
+                              className="mt-3 inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-800"
+                            >
+                              Weitere Services in {region.city} ansehen
+                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                            </Link>
+                          ) : null}
+                        </div>
+                      );
+                    })}
                   </div>
                 </section>
               );

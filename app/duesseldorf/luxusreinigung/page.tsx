@@ -192,7 +192,7 @@ export default function LuxusreinigungDuesseldorfPage() {
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.96)_0%,rgba(15,23,42,0.82)_54%,rgba(15,23,42,0.44)_100%)]" />
 
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-8 lg:grid-cols-[0.96fr_1.04fr] lg:px-10 lg:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 pb-14 pt-32 sm:px-8 sm:pt-36 lg:grid-cols-[0.96fr_1.04fr] lg:px-10 lg:pb-16 lg:pt-40">
           <div className="self-center">
             <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
               <Gem className="h-4 w-4" aria-hidden="true" />
@@ -227,7 +227,7 @@ export default function LuxusreinigungDuesseldorfPage() {
             </div>
           </div>
 
-          <div id="kontakt" className="scroll-mt-28">
+          <div id="kontakt" className="scroll-mt-32">
             <DuesseldorfB2BCleaningForm context="premium" />
           </div>
         </div>
@@ -348,4 +348,3 @@ export default function LuxusreinigungDuesseldorfPage() {
     </main>
   );
 }
-

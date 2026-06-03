@@ -5,12 +5,16 @@ import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { company, duesseldorfCompany } from "@/lib/company";
 import {
+  floxantCategoryDescriptions,
+  floxantCategoryLabels,
   floxantRegions,
-  getServicesByRegion,
+  getServicesByRegionAndCategory,
+  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const region = floxantRegions.duesseldorf;
+const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
@@ -29,8 +33,6 @@ export const metadata: Metadata = {
 };
 
 export default function DuesseldorfHubPage() {
-  const services = getServicesByRegion("duesseldorf");
-
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <section className="bg-slate-950 px-5 py-16 text-white sm:px-8 lg:px-10">
@@ -107,16 +109,51 @@ export default function DuesseldorfHubPage() {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Services
+              Services nach Bedarf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
               Wählen Sie den passenden Düsseldorfer Reinigungsservice.
             </h2>
           </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {services.map((service) => (
-              <FloxServiceCard key={service.id} service={service} source="duesseldorf_hub" />
-            ))}
+          <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
+            Reguläre Leistungen decken klassische Objektanfragen ab. FLOXANT Signature Extras helfen
+            bei mehr Abstimmung, Zugang oder Übergabe. Spezielle Einstiege sind für schnelle,
+            prüfbare Anfragen gedacht.
+          </p>
+
+          <div className="mt-8 grid gap-5">
+            {categoryOrder.map((category) => {
+              const services = getServicesByRegionAndCategory("duesseldorf", category);
+              if (!services.length) return null;
+
+              return (
+                <section key={category} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                  <div className="flex flex-col gap-3 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-normal text-blue-700">
+                        FLOXANT Düsseldorf
+                      </p>
+                      <h3 className="mt-1 text-2xl font-black tracking-normal text-slate-950">
+                        {floxantCategoryLabels[category]}
+                      </h3>
+                    </div>
+                    <p className="max-w-2xl text-sm font-semibold leading-7 text-slate-600">
+                      {floxantCategoryDescriptions[category]}
+                    </p>
+                  </div>
+
+                  <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {services.map((service) => (
+                      <FloxServiceCard
+                        key={service.id}
+                        service={service}
+                        source={`duesseldorf_hub_${category}`}
+                      />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
       </section>

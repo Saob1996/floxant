@@ -58,11 +58,11 @@ export const propertyOperationsPages = {
   "objekt-springer": {
     slug: "objekt-springer",
     path: "/objekt-springer",
-    serviceName: "Objekt-Springer",
-    shortName: "Objekt-Springer",
-    seoTitle: "Objekt-Springer Regensburg | Soforthilfe bei Ausfall",
+    serviceName: "Objektvertretung bei Ausfall",
+    shortName: "Objektvertretung",
+    seoTitle: "Objektvertretung Regensburg | Hilfe bei Ausfall & Übergabe",
     metaDescription:
-      "Objekt-Springer von FLOXANT: kurzfristige Hilfe, wenn im Objekt jemand ausfällt, ein Schlüssel fehlt oder vor Ort schnell etwas erledigt werden muss.",
+      "Objektvertretung von FLOXANT: kurzfristige Hilfe, wenn im Objekt jemand ausfällt, ein Schlüssel fehlt oder vor Ort schnell etwas erledigt werden muss.",
     keywords: [
       "Objekt Springer Regensburg",
       "kurzfristige Hilfe vor Ort",
@@ -78,10 +78,10 @@ export const propertyOperationsPages = {
         "Funkgerät, Schlüssel, Einsatzplan und Fahrzeug bereit für einen kurzfristigen Einsatz.",
     },
     hero: {
-      eyebrow: "Kurzfristige Hilfe vor Ort",
-      headline: "Wenn im Objekt plötzlich jemand fehlt, springt FLOXANT ein.",
+      eyebrow: "Kurzfristige Objektvertretung",
+      headline: "Wenn im Objekt plötzlich jemand fehlt, prüft FLOXANT den nächsten Schritt.",
       subheadline:
-        "Krankmeldung, ausgefallener Hausmeister, ungeklärte Übergabe oder kurzfristiger Engpass: Der Objekt-Springer übernimmt die Lage, bevor aus einem Ausfall ein sichtbares Problem wird.",
+        "Krankmeldung, ausgefallener Hausmeister, ungeklärte Übergabe oder kurzfristiger Engpass: FLOXANT sortiert die Lage, bevor aus einem Ausfall ein sichtbares Problem wird.",
       promise: "Sie melden den Engpass. Wir prüfen, wer hinfahren kann.",
       metrics: [
         { label: "Typischer Anlass", value: "Ausfall oder Engpass" },
@@ -117,7 +117,7 @@ export const propertyOperationsPages = {
     solution: {
       title: "FLOXANT übernimmt die Aufgabe, wenn sie nicht liegen bleiben darf.",
       intro:
-        "Der Objekt-Springer ist kein klassischer Reinigungsauftrag. Er ist gedacht für konkrete Aufgaben vor Ort, wenn Betrieb, Objekt oder Übergabe nicht warten können.",
+        "Die Objektvertretung ist kein klassischer Reinigungsauftrag. Sie ist gedacht für konkrete Aufgaben vor Ort, wenn Betrieb, Objekt oder Übergabe nicht warten können.",
       points: [
         {
           title: "Lage schnell sortieren",
@@ -153,7 +153,7 @@ export const propertyOperationsPages = {
     ],
     faq: [
       {
-        q: "Ist der Objekt-Springer eine Reinigungsfirma?",
+        q: "Ist die Objektvertretung eine Reinigungsfirma?",
         a: "Nicht im klassischen Sinn. FLOXANT übernimmt konkrete Aufgaben vor Ort, zu denen Reinigung gehören kann. Entscheidend ist der Engpass: Ausfall, Zugang, Kontrolle, Übergabe oder kurzfristige Unterstützung.",
       },
       {
@@ -851,7 +851,7 @@ export const propertyOperationsPages = {
         },
         {
           title: "Module kombinieren",
-          text: "Objekt-Springer, Leerstandsmanagement, Vor-Ort-Prüfung, Erledigungsservice und Reinigung können je nach Lage zusammenarbeiten.",
+          text: "Objektvertretung, Leerstandsmanagement, Vor-Ort-Prüfung, Erledigungsservice und Reinigung können je nach Lage zusammenarbeiten.",
         },
         {
           title: "Verantwortung sichtbar machen",
@@ -892,7 +892,7 @@ export const propertyOperationsPages = {
       },
       {
         q: "Kann man mit einem einzelnen Modul starten?",
-        a: "Ja. Viele starten mit Leerstandsmanagement, Objekt-Springer, Airbnb Turnover oder einer Human-API-Prüfung und erweitern später.",
+        a: "Ja. Viele starten mit Leerstandsmanagement, Objektvertretung, Gästewechsel-Service oder einer Vor-Ort-Prüfung und erweitern später.",
       },
     ],
     related: ["leerstandsmanagement", "objekt-springer", "human-api"],
