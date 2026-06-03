@@ -108,8 +108,8 @@ const heroProofItems = [
   },
   {
     Icon: ShieldCheck,
-    title: "Keine falschen Versprechen",
-    text: "Düsseldorf bleibt Reinigung und Entsorgung.",
+    title: "Klare Prüfung",
+    text: "Leistung, Umfang und Grenzen werden vor einer Zusage sauber eingeordnet.",
   },
 ] as const;
 
@@ -164,8 +164,8 @@ function buildDefaultFaqItems(serviceLabel: string, title: string) {
       a: "Ja. Fotos vom Zustand, Zugang, Boden, Küche, Bad, Nebenflächen oder Gewerbebereich helfen sehr. Die Anfrage bleibt unverbindlich, bis Umfang, Termin und Leistung bestätigt sind.",
     },
     {
-      q: "Bietet FLOXANT in Düsseldorf auch Umzüge an?",
-      a: "Nein. Düsseldorf ist bei FLOXANT bewusst auf Reinigung und Entsorgung ausgerichtet. Umzug, Transport und Büroumzug werden hier nicht als Düsseldorfer Leistung beworben.",
+      q: "Ist die Anfrage verbindlich?",
+      a: "Nein. Die Anfrage dient der ersten Prüfung. Verbindlich wird ein Auftrag erst, wenn Umfang, Termin, Zugang und Leistung abgestimmt sind.",
     },
   ];
 }
@@ -182,7 +182,7 @@ export function DuesseldorfServicePage({
   priceLogic = [],
   faqItems = [],
   relatedLinks = [],
-  boundaryText = "Düsseldorf ist bei FLOXANT klar für Reinigung und Entsorgung positioniert. Umzug, Transport und ähnliche Umzugsleistungen werden hier nicht beworben.",
+  boundaryText = "Düsseldorf ist bei FLOXANT klar für Reinigung, Entsorgung und objektbezogene Anfragen positioniert. Entscheidend sind Objektart, Ort, Umfang, Zugang und Zeitfenster.",
   serviceLabel = "Reinigung",
   customerIntentItems = [],
   requestFieldItems = [],
@@ -498,7 +498,7 @@ export function DuesseldorfServicePage({
             <p className="mt-4 text-sm leading-7 text-slate-700">
               Kunden kommen oft mit konkreten Fragen: Kosten, Fotos, Angebot, Stadtteil
               oder schneller Kontakt. Diese Einstiege führen direkt zur richtigen nächsten
-              Handlung, ohne die Düsseldorfer Seite mit Umzugsthemen zu vermischen.
+              Handlung für eine saubere Düsseldorfer Reinigungsanfrage.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-3">
@@ -654,8 +654,8 @@ export function DuesseldorfServicePage({
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
               Wenn Ort, Objektart, Fläche, Zustand, Fotos und Termin klar sind, können
-              wir den Auftrag besser einschätzen. Wichtig ist auch die Grenze: In
-              Düsseldorf prüfen wir Reinigung, nicht Umzug oder Transport.
+              wir den Auftrag besser einschätzen. Wichtig sind außerdem Turnus, Zugang,
+              Ansprechpartner und gewünschtes Zeitfenster.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2">
@@ -697,7 +697,7 @@ export function DuesseldorfServicePage({
             <p className="mt-4 text-sm leading-7 text-slate-200">
               Die Inhalte bleiben deutsch. Kurze Suchbegriffe in Englisch, Russisch,
               Chinesisch und Koreanisch helfen bei der Zuordnung, wenn Kunden nach
-              Reinigung in Düsseldorf suchen und keine Umzugsleistung meinen.
+              Reinigung in Düsseldorf suchen.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2">
@@ -788,17 +788,16 @@ export function DuesseldorfServicePage({
         <section className="grid gap-6 pt-8 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="overflow-hidden rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_18px_44px_rgba(15,23,42,0.07)] sm:p-7">
             <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
-              Düsseldorf klar getrennt
+              Düsseldorf konkret
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-              Eigener Standortfokus statt vermischter Stadtseite
+              Eigener Standortfokus statt austauschbarer Stadtseite
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Diese Seite ist für {serviceLabel} in Düsseldorf aufgebaut und bleibt bewusst
-              von Regensburg getrennt. Entscheidend sind Objektart, Stadtteil, Fläche,
-              gewünschte Häufigkeit, Zeitfenster, Zugang und Fotos. So entsteht keine
-              austauschbare Stadtseite, sondern eine Anfrage, die zur Düsseldorfer Adresse
-              und zum tatsächlichen Einsatzgebiet passt.
+              Diese Seite ist für {serviceLabel} in Düsseldorf aufgebaut. Entscheidend sind
+              Objektart, Stadtteil, Fläche, gewünschte Häufigkeit, Zeitfenster, Zugang und
+              Fotos. So entsteht keine austauschbare Stadtseite, sondern eine Anfrage, die
+              zur Düsseldorfer Adresse und zum tatsächlichen Einsatzgebiet passt.
             </p>
           </article>
 
@@ -916,10 +915,10 @@ export function DuesseldorfServicePage({
 
           <article className="overflow-hidden rounded-[0.95rem] border border-amber-200 bg-amber-50 p-6 sm:p-7">
             <div className="text-[11px] font-black uppercase tracking-normal text-amber-800">
-              Klare Abgrenzung
+              Klare Einordnung
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-              Düsseldorf bleibt eigenständig und getrennt von Regensburg
+              Düsseldorf bleibt konkret und nachvollziehbar
             </h2>
             <p className="mt-4 text-sm leading-7 text-amber-950">{boundaryText}</p>
             <div className="mt-5 rounded-[0.9rem] border border-amber-200 bg-white/80 px-4 py-4 text-sm leading-7 text-slate-700">
@@ -959,7 +958,8 @@ export function DuesseldorfServicePage({
               Direkt mit Düsseldorf-Bezug anfragen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
-              Nennen Sie Objektart, Düsseldorfer Stadtteil, Fläche, gewünschten Termin, Zugang und Fotos. So wird die Anfrage nicht mit Regensburg oder Umzugsthemen vermischt.
+              Nennen Sie Objektart, Düsseldorfer Stadtteil, Fläche, gewünschten Termin,
+              Zugang und Fotos. So kann FLOXANT die Reinigungsanfrage schnell und sachlich einordnen.
             </p>
             <div className="mt-5 grid gap-3">
               <a

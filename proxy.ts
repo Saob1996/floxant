@@ -28,6 +28,42 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
   "wohnungsaufloesung",
 ];
 
+const LEGACY_REGENSBURG_REDIRECTS: Record<string, string> = {
+  "/umzug-regensburg": "/regensburg/umzug",
+  "/entruempelung-regensburg": "/regensburg/entruempelung",
+  "/wohnungsaufloesung-regensburg": "/regensburg/haushaltsaufloesung",
+  "/umzug-reinigung-regensburg": "/regensburg/umzug-reinigung",
+  "/endreinigung-regensburg": "/regensburg/endreinigung",
+  "/schluesseluebergabe": "/regensburg/besenreine-uebergabe",
+
+  "/reinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/gewerbereinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/bueroreinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/praxisreinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/hotelreinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/fensterreinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/baureinigung-regensburg": "/regensburg/endreinigung",
+  "/teppichreinigung-regensburg": "/regensburg/endreinigung",
+  "/treppenhausreinigung-regensburg": "/regensburg/besenreine-uebergabe",
+  "/unterhaltsreinigung-regensburg": "/regensburg/uebergabereinigung",
+  "/grundreinigung-regensburg": "/regensburg/endreinigung",
+
+  "/blog/gewerbereinigung-regensburg-objekte-b2b": "/regensburg/uebergabereinigung",
+  "/blog/bueroreinigung-regensburg-angebot-einholen": "/regensburg/uebergabereinigung",
+  "/blog/hausverwaltung-treppenhausreinigung-regensburg": "/regensburg/besenreine-uebergabe",
+  "/blog/unterhaltsreinigung-regensburg-buero-praxis-hotel": "/regensburg/uebergabereinigung",
+  "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl": "/regensburg/uebergabereinigung",
+  "/blog/grosse-reinigungsauftraege-regensburg-buero-hotel-praxis": "/regensburg/uebergabereinigung",
+  "/blog/endreinigung-regensburg-checkliste": "/regensburg/endreinigung",
+  "/blog/umzug-mit-reinigung-regensburg": "/regensburg/umzug-reinigung",
+};
+
+const LEGACY_LOCAL_CLEANING_EXCEPTIONS = new Set([
+  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/reinigung-nach-veranstaltung",
+  "/reinigung-preis-rechner",
+]);
+
 function normalizeGermanPath(pathname: string) {
   let decodedPathname = pathname;
 
@@ -52,13 +88,28 @@ function stripLegacyLocale(pathname: string) {
 }
 
 function getPolicyPathname(pathname: string) {
-  return stripLegacyLocale(normalizeGermanPath(pathname)).toLowerCase();
+  const policyPathname = stripLegacyLocale(normalizeGermanPath(pathname)).toLowerCase();
+  return policyPathname.replace(/\/$/, "") || "/";
 }
 
 function isForbiddenDuesseldorfSignal(pathname: string) {
   if (!pathname.includes("duesseldorf")) return false;
 
   return DUESSELDORF_FORBIDDEN_SERVICE_TERMS.some((term) => pathname.includes(term));
+}
+
+function isLegacyLocalCleaningRoute(pathname: string) {
+  return (
+    /^\/reinigung-[a-z0-9-]+$/.test(pathname) &&
+    !pathname.includes("duesseldorf") &&
+    !LEGACY_LOCAL_CLEANING_EXCEPTIONS.has(pathname)
+  );
+}
+
+function redirectTo(req: NextRequest, destination: string) {
+  const url = req.nextUrl.clone();
+  url.pathname = destination;
+  return NextResponse.redirect(url, 308);
 }
 
 function rewriteGone(req: NextRequest, reason: string) {
@@ -87,6 +138,16 @@ export function proxy(req: NextRequest) {
 
   if (isForbiddenDuesseldorfSignal(policyPathname)) {
     return rewriteGone(req, "duesseldorf-forbidden-moving-signal");
+  }
+
+  const legacyRegensburgDestination = LEGACY_REGENSBURG_REDIRECTS[policyPathname];
+
+  if (legacyRegensburgDestination) {
+    return redirectTo(req, legacyRegensburgDestination);
+  }
+
+  if (isLegacyLocalCleaningRoute(policyPathname)) {
+    return redirectTo(req, "/regensburg/uebergabereinigung");
   }
 
   // 3. Absolute Root Priority: no locale folders, no Unicode URL variants.

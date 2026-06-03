@@ -63,20 +63,16 @@ export const company = {
   coreServices: [
     "Umzug",
     "Reinigung",
-    "Notfallreinigung 24h",
-    "Reinigung nach Veranstaltung",
+    "Notfallreinigung",
     "Entrümpelung",
     "Büroumzug",
     "Einlagerung",
     "Akteneinlagerung",
     "Firmenentsorgung",
     "Gewerbereinigung",
-    "Leer-Rückfahrt",
-    "Rückladung",
-    "Schlüsselübergabe",
-    "Übergabeprotokoll",
+    "Übergabereinigung",
+    "Endreinigung",
     "Plan-B-Service",
-    "Übergabevorbereitung",
     "Private Client Service",
   ],
 };
@@ -91,5 +87,6 @@ export const duesseldorfCompany = {
   city: "Düsseldorf",
   country: "Deutschland",
   countryCode: "DE",
-  url: "https://www.floxant.de/duesseldorf/reinigung",
+  url: "https://www.floxant.de/duesseldorf",
 };
+

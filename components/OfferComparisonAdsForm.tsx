@@ -4,7 +4,6 @@ import {
   type ChangeEvent,
   type DragEvent,
   type FormEvent,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -15,7 +14,7 @@ import {
   CheckCircle2,
   FileText,
   Loader2,
-  ShieldCheck,
+  MessageCircle,
   UploadCloud,
   X,
 } from "lucide-react";
@@ -29,12 +28,13 @@ const ALLOWED_TYPES = new Set(["application/pdf", "image/jpeg", "image/png"]);
 const ALLOWED_EXTENSIONS = new Set(["pdf", "jpg", "jpeg", "png"]);
 
 const serviceOptions = [
+  "Gewerbereinigung",
   "Büroreinigung",
   "Praxisreinigung",
-  "Gewerbereinigung",
-  "Treppenhausreinigung",
   "Unterhaltsreinigung",
-  "Sonstiges",
+  "Treppenhausreinigung",
+  "Premium-Reinigung",
+  "Noch unklar",
 ] as const;
 
 type SubmitState = "idle" | "submitting" | "error";
@@ -86,16 +86,10 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const uploadedSummary = useMemo(() => {
-    if (!files.length) return "Noch keine Datei ausgewählt";
-    if (files.length === 1) return files[0].name;
-    return `${files.length} Dateien ausgewählt`;
-  }, [files]);
-
   function markUploadStarted(source: "click" | "drop") {
     if (uploadStarted) return;
     setUploadStarted(true);
-    reportOfferComparisonAdsEvent("ads_offer_comparison_upload_start", {
+    reportOfferComparisonAdsEvent("upload_started", {
       channel: "upload",
       label: source === "drop" ? "Upload per Drag-and-Drop gestartet" : "Upload-Auswahl gestartet",
       priority: "hot",
@@ -108,7 +102,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
 
     if (validationError) {
       setErrorMessage(validationError);
-      reportOfferComparisonAdsEvent("ads_offer_comparison_upload_error", {
+      reportOfferComparisonAdsEvent("upload_error", {
         channel: "upload",
         label: validationError,
         priority: "warm",
@@ -120,11 +114,10 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     setFiles(merged);
 
     if (merged.length) {
-      reportOfferComparisonAdsEvent("ads_offer_comparison_upload_complete", {
+      reportOfferComparisonAdsEvent("upload_completed", {
         channel: "upload",
         label: "Angebotsdatei ausgewählt",
         fileCount: merged.length,
-        fileTypes: Array.from(new Set(merged.map((file) => file.type || getFileExtension(file)))),
         priority: "hot",
       });
     }
@@ -162,8 +155,8 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     const honeypot = String(formData.get("website") || "").trim();
 
     if (honeypot) return;
-    if (name.length < 3 || !name.includes(" ")) {
-      setErrorMessage("Bitte geben Sie Vorname und Nachname an.");
+    if (name.length < 2) {
+      setErrorMessage("Bitte geben Sie Ihren Namen an.");
       return;
     }
     if (phone.replace(/\D/g, "").length < 7) {
@@ -186,27 +179,24 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     }
 
     const composedMessage = [
-      "Google-Ads-Anfrage: Reinigungsangebot in Düsseldorf vergleichen lassen.",
+      "Google-Ads-Anfrage: Reinigungsangebot in Düsseldorf prüfen lassen.",
       companyName ? `Firma: ${companyName}` : "",
       cityOrZip ? `Ort: ${cityOrZip}` : "",
-      requestedService ? `Gewünschte Leistung: ${requestedService}` : "",
-      message ? `Prüfwunsch: ${message}` : "Prüfwunsch: Bestehendes Angebot wirtschaftlich einordnen.",
+      requestedService ? `Leistung: ${requestedService}` : "",
+      message ? `Hinweis: ${message}` : "Hinweis: Bestehendes Angebot wirtschaftlich einordnen.",
     ]
       .filter(Boolean)
       .join("\n");
 
     formData.set("type", "offer_check");
-    formData.set("lead_type", "angebotscheck");
-    formData.set("leadSubtype", "cheaper_alternative");
-    formData.set("leadSource", "cheaper_alternative");
-    formData.set("source", "cheaper_alternative");
-    formData.set("sourceComponent", "duesseldorf_offer_comparison_ads");
-    formData.set("service", "b2b_reinigung");
+    formData.set("lead_type", "angebotscheck_duesseldorf");
+    formData.set("leadSubtype", "duesseldorf_cleaning_offer_check");
+    formData.set("leadSource", "google_ads_offer_comparison");
+    formData.set("sourceComponent", "offer_comparison_ads_form");
+    formData.set("service", "reinigung");
     formData.set("region", "duesseldorf");
-    formData.set("platformSituation", "Google Ads Reinigungsangebot vergleichen Düsseldorf");
     formData.set("offerCheckIntent", "wirtschaftliche_alternative_pruefen");
     formData.set("message", composedMessage);
-    formData.set("selectedAddons", JSON.stringify([requestedService, cityOrZip, companyName].filter(Boolean)));
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", document.referrer);
@@ -219,9 +209,9 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     files.forEach((file) => formData.append("offerFile", file));
     appendConversionJourneyToFormData(formData);
 
-    reportOfferComparisonAdsEvent("ads_offer_comparison_form_submit", {
+    reportOfferComparisonAdsEvent("form_submit", {
       channel: "form",
-      label: "Kostenlose Prüfung angefordert",
+      label: "Angebotsprüfung angefordert",
       fileCount: files.length,
       priority: "critical",
     });
@@ -239,9 +229,9 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
       }
 
-      reportOfferComparisonAdsEvent("ads_offer_comparison_form_success", {
+      reportOfferComparisonAdsEvent("form_submit_success", {
         channel: "form",
-        label: "Formular Angebotsvergleich erfolgreich abgesendet",
+        label: "Formular erfolgreich abgesendet",
         fileCount: files.length,
         priority: "critical",
       });
@@ -252,7 +242,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     } catch (error) {
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");
-      reportOfferComparisonAdsEvent("ads_offer_comparison_form_error", {
+      reportOfferComparisonAdsEvent("form_submit_error", {
         channel: "form",
         label: error instanceof Error ? error.message : "Formularfehler",
         priority: "warm",
@@ -265,87 +255,49 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
   return (
     <form
       id="angebot-pruefen"
-      className="grid gap-5 rounded-lg border border-slate-200 bg-white p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6"
+      className="grid scroll-mt-32 gap-5 rounded-lg border border-slate-200 bg-white p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6"
       onSubmit={handleSubmit}
-      data-event="ads_offer_comparison_form_submit"
+      data-event="form_submit"
       data-source="google_ads_offer_comparison_landingpage"
-      data-channel="form"
       aria-label="Kostenlose Angebotsprüfung anfordern"
     >
       <div>
-        <p className="text-sm font-semibold text-cyan-700">Angebot hochladen oder Eckdaten senden</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-normal text-slate-950">
-          Kostenlose Prüfung anfordern
+        <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+          Angebot hochladen oder Eckdaten senden
+        </p>
+        <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
+          Angebot kostenlos prüfen lassen
         </h2>
-        <p className="mt-2 text-sm leading-6 text-slate-600">
-          Das Formular ist bewusst kurz gehalten. Für die erste Einschätzung reichen Kontaktdaten,
-          Leistungsart und, falls vorhanden, das Angebot als Datei.
+        <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. Wir prüfen sachlich,
+          ob eine passende Alternative möglich ist.
         </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="grid gap-2 text-sm font-semibold text-slate-800 sm:col-span-2">
-          Vorname und Nachname*
-          <input
-            name="name"
-            autoComplete="name"
-            required
-            className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-            placeholder="Max Mustermann"
-          />
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Name*
+          <input name="name" autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Vorname Nachname" />
         </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-slate-800">
-          Telefonnummer*
-          <input
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            required
-            className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-            placeholder="+49 ..."
-          />
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Telefon*
+          <input name="phone" type="tel" autoComplete="tel" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="+49 ..." />
         </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-slate-800">
-          E-Mail-Adresse*
-          <input
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-            placeholder="name@firma.de"
-          />
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          E-Mail*
+          <input name="email" type="email" autoComplete="email" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="name@firma.de" />
         </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-slate-800">
-          Firmenname
-          <input
-            name="companyName"
-            autoComplete="organization"
-            className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-            placeholder="Optional"
-          />
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Firma
+          <input name="companyName" autoComplete="organization" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Optional" />
         </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-slate-800">
-          Ort
-          <input
-            name="cityOrZip"
-            autoComplete="address-level2"
-            className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-            placeholder="z. B. Düsseldorf, Neuss, Ratingen"
-          />
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Ort / PLZ
+          <input name="cityOrZip" autoComplete="address-level2" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="z. B. Düsseldorf, Neuss, Ratingen" />
         </label>
-
-        <label className="grid gap-2 text-sm font-semibold text-slate-800 sm:col-span-2">
-          Gewünschte Leistung
-          <select
-            name="requestedService"
-            defaultValue="Büroreinigung"
-            className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-          >
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Leistung
+          <select name="requestedService" defaultValue="Gewerbereinigung" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
             {serviceOptions.map((service) => (
               <option key={service} value={service}>
                 {service}
@@ -381,12 +333,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           }}
           onDragLeave={() => setDragActive(false)}
           onDrop={handleDrop}
-          className={`grid min-h-44 cursor-pointer place-items-center rounded-lg border border-dashed p-5 text-center transition focus:outline-none focus:ring-4 focus:ring-blue-100 ${
+          className={`grid min-h-40 cursor-pointer place-items-center rounded-lg border border-dashed p-5 text-center transition focus:outline-none focus:ring-4 focus:ring-blue-100 ${
             dragActive
               ? "border-blue-600 bg-blue-50"
               : "border-slate-300 bg-slate-50 hover:border-blue-500 hover:bg-white"
           }`}
           aria-label="Bestehendes Angebot als PDF, JPG oder PNG hochladen"
+          data-event={uploadStarted ? "upload_completed" : "upload_started"}
         >
           <input
             ref={inputRef}
@@ -395,18 +348,18 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
             multiple
             className="sr-only"
             onChange={handleInputChange}
-            data-event="ads_offer_comparison_upload_input"
+            data-event={uploadStarted ? "upload_completed" : "upload_started"}
           />
           <div className="max-w-md">
             <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-slate-950 text-white">
               <UploadCloud className="h-6 w-6" />
             </span>
-            <p className="mt-4 text-base font-semibold text-slate-950">Bestehendes Angebot einfach hochladen</p>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              PDF, JPG oder PNG per Drag-and-Drop ablegen oder Datei auswählen.
-              Alternativ können Sie die wichtigsten Informationen unten beschreiben.
+            <p className="mt-4 text-base font-black text-slate-950">
+              Bestehendes Angebot hochladen
             </p>
-            <p className="mt-3 text-xs font-semibold text-slate-500">{uploadedSummary}</p>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              PDF, JPG oder PNG ablegen oder Datei auswählen. Alternativ beschreiben Sie die Eckdaten unten.
+            </p>
           </div>
         </div>
 
@@ -436,13 +389,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         ) : null}
       </div>
 
-      <label className="grid gap-2 text-sm font-semibold text-slate-800">
-        Was möchten Sie vergleichen oder prüfen lassen?
+      <label className="grid gap-2 text-sm font-bold text-slate-800">
+        Was möchten Sie prüfen lassen?
         <textarea
           name="message"
           rows={4}
           className="rounded-lg border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-          placeholder="Zum Beispiel: Preis wirkt hoch, Leistungsumfang ist unklar, Turnus soll geprüft werden oder Starttermin ist kurzfristig."
+          placeholder="Zum Beispiel: Leistungsumfang unklar, Turnus prüfen, Preis einordnen, Starttermin klären."
         />
       </label>
 
@@ -452,24 +405,15 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       </label>
 
       <label className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700">
-        <input
-          name="privacy"
-          type="checkbox"
-          required
-          className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700"
-        />
+        <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
         <span>
-          Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage
-          verarbeitet. Die Prüfung ist kostenlos und unverbindlich; es wird keine Preisgarantie gegeben.
+          Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet.
+          Die Prüfung ist kostenlos und unverbindlich; es wird keine Preisgarantie gegeben.
         </span>
       </label>
 
       {errorMessage ? (
-        <div
-          className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
-          role="alert"
-          aria-live="assertive"
-        >
+        <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-800" role="alert">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{errorMessage}</span>
         </div>
@@ -478,31 +422,29 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-base font-semibold text-white shadow-[0_16px_34px_rgba(15,23,42,0.18)] transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
-        data-event="ads_offer_comparison_submit_button"
+        className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-base font-black text-white shadow-[0_16px_34px_rgba(15,23,42,0.18)] transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
+        data-event="form_submit"
       >
         {isSubmitting ? <Loader2 className="h-5 w-5 animate-spin" /> : <ArrowRight className="h-5 w-5" />}
-        Kostenlose Prüfung anfordern
+        Angebot prüfen lassen
       </button>
-
-      <div className="grid gap-3 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm leading-6 text-cyan-950 sm:grid-cols-[auto_1fr]">
-        <ShieldCheck className="mt-0.5 h-5 w-5 text-cyan-700" />
-        <p>
-          Wir prüfen sachlich, ob Umfang, Turnus, Zusatzleistungen und Rahmenbedingungen zu
-          einer wirtschaftlich interessanten Alternative passen. Jede Anfrage wird individuell bewertet.
-        </p>
-      </div>
 
       <a
         href={whatsappHref}
-        data-event="ads_offer_comparison_whatsapp_click"
+        data-event="whatsapp_click"
         data-source="google_ads_offer_comparison_landingpage"
-        data-channel="whatsapp"
-        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-100"
+        className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
       >
-        <CheckCircle2 className="h-4 w-4" />
-        Angebot lieber per WhatsApp senden
+        <MessageCircle className="h-4 w-4" />
+        Angebot per WhatsApp senden
       </a>
+
+      <div className="grid gap-3 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm font-bold leading-6 text-cyan-950 sm:grid-cols-[auto_1fr]">
+        <CheckCircle2 className="mt-0.5 h-5 w-5 text-cyan-700" />
+        <p>
+          Wir prüfen, ob eine passende Alternative möglich ist. Jede Anfrage wird individuell bewertet.
+        </p>
+      </div>
     </form>
   );
 }

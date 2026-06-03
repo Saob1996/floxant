@@ -1,59 +1,29 @@
 "use client";
 
-import {
-  ArrowRight,
-  FileSearch,
-  Menu,
-  MessageCircle,
-  PackageOpen,
-  Sparkles,
-  Truck,
-  X,
-  Zap,
-} from "lucide-react";
 import Link from "next/link";
+import { ArrowRight, FileSearch, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
-import { openRequestCenter } from "@/components/GlobalRequestCenter";
-import {
-  headerInquiryIntents,
-  inquiryConfigs,
-  OFFER_CHECK_ROUTE,
-  type InquiryIntent,
-} from "@/components/inquiry/inquiry-config";
+import { FloxServicesMegaMenu } from "@/components/FloxServicesMegaMenu";
+import { company } from "@/lib/company";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
+import type { FloxantRegion } from "@/lib/floxant-services";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
 
-const intentIcons: Record<InquiryIntent, typeof Truck> = {
-  move: Truck,
-  cleaning: Sparkles,
-  clearance: PackageOpen,
-  express: Zap,
-  "offer-check": FileSearch,
-};
-
-const desktopLinks = [
-  { label: "Wissen", href: "/blog" },
-  { label: "Servicegebiet", href: "/service-area-bayern" },
+const navLinks = [
+  { label: "Düsseldorf", href: "/duesseldorf" },
+  { label: "Regensburg", href: "/regensburg" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-function openIntent(intent: InquiryIntent, variant: PublicHeaderVariant) {
-  openRequestCenter({
-    intent,
-    region: variant === "duesseldorf" ? "duesseldorf" : "regensburg-bayern",
-    service:
-      intent === "move"
-        ? "umzug"
-        : intent === "cleaning"
-          ? "reinigung"
-          : intent === "clearance"
-            ? "entsorgung"
-            : undefined,
-  });
+function inferRegion(pathname: string, variant: PublicHeaderVariant): FloxantRegion {
+  if (variant === "duesseldorf" || pathname.includes("duesseldorf")) return "duesseldorf";
+  if (pathname.startsWith("/regensburg") || pathname.includes("regensburg")) return "regensburg";
+  return "duesseldorf";
 }
 
 export function PublicHeader({
@@ -63,19 +33,70 @@ export function PublicHeader({
   variant?: PublicHeaderVariant;
 }) {
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const isDuesseldorf = variant === "duesseldorf";
+  const servicesCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const inquiryButtons = useMemo(
-    () =>
-      headerInquiryIntents.map((intent) => ({
-        intent,
-        config: inquiryConfigs[intent],
-        Icon: intentIcons[intent],
-      })),
-    [],
+  const activeRegion = useMemo(
+    () => inferRegion(pathname || "/", variant),
+    [pathname, variant],
   );
+  const isDuesseldorfContext = variant === "duesseldorf" || pathname.includes("duesseldorf");
+  const isRegensburgContext = pathname.startsWith("/regensburg") || pathname.includes("regensburg");
+  const contextualNavLinks = useMemo(() => {
+    if (isDuesseldorfContext && !isRegensburgContext) {
+      return navLinks.filter((item) => item.href !== "/regensburg");
+    }
+
+    if (isRegensburgContext && !isDuesseldorfContext) {
+      return navLinks.filter((item) => item.href !== "/duesseldorf");
+    }
+
+    return navLinks;
+  }, [isDuesseldorfContext, isRegensburgContext]);
+  const headerCta = isRegensburgContext && !isDuesseldorfContext
+    ? { href: "/kontakt", label: "Anfrage senden" }
+    : { href: "/angebot-vergleichen-duesseldorf", label: "Angebot prüfen" };
+
+  const whatsappHref = useMemo(
+    () =>
+      buildWhatsAppHref(
+        company.phoneRaw,
+        [
+          "Hallo FLOXANT,",
+          "ich möchte eine Anfrage stellen.",
+          activeRegion === "duesseldorf"
+            ? "Region: Düsseldorf. Es geht um Reinigung."
+            : "Region: Regensburg. Es geht um Umzug, Entrümpelung oder Übergabe.",
+        ].join("\n"),
+      ),
+    [activeRegion],
+  );
+
+  function clearServicesCloseTimer() {
+    if (servicesCloseTimerRef.current) {
+      clearTimeout(servicesCloseTimerRef.current);
+      servicesCloseTimerRef.current = null;
+    }
+  }
+
+  function openServicesMenu() {
+    clearServicesCloseTimer();
+    setServicesOpen(true);
+  }
+
+  function scheduleServicesClose() {
+    clearServicesCloseTimer();
+    servicesCloseTimerRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 220);
+  }
+
+  function toggleServicesMenu() {
+    clearServicesCloseTimer();
+    setServicesOpen((value) => !value);
+  }
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -85,17 +106,27 @@ export function PublicHeader({
   }, []);
 
   useEffect(() => {
-    setMenuOpen(false);
+    clearServicesCloseTimer();
+    setServicesOpen(false);
+    setMobileOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    if (!menuOpen) return;
+    return () => {
+      if (servicesCloseTimerRef.current) {
+        clearTimeout(servicesCloseTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") setMobileOpen(false);
     }
 
     window.addEventListener("keydown", handleKeyDown);
@@ -103,7 +134,7 @@ export function PublicHeader({
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [menuOpen]);
+  }, [mobileOpen]);
 
   if (
     pathname === "/private-client-service" ||
@@ -119,198 +150,170 @@ export function PublicHeader({
     <header className="fixed inset-x-0 top-0 z-[9000] px-3 pt-3 text-slate-950 sm:px-5">
       <div
         className={cn(
-          "mx-auto w-full min-w-0 max-w-[1380px] rounded-[1.45rem] border border-white/70 bg-white/[0.88] px-3 py-3 shadow-[0_20px_70px_rgba(15,23,42,0.16)] backdrop-blur-2xl transition duration-300 sm:px-4",
-          scrolled && "border-slate-200/80 bg-white/[0.94] shadow-[0_18px_52px_rgba(15,23,42,0.2)]",
+          "mx-auto w-full max-w-[1380px] rounded-lg border border-white/75 bg-white/[0.92] px-3 py-3 shadow-[0_20px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl transition duration-300 sm:px-4",
+          scrolled && "border-slate-200/90 bg-white/[0.96] shadow-[0_18px_52px_rgba(15,23,42,0.18)]",
         )}
       >
-        <div className="relative grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 xl:grid-cols-[minmax(260px,0.9fr)_auto_minmax(250px,0.8fr)]">
+        <div className="grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:grid-cols-[minmax(260px,0.9fr)_auto_minmax(250px,0.8fr)]">
           <Link
-            href={isDuesseldorf ? "/duesseldorf/reinigung" : "/"}
-            className="group flex min-w-0 items-center gap-3 rounded-2xl px-1 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label={isDuesseldorf ? "FLOXANT Düsseldorf Reinigung" : "FLOXANT Startseite"}
+            href="/"
+            className="group flex min-w-0 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="FLOXANT Startseite"
           >
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[1rem] bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)]">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)]">
               <BrandLogo size={28} />
             </span>
             <span className="hidden min-w-0 sm:block">
               <span className="block text-sm font-black tracking-[0.18em]" translate="no">
                 FLOXANT
               </span>
-              <span className="mt-1 hidden max-w-[23rem] truncate text-[11px] font-semibold text-slate-600 sm:block">
-                Umzug, Reinigung und Entrümpelung – direkt richtig anfragen.
-              </span>
-              <span className="mt-1 block truncate text-[11px] font-bold text-slate-600 sm:hidden">
-                Schnell zur Anfrage
+              <span className="mt-1 block max-w-[25rem] truncate text-[11px] font-semibold text-slate-600">
+                Region wählen. Passende Leistung klar anfragen.
               </span>
             </span>
           </Link>
 
-          <nav
-            aria-label="Anfrageoptionen"
-            className="hidden items-center rounded-2xl border border-slate-200 bg-slate-50/88 p-1 shadow-inner lg:flex"
-          >
-            {inquiryButtons.map(({ intent, config, Icon }) => (
+          <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
+            <div
+              className="relative"
+              onMouseEnter={openServicesMenu}
+              onMouseLeave={scheduleServicesClose}
+            >
               <button
-                key={intent}
                 type="button"
-                onClick={() => openIntent(intent, variant)}
-                className={cn(
-                  "inline-flex h-11 items-center justify-center gap-2 rounded-xl px-3 text-[12px] font-black text-slate-700 transition hover:bg-white hover:text-slate-950 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500",
-                  intent === "express" && "text-blue-700",
-                )}
+                onClick={toggleServicesMenu}
+                onFocus={openServicesMenu}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-black text-slate-800 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-expanded={servicesOpen}
+                aria-haspopup="menu"
               >
-                <Icon className="h-4 w-4" />
-                {config.label}
+                Services
+                <ArrowRight
+                  className={cn("h-4 w-4 transition", servicesOpen && "rotate-90")}
+                  aria-hidden="true"
+                />
               </button>
-            ))}
-          </nav>
 
-          <div className="hidden items-center justify-end gap-2 xl:flex">
-            {desktopLinks.map((item) => (
+              {servicesOpen ? (
+                <div
+                  className="absolute left-1/2 top-full z-[9010] w-[min(60rem,calc(100vw-2rem))] -translate-x-1/2 pt-2"
+                  onMouseEnter={openServicesMenu}
+                  onMouseLeave={scheduleServicesClose}
+                >
+                  <FloxServicesMegaMenu
+                    initialRegion={activeRegion}
+                    onNavigate={() => setServicesOpen(false)}
+                  />
+                </div>
+              ) : null}
+            </div>
+
+            {contextualNavLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-flex h-10 items-center rounded-xl px-3 text-[12px] font-black text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="inline-flex h-11 items-center rounded-lg px-4 text-sm font-black text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {item.label}
               </Link>
             ))}
+          </nav>
+
+          <div className="hidden items-center justify-end gap-2 lg:flex">
             <Link
-              href={OFFER_CHECK_ROUTE}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl border border-blue-700 bg-blue-700 px-4 text-[12px] font-black text-white shadow-[0_12px_28px_rgba(37,99,235,0.22)] transition hover:-translate-y-0.5 hover:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              href={headerCta.href}
+              data-event="hero_cta_click"
+              data-source="header"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-black text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Angebot prüfen
-              <ArrowRight className="h-4 w-4" />
+              <FileSearch className="h-4 w-4" aria-hidden="true" />
+              {headerCta.label}
             </Link>
+            <a
+              href={whatsappHref}
+              data-event="whatsapp_click"
+              data-source="header"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 text-sm font-black text-slate-950 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              WhatsApp
+            </a>
           </div>
 
-          <div className="absolute right-11 top-1/2 flex -translate-y-1/2 items-center justify-end gap-2 lg:hidden">
-            <Link
-              href={OFFER_CHECK_ROUTE}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-950 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-label="Angebot prüfen"
-            >
-              <FileSearch className="h-4 w-4" />
-            </Link>
-            <button
-              type="button"
-              onClick={() => setMenuOpen((value) => !value)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-[12px] font-black text-white shadow-[0_12px_30px_rgba(15,23,42,0.24)] focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-label={menuOpen ? "Menü schließen" : "Anfragemenü öffnen"}
-              aria-expanded={menuOpen}
-            >
-              {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-3 hidden items-center justify-between gap-3 border-t border-slate-200/80 pt-3 text-[12px] font-semibold text-slate-600 md:flex lg:hidden">
-          <span className="font-black text-slate-950">Schnell zur passenden Anfrage.</span>
-          <span className="truncate">
-            Wählen Sie direkt, worum es geht. FLOXANT öffnet nur die passende Anfrage – ohne langes Formular.
-          </span>
+          <button
+            type="button"
+            onClick={() => setMobileOpen((value) => !value)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)] focus:outline-none focus:ring-2 focus:ring-blue-500 lg:hidden"
+            aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
 
-      {menuOpen ? (
+      {mobileOpen ? (
+        <div
+          className="fixed inset-0 z-[9001] bg-slate-950/34 backdrop-blur-sm lg:hidden"
+          onClick={() => setMobileOpen(false)}
+        >
           <div
-            className="fixed inset-0 z-[9001] bg-slate-950/34 backdrop-blur-sm lg:hidden"
-            onClick={() => setMenuOpen(false)}
+            className="mx-3 mt-[5.4rem] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-lg border border-white/70 bg-white p-3 text-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.28)]"
+            onClick={(event) => event.stopPropagation()}
           >
-            <div
-              className="mx-3 mt-[5.4rem] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-[1.65rem] border border-white/70 bg-white p-3 text-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.28)]"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="flex items-start justify-between gap-3 rounded-[1.35rem] bg-slate-950 p-4 text-white">
-                <div>
-                  <p className="text-[11px] font-black uppercase tracking-[0.18em] text-cyan-100">
-                    Anfrage wählen
-                  </p>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">
-                    Ein Klick, ein passendes Fenster. Keine Formularwand.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setMenuOpen(false)}
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-cyan-200"
-                  aria-label="Menü schließen"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+            <div className="flex items-start justify-between gap-3 rounded-lg bg-slate-950 p-4 text-white">
+              <div>
+                <p className="text-xs font-black uppercase tracking-normal text-cyan-100">
+                  Services wählen
+                </p>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">
+                  Erst Region, dann Kategorie, dann passende Servicekarte.
+                </p>
               </div>
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                aria-label="Menü schließen"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
 
-              <div className="mt-3 grid gap-2">
-                {inquiryButtons.map(({ intent, config, Icon }) => (
-                  <button
-                    key={intent}
-                    type="button"
-                    onClick={() => {
-                      setMenuOpen(false);
-                      openIntent(intent, variant);
-                    }}
-                    className="flex min-h-16 items-center justify-between gap-3 rounded-[1.25rem] border border-slate-200 bg-white px-4 text-left shadow-sm transition hover:border-blue-200 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <span className="flex min-w-0 items-center gap-3">
-                      <span
-                        className={cn(
-                          "grid h-11 w-11 shrink-0 place-items-center rounded-2xl text-white",
-                          intent === "express" ? "bg-blue-700" : "bg-slate-950",
-                        )}
-                      >
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block text-sm font-black text-slate-950">{config.primaryCta}</span>
-                        <span className="mt-0.5 block truncate text-xs font-semibold text-slate-500">
-                          {intent === "cleaning" ? "Regensburg/Bayern oder Düsseldorf" : config.regionScope}
-                        </span>
-                      </span>
-                    </span>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-slate-400" />
-                  </button>
-                ))}
+            <div className="mt-3">
+              <FloxServicesMegaMenu mode="mobile" initialRegion={activeRegion} />
+            </div>
 
-                <Link
-                  href={OFFER_CHECK_ROUTE}
-                  className="flex min-h-16 items-center justify-between gap-3 rounded-[1.25rem] border border-blue-200 bg-blue-50 px-4 text-left shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-blue-700 shadow-sm">
-                      <FileSearch className="h-5 w-5" />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-black text-slate-950">Angebot prüfen lassen</span>
-                      <span className="mt-0.5 block text-xs font-semibold text-slate-600">
-                        Preis, Umfang und Leistungen prüfen
-                      </span>
-                    </span>
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-blue-700" />
-                </Link>
-              </div>
-
-              <div className="mt-3 grid grid-cols-2 gap-2">
-                {desktopLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 text-sm font-black text-slate-700"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <a
-                  href="tel:+4915771105087"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-3 text-sm font-black text-white"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  Anrufen
-                </a>
-              </div>
+            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+              <a
+                href={whatsappHref}
+                data-event="whatsapp_click"
+                data-source="mobile_header"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 text-sm font-black text-slate-950"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </a>
+              <a
+                href={`tel:${company.phoneRaw}`}
+                data-event="phone_click"
+                data-source="mobile_header"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-black text-slate-800"
+              >
+                <Phone className="h-4 w-4" />
+                Anrufen
+              </a>
+              <Link
+                href="/kontakt"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
+              >
+                Kontakt
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
-        ) : null}
+        </div>
+      ) : null}
     </header>
   );
 }

@@ -1,239 +1,176 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, MapPin, MessageSquare, ShieldCheck } from "lucide-react";
+import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { company } from "@/lib/company";
-
-const serviceLinks = [
-  { href: "/umzug", label: "Umzug" },
-  { href: "/reinigung", label: "Reinigung" },
-  { href: "/property-operations", label: "Immobilienbetreuung" },
-  { href: "/objekt-springer", label: "Objekt-Springer" },
-  { href: "/human-api", label: "Vor-Ort-Prüfung" },
-  { href: "/firmenentsorgung", label: "Firmenentsorgung" },
-  { href: "/entruempelung", label: "Entrümpelung" },
-  { href: "/bueroumzug", label: "Büroumzug" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung" },
-  { href: "/private-client-service", label: "Private Client" },
-];
-
-const directLinks = [
-  { href: "/buchung", label: "Buchung" },
-  { href: "/rechner", label: "Rechner" },
-  { href: "/anfrage-mit-preisrahmen", label: "Budget nennen" },
-  { href: "/angebot-guenstiger-pruefen", label: "Günstiger prüfen" },
-  { href: "/express-anfrage", label: "Express-Check" },
-  { href: "/empfehlen", label: "Empfehlen" },
-  { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
-  { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
-  { href: "/leerstandsmanagement", label: "Leerstand" },
-  { href: "/business-errand-service", label: "Erledigungsservice" },
-  { href: "/airbnb-turnover-express", label: "Airbnb Wechsel" },
-  { href: "/urlaubsretter", label: "Urlaubsretter" },
-  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum" },
-  { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
-  { href: "/wohnung-wieder-vermietbar", label: "Objekt-Ready" },
-  { href: "/uebergabeakte", label: "Übergabeakte" },
-  { href: "/kontakt", label: "Kontakt" },
-];
-
-const problemLinks = [
-  { href: "/sichtbar-sauber-protokoll", label: "Sichtbar sauber" },
-  { href: "/vermieter-schockschutz-reinigung", label: "Vermieter-Schockschutz" },
-  { href: "/schluesselruhe-service", label: "Schlüsselruhe" },
-  { href: "/panikfrei-in-24h", label: "Panikfrei in 24h" },
-  { href: "/reset-reinigung", label: "Reset-Reinigung" },
-  { href: "/geruchslos-protokoll", label: "Geruchslos-Protokoll" },
-  { href: "/anti-scham-reinigung", label: "Anti-Scham-Reinigung" },
-  { href: "/mama-kommt-morgen-service", label: "Mama kommt morgen" },
-  { href: "/hidden-dirt-check", label: "Hidden Dirt Check" },
-  { href: "/montagmorgen-effekt", label: "Montagmorgen-Effekt" },
-  { href: "/atemruhig-reinigung", label: "Atemruhig-Reinigung" },
-  { href: "/baustaub-ende", label: "Baustaub-Ende" },
-];
-
-const localLinks = [
-  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
-  { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
-  { href: "/bueroumzug-regensburg", label: "Büroumzug Regensburg" },
-  { href: "/service-area-bayern", label: "Bayern" },
-  { href: "/standorte", label: "Standorte" },
-];
-
-const knowledgeLinks = [
-  { href: "/blog", label: "Ratgeber-Hub" },
-  { href: "/blog/haeufige-gruende-fuer-kautionsabzuege", label: "Kautionsabzuege" },
-  { href: "/blog/umzug-kosten-regensburg", label: "Umzugskosten" },
-  { href: "/blog/wohnungsuebergabe-regensburg-vorbereiten", label: "Wohnungsübergabe" },
-  { href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", label: "Reinigungsfirma wählen" },
-  { href: "/leistungen-vergleichen", label: "Leistungen vergleichen" },
-  { href: "/anbieter-vergleichen", label: "Anbieter vergleichen" },
-  { href: "/praxisfaelle", label: "Praxisfälle" },
-  { href: "/kostenfaktoren", label: "Kostenfaktoren" },
-];
+import {
+  floxantRegions,
+  getServicesByRegion,
+  type FloxantRegion,
+} from "@/lib/floxant-services";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const legalLinks = [
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
   { href: "/buchungsbedingungen", label: "Buchungsbedingungen" },
-  { href: "/widerruf", label: "Widerruf" },
-];
+] as const;
 
 export function Footer({ dic }: { dic?: any } = {}) {
   const pathname = usePathname();
 
-  if (pathname === "/private-client-service" || pathname === "/villenservice") return null;
+  if (
+    pathname === "/private-client-service" ||
+    pathname === "/villenservice" ||
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/login")
+  ) {
+    return null;
+  }
+
+  const whatsappHref = buildWhatsAppHref(
+    company.phoneRaw,
+    [
+      "Hallo FLOXANT,",
+      "ich möchte eine Anfrage stellen.",
+      "Bitte ordnen Sie mein Anliegen der passenden Region zu.",
+    ].join("\n"),
+  );
+
+  const isDuesseldorfContext = pathname.includes("duesseldorf");
+  const isRegensburgContext = pathname.startsWith("/regensburg") || pathname.includes("regensburg");
+  const regionsToShow: FloxantRegion[] =
+    isDuesseldorfContext && !isRegensburgContext
+      ? ["duesseldorf"]
+      : isRegensburgContext && !isDuesseldorfContext
+        ? ["regensburg"]
+        : ["duesseldorf", "regensburg"];
+  const footerIntro = isDuesseldorfContext
+    ? "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten."
+    : isRegensburgContext
+      ? "Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe."
+      : "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten. Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.";
 
   return (
-    <footer className="relative overflow-x-clip px-4 pb-12 pt-24 sm:px-6">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.06),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]" />
-      <div className="relative mx-auto max-w-7xl space-y-6">
-        <section className="flox-panel-dark rounded-[2.2rem] px-7 py-8 md:px-10 md:py-10">
-          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">
-                Letzter klarer Schritt
-              </div>
-              <h2 className="mt-6 max-w-3xl text-[clamp(2.1rem,4vw,4rem)] font-bold tracking-[-0.025em] text-white">
-                Lieber direkt sauber anfragen als später alles doppelt erklären.
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-                FLOXANT führt Anfrage, Preisgefühl und Ausführung ruhig zusammen.
-                Wenn es konkret wird, lieber direkt, klar und mit genug Angaben.
-              </p>
-            </div>
-
-            <div className="flox-cta-choice-grid">
-              <Link
-                href="/buchung"
-                className="flox-cta-choice flox-cta-choice-primary"
-              >
-                <span className="flox-cta-choice-icon">
-                  <ArrowRight className="h-5 w-5" />
-                </span>
-                <span className="flox-cta-choice-body">
-                  <span className="flox-cta-choice-eyebrow">Anfrageweg</span>
-                  <span className="flox-cta-choice-title">Anfrage starten</span>
-                  <span className="flox-cta-choice-copy">Buchung öffnen</span>
-                </span>
-                <span className="flox-cta-choice-arrow">
-                  <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
-              <a
-                href={`https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flox-cta-choice flox-cta-choice-whatsapp"
-              >
-                <span className="flox-cta-choice-icon">
-                  <MessageSquare className="h-5 w-5" />
-                </span>
-                <span className="flox-cta-choice-body">
-                  <span className="flox-cta-choice-eyebrow">Sofortkontakt</span>
-                  <span className="flox-cta-choice-title">WhatsApp schreiben</span>
-                  <span className="flox-cta-choice-copy">{company.phone}</span>
-                </span>
-                <span className="flox-cta-choice-arrow">
-                  <ArrowRight className="h-4 w-4" />
-                </span>
-              </a>
-            </div>
+    <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-cyan-200">
+              FLOXANT
+            </p>
+            <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
+              Passende Anfrage klar senden.
+            </h2>
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
+              {footerIntro}
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <a
+              href={whatsappHref}
+              data-event="whatsapp_click"
+              data-source="global_footer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp starten
+            </a>
+            <Link
+              href="/kontakt"
+              data-event="footer_cta_click"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
+            >
+              Kontakt öffnen
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </section>
 
-        <section className="flox-panel rounded-[2.2rem] px-5 py-8 sm:px-7 md:px-10 md:py-10">
-          <div className="grid min-w-0 gap-8 xl:grid-cols-[minmax(0,17rem)_minmax(0,1fr)]">
-            <div className="min-w-0 xl:border-r xl:border-slate-200/80 xl:pr-8">
-              <Link href="/" className="text-2xl font-black tracking-[0.16em] text-slate-950" translate="no">
-                FLOXANT
+        <section className="mt-10 grid gap-8 border-t border-white/10 pt-10 xl:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <Link href="/" className="text-2xl font-black tracking-[0.16em]" translate="no">
+              FLOXANT
+            </Link>
+            <div className="mt-5 grid gap-3 text-sm font-semibold leading-7 text-slate-300">
+              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white">
+                <Mail className="h-4 w-4 text-cyan-200" />
+                {company.email}
+              </a>
+              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white">
+                <Phone className="h-4 w-4 text-cyan-200" />
+                {company.phone}
+              </a>
+              <div className="flex gap-2">
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-200" />
+                <span>{company.address}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={`grid gap-5${regionsToShow.length > 1 ? " lg:grid-cols-2" : ""}`}>
+            {regionsToShow.map((regionId) => {
+              const region = floxantRegions[regionId];
+              const services = getServicesByRegion(regionId).slice(0, 6);
+
+              return (
+                <div key={regionId} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-black">{region.label}</h3>
+                      <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
+                        {region.shortDescription}
+                      </p>
+                    </div>
+                    <Link
+                      href={region.href}
+                      data-event="region_select"
+                      data-region={regionId}
+                      data-source="global_footer"
+                      className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-slate-950"
+                      aria-label={`${region.label} öffnen`}
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.id}
+                        href={service.href}
+                        data-event="service_card_click"
+                        data-service={service.id}
+                        data-region={service.region}
+                        data-source="global_footer"
+                        className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
+                      >
+                        {service.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-400">
+            {legalLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-white">
+                {item.label}
               </Link>
-              <p className="mt-4 max-w-sm text-sm leading-7 text-slate-700">
-                Umzug, Reinigung, Entrümpelung und Übergabevorbereitung mit klarer
-                Abstimmung, realistischer Prüfung und sichtbaren nächsten Schritten.
-              </p>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-                <div className="flox-metric">
-                  <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                    <MapPin className="h-3.5 w-3.5 text-blue-700" />
-                    Adresse
-                  </div>
-                  <p className="mt-3 text-sm font-semibold leading-7 text-slate-900">{company.address}</p>
-                </div>
-
-                <div className="flox-metric">
-                  <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                    Direktkontakt
-                  </div>
-                  <div className="mt-3 space-y-1 text-sm font-semibold text-slate-900">
-                    <a href={`mailto:${company.email}`} className="block hover:text-blue-700">
-                      {company.email}
-                    </a>
-                    <a href={`tel:${company.phoneRaw}`} className="block hover:text-blue-700">
-                      {company.phone}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid min-w-0 gap-6 [grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))]">
-              <FooterColumn title="Leistungen" items={serviceLinks} />
-              <FooterColumn title="Direkte Wege" items={directLinks} />
-              <FooterColumn title="Problemhilfe" items={problemLinks} />
-              <FooterColumn title="Lokale Seiten" items={localLinks} />
-              <FooterColumn title="Ratgeber" items={knowledgeLinks} />
-              <FooterColumn title="Rechtliches" items={legalLinks} />
-            </div>
+            ))}
           </div>
-
-          <div className="mt-10 flex flex-col gap-4 border-t border-slate-200/90 pt-7 md:flex-row md:items-center md:justify-between">
-            <div className="flex flex-wrap items-center gap-5">
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <ShieldCheck className="h-4 w-4 text-blue-600" />
-                Versicherter Transport und saubere Planung
-              </div>
-            </div>
-
-            <div className="flex items-center gap-5">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                © 2026 FLOXANT
-              </span>
-            </div>
-          </div>
+          <p className="text-xs font-black uppercase tracking-normal text-slate-500">
+            © 2026 FLOXANT
+          </p>
         </section>
       </div>
     </footer>
-  );
-}
-
-function FooterColumn({
-  title,
-  items,
-}: {
-  title: string;
-  items: Array<{ href: string; label: string }>;
-}) {
-  return (
-    <div className="min-w-0">
-      <div className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">{title}</div>
-      <div className="space-y-2">
-        {items.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="group flex min-w-0 items-center justify-between gap-3 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-sm font-semibold leading-5 text-slate-700 transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
-          >
-            <span className="min-w-0 break-normal hyphens-none [overflow-wrap:normal] [word-break:normal]">{item.label}</span>
-            <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-700" />
-          </Link>
-        ))}
-      </div>
-    </div>
   );
 }

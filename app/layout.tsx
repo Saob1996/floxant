@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import { generatePageSEO, viewport } from "@/lib/seo";
 import { MotionProvider } from "@/components/MotionProvider";
 import UtmCapture from "@/components/UtmCapture";
-import { getDictionary } from "@/get-dictionary";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ConversionEventReporter } from "@/components/ConversionEventReporter";
 import { GoogleAdsTag } from "@/components/GoogleAdsTag";
@@ -19,19 +18,12 @@ export const runtime = "nodejs";
 export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary("de");
-  const title =
-    dict.metadata.global_title ||
-    "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern";
-  const description =
-    dict.metadata.global_desc ||
-    "FLOXANT organisiert Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Einschätzung, sauberer Einsatzplanung und belastbaren Anfragen.";
-
   return generatePageSEO({
     lang: "de",
     path: "",
-    title,
-    description,
+    title: "FLOXANT | Düsseldorf Reinigung und Regensburg Umzug & Übergabe",
+    description:
+      "FLOXANT trennt klar nach Region: Düsseldorf für Gewerbe-, Büro- und Praxisreinigung. Regensburg für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
   });
 }
 

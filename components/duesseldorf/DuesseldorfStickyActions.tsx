@@ -1,49 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { BadgeEuro, ClipboardCheck, FileSearch, Phone } from "lucide-react";
+import { ClipboardCheck, FileSearch, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
-import {
-  DUESSELDORF_CLEANING,
-  DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE,
-  buildDuesseldorfCleaningWhatsAppHref,
-} from "@/lib/duesseldorf-cleaning";
+import { duesseldorfCompany } from "@/lib/company";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
-function getDuesseldorfRequestHref(pathname: string | null) {
-  if (pathname?.includes("vielleicht-guenstiger")) return "#guenstiger-form";
-  if (pathname?.includes("reinigung-stadtteile-umgebung")) return "#stadtteil-anfrage";
+function getRequestHref(pathname: string | null) {
+  if (pathname?.includes("angebot-vergleichen")) return "#angebot-pruefen";
   if (pathname?.includes("bueroreinigung")) return "#b2b-reinigung-form";
-  if (pathname?.includes("b2b-reinigung")) return "#kontakt";
-  if (
-    pathname?.includes("treppenhausreinigung") ||
-    pathname?.includes("grundreinigung") ||
-    pathname?.includes("firmenreinigung") ||
-    pathname?.includes("gewerbereinigung") ||
-    pathname?.includes("fensterreinigung") ||
-    pathname?.includes("baureinigung") ||
-    pathname?.includes("teppichreinigung") ||
-    pathname?.includes("unterhaltsreinigung") ||
-    pathname?.includes("ladenreinigung") ||
-    pathname?.includes("sonderreinigung") ||
-    pathname?.includes("hotelreinigung") ||
-    pathname?.includes("kanzleireinigung") ||
-    pathname?.includes("praxisreinigung") ||
-    pathname?.includes("it-raum-reinigung") ||
-    pathname?.includes("krankenhausreinigung") ||
-    pathname?.includes("kellerreinigung") ||
-    pathname?.includes("entsorgung")
-  ) {
-    return "#kontakt";
-  }
-
-  return "/duesseldorf/reinigung#kontakt";
+  if (pathname?.includes("gewerbereinigung") || pathname?.includes("luxusreinigung")) return "#kontakt";
+  return "/duesseldorf/gewerbereinigung#kontakt";
 }
 
 export function DuesseldorfStickyActions() {
   const pathname = usePathname();
-  const requestHref = getDuesseldorfRequestHref(pathname);
+  const requestHref = getRequestHref(pathname);
+  const whatsappHref = buildWhatsAppHref(
+    duesseldorfCompany.phoneRaw,
+    [
+      "Hallo FLOXANT Reinigung Düsseldorf,",
+      "ich möchte eine Reinigungsanfrage stellen.",
+      "Objektart, Ort, Fläche, Turnus und Fotos kann ich senden.",
+    ].join("\n"),
+  );
 
   return (
     <div className="flox-mobile-action-wrap flox-duesseldorf-action-wrap z-[95]">
@@ -53,24 +35,20 @@ export function DuesseldorfStickyActions() {
             href={requestHref}
             className="flox-mobile-action flox-mobile-action-primary"
             aria-label="Düsseldorfer Anfrage starten"
-            data-event="click_duesseldorf_sticky_request"
+            data-event="hero_cta_click"
             data-contact-channel="form"
           >
             <ClipboardCheck />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Anfrage</span>
-              <span className="flox-mobile-action-note">Fall schildern</span>
+              <span className="flox-mobile-action-note">Fall senden</span>
             </span>
           </Link>
           <a
-            href={buildDuesseldorfCleaningWhatsAppHref(
-              DUESSELDORF_CLEANING_WHATSAPP_BASE_MESSAGE,
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={whatsappHref}
             className="flox-mobile-action flox-mobile-action-whatsapp"
             aria-label="FLOXANT Düsseldorf per WhatsApp anfragen"
-            data-event="click_duesseldorf_sticky_whatsapp"
+            data-event="whatsapp_click"
             data-contact-channel="whatsapp"
           >
             <WhatsAppMark className="flox-whatsapp-mark" />
@@ -80,10 +58,10 @@ export function DuesseldorfStickyActions() {
             </span>
           </a>
           <a
-            href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
+            href={`tel:${duesseldorfCompany.phoneRaw}`}
             className="flox-mobile-action flox-mobile-action-light"
             aria-label="FLOXANT Düsseldorf anrufen"
-            data-event="click_duesseldorf_sticky_phone"
+            data-event="phone_click"
             data-contact-channel="phone"
           >
             <Phone />
@@ -93,29 +71,16 @@ export function DuesseldorfStickyActions() {
             </span>
           </a>
           <Link
-            href="/duesseldorf/vielleicht-guenstiger"
+            href="/angebot-vergleichen-duesseldorf"
             className="flox-mobile-action flox-mobile-action-offer"
-            aria-label="Bestehendes Reinigungsangebot einer anderen Firma prüfen lassen"
-            data-event="click_duesseldorf_sticky_offer_check"
+            aria-label="Bestehendes Reinigungsangebot prüfen lassen"
+            data-event="hero_cta_click"
             data-contact-channel="offer_check"
           >
             <FileSearch />
             <span className="flox-mobile-action-copy">
               <span className="flox-mobile-action-label">Angebot</span>
-              <span className="flox-mobile-action-note">Prüfen lassen</span>
-            </span>
-          </Link>
-          <Link
-            href="/duesseldorf/reinigung#preisvorschlag"
-            className="flox-mobile-action flox-mobile-action-dark"
-            aria-label="Düsseldorfer Reinigungskosten oder Budget prüfen lassen"
-            data-event="click_duesseldorf_sticky_budget_check"
-            data-contact-channel="budget_check"
-          >
-            <BadgeEuro />
-            <span className="flox-mobile-action-copy">
-              <span className="flox-mobile-action-label">Kosten</span>
-              <span className="flox-mobile-action-note">Budget prüfen</span>
+              <span className="flox-mobile-action-note">Prüfen</span>
             </span>
           </Link>
         </div>
@@ -123,3 +88,4 @@ export function DuesseldorfStickyActions() {
     </div>
   );
 }
+
