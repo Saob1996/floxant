@@ -49,7 +49,7 @@ export default async function AlternativenPage({ params }: { params: Promise<{ s
       {[
        { label: 'Preisbildung', comp: 'Mögliche Nachverhandlung', flox: 'Nachvollziehbarer Orientierungsrahmen' },
        { label: 'Leistungsumfang', comp: 'Unklare Pauschale', flox: 'Service-Stufen nach Einschätzung' },
-       { label: 'Anfrage', comp: 'Lange Rückfragen', flox: 'Strukturierter Einstieg' },
+       { label: 'Anfrage', comp: 'Lange Rückfragen', flox: 'Einfacher Start mit klaren Eckdaten' },
        { label: 'Disposition', comp: 'Unklare Zuständigkeit', flox: 'Eigene Einsatzplanung' }
       ].map((row, i) => (
        <div key={i} className="grid grid-cols-3 p-4 text-center items-center hover:bg-white/5 transition-colors">

@@ -75,7 +75,7 @@ export function DuesseldorfCleaningDecisionGuide({
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
-              data-event="click_duesseldorf_decision_guide_whatsapp"
+              data-event="whatsapp_click"
               data-region="duesseldorf"
             >
               Frage per WhatsApp klären
@@ -92,7 +92,7 @@ export function DuesseldorfCleaningDecisionGuide({
                   key={item.question}
                   href={item.bestHref}
                   className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-amber-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(217,119,6,0.1)]"
-                  data-event="click_duesseldorf_decision_guide"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-amber-100 bg-white text-amber-800">

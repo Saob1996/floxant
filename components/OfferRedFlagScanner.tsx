@@ -261,7 +261,7 @@ export function OfferRedFlagScanner({
   return (
     <div
       className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white shadow-2xl shadow-slate-950/10"
-      data-event="view_red_flag_scanner"
+
     >
       <div className="grid gap-6 border-b border-slate-200 bg-[radial-gradient(circle_at_top_left,#dbeafe_0,transparent_32rem),linear-gradient(135deg,#f8fafc,#ffffff)] p-5 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div>
@@ -289,21 +289,24 @@ export function OfferRedFlagScanner({
               title: "Schnell-Scanner",
               text: "Checkfragen beantworten.",
               Icon: ClipboardCheck,
-              event: "start_red_flag_scanner",
+              event: "hero_cta_click",
+              source: "red_flag_scanner_start",
               onClick: () => undefined,
             },
             {
               title: "Angebot hochladen",
               text: "PDF, Screenshot oder Bild senden.",
               Icon: UploadCloud,
-              event: "upload_offer_for_scanner",
+              event: "upload_started",
+              source: "red_flag_scanner_upload",
               onClick: scrollToForm,
             },
             {
               title: "Text einfuegen",
               text: "Angebotstext kopieren.",
               Icon: FileText,
-              event: "paste_offer_text_for_scanner",
+              event: "hero_cta_click",
+              source: "red_flag_scanner_text",
               onClick: scrollToForm,
             },
           ].map((item) => {
@@ -314,6 +317,7 @@ export function OfferRedFlagScanner({
                 type="button"
                 onClick={item.onClick}
                 data-event={item.event}
+                data-source={item.source}
                 className="rounded-[1.25rem] border border-slate-200 bg-white p-4 text-left text-slate-700 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/5"
               >
                 <Icon className="h-5 w-5 text-blue-700" />
@@ -356,7 +360,7 @@ export function OfferRedFlagScanner({
                           type="checkbox"
                           checked={checked}
                           onChange={() => toggleQuestion(question.id)}
-                          data-event="answer_red_flag_question"
+                          data-event="service_card_click"
                           data-category={category.id}
                           data-question={question.id}
                           className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600"
@@ -408,7 +412,7 @@ export function OfferRedFlagScanner({
             <button
               type="button"
               onClick={acceptResult}
-              data-event="complete_red_flag_scanner"
+              data-event="form_submit"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-700"
             >
               Ergebnis in Anfrage uebernehmen
@@ -416,7 +420,7 @@ export function OfferRedFlagScanner({
             </button>
             <a
               href={`https://wa.me/4915771105087?text=${whatsappText}`}
-              data-event="click_red_flag_whatsapp"
+              data-event="whatsapp_click"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
             >
               <MessageCircle className="h-4 w-4" />

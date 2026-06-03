@@ -83,7 +83,7 @@ export function DuesseldorfCleaningConversionLift({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-400 px-4 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
-              data-event="click_duesseldorf_conversion_whatsapp"
+              data-event="whatsapp_click"
               data-region="duesseldorf"
             >
               WhatsApp mit Fotos senden
@@ -92,7 +92,7 @@ export function DuesseldorfCleaningConversionLift({
             <a
               href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-white/15 bg-white/10 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/15"
-              data-event="click_duesseldorf_conversion_phone"
+              data-event="phone_click"
               data-region="duesseldorf"
             >
               <Phone className="h-4 w-4" />
@@ -101,7 +101,7 @@ export function DuesseldorfCleaningConversionLift({
             <Link
               href={bookingHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-cyan-100/35 bg-cyan-200/16 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-cyan-200/24"
-              data-event="click_duesseldorf_conversion_booking"
+              data-event="hero_cta_click"
               data-region="duesseldorf"
             >
               Anfrage online starten
@@ -119,7 +119,7 @@ export function DuesseldorfCleaningConversionLift({
                 key={item.searchPhrase}
                 href={item.href}
                 className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(8,145,178,0.1)]"
-                data-event="click_duesseldorf_conversion_situation"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-cyan-100 bg-cyan-50 text-cyan-700">
@@ -149,7 +149,7 @@ export function DuesseldorfCleaningConversionLift({
               key={item.query}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-[0_14px_34px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_18px_44px_rgba(15,118,110,0.09)]"
-              data-event="click_duesseldorf_conversion_answer"
+              data-event="service_card_click"
               data-region="duesseldorf"
             >
               <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">

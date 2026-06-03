@@ -195,7 +195,7 @@ export default async function LeerfahrtRueckfahrtPage() {
               <Link
                 href="/rueckfahrt-boerse#rueckfahrt-form"
                 className="inline-flex items-center justify-center rounded-2xl border border-emerald-200 bg-white px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-emerald-800 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:bg-emerald-50"
-                data-event="start_route_check"
+                data-event="region_select"
                 data-service="leerfahrt"
                 data-source="return_trip_page"
               >

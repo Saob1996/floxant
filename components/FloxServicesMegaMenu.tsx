@@ -8,14 +8,12 @@ import { FloxServiceCard } from "@/components/FloxServiceCard";
 import {
   floxantCategoryDescriptions,
   floxantCategoryLabels,
+  floxantCategoryOrder,
   floxantRegions,
   getServicesByRegionAndCategory,
   type FloxantRegion,
-  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { cn } from "@/lib/utils";
-
-const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 
 type FloxServicesMegaMenuProps = {
   mode?: "desktop" | "mobile";
@@ -32,7 +30,7 @@ export function FloxServicesMegaMenu({
 
   const activeServices = useMemo(
     () =>
-      categoryOrder.map((category) => ({
+      floxantCategoryOrder.map((category) => ({
         category,
         services: getServicesByRegionAndCategory(activeRegion, category),
       })),
@@ -64,7 +62,7 @@ export function FloxServicesMegaMenu({
               </summary>
 
               <div className="grid gap-3 border-t border-slate-200 p-3">
-                {categoryOrder.map((category) => {
+                {floxantCategoryOrder.map((category) => {
                   const services = getServicesByRegionAndCategory(regionId, category);
                   if (!services.length) return null;
 
@@ -84,6 +82,7 @@ export function FloxServicesMegaMenu({
                             key={service.id}
                             service={service}
                             compact
+                            onNavigate={onNavigate}
                             source="mobile_mega_menu"
                             className="shadow-none"
                           />
@@ -96,12 +95,22 @@ export function FloxServicesMegaMenu({
             </details>
           );
         })}
+        <Link
+          href="/leistungen"
+          onClick={onNavigate}
+          data-event="service_card_click"
+          data-source="mobile_mega_menu_all_services"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
+        >
+          Alle Leistungen ansehen
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="grid max-h-[calc(100vh-7rem)] gap-4 overflow-y-auto rounded-lg border border-slate-200 bg-white p-3 shadow-[0_24px_80px_rgba(15,23,42,0.18)] xl:grid-cols-[13.5rem_1fr]">
+    <div className="grid max-h-[calc(100vh-8rem)] gap-4 overflow-y-auto rounded-lg border border-slate-200 bg-white p-3 shadow-[0_24px_80px_rgba(15,23,42,0.18)] xl:grid-cols-[12.5rem_1fr]">
       <div className="rounded-lg bg-slate-50 p-2.5">
         <p className="px-2 text-xs font-black uppercase tracking-normal text-slate-500">
           Region auswählen
@@ -150,6 +159,16 @@ export function FloxServicesMegaMenu({
           {floxantRegions[activeRegion].primaryCta}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
+        <Link
+          href="/leistungen"
+          onClick={onNavigate}
+          data-event="service_card_click"
+          data-source="desktop_mega_menu_all_services"
+          className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-800"
+        >
+          Alle Leistungen ansehen
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
       </div>
 
       <div className="grid gap-3">
@@ -168,12 +187,13 @@ export function FloxServicesMegaMenu({
                   </p>
                 </div>
               </div>
-              <div className="grid gap-2 lg:grid-cols-3">
+              <div className="grid gap-2 md:grid-cols-2">
                 {services.map((service) => (
                   <FloxServiceCard
                     key={service.id}
                     service={service}
                     compact
+                    onNavigate={onNavigate}
                     source="desktop_mega_menu"
                     className="min-h-[9.75rem] p-3"
                   />

@@ -38,6 +38,19 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "angebot-red-flag-scanner",
   "villenservice",
   "umzug-duesseldorf",
+  "reinigung-regensburg",
+  "gewerbereinigung-regensburg",
+  "bueroreinigung-regensburg",
+  "praxisreinigung-regensburg",
+  "hotelreinigung-regensburg",
+  "fensterreinigung-regensburg",
+  "baureinigung-regensburg",
+  "teppichreinigung-regensburg",
+  "treppenhausreinigung-regensburg",
+  "unterhaltsreinigung-regensburg",
+  "grundreinigung-regensburg",
+  "endreinigung-regensburg",
+  "umzug-reinigung-regensburg",
   "seo-gone",
 ]);
 
@@ -248,7 +261,7 @@ function priorityForRoute(route: string): string {
   if (!route) return "1.0";
   if (route === "service-graph.json") return "0.82";
   if (route === "llms.txt") return "0.82";
-  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "gewerbereinigung-regensburg", "bueroreinigung-regensburg", "praxisreinigung-regensburg", "hotelreinigung-regensburg", "fensterreinigung-regensburg", "baureinigung-regensburg", "teppichreinigung-regensburg", "treppenhausreinigung-regensburg", "unterhaltsreinigung-regensburg", "grundreinigung-regensburg", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
     if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";
@@ -300,6 +313,7 @@ function priorityForRoute(route: string): string {
   if (route === "leerfahrt-rueckfahrt") return "0.88";
   if (route === "einsatzgebiet-regensburg-200km") return "0.88";
   if (route === "standorte") return "0.88";
+  if (route === "leistungen") return "0.88";
   if (route === "kontakt") return "0.88";
   if (route === "buchung-ablauf") return "0.86";
   if (route === "leistungen-vergleichen") return "0.85";

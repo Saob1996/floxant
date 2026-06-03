@@ -69,7 +69,7 @@ export default function MobileFloatingContact() {
                 href={centerHref}
                 className="flox-mobile-action flox-mobile-action-primary"
                 aria-label="Anfrage an FLOXANT senden"
-                data-event="start_booking"
+                data-event="hero_cta_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="booking"
                 data-intent="mobile_booking_start"
@@ -88,7 +88,7 @@ export default function MobileFloatingContact() {
                 rel="noopener noreferrer"
                 className="flox-mobile-action flox-mobile-action-whatsapp"
                 aria-label="FLOXANT per WhatsApp schreiben"
-                data-event="click_whatsapp"
+                data-event="whatsapp_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="whatsapp"
                 data-intent="mobile_direct_contact"
@@ -105,7 +105,7 @@ export default function MobileFloatingContact() {
                 href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
                 className="flox-mobile-action flox-mobile-action-light"
                 aria-label="FLOXANT anrufen"
-                data-event="click_phone"
+                data-event="phone_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="phone"
                 data-intent="mobile_direct_contact"
@@ -122,7 +122,7 @@ export default function MobileFloatingContact() {
                 href={offerHref}
                 className="flox-mobile-action flox-mobile-action-offer"
                 aria-label="Bestehendes Angebot einer anderen Firma prüfen lassen"
-                data-event="click_offer_check"
+                data-event="hero_cta_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="offer_check"
                 data-intent="mobile_offer_check"
@@ -139,7 +139,7 @@ export default function MobileFloatingContact() {
                 href={budgetHref}
                 className="flox-mobile-action flox-mobile-action-dark"
                 aria-label="Kosten oder Budget realistisch prüfen"
-                data-event="click_budget_check"
+                data-event="hero_cta_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="budget_check"
                 data-intent="mobile_budget_check"

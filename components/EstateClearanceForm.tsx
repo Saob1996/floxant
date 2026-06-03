@@ -271,7 +271,7 @@ export function EstateClearanceForm() {
               key={item.value}
               type="button"
               onClick={() => setEstateStatus(item.value)}
-              data-event="select_estate_service"
+              data-event="service_card_click"
               data-estate-status={item.value}
               className={`rounded-[1.25rem] border p-4 text-left transition hover:-translate-y-0.5 ${
                 active
@@ -289,7 +289,7 @@ export function EstateClearanceForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_estate_clearance_lead">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Name*
@@ -301,7 +301,7 @@ export function EstateClearanceForm() {
               name="roleType"
               value={role}
               onChange={(event) => setRole(event.target.value)}
-              data-event="select_estate_role"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
             >
               {roleOptions.map((item) => (
@@ -327,7 +327,7 @@ export function EstateClearanceForm() {
               name="objectType"
               value={objectType}
               onChange={(event) => setObjectType(event.target.value)}
-              data-event="select_estate_object_type"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
             >
               {objectTypeOptions.map((item) => (
@@ -359,7 +359,7 @@ export function EstateClearanceForm() {
                   key={service}
                   type="button"
                   onClick={() => toggleService(service)}
-                  data-event="select_estate_service"
+                  data-event="service_card_click"
                   className={`rounded-xl border px-3 py-3 text-left text-xs font-black transition ${
                     active ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-700 hover:border-stone-400"
                   }`}
@@ -449,7 +449,7 @@ export function EstateClearanceForm() {
           <UploadDropCard
             title="Fotos optional"
             description="Raeume, Moebel, Keller, Garage, Dachboden oder Zugang."
-            helper="Bitte keine sensiblen Familien- oder Nachlassdetails in Tracking-Events oder Dateinamen."
+            helper="Bitte keine sensiblen Familien- oder Nachlassdetails in Dateinamen oder Anhängen."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
             dataEvent="upload_estate_photos"
@@ -489,7 +489,7 @@ export function EstateClearanceForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_estate_clearance_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -497,7 +497,7 @@ export function EstateClearanceForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_estate_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             <Phone className="h-4 w-4" />
@@ -505,7 +505,7 @@ export function EstateClearanceForm() {
           </a>
           <a
             href={`tel:${PHONE_TEL}`}
-            data-event="click_estate_phone"
+            data-event="phone_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-stone-100"
           >
             <Phone className="h-4 w-4" />

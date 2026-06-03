@@ -46,7 +46,7 @@ const decisionRows: Array<{
     checks: ["Zustand", "Deadline", "Schwerpunkte"],
   },
   {
-    signal: "Spezialfall",
+    signal: "Besondere Situation",
     title: "Fenster, Teppich, Bau oder Treppenhaus direkt wählen",
     text: "Spezielle Suchbegriffe brauchen spezielle Angaben: Fensterzahl, Material, Bauphase, Etagen oder Zugang.",
     href: "#reinigungsservice-regensburg",
@@ -59,7 +59,7 @@ const decisionRows: Array<{
 const snippetLines = [
   "Putzfirma Regensburg gesucht: FLOXANT fragt Fläche, Zustand, Fotos und Termin ab, bevor ein seriöses Angebot entsteht.",
   "Büroreinigung Regensburg: Arbeitsplätze, Küche, Sanitär, Empfang und Randzeiten sauber abstimmen.",
-  "Fenster, Teppich, Bau oder Treppenhaus: Spezialfall direkt wählen statt allgemeine Anfrage verlieren.",
+  "Fenster, Teppich, Bau oder Treppenhaus: passende Reinigungsart direkt wählen statt allgemeine Anfrage verlieren.",
 ];
 
 export function RegensburgCleaningClickDecisionPanel() {

@@ -694,7 +694,7 @@ export default async function BuchungPage({ searchParams }: BuchungPageProps) {
                           <Link
                             href={getSignatureActionHref(item.title)}
                             className="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-3 text-xs font-black uppercase tracking-[0.12em] text-blue-700 transition hover:bg-blue-50"
-                            data-event="start_booking"
+                            data-event="hero_cta_click"
                             data-source="booking_signature_service"
                             data-label={item.title}
                             data-request-center="ignore"
@@ -876,7 +876,7 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
                 <a
                   href="#buchungssystem"
                   className="flox-readable-cta-dark inline-flex items-center justify-center gap-2 rounded-[1.2rem] px-5 py-3 text-sm font-bold transition hover:-translate-y-0.5"
-                  data-event="start_booking"
+                  data-event="hero_cta_click"
                   data-service="reinigung"
                   data-region="duesseldorf"
                 >
@@ -888,7 +888,7 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-teal-200 bg-teal-50 px-5 py-3 text-sm font-bold text-teal-800 transition hover:-translate-y-0.5 hover:bg-teal-100"
-                  data-event="click_whatsapp"
+                  data-event="whatsapp_click"
                   data-service="reinigung"
                   data-region="duesseldorf"
                 >
@@ -897,7 +897,7 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
                 <Link
                   href="/buchung?service=reinigung&region=duesseldorf&entry=budget#buchungssystem"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-teal-200"
-                  data-event="submit_budget_request"
+                  data-event="form_submit"
                   data-service="reinigung"
                   data-region="duesseldorf"
                   data-request-center="ignore"
@@ -907,7 +907,7 @@ function DuesseldorfCleaningBooking({ dict }: { dict: any }) {
                 <Link
                   href="/reinigung-moeblierte-wohnung-duesseldorf"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-cyan-200 bg-cyan-50 px-5 py-3 text-sm font-bold text-cyan-900 transition hover:-translate-y-0.5 hover:bg-cyan-100"
-                  data-event="internal_link_duesseldorf_apartment_cleaning"
+                  data-event="service_card_click"
                   data-service="duesseldorf_moeblierte_wohnung_reinigung"
                   data-region="duesseldorf"
                 >
@@ -1051,7 +1051,7 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
                 <a
                   href="#buchungssystem"
                   className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-[0_18px_46px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5"
-                  data-event="start_booking"
+                  data-event="hero_cta_click"
                   data-service="entsorgung"
                   data-region="duesseldorf"
                 >
@@ -1063,7 +1063,7 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-orange-200 bg-orange-50 px-5 py-3 text-sm font-bold text-orange-800 transition hover:-translate-y-0.5 hover:bg-orange-100"
-                  data-event="click_whatsapp"
+                  data-event="whatsapp_click"
                   data-service="entsorgung"
                   data-region="duesseldorf"
                 >
@@ -1072,7 +1072,7 @@ function DuesseldorfDisposalBooking({ dict }: { dict: any }) {
                 <Link
                   href="/buchung?service=entsorgung&region=duesseldorf&entry=budget#buchungssystem"
                   className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-orange-200"
-                  data-event="submit_budget_request"
+                  data-event="form_submit"
                   data-service="entsorgung"
                   data-region="duesseldorf"
                   data-request-center="ignore"
@@ -1234,7 +1234,8 @@ function CoreServicesGrid() {
               key={service.title}
               href={service.href}
               className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-950/10"
-              data-event={`select_service_${service.href.includes("entsorgung") ? "entruempelung" : service.href.includes("reinigung") ? "reinigung" : "umzug"}`}
+              data-event="service_card_click"
+              data-service={service.href.includes("entsorgung") ? "entruempelung" : service.href.includes("reinigung") ? "reinigung" : "umzug"}
               data-source="booking_core_services"
               data-request-center="ignore"
             >
@@ -1301,11 +1302,12 @@ function DecisionPathCard({
   );
 
   const className = `group block rounded-[1.45rem] border p-4 transition duration-300 ${tone}`;
-  const eventName = "external" in item && item.external
-    ? "click_whatsapp"
+  const eventName = "external" in item && item.external ? "whatsapp_click" : "hero_cta_click";
+  const eventAction = "external" in item && item.external
+    ? "whatsapp"
     : item.href.includes("preisrahmen")
-      ? "submit_budget_request"
-      : "start_booking";
+      ? "budget_request"
+      : "booking";
 
   return item.href.startsWith("http") ? (
     <a
@@ -1314,12 +1316,13 @@ function DecisionPathCard({
       rel="noopener noreferrer"
       className={className}
       data-event={eventName}
+      data-action={eventAction}
       data-source="booking_decision_path"
     >
       {content}
     </a>
   ) : item.href.startsWith("#") ? (
-    <a href={item.href} className={className} data-event={eventName} data-source="booking_decision_path" data-request-center="ignore">
+    <a href={item.href} className={className} data-event={eventName} data-action={eventAction} data-source="booking_decision_path" data-request-center="ignore">
       {content}
     </a>
   ) : (
@@ -1327,6 +1330,7 @@ function DecisionPathCard({
       href={item.href}
       className={className}
       data-event={eventName}
+      data-action={eventAction}
       data-source="booking_decision_path"
       data-request-center={item.href.startsWith("/buchung") ? "ignore" : undefined}
     >
@@ -1460,7 +1464,7 @@ function SecondaryRequestCases() {
                 <Link
                   href={item.action}
                   className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-700"
-                  data-event="start_booking"
+                  data-event="hero_cta_click"
                   data-source="booking_secondary_case"
                   data-request-center="ignore"
                 >
@@ -1491,7 +1495,7 @@ function BookingStickyActions({
       <a
         href="#buchungssystem"
         className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-slate-950 px-3 text-sm font-black text-white transition hover:bg-blue-700"
-        data-event="start_booking"
+        data-event="hero_cta_click"
         data-source="booking_sticky"
         data-request-center="ignore"
       >
@@ -1503,7 +1507,7 @@ function BookingStickyActions({
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 text-sm font-black text-white shadow-[0_10px_26px_rgba(37,211,102,0.22)] transition hover:bg-[#16a34a]"
-        data-event="click_whatsapp"
+        data-event="whatsapp_click"
         data-source="booking_sticky"
       >
         <MessageCircle className="h-4 w-4" />
@@ -1512,7 +1516,7 @@ function BookingStickyActions({
       <Link
         href={budgetHref}
         className="hidden min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-black text-slate-900 transition hover:bg-blue-50 sm:inline-flex"
-        data-event="submit_budget_request"
+        data-event="form_submit"
         data-source="booking_sticky"
         data-request-center="ignore"
       >

@@ -139,7 +139,7 @@ export default async function SchluesseluebergabePage() {
             <a
               href="#booking"
               className="btn-premium inline-flex h-12 items-center gap-2 rounded-xl bg-gradient-to-b from-blue-500 to-blue-600 px-8 text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:brightness-110 hover:shadow-blue-500/40"
-              data-event="start_booking"
+              data-event="hero_cta_click"
               data-source="key_handover_hero"
             >
               Uebergabe anfragen
@@ -150,7 +150,7 @@ export default async function SchluesseluebergabePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-medium text-slate-700 transition-all hover:bg-blue-50 hover:text-slate-900"
-              data-event="click_whatsapp"
+              data-event="whatsapp_click"
               data-source="key_handover_hero"
             >
               <MessageCircle className="h-4 w-4 text-[#25D366]" />

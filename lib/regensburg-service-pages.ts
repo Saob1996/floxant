@@ -93,7 +93,7 @@ export const regensburgServicePages = {
       "Sie erhalten eine unverbindliche Rückmeldung zum nächsten Schritt.",
     ],
     trust: [
-      "Keine Zusage für Gefahrstoffe oder Spezialfälle ohne Prüfung.",
+      "Keine Zusage für Gefahrstoffe oder besondere Situationen ohne Prüfung.",
       "Fotos beschleunigen die Einschätzung deutlich.",
       "Räumung und Reinigung werden sauber voneinander abgegrenzt.",
     ],

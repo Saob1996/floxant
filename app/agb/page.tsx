@@ -19,7 +19,7 @@ export default async function AGB() {
           <section>
             <p className="font-semibold text-foreground">
               FLOXANT<br />
-              Dienstleistungsunternehmen für Umzug, Transport, Reinigung und Zusatzservices<br />
+              Dienstleistungsunternehmen für Umzug, Transport, Reinigung und Zusatzleistungen<br />
               Sitz: Regensburg, Deutschland
             </p>
           </section>

@@ -11,6 +11,11 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import {
+  floxantCategoryLabels,
+  getServicesByRegionAndCategory,
+  type FloxantServiceCategory,
+} from "@/lib/floxant-services";
 import type { RegensburgServicePageConfig } from "@/lib/regensburg-service-pages";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
@@ -98,12 +103,25 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, config.whatsappMessage);
   const heroImage = heroImages[config.slug] || "/assets/service-cleaning.png";
   const bookingHref = `/buchung?region=regensburg&service=${encodeURIComponent(config.slug)}#buchungssystem`;
+  const category: FloxantServiceCategory =
+    config.slug === "umzug" ||
+    config.slug === "entruempelung" ||
+    config.slug === "haushaltsaufloesung" ||
+    config.slug === "uebergabereinigung" ||
+    config.slug === "endreinigung"
+      ? "normal"
+      : config.slug === "besenreine-uebergabe"
+        ? "special"
+        : "signature";
+  const relatedCategoryServices = getServicesByRegionAndCategory("regensburg", category)
+    .filter((service) => service.href !== config.path)
+    .slice(0, 5);
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd config={config} whatsappHref={whatsappHref} />
 
-      <section className="relative isolate overflow-hidden bg-slate-950 text-white">
+      <section className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white sm:pt-28 lg:pt-32">
         <Image
           src={heroImage}
           alt={config.title}
@@ -113,12 +131,25 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           className="absolute inset-0 -z-20 object-cover object-center opacity-70"
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.95)_0%,rgba(15,23,42,0.82)_52%,rgba(15,23,42,0.42)_100%)]" />
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 pb-16 pt-8 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:pb-20 lg:pt-10">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
-              <MapPin className="h-4 w-4" aria-hidden="true" />
-              {config.eyebrow}
-            </p>
+            <div className="flex flex-wrap gap-2">
+              <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                {config.eyebrow}
+              </p>
+              <Link
+                href={`/leistungen#regensburg-${category}`}
+                data-event="service_card_click"
+                data-region="regensburg"
+                data-category={category}
+                data-source="regensburg_service_hero_category"
+                className="inline-flex items-center gap-2 rounded-lg border border-cyan-100/20 bg-cyan-100/12 px-3 py-2 text-sm font-bold text-cyan-50 backdrop-blur transition hover:bg-cyan-100/18"
+              >
+                {floxantCategoryLabels[category]}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
               {config.title}
             </h1>
@@ -157,6 +188,17 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
                 {company.phone}
               </a>
             </div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {[
+                "Regensburg und Umgebung",
+                "Fotos oder Eckdaten reichen zum Start",
+                "Keine Vermischung mit Düsseldorf-Reinigung",
+              ].map((item) => (
+                <div key={item} className="rounded-lg border border-white/14 bg-white/8 px-4 py-3 text-sm font-bold leading-6 text-slate-100">
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
 
           <aside id="anfrage" className="scroll-mt-28 rounded-lg border border-white/15 bg-white p-5 text-slate-950 shadow-2xl shadow-slate-950/20 sm:p-6">
@@ -177,7 +219,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             <div className="mt-6 grid gap-3">
               <Link
                 href={bookingHref}
-                data-event="form_submit"
+                data-event="hero_cta_click"
                 data-region="regensburg"
                 data-service={config.slug}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
@@ -207,11 +249,12 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               Geeignet für
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Regensburg-Seite mit klarem lokalen Schwerpunkt.
+              Diese Seite gehört klar zu FLOXANT Regensburg.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
               Diese Seite bezieht sich auf Regensburg und Umgebung. Es geht um Umzug,
               Entrümpelung, Haushaltsauflösung, Endreinigung oder Übergabevorbereitung.
+              Düsseldorfer Gewerbereinigung bleibt getrennt im eigenen Bereich.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -301,6 +344,66 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           </div>
         </div>
       </section>
+
+      {relatedCategoryServices.length > 0 ? (
+        <section className="border-t border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+                  Weitere Regensburger Wege
+                </p>
+                <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+                  Passende Leistungen aus derselben Kategorie.
+                </h2>
+                <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+                  Wenn dieser Service nicht genau passt, helfen diese regional einsortierten
+                  Seiten weiter. Alle Links bleiben im Regensburger Leistungsbereich und
+                  führen nicht in Düsseldorfer Reinigungstexte.
+                </p>
+              </div>
+              <Link
+                href="/leistungen#regensburg"
+                data-event="service_card_click"
+                data-region="regensburg"
+                data-source="regensburg_service_related_overview"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800"
+              >
+                Alle Regensburg-Leistungen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {relatedCategoryServices.map((service) => (
+                <Link
+                  key={service.id}
+                  href={service.href}
+                  data-event="service_card_click"
+                  data-region="regensburg"
+                  data-service={service.id}
+                  data-category={service.category}
+                  data-source="regensburg_service_related"
+                  className="group flex min-h-[11rem] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+                >
+                  <p className="text-xs font-black uppercase tracking-normal text-blue-700">
+                    {floxantCategoryLabels[service.category]}
+                  </p>
+                  <h3 className="mt-3 text-lg font-black leading-snug text-slate-950">
+                    {service.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                    {service.shortDescription}
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-black text-blue-700">
+                    {service.ctaLabel}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }

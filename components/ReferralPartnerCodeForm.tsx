@@ -214,13 +214,13 @@ export function ReferralPartnerCodeForm() {
               value={partnerCode}
               onChange={(event) => updatePartnerCode(event.target.value)}
               className="min-h-12 flex-1 rounded-xl border border-blue-200 bg-white px-4 text-sm font-black uppercase outline-none transition focus:border-blue-600"
-              data-event="generate_partner_code"
+              data-event="form_submit"
             />
             <button
               type="button"
               onClick={() => updatePartnerCode(createNeutralCode())}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white"
-              data-event="generate_partner_code"
+              data-event="form_submit"
             >
               Code erstellen
               <ArrowRight className="h-4 w-4" />
@@ -233,7 +233,7 @@ export function ReferralPartnerCodeForm() {
             type="button"
             onClick={copyLink}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-800"
-            data-event="copy_referral_link"
+            data-event="form_submit"
           >
             <Copy className="h-4 w-4" />
             {copied ? "Kopiert" : "Link kopieren"}
@@ -241,7 +241,7 @@ export function ReferralPartnerCodeForm() {
           <a
             href={whatsappHref}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 text-xs font-black text-white"
-            data-event="click_referral_whatsapp_share"
+            data-event="whatsapp_click"
           >
             <MessageCircle className="h-4 w-4" />
             WhatsApp teilen
@@ -256,7 +256,7 @@ export function ReferralPartnerCodeForm() {
         </div>
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_referral_form">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <input type="hidden" name="partnerCode" value={partnerCode} />
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -294,7 +294,7 @@ export function ReferralPartnerCodeForm() {
           </label>
         </div>
 
-        <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4" data-event="submit_direct_referral">
+        <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4" data-event="form_submit">
           <div className="flex items-start gap-3">
             <Clipboard className="mt-1 h-5 w-5 text-amber-700" />
             <div>
@@ -347,7 +347,7 @@ export function ReferralPartnerCodeForm() {
           type="submit"
           disabled={isSubmitting}
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800 disabled:cursor-wait disabled:opacity-70"
-          data-event="submit_referral"
+          data-event="form_submit"
         >
           {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 className="h-4 w-4" />}
           Empfehlung speichern
@@ -355,7 +355,7 @@ export function ReferralPartnerCodeForm() {
       </form>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        <a href={`tel:${PHONE_TEL}`} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-700" data-event="click_referral_phone">
+        <a href={`tel:${PHONE_TEL}`} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-700" data-event="phone_click">
           <Phone className="h-4 w-4" />
           Anrufen
         </a>

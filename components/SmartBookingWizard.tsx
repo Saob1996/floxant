@@ -1209,7 +1209,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               key={option.id}
               href={option.href || "/"}
               className="calc-option-card group rounded-[1.9rem] p-7"
-              data-event={`select_service_${option.id === "entsorgung" ? "entruempelung" : option.id}`}
+              data-event="service_card_click"
+              data-service={option.id === "entsorgung" ? "entruempelung" : option.id}
               data-source="booking_wizard"
             >
               <div className="flex items-start justify-between gap-4">
@@ -1244,7 +1245,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 }));
               }}
               className="calc-option-card group rounded-[1.9rem] p-7 text-start"
-              data-event={`select_service_${option.id === "entsorgung" ? "entruempelung" : option.id}`}
+              data-event="service_card_click"
+              data-service={option.id === "entsorgung" ? "entruempelung" : option.id}
               data-source="booking_wizard"
             >
               <div className="flex items-start justify-between gap-4">
@@ -1281,7 +1283,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           <Link
             href="/anfrage-mit-preisrahmen"
             className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
-            data-event="submit_budget_request"
+            data-event="form_submit"
             data-source="booking_wizard"
           >
             Kostenrahmen senden
@@ -1394,7 +1396,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                   }
                   className="calc-input h-11"
                   placeholder="z. B. 800 EUR, realistisch prüfen"
-                  data-event="submit_budget_request"
+                  data-event="form_submit"
                   data-source="booking_wizard_budget_field"
                 />
               </FieldBox>
@@ -1617,7 +1619,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 }
                 className="calc-chip-card relative rounded-[1.8rem] p-6 text-start"
                 data-active={isSelected ? "true" : "false"}
-                data-event="select_booking_upgrade"
+                data-event="hero_cta_click"
                 data-upgrade={upgrade.id}
                 aria-pressed={isSelected}
               >
@@ -1743,7 +1745,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         <form
           className="space-y-4"
           onSubmit={handleSubmit}
-          data-event="submit_booking"
+          data-event="form_submit"
           data-service={state.service || "unknown"}
           data-source={queryUtmSource || "booking_wizard"}
           data-contact-channel={queryPreferredContact || "form"}
@@ -1940,7 +1942,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   return (
     <div
       className="mx-auto w-full max-w-5xl space-y-8"
-      data-event="start_booking"
+      data-event="hero_cta_click"
       data-source="booking_wizard"
     >
       <div className={cn("grid gap-3", steps.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4")}>
@@ -1994,7 +1996,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           {state.step === 1 ? (
             <div className="glass-elevated space-y-8 rounded-[2.2rem] p-6 text-center md:p-8">
               <div className="space-y-3">
-                <div className="calc-kicker justify-center">Strukturierter Einstieg</div>
+                <div className="calc-kicker justify-center">Einfach starten</div>
                 <h2 className="text-3xl font-semibold tracking-tight text-slate-950">
                   {t?.headings?.service_selection || "Leistung auswählen"}
                 </h2>

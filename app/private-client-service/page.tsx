@@ -242,7 +242,7 @@ export default function PrivateClientServicePage() {
               <Link
                 href="/angebotscheck"
                 className="private-copy inline-flex h-14 items-center justify-center rounded-full border border-[#D8B76E]/22 px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8D2A2] transition hover:border-[#D8B76E]/50 hover:bg-[#D8B76E]/8"
-                data-event="start_offer_check"
+                data-event="hero_cta_click"
                 data-source="private_client_hero"
               >
                 Angebot diskret prüfen
@@ -370,7 +370,7 @@ export default function PrivateClientServicePage() {
           <a
             href="#private-anfrage"
             className="private-copy mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D8B76E] px-6 text-[10px] font-bold uppercase tracking-[0.18em] text-[#120D08] transition hover:bg-[#F0D58B]"
-            data-event="open_private_client_lead"
+            data-event="service_card_click"
             data-source="private_client_signature_services"
           >
             Anfrage vertraulich vorbereiten

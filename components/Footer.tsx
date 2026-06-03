@@ -71,6 +71,15 @@ export function Footer({ dic }: { dic?: any } = {}) {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <Link
+              href="/leistungen"
+              data-event="service_card_click"
+              data-source="global_footer_all_services"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white hover:text-slate-950"
+            >
+              Leistungen ansehen
+              <ArrowRight className="h-4 w-4" />
+            </Link>
             <a
               href={whatsappHref}
               data-event="whatsapp_click"
@@ -82,7 +91,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
             </a>
             <Link
               href="/kontakt"
-              data-event="footer_cta_click"
+              data-event="hero_cta_click"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
               Kontakt öffnen

@@ -257,7 +257,7 @@ export default function EntsorgungDuesseldorfPage() {
               <Link
                 href={bookingHref}
                 className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-[0_18px_46px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5"
-                data-event="start_booking"
+                data-event="hero_cta_click"
                 data-service="entsorgung"
                 data-region="duesseldorf"
               >
@@ -269,7 +269,7 @@ export default function EntsorgungDuesseldorfPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-orange-200 bg-orange-50 px-5 py-3 text-sm font-bold text-orange-800 transition hover:-translate-y-0.5 hover:bg-orange-100"
-                data-event="click_whatsapp"
+                data-event="whatsapp_click"
                 data-service="entsorgung"
                 data-region="duesseldorf"
               >
@@ -279,7 +279,7 @@ export default function EntsorgungDuesseldorfPage() {
               <Link
                 href="/duesseldorf/reinigung"
                 className="inline-flex items-center justify-center rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-900 transition hover:-translate-y-0.5 hover:border-teal-200"
-                data-event="internal_link_cleaning_duesseldorf"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 Reinigung separat ansehen
@@ -287,7 +287,7 @@ export default function EntsorgungDuesseldorfPage() {
               <Link
                 href="/reinigung-moeblierte-wohnung-duesseldorf"
                 className="inline-flex items-center justify-center rounded-[1.2rem] border border-cyan-200 bg-cyan-50 px-5 py-3 text-sm font-bold text-cyan-900 transition hover:-translate-y-0.5 hover:bg-cyan-100"
-                data-event="internal_link_duesseldorf_apartment_cleaning"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 Apartment-Reinigung
@@ -384,7 +384,7 @@ export default function EntsorgungDuesseldorfPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={className}
-                  data-event="click_duesseldorf_disposal_intent"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   {content}
@@ -394,7 +394,7 @@ export default function EntsorgungDuesseldorfPage() {
                   key={item.query}
                   href={item.href}
                   className={className}
-                  data-event="click_duesseldorf_disposal_intent"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   {content}
@@ -425,7 +425,7 @@ export default function EntsorgungDuesseldorfPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] bg-emerald-400 px-5 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
-                data-event="click_duesseldorf_disposal_checklist_whatsapp"
+                data-event="whatsapp_click"
                 data-region="duesseldorf"
               >
                 <MessageCircle className="h-4 w-4" />
@@ -434,7 +434,7 @@ export default function EntsorgungDuesseldorfPage() {
               <Link
                 href={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] border border-white/15 bg-white/10 px-5 text-sm font-black text-white transition hover:bg-white/15"
-                data-event="click_duesseldorf_disposal_checklist_booking"
+                data-event="hero_cta_click"
                 data-region="duesseldorf"
               >
                 Entsorgung anfragen
@@ -555,7 +555,7 @@ export default function EntsorgungDuesseldorfPage() {
             <Link
               href={bookingHref}
               className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-white px-6 py-4 text-sm font-black uppercase tracking-normal text-slate-950 transition hover:-translate-y-0.5"
-              data-event="start_booking"
+              data-event="hero_cta_click"
               data-service="entsorgung"
               data-region="duesseldorf"
             >
@@ -597,28 +597,28 @@ export default function EntsorgungDuesseldorfPage() {
             <Link
               href={bookingHref}
               className="flox-mobile-action flox-mobile-action-primary"
-              data-event="start_duesseldorf_disposal_mobile"
+              data-event="service_card_click"
             >
               Anfragen
             </Link>
             <a
               href={whatsappHref}
               className="flox-mobile-action flox-mobile-action-whatsapp"
-              data-event="click_duesseldorf_disposal_mobile_whatsapp"
+              data-event="whatsapp_click"
             >
               WhatsApp
             </a>
             <a
               href={`tel:${company.phoneRaw}`}
               className="flox-mobile-action flox-mobile-action-light"
-              data-event="click_duesseldorf_disposal_mobile_phone"
+              data-event="phone_click"
             >
               Anrufen
             </a>
             <Link
               href="/duesseldorf/reinigung"
               className="flox-mobile-action flox-mobile-action-dark"
-              data-event="click_duesseldorf_disposal_mobile_cleaning"
+              data-event="service_card_click"
             >
               Reinigung
             </Link>

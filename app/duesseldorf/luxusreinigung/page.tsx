@@ -262,10 +262,10 @@ export default function LuxusreinigungDuesseldorfPage() {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Positionierung
+              Worauf es ankommt
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Ruhige Sprache, klare Grenzen, sorgfältige Durchführung.
+              Ruhige Abstimmung, klare Grenzen, sorgfältige Durchführung.
             </h2>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

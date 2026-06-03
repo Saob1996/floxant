@@ -216,7 +216,7 @@ export function DuesseldorfCleaningCalculator() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-500 px-5 py-3 text-sm font-bold text-slate-950"
-            data-event="click_whatsapp"
+            data-event="whatsapp_click"
             data-service="reinigung"
             data-region="duesseldorf"
           >
@@ -226,7 +226,7 @@ export function DuesseldorfCleaningCalculator() {
           <a
             href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
             className="inline-flex items-center justify-center rounded-[0.85rem] border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-900"
-            data-event="click_phone"
+            data-event="phone_click"
             data-service="reinigung"
             data-region="duesseldorf"
           >
@@ -242,7 +242,7 @@ export function DuesseldorfCleaningCalculator() {
       <form
         onSubmit={handleSubmit}
         className="rounded-[1rem] border border-slate-200 bg-white p-6 shadow-[0_24px_64px_rgba(15,23,42,0.08)] md:p-8"
-        data-event="submit_budget_request"
+        data-event="form_submit"
         data-service="reinigung"
         data-region="duesseldorf"
       >
@@ -413,7 +413,7 @@ export function DuesseldorfCleaningCalculator() {
             type="submit"
             disabled={submitting || !name.trim() || !phone.trim()}
             className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
-            data-event="submit_budget_request"
+            data-event="form_submit"
             data-service="reinigung"
             data-region="duesseldorf"
           >
@@ -425,7 +425,7 @@ export function DuesseldorfCleaningCalculator() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900"
-            data-event="click_whatsapp"
+            data-event="whatsapp_click"
             data-service="reinigung"
             data-region="duesseldorf"
           >

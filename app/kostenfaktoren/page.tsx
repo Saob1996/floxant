@@ -27,7 +27,7 @@ const faqItems = [
  },
  {
   q: "Wie wird die Preisvorstellung des Kunden behandelt?",
-  a: "Die Preisvorstellung ergänzt die System-Einschätzung. Sie überschreibt sie nicht, hilft FLOXANT aber zu prüfen, ob Budget, Umfang und Leistung zusammenpassen.",
+  a: "Die Preisvorstellung ergänzt die erste Orientierung. Sie überschreibt sie nicht, hilft FLOXANT aber zu prüfen, ob Budget, Umfang und Leistung zusammenpassen.",
  },
  {
   q: "Warum unterscheiden sich Umzug, Reinigung und Entrümpelung so stark?",
@@ -38,7 +38,7 @@ const faqItems = [
 const principles = [
  "Keine Lockpreise und keine scheinbar exakten Euro-Versprechen.",
  "Sichtbare Kostentreiber statt versteckter Pauschalannahmen.",
- "Kundenbudget und System-Einschätzung bleiben sauber getrennt.",
+ "Kundenbudget und geprüfte Einschätzung bleiben sauber getrennt.",
  "Der Rechner ist Einstieg in die Vorprüfung, nicht finales Angebot.",
 ];
 

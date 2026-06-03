@@ -65,7 +65,7 @@ const faqItems = [
   },
   {
     q: "Welche Angaben braucht FLOXANT?",
-    a: "Startort, Zielort, Datum oder Zeitraum, Flexibilität, Art der Anfrage, Umfang, Etagen, Zugang, Fotos und optional Budget oder Zusatzservices.",
+    a: "Startort, Zielort, Datum oder Zeitraum, Flexibilität, Art der Anfrage, Umfang, Etagen, Zugang, Fotos und optional Budget oder Zusatzleistungen.",
   },
   {
     q: "Sind Rückfahrten günstiger?",
@@ -120,7 +120,7 @@ export default function RueckfahrtBoersePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#d1fae5_0,transparent_31rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_return_trip_board">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#d1fae5_0,transparent_31rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
@@ -136,11 +136,11 @@ export default function RueckfahrtBoersePage() {
                 ob Ihre Anfrage zu einer passenden Rückfahrt, Leerfahrt oder geplanten Tour passt.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#rueckfahrt-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="start_route_check">
+                <Link href="#rueckfahrt-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="region_select">
                   Strecke prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_return_trip_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Strecke per WhatsApp senden
                 </a>
               </div>
@@ -215,7 +215,7 @@ export default function RueckfahrtBoersePage() {
                 <Link
                   key={corridor}
                   href="#rueckfahrt-form"
-                  data-event="select_route_corridor"
+                  data-event="region_select"
                   data-corridor={corridor}
                   className="group rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-emerald-300 hover:bg-emerald-50/60"
                 >
@@ -241,7 +241,7 @@ export default function RueckfahrtBoersePage() {
                 Rückfahrten entstehen nur, wenn Strecke, Datum und Umfang zusammenpassen. Flexible Termine,
                 Fotos und klare Angaben zu Start, Ziel, Etagen und Zugang machen die Prüfung realistischer.
               </p>
-              <Link href="#rueckfahrt-form" className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="start_route_check">
+              <Link href="#rueckfahrt-form" className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="region_select">
                 Flexible Strecke prüfen lassen
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -276,7 +276,7 @@ export default function RueckfahrtBoersePage() {
                   "Umfang, Fotos, Maße oder Anzahl Gegenstände",
                   "Etagen, Aufzug, Ladeweg und Zugang",
                   "Budget oder Preisrahmen optional",
-                  "Zusatzservices wie Reinigung, Entrümpelung oder Schlüsselübergabe optional",
+                  "Zusatzleistungen wie Reinigung, Entrümpelung oder Schlüsselübergabe optional",
                 ].map((item) => (
                   <div key={item} className="flex gap-3 rounded-xl border border-slate-200 bg-white p-3 text-sm font-semibold text-slate-700">
                     <PackageCheck className="h-5 w-5 shrink-0 text-emerald-700" />
@@ -311,7 +311,7 @@ export default function RueckfahrtBoersePage() {
               <Link href="/leerfahrt-rueckfahrt" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 px-5 text-sm font-black text-slate-800 transition hover:border-emerald-200 hover:bg-emerald-50">
                 Leerfahrt-Service ansehen
               </Link>
-              <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-red-200 px-5 text-sm font-black text-red-800 transition hover:bg-red-50" data-event="start_damage_control_lead">
+              <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center justify-center rounded-xl border border-red-200 px-5 text-sm font-black text-red-800 transition hover:bg-red-50" data-event="service_card_click">
                 Wenn die Strecke gerade kippt
               </Link>
             </div>
@@ -321,13 +321,13 @@ export default function RueckfahrtBoersePage() {
         <div className="flox-mobile-action-wrap z-30 lg:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#rueckfahrt-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_route_check">
+          <Link href="#rueckfahrt-form" className="flox-mobile-action flox-mobile-action-primary" data-event="region_select">
             Strecke
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_return_trip_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_return_trip_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

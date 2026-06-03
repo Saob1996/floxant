@@ -3,28 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
 
-import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { RegionSelector } from "@/components/RegionSelector";
 import { company } from "@/lib/company";
-import {
-  floxantCategoryDescriptions,
-  floxantCategoryLabels,
-  floxantRegions,
-  getServicesByRegionAndCategory,
-  type FloxantServiceCategory,
-} from "@/lib/floxant-services";
+import { floxantRegions, type FloxantRegion } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
-const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
     "Hallo FLOXANT,",
-    "ich möchte zuerst die passende Region klären.",
-    "Düsseldorf: Reinigung. Regensburg: Umzug, Entrümpelung oder Übergabe.",
+    "ich möchte meine Anfrage zuerst richtig einordnen.",
+    "Region, Objekt und gewünschte Leistung kann ich kurz senden.",
   ].join("\n"),
 );
 
@@ -120,12 +112,40 @@ function JsonLd() {
   );
 }
 
+const homepageAreas: Array<{
+  regionId: FloxantRegion;
+  headline: string;
+  text: string;
+  points: string[];
+}> = [
+  {
+    regionId: "duesseldorf",
+    headline: "FLOXANT Düsseldorf",
+    text: "Reinigung für Unternehmen, Praxen, Kanzleien, Treppenhäuser und Gewerbeobjekte. Der Bereich bleibt klar bei professioneller Reinigung.",
+    points: [
+      "Gewerbliche Reinigung",
+      "Büro, Praxis und Objekt",
+      "Premium- und Spezialanfragen",
+    ],
+  },
+  {
+    regionId: "regensburg",
+    headline: "FLOXANT Regensburg",
+    text: "Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Vorbereitung einer besenreinen Übergabe. Der Bereich bleibt klar bei Räumung, Wechsel und Übergabe.",
+    points: [
+      "Umzug und Entrümpelung",
+      "Haushaltsauflösung",
+      "Übergabe und Endreinigung",
+    ],
+  },
+];
+
 export default function HomePage() {
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
-      <section className="relative isolate min-h-[92svh] overflow-hidden bg-slate-950 text-white">
+      <section className="relative isolate min-h-[88svh] overflow-hidden bg-slate-950 text-white">
         <Image
           src="/assets/floxant-hero-neu-gedacht.png"
           alt="FLOXANT als regionale Dienstleistungsmarke"
@@ -137,18 +157,19 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.92)_0%,rgba(15,23,42,0.78)_48%,rgba(15,23,42,0.42)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-white to-transparent" />
 
-        <div className="mx-auto grid min-h-[92svh] max-w-7xl content-end px-5 pb-8 pt-28 sm:px-8 lg:px-10">
+        <div className="mx-auto grid min-h-[88svh] max-w-7xl content-end px-5 pb-8 pt-28 sm:px-8 lg:px-10">
           <div className="max-w-4xl pb-8">
             <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
               <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-              Region zuerst. Dann die passende Leistung.
+              Düsseldorf oder Regensburg: erst richtig einordnen.
             </p>
             <h1 className="mt-6 text-5xl font-black leading-[0.95] tracking-normal sm:text-6xl lg:text-7xl">
               FLOXANT
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
-              Eine Marke, zwei klare regionale Leistungsbereiche: Düsseldorf für professionelle Reinigung.
-              Regensburg für Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.
+              FLOXANT ordnet Ihre Anfrage zuerst nach Region. Düsseldorf ist der Bereich für
+              gewerbliche Reinigung. Regensburg ist der Bereich für Umzug, Entrümpelung,
+              Haushaltsauflösung und Übergabevorbereitung.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -157,7 +178,7 @@ export default function HomePage() {
                 data-source="homepage"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/20 transition hover:bg-cyan-50"
               >
-                Region wählen
+                Passende Region wählen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <a
@@ -167,7 +188,7 @@ export default function HomePage() {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200/40 bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                Per WhatsApp Kontakt aufnehmen
+                WhatsApp: Anfrage kurz schildern
               </a>
             </div>
           </div>
@@ -182,29 +203,29 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Warum diese Struktur
+              Damit Sie schneller richtig anfragen
             </p>
             <h2 className="mt-3 max-w-xl text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Kunden sollen sofort wissen, ob FLOXANT passt.
+              Ihre Anfrage kommt direkt zum passenden Bereich.
             </h2>
             <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              Deshalb führt die Startseite nicht mehr durch eine gemischte Leistungswand.
-              Sie wählen zuerst die Region. Danach sehen Sie nur die Leistungen, die dort wirklich gemeint sind.
+              FLOXANT trennt Düsseldorf und Regensburg klar, damit Reinigung, Umzug und Übergabe
+              nicht durcheinanderlaufen. So wissen Sie schneller, welche Anfrage wirklich passt.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               {
                 title: "Klare Region",
-                text: "Düsseldorf und Regensburg werden nicht vermischt.",
+                text: "Düsseldorf bleibt Reinigung. Regensburg bleibt Umzug, Räumung und Übergabe.",
               },
               {
-                title: "Konkrete Anfrage",
-                text: "Ort, Objekt, Umfang, Termin und Fotos reichen für den Start.",
+                title: "Weniger Rückfragen",
+                text: "Ort, Objekt, Termin und Fotos reichen meist für eine erste Einschätzung.",
               },
               {
-                title: "Keine Preisversprechen",
-                text: "Jede Anfrage wird individuell und unverbindlich geprüft.",
+                title: "Sauber geprüft",
+                text: "Sie bekommen eine ehrliche Rückmeldung ohne Preisversprechen oder Druck.",
               },
             ].map((item) => (
               <article key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
@@ -219,77 +240,66 @@ export default function HomePage() {
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 lg:grid-cols-2">
-            {(["duesseldorf", "regensburg"] as const).map((regionId) => {
-              const region = floxantRegions[regionId];
+          <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+                Zwei klare Bereiche
+              </p>
+              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+                Erst Region wählen, dann die passende Leistung finden.
+              </h2>
+              <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
+                Auf der Leistungsseite finden Sie alle Angebote übersichtlich nach Region sortiert:
+                Reinigung in Düsseldorf, Umzug und Übergabe in Regensburg.
+              </p>
+            </div>
+            <Link
+              href="/leistungen"
+              data-event="hero_cta_click"
+              data-source="homepage_all_services"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 text-sm font-black text-slate-950 shadow-sm transition hover:border-blue-200 hover:text-blue-800"
+            >
+              Alle Leistungen ansehen
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="grid gap-5 xl:grid-cols-2">
+            {homepageAreas.map((area) => {
+              const region = floxantRegions[area.regionId];
 
               return (
-                <section key={regionId} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+                <section key={area.regionId} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                       <p className="text-sm font-black uppercase tracking-normal text-blue-700">
                         {region.city}
                       </p>
                       <h2 className="mt-2 text-3xl font-black tracking-normal text-slate-950">
-                        {region.label}
+                        {area.headline}
                       </h2>
                       <p className="mt-3 max-w-xl text-sm font-semibold leading-7 text-slate-600">
-                        {region.description}
+                        {area.text}
                       </p>
                     </div>
                     <Link
                       href={region.href}
                       data-event="region_select"
-                      data-region={regionId}
-                      data-source="homepage_service_preview"
+                      data-region={area.regionId}
+                      data-source="homepage_area_card"
                       className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800"
                     >
-                      Ansehen
+                      Bereich öffnen
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
                   </div>
 
-                  <div className="mt-6 grid gap-4">
-                    {categoryOrder.map((category) => {
-                      const categoryServices = getServicesByRegionAndCategory(regionId, category);
-                      if (!categoryServices.length) return null;
-
-                      return (
-                        <div key={`${regionId}-${category}`} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-                          <div className="mb-3">
-                            <h3 className="text-xs font-black uppercase tracking-normal text-slate-800">
-                              {floxantCategoryLabels[category]}
-                            </h3>
-                            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                              {floxantCategoryDescriptions[category]}
-                            </p>
-                          </div>
-                          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                            {categoryServices.slice(0, 3).map((service) => (
-                              <FloxServiceCard
-                                key={service.id}
-                                service={service}
-                                compact
-                                source={`homepage_${regionId}_${category}`}
-                              />
-                            ))}
-                          </div>
-                          {categoryServices.length > 3 ? (
-                            <Link
-                              href={region.href}
-                              data-event="region_select"
-                              data-region={regionId}
-                              data-category={category}
-                              data-source={`homepage_${regionId}_${category}_more`}
-                              className="mt-3 inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-xs font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-800"
-                            >
-                              Weitere Services in {region.city} ansehen
-                              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                            </Link>
-                          ) : null}
-                        </div>
-                      );
-                    })}
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                    {area.points.map((point) => (
+                      <div key={point} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                        <CheckCircle2 className="h-4 w-4 text-blue-700" aria-hidden="true" />
+                        <p className="mt-2 text-sm font-bold leading-6 text-slate-700">{point}</p>
+                      </div>
+                    ))}
                   </div>
                 </section>
               );
@@ -305,19 +315,19 @@ export default function HomePage() {
               So läuft die Anfrage ab
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Erst prüfen, dann sauber entscheiden.
+              Schneller zur richtigen Rückmeldung.
             </h2>
             <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              Sie müssen keine perfekte Leistungsbeschreibung vorbereiten. Eine gute erste Anfrage nennt Region,
-              Objekt, gewünschte Leistung, Zeitfenster, offene Punkte und wenn möglich Fotos.
+              Sie müssen keine perfekte Leistungsbeschreibung schreiben. Region, Objekt, gewünschte
+              Leistung, Zeitfenster und ein paar Fotos reichen für einen guten Start.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              "Sie wählen Düsseldorf oder Regensburg.",
-              "Sie senden die wichtigsten Eckdaten per Formular, WhatsApp oder Telefon.",
-              "FLOXANT prüft Machbarkeit, Umfang und sinnvollen nächsten Schritt.",
-              "Sie erhalten eine klare Rückmeldung und entscheiden unverbindlich.",
+              "Sie wählen zuerst Düsseldorf oder Regensburg.",
+              "Sie senden kurz Objekt, Leistung, Termin und Fotos.",
+              "FLOXANT prüft, was sinnvoll machbar ist.",
+              "Sie erhalten eine klare Rückmeldung und entscheiden in Ruhe.",
             ].map((step, index) => (
               <article key={step} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-950 text-sm font-black text-white">
@@ -356,7 +366,7 @@ export default function HomePage() {
             </a>
             <Link
               href="/kontakt"
-              data-event="footer_cta_click"
+              data-event="hero_cta_click"
               data-source="homepage_final"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >

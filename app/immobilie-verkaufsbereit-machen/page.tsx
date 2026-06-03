@@ -316,7 +316,7 @@ export default function ImmobilieVerkaufsbereitPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_12%_0%,#fde68a_0,transparent_32rem),radial-gradient(circle_at_90%_6%,#e7e5e4_0,transparent_28rem),linear-gradient(180deg,#fafaf9_0%,#ffffff_43%,#f5f5f4_100%)] text-stone-950" data-event="view_property_ready_service">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_12%_0%,#fde68a_0,transparent_32rem),radial-gradient(circle_at_90%_6%,#e7e5e4_0,transparent_28rem),linear-gradient(180deg,#fafaf9_0%,#ffffff_43%,#f5f5f4_100%)] text-stone-950">
         <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
             <div>
@@ -332,11 +332,11 @@ export default function ImmobilieVerkaufsbereitPage() {
                 prueft FLOXANT Raeumung, Entsorgung, Reinigung und Dokumentation nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#property-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-amber-800" data-event="start_property_ready_lead">
+                <Link href="#property-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-amber-800" data-event="service_card_click">
                   Objektstatus pruefen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_property_ready_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Objekt per WhatsApp senden
                 </a>
               </div>
@@ -408,7 +408,7 @@ export default function ImmobilieVerkaufsbereitPage() {
                         <span key={service} className="rounded-full bg-stone-100 px-3 py-1 text-[11px] font-black text-stone-700">{service}</span>
                       ))}
                     </div>
-                    <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="start_property_ready_lead">
+                    <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="service_card_click">
                       Objektstatus pruefen lassen
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -468,7 +468,7 @@ export default function ImmobilieVerkaufsbereitPage() {
                     <Icon className="h-6 w-6 text-amber-700" />
                     <h3 className="mt-4 text-lg font-black tracking-tight text-stone-950">{item.title}</h3>
                     <p className="mt-2 text-sm leading-7 text-stone-600">{item.text}</p>
-                    <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="start_property_ready_lead">
+                    <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -501,7 +501,7 @@ export default function ImmobilieVerkaufsbereitPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="select_property_ready_package">
+                  <Link href="#property-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-800 transition hover:text-stone-950" data-event="service_card_click">
                     {item.cta}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -605,14 +605,14 @@ export default function ImmobilieVerkaufsbereitPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Link href="#property-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-stone-950" data-event="start_property_ready_lead">
+                <Link href="#property-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-stone-950" data-event="service_card_click">
                   Verkaufsbereit-Service anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-6 text-sm font-black text-emerald-50" data-event="click_property_ready_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-6 text-sm font-black text-emerald-50" data-event="whatsapp_click">
                   WhatsApp senden
                 </a>
-                <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-amber-200/50 bg-amber-400/10 px-6 text-sm font-black text-amber-50" data-event="click_property_ready_phone">
+                <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-amber-200/50 bg-amber-400/10 px-6 text-sm font-black text-amber-50" data-event="phone_click">
                   Anrufen
                 </a>
               </div>
@@ -623,13 +623,13 @@ export default function ImmobilieVerkaufsbereitPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#property-ready-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_property_ready_lead">
+          <Link href="#property-ready-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Objekt vorbereiten
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_property_ready_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="click_property_ready_phone">
+          <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

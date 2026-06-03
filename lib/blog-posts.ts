@@ -209,7 +209,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Budget",
   readTime: "6 Min.",
   title: "Budgetplanung beim Umzug: Preisvorstellung richtig nutzen",
-  description: "Wie Kunden ein Zielbudget sinnvoll nennen und warum Preisvorstellung und System-Einschätzung getrennt bleiben.",
+  description: "Wie Kunden ein Zielbudget sinnvoll nennen und warum Preisvorstellung und geprüfte Einschätzung getrennt bleiben.",
  },
  {
   slug: "service-kombination-umzug-reinigung-entruempelung",

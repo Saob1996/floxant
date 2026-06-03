@@ -110,7 +110,7 @@ export default async function UmzugMitReinigungPage() {
             <a
               href="#booking"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-400 px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
-              data-event="start_booking"
+              data-event="hero_cta_click"
               data-source="move_cleaning_hero"
             >
               Kombi-Service anfragen

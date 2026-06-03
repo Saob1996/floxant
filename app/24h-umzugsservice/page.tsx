@@ -63,10 +63,10 @@ export default async function UmzugsService24hPage() {
             {content.hero_desc}
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/buchung?service=umzug&utm_source=24h_umzugsservice&urgency=24h&contact=callback#buchungssystem" className="btn-premium inline-flex h-12 items-center gap-2 rounded-xl bg-gradient-to-b from-blue-500 to-blue-600 px-8 text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:brightness-110" data-event="click_24h_service_booking" data-source="24h_umzugsservice" data-contact-channel="booking" data-intent="24h_service_booking" data-priority="hot">
+            <Link href="/buchung?service=umzug&utm_source=24h_umzugsservice&urgency=24h&contact=callback#buchungssystem" className="btn-premium inline-flex h-12 items-center gap-2 rounded-xl bg-gradient-to-b from-blue-500 to-blue-600 px-8 text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:brightness-110" data-event="hero_cta_click" data-source="24h_umzugsservice" data-contact-channel="booking" data-intent="24h_service_booking" data-priority="hot">
               Jetzt anfragen
             </Link>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-medium text-slate-700 transition-all hover:bg-blue-50 hover:text-slate-900" data-event="click_24h_service_whatsapp" data-source="24h_umzugsservice" data-contact-channel="whatsapp" data-intent="24h_direct_contact" data-priority="hot">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-medium text-slate-700 transition-all hover:bg-blue-50 hover:text-slate-900" data-event="whatsapp_click" data-source="24h_umzugsservice" data-contact-channel="whatsapp" data-intent="24h_direct_contact" data-priority="hot">
               <MessageCircle className="h-4 w-4 text-[#25D366]" />
               <span className="text-[#25D366]">●</span> WhatsApp
             </a>

@@ -256,7 +256,7 @@ export function DuesseldorfApartmentCleaningForm() {
                   setKeyRequested("ja");
                 }
               }}
-              data-event="select_apartment_cleaning_type"
+              data-event="service_card_click"
               data-cleaning-type={item.value}
               className={`min-w-0 rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
                 active ? "border-cyan-700 bg-cyan-50 shadow-lg shadow-cyan-950/10 ring-2 ring-cyan-100" : "border-slate-200 bg-white hover:border-cyan-200 hover:shadow-md hover:shadow-cyan-950/5"
@@ -273,7 +273,7 @@ export function DuesseldorfApartmentCleaningForm() {
         })}
       </div>
 
-      <form className="mt-7 grid min-w-0 gap-4" onSubmit={handleSubmit} data-event="start_apartment_cleaning_lead">
+      <form className="mt-7 grid min-w-0 gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid min-w-0 gap-4">
           <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -313,7 +313,7 @@ export function DuesseldorfApartmentCleaningForm() {
               name="cleaningType"
               value={cleaningType}
               onChange={(event) => setCleaningType(event.target.value)}
-              data-event="select_apartment_cleaning_type"
+              data-event="service_card_click"
               className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700"
             >
               {cleaningTypeOptions.map((item) => (
@@ -370,7 +370,7 @@ export function DuesseldorfApartmentCleaningForm() {
           </label>
           <label className="grid min-w-0 gap-2 text-sm font-bold text-slate-800">
             Frequenz
-            <select name="recurringFrequency" value={frequency} onChange={(event) => setFrequency(event.target.value)} data-event="select_recurring_frequency" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
+            <select name="recurringFrequency" value={frequency} onChange={(event) => setFrequency(event.target.value)} data-event="service_card_click" className="min-h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-cyan-700">
               {frequencyOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
@@ -442,13 +442,13 @@ export function DuesseldorfApartmentCleaningForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_apartment_cleaning_lead"
+            data-event="form_submit"
             className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-black transition"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
             Apartment-Reinigung anfragen
           </button>
-          <a href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`} data-event="click_apartment_cleaning_whatsapp" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100">
+          <a href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`} data-event="whatsapp_click" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100">
             <Phone className="h-4 w-4" />
             WhatsApp
           </a>
@@ -481,7 +481,7 @@ function OptionSelect({
         <Icon className="h-4 w-4 text-cyan-700" />
         <span className="min-w-0 truncate">{label}</span>
       </span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} data-event={eventName} className="min-h-10 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold outline-none transition focus:border-cyan-700">
+      <select value={value} onChange={(event) => onChange(event.target.value)} data-source={eventName} className="min-h-10 w-full min-w-0 rounded-xl border border-slate-200 bg-white px-3 text-xs font-bold outline-none transition focus:border-cyan-700">
         <option>ja</option>
         <option>nein</option>
         <option>unklar</option>

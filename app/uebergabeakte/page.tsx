@@ -223,7 +223,7 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "FLOXANT Übergabeakte 2.0",
       description:
-        "Organisatorische Übergabeakte mit Dossier-Struktur für Auszug, Reinigung, Entrümpelung, Schlüsselstatus, Fotos und Hinweise nach Absprache.",
+        "Organisatorische Übergabeakte für Auszug, Reinigung, Entrümpelung, Schlüsselstatus, Fotos und Hinweise nach Absprache.",
       path,
       about: [
         "Übergabeakte",
@@ -232,7 +232,7 @@ const jsonLd = {
         "Foto-Dokumentation",
         "Endreinigung",
         "Mieterwechsel",
-        "Übergabe-Dossier",
+        "Übergabeakte",
       ],
       potentialActions: [
         { name: "Übergabeakte anfragen", target: `${path}#uebergabeakte-form` },
@@ -260,13 +260,13 @@ export default function UebergabeaktePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fde68a_0,transparent_30rem),linear-gradient(180deg,#fff7ed_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_handover_dossier">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fde68a_0,transparent_30rem),linear-gradient(180deg,#fff7ed_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-amber-700 shadow-sm">
                 <FileText className="h-4 w-4" />
-                FLOXANT Übergabe-Dossier 2.0
+                FLOXANT Übergabeakte
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
                 FLOXANT Übergabeakte: Auszug, Reinigung und Schlüsselstatus dokumentieren
@@ -276,11 +276,11 @@ export default function UebergabeaktePage() {
                 Fotos, Schlüsselstatus und offene Hinweise in einer organisatorischen Übergabeakte bündeln.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#uebergabeakte-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="start_handover_file_lead">
+                <Link href="#uebergabeakte-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="service_card_click">
                   Übergabeakte anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_handover_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Übergabeakte per WhatsApp
                 </a>
               </div>
@@ -382,7 +382,7 @@ export default function UebergabeaktePage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Datenstruktur</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Klare Bausteine, damit die Übergabe nachvollziehbar bleibt</h2>
               <p className="mt-3 text-base leading-8 text-slate-700">
-                Die Uebergabeakte wird als klare Dossier-Struktur vorbereitet. So koennen Objekt, Leistungen, Fotos, Schluesselstatus und Hinweise spaeter sauber bearbeitet oder exportiert werden.
+                Die Uebergabeakte buendelt Objekt, Leistungen, Fotos, Schluesselstatus und Hinweise so, dass alle Beteiligten den Stand leichter nachvollziehen koennen.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -410,7 +410,7 @@ export default function UebergabeaktePage() {
                     <Icon className="h-6 w-6 text-amber-700" />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{item.title}</h3>
                     <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
-                    <Link href="#uebergabeakte-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="start_handover_file_lead">
+                    <Link href="#uebergabeakte-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -479,11 +479,11 @@ export default function UebergabeaktePage() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#uebergabeakte-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="start_handover_file_lead">
+              <Link href="#uebergabeakte-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="service_card_click">
                 Übergabe dokumentieren lassen
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-amber-200 hover:text-amber-700" data-event="click_handover_phone">
+              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-amber-200 hover:text-amber-700" data-event="phone_click">
                 Rückruf zur Übergabeakte
               </a>
             </div>
@@ -493,13 +493,13 @@ export default function UebergabeaktePage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#uebergabeakte-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_handover_file_lead">
+          <Link href="#uebergabeakte-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Akte
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_handover_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href={`tel:${company.phoneRaw}`} className="flox-mobile-action flox-mobile-action-light" data-event="click_handover_phone">
+          <a href={`tel:${company.phoneRaw}`} className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

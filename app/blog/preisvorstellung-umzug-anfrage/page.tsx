@@ -15,7 +15,7 @@ const faqItems = [
  },
  {
   q: "Wird mein Budget bei FLOXANT als Preiszusage behandelt?",
-  a: "Nein. Die Preisvorstellung ergänzt die System-Einschätzung, überschreibt sie aber nicht.",
+  a: "Nein. Die Preisvorstellung ergänzt die erste Orientierung, ersetzt aber keine Prüfung der Angaben.",
  },
  {
   q: "Wann ist eine Preisvorstellung besonders hilfreich?",
@@ -99,7 +99,7 @@ export default function BlogPreisvorstellungPage() {
     ]}
     highlightPoints={[
      "Preisvorstellung ja, Preiszusage nein.",
-     "Budget und System-Einschätzung sollten immer getrennt sichtbar bleiben.",
+     "Budgetwunsch und spätere Prüfung sollten immer getrennt betrachtet werden.",
      "Die beste Wirkung hat eine Preisvorstellung zusammen mit klaren Projektdaten.",
     ]}
     ctas={[

@@ -43,7 +43,7 @@ export function OfferCheckConversionFlow() {
             <div className="mt-6 grid gap-3 text-sm leading-7 text-slate-700">
               <div className="rounded-[1.25rem] border border-slate-200 bg-white p-4">
                 <UploadCloud className="mb-2 h-5 w-5 text-blue-700" />
-                Angebote und Fotos werden als Anfrageanhang behandelt und nicht in Tracking-Events geschrieben.
+                Angebote und Fotos werden nur für Ihre Anfrage genutzt. Sensible Daten können Sie nach persönlicher Abstimmung ergänzen.
               </div>
               <div className="rounded-[1.25rem] border border-slate-200 bg-white p-4">
                 <Scale className="mb-2 h-5 w-5 text-blue-700" />

@@ -32,6 +32,74 @@ const serviceRedirectPairs = [
 
 const umlautRedirectDestinationOverrides = new Map();
 
+const legacyRegensburgRedirects = [
+    {
+        source: '/reinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/gewerbereinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/bueroreinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/praxisreinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/hotelreinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/fensterreinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/treppenhausreinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/unterhaltsreinigung-regensburg',
+        destination: '/regensburg/uebergabereinigung',
+        permanent: true,
+    },
+    {
+        source: '/baureinigung-regensburg',
+        destination: '/regensburg/endreinigung',
+        permanent: true,
+    },
+    {
+        source: '/teppichreinigung-regensburg',
+        destination: '/regensburg/endreinigung',
+        permanent: true,
+    },
+    {
+        source: '/grundreinigung-regensburg',
+        destination: '/regensburg/endreinigung',
+        permanent: true,
+    },
+    {
+        source: '/endreinigung-regensburg',
+        destination: '/regensburg/endreinigung',
+        permanent: true,
+    },
+    {
+        source: '/umzug-reinigung-regensburg',
+        destination: '/regensburg/umzug-reinigung',
+        permanent: true,
+    },
+];
+
 const configuredBuildWorkers = Number(process.env.NEXT_BUILD_WORKERS || process.env.NEXT_BUILD_CPUS);
 const hasConfiguredBuildWorkers = Number.isFinite(configuredBuildWorkers) && configuredBuildWorkers > 0;
 const buildWorkers = hasConfiguredBuildWorkers ? configuredBuildWorkers : 4;
@@ -145,6 +213,7 @@ const nextConfig = {
                 destination: '/:slug',
                 permanent: true,
             },
+            ...legacyRegensburgRedirects,
             ...buildUmlautRedirects(),
         ];
     },

@@ -36,7 +36,7 @@ const canonicalPages = [
  {
   href: "/anfrage-mit-preisrahmen",
   title: "Preisvorstellung",
-  text: "Kundenbudget als Zusatzsignal neben dem System-Orientierungsrahmen.",
+  text: "Kundenbudget als hilfreiche Zusatzangabe neben der ersten Orientierung.",
  },
 ];
 
@@ -55,7 +55,7 @@ const faqItems = [
  },
  {
   q: "Welche Region ist für FLOXANT besonders relevant?",
-  a: "Die Kernregion ist Regensburg. Darüber hinaus ist FLOXANT auf Bayern ausgerichtet, insbesondere bei Umzug, Reinigung, Entrümpelung und spezialisierten Zusatzservices.",
+  a: "Die Kernregion ist Regensburg. Darüber hinaus ist FLOXANT auf Bayern ausgerichtet, insbesondere bei Umzug, Reinigung, Entrümpelung und spezialisierten Zusatzleistungen.",
  },
  {
   q: "Welche Seiten geben den besten Überblick über FLOXANT?",
@@ -182,7 +182,7 @@ export default function FloxantFactsPage() {
       {
        icon: CheckCircle2,
        title: "Kernleistungen",
-       text: "Umzug, Reinigung, Entrümpelung und passende Zusatzservices werden als zusammenhängendes Service-System erklärt.",
+       text: "Umzug, Reinigung, Entrümpelung und passende Zusatzleistungen werden als zusammenhängendes Service-System erklärt.",
       },
       {
        icon: MapPin,

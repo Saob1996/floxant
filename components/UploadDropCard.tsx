@@ -61,17 +61,21 @@ export function UploadDropCard({
   const cleanTitle = germanizeText(title);
   const cleanDescription = germanizeText(description);
   const cleanHelper = germanizeText(helper);
+  const uploadEvent = files.length > 0 ? "upload_completed" : "upload_started";
 
   return (
     <label
       aria-label={`${cleanTitle}: Dateien auswählen`}
+      data-event={uploadEvent}
+      data-source={dataEvent}
       className={`group relative grid min-h-[11rem] cursor-pointer gap-4 rounded-[0.9rem] border border-dashed p-4 text-left shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-950/10 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 ${classes.card}`}
     >
       <input
         type="file"
         accept={accept}
         multiple={multiple}
-        data-event={dataEvent}
+        data-event={uploadEvent}
+        data-source={dataEvent}
         onChange={(event) => onFilesChange(Array.from(event.target.files || []))}
         className="absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 opacity-0 [clip:rect(0,0,0,0)]"
       />

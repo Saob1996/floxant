@@ -81,7 +81,7 @@ const cases = [
   },
   {
     title: "Vorhandenes Angebot war unvollstaendig",
-    text: "Wenn Umfang, Zugang, Zusatzkosten oder Zusatzservices fehlen, kann FLOXANT organisatorisch gegenpruefen.",
+    text: "Wenn Umfang, Zugang, Zusatzkosten oder Zusatzleistungen fehlen, kann FLOXANT organisatorisch gegenpruefen.",
     services: "Angebotscheck, Fotos, Budget",
     Icon: FileSearch,
   },
@@ -206,7 +206,7 @@ export default function SchadensbegrenzungPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fecaca_0,transparent_34rem),linear-gradient(180deg,#fff1f2_0%,#ffffff_42%,#f8fafc_100%)] text-slate-950" data-event="view_damage_control">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fecaca_0,transparent_34rem),linear-gradient(180deg,#fff1f2_0%,#ffffff_42%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.92fr] lg:items-center">
             <div>
@@ -222,11 +222,11 @@ export default function SchadensbegrenzungPage() {
                 FLOXANT prueft nach Verfuegbarkeit, was noch machbar ist.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="click_damage_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="whatsapp_click">
                   <MessageCircle className="h-4 w-4" />
                   Problem per WhatsApp senden
                 </a>
-                <Link href="#schadensbegrenzung-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-red-700" data-event="start_damage_control_lead">
+                <Link href="#schadensbegrenzung-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-red-700" data-event="service_card_click">
                   Schadensbegrenzung pruefen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -309,7 +309,7 @@ export default function SchadensbegrenzungPage() {
               <p className="mt-4 text-base leading-8 text-slate-300">
                 Je vollstaendiger Ort, Fotos, Umfang und Termin sind, desto schneller kann FLOXANT pruefen, ob Schadensbegrenzung moeglich ist. Dringlichkeit erzeugt Prioritaet, aber keine automatische Zusage.
               </p>
-              <Link href="#schadensbegrenzung-form" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="start_damage_control_lead">
+              <Link href="#schadensbegrenzung-form" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="service_card_click">
                 Dringende Pruefung starten
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -344,26 +344,26 @@ export default function SchadensbegrenzungPage() {
               <Camera className="h-8 w-8 text-red-700" />
               <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">Fotos statt langer Erklaerung</h2>
               <p className="mt-3 text-sm leading-7 text-slate-700">
-                Bilder von Restmoebeln, Keller, Bad, Kueche, Boeden, Zugang, Etage, Fahrzeugbedarf oder vorhandenen Angeboten helfen, die Lage schneller einzuordnen. Personenbezogene Daten gehoeren nicht in Tracking-Events.
+                Bilder von Restmoebeln, Keller, Bad, Kueche, Boeden, Zugang, Etage, Fahrzeugbedarf oder vorhandenen Angeboten helfen, die Lage schneller einzuordnen. Persoenliche Dokumente und Zugangsdaten bitte nicht mitsenden.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Link href="/angebotscheck" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="start_offer_check">
+                <Link href="/angebotscheck" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="hero_cta_click">
                   Angebot pruefen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/plattform-auftrag-pruefen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-black text-blue-900" data-event="start_platform_order_check">
+                <Link href="/plattform-auftrag-pruefen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-black text-blue-900" data-event="service_card_click">
                   Plattform-Auftrag pruefen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/plan-b-service" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 text-sm font-black text-amber-900" data-event="start_plan_b_triage" data-source="damage_control_internal_link">
+                <Link href="/plan-b-service" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 text-sm font-black text-amber-900" data-event="service_card_click" data-source="damage_control_internal_link">
                   Plan B vorher absichern
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/diskreter-umzug-trennung-scheidung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200 bg-white px-4 text-sm font-black text-stone-800" data-event="start_discreet_move_lead">
+                <Link href="/diskreter-umzug-trennung-scheidung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200 bg-white px-4 text-sm font-black text-stone-800" data-event="service_card_click">
                   Diskreten Auszug ruhig klaeren
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200 bg-white/70 px-4 text-sm font-black text-red-800" data-event="start_handover_file_lead">
+                <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200 bg-white/70 px-4 text-sm font-black text-red-800" data-event="service_card_click">
                   Uebergabeakte ergaenzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -408,11 +408,11 @@ export default function SchadensbegrenzungPage() {
                   Express-Check ansehen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/wohnung-wieder-vermietbar" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800" data-event="start_rental_ready_lead">
+                <Link href="/wohnung-wieder-vermietbar" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800" data-event="service_card_click">
                   Wohnung vorbereiten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-white px-4 text-sm font-black text-amber-800" data-event="start_cellar_trashroom_lead">
+                <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-white px-4 text-sm font-black text-amber-800" data-event="service_card_click">
                   Keller/Muellraum pruefen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -445,11 +445,11 @@ export default function SchadensbegrenzungPage() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#schadensbegrenzung-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-red-700" data-event="start_damage_control_lead">
+              <Link href="#schadensbegrenzung-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-red-700" data-event="service_card_click">
                 Kurzfristige Pruefung starten
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_damage_whatsapp">
+              <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                 Problem per WhatsApp senden
               </a>
             </div>
@@ -478,13 +478,13 @@ export default function SchadensbegrenzungPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_damage_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <Link href="#schadensbegrenzung-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_damage_control_lead">
+          <Link href="#schadensbegrenzung-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Problem senden
           </Link>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_damage_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

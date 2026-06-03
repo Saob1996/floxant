@@ -4856,7 +4856,7 @@ function InquiriesWorkspace({
                   key={filter.id}
                   type="button"
                   onClick={() => setInquiryFilter(filter.id)}
-                  data-event="select_dashboard_filter"
+                  data-event="region_select"
                   data-filter={filter.id}
                   className={cn(
                     "inline-flex h-9 items-center gap-2 rounded-full border px-3 text-xs font-black transition",
@@ -5064,7 +5064,7 @@ function BookingRow({
             type="button"
             onClick={onOpen}
             className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-slate-950 px-3 text-xs font-bold text-white transition hover:bg-blue-700"
-            data-event="open_dashboard_lead"
+            data-event="service_card_click"
             data-source="dashboard_lead_table"
           >
             Öffnen
@@ -5074,7 +5074,7 @@ function BookingRow({
             type="button"
             onClick={onDelete}
             className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 text-xs font-bold text-red-700 transition hover:bg-red-100"
-            data-event="delete_dashboard_lead_start"
+            data-event="service_card_click"
             data-source="dashboard_lead_table"
           >
             <Trash2 className="h-3.5 w-3.5" />
@@ -5125,7 +5125,7 @@ function MobileBookingCard({
           type="button"
           onClick={onOpen}
           className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-slate-950 text-sm font-bold text-white"
-          data-event="open_dashboard_lead"
+          data-event="service_card_click"
           data-source="dashboard_mobile_lead_card"
         >
           Öffnen
@@ -5135,7 +5135,7 @@ function MobileBookingCard({
           type="button"
           onClick={onDelete}
           className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 text-sm font-bold text-red-700"
-          data-event="delete_dashboard_lead_start"
+          data-event="service_card_click"
           data-source="dashboard_mobile_lead_card"
         >
           <Trash2 className="h-4 w-4" />
@@ -6338,7 +6338,7 @@ function buildContextRows(booking: Booking) {
     ["Scanner-Punkte", firstText([config.scannerScoreValue])],
     ["Offene Kategorien", getDashboardStringArray(config.redFlagCategories).join(", ")],
     ["Red-Flag-Punkte", getDashboardStringArray(config.redFlagItems).slice(0, 5).join(", ")],
-    ["Zusatzservices", Array.isArray(config.selectedAddons) ? config.selectedAddons.join(", ") : firstText([config.selectedAddons])],
+    ["Zusatzleistungen", Array.isArray(config.selectedAddons) ? config.selectedAddons.join(", ") : firstText([config.selectedAddons])],
     [
       "Anhänge",
       booking.file_urls.length
@@ -6457,7 +6457,7 @@ function HandoverDossierBuilder({ booking }: { booking: Booking }) {
 
   return (
     <Panel title="Übergabeakte-Builder" subtitle="Interne Dossier-Struktur für Objekt, Leistungen, Fotos, Schlüssel und Hinweise.">
-      <div data-event="dashboard_open_handover_builder" className="grid gap-4">
+      <div data-event="service_card_click" className="grid gap-4">
         <div className="grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
             <p className="text-[10px] font-black uppercase tracking-[0.14em] text-amber-700">Aktenstatus</p>
@@ -6507,7 +6507,7 @@ function HandoverDossierBuilder({ booking }: { booking: Booking }) {
           <button
             type="button"
             disabled
-            data-event="dashboard_export_handover_file"
+            data-event="service_card_click"
             className="mt-3 inline-flex h-9 cursor-not-allowed items-center rounded-lg border border-slate-200 bg-white px-3 text-xs font-bold text-slate-400"
           >
             Export spaeter geschuetzt ergaenzen
@@ -6580,7 +6580,6 @@ function PlanningDetail({
               value={status}
               onChange={(event) => setStatus(event.target.value)}
               className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none focus:border-blue-300 focus:bg-white"
-              data-event={isHandoverFileLead(booking) ? "dashboard_update_handover_status" : "change_lead_status"}
               data-source="dashboard_lead_detail"
             >
               {STATUS_OPTIONS.some((item) => item.value === status) ? null : (
@@ -6889,7 +6888,7 @@ function CustomerQuickActions({ booking, compact = false }: { booking: Booking; 
         <a
           href={`tel:${normalizedPhone}`}
           className={cn(baseClass, "border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100")}
-          data-event="click_phone"
+          data-event="phone_click"
           data-source="dashboard_quick_action"
         >
           <Phone className="h-3.5 w-3.5" />
@@ -6902,7 +6901,7 @@ function CustomerQuickActions({ booking, compact = false }: { booking: Booking; 
           target="_blank"
           rel="noreferrer"
           className={cn(baseClass, "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100")}
-          data-event="click_whatsapp"
+          data-event="whatsapp_click"
           data-source="dashboard_quick_action"
         >
           <MessageCircle className="h-3.5 w-3.5" />
@@ -6913,7 +6912,7 @@ function CustomerQuickActions({ booking, compact = false }: { booking: Booking; 
         <a
           href={emailUrl}
           className={cn(baseClass, "border-slate-200 bg-white text-slate-700 hover:bg-slate-50")}
-          data-event="click_email"
+          data-event="hero_cta_click"
           data-source="dashboard_quick_action"
         >
           <Mail className="h-3.5 w-3.5" />

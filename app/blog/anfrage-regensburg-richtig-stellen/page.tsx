@@ -102,7 +102,7 @@ export default function BlogAnfrageRegensburgRichtigStellenPage() {
               "Für die erste Vorprüfung reichen oft schon wenige belastbare Punkte. Genau damit wird aus einem Klick schneller ein klarer nächster Schritt.",
             ],
             bullets: [
-              "Serviceart: Umzug, Reinigung, Entrümpelung, Büroumzug oder Spezialfall",
+              "Serviceart: Umzug, Reinigung, Entrümpelung, Büroumzug oder besondere Situation",
               "Ort und Strecke: Start, Ziel oder genaue Objektadresse in Regensburg oder Bayern",
               "Umfang: Wohnfläche, Volumen, Räume, Arbeitsplätze oder Materialarten",
               "Zugang: Etage, Aufzug, Laufweg, Zeitfenster oder Objektregeln",

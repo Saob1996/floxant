@@ -44,7 +44,7 @@ export default function AngebotVergleichenDankePage() {
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
           <a
             href={whatsappHref}
-            data-event="ads_offer_comparison_success_whatsapp_click"
+            data-event="whatsapp_click"
             data-source="google_ads_offer_comparison_landingpage"
             data-channel="whatsapp"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-700 px-5 text-sm font-semibold text-white transition hover:bg-emerald-800"

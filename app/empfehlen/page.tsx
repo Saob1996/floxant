@@ -184,7 +184,7 @@ export default function EmpfehlenPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main
         className="overflow-hidden bg-[radial-gradient(circle_at_12%_0%,#dbeafe_0,transparent_34rem),radial-gradient(circle_at_92%_10%,#dcfce7_0,transparent_30rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_43%,#f8fafc_100%)] text-slate-950"
-        data-event="view_referral_page"
+
       >
         <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
@@ -201,11 +201,11 @@ export default function EmpfehlenPage() {
                 Wenn aus Ihrer Empfehlung ein bestaetigter und bezahlter Auftrag entsteht, prueft FLOXANT den Empfehlungsbonus.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#empfehlungsformular" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800" data-event="start_referral_form">
+                <Link href="#empfehlungsformular" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800" data-event="service_card_click">
                   Partnercode erstellen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappShareHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_referral_whatsapp_share">
+                <a href={whatsappShareHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Per WhatsApp empfehlen
                 </a>
               </div>
@@ -303,7 +303,7 @@ export default function EmpfehlenPage() {
                   <UsersRound className="mb-4 h-6 w-6 text-blue-700" />
                   <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                  <Link href="#empfehlungsformular" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700 transition hover:text-blue-950" data-event="start_referral_form">
+                  <Link href="#empfehlungsformular" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click">
                     Partnercode nutzen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -403,13 +403,13 @@ export default function EmpfehlenPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#empfehlungsformular" className="flox-mobile-action flox-mobile-action-primary" data-event="start_referral_form">
+          <Link href="#empfehlungsformular" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Code
           </Link>
-          <a href={whatsappShareHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_referral_whatsapp_share">
+          <a href={whatsappShareHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             Teilen
           </a>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_referral_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

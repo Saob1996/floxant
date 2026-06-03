@@ -53,7 +53,7 @@ const faqItems = [
 ];
 
 const preparationItems = [
-  "Serviceart wählen: Umzug, Reinigung, Entrümpelung, Büroumzug oder Spezialservice.",
+  "Serviceart wählen: Umzug, Reinigung, Entrümpelung, Büroumzug oder zusätzliche Hilfe.",
   "Ort und Zeitraum nennen: Regensburg, Bayern, Strecke, Datum oder gewünschtes Zeitfenster.",
   "Umfang beschreiben: Volumen, Fläche, Räume, Etagen, Aufzug, Laufwege oder Fotos.",
   "Kontaktweg festlegen: Rückruf, WhatsApp oder E-Mail für die nächste Abstimmung.",

@@ -48,7 +48,7 @@ const areaGroups = [
     badge: "Donau- und Suedwestachse",
     places: "Kelheim, Bad Abbach, Abensberg, Hemau, Parsberg, Laaber und Schierling",
     text:
-      "Diese Richtung ist fuer Umzug, Reinigung nach Auszug, Entruempelung und kombinierte Uebergabevorbereitung sinnvoll, wenn Route, Zeitfenster, Fotos und Zusatzservices sauber zusammenpassen.",
+      "Diese Richtung ist fuer Umzug, Reinigung nach Auszug, Entruempelung und kombinierte Uebergabevorbereitung sinnvoll, wenn Route, Zeitfenster, Fotos und Zusatzleistungen sauber zusammenpassen.",
   },
   {
     title: "Richtung Straubing, Deggendorf, Cham und Roding",
@@ -279,7 +279,7 @@ export default async function RegensburgServiceArea200KmPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/buchung#buchungssystem"
-                data-event="start_booking"
+                data-event="hero_cta_click"
                 data-region="regensburg_200km"
                 className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_48px_rgba(37,99,235,0.22)] transition hover:-translate-y-0.5 hover:bg-blue-500"
               >
@@ -444,7 +444,7 @@ export default async function RegensburgServiceArea200KmPage() {
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600">
               <p>
                 Das Servicegebiet hilft bei der Orientierung. Die konkrete Pruefung bleibt aber
-                konkret: Ort, PLZ, Etage, Zugang, Fotos, Termin und gewuenschte Zusatzservices
+                konkret: Ort, PLZ, Etage, Zugang, Fotos, Termin und gewuenschte Zusatzleistungen
                 entscheiden, ob ein Einsatz realistisch passt.
               </p>
               <p>

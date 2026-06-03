@@ -132,8 +132,8 @@ export default function BudgetPage() {
             },
             {
               icon: Wallet,
-              title: "System und Kundenwunsch getrennt",
-              text: "Später stehen System-Orientierungsrahmen und Kunden-Preisvorstellung nebeneinander, damit Entscheidungen nachvollziehbar bleiben.",
+              title: "Einschätzung und Wunschbudget getrennt",
+              text: "Ihr Wunschbudget hilft bei der Einordnung, ersetzt aber keine Prüfung von Umfang, Zugang, Termin und Fotos.",
             },
           ].map((item) => {
             const Icon = item.icon;

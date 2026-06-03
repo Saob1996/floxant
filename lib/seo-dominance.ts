@@ -474,7 +474,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/service-area-bayern": {
   title: "FLOXANT Bayern | Umzug & Reinigung ab Regensburg",
   description:
-   "Regensburg ist Kernregion, Bayern das Einsatzgebiet: Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzservices realistisch prüfen.",
+   "Regensburg ist Kernregion, Bayern das Einsatzgebiet: Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen realistisch prüfen.",
   cluster: "geo",
   intent: "FLOXANT Einsatzgebiet in Bayern prüfen",
  },
@@ -530,7 +530,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/anbieter-vergleichen": {
   title: "FLOXANT vs Vergleichsportal | Anbieter Regensburg prüfen",
   description:
-   "Direkt beim Dienstleister statt anonymer Lead-Runde: Preisrahmen, Ablauf, Serviceklarheit und Verantwortung vor der Anfrage prüfen.",
+   "Direkt beim Dienstleister statt anonymer Weitergabe: Preisrahmen, Ablauf, Serviceklarheit und Verantwortung vor der Anfrage prüfen.",
   cluster: "support",
   intent: "Dienstleister objektiv vergleichen und FLOXANT richtig einordnen",
  },
@@ -1005,7 +1005,7 @@ moneySnippets["/private-client-service"] = {
 moneySnippets["/"] = {
  title: "FLOXANT – Umzug, Reinigung & Entrümpelung in Regensburg",
  description:
-  "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg: FLOXANT bündelt Transport, Endreinigung, Räumung und Zusatzservices.",
+  "Umzug, Reinigung, Entrümpelung und Übergabe in Regensburg: FLOXANT bündelt Transport, Endreinigung, Räumung und Zusatzleistungen.",
  cluster: "money",
  intent: "Direkten Dienstleister für Umzug, Reinigung und Entrümpelung mit Buchung finden",
 };
@@ -1261,7 +1261,7 @@ moneySnippets["/buchung"] = {
 moneySnippets["/anbieter-vergleichen"] = {
  title: "FLOXANT vs Vergleichsportal | direkt anfragen",
  description:
-  "Umzugsfirma, Reinigungsfirma oder Entrümpelung vergleichen: direkte Vorprüfung, klare Kostentreiber und Verantwortung statt Lead-Runde.",
+  "Umzugsfirma, Reinigungsfirma oder Entrümpelung vergleichen: direkte Vorprüfung, klare Kostentreiber und Verantwortung statt anonymer Weitergabe.",
  cluster: "support",
  intent: "FLOXANT gegen Vergleichsportale und lokale Anbieter prüfen",
 };
@@ -1496,7 +1496,7 @@ const serviceCityPatterns = [
    (city: string) =>
     `Seniorenumzug in ${city}: Umfang, Möbel, Kartons, Termin, Reinigung, Übergabe und Angehörigen-Abstimmung ruhig prüfen lassen.`,
    (city: string) =>
-    `Umzug für Senioren in ${city}: FLOXANT klärt Zugang, Möbelumfang, Zeitfenster, Zusatzservices und Rückruf nach Absprache.`,
+    `Umzug für Senioren in ${city}: FLOXANT klärt Zugang, Möbelumfang, Zeitfenster, Zusatzleistungen und Rückruf nach Absprache.`,
    (city: string) =>
     `Senioren-Umzug ${city}: Fotos, Zimmer, Etage, Aufzug, Hilfe durch Angehörige und Übergabeziel strukturiert senden.`,
    (city: string) =>

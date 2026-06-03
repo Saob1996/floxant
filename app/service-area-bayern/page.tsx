@@ -350,7 +350,7 @@ export default async function ServiceAreaBayern() {
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Kunden suchen oft nicht nach einer Marke, sondern nach dem konkreten Problem:
               Umzug, Reinigung, Entsorgung, Entruempelung, Lagerung oder Bueroumzug. Diese
-              Einstiege machen die FLOXANT-Struktur fuer genau diese Absichten klarer.
+              Einstiege fuehren Kunden schneller zu der Anfrage, die wirklich zum Problem passt.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

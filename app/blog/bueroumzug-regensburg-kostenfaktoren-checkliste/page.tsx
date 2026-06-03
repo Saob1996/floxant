@@ -95,7 +95,7 @@ export default function BueroumzugRegensburgBlogPage() {
       title: "Warum Regensburg als Standort wichtig ist",
       paragraphs: [
        "Bei Firmenumzügen in Regensburg und Bayern beeinflussen Anfahrt, Parken, Innenstadtlage, Gebäudezugang und regionale Verfügbarkeit die Planung deutlich.",
-       "Ein regionaler Anbieter kann Termine, Laufwege und Zusatzservices wie Firmenentsorgung oder Reinigung besser in einen Ablauf bringen.",
+       "Ein regionaler Anbieter kann Termine, Laufwege und Zusatzleistungen wie Firmenentsorgung oder Reinigung besser in einen Ablauf bringen.",
       ],
      },
     ]}

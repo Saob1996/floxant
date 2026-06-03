@@ -420,7 +420,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
                   key={item.title}
                   href={item.href}
                   className="group rounded-[0.9rem] border border-white/10 bg-white/[0.08] p-4 transition hover:-translate-y-0.5 hover:border-emerald-300/50 hover:bg-white/[0.12]"
-                  data-event="click_duesseldorf_offer_check_high_value_funnel"
+                  data-event="hero_cta_click"
                 >
                   <Icon className="h-5 w-5 text-emerald-200" />
                   <div className="mt-3 text-[10px] font-black uppercase tracking-normal text-emerald-100">
@@ -463,7 +463,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
               key={item.href}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50"
-              data-event="click_duesseldorf_offer_check_blog_guide"
+              data-event="hero_cta_click"
             >
               <h3 className="text-base font-black text-slate-950">{item.title}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-700">{item.text}</p>
@@ -515,7 +515,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={className}
-                data-event="click_duesseldorf_offer_check_intent"
+                data-event="hero_cta_click"
                 data-region="duesseldorf"
               >
                 {content}
@@ -525,7 +525,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
                 key={item.query}
                 href={item.href}
                 className={className}
-                data-event="click_duesseldorf_offer_check_intent"
+                data-event="hero_cta_click"
                 data-region="duesseldorf"
               >
                 {content}

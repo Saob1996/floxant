@@ -256,7 +256,7 @@ export function PlanGekipptTrigger() {
   }
 
   return (
-    <div className="fixed bottom-36 right-4 z-[88] hidden sm:block sm:right-5 md:bottom-32 md:right-8" data-event="view_plan_gekippt_button">
+    <div className="fixed bottom-36 right-4 z-[88] hidden sm:block sm:right-5 md:bottom-32 md:right-8">
       <AnimatePresence>
         {panelOpen ? (
           <m.div
@@ -265,7 +265,7 @@ export function PlanGekipptTrigger() {
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             className="mb-3 w-[min(calc(100vw-2rem),25rem)] overflow-hidden rounded-[1rem] border border-cyan-200/25 bg-slate-950 text-white shadow-[0_28px_80px_rgba(2,6,23,0.34)]"
-            data-event="open_plan_gekippt_panel"
+            data-event="service_card_click"
           >
             <div className="border-b border-cyan-200/10 bg-[linear-gradient(135deg,rgba(15,23,42,0.98)_0%,rgba(15,118,110,0.82)_100%)] p-4">
               <div className="flex items-start justify-between gap-3">
@@ -295,7 +295,7 @@ export function PlanGekipptTrigger() {
                     key={context}
                     type="button"
                     onClick={() => setSelectedContext(context)}
-                    data-event="select_plan_gekippt_problem"
+                    data-event="service_card_click"
                     data-context={context}
                     className={`rounded-xl border px-3 py-2.5 text-left text-xs font-black transition ${
                       selectedContext === context
@@ -314,7 +314,7 @@ export function PlanGekipptTrigger() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.72rem] bg-emerald-500 px-4 text-xs font-black text-white transition hover:bg-emerald-400"
-                  data-event="click_plan_gekippt_whatsapp"
+                  data-event="whatsapp_click"
                   data-context={selectedContext}
                 >
                   <MessageCircle className="h-4 w-4" />
@@ -323,7 +323,7 @@ export function PlanGekipptTrigger() {
                 <a
                   href={targetHref}
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.72rem] border border-cyan-200/20 bg-white px-4 text-xs font-black text-slate-950 transition hover:bg-cyan-50"
-                  data-event="start_plan_gekippt_form"
+                  data-event="service_card_click"
                   data-context={selectedContext}
                 >
                   <ArrowRight className="h-4 w-4" />
@@ -352,7 +352,7 @@ export function PlanGekipptTrigger() {
         type="button"
         onClick={() => setPanelOpen((value) => !value)}
         className="group flex max-w-[18rem] items-center gap-3 rounded-[0.9rem] border border-cyan-200/30 bg-[linear-gradient(135deg,#07111f_0%,#102033_56%,#0f766e_100%)] px-3.5 py-3 text-left text-white shadow-[0_20px_60px_rgba(2,6,23,0.24)] transition hover:-translate-y-0.5 hover:border-cyan-200/60"
-        data-event="click_plan_gekippt_button"
+        data-event="hero_cta_click"
         data-context={routeContext}
         aria-expanded={panelOpen}
       >

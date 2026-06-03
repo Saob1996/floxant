@@ -7,6 +7,7 @@ import { DeferredSiteWidgets } from "@/components/DeferredSiteWidgets";
 import { JsonLd } from "@/components/JsonLd";
 import { Footer } from "@/components/Footer";
 import { PublicHeader } from "@/components/PublicHeader";
+import { RegionalRouteNotice } from "@/components/RegionalRouteNotice";
 import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 
 import { GlobalRequestCenter } from "@/components/GlobalRequestCenter";
@@ -31,6 +32,7 @@ export function SiteChrome({
         dic={{}}
         variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
       />
+      <RegionalRouteNotice pathname={pathname} />
       <div id="main-content">{children}</div>
       {!isDuesseldorfSection ? <Footer /> : null}
       <GlobalRequestCenter />

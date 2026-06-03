@@ -166,7 +166,7 @@ export function ReturnTripBoardForm() {
         <strong>Wichtig:</strong> Die Rückfahrt-Börse ist ein Nachfrage-System, kein Live-Tourenversprechen. FLOXANT prüft Strecke, Datum, Umfang, Zugang und Kapazität nach Verfügbarkeit.
       </div>
 
-      <form className="grid gap-4" onSubmit={handleSubmit} data-event="start_route_check">
+      <form className="grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -223,7 +223,7 @@ export function ReturnTripBoardForm() {
                   key={item.value}
                   type="button"
                   onClick={() => setDateFlexibility(item.value)}
-                  data-event="select_date_flexibility"
+                  data-event="service_card_click"
                   data-flexibility={item.value}
                   className={`rounded-xl border px-3 py-3 text-left text-xs transition ${
                     active ? "border-emerald-500 bg-emerald-50 text-emerald-950" : "border-slate-200 bg-white text-slate-600 hover:border-emerald-200"
@@ -295,7 +295,7 @@ export function ReturnTripBoardForm() {
         </div>
 
         <div className="rounded-[1.5rem] border border-slate-200 bg-white p-4">
-          <p className="text-sm font-black text-slate-950">Zusatzservices optional</p>
+          <p className="text-sm font-black text-slate-950">Zusatzleistungen optional</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {addonOptions.map((addon) => (
               <label key={addon} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700">
@@ -343,7 +343,7 @@ export function ReturnTripBoardForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_route_request"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -351,7 +351,7 @@ export function ReturnTripBoardForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_return_trip_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             Strecke per WhatsApp senden
@@ -359,11 +359,11 @@ export function ReturnTripBoardForm() {
         </div>
 
         <div className="flex flex-col gap-2 text-xs font-semibold text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <a href={`tel:${PHONE_TEL}`} data-event="click_return_trip_phone" className="inline-flex items-center gap-2 transition hover:text-emerald-700">
+          <a href={`tel:${PHONE_TEL}`} data-event="phone_click" className="inline-flex items-center gap-2 transition hover:text-emerald-700">
             <Phone className="h-4 w-4" />
             {PHONE_DISPLAY}
           </a>
-          <a href={`mailto:${EMAIL}`} data-event="click_email" className="inline-flex items-center gap-2 transition hover:text-emerald-700">
+          <a href={`mailto:${EMAIL}`} data-event="hero_cta_click" className="inline-flex items-center gap-2 transition hover:text-emerald-700">
             <Mail className="h-4 w-4" />
             {EMAIL}
           </a>

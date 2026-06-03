@@ -180,16 +180,6 @@ export const CITY_PAGES = [
 
 /** Service-specific city pages */
 export const SERVICE_CITY_PAGES = [
-  "reinigung-regensburg",
-  "bueroreinigung-regensburg",
-  "praxisreinigung-regensburg",
-  "hotelreinigung-regensburg",
-  "fensterreinigung-regensburg",
-  "baureinigung-regensburg",
-  "teppichreinigung-regensburg",
-  "treppenhausreinigung-regensburg",
-  "unterhaltsreinigung-regensburg",
-  "grundreinigung-regensburg",
   "entruempelung-regensburg",
   "bueroumzug-regensburg",
   "reinigung-muenchen",
@@ -248,7 +238,6 @@ export const SERVICE_CITY_PAGES = [
   "entruempelung-fuerth",
   "entruempelung-kaufbeuren",
   "entruempelung-memmingen",
-  "umzug-reinigung-regensburg",
   "reinigung-fuerth",
   "reinigung-erlangen",
   "reinigung-bamberg",
@@ -276,6 +265,7 @@ export const SIGNATURE_SEO_PAGES = [
 /** Hub landing pages */
 export const HUB_PAGES = [
   "wissen",
+  "leistungen",
   "alternativen",
   "standorte",
   "buchung",

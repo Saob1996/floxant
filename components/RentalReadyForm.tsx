@@ -267,7 +267,7 @@ export function RentalReadyForm() {
               key={item.value}
               type="button"
               onClick={() => setObjectStatus(item.value)}
-              data-event="select_object_status"
+              data-event="service_card_click"
               data-status={item.value}
               className={`rounded-[1.2rem] border p-4 text-left transition ${
                 active ? "border-orange-500 bg-orange-50 text-orange-950" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-orange-200"
@@ -284,7 +284,7 @@ export function RentalReadyForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_rental_ready_lead">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -315,7 +315,7 @@ export function RentalReadyForm() {
               name="goalType"
               value={goal}
               onChange={(event) => setGoal(event.target.value)}
-              data-event="select_rental_ready_goal"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-orange-500"
             >
               {goalOptions.map((item) => (
@@ -427,7 +427,7 @@ export function RentalReadyForm() {
           <UploadDropCard
             title="Fotos optional"
             description="Wohnung, Moebel, Sperrmuell, Keller, Zugang oder Verschmutzung."
-            helper="Fotos helfen bei einer realistischen Einschaetzung. Keine Fotos werden in Tracking-Events gesendet."
+            helper="Fotos helfen bei einer realistischen Einschaetzung. Bitte keine sensiblen Dokumente mitsenden."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
             dataEvent="upload_rental_ready_photos"
@@ -442,7 +442,7 @@ export function RentalReadyForm() {
         <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-orange-600" />
           <span>
-            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Keine personenbezogenen Daten werden in Tracking-Events gesendet.
+            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Sensible Zugangsdaten oder persönliche Dokumente bitte nicht mitsenden.
           </span>
         </label>
 
@@ -459,7 +459,7 @@ export function RentalReadyForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_rental_ready_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-orange-700 disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -468,7 +468,7 @@ export function RentalReadyForm() {
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
-            data-event="click_rental_ready_whatsapp"
+            data-event="whatsapp_click"
           >
             <Phone className="h-4 w-4" />
             WhatsApp
@@ -480,7 +480,7 @@ export function RentalReadyForm() {
         </div>
 
         <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
-          Direktkontakt: <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="click_rental_ready_phone">{PHONE_DISPLAY}</a> · {EMAIL}
+          Direktkontakt: <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="phone_click">{PHONE_DISPLAY}</a> · {EMAIL}
         </div>
       </form>
     </div>

@@ -91,7 +91,7 @@ export function DuesseldorfCleaningBuyerJourney({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-400 px-4 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
-              data-event="click_duesseldorf_buyer_journey_whatsapp"
+              data-event="whatsapp_click"
               data-region="duesseldorf"
             >
               WhatsApp mit Fotos
@@ -100,7 +100,7 @@ export function DuesseldorfCleaningBuyerJourney({
             <a
               href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-white/15 bg-white/10 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/15"
-              data-event="click_duesseldorf_buyer_journey_phone"
+              data-event="phone_click"
               data-region="duesseldorf"
             >
               <Phone className="h-4 w-4" />
@@ -109,7 +109,7 @@ export function DuesseldorfCleaningBuyerJourney({
             <Link
               href="/buchung?service=reinigung&region=duesseldorf#buchungssystem"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-cyan-100/35 bg-cyan-200/16 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-cyan-200/24"
-              data-event="click_duesseldorf_buyer_journey_booking"
+              data-event="hero_cta_click"
               data-region="duesseldorf"
             >
               Online anfragen
@@ -124,7 +124,7 @@ export function DuesseldorfCleaningBuyerJourney({
               key={item.href}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(8,145,178,0.1)]"
-              data-event="click_duesseldorf_buyer_journey_card"
+              data-event="service_card_click"
               data-region="duesseldorf"
             >
               <div className="flex items-start gap-3">

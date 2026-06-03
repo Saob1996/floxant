@@ -131,7 +131,7 @@ export default function QualityProcessPage() {
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/56">
       FLOXANT arbeitet nicht mit harten Schnellversprechen, sondern mit einer strukturierten
-      Vorprüfung. So werden Umzug, Reinigung, Entrümpelung, Büroumzug und Spezialservices
+      Vorprüfung. So werden Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen
       für Regensburg und Bayern realistischer, klarer und besser planbar.
      </p>
      <div className="mt-8 flex flex-wrap gap-3">
@@ -189,9 +189,9 @@ export default function QualityProcessPage() {
      <div className="grid gap-4">
       {[
        "Kunden verstehen vor der Anfrage, welche Faktoren den Aufwand bestimmen.",
-       "FLOXANT trennt System-Orientierungsrahmen und Kunden-Preisvorstellung sauber.",
-       "Servicewege bleiben crawlbar: Rechner, Express, Preisrahmen, Hauptservice und Spezialservice.",
-       "Keine Fake-Bewertungen, keine Garantie-Sprache, keine unzulässigen Snippet-Tricks.",
+       "FLOXANT trennt erste Orientierung und Kundenwunsch sauber.",
+       "Rechner, Express-Anfrage, Preisrahmen und Service-Seiten führen klar zum nächsten Schritt.",
+       "Keine Fake-Bewertungen, keine Garantie-Sprache, keine überzogenen Versprechen.",
       ].map((point) => (
        <div key={point} className="flex gap-4 rounded-2xl border border-foreground/10 bg-foreground/5 p-5">
         <Sparkles className="mt-0.5 h-5 w-5 shrink-0 text-blue-700 " />

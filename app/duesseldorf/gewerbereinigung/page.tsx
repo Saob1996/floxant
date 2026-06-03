@@ -212,7 +212,7 @@ function JsonLd() {
 
 export default function GewerbereinigungDuesseldorfPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950" data-event="view_gewerbereinigung_duesseldorf_page">
+    <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
 
       <section className="relative isolate overflow-hidden bg-slate-950 text-white">

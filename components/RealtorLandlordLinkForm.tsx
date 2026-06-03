@@ -255,7 +255,7 @@ export function RealtorLandlordLinkForm() {
               key={item.value}
               type="button"
               onClick={() => setObjectCaseType(item.value)}
-              data-event="select_object_case_type"
+              data-event="service_card_click"
               data-object-case={item.value}
               className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
                 active ? "border-slate-950 bg-slate-950 text-white shadow-lg shadow-slate-950/20" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-400"
@@ -272,7 +272,7 @@ export function RealtorLandlordLinkForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_object_case_lead">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -288,7 +288,7 @@ export function RealtorLandlordLinkForm() {
               name="roleType"
               value={role}
               onChange={(event) => setRole(event.target.value)}
-              data-event="select_realtor_landlord_role"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950"
             >
               {roleOptions.map((item) => (
@@ -322,7 +322,7 @@ export function RealtorLandlordLinkForm() {
               name="objectCaseType"
               value={objectCaseType}
               onChange={(event) => setObjectCaseType(event.target.value)}
-              data-event="select_object_case_type"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-slate-950"
             >
               {objectCaseOptions.map((item) => (
@@ -451,7 +451,7 @@ export function RealtorLandlordLinkForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_object_case_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -459,7 +459,7 @@ export function RealtorLandlordLinkForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_object_case_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             <Phone className="h-4 w-4" />

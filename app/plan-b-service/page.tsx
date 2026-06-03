@@ -221,7 +221,7 @@ export default function PlanBServicePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#dbeafe_0,transparent_34rem),linear-gradient(180deg,#eef6ff_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_plan_b_service">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#dbeafe_0,transparent_34rem),linear-gradient(180deg,#eef6ff_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.92fr] lg:items-center">
             <div>
@@ -236,11 +236,11 @@ export default function PlanBServicePage() {
                 Wenn Ihr aktueller Ablauf unsicher ist, prueft FLOXANT, ob ein Ersatz-, Ergaenzungs- oder Absicherungsplan moeglich ist - mit Ort, Termin, Fotos und offenen Punkten.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="start_plan_b_triage">
+                <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
                   Plan B pruefen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="click_plan_b_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-black text-white transition hover:bg-emerald-700" data-event="whatsapp_click">
                   <MessageCircle className="h-4 w-4" />
                   Plan B per WhatsApp senden
                 </a>
@@ -314,7 +314,7 @@ export default function PlanBServicePage() {
               <p className="mt-4 text-base leading-8 text-slate-300">
                 Das Risiko-Level ist eine organisatorische Einschaetzung, keine Garantie. Es hilft, Rueckfragen und Prioritaeten schneller zu sortieren.
               </p>
-              <Link href="#plan-b-form" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="start_plan_b_triage">
+              <Link href="#plan-b-form" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="service_card_click">
                 Risiko einschaetzen
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -351,7 +351,7 @@ export default function PlanBServicePage() {
                         <span key={include} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-slate-700">{include}</span>
                       ))}
                     </div>
-                    <Link href="#plan-b-form" className="mt-6 inline-flex items-center gap-2 text-sm font-black text-blue-700" data-event="select_plan_b_package">
+                    <Link href="#plan-b-form" className="mt-6 inline-flex items-center gap-2 text-sm font-black text-blue-700" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -435,11 +435,11 @@ export default function PlanBServicePage() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="start_plan_b_triage">
+              <Link href="#plan-b-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
                 Plan B pruefen lassen
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_plan_b_whatsapp">
+              <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                 Plan B per WhatsApp senden
               </a>
             </div>
@@ -469,13 +469,13 @@ export default function PlanBServicePage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#plan-b-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_plan_b_triage">
+          <Link href="#plan-b-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Plan B pruefen
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_plan_b_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_plan_b_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

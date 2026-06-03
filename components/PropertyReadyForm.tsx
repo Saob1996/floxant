@@ -271,7 +271,7 @@ export function PropertyReadyForm() {
               key={item.value}
               type="button"
               onClick={() => setObjectStatus(item.value)}
-              data-event="select_property_ready_goal"
+              data-event="service_card_click"
               data-property-status={item.value}
               className={`rounded-[1.25rem] border p-4 text-left transition hover:-translate-y-0.5 ${
                 active
@@ -289,7 +289,7 @@ export function PropertyReadyForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_property_ready_lead">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Name*
@@ -305,7 +305,7 @@ export function PropertyReadyForm() {
               name="roleType"
               value={role}
               onChange={(event) => setRole(event.target.value)}
-              data-event="select_property_ready_role"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600"
             >
               {roleOptions.map((item) => (
@@ -339,7 +339,7 @@ export function PropertyReadyForm() {
               name="goalType"
               value={goalType}
               onChange={(event) => setGoalType(event.target.value)}
-              data-event="select_property_ready_goal"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-amber-600"
             >
               {goalOptions.map((item) => (
@@ -387,7 +387,9 @@ export function PropertyReadyForm() {
                   key={service}
                   type="button"
                   onClick={() => toggleService(service)}
-                  data-event={service === "Diskrete Abstimmung" ? "select_property_ready_package" : undefined}
+                  data-event="service_card_click"
+                  data-source="property_ready_package"
+                  data-service={service}
                   className={`rounded-xl border px-3 py-3 text-left text-xs font-black transition ${
                     active ? "border-stone-950 bg-stone-950 text-white" : "border-stone-200 bg-white text-stone-700 hover:border-amber-300"
                   }`}
@@ -465,7 +467,7 @@ export function PropertyReadyForm() {
           <UploadDropCard
             title="Fotos optional"
             description="Raeume, Moebel, Keller, Garage, Dachboden, Zugang oder Verschmutzung."
-            helper="Fotos helfen bei einer realistischen Einschaetzung. Keine Kundendaten in Tracking-Events."
+            helper="Fotos helfen bei einer realistischen Einschaetzung. Bitte keine sensiblen Kundendaten mitsenden."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
             dataEvent="upload_property_ready_photos"
@@ -505,7 +507,7 @@ export function PropertyReadyForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_property_ready_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-amber-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -513,7 +515,7 @@ export function PropertyReadyForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_property_ready_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             <Phone className="h-4 w-4" />
@@ -521,7 +523,7 @@ export function PropertyReadyForm() {
           </a>
           <a
             href={`tel:${PHONE_TEL}`}
-            data-event="click_property_ready_phone"
+            data-event="phone_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-5 text-sm font-black text-amber-900 transition hover:bg-amber-100"
           >
             <Phone className="h-4 w-4" />

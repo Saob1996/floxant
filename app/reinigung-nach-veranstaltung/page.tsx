@@ -27,29 +27,29 @@ import {
 
 const path = "/reinigung-nach-veranstaltung";
 const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
-  "Hallo FLOXANT, ich brauche Reinigung nach einer Veranstaltung oder Party. Ich sende Ort, Fotos, Flaeche, Termin und gewuenschtes Ergebnis.",
+  "Hallo FLOXANT, ich brauche Reinigung nach einer Veranstaltung oder Party. Ich sende Ort, Fotos, Fläche, Termin und gewünschtes Ergebnis.",
 )}`;
 
 const faqItems = [
   {
     q: "Welche Anlaesse kann FLOXANT nach der Veranstaltung reinigen?",
-    a: "Moeglich sind private Feiern, Firmenfeiern, Empfaenge, Seminare, Praxistermine, Kanzlei-Events, Hausgemeinschaften, Apartments, Boardinghouses und kleinere Veranstaltungsflaechen. Der konkrete Umfang wird nach Fotos, Flaeche, Zugang und Zeitfenster geprueft.",
+    a: "Möglich sind private Feiern, Firmenfeiern, Empfänge, Seminare, Praxistermine, Kanzlei-Events, Hausgemeinschaften, Apartments, Boardinghouses und kleinere Veranstaltungsflächen. Der konkrete Umfang wird nach Fotos, Fläche, Zugang und Zeitfenster geprüft.",
   },
   {
     q: "Was gehoert typischerweise zur Reinigung nach Party oder Event?",
-    a: "Typisch sind Boeden, Sanitaerbereiche, Kueche oder Teekueche, Tische, Nebenflaechen, Eingangsbereich, Treppenhausanteile, Abfalltrennung, Geruchsreduzierung und die Vorbereitung fuer die naechste Nutzung oder Uebergabe.",
+    a: "Typisch sind Böden, Sanitärbereiche, Küche oder Teeküche, Tische, Nebenflächen, Eingangsbereich, Treppenhausanteile, Abfalltrennung, Geruchsreduzierung und die Vorbereitung für die nächste Nutzung oder Übergabe.",
   },
   {
     q: "Kann die Reinigung sehr kurzfristig erfolgen?",
-    a: "Kurzfristige Termine koennen geprueft werden, wenn Ort, Fotos, Flaeche, Deadline, Zugang und Ansprechpartner schnell vorliegen. FLOXANT gibt keine pauschale Sofortgarantie, sondern prueft Machbarkeit und Reihenfolge serioes.",
+    a: "Kurzfristige Termine können geprüft werden, wenn Ort, Fotos, Fläche, Deadline, Zugang und Ansprechpartner schnell vorliegen. FLOXANT gibt keine pauschale Sofortgarantie, sondern prüft Machbarkeit und Reihenfolge seriös.",
   },
   {
-    q: "Wie wird der Preis fuer eine Eventreinigung eingeschaetzt?",
-    a: "Entscheidend sind Flaeche, Verschmutzung, Anzahl der Bereiche, Sanitaer- und Kuechenanteil, Muellmenge, Uhrzeit, Anfahrt, Parkmoeglichkeit, Etage, Zugang und ob eine Uebergabe oder erneute Nutzung direkt bevorsteht.",
+    q: "Wie wird der Preis für eine Eventreinigung eingeschätzt?",
+    a: "Entscheidend sind Fläche, Verschmutzung, Anzahl der Bereiche, Sanitär- und Küchenanteil, Müllmenge, Uhrzeit, Anfahrt, Parkmöglichkeit, Etage, Zugang und ob eine Übergabe oder erneute Nutzung direkt bevorsteht.",
   },
   {
-    q: "Ist die Seite auch fuer Unternehmen geeignet?",
-    a: "Ja. Gerade Bueros, Kanzleien, Praxen, Hotels, Apartmenthaeuser, Agenturen und Gewerbeflaechen brauchen nach einem Anlass oft schnell wieder saubere Raeume fuer Kunden, Mitarbeitende oder Gaeste.",
+    q: "Ist die Seite auch für Unternehmen geeignet?",
+    a: "Ja. Gerade Büros, Kanzleien, Praxen, Hotels, Apartmenthäuser, Agenturen und Gewerbeflächen brauchen nach einem Anlass oft schnell wieder saubere Räume für Kunden, Mitarbeitende oder Gäste.",
   },
 ];
 
@@ -64,7 +64,7 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "Reinigung nach Veranstaltung, Party und Anlass",
       description:
-        "Reinigung nach Party, Firmenfeier, Event, Empfang, Seminar oder Objektanlass mit Fotos, Flaeche, Zugang und Termin pruefen lassen.",
+        "Reinigung nach Party, Firmenfeier, Event, Empfang, Seminar oder Objektanlass mit Fotos, Fläche, Zugang und Termin prüfen lassen.",
       path,
       serviceType: "Eventreinigung",
       areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Duesseldorf Reinigung nach Verfuegbarkeit"],
@@ -72,7 +72,7 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Reinigung nach Veranstaltung, Party und Event | FLOXANT",
       description:
-        "Reinigung nach Anlass fuer private Feiern, Firmenfeiern, Events, Empfaenge, Seminare, Apartments und Gewerbeflaechen.",
+        "Reinigung nach Anlass für private Feiern, Firmenfeiern, Events, Empfänge, Seminare, Apartments und Gewerbeflächen.",
       path,
       about: [
         "Reinigung nach Veranstaltung",
@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "reinigung-nach-veranstaltung",
     title: "Reinigung nach Veranstaltung, Party & Event | FLOXANT",
     description:
-      "Reinigung nach Veranstaltung, Party, Firmenfeier oder Event: Boeden, Sanitaer, Kueche, Muell, Geruch und Uebergabe konkret pruefen lassen.",
+      "Reinigung nach Veranstaltung, Party, Firmenfeier oder Event: Böden, Sanitär, Küche, Müll, Geruch und Übergabe konkret prüfen lassen.",
     keywords: [
       "Reinigung nach Veranstaltung",
       "Reinigung nach Party",
@@ -133,12 +133,12 @@ export default function ReinigungNachVeranstaltungPage() {
     {
       icon: Home,
       title: "Private Party, Geburtstag oder Feier",
-      text: "Wenn Wohnung, Haus, Gemeinschaftsraum, Kueche, Bad oder Treppenhaus nach einem Abend wieder sauber und nutzbar werden sollen.",
+      text: "Wenn Wohnung, Haus, Gemeinschaftsraum, Küche, Bad oder Treppenhaus nach einem Abend wieder sauber und nutzbar werden sollen.",
     },
     {
       icon: Building2,
       title: "Firmenfeier, Empfang oder Kundentermin",
-      text: "Wenn Empfang, Meetingraum, Bueroflaeche, Sanitaer, Kueche und Kundenbereiche am naechsten Tag wieder sauber und nutzbar sein muessen.",
+      text: "Wenn Empfang, Meetingraum, Bürofläche, Sanitär, Küche und Kundenbereiche am nächsten Tag wieder sauber und nutzbar sein müssen.",
     },
     {
       icon: CalendarClock,
@@ -147,16 +147,16 @@ export default function ReinigungNachVeranstaltungPage() {
     },
     {
       icon: Sparkles,
-      title: "Apartment, Hotelnaehe oder Boardinghouse",
-      text: "Wenn Gaestewechsel, kleine Events, Aufenthalte oder Sondernutzungen eine gezielte Reinigung mit schneller Rueckmeldung brauchen.",
+      title: "Apartment, Hotelnähe oder Boardinghouse",
+      text: "Wenn Gästewechsel, kleine Events, Aufenthalte oder Sondernutzungen eine gezielte Reinigung mit schneller Rückmeldung brauchen.",
     },
   ];
 
   const whatWeCheck = [
-    "Boeden, Laufwege, Eingangsbereich und sichtbare Hauptflaechen",
-    "Sanitaerbereiche, Kueche, Teekueche, Tische und Kontaktflaechen",
-    "Muell, Verpackung, Flaschen, Kartons, Restmengen und sortierbare Abfaelle",
-    "Geruch, Flecken, Klebereste, Feuchtigkeit, Zugang und naechste Nutzung",
+    "Böden, Laufwege, Eingangsbereich und sichtbare Hauptflächen",
+    "Sanitärbereiche, Küche, Teeküche, Tische und Kontaktflächen",
+    "Müll, Verpackung, Flaschen, Kartons, Restmengen und sortierbare Abfaelle",
+    "Geruch, Flecken, Klebereste, Feuchtigkeit, Zugang und nächste Nutzung",
   ];
 
   return (
@@ -175,9 +175,9 @@ export default function ReinigungNachVeranstaltungPage() {
                   Reinigung nach Veranstaltung, Party und Event
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-9 text-slate-100">
-                  Nach einer Veranstaltung entscheidet der erste Eindruck am naechsten Morgen: riecht der Raum frisch, sind
-                  Sanitaer und Kueche wieder nutzbar, sind Boeden, Tische und Eingangsbereiche sauber, und ist der Abfall
-                  geordnet? FLOXANT prueft Reinigungen nach privaten Feiern, Firmenanlaessen, Seminaren, Empfaengen und
+                  Nach einer Veranstaltung entscheidet der erste Eindruck am nächsten Morgen: riecht der Raum frisch, sind
+                  Sanitär und Küche wieder nutzbar, sind Böden, Tische und Eingangsbereiche sauber, und ist der Abfall
+                  geordnet? FLOXANT prüft Reinigungen nach privaten Feiern, Firmenanlaessen, Seminaren, Empfängen und
                   gewerblichen Sondernutzungen mit klarer Objektlogik statt pauschalem Versprechen.
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -208,10 +208,10 @@ export default function ReinigungNachVeranstaltungPage() {
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-emerald-200">Was den Preis beeinflusst</p>
                 <div className="mt-6 grid gap-3">
                   {[
-                    ["Anlass", "Private Feier, Firmenfeier, Seminar, Empfang, Gaestewechsel oder Sondernutzung."],
-                    ["Flaeche", "Raeume, Sanitaer, Kueche, Laufwege, Nebenflaechen und Treppenhausanteile."],
-                    ["Zustand", "Muell, Flecken, Geruch, Klebereste, Feuchtigkeit und Intensitaet der Nutzung."],
-                    ["Zeitfenster", "Reinigung direkt danach, am Morgen danach oder vor Uebergabe und naechster Nutzung."],
+                    ["Anlass", "Private Feier, Firmenfeier, Seminar, Empfang, Gästewechsel oder Sondernutzung."],
+                    ["Fläche", "Räume, Sanitär, Küche, Laufwege, Nebenflächen und Treppenhausanteile."],
+                    ["Zustand", "Müll, Flecken, Geruch, Klebereste, Feuchtigkeit und Intensitaet der Nutzung."],
+                    ["Zeitfenster", "Reinigung direkt danach, am Morgen danach oder vor Übergabe und nächster Nutzung."],
                   ].map(([title, text]) => (
                     <div key={title} className="rounded-2xl border border-white/10 bg-white/10 p-4">
                       <p className="font-black text-white">{title}</p>
@@ -226,9 +226,9 @@ export default function ReinigungNachVeranstaltungPage() {
 
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <SectionTitle
-            label="Fuer welche Anlaesse"
-            title="Von privater Feier bis B2B-Event: entscheidend ist die naechste Nutzung"
-            text="Eine gute Reinigung nach einem Anlass ist nicht nur Aufraeumen. Sie stellt den Raum wieder in einen Zustand, in dem Kunden, Mitarbeitende, Gaeste, Vermieter oder Hausverwaltung den naechsten Schritt ohne unangenehme Ueberraschung erleben."
+            label="Für welche Anlaesse"
+            title="Von privater Feier bis B2B-Event: entscheidend ist die nächste Nutzung"
+            text="Eine gute Reinigung nach einem Anlass ist nicht nur Aufräumen. Sie stellt den Raum wieder in einen Zustand, in dem Kunden, Mitarbeitende, Gäste, Vermieter oder Hausverwaltung den nächsten Schritt ohne unangenehme Überraschung erleben."
           />
           <div className="mt-9 grid gap-5 md:grid-cols-2">
             {occasionCards.map((item) => {
@@ -248,8 +248,8 @@ export default function ReinigungNachVeranstaltungPage() {
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <SectionTitle
               label="Ablauf"
-              title="Nach dem Anlass muss die Flaeche wieder fuehrbar sein"
-              text="FLOXANT betrachtet Eventreinigung als Objektvorbereitung. Es geht um sichtbare Sauberkeit, hygienische Basis, geordnete Restmengen, gute Luft und eine klare Rueckmeldung, ob etwas ausserhalb der normalen Reinigung liegt."
+              title="Nach dem Anlass muss die Fläche wieder führbar sein"
+              text="FLOXANT betrachtet Eventreinigung als Objektvorbereitung. Es geht um sichtbare Sauberkeit, hygienische Basis, geordnete Restmengen, gute Luft und eine klare Rückmeldung, ob etwas außerhalb der normalen Reinigung liegt."
             />
             <div className="grid gap-4">
               {whatWeCheck.map((text) => (
@@ -269,10 +269,10 @@ export default function ReinigungNachVeranstaltungPage() {
               <h2 className="mt-5 text-2xl font-black text-slate-950">So wird Ihre Anfrage schnell pruefbar</h2>
               <div className="mt-6 grid gap-3 md:grid-cols-2">
                 {[
-                  ["Ort und Zugang", "Adresse, Stadtteil, Etage, Aufzug, Schluessel, Ansprechpartner und Parkmoeglichkeit."],
-                  ["Fotos und Flaeche", "Kurze Bilder der Boeden, Sanitaerbereiche, Kueche, Hauptflaechen und Restmengen."],
-                  ["Anlass und Nutzung", "Was war der Anlass, wie viele Personen waren da und wann wird die Flaeche wieder gebraucht?"],
-                  ["Ergebnisziel", "Nur Grundsauberkeit, komplette Wiederherstellung, Uebergabe, Gaestewechsel oder Kundentermin."],
+                  ["Ort und Zugang", "Adresse, Stadtteil, Etage, Aufzug, Schlüssel, Ansprechpartner und Parkmöglichkeit."],
+                  ["Fotos und Fläche", "Kurze Bilder der Böden, Sanitärbereiche, Küche, Hauptflächen und Restmengen."],
+                  ["Anlass und Nutzung", "Was war der Anlass, wie viele Personen waren da und wann wird die Fläche wieder gebraucht?"],
+                  ["Ergebnisziel", "Nur Grundsauberkeit, komplette Wiederherstellung, Übergabe, Gästewechsel oder Kundentermin."],
                 ].map(([title, text]) => (
                   <div key={title} className="rounded-2xl bg-white p-5">
                     <p className="font-black text-slate-950">{title}</p>
@@ -286,7 +286,7 @@ export default function ReinigungNachVeranstaltungPage() {
               <h2 className="mt-5 text-2xl font-black text-slate-950">Fotos schlagen lange Erklaerungen</h2>
               <p className="mt-4 leading-8 text-slate-700">
                 Drei bis acht klare Fotos helfen mehr als eine ungenaue Beschreibung. Zeigen Sie den schlechtesten Bereich, den
-                Eingangsbereich, Sanitaer, Kueche, Boeden und Restmengen. Dann kann FLOXANT schneller erkennen, ob Reinigung,
+                Eingangsbereich, Sanitär, Küche, Böden und Restmengen. Dann kann FLOXANT schneller erkennen, ob Reinigung,
                 Entsorgung oder eine Kombination sinnvoll ist.
               </p>
             </div>
@@ -301,9 +301,9 @@ export default function ReinigungNachVeranstaltungPage() {
                 <h2 className="mt-5 text-2xl font-black text-slate-950">Keine austauschbare Party-Seite, sondern klare Reinigungsentscheidung</h2>
                 <p className="mt-4 leading-8 text-slate-700">
                   Kunden suchen nach einer Veranstaltung meistens nicht nach dekorativen Versprechen. Sie brauchen eine Firma,
-                  die versteht, dass Zeitfenster, Hausordnung, Nachbarn, Geruch, Abfall, Sanitaer, Kueche und Wiederbenutzung
-                  zusammenhaengen. Deshalb fragt FLOXANT gezielt nach Anlass, Flaeche, Zeitdruck und Ergebnis. So wird aus einer
-                  unklaren Nachricht eine Anfrage, die ein Betrieb ernsthaft pruefen kann.
+                  die versteht, dass Zeitfenster, Hausordnung, Nachbarn, Geruch, Abfall, Sanitär, Küche und Wiederbenutzung
+                  zusammenhängen. Deshalb fragt FLOXANT gezielt nach Anlass, Fläche, Zeitdruck und Ergebnis. So wird aus einer
+                  unklaren Nachricht eine Anfrage, die ein Betrieb ernsthaft prüfen kann.
                 </p>
               </div>
               <div className="grid gap-3">
@@ -346,10 +346,10 @@ export default function ReinigungNachVeranstaltungPage() {
             <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-200">Anlass sauber abschliessen</p>
-                <h2 className="mt-3 text-3xl font-black">Senden Sie Anlass, Ort, Fotos und naechste Nutzung. FLOXANT prueft die passende Reinigung.</h2>
+                <h2 className="mt-3 text-3xl font-black">Senden Sie Anlass, Ort, Fotos und nächste Nutzung. FLOXANT prüft die passende Reinigung.</h2>
                 <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 leading-8 text-slate-200">
                   <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" /> Regensburg, Bayern und Duesseldorf Reinigung nach Pruefung</span>
-                  <span className="inline-flex items-center gap-2"><Trash2 className="h-4 w-4" /> Reinigung mit Restmengen moeglich</span>
+                  <span className="inline-flex items-center gap-2"><Trash2 className="h-4 w-4" /> Reinigung mit Restmengen möglich</span>
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

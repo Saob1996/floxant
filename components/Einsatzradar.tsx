@@ -91,7 +91,7 @@ export function Einsatzradar({
           ? "flox-radar-section flox-radar-section-compact px-4 py-12 sm:px-6"
           : "flox-radar-section px-4 py-14 sm:px-6 lg:py-18"
       }
-      data-event="view_einsatzradar"
+
       data-source={source}
     >
       <div className="mx-auto max-w-7xl">
@@ -108,7 +108,7 @@ export function Einsatzradar({
           </div>
           <Link
             href={ctaHref}
-            data-event="click_einsatzradar_cta"
+            data-event="hero_cta_click"
             data-source={source}
             className="flox-button-primary min-h-12 px-5"
           >
@@ -123,7 +123,7 @@ export function Einsatzradar({
               <details
                 key={zone.id}
                 className="flox-surface-card group p-4 open:border-blue-200 open:bg-blue-50/50"
-                data-event="open_einsatzradar_region"
+                data-event="region_select"
                 data-region={zone.id}
               >
                 <summary className="cursor-pointer list-none">
@@ -152,7 +152,7 @@ export function Einsatzradar({
                   key={filter.id}
                   type="button"
                   onClick={() => setActiveFilter(filter.id)}
-                  data-event="filter_einsatzradar_service"
+                  data-event="region_select"
                   data-filter={filter.id}
                   className={`flox-command-link whitespace-nowrap ${
                     active ? "flox-command-link-active" : "border-slate-200 bg-white text-slate-600"
@@ -169,7 +169,7 @@ export function Einsatzradar({
           {visibleEntries.map((entry) => (
             <article
               key={entry.id}
-              data-event="click_einsatzradar_card"
+              data-event="region_select"
               data-service={entry.service_type}
               className="flox-radar-card group p-5"
             >
@@ -222,7 +222,7 @@ export function Einsatzradar({
 
               <Link
                 href={entry.target_url}
-                data-event="click_einsatzradar_cta"
+                data-event="hero_cta_click"
                 data-service={entry.service_type}
                 data-source={source}
                 className="flox-row-link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700"

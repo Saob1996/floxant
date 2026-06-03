@@ -95,14 +95,14 @@ export default function PreisrahmenVorpruefungBlogPage() {
       title: "Wie Kunden den besten Preisrahmen erhalten",
       paragraphs: [
        "Je besser die Angaben, desto belastbarer die Einschätzung. Fotos, kurze Beschreibungen und klare Leistungswünsche helfen mehr als eine lange Nachricht ohne Struktur.",
-       "Eine eigene Preisvorstellung kann zusätzlich sinnvoll sein. Sie ersetzt aber nicht die System-Einschätzung, sondern zeigt, welcher Zielrahmen für den Kunden relevant ist.",
+       "Eine eigene Preisvorstellung kann zusätzlich sinnvoll sein. Sie ersetzt aber nicht die Prüfung, sondern zeigt, welcher Zielrahmen für den Kunden relevant ist.",
       ],
      },
     ]}
     highlightPoints={[
      "Ein Preisrahmen ist kein Ausweichen, sondern ehrliche Vorplanung.",
      "Die wichtigsten Kostentreiber müssen sichtbar erklärt werden.",
-     "Kundenbudget und System-Einschätzung sollten getrennt bleiben.",
+     "Kundenbudget und geprüfte Einschätzung sollten getrennt bleiben.",
     ]}
     ctas={[
      { href: "/rechner", label: "Rechner starten" },

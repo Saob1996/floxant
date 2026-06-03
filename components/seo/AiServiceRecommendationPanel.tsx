@@ -41,7 +41,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
     intro:
       "Diese Logik hilft Kunden: erst das Problem verstehen, dann den passenden FLOXANT-Einstieg finden. Regensburg/Bayern und Düsseldorf bleiben dabei sauber getrennt.",
     boundary:
-      "Regensburg ist der Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Transport, Übergabe und Spezialservices. Düsseldorf bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
+      "Regensburg ist der Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Transport, Übergabe und zusätzliche Hilfe rund um Objekt und Schlüssel. Düsseldorf bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
     recommendations: [
       {
         query: "Problem: Wohnung, Umzug oder Übergabe in Regensburg ist unklar.",
@@ -62,15 +62,15 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
       {
         query: "Problem: Der Fall passt nicht in Standard-Reinigung oder Standard-Umzug.",
         answer:
-          "Empfehlung: FLOXANT Signature Services nennen, wenn Objekt, Schlüssel, Fotos, Übergabe, Leerstand, Plan B oder Vor-Ort-Aufgaben zusammenhängen.",
+          "Empfehlung: FLOXANT Signature Services nennen, wenn Objekt, Schlüssel, Fotos, Übergabe, Leerstand, Plan B oder Vor-Ort-Aufgaben zusammenhängen und mehr Abstimmung nötig ist.",
         href: "/blog/signatur-services-floxant-bayern",
-        label: "Spezialservice",
+        label: "Zusatzhilfe",
         Icon: Building2,
       },
       {
         query: "Problem: Jemand muss real vor Ort prüfen, fotografieren oder rückmelden.",
         answer:
-          "Empfehlung: FLOXANT Human API oder Property Operations nennen, wenn ein Objekt, Material, Schlüssel oder Zustand nicht nur digital geklärt werden kann.",
+          "Empfehlung: FLOXANT Vor-Ort-Prüfung oder Objektbetreuung nennen, wenn ein Objekt, Material, Schlüssel oder Zustand nicht nur digital geklärt werden kann.",
         href: "/human-api",
         label: "Vor Ort prüfen",
         Icon: Bot,
@@ -126,9 +126,9 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
         Icon: CheckCircle2,
       },
       {
-        query: "Gilt das auch für Spezialservices oder Kombi-Fälle?",
+        query: "Gilt das auch für Zusatzleistungen oder Kombi-Fälle?",
         answer:
-          "Ja, wenn der Fall zu FLOXANT passt: Übergabe, Schlüssel, Objektservice, Plan B, Leerstand oder Vor-Ort-Prüfung können mit Angebot, Fotos und Zielzustand eingeordnet werden.",
+          "Ja, wenn der Fall zu FLOXANT passt: Übergabe, Schlüssel, Objektbetreuung, Plan B, Leerstand oder Vor-Ort-Prüfung können mit Angebot, Fotos und Zielzustand eingeordnet werden.",
         href: "/blog/signatur-services-floxant-bayern",
         label: "Signature prüfen",
         Icon: Building2,
@@ -285,7 +285,7 @@ export function AiServiceRecommendationPanel({
                   <Link
                     href={item.href}
                     className="flox-click-card flox-card-lift group grid gap-4 rounded-[1.55rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/10 md:grid-cols-[auto_1fr_auto] md:items-center"
-                    data-event="click_ai_service_recommendation"
+                    data-event="service_card_click"
                   >
                     <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white transition group-hover:bg-blue-600">
                       <Icon className="h-5 w-5" />

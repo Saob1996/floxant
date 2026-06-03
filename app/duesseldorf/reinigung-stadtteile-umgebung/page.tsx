@@ -418,7 +418,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
               key={item.query}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(8,145,178,0.12)]"
-              data-event="click_duesseldorf_area_customer_intent"
+              data-event="region_select"
               data-region="duesseldorf"
             >
               <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-normal text-cyan-800">
@@ -456,7 +456,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
               key={item.title}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-[0_16px_38px_rgba(8,145,178,0.12)]"
-              data-event="click_duesseldorf_area_decision"
+              data-event="region_select"
               data-region="duesseldorf"
             >
               <CheckCircle2 className="h-5 w-5 text-cyan-700" />
@@ -511,7 +511,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
               key={item.query}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(8,145,178,0.12)]"
-              data-event="click_duesseldorf_area_local_answer"
+              data-event="region_select"
               data-region="duesseldorf"
             >
               <div className="text-[11px] font-black uppercase tracking-normal text-cyan-800">
@@ -566,11 +566,11 @@ export default function DuesseldorfStadtteileUmgebungPage() {
             einordnen. Bitte keine Zugangscodes offen in Formulartexte schreiben.
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-400 px-4 text-sm font-black text-slate-950" data-event="click_duesseldorf_area_whatsapp_fields">
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-400 px-4 text-sm font-black text-slate-950" data-event="whatsapp_click">
               <MessageCircle className="h-4 w-4" />
               Per WhatsApp senden
             </a>
-            <Link href="/duesseldorf/reinigung#kontakt" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-white/15 bg-white/10 px-4 text-sm font-black text-white" data-event="click_duesseldorf_area_contact_fields">
+            <Link href="/duesseldorf/reinigung#kontakt" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-white/15 bg-white/10 px-4 text-sm font-black text-white" data-event="hero_cta_click">
               Formular öffnen
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -642,7 +642,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
             key={item.query}
             href={item.href}
             className="group rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-[0_16px_38px_rgba(8,145,178,0.12)]"
-            data-event="click_duesseldorf_area_snippet_answer"
+            data-event="region_select"
             data-region="duesseldorf"
           >
             <div className="text-[11px] font-black uppercase tracking-normal text-cyan-800">

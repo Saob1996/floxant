@@ -113,7 +113,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Welche FLOXANT Leistungen werden hier erklärt?",
-      a: "FLOXANT steht in Regensburg und Bayern für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und Spezialfälle wie Nachlass, Schlüsselübergabe oder Plan B. Düsseldorf bleibt getrennt und steht vor allem für Reinigung, kurzfristige Fälle, Schlüsselübergabe und Hausverwaltung.",
+      a: "FLOXANT steht in Regensburg und Bayern für Umzug, Reinigung, Entrümpelung, Übergabe, Angebotsprüfung, Express-Anfrage und besondere Situationen wie Nachlass, Schlüsselübergabe oder Plan B. Düsseldorf bleibt getrennt und steht vor allem für Reinigung, kurzfristige Fälle, Schlüsselübergabe und Hausverwaltung.",
     },
     {
       q: "Warum werden Leistungen nicht einfach nur aufgelistet?",
@@ -181,7 +181,7 @@ export default function BlogHubPage() {
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
                 Hier erklären wir Umzug, Reinigung, Entrümpelung, Gewerbereinigung,
-                Preisvorstellung, Buchung und Spezialservices so, dass echte Kunden schnell
+                Preisvorstellung, Buchung und Zusatzleistungen so, dass echte Kunden schnell
                 verstehen, was sinnvoll ist und welcher nächste Schritt wirklich passt.
               </p>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-500">
@@ -271,7 +271,7 @@ export default function BlogHubPage() {
             },
             {
               href: "/objekt-springer",
-              title: "Objekt-Springer",
+              title: "Objektvertretung",
               text: "Kurzfristige Hilfe bei Personalausfall, Hausmeisterlücke oder Objektstress.",
             },
             {

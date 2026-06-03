@@ -77,7 +77,7 @@ const checkAreas = [
     Icon: MapPin,
   },
   {
-    title: "Zusatzservices",
+    title: "Zusatzleistungen",
     text: "Reinigung, Entsorgung, Zugang, Schlüsselübergabe oder Übergabevorbereitung sollten nicht erst am Einsatztag auffallen.",
     Icon: KeyRound,
   },
@@ -102,7 +102,7 @@ const serviceScopes = [
 const faqItems = [
   {
     q: "Kann ich ein Angebot von einem anderen Anbieter prüfen lassen?",
-    a: "Ja. FLOXANT kann organisatorisch und praktisch prüfen, ob wichtige Angaben zu Umfang, Zugang, Termin, Fotos, Zusatzservices oder Preisrahmen noch unklar sind.",
+    a: "Ja. FLOXANT kann organisatorisch und praktisch prüfen, ob wichtige Angaben zu Umfang, Zugang, Termin, Fotos, Zusatzleistungen oder Preisrahmen noch unklar sind.",
   },
   {
     q: "Muss ich den Anbieter oder die Plattform nennen?",
@@ -182,7 +182,7 @@ export default function AngebotscheckPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#e0f2fe_0,transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_offer_check">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#e0f2fe_0,transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
@@ -198,15 +198,15 @@ export default function AngebotscheckPage() {
                 Fotos und Eckdaten direkt an FLOXANT.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#red-flag-scanner" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="start_red_flag_scanner">
+                <Link href="#red-flag-scanner" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
                   Red-Flag-Scanner starten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:border-blue-300 hover:bg-blue-50" data-event="start_cheaper_alternative_check">
+                <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:border-blue-300 hover:bg-blue-50" data-event="service_card_click">
                   Günstigere Alternative prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_offer_check_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   WhatsApp mit Angebot senden
                 </a>
               </div>
@@ -286,37 +286,37 @@ export default function AngebotscheckPage() {
                 <ShieldCheck className="mb-3 h-6 w-6 text-blue-700" />
                 Besonders relevant ist der Angebotscheck für Regensburg, das direkte Umfeld bis ca. 200 km und Bayern nach Verfügbarkeit. Für Düsseldorf prüfen wir nur Reinigung und Entsorgung.
                 <div className="mt-4">
-                  <Link href="/rueckfahrt-boerse" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="start_route_check" data-source="offer_check_internal_link">
+                  <Link href="/rueckfahrt-boerse" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="region_select" data-source="offer_check_internal_link">
                     Flexible Transportstrecke über die Rückfahrt-Börse prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
                 <div className="mt-3">
-                  <Link href="/uebergabeakte" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="start_handover_file_lead" data-source="offer_check_internal_link">
+                  <Link href="/uebergabeakte" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="offer_check_internal_link">
                     Übergabeakte als Dokumentationsbaustein prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
                 <div className="mt-3">
-                  <Link href="/schadensbegrenzung" className="inline-flex items-center gap-2 font-black text-red-700 transition hover:text-red-950" data-event="start_damage_control_lead" data-source="offer_check_internal_link">
+                  <Link href="/schadensbegrenzung" className="inline-flex items-center gap-2 font-black text-red-700 transition hover:text-red-950" data-event="service_card_click" data-source="offer_check_internal_link">
                     Wenn der Auftrag schon kippt: Schadensbegrenzung prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
                 <div className="mt-3">
-                  <Link href="/plattform-auftrag-pruefen" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="start_platform_order_check" data-source="offer_check_internal_link">
+                  <Link href="/plattform-auftrag-pruefen" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="offer_check_internal_link">
                     Plattform-Auftrag oder Screenshot direkt prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
                 <div className="mt-3">
-                  <Link href="/angebot-guenstiger-pruefen" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="start_cheaper_alternative_check" data-source="offer_check_internal_link">
+                  <Link href="/angebot-guenstiger-pruefen" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="offer_check_internal_link">
                     Wenn Preis oder Budget knapp sind: günstigere Alternative prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
                 <div className="mt-3">
-                  <Link href="/plan-b-service" className="inline-flex items-center gap-2 font-black text-amber-700 transition hover:text-amber-950" data-event="start_plan_b_triage" data-source="offer_check_internal_link">
+                  <Link href="/plan-b-service" className="inline-flex items-center gap-2 font-black text-amber-700 transition hover:text-amber-950" data-event="service_card_click" data-source="offer_check_internal_link">
                     Wenn Plan A wackelt: Plan B vor Zusage prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -345,7 +345,7 @@ export default function AngebotscheckPage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Leistungsbereiche</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Für welche Angebote der Check sinnvoll ist</h2>
                 <p className="mt-4 text-base leading-8 text-slate-700">
-                  FLOXANT prüft, ob das Angebot zur tatsächlichen Situation passt: Ort, Termin, Zugang, Zusatzservices, Fotos und Preisrahmen. Wenn FLOXANT den Auftrag übernehmen kann, folgt eine eigene Einschätzung.
+                  FLOXANT prüft, ob das Angebot zur tatsächlichen Situation passt: Ort, Termin, Zugang, Zusatzleistungen, Fotos und Preisrahmen. Wenn FLOXANT den Auftrag übernehmen kann, folgt eine eigene Einschätzung.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -404,11 +404,11 @@ export default function AngebotscheckPage() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#angebotscheck-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="start_offer_check">
+              <Link href="#angebotscheck-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="hero_cta_click">
                 Zweite Einschätzung anfragen
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700" data-event="click_offer_check_phone">
+              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700" data-event="phone_click">
                 Telefonisch klären
               </a>
             </div>

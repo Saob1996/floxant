@@ -456,7 +456,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Direkte Wege",
-        text: "Rechner, Buchung, Angebotsprüfung und Zusatzservices bleiben nah dran.",
+        text: "Rechner, Buchung, Angebotsprüfung und Zusatzleistungen bleiben nah dran.",
       },
     ],
     searchActions: [
@@ -493,7 +493,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Starke Wege",
-        text: "Rechner, Buchung, Angebotsprüfung und Zusatzservices bleiben logisch verknüpft.",
+        text: "Rechner, Buchung, Angebotsprüfung und Zusatzleistungen bleiben logisch verknüpft.",
         Icon: ArrowRight,
       },
       {
@@ -535,7 +535,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         title: "Bessere Weiterklicks",
-        text: "Leistungsseiten führen logisch zu Rechner, Buchung, Angebotsprüfung und passenden Zusatzservices.",
+        text: "Leistungsseiten führen logisch zu Rechner, Buchung, Angebotsprüfung und passenden Zusatzleistungen.",
         Icon: ArrowRight,
       },
     ],
@@ -681,7 +681,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       {
         label: "Passende Wege",
         title: "Wichtige Wege werden stärker",
-        text: "Rechner, Buchung, Angebotsprüfung und Zusatzservices sind nicht versteckt, sondern logisch verknüpft.",
+        text: "Rechner, Buchung, Angebotsprüfung und Zusatzleistungen sind nicht versteckt, sondern logisch verknüpft.",
         Icon: ArrowRight,
       },
       {
@@ -799,7 +799,7 @@ export function SearchDominanceExperience({
                   <Link
                     href={config.primaryHref}
                     className="flox-magnetic-cta inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
-                    data-event="click_search_dominance_primary"
+                    data-event="hero_cta_click"
                   >
                     {config.primaryLabel}
                     <ArrowRight className="h-4 w-4" />
@@ -807,7 +807,7 @@ export function SearchDominanceExperience({
                   <Link
                     href={config.secondaryHref}
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-white"
-                    data-event="click_search_dominance_secondary"
+                    data-event="hero_cta_click"
                   >
                     {config.secondaryLabel}
                   </Link>
@@ -839,7 +839,7 @@ export function SearchDominanceExperience({
                       key={choice.label}
                       href={choice.href}
                       className="group rounded-[1.15rem] border border-blue-100 bg-blue-50/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-lg hover:shadow-blue-950/10"
-                      data-event="click_customer_choice"
+                      data-event="service_card_click"
                     >
                       <div className="flex items-center gap-3">
                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-blue-600 text-white">
@@ -882,7 +882,7 @@ export function SearchDominanceExperience({
                       key={action.label}
                       href={action.href}
                       className="flox-search-action-card group rounded-[1.2rem] p-4 transition"
-                      data-event="click_search_dominance_action"
+                      data-event="service_card_click"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <span className="flox-search-action-icon grid h-10 w-10 shrink-0 place-items-center rounded-[0.9rem]">

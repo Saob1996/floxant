@@ -176,7 +176,7 @@ export default function MieterwechselServiceRegensburgPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#cffafe_0,transparent_32rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_tenant_turnover_service">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#cffafe_0,transparent_32rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
@@ -192,11 +192,11 @@ export default function MieterwechselServiceRegensburgPage() {
                 bündelt FLOXANT Räumung, Reinigung, Entsorgung und Schlüsselkoordination nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#mieterwechsel-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-700" data-event="start_tenant_turnover_lead">
+                <Link href="#mieterwechsel-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-700" data-event="service_card_click">
                   Objektfall prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_tenant_turnover_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Mieterwechsel per WhatsApp anfragen
                 </a>
               </div>
@@ -270,27 +270,27 @@ export default function MieterwechselServiceRegensburgPage() {
                 <p className="mt-4 text-base leading-8 text-slate-700">
                   Jeder Fall wird nach Objektart, Ort, Zugang, Termin, Umfang und Fotos geprüft. FLOXANT ersetzt keine rechtliche Übergabeprüfung, sondern unterstützt die praktische Vorbereitung.
                 </p>
-                <Link href="/uebergabeakte" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-700 transition hover:text-cyan-950" data-event="start_handover_file_lead" data-source="tenant_turnover_internal_link">
+                <Link href="/uebergabeakte" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-700 transition hover:text-cyan-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
                   Mieterwechsel mit FLOXANT Übergabeakte dokumentieren
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/wohnung-wieder-vermietbar" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-cyan-700 transition hover:text-cyan-950" data-event="start_rental_ready_lead" data-source="tenant_turnover_internal_link">
+                <Link href="/wohnung-wieder-vermietbar" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-cyan-700 transition hover:text-cyan-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
                   Ergebnis-Seite: Wohnung wieder vermietbar vorbereiten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/immobilie-verkaufsbereit-machen" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="start_property_ready_lead" data-source="tenant_turnover_internal_link">
+                <Link href="/immobilie-verkaufsbereit-machen" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
                   Wenn Verkauf oder Besichtigung ansteht: Immobilie verkaufsbereit machen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/makler-vermieter-link" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-blue-700 transition hover:text-blue-950" data-event="start_object_case_lead" data-source="tenant_turnover_internal_link">
+                <Link href="/makler-vermieter-link" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
                   Direktlink fuer Makler und Vermieter nutzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/keller-muellraum-rettung-regensburg" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="start_cellar_trashroom_lead" data-source="tenant_turnover_internal_link">
+                <Link href="/keller-muellraum-rettung-regensburg" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
                   Keller oder Muellraum als Objektflaeche pruefen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/schadensbegrenzung" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-red-700 transition hover:text-red-950" data-event="start_damage_control_lead" data-source="tenant_turnover_internal_link">
+                <Link href="/schadensbegrenzung" className="mt-3 inline-flex items-center gap-2 text-sm font-black text-red-700 transition hover:text-red-950" data-event="service_card_click" data-source="tenant_turnover_internal_link">
                   Wenn der Mieterwechsel kurzfristig kippt
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -321,7 +321,7 @@ export default function MieterwechselServiceRegensburgPage() {
                     <Icon className="h-6 w-6 text-cyan-700" />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{item.title}</h3>
                     <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
-                    <Link href="#mieterwechsel-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-700 transition hover:text-cyan-950" data-event="start_tenant_turnover_lead">
+                    <Link href="#mieterwechsel-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-700 transition hover:text-cyan-950" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -401,11 +401,11 @@ export default function MieterwechselServiceRegensburgPage() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#mieterwechsel-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-700" data-event="start_tenant_turnover_lead">
+              <Link href="#mieterwechsel-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-700" data-event="service_card_click">
                 Mieterwechsel-Fall anfragen
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-cyan-200 hover:text-cyan-700" data-event="click_tenant_turnover_phone">
+              <a href={`tel:${company.phoneRaw}`} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-cyan-200 hover:text-cyan-700" data-event="phone_click">
                 Rückruf anfragen
               </a>
             </div>

@@ -1825,7 +1825,7 @@ export const duesseldorfServicePages = {
         title: "Klare Grenze zu Sanierung, Gefahrstoff und Extremfällen",
         paragraphs: [
           "Sonderreinigung ist kein Freifahrtschein für jeden Zustand. Schimmel-Sanierung, Asbest, Gefahrstoffe, Tatortreinigung, Schädlingsbekämpfung, kontaminierte Flächen, Brandschaden-, Wasserschaden- oder Geruchssanierung werden ohne gesonderte Eignung nicht beworben. Wenn solche Punkte sichtbar sind, muss der Fall anders eingeordnet werden.",
-          "Wenn der Anlass eher Renovierung, Baustaub, Teppich/Polster, Schaufenster, Keller oder Entsorgung betrifft, führen interne Links zur passenden Spezialseite. Dadurch bleibt die Seite kundennah, aber nicht überdehnt.",
+          "Wenn der Anlass eher Renovierung, Baustaub, Teppich/Polster, Schaufenster, Keller oder Entsorgung betrifft, führen passende Hinweise zur richtigen Spezialseite. Dadurch bleibt die Anfrage klar und wird nicht überdehnt.",
         ],
       },
     ],
@@ -1918,7 +1918,7 @@ export const duesseldorfServicePages = {
         searchPhrase: "Sonderreinigung Kosten Düsseldorf",
         title: "Kosten hängen am Zustand, nicht am Namen",
         answer:
-          "Preisrahmen entstehen aus Fläche, Zustand, Material, Geruch, Zugang, Zeitdruck, Fotos und der Frage, ob Spezialfälle ausgeschlossen werden müssen.",
+          "Preisrahmen entstehen aus Fläche, Zustand, Material, Geruch, Zugang, Zeitdruck, Fotos und der Frage, ob besondere Risiken ausgeschlossen werden müssen.",
         href: "/duesseldorf/vielleicht-guenstiger",
         cta: "Kosten prüfen",
         signal: "Kosten",

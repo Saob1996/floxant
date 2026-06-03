@@ -164,8 +164,8 @@ export default async function ReinigungPillarPage() {
         serviceLinks={[
           { href: "/rechner", label: "Reinigung direkt kalkulieren" },
           { href: "/notfallreinigung-24h", label: "Notfallreinigung 24h anfragen" },
-          { href: "/objekt-springer", label: "Objekt-Springer bei Personalausfall" },
-          { href: "/airbnb-turnover-express", label: "Airbnb Turnover Express für Gästewechsel" },
+          { href: "/objekt-springer", label: "Objektvertretung bei Personalausfall" },
+          { href: "/airbnb-turnover-express", label: "Gästewechsel-Service für Gästewechsel" },
           { href: "/leerstandsmanagement", label: "Leerstandsmanagement mit Kontrollfotos" },
           { href: "/property-operations", label: "Immobilienbetreuung fuer Objektaufgaben" },
           { href: "/reinigung-nach-veranstaltung", label: "Reinigung nach Veranstaltung oder Party" },

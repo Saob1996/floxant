@@ -102,7 +102,7 @@ export default function EinsatzradarRegensburgPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs items={[{ label: "Einsatzradar Regensburg" }]} />
 
-      <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16" data-event="view_einsatzradar">
+      <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm">
@@ -132,7 +132,7 @@ export default function EinsatzradarRegensburgPage() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/buchung#buchungssystem"
-                data-event="click_einsatzradar_cta"
+                data-event="hero_cta_click"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700"
               >
                 Eigenen Fall prüfen lassen
@@ -140,7 +140,7 @@ export default function EinsatzradarRegensburgPage() {
               </Link>
               <a
                 href={whatsappHref}
-                data-event="click_einsatzradar_whatsapp"
+                data-event="whatsapp_click"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
               >
                 Fall per WhatsApp senden
@@ -269,10 +269,10 @@ export default function EinsatzradarRegensburgPage() {
       <div className="flox-mobile-action-wrap z-40 md:hidden">
         <div className="flox-mobile-action-shell">
           <div className="flox-mobile-action-grid">
-        <Link href="/buchung#buchungssystem" className="flox-mobile-action flox-mobile-action-primary" data-event="click_einsatzradar_cta">
+        <Link href="/buchung#buchungssystem" className="flox-mobile-action flox-mobile-action-primary" data-event="hero_cta_click">
           Fall senden
         </Link>
-        <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_einsatzradar_whatsapp">
+        <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
           WhatsApp
         </a>
         <a href={`tel:${company.phoneRaw}`} className="flox-mobile-action flox-mobile-action-light">

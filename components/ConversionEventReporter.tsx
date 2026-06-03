@@ -194,12 +194,11 @@ function trackConversion(payload: Record<string, unknown>) {
 
 function eventNameFor(element: HTMLElement, href: string) {
  if (element.dataset.event) return element.dataset.event;
- if (href.startsWith("tel:")) return "click_phone";
- if (href.startsWith("mailto:")) return "click_email";
- if (href.includes("wa.me") || href.includes("whatsapp")) return "click_whatsapp";
- if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebot-vergleichen") || href.includes("angebotscheck")) return "click_offer_check";
- if (href.includes("rueckruf") || href.includes("anliegen=rueckruf")) return "click_callback_request";
- return "click_link";
+ if (href.startsWith("tel:")) return "phone_click";
+ if (href.includes("wa.me") || href.includes("whatsapp")) return "whatsapp_click";
+ if (href.includes("vielleicht-guenstiger") || href.includes("angebot-guenstiger") || href.includes("angebot-vergleichen") || href.includes("angebotscheck")) return "hero_cta_click";
+ if (href.includes("rueckruf") || href.includes("anliegen=rueckruf") || href.startsWith("mailto:")) return "hero_cta_click";
+ return "service_card_click";
 }
 
 function getHighIntentPageSignal(pathname: string) {
@@ -225,7 +224,7 @@ function getHighIntentPageSignal(pathname: string) {
   path.includes("uebergabeakte") ||
   path.includes("mieterwechsel")
  ) {
-  return { path, source: "signature_service_page_dwell", label: "Spezialservice aktiv gelesen", priority: "warm", intent: "signature_service" };
+  return { path, source: "signature_service_page_dwell", label: "Zusatzleistung aktiv gelesen", priority: "warm", intent: "signature_service" };
  }
  if (isDuesseldorf && path.includes("reinigung")) {
   return { path, source: "duesseldorf_cleaning_page_dwell", label: "Düsseldorf-Reinigung aktiv gelesen", priority: "warm", intent: "duesseldorf_cleaning_only" };

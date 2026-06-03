@@ -83,7 +83,7 @@ export function ServiceRequestCompass() {
                   <Link
                     href="/buchung?utm_source=homepage_compass&contact=callback#buchungssystem"
                     className="flox-button-primary min-h-12 px-5 py-3"
-                    data-event="start_booking"
+                    data-event="hero_cta_click"
                     data-source="homepage_compass"
                     data-contact-channel="booking"
                     data-intent="service_compass_booking"
@@ -97,7 +97,7 @@ export function ServiceRequestCompass() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flox-button-secondary min-h-12 px-5 py-3"
-                    data-event="click_whatsapp"
+                    data-event="whatsapp_click"
                     data-source="homepage_compass"
                     data-contact-channel="whatsapp"
                     data-intent="service_compass_whatsapp"
@@ -183,7 +183,7 @@ function ServiceRegionColumn({
             key={service.href}
             href={service.href}
             className="flox-service-region-link group grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-[1rem] border border-slate-200 bg-white px-3 py-3 text-left transition hover:border-blue-200 hover:bg-blue-50/70"
-            data-event="click_service_compass_link"
+            data-event="service_card_click"
             data-source={source}
             data-label={service.label}
           >
@@ -210,7 +210,7 @@ function ServiceRegionColumn({
       <Link
         href={actionHref}
         className="flox-button-primary mt-5 min-h-12 justify-center px-5"
-        data-event="start_booking"
+        data-event="hero_cta_click"
         data-source={source}
         data-contact-channel="booking"
         data-intent="service_region_booking"

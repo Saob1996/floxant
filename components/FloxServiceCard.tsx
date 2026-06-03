@@ -13,12 +13,14 @@ type FloxServiceCardProps = {
   compact?: boolean;
   className?: string;
   source?: string;
+  onNavigate?: () => void;
 };
 
 export function FloxServiceCard({
   service,
   compact = false,
   className,
+  onNavigate,
   source = "service_card",
 }: FloxServiceCardProps) {
   const region = floxantRegions[service.region];
@@ -31,6 +33,7 @@ export function FloxServiceCard({
       data-region={service.region}
       data-category={service.category}
       data-source={source}
+      onClick={onNavigate}
       className={cn(
         "group flex h-full min-w-0 flex-col rounded-lg border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500",
         compact ? "gap-2" : "gap-3 p-5",
@@ -53,13 +56,18 @@ export function FloxServiceCard({
         <p className="text-[11px] font-bold uppercase tracking-normal text-slate-500">
           {floxantCategoryLabels[service.category]}
         </p>
-        <h3 className="mt-1 text-base font-black leading-snug text-slate-950">
+        <h3
+          className={cn(
+            "mt-1 font-black leading-snug text-slate-950",
+            compact ? "text-[0.95rem]" : "text-base",
+          )}
+        >
           {service.title}
         </h3>
         <p
           className={cn(
-            "mt-2 text-sm font-medium leading-6 text-slate-600",
-            compact && "line-clamp-2",
+            "mt-2 font-medium text-slate-600",
+            compact ? "text-xs leading-5" : "text-sm leading-6",
           )}
         >
           {service.shortDescription}
@@ -76,4 +84,3 @@ export function FloxServiceCard({
     </Link>
   );
 }
-

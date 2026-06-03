@@ -7,12 +7,10 @@ import { duesseldorfCompany } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
   floxantCategoryLabels,
+  floxantCategoryOrder,
   getServicesByRegionAndCategory,
-  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
-
-const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 
 export function DuesseldorfChrome({ children }: { children: ReactNode }) {
   const whatsappHref = buildWhatsAppHref(
@@ -82,7 +80,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               Direkte Services
             </p>
             <div className="mt-4 grid gap-4">
-              {categoryOrder.map((category) => {
+              {floxantCategoryOrder.map((category) => {
                 const services = getServicesByRegionAndCategory("duesseldorf", category);
                 if (!services.length) return null;
 

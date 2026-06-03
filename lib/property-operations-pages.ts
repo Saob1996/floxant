@@ -64,7 +64,7 @@ export const propertyOperationsPages = {
     metaDescription:
       "Objektvertretung von FLOXANT: kurzfristige Hilfe, wenn im Objekt jemand ausfällt, ein Schlüssel fehlt oder vor Ort schnell etwas erledigt werden muss.",
     keywords: [
-      "Objekt Springer Regensburg",
+      "Objektvertretung Regensburg",
       "kurzfristige Hilfe vor Ort",
       "Personalausfall Reinigung",
       "Hausmeister ausgefallen",
@@ -283,7 +283,7 @@ export const propertyOperationsPages = {
       },
       {
         q: "Ist der Urlaubsretter auch für Airbnb oder Ferienwohnungen geeignet?",
-        a: "Für Gästewechsel ist der Airbnb Turnover Express meist passender. Urlaubsretter ist stärker auf private Abreise, Schlüssel, Check und letzte Restpunkte ausgerichtet.",
+        a: "Für Ferienwohnungen ist der Gästewechsel-Service meist passender. Urlaubsretter ist stärker auf private Abreise, Schlüssel, Check und letzte Restpunkte ausgerichtet.",
       },
       {
         q: "Kann ich den Service kurzfristig buchen?",
@@ -300,11 +300,11 @@ export const propertyOperationsPages = {
   "airbnb-turnover-express": {
     slug: "airbnb-turnover-express",
     path: "/airbnb-turnover-express",
-    serviceName: "Airbnb Turnover Express",
-    shortName: "Turnover Express",
-    seoTitle: "Airbnb Turnover Express Regensburg | Gästewechsel",
+    serviceName: "Gästewechsel-Service",
+    shortName: "Gästewechsel",
+    seoTitle: "Gästewechsel-Service Regensburg | Ferienwohnung vorbereiten",
     metaDescription:
-      "Airbnb Turnover Express von FLOXANT: Gästewechsel mit Reinigung, Kontrolle, Fotos, Schlüsselmanagement und Vorbereitung für Ferienwohnungen in Regensburg, Oberpfalz und Bayern.",
+      "Gästewechsel-Service von FLOXANT: Gästewechsel mit Reinigung, Kontrolle, Fotos, Schlüsselmanagement und Vorbereitung für Ferienwohnungen in Regensburg, Oberpfalz und Bayern.",
     keywords: [
       "Airbnb Reinigung Regensburg",
       "Gästewechsel Service",
@@ -359,7 +359,7 @@ export const propertyOperationsPages = {
     solution: {
       title: "FLOXANT behandelt Turnover wie einen Mini-Betriebsprozess.",
       intro:
-        "Airbnb Turnover Express verbindet Reinigung, Vorbereitung, Sichtkontrolle und Rückmeldung. Nicht als anonyme Putzrunde, sondern als Gästewechsel-Ablauf mit klarer Verantwortung.",
+        "Gästewechsel-Service verbindet Reinigung, Vorbereitung, Sichtkontrolle und Rückmeldung. Nicht als anonyme Putzrunde, sondern als Gästewechsel-Ablauf mit klarer Verantwortung.",
       points: [
         {
           title: "Räume wieder gastbereit machen",
@@ -565,8 +565,8 @@ export const propertyOperationsPages = {
       eyebrow: "Außenstelle für kleine Aufgaben",
       headline: "Wenn Ihr Team nicht hinfahren muss, sollte es das auch nicht tun.",
       subheadline:
-        "Dokumente abholen, Schlüssel transportieren, Material übergeben, Objekt kurz prüfen: FLOXANT übernimmt kleine reale Wege, die intern zu viel Zeit kosten.",
-      promise: "Kleine Aufgabe rausgeben, internen Fokus behalten.",
+        "Dokumente abholen, Schlüssel transportieren, Material übergeben, Objekt kurz prüfen: FLOXANT übernimmt kleine reale Wege, die im Alltag zu viel Zeit kosten.",
+      promise: "Kleine Aufgabe auslagern, den Kopf wieder frei bekommen.",
       metrics: [
         { label: "Typischer Anlass", value: "Kleiner Weg, hoher Kontext" },
         { label: "Fokus", value: "Abholen, bringen, prüfen" },
@@ -574,7 +574,7 @@ export const propertyOperationsPages = {
       ],
     },
     problem: {
-      title: "Nicht jede wichtige Aufgabe braucht eine interne Person.",
+      title: "Nicht jede wichtige Aufgabe braucht eigenes Personal.",
       intro:
         "Unternehmen verlieren viel Zeit mit Wegen, die zu klein für ein Projekt und zu wichtig für Zufall sind. Genau diese Lücke blockiert Teams: Schlüssel, Unterlagen, Material, Fotoprüfung oder kurze Objektwege.",
       worries: [
@@ -697,7 +697,7 @@ export const propertyOperationsPages = {
     problem: {
       title: "Ein Foto von heute ist oft mehr wert als zehn Vermutungen.",
       intro:
-        "Dashboards, Tickets und Plattformen enden oft an der physischen Welt. Jemand muss hin, prüfen, fotografieren, zählen oder bestätigen. Genau dort entsteht Reibung.",
+        "Digitale Meldungen enden oft an der physischen Welt. Jemand muss hin, prüfen, fotografieren, zählen oder bestätigen. Genau dort entsteht Reibung.",
       worries: [
         "Ein Team entscheidet remote, hat aber keine aktuellen Objektfotos.",
         "Material, Schlüssel, Zustand oder Bestand müssen real geprüft werden.",
@@ -746,7 +746,7 @@ export const propertyOperationsPages = {
     ],
     benefits: [
       { title: "Schnellere Entscheidungen", text: "Remote-Teams bekommen reale Daten statt Vermutungen." },
-      { title: "Weniger interne Wege", text: "Nicht jede kleine Prüfung braucht eigenes Personal." },
+      { title: "Weniger Wege", text: "Nicht jede kleine Prüfung braucht eigenes Personal." },
       { title: "Klare Datenpunkte", text: "Fotos, Status und Hinweise werden vorher definiert." },
       { title: "Klare Rückmeldung", text: "Sie bekommen Fotos, Status und Hinweise statt Vermutungen." },
     ],
@@ -850,7 +850,7 @@ export const propertyOperationsPages = {
           text: "Jede Immobilie bekommt Kontext: Zugang, Ansprechpartner, Risiken, Kontrollpunkte, Dokumentation und passende Einsatzwege.",
         },
         {
-          title: "Module kombinieren",
+          title: "Leistungen kombinieren",
           text: "Objektvertretung, Leerstandsmanagement, Vor-Ort-Prüfung, Erledigungsservice und Reinigung können je nach Lage zusammenarbeiten.",
         },
         {
@@ -875,7 +875,7 @@ export const propertyOperationsPages = {
       "Kein Facility-Management-Vollversprechen ohne definierten Umfang",
       "Keine Verwaltungsvollmacht ohne gesonderte Vereinbarung",
       "Keine Facharbeiten ohne passende Qualifikation",
-      "Jedes Modul wird mit Grenze, Zugang und Freigabe definiert",
+      "Jede Leistung wird mit Grenze, Zugang und Freigabe definiert",
     ],
     faq: [
       {
@@ -891,7 +891,7 @@ export const propertyOperationsPages = {
         a: "Für Eigentümer, Hausverwaltungen, Unternehmen, Hosts, Makler und Teams, die nicht immer selbst vor Ort sein können.",
       },
       {
-        q: "Kann man mit einem einzelnen Modul starten?",
+        q: "Kann man mit einer einzelnen Leistung starten?",
         a: "Ja. Viele starten mit Leerstandsmanagement, Objektvertretung, Gästewechsel-Service oder einer Vor-Ort-Prüfung und erweitern später.",
       },
     ],

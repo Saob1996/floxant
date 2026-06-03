@@ -15,14 +15,31 @@ export type FloxantRegionConfig = {
 export type FloxantService = {
   id: string;
   title: string;
+  shortTitle: string;
   shortDescription: string;
+  longDescription: string;
   region: FloxantRegion;
   category: FloxantServiceCategory;
   href: string;
   ctaLabel: string;
+  keywords: string[];
   googleAdsRelevant: boolean;
   priority: number;
+  relatedServices: string[];
+  blogSlug: string;
+  schemaType: "Service";
 };
+
+type FloxantServiceSeed = Omit<
+  FloxantService,
+  "shortTitle" | "longDescription" | "keywords" | "relatedServices" | "blogSlug" | "schemaType"
+> &
+  Partial<Pick<
+    FloxantService,
+    "shortTitle" | "longDescription" | "keywords" | "relatedServices" | "blogSlug" | "schemaType"
+  >>;
+
+export const floxantCategoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 
 export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
   duesseldorf: {
@@ -32,9 +49,9 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     href: "/duesseldorf",
     headline: "Reinigungslösungen für Unternehmen, Praxen und Gewerbeobjekte.",
     description:
-      "FLOXANT Düsseldorf ist klar auf gewerbliche Reinigung ausgerichtet: Büros, Praxen, Kanzleien, Treppenhäuser, Unterhaltsreinigung und anspruchsvolle Objekte.",
+      "FLOXANT Düsseldorf unterstützt Unternehmen, Praxen, Kanzleien, Hausverwaltungen und Gewerbeobjekte mit sauber eingeordneten Reinigungsanfragen.",
     shortDescription:
-      "Reinigung für Unternehmen, Praxen und Gewerbeobjekte.",
+      "Gewerbliche Reinigung für Unternehmen, Praxen und betreute Objekte.",
     primaryCta: "Services in Düsseldorf ansehen",
   },
   regensburg: {
@@ -45,26 +62,26 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     headline:
       "Umzug, Entrümpelung, Übergabereinigung und objektbezogene Unterstützung.",
     description:
-      "FLOXANT Regensburg unterstützt bei Wohnungswechseln, Räumungen, Haushaltsauflösungen, Endreinigung und der Vorbereitung einer besenreinen Übergabe.",
+      "FLOXANT Regensburg hilft bei Wohnungswechsel, Räumung, Haushaltsauflösung, Endreinigung und einer geordneten Übergabe.",
     shortDescription:
-      "Umzug, Entrümpelung, Übergabe und Endreinigung.",
+      "Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
     primaryCta: "Services in Regensburg ansehen",
   },
 };
 
 export const floxantCategoryLabels: Record<FloxantServiceCategory, string> = {
-  normal: "Reguläre Leistungen",
-  signature: "FLOXANT Signature Extras",
-  special: "Spezielle Services & schnelle Anfrage",
+  normal: "Häufige Leistungen",
+  signature: "FLOXANT Signature Services",
+  special: "Schnelle Hilfe & Angebotsprüfung",
 };
 
 export const floxantCategoryDescriptions: Record<FloxantServiceCategory, string> = {
-  normal: "Klassische Leistungen mit klarer Anfrage und sauberer Einordnung.",
-  signature: "Zusätzliche Komplett- und Komfortservices für Fälle, die mehr Abstimmung brauchen.",
-  special: "Direkte Einstiege für besonders schnelle oder erklärungsbedürftige Anfragen.",
+  normal: "Leistungen, die Kunden besonders häufig anfragen und die sich schnell einordnen lassen.",
+  signature: "Für Situationen, in denen Zugang, Übergabe, Abstimmung oder besondere Sorgfalt wichtig sind.",
+  special: "Für bestehende Angebote, kurzfristige Anliegen oder Fälle, bei denen erst Klarheit entstehen muss.",
 };
 
-export const floxantServices: FloxantService[] = [
+const floxantServiceSeeds: FloxantServiceSeed[] = [
   {
     id: "duesseldorf-gewerbereinigung",
     title: "Gewerbereinigung",
@@ -630,6 +647,34 @@ export const floxantServices: FloxantService[] = [
     priority: 9,
   },
 ];
+
+function buildDefaultKeywords(service: FloxantServiceSeed) {
+  const region = floxantRegions[service.region];
+  const base = [
+    service.title,
+    service.shortTitle || service.title,
+    region.city,
+    `${service.title} ${region.city}`,
+    floxantCategoryLabels[service.category],
+    service.googleAdsRelevant ? "wichtiger Anfrageeinstieg" : "",
+  ];
+
+  return Array.from(new Set(base.filter(Boolean)));
+}
+
+function buildDefaultBlogSlug(service: FloxantServiceSeed) {
+  return service.blogSlug || service.href.replace(/^\/+/, "").replace(/\//g, "-");
+}
+
+export const floxantServices: FloxantService[] = floxantServiceSeeds.map((service) => ({
+  ...service,
+  shortTitle: service.shortTitle || service.title,
+  longDescription: service.longDescription || service.shortDescription,
+  keywords: service.keywords || buildDefaultKeywords(service),
+  relatedServices: service.relatedServices || [],
+  blogSlug: buildDefaultBlogSlug(service),
+  schemaType: service.schemaType || "Service",
+}));
 
 export function getServicesByRegion(region: FloxantRegion) {
   return floxantServices

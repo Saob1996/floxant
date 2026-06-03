@@ -75,7 +75,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
       title: "Warum Region mehr ist als ein Keyword",
       paragraphs: [
        "Für Google ist die regionale Einordnung wichtig. Für Kunden ist sie noch wichtiger. Wer einen Umzug, eine Reinigung oder eine Entrümpelung plant, braucht keine leere Bayern-Floskel, sondern die Frage: Ist der Einsatz realistisch planbar?",
-       "Regionale Relevanz entsteht durch Verfügbarkeit, Fahrtwege, lokale Erfahrung, Zeitfenster und die Fähigkeit, Zusatzservices sinnvoll zu kombinieren.",
+       "Regionale Relevanz entsteht durch Verfügbarkeit, Fahrtwege, lokale Erfahrung, Zeitfenster und die Fähigkeit, Zusatzleistungen sinnvoll zu kombinieren.",
       ],
      },
      {

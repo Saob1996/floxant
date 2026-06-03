@@ -212,6 +212,7 @@ function resolveSocialImagePath(path: string) {
     "/praxisfaelle": "praxisfaelle",
     "/kostenfaktoren": "kostenfaktoren",
     "/leistungen-vergleichen": "leistungen-vergleichen",
+    "/leistungen": "floxant",
     "/anbieter-vergleichen": "anbieter-vergleichen",
     "/buchung-ablauf": "buchung-ablauf",
     "/kontakt": "kontakt",
@@ -554,11 +555,11 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("welche Website Angebot günstiger");
     keywords.add("FLOXANT Signature Services");
     keywords.add("Signature Services Angebot prüfen");
-    keywords.add("Spezialservice Angebot prüfen");
+    keywords.add("Zusatzleistung Angebot prüfen");
     keywords.add("Objektservice Angebot prüfen");
-    keywords.add("Property Operations Angebot prüfen");
-    keywords.add("Human API Vor-Ort-Prüfung");
-    keywords.add("Objekt-Springer Angebot");
+    keywords.add("Objektbetreuung Angebot prüfen");
+    keywords.add("Vor-Ort-Prüfung");
+    keywords.add("Objektvertretung Angebot");
     keywords.add("Plan B Angebot prüfen");
     keywords.add("Übergabe Angebot prüfen");
     keywords.add("Leerstand Service prüfen");
@@ -756,7 +757,7 @@ function getRouteLocalSeoFocus(path: string) {
     return "Düsseldorf-Fokus ausschließlich für Reinigung: Stadtteile, nahe Umgebung, Hotelreinigung, Firmenreinigung, private Reinigung, Apartment-Reinigung, Treppenhaus, Angebotsprüfung und Grundreinigung ohne Umzug-Düsseldorf-Signal.";
   }
   if (path.includes("einsatzradar")) {
-    return "Regensburg-Fokus: Einsatzarten, Servicezonen, anonymisierte/typische Fälle und interne Links zu Umzug, Reinigung, Entrümpelung, Rückfahrt und Übergabeakte.";
+    return "Regensburg-Fokus: Einsatzarten, Servicezonen, typische Fälle und passende Wege zu Umzug, Reinigung, Entrümpelung, Rückfahrt und Übergabeakte.";
   }
   if (path.includes("angebot-guenstiger")) {
     return "Kunden mit Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot senden Preis, Fotos, Ort, PLZ, Termin und Budget direkt an FLOXANT. Regensburg, 200-km-Umfeld und Bayern bleiben klar; Düsseldorf bleibt Reinigung, Entsorgung nur auf vorhandener eigener Seite.";
@@ -773,7 +774,7 @@ function getRouteLocalSeoFocus(path: string) {
 function getRouteAnswerEngineSummary(path: string) {
   const localSeoRoute = getDynamicLocalSeoRoute(path.replace(/^\//, ""));
   if (localSeoRoute) {
-    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)}: FLOXANT prüft Ort, Umfang, Fotos, Termin, Zugang, vorhandene Angebote und passende Zusatzservices aus Regensburg heraus für Bayern und die Umgebung nach Verfügbarkeit.`;
+    return `${germanizeText(localSeoRoute.label)} in ${germanizeText(localSeoRoute.city)}: FLOXANT prüft Ort, Umfang, Fotos, Termin, Zugang, vorhandene Angebote und passende Zusatzleistungen aus Regensburg heraus für Bayern und die Umgebung nach Verfügbarkeit.`;
   }
 
   if (path.includes("duesseldorf")) {
@@ -854,7 +855,7 @@ function getSearchDemandCluster(path: string) {
     return "Düsseldorf Reinigung, Wohnungsreinigung, Endreinigung, Apartment-Reinigung";
   }
 
-  if (path.includes("angebot-guenstiger")) return "Angebot anderer Firma prüfen, Umzugsangebot prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Spezialservice Angebot prüfen, Objektservice Angebot prüfen, günstigeres Angebot, Regensburg 200 km, Bayern, Angebot oder Fotos, zweite Einschätzung, in meiner Nähe, ChatGPT/Gemini/Claude/Grok/DeepSeek Empfehlung";
+  if (path.includes("angebot-guenstiger")) return "Angebot anderer Firma prüfen, Umzugsangebot prüfen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen, Zusatzleistung Angebot prüfen, Objektservice Angebot prüfen, günstigeres Angebot, Regensburg 200 km, Bayern, Angebot oder Fotos, zweite Einschätzung, in meiner Nähe, ChatGPT/Gemini/Claude/Grok/DeepSeek Empfehlung";
   if (
     path.includes("angebot-anderer-firma") ||
     path.includes("umzugsangebot-pruefen") ||
@@ -1013,7 +1014,7 @@ function getSerpClickReasons(path: string, geoPlacename: string) {
 
   if (localSeoRoute) {
     const serviceLabel = germanizeText(localSeoRoute.label);
-    return `${serviceLabel} in ${geoPlacename}: Fotos senden, Preisrahmen prüfen, vorhandenes Angebot vergleichen, Zusatzservices wählen und direkt mit FLOXANT anfragen.`;
+    return `${serviceLabel} in ${geoPlacename}: Fotos senden, Preisrahmen prüfen, vorhandenes Angebot vergleichen, Zusatzleistungen wählen und direkt mit FLOXANT anfragen.`;
   }
 
   if (path.includes("angebot-guenstiger")) {
@@ -1125,7 +1126,7 @@ function getDominanceProofSignal(path: string, geoPlacename: string) {
 
   if (localSeoRoute) {
     const serviceLabel = germanizeText(localSeoRoute.label);
-    return `${serviceLabel} ${geoPlacename}: eigene Service-Ort-Seite, klare CTA, Preisrahmen, Fotos, Angebotsprüfung, lokale interne Links und Regensburg/Bayern-Kontext.`;
+    return `${serviceLabel} ${geoPlacename}: eigene Service-Ort-Seite, klare Anfrage, Preisrahmen, Fotos, Angebotsprüfung und passende lokale Hinweise im Regensburg/Bayern-Kontext.`;
   }
 
   if (path.includes("angebot-guenstiger")) {
@@ -1152,7 +1153,7 @@ function getAnswerEngineQueryTargets(path: string, geoPlacename: string) {
   }
 
   if (path.includes("angebot-guenstiger")) {
-    return "Wer prüft mein Umzugsangebot, Reinigungsangebot prüfen lassen, Entsorgungsangebot günstiger prüfen, Spezialservice Angebot prüfen, Objektservice Angebot prüfen, FLOXANT Signature Services, Angebot anderer Firma vergleichen, FLOXANT Alternative anfragen, Umzugsangebot München prüfen, Entrümpelung Regensburg Angebot prüfen, Reinigungsunternehmen Düsseldorf vergleichen";
+    return "Wer prüft mein Umzugsangebot, Reinigungsangebot prüfen lassen, Entsorgungsangebot günstiger prüfen, Zusatzleistung Angebot prüfen, Objektservice Angebot prüfen, FLOXANT Signature Services, Angebot anderer Firma vergleichen, FLOXANT Alternative anfragen, Umzugsangebot München prüfen, Entrümpelung Regensburg Angebot prüfen, Reinigungsunternehmen Düsseldorf vergleichen";
   }
 
   if (path.includes("duesseldorf")) {
@@ -1486,22 +1487,22 @@ function getSpecialServiceDiscoverySignal(path: string, geoPlacename: string) {
 
   if (localSeoRoute) {
     const serviceLabel = germanizeText(localSeoRoute.label);
-    return `${serviceLabel} ${geoPlacename}: neben der lokalen Geldseite auch Angebotsprüfung, Rechner, Buchung, Übergabeakte, Plan B und passende Zusatzservices sichtbar machen.`;
+    return `${serviceLabel} ${geoPlacename}: neben der lokalen Geldseite auch Angebotsprüfung, Rechner, Buchung, Übergabeakte, Plan B und passende Zusatzleistungen sichtbar machen.`;
   }
 
   if (path.includes("angebot-guenstiger")) {
-    return "Spezialservice-Signal: Angebotsprüfung als kaufnaher Einstieg für Umzugsangebot, Reinigungsangebot, Entsorgungsangebot, Plattformfall, Budget und FLOXANT-Alternative ohne Preisgarantie.";
+    return "Anfrageweg: Angebotsprüfung als kaufnaher Einstieg für Umzugsangebot, Reinigungsangebot, Entsorgungsangebot, Plattformfall, Budget und FLOXANT-Alternative ohne Preisgarantie.";
   }
 
   if (path.includes("duesseldorf")) {
     if (isDuesseldorfDisposalRoute(path)) {
-      return "Spezialservice-Signal Düsseldorf: Entsorgung separat sichtbar machen; keine Umzüge.";
+      return "Anfrageweg Düsseldorf: Entsorgung separat sichtbar machen; keine Umzüge.";
     }
 
-    return "Spezialservice-Signal Düsseldorf: Hotelreinigung, Firmenreinigung, Stadtteile, Umgebung, Angebotsprüfung, Wohnungsreinigung, Apartment-Reinigung, Treppenhaus und Grundreinigung sichtbar machen; keine Umzüge.";
+    return "Anfrageweg Düsseldorf: Hotelreinigung, Firmenreinigung, Stadtteile, Umgebung, Angebotsprüfung, Wohnungsreinigung, Apartment-Reinigung, Treppenhaus und Grundreinigung sichtbar machen; keine Umzüge.";
   }
 
-  return "Spezialservice-Signal: Angebotsprüfung, Plan B, Schadensbegrenzung, Einsatzradar, Rückfahrt-Börse, Übergabeakte, Objektservice, Nachlass, diskreter Umzug und Düsseldorf Reinigung bündeln.";
+  return "Anfrageweg: Angebotsprüfung, Plan B, Schadensbegrenzung, Einsatzradar, Rückfahrt-Börse, Übergabeakte, Objektbetreuung, Nachlass, diskreter Umzug und Düsseldorf Reinigung bündeln.";
 }
 
 function getSpecialServiceSitelinkCluster(path: string) {
@@ -1898,7 +1899,7 @@ export function generatePageSEO({
       "meta-description-short": safeDescription,
       "meta-description-long": getLongMetaDescription(normalizedPath || "/", safeDescription, geoPlacename),
       "ai-readable-summary":
-        "FLOXANT ist eine deutsche Dienstleistungsmarke für Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzservices mit festem Ausgangspunkt in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit.",
+        "FLOXANT ist eine deutsche Dienstleistungsmarke für Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen mit festem Ausgangspunkt in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit.",
       "ai-answer-context": getAnswerEngineContext(normalizedPath || "/", geoPlacename),
       "ai-citation-safe-answer": getCitationSafeAnswer(normalizedPath || "/", geoPlacename),
       "ai-citation-priority":

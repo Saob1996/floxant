@@ -288,7 +288,7 @@ export function SignatureServices({
             <h2 className="flox-title-lg flox-display-section mt-4 text-slate-950">
               {germanText(
                 title || t.title,
-                "Zusatzservices, die Übergabe, Preis und Zeitdruck greifbar machen",
+                "Zusatzleistungen, die Übergabe, Preis und Zeitdruck greifbar machen",
               )}
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-700">
@@ -346,7 +346,7 @@ export function SignatureServices({
                   <Link
                     href={service.href}
                     className="flox-command-link text-slate-900"
-                    data-event="signature_service_click"
+                    data-event="service_card_click"
                     data-signature-service={id}
                     data-source={source}
                   >
@@ -364,14 +364,14 @@ export function SignatureServices({
             <div className="flex items-start gap-3 text-sm leading-7 text-slate-700">
               <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-blue-700" />
               <span>
-                Alle Zusatzservices werden nach Umfang, Ort, Termin und Verfügbarkeit geprüft.
+                Alle Zusatzleistungen werden nach Umfang, Ort, Termin und Verfügbarkeit geprüft.
                 Es gibt keine automatische Zusage und keine versteckten Festpreisversprechen.
               </span>
             </div>
             <Link
               href="/buchung"
               className="flox-button-primary shrink-0 px-5 py-3"
-              data-event="start_booking"
+              data-event="hero_cta_click"
               data-source={`${source}_signature_footer`}
             >
               Anfrage starten

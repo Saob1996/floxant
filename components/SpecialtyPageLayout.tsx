@@ -828,7 +828,7 @@ export function SpecialtyPageLayout({
               <a
                 href="#wizard"
                 className="btn-premium flox-button-primary min-h-[3.65rem] px-8"
-                data-event="start_booking"
+                data-event="hero_cta_click"
                 data-service={serviceContext.name.toLowerCase()}
                 data-region={city}
               >
@@ -838,7 +838,7 @@ export function SpecialtyPageLayout({
               <Link
                 href="/anfrage-mit-preisrahmen"
                 className="flox-button-secondary min-h-[3.65rem] px-8"
-                data-event="submit_budget_request"
+                data-event="form_submit"
                 data-service={serviceContext.name.toLowerCase()}
                 data-region={city}
               >
@@ -861,7 +861,8 @@ export function SpecialtyPageLayout({
                     key={item.href}
                     href={item.href}
                     className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-[11px] font-black uppercase tracking-[0.13em] text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
-                    data-event={item.href.includes("rechner") ? "start_calculator" : item.href.includes("preisrahmen") ? "submit_budget_request" : "start_booking"}
+                    data-event="hero_cta_click"
+                    data-action={item.href.includes("rechner") ? "calculator" : item.href.includes("preisrahmen") ? "budget_request" : "booking"}
                     data-service={serviceContext.name.toLowerCase()}
                     data-region={city}
                   >
@@ -1117,7 +1118,7 @@ export function SpecialtyPageLayout({
                   <a
                     href="#wizard"
                     className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 text-xs font-black uppercase tracking-[0.14em] text-slate-800 transition hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700"
-                    data-event="start_booking"
+                    data-event="hero_cta_click"
                     data-service={serviceContext.name.toLowerCase()}
                     data-region={city}
                   >
@@ -1153,7 +1154,7 @@ export function SpecialtyPageLayout({
                     <a
                       href={`tel:${company.phoneRaw}`}
                       className="inline-flex min-h-11 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 text-sm font-bold text-white transition hover:bg-white/12"
-                      data-event="click_local_page_phone"
+                      data-event="phone_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-region={city}
                     >
@@ -1163,7 +1164,7 @@ export function SpecialtyPageLayout({
                     <a
                       href={whatsappHref}
                       className="inline-flex min-h-11 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 text-sm font-bold text-white transition hover:bg-white/12"
-                      data-event="click_local_page_whatsapp"
+                      data-event="whatsapp_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-region={city}
                     >
@@ -1173,7 +1174,7 @@ export function SpecialtyPageLayout({
                     <a
                       href={`mailto:${company.email}`}
                       className="inline-flex min-h-11 items-center gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 text-sm font-bold text-white transition hover:bg-white/12"
-                      data-event="click_local_page_email"
+                      data-event="hero_cta_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-region={city}
                     >
@@ -1242,7 +1243,7 @@ export function SpecialtyPageLayout({
                     <a
                       href="#wizard"
                       className="inline-flex h-11 items-center justify-center rounded-full bg-white px-4 text-[11px] font-black uppercase tracking-[0.14em] text-slate-950 transition hover:-translate-y-0.5"
-                      data-event="start_booking"
+                      data-event="hero_cta_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-region="Regensburg"
                     >
@@ -1251,7 +1252,7 @@ export function SpecialtyPageLayout({
                     <Link
                       href="/anfrage-mit-preisrahmen"
                       className="inline-flex h-11 items-center justify-center rounded-full border border-white/15 bg-white/8 px-4 text-[11px] font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-white/12"
-                      data-event="submit_budget_request"
+                      data-event="form_submit"
                       data-service={serviceContext.name.toLowerCase()}
                       data-region="Regensburg"
                     >
@@ -1309,7 +1310,7 @@ export function SpecialtyPageLayout({
                   Schon ein Angebot für {germanText(city, city)} bekommen?
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-slate-700">
-                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzservices. In Düsseldorf bleibt die Prüfung auf Reinigung begrenzt; Entsorgung ist nur als eigene vorhandene Seite getrennt geführt.
+                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzleistungen. In Düsseldorf bleibt die Prüfung auf Reinigung begrenzt; Entsorgung ist nur als eigene vorhandene Seite getrennt geführt.
                 </p>
                 <p className="mt-3 text-xs font-bold leading-6 text-slate-500">
                   Keine Preisgarantie, keine Rechtsberatung und keine Bewertung anderer Anbieter. FLOXANT prüft nur, ob nach Verfügbarkeit eine klarere, günstigere oder passendere Alternative möglich ist.
@@ -1324,7 +1325,7 @@ export function SpecialtyPageLayout({
                       key={item.title}
                       href={item.href}
                       className="group rounded-[1.35rem] border border-white/80 bg-white/92 p-4 shadow-sm shadow-slate-950/5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-950/10"
-                      data-event="click_offer_check_from_local_page"
+                      data-event="hero_cta_click"
                       data-service={serviceContext.name.toLowerCase()}
                       data-region={city}
                     >

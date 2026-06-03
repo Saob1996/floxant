@@ -238,7 +238,7 @@ export default function KellerMuellraumRettungPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fde68a_0,transparent_34rem),linear-gradient(180deg,#fffbeb_0%,#ffffff_42%,#f8fafc_100%)] text-slate-950" data-event="view_cellar_trashroom_rescue">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fde68a_0,transparent_34rem),linear-gradient(180deg,#fffbeb_0%,#ffffff_42%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:items-center">
             <div>
@@ -254,11 +254,11 @@ export default function KellerMuellraumRettungPage() {
                 Reinigung und Fotoeinschaetzung nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#keller-muellraum-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="start_cellar_trashroom_lead">
+                <Link href="#keller-muellraum-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="service_card_click">
                   Objektflaeche pruefen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_cellar_trashroom_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Fotos per WhatsApp senden
                 </a>
               </div>
@@ -332,27 +332,27 @@ export default function KellerMuellraumRettungPage() {
                 Raeumung und klarer Fotoeinschaetzung. Rechtliche Freigaben bleiben beim Auftraggeber.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/mieterwechsel-service-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white" data-event="start_tenant_turnover_lead">
+                <Link href="/mieterwechsel-service-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
                   Mieterwechsel-Service
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/wohnung-wieder-vermietbar" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800" data-event="start_rental_ready_lead">
+                <Link href="/wohnung-wieder-vermietbar" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800" data-event="service_card_click">
                   Objekt-Ready verbinden
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/immobilie-verkaufsbereit-machen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 text-sm font-black text-amber-800" data-event="start_property_ready_lead">
+                <Link href="/immobilie-verkaufsbereit-machen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 text-sm font-black text-amber-800" data-event="service_card_click">
                   Nebenflaeche vor Verkauf vorbereiten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/makler-vermieter-link" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-black text-blue-800" data-event="start_object_case_lead">
+                <Link href="/makler-vermieter-link" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-black text-blue-800" data-event="service_card_click">
                   Objekt-Link fuer Makler/Vermieter
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/nachlass-raeumung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm font-black text-stone-800" data-event="start_estate_clearance_lead">
+                <Link href="/nachlass-raeumung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-4 text-sm font-black text-stone-800" data-event="service_card_click">
                   Nachlass-Nebenraeume klaeren
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800" data-event="start_handover_file_lead">
+                <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800" data-event="service_card_click">
                   Foto-Dokumentation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -383,7 +383,7 @@ export default function KellerMuellraumRettungPage() {
                     <Icon className="mb-4 h-6 w-6 text-amber-700" />
                     <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
                     <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                    <Link href="#keller-muellraum-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="start_cellar_trashroom_lead">
+                    <Link href="#keller-muellraum-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-amber-700 transition hover:text-amber-950" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -443,7 +443,7 @@ export default function KellerMuellraumRettungPage() {
                   Servicegebiet ansehen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200 bg-white px-4 text-sm font-black text-red-800" data-event="start_damage_control_lead">
+                <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200 bg-white px-4 text-sm font-black text-red-800" data-event="service_card_click">
                   Wenn es schon akut ist
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -486,13 +486,13 @@ export default function KellerMuellraumRettungPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#keller-muellraum-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_cellar_trashroom_lead">
+          <Link href="#keller-muellraum-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Pruefen
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_cellar_trashroom_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_cellar_trashroom_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

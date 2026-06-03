@@ -390,7 +390,7 @@ export default function DuesseldorfBueroreinigungPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-16 lg:pt-14" data-event="view_duesseldorf_b2b_cleaning">
+      <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-16 lg:pt-14">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[720px] bg-[linear-gradient(135deg,rgba(20,184,166,0.14),rgba(248,250,252,0.3)_42%,rgba(59,130,246,0.08))]" />
         <div className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
           <div>
@@ -408,7 +408,7 @@ export default function DuesseldorfBueroreinigungPage() {
               <a
                 href="#b2b-reinigung-form"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-cyan-900"
-                data-event="start_b2b_cleaning_lead"
+                data-event="service_card_click"
               >
                 Büroreinigung anfragen
                 <ArrowRight className="h-4 w-4" />
@@ -418,7 +418,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:-translate-y-0.5 hover:bg-emerald-100"
-                data-event="click_b2b_cleaning_whatsapp"
+                data-event="whatsapp_click"
               >
                 <MessageCircle className="h-4 w-4" />
                 Per WhatsApp anfragen
@@ -426,7 +426,7 @@ export default function DuesseldorfBueroreinigungPage() {
               <a
                 href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-slate-200 bg-white px-5 text-sm font-black text-slate-900 transition hover:-translate-y-0.5 hover:border-cyan-200"
-                data-event="click_b2b_cleaning_phone"
+                data-event="phone_click"
               >
                 <Phone className="h-4 w-4" />
                 Anrufen
@@ -547,11 +547,11 @@ export default function DuesseldorfBueroreinigungPage() {
               Unterhaltsreinigung starten oder Fotos per WhatsApp senden.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="#bueroreinigung-anfragefelder" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="click_b2b_intent_checklist">
+              <a href="#bueroreinigung-anfragefelder" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
                 Angaben vorbereiten
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="click_b2b_intent_whatsapp">
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="whatsapp_click">
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp mit Fotos
               </a>
@@ -563,7 +563,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 key={item.query}
                 href={item.href}
                 className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-white hover:shadow-xl hover:shadow-cyan-950/10"
-                data-event="click_b2b_cleaning_search_intent"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <div className="text-[11px] font-black uppercase tracking-normal text-cyan-800">
@@ -604,7 +604,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 key={item.title}
                 href={item.href}
                 className="group rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10"
-                data-event="click_b2b_cleaning_decision"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <CheckCircle2 className="h-5 w-5 text-cyan-700" />
@@ -665,7 +665,7 @@ export default function DuesseldorfBueroreinigungPage() {
               key={item.query}
               href={item.href}
               className="group rounded-[0.9rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10"
-              data-event="click_b2b_cleaning_snippet_answer"
+              data-event="service_card_click"
               data-region="duesseldorf"
             >
               <div className="text-[11px] font-black uppercase tracking-normal text-cyan-800">
@@ -805,11 +805,11 @@ export default function DuesseldorfBueroreinigungPage() {
                 })}
               </div>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <a href="#b2b-reinigung-form" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="click_b2b_checklist_form">
+                <a href="#b2b-reinigung-form" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
                   Formular öffnen
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="click_b2b_checklist_whatsapp">
+                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="whatsapp_click">
                   <MessageCircle className="h-4 w-4" />
                   WhatsApp
                 </a>
@@ -844,7 +844,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                data-event="click_b2b_cleaning_whatsapp"
+                data-event="whatsapp_click"
                 className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-emerald-500 px-5 text-sm font-black text-slate-950"
               >
                 <MessageCircle className="h-4 w-4" />
@@ -968,7 +968,7 @@ function OptionPanel({
       </div>
       <div className="mt-4 grid gap-2">
         {items.map((item) => (
-          <a key={item} href="#b2b-reinigung-form" data-event={eventName} className="rounded-[0.75rem] border border-white/10 bg-white/8 px-3 py-2 text-xs font-bold text-cyan-50 transition hover:bg-white/14">
+          <a key={item} href="#b2b-reinigung-form" data-event="hero_cta_click" data-source={eventName} className="rounded-[0.75rem] border border-white/10 bg-white/8 px-3 py-2 text-xs font-bold text-cyan-50 transition hover:bg-white/14">
             {item}
           </a>
         ))}

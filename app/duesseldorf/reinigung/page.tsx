@@ -524,7 +524,7 @@ export default function DuesseldorfReinigungPage() {
               <a
                 href={duesseldorfBookingHref}
                 className="flox-readable-cta-light inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] px-5 py-3 text-sm font-black transition hover:-translate-y-0.5"
-                data-event="start_booking"
+                data-event="hero_cta_click"
                 data-service="reinigung"
                 data-region="duesseldorf"
               >
@@ -536,7 +536,7 @@ export default function DuesseldorfReinigungPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200/60 bg-emerald-300/18 px-5 py-3 text-sm font-black text-emerald-50 shadow-[0_18px_42px_rgba(16,185,129,0.18)] transition hover:-translate-y-0.5 hover:bg-emerald-300/26"
-                data-event="click_whatsapp"
+                data-event="whatsapp_click"
                 data-service="reinigung"
                 data-region="duesseldorf"
               >
@@ -546,7 +546,7 @@ export default function DuesseldorfReinigungPage() {
               <a
                 href="#preisvorschlag"
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] border border-white/18 bg-white/10 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/16"
-                data-event="submit_budget_request"
+                data-event="form_submit"
                 data-service="reinigung"
                 data-region="duesseldorf"
               >
@@ -559,7 +559,7 @@ export default function DuesseldorfReinigungPage() {
               <Link
                 href="/entsorgung-duesseldorf"
                 className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-white/14 bg-white/8 px-4 text-xs font-bold text-white transition hover:bg-white/12"
-                data-event="internal_link_disposal_duesseldorf"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 Entsorgung separat
@@ -567,7 +567,7 @@ export default function DuesseldorfReinigungPage() {
               <Link
                 href="/reinigung-moeblierte-wohnung-duesseldorf"
                 className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
-                data-event="internal_link_duesseldorf_apartment_cleaning"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 Möblierte Wohnung reinigen
@@ -575,7 +575,7 @@ export default function DuesseldorfReinigungPage() {
               <Link
                 href="/duesseldorf/reinigung-stadtteile-umgebung"
                 className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-cyan-200/35 bg-cyan-300/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-cyan-300/20"
-                data-event="internal_link_duesseldorf_districts"
+                data-event="region_select"
                 data-region="duesseldorf"
               >
                 Stadtteile & Umgebung
@@ -583,7 +583,7 @@ export default function DuesseldorfReinigungPage() {
               <Link
                 href="/duesseldorf/vielleicht-guenstiger"
                 className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-emerald-200/35 bg-emerald-300/14 px-4 text-xs font-bold text-emerald-50 transition hover:bg-emerald-300/22"
-                data-event="internal_link_duesseldorf_offer_check"
+                data-event="hero_cta_click"
                 data-region="duesseldorf"
               >
                 Vielleicht günstiger?
@@ -723,7 +723,7 @@ export default function DuesseldorfReinigungPage() {
                   key={title}
                   href={href}
                   className="group rounded-[0.75rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_16px_34px_rgba(15,118,110,0.12)]"
-                  data-event="click_duesseldorf_fast_decision"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-[0.65rem] bg-slate-950 text-white">
@@ -764,7 +764,7 @@ export default function DuesseldorfReinigungPage() {
                     key={item.searchPhrase}
                     href={item.href}
                     className="group rounded-[0.85rem] border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_18px_42px_rgba(15,118,110,0.1)]"
-                    data-event="click_duesseldorf_high_intent_entry"
+                    data-event="service_card_click"
                     data-region="duesseldorf"
                   >
                     <span className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
@@ -825,7 +825,7 @@ export default function DuesseldorfReinigungPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.8rem] bg-slate-950 px-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
-                data-event="click_snippet_answer_whatsapp"
+                data-event="whatsapp_click"
                 data-region="duesseldorf"
               >
                 Fotos und Eckdaten senden
@@ -840,7 +840,7 @@ export default function DuesseldorfReinigungPage() {
                     key={item.query}
                     href={item.href}
                     className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(15,118,110,0.1)]"
-                    data-event="click_duesseldorf_snippet_answer"
+                    data-event="service_card_click"
                     data-region="duesseldorf"
                   >
                     <div className="flex items-start gap-3">
@@ -892,7 +892,7 @@ export default function DuesseldorfReinigungPage() {
                 key={item.href}
                 href={item.href}
                 className="group rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_24px_58px_rgba(15,118,110,0.11)]"
-                data-event="click_duesseldorf_customer_path"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
@@ -931,7 +931,7 @@ export default function DuesseldorfReinigungPage() {
                 key={item.title}
                 href={item.href}
                 className="group rounded-[0.95rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_20px_52px_rgba(15,118,110,0.1)]"
-                data-event="click_duesseldorf_district_intent"
+                data-event="region_select"
                 data-region="duesseldorf"
               >
                 <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-normal text-teal-700">
@@ -1004,7 +1004,7 @@ export default function DuesseldorfReinigungPage() {
                 key={item.title}
                 href={item.href}
                 className="group rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-teal-200 hover:shadow-[0_24px_58px_rgba(15,118,110,0.11)]"
-                data-event="click_duesseldorf_customer_phrase"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-[0.75rem] border border-teal-100 bg-teal-50 text-teal-700">
@@ -1099,7 +1099,7 @@ export default function DuesseldorfReinigungPage() {
                   key={item.intent}
                   href={item.href}
                   className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_18px_44px_rgba(15,118,110,0.1)]"
-                  data-event="click_duesseldorf_ai_recommendation"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   <div className="flex items-start gap-3">
@@ -1338,7 +1338,7 @@ export default function DuesseldorfReinigungPage() {
                 <a
                   href="#rechner"
                   className="inline-flex items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
-                  data-event="submit_budget_request"
+                  data-event="form_submit"
                   data-service="reinigung"
                   data-region="duesseldorf"
                 >
@@ -1350,7 +1350,7 @@ export default function DuesseldorfReinigungPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 py-3 text-sm font-bold text-emerald-900 transition hover:-translate-y-0.5 hover:bg-emerald-100"
-                  data-event="click_whatsapp"
+                  data-event="whatsapp_click"
                   data-service="reinigung"
                   data-region="duesseldorf"
                 >

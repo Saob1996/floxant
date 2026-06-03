@@ -251,7 +251,7 @@ export function PlanBServiceForm() {
               key={level.id}
               type="button"
               onClick={() => setRiskLevel(level.id)}
-              data-event="select_plan_b_risk_level"
+              data-event="service_card_click"
               data-risk-level={level.id}
               className={`rounded-[1.2rem] border p-4 text-left transition ${
                 active ? "border-blue-600 bg-blue-50 text-blue-950" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-200"
@@ -265,7 +265,7 @@ export function PlanBServiceForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_plan_b_triage">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -289,7 +289,7 @@ export function PlanBServiceForm() {
               name="uncertainArea"
               value={uncertainArea}
               onChange={(event) => setUncertainArea(event.target.value)}
-              data-event="start_plan_b_triage"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500"
             >
               {uncertainOptions.map((item) => (
@@ -307,7 +307,7 @@ export function PlanBServiceForm() {
               name="desiredPlanBPackage"
               value={desiredPackage}
               onChange={(event) => setDesiredPackage(event.target.value)}
-              data-event="select_plan_b_package"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500"
             >
               {packageOptions.map((item) => (
@@ -406,7 +406,7 @@ export function PlanBServiceForm() {
             <UploadDropCard
               title="Vorhandenes Angebot optional"
               description="PDF, Screenshot oder Angebotsbild."
-              helper="Keine Angebotsinhalte werden in Tracking-Events gesendet."
+              helper="Sensible Angebotsdetails können Sie nach persönlicher Abstimmung ergänzen."
               accept="application/pdf,image/jpeg,image/png,image/webp"
               files={offerFiles}
               dataEvent="upload_plan_b_offer"
@@ -428,7 +428,7 @@ export function PlanBServiceForm() {
 
         <label className="flex items-start gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700">
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
-          <span>Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Keine personenbezogenen Daten oder Angebotsinhalte werden in Tracking-Events gesendet.</span>
+          <span>Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet. Sensible Zugangsdaten oder persönliche Dokumente bitte nicht mitsenden.</span>
         </label>
 
         {errorMessage ? <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700">{errorMessage}</div> : null}
@@ -439,11 +439,11 @@ export function PlanBServiceForm() {
         ) : null}
 
         <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto] sm:items-center">
-          <button type="submit" disabled={isSubmitting} data-event="submit_plan_b_lead" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700 disabled:opacity-60">
+          <button type="submit" disabled={isSubmitting} data-event="form_submit" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700 disabled:opacity-60">
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
             Plan B pruefen lassen
           </button>
-          <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_plan_b_whatsapp">
+          <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
             <MessageCircle className="h-4 w-4" />
             WhatsApp
           </a>
@@ -455,7 +455,7 @@ export function PlanBServiceForm() {
 
         <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
           Keine Notdienst- oder Soforteinsatzgarantie. Machbarkeit haengt von Ort, Termin, Umfang und Kapazitaet ab. Direktkontakt:{" "}
-          <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="click_plan_b_phone">{PHONE_DISPLAY}</a>
+          <a href={`tel:${PHONE_TEL}`} className="font-black text-slate-950" data-event="phone_click">{PHONE_DISPLAY}</a>
           {" "}- {EMAIL}
         </div>
       </form>

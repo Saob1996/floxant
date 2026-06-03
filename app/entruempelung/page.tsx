@@ -167,7 +167,7 @@ export default async function EntruempelungPillarPage() {
           { href: "/kleinmengen-entsorgung", label: "Kleinmengen-Entsorgung prüfen" },
           { href: "/umzug-mit-reinigung", label: "Räumung mit Reinigung kombinieren" },
           { href: "/leerstandsmanagement", label: "Leerstand nach Räumung kontrollieren" },
-          { href: "/objekt-springer", label: "Objekt-Springer für kurzfristige Objektaufgaben" },
+          { href: "/objekt-springer", label: "Objektvertretung für kurzfristige Objektaufgaben" },
           { href: "/property-operations", label: "Immobilienbetreuung nach Räumung und Übergabe" },
           { href: "/entruempelung-kosten-regensburg", label: "Kosten in Regensburg einordnen" },
           { href: "/umzug", label: "Umzug und Räumung zusammen planen" },

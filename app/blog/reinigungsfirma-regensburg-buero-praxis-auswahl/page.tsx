@@ -19,7 +19,7 @@ const faqItems = [
     a: "Weil gewerbliche Objekte andere Abläufe haben als kleine Privataufträge. Turnus, Zutritt, Randzeiten, Schlüssel, Verantwortlichkeiten und Qualitätskontrolle müssen sauber abgestimmt sein.",
   },
   {
-    q: "Ist eine spezialisierte B2B-Landingpage sinnvoll?",
+    q: "Ist eine eigene Seite für gewerbliche Reinigung sinnvoll?",
     a: "Ja. Gewerbliche Kunden finden schneller die passenden Informationen: Flächen, Turnus, Randzeiten, Schlüssel, Ansprechpartner und Rückmeldung.",
   },
 ];
@@ -110,7 +110,7 @@ export default function BlogReinigungsfirmaRegensburgAuswahlPage() {
         highlightPoints={[
           "Gewerbliche Reinigung braucht klare Zuständigkeit und B2B-Fit.",
           "Turnus, Zutritt und Qualitätskontrolle sind wichtiger als ein Schnellpreis.",
-          "Eine gute Landingpage filtert bereits vor der Anfrage auf passende Objekte.",
+          "Eine gute Informationsseite hilft schon vor der Anfrage, passende Objekte und wichtige Eckdaten zu erkennen.",
         ]}
         ctas={[
           { href: "/praxisreinigung-regensburg", label: "Praxisreinigung prüfen" },

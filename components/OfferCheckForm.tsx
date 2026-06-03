@@ -203,7 +203,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
               key={item.mode}
               type="button"
               onClick={() => setEntryMode(item.mode)}
-              data-event={hasRedFlagResult ? "start_red_flag_scanner" : "start_offer_check"}
+              data-event="hero_cta_click"
+              data-source={hasRedFlagResult ? "red_flag_scanner" : "offer_check_form"}
               data-mode={item.mode}
               className={`flex flex-1 items-start gap-3 rounded-[1.25rem] border p-4 text-left transition ${
                 active ? "border-blue-500 bg-blue-50 text-blue-950" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-200"
@@ -219,7 +220,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
         })}
       </div>
 
-      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event={hasRedFlagResult ? "start_red_flag_scanner" : "start_offer_check"}>
+      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <input type="hidden" name="leadSubtype" value={hasRedFlagResult ? "red_flag_scanner" : ""} />
         <input type="hidden" name="sourceComponent" value={hasRedFlagResult ? "red_flag_scanner" : "offer_check_form"} />
         <input type="hidden" name="scannerScoreLevel" value={hasRedFlagResult ? redFlagResult?.scoreLevel || "" : ""} />
@@ -243,7 +244,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Region*
-            <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" data-event={`select_region_${region}`} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+            <select value={region} onChange={(event) => updateRegion(event.target.value)} name="region" data-event="region_select" data-region={region} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               <option value="regensburg">Regensburg</option>
               <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
@@ -252,7 +253,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Service-Art*
-            <select value={service} onChange={(event) => setService(event.target.value)} name="service" data-event="select_offer_service" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
+            <select value={service} onChange={(event) => setService(event.target.value)} name="service" data-source="offer_check_service_select" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500">
               {serviceOptions.map((item) => (
                 <option key={item.value} value={item.value}>
                   {item.label}
@@ -287,7 +288,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Budget / Preisrahmen optional
-            <input name="budget" inputMode="decimal" data-event="submit_budget_request" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was wäre für Sie machbar?" />
+            <input name="budget" inputMode="decimal" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Was wäre für Sie machbar?" />
           </label>
         </div>
 
@@ -296,7 +297,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
             <div className="mb-4">
               <p className="text-sm font-black text-slate-950">Upload für die zweite Einschätzung</p>
               <p className="mt-1 text-xs leading-5 text-slate-600">
-                Angebot und Fotos sind getrennt, damit im Dashboard sofort klar ist, was geprüft werden soll.
+                Angebot und Fotos sind getrennt, damit Umfang und offene Punkte sauber geprüft werden können.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -325,7 +326,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Angebotstext optional einfügen
-          <textarea name="offerText" data-event={hasRedFlagResult ? "paste_offer_text_for_scanner" : "paste_offer_text"} rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Falls Sie kein PDF hochladen möchten, können Sie den wichtigsten Angebotstext hier einfügen." />
+          <textarea name="offerText" data-source={hasRedFlagResult ? "red_flag_offer_text" : "offer_check_text"} rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="Falls Sie kein PDF hochladen möchten, können Sie den wichtigsten Angebotstext hier einfügen." />
         </label>
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -334,7 +335,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
         </label>
 
         <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4">
-          <p className="text-sm font-black text-slate-900">Zusatzservices, die im Angebot fehlen könnten</p>
+          <p className="text-sm font-black text-slate-900">Zusatzleistungen, die im Angebot fehlen könnten</p>
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {addonOptions.map((addon) => (
               <label key={addon} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
@@ -371,7 +372,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event={hasRedFlagResult ? "submit_red_flag_lead" : "submit_offer_check"}
+            data-event="form_submit"
+            data-source={hasRedFlagResult ? "red_flag_lead" : "offer_check"}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -379,7 +381,8 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event={hasRedFlagResult ? "click_red_flag_whatsapp" : "click_offer_check_whatsapp"}
+            data-event="whatsapp_click"
+            data-source={hasRedFlagResult ? "red_flag_whatsapp" : "offer_check_whatsapp"}
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             WhatsApp mit Angebot senden
@@ -387,11 +390,11 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
         </div>
 
         <div className="flex flex-col gap-2 text-xs font-semibold text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <a href={`tel:${PHONE_TEL}`} data-event={hasRedFlagResult ? "click_red_flag_phone" : "click_offer_check_phone"} className="inline-flex items-center gap-2 transition hover:text-blue-700">
+          <a href={`tel:${PHONE_TEL}`} data-event="phone_click" data-source={hasRedFlagResult ? "red_flag_phone" : "offer_check_phone"} className="inline-flex items-center gap-2 transition hover:text-blue-700">
             <Phone className="h-4 w-4" />
             {PHONE_DISPLAY}
           </a>
-          <a href={`mailto:${EMAIL}`} data-event="click_email" className="inline-flex items-center gap-2 transition hover:text-blue-700">
+          <a href={`mailto:${EMAIL}`} data-event="hero_cta_click" className="inline-flex items-center gap-2 transition hover:text-blue-700">
             <Mail className="h-4 w-4" />
             {EMAIL}
           </a>

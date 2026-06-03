@@ -597,7 +597,7 @@ export default async function RechnerPage() {
         "@id": "https://www.floxant.de/rechner#lokale-tags",
         name: "FLOXANT lokale Such-Tags",
         description:
-          "Lokale Suchbegriffe und interne Links für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
+          "Passende lokale Einstiege für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
         itemListElement: localSeoTags.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,

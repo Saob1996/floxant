@@ -56,7 +56,7 @@ const comparisonSteps = [
 const comparisonMatrix = [
  {
   criterion: "Wer prüft die Anfrage?",
-  portal: "Häufig Vermittlung oder Lead-Verteilung an mehrere Anbieter.",
+  portal: "Häufig Vermittlung oder Weitergabe der Anfrage an mehrere Anbieter.",
   cheap: "Oft nur kurzer Preisanker ohne vollständige Leistungsklärung.",
   floxant: "Direkte FLOXANT Einschätzung mit Serviceart, Region, Umfang, Zugang und Termin.",
  },
@@ -67,7 +67,7 @@ const comparisonMatrix = [
   floxant: "Unverbindlicher Orientierungsrahmen mit sichtbaren Kostentreibern und Preisvorstellung.",
  },
  {
-  criterion: "Welche Spezialfälle werden sauber erkannt?",
+  criterion: "Welche besondere Situationen werden sauber erkannt?",
   portal: "Standardformular, oft wenig Trennung nach Sonderfall.",
   cheap: "Sonderleistungen werden häufig später nachverhandelt.",
   floxant: "Eigene Wege für Leer-Rückfahrt, Beiladung, Firmenentsorgung, Büroumzug und Umzug mit Reinigung.",
@@ -97,7 +97,7 @@ export default function AnbieterVergleichenPage() {
    buildWebPageJsonLd({
     name: "Anbieter für Umzug, Reinigung und Entrümpelung vergleichen",
     description:
-     "Objektive Vergleichskriterien für Umzugsfirma, Reinigungsfirma, Entrümpelung, Büroumzug und Spezialservices.",
+     "Objektive Vergleichskriterien für Umzugsfirma, Reinigungsfirma, Entrümpelung, Büroumzug und Zusatzleistungen.",
     path: "/anbieter-vergleichen",
     about: [
      "Umzugsfirma vergleichen",
@@ -190,7 +190,7 @@ export default function AnbieterVergleichenPage() {
       </div>
       <p className="max-w-xl text-sm leading-relaxed text-foreground/48 md:text-right">
        Diese Gegenüberstellung hilft Kunden, echte Qualität vor der Anfrage zu erkennen:
-       Zuständigkeit, Preiswahrheit, Spezialfälle und nächster Schritt.
+       Zuständigkeit, Preiswahrheit, besondere Situationen und nächster Schritt.
       </p>
      </div>
 

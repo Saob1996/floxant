@@ -42,10 +42,10 @@ export const providerComparisonCriteria = [
  },
  {
   icon: Route,
-  title: "Spezialfälle",
+  title: "besondere Situationen",
   text: "Beiladung, Leer-Rückfahrt, Firmenentsorgung oder Umzug mit Reinigung brauchen eigene Wege statt Einheitsformular.",
   href: "/leistungen-vergleichen",
-  signal: "Servicewahl, Zusatzservices, Spezialpfade",
+  signal: "Servicewahl, Zusatzleistungen, Spezialpfade",
  },
  {
   icon: CalendarClock,

@@ -7,14 +7,13 @@ import { company, duesseldorfCompany } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
   floxantCategoryLabels,
+  floxantCategoryOrder,
   floxantRegions,
   getServicesByRegionAndCategory,
-  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const region = floxantRegions.duesseldorf;
-const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
@@ -109,20 +108,20 @@ export default function DuesseldorfHubPage() {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Services nach Bedarf
+              Der richtige Einstieg für Ihr Objekt
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
               Wählen Sie den passenden Düsseldorfer Reinigungsservice.
             </h2>
           </div>
           <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-            Reguläre Leistungen decken klassische Objektanfragen ab. FLOXANT Signature Extras helfen
-            bei mehr Abstimmung, Zugang oder Übergabe. Spezielle Einstiege sind für schnelle,
-            prüfbare Anfragen gedacht.
+            Wählen Sie die Leistung, die Ihrem Objekt am nächsten kommt. Wenn Sie unsicher sind,
+            starten Sie mit Gewerbereinigung oder WhatsApp. FLOXANT ordnet Umfang, Turnus und
+            nächsten Schritt mit Ihnen ein.
           </p>
 
           <div className="mt-8 grid gap-5">
-            {categoryOrder.map((category) => {
+            {floxantCategoryOrder.map((category) => {
               const services = getServicesByRegionAndCategory("duesseldorf", category);
               if (!services.length) return null;
 

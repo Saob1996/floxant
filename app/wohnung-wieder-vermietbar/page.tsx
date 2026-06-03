@@ -233,7 +233,7 @@ export default function WohnungWiederVermietbarPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fed7aa_0,transparent_32rem),linear-gradient(180deg,#fff7ed_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_rental_ready_service">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#fed7aa_0,transparent_32rem),linear-gradient(180deg,#fff7ed_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
@@ -249,11 +249,11 @@ export default function WohnungWiederVermietbarPage() {
                 bündelt FLOXANT Räumung, Entsorgung, Reinigung und Dokumentation nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#wohnung-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-orange-700" data-event="start_rental_ready_lead">
+                <Link href="#wohnung-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-orange-700" data-event="service_card_click">
                   Objektfall senden
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_rental_ready_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Wohnung per WhatsApp vorbereiten lassen
                 </a>
               </div>
@@ -335,31 +335,31 @@ export default function WohnungWiederVermietbarPage() {
                 Jeder Objektfall wird nach Zustand, Ort, Termin, Zugang, Fotos und Ziel geprüft. FLOXANT behauptet keine Renovierung und keine gefährliche Entsorgung, sondern realistische praktische Vorbereitung.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/mieterwechsel-service-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="start_tenant_turnover_lead">
+                <Link href="/mieterwechsel-service-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-slate-950" data-event="service_card_click">
                   Mieterwechsel-Service ansehen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/makler-vermieter-link" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200/40 bg-blue-950/20 px-4 text-sm font-black text-blue-50" data-event="start_object_case_lead">
+                <Link href="/makler-vermieter-link" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200/40 bg-blue-950/20 px-4 text-sm font-black text-blue-50" data-event="service_card_click">
                   Makler-/Vermieter-Link nutzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/immobilie-verkaufsbereit-machen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200/40 bg-amber-950/20 px-4 text-sm font-black text-amber-50" data-event="start_property_ready_lead">
+                <Link href="/immobilie-verkaufsbereit-machen" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200/40 bg-amber-950/20 px-4 text-sm font-black text-amber-50" data-event="service_card_click">
                   Immobilie verkaufsbereit machen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/nachlass-raeumung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200/40 bg-stone-950/20 px-4 text-sm font-black text-stone-50" data-event="start_estate_clearance_lead">
+                <Link href="/nachlass-raeumung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-stone-200/40 bg-stone-950/20 px-4 text-sm font-black text-stone-50" data-event="service_card_click">
                   Nachlass-Objekt vorbereiten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 px-4 text-sm font-black text-white" data-event="start_handover_file_lead">
+                <Link href="/uebergabeakte" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/15 px-4 text-sm font-black text-white" data-event="service_card_click">
                   Übergabeakte ergänzen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200/30 bg-amber-950/20 px-4 text-sm font-black text-amber-50" data-event="start_cellar_trashroom_lead">
+                <Link href="/keller-muellraum-rettung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-amber-200/30 bg-amber-950/20 px-4 text-sm font-black text-amber-50" data-event="service_card_click">
                   Keller/Muellraum pruefen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200/30 bg-red-950/20 px-4 text-sm font-black text-red-50" data-event="start_damage_control_lead">
+                <Link href="/schadensbegrenzung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-red-200/30 bg-red-950/20 px-4 text-sm font-black text-red-50" data-event="service_card_click">
                   Wenn der Objektplan kippt
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -390,7 +390,7 @@ export default function WohnungWiederVermietbarPage() {
                     <Icon className="h-6 w-6 text-orange-700" />
                     <h3 className="mt-4 text-lg font-black tracking-tight text-slate-950">{item.title}</h3>
                     <p className="mt-2 text-sm leading-7 text-slate-600">{item.text}</p>
-                    <Link href="#wohnung-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-orange-700 transition hover:text-orange-950" data-event="start_rental_ready_lead">
+                    <Link href="#wohnung-ready-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-orange-700 transition hover:text-orange-950" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -465,7 +465,7 @@ export default function WohnungWiederVermietbarPage() {
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#wohnung-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-orange-700" data-event="start_rental_ready_lead">
+              <Link href="#wohnung-ready-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-orange-700" data-event="service_card_click">
                 Wohnung vorbereiten lassen
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -479,13 +479,13 @@ export default function WohnungWiederVermietbarPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#wohnung-ready-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_rental_ready_lead">
+          <Link href="#wohnung-ready-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Objekt
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_rental_ready_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_rental_ready_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

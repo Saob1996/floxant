@@ -374,7 +374,7 @@ export const einsatzradarFaq = [
   },
   {
     q: "Kann ich meinen Fall mit Fotos senden?",
-    a: "Ja. Fotos helfen bei der Einschaetzung von Umfang, Zugang, Zustand und passenden Zusatzservices. Fotos werden nicht oeffentlich genutzt, ausser es gibt eine ausdrueckliche Freigabe.",
+    a: "Ja. Fotos helfen bei der Einschaetzung von Umfang, Zugang, Zustand und passenden Zusatzleistungen. Fotos werden nicht oeffentlich genutzt, ausser es gibt eine ausdrueckliche Freigabe.",
   },
   {
     q: "Kann mein Auftrag spaeter im Einsatzradar erscheinen?",

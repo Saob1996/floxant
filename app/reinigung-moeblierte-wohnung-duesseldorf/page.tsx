@@ -479,7 +479,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <main className="overflow-hidden bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_46%,#f8fafc_100%)] text-slate-950" data-event="view_duesseldorf_apartment_cleaning">
+      <main className="overflow-hidden bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_46%,#f8fafc_100%)] text-slate-950">
         <section className="px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
             <div>
@@ -494,11 +494,11 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 Für Vermieter, Hosts, Eigentümer und kleine Betreiber: FLOXANT prüft Reinigung, Gästewechsel, Endreinigung und Zusatzleistungen für möblierte Wohnungen und Kurzzeitvermietung in Düsseldorf.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#apartment-reinigung-form" className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] px-6 text-sm font-black transition" data-event="start_apartment_cleaning_lead">
+                <Link href="#apartment-reinigung-form" className="flox-readable-cta-dark inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] px-6 text-sm font-black transition" data-event="service_card_click">
                   Apartment-Reinigung anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_apartment_cleaning_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Per WhatsApp anfragen
                 </a>
                 <Link href={bookingHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-cyan-200 hover:bg-cyan-50">
@@ -593,7 +593,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                       key={item.recommendation}
                       href={item.href}
                       className="group block h-full rounded-[0.95rem] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-                      data-event="click_duesseldorf_decision_path"
+                      data-event="service_card_click"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <span className="rounded-[0.75rem] bg-slate-950 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-white">
@@ -639,7 +639,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   key={item.query}
                   href={item.href}
                   className="group block h-full rounded-[0.95rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-                  data-event="click_apartment_search_intent"
+                  data-event="service_card_click"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <span className="rounded-[0.75rem] bg-slate-950 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-white">
@@ -683,7 +683,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                     key={item.title}
                     href={item.href}
                     className="group block h-full rounded-[0.95rem] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-950/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-                    data-event="click_duesseldorf_service_recommendation"
+                    data-event="service_card_click"
                   >
                     <div className="mb-4 flex items-center justify-between gap-3">
                       <span className="rounded-[0.75rem] bg-cyan-50 px-3 py-1 text-[10px] font-black uppercase tracking-normal text-cyan-900">
@@ -738,7 +738,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                     key={item.question}
                     href={item.href}
                     className="group block rounded-[0.95rem] border border-white/10 bg-white/[0.06] p-5 transition hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.1] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200/35"
-                    data-event="click_ai_service_recommendation"
+                    data-event="service_card_click"
                   >
                     <div className="flex items-start gap-3">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.8rem] bg-cyan-300 text-slate-950">
@@ -778,7 +778,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
             </article>
             <div className="grid gap-3 sm:grid-cols-2">
               {situationCards.map((item, index) => (
-                <Link key={item} href="#apartment-reinigung-form" className="group rounded-[0.95rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-lg hover:shadow-cyan-950/8" data-event="start_apartment_cleaning_lead">
+                <Link key={item} href="#apartment-reinigung-form" className="group rounded-[0.95rem] border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:bg-cyan-50 hover:shadow-lg hover:shadow-cyan-950/8" data-event="service_card_click">
                   <div className="mb-3 flex items-center justify-between gap-3">
                     <CheckCircle2 className="h-5 w-5 text-cyan-700" />
                     <span className="rounded-[0.75rem] bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-500 transition group-hover:bg-cyan-100 group-hover:text-cyan-900">
@@ -828,7 +828,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                     </span>
                     <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
                     <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
-                    <Link href="#apartment-reinigung-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-800" data-event="start_apartment_cleaning_lead">
+                    <Link href="#apartment-reinigung-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-cyan-800" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -895,11 +895,11 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   ))}
                 </div>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <Link href="#apartment-reinigung-form" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="click_apartment_checklist_form">
+                  <Link href="#apartment-reinigung-form" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
                     Angaben senden
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <a href={whatsappHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="click_apartment_checklist_whatsapp">
+                  <a href={whatsappHref} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800" data-event="whatsapp_click">
                     Per WhatsApp klären
                   </a>
                 </div>
@@ -929,16 +929,16 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
         <div className="flox-mobile-action-wrap flox-duesseldorf-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-              <Link href="#apartment-reinigung-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_apartment_cleaning_lead">
+              <Link href="#apartment-reinigung-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
                 Anfragen
               </Link>
-              <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_apartment_cleaning_whatsapp">
+              <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
                 WhatsApp
               </a>
-              <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_apartment_cleaning_phone">
+              <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
                 Anrufen
               </a>
-              <Link href="#apartment-anfrage-checkliste" className="flox-mobile-action flox-mobile-action-dark" data-event="click_apartment_cleaning_mobile_checklist">
+              <Link href="#apartment-anfrage-checkliste" className="flox-mobile-action flox-mobile-action-dark" data-event="service_card_click">
                 Checkliste
               </Link>
             </div>

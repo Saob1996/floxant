@@ -80,34 +80,34 @@ export function CookieBanner({ dic }: { dic?: any }) {
 
       {isVisible && (
           <div
-            className="fixed inset-x-0 bottom-0 z-[100] p-1.5 pointer-events-none sm:p-4 md:p-6"
+            className="pointer-events-none fixed inset-x-2 bottom-2 z-[100] sm:inset-x-auto sm:right-5 sm:w-[min(30rem,calc(100vw-2.5rem))]"
           >
-            <div className="mx-auto max-h-[72dvh] max-w-[calc(100vw-0.75rem)] overflow-y-auto rounded-[0.8rem] border border-white/20 bg-[#0b111b] p-2.5 text-white shadow-[0_24px_90px_rgba(2,6,23,0.45)] ring-1 ring-black/20 pointer-events-auto sm:max-h-[calc(100dvh-2rem)] sm:max-w-3xl sm:p-5 md:p-7">
+            <div className="pointer-events-auto max-h-[62dvh] overflow-y-auto rounded-lg border border-white/20 bg-[#0b111b] p-3 text-white shadow-[0_18px_54px_rgba(2,6,23,0.38)] ring-1 ring-black/20 sm:max-h-[calc(100dvh-2rem)] sm:p-4">
               {!showSettings ? (
                 // Basic View
-                <div className="flex flex-col gap-2.5 sm:gap-6">
-                  <div className="flex gap-3 items-start sm:gap-4">
-                    <div className="hidden shrink-0 rounded-[0.85rem] border border-blue-300/20 bg-blue-400/14 p-3 sm:block">
-                      <Shield className="w-6 h-6 text-blue-200" />
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="hidden shrink-0 rounded-lg border border-blue-300/20 bg-blue-400/14 p-2.5 sm:block">
+                      <Shield className="h-5 w-5 text-blue-200" />
                     </div>
                     <div>
-                      <h3 className="mb-1 text-sm font-bold text-white sm:mb-2 sm:text-xl" style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>{dic?.cookie?.title || "Ihre Privatsphäre ist uns wichtig"}</h3>
-                      <p className="text-[10px] leading-4 text-slate-300 sm:text-sm sm:leading-relaxed" style={{ color: "#cbd5e1", WebkitTextFillColor: "#cbd5e1" }}>
+                      <h3 className="text-sm font-bold text-white sm:text-base" style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>{dic?.cookie?.title || "Ihre Privatsphäre ist uns wichtig"}</h3>
+                      <p className="mt-1 text-xs leading-5 text-slate-300" style={{ color: "#cbd5e1", WebkitTextFillColor: "#cbd5e1" }}>
                         {dic?.cookie?.desc || "Wir nutzen Cookies für Grundfunktionen und, mit Ihrer Zustimmung, zur Verbesserung unserer Website und Inhalte. Sie können Ihre Auswahl jederzeit anpassen."}
                       </p>
                     </div>
                   </div>
                   
-                  <div className="flex flex-col items-stretch justify-between gap-2 border-t border-white/10 pt-2 sm:gap-4 sm:pt-4 lg:flex-row lg:items-center">
+                  <div className="flex flex-col items-stretch justify-between gap-3 border-t border-white/10 pt-3">
                     <div className="flex gap-4 text-[10px] font-semibold text-slate-200 sm:text-xs">
                       <a href="/datenschutz" className="transition-colors hover:text-white hover:underline" style={{ color: "#cbd5e1", WebkitTextFillColor: "#cbd5e1" }}>{dic?.cookie?.privacy || "Datenschutz"}</a>
                       <a href="/impressum" className="transition-colors hover:text-white hover:underline" style={{ color: "#cbd5e1", WebkitTextFillColor: "#cbd5e1" }}>{dic?.cookie?.imprint || "Impressum"}</a>
                     </div>
                     
-                    <div className="grid w-full grid-cols-3 gap-1.5 sm:gap-3 lg:flex lg:w-auto">
+                    <div className="grid w-full grid-cols-3 gap-1.5 sm:gap-2">
                       <button
                         onClick={() => setShowSettings(true)}
-                        className="min-h-9 rounded-[0.68rem] border border-slate-500 bg-slate-800 px-1.5 py-1.5 text-[10px] font-bold leading-tight transition-colors hover:bg-slate-700 sm:min-h-11 sm:px-5 sm:py-2.5 sm:text-sm"
+                        className="min-h-10 rounded-lg border border-slate-500 bg-slate-800 px-2 py-2 text-[11px] font-bold leading-tight transition-colors hover:bg-slate-700 sm:text-xs"
                         style={{ color: "#f8fafc", WebkitTextFillColor: "#f8fafc" }}
                       >
                         {dic?.cookie?.settings || "Einstellungen"}
@@ -115,14 +115,14 @@ export function CookieBanner({ dic }: { dic?: any }) {
                       {/* Note: In Germany (DSGVO/TTDSG), 'Reject' and 'Accept' must be visually comparable */}
                       <button
                         onClick={handleAcceptNecessary}
-                        className="min-h-9 rounded-[0.68rem] border border-slate-500 bg-neutral-800 px-1.5 py-1.5 text-[10px] font-bold leading-tight transition-colors hover:bg-neutral-700 sm:min-h-11 sm:px-5 sm:py-2.5 sm:text-sm"
+                        className="min-h-10 rounded-lg border border-slate-500 bg-neutral-800 px-2 py-2 text-[11px] font-bold leading-tight transition-colors hover:bg-neutral-700 sm:text-xs"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                       >
                         {dic?.cookie?.essential_only || "Nur Essenzielle"}
                       </button>
                       <button
                         onClick={handleAcceptAll}
-                        className="min-h-9 whitespace-nowrap rounded-[0.68rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-2 text-[10px] font-bold text-white transition-colors hover:from-blue-700 hover:to-cyan-600 sm:min-h-11 sm:px-6 sm:text-sm"
+                        className="min-h-10 whitespace-nowrap rounded-lg bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-2 text-[11px] font-bold text-white transition-colors hover:from-blue-700 hover:to-cyan-600 sm:text-xs"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
                       >
                         <span style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}>

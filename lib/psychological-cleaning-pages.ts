@@ -886,7 +886,7 @@ export const psychologicalCleaningLandingPages = [
     solutionIntro:
       "FLOXANT prueft die sichtbaren Bereiche, priorisiert kritische Stellen und kann relevante Zustaende vor oder nach der Reinigung fotografisch festhalten.",
     solutionSteps: [
-      { title: "Ziel klaeren", text: "Uebergabe, Besichtigung, Vermietertermin oder interne Kontrolle werden getrennt eingeordnet." },
+      { title: "Ziel klaeren", text: "Uebergabe, Besichtigung, Vermietertermin oder eigene Kontrolle werden getrennt eingeordnet." },
       { title: "Sichtbereiche festlegen", text: "Kueche, Bad, Boden, Fensterbereiche, Tueren und Nebenflaechen werden bewusst priorisiert." },
       { title: "Reinigung ausfuehren", text: "Der Umfang wird nach Flaeche, Zustand, Zugang und Termin realistisch geplant." },
       { title: "Fotopunkte sichern", text: "Relevante Bereiche koennen nach Absprache dokumentiert werden, ohne eine rechtliche Bewertung zu ersetzen." },
@@ -1967,7 +1967,7 @@ function buildBlogArticle(
     highlightPoints: [
       page.whyItWorks[0],
       page.guarantees[0],
-      `Der direkte Anschluss fuehrt zur Landingpage ${page.serviceName}.`,
+      `Der direkte Anschluss fuehrt zur passenden Anfrage fuer ${page.serviceName}.`,
     ],
     ctas: [
       { href: `/${page.slug}`, label: `${page.serviceName} ansehen` },

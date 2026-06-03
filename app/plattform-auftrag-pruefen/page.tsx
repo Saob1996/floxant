@@ -81,7 +81,7 @@ const platformSituations = [
   },
   {
     title: "Reinigung, Entsorgung oder Übergabe fehlt",
-    text: "FLOXANT kann prüfen, ob Zusatzservices oder eine eigene Alternative sinnvoll sind.",
+    text: "FLOXANT kann prüfen, ob Zusatzleistungen oder eine eigene Alternative sinnvoll sind.",
     action: "Situation prüfen",
     href: "#plattform-form",
     Icon: ClipboardCheck,
@@ -217,7 +217,7 @@ export default function PlattformAuftragPruefenPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#e0f2fe_0,transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950" data-event="view_platform_order_page">
+      <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,#e0f2fe_0,transparent_34rem),linear-gradient(180deg,#f8fafc_0%,#ffffff_44%,#f8fafc_100%)] text-slate-950">
         <section className="relative px-4 pb-14 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
@@ -233,15 +233,15 @@ export default function PlattformAuftragPruefenPage() {
                 Preisrahmen und offene Punkte nachvollziehbar sind.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#plattform-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="start_platform_order_check">
+                <Link href="#plattform-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
                   Direkt prüfen lassen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:border-blue-300 hover:bg-blue-50" data-event="start_cheaper_alternative_check">
+                <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:border-blue-300 hover:bg-blue-50" data-event="service_card_click">
                   Günstigere Alternative prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_platform_order_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
                   Plattform-Angebot per WhatsApp senden
                 </a>
               </div>
@@ -282,7 +282,7 @@ export default function PlattformAuftragPruefenPage() {
                     <Icon className="h-6 w-6 text-blue-700" />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{item.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
-                    <Link href={item.href} className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700" data-event="select_platform_situation">
+                    <Link href={item.href} className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700" data-event="service_card_click">
                       {item.action}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -303,11 +303,11 @@ export default function PlattformAuftragPruefenPage() {
                 Rechtsberatung und keine Plattformbewertung.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/angebotscheck#red-flag-scanner" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white" data-event="start_red_flag_scanner">
+                <Link href="/angebotscheck#red-flag-scanner" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white" data-event="service_card_click">
                   Red-Flag-Check starten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="#plattform-form" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-white px-4 text-sm font-black text-blue-800" data-event="start_platform_order_check">
+                <Link href="#plattform-form" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-blue-200 bg-white px-4 text-sm font-black text-blue-800" data-event="service_card_click">
                   Ergebnis senden
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -336,7 +336,7 @@ export default function PlattformAuftragPruefenPage() {
                     <Icon className="h-6 w-6 text-blue-700" />
                     <h3 className="mt-4 text-lg font-black text-slate-950">{item.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
-                    <Link href={item.href} className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700" data-event={item.href.includes("plan-b") ? "start_plan_b_triage" : item.href.includes("red-flag") ? "start_red_flag_scanner" : "start_platform_order_check"}>
+                    <Link href={item.href} className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700" data-event="service_card_click" data-source={item.href.includes("plan-b") ? "plan_b_triage" : item.href.includes("red-flag") ? "red_flag_scanner" : "platform_order_check"}>
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -354,7 +354,7 @@ export default function PlattformAuftragPruefenPage() {
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Plattform-Auftrag an FLOXANT senden</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
                 Senden Sie nur, was für die praktische Prüfung nötig ist: Ort, Termin, Service, Situation, vorhandenes Angebot, Preisrahmen, Fotos
-                und offene Punkte. Bitte keine sensiblen Plattform-Auftragsnummern in Tracking-Links verwenden.
+                und offene Punkte. Sensible Plattform-Auftragsnummern oder Zugangsdaten sollten Sie bitte nicht mitschicken.
               </p>
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-sm leading-7 text-slate-700">
                 <p className="font-black text-slate-950">Düsseldorf-Abgrenzung</p>
@@ -379,7 +379,7 @@ export default function PlattformAuftragPruefenPage() {
             <div className="rounded-[1.75rem] border border-slate-200 bg-white p-6">
               <h2 className="text-xl font-black text-slate-950">Was geprüft wird</h2>
               <p className="mt-4 text-sm leading-7 text-slate-700">
-                Umfang, Etage, Zugang, Termin, Fotos, Preisrahmen, Zusatzservices, Reinigung, Entsorgung, Übergabe und ob eine eigene Anfrage sinnvoll
+                Umfang, Etage, Zugang, Termin, Fotos, Preisrahmen, Zusatzleistungen, Reinigung, Entsorgung, Übergabe und ob eine eigene Anfrage sinnvoll
                 möglich ist.
               </p>
             </div>
@@ -442,13 +442,13 @@ export default function PlattformAuftragPruefenPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#plattform-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_platform_order_check">
+          <Link href="#plattform-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Angebot senden
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_platform_order_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="click_platform_order_phone">
+          <a href="tel:+4915771105087" className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

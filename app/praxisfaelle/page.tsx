@@ -66,7 +66,7 @@ const faqItems = [
  },
  {
   q: "Wie helfen Praxisfälle bei der Preisvorstellung?",
-  a: "Sie zeigen, welche Kostentreiber vor einer Anfrage wichtig sind. Dadurch lässt sich ein Zielbudget realistischer nennen, ohne dass die System-Einschätzung überschrieben wird.",
+  a: "Sie zeigen, welche Kostentreiber vor einer Anfrage wichtig sind. Dadurch lässt sich ein Zielbudget realistischer nennen, ohne die spätere Prüfung zu ersetzen.",
  },
  {
   q: "Welche Region steht im Mittelpunkt?",

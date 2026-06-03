@@ -763,7 +763,8 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                         "bg-gradient-to-br",
                         service.soft,
                       )}
-                      data-event={`select_service_${service.id === "entsorgung" ? "entruempelung" : service.id}`}
+                      data-event="service_card_click"
+                      data-service={service.id === "entsorgung" ? "entruempelung" : service.id}
                       data-source="rechner_service_selection"
                     >
                       <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/80 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 group-focus:opacity-100" />
@@ -867,8 +868,9 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       key={item.href}
                       href={item.href}
                       className="card-premium group rounded-[1.35rem] p-5"
-                      data-event={item.href.includes("preisrahmen") ? "submit_budget_request" : "start_booking"}
-                      data-source="rechner_quick_link"
+                      data-event="service_card_click"
+                      data-source={item.href.includes("preisrahmen") ? "budget_request_quick_link" : "booking_quick_link"}
+                      data-origin="rechner_quick_link"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div
@@ -916,7 +918,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       <Link
                         href="/buchung"
                         className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-[11px] font-semibold text-blue-700 transition hover:bg-blue-100"
-                        data-event="start_booking"
+                        data-event="hero_cta_click"
                         data-source="rechner_active_service"
                       >
                         Direkt anfragen
@@ -924,7 +926,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       <Link
                         href="/express-anfrage"
                         className="rounded-full border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] font-semibold text-amber-900 transition hover:bg-amber-100"
-                        data-event="start_booking"
+                        data-event="hero_cta_click"
                         data-source="rechner_active_service"
                       >
                         Express-Check
@@ -932,7 +934,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                       <Link
                         href="/anfrage-mit-preisrahmen"
                         className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] font-semibold text-emerald-800 transition hover:bg-emerald-100"
-                        data-event="submit_budget_request"
+                        data-event="form_submit"
                         data-source="rechner_active_service"
                       >
                         Budget nennen

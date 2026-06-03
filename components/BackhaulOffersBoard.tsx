@@ -241,7 +241,7 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
             <a
               href="/rueckfahrt-boerse#rueckfahrt-form"
               className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-700 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
-              data-event="start_route_check"
+              data-event="region_select"
               data-source="backhaul_empty_state"
             >
               Flexible Strecke eintragen

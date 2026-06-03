@@ -15,6 +15,7 @@ import type { FloxantRegion } from "@/lib/floxant-services";
 export type PublicHeaderVariant = "default" | "duesseldorf";
 
 const navLinks = [
+  { label: "Leistungen", href: "/leistungen" },
   { label: "Düsseldorf", href: "/duesseldorf" },
   { label: "Regensburg", href: "/regensburg" },
   { label: "Kontakt", href: "/kontakt" },
@@ -90,7 +91,7 @@ export function PublicHeader({
     clearServicesCloseTimer();
     servicesCloseTimerRef.current = setTimeout(() => {
       setServicesOpen(false);
-    }, 220);
+    }, 700);
   }
 
   function toggleServicesMenu() {
@@ -183,6 +184,8 @@ export function PublicHeader({
                 type="button"
                 onClick={toggleServicesMenu}
                 onFocus={openServicesMenu}
+                data-event="service_card_click"
+                data-source="desktop_header"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-black text-slate-800 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 aria-expanded={servicesOpen}
                 aria-haspopup="menu"
@@ -196,7 +199,7 @@ export function PublicHeader({
 
               {servicesOpen ? (
                 <div
-                  className="absolute left-1/2 top-full z-[9010] w-[min(60rem,calc(100vw-2rem))] -translate-x-1/2 pt-2"
+                  className="absolute left-1/2 top-full z-[9010] w-[min(50rem,calc(100vw-2rem))] -translate-x-1/2 pt-3"
                   onMouseEnter={openServicesMenu}
                   onMouseLeave={scheduleServicesClose}
                 >
@@ -281,10 +284,23 @@ export function PublicHeader({
             </div>
 
             <div className="mt-3">
-              <FloxServicesMegaMenu mode="mobile" initialRegion={activeRegion} />
+              <FloxServicesMegaMenu
+                mode="mobile"
+                initialRegion={activeRegion}
+                onNavigate={() => setMobileOpen(false)}
+              />
             </div>
 
-            <div className="mt-3 grid gap-2 sm:grid-cols-3">
+            <div className="mt-3 grid gap-2 sm:grid-cols-4">
+              <Link
+                href="/leistungen"
+                data-event="service_card_click"
+                data-source="mobile_header_all_services"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-black text-slate-800"
+              >
+                Leistungen
+                <ArrowRight className="h-4 w-4" />
+              </Link>
               <a
                 href={whatsappHref}
                 data-event="whatsapp_click"

@@ -315,7 +315,7 @@ export function DuesseldorfServicePage({
             <Link
               href="/duesseldorf/reinigung#rechner"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100"
-              data-event="start_calculator"
+              data-event="hero_cta_click"
               data-service="reinigung"
               data-region="duesseldorf"
             >
@@ -329,7 +329,7 @@ export function DuesseldorfServicePage({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-emerald-200/80 bg-emerald-400 px-5 py-3 text-sm font-black text-slate-950 shadow-[0_14px_30px_rgba(5,150,105,0.22)] transition hover:-translate-y-0.5 hover:bg-emerald-300"
-              data-event="click_whatsapp"
+              data-event="whatsapp_click"
               data-service="reinigung"
               data-region="duesseldorf"
             >
@@ -339,7 +339,7 @@ export function DuesseldorfServicePage({
             <Link
               href="#kunden-suchen"
               className="inline-flex min-h-12 items-center justify-center rounded-[0.8rem] border border-cyan-100/35 bg-cyan-200/16 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-cyan-200/24"
-              data-event="click_duesseldorf_service_customer_questions"
+              data-event="service_card_click"
               data-region="duesseldorf"
             >
               Kundenfragen ansehen
@@ -464,7 +464,7 @@ export function DuesseldorfServicePage({
                   key={item.searchPhrase}
                   href={item.href}
                   className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
-                  data-event="click_duesseldorf_service_customer_intent"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   <span className="flex h-9 w-9 items-center justify-center rounded-[0.7rem] border border-teal-100 bg-teal-50 text-teal-700">
@@ -526,7 +526,7 @@ export function DuesseldorfServicePage({
                   target="_blank"
                   rel="noopener noreferrer"
                   className={className}
-                  data-event="click_duesseldorf_service_decision"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   {content}
@@ -536,7 +536,7 @@ export function DuesseldorfServicePage({
                   key={item.title}
                   href={item.href}
                   className={className}
-                  data-event="click_duesseldorf_service_decision"
+                  data-event="whatsapp_click"
                   data-region="duesseldorf"
                 >
                   {content}
@@ -565,7 +565,7 @@ export function DuesseldorfServicePage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] bg-emerald-400 px-5 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
-                data-event="click_duesseldorf_service_checklist_whatsapp"
+                data-event="whatsapp_click"
                 data-region="duesseldorf"
               >
                 Angaben per WhatsApp senden
@@ -574,7 +574,7 @@ export function DuesseldorfServicePage({
               <a
                 href="#kontakt"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] border border-white/15 bg-white/10 px-5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/15"
-                data-event="click_duesseldorf_service_checklist_contact"
+                data-event="hero_cta_click"
                 data-region="duesseldorf"
               >
                 Kontaktwege öffnen
@@ -625,7 +625,7 @@ export function DuesseldorfServicePage({
                 key={item.query}
                 href={item.href}
                 className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
-                data-event="click_duesseldorf_service_snippet_answer"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
@@ -664,7 +664,7 @@ export function DuesseldorfServicePage({
                 key={item.intent}
                 href={item.href}
                 className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
-                data-event="click_duesseldorf_service_ai_recommendation"
+                data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
@@ -746,7 +746,7 @@ export function DuesseldorfServicePage({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] bg-emerald-400 px-5 text-sm font-black text-slate-950 transition hover:-translate-y-0.5 hover:bg-emerald-300"
-                  data-event="click_b2b_quick_whatsapp"
+                  data-event="whatsapp_click"
                   data-region="duesseldorf"
                 >
                   Per WhatsApp anfragen
@@ -755,7 +755,7 @@ export function DuesseldorfServicePage({
                 <a
                   href="#kontakt"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.9rem] border border-slate-800 bg-slate-950 px-5 text-sm font-black !text-white shadow-[0_10px_24px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-slate-800"
-                  data-event="click_b2b_contact_anchor"
+                  data-event="hero_cta_click"
                   data-region="duesseldorf"
                   style={{ color: "#ffffff" }}
                 >

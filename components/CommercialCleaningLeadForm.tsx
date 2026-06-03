@@ -263,6 +263,9 @@ export function CommercialCleaningLeadForm() {
   <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
    <form
     onSubmit={handleSubmit}
+    data-event="form_submit"
+    data-region="regensburg"
+    data-source={serviceContext.source}
     className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
    >
     <div className="mb-6 flex items-start justify-between gap-4">
@@ -274,7 +277,7 @@ export function CommercialCleaningLeadForm() {
        {serviceContext.shortLabel} kurz einordnen und qualifizierte Rückmeldung erhalten
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
-       Ohne Rechner-Zwang. Wir sehen {serviceContext.helper} sofort im Dashboard.
+       Ohne Rechner-Zwang. Ihre Angaben landen direkt bei der passenden Anfrageprüfung.
       </p>
      </div>
      <span className="hidden rounded-2xl border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-700 sm:inline-flex">
@@ -413,6 +416,9 @@ export function CommercialCleaningLeadForm() {
      <button
       type="submit"
       disabled={submitting}
+      data-event="form_submit"
+      data-region="regensburg"
+      data-service={serviceContext.serviceType}
       className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl bg-blue-600 px-5 text-sm font-black text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
      >
       {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
@@ -441,7 +447,7 @@ export function CommercialCleaningLeadForm() {
     <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
      <li>Klare Einordnung nach Objektart, Fläche, Turnus und Zugangslogik</li>
      <li>Sauber getrennt von privaten Kleinstaufträgen</li>
-     <li>Direkte Übergabe ins Dashboard ohne Pflicht-Rechner</li>
+     <li>Direkter Anfrageweg ohne Pflicht-Rechner</li>
      <li>Kundenbudget bleibt sichtbar, ersetzt aber nie die fachliche Prüfung</li>
     </ul>
 
@@ -456,6 +462,9 @@ export function CommercialCleaningLeadForm() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      data-event="whatsapp_click"
+      data-region="regensburg"
+      data-source={serviceContext.source}
       className="group mt-5 inline-flex items-center gap-2 rounded-2xl border border-[#25D366]/25 bg-white px-4 py-3 text-sm font-bold text-slate-900 transition hover:border-[#25D366] hover:text-[#25D366]"
      >
       <MessageCircle className="h-4 w-4 text-[#25D366]" />

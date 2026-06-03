@@ -95,7 +95,7 @@ export default function OpenGraphImage() {
       Klare Vorprüfung. Starke Umsetzung.
      </div>
      <div style={{ marginTop: 28, fontSize: 30, lineHeight: 1.35, color: "rgba(255,255,255,0.64)" }}>
-      Regensburg und Bayern: Preisrahmen, Zusatzservices, Leer-Rückfahrt und direkte Anfrage.
+      Regensburg und Bayern: Preisrahmen, Zusatzleistungen, Leer-Rückfahrt und direkte Anfrage.
      </div>
     </div>
 

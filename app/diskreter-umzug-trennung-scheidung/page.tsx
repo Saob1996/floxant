@@ -174,7 +174,7 @@ const discretionBlocks = [
   },
   {
     title: "Fotos optional",
-    text: "Fotos sind hilfreich, aber nicht Pflicht. Sensible private Details gehoeren nicht in Events oder URLs.",
+    text: "Fotos sind hilfreich, aber nicht Pflicht. Sensible private Details bitte erst nach persönlicher Abstimmung senden.",
     Icon: Camera,
   },
 ];
@@ -211,7 +211,7 @@ const packages = [
   {
     title: "Diskrete Abstimmung",
     forWhom: "Wenn die Situation sensibel ist und ruhig abgestimmt werden soll.",
-    includes: ["Rückruf", "Planung", "Zusatzservices", "diskrete Abstimmung"],
+    includes: ["Rückruf", "Planung", "Zusatzleistungen", "diskrete Abstimmung"],
     cta: "Diskreten Rückruf anfragen",
     Icon: ShieldCheck,
   },
@@ -339,7 +339,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main
         className="overflow-hidden bg-[radial-gradient(circle_at_16%_2%,#f5f5f4_0,transparent_30rem),radial-gradient(circle_at_86%_0%,#e7e5e4_0,transparent_28rem),linear-gradient(180deg,#fafaf9_0%,#ffffff_48%,#f5f5f4_100%)] text-stone-950"
-        data-event="view_discreet_move"
+
       >
         <section className="relative px-4 pb-12 pt-10 sm:px-6 lg:pb-20 lg:pt-16">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -362,7 +362,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <Link
                   href="#diskret-form"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800"
-                  data-event="start_discreet_move_lead"
+                  data-event="service_card_click"
                 >
                   Diskreten Rückruf anfragen
                   <ArrowRight className="h-4 w-4" />
@@ -370,7 +370,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <a
                   href={whatsappHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
-                  data-event="click_discreet_whatsapp"
+                  data-event="whatsapp_click"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Diskret schreiben
@@ -378,7 +378,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <a
                   href={phoneHref}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-6 text-sm font-black text-stone-800 transition hover:bg-stone-50"
-                  data-event="click_discreet_phone"
+                  data-event="phone_click"
                 >
                   <Phone className="h-4 w-4" />
                   Anrufen
@@ -564,11 +564,11 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Anlass. FLOXANT klärt Details über den gewünschten sicheren Kontaktweg.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="#diskret-form" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-stone-950" data-event="start_discreet_move_lead">
+                <Link href="#diskret-form" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 text-sm font-black text-stone-950" data-event="service_card_click">
                   Diskreten Rückruf anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={callbackWhatsappHref} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-4 text-sm font-black text-emerald-50" data-event="click_discreet_whatsapp">
+                <a href={callbackWhatsappHref} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-4 text-sm font-black text-emerald-50" data-event="whatsapp_click">
                   Rückruf per WhatsApp anfragen
                   <ArrowRight className="h-4 w-4" />
                 </a>
@@ -581,7 +581,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 "Details müssen nicht per E-Mail erklärt werden",
                 "kurzer Anlass reicht: diskreter Auszug, private Trennung, sensible Situation oder diskrete Abstimmung",
                 "Fotos optional, wenn sie die Einschätzung erleichtern",
-                "keine sensiblen Details in URL-Parametern oder Analytics-Events",
+                "keine sensiblen Details in Dateinamen oder öffentlich teilbaren Links",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 rounded-[1.25rem] border border-stone-200 bg-white p-4 text-sm font-bold leading-6 text-stone-700">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-stone-700" />
@@ -617,7 +617,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                         </li>
                       ))}
                     </ul>
-                    <Link href="#diskret-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-stone-800 transition hover:text-stone-950" data-event="select_discreet_request_type">
+                    <Link href="#diskret-form" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-stone-800 transition hover:text-stone-950" data-event="service_card_click">
                       {item.cta}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -753,14 +753,14 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Link href="#diskret-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-stone-950" data-event="start_discreet_move_lead">
+                <Link href="#diskret-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-stone-950" data-event="service_card_click">
                   Rückruf anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-6 text-sm font-black text-emerald-50" data-event="click_discreet_whatsapp">
+                <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200/50 bg-emerald-400/10 px-6 text-sm font-black text-emerald-50" data-event="whatsapp_click">
                   Diskret schreiben
                 </a>
-                <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200/40 bg-white/5 px-6 text-sm font-black text-white" data-event="click_discreet_phone">
+                <a href={phoneHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200/40 bg-white/5 px-6 text-sm font-black text-white" data-event="phone_click">
                   Anrufen
                 </a>
               </div>
@@ -771,13 +771,13 @@ export default function DiskreterUmzugTrennungScheidungPage() {
         <div className="flox-mobile-action-wrap z-40 md:hidden">
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
-          <Link href="#diskret-form" className="flox-mobile-action flox-mobile-action-primary" data-event="start_discreet_move_lead">
+          <Link href="#diskret-form" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
             Rückruf
           </Link>
-          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="click_discreet_whatsapp">
+          <a href={whatsappHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             WhatsApp
           </a>
-          <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="click_discreet_phone">
+          <a href={phoneHref} className="flox-mobile-action flox-mobile-action-light" data-event="phone_click">
             Anrufen
           </a>
             </div>

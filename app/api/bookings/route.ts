@@ -585,7 +585,7 @@ function buildOfferCheckDetails(
    priceSuggestion: quotedPrice || budget,
    priceExplanation: isCheaperAlternative
     ? "FLOXANT prueft organisatorisch und praktisch, ob auf Basis von Angebot, Ort, Termin, Umfang, Fotos und Kapazitaet eine guenstigere, klarere oder passendere Alternative moeglich ist. Keine Preisgarantie."
-    : "Der Angebotscheck ist keine Rechtsberatung. FLOXANT prüft organisatorisch und praktisch, ob Umfang, Zugang, Termin, Zusatzservices und Preisrahmen nachvollziehbar sind.",
+    : "Der Angebotscheck ist keine Rechtsberatung. FLOXANT prüft organisatorisch und praktisch, ob Umfang, Zugang, Termin, Zusatzleistungen und Preisrahmen nachvollziehbar sind.",
    pricingSignals: {
    inquiryMode: "offer_check",
    leadType: "angebotscheck",

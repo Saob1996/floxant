@@ -130,7 +130,7 @@ export default async function UmzugPillarPage() {
           {
             icon: Banknote,
             title: "Wie läuft es ab?",
-            text: "Erst Datenaufnahme, dann Preisrahmen, danach konkrete Einsatzplanung mit Transport, Team und optionalen Modulen.",
+            text: "Erst die wichtigsten Eckdaten, dann ein realistischer Preisrahmen und danach die konkrete Planung mit Transport, Team und Zusatzleistungen.",
           },
         ]}
         differenceTitle="Was FLOXANT beim Umzug vom Standard unterscheidet"

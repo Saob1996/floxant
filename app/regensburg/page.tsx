@@ -8,14 +8,13 @@ import { company } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
   floxantCategoryLabels,
+  floxantCategoryOrder,
   floxantRegions,
   getServicesByRegionAndCategory,
-  type FloxantServiceCategory,
 } from "@/lib/floxant-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const region = floxantRegions.regensburg;
-const categoryOrder: FloxantServiceCategory[] = ["normal", "signature", "special"];
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -103,14 +102,14 @@ export default function RegensburgHubPage() {
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Eigenständiger Regensburg-Bereich
+              Für Regensburg und Umgebung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Regensburg bleibt Umzug, Räumung und Übergabe.
+              Hilfe rund um Wechsel, Räumung und Übergabe.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Der Regensburger Bereich ist auf Wohnungswechsel, Räumungen,
-              Haushaltsauflösungen, Endreinigung und Übergabevorbereitung ausgerichtet.
+              FLOXANT Regensburg unterstützt bei Wohnungswechsel, Räumung,
+              Haushaltsauflösung, Endreinigung und Vorbereitung der Übergabe.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -133,20 +132,19 @@ export default function RegensburgHubPage() {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Services nach Bedarf
+              Was brauchen Sie gerade?
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
               Wählen Sie den passenden Regensburger Service.
             </h2>
           </div>
           <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-            Reguläre Leistungen sind die klassischen Regensburger Anfragen. FLOXANT Signature
-            Extras helfen bei Übergabe, Objekt, Nachlass oder Mieterwechsel. Spezielle Services
-            sind für Fälle gedacht, die schnell sortiert werden müssen.
+            Wählen Sie den Einstieg, der am besten zu Ihrer Situation passt. Wenn noch nicht alles
+            klar ist, reichen Ort, Termin, Fotos und eine kurze Beschreibung für den Start.
           </p>
 
           <div className="mt-8 grid gap-5">
-            {categoryOrder.map((category) => {
+            {floxantCategoryOrder.map((category) => {
               const services = getServicesByRegionAndCategory("regensburg", category);
               if (!services.length) return null;
 

@@ -255,7 +255,7 @@ export function CellarTrashroomRescueForm() {
               key={item.value}
               type="button"
               onClick={() => setAreaType(item.value)}
-              data-event="select_area_type"
+              data-event="region_select"
               data-area-type={item.value}
               className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${
                 active ? "border-amber-600 bg-amber-50 shadow-lg shadow-amber-950/10" : "border-slate-200 bg-white hover:border-amber-200"
@@ -270,7 +270,7 @@ export function CellarTrashroomRescueForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_cellar_trashroom_lead">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-700">
             Name *
@@ -300,7 +300,6 @@ export function CellarTrashroomRescueForm() {
               name="roleType"
               value={role}
               onChange={(event) => setRole(event.target.value)}
-              data-event={role === "Hausverwaltung" ? "select_role_property_manager" : undefined}
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500"
             >
               {roleOptions.map((option) => (
@@ -314,7 +313,7 @@ export function CellarTrashroomRescueForm() {
               name="areaType"
               value={areaType}
               onChange={(event) => setAreaType(event.target.value)}
-              data-event="select_area_type"
+              data-event="region_select"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500"
             >
               {areaOptions.map((option) => (
@@ -396,7 +395,7 @@ export function CellarTrashroomRescueForm() {
               name="hazardousMaterialsStatus"
               value={hazardousStatus}
               onChange={(event) => setHazardousStatus(event.target.value)}
-              data-event="select_hazardous_status"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500"
             >
               <option>nein</option>
@@ -410,7 +409,7 @@ export function CellarTrashroomRescueForm() {
               name="legalClearanceStatus"
               value={clearanceStatus}
               onChange={(event) => setClearanceStatus(event.target.value)}
-              data-event="select_legal_clearance_status"
+              data-event="service_card_click"
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-amber-500"
             >
               <option>ja</option>
@@ -475,7 +474,7 @@ export function CellarTrashroomRescueForm() {
         <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs leading-5 text-slate-600">
           <input name="privacy" type="checkbox" className="mt-1" />
           <span>
-            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage nutzt. Keine personenbezogenen Daten werden in Tracking-Events gesendet.
+            Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage nutzt. Sensible Zugangsdaten oder persönliche Dokumente bitte nicht mitsenden.
           </span>
         </label>
 
@@ -493,13 +492,13 @@ export function CellarTrashroomRescueForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_cellar_trashroom_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
             Objektflaeche pruefen lassen
           </button>
-          <a href={`https://wa.me/4915771105087?text=${whatsappText}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="click_cellar_trashroom_whatsapp">
+          <a href={`https://wa.me/4915771105087?text=${whatsappText}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
             <Phone className="h-4 w-4" />
             WhatsApp
           </a>

@@ -166,7 +166,7 @@ export const IntakeWizard: React.FC<IntakeWizardProps> = ({
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
                   <ShieldCheck className="h-4 w-4" />
-                  Strukturierter Einstieg
+                  Einfach starten
                 </div>
                 <h2 className="mt-4 max-w-[20ch] text-2xl font-bold leading-[1.03] tracking-[-0.02em] text-slate-950 lg:text-3xl">
                   {serviceLabels[serviceType] || "Service"} Schritt für Schritt vorbereiten

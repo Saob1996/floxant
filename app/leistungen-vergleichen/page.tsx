@@ -38,7 +38,7 @@ const faqItems = [
 const decisionPrinciples = [
  "Erst die Situation klären: Transport, Reinigung, Räumung, Firma, Route oder sensibler Privathaushalt.",
  "Dann die Kostentreiber trennen: Volumen, Fläche, Zugang, Laufwege, Material, Termin und Zusatzleistungen.",
- "Danach den richtigen Einstieg wählen: Service-Seite, Rechner, Preisvorstellung oder Spezialservice.",
+ "Danach den richtigen Einstieg wählen: Service-Seite, Rechner, Preisvorstellung oder Zusatzleistung.",
 ];
 
 export async function generateMetadata(): Promise<Metadata> {

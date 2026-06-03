@@ -321,7 +321,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             />
             <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
               Hilft uns, Leistungsumfang und Prioritäten besser einzuordnen. Überschreibt die
-              System-Einschätzung nicht und ersetzt kein geprüftes Angebot.
+              erste Einschätzung nicht und ersetzt kein geprüftes Angebot.
             </p>
           </FieldBox>
 

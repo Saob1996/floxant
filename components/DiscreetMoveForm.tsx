@@ -108,7 +108,7 @@ const packageOptions = [
   },
   {
     title: "Sensible Abstimmung",
-    text: "Rueckruf, Planung, Zusatzservices und diskrete Abstimmung fuer komplexe Faelle.",
+    text: "Rueckruf, Planung, Zusatzleistungen und diskrete Abstimmung fuer komplexe Faelle.",
     cta: "Diskreten Rueckruf anfragen",
   },
 ];
@@ -309,7 +309,7 @@ export function DiscreetMoveForm() {
               key={item.value}
               type="button"
               onClick={() => applyRequestType(item.value)}
-              data-event="select_discreet_request_type"
+              data-event="service_card_click"
               data-request-type={item.value}
               className={`rounded-[1.25rem] border p-4 text-left transition hover:-translate-y-0.5 ${
                 active
@@ -326,7 +326,7 @@ export function DiscreetMoveForm() {
         })}
       </div>
 
-      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="start_discreet_move_lead">
+      <form className="mt-7 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-stone-800">
             Name oder Ansprechpartner*
@@ -342,7 +342,7 @@ export function DiscreetMoveForm() {
               name="safeContactMethod"
               value={safeContactMethod}
               onChange={(event) => setSafeContactMethod(event.target.value)}
-              data-event="select_safe_contact_method"
+              data-event="hero_cta_click"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
             >
               {safeContactMethods.map((item) => (
@@ -388,7 +388,7 @@ export function DiscreetMoveForm() {
             Rueckrufzeitfenster
             <input
               name="callbackTimeWindow"
-              data-event="select_callback_window"
+              data-event="hero_cta_click"
               className="min-h-12 rounded-xl border border-stone-200 px-4 text-sm outline-none transition focus:border-stone-600"
               placeholder="z. B. 18-20 Uhr, nur vormittags"
             />
@@ -529,7 +529,7 @@ export function DiscreetMoveForm() {
           <UploadDropCard
             title="Fotos optional"
             description="Gegenstaende, Zugang oder Raeume fuer die Einschaetzung."
-            helper="Bitte keine sensiblen privaten Details in Events, URLs oder Dateinamen uebermitteln."
+            helper="Bitte keine sensiblen privaten Details in Dateinamen oder Fotobeschreibungen übermitteln."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
             dataEvent="upload_discreet_move_photos"
@@ -584,7 +584,7 @@ export function DiscreetMoveForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_discreet_move_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -592,7 +592,7 @@ export function DiscreetMoveForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_discreet_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             <MessageCircle className="h-4 w-4" />
@@ -600,7 +600,7 @@ export function DiscreetMoveForm() {
           </a>
           <a
             href={`tel:${PHONE_TEL}`}
-            data-event="click_discreet_phone"
+            data-event="phone_click"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-stone-100"
           >
             <Phone className="h-4 w-4" />

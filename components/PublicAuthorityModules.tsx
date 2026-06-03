@@ -150,7 +150,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     badge: "Preislogik",
     title: "Was den Umzugspreis beeinflusst",
     text:
-      "Strecke, Volumen, Etage, Aufzug, Laufweg, Parken, Datum und Zusatzservices wie Reinigung oder Schluesseluebergabe entscheiden ueber den Aufwand.",
+      "Strecke, Volumen, Etage, Aufzug, Laufweg, Parken, Datum und Zusatzleistungen wie Reinigung oder Schluesseluebergabe entscheiden ueber den Aufwand.",
     href: "/blog/umzug-kosten-regensburg",
     cta: "Kostenfaktoren lesen",
     Icon: Truck,
@@ -190,7 +190,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     badge: "Angebotscheck",
     title: "Vorhandenes Angebot vor Zusage prüfen",
     text:
-      "Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, Zugang, Termin, Fotos, Zusatzservices und Preisrahmen sachlich einordnen, bevor Sie endgültig zusagen.",
+      "Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, Zugang, Termin, Fotos, Zusatzleistungen und Preisrahmen sachlich einordnen, bevor Sie endgültig zusagen.",
     href: "/angebotscheck",
     cta: "Angebot prüfen lassen",
     Icon: FileSearch,
@@ -381,9 +381,9 @@ type PublicAuthorityModulesProps = {
 
 export function PublicAuthorityModules({
   moduleIds,
-  badge = "Themenbereich",
-  title = "Was Kunden vor der Anfrage wirklich wissen muessen",
-  subtitle = "Kurze Module statt Textwand: lokale Einordnung, Preislogik, Fotos, Budget und passende Signature Services werden direkt auf der Seite sichtbar.",
+  badge = "Gut vorbereitet anfragen",
+  title = "Was vor der Anfrage hilfreich ist",
+  subtitle = "Hier sehen Sie, welche Angaben FLOXANT für eine ehrliche Einschätzung braucht: Ort, Objekt, Termin, Fotos, Budgetrahmen und offene Punkte.",
   source = "public_authority_modules",
 }: PublicAuthorityModulesProps) {
   const modules = moduleIds.map((id) => authorityModules[id]).filter(Boolean);
@@ -425,8 +425,9 @@ export function PublicAuthorityModules({
                 <Link
                   href={item.href}
                   className="flox-row-link mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-700"
-                  data-event={item.event || "internal_authority_link"}
-                  data-source={source}
+                  data-event={item.event === "upload_images" ? "upload_started" : "service_card_click"}
+                  data-source={item.event || source}
+                  data-origin={source}
                   data-service={item.service}
                   data-region={item.region}
                 >
@@ -442,8 +443,8 @@ export function PublicAuthorityModules({
           <div className="flex gap-3">
             <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
             <p>
-              Jede Anfrage bleibt unverbindlich. FLOXANT prueft Umfang, Ort, Termin,
-              Zugang, Fotos, Budget und Zusatzservices, bevor ein verbindlicher Auftrag entsteht.
+              Jede Anfrage bleibt unverbindlich. FLOXANT prüft Umfang, Ort, Termin,
+              Zugang, Fotos und gewünschtes Ergebnis, bevor ein verbindlicher Auftrag entsteht.
             </p>
           </div>
         </div>

@@ -43,7 +43,7 @@ const clarityPoints = [
  "Sofort starten: Rechner, Express-Anfrage oder Preisvorstellung.",
  "Keine versteckte Sofortbindung durch das Absenden einer Anfrage.",
  "Dokumente bleiben kontrollierbar: erst Entwurf, dann Freigabe, dann Versand.",
- "System-Orientierungsrahmen und Kunden-Preisvorstellung bleiben getrennt sichtbar.",
+ "Erste Orientierung und Kundenwunsch bleiben getrennt sichtbar.",
 ];
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -19,7 +19,7 @@ const imageProfiles: Record<
   eyebrow: "Regensburg + Bayern",
   title: "Umzug, Reinigung und Entrümpelung klar geplant.",
   subtitle: "FLOXANT verbindet Vorprüfung, Preisrahmen und Umsetzung ohne Lockpreis-Versprechen.",
-  chips: ["Rechner", "Preisrahmen", "Spezialservices"],
+  chips: ["Rechner", "Preisrahmen", "Zusatzleistungen"],
   accent: "#60a5fa",
  },
  rechner: {
@@ -116,7 +116,7 @@ const imageProfiles: Record<
  "leistungen-vergleichen": {
   eyebrow: "Service-Kompass",
   title: "Den passenden FLOXANT Service schneller finden.",
-  subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug und Spezialservices klar vergleichen.",
+  subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen klar vergleichen.",
   chips: ["Vergleich", "Servicewahl", "Regensburg"],
   accent: "#38bdf8",
  },
@@ -197,7 +197,7 @@ imageProfiles["private-client-service"] = {
 imageProfiles.floxant = {
  eyebrow: "Regensburg + Bayern",
  title: "Direkt buchen oder erst fair rechnen.",
- subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt ohne anonyme Lead-Runde.",
+ subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt direkt bei FLOXANT anfragen.",
  chips: ["Buchung", "Rechner", "Direktkontakt"],
  accent: "#60a5fa",
 };

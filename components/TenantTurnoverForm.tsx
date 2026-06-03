@@ -207,7 +207,7 @@ export function TenantTurnoverForm() {
               key={item.value}
               type="button"
               onClick={() => setQuickEntry(item.value)}
-              data-event="start_tenant_turnover_lead"
+              data-event="service_card_click"
               data-entry={item.value}
               className={`rounded-[1.2rem] border p-4 text-left transition ${
                 active ? "border-cyan-500 bg-cyan-50 text-cyan-950" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-200"
@@ -221,7 +221,7 @@ export function TenantTurnoverForm() {
         })}
       </div>
 
-      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="start_tenant_turnover_lead">
+      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -237,7 +237,6 @@ export function TenantTurnoverForm() {
               name="roleType"
               value={role}
               onChange={(event) => setRole(event.target.value)}
-              data-event={roleOptions.find((item) => item.value === role)?.event || "select_role_other"}
               className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-cyan-500"
             >
               {roleOptions.map((item) => (
@@ -380,7 +379,7 @@ export function TenantTurnoverForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_tenant_turnover_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -388,7 +387,7 @@ export function TenantTurnoverForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_tenant_turnover_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             Mieterwechsel per WhatsApp anfragen
@@ -396,11 +395,11 @@ export function TenantTurnoverForm() {
         </div>
 
         <div className="flex flex-col gap-2 text-xs font-semibold text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <a href={`tel:${PHONE_TEL}`} data-event="click_tenant_turnover_phone" className="inline-flex items-center gap-2 transition hover:text-cyan-700">
+          <a href={`tel:${PHONE_TEL}`} data-event="phone_click" className="inline-flex items-center gap-2 transition hover:text-cyan-700">
             <Phone className="h-4 w-4" />
             {PHONE_DISPLAY}
           </a>
-          <a href={`mailto:${EMAIL}`} data-event="click_email" className="inline-flex items-center gap-2 transition hover:text-cyan-700">
+          <a href={`mailto:${EMAIL}`} data-event="hero_cta_click" className="inline-flex items-center gap-2 transition hover:text-cyan-700">
             <Mail className="h-4 w-4" />
             {EMAIL}
           </a>

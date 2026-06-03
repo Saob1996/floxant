@@ -230,7 +230,7 @@ export function HandoverFileForm() {
               key={item.value}
               type="button"
               onClick={() => setQuickEntry(item.value)}
-              data-event="start_handover_file_lead"
+              data-event="service_card_click"
               data-entry={item.value}
               className={`rounded-[1.2rem] border p-4 text-left transition ${
                 active ? "border-amber-500 bg-amber-50 text-amber-950" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-amber-200"
@@ -244,7 +244,7 @@ export function HandoverFileForm() {
         })}
       </div>
 
-      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="start_handover_file_lead">
+      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} data-event="form_submit">
         <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Name*
@@ -297,7 +297,7 @@ export function HandoverFileForm() {
           <div className="mt-3 grid gap-2 sm:grid-cols-2">
             {serviceOptions.map((service) => (
               <label key={service} className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
-                <input type="checkbox" checked={selectedServices.includes(service)} onChange={() => toggleService(service)} data-event="select_handover_service" className="h-4 w-4 rounded border-slate-300 text-amber-600" />
+                <input type="checkbox" checked={selectedServices.includes(service)} onChange={() => toggleService(service)} data-event="service_card_click" className="h-4 w-4 rounded border-slate-300 text-amber-600" />
                 {service}
               </label>
             ))}
@@ -314,7 +314,7 @@ export function HandoverFileForm() {
                   type="checkbox"
                   checked={documentationScope.includes(scope)}
                   onChange={() => toggleValue(scope, setDocumentationScope)}
-                  data-event="select_handover_documentation_scope"
+                  data-event="service_card_click"
                   className="h-4 w-4 rounded border-slate-300 text-amber-600"
                 />
                 {scope}
@@ -334,7 +334,7 @@ export function HandoverFileForm() {
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
             Schluesselstatus
-            <select name="keyStatus" data-event="select_key_status" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
+            <select name="keyStatus" data-event="service_card_click" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-amber-500">
               <option value="nicht_relevant">Nicht relevant</option>
               <option value="schluessel_beim_kunden">Schluessel bei Kunde</option>
               <option value="bei_floxant_uebernommen">Bei FLOXANT uebernommen</option>
@@ -469,7 +469,7 @@ export function HandoverFileForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            data-event="submit_handover_file_lead"
+            data-event="form_submit"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
@@ -477,7 +477,7 @@ export function HandoverFileForm() {
           </button>
           <a
             href={`https://wa.me/${PHONE_TEL.replace("+", "")}?text=${whatsappText}`}
-            data-event="click_handover_whatsapp"
+            data-event="whatsapp_click"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
           >
             Uebergabeakte per WhatsApp anfragen
@@ -485,11 +485,11 @@ export function HandoverFileForm() {
         </div>
 
         <div className="flex flex-col gap-2 text-xs font-semibold text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-          <a href={`tel:${PHONE_TEL}`} data-event="click_handover_phone" className="inline-flex items-center gap-2 transition hover:text-amber-700">
+          <a href={`tel:${PHONE_TEL}`} data-event="phone_click" className="inline-flex items-center gap-2 transition hover:text-amber-700">
             <Phone className="h-4 w-4" />
             {PHONE_DISPLAY}
           </a>
-          <a href={`mailto:${EMAIL}`} data-event="click_email" className="inline-flex items-center gap-2 transition hover:text-amber-700">
+          <a href={`mailto:${EMAIL}`} data-event="hero_cta_click" className="inline-flex items-center gap-2 transition hover:text-amber-700">
             <Mail className="h-4 w-4" />
             {EMAIL}
           </a>

@@ -19,7 +19,7 @@ const faqItems = [
  },
  {
   q: "Was ist besser: Budget nennen oder Rechner starten?",
-  a: "Ideal ist beides: Der Rechner liefert die System-Einschätzung, das Budget zeigt Ihre Preisvorstellung. Beides wird getrennt betrachtet.",
+  a: "Ideal ist beides: Der Rechner liefert eine erste Orientierung, das Budget zeigt Ihre Preisvorstellung. Beides wird getrennt betrachtet.",
  },
 ];
 
@@ -75,7 +75,7 @@ export default function BudgetPlanungUmzugKostenPage() {
       title: "Budget ist ein Rahmen, kein Endpreis",
       paragraphs: [
        "Wer ein Budget nennt, macht die Planung oft einfacher. Gleichzeitig darf daraus kein falsches Preisversprechen entstehen. Ein Umzug, eine Reinigung oder eine Entrümpelung braucht immer die Prüfung der konkreten Daten.",
-       "Deshalb trennt FLOXANT Preisvorstellung und System-Einschätzung. Der Kunde zeigt seinen Zielrahmen, FLOXANT prüft den realistischen Aufwand.",
+       "Deshalb trennt FLOXANT Preisvorstellung und geprüfte Einschätzung. Der Kunde zeigt seinen Zielrahmen, FLOXANT prüft den realistischen Aufwand.",
       ],
      },
      {
@@ -100,7 +100,7 @@ export default function BudgetPlanungUmzugKostenPage() {
     ]}
     highlightPoints={[
      "Budget nennen ist sinnvoll, wenn es als Zielrahmen formuliert wird.",
-     "System-Einschätzung und Preisvorstellung bleiben getrennt.",
+     "Erste Einschätzung und Preisvorstellung bleiben getrennt.",
      "Gute Budgetangaben helfen, Leistungen zu priorisieren.",
     ]}
     ctas={[

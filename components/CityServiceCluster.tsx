@@ -94,7 +94,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
   ];
   const routingCards = [
     {
-      title: "Strukturierte Anfrage",
+      title: "Direkte Anfrage",
       text: `Für ${city}, wenn Umfang, Termin, Zugang und Leistung schon grob klar sind.`,
       href: "/buchung",
       icon: ClipboardCheck,
