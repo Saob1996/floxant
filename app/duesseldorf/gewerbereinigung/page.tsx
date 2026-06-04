@@ -3,18 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  Banknote,
   Building2,
   CheckCircle2,
   Clock3,
   ClipboardCheck,
+  FileSearch,
   MapPin,
   MessageCircle,
   Phone,
   ShieldCheck,
+  Sparkles,
   Stethoscope,
+  UsersRound,
 } from "lucide-react";
 
-import { DuesseldorfB2BCleaningForm } from "@/components/DuesseldorfB2BCleaningForm";
+import { GewerbereinigungAdsForm } from "@/components/duesseldorf/GewerbereinigungAdsForm";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { floxantServices } from "@/lib/floxant-services";
@@ -32,40 +36,54 @@ const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
     "Hallo FLOXANT Reinigung Düsseldorf,",
-    "ich möchte eine Gewerbereinigung in Düsseldorf anfragen.",
-    "Objektart, Ort, Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
+    "ich möchte Gewerbereinigung in Düsseldorf anfragen.",
+    "Objektart, PLZ, Fläche, Turnus und Fotos kann ich senden.",
   ].join("\n"),
 );
 
 const serviceCards = floxantServices.filter(
   (service) =>
     service.region === "duesseldorf" &&
-    ["duesseldorf-gewerbereinigung", "duesseldorf-bueroreinigung", "duesseldorf-praxisreinigung", "duesseldorf-unterhaltsreinigung", "duesseldorf-treppenhausreinigung", "duesseldorf-angebot-vergleichen"].includes(service.id),
+    [
+      "duesseldorf-gewerbereinigung",
+      "duesseldorf-bueroreinigung",
+      "duesseldorf-praxisreinigung",
+      "duesseldorf-unterhaltsreinigung",
+      "duesseldorf-treppenhausreinigung",
+      "duesseldorf-angebot-vergleichen",
+    ].includes(service.id),
 );
+
+const heroTrustItems = [
+  "Kostenlose erste Rückmeldung",
+  "WhatsApp, Telefon oder Formular",
+  "Bestehendes Angebot prüfbar",
+  "Keine Preisversprechen",
+];
 
 const requestHints = [
   "Objektart: Büro, Praxis, Kanzlei, Treppenhaus oder Gewerbeobjekt",
-  "Ort oder PLZ in Düsseldorf, nahe Umgebung und Zugang",
+  "Ort oder PLZ in Düsseldorf, Zugang und Ansprechpartner",
   "Fläche, Räume, Sanitärbereiche und gewünschter Turnus",
-  "Zeitfenster, Fotos und besondere Anforderungen",
+  "Fotos, Zeitfenster und besondere Anforderungen",
 ];
 
 const processSteps = [
   {
-    title: "Anfrage senden",
-    text: "Sie nennen Objekt, Ort, Fläche, Turnus und Kontaktweg. Fotos sind hilfreich, aber nicht zwingend.",
+    title: "Kurz anfragen",
+    text: "Sie senden Objektart, Ort, Kontaktweg und die wichtigsten Eckdaten per Formular, WhatsApp oder Telefon.",
   },
   {
-    title: "Objekt einordnen",
-    text: "FLOXANT prüft, welche Reinigung zu Objekt, Ablauf und Bedarf passt.",
+    title: "Bedarf einordnen",
+    text: "FLOXANT prüft, welcher Umfang realistisch ist und welche Punkte vor einem Angebot noch fehlen.",
   },
   {
     title: "Rückmeldung erhalten",
-    text: "Sie erhalten Rückfragen, einen Besichtigungsvorschlag oder ein unverbindliches Angebot.",
+    text: "Sie bekommen Rückfragen, einen Vorschlag für den nächsten Schritt oder ein unverbindliches Angebot.",
   },
   {
-    title: "In Ruhe entscheiden",
-    text: "Die Anfrage bleibt unverbindlich, bis Umfang, Termin und nächster Schritt klar sind.",
+    title: "Sauber entscheiden",
+    text: "Erst wenn Umfang, Zugang, Turnus und Termin klar sind, wird aus der Anfrage eine verbindliche Planung.",
   },
 ];
 
@@ -92,34 +110,101 @@ const trustItems = [
   },
 ];
 
-const faqItems = [
+const signatureCards = [
   {
-    q: "Für wen ist die Gewerbereinigung in Düsseldorf gedacht?",
-    a: "Für Unternehmen, Büros, Praxen nach Absprache, Kanzleien, Studios, Treppenhäuser, Hausverwaltungen und Gewerbeobjekte in Düsseldorf und direkter Umgebung.",
+    title: "Premium-Reinigung",
+    text: "Für repräsentative Flächen, empfindliche Bereiche und Objekte, bei denen Auftritt und Diskretion besonders wichtig sind.",
+    href: "/duesseldorf/luxusreinigung",
+    Icon: Sparkles,
   },
   {
-    q: "Welche Angaben braucht FLOXANT für eine Rückmeldung?",
+    title: "Diskrete Reinigung",
+    text: "Für Kanzleien, Praxen, private Bürobereiche und Termine mit wenig sichtbarer Abstimmung vor Ort.",
+    href: "/duesseldorf/kanzleireinigung",
+    Icon: ShieldCheck,
+  },
+  {
+    title: "Individuelle Objektbetreuung",
+    text: "Für Hausverwaltungen, mehrere Einheiten oder Objekte mit wiederkehrenden Kontroll- und Abstimmungspunkten.",
+    href: "/duesseldorf/hausverwaltung-reinigung",
+    Icon: UsersRound,
+  },
+  {
+    title: "Angebotsprüfung",
+    text: "Vorhandenes Angebot hochladen oder Eckdaten senden. FLOXANT prüft sachlich, ob eine passende Alternative möglich ist.",
+    href: "/angebot-vergleichen-duesseldorf",
+    Icon: FileSearch,
+    event: "offer_check_started",
+  },
+  {
+    title: "Reinigungskonzept",
+    text: "Für Büros und Praxen, die einen klaren Turnus, Raumlisten, Prioritäten und Zeitfenster abstimmen möchten.",
+    href: "/duesseldorf/bueroreinigung",
+    Icon: ClipboardCheck,
+  },
+];
+
+const costFactors = [
+  "Fläche, Raumanzahl und Nutzungsart",
+  "Turnus: einmalig, wöchentlich oder häufiger",
+  "Sanitärbereiche, Küchen, Eingänge und Nebenflächen",
+  "Zeitfenster, Zugang und Schlüsselregelung",
+  "Besondere Anforderungen, Material oder Zusatzleistungen",
+  "Fotos, vorhandene Angebote und gewünschter Starttermin",
+];
+
+const faqItems = [
+  {
+    q: "Was kostet eine Gewerbereinigung in Düsseldorf?",
+    a: "Die Kosten hängen von Objektart, Fläche, Turnus, Zeitfenster, Sanitärbereichen, Zugang und gewünschten Zusatzleistungen ab. FLOXANT nennt keine Pauschalpreise ohne Prüfung, damit die Rückmeldung zum Objekt passt.",
+  },
+  {
+    q: "Welche Informationen braucht FLOXANT für ein Angebot?",
     a: "Hilfreich sind Objektart, Stadtteil oder PLZ, Fläche, Räume, Sanitärbereiche, gewünschter Turnus, Zeitfenster, Zugang, Fotos und ein Ansprechpartner.",
   },
   {
-    q: "Kann die Reinigung außerhalb der Öffnungszeiten stattfinden?",
-    a: "Zeitfenster vor Arbeitsbeginn, nach Feierabend oder am Wochenende können nach Objekt, Umfang, Zugang und Verfügbarkeit geprüft werden.",
+    q: "Reinigt FLOXANT Büros, Praxen und Kanzleien?",
+    a: "Ja, FLOXANT Düsseldorf prüft gewerbliche Reinigung für Büros, Praxen nach Absprache, Kanzleien, Studios, Treppenhäuser, Hausverwaltungen und weitere Gewerbeobjekte.",
+  },
+  {
+    q: "Kann ich Fotos oder ein vorhandenes Angebot per WhatsApp senden?",
+    a: "Ja. Fotos, Raumlisten oder ein bestehendes Angebot können per WhatsApp oder über das Formular gesendet werden. Zugangscodes und sensible Daten sollten nicht unverschlüsselt geschickt werden.",
   },
   {
     q: "Ist die Anfrage kostenlos und unverbindlich?",
-    a: "Ja. Sie erhalten eine Rückmeldung oder ein unverbindliches Angebot. Eine verbindliche Planung entsteht erst nach Abstimmung von Umfang, Termin und Leistung.",
+    a: "Ja. Die erste Anfrage ist kostenlos und unverbindlich. Eine verbindliche Planung entsteht erst nach Abstimmung von Umfang, Termin und Leistung.",
   },
   {
-    q: "Kann FLOXANT ein bestehendes Angebot prüfen?",
-    a: "Ja. Sie können ein vorhandenes Reinigungsangebot kostenlos und unverbindlich prüfen lassen. FLOXANT verspricht kein Unterbieten, sondern bewertet jede Anfrage individuell.",
+    q: "Prüft FLOXANT auch bestehende Reinigungsangebote?",
+    a: "Ja. FLOXANT prüft vorhandene Angebote sachlich und individuell. Es gibt kein Versprechen, jedes Angebot zu unterbieten.",
+  },
+  {
+    q: "Sind regelmäßige Reinigungstermine möglich?",
+    a: "Ja. Regelmäßige Unterhaltsreinigung kann nach Objekt, Raumliste, Turnus und Zeitfenster abgestimmt werden.",
+  },
+  {
+    q: "Arbeitet FLOXANT auch außerhalb der Geschäftszeiten?",
+    a: "Zeitfenster vor Arbeitsbeginn, nach Feierabend oder am Wochenende können nach Objekt, Umfang, Zugang und Verfügbarkeit geprüft werden.",
+  },
+  {
+    q: "Was ist der Unterschied zwischen Büroreinigung und Gewerbereinigung?",
+    a: "Büroreinigung bezieht sich meist auf Arbeitsplätze, Besprechungsräume, Küchen und Sanitärbereiche. Gewerbereinigung ist breiter und kann Praxen, Kanzleien, Treppenhäuser, Studios oder andere gewerbliche Flächen umfassen.",
   },
 ];
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Gewerbereinigung Düsseldorf | Büro, Praxis & Gewerbe | FLOXANT",
+  title: "Gewerbereinigung Düsseldorf | Büro, Praxis & Unternehmen | FLOXANT",
   description:
-    "Gewerbereinigung in Düsseldorf für Unternehmen, Praxen und Büros. FLOXANT prüft Objekt, Ablauf und Bedarf individuell. Kostenlos und unverbindlich anfragen.",
+    "Gewerbereinigung in Düsseldorf für Büros, Praxen, Kanzleien, Gewerbeobjekte und Hausverwaltungen. Kostenlos per Formular, WhatsApp oder Telefon anfragen.",
+  keywords: [
+    "Gewerbereinigung Düsseldorf",
+    "Büroreinigung Düsseldorf",
+    "Praxisreinigung Düsseldorf",
+    "Unterhaltsreinigung Düsseldorf",
+    "Treppenhausreinigung Düsseldorf",
+    "Reinigungsfirma Düsseldorf",
+  ],
   alternates: {
     canonical,
   },
@@ -128,9 +213,9 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "Gewerbereinigung in Düsseldorf für Unternehmen, Praxen und Büros",
+    title: "Gewerbereinigung in Düsseldorf für Büros, Praxen und Unternehmen",
     description:
-      "Reinigungslösungen für gewerbliche Kunden in Düsseldorf: Objekt, Turnus, Zeitfenster und Bedarf klar abstimmen.",
+      "Objekt, Turnus, Zeitfenster und Bedarf klar abstimmen. FLOXANT Düsseldorf prüft Ihre Anfrage kostenlos und unverbindlich.",
     images: [
       {
         url: heroImage,
@@ -144,7 +229,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Gewerbereinigung Düsseldorf | FLOXANT",
     description:
-      "Kostenlos Gewerbereinigung in Düsseldorf anfragen: Büro, Praxis, Unterhaltsreinigung und Treppenhausreinigung.",
+      "Kostenlos Gewerbereinigung in Düsseldorf anfragen: Büro, Praxis, Unterhaltsreinigung und Angebotsprüfung.",
     images: [heroImage],
   },
 };
@@ -156,12 +241,19 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "Gewerbereinigung Düsseldorf",
         description:
-          "Gewerbereinigung in Düsseldorf für Unternehmen, Praxen und Büros mit Formular, WhatsApp und individueller Rückmeldung.",
+          "Gewerbereinigung in Düsseldorf für Unternehmen, Praxen, Kanzleien und Gewerbeobjekte mit Formular, WhatsApp, Telefon und Angebotsprüfung.",
         path,
-        about: ["Gewerbereinigung Düsseldorf", "Büroreinigung Düsseldorf", "Praxisreinigung Düsseldorf", "Unterhaltsreinigung Düsseldorf"],
+        about: [
+          "Gewerbereinigung Düsseldorf",
+          "Büroreinigung Düsseldorf",
+          "Praxisreinigung Düsseldorf",
+          "Unterhaltsreinigung Düsseldorf",
+          "Reinigungsangebot prüfen Düsseldorf",
+        ],
         potentialActions: [
           { name: "Kostenlos anfragen", target: `${path}#kontakt`, type: "ContactAction" },
           { name: "Per WhatsApp Kontakt aufnehmen", target: whatsappHref, type: "ContactAction" },
+          { name: "Angebot prüfen lassen", target: "/angebot-vergleichen-duesseldorf", type: "Action" },
         ],
       }),
       {
@@ -192,6 +284,18 @@ function JsonLd() {
         provider: { "@id": `${company.url}/duesseldorf#localbusiness` },
         areaServed: "Düsseldorf und Umgebung",
         url: canonical,
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Gewerbliche Reinigung in Düsseldorf",
+          itemListElement: serviceCards.map((service) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: service.title,
+              url: `${company.url}${service.href}`,
+            },
+          })),
+        },
       },
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
@@ -224,26 +328,35 @@ export default function GewerbereinigungDuesseldorfPage() {
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover object-[62%_50%]"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.94)_0%,rgba(15,23,42,0.82)_52%,rgba(15,23,42,0.38)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.96)_0%,rgba(15,23,42,0.86)_48%,rgba(15,23,42,0.44)_100%)]" />
 
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 pb-14 pt-32 sm:px-8 sm:pt-36 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:pb-16 lg:pt-40">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 pb-14 pt-32 sm:px-8 sm:pt-36 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 lg:pb-16 lg:pt-40">
           <div className="self-center">
             <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
               <MapPin className="h-4 w-4" aria-hidden="true" />
               FLOXANT Düsseldorf
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Gewerbereinigung in Düsseldorf für Unternehmen, Praxen und Büros
+              Gewerbereinigung in Düsseldorf - klare Rückmeldung für Büros, Praxen und Unternehmen
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100">
-              FLOXANT unterstützt gewerbliche Kunden in Düsseldorf mit Reinigungslösungen,
-              die zu Objekt, Ablauf und Bedarf passen.
+              Senden Sie kurz Objektart, Fläche, gewünschten Turnus und Zeitfenster.
+              FLOXANT prüft den Bedarf und meldet sich mit einer realistischen Einschätzung zurück.
             </p>
+            <div className="mt-6 grid gap-2 sm:grid-cols-2">
+              {heroTrustItems.map((item) => (
+                <div key={item} className="flex items-center gap-2 text-sm font-bold text-slate-100">
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
+                  {item}
+                </div>
+              ))}
+            </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="#kontakt"
                 data-event="hero_cta_click"
                 data-contact-channel="form"
+                data-source="gewerbereinigung_hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 shadow-lg shadow-emerald-950/25 transition hover:bg-emerald-300"
               >
                 Kostenlos anfragen
@@ -253,25 +366,36 @@ export default function GewerbereinigungDuesseldorfPage() {
                 href={whatsappHref}
                 data-event="whatsapp_click"
                 data-contact-channel="whatsapp"
+                data-source="gewerbereinigung_hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200/40 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                Per WhatsApp Kontakt aufnehmen
+                WhatsApp
               </a>
               <a
                 href={`tel:${duesseldorfCompany.phoneRaw}`}
                 data-event="phone_click"
                 data-contact-channel="phone"
+                data-source="gewerbereinigung_hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
                 {duesseldorfCompany.phone}
               </a>
+              <Link
+                href="/angebot-vergleichen-duesseldorf"
+                data-event="offer_check_started"
+                data-source="gewerbereinigung_hero"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
+              >
+                Angebot prüfen
+                <FileSearch className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
 
           <div id="kontakt" className="scroll-mt-32">
-            <DuesseldorfB2BCleaningForm context="gewerbereinigung" />
+            <GewerbereinigungAdsForm />
           </div>
         </div>
       </section>
@@ -283,11 +407,11 @@ export default function GewerbereinigungDuesseldorfPage() {
               Was wir vorab wissen sollten
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Gute Reinigung beginnt mit den richtigen Eckdaten.
+              Gute Rückmeldung braucht keine lange Vorbereitung.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Sie müssen kein langes Leistungsverzeichnis erstellen. Eine kurze, konkrete Beschreibung
-              macht die Rückmeldung schneller und belastbarer.
+              Eine kurze Beschreibung reicht für den Start. Je konkreter Objekt, Turnus und Zeitfenster sind,
+              desto schneller lässt sich der passende nächste Schritt klären.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -308,8 +432,12 @@ export default function GewerbereinigungDuesseldorfPage() {
               Leistungen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Reinigung für gewerbliche Flächen in Düsseldorf.
+              Gewerbliche Reinigung für Düsseldorf, klar eingeordnet.
             </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Wählen Sie die passende Richtung oder senden Sie nur die Eckdaten. FLOXANT ordnet die Anfrage
+              nach Objekt, Nutzung und gewünschtem Reinigungsrhythmus ein.
+            </p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {serviceCards.map((service) => (
@@ -326,11 +454,11 @@ export default function GewerbereinigungDuesseldorfPage() {
               Vertrauen im Alltag
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-              Keine Standardsprache. Klare Abstimmung für Ihr Objekt.
+              Reinigung, die zu Ihrem Betrieb passen muss.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-300">
-              FLOXANT prüft, welche Lösung zu Ihrem Objekt und Ihren Abläufen passt. Dabei werden
-              Leistungsumfang, Zeitfenster und Grenzen vorab verständlich geklärt.
+              FLOXANT arbeitet nicht mit pauschalen Versprechen. Wichtig sind klare Zuständigkeiten,
+              erreichbare Ansprechpartner, realistische Zeitfenster und ein Umfang, der zum Objekt passt.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -340,6 +468,76 @@ export default function GewerbereinigungDuesseldorfPage() {
                 <h3 className="mt-4 text-lg font-black">{item.title}</h3>
                 <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">{item.text}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              FLOXANT Signature
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Extra abgestimmt, wenn das Objekt mehr Ruhe braucht.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Für repräsentative, sensible oder komplexere Objekte kann die Anfrage genauer geführt werden:
+              diskreter, strukturierter und mit klareren Zuständigkeiten.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            {signatureCards.map((card) => (
+              <Link
+                key={card.title}
+                href={card.href}
+                data-event={card.event || "service_card_click"}
+                data-source="gewerbereinigung_signature"
+                className="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-200 hover:bg-white hover:shadow-sm"
+              >
+                <card.Icon className="h-5 w-5 text-blue-700" aria-hidden="true" />
+                <h3 className="mt-4 text-lg font-black text-slate-950">{card.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{card.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+                  Ansehen
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Kosten realistisch einschätzen
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Der Preis entsteht aus dem Objekt, nicht aus einer Zahl im Voraus.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Damit ein Angebot belastbar ist, müssen Fläche, Nutzung, Turnus und Zugänglichkeit zusammenpassen.
+              FLOXANT prüft diese Punkte, bevor ein Leistungsumfang empfohlen wird.
+            </p>
+            <Link
+              href="#kontakt"
+              data-event="hero_cta_click"
+              data-source="gewerbereinigung_costs"
+              className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800"
+            >
+              Eckdaten senden
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {costFactors.map((factor) => (
+              <div key={factor} className="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm">
+                <Banknote className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
+                {factor}
+              </div>
             ))}
           </div>
         </div>
@@ -369,24 +567,25 @@ export default function GewerbereinigungDuesseldorfPage() {
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+      <section id="angebot-pruefen" className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Schon ein Angebot?
+              Bereits ein Angebot erhalten?
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
               Reinigungsangebot sachlich prüfen lassen.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
               Wenn bereits ein Angebot vorliegt, prüft FLOXANT kostenlos und unverbindlich, ob eine
-              wirtschaftlich interessante Alternative möglich ist. Ohne Unterbietungsversprechen.
+              passende Alternative möglich ist. Es geht nicht um leere Preisversprechen, sondern um
+              Objekt, Umfang, Turnus und realistische Machbarkeit.
             </p>
           </div>
           <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
             <div className="grid gap-3">
               {[
-                "Keine Preisgarantie und kein pauschales Unterbieten.",
+                "Kein pauschales Unterbieten und keine Preisgarantie.",
                 "Objekt, Umfang, Turnus und Zeitfenster werden individuell bewertet.",
                 "Sie erhalten eine klare Rückmeldung, wenn Angaben fehlen oder eine Alternative nicht sinnvoll ist.",
               ].map((item) => (
@@ -398,7 +597,7 @@ export default function GewerbereinigungDuesseldorfPage() {
             </div>
             <Link
               href="/angebot-vergleichen-duesseldorf"
-              data-event="hero_cta_click"
+              data-event="offer_check_started"
               data-source="gewerbereinigung_offer_check"
               className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800"
             >
@@ -418,6 +617,9 @@ export default function GewerbereinigungDuesseldorfPage() {
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
               Häufige Fragen zur Gewerbereinigung.
             </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Die wichtigsten Punkte für Unternehmen, Praxen, Kanzleien und Hausverwaltungen in Düsseldorf.
+            </p>
           </div>
           <div className="grid gap-3">
             {faqItems.map((item, index) => (

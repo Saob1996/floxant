@@ -277,6 +277,7 @@ export function ConversionEventReporter() {
   function handleSubmit(event: SubmitEvent) {
    const form = event.target instanceof HTMLFormElement ? event.target : null;
    if (!form) return;
+   if (form.dataset.trackSubmit === "success_only") return;
 
    trackConversion({
     event: form.dataset.event || "submit_form",
