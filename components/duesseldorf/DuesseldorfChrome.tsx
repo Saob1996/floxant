@@ -16,9 +16,9 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
   const whatsappHref = buildWhatsAppHref(
     duesseldorfCompany.phoneRaw,
     [
-      "Hallo FLOXANT Reinigung Düsseldorf,",
-      "ich möchte eine Reinigungsanfrage in Düsseldorf stellen.",
-      "Objektart, Ort, Fläche, Turnus und Fotos kann ich senden.",
+      "Hallo FLOXANT Düsseldorf,",
+      "ich möchte eine Anfrage in Düsseldorf stellen.",
+      "Service, Ort, Umfang, Termin und Fotos kann ich senden.",
     ].join("\n"),
   );
 
@@ -33,12 +33,12 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
               FLOXANT Düsseldorf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-              Reinigung für Düsseldorfer Objekte klar aufgestellt.
+              Umzug, Reinigung und Räumung in Düsseldorf klar aufgestellt.
             </h2>
             <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-              Düsseldorf ist der FLOXANT-Bereich für gewerbliche Reinigung, Büroreinigung,
-              Praxisreinigung, Unterhaltsreinigung, Treppenhausreinigung und anspruchsvolle Objekte.
-              Jede Anfrage wird nach Objekt, Umfang, Zugang, Turnus und Zeitfenster geprüft.
+              Düsseldorf ist ein eigener FLOXANT-Bereich für Umzug, Reinigung, Entrümpelung,
+              Haushaltsauflösung, Endreinigung und gewerbliche Reinigung. Jede Anfrage wird nach
+              Service, Objekt, Umfang, Zugang, Termin und Fotos geprüft.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
@@ -59,10 +59,10 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href="/duesseldorf/gewerbereinigung"
+                href="/duesseldorf/umzug"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white"
               >
-                Gewerbereinigung ansehen
+                Düsseldorf-Services ansehen
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -93,7 +93,7 @@ export function DuesseldorfChrome({ children }: { children: ReactNode }) {
                       {floxantCategoryDescriptions[category]}
                     </p>
                     <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                      {services.slice(0, 4).map((service) => (
+                      {services.slice(0, 6).map((service) => (
                         <FloxServiceCard
                           key={service.id}
                           service={service}

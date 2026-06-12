@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, MessageCircle, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileSearch, MessageCircle, ShieldCheck } from "lucide-react";
 
+import { FloxServiceCard } from "@/components/FloxServiceCard";
+import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { RegionSelector } from "@/components/RegionSelector";
+import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
+import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
+import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
+import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
 import { company } from "@/lib/company";
-import { floxantRegions, type FloxantRegion } from "@/lib/floxant-services";
+import { floxantRegions, getFeaturedServices, type FloxantRegion } from "@/lib/floxant-services";
+import { generatePageSEO } from "@/lib/seo";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
-import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
+import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
@@ -23,7 +30,7 @@ const whatsappHref = buildWhatsAppHref(
 const faqItems = [
   {
     q: "Warum trennt FLOXANT Düsseldorf und Regensburg?",
-    a: "Die Leistungen sind regional unterschiedlich ausgerichtet. Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten. Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabevorbereitung.",
+    a: "Düsseldorf und Regensburg haben eigene lokale Seiten, Stadtteilbezüge und Anfragewege. So bleiben Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung je Standort sauber getrennt.",
   },
   {
     q: "Was passiert nach meiner Anfrage?",
@@ -36,10 +43,25 @@ const faqItems = [
 ];
 
 export const metadata: Metadata = {
+  ...generatePageSEO({
+    path,
+    title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
+    description:
+      "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
+    keywords: [
+      "FLOXANT",
+      "Umzug Düsseldorf",
+      "Reinigung Düsseldorf",
+      "Entrümpelung Düsseldorf",
+      "Umzug Regensburg",
+      "Reinigung Regensburg",
+      "Entrümpelung Regensburg",
+    ],
+  }),
   metadataBase: new URL(company.url),
-  title: "FLOXANT | Düsseldorf Reinigung und Regensburg Umzug & Übergabe",
+  title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
   description:
-    "FLOXANT trennt klar nach Region: Düsseldorf für Gewerbe-, Büro- und Praxisreinigung. Regensburg für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
+    "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
   alternates: {
     canonical,
   },
@@ -48,9 +70,9 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "FLOXANT | Region wählen",
+    title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
     description:
-      "Düsseldorf: Reinigung für Unternehmen. Regensburg: Umzug, Entrümpelung und Übergabereinigung.",
+      "Düsseldorf und Regensburg: Service wählen, Fotos senden, Aufwand prüfen lassen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -62,9 +84,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FLOXANT | Region wählen",
+    title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
     description:
-      "Düsseldorf für Reinigung. Regensburg für Umzug, Entrümpelung und Übergabe.",
+      "Umzug, Reinigung, Entrümpelung und Endreinigung in Düsseldorf und Regensburg prüfen lassen.",
     images: ["/assets/floxant-hero-neu-gedacht.png"],
   },
 };
@@ -76,12 +98,16 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT",
         description:
-          "FLOXANT Startseite mit klarer Auswahl zwischen Düsseldorf Reinigung und Regensburg Umzug, Entrümpelung und Übergabe.",
+          "FLOXANT Startseite mit klarer Auswahl zwischen Düsseldorf und Regensburg für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung.",
         path,
         about: [
-          "FLOXANT Düsseldorf Reinigung",
+          "FLOXANT Düsseldorf",
+          "Umzug Düsseldorf",
+          "Entrümpelung Düsseldorf",
           "Gewerbereinigung Düsseldorf",
+          "Reinigung Düsseldorf",
           "Umzug Regensburg",
+          "Reinigung Regensburg",
           "Entrümpelung Regensburg",
           "Übergabereinigung Regensburg",
         ],
@@ -90,6 +116,14 @@ function JsonLd() {
           { name: "Services in Regensburg ansehen", target: "/regensburg", type: "Action" },
           { name: "Per WhatsApp Kontakt aufnehmen", target: whatsappHref, type: "ContactAction" },
         ],
+      }),
+      buildServiceJsonLd({
+        name: "FLOXANT lokale Dienstleistungen",
+        description:
+          "Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung für Düsseldorf und Regensburg mit klarer Anfrageprüfung.",
+        path,
+        serviceType: "Lokale Dienstleistungen",
+        areaServed: ["Düsseldorf", "Regensburg", "Bayern"],
       }),
       {
         "@type": "Organization",
@@ -121,11 +155,11 @@ const homepageAreas: Array<{
   {
     regionId: "duesseldorf",
     headline: "FLOXANT Düsseldorf",
-    text: "Reinigung für Unternehmen, Praxen, Kanzleien, Treppenhäuser und Gewerbeobjekte. Der Bereich bleibt klar bei professioneller Reinigung.",
+    text: "Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung in Düsseldorf mit eigener Stadtteil- und Anfrage-Logik.",
     points: [
-      "Gewerbliche Reinigung",
-      "Büro, Praxis und Objekt",
-      "Premium- und Spezialanfragen",
+      "Umzug und Entrümpelung",
+      "Reinigung und Gewerbereinigung",
+      "Haushaltsauflösung und Endreinigung",
     ],
   },
   {
@@ -140,10 +174,46 @@ const homepageAreas: Array<{
   },
 ];
 
+const homepageFeaturedServices: Array<{
+  regionId: FloxantRegion;
+  title: string;
+  text: string;
+}> = [
+  {
+    regionId: "duesseldorf",
+    title: "Services in Düsseldorf",
+    text: "Für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Übergabe.",
+  },
+  {
+    regionId: "regensburg",
+    title: "Umzug und Übergabe in Regensburg",
+    text: "Für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
+  },
+];
+
+const specialServiceGroups = [
+  {
+    title: "Objektbrief",
+    text: "Wenn Region, Leistung, Zugang, Fotos oder Zielzustand noch unsortiert sind.",
+    href: "/objektbrief",
+  },
+  {
+    title: "Angebot prüfen",
+    text: "Vorhandenes Angebot sachlich nach Umfang, Termin, Fotos und offenen Punkten einordnen.",
+    href: "/angebot-guenstiger-pruefen",
+  },
+  {
+    title: "Plan B",
+    text: "Wenn Termin, Anbieter oder Übergabe kippen und zuerst Machbarkeit geklärt werden muss.",
+    href: "/plan-b-service",
+  },
+] as const;
+
 export default function HomePage() {
   return (
     <main className="overflow-hidden bg-white text-slate-950">
       <JsonLd />
+      <LocalBusinessJsonLd />
 
       <section className="relative isolate min-h-[88svh] overflow-hidden bg-slate-950 text-white">
         <Image
@@ -167,9 +237,9 @@ export default function HomePage() {
               FLOXANT
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
-              FLOXANT ordnet Ihre Anfrage zuerst nach Region. Düsseldorf ist der Bereich für
-              gewerbliche Reinigung. Regensburg ist der Bereich für Umzug, Entrümpelung,
-              Haushaltsauflösung und Übergabevorbereitung.
+              FLOXANT ordnet Ihre Anfrage zuerst nach Region, Leistung und Ziel. In Düsseldorf
+              und Regensburg können Sie Umzug, Reinigung, Entrümpelung, Haushaltsauflösung,
+              Gewerbereinigung und Endreinigung klar getrennt anfragen.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -199,6 +269,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <SearchDominanceExperience variant="default" className="bg-white" />
+      <LocalSeoSignalPanel sectionId="lokale-signale" />
+      <TrustFlowSection sectionId="anfrage-ablauf" />
+
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <div>
@@ -209,15 +283,16 @@ export default function HomePage() {
               Ihre Anfrage kommt direkt zum passenden Bereich.
             </h2>
             <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              FLOXANT trennt Düsseldorf und Regensburg klar, damit Reinigung, Umzug und Übergabe
-              nicht durcheinanderlaufen. So wissen Sie schneller, welche Anfrage wirklich passt.
+              FLOXANT trennt Düsseldorf und Regensburg klar, damit Stadt, Leistung, Kostenfaktoren
+              und interne Links nicht durcheinanderlaufen. So wissen Sie schneller, welche Anfrage
+              wirklich passt.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               {
                 title: "Klare Region",
-                text: "Düsseldorf bleibt Reinigung. Regensburg bleibt Umzug, Räumung und Übergabe.",
+                text: "Düsseldorf und Regensburg haben eigene Seiten, eigene Stadtteile und eigene Anfragewege.",
               },
               {
                 title: "Weniger Rückfragen",
@@ -238,6 +313,44 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FloxantObjectBrief variant="homepage" className="border-b border-slate-200" />
+
+      <section id="besondere-services" className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Besondere Services
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Wenn die Anfrage nicht in eine Standardschublade passt.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Manche Fälle brauchen zuerst Sortierung: Fotos, Zugang, Preisrahmen, vorhandene
+              Angebote oder eine gekippte Übergabe. Diese Einstiege helfen, ohne falsche
+              Sofortzusage den nächsten Schritt zu klären.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {specialServiceGroups.map((group) => (
+              <Link
+                key={group.href}
+                href={group.href}
+                data-event="service_card_click"
+                data-source="homepage_special_services"
+                className="rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-200 hover:bg-white hover:shadow-sm"
+              >
+                <h3 className="text-xl font-black text-slate-950">{group.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{group.text}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+                  Öffnen
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -250,7 +363,7 @@ export default function HomePage() {
               </h2>
               <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
                 Auf der Leistungsseite finden Sie alle Angebote übersichtlich nach Region sortiert:
-                Reinigung in Düsseldorf, Umzug und Übergabe in Regensburg.
+                Umzug, Reinigung, Entrümpelung und Übergabe in Düsseldorf und Regensburg.
               </p>
             </div>
             <Link
@@ -299,6 +412,75 @@ export default function HomePage() {
                         <CheckCircle2 className="h-4 w-4 text-blue-700" aria-hidden="true" />
                         <p className="mt-2 text-sm font-bold leading-6 text-slate-700">{point}</p>
                       </div>
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+                Leistungen direkt finden
+              </p>
+              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+                Die wichtigsten FLOXANT Services auf einen Blick.
+              </h2>
+              <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
+                Wählen Sie den passenden Einstieg oder senden Sie ein vorhandenes Angebot zur
+                kostenlosen und unverbindlichen Prüfung. Jede Karte führt direkt zur passenden Seite.
+              </p>
+            </div>
+            <Link
+              href="/angebot-vergleichen-duesseldorf"
+              data-event="hero_cta_click"
+              data-source="homepage_offer_check"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
+            >
+              <FileSearch className="h-4 w-4" aria-hidden="true" />
+              Angebot prüfen lassen
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-8 xl:grid-cols-2">
+            {homepageFeaturedServices.map((area) => {
+              const services = getFeaturedServices(area.regionId, 6);
+              const region = floxantRegions[area.regionId];
+
+              return (
+                <section key={area.regionId} className="min-w-0">
+                  <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                      <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+                        {region.city}
+                      </p>
+                      <h3 className="mt-1 text-2xl font-black text-slate-950">{area.title}</h3>
+                      <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{area.text}</p>
+                    </div>
+                    <Link
+                      href={region.href}
+                      data-event="region_select"
+                      data-region={area.regionId}
+                      data-source="homepage_featured_services"
+                      className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-black text-slate-800 transition hover:bg-white hover:text-blue-800"
+                    >
+                      Bereich öffnen
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {services.map((service) => (
+                      <FloxServiceCard
+                        key={service.id}
+                        service={service}
+                        compact
+                        source={`homepage_featured_${area.regionId}`}
+                      />
                     ))}
                   </div>
                 </section>

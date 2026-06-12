@@ -180,10 +180,10 @@ export default function LeistungenPage() {
       <section className="border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            "Düsseldorf: Reinigung ohne Umzugstexte",
-            "Regensburg: Umzug, Räumung und Übergabe",
-            "Signature Services für besondere Abstimmung",
-            "Schnelle Hilfe, wenn erst Klarheit fehlt",
+            "Düsseldorf: Reinigung für Unternehmen, Praxen und Gewerbe",
+            "Regensburg: Umzug, Räumung, Haushaltsauflösung und Übergabe",
+            "FLOXANT Signature für diskrete oder abstimmungsintensive Fälle",
+            "Angebotsprüfung, wenn bereits ein Preis oder Angebot vorliegt",
           ].map((item) => (
             <div key={item} className="flex min-w-0 gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />

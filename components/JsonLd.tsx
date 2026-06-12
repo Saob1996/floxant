@@ -20,7 +20,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
         telephone: company.phoneRaw,
         logo: `${company.url}/logo_v10.png`,
         description:
-          "FLOXANT organisiert Umzug, Reinigung und Entrümpelung mit Schwerpunkt Regensburg und Einsatzgebiet Bayern.",
+          "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung und Angebotsprüfung in Düsseldorf und Regensburg.",
         knowsAbout: [
           "Umzug",
           "Reinigung",
@@ -118,6 +118,12 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "Bueroreinigung Regensburg Angebot",
           "Reinigungsplan Buero Regensburg",
           "Objektreinigung Regensburg",
+          "Umzug Düsseldorf",
+          "Entrümpelung Düsseldorf",
+          "Haushaltsauflösung Düsseldorf",
+          "Wohnungsauflösung Düsseldorf",
+          "Endreinigung Düsseldorf",
+          "Reinigung Düsseldorf",
           "Firmenreinigung Düsseldorf",
           "Büroreinigung Düsseldorf",
           "Firmenreinigung Düsseldorf",
@@ -169,6 +175,10 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "FLOXANT",
           "Bayern",
           "Düsseldorf Reinigung",
+          "Umzug Düsseldorf",
+          "Entrümpelung Düsseldorf",
+          "Haushaltsauflösung Düsseldorf",
+          "Endreinigung Düsseldorf",
           "Hotelreinigung Düsseldorf",
           "Büroreinigung Düsseldorf",
           "Firmenreinigung Düsseldorf",
@@ -186,7 +196,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           {
             "@type": "City",
             name: "Düsseldorf",
-            description: "Nur Reinigung und Entsorgung, keine Umzüge.",
+            description: "Eigene lokale Seiten für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung.",
           },
         ],
         subjectOf: [

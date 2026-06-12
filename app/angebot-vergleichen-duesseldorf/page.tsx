@@ -14,6 +14,7 @@ import {
 
 import { OfferComparisonAdsForm } from "@/components/OfferComparisonAdsForm";
 import { company, duesseldorfCompany } from "@/lib/company";
+import { getServiceVisual } from "@/lib/service-visuals";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   buildBreadcrumbJsonLd,
@@ -23,16 +24,22 @@ import {
 
 const path = "/angebot-vergleichen-duesseldorf";
 const canonical = `${company.url}${path}`;
-const title = "Reinigungsangebot prüfen lassen Düsseldorf | FLOXANT";
+const title = "Reinigungsangebot Düsseldorf | Umfang klar prüfen";
 const description =
-  "Reinigungsangebot erhalten? FLOXANT prüft es kostenlos und unverbindlich. Senden Sie Angebot oder Eckdaten und lassen Sie eine mögliche Alternative in Düsseldorf bewerten.";
-const heroImage = "/assets/gewerbereinigung/reinigungsanfrage-checkliste-duesseldorf.webp";
+  "Reinigungsangebot in Düsseldorf erhalten? FLOXANT prüft Umfang, Turnus, Objektart, Fotos und Preisrahmen kostenlos und unverbindlich. Antwort erhalten.";
+const heroVisual = getServiceVisual({
+  region: "duesseldorf",
+  slug: "angebot-vergleichen",
+  path,
+  serviceLabel: "Angebotsprüfung",
+});
+const heroImage = heroVisual.src;
 const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
-    "Hallo FLOXANT Reinigung Düsseldorf,",
-    "ich habe bereits ein Reinigungsangebot erhalten und möchte es kostenlos prüfen lassen.",
-    "Angebot, Objektart, Ort und Eckdaten kann ich senden.",
+    "Hallo FLOXANT,",
+    "ich habe ein Reinigungsangebot für Düsseldorf erhalten und möchte es kostenlos prüfen lassen.",
+    "Objektart, Stadtteil, Fläche, Turnus, Angebot oder Eckdaten kann ich senden.",
   ].join("\n"),
 );
 
@@ -42,6 +49,7 @@ const trustItems = [
   "Keine Unterbietungszusage",
   "Individuelle Bewertung",
   "WhatsApp oder Upload möglich",
+  "Für Düsseldorfer Reinigungsangebote",
 ] as const;
 
 const processSteps = [
@@ -50,12 +58,12 @@ const processSteps = [
     text: "PDF, JPG, PNG oder eine kurze Beschreibung reichen für den Start.",
   },
   {
-    title: "Umfang prüfen",
-    text: "FLOXANT betrachtet Leistung, Turnus, Objektart, Zeitfenster und offene Punkte.",
+    title: "Umfang und Turnus prüfen",
+    text: "FLOXANT betrachtet Objektart, Fläche, Reinigungsumfang, Turnus, Zeitfenster, Zugang und offene Punkte.",
   },
   {
-    title: "Alternative bewerten",
-    text: "Wir prüfen, ob eine passende und wirtschaftlich interessante Alternative möglich ist.",
+    title: "Rückmeldung erhalten",
+    text: "Sie erfahren, ob Angaben fehlen und ob FLOXANT für die Reinigungsanfrage eine passende Alternative anbieten kann.",
   },
   {
     title: "Unverbindlich entscheiden",
@@ -65,6 +73,14 @@ const processSteps = [
 
 const faqItems = [
   {
+    q: "Ist die Angebotsprüfung kostenlos?",
+    a: "Ja. Die FLOXANT Angebotsprüfung ist kostenlos und unverbindlich. Eine verbindliche Leistung entsteht erst nach separater Abstimmung.",
+  },
+  {
+    q: "Muss ich bereits ein Angebot haben?",
+    a: "Nein. Sie können ein Angebot hochladen, Eckdaten eintragen oder auch ohne vorhandenes Angebot eine erste Einschätzung anfragen.",
+  },
+  {
     q: "Wird FLOXANT das bestehende Angebot garantiert unterbieten?",
     a: "Nein. FLOXANT gibt keine Preisgarantie und verspricht kein Unterbieten. Jede Anfrage wird individuell nach Objekt, Umfang, Turnus und Rahmenbedingungen bewertet.",
   },
@@ -73,14 +89,66 @@ const faqItems = [
     a: "Sie können PDF, JPG oder PNG hochladen. Alternativ reichen auch die wichtigsten Eckdaten im Formular oder per WhatsApp.",
   },
   {
-    q: "Ist die Prüfung kostenlos?",
-    a: "Ja. Die Prüfung ist kostenlos und unverbindlich. Eine verbindliche Leistung entsteht erst nach separater Abstimmung.",
+    q: "Welche Leistungen kann FLOXANT prüfen?",
+    a: "Auf dieser Seite geht es um Reinigungsangebote in Düsseldorf: Gewerbereinigung, Büroreinigung, Praxisreinigung, Unterhaltsreinigung, Treppenhausreinigung, Endreinigung, Grundreinigung und ähnliche Reinigungsleistungen.",
   },
   {
-    q: "Für welche Leistungen gilt die Seite?",
-    a: "Für Reinigungsangebote in Düsseldorf, zum Beispiel Gewerbereinigung, Büroreinigung, Praxisreinigung, Unterhaltsreinigung, Treppenhausreinigung oder Premium-Reinigung.",
+    q: "Gilt diese Seite nur für Düsseldorf?",
+    a: "Ja. Diese Seite ist für Düsseldorfer Reinigungsangebote gedacht. Andere Angebotsprüfungen laufen über die separate allgemeine Angebotsprüfung.",
+  },
+  {
+    q: "Wie schnell erhalte ich Rückmeldung?",
+    a: "Das hängt von Umfang, Unterlagen und Rückfragen ab. FLOXANT meldet sich persönlich, sobald die Anfrage sinnvoll eingeordnet werden kann.",
+  },
+  {
+    q: "Kann ich auch ohne fertiges Angebot anfragen?",
+    a: "Ja. Dann reichen Stadtteil, Objektart, Fläche, gewünschter Turnus, Fotos, Zeitfenster und ein kurzer Preisrahmen für die erste Einordnung.",
   },
 ];
+
+const offerAreas = [
+  ["Gewerbereinigung", "Für Firmenflächen, Ladenflächen, Gewerbeobjekte, Sanitärbereiche und laufende Reinigungspläne."],
+  ["Büroreinigung", "Für Büros, Agenturen, Kanzleien, Küchen, Besprechungsräume und Reinigung nach Feierabend."],
+  ["Praxisreinigung", "Für Praxisflächen, Wartebereiche, Nebenräume und allgemeine Flächen ohne pauschale Spezialdesinfektion."],
+  ["Unterhaltsreinigung", "Für regelmäßige Reinigung mit Turnus, Raumliste, Schlüsselweg und klarer Zuständigkeit."],
+  ["Treppenhausreinigung", "Für Eingang, Treppenhaus, Kellerflur, Aufzug und Hausverwaltungsobjekte."],
+  ["Endreinigung und Grundreinigung", "Für Auszug, Leerstand, Übergabe, starke Verschmutzung oder gründliche Vorbereitung."],
+] as const;
+
+const checkedPoints = [
+  "Leistungsumfang",
+  "Objektart",
+  "Fläche",
+  "Termin und Dringlichkeit",
+  "Zusatzleistungen",
+  "Zugang und Schlüsselweg",
+  "Reinigungsintervall",
+  "Stadtteil oder PLZ",
+  "Fotos und vorhandener Preisrahmen",
+] as const;
+
+const answerBlocks = [
+  {
+    title: "Was passiert mit Ihrem Reinigungsangebot?",
+    text: "FLOXANT ordnet Umfang, Turnus, Objektart, Fläche, Zeitfenster, Zugang und Zusatzpunkte ein. Danach erhalten Sie eine klare Rückmeldung, ob eine passende Alternative möglich ist.",
+  },
+  {
+    title: "Welche Düsseldorfer Reinigungsangebote passen?",
+    text: "Passend sind Angebote für Gewerbereinigung, Büroreinigung, Praxisreinigung, Treppenhausreinigung, Unterhaltsreinigung, Endreinigung und Grundreinigung.",
+  },
+  {
+    title: "Wie läuft die Prüfung ab?",
+    text: "Sie senden Angebot, Fotos oder Eckdaten. FLOXANT prüft die Angaben und meldet sich mit Rückfragen oder einer ersten Einschätzung.",
+  },
+  {
+    title: "Was bedeutet passende Alternative?",
+    text: "Gemeint ist eine Lösung, die nach Umfang, Termin, Standort, Zustand und Anforderungen sinnvoll passen kann. Es ist keine Preisgarantie.",
+  },
+  {
+    title: "Warum sollte man ein bestehendes Angebot prüfen lassen?",
+    text: "Eine zweite Einschätzung hilft, Leistungen, offene Punkte und mögliche Alternativen vor einer Entscheidung besser zu verstehen.",
+  },
+] as const;
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
@@ -88,6 +156,10 @@ export const metadata: Metadata = {
   description,
   alternates: {
     canonical,
+    languages: {
+      "de-DE": canonical,
+      "x-default": canonical,
+    },
   },
   openGraph: {
     type: "website",
@@ -101,7 +173,7 @@ export const metadata: Metadata = {
         url: heroImage,
         width: 1200,
         height: 630,
-        alt: "Reinigungsangebot in Düsseldorf prüfen lassen",
+        alt: heroVisual.alt,
       },
     ],
   },
@@ -118,14 +190,19 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "Reinigungsangebot prüfen lassen Düsseldorf",
+        name: "FLOXANT Reinigungsangebot Düsseldorf prüfen",
         description,
         path,
         about: [
-          "Reinigungsangebot Düsseldorf",
-          "Angebot prüfen lassen",
-          "Gewerbereinigung Düsseldorf",
-          "Büroreinigung Düsseldorf",
+          "Reinigungsangebot Düsseldorf prüfen lassen",
+          "FLOXANT Angebotsprüfung Düsseldorf",
+          "Reinigungsangebot prüfen",
+          "Gewerbereinigung Düsseldorf Angebot",
+          "Büroreinigung Düsseldorf Angebot",
+          "Praxisreinigung Düsseldorf Angebot",
+          "Unterhaltsreinigung Düsseldorf Angebot",
+          "Treppenhausreinigung Düsseldorf Angebot",
+          "Endreinigung Düsseldorf Angebot",
         ],
         potentialActions: [
           { name: "Angebot prüfen lassen", target: `${path}#angebot-pruefen`, type: "ContactAction" },
@@ -146,15 +223,15 @@ function JsonLd() {
           addressLocality: duesseldorfCompany.city,
           addressCountry: duesseldorfCompany.countryCode,
         },
-        areaServed: "Düsseldorf und Umgebung",
+        areaServed: ["Düsseldorf und Umgebung"],
       },
       {
         "@type": "Service",
         "@id": `${canonical}#service`,
-        name: "Reinigungsangebot kostenlos prüfen lassen",
-        serviceType: "Angebotsprüfung für Reinigungsleistungen",
+        name: "FLOXANT Reinigungsangebot Düsseldorf prüfen",
+        serviceType: "Angebotsprüfung für Düsseldorfer Reinigungsangebote",
         provider: { "@id": `${company.url}/duesseldorf#localbusiness` },
-        areaServed: "Düsseldorf und Umgebung",
+        areaServed: ["Düsseldorf und Umgebung"],
         url: canonical,
       },
       buildBreadcrumbJsonLd([
@@ -182,7 +259,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
       <section className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-950 text-white">
         <Image
           src={heroImage}
-          alt="Checkliste für Reinigungsangebot in Düsseldorf"
+          alt={heroVisual.alt}
           fill
           priority
           sizes="100vw"
@@ -194,14 +271,15 @@ export default function AngebotVergleichenDuesseldorfPage() {
           <div className="self-center">
             <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
               <FileSearch className="h-4 w-4" aria-hidden="true" />
-              Düsseldorf und Umgebung
+              FLOXANT Angebotsprüfung
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Reinigungsangebot erhalten? Wir prüfen es kostenlos und unverbindlich.
+              Angebot erhalten? FLOXANT prüft kostenlos und unverbindlich.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100">
-              Senden Sie uns Ihr bestehendes Angebot oder die wichtigsten Eckdaten. Wir prüfen,
-              ob wir Ihnen eine wirtschaftlich interessante Alternative anbieten können.
+              Senden Sie uns Ihr bestehendes Reinigungsangebot oder die wichtigsten Eckdaten.
+              Wir prüfen Umfang, Turnus, Objektart, Fotos und Preisrahmen und melden zurück,
+              ob eine passende Alternative möglich ist.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {trustItems.map((item) => (
@@ -244,11 +322,13 @@ export default function AngebotVergleichenDuesseldorfPage() {
               Kein Preisversprechen
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Wir prüfen sachlich, ob eine passende Alternative möglich ist.
+              Ihr Reinigungsangebot besser einordnen.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Ein Vergleich ist nur sinnvoll, wenn Leistungsumfang, Turnus, Zeitfenster,
-              Objektart und Zusatzpunkte verständlich sind. Deshalb prüfen wir nicht nur den Preis.
+              FLOXANT prüft ein bestehendes Reinigungsangebot aus Düsseldorf nach Umfang,
+              Objektart, Fläche, Turnus, Zugang und offenen Punkten. Danach erhalten Sie
+              eine klare Rückmeldung, ob Angaben fehlen und ob FLOXANT eine passende
+              Reinigungsleistung anbieten kann.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -262,6 +342,58 @@ export default function AngebotVergleichenDuesseldorfPage() {
                 <ShieldCheck className="h-5 w-5 text-blue-700" aria-hidden="true" />
                 <p className="mt-3 text-sm font-bold leading-7 text-slate-700">{item}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Für welche Reinigungsangebote?
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Düsseldorf sauber getrennt.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Ob Dokument, Screenshot oder nur Eckdaten: Wichtig ist, dass Objektart,
+              Stadtteil, Fläche, Turnus, Zeitfenster und gewünschtes Ergebnis verständlich
+              werden. Der Upload ist hilfreich, aber nicht Pflicht.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {offerAreas.map(([title, text]) => (
+              <article key={title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <FileSearch className="h-5 w-5 text-blue-700" aria-hidden="true" />
+                <h3 className="mt-4 text-lg font-black text-slate-950">{title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Was wird geprüft?
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Nicht nur der Endpreis zählt.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Ein Angebot kann nur fair eingeordnet werden, wenn Leistung, Zugang, Termin,
+              Zustand und Zusatzpunkte nachvollziehbar sind.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {checkedPoints.map((item) => (
+              <div key={item} className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
+                {item}
+              </div>
             ))}
           </div>
         </div>
@@ -301,19 +433,45 @@ export default function AngebotVergleichenDuesseldorfPage() {
               Je klarer die Eckdaten, desto besser die Rückmeldung.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Nützlich sind Objektart, Fläche, gewünschter Turnus, Zeitfenster, Leistungsumfang,
-              Standort in Düsseldorf oder Umgebung und vorhandene Zusatzpositionen.
+              Nützlich sind Objektart, Fläche, gewünschter Zeitraum, Leistungsumfang,
+              Stadtteil in Düsseldorf, Zugang, Turnus, Fotos und vorhandene Zusatzpositionen.
             </p>
           </div>
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
             <div className="grid gap-3">
-              {["PDF/JPG/PNG hochladen", "Ort und Leistung nennen", "Unklarheiten beschreiben", "Telefon oder E-Mail für Rückfragen"].map((item) => (
+              {["PDF/JPG/PNG hochladen", "Stadtteil und Objektart nennen", "Eckdaten ohne Upload eintragen", "Telefon oder E-Mail für Rückfragen"].map((item) => (
                 <div key={item} className="flex items-center gap-3 rounded-lg bg-white px-4 py-3 text-sm font-bold text-slate-700">
                   <UploadCloud className="h-4 w-4 text-blue-700" aria-hidden="true" />
                   {item}
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Kurz beantwortet
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Klare Antworten zur Angebotsprüfung.
+            </h2>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {answerBlocks.map((item) => (
+              <article key={item.title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-5 text-sm font-semibold leading-7 text-amber-950">
+            Die Prüfung ersetzt keine rechtliche Beratung und enthält keine Preisgarantie.
+            Jede Anfrage wird individuell bewertet. Ob ein alternatives Angebot möglich ist,
+            hängt vom Umfang, Standort, Termin und den konkreten Anforderungen ab.
           </div>
         </div>
       </section>
@@ -375,9 +533,17 @@ export default function AngebotVergleichenDuesseldorfPage() {
             <Phone className="h-4 w-4" />
             {duesseldorfCompany.phone}
           </a>
-          <Link href="/duesseldorf/gewerbereinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
+            <Link href="/duesseldorf/gewerbereinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
             <ClipboardCheck className="h-4 w-4" />
             Gewerbereinigung Düsseldorf
+          </Link>
+          <Link href="/duesseldorf/bueroreinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
+            <ClipboardCheck className="h-4 w-4" />
+            Büroreinigung Düsseldorf
+          </Link>
+          <Link href="/duesseldorf/praxisreinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
+            <ClipboardCheck className="h-4 w-4" />
+            Praxisreinigung Düsseldorf
           </Link>
         </div>
       </section>

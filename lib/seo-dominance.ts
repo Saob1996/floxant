@@ -38,6 +38,7 @@ export const SEO_MONEY_ROUTES = [
  "/duesseldorf/reinigungskraft-buero",
  "/duesseldorf/reinigung-stadtteile-umgebung",
  "/duesseldorf/vielleicht-guenstiger",
+ "/angebot-vergleichen-duesseldorf",
  "/duesseldorf/bueroreinigung",
  "/duesseldorf/b2b-reinigung",
  "/duesseldorf/firmenreinigung",
@@ -61,6 +62,11 @@ export const SEO_MONEY_ROUTES = [
  "/duesseldorf/grundreinigung",
  "/duesseldorf/treppenhausreinigung",
  "/duesseldorf/endreinigung",
+ "/duesseldorf/umzug",
+ "/duesseldorf/entruempelung",
+ "/duesseldorf/haushaltsaufloesung",
+ "/regensburg/reinigung",
+ "/regensburg/gewerbereinigung",
  "/buchung",
  "/rechner",
  "/umzug",
@@ -149,6 +155,7 @@ export const SEO_SUPPORT_ROUTES = [
  "/duesseldorf/reinigungskraft-buero",
  "/duesseldorf/reinigung-stadtteile-umgebung",
  "/duesseldorf/vielleicht-guenstiger",
+ "/angebot-vergleichen-duesseldorf",
  "/duesseldorf/bueroreinigung",
  "/duesseldorf/b2b-reinigung",
  "/duesseldorf/firmenreinigung",
@@ -172,6 +179,11 @@ export const SEO_SUPPORT_ROUTES = [
  "/duesseldorf/grundreinigung",
  "/duesseldorf/treppenhausreinigung",
  "/duesseldorf/endreinigung",
+ "/duesseldorf/umzug",
+ "/duesseldorf/entruempelung",
+ "/duesseldorf/haushaltsaufloesung",
+ "/regensburg/reinigung",
+ "/regensburg/gewerbereinigung",
  "/buchung",
  "/gewerbereinigung-regensburg",
  "/bueroreinigung-regensburg",
@@ -325,9 +337,9 @@ const moneySnippets: Record<string, Snippet> = {
  intent: "Keller, Muellraum oder Nebenflaeche in Regensburg mit Fotos und Freigabe pruefen lassen",
 },
 "/buchung": {
-  title: "FLOXANT direkt anfragen | Regensburg & Bayern",
+  title: "FLOXANT direkt anfragen | Umzug, Reinigung & Räumung",
   description:
-   "Direkte FLOXANT Anfrage starten: Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung wählen, Fotos senden, Budget nennen und Rückmeldung erhalten.",
+   "Direkte FLOXANT Anfrage starten: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Entsorgung wählen, Fotos senden und Rückmeldung erhalten.",
   cluster: "conversion",
   intent: "Direkt aus Google Maps oder Google Search eine FLOXANT Anfrage starten",
  },
@@ -367,9 +379,9 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Reinigung nach Veranstaltung, Party, Firmenfeier oder Anlass anfragen",
  },
  "/gewerbereinigung-regensburg": {
- title: "Gewerbereinigung Regensburg | Büro, Praxis, Hotel",
+ title: "Gewerbereinigung Regensburg | Büro, Praxis & Angebot",
  description:
-   "Gewerbereinigung Regensburg für Büro, Praxis, Hotel, Fenster, Bau, Teppich, Treppenhaus und IT-Raum: Altstadt, Gewerbepark, Neutraubling, Fotos senden.",
+   "Gewerbereinigung Regensburg für Büro, Praxis, Hotel, Hausverwaltung und Treppenhaus: Fläche, Turnus, Zugang, Fotos und Starttermin senden.",
   cluster: "money",
   intent: "Gewerbereinigung in Regensburg für Büro, Praxis, Hotel, Treppenhaus, Glas, Bau oder IT-Raum anfragen",
  },
@@ -651,9 +663,9 @@ moneySnippets["/duesseldorf/putzfirma"] = {
 };
 
 moneySnippets["/duesseldorf/reinigung"] = {
- title: "Reinigung Düsseldorf | Firma, Putzdienst & Angebot",
+ title: "Reinigung Düsseldorf | Fotos senden, Aufwand klären",
  description:
-  "Reinigung Düsseldorf: Putzdienst, Reinigungsservice, Wohnungsreinigung, Büro, Hotel und Angebot mit Fotos einfach prüfen.",
+  "FLOXANT prüft Reinigung in Düsseldorf für Wohnung, Büro, Praxis und Übergabe. Stadtteil, Fläche, Fotos und Termin senden, Budget nennen.",
  cluster: "money",
  intent: "Reinigung in Düsseldorf für privat, Büro oder Firma anfragen",
 };
@@ -699,9 +711,9 @@ moneySnippets["/duesseldorf/objektreinigung"] = {
 };
 
 moneySnippets["/duesseldorf/hausverwaltung-reinigung"] = {
- title: "Hausverwaltung Reinigung Düsseldorf | WEG & Hilden",
+ title: "Hausverwaltung Reinigung Düsseldorf | WEG & Treppenhaus",
  description:
-  "Reinigung für Hausverwaltung, WEG, Hauseingang und Treppenhaus in Düsseldorf sowie Hilden nach Machbarkeit: Fotos, Turnus und Zugang senden.",
+  "Reinigung für Hausverwaltung, WEG, Hauseingang, Kellerflur und Treppenhaus in Düsseldorf: Etagen, Turnus, Schlüsselweg und Fotos senden.",
  cluster: "money",
  intent: "Hausverwaltungs- oder Treppenhausreinigung in Düsseldorf und Umgebung prüfen",
 };
@@ -763,9 +775,9 @@ moneySnippets["/duesseldorf/sonderreinigung"] = {
 };
 
 moneySnippets["/duesseldorf/gewerbereinigung"] = {
- title: "Gewerbeflächen reinigen Düsseldorf | Angebot",
+ title: "Gewerbereinigung Düsseldorf | Angebot klar prüfen",
  description:
-  "Gewerbeflächen reinigen Düsseldorf: Büro, Laden, Hotel, Studio, Sanitär, Turnus, Zeitfenster, Fotos und Angebot prüfen.",
+  "FLOXANT prüft Gewerbereinigung in Düsseldorf für Büro, Praxis, Kanzlei und Objekt. Raumliste, Turnus, Fotos und Angebot senden, Zeitfenster klären.",
  cluster: "money",
  intent: "Gewerbereinigung in Düsseldorf für Objekt oder Betrieb anfragen",
 };
@@ -843,11 +855,83 @@ moneySnippets["/duesseldorf/reinigung-stadtteile-umgebung"] = {
 };
 
 moneySnippets["/duesseldorf/vielleicht-guenstiger"] = {
- title: "Reinigungsangebot prüfen Düsseldorf | Alternative",
+ title: "Reinigungsangebot Düsseldorf | Kosten fair prüfen",
  description:
-  "Reinigungsangebot aus Düsseldorf hochladen: FLOXANT prüft Preis, Leistung, Fläche, Turnus, Fotos und eine mögliche wirtschaftlichere Alternative.",
+  "Reinigungsangebot aus Düsseldorf als PDF, Foto oder Screenshot senden: Preis, Leistung, Fläche, Turnus, Fotos und mögliche Alternative prüfen.",
  cluster: "conversion",
  intent: "Reinigungsangebot in Düsseldorf hochladen und Alternative prüfen lassen",
+};
+
+moneySnippets["/angebot-vergleichen-duesseldorf"] = {
+ title: "Reinigungsangebot Düsseldorf | Umfang klar prüfen",
+ description:
+  "Reinigungsangebot in Düsseldorf erhalten? FLOXANT prüft Umfang, Turnus, Objektart, Fotos und Preisrahmen kostenlos und unverbindlich. Antwort erhalten.",
+ cluster: "conversion",
+ intent: "Düsseldorfer Reinigungsangebot prüfen und eine klare zweite Einschätzung erhalten",
+};
+
+moneySnippets["/duesseldorf/umzug"] = {
+ title: "Umzugsfirma Düsseldorf | Fotos senden, Ablauf klären",
+ description:
+  "FLOXANT prüft Umzug in Düsseldorf mit Start, Ziel, Etage, Laufweg und Fotos. Eckdaten senden, Angebot realistisch klären, Rückmeldung erhalten.",
+ cluster: "money",
+ intent: "Umzug in Düsseldorf mit Fotos, Start, Ziel und Zugangsdaten anfragen",
+};
+
+moneySnippets["/duesseldorf/entruempelung"] = {
+ title: "Entrümpelung Düsseldorf | Fotos senden, Räume klären",
+ description:
+  "Entrümpelung in Düsseldorf für Wohnung, Keller und Objekt: Fotos, Menge, Zugang und Termin senden, Reinigung bei Bedarf mitprüfen, Ablauf klären.",
+ cluster: "money",
+ intent: "Entrümpelung in Düsseldorf für Wohnung, Keller oder Objekt nach Fotos anfragen",
+};
+
+moneySnippets["/duesseldorf/haushaltsaufloesung"] = {
+ title: "Haushaltsauflösung Düsseldorf | Ruhig klären",
+ description:
+  "Haushaltsauflösung in Düsseldorf für Wohnung, Haus oder Nachlass: Fotos, Freigabe, Zugang und Reinigung nach Räumung prüfen lassen, Termin klären.",
+ cluster: "money",
+ intent: "Haushaltsauflösung in Düsseldorf mit Freigabe, Fotos und ruhiger Vorprüfung anfragen",
+};
+
+moneySnippets["/regensburg/reinigung"] = {
+ title: "Reinigung Regensburg | Fotos senden, Aufwand klären",
+ description:
+  "FLOXANT prüft Reinigung in Regensburg für Wohnung, Büro, Übergabe und Umzug. Fläche, Zustand, Fotos und Termin senden, Budget nennen, Rückmeldung erhalten.",
+ cluster: "money",
+ intent: "Reinigung in Regensburg für Wohnung, Büro, Übergabe oder Umzug anfragen",
+};
+
+moneySnippets["/regensburg/umzug"] = {
+ title: "Umzugsfirma Regensburg | Bilder senden, Angebot klären",
+ description:
+  "Umzug in Regensburg anfragen: Start, Ziel, Etage, Laufweg, Volumen und Fotos senden. FLOXANT prüft Angebot, Ablauf und Rückmeldung sauber.",
+ cluster: "money",
+ intent: "Umzugsfirma in Regensburg mit Start, Ziel, Volumen und Fotos anfragen",
+};
+
+moneySnippets["/regensburg/entruempelung"] = {
+ title: "Entrümpelung Regensburg | Wohnung & Keller klären",
+ description:
+  "Entrümpelung in Regensburg für Wohnung, Keller, Garage oder Objekt: Fotos, Menge, Zugang, Entsorgung und Reinigung danach prüfen, Termin klären.",
+ cluster: "money",
+ intent: "Entrümpelung in Regensburg für Wohnung, Keller, Garage oder Objekt anfragen",
+};
+
+moneySnippets["/regensburg/haushaltsaufloesung"] = {
+ title: "Haushaltsauflösung Regensburg | Nachlass ruhig klären",
+ description:
+  "Haushaltsauflösung in Regensburg für Wohnung, Haus oder Nachlass: Fotos, Freigabe, Zugang, Räumung und Reinigung ruhig prüfen, Termin klären lassen.",
+ cluster: "money",
+ intent: "Haushaltsauflösung oder Nachlassräumung in Regensburg ruhig anfragen",
+};
+
+moneySnippets["/regensburg/gewerbereinigung"] = {
+ title: "Gewerbereinigung Regensburg | Raumliste senden",
+ description:
+  "Gewerbereinigung in Regensburg für Büro, Praxis, Kanzlei und Objekt: Raumliste, Turnus, Fotos und bestehendes Angebot senden, Starttermin klären.",
+ cluster: "money",
+ intent: "Gewerbereinigung in Regensburg für Büro, Praxis, Kanzlei oder Objekt anfragen",
 };
 
 moneySnippets["/duesseldorf/grundreinigung"] = {
@@ -1011,17 +1095,17 @@ moneySnippets["/"] = {
 };
 
 moneySnippets["/umzug-regensburg"] = {
- title: "Umzug Regensburg | Umzugsunternehmen & Angebot",
+ title: "Umzug Regensburg | Angebot, Fotos & Termin",
  description:
-  "Umzug Regensburg: Möbel, Etage, Strecke, Termin, Fotos und Preisrahmen senden. FLOXANT prüft Umzugsunternehmen, Transport und Übergabe.",
+  "Umzug in Regensburg anfragen: Möbelmenge, Etage, Laufweg, Strecke, Fotos, Termin und Preisrahmen senden. FLOXANT prüft den Ablauf.",
  cluster: "money",
  intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
 };
 
 moneySnippets["/reinigung-regensburg"] = {
- title: "Reinigung Regensburg | Professionell & Angebot",
+ title: "Reinigung Regensburg | Wohnung, Büro & Angebot",
  description:
-  "Professionelle Reinigung Regensburg: Putzdienst, Privathaushalt, Büro, Praxis, Grundreinigung und Angebot mit Fotos prüfen.",
+  "Reinigung in Regensburg für Wohnung, Büro, Praxis, Grundreinigung oder Übergabe: Fläche, Zustand, Fotos, Termin und Budget senden.",
  cluster: "money",
  intent: "Reinigung in Regensburg mit passender Spezialleistung, Fotos, Fläche und Termin anfragen",
 };
@@ -1091,9 +1175,9 @@ moneySnippets["/umzug-weiden"] = {
 };
 
 moneySnippets["/umzug-muenchen"] = {
- title: "Umzug München | günstig, privat & in der Nähe",
+ title: "Umzug München | Angebot prüfen & Termin planen",
  description:
-  "Umzug München, Privatumzug, Eilumzug oder Umzug in der Nähe: Volumen, Etage, Fotos, Strecke, Termin und Angebot prüfen.",
+  "Privatumzug, Fernumzug oder kurzfristiger Umzug in München: Volumen, Etage, Fotos, Strecke, Termin und Budget realistisch prüfen.",
  cluster: "money",
  intent: "Umzug in München mit Fotos, Termin und Preisrahmen anfragen",
 };
@@ -1179,9 +1263,9 @@ moneySnippets["/bueroumzug-nuernberg"] = {
 };
 
 moneySnippets["/entruempelung-regensburg"] = {
- title: "Entrümpelung Regensburg | Hausauflösung & Angebot",
+ title: "Entrümpelung Regensburg | Wohnung, Keller & Angebot",
  description:
-  "Entrümpelung, Hausauflösung, Wohnungsauflösung oder Container-Alternative Regensburg: Räume, Keller, Fotos, Zugang und Angebot prüfen.",
+  "Entrümpelung in Regensburg für Wohnung, Keller, Hausauflösung und Restmengen: Fotos, Menge, Zugang, Termin und Angebot prüfen.",
  cluster: "money",
  intent: "Entrümpelung, Haushaltsauflösung oder Wohnungsauflösung in Regensburg anfragen",
 };
@@ -1251,9 +1335,9 @@ moneySnippets["/kleintransport-regensburg"] = {
 };
 
 moneySnippets["/buchung"] = {
- title: "FLOXANT direkt anfragen | Regensburg & Bayern",
+ title: "FLOXANT direkt anfragen | Umzug, Reinigung & Räumung",
  description:
-  "Direkte FLOXANT Anfrage starten: Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung wählen, Fotos senden, Budget nennen und Rückmeldung erhalten.",
+  "Direkte FLOXANT Anfrage starten: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Entsorgung wählen, Fotos senden und Rückmeldung erhalten.",
  cluster: "conversion",
  intent: "FLOXANT direkt aus Google Maps oder Google Search buchen oder anfragen",
 };

@@ -4,6 +4,18 @@ import { Euro, TrendingDown, Target } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
+
+const STATIC_PRICE_SERVICES = ["umzug", "reinigung", "entsorgung"] as const;
+const STATIC_PRICE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return STATIC_PRICE_SERVICES.flatMap((service) =>
+    STATIC_PRICE_CITIES.map((city) => ({ slug: `${service}-${city}` })),
+  );
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
  const parts = slug.split('-');

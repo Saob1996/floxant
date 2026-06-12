@@ -48,7 +48,7 @@ export default async function EndreinigungRegensburgPage({ params }: PageProps) 
       highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-      heroImage="https://images.unsplash.com/photo-1581578731548-c64695cc6954?q=80&w=2070&auto=format&fit=crop"
+      heroImage="/assets/service-cleaning.png"
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Reinigung Regensburg", href: `/reinigung-regensburg` },
@@ -106,9 +106,9 @@ export default async function EndreinigungRegensburgPage({ params }: PageProps) 
         "handover_preparation",
         "move_cleaning_combo",
       ]}
-      authorityBadge="Endreinigung als Uebergabe-Cluster"
-      authorityTitle="Was vor einer Endreinigung in Regensburg geklaert werden sollte"
-      authoritySubtitle="FLOXANT staerkt diese Seite als klaren Einstieg: Flaeche, Zustand, Fotos, Termin, Budget und Wohnungsuebergabe werden konkret abgefragt statt nur allgemein beworben."
+      authorityBadge="Vor der Übergabe klären"
+      authorityTitle="Was vor einer Endreinigung in Regensburg wichtig ist"
+      authoritySubtitle="Für eine realistische Einschätzung braucht FLOXANT Fläche, Zustand, Fotos, Termin, Budgetrahmen und das Ziel der Wohnungsübergabe. So wird aus einer unklaren Anfrage ein nachvollziehbarer nächster Schritt."
     />
   );
 }

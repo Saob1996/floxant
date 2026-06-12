@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Star, Send, ShieldCheck } from 'lucide-react';
 import { processReviewWorkflow } from '@/lib/reputation-engine';
+import { company } from '@/lib/company';
 export default function SmartReviewPage() {
  const [rating, setRating] = useState<number>(0);
  const [hovered, setHovered] = useState<number>(0);
@@ -11,21 +12,14 @@ export default function SmartReviewPage() {
  const handleSubmit = async () => {
   if (rating === 0) return;
   setIsSubmitting(true);
-  // Process rating logic algorithm
-  const redirectUrl = await processReviewWorkflow({
+  await processReviewWorkflow({
    leadId: 'mock-lead-123',
    rating,
    feedback
   });
   setTimeout(() => {
-    if (rating >= 4) {
-     // Direct them to public Google Maps reviewing immediately
-     window.location.href = redirectUrl;
-    } else {
-     // Catch negative sentiment internally. Trap complete.
-     setIsSubmitting(false);
-     setIsSuccess(true);
-    }
+    setIsSubmitting(false);
+    setIsSuccess(true);
   }, 1000);
  };
  if (isSuccess) {
@@ -35,8 +29,28 @@ export default function SmartReviewPage() {
      <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
        <ShieldCheck size={40} className="text-emerald-400" />
      </div>
-     <h2 className="text-3xl font-light mb-4">Danke für Ihr Feedback.</h2>
-     <p className="text-white/50">Wir nehmen Ihre Kritik sehr ernst. Unser Qualitätsmanagement wird Ihren Fall umgehend prüfen, um Fehler in Zukunft auszuschließen.</p>
+     <h2 className="text-3xl font-light mb-4">Danke für Ihre Rückmeldung.</h2>
+     <p className="text-white/50">
+      Jede Rückmeldung hilft uns, Planung, Kommunikation und Ausführung zu verbessern.
+      Wenn Sie Ihre Erfahrung zusätzlich öffentlich teilen möchten, können Sie unser
+      Google-Profil öffnen. Das ist freiwillig und unabhängig von Ihrer Bewertung.
+     </p>
+     <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      <a
+       href={company.mapsSearchUrl}
+       target="_blank"
+       rel="noopener noreferrer"
+       className="rounded-xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
+      >
+       Google-Profil öffnen
+      </a>
+      <a
+       href="/kontakt"
+       className="rounded-xl border border-white/10 bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90"
+      >
+       Kontakt aufnehmen
+      </a>
+     </div>
     </div>
    </main>
   );
@@ -47,7 +61,7 @@ export default function SmartReviewPage() {
      <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium mb-8">
       Qualitätskontrolle
      </div>
-     <h1 className="text-3xl font-light mb-4">Wie war Ihr Umzug mit FLOXANT?</h1>
+     <h1 className="text-3xl font-light mb-4">Wie war Ihre Erfahrung mit FLOXANT?</h1>
      <p className="text-white/50 mb-10">Ehrliches Feedback hilft uns, Rückmeldung, Planung und Durchführung weiter zu verbessern.</p>
      <div className="flex justify-center gap-2 mb-10">
       {[1, 2, 3, 4, 5].map((star) => (

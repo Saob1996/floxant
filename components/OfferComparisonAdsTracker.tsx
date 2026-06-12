@@ -122,24 +122,6 @@ export function reportOfferComparisonAdsEvent(event: string, data: OfferComparis
     // Google Ads / GA Events dürfen die Bedienung nicht beeinflussen.
   }
 
-  const body = JSON.stringify(snapshot);
-  try {
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon("/api/conversion-events", new Blob([body], { type: "application/json" }));
-      return;
-    }
-  } catch {
-    // Fallback unten.
-  }
-
-  fetch("/api/conversion-events", {
-    method: "POST",
-    body,
-    headers: { "Content-Type": "application/json" },
-    keepalive: true,
-  }).catch(() => {
-    // Tracking ist nachrangig.
-  });
 }
 
 export function OfferComparisonSuccessTracker() {

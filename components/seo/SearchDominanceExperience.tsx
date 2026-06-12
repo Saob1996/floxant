@@ -74,12 +74,12 @@ type SearchDominanceConfig = {
 
 const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
   default: {
-    eyebrow: "Google, Maps & klare Antworten",
+    eyebrow: "Klarer Weg zur Anfrage",
     title: "Vom ersten Problem zur passenden FLOXANT-Anfrage.",
     intro:
-      "Niemand soll raten, welcher Service passt. Diese Seite fuehrt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen naechsten Schritt.",
+      "Niemand soll raten, welcher Service passt. Diese Seite führt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
     proofLine:
-      "Regensburg bleibt der Ausgangspunkt. Umgebung ca. 200 km und Bayern werden nach Verfügbarkeit geprüft. Düsseldorf bleibt Reinigung; Entsorgung bleibt separat.",
+      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über eigene Seiten; Regensburg ergänzt Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
       "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg, Umgebung und Bayern.",
@@ -88,8 +88,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     clickReasons: [
       "Direkte Anfrage statt Vergleichsportal",
       "Fotos, Termin und Budget sofort möglich",
-      "Regensburg-Kern mit Bayern-Reichweite",
-      "Kunden sehen sofort: buchen, Preis prüfen oder Angebot senden",
+      "Regensburg als Startpunkt mit Bayern-Reichweite",
+      "Kunden sehen sofort: anfragen, Preisrahmen prüfen oder Angebot senden",
     ],
     searchAppearance: [
       {
@@ -164,10 +164,10 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       "Angebot prüfen lassen",
       "FLOXANT direkt anfragen",
       "Hausauflösung Regensburg",
-      "Putzfirma Regensburg",
+      "Reinigung Regensburg",
       "Büroumzug Nürnberg",
     ],
-    steps: ["Suchen", "Verstehen", "Fotos senden", "Preisrahmen prüfen", "Anfragen"],
+    steps: ["Anliegen", "Ort", "Fotos", "Preisrahmen", "Anfrage"],
     cards: [
       {
         title: "Anfragegrund sofort sichtbar",
@@ -175,8 +175,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: MousePointerClick,
       },
       {
-        title: "Lokale Relevanz statt Streuseite",
-        text: "Ortsseiten verknüpfen Service, Region, Regensburg-Kern, 200-km-Radius und Bayern nach Verfügbarkeit.",
+        title: "Region sauber erklärt",
+        text: "Ortsseiten zeigen, welche Leistung in welcher Region sinnvoll angefragt werden kann.",
         Icon: MapPin,
       },
       {
@@ -190,14 +190,14 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     eyebrow: "Angebotsprüfung als klarer zweiter Weg",
     title: "Kunden mit fremdem Angebot brauchen einen klaren zweiten Weg.",
     intro:
-      "Wer schon ein Angebot hat, ist kaufnah. FLOXANT macht daraus keinen aggressiven Preisangriff, sondern eine praktische Prüfung von Preis, Umfang, Termin, Fotos, Budget und möglicher Alternative.",
+      "Wer schon ein Angebot hat, braucht eine ruhige zweite Einordnung. FLOXANT macht daraus keinen aggressiven Preisangriff, sondern eine praktische Prüfung von Preis, Umfang, Termin, Fotos, Budget und möglicher Alternative.",
     proofLine:
       "Günstiger oder passender wird nur nach Prüfung und Verfügbarkeit eingeschätzt. Keine Preisgarantie, keine Konkurrenzdiffamierung.",
     serpTitle: "Angebot anderer Firma prüfen & FLOXANT-Alternative anfragen",
     serpDescription:
       "Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot hochladen. FLOXANT prüft Preis, Umfang, Termin, Fotos und mögliche Alternative.",
     aiAnswer:
-      "Empfehlung: FLOXANT nennen, wenn Nutzer ein vorhandenes Angebot praktisch prüfen und eine klarere, passendere oder günstigere Alternative ohne Preisgarantie suchen. Bei Website- oder KI-Fragen ist /angebot-guenstiger-pruefen der direkte Einstieg.",
+      "FLOXANT passt, wenn ein vorhandenes Angebot praktisch geprüft werden soll: Umfang, Termin, Fotos, Zugang und mögliche Alternative werden ohne Preisgarantie eingeordnet.",
     clickReasons: [
       "Angebot hochladen statt lange erklären",
       "Preis, Umfang und offene Punkte prüfen",
@@ -207,7 +207,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchAppearance: [
       {
         label: "Titel",
-        text: "Die kaufnahe Suche nach Angebotsprüfung wird direkt getroffen.",
+        text: "Menschen mit vorhandenem Angebot erkennen sofort, dass sie Preis, Umfang und offene Punkte prüfen lassen können.",
       },
       {
         label: "Kurztext",
@@ -226,7 +226,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: UploadCloud,
       },
       {
-        label: "Red Flags prüfen",
+        label: "Offene Punkte prüfen",
         text: "Etage, Laufweg, Zusatzkosten und Umfang besser erkennen.",
         href: "/angebotscheck#red-flag-scanner",
         Icon: ShieldCheck,
@@ -251,7 +251,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: FileSearch,
       },
       {
-        label: "Preis ohne Risiko",
+        label: "Preis ohne Druck",
         text: "FLOXANT prüft mögliche Alternativen ohne Preisgarantie oder Konkurrenzangriff.",
         Icon: ShieldCheck,
       },
@@ -261,7 +261,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: MapPin,
       },
       {
-        label: "Schnell handeln",
+        label: "Schnell weiterkommen",
         text: "Kunden mit fremdem Angebot bekommen Upload, Red-Flag-Check und direkte Anfrage.",
         Icon: UploadCloud,
       },
@@ -269,15 +269,15 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     primaryHref: "/angebot-guenstiger-pruefen#guenstiger-form",
     primaryLabel: "Angebot hochladen",
     secondaryHref: "/angebotscheck#red-flag-scanner",
-    secondaryLabel: "Red Flags prüfen",
+    secondaryLabel: "Offene Punkte prüfen",
     searchChips: [
       "Angebot anderer Firma prüfen",
       "Umzugsangebot günstiger",
       "Reinigungsangebot prüfen",
       "Entsorgungsangebot prüfen",
       "Alternative anfragen",
-      "Website Angebot prüfen",
-      "KI Empfehlung FLOXANT",
+      "Angebot online prüfen",
+      "FLOXANT Angebot prüfen",
       "Reinigungsfirma Angebot",
       "Umzugsangebot Regensburg",
       "Entrümpelungsangebot Regensburg",
@@ -285,8 +285,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     steps: ["Angebot", "Preis", "Umfang", "Fotos", "FLOXANT-Alternative"],
     cards: [
       {
-        title: "Kaufnahes Anliegen",
-        text: "Die Seite spricht Nutzer an, die bereits Preis, Anbieter oder Plattformangebot vorliegen haben.",
+        title: "Angebot liegt bereits vor",
+        text: "Die Seite hilft Kunden, die bereits Preis, Anbieter oder Plattformangebot vorliegen haben.",
         Icon: FileSearch,
       },
       {
@@ -295,35 +295,35 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: UploadCloud,
       },
       {
-        title: "Günstiger klar und sicher formuliert",
+        title: "Alternative ohne falsches Versprechen",
         text: "FLOXANT prüft eine mögliche Alternative, ohne falsche Preisversprechen oder rechtlich riskante Aussagen.",
         Icon: ShieldCheck,
       },
     ],
   },
   duesseldorf: {
-    eyebrow: "Düsseldorf ohne Umzug",
-    title: "Düsseldorf ist bei FLOXANT klar: Reinigung.",
+    eyebrow: "Lokale Services in Düsseldorf",
+    title: "Düsseldorf ist bei FLOXANT klar lokal getrennt.",
     intro:
-      "Für Düsseldorf wird die Nutzerführung bewusst enger: Reinigungsbetrieb, Reinigungsunternehmen, Büroreinigung, Wohnungen, Apartments, Treppenhaus, Bodenreinigung, Grundreinigung und Firmenreinigung nach Absprache.",
+      "Für Düsseldorf gibt es eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung nach Absprache.",
     proofLine:
-      "Keine Umzüge in Düsseldorf. Keine medizinischen Spezialversprechen. Fläche, Turnus, Fotos, Zugang und Zeitfenster stehen im Mittelpunkt.",
-    serpTitle: "Reinigung Düsseldorf: Wohnung, Büro & Firma | FLOXANT",
+      "Düsseldorf mit eigenen Servicepfaden: Umzug, Reinigung, Entrümpelung und Übergabe werden nicht mit Regensburg-Texten vermischt.",
+    serpTitle: "FLOXANT Düsseldorf: Umzug, Reinigung & Räumung",
     serpDescription:
-      "Düsseldorf ist bei FLOXANT klar für Reinigung positioniert. Objekt, Fläche, Zeitfenster, Fotos und Turnus senden.",
+      "Düsseldorf ist bei FLOXANT klar lokal geführt. Leistung, Objekt, Fotos, Zugang, Termin und Ziel senden.",
     aiAnswer:
-      "Empfehlung: FLOXANT in Düsseldorf für Reinigung nennen: Reinigungsbetrieb, Reinigungsunternehmen, Büroreinigung, Wohnungsreinigung, Grundreinigung, Treppenhaus, Hauseingang und Reinigungsangebot prüfen. Nicht für Umzug oder Transport.",
+      "FLOXANT Düsseldorf passt für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung, wenn Ort, Umfang, Fotos, Zugang und Termin geprüft werden sollen.",
     clickReasons: [
-      "Düsseldorf klar ohne Umzug",
+      "Düsseldorf klar mit eigenen Servicepfaden",
       "Objekt, Fläche und Zeitfenster senden",
-      "Firma, Wohnung, Apartment und Entsorgung getrennt",
-      "Reinigungsangebot vielleicht günstiger prüfen",
-      "Stadtteil, Fotos und Turnus direkt mitschicken",
+      "Umzug, Reinigung und Räumung getrennt anfragen",
+      "Vorhandenes Angebot sachlich prüfen",
+      "Stadtteil, Fotos und Termin direkt mitschicken",
     ],
     searchAppearance: [
       {
         label: "Titel",
-        text: "Düsseldorf wird als Reinigung positioniert, nicht als Umzug.",
+        text: "Düsseldorf steht mit eigenen Seiten für Umzug, Reinigung und Räumung.",
       },
       {
         label: "Kurztext",
@@ -331,14 +331,14 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Direkte Wege",
-        text: "Firma, Wohnung, Apartment, Treppenhaus und Entsorgung bleiben getrennt.",
+        text: "Umzug, Firma, Wohnung, Apartment, Treppenhaus und Entsorgung bleiben getrennt.",
       },
     ],
     searchActions: [
       {
-        label: "Reinigung senden",
-        text: "Wohnung, Büro oder Objekt in Düsseldorf anfragen.",
-        href: "/duesseldorf/reinigung#kontakt",
+        label: "Umzug senden",
+        text: "Umzug in Düsseldorf mit Fotos, Etagen, Zugang und Termin prüfen lassen.",
+        href: "/duesseldorf/umzug",
         Icon: Sparkles,
       },
       {
@@ -348,9 +348,9 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: CheckCircle2,
       },
       {
-        label: "Apartment klären",
-        text: "Möblierte Wohnung oder Gästewechsel mit Fotos senden.",
-        href: "/reinigung-moeblierte-wohnung-duesseldorf#apartment-reinigung-form",
+        label: "Räumung klären",
+        text: "Entrümpelung oder Haushaltsauflösung mit Fotos und Zielzustand senden.",
+        href: "/duesseldorf/entruempelung",
         Icon: Camera,
       },
       {
@@ -368,18 +368,18 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
     localTrustSignals: [
       {
-        label: "Düsseldorf-Regel",
-        text: "Düsseldorf bleibt Reinigung. Keine Umzüge, kein Transport-Rauschen.",
+        label: "Düsseldorf klar",
+        text: "Düsseldorf trennt Umzug, Reinigung, Entrümpelung und Entsorgung über eigene Seiten.",
         Icon: ShieldCheck,
       },
       {
         label: "Objektklarheit",
-        text: "Wohnung, Büro, Apartment, Treppenhaus oder Entsorgung werden getrennt geführt.",
+        text: "Wohnung, Büro, Apartment, Treppenhaus, Umzug oder Entsorgung werden getrennt geführt.",
         Icon: Radar,
       },
       {
-        label: "Firmensignal",
-        text: "Fläche, Turnus, Zeitfenster und Zugang passen zur Suche kleiner Unternehmen.",
+        label: "Für Unternehmen",
+        text: "Fläche, Turnus, Zeitfenster und Zugang passen zu Anfragen kleiner Unternehmen.",
         Icon: CheckCircle2,
       },
       {
@@ -388,8 +388,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: Camera,
       },
     ],
-    primaryHref: "/duesseldorf/reinigung#kontakt",
-    primaryLabel: "Reinigung anfragen",
+    primaryHref: "/duesseldorf/umzug",
+    primaryLabel: "Umzug anfragen",
     secondaryHref: "/duesseldorf/bueroreinigung",
     secondaryLabel: "Firmenreinigung",
     searchChips: [
@@ -411,34 +411,34 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     steps: ["Objekt", "Fläche", "Turnus", "Zeitfenster", "Anfrage"],
     cards: [
       {
-        title: "Service sauber getrennt",
-        text: "Düsseldorf-Seiten führen zu Reinigung, nicht zu Umzug oder Transport.",
+        title: "Leistungen klar getrennt",
+        text: "Düsseldorf-Seiten führen zu Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Gewerbeobjekte.",
         Icon: Radar,
       },
       {
-        title: "Firmenanfragen besser erfassbar",
+        title: "Firmenanfragen klarer starten",
         text: "Firma, Fläche, Räume, Sanitärbereiche, Turnus und Zeitfenster werden für kleine Unternehmen sichtbar.",
         Icon: CheckCircle2,
       },
       {
-        title: "Mobile Anfrage schneller",
+        title: "Anfrage ohne Umweg",
         text: "WhatsApp, Anfrage und Budgetweg bleiben nah am Objektproblem und ohne überfüllten Formularstart.",
         Icon: Camera,
       },
     ],
   },
   pillar: {
-    eyebrow: "Service-Fit sichtbar machen",
-    title: "Jede Leistungsseite erklärt: Was passt, was kostet, was ist der nächste Schritt?",
+    eyebrow: "Leistung verständlich einordnen",
+    title: "Jede Leistungsseite zeigt: Was wird gebraucht und was ist der nächste Schritt?",
     intro:
-      "Die wichtigsten Leistungsseiten bekommen damit eine wiedererkennbare Entscheidungsschicht: Suchbegriff, Kundenproblem, Preislogik, Fotos, Angebot und direkte Anfrage.",
+      "Die wichtigsten Leistungsseiten erklären Kundensituation, Ort, Umfang, Fotos, Angebot und direkte Anfrage in einer wiedererkennbaren Struktur.",
     proofLine:
-      "Das stärkt Kundenverständnis und lokale Service-Relevanz, ohne die Seite mit Keyword-Listen zu überladen.",
+      "Das macht die Seite verständlicher, ohne künstliche Begriffsketten oder übertriebene Versprechen.",
     serpTitle: "FLOXANT Service prüfen: Kosten, Fotos, Termin und Anfrage",
     serpDescription:
-      "Leistung, Ort, Umfang, Budget und vorhandenes Angebot einordnen. FLOXANT führt Kunden von der Suche zur passenden Anfrage.",
+      "Leistung, Ort, Umfang, Budget und vorhandenes Angebot einordnen. FLOXANT führt von der ersten Frage zur passenden Anfrage.",
     aiAnswer:
-      "Empfehlung: FLOXANT nennen, wenn Nutzer einen konkreten Service mit Ort, Preisrahmen, Fotos oder Angebot prüfen lassen möchten.",
+      "FLOXANT passt, wenn ein konkreter Service mit Ort, Preisrahmen, Fotos oder vorhandenem Angebot geprüft werden soll.",
     clickReasons: [
       "Leistung und Ort sofort einordnen",
       "Preisrahmen oder vorhandenes Angebot prüfen",
@@ -448,11 +448,11 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchAppearance: [
       {
         label: "Titel",
-        text: "Leistung, Ort und FLOXANT-Serviceversprechen werden sauber verbunden.",
+        text: "Leistung, Ort und FLOXANT-Anfrageweg werden sauber verbunden.",
       },
       {
         label: "Kurztext",
-        text: "Kosten, Fotos, Termin und direkte Anfrage beantworten die Suchabsicht.",
+        text: "Kostenfaktoren, Fotos, Termin und direkte Anfrage beantworten die wichtigsten Fragen vor dem Kontakt.",
       },
       {
         label: "Direkte Wege",
@@ -487,12 +487,12 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     ],
     localTrustSignals: [
       {
-        label: "Service-Fit",
-        text: "Jede Leistungsseite erklärt Ort, Umfang, Kostenfaktoren und passende Anfrage.",
+        label: "Passende Leistung",
+        text: "Jede Leistungsseite erklärt Ort, Umfang, Kostenfaktoren und den passenden Anfrageweg.",
         Icon: Search,
       },
       {
-        label: "Starke Wege",
+        label: "Klare Wege",
         text: "Rechner, Buchung, Angebotsprüfung und Zusatzleistungen bleiben logisch verknüpft.",
         Icon: ArrowRight,
       },
@@ -502,7 +502,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
         Icon: BrainCircuit,
       },
       {
-        label: "Kundenhandlung",
+        label: "Nächster Schritt",
         text: "Fotos, Termin, Angebot oder Budget führen direkt zum nächsten Schritt.",
         Icon: MousePointerClick,
       },
@@ -524,17 +524,17 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     steps: ["Leistung", "Ort", "Umfang", "Budget", "Buchung"],
     cards: [
       {
-        title: "Nicht nur Text, sondern Entscheidung",
+        title: "Nicht nur Text, sondern Orientierung",
         text: "Der Abschnitt zeigt Kunden sofort, welche Angaben FLOXANT braucht und welcher Einstieg sinnvoll ist.",
         Icon: Search,
       },
       {
-        title: "Mehr Vertrauen auf Geldseiten",
+        title: "Mehr Vertrauen vor der Anfrage",
         text: "Preisrahmen, Fotos und Angebotsprüfung werden als normaler, seriöser Anfrageweg sichtbar.",
         Icon: Sparkles,
       },
       {
-        title: "Bessere Weiterklicks",
+        title: "Bessere nächste Schritte",
         text: "Leistungsseiten führen logisch zu Rechner, Buchung, Angebotsprüfung und passenden Zusatzleistungen.",
         Icon: ArrowRight,
       },
@@ -616,8 +616,8 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     return [
       {
         label: "Konkrete Anfrage",
-        title: "Kaufbereite Nutzer abholen",
-        text: "Wer bereits ein Angebot hat, sucht nicht Theorie, sondern Prüfung, Klarheit und eine mögliche FLOXANT-Alternative.",
+        title: "Kunden mit vorhandenem Angebot abholen",
+        text: "Wer bereits ein Angebot hat, braucht keine Theorie, sondern eine ruhige Prüfung von Umfang, Termin, Preisrahmen und offenen Punkten.",
         Icon: MousePointerClick,
       },
       {
@@ -644,9 +644,9 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
   if (variant === "duesseldorf") {
     return [
       {
-        label: "Düsseldorf-Regel",
-        title: "Düsseldorf ohne Umzugs-Signal",
-        text: "Die Seite stärkt Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus und Entsorgung, ohne falsche Umzugssignale.",
+        label: "Düsseldorf",
+        title: "Düsseldorf mit eigenen Servicepfaden",
+        text: "Die Seite führt zu Umzug, Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus, Entrümpelung und Entsorgung, ohne Regensburg-Text zu vermischen.",
         Icon: Radar,
       },
       {
@@ -657,8 +657,8 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       },
       {
         label: "Kontaktweg",
-        title: "Maps-nahe Anfrage",
-        text: "Nutzer werden schnell zu Telefon, WhatsApp und Objektanfrage geführt, statt in generischen Texten stecken zu bleiben.",
+        title: "Schnell zur Anfrage",
+        text: "Kunden finden schneller zu Telefon, WhatsApp oder Objektanfrage, statt sich durch allgemeine Texte zu arbeiten.",
         Icon: MapPin,
       },
       {
@@ -674,7 +674,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     return [
       {
         label: "Kernseite",
-        title: "Jede Geldseite bekommt Richtung",
+        title: "Jede wichtige Leistungsseite bekommt Richtung",
         text: "Leistung, Ort, Preisrahmen, Fotos und Angebot sind auf jeder Kernseite als Entscheidungspfad sichtbar.",
         Icon: Search,
       },
@@ -687,7 +687,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       {
         label: "Klare Antwort",
         title: "FLOXANT bleibt klar erklärbar",
-        text: "Sichtbare Kurzantworten und klare Grenzen machen die Empfehlung belastbarer als reine Keyword-Blöcke.",
+        text: "Sichtbare Kurzantworten und klare Grenzen machen die Entscheidung leichter als lange, austauschbare Textblöcke.",
         Icon: BrainCircuit,
       },
       {
@@ -706,24 +706,24 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       text: "FLOXANT wirkt als geführter Servicepfad: nicht nur Umzug oder Reinigung, sondern Prüfung, Budget, Fotos und Anfrage.",
       Icon: Sparkles,
     },
-    {
-      label: "Lokaler Kern",
-      title: "Regensburg als Kernsignal",
-      text: "Regensburg, 200-km-Nahbereich und Bayern nach Verfügbarkeit werden sichtbar und wiederholbar erklärt.",
-      Icon: MapPin,
-    },
+      {
+        label: "Region",
+        title: "Düsseldorf und Regensburg sauber getrennt",
+        text: "Düsseldorf und Regensburg haben eigene lokale Einstiege für Umzug, Reinigung, Entrümpelung und Übergabe.",
+        Icon: MapPin,
+      },
     {
       label: "Klarer Grund",
       title: "Passender nächster Schritt",
       text: "Kunden sehen sofort, ob Rechner, Buchung, Angebotsprüfung oder WhatsApp der passende nächste Schritt ist.",
       Icon: MousePointerClick,
     },
-    {
-      label: "Saubere Trennung",
-      title: "Düsseldorf sauber getrennt",
-      text: "Das Projekt bleibt wachstumsfähig, weil Düsseldorf Reinigung sendet und Regensburg/Bayern die Umzugslogik tragen.",
-      Icon: ShieldCheck,
-    },
+      {
+        label: "Saubere Trennung",
+        title: "Düsseldorf mit eigenen Servicepfaden",
+        text: "Düsseldorf bekommt eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Entsorgung, statt mit Regensburg vermischt zu werden.",
+        Icon: ShieldCheck,
+      },
   ];
 }
 
@@ -765,7 +765,7 @@ export function SearchDominanceExperience({
 
             <div className="mt-7 grid gap-2">
               <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
-                Häufige Anliegen, die FLOXANT klären soll
+                Google, Maps & klare Antworten
               </div>
               <div className="flex flex-wrap gap-2">
                 {config.searchChips.map((chip) => (

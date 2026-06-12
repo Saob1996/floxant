@@ -120,7 +120,7 @@ const boundaries = [
   "keine Konkurrenzdiffamierung",
   "keine Garantie, dass Uebergabe oder Umzug gerettet werden",
   "keine Rechtsberatung und keine offizielle Abnahme",
-  "Düsseldorf nur fuer Reinigung und Entsorgung, nicht fuer Umzug",
+  "Düsseldorf servicebezogen ueber eigene lokale Seiten routen",
 ];
 
 const faqItems = [
@@ -154,7 +154,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das auch in Duesseldorf?",
-    a: "In Duesseldorf prueft FLOXANT nur kurzfristige Reinigung und Entsorgung. Es wird kein Umzugsservice fuer Duesseldorf positioniert.",
+    a: "In Duesseldorf prueft FLOXANT servicebezogen ueber eigene lokale Seiten, inklusive kurzfristiger Reinigung, Entsorgung und Umzug.",
   },
   {
     q: "Kann ich per WhatsApp anfragen?",
@@ -234,7 +234,7 @@ export default function SchadensbegrenzungPage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Bayern nach Verfuegbarkeit</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf nur Reinigung/Entsorgung</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf servicebezogen</span>
                 <span className="rounded-full border border-red-200 bg-red-50 px-3 py-2 text-red-700">Keine Notdienstgarantie</span>
               </div>
             </div>
@@ -378,7 +378,7 @@ export default function SchadensbegrenzungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-red-700">Akut-Anfrage</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Problem, Deadline, Fotos und offene Punkte senden</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                FLOXANT prueft kurzfristige Anfragen vor allem im Raum Regensburg und Umgebung. Bayern wird nach Verfuegbarkeit geprueft. In Duesseldorf nur Reinigung und Entsorgung, keine Umzugspositionierung.
+                FLOXANT prueft kurzfristige Anfragen im Raum Regensburg, in Bayern nach Verfuegbarkeit und in Duesseldorf servicebezogen ueber eigene lokale Seiten.
               </p>
               <div className="mt-5 grid gap-3">
                 <div className="rounded-[1.25rem] border border-slate-200 bg-white p-4">

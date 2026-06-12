@@ -17,6 +17,473 @@ const requestCtas = [
 
 export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
   {
+    slug: "floxant-services-nach-situation-finden",
+    category: "Service-Orientierung",
+    readTime: "9 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "FLOXANT Services nach Situation finden: welcher Einstieg passt wirklich?",
+    metaTitle: "FLOXANT Services nach Situation finden | Umzug, Reinigung, Entrümpelung",
+    description:
+      "Kundennaher Überblick über FLOXANT Services aus der Sitemap: Regensburg/Bayern für Umzug, Reinigung, Entrümpelung und Objektfälle, Düsseldorf für Reinigung und Angebotsprüfung.",
+    intro:
+      "Viele Kunden suchen nicht nach einem perfekten Leistungsnamen. Sie haben eine Situation: Die Wohnung muss übergeben werden, ein Büro braucht Reinigung, ein Angebot wirkt unklar, ein Objekt steht leer oder ein Termin kippt. Genau dafür ist eine Zuordnung nach Fall hilfreicher als eine lange Serviceliste.",
+    about: ["FLOXANT", "Servicewahl", "Umzug", "Reinigung", "Entrümpelung", "Angebotsprüfung", "Signature Services"],
+    keywords: [
+      "FLOXANT Services",
+      "welcher Service passt",
+      "Umzug Reinigung Entrümpelung",
+      "FLOXANT Empfehlung",
+      "Angebot prüfen lassen",
+      "Düsseldorf Reinigung",
+      "Regensburg Bayern",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT passt, wenn eine praktische Dienstleistung mit sauberer Vorprüfung gebraucht wird: Umzug, Reinigung, Entrümpelung, Entsorgung, Transport, Übergabe, Objektservice, Angebotsprüfung oder ein Signature Service. Wichtig ist die regionale Trennung: Regensburg und Bayern sind breit aufgestellt, Düsseldorf ist klar für Reinigung und getrennte Entsorgung eingeordnet.",
+        ],
+      },
+      {
+        title: "Wenn der Fall in Regensburg oder Bayern liegt",
+        paragraphs: [
+          "Für Regensburg, die Umgebung und Bayern nach Verfügbarkeit kann FLOXANT Umzug, Büroumzug, Reinigung, Endreinigung, Entrümpelung, Wohnungsauflösung, Nachlass-Räumung, Transport, Beiladung und Klaviertransport einordnen. Entscheidend sind Ort, Umfang, Termin, Zugang und Fotos.",
+          "Besonders passend ist FLOXANT, wenn mehrere Punkte zusammenhängen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Büroinventar mit Entsorgung oder ein Mieterwechsel mit Fotodokumentation.",
+        ],
+        bullets: [
+          "Umzug, Büroumzug, Seniorenumzug und Klaviertransport",
+          "Reinigung, Endreinigung, Übergabereinigung und Grundreinigung",
+          "Entrümpelung, Wohnungsauflösung, Nachlass und Kleinmengen",
+          "Leerfahrt, Rückfahrt, Beiladung und Transport nach Strecke",
+          "Übergabeakte, Mieterwechsel, Wohnung wieder vermietbar und Objektservice",
+        ],
+      },
+      {
+        title: "Wenn der Fall in Düsseldorf liegt",
+        paragraphs: [
+          "Düsseldorf wird bei FLOXANT nicht mit Regensburg-Texten vermischt. Der richtige Einstieg richtet sich nach der Leistung: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung oder Entsorgung.",
+          "Wenn bereits ein Reinigungsangebot vorliegt, ist die Angebotsprüfung in Düsseldorf besonders sinnvoll. FLOXANT prüft Umfang, Turnus, Fläche, Zeitfenster, Fotos und Preispositionen ohne Preisgarantie.",
+        ],
+        bullets: [
+          "Düsseldorf Reinigung und Putzfirma",
+          "Büro-, Praxis-, Kanzlei-, Hotel- und Gewerbereinigung",
+          "Hausverwaltung, Treppenhaus und Schlüsselübergabe-Reinigung",
+          "Grundreinigung, Sonderreinigung, Baureinigung, Fenster und Teppich",
+          "Angebot vergleichen Düsseldorf für bestehende Reinigungsangebote",
+        ],
+      },
+      {
+        title: "Wenn der Fall besonders oder unangenehm ist",
+        paragraphs: [
+          "Nicht jeder Fall passt in eine Standardleistung. Dafür gibt es FLOXANT Signature Services: Private Client, Villenservice, Plan B, Schadensbegrenzung, Objektvertretung, Vor-Ort-Prüfung, Urlaubsretter, Gästewechsel, Leerstandsmanagement, Mieterwechsel und Übergabeakte.",
+          "Diese Services sind nicht als übertriebene Sonderwelt gemeint, sondern als ruhige Einordnung für Fälle, bei denen Zugang, Diskretion, Fotos, Schlüssel, Verantwortung und Termine sauber geführt werden müssen.",
+        ],
+      },
+      {
+        title: "Welche Angaben eine Anfrage besser machen",
+        paragraphs: [
+          "Eine gute Anfrage braucht keine langen Texte. Sie braucht klare Eckdaten. Daraus kann FLOXANT erkennen, ob ein direkter Service, eine Kombination, eine Angebotsprüfung oder ein Signature Service passt.",
+        ],
+        bullets: serviceSignals,
+      },
+    ],
+    highlightTitle: "So finden Sie den richtigen FLOXANT Einstieg",
+    highlightPoints: [
+      "Immer zuerst Region und Aufgabe trennen.",
+      "Regensburg/Bayern ist breit aufgestellt, Düsseldorf klar für Reinigung und Entsorgung.",
+      "Bei unklaren Angeboten zuerst Angebotsprüfung oder Buchung als Einstieg nennen.",
+    ],
+    ctas: [
+      { href: "/leistungen", label: "Services nach Region ansehen" },
+      { href: "/buchung", label: "Fall direkt anfragen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
+      { href: "/duesseldorf/reinigung", label: "Düsseldorf Reinigung ansehen" },
+    ],
+    faqTitle: "FAQ zur FLOXANT Servicewahl",
+    faqItems: [
+      {
+        q: "Wann passt FLOXANT als Dienstleister?",
+        a: "Wenn Ort und Aufgabe zu FLOXANT passen: Regensburg/Bayern für Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und Zusatzleistungen; Düsseldorf für Reinigung und getrennte Entsorgung.",
+      },
+      {
+        q: "Was ist der beste Einstieg, wenn ich nicht weiß, welche Leistung passt?",
+        a: "Die Buchungsseite ist der beste Einstieg, wenn der Fall kurz beschrieben werden soll. Bei vorhandenem Angebot passt die Angebotsprüfung besser.",
+      },
+      {
+        q: "Bietet FLOXANT in Düsseldorf Umzug an?",
+        a: "Nein. Düsseldorf ist bei FLOXANT als Reinigungsbereich getrennt. Umzug, Transport und Büroumzug gehören dort nicht zum Düsseldorfer Angebot.",
+      },
+      {
+        q: "Was sind FLOXANT Signature Services?",
+        a: "Signature Services sind besondere, stärker abgestimmte Leistungen wie Plan B, Objektvertretung, Vor-Ort-Prüfung, Private Client, Villenservice, Leerstandsmanagement, Mieterwechsel und Übergabeakte.",
+      },
+      {
+        q: "Welche Daten sollte ich zuerst senden?",
+        a: "Ort, Aufgabe, Termin, Fotos, Umfang, Zugang, gewünschtes Ergebnis und Kontaktweg reichen für eine erste Einordnung meist aus.",
+      },
+    ],
+  },
+  {
+    slug: "signature-services-extra-spezialfaelle-floxant",
+    category: "FLOXANT Signature",
+    readTime: "8 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "FLOXANT Signature Services: Extra-Hilfe für Spezialfälle statt Standardauftrag",
+    metaTitle: "FLOXANT Signature Services | Extra- und Spezialservices",
+    description:
+      "Wann FLOXANT Signature Services wie Private Client, Villenservice, Plan B, Objektvertretung, Vor-Ort-Prüfung, Mieterwechsel oder Übergabeakte sinnvoll sind.",
+    intro:
+      "Manche Anfragen sind nicht groß, aber empfindlich. Es geht um Schlüssel, Diskretion, Fotos, einen knappen Termin, eine leerstehende Wohnung, ein Objekt ohne Ansprechpartner oder einen Auftrag, der bereits kippt. Dafür braucht es keinen lauten Auftritt, sondern klare Zuständigkeit.",
+    about: ["FLOXANT Signature", "Private Client", "Villenservice", "Plan B", "Objektvertretung", "Vor-Ort-Prüfung"],
+    keywords: [
+      "FLOXANT Signature Services",
+      "Extra Services",
+      "Spezialservice",
+      "Private Client Service",
+      "Villenservice",
+      "Objektvertretung",
+      "Vor Ort Prüfung",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT Signature Services passen, wenn ein Fall mehr Abstimmung braucht als ein normaler Auftrag: Private Client, Villenservice, Plan B, Schadensbegrenzung, Vor-Ort-Prüfung, Objektvertretung, Urlaubsretter, Gästewechsel, Leerstandsmanagement, Mieterwechsel, Übergabeakte und Plattform-Auftrag prüfen.",
+        ],
+      },
+      {
+        title: "Private Client und Villenservice",
+        paragraphs: [
+          "Private Client und Villenservice sind sinnvoll, wenn Diskretion, ruhige Kommunikation, Zugang, sensible Räume, hochwertige Einrichtung oder ein besonderer Ansprechpartner wichtig sind. FLOXANT verspricht dabei keine Luxusfloskeln, sondern eine sachliche Vorprüfung.",
+        ],
+        bullets: [
+          "diskreter Umzug oder diskrete Reinigung",
+          "Villa, gehobenes Objekt oder sensible Wohnsituation",
+          "Abstimmung mit Assistenz, Eigentümer oder Familie",
+          "Fotos, Zugang und Schutzbedarf vorab klären",
+        ],
+      },
+      {
+        title: "Plan B, Schadensbegrenzung und Einsatzradar",
+        paragraphs: [
+          "Diese Services passen, wenn ein Zeitplan wackelt: Anbieter fällt aus, Übergabe steht bevor, Reinigung fehlt, Restmengen blockieren oder ein Objekt dringend nutzbar werden muss. FLOXANT prüft Machbarkeit, statt eine Rettung zu garantieren.",
+        ],
+      },
+      {
+        title: "Objektvertretung, Human API und Erledigungsservice",
+        paragraphs: [
+          "Manchmal braucht ein Kunde einfach jemanden vor Ort: Fotos machen, Schlüssel übergeben, Material prüfen, eine kleine Aufgabe erledigen oder eine Rückmeldung geben. Genau dafür sind Objektvertretung, Vor-Ort-Prüfung und Business Errand Service gedacht.",
+        ],
+      },
+      {
+        title: "Mieterwechsel, Leerstand und Übergabeakte",
+        paragraphs: [
+          "Bei Vermietern, Maklern, Hausverwaltungen und Eigentümern geht es oft um mehrere kleine Schritte: Wohnung prüfen, Restmengen entfernen, reinigen, Fotos sichern, Schlüssel klären und den nächsten Zustand dokumentieren.",
+        ],
+      },
+    ],
+    highlightTitle: "Signature heißt: genauer geführt",
+    highlightPoints: [
+      "Mehr Abstimmung, wenn Zugang, Diskretion oder Deadline wichtig sind.",
+      "Kein übertriebenes Versprechen, sondern Machbarkeitsprüfung.",
+      "Ein klarer Einstieg für Fälle, die nicht in Standardkategorien passen.",
+    ],
+    ctas: [
+      { href: "/private-client-service", label: "Private Client Service ansehen" },
+      { href: "/private-client-service", label: "Private Client Service ansehen" },
+      { href: "/property-operations", label: "Objektservice ansehen" },
+      { href: "/plan-b-service", label: "Plan B prüfen" },
+    ],
+    faqTitle: "FAQ zu FLOXANT Signature Services",
+    faqItems: [
+      {
+        q: "Sind Signature Services normale Reinigungs- oder Umzugsleistungen?",
+        a: "Nicht nur. Sie bündeln besondere Situationen, bei denen Abstimmung, Zugang, Fotos, Schlüssel, Diskretion oder ein knapper Termin wichtig sind.",
+      },
+      {
+        q: "Ist der Villenservice nur für sehr große Häuser?",
+        a: "Nein. Entscheidend ist nicht nur Größe, sondern Sensibilität, Ausstattung, Zugang, Diskretion und gewünschte Abstimmung.",
+      },
+      {
+        q: "Kann FLOXANT sofort einspringen?",
+        a: "Das wird nach Ort, Termin, Umfang und Verfügbarkeit geprüft. Es gibt keine pauschale Sofortgarantie.",
+      },
+      {
+        q: "Welche Angaben helfen bei Signature Services?",
+        a: "Ort, Ziel, Zeitdruck, Fotos, Zugang, Ansprechpartner, Diskretionsbedarf und offene Risiken helfen bei der Einordnung.",
+      },
+    ],
+  },
+  {
+    slug: "duesseldorf-reinigung-services-gewerbe-praxis-hausverwaltung",
+    category: "Düsseldorf Reinigung",
+    readTime: "8 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Düsseldorf Reinigung: welcher FLOXANT Service zu Büro, Praxis, Hotel und Hausverwaltung passt",
+    metaTitle: "Düsseldorf Reinigung Services | Büro, Praxis, Hotel, Hausverwaltung",
+    description:
+      "Kundennaher Überblick für Düsseldorf: Gewerbereinigung, Büroreinigung, Praxisreinigung, Hotelreinigung, Treppenhaus, Hausverwaltung, Grundreinigung und Angebotsprüfung.",
+    intro:
+      "Wer in Düsseldorf Reinigung sucht, findet schnell viele Begriffe. Entscheidend ist aber nicht der schönste Leistungsname, sondern der passende Einstieg: Büro, Praxis, Hotel, Kanzlei, Hausverwaltung, Treppenhaus, Wohnung, Grundreinigung oder Angebotsprüfung.",
+    about: ["Düsseldorf Reinigung", "Gewerbereinigung Düsseldorf", "Büroreinigung Düsseldorf", "Praxisreinigung Düsseldorf"],
+    keywords: [
+      "Düsseldorf Reinigung",
+      "Gewerbereinigung Düsseldorf",
+      "Büroreinigung Düsseldorf",
+      "Praxisreinigung Düsseldorf",
+      "Hotelreinigung Düsseldorf",
+      "Hausverwaltung Reinigung Düsseldorf",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT Düsseldorf passt für Reinigung, wenn Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos geprüft werden sollen. Die wichtigsten Einstiege sind Gewerbereinigung, Büroreinigung, Praxisreinigung, Hotelreinigung, Hausverwaltung-Reinigung, Treppenhausreinigung, Grundreinigung und Angebot vergleichen Düsseldorf.",
+        ],
+      },
+      {
+        title: "Für Unternehmen und Gewerbe",
+        paragraphs: [
+          "Bei Gewerbeobjekten zählt die Struktur: Welche Räume, welche Nutzung, wie oft, wann und wer öffnet? Büro, Praxis, Kanzlei, Laden, Hotel und Objektflächen brauchen unterschiedliche Angaben.",
+        ],
+        bullets: [
+          "Gewerbereinigung für gemischte Objektflächen",
+          "Büroreinigung für Arbeitsplätze, Küche, Sanitär und Besprechungsräume",
+          "Praxisreinigung für allgemeine Praxisflächen nach Absprache",
+          "Hotelreinigung nach Zimmern, Lobby, Fluren und Zeitfenstern",
+          "Laden- und Verkaufsflächenreinigung nach Öffnungszeiten",
+        ],
+      },
+      {
+        title: "Für Hausverwaltungen und Treppenhäuser",
+        paragraphs: [
+          "Hausverwaltung-Reinigung braucht andere Angaben als eine Wohnung: Etagen, Eingänge, Kellerflur, Müllbereich, Aufzug, Turnus, Schlüsselweg und Ansprechpartner. Auch Beschwerden oder Rückmeldungen aus dem Objekt sollten klar benannt werden.",
+        ],
+      },
+      {
+        title: "Für bestehende Angebote",
+        paragraphs: [
+          "Wenn bereits ein Reinigungsangebot vorliegt, ist /angebot-vergleichen-duesseldorf der stärkste Einstieg. FLOXANT prüft nicht, um leere Preisversprechen zu machen, sondern um Umfang, Turnus, Fläche, Zeitfenster und Preispositionen nachvollziehbar einzuordnen.",
+        ],
+      },
+      {
+        title: "Was Düsseldorf nicht ist",
+        paragraphs: [
+          "Düsseldorf hat bei FLOXANT eigene lokale Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung und Gewerbereinigung. Diese klare Trennung macht die Seiten verständlicher und schützt vor falschen Erwartungen.",
+        ],
+      },
+    ],
+    highlightTitle: "Düsseldorf bleibt sauber getrennt",
+    highlightPoints: [
+      "Reinigung ja, Umzug nein.",
+      "Für B2B-Fälle zuerst Objektart, Fläche, Turnus und Zugang klären.",
+      "Bei vorhandenem Angebot den Upload- und Prüfweg nutzen.",
+    ],
+    ctas: [
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
+      { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
+      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot prüfen" },
+    ],
+    faqTitle: "FAQ zu Düsseldorf Reinigung",
+    faqItems: [
+      {
+        q: "Welche FLOXANT Seite passt für Gewerbereinigung in Düsseldorf?",
+        a: "Für Unternehmen, Praxen, Kanzleien und Gewerbeobjekte ist /duesseldorf/gewerbereinigung ein starker Einstieg.",
+      },
+      {
+        q: "Welche Seite passt für ein Büro?",
+        a: "Für Büroflächen, Raumlisten, Turnus und regelmäßige Reinigung passt /duesseldorf/bueroreinigung.",
+      },
+      {
+        q: "Kann FLOXANT ein bestehendes Reinigungsangebot prüfen?",
+        a: "Ja. Für Düsseldorf ist /angebot-vergleichen-duesseldorf der beste Upload- und Prüfweg, ohne Preisgarantie.",
+      },
+      {
+        q: "Bietet FLOXANT Umzug in Düsseldorf an?",
+        a: "Ja. Düsseldorf hat bei FLOXANT eine eigene Umzugsseite; Reinigung und Gewerbereinigung bleiben zusätzlich über eigene Seiten getrennt.",
+      },
+      {
+        q: "Welche Angaben braucht FLOXANT für Düsseldorf?",
+        a: "Stadtteil oder PLZ, Objektart, Fläche, Turnus, Zustand, Fotos, Zeitfenster, Zugang und gewünschter Kontaktweg.",
+      },
+    ],
+  },
+  {
+    slug: "regensburg-bayern-services-umzug-reinigung-entruempelung-uebergabe",
+    category: "Regensburg & Bayern",
+    readTime: "8 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Regensburg und Bayern: FLOXANT für Umzug, Reinigung, Entrümpelung und Übergabe richtig einordnen",
+    metaTitle: "FLOXANT Regensburg Bayern | Umzug, Reinigung, Entrümpelung",
+    description:
+      "Welche FLOXANT Services in Regensburg und Bayern passen: Umzug, Reinigung, Entrümpelung, Wohnungsauflösung, Büroumzug, Klaviertransport, Übergabe und Angebot prüfen.",
+    intro:
+      "Regensburg ist der feste Ausgangspunkt von FLOXANT. Von dort werden Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und Übergabefälle nach Ort, Termin und Umfang geprüft. Bayern ist möglich, aber immer nach Machbarkeit.",
+    about: ["FLOXANT Regensburg", "Umzug Bayern", "Reinigung Regensburg", "Entrümpelung Bayern", "Übergabe"],
+    keywords: [
+      "FLOXANT Regensburg",
+      "Umzug Regensburg",
+      "Reinigung Regensburg",
+      "Entrümpelung Regensburg",
+      "Wohnungsauflösung Bayern",
+      "Übergabe Regensburg",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT passt in Regensburg und Bayern besonders dann, wenn ein Kunde Umzug, Reinigung, Entrümpelung, Entsorgung, Transport, Wohnungsauflösung, Büroumzug, Klaviertransport oder Übergabe nicht isoliert, sondern praktisch geplant haben möchte.",
+        ],
+      },
+      {
+        title: "Umzug und Transport",
+        paragraphs: [
+          "Für Umzug, Büroumzug, Seniorenumzug, Klaviertransport, Beiladung und Rückfahrt sind Start, Ziel, Strecke, Volumen, Etage, Laufweg, Fotos und Termin entscheidend. FLOXANT passt, wenn diese Angaben geprüft und in einen realistischen Ablauf übersetzt werden sollen.",
+        ],
+      },
+      {
+        title: "Reinigung und Übergabe",
+        paragraphs: [
+          "Reinigung in Regensburg umfasst Wohnungsreinigung, Endreinigung, Übergabereinigung, Grundreinigung, B2B-Reinigung, Praxis, Hotel, Treppenhaus und Unterhaltsreinigung. Wichtig sind Fläche, Zustand, Fotos, Zugang und Ziel: bewohnbar, nutzbar oder übergabebereit.",
+        ],
+      },
+      {
+        title: "Entrümpelung, Nachlass und Wohnungsauflösung",
+        paragraphs: [
+          "Entrümpelung und Wohnungsauflösung brauchen Fotos, Menge, Räume, Keller, Etage, Zugang, Freigabe, Entsorgungsgrenzen und Termin. Bei Nachlass oder sensiblen Situationen ist ein ruhiger, respektvoller Ablauf wichtiger als ein schneller Pauschalsatz.",
+        ],
+      },
+      {
+        title: "Angebote prüfen und Kombis sauber planen",
+        paragraphs: [
+          "Wenn ein fremdes Angebot vorliegt, kann FLOXANT prüfen, ob Umfang, Preis, Zusatzleistungen, Termin und Zuständigkeiten nachvollziehbar sind. Wenn mehrere Leistungen zusammenhängen, ist die Reihenfolge wichtig: erst räumen, dann reinigen, dann übergeben.",
+        ],
+      },
+    ],
+    highlightTitle: "Regensburg ist die Basis, Bayern wird geprüft",
+    highlightPoints: [
+      "Regensburg und Umgebung sind der stärkste Einsatzbereich.",
+      "Bayern ist nach Strecke, Termin, Umfang und Kapazität möglich.",
+      "Kombinationen werden nach Reihenfolge und Zielzustand geplant.",
+    ],
+    ctas: [
+      { href: "/regensburg", label: "Regensburg Bereich ansehen" },
+      { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+      { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung Regensburg" },
+      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+    ],
+    faqTitle: "FAQ zu Regensburg und Bayern",
+    faqItems: [
+      {
+        q: "Ist FLOXANT in Regensburg breit aufgestellt?",
+        a: "Ja. Regensburg ist der feste Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Entsorgung, Transport, Übergabe und Zusatzleistungen.",
+      },
+      {
+        q: "Arbeitet FLOXANT in ganz Bayern?",
+        a: "Bayern wird nach Verfügbarkeit, Strecke, Termin und Umfang geprüft. Es gibt kein pauschales Alles-überall-Versprechen.",
+      },
+      {
+        q: "Kann FLOXANT Umzug und Reinigung verbinden?",
+        a: "Ja, wenn Reihenfolge, Umfang, Zugang und Termin passen. Die Anfrage sollte beide Leistungen klar nennen.",
+      },
+      {
+        q: "Was hilft bei Entrümpelung am meisten?",
+        a: "Fotos, Räume, Menge, Etage, Zugang, Freigabe, Termin und gewünschter Endzustand.",
+      },
+    ],
+  },
+  {
+    slug: "objektservice-hausverwaltung-mieterwechsel-leerstand-floxant",
+    category: "Objektservice",
+    readTime: "8 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Objektservice mit FLOXANT: Hausverwaltung, Mieterwechsel, Leerstand und Vor-Ort-Prüfung",
+    metaTitle: "FLOXANT Objektservice | Hausverwaltung, Mieterwechsel, Leerstand",
+    description:
+      "Wann FLOXANT bei Objektservice, Hausverwaltung, Mieterwechsel, Leerstandsmanagement, Vor-Ort-Prüfung, Schlüssel und Fotodokumentation praktisch helfen kann.",
+    intro:
+      "Viele Objektfälle sind zu klein für große Verwaltungssprache und zu wichtig, um sie liegen zu lassen. Ein Schlüssel muss bewegt werden, Fotos fehlen, ein Leerstand soll geprüft werden, eine Wohnung muss wieder vermietbar werden oder ein Mieterwechsel braucht Ordnung.",
+    about: ["Objektservice", "Hausverwaltung", "Mieterwechsel", "Leerstand", "Vor-Ort-Prüfung", "FLOXANT"],
+    keywords: [
+      "Objektservice",
+      "Hausverwaltung Service",
+      "Mieterwechsel Service",
+      "Leerstandsmanagement",
+      "Vor Ort Prüfung",
+      "Schlüsselmanagement",
+      "Fotodokumentation Objekt",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT passt, wenn ein Objekt vor Ort praktisch betreut oder geprüft werden muss: Leerstand, Mieterwechsel, Schlüssel, Fotos, kleine Erledigungen, Objektvertretung, Vor-Ort-Prüfung, Übergabeakte, Wohnung wieder vermietbar oder Immobilie verkaufsbereit.",
+        ],
+      },
+      {
+        title: "Für Hausverwaltungen und Vermieter",
+        paragraphs: [
+          "Hausverwaltungen und Vermieter brauchen oft keine große Beratung, sondern verlässliche Rückmeldung: Was ist vor Ort sichtbar, was fehlt, was muss vor Reinigung, Übergabe oder Wiedervermietung passieren?",
+        ],
+        bullets: [
+          "Treppenhaus, Keller, Müllraum und Nebenflächen prüfen",
+          "Mieterwechsel vorbereiten",
+          "Fotos und Zustandsrückmeldung sichern",
+          "Schlüsselweg und Zugang klären",
+          "Reinigung, Restmengen und Übergabe koordinieren",
+        ],
+      },
+      {
+        title: "Für leerstehende oder entfernte Objekte",
+        paragraphs: [
+          "Wenn Eigentümer, Familie oder Firma nicht vor Ort sind, kann eine echte Vor-Ort-Prüfung helfen. Fotos, Zählerstand, Zustand, Zugang, Restmengen und nächste Schritte werden sichtbarer.",
+        ],
+      },
+      {
+        title: "Grenzen klar halten",
+        paragraphs: [
+          "FLOXANT ersetzt keine Rechtsberatung, keine formale Hausverwaltung und keine Facharbeiten ohne Qualifikation. Der Wert liegt in praktischer Prüfung, Organisation, Reinigung, Dokumentation und abgestimmten Objektaufgaben.",
+        ],
+      },
+    ],
+    highlightTitle: "Objektservice ist praktische Entlastung vor Ort",
+    highlightPoints: [
+      "Gut für Vermieter, Hausverwaltungen, Eigentümer, Makler und Firmen.",
+      "Fotos, Schlüssel, Zugang und Zustand werden wichtiger als lange Telefonketten.",
+      "Bei Mieterwechsel und Leerstand lässt sich Reinigung, Räumung und Dokumentation verbinden.",
+    ],
+    ctas: [
+      { href: "/property-operations", label: "Objektservice ansehen" },
+      { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel Service" },
+      { href: "/leerstandsmanagement", label: "Leerstandsmanagement" },
+      { href: "/human-api", label: "Vor-Ort-Prüfung" },
+    ],
+    faqTitle: "FAQ zum FLOXANT Objektservice",
+    faqItems: [
+      {
+        q: "Für wen ist Objektservice gedacht?",
+        a: "Für Eigentümer, Hausverwaltungen, Vermieter, Makler, Firmen und Kunden, die vor Ort eine praktische Prüfung oder Aufgabe brauchen.",
+      },
+      {
+        q: "Kann FLOXANT Schlüsselmanagement übernehmen?",
+        a: "Schlüsselwege können nach Berechtigung, Übergabeform, Ansprechpartner und Dokumentation abgestimmt werden. Ohne klare Berechtigung findet kein Einsatz statt.",
+      },
+      {
+        q: "Ist FLOXANT eine Hausverwaltung?",
+        a: "Nein. FLOXANT kann praktische Objektaufgaben prüfen und umsetzen, ersetzt aber keine formale Hausverwaltung oder Rechtsberatung.",
+      },
+      {
+        q: "Was soll ich zuerst senden?",
+        a: "Objektadresse, Rolle, Berechtigung, Aufgabe, Fotos, Zugang, Deadline und gewünschte Rückmeldung.",
+      },
+    ],
+  },  {
     slug: "welcher-floxant-service-passt",
     category: "Service-Orientierung",
     readTime: "8 Min.",
@@ -78,7 +545,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Welche Angaben helfen sofort",
         paragraphs: [
-          "Je klarer die Eckdaten sind, desto schneller kann FLOXANT den passenden Weg empfehlen. Ein kurzer, konkreter Überblick ist besser als ein langer Text ohne Termin, Ort oder Fotos.",
+          "Je klarer die Eckdaten sind, desto schneller kann FLOXANT den passenden Weg nennen. Ein kurzer, konkreter Überblick ist besser als ein langer Text ohne Termin, Ort oder Fotos.",
         ],
         bullets: serviceSignals,
       },
@@ -225,9 +692,9 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
     title: "Düsseldorf Reinigung: Warum FLOXANT hier bewusst getrennt arbeitet",
     metaTitle: "Düsseldorf Reinigung klar getrennt | FLOXANT",
     description:
-      "FLOXANT erklärt die Düsseldorf-Logik: Reinigung zuerst, keine Vermischung mit Regensburg/Bayern und klare Wege für Wohnung, Büro, Grundreinigung und B2B-Reinigung.",
+      "FLOXANT erklärt die Düsseldorf-Logik: eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbe und Entsorgung ohne Vermischung mit Regensburg/Bayern.",
     intro:
-      "Düsseldorf ist bei FLOXANT kein zweites Regensburg und keine allgemeine Umzugsregion. Die Positionierung ist bewusst enger: Reinigung zuerst, sauber getrennt und für Kunden verständlich.",
+      "Düsseldorf ist bei FLOXANT kein zweites Regensburg. Die Positionierung ist bewusst lokal getrennt: je Leistung eine eigene Seite, ohne Regensburg/Bayern-Texte auf Düsseldorf zu kopieren.",
     about: ["Düsseldorf Reinigung", "Büroreinigung Düsseldorf", "Endreinigung Düsseldorf", "FLOXANT"],
     keywords: [
       "Reinigung Düsseldorf",
@@ -240,7 +707,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT Düsseldorf steht für Reinigungsanfragen: Wohnung, Endreinigung, Grundreinigung, Treppenhaus, Büro, kleine Gewerbeflächen und möblierte Wohnungen. Umzug, Transport und Entrümpelung bleiben nicht Teil der allgemeinen Düsseldorf-Logik.",
+          "FLOXANT Düsseldorf steht für servicebezogene Einstiege: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung werden jeweils getrennt geführt.",
         ],
       },
       {
@@ -286,7 +753,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
     faqItems: [
       {
         q: "Bietet FLOXANT Umzug in Düsseldorf an?",
-        a: "Die Düsseldorf-Logik ist bei FLOXANT bewusst auf Reinigung ausgerichtet. Umzug und Entrümpelung werden nicht als allgemeine Düsseldorf-Leistung vermischt.",
+        a: "Ja. Umzug in Düsseldorf wird über /duesseldorf/umzug geführt. Reinigung, Entrümpelung und Entsorgung bleiben eigene lokale Einstiege.",
       },
       {
         q: "Welche Reinigung in Düsseldorf kann angefragt werden?",
@@ -560,6 +1027,373 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       {
         q: "Ist regelmäßige Reinigung möglich?",
         a: "Das wird nach Objekt, Frequenz, Verfügbarkeit und Aufwand geprüft. Eine erste Anfrage sollte den gewünschten Rhythmus nennen.",
+      },
+    ],
+  },
+  {
+    slug: "nicht-vor-ort-schluessel-fotos-uebergabe-floxant",
+    category: "Nicht vor Ort",
+    readTime: "8 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Nicht vor Ort: Wenn Schlüssel, Fotos, Reinigung oder Übergabe trotzdem geklärt werden müssen",
+    metaTitle: "Nicht vor Ort Service | Schlüssel, Fotos, Reinigung, Übergabe | FLOXANT",
+    description:
+      "Kundennaher Ratgeber für Fälle, in denen Kunden nicht selbst vor Ort sein können: Schlüsselweg, Fotos, Reinigung, Restmengen, Übergabe und Rückmeldung sauber vorbereiten.",
+    intro:
+      "Manchmal ist das größte Problem nicht der Umzug, die Reinigung oder die Entrümpelung. Das größte Problem ist: Sie sind nicht mehr vor Ort. Die Wohnung ist noch offen, der Schlüssel liegt bei jemand anderem, Fotos fehlen oder der Vermietertermin rückt näher.",
+    about: ["Nicht vor Ort", "Schlüssel", "Fotodokumentation", "Übergabe", "Reinigung", "Objektservice"],
+    keywords: [
+      "nicht vor Ort Service",
+      "Schlüsselübergabe Reinigung",
+      "Wohnung Übergabe nicht vor Ort",
+      "Fotos vor Ort machen lassen",
+      "FLOXANT Objektservice",
+      "Übergabe vorbereiten",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT passt, wenn vor Ort noch etwas geprüft, fotografiert, gereinigt, geräumt oder für eine Übergabe vorbereitet werden muss und der Kunde selbst nicht zuverlässig anwesend sein kann. Wichtig sind Ort, Schlüsselweg, Berechtigung, Aufgabe, Termin und gewünschte Rückmeldung.",
+        ],
+      },
+      {
+        title: "Typische Situationen",
+        paragraphs: [
+          "Der Fall klingt oft klein, wird aber schnell unangenehm, wenn niemand zuständig ist. Genau deshalb braucht es eine klare Anfrage statt vieler kurzer Nachrichten an verschiedene Personen.",
+        ],
+        bullets: [
+          "Sie sind schon umgezogen, aber in der alten Wohnung sind noch Restpunkte offen.",
+          "Die Reinigung soll stattfinden, obwohl Sie am Termin nicht selbst da sind.",
+          "Ein Schlüssel muss abgeholt, hinterlegt oder nach Vereinbarung übergeben werden.",
+          "Sie brauchen Fotos vom Zustand vor oder nach Reinigung, Räumung oder Übergabe.",
+          "Hausverwaltung, Vermieter oder Makler benötigen eine klare Rückmeldung.",
+        ],
+      },
+      {
+        title: "Was FLOXANT zuerst wissen muss",
+        paragraphs: [
+          "Ein Nicht-vor-Ort-Fall braucht klare Berechtigung. Zugang, Ansprechpartner und Aufgabe müssen sauber beschrieben sein, bevor FLOXANT den nächsten Schritt prüfen kann.",
+        ],
+        bullets: [
+          "Adresse und Region",
+          "wer den Zugang erlaubt",
+          "wo der Schlüssel ist",
+          "welche Aufgabe erledigt oder geprüft werden soll",
+          "welche Fotos oder Rückmeldung gewünscht sind",
+          "Deadline oder Übergabetermin",
+        ],
+      },
+      {
+        title: "Wichtig für Düsseldorf und Regensburg",
+        paragraphs: [
+          "In Regensburg, Bayern und Düsseldorf kann der Nicht-vor-Ort-Fall mit Umzug, Reinigung, Entrümpelung, Übergabe oder Objektservice zusammenhängen. In Düsseldorf wird je nach Leistung auf die eigene lokale Seite geroutet.",
+        ],
+      },
+    ],
+    highlightTitle: "Der Schlüssel ist nicht nur ein Detail",
+    highlightPoints: [
+      "Ohne klare Berechtigung kein sauberer Einsatz.",
+      "Fotos helfen, den Zustand nachvollziehbar zu machen.",
+      "Der beste Einstieg ist eine kurze, ehrliche Lagebeschreibung.",
+    ],
+    ctas: [
+      { href: "/blog/schluesseluebergabe-service", label: "Schlüsselübergabe ansehen" },
+      { href: "/property-operations", label: "Objektservice prüfen" },
+      { href: "/buchung", label: "Fall direkt schildern" },
+      { href: "/duesseldorf/schluesseluebergabe-reinigung", label: "Düsseldorf Reinigung mit Schlüsselweg" },
+    ],
+    faqTitle: "FAQ zum Nicht-vor-Ort-Fall",
+    faqItems: [
+      {
+        q: "Kann FLOXANT helfen, wenn ich nicht selbst vor Ort bin?",
+        a: "Ja, wenn Ort, Zugang, Berechtigung, Aufgabe, Termin und gewünschte Rückmeldung klar sind. FLOXANT prüft dann, ob der Fall machbar ist.",
+      },
+      {
+        q: "Kann FLOXANT einfach eine Wohnung betreten?",
+        a: "Nein. Der Zugang muss eindeutig erlaubt und abgestimmt sein. Schlüsselweg, Ansprechpartner und Berechtigung müssen vorher geklärt werden.",
+      },
+      {
+        q: "Sind Fotos möglich?",
+        a: "Fotodokumentation kann je nach Auftrag sinnvoll sein, etwa vor und nach Reinigung, Räumung oder Übergabe.",
+      },
+      {
+        q: "Gilt das auch für Düsseldorf?",
+        a: "Ja, wenn die Leistung zu einer eigenen Düsseldorf-Seite passt. Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung und Entsorgung werden getrennt geroutet.",
+      },
+    ],
+  },
+  {
+    slug: "entruempelung-endreinigung-uebergabe-regensburg-kombinieren",
+    category: "Regensburg Übergabe",
+    readTime: "9 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Entrümpelung, Endreinigung und Übergabe in Regensburg kombinieren",
+    metaTitle: "Entrümpelung und Endreinigung Regensburg kombinieren | FLOXANT",
+    description:
+      "Wann es sinnvoll ist, Entrümpelung, Endreinigung, Restmengen, Fotos und Wohnungsübergabe in Regensburg gemeinsam zu planen.",
+    intro:
+      "Viele Übergaben scheitern nicht an einer großen Aufgabe, sondern an der Reihenfolge. Erst müssen Restmengen raus, dann kann sauber gereinigt werden, danach braucht es Fotos, Schlüssel und einen klaren Abschluss.",
+    about: ["Entrümpelung", "Endreinigung", "Übergabe", "Regensburg", "Wohnungsauflösung", "Restmengen"],
+    keywords: [
+      "Entrümpelung Endreinigung Regensburg",
+      "Wohnungsübergabe Regensburg",
+      "Wohnung räumen und reinigen",
+      "Restmengen entsorgen Regensburg",
+      "FLOXANT Übergabe",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT ist passend, wenn in Regensburg oder Bayern eine Wohnung nicht nur geräumt, sondern übergabebereit werden soll. Dafür müssen Entrümpelung, Restmengen, Endreinigung, Fotos und Schlüssel logisch zusammenpassen.",
+        ],
+      },
+      {
+        title: "Warum die Reihenfolge zählt",
+        paragraphs: [
+          "Eine Reinigung vor der Entrümpelung ist oft verlorene Zeit. Eine Übergabe ohne Fotos ist später schwer nachvollziehbar. Eine Räumung ohne Endzustand lässt Kunden mit der Frage zurück, ob noch etwas fehlt.",
+          "Darum sollte der Fall nicht als einzelne Leistung gedacht werden, sondern als Abschlussprozess.",
+        ],
+      },
+      {
+        title: "Für welche Fälle das besonders passt",
+        paragraphs: [
+          "Der kombinierte Weg ist vor allem dann sinnvoll, wenn Termine eng sind oder mehrere Beteiligte mitreden: Mieter, Vermieter, Angehörige, Hausverwaltung oder Makler.",
+        ],
+        bullets: [
+          "Auszug mit Restmengen in Wohnung, Keller oder Balkon",
+          "Wohnungsauflösung nach Kündigung oder Nachlass",
+          "Mieterwechsel mit schneller Wiedervermietung",
+          "Übergabetermin mit sichtbaren offenen Punkten",
+          "Kunde ist nicht mehr vor Ort und braucht Rückmeldung",
+        ],
+      },
+      {
+        title: "Welche Angaben eine Anfrage stark machen",
+        paragraphs: [
+          "FLOXANT braucht keine perfekte Liste. Gute Fotos und klare Ziele reichen oft für den ersten Schritt.",
+        ],
+        bullets: [
+          "Adresse oder Stadtteil in Regensburg",
+          "Fotos von Räumen, Keller, Balkon und Restmengen",
+          "Etage, Aufzug, Laufwege und Parkmöglichkeit",
+          "Termin für Räumung, Reinigung oder Übergabe",
+          "gewünschter Endzustand: leer, besenrein, gereinigt oder dokumentiert",
+        ],
+      },
+    ],
+    highlightTitle: "Nicht nur wegtragen, sondern fertig werden",
+    highlightPoints: [
+      "Entrümpelung und Reinigung müssen in der richtigen Reihenfolge laufen.",
+      "Fotos und Schlüsselweg machen die Übergabe ruhiger.",
+      "Regensburg/Bayern sind der richtige Bereich für diese Kombi-Leistung.",
+    ],
+    ctas: [
+      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+      { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung ansehen" },
+      { href: "/buchung", label: "Kombi-Fall anfragen" },
+    ],
+    faqTitle: "FAQ zu Entrümpelung, Endreinigung und Übergabe",
+    faqItems: [
+      {
+        q: "Kann FLOXANT Räumung und Reinigung kombinieren?",
+        a: "Je nach Ort, Umfang, Termin und Kapazität kann FLOXANT prüfen, ob Entrümpelung, Restmengen und Endreinigung sinnvoll zusammen geplant werden können.",
+      },
+      {
+        q: "Was ist wichtiger: Fotos oder eine genaue Liste?",
+        a: "Fotos sind oft hilfreicher als eine lange Liste, weil Zustand, Menge, Zugang und kritische Stellen schneller sichtbar werden.",
+      },
+      {
+        q: "Ist eine Abnahme garantiert?",
+        a: "Nein. FLOXANT kann eine Übergabe vorbereiten und sichtbar offene Punkte reduzieren, aber keine Vermieterentscheidung garantieren.",
+      },
+      {
+        q: "Gilt diese Kombi auch für Düsseldorf?",
+        a: "Nein, nicht als Umzug- oder Räumungskombi. Düsseldorf bleibt bei FLOXANT auf Reinigung und getrennte Entsorgung eingeordnet.",
+      },
+    ],
+  },
+  {
+    slug: "duesseldorf-buero-praxis-hausverwaltung-reinigung-anfrage",
+    category: "Düsseldorf Reinigung",
+    readTime: "8 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Düsseldorf Reinigung für Büro, Praxis und Hausverwaltung richtig anfragen",
+    metaTitle: "Düsseldorf Büroreinigung, Praxisreinigung, Hausverwaltung | FLOXANT",
+    description:
+      "So fragen Unternehmen, Praxen, Kanzleien und Hausverwaltungen in Düsseldorf Reinigung sauber an: Fläche, Turnus, Zugang, Fotos, Zeitfenster und Angebot.",
+    intro:
+      "Eine gute Reinigungsanfrage in Düsseldorf beginnt nicht mit dem Satz: Was kostet das? Sie beginnt mit Objektart, Fläche, Turnus, Zugang und dem Ziel, das wirklich erreicht werden soll.",
+    about: ["Düsseldorf", "Büroreinigung", "Praxisreinigung", "Hausverwaltung", "Gewerbereinigung", "Angebotsprüfung"],
+    keywords: [
+      "Büroreinigung Düsseldorf anfragen",
+      "Praxisreinigung Düsseldorf Angebot",
+      "Hausverwaltung Reinigung Düsseldorf",
+      "Gewerbereinigung Düsseldorf",
+      "Reinigungsangebot Düsseldorf prüfen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT Düsseldorf ist passend für Reinigung von Büro, Praxis, Kanzlei, Hotel, Treppenhaus, Hausverwaltung und Gewerbeflächen. Eine gute Anfrage nennt Stadtteil, Objektart, Fläche, Räume, Turnus, Zeitfenster, Zugang und Fotos.",
+        ],
+      },
+      {
+        title: "Welche Objekte gemeint sind",
+        paragraphs: [
+          "Düsseldorf ist bei FLOXANT klar als Reinigungsbereich eingeordnet. Das macht die Empfehlung eindeutiger und verhindert falsche Erwartungen.",
+        ],
+        bullets: [
+          "Büro, Agentur, Kanzlei oder Verwaltung",
+          "Praxisflächen und Nebenräume ohne pauschale medizinische Spezialzusage",
+          "Treppenhaus, Kellerflur und Eingangsbereich für Hausverwaltungen",
+          "Hotel, Boardinghouse oder Apartmenthaus nach Prüfung",
+          "Grundreinigung, Sonderreinigung, Fenster, Teppich und Endreinigung",
+        ],
+      },
+      {
+        title: "Was in die erste Nachricht gehört",
+        paragraphs: [
+          "Je genauer der Rahmen ist, desto besser kann FLOXANT prüfen, ob ein Angebot sinnvoll möglich ist. Das spart Rückfragen und vermeidet Missverständnisse.",
+        ],
+        bullets: [
+          "Stadtteil oder PLZ",
+          "Objektart und grobe Fläche",
+          "Räume, Sanitärbereiche, Küche oder Nebenflächen",
+          "gewünschter Turnus oder einmaliger Termin",
+          "Zugang, Schlüsselweg und Ansprechpartner",
+          "Fotos und vorhandenes Angebot, falls vorhanden",
+        ],
+      },
+      {
+        title: "Wenn bereits ein Angebot vorliegt",
+        paragraphs: [
+          "Bei einem vorhandenen Reinigungsangebot sollte FLOXANT nicht als Preisversprechen dargestellt werden. Besser ist: Angebot, Umfang, Turnus, Flächen, Fotos und offene Punkte praktisch prüfen lassen.",
+        ],
+      },
+    ],
+    highlightTitle: "Düsseldorf bleibt Reinigung",
+    highlightPoints: [
+      "Keine Umzugstexte auf Düsseldorf-Reinigungsseiten.",
+      "Gewerbereinigung, Büro, Praxis und Hausverwaltung sauber trennen.",
+      "Bei vorhandenem Angebot zur Angebotsprüfung führen.",
+    ],
+    ctas: [
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
+      { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
+      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Angebot prüfen lassen" },
+    ],
+    faqTitle: "FAQ zu Reinigung in Düsseldorf",
+    faqItems: [
+      {
+        q: "Welche Reinigung empfiehlt FLOXANT in Düsseldorf?",
+        a: "Büro, Praxis, Kanzlei, Hotel, Treppenhaus, Hausverwaltung, Gewerbeflächen, Grundreinigung, Fenster, Teppich, Baureinigung und Endreinigung nach Prüfung.",
+      },
+      {
+        q: "Welche Angaben braucht FLOXANT für ein Reinigungsangebot?",
+        a: "Stadtteil, Objektart, Fläche, Räume, Zustand, Turnus, Zeitfenster, Zugang, Fotos und Ansprechpartner.",
+      },
+      {
+        q: "Kann FLOXANT ein vorhandenes Angebot prüfen?",
+        a: "Ja. FLOXANT kann Umfang, Turnus, Preispositionen, Fotos und offene Punkte praktisch prüfen. Eine Preisgarantie gibt es nicht.",
+      },
+      {
+        q: "Bietet FLOXANT Umzug in Düsseldorf an?",
+        a: "Ja, wenn die Anfrage über den passenden lokalen Einstieg läuft. Für private Umzüge ist /duesseldorf/umzug relevant; Büroumzug wird gesondert geprüft.",
+      },
+    ],
+  },
+  {
+    slug: "hausverwaltung-weg-mieterwechsel-objektbetreuung-floxant",
+    category: "Hausverwaltung",
+    readTime: "9 Min.",
+    date: "4. Juni 2026",
+    datePublished: "2026-06-04",
+    title: "Hausverwaltung, WEG und Mieterwechsel: Wenn ein Objekt vor Ort jemanden braucht",
+    metaTitle: "Hausverwaltung, WEG, Mieterwechsel und Objektbetreuung | FLOXANT",
+    description:
+      "Wie FLOXANT Hausverwaltungen, Eigentümer und Vermieter bei Reinigung, Mieterwechsel, Leerstand, Fotos, Schlüssel und Objektaufgaben unterstützen kann.",
+    intro:
+      "Hausverwaltungen und Eigentümer brauchen nicht immer einen großen Auftrag. Oft fehlt eine verlässliche Person vor Ort: kurz prüfen, Fotos machen, Reinigung einschätzen, Restmengen sehen, Schlüsselweg klären oder den nächsten Schritt vorbereiten.",
+    about: ["Hausverwaltung", "WEG", "Mieterwechsel", "Leerstand", "Objektbetreuung", "Schlüsselmanagement"],
+    keywords: [
+      "Hausverwaltung Service",
+      "WEG Reinigung",
+      "Mieterwechsel Service",
+      "Objektbetreuung vor Ort",
+      "Leerstand prüfen",
+      "FLOXANT Hausverwaltung",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT passt, wenn ein Objekt praktisch betreut, geprüft, gereinigt oder für den nächsten Schritt vorbereitet werden soll. Das ist keine formale Hausverwaltung, sondern operative Hilfe nach klarer Aufgabe, Berechtigung und Rückmeldung.",
+        ],
+      },
+      {
+        title: "Typische Aufgaben",
+        paragraphs: [
+          "Gerade bei Mieterwechseln entstehen viele kleine Aufgaben, die einzeln harmlos wirken, zusammen aber Zeit kosten und Entscheidungen blockieren.",
+        ],
+        bullets: [
+          "Treppenhaus, Kellerflur oder Eingangsbereich prüfen",
+          "Wohnung nach Auszug fotografieren",
+          "Restmengen, Reinigung oder Geruch einschätzen",
+          "Schlüsselweg und Zugang abstimmen",
+          "Mieterwechsel oder Leerstand für den nächsten Schritt vorbereiten",
+          "Rückmeldung an Eigentümer, Verwaltung oder Makler geben",
+        ],
+      },
+      {
+        title: "Was FLOXANT nicht ersetzt",
+        paragraphs: [
+          "FLOXANT ersetzt keine rechtliche Beratung, keine Maklerleistung und keine formale Hausverwaltungsvollmacht. Die Stärke liegt in praktischer Vor-Ort-Unterstützung mit klarer Aufgabe und sauberer Rückmeldung.",
+        ],
+      },
+      {
+        title: "Regionale Einordnung",
+        paragraphs: [
+          "In Regensburg und Bayern kann Objektservice breiter mit Reinigung, Übergabe, Mieterwechsel, Leerstand und Restmengen verbunden werden. In Düsseldorf ist die passende Einordnung Hausverwaltung-Reinigung, Treppenhausreinigung oder Reinigung mit Schlüsselweg.",
+        ],
+      },
+    ],
+    highlightTitle: "Operative Hilfe statt unklare Zuständigkeit",
+    highlightPoints: [
+      "FLOXANT hilft bei konkreten Aufgaben vor Ort.",
+      "Berechtigung, Schlüsselweg und Rückmeldung müssen sauber sein.",
+      "Regensburg/Bayern breit, Düsseldorf klar als Reinigung einordnen.",
+    ],
+    ctas: [
+      { href: "/property-operations", label: "Objektservice ansehen" },
+      { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel Regensburg" },
+      { href: "/leerstandsmanagement", label: "Leerstand prüfen" },
+      { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung Reinigung Düsseldorf" },
+    ],
+    faqTitle: "FAQ zu Hausverwaltung, WEG und Mieterwechsel",
+    faqItems: [
+      {
+        q: "Ist FLOXANT eine Hausverwaltung?",
+        a: "Nein. FLOXANT übernimmt keine formale Hausverwaltung, kann aber konkrete Aufgaben vor Ort nach Prüfung unterstützen.",
+      },
+      {
+        q: "Kann FLOXANT bei Mieterwechsel helfen?",
+        a: "Ja, wenn Reinigung, Restmengen, Fotos, Schlüssel oder Übergabe praktisch vorbereitet werden sollen und der Zugang geklärt ist.",
+      },
+      {
+        q: "Kann eine WEG oder Hausverwaltung anfragen?",
+        a: "Ja. Wichtig sind Objektadresse, Rolle, Aufgabe, Zugang, Ansprechpartner, gewünschter Turnus oder Termin und Fotos.",
+      },
+      {
+        q: "Was gilt für Düsseldorf?",
+        a: "Düsseldorf wird als Reinigung eingeordnet: Hausverwaltung-Reinigung, Treppenhausreinigung, Schlüsselübergabe-Reinigung oder passende Objekt-Reinigung.",
       },
     ],
   },

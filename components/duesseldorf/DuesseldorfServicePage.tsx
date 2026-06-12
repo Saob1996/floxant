@@ -23,6 +23,7 @@ import {
   buildDuesseldorfCleaningSchema,
   buildDuesseldorfCleaningWhatsAppHref,
 } from "@/lib/duesseldorf-cleaning";
+import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
 import {
   getDuesseldorfCleaningInternationalAliases,
   type SearchIntentAliasLanguage,
@@ -149,6 +150,203 @@ function htmlLangForAlias(language: SearchIntentAliasLanguage) {
   return language === "zh" ? "zh-Hans" : language;
 }
 
+function getLanguageHelpText(language: SearchIntentAliasLanguage) {
+  switch (language) {
+    case "en":
+      return "Sie können die wichtigsten Eckdaten auch auf Englisch senden. Für die Rückmeldung zählen Ort, Objekt, Fläche, Fotos und Termin.";
+    case "ru":
+      return "Wenn die Anfrage auf Russisch vorbereitet wird, helfen kurze Angaben zu Objekt, Zustand, Zugang, Fotos und gewünschtem Ergebnis.";
+    case "zh":
+      return "Auch bei chinesischer Kurzbeschreibung bleibt der Ablauf einfach: Adresse, Objektart, Fotos, Termin und Kontaktweg senden.";
+    case "ko":
+      return "Bei koreanischer Anfrage reichen die wichtigsten Daten zum Objekt, zur Fläche, zum Zeitfenster und zum gewünschten Ergebnis.";
+  }
+}
+
+function getDuesseldorfRelatedText(item: { href: string; label: string }) {
+  const href = item.href.toLowerCase();
+  const label = item.label.toLowerCase();
+
+  if (href.includes("bueroreinigung") || href.includes("reinigungskraft-buero") || label.includes("büro")) {
+    return "Für Büros, Agenturen und Kanzleien mit Raumliste, Küche, Sanitär, Randzeiten, Schlüsselweg und Ansprechpartner.";
+  }
+
+  if (href.includes("gewerbereinigung") || href.includes("b2b-reinigung") || href.includes("firmenreinigung")) {
+    return "Für Gewerbeflächen, Firmenbereiche, Ladenflächen oder Arbeitsbereiche, wenn Nutzung, Turnus und Zugang den Aufwand bestimmen.";
+  }
+
+  if (href.includes("praxisreinigung") || href.includes("kanzleireinigung")) {
+    return "Für Praxis- oder Kanzleiflächen, wenn Öffnungszeiten, sensible Bereiche, Zugang, Fotos und ein verlässlicher Turnus wichtig sind.";
+  }
+
+  if (href.includes("gebaeudereinigung") || href.includes("objektreinigung")) {
+    return "Für Gebäude mit Eingang, Etagen, Fluren, Sanitär, Büroflächen oder Treppenhaus, wenn mehrere Bereiche zusammen betrachtet werden sollen.";
+  }
+
+  if (href.includes("hausverwaltung") || href.includes("treppenhaus")) {
+    return "Für Hausverwaltung, WEG oder Vermieter mit Eingang, Treppenhaus, Kellerflur, Beschwerden, Turnus und Schlüsselweg.";
+  }
+
+  if (href.includes("grundreinigung") || href.includes("sonderreinigung") || href.includes("renovierung")) {
+    return "Für stärkere Verschmutzung, Leerstand, Renovierung oder Mieterwechsel, wenn normale Unterhaltsreinigung nicht ausreicht.";
+  }
+
+  if (href.includes("endreinigung") || href.includes("schluesseluebergabe")) {
+    return "Für Auszug, Besichtigung oder Übergabe, wenn Küche, Bad, Böden, Restpunkte, Schlüsselweg und Deadline zählen.";
+  }
+
+  if (href.includes("fensterreinigung") || href.includes("teppichreinigung")) {
+    return "Für Glas, Rahmen, Teppich oder Polster nach Fläche, Material, Zugang, Etage, Zustand und gewünschtem Termin.";
+  }
+
+  if (href.includes("angebot") || href.includes("vielleicht-guenstiger")) {
+    return "Für vorhandene Reinigungsangebote, wenn Umfang, Turnus, Zusatzpunkte, Fotos und Preisrahmen sachlich geprüft werden sollen.";
+  }
+
+  if (href.includes("entsorgung")) {
+    return "Für kleinere Restmengen, Möbel oder Kellerinhalt, die vor oder nach der Reinigung getrennt geklärt werden müssen.";
+  }
+
+  if (href.includes("wohnungsreinigung") || href.includes("moeblierte")) {
+    return "Für Wohnung, Apartment oder möblierte Fläche mit Räumen, Zustand, Fotos, Zugang, Termin und gewünschtem Ergebnis.";
+  }
+
+  return `Für ${item.label}, wenn Objekt, Umfang, Zustand, Fotos und Termin konkret beschrieben werden sollen.`;
+}
+
+function buildDuesseldorfServiceSummary(serviceLabel: string, path: string) {
+  const href = path.toLowerCase();
+
+  if (href.includes("gewerbereinigung") || href.includes("b2b-reinigung") || href.includes("firmenreinigung")) {
+    return "FLOXANT Düsseldorf prüft gewerbliche Reinigung nach Objektart, Fläche, Nutzung, Turnus, Randzeit, Zugang und Fotos. So lässt sich klären, ob Büro, Praxis, Ladenfläche, Treppenhaus oder ein gemischtes Objekt passend eingeordnet werden kann.";
+  }
+
+  if (href.includes("bueroreinigung") || href.includes("reinigungskraft-buero")) {
+    return "FLOXANT Düsseldorf prüft Büroreinigung nach Raumliste, Arbeitszeiten, Küche, Sanitär, Boden, Schlüsselweg und gewünschtem Turnus. Fotos und ein kurzer Preisrahmen helfen, schnell zu erkennen, ob eine laufende oder einmalige Reinigung sinnvoll ist.";
+  }
+
+  if (href.includes("praxisreinigung") || href.includes("kanzleireinigung")) {
+    return "FLOXANT Düsseldorf prüft Praxis- und Kanzleiflächen mit Blick auf Öffnungszeiten, Wartebereich, Nebenräume, Sanitär, Zugang und Fotos. Es geht um eine realistische Reinigung der zugänglichen Flächen ohne pauschale Spezialversprechen.";
+  }
+
+  if (href.includes("hausverwaltung") || href.includes("treppenhaus")) {
+    return "FLOXANT Düsseldorf unterstützt Hausverwaltungen, WEGs und Vermieter bei Reinigungsanfragen rund um Eingang, Treppenhaus, Kellerflur, Aufzug, Müllbereich und Beschwerden. Wichtig sind Objektadresse, Turnus, Zugang, Fotos und Ansprechpartner.";
+  }
+
+  if (href.includes("endreinigung") || href.includes("schluesseluebergabe")) {
+    return "FLOXANT Düsseldorf prüft Endreinigung und Übergabereinigung für Auszug, Leerstand, Besichtigung oder Schlüsseltermin. Entscheidend sind Räume, Zustand, Fotos, Deadline, Zugang und der gewünschte Übergabezustand.";
+  }
+
+  return `FLOXANT prüft ${serviceLabel} in Düsseldorf nach Objektart, Fläche, Zustand, Zugang, Termin und Fotos. Ziel ist eine klare Rückmeldung, welche Reinigung sinnvoll ist und welche Angaben für ein belastbares Angebot noch fehlen.`;
+}
+
+type ServiceSituationCard = {
+  title: string;
+  text: string;
+  href: string;
+  cta: string;
+};
+
+function buildServiceSituationCards(serviceLabel: string, path: string): ServiceSituationCard[] {
+  const href = path.toLowerCase();
+
+  if (href.includes("praxisreinigung")) {
+    return [
+      {
+        title: "Praxisflächen ohne Störung anfragen",
+        text: "Für Empfang, Wartebereich, Nebenräume, Sanitär und Teamflächen zählen Öffnungszeiten, Zugang, Raumliste und ein Zeitfenster, das zum Praxisbetrieb passt.",
+        href: "/duesseldorf/praxisreinigung#anfrage-checkliste",
+        cta: "Praxisdaten senden",
+      },
+      {
+        title: "Turnus und Randzeiten klären",
+        text: "Ob wöchentlich, mehrmals pro Woche oder nach Absprache: FLOXANT prüft den sinnvollen Rhythmus anhand von Fläche, Nutzung, Fotos und Ansprechpartner.",
+        href: "/duesseldorf/unterhaltsreinigung",
+        cta: "Turnus prüfen",
+      },
+      {
+        title: "Vorhandenes Praxisangebot einordnen",
+        text: "Wenn bereits ein Angebot vorliegt, helfen Preis, Leistungsumfang, Turnus, Raumliste, Zugang und Fotos für eine sachliche zweite Einschätzung.",
+        href: "/duesseldorf/vielleicht-guenstiger",
+        cta: "Angebot prüfen",
+      },
+    ];
+  }
+
+  if (href.includes("hausverwaltung") || href.includes("treppenhaus")) {
+    return [
+      {
+        title: "Treppenhaus und Eingang sauber planen",
+        text: "Etagen, Eingangsbereich, Aufzug, Kellerflur, Müllbereich, Turnus, Schlüsselweg und Fotos machen die Anfrage für Hausverwaltung oder WEG konkret.",
+        href: "/duesseldorf/treppenhausreinigung",
+        cta: "Bereiche nennen",
+      },
+      {
+        title: "Beschwerden nachvollziehbar klären",
+        text: "Wenn Mieter oder Eigentümer bestimmte Stellen melden, helfen Fotos und eine kurze Bereichsliste. So wird nicht pauschal gereinigt, sondern gezielt geprüft.",
+        href: "/duesseldorf/hausverwaltung-reinigung#anfrage-checkliste",
+        cta: "Objekt prüfen",
+      },
+      {
+        title: "Objektwechsel oder Übergabe vorbereiten",
+        text: "Bei Auszug, Leerstand oder Neuvermietung können Endreinigung, Schlüsselweg und kleine Restpunkte getrennt eingeordnet werden.",
+        href: "/duesseldorf/endreinigung",
+        cta: "Übergabe planen",
+      },
+    ];
+  }
+
+  if (
+    href.includes("bueroreinigung") ||
+    href.includes("firmenreinigung") ||
+    href.includes("gewerbereinigung") ||
+    href.includes("b2b-reinigung") ||
+    href.includes("hotelreinigung")
+  ) {
+    return [
+      {
+        title: "Gewerbefläche mit Raumliste anfragen",
+        text: "Büro, Firma, Praxis, Laden, Hotel oder gemischte Fläche: Raumliste, Sanitär, Küche, Boden, Glas, Turnus, Randzeit und Zugang direkt mitschicken.",
+        href: "/duesseldorf/gewerbereinigung#anfrage-checkliste",
+        cta: "Fläche beschreiben",
+      },
+      {
+        title: "Büroreinigung im Arbeitsalltag einplanen",
+        text: "Für Büros zählen Nutzungszeiten, Schlüsselweg, Ansprechpartner, Reinigung nach Feierabend und klare Rückmeldung, damit der Betrieb nicht gestört wird.",
+        href: "/duesseldorf/bueroreinigung",
+        cta: "Büro prüfen",
+      },
+      {
+        title: "Angebot und Budget sachlich vergleichen",
+        text: "Ein Preis ist erst verständlich, wenn Turnus, Fläche, Zusatzpunkte, Fotos und Zeitfenster zusammen betrachtet werden. FLOXANT prüft ohne Preisgarantie.",
+        href: "/duesseldorf/vielleicht-guenstiger",
+        cta: "Angebot prüfen",
+      },
+    ];
+  }
+
+  return [
+    {
+      title: `${serviceLabel} konkret vorbereiten`,
+      text: "Nennen Sie Objektart, Stadtteil oder PLZ, Fläche, Zustand, Termin und gewünschtes Ergebnis. Fotos machen die Rückmeldung deutlich schneller.",
+      href: `${path}#anfrage-checkliste`,
+      cta: "Angaben senden",
+    },
+    {
+      title: "Budget oder vorhandenes Angebot nutzen",
+      text: "Wenn Sie bereits einen Preisrahmen oder ein Angebot haben, kann FLOXANT Umfang, Fotos, Turnus und offene Punkte sachlich einordnen.",
+      href: "/duesseldorf/vielleicht-guenstiger",
+      cta: "Budget prüfen",
+    },
+    {
+      title: "Passende Reinigungsart finden",
+      text: "Wohnung, Büro, Praxis, Treppenhaus, Grundreinigung oder Endreinigung werden nicht vermischt. Die Anfrage wird nach Objekt und Ziel sauber zugeordnet.",
+      href: "/duesseldorf/reinigung-stadtteile-umgebung",
+      cta: "Leistung wählen",
+    },
+  ];
+}
+
 function buildDefaultFaqItems(serviceLabel: string, title: string) {
   return [
     {
@@ -168,6 +366,29 @@ function buildDefaultFaqItems(serviceLabel: string, title: string) {
       a: "Nein. Die Anfrage dient der ersten Prüfung. Verbindlich wird ein Auftrag erst, wenn Umfang, Termin, Zugang und Leistung abgestimmt sind.",
     },
   ];
+}
+
+function getVisibleIntentLabel(item: { searchPhrase: string; signal?: string }) {
+  if (item.signal) return item.signal;
+  if (/kosten|preis|angebot/i.test(item.searchPhrase)) return "Angebot & Kosten";
+  if (/heute|morgen|kurzfristig|schnell|termin/i.test(item.searchPhrase)) return "Kurzfristig";
+  if (/schlüssel|nicht vor ort|übergabe|auszug/i.test(item.searchPhrase)) return "Zugang & Übergabe";
+  if (/hausverwaltung|weg|treppenhaus/i.test(item.searchPhrase)) return "Hausverwaltung";
+  if (/büro|praxis|firma|gewerbe|hotel|kanzlei/i.test(item.searchPhrase)) return "Gewerbe";
+  if (/wohnung|apartment|putzfirma/i.test(item.searchPhrase)) return "Wohnung";
+  return "Anfrageweg";
+}
+
+function getRecommendationLabel(intent: string) {
+  if (/kosten|preis|angebot|vergleich/i.test(intent)) return "Angebot prüfen";
+  if (/heute|morgen|kurzfristig|schnell/i.test(intent)) return "Termin dringend";
+  if (/schlüssel|nicht vor ort|übergabe|auszug|besichtigung/i.test(intent)) return "Nicht vor Ort";
+  if (/hausverwaltung|weg|mieter|treppenhaus|gebäude/i.test(intent)) return "Hausverwaltung";
+  if (/büro|firma|gewerbe|kanzlei|praxis|hotel/i.test(intent)) return "Gewerbe";
+  if (/stadtteil|nähe|neuss|ratingen|meerbusch|altstadt|pempelfort/i.test(intent)) return "Ort & Zugang";
+  if (/wohnung|putzfirma|putzservice|reinigungsfirma/i.test(intent)) return "Wohnung oder Büro";
+  if (/umzug|transport|büroumzug/i.test(intent)) return "Falscher Bereich";
+  return "Passender Fall";
 }
 
 export function DuesseldorfServicePage({
@@ -274,6 +495,21 @@ export function DuesseldorfServicePage({
     snippetAnswerItems: serviceSnippetAnswerItems,
   });
   const faqJsonLd = buildFaqJsonLd(activeFaqItems);
+  const pathSegments = path.split("/").filter(Boolean);
+  const serviceSlug = pathSegments[pathSegments.length - 1] || "reinigung";
+  const customerSectionServices = [
+    {
+      title: `${serviceLabel} anfragen`,
+      text: description,
+      href: path,
+    },
+    ...visibleLinks.slice(0, 5).map((item) => ({
+      title: item.label,
+      text: getDuesseldorfRelatedText(item),
+      href: item.href,
+    })),
+  ];
+  const serviceSituationCards = buildServiceSituationCards(serviceLabel, path);
 
   return (
     <main className="overflow-x-clip px-4 pb-28 pt-10 sm:px-6 lg:pb-32">
@@ -342,8 +578,59 @@ export function DuesseldorfServicePage({
               data-event="service_card_click"
               data-region="duesseldorf"
             >
-              Kundenfragen ansehen
+              Passenden Fall finden
             </Link>
+          </div>
+        </section>
+
+        <ServicePageCustomerSections
+          region="duesseldorf"
+          city="Düsseldorf"
+          path={path}
+          serviceSlug={serviceSlug}
+          serviceLabel={serviceLabel}
+          audience="Kunden, Unternehmen, Praxen, Verwaltungen und private Auftraggeber"
+          summary={buildDuesseldorfServiceSummary(serviceLabel, path)}
+          services={customerSectionServices}
+          relatedLinks={visibleLinks}
+          offerCheckHref="/angebot-vergleichen-duesseldorf"
+          className="pt-6"
+        />
+
+        <section className="grid gap-4 pt-6 lg:grid-cols-[0.78fr_1.22fr]">
+          <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
+            <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
+              Typische Kundensituationen
+            </div>
+            <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
+              {serviceLabel} in Düsseldorf verständlich anfragen
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-700">
+              Kunden brauchen keine perfekte Fachsprache. Wichtig sind Objekt, Fläche,
+              Nutzung, Zustand, Fotos, Zugang, Termin und ein Ansprechpartner. Daraus wird
+              eine klare Reinigungsanfrage statt ein ungenauer Preisvergleich.
+            </p>
+          </article>
+          <div className="grid gap-3 md:grid-cols-3">
+            {serviceSituationCards.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group min-w-0 rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
+                data-event="service_card_click"
+                data-region="duesseldorf"
+              >
+                <CheckCircle2 className="h-5 w-5 text-teal-700" />
+                <h3 className="mt-3 text-base font-black tracking-normal text-slate-950">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-teal-800">
+                  {item.cta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
           </div>
         </section>
 
@@ -381,7 +668,7 @@ export function DuesseldorfServicePage({
           {serviceConfidenceItems.map(({ Icon, title: itemTitle, text }) => (
             <article
               key={itemTitle}
-              className="rounded-[0.85rem] border border-slate-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)]"
+              className="min-w-0 rounded-[0.85rem] border border-slate-200 bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.05)]"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-[0.7rem] border border-teal-100 bg-teal-50 text-teal-700">
                 <Icon className="h-4 w-4" />
@@ -444,15 +731,15 @@ export function DuesseldorfServicePage({
         <section id="kunden-suchen" className="grid gap-4 pt-6 lg:grid-cols-[0.72fr_1.28fr]">
           <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
             <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
-              Kundennah gesucht
+              Häufige Kundensituationen
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-              Häufige Gründe für {serviceLabel} in Düsseldorf
+              Wann {serviceLabel} in Düsseldorf angefragt wird
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Kunden formulieren selten mit Fachbegriffen. Sie suchen nach Nähe, Kosten, WhatsApp,
-              Fotos, kurzfristigem Termin oder Übergabe. Diese Einstiege führen direkt
-              zur passenden Handlung.
+              Oft geht es um einen konkreten Anlass: ein neuer Turnus, eine Übergabe,
+              ein kurzfristiger Termin, Fotos vom Objekt oder ein vorhandenes Angebot.
+              Diese Wege helfen, die Anfrage direkt richtig einzuordnen.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -463,7 +750,7 @@ export function DuesseldorfServicePage({
                 <Link
                   key={item.searchPhrase}
                   href={item.href}
-                  className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
+                  className="group min-w-0 rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
                   data-event="service_card_click"
                   data-region="duesseldorf"
                 >
@@ -471,7 +758,7 @@ export function DuesseldorfServicePage({
                     <Icon className="h-4 w-4" />
                   </span>
                   <div className="mt-3 text-[11px] font-black uppercase tracking-normal text-teal-700">
-                    {item.searchPhrase}
+                    {getVisibleIntentLabel(item)}
                   </div>
                   <h3 className="mt-2 text-base font-black tracking-normal text-slate-950">
                     {item.title}
@@ -496,15 +783,15 @@ export function DuesseldorfServicePage({
               Schnell erkennen, welcher Weg für {serviceLabel} passt
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Kunden kommen oft mit konkreten Fragen: Kosten, Fotos, Angebot, Stadtteil
-              oder schneller Kontakt. Diese Einstiege führen direkt zur richtigen nächsten
-              Handlung für eine saubere Düsseldorfer Reinigungsanfrage.
+              Für eine erste Einordnung reichen meist Ort, Objektart, gewünschter Umfang,
+              Zeitfenster und Fotos. Danach lässt sich klären, ob Formular, WhatsApp,
+              Telefon oder Angebotsprüfung der beste nächste Schritt ist.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-3">
             {decisionItems.map((item) => {
               const className =
-                "group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]";
+                "group min-w-0 rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]";
               const content = (
                 <>
                   <CheckCircle2 className="h-5 w-5 text-teal-700" />
@@ -536,7 +823,7 @@ export function DuesseldorfServicePage({
                   key={item.title}
                   href={item.href}
                   className={className}
-                  data-event="whatsapp_click"
+                  data-event="service_card_click"
                   data-region="duesseldorf"
                 >
                   {content}
@@ -556,8 +843,7 @@ export function DuesseldorfServicePage({
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
               Je klarer Ort, Objekt, Fläche, Fotos und Zeitfenster sind, desto schneller
-              wird aus einer Suche nach Reinigungsfirma, Putzfirma oder Kosten eine
-              prüfbare Anfrage.
+              lässt sich einschätzen, ob FLOXANT die Anfrage passend übernehmen kann.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
@@ -609,14 +895,14 @@ export function DuesseldorfServicePage({
         <section className="grid gap-4 pt-6 lg:grid-cols-[0.78fr_1.22fr]">
           <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
             <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
-              Häufig gesucht
+              Vor der Anfrage
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
               Antworten, die vor der Anfrage helfen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Kurze, klare Antworten auf kaufnahe Fragen verbessern die Lesbarkeit und
-              machen schon vor dem Kontakt verständlich, welcher nächste Schritt passt.
+              Kurze, klare Antworten machen schon vor dem Kontakt verständlich, welche
+              Angaben wichtig sind und welcher nächste Schritt zur Situation passt.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2">
@@ -624,7 +910,7 @@ export function DuesseldorfServicePage({
               <Link
                 key={item.query}
                 href={item.href}
-                className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
+                className="group min-w-0 rounded-[0.9rem] border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
                 data-event="service_card_click"
                 data-region="duesseldorf"
               >
@@ -647,10 +933,10 @@ export function DuesseldorfServicePage({
         <section className="grid gap-4 pt-6 lg:grid-cols-[0.78fr_1.22fr]">
           <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
             <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
-              Empfehlung & Zuordnung
+              Passt FLOXANT?
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-              Wann FLOXANT für diese Düsseldorfer Reinigung passt
+              Wann FLOXANT für diese Reinigung in Düsseldorf passt
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
               Wenn Ort, Objektart, Fläche, Zustand, Fotos und Termin klar sind, können
@@ -663,12 +949,12 @@ export function DuesseldorfServicePage({
               <Link
                 key={item.intent}
                 href={item.href}
-                className="group rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
+                className="group min-w-0 rounded-[0.9rem] border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-1 hover:border-teal-200 hover:bg-white hover:shadow-[0_16px_38px_rgba(15,118,110,0.1)]"
                 data-event="service_card_click"
                 data-region="duesseldorf"
               >
                 <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
-                  {item.intent}
+                  {getRecommendationLabel(item.intent)}
                 </div>
                 <h3 className="mt-2 text-base font-black text-slate-950">
                   {item.recommendation}
@@ -689,37 +975,29 @@ export function DuesseldorfServicePage({
               <Languages className="h-4 w-4" />
             </div>
             <div className="mt-4 text-[11px] font-black uppercase tracking-normal text-cyan-100">
-              International verständlich
+              Auch mit kurzer Beschreibung verständlich
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-white">
-              {serviceLabel} in Düsseldorf auch bei anderssprachiger Suche finden
+              {serviceLabel} in Düsseldorf auch dann anfragen, wenn die Angaben noch knapp sind
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-200">
-              Die Inhalte bleiben deutsch. Kurze Suchbegriffe in Englisch, Russisch,
-              Chinesisch und Koreanisch helfen bei der Zuordnung, wenn Kunden nach
-              Reinigung in Düsseldorf suchen.
+              Wichtig ist nicht die perfekte Formulierung, sondern der Inhalt: Ort, Objekt,
+              Fläche, Zustand, Fotos, Termin und gewünschter Kontaktweg. FLOXANT ordnet
+              daraus die passende Rückfrage ein.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2">
             {internationalSearchAliases.map((alias) => (
               <article
                 key={alias.language}
-                className="rounded-[0.9rem] border border-slate-200 bg-white p-4"
+                className="min-w-0 rounded-[0.9rem] border border-slate-200 bg-white p-4"
               >
                 <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
                   {internationalLanguageLabels[alias.language]}
                 </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {alias.terms.slice(0, 4).map((term) => (
-                    <span
-                      key={term}
-                      lang={htmlLangForAlias(alias.language)}
-                      className="rounded-[0.7rem] border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold leading-5 text-slate-800"
-                    >
-                      {term}
-                    </span>
-                  ))}
-                </div>
+                <p lang={htmlLangForAlias(alias.language)} className="mt-3 text-sm leading-7 text-slate-700">
+                  {getLanguageHelpText(alias.language)}
+                </p>
               </article>
             ))}
           </div>
@@ -791,13 +1069,13 @@ export function DuesseldorfServicePage({
               Düsseldorf konkret
             </div>
             <h2 className="mt-3 text-2xl font-bold tracking-normal text-slate-950">
-              Eigener Standortfokus statt austauschbarer Stadtseite
+              Düsseldorf sauber getrennt
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
               Diese Seite ist für {serviceLabel} in Düsseldorf aufgebaut. Entscheidend sind
               Objektart, Stadtteil, Fläche, gewünschte Häufigkeit, Zeitfenster, Zugang und
-              Fotos. So entsteht keine austauschbare Stadtseite, sondern eine Anfrage, die
-              zur Düsseldorfer Adresse und zum tatsächlichen Einsatzgebiet passt.
+              Fotos. So bleibt die Anfrage bei der Düsseldorfer Reinigung und wird nicht mit
+              Regensburger Umzug, Entrümpelung oder Haushaltsauflösung vermischt.
             </p>
           </article>
 

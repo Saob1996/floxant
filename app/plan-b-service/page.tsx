@@ -87,7 +87,7 @@ const triageOptions = [
   },
   {
     title: "Duesseldorf braucht Backup",
-    text: "In Duesseldorf nur fuer Reinigung, Entsorgung, moeblierte Wohnung oder B2B-Reinigung, nicht fuer Umzug.",
+    text: "In Duesseldorf servicebezogen ueber eigene lokale Seiten, inklusive Umzug, Reinigung, Entruempelung und Entsorgung.",
     solution: "Duesseldorf Reinigung/Entsorgung",
   },
 ];
@@ -175,7 +175,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert Plan B auch in Duesseldorf?",
-    a: "Ja, aber nur fuer Reinigung, Entsorgung, moeblierte Wohnung oder B2B-Reinigung. FLOXANT positioniert in Duesseldorf keinen Umzugsservice.",
+    a: "Ja, servicebezogen ueber eigene lokale Seiten: Umzug, Reinigung, Entruempelung, moeblierte Wohnung, B2B-Reinigung oder Entsorgung.",
   },
   {
     q: "Welche Angaben braucht FLOXANT?",
@@ -248,7 +248,7 @@ export default function PlanBServicePage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Backup vor dem Kippen</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf nur Reinigung/Entsorgung</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf servicebezogen</span>
                 <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-blue-700">Pruefung nach Verfuegbarkeit</span>
               </div>
             </div>

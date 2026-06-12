@@ -4,6 +4,20 @@ import { Check, X, Shield, Clock, TrendingDown } from 'lucide-react';
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import { type Locale } from "@/i18n-config";
+
+const STATIC_ALTERNATIVE_SLUGS = [
+  "umzugsfirma-regensburg",
+  "umzugsunternehmen-regensburg",
+  "reinigungsfirma-regensburg",
+  "reinigungsfirma-duesseldorf",
+] as const;
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return STATIC_ALTERNATIVE_SLUGS.map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const pageLocale = "de";

@@ -36,22 +36,22 @@ const quickRoutes = [
   {
     label: "Ich brauche laufende Reinigung",
     href: "/unterhaltsreinigung-regensburg",
-    answer: "Unterhaltsreinigung, Büroreinigung oder Objektpflege.",
+    answer: "Büro, Praxis, Hausflur oder Objekt regelmäßig sauber halten.",
   },
   {
     label: "Ich habe Flecken, Polster oder Teppich",
     href: "/teppichreinigung-regensburg",
-    answer: "Material, Fleckenfotos und Stückzahl direkt mitsenden.",
+    answer: "Fotos, Material und Stückzahl helfen bei der ersten Einschätzung.",
   },
   {
     label: "Es geht um Bau, Umbau oder Staub",
     href: "/baureinigung-regensburg",
-    answer: "Bauzustand, Fläche und Übergabetermin klären.",
+    answer: "Bauzustand, Fläche und Übergabetermin kurz beschreiben.",
   },
   {
     label: "Hausverwaltung oder Treppenhaus",
     href: "/treppenhausreinigung-regensburg",
-    answer: "Eingänge, Etagen, Turnus und Zugang erfassen.",
+    answer: "Eingang, Etagen, Turnus, Zugang und Beschwerden nennen.",
   },
 ];
 
@@ -63,16 +63,15 @@ export function RegensburgCleaningServiceHub() {
           <div className="xl:sticky xl:top-24">
             <div className="flox-kicker">
               <Sparkles className="h-4 w-4" />
-              Service-Finder Regensburg
+              Reinigungsleistungen Regensburg
             </div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Welche Reinigung Kunden wirklich suchen.
+              Welche Reinigung in Regensburg zu Ihrem Objekt passt.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Suchende tippen nicht nur „Reinigungsfirma Regensburg“,
-              sondern konkret: Büroreinigung Angebot, Fensterreinigung Kosten,
-              Teppichbodenreinigung, Treppenhausreinigung oder IT-Raum Reinigung.
-              Diese Übersicht führt sie ohne Umweg zur passenden Anfrage.
+              Ob Büro, Praxis, Hotel, Treppenhaus, Baustelle, Teppich oder Fenster:
+              Wählen Sie den Fall, der Ihrem Objekt am nächsten kommt. Ort, Fotos,
+              Termin, Zugang und gewünschtes Ergebnis reichen oft für den ersten sinnvollen Schritt.
             </p>
 
             <div className="mt-7 rounded-[1.6rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_24px_70px_rgba(15,23,42,0.16)]">
@@ -98,12 +97,12 @@ export function RegensburgCleaningServiceHub() {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:pr-40 2xl:pr-44">
+          <div className="grid min-w-0 gap-4 md:grid-cols-2">
             {regensburgCleaningServices.map((service) => {
               const Icon = iconMap[service.icon];
 
               return (
-                <article key={service.href} className="flox-panel rounded-[1.5rem] p-5">
+                <article key={service.href} className="flox-panel min-w-0 rounded-[1rem] p-5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.9rem] bg-blue-50 text-blue-700">
                       <Icon className="h-5 w-5" />
@@ -125,7 +124,7 @@ export function RegensburgCleaningServiceHub() {
 
                   <div className="mt-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                      Kundennahe Wörter
+                      Hilfreich bei der Anfrage
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {service.customerWords.map((word) => (

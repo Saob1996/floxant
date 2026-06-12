@@ -22,6 +22,7 @@ import { GewerbereinigungAdsForm } from "@/components/duesseldorf/Gewerbereinigu
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { floxantServices } from "@/lib/floxant-services";
+import { getServiceVisual } from "@/lib/service-visuals";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   buildBreadcrumbJsonLd,
@@ -31,7 +32,13 @@ import {
 
 const path = "/duesseldorf/gewerbereinigung";
 const canonical = `${company.url}${path}`;
-const heroImage = "/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp";
+const heroVisual = getServiceVisual({
+  region: "duesseldorf",
+  slug: "gewerbereinigung",
+  path,
+  serviceLabel: "Gewerbereinigung",
+});
+const heroImage = heroVisual.src;
 const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
@@ -60,6 +67,9 @@ const heroTrustItems = [
   "Bestehendes Angebot prüfbar",
   "Keine Preisversprechen",
 ];
+const pageTitle = "Gewerbereinigung Düsseldorf | Angebot klar prüfen";
+const pageDescription =
+  "FLOXANT prüft Gewerbereinigung in Düsseldorf für Büro, Praxis, Kanzlei und Objekt. Raumliste, Turnus, Fotos und Angebot senden, Zeitfenster klären.";
 
 const requestHints = [
   "Objektart: Büro, Praxis, Kanzlei, Treppenhaus oder Gewerbeobjekt",
@@ -194,9 +204,8 @@ const faqItems = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Gewerbereinigung Düsseldorf | Büro, Praxis & Unternehmen | FLOXANT",
-  description:
-    "Gewerbereinigung in Düsseldorf für Büros, Praxen, Kanzleien, Gewerbeobjekte und Hausverwaltungen. Kostenlos per Formular, WhatsApp oder Telefon anfragen.",
+  title: pageTitle,
+  description: pageDescription,
   keywords: [
     "Gewerbereinigung Düsseldorf",
     "Büroreinigung Düsseldorf",
@@ -207,29 +216,31 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical,
+    languages: {
+      "de-DE": canonical,
+      "x-default": canonical,
+    },
   },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "Gewerbereinigung in Düsseldorf für Büros, Praxen und Unternehmen",
-    description:
-      "Objekt, Turnus, Zeitfenster und Bedarf klar abstimmen. FLOXANT Düsseldorf prüft Ihre Anfrage kostenlos und unverbindlich.",
+    title: pageTitle,
+    description: pageDescription,
     images: [
       {
         url: heroImage,
         width: 1200,
         height: 630,
-        alt: "Gewerbliche Reinigung in Düsseldorf",
+        alt: heroVisual.alt,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gewerbereinigung Düsseldorf | FLOXANT",
-    description:
-      "Kostenlos Gewerbereinigung in Düsseldorf anfragen: Büro, Praxis, Unterhaltsreinigung und Angebotsprüfung.",
+    title: pageTitle,
+    description: pageDescription,
     images: [heroImage],
   },
 };
@@ -322,7 +333,7 @@ export default function GewerbereinigungDuesseldorfPage() {
       <section className="relative isolate overflow-hidden bg-slate-950 text-white">
         <Image
           src={heroImage}
-          alt="Gepflegter gewerblicher Raum für Gewerbereinigung in Düsseldorf"
+          alt={heroVisual.alt}
           fill
           priority
           sizes="100vw"

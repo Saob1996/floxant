@@ -14,15 +14,15 @@ export function RegensburgCleaningLocalSignals() {
           <article className="flox-panel-dark rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">
               <MapPin className="h-4 w-4" />
-              Lokal gefunden werden
+              Einsatzort klären
             </div>
             <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-bold leading-[0.98] text-white">
-              Reinigung in Regensburg nach Stadtteil, Objekt und Anlass.
+              Reinigung in Regensburg mit Ort, Objekt und Anlass klar anfragen.
             </h2>
             <p className="mt-5 text-base leading-8 text-slate-300">
-              Viele Kunden suchen nicht abstrakt nach Gebäudereinigung, sondern mit Ort und
-              Situation: Altstadt, Kumpfmühl, Gewerbepark, Neutraubling, Fenster,
-              Büro, Treppenhaus oder Grundreinigung nach Auszug.
+              Für eine gute Einschätzung zählen der Einsatzort und die Situation: Büro,
+              Wohnung, Praxis, Treppenhaus, Fenster, Gewerbefläche oder Grundreinigung
+              nach Auszug.
             </p>
 
             <div className="mt-7 divide-y divide-white/10">

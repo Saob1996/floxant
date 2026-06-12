@@ -30,7 +30,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/hotelreinigung-regensburg";
 
@@ -223,7 +222,7 @@ export default function HotelreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Hotelreinigung Regensburg für Hotel, Pension, Boardinghouse und Objektbetrieb",
         description:
-          "Kundennaher Einstieg für Hotelreinigung in Regensburg mit Suchbegriffen, Turnus, Zimmer- und Allgemeinflächen, Anfragecheckliste, FAQ, Grenzen und B2B-Formular.",
+          "Kundennaher Einstieg für Hotelreinigung in Regensburg mit Turnus, Zimmer- und Allgemeinflächen, Anfragecheckliste, FAQ, Grenzen und B2B-Formular.",
         path: pagePath,
         about: [
           "Hotelreinigung Regensburg",
@@ -241,7 +240,7 @@ export default function HotelreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Hotelreinigung Regensburg",
+        name: "Typische Anliegen zur Hotelreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -299,7 +298,7 @@ export default function HotelreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anliegen", "#kunden-suchen"],
                   ["Hotelbereiche", "#bereiche"],
                   ["Turnus", "#turnus"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -324,7 +323,7 @@ export default function HotelreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/service-cleaning.png"
                 alt="Aufgeräumtes Hotelzimmer als Beispiel für Hotelreinigung in Regensburg"
                 fill
                 priority
@@ -363,15 +362,14 @@ export default function HotelreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anliegen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Die Seite spricht die Wörter an, mit denen Hotelbetreiber suchen.
+              Hotelreinigung muss zum Gästealltag passen.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden wollen keine allgemeine Reinigungsfirma. Sie suchen
-              Hotelreinigung Regensburg, Zimmerreinigung, Pension Reinigung,
-              Boardinghouse Reinigung, Lobby, Frühstücksbereich, Turnus, Kosten
-              und ein Angebot, das zum Gästealltag passt.
+              Für Hotel, Pension oder Boardinghouse zählen Lobby, Flure, zimmernahe
+              Bereiche, Frühstücksbereich, Check-out-Zeiten, Turnus und ein Ablauf,
+              der Gäste und Team nicht unnötig stört.
             </p>
           </div>
 
@@ -464,7 +462,7 @@ export default function HotelreinigungRegensburgPage() {
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
             <div className="flox-kicker">Anfrage-Checkliste</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Diese Angaben machen aus einer Suche eine prüfbare Hotelanfrage.
+              Diese Angaben machen aus einer ersten Anfrage eine prüfbare Hotelanfrage.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Für Hotelreinigung zählen nicht nur Zimmer oder Quadratmeter. Erst
@@ -487,7 +485,7 @@ export default function HotelreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten für Betreiber mit Angebotsabsicht.
             </h2>
@@ -527,7 +525,7 @@ export default function HotelreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Hotelreinigung.
+                  Weitere passende Leistungen für Hotelreinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

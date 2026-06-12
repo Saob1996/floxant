@@ -19,6 +19,8 @@ export type RegensburgServicePageConfig = {
 
 const commonRelated = [
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/regensburg/haushaltsaufloesung", label: "Haushaltsauflösung Regensburg" },
   { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung Regensburg" },
@@ -30,10 +32,10 @@ export const regensburgServicePages = {
   umzug: {
     slug: "umzug",
     path: "/regensburg/umzug",
-    title: "Umzug in Regensburg mit klarer Planung",
-    metaTitle: "Umzug Regensburg | Anfrage mit Fotos & Termin | FLOXANT",
+    title: "Umzug in Regensburg mit klarer Planung und Angebot nach Prüfung",
+    metaTitle: "Umzugsfirma Regensburg | Bilder senden, Angebot klären",
     metaDescription:
-      "Umzug in Regensburg anfragen: FLOXANT prüft Volumen, Zugang, Termin, Zusatzleistungen und Übergabepunkte kostenlos und unverbindlich.",
+      "Umzug in Regensburg anfragen: Start, Ziel, Etage, Laufweg, Volumen und Fotos senden. FLOXANT prüft Angebot, Ablauf und Rückmeldung sauber.",
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT unterstützt private und objektbezogene Umzüge in Regensburg, wenn Volumen, Zugang, Zeitfenster und zusätzliche Aufgaben sauber abgestimmt werden sollen.",
@@ -67,6 +69,18 @@ export const regensburgServicePages = {
         q: "Ist die Anfrage unverbindlich?",
         a: "Ja. FLOXANT prüft kostenlos und unverbindlich, ob der Auftrag realistisch geplant werden kann.",
       },
+      {
+        q: "Welche Kostenfaktoren bestimmen den Umzug?",
+        a: "Wichtig sind Volumen, Kartons, Etage, Aufzug, Laufweg, Parkmöglichkeit, Entfernung, Terminfenster, Demontage, Packhilfe und Zusatzleistungen.",
+      },
+      {
+        q: "Kann FLOXANT ein vorhandenes Umzugsangebot prüfen?",
+        a: "Ja. Senden Sie Angebot, Start, Ziel, Volumen, Fotos, Etage, Laufweg und Budget. FLOXANT prüft sachlich, ohne einen niedrigeren Preis zu garantieren.",
+      },
+      {
+        q: "Ist eine Vor-Ort-Besichtigung in Regensburg möglich?",
+        a: "Bei größeren oder unklaren Umzügen kann eine Besichtigung sinnvoll sein. Für eine erste Einschätzung reichen oft Fotos oder Videos.",
+      },
     ],
     related: commonRelated,
   },
@@ -74,9 +88,9 @@ export const regensburgServicePages = {
     slug: "entruempelung",
     path: "/regensburg/entruempelung",
     title: "Entrümpelung in Regensburg für Wohnung, Keller und Objekt",
-    metaTitle: "Entrümpelung Regensburg | Fotos senden & prüfen lassen | FLOXANT",
+    metaTitle: "Entrümpelung Regensburg | Wohnung & Keller klären",
     metaDescription:
-      "Entrümpelung in Regensburg für Wohnungen, Keller, Häuser und Objektflächen. Fotos, Umfang, Zugang und Termin unverbindlich prüfen lassen.",
+      "Entrümpelung in Regensburg für Wohnung, Keller, Garage oder Objekt: Fotos, Menge, Zugang, Entsorgung und Reinigung danach prüfen, Termin klären.",
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT hilft, Räume wieder nutzbar zu machen: sortieren, räumen, tragbare Mengen einschätzen und die Fläche für Übergabe, Verkauf oder Nachnutzung vorbereiten.",
@@ -110,6 +124,18 @@ export const regensburgServicePages = {
         q: "Kann danach gereinigt werden?",
         a: "Ja, Endreinigung oder Übergabereinigung kann nach Räumung separat geprüft werden.",
       },
+      {
+        q: "Was kostet eine Entrümpelung in Regensburg?",
+        a: "Kosten hängen von Menge, Material, Gewicht, Etage, Laufweg, Parkmöglichkeit, Entsorgung, Zeitdruck und gewünschtem Endzustand ab.",
+      },
+      {
+        q: "Ist eine diskrete Entrümpelung möglich?",
+        a: "Ja. Sensible Fälle können mit ruhigem Kontaktweg, klarer Berechtigung, Fotos, Zeitfenster und Ansprechpartner abgestimmt werden.",
+      },
+      {
+        q: "Kann FLOXANT ein Entrümpelungsangebot prüfen?",
+        a: "Ja. Senden Sie Angebot, Fotos, Menge, Zugang, Etage, Entsorgungsanteil und Zielzustand für eine sachliche Einordnung.",
+      },
     ],
     related: commonRelated,
   },
@@ -117,9 +143,9 @@ export const regensburgServicePages = {
     slug: "haushaltsaufloesung",
     path: "/regensburg/haushaltsaufloesung",
     title: "Haushaltsauflösung in Regensburg ruhig klären",
-    metaTitle: "Haushaltsauflösung Regensburg | Wohnung & Haus klären | FLOXANT",
+    metaTitle: "Haushaltsauflösung Regensburg | Nachlass ruhig klären",
     metaDescription:
-      "Haushaltsauflösung in Regensburg für Wohnung, Haus, Nachlass oder Veränderung. Fotos, Zugang, Umfang und Übergabe unverbindlich prüfen lassen.",
+      "Haushaltsauflösung in Regensburg für Wohnung, Haus oder Nachlass: Fotos, Freigabe, Zugang, Räumung und Reinigung ruhig prüfen, Termin klären lassen.",
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT unterstützt, wenn Wohnung oder Haus nach Auszug, Erbfall oder Veränderung geordnet geräumt und für den nächsten Schritt vorbereitet werden sollen.",
@@ -153,6 +179,18 @@ export const regensburgServicePages = {
         q: "Welche Angaben sind wichtig?",
         a: "Ort, Größe, Fotos, Zugang, Etage, Freigabe, gewünschter Termin und Ziel der Übergabe helfen bei der Prüfung.",
       },
+      {
+        q: "Was kostet eine Haushaltsauflösung in Regensburg?",
+        a: "Der Preis hängt von Fläche, Raumanzahl, Menge, Sortieraufwand, Etage, Zugang, Entsorgung, Zeitdruck und möglicher Reinigung ab.",
+      },
+      {
+        q: "Kann FLOXANT bei Nachlassfällen diskret arbeiten?",
+        a: "Diskrete Abstimmung ist möglich. Wichtig sind Berechtigung, Ansprechpartner, Freigaben, Schlüsselweg, Fotos und ein klarer Kontaktweg.",
+      },
+      {
+        q: "Übernimmt FLOXANT Wertanrechnung oder rechtliche Fragen?",
+        a: "Nein. FLOXANT ersetzt keine Nachlassbewertung oder Rechtsberatung. Es geht um Räumung, Ablauf, Entsorgung und Vorbereitung.",
+      },
     ],
     related: commonRelated,
   },
@@ -160,9 +198,9 @@ export const regensburgServicePages = {
     slug: "uebergabereinigung",
     path: "/regensburg/uebergabereinigung",
     title: "Übergabereinigung in Regensburg vor Rückgabe oder Nachnutzung",
-    metaTitle: "Übergabereinigung Regensburg | Wohnung besenrein übergeben | FLOXANT",
+    metaTitle: "Übergabereinigung Regensburg | Fotos senden & klären",
     metaDescription:
-      "Übergabereinigung in Regensburg für Auszug, Vermietertermin oder Nachnutzung. Fotos, Fläche, Zustand und Termin unverbindlich prüfen lassen.",
+      "Übergabereinigung in Regensburg für Auszug, Vermietertermin oder Nachnutzung. Fotos, Fläche, Zustand und Termin prüfen lassen.",
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT unterstützt bei der Vorbereitung von Wohnungen, Häusern und Gewerbeflächen, wenn Übergabe, Fotos und sichtbare Reinigungsbereiche zusammenpassen müssen.",
@@ -196,6 +234,18 @@ export const regensburgServicePages = {
         q: "Was bedeutet besenrein?",
         a: "Besenrein hängt von Vereinbarung und Objekt ab. FLOXANT prüft, welche praktischen Schritte für eine saubere Übergabe sinnvoll sind.",
       },
+      {
+        q: "Was kostet eine Übergabereinigung?",
+        a: "Kosten hängen von Fläche, Zustand, Küche, Bad, Böden, Fensternähe, Restmengen, Zugang, Schlüsselweg und Deadline ab.",
+      },
+      {
+        q: "Kann FLOXANT Fotos nach der Reinigung senden?",
+        a: "Eine Fotodokumentation kann nach Absprache Teil des Ablaufs sein, wenn Zugang, Erwartung und Rückmeldung vorher geklärt sind.",
+      },
+      {
+        q: "Was passiert mit Restmengen vor der Übergabe?",
+        a: "Restmengen werden getrennt geprüft. Je nach Menge, Material und Zugang kann Entrümpelung oder Entsorgung vor der Reinigung nötig sein.",
+      },
     ],
     related: commonRelated,
   },
@@ -203,9 +253,9 @@ export const regensburgServicePages = {
     slug: "endreinigung",
     path: "/regensburg/endreinigung",
     title: "Endreinigung in Regensburg nach Auszug oder Räumung",
-    metaTitle: "Endreinigung Regensburg | Auszug & Übergabe vorbereiten | FLOXANT",
+    metaTitle: "Endreinigung Regensburg | Auszug sauber vorbereiten",
     metaDescription:
-      "Endreinigung in Regensburg nach Auszug, Umzug oder Entrümpelung. Zustand, Fläche, Fotos und Termin kostenlos prüfen lassen.",
+      "Endreinigung in Regensburg nach Auszug, Umzug oder Entrümpelung: Zustand, Fläche, Fotos, Termin und Restmengen prüfen lassen.",
     eyebrow: "FLOXANT Regensburg",
     description:
       "FLOXANT prüft Endreinigung nach Auszug, Umzug oder Räumung, wenn Räume für Rückgabe, Besichtigung oder Nachnutzung vorbereitet werden sollen.",
@@ -238,6 +288,18 @@ export const regensburgServicePages = {
       {
         q: "Kann FLOXANT Restmengen entsorgen?",
         a: "Restmengen können nach Fotos, Umfang und Material gesondert geprüft werden.",
+      },
+      {
+        q: "Was kostet eine Endreinigung in Regensburg?",
+        a: "Kosten hängen von Fläche, Zustand, Küche, Bad, Böden, Fensternähe, Verschmutzungsgrad, Zugang und Zeitdruck ab.",
+      },
+      {
+        q: "Kann die Endreinigung mit Umzug kombiniert werden?",
+        a: "Ja, wenn Reihenfolge, Termin, Schlüsselweg und Umfang passen. Umzug, Restmengen und Reinigung werden getrennt eingeordnet.",
+      },
+      {
+        q: "Garantiert FLOXANT die Wohnungsabnahme?",
+        a: "Nein. Eine Abnahme oder Kautionsrückzahlung kann nicht garantiert werden. FLOXANT bereitet den Zustand nach vereinbartem Umfang vor.",
       },
     ],
     related: commonRelated,

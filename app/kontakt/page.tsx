@@ -309,7 +309,7 @@ export default function KontaktPage() {
               {
                 label: "Lokale Servicepfade",
                 href: "/standorte",
-                text: "Wenn erst die passende Stadt- oder Service-Seite für Regensburg und Bayern gefunden werden soll.",
+                text: "Wenn Sie zuerst den passenden Ort, Bereich oder Service in Regensburg und Bayern öffnen möchten.",
               },
               {
                 label: "WhatsApp",

@@ -30,7 +30,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/treppenhausreinigung-regensburg";
 
@@ -222,7 +221,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Treppenhausreinigung Regensburg für Hausverwaltung, WEG und Mietshaus",
         description:
-          "Kundennaher Einstieg für Treppenhausreinigung in Regensburg mit Kostenfaktoren, Turnus, Anfragecheckliste, FAQ, Grenzen und direktem B2B-Formular.",
+          "Treppenhausreinigung in Regensburg für Hausverwaltung, WEG und Mietshaus mit Eingängen, Etagen, Turnus, Zugang, Fotos, FAQ und direkter Anfrage.",
         path: pagePath,
         about: [
           "Treppenhausreinigung Regensburg",
@@ -240,7 +239,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Treppenhausreinigung Regensburg",
+        name: "Typische Anlässe für Treppenhausreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -298,7 +297,7 @@ export default function TreppenhausreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anlässe", "#kunden-suchen"],
                   ["Bereiche", "#bereiche"],
                   ["Turnus", "#turnus"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -323,7 +322,7 @@ export default function TreppenhausreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/gewerbereinigung/schluessel-treppenhausreinigung-duesseldorf.webp"
                 alt="Gepflegter Hauseingang als Beispiel für Treppenhausreinigung in Regensburg"
                 fill
                 priority
@@ -362,15 +361,15 @@ export default function TreppenhausreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anlässe</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Die Seite spricht die Wörter an, mit denen Hausverwaltungen suchen.
+              Treppenhausreinigung beginnt mit einem klar beschriebenen Objekt.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden wollen kein allgemeines Reinigungsversprechen. Sie
-              suchen Treppenhausreinigung Regensburg, Hausverwaltung Reinigung,
-              Kosten, Turnus, WEG, Mietshaus, Aufzug, Kellerflur, Müllraum und
-              einen klaren Ansprechpartner.
+              Für Hausverwaltungen, WEGs und Vermieter zählen Eingänge, Etagen,
+              Aufzug, Kellerflur, Müllbereich, gewünschter Turnus, Zugang und
+              ein verlässlicher Ansprechpartner. Fotos helfen bei der ersten
+              Einschätzung.
             </p>
           </div>
 
@@ -463,7 +462,7 @@ export default function TreppenhausreinigungRegensburgPage() {
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
             <div className="flox-kicker">Anfrage-Checkliste</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Diese Angaben machen aus einer Suche eine gute Objektanfrage.
+              Diese Angaben machen aus einer ersten Anfrage eine gute Objektanfrage.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Für Treppenhausreinigung zählen nicht nur Quadratmeter. Erst mit
@@ -486,7 +485,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten für Hausverwaltungen mit Angebotsabsicht.
             </h2>
@@ -526,7 +525,7 @@ export default function TreppenhausreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Treppenhausreinigung.
+                  Weitere passende Leistungen für Treppenhausreinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

@@ -41,7 +41,6 @@ import {
 } from "@/lib/search-intent-aliases";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/duesseldorf/bueroreinigung";
 
@@ -135,6 +134,34 @@ const b2bDecisionCards = [
 ] as const;
 
 const b2bSearchIntentCards = [
+  {
+    query: "B2B Büroreinigung Düsseldorf",
+    title: "B2B-Reinigung mit Raumliste statt Zuruf",
+    text: "Für Unternehmen zählen Arbeitsplätze, Meetingräume, Sanitär, Küche, Empfang, Turnus, Randzeiten, Schlüsselweg und ein fester Ansprechpartner.",
+    href: "#bueroreinigung-anfragefelder",
+    cta: "B2B-Angaben prüfen",
+  },
+  {
+    query: "Firmenreinigung Düsseldorf",
+    title: "Firmenflächen sauber einordnen",
+    text: "Ob kleine Firma, Kanzlei, Agentur, Studio oder Gewerbefläche: FLOXANT prüft Objektart, Nutzung, Fläche, Zeitfenster, Zugang und Fotos vor der Rückmeldung.",
+    href: "#schnell-entscheiden",
+    cta: "Firmenfläche einordnen",
+  },
+  {
+    query: "Gewerbliche Reinigung Düsseldorf",
+    title: "Gewerbliche Reinigung ohne falsche Pauschale",
+    text: "Gewerbliche Reinigung kann Büro, Laden, Praxisfläche, Hotelbereich, Treppenhaus oder Mischfläche bedeuten. Entscheidend ist, welche Bereiche wirklich gereinigt werden sollen.",
+    href: "#b2b-reinigung-form",
+    cta: "Bereiche senden",
+  },
+  {
+    query: "Gebäudereinigung Düsseldorf",
+    title: "Gebäude mit mehreren Bereichen planen",
+    text: "Bei Gebäudereinigung helfen Eingänge, Etagen, Treppenhaus, Büroflächen, Sanitär, Kellerflur, Turnus, Zugang und Fotos für eine saubere erste Einschätzung.",
+    href: "/duesseldorf/gebaeudereinigung",
+    cta: "Gebäude prüfen",
+  },
   {
     query: "Büroreinigung Düsseldorf Angebot",
     title: "Angebot prüfbar vorbereiten",
@@ -266,7 +293,7 @@ const boundaryItems = [
   "keine Krankenhaus-, Labor- oder Reinraumreinigung",
   "keine Industrie- oder Gefahrstoffreinigung",
   "keine 24/7- oder feste Kapazitätsgarantie ohne Prüfung",
-  "keine Umzüge in Düsseldorf",
+  "Umzug und Entrümpelung über eigene Düsseldorf-Seiten",
 ] as const;
 
 const faqItems = [
@@ -627,14 +654,15 @@ export default function DuesseldorfBueroreinigungPage() {
               <Languages className="h-4 w-4" />
             </div>
             <div className="mt-4 text-xs font-black uppercase tracking-normal text-cyan-100">
-              International verständlich
+              Mehrsprachig verständlich
             </div>
             <h2 className="mt-3 text-2xl font-black tracking-normal text-white">
-              Büroreinigung auch bei englischer, russischer, chinesischer oder koreanischer Suche finden
+              Büroreinigung auch bei anderssprachiger Anfrage einordnen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-200">
-              Die Seite bleibt deutsch. Kurze Suchbegriffe helfen bei der Zuordnung, wenn
-              Kunden in Düsseldorf nach Reinigung für Büro, Hotel oder Firma suchen.
+              Wenn Eckdaten auf Englisch, Russisch, Chinesisch oder Koreanisch kommen,
+              bleibt der Ablauf klar: Objektart, Standort, Fläche, Turnus, Zeitfenster
+              und gewünschter Kontaktweg werden sauber geklärt.
             </p>
           </article>
           <div className="grid gap-3 md:grid-cols-2">

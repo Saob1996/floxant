@@ -339,14 +339,15 @@ export default async function RegensburgServiceArea200KmPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Ortsgruppen mit Kontext
+              Einsatzbereiche mit Kontext
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
-              Orte nennen wir als Einsatzlogik, nicht als Keywordliste
+              Orte helfen bei Planung, Anfahrt und Verfügbarkeit
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              Die Gruppen helfen Kunden, ihre Anfrage einzuordnen. FLOXANT behauptet keine
-              Niederlassung in jedem Ort und erstellt daraus keine duennen Stadtseiten.
+              Die Gruppen helfen, eine Anfrage realistisch einzuordnen. FLOXANT benennt
+              Einsatzbereiche transparent und prüft Ort, Umfang, Termin und Verfügbarkeit
+              vor einer Zusage.
             </p>
           </div>
           <div className="grid gap-5 lg:grid-cols-2">
@@ -408,7 +409,7 @@ export default async function RegensburgServiceArea200KmPage() {
         showFilters={true}
         showZones={true}
         title="Einsatzarten im Servicegebiet Regensburg"
-        subtitle="Grobe Zonen und typische Anfragen im Kernmarkt: keine Adressen, keine Live-Behauptung, nur sichere Einsatzlogik für Ort, Umfang, Termin und Verfügbarkeit."
+        subtitle="Grobe Zonen und typische Anfragen im Kernmarkt: keine Adressbehauptung, sondern klare Einordnung nach Ort, Umfang, Termin und Verfügbarkeit."
         source="service_area_einsatzradar"
       />
 
@@ -428,7 +429,7 @@ export default async function RegensburgServiceArea200KmPage() {
         ]}
         badge="Servicegebiet ohne Spam"
         title="Warum Ort, PLZ, Fotos und Termin wichtiger sind als Stadtlisten"
-        subtitle="FLOXANT staerkt Regensburg und Umgebung mit echter Einsatzlogik: kurze Wege im Nahbereich, Bayern nach Verfuegbarkeit und klare Anfrageangaben statt automatischer Ortsseiten."
+        subtitle="FLOXANT arbeitet in Regensburg und Umgebung mit klarer Vorprüfung: kurze Wege im Nahbereich, Bayern nach Verfügbarkeit und konkrete Angaben statt pauschaler Ortsversprechen."
         source="service_area_regensburg_200km"
       />
 

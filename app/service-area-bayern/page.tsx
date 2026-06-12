@@ -166,7 +166,7 @@ export default async function ServiceAreaBayern() {
     {
       name: "Augsburg und Schwaben",
       desc:
-        "Wichtige Nachfrage fuer Umzug, Objektservice, Raeumung und Firmenumzug im westlichen Bayern mit klaren Marktpfaden.",
+        "Wichtige Region fuer Umzug, Objektservice, Raeumung und Firmenumzug im westlichen Bayern mit klarer Anfragepruefung.",
       links: [
         { href: "/umzug-augsburg", label: "Umzug Augsburg" },
         { href: "/reinigung-kempten", label: "Reinigung Kempten" },
@@ -272,18 +272,17 @@ export default async function ServiceAreaBayern() {
           <div className="glass-elevated rounded-[2.5rem] p-8 md:p-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/86 px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
               <MapPin className="h-4 w-4" />
-              Regionale Relevanz fuer Regensburg und Bayern
+              Servicegebiet ab Regensburg
             </div>
 
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-950 md:text-6xl">
-              FLOXANT in Bayern klar statt chaotisch eingeordnet.
+              FLOXANT in Bayern: klar prüfen, was vor Ort sinnvoll machbar ist.
             </h1>
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-              FLOXANT arbeitet mit Schwerpunkt Regensburg und plant regelmaessige Einsaetze fuer
-              Umzug, Reinigung, Entruempelung und Bueroumzug in Bayern. Diese Seite zeigt die
-              wichtigsten Regionen, direkten Anfragewege und starken Marktpfade so, dass Kunden
-              sofort verstehen, was wirklich passt.
+              FLOXANT arbeitet mit Schwerpunkt Regensburg und prüft Anfragen für Umzug,
+              Reinigung, Entrümpelung und Büroumzug in Bayern nach Strecke, Umfang, Termin
+              und Zugang. Diese Seite zeigt, welche Region und welcher Einstieg zu Ihrem Fall passt.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -343,14 +342,14 @@ export default async function ServiceAreaBayern() {
       <section className="px-6 pb-10">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm shadow-slate-950/5 md:p-8">
           <div className="mb-8 max-w-3xl">
-            <span className="label-premium text-blue-700">Maps-Service-Suche</span>
+            <span className="label-premium text-blue-700">Schnelle Orientierung</span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
-              Fuer jede wichtige Google-Maps-Suche ein eindeutiger Einstieg
+              Für häufige Anliegen der passende Einstieg
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              Kunden suchen oft nicht nach einer Marke, sondern nach dem konkreten Problem:
-              Umzug, Reinigung, Entsorgung, Entruempelung, Lagerung oder Bueroumzug. Diese
-              Einstiege fuehren Kunden schneller zu der Anfrage, die wirklich zum Problem passt.
+              Kunden beschreiben meist zuerst die Situation: Umzug, Reinigung, Entsorgung,
+              Entrümpelung, Lagerung oder Büroumzug. Diese Einstiege führen schneller zu der
+              Anfrage, die wirklich zum Anliegen passt.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -360,7 +359,7 @@ export default async function ServiceAreaBayern() {
                 className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-5"
               >
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                  {intent.query}
+                  Passender Einstieg
                 </div>
                 <h3 className="mt-3 text-xl font-bold text-slate-950">{intent.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{intent.description}</p>
@@ -396,7 +395,7 @@ export default async function ServiceAreaBayern() {
               className="card-premium rounded-[1.9rem] p-6 transition-all hover:-translate-y-1 hover:border-blue-300/30"
             >
               <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                Geschaeftsmodell-Pfad
+                Passender nächster Schritt
               </div>
               <h2 className="mt-3 text-2xl font-bold text-slate-950">{item.title}</h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
@@ -463,9 +462,9 @@ export default async function ServiceAreaBayern() {
               Die wichtigsten Regionen für Anfragen in Bayern
             </h2>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              Statt unuebersichtlicher Listen arbeitet FLOXANT mit klaren regionalen Bereichen.
-              So verstehen Kunden und Google schneller, wo Umzug, Reinigung, Entrümpelung und
-              Büroumzug realistisch eingeordnet werden.
+              Statt unübersichtlicher Listen arbeitet FLOXANT mit klaren regionalen Bereichen.
+              So sehen Kunden schneller, wo Umzug, Reinigung, Entrümpelung und Büroumzug
+              realistisch eingeordnet werden können.
             </p>
           </div>
 
@@ -535,8 +534,8 @@ export default async function ServiceAreaBayern() {
               Klare Einstiege für häufige Bayern-Anfragen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              Diese Links verdichten häufige Kombinationen aus Stadt und Leistung. Sie helfen
-              Nutzern schneller in das passende Angebot, ohne lange Listen durchsuchen zu müssen.
+              Diese Links führen häufige Kombinationen aus Stadt und Leistung zusammen. So kommen
+              Kunden schneller zur passenden Anfrage, ohne lange Listen durchsuchen zu müssen.
             </p>
           </div>
 
@@ -548,7 +547,7 @@ export default async function ServiceAreaBayern() {
                 className="card-premium rounded-[1.6rem] p-5 transition-all hover:-translate-y-1 hover:border-blue-300/30"
               >
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                  Bayern-Markt
+                  Bayern-Anfrage
                 </div>
                 <h3 className="mt-3 text-lg font-bold text-slate-950">{item.label}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{item.note}</p>
@@ -562,13 +561,13 @@ export default async function ServiceAreaBayern() {
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,rgba(59,130,246,0.08),rgba(255,255,255,0.98))] p-7 shadow-[0_24px_60px_rgba(15,23,42,0.08)] md:p-9">
           <div className="mb-8 max-w-3xl">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Metropolpfade
+              Große Stadtlagen
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Zusaetzliche Einstiege fuer grosse Stadtlagen
+              Zusätzliche Einstiege für große Stadtlagen
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Diese Seiten helfen, Anfragen aus Muenchen und Nuernberg genauer einzuordnen,
+              Diese Seiten helfen, Anfragen aus München und Nürnberg genauer einzuordnen,
               besonders wenn Stadtteil, Zugang, Strecke oder Objektart wichtig sind.
             </p>
           </div>
@@ -580,7 +579,7 @@ export default async function ServiceAreaBayern() {
                 className="card-premium rounded-[1.5rem] p-6 transition-all hover:-translate-y-1 hover:border-blue-400/25"
               >
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Bezirksseite
+                  Lokaler Einstieg
                 </div>
                 <h3 className="mt-3 text-2xl font-semibold text-slate-950">{item.label}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.note}</p>
@@ -598,9 +597,9 @@ export default async function ServiceAreaBayern() {
               Service, Region und Eckdaten geordnet anfragen
             </h2>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              Nutzen Sie den Einstieg unten, wenn Standort, Service und Preisrahmen regional
-              sauber vorbereitet werden sollen. So geht Ihre Anfrage klarer rein und deutlich
-              klarer weiter.
+              Nutzen Sie den Einstieg unten, wenn Ort, Service, Fotos und Preisrahmen geordnet
+              gesendet werden sollen. So bekommt FLOXANT schneller eine brauchbare Grundlage
+              für die erste Rückmeldung.
             </p>
           </div>
 

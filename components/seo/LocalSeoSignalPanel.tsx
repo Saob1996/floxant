@@ -5,14 +5,14 @@ import { company } from "@/lib/company";
 
 const localSignals = [
   "24h Online-Anfrage und WhatsApp",
-  "Regensburg als Startpunkt",
-  "Umgebung ca. 200 km nach Absprache",
+  "Düsseldorf und Regensburg getrennt",
+  "Regensburg-Umgebung ca. 200 km nach Absprache",
   "Bayern nach Verfügbarkeit",
   "Direkte Anfrage ohne Umwege",
 ];
 
 const localHighlights = [
-  "Sie koennen Fall, Fotos, Termin und Budget jederzeit senden.",
+  "Sie können Fall, Fotos, Termin und Budget jederzeit senden.",
   "FLOXANT prüft Ort, Umfang und Verfügbarkeit ehrlich vorab.",
   "Umzug, Reinigung, Entrümpelung und Übergabe können zusammen gedacht werden.",
   "Bei Rückfragen bleiben Telefon, WhatsApp und Anfrageformular direkt erreichbar.",
@@ -27,17 +27,18 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
             Servicegebiet
           </div>
           <h2 className="flox-title-lg flox-display-section mt-4 max-w-3xl text-slate-950">
-            Regensburg ist der Startpunkt. Bayern ist nach Verfügbarkeit möglich.
+            Düsseldorf und Regensburg haben eigene lokale Servicepfade.
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
-            FLOXANT plant von Regensburg aus und prüft Einsätze in der Umgebung bis ca. 200 km
-            sowie in Bayern nach Termin, Umfang und Strecke. So wissen Sie schnell, ob Ihr Fall
-            sinnvoll eingeordnet werden kann.
+            FLOXANT trennt Düsseldorf und Regensburg sauber nach Region, Leistung und Anfrageweg.
+            Regensburg prüft zusätzlich Einsätze in der Umgebung bis ca. 200 km sowie in Bayern
+            nach Termin, Umfang und Strecke.
           </p>
           <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
             Wichtig ist nicht nur die Entfernung, sondern der Ablauf: Umzug, Reinigung,
             Entrümpelung, Transport, Übergabe, Plan B oder Angebotsprüfung werden passend
-            zum Auftrag besprochen. Düsseldorf bleibt getrennt für Reinigung; Entsorgung bleibt eine eigene vorhandene Seite.
+            zum Auftrag besprochen. Düsseldorf führt Umzug, Reinigung, Entrümpelung,
+            Haushaltsauflösung und Entsorgung über eigene lokale Seiten.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2.5">
@@ -99,7 +100,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
           </p>
 
           <div className="flox-info-panel mt-6 px-4 py-3.5 text-sm font-mono">
-            Regensburg · Umgebung ca. 200 km · Bayern nach Verfügbarkeit
+            Düsseldorf · Regensburg · Bayern nach Verfügbarkeit
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">

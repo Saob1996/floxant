@@ -43,7 +43,7 @@ export function generatePsychologicalCleaningLandingMetadata(
       lang: "de",
       path: slug,
       title: "FLOXANT Reinigung Regensburg",
-      description: "FLOXANT Reinigung, Uebergabe und Objektservice in Regensburg und Bayern.",
+      description: "FLOXANT Reinigung, Übergabe und Objektservice in Regensburg und Bayern.",
     });
   }
 
@@ -198,7 +198,7 @@ export function PsychologicalCleaningLandingRoute({
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {[
-                { label: "Gefuehl", text: "Stressabbau und Kontrollgewinn" },
+                { label: "Gefühl", text: "Druck rausnehmen und wieder handlungsfähig werden" },
                 { label: "Region", text: "Regensburg, Oberpfalz, Bayern" },
                 { label: "Kontakt", text: "WhatsApp, Telefon, Buchung" },
               ].map((item) => (
@@ -227,7 +227,7 @@ export function PsychologicalCleaningLandingRoute({
             <div className="p-6 sm:p-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-100">
                 <ShieldCheck className="h-4 w-4" />
-                Endlich kuemmert sich jemand darum
+                Endlich wird der Fall sortiert
               </div>
               <p className="mt-5 text-xl font-semibold leading-8 text-white">
                 {page.emotionalPromise}
@@ -260,7 +260,7 @@ export function PsychologicalCleaningLandingRoute({
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              FLOXANT-Loesung
+              FLOXANT-Lösung
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl">
               Wir machen aus Druck einen Ablauf.
@@ -301,8 +301,9 @@ export function PsychologicalCleaningLandingRoute({
                 Vertrauen entsteht durch Struktur, nicht durch laute Versprechen.
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Die Seiten sind bewusst problemnah: weniger Suchen, weniger Erklaeren, schneller zum passenden
-                naechsten Schritt.
+                Die Anfrage beginnt beim echten Problem: Räume, Zustand, Fotos,
+                Zeitdruck und gewünschtes Ergebnis. Danach wird entschieden, welche
+                Reinigung oder Vorbereitung wirklich passt.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -315,7 +316,7 @@ export function PsychologicalCleaningLandingRoute({
               {page.guarantees.map((item) => (
                 <div key={item} className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
                   <ClipboardCheck className="mb-3 h-5 w-5 text-blue-700" />
-                  <p className="text-sm leading-7 text-slate-700">Service-Garantie: {item}</p>
+                  <p className="text-sm leading-7 text-slate-700">Klare Grenze: {item}</p>
                 </div>
               ))}
             </div>
@@ -365,7 +366,7 @@ export function PsychologicalCleaningLandingRoute({
               FAQ
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Haeufige Fragen zu {page.shortName}
+              Häufige Fragen zu {page.shortName}
             </h2>
           </div>
           <div className="space-y-4">
@@ -386,14 +387,14 @@ export function PsychologicalCleaningLandingRoute({
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-100">
               <KeyRound className="h-4 w-4" />
-              Direkter naechster Schritt
+              Direkter nächster Schritt
             </div>
             <h2 className="mt-5 text-3xl font-semibold tracking-tight md:text-5xl">
-              Endlich kuemmert sich jemand darum.
+              Endlich wird der nächste Schritt klar.
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-              Senden Sie kurz Ort, Termin, Fotos und Ziel. FLOXANT prueft, welcher Umfang realistisch
-              ist und welcher naechste Schritt zu Ihrer Situation passt.
+              Senden Sie kurz Ort, Termin, Fotos und Ziel. FLOXANT prüft, welcher Umfang realistisch
+              ist und welcher nächste Schritt zu Ihrer Situation passt.
             </p>
           </div>
           <div className="grid gap-3">
@@ -433,8 +434,8 @@ function ProblemColumn({ title, items }: { title: string; items: readonly string
 }
 
 export function PsychologicalCleaningInternalLinks({
-  title = "Spezialseiten fuer Reinigung, Uebergabe und Entlastung",
-  intro = "FLOXANT fuehrt haeufige Stresssituationen in klare Servicewege. Jede Seite beantwortet ein anderes Problem.",
+  title = "Spezialseiten für Reinigung, Übergabe und Entlastung",
+  intro = "FLOXANT führt häufige Stresssituationen in klare Servicewege. Jede Seite beantwortet ein anderes Problem.",
   focusSlugs,
   excludeSlug,
   limit = 6,
@@ -484,7 +485,7 @@ export function PsychologicalCleaningInternalLinks({
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{page.metaDescription}</p>
               <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
-                Seite oeffnen
+                Seite öffnen
                 <ArrowRight className="h-4 w-4" />
               </span>
             </Link>

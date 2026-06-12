@@ -25,120 +25,116 @@ const path = "/empfehlen";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "FLOXANT empfehlen - 50 Euro Empfehlungsbonus bei Auftrag",
+  title: "FLOXANT empfehlen | 50 Euro Empfehlungsbonus",
   description:
-    "FLOXANT weiterempfehlen: Wenn aus Ihrer Empfehlung ein bestaetigter und bezahlter Auftrag entsteht, kann ein 50 Euro Empfehlungsbonus ausgezahlt werden.",
+    "FLOXANT weiterempfehlen: Bei erfolgreicher Vermittlung eines neuen Kunden bedanken wir uns mit 50 Euro Empfehlungsbonus.",
   keywords: [
     "FLOXANT empfehlen",
     "Empfehlungsbonus Umzug",
     "Umzugsfirma empfehlen Regensburg",
     "Reinigungsfirma empfehlen Regensburg",
-    "Partnercode Umzug",
+    "Empfehlung Umzug",
     "50 Euro Empfehlungsbonus",
   ],
 });
 
 const whatsappShareHref =
-  "https://wa.me/?text=Ich%20empfehle%20dir%20FLOXANT%20fuer%20Umzug%2C%20Reinigung%2C%20Entruempelung%2C%20Transport%20oder%20Entsorgung.%20Du%20kannst%20hier%20direkt%20anfragen%3A%20https%3A%2F%2Fwww.floxant.de%2Fempfehlen";
+  "https://wa.me/?text=Ich%20empfehle%20dir%20FLOXANT%20f%C3%BCr%20Umzug%2C%20Reinigung%2C%20Entr%C3%BCmpelung%2C%20Haushaltsaufl%C3%B6sung%20oder%20%C3%9Cbergabevorbereitung.%20Du%20kannst%20hier%20direkt%20anfragen%3A%20https%3A%2F%2Fwww.floxant.de%2Fempfehlen";
 
 const steps = [
   {
-    title: "Link oder Code teilen",
-    text: "Der beste Datenschutzweg: Die empfohlene Person nutzt Ihren Link oder nennt den Code selbst.",
+    title: "FLOXANT weiterempfehlen",
+    text: "Sie empfehlen FLOXANT an eine Person oder ein Unternehmen weiter.",
   },
   {
-    title: "Person fragt selbst an",
-    text: "Freunde, Nachbarn, Vermieter, Makler oder Unternehmen starten die Anfrage bei FLOXANT.",
+    title: "Ihr Name wird genannt",
+    text: "Die empfohlene Person nimmt Kontakt mit uns auf und nennt Ihren Namen.",
   },
   {
-    title: "Auftrag wird bestaetigt und bezahlt",
-    text: "Nur ein tatsaechlich beauftragter, durchgefuehrter und bezahlter Auftrag kann bonusfaehig werden.",
+    title: "Anfrage wird geprüft",
+    text: "FLOXANT prüft die Anfrage und erstellt bei passendem Bedarf ein Angebot.",
   },
   {
-    title: "Bonus wird geprueft",
-    text: "FLOXANT prueft den Partnercode, die Empfehlung und die Bonusbedingungen ohne automatische Auszahlungsgarantie.",
+    title: "Bonus erhalten",
+    text: "Kommt ein Auftrag zustande und wird die Rechnung vollständig bezahlt, erhalten Sie den Bonus.",
   },
 ];
 
 const bonusConditions = [
-  "Empfehlung muss vor oder bei der Anfrage genannt werden.",
-  "Auftrag muss von FLOXANT bestaetigt, durchgefuehrt und bezahlt sein.",
-  "Bonus wird nach Pruefung ausgezahlt, nicht automatisch ohne Anspruchspruefung.",
-  "Keine Mehrfachauszahlung fuer denselben Auftrag.",
-  "Keine Auszahlung bei Eigenauftrag, Storno oder unbezahltem Auftrag.",
-  "FLOXANT behaelt sich Pruefung bei Missbrauch oder unklarer Zuordnung vor.",
+  "Der Bonus gilt nur bei erfolgreicher Vermittlung eines neuen Kunden.",
+  "Eine erfolgreiche Vermittlung liegt vor, wenn der empfohlene Kunde eine Leistung verbindlich beauftragt und die Rechnung vollständig bezahlt hat.",
+  "Die Empfehlung muss transparent erfolgen. Bitte informieren Sie die empfohlene Person darüber, dass Sie im Erfolgsfall einen Bonus erhalten können.",
+  "Die Empfehlung sollte vor oder bei der ersten Anfrage genannt werden, damit wir sie eindeutig zuordnen können.",
+  "Keine Auszahlung bei Eigenauftrag, Storno, unbezahlter Rechnung oder unklarer Zuordnung.",
+  "Keine Mehrfachauszahlung für denselben Auftrag.",
 ];
 
 const audiences = [
   {
     title: "Kunden",
-    text: "Wenn Sie zufrieden waren oder jemanden kennen, der Umzug, Reinigung oder Entruempelung braucht.",
+    text: "Wenn Sie FLOXANT bereits kennen und jemanden mit passendem Bedarf weiterempfehlen möchten.",
   },
   {
     title: "Nachbarn und Freunde",
-    text: "Ideal, wenn jemand im Haus, Bekanntenkreis oder in der Familie konkrete Hilfe sucht.",
+    text: "Ideal, wenn jemand im Haus, Bekanntenkreis oder in der Familie Unterstützung braucht.",
   },
   {
     title: "Vermieter und Makler",
-    text: "Empfehlbar fuer Auszug, Reinigung, Objektvorbereitung, Entruempelung oder Uebergabeakte.",
+    text: "Für Auszug, Reinigung, Objektvorbereitung, Entrümpelung oder Übergabevorbereitung.",
   },
   {
     title: "Hausverwaltungen",
-    text: "Fuer Mieterwechsel, Keller-/Muellraum-Themen, Endreinigung oder wiederkehrende Objektfaelle.",
+    text: "Für Mieterwechsel, Keller- und Nebenräume, Endreinigung oder wiederkehrende Objektfälle.",
   },
   {
     title: "Firmen und B2B",
-    text: "Fuer Reinigung, kleine Gewerbeflaechen, Transport oder Entsorgung nach Absprache.",
+    text: "Für Reinigung, Gewerbeflächen, Angebotsprüfung oder objektbezogene Leistungen nach Absprache.",
   },
 ];
 
 const services = [
-  ["Umzug Regensburg", "Privatumzug, Transport, Zugang und Uebergabe nach Absprache.", "/umzug-regensburg"],
-  ["Reinigung Regensburg", "Wohnungsreinigung, Endreinigung, Grundreinigung und Uebergabevorbereitung.", "/reinigung-regensburg"],
-  ["Entruempelung Regensburg", "Wohnung, Keller, Garage oder Objektflaeche mit Fotoeinschaetzung.", "/entruempelung-regensburg"],
-  ["Transport Regensburg", "Moebeltransport, Kleintransport und flexible Strecken nach Verfuegbarkeit.", "/kleintransport-regensburg"],
-  ["Mieterwechsel-Service", "Raeumung, Reinigung, Entsorgung und Schluesselkoordination fuer B2B-Faelle.", "/mieterwechsel-service-regensburg"],
-  ["Wohnung wieder vermietbar", "Objekt nach Auszug, Leerstand oder Entruempelung wieder nutzbarer vorbereiten.", "/wohnung-wieder-vermietbar"],
-  ["Angebotscheck", "Zweite Einschaetzung vor Zusage, wenn bereits ein Angebot vorliegt.", "/angebotscheck"],
-  ["Rueckfahrt-Boerse", "Strecke eintragen und Leerfahrt/Rueckfahrt nach Verfuegbarkeit pruefen lassen.", "/rueckfahrt-boerse"],
-  ["Uebergabeakte", "Organisatorisches Dossier fuer Auszug, Reinigung, Fotos und Schluesselstatus.", "/uebergabeakte"],
-  ["Keller-/Muellraum-Rettung", "Objektflaechen fuer Verwaltung, WEG, Gewerbe oder Privatkunden pruefen lassen.", "/keller-muellraum-rettung-regensburg"],
-  ["Duesseldorf Reinigung", "Nur Reinigung, Endreinigung und B2B-Reinigung fuer Duesseldorf.", "/duesseldorf/reinigung"],
-  ["Duesseldorf Entsorgung", "Nur Entsorgung und Fotoeinschaetzung fuer Duesseldorf, keine Umzugssignale.", "/entsorgung-duesseldorf"],
+  ["Umzug Regensburg", "Wohnungswechsel, Transportvorbereitung, Zugang und Übergabe nach Absprache.", "/regensburg/umzug"],
+  ["Reinigung Düsseldorf", "Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Übergaben.", "/duesseldorf/reinigung"],
+  ["Reinigung Regensburg", "Endreinigung, Übergabereinigung und Reinigung nach Umzug oder Räumung.", "/reinigung-regensburg"],
+  ["Entrümpelung Regensburg", "Wohnung, Keller, Haus oder Objektfläche mit Fotos und klarer Vorprüfung.", "/regensburg/entruempelung"],
+  ["Haushaltsauflösung Regensburg", "Räumung, Sortierung, Restpunkte und Vorbereitung für Übergabe oder Nachnutzung.", "/regensburg/haushaltsaufloesung"],
+  ["Übergabereinigung", "Wohnung oder Objekt vor Rückgabe, Besichtigung oder Mieterwechsel vorbereiten.", "/regensburg/uebergabereinigung"],
+  ["Angebotsprüfung Düsseldorf", "Bestehendes Reinigungsangebot oder Eckdaten kostenlos und unverbindlich prüfen lassen.", "/angebot-vergleichen-duesseldorf"],
+  ["Angebotsprüfung allgemein", "Angebot für Umzug, Reinigung, Entrümpelung oder Entsorgung sachlich prüfen lassen.", "/angebot-guenstiger-pruefen"],
 ];
 
 const faqItems = [
   {
     q: "Wie funktioniert der FLOXANT Empfehlungsbonus?",
-    a: "Sie teilen einen neutralen Partnercode oder Empfehlungslink. Wenn daraus ein bestaetigter und bezahlter Auftrag entsteht, prueft FLOXANT den 50 Euro Empfehlungsbonus.",
+    a: "Sie empfehlen FLOXANT weiter. Die empfohlene Person nimmt Kontakt mit uns auf und nennt Ihren Namen. Wenn daraus ein verbindlicher Auftrag entsteht und die Rechnung vollständig bezahlt wird, erhalten Sie 50 Euro als Dankeschön.",
   },
   {
     q: "Wann bekomme ich die 50 Euro?",
-    a: "Eine Auszahlung kann nach Pruefung erfolgen, wenn der Auftrag bestaetigt, durchgefuehrt und bezahlt wurde. Es gibt keine automatische Auszahlung ohne Pruefung.",
+    a: "Der Bonus wird nach erfolgreicher Vermittlung ausgezahlt. Erfolgreich heißt: Der neue Kunde hat eine Leistung verbindlich beauftragt und die Rechnung vollständig bezahlt.",
   },
   {
-    q: "Muss die empfohlene Person meinen Code nennen?",
-    a: "Am besten ja. Der Code kann ueber den Link uebernommen oder im Formular, per WhatsApp oder im Gespraech genannt werden.",
+    q: "Muss die empfohlene Person meinen Namen nennen?",
+    a: "Ja, bitte. Die Empfehlung sollte bei der ersten Anfrage genannt werden, damit FLOXANT den Bonus eindeutig zuordnen kann.",
   },
   {
     q: "Kann ich FLOXANT per WhatsApp empfehlen?",
-    a: "Ja. Sie koennen den Link oder Code per WhatsApp teilen. Die empfohlene Person soll selbst Kontakt aufnehmen.",
+    a: "Ja. Sie können FLOXANT per WhatsApp, persönlich oder per Link weiterempfehlen. Wichtig ist, dass die empfohlene Person informiert ist und selbst Kontakt aufnimmt.",
   },
   {
     q: "Bekomme ich den Bonus auch, wenn kein Auftrag zustande kommt?",
-    a: "Nein. Der Bonus wird nur geprueft, wenn ein bestaetigter und bezahlter Auftrag entsteht.",
+    a: "Nein. Der Bonus gilt nur, wenn ein neuer Kunde verbindlich beauftragt und die Rechnung vollständig bezahlt wurde.",
   },
   {
-    q: "Darf ich Kontaktdaten einer anderen Person eintragen?",
-    a: "Nur, wenn diese Person mit der Kontaktaufnahme durch FLOXANT einverstanden ist. Ohne diese Einwilligung sollen Sie nur Link oder Code teilen.",
+    q: "Muss ich offenlegen, dass ich einen Bonus erhalten kann?",
+    a: "Ja. Die Empfehlung muss transparent erfolgen. Bitte informieren Sie die empfohlene Person darüber, dass Sie im Erfolgsfall einen Bonus erhalten können.",
   },
   {
-    q: "Fuer welche Services gilt die Empfehlung?",
-    a: "Empfehlungen koennen fuer Umzug, Reinigung, Entruempelung, Transport, Entsorgung und Signature Services gelten. Duesseldorf nur fuer Reinigung und Entsorgung.",
+    q: "Für welche Services gilt die Empfehlung?",
+    a: "Die Aktion gilt für FLOXANT-Leistungen in Düsseldorf und Regensburg, insbesondere für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Übergabereinigung und Angebotsprüfung.",
   },
   {
     q: "Wie wird der Bonus ausgezahlt?",
-    a: "Auszahlung oder Verrechnung wird spaeter nach Pruefung und Absprache geklaert. Bankdaten werden im ersten Formular nicht erhoben.",
+    a: "Die Auszahlung wird nach erfolgreicher Zuordnung und Prüfung mit Ihnen abgestimmt. Bankdaten werden nicht öffentlich und nicht in einer Empfehlung geteilt.",
   },
 ];
 
@@ -148,27 +144,27 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "FLOXANT empfehlen",
       description:
-        "Empfehlungsseite fuer Kunden, Freunde, Vermieter, Makler, Hausverwaltungen und Unternehmen mit Partnercode und 50 Euro Empfehlungsbonus nach Pruefung.",
+        "Empfehlungsseite für Kunden, Freunde, Vermieter, Makler, Hausverwaltungen und Unternehmen mit 50 Euro Empfehlungsbonus bei erfolgreicher Vermittlung.",
       path,
       about: [
         "FLOXANT Empfehlungsbonus",
-        "Partnercode",
+        "Empfehlungsbonus",
         "Umzugsfirma empfehlen Regensburg",
         "Reinigungsfirma empfehlen Regensburg",
         "Empfehlungslink teilen",
       ],
       potentialActions: [
-        { name: "Partnercode erstellen", target: `${path}#empfehlungsformular` },
+        { name: "Empfehlung starten", target: `${path}#empfehlungsformular` },
         { name: "FLOXANT per WhatsApp empfehlen", target: whatsappShareHref, type: "ContactAction" },
       ],
     }),
     buildServiceJsonLd({
-      name: "FLOXANT Partnercode und Empfehlungsbonus",
+      name: "FLOXANT Empfehlungsbonus",
       description:
-        "Empfehlungsmechanik fuer FLOXANT Services. Bei bestaetigtem und bezahltem Auftrag kann ein 50 Euro Empfehlungsbonus nach Pruefung ausgezahlt werden.",
+        "Empfehlungsbonus für FLOXANT Services. Bei erfolgreicher Vermittlung eines neuen Kunden kann ein 50 Euro Bonus ausgezahlt werden.",
       path,
-      serviceType: "Empfehlungsbonus und Partnercode",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern nach Verfuegbarkeit", "Duesseldorf Reinigung und Entsorgung"],
+      serviceType: "Empfehlungsbonus",
+      areaServed: ["Regensburg", "Düsseldorf", "FLOXANT Leistungen nach Verfügbarkeit"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -191,18 +187,20 @@ export default function EmpfehlenPage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-blue-700 shadow-sm">
                 <Gift className="h-4 w-4" />
-                FLOXANT Empfehlungs-Zentrale
+                FLOXANT weiterempfehlen
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                FLOXANT empfehlen und 50 Euro Bonus sichern
+                FLOXANT empfehlen und 50 Euro als Dankeschön erhalten
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Empfehlen Sie FLOXANT fuer Umzug, Reinigung, Entruempelung, Transport oder Entsorgung.
-                Wenn aus Ihrer Empfehlung ein bestaetigter und bezahlter Auftrag entsteht, prueft FLOXANT den Empfehlungsbonus.
+                Sie kennen jemanden, der Unterstützung bei Umzug, Reinigung,
+                Entrümpelung, Haushaltsauflösung oder Übergabevorbereitung braucht?
+                Wenn durch Ihre Empfehlung ein erfolgreicher Auftrag zustande kommt,
+                bedanken wir uns mit einem Empfehlungsbonus in Höhe von 50 Euro.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#empfehlungsformular" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800" data-event="service_card_click">
-                  Partnercode erstellen
+                  Empfehlung starten
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={whatsappShareHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -210,9 +208,9 @@ export default function EmpfehlenPage() {
                 </a>
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine MLM-Logik</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Bonus nach Pruefung</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Bankdaten im ersten Schritt</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">50 Euro bei erfolgreicher Vermittlung</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Transparent weiterempfehlen</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf und Regensburg</span>
               </div>
             </div>
 
@@ -220,14 +218,15 @@ export default function EmpfehlenPage() {
               <div className="rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_right,#22c55e_0,transparent_21rem),linear-gradient(145deg,#1e293b,#020617)] p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Bonus-Karte</div>
+                    <div className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Empfehlungsbonus</div>
                     <h2 className="mt-2 text-3xl font-black tracking-tight">50 Euro bei erfolgreicher Vermittlung</h2>
                   </div>
                   <CircleDollarSign className="h-11 w-11 text-emerald-200" />
                 </div>
                 <p className="mt-5 text-sm leading-7 text-slate-200">
-                  Sicher formuliert: Wenn aus Ihrer Empfehlung ein bestaetigter und bezahlter Auftrag entsteht,
-                  kann ein 50 Euro Empfehlungsbonus ausgezahlt werden. Details und Pruefung erfolgen durch FLOXANT.
+                  Der Bonus gilt, wenn der empfohlene Kunde eine Leistung verbindlich
+                  beauftragt und die Rechnung vollständig bezahlt hat. Bitte informieren
+                  Sie die empfohlene Person vorab über den möglichen Bonus.
                 </p>
                 <div className="mt-6 grid gap-3">
                   {steps.map((step, index) => (
@@ -249,13 +248,13 @@ export default function EmpfehlenPage() {
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <div className="space-y-5">
               <div className="rounded-[2rem] border border-blue-200 bg-white p-7 shadow-sm">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Empfehlungsmechanik</div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Ein Code, mehrere sichere Wege</h2>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">So funktioniert es</div>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Empfehlen, Namen nennen, Auftrag abschließen</h2>
                 <div className="mt-6 grid gap-4">
                   {[
-                    ["Empfehlungslink teilen", "Neutraler Link wie /buchung?ref=CODE. Die empfohlene Person fragt selbst an."],
-                    ["Code manuell nennen", "Der Code kann im Formular, per WhatsApp oder im Telefonat genannt werden."],
-                    ["Direkte Empfehlung", "Nur mit bestaetigter Einwilligung der empfohlenen Person, wenn fremde Kontaktdaten eingetragen werden."],
+                    ["Weiterempfehlen", "Sie empfehlen FLOXANT an eine Person oder ein Unternehmen weiter."],
+                    ["Name nennen lassen", "Die empfohlene Person nimmt Kontakt mit FLOXANT auf und nennt Ihren Namen."],
+                    ["Bonus erhalten", "Nach verbindlichem Auftrag und vollständig bezahlter Rechnung wird der Bonus zugeordnet."],
                   ].map(([title, text]) => (
                     <div key={title} className="flex gap-3 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                       <Link2 className="mt-1 h-5 w-5 shrink-0 text-blue-700" />
@@ -268,7 +267,7 @@ export default function EmpfehlenPage() {
                 </div>
               </div>
               <div className="rounded-[2rem] border border-amber-200 bg-amber-50 p-7">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Bedingungen transparent</div>
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-700">Wichtig</div>
                 <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Wann gilt der Empfehlungsbonus?</h2>
                 <div className="mt-5 grid gap-3">
                   {bonusConditions.map((item) => (
@@ -279,7 +278,7 @@ export default function EmpfehlenPage() {
                   ))}
                 </div>
                 <p className="mt-5 text-sm font-bold leading-7 text-amber-900">
-                  Der Empfehlungsbonus ist kein automatischer Anspruch ohne Pruefung.
+                  Der Bonus gilt nur bei erfolgreicher Vermittlung eines neuen Kunden.
                 </p>
               </div>
             </div>
@@ -291,10 +290,10 @@ export default function EmpfehlenPage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Zielgruppen</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Wer FLOXANT sinnvoll empfehlen kann</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Wer FLOXANT weiterempfehlen kann</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Die Empfehlungs-Zentrale bleibt bewusst seriös: kein Schneeball-System, kein unklarer Affiliate-Auftritt,
-                sondern ein nachvollziehbarer Bonus fuer echte Auftraege.
+                Die Empfehlung soll fair und transparent sein. Bitte sagen Sie der
+                empfohlenen Person offen, dass Sie im Erfolgsfall einen Bonus erhalten können.
               </p>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -304,7 +303,7 @@ export default function EmpfehlenPage() {
                   <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
                   <Link href="#empfehlungsformular" className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click">
-                    Partnercode nutzen
+                    Empfehlung starten
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </article>
@@ -318,18 +317,19 @@ export default function EmpfehlenPage() {
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
               <div>
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Empfehlbare Services</div>
-                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Wofuer kann FLOXANT empfohlen werden?</h2>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Wofür kann FLOXANT empfohlen werden?</h2>
                 <p className="mt-4 text-base leading-8 text-slate-700">
-                  Regensburg bleibt der Kern. Bayern wird nach Verfuegbarkeit geprueft.
-                  Duesseldorf ist sauber getrennt und nur fuer Reinigung und Entsorgung sichtbar.
+                  Die Aktion gilt für FLOXANT-Leistungen in Düsseldorf und Regensburg,
+                  insbesondere für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung,
+                  Übergabereinigung und Angebotsprüfung.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link href="/buchung?ref=FLOXANT50" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
-                    Beispiel-Link zur Buchung
+                    Anfrage starten
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link href="/makler-vermieter-link" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
-                    B2B-Objekt-Link
+                    Für Vermieter und Objektkunden
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -354,12 +354,11 @@ export default function EmpfehlenPage() {
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-3">
             <div className="rounded-[2rem] border border-slate-200 bg-white p-7 lg:col-span-2">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">GBP, Offline und Vertrieb</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Link-freundlich fuer WhatsApp, QR-Code und Signatur</h2>
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Einfach teilen</div>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Empfehlung per WhatsApp, QR-Code oder Link</h2>
               <p className="mt-4 text-sm leading-7 text-slate-700">
-                Nutzen Sie die Seite fuer Google Business Profile Posts, WhatsApp-Nachrichten nach Auftrag,
-                Rechnungsfooter, Fahrzeug-/Flyer-QR-Codes oder Partnerkommunikation. UTM-Parameter duerfen Quelle,
-                Medium und Kampagne enthalten, aber keine personenbezogenen Daten.
+                Sie können FLOXANT persönlich, per WhatsApp oder über einen Link empfehlen.
+                Wichtig ist, dass die empfohlene Person selbst Kontakt aufnimmt und Ihren Namen nennt.
               </p>
               <div className="mt-5 grid gap-3 md:grid-cols-2">
                 {[
@@ -374,10 +373,10 @@ export default function EmpfehlenPage() {
             </div>
             <div className="rounded-[2rem] border border-blue-200 bg-blue-50 p-7">
               <QrCode className="h-9 w-9 text-blue-700" />
-              <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">QR-Code faehig</h2>
+              <h2 className="mt-4 text-2xl font-black tracking-tight text-slate-950">QR-Code möglich</h2>
               <p className="mt-3 text-sm leading-7 text-blue-950">
-                Die kurze URL /empfehlen kann auf Rechnungen, Flyern oder Fahrzeugen als QR-Code genutzt werden.
-                Im QR-Link keine Namen, Telefonnummern oder Objektadressen codieren.
+                Die kurze URL /empfehlen kann als QR-Code genutzt werden. Persönliche Daten
+                wie Namen, Telefonnummern oder Objektadressen gehören nicht in den QR-Link.
               </p>
             </div>
           </div>
@@ -387,7 +386,7 @@ export default function EmpfehlenPage() {
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">FAQ</div>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Haeufige Fragen zum FLOXANT Partnercode</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zum Empfehlungsbonus</h2>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {faqItems.map((item) => (
@@ -404,7 +403,7 @@ export default function EmpfehlenPage() {
           <div className="flox-mobile-action-shell">
             <div className="flox-mobile-action-grid">
           <Link href="#empfehlungsformular" className="flox-mobile-action flox-mobile-action-primary" data-event="service_card_click">
-            Code
+            Empfehlen
           </Link>
           <a href={whatsappShareHref} className="flox-mobile-action flox-mobile-action-whatsapp" data-event="whatsapp_click">
             Teilen

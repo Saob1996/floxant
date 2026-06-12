@@ -130,7 +130,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert der Angebotscheck für Düsseldorf?",
-    a: "Für Düsseldorf prüft FLOXANT nur Reinigung und Entsorgung. Umzüge werden dort nicht als Leistung positioniert.",
+    a: "Für Düsseldorf prüft FLOXANT Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung über eigene lokale Seiten.",
   },
   {
     q: "Bewertet FLOXANT meinen Anbieter?",
@@ -213,7 +213,7 @@ export default function AngebotscheckPage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Rechtsberatung</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg + Bayern nach Verfügbarkeit</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf nur Reinigung/Entsorgung</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf servicebezogen</span>
               </div>
             </div>
 
@@ -284,7 +284,7 @@ export default function AngebotscheckPage() {
               </p>
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-700">
                 <ShieldCheck className="mb-3 h-6 w-6 text-blue-700" />
-                Besonders relevant ist der Angebotscheck für Regensburg, das direkte Umfeld bis ca. 200 km und Bayern nach Verfügbarkeit. Für Düsseldorf prüfen wir nur Reinigung und Entsorgung.
+                Besonders relevant ist der Angebotscheck für Regensburg, das direkte Umfeld bis ca. 200 km und Bayern nach Verfügbarkeit. Für Düsseldorf prüfen wir je nach Leistung die passende lokale Seite.
                 <div className="mt-4">
                   <Link href="/rueckfahrt-boerse" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="region_select" data-source="offer_check_internal_link">
                     Flexible Transportstrecke über die Rückfahrt-Börse prüfen

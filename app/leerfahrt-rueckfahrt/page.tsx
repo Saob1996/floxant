@@ -8,7 +8,6 @@ import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { SignatureServices } from "@/components/SignatureServices";
 import { company } from "@/lib/company";
-import { normalizeBackhaulOffer, type BackhaulOffer } from "@/lib/backhaul-offers";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -16,9 +15,6 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
-import { supabase } from "@/lib/supabase";
-
-export const dynamic = "force-dynamic";
 
 const faqItems = [
   {
@@ -51,23 +47,6 @@ const faqItems = [
   },
 ];
 
-async function loadOffers(): Promise<BackhaulOffer[]> {
-  try {
-    const { data, error } = await supabase
-      .from("bookings")
-      .select("*")
-      .eq("service", "leerfahrt_offer")
-      .eq("status", "active")
-      .order("timestamp", { ascending: false });
-
-    if (error) throw error;
-    const offers = (data || []).map(normalizeBackhaulOffer).filter((offer) => offer.status === "active");
-    return offers;
-  } catch {
-    return [];
-  }
-}
-
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
@@ -91,7 +70,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function LeerfahrtRueckfahrtPage() {
-  const offers = await loadOffers();
   const fitChecks = [
     {
       title: "Route passt",
@@ -134,17 +112,6 @@ export default async function LeerfahrtRueckfahrtPage() {
         areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Nürnberg", "München"],
       }),
       buildFaqJsonLd(faqItems),
-      {
-        "@type": "ItemList",
-        name: "Aktuelle FLOXANT Leer-Rückfahrten",
-        itemListElement: offers.map((offer, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: offer.title,
-          description: `${offer.origin} nach ${offer.destination}, ${offer.destinationRadius}. ${offer.availableCapacity}`,
-          url: `${company.url}/leerfahrt-rueckfahrt#leerfahrt-anfrage`,
-        })),
-      },
     ],
   };
 
@@ -329,7 +296,7 @@ export default async function LeerfahrtRueckfahrtPage() {
             </p>
           </div>
 
-          <BackhaulOffersBoard initialOffers={offers} />
+          <BackhaulOffersBoard initialOffers={[]} />
         </div>
       </section>
 

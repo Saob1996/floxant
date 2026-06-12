@@ -188,7 +188,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf nur Reinigung und Entsorgung, keine Umzugssignale.",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf servicebezogen ueber eigene lokale Seiten routen.",
   },
   {
     q: "Kann der Link wiederholt genutzt werden?",
@@ -408,7 +408,7 @@ export default function MaklerVermieterLinkPage() {
                     "Keine Maklerleistung, keine Vermarktung und keine Verkaufszusage.",
                     "Keine Vermietungsgarantie, keine Abnahmegarantie und keine Rechtsberatung.",
                     "Keine Renovierung, Reparatur, Malerarbeit oder Gefahrstoffentsorgung als pauschales Versprechen.",
-                    "Duesseldorf nur fuer Reinigung und Entsorgung, kein Umzugsschwerpunkt.",
+                    "Duesseldorf servicebezogen ueber eigene lokale Seiten.",
                   ].map((item) => (
                     <div key={item} className="flex gap-3 rounded-xl bg-amber-50 px-4 py-3">
                       <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
@@ -449,7 +449,7 @@ export default function MaklerVermieterLinkPage() {
               {[
                 ["Reinigung Duesseldorf", "Nur Reinigung, Endreinigung, B2B-Reinigung und Objektvorbereitung ohne Umzugssprache.", "/duesseldorf/reinigung"],
                 ["Moeblierte Wohnung Duesseldorf", "Apartment-Reset fuer Hosts, Vermieter und Kurzzeitvermietung in Duesseldorf.", "/reinigung-moeblierte-wohnung-duesseldorf"],
-                ["Entsorgung Duesseldorf", "Nur Entsorgung und Reinigungskombination, keine Transport- oder Umzugsdominanz.", "/entsorgung-duesseldorf"],
+                ["Entsorgung Duesseldorf", "Entsorgung und Reinigungskombination; Umzug separat ueber /duesseldorf/umzug.", "/entsorgung-duesseldorf"],
                 ["Buchung/Rechner", "Falls ein Objektfall doch breiter eingeordnet werden muss.", "/buchung"],
                 ["Angebotscheck", "Wenn bereits ein Fremdangebot vorliegt und Umfang oder Zusatzleistungen unklar sind.", "/angebotscheck"],
               ].map(([title, text, href]) => (

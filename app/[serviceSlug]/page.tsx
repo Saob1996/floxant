@@ -23,13 +23,17 @@ import {
   type DynamicLocalSeoRoute,
 } from "@/lib/local-seo-routes";
 
-export const revalidate = 86400;
-export const dynamicParams = true;
+const DYNAMIC_CORE_SERVICE_PARAMS = ["fernumzug", "montage"] as const;
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return dynamicLocalSeoRoutes.map((entry) => ({
-    serviceSlug: entry.route.replace(/^\//, ""),
-  }));
+  return [
+    ...dynamicLocalSeoRoutes.map((entry) => ({
+      serviceSlug: entry.route.replace(/^\//, ""),
+    })),
+    ...DYNAMIC_CORE_SERVICE_PARAMS.map((serviceSlug) => ({ serviceSlug })),
+  ];
 }
 
 const SERVICE_SLUGS = [

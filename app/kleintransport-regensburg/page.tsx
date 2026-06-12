@@ -41,7 +41,7 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
       heroTitle="Transport Regensburg für Möbel, Kleintransport und Rückfahrt"
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-      heroImage="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop"
+      heroImage="/assets/service-moving.png"
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Umzug Regensburg", href: `/umzug-regensburg` },

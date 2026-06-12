@@ -274,6 +274,18 @@ imageProfiles["leistungen-vergleichen"] = {
  accent: "#38bdf8",
 };
 
+const STATIC_SEO_IMAGE_SLUGS = [
+ ...Object.keys(imageProfiles),
+ "gewerbereinigung-regensburg",
+ "reinigung-regensburg",
+] as const;
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+ return STATIC_SEO_IMAGE_SLUGS.map((slug) => ({ slug }));
+}
+
 function normalizeSlug(value: string) {
  if (value in imageProfiles) return value;
  if (value.startsWith("umzug-")) return "umzug";

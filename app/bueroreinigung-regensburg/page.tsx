@@ -34,7 +34,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/bueroreinigung-regensburg";
 
@@ -211,7 +210,7 @@ export default function BueroreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Büroreinigung Regensburg für Büro, Kanzlei, Agentur und Verwaltung",
         description:
-          "Kundennaher Einstieg für Büroreinigung in Regensburg mit Angebot, Kostenfaktoren, Turnus, Anfragecheckliste, FAQ und direktem B2B-Formular.",
+          "Büroreinigung in Regensburg für Büros, Kanzleien, Agenturen und Verwaltungsflächen mit Turnus, Raumliste, Zeitfenster, Fotos, FAQ und direkter Anfrage.",
         path: pagePath,
         about: [
           "Büroreinigung Regensburg",
@@ -229,7 +228,7 @@ export default function BueroreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Büroreinigung Regensburg",
+        name: "Typische Anlässe für Büroreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -286,7 +285,7 @@ export default function BueroreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anlässe", "#kunden-suchen"],
                   ["Bürobereiche", "#bereiche"],
                   ["Turnus", "#turnus"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -311,7 +310,7 @@ export default function BueroreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
                 alt="Helles Büro als Beispiel für Büroreinigung in Regensburg"
                 fill
                 priority
@@ -363,15 +362,14 @@ export default function BueroreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anlässe</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Die Seite spricht die Wörter an, mit denen Büro-Kunden suchen.
+              Büroreinigung beginnt mit klaren Angaben zum Arbeitsalltag.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden wollen kein allgemeines Reinigungsversprechen. Sie
-              suchen Büroreinigung Regensburg, Angebot, Kosten, Reinigungskraft,
-              nach Feierabend, Küche, Sanitär und einen Reinigungsplan, der zum
-              Arbeitsalltag passt.
+              Für eine passende Einordnung zählen Bürofläche, Raumliste, Küche,
+              Sanitärbereiche, gewünschter Turnus, Zeitfenster, Zugang und Fotos.
+              So wird aus einer vagen Anfrage ein sauber planbarer Ablauf.
             </p>
           </div>
 

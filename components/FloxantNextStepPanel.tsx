@@ -152,7 +152,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     intro:
       "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
     signal:
-      "Düsseldorf bleibt sauber getrennt. Regensburg/Bayern bleibt der Kern für Umzug, Reinigung, Entrümpelung und Transport.",
+      "Düsseldorf und Regensburg bleiben sauber getrennt. Beide führen Umzug, Reinigung und Entrümpelung über eigene lokale Einstiege.",
     primaryHref: "/duesseldorf/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/entsorgung-duesseldorf",

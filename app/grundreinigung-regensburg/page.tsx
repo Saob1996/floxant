@@ -32,7 +32,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/grundreinigung-regensburg";
 
@@ -220,7 +219,7 @@ export default function GrundreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Grundreinigung Regensburg für Wohnung, Büro, Küche und Bad",
         description:
-          "Kundennaher Einstieg für Grundreinigung in Regensburg mit Suchbegriffen, Leistungsgrenzen, Anfragecheckliste, FAQ und direkten Kontaktwegen.",
+          "Kundennaher Einstieg für Grundreinigung in Regensburg mit Leistungsgrenzen, Anfragecheckliste, FAQ und direkten Kontaktwegen.",
         path: pagePath,
         about: [
           "Grundreinigung Regensburg",
@@ -238,7 +237,7 @@ export default function GrundreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Grundreinigung Regensburg",
+        name: "Typische Anliegen zur Grundreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -295,7 +294,7 @@ export default function GrundreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anliegen", "#kunden-suchen"],
                   ["Bereiche", "#bereiche"],
                   ["Schnell entscheiden", "#schnell-entscheiden"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -320,7 +319,7 @@ export default function GrundreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/service-cleaning.png"
                 alt="Grundreinigung einer stark genutzten Fläche als Beispiel für Regensburg"
                 fill
                 priority
@@ -372,15 +371,14 @@ export default function GrundreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anliegen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               So finden Kunden schneller den passenden Reinigungsweg.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden suchen nicht allgemein nach einer Reinigungsfirma. Sie
-              schreiben konkrete Wörter wie Grundreinigung Kosten, Wohnung nach
-              Auszug reinigen, Küche und Bad gründlich reinigen oder starke
-              Verschmutzung entfernen.
+              Oft geht es um einen sichtbaren Neustart: Wohnung nach Auszug,
+              Küche, Bad, Boden, Leerstand oder starke Verschmutzung. Fotos,
+              Zustand und Ziel helfen mehr als eine pauschale Quadratmeterfrage.
             </p>
           </div>
 
@@ -558,7 +556,7 @@ export default function GrundreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Reinigung.
+                  Weitere passende Leistungen für Reinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

@@ -16,15 +16,14 @@ export function RegensburgCleaningSnippetAnswers() {
             <div>
               <div className="flox-kicker">
                 <Camera className="h-4 w-4" />
-                Kurze Antworten
+                Häufige Fragen
               </div>
               <h2 className="mt-6 flox-title-lg text-slate-950">
-                Kurze Antworten, die vor der Anfrage helfen.
+                Fragen, die vor der Reinigungsanfrage helfen.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Diese Antworten sprechen typische Fragen direkt an und
-                machen klar, welche Angaben helfen: Service, Ort, Fläche,
-                Turnus, Zugang und Fotos.
+                Wenn Service, Ort, Fläche, Turnus, Zugang und Fotos früh klar sind,
+                kann FLOXANT schneller sagen, welcher nächste Schritt sinnvoll ist.
               </p>
             </div>
 

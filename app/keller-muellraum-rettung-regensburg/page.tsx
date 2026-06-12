@@ -454,7 +454,7 @@ export default function KellerMuellraumRettungPage() {
                 ["Kellerentrümpelung Regensburg", "Fuer private und objektbezogene Keller mit Fotos, Zugang und Umfang."],
                 ["Hausverwaltung / WEG", "Fuer wiederkehrende oder gemeinschaftliche Flaechen mit Freigabe und Ansprechpartner."],
                 ["Raeumung + Reinigung", "Erst Flaeche freimachen, dann Reinigung nach Raeumung pruefen."],
-                ["Entsorgung Duesseldorf getrennt", "Düsseldorf bleibt eigene Entsorgungs-/Reinigungslogik, keine Umzugsdominanz."],
+                ["Entsorgung Duesseldorf getrennt", "Düsseldorf bleibt eigene Entsorgungs-, Reinigungs- und Umzugslogik über separate Seiten."],
               ].map(([title, text]) => (
                 <div key={title} className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
                   <MapPin className="mb-4 h-5 w-5 text-amber-700" />

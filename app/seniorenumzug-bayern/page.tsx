@@ -1,6 +1,7 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { generatePageSEO } from "@/lib/seo";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
@@ -85,6 +86,95 @@ export default async function SeniorenumzugBayernPage({ params }: PageProps) {
       wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
       wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
       wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
-    />
+    >
+      <LocalSeoSearchIntentBridge
+        service="seniorenumzug"
+        city={city}
+        currentHref="/seniorenumzug-bayern"
+      />
+      <GscOpportunitySection
+        eyebrow="Seniorenumzug in Bayern"
+        title="Ruhig umziehen, wenn Angehörige, Wohnung und Übergabe zusammenkommen."
+        intro="Bei einem Seniorenumzug geht es nicht nur um Möbeltransport. Häufig müssen Angehörige abstimmen, Dinge aussortieren, eine Wohnung auflösen, Reinigung vorbereiten oder ein neues Zuhause rechtzeitig bezugsbereit machen. FLOXANT prüft die Situation Schritt für Schritt."
+        proofTitle="Wichtig für die Abstimmung"
+        proofItems={[
+          "Ein fester Ansprechpartner, Fotos, Möbelmenge, Etage und Termin helfen, damit Rückfragen nicht bei mehreren Personen hängen bleiben.",
+          "Packhilfe, Abbau, Entsorgung, Reinigung und Übergabe sollten direkt genannt werden, wenn sie benötigt werden.",
+          "Wenn Angehörige weiter weg wohnen, helfen Schlüsselweg, Freigaben, Fotos und klare Rückmeldung nach jedem wichtigen Schritt.",
+        ]}
+        cards={[
+          {
+            title: "Seniorenumzug mit Angehörigen",
+            text: "Ruhige Abstimmung, klare Freigaben, Terminfenster, Fotos und ein Ansprechpartner sind hier wichtiger als schnelle Versprechen.",
+            href: "/seniorenumzug",
+            cta: "Ablauf besprechen",
+          },
+          {
+            title: "Wohnung auflösen",
+            text: "Wenn nicht alles mitzieht, werden Möbel, Keller, Restmengen, Entsorgung und Zielzustand früh getrennt betrachtet.",
+            href: "/wohnungsaufloesung-bayern",
+            cta: "Auflösung prüfen",
+          },
+          {
+            title: "Umzug mit Reinigung",
+            text: "Wenn die alte Wohnung übergeben werden muss, sollten Endreinigung, Schlüsselweg, Räume und Deadline direkt mitgenannt werden.",
+            href: "/umzug-mit-reinigung",
+            cta: "Übergabe vorbereiten",
+          },
+          {
+            title: "Nicht vor Ort organisieren",
+            text: "Für Angehörige aus der Ferne zählen Fotos, Schlüsselweg, Berechtigung, Ansprechpartner und eine verlässliche Rückmeldung.",
+            href: "/uebergabeakte",
+            cta: "Schlüsselweg klären",
+          },
+          {
+            title: "Angebot prüfen lassen",
+            text: "Ein vorhandenes Umzugs- oder Räumungsangebot kann mit Fotos, Umfang, Termin, Etage und Budget eingeordnet werden.",
+            href: "/angebot-guenstiger-pruefen",
+            cta: "Angebot prüfen",
+          },
+          {
+            title: "Bayern nach Machbarkeit",
+            text: "Regensburg ist der starke Ausgangspunkt. Weitere Orte werden nach Strecke, Termin, Umfang und Kombination geprüft.",
+            href: "/service-area-bayern",
+            cta: "Einsatzgebiet ansehen",
+          },
+        ]}
+        checklistTitle="Diese Angaben helfen besonders"
+        checklist={[
+          "Ort, Start, Ziel, Etage, Aufzug, Laufweg und Terminfenster.",
+          "Möbelmenge, Kartons, Fotos und was nicht mitgenommen werden soll.",
+          "Wer entscheidet, wer erreichbar ist und ob Angehörige nicht vor Ort sind.",
+          "Ob Reinigung, Entrümpelung, Haushaltsauflösung oder Übergabe dazukommt.",
+        ]}
+        combinationsTitle="Seniorenumzug oft kombiniert mit"
+        combinations={[
+          {
+            title: "Seniorenumzug + Packhilfe",
+            text: "Wenn Vorbereitung, Kartons und kleine Demontage entlasten sollen.",
+            href: "/seniorenumzug",
+          },
+          {
+            title: "Umzug + Haushaltsauflösung",
+            text: "Wenn ein Teil mitzieht und der Rest sauber geräumt werden muss.",
+            href: "/wohnungsaufloesung-bayern",
+          },
+          {
+            title: "Umzug + Endreinigung",
+            text: "Für die alte Wohnung vor Übergabe oder Neuvermietung.",
+            href: "/umzug-mit-reinigung",
+          },
+          {
+            title: "Angebot + Budget prüfen",
+            text: "Vorhandene Unterlagen mit Fotos und Eckdaten sachlich einordnen.",
+            href: "/angebot-guenstiger-pruefen",
+          },
+        ]}
+        primaryHref="/buchung?service=seniorenumzug#buchungssystem"
+        primaryLabel="Seniorenumzug anfragen"
+        secondaryHref="/angebot-guenstiger-pruefen"
+        secondaryLabel="Angebot prüfen"
+      />
+    </SpecialtyPageLayout>
   );
 }

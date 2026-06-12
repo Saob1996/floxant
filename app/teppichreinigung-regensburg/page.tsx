@@ -30,7 +30,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/teppichreinigung-regensburg";
 
@@ -223,7 +222,7 @@ export default function TeppichreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Teppichreinigung Regensburg für Teppichboden, Sofa, Polster und Bürostühle",
         description:
-          "Kundennaher Einstieg für Teppich- und Polsterreinigung in Regensburg mit Suchbegriffen, Materialprüfung, Anfragecheckliste, FAQ, Grenzen und direkter Kontaktmöglichkeit.",
+          "Teppich- und Polsterreinigung in Regensburg mit Materialprüfung, Fotos, Flecken, Nutzung, Anfragecheckliste, FAQ, Grenzen und direkter Kontaktmöglichkeit.",
         path: pagePath,
         about: [
           "Teppichreinigung Regensburg",
@@ -241,7 +240,7 @@ export default function TeppichreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Teppichreinigung Regensburg",
+        name: "Typische Anlässe für Teppichreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -298,7 +297,7 @@ export default function TeppichreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anlässe", "#kunden-suchen"],
                   ["Leistungen", "#leistungen"],
                   ["Kostenfaktoren", "#kostenfaktoren"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -323,7 +322,7 @@ export default function TeppichreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1742483359033-13315b247c74?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/service-cleaning.png"
                 alt="Teppichreinigung mit Reinigungsgerät als Beispiel für Regensburg"
                 fill
                 priority
@@ -362,15 +361,14 @@ export default function TeppichreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anlässe</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kunden wollen wissen: laesst sich mein Teppich oder Sofa sinnvoll reinigen?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden suchen ganz konkret nach Teppichbodenreinigung Büro,
-              Polsterreinigung Regensburg, Sofa reinigen lassen, Bürostühle reinigen oder
-              Teppichreinigung Kosten in Regensburg. Die Seite beantwortet diese
-              Wörter direkt und fragt die Daten ab, die wirklich helfen.
+              Typische Anliegen sind Teppichboden im Büro, Polster in der Praxis,
+              Sofa reinigen lassen, Bürostühle auffrischen oder Flecken einordnen.
+              Für den Start helfen Material, Fotos, Fläche, Nutzung, Zugang und Termin.
             </p>
           </div>
 
@@ -489,7 +487,7 @@ export default function TeppichreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten, damit Zustand, Material und Preisrahmen klarer werden.
             </h2>
@@ -529,7 +527,7 @@ export default function TeppichreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Teppich und Polster in Regensburg.
+                  Weitere passende Leistungen für Teppich und Polster in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

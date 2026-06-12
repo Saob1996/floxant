@@ -154,7 +154,7 @@ const discretionBlocks = [
   },
   {
     title: "Transport / Umzug",
-    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit, keine Düsseldorf-Umzug-Logik.",
+    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; Düsseldorf-Umzug läuft über den eigenen lokalen Einstieg.",
     Icon: Truck,
   },
   {
@@ -289,7 +289,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist das möglich?",
-    a: "Regensburg ist der Kern. Umgebung Regensburg und Bayern werden nach Verfügbarkeit geprüft. Für Düsseldorf prüft FLOXANT nur Reinigung und Entsorgung, keine Umzugsleistung.",
+    a: "Regensburg ist der Kern für Bayern/Nahbereich. Für Düsseldorf prüft FLOXANT passende lokale Servicepfade, darunter /duesseldorf/umzug, /duesseldorf/reinigung und /duesseldorf/entruempelung.",
   },
 ];
 
@@ -709,8 +709,8 @@ export default function DiskreterUmzugTrennungScheidungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-stone-500">Verknüpfte FLOXANT Wege</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Wenn der Fall anders gelagert ist</h2>
               <p className="mt-3 text-sm leading-7 text-stone-600">
-                Diese Links führen zu verwandten, aber klar getrennten Services. Kein Footer-Spam, keine aggressive
-                Scheidungs-Optik.
+                Diese Links führen zu verwandten, aber klar getrennten Services. So bleibt
+                der nächste Schritt passend, ohne sensible Situationen unnötig groß zu machen.
               </p>
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

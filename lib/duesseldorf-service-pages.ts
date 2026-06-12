@@ -90,7 +90,7 @@ function faq(service: string, detail: string) {
     },
     {
       q: "Gibt es in Düsseldorf Umzug oder Büroumzug?",
-      a: "Nein. Düsseldorf wird bei FLOXANT nicht für Umzug, Transport oder ähnliche Umzugsleistungen positioniert. Dafür gibt es getrennte Regensburg/Bayern-Seiten.",
+      a: "Ja. Für Düsseldorf gibt es eine eigene Umzugsseite. Diese Reinigungsseite bleibt bewusst auf Reinigung fokussiert und verlinkt Umzug separat.",
     },
   ];
 }
@@ -161,7 +161,7 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
     ],
     boundaryText:
-      "Putzfirma Düsseldorf ist bei FLOXANT ein kundennaher Einstieg für Reinigungsanfragen. FLOXANT bewirbt keine Personalvermittlung, keine Haushaltshilfe-Vermittlung, keine Umzugsleistung und keine Preisgarantie ohne Prüfung von Umfang, Fotos und Termin.",
+      "Putzfirma Düsseldorf ist bei FLOXANT ein kundennaher Einstieg für Reinigungsanfragen. FLOXANT bewirbt keine Personalvermittlung, keine Haushaltshilfe-Vermittlung und keine Preisgarantie ohne Prüfung von Umfang, Fotos und Termin; Umzug läuft über /duesseldorf/umzug.",
     customerIntentItems: [
       {
         searchPhrase: "Putzfirma Düsseldorf",
@@ -483,7 +483,7 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
     ],
     boundaryText:
-      "Kurzfristige Reinigung Düsseldorf bedeutet bei FLOXANT eine schnelle Machbarkeitsprüfung, keine 24/7-Garantie, keine Preisgarantie ohne Fotos und keine Umzugs- oder Transportleistung.",
+      "Kurzfristige Reinigung Düsseldorf bedeutet bei FLOXANT eine schnelle Machbarkeitsprüfung, keine 24/7-Garantie und keine Preisgarantie ohne Fotos; Umzug oder Transport laufen über eigene Servicepfade.",
     customerIntentItems: [
       {
         searchPhrase: "Reinigung heute Düsseldorf",
@@ -805,7 +805,7 @@ export const duesseldorfServicePages = {
       { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Apartment-Reinigung prüfen" },
     ],
     boundaryText:
-      "Schlüsselübergabe-Reinigung Düsseldorf ist eine Reinigungs- und Ablaufprüfung. Sie ersetzt keine Wohnungsabnahme, keine Rechtsberatung, keine Maklerleistung, keine Umzugsleistung und keine Preisgarantie ohne Fotos.",
+      "Schlüsselübergabe-Reinigung Düsseldorf ist eine Reinigungs- und Ablaufprüfung. Sie ersetzt keine Wohnungsabnahme, keine Rechtsberatung, keine Maklerleistung und keine Preisgarantie ohne Fotos; Umzug läuft separat über /duesseldorf/umzug.",
     customerIntentItems: [
       {
         searchPhrase: "Reinigung mit Schlüsselübergabe Düsseldorf",
@@ -3124,7 +3124,7 @@ export const duesseldorfServicePages = {
       {
         title: "Entsorgung in Düsseldorf nach Menge und Zugang",
         paragraphs: [
-          "Entsorgung in Düsseldorf wird bei FLOXANT nicht als Umzug beschrieben. Es geht um regulär entsorgbare Möbel, Sperrmüll, Kellerinhalte, Nebenräume, Haushaltsgegenstände oder kleines Firmeninventar. Entscheidend sind Menge, Material, Gewicht, Etage, Laufweg, Parkmöglichkeit und ein sinnvolles Zeitfenster.",
+          "Entsorgung in Düsseldorf wird bei FLOXANT als eigener Servicepfad beschrieben. Umzug, Entrümpelung und Haushaltsauflösung haben separate Seiten; bei Entsorgung zählen Menge, Material, Gewicht, Etage, Laufweg, Parkmöglichkeit und ein sinnvolles Zeitfenster.",
           "Innenstadt, Flingern, Bilk, Oberbilk, Neuss und Ratingen können bei der Anfahrt sehr unterschiedlich sein. Ein Haus mit Aufzug und guter Ladezone ist anders zu planen als ein Altbau mit engem Treppenhaus, Hinterhof und kurzem Haltefenster.",
         ],
       },

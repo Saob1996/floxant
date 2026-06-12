@@ -31,7 +31,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/praxisreinigung-regensburg";
 
@@ -242,7 +241,7 @@ export default function PraxisreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Praxisreinigung Regensburg",
+        name: "Typische Anliegen zur Praxisreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -300,7 +299,7 @@ export default function PraxisreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anliegen", "#kunden-suchen"],
                   ["Praxisbereiche", "#bereiche"],
                   ["Turnus", "#turnus"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -325,7 +324,7 @@ export default function PraxisreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
                 alt="Heller Empfangsbereich als Beispiel für Praxisreinigung in Regensburg"
                 fill
                 priority
@@ -364,14 +363,14 @@ export default function PraxisreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anliegen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Die Seite spricht die Wörter an, mit denen Praxisinhaber suchen.
+              Praxisreinigung braucht klare Bereiche und ruhige Abläufe.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden wollen keine allgemeine Gebaeudereinigung. Sie suchen
-              Praxisreinigung Regensburg, Arztpraxis Reinigung, Angebot, Turnus,
-              Wartebereich, Sanitär und Reinigung nach Praxisschluss.
+              Für Praxisräume zählen Empfang, Wartebereich, Sanitär, Personalbereich,
+              Öffnungszeiten, Turnus und klare Grenzen. So wird die Anfrage konkret,
+              ohne falsche Spezialversprechen.
             </p>
           </div>
 
@@ -464,7 +463,7 @@ export default function PraxisreinigungRegensburgPage() {
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
             <div className="flox-kicker">Anfrage-Checkliste</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Diese Angaben machen aus einer Suche eine prüfbare Anfrage.
+              Diese Angaben machen aus einer ersten Anfrage eine prüfbare Anfrage.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
               Für Praxisreinigung zählen Quadratmeter, aber nicht allein. Erst
@@ -487,9 +486,9 @@ export default function PraxisreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten fuer eine bessere Anfrage.
+              Kurze Antworten für eine bessere Anfrage.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (
@@ -527,7 +526,7 @@ export default function PraxisreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Praxisreinigung.
+                  Weitere passende Leistungen für Praxisreinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

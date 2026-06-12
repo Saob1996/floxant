@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { generatePageSEO } from "@/lib/seo";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Trash, Shield, Clock, Star, Zap } from "lucide-react";
@@ -85,6 +87,77 @@ export default async function WohnungsaufloesungBayernPage({ params }: PageProps
       wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
       wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
       wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
-    />
+    >
+      <GscOpportunitySection
+        eyebrow="Wohnungsauflösung Bayern"
+        title="Wenn eine Wohnung leer werden muss, zählt ein ruhiger und klarer Ablauf."
+        intro="Bei Wohnungsauflösung, Haushaltsauflösung oder Nachlassräumung geht es selten nur um Möbel. Wichtig sind Freigabe, Fotos, Keller, Entsorgung, Reinigung, Schlüsselweg und der gewünschte Zustand für Übergabe, Verkauf oder Neuvermietung."
+        proofTitle="Wichtig für Bayern"
+        proofItems={[
+          "FLOXANT prüft Bayern-Anfragen von Regensburg aus nach Strecke, Umfang, Termin und sinnvoller Bündelung.",
+          "Fotos, Raumliste und grobe Menge helfen, ohne lange Vor-Ort-Runde eine erste Richtung zu finden.",
+          "Räumung, Entsorgung, Endreinigung und Übergabe können zusammen angefragt werden, wenn die Frist klar ist.",
+        ]}
+        cards={[
+          {
+            title: "Nachlass oder Haushalt auflösen",
+            text: "Räume, Keller, Erinnerungsstücke, Freigaben und Ansprechpartner werden getrennt aufgenommen.",
+            href: "/nachlass-raeumung-regensburg",
+            cta: "Nachlass ruhig klären",
+          },
+          {
+            title: "Wohnung wieder übergabefähig machen",
+            text: "Nach der Räumung bleiben oft Böden, Küche, Bad, Balkon oder Keller offen. Diese Punkte früh mitdenken.",
+            href: "/wohnung-wieder-vermietbar",
+            cta: "Übergabe vorbereiten",
+          },
+          {
+            title: "Angebot oder Containerfrage prüfen",
+            text: "Nicht jede Auflösung braucht einen Container. Umfang, Laufweg und Entsorgungsweg entscheiden.",
+            href: "/angebot-guenstiger-pruefen",
+            cta: "Angebot prüfen",
+          },
+        ]}
+        checklistTitle="Für eine brauchbare erste Einschätzung"
+        checklist={[
+          "Ort in Bayern, Etage, Aufzug, Zugang, Parkmöglichkeit und gewünschter Zeitraum.",
+          "Fotos von jedem Raum, Keller, Dachboden, Garage, Balkon und größeren Gegenständen.",
+          "Was bleibt, was darf entsorgt werden, wer entscheidet und ob Wertgegenstände gesondert behandelt werden.",
+          "Ob danach Endreinigung, Übergabe, Schlüsselrückgabe oder eine Rückmeldung mit Fotos gebraucht wird.",
+        ]}
+        combinationsTitle="Häufige Kombinationen"
+        combinations={[
+          {
+            title: "Wohnungsauflösung + Endreinigung",
+            text: "Sinnvoll, wenn danach Übergabe, Verkauf oder Neuvermietung ansteht.",
+            href: "/endreinigung-regensburg",
+          },
+          {
+            title: "Haushaltsauflösung + Entsorgung",
+            text: "Für Möbel, Restmengen, Keller, Garage und größere Mengen mit sauberer Freigabe.",
+            href: "/entruempelung-bayern",
+          },
+          {
+            title: "Nachlass + respektvolle Räumung",
+            text: "Für Angehörige, die ruhige Abstimmung und klare Rückmeldung brauchen.",
+            href: "/blog/nachlassraeumung-mit-respekt",
+          },
+          {
+            title: "Nicht vor Ort + Schlüsselweg",
+            text: "Wenn Sie nicht selbst anreisen können, helfen Fotos, Berechtigung und Ansprechpartner.",
+            href: "/human-api",
+          },
+        ]}
+        primaryHref="/buchung?service=wohnungsaufloesung#buchungssystem"
+        primaryLabel="Wohnungsauflösung anfragen"
+        secondaryHref="/anfrage-mit-preisrahmen"
+        secondaryLabel="Budget nennen"
+      />
+      <LocalSeoSearchIntentBridge
+        service="wohnungsaufloesung"
+        city={city}
+        currentHref="/wohnungsaufloesung-bayern"
+      />
+    </SpecialtyPageLayout>
   );
 }

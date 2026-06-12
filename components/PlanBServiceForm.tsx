@@ -74,7 +74,7 @@ const openItemOptions = [
   "zweite Absicherung gewuenscht",
   "Fotos vorhanden",
   "Budget vorhanden",
-  "Düsseldorf nur Reinigung/Entsorgung",
+  "Düsseldorf servicebezogen",
 ];
 
 const previousSourceOptions = [

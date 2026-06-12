@@ -106,7 +106,16 @@ function normalizeBookingService(value: string | null): ServiceType {
 
   const normalized = value.trim().toLowerCase();
 
-  if (normalized === "entruempelung" || normalized === "entrümpelung") {
+  if (
+    [
+      "entruempelung",
+      "entrümpelung",
+      "haushaltsaufloesung",
+      "haushaltsauflösung",
+      "wohnungsaufloesung",
+      "wohnungsauflösung",
+    ].includes(normalized)
+  ) {
     return "entsorgung";
   }
 
@@ -142,6 +151,12 @@ function looksLikeDusseldorf(value: string) {
     /\b40[2-6]\d{2}\b/.test(normalized)
   );
 }
+
+const DUSSELDORF_BOOKING_SERVICE_IDS = new Set<Exclude<ServiceType, null>>([
+  "umzug",
+  "reinigung",
+  "entsorgung",
+]);
 
 function normalizeTrackingValue(value: string | null) {
   return (value || "")
@@ -286,8 +301,10 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   );
   const isDusseldorfDisposalQueryContext =
     isDusseldorfQueryContext && queryServicePreset === "entsorgung";
+  const isDusseldorfMovingQueryContext =
+    isDusseldorfQueryContext && queryServicePreset === "umzug";
   const isDusseldorfCleaningQueryContext =
-    isDusseldorfQueryContext && !isDusseldorfDisposalQueryContext;
+    isDusseldorfQueryContext && queryServicePreset === "reinigung";
   const storeService = useCalculatorStore((s) => s.serviceType);
   const storeBase = useCalculatorStore((s) => s.baseDetails);
   const storeLead = useCalculatorStore((s) => s.leadDetails);
@@ -434,11 +451,16 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
   useEffect(() => {
     setInitialized(true);
-    const presetService = initialService || (isDusseldorfDisposalQueryContext
-      ? "entsorgung"
-      : isDusseldorfCleaningQueryContext
-        ? "reinigung"
-        : queryServicePreset || (storeService as ServiceType));
+    const presetService =
+      initialService ||
+      queryServicePreset ||
+      (isDusseldorfDisposalQueryContext
+        ? "entsorgung"
+        : isDusseldorfMovingQueryContext
+          ? "umzug"
+          : isDusseldorfCleaningQueryContext
+            ? "reinigung"
+            : (storeService as ServiceType));
 
     if (presetService) {
       setState((prev) => ({
@@ -467,6 +489,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   }, [
     isDusseldorfCleaningQueryContext,
     isDusseldorfDisposalQueryContext,
+    isDusseldorfMovingQueryContext,
     initialService,
     queryServicePreset,
     storeBase,
@@ -510,8 +533,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   }, [requestFlow, shouldSkipUpgrades, t]);
 
   const isDusseldorfServiceConflict =
-    state.service !== "reinigung" &&
-    state.service !== "entsorgung" &&
+    Boolean(state.service) &&
+    !DUSSELDORF_BOOKING_SERVICE_IDS.has(state.service as Exclude<ServiceType, null>) &&
     looksLikeDusseldorf(`${state.details.startAddress} ${state.details.endAddress}`);
 
   const isStepTwoValid = useMemo(() => {
@@ -886,7 +909,9 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     const createdAt = new Date().toISOString();
     const serviceMeta = wizardServiceMeta[state.service];
     const servicePageBookingSource = getRegensburgCleaningBookingSource(normalizedSource, normalizedEntry);
-    const bookingSource = isDusseldorfDisposalQueryContext
+    const bookingSource = isDusseldorfMovingQueryContext
+      ? "duesseldorf_moving_booking"
+      : isDusseldorfDisposalQueryContext
       ? "duesseldorf_disposal_booking"
       : isDusseldorfCleaningQueryContext
         ? "duesseldorf_cleaning_booking"
@@ -911,7 +936,9 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             : servicePageBookingSource
               ? servicePageBookingSource
               : "booking_page_wizard";
-    const entryPoint = isDusseldorfDisposalQueryContext
+    const entryPoint = isDusseldorfMovingQueryContext
+      ? "/buchung?service=umzug&region=duesseldorf"
+      : isDusseldorfDisposalQueryContext
       ? "/buchung?service=entsorgung&region=duesseldorf"
       : isDusseldorfCleaningQueryContext
         ? "/buchung?service=reinigung&region=duesseldorf"
@@ -1182,7 +1209,9 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       },
     ];
 
-    const visibleOptions = isDusseldorfDisposalQueryContext
+    const visibleOptions = isDusseldorfMovingQueryContext
+      ? options.filter((option) => option.id === "umzug")
+      : isDusseldorfDisposalQueryContext
       ? options.filter((option) => option.id === "entsorgung")
       : isDusseldorfCleaningQueryContext
         ? options.filter((option) => option.id === "reinigung")
@@ -1196,10 +1225,16 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             Zugang, Fotos und Budget helfen bei der Prüfung.
           </div>
         ) : null}
+        {isDusseldorfMovingQueryContext ? (
+          <div className="rounded-[1.35rem] border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold leading-6 text-blue-950">
+            Dieser Düsseldorf-Einstieg ist auf Umzug ausgerichtet: Volumen,
+            Adressen, Zugang, Termin und Fotos helfen bei der Prüfung.
+          </div>
+        ) : null}
         {isDusseldorfCleaningQueryContext ? (
           <div className="rounded-[1.35rem] border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-semibold leading-6 text-teal-950">
-            Dieser Düsseldorf-Einstieg wird hier nur als Reinigung geführt. Für andere
-            Leistungsarten bitte den Regensburg-Bereich nutzen.
+            Dieser Düsseldorf-Einstieg ist auf Reinigung ausgerichtet. Andere
+            Düsseldorfer Leistungen laufen über ihre eigenen lokalen Seiten.
           </div>
         ) : null}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -1495,8 +1530,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
           {isDusseldorfServiceConflict ? (
             <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
-              Dieser Düsseldorf-Einstieg ist bei FLOXANT nur für Reinigung vorgesehen.
-              Bitte wählen Sie Reinigung oder ändern Sie den Ort.
+              Für Düsseldorf bitte Umzug, Reinigung oder Entrümpelung/Entsorgung
+              wählen oder den passenden lokalen Einstieg öffnen.
             </div>
           ) : null}
 

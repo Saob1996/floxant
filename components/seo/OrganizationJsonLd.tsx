@@ -51,7 +51,7 @@ export function OrganizationJsonLd() {
       },
     ],
     description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und diskrete Abstimmungen mit festem Ausgangspunkt in Regensburg, Nahbereich ca. 200 km und Bayern nach Verfügbarkeit. Düsseldorf ist separat für Reinigung positioniert; Entsorgung wird nur auf einer eigenen vorhandenen Seite geführt.",
+      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung, Angebotsprüfung und diskrete Abstimmungen in Düsseldorf und Regensburg mit klar getrennten lokalen Service-Seiten.",
     areaServed: company.primaryServiceAreas.map((area) => ({
       "@type":
         area === "Bayern"
@@ -71,6 +71,12 @@ export function OrganizationJsonLd() {
       "Büroumzug",
       "Firmenentsorgung",
       "Gewerbereinigung",
+      "Umzug Düsseldorf",
+      "Entrümpelung Düsseldorf",
+      "Haushaltsauflösung Düsseldorf",
+      "Wohnungsauflösung Düsseldorf",
+      "Endreinigung Düsseldorf",
+      "Reinigung Düsseldorf",
       "Büroreinigung Regensburg",
       "Büroreinigung Regensburg Angebot",
       "Büroreinigung Kosten Regensburg",

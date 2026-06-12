@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CheckCircle2, MapPin, Truck, Star } from "lucide-react";
+import { CheckCircle2, ClipboardCheck, MapPin, Truck } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
 
 // Static data isolated outside the component to prevent re-instantiation and optimize INP
@@ -25,7 +25,7 @@ const ACTIVITIES_LOCALIZED: Record<string, typeof activities> = {
   ru: [
     { type: "success", text: "Поступил запрос на переезд", location: "Мюнхен" },
     { type: "info", text: "Бригада направлена на объект", location: "Регенсбург" },
-    { type: "review", text: "Опубликован новый 5-звездочный отзыв", location: "Нюрнберг" },
+    { type: "review", text: "Проверяется обратная связь по качеству", location: "Нюрнберг" },
     { type: "success", text: "Очистка успешно завершена", location: "Аугсбург" },
     { type: "info", text: "Запрошен экспресс-расчет", location: "Ландсхут" },
   ],
@@ -69,7 +69,7 @@ export default function LiveActivityFeed({ lang = "de" }: { lang?: string }) {
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-blue-400/15 bg-blue-400/10 text-blue-300">
        {initialActivity.type === "success" && <CheckCircle2 size={16} className="text-emerald-400" />}
        {initialActivity.type === "info" && <Truck size={16} className="text-blue-400" />}
-       {initialActivity.type === "review" && <Star size={16} className="text-amber-400" />}
+       {initialActivity.type === "review" && <ClipboardCheck size={16} className="text-amber-400" />}
       </div>
       <div className="min-w-0 flex-1">
        <div className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export default function LiveActivityFeed({ lang = "de" }: { lang?: string }) {
        >
         {activity.type === "success" && <CheckCircle2 size={16} className="text-emerald-400" />}
         {activity.type === "info" && <Truck size={16} className="text-blue-400" />}
-        {activity.type === "review" && <Star size={16} className="text-amber-400" />}
+        {activity.type === "review" && <ClipboardCheck size={16} className="text-amber-400" />}
        </m.div>
       </AnimatePresence>
      </div>

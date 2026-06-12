@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, FileSearch, Menu, MessageCircle, Phone, X } from "lucide-react";
+import { ArrowRight, BadgeEuro, FileSearch, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -59,6 +59,10 @@ export function PublicHeader({
   const headerCta = isRegensburgContext && !isDuesseldorfContext
     ? { href: "/kontakt", label: "Anfrage senden" }
     : { href: "/angebot-vergleichen-duesseldorf", label: "Angebot prüfen" };
+  const budgetHref =
+    isDuesseldorfContext && !isRegensburgContext
+      ? "/duesseldorf/reinigung#preisvorschlag"
+      : "/anfrage-mit-preisrahmen";
 
   const whatsappHref = useMemo(
     () =>
@@ -155,10 +159,10 @@ export function PublicHeader({
           scrolled && "border-slate-200/90 bg-white/[0.96] shadow-[0_18px_52px_rgba(15,23,42,0.18)]",
         )}
       >
-        <div className="grid min-h-12 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:grid-cols-[minmax(260px,0.9fr)_auto_minmax(250px,0.8fr)]">
+        <div className="flex min-h-12 items-center gap-3">
           <Link
             href="/"
-            className="group flex min-w-0 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="FLOXANT Startseite"
           >
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)]">
@@ -174,7 +178,7 @@ export function PublicHeader({
             </span>
           </Link>
 
-          <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
+          <nav aria-label="Hauptnavigation" className="hidden shrink-0 items-center gap-1 lg:flex">
             <div
               className="relative"
               onMouseEnter={openServicesMenu}
@@ -215,14 +219,24 @@ export function PublicHeader({
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-flex h-11 items-center rounded-lg px-4 text-sm font-black text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="inline-flex h-11 items-center rounded-lg px-3 text-sm font-black text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500 xl:px-4"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden items-center justify-end gap-2 lg:flex">
+          <div className="hidden shrink-0 items-center justify-end gap-2 lg:flex">
+            <Link
+              href={budgetHref}
+              data-event="hero_cta_click"
+              data-source="header"
+              data-contact-channel="budget_check"
+              className="hidden h-11 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-black text-slate-900 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 2xl:inline-flex"
+            >
+              <BadgeEuro className="h-4 w-4" aria-hidden="true" />
+              Budget nennen
+            </Link>
             <Link
               href={headerCta.href}
               data-event="hero_cta_click"
@@ -291,7 +305,7 @@ export function PublicHeader({
               />
             </div>
 
-            <div className="mt-3 grid gap-2 sm:grid-cols-4">
+            <div className="mt-3 grid gap-2 sm:grid-cols-5">
               <Link
                 href="/leistungen"
                 data-event="service_card_click"
@@ -319,6 +333,16 @@ export function PublicHeader({
                 <Phone className="h-4 w-4" />
                 Anrufen
               </a>
+              <Link
+                href={budgetHref}
+                data-event="hero_cta_click"
+                data-source="mobile_header"
+                data-contact-channel="budget_check"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-black text-slate-900"
+              >
+                <BadgeEuro className="h-4 w-4" />
+                Budget nennen
+              </Link>
               <Link
                 href="/kontakt"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"

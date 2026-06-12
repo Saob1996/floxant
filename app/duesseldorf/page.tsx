@@ -17,17 +17,17 @@ const region = floxantRegions.duesseldorf;
 const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
-    "Hallo FLOXANT Reinigung Düsseldorf,",
-    "ich möchte eine Reinigungsanfrage in Düsseldorf stellen.",
-    "Objektart, Ort, Fläche, Turnus und Fotos kann ich senden.",
+    "Hallo FLOXANT Düsseldorf,",
+    "ich möchte eine Anfrage in Düsseldorf stellen.",
+    "Es geht um Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Endreinigung.",
   ].join("\n"),
 );
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Düsseldorf | Reinigung für Unternehmen & Praxen",
+  title: "FLOXANT Düsseldorf | Umzug, Reinigung & Räumung",
   description:
-    "FLOXANT Düsseldorf: Gewerbereinigung, Büroreinigung, Praxisreinigung, Unterhaltsreinigung, Treppenhausreinigung und Premium-Reinigung für Unternehmen und Praxen.",
+    "FLOXANT Düsseldorf prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung. Fotos senden, Aufwand klären, Angebot erhalten.",
   alternates: { canonical: "/duesseldorf" },
 };
 
@@ -40,18 +40,18 @@ export default function DuesseldorfHubPage() {
             {region.label}
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-            Reinigungslösungen für Unternehmen, Praxen und Gewerbeobjekte in Düsseldorf
+            Umzug, Reinigung und Entrümpelung in Düsseldorf sauber anfragen
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             {region.description}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
-              href="/duesseldorf/gewerbereinigung"
+              href="/duesseldorf/umzug"
               data-event="hero_cta_click"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
             >
-              Gewerbereinigung ansehen
+              Düsseldorf-Services ansehen
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
@@ -81,19 +81,19 @@ export default function DuesseldorfHubPage() {
               Klare Ausrichtung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Düsseldorf ist der Reinigungsbereich von FLOXANT.
+              Düsseldorf bekommt eigene Service-Seiten statt kopierter Regensburg-Texte.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Der Fokus liegt auf gewerblicher Reinigung, Büroreinigung, Praxisreinigung, Unterhaltsreinigung und
-              anspruchsvollen Objekten.
+              Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung werden in Düsseldorf
+              mit eigener lokaler Sprache, Stadtteilen, Anfragefeldern und internen Links geführt.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              "Region: Düsseldorf und direkte Umgebung",
-              "Zielgruppe: Unternehmen, Praxen, Büros, Hausverwaltungen",
-              "Anfrage: kostenlos und unverbindlich",
-              "Rückmeldung: nach Objekt, Umfang und Zeitfenster",
+              "Region: Düsseldorf und direkte Umgebung nach Prüfung",
+              "Services: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung",
+              "Anfrage: Fotos, Ort, Termin und Umfang senden",
+              "Rückmeldung: kostenlos, unverbindlich und ohne Preisgarantie",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
@@ -111,13 +111,12 @@ export default function DuesseldorfHubPage() {
               Der richtige Einstieg für Ihr Objekt
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Wählen Sie den passenden Düsseldorfer Reinigungsservice.
+              Wählen Sie den passenden Düsseldorfer Service.
             </h2>
           </div>
           <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-            Wählen Sie die Leistung, die Ihrem Objekt am nächsten kommt. Wenn Sie unsicher sind,
-            starten Sie mit Gewerbereinigung oder WhatsApp. FLOXANT ordnet Umfang, Turnus und
-            nächsten Schritt mit Ihnen ein.
+            Wählen Sie die Leistung, die Ihrem Fall am nächsten kommt. Wenn noch nicht alles klar ist,
+            reichen Stadtteil, Termin, Fotos und eine kurze Beschreibung für die erste Einschätzung.
           </p>
 
           <div className="mt-8 grid gap-5">

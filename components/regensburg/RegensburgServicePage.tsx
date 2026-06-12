@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
 import {
   floxantCategoryLabels,
   getServicesByRegionAndCategory,
@@ -23,16 +24,7 @@ import {
   buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
-
-const heroImages: Record<string, string> = {
-  umzug: "/assets/service-moving.png",
-  entruempelung: "/assets/service-clearance.png",
-  haushaltsaufloesung: "/assets/service-clearance.png",
-  uebergabereinigung: "/assets/service-cleaning.png",
-  endreinigung: "/assets/service-cleaning.png",
-  "umzug-reinigung": "/assets/service-moving.png",
-  "besenreine-uebergabe": "/assets/service-cleaning.png",
-};
+import { getServiceVisual } from "@/lib/service-visuals";
 
 type RegensburgServicePageProps = {
   config: RegensburgServicePageConfig;
@@ -99,9 +91,65 @@ function JsonLd({ config, whatsappHref }: { config: RegensburgServicePageConfig;
   );
 }
 
+function getRegensburgRelatedText(item: { href: string; label: string }) {
+  const href = item.href.toLowerCase();
+  const label = item.label.toLowerCase();
+
+  if (href.includes("umzug") || label.includes("umzug")) {
+    return "Für Wohnungswechsel mit Start, Ziel, Etage, Laufweg, Möbelmenge, Fotos und möglicher Reinigung danach.";
+  }
+
+  if (href.includes("entruempelung") || label.includes("entrümpelung")) {
+    return "Für Wohnung, Keller, Nebenraum oder Objektflächen, wenn Menge, Zugang, Freigabe, Fotos und Entsorgung geklärt werden müssen.";
+  }
+
+  if (href.includes("haushaltsaufloesung") || href.includes("wohnungsaufloesung") || label.includes("auflösung")) {
+    return "Für Haushalt, Nachlass oder Wohnungsauflösung, wenn Räume, Freigabe, Ansprechpartner, Entsorgung und Endzustand ruhig sortiert werden sollen.";
+  }
+
+  if (href.includes("uebergabe") || href.includes("endreinigung") || label.includes("übergabe")) {
+    return "Für Rückgabe, Besichtigung oder Nachmietertermin, wenn Küche, Bad, Böden, Restpunkte und Fotos zählen.";
+  }
+
+  if (href.includes("reinigung")) {
+    return "Für Reinigung nach Umzug, Räumung oder Leerstand, wenn der Zielzustand vor Nutzung oder Übergabe klar beschrieben werden soll.";
+  }
+
+  if (href.includes("anbieter") || href.includes("angebot")) {
+    return "Für vorhandene Angebote, wenn Preis, Umfang, Termin, Zusatzpunkte, Fotos und Budget sachlich eingeordnet werden sollen.";
+  }
+
+  return `Für ${item.label}, wenn Ort, Umfang, Zugang, Fotos, Termin und gewünschter Endzustand kurz beschrieben werden können.`;
+}
+
+function buildRegensburgServiceSummary(config: RegensburgServicePageConfig) {
+  if (config.slug === "umzug") {
+    return "FLOXANT Regensburg prüft Umzüge nach Start, Ziel, Etage, Laufweg, Möbelmenge, Fotos, Termin und gewünschter Zusatzleistung. Wenn Reinigung, Entrümpelung oder Übergabe dazugehören, wird die Reihenfolge direkt mitgedacht.";
+  }
+
+  if (config.slug === "entruempelung") {
+    return "FLOXANT Regensburg prüft Entrümpelungen nach Räumen, Menge, Zugang, Etage, Fotos, Freigabe, Entsorgung und gewünschtem Endzustand. So wird klar, ob danach Reinigung oder Übergabevorbereitung sinnvoll ist.";
+  }
+
+  if (config.slug === "haushaltsaufloesung") {
+    return "FLOXANT Regensburg unterstützt bei Haushaltsauflösungen mit ruhiger Sortierung von Räumen, Nachlass, Freigabe, Ansprechpartnern, Entsorgung, Fotos und möglicher Endreinigung.";
+  }
+
+  if (config.slug === "uebergabereinigung" || config.slug === "endreinigung") {
+    return "FLOXANT Regensburg prüft Reinigung vor Übergabe, Auszug oder Nachnutzung nach Räumen, Zustand, Fotos, Deadline, Schlüsselweg und gewünschtem Ergebnis. Restmengen oder Räumung können vorab mit eingeordnet werden.";
+  }
+
+  return `FLOXANT unterstützt bei ${config.serviceType} mit einer ruhigen Vorprüfung von Ort, Umfang, Zugang, Termin und Fotos. Ziel ist eine klare Rückmeldung, welcher Ablauf für Regensburg und Umgebung sinnvoll ist und welche offenen Punkte vor einem Angebot geklärt werden müssen.`;
+}
+
 export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, config.whatsappMessage);
-  const heroImage = heroImages[config.slug] || "/assets/service-cleaning.png";
+  const serviceVisual = getServiceVisual({
+    region: "regensburg",
+    slug: config.slug,
+    path: config.path,
+    serviceLabel: config.serviceType,
+  });
   const bookingHref = `/buchung?region=regensburg&service=${encodeURIComponent(config.slug)}#buchungssystem`;
   const category: FloxantServiceCategory =
     config.slug === "umzug" ||
@@ -116,6 +164,18 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
   const relatedCategoryServices = getServicesByRegionAndCategory("regensburg", category)
     .filter((service) => service.href !== config.path)
     .slice(0, 5);
+  const customerSectionServices = [
+    {
+      title: config.serviceType,
+      text: config.description,
+      href: config.path,
+    },
+    ...config.related.slice(0, 5).map((item) => ({
+      title: item.label,
+      text: getRegensburgRelatedText(item),
+      href: item.href,
+    })),
+  ];
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
@@ -123,8 +183,8 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
 
       <section className="relative isolate overflow-hidden bg-slate-950 pt-24 text-white sm:pt-28 lg:pt-32">
         <Image
-          src={heroImage}
-          alt={config.title}
+          src={serviceVisual.src}
+          alt={serviceVisual.alt}
           fill
           priority
           sizes="100vw"
@@ -239,6 +299,23 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </a>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <ServicePageCustomerSections
+            region="regensburg"
+            city="Regensburg"
+            path={config.path}
+            serviceSlug={config.slug}
+            serviceLabel={config.serviceType}
+            audience="Privatkunden, Familien, Vermieter, Erben und objektbezogene Auftraggeber"
+            summary={buildRegensburgServiceSummary(config)}
+            services={customerSectionServices}
+            relatedLinks={config.related}
+            offerCheckHref="/anbieter-vergleichen"
+          />
         </div>
       </section>
 

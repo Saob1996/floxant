@@ -93,7 +93,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
   const localProofPoints = [
     `Regensburg als Kontakt- und Planungsbasis`,
     `${city} als sichtbares Einsatzgebiet`,
-    `${region} als regionaler Such- und Servicekontext`,
+    `${region} als regionaler Rahmen`,
   ];
 
   return (
@@ -111,7 +111,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
             <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700">
               {t(
                 am?.search_desc,
-                `Wer in ${city} nicht nur irgendeinen Dienstleister, sondern einen planbaren Partner sucht, braucht klare lokale Signale: echte Kontaktwege, klare Zuständigkeiten und nachvollziehbare Leistungen.`,
+                `Wer in ${city} einen planbaren Partner sucht, braucht klare Kontaktwege, saubere Zuständigkeiten und verständliche Leistungen.`,
               )}
             </p>
 
@@ -131,7 +131,7 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
           <div className="card-premium rounded-[1.8rem] px-7 py-7 md:px-8">
             <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
               <Search className="h-4 w-4" />
-              {t(am?.search_title, 'Gezielt nach "FLOXANT Erfahrungen" suchen')}
+              {t(am?.search_title, "FLOXANT schnell richtig einordnen")}
             </div>
             <p className="mt-5 text-base leading-7 text-slate-700">
               {t(
@@ -206,14 +206,14 @@ export function AuthorityMagnet({ city, region = "Bayern", showNAP = true, dic }
             <div>
               <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                 <CheckCircle2 className="h-4 w-4" />
-                Lokale Vertrauenssignale
+                Lokale Vertrauenspunkte
               </div>
               <h3 className="mt-4 text-[2rem] font-bold tracking-tight text-slate-950">
                 Warum FLOXANT für {germanText(city, city)} klar zuordenbar bleibt.
               </h3>
               <p className="mt-4 text-base leading-7 text-slate-700">
-                Gute lokale Seiten brauchen mehr als Keywords. Sie müssen zeigen, wer erreichbar ist,
-                welcher regionale Rahmen gilt und welcher nächste Schritt ohne Umweg möglich ist.
+                Gute lokale Seiten müssen zeigen, wer erreichbar ist, welcher regionale Rahmen gilt
+                und welcher nächste Schritt ohne Umweg möglich ist.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {localProofPoints.map((point) => (

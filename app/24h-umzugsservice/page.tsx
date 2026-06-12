@@ -2,7 +2,16 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
-import { ChevronRight, MessageCircle } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarClock,
+  ChevronRight,
+  ClipboardCheck,
+  Home,
+  MessageCircle,
+  ShieldCheck,
+  Truck,
+} from "lucide-react";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { company } from "@/lib/company";
@@ -17,6 +26,44 @@ export async function generateMetadata(): Promise<Metadata> {
     description: content.meta_desc || "24h Umzugsservice von FLOXANT in Bayern mit kurzer Vorprüfung.",
   });
 }
+
+const urgentMoveCards = [
+  {
+    Icon: CalendarClock,
+    title: "Kurzfristigen Umzug prüfen",
+    text: "Wenn der Termin drückt, zählen klare Eckdaten: Start, Ziel, Etage, Laufweg, Möbelmenge, Fotos und ein erreichbarer Ansprechpartner.",
+    href: "/buchung?service=umzug&utm_source=24h_umzugsservice&urgency=kurzfristig#buchungssystem",
+    cta: "Machbarkeit klären",
+  },
+  {
+    Icon: Truck,
+    title: "Umzug mit Abbau und Tragen",
+    text: "Für Möbel, Kartons, Demontagewunsch und Tragewege. Je genauer die Fotos, desto schneller lässt sich der Aufwand einschätzen.",
+    href: "/umzug-regensburg",
+    cta: "Umzug anfragen",
+  },
+  {
+    Icon: Home,
+    title: "Auszug mit Reinigung danach",
+    text: "Wenn Wohnung, Restmengen und Übergabe zusammenhängen, wird die Reihenfolge direkt mitgedacht: erst räumen, dann reinigen, dann übergeben.",
+    href: "/regensburg/umzug-reinigung",
+    cta: "Kombi ansehen",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "Umzug im Alter ruhig abstimmen",
+    text: "Für Familien und Angehörige, wenn Rückruf, Freigabe, Fotos, Möbel, Reinigung und Übergabe ohne Druck sortiert werden sollen.",
+    href: "/seniorenumzug-bayern",
+    cta: "Ruhig planen",
+  },
+  {
+    Icon: ClipboardCheck,
+    title: "Vorhandenes Angebot prüfen",
+    text: "Wenn bereits ein Umzugsangebot vorliegt, helfen Preis, Leistungsumfang, Strecke, Zusatzpunkte und Fotos bei einer sachlichen Einordnung.",
+    href: "/angebot-guenstiger-pruefen",
+    cta: "Angebot prüfen",
+  },
+] as const;
 
 export default async function UmzugsService24hPage() {
   const dict = await getDictionary("de");
@@ -70,6 +117,55 @@ export default async function UmzugsService24hPage() {
               <MessageCircle className="h-4 w-4 text-[#25D366]" />
               <span className="text-[#25D366]">●</span> WhatsApp
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Wenn es schnell gehen muss
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 md:text-5xl">
+              Nicht versprechen. Erst sauber prüfen.
+            </h2>
+            <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
+              Ein kurzfristiger Umzugsservice funktioniert nur, wenn Ort, Umfang,
+              Zugang und Termin realistisch zusammenpassen. FLOXANT prüft die Lage
+              mit Fotos, Eckdaten und gewünschtem Ziel, bevor ein Ablauf zugesagt
+              wird.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+            {urgentMoveCards.map(({ Icon, title, text, href, cta }) => (
+              <Link
+                key={title}
+                href={href}
+                className="group flex min-h-[18rem] flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-[0_16px_38px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-[0_22px_48px_rgba(15,23,42,0.1)]"
+                data-event="service_card_click"
+                data-source="24h_umzugsservice"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-950 text-white">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-lg font-black leading-snug text-slate-950">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">
+                  {text}
+                </p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-black text-blue-700">
+                  {cta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-6 grid gap-3 rounded-lg border border-blue-100 bg-blue-50 p-5 text-sm font-bold leading-7 text-slate-700 md:grid-cols-3">
+            <p>Fotos von Möbeln, Treppenhaus und Laufwegen reichen oft für den Start.</p>
+            <p>Ein Budgetrahmen hilft bei der Einordnung, ist aber keine Zusage.</p>
+            <p>Umzug, Restmengen, Reinigung und Übergabe können zusammen angefragt werden.</p>
           </div>
         </div>
       </section>

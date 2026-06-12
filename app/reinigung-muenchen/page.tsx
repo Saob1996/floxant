@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
@@ -83,6 +84,71 @@ export default async function ReinigungMuenchenPage({ params }: PageProps) {
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <GscOpportunitySection
+                    eyebrow="Reinigung München"
+                    title="Wohnung, Büro oder Übergabe in München realistisch reinigen lassen."
+                    intro="Reinigung in München wird schnell unklar, wenn nur nach einem Preis gefragt wird. Für eine brauchbare Rückmeldung zählen Objektart, Fläche, Zustand, Fotos, Zugang, Termin, gewünschtes Ergebnis und ob Umzug, Entrümpelung oder Übergabe mit hineinspielen."
+                    proofTitle="Wichtig für München"
+                    proofItems={[
+                        "Für Wohnung, Büro, Apartment, Treppenhaus oder Übergabe unterscheiden sich Aufwand, Material und Zeitfenster deutlich.",
+                        "Fotos von Küche, Bad, Boden, Fenstern, Laufwegen und besonderen Stellen machen die erste Einschätzung konkreter.",
+                        "Kurzfristige Termine werden nach Machbarkeit geprüft. Es gibt keine pauschale Sofort- oder Preisgarantie.",
+                    ]}
+                    cards={[
+                        {
+                            title: "Endreinigung nach Auszug",
+                            text: "Wenn Vermietertermin, Schlüsselrückgabe oder Verkauf ansteht, zählen Küche, Bad, Böden, Fensterbereiche und Restpunkte.",
+                            href: "/umzug-mit-reinigung",
+                            cta: "Übergabe vorbereiten",
+                        },
+                        {
+                            title: "Büro oder Gewerbefläche",
+                            text: "Raumliste, Turnus, Randzeiten, Sanitärbereiche, Küche, Zugang und Ansprechpartner direkt nennen.",
+                            href: "/gewerbereinigung",
+                            cta: "Gewerbe prüfen",
+                        },
+                        {
+                            title: "Angebot prüfen lassen",
+                            text: "Vorhandenes Reinigungsangebot hochladen oder Eckdaten senden. FLOXANT prüft Umfang und mögliche Alternative sachlich.",
+                            href: "/angebot-guenstiger-pruefen",
+                            cta: "Angebot prüfen",
+                        },
+                    ]}
+                    checklistTitle="Diese Angaben helfen bei Reinigung in München"
+                    checklist={[
+                        "Stadtteil oder PLZ, Objektart, Fläche, Räume, Etage, Zugang und gewünschter Termin.",
+                        "Fotos von Zustand, Küche, Bad, Boden, Glasflächen, Möbeln oder Restmengen.",
+                        "Einmalige Reinigung, regelmäßiger Turnus, Endreinigung oder Reinigung nach Umzug klar benennen.",
+                        "Budgetrahmen, vorhandenes Angebot oder Deadline optional mitsenden.",
+                    ]}
+                    combinationsTitle="München-Fälle mit zusätzlichem Bedarf"
+                    combinations={[
+                        {
+                            title: "Umzug + Reinigung",
+                            text: "Wenn Transport und Übergabe zeitlich zusammenhängen.",
+                            href: "/umzug-muenchen",
+                        },
+                        {
+                            title: "Entrümpelung + Reinigung",
+                            text: "Nach Räumung oder Kellerleerung wird der Reinigungsbedarf oft erst sichtbar.",
+                            href: "/entruempelung-muenchen",
+                        },
+                        {
+                            title: "Apartment oder möblierte Wohnung",
+                            text: "Für möblierte Flächen zählen Fotos, Nutzung, Bettwäsche/Inventargrenzen und Zeitfenster.",
+                            href: "/reinigung-muenchen",
+                        },
+                        {
+                            title: "Preisrahmen nennen",
+                            text: "Für Kostenfragen sind Fläche, Zustand, Termin und Fotos wichtiger als eine schnelle Pauschale.",
+                            href: "/anfrage-mit-preisrahmen",
+                        },
+                    ]}
+                    primaryHref="/buchung?service=reinigung&city=muenchen#buchungssystem"
+                    primaryLabel="Reinigung München anfragen"
+                    secondaryHref="/anfrage-mit-preisrahmen"
+                    secondaryLabel="Budget nennen"
+                />
                 <LocalSeoSearchIntentBridge
                     service="reinigung"
                     city={city}

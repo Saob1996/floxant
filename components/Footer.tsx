@@ -19,6 +19,23 @@ const legalLinks = [
   { href: "/buchungsbedingungen", label: "Buchungsbedingungen" },
 ] as const;
 
+const authorityLinks = [
+  { href: "/rechner", label: "Rechner" },
+  { href: "/umzug", label: "Umzug" },
+  { href: "/reinigung", label: "Reinigung" },
+  { href: "/entruempelung", label: "Entrümpelung" },
+  { href: "/bueroumzug", label: "Büroumzug" },
+  { href: "/firmenentsorgung", label: "Firmenentsorgung" },
+  { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
+  { href: "/empfehlen", label: "Empfehlen" },
+  { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
+  { href: "/wohnung-wieder-vermietbar", label: "Wieder vermietbar" },
+  { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
+  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum" },
+  { href: "/uebergabeakte", label: "Übergabeakte" },
+  { href: "/private-client-service", label: "Private Client" },
+] as const;
+
 export function Footer({ dic }: { dic?: any } = {}) {
   const pathname = usePathname();
 
@@ -168,6 +185,16 @@ export function Footer({ dic }: { dic?: any } = {}) {
         </section>
 
         <section className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
+          <nav aria-label="Wichtige FLOXANT Einstiege" className="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
+            {authorityLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-white">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </section>
+
+        <section className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-400">
             {legalLinks.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-white">

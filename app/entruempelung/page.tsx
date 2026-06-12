@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { PillarServicePage } from "@/components/PillarServicePage";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
@@ -181,6 +182,89 @@ export default async function EntruempelungPillarPage() {
           { href: "/entruempelung-landshut", label: "Entrümpelung Landshut" },
           { href: "/entruempelung-passau", label: "Entrümpelung Passau" },
         ]}
+      />
+      <GscOpportunitySection
+        eyebrow="Entrümpelung verständlich anfragen"
+        title="Wenn Räume leer werden müssen, zählt ein klarer nächster Schritt."
+        intro="Bei einer Entrümpelung geht es selten nur um Wegtragen. Oft hängen Wohnungsauflösung, Nachlass, Keller, Übergabe, Reinigung oder ein Verkauf zusammen. FLOXANT prüft Volumen, Zugang, Fotos, Termin und Zielzustand, damit die Anfrage schnell greifbar wird."
+        proofTitle="Wichtig für die Prüfung"
+        proofItems={[
+          "Fotos von Räumen, Keller, Laufwegen, Treppenhaus und großen Einzelstücken helfen deutlich mehr als eine grobe Schätzung.",
+          "Volumen, Etage, Aufzug, Parkmöglichkeit, Demontage und gewünschter Zielzustand bestimmen, ob der Einsatz sauber planbar ist.",
+          "Wenn eine Wohnung danach übergeben, verkauft oder gereinigt werden soll, sollte dieser Schritt direkt mitgenannt werden.",
+        ]}
+        cards={[
+          {
+            title: "Wohnung oder Haus räumen",
+            text: "Für Wohnung, Haus, Dachboden oder Keller sind Fotos, Raumanzahl, Zugang, Etage und grobe Mengen der beste Start.",
+            href: "/wohnungsaufloesung-bayern",
+            cta: "Wohnungsauflösung prüfen",
+          },
+          {
+            title: "Entrümpelung Regensburg",
+            text: "In Regensburg zählen Termin, Laufwege, Parkmöglichkeit, Schlüsselweg und ob danach Reinigung oder Übergabe folgt.",
+            href: "/entruempelung-regensburg",
+            cta: "Regensburg anfragen",
+          },
+          {
+            title: "Keller, Garage oder Nebenräume",
+            text: "Kleinere Bereiche können oft gut per Foto eingeschätzt werden, wenn Zugang, Menge und gewünschter Termin klar sind.",
+            href: "/kleinmengen-entsorgung",
+            cta: "Mengen senden",
+          },
+          {
+            title: "Nachlass oder Haushaltsauflösung",
+            text: "Wenn Angehörige mitentscheiden, helfen ruhige Abstimmung, klare Freigaben, Fotos und ein erreichbarer Ansprechpartner.",
+            href: "/nachlass-raeumung-regensburg",
+            cta: "Ruhig vorbereiten",
+          },
+          {
+            title: "Angebot prüfen lassen",
+            text: "Wenn bereits ein Räumungs- oder Entsorgungsangebot vorliegt, kann FLOXANT Umfang, Volumen, Zugang und offene Punkte einordnen.",
+            href: "/angebot-guenstiger-pruefen",
+            cta: "Angebot prüfen",
+          },
+          {
+            title: "Reinigung nach Entrümpelung",
+            text: "Nach der Räumung bleiben oft Staub, Laufspuren oder Geruch. Endreinigung und Übergabe sollten früh mitgedacht werden.",
+            href: "/umzug-mit-reinigung",
+            cta: "Reinigung mitplanen",
+          },
+        ]}
+        checklistTitle="Diese Angaben reichen für den Start"
+        checklist={[
+          "Ort, Etage, Aufzug, Parkmöglichkeit und gewünschter Termin.",
+          "Fotos von Räumen, Laufwegen, Keller, Garage und großen Gegenständen.",
+          "Ziel: nur räumen, besenrein übergeben, reinigen, verkaufen oder neu vermieten.",
+          "Wenn vorhanden: Angebot, Preisrahmen oder feste Deadline mitsenden.",
+        ]}
+        combinationsTitle="Häufige Kombinationen"
+        combinations={[
+          {
+            title: "Entrümpelung + Endreinigung",
+            text: "Sinnvoll vor Übergabe, Neuvermietung oder Verkauf.",
+            href: "/umzug-mit-reinigung",
+          },
+          {
+            title: "Haushaltsauflösung + Übergabe",
+            text: "Räumung, Restpunkte und Schlüsseltermin gemeinsam vorbereiten.",
+            href: "/wohnungsaufloesung-bayern",
+          },
+          {
+            title: "Angebot + Fotos prüfen",
+            text: "Vorhandenes Angebot mit Volumen, Zugang und Termin einordnen.",
+            href: "/angebot-guenstiger-pruefen",
+          },
+          {
+            title: "Nicht vor Ort organisieren",
+            text: "Mit Schlüsselweg, Ansprechpartner, Fotos und Rückmeldung sauber klären.",
+            href: "/uebergabeakte",
+          },
+        ]}
+        primaryHref="/buchung?service=entruempelung#buchungssystem"
+        primaryLabel="Entrümpelung anfragen"
+        secondaryHref="/angebot-guenstiger-pruefen"
+        secondaryLabel="Angebot prüfen"
       />
       <PsychologicalCleaningInternalLinks
         title="Wenn Raeumung und Reinigung zusammen Druck machen"

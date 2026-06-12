@@ -98,7 +98,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
         </h3>
         <p className="max-w-md leading-relaxed text-slate-600">
           Ihre Anfrage ist sicher bei uns angekommen. FLOXANT prüft jetzt Ihre Angaben und
-          gleicht Preisvorstellung, Umfang und Einsatzlogik miteinander ab.
+          gleicht Preisvorstellung, Umfang, Termin und Verfügbarkeit miteinander ab.
         </p>
         <button
           onClick={() => setStatus("idle")}

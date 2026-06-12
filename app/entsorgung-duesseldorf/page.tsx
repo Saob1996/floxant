@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     q: "Kann nach der Entsorgung auch Reinigung geprüft werden?",
-    a: "Ja. Wenn nach Auszug, Kellerleerung oder kleiner Räumung noch gereinigt werden soll, wird Reinigung in Düsseldorf separat geprüft und nicht mit Umzug verwechselt.",
+    a: "Ja. Wenn nach Auszug, Kellerleerung oder kleiner Räumung noch gereinigt werden soll, wird Reinigung in Düsseldorf separat geprüft. Umzug und Entrümpelung laufen über eigene Düsseldorfer Seiten.",
   },
 ] as const;
 
@@ -194,7 +194,7 @@ export default function EntsorgungDuesseldorfPage() {
       {
         "@type": "ItemList",
         "@id": `https://www.floxant.de${pagePath}#disposal-click-intents`,
-        name: "Kaufnahe Suchabsichten für Entsorgung Düsseldorf",
+        name: "Häufige Anliegen für Entsorgung Düsseldorf",
         itemListElement: disposalIntentItems.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,

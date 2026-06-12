@@ -153,7 +153,7 @@ export const einsatzradarRegionZones: EinsatzradarZone[] = ([
     id: "duesseldorf_separat",
     title: "Duesseldorf separat",
     label: "Reinigung & Entsorgung",
-    description: "Duesseldorf ist bei FLOXANT getrennt fuer Reinigung und Entsorgung positioniert. Es werden keine Duesseldorf-Umzuege als Schwerpunkt beworben.",
+    description: "Duesseldorf ist bei FLOXANT getrennt mit eigenen Servicepfaden fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung positioniert.",
     examples: ["Duesseldorf Reinigung", "Duesseldorf Entsorgung"],
     services: ["Wohnungsreinigung", "Endreinigung", "B2B-Reinigung", "Entsorgung"],
   },
@@ -370,7 +370,7 @@ export const einsatzradarFaq = [
   },
   {
     q: "Was bedeutet Duesseldorf separat?",
-    a: "Duesseldorf ist bei FLOXANT fuer Reinigung und Entsorgung positioniert, nicht fuer Umzug. Deshalb erscheinen dort nur passende Reinigungs- und Entsorgungsbeispiele.",
+    a: "Duesseldorf ist bei FLOXANT mit eigenen Servicepfaden fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Endreinigung, Gewerbereinigung und Entsorgung positioniert. Deshalb erscheinen dort passende lokale Beispiele je Leistung.",
   },
   {
     q: "Kann ich meinen Fall mit Fotos senden?",

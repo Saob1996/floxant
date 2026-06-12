@@ -35,7 +35,6 @@ const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(apar
 const bookingHref =
   "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
 
-export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
@@ -846,7 +845,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Düsseldorf-Abgrenzung</div>
                 <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Diese Seite ist nur für Reinigung in Düsseldorf.</h2>
                 <p className="mt-4 text-sm leading-7 text-cyan-950">
-                  Düsseldorf ist bei FLOXANT für Reinigung positioniert. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung bleibt ein separater Zusatzweg; keine Umzugsleistung als Schwerpunkt für Düsseldorf.
+                  Düsseldorf ist bei FLOXANT servicebezogen positioniert. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung und Umzug bleiben separate Zusatzwege.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link href="/duesseldorf/reinigung" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white">

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
+import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
@@ -81,6 +82,12 @@ export default async function ReinigungLandshutPage({ params }: PageProps) {
                 wizardBadge={resolveField(content.wizard_badge, fallback.wizard_badge, city, "de")}
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
-            />
+            >
+                <LocalSeoSearchIntentBridge
+                    service="reinigung"
+                    city={city}
+                    currentHref="/reinigung-landshut"
+                />
+            </SpecialtyPageLayout>
     );
 }

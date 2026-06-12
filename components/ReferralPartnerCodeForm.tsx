@@ -21,21 +21,20 @@ const BASE_PATH = "/buchung";
 const serviceOptions = [
   "Umzug",
   "Reinigung",
-  "Entruempelung",
-  "Transport",
-  "Entsorgung",
-  "Mieterwechsel",
-  "Angebotscheck",
-  "Rueckfahrt",
-  "Uebergabeakte",
-  "Duesseldorf Reinigung",
-  "Duesseldorf Entsorgung",
+  "Entrümpelung",
+  "Haushaltsauflösung",
+  "Übergabereinigung",
+  "Angebotsprüfung",
+  "Düsseldorf Reinigung",
+  "Düsseldorf Angebotsprüfung",
+  "Regensburg Umzug",
+  "Regensburg Entrümpelung",
   "Sonstiges",
 ];
 
 const bonusContactOptions = [
-  "Bankdaten spaeter klaeren",
-  "PayPal spaeter klaeren",
+  "Auszahlung später klären",
+  "PayPal später klären",
   "Verrechnung / nach Absprache",
   "noch offen",
 ];
@@ -85,14 +84,14 @@ export function ReferralPartnerCodeForm() {
   const referralLink = useMemo(() => buildReferralLink(partnerCode), [partnerCode]);
   const whatsappHref = useMemo(() => {
     const text = encodeURIComponent(
-      `Ich empfehle dir FLOXANT fuer Umzug, Reinigung, Entruempelung, Transport oder Entsorgung. Du kannst hier direkt anfragen: ${referralLink}. Bitte gib meinen Empfehlungs-Code an: ${partnerCode}`,
+      `Ich empfehle dir FLOXANT für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Übergabevorbereitung oder Angebotsprüfung. Du kannst hier direkt anfragen: ${referralLink}. Bitte nenne meinen Namen oder diesen Empfehlungscode: ${partnerCode}`,
     );
     return `https://wa.me/?text=${text}`;
   }, [partnerCode, referralLink]);
   const mailHref = useMemo(() => {
     const subject = encodeURIComponent("FLOXANT Empfehlung");
     const body = encodeURIComponent(
-      `Ich empfehle dir FLOXANT fuer Umzug, Reinigung, Entruempelung, Transport oder Entsorgung.\n\nDirekt anfragen: ${referralLink}\nEmpfehlungs-Code: ${partnerCode}`,
+      `Ich empfehle dir FLOXANT für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Übergabevorbereitung oder Angebotsprüfung.\n\nDirekt anfragen: ${referralLink}\nEmpfehlungscode: ${partnerCode}`,
     );
     return `mailto:?subject=${subject}&body=${body}`;
   }, [partnerCode, referralLink]);
@@ -134,19 +133,19 @@ export function ReferralPartnerCodeForm() {
       return;
     }
     if (!referrerPhone && !referrerEmail) {
-      setErrorMessage("Bitte Telefonnummer oder E-Mail angeben, damit FLOXANT den Bonus spaeter klaeren kann.");
+      setErrorMessage("Bitte Telefonnummer oder E-Mail angeben, damit FLOXANT den Bonus später klären kann.");
       return;
     }
     if (!formData.get("preferredBonusContactMethod")) {
-      setErrorMessage("Bitte waehlen Sie, wie die Auszahlung spaeter geklaert werden soll.");
+      setErrorMessage("Bitte wählen Sie, wie die Auszahlung später geklärt werden soll.");
       return;
     }
     if (hasReferredContact && !consentConfirmed) {
-      setErrorMessage("Bitte bestaetigen Sie, dass die empfohlene Person mit der Kontaktaufnahme einverstanden ist.");
+      setErrorMessage("Bitte bestätigen Sie, dass die empfohlene Person mit der Kontaktaufnahme einverstanden ist.");
       return;
     }
     if (formData.get("privacy") !== "on") {
-      setErrorMessage("Bitte bestaetigen Sie den Datenschutz-Hinweis.");
+      setErrorMessage("Bitte bestätigen Sie den Datenschutz-Hinweis.");
       return;
     }
 
@@ -198,16 +197,17 @@ export function ReferralPartnerCodeForm() {
   return (
     <div id="empfehlungsformular" className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-950/10 sm:p-7">
       <div>
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Partnercode</div>
-        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Empfehlungslink erstellen und teilen</h2>
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Empfehlung starten</div>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Empfehlungslink erstellen oder Namen nennen lassen</h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Der beste Datenschutzweg: Link oder Code teilen, damit die empfohlene Person selbst anfragt.
+          Am einfachsten ist es, wenn die empfohlene Person selbst Kontakt aufnimmt und Ihren Namen nennt.
+          Der Link hilft nur bei der Zuordnung.
         </p>
       </div>
 
       <div className="mt-5 rounded-[1.5rem] border border-blue-200 bg-blue-50 p-4">
         <label className="grid gap-2 text-sm font-bold text-blue-950">
-          Partnercode
+          Empfehlungscode
           <div className="flex flex-col gap-2 sm:flex-row">
             <input
               name="partnerCodePreview"
@@ -272,9 +272,9 @@ export function ReferralPartnerCodeForm() {
             <input name="referrerEmail" type="email" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600" placeholder={EMAIL} />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Auszahlung / Kontakt spaeter klaeren*
+            Auszahlung / Kontakt später klären*
             <select name="preferredBonusContactMethod" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm outline-none transition focus:border-blue-600">
-              <option value="">Bitte waehlen</option>
+              <option value="">Bitte wählen</option>
               {bonusContactOptions.map((item) => (
                 <option key={item}>{item}</option>
               ))}
@@ -301,6 +301,7 @@ export function ReferralPartnerCodeForm() {
               <div className="text-sm font-black text-amber-950">Direkte Empfehlung nur mit Einwilligung</div>
               <p className="mt-1 text-xs leading-5 text-amber-900">
                 Tragen Sie fremde Kontaktdaten nur ein, wenn diese Person mit der Kontaktaufnahme durch FLOXANT einverstanden ist.
+                Sie können FLOXANT auch einfach weiterempfehlen, ohne Kontaktdaten anderer Personen einzutragen.
               </p>
             </div>
           </div>
@@ -320,13 +321,13 @@ export function ReferralPartnerCodeForm() {
           </div>
           <label className="mt-4 flex items-start gap-3 rounded-xl bg-white px-4 py-3 text-xs font-bold leading-5 text-slate-700">
             <input name="referredPersonConsentConfirmed" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600" />
-            Ich bestaetige, dass die empfohlene Person mit der Kontaktaufnahme durch FLOXANT einverstanden ist.
+            Ich bestätige, dass die empfohlene Person mit der Kontaktaufnahme durch FLOXANT einverstanden ist.
           </label>
         </div>
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Nachricht optional
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-600" placeholder="z. B. Person sucht Endreinigung in Regensburg oder Vermieter braucht Mieterwechsel-Service." />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-600" placeholder="z. B. Person sucht Endreinigung in Regensburg oder ein Unternehmen braucht Reinigung in Düsseldorf." />
         </label>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold leading-5 text-slate-700">
@@ -339,7 +340,7 @@ export function ReferralPartnerCodeForm() {
         ) : null}
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-bold leading-6 text-emerald-800">
-            Danke. Ihre Empfehlung wurde gespeichert. Wenn daraus ein bestaetigter und bezahlter Auftrag entsteht, prueft FLOXANT den 50 Euro Empfehlungsbonus.
+            Danke. Ihre Empfehlung wurde gespeichert. Wenn daraus ein verbindlicher Auftrag entsteht und die Rechnung vollständig bezahlt wird, erhalten Sie den 50 Euro Empfehlungsbonus.
           </div>
         ) : null}
 
@@ -365,7 +366,7 @@ export function ReferralPartnerCodeForm() {
         </a>
         <div className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-black text-slate-700">
           <QrCode className="h-4 w-4" />
-          QR-Code faehig
+          QR-Code möglich
         </div>
       </div>
     </div>

@@ -48,6 +48,32 @@ export default function DuesseldorfEndreinigungPage() {
         "Knappe Übergabetermine brauchen besonders klare Angaben zu Zugang, Schlüssel und Prioritäten.",
         "Entsorgung von Restmengen wird getrennt geprüft, damit die Endreinigung sauber kalkulierbar bleibt.",
       ]}
+      faqItems={[
+        {
+          q: "Was kostet eine Endreinigung in Düsseldorf?",
+          a: "Der Preis hängt von Fläche, Zustand, Küche, Bad, Böden, Fensterbereichen, Etage, Zugang, Termin und gewünschtem Übergabeziel ab.",
+        },
+        {
+          q: "Welche Fotos helfen für eine Einschätzung?",
+          a: "Hilfreich sind Bilder von Küche, Bad, Böden, Fensternähe, Türen, Ecken, Restmengen, Zugang und sichtbaren Problemstellen.",
+        },
+        {
+          q: "Kann FLOXANT kurzfristig vor der Übergabe reinigen?",
+          a: "Kurzfristige Termine können nach Umfang, Zugang, Teamverfügbarkeit und Deadline geprüft werden. Eine Sofortgarantie gibt es nicht.",
+        },
+        {
+          q: "Kann die Endreinigung mit Umzug oder Entrümpelung kombiniert werden?",
+          a: "Ja, wenn Reihenfolge und Termin passen. Umzug, Restmengen, Entrümpelung und Endreinigung werden getrennt geprüft.",
+        },
+        {
+          q: "Garantiert FLOXANT die Wohnungsabnahme?",
+          a: "Nein. Eine Abnahme oder Kautionsrückzahlung kann nicht garantiert werden. Die Reinigung wird nach vereinbartem Umfang vorbereitet.",
+        },
+        {
+          q: "Ist eine Besichtigung in Düsseldorf möglich?",
+          a: "Bei größeren oder unklaren Flächen kann eine Vor-Ort-Besichtigung sinnvoll sein. Für den Start reichen oft Fotos und Eckdaten.",
+        },
+      ]}
     />
   );
 }

@@ -26,7 +26,6 @@ import {
 } from "@/lib/duesseldorf-cleaning";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const path = "/duesseldorf/vielleicht-guenstiger";
 const title = "Reinigungsangebot Düsseldorf prüfen lassen";
@@ -36,7 +35,7 @@ const description =
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path,
-    title: "Reinigungsangebot prüfen Düsseldorf | Vielleicht günstiger | FLOXANT",
+    title: "Reinigungsangebot Düsseldorf | Kosten fair prüfen",
     description,
   });
 }
@@ -70,8 +69,8 @@ const faqItems = [
     a: "Ja, Reinigungsangebote aus Düsseldorf und der nahen Umgebung können geprüft werden, wenn Ort, Objekt, Fotos, Termin und Umfang klar beschrieben sind.",
   },
   {
-    q: "Prüft FLOXANT darüber auch Umzüge in Düsseldorf?",
-    a: "Nein. Düsseldorf bleibt bei FLOXANT für Reinigung und Entsorgung getrennt. Umzug, Transport und Büroumzug werden hier nicht als Düsseldorfer Leistung beworben.",
+    q: "Prüft FLOXANT auch Umzugs- oder Entrümpelungsangebote in Düsseldorf?",
+    a: "Ja, wenn Angebot, Ort, Umfang, Fotos, Termin und Budget klar sind. Reinigung, Umzug, Entrümpelung und Entsorgung werden dabei getrennt eingeordnet, ohne Preisunterbietung zu versprechen.",
   },
   {
     q: "Kann FLOXANT beim Wechsel der Putzfirma helfen?",
@@ -142,28 +141,28 @@ const savingsLevers = [
 const highValueFunnels = [
   {
     title: "Büro, Kanzlei oder Praxis",
-    query: "Büroreinigung Angebot Düsseldorf prüfen",
+    query: "Gewerbliche Räume",
     text: "Fläche, Raumliste, Sanitär, Küche, Zeitfenster, Schlüsselweg und Turnus sauber vergleichen.",
     href: "/duesseldorf/bueroreinigung",
     Icon: Building2,
   },
   {
     title: "Hausverwaltung / WEG",
-    query: "Hausverwaltung Reinigung Düsseldorf Angebot",
+    query: "Objekt und Treppenhaus",
     text: "Treppenhaus, Eingänge, Kellerflur, Müllraum, Beschwerden, Fotos und wiederkehrende Reinigung prüfen.",
     href: "/duesseldorf/hausverwaltung-reinigung",
     Icon: KeyRound,
   },
   {
     title: "Laden / Showroom",
-    query: "Ladenreinigung Düsseldorf Preis prüfen",
+    query: "Verkaufsfläche",
     text: "Verkaufsfläche, Glas, Boden, Öffnungszeiten und Reinigung vor Geschäftsstart einordnen.",
     href: "/duesseldorf/ladenreinigung",
     Icon: Store,
   },
   {
     title: "Mieterwechsel / Übergabe",
-    query: "Endreinigung Düsseldorf Angebot prüfen",
+    query: "Auszug und Schlüsseltermin",
     text: "Wohnung, Übergabetermin, Schlüssel, Fotos, Restpunkte und mögliche Entsorgung getrennt prüfen.",
     href: "/duesseldorf/endreinigung",
     Icon: ClipboardList,
@@ -228,7 +227,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
       {
         "@type": "ItemList",
         "@id": `https://www.floxant.de${path}#offer-check-intents`,
-        name: "Kaufnahe Suchabsichten für Reinigungsangebote in Düsseldorf",
+        name: "Kundenfragen vor der Angebotsentscheidung in Düsseldorf",
         itemListElement: offerCheckIntentItems.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -302,7 +301,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             {[
               "Angebot, Screenshot oder PDF sicher übermitteln",
               "Fläche, Objektart, Turnus, Stadtteil, Zugang, Zeitfenster und Fotos ergänzen",
-              "FLOXANT prüft Preishebel, Umfang und eine mögliche Alternative ohne Preisgarantie",
+              "FLOXANT prüft Umfang, offene Punkte und eine mögliche Alternative ohne Preisgarantie",
             ].map((item) => (
               <div key={item} className="flex min-w-0 gap-3 rounded-[1rem] border border-white/10 bg-white/8 px-4 py-3 text-sm font-bold text-slate-100">
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
@@ -364,12 +363,12 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             Vielleicht günstiger, aber sauber
           </div>
           <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
-            FLOXANT prüft nicht nur den Preis, sondern den Preishebel.
+            FLOXANT prüft Preis, Umfang und offene Punkte zusammen.
           </h2>
           <p className="mt-4 text-sm leading-7 text-slate-700">
             Ein Reinigungsangebot wird oft teuer oder unklar, weil Turnus, Flächen, Zugang, Sonderbereiche oder
-            Nachweise nicht sauber getrennt sind. Genau dort setzt der FLOXANT-Check an: erst verstehen, dann
-            eine mögliche Alternative prüfen.
+            Nachweise nicht sauber getrennt sind. Deshalb prüfen wir zuerst, was wirklich enthalten ist, welche
+            Angaben fehlen und ob eine passende Alternative realistisch möglich ist.
           </p>
           <div className="mt-5 grid gap-2">
             {offerCheckSteps.map((item, index) => (
@@ -479,15 +478,15 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
       <section className="mx-auto mt-8 grid max-w-7xl gap-5 lg:grid-cols-[0.76fr_1.24fr]">
         <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="text-[11px] font-black uppercase tracking-normal text-emerald-700">
-            Kaufnahe Suchfragen
+            Vor der Zusage klären
           </div>
           <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
             Wenn Kunden vor der Zusage noch unsicher sind
           </h2>
           <p className="mt-4 text-sm leading-7 text-slate-700">
-            Viele suchen nicht nach einer langen Erklärung, sondern nach einer zweiten
-            Einordnung: Ist der Preis nachvollziehbar, fehlen Leistungen, lohnt sich eine
-            Alternative und welche Fotos werden gebraucht?
+            Wenn bereits ein Angebot, ein Preisrahmen oder ein grober Umfang vorliegt,
+            hilft eine sachliche zweite Einordnung: Was ist enthalten, was fehlt, welche
+            Fotos helfen und ob eine passende Alternative möglich ist.
           </p>
         </article>
         <div className="grid gap-3 md:grid-cols-2">
@@ -497,7 +496,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
             const content = (
               <>
                 <div className="text-[11px] font-black uppercase tracking-normal text-emerald-800">
-                  {item.query}
+                  Angebotsprüfung
                 </div>
                 <h3 className="mt-3 text-base font-black text-slate-950">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>

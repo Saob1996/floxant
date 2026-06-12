@@ -32,73 +32,8 @@ const serviceRedirectPairs = [
 
 const umlautRedirectDestinationOverrides = new Map();
 
-const legacyRegensburgRedirects = [
-    {
-        source: '/reinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/gewerbereinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/bueroreinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/praxisreinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/hotelreinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/fensterreinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/treppenhausreinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/unterhaltsreinigung-regensburg',
-        destination: '/regensburg/uebergabereinigung',
-        permanent: true,
-    },
-    {
-        source: '/baureinigung-regensburg',
-        destination: '/regensburg/endreinigung',
-        permanent: true,
-    },
-    {
-        source: '/teppichreinigung-regensburg',
-        destination: '/regensburg/endreinigung',
-        permanent: true,
-    },
-    {
-        source: '/grundreinigung-regensburg',
-        destination: '/regensburg/endreinigung',
-        permanent: true,
-    },
-    {
-        source: '/endreinigung-regensburg',
-        destination: '/regensburg/endreinigung',
-        permanent: true,
-    },
-    {
-        source: '/umzug-reinigung-regensburg',
-        destination: '/regensburg/umzug-reinigung',
-        permanent: true,
-    },
-];
+const legacyRegensburgRedirects = [];
+const legacyLocalePrefixes = ['de', 'en', 'ru', 'bg', 'vi', 'tr', 'ar', 'fr', 'es', 'it', 'pl', 'uk'];
 
 const configuredBuildWorkers = Number(process.env.NEXT_BUILD_WORKERS || process.env.NEXT_BUILD_CPUS);
 const hasConfiguredBuildWorkers = Number.isFinite(configuredBuildWorkers) && configuredBuildWorkers > 0;
@@ -125,18 +60,28 @@ function buildUmlautRedirects() {
     return redirects;
 }
 
+function buildLegacyLocaleRedirects() {
+    return legacyLocalePrefixes.flatMap((locale) => [
+        {
+            source: `/${locale}`,
+            destination: '/',
+            permanent: true,
+        },
+        {
+            source: `/${locale}/:path*`,
+            destination: '/:path*',
+            permanent: true,
+        },
+    ]);
+}
+
 const nextConfig = {
     images: {
+        unoptimized: true,
         remotePatterns: [
             {
                 protocol: 'https',
                 hostname: '**.supabase.co',
-            },
-            {
-                protocol: 'https',
-                hostname: 'images.unsplash.com',
-                port: '',
-                pathname: '/**',
             },
         ],
         formats: ['image/avif', 'image/webp'],
@@ -209,10 +154,26 @@ const nextConfig = {
                 permanent: true,
             },
             {
+                source: '/angebot-pruefen',
+                destination: '/angebot-vergleichen-duesseldorf',
+                permanent: true,
+            },
+            {
+                source: '/duesseldorf/angebot-pruefen',
+                destination: '/angebot-vergleichen-duesseldorf',
+                permanent: true,
+            },
+            {
+                source: '/regensburg/angebot-pruefen',
+                destination: '/angebot-vergleichen-duesseldorf',
+                permanent: true,
+            },
+            {
                 source: '/signature/:slug',
                 destination: '/:slug',
                 permanent: true,
             },
+            ...buildLegacyLocaleRedirects(),
             ...legacyRegensburgRedirects,
             ...buildUmlautRedirects(),
         ];
@@ -255,7 +216,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Cache-Control',
-                        value: 'public, max-age=86400, stale-while-revalidate=604800',
+                        value: 'public, max-age=86400',
                     },
                 ],
             },
@@ -264,7 +225,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Cache-Control',
-                        value: 'public, max-age=86400, stale-while-revalidate=604800',
+                        value: 'public, max-age=86400',
                     },
                 ],
             },
@@ -273,7 +234,7 @@ const nextConfig = {
                 headers: [
                     {
                         key: 'Cache-Control',
-                        value: 'public, max-age=86400, stale-while-revalidate=604800',
+                        value: 'public, max-age=86400',
                     },
                 ],
             },

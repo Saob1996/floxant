@@ -121,7 +121,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung-regensburg",
-    title: "Gewerbereinigung Regensburg | Büro, Praxis, Hotel & Service-Finder | FLOXANT",
+    title: "Gewerbereinigung Regensburg | Büro, Praxis & Hotel | FLOXANT",
     description:
       "Gewerbereinigung Regensburg: Büroreinigung, Praxisreinigung, Hotelreinigung, Fenster, Bau, Teppich, Treppenhaus und IT-Raum nach Prüfung direkt anfragen.",
     keywords: [
@@ -179,7 +179,7 @@ export default function GewerbereinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Gewerbereinigung in Regensburg für Büro, Praxis und Objektbetrieb",
         description:
-          "Angebotsseite für gewerbliche Reinigung in Regensburg mit Service-Finder, kundennahen Suchbegriffen, Spezialseiten, FAQ und direktem B2B-Formular.",
+          "Gewerbliche Reinigung in Regensburg mit passenden Leistungen für Büro, Praxis, Hotel, Hausverwaltung, Objektbetrieb, FAQ und direktem Anfrageformular.",
         path: "/gewerbereinigung-regensburg",
         about: [
           "Gewerbereinigung",
@@ -252,7 +252,7 @@ export default function GewerbereinigungRegensburgPage() {
       },
       {
         "@type": "ItemList",
-        name: "Klicknahe Reinigungswege fuer Gewerbereinigung Regensburg",
+        name: "Schnelle Anfragewege für Gewerbereinigung Regensburg",
         itemListElement: regensburgCleaningBuyerPaths.map((path, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -418,7 +418,7 @@ export default function GewerbereinigungRegensburgPage() {
           <article className="flox-panel-dark rounded-[2rem] px-6 py-6 md:px-8 md:py-8">
             <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">Warum FLOXANT</div>
             <h2 className="mt-6 text-[clamp(2rem,4vw,3rem)] font-bold tracking-[-0.07em] text-white">
-              Nicht der billigste Putzdienst, sondern ein verlässliches System.
+              Kein anonymer Putzdienst, sondern klare Objektbetreuung.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-300">
               Gewerbliche Reinigung funktioniert nur mit klarer Abstimmung, dokumentiertem
@@ -510,7 +510,7 @@ export default function GewerbereinigungRegensburgPage() {
         </div>
       </section>
 
-      {/* ── 6. LOKALER SEO-BLOCK ───────────────────────────────── */}
+      {/* ── 6. LOKALER SERVICEBEREICH ──────────────────────────── */}
       <section id="region" className="flox-section pt-0">
         <div className="flox-shell grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-6 md:px-8 md:py-8">

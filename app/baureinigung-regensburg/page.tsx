@@ -32,7 +32,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/baureinigung-regensburg";
 
@@ -65,7 +64,7 @@ const customerIntents: IntentCard[] = [
   {
     phrase: "Reinigung nach Renovierung Regensburg",
     title: "Wenn Handwerkerstaub überall sitzt",
-    text: "Kunden suchen oft nach Renovierungsreinigung, Staub entfernen, Wohnung nach Sanierung reinigen oder sauber vor Übergabe.",
+    text: "Typische Anlässe sind Renovierungsreinigung, Staub entfernen, Wohnung nach Sanierung reinigen oder sauber vor Übergabe.",
     Icon: Home,
   },
 ];
@@ -225,7 +224,7 @@ export default function BaureinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Baureinigung Regensburg nach Renovierung, Sanierung und Handwerkern",
         description:
-          "Kundennaher Einstieg für Baureinigung in Regensburg mit Suchbegriffen, Kostenfaktoren, Anfragecheckliste, FAQ, Grenzen und direkter Kontaktmöglichkeit.",
+          "Baureinigung in Regensburg nach Renovierung, Sanierung oder Handwerkerarbeiten mit Fotos, Bauzustand, Fläche, Termin, Anfragecheckliste, FAQ und direkter Kontaktmöglichkeit.",
         path: pagePath,
         about: [
           "Baureinigung Regensburg",
@@ -243,7 +242,7 @@ export default function BaureinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Baureinigung Regensburg",
+        name: "Typische Anlässe für Baureinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -300,7 +299,7 @@ export default function BaureinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anlässe", "#kunden-suchen"],
                   ["Leistungen", "#leistungen"],
                   ["Kostenfaktoren", "#kostenfaktoren"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -325,7 +324,7 @@ export default function BaureinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1768321911908-01c691fcc5a0?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/service-cleaning.png"
                 alt="Renovierungsbereich als Beispiel für Baureinigung und Bauendreinigung in Regensburg"
                 fill
                 priority
@@ -364,7 +363,7 @@ export default function BaureinigungRegensburgPage() {
       <RegensburgCleaningBuyerPath
         serviceLabel="Baureinigung Regensburg"
         headline="Nach Renovierung zählt ein klarer Weg, nicht noch mehr Rückfragen."
-        intro="Bei Baustaub, Bauendreinigung und Handwerkerstaub suchen Kunden meist unter Zeitdruck. FLOXANT fragt Bauphase, Fotos, Boden, Fenster, Restmaterial, Zugang und Übergabetermin gezielt ab."
+        intro="Bei Baustaub, Bauendreinigung und Handwerkerstaub entsteht meist Zeitdruck. FLOXANT fragt Bauphase, Fotos, Boden, Fenster, Restmaterial, Zugang und Übergabetermin gezielt ab."
         focusHrefs={[
           "/baustaub-ende",
           "/grundreinigung-regensburg",
@@ -377,15 +376,15 @@ export default function BaureinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anlässe</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kunden wollen schnell wissen: passt das zu meinem Bauzustand?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden suchen nicht nach einem Fachwort, sondern nach einem
-              konkreten Problem: Baustaub entfernen, Wohnung nach Sanierung
-              reinigen, Bauendreinigung vor Übergabe oder Reinigung nach
-              Handwerkern. Genau diese Wörter beantwortet die Seite direkt.
+              Oft geht es um ein konkretes Problem: Baustaub entfernen, Wohnung
+              nach Sanierung reinigen, Bauendreinigung vor Übergabe oder Reinigung
+              nach Handwerkern. Für den Start helfen Fotos, Bauzustand, Fläche,
+              Zugang und der gewünschte Termin.
             </p>
           </div>
 
@@ -504,7 +503,7 @@ export default function BaureinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten, damit die Anfrage schneller klar wird.
             </h2>
@@ -544,7 +543,7 @@ export default function BaureinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Baureinigung.
+                  Weitere passende Leistungen für Baureinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

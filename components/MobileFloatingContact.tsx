@@ -34,7 +34,7 @@ export default function MobileFloatingContact() {
   const offerHref = isDuesseldorfContext
     ? "/duesseldorf/vielleicht-guenstiger"
     : "/angebot-guenstiger-pruefen";
-  const budgetHref = isDuesseldorfContext ? "/duesseldorf/reinigung#preisvorschlag" : "/rechner";
+  const budgetHref = isDuesseldorfContext ? "/duesseldorf/reinigung#preisvorschlag" : "/anfrage-mit-preisrahmen";
   const whatsappText = isDuesseldorfDisposalPage
     ? "Hallo FLOXANT, ich möchte Entsorgung in Düsseldorf anfragen."
     : isDuesseldorfContext
@@ -138,7 +138,7 @@ export default function MobileFloatingContact() {
               <Link
                 href={budgetHref}
                 className="flox-mobile-action flox-mobile-action-dark"
-                aria-label="Kosten oder Budget realistisch prüfen"
+                aria-label="Budget oder Preisrahmen nennen"
                 data-event="hero_cta_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="budget_check"
@@ -147,8 +147,8 @@ export default function MobileFloatingContact() {
               >
                 <BadgeEuro />
                 <span className="flox-mobile-action-copy">
-                  <span className="flox-mobile-action-label">Kosten</span>
-                  <span className="flox-mobile-action-note">Budget prüfen</span>
+                  <span className="flox-mobile-action-label">Budget</span>
+                  <span className="flox-mobile-action-note">Nennen</span>
                 </span>
               </Link>
             </div>

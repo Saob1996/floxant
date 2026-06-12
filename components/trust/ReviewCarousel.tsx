@@ -3,40 +3,32 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, m } from "framer-motion";
-import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, ClipboardCheck } from "lucide-react";
 
 import { germanText } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 
-type ReviewItem = {
+type FeedbackTheme = {
+  title: string;
   text: string;
-  context: string;
   service: string;
-  location: string;
-  date: string;
 };
 
-const fallbackReviews: ReviewItem[] = [
+const feedbackThemes: FeedbackTheme[] = [
   {
-    text: "Pünktlich, sauber und sehr angenehm im Kontakt. Die Planung war klar und der Ablauf wirkte vom ersten Telefonat an ruhig geführt.",
-    context: "Kundin aus Regensburg",
-    service: "Privatumzug",
-    location: "Oberpfalz",
-    date: "März 2026",
+    title: "Ruhige Planung vor dem Termin",
+    text: "Kunden achten besonders darauf, dass Ort, Zugang, Termin, Fotos und Umfang vorab klar besprochen werden.",
+    service: "Umzug",
   },
   {
-    text: "Die Kommunikation war schnell, die Einordnung verständlich und die Durchführung sauber. Genau so wünscht man sich das als Firma.",
-    context: "Unternehmen aus Bayern",
-    service: "Büroumzug",
-    location: "Niederbayern",
-    date: "April 2026",
+    title: "Verlässliche Rückmeldung für Firmen",
+    text: "Bei gewerblichen Anfragen zählen Ansprechpartner, Zeitfenster, Flächen, Zugang und eine nachvollziehbare Abstimmung.",
+    service: "Gewerbe",
   },
   {
-    text: "Keine Portalsprache, keine Hektik, sondern ein vernünftiger nächster Schritt. Das hat sofort Vertrauen geschaffen.",
-    context: "Auftraggeber aus der Region",
-    service: "Entrümpelung",
-    location: "Raum Regensburg",
-    date: "April 2026",
+    title: "Klare Grenzen statt künstlicher Versprechen",
+    text: "FLOXANT arbeitet mit echter Prüfung von Machbarkeit, Budget, Fotos und Termin statt mit erfundenen Bewertungen oder Garantien.",
+    service: "Anfrage",
   },
 ];
 
@@ -44,25 +36,25 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const labels = {
-    title: germanText(dic?.reviews?.title, "Rückmeldungen aus echten Einsätzen"),
+    title: germanText(dic?.reviews?.title, "Worauf Kunden bei FLOXANT achten"),
     subtitle: germanText(
       dic?.reviews?.subtitle,
-      "Freundlich im Ton, sauber in der Ausführung und für Kunden klar geführt. Genau so soll es laufen.",
+      "Keine erfundenen Sterne, keine künstlichen Zitate: Wichtig sind klare Rückmeldung, nachvollziehbare Vorbereitung und sauber abgegrenzte Leistungen.",
     ),
-    proofLabel: germanText(dic?.reviews?.proofLabel, "Dokumentierte Qualität"),
+    proofLabel: germanText(dic?.reviews?.proofLabel, "Saubere Vertrauensbasis"),
     proofText: germanText(
       dic?.reviews?.proofText,
-      "Saubere Kommunikation, nachvollziehbare Abläufe und echte regionale Einsätze.",
+      "Bewertungen und öffentliche Profile können Nutzer selbst prüfen. Auf der Website werden keine Sterne oder Rezensionen erfunden.",
     ),
-    summaryTitle: germanText(dic?.reviews?.summaryTitle, "Was Kunden besonders schätzen"),
+    summaryTitle: germanText(dic?.reviews?.summaryTitle, "Was im Auftrag wirklich zählt"),
     summaryItems: [
-      germanText(dic?.reviews?.summaryItem1, "Klare Vorprüfung statt Vergleichsportal-Hektik"),
-      germanText(dic?.reviews?.summaryItem2, "Ruhige Kommunikation und verlässliche Terminführung"),
-      germanText(dic?.reviews?.summaryItem3, "Lokale Planung mit realistisch geprüfter Reichweite"),
+      germanText(dic?.reviews?.summaryItem1, "Klare Vorprüfung mit Fotos, Ort, Termin und Umfang"),
+      germanText(dic?.reviews?.summaryItem2, "Ruhige Kommunikation mit erreichbarem Ansprechpartner"),
+      germanText(dic?.reviews?.summaryItem3, "Realistische Einordnung ohne Preis- oder Sterneversprechen"),
     ],
   };
 
-  const currentReview = fallbackReviews[currentIndex];
+  const currentTheme = feedbackThemes[currentIndex];
   const decisionLinks = [
     {
       href: "/buchung",
@@ -81,8 +73,8 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
     },
   ];
 
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % fallbackReviews.length);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + fallbackReviews.length) % fallbackReviews.length);
+  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % feedbackThemes.length);
+  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + feedbackThemes.length) % feedbackThemes.length);
 
   return (
     <section className="section-glow relative overflow-hidden px-6 py-24">
@@ -111,34 +103,28 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                 transition={{ duration: 0.28, ease: "easeOut" }}
                 className="relative px-7 py-7 md:px-8 md:py-8"
               >
-                <Quote className="absolute right-7 top-7 h-10 w-10 text-blue-100" />
+                <ClipboardCheck className="absolute right-7 top-7 h-10 w-10 text-blue-100" />
 
                 <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                  {germanText(currentReview.service, currentReview.service)}
-                  <span className="h-1 w-1 rounded-full bg-blue-300" />
-                  {germanText(currentReview.location, currentReview.location)}
+                  {germanText(currentTheme.service, currentTheme.service)}
                 </div>
 
-                <p className="mt-7 max-w-3xl text-[1.45rem] font-bold leading-[1.28] tracking-tight text-slate-950 md:text-[1.7rem]">
-                  „{germanText(currentReview.text, currentReview.text)}“
+                <h3 className="mt-7 max-w-3xl text-[1.45rem] font-bold leading-[1.28] tracking-tight text-slate-950 md:text-[1.7rem]">
+                  {germanText(currentTheme.title, currentTheme.title)}
+                </h3>
+
+                <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700">
+                  {germanText(currentTheme.text, currentTheme.text)}
                 </p>
-
-                <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-slate-500">
-                  <span className="font-semibold text-slate-950">
-                    {germanText(currentReview.context, currentReview.context)}
-                  </span>
-                  <span className="h-1 w-1 rounded-full bg-slate-300" />
-                  <span>{germanText(currentReview.date, currentReview.date)}</span>
-                </div>
               </m.article>
             </AnimatePresence>
 
             <div className="border-t border-slate-200 px-7 py-5 md:px-8">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex flex-wrap gap-2">
-                  {fallbackReviews.map((review, index) => (
+                  {feedbackThemes.map((theme, index) => (
                     <button
-                      key={`${review.context}-${index}`}
+                      key={`${theme.service}-${index}`}
                       onClick={() => setCurrentIndex(index)}
                       className={cn(
                         "rounded-full border px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.15em] transition-all",
@@ -147,7 +133,7 @@ export default function ReviewCarousel({ dic }: { dic?: any }) {
                           : "border-slate-200 bg-white text-slate-500 hover:border-blue-200 hover:text-blue-700",
                       )}
                     >
-                      {germanText(review.service, review.service)}
+                      {germanText(theme.service, theme.service)}
                     </button>
                   ))}
                 </div>

@@ -113,22 +113,6 @@ function sendConversionEvent(payload: Record<string, unknown>) {
   timestamp: Date.now(),
  };
  rememberConversionEvent(snapshot);
-
- const body = JSON.stringify(snapshot);
-
- if (navigator.sendBeacon) {
-  navigator.sendBeacon("/api/conversion-events", new Blob([body], { type: "application/json" }));
-  return;
- }
-
- fetch("/api/conversion-events", {
-  method: "POST",
-  body,
-  headers: { "Content-Type": "application/json" },
-  keepalive: true,
- }).catch(() => {
-  // Conversion telemetry must never interrupt the customer journey.
- });
 }
 
 function normalizeForTracking(value: unknown) {
@@ -289,12 +273,34 @@ export function ConversionEventReporter() {
    });
   }
 
+  function handleChange(event: Event) {
+   const element = event.target instanceof HTMLElement ? event.target : null;
+   if (!element?.dataset.event) return;
+
+   const fileCount =
+    element instanceof HTMLInputElement && element.type === "file"
+     ? element.files?.length || 0
+     : undefined;
+
+   trackConversion({
+    event: element.dataset.changeEvent || element.dataset.event,
+    source: element.dataset.source || "field_change",
+    channel: element.dataset.contactChannel || element.dataset.channel || "form",
+    href: "",
+    label: element.dataset.label || element.getAttribute("aria-label") || element.getAttribute("title") || "",
+    fileCount,
+    dataset: compactDataset(element.dataset),
+   });
+  }
+
   document.addEventListener("click", handleClick, true);
   document.addEventListener("submit", handleSubmit, true);
+  document.addEventListener("change", handleChange, true);
 
   return () => {
    document.removeEventListener("click", handleClick, true);
    document.removeEventListener("submit", handleSubmit, true);
+   document.removeEventListener("change", handleChange, true);
   };
  }, []);
 

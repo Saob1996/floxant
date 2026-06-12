@@ -4,10 +4,10 @@ import { germanizeDeep } from "@/lib/german-text";
 
 export default function manifest(): MetadataRoute.Manifest {
   return germanizeDeep({
-    name: "FLOXANT | Umzug, Reinigung und Entrümpelung in Regensburg und Bayern",
+    name: "FLOXANT | Umzug, Reinigung und Entrümpelung",
     short_name: "FLOXANT",
     description:
-      "FLOXANT ist Ihr Ansprechpartner für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern mit klarer Einschätzung, regionaler Planung und sauberer Abstimmung.",
+      "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
     start_url: "/",
     display: "standalone",
     background_color: "#EEF5FF",
@@ -44,8 +44,15 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         name: "Reinigung Düsseldorf",
         short_name: "Düsseldorf",
-        description: "Reinigung oder Entsorgung in Düsseldorf anfragen, keine Umzüge.",
+        description: "Umzug, Reinigung, Entrümpelung oder Endreinigung in Düsseldorf anfragen.",
         url: "/duesseldorf/reinigung",
+        icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
+      },
+      {
+        name: "Umzug Düsseldorf",
+        short_name: "Umzug DUS",
+        description: "Umzug in Düsseldorf mit Fotos, Termin und Angebot prüfen lassen.",
+        url: "/duesseldorf/umzug",
         icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
       },
     ],

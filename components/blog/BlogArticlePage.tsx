@@ -148,33 +148,36 @@ export function BlogArticlePage({
             <p
               className="flox-blog-article-note mt-4 break-words text-sm leading-relaxed text-slate-500"
             >
-              Der Beitrag ordnet Problem, Risiko und nächsten Schritt sachlich ein. Ziel ist eine
-              realistische Entscheidung, bevor ein Auftrag verbindlich geplant wird.
+              Hier geht es um die praktische Frage: Was ist wirklich gemeint, welche Angaben
+              braucht FLOXANT und welcher nächste Schritt passt, ohne vorschnelle Versprechen.
             </p>
 
             <div className="mt-8 grid gap-3 md:grid-cols-3">
               <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Fokus
+                  Wann passt es?
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Klare Einordnung von Aufwand, Risiko und realistischem nächsten Schritt.
+                  Sie erkennen schnell, ob Ihr Fall zu Reinigung, Übergabe, Angebot prüfen oder
+                  einer Spezialseite gehört.
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Orientierung
+                  Was senden?
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Mit Sprungpunkten, Schnellzugriffen und direktem Anschluss an Anfrage oder Rechner.
+                  Fotos, Ort, Fläche, Zugang, Termin und Ziel reichen oft für eine erste saubere
+                  Einordnung.
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Praxisnähe
+                  Klarer Weg
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Keine reine Theorie, sondern Hinweise für echte Übergabe-, Reinigungs- und Umzugssituationen.
+                  Am Ende führen die Links direkt zur passenden FLOXANT-Seite oder zur
+                  Angebotsprüfung.
                 </p>
               </div>
             </div>
@@ -182,9 +185,9 @@ export function BlogArticlePage({
 
           <FloxantStorytellingSection
             variant={storyVariant}
-            eyebrow="FLOXANT erklärt den nächsten Schritt"
-            title="Vom Ratgeber direkt zur passenden FLOXANT-Anfrage."
-            intro="Der Beitrag soll nicht nur informieren. Er zeigt, welche Angaben für eine echte Einschätzung wichtig sind und welcher FLOXANT-Weg danach sinnvoll ist: Rechner, Angebot prüfen, Budget nennen oder direkt anfragen."
+            eyebrow="FLOXANT ordnet den Fall ein"
+            title="Aus einer unklaren Situation wird eine prüfbare Anfrage."
+            intro="Der Beitrag zeigt, welche Angaben wirklich helfen und welcher FLOXANT-Weg danach sinnvoll ist: passende Spezialseite öffnen, vorhandenes Angebot prüfen lassen oder den Fall direkt schildern."
             primaryHref={normalizedCtas[0]?.href || "/buchung"}
             primaryLabel={normalizedCtas[0]?.label || "Direkt anfragen"}
             secondaryHref="/angebot-guenstiger-pruefen"
@@ -347,14 +350,14 @@ export function BlogArticlePage({
                 ) : null}
 
                 <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
-                  <div className="text-sm font-semibold text-slate-950">FLOXANT Prinzip</div>
+                  <div className="text-sm font-semibold text-slate-950">So arbeitet FLOXANT</div>
                   <p className="mt-3 text-xs leading-relaxed text-slate-500">
-                    Erst klären, dann planen: Service, Umfang, Zugang, Region und Preisrahmen
-                    werden getrennt sichtbar gemacht.
+                    Erst den Fall verstehen, dann den passenden Weg nennen: Service, Umfang,
+                    Zugang, Region und Preisrahmen werden klar getrennt.
                   </p>
                   <p className="mt-3 text-xs leading-relaxed text-slate-500">
-                    Kurz gesagt: lieber ehrlich und sauber vorprüfen als schnell irgendetwas
-                    versprechen. So bleibt der Ablauf für beide Seiten belastbarer.
+                    Kurz gesagt: lieber ehrlich prüfen als vorschnell etwas versprechen. So bleibt
+                    die Anfrage für Kunden und FLOXANT belastbarer.
                   </p>
                 </div>
               </div>

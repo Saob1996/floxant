@@ -41,12 +41,27 @@ export default function BlogHubPage() {
     {
       href: "#empfohlen",
       title: "Empfohlene Artikel",
-      text: "Die stärksten Einstiege für kaufnahe Themen, Preisrahmen und direkte Entscheidungen.",
+      text: "Die hilfreichsten Einstiege für Preisrahmen, Servicewahl und direkte Entscheidungen.",
+    },
+    {
+      href: "/blog/floxant-services-nach-situation-finden",
+      title: "Service nach Situation",
+      text: "Wenn Sie nicht wissen, ob Reinigung, Umzug, Entrümpelung, Übergabe oder Signature Service passt.",
+    },
+    {
+      href: "/blog/nicht-vor-ort-schluessel-fotos-uebergabe-floxant",
+      title: "Nicht vor Ort",
+      text: "Wenn Schlüssel, Fotos, Reinigung, Restpunkte oder Übergabe trotzdem sauber geklärt werden müssen.",
+    },
+    {
+      href: "/blog/duesseldorf-buero-praxis-hausverwaltung-reinigung-anfrage",
+      title: "Düsseldorf Reinigung",
+      text: "Klare Anfragewege für Büro, Praxis, Hausverwaltung, Gewerbereinigung und Angebotsprüfung.",
     },
     {
       href: "#lokale-antworten",
-      title: "Lokale Antworten",
-      text: "Beiträge für Regensburg, Bayern, Maps-Signale und saubere regionale Einordnung.",
+      title: "Regionale Antworten",
+      text: "Beiträge für Regensburg, Bayern, Düsseldorf und die Frage, welcher Service vor Ort wirklich passt.",
     },
     {
       href: "#alle-beitraege",
@@ -104,7 +119,7 @@ export default function BlogHubPage() {
       a: "Ja. Die Beiträge erklären typische Fälle aus Regensburg, Bayern und Düsseldorf. So erkennen Sie schneller, welcher nächste Schritt passt.",
     },
     {
-      q: "Welche Artikel helfen bei einer kaufnahen Entscheidung am meisten?",
+      q: "Welche Artikel helfen kurz vor einer Entscheidung am meisten?",
       a: "Besonders stark sind die Beiträge zur Auswahl eines Umzugsunternehmens in Regensburg, zur Auswahl einer Reinigungsfirma für Büro und Praxis, zum direkten Buchungslink und zu klaren B2B-Anfragen.",
     },
     {
@@ -118,6 +133,30 @@ export default function BlogHubPage() {
     {
       q: "Warum werden Leistungen nicht einfach nur aufgelistet?",
       a: "Weil Kunden konkrete Situationen besser verstehen als reine Wortlisten. Deshalb erklären die Artikel Fälle wie Umzug mit Reinigung, Entrümpelung vor Übergabe oder Reinigung in Düsseldorf anhand echter Fragen.",
+    },
+    {
+      q: "Gibt es einen Artikel, der alle FLOXANT Services nach Situation einordnet?",
+      a: "Ja. Der Ratgeber zu FLOXANT Services nach Situation erklärt, wann Umzug, Reinigung, Entrümpelung, Entsorgung, Objektservice, Angebotsprüfung oder Signature Services passen und welche Region gemeint ist.",
+    },
+    {
+      q: "Welche Artikel helfen bei Spezialfällen wie Villa, Private Client, Plan B oder Objektservice?",
+      a: "Dafür gibt es eigene Ratgeber zu FLOXANT Signature Services und zu Objektservice, Hausverwaltung, Mieterwechsel und Leerstand. Sie erklären Extra- und Spezialservices ohne übertriebene Versprechen.",
+    },
+    {
+      q: "Warum erklärt FLOXANT Leistungen nach Situationen statt nur nach Kategorien?",
+      a: "Weil Kunden meistens mit einer konkreten Lage starten: Auszug, Übergabe, Büroreinigung, Entrümpelung, Angebot prüfen oder nicht selbst vor Ort sein. Die Artikel zeigen, welcher Einstieg dann passt und welche Angaben helfen.",
+    },
+    {
+      q: "Was ist der richtige Artikel, wenn ich nicht selbst vor Ort sein kann?",
+      a: "Der Artikel zum Nicht-vor-Ort-Fall erklärt, wie Schlüsselweg, Fotos, Reinigung, Restpunkte, Berechtigung und Übergabe sauber vorbereitet werden.",
+    },
+    {
+      q: "Gibt es einen Ratgeber für Entrümpelung mit Endreinigung in Regensburg?",
+      a: "Ja. Der Regensburg-Ratgeber zu Entrümpelung, Endreinigung und Übergabe erklärt, warum Restmengen, Reinigung, Fotos und Schlüssel in der richtigen Reihenfolge geplant werden sollten.",
+    },
+    {
+      q: "Welcher Inhalt hilft Hausverwaltungen, WEGs oder Vermietern?",
+      a: "Der Ratgeber zu Hausverwaltung, WEG, Mieterwechsel und Objektbetreuung erklärt praktische Vor-Ort-Hilfe ohne formale Hausverwaltungsversprechen.",
     },
   ];
 

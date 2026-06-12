@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 
 import { FloxServiceCard } from "@/components/FloxServiceCard";
+import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { company } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
@@ -20,15 +21,15 @@ const whatsappHref = buildWhatsAppHref(
   [
     "Hallo FLOXANT,",
     "ich möchte eine Anfrage in Regensburg stellen.",
-    "Es geht um Umzug, Entrümpelung, Haushaltsauflösung oder Übergabe.",
+    "Es geht um Umzug, Reinigung, Gewerbereinigung, Entrümpelung, Haushaltsauflösung oder Übergabe.",
   ].join("\n"),
 );
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Regensburg | Umzug, Entrümpelung & Übergabe",
+  title: "FLOXANT Regensburg | Umzug, Reinigung & Räumung",
   description:
-    "FLOXANT Regensburg: Umzug, Entrümpelung, Haushaltsauflösung, Übergabereinigung, Endreinigung und objektbezogene Unterstützung.",
+    "FLOXANT Regensburg prüft Umzug, Reinigung, Gewerbereinigung, Entrümpelung und Haushaltsauflösung. Fotos senden, Angebot erhalten.",
   alternates: { canonical: "/regensburg" },
 };
 
@@ -42,7 +43,7 @@ export default function RegensburgHubPage() {
               {region.label}
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Umzug, Entrümpelung und Übergabereinigung in Regensburg
+              Umzug, Reinigung und Entrümpelung in Regensburg
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               {region.description}
@@ -98,6 +99,8 @@ export default function RegensburgHubPage() {
         </div>
       </section>
 
+      <FloxantObjectBrief variant="regensburg" className="border-b border-slate-200" />
+
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
@@ -115,8 +118,8 @@ export default function RegensburgHubPage() {
           <div className="grid gap-3 sm:grid-cols-2">
             {[
               "Region: Regensburg und Umgebung",
-              "Leistungen: Umzug, Entrümpelung, Haushaltsauflösung",
-              "Übergabe: Endreinigung und besenreine Vorbereitung",
+              "Leistungen: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung",
+              "Gewerbe: Büroreinigung, Objekt und Turnus nach Prüfung",
               "Anfrage: Fotos, Ort, Termin und Umfang senden",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">

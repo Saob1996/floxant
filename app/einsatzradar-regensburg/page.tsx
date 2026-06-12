@@ -122,7 +122,7 @@ export default function EinsatzradarRegensburgPage() {
                 "Regensburg direkt",
                 "Umgebung ca. 200 km",
                 "Bayern nach Verfügbarkeit",
-                "Düsseldorf nur Reinigung/Entsorgung",
+                "Düsseldorf servicebezogen",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-950/5">
                   {item}

@@ -4,7 +4,6 @@ import { DuesseldorfServicePage } from "@/components/duesseldorf/DuesseldorfServ
 import { buildDuesseldorfCleaningMetadata } from "@/lib/duesseldorf-cleaning";
 import { getDuesseldorfServicePage } from "@/lib/duesseldorf-service-pages";
 
-export const revalidate = 3600;
 
 const page = getDuesseldorfServicePage("hotelreinigung");
 

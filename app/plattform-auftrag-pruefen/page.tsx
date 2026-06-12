@@ -88,7 +88,7 @@ const platformSituations = [
   },
   {
     title: "Düsseldorf Reinigung oder Entsorgung",
-    text: "Für Düsseldorf wird nur Reinigung oder Entsorgung geprüft, kein Umzug.",
+    text: "Für Düsseldorf wird je nach Leistung die passende lokale Seite geprüft, inklusive /duesseldorf/umzug.",
     action: "Düsseldorf prüfen",
     href: "#plattform-form",
     Icon: Route,
@@ -358,7 +358,7 @@ export default function PlattformAuftragPruefenPage() {
               </p>
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-sm leading-7 text-slate-700">
                 <p className="font-black text-slate-950">Düsseldorf-Abgrenzung</p>
-                <p className="mt-2">Für Düsseldorf prüft FLOXANT nur Reinigung und Entsorgung.</p>
+                <p className="mt-2">Für Düsseldorf prüft FLOXANT servicebezogen über eigene lokale Seiten.</p>
               </div>
             </div>
             <PlatformOrderCheckForm />

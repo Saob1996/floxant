@@ -33,7 +33,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/unterhaltsreinigung-regensburg";
 
@@ -224,7 +223,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Unterhaltsreinigung Regensburg",
+        name: "Typische Anliegen zur Unterhaltsreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -281,7 +280,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anliegen", "#kunden-suchen"],
                   ["Leistungen", "#leistungen"],
                   ["Turnus", "#turnus"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -306,7 +305,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
                 alt="Helles Büro als Beispiel für Unterhaltsreinigung in Regensburg"
                 fill
                 priority
@@ -358,14 +357,14 @@ export default function UnterhaltsreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anliegen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Die Seite spricht die Wörter an, die Kunden wirklich eingeben.
+              Unterhaltsreinigung soll im Alltag zuverlässig funktionieren.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Wer nach Unterhaltsreinigung sucht, will selten nur eine allgemeine
-              Reinigungsfirma. Meist geht es um Turnus, Büroreinigung, Reinigungsplan,
-              Kosten, Zugang und einen Start ohne Betriebsausfall.
+              Meist geht es nicht um eine einzelne Putzaktion, sondern um einen klaren
+              Reinigungsplan: Turnus, Büroflächen, Kostenrahmen, Zugang, Ansprechpartner
+              und ein Start, der den Betrieb nicht stört.
             </p>
           </div>
 
@@ -501,9 +500,9 @@ export default function UnterhaltsreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell">
           <div className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Kurze Antworten fuer eine bessere Anfrage.
+              Kurze Antworten für eine bessere Anfrage.
             </h2>
             <div className="mt-7 grid gap-3">
               {faqItems.map((item) => (
@@ -526,7 +525,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">
-                  Interne Links für Regensburg-Reinigung und B2B-Suchen.
+                  Weitere passende Leistungen für Unterhaltsreinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

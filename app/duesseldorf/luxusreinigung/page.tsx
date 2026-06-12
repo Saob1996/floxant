@@ -15,6 +15,7 @@ import {
 
 import { DuesseldorfB2BCleaningForm } from "@/components/DuesseldorfB2BCleaningForm";
 import { company, duesseldorfCompany } from "@/lib/company";
+import { getServiceVisual } from "@/lib/service-visuals";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
   buildBreadcrumbJsonLd,
@@ -24,7 +25,13 @@ import {
 
 const path = "/duesseldorf/luxusreinigung";
 const canonical = `${company.url}${path}`;
-const heroImage = "/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp";
+const heroVisual = getServiceVisual({
+  region: "duesseldorf",
+  slug: "luxusreinigung",
+  path,
+  serviceLabel: "Premium-Reinigung",
+});
+const heroImage = heroVisual.src;
 const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
@@ -111,7 +118,7 @@ export const metadata: Metadata = {
         url: heroImage,
         width: 1200,
         height: 630,
-        alt: "Premium-Reinigung in Düsseldorf",
+        alt: heroVisual.alt,
       },
     ],
   },
@@ -184,7 +191,7 @@ export default function LuxusreinigungDuesseldorfPage() {
       <section className="relative isolate overflow-hidden bg-slate-950 text-white">
         <Image
           src={heroImage}
-          alt="Gepflegter Raum für Premium-Reinigung in Düsseldorf"
+          alt={heroVisual.alt}
           fill
           priority
           sizes="100vw"

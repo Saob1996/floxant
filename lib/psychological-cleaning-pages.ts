@@ -349,7 +349,7 @@ const resetArticles: PsychologicalCleaningArticleSeed[] = [
     description:
       "Warum Reinigung nach belastenden Tagen nicht nur Sauberkeit, sondern Entlastung, Ordnung und Kontrolle zurueckbringt.",
     intro:
-      "Nach Party, Krankheit oder einer anstrengenden Phase bleibt nicht nur Schmutz. Es bleibt das Gefuehl, dass die Wohnung gegen einen arbeitet.",
+      "Nach Party, Krankheit oder einer anstrengenden Phase bleibt nicht nur Schmutz. Es bleibt das Gefühl, dass die Wohnung gegen einen arbeitet.",
     keywordFocus: ["Reinigung nach Party", "Wohnung Reset"],
     readerProblem:
       "Die Situation ist zu gross geworden, um entspannt selbst anzufangen.",
@@ -1288,43 +1288,43 @@ export const psychologicalCleaningLandingPages = [
     serviceName: "Geruchslos-Protokoll",
     shortName: "Geruchslos",
     category: "Geruchsorientierte Reinigung",
-    seoTitle: "Geruchslos-Protokoll Regensburg | Gerueche sachlich reinigen lassen",
+    seoTitle: "Geruchslos-Protokoll Regensburg | Gerüche lokalisieren lassen",
     metaDescription:
-      "Geruchslos-Protokoll in Regensburg: Geruchsquellen, Kueche, Bad, Textilien und Oberflaechen vor Uebergabe, Besuch oder Neuvermietung sachlich pruefen.",
+      "Geruchslos-Protokoll in Regensburg: Geruchsquellen, Küche, Bad, Textilien und Oberflächen vor Übergabe, Besuch oder Neuvermietung sachlich prüfen.",
     heroHeadline: "Wenn ein Raum sauber aussieht, aber nicht sauber riecht.",
     heroSubheadline:
-      "FLOXANT sucht nicht nach Duftspray-Loesungen, sondern nach sichtbaren Geruchsquellen, Reinigungsbereichen und realistischen Grenzen.",
-    primaryCta: "Geruchsproblem einordnen",
+      "FLOXANT hilft, Geruch sachlich zu beschreiben, wahrscheinliche Quellenbereiche zu lokalisieren und realistische Reinigungsschritte festzulegen.",
+    primaryCta: "Geruch lokalisieren lassen",
     whatsappText:
-      "Hallo FLOXANT, ich moechte ein Geruchsproblem einordnen lassen. Ort, Raeume, moegliche Quelle und Fotos:",
+      "Hallo FLOXANT, ich möchte ein Geruchsproblem lokalisieren lassen. Ort, Räume, mögliche Quelle und Fotos:",
     emotionalPromise:
-      "Das Thema wird sachlich: Quelle, Flaechen, Textilien, Zeitdruck und Ziel werden getrennt betrachtet.",
+      "Aus einem diffusen Geruch wird eine konkrete Anfrage: Räume, mögliche Quelle, Oberflächen, Textilien, Zeitdruck und Ziel werden getrennt betrachtet.",
     localNote:
-      "Fuer Wohnungen, Apartments und Objekte in Regensburg, der Oberpfalz und Bayern, wenn Geruch vor Uebergabe oder Nutzung zum Risiko wird.",
-    problemTitle: "Geruch ist unsichtbar, aber beim Termin sofort spuerbar.",
+      "Für Wohnungen, Apartments und Objekte in Regensburg, der Oberpfalz und Bayern, wenn Geruch vor Übergabe, Besichtigung oder Nutzung zum Risiko wird.",
+    problemTitle: "Geruch ist unsichtbar, aber beim Termin sofort spürbar.",
     worries: [
       "Die Wohnung riecht trotz Putzen unangenehm.",
       "Besuch, Vermieter oder Nachmieter merken den Geruch sofort.",
       "Die Ursache ist nicht eindeutig.",
     ],
     conflicts: [
-      "Duft ueberdeckt das Problem nur kurz.",
-      "Kueche, Bad, Textilien und Muellbereiche werden nicht getrennt betrachtet.",
+      "Duft überdeckt das Problem nur kurz.",
+      "Küche, Bad, Textilien und Müllbereiche werden nicht getrennt betrachtet.",
       "Erwartungen an komplette Geruchsentfernung sind unrealistisch, wenn die Quelle offen bleibt.",
     ],
     stressSituations: [
-      "Uebergabe nach laengerer Nutzung",
+      "Übergabe nach längerer Nutzung",
       "Tier-, Rauch-, Koch- oder Feuchtigkeitsgeruch",
       "Apartmentwechsel",
       "Besichtigung oder Neuvermietung",
     ],
     solutionIntro:
-      "FLOXANT prueft, wo Geruch wahrscheinlich sitzt und welche Reinigungsschritte realistisch helfen koennen, ohne medizinische oder baubiologische Versprechen.",
+      "FLOXANT prüft, wo Geruch wahrscheinlich sitzt, welche Bereiche zuerst gereinigt werden sollten und wo eine Grenze zur Fachprüfung oder Sanierung liegen kann.",
     solutionSteps: [
-      { title: "Geruch beschreiben", text: "Raum, Staerke, Dauer und vermutete Quelle werden kurz eingeordnet." },
-      { title: "Quellenbereiche pruefen", text: "Kueche, Bad, Textilien, Muellzonen und Oberflaechen werden getrennt betrachtet." },
-      { title: "Reinigung priorisieren", text: "Fettfilm, Abflussnaehe, Textilien und Kontaktflaechen werden nach Wirkung sortiert." },
-      { title: "Grenzen benennen", text: "Wenn Spezialpruefung oder Sanierung noetig sein koennte, wird das klar gesagt." },
+      { title: "Geruch beschreiben und lokalisieren", text: "Raum, Stärke, Dauer, Tageszeit und vermutete Quelle werden kurz eingeordnet." },
+      { title: "Quellenbereiche eingrenzen", text: "Küche, Bad, Textilien, Müllzonen, Abflussnähe und Oberflächen werden getrennt betrachtet." },
+      { title: "Reinigung priorisieren", text: "Fettfilm, Kontaktflächen, Textilien und betroffene Laufwege werden nach Wirkung sortiert." },
+      { title: "Grenzen benennen", text: "Wenn Fachprüfung, Trocknung oder Sanierung nötig sein könnte, wird das klar gesagt." },
     ],
     whyItWorks: [
       "Geruch wird als Quelle statt als peinliches Thema behandelt.",
@@ -1332,42 +1332,42 @@ export const psychologicalCleaningLandingPages = [
       "Falsche Garantien werden vermieden.",
     ],
     trustSignals: [
-      "Diskrete Anfrage per WhatsApp moeglich",
+      "Diskrete Anfrage per WhatsApp möglich",
       "Klare Abgrenzung zu Schimmel-, Schadstoff- oder Sanierungsfragen",
-      "Praktische Erfahrung mit Uebergabe- und Apartment-Situationen",
-      "Bewertungs-Hinweis: Ehrlichkeit bei Grenzen schafft mehr Vertrauen als Duftversprechen",
+      "Praktische Erfahrung mit Übergabe- und Apartment-Situationen",
+      "Ehrliche Einordnung der Grenzen statt Duftversprechen",
     ],
     guarantees: [
-      "Quellenorientierte Vorpruefung",
+      "Quellenorientierte Vorprüfung",
       "Keine komplette Geruchsgarantie ohne Ursachenkenntnis",
       "Diskrete Behandlung sensibler Angaben",
     ],
     processSteps: [
       { title: "1. Geruch kurz beschreiben", text: "Wo, seit wann, wodurch vermutlich?" },
-      { title: "2. Fotos und Nutzung nennen", text: "Kueche, Bad, Textilien, Haustier, Rauch oder Feuchtigkeit." },
-      { title: "3. Reinigungspfad waehlen", text: "FLOXANT priorisiert die Bereiche mit groesster Wirkung." },
-      { title: "4. Ergebnis realistisch pruefen", text: "Geruchsreduktion und weitere Schritte werden ehrlich eingeordnet." },
+      { title: "2. Fotos und Nutzung nennen", text: "Küche, Bad, Textilien, Haustier, Rauch oder Feuchtigkeit." },
+      { title: "3. Reinigungspfad wählen", text: "FLOXANT priorisiert die Bereiche mit größter Wirkung." },
+      { title: "4. Ergebnis realistisch prüfen", text: "Geruchsreduktion und weitere Schritte werden ehrlich eingeordnet." },
     ],
     faqItems: [
       {
         q: "Garantiert FLOXANT, dass jeder Geruch verschwindet?",
-        a: "Nein. Geruch haengt von Quelle, Material, Dauer und Zustand ab. FLOXANT kann reinigen und Quellenbereiche pruefen, aber keine komplette Geruchsgarantie geben.",
+        a: "Nein. Geruch hängt von Quelle, Material, Dauer und Zustand ab. FLOXANT kann reinigen und Quellenbereiche prüfen, aber keine komplette Geruchsgarantie geben.",
       },
       {
-        q: "Welche Gerueche sind typisch?",
-        a: "Haeufig sind Kochgeruch, Rauch, Haustier, Muell, Feuchtigkeit, Abflussnaehe oder Textilien. Jede Ursache braucht eine andere Einordnung.",
+        q: "Welche Gerüche sind typisch?",
+        a: "Häufig sind Kochgeruch, Rauch, Haustier, Müll, Feuchtigkeit, Abflussnähe oder Textilien. Jede Ursache braucht eine andere Einordnung.",
       },
       {
         q: "Was soll ich zuerst senden?",
-        a: "Raeume, vermutete Quelle, Dauer, Fotos der betroffenen Bereiche und den Termin, bis wann die Flaeche nutzbar sein muss.",
+        a: "Räume, vermutete Quelle, Dauer, Fotos der betroffenen Bereiche und den Termin, bis wann die Fläche nutzbar sein muss. Hilfreich ist auch der Hinweis, wo der Geruch stärker oder schwächer wahrnehmbar ist.",
       },
       {
         q: "Was ist bei Schimmelverdacht?",
-        a: "Bei Schimmel, Feuchtigkeit oder gesundheitlichen Beschwerden sollte eine geeignete Fachpruefung hinzugezogen werden. Reinigung ersetzt keine Diagnose.",
+        a: "Bei Schimmel, Feuchtigkeit oder gesundheitlichen Beschwerden sollte eine geeignete Fachprüfung hinzugezogen werden. Reinigung ersetzt keine Diagnose.",
       },
     ],
     relatedSlugs: ["reset-reinigung", "anti-scham-reinigung", "atemruhig-reinigung"],
-    searchIntents: ["Geruch Wohnung entfernen", "Geruchsreinigung Regensburg", "Wohnung riecht vor Uebergabe"],
+    searchIntents: ["Gerüche lokalisieren", "Geruchsquelle finden", "Geruch Wohnung entfernen", "Geruchsreinigung Regensburg", "Wohnung riecht vor Übergabe"],
     supportingArticles: odorArticles,
   },
   {
@@ -1754,7 +1754,7 @@ export const psychologicalCleaningLandingPages = [
       "Homeoffice soll ruhiger werden",
     ],
     solutionIntro:
-      "FLOXANT trennt Staub, Geruch, Textilien, Oberflaechen und moegliche Fachthemen, damit aus einem diffusen Gefuehl ein machbarer Reinigungsplan wird.",
+      "FLOXANT trennt Staub, Geruch, Textilien, Oberflächen und mögliche Fachthemen, damit aus einem diffusen Gefühl ein machbarer Reinigungsplan wird.",
     solutionSteps: [
       { title: "Raumgefuehl beschreiben", text: "Schwer, staubig, muffig oder nach Renovierung: die Ursache wird eingegrenzt." },
       { title: "Flaechen priorisieren", text: "Boden, Regale, Fensterbank, Textilien und Staubfaenger werden getrennt betrachtet." },

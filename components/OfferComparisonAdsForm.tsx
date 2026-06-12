@@ -27,14 +27,25 @@ const MAX_FILES = 4;
 const ALLOWED_TYPES = new Set(["application/pdf", "image/jpeg", "image/png"]);
 const ALLOWED_EXTENSIONS = new Set(["pdf", "jpg", "jpeg", "png"]);
 
+const regionOptions = [
+  { value: "duesseldorf", label: "Düsseldorf" },
+  { value: "regensburg", label: "Regensburg" },
+] as const;
+
 const serviceOptions = [
-  "Gewerbereinigung",
-  "Büroreinigung",
-  "Praxisreinigung",
-  "Unterhaltsreinigung",
-  "Treppenhausreinigung",
-  "Premium-Reinigung",
-  "Noch unklar",
+  { value: "reinigung", label: "Reinigung" },
+  { value: "umzug", label: "Umzug" },
+  { value: "entsorgung", label: "Entrümpelung" },
+  { value: "nachlass_raeumung", label: "Haushaltsauflösung" },
+  { value: "mieterwechsel_service", label: "Übergabereinigung" },
+  { value: "kombination", label: "Kombination / mehrere Leistungen" },
+  { value: "b2b_reinigung", label: "Gewerbe-, Büro- oder Praxisreinigung" },
+] as const;
+
+const offerStatusOptions = [
+  { value: "upload", label: "Ja, ich möchte ein Angebot hochladen" },
+  { value: "details", label: "Ja, ich möchte die Eckdaten eintragen" },
+  { value: "no_offer", label: "Nein, ich möchte trotzdem eine Einschätzung" },
 ] as const;
 
 type SubmitState = "idle" | "submitting" | "error";
@@ -149,8 +160,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     const phone = String(formData.get("phone") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const companyName = String(formData.get("companyName") || "").trim();
+    const region = String(formData.get("region") || "duesseldorf").trim();
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
     const requestedService = String(formData.get("requestedService") || "").trim();
+    const offerStatus = String(formData.get("offerStatus") || "").trim();
+    const desiredDate = String(formData.get("desiredDate") || "").trim();
+    const quotedPrice = String(formData.get("quotedPrice") || "").trim();
+    const budget = String(formData.get("budget") || "").trim();
     const message = String(formData.get("message") || "").trim();
     const honeypot = String(formData.get("website") || "").trim();
 
@@ -159,11 +175,11 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       setErrorMessage("Bitte geben Sie Ihren Namen an.");
       return;
     }
-    if (phone.replace(/\D/g, "").length < 7) {
-      setErrorMessage("Bitte geben Sie eine gültige Telefonnummer an.");
+    if (phone.replace(/\D/g, "").length < 7 && !isValidEmail(email)) {
+      setErrorMessage("Bitte geben Sie Telefon oder E-Mail für die Rückmeldung an.");
       return;
     }
-    if (!isValidEmail(email)) {
+    if (email && !isValidEmail(email)) {
       setErrorMessage("Bitte geben Sie eine gültige E-Mail-Adresse an.");
       return;
     }
@@ -178,23 +194,38 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       return;
     }
 
+    const selectedServiceLabel =
+      serviceOptions.find((item) => item.value === requestedService)?.label || requestedService;
+    const selectedRegionLabel =
+      regionOptions.find((item) => item.value === region)?.label || region;
+    const offerStatusLabel =
+      offerStatusOptions.find((item) => item.value === offerStatus)?.label || offerStatus;
+
     const composedMessage = [
-      "Anfrage: Reinigungsangebot in Düsseldorf prüfen lassen.",
+      "Anfrage: FLOXANT Angebotsprüfung.",
       companyName ? `Firma: ${companyName}` : "",
-      cityOrZip ? `Ort: ${cityOrZip}` : "",
-      requestedService ? `Leistung: ${requestedService}` : "",
-      message ? `Hinweis: ${message}` : "Hinweis: Bestehendes Angebot wirtschaftlich einordnen.",
+      `Region: ${selectedRegionLabel}`,
+      cityOrZip ? `Ort/PLZ: ${cityOrZip}` : "",
+      selectedServiceLabel ? `Leistungsbereich: ${selectedServiceLabel}` : "",
+      offerStatusLabel ? `Ausgangslage: ${offerStatusLabel}` : "",
+      desiredDate ? `Zeitraum: ${desiredDate}` : "",
+      quotedPrice ? `Bisheriger Preis: ${quotedPrice}` : "",
+      budget ? `Budget/Preisrahmen: ${budget}` : "",
+      message ? `Hinweis: ${message}` : "Hinweis: Bitte prüfen, ob eine passende und wirtschaftlich interessante Alternative möglich ist.",
     ]
       .filter(Boolean)
       .join("\n");
 
     formData.set("type", "offer_check");
-    formData.set("lead_type", "angebotscheck_duesseldorf");
-    formData.set("leadSubtype", "duesseldorf_cleaning_offer_check");
-    formData.set("leadSource", "google_ads_offer_comparison");
+    formData.set("lead_type", "angebotspruefung");
+    formData.set("leadSubtype", "floxant_angebotspruefung_product");
+    formData.set("leadSource", "offer_check_product");
     formData.set("sourceComponent", "offer_comparison_ads_form");
-    formData.set("service", "reinigung");
-    formData.set("region", "duesseldorf");
+    formData.set("service", requestedService || "reinigung");
+    formData.set("region", region || "duesseldorf");
+    formData.set("regionPreset", region || "duesseldorf");
+    formData.set("entryPoint", "/angebot-vergleichen-duesseldorf");
+    formData.set("offerSourceType", offerStatus);
     formData.set("offerCheckIntent", "wirtschaftliche_alternative_pruefen");
     formData.set("message", composedMessage);
     formData.set("timestamp", new Date().toISOString());
@@ -209,10 +240,12 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     files.forEach((file) => formData.append("offerFile", file));
     appendConversionJourneyToFormData(formData);
 
-    reportOfferComparisonAdsEvent("form_submit", {
+    reportOfferComparisonAdsEvent("offer_check_started", {
       channel: "form",
-      label: "Angebotsprüfung angefordert",
+      label: "FLOXANT Angebotsprüfung gestartet",
       fileCount: files.length,
+      region,
+      service: requestedService,
       priority: "critical",
     });
 
@@ -233,6 +266,14 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         channel: "form",
         label: "Formular erfolgreich abgesendet",
         fileCount: files.length,
+        priority: "critical",
+      });
+      reportOfferComparisonAdsEvent("form_submit", {
+        channel: "form",
+        label: "Angebotsprüfung erfolgreich angefordert",
+        fileCount: files.length,
+        region,
+        service: requestedService,
         priority: "critical",
       });
 
@@ -257,20 +298,20 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       id="angebot-pruefen"
       className="grid scroll-mt-32 gap-6 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6 lg:p-8"
       onSubmit={handleSubmit}
-      data-event="form_submit"
+      data-event="offer_check_started"
       data-source="google_ads_offer_comparison_landingpage"
       aria-label="Kostenlose Angebotsprüfung anfordern"
     >
       <div>
         <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-          Angebot hochladen oder Eckdaten senden
+          FLOXANT Angebotsprüfung
         </p>
         <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
           Angebot kostenlos prüfen lassen
         </h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. Wir prüfen sachlich,
-          ob eine passende Alternative möglich ist.
+          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. Wir prüfen kostenlos
+          und unverbindlich, ob eine passende und wirtschaftlich interessante Alternative möglich ist.
         </p>
       </div>
 
@@ -280,11 +321,11 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           <input name="name" autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Vorname Nachname" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
-          Telefon*
+          Telefon
           <input name="phone" type="tel" autoComplete="tel" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="+49 ..." />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
-          E-Mail*
+          E-Mail
           <input name="email" type="email" autoComplete="email" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="name@firma.de" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -292,18 +333,50 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           <input name="companyName" autoComplete="organization" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Optional" />
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
-          Ort / PLZ
-          <input name="cityOrZip" autoComplete="address-level2" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="z. B. Düsseldorf, Neuss, Ratingen" />
-        </label>
-        <label className="grid gap-2 text-sm font-bold text-slate-800">
-          Leistung
-          <select name="requestedService" defaultValue="Gewerbereinigung" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
-            {serviceOptions.map((service) => (
-              <option key={service} value={service}>
-                {service}
+          Stadt*
+          <select name="region" defaultValue="duesseldorf" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {regionOptions.map((region) => (
+              <option key={region.value} value={region.value}>
+                {region.label}
               </option>
             ))}
           </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Ort / PLZ
+          <input name="cityOrZip" autoComplete="address-level2" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="z. B. Düsseldorf, Regensburg, Neuss" />
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Leistungsbereich*
+          <select name="requestedService" defaultValue="reinigung" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {serviceOptions.map((service) => (
+              <option key={service.value} value={service.value}>
+                {service.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Bestehendes Angebot*
+          <select name="offerStatus" defaultValue="upload" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {offerStatusOptions.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Gewünschter Zeitraum
+          <input name="desiredDate" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="z. B. nächste Woche, Monatsende" />
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Bisheriger Preis
+          <input name="quotedPrice" inputMode="decimal" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="freiwillig, z. B. 950 EUR" />
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Budget / Preisrahmen
+          <input name="budget" inputMode="decimal" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="freiwillig, falls vorhanden" />
         </label>
       </div>
 
@@ -355,10 +428,10 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
               <UploadCloud className="h-6 w-6" />
             </span>
             <p className="mt-4 text-base font-black text-slate-950">
-              Bestehendes Angebot hochladen
+              Angebot, Screenshot oder Fotos hochladen
             </p>
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-              PDF, JPG oder PNG ablegen oder Datei auswählen. Alternativ beschreiben Sie die Eckdaten unten.
+              PDF, JPG oder PNG ablegen oder Datei auswählen. Die Anfrage funktioniert auch ohne Upload.
             </p>
           </div>
         </div>
@@ -395,7 +468,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           name="message"
           rows={4}
           className="rounded-lg border border-slate-300 bg-white px-4 py-3 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-          placeholder="Zum Beispiel: Leistungsumfang unklar, Turnus prüfen, Preis einordnen, Starttermin klären."
+          placeholder="Zum Beispiel: Leistungsumfang, Fläche oder Volumen, Termin, Zugang, Turnus, Übergabeziel oder offene Punkte."
         />
       </label>
 
@@ -423,10 +496,10 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         type="submit"
         disabled={isSubmitting}
         className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-base font-black text-white shadow-[0_16px_34px_rgba(15,23,42,0.18)] transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
-        data-event="form_submit"
+        data-event="offer_check_started"
       >
         {isSubmitting ? <Loader2 className="h-5 w-5 animate-spin" /> : <ArrowRight className="h-5 w-5" />}
-        Angebot prüfen lassen
+        Kostenlose Prüfung anfordern
       </button>
 
       <a
@@ -436,13 +509,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
       >
         <MessageCircle className="h-4 w-4" />
-        Angebot per WhatsApp senden
+        Per WhatsApp senden
       </a>
 
       <div className="grid gap-3 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm font-bold leading-6 text-cyan-950 sm:grid-cols-[auto_1fr]">
         <CheckCircle2 className="mt-0.5 h-5 w-5 text-cyan-700" />
         <p>
-          Wir prüfen, ob eine passende Alternative möglich ist. Jede Anfrage wird individuell bewertet.
+          Wir prüfen kostenlos und unverbindlich, ob eine passende und wirtschaftlich interessante Alternative möglich ist. Jede Anfrage wird individuell bewertet.
         </p>
       </div>
     </form>

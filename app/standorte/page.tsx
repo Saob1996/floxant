@@ -546,14 +546,14 @@ export default function StandortePage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
             <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-              Nachfragepfade Bayern
+              Servicebereiche Bayern
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Direkte Marktseiten fuer starke Such- und Buchungsintention
+              Direkte Seiten fuer Ort, Leistung und Anfrage
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
-              Diese Pfade zeigen am schnellsten, wie FLOXANT in Bayern gefunden werden soll:
-              lokal verankert in Regensburg, aber mit klaren Service- und Stadtachsen fuer
+              Diese Seiten helfen, schnell den passenden Ort und die passende Leistung zu
+              finden: lokal verankert in Regensburg, mit klaren Servicebereichen fuer
               Muenchen, Nuernberg, Augsburg und Niederbayern.
             </p>
           </div>

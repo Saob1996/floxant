@@ -33,8 +33,8 @@ export function RegionSelector({
         const isDuesseldorf = region.id === "duesseldorf";
         const Icon = isDuesseldorf ? Building2 : Home;
         const points = isDuesseldorf
-          ? ["Gewerbereinigung", "Büro & Praxis", "Angebot prüfen"]
-          : ["Umzug", "Entrümpelung", "Übergabe"];
+          ? ["Umzug", "Reinigung", "Entrümpelung"]
+          : ["Umzug", "Reinigung", "Übergabe"];
 
         return (
           <Link

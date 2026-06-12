@@ -29,15 +29,15 @@ export type SearchIntentProfile = {
 
 const defaultLinks: SearchIntentLink[] = [
   { href: "/buchung", label: "Anfrage starten" },
-  { href: "/rechner", label: "Preisrahmen einschätzen" },
+  { href: "/rechner", label: "Budget grob einschätzen" },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
-  { href: "/kontakt", label: "Rückfrage klären" },
+  { href: "/kontakt", label: "Rückruf oder WhatsApp" },
 ];
 
 const duesseldorfLinks: SearchIntentLink[] = [
   { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile & Umgebung" },
-  { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot vielleicht günstiger prüfen" },
+  { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Düsseldorf & Umgebung" },
+  { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
   { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
   { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung Düsseldorf" },
@@ -686,7 +686,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       localTriggers: [
         isDuesseldorfHotel
-          ? "Düsseldorf-Hotelreinigung bleibt klar Reinigung: kein Umzug, kein Transport, keine Wäscherei-Zusage."
+          ? "Düsseldorf-Hotelreinigung bleibt klar Reinigung; Umzug oder Transport laufen über eigene Servicepfade, keine Wäscherei-Zusage."
           : "Regensburg-Hotelreinigung kann mit Büro-, Fenster- oder Grundreinigung kombiniert geprüft werden.",
       ],
       priceSignals: [
@@ -1286,13 +1286,13 @@ export function buildSearchIntentProfile({
   return {
     city: resolvedCity,
     serviceName: resolvedService,
-    eyebrow: isDuesseldorf ? "Düsseldorfer Suchanliegen" : "Suchanliegen richtig einordnen",
+    eyebrow: isDuesseldorf ? "Reinigung in Düsseldorf" : "Anfrage einfach vorbereiten",
     title: isDuesseldorf
-      ? `${resolvedService} in Düsseldorf ohne vermischte Leistungen`
-      : `${resolvedService} in ${resolvedCity}: direkte Suche und konkrete Situationen`,
+      ? `${resolvedService} in Düsseldorf: so bekommen Sie eine klare Rückmeldung`
+      : `${resolvedService} in ${resolvedCity}: mit wenigen Angaben sinnvoll starten`,
     intro: isDuesseldorf
-      ? "Diese Seite soll genau die Anfragen treffen, die zu Düsseldorf passen: Reinigung, Objektangaben, Fotos, Zeitfenster, Preisrahmen und bei Bedarf separate Entsorgung. Umzugsthemen bleiben außen vor."
-      : `Diese Seite deckt kurze Suchbegriffe und konkrete Situationen ab, ohne daraus eine bloße Wortliste zu machen. Entscheidend sind Ort, Leistung, lokales Problem, Preisrahmen und der passende nächste Schritt.`,
+      ? "Für Düsseldorf geht es bei FLOXANT um Reinigung: Objekt, Fläche, Fotos, Zeitfenster, Budget oder vorhandenes Angebot reichen für den ersten Schritt. Umzugsthemen bleiben bewusst getrennt."
+      : `Für den Start reichen Ort, Leistung, Situation, Termin, Fotos und ein grober Preisrahmen. FLOXANT prüft daraus, welcher nächste Schritt für den konkreten Fall sinnvoll ist.`,
     shortTail: unique(shortTail),
     longTail: unique(longTail),
     localTriggers: unique(localTriggers),

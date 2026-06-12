@@ -6,12 +6,20 @@ import {
 } from "@/lib/duesseldorf-cleaning";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildDuesseldorfCleaningMetadata({
+  const metadata = buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung/datenschutz",
     title: "Datenschutz Düsseldorf Reinigung | FLOXANT",
     description:
       "Datenschutzhinweise für FLOXANT Reinigung Düsseldorf zur Bearbeitung von Reinigungsanfragen per Formular, Telefon, E-Mail und WhatsApp.",
   });
+
+  return {
+    ...metadata,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
 }
 
 export default function DuesseldorfDatenschutzPage() {

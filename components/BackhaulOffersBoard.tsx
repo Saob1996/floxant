@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { ArrowRight, Calendar, CheckCircle2, Loader2, MapPin, PackageOpen, Route, Send, Truck } from "lucide-react";
 
@@ -71,7 +71,7 @@ function formatDate(date: string) {
 }
 
 export function BackhaulOffersBoard({ initialOffers }: { initialOffers: BackhaulOffer[] }) {
-  const [offers, setOffers] = useState<BackhaulOffer[]>(initialOffers);
+  const offers = initialOffers;
   const [selectedOffer, setSelectedOffer] = useState<BackhaulOffer | null>(initialOffers[0] || null);
   const [form, setForm] = useState<InquiryState>({
     ...emptyInquiry,
@@ -80,29 +80,6 @@ export function BackhaulOffersBoard({ initialOffers }: { initialOffers: Backhaul
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
-
-  useEffect(() => {
-    let isMounted = true;
-
-    fetch("/api/backhauls", { cache: "no-store" })
-      .then((response) => response.json())
-      .then((data: BackhaulOffer[]) => {
-        if (!isMounted || !Array.isArray(data) || data.length === 0) return;
-        setOffers(data);
-        setSelectedOffer((current) => current || data[0]);
-        setForm((current) => ({
-          ...current,
-          offerId: current.offerId || data[0]?.id || "",
-        }));
-      })
-      .catch(() => {
-        // No fake fallback routes: customers can still submit a route for review.
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   const activeOffer = useMemo(
     () => offers.find((offer) => offer.id === form.offerId) || selectedOffer || offers[0],

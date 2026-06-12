@@ -4,7 +4,7 @@ import {
   CheckCircle2,
   MessageCircle,
   Phone,
-  SearchCheck,
+  ClipboardCheck,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -18,7 +18,7 @@ import {
 
 export function RegensburgCleaningConversionLift() {
   const whatsappUrl = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
-    "Hallo FLOXANT, ich suche Reinigung in Regensburg. Es geht um: Ort, Flaeche, Termin, Zustand und Fotos kann ich senden.",
+    "Hallo FLOXANT, ich suche Reinigung in Regensburg. Es geht um: Ort, Fläche, Termin, Zustand und Fotos kann ich senden.",
   )}`;
 
   return (
@@ -27,17 +27,16 @@ export function RegensburgCleaningConversionLift() {
         <div className="grid gap-4 xl:grid-cols-[0.88fr_1.12fr] xl:items-start">
           <article className="flox-panel-dark rounded-[2rem] px-6 py-7 md:px-8 md:py-8 xl:sticky xl:top-24">
             <div className="flox-kicker border-white/10 bg-white/5 text-cyan-200">
-              <SearchCheck className="h-4 w-4" />
-              So fragen Kunden wirklich
+              <ClipboardCheck className="h-4 w-4" />
+              Reinigung passend anfragen
             </div>
             <h2 className="mt-6 text-[clamp(2rem,4vw,3.3rem)] font-bold leading-[0.98] text-white">
-              Reinigung in Regensburg soll sich sofort sortiert anfuehlen.
+              Reinigung in Regensburg soll schnell klar werden.
             </h2>
             <p className="mt-5 text-base leading-8 text-slate-300">
-              Viele Besucher suchen nicht nach Fachbegriffen. Sie suchen Hilfe, weil ein Termin
-              drueckt, der Vermieter kommt, das Buero sichtbar sauber sein muss oder ein Raum
-              unangenehm riecht. Genau diese Situationen fuehren hier direkt zum passenden
-              naechsten Schritt.
+              Entscheidend ist der Anlass: Übergabe, Bürofläche, Treppenhaus, Baustaub,
+              Termin, Zustand oder Fotos. Wenn diese Eckdaten vorliegen, kann FLOXANT
+              die Anfrage ruhig einordnen und den passenden nächsten Schritt nennen.
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-3 xl:grid-cols-1">
@@ -64,7 +63,7 @@ export function RegensburgCleaningConversionLift() {
                   <MessageCircle className="h-4 w-4 transition group-hover:translate-x-0.5" />
                 </span>
                 <span className="mt-2 block text-xs leading-6 text-emerald-50">
-                  Fotos, Flaeche und Deadline direkt mitschicken.
+                  Fotos, Fläche und Deadline direkt mitschicken.
                 </span>
               </a>
               <a
@@ -122,8 +121,8 @@ export function RegensburgCleaningConversionLift() {
         <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_0.92fr]">
           <article className="flox-panel rounded-[1.75rem] p-6">
             <div className="flox-kicker">
-              <SearchCheck className="h-4 w-4" />
-              Kurze Antworten vor der Anfrage
+              <ClipboardCheck className="h-4 w-4" />
+              Häufige Fragen vor der Anfrage
             </div>
             <div className="mt-6 grid gap-3 md:grid-cols-2">
               {regensburgCleaningSnippetTargets.map((item) => (
@@ -137,7 +136,7 @@ export function RegensburgCleaningConversionLift() {
                   </h3>
                   <p className="mt-2 text-sm leading-7 text-slate-700">{item.answer}</p>
                   <span className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-blue-700">
-                    Passende Seite
+                    Weiter zur passenden Leistung
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </Link>
@@ -148,10 +147,10 @@ export function RegensburgCleaningConversionLift() {
           <article className="flox-panel rounded-[1.75rem] p-6">
             <div className="flox-kicker">
               <ShieldCheck className="h-4 w-4" />
-              Vertrauen vor dem Klick
+              Vertrauen vor der Anfrage
             </div>
             <h2 className="mt-5 text-2xl font-black tracking-tight text-slate-950">
-              Mehr passende Anfragen entstehen, wenn die Erwartung ehrlich ist.
+              Eine gute Rückmeldung beginnt mit klaren Angaben.
             </h2>
             <div className="mt-5 grid gap-3">
               {regensburgCleaningTrustPromises.map((promise) => (

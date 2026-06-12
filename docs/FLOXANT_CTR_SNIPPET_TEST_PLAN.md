@@ -243,6 +243,20 @@ Umgesetzt: Neue Route `/teppichreinigung-regensburg` mit kundennahen Suchkarten,
 Betroffene Queries: teppichreinigung regensburg, teppichbodenreinigung regensburg, polsterreinigung regensburg, sofa reinigen lassen regensburg, buerostuehle reinigen regensburg, buero teppich reinigen regensburg, teppichreinigung kosten regensburg.
 Messhinweis: Longtail-Impressionen fuer Teppich-/Polster-/Sofa-Queries, Klicks auf Checkliste und Foto-CTA, WhatsApp-Anfragen mit Material-/Fleckenfotos und interne Klicks aus Grundreinigung, Bueroreinigung, Hotelreinigung und Gewerbereinigung vergleichen.
 
+### Erweiterung 2026-06-07 Runde 28
+
+Grund: Search Console Screenshot vom 2026-06-07, Filter letzte 24 Stunden, zeigt mehrere Seiten mit Impressionen aber 0 Klicks. Auffaellig: `/umzug-muenchen` mit 67 Impressionen und Position 35,7, `/duesseldorf/reinigung` mit 23 Impressionen und Position 26,0, `/duesseldorf/vielleicht-guenstiger` mit 23 Impressionen und Position 46,1, `/gewerbereinigung-regensburg` mit 18 Impressionen und Position 10,4 sowie der Ratgeber `/blog/reinigungsfirma-duesseldorf-preise-kosten-angebot-pruefen` mit 17 Impressionen und Position 15,6.
+Umgesetzt: Permanente Redirects fuer aktive Regensburg-Money-URLs aus `next.config.js` und `proxy.ts` entfernt, pauschalen `/reinigung-*`-Proxy-Redirect entfernt, Regensburg-Money-URLs wieder fuer die Sitemap freigegeben, zentrale Snippet-Overrides fuer `/umzug-muenchen`, `/umzug-regensburg`, `/reinigung-regensburg`, `/entruempelung-regensburg`, `/gewerbereinigung-regensburg`, `/duesseldorf/reinigung`, `/duesseldorf/hausverwaltung-reinigung` und `/duesseldorf/vielleicht-guenstiger` auf Angebot/Fotos/Termin/Budget geschaerft.
+Betroffene Queries: umzug muenchen angebot, umzug muenchen termin, reinigung duesseldorf, reinigungsfirma duesseldorf, hausverwaltung reinigung duesseldorf, reinigungsangebot duesseldorf pruefen, gewerbereinigung regensburg angebot, bueroreinigung regensburg, reinigungsfirma duesseldorf preise.
+Messhinweis: Erst technische Effekte beobachten: GSC URL-Pruefung und Sitemap-Neueinreichung fuer die reaktivierten Regensburg-URLs. Danach 7 Tage Impressionen/Positionen pruefen; CTR erst nach 28 Tagen bewerten.
+
+### Erweiterung 2026-06-07 Runde 29
+
+Grund: Zweiter Search Console Screenshot vom 2026-06-07, Filter letzte 24 Stunden, sortiert nach Position. Mehrere URLs stehen rechnerisch auf Position 2 bis 10, aber meist nur mit 1 bis 3 Impressionen und 0 Klicks. Auffaellig sind alte Sprachpfade wie `/de/duesseldorf/`, `/bg/seniorenumzug-bayern`, `/ar/umzug-muenchen`, `/ru/blog/wohnungsaufloesung-was-tun` und `/bg/ratgeber/umzug-kosten-regensburg`.
+Umgesetzt: Legacy-Locale-Normalisierung erweitert und vereinheitlicht: `ar`, `fr`, `es`, `it`, `pl` und `uk` zusaetzlich zu `de`, `en`, `ru`, `bg`, `vi`, `tr`. Alte Sprachpraefixe werden per 308 auf die deutsche Root-URL konsolidiert. Canonical-Normalisierung in `lib/seo.ts` entsprechend erweitert. Manuelle Snippets fuer Startseite und `/duesseldorf` auf klicknaehere Suchbegriffe geschaerft.
+Betroffene Queries: floxant duesseldorf, reinigung duesseldorf, gewerbereinigung duesseldorf, umzug muenchen, seniorenumzug bayern, wohnungsaufloesung was tun, umzug kosten regensburg.
+Messhinweis: Sprachpraefix-URLs in GSC nicht als Zielseiten optimieren, sondern per URL-Pruefung die 308-Konsolidierung kontrollieren. Klickrate fuer Position-2/3-Zeilen erst bewerten, wenn pro URL mindestens ca. 30 bis 50 Impressionen im 7- oder 28-Tage-Fenster vorliegen.
+
 ## UTM-Regeln fuer Snippet- und Kampagnentests
 
 - SEO-Canonical bleibt immer auf der sauberen URL ohne UTM.

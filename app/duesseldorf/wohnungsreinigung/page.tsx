@@ -159,8 +159,8 @@ const wohnungsreinigungFaqItems = [
     a: "Ja, wenn Termin, Schlüsselzugang, Zustand, gewünschtes Ergebnis und Fotos rechtzeitig geklärt werden. Für starke Rückstände oder knappe Übergaben kann Endreinigung die passendere Einordnung sein.",
   },
   {
-    q: "Bietet FLOXANT in Düsseldorf Umzug an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT klar auf Reinigung und Entsorgung ausgerichtet. Umzug oder Transport werden dort nicht beworben.",
+    q: "Kann Wohnungsreinigung mit Umzug oder Entrümpelung kombiniert werden?",
+    a: "Ja, wenn Umfang, Termin und Zugang passen. Reinigung, Umzug, Entrümpelung und Entsorgung werden getrennt geprüft und über eigene Düsseldorfer Seiten sauber eingeordnet.",
   },
 ] as const;
 
@@ -170,6 +170,8 @@ const wohnungsreinigungRelatedLinks = [
   { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Möblierte Wohnung oder Apartment" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten oder Angebot prüfen" },
+  { href: "/duesseldorf/umzug", label: "Umzug Düsseldorf prüfen" },
+  { href: "/duesseldorf/entruempelung", label: "Entrümpelung Düsseldorf prüfen" },
   { href: "/duesseldorf/entsorgung", label: "Entsorgung separat klären" },
 ] as const;
 
@@ -194,7 +196,7 @@ export default function DuesseldorfWohnungsreinigungPage() {
           title: "Für Einzug, Auszug und Übergabe in Düsseldorf",
           paragraphs: [
             "Viele Kunden fragen an, weil eine Wohnung vor Übergabe, Neuvermietung oder Einzug wieder stimmig aussehen soll. Dann zählen Terminfenster, Schlüsselzugang, Parkmöglichkeit, Etage und ein realistisches Ergebnis stärker als ein pauschales Versprechen.",
-            "FLOXANT bleibt dabei klar bei Reinigung. Umzug und Transport werden in Düsseldorf nicht als Leistung beworben, damit die Anfrage sauber und verständlich bleibt.",
+            "Wenn Umzug, Entrümpelung oder Entsorgung dazugehört, wird das getrennt über die passenden Düsseldorfer Seiten eingeordnet. So bleibt die Wohnungsreinigung selbst verständlich und das Angebot nachvollziehbar.",
           ],
         },
       ]}

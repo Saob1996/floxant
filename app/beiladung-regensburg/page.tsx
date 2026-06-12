@@ -48,7 +48,7 @@ export default async function BeiladungRegensburgPage({ params }: PageProps) {
       highlightWord={resolveField(content.hero_h1_highlight, fallback.hero_h1_highlight, city, "de")}
       heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
       ctaText={resolveField(content.cta, fallback.cta, city, "de")}
-      heroImage="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop"
+      heroImage="/assets/service-moving.png"
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Umzug Regensburg", href: `/umzug-regensburg` },

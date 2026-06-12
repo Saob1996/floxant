@@ -191,9 +191,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung",
-    title: "Gewerbliche Reinigung für Hotels, Praxen, Kanzleien & Büros | FLOXANT",
+    title: "Gewerbliche Reinigung Düsseldorf | Hotel, Praxis, Büro | FLOXANT",
     description:
-      "FLOXANT bietet gewerbliche Reinigung für Hotels, Praxen, Kanzleien, Büros, Treppenhäuser und Objekte. Einmalig oder regelmäßig anfragen.",
+      "Gewerbliche Reinigung in Düsseldorf für Hotel, Praxis, Kanzlei, Büro, Treppenhaus und Objekt. Eckdaten, Fotos und Zeitfenster senden.",
     keywords: [
       "Gewerbliche Reinigung Düsseldorf",
       "Gewerbereinigung Düsseldorf",
@@ -216,7 +216,7 @@ export default function GewerbereinigungLandingPage() {
     path: pagePath,
     serviceType:
       "Gewerbliche Reinigung, Hotelreinigung, Praxisreinigung, Kanzleireinigung, Büroreinigung und Treppenhausreinigung",
-    areaServed: ["Düsseldorf", "Nordrhein-Westfalen", "Regensburg", "Oberpfalz", "Bayern"],
+    areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann", "Hilden"],
   });
 
   const webPageJsonLd = buildWebPageJsonLd({
@@ -261,8 +261,10 @@ export default function GewerbereinigungLandingPage() {
     },
     areaServed: [
       { "@type": "City", name: "Düsseldorf" },
-      { "@type": "AdministrativeArea", name: "Oberpfalz" },
-      { "@type": "State", name: "Bayern" },
+      { "@type": "City", name: "Neuss" },
+      { "@type": "City", name: "Ratingen" },
+      { "@type": "City", name: "Meerbusch" },
+      { "@type": "City", name: "Hilden" },
     ],
   };
 
@@ -300,7 +302,7 @@ export default function GewerbereinigungLandingPage() {
                 Gewerbliche Reinigung in Düsseldorf
               </p>
               <h1 className="text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-                Gewerbliche Reinigung für Hotels, Praxen, Kanzleien und Büros
+                Gewerbliche Reinigung in Düsseldorf für Hotel, Praxis, Kanzlei und Büro
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
                 FLOXANT übernimmt zuverlässige Reinigung für Betriebe, bei denen Sauberkeit direkt mit Vertrauen, Gästen, Patienten, Mandanten oder Mitarbeitenden verbunden ist.
@@ -332,7 +334,7 @@ export default function GewerbereinigungLandingPage() {
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-300/10 px-6 py-3 text-sm font-black text-emerald-100 transition hover:bg-emerald-300/15 focus:outline-none focus:ring-2 focus:ring-emerald-200"
                 >
                   <BadgeEuro className="h-4 w-4" aria-hidden="true" />
-                  Vielleicht geht es günstiger
+                  Angebot prüfen lassen
                 </Link>
               </div>
               <div className="mt-8 grid gap-3 text-sm text-slate-200 sm:grid-cols-3">
@@ -363,7 +365,7 @@ export default function GewerbereinigungLandingPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="rounded-2xl border border-white/15 bg-slate-950/80 p-5 backdrop-blur">
-                    <p className="text-sm font-semibold text-cyan-200">Düsseldorf und nach Absprache</p>
+                    <p className="text-sm font-semibold text-cyan-200">Düsseldorf und nahe Umgebung</p>
                     <p className="mt-2 text-2xl font-black">Hotel, Praxis, Kanzlei, Büro, Treppenhaus</p>
                     <p className="mt-2 text-sm leading-6 text-slate-200">
                       Sie schicken uns die Eckdaten. Wir sagen, was realistisch machbar ist.
@@ -560,7 +562,7 @@ export default function GewerbereinigungLandingPage() {
                 Wir prüfen, ob Umfang, Preis und Ablauf wirklich zusammenpassen
               </h2>
               <p className="mt-4 text-lg leading-8 text-slate-600">
-                Wenn Sie bereits ein Angebot einer anderen Firma haben, können Sie es FLOXANT zeigen. Wir schauen auf Fläche, Turnus, Leistungsumfang, Zugang, Zeitfenster und mögliche Zusatzkosten. Wenn wir es sauber und vielleicht günstiger übernehmen können, sagen wir das. Wenn nicht, sagen wir das auch.
+                Wenn Sie bereits ein Angebot einer anderen Firma haben, können Sie es FLOXANT zeigen. Wir schauen auf Fläche, Turnus, Leistungsumfang, Zugang, Zeitfenster und mögliche Zusatzkosten. Wenn eine klare Alternative möglich ist, sagen wir das. Wenn nicht, sagen wir das ebenfalls offen.
               </p>
             </div>
             <div className="grid gap-4">

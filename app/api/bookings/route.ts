@@ -542,7 +542,20 @@ function buildOfferCheckDetails(
    payloadText(payload, "leadSource") === "platform_order_check" ||
    platformSituation.length > 0);
  const leadSource = isCheaperAlternative ? "cheaper_alternative" : isRedFlagScanner ? "red_flag_scanner" : isPlatformOrder ? "platform_order_check" : "offer_check";
- const entryPoint = isCheaperAlternative ? "/angebot-guenstiger-pruefen" : isPlatformOrder ? "/plattform-auftrag-pruefen" : "/angebotscheck";
+ const explicitEntryPoint = payloadText(payload, "entryPoint");
+ const landingPagePath = (() => {
+  const landingPage = payloadText(payload, "landingPage");
+  if (!landingPage) return "";
+  try {
+   return new URL(landingPage, "https://www.floxant.de").pathname;
+  } catch {
+   return "";
+  }
+ })();
+ const entryPoint =
+  explicitEntryPoint ||
+  landingPagePath ||
+  (isCheaperAlternative ? "/angebot-guenstiger-pruefen" : isPlatformOrder ? "/plattform-auftrag-pruefen" : "/angebotscheck");
  const sourceComponentValue = sourceComponent || (isCheaperAlternative ? "cheaper_alternative_page" : isRedFlagScanner ? "red_flag_scanner" : isPlatformOrder ? "platform_order_page" : "offer_check_form");
  const storedLeadSubtype = isCheaperAlternative ? "cheaper_alternative" : isRedFlagScanner ? "red_flag_scanner" : isPlatformOrder ? "plattform_auftrag" : leadSubtype;
 
@@ -2011,7 +2024,7 @@ function buildDuesseldorfB2BCleaningDetails(
    customerBudget: budget,
    priceSuggestion: budget,
    priceExplanation:
-    "Duesseldorf-B2B-Reinigung: Preis und Machbarkeit werden nach Objektart, Flaeche, Frequenz, Zeitfenster, Zugang, Fotos und gewuenschter Leistung geprueft. Keine medizinische Spezialdesinfektion, keine 24/7- oder Kapazitaetsgarantie und keine Umzugspositionierung fuer Duesseldorf.",
+    "Duesseldorf-B2B-Reinigung: Preis und Machbarkeit werden nach Objektart, Flaeche, Frequenz, Zeitfenster, Zugang, Fotos und gewuenschter Leistung geprueft. Keine medizinische Spezialdesinfektion, keine 24/7- oder Kapazitaetsgarantie; Umzug laeuft ueber /duesseldorf/umzug.",
    pricingSignals: {
     inquiryMode: "duesseldorf_b2b_cleaning",
     leadType: "duesseldorf_reinigung",
@@ -2088,7 +2101,7 @@ function buildDuesseldorfB2BCleaningDetails(
    customerMessage,
    scopeSummary: customerMessage,
    legalNote:
-    "Duesseldorf ist fuer FLOXANT Reinigung und Entsorgung. Diese Anfrage betrifft B2B-Reinigung fuer kleine Unternehmen nach Absprache; keine medizinische Spezialreinigung, keine Hygienezertifizierung, keine 24/7-Zusage und keine Umzuege in Duesseldorf.",
+    "Duesseldorf hat bei FLOXANT eigene Servicepfade. Diese Anfrage betrifft B2B-Reinigung fuer kleine Unternehmen nach Absprache; keine medizinische Spezialreinigung, keine Hygienezertifizierung und keine 24/7-Zusage.",
   },
   metadata: {
    createdAt,
@@ -2295,7 +2308,7 @@ function buildDuesseldorfApartmentCleaningDetails(
    customerMessage,
    scopeSummary: customerMessage,
    legalNote:
-    "Reinigung fuer moeblierte Wohnungen in Duesseldorf nach Absprache; keine Airbnb-Partnerschaft, keine Hotelstandard-Garantie, keine Umzugspositionierung fuer Duesseldorf, keine Schluessel-/Waesche-/Inventar-Garantie.",
+    "Reinigung fuer moeblierte Wohnungen in Duesseldorf nach Absprache; keine Airbnb-Partnerschaft, keine Hotelstandard-Garantie, Umzug separat ueber /duesseldorf/umzug, keine Schluessel-/Waesche-/Inventar-Garantie.",
   },
   metadata: {
    createdAt,

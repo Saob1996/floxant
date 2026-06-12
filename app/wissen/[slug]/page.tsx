@@ -5,6 +5,17 @@ import { generateCityContent } from "@/lib/content-engine";
 import { generateSemanticLinks } from "@/lib/internal-linking";
 import { generatePageSEO } from "@/lib/seo";
 
+const STATIC_KNOWLEDGE_SERVICES = ["umzug", "reinigung", "entruempelung"] as const;
+const STATIC_KNOWLEDGE_CITIES = ["regensburg", "muenchen", "nuernberg", "duesseldorf"] as const;
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return STATIC_KNOWLEDGE_SERVICES.flatMap((service) =>
+    STATIC_KNOWLEDGE_CITIES.map((city) => ({ slug: `${service}-${city}` })),
+  );
+}
+
 export async function generateMetadata({
   params,
 }: {

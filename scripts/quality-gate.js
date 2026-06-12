@@ -563,7 +563,7 @@ function runDominanceCheck() {
       "Regensburg",
       "Düsseldorf",
       "Angebot anderer Firma prüfen",
-      "keine Düsseldorf-Umzüge",
+      "Düsseldorf mit eigenen Servicepfaden",
       "keine Preisgarantie",
     ])
   ) {
@@ -596,7 +596,7 @@ function runDominanceCheck() {
     failures.push("LocalBusiness JSON-LD lacks recommended local dominance properties");
   }
 
-  if (!fileContains(searchDominancePath, ["SearchDominanceExperience", "Google, Maps & klare Antworten", "Angebot hochladen", "Düsseldorf ohne Umzugs-Signal", "Suchergebnis-Vorschau", "Kurzantwort für Kunden", "Stärken im Vergleich", "Klick-Gründe im Suchergebnis", "Direkte Wege", "flox-dominance-panel", "Nach dem Klick sofort handlungsfähig", "flox-search-action-strip", "Maps, Vertrauen und schnelle Entscheidung", "flox-local-trust-deck"])) {
+  if (!fileContains(searchDominancePath, ["SearchDominanceExperience", "Google, Maps & klare Antworten", "Angebot hochladen", "Düsseldorf mit eigenen Servicepfaden", "Suchergebnis-Vorschau", "Kurzantwort für Kunden", "Stärken im Vergleich", "Klick-Gründe im Suchergebnis", "Direkte Wege", "flox-dominance-panel", "Nach dem Klick sofort handlungsfähig", "flox-search-action-strip", "Maps, Vertrauen und schnelle Entscheidung", "flox-local-trust-deck"])) {
     failures.push("Search dominance experience component is missing visible conversion and AI/search signals");
   }
 

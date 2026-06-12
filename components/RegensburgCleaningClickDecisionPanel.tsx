@@ -19,26 +19,26 @@ const decisionRows: Array<{
   checks: string[];
 }> = [
   {
-    signal: "Preis oder Kosten",
-    title: "Kosten erst einordnen, dann Angebot",
-    text: "Wer nach Reinigung Kosten Regensburg sucht, braucht keine Fantasie-Zahl. Wichtig sind Fläche, Zustand, Fotos, Turnus und Zeitfenster.",
+    signal: "Budget klären",
+    title: "Erst Eckdaten senden, dann realistisch entscheiden",
+    text: "Für eine brauchbare Rückmeldung reichen Quadratmeter allein nicht aus. Wichtig sind Fläche, Zustand, Fotos, Turnus, Zugang und Zeitfenster.",
     href: "/gewerbereinigung-regensburg#kontaktformular",
-    cta: "Anfrage vorbereiten",
+    cta: "Eckdaten senden",
     Icon: FileText,
     checks: ["m² und Objektart", "Fotos vom Zustand", "Turnus oder Anlass"],
   },
   {
-    signal: "Laufende Reinigung",
+    signal: "Regelmäßig sauber",
     title: "Für Büro, Praxis, Kanzlei und Objektbetrieb",
-    text: "Wenn Reinigung regelmäßig laufen soll, führt die Unterhaltsreinigung schneller zum passenden Reinigungsplan.",
+    text: "Wenn Reinigung regelmäßig laufen soll, braucht FLOXANT Raumliste, Turnus, Randzeiten, Zugang und Ansprechpartner.",
     href: "/unterhaltsreinigung-regensburg",
     cta: "Turnus wählen",
     Icon: ClipboardCheck,
     checks: ["Frequenz", "Leistungsverzeichnis", "Randzeiten"],
   },
   {
-    signal: "Einzug, Auszug, Leerstand",
-    title: "Starke Verschmutzung ehrlich prüfen",
+    signal: "Auszug oder Leerstand",
+    title: "Zustand ehrlich prüfen",
     text: "Bei Küche, Bad, Böden, Leerstand oder Übergabe entscheidet der reale Zustand. Fotos sparen Rückfragen und falsche Erwartungen.",
     href: "/grundreinigung-regensburg",
     cta: "Grundreinigung öffnen",
@@ -46,9 +46,9 @@ const decisionRows: Array<{
     checks: ["Zustand", "Deadline", "Schwerpunkte"],
   },
   {
-    signal: "Besondere Situation",
-    title: "Fenster, Teppich, Bau oder Treppenhaus direkt wählen",
-    text: "Spezielle Suchbegriffe brauchen spezielle Angaben: Fensterzahl, Material, Bauphase, Etagen oder Zugang.",
+    signal: "Spezialfall",
+    title: "Fenster, Teppich, Bau oder Treppenhaus einordnen",
+    text: "Besondere Reinigungen brauchen konkrete Angaben: Fensterzahl, Material, Bauphase, Etagen, Zugang und gewünschter Zeitpunkt.",
     href: "#reinigungsservice-regensburg",
     cta: "Service finden",
     Icon: Sparkles,
@@ -57,9 +57,9 @@ const decisionRows: Array<{
 ];
 
 const snippetLines = [
-  "Putzfirma Regensburg gesucht: FLOXANT fragt Fläche, Zustand, Fotos und Termin ab, bevor ein seriöses Angebot entsteht.",
-  "Büroreinigung Regensburg: Arbeitsplätze, Küche, Sanitär, Empfang und Randzeiten sauber abstimmen.",
-  "Fenster, Teppich, Bau oder Treppenhaus: passende Reinigungsart direkt wählen statt allgemeine Anfrage verlieren.",
+  "Für Reinigung in Regensburg helfen Fläche, Zustand, Fotos und Termin vor der ersten Rückmeldung.",
+  "Bei Büroreinigung werden Arbeitsplätze, Küche, Sanitär, Empfang und Randzeiten getrennt betrachtet.",
+  "Fenster, Teppich, Bau oder Treppenhaus sollten klar benannt werden, damit Umfang und Material verständlich bleiben.",
 ];
 
 export function RegensburgCleaningClickDecisionPanel() {
@@ -73,11 +73,11 @@ export function RegensburgCleaningClickDecisionPanel() {
               Richtige Anfrage
             </div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
-              Schneller zur richtigen Reinigungsanfrage in Regensburg.
+              Welche Reinigung passt zu Ihrer Situation?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Mehr Anfragen entstehen, wenn Kunden ihre Situation sofort wiederfinden:
-              Kosten, laufende Reinigung, Auszug, Fenster, Teppich, Baustaub oder Treppenhaus.
+              Die passende Reinigung wird schneller klar, wenn Ihre Situation direkt sichtbar ist:
+              laufende Reinigung, Auszug, Fenster, Teppich, Baustaub, Treppenhaus oder Übergabe.
             </p>
 
             <div className="mt-6 grid gap-3">
@@ -89,12 +89,12 @@ export function RegensburgCleaningClickDecisionPanel() {
             </div>
           </article>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:pr-40 2xl:pr-44">
+          <div className="grid min-w-0 gap-4 md:grid-cols-2">
             {decisionRows.map((item) => {
               const Icon = item.Icon;
 
               return (
-                <article key={item.signal} className="flox-panel rounded-[1.5rem] p-5">
+                <article key={item.signal} className="flox-panel min-w-0 rounded-[1rem] p-5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.9rem] bg-emerald-50 text-emerald-700">
                       <Icon className="h-5 w-5" />

@@ -397,6 +397,7 @@ const documentRows: Array<{
   label: string;
   action: string;
 }> = [
+  { type: "inquiry_summary", label: "Prüfbericht Angebotsprüfung", action: "Erstellen" },
   { type: "quote", label: "Angebot", action: "Erstellen" },
   { type: "order_confirmation", label: "Auftragsbestätigung", action: "Erstellen" },
   { type: "invoice", label: "Rechnung", action: "Erstellen" },
@@ -427,6 +428,7 @@ const STATUS_OPTIONS = [
   { value: "rueckfrage_noetig", label: "Rückfrage nötig" },
   { value: "angebot_pruefen", label: "Angebot prüfen" },
   { value: "alternative_einschaetzung_moeglich", label: "Alternative Einschätzung möglich" },
+  { value: "alternative_moeglich", label: "Alternative möglich" },
   { value: "strecke_pruefen", label: "Strecke prüfen" },
   { value: "passende_tour_moeglich", label: "Passende Tour möglich" },
   { value: "keine_passende_tour_aktuell", label: "Keine passende Tour aktuell" },
@@ -451,6 +453,7 @@ const STATUS_OPTIONS = [
   { value: "kapazitaet_pruefen", label: "Kapazität prüfen" },
   { value: "machbar", label: "Machbar" },
   { value: "nicht_machbar", label: "Nicht machbar" },
+  { value: "nicht_passend", label: "Nicht passend" },
   { value: "umfang_pruefen", label: "Umfang prüfen" },
   { value: "fotos_noetig", label: "Fotos nötig" },
   { value: "freigabe_klaeren", label: "Freigabe klären" },
@@ -719,7 +722,7 @@ function getStatusTone(status: string) {
   if (status === "nicht_bonusberechtigt") return "border-red-200 bg-red-50 text-red-700";
   if (status === "sofort_pruefen" || status === "kapazitaet_pruefen") return "border-red-200 bg-red-50 text-red-700";
   if (status === "rueckfrage_noetig") return "border-amber-200 bg-amber-50 text-amber-700";
-  if (status === "alternative_einschaetzung_moeglich" || status === "scanner_ergebnis_pruefen" || status === "angebot_pruefen") return "border-violet-200 bg-violet-50 text-violet-700";
+  if (status === "alternative_einschaetzung_moeglich" || status === "alternative_moeglich" || status === "scanner_ergebnis_pruefen" || status === "angebot_pruefen") return "border-violet-200 bg-violet-50 text-violet-700";
   if (status === "angebot_erstellt" || status === "angebot") return "border-indigo-200 bg-indigo-50 text-indigo-700";
   if (status === "angebot_versendet") return "border-cyan-200 bg-cyan-50 text-cyan-700";
   if (status === "angenommen" || status === "gewonnen" || status === "erledigt" || status === "abgeschlossen" || status === "active" || status === "machbar") {
@@ -729,7 +732,7 @@ function getStatusTone(status: string) {
   if (status === "terminfenster_pruefen" || status === "zusatzleistungen_klaeren" || status === "flaeche_frequenz_klaeren") return "border-cyan-200 bg-cyan-50 text-cyan-700";
   if (status === "einmalauftrag" || status === "wiederkehrender_auftrag_moeglich" || status === "regelmaessiger_auftrag_moeglich") return "border-teal-200 bg-teal-50 text-teal-700";
   if (status === "freigabe_klaeren" || status === "problemstoffe_klaeren" || status === "angebot_vorbereiten") return "border-amber-200 bg-amber-50 text-amber-700";
-  if (status === "nicht_machbar") return "border-slate-200 bg-slate-50 text-slate-600";
+  if (status === "nicht_machbar" || status === "nicht_passend") return "border-slate-200 bg-slate-50 text-slate-600";
   if (status === "paused" || status === "draft") {
     return "border-amber-200 bg-amber-50 text-amber-700";
   }
@@ -814,6 +817,8 @@ function getSourceLabel(booking: Booking) {
     route_board: "Rückfahrt-Börse",
     rueckfahrt_boerse: "Rückfahrt-Börse",
     offer_check: "Angebotscheck",
+    offer_check_product: "FLOXANT Angebotsprüfung",
+    floxant_angebotspruefung_product: "FLOXANT Angebotsprüfung",
     cheaper_alternative: "Günstiger prüfen",
     cheaper_alternative_page: "Günstiger prüfen",
     angebot_guenstiger_pruefen: "Günstiger prüfen",

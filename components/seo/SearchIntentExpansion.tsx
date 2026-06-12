@@ -25,31 +25,52 @@ export function SearchIntentExpansion({
   className,
 }: SearchIntentExpansionProps) {
   const profile = buildSearchIntentProfile({ route, city, serviceName, market, relatedLinks });
+  const localLabel = `${profile.serviceName} in ${profile.city}`;
 
   const groups = [
     {
-      title: "Direkte Suche",
-      text: "Kurze Begriffe helfen beim Einstieg. Danach braucht der Auftrag aber Kontext, damit die Anfrage wirklich passt.",
+      title: "Anliegen kurz schildern",
+      text: "Sie müssen nicht wissen, wie die Leistung fachlich heißt. Beschreiben Sie einfach, was vor Ort passieren soll und bis wann eine Rückmeldung hilft.",
       Icon: SearchCheck,
-      items: profile.shortTail,
+      items: [
+        `${localLabel} unverbindlich anfragen`,
+        "Ort oder PLZ nennen",
+        "Objekt und gewünschtes Ergebnis beschreiben",
+        "Termin, Deadline oder Rückrufwunsch angeben",
+      ],
     },
     {
-      title: "Konkrete Situationen",
-      text: "Diese längeren Anfragen sind näher an einer echten Entscheidung und führen schneller zum passenden Kontaktweg.",
+      title: "Aus welchem Anlass?",
+      text: "Oft beginnt die Anfrage mit einem konkreten Moment: Auszug, Übergabe, Terminnot, Leerstand, laufende Reinigung oder einem Angebot, das geprüft werden soll.",
       Icon: ListChecks,
-      items: profile.longTail,
+      items: [
+        "Auszug, Übergabe oder Mieterwechsel vorbereiten",
+        "laufende Reinigung oder einmalige Hilfe anfragen",
+        "kurzfristigen Termin auf Machbarkeit prüfen lassen",
+        "vorhandenes Angebot sachlich prüfen lassen",
+      ],
     },
     {
-      title: "Lokale Auslöser",
-      text: "Ort, Zugang und Umgebung verändern den Aufwand oft stärker als die reine Leistungsbezeichnung.",
+      title: "Ort, Zugang und Fotos",
+      text: "Adresse, Etage, Laufweg, Parken, Schlüsselweg und Zeitfenster entscheiden oft darüber, ob ein Einsatz sinnvoll geplant werden kann.",
       Icon: MapPin,
-      items: profile.localTriggers,
+      items: [
+        "Stadtteil, Straße oder PLZ senden",
+        "Etage, Aufzug, Laufweg und Parken nennen",
+        "Zugang, Schlüsselweg oder Ansprechpartner klären",
+        "Fotos von Räumen, Böden, Treppenhaus oder Restmengen ergänzen",
+      ],
     },
     {
-      title: "Preis und Aufwand",
-      text: "Ein realistischer Rahmen entsteht erst, wenn die wichtigsten Kostentreiber gemeinsam betrachtet werden.",
+      title: "Budget oder Angebot",
+      text: "Ein Preisrahmen wird erst hilfreich, wenn Umfang, Zustand, Zugang, Termin und gewünschtes Ergebnis zusammen betrachtet werden.",
       Icon: Banknote,
-      items: profile.priceSignals,
+      items: [
+        "Fläche, Räume, Volumen oder Menge grob angeben",
+        "Zustand und besondere Stellen ehrlich beschreiben",
+        "Budgetrahmen optional nennen",
+        "vorhandenes Angebot als Foto, PDF oder Text senden",
+      ],
     },
   ];
 
@@ -62,7 +83,7 @@ export function SearchIntentExpansion({
               <SearchCheck className="h-4 w-4" />
               {profile.eyebrow}
             </div>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.65rem)] font-bold tracking-tight text-slate-950">
+            <h2 className="mt-5 text-3xl font-bold tracking-normal text-slate-950 md:text-5xl">
               {profile.title}
             </h2>
           </div>
@@ -77,7 +98,7 @@ export function SearchIntentExpansion({
             return (
               <article
                 key={group.title}
-                className="flex min-h-[25rem] flex-col rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-[0_20px_56px_rgba(15,23,42,0.07)]"
+                className="flex min-h-[22rem] min-w-0 flex-col rounded-[1rem] border border-slate-200 bg-white p-6 shadow-[0_20px_56px_rgba(15,23,42,0.07)]"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] border border-blue-100 bg-blue-50 text-blue-700">
                   <Icon className="h-5 w-5" />
@@ -101,8 +122,8 @@ export function SearchIntentExpansion({
 
         <div className="mt-5 grid gap-4 rounded-[1.8rem] border border-blue-100 bg-[linear-gradient(135deg,#eff6ff,#ffffff)] p-5 shadow-sm shadow-slate-950/5 md:grid-cols-1 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
           <p className="max-w-3xl text-sm leading-7 text-slate-700">
-            Am schnellsten finden Sie den richtigen Weg, wenn die Seite direkt zu Ihrem Anliegen
-            passt: Anfrage senden, Preisrahmen nennen, Angebot prüfen oder Kontakt aufnehmen.
+            Am schnellsten wird es klar, wenn Sie den Weg wählen, der gerade zu Ihrer Situation
+            passt: Anfrage senden, Budget nennen, Angebot prüfen oder Fotos per WhatsApp schicken.
           </p>
           <div className="flex flex-wrap gap-2 xl:justify-end">
             {profile.links.map((link) => (

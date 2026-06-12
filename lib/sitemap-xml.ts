@@ -38,19 +38,6 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "angebot-red-flag-scanner",
   "villenservice",
   "umzug-duesseldorf",
-  "reinigung-regensburg",
-  "gewerbereinigung-regensburg",
-  "bueroreinigung-regensburg",
-  "praxisreinigung-regensburg",
-  "hotelreinigung-regensburg",
-  "fensterreinigung-regensburg",
-  "baureinigung-regensburg",
-  "teppichreinigung-regensburg",
-  "treppenhausreinigung-regensburg",
-  "unterhaltsreinigung-regensburg",
-  "grundreinigung-regensburg",
-  "endreinigung-regensburg",
-  "umzug-reinigung-regensburg",
   "seo-gone",
 ]);
 
@@ -69,6 +56,12 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
   "entruempelung",
   "wohnungsaufloesung",
 ] as const;
+
+const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set([
+  "duesseldorf/umzug",
+  "duesseldorf/entruempelung",
+  "duesseldorf/haushaltsaufloesung",
+]);
 
 const NON_SEO_PUBLIC_ROUTES = new Set([
   "impressum",
@@ -197,6 +190,7 @@ function shouldSkipSitemapRoute(route: string): boolean {
 function isForbiddenDuesseldorfMovingRoute(route: string): boolean {
   const normalizedRoute = route.toLowerCase();
   if (!normalizedRoute.includes("duesseldorf")) return false;
+  if (DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(normalizedRoute)) return false;
 
   return DUESSELDORF_FORBIDDEN_SERVICE_TERMS.some((term) => normalizedRoute.includes(term));
 }
@@ -259,6 +253,7 @@ function appRouteExists(route: string): boolean {
 
 function priorityForRoute(route: string): string {
   if (!route) return "1.0";
+  if (DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(route)) return "0.9";
   if (route === "service-graph.json") return "0.82";
   if (route === "llms.txt") return "0.82";
   if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
@@ -523,7 +518,7 @@ ${uniqueUrls
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
-      "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
+      "Cache-Control": "public, max-age=86400",
       "X-Content-Type-Options": "nosniff",
       "X-Robots-Tag": "index, follow",
     },

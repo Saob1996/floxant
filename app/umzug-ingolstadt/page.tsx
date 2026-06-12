@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
@@ -83,6 +84,71 @@ export default async function UmzugIngolstadtPage({ params }: PageProps) {
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <GscOpportunitySection
+                    eyebrow="Umzug Ingolstadt"
+                    title="Umzug in Ingolstadt mit Strecke, Zugang und Budget sauber vorbereiten."
+                    intro="Bei einem Umzug in Ingolstadt geht es nicht nur um Kartons. Entscheidend sind Start, Ziel, Etage, Laufweg, Haltezone, Möbelmenge, Termin und ob Reinigung, Entsorgung oder Übergabe danach mitgedacht werden müssen."
+                    proofTitle="Wichtig für Ingolstadt"
+                    proofItems={[
+                        "Für Altbau, Innenstadtlage, enge Zufahrt oder längere Strecke zählen Fotos von Treppenhaus, Eingang und Möbeln.",
+                        "Ein Budget hilft, wenn gleichzeitig Volumen, Etagen, Laufwege und Zusatzleistungen ehrlich beschrieben werden.",
+                        "Wenn ein vorhandenes Angebot vorliegt, können Umfang, Festpreislogik und offene Zusatzkosten sachlich geprüft werden.",
+                    ]}
+                    cards={[
+                        {
+                            title: "Privatumzug oder Wohnungswechsel",
+                            text: "Start, Ziel, Möbelmenge, Kartons, Etagen, Aufzug und Termin reichen für eine erste Prüfung.",
+                            href: "/buchung?service=umzug&city=ingolstadt#buchungssystem",
+                            cta: "Umzug anfragen",
+                        },
+                        {
+                            title: "Umzug mit Reinigung",
+                            text: "Wenn die alte Wohnung übergeben werden muss, sollten Endreinigung, Restmengen und Schlüsseltermin direkt mitgedacht werden.",
+                            href: "/umzug-mit-reinigung",
+                            cta: "Kombi prüfen",
+                        },
+                        {
+                            title: "Angebot oder Festpreis prüfen",
+                            text: "Ein Preis ist nur belastbar, wenn Volumen, Laufwege, Zusatzleistungen und Termin wirklich enthalten sind.",
+                            href: "/angebot-guenstiger-pruefen",
+                            cta: "Angebot prüfen",
+                        },
+                    ]}
+                    checklistTitle="Für eine schnelle Rückmeldung"
+                    checklist={[
+                        "Startadresse, Zieladresse, Etagen, Aufzug, Laufweg, Haltezone und Terminwunsch.",
+                        "Fotos von großen Möbeln, Treppenhaus, Hauseingang, Keller und schwierigen Stellen.",
+                        "Grobe Kartonzahl, Abbauwünsche, empfindliche Gegenstände und mögliche Entsorgung.",
+                        "Ob danach Reinigung, Übergabe, Einlagerung oder Rückfahrt eine Rolle spielt.",
+                    ]}
+                    combinationsTitle="Häufig zusammen angefragt"
+                    combinations={[
+                        {
+                            title: "Umzug + Endreinigung",
+                            text: "Für Auszug, Übergabe und Vermietertermin nach dem Transport.",
+                            href: "/umzug-mit-reinigung",
+                        },
+                        {
+                            title: "Umzug + Entsorgung",
+                            text: "Für alte Möbel, Kellerreste oder Dinge, die nicht mit in die neue Wohnung sollen.",
+                            href: "/firmenentsorgung",
+                        },
+                        {
+                            title: "Seniorenumzug",
+                            text: "Für Angehörige mit ruhiger Abstimmung, Packhilfe und klarer Freigabe.",
+                            href: "/seniorenumzug-bayern",
+                        },
+                        {
+                            title: "Budget nennen",
+                            text: "Wenn ein Preisrahmen wichtig ist, helfen Fotos und ehrliche Eckdaten.",
+                            href: "/anfrage-mit-preisrahmen",
+                        },
+                    ]}
+                    primaryHref="/buchung?service=umzug&city=ingolstadt#buchungssystem"
+                    primaryLabel="Umzug Ingolstadt anfragen"
+                    secondaryHref="/anfrage-mit-preisrahmen"
+                    secondaryLabel="Budget nennen"
+                />
                 <LocalSeoSearchIntentBridge
                     service="umzug"
                     city={city}

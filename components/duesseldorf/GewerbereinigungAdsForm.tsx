@@ -37,37 +37,12 @@ function getQueryValue(key: string) {
 }
 
 function reportSuccessfulFormSubmit(mode: Mode) {
-  const payload = {
+  window.dataLayer?.push({
     event: "form_submit",
-    source: "duesseldorf_gewerbereinigung_ads_form",
-    channel: "form",
-    label: mode === "quick" ? "Schnellanfrage erfolgreich" : "Detaillierte Anfrage erfolgreich",
-    path: window.location.pathname,
-    search: window.location.search,
-    referrer: document.referrer,
-    timestamp: Date.now(),
-    dataset: {
-      event: "form_submit",
-      source: "duesseldorf_gewerbereinigung_ads_form",
-      channel: "form",
-      priority: "hot",
-      intent: "duesseldorf_commercial_cleaning",
-    },
-  };
-
-  const body = JSON.stringify(payload);
-
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon("/api/conversion-events", new Blob([body], { type: "application/json" }));
-    return;
-  }
-
-  fetch("/api/conversion-events", {
-    method: "POST",
-    body,
-    headers: { "Content-Type": "application/json" },
-    keepalive: true,
-  }).catch(() => {});
+    event_category: "duesseldorf_gewerbereinigung_ads_form",
+    event_label: mode === "quick" ? "Schnellanfrage erfolgreich" : "Detaillierte Anfrage erfolgreich",
+    page_path: window.location.pathname,
+  });
 }
 
 export function GewerbereinigungAdsForm() {

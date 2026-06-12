@@ -9,21 +9,17 @@ import UtmCapture from "@/components/UtmCapture";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ConversionEventReporter } from "@/components/ConversionEventReporter";
 import { GoogleAdsTag } from "@/components/GoogleAdsTag";
-import { WebVitalsReporter } from "@/components/WebVitalsReporter";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 
 export { viewport };
-
-export const runtime = "nodejs";
-export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "",
-    title: "FLOXANT | Düsseldorf Reinigung und Regensburg Umzug & Übergabe",
+    title: "FLOXANT | Umzug, Reinigung & Entrümpelung lokal prüfen",
     description:
-      "FLOXANT trennt klar nach Region: Düsseldorf für Gewerbe-, Büro- und Praxisreinigung. Regensburg für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
+      "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
   });
 }
 
@@ -43,7 +39,6 @@ export default async function RootLayout({
           Direkt zum Inhalt springen
         </a>
         <MotionProvider>
-          <WebVitalsReporter />
           <GoogleAdsTag />
           <ConversionEventReporter />
           <UtmCapture />

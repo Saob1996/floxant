@@ -32,7 +32,6 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 
-export const revalidate = 3600;
 
 const pagePath = "/fensterreinigung-regensburg";
 
@@ -227,7 +226,7 @@ export default function FensterreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Fensterreinigung Regensburg für Glasflächen, Rahmen, Büro, Praxis und Objekt",
         description:
-          "Kundennaher Einstieg für Fensterreinigung in Regensburg mit Suchbegriffen, Kostenfaktoren, Anfragecheckliste, FAQ, Grenzen und direktem Formular.",
+          "Kundennaher Einstieg für Fensterreinigung in Regensburg mit Kostenfaktoren, Anfragecheckliste, FAQ, Grenzen und direktem Formular.",
         path: pagePath,
         about: [
           "Fensterreinigung Regensburg",
@@ -245,7 +244,7 @@ export default function FensterreinigungRegensburgPage() {
       }),
       {
         "@type": "ItemList",
-        name: "Kundensuchen zur Fensterreinigung Regensburg",
+        name: "Typische Anliegen zur Fensterreinigung Regensburg",
         itemListElement: customerIntents.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -302,7 +301,7 @@ export default function FensterreinigungRegensburgPage() {
                 className="mt-6 flex flex-wrap gap-2"
               >
                 {[
-                  ["Kundensuchen", "#kunden-suchen"],
+                  ["Anliegen", "#kunden-suchen"],
                   ["Leistungen", "#leistungen"],
                   ["Kostenfaktoren", "#kostenfaktoren"],
                   ["Checkliste", "#anfrage-checkliste"],
@@ -327,7 +326,7 @@ export default function FensterreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                src="https://images.unsplash.com/photo-1763026227930-ec2c91d4e7f2?q=80&w=1600&auto=format&fit=crop"
+                  src="/assets/service-cleaning.png"
                 alt="Fenster- und Schaufensterreinigung mit Abzieher als Beispiel für Regensburg"
                 fill
                 priority
@@ -366,16 +365,14 @@ export default function FensterreinigungRegensburgPage() {
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">
           <div className="max-w-3xl">
-            <div className="flox-kicker">Kundensuchen</div>
+            <div className="flox-kicker">Typische Anliegen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kunden wollen schnell wissen: passt das zu meinen Fenstern?
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              Viele Kunden suchen nicht nur nach Reinigungsfirma. Sie schreiben
-              konkrete Wörter wie Fenster putzen lassen, Glasreinigung Büro,
-              Schaufensterreinigung, Rahmen reinigen oder Fensterreinigung Kosten
-              in Regensburg. Glasreinigung Regensburg ist dabei besonders wichtig,
-              wenn Büro, Praxis, Hotel oder Schaufenster sauber wirken sollen.
+              Entscheidend sind Fensterzahl, Glasflächen, Rahmen, Etage, Zugang und
+              Sichtbarkeit. Für Büro, Praxis, Hotel oder Schaufenster zählt außerdem,
+              wann gereinigt werden kann, ohne den Betrieb zu stören.
             </p>
           </div>
 
@@ -494,7 +491,7 @@ export default function FensterreinigungRegensburgPage() {
       <section className="flox-section pt-0">
         <div className="flox-shell grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="flox-panel rounded-[2rem] px-6 py-7 md:px-8 md:py-8">
-            <div className="flox-kicker">Haeufige Fragen</div>
+            <div className="flox-kicker">Häufige Fragen</div>
             <h2 className="mt-6 flox-title-lg text-slate-950">
               Kurze Antworten, damit Umfang und Termin schneller klar werden.
             </h2>
@@ -534,7 +531,7 @@ export default function FensterreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Glasreinigung.
+                  Weitere passende Leistungen für Glasreinigung in Regensburg.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

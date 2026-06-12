@@ -19,7 +19,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "building",
     intro: "Für Büros, Kanzleien, Agenturen und Verwaltungsflächen mit regelmäßigem Ablauf.",
     clickHook: "Kunden sehen sofort: saubere Arbeitsplätze, Empfang, Küche und Sanitär ohne Störung im Tagesbetrieb.",
-    customerWords: ["Büroreinigung Regensburg", "Büroreinigung Angebot", "Büro reinigen lassen", "Reinigungskraft Büro", "Reinigung Firmen"],
+    customerWords: ["Arbeitsplätze", "Küche und Sanitär", "Empfang", "Randzeiten", "regelmäßiger Turnus"],
     goodFor: "Arbeitsplätze, Küche, Sanitär, Meetingräume, Empfang und Flure.",
     askFor: ["m² und Raumliste", "Turnus", "Randzeiten"],
     cta: "Büroreinigung prüfen",
@@ -31,7 +31,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "stethoscope",
     intro: "Für Praxisräume, Empfang, Wartebereich, Personalflächen und Nebenräume.",
     clickHook: "Patienten und Team merken zuerst Empfang, Wartebereich und Sanitär. Genau diese Flächen werden sauber abgegrenzt.",
-    customerWords: ["Praxisreinigung Regensburg", "Arztpraxis Reinigung", "Praxisreinigung Angebot", "Reinigung Praxisräume"],
+    customerWords: ["Empfang", "Wartebereich", "behandlungsnahe Räume", "Personalbereich"],
     goodFor: "Planbare Praxisflächen ohne pauschale Spezialdesinfektions-Zusage.",
     askFor: ["Praxisart", "Öffnungszeiten", "Hygienebereiche"],
     cta: "Praxisreinigung anfragen",
@@ -43,7 +43,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "hotel",
     intro: "Für Hotels, Pensionen, Boardinghouses, Lobby, Flure und Gästezonen.",
     clickHook: "Für Gäste zählt der erste Eindruck in Lobby, Flur und Zimmernähe. Der Ablauf richtet sich nach Check-out und Betrieb.",
-    customerWords: ["Hotelreinigung", "Hotelreinigung Regensburg", "Hotel Reinigung Firma", "Zimmerreinigung", "Pension Reinigung"],
+    customerWords: ["Lobby", "Flure", "zimmernahe Bereiche", "Check-out-Zeiten", "Gästezonen"],
     goodFor: "Zimmernahe Abläufe, Allgemeinflächen und klare Check-out-Zeitfenster.",
     askFor: ["Zimmerzahl", "Turnus", "Check-out-Zeiten"],
     cta: "Hotelreinigung klären",
@@ -55,7 +55,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "window",
     intro: "Für Fenster, Glasflächen, Schaufenster und sichtbare Kundenbereiche.",
     clickHook: "Klare Glasflächen machen Räume heller und Schaufenster sichtbarer. Etage, Zugang und Rahmenwunsch werden vorher geklärt.",
-    customerWords: ["Glasreinigung", "Fenster putzen lassen", "Schaufensterreinigung"],
+    customerWords: ["Fensterzahl", "innen und außen", "Rahmen", "Etage", "Schaufenster"],
     goodFor: "Glasflächen mit Etage, Zugang, Rahmenwunsch und Terminfenster.",
     askFor: ["Fensterzahl", "innen/außen", "Etage und Zugang"],
     cta: "Fensterreinigung öffnen",
@@ -67,7 +67,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "hardhat",
     intro: "Für Renovierung, Umbau, Baufeinreinigung und Handwerkerstaub.",
     clickHook: "Nach Umbau zählt der Übergabetermin. Fotos, Fläche und Bauzustand zeigen, ob Baufeinreinigung oder Grundreinigung passt.",
-    customerWords: ["Bauendreinigung", "Baustaub entfernen", "Reinigung nach Renovierung"],
+    customerWords: ["Bauphase", "Staub", "Boden", "Fensterrahmen", "Übergabetermin"],
     goodFor: "Übergabe, Bauzustand, Staub, Boden, Fenster/Rahmen und Deadline.",
     askFor: ["Bauphase", "Fläche", "Übergabetermin"],
     cta: "Baureinigung prüfen",
@@ -79,7 +79,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "sofa",
     intro: "Für Teppichboden, Sofa, Polster, Bürostühle und textile Laufwege.",
     clickHook: "Flecken, Geruch und Laufwege brauchen Materialblick statt Pauschalpreis. Bilder machen die Einschätzung schneller.",
-    customerWords: ["Polsterreinigung", "Sofa reinigen lassen", "Teppichbodenreinigung Büro"],
+    customerWords: ["Material", "Flecken", "Geruch", "Laufwege", "Trocknungsfenster"],
     goodFor: "Material, Flecken, Geruch, Stückzahl, Fotos und Trocknungsfenster.",
     askFor: ["Material", "Fleckenfotos", "Fläche/Stückzahl"],
     cta: "Teppichreinigung starten",
@@ -91,7 +91,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "stairs",
     intro: "Für Hausverwaltung, WEG, Mietshaus, Eingänge und Gemeinschaftsflächen.",
     clickHook: "Hausverwaltung und Mieter brauchen klare Zuständigkeit: Eingang, Etagen, Aufzug, Kellerflur und Turnus.",
-    customerWords: ["Treppenreinigung", "Hausverwaltung Reinigung", "WEG Reinigung", "Mehrfamilienhaus reinigen"],
+    customerWords: ["Eingänge", "Etagen", "Kellerflur", "Müllraum", "Turnus"],
     goodFor: "Etagen, Aufzug, Kellerflur, Müllraum, Turnus und Ansprechpartner.",
     askFor: ["Eingänge", "Etagen", "Zugang"],
     cta: "Treppenhaus planen",
@@ -103,7 +103,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "repeat",
     intro: "Für regelmäßige Objektpflege mit wiederkehrendem Reinigungsplan.",
     clickHook: "Wenn Reinigung planbar sein soll, zählen Frequenz, Leistungsverzeichnis und feste Ansprechpartner mehr als Einzelaktionen.",
-    customerWords: ["Gewerbereinigung", "Gebäudereinigung", "Objektreinigung", "Reinigungsplan Büro", "zuverlässiger Reinigungsservice"],
+    customerWords: ["Objektart", "Raumliste", "Frequenz", "Leistungsverzeichnis", "fester Ansprechpartner"],
     goodFor: "Büro, Praxis, Kanzlei, Hotel, Treppenhaus und laufende Flächen.",
     askFor: ["Objektart", "Frequenz", "Leistungsverzeichnis"],
     cta: "Turnus abstimmen",
@@ -115,7 +115,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "sparkles",
     intro: "Für Einzug, Auszug, Leerstand, Küche, Bad, Büro und starke Verschmutzung.",
     clickHook: "Bei Leerstand, Auszug oder starker Verschmutzung entscheidet der Zustand. Fotos sparen Rückfragen und falsche Erwartungen.",
-    customerWords: ["Reinigungsfirma Regensburg Privathaushalt", "Wohnungsreinigungen", "Grundreinigung Kosten", "Wohnung Grundreinigung", "nach Auszug reinigen", "Schlüsselübergabeprotokoll Reinigungsfirma"],
+    customerWords: ["Küche", "Bad", "Boden", "Leerstand", "Auszug", "Übergabetermin"],
     goodFor: "Zustand, Ziel, Termin, Fotos und Grenzen ehrlich vorab klären.",
     askFor: ["Zustand", "m²", "Fotos und Deadline"],
     cta: "Grundreinigung öffnen",
@@ -127,7 +127,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
     icon: "server",
     intro: "Für Serverraum-nahe Flächen, Technikräume und sensible Nebenflächen nach Prüfung.",
     clickHook: "Sensible Technikflächen brauchen klare Grenzen: Boden, Staub, Zugang und Tabubereiche werden vorab festgelegt.",
-    customerWords: ["IT Raum Reinigung", "Serverraum-nahe Reinigung", "Technikraum Reinigung"],
+    customerWords: ["Boden", "Staub", "Zugang", "Tabubereiche", "Technikgrenzen"],
     goodFor: "Nur mit klaren Grenzen: keine Arbeit an Geräten, Kabeln oder laufender Technik.",
     askFor: ["Raumart", "Zugang", "Sicherheitsgrenzen"],
     cta: "IT-Raum anfragen",
@@ -137,7 +137,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
 export const regensburgCleaningSnippetFaqs = [
   {
     q: "Welche Reinigungsleistung passt in Regensburg am besten?",
-    a: "Für laufende Büroflächen passt meist Büro- oder Unterhaltsreinigung. Für Praxis, Hotel, Fenster, Baustaub, Teppich, Treppenhaus oder Grundreinigung sollte direkt die passende Spezialseite genutzt werden, damit Objektart, Fläche, Turnus und Fotos richtig ankommen.",
+    a: "Für laufende Büroflächen passt meist Büro- oder Unterhaltsreinigung. Bei Praxis, Hotel, Fenstern, Baustaub, Teppich, Treppenhaus oder Grundreinigung führt die passende Leistungsseite schneller zur richtigen Anfrage.",
   },
   {
     q: "Welche Angaben braucht FLOXANT für ein Reinigungsangebot in Regensburg?",
@@ -148,15 +148,15 @@ export const regensburgCleaningSnippetFaqs = [
     a: "Ja. Fotos von Räumen, Boden, Küche, Bad, Fenstern, Treppenhaus, Teppich, Baustaub oder stark verschmutzten Stellen helfen, den Aufwand schneller und ehrlicher einzuordnen.",
   },
   {
-    q: "Warum gibt FLOXANT keinen pauschalen Reinigungspreis ohne Prüfung?",
-    a: "Reinigung hängt stark von Fläche, Zustand, Material, Turnus, Zugang, Zeitfenster und Leistungsumfang ab. Eine kurze Vorprüfung verhindert falsche Preisversprechen und macht die Anfrage für beide Seiten klarer.",
+    q: "Warum fragt FLOXANT erst nach Objekt, Fotos und Termin?",
+    a: "Reinigung hängt stark von Fläche, Zustand, Material, Turnus, Zugang, Zeitfenster und Leistungsumfang ab. Eine kurze Prüfung der Eckdaten verhindert falsche Erwartungen und macht die Anfrage für beide Seiten klarer.",
   },
   {
     q: "Was kostet Reinigung in Regensburg ungefähr?",
     a: "Ohne Objektprüfung ist nur ein grober Preisrahmen sinnvoll. Entscheidend sind Fläche, Zustand, Turnus, Zugang, Material, Sonderwünsche und Fotos. FLOXANT fragt diese Punkte ab, bevor ein Angebot belastbar wird.",
   },
   {
-    q: "Welche Putzfirma oder welcher Putzservice passt in Regensburg?",
+    q: "Welche Reinigung passt zu meinem Objekt in Regensburg?",
     a: "Für Büro passt Büroreinigung oder Unterhaltsreinigung, für Praxis die Praxisreinigung, für Hotel die Hotelreinigung, für Glas die Fensterreinigung und für Hausverwaltung die Treppenhausreinigung. Die Service-Auswahl führt zur passenden Anfrage.",
   },
 ];
@@ -164,7 +164,7 @@ export const regensburgCleaningSnippetFaqs = [
 export const regensburgCleaningLocalAreas = [
   {
     area: "Altstadt & Innenstadt",
-    intent: "Reinigung Innenstadt Regensburg",
+    intent: "Innenstadt und Altstadt",
     text: "Für Büros, Praxen, Kanzleien, Ladenflächen und stark sichtbare Kundenbereiche zählen Zeitfenster, Zugang und Parkmöglichkeit besonders.",
     href: "/bueroreinigung-regensburg",
     cta: "Büro oder Laden prüfen",
@@ -172,7 +172,7 @@ export const regensburgCleaningLocalAreas = [
   },
   {
     area: "Kumpfmühl & Galgenberg",
-    intent: "Grundreinigung Regensburg Süd",
+    intent: "Wohnung und Übergabe",
     text: "Bei Wohnung, Auszug, Übergabe, Küche, Bad oder Leerstand ist der sichtbare Zustand wichtiger als eine pauschale Quadratmeter-Antwort.",
     href: "/grundreinigung-regensburg",
     cta: "Grundreinigung wählen",
@@ -180,7 +180,7 @@ export const regensburgCleaningLocalAreas = [
   },
   {
     area: "Westenviertel & Prüfening",
-    intent: "Fensterreinigung Regensburg Westen",
+    intent: "Fenster und Glas",
     text: "Für Glasflächen, Praxisfenster, Bürofenster und private Fenster helfen Fensterzahl, Etage, Innen/Außen und Rahmenwunsch.",
     href: "/fensterreinigung-regensburg",
     cta: "Fenster anfragen",
@@ -188,7 +188,7 @@ export const regensburgCleaningLocalAreas = [
   },
   {
     area: "Gewerbepark & Ostenviertel",
-    intent: "Gewerbereinigung Regensburg Gewerbepark",
+    intent: "Gewerbeflächen",
     text: "Bei Büros, Technikflächen, Lagerbüros oder Objektbetrieb geht es meist um Turnus, Leistungsverzeichnis und feste Ansprechpartner.",
     href: "/gewerbereinigung-regensburg#kontaktformular",
     cta: "Gewerbe anfragen",
@@ -196,7 +196,7 @@ export const regensburgCleaningLocalAreas = [
   },
   {
     area: "Neutraubling & Barbing",
-    intent: "Unterhaltsreinigung Regensburg Umgebung",
+    intent: "laufende Objektpflege",
     text: "Für laufende Objektpflege im Umfeld von Regensburg ist ein klarer Reinigungsplan besser als Einzelabsprachen per Zuruf.",
     href: "/unterhaltsreinigung-regensburg",
     cta: "Turnus abstimmen",
@@ -204,7 +204,7 @@ export const regensburgCleaningLocalAreas = [
   },
   {
     area: "Lappersdorf & Wenzenbach",
-    intent: "Treppenhausreinigung Regensburg Umgebung",
+    intent: "Hausverwaltung und WEG",
     text: "Für Hausverwaltung, WEG und Mehrfamilienhaus zählen Eingänge, Etagen, Kellerflur, Müllraum, Zugang und regelmäßiger Turnus.",
     href: "/treppenhausreinigung-regensburg",
     cta: "Hausverwaltung planen",
@@ -263,43 +263,43 @@ export const regensburgCleaningSearchSituations: RegensburgCleaningSearchSituati
     eyebrow: "Kurzfristig",
     customerSays: "Die Wohnung muss diese Woche noch sauber sein.",
     answer:
-      "FLOXANT klaert zuerst Termin, Zugang, Flaeche, Fotos und Ziel: Uebergabe, Einzug, Besuch oder Wiedervermietung.",
+      "FLOXANT klärt zuerst Termin, Zugang, Fläche, Fotos und Ziel: Übergabe, Einzug, Besuch oder Wiedervermietung.",
     href: "/panikfrei-in-24h",
-    cta: "Kurzfristige Hilfe pruefen",
-    proofPoints: ["Termin und Deadline", "Fotos vom Zustand", "Schluessel oder Zugang"],
+    cta: "Kurzfristige Hilfe prüfen",
+    proofPoints: ["Termin und Deadline", "Fotos vom Zustand", "Schlüssel oder Zugang"],
   },
   {
     eyebrow: "Gewerbe",
-    customerSays: "Unser Buero soll montags wieder ordentlich wirken.",
+    customerSays: "Unser Büro soll montags wieder ordentlich wirken.",
     answer:
-      "Fuer Buero, Kanzlei, Praxis oder Objektbetrieb zaehlen Turnus, Randzeiten und klar abgegrenzte Leistungen.",
+      "Für Büro, Kanzlei, Praxis oder Objektbetrieb zählen Turnus, Randzeiten und klar abgegrenzte Leistungen.",
     href: "/bueroreinigung-regensburg",
-    cta: "Bueroreinigung oeffnen",
+    cta: "Büroreinigung öffnen",
     proofPoints: ["Turnus", "Raumliste", "Randzeiten"],
   },
   {
-    eyebrow: "Uebergabe",
+    eyebrow: "Übergabe",
     customerSays: "Der Vermieter kommt und ich will keinen Streit.",
     answer:
-      "Vor Uebergabe werden sichtbare Risikostellen priorisiert: Kueche, Bad, Boden, Fensterbereiche, Nebenflaechen und Fotodokumentation.",
+      "Vor Übergabe werden sichtbare Risikostellen priorisiert: Küche, Bad, Boden, Fensterbereiche, Nebenflächen und Fotodokumentation.",
     href: "/vermieter-schockschutz-reinigung",
-    cta: "Uebergabe vorbereiten",
-    proofPoints: ["Kueche und Bad", "Nebenraeume", "Fotos vor Termin"],
+    cta: "Übergabe vorbereiten",
+    proofPoints: ["Küche und Bad", "Nebenräume", "Fotos vor Termin"],
   },
   {
     eyebrow: "Baustaub",
-    customerSays: "Nach den Handwerkern ist ueberall Staub.",
+    customerSays: "Nach den Handwerkern ist überall Staub.",
     answer:
       "Bei Renovierung, Umbau oder Baufeinreinigung entscheidet die Bauphase. FLOXANT trennt Staub, Boden, Fenster/Rahmen und Restmaterial sauber.",
     href: "/baustaub-ende",
     cta: "Baustaub-Ende ansehen",
-    proofPoints: ["Bauphase", "Boden und Rahmen", "Einzug oder Uebergabe"],
+    proofPoints: ["Bauphase", "Boden und Rahmen", "Einzug oder Übergabe"],
   },
   {
     eyebrow: "Geruch",
     customerSays: "Es riecht unangenehm, aber ich weiss nicht woher.",
     answer:
-      "Geruch wird nicht nur ueberdeckt. FLOXANT fragt Quelle, Raum, Material, Kueche, Bad, Textilien und Lueftungssituation ab.",
+      "Geruch wird nicht nur überdeckt. FLOXANT fragt Quelle, Raum, Material, Küche, Bad, Textilien und Lüftungssituation ab.",
     href: "/geruchslos-protokoll",
     cta: "Geruch einordnen",
     proofPoints: ["Quelle vermuten", "Material nennen", "Fotos senden"],
@@ -308,76 +308,124 @@ export const regensburgCleaningSearchSituations: RegensburgCleaningSearchSituati
     eyebrow: "Diskret",
     customerSays: "Mir ist die Situation peinlich.",
     answer:
-      "Bei belasteten oder sehr privaten Raeumen zaehlt ruhige Kommunikation, keine Bewertung, klare Grenzen und ein geschuetzter Anfrageweg.",
+      "Bei belasteten oder sehr privaten Räumen zählt ruhige Kommunikation, keine Bewertung, klare Grenzen und ein geschützter Anfrageweg.",
     href: "/anti-scham-reinigung",
     cta: "Diskret anfragen",
-    proofPoints: ["ruhiger Erstkontakt", "keine Vorwuerfe", "klare naechste Schritte"],
+    proofPoints: ["ruhiger Erstkontakt", "keine Vorwürfe", "klare nächste Schritte"],
   },
 ];
 
 export const regensburgCleaningSnippetTargets = [
   {
-    query: "Angebot Reinigung Regensburg",
+    query: "Reinigungsangebot vorbereiten",
     answer:
-      "Ein Reinigungsangebot wird klarer, wenn Objektart, Flaeche, Zustand, Turnus, Fotos, Zugang und Termin zusammen vorliegen.",
+      "Ein Reinigungsangebot lässt sich besser prüfen, wenn Objektart, Fläche, Zustand, Turnus, Fotos, Zugang und Termin zusammen vorliegen.",
     href: "/angebot-guenstiger-pruefen",
   },
   {
-    query: "Reinigungsfirma Regensburg Privathaushalt",
+    query: "Reinigungsdienst oder Putzdienst Regensburg",
     answer:
-      "Fuer private Wohnungen zaehlen Kueche, Bad, Boden, Fensterbereiche, Zustand, Uebergabeziel und Fotos. FLOXANT fuehrt zur passenden Wohnungs- oder Grundreinigung.",
-    href: "/grundreinigung-regensburg",
-  },
-  {
-    query: "Zuverlaessiger Reinigungsservice Regensburg",
-    answer:
-      "Zuverlaessigkeit entsteht durch klare Angaben: Objekt, Flaeche, Turnus, Ansprechpartner, Zeitfenster, Zugang und Fotos vor der Zusage.",
+      "Ob Sie Reinigungsdienst, Putzdienst oder allgemeine Reinigung meinen: Für den Start helfen Ort, Objektart, Fläche, gewünschtes Ergebnis, Termin und Fotos.",
     href: "/reinigung-regensburg",
   },
   {
-    query: "Treppenreinigung Regensburg",
+    query: "Gewerbliche Reinigung oder Firma reinigen lassen",
     answer:
-      "Fuer Treppenhaus, Eingang, Kellerflur und gemeinschaftliche Flaechen sind Etagen, Turnus, Zugang, Ansprechpartner und Fotos wichtig.",
-    href: "/treppenhausreinigung-regensburg",
+      "Bei Büro, Kanzlei, Praxis, Hotel, Laden oder Objektbetrieb zählen Nutzung, Raumliste, Turnus, Zeitfenster, Zugang und ein Ansprechpartner vor Ort.",
+    href: "/gewerbereinigung-regensburg",
   },
   {
-    query: "Hotelreinigung Regensburg",
+    query: "Büro regelmäßig sauber halten",
     answer:
-      "Bei Hotel, Pension oder Boardinghouse werden Zimmernaehe, Lobby, Flure, Check-out-Zeiten, Allgemeinflaechen, Zugang und Fotos vorab geklaert.",
-    href: "/hotelreinigung-regensburg",
-  },
-  {
-    query: "Reinigungsfirma Regensburg kurzfristig",
-    answer:
-      "Senden Sie Ort, Flaeche, Fotos, Termin und Ziel. FLOXANT prueft, ob kurzfristige Reinigung in Regensburg realistisch ist.",
-    href: "/panikfrei-in-24h",
-  },
-  {
-    query: "Putzfirma Regensburg Wohnung Uebergabe",
-    answer:
-      "Vor der Wohnungsuebergabe zaehlen sichtbare Bereiche: Kueche, Bad, Boden, Fensterbereiche, Keller, Balkon und Dokumentation.",
-    href: "/sichtbar-sauber-protokoll",
-  },
-  {
-    query: "Bueroreinigung Regensburg Angebot",
-    answer:
-      "Ein gutes Angebot braucht Flaeche, Turnus, Raumliste, Randzeiten, Zugang und Ansprechpartner statt nur einen Quadratmeterpreis.",
+      "Für Büroreinigung in Regensburg helfen Arbeitsplätze, Küche, Sanitär, Empfang, Turnus, Randzeiten, Schlüsselweg und Fotos für die erste Abstimmung.",
     href: "/bueroreinigung-regensburg",
   },
   {
-    query: "Baustaub Reinigung Regensburg",
+    query: "Objekt von Verwaltung oder Kommune anfragen",
     answer:
-      "Nach Renovierung oder Sanierung sollten Bauphase, Staubmenge, Boden, Fenster, Rahmen, Restmaterial und Deadline vorab geklaert werden.",
+      "Bei Verwaltungsflächen, Eingängen, Wartebereichen oder gemeinschaftlichen Flächen braucht FLOXANT Objektart, Bereichsliste, Turnus, Zugang, Zuständigkeit und Fotos.",
+    href: "/gewerbereinigung-regensburg",
+  },
+  {
+    query: "Geruch oder Ursache einordnen lassen",
+    answer:
+      "Wenn ein Raum unangenehm riecht, helfen Quelle, betroffene Bereiche, Material, Lüftung, Feuchtigkeit, Fotos und eine klare Grenze, was Reinigung leisten kann.",
+    href: "/geruchslos-protokoll",
+  },
+  {
+    query: "Wohnung oder Privathaushalt reinigen lassen",
+    answer:
+      "Für private Wohnungen zählen Küche, Bad, Boden, Fensterbereiche, Zustand, Übergabeziel und Fotos. FLOXANT führt zur passenden Wohnungs- oder Grundreinigung.",
+    href: "/grundreinigung-regensburg",
+  },
+  {
+    query: "Privathaushalt mit klaren Eckdaten anfragen",
+    answer:
+      "Bei Wohnungen, Apartments und Privathaushalten reichen Räume, Bad, Küche, Boden, Zustand, Zugang und Termin, um den passenden Reinigungsumfang einzuordnen.",
+    href: "/grundreinigung-regensburg",
+  },
+  {
+    query: "Polster, Teppich oder Sofa reinigen lassen",
+    answer:
+      "Bei Teppich, Sofa, Polster oder Bürostühlen zählen Material, Flecken, Geruch, Fläche, Trocknungsfenster und Fotos. Grenzen werden vorab ehrlich benannt.",
+    href: "/teppichreinigung-regensburg",
+  },
+  {
+    query: "Angebot für Reinigungsarbeiten senden",
+    answer:
+      "Wenn bereits ein Angebot vorliegt, können Umfang, Turnus, Zusatzpunkte, Zeitfenster, Zugang und Fotos gemeinsam geprüft werden.",
+    href: "/angebot-guenstiger-pruefen",
+  },
+  {
+    query: "Zuverlässige Reinigung planbar machen",
+    answer:
+      "Zuverlässigkeit entsteht durch klare Angaben: Objekt, Fläche, Turnus, Ansprechpartner, Zeitfenster, Zugang und Fotos vor der Terminplanung.",
+    href: "/reinigung-regensburg",
+  },
+  {
+    query: "Treppenhaus und Eingang reinigen lassen",
+    answer:
+      "Für Treppenhaus, Eingang, Kellerflur und gemeinschaftliche Flächen sind Etagen, Turnus, Zugang, Ansprechpartner und Fotos wichtig.",
+    href: "/treppenhausreinigung-regensburg",
+  },
+  {
+    query: "Hotel, Pension oder Boardinghouse reinigen",
+    answer:
+      "Bei Hotel, Pension oder Boardinghouse werden Zimmernähe, Lobby, Flure, Check-out-Zeiten, Allgemeinflächen, Zugang und Fotos vorab geklärt.",
+    href: "/hotelreinigung-regensburg",
+  },
+  {
+    query: "Kurzfristige Reinigung prüfen",
+    answer:
+      "Senden Sie Ort, Fläche, Fotos, Termin und Ziel. FLOXANT prüft, ob kurzfristige Reinigung in Regensburg realistisch ist.",
+    href: "/panikfrei-in-24h",
+  },
+  {
+    query: "Wohnung für Übergabe vorbereiten",
+    answer:
+      "Vor der Wohnungsübergabe zählen sichtbare Bereiche: Küche, Bad, Boden, Fensterbereiche, Keller, Balkon und Dokumentation.",
+    href: "/sichtbar-sauber-protokoll",
+  },
+  {
+    query: "Büroreinigung richtig anfragen",
+    answer:
+      "Ein gutes Angebot braucht Fläche, Turnus, Raumliste, Randzeiten, Zugang und Ansprechpartner statt nur einen Quadratmeterpreis.",
+    href: "/bueroreinigung-regensburg",
+  },
+  {
+    query: "Baustaub nach Renovierung entfernen",
+    answer:
+      "Nach Renovierung oder Sanierung sollten Bauphase, Staubmenge, Boden, Fenster, Rahmen, Restmaterial und Deadline vorab geklärt werden.",
     href: "/baustaub-ende",
   },
 ];
 
 export const regensburgCleaningTrustPromises = [
-  "Keine pauschalen Lockpreise ohne Objektblick.",
-  "Fotos sind willkommen, weil sie Rueckfragen und falsche Erwartungen reduzieren.",
-  "Regensburg, Oberpfalz und Bayern werden natuerlich eingeordnet, nicht als Keyword-Liste.",
+  "Keine pauschalen Preise ohne Blick auf Objekt, Zustand und Termin.",
+  "Fotos sind willkommen, weil sie Rückfragen und falsche Erwartungen reduzieren.",
+  "Der Einsatzbereich wird nach Ort, Anfahrt, Zugang und Termin realistisch eingeordnet.",
   "WhatsApp, Telefon und Buchung bleiben als kurze Wege sichtbar.",
-  "Bewertungen und echte Erfahrungen sollten im Google Profil geprueft werden, ohne erfundene Sterne im Markup.",
+  "Echte Erfahrungen können über öffentlich sichtbare Bewertungen geprüft werden; FLOXANT erfindet keine Sterne.",
 ];
 
 export type RegensburgCleaningBuyerPath = {
@@ -395,7 +443,7 @@ export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
     label: "Büroreinigung ohne Betriebsstörung",
     href: "/bueroreinigung-regensburg",
     customerPhrase: "Unser Büro soll sauber wirken, aber der Betrieb darf nicht leiden.",
-    problem: "Kunden suchen nach Angebot, Kosten, Reinigungskraft, Randzeiten und klarer Raumliste.",
+    problem: "Für Büroreinigung zählen Angebot, Kostenrahmen, Randzeiten und eine klare Raumliste.",
     answer:
       "FLOXANT ordnet Fläche, Arbeitsplätze, Küche, Sanitär, Meetingräume, Zugang und Turnus vor dem Angebot sauber ein.",
     send: ["m² und Raumliste", "Turnus und Randzeit", "Fotos von Küche, Sanitär und Empfang"],
@@ -415,9 +463,9 @@ export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
     label: "Gewerbereinigung richtig starten",
     href: "/gewerbereinigung-regensburg",
     customerPhrase: "Wir suchen eine Reinigungsfirma für Büro, Praxis, Hotel oder Objekt.",
-    problem: "B2B-Kunden vergleichen oft erst grob und brauchen dann eine klare Zuordnung der passenden Leistung.",
+    problem: "Gewerbliche Anfragen brauchen zuerst eine klare Zuordnung der passenden Leistung.",
     answer:
-      "Der Service-Finder trennt Büro, Praxis, Hotel, Bau, Fenster, Teppich, Treppenhaus, Grundreinigung und sensible Technikflächen.",
+      "FLOXANT trennt Büro, Praxis, Hotel, Bau, Fenster, Teppich, Treppenhaus, Grundreinigung und sensible Technikflächen.",
     send: ["Objektart", "Fläche und Turnus", "Ansprechpartner und Zugang"],
     cta: "Gewerbereinigung öffnen",
   },
@@ -425,7 +473,7 @@ export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
     label: "Praxis und Empfang sauber halten",
     href: "/praxisreinigung-regensburg",
     customerPhrase: "Empfang, Wartebereich und Nebenflächen sollen verlässlich sauber sein.",
-    problem: "Praxis-Kunden suchen nach Vertrauen, Planbarkeit und klaren Grenzen, ohne falsche Spezialversprechen.",
+    problem: "Praxisflächen brauchen Vertrauen, Planbarkeit und klare Grenzen, ohne falsche Spezialversprechen.",
     answer:
       "FLOXANT fragt Praxisart, Öffnungszeiten, Empfang, Wartebereich, Sanitär, Personalflächen und Tabubereiche ab.",
     send: ["Praxisart", "Öffnungszeiten", "Bereiche und Grenzen"],
@@ -435,7 +483,7 @@ export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
     label: "Grundreinigung vor Einzug oder Übergabe",
     href: "/grundreinigung-regensburg",
     customerPhrase: "Es muss wieder richtig sauber werden, nicht nur oberflächlich.",
-    problem: "Kunden wollen wissen, ob Kueche, Bad, Boden, starke Verschmutzung oder Auszug realistisch machbar sind.",
+    problem: "Wichtig ist, ob Küche, Bad, Boden, starke Verschmutzung oder Auszug realistisch machbar sind.",
     answer:
       "FLOXANT prüft Zustand, Ziel, Termin, Material und Fotos, bevor Erwartungen oder Preise versprochen werden.",
     send: ["Zustand und Ziel", "m² und Termin", "Fotos von Küche, Bad und Boden"],
@@ -445,7 +493,7 @@ export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
     label: "Baustaub nach Renovierung beenden",
     href: "/baustaub-ende",
     customerPhrase: "Nach den Handwerkern ist überall feiner Staub.",
-    problem: "Baustaub, Baufeinreinigung, Renovierungsreinigung und Übergabetermin werden oft durcheinander gesucht.",
+    problem: "Baustaub, Baufeinreinigung, Renovierungsreinigung und Übergabetermin müssen sauber getrennt werden.",
     answer:
       "Die Anfrage trennt Bauphase, Reststaub, Boden, Fenster/Rahmen, Restmaterial, Zugang und Deadline.",
     send: ["Bauphase", "Staubfotos", "Einzug oder Übergabe"],
@@ -517,7 +565,7 @@ export const regensburgCleaningDecisionProofs = [
     text: "Stadtteil, Zugang, Parken, Etage und Umgebung in der Oberpfalz werden natürlich abgefragt, weil sie den Ablauf verändern.",
   },
   {
-    label: "Keine falschen Sterne",
-    text: "Bewertungen bleiben als Hinweis sichtbar, aber es wird kein erfundenes Rating-Markup erzeugt.",
+    label: "Ehrliche Bewertungen",
+    text: "Bewertungen bleiben ehrlich: keine erfundenen Sterne, keine künstlichen Zahlen und keine übertriebenen Versprechen.",
   },
 ];

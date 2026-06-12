@@ -47,12 +47,12 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     label: "FLOXANT Düsseldorf",
     city: "Düsseldorf",
     href: "/duesseldorf",
-    headline: "Reinigungslösungen für Unternehmen, Praxen und Gewerbeobjekte.",
+    headline: "Umzug, Reinigung, Entrümpelung und Übergabe in Düsseldorf.",
     description:
-      "FLOXANT Düsseldorf unterstützt Unternehmen, Praxen, Kanzleien, Hausverwaltungen und Gewerbeobjekte mit sauber eingeordneten Reinigungsanfragen.",
+      "FLOXANT Düsseldorf unterstützt bei Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und sauber geprüften Kombi-Anfragen.",
     shortDescription:
-      "Gewerbliche Reinigung für Unternehmen, Praxen und betreute Objekte.",
-    primaryCta: "Services in Düsseldorf ansehen",
+      "Umzug, Reinigung, Entrümpelung und Übergabe klar getrennt anfragen.",
+    primaryCta: "Düsseldorf-Services ansehen",
   },
   regensburg: {
     id: "regensburg",
@@ -70,18 +70,30 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
 };
 
 export const floxantCategoryLabels: Record<FloxantServiceCategory, string> = {
-  normal: "Häufige Leistungen",
-  signature: "FLOXANT Signature Services",
-  special: "Schnelle Hilfe & Angebotsprüfung",
+  normal: "Normale Services",
+  signature: "FLOXANT Signature",
+  special: "Spezielle Services / Angebotsprüfung",
 };
 
 export const floxantCategoryDescriptions: Record<FloxantServiceCategory, string> = {
-  normal: "Leistungen, die Kunden besonders häufig anfragen und die sich schnell einordnen lassen.",
-  signature: "Für Situationen, in denen Zugang, Übergabe, Abstimmung oder besondere Sorgfalt wichtig sind.",
-  special: "Für bestehende Angebote, kurzfristige Anliegen oder Fälle, bei denen erst Klarheit entstehen muss.",
+  normal: "Klassische Leistungen, die direkt nach Ort, Objekt, Umfang und Termin angefragt werden können.",
+  signature: "Zusätzliche Leistungen für Fälle mit Zugang, Übergabe, Diskretion, Fotos oder besonderer Abstimmung.",
+  special: "Schnelle Einstiege für Objektbrief, vorhandene Angebote, kurzfristige Anliegen, Google-Ads-Landingpages und unklare Fälle.",
 };
 
 const floxantServiceSeeds: FloxantServiceSeed[] = [
+  {
+    id: "duesseldorf-umzug",
+    title: "Umzug",
+    shortDescription:
+      "Umzug in Düsseldorf mit Fotos, Volumen, Zugang, Termin und möglicher Endreinigung sauber prüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/umzug",
+    ctaLabel: "Umzug anfragen",
+    googleAdsRelevant: true,
+    priority: 0.6,
+  },
   {
     id: "duesseldorf-gewerbereinigung",
     title: "Gewerbereinigung",
@@ -93,6 +105,54 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Gewerbereinigung ansehen",
     googleAdsRelevant: true,
     priority: 1,
+  },
+  {
+    id: "duesseldorf-reinigung",
+    title: "Reinigung",
+    shortDescription:
+      "Wohnung, Büro, Praxis, Übergabe oder Grundreinigung in Düsseldorf mit Fotos und Termin prüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/reinigung",
+    ctaLabel: "Reinigung anfragen",
+    googleAdsRelevant: true,
+    priority: 1.2,
+  },
+  {
+    id: "duesseldorf-entruempelung",
+    title: "Entrümpelung",
+    shortDescription:
+      "Wohnung, Keller, Nebenraum oder Objekt in Düsseldorf nach Menge, Zugang und Fotos einschätzen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/entruempelung",
+    ctaLabel: "Entrümpelung prüfen",
+    googleAdsRelevant: true,
+    priority: 1.4,
+  },
+  {
+    id: "duesseldorf-haushaltsaufloesung",
+    title: "Haushaltsauflösung",
+    shortDescription:
+      "Wohnungsauflösung, Nachlass oder Haushalt in Düsseldorf ruhig mit Freigabe, Fotos und Reinigung klären.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/haushaltsaufloesung",
+    ctaLabel: "Auflösung klären",
+    googleAdsRelevant: true,
+    priority: 1.6,
+  },
+  {
+    id: "duesseldorf-endreinigung",
+    title: "Endreinigung",
+    shortDescription:
+      "Endreinigung nach Auszug, Umzug oder Räumung in Düsseldorf mit Zustand, Fotos und Übergabetermin prüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/endreinigung",
+    ctaLabel: "Endreinigung prüfen",
+    googleAdsRelevant: true,
+    priority: 1.8,
   },
   {
     id: "duesseldorf-bueroreinigung",
@@ -264,15 +324,27 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
   },
   {
     id: "duesseldorf-angebot-vergleichen",
-    title: "Bestehendes Angebot prüfen lassen",
+    title: "FLOXANT Angebotsprüfung",
     shortDescription:
-      "Sie haben bereits ein Reinigungsangebot und möchten eine sachliche zweite Einschätzung.",
+      "Angebot, Screenshot oder Eckdaten senden und kostenlos prüfen lassen, ob eine passende Alternative möglich ist.",
     region: "duesseldorf",
     category: "special",
     href: "/angebot-vergleichen-duesseldorf",
     ctaLabel: "Angebot prüfen lassen",
     googleAdsRelevant: true,
     priority: 1,
+  },
+  {
+    id: "duesseldorf-objektbrief",
+    title: "FLOXANT Objektbrief",
+    shortDescription:
+      "Reinigung mit Ort, Fotos, Zugang, Termin und Budgetrahmen klar vorbereiten.",
+    region: "duesseldorf",
+    category: "special",
+    href: "/objektbrief#schnellstart",
+    ctaLabel: "Objektbrief starten",
+    googleAdsRelevant: false,
+    priority: 1.5,
   },
   {
     id: "duesseldorf-gewerbe-ads",
@@ -333,6 +405,30 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Umzug ansehen",
     googleAdsRelevant: false,
     priority: 1,
+  },
+  {
+    id: "regensburg-reinigung",
+    title: "Reinigung",
+    shortDescription:
+      "Wohnung, Büro, Übergabe oder Reinigung nach Umzug in Regensburg mit Fotos und Zustand prüfen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/reinigung",
+    ctaLabel: "Reinigung ansehen",
+    googleAdsRelevant: true,
+    priority: 1.4,
+  },
+  {
+    id: "regensburg-gewerbereinigung",
+    title: "Gewerbereinigung",
+    shortDescription:
+      "Büro, Praxis, Kanzlei, Treppenhaus und Objektflächen mit Raumliste, Turnus und Angebot prüfen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/gewerbereinigung",
+    ctaLabel: "Gewerbereinigung ansehen",
+    googleAdsRelevant: true,
+    priority: 1.6,
   },
   {
     id: "regensburg-entruempelung",
@@ -551,6 +647,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1,
   },
   {
+    id: "regensburg-objektbrief",
+    title: "FLOXANT Objektbrief",
+    shortDescription:
+      "Umzug, Räumung, Haushaltsauflösung, Endreinigung und Übergabe mit klaren Angaben vorbereiten.",
+    region: "regensburg",
+    category: "special",
+    href: "/objektbrief#schnellstart",
+    ctaLabel: "Objektbrief starten",
+    googleAdsRelevant: false,
+    priority: 1.5,
+  },
+  {
     id: "regensburg-entruempelung-uebergabe",
     title: "Entrümpelung mit Übergabevorbereitung",
     shortDescription:
@@ -612,9 +720,9 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
   },
   {
     id: "regensburg-angebot-pruefen",
-    title: "Angebot sachlich prüfen lassen",
+    title: "FLOXANT Angebotsprüfung",
     shortDescription:
-      "Vorhandenes Angebot, Screenshot oder Preisrahmen senden und offene Punkte ruhig einordnen lassen.",
+      "Angebot für Umzug, Entrümpelung, Haushaltsauflösung, Übergabe oder Kombination kostenlos prüfen lassen.",
     region: "regensburg",
     category: "special",
     href: "/angebot-guenstiger-pruefen",

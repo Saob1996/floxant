@@ -55,14 +55,14 @@ export function ServiceRequestCompass() {
                 <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
                   FLOXANT führt Kunden schneller zum passenden Anfrageweg. Regensburg und Bayern
                   bleiben der Ausgangspunkt für Umzug, Reinigung, Entrümpelung und Übergabe.
-                  Düsseldorf bleibt klar auf Reinigung und passende Ergänzungen getrennt.
+                  Düsseldorf bleibt klar nach Umzug, Reinigung, Entrümpelung und passenden Ergänzungen getrennt.
                 </p>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {[
                     ["24h online", "Anfrage jederzeit senden, Rückmeldung nach Prüfung."],
                     ["Fotos helfen", "Zugang, Zustand, Menge und Fläche schneller klären."],
-                    ["Kein Umzug Düsseldorf", "Düsseldorf bleibt Reinigung und passende Ergänzung."],
+                    ["Umzug Düsseldorf", "Düsseldorf hat dafür eine eigene Umzugsseite."],
                     ["Sauber angekommen", "Ihre Anfrage bleibt sortiert und gut nachvollziehbar."],
                   ].map(([label, text], index) => {
                     const SignalIcon = [Clock3, Sparkles, BadgeCheck, ClipboardCheck][index] ?? CheckCircle2;
@@ -124,7 +124,7 @@ export function ServiceRequestCompass() {
               <ServiceRegionColumn
                 eyebrow="Düsseldorf"
                 title="Reinigung getrennt"
-                text="Düsseldorf wird nicht mit Umzug vermischt. Hier geht es um Reinigung und passende Ergänzungen."
+                text="Düsseldorf mischt die Leistungen nicht: Umzug, Reinigung und Entrümpelung laufen über eigene Einstiege."
                 Icon={Sparkles}
                 services={duesseldorfServices}
                 actionHref="/buchung?service=reinigung&region=duesseldorf&utm_source=homepage_compass#buchungssystem"

@@ -63,7 +63,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Regionale Einordnung",
         paragraphs: [
-          "Regensburg ist der feste Ausgangspunkt. Angebote aus der Umgebung und aus Bayern werden nach Strecke, Termin, Umfang und Kapazität geprüft. Düsseldorf bleibt getrennt: Dort prüft FLOXANT nur Reinigung; Entsorgung nur über die vorhandene eigene Seite, keine Umzüge.",
+          "Regensburg ist der feste Ausgangspunkt für Bayern/Nahbereich. Düsseldorf bleibt getrennt mit eigenen Seiten für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung.",
           "Wer schnell eine zweite Einschätzung möchte, sollte Angebot oder Screenshot, Ort/PLZ, Termin, Fotos und Zielbudget senden.",
         ],
       },
@@ -91,7 +91,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Für welche Services gilt das?",
-        a: "Für Umzug, Reinigung, Entrümpelung, Transport und Entsorgung in Regensburg, Umgebung und Bayern. In Düsseldorf nur für Reinigung; Entsorgung nur über die vorhandene eigene Seite.",
+        a: "Für Umzug, Reinigung, Entrümpelung, Transport, Entsorgung und Kombinationen in Regensburg, Umgebung und Bayern. In Düsseldorf wird servicebezogen über eigene lokale Seiten geprüft.",
       },
     ],
   },
@@ -120,7 +120,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         title: "Die kurze Antwort",
         paragraphs: [
           "Ein Umzugsangebot sollte nicht nur Start, Ziel und Endpreis enthalten. Wichtig sind Volumen, Etage, Zugang, Laufweg, Fahrzeugbedarf, Terminfenster, mögliche Rückfahrt, Reinigung nach Auszug und Übergabeziel.",
-          "FLOXANT prüft diese Punkte für Regensburg, den Nahbereich und Bayern nach Verfügbarkeit. Düsseldorf wird nicht als Umzugsgebiet positioniert.",
+          "FLOXANT prüft diese Punkte für Regensburg, den Nahbereich und Bayern nach Verfügbarkeit sowie für Düsseldorf über die eigene Umzugsseite.",
         ],
       },
       {
@@ -152,7 +152,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Volumen, Etage, Laufwege und Fahrzeugbedarf sichtbar machen.",
       "Rückfahrt, Reinigung und Übergabe als mögliche Preishebel prüfen.",
-      "Regensburg und Bayern sauber einordnen, Düsseldorf nicht als Umzugssignal nutzen.",
+      "Regensburg, Bayern und Düsseldorf sauber einordnen; Düsseldorf-Umzug über die eigene Seite routen.",
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen lassen" },
@@ -199,7 +199,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft Reinigungsangebote anhand von Fläche, Reinigungsart, Zustand, Fotos, Termin, Übergabeziel, Zugang und Preisrahmen. Für Regensburg und Bayern geht es um private und objektbezogene Reinigung; für Düsseldorf ausschließlich um Reinigung, keine Umzüge.",
+          "FLOXANT prüft Reinigungsangebote anhand von Fläche, Reinigungsart, Zustand, Fotos, Termin, Übergabeziel, Zugang und Preisrahmen. Für Düsseldorf bleibt diese Logik auf Reinigung bezogen; Umzug und Entrümpelung haben eigene Seiten.",
         ],
       },
       {
@@ -217,7 +217,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Regensburg, Bayern und Düsseldorf richtig trennen",
         paragraphs: [
-          "In Regensburg und Bayern kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden. Düsseldorf ist getrennt positioniert: dort nur Reinigung, zum Beispiel Büroreinigung, Grundreinigung, Treppenhausreinigung oder Reinigung möblierter Wohnungen.",
+          "In Regensburg, Bayern und Düsseldorf kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden, wenn die passende lokale Seite und Machbarkeit geklärt sind.",
         ],
       },
       {
@@ -231,7 +231,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Fläche, Zustand und Reinigungsziel sauber unterscheiden.",
       "Übergabe, Objektwechsel oder B2B-Reinigung mitdenken.",
-      "Düsseldorf nur für Reinigung einordnen; Entsorgung nur über die vorhandene eigene Seite.",
+      "Düsseldorf servicebezogen einordnen: Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbe oder Entsorgung auf eigenen Seiten.",
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -246,7 +246,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Gilt das auch für Düsseldorf?",
-        a: "Ja, aber in Düsseldorf nur für Reinigung; Entsorgung nur über die vorhandene eigene Seite. FLOXANT bietet dort keine Umzüge an.",
+        a: "Ja, auch in Düsseldorf, wenn die passende lokale Seite genutzt wird: /duesseldorf/umzug, /duesseldorf/reinigung, /duesseldorf/entruempelung oder /entsorgung-duesseldorf.",
       },
       {
         q: "Welche Fotos helfen?",
@@ -550,7 +550,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Regensburg und Bayern werden nach Verfügbarkeit geprüft; Düsseldorf bleibt auf Entsorgung und Reinigung begrenzt.",
+          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Regensburg und Bayern werden nach Verfügbarkeit geprüft; Düsseldorf wird servicebezogen über eigene lokale Seiten eingeordnet.",
         ],
       },
       {
@@ -574,7 +574,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Düsseldorf sauber einordnen",
         paragraphs: [
-          "Für Düsseldorf darf die Anfrage nur Reinigung betreffen; Entsorgung bleibt auf der vorhandenen eigenen Seite. Es gibt keine Düsseldorf-Umzug-Positionierung. Wenn Möbel oder Gegenstände entfernt werden müssen, ist die Entsorgungsseite der richtige Einstieg.",
+          "Für Düsseldorf richtet sich die Anfrage nach der Leistung: Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung oder Entsorgung haben eigene Einstiege. Wenn Möbel oder Gegenstände entfernt werden müssen, sind /duesseldorf/entruempelung oder /entsorgung-duesseldorf passend.",
         ],
       },
     ],
@@ -601,7 +601,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Gilt das für Düsseldorf?",
-        a: "Ja, für Reinigung und über die vorhandene eigene Seite für Entsorgung. Düsseldorf wird nicht als Umzugsstandort genutzt.",
+        a: "Ja, für Reinigung, Umzug, Entrümpelung und Entsorgung über die jeweiligen eigenen Düsseldorfer Seiten.",
       },
     ],
   },
