@@ -293,6 +293,22 @@ function localSearchIntents({
     case "umzug":
     default:
       return [
+        ...(city === "Aufhausen"
+          ? [
+              {
+                title: "Aufhausen Umzug mit Regensburg-Nähe",
+                text: "Für Aufhausen zählen Strecke, Etage, Laufweg, Parkmöglichkeit, Möbelmenge, Termin und Fotos. FLOXANT ordnet den Umzug als Nahbereich zu Regensburg und Bayern ein.",
+                href: currentHref,
+                label: "Aufhausen-Umzug prüfen",
+              },
+              {
+                title: "Umzug Aufhausen mit Angebot oder Budget",
+                text: "Wenn schon ein Preis oder Angebot vorliegt, helfen Fotos, Start, Ziel, Zusatzleistungen und ein realistischer Preisrahmen für die Einordnung.",
+                href: "/angebot-guenstiger-pruefen",
+                label: "Angebot prüfen",
+              },
+            ]
+          : []),
         {
           title: `Umzug mit klarem Preisrahmen ${city}`,
           text: "Ein Preisrahmen ist nur hilfreich, wenn Volumen, Etage, Laufweg, Haltezone, Termin und Zusatzleistungen realistisch beschrieben sind.",

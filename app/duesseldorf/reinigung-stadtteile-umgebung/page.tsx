@@ -23,14 +23,14 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib
 
 
 const path = "/duesseldorf/reinigung-stadtteile-umgebung";
-const title = "Reinigung in Düsseldorf und Umgebung";
+const title = "Reinigungsfirma Düsseldorf Umgebung | Stadtteil prüfen";
 const description =
-  "FLOXANT Reinigung in Düsseldorf und Umgebung: Gewerbereinigung, Büroreinigung, Praxisreinigung, Endreinigung, Wohnungsreinigung, Übergabereinigung und Angebotsprüfung unverbindlich anfragen.";
+  "Reinigung in Düsseldorf, Neuss, Ratingen, Meerbusch und Umgebung: Büro, Praxis, Wohnung, Endreinigung oder Angebot mit Fotos prüfen lassen.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path,
-    title: "Reinigung Düsseldorf und Umgebung | FLOXANT",
+    title,
     description,
   });
 }

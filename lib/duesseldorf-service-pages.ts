@@ -582,9 +582,9 @@ export const duesseldorfServicePages = {
   "hausverwaltung-reinigung": {
     slug: "hausverwaltung-reinigung",
     path: "/duesseldorf/hausverwaltung-reinigung",
-    metaTitle: "Hausverwaltung Reinigung Düsseldorf | WEG & Objekt | FLOXANT",
+    metaTitle: "Hausverwaltung Reinigung Düsseldorf | Treppenhaus & WEG",
     metaDescription:
-      "Hausverwaltung-Reinigung in Düsseldorf für Treppenhaus, Eingang, Kellerflur, Objektbereiche und Mieterwechsel mit Raumliste, Turnus, Fotos und Ansprechpartner.",
+      "Hausverwaltung-Reinigung Düsseldorf für Treppenhaus, Eingang, Kellerflur, Müllbereich und WEG: Raumliste, Turnus, Fotos und Ansprechpartner senden.",
     kicker: "FLOXANT Hausverwaltung Reinigung Düsseldorf",
     title: "Hausverwaltung-Reinigung in Düsseldorf, wenn Beschwerden nicht eskalieren sollen",
     description:
@@ -2043,9 +2043,9 @@ export const duesseldorfServicePages = {
   praxisreinigung: {
     slug: "praxisreinigung",
     path: "/duesseldorf/praxisreinigung",
-    metaTitle: "Praxisreinigung Düsseldorf | Allgemeine Reinigung | FLOXANT",
+    metaTitle: "Praxisreinigung Düsseldorf | Praxisflächen prüfen",
     metaDescription:
-      "Praxisreinigung Düsseldorf für allgemeine Flächen nach Absprache. Keine OP-, Labor- oder medizinische Spezialdesinfektion ohne Prüfung.",
+      "Praxisreinigung Düsseldorf für Empfang, Wartebereich, Sanitär, Flure und Teamräume: Fläche, Turnus, Randzeit, Zugang und Fotos direkt senden.",
     kicker: "FLOXANT Praxisreinigung Düsseldorf",
     title: "Praxisreinigung in Düsseldorf",
     description:

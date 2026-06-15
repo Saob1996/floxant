@@ -22,6 +22,7 @@ import { DuesseldorfCleaningConversionLift } from "@/components/duesseldorf/Dues
 import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
 import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
@@ -48,9 +49,9 @@ import { getDuesseldorfCleaningInternationalAliases } from "@/lib/search-intent-
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf | Fotos senden, Aufwand klären",
+    title: "Reinigungsfirma Düsseldorf | Wohnung & Büro prüfen",
     description:
-      "FLOXANT prüft Reinigung in Düsseldorf für Wohnung, Büro, Praxis und Übergabe. Stadtteil, Fläche, Fotos und Termin senden, Budget nennen.",
+      "Reinigungsfirma in Düsseldorf für Wohnung, Büro, Praxis und Übergabe: Stadtteil, Fläche, Fotos, Termin, Turnus und Budget direkt senden.",
   });
 }
 
@@ -512,6 +513,14 @@ const faqs = [
     a: "Ja, je nach Kapazität und Umfang können Reinigungen vor Wohnungs- oder Objektübergaben angefragt werden. Wichtig sind klare Angaben zum Zustand, Termin und gewünschten Ergebnis.",
   },
   {
+    q: "Kann FLOXANT Praxisreinigung in Düsseldorf prüfen?",
+    a: "Ja, allgemeine Praxisflächen wie Empfang, Wartebereich, Nebenräume, Flure und Sanitär können nach Fläche, Turnus, Zeitfenster, Zugang und Fotos geprüft werden. Medizinische Spezialdesinfektion wird nicht pauschal zugesagt.",
+  },
+  {
+    q: "Kann ich ein Angebot einer Reinigungsfirma prüfen lassen?",
+    a: "Ja. Ein vorhandenes Reinigungsangebot kann mit Fläche, Objektart, Turnus, Leistungsumfang, Fotos, Termin und Budget eingeordnet werden. FLOXANT gibt keine Preisgarantie, kann aber eine mögliche Alternative prüfen.",
+  },
+  {
     q: "Warum nennt FLOXANT nicht sofort einen festen Preis?",
     a: "Weil Reinigung stark vom Zustand, Umfang, Termin und Anspruch abhängt. Ein sofortiger Pauschalpreis ohne Einordnung kann später zu falschen Erwartungen führen. Wir kalkulieren lieber realistisch.",
   },
@@ -550,7 +559,7 @@ const duesseldorfPriorityServiceCards = [
     Icon: BadgeEuro,
     title: "Angebot oder Budget nennen",
     text: "Wenn bereits ein Reinigungsangebot oder ein Preisrahmen vorliegt, prüft FLOXANT Umfang, Turnus, Zusatzpunkte und mögliche Alternative ohne Preisgarantie.",
-    href: "/angebot-vergleichen-duesseldorf",
+    href: "/duesseldorf/vielleicht-guenstiger",
     cta: "Angebot prüfen",
   },
   {
@@ -724,10 +733,94 @@ export default function DuesseldorfReinigungPage() {
             { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
             { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung" },
             { href: "/duesseldorf/endreinigung", label: "Endreinigung" },
-            { href: "/angebot-vergleichen-duesseldorf", label: "Angebot prüfen" },
+            { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
           ]}
           offerCheckHref="/angebot-vergleichen-duesseldorf"
           className="pt-8"
+        />
+
+        <GscOpportunitySection
+          eyebrow="Düsseldorf-Reinigung aus Kundensuchen"
+          title="Praxis, Büro, Hotel, Wohnung oder Angebot direkt richtig einordnen."
+          intro="Viele Düsseldorfer Suchanfragen meinen nicht nur eine allgemeine Putzfirma. Häufig geht es um Praxisreinigung, Büroreinigung, Hotelreinigung, Hausverwaltung, Grundreinigung oder ein vorhandenes Reinigungsangebot. FLOXANT führt diese Fälle auf die passende Anfrage, damit aus einer Suche konkrete, prüfbare Angaben werden."
+          proofTitle="Wichtig für Düsseldorf"
+          proofItems={[
+            "Praxis, Büro, Hotel, Treppenhaus und Wohnung brauchen jeweils andere Raumlisten, Zeitfenster, Zugänge und Grenzen.",
+            "Ein Angebot einer Reinigungsfirma wird erst vergleichbar, wenn Fläche, Turnus, Sonderbereiche, Fotos und Zusatzkosten sichtbar sind.",
+            "Stadtteil, Parken, Schlüsselweg, Fotos und Termin entscheiden oft schneller über Machbarkeit als ein einzelner Quadratmeterpreis.",
+          ]}
+          cards={[
+            {
+              title: "Praxisreinigung Düsseldorf",
+              text: "Empfang, Wartebereich, Sanitär, Flure und Teamräume mit Fläche, Turnus, Randzeit und Zugang prüfen.",
+              href: "/duesseldorf/praxisreinigung",
+              cta: "Praxis prüfen",
+            },
+            {
+              title: "Büroreinigung Düsseldorf",
+              text: "Raumliste, Küche, Sanitär, Arbeitsplätze, Turnus, Zeitfenster, Schlüsselweg und Ansprechpartner senden.",
+              href: "/duesseldorf/bueroreinigung",
+              cta: "Büro einordnen",
+            },
+            {
+              title: "Angebot Reinigungsfirma Düsseldorf",
+              text: "Bestehendes Angebot, Screenshot, Leistungsumfang, Turnus, Objektart und Fotos für eine zweite Einordnung senden.",
+              href: "/duesseldorf/vielleicht-guenstiger",
+              cta: "Angebot prüfen",
+            },
+            {
+              title: "Hotelreinigung Düsseldorf",
+              text: "Lobby, Flure, Sanitär, Gästebereiche und Zeitfenster nach Kapazität und Objektangaben realistisch klären.",
+              href: "/duesseldorf/hotelreinigung",
+              cta: "Hotelbereich prüfen",
+            },
+            {
+              title: "Hausverwaltung Reinigung",
+              text: "Eingang, Etagen, Kellerflur, Müllbereich, Beschwerden, Schlüsselweg, Fotos und Turnus als Bereichsliste senden.",
+              href: "/duesseldorf/hausverwaltung-reinigung",
+              cta: "Objekt prüfen",
+            },
+            {
+              title: "Stadtteile und Umgebung",
+              text: "Düsseldorf, Neuss, Ratingen, Meerbusch und nahe Umgebung nach Ort, Anfahrt, Zugang und Umfang prüfen lassen.",
+              href: "/duesseldorf/reinigung-stadtteile-umgebung",
+              cta: "Ort klären",
+            },
+          ]}
+          checklistTitle="Diese Angaben sparen Rückfragen"
+          checklist={[
+            "Objektart: Praxis, Büro, Hotel, Wohnung, Treppenhaus, Hausverwaltung oder Gewerbefläche.",
+            "Stadtteil oder PLZ, Fläche, Räume, Sanitär, Küche, Boden, Glas und Sonderbereiche.",
+            "Turnus, Zeitfenster, Zugang, Schlüsselweg, Ansprechpartner und Fotos vom Zustand.",
+            "Vorhandenes Angebot, Preisrahmen oder Budget, wenn eine Einordnung gewünscht ist.",
+          ]}
+          combinationsTitle="Häufige Suchpfade"
+          combinations={[
+            {
+              title: "Praxis + Büro",
+              text: "Allgemeine Praxisflächen und Bürobereiche sauber getrennt beschreiben.",
+              href: "/duesseldorf/praxisreinigung",
+            },
+            {
+              title: "Angebot + Alternative",
+              text: "Preis, Umfang und offene Leistungspunkte vor einer Zusage prüfen.",
+              href: "/duesseldorf/vielleicht-guenstiger",
+            },
+            {
+              title: "Hausverwaltung + Treppenhaus",
+              text: "Etagen, Eingänge, Müllbereich und Beschwerden als wiederkehrenden Turnus planen.",
+              href: "/duesseldorf/hausverwaltung-reinigung",
+            },
+            {
+              title: "Stadtteil + Termin",
+              text: "Ort, Anfahrt, Zugang und Zeitfenster früh klären.",
+              href: "/duesseldorf/reinigung-stadtteile-umgebung",
+            },
+          ]}
+          primaryHref={duesseldorfBookingHref}
+          primaryLabel="Reinigung Düsseldorf anfragen"
+          secondaryHref="/duesseldorf/vielleicht-guenstiger"
+          secondaryLabel="Angebot prüfen"
         />
 
         <section className="pt-6">

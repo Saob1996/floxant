@@ -582,6 +582,7 @@ export function SpecialtyPageLayout({
     breadcrumbs.some((item) => item.label.toLowerCase().includes("bayern") || item.href?.endsWith("-bayern"));
   const regionName = geo?.region || "Bayern";
   const serviceContext = getServiceContext(serviceSignal, city, citySlug, regionName, isBavariaPage);
+  const resolvedHeroTitle = heroTitle?.trim() || `${serviceContext.name} in ${city}`;
 
   const rawFaqs = (dict?.faqs || []) as Array<{ q: string; a: string }>;
   const resolvedFaqs = rawFaqs
@@ -749,7 +750,7 @@ export function SpecialtyPageLayout({
         ),
       }),
       buildWebPageJsonLd({
-        name: `${heroTitle} | FLOXANT`,
+        name: `${resolvedHeroTitle} | FLOXANT`,
         description: heroText || `${serviceContext.name} in ${city}.`,
         path: serviceContext.pagePath,
         about: [
@@ -812,7 +813,7 @@ export function SpecialtyPageLayout({
             </div>
 
             <h1 lang="de" className="mt-8 max-w-full min-w-0 break-words hyphens-auto flox-title-xl flox-display-hero text-slate-950 [overflow-wrap:anywhere] md:max-w-[15ch] xl:max-w-[14ch]">
-              {germanText(applyCity(heroTitle, city, neighborhoods), heroTitle)}
+              {germanText(applyCity(resolvedHeroTitle, city, neighborhoods), resolvedHeroTitle)}
               {highlightWord ? (
                 <span className="mt-2 block text-blue-600">{germanText(highlightWord, highlightWord)}</span>
               ) : null}
@@ -894,8 +895,8 @@ export function SpecialtyPageLayout({
             <div className="relative overflow-hidden rounded-[1.6rem] border border-white/70 bg-white shadow-[0_14px_36px_rgba(15,23,42,0.08)]">
               <div className="relative h-[430px]">
                 <Image
-                  src={heroImage}
-                  alt={`${heroTitle} | FLOXANT`}
+                src={heroImage}
+                  alt={`${resolvedHeroTitle} | FLOXANT`}
                   fill
                   className="object-cover"
                   priority

@@ -236,6 +236,12 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       shortTail: [
         "Düsseldorf Reinigung",
         "Reinigung Düsseldorf",
+        "Praxisreinigung Düsseldorf",
+        "Büroreinigung Düsseldorf",
+        "Hotelreinigung Düsseldorf",
+        "Angebot Reinigungsfirma",
+        "Angebot Reinigung",
+        "Gewerbereinigung",
         "Putzdienst Düsseldorf",
         "Putzen Düsseldorf",
         "Reinigungsbetrieb Düsseldorf",
@@ -254,6 +260,10 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Reinigungsservice Düsseldorf",
       ],
       longTail: [
+        "Angebot Reinigungsfirma Düsseldorf mit Fläche, Turnus, Fotos und Leistungsumfang prüfen",
+        "Praxisreinigung Düsseldorf mit Empfang, Wartebereich, Sanitär und Randzeit anfragen",
+        "Büroreinigung Düsseldorf mit Raumliste, Turnus, Zeitfenster und Zugang senden",
+        "Hotelreinigung Düsseldorf für Lobby, Flure und Gästebereiche nach Objektangaben prüfen",
         "Hausreinigung Düsseldorf mit Wohnung, Küche, Bad, Boden und Fotos anfragen",
         "Büroreinigung Reinigungsfirma Düsseldorf für kleine Firmen und Praxen",
         "Reinigungsfirma Angebot in Düsseldorf mit Fotos und Preisrahmen prüfen lassen",
@@ -273,10 +283,12 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Ein vorhandenes Reinigungsangebot kann über die Düsseldorfer Angebotsprüfung eingeordnet werden.",
       ],
       links: [
+        { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+        { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
+        { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Düsseldorf" },
         { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
-        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Pempelfort und Altstadt" },
-        { href: "/duesseldorf/grundreinigung", label: "Boden und Grundreinigung" },
-        { href: "/duesseldorf/treppenhausreinigung", label: "Hauseingang und Treppenhaus" },
+        { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung Reinigung" },
+        { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteile und Umgebung" },
         { href: "/blog/reinigungsbetrieb-reinigungsunternehmen-duesseldorf-kosten", label: "Reinigungsbetrieb Ratgeber" },
       ],
     };
@@ -470,7 +482,9 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Umzug Regensburg",
         "Umzüge Regensburg",
         "Umzugsunternehmen Regensburg",
+        "Umzugsunternehmen Regensburg Kosten",
         "Umzugsfirma Regensburg",
+        "Umzugsfirma Regensburg Kosten",
         "Umzug mit Abbau Regensburg",
         "Umzugsservice Regensburg",
       ],
@@ -489,6 +503,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Ein Klick zu Buchung, Rechner oder Angebotsprüfung soll die Entscheidung einfacher machen.",
       ],
       links: [
+        { href: "/umzugsunternehmen-regensburg", label: "Umzugsunternehmen Regensburg" },
         { href: "/buchung", label: "Umzug direkt anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
@@ -521,8 +536,9 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
 
   if (route === "/umzug-aufhausen") {
     return {
-      shortTail: ["Umzug Aufhausen", "Aufhausen Umzug", "Umzugsfirma Aufhausen"],
+      shortTail: ["Umzug Aufhausen", "Aufhausen Umzug", "Umzugsunternehmen Aufhausen", "Umzugsfirma Aufhausen"],
       longTail: [
+        "Aufhausen Umzug mit Start, Ziel, Möbelmenge, Laufweg und Termin prüfen",
         "Umzug Aufhausen mit Start, Ziel, Fotos, Termin und Preisrahmen anfragen",
         "Aufhausen Umzug nach Regensburg oder Bayern mit Strecke und Etage prüfen",
         "Umzugsangebot Aufhausen vor Zusage mit Fotos und Zusatzleistungen einordnen",
@@ -537,6 +553,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         { href: "/buchung", label: "Umzug Aufhausen anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
         { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+        { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
       ],
     };
   }
@@ -886,6 +903,9 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
+        { href: "/reinigung-muenchen", label: "Reinigung nach Umzug" },
+        { href: "/bueroumzug-muenchen", label: "Büroumzug München" },
+        { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
         { href: "/blog/umzug-muenchen-festpreis-fernumzug-organisieren", label: "Festpreis und Fernumzug" },
         { href: "/blog/fernumzug-bayern-nrw-tipps", label: "Fernumzug Ratgeber" },
       ],
@@ -1177,6 +1197,8 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
     return {
       shortTail: ["Praxisreinigung Düsseldorf", "Reinigung Praxisräume Düsseldorf", "Praxis Reinigungsservice Düsseldorf"],
       longTail: [
+        "Praxisreinigung Düsseldorf Angebot mit Turnus, Fläche, Zeitfenster und Fotos prüfen",
+        "Praxisreinigung ohne medizinische Spezialdesinfektion für allgemeine Flächen in Düsseldorf anfragen",
         "Praxisreinigung Düsseldorf mit Fläche, Raumliste, Zeitfenster und Fotos anfragen",
         "Reinigung für Arztpraxis oder Therapiepraxis in Düsseldorf nach Turnus prüfen",
         "Praxisreinigungsangebot Düsseldorf vor Zusage einordnen lassen",
@@ -1220,8 +1242,10 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
   if (lower.includes("bueroreinigung") && lower.includes("duesseldorf")) {
     return {
       shortTail: [
+        "Büroreinigung Düsseldorf",
         "Büro reinigen Düsseldorf",
         "Büroreinigung in Düsseldorf",
+        "B2B Büroreinigung Düsseldorf",
         "Büroreinigung Düsseldorf Preise",
         "Büroreinigung Reinigungsfirma Düsseldorf",
         "Düsseldorf Reinigungsfirma Büro",

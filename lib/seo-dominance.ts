@@ -381,7 +381,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/gewerbereinigung-regensburg": {
  title: "Gewerbereinigung Regensburg | Büro, Praxis & Angebot",
  description:
-   "Gewerbereinigung Regensburg für Büro, Praxis, Hotel, Hausverwaltung und Treppenhaus: Fläche, Turnus, Zugang, Fotos und Starttermin senden.",
+   "Gewerbereinigung Regensburg für Büro, Praxis, Hotel und Objekt: Raumliste, Turnus, Fläche, Zeitfenster, Zugang und Fotos direkt senden.",
   cluster: "money",
   intent: "Gewerbereinigung in Regensburg für Büro, Praxis, Hotel, Treppenhaus, Glas, Bau oder IT-Raum anfragen",
  },
@@ -663,17 +663,17 @@ moneySnippets["/duesseldorf/putzfirma"] = {
 };
 
 moneySnippets["/duesseldorf/reinigung"] = {
- title: "Reinigung Düsseldorf | Fotos senden, Aufwand klären",
+ title: "Reinigungsfirma Düsseldorf | Wohnung & Büro prüfen",
  description:
-  "FLOXANT prüft Reinigung in Düsseldorf für Wohnung, Büro, Praxis und Übergabe. Stadtteil, Fläche, Fotos und Termin senden, Budget nennen.",
+  "Reinigungsfirma in Düsseldorf für Wohnung, Büro, Praxis und Übergabe: Stadtteil, Fläche, Fotos, Termin, Turnus und Budget direkt senden.",
  cluster: "money",
  intent: "Reinigung in Düsseldorf für privat, Büro oder Firma anfragen",
 };
 
 moneySnippets["/duesseldorf/bueroreinigung"] = {
- title: "Büroreinigung Düsseldorf | Firma & Angebot prüfen",
+ title: "B2B Büroreinigung Düsseldorf | Firma & Praxis prüfen",
  description:
-  "Büro reinigen in Düsseldorf: Reinigungsfirma für Büro, Praxis oder Firma mit Fläche, Turnus, Fotos, Zeitfenster und Angebot prüfen.",
+  "Büroreinigung Düsseldorf für kleine Firmen, Kanzlei, Praxis und Hotelbereich: Raumliste, Turnus, Zeitfenster, Zugang und Fotos direkt senden.",
  cluster: "money",
  intent: "Firmenreinigung in Düsseldorf für Firma, Büro oder Hotel anfragen",
 };
@@ -799,9 +799,9 @@ moneySnippets["/duesseldorf/kanzleireinigung"] = {
 };
 
 moneySnippets["/duesseldorf/praxisreinigung"] = {
- title: "Praxisreinigung Düsseldorf | Angebot & Termin prüfen",
+ title: "Praxisreinigung Düsseldorf | Praxisflächen prüfen",
  description:
-  "Praxisreinigung Düsseldorf für Praxis, Therapie, Empfang, Wartebereich und Sanitär: Fläche, Turnus, Termin, Zugang, Fotos und Angebot senden.",
+  "Praxisreinigung Düsseldorf für Empfang, Wartebereich, Sanitär, Flure und Teamräume: Fläche, Turnus, Randzeit, Zugang und Fotos direkt senden.",
  cluster: "money",
  intent: "Praxisreinigung in Düsseldorf für allgemeine Flächen anfragen",
 };
@@ -1095,9 +1095,9 @@ moneySnippets["/"] = {
 };
 
 moneySnippets["/umzug-regensburg"] = {
- title: "Umzug Regensburg | Angebot, Fotos & Termin",
+ title: "Umzugsunternehmen Regensburg | Fotos & Termin prüfen",
  description:
-  "Umzug in Regensburg anfragen: Möbelmenge, Etage, Laufweg, Strecke, Fotos, Termin und Preisrahmen senden. FLOXANT prüft den Ablauf.",
+  "Umzug Regensburg mit Umzugsunternehmen prüfen: Start, Ziel, Volumen, Etage, Laufweg, Parken, Fotos, Termin und Preisrahmen direkt senden.",
  cluster: "money",
  intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
 };
@@ -1105,7 +1105,7 @@ moneySnippets["/umzug-regensburg"] = {
 moneySnippets["/reinigung-regensburg"] = {
  title: "Reinigung Regensburg | Wohnung, Büro & Angebot",
  description:
-  "Reinigung in Regensburg für Wohnung, Büro, Praxis, Grundreinigung oder Übergabe: Fläche, Zustand, Fotos, Termin und Budget senden.",
+  "Reinigung in Regensburg für Wohnung, Büro, Praxis, Grundreinigung oder Übergabe: Fläche, Zustand, Fotos, Termin und Budget direkt senden.",
  cluster: "money",
  intent: "Reinigung in Regensburg mit passender Spezialleistung, Fotos, Fläche und Termin anfragen",
 };
@@ -1143,9 +1143,9 @@ moneySnippets["/klaviertransport-nuernberg"] = {
 };
 
 moneySnippets["/umzug-aufhausen"] = {
- title: "Umzug Aufhausen | Fotos senden & Termin prüfen",
+ title: "Umzug Aufhausen | Umzugsunternehmen & Termin prüfen",
  description:
-  "Umzug Aufhausen: Start, Ziel, Möbelmenge, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft Strecke, Aufwand und Preisrahmen.",
+  "Umzug Aufhausen: Start, Ziel, Möbelmenge, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft Strecke, Aufwand und Preisrahmen direkt.",
  cluster: "money",
  intent: "Umzug in Aufhausen mit Fotos und Preisrahmen anfragen",
 };
@@ -1175,9 +1175,9 @@ moneySnippets["/umzug-weiden"] = {
 };
 
 moneySnippets["/umzug-muenchen"] = {
- title: "Umzug München | Angebot prüfen & Termin planen",
+ title: "Umzug München | Privatumzug & Fernumzug prüfen",
  description:
-  "Privatumzug, Fernumzug oder kurzfristiger Umzug in München: Volumen, Etage, Fotos, Strecke, Termin und Budget realistisch prüfen.",
+  "Umzug München, Privatumzug oder Fernumzug: Start, Ziel, Volumen, Etage, Haltezone, Fotos, Termin und Budget direkt online prüfen lassen.",
  cluster: "money",
  intent: "Umzug in München mit Fotos, Termin und Preisrahmen anfragen",
 };
@@ -1199,17 +1199,17 @@ moneySnippets["/umzugsunternehmen-regensburg"] = {
 };
 
 moneySnippets["/umzug-friedberg"] = {
- title: "Umziehen Friedberg | Umzug & Angebot prüfen",
+ title: "Umziehen Friedberg | Umzug & Angebot klar prüfen",
  description:
-  "Umziehen in Friedberg: Start, Ziel, Möbelmenge, Etage, Fotos und Termin senden. FLOXANT prüft Bayern-Route und Preisrahmen.",
+  "Umziehen in Friedberg: Start, Ziel, Möbelmenge, Etage, Fotos und Termin senden. FLOXANT prüft Bayern-Route, Aufwand und Preisrahmen direkt.",
  cluster: "money",
  intent: "Umzug oder Umziehen in Friedberg mit Fotos und Termin anfragen",
 };
 
 moneySnippets["/umzug-forchheim"] = {
- title: "Umziehen Forchheim | Umzug & Angebot prüfen",
+ title: "Umziehen Forchheim | Umzug & Angebot klar prüfen",
  description:
-  "Umziehen in Forchheim: Möbel, Etage, Strecke, Fotos, Termin und Preisrahmen senden. FLOXANT prüft Machbarkeit in Bayern.",
+  "Umziehen in Forchheim: Möbel, Etage, Strecke, Fotos, Termin und Preisrahmen senden. FLOXANT prüft Machbarkeit und Aufwand in Bayern direkt.",
  cluster: "money",
  intent: "Umzug oder Umziehen in Forchheim mit Preisrahmen und Fotos anfragen",
 };
@@ -1241,9 +1241,17 @@ moneySnippets["/seniorenumzug-erlangen"] = {
 moneySnippets["/reinigung-muenchen"] = {
  title: "Reinigungsservice München buchen | Termin prüfen",
  description:
-  "Reinigungsservice München buchen oder nach Umzug reinigen lassen: Fläche, Zustand, Fotos, Zugang, Deadline und Termin prüfen.",
+  "Reinigung München nach Umzug, Übergabe oder Termin: Fläche, Zustand, Fotos, Zugang, Deadline, Räume und Budget direkt online prüfen lassen.",
  cluster: "money",
  intent: "Reinigung in München mit kurzfristigem Termin und Fotos anfragen",
+};
+
+moneySnippets["/bueroumzug-muenchen"] = {
+ title: "Büroumzug München | Firma & Zeitfenster prüfen",
+ description:
+  "Büroumzug München für Firma, Büro und Praxis: Arbeitsplätze, Möbel, IT-nahe Bereiche, Zugang, Randzeit, Fotos und Angebot direkt prüfen.",
+ cluster: "money",
+ intent: "Büroumzug in München mit Firma, Zeitfenster und Fotos anfragen",
 };
 
 moneySnippets["/bueroumzug-regensburg"] = {
@@ -1263,9 +1271,9 @@ moneySnippets["/bueroumzug-nuernberg"] = {
 };
 
 moneySnippets["/entruempelung-regensburg"] = {
- title: "Entrümpelung Regensburg | Wohnung, Keller & Angebot",
+ title: "Entrümpelung Regensburg | Wohnung & Keller räumen",
  description:
-  "Entrümpelung in Regensburg für Wohnung, Keller, Hausauflösung und Restmengen: Fotos, Menge, Zugang, Termin und Angebot prüfen.",
+  "Entrümpelung Regensburg für Wohnung, Keller, Garage, Hausauflösung und Restmengen: Fotos, Menge, Zugang, Termin und Angebot direkt prüfen lassen.",
  cluster: "money",
  intent: "Entrümpelung, Haushaltsauflösung oder Wohnungsauflösung in Regensburg anfragen",
 };
@@ -1375,9 +1383,9 @@ moneySnippets["/reinigung"] = {
 };
 
 moneySnippets["/entruempelung"] = {
- title: "Entrümpelung Regensburg | Räumung & Entsorgung",
+ title: "Entrümpelung Regensburg | Wohnung, Keller & Entsorgung",
  description:
-  "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern: Fotos, Volumen, Zugang, Material und Reinigung danach prüfen.",
+  "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern: Fotos, Volumen, Zugang, Material, Termin und Reinigung danach prüfen.",
  cluster: "money",
  intent: "Entrümpelung oder Wohnungsauflösung in Regensburg anfragen",
 };

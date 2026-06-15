@@ -28,14 +28,14 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib
 
 
 const path = "/duesseldorf/vielleicht-guenstiger";
-const title = "Reinigungsangebot Düsseldorf prüfen lassen";
+const title = "Angebot Reinigungsfirma prüfen | Düsseldorf | FLOXANT";
 const description =
-  "Reinigungsangebot, Screenshot oder Preis aus Düsseldorf senden: FLOXANT prüft Kosten, Umfang, Turnus, Fotos, Termin und mögliche Alternative ohne Preisgarantie.";
+  "Angebot einer Reinigungsfirma aus Düsseldorf senden: FLOXANT prüft Preis, Umfang, Turnus, Fotos, Termin und mögliche Alternative ohne Preisgarantie.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path,
-    title: "Reinigungsangebot Düsseldorf | Kosten fair prüfen",
+    title,
     description,
   });
 }

@@ -5,12 +5,20 @@ import {
 } from "@/lib/duesseldorf-cleaning";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildDuesseldorfCleaningMetadata({
+  const metadata = buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung/agb",
     title: "AGB Düsseldorf Reinigung | FLOXANT",
     description:
       "AGB und Leistungsbedingungen für FLOXANT Reinigung Düsseldorf mit Hinweisen zu unverbindlichen Rechnerpreisen, Terminabstimmung und Ausführung.",
   });
+
+  return {
+    ...metadata,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
 }
 
 export default function DuesseldorfAgbPage() {

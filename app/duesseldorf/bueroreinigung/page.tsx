@@ -61,9 +61,9 @@ function htmlLangForAlias(language: SearchIntentAliasLanguage) {
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: pagePath,
-    title: "Büroreinigung Düsseldorf - Büro, Hotel & Firma | FLOXANT",
-    description:
-      "Büroreinigung, Hotelreinigung und Reinigung für Firmen in Düsseldorf: Fläche, Turnus, Zeitfenster und Fotos senden.",
+    title: "B2B Büroreinigung Düsseldorf | Firma & Praxis prüfen",
+  description:
+      "Büroreinigung Düsseldorf für kleine Firmen, Kanzlei, Praxis und Hotelbereich: Raumliste, Turnus, Zeitfenster, Zugang und Fotos direkt senden.",
   });
 }
 

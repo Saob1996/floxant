@@ -129,7 +129,7 @@ function getDescriptionExpansion(path: string, geoPlacename: string) {
 }
 
 function ensureDescriptionDepth(description: string, path: string, geoPlacename: string) {
-  if (description.length >= 170) return description;
+  if (description.length >= 135) return description;
   const base = description.replace(/\s*[.!?]\s*$/, "");
   return trimDescription(`${base}. ${getDescriptionExpansion(path, geoPlacename)}`);
 }

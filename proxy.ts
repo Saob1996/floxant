@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const LEGACY_LOCALES = new Set(["de", "en", "ru", "bg", "vi", "tr", "ar", "fr", "es", "it", "pl", "uk"]);
+const LEGACY_LOCALES = new Set(["de", "en", "ru", "bg", "vi", "tr", "ar", "fr", "es", "it", "pl", "uk", "fa", "zh", "ko"]);
 const GERMAN_PATH_CHARS: Record<string, string> = {
   "\u00e4": "ae",
   "\u00f6": "oe",
@@ -123,7 +123,6 @@ export default proxy;
 
 export const config = {
   matcher: [
-    "/((?!_next|api|favicon.ico|.*\\..*|duesseldorf/(?:umzug|entruempelung|haushaltsaufloesung)/?$).*(?:duesseldorf|düsseldorf).*(?:umzug|umzugs|bueroumzug|transport|kleintransport|klaviertransport|halteverbotszone|beiladung|rueckfahrt|leerfahrt|seniorenumzug|studentenumzug|entruempelung|wohnungsaufloesung).*)",
-    "/((?!_next|api|favicon.ico|.*\\..*|duesseldorf/(?:umzug|entruempelung|haushaltsaufloesung)/?$).*(?:umzug|umzugs|bueroumzug|transport|kleintransport|klaviertransport|halteverbotszone|beiladung|rueckfahrt|leerfahrt|seniorenumzug|studentenumzug|entruempelung|wohnungsaufloesung).*(?:duesseldorf|düsseldorf).*)",
+    "/((?!_next|api|favicon.ico|.*\\..*).*)",
   ],
 };
