@@ -186,7 +186,7 @@ const b2bSearchIntentCards = [
   {
     query: "Putzfirma für kleine Firma Düsseldorf",
     title: "Kleine Firmen statt Großvertrag",
-    text: "Für kleine Teams, Büros, Studios und Gewerbeflächen, wenn ein schlanker, klarer Anfrageweg wichtiger ist als ein großer Vertrag.",
+    text: "Für kleine Teams, Büros, Studios und Gewerbeflächen, wenn ein schlanker, klarer Kontaktweg wichtiger ist als ein großer Vertrag.",
     href: "#b2b-reinigung-form",
     cta: "Firmenfall senden",
   },
@@ -331,7 +331,7 @@ const faqItems = [
   },
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt Büroreinigung, Hotelreinigung und Firmenreinigung für Unternehmen und Gewerbeflächen in Düsseldorf.",
+    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite behandelt Büroreinigung, Hotelreinigung und Firmenreinigung für Unternehmen und Gewerbeflächen in Düsseldorf.",
   },
   {
     q: "Kann Entsorgung ergänzt werden?",
@@ -489,7 +489,7 @@ export default function DuesseldorfBueroreinigungPage() {
               ))}
             </div>
             <div className="mt-5 rounded-[0.85rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-7 text-amber-900">
-              Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite behandelt Büroreinigung, Hotelreinigung und Firmenreinigung in Düsseldorf.
+              Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite behandelt Büroreinigung, Hotelreinigung und Firmenreinigung in Düsseldorf.
             </div>
           </div>
         </div>
@@ -500,7 +500,7 @@ export default function DuesseldorfBueroreinigungPage() {
         className="mx-auto -mt-6 grid max-w-7xl grid-cols-4 gap-2 px-4 sm:px-6 md:hidden"
       >
         {[
-          { href: "#bueroreinigung-klick-einstiege", label: "Suche", note: "B2B" },
+          { href: "#bueroreinigung-klick-Startpunkte", label: "Suche", note: "B2B" },
           { href: "#bueroreinigung-anfragefelder", label: "Senden", note: "Angaben" },
           { href: "#b2b-reinigung-form", label: "Formular", note: "Fotos" },
           { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten", note: "Budget" },
@@ -559,7 +559,7 @@ export default function DuesseldorfBueroreinigungPage() {
         </div>
       </section>
 
-      <section id="bueroreinigung-klick-einstiege" className="px-4 py-12 sm:px-6">
+      <section id="bueroreinigung-klick-Startpunkte" className="px-4 py-12 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.72fr_1.28fr]">
           <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-950/5 md:p-8">
             <div className="text-xs font-black uppercase tracking-normal text-cyan-800">
@@ -849,7 +849,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 Reinigung und Entsorgung. Keine Umzüge.
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Düsseldorf ist bei FLOXANT für Reinigung und Entsorgung positioniert. Diese Seite ist für Büroreinigung und Firmenreinigung kleiner Unternehmen, Hotels, Büros, Studios, Kanzleien, Treppenhäuser und Gewerbeflächen gedacht.
+                Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite ist für Büroreinigung und Firmenreinigung kleiner Unternehmen, Hotels, Büros, Studios, Kanzleien, Treppenhäuser und Gewerbeflächen gedacht.
               </p>
             </div>
             <div className="rounded-[1rem] border border-amber-200 bg-amber-50 p-6">

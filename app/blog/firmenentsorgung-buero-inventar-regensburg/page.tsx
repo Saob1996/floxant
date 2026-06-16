@@ -82,7 +82,7 @@ export default function FirmenentsorgungRegensburgBlogPage() {
       title: "Welche Grenzen bewusst gelten",
       paragraphs: [
        "Nicht alles, was in einem Gewerbeobjekt steht, darf ohne spezielle Anforderungen entsorgt werden. Gefahrstoffe, Chemikalien, kontaminierte Materialien, Asbest oder Flüssigkeiten sind ausgeschlossen.",
-       "Diese Grenze ist wichtig, weil sie Kunden schützt und den Service sauber positioniert. FLOXANT konzentriert sich auf reguläre Büro- und Gewerbegegenstände.",
+       "Diese Grenze ist wichtig, weil sie Kunden schützt und die Leistung sauber erklärt. FLOXANT konzentriert sich auf reguläre Büro- und Gewerbegegenstände.",
       ],
       bullets: [
        "Geeignet: Möbel, Kartons, Regale und Büroinventar",

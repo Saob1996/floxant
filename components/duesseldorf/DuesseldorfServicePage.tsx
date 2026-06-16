@@ -376,7 +376,7 @@ function getVisibleIntentLabel(item: { searchPhrase: string; signal?: string }) 
   if (/hausverwaltung|weg|treppenhaus/i.test(item.searchPhrase)) return "Hausverwaltung";
   if (/büro|praxis|firma|gewerbe|hotel|kanzlei/i.test(item.searchPhrase)) return "Gewerbe";
   if (/wohnung|apartment|putzfirma/i.test(item.searchPhrase)) return "Wohnung";
-  return "Anfrageweg";
+  return "Kontaktweg";
 }
 
 function getRecommendationLabel(intent: string) {
@@ -403,7 +403,7 @@ export function DuesseldorfServicePage({
   priceLogic = [],
   faqItems = [],
   relatedLinks = [],
-  boundaryText = "Düsseldorf ist bei FLOXANT klar für Reinigung, Entsorgung und objektbezogene Anfragen positioniert. Entscheidend sind Objektart, Ort, Umfang, Zugang und Zeitfenster.",
+  boundaryText = "Düsseldorf ist bei FLOXANT klar auf Reinigung, Entsorgung und objektbezogene Anfragen ausgerichtet. Entscheidend sind Objektart, Ort, Umfang, Zugang und Zeitfenster.",
   serviceLabel = "Reinigung",
   customerIntentItems = [],
   requestFieldItems = [],

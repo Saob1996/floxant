@@ -106,7 +106,7 @@ export async function sendInternalIntakeNotification(
     <p style="margin: 10px 0 0 0; font-size: 12px;"><strong>Treiber:</strong> ${escapeHtml((valuation.topDrivers || []).join(", ") || "-")}</p>
     <p style="margin: 10px 0 0 0; font-size: 12px;"><strong>Kunden-Preisvorstellung:</strong> ${escapeHtml(customerBudgetText)}</p>
     <p style="margin: 10px 0 0 0; font-size: 12px;"><strong>Fotos/Dateien:</strong> ${attachmentUrls.length ? `${attachmentUrls.length} Upload(s) vorhanden` : wantsPhotosLink ? "Kunde kann per WhatsApp senden" : "Nicht angeboten"}</p>
-    <p style="margin: 10px 0 0 0; font-size: 12px;"><strong>Einstieg:</strong> ${escapeHtml(sourcePath)}</p>
+    <p style="margin: 10px 0 0 0; font-size: 12px;"><strong>Startpunkt:</strong> ${escapeHtml(sourcePath)}</p>
    </div>
 
    ${attachmentLinksHtml}

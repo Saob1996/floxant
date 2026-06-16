@@ -45,7 +45,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     eyebrow: "Nächster Schritt",
     title: "Schnell zur richtigen Anfrage.",
     intro:
-      "Wählen Sie den Einstieg, der zu Ihrer Situation passt. FLOXANT fragt nur die Angaben ab, die für den nächsten Schritt wirklich helfen.",
+      "Wählen Sie den Startpunkt, der zu Ihrer Situation passt. FLOXANT fragt nur die Angaben ab, die für den nächsten Schritt wirklich helfen.",
     signal:
       "Ort, Termin, Umfang und Fotos reichen oft für die erste Einordnung. Danach melden wir uns mit der passenden Rückfrage oder dem nächsten Schritt.",
     primaryHref: "/buchung#buchungssystem",
@@ -152,7 +152,7 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     intro:
       "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
     signal:
-      "Düsseldorf und Regensburg bleiben sauber getrennt. Beide führen Umzug, Reinigung und Entrümpelung über eigene lokale Einstiege.",
+      "Düsseldorf und Regensburg bleiben sauber getrennt. Beide führen Umzug, Reinigung und Entrümpelung über eigene lokale Kontaktmöglichkeiten.",
     primaryHref: "/duesseldorf/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/entsorgung-duesseldorf",

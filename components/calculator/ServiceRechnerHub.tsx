@@ -138,7 +138,7 @@ const selectionSignals = [
 ];
 
 const qualityPromises = [
-  "Ruhiger Einstieg",
+  "Ruhiger Startpunkt",
   "Realistische Einordnung",
   "Passender nächster Kontaktweg",
 ];
@@ -373,7 +373,7 @@ const serviceLocalLinks: Partial<
     {
       label: "Gewerbereinigung",
       href: "/gewerbereinigung-regensburg",
-      text: "Eigener Einstieg für Büros, Praxen, Kanzleien, Treppenhäuser und Objektflächen.",
+      text: "Eigener Startpunkt für Büros, Praxen, Kanzleien, Treppenhäuser und Objektflächen.",
       tone: "border-blue-200 bg-blue-50 text-blue-800",
     },
     {
@@ -387,7 +387,7 @@ const serviceLocalLinks: Partial<
     {
       label: "Entrümpelung Regensburg",
       href: "/entruempelung-regensburg",
-      text: "Direkter Einstieg für Keller, Wohnung, Restmengen und besenreine Vorbereitung.",
+      text: "Direkter Kontaktweg für Keller, Wohnung, Restmengen und besenreine Vorbereitung.",
       tone: "border-orange-200 bg-orange-50 text-orange-800",
     },
     {
@@ -1011,7 +1011,7 @@ const ServiceRechnerHub: React.FC<{ dic?: any }> = ({ dic }) => {
                           </div>
                           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
                             Regensburg bleibt der Kern. Wenn Ort und Leistung schon feststehen,
-                            führen diese Seiten schneller zum passenden lokalen Einstieg.
+                            führen diese Seiten schneller zum passenden lokalen Kontaktweg.
                           </p>
                         </div>
                         <Link

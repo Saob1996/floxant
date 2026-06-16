@@ -90,7 +90,7 @@ function faq(service: string, detail: string) {
     },
     {
       q: "Gibt es in Düsseldorf Umzug oder Büroumzug?",
-      a: "Ja. Für Düsseldorf gibt es eine eigene Umzugsseite. Diese Reinigungsseite bleibt bewusst auf Reinigung fokussiert und verlinkt Umzug separat.",
+      a: "Ja. Für Düsseldorf gibt es einen eigenen Umzugsbereich. Diese Reinigungsseite bleibt bewusst auf Reinigung fokussiert und verlinkt Umzug separat.",
     },
   ];
 }
@@ -124,7 +124,7 @@ export const duesseldorfServicePages = {
       },
     ],
     bullets: [
-      "Alltagsnaher Einstieg für Putzfirma, Putzservice, Reinigungsfirma, Reinigungskosten und schnelle WhatsApp-Anfrage in Düsseldorf.",
+      "Alltagsnaher Startpunkt für Putzfirma, Putzservice, Reinigungsfirma, Reinigungskosten und schnelle WhatsApp-Anfrage in Düsseldorf.",
       "Geeignet für Wohnung, Büro, Auszug, Übergabe, Grundreinigung, Treppenhaus, Keller, Laden und kleine Objektflächen nach Prüfung.",
       "Keine Personalvermittlung, keine Haushaltshilfe-Vermittlung, keine Umzugsleistung und keine Preisgarantie ohne Fotos und Umfang.",
     ],
@@ -132,7 +132,7 @@ export const duesseldorfServicePages = {
     priceLogic: [
       "Objektart, Fläche, Zustand, Küche, Bad, Sanitär, Boden, Zugang, Etage, Termin und gewünschtes Ergebnis bestimmen den Aufwand.",
       "Ein vorhandenes Angebot, ein Budget oder Fotos helfen, den nächsten Schritt schneller und fairer einzuordnen.",
-      "Putzfirma ist der Einstieg; die konkrete Leistung wird je nach Situation auf Wohnungsreinigung, Büroreinigung, Endreinigung oder Spezialseite geführt.",
+      "Putzfirma ist der Startpunkt; die konkrete Leistung wird je nach Situation auf Wohnungsreinigung, Büroreinigung, Endreinigung oder Spezialseite geführt.",
     ],
     faqItems: [
       {
@@ -161,7 +161,7 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
     ],
     boundaryText:
-      "Putzfirma Düsseldorf ist bei FLOXANT ein kundennaher Einstieg für Reinigungsanfragen. FLOXANT bewirbt keine Personalvermittlung, keine Haushaltshilfe-Vermittlung und keine Preisgarantie ohne Prüfung von Umfang, Fotos und Termin; Umzug läuft über /duesseldorf/umzug.",
+      "Putzfirma Düsseldorf ist bei FLOXANT ein kundennaher Startpunkt für Reinigungsanfragen. FLOXANT bewirbt keine Personalvermittlung, keine Haushaltshilfe-Vermittlung und keine Preisgarantie ohne Prüfung von Umfang, Fotos und Termin; Umzug läuft über /duesseldorf/umzug.",
     customerIntentItems: [
       {
         searchPhrase: "Putzfirma Düsseldorf",
@@ -441,7 +441,7 @@ export const duesseldorfServicePages = {
         title: "Priorisieren statt alles gleichzeitig versprechen",
         paragraphs: [
           "Bei knappen Zeitfenstern werden sichtbare Hauptbereiche zuerst geordnet: Küche, Bad, Böden, Eingang, Sanitär, Laufwege, Übergabezonen oder Empfangsbereiche. Wenn nicht alles sinnvoll machbar ist, wird das offen eingeordnet.",
-          "FLOXANT positioniert kurzfristige Reinigung bewusst ohne 24/7-Garantie. Der Vorteil liegt in der ruhigen Machbarkeitsprüfung: Fotos senden, Zugang klären, Prioritäten nennen und eine ehrliche Rückmeldung bekommen.",
+          "FLOXANT beschreibt kurzfristige Reinigung bewusst ohne 24/7-Garantie. Der Vorteil liegt in der ruhigen Machbarkeitsprüfung: Fotos senden, Zugang klären, Prioritäten nennen und eine ehrliche Rückmeldung bekommen.",
         ],
       },
     ],
@@ -467,7 +467,7 @@ export const duesseldorfServicePages = {
       },
       {
         q: "Kann die Reinigung stattfinden, wenn ich nicht vor Ort bin?",
-        a: "Ein Schlüsselzugang kann geprüft werden, wenn Übergabe, Berechtigung, Ansprechpartner und Rückmeldung klar sind. Dafür ist die Schlüsselübergabe-Reinigungsseite der passende Einstieg.",
+        a: "Ein Schlüsselzugang kann geprüft werden, wenn Übergabe, Berechtigung, Ansprechpartner und Rückmeldung klar sind. Dafür ist die Schlüsselübergabe-Reinigungsseite der passende Kontaktweg.",
       },
       {
         q: "Was ist bei kurzfristiger Reinigung nicht sinnvoll?",
@@ -483,7 +483,7 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
     ],
     boundaryText:
-      "Kurzfristige Reinigung Düsseldorf bedeutet bei FLOXANT eine schnelle Machbarkeitsprüfung, keine 24/7-Garantie und keine Preisgarantie ohne Fotos; Umzug oder Transport laufen über eigene Servicepfade.",
+      "Kurzfristige Reinigung Düsseldorf bedeutet bei FLOXANT eine schnelle Machbarkeitsprüfung, keine 24/7-Garantie und keine Preisgarantie ohne Fotos; Umzug oder Transport laufen über eigene Kontaktwege.",
     customerIntentItems: [
       {
         searchPhrase: "Reinigung heute Düsseldorf",
@@ -733,7 +733,7 @@ export const duesseldorfServicePages = {
         query: "Ist Hausmeisterdienst enthalten?",
         title: "Nein, Reinigung bleibt getrennt",
         answer:
-          "FLOXANT positioniert Hausverwaltung-Reinigung als Reinigungsleistung. Hausmeisterdienst, Winterdienst, Reparatur und Schädlingsbekämpfung werden nicht automatisch mit angeboten.",
+          "FLOXANT beschreibt Hausverwaltung-Reinigung als Reinigungsleistung. Hausmeisterdienst, Winterdienst, Reparatur und Schädlingsbekämpfung werden nicht automatisch mit angeboten.",
         href: "#kontakt",
         cta: "Grenzen klären",
         signals: ["Hausmeisterdienst Reinigung", "Objektpflege Düsseldorf"],
@@ -1265,14 +1265,14 @@ export const duesseldorfServicePages = {
         title: "Für Eigentümer, Verwaltungen und Firmen verständlich geplant",
         paragraphs: [
           "In Düsseldorf unterscheiden sich Objekte stark: kleine Bürohäuser in Stadtmitte, Praxen in Pempelfort, Kanzleien in Derendorf, Treppenhäuser in Bilk oder Gewerbeflächen Richtung Neuss und Ratingen. Entscheidend sind nicht nur Quadratmeter, sondern Nutzung, Publikumsverkehr, Schlüsselregelung und wer Rückfragen schnell beantworten kann.",
-          "Nicht pauschal enthalten sind Hausmeisterdienst, Winterdienst, technische Wartung, Fassadenkletterei, Gefahrstoffe, Reinraum oder medizinische Spezialdesinfektion. Diese klare Grenze macht die Anfrage ehrlicher und schützt vor falschen Erwartungen.",
+          "Nicht pauschal enthalten sind Hausmeisterdienst, Winterdienst, Wartungsarbeiten, Fassadenkletterei, Gefahrstoffe, Reinraum oder medizinische Spezialdesinfektion. Diese klare Grenze macht die Anfrage ehrlicher und schützt vor falschen Erwartungen.",
         ],
       },
     ],
     bullets: [
       "Geeignet für Objekte mit Eingang, Treppenhaus, Fluren, Bürobereichen, Sanitär, Küche, Empfang und Nebenflächen nach Raumliste.",
       "Hilfreich für Verwaltungen, Eigentümer und Firmen, die Turnus, Zuständigkeit, Zugang und Qualitätsziel sauber klären möchten.",
-      "Keine Hausmeister-, Winterdienst-, Fassaden-, Reinraum-, Gefahrstoff- oder technische Wartungsleistung ohne gesonderte Prüfung.",
+      "Keine Hausmeister-, Winterdienst-, Fassaden-, Reinraum-, Gefahrstoff- oder Wartungsleistung ohne gesonderte Prüfung.",
     ],
     localFocus: ["Stadtmitte", "Pempelfort", "Derendorf", "Bilk", "Oberkassel", "Ratingen"],
     priceLogic: [
@@ -1295,7 +1295,7 @@ export const duesseldorfServicePages = {
       },
       {
         q: "Übernimmt FLOXANT auch Hausmeisterdienst oder Winterdienst?",
-        a: "Nein, nicht als normale Gebäudereinigung. Hausmeisterdienst, Winterdienst, technische Wartung, Fassade, Gefahrstoffe, Reinraum und medizinische Spezialdesinfektion werden nicht pauschal beworben.",
+        a: "Nein, nicht als normale Gebäudereinigung. Hausmeisterdienst, Winterdienst, Wartungsarbeiten, Fassade, Gefahrstoffe, Reinraum und medizinische Spezialdesinfektion werden nicht pauschal beworben.",
       },
     ],
     relatedLinks: [
@@ -1307,7 +1307,7 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/grundreinigung", label: "Grundreinigung einschätzen" },
     ],
     boundaryText:
-      "Gebäudereinigung in Düsseldorf wird als prüfbare Reinigungsleistung für Objektbereiche, Treppenhaus, Büroflächen, Sanitär, Küche, Empfang und Nebenflächen dargestellt. FLOXANT bewirbt dabei keine Hausmeisterdienste, keinen Winterdienst, keine technische Wartung, keine Fassadenkletterei und keine Gefahrstoff- oder Reinraumleistung ohne gesonderte Prüfung.",
+      "Gebäudereinigung in Düsseldorf wird als prüfbare Reinigungsleistung für Objektbereiche, Treppenhaus, Büroflächen, Sanitär, Küche, Empfang und Nebenflächen dargestellt. FLOXANT bewirbt dabei keine Hausmeisterdienste, keinen Winterdienst, keine Wartungsarbeiten, keine Fassadenkletterei und keine Gefahrstoff- oder Reinraumleistung ohne gesonderte Prüfung.",
     customerIntentItems: [
       {
         searchPhrase: "Gebäudereinigung Düsseldorf",
@@ -1396,7 +1396,7 @@ export const duesseldorfServicePages = {
         query: "Ist Hausmeisterdienst enthalten?",
         title: "Reinigung klar von Hausmeisterdienst trennen",
         answer:
-          "Hausmeisterdienst, Winterdienst, technische Wartung, Reparaturen, Fassadenkletterei, Gefahrstoffe und Reinraum werden nicht als normale Gebäudereinigung beworben.",
+          "Hausmeisterdienst, Winterdienst, Wartungsarbeiten, Reparaturen, Fassadenkletterei, Gefahrstoffe und Reinraum werden nicht als normale Gebäudereinigung beworben.",
         href: "#kontakt",
         cta: "Grenzen klären",
         signals: ["Hausmeisterdienst Düsseldorf", "Winterdienst Reinigung"],
@@ -1426,7 +1426,7 @@ export const duesseldorfServicePages = {
         title: "Weniger Rückfragen durch klare Zuständigkeit",
         paragraphs: [
           "Bei Objekten gibt es fast immer mehrere Beteiligte: Eigentümer, Verwaltung, Filialleitung, Teamleitung, Empfang oder externe Ansprechpartner. Wenn Zuständigkeit, Schlüsselweg, Hausordnung und erlaubte Zeiten früh geklärt sind, wird die Reinigung ruhiger und besser planbar.",
-          "Nicht gemeint sind Umzug, Transport, technische Wartung, Reparatur, Hausmeisterdienst, Gefahrstoffbehandlung oder industrielle Spezialreinigung. Die Seite bleibt bewusst auf Reinigung und bei Bedarf getrennte Entsorgung in Düsseldorf fokussiert.",
+          "Nicht gemeint sind Umzug, Transport, Wartungsarbeiten, Reparatur, Hausmeisterdienst, Gefahrstoffbehandlung oder industrielle Spezialreinigung. Die Seite bleibt bewusst auf Reinigung und bei Bedarf getrennte Entsorgung in Düsseldorf fokussiert.",
         ],
       },
     ],
@@ -1448,7 +1448,7 @@ export const duesseldorfServicePages = {
       },
       {
         q: "Wann passt Objektreinigung besser als Büroreinigung?",
-        a: "Wenn nicht nur Arbeitsplätze betroffen sind, sondern zusätzlich Eingang, Treppenhaus, Kundenflächen, Nebenräume, Lager, Sanitär oder gemischte Flächen, ist Objektreinigung oft der bessere Einstieg.",
+        a: "Wenn nicht nur Arbeitsplätze betroffen sind, sondern zusätzlich Eingang, Treppenhaus, Kundenflächen, Nebenräume, Lager, Sanitär oder gemischte Flächen, ist Objektreinigung oft der bessere Startpunkt.",
       },
       {
         q: "Welche Daten braucht FLOXANT für eine Objektreinigung?",
@@ -1468,7 +1468,7 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen" },
     ],
     boundaryText:
-      "Objektreinigung in Düsseldorf wird als prüfbare Reinigungsleistung für feste Objektbereiche dargestellt. FLOXANT bewirbt hier keinen Umzug, keinen Transport, keine technische Wartung, keine Reparatur, keinen Hausmeisterdienst und keine Industrie- oder Gefahrstoffreinigung ohne gesonderte Prüfung.",
+      "Objektreinigung in Düsseldorf wird als prüfbare Reinigungsleistung für feste Objektbereiche dargestellt. FLOXANT bewirbt hier keinen Umzug, keinen Transport, keine Wartungsarbeiten, keine Reparatur, keinen Hausmeisterdienst und keine Industrie- oder Gefahrstoffreinigung ohne gesonderte Prüfung.",
     customerIntentItems: [
       {
         searchPhrase: "Objektreinigung Düsseldorf",
@@ -1492,7 +1492,7 @@ export const duesseldorfServicePages = {
         searchPhrase: "Reinigungsfirma Objekt Düsseldorf",
         title: "Anfrage nicht in falsche Schublade stecken",
         answer:
-          "Wenn Wohnung, Büro oder Treppenhaus allein nicht passt, hilft Objektreinigung als sauberer Einstieg für gemischte Bereiche.",
+          "Wenn Wohnung, Büro oder Treppenhaus allein nicht passt, hilft Objektreinigung als sauberer Startpunkt für gemischte Bereiche.",
         href: "#kontakt",
         cta: "Objekt anfragen",
         signal: "Reinigungsfirma Objekt",
@@ -2101,7 +2101,7 @@ export const duesseldorfServicePages = {
         title: "IT-Raum Reinigung braucht ruhige Prüfung statt Pauschale",
         paragraphs: [
           "Bei IT-Raum Reinigung in Düsseldorf geht es nicht um eine normale Bürofläche. Staub, Kabelwege, Doppelboden, Technikschränke, Lüftung, Zutritt, Temperatur, laufende Geräte und Verantwortlichkeiten müssen vor jeder Zusage verstanden werden. Deshalb wird zuerst geklärt, ob nur Boden, Laufwege und sichtbare Nebenflächen gereinigt werden sollen oder ob sensible Bereiche betroffen sind.",
-          "Wir prüfen solche Räume vorsichtig und sagen klar, was wir nicht übernehmen. Keine Elektroarbeiten, keine Arbeiten an aktiver Hardware, keine Reinraumleistung, keine ESD-Spezialreinigung und keine technische Wartung ohne gesonderte Vereinbarung.",
+          "Wir prüfen solche Räume vorsichtig und sagen klar, was wir nicht übernehmen. Keine Elektroarbeiten, keine Arbeiten an aktiven Geräten, keine Reinraumleistung, keine ESD-Spezialreinigung und keine Wartungsarbeiten ohne gesonderte Vereinbarung.",
         ],
       },
       {
@@ -2134,7 +2134,7 @@ export const duesseldorfServicePages = {
       },
       {
         q: "Gibt es ESD-, Reinraum- oder Hardware-Reinigung?",
-        a: "Nicht als pauschale Leistung. ESD-Spezialreinigung, Reinraum, Hardware-Reinigung, Elektroarbeiten, Labor- oder technische Wartungsleistungen werden ohne gesonderte Eignung und Prüfung nicht beworben.",
+        a: "Nicht als pauschale Leistung. ESD-Spezialreinigung, Reinraum, Hardware-Reinigung, Elektroarbeiten, Labor- oder Wartungsleistungen werden ohne gesonderte Eignung und Prüfung nicht beworben.",
       },
       {
         q: "Kann die Reinigung nach Feierabend stattfinden?",
@@ -2165,7 +2165,7 @@ export const duesseldorfServicePages = {
         searchPhrase: "Serverraum reinigen lassen Düsseldorf",
         title: "Serverraum-nahe Flächen nur nach Prüfung",
         answer:
-          "Boden, Laufwege und sichtbare Nebenflächen können geprüft werden. Aktive Hardware, Schränke, Kabel und technische Systeme werden nicht pauschal berührt.",
+          "Boden, Laufwege und sichtbare Nebenflächen können geprüft werden. Aktive Geräte, Schränke, Kabel und Anlagen werden nicht pauschal berührt.",
         href: "#kontakt",
         cta: "Fall prüfen lassen",
         signal: "Serverraum Reinigung",
@@ -2271,7 +2271,7 @@ export const duesseldorfServicePages = {
         query: "Ist ESD- oder Hardware-Reinigung enthalten?",
         title: "Spezialleistungen nicht pauschal zugesagt",
         answer:
-          "ESD-Spezialreinigung, Reinraum, Elektroarbeiten, Hardware-Reinigung und technische Wartung werden ohne gesonderte Eignung nicht beworben.",
+          "ESD-Spezialreinigung, Reinraum, Elektroarbeiten, Hardware-Reinigung und Wartungsarbeiten werden ohne gesonderte Eignung nicht beworben.",
         href: "#kontakt",
         cta: "Grenzen klären",
         signals: ["ESD Reinigung Düsseldorf", "Hardware Reinigung Serverraum"],
@@ -3124,7 +3124,7 @@ export const duesseldorfServicePages = {
       {
         title: "Entsorgung in Düsseldorf nach Menge und Zugang",
         paragraphs: [
-          "Entsorgung in Düsseldorf wird bei FLOXANT als eigener Servicepfad beschrieben. Umzug, Entrümpelung und Haushaltsauflösung haben separate Seiten; bei Entsorgung zählen Menge, Material, Gewicht, Etage, Laufweg, Parkmöglichkeit und ein sinnvolles Zeitfenster.",
+          "Entsorgung in Düsseldorf wird bei FLOXANT als eigener Kontaktweg beschrieben. Umzug, Entrümpelung und Haushaltsauflösung haben separate Seiten; bei Entsorgung zählen Menge, Material, Gewicht, Etage, Laufweg, Parkmöglichkeit und ein sinnvolles Zeitfenster.",
           "Innenstadt, Flingern, Bilk, Oberbilk, Neuss und Ratingen können bei der Anfahrt sehr unterschiedlich sein. Ein Haus mit Aufzug und guter Ladezone ist anders zu planen als ein Altbau mit engem Treppenhaus, Hinterhof und kurzem Haltefenster.",
         ],
       },

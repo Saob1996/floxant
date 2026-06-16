@@ -163,7 +163,7 @@ export default async function EntsorgungPage() {
             { href: "/entruempelung", label: "Entrümpelung als Hauptservice" },
             { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt für kleine Mengen" },
             { href: "/firmenentsorgung", label: "Firmenentsorgung ohne Sonderabfall" },
-            { href: "/rechner", label: "Rechner als Einstieg" },
+            { href: "/rechner", label: "Rechner zur Orientierung" },
           ].map((item) => (
             <Link
               key={item.href}

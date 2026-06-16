@@ -170,7 +170,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das für Düsseldorf?",
-    a: "Ja, aber nur für Reinigung und Entsorgung. Düsseldorf wird bei FLOXANT nicht für Umzüge positioniert.",
+    a: "Ja, aber nur für Reinigung und Entsorgung. Düsseldorf-Umzüge werden bei FLOXANT separat geprüft.",
   },
   {
     q: "Was passiert nach dem Absenden?",
@@ -358,7 +358,7 @@ export default function PlattformAuftragPruefenPage() {
               </p>
               <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 text-sm leading-7 text-slate-700">
                 <p className="font-black text-slate-950">Düsseldorf-Abgrenzung</p>
-                <p className="mt-2">Für Düsseldorf prüft FLOXANT servicebezogen über eigene lokale Seiten.</p>
+                <p className="mt-2">Für Düsseldorf prüft FLOXANT passend zum Anliegen über klare lokale Kontaktmöglichkeiten.</p>
               </div>
             </div>
             <PlatformOrderCheckForm />

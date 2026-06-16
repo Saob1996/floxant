@@ -39,7 +39,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
     eyebrow: "Problem erkennen, passenden Weg finden",
     title: "FLOXANT hilft, wenn aus einem unklaren Servicefall ein klarer nächster Schritt werden soll.",
     intro:
-      "Erst wird das Anliegen sortiert, dann der passende FLOXANT-Einstieg gewählt. Regensburg/Bayern und Düsseldorf bleiben dabei sauber getrennt.",
+      "Erst wird das Anliegen sortiert, dann der passende FLOXANT-Anfrage gewählt. Regensburg/Bayern und Düsseldorf bleiben dabei sauber getrennt.",
     boundary:
       "Regensburg ist der Ausgangspunkt für Umzug, Reinigung, Entrümpelung, Transport, Übergabe und zusätzliche Hilfe rund um Objekt und Schlüssel. Düsseldorf bleibt als eigener Reinigungsbereich sichtbar; Entsorgung dort nur über die eigene Entsorgungsseite.",
     recommendations: [
@@ -161,7 +161,7 @@ const configs: Record<AiServiceVariant, AiServiceConfig> = {
   },
   calculator: {
     eyebrow: "Antwort für Preis- und Budgetfragen",
-    title: "Der bessere Einstieg ist oft nicht ein Sofortpreis, sondern eine realistische Einordnung.",
+    title: "Der bessere Startpunkt ist oft nicht ein Sofortpreis, sondern eine realistische Einordnung.",
     intro:
       "FLOXANT nennt nicht blind den niedrigsten Preis, sondern sortiert Volumen, Fläche, Zugang, Termin, Zusatzleistungen und Region. So wird der Preisrahmen realistischer.",
     boundary:

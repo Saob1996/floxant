@@ -37,7 +37,7 @@ function persistJourneyCookie(journeyId: string) {
       safeId,
     )}; Path=/; Max-Age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax`;
   } catch {
-    // Tracking darf den Anfrageweg nie stören.
+    // Tracking darf den Kontaktweg nie stören.
   }
 }
 

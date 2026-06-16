@@ -308,7 +308,7 @@ export const regensburgCleaningSearchSituations: RegensburgCleaningSearchSituati
     eyebrow: "Diskret",
     customerSays: "Mir ist die Situation peinlich.",
     answer:
-      "Bei belasteten oder sehr privaten Räumen zählt ruhige Kommunikation, keine Bewertung, klare Grenzen und ein geschützter Anfrageweg.",
+      "Bei belasteten oder sehr privaten Räumen zählt ruhige Kommunikation, keine Bewertung, klare Grenzen und ein geschützter Kontaktweg.",
     href: "/anti-scham-reinigung",
     cta: "Diskret anfragen",
     proofPoints: ["ruhiger Erstkontakt", "keine Vorwürfe", "klare nächste Schritte"],

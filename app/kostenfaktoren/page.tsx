@@ -39,7 +39,7 @@ const principles = [
  "Keine Lockpreise und keine scheinbar exakten Euro-Versprechen.",
  "Sichtbare Kostentreiber statt versteckter Pauschalannahmen.",
  "Kundenbudget und geprüfte Einschätzung bleiben sauber getrennt.",
- "Der Rechner ist Einstieg in die Vorprüfung, nicht finales Angebot.",
+ "Der Rechner ist Startpunkt in die Vorprüfung, nicht finales Angebot.",
 ];
 
 export async function generateMetadata(): Promise<Metadata> {

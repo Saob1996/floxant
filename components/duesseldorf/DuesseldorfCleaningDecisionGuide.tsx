@@ -68,7 +68,7 @@ export function DuesseldorfCleaningDecisionGuide({
             <p className="mt-4 text-sm leading-7 text-slate-800">
               Viele Anfragen scheitern nicht am Willen, sondern an Unsicherheit:
               Was kostet das ungefähr? Reichen Fotos? Geht es kurzfristig? Wer hat
-              den Schlüssel? Hier finden Sie den passenden Einstieg ohne lange Suche.
+              den Schlüssel? Hier finden Sie den passenden Kontaktweg ohne lange Suche.
             </p>
             <a
               href={whatsappHref}

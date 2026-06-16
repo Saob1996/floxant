@@ -6,7 +6,7 @@ import { m, AnimatePresence } from "framer-motion";
 
 // Static data isolated outside the component to prevent re-instantiation and optimize INP
 const activities = [
-  { type: "success", text: "Anfrageweg: Privatumzug vorbereiten", location: "München" },
+  { type: "success", text: "Kontaktweg: Privatumzug vorbereiten", location: "München" },
   { type: "info", text: "Planungssignal: Team und Route abstimmen", location: "Regensburg" },
   { type: "review", text: "Qualitätssignal: Rückmeldung prüfen", location: "Nürnberg" },
   { type: "success", text: "Serviceweg: Entrümpelung einordnen", location: "Augsburg" },

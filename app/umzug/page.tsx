@@ -160,7 +160,7 @@ export default async function UmzugPillarPage() {
         faqItems={faqItems}
         bookingTitle="Umzug in Regensburg oder Bayern anfragen"
         bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Vorschnell niedrige Preise helfen niemandem, wenn am Einsatztag Fahrzeug, Team oder Zeitfenster fehlen."
-        serviceLinksTitle="Wichtige passende Einstiege rund um den Umzug"
+        serviceLinksTitle="Wichtige klare Kontaktmöglichkeiten rund um den Umzug"
         serviceLinks={[
           { href: "/rechner", label: "Umzug direkt kalkulieren" },
           { href: "/beiladung", label: "Beiladung für Einzelmöbel prüfen" },

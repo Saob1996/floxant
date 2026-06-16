@@ -320,7 +320,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
               <h3 className="text-lg font-black text-slate-950">{service.title}</h3>
               <p className="mt-2 text-sm leading-7 text-slate-700">{service.text}</p>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
-                Passenden Einstieg öffnen
+                Passenden Startpunkt öffnen
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
               </span>
             </Link>

@@ -78,7 +78,7 @@ export default async function RatgeberPage() {
       </div>
       <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
        <BookOpen className="h-4 w-4 text-blue-400" />
-       <h2 className="mt-4 text-lg font-semibold text-white">Direkte Einstiege</h2>
+       <h2 className="mt-4 text-lg font-semibold text-white">Direkte Kontaktwege</h2>
        <p className="mt-2 text-sm leading-relaxed text-white/45">
         Jeder Beitrag führt sauber weiter zu Rechner, Services oder passenden Spezialseiten.
        </p>
@@ -129,7 +129,7 @@ export default async function RatgeberPage() {
       </div>
 
       <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-6">
-       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">Direkter Einstieg</p>
+       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">Direkter Kontaktweg</p>
        <div className="mt-5 space-y-3">
         <Link href="/rechner" className="block rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm font-medium text-white hover:border-blue-400/20">
          FLOXANT Rechner

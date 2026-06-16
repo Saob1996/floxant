@@ -123,7 +123,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             Unverbindliche Budget-Anfrage
           </p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">
-            Ihre Preisvorstellung wird als zusätzliches Signal gespeichert. Sie ersetzt keine
+            Ihre Preisvorstellung wird als zusätzliches Hinweis gespeichert. Sie ersetzt keine
             fachliche Einschätzung und ist keine Preiszusage. Name, Telefon und Preisrahmen reichen
             für den ersten Kontakt; E-Mail ist optional.
           </p>

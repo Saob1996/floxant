@@ -52,7 +52,7 @@ const faqItems = [
   },
   {
     q: "Wie bekomme ich einen Preisrahmen?",
-    a: "Der schnellste Einstieg ist der FLOXANT Rechner. Dort werden Umfang, Zugang, Termin und Zusatzleistungen strukturiert abgefragt.",
+    a: "Der schnellste Startpunkt ist der FLOXANT Rechner. Dort werden Umfang, Zugang, Termin und Zusatzleistungen strukturiert abgefragt.",
   },
 ];
 
@@ -189,7 +189,7 @@ export default function UmzugsunternehmenRegensburgPage() {
               Erst Aufwand einordnen, dann Angebot prüfen.
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Diese Seite ist der direkte Einstieg für
+              Diese Seite ist der direkte Startpunkt für
               „Umzugsunternehmen Regensburg“. Die Anfrage läuft danach über
               Rechner, Buchung oder WhatsApp, damit der Fall vollständig ankommt.
             </p>

@@ -47,12 +47,12 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     label: "FLOXANT Düsseldorf",
     city: "Düsseldorf",
     href: "/duesseldorf",
-    headline: "Umzug, Reinigung, Entrümpelung und Übergabe in Düsseldorf.",
+    headline: "Hilfe für Umzug, Reinigung, Räumung und Übergabe in Düsseldorf.",
     description:
-      "FLOXANT Düsseldorf unterstützt bei Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und sauber geprüften Kombi-Anfragen.",
+      "FLOXANT Düsseldorf hilft bei Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und kombinierten Anfragen mit Fotos, Stadtteil und Termin.",
     shortDescription:
-      "Umzug, Reinigung, Entrümpelung und Übergabe klar getrennt anfragen.",
-    primaryCta: "Düsseldorf-Services ansehen",
+      "Reinigung, Umzug, Räumung und Übergabe verständlich anfragen.",
+    primaryCta: "Passende Hilfe finden",
   },
   regensburg: {
     id: "regensburg",
@@ -70,15 +70,15 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
 };
 
 export const floxantCategoryLabels: Record<FloxantServiceCategory, string> = {
-  normal: "Normale Services",
-  signature: "FLOXANT Signature",
-  special: "Spezielle Services / Angebotsprüfung",
+  normal: "Häufig angefragte Leistungen",
+  signature: "Besondere Hilfe im Ablauf",
+  special: "Schnelle Klärung und Angebotsprüfung",
 };
 
 export const floxantCategoryDescriptions: Record<FloxantServiceCategory, string> = {
-  normal: "Klassische Leistungen, die direkt nach Ort, Objekt, Umfang und Termin angefragt werden können.",
-  signature: "Zusätzliche Leistungen für Fälle mit Zugang, Übergabe, Diskretion, Fotos oder besonderer Abstimmung.",
-  special: "Schnelle Einstiege für Objektbrief, vorhandene Angebote, kurzfristige Anliegen, Google-Ads-Landingpages und unklare Fälle.",
+  normal: "Leistungen, die Sie direkt mit Ort, Objekt, Umfang und Termin anfragen können.",
+  signature: "Hilfe für Fälle mit Zugang, Übergabe, Diskretion, Fotos oder besonderer Abstimmung.",
+  special: "Schnelle Wege, wenn ein Angebot geprüft werden soll, ein Objekt unklar ist oder kurzfristig Hilfe gebraucht wird.",
 };
 
 const floxantServiceSeeds: FloxantServiceSeed[] = [
@@ -350,7 +350,7 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     id: "duesseldorf-gewerbe-ads",
     title: "Schnellanfrage Gewerbereinigung",
     shortDescription:
-      "Direkter Einstieg für Unternehmen, Büros, Praxen und Gewerbeobjekte in Düsseldorf.",
+      "Direkter Kontaktweg für Unternehmen, Büros, Praxen und Gewerbeobjekte in Düsseldorf.",
     region: "duesseldorf",
     category: "special",
     href: "/duesseldorf/gewerbereinigung",
@@ -362,7 +362,7 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     id: "duesseldorf-premium-ads",
     title: "Diskrete Premium-Anfrage",
     shortDescription:
-      "Ruhiger Anfrageweg für hochwertige Objekte, bei denen Abstimmung und Auftreten wichtig sind.",
+      "Ruhiger Kontaktweg für hochwertige Objekte, bei denen Abstimmung und Auftreten wichtig sind.",
     region: "duesseldorf",
     category: "special",
     href: "/duesseldorf/luxusreinigung",

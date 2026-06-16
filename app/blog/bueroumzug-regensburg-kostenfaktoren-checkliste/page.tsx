@@ -88,7 +88,7 @@ export default function BueroumzugRegensburgBlogPage() {
       title: "Checkliste vor der Anfrage",
       paragraphs: [
        "Je strukturierter die Angaben, desto belastbarer wird die Vorprüfung. Eine kurze Inventarliste, Fotos und ein grober Raumplan helfen mehr als lange, unklare Nachrichten.",
-       "Für FLOXANT ist außerdem wichtig, wer intern entscheidet, wer vor Ort erreichbar ist und welche Reihenfolge für die Wiederaufnahme der Arbeit sinnvoll ist.",
+       "Hilfreich ist außerdem, wer im Unternehmen entscheiden darf, wer am Umzugstag erreichbar ist und welche Bereiche zuerst wieder arbeitsfähig sein müssen.",
       ],
      },
      {

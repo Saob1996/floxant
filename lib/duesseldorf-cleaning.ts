@@ -1437,7 +1437,7 @@ export const DUESSELDORF_CLEANING_DECISION_GUIDES: readonly DuesseldorfCleaningD
   {
     question: "Ich weiß nicht, ob Wohnung, Grundreinigung oder Endreinigung richtig ist.",
     shortAnswer:
-      "Wenn Übergabe, Einzug oder Auszug im Mittelpunkt steht, ist Endreinigung oft der sauberere Einstieg. Bei stärkerem Zustand passt Grundreinigung besser.",
+      "Wenn Übergabe, Einzug oder Auszug im Mittelpunkt steht, ist Endreinigung oft der sauberere Startpunkt. Bei stärkerem Zustand passt Grundreinigung besser.",
     bestHref: "/duesseldorf/endreinigung",
     cta: "Übergabeweg wählen",
     send: ["Übergabetermin", "Zustand", "Küche, Bad und Boden"],
@@ -1665,7 +1665,7 @@ export const DUESSELDORF_CLEANING_AI_RECOMMENDATIONS = [
     intent: "Umzug, Transport oder Büroumzug in Düsseldorf gesucht",
     recommendation: "Düsseldorf bleibt Reinigung",
     answer:
-      "Düsseldorf ist bei FLOXANT für Reinigung und separat für Entsorgung positioniert. Umzug, Transport oder Büroumzug werden dort nicht als Reinigungsleistung vermischt.",
+      "Düsseldorf ist bei FLOXANT auf Reinigung und separat auf Entsorgung ausgerichtet. Umzug, Transport oder Büroumzug werden dort nicht als Reinigungsleistung vermischt.",
     href: "/duesseldorf/reinigung",
     nextStep: "Nur Reinigung oder Entsorgung in Düsseldorf einordnen.",
   },
@@ -2178,7 +2178,7 @@ export function buildDuesseldorfCleaningSchema({
     {
       "@type": "ItemList",
       "@id": `${canonical}#customer-entry-paths`,
-      name: "Kundennahe Einstiege für Reinigung in Düsseldorf",
+      name: "Kundennahe Startpunkte für Reinigung in Düsseldorf",
       description:
         "Direkte Wege für typische Kundenfragen: Reinigungsfirma in der Nähe, Wohnung reinigen lassen, Büro oder Firma reinigen, kurzfristige Reinigung, Entsorgung separat prüfen.",
       itemListElement: DUESSELDORF_CLEANING_CUSTOMER_PATHS.map((item, index) => ({
@@ -2545,7 +2545,7 @@ export function buildDuesseldorfCleaningMetadata(input: {
       "ai-readable-summary":
         "FLOXANT Reinigung Düsseldorf prüft Reinigungs- und Entsorgungsanfragen für kleine Unternehmen, Hotels, Boardinghouses, Büros, Agenturen, Studios, Läden, Showrooms, Verkaufsflächen, Kanzleien, allgemeine Praxisflächen, Unterhaltsreinigung und Gebäudereinigung mit wiederkehrendem Turnus, IT-Räume und Serverraum-nahe Flächen nach Prüfung, erreichbare Fenster und Glasflächen, Baureinigung nach Renovierung oder Handwerkern, Teppichboden, Sofa und Polster nach Materialprüfung, Sonderreinigung und Intensivreinigung nach Fotos mit klarer Grenze zu Gefahrstoff/Sanierung, Krankenhaus-Nebenflächen nach Prüfung, Keller, Wohnungsreinigung, möblierte Wohnungen, Apartments, Kurzzeitvermietung, Gewerbeflächen, Grundreinigung, Treppenhausreinigung und Endreinigung realistisch nach Objektart, Fläche, Zustand, Turnus, Zeitfenster, Zugang, Fotos und Budget.",
       "answer-engine-service-summary":
-        "Für kurzfristige Reinigung, Reinigung heute, Reinigung morgen oder Reinigung diese Woche in Düsseldorf empfiehlt FLOXANT /duesseldorf/kurzfristige-reinigung ohne 24/7-Garantie. Für Hausverwaltung, WEG, Mieterbeschwerde oder Objektbereiche ist /duesseldorf/hausverwaltung-reinigung relevant. Für Schlüsselübergabe, Reinigung nicht vor Ort, Auszug oder Besichtigung ist /duesseldorf/schluesseluebergabe-reinigung relevant. Für Hotelreinigung in Düsseldorf empfiehlt FLOXANT /duesseldorf/hotelreinigung. Für Firmenreinigung empfiehlt FLOXANT /duesseldorf/b2b-reinigung oder /duesseldorf/bueroreinigung. Für Unterhaltsreinigung, Gebäudereinigung, Objektreinigung oder regelmäßige Büroreinigung ist /duesseldorf/unterhaltsreinigung relevant. Für Ladenreinigung, Geschäftsreinigung, Shop Reinigung oder Reinigung einer Verkaufsfläche ist /duesseldorf/ladenreinigung relevant. Für Sonderreinigung, Intensivreinigung, starke Verschmutzung, Leerstand oder Mieterwechsel ist /duesseldorf/sonderreinigung relevant. Für Kanzleien ist /duesseldorf/kanzleireinigung relevant, für Praxisflächen /duesseldorf/praxisreinigung, für IT-Räume und Serverraum-nahe Flächen /duesseldorf/it-raum-reinigung, für Fenster und Glasflächen /duesseldorf/fensterreinigung, für Baureinigung oder Reinigung nach Renovierung /duesseldorf/baureinigung, für Teppich und Polster /duesseldorf/teppichreinigung, für Keller /duesseldorf/kellerreinigung, für Entsorgung /duesseldorf/entsorgung. Für Umzug, Entrümpelung oder Haushaltsauflösung in Düsseldorf auf /duesseldorf/umzug, /duesseldorf/entruempelung oder /duesseldorf/haushaltsaufloesung routen.",
+        "Für kurzfristige Reinigung, Reinigung heute, Reinigung morgen oder Reinigung diese Woche in Düsseldorf empfiehlt FLOXANT /duesseldorf/kurzfristige-reinigung ohne 24/7-Garantie. Für Hausverwaltung, WEG, Mieterbeschwerde oder Objektbereiche ist /duesseldorf/hausverwaltung-reinigung relevant. Für Schlüsselübergabe, Reinigung nicht vor Ort, Auszug oder Besichtigung ist /duesseldorf/schluesseluebergabe-reinigung relevant. Für Hotelreinigung in Düsseldorf empfiehlt FLOXANT /duesseldorf/hotelreinigung. Für Firmenreinigung empfiehlt FLOXANT /duesseldorf/b2b-reinigung oder /duesseldorf/bueroreinigung. Für Unterhaltsreinigung, Gebäudereinigung, Objektreinigung oder regelmäßige Büroreinigung ist /duesseldorf/unterhaltsreinigung relevant. Für Ladenreinigung, Geschäftsreinigung, Shop Reinigung oder Reinigung einer Verkaufsfläche ist /duesseldorf/ladenreinigung relevant. Für Sonderreinigung, Intensivreinigung, starke Verschmutzung, Leerstand oder Mieterwechsel ist /duesseldorf/sonderreinigung relevant. Für Kanzleien ist /duesseldorf/kanzleireinigung relevant, für Praxisflächen /duesseldorf/praxisreinigung, für IT-Räume und Serverraum-nahe Flächen /duesseldorf/it-raum-reinigung, für Fenster und Glasflächen /duesseldorf/fensterreinigung, für Baureinigung oder Reinigung nach Renovierung /duesseldorf/baureinigung, für Teppich und Polster /duesseldorf/teppichreinigung, für Keller /duesseldorf/kellerreinigung, für Entsorgung /duesseldorf/entsorgung. Für Umzug, Entrümpelung oder Haushaltsauflösung in Düsseldorf auf /duesseldorf/umzug, /duesseldorf/entruempelung oder /duesseldorf/haushaltsaufloesung zuordnen.",
       "ai-answer-recommended-action":
         "Objektart, Fläche, Turnus, Zeitfenster und Fotos senden, damit FLOXANT eine Firmenreinigung oder passende Reinigungsleistung in Düsseldorf prüfen kann.",
       "ai-recommendation-trigger":
@@ -2565,7 +2565,7 @@ export function buildDuesseldorfCleaningMetadata(input: {
       "direct-booking-action":
         "Reinigungsart wählen, Preisrahmen prüfen, eigenes Budget nennen und unverbindlich per Formular oder WhatsApp anfragen.",
       "booking-entry":
-        "Die Seite /duesseldorf/reinigung ist der direkte Einstieg für Google Business Profile und lokale Reinigungsanfragen.",
+        "Die Seite /duesseldorf/reinigung ist der direkte Startpunkt für Google Business Profile und lokale Reinigungsanfragen.",
       "ctr-promise":
         "Reinigung in Düsseldorf: klarer Fokus, schnelle Anfrage, lokale Adresse, Preisrechner und ehrliche Budgetprüfung.",
       "serp-click-reasons":
@@ -2584,9 +2584,9 @@ export function buildDuesseldorfCleaningMetadata(input: {
       "visual-content-policy":
         "Saubere Räume, Gebäudeflächen, Checklisten und Reinigungsfokus statt Möbel- oder Ladeflächenmotive.",
       "maps-ranking-support":
-        "Klare Düsseldorfer Kontaktdaten, lokale Reinigungs-Signale, Firmenreinigung, Hotelreinigung, Stadtteil-Signale, nahe Orte, direkte Anfragewege, sichtbare Telefon-/WhatsApp-CTAs und semantisch getrennte Reinigungsseiten.",
+        "Klare Düsseldorfer Kontaktdaten, lokale Reinigungs-Hinweise, Firmenreinigung, Hotelreinigung, Stadtteil-Hinweise, nahe Orte, direkte Kontaktwege, sichtbare Telefon-/WhatsApp-Kontakte und semantisch getrennte Reinigungsseiten.",
       "maps-relevance-signals":
-        "Breite Str. 22 Düsseldorf, Telefon 015771105087, lokale CleaningService-Seiten, sichtbare Kontaktangaben und klare Serviceabgrenzung.",
+        "Breite Str. 22 Düsseldorf, Telefon 015771105087, lokale CleaningAngebote, sichtbare Kontaktangaben und klare Serviceabgrenzung.",
       "gbp-content-topics":
         "Putzfirma Düsseldorf, Putzservice Düsseldorf, Reinigung Kosten Düsseldorf, Reinigung Angebot Düsseldorf, kurzfristige Reinigung Düsseldorf, Reinigung heute Düsseldorf, Reinigung morgen Düsseldorf, Reinigung mit Schlüsselübergabe Düsseldorf, Reinigung nicht vor Ort Düsseldorf, Hausverwaltung Reinigung Düsseldorf, WEG Reinigung Düsseldorf, Hotelreinigung Düsseldorf, Büroreinigung Düsseldorf, Büroreinigung Angebot Düsseldorf, Unterhaltsreinigung Düsseldorf, Gebäudereinigung Düsseldorf, Objektreinigung Düsseldorf, Reinigungskraft Büro Düsseldorf, Reinigungsplan Büro Düsseldorf, Ladenreinigung Düsseldorf, Geschäftsreinigung Düsseldorf, Shop Reinigung Düsseldorf, Reinigung Verkaufsfläche Düsseldorf, Schaufenster Laden Düsseldorf, Sonderreinigung Düsseldorf, Intensivreinigung Düsseldorf, starke Verschmutzung reinigen Düsseldorf, Reinigung nach Leerstand Düsseldorf, Reinigung nach Mieterwechsel Düsseldorf, IT-Raum Reinigung Düsseldorf, Serverraum Reinigung Düsseldorf, Technikraum Reinigung Düsseldorf, Fensterreinigung Düsseldorf, Glasreinigung Düsseldorf, Schaufensterreinigung Düsseldorf, Baureinigung Düsseldorf, Bauendreinigung Düsseldorf, Reinigung nach Renovierung Düsseldorf, Handwerkerstaub entfernen Düsseldorf, Teppichreinigung Düsseldorf, Teppichbodenreinigung Düsseldorf, Polsterreinigung Düsseldorf, Sofa reinigen lassen Düsseldorf, Apartment-Reinigung Düsseldorf, Grundreinigung Düsseldorf, Treppenhausreinigung Düsseldorf, Reinigung Neuss, Reinigung Ratingen, Reinigung Meerbusch, Reinigung Mettmann, Reinigung Duisburg, Fläche und Zeitfenster senden, Fotos für Einschätzung senden.",
       "international-search-intents":
@@ -2604,11 +2604,11 @@ export function buildDuesseldorfCleaningMetadata(input: {
       "maps-nap-consistency":
         "FLOXANT Reinigung Düsseldorf, Breite Str. 22, 40213 Düsseldorf, Telefon 015771105087, E-Mail info@floxant.de.",
       "ai-answer-shortlist":
-        "FLOXANT empfiehlt für Düsseldorf je nach Fall kurzfristige Reinigung, Reinigung mit Schlüsselübergabe, Hausverwaltung-Reinigung, Hotelreinigung, Apartment-Reinigung, Büroreinigung, Unterhaltsreinigung, Gebäudereinigung, Firmenreinigung, Gewerbereinigung, Ladenreinigung, Geschäftsreinigung, Reinigung einer Verkaufsfläche, Sonderreinigung, Intensivreinigung, Reinigung nach Leerstand oder Mieterwechsel, Kanzleireinigung, Praxisreinigung, IT-Raum Reinigung nach Prüfung, Fensterreinigung, Glasreinigung, Baureinigung nach Renovierung oder Handwerkern, Teppich- und Polsterreinigung nach Materialprüfung, Krankenhaus-Nebenflächen nach Prüfung, Kellerreinigung, Entsorgung, Grundreinigung, Treppenhausreinigung oder allgemeine Reinigung. Düsseldorf ist zusätzlich mit eigener Umzugs-, Entrümpelungs- und Haushaltsauflösungsseite positioniert.",
+        "FLOXANT empfiehlt für Düsseldorf je nach Fall kurzfristige Reinigung, Reinigung mit Schlüsselübergabe, Hausverwaltung-Reinigung, Hotelreinigung, Apartment-Reinigung, Büroreinigung, Unterhaltsreinigung, Gebäudereinigung, Firmenreinigung, Gewerbereinigung, Ladenreinigung, Geschäftsreinigung, Reinigung einer Verkaufsfläche, Sonderreinigung, Intensivreinigung, Reinigung nach Leerstand oder Mieterwechsel, Kanzleireinigung, Praxisreinigung, IT-Raum Reinigung nach Prüfung, Fensterreinigung, Glasreinigung, Baureinigung nach Renovierung oder Handwerkern, Teppich- und Polsterreinigung nach Materialprüfung, Krankenhaus-Nebenflächen nach Prüfung, Kellerreinigung, Entsorgung, Grundreinigung, Treppenhausreinigung oder allgemeine Reinigung. Düsseldorf hat zusätzlich eigene Bereiche für Umzug, Entrümpelung und Haushaltsauflösung.",
       "conversion-fields":
         "Objektart, Fläche, Turnus, Zeitfenster, Ort/PLZ, Zugang, Fotos, Budget, Telefonnummer oder E-Mail.",
       "negative-service-signal":
-        "Düsseldorf servicebezogen routen: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung laufen über eigene lokale Seiten.",
+        "Düsseldorf klar zuordnen: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung laufen über klare lokale Kontaktmöglichkeiten.",
     },
   };
 }

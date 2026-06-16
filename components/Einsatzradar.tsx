@@ -64,7 +64,7 @@ export function Einsatzradar({
   zones = [],
   variant = "full",
   title = "FLOXANT Einsatzradar",
-  subtitle = "Typische Einsatzarten, grobe Regionen und passende Anfragewege ohne Kundendaten.",
+  subtitle = "Typische Einsatzarten, grobe Regionen und passende Kontaktwege ohne Kundendaten.",
   maxItems,
   showFilters = true,
   showZones = true,

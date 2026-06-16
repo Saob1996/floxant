@@ -128,7 +128,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
               Direkt zur passenden Leistung in {germanText(city, city)}.
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700">
-              {company.name} bündelt für {germanText(city, city)} die wichtigsten Anfragewege zwischen
+              {company.name} bündelt für {germanText(city, city)} die wichtigsten Kontaktwege zwischen
               Umzug, Reinigung, Entrümpelung, Büroumzug und Rechner. So finden Kunden schneller
               die richtige Leistung statt einer unklaren Sammelseite.
             </p>
@@ -165,7 +165,7 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
             <div className="mt-6 rounded-[1.1rem] border border-slate-200 bg-slate-50/80 px-4 py-4">
               <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
                 <MapPinned className="h-4 w-4 text-blue-700" />
-                Lokales Signal
+                Lokale Orientierung
               </div>
               <p className="mt-3 text-sm leading-7 text-slate-700">
                 Die Stadtseite bleibt nicht isoliert, sondern führt direkt zu passenden Leistungs-, Preis- und Kontaktpfaden.

@@ -93,7 +93,7 @@ export default function BlogLokalerDienstleisterPage() {
        "Schnellere Rückfragen bei Termin- oder Adressänderungen",
        "Bessere Einschätzung von Strecke, Lage und Zugang",
        "Direkterer Kontakt bei Besichtigung oder Vorprüfung",
-       "Mehr Gefühl dafür, welcher Anfrageweg für den Kunden wirklich passt",
+       "Mehr Gefühl dafür, welcher Kontaktweg für den Kunden wirklich passt",
       ],
      },
      {

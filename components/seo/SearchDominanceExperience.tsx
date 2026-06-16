@@ -79,7 +79,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     intro:
       "Niemand soll raten, welcher Service passt. Diese Seite führt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
     proofLine:
-      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über eigene Seiten; Regensburg ergänzt Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über klare Kontaktmöglichkeiten; Regensburg ergänzt Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
       "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg, Umgebung und Bayern.",
@@ -88,7 +88,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     clickReasons: [
       "Direkte Anfrage statt Vergleichsportal",
       "Fotos, Termin und Budget sofort möglich",
-      "Regensburg als Startpunkt mit Bayern-Reichweite",
+      "Regensburg als Standort mit Bayern-Reichweite",
       "Kunden sehen sofort: anfragen, Preisrahmen prüfen oder Angebot senden",
     ],
     searchAppearance: [
@@ -102,7 +102,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Direkte Wege",
-        text: "Buchung, Rechner und Angebotsprüfung führen schnell zum passenden Einstieg.",
+        text: "Buchung, Rechner und Angebotsprüfung führen schnell zum passenden Kontaktweg.",
       },
     ],
     searchActions: [
@@ -171,7 +171,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     cards: [
       {
         title: "Anfragegrund sofort sichtbar",
-        text: "Rechner, Buchung, WhatsApp, Angebotsprüfung und Preisrahmen sind als klare Einstiege angelegt.",
+        text: "Rechner, Buchung, WhatsApp, Angebotsprüfung und Preisrahmen sind als klare Startpunkte angelegt.",
         Icon: MousePointerClick,
       },
       {
@@ -307,14 +307,14 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     intro:
       "Für Düsseldorf gibt es eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung nach Absprache.",
     proofLine:
-      "Düsseldorf mit eigenen Servicepfaden: Umzug, Reinigung, Entrümpelung und Übergabe werden nicht mit Regensburg-Texten vermischt.",
+      "Düsseldorf mit klarer Orientierung: Umzug, Reinigung, Entrümpelung und Übergabe werden passend zum Ort geprüft.",
     serpTitle: "FLOXANT Düsseldorf: Umzug, Reinigung & Räumung",
     serpDescription:
       "Düsseldorf ist bei FLOXANT klar lokal geführt. Leistung, Objekt, Fotos, Zugang, Termin und Ziel senden.",
     aiAnswer:
       "FLOXANT Düsseldorf passt für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung, wenn Ort, Umfang, Fotos, Zugang und Termin geprüft werden sollen.",
     clickReasons: [
-      "Düsseldorf klar mit eigenen Servicepfaden",
+      "Düsseldorf klar getrennt",
       "Objekt, Fläche und Zeitfenster senden",
       "Umzug, Reinigung und Räumung getrennt anfragen",
       "Vorhandenes Angebot sachlich prüfen",
@@ -369,7 +369,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     localTrustSignals: [
       {
         label: "Düsseldorf klar",
-        text: "Düsseldorf trennt Umzug, Reinigung, Entrümpelung und Entsorgung über eigene Seiten.",
+        text: "Düsseldorf trennt Umzug, Reinigung, Entrümpelung und Entsorgung über klare Kontaktmöglichkeiten.",
         Icon: ShieldCheck,
       },
       {
@@ -448,7 +448,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchAppearance: [
       {
         label: "Titel",
-        text: "Leistung, Ort und FLOXANT-Anfrageweg werden sauber verbunden.",
+        text: "Leistung, Ort und FLOXANT-Anfrage werden sauber verbunden.",
       },
       {
         label: "Kurztext",
@@ -488,7 +488,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     localTrustSignals: [
       {
         label: "Passende Leistung",
-        text: "Jede Leistungsseite erklärt Ort, Umfang, Kostenfaktoren und den passenden Anfrageweg.",
+        text: "Jede Leistungsseite erklärt Ort, Umfang, Kostenfaktoren und den nächsten Schritt.",
         Icon: Search,
       },
       {
@@ -525,12 +525,12 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     cards: [
       {
         title: "Nicht nur Text, sondern Orientierung",
-        text: "Der Abschnitt zeigt Kunden sofort, welche Angaben FLOXANT braucht und welcher Einstieg sinnvoll ist.",
+        text: "Der Abschnitt zeigt Kunden sofort, welche Angaben FLOXANT braucht und welcher Startpunkt sinnvoll ist.",
         Icon: Search,
       },
       {
         title: "Mehr Vertrauen vor der Anfrage",
-        text: "Preisrahmen, Fotos und Angebotsprüfung werden als normaler, seriöser Anfrageweg sichtbar.",
+        text: "Preisrahmen, Fotos und Angebotsprüfung werden als normaler, seriöser Kontakt sichtbar.",
         Icon: Sparkles,
       },
       {
@@ -623,7 +623,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       {
         label: "Region",
         title: "Regensburg und Bayern bündeln",
-        text: "Die Angebotsprüfung verbindet Umzug, Reinigung, Entrümpelung, Entsorgung, Ort, Termin und Budget mit einem direkten Anfrageweg.",
+        text: "Die Angebotsprüfung verbindet Umzug, Reinigung, Entrümpelung, Entsorgung, Ort, Termin und Budget mit einer direkten Anfrage.",
         Icon: MapPin,
       },
       {
@@ -645,8 +645,8 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     return [
       {
         label: "Düsseldorf",
-        title: "Düsseldorf mit eigenen Servicepfaden",
-        text: "Die Seite führt zu Umzug, Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus, Entrümpelung und Entsorgung, ohne Regensburg-Text zu vermischen.",
+        title: "Düsseldorf klar getrennt",
+        text: "Die Seite führt zu Umzug, Reinigung, Firmenreinigung, Apartment-Reinigung, Treppenhaus, Entrümpelung und Entsorgung in Düsseldorf.",
         Icon: Radar,
       },
       {
@@ -703,13 +703,13 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     {
       label: "Marke",
       title: "Marke und Service sofort erkennbar",
-      text: "FLOXANT wirkt als geführter Servicepfad: nicht nur Umzug oder Reinigung, sondern Prüfung, Budget, Fotos und Anfrage.",
+      text: "FLOXANT zeigt direkt, welche Hilfe passt: Umzug, Reinigung, Budget, Fotos und Anfrage werden verständlich zusammengeführt.",
       Icon: Sparkles,
     },
       {
         label: "Region",
         title: "Düsseldorf und Regensburg sauber getrennt",
-        text: "Düsseldorf und Regensburg haben eigene lokale Einstiege für Umzug, Reinigung, Entrümpelung und Übergabe.",
+        text: "Kunden sehen sofort, welche Hilfe in Düsseldorf passt und welche Leistungen über Regensburg und Bayern laufen.",
         Icon: MapPin,
       },
     {
@@ -720,8 +720,8 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
     },
       {
         label: "Saubere Trennung",
-        title: "Düsseldorf mit eigenen Servicepfaden",
-        text: "Düsseldorf bekommt eigene Wege für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Entsorgung, statt mit Regensburg vermischt zu werden.",
+        title: "Düsseldorf klar getrennt",
+        text: "Kunden in Düsseldorf finden direkt die passende Anfrage für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Entsorgung.",
         Icon: ShieldCheck,
       },
   ];

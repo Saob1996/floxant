@@ -703,7 +703,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       localTriggers: [
         isDuesseldorfHotel
-          ? "Düsseldorf-Hotelreinigung bleibt klar Reinigung; Umzug oder Transport laufen über eigene Servicepfade, keine Wäscherei-Zusage."
+          ? "Düsseldorf-Hotelreinigung bleibt klar Reinigung; Umzug oder Transport laufen über eigene Kontaktwege, keine Wäscherei-Zusage."
           : "Regensburg-Hotelreinigung kann mit Büro-, Fenster- oder Grundreinigung kombiniert geprüft werden.",
       ],
       priceSignals: [

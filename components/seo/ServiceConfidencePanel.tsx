@@ -42,7 +42,7 @@ const confidenceSignals = [
  {
   icon: MessageCircle,
   title: "Direkter Kontakt möglich",
-  text: "Wer nicht rechnen möchte, kann FLOXANT direkt erreichen und den passenden Anfrageweg gemeinsam klären.",
+  text: "Wer nicht rechnen möchte, kann FLOXANT direkt erreichen und den passenden Kontaktweg gemeinsam klären.",
   href: "/kontakt",
   label: "Kontakt",
  },

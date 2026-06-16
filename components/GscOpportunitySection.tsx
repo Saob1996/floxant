@@ -165,7 +165,7 @@ export function GscOpportunitySection({
             </div>
             <p className="mt-2 text-sm font-semibold leading-7 text-slate-200">
               Senden Sie die wichtigsten Eckdaten, Fotos oder ein vorhandenes Angebot. FLOXANT
-              prüft den passenden nächsten Schritt ohne Preisgarantie.
+              schaut sich Ihren Fall an und meldet sich mit einem realistischen nächsten Schritt.
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">

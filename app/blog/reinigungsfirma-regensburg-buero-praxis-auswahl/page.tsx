@@ -88,7 +88,7 @@ export default function BlogReinigungsfirmaRegensburgAuswahlPage() {
             ],
           },
           {
-            title: "Welche Signale für eine passende Reinigungsfirma sprechen",
+            title: "Welche Hinweise für eine passende Reinigungsfirma sprechen",
             paragraphs: [
               "Schon vor dem ersten Angebot lässt sich gut erkennen, ob die Ausrichtung stimmt. Gute B2B-Anbieter fragen gezielt und trennen gewerbliche Anforderungen sauber von privaten Einzelfällen.",
             ],

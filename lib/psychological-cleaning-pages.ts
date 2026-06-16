@@ -460,7 +460,7 @@ const shameArticles: PsychologicalCleaningArticleSeed[] = [
     description:
       "Wie FLOXANT belastete Wohnsituationen diskret, ruhig und ohne Bloßstellung vorprueft.",
     intro:
-      "Manche Anfragen werden zu lange nicht gestellt, weil Scham groesser wird als der Schmutz. Genau dann hilft ein ruhiger, sachlicher Einstieg.",
+      "Manche Anfragen werden zu lange nicht gestellt, weil Scham groesser wird als der Schmutz. Genau dann hilft ein ruhiger, sachlicher Startpunkt.",
     keywordFocus: ["diskrete Reinigung", "peinliche Wohnung reinigen"],
     readerProblem:
       "Der Kunde schaemt sich fuer Fotos, Zustand oder Erklaerung und wartet deshalb zu lange.",
@@ -479,7 +479,7 @@ const shameArticles: PsychologicalCleaningArticleSeed[] = [
     title: "Warum Scham die Reinigungsanfrage oft zu lange stoppt",
     metaTitle: "Scham vor Reinigungsanfrage | FLOXANT",
     description:
-      "Warum Menschen Reinigungsbedarf aus Scham aufschieben und wie ein diskreter Anfrageweg den ersten Schritt leichter macht.",
+      "Warum Menschen Reinigungsbedarf aus Scham aufschieben und wie ein diskreter Kontaktweg den ersten Schritt leichter macht.",
     intro:
       "Scham macht aus einer praktischen Aufgabe ein inneres Hindernis. Der erste Schritt muss deshalb klein, ruhig und respektvoll sein.",
     keywordFocus: ["Scham Reinigung", "Reinigung Hilfe anfragen"],
@@ -686,8 +686,8 @@ const mondayArticles: PsychologicalCleaningArticleSeed[] = [
     practicalAngle:
       "Der Artikel fokussiert Sichtbereiche statt endlose Leistungslisten.",
     checklist: [
-      "Empfang und Wartebereich als erstes Signal",
-      "Kueche und Kaffeeecke als Team-Signal",
+      "Empfang und Wartebereich als erstes Hinweis",
+      "Kueche und Kaffeeecke als Team-Hinweis",
       "Sanitär als Vertrauensbereich",
       "Muell und Geruch vor Detailpolitur",
     ],
@@ -1245,7 +1245,7 @@ export const psychologicalCleaningLandingPages = [
       "Nutzbarkeit steht vor Perfektion.",
     ],
     trustSignals: [
-      "Diskreter WhatsApp-Einstieg mit Fotos moeglich",
+      "Diskreter WhatsApp-Startpunkt mit Fotos moeglich",
       "Ruhige Rueckmeldung ohne Rechtfertigungsdruck",
       "Erfahrung mit sensiblen Wohn- und Uebergabesituationen",
       "Bewertungs-Hinweis: Kunden achten bei solchen Faellen auf Respekt und Diskretion",
@@ -1408,7 +1408,7 @@ export const psychologicalCleaningLandingPages = [
     solutionIntro:
       "FLOXANT reduziert die Anfrage auf das, was wirklich noetig ist: Ort, Ziel, Fotos, Risiken und gewuenschter Kontaktweg.",
     solutionSteps: [
-      { title: "Sicheren Kontaktweg waehlen", text: "WhatsApp, Telefon oder Buchungsformular: Sie bestimmen den Einstieg." },
+      { title: "Sicheren Kontaktweg waehlen", text: "WhatsApp, Telefon oder Buchungsformular: Sie bestimmen den Startpunkt." },
       { title: "Minimal beschreiben", text: "Ein Satz zum Ziel reicht: wieder bewohnbar, besuchsbereit oder uebergabebereit." },
       { title: "Umfang pruefen", text: "FLOXANT trennt Reinigung, Entsorgung, Geruch und moegliche Risiken." },
       { title: "Diskret umsetzen", text: "Der Einsatz wird ruhig, respektvoll und ohne unnoetige Fragen geplant." },

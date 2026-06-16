@@ -55,7 +55,7 @@ export function CustomerIntentRouter({ compact = false }: { compact?: boolean })
      </div>
      <p className="max-w-xl text-sm leading-relaxed text-slate-600 md:text-right">
       Manche wissen schon genau, was gebraucht wird. Andere müssen erst Aufwand,
-      Termin und Preisrahmen einordnen. Diese Wege führen schneller zum richtigen Einstieg.
+      Termin und Preisrahmen einordnen. Diese Wege führen schneller zum richtigen Startpunkt.
      </p>
     </div>
 

@@ -123,7 +123,7 @@ export default function DuesseldorfDatenschutzPage() {
             <h2 className="text-xl font-semibold text-slate-950">Löschung und Speicherdauer</h2>
             <p className="mt-2">
               Wir speichern anfragebezogene Daten nur so lange, wie dies für Bearbeitung,
-              Rückfragen, rechtliche Pflichten und nachvollziehbare interne Dokumentation
+              Rückfragen, rechtliche Pflichten und nachvollziehbare Bearbeitungsdokumentation
               erforderlich ist. Danach werden die Daten gelöscht oder entsprechend
               eingeschränkt verarbeitet.
             </p>

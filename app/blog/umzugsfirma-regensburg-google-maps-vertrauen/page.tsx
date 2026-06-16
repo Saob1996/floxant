@@ -11,7 +11,7 @@ import {
 
 const faqItems = [
   {
-    q: "Was macht einen guten Google-Maps-Einstieg für ein Umzugsunternehmen aus?",
+    q: "Was macht einen guten Google-Maps-Kontakt für ein Umzugsunternehmen aus?",
     a: "Ein klarer direkter Link, vollständige Kontaktangaben, lokale Einordnung und ein verständlicher nächster Schritt. Kunden wollen nicht rätseln, sondern schnell erkennen, wie sie seriös anfragen können.",
   },
   {
@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Hilft das auch für Google Maps und lokale Empfehlungen?",
-    a: "Ja. Klare lokale Signale, passende Zielseiten und verständliche Inhalte helfen Kunden, FLOXANT sauber einzuordnen und schneller den richtigen Anfrageweg zu finden.",
+    a: "Ja. Klare lokale Hinweise, passende Zielseiten und verständliche Inhalte helfen Kunden, FLOXANT sauber einzuordnen und schneller den richtigen Kontaktweg zu finden.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function BlogUmzugsfirmaRegensburgGoogleMapsVertrauenPage() {
       buildWebPageJsonLd({
         name: "Umzugsfirma Regensburg über Google Maps finden",
         description:
-          "Ein FLOXANT Ratgeber dazu, welche Signale in Google Maps Vertrauen schaffen und wie direkte Buchungswege Kunden schneller helfen.",
+          "Ein FLOXANT Ratgeber dazu, welche Hinweise in Google Maps Vertrauen schaffen und wie direkte Buchungswege Kunden schneller helfen.",
         path: "/blog/umzugsfirma-regensburg-google-maps-vertrauen",
         about: ["Google Maps", "Umzugsfirma Regensburg", "Buchung", "Vertrauen", "Lokale Suche"],
       }),
@@ -63,7 +63,7 @@ export default function BlogUmzugsfirmaRegensburgGoogleMapsVertrauenPage() {
       buildArticleJsonLd({
         headline: "Umzugsfirma in Regensburg über Google Maps finden: worauf Kunden wirklich achten",
         description:
-          "Ein FLOXANT Artikel über lokale Vertrauenssignale, direkte Anfragewege und bessere Orientierung in Google Maps.",
+          "Ein FLOXANT Artikel über lokale Vertrauenssignale, direkte Kontaktwege und bessere Orientierung in Google Maps.",
         path: "/blog/umzugsfirma-regensburg-google-maps-vertrauen",
         datePublished: "2026-04-28",
       }),
@@ -95,30 +95,30 @@ export default function BlogUmzugsfirmaRegensburgGoogleMapsVertrauenPage() {
             ],
           },
           {
-            title: "Diese Signale wirken für Kunden besonders stark",
+            title: "Diese Hinweise wirken für Kunden besonders stark",
             paragraphs: [
-              "Nicht jedes Signal ist technisch kompliziert. Oft geht es um Klarheit und Struktur statt um noch mehr Werbesprache.",
+              "Nicht jeder Hinweis muss kompliziert sein. Oft geht es um Klarheit und Struktur statt um noch mehr Werbesprache.",
             ],
             bullets: [
               "Ein eindeutiger direkter Link statt mehrere unklare Pfade",
               "Standort, Kontakt und Einsatzgebiet klar sichtbar",
               "Anfrage mit Vorprüfung statt falschem Festpreisversprechen",
               "Saubere Trennung zwischen Buchung, Express, B2B und diskreter Anfrage",
-              "Lokale Texte für Regensburg und Bayern ohne übertriebene Keyword-Masse",
+              "Lokale Informationen für Regensburg und Bayern ohne überladene Werbesprache",
               "FAQ, die echte Fragen beantwortet und nicht nur Werbesätze wiederholt",
             ],
           },
           {
             title: "Was FLOXANT daraus praktisch macht",
             paragraphs: [
-              "FLOXANT nutzt /buchung als direkten Einstieg für Maps, Suche und Empfehlungen. Kontakt, Standort, B2B-Reinigung und Private Client bleiben trotzdem als eigene Zielseiten sauber getrennt.",
+              "FLOXANT nutzt /buchung als direkten Kontaktweg für Maps, Suche und Empfehlungen. Kontakt, Standort, B2B-Reinigung und Private Client bleiben trotzdem als eigene Zielseiten sauber getrennt.",
               "Das wirkt für Kunden ruhiger, klarer und greifbarer. Oder kurz bayerisch gesagt: lieber gscheid geführt als irgendwo im Formularnebel hängen bleiben.",
             ],
           },
         ]}
         highlightPoints={[
           "Ein klarer Buchungslink stärkt Vertrauen und Orientierung.",
-          "Lokale Signale helfen Kunden, schneller Vertrauen zu fassen.",
+          "Lokale Hinweise helfen Kunden, schneller Vertrauen zu fassen.",
           "Getrennte Zielseiten sind oft überzeugender als ein einziger Sammelpfad.",
         ]}
         ctas={[

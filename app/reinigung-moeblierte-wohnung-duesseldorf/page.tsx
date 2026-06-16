@@ -202,7 +202,7 @@ const answerEngineCards = [
 const mapsRankingSignals = [
   "Düsseldorf-Adresse und Telefonnummer sichtbar",
   "klare Ausrichtung auf Reinigung",
-  "direkte Anfragewege: Formular, WhatsApp, Telefon",
+  "direkte Kontaktwege: Formular, WhatsApp, Telefon",
   "lokale Leistungsseiten klar verknüpft",
   "kein widersprüchlicher Umzugshinweis für Düsseldorf",
 ];
@@ -410,7 +410,7 @@ const faqs = [
   },
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung ausgerichtet; Entsorgung bleibt ein eigener Zusatzweg. Umzüge werden dort nicht positioniert.",
+    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung ausgerichtet; Entsorgung bleibt ein eigener Zusatzbereich. Umzüge werden dort nicht als Reinigungsleistung geführt.",
   },
 ];
 
@@ -583,7 +583,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                   <p className="mt-4 text-sm leading-7 text-slate-600">
                     Diese Auswahl reduziert Chaos: Sie wählen nicht aus zehn ähnlichen Angeboten,
                     sondern aus klar getrennten FLOXANT-Wegen für Düsseldorf. Das hilft Kunden,
-                    sofort den richtigen Einstieg für Wohnung, Apartment, Firma oder Entsorgung zu erkennen.
+                    sofort den richtigen Weg für Wohnung, Apartment, Firma oder Entsorgung zu erkennen.
                   </p>
                 </div>
                 <div className="grid gap-3 md:grid-cols-2">
@@ -616,7 +616,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
           </div>
         </section>
 
-        <section id="apartment-klick-einstiege" className="px-4 py-12 sm:px-6">
+        <section id="apartment-klick-Startpunkte" className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-100 bg-white px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-900 shadow-sm">
@@ -624,7 +624,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 Kunden suchen so
               </div>
               <h2 className="mt-4 text-3xl font-black tracking-normal text-slate-950">
-                Schnelle Einstiege für Apartment, Gästewechsel und Endreinigung.
+                Schnelle Startpunkte für Apartment, Gästewechsel und Endreinigung.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
                 Viele Anfragen starten nicht mit einem Fachbegriff, sondern mit einer konkreten Lage:
@@ -673,7 +673,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 <p className="mt-4 text-base leading-8 text-slate-700">
                   Für Kunden ist die Trennung wichtig:
                   Düsseldorf steht bei FLOXANT für Reinigung; Entsorgung bleibt separat. Nicht für Umzug.
-                  Wählen Sie den passenden Einstieg, damit Ort, Objektart, Turnus, Fotos und Zeitfenster direkt klar sind.
+                  Wählen Sie den passenden Kontaktweg, damit Ort, Objektart, Turnus, Fotos und Zeitfenster direkt klar sind.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -711,7 +711,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
               <div>
                 <div className="inline-flex items-center gap-2 rounded-[0.75rem] border border-cyan-200/20 bg-cyan-300/10 px-4 py-2 text-xs font-black uppercase tracking-normal text-cyan-100">
                   <SearchCheck className="h-4 w-4" />
-                  Passender Einstieg
+                  Passender Startpunkt
                 </div>
                 <h2 className="mt-5 max-w-2xl text-3xl font-black tracking-normal text-white">
                   Klare Empfehlungen, wenn der Fall wirklich zur FLOXANT-Leistung passt.
@@ -845,7 +845,7 @@ export default function ReinigungMoeblierteWohnungDuesseldorfPage() {
                 <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Düsseldorf-Abgrenzung</div>
                 <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">Diese Seite ist nur für Reinigung in Düsseldorf.</h2>
                 <p className="mt-4 text-sm leading-7 text-cyan-950">
-                  Düsseldorf ist bei FLOXANT servicebezogen positioniert. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung und Umzug bleiben separate Zusatzwege.
+                  Düsseldorf ist bei FLOXANT klar nach Anfrage aufgebaut. Diese Seite behandelt Reinigung für möblierte Wohnungen, Apartments und Kurzzeitvermietung in Düsseldorf. Entsorgung und Umzug bleiben separate Zusatzwege.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link href="/duesseldorf/reinigung" className="inline-flex min-h-11 items-center gap-2 rounded-[0.85rem] bg-slate-950 px-4 text-sm font-black text-white">

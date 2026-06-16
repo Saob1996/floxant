@@ -222,7 +222,7 @@ export default function HotelreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Hotelreinigung Regensburg für Hotel, Pension, Boardinghouse und Objektbetrieb",
         description:
-          "Kundennaher Einstieg für Hotelreinigung in Regensburg mit Turnus, Zimmer- und Allgemeinflächen, Anfragecheckliste, FAQ, Grenzen und B2B-Formular.",
+          "Kundennaher Startpunkt für Hotelreinigung in Regensburg mit Turnus, Zimmer- und Allgemeinflächen, Anfragecheckliste, FAQ, Grenzen und B2B-Formular.",
         path: pagePath,
         about: [
           "Hotelreinigung Regensburg",

@@ -97,7 +97,7 @@ export default function BuchungAblaufPage() {
    },
    {
     "@type": "ItemList",
-    name: "FLOXANT direkte Einstiegspfade",
+    name: "FLOXANT direkte Kontaktwege",
     itemListElement: bookingActionCards.map((card, index) => ({
      "@type": "ListItem",
      position: index + 1,

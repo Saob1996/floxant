@@ -1838,7 +1838,7 @@ function buildRealtorLandlordLinkDetails(
    customerBudget: budget,
    priceSuggestion: budget,
    priceExplanation:
-    "Der Makler-/Vermieter-Link ist ein direkter Objektfall-Einstieg fuer praktische und organisatorische Unterstuetzung. FLOXANT bietet keine Maklerleistung, keine Rechtsberatung, keine Vermietungsgarantie und keine Renovierungszusage.",
+    "Der Makler-/Vermieter-Link ist ein direkter Objektfall-Startpunkt fuer praktische und organisatorische Unterstuetzung. FLOXANT bietet keine Maklerleistung, keine Rechtsberatung, keine Vermietungsgarantie und keine Renovierungszusage.",
    pricingSignals: {
     inquiryMode: "realtor_landlord_link",
     leadType: "makler_vermieter_link",
@@ -2101,7 +2101,7 @@ function buildDuesseldorfB2BCleaningDetails(
    customerMessage,
    scopeSummary: customerMessage,
    legalNote:
-    "Duesseldorf hat bei FLOXANT eigene Servicepfade. Diese Anfrage betrifft B2B-Reinigung fuer kleine Unternehmen nach Absprache; keine medizinische Spezialreinigung, keine Hygienezertifizierung und keine 24/7-Zusage.",
+    "Duesseldorf hat bei FLOXANT eigene Kontaktwege. Diese Anfrage betrifft B2B-Reinigung fuer kleine Unternehmen nach Absprache; keine medizinische Spezialreinigung, keine Hygienezertifizierung und keine 24/7-Zusage.",
   },
   metadata: {
    createdAt,

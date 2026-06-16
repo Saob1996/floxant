@@ -242,7 +242,7 @@ export function RealtorLandlordLinkForm() {
         <div className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Objektfall-Schnelllink</div>
         <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Welcher Objektfall liegt vor?</h2>
         <p className="mt-2 text-sm leading-6 text-slate-600">
-          Dieser Einstieg ist kurz gehalten: Rolle, Objekt, Zustand, Termin, Fotos und Rueckmeldung reichen fuer die erste Pruefung.
+          Dieser Startpunkt ist kurz gehalten: Rolle, Objekt, Zustand, Termin, Fotos und Rueckmeldung reichen fuer die erste Pruefung.
         </p>
       </div>
 

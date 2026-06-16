@@ -169,7 +169,7 @@ export default async function BeiladungPage() {
             { href: "/umzug", label: "Standard-Umzug ansehen" },
             { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt Richtung Regensburg" },
             { href: "/firmenentsorgung", label: "Firmenentsorgung für Büroinventar" },
-            { href: "/rechner", label: "Rechner als Einstieg" },
+            { href: "/rechner", label: "Rechner zur Orientierung" },
           ].map((item) => (
             <Link
               key={item.href}

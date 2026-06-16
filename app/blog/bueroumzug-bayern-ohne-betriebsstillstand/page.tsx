@@ -12,7 +12,7 @@ import {
 const faqItems = [
   {
     q: "Was macht einen Büroumzug besonders heikel?",
-    a: "Vor allem Arbeitsplätze, IT, Archiv, interne Zuständigkeiten, Zugang, Betriebszeiten und die Frage, wie wenig der laufende Betrieb gestört werden soll.",
+    a: "Vor allem Arbeitsplätze, IT, Archiv, Zuständigkeiten im Unternehmen, Zugang, Betriebszeiten und die Frage, wie wenig der laufende Betrieb gestört werden soll.",
   },
   {
     q: "Braucht ein Büroumzug immer einen öffentlichen Preisrechner?",
@@ -81,7 +81,7 @@ export default function BlogBueroumzugBayernPage() {
         date="27. April 2026"
         readTime="7 Min."
         title="Büroumzug in Bayern ohne Chaos: so bleibt der Betrieb besser handlungsfähig"
-        intro="Ein Büroumzug wird teuer, wenn nicht der Preis, sondern der Stillstand aus dem Ruder läuft. Deshalb zählen bei Firmenumzügen vor allem Arbeitsplätze, IT, Zugänge, interne Abstimmung und ein realistisches Zeitfenster."
+        intro="Ein Büroumzug wird teuer, wenn nicht der Preis, sondern der Stillstand aus dem Ruder läuft. Deshalb zählen bei Firmenumzügen vor allem Arbeitsplätze, IT, Zugänge, Abstimmung im Unternehmen und ein realistisches Zeitfenster."
         sections={[
           {
             title: "Warum ein Firmenumzug anders geplant werden muss",
@@ -97,15 +97,15 @@ export default function BlogBueroumzugBayernPage() {
             ],
             bullets: [
               "Wie viele Arbeitsplätze, Besprechungsräume oder Sonderbereiche sind betroffen?",
-              "Welche IT oder sensible Technik braucht Abstimmung mit internen Verantwortlichen?",
+              "Welche IT oder sensible Technik braucht Abstimmung mit zuständigen Personen im Unternehmen?",
               "Wie eng sind Zeitfenster, Zugänge, Aufzüge oder Laufwege?",
               "Welche Montage-, Demontage- oder Aufbauarbeiten sollen mitgedacht werden?",
             ],
           },
           {
-            title: "Warum ein sauberer Anfrageweg so viel bringt",
+            title: "Warum ein sauberer Kontaktweg so viel bringt",
             paragraphs: [
-              "Ein guter Büroumzug beginnt nicht mit Hektik, sondern mit einer strukturierten Anfrage. So werden Preisrahmen, Terminlogik und interne Verantwortung früh sortiert.",
+              "Ein guter Büroumzug beginnt nicht mit Hektik, sondern mit einer strukturierten Anfrage. So werden Preisrahmen, Terminlogik und Verantwortung im Unternehmen früh sortiert.",
               "Kurz gesagt: lieber gscheid geplant und sauber abgestimmt als am Umzugstag improvisiert.",
             ],
           },
@@ -113,7 +113,7 @@ export default function BlogBueroumzugBayernPage() {
         highlightPoints={[
           "Arbeitsplätze, IT und Zeitfenster sind bei Firmenumzügen zentrale Kostentreiber.",
           "Eine strukturierte Vorprüfung ist oft wertvoller als ein vorschneller Festpreis.",
-          "Klare Anfragewege helfen Unternehmen und FLOXANT gleichermaßen bei Planung und Umsetzung.",
+          "Klare Kontaktwege helfen Unternehmen und FLOXANT gleichermaßen bei Planung und Umsetzung.",
         ]}
         ctas={[
           { href: "/bueroumzug", label: "Büroumzug-Seite öffnen" },

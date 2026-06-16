@@ -190,7 +190,7 @@ export default function QualityProcessPage() {
       {[
        "Kunden verstehen vor der Anfrage, welche Faktoren den Aufwand bestimmen.",
        "FLOXANT trennt erste Orientierung und Kundenwunsch sauber.",
-       "Rechner, Express-Anfrage, Preisrahmen und Service-Seiten führen klar zum nächsten Schritt.",
+       "Rechner, Express-Anfrage, Preisrahmen und klare Kontaktmöglichkeiten führen klar zum nächsten Schritt.",
        "Keine Fake-Bewertungen, keine Garantie-Sprache, keine überzogenen Versprechen.",
       ].map((point) => (
        <div key={point} className="flex gap-4 rounded-2xl border border-foreground/10 bg-foreground/5 p-5">

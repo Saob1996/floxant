@@ -563,7 +563,7 @@ export default function DuesseldorfVielleichtGuenstigerPage() {
           Wichtig
         </div>
         <p className="mt-3 text-sm leading-7 text-slate-700">
-          Diese Seite ist für Düsseldorfer Reinigungsangebote gebaut. Sie ersetzt keine Rechtsberatung, garantiert keinen niedrigeren Preis und bewertet keine andere Firma. Sie schafft einen klaren Anfrageweg, damit Unternehmen, Verwaltungen, Hotels und Privatkunden FLOXANT mit Angebot, Fotos, Objektangaben und Preisrahmen kontaktieren können.
+          Diese Seite ist für Düsseldorfer Reinigungsangebote gebaut. Sie ersetzt keine Rechtsberatung, garantiert keinen niedrigeren Preis und bewertet keine andere Firma. Sie schafft einen klaren Kontaktweg, damit Unternehmen, Verwaltungen, Hotels und Privatkunden FLOXANT mit Angebot, Fotos, Objektangaben und Preisrahmen kontaktieren können.
         </p>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {faqItems.map((item) => (

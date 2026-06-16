@@ -62,7 +62,7 @@ const faqItems = [
  },
  {
   q: "Warum sind Praxisfälle für Kunden hilfreich?",
-  a: "Viele Kunden wissen anfangs nicht, ob sie Umzug, Reinigung, Entrümpelung, Beiladung, Firmenentsorgung oder eine Kombination brauchen. Praxisfälle machen den passenden Einstieg schneller erkennbar.",
+  a: "Viele Kunden wissen anfangs nicht, ob sie Umzug, Reinigung, Entrümpelung, Beiladung, Firmenentsorgung oder eine Kombination brauchen. Praxisfälle machen den passenden Kontaktweg schneller erkennbar.",
  },
  {
   q: "Wie helfen Praxisfälle bei der Preisvorstellung?",

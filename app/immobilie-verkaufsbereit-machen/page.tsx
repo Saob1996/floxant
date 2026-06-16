@@ -558,7 +558,7 @@ export default function ImmobilieVerkaufsbereitPage() {
         <section className="px-4 py-10 sm:px-6">
           <div className="mx-auto max-w-7xl rounded-[2rem] border border-stone-200 bg-white p-7 shadow-sm">
             <div className="max-w-3xl">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">Interne Verknuepfung</div>
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-amber-800">Passende nächste Schritte</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-stone-950">Verwandte FLOXANT Wege</h2>
               <p className="mt-3 text-sm leading-7 text-stone-600">
                 Wenn Ihr Fall eher Vermietung, Mieterwechsel, Uebergabe oder Nebenflaechen betrifft, fuehren diese Seiten in die passenden Spezialpfade.

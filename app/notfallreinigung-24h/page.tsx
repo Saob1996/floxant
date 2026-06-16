@@ -255,7 +255,7 @@ export default function Notfallreinigung24hPage() {
               {[
                 "Regensburg und Umgebung werden als Kerngebiet besonders direkt eingeordnet.",
                 "Bayernweite Anfragen werden nach Strecke, Uhrzeit, Kapazitaet und Umfang geprueft.",
-                "Duesseldorf wird sauber servicebezogen behandelt: Reinigung, Entsorgung und Umzug haben eigene Einstiege.",
+                "Duesseldorf wird sauber passend zum Anliegen behandelt: Reinigung, Entsorgung und Umzug haben eigene Kontaktmöglichkeiten.",
                 "Bei starkem Zeitdruck helfen klare Fotos, kurze Sprachnachricht und erreichbare Kontaktperson am meisten.",
               ].map((text) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">

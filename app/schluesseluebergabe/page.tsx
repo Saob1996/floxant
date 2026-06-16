@@ -97,7 +97,7 @@ export default async function SchluesseluebergabePage() {
       buildWebPageJsonLd({
         name: "Schluesseluebergabe Service",
         description:
-          "Oeffentliche Signature-Service-Seite fuer Schluesseluebergabe, Uebergabeprotokoll, Fotos und organisatorische Uebergabeunterstuetzung.",
+          "Oeffentliche Signature-Angebot fuer Schluesseluebergabe, Uebergabeprotokoll, Fotos und organisatorische Uebergabeunterstuetzung.",
         path: pagePath,
         about: ["Schluesseluebergabe", "Uebergabeprotokoll", "Wohnungsuebergabe", "Umzug", "Reinigung"],
       }),
@@ -195,7 +195,7 @@ export default async function SchluesseluebergabePage() {
       <section className="px-6 py-16 section-glow">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 text-center text-xl font-semibold text-slate-500">
-            Passende oeffentliche Servicepfade
+            Passende oeffentliche Kontaktwege
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {relatedServices.map((service) => (

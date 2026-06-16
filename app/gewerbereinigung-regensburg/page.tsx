@@ -252,7 +252,7 @@ export default function GewerbereinigungRegensburgPage() {
       },
       {
         "@type": "ItemList",
-        name: "Schnelle Anfragewege für Gewerbereinigung Regensburg",
+        name: "Schnelle Kontaktwege für Gewerbereinigung Regensburg",
         itemListElement: regensburgCleaningBuyerPaths.map((path, index) => ({
           "@type": "ListItem",
           position: index + 1,

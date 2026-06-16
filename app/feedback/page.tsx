@@ -13,7 +13,7 @@ export default function SmartReviewPage() {
   if (rating === 0) return;
   setIsSubmitting(true);
   await processReviewWorkflow({
-   leadId: 'mock-lead-123',
+   leadId: `feedback-${Date.now()}`,
    rating,
    feedback
   });
@@ -59,7 +59,7 @@ export default function SmartReviewPage() {
   <main className="min-h-screen bg-[#05050A] text-white pt-32 pb-24 flex items-center justify-center">
    <div className="max-w-xl w-full mx-auto p-8 rounded-3xl bg-[#0B0B12] border border-white/5 shadow-2xl text-center">
      <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium mb-8">
-      Qualitätskontrolle
+      Ihre Rückmeldung
      </div>
      <h1 className="text-3xl font-light mb-4">Wie war Ihre Erfahrung mit FLOXANT?</h1>
      <p className="text-white/50 mb-10">Ehrliches Feedback hilft uns, Rückmeldung, Planung und Durchführung weiter zu verbessern.</p>
@@ -86,7 +86,7 @@ export default function SmartReviewPage() {
         value={feedback}
         onChange={(e) => setFeedback(e.target.value)}
         className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder:text-white/20 h-32 focus:border-blue-500 transition-colors"
-        placeholder="Ihre ehrlichen Worte helfen uns..."
+        placeholder="Was möchten Sie uns dazu sagen?"
        />
      </div>
      <button 

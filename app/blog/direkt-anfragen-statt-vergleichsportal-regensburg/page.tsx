@@ -10,7 +10,7 @@ import {
 
 const faqItems = [
  {
-  q: "Warum ist ein direkter Anfrageweg oft besser als ein Vergleichsportal?",
+  q: "Warum ist ein direkter Kontaktweg oft besser als ein Vergleichsportal?",
   a: "Weil Service, Umfang, Zugang und Termin direkt beim Anbieter landen, statt erst gefiltert, verkauft oder mehrfach verteilt zu werden.",
  },
  {
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "blog/direkt-anfragen-statt-vergleichsportal-regensburg",
   title: "Direkt anfragen statt Vergleichsportal | FLOXANT Regensburg",
   description:
-   "Warum direkte Anfragewege für Umzug, Reinigung und Entrümpelung oft schneller, ehrlicher und planbarer sind als Vergleichsportale.",
+   "Warum direkte Kontaktwege für Umzug, Reinigung und Entrümpelung oft schneller, ehrlicher und planbarer sind als Vergleichsportale.",
   keywords: [
    "Umzug direkt anfragen",
    "Vergleichsportal Umzug Nachteile",
@@ -45,7 +45,7 @@ export default function BlogDirektAnfragenPage() {
   "@graph": [
    buildWebPageJsonLd({
     name: "Direkt anfragen statt Vergleichsportal",
-    description: "Ratgeber zu direkten Anfragewegen, Buchungsseiten und ehrlicher Vorprüfung.",
+    description: "Ratgeber zu direkten Kontaktwegen, Buchungsseiten und ehrlicher Vorprüfung.",
     path: "/blog/direkt-anfragen-statt-vergleichsportal-regensburg",
     about: ["Direkte Anfrage", "Buchung", "Vergleichsportal", "Regensburg"],
    }),
@@ -75,10 +75,10 @@ export default function BlogDirektAnfragenPage() {
     date="26. April 2026"
     readTime="6 Min."
     title="Direkt anfragen statt Vergleichsportal: warum klare Buchungswege besser sind"
-    intro="Viele Kunden möchten schnell vergleichen. Das ist nachvollziehbar. In der Praxis führen direkte Anfragewege aber oft schneller zum passenden Ergebnis – gerade bei Umzug, Reinigung und Entrümpelung, wo Details wichtiger sind als eine plakative Zahl."
+    intro="Viele Kunden möchten schnell vergleichen. Das ist nachvollziehbar. In der Praxis führen direkte Kontaktwege aber oft schneller zum passenden Ergebnis – gerade bei Umzug, Reinigung und Entrümpelung, wo Details wichtiger sind als eine plakative Zahl."
     sections={[
      {
-      title: "Der eigentliche Vorteil direkter Anfragewege",
+      title: "Der eigentliche Vorteil direkter Kontaktwege",
       paragraphs: [
        "Wenn eine Anfrage direkt beim Anbieter landet, bleiben Kontext, Termin, Zugang, Umfang und Zusatzleistungen zusammen. Das ist oft der Unterschied zwischen echter Vorprüfung und bloßer Weiterleitung.",
        "Für Kunden bedeutet das meist weniger Rückfragen an falscher Stelle und schnelleres Gefühl dafür, ob ein Auftrag wirklich passt.",
@@ -99,13 +99,13 @@ export default function BlogDirektAnfragenPage() {
      {
       title: "Was eine gute Buchungsseite leisten sollte",
       paragraphs: [
-       "Eine gute Buchungsseite macht die Wege klar: normaler Einstieg, Express-Check, Preisvorschlag oder direkte Kontaktaufnahme. So klicken Kunden nicht ins Leere, sondern finden schneller den passenden Pfad.",
+       "Eine gute Buchungsseite macht die Wege klar: normale Anfrage, Express-Check, Preisvorschlag oder direkte Kontaktaufnahme. So klicken Kunden nicht ins Leere, sondern finden schneller den passenden Pfad.",
        "Kurz gesagt: weniger Portalgefühl, mehr echte Orientierung. Oder auf gut bayerisch: lieber gscheid starten als später doppelt reden.",
       ],
      },
     ]}
     highlightPoints={[
-     "Direkte Anfragewege behalten mehr Kontext und sorgen für bessere Vorprüfung.",
+     "Direkte Kontaktwege behalten mehr Kontext und sorgen für bessere Vorprüfung.",
      "Vergleichsportale sind schnell, aber nicht immer sauber genug für komplexere Services.",
      "Eine gute Buchungsseite reduziert Missverständnisse und macht den nächsten Schritt leichter.",
     ]}

@@ -52,7 +52,7 @@ export default function EinsatzradarRegensburgPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Einsatzradar Regensburg",
         description:
-          "Typische Einsatzarten, grobe Servicezonen und passende Anfragewege fuer FLOXANT im Raum Regensburg und getrennt fuer Duesseldorf Reinigung/Entsorgung.",
+          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege fuer FLOXANT im Raum Regensburg und getrennt fuer Duesseldorf Reinigung/Entsorgung.",
         path,
         about: [
           "Einsatzradar",
@@ -122,7 +122,7 @@ export default function EinsatzradarRegensburgPage() {
                 "Regensburg direkt",
                 "Umgebung ca. 200 km",
                 "Bayern nach Verfügbarkeit",
-                "Düsseldorf servicebezogen",
+                "Düsseldorf passend zum Anliegen",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm shadow-slate-950/5">
                   {item}
@@ -218,7 +218,7 @@ export default function EinsatzradarRegensburgPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.92fr_1.08fr]">
           <div className="rounded-[2rem] border border-slate-200 bg-slate-950 p-6 text-white sm:p-8">
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Signature Services</div>
-            <h2 className="mt-3 text-3xl font-black tracking-tight">Der Radar verbindet Einsatzarten mit echten FLOXANT Einstiegen</h2>
+            <h2 className="mt-3 text-3xl font-black tracking-tight">Der Radar verbindet Einsatzarten mit echten FLOXANT Startpunkten</h2>
             <p className="mt-4 text-base leading-8 text-slate-300">
               Nicht jede Anfrage braucht dieselbe Leistung. Deshalb fuehren Einsatzkarten direkt zu
               passenden Seiten wie Rueckfahrt-Boerse, Uebergabeakte, Mieterwechsel, Keller-/Muellraum

@@ -19,7 +19,7 @@ const faqItems = [
     a: "Ja. Wenn Buchung, Kontakt und Standort klar zusammenpassen, wirkt der Anbieter für Nutzer greifbarer und lokaler.",
   },
   {
-    q: "Welche FLOXANT Seite ist dafür der wichtigste Einstieg?",
+    q: "Welche FLOXANT Seite ist dafür der wichtigste Startpunkt?",
     a: "Für direkte Anfragen ist /buchung der zentrale Weg. Dort sind Anfrage, Vorprüfung und Kontakt sauber geordnet.",
   },
 ];
@@ -65,7 +65,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
         headline:
           "In Regensburg direkt buchen statt vergleichen: warum klare Wege öfter besser passen",
         description:
-          "Ein FLOXANT Artikel über direkte Anfragewege, lokale Ansprechpartner und ruhigere Buchungslogik in Regensburg.",
+          "Ein FLOXANT Artikel über direkte Kontaktwege, lokale Ansprechpartner und ruhigere Buchungslogik in Regensburg.",
         path: "/blog/regensburg-direkt-buchen-statt-vergleichsportal",
         datePublished: "2026-04-28",
       }),
@@ -96,7 +96,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
           {
             title: "Was direkte Buchungswege besser machen",
             paragraphs: [
-              "Ein guter Buchungsweg trennt nicht wild zwischen Startseite, Formular, WhatsApp und Spezialseite, sondern sortiert den Einstieg sinnvoll vor.",
+              "Ein guter Buchungsweg trennt nicht wild zwischen Startseite, Formular, WhatsApp und Spezialseite, sondern sortiert den Startpunkt sinnvoll vor.",
             ],
             bullets: [
               "Direkter Kontakt ohne Umweg über unklare Sammelpfade",
@@ -117,7 +117,7 @@ export default function BlogRegensburgDirektBuchenStattVergleichsportalPage() {
         highlightPoints={[
           "Direkte Buchungswege schaffen oft mehr Vertrauen als verstreute Kontaktpfade.",
           "Klare Trennung verbessert Nutzerführung, lokale Suche und den Weg zur Anfrage.",
-          "Für FLOXANT ist /buchung der wichtigste direkte Einstieg.",
+          "Für FLOXANT ist /buchung der wichtigste direkte Startpunkt.",
         ]}
         ctas={[
           { href: "/buchung", label: "Direkt zur Buchung" },

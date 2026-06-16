@@ -69,7 +69,7 @@ export default function BudgetPlanungUmzugKostenPage() {
     date="20. April 2026"
     readTime="6 Min."
     title="Budgetplanung beim Umzug: Preisvorstellung richtig nutzen"
-    intro="Ein Zielbudget kann sehr hilfreich sein, wenn es richtig eingeordnet wird. Es ist kein Ersatz für die konkrete Prüfung, aber ein gutes Signal dafür, welche Lösung für den Kunden wirklich passend ist."
+    intro="Ein Zielbudget kann sehr hilfreich sein, wenn es richtig eingeordnet wird. Es ist kein Ersatz für die konkrete Prüfung, aber ein gutes Hinweis dafür, welche Lösung für den Kunden wirklich passend ist."
     sections={[
      {
       title: "Budget ist ein Rahmen, kein Endpreis",

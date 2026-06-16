@@ -71,7 +71,7 @@ export function DuesseldorfCleaningBuyerJourney({
             <Route className="h-5 w-5" />
           </div>
           <div className="mt-5 text-[11px] font-black uppercase tracking-normal text-cyan-100">
-            Der passende Einstieg
+            Der passende Kontaktweg
           </div>
           <h2
             id="duesseldorf-kundenwege-title"

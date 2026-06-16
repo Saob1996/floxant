@@ -204,7 +204,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Unterhaltsreinigung Regensburg für Büro, Praxis, Kanzlei und Objekt",
         description:
-          "Kundennaher Einstieg für wiederkehrende Reinigungsanfragen in Regensburg mit Reinigungsplan, Turnus, Anfragecheckliste und Angebot.",
+          "Kundennaher Startpunkt für wiederkehrende Reinigungsanfragen in Regensburg mit Reinigungsplan, Turnus, Anfragecheckliste und Angebot.",
         path: pagePath,
         about: [
           "Unterhaltsreinigung Regensburg",

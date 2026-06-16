@@ -37,7 +37,7 @@ const whatsappHref = buildWhatsAppHref(
 const faqItems = [
   {
     q: "Was ist der FLOXANT Objektbrief?",
-    a: "Der Objektbrief ist ein kurzer, strukturierter Einstieg für Anfragen. Er sammelt Region, Leistung, Ort, Termin, Zugang, Fotos und optional einen Budgetrahmen, damit FLOXANT den Fall besser einordnen kann.",
+    a: "Der Objektbrief ist ein kurzer, strukturierter Startpunkt für Anfragen. Er sammelt Region, Leistung, Ort, Termin, Zugang, Fotos und optional einen Budgetrahmen, damit FLOXANT den Fall besser einordnen kann.",
   },
   {
     q: "Muss ich den Objektbrief vollständig ausfüllen?",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     siteName: "FLOXANT",
     title: "FLOXANT Objektbrief",
     description:
-      "Ein klarer Einstieg für bessere Anfragen: Ziel, Fotos, Zugang, Termin und Budgetrahmen strukturiert senden.",
+      "Ein klarer Weg für bessere Anfragen: Ziel, Fotos, Zugang, Termin und Budgetrahmen strukturiert senden.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -227,7 +227,7 @@ export default function ObjektbriefPage() {
               Für welche Fälle?
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Ein Einstieg für echte Situationen, nicht für perfekte Formulierungen.
+              Ein Startpunkt für echte Situationen, nicht für perfekte Formulierungen.
             </h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">

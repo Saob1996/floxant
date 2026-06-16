@@ -130,7 +130,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert der Angebotscheck für Düsseldorf?",
-    a: "Für Düsseldorf prüft FLOXANT Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung über eigene lokale Seiten.",
+    a: "Für Düsseldorf prüft FLOXANT Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung über klare lokale Kontaktmöglichkeiten.",
   },
   {
     q: "Bewertet FLOXANT meinen Anbieter?",
@@ -213,7 +213,7 @@ export default function AngebotscheckPage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Rechtsberatung</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg + Bayern nach Verfügbarkeit</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf servicebezogen</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
               </div>
             </div>
 

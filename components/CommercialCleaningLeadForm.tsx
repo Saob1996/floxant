@@ -447,7 +447,7 @@ export function CommercialCleaningLeadForm() {
     <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
      <li>Klare Einordnung nach Objektart, Fläche, Turnus und Zugangslogik</li>
      <li>Sauber getrennt von privaten Kleinstaufträgen</li>
-     <li>Direkter Anfrageweg ohne Pflicht-Rechner</li>
+     <li>Direkter Kontaktweg ohne Pflicht-Rechner</li>
      <li>Kundenbudget bleibt sichtbar, ersetzt aber nie die fachliche Prüfung</li>
     </ul>
 

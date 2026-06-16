@@ -21,14 +21,14 @@ export default function TrustBlock({
   ? (trust.location_template || "").replace("{location}", locationHint.trim())
   : trust.location_generic || "";
  const trustLabels = {
-  googleReviews: trust.google_reviews || "Google-Signale prüfen",
+  googleReviews: trust.google_reviews || "Google-Hinweise prüfen",
   googleReviewsDesc: trust.google_reviews_desc || "Bewertungen, Profil und direkte Kontaktwege sichtbar einordnen.",
   personalConsultation: trust.personal_consultation || "Persönliche Vorprüfung",
   personalConsultationDesc: trust.personal_consultation_desc || "Rückfragen, Zugang und Umfang werden vor der Planung sauber geklärt.",
   regionalActive: trust.regional_active || "Regional erreichbar",
   location:
    locationText ||
-   "Regensburg als Basis, Bayern als klares Einsatzgebiet mit direktem Anfrageweg.",
+   "Regensburg als Basis, Bayern als klares Einsatzgebiet mit direktem Kontaktweg.",
  };
 
  return (

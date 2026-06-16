@@ -18,16 +18,17 @@ const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
     "Hallo FLOXANT Düsseldorf,",
-    "ich möchte eine Anfrage in Düsseldorf stellen.",
+    "ich brauche Hilfe in Düsseldorf.",
     "Es geht um Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Endreinigung.",
+    "Stadtteil, Termin und Fotos kann ich direkt mitsenden.",
   ].join("\n"),
 );
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Düsseldorf | Umzug, Reinigung & Räumung",
+  title: "FLOXANT Düsseldorf | Hilfe für Umzug, Reinigung & Räumung",
   description:
-    "FLOXANT Düsseldorf prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung. Fotos senden, Aufwand klären, Angebot erhalten.",
+    "FLOXANT Düsseldorf hilft bei Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung. Stadtteil, Termin und Fotos senden.",
   alternates: { canonical: "/duesseldorf" },
 };
 
@@ -40,10 +41,12 @@ export default function DuesseldorfHubPage() {
             {region.label}
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-            Umzug, Reinigung und Entrümpelung in Düsseldorf sauber anfragen
+            Hilfe in Düsseldorf einfach anfragen
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            {region.description}
+            Sagen Sie kurz, worum es geht: Wohnung, Büro, Keller, Übergabe, Umzug
+            oder Räumung. Mit Stadtteil, Termin und Fotos kann FLOXANT schnell
+            einschätzen, welcher nächste Schritt passt.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
@@ -51,7 +54,7 @@ export default function DuesseldorfHubPage() {
               data-event="hero_cta_click"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
             >
-              Düsseldorf-Services ansehen
+              Passende Hilfe finden
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
@@ -78,22 +81,23 @@ export default function DuesseldorfHubPage() {
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Klare Ausrichtung
+              Für Düsseldorf verständlich sortiert
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Düsseldorf bekommt eigene Service-Seiten statt kopierter Regensburg-Texte.
+              Sie schildern den Fall. FLOXANT zeigt den passenden Weg.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung werden in Düsseldorf
-              mit eigener lokaler Sprache, Stadtteilen, Anfragefeldern und internen Links geführt.
+              Keine Fachbegriffe nötig. Stadtteil, Fotos, Termin und eine kurze
+              Beschreibung reichen, damit wir Reinigung, Umzug, Räumung oder
+              Entsorgung sauber einordnen können.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              "Region: Düsseldorf und direkte Umgebung nach Prüfung",
-              "Services: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung",
-              "Anfrage: Fotos, Ort, Termin und Umfang senden",
-              "Rückmeldung: kostenlos, unverbindlich und ohne Preisgarantie",
+              "Düsseldorf und direkte Umgebung nach Terminlage",
+              "Hilfe für Wohnung, Büro, Keller, Übergabe und Objekt",
+              "Fotos, Stadtteil, Termin und Wunsch einfach mitsenden",
+              "Ehrliche Rückmeldung ohne künstliches Sofortversprechen",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" />
@@ -108,15 +112,15 @@ export default function DuesseldorfHubPage() {
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Der richtige Einstieg für Ihr Objekt
+              Der passende Startpunkt
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Wählen Sie den passenden Düsseldorfer Service.
+              Wählen Sie, was Ihrem Fall am nächsten kommt.
             </h2>
           </div>
           <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-            Wählen Sie die Leistung, die Ihrem Fall am nächsten kommt. Wenn noch nicht alles klar ist,
-            reichen Stadtteil, Termin, Fotos und eine kurze Beschreibung für die erste Einschätzung.
+            Wenn Sie unsicher sind, starten Sie mit dem naheliegendsten Thema.
+            Wir ordnen Ihre Anfrage nach Objekt, Zustand, Zugang, Termin und Ziel ein.
           </p>
 
           <div className="mt-8 grid gap-5">

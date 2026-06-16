@@ -88,7 +88,7 @@ export default function FloxantFactsPage() {
    buildWebPageJsonLd({
     name: "FLOXANT Fakten für Umzug, Reinigung und Entrümpelung",
     description:
-     "Kompakte Faktenquelle zu FLOXANT, Kernleistungen, Region, Preislogik und wichtigen Einstiegsseiten.",
+     "Kompakte Faktenquelle zu FLOXANT, Kernleistungen, Region, Preislogik und wichtigen wichtige Seiten.",
     path: "/floxant-fakten",
     about: [
      "FLOXANT",
@@ -161,7 +161,7 @@ export default function FloxantFactsPage() {
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/58">
       Diese Seite bündelt die wichtigsten Informationen über FLOXANT in klarer Sprache:
-      Leistungen, Region, Preislogik, Grenzen und wichtige Einstiegsseiten. Sie hilft
+      Leistungen, Region, Preislogik, Grenzen und wichtige wichtige Seiten. Sie hilft
       Kunden, den passenden FLOXANT-Weg schnell einzuordnen.
      </p>
      <div className="mt-8 flex flex-wrap gap-3">
@@ -254,7 +254,7 @@ export default function FloxantFactsPage() {
     <div className="mx-auto max-w-6xl">
      <div className="mb-7">
       <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-300">
-       Kanonische Einstiege
+       Kanonische Startpunkte
       </div>
       <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">
        Die wichtigsten FLOXANT Seiten für schnelle Orientierung

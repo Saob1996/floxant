@@ -74,7 +74,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     secondaryLabel: "Angebot prüfen",
     chips: ["Fotos statt Rätselraten", "Ort und Termin zuerst", "Service passend wählen"],
     metrics: [
-      { value: "1", label: "klarer Einstieg" },
+      { value: "1", label: "klarer Weg" },
       { value: "5", label: "Prüfpunkte" },
       { value: "200 km", label: "Regensburg-Nahbereich" },
     ],
@@ -103,7 +103,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     title: "Saubere Übergaben beginnen vor dem ersten Wischen.",
     intro:
       "Fläche, Zustand, Termin, Fotos und Ziel der Reinigung werden vorab geklärt. So wirkt Reinigung nicht beliebig, sondern planbar und nachvollziehbar.",
-    region: "Regensburg und Bayern · Düsseldorf mit eigenen Servicepfaden",
+    region: "Regensburg und Bayern · Düsseldorf klar getrennt",
     primaryHref: "/rechner?service=reinigung#rechner-wizard",
     primaryLabel: "Reinigung einschätzen",
     secondaryHref: "/angebot-guenstiger-pruefen",
@@ -207,8 +207,8 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
   duesseldorf: {
     image: "/assets/floxant-story-duesseldorf.svg",
     accent: "from-teal-600 to-sky-500",
-    badge: "Düsseldorf Cleaning OS",
-    title: "Düsseldorf bleibt klar: Umzug, Reinigung und Räumung über eigene Seiten.",
+    badge: "Reinigung in Düsseldorf",
+    title: "Düsseldorf bleibt klar: Umzug, Reinigung und Räumung über klare Kontaktmöglichkeiten.",
     intro:
       "Für Wohnungen, Apartments, Büros, kleine Unternehmen, Treppenhäuser und Grundreinigung werden Objekt, Fläche, Frequenz, Zeitfenster und Fotos strukturiert abgefragt.",
     region: "Düsseldorf · Reinigung · Entsorgung separat",
@@ -218,7 +218,7 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
     secondaryLabel: "B2B-Reinigung",
     chips: ["Objekt", "Fläche", "Zeitfenster"],
     metrics: [
-      { value: "0", label: "Umzug-Signale" },
+      { value: "0", label: "Umzug getrennt" },
       { value: "B2B", label: "kleine Unternehmen" },
       { value: "Fotos", label: "für Objektprüfung" },
     ],

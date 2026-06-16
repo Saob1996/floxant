@@ -223,7 +223,7 @@ export default function PraxisreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Praxisreinigung Regensburg für Empfang, Wartebereich und Nebenflächen",
         description:
-          "Kundennaher Einstieg für Praxisreinigung in Regensburg mit Angebot, Turnus, Leistungsgrenzen, Anfragecheckliste, FAQ und direktem B2B-Formular.",
+          "Kundennaher Startpunkt für Praxisreinigung in Regensburg mit Angebot, Turnus, Leistungsgrenzen, Anfragecheckliste, FAQ und direktem B2B-Formular.",
         path: pagePath,
         about: [
           "Praxisreinigung Regensburg",

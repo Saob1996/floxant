@@ -1004,7 +1004,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           ...(state.details.scope.trim() ? ["Umfang angegeben"] : []),
           ...(state.details.access.trim() ? ["Zugang beschrieben"] : []),
           ...(state.details.budget.trim() ? ["Budget genannt"] : []),
-          ...(queryUrgency ? ["Dringlichkeit aus Einstieg"] : []),
+          ...(queryUrgency ? ["Dringlichkeit aus Startpunkt"] : []),
           ...(state.upgrades.length ? ["Ausgewählte Extras"] : []),
           ...(files.length ? ["Bildmaterial vorhanden"] : []),
         ].slice(0, 5),
@@ -1221,20 +1221,20 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       <div className="space-y-5">
         {isDusseldorfDisposalQueryContext ? (
           <div className="rounded-[1.35rem] border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold leading-6 text-orange-950">
-            Dieser Düsseldorf-Einstieg ist auf Entsorgung ausgerichtet: Umfang,
+            Dieser Düsseldorf-Startpunkt ist auf Entsorgung ausgerichtet: Umfang,
             Zugang, Fotos und Budget helfen bei der Prüfung.
           </div>
         ) : null}
         {isDusseldorfMovingQueryContext ? (
           <div className="rounded-[1.35rem] border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold leading-6 text-blue-950">
-            Dieser Düsseldorf-Einstieg ist auf Umzug ausgerichtet: Volumen,
+            Dieser Düsseldorf-Startpunkt ist auf Umzug ausgerichtet: Volumen,
             Adressen, Zugang, Termin und Fotos helfen bei der Prüfung.
           </div>
         ) : null}
         {isDusseldorfCleaningQueryContext ? (
           <div className="rounded-[1.35rem] border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-semibold leading-6 text-teal-950">
-            Dieser Düsseldorf-Einstieg ist auf Reinigung ausgerichtet. Andere
-            Düsseldorfer Leistungen laufen über ihre eigenen lokalen Seiten.
+            Dieser Düsseldorf-Startpunkt ist auf Reinigung ausgerichtet. Andere
+            Düsseldorfer Leistungen laufen über ihre passenden lokalen Kontaktwege.
           </div>
         ) : null}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -1299,7 +1299,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{option.desc}</p>
               <div className="mt-6 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                Einstieg wählen
+                Startpunkt wählen
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </button>
@@ -1309,7 +1309,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         <div className="grid gap-3 rounded-[1.6rem] border border-slate-200 bg-slate-50 p-4 text-start md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <div className="text-[10px] font-black uppercase tracking-[0.16em] text-emerald-700">
-              Eigener Anfrageweg
+              Eigener Kontaktweg
             </div>
             <p className="mt-1 text-sm leading-6 text-slate-600">
               Sie haben eine feste Preisvorstellung? Dann senden Sie den Kostenrahmen direkt mit.
@@ -1531,7 +1531,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
           {isDusseldorfServiceConflict ? (
             <div className="rounded-[1.35rem] border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold leading-6 text-amber-950">
               Für Düsseldorf bitte Umzug, Reinigung oder Entrümpelung/Entsorgung
-              wählen oder den passenden lokalen Einstieg öffnen.
+              wählen oder den passenden lokalen Kontaktweg öffnen.
             </div>
           ) : null}
 
@@ -2037,7 +2037,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 </h2>
                 <p className="mx-auto max-w-2xl text-slate-500">
                   {t?.headings?.service_subtitle ||
-                    "Wählen Sie den passenden Einstieg für Ihre Anfrage"}
+                    "Wählen Sie den passenden Kontaktweg für Ihre Anfrage"}
                 </p>
               </div>
               {renderServiceSelection()}

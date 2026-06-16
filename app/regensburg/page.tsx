@@ -142,7 +142,7 @@ export default function RegensburgHubPage() {
             </h2>
           </div>
           <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-            Wählen Sie den Einstieg, der am besten zu Ihrer Situation passt. Wenn noch nicht alles
+            Wählen Sie den Startpunkt, der am besten zu Ihrer Situation passt. Wenn noch nicht alles
             klar ist, reichen Ort, Termin, Fotos und eine kurze Beschreibung für den Start.
           </p>
 

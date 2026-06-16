@@ -75,7 +75,7 @@ export function getWhatsAppContext(pathname: string, service?: string | null): W
   }
 
   return {
-    title: "WhatsApp mit vorbereitetem Einstieg",
+    title: "WhatsApp mit vorbereitetem Startpunkt",
     teaser: "Startet direkt mit Regensburg-, Service- und Anfragekontext statt mit einer leeren Nachricht.",
     buttonLabel: "WhatsApp starten",
     message: [

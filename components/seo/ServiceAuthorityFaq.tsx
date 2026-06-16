@@ -130,7 +130,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   eyebrow: "Preiswahrheit",
   title: "Was der Rechner leisten soll und was nicht",
   intro:
-   "Der FLOXANT Rechner ist ein strukturierter Einstieg in die Einschätzung. Er soll Klarheit schaffen, ohne einen scheinbar sicheren Endpreis zu versprechen.",
+   "Der FLOXANT Rechner ist ein strukturierter Startpunkt in die Einschätzung. Er soll Klarheit schaffen, ohne einen scheinbar sicheren Endpreis zu versprechen.",
   faqs: [
    {
     q: "Ist der Rechnerpreis verbindlich?",

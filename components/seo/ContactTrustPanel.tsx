@@ -60,7 +60,7 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
               Kontakt Regensburg
             </div>
             <h2 className="mt-6 max-w-[14ch] text-3xl font-semibold flox-display-section text-foreground md:text-5xl">
-              FLOXANT erreichen und den passenden Einstieg wählen.
+              FLOXANT erreichen und den passenden Kontaktweg wählen.
             </h2>
             <p className="mt-5 text-sm leading-relaxed text-slate-600 md:text-base">
               Für Kunden ist wichtig, ob sie direkt anfragen, erst kurz Rückfragen stellen
@@ -122,7 +122,7 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
                 Schnell zum richtigen Weg
               </div>
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">
-                Wenn Eckdaten schon vorliegen, ist die Buchungsseite meist der klarste Einstieg.
+                Wenn Eckdaten schon vorliegen, ist die Buchungsseite meist der klarste Startpunkt.
                 Bei knapper Zeit passt Express. Für allgemeine Rückfragen bleiben Telefon,
                 WhatsApp und E-Mail sichtbar und direkt erreichbar.
               </p>

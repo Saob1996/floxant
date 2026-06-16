@@ -226,7 +226,7 @@ export default function FensterreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Fensterreinigung Regensburg für Glasflächen, Rahmen, Büro, Praxis und Objekt",
         description:
-          "Kundennaher Einstieg für Fensterreinigung in Regensburg mit Kostenfaktoren, Anfragecheckliste, FAQ, Grenzen und direktem Formular.",
+          "Kundennaher Startpunkt für Fensterreinigung in Regensburg mit Kostenfaktoren, Anfragecheckliste, FAQ, Grenzen und direktem Formular.",
         path: pagePath,
         about: [
           "Fensterreinigung Regensburg",

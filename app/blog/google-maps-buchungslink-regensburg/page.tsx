@@ -11,7 +11,7 @@ import {
 const faqItems = [
  {
   q: "Warum ist ein klarer Buchungslink für Google Maps wichtig?",
-  a: "Weil Nutzer in Maps oder im Google-Unternehmensprofil nicht erst auf einer allgemeinen Startseite suchen wollen. Ein klarer Link führt schneller zum passenden Anfrageweg.",
+  a: "Weil Nutzer in Maps oder im Google-Unternehmensprofil nicht erst auf einer allgemeinen Startseite suchen wollen. Ein klarer Link führt schneller zum passenden Kontaktweg.",
  },
  {
   q: "Sollte der Maps-Link direkt auf WhatsApp gehen?",
@@ -75,12 +75,12 @@ export default function BlogGoogleMapsBookingPage() {
     date="27. April 2026"
     readTime="6 Min."
     title="Google Maps Buchungslink in Regensburg: worauf es für klare Anfragen ankommt"
-    intro="Viele Unternehmen verlinken aus Google Maps einfach auf die Startseite. Das ist oft verschenktes Potenzial. Wer in Maps klickt, will nicht noch einmal suchen, sondern schnell den richtigen Anfrageweg finden."
+    intro="Viele Unternehmen verlinken aus Google Maps einfach auf die Startseite. Das ist oft verschenktes Potenzial. Wer in Maps klickt, will nicht noch einmal suchen, sondern schnell den richtigen Kontaktweg finden."
     sections={[
      {
       title: "Was ein guter Maps-Link leisten sollte",
       paragraphs: [
-       "Ein guter Link für Google Maps führt nicht in ein Sammelbecken, sondern in einen klaren lokalen Einstieg. Nutzer möchten sofort erkennen, wie sie buchen, eine kurze Vorprüfung starten oder direkt Kontakt aufnehmen können.",
+       "Ein guter Link für Google Maps führt nicht in ein Sammelbecken, sondern in einen klaren lokalen Startpunkt. Nutzer möchten sofort erkennen, wie sie buchen, eine kurze Vorprüfung starten oder direkt Kontakt aufnehmen können.",
        "Gerade bei Dienstleistungen wie Umzug, Reinigung oder Entrümpelung ist das entscheidend. Hier geht es nicht nur um einen Klick, sondern um Vertrauen, Verständlichkeit und den nächsten sinnvollen Schritt.",
       ],
      },
@@ -99,13 +99,13 @@ export default function BlogGoogleMapsBookingPage() {
      {
       title: "Wie FLOXANT diesen Weg sauber aufbaut",
       paragraphs: [
-       "Für FLOXANT ist /buchung der klare Einstieg für Google Maps, direkte Empfehlungen und spontane lokale Anfragen. Von dort aus sehen Kunden sofort, ob Buchungssystem, Express-Check, Preisvorstellung oder ein anderer Weg besser passt.",
+       "Für FLOXANT ist /buchung der klare Startpunkt für Google Maps, direkte Empfehlungen und spontane lokale Anfragen. Von dort aus sehen Kunden sofort, ob Buchungssystem, Express-Check, Preisvorstellung oder ein anderer Weg besser passt.",
        "Kurz gesagt: lieber klar führen als hoffen, dass sich jemand durchklickt. Oder, ein bisschen bayerisch gesagt: lieber gscheid gelöst als irgendwie verlinkt.",
       ],
      },
     ]}
     highlightPoints={[
-     "Ein Maps-Link sollte direkt in einen lokalen Anfrageweg führen.",
+     "Ein Maps-Link sollte direkt in einen lokalen Kontaktweg führen.",
      "Klare Trennung zwischen Buchung, Express und Preisvorstellung erhöht Vertrauen.",
      "Eine klare Zielseite hilft mehr als eine Startseite, auf der man erst suchen muss.",
     ]}

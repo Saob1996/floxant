@@ -171,7 +171,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Buchung",
   readTime: "6 Min.",
   title: "Direkt anfragen statt Vergleichsportal: warum klare Buchungswege besser sind",
-  description: "Weshalb direkte Anfragewege für Umzug, Reinigung und Entrümpelung oft schneller, ehrlicher und planbarer sind.",
+  description: "Weshalb direkte Kontaktwege für Umzug, Reinigung und Entrümpelung oft schneller, ehrlicher und planbarer sind.",
  },
  {
   slug: "leer-rueckfahrt-regensburg-firmen-moebeltransport",
@@ -224,12 +224,12 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Signatur-Services",
   readTime: "6 Min.",
   title: "FLOXANT Signatur-Services: wann welcher Zusatzservice passt",
-  description: "Beiladung, Express-Anfrage, Preisvorstellung und SchlüsselÜbergabe als klare Einstiege für konkrete Kundensituationen.",
+  description: "Beiladung, Express-Anfrage, Preisvorstellung und SchlüsselÜbergabe als klare Startpunkte für konkrete Kundensituationen.",
   featured: true,
  },
  {
   slug: "regensburg-bayern-servicegebiet-richtig-planen",
-  category: "Local SEO",
+  category: "Lokale Sichtbarkeit",
   readTime: "6 Min.",
   title: "Regensburg und Bayern als Servicegebiet richtig planen",
   description: "Warum Region, Strecke und Verfügbarkeit bei FLOXANT für Preisrahmen, Termin und Umsetzung entscheidend sind.",
@@ -397,7 +397,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "B2B Reinigung",
   readTime: "7 Min.",
   title: "Gewerbereinigung in Regensburg für große Objekte richtig anfragen",
-  description: "Warum Büro, Praxis, Hotel, Kanzlei und Objektbetrieb andere Signale brauchen als private Kleinaufträge.",
+  description: "Warum Büro, Praxis, Hotel, Kanzlei und Objektbetrieb andere Hinweise brauchen als private Kleinaufträge.",
   featured: true,
  },
  {
@@ -421,7 +421,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Büroumzug",
   readTime: "7 Min.",
   title: "Büroumzug in Bayern ohne Chaos: so bleibt der Betrieb besser handlungsfähig",
-  description: "Wie Arbeitsplätze, IT, Zugänge, Zeitfenster und interne Abstimmung geplant werden, damit ein Firmenumzug nicht unnötig bremst.",
+  description: "Wie Arbeitsplätze, IT, Zugänge, Zeitfenster und Abstimmung im Unternehmen geplant werden, damit ein Firmenumzug nicht unnötig bremst.",
   featured: true,
  },
 ];

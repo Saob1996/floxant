@@ -28,7 +28,7 @@ const objectBriefConfig = {
     badge: "FLOXANT Objektbrief",
     title: "Ein guter Auftrag beginnt mit einem klaren Bild.",
     intro:
-      "Der Objektbrief ist der kurze FLOXANT-Einstieg für eine bessere Anfrage: Ziel, Fotos, Zugang, Termin und Budgetrahmen werden gemeinsam betrachtet, bevor ein Auftrag geplant wird.",
+      "Der Objektbrief ist der kurze FLOXANT-Anfrage für eine bessere Anfrage: Ziel, Fotos, Zugang, Termin und Budgetrahmen werden gemeinsam betrachtet, bevor ein Auftrag geplant wird.",
     audience: "Für Reinigung in Düsseldorf sowie Umzug, Entrümpelung und Übergabe in Regensburg.",
     primaryHref: "/objektbrief#schnellstart",
     primaryLabel: "Objektbrief starten",

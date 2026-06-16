@@ -51,7 +51,7 @@ export function OrganizationJsonLd() {
       },
     ],
     description:
-      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung, Angebotsprüfung und diskrete Abstimmungen in Düsseldorf und Regensburg mit klar getrennten lokalen Service-Seiten.",
+      "FLOXANT organisiert Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung, Endreinigung, Angebotsprüfung und diskrete Abstimmungen in Düsseldorf und Regensburg mit klarer lokaler Struktur.",
     areaServed: company.primaryServiceAreas.map((area) => ({
       "@type":
         area === "Bayern"
@@ -286,7 +286,7 @@ export function OrganizationJsonLd() {
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Hotelreinigung Düsseldorf", url: `${company.url}/duesseldorf/hotelreinigung` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Apartment-Reinigung Düsseldorf", url: `${company.url}/reinigung-moeblierte-wohnung-duesseldorf` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Entsorgung Düsseldorf", url: `${company.url}/entsorgung-duesseldorf` } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "FLOXANT Service Graph", url: `${company.url}/service-graph.json` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "FLOXANT Fakten und Leistungsübersicht", url: `${company.url}/floxant-fakten` } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Private Client Service", url: `${company.url}/private-client-service` } },
       ],
     },

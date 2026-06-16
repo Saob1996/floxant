@@ -4,7 +4,7 @@ import { ArrowRight, Compass, Layers3 } from "lucide-react";
 const clusters = [
  {
   title: "Kernservices",
-  intro: "Direkte Einstiege für die häufigsten Anfragen.",
+  intro: "Direkte Kontaktwege für die häufigsten Anfragen.",
   links: [
    { href: "/umzug", label: "Umzug Regensburg & Bayern" },
    { href: "/reinigung", label: "Reinigung Regensburg & Bayern" },

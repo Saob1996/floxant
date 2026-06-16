@@ -93,7 +93,7 @@ export default function BlogAnfrageRegensburgRichtigStellenPage() {
             title: "Warum klare Eckdaten mehr bringen als lange Texte",
             paragraphs: [
               "Bei Umzug, Reinigung, Entrümpelung oder Büroumzug zählt zuerst die Struktur: Wo ist der Einsatz, was soll gemacht werden, wie groß ist der Umfang und welche Bedingungen vor Ort sind wichtig?",
-              "Je klarer diese Punkte sind, desto schneller kann FLOXANT Aufwand, Terminlage und passenden Anfrageweg einordnen. Kurz gesagt: lieber sauber schildern als später alles zweimal erklären.",
+              "Je klarer diese Punkte sind, desto schneller kann FLOXANT Aufwand, Terminlage und passenden Kontaktweg einordnen. Kurz gesagt: lieber sauber schildern als später alles zweimal erklären.",
             ],
           },
           {
@@ -113,7 +113,7 @@ export default function BlogAnfrageRegensburgRichtigStellenPage() {
           {
             title: "Welcher FLOXANT Weg dann am besten passt",
             paragraphs: [
-              "Wenn schon einige Eckdaten vorhanden sind, ist /buchung meist der sauberste Einstieg. Für sehr knappe Zeitfenster passt der Express-Check. Wenn bereits ein Budget gesetzt ist, hilft die Anfrage mit Preisvorstellung.",
+              "Wenn schon einige Eckdaten vorhanden sind, ist /buchung meist der sauberste Startpunkt. Für sehr knappe Zeitfenster passt der Express-Check. Wenn bereits ein Budget gesetzt ist, hilft die Anfrage mit Preisvorstellung.",
               "Und wenn noch eine kurze Rückfrage offen ist? Dann geht natürlich auch WhatsApp oder ein direkter Kontaktweg. Hauptsache, es bleibt klar und menschlich. Oder, ein bissl bayerisch gesagt: lieber gscheid anfangen, dann läuft's hinten raus leichter.",
             ],
           },

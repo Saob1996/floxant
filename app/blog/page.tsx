@@ -41,7 +41,7 @@ export default function BlogHubPage() {
     {
       href: "#empfohlen",
       title: "Empfohlene Artikel",
-      text: "Die hilfreichsten Einstiege für Preisrahmen, Servicewahl und direkte Entscheidungen.",
+      text: "Die hilfreichsten Startpunkte für Preisrahmen, Servicewahl und direkte Entscheidungen.",
     },
     {
       href: "/blog/floxant-services-nach-situation-finden",
@@ -56,7 +56,7 @@ export default function BlogHubPage() {
     {
       href: "/blog/duesseldorf-buero-praxis-hausverwaltung-reinigung-anfrage",
       title: "Düsseldorf Reinigung",
-      text: "Klare Anfragewege für Büro, Praxis, Hausverwaltung, Gewerbereinigung und Angebotsprüfung.",
+      text: "Klare Kontaktwege für Büro, Praxis, Hausverwaltung, Gewerbereinigung und Angebotsprüfung.",
     },
     {
       href: "#lokale-antworten",
@@ -88,7 +88,7 @@ export default function BlogHubPage() {
     {
       href: "/buchung",
       title: "Anfrage sauber starten",
-      text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den strukturierten Einstieg sind.",
+      text: "Wenn Thema, Leistung und Eckdaten jetzt klar genug für den strukturierten Startpunkt sind.",
     },
     {
       href: "/kontakt",
@@ -108,7 +108,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Gibt es hier auch Themen für Firmen, Hotels oder gehobene Privatkunden?",
-      a: "Ja. Der Blog erweitert gezielt Themen für Büroumzug, Firmenentsorgung, Gewerbereinigung, Private Client und Buchung über direkte Einstiege statt Vergleichsportale.",
+      a: "Ja. Der Blog erweitert gezielt Themen für Büroumzug, Firmenentsorgung, Gewerbereinigung, Private Client und Buchung über direkte Kontaktwege statt Vergleichsportale.",
     },
     {
       q: "Wie geht es nach dem Lesen weiter?",
@@ -124,7 +124,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Kann der Blog helfen, wenn ich noch nicht weiß, welche Leistung ich brauche?",
-      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, Düsseldorf-Reinigung, kurzfristige Reinigung, Schlüsselübergabe und B2B-Reinigung. So finden Kunden schneller den passenden FLOXANT Einstieg.",
+      a: "Ja. Der Blog erklärt typische Fälle statt nur Leistungsnamen: Umzug mit Reinigung, Entrümpelung vor Übergabe, Angebot prüfen, Plan-B-Service, Düsseldorf-Reinigung, kurzfristige Reinigung, Schlüsselübergabe und B2B-Reinigung. So finden Kunden schneller den passenden FLOXANT Startpunkt.",
     },
     {
       q: "Welche FLOXANT Leistungen werden hier erklärt?",
@@ -144,7 +144,7 @@ export default function BlogHubPage() {
     },
     {
       q: "Warum erklärt FLOXANT Leistungen nach Situationen statt nur nach Kategorien?",
-      a: "Weil Kunden meistens mit einer konkreten Lage starten: Auszug, Übergabe, Büroreinigung, Entrümpelung, Angebot prüfen oder nicht selbst vor Ort sein. Die Artikel zeigen, welcher Einstieg dann passt und welche Angaben helfen.",
+      a: "Weil Kunden meistens mit einer konkreten Lage starten: Auszug, Übergabe, Büroreinigung, Entrümpelung, Angebot prüfen oder nicht selbst vor Ort sein. Die Artikel zeigen, welcher Startpunkt dann passt und welche Angaben helfen.",
     },
     {
       q: "Was ist der richtige Artikel, wenn ich nicht selbst vor Ort sein kann?",
@@ -326,7 +326,7 @@ export default function BlogHubPage() {
             {
               href: "/buchung",
               title: "Buchung",
-              text: "Direkt anfragen, statt erst lange nach dem richtigen Einstieg zu suchen.",
+              text: "Direkt anfragen, statt erst lange nach dem richtigen Startpunkt zu suchen.",
             },
             {
               href: "/angebot-guenstiger-pruefen",
@@ -575,7 +575,7 @@ export default function BlogHubPage() {
                 Empfohlen
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                Die stärksten Einstiegsartikel
+                Die stärksten Artikel für den schnellen Start
               </h2>
             </div>
           </div>

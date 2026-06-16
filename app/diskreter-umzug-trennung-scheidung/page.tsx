@@ -78,12 +78,12 @@ const localSearchSignals = [
     text: "Anfragen aus der Umgebung werden nach Ort, Zeitraum, Umfang, Zugang und Verfügbarkeit geprüft.",
   },
   {
-    title: "Google-Maps-tauglicher Einstieg",
+    title: "Diskrete Anfrage klar erreichbar",
     text: "Kontakt, Telefon, Buchungsweg, Standortbezug und Servicegebiet sind sichtbar statt in versteckten Footer-Links verteilt.",
   },
   {
     title: "Klare Düsseldorf-Grenze",
-    text: "Düsseldorf bleibt bei FLOXANT Reinigung und Entsorgung. Diese Seite sendet kein Düsseldorf-Umzug-Signal.",
+    text: "Düsseldorf bleibt bei FLOXANT Reinigung und Entsorgung. Diese Seite sendet kein Düsseldorf-Umzug-Hinweis.",
   },
 ];
 
@@ -154,7 +154,7 @@ const discretionBlocks = [
   },
   {
     title: "Transport / Umzug",
-    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; Düsseldorf-Umzug läuft über den eigenen lokalen Einstieg.",
+    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; Düsseldorf-Umzug läuft über den eigenen lokalen Kontaktweg.",
     Icon: Truck,
   },
   {
@@ -289,7 +289,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist das möglich?",
-    a: "Regensburg ist der Kern für Bayern/Nahbereich. Für Düsseldorf prüft FLOXANT passende lokale Servicepfade, darunter /duesseldorf/umzug, /duesseldorf/reinigung und /duesseldorf/entruempelung.",
+    a: "Regensburg ist der Kern für Bayern/Nahbereich. Für Düsseldorf prüft FLOXANT passende lokale Kontaktwege, darunter /duesseldorf/umzug, /duesseldorf/reinigung und /duesseldorf/entruempelung.",
   },
 ];
 
@@ -442,11 +442,11 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                   Lokale Suche & Maps
                 </div>
                 <h2 className="mt-4 text-3xl font-black tracking-tight text-stone-950">
-                  Regensburg klar sichtbar, Anfrageweg direkt erreichbar
+                  Regensburg klar sichtbar, Kontaktweg direkt erreichbar
                 </h2>
                 <p className="mt-4 text-base leading-8 text-stone-700">
-                  Für lokale Suche und Google Maps zählt nicht nur ein Keyword. Entscheidend ist, dass Standort, Leistung,
-                  Kontaktweg und nächster Schritt sauber zusammenpassen. Diese Seite führt sensible Auszüge deshalb
+                  Wer in Regensburg schnelle Hilfe sucht, braucht sofort einen klaren Kontaktweg. Entscheidend ist, dass Standort, Leistung,
+                  Kontakt und nächster Schritt zusammenpassen. Diese Seite führt sensible Auszüge deshalb
                   direkt zu Rückruf, WhatsApp, Telefon oder Formular, ohne falsche Notdienst- oder Sicherheitsversprechen.
                 </p>
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -490,7 +490,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 <p className="mt-4 text-base leading-8 text-stone-700">
                   Diese Seite beantwortet die wichtigsten Fragen direkt sichtbar: Was FLOXANT übernimmt, was bewusst
                   nicht versprochen wird und welcher FLOXANT-Service zum Fall passt. Das hilft Menschen,
-                  den richtigen Einstieg ohne Umwege zu finden.
+                  den richtigen Weg ohne Umwege zu finden.
                 </p>
               </div>
 

@@ -92,7 +92,7 @@ function getBookingHeroCopy(
       title: region === "duesseldorf" ? "Umzug Düsseldorf anfragen." : "Umzug direkt anfragen.",
       description:
         region === "duesseldorf"
-          ? "Start, Ziel, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft den Düsseldorfer Umzug servicebezogen und ohne Regensburg-Texte zu vermischen."
+          ? "Start, Ziel, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft, welche Hilfe für Ihren Umzug in Düsseldorf sinnvoll passt."
           : "Start, Ziel, Etage, Laufweg, Termin und Fotos senden. FLOXANT prüft den Umzug mit passenden Zusatzleistungen wie Endreinigung, Räumung oder Rückfahrt.",
       wizardEyebrow: "Umzugsanfrage",
       wizardTitle: "Umzugsdaten senden.",
@@ -351,10 +351,10 @@ const proofPoints = [
 const detailCards = [
   {
     title: "Kernleistungen",
-    text: "Drei klare Startpunkte: Umzug, Reinigung und Entrümpelung. Zusatzmodule kommen erst dazu, wenn sie wirklich helfen.",
+    text: "Drei klare Wege: Umzug, Reinigung und Entrümpelung. Zusatzmodule kommen erst dazu, wenn sie wirklich helfen.",
   },
   {
-    title: "Anfragewege",
+    title: "Kontaktwege",
     text: "Express, WhatsApp, Google Maps und Kosteneinschätzung bleiben getrennte Wege. So wählen Kunden schneller den passenden Start.",
   },
   {
@@ -387,7 +387,7 @@ const faqItems = [
     a: "Nein. Das Absenden ist unverbindlich. Ein verbindlicher Termin entsteht erst nach Prüfung, Angebot und gemeinsamer Bestätigung.",
   },
   {
-    q: "Welcher Einstieg passt für normale Anfragen?",
+    q: "Welcher Startpunkt passt für normale Anfragen?",
     a: "Für die meisten Fälle passt die strukturierte Anfrage. Dort wählen Sie Leistung, Ort, Termin und wichtige Hinweise aus.",
   },
   {
@@ -474,7 +474,7 @@ export default async function BuchungPage() {
       buildServiceJsonLd({
         name: "FLOXANT Anfrage- und Buchungszentrum",
         description:
-          "Zentraler Einstieg für unverbindliche Anfragen, Einschätzung, Express-Anfrage und Kostenorientierung bei FLOXANT.",
+          "Zentraler Startpunkt für unverbindliche Anfragen, Einschätzung, Express-Anfrage und Kostenorientierung bei FLOXANT.",
         path: "/buchung",
         serviceType: "Umzug, Reinigung, Entrümpelung, Anfrage und Beratung",
         areaServed: ["Regensburg", "Bayern", "Düsseldorf"],
@@ -780,7 +780,7 @@ function QuickDecisionPanel({ region }: { region: BookingRegionPreset }) {
       <div className="mb-4 flex items-center justify-between gap-4 px-2 pt-2">
         <div>
           <div className="text-[11px] font-black uppercase tracking-[0.18em] text-cyan-200">
-            Anfrageweg wählen
+            Kontaktweg wählen
           </div>
           <h2 className="mt-2 text-2xl font-bold tracking-tight">Was passt jetzt?</h2>
         </div>
@@ -808,7 +808,7 @@ function CoreServicesGrid({ region }: { region: BookingRegionPreset }) {
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-6 text-slate-600 sm:text-right">
-          Drei klare Startpunkte. Kosten, Express und WhatsApp bleiben klar getrennte Anfragewege.
+          Drei klare Wege. Kosten, Express und WhatsApp bleiben klar getrennte Kontaktwege.
         </p>
       </div>
 
@@ -1022,7 +1022,7 @@ function SecondaryRequestCases({ region }: { region: BookingRegionPreset }) {
         <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Weitere Anfragewege
+              Weitere Kontaktwege
             </div>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
               Sonderfall wählen, dann direkt ins Formular.

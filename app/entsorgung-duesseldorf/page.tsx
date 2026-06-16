@@ -353,7 +353,7 @@ export default function EntsorgungDuesseldorfPage() {
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-700">
               Kunden suchen oft nach Möbelentsorgung, Sperrmüll, Auszug oder schneller
-              Fotoeinschätzung. Diese Einstiege machen aus einer groben Frage eine
+              Fotoeinschätzung. Diese Startpunkte machen aus einer groben Frage eine
               prüfbare Düsseldorfer Anfrage.
             </p>
           </article>

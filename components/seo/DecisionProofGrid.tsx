@@ -54,7 +54,7 @@ export function DecisionProofGrid() {
       </h2>
      </div>
      <p className="max-w-2xl text-lg leading-relaxed text-foreground/48 lg:ml-auto">
-      Wählen Sie den Einstieg, der Ihrer Situation am nächsten kommt. Danach reichen meist
+      Wählen Sie den Startpunkt, der Ihrer Situation am nächsten kommt. Danach reichen meist
       Ort, Fotos, Termin, Zugang und der gewünschte Endzustand für eine erste Rückmeldung.
      </p>
     </div>

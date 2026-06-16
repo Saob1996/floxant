@@ -120,7 +120,7 @@ const boundaries = [
   "keine Konkurrenzdiffamierung",
   "keine Garantie, dass Uebergabe oder Umzug gerettet werden",
   "keine Rechtsberatung und keine offizielle Abnahme",
-  "Düsseldorf servicebezogen ueber eigene lokale Seiten routen",
+  "Düsseldorf ueber klare lokale Kontaktmöglichkeiten zuordnen",
 ];
 
 const faqItems = [
@@ -154,11 +154,11 @@ const faqItems = [
   },
   {
     q: "Funktioniert das auch in Duesseldorf?",
-    a: "In Duesseldorf prueft FLOXANT servicebezogen ueber eigene lokale Seiten, inklusive kurzfristiger Reinigung, Entsorgung und Umzug.",
+    a: "In Duesseldorf prueft FLOXANT ueber klare lokale Kontaktmöglichkeiten, inklusive kurzfristiger Reinigung, Entsorgung und Umzug.",
   },
   {
     q: "Kann ich per WhatsApp anfragen?",
-    a: "Ja. Fuer akute Faelle ist WhatsApp oft der schnellste Einstieg, besonders wenn Fotos, Deadline und offene Punkte direkt mitgesendet werden koennen.",
+    a: "Ja. Fuer akute Faelle ist WhatsApp oft der schnellste Startpunkt, besonders wenn Fotos, Deadline und offene Punkte direkt mitgesendet werden koennen.",
   },
   {
     q: "Was sollte ich sofort senden?",
@@ -234,7 +234,7 @@ export default function SchadensbegrenzungPage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Bayern nach Verfuegbarkeit</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf servicebezogen</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
                 <span className="rounded-full border border-red-200 bg-red-50 px-3 py-2 text-red-700">Keine Notdienstgarantie</span>
               </div>
             </div>
@@ -378,7 +378,7 @@ export default function SchadensbegrenzungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-red-700">Akut-Anfrage</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Problem, Deadline, Fotos und offene Punkte senden</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                FLOXANT prueft kurzfristige Anfragen im Raum Regensburg, in Bayern nach Verfuegbarkeit und in Duesseldorf servicebezogen ueber eigene lokale Seiten.
+                FLOXANT prueft kurzfristige Anfragen im Raum Regensburg, in Bayern nach Verfuegbarkeit und in Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten.
               </p>
               <div className="mt-5 grid gap-3">
                 <div className="rounded-[1.25rem] border border-slate-200 bg-white p-4">
@@ -401,7 +401,7 @@ export default function SchadensbegrenzungPage() {
               <div className="text-xs font-black uppercase tracking-[0.18em] text-red-700">Abgrenzung</div>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Nicht Express-Check, sondern Lage-Stabilisierung</h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Der Express-Check ist ein schneller Einstieg fuer enge Zeitfenster. Schadensbegrenzung ist fuer konkrete Kipplagen: etwas ist abgesagt, nicht fertig, zu klein geplant, vor Uebergabe offen oder organisatorisch unklar.
+                Der Express-Check ist ein schneller Startpunkt fuer enge Zeitfenster. Schadensbegrenzung ist fuer konkrete Kipplagen: etwas ist abgesagt, nicht fertig, zu klein geplant, vor Uebergabe offen oder organisatorisch unklar.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link href="/express-anfrage" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">

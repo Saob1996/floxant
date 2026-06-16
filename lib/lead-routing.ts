@@ -90,7 +90,7 @@ export function buildLeadRoutingDecision(payload: IntakePayload): LeadRoutingDec
     addReason(state, 26, "Eilige oder 24h-Suchintention", "urgent_intent");
   }
   if (/(uebergabe|schluessel|ruckgabe|rueckgabe|vermietertermin|termin kippt|plan b|backup|schadensbegrenzung)/.test(combinedText)) {
-    addReason(state, 18, "Uebergabe-, Plan-B- oder Schadensbegrenzungs-Signal", "handover_or_rescue");
+    addReason(state, 18, "Uebergabe-, Plan-B- oder Schadensbegrenzungs-Hinweis", "handover_or_rescue");
   }
   if (/(google maps|google business|gbp|google ads|adwords|cpc|mobile cta|homepage 24h)/.test(combinedText)) {
     addReason(state, 12, "Kaufnaher Such- oder Klickkanal", "high_intent_source");
@@ -122,7 +122,7 @@ export function buildLeadRoutingDecision(payload: IntakePayload): LeadRoutingDec
 
   const responseMap: Record<LeadPriority, Pick<LeadRoutingDecision, "responseSla" | "nextAction">> = {
     critical: {
-      responseSla: "Sofort intern priorisieren",
+      responseSla: "Sofort priorisieren",
       nextAction: "Telefon oder WhatsApp zuerst pruefen und schnellen Rueckruf vorbereiten.",
     },
     hot: {

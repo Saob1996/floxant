@@ -123,7 +123,7 @@ export default async function ExpressPage() {
       <section className="section-glow px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {[
-            { icon: Zap, title: "Was ist das?", text: "Ein priorisierter Einstieg für knappe Zeitfenster und schnelle Machbarkeitsprüfung." },
+            { icon: Zap, title: "Was ist das?", text: "Ein priorisierter Startpunkt für knappe Zeitfenster und schnelle Machbarkeitsprüfung." },
             { icon: Calendar, title: "Für wen?", text: "Für Kunden mit kurzfristigen Übergaben, Ausfällen oder sehr engem Terminrahmen." },
             { icon: AlertCircle, title: "Welche Grenzen gelten?", text: "Express ist nur sinnvoll, wenn Team, Fahrzeuge und regionale Machbarkeit real vorhanden sind." },
           ].map((item) => {

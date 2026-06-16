@@ -160,7 +160,7 @@ export default async function ReinigungPillarPage() {
         faqItems={faqItems}
         bookingTitle="Reinigung in Regensburg oder Bayern anfragen"
         bookingText="Nutzen Sie den Rechner für einen klaren Preisrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, ob es um Übergabe, Auszug, Neuvermietung oder laufende Objektbetreuung geht."
-        serviceLinksTitle="Wichtige passende Einstiege rund um Reinigung"
+        serviceLinksTitle="Wichtige klare Kontaktmöglichkeiten rund um Reinigung"
         serviceLinks={[
           { href: "/rechner", label: "Reinigung direkt kalkulieren" },
           { href: "/notfallreinigung-24h", label: "Notfallreinigung 24h anfragen" },

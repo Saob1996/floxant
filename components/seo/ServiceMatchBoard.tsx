@@ -146,7 +146,7 @@ export function ServiceMatchBoard({ compact = false }: { compact?: boolean }) {
 
     <div className="mt-8 grid gap-4 rounded-[2rem] border border-foreground/10 bg-white/[0.03] p-6 md:grid-cols-[1fr_auto_auto] md:items-center">
      <p className="max-w-3xl text-sm leading-relaxed text-foreground/54">
-      Wenn mehrere Situationen zutreffen, ist der Rechner der sicherste Einstieg. Dort werden Serviceart,
+      Wenn mehrere Situationen zutreffen, ist der Rechner der sicherste Startpunkt. Dort werden Serviceart,
       Region, Zugang, Termin und Preisvorstellung getrennt erfasst.
      </p>
      <Link

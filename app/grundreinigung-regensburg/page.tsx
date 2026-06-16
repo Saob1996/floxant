@@ -219,7 +219,7 @@ export default function GrundreinigungRegensburgPage() {
       buildWebPageJsonLd({
         name: "Grundreinigung Regensburg für Wohnung, Büro, Küche und Bad",
         description:
-          "Kundennaher Einstieg für Grundreinigung in Regensburg mit Leistungsgrenzen, Anfragecheckliste, FAQ und direkten Kontaktwegen.",
+          "Kundennaher Startpunkt für Grundreinigung in Regensburg mit Leistungsgrenzen, Anfragecheckliste, FAQ und direkten Kontaktwegen.",
         path: pagePath,
         about: [
           "Grundreinigung Regensburg",

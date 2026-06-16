@@ -84,7 +84,7 @@ export default function BlogHausverwaltungTreppenhausPage() {
         intro="Bei Hausverwaltungen geht es selten nur ums Putzen. Entscheidend sind Turnus, Zugang, Schlüsselwege, Ansprechpartner und die Frage, ob die Ausführung im Alltag wirklich ruhig und verlässlich funktioniert."
         sections={[
           {
-            title: "Warum Hausverwaltungen andere Signale brauchen als private Einzelanfragen",
+            title: "Warum Hausverwaltungen andere Hinweise brauchen als private Einzelanfragen",
             paragraphs: [
               "Treppenhäuser, Eingangsbereiche und Allgemeinflächen wirken oft einfach, sind im Alltag aber organisatorisch anspruchsvoll. Wer zuständig ist, wann gearbeitet werden darf und wie der Zugang geregelt ist, entscheidet über einen sauberen Ablauf.",
               "Gerade deshalb lohnt sich eine gezielte B2B-Seite und keine allgemeine Sammelanfrage. Sie filtert besser, spart Rückfragen und hilft auf beiden Seiten bei einer realistischen Vorprüfung.",

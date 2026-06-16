@@ -312,7 +312,7 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
  const detailGroups = [
   {
    title: "Kundenanfrage",
-   hint: "Kontakt, Einstieg, Preisrahmen und Status bleiben fuer die Bearbeitung zusammen.",
+   hint: "Kontakt, Startpunkt, Preisrahmen und Status bleiben fuer die Bearbeitung zusammen.",
    tabs: detailTabs.filter((tab) => tab.id === "overview"),
   },
   {
@@ -443,8 +443,8 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
           <InfoLink label="E-Mail" value={booking.email} href={`mailto:${booking.email}`} />
           <InfoLink label="Telefon" value={booking.phone} href={`tel:${booking.phone}`} align="end" />
           <InfoCell label="Kanal" value={sourceMeta.label} />
-          <InfoCell label="Einstieg" value={sourceMeta.entryPoint} align="end" />
-          <InfoCell label="Kontakt-Signal" value={formatConversionJourney(conversionJourney)} />
+          <InfoCell label="Startpunkt" value={sourceMeta.entryPoint} align="end" />
+          <InfoCell label="Kontakt-Hinweis" value={formatConversionJourney(conversionJourney)} />
           <InfoCell label="Journey-ID" value={conversionJourney?.journeyId ? conversionJourney.journeyId.slice(0, 18) : "Nicht erfasst"} align="end" />
           <button
            type="button"

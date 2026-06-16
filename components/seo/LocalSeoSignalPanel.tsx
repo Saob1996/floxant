@@ -27,10 +27,10 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
             Servicegebiet
           </div>
           <h2 className="flox-title-lg flox-display-section mt-4 max-w-3xl text-slate-950">
-            Düsseldorf und Regensburg haben eigene lokale Servicepfade.
+            Düsseldorf und Regensburg werden getrennt und klar angefragt.
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
-            FLOXANT trennt Düsseldorf und Regensburg sauber nach Region, Leistung und Anfrageweg.
+            FLOXANT trennt Düsseldorf und Regensburg sauber nach Region, Leistung und Anfrage.
             Regensburg prüft zusätzlich Einsätze in der Umgebung bis ca. 200 km sowie in Bayern
             nach Termin, Umfang und Strecke.
           </p>
@@ -38,7 +38,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
             Wichtig ist nicht nur die Entfernung, sondern der Ablauf: Umzug, Reinigung,
             Entrümpelung, Transport, Übergabe, Plan B oder Angebotsprüfung werden passend
             zum Auftrag besprochen. Düsseldorf führt Umzug, Reinigung, Entrümpelung,
-            Haushaltsauflösung und Entsorgung über eigene lokale Seiten.
+            Haushaltsauflösung und Entsorgung mit klaren lokalen Kontaktmöglichkeiten.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-2.5">

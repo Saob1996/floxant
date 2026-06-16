@@ -470,7 +470,7 @@ export function DuesseldorfCleaningCalculator() {
           <div className="text-sm font-semibold text-white">Was der Rechner bewusst nicht tut</div>
           <p className="mt-3 text-sm leading-7 text-slate-300">
             Er ersetzt kein geprüftes Angebot und bestätigt keinen Endpreis automatisch.
-            Er dient als starker, ehrlicher Einstieg für Reinigung in Düsseldorf.
+            Er dient als starker, ehrlicher Kontaktweg für Reinigung in Düsseldorf.
           </p>
         </div>
       </aside>

@@ -185,7 +185,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
         </section>
 
         <section className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
-          <nav aria-label="Wichtige FLOXANT Einstiege" className="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
+          <nav aria-label="Wichtige FLOXANT Startpunkte" className="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
             {authorityLinks.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-white">
                 {item.label}

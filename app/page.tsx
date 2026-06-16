@@ -30,7 +30,7 @@ const whatsappHref = buildWhatsAppHref(
 const faqItems = [
   {
     q: "Warum trennt FLOXANT Düsseldorf und Regensburg?",
-    a: "Düsseldorf und Regensburg haben eigene lokale Seiten, Stadtteilbezüge und Anfragewege. So bleiben Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung je Standort sauber getrennt.",
+    a: "Düsseldorf und Regensburg haben eigene lokale Kontaktmöglichkeiten und klare Stadtteilbezüge. So bleiben Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung je Standort sauber getrennt.",
   },
   {
     q: "Was passiert nach meiner Anfrage?",
@@ -283,8 +283,8 @@ export default function HomePage() {
               Ihre Anfrage kommt direkt zum passenden Bereich.
             </h2>
             <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
-              FLOXANT trennt Düsseldorf und Regensburg klar, damit Stadt, Leistung, Kostenfaktoren
-              und interne Links nicht durcheinanderlaufen. So wissen Sie schneller, welche Anfrage
+              FLOXANT trennt Düsseldorf und Regensburg klar, damit Ort, Leistung, Aufwand und
+              Ansprechpartner sofort verständlich bleiben. So wissen Sie schneller, welche Anfrage
               wirklich passt.
             </p>
           </div>
@@ -292,7 +292,7 @@ export default function HomePage() {
             {[
               {
                 title: "Klare Region",
-                text: "Düsseldorf und Regensburg haben eigene Seiten, eigene Stadtteile und eigene Anfragewege.",
+                text: "Düsseldorf und Regensburg haben eigene Stadtteile und direkte Kontaktmöglichkeiten.",
               },
               {
                 title: "Weniger Rückfragen",
@@ -326,7 +326,7 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
               Manche Fälle brauchen zuerst Sortierung: Fotos, Zugang, Preisrahmen, vorhandene
-              Angebote oder eine gekippte Übergabe. Diese Einstiege helfen, ohne falsche
+              Angebote oder eine gekippte Übergabe. Diese Startpunkte helfen, ohne falsche
               Sofortzusage den nächsten Schritt zu klären.
             </p>
           </div>
@@ -432,7 +432,7 @@ export default function HomePage() {
                 Die wichtigsten FLOXANT Services auf einen Blick.
               </h2>
               <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-                Wählen Sie den passenden Einstieg oder senden Sie ein vorhandenes Angebot zur
+                Wählen Sie den passenden Kontaktweg oder senden Sie ein vorhandenes Angebot zur
                 kostenlosen und unverbindlichen Prüfung. Jede Karte führt direkt zur passenden Seite.
               </p>
             </div>

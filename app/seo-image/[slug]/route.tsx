@@ -32,7 +32,7 @@ const imageProfiles: Record<
  buchung: {
   eyebrow: "Buchung Regensburg",
   title: "Direkt anfragen. Klar starten. Ohne Umwege.",
-  subtitle: "Google-Maps-tauglicher Einstieg für Rechner, Express-Check, Preisvorschlag und Kontakt.",
+  subtitle: "Diskrete Anfrage klar erreichbar für Rechner, Express-Check, Preisvorschlag und Kontakt.",
   chips: ["Buchung", "Google Maps", "Anfrage"],
   accent: "#60a5fa",
  },

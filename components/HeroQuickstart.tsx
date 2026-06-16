@@ -82,7 +82,7 @@ export default function HeroQuickstart() {
               </div>
               <p className="text-xs font-medium text-white/80">
                 {status === "processing"
-                  ? "Wir prüfen, ob Ihr Einsatzort zum passenden FLOXANT Anfrageweg passt."
+                  ? "Wir prüfen, ob Ihr Einsatzort zum passenden FLOXANT Kontaktweg passt."
                   : "Danke. Wir führen Sie jetzt direkt zum Anfragebereich."}
               </p>
             </div>

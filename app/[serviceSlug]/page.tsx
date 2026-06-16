@@ -496,7 +496,7 @@ export default async function CoreServicePage({ params }: PageProps) {
     { href: "#leistungen", title: "Leistungsbild", text: "Prinzipien und Einordnung auf einen Blick." },
     { href: "#ablauf", title: "Ablauf", text: "So wird Anfrage, Prüfung und Umsetzung geführt." },
     { href: "#faq", title: "FAQ", text: "Häufige Fragen direkt vor der Anfrage klären." },
-    { href: "#anfrage", title: "Anfrage", text: "Zum strukturierten Einstieg oder WhatsApp-Pfad." },
+    { href: "#anfrage", title: "Anfrage", text: "Zum strukturierten Startpunkt oder WhatsApp-Pfad." },
   ];
   const whatsappHref = buildWhatsAppHref(
     company.phoneRaw,

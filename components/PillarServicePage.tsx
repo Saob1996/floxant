@@ -188,7 +188,7 @@ export function PillarServicePage({
                   Erst orientieren, dann anfragen.
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  Diese Sprungpunkte helfen dabei, Preislogik, Ablauf und den passenden Einstieg
+                  Diese Sprungpunkte helfen dabei, Preislogik, Ablauf und den passenden Kontaktweg
                   ohne Scroll-Suche direkt zu erreichen.
                 </p>
               </div>
@@ -223,7 +223,7 @@ export function PillarServicePage({
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
               Hier geht es um die Fragen vor einer Anfrage: Was wird übernommen, wann ist
               der Service sinnvoll, welche Angaben brauchen wir und wie kommen Sie ohne
-              Umwege zum passenden Einstieg?
+              Direkt zur passenden Anfrage?
             </p>
           </div>
 

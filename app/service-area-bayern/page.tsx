@@ -36,7 +36,7 @@ const faqItems = [
   },
   {
     q: "Welche Seite eignet sich am besten fuer direkte Anfragen?",
-    a: "Fuer direkte Anfragen ist die Buchungsseite der beste Einstieg. Die Bayern-Seite hilft vor allem dabei, Region, Strecke und passende Leistung vorher einzuordnen.",
+    a: "Fuer direkte Anfragen ist die Buchungsseite der beste Startpunkt. Die Bayern-Seite hilft vor allem dabei, Region, Strecke und passende Leistung vorher einzuordnen.",
   },
   {
     q: "Warum zeigt diese Seite Regionen statt pauschal ueberall alles zu versprechen?",
@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "service-area-bayern",
     title: "Servicegebiet Bayern | FLOXANT in Regensburg und ganz Bayern",
     description:
-      "FLOXANT plant Umzug, Reinigung, Entruempelung und Bueroumzug ab Regensburg in Bayern. Regionen, Staedte, Bezirke und direkte Anfragewege klar eingeordnet.",
+      "FLOXANT plant Umzug, Reinigung, Entruempelung und Bueroumzug ab Regensburg in Bayern. Regionen, Staedte, Bezirke und direkte Kontaktwege klar eingeordnet.",
     keywords: [
       "Servicegebiet Bayern",
       "Umzug Bayern",
@@ -208,7 +208,7 @@ export default async function ServiceAreaBayern() {
   const quickFacts = [
     "Bayern heisst bei FLOXANT nicht ueberall alles versprechen, sondern jede Region sauber nach Aufwand und Weg einordnen.",
     "Regensburg bleibt die Basis, Bayern wird nach Strecke, Umfang und Termin sauber eingeordnet.",
-    "Wer direkt anfragen moechte, nutzt die Buchung. Wer erst Orientierung braucht, nimmt den passenden Einstieg weiter unten.",
+    "Wer direkt anfragen moechte, nutzt die Buchung. Wer erst Orientierung braucht, nimmt den passenden Kontaktweg weiter unten.",
   ];
 
   const businessFlowCards = [
@@ -282,7 +282,7 @@ export default async function ServiceAreaBayern() {
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
               FLOXANT arbeitet mit Schwerpunkt Regensburg und prüft Anfragen für Umzug,
               Reinigung, Entrümpelung und Büroumzug in Bayern nach Strecke, Umfang, Termin
-              und Zugang. Diese Seite zeigt, welche Region und welcher Einstieg zu Ihrem Fall passt.
+              und Zugang. Diese Seite zeigt, welche Region und welcher Startpunkt zu Ihrem Fall passt.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -344,11 +344,11 @@ export default async function ServiceAreaBayern() {
           <div className="mb-8 max-w-3xl">
             <span className="label-premium text-blue-700">Schnelle Orientierung</span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
-              Für häufige Anliegen der passende Einstieg
+              Für häufige Anliegen der passende Kontaktweg
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Kunden beschreiben meist zuerst die Situation: Umzug, Reinigung, Entsorgung,
-              Entrümpelung, Lagerung oder Büroumzug. Diese Einstiege führen schneller zu der
+              Entrümpelung, Lagerung oder Büroumzug. Diese Startpunkte führen schneller zu der
               Anfrage, die wirklich zum Anliegen passt.
             </p>
           </div>
@@ -359,7 +359,7 @@ export default async function ServiceAreaBayern() {
                 className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-5"
               >
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                  Passender Einstieg
+                  Passender Startpunkt
                 </div>
                 <h3 className="mt-3 text-xl font-bold text-slate-950">{intent.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{intent.description}</p>
@@ -529,9 +529,9 @@ export default async function ServiceAreaBayern() {
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
-            <span className="label-premium text-blue-700">Direkte Bayern-Einstiege</span>
+            <span className="label-premium text-blue-700">Direkte Bayern-Startpunkte</span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
-              Klare Einstiege für häufige Bayern-Anfragen
+              Klare Startpunkte für häufige Bayern-Anfragen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Diese Links führen häufige Kombinationen aus Stadt und Leistung zusammen. So kommen
@@ -564,7 +564,7 @@ export default async function ServiceAreaBayern() {
               Große Stadtlagen
             </div>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Zusätzliche Einstiege für große Stadtlagen
+              Zusätzliche Startpunkte für große Stadtlagen
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Diese Seiten helfen, Anfragen aus München und Nürnberg genauer einzuordnen,
@@ -579,7 +579,7 @@ export default async function ServiceAreaBayern() {
                 className="card-premium rounded-[1.5rem] p-6 transition-all hover:-translate-y-1 hover:border-blue-400/25"
               >
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-                  Lokaler Einstieg
+                  Lokaler Startpunkt
                 </div>
                 <h3 className="mt-3 text-2xl font-semibold text-slate-950">{item.label}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.note}</p>
@@ -597,7 +597,7 @@ export default async function ServiceAreaBayern() {
               Service, Region und Eckdaten geordnet anfragen
             </h2>
             <p className="mt-4 text-lg leading-8 text-slate-600">
-              Nutzen Sie den Einstieg unten, wenn Ort, Service, Fotos und Preisrahmen geordnet
+              Nutzen Sie den Startpunkt unten, wenn Ort, Service, Fotos und Preisrahmen geordnet
               gesendet werden sollen. So bekommt FLOXANT schneller eine brauchbare Grundlage
               für die erste Rückmeldung.
             </p>

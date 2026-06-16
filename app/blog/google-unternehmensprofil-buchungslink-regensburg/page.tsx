@@ -12,11 +12,11 @@ import {
 const faqItems = [
   {
     q: "Welcher Link ist für das Google-Unternehmensprofil am sinnvollsten?",
-    a: "Am sinnvollsten ist ein klarer direkter Einstieg, auf dem Kunden sofort buchen, eine Vorprüfung starten oder den passenden Kontaktweg wählen können. Genau dafür ist bei FLOXANT die Buchungsseite gedacht.",
+    a: "Am sinnvollsten ist ein klarer direkter Kontaktweg, auf dem Kunden sofort buchen, eine Vorprüfung starten oder den passenden Kontaktweg wählen können. Genau dafür ist bei FLOXANT die Buchungsseite gedacht.",
   },
   {
     q: "Sollte der Profil-Link direkt auf WhatsApp gehen?",
-    a: "Nur dann, wenn es der einzige sinnvolle Kontaktweg ist. Für Dienstleister mit mehreren Einstiegen ist eine klare Buchungsseite oft besser, weil Kunden dort Express, Preisvorstellung, Rechner und Direktanfrage sauber unterscheiden können.",
+    a: "Nur dann, wenn es der einzige sinnvolle Kontaktweg ist. Für Dienstleister mit mehreren Startpunkten ist eine klare Buchungsseite oft besser, weil Kunden dort Express, Preisvorstellung, Rechner und Direktanfrage sauber unterscheiden können.",
   },
   {
     q: "Hilft ein guter Profil-Link auch für Google Maps und die Suche?",
@@ -85,13 +85,13 @@ export default function BlogGoogleBusinessProfileBookingPage() {
         date="27. April 2026"
         readTime="6 Min."
         title="Google-Unternehmensprofil in Regensburg: welcher Buchungslink Kunden wirklich hilft"
-        intro="Viele Profile in Google Maps verlinken auf eine Startseite, auf der Kunden erst wieder suchen müssen. Besser ist ein direkter Einstieg, der klar zeigt, wie die Anfrage jetzt sauber weitergeht."
+        intro="Viele Profile in Google Maps verlinken auf eine Startseite, auf der Kunden erst wieder suchen müssen. Besser ist ein direkter Kontaktweg, der klar zeigt, wie die Anfrage jetzt sauber weitergeht."
         sections={[
           {
             title: "Warum der Link im Unternehmensprofil mehr ist als nur ein Klickziel",
             paragraphs: [
               "Wer in Google Maps oder im Google-Unternehmensprofil klickt, hat meist schon eine sehr konkrete Absicht. Diese Nutzer möchten nicht erst lange navigieren, sondern schnell verstehen, was der richtige nächste Schritt ist.",
-              "Gerade bei Umzug, Reinigung oder Entrümpelung ist der Unterschied groß: Ein klarer Einstieg schafft Vertrauen, spart Rückfragen und erhöht die Chance auf passendere Anfragen.",
+              "Gerade bei Umzug, Reinigung oder Entrümpelung ist der Unterschied groß: Ein klarer Weg schafft Vertrauen, spart Rückfragen und erhöht die Chance auf passendere Anfragen.",
             ],
           },
           {
@@ -102,20 +102,20 @@ export default function BlogGoogleBusinessProfileBookingPage() {
             bullets: [
               "Klare lokale Zuordnung statt allgemeiner Sammelseite",
               "Direkte Handlungsoptionen ohne erneutes Suchen",
-              "Saubere Verbindung zwischen Google Maps, Anfrageweg und Rückmeldung",
+              "Saubere Verbindung zwischen Google Maps, Kontaktweg und Rückmeldung",
               "Mehr Klarheit für Kunden und bessere Zuordnung der Anfrage",
             ],
           },
           {
             title: "Wie FLOXANT das aufbaut",
             paragraphs: [
-              "Für FLOXANT ist /buchung der bevorzugte direkte Einstieg. Dort finden Kunden Buchungssystem, Express-Check, Preisvorstellung und weitere passende Wege an einem Ort.",
+              "Für FLOXANT ist /buchung der bevorzugte direkte Startpunkt. Dort finden Kunden Buchungssystem, Express-Check, Preisvorstellung und weitere passende Wege an einem Ort.",
               "Kurz gesagt: lieber klar führen als den Nutzer herumirren lassen. Oder, mit etwas bayerischer Nähe gesagt: lieber gscheid gelöst als irgendwie verlinkt.",
             ],
           },
         ]}
         highlightPoints={[
-          "Ein Unternehmensprofil-Link sollte sofort in einen klaren Anfrageweg führen.",
+          "Ein Unternehmensprofil-Link sollte sofort in einen klaren Kontaktweg führen.",
           "Kunden klicken eher, wenn Buchung, Express und Kontakt sichtbar getrennt sind.",
           "Für Maps zählen neben dem Link auch vollständige Profilangaben, Bewertungen und lokale Relevanz.",
         ]}

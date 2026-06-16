@@ -176,7 +176,7 @@ const faqItems = [
   },
   {
     q: "Unterstuetzt FLOXANT Hausverwaltungen?",
-    a: "Ja. Fuer wiederkehrende Objektfaelle ist der Mieterwechsel-Service passender, dieser Link kann aber als schneller Einstieg genutzt werden.",
+    a: "Ja. Fuer wiederkehrende Objektfaelle ist der Mieterwechsel-Service passender, dieser Link kann aber als schneller Startpunkt genutzt werden.",
   },
   {
     q: "Garantiert FLOXANT eine Vermietung?",
@@ -188,7 +188,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf servicebezogen ueber eigene lokale Seiten routen.",
+    a: "Regensburg ist der feste Ausgangspunkt. Umgebung und Bayern werden nach Verfuegbarkeit geprueft. Fuer Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten zuordnen.",
   },
   {
     q: "Kann der Link wiederholt genutzt werden?",
@@ -408,7 +408,7 @@ export default function MaklerVermieterLinkPage() {
                     "Keine Maklerleistung, keine Vermarktung und keine Verkaufszusage.",
                     "Keine Vermietungsgarantie, keine Abnahmegarantie und keine Rechtsberatung.",
                     "Keine Renovierung, Reparatur, Malerarbeit oder Gefahrstoffentsorgung als pauschales Versprechen.",
-                    "Duesseldorf servicebezogen ueber eigene lokale Seiten.",
+                    "Duesseldorf klar getrennt ueber klare lokale Kontaktmöglichkeiten.",
                   ].map((item) => (
                     <div key={item} className="flex gap-3 rounded-xl bg-amber-50 px-4 py-3">
                       <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />

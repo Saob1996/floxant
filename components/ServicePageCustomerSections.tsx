@@ -110,7 +110,7 @@ export function ServicePageCustomerSections({
       <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_44px_rgba(15,23,42,0.06)] sm:p-7">
         <div className="max-w-3xl">
           <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-            Passende Einstiege
+            Passende Startpunkte
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
             Leistungen passend zu Ihrer Situation.

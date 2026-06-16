@@ -110,7 +110,7 @@ export default async function AGB() {
             <h2 className="text-xl font-semibold text-foreground mb-2">§6 Termine und Ausführungszeiten</h2>
             <p>Vereinbarte Termine sind verbindlich.</p>
             <p className="mt-2">
-              Verzögerungen aufgrund höherer Gewalt oder unvorhersehbarer Ereignisse (z. B. Verkehr, Wetter, behördliche Maßnahmen, technische Störungen) berechtigen nicht zu Schadensersatzansprüchen.
+              Verzögerungen aufgrund höherer Gewalt oder unvorhersehbarer Ereignisse (z. B. Verkehr, Wetter, behördliche Maßnahmen oder unerwartete Ausfälle) berechtigen nicht zu Schadensersatzansprüchen.
             </p>
             <p className="mt-2">
               Wartezeiten, die nicht vom Dienstleister zu vertreten sind, können zusätzlich berechnet werden.

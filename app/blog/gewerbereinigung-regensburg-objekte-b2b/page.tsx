@@ -87,7 +87,7 @@ export default function BlogCommercialCleaningB2BPage() {
      {
       title: "Welche Objektarten wirtschaftlich stark sein können",
       paragraphs: [
-       "In Regensburg sind vor allem Büro, Praxis, Kanzlei, Hotel, Hausverwaltung, Treppenhaus, Verwaltungsflächen und gewerbliche Allgemeinbereiche starke B2B-Signale.",
+       "In Regensburg sind vor allem Büro, Praxis, Kanzlei, Hotel, Hausverwaltung, Treppenhaus, Verwaltungsflächen und gewerbliche Allgemeinbereiche starke B2B-Hinweise.",
       ],
       bullets: [
        "Büroflächen mit wiederkehrender Unterhaltsreinigung",
@@ -106,7 +106,7 @@ export default function BlogCommercialCleaningB2BPage() {
     ]}
     highlightPoints={[
      "B2B-Reinigung braucht eine andere Ansprache als private Einzelaufträge.",
-     "Objektart, Turnus, Zugang und Verantwortlichkeit sind stärkere Signale als reine Fläche.",
+     "Objektart, Turnus, Zugang und Verantwortlichkeit sind stärkere Hinweise als reine Fläche.",
      "Eine klare B2B-Seite kann falsche Anfragen reduzieren und passendere Anfragen bringen.",
     ]}
     ctas={[

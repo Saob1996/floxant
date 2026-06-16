@@ -7,7 +7,7 @@ const requestFlow = [
   {
     step: "01",
     title: "Fall richtig einordnen",
-    text: "Buchung, Rechner, Geschäftskunde oder sensible Anfrage: Der Einstieg soll zum Fall passen, damit nichts doppelt erklärt werden muss.",
+    text: "Buchung, Rechner, Geschäftskunde oder sensible Anfrage: Der Startpunkt soll zum Fall passen, damit nichts doppelt erklärt werden muss.",
     Icon: CircleDashed,
   },
   {

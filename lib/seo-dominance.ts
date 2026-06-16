@@ -500,7 +500,7 @@ const moneySnippets: Record<string, Snippet> = {
  "/floxant-fakten": {
   title: "FLOXANT Fakten | Leistungen, Region & Preislogik",
   description:
-   "Kompakte Fakten zu FLOXANT: Umzug, Reinigung, Entrümpelung, Regensburg, Bayern, Preisrahmen, Grenzen und kanonische Einstiege.",
+   "Kompakte Fakten zu FLOXANT: Umzug, Reinigung, Entrümpelung, Regensburg, Bayern, Preisrahmen, Grenzen und kanonische Startpunkte.",
   cluster: "support",
   intent: "FLOXANT schnell und korrekt einordnen",
  },
@@ -1641,7 +1641,7 @@ function getLocalCoverageSentence(route: string, prefix: string, city: string) {
  const citySlug = getCitySlugFromLocalRoute(route, prefix);
 
  if (citySlug === "regensburg") {
-  return "Regensburg ist der feste Ausgangspunkt; Angebot, Fotos, Termin und Budget werden direkt passend zur Leistung geprüft";
+  return "Regensburg ist der feste Ausgangspunkt; Angebot, Fotos, Termin und Budget werden direkt passend zum Anliegen geprüft";
  }
 
  if (regensburgCoreCitySlugs.has(citySlug)) {

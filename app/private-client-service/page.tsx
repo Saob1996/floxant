@@ -51,7 +51,7 @@ const faqItems = germanizeDeep([
     a: "Weil Residenzen, Anwesen und sensible Übergänge nicht in einen Standardprozess gedrückt werden sollten. Diese Seite ist bewusst persönlich, diskret und auf individuelle Vorprüfung ausgelegt.",
   },
   {
-    q: "Warum ist dieser Bereich bewusst getrennt von den normalen Anfragewegen?",
+    q: "Warum ist dieser Bereich bewusst getrennt von den normalen Kontaktwegen?",
     a: "Weil die Seite die Zielgruppe sehr klar beschreibt: diskret, persönlich, ohne Standardrechner und ohne Massenprozess.",
   },
 ]);
@@ -499,10 +499,10 @@ export default function PrivateClientServicePage() {
             </p>
           </Link>
           <Link href="/umzug" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
-            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Servicepfad</div>
+            <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Kontaktweg</div>
             <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Allgemeinen Umzugsservice ansehen</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Wenn das Projekt sensibel ist, aber nicht vollständig im Private-Client-Rahmen liegt, ist dies der richtige Einstieg.
+              Wenn das Projekt sensibel ist, aber nicht vollständig im Private-Client-Rahmen liegt, ist dies der richtige Weg.
             </p>
           </Link>
           <Link href="/kontakt" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[linear-gradient(135deg,rgba(216,183,110,0.16),rgba(42,9,7,0.56))] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[linear-gradient(135deg,rgba(216,183,110,0.22),rgba(42,9,7,0.62))]">

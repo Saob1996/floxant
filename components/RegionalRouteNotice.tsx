@@ -26,8 +26,8 @@ export function RegionalRouteNotice({ pathname }: RegionalRouteNoticeProps) {
             {policy.label}
           </h2>
           <p className="mt-2 max-w-4xl text-sm font-semibold leading-7 text-slate-200">
-            {policy.customerNeed} Düsseldorf bleibt bei FLOXANT getrennt für Reinigung
-            positioniert; diese Seite gehört zum Regensburg-Bereich und wird nach
+            {policy.customerNeed} Düsseldorf bleibt bei FLOXANT getrennt auf Reinigung
+            ausgerichtet; diese Seite gehört zum Regensburg-Bereich und wird nach
             Objekt, Fotos, Umfang und Termin geprüft.
           </p>
         </div>

@@ -525,7 +525,7 @@ export default function BueroreinigungRegensburgPage() {
               <div>
                 <p className="text-[11px] font-black uppercase text-blue-700">Passende nächste Wege</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">
-                  Interne Links für Regensburg-Büroreinigung.
+                  Weitere Leistungen, die zu Ihrer Büroreinigung passen.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-2">

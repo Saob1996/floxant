@@ -6240,7 +6240,7 @@ function buildContextRows(booking: Booking) {
   const config = booking.details?.configuration || {};
   const rows = [
     ["Angefragter Service", firstText([config.requestedService, config.serviceLabel, getServiceLabel(booking.service)])],
-    ["Service-Seite", firstText([config.sourcePage, config.entryPoint, booking.details?.service?.entryPoint])],
+    ["Startpunkt", firstText([config.sourcePage, config.entryPoint, booking.details?.service?.entryPoint])],
     ["Größenordnung", firstText([config.areaRange, config.spaceRange, config.propertySizeRange])],
     ["Turnus/Anlass", firstText([config.cadence, config.recurringFrequency, config.cleaningFrequency])],
     ["Rolle", firstText([config.roleType])],
@@ -6387,7 +6387,7 @@ function buildContextRows(booking: Booking) {
     ["Source-Komponente", firstText([config.sourceComponent, booking.details?.metadata?.clientContext?.sourceComponent])],
     ["Source-Kontext", firstText([config.sourceContext, booking.details?.metadata?.clientContext?.sourceContext])],
     ["Journey", firstText([config.conversionJourneyId, config.conversionJourney?.journeyId, booking.details?.metadata?.conversionJourney?.journeyId, booking.details?.metadata?.clientContext?.conversionJourneyId])],
-    ["Letztes Signal", firstText([config.conversionLastEvent, config.conversionJourney?.lastEventName, booking.details?.metadata?.conversionJourney?.lastEventName, booking.details?.metadata?.clientContext?.conversionLastEvent])],
+    ["Letztes Hinweis", firstText([config.conversionLastEvent, config.conversionJourney?.lastEventName, booking.details?.metadata?.conversionJourney?.lastEventName, booking.details?.metadata?.clientContext?.conversionLastEvent])],
     ["Quellseite", firstText([config.sourcePage, booking.details?.metadata?.clientContext?.sourcePage])],
     ["Landingpage", firstText([config.landingPage, booking.details?.metadata?.clientContext?.landingPage, booking.details?.service?.entryPoint])],
     [

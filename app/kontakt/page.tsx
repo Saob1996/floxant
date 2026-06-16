@@ -44,11 +44,11 @@ const faqItems = [
   },
   {
     q: "Welche URL eignet sich für Google Maps oder das Google-Unternehmensprofil?",
-    a: "Für direkte Anfragen eignet sich vor allem die Buchungsseite. Sie bündelt Buchung, Express-Check, Preisvorstellung und klare nächste Schritte in einem einzigen sauberen Einstieg.",
+    a: "Für direkte Anfragen eignet sich vor allem die Buchungsseite. Sie bündelt Buchung, Express-Check, Preisvorstellung und klare nächste Schritte in einem einzigen sauberen Startpunkt.",
   },
   {
     q: "Gibt es auch einen gezielten Kontaktweg für Firmen oder sensible Anfragen?",
-    a: "Ja. Für gewerbliche Reinigung gibt es die B2B-Seite in Regensburg. Wenn es um sensible private Themen geht, ist der Private-Client-Bereich der ruhigere Einstieg.",
+    a: "Ja. Für gewerbliche Reinigung gibt es die B2B-Seite in Regensburg. Wenn es um sensible private Themen geht, ist der Private-Client-Bereich der ruhigere Startpunkt.",
   },
 ];
 
@@ -99,7 +99,7 @@ const mapsClosingSignals = [
   },
   {
     title: "Vertrauen durch klare Angaben",
-    text: "Adresse, Telefonnummer, E-Mail und die nächsten Anfragewege sind sichtbar, statt in langen Texten versteckt zu sein.",
+    text: "Adresse, Telefonnummer, E-Mail und die nächsten Kontaktwege sind sichtbar, statt in langen Texten versteckt zu sein.",
   },
   {
     title: "Spezialbereiche sauber getrennt",
@@ -131,7 +131,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "kontakt",
     title: "Kontakt Regensburg | Buchung, Standort und Anfrage bei FLOXANT",
     description:
-      "FLOXANT Kontakt in Regensburg: Buchung, WhatsApp, Telefon, E-Mail, Standort und klare Anfragewege für Umzug, Reinigung, Entrümpelung und Büroumzug.",
+      "FLOXANT Kontakt in Regensburg: Buchung, WhatsApp, Telefon, E-Mail, Standort und klare Kontaktwege für Umzug, Reinigung, Entrümpelung und Büroumzug.",
     keywords: [
       "Kontakt Regensburg",
       "Umzug Kontakt Regensburg",
@@ -209,7 +209,7 @@ export default function KontaktPage() {
       buildFaqJsonLd(faqItems),
       {
         "@type": "ItemList",
-        name: "FLOXANT Kontakt-Einstiege",
+        name: "FLOXANT Kontakt-Startpunkte",
         itemListElement: contactEntryPoints.map((entry, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -307,7 +307,7 @@ export default function KontaktPage() {
                 text: "Wenn zuerst Aufwand, Zugang und Preisrahmen eingeordnet werden sollen.",
               },
               {
-                label: "Lokale Servicepfade",
+                label: "Lokale Kontaktwege",
                 href: "/standorte",
                 text: "Wenn Sie zuerst den passenden Ort, Bereich oder Service in Regensburg und Bayern öffnen möchten.",
               },
@@ -420,10 +420,10 @@ export default function KontaktPage() {
 
           <div className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
-              Lokale Einstiege
+              Lokale Startpunkte
             </div>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
-              Häufige Servicepfade ohne lange Suche
+              Häufige Kontaktwege ohne lange Suche
             </h2>
             <div className="mt-5 grid gap-3 md:grid-cols-2">
               {BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 6).map((item) => (
@@ -503,7 +503,7 @@ export default function KontaktPage() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-relaxed text-slate-600 lg:text-right">
-              Diese Inhalte helfen, Budget, Übergabe und direkte Anfragewege besser zu sortieren,
+              Diese Inhalte helfen, Budget, Übergabe und direkte Kontaktwege besser zu sortieren,
               bevor Sie FLOXANT kontaktieren.
             </p>
           </div>

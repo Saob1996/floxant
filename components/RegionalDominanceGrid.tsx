@@ -37,7 +37,7 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
               Services im strukturierten Raum rund um Regensburg
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-700">
-              FLOXANT bündelt Umzug, Entrümpelung, Büroumzug, Reinigung und direkte Anfragewege mit
+              FLOXANT bündelt Umzug, Entrümpelung, Büroumzug, Reinigung und direkte Kontaktwege mit
               Regensburg als Ausgangspunkt. Der Radius ist kein leeres Werbeversprechen, sondern ein
               sauberer Planungsraum für realistische Vorprüfung.
             </p>
@@ -56,7 +56,7 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
               <Radar className="h-9 w-9 shrink-0 text-blue-700" />
             </div>
             <p className="mt-4 text-sm leading-7 text-slate-700">
-              Orte, Services und direkte Einstiege für Kunden, die in Bayern schnell den
+              Orte, Services und direkte Kontaktwege für Kunden, die in Bayern schnell den
               richtigen Weg finden sollen.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
@@ -133,7 +133,7 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
                 Städte-Auswahl
               </div>
               <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
-                Direkte Einstiegspunkte im Einsatzraum
+                Direkte Kontaktwege im Einsatzraum
               </h3>
             </div>
             <Link

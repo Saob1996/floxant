@@ -144,7 +144,7 @@ const addOns = [
   {
     title: "Reinigungs-Check vor wichtigen Terminen",
     text:
-      "Vor Mandantenterminen, Praxisbesuchen, Besichtigungen, Hotelkontrollen oder internen Terminen. Die Räume sollen vorbereitet, gepflegt und ruhig wirken.",
+      "Vor Mandantenterminen, Praxisbesuchen, Besichtigungen, Hotelkontrollen oder Teamterminen. Die Räume sollen vorbereitet, gepflegt und ruhig wirken.",
     Icon: CheckCircle2,
   },
   {

@@ -57,7 +57,7 @@ const faqItems = [
   },
   {
     q: "Welche Seite ist fuer Google Maps oder direkte Anfragen am besten?",
-    a: "Fuer direkte Anfragen ist die Buchungsseite der klarste Einstieg. Dort sind Buchung, Express-Check, Preisvorstellung und weitere Wege sauber gebuendelt.",
+    a: "Fuer direkte Anfragen ist die Buchungsseite der klarste Startpunkt. Dort sind Buchung, Express-Check, Preisvorstellung und weitere Wege sauber gebuendelt.",
   },
 ];
 
@@ -127,7 +127,7 @@ export default function StandortePage() {
       buildWebPageJsonLd({
         name: "FLOXANT Standorte und Servicegebiet",
         description:
-          "Standorte, Staedte, Bezirke und direkte regionale Anfragewege von FLOXANT mit Fokus auf Regensburg und Bayern.",
+          "Standorte, Staedte, Bezirke und direkte regionale Kontaktwege von FLOXANT mit Fokus auf Regensburg und Bayern.",
         path: "/standorte",
         about: [
           "Standorte",
@@ -152,7 +152,7 @@ export default function StandortePage() {
         "@type": "ItemList",
         name: "FLOXANT Servicewege fuer regionale Anfragen",
         description:
-          "Direkte Servicepfade fuer Maps-Suchen wie Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung und Bueroumzug.",
+          "Direkte Kontaktwege fuer Maps-Suchen wie Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung und Bueroumzug.",
         itemListElement: BAVARIA_MAPS_SERVICE_INTENTS.map((intent, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -266,7 +266,7 @@ export default function StandortePage() {
                 {
                   icon: Sparkles,
                   title: "Klare Auswahl",
-                  text: "Diese Seite verbindet Staedte, Leistungen und direkte Anfragewege ohne unnoetiges Durcheinander.",
+                  text: "Diese Seite verbindet Staedte, Leistungen und direkte Kontaktwege ohne unnoetiges Durcheinander.",
                 },
                 {
                   icon: Building2,
@@ -276,7 +276,7 @@ export default function StandortePage() {
                 {
                   icon: MapPin,
                   title: "Sauberer Maps-Pfad",
-                  text: "Von Standortseite zu Buchung, Kontakt und Servicepfad ohne Leerlauf fuer den Kunden.",
+                  text: "Von Standortseite zu Buchung, Kontakt und Kontaktweg ohne Leerlauf fuer den Kunden.",
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -312,7 +312,7 @@ export default function StandortePage() {
                 className={classes}
               >
                 <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                  Lokales Signal
+                  Lokale Orientierung
                 </div>
                 <h2 className="mt-3 text-2xl font-semibold text-slate-950">{item.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
@@ -324,7 +324,7 @@ export default function StandortePage() {
             ) : (
               <Link key={item.title} href={item.href} className={classes}>
                 <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                  Lokales Signal
+                  Lokale Orientierung
                 </div>
                 <h2 className="mt-3 text-2xl font-semibold text-slate-950">{item.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
@@ -384,7 +384,7 @@ export default function StandortePage() {
             <p className="mt-4 max-w-4xl text-sm leading-relaxed text-slate-600">
               Diese Uebersicht trennt die wichtigsten Anfragen sauber: Umzug, Reinigung,
               Entruempelung, Entsorgung, Lagerung, Bueroumzug und Gewerbereinigung bekommen
-              eindeutige Einstiege statt langer Suche.
+              eindeutige Startpunkte statt langer Suche.
             </p>
             <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {BAVARIA_MAPS_SERVICE_INTENTS.map((intent) => (
@@ -422,7 +422,7 @@ export default function StandortePage() {
             {
               href: "/gewerbereinigung-regensburg",
               title: "Gewerbereinigung Regensburg",
-              text: "Gezielter B2B-Einstieg fuer Buero, Praxis, Hotel, Kanzlei und Objektbetrieb.",
+              text: "Gezielter B2B-Startpunkt fuer Buero, Praxis, Hotel, Kanzlei und Objektbetrieb.",
             },
             {
               href: "/kontakt",
@@ -436,7 +436,7 @@ export default function StandortePage() {
               className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
             >
               <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                Lokaler Einstieg
+                Lokaler Startpunkt
               </div>
               <h2 className="mt-3 text-2xl font-semibold text-slate-950">{item.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.text}</p>
@@ -456,7 +456,7 @@ export default function StandortePage() {
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Der Kern bleibt Regensburg. Diese umliegenden Orte helfen Kunden aus Stadt,
-              Landkreis und nahen Einsatzkorridoren, schneller den passenden Einstieg zu finden.
+              Landkreis und nahen Einsatzkorridoren, schneller den passenden Kontaktweg zu finden.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

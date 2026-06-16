@@ -286,7 +286,7 @@ export default function UebergabeaktePage() {
               </div>
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg als Kernmarkt</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf servicebezogen</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf passend zum Anliegen</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Keine Rechts- oder Abnahmegarantie</span>
               </div>
             </div>

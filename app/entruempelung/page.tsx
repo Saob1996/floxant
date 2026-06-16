@@ -155,13 +155,13 @@ export default async function EntruempelungPillarPage() {
           "Demontage und Sonderaufwand",
           "Dringlichkeit und Terminfenster",
         ]}
-        calculatorTitle="Direkter Einstieg mit echter Datenbasis"
+        calculatorTitle="Direkter Kontaktweg mit echter Datenbasis"
         calculatorText="Über den Rechner oder die passende Zusatzseite für Kleinmengen lässt sich der Bedarf schnell und sauber eingrenzen. Der Preisrahmen bleibt Orientierung, bis Volumen, Zugang, Materialarten und Termin geprüft sind."
         faqTitle="Häufige Fragen zur Entrümpelung"
         faqItems={faqItems}
         bookingTitle="Entrümpelung in Regensburg oder Bayern anfragen"
         bookingText="Nutzen Sie den Rechner für einen klaren Orientierungsrahmen und eine saubere Einsatzvorbereitung. Beschreiben Sie kurz, was weg muss und welcher nächste Schritt danach ansteht: Übergabe, Verkauf, Renovierung oder Umzug."
-        serviceLinksTitle="Wichtige passende Einstiege rund um Räumung und Entsorgung"
+        serviceLinksTitle="Wichtige klare Kontaktmöglichkeiten rund um Räumung und Entsorgung"
         serviceLinks={[
           { href: "/rechner", label: "Entrümpelung direkt einordnen" },
           { href: "/firmenentsorgung", label: "Firmenentsorgung für Büros und Gewerbe" },
@@ -268,7 +268,7 @@ export default async function EntruempelungPillarPage() {
       />
       <PsychologicalCleaningInternalLinks
         title="Wenn Raeumung und Reinigung zusammen Druck machen"
-        intro="Nach Entruempelung, Auszug oder Kellerstress helfen diese Einstiege, Restschmutz, Geruch, Uebergabe und Diskretion sauber zu klaeren."
+        intro="Nach Entruempelung, Auszug oder Kellerstress helfen diese Startpunkte, Restschmutz, Geruch, Uebergabe und Diskretion sauber zu klaeren."
         focusSlugs={[
           "reset-reinigung",
           "anti-scham-reinigung",

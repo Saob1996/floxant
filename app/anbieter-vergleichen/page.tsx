@@ -33,7 +33,7 @@ const faqItems = [
   a: "Der niedrigste Preis kann wichtige Faktoren ausblenden. Für Kunden sind am Ende Transparenz, Machbarkeit, Terminrealismus, klare Kommunikation und ein sauberer Leistungsumfang entscheidend.",
  },
  {
-  q: "Wie positioniert sich FLOXANT im Vergleich zu anderen Anbietern?",
+  q: "Wie unterscheidet sich FLOXANT von anderen Anbietern?",
   a: "FLOXANT setzt auf strukturierte Einschätzung, unverbindlichen Orientierungsrahmen, sichtbare Kostentreiber, klare Servicewege und regionale Einordnung für Regensburg, Bayern und ausgewählte Spezialanfragen.",
  },
  {

@@ -357,7 +357,7 @@ export const localServiceSeoPages = {
     ],
     problemTitle: "Wenn ein Haushalt nicht einfach nur leer werden soll",
     problemText: [
-      "Bei Haushaltsauflösungen spielen oft Emotion, Zeitdruck, Freigaben und mehrere Beteiligte mit. Deshalb hilft ein klarer Anfrageweg: Wer darf entscheiden, was soll bleiben, was muss raus und welcher Zustand wird am Ende gebraucht?",
+      "Bei Haushaltsauflösungen spielen oft Emotion, Zeitdruck, Freigaben und mehrere Beteiligte mit. Deshalb hilft ein klarer Kontaktweg: Wer darf entscheiden, was soll bleiben, was muss raus und welcher Zustand wird am Ende gebraucht?",
       "FLOXANT prüft Räume, Menge, Zugang, Etage, mögliche Entsorgung, sensible Gegenstände und Reinigung danach. Ohne Fotos oder Besichtigung wird kein unrealistisches Versprechen gemacht.",
     ],
     scopeTitle: "Was eine Haushaltsauflösung umfassen kann",

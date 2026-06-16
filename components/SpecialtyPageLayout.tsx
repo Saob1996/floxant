@@ -1274,7 +1274,7 @@ export function SpecialtyPageLayout({
                 Den passenden nächsten Schritt für {germanText(city, city)} wählen
               </h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">
-                Nicht jeder Einstieg passt zu jeder Situation. Diese Wege helfen, Preislogik, Rückfragen und Anfrageform schon vor der eigentlichen Buchung sauber zu trennen.
+                Nicht jeder Startpunkt passt zu jeder Situation. Diese Wege helfen, Preislogik, Rückfragen und Anfrageform schon vor der eigentlichen Buchung sauber zu trennen.
               </p>
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -1311,7 +1311,7 @@ export function SpecialtyPageLayout({
                   Schon ein Angebot für {germanText(city, city)} bekommen?
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-slate-700">
-                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzleistungen. In Düsseldorf wird die Prüfung je nach Leistung auf die passende lokale Seite geroutet.
+                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzleistungen. In Düsseldorf führt die Prüfung je nach Leistung zum passenden lokalen Kontaktweg.
                 </p>
                 <p className="mt-3 text-xs font-bold leading-6 text-slate-500">
                   Keine Preisgarantie, keine Rechtsberatung und keine Bewertung anderer Anbieter. FLOXANT prüft nur, ob nach Verfügbarkeit eine klarere, günstigere oder passendere Alternative möglich ist.

@@ -72,7 +72,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
     intro="Bei lokalen Dienstleistungen zählt nicht nur die Leistung selbst, sondern auch die Region. Regensburg ist für FLOXANT der Ausgangspunkt, Bayern der Ausbau. Diese Einordnung macht Termine, Strecken und Preisrahmen realistischer."
     sections={[
      {
-      title: "Warum Region mehr ist als ein Keyword",
+      title: "Warum die Region für Ihre Planung wichtig ist",
       paragraphs: [
        "Für Google ist die regionale Einordnung wichtig. Für Kunden ist sie noch wichtiger. Wer einen Umzug, eine Reinigung oder eine Entrümpelung plant, braucht keine leere Bayern-Floskel, sondern die Frage: Ist der Einsatz realistisch planbar?",
        "Regionale Relevanz entsteht durch Verfügbarkeit, Fahrtwege, lokale Erfahrung, Zeitfenster und die Fähigkeit, Zusatzleistungen sinnvoll zu kombinieren.",
@@ -87,7 +87,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
        "Kürzere Wege bei Einsätzen im Stadtgebiet und Landkreis",
        "Bessere Einschätzung von Übergabe, Parken und Zeitfenstern",
        "Stärkere Kombination von Umzug, Reinigung und Entrümpelung",
-       "Schnellerer Einstieg über Rechner oder Preisvorstellung",
+       "Schnellerer Startpunkt über Rechner oder Preisvorstellung",
       ],
      },
      {

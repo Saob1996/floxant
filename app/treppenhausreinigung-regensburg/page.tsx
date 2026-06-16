@@ -157,7 +157,7 @@ const faqItems = [
   },
   {
     q: "Übernimmt FLOXANT auch Winterdienst oder Hausmeisterarbeiten?",
-    a: "Nein. Diese Seite fokussiert Treppenhaus- und Gemeinschaftsflächenreinigung. Winterdienst, Hausmeisterdienst, Reparaturen, Gartenpflege und technische Objektbetreuung werden nicht automatisch angeboten.",
+    a: "Nein. Diese Seite ist für Treppenhaus- und Gemeinschaftsflächenreinigung gedacht. Winterdienst, Hausmeisterdienst, Reparaturen, Gartenpflege und Objektbetreuung klären wir nur, wenn sie ausdrücklich angefragt werden.",
   },
 ];
 

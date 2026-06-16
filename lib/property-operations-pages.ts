@@ -96,7 +96,7 @@ export const propertyOperationsPages = {
       worries: [
         "Eine Reinigungskraft meldet sich krank und der Kunde erwartet trotzdem einen sauberen Zustand.",
         "Der Hausmeister fällt aus, aber Schlüssel, Kontrollgang oder Übergabe bleiben offen.",
-        "Ein Termin ist bestätigt, intern hat aber niemand mehr Zeit für die Vor-Ort-Aufgabe.",
+        "Ein Termin ist bestätigt, aber im Team hat niemand mehr Zeit für die Vor-Ort-Aufgabe.",
         "Es braucht keine lange Ausschreibung, sondern jemanden, der die Situation ruhig übernimmt.",
       ],
     },
@@ -111,7 +111,7 @@ export const propertyOperationsPages = {
       },
       {
         title: "Verantwortung bleibt hängen",
-        text: "Ohne Ersatzperson muss intern jemand improvisieren, der eigentlich andere Aufgaben hat.",
+        text: "Ohne Ersatzperson muss jemand aus dem Team improvisieren, der eigentlich andere Aufgaben hat.",
       },
     ],
     solution: {
@@ -129,7 +129,7 @@ export const propertyOperationsPages = {
         },
         {
           title: "Ergebnis sichtbar machen",
-          text: "Nach dem Einsatz bekommt der Auftraggeber eine klare Rückmeldung, damit intern niemand im Dunkeln bleibt.",
+          text: "Nach dem Einsatz bekommt der Auftraggeber eine klare Rückmeldung, damit alle Beteiligten wissen, was erledigt wurde.",
         },
       ],
     },
@@ -655,7 +655,7 @@ export const propertyOperationsPages = {
     ],
     related: ["human-api", "objekt-springer", "urlaubsretter"],
     blogIdeas: [
-      { title: "Welche Aufgaben Unternehmen besser nicht intern erledigen sollten", angle: "Zeitfresser im Alltag erkennen." },
+      { title: "Welche Vor-Ort-Aufgaben Unternehmen besser abgeben sollten", angle: "Zeitfresser im Alltag erkennen." },
       { title: "Schlüssel, Dokumente, Material: Wie sichere Übergaben funktionieren", angle: "Business-Checkliste." },
       { title: "Warum jemand vor Ort manchmal schneller hilft als zehn E-Mails", angle: "Praktische Beispiele aus dem Firmenalltag." },
     ],

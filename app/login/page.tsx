@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Login | FLOXANT Operations Center",
-    description: "Geschützter Login für das interne FLOXANT Operations Center.",
+    description: "Geschützter Login für den FLOXANT Arbeitsbereich.",
     robots: {
       index: false,
       follow: false,

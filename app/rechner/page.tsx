@@ -374,13 +374,13 @@ export default async function RechnerPage() {
   const mapsSignals = [
     {
       title: "Standort und Kontakt klar finden",
-      text: "Kontakt, Buchung und Service-Seiten zeigen Kunden schnell, welcher Weg für ihre Anfrage passt.",
+      text: "Kontakt, Buchung und Angebote zeigen Kunden schnell, welcher Weg für ihre Anfrage passt.",
       href: "/kontakt",
       label: "Kontakt & Standort",
     },
     {
       title: "Service und Ort direkt wählen",
-      text: "Wer Ort und Leistung schon kennt, landet über konkrete Stadt- und Service-Seiten schneller beim passenden Einstieg.",
+      text: "Wer Ort und Leistung schon kennt, landet über konkrete Stadt- und Angebote schneller beim passenden Kontaktweg.",
       href: "/standorte",
       label: "Standorte ansehen",
     },
@@ -418,7 +418,7 @@ export default async function RechnerPage() {
   const faqItems = [
     {
       q: "Was ist der FLOXANT Rechner?",
-      a: "Der Rechner ist der zentrale Einstieg für Umzug, Reinigung, Entrümpelung und Büroumzug. Er sammelt die wichtigsten Angaben und bereitet daraus eine belastbare erste Einordnung vor.",
+      a: "Der Rechner ist der zentrale Startpunkt für Umzug, Reinigung, Entrümpelung und Büroumzug. Er sammelt die wichtigsten Angaben und bereitet daraus eine belastbare erste Einordnung vor.",
     },
     {
       q: "Ist der angezeigte Preis ein Endpreis?",
@@ -450,7 +450,7 @@ export default async function RechnerPage() {
     },
     {
       q: "Hilft der Rechner auch, wenn ich noch nicht weiss, welche Leistung passt?",
-      a: "Ja. Der Rechner fuehrt von Umzug, Reinigung, Entsorgung, Entruempelung, Lagerung oder Bueroumzug schneller zum passenden FLOXANT-Einstieg, statt alles ueber eine allgemeine Kontaktseite laufen zu lassen.",
+      a: "Ja. Der Rechner fuehrt von Umzug, Reinigung, Entsorgung, Entruempelung, Lagerung oder Bueroumzug schneller zum passenden FLOXANT-Anfrage, statt alles ueber eine allgemeine Kontaktseite laufen zu lassen.",
     },
     {
       q: "Was fragt der Reinigungs-Rechner besonders ab?",
@@ -462,7 +462,7 @@ export default async function RechnerPage() {
     },
     {
       q: "Muss ich schon alle Details kennen?",
-      a: "Nein. Der Rechner funktioniert auch als erster Einstieg. Wenn einzelne Angaben fehlen, kann FLOXANT später gezielt nachfragen und den Preisrahmen realistischer einordnen.",
+      a: "Nein. Der Rechner funktioniert auch als erster Startpunkt. Wenn einzelne Angaben fehlen, kann FLOXANT später gezielt nachfragen und den Preisrahmen realistischer einordnen.",
     },
   ];
 
@@ -515,7 +515,7 @@ export default async function RechnerPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Rechner für Umzug, Reinigung und Entrümpelung",
         description:
-          "Der FLOXANT Rechner ist der direkte Einstieg für unverbindliche Orientierungsrahmen in Regensburg und Bayern.",
+          "Der FLOXANT Rechner ist der direkte Startpunkt für unverbindliche Orientierungsrahmen in Regensburg und Bayern.",
         path: "/rechner",
         about: [
           "Preisrahmen",
@@ -538,10 +538,10 @@ export default async function RechnerPage() {
       }),
       {
         "@type": "ItemList",
-        "@id": "https://www.floxant.de/rechner#service-einstiege",
-        name: "FLOXANT Rechner-Einstiege",
+        "@id": "https://www.floxant.de/rechner#service-Startpunkte",
+        name: "FLOXANT Rechner-Startpunkte",
         description:
-          "Direkte URL-Einstiege in den passenden FLOXANT Rechner für Umzug, Reinigung, Entsorgung und Büroumzug.",
+          "Direkte URL-Startpunkte in den passenden FLOXANT Rechner für Umzug, Reinigung, Entsorgung und Büroumzug.",
         itemListElement: serviceEntryLinks.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -569,7 +569,7 @@ export default async function RechnerPage() {
         "@id": "https://www.floxant.de/rechner#maps-service-intents",
         name: "FLOXANT Maps-Service-Intentionen",
         description:
-          "Direkte Servicepfade für Maps-Suchen nach Umzug, Reinigung, Entrümpelung, Entsorgung, Lagerung, Büroumzug und Gewerbereinigung.",
+          "Direkte Kontaktwege für Maps-Suchen nach Umzug, Reinigung, Entrümpelung, Entsorgung, Lagerung, Büroumzug und Gewerbereinigung.",
         itemListElement: BAVARIA_MAPS_SERVICE_INTENTS.map((intent, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -583,7 +583,7 @@ export default async function RechnerPage() {
         "@id": "https://www.floxant.de/rechner#regensburg-kernpfade",
         name: "FLOXANT Regensburg Kernpfade",
         description:
-          "Direkte lokale FLOXANT Einstiege für Regensburg: Umzug, Reinigung, Entrümpelung, Büroumzug, Einlagerung und Akteneinlagerung.",
+          "Direkte lokale FLOXANT Startpunkte für Regensburg: Umzug, Reinigung, Entrümpelung, Büroumzug, Einlagerung und Akteneinlagerung.",
         itemListElement: regensburgCoreLinks.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -597,7 +597,7 @@ export default async function RechnerPage() {
         "@id": "https://www.floxant.de/rechner#lokale-tags",
         name: "FLOXANT lokale Such-Tags",
         description:
-          "Passende lokale Einstiege für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
+          "Passende lokale Startpunkte für Regensburg, Bayern, Umzug, Reinigung, Entrümpelung, Büroumzug, Beiladung und Einlagerung.",
         itemListElement: localSeoTags.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -775,7 +775,7 @@ export default async function RechnerPage() {
             {[
               {
                 title: "Was ist das?",
-                text: "Ein geführter Einstieg für Umzug, Reinigung, Entrümpelung und Büroumzug. Sie geben die wichtigsten Eckdaten an und sehen schneller, welcher Weg realistisch passt.",
+                text: "Ein geführter Startpunkt für Umzug, Reinigung, Entrümpelung und Büroumzug. Sie geben die wichtigsten Eckdaten an und sehen schneller, welcher Weg realistisch passt.",
               },
               {
                 title: "Für wen?",
@@ -810,7 +810,7 @@ export default async function RechnerPage() {
 
       <AiServiceRecommendationPanel variant="calculator" className="pb-14 pt-0" />
 
-      <section id="rechner-einstieg" className="section-glow relative scroll-mt-28 px-6 pb-14 pt-0">
+      <section id="rechner-Startpunkt" className="section-glow relative scroll-mt-28 px-6 pb-14 pt-0">
         <div className="mx-auto max-w-7xl">
           <div id="leistungen" className="relative -top-24 block h-0 w-0" />
           <div className="mb-8 grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
@@ -827,7 +827,7 @@ export default async function RechnerPage() {
               <p className="max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
                 Sie können sofort mit Umzug, Reinigung, Entrümpelung oder Büroumzug starten.
                 Ausführliche Hinweise, regionale Wege und häufige Fragen stehen darunter, ohne den
-                Einstieg zu blockieren.
+                Startpunkt zu blockieren.
               </p>
             </Reveal>
           </div>
@@ -838,7 +838,7 @@ export default async function RechnerPage() {
                   Entscheidungshilfe
                 </div>
                 <h3 className="mt-2 text-2xl font-bold tracking-[-0.02em] text-slate-950">
-                  Welcher Einstieg passt gerade?
+                  Welcher Startpunkt passt gerade?
                 </h3>
               </div>
               <p className="max-w-2xl text-sm leading-6 text-slate-600">
@@ -1002,10 +1002,10 @@ export default async function RechnerPage() {
             <div className="relative">
             <div className="label-premium text-blue-700">Was Sie hier wirklich bekommen</div>
             <h2 className="mt-4 max-w-[14ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
-              Ein ruhiger Einstieg statt Preischaos
+              Ein ruhiger Startpunkt statt Preischaos
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
-              Der Rechner ist ein sauberer Einstieg für Kunden, die Aufwand, Service-Fit und
+              Der Rechner ist ein sauberer Startpunkt für Kunden, die Aufwand, Service-Fit und
               nächste Entscheidung ruhig einordnen wollen. Ein zu früher Billigpreis hilft wenig,
               wenn am Einsatztag Fahrzeug, Zeitfenster oder Übergabe nicht zur Aufgabe passen.
             </p>
@@ -1118,7 +1118,7 @@ export default async function RechnerPage() {
               Suche, Maps und direkte Anfrage
             </div>
             <h2 className="mt-3 max-w-[15ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
-              Aus der Suche direkt zum passenden Einstieg
+              Aus der Suche direkt zum passenden Kontaktweg
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Wer nach Umzug, Reinigung, Entsorgung, Entrümpelung, Lagerung oder Büroumzug
@@ -1274,7 +1274,7 @@ export default async function RechnerPage() {
             <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
                 <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                  Stadtbezirke mit klaren Einstiegen
+                  Stadtbezirke mit klaren Wegen
                 </div>
                 <h3 className="mt-3 text-3xl font-bold tracking-[-0.02em] text-slate-950">
                   Schnellere Wege für dichte Stadtlagen
@@ -1346,7 +1346,7 @@ export default async function RechnerPage() {
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Niemand kann eine bestimmte Platzierung garantieren. Klar sichtbare Kontaktwege,
               passende Standortseiten und nachvollziehbare Leistungen helfen Kunden aber,
-              schneller den richtigen FLOXANT Einstieg zu wählen.
+              schneller den richtigen FLOXANT Startpunkt zu wählen.
             </p>
           </div>
 
@@ -1378,7 +1378,7 @@ export default async function RechnerPage() {
               Regensburg Nahraum
             </div>
             <h2 className="mt-3 max-w-[15ch] text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-slate-950 md:text-4xl">
-              Stadtnahe Orte als starke lokale Einstiegspunkte
+              Stadtnahe Orte als starke lokale Startpunkte
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
               Wer aus dem direkten Umfeld anfragt, soll schnell zur passenden Leistung kommen.

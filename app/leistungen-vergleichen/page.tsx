@@ -15,7 +15,7 @@ import {
 const faqItems = [
  {
   q: "Welche FLOXANT Leistung passt, wenn ich umziehe und reinigen lassen möchte?",
-  a: "Wenn Transport und Übergabe zusammenhängen, ist Umzug mit Reinigung der sauberste Einstieg. Für eine erste Einordnung eignet sich der Rechner, weil Volumen, Fläche, Zugang und Termin getrennt erfasst werden.",
+  a: "Wenn Transport und Übergabe zusammenhängen, ist Umzug mit Reinigung der sauberste Startpunkt. Für eine erste Einordnung eignet sich der Rechner, weil Volumen, Fläche, Zugang und Termin getrennt erfasst werden.",
  },
  {
   q: "Wann ist Entrümpelung sinnvoller als ein normaler Umzug?",
@@ -38,7 +38,7 @@ const faqItems = [
 const decisionPrinciples = [
  "Erst die Situation klären: Transport, Reinigung, Räumung, Firma, Route oder sensibler Privathaushalt.",
  "Dann die Kostentreiber trennen: Volumen, Fläche, Zugang, Laufwege, Material, Termin und Zusatzleistungen.",
- "Danach den richtigen Einstieg wählen: Service-Seite, Rechner, Preisvorstellung oder Zusatzleistung.",
+ "Danach den richtigen Weg wählen: Anfrage, Rechner, Preisvorstellung oder Zusatzleistung.",
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -103,7 +103,7 @@ export default function LeistungenVergleichenPage() {
       Service-Kompass
      </div>
      <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-      FLOXANT Leistungen vergleichen und den richtigen Einstieg finden.
+      FLOXANT Leistungen vergleichen und den richtigen Weg finden.
      </h1>
      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
       Nicht jede Anfrage gehört sofort in denselben Service. Dieser Vergleich ordnet typische

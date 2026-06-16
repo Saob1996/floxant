@@ -146,7 +146,7 @@ export default function BlogArticle() {
               Angebot zwar schnell, ist aber oft nicht belastbar.
             </p>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              FLOXANT setzt deshalb auf Vorprüfung statt unrealistisch niedriger Einstiegslogik. Das
+              FLOXANT setzt deshalb auf Vorprüfung statt unrealistisch niedriger Preislogik. Das
               Ziel ist nicht, jeden Auftrag kleinzurechnen, sondern Umfang und Erwartung so
               zusammenzubringen, dass der Einsatztag planbar bleibt.
             </p>

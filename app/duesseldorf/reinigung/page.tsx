@@ -465,7 +465,7 @@ function compactCardLabel(value: string) {
   if (/hausverwaltung|weg|treppenhaus/i.test(value)) return "Hausverwaltung";
   if (/büro|praxis|firma|gewerbe/i.test(value)) return "Gewerbe";
   if (/wohnung|übergabe|auszug/i.test(value)) return "Wohnung & Übergabe";
-  return "Anfrageweg";
+  return "Kontaktweg";
 }
 
 const serviceIcons = [Home, Building2, Sparkles, Building, ClipboardCheck, CheckCircle2];
@@ -984,7 +984,7 @@ export default function DuesseldorfReinigungPage() {
           </div>
         </section>
 
-        <section id="klick-einstiege" className="pt-6">
+        <section id="klick-Startpunkte" className="pt-6">
           <div className="grid min-w-0 gap-4 overflow-hidden rounded-[1rem] border border-slate-200 bg-white p-5 shadow-[0_20px_56px_rgba(15,23,42,0.07)] xl:grid-cols-[0.72fr_1.28fr] xl:p-6">
             <article className="min-w-0 rounded-[0.85rem] border border-slate-200 bg-slate-50 p-5">
               <div className="text-[11px] font-black uppercase tracking-normal text-teal-700">
@@ -996,7 +996,7 @@ export default function DuesseldorfReinigungPage() {
               <p className="mt-3 text-sm leading-7 text-slate-700">
                 Manchmal geht es nicht um eine lange Beratung, sondern um eine klare
                 Rückmeldung: Passt der Termin, welche Angaben fehlen noch und welcher
-                Kontaktweg ist am schnellsten?
+                Welcher Weg ist am schnellsten?
               </p>
             </article>
             <div className="grid min-w-0 gap-3 lg:grid-cols-2 2xl:grid-cols-3">
@@ -1305,8 +1305,8 @@ export default function DuesseldorfReinigungPage() {
                   </div>
                   <p className="mt-4 text-xs leading-6 text-slate-300">
                     Hilfreich sind kurze Angaben zu Objekt, Umfang, Termin, Zugang und Fotos.
-                    Für Reinigung in Düsseldorf bleibt diese Seite der direkte Einstieg; Umzug,
-                    Entrümpelung und Haushaltsauflösung haben eigene lokale Seiten.
+                    Für Reinigung in Düsseldorf bleibt diese Seite der direkte Startpunkt; Umzug,
+                    Entrümpelung und Haushaltsauflösung haben klare lokale Kontaktmöglichkeiten.
                   </p>
                 </article>
               ))}

@@ -206,7 +206,7 @@ export default function BudgetPage() {
       <section className="section-glow relative px-6 pb-24 pt-8">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { href: "/rechner", label: "Rechner als Einstieg" },
+            { href: "/rechner", label: "Rechner zur Orientierung" },
             { href: "/umzug", label: "Umzug als Hauptservice" },
             { href: "/reinigung", label: "Reinigung als Hauptservice" },
             { href: "/entruempelung", label: "Entrümpelung als Hauptservice" },
