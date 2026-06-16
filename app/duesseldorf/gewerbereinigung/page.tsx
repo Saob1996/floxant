@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 
 import { GewerbereinigungAdsForm } from "@/components/duesseldorf/GewerbereinigungAdsForm";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { floxantServices } from "@/lib/floxant-services";
@@ -67,9 +68,9 @@ const heroTrustItems = [
   "Bestehendes Angebot prüfbar",
   "Keine Preisversprechen",
 ];
-const pageTitle = "Gewerbereinigung Düsseldorf | Angebot klar prüfen";
+const pageTitle = "Gewerbereinigung Düsseldorf | Commercial Cleaning";
 const pageDescription =
-  "FLOXANT prüft Gewerbereinigung in Düsseldorf für Büro, Praxis, Kanzlei und Objekt. Raumliste, Turnus, Fotos und Angebot senden, Zeitfenster klären.";
+  "FLOXANT prüft Gewerbereinigung in Düsseldorf für Büro, Praxis, Kanzlei und Objekt. Raumliste, Turnus, Fotos und Angebot senden. Anfrage auf Deutsch oder Englisch möglich.";
 
 const requestHints = [
   "Objektart: Büro, Praxis, Kanzlei, Treppenhaus oder Gewerbeobjekt",
@@ -295,6 +296,11 @@ function JsonLd() {
         provider: { "@id": `${company.url}/duesseldorf#localbusiness` },
         areaServed: "Düsseldorf und Umgebung",
         url: canonical,
+        availableChannel: {
+          "@type": "ServiceChannel",
+          serviceUrl: canonical,
+          availableLanguage: ["de", "en"],
+        },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Gewerbliche Reinigung in Düsseldorf",
@@ -410,6 +416,15 @@ export default function GewerbereinigungDuesseldorfPage() {
           </div>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel="Düsseldorf"
+        serviceLabel="Gewerbereinigung, Büroreinigung, Praxisreinigung oder Unterhaltsreinigung"
+        tags={["Commercial cleaning", "Office cleaning", "Cleaning company", "Cleaning quote", "Photos welcome"]}
+        primaryHref="#kontakt"
+        photoHref="#kontakt"
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
 
       <section className="border-b border-slate-200 bg-slate-50 px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">

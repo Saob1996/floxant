@@ -19,14 +19,17 @@ const EMAIL = "info@floxant.de";
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 
 const uncertainOptions = [
-  "Transport / Umzug",
-  "Reinigung",
-  "Entruempelung",
-  "Entsorgung",
+  "Transport / Umzug / Moving help",
+  "Reinigung / Cleaning service",
+  "Entruempelung / Decluttering",
+  "Entsorgung / Disposal",
   "Schluesseluebergabe",
   "Uebergabe",
-  "Angebot / Preis",
-  "Duesseldorf Reinigung",
+  "Angebot / Preis / Quote check",
+  "Fairpreis-Check",
+  "Objektbrief",
+  "Solar / PV / Solar panel cleaning",
+  "Duesseldorf Reinigung / Cleaning service",
   "Duesseldorf Entsorgung",
   "mehrere Punkte",
 ];
@@ -54,10 +57,13 @@ const riskLevels = [
 
 const packageOptions = [
   "Ersatztransport",
-  "Reinigungs-Backup",
-  "Raeumungs-Backup",
+  "Reinigungs-Backup / Cleaning backup",
+  "Raeumungs-Backup / Clearance backup",
   "Uebergabe-Backup",
   "Komplett-Plan-B",
+  "Fairpreis- oder Angebots-Backup",
+  "Objektbrief zur Sortierung",
+  "Solar/PV-Sichtklar",
   "Duesseldorf Reinigung/Entsorgung",
   "Diskreter Rueckruf",
 ];
@@ -71,6 +77,9 @@ const openItemOptions = [
   "Keller / Sperrmuell offen",
   "Schluessel / Uebergabe unklar",
   "Preisrahmen unrealistisch",
+  "PV- oder Dachzugang unklar",
+  "Objektbrief sinnvoll",
+  "Fairpreis-Check sinnvoll",
   "zweite Absicherung gewuenscht",
   "Fotos vorhanden",
   "Budget vorhanden",
@@ -241,6 +250,10 @@ export function PlanBServiceForm() {
       <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">Plan B pruefen lassen</h2>
       <p className="mt-2 text-sm leading-6 text-slate-600">
         Kurze Angaben reichen fuer den Start. FLOXANT prueft nach Verfuegbarkeit, ob ein Ersatz- oder Ergaenzungsplan realistisch ist.
+      </p>
+      <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
+        Anfrage auf Deutsch oder Englisch moeglich: moving help, cleaning service, quote check
+        oder house clearance reichen als Stichwort.
       </p>
 
       <div className="mt-5 grid gap-3 md:grid-cols-3">

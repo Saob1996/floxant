@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         lang: "de",
         path: "entruempelung-regensburg",
         title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
-        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+        description: `${resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de")} Anfrage auf Deutsch oder Englisch möglich.`,
     });
 }
 
@@ -84,6 +85,14 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <InternationalCustomerHint
+                    cityLabel="Regensburg"
+                    serviceLabel="Entrümpelung, Haushaltsauflösung, House clearance oder Decluttering"
+                    tags={["Decluttering", "House clearance", "Junk removal", "Flat clearance", "Photos welcome"]}
+                    primaryHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
+                    photoHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
+                    offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+                />
                 <GscOpportunitySection
                     eyebrow="Entrümpelung Regensburg richtig starten"
                     title="Wohnung, Keller, Gewerbefläche oder Nachlass: erst klären, dann räumen."

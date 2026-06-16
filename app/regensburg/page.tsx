@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 
+import {
+  InternationalCustomerHint,
+  LocalIntentBlock,
+  ServiceDecisionGuide,
+  TrustProofSection,
+} from "@/components/conversion";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { company } from "@/lib/company";
@@ -29,9 +35,49 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT Regensburg | Umzug, Reinigung & Räumung",
   description:
-    "FLOXANT Regensburg prüft Umzug, Reinigung, Gewerbereinigung, Entrümpelung und Haushaltsauflösung. Fotos senden, Angebot erhalten.",
+    "FLOXANT Regensburg prüft Umzug, Reinigung, Gewerbereinigung, Entrümpelung und Haushaltsauflösung. Moving help, cleaning service und Anfrage auf Deutsch oder Englisch möglich.",
   alternates: { canonical: "/regensburg" },
 };
+
+const regensburgLocalSignals = [
+  "Regensburg, Landkreis und Umgebung nach Strecke, Termin, Umfang und verfügbarer Kapazität prüfen.",
+  "Bei Umzug und Transport zählen Start/Ziel, Etage, Laufweg, Volumen, Haltezone und mögliche Rückfahrt.",
+  "Bei Entrümpelung, Haushaltsauflösung und Nachlass helfen Fotos, Freigabe, Menge, Material und Endzustand.",
+  "Bei Übergabe und Endreinigung sind Termin, Schlüsselweg, Restpunkte, Fotos und gewünschter Zustand entscheidend.",
+] as const;
+
+const regensburgDecisionGuide = [
+  {
+    title: "Umzug, Mini-Umzug und Transport",
+    text: "Für Wohnungswechsel, Möbeltransport, Express-Umzug oder flexible Rückfahrt mit Route, Volumen und Zugang.",
+    href: "/regensburg/umzug",
+    cta: "Umzug öffnen",
+  },
+  {
+    title: "Entrümpelung und Haushaltsauflösung",
+    text: "Für Keller, Wohnung, Nachlass, Lager oder Restmengen mit Fotos, Menge, Material und Zielzustand.",
+    href: "/regensburg/entruempelung",
+    cta: "Räumung prüfen",
+  },
+  {
+    title: "Reinigung und Übergabe",
+    text: "Für Endreinigung, Übergabereinigung, Mieterwechsel oder sichtbare Restpunkte vor Rückgabe und Besichtigung.",
+    href: "/regensburg/reinigung",
+    cta: "Reinigung wählen",
+  },
+  {
+    title: "Signature und Plan B",
+    text: "Wenn Anbieter, Termin, Preis, Rückfahrt, Objektbrief oder Übergabe erst sortiert werden müssen.",
+    href: "/signature-services",
+    cta: "Signature-Hub öffnen",
+  },
+] as const;
+
+const regensburgTrustProofs = [
+  "Regensburg-Anfragen werden nach Umzug, Reinigung, Entrümpelung, Transport und Übergabe getrennt.",
+  "Ort, Leistung, kurze Beschreibung und Kontaktweg reichen für den Start.",
+  "Budget, Fotos, vorhandenes Angebot, Termin oder Dringlichkeit können freiwillig ergänzt werden.",
+] as const;
 
 export default function RegensburgHubPage() {
   return (
@@ -130,6 +176,40 @@ export default function RegensburgHubPage() {
           </div>
         </div>
       </section>
+
+      <LocalIntentBlock
+        regionLabel="Regensburg lokal"
+        title="Ort, Termin und Ziel der Übergabe früh nennen."
+        intro="Viele Regensburger Anfragen hängen an Fristen: Auszug, Schlüssel, Keller, Reinigung, Restmengen oder Besichtigung. Je klarer der Zielzustand ist, desto besser wird die Rückmeldung."
+        signals={regensburgLocalSignals}
+        links={[
+          { href: "/regensburg/umzug", label: "Umzug" },
+          { href: "/regensburg/entruempelung", label: "Entrümpelung" },
+          { href: "/regensburg/reinigung", label: "Reinigung" },
+        ]}
+      />
+
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel="Umzug, Reinigung, Gewerbereinigung, Entrümpelung oder Haushaltsauflösung in Regensburg"
+        tags={["Moving help", "Cleaning service", "Office cleaning", "House clearance", "Decluttering"]}
+        primaryHref="/kontakt#direktanfrage"
+        photoHref="/buchung#buchungssystem"
+      />
+
+      <ServiceDecisionGuide
+        eyebrow="Regensburg-Service wählen"
+        title="Wechsel, Räumung, Reinigung oder Plan B?"
+        intro="Diese Wege bilden die häufigsten lokalen Situationen ab und führen direkt zu passenden Seiten oder Formularen."
+        items={regensburgDecisionGuide}
+      />
+
+      <TrustProofSection
+        eyebrow="Klare Anfrage"
+        title="Wenige Pflichtfelder, viele hilfreiche optionale Angaben."
+        intro="FLOXANT braucht kein perfektes Briefing. Wichtig ist nur, dass Ort, Leistung, kurze Lage und Kontaktweg stimmen."
+        proofs={regensburgTrustProofs}
+      />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">

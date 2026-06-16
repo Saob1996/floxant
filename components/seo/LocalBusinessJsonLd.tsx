@@ -53,6 +53,7 @@ export function LocalBusinessJsonLd() {
     { name: "Private Client Service", url: `${company.url}/private-client-service` },
     { name: "Angebotscheck", url: `${company.url}/angebotscheck` },
     { name: "Angebot günstiger prüfen", url: `${company.url}/angebot-guenstiger-pruefen` },
+    { name: "Duesseldorf Reinigungsangebot pruefen", url: `${company.url}/angebot-vergleichen-duesseldorf` },
     { name: "Plan-B-Service", url: `${company.url}/plan-b-service` },
     { name: "Schadensbegrenzung", url: `${company.url}/schadensbegrenzung` },
     { name: "Übergabeakte", url: `${company.url}/uebergabeakte` },
@@ -172,8 +173,8 @@ export function LocalBusinessJsonLd() {
     sameAs: company.sameAs,
     areaServed,
     serviceArea: areaServed,
-    availableLanguage: ["de"],
-    knowsLanguage: ["de"],
+    availableLanguage: ["de", "en"],
+    knowsLanguage: ["de", "en"],
     knowsAbout: [
       "Umzugsunternehmen Regensburg",
       "Reinigungsfirma Regensburg",
@@ -309,7 +310,7 @@ export function LocalBusinessJsonLd() {
         email: company.email,
         contactType: "customer support",
         areaServed: ["DE"],
-        availableLanguage: ["de"],
+        availableLanguage: ["de", "en"],
         hoursAvailable: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: [
@@ -331,7 +332,7 @@ export function LocalBusinessJsonLd() {
         email: company.email,
         contactType: "sales",
         areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
-        availableLanguage: ["de"],
+        availableLanguage: ["de", "en"],
         hoursAvailable: {
           "@type": "OpeningHoursSpecification",
           dayOfWeek: [

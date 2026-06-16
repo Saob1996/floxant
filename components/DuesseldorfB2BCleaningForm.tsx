@@ -223,7 +223,7 @@ export function DuesseldorfB2BCleaningForm({
         </Field>
 
         <label
-          className="grid cursor-pointer gap-3 rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:bg-white"
+          className="relative grid cursor-pointer gap-3 overflow-hidden rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:bg-white"
           data-event={uploadStarted ? "upload_completed" : "upload_started"}
         >
           <span className="flex items-center gap-2 text-slate-950">
@@ -239,7 +239,7 @@ export function DuesseldorfB2BCleaningForm({
             type="file"
             multiple
             accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf"
-            className="sr-only"
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             onClick={handleUploadStart}
             onChange={handleFiles}
             data-event={uploadStarted ? "upload_completed" : "upload_started"}

@@ -12,6 +12,7 @@ import {
   HUB_PAGES,
 } from "./sitemap-config";
 import { blogPosts } from "./blog-posts";
+import { growthServicePathSet, growthServicePaths } from "./growth-service-pages";
 import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
@@ -244,6 +245,7 @@ function lastmodForRoute(route: string): string {
 
 function appRouteExists(route: string): boolean {
   if (dynamicLocalSeoRouteSet.has(`/${route}`)) return true;
+  if (growthServicePathSet.has(`/${route}`)) return true;
 
   const routeSegments = route ? route.split("/") : [];
   const appRouteDir = join(process.cwd(), "app", ...routeSegments);
@@ -256,6 +258,7 @@ function priorityForRoute(route: string): string {
   if (DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(route)) return "0.9";
   if (route === "service-graph.json") return "0.82";
   if (route === "llms.txt") return "0.82";
+  if (growthServicePathSet.has(`/${route}`)) return route.includes("solarreinigung") ? "0.9" : "0.88";
   if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
@@ -410,6 +413,9 @@ export function generateSitemapResponse(): Response {
 
   // Core services
   addEntries(urls, CORE_SERVICES, "0.9", "weekly");
+
+  // First-wave growth services served as static marketing pages.
+  addEntries(urls, growthServicePaths, "0.88", "weekly");
 
   // Machine-readable AI/search discovery routes.
   addEntries(urls, MACHINE_READABLE_ROUTES, "0.82", "weekly");

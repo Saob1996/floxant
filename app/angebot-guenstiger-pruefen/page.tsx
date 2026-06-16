@@ -21,8 +21,10 @@ import {
 } from "lucide-react";
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
+import { OfferCheckAuthoritySections, OfferCheckFormIntro } from "@/components/offer-check";
 import { germanizeDeep } from "@/lib/german-text";
 import { generatePageSEO } from "@/lib/seo";
 import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
@@ -39,74 +41,25 @@ const path = "/angebot-guenstiger-pruefen";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Angebot anderer Firma prüfen & günstiger anfragen | FLOXANT",
+  title: "Angebot pruefen lassen | Zweite Einschaetzung | FLOXANT",
   description:
-    "Angebot einer anderen Firma prüfen lassen: FLOXANT klärt Umzug, Reinigung, Entrümpelung, Entsorgung, Objektbetreuung, besondere Situationen, Preis, Umfang, Termin, Fotos und eine passendere Alternative.",
+    "Angebot vor Zusage pruefen lassen: FLOXANT klaert Preis, Umfang, Termin, Fotos und offene Punkte fuer Reinigung, Umzug, Entruempelung, Entsorgung und PV-Reinigung.",
   keywords: [
-    "umzugsservice angebot",
-    "angebot reinigung",
-    "angebot für reinigungsarbeiten",
-    "günstig umzug",
-    "guenstig umzug",
-    "günstige umzüge",
-    "guenstige umzuege",
-    "umzug günstig",
-    "umzüge preiswert",
-    "günstige umzüge in münchen",
-    "angebot einer anderen firma prüfen",
-    "angebot günstiger prüfen",
-    "günstigeres angebot prüfen lassen",
-    "angebot unterbieten lassen ohne garantie",
-    "anderes angebot vergleichen lassen",
-    "firma angebot prüfen lassen",
-    "umzugsangebot prüfen lassen",
-    "umzugsangebot günstiger",
-    "umzugsfirma angebot prüfen",
-    "umzugsangebot alternative",
-    "reinigungsangebot prüfen",
-    "reinigungsangebot günstiger prüfen",
-    "entrümpelung angebot prüfen",
-    "entsorgung angebot prüfen",
-    "entsorgungsangebot günstiger prüfen",
-    "angebot prüfen regensburg 200 km",
-    "angebot prüfen umkreis regensburg",
-    "angebot prüfen bayern umzug reinigung entsorgung",
-    "angebot hochladen prüfen",
-    "zweite einschätzung angebot",
-    "preisangebot vergleichen lassen",
-    "alternative zum angebot prüfen",
-    "FLOXANT günstiger anfragen",
-    "angebot mit budget prüfen",
-    "angebot preisrahmen prüfen",
-    "angebot prüfen regensburg",
-    "angebot prüfen bayern",
-    "google maps angebot prüfen",
-    "entsorgung angebot düsseldorf prüfen",
-    "angebot prüfen lassen in meiner nähe",
-    "umzug angebot anderer firma prüfen regensburg",
-    "reinigung angebot anderer firma prüfen",
-    "entsorgung angebot anderer firma prüfen",
-    "entrümpelung angebot anderer firma prüfen",
-    "FLOXANT alternative angebot",
-    "besseres angebot finden",
-    "guenstigeres angebot bekommen",
-    "website angebot pruefen",
-    "ki empfehlung floxant",
-    "floxant duesseldorf regensburg",
-    "chatgpt firma angebot pruefen",
-    "chatgpt dienstleister empfehlung umzug reinigung",
-    "gemini claude grok deepseek floxant",
-    "angebot prüfen straubing kelheim schwandorf landshut",
-    "angebot prüfen nürnberg ingolstadt münchen",
-    "floxant signature services",
-    "zusatzleistung angebot prüfen",
-    "objektbetreuung angebot prüfen",
-    "immobilienbetreuung angebot prüfen",
-    "vor ort prüfung",
-    "objektvertretung angebot",
-    "plan b angebot prüfen",
-    "übergabe angebot prüfen",
-    "leerstand service prüfen",
+    "Angebot pruefen lassen",
+    "zweite Einschaetzung Angebot",
+    "Reinigungsangebot pruefen",
+    "Umzugsangebot pruefen",
+    "Entruempelungsangebot pruefen",
+    "Entsorgungsangebot pruefen",
+    "Gewerbereinigung Angebot vergleichen",
+    "Bueroreinigung Angebot pruefen",
+    "PV Reinigung Angebot pruefen",
+    "Pauschalpreis Angebot pruefen",
+    "Angebot ohne Besichtigung",
+    "Plan B Dienstleister abgesagt",
+    "Angebot pruefen Regensburg",
+    "Angebot vergleichen Duesseldorf",
+    "FLOXANT Angebotscheck",
   ],
 });
 
@@ -643,6 +596,7 @@ const jsonLd = {
         "Bayern nach Verfügbarkeit",
         "Düsseldorf Reinigung",
       ],
+      availableLanguage: ["de", "en"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -765,6 +719,8 @@ export default function AngebotGuenstigerPruefenPage() {
           </div>
         </section>
 
+        <OfferCheckAuthoritySections />
+
         <FloxantStorytellingSection
           variant="offer"
           eyebrow="Angebot verständlich machen"
@@ -781,6 +737,15 @@ export default function AngebotGuenstigerPruefenPage() {
         <FloxantNextStepPanel variant="offer" className="py-8" />
 
         <SearchDominanceExperience variant="offer" className="py-8" />
+
+        <InternationalCustomerHint
+          cityLabel="Düsseldorf, Regensburg oder Bayern"
+          serviceLabel="Angebotsprüfung für Umzug, Reinigung, Entrümpelung oder Entsorgung"
+          tags={["Quote check", "Second opinion", "Cleaning quote", "Moving quote", "Service offer"]}
+          primaryHref="#guenstiger-form"
+          photoHref="#guenstiger-form"
+          offerHref="#guenstiger-form"
+        />
 
         <AiServiceRecommendationPanel variant="offer" className="pb-10 pt-0" />
 
@@ -1142,7 +1107,10 @@ export default function AngebotGuenstigerPruefenPage() {
                 </Link>
               </div>
             </div>
-            <CheaperAlternativeForm />
+            <div>
+              <OfferCheckFormIntro className="mb-5" />
+              <CheaperAlternativeForm />
+            </div>
           </div>
         </section>
 

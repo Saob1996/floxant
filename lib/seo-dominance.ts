@@ -260,9 +260,9 @@ const moneySnippets: Record<string, Snippet> = {
   intent: "Vorhandenes Angebot mit Red-Flag-Scanner vor der Zusage prüfen und zweite Einschätzung anfragen",
  },
 "/angebot-guenstiger-pruefen": {
- title: "Angebot prüfen: Reinigung & Umzug | FLOXANT",
+ title: "Angebot prüfen lassen | FLOXANT Zweitmeinung",
  description:
-  "Reinigungsfirma-Angebot, Umzugsangebot oder Entsorgungspreis prüfen: Preis, Umfang, Fotos, Termin und Budget senden. Alternative anfragen.",
+  "Angebot vor Zusage prüfen lassen: Preis, Umfang, Fotos, Termin und offene Punkte für Reinigung, Umzug, Entrümpelung, Entsorgung oder PV-Reinigung klären.",
  cluster: "conversion",
  intent: "Umzugsangebot, Reinigungsangebot oder Entsorgungsangebot einer anderen Firma prüfen und günstigere oder passendere Alternative ohne Preisgarantie anfragen",
 },
@@ -863,9 +863,9 @@ moneySnippets["/duesseldorf/vielleicht-guenstiger"] = {
 };
 
 moneySnippets["/angebot-vergleichen-duesseldorf"] = {
- title: "Reinigungsangebot Düsseldorf | Umfang klar prüfen",
+ title: "Reinigungsangebot Düsseldorf prüfen | FLOXANT",
  description:
-  "Reinigungsangebot in Düsseldorf erhalten? FLOXANT prüft Umfang, Turnus, Objektart, Fotos und Preisrahmen kostenlos und unverbindlich. Antwort erhalten.",
+  "Reinigungsangebot in Düsseldorf prüfen lassen: Umfang, Turnus, Objektart, Fotos, Stadtteil, Preisrahmen und offene Punkte klar einordnen.",
  cluster: "conversion",
  intent: "Düsseldorfer Reinigungsangebot prüfen und eine klare zweite Einschätzung erhalten",
 };
@@ -1351,9 +1351,9 @@ moneySnippets["/buchung"] = {
 };
 
 moneySnippets["/anbieter-vergleichen"] = {
- title: "FLOXANT vs Vergleichsportal | direkt anfragen",
+ title: "Anbieter und Angebote vergleichen | FLOXANT",
  description:
-  "Umzugsfirma, Reinigungsfirma oder Entrümpelung vergleichen: direkte Vorprüfung, klare Kostentreiber und Verantwortung statt anonymer Weitergabe.",
+  "Angebote für Umzug, Reinigung, Entrümpelung und Entsorgung vergleichen: Preisrahmen, Umfang, Fotos, Zugang und offene Punkte einordnen.",
  cluster: "support",
  intent: "FLOXANT gegen Vergleichsportale und lokale Anbieter prüfen",
 };
@@ -1431,9 +1431,9 @@ moneySnippets["/kostenfaktoren"] = {
 };
 
 moneySnippets["/leistungen-vergleichen"] = {
- title: "FLOXANT Leistungen | Umzug, Reinigung, Entrümpelung",
+ title: "FLOXANT Leistungen vergleichen | Angebot einordnen",
  description:
-  "Welcher Service passt? Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Private Client klar vergleichen.",
+  "Welcher Service passt? Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Angebotsprüfung klar vergleichen.",
  cluster: "support",
  intent: "Passenden FLOXANT Service schnell auswählen",
 };

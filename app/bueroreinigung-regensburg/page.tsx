@@ -23,6 +23,7 @@ import {
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
 import { company } from "@/lib/company";
@@ -167,9 +168,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "bueroreinigung-regensburg",
-    title: "Büroreinigung Regensburg | Angebot & Kosten | FLOXANT",
+    title: "Büroreinigung Regensburg | Office Cleaning | FLOXANT",
     description:
-      "Büroreinigung in Regensburg für Büro, Kanzlei, Agentur und Verwaltung. Fläche, Turnus, Küche, Sanitär, Zeitfenster, Fotos und Angebot prüfen.",
+      "Büroreinigung in Regensburg für Büro, Kanzlei, Agentur und Verwaltung. Fläche, Turnus, Küche, Sanitär, Zeitfenster, Fotos und Angebot prüfen. Deutsch oder Englisch möglich.",
     keywords: [
       "Büroreinigung Regensburg",
       "Büroreinigung Regensburg Angebot",
@@ -206,6 +207,7 @@ export default function BueroreinigungRegensburgPage() {
         serviceType:
           "Büroreinigung, Büro-Unterhaltsreinigung, Kanzleireinigung, Agenturreinigung und gewerbliche Reinigung in Regensburg",
         areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        availableLanguage: ["de", "en"],
       }),
       buildWebPageJsonLd({
         name: "Büroreinigung Regensburg für Büro, Kanzlei, Agentur und Verwaltung",
@@ -345,6 +347,15 @@ export default function BueroreinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel="Büroreinigung, Unterhaltsreinigung oder gewerbliche Reinigung"
+        tags={["Office cleaning", "Commercial cleaning", "Cleaning service", "Cleaning quote", "Photos welcome"]}
+        primaryHref="#kontakt"
+        photoHref="#kontakt"
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
 
       <RegensburgCleaningBuyerPath
         serviceLabel="Büroreinigung Regensburg"

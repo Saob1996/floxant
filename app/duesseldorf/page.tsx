@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MessageCircle, Phone } from "lucide-react";
 
+import {
+  InternationalCustomerHint,
+  LocalIntentBlock,
+  ServiceDecisionGuide,
+  TrustProofSection,
+} from "@/components/conversion";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { company, duesseldorfCompany } from "@/lib/company";
 import {
@@ -11,6 +17,7 @@ import {
   floxantRegions,
   getServicesByRegionAndCategory,
 } from "@/lib/floxant-services";
+import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const region = floxantRegions.duesseldorf;
@@ -26,15 +33,121 @@ const whatsappHref = buildWhatsAppHref(
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Düsseldorf | Hilfe für Umzug, Reinigung & Räumung",
+  title: "FLOXANT Düsseldorf | Reinigung, Umzug & Räumung",
   description:
-    "FLOXANT Düsseldorf hilft bei Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung. Stadtteil, Termin und Fotos senden.",
+    "FLOXANT Düsseldorf hilft bei Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung. Cleaning service, moving help und Anfrage auf Deutsch oder Englisch möglich.",
   alternates: { canonical: "/duesseldorf" },
 };
 
+const duesseldorfLocalSignals = [
+  "Stadtteil oder PLZ reichen für den Start: Altstadt, Bilk, Pempelfort, Oberkassel, Derendorf oder Umgebung.",
+  "Bei Reinigung zählen Objektart, Fläche, Turnus, Zugang und Zeitfenster stärker als ein einzelnes Stichwort.",
+  "Bei Umzug, Entrümpelung und Haushaltsauflösung helfen Fotos, Etage, Laufweg, Haltezone und Termin.",
+  "Solar/PV, Glas und Fassade brauchen Angaben zu Höhe, Dachzugang, Wasseranschluss und Sicherheitsgrenzen.",
+] as const;
+
+const duesseldorfDecisionGuide = [
+  {
+    title: "Reinigung und Gewerbe",
+    text: "Büro, Praxis, Kanzlei, Treppenhaus, Ladenfläche, Glas, Fassade oder Unterhalt mit Objektangaben prüfen.",
+    href: "/duesseldorf/reinigung",
+    cta: "Reinigung öffnen",
+  },
+  {
+    title: "Solar/PV und Außenflächen",
+    text: "PV-Anlage, Glas oder Fassade mit Fotos, Zugang, Modulfläche, Höhe und Wasseranschluss einordnen.",
+    href: "/duesseldorf/solarreinigung",
+    cta: "Solarreinigung prüfen",
+  },
+  {
+    title: "Räumung und Entsorgung",
+    text: "Keller, Wohnung, Nachlass, Haushaltsauflösung oder Sperrmüll nach Menge, Material und Zielzustand sortieren.",
+    href: "/duesseldorf/entruempelung",
+    cta: "Räumung öffnen",
+  },
+  {
+    title: "Angebot oder Preis prüfen",
+    text: "Vorhandenes Angebot mit Leistungsumfang, Termin, Zusatzkosten, Fotos und Budget sachlich einordnen.",
+    href: "/angebot-vergleichen-duesseldorf",
+    cta: "Angebot prüfen",
+  },
+] as const;
+
+const duesseldorfTrustProofs = [
+  "Düsseldorf-Anfragen bleiben nach Umzug, Reinigung, Räumung, Entsorgung und Endreinigung getrennt.",
+  "Fotos, Stadtteil, Termin und Objektart helfen, ohne dass sofort eine Beauftragung entsteht.",
+  "FLOXANT nennt Grenzen klar, statt Verfügbarkeit, Preis oder Ergebnis pauschal zu versprechen.",
+] as const;
+
+function buildDuesseldorfHubJsonLd() {
+  const url = `${company.url}/duesseldorf`;
+
+  return [
+    buildWebPageJsonLd({
+      name: "FLOXANT Düsseldorf",
+      description:
+        "FLOXANT Düsseldorf hilft bei Reinigung, Umzug, Räumung, Entrümpelung, Haushaltsauflösung und Angebotsprüfung. Anfrage auf Deutsch oder Englisch möglich.",
+      path: "/duesseldorf",
+      about: [
+        "Reinigung Düsseldorf",
+        "Umzug Düsseldorf",
+        "Entrümpelung Düsseldorf",
+        "Cleaning service Düsseldorf",
+        "Moving help Düsseldorf",
+      ],
+      potentialActions: [
+        {
+          type: "ContactAction",
+          name: "Anfrage auf Deutsch oder Englisch senden",
+          target: "/kontakt#direktanfrage",
+        },
+      ],
+    }),
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "CleaningService"],
+      "@id": `${url}#localbusiness`,
+      name: duesseldorfCompany.name,
+      url,
+      email: duesseldorfCompany.email,
+      telephone: duesseldorfCompany.phoneRaw,
+      priceRange: "nach Anfrage",
+      knowsLanguage: ["de", "en"],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: duesseldorfCompany.streetAddress,
+        postalCode: duesseldorfCompany.postalCode,
+        addressLocality: duesseldorfCompany.city,
+        addressCountry: duesseldorfCompany.countryCode,
+      },
+      areaServed: [
+        { "@type": "City", name: "Düsseldorf" },
+        { "@type": "AdministrativeArea", name: "Düsseldorf und Umgebung" },
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: duesseldorfCompany.phoneRaw,
+        email: duesseldorfCompany.email,
+        contactType: "customer service",
+        availableLanguage: ["de", "en"],
+      },
+    },
+    buildBreadcrumbJsonLd([
+      { name: "Startseite", item: "/" },
+      { name: "Düsseldorf", item: "/duesseldorf" },
+    ]),
+  ];
+}
+
 export default function DuesseldorfHubPage() {
+  const jsonLd = buildDuesseldorfHubJsonLd();
+
   return (
     <main className="overflow-hidden bg-white text-slate-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="bg-slate-950 px-5 py-16 text-white sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-black uppercase tracking-normal text-cyan-200">
@@ -107,6 +220,40 @@ export default function DuesseldorfHubPage() {
           </div>
         </div>
       </section>
+
+      <LocalIntentBlock
+        regionLabel="Düsseldorf lokal"
+        title="Stadtteil, Objekt und Zielzustand direkt mitschicken."
+        intro="Düsseldorf-Anfragen werden klarer, wenn Stadtteil, Zugang, Objektart und Terminfenster früh sichtbar sind. So landet die Anfrage schneller beim passenden Leistungsweg."
+        signals={duesseldorfLocalSignals}
+        links={[
+          { href: "/duesseldorf/reinigung", label: "Reinigung" },
+          { href: "/duesseldorf/solarreinigung", label: "Solar/PV" },
+          { href: "/duesseldorf/entruempelung", label: "Räumung" },
+        ]}
+      />
+
+      <InternationalCustomerHint
+        cityLabel="Düsseldorf"
+        serviceLabel="Reinigung, Umzug, Räumung oder Solar/PV in Düsseldorf"
+        tags={["Cleaning service", "Moving help", "Office cleaning", "House clearance", "Solar panel cleaning"]}
+        primaryHref="/kontakt#direktanfrage"
+        photoHref="/buchung#buchungssystem"
+      />
+
+      <ServiceDecisionGuide
+        eyebrow="Düsseldorf-Service wählen"
+        title="Nicht sicher, welche Leistung passt?"
+        intro="Diese vier Wege decken die meisten lokalen Such- und Anfrageabsichten ab, ohne dass Sie Fachbegriffe kennen müssen."
+        items={duesseldorfDecisionGuide}
+      />
+
+      <TrustProofSection
+        eyebrow="Vertrauen vor Anfrage"
+        title="Klare Rückmeldung statt schneller Scheinzusage."
+        intro="FLOXANT prüft erst die relevanten Eckdaten und trennt, ob Reinigung, Räumung, Umzug oder Angebotsprüfung der bessere Start ist."
+        proofs={duesseldorfTrustProofs}
+      />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">

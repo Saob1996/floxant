@@ -3,8 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2, ChevronRight, Clock, Shield, Star, Truck, Zap } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { GrowthServiceLandingPage } from "@/components/GrowthServiceLandingPage";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { company } from "@/lib/company";
+import {
+  buildGrowthServiceMetadata,
+  getGrowthServicePageBySlug,
+  growthServiceRootPageSlugs,
+} from "@/lib/growth-service-pages";
 import { generatePageSEO } from "@/lib/seo";
 import { getDictionary } from "@/get-dictionary";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
@@ -32,6 +38,7 @@ export function generateStaticParams() {
     ...dynamicLocalSeoRoutes.map((entry) => ({
       serviceSlug: entry.route.replace(/^\//, ""),
     })),
+    ...growthServiceRootPageSlugs.map((serviceSlug) => ({ serviceSlug })),
     ...DYNAMIC_CORE_SERVICE_PARAMS.map((serviceSlug) => ({ serviceSlug })),
   ];
 }
@@ -370,6 +377,11 @@ export async function generateMetadata({
     return generateLocalSeoMetadata(localSeoRoute);
   }
 
+  const growthServicePage = getGrowthServicePageBySlug(serviceSlug);
+  if (growthServicePage) {
+    return buildGrowthServiceMetadata(growthServicePage);
+  }
+
   if (!isValidServiceSlug(serviceSlug)) {
     notFound();
   }
@@ -387,6 +399,11 @@ export default async function CoreServicePage({ params }: PageProps) {
   const localSeoRoute = getDynamicLocalSeoRoute(serviceSlug);
   if (localSeoRoute) {
     return renderLocalSeoPage(localSeoRoute);
+  }
+
+  const growthServicePage = getGrowthServicePageBySlug(serviceSlug);
+  if (growthServicePage) {
+    return <GrowthServiceLandingPage config={growthServicePage} />;
   }
 
   if (!isValidServiceSlug(serviceSlug)) {

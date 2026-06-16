@@ -19,6 +19,7 @@ type ServiceJsonLdInput = {
   path: string;
   serviceType?: string;
   areaServed?: string[];
+  availableLanguage?: string[];
 };
 
 type WebPageJsonLdInput = {
@@ -127,6 +128,7 @@ export function buildServiceJsonLd({
   path,
   serviceType,
   areaServed = ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
+  availableLanguage = ["de"],
 }: ServiceJsonLdInput) {
   const url = absoluteUrl(path);
 
@@ -149,7 +151,7 @@ export function buildServiceJsonLd({
         "@type": "ContactPoint",
         telephone: company.phoneRaw,
       },
-      availableLanguage: ["de"],
+      availableLanguage,
     },
     provider: {
       "@type": "LocalBusiness",

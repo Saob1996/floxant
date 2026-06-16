@@ -63,9 +63,18 @@ export const company = {
   coreServices: [
     "Umzug",
     "Reinigung",
+    "Solarreinigung",
+    "PV-Anlagen-Reinigung",
+    "Glasreinigung",
+    "Fassadenreinigung",
     "Notfallreinigung",
     "Entrümpelung",
+    "Kellerentrümpelung",
+    "Nachlassauflösung",
     "Büroumzug",
+    "Mini-Umzug",
+    "Express-Umzug",
+    "Möbeltransport",
     "Einlagerung",
     "Akteneinlagerung",
     "Firmenentsorgung",
@@ -73,6 +82,9 @@ export const company = {
     "Übergabereinigung",
     "Endreinigung",
     "Plan-B-Service",
+    "Fairpreis-Check",
+    "Übergabe-Sprint",
+    "Rückfahrt-Radar",
     "Private Client Service",
   ],
 };
@@ -89,4 +101,3 @@ export const duesseldorfCompany = {
   countryCode: "DE",
   url: "https://www.floxant.de/duesseldorf",
 };
-

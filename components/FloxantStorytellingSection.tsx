@@ -383,7 +383,7 @@ export function FloxantStorytellingSection({
               <div className="flox-story-image-card relative min-h-[430px] overflow-hidden rounded-[var(--flox-radius-panel)] bg-slate-950">
                 <Image
                   src={config.image}
-                  alt=""
+                  alt={`${config.badge}: ${config.title}`}
                   fill
                   sizes="(min-width: 1024px) 620px, 100vw"
                   className="object-cover"

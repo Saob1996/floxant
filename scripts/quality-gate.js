@@ -18,6 +18,7 @@ const PSYCHOLOGICAL_CLEANING_PAGES_PATH = path.join(
   "lib",
   "psychological-cleaning-pages.ts",
 );
+const GROWTH_SERVICE_PAGES_PATH = path.join(ROOT, "lib", "growth-service-pages.ts");
 const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
@@ -235,6 +236,21 @@ function loadDynamicBlogRoutes() {
   return routes;
 }
 
+function loadGrowthServiceRoutes() {
+  if (!fs.existsSync(GROWTH_SERVICE_PAGES_PATH)) return [];
+
+  const source = fs.readFileSync(GROWTH_SERVICE_PAGES_PATH, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  return routes;
+}
+
 function discoverRoutes({ includePrivate = false } = {}) {
   const routes = new Set(["/"]);
 
@@ -268,6 +284,10 @@ function discoverRoutes({ includePrivate = false } = {}) {
   }
 
   for (const route of loadDynamicBlogRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
+  for (const route of loadGrowthServiceRoutes()) {
     if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
   }
 

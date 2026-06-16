@@ -47,7 +47,7 @@ export function OrganizationJsonLd() {
         email: company.email,
         contactType: "customer service",
         areaServed: "DE",
-        availableLanguage: ["de"],
+        availableLanguage: ["de", "en"],
       },
     ],
     description:
@@ -226,7 +226,7 @@ export function OrganizationJsonLd() {
     slogan: "Umzug, Reinigung, Entrümpelung, Entsorgung und Angebotsprüfung direkt anfragen.",
     keywords:
       "Umzug Regensburg, Reinigung Regensburg, Büroreinigung Regensburg, Büroreinigung Regensburg Angebot, Büroreinigung Kosten Regensburg, Büro Reinigungskraft Regensburg, Praxisreinigung Regensburg, Arztpraxis Reinigung Regensburg, Praxisreinigung Angebot Regensburg, Reinigung Praxisräume Regensburg, Hotelreinigung Regensburg, Hotel Reinigung Firma Regensburg, Zimmerreinigung Regensburg, Hotel Unterhaltsreinigung Regensburg, Pension Reinigung Regensburg, Boardinghouse Reinigung Regensburg, Fensterreinigung Regensburg, Glasreinigung Regensburg, Baureinigung Regensburg, Bauendreinigung Regensburg, Baufeinreinigung Regensburg, Reinigung nach Renovierung Regensburg, Handwerkerstaub entfernen Regensburg, Teppichreinigung Regensburg, Teppichbodenreinigung Regensburg, Polsterreinigung Regensburg, Sofa reinigen lassen Regensburg, Bürostühle reinigen Regensburg, Treppenhausreinigung Regensburg, Hausverwaltung Reinigung Regensburg, Treppenhausreinigung Kosten Regensburg, WEG Reinigung Regensburg, Unterhaltsreinigung Regensburg, Grundreinigung Regensburg, Wohnung Grundreinigung Regensburg, Büro Grundreinigung Regensburg, Grundreinigung nach Auszug Regensburg, starke Verschmutzung reinigen Regensburg, Bueroreinigung Regensburg Angebot, Reinigungsplan Buero Regensburg, Gewerbereinigung Regensburg, Entrümpelung Regensburg, Angebot anderer Firma prüfen, Firmenreinigung Düsseldorf, Büroreinigung Düsseldorf, Unterhaltsreinigung Düsseldorf, Gebäudereinigung Düsseldorf, Objektreinigung Düsseldorf, Fensterreinigung Düsseldorf, Glasreinigung Düsseldorf, Baureinigung Düsseldorf, Bauendreinigung Düsseldorf, Reinigung nach Renovierung Düsseldorf, Teppichreinigung Düsseldorf, Teppichbodenreinigung Düsseldorf, Polsterreinigung Düsseldorf, Gewerbereinigung Düsseldorf, Hotelreinigung Düsseldorf, Kanzleireinigung Düsseldorf, Praxisreinigung Düsseldorf, IT-Raum Reinigung Düsseldorf, Serverraum Reinigung Düsseldorf, Reinigung Neuss, Reinigung Ratingen, Reinigung Meerbusch, Reinigung Mettmann, Reinigung Duisburg, Angebot prüfen Düsseldorf, FLOXANT Bayern",
-    knowsLanguage: ["de"],
+    knowsLanguage: ["de", "en"],
     potentialAction: [
       {
         "@type": "ContactAction",

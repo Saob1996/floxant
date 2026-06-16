@@ -11,14 +11,17 @@ type Mode = "quick" | "detailed";
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
 const serviceOptions = [
-  "Gewerbereinigung",
-  "Büroreinigung",
-  "Praxisreinigung",
-  "Kanzleireinigung",
-  "Unterhaltsreinigung",
-  "Treppenhausreinigung",
-  "Angebot prüfen lassen",
-  "Noch unklar",
+  { value: "Gewerbereinigung", label: "Gewerbereinigung / Commercial cleaning" },
+  { value: "Büroreinigung", label: "Büroreinigung / Office cleaning" },
+  { value: "Praxisreinigung", label: "Praxisreinigung / Practice cleaning" },
+  { value: "Kanzleireinigung", label: "Kanzleireinigung / Office cleaning" },
+  { value: "Unterhaltsreinigung", label: "Unterhaltsreinigung / Regular cleaning" },
+  { value: "Treppenhausreinigung", label: "Treppenhausreinigung" },
+  { value: "Glasreinigung", label: "Glasreinigung" },
+  { value: "Fassadenreinigung", label: "Fassadenreinigung" },
+  { value: "Solar-/PV-Reinigung", label: "Solar-/PV-Reinigung / Solar panel cleaning" },
+  { value: "Angebot prüfen lassen", label: "Angebot prüfen lassen / Quote check" },
+  { value: "Noch unklar", label: "Noch unklar" },
 ] as const;
 
 const frequencyOptions = [
@@ -195,6 +198,11 @@ export function GewerbereinigungAdsForm() {
         data-service="gewerbereinigung"
         data-source="duesseldorf_gewerbereinigung_ads_form"
       >
+        <p className="rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-bold leading-6 text-blue-900">
+          Anfrage auf Deutsch oder Englisch möglich: office cleaning, commercial cleaning,
+          cleaning quote oder photos welcome reichen für den Start.
+        </p>
+
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Name*">
             <input name="name" autoComplete="name" className="duesseldorf-input" placeholder="Vorname Nachname" />
@@ -217,8 +225,8 @@ export function GewerbereinigungAdsForm() {
             <Field label="Leistung">
               <select name="service" defaultValue="Gewerbereinigung" className="duesseldorf-input">
                 {serviceOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                  <option key={option.value} value={option.value}>
+                    {option.label}
                   </option>
                 ))}
               </select>

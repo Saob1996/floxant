@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { generatePageSEO } from "@/lib/seo";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         lang: "de",
         path: "umzug-regensburg",
         title: resolveField(seoContent?.meta_title, seoFallback?.meta_title, city, "de"),
-        description: resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de"),
+        description: `${resolveField(seoContent?.meta_desc, seoFallback?.meta_desc, city, "de")} Anfrage auf Deutsch oder Englisch möglich.`,
     });
 }
 
@@ -116,6 +117,14 @@ export default async function UmzugRegensburgPage({ params }: PageProps) {
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <InternationalCustomerHint
+                    cityLabel="Regensburg"
+                    serviceLabel="Umzug, Mini-Umzug, Transport oder Übergabe"
+                    tags={["Moving help", "Moving company", "Relocation help", "Small move", "Photos welcome"]}
+                    primaryHref="/buchung?service=umzug&city=regensburg#buchungssystem"
+                    photoHref="/buchung?service=umzug&city=regensburg#buchungssystem"
+                    offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+                />
                 <LocalSeoSearchIntentBridge
                     service="umzug"
                     city={city}

@@ -4,11 +4,18 @@ import { ArrowRight, CheckCircle2, MapPinned, MessageCircle } from "lucide-react
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
+  InternationalCustomerHint,
+  ServiceDecisionGuide,
+  TrustProofSection,
+} from "@/components/conversion";
+import {
   ContactTrustPanel,
   contactEntryPoints,
   googleMapsUrl,
   whatsappUrl,
 } from "@/components/seo/ContactTrustPanel";
+import { SmartBookingWizard } from "@/components/SmartBookingWizard";
+import { getDictionary } from "@/get-dictionary";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -125,13 +132,40 @@ const supportingKnowledgeLinks = [
   },
 ] as const;
 
+const contactDecisionGuide = [
+  {
+    title: "Direkt anfragen",
+    text: "Wenn Service, Ort und kurzer Umfang bekannt sind. Der Wizard fragt nur die wichtigsten Angaben zuerst ab.",
+    href: "#direktanfrage",
+    cta: "Formular öffnen",
+  },
+  {
+    title: "Angebot prüfen lassen",
+    text: "Wenn schon ein PDF, Screenshot, Preis oder fremdes Angebot vorliegt.",
+    href: "/angebot-guenstiger-pruefen#guenstiger-form",
+    cta: "Angebot prüfen",
+  },
+  {
+    title: "Objektbrief senden",
+    text: "Wenn Ziel, Fotos, Zugang, Termin oder Budget noch sortiert werden sollen.",
+    href: "/objektbrief#schnellstart",
+    cta: "Objektbrief öffnen",
+  },
+] as const;
+
+const contactTrustProofs = [
+  "Pflicht für den Start: Name, Kontaktweg, Ort oder Einsatzort, Leistung und kurze Beschreibung.",
+  "Optional hilfreich: Telefon/WhatsApp, Fotos, Termin, Dringlichkeit, Angebot, Budget, Objektart und Umfang.",
+  "FLOXANT meldet sich mit Rückfragen oder realistischer Einschätzung statt mit automatischer Zusage.",
+] as const;
+
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "kontakt",
-    title: "Kontakt Regensburg | Buchung, Standort und Anfrage bei FLOXANT",
+    title: "Kontakt FLOXANT | Anfrage, Booking & Fotos senden",
     description:
-      "FLOXANT Kontakt in Regensburg: Buchung, WhatsApp, Telefon, E-Mail, Standort und klare Kontaktwege für Umzug, Reinigung, Entrümpelung und Büroumzug.",
+      "FLOXANT Kontakt: Buchung, WhatsApp, Telefon, E-Mail, Standort und klare Kontaktwege für Umzug, Reinigung, Entrümpelung und Büroumzug. Deutsch oder Englisch möglich.",
     keywords: [
       "Kontakt Regensburg",
       "Umzug Kontakt Regensburg",
@@ -144,7 +178,9 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function KontaktPage() {
+export default async function KontaktPage() {
+  const dict = await getDictionary("de");
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -197,7 +233,7 @@ export default function KontaktPage() {
               telephone: company.phoneRaw,
               contactType: "customer service",
               areaServed: "DE",
-              availableLanguage: ["de"],
+              availableLanguage: ["de", "en"],
             },
           ],
         },
@@ -396,6 +432,56 @@ export default function KontaktPage() {
       </section>
 
       <ContactTrustPanel compact />
+
+      <InternationalCustomerHint
+        cityLabel="Düsseldorf oder Regensburg"
+        serviceLabel="Umzug, Reinigung, Entrümpelung, Büroumzug oder Angebotsprüfung"
+        tags={["Cleaning service", "Moving help", "Office cleaning", "House clearance", "Quote check"]}
+        primaryHref="#direktanfrage"
+        photoHref="/buchung#buchungssystem"
+      />
+
+      <ServiceDecisionGuide
+        eyebrow="Kontaktweg wählen"
+        title="Schnell zum passenden Startpunkt."
+        intro="Wenn Sie nicht sicher sind, welcher Weg passt, starten Sie direkt mit der kurzen Anfrage. Spezielle Fälle führen zu Angebot oder Objektbrief."
+        items={contactDecisionGuide}
+      />
+
+      <section id="direktanfrage" className="border-y border-slate-200 bg-slate-50/80 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+                Direkte Anfrage
+              </div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+                Name, Kontakt, Ort und kurze Lage reichen für den Start.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-7 text-slate-600 lg:text-right">
+              Wählen Sie Service und Einsatzort. Fotos, Termin, Budget oder Angebot können später ergänzt werden.
+            </p>
+          </div>
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-3 shadow-sm shadow-slate-950/5 sm:p-5">
+            <SmartBookingWizard
+              dict={{
+                common: dict.common,
+                calculator: dict.calculator,
+                booking: dict.booking,
+              }}
+              initialEntry="kontakt_minimal"
+            />
+          </div>
+        </div>
+      </section>
+
+      <TrustProofSection
+        eyebrow="Angaben"
+        title="So bleibt Kontakt einfach und verwertbar."
+        intro="Die Kontaktseite soll keine Hürde sein. Die wichtigsten Daten kommen zuerst, alles andere verbessert nur die Einschätzung."
+        proofs={contactTrustProofs}
+      />
 
       <section className="px-6 pb-12">
         <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[0.88fr_1.12fr]">

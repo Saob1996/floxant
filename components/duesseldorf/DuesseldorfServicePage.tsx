@@ -28,10 +28,17 @@ import {
   getDuesseldorfCleaningInternationalAliases,
   type SearchIntentAliasLanguage,
 } from "@/lib/search-intent-aliases";
+import {
+  InternationalCustomerHint,
+  OfferCheckCTA,
+  RelatedSpecialServices,
+  SignatureServicesGrid,
+} from "@/components/conversion";
 import { DuesseldorfCleaningConversionLift } from "@/components/duesseldorf/DuesseldorfCleaningConversionLift";
 import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
 import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
+import { AiAnswerBlock } from "@/components/ai-answer";
 import { buildFaqJsonLd } from "@/lib/structured-data";
 
 type ServicePageProps = {
@@ -595,6 +602,56 @@ export function DuesseldorfServicePage({
           relatedLinks={visibleLinks}
           offerCheckHref="/angebot-vergleichen-duesseldorf"
           className="pt-6"
+        />
+
+        <InternationalCustomerHint
+          cityLabel="Düsseldorf"
+          serviceLabel={serviceLabel}
+          tags={
+            isCommercialIntent
+              ? ["Office cleaning", "Commercial cleaning", "Cleaning company", "Cleaning service"]
+              : ["Cleaning service", "Apartment cleaning", "End of tenancy cleaning", "Cleaning company"]
+          }
+          primaryHref="/duesseldorf/reinigung#kontakt"
+          photoHref="/duesseldorf/reinigung#kontakt"
+          offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+          className="mt-6 rounded-[0.95rem] border border-slate-200"
+        />
+
+        <AiAnswerBlock
+          eyebrow="Duesseldorf Antwort"
+          title={`${serviceLabel}: was fuer eine schnelle Einschaetzung zaehlt.`}
+          answer="FLOXANT kann Duesseldorfer Reinigungsanfragen besser einordnen, wenn Objekt, Stadtteil, Flaeche, Zustand, Zugang und Fotos frueh sichtbar sind."
+          points={[
+            "Der Stadtteil hilft bei Terminfenster, Anfahrt und realistischen Rueckfragen.",
+            "Fotos zeigen Zustand, Flaeche und besondere Stellen schneller als lange Beschreibungen.",
+            "Vorhandene Angebote koennen nach Umfang, Zusatzpositionen und Annahmen geprueft werden.",
+            "Bei Bueros, Praxen und Gewerbeflaechen zaehlen Turnus, Uhrzeit und Zugang besonders stark.",
+          ]}
+          usefulWhen={["Fotos oder Angebot vorliegen", "Turnus oder Flaeche noch unsicher sind", "ein schneller naechster Schritt gebraucht wird"]}
+          notUsefulWhen={["eine feste Preisgarantie erwartet wird", "ohne Objektangaben sofort gebucht werden soll"]}
+          neededInfo={["Stadtteil", "Flaeche", "Fotos", "Terminfenster"]}
+        />
+
+        <RelatedSpecialServices
+          kind="cleaning"
+          title={`Spezialservices passend zu ${serviceLabel} in Duesseldorf.`}
+          intro="Wenn Glas, Fassade, PV, Event, Uebergabe oder Gewerbeflaechen Teil des Falls sind, helfen diese Spezialwege bei Umfang, Fotos, Zugang und Termin."
+          limit={4}
+          className="mt-6 rounded-[0.95rem] border border-slate-200"
+        />
+
+        <SignatureServicesGrid
+          title="Signature Services fuer Duesseldorfer Reinigungsfaelle."
+          intro="Angebotscheck, Objektbrief, Plan B, PV-Sichtklar und Buero-Startklar machen aus unklaren Reinigungsanfragen einen konkreteren naechsten Schritt."
+          limit={4}
+          className="mt-6 rounded-[0.95rem]"
+        />
+
+        <OfferCheckCTA
+          title={`Reinigungsangebot fuer ${serviceLabel} schon vorhanden?`}
+          text="FLOXANT prueft vorhandene Angebote nach Flaeche, Turnus, Zusatzpositionen, Zugang, Fotos und Zeitfenster. Keine Preisgarantie, keine Anbieter-Diffamierung."
+          className="mt-6 rounded-[0.95rem]"
         />
 
         <section className="grid gap-4 pt-6 lg:grid-cols-[0.78fr_1.22fr]">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, FileSearch, MessageCircle, ShieldCheck } from "lucide-react";
 
+import { InternationalCustomerHint } from "@/components/conversion";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { RegionSelector } from "@/components/RegionSelector";
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     path,
     title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
     description:
-      "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
+      "FLOXANT prüft Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg. Anfrage auf Deutsch oder Englisch möglich.",
     keywords: [
       "FLOXANT",
       "Umzug Düsseldorf",
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
   description:
-    "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
+    "FLOXANT prüft Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg. Anfrage auf Deutsch oder Englisch möglich.",
   alternates: {
     canonical,
   },
@@ -86,7 +87,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
     description:
-      "Umzug, Reinigung, Entrümpelung und Endreinigung in Düsseldorf und Regensburg prüfen lassen.",
+      "Umzug, Reinigung, Solarreinigung, Entrümpelung und Endreinigung in Düsseldorf und Regensburg prüfen lassen.",
     images: ["/assets/floxant-hero-neu-gedacht.png"],
   },
 };
@@ -98,13 +99,15 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT",
         description:
-          "FLOXANT Startseite mit klarer Auswahl zwischen Düsseldorf und Regensburg für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung.",
+          "FLOXANT Startseite mit klarer Auswahl zwischen Düsseldorf und Regensburg für Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung und Endreinigung.",
         path,
         about: [
           "FLOXANT Düsseldorf",
           "Umzug Düsseldorf",
           "Entrümpelung Düsseldorf",
           "Gewerbereinigung Düsseldorf",
+          "Solarreinigung",
+          "PV-Anlagen-Reinigung",
           "Reinigung Düsseldorf",
           "Umzug Regensburg",
           "Reinigung Regensburg",
@@ -120,10 +123,11 @@ function JsonLd() {
       buildServiceJsonLd({
         name: "FLOXANT lokale Dienstleistungen",
         description:
-          "Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung für Düsseldorf und Regensburg mit klarer Anfrageprüfung.",
+          "Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung für Düsseldorf und Regensburg mit klarer Anfrageprüfung.",
         path,
         serviceType: "Lokale Dienstleistungen",
         areaServed: ["Düsseldorf", "Regensburg", "Bayern"],
+        availableLanguage: ["de", "en"],
       }),
       {
         "@type": "Organization",
@@ -155,10 +159,10 @@ const homepageAreas: Array<{
   {
     regionId: "duesseldorf",
     headline: "FLOXANT Düsseldorf",
-    text: "Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung in Düsseldorf mit eigener Stadtteil- und Anfrage-Logik.",
+    text: "Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung und Endreinigung in Düsseldorf mit eigener Stadtteil- und Anfrage-Logik.",
     points: [
       "Umzug und Entrümpelung",
-      "Reinigung und Gewerbereinigung",
+      "Reinigung, Solar, Glas und Fassade",
       "Haushaltsauflösung und Endreinigung",
     ],
   },
@@ -167,7 +171,7 @@ const homepageAreas: Array<{
     headline: "FLOXANT Regensburg",
     text: "Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Vorbereitung einer besenreinen Übergabe. Der Bereich bleibt klar bei Räumung, Wechsel und Übergabe.",
     points: [
-      "Umzug und Entrümpelung",
+      "Mini-Umzug, Transport und Entrümpelung",
       "Haushaltsauflösung",
       "Übergabe und Endreinigung",
     ],
@@ -182,16 +186,21 @@ const homepageFeaturedServices: Array<{
   {
     regionId: "duesseldorf",
     title: "Services in Düsseldorf",
-    text: "Für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Übergabe.",
+    text: "Für Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Übergabe.",
   },
   {
     regionId: "regensburg",
     title: "Umzug und Übergabe in Regensburg",
-    text: "Für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
+    text: "Für Umzug, Mini-Umzug, Möbeltransport, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
   },
 ];
 
 const specialServiceGroups = [
+  {
+    title: "Signature Services",
+    text: "Fairpreis, Objektbrief, Übergabe, Plan B, Rückfahrt und PV-Sichtklar in einem Hub.",
+    href: "/signature-services",
+  },
   {
     title: "Objektbrief",
     text: "Wenn Region, Leistung, Zugang, Fotos oder Zielzustand noch unsortiert sind.",
@@ -203,9 +212,29 @@ const specialServiceGroups = [
     href: "/angebot-guenstiger-pruefen",
   },
   {
+    title: "Fairpreis-Check",
+    text: "Wenn ein Preis zu hoch, zu niedrig oder schwer vergleichbar wirkt.",
+    href: "/fairpreis-check",
+  },
+  {
     title: "Plan B",
     text: "Wenn Termin, Anbieter oder Übergabe kippen und zuerst Machbarkeit geklärt werden muss.",
     href: "/plan-b-service",
+  },
+  {
+    title: "Übergabe-Sprint",
+    text: "Restmengen, Reinigung, Fotos und Schlüsselweg vor Termin priorisieren.",
+    href: "/uebergabe-sprint",
+  },
+  {
+    title: "Rückfahrt-Radar",
+    text: "Flexible Transporte, Beiladung und Leerfahrt sachlich nach Strecke prüfen.",
+    href: "/rueckfahrt-radar",
+  },
+  {
+    title: "PV-Sichtklar",
+    text: "Solar- und PV-Anlagen nach Zugang, Modulfläche, Sicherheit und Fotos prüfen.",
+    href: "/pv-anlagen-reinigung",
   },
 ] as const;
 
@@ -238,8 +267,8 @@ export default function HomePage() {
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
               FLOXANT ordnet Ihre Anfrage zuerst nach Region, Leistung und Ziel. In Düsseldorf
-              und Regensburg können Sie Umzug, Reinigung, Entrümpelung, Haushaltsauflösung,
-              Gewerbereinigung und Endreinigung klar getrennt anfragen.
+              und Regensburg können Sie Umzug, Reinigung, Solarreinigung, Entrümpelung,
+              Haushaltsauflösung, Gewerbereinigung und Endreinigung klar getrennt anfragen.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -268,6 +297,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel="Düsseldorf und Regensburg"
+        serviceLabel="Umzug, Reinigung, Räumung oder Solar/PV"
+        tags={["Cleaning service", "Moving help", "Office cleaning", "House clearance", "Solar panel cleaning"]}
+      />
 
       <SearchDominanceExperience variant="default" className="bg-white" />
       <LocalSeoSignalPanel sectionId="lokale-signale" />
@@ -363,7 +398,8 @@ export default function HomePage() {
               </h2>
               <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
                 Auf der Leistungsseite finden Sie alle Angebote übersichtlich nach Region sortiert:
-                Umzug, Reinigung, Entrümpelung und Übergabe in Düsseldorf und Regensburg.
+                Umzug, Reinigung, Solarreinigung, Spezialreinigung, Transport, Entrümpelung und
+                Übergabe in Düsseldorf und Regensburg.
               </p>
             </div>
             <Link

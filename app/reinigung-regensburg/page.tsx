@@ -5,6 +5,7 @@ import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCle
 import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
 import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
 import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { company } from "@/lib/company";
 import {
@@ -31,9 +32,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return generatePageSEO({
         lang: "de",
         path: "reinigung-regensburg",
-        title: "Reinigung Regensburg | Büro, Grund, Fenster & B2B | FLOXANT",
+        title: "Reinigung Regensburg | Cleaning Service & Büro | FLOXANT",
         description:
-            "Reinigung Regensburg: Büroreinigung, Grundreinigung, Fensterreinigung, Teppich, Bau, Praxis, Hotel und Treppenhaus. Fotos, Fläche und Termin senden.",
+            "Reinigung Regensburg: Büroreinigung, Grundreinigung, Fensterreinigung, Teppich, Bau, Praxis, Hotel und Treppenhaus. Fotos, Fläche und Termin senden. Deutsch oder Englisch möglich.",
         keywords: [
             "Reinigung Regensburg",
             "Reinigungsfirma Regensburg",
@@ -110,6 +111,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     "Oberpfalz",
                     "Bayern",
                 ],
+                availableLanguage: ["de", "en"],
             }),
             buildWebPageJsonLd({
                 name: "Reinigung Regensburg mit Service-Finder und direkter Anfrage",
@@ -299,6 +301,14 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <InternationalCustomerHint
+                    cityLabel="Regensburg"
+                    serviceLabel="Reinigung, Büroreinigung, Grundreinigung oder Übergabereinigung"
+                    tags={["Cleaning service", "Office cleaning", "Apartment cleaning", "End of tenancy cleaning", "Photos welcome"]}
+                    primaryHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
+                    photoHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
+                    offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+                />
                 <RegensburgCleaningServiceHub />
                 <RegensburgCleaningConversionLift />
                 <RegensburgCleaningClickDecisionPanel />

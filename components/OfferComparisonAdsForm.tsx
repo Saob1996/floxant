@@ -33,11 +33,19 @@ const regionOptions = [
 ] as const;
 
 const serviceOptions = [
-  { value: "reinigung", label: "Reinigung" },
-  { value: "umzug", label: "Umzug" },
-  { value: "entsorgung", label: "Entrümpelung" },
-  { value: "nachlass_raeumung", label: "Haushaltsauflösung" },
-  { value: "mieterwechsel_service", label: "Übergabereinigung" },
+  { value: "reinigung", label: "Reinigung / Cleaning service" },
+  { value: "solarreinigung", label: "Solar- / PV-Anlagen-Reinigung / Solar panel cleaning" },
+  { value: "glas_fassade_event", label: "Glas-, Fassaden- oder Eventreinigung / Glass cleaning" },
+  { value: "umzug", label: "Umzug / Moving help" },
+  { value: "mini_express_transport", label: "Mini-Umzug, Express oder Möbeltransport / Small move" },
+  { value: "entsorgung", label: "Entrümpelung / Decluttering" },
+  { value: "keller_nachlass_lager", label: "Keller, Nachlass oder Lagerauflösung / House clearance" },
+  { value: "nachlass_raeumung", label: "Haushaltsauflösung / House clearance" },
+  { value: "mieterwechsel_service", label: "Übergabereinigung / End of tenancy cleaning" },
+  { value: "signature_service", label: "Fairpreis, Plan B oder Übergabe-Sprint / Second opinion" },
+  { value: "objektbrief", label: "Objektbrief für bessere Anbieteranfrage" },
+  { value: "rueckfahrt_radar", label: "Rückfahrt, Beiladung oder Möbeltransport prüfen" },
+  { value: "diskret_service", label: "Diskret-Service für sensible Fälle" },
   { value: "kombination", label: "Kombination / mehrere Leistungen" },
   { value: "b2b_reinigung", label: "Gewerbe-, Büro- oder Praxisreinigung" },
 ] as const;
@@ -46,6 +54,28 @@ const offerStatusOptions = [
   { value: "upload", label: "Ja, ich möchte ein Angebot hochladen" },
   { value: "details", label: "Ja, ich möchte die Eckdaten eintragen" },
   { value: "no_offer", label: "Nein, ich möchte trotzdem eine Einschätzung" },
+] as const;
+
+const urgencyOptions = [
+  { value: "normal", label: "Normal, Termin ist flexibel" },
+  { value: "soon", label: "Bald, innerhalb von 7 Tagen" },
+  { value: "urgent", label: "Dringend, Deadline steht" },
+  { value: "unclear", label: "Erst einordnen, noch kein Termin" },
+] as const;
+
+const preferredContactOptions = [
+  { value: "telefon", label: "Telefon" },
+  { value: "whatsapp", label: "WhatsApp" },
+  { value: "email", label: "E-Mail" },
+] as const;
+
+const propertyTypeOptions = [
+  { value: "wohnung", label: "Wohnung / Haus" },
+  { value: "gewerbe", label: "Büro / Gewerbe / Praxis" },
+  { value: "aussenflaeche", label: "Dach / Fassade / Außenfläche" },
+  { value: "lager_keller", label: "Keller / Lager / Nebenfläche" },
+  { value: "transport", label: "Transportstrecke" },
+  { value: "unklar", label: "Noch unklar" },
 ] as const;
 
 type SubmitState = "idle" | "submitting" | "error";
@@ -164,6 +194,9 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
     const requestedService = String(formData.get("requestedService") || "").trim();
     const offerStatus = String(formData.get("offerStatus") || "").trim();
+    const urgency = String(formData.get("urgency") || "").trim();
+    const preferredContact = String(formData.get("preferredContact") || "").trim();
+    const propertyType = String(formData.get("propertyType") || "").trim();
     const desiredDate = String(formData.get("desiredDate") || "").trim();
     const quotedPrice = String(formData.get("quotedPrice") || "").trim();
     const budget = String(formData.get("budget") || "").trim();
@@ -200,6 +233,12 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       regionOptions.find((item) => item.value === region)?.label || region;
     const offerStatusLabel =
       offerStatusOptions.find((item) => item.value === offerStatus)?.label || offerStatus;
+    const urgencyLabel =
+      urgencyOptions.find((item) => item.value === urgency)?.label || urgency;
+    const preferredContactLabel =
+      preferredContactOptions.find((item) => item.value === preferredContact)?.label || preferredContact;
+    const propertyTypeLabel =
+      propertyTypeOptions.find((item) => item.value === propertyType)?.label || propertyType;
 
     const composedMessage = [
       "Anfrage: FLOXANT Angebotsprüfung.",
@@ -208,6 +247,9 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       cityOrZip ? `Ort/PLZ: ${cityOrZip}` : "",
       selectedServiceLabel ? `Leistungsbereich: ${selectedServiceLabel}` : "",
       offerStatusLabel ? `Ausgangslage: ${offerStatusLabel}` : "",
+      propertyTypeLabel ? `Objekt/Fläche: ${propertyTypeLabel}` : "",
+      urgencyLabel ? `Dringlichkeit: ${urgencyLabel}` : "",
+      preferredContactLabel ? `Kontaktwunsch: ${preferredContactLabel}` : "",
       desiredDate ? `Zeitraum: ${desiredDate}` : "",
       quotedPrice ? `Bisheriger Preis: ${quotedPrice}` : "",
       budget ? `Budget/Preisrahmen: ${budget}` : "",
@@ -226,6 +268,9 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("regionPreset", region || "duesseldorf");
     formData.set("entryPoint", "/angebot-vergleichen-duesseldorf");
     formData.set("offerSourceType", offerStatus);
+    formData.set("urgency", urgency || "normal");
+    formData.set("preferredContact", preferredContact || "telefon");
+    formData.set("propertyType", propertyType || "unklar");
     formData.set("offerCheckIntent", "wirtschaftliche_alternative_pruefen");
     formData.set("message", composedMessage);
     formData.set("timestamp", new Date().toISOString());
@@ -296,13 +341,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
   return (
     <form
       id="angebot-pruefen"
-      className="grid scroll-mt-32 gap-6 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6 lg:p-8"
+      className="grid w-full max-w-full min-w-0 scroll-mt-32 gap-6 overflow-hidden rounded-lg border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] [&_input]:min-w-0 [&_input]:w-full [&_label]:min-w-0 [&_select]:min-w-0 [&_select]:w-full [&_textarea]:min-w-0 [&_textarea]:w-full sm:p-6 lg:p-8"
       onSubmit={handleSubmit}
       data-event="offer_check_started"
       data-source="google_ads_offer_comparison_landingpage"
       aria-label="Kostenlose Angebotsprüfung anfordern"
     >
-      <div>
+      <div className="min-w-0">
         <p className="text-sm font-black uppercase tracking-normal text-blue-700">
           FLOXANT Angebotsprüfung
         </p>
@@ -313,9 +358,13 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. Wir prüfen kostenlos
           und unverbindlich, ob eine passende und wirtschaftlich interessante Alternative möglich ist.
         </p>
+        <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
+          Second opinion auf Deutsch oder Englisch möglich. Begriffe wie cleaning quote,
+          moving quote oder service offer reichen für den Start.
+        </p>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid min-w-0 gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Name*
           <input name="name" autoComplete="name" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100" placeholder="Vorname Nachname" />
@@ -357,9 +406,39 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           </select>
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Objekt / Fläche
+          <select name="propertyType" defaultValue="unklar" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {propertyTypeOptions.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
           Bestehendes Angebot*
           <select name="offerStatus" defaultValue="upload" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
             {offerStatusOptions.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Dringlichkeit
+          <select name="urgency" defaultValue="normal" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {urgencyOptions.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Kontaktwunsch
+          <select name="preferredContact" defaultValue="telefon" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {preferredContactOptions.map((item) => (
               <option key={item.value} value={item.value}>
                 {item.label}
               </option>

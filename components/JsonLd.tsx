@@ -188,7 +188,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           "Reinigung Ratingen",
           ...multilingualAliases.slice(0, 18),
         ].join(", "),
-        knowsLanguage: ["de"],
+        knowsLanguage: ["de", "en"],
         areaServed: [
           { "@type": "City", name: "Regensburg" },
           { "@type": "AdministrativeArea", name: "Landkreis Regensburg" },
@@ -222,7 +222,7 @@ export function JsonLd({ lang = "de" }: { lang?: string }) {
           telephone: company.phoneRaw,
           contactType: "customer service",
           areaServed: "DE-BY",
-          availableLanguage: ["de"],
+          availableLanguage: ["de", "en"],
         },
         potentialAction: [
           {

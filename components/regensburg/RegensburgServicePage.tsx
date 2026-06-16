@@ -11,6 +11,13 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import {
+  InternationalCustomerHint,
+  OfferCheckCTA,
+  RelatedSpecialServices,
+  SignatureServicesGrid,
+} from "@/components/conversion";
+import { AiAnswerBlock } from "@/components/ai-answer";
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
 import {
   floxantCategoryLabels,
@@ -73,6 +80,15 @@ function JsonLd({ config, whatsappHref }: { config: RegensburgServicePageConfig;
         provider: { "@id": `${company.url}/regensburg#localbusiness` },
         areaServed: "Regensburg und Umgebung",
         url: canonical,
+        availableChannel: {
+          "@type": "ServiceChannel",
+          serviceUrl: canonical,
+          servicePhone: {
+            "@type": "ContactPoint",
+            telephone: company.phoneRaw,
+          },
+          availableLanguage: ["de", "en"],
+        },
       },
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
@@ -176,6 +192,20 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       href: item.href,
     })),
   ];
+  const internationalTags =
+    config.slug === "umzug"
+      ? ["Moving company", "Moving service", "Relocation help", "Moving help"]
+      : config.slug === "entruempelung"
+        ? ["Decluttering", "Junk removal", "House clearance", "Cleaning help"]
+        : config.slug === "haushaltsaufloesung"
+          ? ["House clearance", "Decluttering", "Junk removal", "Moving help"]
+          : ["Cleaning service", "End of tenancy cleaning", "Moving help", "House clearance"];
+  const relatedSpecialKind =
+    config.slug === "umzug"
+      ? "moving"
+      : config.slug === "entruempelung" || config.slug === "haushaltsaufloesung"
+        ? "clearance"
+        : "cleaning";
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
@@ -302,6 +332,15 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
         </div>
       </section>
 
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel={config.serviceType}
+        tags={internationalTags}
+        primaryHref={bookingHref}
+        photoHref={bookingHref}
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
+
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <ServicePageCustomerSections
@@ -318,6 +357,39 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           />
         </div>
       </section>
+
+      <AiAnswerBlock
+        eyebrow="Regensburg Antwort"
+        title={`${config.serviceType}: was fuer eine schnelle Einschaetzung zaehlt.`}
+        answer="FLOXANT kann lokale Regensburg-Anfragen besser einordnen, wenn Ort, Termin, Umfang, Zugang und Fotos frueh sichtbar sind."
+        points={[
+          "Regensburg, Landkreis und Bayern werden nach Machbarkeit getrennt.",
+          "Fotos reduzieren Rueckfragen zu Zustand, Menge oder Flaeche.",
+          "Vorhandene Angebote koennen praktisch eingeordnet werden.",
+          "Bei Zeitdruck ist Plan B oft wichtiger als ein reiner Preisvergleich.",
+        ]}
+        usefulWhen={["Termin oder Uebergabe naeherrueckt", "Fotos oder Angebot vorliegen", "Serviceumfang noch nicht sauber beschrieben ist"]}
+        notUsefulWhen={["eine Rechtsberatung erwartet wird", "ohne Angaben eine feste Zusage erwartet wird"]}
+        neededInfo={["Ort/PLZ", "Termin", "Fotos", "kurze Beschreibung"]}
+      />
+
+      <RelatedSpecialServices
+        kind={relatedSpecialKind}
+        title={`Spezialservices passend zu ${config.serviceType} in Regensburg.`}
+        intro="Wenn Umzug, Reinigung, Raeumung, Uebergabe oder Angebot zusammenhaengen, helfen diese Spezialseiten beim naechsten sinnvollen Schritt."
+        limit={4}
+      />
+
+      <SignatureServicesGrid
+        title="Signature Services fuer Regensburger Sonderfaelle."
+        intro="Objektbrief, Uebergabeakte, Plan B, Fairpreis-Check und Rueckfahrt helfen, wenn die Anfrage mehr Abstimmung braucht als ein Standardformular."
+        limit={4}
+      />
+
+      <OfferCheckCTA
+        title={`Angebot fuer ${config.serviceType} schon vorhanden?`}
+        text="FLOXANT prueft vorhandene Angebote nach Umfang, Fotos, Termin, Zugang, Zusatzpositionen und realistischen Grenzen. Keine Preisgarantie, keine Anbieter-Diffamierung."
+      />
 
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">

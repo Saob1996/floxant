@@ -80,7 +80,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
 
       {isVisible && (
           <div
-            className="pointer-events-none fixed inset-x-2 bottom-2 z-[100] sm:inset-x-auto sm:right-5 sm:w-[min(30rem,calc(100vw-2.5rem))]"
+            className="pointer-events-none fixed inset-x-2 bottom-2 z-[120] sm:inset-x-auto sm:left-1/2 sm:right-auto sm:w-[min(38rem,calc(100vw-2.5rem))] sm:-translate-x-1/2"
           >
             <div className="pointer-events-auto max-h-[62dvh] overflow-y-auto rounded-lg border border-white/20 bg-[#0b111b] p-3 text-white shadow-[0_18px_54px_rgba(2,6,23,0.38)] ring-1 ring-black/20 sm:max-h-[calc(100dvh-2rem)] sm:p-4">
               {!showSettings ? (

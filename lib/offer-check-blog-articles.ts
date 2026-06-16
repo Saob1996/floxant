@@ -605,6 +605,644 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
     ],
   },
+  {
+    slug: "gewerbereinigung-angebot-vergleichen",
+    category: "Gewerbereinigung",
+    readTime: "8 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Gewerbereinigung Angebot vergleichen: Turnus, Flaeche und Zusatzpositionen richtig lesen",
+    metaTitle: "Gewerbereinigung Angebot vergleichen | FLOXANT",
+    description:
+      "Gewerbereinigung Angebot vergleichen: FLOXANT zeigt, welche Punkte vor einer Zusage bei Flaeche, Turnus, Zugang, Uhrzeit, Sonderflaechen und Zusatzleistungen wichtig sind.",
+    intro:
+      "Bei Gewerbereinigung entscheidet selten nur der Quadratmeterpreis. Wichtig ist, welche Flaechen gemeint sind, wie oft gereinigt wird, wann Zugang moeglich ist und welche Zusatzleistungen separat berechnet werden. Ein Angebotsvergleich hilft, diese Punkte vor der Zusage sichtbar zu machen.",
+    about: ["Gewerbereinigung", "Angebot vergleichen", "Buero", "Praxis", "Turnus", "Duesseldorf"],
+    keywords: [
+      "Gewerbereinigung Angebot vergleichen",
+      "Reinigungsangebot Gewerbe pruefen",
+      "Bueroreinigung Angebot vergleichen",
+      "Unterhaltsreinigung Angebot pruefen",
+      "FLOXANT Angebotscheck",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Ein Gewerbereinigungsangebot sollte Turnus, Flaechen, Bereiche, Uhrzeiten, Zugang, Material, Sonderleistungen und Ansprechpartner klar nennen. FLOXANT prueft diese Punkte organisatorisch und zeigt, ob eine Anfrage noch zu ungenau ist oder ob eine Alternative sinnvoll angefragt werden kann.",
+          "Das Ziel ist kein pauschales Unterbieten, sondern ein sauberer Vergleich von Leistung, Umfang und Annahmen.",
+        ],
+      },
+      {
+        title: "Warum Turnus und Uhrzeit den Preis veraendern",
+        paragraphs: [
+          "Eine Praxis, ein Buero und eine Gewerbeflaeche koennen gleich gross sein und trotzdem sehr unterschiedliche Anforderungen haben. Entscheidend sind Nutzung, Frequenz, sensible Bereiche, Schliesszeiten, Schluesselregelung und ob die Reinigung vor Oeffnung, nach Feierabend oder im laufenden Betrieb erfolgen soll.",
+        ],
+        bullets: [
+          "Turnus: taeglich, mehrmals pro Woche, woechentlich oder nach Bedarf",
+          "Zeitfenster: vor Oeffnung, nach Feierabend oder flexibel",
+          "Bereiche: Sanitär, Kueche, Boden, Glas, Empfang, Lager",
+          "Zusatzpositionen: Grundreinigung, Fenster, Sondermuell oder Material",
+        ],
+      },
+      {
+        title: "Welche Warnzeichen im Angebot auftauchen",
+        paragraphs: [
+          "Riskant wird ein Angebot, wenn nur eine Gesamtsumme ohne Bereichslogik genannt wird. Auch fehlende Angaben zu Reinigungsintervallen, Ausschluessen, Material, Schluesselzugang oder Sonderflaechen fuehren spaeter leicht zu Rueckfragen.",
+          "FLOXANT ordnet solche Punkte ein, ohne eine andere Firma zu bewerten oder rechtlich zu beurteilen.",
+        ],
+      },
+      {
+        title: "So wird die Anfrage belastbarer",
+        paragraphs: [
+          "Hilfreich sind Grundriss oder Flaechenliste, Fotos, gewuenschter Turnus, Stadtteil, Uhrzeit, Ansprechpartner und vorhandenes Angebot. Je konkreter diese Informationen sind, desto fairer laesst sich ein Preisrahmen einschaetzen.",
+        ],
+      },
+    ],
+    highlightTitle: "Gewerbereinigung sauber vergleichen",
+    highlightPoints: [
+      "Turnus, Flaechen und Zusatzpositionen getrennt pruefen.",
+      "Zugang, Uhrzeit und Verantwortlichkeiten vor der Zusage klaeren.",
+      "Vorhandenes Angebot als Grundlage fuer eine bessere Anfrage nutzen.",
+    ],
+    ctas: [
+      { href: "/angebot-guenstiger-pruefen", label: "Gewerbereinigungsangebot pruefen" },
+      { href: "/angebotscheck", label: "Angebotscheck ansehen" },
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Duesseldorf" },
+    ],
+    faqTitle: "FAQ zum Gewerbereinigungsangebot",
+    faqItems: [
+      {
+        q: "Kann FLOXANT ein Gewerbereinigungsangebot pruefen?",
+        a: "Ja. FLOXANT prueft Turnus, Flaechen, Bereiche, Uhrzeiten, Zugang, Zusatzpositionen und offene Annahmen organisatorisch.",
+      },
+      {
+        q: "Ist ein niedriger Quadratmeterpreis automatisch besser?",
+        a: "Nein. Entscheidend ist, welche Leistung im Preis enthalten ist und ob Turnus, Zustand, Material und Sonderflaechen wirklich beschrieben sind.",
+      },
+      {
+        q: "Welche Angaben helfen fuer eine Alternative?",
+        a: "Flaeche, Fotos, Turnus, Uhrzeit, Stadtteil, Ansprechpartner, vorhandenes Angebot und besondere Bereiche wie Sanitär, Kueche oder Glas.",
+      },
+    ],
+  },
+  {
+    slug: "bueroreinigung-angebot-pruefen-turnus-flaeche",
+    category: "Bueroreinigung",
+    readTime: "8 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Bueroreinigung Angebot pruefen: Turnus, Flaeche und Leistungspaket verstehen",
+    metaTitle: "Bueroreinigung Angebot pruefen | FLOXANT",
+    description:
+      "Bueroreinigung Angebot pruefen: Welche Angaben zu Turnus, Flaeche, Sanitär, Kueche, Muell, Zugang und Uhrzeit vor einer Zusage wichtig sind.",
+    intro:
+      "Bueroreinigung klingt nach Standardleistung, ist aber fast immer objektabhaengig. Kleine Unterschiede bei Turnus, Sanitärbereichen, Kueche, Abfall, Bodenart und Uhrzeit entscheiden, ob ein Angebot wirklich passt.",
+    about: ["Bueroreinigung", "Angebot pruefen", "Turnus", "Flaeche", "Duesseldorf", "Gewerbekunden"],
+    keywords: [
+      "Bueroreinigung Angebot pruefen",
+      "Buero Reinigung Preis vergleichen",
+      "Bueroreinigung Duesseldorf Angebot",
+      "Office cleaning Angebot pruefen",
+      "Reinigungsfirma Buero Angebot",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Bei Bueroreinigung sollte ein Angebot mindestens Flaeche, Raeume, Turnus, Reinigungszeit, Sanitärbereiche, Kueche, Muell, Schluesselzugang und Sonderleistungen nennen. Fehlen diese Punkte, ist ein Preisvergleich nur eingeschraenkt belastbar.",
+        ],
+      },
+      {
+        title: "Welche Leistungen oft verwechselt werden",
+        paragraphs: [
+          "Unterhaltsreinigung, Grundreinigung, Glasreinigung und Sonderreinigung sind nicht dasselbe. Ein Angebot fuer laufende Bueroreinigung enthaelt nicht automatisch Fenster, Teppichgrundreinigung, Kuechengeraete, Polster oder Sondermuell.",
+          "Darum prueft FLOXANT nicht nur den Preis, sondern auch die Leistungsgrenzen.",
+        ],
+        bullets: [
+          "Arbeitsplaetze, Besprechungsraeume und Empfang",
+          "Sanitärbereiche und Verbrauchsmaterial",
+          "Kueche, Teekueche und Muelltrennung",
+          "Boeden, Glas, Teppich oder Sonderflaechen",
+        ],
+      },
+      {
+        title: "Warum Fotos auch bei Bueros helfen",
+        paragraphs: [
+          "Fotos zeigen Bodenart, Raumaufteilung, Zugangswege, Verschmutzungsgrad und besondere Zonen schneller als eine reine Quadratmeterzahl. Dadurch lassen sich Rueckfragen reduzieren und Angebote besser vergleichen.",
+        ],
+      },
+      {
+        title: "Wann eine zweite Einschaetzung sinnvoll ist",
+        paragraphs: [
+          "Eine zweite Einschaetzung ist sinnvoll, wenn der Preis stark abweicht, Positionen unklar sind, der Turnus nicht zur Nutzung passt oder ein laufender Vertrag neu bewertet werden soll.",
+        ],
+      },
+    ],
+    highlightTitle: "Bueroreinigung praktisch einordnen",
+    highlightPoints: [
+      "Turnus, Uhrzeit und Zugang vor dem Preis pruefen.",
+      "Unterhaltsreinigung und Sonderleistungen trennen.",
+      "Flaeche, Fotos und Nutzung als Grundlage fuer eine faire Anfrage nutzen.",
+    ],
+    ctas: [
+      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot Duesseldorf pruefen" },
+      { href: "/duesseldorf/bueroreinigung", label: "Bueroreinigung Duesseldorf" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
+    ],
+    faqTitle: "FAQ zur Bueroreinigung",
+    faqItems: [
+      {
+        q: "Was sollte in einem Bueroreinigungsangebot stehen?",
+        a: "Flaeche, Raeume, Turnus, Uhrzeit, Sanitär, Kueche, Muell, Zugang, Ansprechpartner und klare Sonderleistungen.",
+      },
+      {
+        q: "Kann FLOXANT laufende Reinigungsvertraege pruefen?",
+        a: "FLOXANT kann vorhandene Angaben organisatorisch einordnen und zeigen, welche Punkte fuer eine neue Anfrage oder Anpassung fehlen.",
+      },
+      {
+        q: "Sind Fenster und Teppich automatisch enthalten?",
+        a: "Nein. Solche Leistungen sollten separat genannt werden, damit das Angebot nicht zu allgemein bleibt.",
+      },
+    ],
+  },
+  {
+    slug: "solarreinigung-pv-angebot-pruefen",
+    category: "Solarreinigung",
+    readTime: "8 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Solarreinigung und PV-Reinigung Angebot pruefen: Anlage, Zugang und Wasser realistisch klaeren",
+    metaTitle: "Solarreinigung PV Angebot pruefen | FLOXANT",
+    description:
+      "Solarreinigung Angebot pruefen: Welche Angaben zu PV-Anlage, Dach, Zugang, Wasser, Verschmutzung, Sicherheit und Fotos vor einer Anfrage wichtig sind.",
+    intro:
+      "Bei Solarreinigung und PV-Reinigung ist nicht nur die Modulanzahl wichtig. Dachform, Zugang, Neigung, Wasser, Verschmutzung, Sicherheit und Fotos entscheiden, ob ein Angebot realistisch ist.",
+    about: ["Solarreinigung", "PV Reinigung", "Angebot pruefen", "Dachzugang", "Fotos"],
+    keywords: [
+      "Solarreinigung Angebot pruefen",
+      "PV Reinigung Angebot vergleichen",
+      "Photovoltaik Reinigung Kosten pruefen",
+      "Solaranlage Reinigung Angebot",
+      "FLOXANT Solarreinigung",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Ein Angebot fuer Solarreinigung sollte Anlage, Modulanzahl, Dachzugang, Neigung, Verschmutzung, Wasseranschluss, Sicherheitslage und Terminfenster beruecksichtigen. Ohne diese Angaben bleibt ein Preis schnell zu grob.",
+        ],
+      },
+      {
+        title: "Welche Angaben besonders wichtig sind",
+        paragraphs: [
+          "PV-Reinigung ist objektbezogen. Eine leicht erreichbare Anlage auf flachem Dach ist anders zu bewerten als eine steile Dachflaeche mit schwierigem Zugang. Auch Wasser, Verschattung, Vogelkot, Staub oder landwirtschaftliche Umgebung koennen den Aufwand veraendern.",
+        ],
+        bullets: [
+          "Fotos der Anlage, Dachkante und Zugangswege",
+          "Modulanzahl oder ungefaehre Anlagengroesse",
+          "Dachform, Neigung und Hoehe",
+          "Wasseranschluss, Strom und Parkmoeglichkeit",
+        ],
+      },
+      {
+        title: "Warum ein niedriger Preis nicht immer passt",
+        paragraphs: [
+          "Ein sehr knapper Preis kann plausibel sein, wenn Zugang und Umfang klar sind. Er kann aber riskant werden, wenn Sicherheitsfragen, Wasser oder Verschmutzung nicht beschrieben sind. FLOXANT prueft deshalb, ob die Anfrage genuegend Grundlage fuer ein belastbares Angebot hat.",
+        ],
+      },
+      {
+        title: "Wie FLOXANT eine Anfrage vorbereitet",
+        paragraphs: [
+          "FLOXANT sammelt zuerst die relevanten Eckdaten und ordnet ein, welche Punkte vor einer Zusage fehlen. Daraus kann eine klarere Anfrage fuer Solarreinigung oder PV-Anlagen-Reinigung entstehen.",
+        ],
+      },
+    ],
+    highlightTitle: "PV-Reinigung besser vorbereiten",
+    highlightPoints: [
+      "Anlage, Zugang und Wasser vor dem Preis klaeren.",
+      "Fotos nutzen, um Dachform und Verschmutzung sichtbar zu machen.",
+      "Sicherheitsfragen nicht in einem Pauschalpreis verstecken.",
+    ],
+    ctas: [
+      { href: "/solarreinigung", label: "Solarreinigung ansehen" },
+      { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung pruefen" },
+      { href: "/angebot-guenstiger-pruefen", label: "PV-Angebot pruefen lassen" },
+    ],
+    faqTitle: "FAQ zur Solarreinigung",
+    faqItems: [
+      {
+        q: "Welche Fotos braucht FLOXANT fuer Solarreinigung?",
+        a: "Hilfreich sind Fotos der Anlage, Dachkante, Zugangswege, Verschmutzung, Wasseranschluss und der Umgebung.",
+      },
+      {
+        q: "Reicht die Modulanzahl fuer ein Angebot?",
+        a: "Nicht immer. Dachzugang, Neigung, Hoehe, Wasser und Verschmutzung koennen den Aufwand stark veraendern.",
+      },
+      {
+        q: "Gibt FLOXANT eine Ertragsgarantie?",
+        a: "Nein. FLOXANT prueft Reinigung und Machbarkeit organisatorisch, ohne Ertrags- oder Preisgarantie.",
+      },
+    ],
+  },
+  {
+    slug: "pauschalpreis-oder-aufwand-angebot-pruefen",
+    category: "Preislogik",
+    readTime: "7 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Pauschalpreis oder Aufwand: Wie man Angebote fair prueft",
+    metaTitle: "Pauschalpreis oder Aufwand Angebot pruefen | FLOXANT",
+    description:
+      "Pauschalpreis oder Aufwand? FLOXANT erklaert, wann Angebote belastbar sind und welche Angaben bei Reinigung, Umzug, Entsorgung und Sonderfaellen fehlen koennen.",
+    intro:
+      "Viele Angebote wirken schwer vergleichbar, weil ein Anbieter pauschal kalkuliert und ein anderer nach Aufwand. Beides kann sinnvoll sein. Entscheidend ist, ob Umfang, Grenzen und Annahmen klar sind.",
+    about: ["Pauschalpreis", "Aufwand", "Angebot pruefen", "Preislogik", "FLOXANT"],
+    keywords: [
+      "Pauschalpreis Angebot pruefen",
+      "Angebot nach Aufwand vergleichen",
+      "Preislogik Reinigung Umzug",
+      "Angebot fair vergleichen",
+      "FLOXANT Angebotscheck",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Ein Pauschalpreis ist gut, wenn Umfang, Fotos, Zugang, Termin und Ausschluesse klar sind. Eine Abrechnung nach Aufwand ist gut, wenn die Bedingungen transparent sind. Problematisch wird beides, wenn unklar bleibt, was genau enthalten ist.",
+        ],
+      },
+      {
+        title: "Wann Pauschalpreise stark sind",
+        paragraphs: [
+          "Pauschalen helfen, wenn der Auftrag gut beschrieben ist: Flaeche, Menge, Etage, Fotos, Zustand, Termin und Ziel sind bekannt. Dann kann ein fester Preis Sicherheit geben.",
+          "Ohne klare Angaben wird eine Pauschale dagegen schnell zum Missverstaendnis.",
+        ],
+        bullets: [
+          "Reinigung mit Fotos, Flaeche und Uebergabeziel",
+          "Umzug mit Volumen, Etage und Laufweg",
+          "Entruempelung mit Menge, Material und Zugang",
+          "PV-Reinigung mit Anlage, Dachzugang und Wasser",
+        ],
+      },
+      {
+        title: "Wann Aufwand fairer sein kann",
+        paragraphs: [
+          "Wenn Zustand, Menge oder Zugang unsicher sind, kann ein Aufwandspreis ehrlicher sein. Wichtig ist dann, dass Stundensatz, Teamgroesse, Mindestdauer, Fahrt und Material nachvollziehbar bleiben.",
+        ],
+      },
+      {
+        title: "Wie FLOXANT Angebote einordnet",
+        paragraphs: [
+          "FLOXANT prueft, ob Preisart und Auftrag zusammenpassen. Die Pruefung ersetzt keine Rechtsberatung, hilft aber, offene Punkte vor der Zusage praktisch zu klaeren.",
+        ],
+      },
+    ],
+    highlightTitle: "Preislogik vor der Zusage klaeren",
+    highlightPoints: [
+      "Pauschalpreis und Aufwand nicht nur nach Endsumme vergleichen.",
+      "Ausschluesse, Mindestdauer und Zusatzpositionen sichtbar machen.",
+      "Mit Fotos und Eckdaten die bessere Angebotsform finden.",
+    ],
+    ctas: [
+      { href: "/angebotscheck", label: "Preislogik im Angebotscheck pruefen" },
+      { href: "/anbieter-vergleichen", label: "Anbieter und Angebote vergleichen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Angebot einordnen lassen" },
+    ],
+    faqTitle: "FAQ zu Pauschalpreis und Aufwand",
+    faqItems: [
+      {
+        q: "Ist ein Pauschalpreis immer besser?",
+        a: "Nein. Ein Pauschalpreis ist nur dann stark, wenn Umfang, Fotos, Zugang und Ausschluesse klar sind.",
+      },
+      {
+        q: "Ist Aufwandspreis automatisch riskant?",
+        a: "Nein. Aufwand kann fair sein, wenn Stundensatz, Team, Mindestdauer, Material und Fahrt transparent beschrieben sind.",
+      },
+      {
+        q: "Was prueft FLOXANT?",
+        a: "FLOXANT prueft, ob Preisart, Leistung, Umfang, Termin und offene Annahmen zusammenpassen.",
+      },
+    ],
+  },
+  {
+    slug: "angebot-ohne-besichtigung-riskant",
+    category: "Warnzeichen",
+    readTime: "7 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Angebot ohne Besichtigung: Wann Fotos reichen und wann es riskant wird",
+    metaTitle: "Angebot ohne Besichtigung riskant? | FLOXANT",
+    description:
+      "Angebot ohne Besichtigung: Wann Fotos, Video und klare Angaben reichen und welche Warnzeichen bei Reinigung, Umzug, Entsorgung oder PV-Reinigung wichtig sind.",
+    intro:
+      "Nicht jeder Auftrag braucht eine Besichtigung. Fotos, Video und klare Angaben koennen fuer viele Faelle reichen. Riskant wird es, wenn zentrale Punkte fehlen und trotzdem ein fester Preis erwartet wird.",
+    about: ["Angebot ohne Besichtigung", "Fotos", "Warnzeichen", "Angebotscheck", "Reinigung", "Umzug"],
+    keywords: [
+      "Angebot ohne Besichtigung",
+      "Angebot nur mit Fotos",
+      "Reinigungsangebot ohne Besichtigung",
+      "Umzugsangebot ohne Besichtigung",
+      "Angebot riskant pruefen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Ein Angebot ohne Besichtigung kann funktionieren, wenn Fotos, Masse, Flaechen, Menge, Zugang, Termin und Ziel klar sind. Es wird riskant, wenn diese Informationen fehlen oder der Auftrag viele unbekannte Stellen hat.",
+        ],
+      },
+      {
+        title: "Wann Fotos oft reichen",
+        paragraphs: [
+          "Bei klar begrenzten Auftraegen koennen Fotos viel ersetzen: einzelne Raeume, definierte Flaechen, ueberschaubare Entruempelung, dokumentierte PV-Anlage oder ein gut beschriebenes Buero.",
+          "Wichtig ist, dass Fotos nicht nur schoene Ausschnitte zeigen, sondern auch Problemstellen, Zugang und Menge.",
+        ],
+        bullets: [
+          "Uebersichtsfotos und Detailfotos kombinieren",
+          "Zugang, Etage, Aufzug oder Dachzugang zeigen",
+          "Menge, Verschmutzung oder Sonderbereiche sichtbar machen",
+          "Termin und Ziel der Leistung klar nennen",
+        ],
+      },
+      {
+        title: "Wann eine Besichtigung sinnvoller ist",
+        paragraphs: [
+          "Bei grossen Objekten, unklarer Menge, vielen Nebenflaechen, schwieriger Logistik oder sicherheitsrelevantem Zugang kann eine Besichtigung sinnvoller sein. Auch wenn mehrere Leistungen kombiniert werden, hilft oft ein genauerer Blick.",
+        ],
+      },
+      {
+        title: "Wie FLOXANT damit umgeht",
+        paragraphs: [
+          "FLOXANT prueft zuerst, ob die vorhandenen Informationen fuer eine erste Einschaetzung reichen. Wenn nicht, werden gezielte Rueckfragen gestellt, statt ein zu sicheres Angebot aus zu wenig Daten abzuleiten.",
+        ],
+      },
+    ],
+    highlightTitle: "Fotos richtig nutzen",
+    highlightPoints: [
+      "Fotos koennen eine Besichtigung ersetzen, wenn sie vollstaendig genug sind.",
+      "Problemstellen, Zugang und Menge gehoeren zur Anfrage.",
+      "Bei unklaren Auftraegen lieber Rueckfragen klaeren als blind zusagen.",
+    ],
+    ctas: [
+      { href: "/angebot-guenstiger-pruefen", label: "Angebot mit Fotos pruefen" },
+      { href: "/plattform-auftrag-pruefen", label: "Plattformauftrag einordnen" },
+      { href: "/buchung", label: "Fotos senden und anfragen" },
+    ],
+    faqTitle: "FAQ zum Angebot ohne Besichtigung",
+    faqItems: [
+      {
+        q: "Kann FLOXANT nur anhand von Fotos pruefen?",
+        a: "Oft ja, wenn Fotos, Ort, Termin, Umfang und Zugang ausreichend sichtbar sind. Bei unklaren Faellen bleiben Rueckfragen noetig.",
+      },
+      {
+        q: "Wann ist ein Angebot ohne Besichtigung riskant?",
+        a: "Wenn Menge, Flaeche, Zustand, Zugang oder Ziel nicht klar sind und trotzdem ein fester Preis erwartet wird.",
+      },
+      {
+        q: "Welche Fotos helfen am meisten?",
+        a: "Uebersicht, Details, Zugang, Etage, kritische Stellen und alles, was den Aufwand veraendern kann.",
+      },
+    ],
+  },
+  {
+    slug: "anbieter-hat-abgesagt-was-tun",
+    category: "Plan B",
+    readTime: "7 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Anbieter hat abgesagt: Was tun, wenn Termin oder Uebergabe trotzdem naeher ruecken?",
+    metaTitle: "Anbieter abgesagt was tun? | FLOXANT Plan B",
+    description:
+      "Anbieter hat abgesagt: FLOXANT zeigt, welche Angaben jetzt wichtig sind und wie ein Plan B fuer Reinigung, Umzug, Entruempelung oder Uebergabe vorbereitet wird.",
+    intro:
+      "Wenn ein Anbieter kurz vor Termin absagt, geht es nicht mehr um den perfekten Vergleich. Dann zaehlen Prioritaeten, Fotos, Terminfenster und ein realistischer Plan B.",
+    about: ["Plan B", "Anbieter abgesagt", "Terminnot", "Uebergabe", "Reinigung", "Umzug"],
+    keywords: [
+      "Anbieter hat abgesagt was tun",
+      "Reinigungsfirma abgesagt",
+      "Umzugsfirma abgesagt",
+      "Plan B Reinigung Umzug",
+      "kurzfristig Angebot pruefen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Wenn ein Anbieter abgesagt hat, braucht FLOXANT zuerst Ort, Termin, Fotos, vorhandenes Angebot, bisherigen Umfang und die wichtigste Frist. Daraus laesst sich pruefen, ob ein Plan B realistisch ist oder welche Teilschritte Prioritaet haben.",
+        ],
+      },
+      {
+        title: "Nicht alles gleichzeitig retten",
+        paragraphs: [
+          "Bei Zeitdruck ist die wichtigste Frage: Was muss zwingend bis wann erledigt sein? Manchmal ist Uebergabe wichtiger als Optik, manchmal Transport wichtiger als Reinigung, manchmal Dokumentation wichtiger als ein Komplettpaket.",
+          "Ein guter Plan B sortiert Aufgaben statt nur hektisch einen Ersatzanbieter zu suchen.",
+        ],
+        bullets: [
+          "Fixe Frist oder Uebergabetermin nennen",
+          "Fotos und vorhandenes Angebot senden",
+          "Muss-Leistungen von Wunsch-Leistungen trennen",
+          "Zugang, Schluessel und Ansprechpartner klaeren",
+        ],
+      },
+      {
+        title: "Welche Faelle FLOXANT typischerweise prueft",
+        paragraphs: [
+          "Kurzfristige Reinigung, Umzug, Entruempelung, Entsorgung, Wohnungsuebergabe, Objektvorbereitung und Kombinationen koennen je nach Region und Verfuegbarkeit geprueft werden. Eine Zusage entsteht aber erst nach realer Machbarkeit.",
+        ],
+      },
+      {
+        title: "Warum das keine Garantie ist",
+        paragraphs: [
+          "FLOXANT kann nicht jede Absage auffangen. Die Staerke liegt darin, schnell zu klaeren, welche Informationen fehlen, welche Option plausibel ist und welcher naechste Schritt nicht noch mehr Zeit verliert.",
+        ],
+      },
+    ],
+    highlightTitle: "Plan B strukturiert starten",
+    highlightPoints: [
+      "Frist, Fotos und Muss-Leistungen zuerst klaeren.",
+      "Vorhandenes Angebot oder Absage als Kontext nutzen.",
+      "Realistische Teilschritte besser als leere Sofortversprechen.",
+    ],
+    ctas: [
+      { href: "/buchung", label: "Kurzfristig anfragen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Vorhandenes Angebot mitsenden" },
+      { href: "/plattform-auftrag-pruefen", label: "Auftrag einordnen lassen" },
+    ],
+    faqTitle: "FAQ nach Anbieterabsage",
+    faqItems: [
+      {
+        q: "Kann FLOXANT kurzfristig einspringen?",
+        a: "Moeglich, aber nicht garantiert. Ort, Termin, Umfang, Fotos und Verfuegbarkeit entscheiden.",
+      },
+      {
+        q: "Was soll ich zuerst senden?",
+        a: "Ort, Termin, Fotos, vorhandenes Angebot, bisheriger Umfang und die wichtigste Frist.",
+      },
+      {
+        q: "Kann auch nur ein Teilauftrag helfen?",
+        a: "Ja. Bei Zeitdruck kann ein klarer Teilauftrag sinnvoller sein als ein unrealistisches Komplettpaket.",
+      },
+    ],
+  },
+  {
+    slug: "entruempelungsangebot-pruefen-serioes",
+    category: "Entruempelung",
+    readTime: "8 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Entruempelungsangebot pruefen: Menge, Material und Zugang serioes einschaetzen",
+    metaTitle: "Entruempelungsangebot pruefen | FLOXANT",
+    description:
+      "Entruempelungsangebot pruefen: Welche Angaben zu Menge, Material, Etage, Keller, Garage, Fotos, Entsorgung und Reinigung vor einer Zusage wichtig sind.",
+    intro:
+      "Entruempelungsangebote unterscheiden sich stark, weil Menge, Material, Etage, Laufweg und Entsorgung den Aufwand bestimmen. Wer nur die Endsumme vergleicht, uebersieht schnell wichtige Annahmen.",
+    about: ["Entruempelung", "Angebot pruefen", "Entsorgung", "Keller", "Garage", "Fotos"],
+    keywords: [
+      "Entruempelungsangebot pruefen",
+      "Entruempelung Angebot serioes",
+      "Kellerentruempelung Angebot pruefen",
+      "Wohnungsentruempelung Angebot vergleichen",
+      "Entsorgung Angebot pruefen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Ein Entruempelungsangebot sollte Menge, Material, Zugang, Etage, Laufweg, Parkmoeglichkeit, Entsorgungsart, Fotos und moegliche Reinigung danach beschreiben. Fehlen diese Punkte, ist der Preis schwer einzuordnen.",
+        ],
+      },
+      {
+        title: "Warum Fotos hier besonders wichtig sind",
+        paragraphs: [
+          "Bei Entruempelung ist eine Beschreibung wie Keller voll oder Wohnung leer oft zu ungenau. Fotos zeigen Menge, Material, Sperrigkeit, Laufwege und Sonderfaelle deutlich besser.",
+        ],
+        bullets: [
+          "Gesamtansicht jedes Bereichs",
+          "Detailfotos von schweren oder sperrigen Teilen",
+          "Zugang, Treppen, Aufzug und Laufweg",
+          "Materialien, die separat behandelt werden muessen",
+        ],
+      },
+      {
+        title: "Welche Positionen separat auftauchen koennen",
+        paragraphs: [
+          "Entsorgung, Container, Deponie, Sondermaterial, Demontage, Keller, Dachboden, Garage, Transportwege und Reinigung danach koennen den Preis veraendern. Serioes ist ein Angebot, wenn solche Punkte sichtbar statt versteckt sind.",
+        ],
+      },
+      {
+        title: "Wie FLOXANT eine Alternative prueft",
+        paragraphs: [
+          "FLOXANT ordnet die vorhandenen Angaben ein und fragt gezielt nach, wenn Menge, Material oder Zugang nicht klar sind. Daraus kann eine passendere Anfrage fuer Entruempelung, Entsorgung oder Reinigung entstehen.",
+        ],
+      },
+    ],
+    highlightTitle: "Entruempelung belastbar vergleichen",
+    highlightPoints: [
+      "Menge und Material mit Fotos sichtbar machen.",
+      "Etage, Laufweg und Parkmoeglichkeit nicht vergessen.",
+      "Entsorgung und Reinigung danach separat betrachten.",
+    ],
+    ctas: [
+      { href: "/angebot-guenstiger-pruefen", label: "Entruempelungsangebot pruefen" },
+      { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+      { href: "/duesseldorf/entruempelung", label: "Entruempelung Duesseldorf" },
+    ],
+    faqTitle: "FAQ zum Entruempelungsangebot",
+    faqItems: [
+      {
+        q: "Was macht ein Entruempelungsangebot belastbar?",
+        a: "Klare Angaben zu Menge, Material, Zugang, Etage, Fotos, Entsorgung und moeglicher Reinigung danach.",
+      },
+      {
+        q: "Kann FLOXANT ein vorhandenes Angebot pruefen?",
+        a: "Ja. FLOXANT prueft organisatorisch, welche Annahmen sichtbar sind und welche Punkte vor einer Zusage fehlen.",
+      },
+      {
+        q: "Ist Entsorgung immer enthalten?",
+        a: "Nicht automatisch. Entsorgung, Deponie, Container oder Sondermaterial sollten klar genannt werden.",
+      },
+    ],
+  },
+  {
+    slug: "reinigungsangebot-duesseldorf-pruefen",
+    category: "Duesseldorf",
+    readTime: "8 Min.",
+    date: "16. Juni 2026",
+    datePublished: "2026-06-16",
+    title: "Reinigungsangebot in Duesseldorf pruefen: Stadtteil, Objekt und Fotos richtig nutzen",
+    metaTitle: "Reinigungsangebot Duesseldorf pruefen | FLOXANT",
+    description:
+      "Reinigungsangebot in Duesseldorf pruefen: Welche Angaben zu Stadtteil, Objektart, Flaeche, Zustand, Termin, Fotos und Uebergabe vor einer Zusage helfen.",
+    intro:
+      "In Duesseldorf unterscheiden sich Reinigungsanfragen nach Stadtteil, Objektart, Zugang, Zeitfenster und Nutzung. Ein Angebot laesst sich besser vergleichen, wenn diese Punkte nicht nur nebenbei genannt werden.",
+    about: ["Duesseldorf", "Reinigungsangebot", "Angebot pruefen", "Stadtteil", "Flaeche", "Fotos"],
+    keywords: [
+      "Reinigungsangebot Duesseldorf pruefen",
+      "Reinigung Duesseldorf Angebot vergleichen",
+      "Putzfirma Duesseldorf Angebot",
+      "Gewerbereinigung Duesseldorf Angebot",
+      "FLOXANT Duesseldorf Angebot",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "FLOXANT prueft Reinigungsangebote in Duesseldorf nach Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und Leistungsumfang. Wichtig ist, ob es um private Reinigung, Endreinigung, Gewerbereinigung, Buero, Praxis oder Sonderreinigung geht.",
+        ],
+      },
+      {
+        title: "Warum der Stadtteil helfen kann",
+        paragraphs: [
+          "Der Stadtteil ist kein Qualitaetsversprechen, hilft aber bei Anfahrt, Terminfenster, Zugang und Einordnung. Innenstadt, Gewerbeflaeche, Praxis, Laden oder Wohnung haben unterschiedliche Anforderungen.",
+        ],
+        bullets: [
+          "Stadtteil und genaue Objektart nennen",
+          "Flaeche, Zustand und Fotos mitsenden",
+          "Termin, Zugang und Schluesselregelung klaeren",
+          "Gewuenschte Leistung von Zusatzpositionen trennen",
+        ],
+      },
+      {
+        title: "Was in einem Angebot sichtbar sein sollte",
+        paragraphs: [
+          "Ein gutes Reinigungsangebot nennt nicht nur eine Summe, sondern Leistungsumfang, Bereiche, Zeitfenster, Material, Zusatzpositionen und Annahmen. Bei Uebergaben gehoeren Ziel und Frist dazu.",
+        ],
+      },
+      {
+        title: "Wie FLOXANT die Anfrage weiterfuehrt",
+        paragraphs: [
+          "Wenn ein Angebot oder Fotos vorliegen, kann FLOXANT klaeren, welche Informationen fehlen und ob eine passendere Anfrage ueber die Duesseldorfer Reinigungsseiten sinnvoll ist.",
+        ],
+      },
+    ],
+    highlightTitle: "Duesseldorfer Reinigungsangebote klarer lesen",
+    highlightPoints: [
+      "Stadtteil, Objektart und Fotos als Basis nutzen.",
+      "Private Reinigung, Gewerbe und Sonderreinigung trennen.",
+      "Angebot vor Zusage nach Umfang und offenen Annahmen pruefen.",
+    ],
+    ctas: [
+      { href: "/angebot-vergleichen-duesseldorf", label: "Angebot in Duesseldorf pruefen" },
+      { href: "/duesseldorf/reinigung", label: "Reinigung Duesseldorf" },
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Duesseldorf" },
+    ],
+    faqTitle: "FAQ zum Reinigungsangebot in Duesseldorf",
+    faqItems: [
+      {
+        q: "Kann FLOXANT ein Reinigungsangebot in Duesseldorf pruefen?",
+        a: "Ja. FLOXANT prueft Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und Leistungsumfang organisatorisch.",
+      },
+      {
+        q: "Welche Fotos helfen?",
+        a: "Uebersicht, Boeden, Sanitär, Kueche, Problemstellen, Zugang und alles, was den Aufwand veraendern kann.",
+      },
+      {
+        q: "Ist eine Preisgarantie moeglich?",
+        a: "Nein. FLOXANT gibt keine Preisgarantie, sondern prueft Machbarkeit, Umfang und offene Punkte vor einer moeglichen Anfrage.",
+      },
+    ],
+  },
 ];
 
 export function getOfferCheckBlogArticle(slug: string) {

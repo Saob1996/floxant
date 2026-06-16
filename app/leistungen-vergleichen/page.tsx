@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Compass, ShieldCheck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { OfferCheckInternalLinks, OfferCheckQuickAnswer } from "@/components/offer-check";
 import { ServiceMatchBoard, serviceComparisonRows } from "@/components/seo/ServiceMatchBoard";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
@@ -129,6 +130,10 @@ export default function LeistungenVergleichenPage() {
    </section>
 
    <ServiceMatchBoard compact />
+
+   <OfferCheckQuickAnswer />
+
+   <OfferCheckInternalLinks />
 
    <section className="border-y border-foreground/5 bg-slate-950/55 px-6 py-20">
     <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.86fr_1.14fr]">

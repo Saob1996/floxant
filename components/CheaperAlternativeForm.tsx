@@ -129,7 +129,6 @@ export function CheaperAlternativeForm({
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
-    const desiredDate = String(formData.get("desiredDate") || "").trim();
     const message = String(formData.get("message") || "").trim();
 
     if (name.length < 2) {
@@ -142,10 +141,6 @@ export function CheaperAlternativeForm({
     }
     if (!cityOrZip) {
       setErrorMessage("Bitte Ort oder PLZ angeben.");
-      return;
-    }
-    if (!desiredDate) {
-      setErrorMessage("Bitte Termin oder Zeitraum angeben.");
       return;
     }
     if (message.length < 10) {
@@ -291,7 +286,7 @@ export function CheaperAlternativeForm({
             <input name="cityOrZip" defaultValue={defaultCityOrZip} className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. Regensburg, 93047" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
-            Termin / Zeitraum*
+            Termin / Zeitraum
             <input name="desiredDate" className="min-h-12 rounded-xl border border-slate-200 px-4 text-sm font-medium outline-none transition focus:border-blue-500" placeholder="z. B. nächste Woche oder 15.06." />
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">
@@ -397,7 +392,7 @@ export function CheaperAlternativeForm({
         {submitState === "success" ? (
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm leading-7 text-emerald-800">
             <CheckCircle2 className="mb-2 h-5 w-5" />
-            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Angebot, Preisrahmen, Ort, Termin, Umfang und Verfügbarkeit. Wenn eine wirtschaftlichere oder passendere Alternative möglich ist oder Rückfragen nötig sind, melden wir uns.
+            Danke. Ihre Anfrage ist eingegangen. FLOXANT prüft Angebot, Preisrahmen, Ort, Umfang und Verfügbarkeit. Falls Termin, Fotos oder weitere Angaben fehlen, melden wir uns mit gezielten Rückfragen.
           </div>
         ) : null}
 

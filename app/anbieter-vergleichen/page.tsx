@@ -4,6 +4,11 @@ import { ArrowRight, CheckCircle2, Scale, ShieldCheck } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
+ ServiceClusterLinks,
+ SignatureServicesGrid,
+} from "@/components/conversion";
+import { OfferCheckAuthoritySections } from "@/components/offer-check";
+import {
  ProviderComparisonPanel,
  providerComparisonCriteria,
 } from "@/components/seo/ProviderComparisonPanel";
@@ -14,6 +19,7 @@ import {
  buildFaqJsonLd,
  buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { offerCheckLinks, signatureServiceLinks } from "@/lib/signature-special-services";
 
 const faqItems = [
  {
@@ -84,9 +90,9 @@ export async function generateMetadata(): Promise<Metadata> {
  return generatePageSEO({
   lang: "de",
   path: "anbieter-vergleichen",
-  title: "Umzugsfirma & Reinigungsfirma vergleichen | FLOXANT",
+  title: "Anbieter und Angebote vergleichen | FLOXANT",
   description:
-   "Anbieter für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern vergleichen: Preisrahmen, Ablauf, Kostentreiber und Serviceklarheit einschätzen.",
+   "Angebote fuer Umzug, Reinigung, Entruempelung und Entsorgung vergleichen: Preisrahmen, Umfang, Fotos, Zugang und offene Punkte klar einordnen.",
  });
 }
 
@@ -177,6 +183,8 @@ export default function AnbieterVergleichenPage() {
     </div>
    </section>
 
+   <OfferCheckAuthoritySections />
+
    <section className="px-6 pb-12" aria-labelledby="vergleich-matrix">
     <div className="mx-auto max-w-7xl rounded-[2.35rem] border border-foreground/10 bg-[radial-gradient(circle_at_84%_0%,rgba(245,158,11,0.14),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.052),rgba(255,255,255,0.018))] p-5 shadow-2xl shadow-foreground/10">
      <div className="mb-5 flex flex-col gap-3 rounded-[1.8rem] border border-foreground/10 bg-foreground/5 p-6 md:flex-row md:items-end md:justify-between">
@@ -232,6 +240,21 @@ export default function AnbieterVergleichenPage() {
    </section>
 
    <ProviderComparisonPanel compact />
+
+   <ServiceClusterLinks
+    eyebrow="Anbieter-Vergleich"
+    title="Nicht nur Anbieter vergleichen, sondern Risiko und Umfang klaeren."
+    intro="FLOXANT vermeidet Fake-Vergleichsportal-Sprache. Entscheidend sind Leistung, Termin, Kommunikation, Zusatzpositionen, Fotos, Zugang und die Frage, ob ein Plan B noetig ist."
+    links={offerCheckLinks}
+   />
+
+   <SignatureServicesGrid
+    title="Signature Services fuer sichere Anbieterentscheidungen."
+    intro="Fairpreis-Check, Angebotscheck, Objektbrief und Plan B helfen, wenn ein Anbietervergleich sonst nur beim niedrigsten Preis stehen bleibt."
+    services={signatureServiceLinks.filter((item) =>
+     ["FLOXANT Fairpreis-Check", "FLOXANT Angebotscheck", "FLOXANT Objektbrief", "FLOXANT Plan-B-Service"].includes(item.title),
+    )}
+   />
 
    <section className="border-y border-foreground/5 bg-slate-950/55 px-6 py-20">
     <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.86fr_1.14fr]">

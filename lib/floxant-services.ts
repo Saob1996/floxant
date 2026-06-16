@@ -119,6 +119,30 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1.2,
   },
   {
+    id: "duesseldorf-solarreinigung",
+    title: "Solarreinigung",
+    shortDescription:
+      "PV-Anlagen in Düsseldorf mit Fotos, Dachzugang, Wasseranschluss und Sicherheitsgrenzen sauber vorprüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/solarreinigung",
+    ctaLabel: "PV-Anlage prüfen",
+    googleAdsRelevant: true,
+    priority: 1.25,
+  },
+  {
+    id: "duesseldorf-glasreinigung",
+    title: "Glasreinigung",
+    shortDescription:
+      "Fenster, Glasflächen, Rahmen und Wintergarten nach Zugang, Höhe, Material und Termin realistisch einordnen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/glasreinigung",
+    ctaLabel: "Glas prüfen",
+    googleAdsRelevant: true,
+    priority: 1.3,
+  },
+  {
     id: "duesseldorf-entruempelung",
     title: "Entrümpelung",
     shortDescription:
@@ -129,6 +153,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Entrümpelung prüfen",
     googleAdsRelevant: true,
     priority: 1.4,
+  },
+  {
+    id: "duesseldorf-fassadenreinigung",
+    title: "Fassadenreinigung",
+    shortDescription:
+      "Fassade, Eingangsbereich oder Außenfläche vorsichtig nach Untergrund, Höhe und Zugang prüfen lassen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/fassadenreinigung",
+    ctaLabel: "Fassade prüfen",
+    googleAdsRelevant: true,
+    priority: 1.45,
   },
   {
     id: "duesseldorf-haushaltsaufloesung",
@@ -143,6 +179,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1.6,
   },
   {
+    id: "duesseldorf-eventreinigung",
+    title: "Eventreinigung",
+    shortDescription:
+      "Reinigung vor oder nach Veranstaltung, Showroom-Termin oder Gewerbeevent mit Zeitfenster und Restmengen prüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/eventreinigung",
+    ctaLabel: "Event prüfen",
+    googleAdsRelevant: true,
+    priority: 1.65,
+  },
+  {
     id: "duesseldorf-endreinigung",
     title: "Endreinigung",
     shortDescription:
@@ -153,6 +201,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Endreinigung prüfen",
     googleAdsRelevant: true,
     priority: 1.8,
+  },
+  {
+    id: "duesseldorf-wasserschadenreinigung",
+    title: "Reinigung nach Wasserschaden",
+    shortDescription:
+      "Nach Trocknung oder Freigabe sichtbare Rückstände, Geruch, Übergabeziel und Grenzen zur Sanierung klären.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/reinigung-nach-wasserschaden",
+    ctaLabel: "Fall prüfen",
+    googleAdsRelevant: false,
+    priority: 1.85,
   },
   {
     id: "duesseldorf-bueroreinigung",
@@ -347,6 +407,42 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1.5,
   },
   {
+    id: "duesseldorf-fairpreis-check",
+    title: "FLOXANT Fairpreis-Check",
+    shortDescription:
+      "Vorhandenes Angebot nach Umfang, Zugang, Termin, Zusatzpositionen und realistischer Preislogik einordnen.",
+    region: "duesseldorf",
+    category: "special",
+    href: "/fairpreis-check",
+    ctaLabel: "Fairpreis prüfen",
+    googleAdsRelevant: true,
+    priority: 1.6,
+  },
+  {
+    id: "duesseldorf-plan-b-reinigung",
+    title: "FLOXANT Plan-B-Reinigung",
+    shortDescription:
+      "Wenn Reinigung, Anbieter oder Übergabe kippen: Deadline, Fotos, Zugang und Prioritäten schnell sortieren.",
+    region: "duesseldorf",
+    category: "special",
+    href: "/plan-b-reinigung",
+    ctaLabel: "Plan B prüfen",
+    googleAdsRelevant: true,
+    priority: 1.7,
+  },
+  {
+    id: "duesseldorf-vermieter-ready",
+    title: "FLOXANT Vermieter-Ready-Service",
+    shortDescription:
+      "Wohnung vor Rückgabe, Besichtigung oder Neuvermietung mit Reinigung, Fotos und Restpunkten vorbereiten.",
+    region: "duesseldorf",
+    category: "special",
+    href: "/vermieter-ready-service",
+    ctaLabel: "Wohnung vorbereiten",
+    googleAdsRelevant: false,
+    priority: 1.8,
+  },
+  {
     id: "duesseldorf-gewerbe-ads",
     title: "Schnellanfrage Gewerbereinigung",
     shortDescription:
@@ -431,6 +527,30 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1.6,
   },
   {
+    id: "regensburg-solarreinigung",
+    title: "Solarreinigung",
+    shortDescription:
+      "PV-Anlagen in Regensburg und Umgebung nach Modulfläche, Dachzugang, Wasser und Sicherheit prüfen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/solarreinigung",
+    ctaLabel: "PV-Anlage prüfen",
+    googleAdsRelevant: true,
+    priority: 1.7,
+  },
+  {
+    id: "regensburg-mini-umzug",
+    title: "Mini-Umzug",
+    shortDescription:
+      "WG-Zimmer, kleines Apartment oder wenige Möbel mit Volumen, Laufweg, Etage und Termin klären.",
+    region: "regensburg",
+    category: "normal",
+    href: "/mini-umzug",
+    ctaLabel: "Mini-Umzug prüfen",
+    googleAdsRelevant: false,
+    priority: 1.8,
+  },
+  {
     id: "regensburg-entruempelung",
     title: "Entrümpelung",
     shortDescription:
@@ -443,6 +563,42 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 2,
   },
   {
+    id: "regensburg-express-umzug",
+    title: "Express-Umzug",
+    shortDescription:
+      "Knapper Umzugstermin, Anbieter-Ausfall oder Übergabe unter Zeitdruck mit realistischer Priorisierung.",
+    region: "regensburg",
+    category: "normal",
+    href: "/express-umzug",
+    ctaLabel: "Express prüfen",
+    googleAdsRelevant: false,
+    priority: 2.1,
+  },
+  {
+    id: "regensburg-moebeltransport",
+    title: "Möbeltransport",
+    shortDescription:
+      "Einzelstücke, Kleintransport oder Abholung mit Maßen, Gewicht, Etage und Strecke sauber einschätzen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/moebeltransport",
+    ctaLabel: "Transport prüfen",
+    googleAdsRelevant: false,
+    priority: 2.2,
+  },
+  {
+    id: "regensburg-kellerentruempelung",
+    title: "Kellerentrümpelung",
+    shortDescription:
+      "Keller, Nebenraum oder Müllraum nach Menge, Feuchtigkeit, Zugang und Entsorgung realistisch prüfen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/kellerentruempelung",
+    ctaLabel: "Keller prüfen",
+    googleAdsRelevant: false,
+    priority: 2.4,
+  },
+  {
     id: "regensburg-haushaltsaufloesung",
     title: "Haushaltsauflösung",
     shortDescription:
@@ -453,6 +609,30 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Haushaltsauflösung ansehen",
     googleAdsRelevant: false,
     priority: 3,
+  },
+  {
+    id: "regensburg-nachlassaufloesung",
+    title: "Nachlassauflösung",
+    shortDescription:
+      "Nachlass, Wohnung, Keller und Freigaben ruhig, respektvoll und ohne falschen Zeitdruck sortieren.",
+    region: "regensburg",
+    category: "normal",
+    href: "/nachlassaufloesung",
+    ctaLabel: "Nachlass klären",
+    googleAdsRelevant: false,
+    priority: 3.2,
+  },
+  {
+    id: "regensburg-lageraufloesung",
+    title: "Lagerauflösung",
+    shortDescription:
+      "Lager, Nebenfläche oder Gewerbebestand nach Materialmix, Laufwegen, Freigabe und Übergabeziel klären.",
+    region: "regensburg",
+    category: "normal",
+    href: "/lageraufloesung",
+    ctaLabel: "Lager prüfen",
+    googleAdsRelevant: false,
+    priority: 3.4,
   },
   {
     id: "regensburg-uebergabereinigung",
@@ -657,6 +837,66 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Objektbrief starten",
     googleAdsRelevant: false,
     priority: 1.5,
+  },
+  {
+    id: "regensburg-fairpreis-check",
+    title: "FLOXANT Fairpreis-Check",
+    shortDescription:
+      "Umzug, Räumung, Reinigung oder Kombi-Angebot sachlich nach Umfang, Aufwand und Preislogik prüfen.",
+    region: "regensburg",
+    category: "special",
+    href: "/fairpreis-check",
+    ctaLabel: "Fairpreis prüfen",
+    googleAdsRelevant: false,
+    priority: 1.6,
+  },
+  {
+    id: "regensburg-uebergabe-sprint",
+    title: "FLOXANT Übergabe-Sprint",
+    shortDescription:
+      "Kurz vor Rückgabe oder Besichtigung Restmengen, Reinigung, Fotos und Schlüsselweg priorisieren.",
+    region: "regensburg",
+    category: "special",
+    href: "/uebergabe-sprint",
+    ctaLabel: "Sprint starten",
+    googleAdsRelevant: false,
+    priority: 1.7,
+  },
+  {
+    id: "regensburg-vermieter-ready",
+    title: "FLOXANT Vermieter-Ready-Service",
+    shortDescription:
+      "Wohnung für Rückgabe, Neuvermietung oder Besichtigung praktisch vorbereiten und Restpunkte klären.",
+    region: "regensburg",
+    category: "special",
+    href: "/vermieter-ready-service",
+    ctaLabel: "Vorbereiten",
+    googleAdsRelevant: false,
+    priority: 1.8,
+  },
+  {
+    id: "regensburg-plan-b-reinigung",
+    title: "FLOXANT Plan-B-Reinigung",
+    shortDescription:
+      "Wenn Reinigung, Anbieter oder Übergabe wackeln: Deadline, Zugang und Prioritäten schnell prüfen.",
+    region: "regensburg",
+    category: "special",
+    href: "/plan-b-reinigung",
+    ctaLabel: "Plan B prüfen",
+    googleAdsRelevant: false,
+    priority: 1.9,
+  },
+  {
+    id: "regensburg-rueckfahrt-radar",
+    title: "FLOXANT Rückfahrt-Radar",
+    shortDescription:
+      "Beiladung, Leerfahrt oder flexiblen Möbeltransport nach Strecke, Volumen und Zeitfenster prüfen.",
+    region: "regensburg",
+    category: "special",
+    href: "/rueckfahrt-radar",
+    ctaLabel: "Strecke prüfen",
+    googleAdsRelevant: false,
+    priority: 2.0,
   },
   {
     id: "regensburg-entruempelung-uebergabe",

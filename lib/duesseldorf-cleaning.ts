@@ -1793,7 +1793,7 @@ export function buildDuesseldorfCleaningProviderJsonLd() {
       telephone: DUESSELDORF_CLEANING.phoneRaw,
       contactType: "customer service",
       areaServed: "Düsseldorf",
-      availableLanguage: ["de"],
+      availableLanguage: ["de", "en"],
     },
     areaServed: [
       "Düsseldorf",
@@ -1850,7 +1850,7 @@ export function buildDuesseldorfServiceJsonLd({
         "@type": "ContactPoint",
         telephone: DUESSELDORF_CLEANING.phoneRaw,
       },
-      availableLanguage: ["de"],
+      availableLanguage: ["de", "en"],
     },
   };
 }
@@ -2160,7 +2160,7 @@ export function buildDuesseldorfCleaningSchema({
           "@type": "ContactPoint",
           telephone: DUESSELDORF_CLEANING.phoneRaw,
         },
-        availableLanguage: ["de"],
+        availableLanguage: ["de", "en"],
       },
       offers: offers.slice(0, 10),
     },

@@ -17,6 +17,7 @@ import {
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningConversionLift } from "@/components/RegensburgCleaningConversionLift";
 import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCleaningClickDecisionPanel";
@@ -121,9 +122,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung-regensburg",
-    title: "Gewerbereinigung Regensburg | Büro, Praxis & Hotel | FLOXANT",
+    title: "Gewerbereinigung Regensburg | Commercial Cleaning | FLOXANT",
     description:
-      "Gewerbereinigung Regensburg: Büroreinigung, Praxisreinigung, Hotelreinigung, Fenster, Bau, Teppich, Treppenhaus und IT-Raum nach Prüfung direkt anfragen.",
+      "Gewerbereinigung Regensburg: Büroreinigung, Praxisreinigung, Hotelreinigung, Fenster, Bau, Teppich, Treppenhaus und IT-Raum nach Prüfung direkt anfragen. Deutsch oder Englisch möglich.",
     keywords: [
       "Gewerbereinigung Regensburg",
       "Büroreinigung Regensburg",
@@ -175,6 +176,7 @@ export default function GewerbereinigungRegensburgPage() {
         serviceType:
           "Gewerbereinigung, Unterhaltsreinigung, Büroreinigung, Praxisreinigung und Objektservice in Regensburg",
         areaServed: ["Regensburg", "Altstadt Regensburg", "Innenstadt Regensburg", "Kumpfmühl", "Galgenberg", "Gewerbepark Regensburg", "Neutraubling", "Barbing", "Lappersdorf", "Wenzenbach"],
+        availableLanguage: ["de", "en"],
       }),
       buildWebPageJsonLd({
         name: "Gewerbereinigung in Regensburg für Büro, Praxis und Objektbetrieb",
@@ -364,6 +366,15 @@ export default function GewerbereinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel="Regensburg"
+        serviceLabel="Gewerbereinigung, Büroreinigung, Praxisreinigung oder Hotelreinigung"
+        tags={["Commercial cleaning", "Office cleaning", "Cleaning service", "Cleaning quote", "Photos welcome"]}
+        primaryHref="#kontaktformular"
+        photoHref="#kontaktformular"
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
 
       <RegensburgCleaningServiceHub />
       <RegensburgCleaningConversionLift />

@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 
 import { DuesseldorfB2BCleaningForm } from "@/components/DuesseldorfB2BCleaningForm";
+import { InternationalCustomerHint } from "@/components/conversion";
 import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
 import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import {
@@ -61,9 +62,9 @@ function htmlLangForAlias(language: SearchIntentAliasLanguage) {
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: pagePath,
-    title: "B2B Büroreinigung Düsseldorf | Firma & Praxis prüfen",
+    title: "B2B Büroreinigung Düsseldorf | Office Cleaning prüfen",
   description:
-      "Büroreinigung Düsseldorf für kleine Firmen, Kanzlei, Praxis und Hotelbereich: Raumliste, Turnus, Zeitfenster, Zugang und Fotos direkt senden.",
+      "Büroreinigung Düsseldorf für kleine Firmen, Kanzlei, Praxis und Hotelbereich: Raumliste, Turnus, Zeitfenster, Zugang und Fotos direkt senden. Deutsch oder Englisch möglich.",
   });
 }
 
@@ -494,6 +495,15 @@ export default function DuesseldorfBueroreinigungPage() {
           </div>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel="Düsseldorf"
+        serviceLabel="Büroreinigung, Firmenreinigung, Hotelreinigung oder Gewerbeflächenreinigung"
+        tags={["Office cleaning", "Commercial cleaning", "Cleaning company", "Cleaning quote", "Photos welcome"]}
+        primaryHref="#b2b-reinigung-form"
+        photoHref="#b2b-reinigung-form"
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
 
       <nav
         aria-label="Schnelle Auswahl für Büroreinigung Düsseldorf"

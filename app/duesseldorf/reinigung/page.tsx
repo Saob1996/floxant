@@ -20,6 +20,12 @@ import { DuesseldorfCleaningCalculator } from "@/components/duesseldorf/Duesseld
 import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
 import { DuesseldorfCleaningConversionLift } from "@/components/duesseldorf/DuesseldorfCleaningConversionLift";
 import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
+import {
+  InternationalCustomerHint,
+  OfferCheckCTA,
+  RelatedSpecialServices,
+  SignatureServicesGrid,
+} from "@/components/conversion";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
@@ -29,6 +35,7 @@ import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommen
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
 import { SignatureServices } from "@/components/SignatureServices";
 import { buildFaqJsonLd } from "@/lib/structured-data";
+import { signatureServiceLinks, specialCleaningLinks } from "@/lib/signature-special-services";
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_AI_RECOMMENDATIONS,
@@ -49,9 +56,9 @@ import { getDuesseldorfCleaningInternationalAliases } from "@/lib/search-intent-
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigungsfirma Düsseldorf | Wohnung & Büro prüfen",
+    title: "Reinigungsfirma Düsseldorf | Cleaning Service prüfen",
     description:
-      "Reinigungsfirma in Düsseldorf für Wohnung, Büro, Praxis und Übergabe: Stadtteil, Fläche, Fotos, Termin, Turnus und Budget direkt senden.",
+      "Reinigungsfirma in Düsseldorf für Wohnung, Büro, Praxis und Übergabe: Stadtteil, Fläche, Fotos, Termin, Turnus und Budget direkt senden. Deutsch oder Englisch möglich.",
   });
 }
 
@@ -737,6 +744,15 @@ export default function DuesseldorfReinigungPage() {
           ]}
           offerCheckHref="/angebot-vergleichen-duesseldorf"
           className="pt-8"
+        />
+
+        <InternationalCustomerHint
+          cityLabel="Düsseldorf"
+          serviceLabel="Reinigung für Wohnung, Büro, Praxis, Hotel oder Übergabe"
+          tags={["Cleaning service", "Office cleaning", "Apartment cleaning", "End of tenancy cleaning", "Cleaning quote"]}
+          primaryHref="#kontakt"
+          photoHref={duesseldorfBookingHref}
+          offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
         />
 
         <GscOpportunitySection
@@ -1479,6 +1495,37 @@ export default function DuesseldorfReinigungPage() {
           subtitle="Wohnungsreinigung, Endreinigung und Büroreinigung werden getrennt angefragt. Fotos, Termin und Budget helfen bei einer ehrlichen ersten Einschätzung."
           compact
           source="duesseldorf_cleaning_signature_services"
+        />
+
+        <RelatedSpecialServices
+          title="PV, Glas, Fassade, Treppenhaus und Uebergabe richtig zuordnen."
+          intro="Viele Reinigungsanfragen in Duesseldorf sind keine Standard-Wohnungsreinigung. Der Spezialservice-Cluster fuehrt zu den passenden Einstiegen, bevor Umfang, Zugang und Preisrahmen geklaert werden."
+          services={specialCleaningLinks}
+          className="pt-12"
+        />
+
+        <SignatureServicesGrid
+          title="Fairpreis, Objektbrief und Plan B fuer Reinigungsanfragen nutzen."
+          intro="Wenn bereits ein Angebot vorliegt, die Uebergabe drueckt oder der Umfang noch unklar ist, verbinden diese Services die lokale Reinigungsanfrage mit klarer Entscheidungslogik."
+          services={signatureServiceLinks.filter((item) =>
+            [
+              "FLOXANT Fairpreis-Check",
+              "FLOXANT Angebotscheck",
+              "FLOXANT Objektbrief",
+              "FLOXANT Uebergabeakte",
+              "FLOXANT Plan-B-Service",
+              "FLOXANT PV-Sichtklar-Service",
+              "FLOXANT Vermieter-Ready-Service",
+              "FLOXANT Buero-Startklar-Service",
+            ].includes(item.title),
+          )}
+          className="pt-12"
+        />
+
+        <OfferCheckCTA
+          title="Reinigungsangebot vor der Zusage einordnen lassen."
+          text="Schicken Sie Preis, Umfang, Fotos und Termin. FLOXANT prueft, ob der Preisrahmen, die Leistung und die Erwartung zusammenpassen."
+          className="pt-12"
         />
 
         <PublicAuthorityModules

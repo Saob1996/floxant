@@ -21,12 +21,14 @@ const legalLinks = [
 
 const authorityLinks = [
   { href: "/rechner", label: "Rechner" },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen" },
   { href: "/umzug", label: "Umzug" },
   { href: "/reinigung", label: "Reinigung" },
   { href: "/entruempelung", label: "Entrümpelung" },
   { href: "/bueroumzug", label: "Büroumzug" },
   { href: "/firmenentsorgung", label: "Firmenentsorgung" },
   { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
+  { href: "/signature-services", label: "Signature Services" },
   { href: "/empfehlen", label: "Empfehlen" },
   { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
   { href: "/wohnung-wieder-vermietbar", label: "Wieder vermietbar" },

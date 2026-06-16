@@ -28,36 +28,46 @@ const regionOptions = {
     label: "Düsseldorf",
     text: "Reinigung für Büro, Praxis, Gewerbefläche, Wohnung und Übergabe.",
     services: [
-      "Gewerbereinigung",
-      "Büroreinigung",
+      "Gewerbereinigung / Commercial cleaning",
+      "Büroreinigung / Office cleaning",
       "Praxisreinigung",
       "Treppenhausreinigung",
       "Endreinigung",
-      "Angebot prüfen lassen",
+      "Solar- / PV-Reinigung",
+      "Glas- oder Fassadenreinigung",
+      "Büro startklar machen",
+      "Angebot prüfen lassen / Quote check",
     ],
     goals: [
       "Laufende Reinigung sauber starten",
       "Übergabe oder Auszug vorbereiten",
       "Kurzfristige Machbarkeit klären",
       "Vorhandenes Angebot einordnen",
+      "PV, Glas oder Fassade sicher einschätzen",
+      "Büro, Praxis oder Gewerbefläche startklar machen",
     ],
   },
   regensburg: {
     label: "Regensburg",
     text: "Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
     services: [
-      "Umzug",
-      "Entrümpelung",
-      "Haushaltsauflösung",
-      "Endreinigung",
+      "Umzug / Moving help",
+      "Entrümpelung / Decluttering",
+      "Haushaltsauflösung / House clearance",
+      "Endreinigung / End of tenancy cleaning",
       "Übergabevorbereitung",
       "Umzug + Reinigung",
+      "Mini-Umzug / Möbeltransport",
+      "Keller- oder Nachlassauflösung",
+      "Rückfahrt / Beiladung",
     ],
     goals: [
       "Wohnungswechsel vorbereiten",
       "Räumung und Entsorgung klären",
       "Übergabe besenrein vorbereiten",
       "Kombination aus Leistung und Reinigung planen",
+      "Anbieter ist ausgefallen oder reagiert nicht",
+      "Nachlass, Keller oder Übergabe diskret sortieren",
     ],
   },
 } as const;
@@ -79,19 +89,32 @@ const urgencyOptions = [
 const serviceLinks: Record<RegionKey, Record<string, string>> = {
   duesseldorf: {
     Gewerbereinigung: "/duesseldorf/gewerbereinigung",
+    "Gewerbereinigung / Commercial cleaning": "/duesseldorf/gewerbereinigung",
     Büroreinigung: "/duesseldorf/bueroreinigung",
+    "Büroreinigung / Office cleaning": "/duesseldorf/bueroreinigung",
     Praxisreinigung: "/duesseldorf/praxisreinigung",
     Treppenhausreinigung: "/duesseldorf/treppenhausreinigung",
     Endreinigung: "/duesseldorf/endreinigung",
+    "Solar- / PV-Reinigung": "/duesseldorf/solarreinigung",
+    "Glas- oder Fassadenreinigung": "/spezialreinigung",
+    "Büro startklar machen": "/duesseldorf/bueroreinigung",
     "Angebot prüfen lassen": "/angebot-vergleichen-duesseldorf",
+    "Angebot prüfen lassen / Quote check": "/angebot-vergleichen-duesseldorf",
   },
   regensburg: {
     Umzug: "/regensburg/umzug",
+    "Umzug / Moving help": "/regensburg/umzug",
     Entrümpelung: "/regensburg/entruempelung",
+    "Entrümpelung / Decluttering": "/regensburg/entruempelung",
     Haushaltsauflösung: "/regensburg/haushaltsaufloesung",
+    "Haushaltsauflösung / House clearance": "/regensburg/haushaltsaufloesung",
     Endreinigung: "/regensburg/endreinigung",
+    "Endreinigung / End of tenancy cleaning": "/regensburg/endreinigung",
     Übergabevorbereitung: "/regensburg/uebergabereinigung",
     "Umzug + Reinigung": "/regensburg/umzug-reinigung",
+    "Mini-Umzug / Möbeltransport": "/mini-umzug",
+    "Keller- oder Nachlassauflösung": "/nachlassaufloesung",
+    "Rückfahrt / Beiladung": "/rueckfahrt-boerse",
   },
 };
 
@@ -272,6 +295,10 @@ export function FloxantObjectBriefBuilder() {
             Sie müssen keine perfekte Beschreibung vorbereiten. Wählen Sie Region, Leistung,
             Terminlage und Zugang aus, ergänzen Sie Ort, Fotos oder Budgetrahmen und senden Sie
             daraus eine klare WhatsApp-Anfrage.
+          </p>
+          <p className="mt-2 text-sm font-black leading-6 text-blue-700">
+            Der Objektbrief funktioniert auch mit kurzen englischen Stichworten wie cleaning service,
+            moving help, house clearance oder quote check.
           </p>
         </div>
 

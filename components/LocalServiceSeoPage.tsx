@@ -14,6 +14,13 @@ import {
 } from "lucide-react";
 
 import { company, duesseldorfCompany } from "@/lib/company";
+import {
+  InternationalCustomerHint,
+  OfferCheckCTA,
+  RelatedSpecialServices,
+  SignatureServicesGrid,
+} from "@/components/conversion";
+import { AiAnswerBlock } from "@/components/ai-answer";
 import type { LocalServiceSeoPageConfig } from "@/lib/local-service-seo-pages";
 import { getServiceVisual } from "@/lib/service-visuals";
 import {
@@ -97,13 +104,13 @@ function JsonLd({ config, whatsappHref }: { config: LocalServiceSeoPageConfig; w
         })),
         availableChannel: {
           "@type": "ServiceChannel",
-          serviceUrl: canonical,
-          servicePhone: {
-            "@type": "ContactPoint",
-            telephone: contact.phoneRaw,
-          },
-          availableLanguage: ["de"],
+        serviceUrl: canonical,
+        servicePhone: {
+          "@type": "ContactPoint",
+          telephone: contact.phoneRaw,
         },
+        availableLanguage: ["de", "en"],
+      },
       },
       buildWebPageJsonLd({
         name: config.headline,
@@ -141,6 +148,19 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
     path: config.path,
     serviceLabel: config.serviceName,
   });
+  const internationalTags =
+    config.serviceName.toLowerCase().includes("umzug")
+      ? ["Moving company", "Moving service", "Relocation help", "Moving help"]
+      : config.serviceName.toLowerCase().includes("haushalts")
+        ? ["House clearance", "Decluttering", "Junk removal", "Cleaning help"]
+        : config.serviceName.toLowerCase().includes("entr")
+          ? ["Decluttering", "Junk removal", "House clearance", "Cleaning help"]
+          : ["Cleaning service", "Office cleaning", "Apartment cleaning", "End of tenancy cleaning"];
+  const relatedSpecialKind = config.serviceName.toLowerCase().includes("umzug")
+    ? "moving"
+    : config.serviceName.toLowerCase().includes("entr") || config.serviceName.toLowerCase().includes("haushalts")
+      ? "clearance"
+      : "cleaning";
 
   return (
     <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
@@ -240,6 +260,15 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </div>
         </div>
       </section>
+
+      <InternationalCustomerHint
+        cityLabel={config.cityName}
+        serviceLabel={config.serviceName}
+        tags={internationalTags}
+        primaryHref={config.bookingHref}
+        photoHref={config.bookingHref}
+        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+      />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -377,6 +406,39 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
           </div>
         </div>
       </section>
+
+      <AiAnswerBlock
+        eyebrow="Lokale Antwort"
+        title={`${config.serviceName} in ${config.cityName}: was vor der Anfrage klar sein sollte.`}
+        answer="Eine lokale Anfrage wird belastbarer, wenn Ort, Objekt, Zugang, Termin, Fotos und ein moeglicher Preisrahmen direkt sichtbar sind."
+        points={[
+          "Stadtteil oder PLZ hilft bei Anfahrt und Zeitfenster.",
+          "Fotos zeigen Zustand, Menge, Flaeche oder Zugang.",
+          "Ein vorhandenes Angebot kann vor der Zusage eingeordnet werden.",
+          "FLOXANT trennt Duesseldorf und Regensburg nach passendem Serviceweg.",
+        ]}
+        usefulWhen={["Ort und Leistung grob klar sind", "Fotos oder Angebotsdaten vorliegen", "eine lokale Rueckmeldung gebraucht wird"]}
+        notUsefulWhen={["eine Rechtsberatung erwartet wird", "ein Festpreis ohne Angaben erwartet wird"]}
+        neededInfo={["Ort/PLZ", "Termin", "Fotos oder Beschreibung", "Kontaktweg"]}
+      />
+
+      <RelatedSpecialServices
+        kind={relatedSpecialKind}
+        title={`Verwandte Spezialservices fuer ${config.serviceName} in ${config.cityName}.`}
+        intro="Wenn der konkrete Fall mehr als eine Standardleistung braucht, helfen diese Spezialwege bei Umfang, Fotos, Termin, Zugang und Zielzustand."
+        limit={4}
+      />
+
+      <SignatureServicesGrid
+        title="Passende FLOXANT Signature Services fuer diese Anfrage."
+        intro="Angebotscheck, Objektbrief, Uebergabe, Plan B oder Rueckfahrt koennen helfen, wenn die lokale Anfrage noch unsicher ist."
+        limit={4}
+      />
+
+      <OfferCheckCTA
+        title={`Angebot fuer ${config.serviceName} schon vorhanden?`}
+        text="FLOXANT prueft Umfang, Preislogik, Fotos, Zusatzpositionen, Termin und offene Risiken sachlich. Keine Preisgarantie, keine Abwertung anderer Anbieter."
+      />
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { PlatformOrderCheckForm } from "@/components/PlatformOrderCheckForm";
+import { OfferCheckInternalLinks, OfferCheckQuickAnswer, OfferCheckScopePanel } from "@/components/offer-check";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -270,6 +271,9 @@ export default function PlattformAuftragPruefenPage() {
           </div>
         </section>
 
+        <OfferCheckQuickAnswer />
+        <OfferCheckScopePanel />
+
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Situation</div>
@@ -292,6 +296,8 @@ export default function PlattformAuftragPruefenPage() {
             </div>
           </div>
         </section>
+
+        <OfferCheckInternalLinks />
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">

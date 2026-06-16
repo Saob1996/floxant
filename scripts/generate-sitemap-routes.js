@@ -14,6 +14,7 @@ const psychologicalCleaningPagesFile = path.join(
   "lib",
   "psychological-cleaning-pages.ts",
 );
+const growthServicePagesFile = path.join(workspaceRoot, "lib", "growth-service-pages.ts");
 const outputFile = path.join(workspaceRoot, "lib", "sitemap-routes.ts");
 
 const pageFileNames = new Set(["page.ts", "page.tsx"]);
@@ -156,11 +157,28 @@ function collectDynamicBlogRoutes() {
   return routes;
 }
 
+function collectGrowthServiceRoutes() {
+  if (!fs.existsSync(growthServicePagesFile)) return [];
+
+  const source = fs.readFileSync(growthServicePagesFile, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    const route = match[1];
+    if (isIndexableRoute(route)) routes.push(route);
+  }
+
+  return routes;
+}
+
 const routes = Array.from(
   new Set([
     ...collectRoutes(appDirectory),
     ...collectDynamicLocalSeoRoutes(),
     ...collectDynamicBlogRoutes(),
+    ...collectGrowthServiceRoutes(),
     ...extraIndexableRoutes,
   ]),
 ).sort((routeA, routeB) => routeA.localeCompare(routeB));

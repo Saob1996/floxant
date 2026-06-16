@@ -11,9 +11,11 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
+  FileSearch,
   MessageSquare,
   MapPin,
   PackageOpen,
+  Route,
   Shield,
   Sparkles,
   Trash2,
@@ -345,7 +347,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     },
     headings: {
       service_selection: "Womit dürfen wir starten?",
-      service_subtitle: "Wählen Sie Ihre Hauptleistung.",
+      service_subtitle: "Wählen Sie Ihre Hauptleistung. Anfrage auf Deutsch oder Englisch möglich.",
       details_prefix: "Angaben zu",
       upgrades_title: "Passende Extras",
       upgrades_subtitle: "Ergänzen Sie nur, was für Ihren Auftrag wirklich relevant ist.",
@@ -356,9 +358,9 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       success_email: "Wir melden uns über {email}",
     },
     services: {
-      umzug: { label: "Umzug", desc: "Wohnungs- und Firmenumzug" },
-      reinigung: { label: "Reinigung", desc: "Objekt, Zustand, Termin und Budget klären" },
-      entsorgung: { label: "Entrümpelung", desc: "Räumung und Entsorgung" },
+      umzug: { label: "Umzug / Moving", desc: "Wohnungs- und Firmenumzug, moving help oder relocation" },
+      reinigung: { label: "Reinigung / Cleaning", desc: "Objekt, Zustand, Termin, cleaning service und Budget klären" },
+      entsorgung: { label: "Entrümpelung / Decluttering", desc: "Räumung, house clearance und Entsorgung" },
     },
     form: {
       start_address: "Startadresse",
@@ -416,6 +418,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
   };
 
   const t = germanizeDeep(dict?.booking || defaultBooking);
+  const withEnglishHint = (label: string, hint: string) =>
+    label.toLowerCase().includes(hint.toLowerCase()) ? label : `${label} / ${hint}`;
 
   const [state, setState] = useState<BookingState>({
     step: 1,
@@ -1182,30 +1186,106 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
       href?: string;
       eyebrow: string;
       accent: string;
+      actionLabel?: string;
     }> = [
       {
         id: "umzug",
-        label: t?.services?.umzug?.label || "Umzug",
-        desc: t?.services?.umzug?.desc || "Wohnungs- und Firmenumzug",
+        label: withEnglishHint(t?.services?.umzug?.label || "Umzug", "Moving"),
+        desc: t?.services?.umzug?.desc || "Wohnungs- und Firmenumzug, moving help oder relocation",
         icon: Box,
         eyebrow: "Umzug",
         accent: "from-blue-600 to-cyan-500",
       },
       {
         id: "reinigung",
-        label: t?.services?.reinigung?.label || "Reinigung",
-        desc: t?.services?.reinigung?.desc || "Wohnung, Endreinigung oder Objekt sauber einordnen",
+        label: withEnglishHint(t?.services?.reinigung?.label || "Reinigung", "Cleaning"),
+        desc: t?.services?.reinigung?.desc || "Wohnung, Endreinigung, office cleaning oder Objekt sauber einordnen",
         icon: Sparkles,
         eyebrow: "Reinigung",
         accent: "from-teal-500 to-cyan-500",
       },
       {
         id: "entsorgung",
-        label: t?.services?.entsorgung?.label || "Entrümpelung",
-        desc: t?.services?.entsorgung?.desc || "Räumung und Entsorgung",
+        label: withEnglishHint(t?.services?.entsorgung?.label || "Entrümpelung", "Decluttering"),
+        desc: t?.services?.entsorgung?.desc || "Räumung, house clearance und Entsorgung",
         icon: Trash2,
         eyebrow: "Entrümpelung",
         accent: "from-orange-500 to-amber-400",
+      },
+      {
+        id: "leerfahrt",
+        label: "Rückfahrt / Transport",
+        desc: "Flexible Strecke, moving help oder Beiladung mit Route und Volumen prüfen",
+        icon: Route,
+        eyebrow: "Transport",
+        accent: "from-sky-600 to-blue-500",
+        actionLabel: "Strecke prüfen",
+      },
+      {
+        id: "solarreinigung",
+        label: "Solar / PV cleaning",
+        desc: "PV-Anlage mit Modulfläche, Fotos, Dachzugang und Sicherheit einordnen",
+        icon: Sparkles,
+        isLink: true,
+        href: "/buchung?service=reinigung&addon=solarreinigung&entry=solar#buchungssystem",
+        eyebrow: "Solar/PV",
+        accent: "from-emerald-500 to-cyan-500",
+        actionLabel: "Solar/PV anfragen",
+      },
+      {
+        id: "angebot-pruefen",
+        label: "Angebot prüfen / Quote check",
+        desc: "Vorhandenes Angebot, Screenshot oder Preis mit Umfang und Termin prüfen lassen",
+        icon: FileSearch,
+        isLink: true,
+        href: "/angebot-guenstiger-pruefen#guenstiger-form",
+        eyebrow: "Fairpreis",
+        accent: "from-amber-500 to-orange-400",
+        actionLabel: "Angebot prüfen",
+      },
+      {
+        id: "objektbrief",
+        label: "Objektbrief",
+        desc: "Wenn Leistung, Ziel, Zugang, Fotos oder Budget zuerst sortiert werden sollen",
+        icon: Shield,
+        isLink: true,
+        href: "/objektbrief#schnellstart",
+        eyebrow: "Objekt",
+        accent: "from-slate-700 to-blue-600",
+        actionLabel: "Objektbrief öffnen",
+      },
+      {
+        id: "plan-b",
+        label: "Plan B",
+        desc: "Wenn Termin, Anbieter, Reinigung, Räumung oder Übergabe wackeln",
+        icon: Clock,
+        isLink: true,
+        href: "/plan-b-service#plan-b-form",
+        eyebrow: "Backup",
+        accent: "from-red-500 to-amber-500",
+        actionLabel: "Plan B prüfen",
+      },
+      {
+        id: "uebergabe-sprint",
+        label: "Übergabe-Sprint",
+        desc: "Wenn Reinigung, Restmengen, Fotos oder Schlüsselweg vor einem Termin priorisiert werden müssen",
+        icon: Calendar,
+        isLink: true,
+        href: "/uebergabe-sprint",
+        eyebrow: "Übergabe",
+        accent: "from-violet-600 to-blue-500",
+        actionLabel: "Sprint starten",
+      },
+      {
+        id: "diskret-service",
+        label: "Diskret-Service",
+        desc: "Für Nachlass, Trennung, sensible Räumung oder ruhige Rückruf-Abstimmung",
+        icon: Shield,
+        isLink: true,
+        href: "/private-client-service",
+        eyebrow: "Diskret",
+        accent: "from-slate-800 to-slate-600",
+        actionLabel: "Diskret anfragen",
       },
     ];
 
@@ -1263,7 +1343,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{option.desc}</p>
               <div className="mt-6 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
-                Preisrahmen nennen
+                {option.actionLabel || "Startpunkt öffnen"}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
@@ -1299,7 +1379,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </h3>
               <p className="mt-3 text-sm leading-7 text-slate-600">{option.desc}</p>
               <div className="mt-6 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
-                Startpunkt wählen
+                {option.actionLabel || "Startpunkt wählen"}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </button>
@@ -2038,6 +2118,10 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 <p className="mx-auto max-w-2xl text-slate-500">
                   {t?.headings?.service_subtitle ||
                     "Wählen Sie den passenden Kontaktweg für Ihre Anfrage"}
+                </p>
+                <p className="mx-auto max-w-2xl text-sm font-semibold text-blue-700">
+                  Kurze Anfrage auf Deutsch oder Englisch möglich. Stichworte wie cleaning service,
+                  moving help oder house clearance reichen für den Start.
                 </p>
               </div>
               {renderServiceSelection()}
