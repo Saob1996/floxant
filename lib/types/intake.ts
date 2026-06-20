@@ -82,6 +82,7 @@ export interface IntakeAdminMeta {
  nextAction?: string;
  updatedAt?: string;
  updatedBy?: string;
+ leadQuality?: any;
  docs?: FloxDocument[];
  workOrder?: WorkOrderDetails;
  costLines?: OperationCostLine[];

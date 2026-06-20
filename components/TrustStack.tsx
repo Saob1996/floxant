@@ -1,4 +1,4 @@
-import { Shield, Layers, Award, CheckCircle2, PhoneCall } from "lucide-react";
+import { Shield, Layers, MapPin, CheckCircle2, PhoneCall } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function TrustStack({ className = "" }: { className?: string }) {
@@ -12,7 +12,7 @@ export function TrustStack({ className = "" }: { className?: string }) {
             Warum FLOXANT Vertrauen aufbaut
           </h2>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Klare Preisstruktur, abgesicherte Transporte und regionale Erfahrung in Regensburg und ganz Bayern.
+            Klare Vorpruefung, nachvollziehbare Preislogik und regionale Einordnung in Regensburg und Bayern.
           </p>
         </div>
 
@@ -21,9 +21,9 @@ export function TrustStack({ className = "" }: { className?: string }) {
             <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Shield className="w-8 h-8 text-emerald-600" />
             </div>
-            <h4 className="font-bold text-lg mb-2">Abgesicherter Transport</h4>
+            <h4 className="font-bold text-lg mb-2">Sorgfaeltige Vorabklaerung</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Transporte erfolgen mit gesetzlicher Verkehrshaftung und sorgfältiger Behandlung Ihres Umzugsguts.
+              Transport, Laufwege, Schutzbedarf und besondere Teile werden vor einer Zusage sauber eingeordnet.
             </p>
           </div>
 
@@ -31,9 +31,9 @@ export function TrustStack({ className = "" }: { className?: string }) {
             <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Layers className="w-8 h-8 text-blue-600" />
             </div>
-            <h4 className="font-bold text-lg mb-2">Transparente Festpreise</h4>
+            <h4 className="font-bold text-lg mb-2">Nachvollziehbarer Preisrahmen</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Nach Besichtigung erhalten Sie ein klares Angebot ohne versteckte Kosten und ohne unnötige Nachverhandlungen.
+              Ein Angebot entsteht erst, wenn Umfang, Zugang, Termin und Zusatzpunkte ausreichend geklaert sind.
             </p>
           </div>
 
@@ -41,19 +41,19 @@ export function TrustStack({ className = "" }: { className?: string }) {
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <CheckCircle2 className="w-8 h-8 text-primary" />
             </div>
-            <h4 className="font-bold text-lg mb-2">Verbindliche Planung</h4>
+            <h4 className="font-bold text-lg mb-2">Planung nach Verfuegbarkeit</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Termine, Leistungsumfang und Ablauf werden vorab sauber abgestimmt, damit der Umzug planbar bleibt.
+              Termine, Leistungsumfang und Ablauf werden vorab abgestimmt, bevor ein naechster Schritt bestaetigt wird.
             </p>
           </div>
 
           <div className="bg-card p-6 rounded-3xl border border-border shadow-sm flex flex-col items-center text-center group hover:border-primary/40 transition-colors">
             <div className="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-              <Award className="w-8 h-8 text-amber-600" />
+              <MapPin className="w-8 h-8 text-amber-600" />
             </div>
-            <h4 className="font-bold text-lg mb-2">Regionale Erfahrung</h4>
+            <h4 className="font-bold text-lg mb-2">Regionale Einordnung</h4>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Regensburg, Oberpfalz und Bayern bringen eigene logistische Anforderungen mit sich. Genau darauf ist FLOXANT eingestellt.
+              Regensburg, Oberpfalz und Bayern werden nach Strecke, Zugang, Umfang, Termin und Machbarkeit geprueft.
             </p>
           </div>
         </div>
@@ -62,7 +62,7 @@ export function TrustStack({ className = "" }: { className?: string }) {
           <div className="max-w-2xl">
             <h3 className="text-xl font-bold mb-2">FLOXANT in Kürze</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              FLOXANT unterstützt bei Umzügen, Entrümpelungen und Reinigungen in Bayern mit klarem Ablauf, direkter Kommunikation und lokalem Praxiswissen. Der Fokus liegt auf sauberer Organisation, realistischen Angeboten und stressärmeren Übergaben.
+              FLOXANT unterstuetzt bei Umzuegen, Entruempelungen und Reinigungen in Bayern mit klarem Ablauf, direkter Kommunikation und lokaler Einordnung. Der Fokus liegt auf sauberer Organisation, realistischen Rueckmeldungen und besser vorbereiteten Uebergaben.
             </p>
           </div>
 

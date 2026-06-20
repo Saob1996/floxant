@@ -25,9 +25,9 @@ import {
 
 const path = "/angebot-vergleichen-duesseldorf";
 const canonical = `${company.url}${path}`;
-const title = "Reinigungsangebot Duesseldorf pruefen | FLOXANT";
+const title = "Reinigungsangebot prüfen Düsseldorf | Angebot Reinigung vergleichen | FLOXANT";
 const description =
-  "Reinigungsangebot in Duesseldorf pruefen lassen: FLOXANT klaert Umfang, Turnus, Objektart, Fotos, Stadtteil, Preisrahmen und offene Punkte.";
+  "Angebot für Reinigungsarbeiten in Düsseldorf prüfen: Reinigungsfirma Angebote, Putzfirma Angebot und Gebäudereinigung sachlich vergleichen.";
 const heroVisual = getServiceVisual({
   region: "duesseldorf",
   slug: "angebot-vergleichen",
@@ -86,20 +86,16 @@ const faqItems = [
     a: "Nein. FLOXANT gibt keine Preisgarantie und verspricht kein Unterbieten. Jede Anfrage wird individuell nach Objekt, Umfang, Turnus und Rahmenbedingungen bewertet.",
   },
   {
-    q: "Welche Dateien kann ich hochladen?",
-    a: "Sie können PDF, JPG oder PNG hochladen. Alternativ reichen auch die wichtigsten Eckdaten im Formular oder per WhatsApp.",
+    q: "Welche Leistungen kann FLOXANT prüfen?",
+    a: "Auf dieser Seite geht es um Reinigungsangebote in Düsseldorf: Putzfirma, Wohnungsreinigung, Gewerbereinigung, Büroreinigung, Praxisreinigung, Gebäudereinigung, Unterhaltsreinigung, Treppenhausreinigung, Endreinigung und Grundreinigung.",
   },
   {
-    q: "Welche Leistungen kann FLOXANT prüfen?",
-    a: "Auf dieser Seite geht es um Reinigungsangebote in Düsseldorf: Gewerbereinigung, Büroreinigung, Praxisreinigung, Unterhaltsreinigung, Treppenhausreinigung, Endreinigung, Grundreinigung und ähnliche Reinigungsleistungen.",
+    q: "Kann ich ein Putzfirma- oder Gebäudereinigungsangebot prüfen lassen?",
+    a: "Ja. Senden Sie Angebot, Umfang, Fläche, Stadtteil, Turnus, Fotos und Zusatzpositionen. FLOXANT prüft sachlich, ob die Angaben vergleichbar sind und ob eine passende Alternative möglich ist.",
   },
   {
     q: "Gilt diese Seite nur für Düsseldorf?",
     a: "Ja. Diese Seite ist für Düsseldorfer Reinigungsangebote gedacht. Andere Angebotsprüfungen laufen über die separate allgemeine Angebotsprüfung.",
-  },
-  {
-    q: "Wie schnell erhalte ich Rückmeldung?",
-    a: "Das hängt von Umfang, Unterlagen und Rückfragen ab. FLOXANT meldet sich persönlich, sobald die Anfrage sinnvoll eingeordnet werden kann.",
   },
   {
     q: "Kann ich auch ohne fertiges Angebot anfragen?",
@@ -108,6 +104,8 @@ const faqItems = [
 ];
 
 const offerAreas = [
+  ["Putzfirma", "Für Wohnung, Büro, Praxis, Auszug, Übergabe oder Alltagsreinigung, wenn ein Putzfirma-Angebot schwer vergleichbar ist."],
+  ["Wohnungsreinigung", "Für bewohnte oder leere Wohnungen, Grundreinigung, Reinigung nach Auszug und Vorbereitung vor Wohnungsübergabe."],
   ["Gewerbereinigung", "Für Firmenflächen, Ladenflächen, Gewerbeobjekte, Sanitärbereiche und laufende Reinigungspläne."],
   ["Büroreinigung", "Für Büros, Agenturen, Kanzleien, Küchen, Besprechungsräume und Reinigung nach Feierabend."],
   ["Praxisreinigung", "Für Praxisflächen, Wartebereiche, Nebenräume und allgemeine Flächen ohne pauschale Spezialdesinfektion."],
@@ -198,6 +196,10 @@ function JsonLd() {
           "Reinigungsangebot Düsseldorf prüfen lassen",
           "FLOXANT Angebotsprüfung Düsseldorf",
           "Reinigungsangebot prüfen",
+          "Angebot für Reinigungsarbeiten",
+          "Reinigungsfirma Angebote",
+          "Putzfirma Angebot vergleichen",
+          "Gebäudereinigung Angebot prüfen",
           "Gewerbereinigung Düsseldorf Angebot",
           "Büroreinigung Düsseldorf Angebot",
           "Praxisreinigung Düsseldorf Angebot",
@@ -550,7 +552,15 @@ export default function AngebotVergleichenDuesseldorfPage() {
             <Phone className="h-4 w-4" />
             {duesseldorfCompany.phone}
           </a>
-            <Link href="/duesseldorf/gewerbereinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
+          <Link href="/duesseldorf/putzfirma" className="inline-flex items-center gap-2 hover:text-blue-700">
+            <ClipboardCheck className="h-4 w-4" />
+            Putzfirma Düsseldorf
+          </Link>
+          <Link href="/duesseldorf/wohnungsreinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
+            <ClipboardCheck className="h-4 w-4" />
+            Wohnungsreinigung Düsseldorf
+          </Link>
+          <Link href="/duesseldorf/gewerbereinigung" className="inline-flex items-center gap-2 hover:text-blue-700">
             <ClipboardCheck className="h-4 w-4" />
             Gewerbereinigung Düsseldorf
           </Link>

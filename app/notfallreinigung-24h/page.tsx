@@ -96,17 +96,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Notfallreinigung 24h | schnelle Reinigung anfragen",
     description:
       "Notfallreinigung 24h anfragen: Wohnung, Buero, Gewerbe, Veranstaltung oder Uebergabe. Fotos, Ort, Termin und Zugang senden. FLOXANT prueft schnell.",
-    keywords: [
-      "Notfallreinigung",
-      "Notfallreinigung 24h",
-      "Reinigung Notfall",
-      "schnelle Reinigung",
-      "Reinigung kurzfristig",
-      "Reinigung nach Party",
-      "Reinigung vor Uebergabe",
-      "Bueroreinigung kurzfristig",
-      "Reinigungsfirma Notfall",
-    ],
   });
 }
 

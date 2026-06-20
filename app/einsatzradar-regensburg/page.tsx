@@ -31,16 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "FLOXANT Einsatzradar Regensburg – Umzug, Reinigung & Entrümpelung",
     description:
       "Anonymisierte Einsatzarten und Servicebereiche von FLOXANT im Raum Regensburg: Umzug, Reinigung, Entrümpelung, Transport, Übergabe, Rückfahrt und Objektvorbereitung.",
-    keywords: [
-      "FLOXANT Regensburg Einsaetze",
-      "Umzug Reinigung Entruempelung Regensburg",
-      "Servicegebiet FLOXANT Regensburg",
-      "Umzug Regensburg Umgebung",
-      "Reinigung Regensburg Umgebung",
-      "Rueckfahrt Transport Regensburg",
-      "Wohnungsuebergabe Regensburg",
-      "Mieterwechsel Regensburg",
-    ],
   });
 }
 

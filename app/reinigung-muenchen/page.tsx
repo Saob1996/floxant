@@ -92,7 +92,7 @@ export default async function ReinigungMuenchenPage({ params }: PageProps) {
                     proofItems={[
                         "Für Wohnung, Büro, Apartment, Treppenhaus oder Übergabe unterscheiden sich Aufwand, Material und Zeitfenster deutlich.",
                         "Fotos von Küche, Bad, Boden, Fenstern, Laufwegen und besonderen Stellen machen die erste Einschätzung konkreter.",
-                        "Kurzfristige Termine werden nach Machbarkeit geprüft. Es gibt keine pauschale Sofort- oder Preisgarantie.",
+                        "Kurzfristige Termine werden nach Verfügbarkeit und Umfang geprüft. Es gibt keine pauschale Sofort- oder Preisgarantie.",
                     ]}
                     cards={[
                         {
@@ -112,6 +112,12 @@ export default async function ReinigungMuenchenPage({ params }: PageProps) {
                             text: "Vorhandenes Reinigungsangebot hochladen oder Eckdaten senden. FLOXANT prüft Umfang und mögliche Alternative sachlich.",
                             href: "/angebot-guenstiger-pruefen",
                             cta: "Angebot prüfen",
+                        },
+                        {
+                            title: "Neues Reinigungsangebot anfragen",
+                            text: "Wenn noch kein Angebot vorliegt, reichen Objektart, Fläche, Fotos, Terminwunsch und gewünschter Umfang für den Start.",
+                            href: "/reinigungsfirma-angebot",
+                            cta: "Angebot anfordern",
                         },
                     ]}
                     checklistTitle="Diese Angaben helfen bei Reinigung in München"
@@ -148,6 +154,10 @@ export default async function ReinigungMuenchenPage({ params }: PageProps) {
                     primaryLabel="Reinigung München anfragen"
                     secondaryHref="/anfrage-mit-preisrahmen"
                     secondaryLabel="Budget nennen"
+                    trackingService="reinigung"
+                    trackingCity="muenchen"
+                    trackingPageIntent="reinigung-muenchen"
+                    trackingPriority="p1"
                 />
                 <LocalSeoSearchIntentBridge
                     service="reinigung"

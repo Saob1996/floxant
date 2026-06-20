@@ -181,17 +181,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Treppenhausreinigung Regensburg | Hausverwaltung & Angebot | FLOXANT",
     description:
       "Treppenhausreinigung in Regensburg für Hausverwaltung, WEG, Mietshaus und Objekt. Etagen, Aufzug, Turnus, Zugang, Fotos und Angebot prüfen.",
-    keywords: [
-      "Treppenhausreinigung Regensburg",
-      "Hausverwaltung Reinigung Regensburg",
-      "Treppenhausreinigung Kosten Regensburg",
-      "Treppenhaus reinigen lassen Regensburg",
-      "Reinigungsfirma Treppenhaus Regensburg",
-      "WEG Reinigung Regensburg",
-      "Mehrfamilienhaus Reinigung Regensburg",
-      "Treppenhaus Unterhaltsreinigung Regensburg",
-      "Mietshaus Reinigung Regensburg",
-    ],
   });
 }
 

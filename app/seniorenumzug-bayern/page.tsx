@@ -99,10 +99,16 @@ export default async function SeniorenumzugBayernPage({ params }: PageProps) {
         proofTitle="Wichtig für die Abstimmung"
         proofItems={[
           "Ein fester Ansprechpartner, Fotos, Möbelmenge, Etage und Termin helfen, damit Rückfragen nicht bei mehreren Personen hängen bleiben.",
-          "Packhilfe, Abbau, Entsorgung, Reinigung und Übergabe sollten direkt genannt werden, wenn sie benötigt werden.",
+          "Packhilfe, Möbelabbau, Transport, Entsorgung, Reinigung und Übergabe sollten direkt genannt werden, wenn sie benötigt werden.",
           "Wenn Angehörige weiter weg wohnen, helfen Schlüsselweg, Freigaben, Fotos und klare Rückmeldung nach jedem wichtigen Schritt.",
         ]}
         cards={[
+          {
+            title: "Umzugshelfer für Senioren",
+            text: "Wenn Packen, Tragen, kleine Demontage, Transport und ruhige Abstimmung wichtiger sind als ein schneller Standardumzug.",
+            href: "/seniorenumzug-bayern",
+            cta: "Hilfebedarf nennen",
+          },
           {
             title: "Seniorenumzug mit Angehörigen",
             text: "Ruhige Abstimmung, klare Freigaben, Terminfenster, Fotos und ein Ansprechpartner sind hier wichtiger als schnelle Versprechen.",
@@ -143,7 +149,7 @@ export default async function SeniorenumzugBayernPage({ params }: PageProps) {
         checklistTitle="Diese Angaben helfen besonders"
         checklist={[
           "Ort, Start, Ziel, Etage, Aufzug, Laufweg und Terminfenster.",
-          "Möbelmenge, Kartons, Fotos und was nicht mitgenommen werden soll.",
+          "Möbelmenge, Kartons, Fotos, Packhilfe und was nicht mitgenommen werden soll.",
           "Wer entscheidet, wer erreichbar ist und ob Angehörige nicht vor Ort sind.",
           "Ob Reinigung, Entrümpelung, Haushaltsauflösung oder Übergabe dazukommt.",
         ]}

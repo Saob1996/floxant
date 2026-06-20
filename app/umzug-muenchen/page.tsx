@@ -71,14 +71,14 @@ const munichCustomerIntents = [
         Icon: Route,
         title: "Fernumzug aus oder nach München",
         text: "Bei längeren Strecken werden Route, Rückfahrt, Ladevolumen, Terminfenster, Zugang und Zusatzleistungen besonders wichtig. Fotos vermeiden falsche Annahmen.",
-        href: "/blog/fernumzug-bayern-nrw-tipps",
+        href: "/fernumzug-muenchen",
         cta: "Fernumzug einordnen",
     },
     {
         Icon: ClipboardCheck,
         title: "Nach dem Umzug: Reinigung, Restmengen und Übergabe",
         text: "Wenn die alte Wohnung noch übergeben werden muss, sollten Endreinigung, Restmengen, Schlüsselweg, Fotos und Übergabetermin früh mitgedacht werden.",
-        href: "/blog/reinigung-nach-umzug-angebot-regensburg-muenchen",
+        href: "/reinigung-muenchen",
         cta: "Übergabe vorbereiten",
     },
 ] as const;
@@ -227,7 +227,7 @@ export default async function UmzugMuenchenPage({ params }: PageProps) {
                         {
                             title: "Fernumzug München",
                             text: "Für längere Strecken zählen Route, Rückfahrt, Ladevolumen, Terminfenster, Zugang und mögliche Zusatzleistungen.",
-                            href: "/blog/umzug-muenchen-festpreis-fernumzug-organisieren",
+                            href: "/fernumzug-muenchen",
                             cta: "Fernumzug planen",
                         },
                         {
@@ -277,7 +277,7 @@ export default async function UmzugMuenchenPage({ params }: PageProps) {
                         {
                             title: "Privatumzug + Fernstrecke",
                             text: "Route, Ladevolumen, Termin und mögliche Rückfahrt sauber klären.",
-                            href: "/blog/fernumzug-bayern-nrw-tipps",
+                            href: "/fernumzug-muenchen",
                         },
                         {
                             title: "Büro + Randzeit",

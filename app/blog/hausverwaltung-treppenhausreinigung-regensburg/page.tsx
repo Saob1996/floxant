@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Treppenhausreinigung Regensburg für Hausverwaltungen | FLOXANT",
     description:
       "Was Hausverwaltungen in Regensburg bei Treppenhausreinigung, Turnus, Zugang und Ansprechpartnern vor der Anfrage sauber klären sollten.",
-    keywords: [
-      "Treppenhausreinigung Regensburg",
-      "Hausverwaltung Reinigung Regensburg",
-      "Objektreinigung Regensburg",
-      "B2B Reinigung Regensburg",
-    ],
   });
 }
 

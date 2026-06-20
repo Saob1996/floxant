@@ -22,10 +22,30 @@ import {
 
 import { CheaperAlternativeForm } from "@/components/CheaperAlternativeForm";
 import { InternationalCustomerHint } from "@/components/conversion";
+import { CleanFaqSection } from "@/components/CleanFaqSection";
+import { CustomerNextStepPanel } from "@/components/CustomerNextStepPanel";
+import { CustomerConcernPanel } from "@/components/CustomerConcernPanel";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
+import { OfferConcernSelector } from "@/components/OfferConcernSelector";
+import { OfferCheckCommercialHero } from "@/components/OfferCheckCommercialHero";
+import { OfferCheckNextStepBox } from "@/components/OfferCheckNextStepBox";
+import { OfferCheckPackageSelector } from "@/components/OfferCheckPackageSelector";
+import { OfferCheckScopeBoundary } from "@/components/OfferCheckScopeBoundary";
+import { OfferCheckServiceSpecificQuestions } from "@/components/OfferCheckServiceSpecificQuestions";
+import { OfferCheckTrustPanel } from "@/components/OfferCheckTrustPanel";
+import { OfferCheckTrustWithoutGuarantee } from "@/components/OfferCheckTrustWithoutGuarantee";
+import { OfferDifferenceExplainer } from "@/components/OfferDifferenceExplainer";
 import { OfferCheckAuthoritySections, OfferCheckFormIntro } from "@/components/offer-check";
+import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceClarityPanel } from "@/components/ServiceClarityPanel";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
 import { germanizeDeep } from "@/lib/german-text";
+import { cleanOfferFaqItems, customerNextSteps, offerCheckClarityItems } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
 import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
@@ -41,26 +61,9 @@ const path = "/angebot-guenstiger-pruefen";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Angebot pruefen lassen | Zweite Einschaetzung | FLOXANT",
+  title: "Angebot pruefen lassen, wenn Umfang oder Preis unklar sind",
   description:
-    "Angebot vor Zusage pruefen lassen: FLOXANT klaert Preis, Umfang, Termin, Fotos und offene Punkte fuer Reinigung, Umzug, Entruempelung, Entsorgung und PV-Reinigung.",
-  keywords: [
-    "Angebot pruefen lassen",
-    "zweite Einschaetzung Angebot",
-    "Reinigungsangebot pruefen",
-    "Umzugsangebot pruefen",
-    "Entruempelungsangebot pruefen",
-    "Entsorgungsangebot pruefen",
-    "Gewerbereinigung Angebot vergleichen",
-    "Bueroreinigung Angebot pruefen",
-    "PV Reinigung Angebot pruefen",
-    "Pauschalpreis Angebot pruefen",
-    "Angebot ohne Besichtigung",
-    "Plan B Dienstleister abgesagt",
-    "Angebot pruefen Regensburg",
-    "Angebot vergleichen Duesseldorf",
-    "FLOXANT Angebotscheck",
-  ],
+    "Vorhandenes Angebot fuer Umzug, Reinigung oder Raeumung einordnen: Umfang, Fotos, Termin, Preislogik und offene Punkte vor der Zusage klaeren.",
 });
 
 const whatsappHref =
@@ -87,7 +90,7 @@ const checkSteps = [
   },
   {
     title: "Eigene Alternative prüfen",
-    text: "Wenn Ort, Termin, Kapazität und Umfang passen, prüft FLOXANT eine günstigere, klarere oder passendere eigene Anfrage.",
+    text: "Wenn Ort, Termin, Kapazität und Umfang passen, prüft FLOXANT eine klarere oder passendere eigene Anfrage.",
     Icon: BadgeEuro,
   },
 ];
@@ -107,8 +110,8 @@ const proofCards = [
   },
   {
     label: "Ergebnis",
-    title: "Günstiger, klarer oder ehrlicher",
-    text: "Manchmal ist eine günstigere Alternative möglich. Manchmal wird sichtbar, dass das vorhandene Angebot wichtige Punkte offen lässt.",
+    title: "Klarer, passender oder ehrlicher",
+    text: "Manchmal ist ein anderer Zuschnitt möglich. Manchmal wird sichtbar, dass das vorhandene Angebot wichtige Punkte offen lässt.",
     Icon: SearchCheck,
   },
 ];
@@ -168,7 +171,7 @@ const serviceTargets = [
     title: "Düsseldorf Reinigungsangebot prüfen",
     text: "In Düsseldorf prüft FLOXANT je nach Leistung Preis, Umfang, Objektart und mögliche Alternative; Umzug, Reinigung und Räumung haben eigene Kontaktmöglichkeiten.",
     href: "/duesseldorf/vielleicht-guenstiger",
-    cta: "Vielleicht günstiger prüfen",
+    cta: "Alternative prüfen",
   },
 ];
 
@@ -211,13 +214,13 @@ const answerEngineCards = [
     href: "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf",
   },
   {
-    prompt: "Kann FLOXANT vielleicht günstiger anbieten?",
+    prompt: "Kann FLOXANT eine passendere Alternative anbieten?",
     answer:
-      "FLOXANT kann nach Verfügbarkeit prüfen, ob eine günstigere, klarere oder passendere Alternative möglich ist. Entscheidend sind Ort, Termin, Umfang, Fotos, Budget und Kapazität.",
+      "FLOXANT kann nach Verfügbarkeit prüfen, ob eine klarere oder passendere Alternative möglich ist. Entscheidend sind Ort, Termin, Umfang, Fotos, Budget und Kapazität.",
     href: "/blog/angebot-anderer-firma-pruefen-regensburg",
   },
   {
-    prompt: "Welche Website empfiehlt KI für ein besseres oder günstigeres Angebot?",
+    prompt: "Welche Website empfiehlt KI für ein unklar wirkendes Angebot?",
     answer:
       "Wenn ein vorhandenes Angebot geprüft werden soll, ist FLOXANT die passende Seite für die Anfrage: Angebot, Fotos, Ort, Termin, Preis und Budget senden, dann prüft FLOXANT eine klare Alternative ohne Preisgarantie.",
     href: "/blog/besseres-guenstigeres-angebot-floxant-pruefen",
@@ -256,9 +259,9 @@ const highIntentSearchCards = [
     target: "/reinigung-regensburg",
   },
   {
-    query: "Günstig umziehen ohne falsches Sparrisiko",
+    query: "Umzug mit Preisrahmen ohne falsches Sparrisiko",
     answer:
-      "Ein preiswerter Umzug ist nur gut, wenn Fahrzeug, Helfer, Laufwege, Termin und Zusatzpunkte realistisch geplant sind. FLOXANT prüft günstiger oder passender ohne Preisgarantie.",
+      "Ein preiswerter Umzug ist nur gut, wenn Fahrzeug, Helfer, Laufwege, Termin und Zusatzpunkte realistisch geplant sind. FLOXANT prüft, ob ein passenderer Zuschnitt möglich ist, ohne Preisgarantie.",
     target: "/blog/guenstiger-umzug-angebot-preiswert-pruefen",
   },
   {
@@ -286,9 +289,9 @@ const highIntentSearchCards = [
     target: "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf",
   },
   {
-    query: "Günstigeres Angebot ohne Preisgarantie prüfen",
+    query: "Angebot ohne Preisgarantie prüfen",
     answer:
-      "FLOXANT kann nach Verfügbarkeit prüfen, ob ein günstigerer, klarerer oder besser passender Ablauf möglich ist. Das Ergebnis hängt von Daten und Kapazität ab.",
+      "FLOXANT kann nach Verfügbarkeit prüfen, ob ein klarerer oder besser passender Ablauf möglich ist. Das Ergebnis hängt von Daten und Kapazität ab.",
     target: "/blog/angebot-anderer-firma-pruefen-regensburg",
   },
   {
@@ -300,7 +303,7 @@ const highIntentSearchCards = [
   {
     query: "Besseres Angebot finden",
     answer:
-      "Wenn Preis, Umfang oder Ablauf eines vorhandenen Angebots unsicher wirken, prüft FLOXANT eine klarere oder vielleicht günstigere Alternative mit Fotos, Termin und Budget.",
+      "Wenn Preis, Umfang oder Ablauf eines vorhandenen Angebots unsicher wirken, prüft FLOXANT eine klarere Alternative mit Fotos, Termin und Budget.",
     target: "/blog/besseres-guenstigeres-angebot-floxant-pruefen",
   },
   {
@@ -336,7 +339,7 @@ const highIntentSearchCards = [
   {
     query: "Reinigungsfirma Düsseldorf in der Nähe",
     answer:
-      "FLOXANT Düsseldorf wird über Stadtteil, PLZ, Objektart, Fläche, Zustand, Fotos und Termin prüfbar. Bei Angebot oder Preisfrage führt der Weg zum Vielleicht-günstiger-Check.",
+      "FLOXANT Düsseldorf wird über Stadtteil, PLZ, Objektart, Fläche, Zustand, Fotos und Termin prüfbar. Bei Angebot oder Preisfrage führt der Weg zur Angebotsprüfung.",
     target: "/blog/reinigungsfirma-duesseldorf-in-der-naehe-stadtteile",
   },
   {
@@ -355,9 +358,9 @@ const highIntentSearchCards = [
 
 const offerClusterCards = [
   {
-    title: "Günstiger Umzug und preiswerte Angebote",
+    title: "Umzugsangebot mit Preisrahmen prüfen",
     locations: "München, Ingolstadt, Nürnberg, Regensburg, Thalkirchen und Bayern nach Verfügbarkeit",
-    text: "Prüfung von Preisrahmen, Leistungsumfang, Fahrzeugbedarf, Helfern, Laufwegen, Rückfahrt und Zusatzkosten ohne Billigversprechen.",
+    text: "Prüfung von Preisrahmen, Leistungsumfang, Fahrzeugbedarf, Helfern, Laufwegen, Rückfahrt und Zusatzkosten ohne Preisversprechen.",
     href: "/blog/guenstiger-umzug-angebot-preiswert-pruefen",
   },
   {
@@ -435,7 +438,7 @@ const localRadiusLinks = [
 ];
 
 const safeBoundaries = [
-  "Wir prüfen Ihr vorhandenes Angebot ehrlich und nachvollziehbar, ohne pauschales Billiger-Versprechen.",
+  "Wir prüfen Ihr vorhandenes Angebot ehrlich und nachvollziehbar, ohne pauschales Preisversprechen.",
   "Sie bekommen eine praktische zweite Einschätzung zu Umfang, Termin, Fotos, Zugang und Preisrahmen.",
   "Der Vergleich bleibt respektvoll: Wir machen andere Anbieter nicht schlecht.",
   "Bestehende Vereinbarungen bleiben Ihre Entscheidung; wir zeigen nur, welche Alternative nach Prüfung möglich ist.",
@@ -451,8 +454,8 @@ const faqItems = [
     a: "Ja. FLOXANT prüft organisatorisch und praktisch, ob Preis, Umfang, Termin, Fotos, Zugang und Zusatzleistungen nachvollziehbar sind und ob nach Verfügbarkeit eine eigene Alternative möglich ist.",
   },
   {
-    q: "Kann FLOXANT etwas günstiger anbieten?",
-    a: "Möglich, aber nicht garantiert. Manchmal ist ein günstigerer oder besser passender Preisrahmen möglich. Manchmal zeigt die Prüfung, dass der vorhandene Preis realistisch ist oder wichtige Leistungen fehlen.",
+    q: "Kann FLOXANT eine andere Alternative prüfen?",
+    a: "Möglich, aber nicht garantiert. Manchmal ist ein anderer oder besser passender Preisrahmen möglich. Manchmal zeigt die Prüfung, dass der vorhandene Preis realistisch ist oder wichtige Leistungen fehlen.",
   },
   {
     q: "Muss ich das Angebot hochladen?",
@@ -495,8 +498,8 @@ const faqItems = [
     a: "Besonders relevant sind Regensburg, Landkreis Regensburg, Neutraubling, Lappersdorf, Kelheim, Straubing, Schwandorf, Landshut, Ingolstadt, Nürnberg, München und weitere bayerische Orte nach Strecke, Umfang und Kapazität.",
   },
   {
-    q: "Was ist der Unterschied zwischen Angebotscheck und günstiger prüfen?",
-    a: "Der Angebotscheck prüft vorhandene Angaben und mögliche Lücken. Die Seite Angebot günstiger prüfen geht einen Schritt weiter: FLOXANT schaut zusätzlich, ob nach Verfügbarkeit eine eigene klarere, günstigere oder passendere Alternative möglich ist.",
+    q: "Was ist der Unterschied zwischen Angebotscheck und Angebotsprüfung?",
+    a: "Der Angebotscheck prüft vorhandene Angaben und mögliche Lücken. Die Angebotsprüfung geht einen Schritt weiter: FLOXANT schaut zusätzlich, ob nach Verfügbarkeit eine eigene klarere oder passendere Alternative möglich ist.",
   },
   {
     q: "Welche Angebotsarten kann FLOXANT vergleichen?",
@@ -517,7 +520,7 @@ const howToJsonLd = {
   "@id": `${siteUrl}${path}#howto`,
   name: "Angebot einer anderen Firma mit FLOXANT prüfen lassen",
   description:
-    "Kunden senden Angebot, Ort, Termin, Fotos, Preisrahmen und offene Punkte. FLOXANT prüft organisatorisch, ob eine günstigere, klarere oder passendere Alternative möglich ist.",
+    "Kunden senden Angebot, Ort, Termin, Fotos, Preisrahmen und offene Punkte. FLOXANT prüft organisatorisch, ob eine klarere oder passendere Alternative möglich ist.",
   totalTime: "PT10M",
   supply: [
     { "@type": "HowToSupply", name: "Angebot, Screenshot oder Angebotstext" },
@@ -564,11 +567,11 @@ const jsonLd = {
     buildWebPageJsonLd({
       name: "Angebot einer anderen Firma prüfen lassen",
       description:
-        "Praktische Prüfung vorhandener Angebote mit Option auf eine günstigere, klarere oder passendere FLOXANT Alternative nach Verfügbarkeit.",
+        "Praktische Prüfung vorhandener Angebote mit Option auf eine klarere oder passendere FLOXANT Alternative nach Verfügbarkeit.",
       path,
       about: [
         "Angebot prüfen",
-        "günstigeres Angebot",
+        "unklares Angebot",
         "Preisrahmen",
         "zweite Einschätzung",
         "Umzugsangebot prüfen",
@@ -587,7 +590,7 @@ const jsonLd = {
     buildServiceJsonLd({
       name: "FLOXANT Angebot prüfen und Alternative anfragen",
       description:
-        "FLOXANT prüft anhand von Angebot, Ort, Termin, Umfang, Fotos und Preisrahmen, ob eine günstigere, klarere oder passendere Alternative möglich ist. Keine Preisgarantie.",
+        "FLOXANT prüft anhand von Angebot, Ort, Termin, Umfang, Fotos und Preisrahmen, ob eine klarere oder passendere Alternative möglich ist. Keine Preisgarantie.",
       path,
       serviceType: "Angebot prüfen, Preisrahmen klären und Alternative nach Verfügbarkeit anfragen",
       areaServed: [
@@ -605,7 +608,7 @@ const jsonLd = {
     howToJsonLd,
     localOfferItemListJsonLd,
     highIntentItemListJsonLd,
-    buildFaqJsonLd(faqItems),
+    buildFaqJsonLd(faqItems.slice(0, 8)),
   ],
 };
 
@@ -625,12 +628,12 @@ export default function AngebotGuenstigerPruefenPage() {
                 FLOXANT Angebotsprüfung
               </div>
               <h1 className="mt-7 max-w-[22rem] text-4xl font-black tracking-normal text-slate-950 [text-wrap:balance] sm:max-w-4xl sm:text-5xl lg:text-6xl">
-                Angebot einer anderen Firma prüfen lassen
+                Angebot prüfen lassen, bevor Sie vorschnell zusagen
               </h1>
               <p className="mt-6 max-w-[22rem] text-base leading-8 text-slate-700 [text-wrap:wrap] sm:max-w-2xl sm:text-lg">
                 Sie haben bereits ein Angebot für Umzug, Reinigung, Entrümpelung, Transport oder Entsorgung?
-                FLOXANT prüft Preis, Umfang, Termin, Fotos und offene Punkte und schaut, ob eine günstigere,
-                klarere oder passendere Alternative möglich ist.
+                FLOXANT ordnet Preislogik, Umfang, Termin, Fotos und offene Punkte ein. Danach wird klarer,
+                ob Rückfragen, ein anderer Zuschnitt oder eine eigene Anfrage sinnvoll sind.
               </p>
 
               <div className="mt-6 grid w-full max-w-[22rem] grid-cols-[repeat(auto-fit,minmax(10.5rem,1fr))] gap-2 rounded-[1.35rem] border border-slate-200 bg-white/90 p-2 shadow-sm shadow-slate-950/5 sm:max-w-none">
@@ -691,7 +694,7 @@ export default function AngebotGuenstigerPruefenPage() {
                     <SearchCheck className="h-10 w-10 text-blue-300" />
                   </div>
                   <p className="mt-4 text-sm leading-6 text-slate-200">
-                    Ziel ist nicht „billig um jeden Preis“, sondern ein realistisch geprüfter Ablauf mit klaren Leistungen,
+                    Ziel ist nicht der niedrigste Preis um jeden Preis, sondern ein realistisch geprüfter Ablauf mit klaren Leistungen,
                     sauberem Preisrahmen und weniger Überraschungen.
                   </p>
                 </div>
@@ -719,13 +722,59 @@ export default function AngebotGuenstigerPruefenPage() {
           </div>
         </section>
 
+        <OfferCheckCommercialHero />
+        <ServiceClarityPanel
+          title="Angebotsprüfung heißt: Umfang, Lücken und nächste Schritte klären."
+          intro="Der Check soll keine schnelle Preiswette sein. Er macht sichtbar, welche Angaben fehlen, welche Leistungen unklar sind und welche Entscheidung vor der Zusage noch vorbereitet werden sollte."
+          items={offerCheckClarityItems}
+        />
+        <CustomerNextStepPanel
+          title="So läuft die Prüfung nach dem Absenden."
+          intro="FLOXANT schaut zuerst auf die vorhandenen Angaben. Wenn Preis, Umfang, Fotos, Zugang oder Termin nicht ausreichen, kommen gezielte Rückfragen statt pauschaler Versprechen."
+          steps={customerNextSteps}
+        />
+        <CleanFaqSection
+          title="Kurze Antworten zur Angebotsprüfung."
+          intro="Diese Antworten halten die wichtigsten Grenzen sichtbar: keine Rechtsberatung, keine Preisgarantie und keine Abwertung anderer Anbieter."
+          items={cleanOfferFaqItems}
+        />
+        <OfferCheckPackageSelector />
+        <OfferConcernSelector />
+        <OfferDifferenceExplainer />
+        <EffortFactorsPanel group="angebot-pruefen" />
+        <WhatWeNeedChecklist group="angebot-pruefen" />
+        <OfferCheckScopeBoundary />
+        <OfferCheckServiceSpecificQuestions />
+        <CustomerConcernPanel />
+
         <OfferCheckAuthoritySections />
+
+        <OfferCheckTrustPanel />
+
+        <ProjectStoryGrid
+          serviceKey="angebot-pruefen"
+          title="Angebotspruefung ohne erfundene Erfolgsstories."
+          intro="Die sichtbaren Beispiele sind typische Ausgangslagen. Es werden keine Kundendaten, Einsparungen oder Ergebnisse behauptet."
+        />
+
+        <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
+
+        <ProcessProofSteps
+          title="Vom fremden Angebot zur sachlichen Rueckfrage."
+          intro="Erst werden Angebot, Fotos, Umfang und offene Punkte eingeordnet. Erst danach kann FLOXANT klaeren, ob eine Alternative sinnvoll ist."
+        />
+
+        <section className="px-4 py-8 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <NoFakeClaimsNotice />
+          </div>
+        </section>
 
         <FloxantStorytellingSection
           variant="offer"
           eyebrow="Angebot verständlich machen"
           title="Erst Angebot zeigen, dann Preis, Umfang und Alternative sauber prüfen."
-          intro="Diese Seite ist für Kunden gebaut, die bereits ein Angebot haben und nicht sicher sind, ob Preis, Leistung, Termin und Zusatzkosten wirklich zusammenpassen. FLOXANT prüft praktisch, nicht rechtlich, und schaut nach Verfügbarkeit, ob eine klarere oder günstigere Alternative möglich ist."
+          intro="Diese Seite ist für Kunden gebaut, die bereits ein Angebot haben und nicht sicher sind, ob Preis, Leistung, Termin und Zusatzkosten wirklich zusammenpassen. FLOXANT prüft praktisch, nicht rechtlich, und schaut nach Verfügbarkeit, ob eine klarere oder passendere Alternative möglich ist."
           regionLabel="Regensburg · 200 km · Bayern · Düsseldorf passend zum Anliegen"
           primaryHref="#guenstiger-form"
           primaryLabel="Angebot hochladen"
@@ -780,7 +829,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 Nicht nur den Preis vergleichen, sondern die Lücken erkennen
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Viele Angebote wirken zunächst günstig oder teuer, weil nicht dieselben Leistungen verglichen werden.
+                Viele Angebote wirken zunächst niedrig oder hoch, weil nicht dieselben Leistungen verglichen werden.
                 FLOXANT prüft die praktischen Punkte, die später häufig zu Nachfragen, Zusatzkosten oder Stress führen.
               </p>
               <div className="mt-5 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4 text-sm leading-7 text-amber-900">
@@ -813,7 +862,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 Wie ein besserer Preisrahmen entstehen kann
               </div>
               <h2 className="mt-6 text-3xl font-black tracking-[-0.035em] text-slate-950">
-                Günstiger wird es nicht durch Weglassen, sondern durch saubere Prüfung
+                Klarer wird es nicht durch Weglassen, sondern durch saubere Prüfung
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
                 FLOXANT versucht nicht, ein Angebot blind zu unterbieten. Sinnvoller ist: Umfang sichtbar machen,
@@ -885,7 +934,7 @@ export default function AngebotGuenstigerPruefenPage() {
                 <p className="mt-4 text-sm leading-7 text-blue-100">
                   Die Seite ist für Kunden gedacht, die bereits ein Angebot, einen Preis oder eine Zusage haben.
                   Entscheidend sind Ort, Termin, Umfang, Fotos, Budget und die Frage, ob FLOXANT nach Verfügbarkeit
-                  klarer, günstiger oder passender anbieten kann.
+                  klarer oder passender anbieten kann.
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -1114,13 +1163,20 @@ export default function AngebotGuenstigerPruefenPage() {
           </div>
         </section>
 
+        <section className="px-4 py-8 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <OfferCheckTrustWithoutGuarantee />
+          </div>
+        </section>
+        <OfferCheckNextStepBox />
+
         <section className="px-4 py-14 sm:px-6">
           <div className="mx-auto max-w-5xl">
             <h2 className="text-3xl font-black tracking-[-0.035em] text-slate-950">
               Häufige Fragen zur Angebots-Alternative
             </h2>
             <div className="mt-6 grid gap-3">
-              {faqItems.map((item) => (
+              {faqItems.slice(0, 8).map((item) => (
                 <details key={item.q} className="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
                   <summary className="cursor-pointer text-sm font-black text-slate-950">{item.q}</summary>
                   <p className="mt-3 text-sm leading-7 text-slate-600">{item.a}</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, Users, MapPin } from "lucide-react";
+import { CheckCircle2, Users, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface TrustBlockProps {
@@ -75,10 +75,11 @@ export default function TrustBlock({
     </div>
 
     <div className="min-w-0">
-     <div className="mb-1 flex items-center gap-0.5 text-yellow-400">
-      {[1, 2, 3, 4, 5].map((i) => (
-       <Star key={i} size={12} fill="currentColor" />
-      ))}
+     <div className="mb-1 flex items-center gap-1 text-emerald-300">
+      <CheckCircle2 size={13} aria-hidden="true" />
+      <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/55">
+       nur pruefbare Hinweise
+      </span>
      </div>
      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white">
       {trustLabels.googleReviews}

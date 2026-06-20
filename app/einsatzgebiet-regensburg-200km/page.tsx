@@ -174,14 +174,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Servicegebiet Regensburg und Umgebung | FLOXANT",
     description:
       "FLOXANT arbeitet mit Regensburg als Kern: Umzug, Reinigung, Entruempelung und Transport in der Umgebung bis ca. 200 km und Bayern nach Verfuegbarkeit.",
-    keywords: [
-      "Servicegebiet Regensburg",
-      "Umzug Regensburg Umgebung",
-      "Reinigung Regensburg Umgebung",
-      "Entruempelung Regensburg Umgebung",
-      "Transport Regensburg Bayern",
-      "Leerfahrt Regensburg Bayern",
-    ],
   });
 }
 

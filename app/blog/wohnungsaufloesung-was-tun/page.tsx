@@ -95,7 +95,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
                 <strong>Persönliches sichern:</strong> Gehen Sie ohne Zeitdruck durch die Räume. Sichern Sie wichtige Dokumente (Testament, Policen, Bankdaten), Bargeld, Schmuck und emotionale Erinnerungsstücke.
               </li>
               <li>
-                <strong>Wertsachen schätzen lassen:</strong> Oft schlummern echte Schätze im Haushalt (Antiquitäten, Silberwaren). Verkaufen Sie diese Gegenstände oder übergeben Sie sie einem <a href={`/entruempelung`}>zertifizierten Entrümpelungsunternehmen</a> mit dem Auftrag der Wertanrechnung.
+                <strong>Wertsachen schätzen lassen:</strong> Oft schlummern echte Schätze im Haushalt (Antiquitäten, Silberwaren). Verkaufen Sie diese Gegenstände oder übergeben Sie sie einem <a href={`/entruempelung`}>geeigneten Entrümpelungsunternehmen</a> mit dem Auftrag der Wertanrechnung.
               </li>
               <li>
                 <strong>Möbelverteilung in der Familie:</strong> Klären Sie zügig mit anderen Erben, wer welche Möbelstücke behält. Für den Transport an die neuen Standorte bieten sich <a href={`/kleintransporte`}>günstige Kleintransporte</a> oder Beiladungen an.

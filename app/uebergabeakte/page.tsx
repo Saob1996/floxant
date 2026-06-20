@@ -36,14 +36,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "FLOXANT Übergabeakte – Auszug, Reinigung & Schlüssel dokumentieren",
   description:
     "Die FLOXANT Übergabeakte bündelt nach Absprache erledigte Leistungen, Fotos, Schlüsselstatus und Hinweise rund um Auszug, Reinigung, Entrümpelung und Wohnungsübergabe.",
-  keywords: [
-    "Übergabeakte Wohnung",
-    "Wohnungsübergabe Dokumentation",
-    "Schlüsselübergabe mit Protokoll",
-    "Auszug Dokumentation",
-    "Foto Dokumentation Reinigung",
-    "Übergabeakte Regensburg",
-  ],
 });
 
 const whatsappHref =

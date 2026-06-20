@@ -39,7 +39,7 @@ export function RelatedSpecialServices({
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {visibleServices.map((service) => (
             <Link
-              key={service.href}
+              key={`${service.href}-${service.title}`}
               href={service.href}
               className="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-md"
             >

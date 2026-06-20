@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
+import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
@@ -83,6 +84,70 @@ export default async function EntruempelungLandshutPage({ params }: PageProps) {
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <GscOpportunitySection
+                    eyebrow="Entrümpelung Landshut"
+                    title="Entrümpelung Landshut mit Menge, Zugang und Zielzustand klären."
+                    intro="Für Entrümpelung in Landshut sind Fotos, Menge, Material, Etage, Laufweg, Freigabe und gewünschter Endzustand wichtiger als ein pauschaler Schnellpreis. FLOXANT prüft, ob Räumung, Entsorgung und Reinigung danach zusammen oder getrennt sinnvoll sind."
+                    proofTitle="Wichtig vor dem Angebot"
+                    proofItems={[
+                        "Fotos von Räumen, Keller, Garage, Möbeln, Zugang und Laufwegen beschleunigen die Einschätzung.",
+                        "Menge, Material, Gewicht, Etage, Aufzug und Parkmöglichkeit verändern Aufwand und Ablauf deutlich.",
+                        "Reinigung nach Räumung, Übergabe oder Restmengen werden getrennt geprüft und nicht pauschal versprochen.",
+                    ]}
+                    cards={[
+                        {
+                            title: "Wohnung, Keller oder Garage",
+                            text: "Räume, Menge, schwere Stücke, Laufwege und Freigabe direkt nennen, damit der Umfang sichtbar wird.",
+                            href: "/buchung?service=entsorgung&city=landshut#buchungssystem",
+                            cta: "Entrümpelung anfragen",
+                        },
+                        {
+                            title: "Reinigung danach",
+                            text: "Wenn danach übergeben, vermietet oder verkauft werden soll, hilft ein sauberer Reinigungsplan nach der Räumung.",
+                            href: "/reinigung-landshut",
+                            cta: "Reinigung prüfen",
+                        },
+                        {
+                            title: "Angebot einordnen",
+                            text: "Ein vorhandenes Räumungs- oder Entsorgungsangebot kann mit Fotos, Menge und Zielzustand sachlich geprüft werden.",
+                            href: "/angebot-guenstiger-pruefen",
+                            cta: "Angebot prüfen",
+                        },
+                    ]}
+                    checklistTitle="Diese Angaben helfen bei Entrümpelung in Landshut"
+                    checklist={[
+                        "Räume, Menge, Fotos, Materialarten, schwere Gegenstände und gewünschter Endzustand.",
+                        "Etage, Aufzug, Laufweg, Parkmöglichkeit, Schlüsselweg und Ansprechpartner.",
+                        "Ob danach Reinigung, Übergabe, Verkaufsvorbereitung oder weitere Entsorgung nötig ist.",
+                        "Vorhandenes Angebot, Budget oder Deadline optional mitsenden.",
+                    ]}
+                    combinationsTitle="Sinnvolle Kombinationen"
+                    combinations={[
+                        {
+                            title: "Entrümpelung + Reinigung",
+                            text: "Wenn nach der Räumung Küche, Bad, Böden oder Übergabe vorbereitet werden müssen.",
+                            href: "/reinigung-landshut",
+                        },
+                        {
+                            title: "Entrümpelung + Wohnungsauflösung",
+                            text: "Wenn Wohnung, Keller und Freigabe zusammen betrachtet werden müssen.",
+                            href: "/wohnungsaufloesung-bayern",
+                        },
+                        {
+                            title: "Kleinmengen + Entsorgung",
+                            text: "Wenn einzelne Gegenstände, Sperrgut oder reguläre Restmengen eingeordnet werden sollen.",
+                            href: "/kleinmengen-entsorgung",
+                        },
+                    ]}
+                    primaryHref="/buchung?service=entsorgung&city=landshut#buchungssystem"
+                    primaryLabel="Entrümpelung Landshut anfragen"
+                    secondaryHref="/angebot-guenstiger-pruefen"
+                    secondaryLabel="Angebot prüfen"
+                    trackingService="entruempelung"
+                    trackingCity="landshut"
+                    trackingPageIntent="entruempelung-landshut"
+                    trackingPriority="p0"
+                />
                 <LocalSeoSearchIntentBridge
                     service="entruempelung"
                     city={city}

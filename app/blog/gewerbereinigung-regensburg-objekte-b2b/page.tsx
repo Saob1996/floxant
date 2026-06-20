@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Gewerbereinigung in Regensburg für große Objekte richtig anfragen | FLOXANT",
   description:
    "Wie Büro, Praxis, Hotel, Kanzlei, Hausverwaltung und größere Objekte in Regensburg eine B2B-Reinigung sauber und wirtschaftlich anfragen.",
-  keywords: [
-   "Gewerbereinigung Regensburg B2B",
-   "Büroreinigung Regensburg",
-   "Praxisreinigung Regensburg",
-   "Hotelreinigung Regensburg",
-  ],
  });
 }
 

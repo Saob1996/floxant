@@ -46,13 +46,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzug mit Endreinigung Regensburg & Bayern | FLOXANT",
     description:
       "Umzug mit Endreinigung in Regensburg und Bayern nach Verfuegbarkeit: Transport, Reinigung, Fotos, Schluessel und Uebergabe gemeinsam anfragen.",
-    keywords: [
-      "Umzug mit Endreinigung",
-      "Umzug mit Reinigung Regensburg",
-      "Wohnungsuebergabe Reinigung",
-      "Reinigung nach Umzug",
-      "Umzug und Endreinigung",
-    ],
   });
 }
 

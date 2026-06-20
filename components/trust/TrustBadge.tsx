@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { Award, ShieldCheck, Star } from "lucide-react";
+import { CheckCircle2, ClipboardCheck, ShieldCheck } from "lucide-react";
 
 import { germanText } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
@@ -14,25 +14,25 @@ interface TrustBadgeProps {
 
 const badgeConfig = {
   verified: {
-    de: "Verifizierter Servicepartner",
-    en: "Verified service partner",
+    de: "Gepruefter Anfrageweg",
+    en: "Checked request path",
     icon: ShieldCheck,
     tone:
       "border-emerald-200 bg-emerald-50/90 text-emerald-800",
     iconTone: "text-emerald-600",
   },
   expert: {
-    de: "Eingespieltes Einsatzteam",
-    en: "Experienced service team",
-    icon: Award,
+    de: "Strukturierte Vorbereitung",
+    en: "Structured preparation",
+    icon: ClipboardCheck,
     tone:
       "border-blue-200 bg-blue-50/90 text-blue-800",
     iconTone: "text-blue-600",
   },
   rating: {
-    de: "Dokumentierte Servicequalität",
-    en: "Documented service quality",
-    icon: Star,
+    de: "Keine erfundenen Bewertungen",
+    en: "No invented reviews",
+    icon: CheckCircle2,
     tone:
       "border-amber-200 bg-amber-50/90 text-amber-900",
     iconTone: "text-amber-500",

@@ -231,8 +231,13 @@ export function DiscreetMoveForm() {
     formData.set("lead_type", "diskreter_trennungsumzug");
     formData.set("leadSubtype", "trennung_scheidung");
     formData.set("service", "diskreter_trennungsumzug");
+    formData.set("serviceCategory", "diskret_service");
+    formData.set("intent", "diskret");
     formData.set("requestType", requestType);
     formData.set("safeContactMethod", safeContactMethod);
+    formData.set("contactMethod", safeContactMethod.toLowerCase().includes("whatsapp") ? "whatsapp" : phone ? "phone" : email ? "email" : "unknown");
+    formData.set("preferredContactMethod", safeContactMethod.toLowerCase().includes("whatsapp") ? "whatsapp" : safeContactMethod.toLowerCase().includes("mail") ? "email" : "phone");
+    formData.set("isSensitiveCase", "true");
     formData.set("contactRestrictions", JSON.stringify(contactRestrictions));
     formData.set("selectedServices", JSON.stringify(selectedServices));
     formData.set("authorizationConfirmed", "true");
@@ -241,6 +246,10 @@ export function DiscreetMoveForm() {
     formData.set("leadSource", "discreet_move_service");
     formData.set("source", "discreet_move_service");
     formData.set("sourceComponent", "discreet_move_form");
+    formData.set("privacyConsent", "true");
+    formData.set("pageType", "discreet_contact");
+    formData.set("funnelStage", "sensitive_lead");
+    formData.set("ctaLabel", "Sensible Anfrage senden");
     formData.set("sourcePage", "/diskreter-umzug-trennung-scheidung");
     formData.set(
       "landingPage",

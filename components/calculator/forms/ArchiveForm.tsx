@@ -121,8 +121,8 @@ export default function ArchiveForm({ dic, currentStep = 1 }: { dic?: any; curre
        />
        <OptionCard
         checked={data.securityShredding}
-        title={archiveDic.shredding || "Zertifizierte Vernichtung"}
-        description="DSGVO-konforme Vernichtung nach Ablauf der Frist."
+         title={archiveDic.shredding || "Dokumentenvernichtung pruefen"}
+         description="Vernichtungsweg und Datenschutzanforderungen vorab klaeren."
         onChange={(c) => updateData({ securityShredding: c })}
         icon={<Trash2 size={18} className="text-red-400" />}
        />

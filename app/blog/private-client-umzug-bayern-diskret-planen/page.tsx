@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Diskreter Private-Client-Umzug in Bayern | FLOXANT",
   description:
    "Wie Private-Client-Umzüge in Bayern ruhig, diskret und materialschonend geplant werden, für Anwesen, Residenzen und sensible Interieurs.",
-  keywords: [
-   "Private Client Umzug Bayern",
-   "diskreter Umzug Anwesen",
-   "Luxus Umzug Bayern",
-   "Residenz Umzug",
-  ],
  });
 }
 

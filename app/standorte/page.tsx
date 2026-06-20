@@ -34,15 +34,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Standorte & Einsatzgebiet | FLOXANT Regensburg, Bayern und direkter Buchungsweg",
     description:
       "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entruempelung, Bueroumzug und direkter Buchungsweg fuer ganz Bayern.",
-    keywords: [
-      "Standorte Regensburg",
-      "Servicegebiet Bayern",
-      "Umzug Regensburg Umgebung",
-      "Reinigung Regensburg Umgebung",
-      "Entruempelung Bayern",
-      "Buchung Regensburg",
-      "Google Maps Standort Regensburg",
-    ],
   });
 }
 

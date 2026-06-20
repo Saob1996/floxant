@@ -14,7 +14,21 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { CleanFaqSection } from "@/components/CleanFaqSection";
 import { OfferCheckConversionFlow } from "@/components/OfferCheckConversionFlow";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { OfferConcernSelector } from "@/components/OfferConcernSelector";
+import { OfferCheckNextStepBox } from "@/components/OfferCheckNextStepBox";
+import { OfferCheckPackageSelector } from "@/components/OfferCheckPackageSelector";
+import { OfferCheckScopeBoundary } from "@/components/OfferCheckScopeBoundary";
+import { OfferCheckServiceSpecificQuestions } from "@/components/OfferCheckServiceSpecificQuestions";
+import { OfferCheckTrustPanel } from "@/components/OfferCheckTrustPanel";
+import { OfferDifferenceExplainer } from "@/components/OfferDifferenceExplainer";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceClarityPanel } from "@/components/ServiceClarityPanel";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
 import {
   RelatedSpecialServices,
   ServiceClusterLinks,
@@ -22,6 +36,7 @@ import {
 } from "@/components/conversion";
 import { OfferCheckAuthoritySections } from "@/components/offer-check";
 import { company } from "@/lib/company";
+import { cleanOfferFaqItems, offerCheckClarityItems } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
 import { offerCheckLinks, signatureServiceLinks } from "@/lib/signature-special-services";
 import {
@@ -36,19 +51,9 @@ const path = "/angebotscheck";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Angebotscheck | Red Flags vor der Zusage | FLOXANT",
+  title: "Angebotscheck fuer Angebot, Umfang und Zusatzpunkte",
   description:
-    "Angebot vor der Zusage pruefen: FLOXANT zeigt Red Flags bei Umfang, Fotos, Termin, Zugang, Zusatzpositionen und Preislogik.",
-  keywords: [
-    "Angebot prüfen lassen",
-    "Angebot Red Flag Scanner",
-    "Umzugsangebot prüfen",
-    "Angebot vor Zusage prüfen",
-    "versteckte Kosten Umzug",
-    "zweite Einschätzung Umzug Regensburg",
-    "Reinigungsangebot prüfen",
-    "Entrümpelungsangebot prüfen",
-  ],
+    "Red Flags im Angebot erkennen: Umfang, Zugang, Fotos, Termin und Zusatzpositionen pruefen, bevor aus Unsicherheit eine feste Zusage wird.",
 });
 
 const whatsappHref =
@@ -181,7 +186,7 @@ const jsonLd = {
       { name: "Startseite", item: "/" },
       { name: "Angebotscheck", item: path },
     ]),
-    buildFaqJsonLd(faqItems),
+    buildFaqJsonLd(faqItems.slice(0, 8)),
   ],
 };
 
@@ -197,12 +202,12 @@ export default function AngebotscheckPage() {
                 <FileSearch className="h-4 w-4" />
                 FLOXANT Angebots-Radar
               </div>
-              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-slate-950 sm:text-5xl lg:text-6xl">
-                Angebot prüfen lassen: Red-Flag-Scanner vor der Zusage
+              <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-normal text-slate-950 sm:text-5xl lg:text-6xl">
+                Angebotscheck: offene Punkte vor der Zusage erkennen
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                Scannen Sie in zwei Minuten, welche Punkte im Angebot unklar sind, oder senden Sie Angebot,
-                Fotos und Eckdaten direkt an FLOXANT.
+                Scannen Sie in zwei Minuten, welche Punkte im Angebot unklar sind. Wenn Umfang, Zugang,
+                Fotos, Termin oder Zusatzpositionen offen bleiben, kann FLOXANT die Lage praktisch einordnen.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="#red-flag-scanner" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-700" data-event="service_card_click">
@@ -210,7 +215,7 @@ export default function AngebotscheckPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link href="/angebot-guenstiger-pruefen" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-6 text-sm font-black text-blue-800 transition hover:border-blue-300 hover:bg-blue-50" data-event="service_card_click">
-                  Günstigere Alternative prüfen
+                  Alternative mit Eckdaten prüfen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a href={whatsappHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-6 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -252,7 +257,7 @@ export default function AngebotscheckPage() {
                   <div className="flex gap-3">
                     <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
                     <p>
-                      Ein Angebot kann günstig wirken, obwohl Etage, Zugang, Reinigung, Entsorgung oder Übergabe noch nicht eindeutig geregelt sind. Diese Punkte sollten vor einer Zusage klar sein.
+                      Ein Angebot kann niedrig wirken, obwohl Etage, Zugang, Reinigung, Entsorgung oder Übergabe noch nicht eindeutig geregelt sind. Diese Punkte sollten vor einer Zusage klar sein.
                     </p>
                   </div>
                 </div>
@@ -261,7 +266,28 @@ export default function AngebotscheckPage() {
           </div>
         </section>
 
+        <ServiceClarityPanel
+          title="Der Angebotscheck ist ein Scanner, keine Preisgarantie."
+          intro="Diese Seite macht offene Punkte sichtbar. Die direkte Angebotsprüfung bleibt der nächste Schritt, wenn ein konkretes Angebot, ein Screenshot oder Preispositionen vorliegen."
+          items={offerCheckClarityItems}
+        />
+
+        <OfferConcernSelector />
+        <OfferDifferenceExplainer />
+        <OfferCheckPackageSelector />
+        <EffortFactorsPanel group="angebot-pruefen" />
+        <WhatWeNeedChecklist group="angebot-pruefen" />
+        <OfferCheckScopeBoundary />
+        <OfferCheckServiceSpecificQuestions />
+
         <OfferCheckAuthoritySections />
+        <OfferCheckTrustPanel />
+        <ProjectStoryGrid serviceKey="angebot-pruefen" />
+        <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
+        <ProcessProofSteps
+          title="Angebotscheck als nachvollziehbarer Pruefweg."
+          intro="FLOXANT ordnet sichtbare Angebotsdaten und offene Punkte ein. Das ersetzt keine Rechtsberatung und behauptet keine garantierte Ersparnis."
+        />
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
@@ -320,7 +346,7 @@ export default function AngebotscheckPage() {
                 </div>
                 <div className="mt-3">
                   <Link href="/angebot-guenstiger-pruefen" className="inline-flex items-center gap-2 font-black text-blue-700 transition hover:text-blue-950" data-event="service_card_click" data-source="offer_check_internal_link">
-                    Wenn Preis oder Budget knapp sind: günstigere Alternative prüfen
+                    Wenn Preis oder Budget knapp sind: Alternative mit Eckdaten prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -390,7 +416,15 @@ export default function AngebotscheckPage() {
           limit={3}
         />
 
+        <OfferCheckNextStepBox />
+
         <OfferCheckConversionFlow />
+
+        <CleanFaqSection
+          title="Grenzen des Angebotschecks kurz geklärt."
+          intro="Der Scanner soll Orientierung geben und keine juristische oder preisliche Zusage ersetzen."
+          items={cleanOfferFaqItems}
+        />
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
@@ -425,7 +459,7 @@ export default function AngebotscheckPage() {
             <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">FAQ</div>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Häufige Fragen zum Angebotscheck</h2>
             <div className="mt-6 divide-y divide-slate-200 overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white">
-              {faqItems.map((item) => (
+              {faqItems.slice(0, 8).map((item) => (
                 <details key={item.q} className="group p-5">
                   <summary className="cursor-pointer list-none text-base font-black text-slate-950">
                     {item.q}

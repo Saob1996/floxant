@@ -339,6 +339,14 @@
   outline-offset: 4px;
 }
 
+#main-content {
+  scroll-margin-top: 7rem;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
 .font-mono {
   font-family: var(--font-mono);
   letter-spacing: 0;
@@ -3652,9 +3660,9 @@ input[type="file"]:hover {
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: 0;
-  overflow-wrap: normal;
-  white-space: nowrap;
-  word-break: keep-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  word-break: normal;
   -webkit-text-fill-color: currentColor;
   text-decoration: none;
   transition:
@@ -3754,6 +3762,14 @@ input[type="file"]:hover {
   transform: translateY(1px) scale(0.99);
 }
 
+.flox-mobile-action:focus-visible {
+  outline: 2px solid rgb(37 99 235);
+  outline-offset: 2px;
+  box-shadow:
+    0 0 0 4px rgba(191, 219, 254, 0.55),
+    0 10px 22px rgba(15, 23, 42, 0.14);
+}
+
 @media (max-width: 380px) {
   .flox-mobile-action {
     min-height: 3.55rem;
@@ -3799,7 +3815,7 @@ input[type="file"]:hover {
 .flox-duesseldorf-action-wrap .flox-mobile-action,
 .flox-regensburg-action-wrap .flox-mobile-action,
 .flox-universal-action-wrap .flox-mobile-action {
-  min-height: 3rem;
+  min-height: 3.25rem;
   border-radius: 0.68rem;
   padding: 0.36rem 0.22rem;
   font-size: 0.6rem;

@@ -185,18 +185,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Fensterreinigung Regensburg | Glas, Rahmen & Angebot | FLOXANT",
     description:
       "Fensterreinigung und Glasreinigung in Regensburg für Büro, Praxis, Hotel, Wohnung und Objekt. Fensterzahl, Rahmen, Zugang, Etage, Fotos und Angebot prüfen.",
-    keywords: [
-      "Fensterreinigung Regensburg",
-      "Glasreinigung Regensburg",
-      "Fenster putzen lassen Regensburg",
-      "Glasreinigung Regensburg Büro",
-      "Schaufensterreinigung Regensburg",
-      "Fensterreinigung Kosten Regensburg",
-      "Fensterreinigung Angebot Regensburg",
-      "Fensterreinigung vor Übergabe Regensburg",
-      "Rahmen reinigen Regensburg",
-      "Glastüren reinigen Regensburg",
-    ],
   });
 }
 

@@ -48,13 +48,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Firmenentsorgung & Büroentsorgung Regensburg | Für Unternehmen, Praxen und Büros",
     description:
       "Firmenentsorgung und Büroentsorgung für nicht erlaubnispflichtige Büro- und Gewerbegegenstände: Möbel, Kartons, Verpackung, Regale und Inventar in Regensburg und Bayern.",
-    keywords: [
-      "Firmenentsorgung Regensburg",
-      "Büroentsorgung Regensburg",
-      "Büroauflösung Firma",
-      "Gewerbe Entsorgung Bayern",
-      "Büromöbel entsorgen",
-    ],
   });
 }
 

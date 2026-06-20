@@ -5,6 +5,7 @@ import { ArrowRight, Crown, Gem, Home, KeyRound, Leaf, ShieldCheck, Sparkles } f
 import { PrivateClientInquiryForm } from "@/components/PrivateClientInquiryForm";
 import { company } from "@/lib/company";
 import { germanizeDeep } from "@/lib/german-text";
+import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -56,6 +57,14 @@ const faqItems = germanizeDeep([
   },
 ]);
 
+const privateClientLeadHref = buildLeadHref({
+  path: "/private-client-service",
+  service: "private-client",
+  city: "bayern",
+  intent: "private-client-service",
+  priority: "p0",
+});
+
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
@@ -64,23 +73,6 @@ export async function generateMetadata(): Promise<Metadata> {
       "Private Client Service Bayern | Diskreter Umzug, Reinigung & Objektlogistik",
     description:
       "Diskreter Private Client Service für Residenzen, Anwesen und sensible Interieurs in Bayern und Baden-Württemberg. Umzug, Reinigung, Räumung und Objektabstimmung mit persönlicher Führung.",
-    keywords: [
-      "Private Client Service Bayern",
-      "Luxus Umzug Bayern",
-      "Private Client Umzug",
-      "diskrete Räumung Bayern",
-      "Residenzumzug Bayern",
-      "Residenz Reinigung Baden-Württemberg",
-      "diskreter Umzug Villa",
-      "Family Office Umzug",
-      "exklusiver Umzugsservice Bayern",
-      "Anwesen Service Bayern",
-      "diskrete Objektabstimmung Bayern",
-      "diskreter Umzug Anwesen Bayern",
-      "Residenz Service Bayern",
-      "Luxus Umzug Baden-Württemberg",
-      "Family Office Service Bayern",
-    ],
   });
 }
 
@@ -227,8 +219,15 @@ export default function PrivateClientServicePage() {
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
-                href="#private-anfrage"
+                href={privateClientLeadHref}
                 className="private-copy inline-flex h-14 items-center justify-center gap-3 rounded-full bg-[#D8B76E] px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#120D08] transition hover:bg-[#F0D58B]"
+                data-event="seo_cta_click"
+                data-service="private-client"
+                data-city="bayern"
+                data-page-intent="private-client-service"
+                data-priority="p0"
+                data-cta-label="Vertraulich anfragen"
+                data-destination={privateClientLeadHref}
               >
                 Vertraulich anfragen
                 <ArrowRight className="h-4 w-4" />
@@ -236,14 +235,23 @@ export default function PrivateClientServicePage() {
               <a
                 href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
                 className="private-copy inline-flex h-14 items-center justify-center rounded-full border border-[#D8B76E]/22 px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8D2A2] transition hover:border-[#D8B76E]/50 hover:bg-[#D8B76E]/8"
+                data-event="seo_phone_click"
+                data-service="private-client"
+                data-city="bayern"
+                data-page-intent="private-client-service"
               >
                 Persönlich sprechen
               </a>
               <Link
                 href="/angebotscheck"
                 className="private-copy inline-flex h-14 items-center justify-center rounded-full border border-[#D8B76E]/22 px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8D2A2] transition hover:border-[#D8B76E]/50 hover:bg-[#D8B76E]/8"
-                data-event="hero_cta_click"
+                data-event="service_card_click"
                 data-source="private_client_hero"
+                data-service="private-client"
+                data-city="bayern"
+                data-page-intent="private-client-service"
+                data-priority="p0"
+                data-cta-label="Angebot diskret prüfen"
               >
                 Angebot diskret prüfen
               </Link>
@@ -505,7 +513,17 @@ export default function PrivateClientServicePage() {
               Wenn das Projekt sensibel ist, aber nicht vollständig im Private-Client-Rahmen liegt, ist dies der richtige Weg.
             </p>
           </Link>
-          <Link href="/kontakt" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[linear-gradient(135deg,rgba(216,183,110,0.16),rgba(42,9,7,0.56))] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[linear-gradient(135deg,rgba(216,183,110,0.22),rgba(42,9,7,0.62))]">
+          <Link
+            href={privateClientLeadHref}
+            className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[linear-gradient(135deg,rgba(216,183,110,0.16),rgba(42,9,7,0.56))] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[linear-gradient(135deg,rgba(216,183,110,0.22),rgba(42,9,7,0.62))]"
+            data-event="seo_cta_click"
+            data-service="private-client"
+            data-city="bayern"
+            data-page-intent="private-client-service"
+            data-priority="p0"
+            data-cta-label="Direkt vertraulich Kontakt aufnehmen"
+            data-destination={privateClientLeadHref}
+          >
             <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Persönlich</div>
             <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Direkt vertraulich Kontakt aufnehmen</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/62">

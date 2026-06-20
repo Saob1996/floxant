@@ -21,15 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Blog für Umzug, Reinigung, Preisrahmen und Servicewissen | FLOXANT",
     description:
       "Praxisnahe FLOXANT Beiträge zu Umzug, Reinigung, Entrümpelung, Preisvorstellung, Gewerbereinigung, Private Client und Buchung in Regensburg und Bayern.",
-    keywords: [
-      "Umzug Blog Regensburg",
-      "Reinigung Ratgeber Regensburg",
-      "Gewerbereinigung Regensburg Tipps",
-      "Preisvorstellung Umzug",
-      "Private Client Umzug Bayern",
-      "Umzugsunternehmen Regensburg auswählen",
-      "Reinigungsfirma Regensburg Büro Praxis",
-    ],
   });
 }
 
@@ -183,7 +174,7 @@ export default function BlogHubPage() {
         { name: "FLOXANT", item: "/" },
         { name: "Blog", item: "/blog" },
       ]),
-      buildFaqJsonLd(blogHubFaqItems),
+      buildFaqJsonLd(blogHubFaqItems.slice(0, 8)),
       {
         "@context": "https://schema.org",
         "@type": "ItemList",
@@ -658,7 +649,7 @@ export default function BlogHubPage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {blogHubFaqItems.map((item, index) => (
+            {blogHubFaqItems.slice(0, 8).map((item, index) => (
               <details
                 key={item.q}
                 open={index === 0}

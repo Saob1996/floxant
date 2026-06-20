@@ -1,6 +1,28 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const LEGACY_LOCALES = new Set(["de", "en", "ru", "bg", "vi", "tr", "ar", "fr", "es", "it", "pl", "uk", "fa", "zh", "ko"]);
+const LEGACY_LOCALES = new Set(["de", "ru", "bg", "vi", "tr", "ar", "fr", "es", "it", "pl", "uk", "fa", "zh", "ko"]);
+const ENGLISH_INDEXABLE_PATHS = new Set([
+  "/en",
+  "/en/duesseldorf/cleaning",
+  "/en/duesseldorf/office-cleaning",
+  "/en/duesseldorf/apartment-cleaning",
+  "/en/duesseldorf/deep-cleaning",
+  "/en/duesseldorf/move-out-cleaning",
+  "/en/duesseldorf/stairwell-cleaning",
+  "/en/duesseldorf/odor-removal",
+  "/en/duesseldorf/cleaning-quote-review",
+  "/en/koeln/cleaning",
+  "/en/neuss/cleaning",
+  "/en/meerbusch/cleaning",
+  "/en/duisburg/cleaning",
+  "/en/regensburg/moving",
+  "/en/regensburg/moving-company",
+  "/en/regensburg/moving-costs",
+  "/en/regensburg/house-clearance",
+  "/en/regensburg/apartment-clearance",
+  "/en/regensburg/cleaning-after-moving",
+  "/en/regensburg/moving-quote-review",
+]);
 const GERMAN_PATH_CHARS: Record<string, string> = {
   "\u00e4": "ae",
   "\u00f6": "oe",
@@ -57,6 +79,14 @@ function stripLegacyLocale(pathname: string) {
   return pathname;
 }
 
+function normalizePolicyCandidate(pathname: string) {
+  return normalizeGermanPath(pathname).toLowerCase().replace(/\/$/, "") || "/";
+}
+
+function isIndexableEnglishPath(pathname: string) {
+  return ENGLISH_INDEXABLE_PATHS.has(normalizePolicyCandidate(pathname));
+}
+
 function getPolicyPathname(pathname: string) {
   const policyPathname = stripLegacyLocale(normalizeGermanPath(pathname)).toLowerCase();
   return policyPathname.replace(/\/$/, "") || "/";
@@ -79,7 +109,7 @@ function rewriteGone(req: NextRequest, reason: string) {
 
 /**
  * Minimal proxy for FLOXANT Premium OS.
- * Root architecture is German-only, without legacy locale folders.
+ * German pages stay root-first; selected real English pages keep /en.
  */
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -97,9 +127,20 @@ export function proxy(req: NextRequest) {
     return rewriteGone(req, "duesseldorf-forbidden-moving-signal");
   }
 
-  // 3. Absolute Root Priority: no locale folders, no Unicode URL variants.
+  // 3. Root priority with a small allowlist for real English SEO pages.
   const segments = pathname.split("/").filter(Boolean);
   const firstSegment = segments[0]?.toLowerCase();
+
+  if (firstSegment === "en") {
+    if (isIndexableEnglishPath(pathname)) {
+      return NextResponse.next();
+    }
+
+    const url = req.nextUrl.clone();
+    const rest = segments.slice(1).join("/");
+    url.pathname = normalizeGermanPath(rest ? `/${rest}` : "/");
+    return NextResponse.redirect(url, 308);
+  }
 
   if (firstSegment && LEGACY_LOCALES.has(firstSegment)) {
     const url = req.nextUrl.clone();

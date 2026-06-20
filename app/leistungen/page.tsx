@@ -13,6 +13,14 @@ import {
   TrustProofSection,
 } from "@/components/conversion";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
+import { LocationClarityPanel } from "@/components/LocationClarityPanel";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarityGrid";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
 import {
   floxantCategoryDescriptions,
@@ -23,6 +31,7 @@ import {
   getServicesByRegionAndCategory,
   type FloxantRegion,
 } from "@/lib/floxant-services";
+import { locationClarityItems, signatureServiceClarityItems } from "@/lib/professional-copy";
 import { regensburgCleaningReviewRoutes } from "@/lib/regional-route-policy";
 import {
   offerCheckLinks,
@@ -101,9 +110,9 @@ const serviceTrustProofs = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Leistungen | Düsseldorf Reinigung & Regensburg Übergabe",
+  title: "FLOXANT Leistungen: Region, Service und Anfrageweg klaeren",
   description:
-    "Alle FLOXANT Leistungen klar nach Region: Düsseldorf für Reinigung, Solar, Glas und Gewerbe. Regensburg für Umzug, Transport, Entrümpelung, Haushaltsauflösung und Übergabe.",
+    "Waehlen Sie Region, Aufgabe und naechsten Schritt: Reinigung, Umzug, Raeumung, Angebot pruefen oder diskreten Service klar einordnen.",
   alternates: {
     canonical,
   },
@@ -112,9 +121,9 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "FLOXANT Leistungen nach Region",
+    title: "FLOXANT Leistungen nach Region und Anfrageziel",
     description:
-      "Düsseldorf: Reinigung, Solar und Glas. Regensburg: Umzug, Transport, Entrümpelung, Haushaltsauflösung und Übergabe.",
+      "Düsseldorf und Regensburg sauber trennen, Service wählen und mit Ort, Umfang, Fotos und Termin anfragen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -204,12 +213,13 @@ export default function LeistungenPage() {
             Erst Region wählen, dann passende Leistung anfragen
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-5xl lg:text-6xl">
-            FLOXANT Leistungen klar nach Düsseldorf und Regensburg getrennt.
+            FLOXANT Leistungen nach Region, Aufgabe und Anfrageweg klaeren.
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
-            Düsseldorf bündelt Reinigungsleistungen für Unternehmen, Praxen, Büros, Solar-/PV-Anlagen
-            und Außenflächen. Regensburg bündelt Umzug, Mini-Umzug, Möbeltransport, Entrümpelung,
-            Haushaltsauflösung, Endreinigung und Übergabe.
+            Starten Sie nicht mit einer langen Service-Liste, sondern mit der Kundensituation.
+            Duesseldorf buendelt Reinigung, Gewerbe, Praxis, Glas und PV. Regensburg buendelt
+            Umzug, Transport, Raeumung, Reinigung und Uebergabe. Wenn bereits ein Angebot vorliegt,
+            ist die Angebotspruefung der kuerzere Weg.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {regionOrder.map((regionId) => {
@@ -240,6 +250,14 @@ export default function LeistungenPage() {
           </div>
         </div>
       </section>
+
+      <LocationClarityPanel locations={locationClarityItems} />
+
+      <SignatureServiceClarityGrid
+        title="Signature Services erklaeren Sonderfaelle, bevor sie teuer werden."
+        intro="Wenn Angebot, Objekt, Uebergabe oder Plan B unklar sind, hilft ein strukturierter Zwischenschritt. Diese Services ersetzen keine Beratung ins Blaue, sondern machen die Anfrage besser beschreibbar."
+        services={signatureServiceClarityItems}
+      />
 
       <section className="border-b border-slate-200 bg-white px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -299,6 +317,34 @@ export default function LeistungenPage() {
         intro="FLOXANT fragt nur ab, was für den Start wichtig ist. Alles Weitere verbessert die Einschätzung, bleibt aber freiwillig."
         proofs={serviceTrustProofs}
       />
+
+      <TrustProofPanel
+        allowedPage="/leistungen"
+        serviceKey="reinigung"
+        title="Service-Trust bleibt an Angaben gebunden."
+        intro="Die Leistungsuebersicht zeigt, welche Belege eine Anfrage verbessern, und welche Aussagen FLOXANT bewusst nicht als unbelegte Garantie nutzt."
+      />
+
+      <ServiceProofChecklist
+        serviceKey="reinigung"
+        title="Proof-Inputs fuer Reinigung, Umzug und Sonderfaelle"
+        intro="Die Checkliste startet mit Reinigung, gilt als Muster fuer alle Leistungen: Objekt, Zugang, Fotos, Termin und Ziel muessen zusammenpassen."
+      />
+
+      <ProcessProofSteps />
+
+      <ProjectStoryGrid
+        title="Typische Ausgangslagen statt erfundener Case Studies."
+        intro="Die Uebersicht nutzt nur abstrakte, klar gekennzeichnete Situationen. Echte Projektstorys bleiben verborgen, bis Einwilligung und Privacy-Check vorliegen."
+      />
+
+      <ServiceVisualProofGrid
+        title="Visual Proof mit Privacy-Grenzen."
+        intro="Sichtbare Visuals sind neutral. Echte Vorher-Nachher-Fotos oder Objektbilder werden erst nach Freigabe und Anonymisierung genutzt."
+      />
+
+      <LocalProofPanel location="duesseldorf" />
+      <LocalProofPanel location="regensburg" className="bg-slate-900" />
 
       {regionOrder.map((regionId) => {
         const region = floxantRegions[regionId];

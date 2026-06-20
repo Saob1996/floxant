@@ -35,15 +35,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Fuer Makler & Vermieter - Objekt vorbereiten lassen | FLOXANT",
   description:
     "Direkter Objekt-Link fuer Makler, Vermieter und Eigentuemer: Wohnung nach Auszug raeumen, reinigen, entsorgen und fuer Besichtigung oder Uebergabe vorbereiten lassen.",
-  keywords: [
-    "service fuer vermieter regensburg",
-    "service fuer makler regensburg",
-    "wohnung fuer besichtigung vorbereiten",
-    "wohnung nach auszug reinigen vermieter",
-    "makler reinigung wohnung regensburg",
-    "vermieter wohnung entruempeln lassen",
-    "objekt nach auszug vorbereiten",
-  ],
 });
 
 const whatsappHref =

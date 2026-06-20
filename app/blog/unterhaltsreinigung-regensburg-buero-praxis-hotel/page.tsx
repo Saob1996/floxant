@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Unterhaltsreinigung Regensburg für Büro, Praxis und Hotel | FLOXANT",
   description:
    "Worauf Unternehmen bei Unterhaltsreinigung in Regensburg achten sollten: Turnus, Zugang, Qualitätskontrolle, Ansprechpartner und klare B2B-Abläufe.",
-  keywords: [
-   "Unterhaltsreinigung Regensburg",
-   "Büroreinigung Regensburg",
-   "Praxisreinigung Regensburg",
-   "Hotelreinigung Regensburg",
-  ],
  });
 }
 

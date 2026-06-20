@@ -96,17 +96,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reinigung nach Veranstaltung, Party & Event | FLOXANT",
     description:
       "Reinigung nach Veranstaltung, Party, Firmenfeier oder Event: Böden, Sanitär, Küche, Müll, Geruch und Übergabe konkret prüfen lassen.",
-    keywords: [
-      "Reinigung nach Veranstaltung",
-      "Reinigung nach Party",
-      "Eventreinigung",
-      "Reinigung nach Firmenfeier",
-      "Reinigung nach Feier",
-      "Veranstaltungsreinigung",
-      "Partyreinigung",
-      "Reinigung nach Anlass",
-      "Gewerbereinigung nach Event",
-    ],
   });
 }
 

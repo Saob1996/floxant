@@ -30,10 +30,16 @@ import { FloxantNextStepPanel } from "@/components/FloxantNextStepPanel";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { FloxantStorytellingSection } from "@/components/FloxantStorytellingSection";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { PublicAuthorityModules } from "@/components/PublicAuthorityModules";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { AiServiceRecommendationPanel } from "@/components/seo/AiServiceRecommendationPanel";
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
 import { SignatureServices } from "@/components/SignatureServices";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { buildFaqJsonLd } from "@/lib/structured-data";
 import { signatureServiceLinks, specialCleaningLinks } from "@/lib/signature-special-services";
 import {
@@ -50,15 +56,16 @@ import {
   buildDuesseldorfCleaningSchema,
   buildDuesseldorfCleaningWhatsAppHref,
 } from "@/lib/duesseldorf-cleaning";
+import { buildLeadHref } from "@/lib/lead-intents";
 import { getDuesseldorfCleaningInternationalAliases } from "@/lib/search-intent-aliases";
 
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigungsfirma Düsseldorf | Cleaning Service prüfen",
+    title: "Reinigung Düsseldorf: Objekt, Fläche und Termin klaeren",
     description:
-      "Reinigungsfirma in Düsseldorf für Wohnung, Büro, Praxis und Übergabe: Stadtteil, Fläche, Fotos, Termin, Turnus und Budget direkt senden. Deutsch oder Englisch möglich.",
+      "Reinigung in Duesseldorf fuer Wohnung, Buero, Praxis oder Uebergabe anfragen: Stadtteil, Flaeche, Fotos, Termin, Turnus und Angebot klaeren.",
   });
 }
 
@@ -70,7 +77,12 @@ const trustLine = [
   "WhatsApp, Telefon oder Formular",
   "Budget ehrlich prüfen",
 ];
-const duesseldorfBookingHref = "/buchung?service=reinigung&region=duesseldorf#buchungssystem";
+const duesseldorfBookingHref = buildLeadHref({
+  service: "reinigung",
+  city: "duesseldorf",
+  intent: "reinigung-duesseldorf",
+  priority: "p1",
+});
 
 const mobileDecisionShortcuts = [
   { href: "#anfrage-checkliste", label: "Senden", note: "Angaben" },
@@ -211,7 +223,7 @@ const districtIntentCards = [
   {
     title: "Oberkassel, Heerdt und Lörick",
     text: "Für Wohnungen, möblierte Apartments, kleinere Firmenflächen und Endreinigung vor Übergabe werden Zustand, Zugang und Termin realistisch geprüft.",
-    href: "/duesseldorf/wohnungsreinigung",
+    href: "/duesseldorf/reinigung-heerdt",
   },
   {
     title: "Benrath, Eller und Gerresheim",
@@ -316,7 +328,7 @@ const customerSearchPhraseCards = [
   {
     title: "Gewerbeflächen reinigen",
     text: "Bei Laden, Showroom, Lager, Büro oder gemischter Fläche entscheidet der richtige Umfang: Boden, Glas, Sanitär, Laufwege, Öffnungszeiten und Turnus.",
-    href: "/duesseldorf/gewerbereinigung",
+    href: "/duesseldorf/gewerbeflaechen-reinigung",
   },
   {
     title: "Gebäude mit mehreren Bereichen reinigen",
@@ -616,20 +628,25 @@ export default function DuesseldorfReinigungPage() {
               FLOXANT Reinigung Düsseldorf
             </div>
             <h1 className="duesseldorf-hero-title mt-5 max-w-[17ch] text-[clamp(2.55rem,5.4vw,5rem)] font-bold">
-              Reinigungsfirma Düsseldorf für Wohnung, Büro und Endreinigung
+              Reinigung Düsseldorf mit Objekt, Fläche und Terminwunsch
             </h1>
             <p className="duesseldorf-hero-copy mt-5 max-w-3xl text-lg">
-              Sie möchten eine Wohnung, ein Büro, eine Praxis, ein Treppenhaus oder eine
-              Gewerbefläche in Düsseldorf reinigen lassen? Senden Sie Ort oder PLZ, Fläche,
-              Zustand, Terminwunsch und Fotos. FLOXANT prüft den Fall klar, realistisch und
-              ohne pauschale Versprechen.
+              Beschreiben Sie Wohnung, Buero, Praxis, Treppenhaus oder Gewerbeflaeche mit
+              Stadtteil, Flaeche, Zustand, Zugang, Fotos und Terminwunsch. FLOXANT ordnet ein,
+              welche Reinigung passt, welche Angaben fehlen und ob ein vorhandenes Angebot
+              sachlich geprueft werden sollte.
             </p>
             <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-[1.05fr_1fr_0.95fr]">
               <a
                 href={duesseldorfBookingHref}
                 className="flox-readable-cta-light inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] px-5 py-3 text-sm font-black transition hover:-translate-y-0.5"
-                data-event="hero_cta_click"
+                data-event="seo_cta_click"
                 data-service="reinigung"
+                data-city="duesseldorf"
+                data-page-intent="reinigung-duesseldorf"
+                data-priority="p1"
+                data-cta-label="Reinigung anfragen"
+                data-destination={duesseldorfBookingHref}
                 data-region="duesseldorf"
               >
                 Reinigung anfragen
@@ -642,6 +659,9 @@ export default function DuesseldorfReinigungPage() {
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200/60 bg-emerald-300/18 px-5 py-3 text-sm font-black text-emerald-50 shadow-[0_18px_42px_rgba(16,185,129,0.18)] transition hover:-translate-y-0.5 hover:bg-emerald-300/26"
                 data-event="whatsapp_click"
                 data-service="reinigung"
+                data-city="duesseldorf"
+                data-page-intent="reinigung-duesseldorf"
+                data-destination={whatsappHeroHref}
                 data-region="duesseldorf"
               >
                 WhatsApp mit Fotos senden
@@ -692,6 +712,14 @@ export default function DuesseldorfReinigungPage() {
               >
                 Angebot prüfen lassen
               </Link>
+              <Link
+                href="/reinigungsfirma-angebot"
+                className="inline-flex min-h-10 items-center justify-center rounded-[0.75rem] border border-cyan-200/40 bg-white/12 px-4 text-xs font-bold text-cyan-50 transition hover:bg-white/18"
+                data-event="hero_cta_click"
+                data-region="duesseldorf"
+              >
+                Neues Angebot anfragen
+              </Link>
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">
               Sie haben einen festen Preisrahmen? Nennen Sie uns Ihr Budget, wir ordnen
@@ -736,11 +764,17 @@ export default function DuesseldorfReinigungPage() {
           summary="FLOXANT bietet Reinigung in Düsseldorf für Wohnungen, Büros, Praxen, Treppenhäuser, Gewerbeflächen und Übergaben an. Entscheidend sind Objektart, Fläche, Zustand, Zugang, Termin und Fotos, damit die Anfrage schnell und realistisch eingeordnet werden kann."
           services={customerSectionServices}
           relatedLinks={[
+            { href: "/duesseldorf/putzfirma", label: "Putzfirma" },
+            { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung" },
+            { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung" },
+            { href: "/duesseldorf/gewerbeflaechen-reinigung", label: "Gewerbeflächen-Reinigung" },
+            { href: "/duesseldorf/reinigung-heerdt", label: "Reinigung Heerdt" },
             { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung" },
             { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung" },
             { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung" },
             { href: "/duesseldorf/endreinigung", label: "Endreinigung" },
-            { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+            { href: "/reinigungsfirma-angebot", label: "Neues Reinigungsangebot" },
+            { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot prüfen" },
           ]}
           offerCheckHref="/angebot-vergleichen-duesseldorf"
           className="pt-8"
@@ -752,8 +786,21 @@ export default function DuesseldorfReinigungPage() {
           tags={["Cleaning service", "Office cleaning", "Apartment cleaning", "End of tenancy cleaning", "Cleaning quote"]}
           primaryHref="#kontakt"
           photoHref={duesseldorfBookingHref}
-          offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+          offerHref="/angebot-vergleichen-duesseldorf"
         />
+
+        <ServicePackageSelector groups="reinigung" limit={4} />
+        <EffortFactorsPanel group="reinigung" limit={6} />
+        <TrustProofPanel
+          allowedPage="/duesseldorf/reinigung"
+          serviceKey="reinigung"
+          locationKey="duesseldorf"
+          title="Duesseldorf Reinigung mit belegbaren Trust-Signalen."
+          intro="FLOXANT zeigt Anfrageweg, Objektangaben, Local Proof und Review-Grenzen, ohne Bewertungen oder Ergebnisse zu erfinden."
+        />
+        <ServiceProofChecklist serviceKey="reinigung" />
+        <ServiceVisualProofGrid serviceKey="reinigung" locationKey="duesseldorf" />
+        <LocalProofPanel location="duesseldorf" />
 
         <GscOpportunitySection
           eyebrow="Düsseldorf-Reinigung aus Kundensuchen"
@@ -837,6 +884,10 @@ export default function DuesseldorfReinigungPage() {
           primaryLabel="Reinigung Düsseldorf anfragen"
           secondaryHref="/duesseldorf/vielleicht-guenstiger"
           secondaryLabel="Angebot prüfen"
+          trackingService="reinigung"
+          trackingCity="duesseldorf"
+          trackingPageIntent="reinigung-duesseldorf"
+          trackingPriority="p1"
         />
 
         <section className="pt-6">
@@ -906,7 +957,11 @@ export default function DuesseldorfReinigungPage() {
             "/duesseldorf/kurzfristige-reinigung",
             "/duesseldorf/schluesseluebergabe-reinigung",
             "/duesseldorf/hausverwaltung-reinigung",
+            "/duesseldorf/putzfirma",
             "/duesseldorf/wohnungsreinigung",
+            "/duesseldorf/treppenhausreinigung",
+            "/duesseldorf/gewerbeflaechen-reinigung",
+            "/duesseldorf/reinigung-heerdt",
             "/duesseldorf/endreinigung",
             "/duesseldorf/bueroreinigung",
             "/duesseldorf/unterhaltsreinigung",
@@ -922,6 +977,11 @@ export default function DuesseldorfReinigungPage() {
             "/duesseldorf/kurzfristige-reinigung",
             "/duesseldorf/schluesseluebergabe-reinigung",
             "/duesseldorf/hausverwaltung-reinigung",
+            "/duesseldorf/putzfirma",
+            "/duesseldorf/wohnungsreinigung",
+            "/duesseldorf/treppenhausreinigung",
+            "/duesseldorf/gewerbeflaechen-reinigung",
+            "/duesseldorf/reinigung-heerdt",
             "/duesseldorf/vielleicht-guenstiger",
             "/duesseldorf/endreinigung",
             "/duesseldorf/bueroreinigung",

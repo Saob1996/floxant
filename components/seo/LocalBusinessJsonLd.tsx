@@ -6,6 +6,7 @@ import {
   BAVARIA_MAPS_SERVICE_INTENTS,
   BAVARIA_METRO_DISTRICT_LINKS,
 } from "@/lib/bavaria-coverage";
+import { floxantLocationList } from "@/lib/floxant-locations";
 
 export function LocalBusinessJsonLd() {
   const geoLatitude = Number(company.geo.lat.toFixed(5));
@@ -133,6 +134,35 @@ export function LocalBusinessJsonLd() {
     })),
   ]);
 
+  const locationDepartments = floxantLocationList.map((location) => ({
+    "@type": location.localSchemaData.businessTypes,
+    "@id": location.localSchemaData.schemaId,
+    name: location.displayName,
+    url: `${company.url}${location.localLandingPage}`,
+    ...(location.phoneRaw ? { telephone: location.phoneRaw } : {}),
+    ...(location.email ? { email: location.email } : {}),
+    ...(location.mapsUrl ? { hasMap: location.mapsUrl, maps: location.mapsUrl } : {}),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: location.addressLine1,
+      addressLocality: location.city,
+      addressRegion: location.region,
+      postalCode: location.postalCode,
+      addressCountry: "DE",
+    },
+    areaServed: location.localSchemaData.areaServed.map((area) => ({
+      "@type": area === "Bayern" || area === "Nordrhein-Westfalen" ? "State" : "AdministrativeArea",
+      name: area,
+    })),
+    makesOffer: [...location.primaryServices, ...location.secondaryServices].map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service,
+      },
+    })),
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "MovingCompany", "HouseCleaningService", "ProfessionalService"],
@@ -153,7 +183,6 @@ export function LocalBusinessJsonLd() {
     maps: company.mapsSearchUrl,
     telephone: company.phoneRaw,
     email: company.email,
-    priceRange: "$$",
     currenciesAccepted: "EUR",
     paymentAccepted: "Überweisung, Rechnung, Kartenzahlung nach Vereinbarung",
     slogan: "Klare Einschätzung statt vorschneller Preiszusage.",
@@ -311,20 +340,6 @@ export function LocalBusinessJsonLd() {
         contactType: "customer support",
         areaServed: ["DE"],
         availableLanguage: ["de", "en"],
-        hoursAvailable: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ],
-          opens: "00:00",
-          closes: "23:59",
-        },
       },
       {
         "@type": "ContactPoint",
@@ -333,20 +348,6 @@ export function LocalBusinessJsonLd() {
         contactType: "sales",
         areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
         availableLanguage: ["de", "en"],
-        hoursAvailable: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday",
-          ],
-          opens: "00:00",
-          closes: "23:59",
-        },
       },
     ],
     potentialAction: [
@@ -429,6 +430,7 @@ export function LocalBusinessJsonLd() {
       })),
     },
     department: [
+      ...locationDepartments,
       {
         "@type": "LocalBusiness",
         name: "FLOXANT Umzug",
@@ -505,14 +507,6 @@ export function LocalBusinessJsonLd() {
         "@type": "WebPage",
         name: "FLOXANT Private Client Service",
         url: `${company.url}/private-client-service`,
-      },
-    ],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "00:00",
-        closes: "23:59",
       },
     ],
     mentions: {

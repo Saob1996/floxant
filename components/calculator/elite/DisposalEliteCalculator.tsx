@@ -139,7 +139,7 @@ export default function DisposalEliteCalculator({ dic }: Props) {
        <CheckCircle2 size={24} />
        <Trash2 size={24} />
       </div>
-      <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Fachgerecht & Zertifiziert</p>
+          <p className="text-center text-[10px] font-bold uppercase tracking-widest text-white/20">Fachgerecht vorbereitet</p>
      </div>
     </div>
    </div>

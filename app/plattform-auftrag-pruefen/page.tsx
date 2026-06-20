@@ -35,18 +35,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Plattform-Auftrag prüfen lassen - zweite Einschätzung | FLOXANT",
   description:
     "Bereits über eine Plattform angefragt? FLOXANT prüft praktisch, ob Umfang, Preis, Termin, Fotos, Reinigung, Entsorgung oder Übergabe klar sind.",
-  keywords: [
-    "Plattform-Angebot prüfen",
-    "Angebot von Plattform prüfen lassen",
-    "Umzugsangebot von Plattform unklar",
-    "zweite Einschätzung Umzug Angebot",
-    "Plattform Reinigung Angebot prüfen",
-    "Plattform Entrümpelung Angebot prüfen",
-    "Entsorgung Düsseldorf Angebot prüfen",
-    "MyHammer Angebot prüfen",
-    "Check24 Angebot prüfen",
-    "Angebot vor Zusage prüfen",
-  ],
 });
 
 const statusSteps = ["Anfrage", "Angebot", "Umfang", "Termin", "Direktprüfung"];

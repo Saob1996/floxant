@@ -70,14 +70,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "FLOXANT Fakten | Umzug, Reinigung & Entrümpelung Bayern",
   description:
    "Kurzprofil für Kunden und lokale Suche: FLOXANT für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern.",
-  keywords: [
-   "FLOXANT Fakten",
-   "FLOXANT Überblick",
-   "FLOXANT Leistungen",
-   "Umzug Regensburg",
-   "Reinigung Regensburg",
-   "Entrümpelung Bayern",
-  ],
  });
 }
 

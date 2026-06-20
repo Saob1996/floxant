@@ -33,15 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Keller- & Muellraum-Rettung Regensburg | FLOXANT",
   description:
     "Keller, Muellraum, Garage oder Nebenflaeche zugestellt? FLOXANT prueft Raeumung, Entsorgung und Reinigung fuer Hausverwaltungen, Vermieter und Gewerbe im Raum Regensburg.",
-  keywords: [
-    "keller entruempelung regensburg",
-    "keller raeumen lassen regensburg",
-    "muellraum raeumen lassen",
-    "hausverwaltung entruempelung regensburg",
-    "garage entruempeln regensburg",
-    "nebenraeume raeumen lassen",
-    "gewerbe entruempelung regensburg",
-  ],
 });
 
 const whatsappHref =

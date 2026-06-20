@@ -31,13 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Büroreinigung in Regensburg anfragen: welche Angaben vor dem Angebot zählen",
     description:
       "Welche Angaben zu Fläche, Turnus, Zugang und Randzeiten aus einer Anfrage zur Büroreinigung schneller ein belastbares Angebot machen.",
-    keywords: [
-      "Büroreinigung Regensburg Angebot",
-      "Büroreinigung anfragen Regensburg",
-      "Gewerbereinigung Büro Regensburg",
-      "Unterhaltsreinigung Regensburg Angebot",
-      "B2B Reinigung Regensburg",
-    ],
   });
 }
 

@@ -35,19 +35,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "FLOXANT Signature Services | Angebotsprüfung & besondere Situationen",
     description:
       "FLOXANT Signature Services: Angebotsprüfung, Vor-Ort-Prüfung, Objektbetreuung, Plan B, Leerstand, Übergabe und zusätzliche Hilfe für Regensburg, Bayern und Düsseldorf Reinigung.",
-    keywords: [
-      "FLOXANT Signature Services",
-      "besondere Unterstützung FLOXANT",
-      "Angebot prüfen lassen",
-      "Objektbetreuung Regensburg",
-      "Vor-Ort-Prüfung",
-      "Immobilienbetreuung Bayern",
-      "Plan B Service",
-      "Schadensbegrenzung",
-      "Wohnung wieder vermietbar",
-      "Übergabeakte",
-      "Leerstandsmanagement",
-    ],
   });
 }
 

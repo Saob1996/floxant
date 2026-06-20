@@ -10,6 +10,9 @@ import {
 
 import { PillarServicePage } from "@/components/PillarServicePage";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { ServiceFitGuide } from "@/components/ServiceFitGuide";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -26,15 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzug Regensburg | Umzugsfirma für Bayern",
     description:
       "Umzug in Regensburg und Bayern realistisch einordnen lassen: Volumen, Etagen, Laufwege, Transport, Zusatzleistungen und Übergabe sauber planen.",
-    keywords: [
-      "Umzug Regensburg",
-      "Umzugsfirma Regensburg",
-      "Umzugsunternehmen Bayern",
-      "Privatumzug Regensburg",
-      "Firmenumzug Regensburg",
-      "Umzug mit Reinigung",
-      "Umzug Kosten Regensburg",
-    ],
   });
 }
 
@@ -181,6 +175,13 @@ export default async function UmzugPillarPage() {
           { href: "/umzug-ingolstadt", label: "Umzug Ingolstadt" },
           { href: "/umzug-weiden", label: "Umzug Weiden" },
         ]}
+      />
+      <ServicePackageSelector groups="umzug" limit={7} />
+      <EffortFactorsPanel group="umzug" />
+      <ServiceFitGuide
+        group="umzug"
+        title="Vom Mini-Transport bis Plan B: welcher Umzugspfad passt?"
+        intro="Volumen, Etagen, Zeitfenster und Sonderstuecke entscheiden, ob Mini-Umzug, Privatumzug, Beiladung oder Plan B der bessere Start ist."
       />
       <PsychologicalCleaningInternalLinks
         title="Reinigung und Uebergabe nach dem Umzug"

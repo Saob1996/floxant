@@ -36,13 +36,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reinigung zur Wohnungsübergabe | Checkliste ohne falsche Versprechen",
     description:
       "Checkliste für Endreinigung und Wohnungsübergabe: Küche, Bad, Böden, Fenster, Nebenflächen, Schlüssel und Fotos realistisch vorbereiten.",
-    keywords: [
-      "Reinigung Wohnungsübergabe",
-      "Endreinigung Checkliste",
-      "Wohnungsübergabe Reinigung",
-      "Regensburg",
-      "Bayern",
-    ],
   });
 }
 

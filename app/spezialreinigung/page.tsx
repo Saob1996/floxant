@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Camera, CheckCircle2, ShieldCheck } from "lucide-react";
 
+import { AiAnswerCard } from "@/components/AiAnswerCard";
+import { ChecklistBlock, ComparisonAnswerTable } from "@/components/ai-answer";
 import {
   LocalServiceBridge,
   OfferCheckCTA,
@@ -9,6 +11,8 @@ import {
   ServiceClusterLinks,
   SignatureServicesGrid,
 } from "@/components/conversion";
+import { OfferCheckInlineCTA } from "@/components/OfferCheckInlineCTA";
+import { ServiceClarityPanel } from "@/components/ServiceClarityPanel";
 import { company } from "@/lib/company";
 import {
   offerCheckLinks,
@@ -39,11 +43,65 @@ const process = [
   "FLOXANT trennt machbare Reinigung, offene Rueckfragen und klare Grenzen.",
 ] as const;
 
+const specialCleaningClarityItems = [
+  {
+    title: "Was der Service ist",
+    text: "Spezialreinigung ist ein Pruefweg fuer PV, Glas, Fassade, Event, Buero, Praxis oder Uebergabe, wenn Zugang, Material oder Zielzustand genauer beschrieben werden muessen.",
+  },
+  {
+    title: "Wann er passt",
+    text: "Wenn Fotos, Ort, Flaeche, Hoehe, Zugang, Wasseranschluss, Zeitfenster oder ein vorhandenes Angebot vorliegen.",
+  },
+  {
+    title: "Wann ein anderer Weg besser ist",
+    text: "Wenn es um normale Unterhaltsreinigung, Umzug, Raeumung oder reine Angebotspruefung geht, fuehrt FLOXANT auf die passende Seite.",
+  },
+  {
+    title: "Was FLOXANT braucht",
+    text: "Uebersichtsfotos, Nahbilder, Objektart, Ort, Terminwunsch, besondere Risiken und vorhandene Unterlagen.",
+  },
+] as const;
+
 const boundaries = [
   "Keine Ertragsgarantie bei PV-Anlagen.",
   "Keine Dach-, Elektro- oder Schadensanierungsarbeiten als Reinigungsversprechen.",
   "Keine Festpreise ohne Zugang, Fotos, Umfang und Terminlage.",
   "Keine medizinische Spezialdesinfektion oder erfundene Zertifikate.",
+] as const;
+
+const cleaningAnswerPoints = [
+  "Spezialreinigung passt, wenn Zugang, Material, Hoehe, Fotos oder Zielzustand vor der Zusage geklaert werden muessen.",
+  "Normale Reinigung passt eher, wenn Flaeche, Raeume, Zustand und Termin ohne besondere Risiken beschreibbar sind.",
+  "Angebot pruefen passt, wenn schon Preis, PDF, Screenshot oder Leistungsumfang vorliegt.",
+] as const;
+
+const cleaningChecklist = [
+  "Objektart und Ort nennen.",
+  "Fotos von Zugang, Verschmutzung, Glas, PV, Fassade oder Uebergabeziel senden.",
+  "Flaeche, Hoehe, Etage, Wasseranschluss und Zeitfenster beschreiben.",
+  "Vorhandenes Angebot oder Preisrahmen separat markieren.",
+  "Keine Ertrags-, Dach-, Elektro- oder Abnahmegarantie erwarten.",
+] as const;
+
+const cleaningComparisonRows = [
+  {
+    topic: "Standardfall",
+    left: "Normale Reinigung mit Raeumen, Flaeche und Termin.",
+    right: "Spezialreinigung mit Zugang, Material, Hoehe oder Sicherheitsgrenze.",
+    decision: "Bei unsicherem Zugang oder Spezialmaterial zuerst Spezialreinigung anfragen.",
+  },
+  {
+    topic: "Vorhandenes Angebot",
+    left: "Direkte Anfrage, wenn noch kein Preis oder Anbieter vorliegt.",
+    right: "Angebotspruefung, wenn PDF, Screenshot, Preis oder Leistungsumfang vorhanden ist.",
+    decision: "Mit Angebot immer den Pruefpfad nutzen.",
+  },
+  {
+    topic: "PV/Solar",
+    left: "Reinigung nur nach Fotos, Zugang und Sicherheitslage.",
+    right: "Keine Elektro-, Dach- oder Ertragszusage.",
+    decision: "PV-Sichtklar oder Objektbrief nutzen, wenn Daten fehlen.",
+  },
 ] as const;
 
 const faqItems = [
@@ -67,9 +125,9 @@ const faqItems = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Spezialreinigung | PV, Glas, Fassade & Uebergabe | FLOXANT",
+  title: "Spezialreinigung mit Fotos, Zugang und Ziel klären",
   description:
-    "Spezialreinigung fuer PV, Glas, Fassade, Event, Buero, Praxis und Uebergabe: Fotos, Zugang, Risiko und Angebot sauber pruefen lassen.",
+    "FLOXANT ordnet Spezialreinigung fuer PV, Glas, Fassade, Event, Buero, Praxis und Uebergabe nach Fotos, Zugang und Risiko ein.",
   alternates: { canonical },
   openGraph: {
     type: "website",
@@ -136,7 +194,7 @@ export default function SpezialreinigungPage() {
               FLOXANT Spezialreinigung
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Spezialreinigung fuer PV, Glas, Fassade, Buero und Uebergabe.
+              Spezialreinigung mit Fotos, Zugang und Ziel klar einordnen.
             </h1>
             <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-200">
               Spezialreinigung braucht mehr als ein Stichwort. FLOXANT prueft Fotos,
@@ -170,11 +228,44 @@ export default function SpezialreinigungPage() {
         </div>
       </section>
 
+      <ServiceClarityPanel
+        title="Spezialreinigung braucht erst Machbarkeit, dann Zusage."
+        intro="PV, Glas, Fassade, Event, Praxis, Hotel oder Uebergabe koennen sehr unterschiedliche Anforderungen haben. FLOXANT trennt deshalb normale Reinigung, Spezialfall und Angebotspruefung sauber."
+        items={specialCleaningClarityItems}
+      />
+
+      <OfferCheckInlineCTA
+        title="Schon ein Spezialreinigungs-Angebot erhalten?"
+        text="Wenn Preis, Zugang, Material, Termin oder Zusatzpositionen unklar wirken, kann FLOXANT das Angebot praktisch einordnen. Keine Ertrags-, Preis- oder Machbarkeitsgarantie."
+      />
+
       <RelatedSpecialServices
         title="Welche Spezialreinigung passt zum Fall?"
         intro="Diese Services sind nur dann hilfreich, wenn Zugang, Material, Zeitfenster und Ziel klar genug beschrieben sind."
         services={specialCleaningLinks}
         limit={8}
+      />
+
+      <AiAnswerCard
+        title="Spezialreinigung beginnt mit Zugang, Fotos und Zielzustand."
+        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotspruefung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Uebergabe nicht als pauschaler Standardfall behandelt werden."
+        points={cleaningAnswerPoints}
+        nextStep="Naechster Schritt: Fotos, Objektart, Ort, Termin und vorhandenes Angebot mitsenden."
+      />
+
+      <ComparisonAnswerTable
+        title="Reinigung, Spezialreinigung oder Angebotspruefung?"
+        intro="Der richtige Weg haengt davon ab, ob nur gereinigt werden soll, ob technische Grenzen offen sind oder ob bereits ein Angebot vorliegt."
+        leftLabel="Direkte Reinigung"
+        rightLabel="Spezial-/Pruefpfad"
+        rows={cleaningComparisonRows}
+      />
+
+      <ChecklistBlock
+        title="Checkliste fuer Spezialreinigung"
+        intro="Diese Angaben reichen fuer eine serioese Vorpruefung, ohne Preise oder Verfuegbarkeit zu erfinden."
+        items={cleaningChecklist}
+        columns={3}
       />
 
       <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">

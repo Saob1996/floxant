@@ -25,9 +25,15 @@ import {
 } from "lucide-react";
 
 import { DuesseldorfB2BCleaningForm } from "@/components/DuesseldorfB2BCleaningForm";
+import { B2BRequestPanel } from "@/components/B2BRequestPanel";
+import { B2BTrustPanel } from "@/components/B2BTrustPanel";
+import { BusinessTrustPanel } from "@/components/BusinessTrustPanel";
+import { CommercialCleaningScopeSelector } from "@/components/CommercialCleaningScopeSelector";
 import { InternationalCustomerHint } from "@/components/conversion";
 import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
 import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import {
   DUESSELDORF_CLEANING,
   DUESSELDORF_CLEANING_SNIPPET_ANSWERS,
@@ -40,10 +46,17 @@ import {
   getDuesseldorfCleaningInternationalAliases,
   type SearchIntentAliasLanguage,
 } from "@/lib/search-intent-aliases";
+import { buildLeadHref } from "@/lib/lead-intents";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 
 const pagePath = "/duesseldorf/bueroreinigung";
+const bueroreinigungLeadHref = buildLeadHref({
+  service: "bueroreinigung",
+  city: "duesseldorf",
+  intent: "bueroreinigung-duesseldorf",
+  priority: "p0",
+});
 
 const internationalLanguageLabels: Record<SearchIntentAliasLanguage, string> = {
   en: "Englisch",
@@ -62,9 +75,9 @@ function htmlLangForAlias(language: SearchIntentAliasLanguage) {
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: pagePath,
-    title: "B2B Büroreinigung Düsseldorf | Office Cleaning prüfen",
-  description:
-      "Büroreinigung Düsseldorf für kleine Firmen, Kanzlei, Praxis und Hotelbereich: Raumliste, Turnus, Zeitfenster, Zugang und Fotos direkt senden. Deutsch oder Englisch möglich.",
+    title: "Bueroreinigung Duesseldorf: Raumliste, Turnus und Angebot",
+    description:
+      "Bueroreinigung Duesseldorf fuer Buero, Kanzlei, Praxis und Firma: Raumliste, Turnus, Randzeit, Zugang, Fotos und vorhandenes Angebot klaeren.",
   });
 }
 
@@ -427,16 +440,24 @@ export default function DuesseldorfBueroreinigungPage() {
               FLOXANT Büroreinigung Düsseldorf
             </div>
             <h1 className="mt-6 max-w-[14ch] text-[clamp(2.55rem,6vw,5.6rem)] font-black leading-[0.94] tracking-normal text-slate-950">
-              Reinigung für Büro, Hotel und Firma in Düsseldorf
+              Bueroreinigung Duesseldorf mit Raumliste, Turnus und Randzeit
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700 md:text-lg">
-              Für Büros, Hotels, Boardinghouses, Agenturen, Studios, Kanzleien und kleine Gewerbeflächen: FLOXANT prüft regelmäßige Reinigung, Grundreinigung und objektbezogene Reinigung in Düsseldorf nach Absprache.
+              Fuer Bueros, Agenturen, Studios, Kanzleien, Boardinghouses und kleine Gewerbeflaechen:
+              Senden Sie Raumliste, Flaeche, Turnus, Randzeit, Zugang, Fotos und Ansprechpartner.
+              FLOXANT prueft, ob laufende Reinigung, Grundreinigung oder Angebotspruefung sinnvoll ist.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
-                href="#b2b-reinigung-form"
+                href={bueroreinigungLeadHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-cyan-900"
-                data-event="service_card_click"
+                data-event="seo_cta_click"
+                data-service="bueroreinigung"
+                data-city="duesseldorf"
+                data-page-intent="bueroreinigung-duesseldorf"
+                data-priority="p0"
+                data-cta-label="Bueroreinigung anfragen"
+                data-destination={bueroreinigungLeadHref}
               >
                 Büroreinigung anfragen
                 <ArrowRight className="h-4 w-4" />
@@ -447,6 +468,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 rel="noopener noreferrer"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:-translate-y-0.5 hover:bg-emerald-100"
                 data-event="whatsapp_click"
+                data-destination={whatsappHref}
               >
                 <MessageCircle className="h-4 w-4" />
                 Per WhatsApp anfragen
@@ -454,7 +476,7 @@ export default function DuesseldorfBueroreinigungPage() {
               <a
                 href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-slate-200 bg-white px-5 text-sm font-black text-slate-900 transition hover:-translate-y-0.5 hover:border-cyan-200"
-                data-event="phone_click"
+                data-event="seo_phone_click"
               >
                 <Phone className="h-4 w-4" />
                 Anrufen
@@ -500,8 +522,8 @@ export default function DuesseldorfBueroreinigungPage() {
         cityLabel="Düsseldorf"
         serviceLabel="Büroreinigung, Firmenreinigung, Hotelreinigung oder Gewerbeflächenreinigung"
         tags={["Office cleaning", "Commercial cleaning", "Cleaning company", "Cleaning quote", "Photos welcome"]}
-        primaryHref="#b2b-reinigung-form"
-        photoHref="#b2b-reinigung-form"
+        primaryHref={bueroreinigungLeadHref}
+        photoHref={bueroreinigungLeadHref}
         offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
       />
 
@@ -527,6 +549,13 @@ export default function DuesseldorfBueroreinigungPage() {
           </Link>
         ))}
       </nav>
+
+      <B2BRequestPanel city="duesseldorf" />
+      <CommercialCleaningScopeSelector city="duesseldorf" />
+      <EffortFactorsPanel group="b2b" />
+      <BusinessTrustPanel />
+      <B2BTrustPanel />
+      <ServiceProofChecklist serviceKey="b2b" />
 
       <div className="px-4 pb-4 pt-2 sm:px-6">
         <div className="mx-auto max-w-7xl">
@@ -795,6 +824,9 @@ export default function DuesseldorfBueroreinigungPage() {
                 </Link>
                 <Link href="/duesseldorf/treppenhausreinigung" className="rounded-[0.75rem] border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
                   Treppenhausreinigung
+                </Link>
+                <Link href="/reinigungsfirma-angebot" className="rounded-[0.75rem] border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-bold text-cyan-900 hover:bg-cyan-100">
+                  Reinigungsfirma Angebot
                 </Link>
                 <Link href="/entsorgung-duesseldorf" className="rounded-[0.75rem] border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-bold text-orange-800 hover:bg-orange-100">
                   Entsorgung ergänzen

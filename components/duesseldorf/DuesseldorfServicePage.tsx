@@ -34,11 +34,16 @@ import {
   RelatedSpecialServices,
   SignatureServicesGrid,
 } from "@/components/conversion";
+import { LeadCta } from "@/components/LeadCta";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { DuesseldorfCleaningConversionLift } from "@/components/duesseldorf/DuesseldorfCleaningConversionLift";
 import { DuesseldorfCleaningBuyerJourney } from "@/components/duesseldorf/DuesseldorfCleaningBuyerJourney";
 import { DuesseldorfCleaningDecisionGuide } from "@/components/duesseldorf/DuesseldorfCleaningDecisionGuide";
 import { SearchIntentExpansion } from "@/components/seo/SearchIntentExpansion";
 import { AiAnswerBlock } from "@/components/ai-answer";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { buildFaqJsonLd } from "@/lib/structured-data";
 
 type ServicePageProps = {
@@ -82,6 +87,7 @@ type ServicePageProps = {
 };
 
 const fallbackRelatedLinks = [
+  { href: "/duesseldorf/reinigungsfirma", label: "Reinigungsfirma Düsseldorf" },
   { href: "/duesseldorf/kurzfristige-reinigung", label: "Kurzfristige Reinigung prüfen" },
   { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung-Reinigung planen" },
   { href: "/duesseldorf/schluesseluebergabe-reinigung", label: "Schlüsselübergabe-Reinigung anfragen" },
@@ -99,6 +105,8 @@ const fallbackRelatedLinks = [
   { href: "/duesseldorf/reinigung-nach-renovierung", label: "Nach Renovierung reinigen" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil prüfen" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+  { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot vergleichen" },
+  { href: "/reinigungsfirma-angebot", label: "Neues Reinigungsangebot anfragen" },
   { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung anfragen" },
   { href: "/duesseldorf/entsorgung", label: "Entsorgung separat prüfen" },
 ];
@@ -504,6 +512,23 @@ export function DuesseldorfServicePage({
   const faqJsonLd = buildFaqJsonLd(activeFaqItems);
   const pathSegments = path.split("/").filter(Boolean);
   const serviceSlug = pathSegments[pathSegments.length - 1] || "reinigung";
+  const leadService =
+    serviceSlug.includes("praxisreinigung")
+      ? "praxisreinigung"
+      : serviceSlug.includes("fensterreinigung") || serviceSlug.includes("glas")
+      ? "fensterreinigung"
+      : serviceSlug.includes("bueroreinigung") || serviceSlug.includes("buero") || serviceSlug.includes("b2b")
+      ? "bueroreinigung"
+      : serviceSlug.includes("gewerbe") || serviceSlug.includes("firma")
+        ? "gewerbereinigung"
+        : "reinigung";
+  const leadIntent = serviceSlug.includes("b2b")
+    ? "b2b-bueroreinigung-duesseldorf"
+    : `${leadService}-duesseldorf`;
+  const leadPriority =
+    leadService === "bueroreinigung" || leadService === "praxisreinigung" || leadService === "fensterreinigung"
+      ? "p0"
+      : "p1";
   const customerSectionServices = [
     {
       title: `${serviceLabel} anfragen`,
@@ -555,16 +580,18 @@ export function DuesseldorfServicePage({
             ))}
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              href="/duesseldorf/reinigung#rechner"
+            <LeadCta
+              service={leadService}
+              city="duesseldorf"
+              intent={leadIntent}
+              priority={leadPriority}
+              label={`${serviceLabel} anfragen`}
+              source="duesseldorf_service_hero"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] bg-white px-5 py-3 text-sm font-bold text-slate-950 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-100"
-              data-event="hero_cta_click"
-              data-service="reinigung"
-              data-region="duesseldorf"
             >
-              Preisrahmen prüfen
+              {serviceLabel} anfragen
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </LeadCta>
             <a
               href={buildDuesseldorfCleaningWhatsAppHref(
                 `Hallo FLOXANT Reinigung Düsseldorf, ich interessiere mich für ${title}.`,
@@ -572,8 +599,13 @@ export function DuesseldorfServicePage({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.8rem] border border-emerald-200/80 bg-emerald-400 px-5 py-3 text-sm font-black text-slate-950 shadow-[0_14px_30px_rgba(5,150,105,0.22)] transition hover:-translate-y-0.5 hover:bg-emerald-300"
-              data-event="whatsapp_click"
+              data-event="seo_cta_click"
               data-service="reinigung"
+              data-city="duesseldorf"
+              data-page-intent={serviceLabel}
+              data-priority="p1"
+              data-cta-label="WhatsApp mit Fotos senden"
+              data-contact-channel="whatsapp"
               data-region="duesseldorf"
             >
               WhatsApp mit Fotos senden
@@ -614,7 +646,7 @@ export function DuesseldorfServicePage({
           }
           primaryHref="/duesseldorf/reinigung#kontakt"
           photoHref="/duesseldorf/reinigung#kontakt"
-          offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+          offerHref="/angebot-vergleichen-duesseldorf"
           className="mt-6 rounded-[0.95rem] border border-slate-200"
         />
 
@@ -648,11 +680,12 @@ export function DuesseldorfServicePage({
           className="mt-6 rounded-[0.95rem]"
         />
 
-        <OfferCheckCTA
-          title={`Reinigungsangebot fuer ${serviceLabel} schon vorhanden?`}
-          text="FLOXANT prueft vorhandene Angebote nach Flaeche, Turnus, Zusatzpositionen, Zugang, Fotos und Zeitfenster. Keine Preisgarantie, keine Anbieter-Diffamierung."
-          className="mt-6 rounded-[0.95rem]"
-        />
+      <OfferCheckCTA
+        title={`Reinigungsangebot fuer ${serviceLabel} schon vorhanden?`}
+        text="FLOXANT prueft vorhandene Angebote nach Flaeche, Turnus, Zusatzpositionen, Zugang, Fotos und Zeitfenster. Keine Preisgarantie, keine Anbieter-Diffamierung."
+        href="/angebot-vergleichen-duesseldorf"
+        className="mt-6 rounded-[0.95rem]"
+      />
 
         <section className="grid gap-4 pt-6 lg:grid-cols-[0.78fr_1.22fr]">
           <article className="rounded-[0.95rem] border border-slate-200 bg-white p-6 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
@@ -1183,6 +1216,33 @@ export function DuesseldorfServicePage({
           market="duesseldorf"
           relatedLinks={visibleLinks}
           className="px-0 pt-10"
+        />
+
+        <TrustProofPanel
+          allowedPage={path}
+          serviceKey="reinigung"
+          locationKey="duesseldorf"
+          title={`Trust Proof fuer ${serviceLabel}`}
+          intro="Diese lokale Reinigungsseite nutzt konkrete Anfragebelege statt erfundener Bewertungen: Objekt, Flaeche, Zustand, Fotos, Zugang und Termin."
+          className="-mx-5 bg-white px-5 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10"
+        />
+
+        <ServiceProofChecklist
+          serviceKey="reinigung"
+          title={`Welche Angaben ${serviceLabel} belastbarer machen`}
+          intro="FLOXANT kann die Anfrage besser einordnen, wenn lokale Eckdaten und sichtbare Objektinformationen zusammenkommen."
+          className="-mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10"
+        />
+
+        <ServiceVisualProofGrid
+          serviceKey="reinigung"
+          locationKey="duesseldorf"
+          className="-mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10"
+        />
+
+        <LocalProofPanel
+          location="duesseldorf"
+          className="-mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10"
         />
 
         <section className="grid gap-6 pt-10 lg:grid-cols-[1.04fr_0.96fr]">

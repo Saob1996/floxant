@@ -27,6 +27,7 @@ const pagePath = "/gewerbereinigung";
 const bookingHref = "/buchung?service=gewerbereinigung&region=duesseldorf#buchungssystem";
 const callbackHref = "/kontakt?anliegen=rueckruf-gewerbereinigung-duesseldorf";
 const betterPriceHref = "/duesseldorf/vielleicht-guenstiger";
+const offerRequestHref = "/reinigungsfirma-angebot";
 const whatsappText =
   "Hallo FLOXANT, ich moechte gewerbliche Reinigung in Duesseldorf anfragen. Es geht um: ";
 const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(whatsappText)}`;
@@ -183,6 +184,7 @@ const relatedLinks = [
   { label: "Praxisreinigung Düsseldorf", href: "/duesseldorf/praxisreinigung" },
   { label: "Hotelreinigung Düsseldorf", href: "/duesseldorf/hotelreinigung" },
   { label: "Treppenhausreinigung Düsseldorf", href: "/duesseldorf/treppenhausreinigung" },
+  { label: "Reinigungsfirma Angebot", href: "/reinigungsfirma-angebot" },
   { label: "Kurzfristige Reinigung", href: "/duesseldorf/kurzfristige-reinigung" },
   { label: "Schlüsselübergabe Reinigung", href: "/duesseldorf/schluesseluebergabe-reinigung" },
 ];
@@ -194,17 +196,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Gewerbliche Reinigung Düsseldorf | Hotel, Praxis, Büro | FLOXANT",
     description:
       "Gewerbliche Reinigung in Düsseldorf für Hotel, Praxis, Kanzlei, Büro, Treppenhaus und Objekt. Eckdaten, Fotos und Zeitfenster senden.",
-    keywords: [
-      "Gewerbliche Reinigung Düsseldorf",
-      "Gewerbereinigung Düsseldorf",
-      "Hotelreinigung Düsseldorf",
-      "Praxisreinigung Düsseldorf",
-      "Kanzleireinigung Düsseldorf",
-      "Büroreinigung Düsseldorf",
-      "Treppenhausreinigung Düsseldorf",
-      "Grundreinigung Düsseldorf",
-      "Reinigungsfirma Düsseldorf",
-    ],
   });
 }
 
@@ -236,6 +227,7 @@ export default function GewerbereinigungLandingPage() {
     ],
     potentialActions: [
       { name: "Kostenlos anfragen", target: bookingHref, type: "ContactAction" },
+      { name: "Reinigungsangebot anfordern", target: offerRequestHref, type: "ContactAction" },
       { name: "WhatsApp senden", target: whatsappHref, type: "ContactAction" },
       { name: "Rückruf anfordern", target: callbackHref, type: "ContactAction" },
     ],
@@ -250,7 +242,6 @@ export default function GewerbereinigungLandingPage() {
     telephone: company.phoneRaw,
     email: company.email,
     image: `${company.url}/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp`,
-    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: company.streetAddress,
@@ -313,6 +304,13 @@ export default function GewerbereinigungLandingPage() {
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-black text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-200"
                 >
                   Kostenlos anfragen
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href={offerRequestHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-cyan-200/60 bg-cyan-50 px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                >
+                  Reinigungsangebot anfordern
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
@@ -396,6 +394,7 @@ export default function GewerbereinigungLandingPage() {
             </h2>
             <p className="mt-4 text-lg leading-8 text-slate-600">
               Keine lange Erklärung. Wenn ein Objekt sauber, planbar und ohne ständige Rückfragen laufen muss, geht es meist um diese Bereiche.
+              Gewerbereinigung meint hier gewerbliche Flächen und laufende Betriebe, nicht private Haushaltshilfe oder eine pauschale Wohnungsreinigung.
             </p>
           </div>
 
@@ -415,10 +414,10 @@ export default function GewerbereinigungLandingPage() {
                   ))}
                 </div>
                 <Link
-                  href={bookingHref}
+                  href={service.href}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-black text-cyan-800 hover:text-cyan-950"
                 >
-                  Anfrage senden
+                  Leistung ansehen
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </article>
@@ -497,6 +496,13 @@ export default function GewerbereinigungLandingPage() {
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-cyan-300"
                 >
                   Jetzt Reinigung anfragen
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href={offerRequestHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-black text-white transition hover:bg-white/15"
+                >
+                  Reinigungsangebot anfordern
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link

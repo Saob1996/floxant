@@ -11,7 +11,10 @@ import {
  enrichIntakeWithConversionJourney,
  getConversionJourneyIdFromDetails,
 } from "@/lib/conversion-journey";
+import { normalizeLeadSubmission } from "@/lib/lead-normalization";
+import { attachLeadQuality, calculateLeadPriority } from "@/lib/lead-priority";
 import { attachLeadRouting } from "@/lib/lead-routing";
+import { validateLeadSubmission } from "@/lib/lead-validation";
 import { sendInternalIntakeNotification } from "@/lib/mail/notifications";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 import { IntakePayload } from "@/lib/types/intake";
@@ -62,7 +65,8 @@ function normalizeService(service: unknown) {
   "grundreinigung_regensburg",
  ]);
  if (regensburgCleaningServices.has(compact)) return compact.replace("büro", "buero");
- if (raw === "reinigung") return "reinigung";
+ if (raw === "reinigung" || raw === "fensterreinigung" || raw === "glasreinigung") return "reinigung";
+ if (["angebot_pruefen", "angebot_prufen", "angebotscheck", "angebotspruefung", "offer_check", "quote_check"].includes(compact)) return "angebot_pruefen";
  if (
   raw === "duesseldorf_moeblierte_wohnung_reinigung" ||
   raw === "duesseldorf_apartment_cleaning" ||
@@ -87,7 +91,18 @@ function normalizeService(service: unknown) {
  if (raw === "plan_b_service" || raw === "plan-b-service" || raw === "plan_b" || raw === "plan-b" || raw === "backup_service") return "plan_b_service";
  if (raw === "schadensbegrenzung" || raw === "damage_control" || raw === "plan_gekippt") return "schadensbegrenzung";
  if (raw === "keller_muellraum_rettung" || raw === "keller-muellraum-rettung" || raw === "cellar_trashroom_rescue" || raw === "muellraum_rettung") return "keller_muellraum_rettung";
- if (raw === "entsorgung" || raw === "entruempelung" || raw === "entrümpelung") return "entsorgung";
+ if (
+  raw === "entsorgung" ||
+  raw === "entruempelung" ||
+  raw === "entrümpelung" ||
+  raw === "wohnungsaufloesung" ||
+  raw === "wohnungsauflösung" ||
+  raw === "haushaltsaufloesung" ||
+  raw === "haushaltsauflösung" ||
+  raw === "hausaufloesung" ||
+  raw === "hausauflösung"
+ ) return "entsorgung";
+ if (raw === "fernumzug" || raw === "fern_umzug" || raw === "fern-umzug") return "umzug";
  if (raw === "bueroumzug" || raw === "büroumzug" || raw === "firmenumzug") return "bueroumzug";
  if (
   raw === "firmenentsorgung" ||
@@ -102,6 +117,9 @@ function normalizeService(service: unknown) {
   raw === "villenservice" ||
   raw === "private-client" ||
   raw === "private_client" ||
+  raw === "diskret-service" ||
+  raw === "diskret_service" ||
+  raw === "diskreter-service" ||
   raw === "private client" ||
   raw === "luxusumzug" ||
   raw === "anwesenservice"
@@ -121,6 +139,14 @@ function normalizeService(service: unknown) {
 
 function isValidEmail(value: string) {
  return !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function createRequestId() {
+ return `booking_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function serverErrorMessage(error: unknown) {
+ return error instanceof Error ? error.message : String(error || "unknown");
 }
 
 function buildBudgetInquiryDetails(payload: any): IntakePayload {
@@ -507,6 +533,15 @@ function buildOfferCheckDetails(
  const quotedPrice = parseBudgetValue(quotedPriceText);
  const budget = parseBudgetValue(budgetText);
  const offerSourceType = payloadText(payload, "offerSourceType") || payloadText(payload, "offer_source_type");
+ const offerStatus = payloadText(payload, "offerStatus") || payloadText(payload, "offer_status");
+ const existingOffer = payloadText(payload, "existingOffer") || payloadText(payload, "existing_offer");
+ const offerConcern = payloadText(payload, "offerConcern") || payloadText(payload, "offer_concern") || payloadText(payload, "offerCheckIntent");
+ const offerAmountText = payloadText(payload, "offerAmount") || quotedPriceText;
+ const offerProvider = payloadText(payload, "offerProvider") || payloadText(payload, "offer_provider") || offerSourceType;
+ const deadline = payloadText(payload, "deadline") || desiredDate;
+ const contactMethod = payloadText(payload, "contactMethod") || payloadText(payload, "preferredContact");
+ const serviceCategory = payloadText(payload, "serviceCategory") || "angebot_pruefen";
+ const privacyConsent = payloadText(payload, "privacyConsent") || payloadText(payload, "privacy");
  const offerText = payloadText(payload, "offerText") || payloadText(payload, "offer_text");
  const customerMessage = payloadText(payload, "message") || payloadText(payload, "description");
  const selectedAddons = parseStringArray(payload.selectedAddons || payload.selected_addons);
@@ -586,6 +621,8 @@ function buildOfferCheckDetails(
     isCheaperAlternative ? "Preis-Alternative / kaufnah" : "",
     isPlatformOrder ? "Plattform-Auftrag / zweite Einschaetzung" : "",
     platformSituation || "",
+    offerStatus ? `Angebotsstatus: ${offerStatus}` : "",
+    offerConcern ? `Pruefgrund: ${offerConcern}` : "",
     isRedFlagScanner ? "Red-Flag-Scanner Ergebnis" : "",
     scannerScoreLabel || scannerScoreLevel || "",
     quotedPrice ? "vorhandener Angebotspreis" : "",
@@ -609,12 +646,21 @@ function buildOfferCheckDetails(
    scannerScoreLevel,
     scannerScoreLabel,
     scannerScoreValue,
-    redFlagCategories,
-    redFlagItems,
+   redFlagCategories,
+   redFlagItems,
    quotedPrice,
+   offerAmountText,
    quotedPriceText,
    requestedBudgetText: budgetText,
    offerSourceType,
+   offerStatus,
+   existingOffer,
+   offerConcern,
+   offerProvider,
+   deadline,
+   contactMethod,
+   serviceCategory,
+   privacyConsent,
    selectedAddons,
     hasOfferUpload: offerFiles.length > 0,
     hasPhotoUpload: photoFiles.length > 0,
@@ -634,9 +680,18 @@ function buildOfferCheckDetails(
    districtOrZip: cityOrZip,
    location: cityOrZip,
    desiredDate,
+   deadline,
    quotedPrice,
+   offerAmountText,
    quotedPriceText,
    offerSourceType,
+   offerStatus,
+   existingOffer,
+   offerConcern,
+   offerProvider,
+   contactMethod,
+   serviceCategory,
+   privacyConsent,
    platformType,
    platformSituation,
    offerText,
@@ -680,6 +735,11 @@ function buildOfferCheckDetails(
     utmContent: payloadText(payload, "utmContent"),
     hasOfferUpload: offerFiles.length > 0,
     hasPhotoUpload: photoFiles.length > 0,
+    offerStatus,
+    offerConcern,
+    deadline,
+    contactMethod,
+    serviceCategory,
     platformSituation,
     platformType,
     scannerScoreLevel,
@@ -3315,6 +3375,8 @@ function collectFormFiles(formData: FormData, fieldNames: string[]) {
 }
 
 export async function POST(req: Request) {
+ const requestId = createRequestId();
+
  try {
   const contentType = req.headers.get("content-type") || "";
   const cookieHeader = req.headers.get("cookie");
@@ -3770,6 +3832,13 @@ export async function POST(req: Request) {
     email: formData.get("email"),
     phone: formData.get("phone"),
     service: formData.get("service"),
+    source: formData.get("source"),
+    entry: formData.get("entry"),
+    companyWebsite: formData.get("companyWebsite"),
+    website: formData.get("website"),
+    url: formData.get("url"),
+    formStartedAt: formData.get("formStartedAt"),
+    formDurationMs: formData.get("formDurationMs"),
     roleType: formData.get("roleType"),
     companyName: formData.get("companyName"),
     objectType: formData.get("objectType"),
@@ -3823,6 +3892,7 @@ export async function POST(req: Request) {
     accessNotes: formData.get("accessNotes"),
     keyStatus: formData.get("keyStatus"),
     urgency: formData.get("urgency"),
+    scope: formData.get("scope"),
     startLocation: formData.get("startLocation"),
     startZip: formData.get("startZip"),
     destinationLocation: formData.get("destinationLocation"),
@@ -3870,6 +3940,15 @@ export async function POST(req: Request) {
     specialNotes: formData.get("specialNotes"),
     cityOrZip: formData.get("cityOrZip"),
     desiredDate: formData.get("desiredDate"),
+    contactMethod: formData.get("contactMethod"),
+    serviceCategory: formData.get("serviceCategory"),
+    intent: formData.get("intent"),
+    privacyConsent: formData.get("privacyConsent"),
+    offerStatus: formData.get("offerStatus"),
+    existingOffer: formData.get("existingOffer"),
+    offerConcern: formData.get("offerConcern"),
+    offerAmount: formData.get("offerAmount"),
+    offerProvider: formData.get("offerProvider"),
     quotedPrice: formData.get("quotedPrice"),
     offerSourceType: formData.get("offerSourceType"),
     platformType: formData.get("platformType"),
@@ -3926,6 +4005,44 @@ export async function POST(req: Request) {
   const contactName = String(payload.name || "").trim();
   const contactEmail = String(payload.email || "").trim();
   const contactPhone = String(payload.phone || "").trim();
+  const isSeoQuickLead =
+   payload.type === "booking_wizard" &&
+   (payloadText(payload, "lead_type") === "seo_quick_lead" ||
+    payloadText(payload, "leadSource") === "seo_quick_lead_form" ||
+    payloadText(payload, "sourceComponent") === "SeoLeadForm");
+  const honeypotValue =
+   payloadText(payload, "companyWebsite") || payloadText(payload, "website") || payloadText(payload, "url");
+
+  if (honeypotValue) {
+   return NextResponse.json(
+    {
+     error: "Spam-Schutz",
+     message: "Die Anfrage wurde nicht gesendet. Bitte laden Sie die Seite neu.",
+    },
+    { status: 400 },
+   );
+  }
+
+  if (isSeoQuickLead) {
+   const startedAt = Number(payloadText(payload, "formStartedAt"));
+   const submittedAt = Date.parse(payloadText(payload, "timestamp"));
+   const elapsedMs =
+    Number.isFinite(startedAt) && Number.isFinite(submittedAt)
+     ? submittedAt - startedAt
+     : Number.isFinite(startedAt)
+      ? Date.now() - startedAt
+      : 0;
+
+   if (elapsedMs > 0 && elapsedMs < 2000) {
+    return NextResponse.json(
+     {
+      error: "Zu schnell gesendet.",
+      message: "Bitte pruefen Sie die Angaben kurz und senden Sie die Anfrage erneut.",
+     },
+     { status: 400 },
+    );
+   }
+  }
 
   if (contactName && contactName.length < 2) {
    return NextResponse.json({ error: "Name ist zu kurz." }, { status: 400 });
@@ -3977,6 +4094,11 @@ export async function POST(req: Request) {
   payload.phone = contactPhone;
 
   const normalizedService = normalizeService(payload.service);
+  const normalizedLead = normalizeLeadSubmission(payload);
+  const leadValidation = validateLeadSubmission(normalizedLead, {
+   minElapsedMs: isSeoQuickLead ? 2000 : undefined,
+  });
+  const leadPriority = calculateLeadPriority(normalizedLead, leadValidation);
   const rawDetails =
    payload.type === "offer_check" || isOfferCheckRequestType(payload.lead_type)
     ? buildOfferCheckDetails(payload, payload.offerUploadMetadata || [])
@@ -4016,7 +4138,14 @@ export async function POST(req: Request) {
        : buildBookingWizardDetails(payload)
      : payload.details || {};
   const details = isStructuredIntakePayload(rawDetails)
-   ? attachLeadRouting(enrichDetailsWithAttribution(rawDetails, payload, cookieHeader))
+   ? attachLeadRouting(
+      attachLeadQuality(
+       enrichDetailsWithAttribution(rawDetails, payload, cookieHeader),
+       normalizedLead,
+       leadValidation,
+       leadPriority,
+      ),
+     )
    : rawDetails;
 
   const booking = {
@@ -4034,11 +4163,16 @@ export async function POST(req: Request) {
   const { data, error } = await getSupabaseAdmin().from("bookings").insert([booking]).select();
 
   if (error) {
+   console.error("Booking insert failed", {
+    requestId,
+    code: error.code,
+    message: error.message,
+   });
    return NextResponse.json(
     {
-     error: "Database Error",
-     message: error.message,
-     details: error.details,
+     error: "Speichern fehlgeschlagen.",
+     message: "Die Anfrage konnte gerade nicht gespeichert werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp.",
+     requestId,
     },
     { status: 500 }
    );
@@ -4058,16 +4192,24 @@ export async function POST(req: Request) {
     attachmentUrls: fileUrls,
    });
    if (!notification.success) {
-    console.error("Internal intake notification failed:", notification.error);
+    console.error("Internal intake notification failed", {
+     requestId,
+     message: serverErrorMessage(notification.error),
+    });
    }
   }
 
   return NextResponse.json({ success: true, id: data?.[0]?.id });
  } catch (error: any) {
+  console.error("Booking request failed", {
+   requestId,
+   message: serverErrorMessage(error),
+  });
   return NextResponse.json(
    {
-    error: "Request failed",
-    message: error.message || "Unknown error",
+    error: "Anfrage fehlgeschlagen.",
+    message: "Die Anfrage konnte gerade nicht verarbeitet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp.",
+    requestId,
    },
    { status: 500 }
   );

@@ -13,7 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
     path: `blog/${slug}`,
     title: article.metaTitle,
     description: article.description,
-    keywords: article.keywords,
   });
 }
 

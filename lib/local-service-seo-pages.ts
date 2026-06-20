@@ -132,15 +132,15 @@ export const localServiceSeoPages = {
       "Senioren-Umzug Düsseldorf",
       "Umzug mit Endreinigung Düsseldorf",
     ],
-    metaTitle: "Umzugsfirma Düsseldorf | Fotos senden, Ablauf klären",
+    metaTitle: "Umzug Duesseldorf mit Start, Ziel und Angebot klaeren",
     metaDescription:
-      "FLOXANT prüft Umzug in Düsseldorf mit Start, Ziel, Etage, Laufweg und Fotos. Eckdaten senden, Angebot realistisch klären, Rückmeldung erhalten.",
+      "Umzug Duesseldorf anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klaeren.",
     titleAlternatives: [
       "Umzugsfirma Düsseldorf | Fotos senden, Ablauf klären",
       "Umzugsfirma Düsseldorf | Online-Besichtigung nutzen",
       "Umzug in Düsseldorf | Angebot fair prüfen lassen",
     ],
-    headline: "Umzug in Düsseldorf mit klarer Einschätzung vor dem Termin",
+    headline: "Umzug Düsseldorf mit Start, Ziel und Terminwunsch",
     intro:
       "FLOXANT prüft Umzüge in Düsseldorf nach Start, Ziel, Volumen, Etage, Laufwegen und Termin. Sie senden Fotos oder wählen eine Besichtigung, damit aus einer groben Anfrage ein belastbarer Ablauf wird.",
     primaryCta: "Umzug in Düsseldorf anfragen",
@@ -233,15 +233,15 @@ export const localServiceSeoPages = {
       "Entrümpelungsangebot prüfen Düsseldorf",
       "Entrümpelung mit Reinigung Düsseldorf",
     ],
-    metaTitle: "Entrümpelung Düsseldorf | Fotos senden, Räume klären",
+    metaTitle: "Entruempelung Duesseldorf mit Raeumen und Zugang",
     metaDescription:
-      "Entrümpelung in Düsseldorf für Wohnung, Keller und Objekt: Fotos, Menge, Zugang und Termin senden, Reinigung bei Bedarf mitprüfen, Ablauf klären.",
+      "Entruempelung Duesseldorf anfragen: Raeume, Menge, Zugang, Fotos, Frist und moegliche Reinigung danach strukturiert klaeren.",
     titleAlternatives: [
       "Entrümpelung Düsseldorf | Fotos senden, Räume klären",
       "Entrümpelung Düsseldorf | Räume prüfen lassen",
       "Wohnung entrümpeln Düsseldorf | Angebot einschätzen",
     ],
-    headline: "Entrümpelung in Düsseldorf für Wohnung, Keller und Objekt",
+    headline: "Entrümpelung Düsseldorf mit Räumen, Menge und Zugang",
     intro:
       "FLOXANT prüft Entrümpelungen in Düsseldorf nach Menge, Material, Zugang, Etage, Parkmöglichkeit und gewünschtem Endzustand. Fotos oder Videos helfen, schnell zwischen Räumung, Entsorgung und Reinigung zu unterscheiden.",
     primaryCta: "Entrümpelung einschätzen lassen",
@@ -334,9 +334,9 @@ export const localServiceSeoPages = {
       "Wohnungsauflösung mit Reinigung Düsseldorf",
       "Angebot Haushaltsauflösung Düsseldorf",
     ],
-    metaTitle: "Haushaltsauflösung Düsseldorf | Ruhig klären",
+    metaTitle: "Haushaltsauflösung Düsseldorf mit Freigabe und Zielzustand",
     metaDescription:
-      "Haushaltsauflösung in Düsseldorf für Wohnung, Haus oder Nachlass: Fotos, Freigabe, Zugang und Reinigung nach Räumung prüfen lassen, Termin klären.",
+      "Senden Sie Fotos, Freigabe, Zugang, Ansprechpartner, Frist und Zielzustand. FLOXANT ordnet Haushaltsauflösung Düsseldorf ruhig ein.",
     titleAlternatives: [
       "Haushaltsauflösung Düsseldorf | Ruhig klären",
       "Wohnungsauflösung Düsseldorf | Fotos senden & klären",
@@ -538,9 +538,9 @@ export const localServiceSeoPages = {
       "Reinigungsangebot Regensburg",
       "Büroreinigung Angebot Regensburg",
     ],
-    metaTitle: "Gewerbereinigung Regensburg | Raumliste senden",
+    metaTitle: "Gewerbereinigung Regensburg mit Raumliste und Angebot",
     metaDescription:
-      "Gewerbereinigung in Regensburg für Büro, Praxis, Kanzlei und Objekt: Raumliste, Turnus, Fotos und bestehendes Angebot senden, Starttermin klären.",
+      "Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei und Objekt: Raumliste, Turnus, Fotos, Angebot und Starttermin klaeren.",
     titleAlternatives: [
       "Gewerbereinigung Regensburg | Raumliste senden",
       "Büroreinigung Regensburg | Turnus & Räume klären",

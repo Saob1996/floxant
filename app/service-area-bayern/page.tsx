@@ -55,15 +55,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Servicegebiet Bayern | FLOXANT in Regensburg und ganz Bayern",
     description:
       "FLOXANT plant Umzug, Reinigung, Entruempelung und Bueroumzug ab Regensburg in Bayern. Regionen, Staedte, Bezirke und direkte Kontaktwege klar eingeordnet.",
-    keywords: [
-      "Servicegebiet Bayern",
-      "Umzug Bayern",
-      "Reinigung Bayern",
-      "Entruempelung Bayern",
-      "Bueroumzug Bayern",
-      "Regensburg Bayern Dienstleister",
-      "Dienstleister Regensburg Anfrage",
-    ],
   });
 }
 

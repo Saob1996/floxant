@@ -134,6 +134,10 @@ export default function RegensburgUmzugPage() {
         primaryLabel="Umzug Regensburg anfragen"
         secondaryHref="/angebot-guenstiger-pruefen"
         secondaryLabel="Angebot prüfen"
+        trackingService="umzug"
+        trackingCity="regensburg"
+        trackingPageIntent="umzug-regensburg"
+        trackingPriority="p3"
       />
     </>
   );

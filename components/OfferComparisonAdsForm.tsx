@@ -56,6 +56,14 @@ const offerStatusOptions = [
   { value: "no_offer", label: "Nein, ich möchte trotzdem eine Einschätzung" },
 ] as const;
 
+const offerConcernOptions = [
+  { value: "price_unclear", label: "Preis oder Leistungsumfang unklar" },
+  { value: "addons_unclear", label: "Zusatzleistungen / Nebenkosten unklar" },
+  { value: "deadline", label: "Termin oder Deadline kritisch" },
+  { value: "alternative_needed", label: "Alternative gesucht" },
+  { value: "general_second_opinion", label: "Zweite Einschaetzung" },
+] as const;
+
 const urgencyOptions = [
   { value: "normal", label: "Normal, Termin ist flexibel" },
   { value: "soon", label: "Bald, innerhalb von 7 Tagen" },
@@ -194,6 +202,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     const cityOrZip = String(formData.get("cityOrZip") || "").trim();
     const requestedService = String(formData.get("requestedService") || "").trim();
     const offerStatus = String(formData.get("offerStatus") || "").trim();
+    const offerConcern = String(formData.get("offerConcern") || "").trim();
     const urgency = String(formData.get("urgency") || "").trim();
     const preferredContact = String(formData.get("preferredContact") || "").trim();
     const propertyType = String(formData.get("propertyType") || "").trim();
@@ -233,6 +242,8 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       regionOptions.find((item) => item.value === region)?.label || region;
     const offerStatusLabel =
       offerStatusOptions.find((item) => item.value === offerStatus)?.label || offerStatus;
+    const offerConcernLabel =
+      offerConcernOptions.find((item) => item.value === offerConcern)?.label || offerConcern;
     const urgencyLabel =
       urgencyOptions.find((item) => item.value === urgency)?.label || urgency;
     const preferredContactLabel =
@@ -247,13 +258,14 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       cityOrZip ? `Ort/PLZ: ${cityOrZip}` : "",
       selectedServiceLabel ? `Leistungsbereich: ${selectedServiceLabel}` : "",
       offerStatusLabel ? `Ausgangslage: ${offerStatusLabel}` : "",
+      offerConcernLabel ? `Pruefgrund: ${offerConcernLabel}` : "",
       propertyTypeLabel ? `Objekt/Fläche: ${propertyTypeLabel}` : "",
       urgencyLabel ? `Dringlichkeit: ${urgencyLabel}` : "",
       preferredContactLabel ? `Kontaktwunsch: ${preferredContactLabel}` : "",
       desiredDate ? `Zeitraum: ${desiredDate}` : "",
       quotedPrice ? `Bisheriger Preis: ${quotedPrice}` : "",
       budget ? `Budget/Preisrahmen: ${budget}` : "",
-      message ? `Hinweis: ${message}` : "Hinweis: Bitte prüfen, ob eine passende und wirtschaftlich interessante Alternative möglich ist.",
+      message ? `Hinweis: ${message}` : "Hinweis: Bitte pruefen, ob eine passende Alternative oder offene Punkte erkennbar sind.",
     ]
       .filter(Boolean)
       .join("\n");
@@ -262,17 +274,32 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("lead_type", "angebotspruefung");
     formData.set("leadSubtype", "floxant_angebotspruefung_product");
     formData.set("leadSource", "offer_check_product");
+    formData.set("source", "offer_check_product");
     formData.set("sourceComponent", "offer_comparison_ads_form");
     formData.set("service", requestedService || "reinigung");
+    formData.set("serviceCategory", "angebot_pruefen");
+    formData.set("intent", "angebot_pruefen");
     formData.set("region", region || "duesseldorf");
     formData.set("regionPreset", region || "duesseldorf");
     formData.set("entryPoint", "/angebot-vergleichen-duesseldorf");
+    formData.set("sourcePage", "/angebot-vergleichen-duesseldorf");
+    formData.set("offerStatus", offerStatus || "details");
+    formData.set("existingOffer", offerStatus && offerStatus !== "no_offer" ? "true" : "false");
+    formData.set("offerConcern", offerConcern || "general_second_opinion");
+    formData.set("offerAmount", quotedPrice);
     formData.set("offerSourceType", offerStatus);
     formData.set("urgency", urgency || "normal");
     formData.set("preferredContact", preferredContact || "telefon");
+    formData.set("contactMethod", preferredContact || "telefon");
+    formData.set("preferredContactMethod", preferredContact || "telefon");
     formData.set("propertyType", propertyType || "unklar");
     formData.set("offerCheckIntent", "wirtschaftliche_alternative_pruefen");
     formData.set("message", composedMessage);
+    formData.set("deadline", desiredDate || urgency);
+    formData.set("privacyConsent", "true");
+    formData.set("pageType", "offer_check");
+    formData.set("funnelStage", "offer_check");
+    formData.set("ctaLabel", "Pruefung anfordern");
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", document.referrer);
@@ -345,18 +372,18 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       onSubmit={handleSubmit}
       data-event="offer_check_started"
       data-source="google_ads_offer_comparison_landingpage"
-      aria-label="Kostenlose Angebotsprüfung anfordern"
+      aria-label="Angebotspruefung anfordern"
     >
       <div className="min-w-0">
         <p className="text-sm font-black uppercase tracking-normal text-blue-700">
           FLOXANT Angebotsprüfung
         </p>
         <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-          Angebot kostenlos prüfen lassen
+          Angebot pruefen lassen
         </h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. Wir prüfen kostenlos
-          und unverbindlich, ob eine passende und wirtschaftlich interessante Alternative möglich ist.
+          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. FLOXANT prueft
+          unverbindlich, ob eine passende Alternative oder offene Punkte erkennbar sind.
         </p>
         <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
           Second opinion auf Deutsch oder Englisch möglich. Begriffe wie cleaning quote,
@@ -419,6 +446,16 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           Bestehendes Angebot*
           <select name="offerStatus" defaultValue="upload" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
             {offerStatusOptions.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-bold text-slate-800">
+          Wichtigster Pruefgrund
+          <select name="offerConcern" defaultValue="price_unclear" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
+            {offerConcernOptions.map((item) => (
               <option key={item.value} value={item.value}>
                 {item.label}
               </option>
@@ -560,7 +597,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
         <span>
           Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet.
-          Die Prüfung ist kostenlos und unverbindlich; es wird keine Preisgarantie gegeben.
+          Die Pruefung ist unverbindlich; es wird keine Preisgarantie gegeben.
         </span>
       </label>
 
@@ -578,7 +615,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         data-event="offer_check_started"
       >
         {isSubmitting ? <Loader2 className="h-5 w-5 animate-spin" /> : <ArrowRight className="h-5 w-5" />}
-        Kostenlose Prüfung anfordern
+        Pruefung anfordern
       </button>
 
       <a
@@ -594,7 +631,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       <div className="grid gap-3 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm font-bold leading-6 text-cyan-950 sm:grid-cols-[auto_1fr]">
         <CheckCircle2 className="mt-0.5 h-5 w-5 text-cyan-700" />
         <p>
-          Wir prüfen kostenlos und unverbindlich, ob eine passende und wirtschaftlich interessante Alternative möglich ist. Jede Anfrage wird individuell bewertet.
+          FLOXANT prueft unverbindlich, ob eine passende Alternative oder offene Punkte erkennbar sind. Jede Anfrage wird individuell bewertet.
         </p>
       </div>
     </form>

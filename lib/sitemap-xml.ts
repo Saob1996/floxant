@@ -13,6 +13,16 @@ import {
 } from "./sitemap-config";
 import { blogPosts } from "./blog-posts";
 import { growthServicePathSet, growthServicePaths } from "./growth-service-pages";
+import {
+  getLocalSeoPageByPath,
+  indexableLocalSeoPaths,
+  localSeoIndexablePathSet,
+} from "./local-seo/localSeoPages";
+import {
+  englishLocalSeoIndexablePathSet,
+  englishLocalSeoPaths,
+  getEnglishLocalSeoPageByPath,
+} from "./local-seo/englishLocalSeoPages";
 import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
@@ -70,6 +80,7 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "agb",
   "widerruf",
   "buchungsbedingungen",
+  "angebot-vergleichen-duesseldorf/danke",
   "duesseldorf/reinigung/datenschutz",
   "duesseldorf/reinigung/agb",
 ]);
@@ -130,6 +141,11 @@ const highValueLocalSitemapServices = new Set([
   "wohnungsaufloesung",
 ]);
 
+const DEPRIORITIZED_CITY_SLUGS = new Set([
+  "forchheim",
+  "friedberg",
+]);
+
 function getDynamicLocalSitemapRoute(route: string) {
   return dynamicLocalRouteByPath.get(route.replace(/^\/+|\/+$/g, ""));
 }
@@ -184,7 +200,24 @@ function shouldSkipSitemapRoute(route: string): boolean {
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
     REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
     NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||
+    isDeprioritizedCityRoute(normalizedRoute) ||
     isForbiddenDuesseldorfMovingRoute(normalizedRoute)
+  );
+}
+
+function isDeprioritizedCityRoute(route: string): boolean {
+  const normalizedRoute = route.toLowerCase();
+  const dynamicLocalRoute = getDynamicLocalSitemapRoute(normalizedRoute);
+
+  if (dynamicLocalRoute && DEPRIORITIZED_CITY_SLUGS.has(dynamicLocalRoute.citySlug)) {
+    return true;
+  }
+
+  return Array.from(DEPRIORITIZED_CITY_SLUGS).some(
+    (citySlug) =>
+      normalizedRoute === citySlug ||
+      normalizedRoute.endsWith(`-${citySlug}`) ||
+      normalizedRoute.includes(`-${citySlug}-`),
   );
 }
 
@@ -244,6 +277,8 @@ function lastmodForRoute(route: string): string {
 }
 
 function appRouteExists(route: string): boolean {
+  if (localSeoIndexablePathSet.has(`/${route}`)) return true;
+  if (englishLocalSeoIndexablePathSet.has(`/${route}`)) return true;
   if (dynamicLocalSeoRouteSet.has(`/${route}`)) return true;
   if (growthServicePathSet.has(`/${route}`)) return true;
 
@@ -255,9 +290,24 @@ function appRouteExists(route: string): boolean {
 
 function priorityForRoute(route: string): string {
   if (!route) return "1.0";
+  const localSeoPage = getLocalSeoPageByPath(`/${route}`);
+  if (localSeoPage) {
+    if (localSeoPage.type === "regionHub") return "0.91";
+    if (localSeoPage.type === "offerHub") return "0.9";
+    if (localSeoPage.type === "centerService") return "0.89";
+    if (localSeoPage.type === "cityService") return "0.78";
+    return "0.7";
+  }
+  const englishLocalSeoPage = getEnglishLocalSeoPageByPath(`/${route}`);
+  if (englishLocalSeoPage) {
+    if (englishLocalSeoPage.type === "offerHub") return "0.86";
+    return englishLocalSeoPage.region === "duesseldorf" ? "0.87" : "0.84";
+  }
   if (DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(route)) return "0.9";
   if (route === "service-graph.json") return "0.82";
   if (route === "llms.txt") return "0.82";
+  if (route === "reinigungsfirma-angebot") return "0.91";
+  if (route === "fernumzug-muenchen") return "0.89";
   if (growthServicePathSet.has(`/${route}`)) return route.includes("solarreinigung") ? "0.9" : "0.88";
   if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
@@ -267,6 +317,18 @@ function priorityForRoute(route: string): string {
     if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "0.8";
     return highValueLocalSitemapServices.has(dynamicLocalRoute.service) ? "0.77" : "0.74";
   }
+  if (route === "duesseldorf/reinigungsfirma") return "0.93";
+  if (route === "duesseldorf/putzfirma") return "0.92";
+  if (route === "duesseldorf/wohnungsreinigung") return "0.91";
+  if (route === "duesseldorf/treppenhausreinigung") return "0.9";
+  if (route === "duesseldorf/gewerbeflaechen-reinigung") return "0.9";
+  if (route === "duesseldorf/reinigung-heerdt") return "0.89";
+  if (route === "angebot-vergleichen-duesseldorf") return "0.91";
+  if (route === "angebot-vergleichen-regensburg") return "0.88";
+  if (route === "regensburg/bueroreinigung") return "0.88";
+  if (route === "regensburg/reinigungsfirma") return "0.88";
+  if (route === "regensburg/wohnungsaufloesung") return "0.88";
+  if (route === "regensburg/umzugsunternehmen") return "0.88";
   if (route === "duesseldorf/reinigung") return "0.91";
   if (route === "duesseldorf/reinigung-stadtteile-umgebung") return "0.9";
   if (route === "duesseldorf/vielleicht-guenstiger") return "0.9";
@@ -288,6 +350,9 @@ function priorityForRoute(route: string): string {
       "duesseldorf/ladenreinigung",
       "duesseldorf/sonderreinigung",
       "duesseldorf/gewerbereinigung",
+      "duesseldorf/gewerbeflaechen-reinigung",
+      "duesseldorf/gebaeudereinigung",
+      "duesseldorf/reinigung-heerdt",
       "duesseldorf/hotelreinigung",
       "duesseldorf/reinigung-stadtteile-umgebung",
       "duesseldorf/vielleicht-guenstiger",
@@ -329,6 +394,14 @@ function priorityForRoute(route: string): string {
 function changefreqForRoute(route: string): string {
   if (!route) return "daily";
   if (route === "service-graph.json" || route === "llms.txt") return "weekly";
+  const localSeoPage = getLocalSeoPageByPath(`/${route}`);
+  if (localSeoPage) {
+    return localSeoPage.type === "cityService" ? "monthly" : "weekly";
+  }
+  const englishLocalSeoPage = getEnglishLocalSeoPageByPath(`/${route}`);
+  if (englishLocalSeoPage) {
+    return "weekly";
+  }
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
     if (dynamicLocalRoute.citySlug === "regensburg" || regensburgCoreSitemapCities.has(dynamicLocalRoute.citySlug)) {
@@ -416,6 +489,12 @@ export function generateSitemapResponse(): Response {
 
   // First-wave growth services served as static marketing pages.
   addEntries(urls, growthServicePaths, "0.88", "weekly");
+
+  // Structured local SEO architecture: only M1/M2 indexable pages are emitted.
+  addEntries(urls, indexableLocalSeoPaths, "0.78", "weekly");
+
+  // Real English equivalents with hreflang pairs.
+  addEntries(urls, englishLocalSeoPaths, "0.84", "weekly");
 
   // Machine-readable AI/search discovery routes.
   addEntries(urls, MACHINE_READABLE_ROUTES, "0.82", "weekly");

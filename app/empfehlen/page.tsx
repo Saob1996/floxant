@@ -28,14 +28,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "FLOXANT empfehlen | 50 Euro Empfehlungsbonus",
   description:
     "FLOXANT weiterempfehlen: Bei erfolgreicher Vermittlung eines neuen Kunden bedanken wir uns mit 50 Euro Empfehlungsbonus.",
-  keywords: [
-    "FLOXANT empfehlen",
-    "Empfehlungsbonus Umzug",
-    "Umzugsfirma empfehlen Regensburg",
-    "Reinigungsfirma empfehlen Regensburg",
-    "Empfehlung Umzug",
-    "50 Euro Empfehlungsbonus",
-  ],
 });
 
 const whatsappShareHref =

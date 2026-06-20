@@ -6,7 +6,13 @@ import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningL
 import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
 import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
 import { InternationalCustomerHint } from "@/components/conversion";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
 import {
     regensburgCleaningBuyerPaths,
@@ -32,40 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return generatePageSEO({
         lang: "de",
         path: "reinigung-regensburg",
-        title: "Reinigung Regensburg | Cleaning Service & Büro | FLOXANT",
+        title: "Reinigung Regensburg mit Objekt, Termin und Angebot",
         description:
-            "Reinigung Regensburg: Büroreinigung, Grundreinigung, Fensterreinigung, Teppich, Bau, Praxis, Hotel und Treppenhaus. Fotos, Fläche und Termin senden. Deutsch oder Englisch möglich.",
-        keywords: [
-            "Reinigung Regensburg",
-            "Reinigungsfirma Regensburg",
-            "Reinigungsfirma Regensburg Privathaushalt",
-            "Putzfirma Regensburg",
-            "Putzservice Regensburg",
-            "zuverlässiger Reinigungsservice",
-            "Reinigung Firmen",
-            "Reinigungsdienst Regensburg",
-            "Reinigung Kosten Regensburg",
-            "Angebot Reinigung",
-            "Angebot für Reinigungsarbeiten",
-            "Wohnungsreinigungen",
-            "Schlüsselübergabeprotokoll Reinigungsfirma",
-            "Reinigung Altstadt Regensburg",
-            "Reinigung Innenstadt Regensburg",
-            "Reinigung Gewerbepark Regensburg",
-            "Reinigung Neutraubling",
-            "Reinigung Lappersdorf",
-            "Büroreinigung Regensburg",
-            "Grundreinigung Regensburg",
-            "Fensterreinigung Regensburg",
-            "Teppichreinigung Regensburg",
-            "Baureinigung Regensburg",
-            "Praxisreinigung Regensburg",
-            "Hotelreinigung Regensburg",
-            "Hotelreinigung",
-            "Gewerbereinigung",
-            "Treppenreinigung",
-            "Treppenhausreinigung Regensburg",
-        ],
+            "Reinigung Regensburg anfragen: Objekt, Flaeche, Zustand, Fotos, Termin, Zielzustand und vorhandenes Angebot strukturiert klaeren.",
     });
 }
 
@@ -133,7 +108,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     "Wohnungsreinigungen",
                     "Angebot Reinigung",
                     "Angebot für Reinigungsarbeiten",
-                    "zuverlässiger Reinigungsservice",
+                    "Reinigung mit Objektangaben und Fotos",
                     "Hotelreinigung",
                     "Treppenreinigung",
                     "Schlüsselübergabeprotokoll Reinigungsfirma",
@@ -211,7 +186,6 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 url: company.url,
                 telephone: company.phoneRaw,
                 image: `${company.url}/opengraph-image`,
-                priceRange: "nach Vorpruefung",
                 address: {
                     "@type": "PostalAddress",
                     streetAddress: company.streetAddress,
@@ -260,10 +234,10 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 lang="de"
                 dict={localeDict}
                 city={city}
-                heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-                heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
-                heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
-                ctaText={resolveField(content.cta, fallback.cta, city, "de")}
+                heroBadge="Reinigung Regensburg"
+                heroTitle="Reinigung Regensburg mit Fläche, Zustand und Termin anfragen"
+                heroText="Beschreiben Sie Objekt, Räume, Zustand, Fotos und Terminwunsch. FLOXANT ordnet Endreinigung, Büroreinigung, Grundreinigung oder Übergabereinigung passend ein, ohne Preis- oder Abnahmeversprechen."
+                ctaText="Reinigung anfragen"
                 breadcrumbs={[{"label":"Home","href":"/"},{"label":"Reinigung","href":"/reinigung"},{"label":"Regensburg"}]}
                 chips={[
                     { icon: Truck, text: resolveNestedField(content.badges, fallback.badges, "permit", city) },
@@ -309,6 +283,18 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     photoHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
                     offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
                 />
+                <ServicePackageSelector groups="reinigung" limit={4} />
+                <EffortFactorsPanel group="reinigung" limit={6} />
+                <TrustProofPanel
+                    allowedPage="/reinigung-regensburg"
+                    serviceKey="reinigung"
+                    locationKey="regensburg"
+                    title="Reinigung Regensburg mit sichtbarer Proof-Logik."
+                    intro="Flaeche, Zustand, Fotos, Zugang, Turnus und Zielzustand machen die Rueckmeldung belastbarer. Bewertungen, Sterne und Ergebnisse werden nicht erfunden."
+                />
+                <ServiceProofChecklist serviceKey="reinigung" />
+                <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
+                <LocalProofPanel location="regensburg" />
                 <RegensburgCleaningServiceHub />
                 <RegensburgCleaningConversionLift />
                 <RegensburgCleaningClickDecisionPanel />

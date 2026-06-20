@@ -183,17 +183,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Praxisreinigung Regensburg | Angebot & Turnus | FLOXANT",
     description:
       "Praxisreinigung in Regensburg für Empfang, Wartebereich, Büro, Sanitär und Nebenflächen. Turnus, Zeitfenster, Fotos und Angebot prüfen.",
-    keywords: [
-      "Praxisreinigung Regensburg",
-      "Arztpraxis Reinigung Regensburg",
-      "Praxisreinigung Angebot Regensburg",
-      "Reinigung Praxisräume Regensburg",
-      "Reinigungsfirma Praxis Regensburg",
-      "Praxis Unterhaltsreinigung Regensburg",
-      "Praxisreinigung nach Praxisschluss Regensburg",
-      "Wartebereich Reinigung Regensburg",
-      "Praxisräume reinigen Regensburg",
-    ],
   });
 }
 

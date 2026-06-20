@@ -32,8 +32,7 @@ export default async function EntrümpelungKostenRegensburg() {
     "url": `https://www.floxant.de/entruempelung-kosten-regensburg`,
     "telephone": "+4915771105087",
     "address": { "@type": "PostalAddress", "streetAddress": "Johanna-Kinkel-Straße 1 + 2", "addressLocality": "Regensburg", "postalCode": "93049", "addressCountry": "DE" },
-    "areaServed": { "@type": "City", "name": "Regensburg" },
-    "priceRange": "$$"
+    "areaServed": { "@type": "City", "name": "Regensburg" }
   };
   const serviceJsonLd = {
     "@context": "https://schema.org", "@type": "Service",

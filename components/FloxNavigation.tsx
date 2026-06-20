@@ -11,6 +11,7 @@ import { company } from "@/lib/company";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import type { FloxantRegion } from "@/lib/floxant-services";
+import { buildLeadHref } from "@/lib/lead-intents";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
 
@@ -56,9 +57,15 @@ export function PublicHeader({
 
     return navLinks;
   }, [isDuesseldorfContext, isRegensburgContext]);
-  const headerCta = isRegensburgContext && !isDuesseldorfContext
-    ? { href: "/kontakt", label: "Anfrage senden" }
-    : { href: "/angebot-vergleichen-duesseldorf", label: "Angebot prüfen" };
+  const headerLead = isRegensburgContext && !isDuesseldorfContext
+    ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage", label: "Anfrage senden" }
+    : isDuesseldorfContext
+      ? { service: "reinigung", city: "duesseldorf", intent: "reinigung-duesseldorf", label: "Reinigung anfragen" }
+      : { service: "reinigung", city: "deutschland", intent: "reinigungsfirma-angebot", label: "Angebot anfragen" };
+  const headerCta = {
+    ...headerLead,
+    href: buildLeadHref(headerLead),
+  };
   const budgetHref =
     isDuesseldorfContext && !isRegensburgContext
       ? "/duesseldorf/reinigung#preisvorschlag"
@@ -239,8 +246,14 @@ export function PublicHeader({
             </Link>
             <Link
               href={headerCta.href}
-              data-event="hero_cta_click"
+              data-event="seo_cta_click"
               data-source="header"
+              data-service={headerCta.service}
+              data-city={headerCta.city || undefined}
+              data-page-intent={headerCta.intent}
+              data-priority="p2"
+              data-cta-label={headerCta.label}
+              data-destination={headerCta.href}
               className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-black text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <FileSearch className="h-4 w-4" aria-hidden="true" />
@@ -344,10 +357,18 @@ export function PublicHeader({
                 Budget nennen
               </Link>
               <Link
-                href="/kontakt"
+                href={headerCta.href}
+                data-event="seo_cta_click"
+                data-source="mobile_header"
+                data-service={headerCta.service}
+                data-city={headerCta.city || undefined}
+                data-page-intent={headerCta.intent}
+                data-priority="p2"
+                data-cta-label={headerCta.label}
+                data-destination={headerCta.href}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
               >
-                Kontakt
+                {headerCta.label}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

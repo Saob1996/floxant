@@ -33,14 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Schadensbegrenzung bei Umzug, Reinigung & Uebergabe | FLOXANT",
   description:
     "Wenn Umzug, Reinigung, Entruempelung oder Uebergabe kurzfristig kippen: FLOXANT prueft nach Verfuegbarkeit, welche Schadensbegrenzung moeglich ist.",
-  keywords: [
-    "umzug kurzfristig hilfe regensburg",
-    "umzugshilfe kurzfristig regensburg",
-    "endreinigung kurzfristig regensburg",
-    "reinigung vor uebergabe kurzfristig",
-    "schadensbegrenzung umzug",
-    "kurzfristige reinigung duesseldorf",
-  ],
 });
 
 const whatsappHref =

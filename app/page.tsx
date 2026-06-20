@@ -6,19 +6,41 @@ import { ArrowRight, CheckCircle2, FileSearch, MessageCircle, ShieldCheck } from
 import { InternationalCustomerHint } from "@/components/conversion";
 import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
 import { RegionSelector } from "@/components/RegionSelector";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { LocalSeoSignalPanel } from "@/components/seo/LocalSeoSignalPanel";
 import { SearchDominanceExperience } from "@/components/seo/SearchDominanceExperience";
 import { TrustFlowSection } from "@/components/seo/TrustFlowSection";
+import { CustomerProblemSection } from "@/components/CustomerProblemSection";
+import { LocationClarityPanel } from "@/components/LocationClarityPanel";
+import { OfferCheckInlineCTA } from "@/components/OfferCheckInlineCTA";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
 import { floxantRegions, getFeaturedServices, type FloxantRegion } from "@/lib/floxant-services";
+import { buildLeadHref } from "@/lib/lead-intents";
+import { homepageProblemItems, locationClarityItems } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
 const canonical = `${company.url}${path}`;
+const homepageLeadHref = buildLeadHref({
+  path,
+  service: "reinigung",
+  city: "duesseldorf",
+  intent: "homepage-anfrage",
+  priority: "p1",
+});
+const cleaningOfferLeadHref = buildLeadHref({
+  service: "reinigung",
+  intent: "reinigungsfirma-angebot",
+  priority: "p1",
+});
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
   [
@@ -31,7 +53,7 @@ const whatsappHref = buildWhatsAppHref(
 const faqItems = [
   {
     q: "Warum trennt FLOXANT Düsseldorf und Regensburg?",
-    a: "Düsseldorf und Regensburg haben eigene lokale Kontaktmöglichkeiten und klare Stadtteilbezüge. So bleiben Umzug, Reinigung, Entrümpelung, Haushaltsauflösung und Endreinigung je Standort sauber getrennt.",
+    a: "Düsseldorf und Regensburg haben eigene lokale Kontaktmöglichkeiten und klare Stadtteilbezüge. Düsseldorf wird besonders für Reinigungsfirma, Gewerbereinigung, Büroreinigung, Praxisreinigung und Angebotsprüfung geführt; Regensburg bleibt der zweite Standortbereich.",
   },
   {
     q: "Was passiert nach meiner Anfrage?",
@@ -46,34 +68,29 @@ const faqItems = [
 export const metadata: Metadata = {
   ...generatePageSEO({
     path,
-    title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
+    title: "FLOXANT | Reinigung, Umzug & Angebot klar anfragen",
     description:
-      "FLOXANT prüft Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg. Anfrage auf Deutsch oder Englisch möglich.",
-    keywords: [
-      "FLOXANT",
-      "Umzug Düsseldorf",
-      "Reinigung Düsseldorf",
-      "Entrümpelung Düsseldorf",
-      "Umzug Regensburg",
-      "Reinigung Regensburg",
-      "Entrümpelung Regensburg",
-    ],
+      "FLOXANT ordnet Reinigung, Umzug, Entrümpelung und vorhandene Angebote nach Ort, Umfang, Fotos und Termin klar ein.",
   }),
   metadataBase: new URL(company.url),
-  title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
+  title: "FLOXANT | Reinigung, Umzug & Angebot klar anfragen",
   description:
-    "FLOXANT prüft Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg. Anfrage auf Deutsch oder Englisch möglich.",
+    "FLOXANT ordnet Reinigung, Umzug, Entrümpelung und vorhandene Angebote nach Ort, Umfang, Fotos und Termin klar ein.",
   alternates: {
     canonical,
+    languages: {
+      "de-DE": path,
+      "x-default": path,
+    },
   },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: canonical,
     siteName: "FLOXANT",
-    title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
+    title: "FLOXANT | Reinigung, Umzug & Angebot klar anfragen",
     description:
-      "Düsseldorf und Regensburg: Service wählen, Fotos senden, Aufwand prüfen lassen.",
+      "Düsseldorf und Regensburg klar trennen: Service, Ort, Umfang, Fotos und Termin nennen.",
     images: [
       {
         url: "/assets/floxant-hero-neu-gedacht.png",
@@ -85,9 +102,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FLOXANT | Umzug, Reinigung & Entrümpelung",
+    title: "FLOXANT | Reinigung, Umzug & Angebot klar anfragen",
     description:
-      "Umzug, Reinigung, Solarreinigung, Entrümpelung und Endreinigung in Düsseldorf und Regensburg prüfen lassen.",
+      "Reinigung, Umzug, Entrümpelung und Angebote mit Ort, Umfang, Fotos und Termin einordnen lassen.",
     images: ["/assets/floxant-hero-neu-gedacht.png"],
   },
 };
@@ -99,15 +116,16 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT",
         description:
-          "FLOXANT Startseite mit klarer Auswahl zwischen Düsseldorf und Regensburg für Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung und Endreinigung.",
+          "FLOXANT Startseite mit klarem Einstieg für Reinigungsfirma Düsseldorf, Reinigungsangebot-Prüfung und getrennte Standortbereiche für Düsseldorf und Regensburg.",
         path,
         about: [
           "FLOXANT Düsseldorf",
-          "Umzug Düsseldorf",
-          "Entrümpelung Düsseldorf",
+          "Reinigungsfirma Düsseldorf",
           "Gewerbereinigung Düsseldorf",
-          "Solarreinigung",
-          "PV-Anlagen-Reinigung",
+          "Büroreinigung Düsseldorf",
+          "Praxisreinigung Düsseldorf",
+          "Grundreinigung Düsseldorf",
+          "Reinigungsangebot prüfen",
           "Reinigung Düsseldorf",
           "Umzug Regensburg",
           "Reinigung Regensburg",
@@ -115,6 +133,7 @@ function JsonLd() {
           "Übergabereinigung Regensburg",
         ],
         potentialActions: [
+          { name: "Anfrage stellen", target: homepageLeadHref, type: "ContactAction" },
           { name: "Services in Düsseldorf ansehen", target: "/duesseldorf", type: "Action" },
           { name: "Services in Regensburg ansehen", target: "/regensburg", type: "Action" },
           { name: "Per WhatsApp Kontakt aufnehmen", target: whatsappHref, type: "ContactAction" },
@@ -123,7 +142,7 @@ function JsonLd() {
       buildServiceJsonLd({
         name: "FLOXANT lokale Dienstleistungen",
         description:
-          "Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung für Düsseldorf und Regensburg mit klarer Anfrageprüfung.",
+          "Reinigungsfirma, Gewerbereinigung, Büroreinigung, Praxisreinigung und Reinigungsangebot-Prüfung für Düsseldorf sowie lokale Dienstleistungen in Regensburg.",
         path,
         serviceType: "Lokale Dienstleistungen",
         areaServed: ["Düsseldorf", "Regensburg", "Bayern"],
@@ -159,21 +178,21 @@ const homepageAreas: Array<{
   {
     regionId: "duesseldorf",
     headline: "FLOXANT Düsseldorf",
-    text: "Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung und Endreinigung in Düsseldorf mit eigener Stadtteil- und Anfrage-Logik.",
+    text: "Reinigungsfirma, Gewerbereinigung, Büroreinigung, Praxisreinigung, Grundreinigung und Reinigungsangebot-Prüfung in Düsseldorf mit eigener Stadtteil- und Anfrage-Logik.",
     points: [
-      "Umzug und Entrümpelung",
-      "Reinigung, Solar, Glas und Fassade",
-      "Haushaltsauflösung und Endreinigung",
+      "Reinigungsfirma und Gewerbereinigung",
+      "Büro, Praxis, Kanzlei und Grundreinigung",
+      "Reinigungsangebot prüfen und vergleichen",
     ],
   },
   {
     regionId: "regensburg",
     headline: "FLOXANT Regensburg",
-    text: "Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Vorbereitung einer besenreinen Übergabe. Der Bereich bleibt klar bei Räumung, Wechsel und Übergabe.",
+    text: "Umzugsunternehmen, Büroreinigung, Wohnungsauflösung, Reinigungsfirma, Entrümpelung und Angebotsprüfung in Regensburg. Der Bereich bleibt klar bei Regensburg und Umgebung.",
     points: [
-      "Mini-Umzug, Transport und Entrümpelung",
-      "Haushaltsauflösung",
-      "Übergabe und Endreinigung",
+      "Umzugsunternehmen und Wohnungsauflösung",
+      "Büroreinigung und Reinigungsfirma",
+      "Angebot vergleichen Regensburg",
     ],
   },
 ];
@@ -185,13 +204,13 @@ const homepageFeaturedServices: Array<{
 }> = [
   {
     regionId: "duesseldorf",
-    title: "Services in Düsseldorf",
-    text: "Für Umzug, Reinigung, Solarreinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Übergabe.",
+    title: "Reinigung in Düsseldorf",
+    text: "Für Reinigungsfirma, Gewerbereinigung, Büroreinigung, Praxisreinigung, Grundreinigung und Angebotsprüfung.",
   },
   {
     regionId: "regensburg",
-    title: "Umzug und Übergabe in Regensburg",
-    text: "Für Umzug, Mini-Umzug, Möbeltransport, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.",
+    title: "Regensburg: Umzug, Büroreinigung und Wohnungsauflösung",
+    text: "Für Umzugsunternehmen, Büroreinigung, Reinigungsfirma, Wohnungsauflösung, Entrümpelung und Angebotsprüfung.",
   },
 ];
 
@@ -209,7 +228,17 @@ const specialServiceGroups = [
   {
     title: "Angebot prüfen",
     text: "Vorhandenes Angebot sachlich nach Umfang, Termin, Fotos und offenen Punkten einordnen.",
-    href: "/angebot-guenstiger-pruefen",
+    href: "/angebot-pruefen",
+  },
+  {
+    title: "Reinigungsfirma Angebot",
+    text: "Objekt, Fläche, Turnus, Fotos und Termin für ein Reinigungsangebot sauber senden.",
+    href: "/reinigungsfirma-angebot",
+  },
+  {
+    title: "Fernumzug München",
+    text: "Strecke, Volumen, Etage, Haltezone und Termin für München-Fernstrecken prüfen.",
+    href: "/fernumzug-muenchen",
   },
   {
     title: "Fairpreis-Check",
@@ -238,6 +267,70 @@ const specialServiceGroups = [
   },
 ] as const;
 
+const directRequestLinks = [
+  {
+    title: "Reinigung Düsseldorf",
+    text: "Wohnung, Büro, Praxis, Übergabe oder Reinigungsangebot mit Stadtteil und Fotos einordnen.",
+    href: "/duesseldorf/reinigung",
+  },
+  {
+    title: "Büroreinigung Düsseldorf",
+    text: "Raumliste, Turnus, Zeitfenster, Zugang und vorhandenes Angebot für Firmen senden.",
+    href: "/duesseldorf/bueroreinigung",
+  },
+  {
+    title: "Gewerbereinigung Düsseldorf",
+    text: "Gewerbefläche, Büro, Praxis, Kanzlei oder Objekt mit Fläche und Nutzung prüfen.",
+    href: "/duesseldorf/gewerbereinigung",
+  },
+  {
+    title: "Reinigung Landshut",
+    text: "Wohnung, Büro, Übergabe oder Reinigung nach Räumung mit Fotos und Termin anfragen.",
+    href: "/reinigung-landshut",
+  },
+  {
+    title: "Entrümpelung Landshut",
+    text: "Räume, Keller, Garage, Menge, Zugang und Reinigung danach sachlich klären.",
+    href: "/entruempelung-landshut",
+  },
+  {
+    title: "Umzug Neustadt a.d. Waldnaab",
+    text: "Start, Ziel, Etage, Volumen, Laufweg, Fotos und Termin für die Umzugsanfrage senden.",
+    href: "/umzug-neustadt-an-der-waldnaab",
+  },
+  {
+    title: "Umzug Vohenstrauß",
+    text: "Wohnung, Apartment, einzelne Möbel oder kleiner Umzug mit Umfang und Zugang prüfen.",
+    href: "/umzug-vohenstrauss",
+  },
+  {
+    title: "Entrümpelung Regensburg",
+    text: "Wohnung, Keller, Garage oder Objekt mit Menge, Freigabe und Zielzustand klären.",
+    href: "/regensburg/entruempelung",
+  },
+  {
+    title: "Reinigung München",
+    text: "Wohnung, Übergabe, Büro oder Reinigung nach Umzug mit Fotos und Termin einordnen.",
+    href: "/reinigung-muenchen",
+  },
+] as const;
+
+function getHomepageAreaLinks(regionId: FloxantRegion) {
+  if (regionId === "duesseldorf") {
+    return [
+      { href: "/region-duesseldorf", label: "Region Düsseldorf" },
+      { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+      { href: "/duesseldorf/angebot-vergleichen", label: "Angebotsprüfung" },
+    ];
+  }
+
+  return [
+    { href: "/region-regensburg", label: "Region Regensburg" },
+    { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+    { href: "/regensburg/angebot-vergleichen", label: "Angebotsprüfung" },
+  ];
+}
+
 export default function HomePage() {
   return (
     <main className="overflow-hidden bg-white text-slate-950">
@@ -260,22 +353,46 @@ export default function HomePage() {
           <div className="max-w-4xl pb-8">
             <p className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
               <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-              Düsseldorf oder Regensburg: erst richtig einordnen.
+              Düsseldorf-Reinigung zuerst: Anfrage richtig einordnen.
             </p>
             <h1 className="mt-6 text-5xl font-black leading-[0.95] tracking-normal sm:text-6xl lg:text-7xl">
-              FLOXANT
+              Reinigung, Umzug und Angebote klar anfragen
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
-              FLOXANT ordnet Ihre Anfrage zuerst nach Region, Leistung und Ziel. In Düsseldorf
-              und Regensburg können Sie Umzug, Reinigung, Solarreinigung, Entrümpelung,
-              Haushaltsauflösung, Gewerbereinigung und Endreinigung klar getrennt anfragen.
+              FLOXANT ordnet Ihre Anfrage zuerst nach Ort, Objekt, Umfang und Termin. So erkennen Sie
+              schneller, ob Reinigung in Düsseldorf, Umzug oder Räumung in Regensburg oder ein
+              Angebotscheck der passende nächste Schritt ist.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href={homepageLeadHref}
+                data-event="seo_cta_click"
+                data-source="homepage_hero"
+                data-service="reinigung"
+                data-city="duesseldorf"
+                data-page-intent="homepage-anfrage"
+                data-priority="p1"
+                data-cta-label="Anfrage stellen"
+                data-destination={homepageLeadHref}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-cyan-300 px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/20 transition hover:bg-cyan-200"
+              >
+                Anfrage stellen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/duesseldorf/reinigung"
+                data-event="service_card_click"
+                data-source="homepage_reinigung_duesseldorf"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/20 transition hover:bg-cyan-50"
+              >
+                Reinigung Düsseldorf
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
               <Link
                 href="#region-waehlen"
                 data-event="hero_cta_click"
                 data-source="homepage"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/20 transition hover:bg-cyan-50"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white shadow-lg shadow-slate-950/20 transition hover:bg-white/15"
               >
                 Passende Region wählen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -284,6 +401,7 @@ export default function HomePage() {
                 href={whatsappHref}
                 data-event="whatsapp_click"
                 data-source="homepage_hero"
+                data-destination={whatsappHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200/40 bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -300,9 +418,19 @@ export default function HomePage() {
 
       <InternationalCustomerHint
         cityLabel="Düsseldorf und Regensburg"
-        serviceLabel="Umzug, Reinigung, Räumung oder Solar/PV"
-        tags={["Cleaning service", "Moving help", "Office cleaning", "House clearance", "Solar panel cleaning"]}
+        serviceLabel="Reinigungsfirma, Gewerbereinigung, Büroreinigung oder Angebotsprüfung"
+        tags={["Cleaning service", "Commercial cleaning", "Office cleaning", "Practice cleaning", "Quote check"]}
       />
+
+      <LocationClarityPanel locations={locationClarityItems} />
+
+      <CustomerProblemSection
+        title="Schnell erkennen, welcher FLOXANT-Weg passt."
+        intro="Die Startseite führt nicht in eine generische Leistungswolke. Sie sortiert den Fall nach Ort, Service, vorhandenem Angebot, Fotos, Termin und nächstem Schritt."
+        problems={homepageProblemItems}
+      />
+
+      <OfferCheckInlineCTA />
 
       <SearchDominanceExperience variant="default" className="bg-white" />
       <LocalSeoSignalPanel sectionId="lokale-signale" />
@@ -386,6 +514,41 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
+              Häufige direkte Anfragen
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Schneller zum passenden lokalen Startpunkt.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+              Diese Seiten bündeln die häufigsten aktuellen Anfragen, damit Ort, Leistung,
+              Fotos, Termin und Angebot direkt an der richtigen Stelle landen.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {directRequestLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                data-event="service_card_click"
+                data-source="homepage_direct_requests"
+                className="rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-200 hover:bg-white hover:shadow-sm"
+              >
+                <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.text}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+                  Öffnen
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -397,9 +560,9 @@ export default function HomePage() {
                 Erst Region wählen, dann die passende Leistung finden.
               </h2>
               <p className="mt-4 max-w-3xl text-base font-semibold leading-8 text-slate-600">
-                Auf der Leistungsseite finden Sie alle Angebote übersichtlich nach Region sortiert:
-                Umzug, Reinigung, Solarreinigung, Spezialreinigung, Transport, Entrümpelung und
-                Übergabe in Düsseldorf und Regensburg.
+                Auf der Leistungsseite finden Sie die Angebote nach Region sortiert. Für Düsseldorf
+                stehen Reinigungsfirma, Gewerbereinigung, Büroreinigung, Praxisreinigung,
+                Grundreinigung und Angebotsprüfung im Vordergrund.
               </p>
             </div>
             <Link
@@ -450,6 +613,18 @@ export default function HomePage() {
                       </div>
                     ))}
                   </div>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {getHomepageAreaLinks(area.regionId).map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-white hover:text-blue-800"
+                      >
+                        {link.label}
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                    ))}
+                  </div>
                 </section>
               );
             })}
@@ -473,13 +648,19 @@ export default function HomePage() {
               </p>
             </div>
             <Link
-              href="/angebot-vergleichen-duesseldorf"
-              data-event="hero_cta_click"
+              href={cleaningOfferLeadHref}
+              data-event="seo_cta_click"
               data-source="homepage_offer_check"
+              data-service="reinigung"
+              data-city="deutschland"
+              data-page-intent="reinigungsfirma-angebot"
+              data-priority="p1"
+              data-cta-label="Reinigungsangebot anfordern"
+              data-destination={cleaningOfferLeadHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
             >
               <FileSearch className="h-4 w-4" aria-hidden="true" />
-              Angebot prüfen lassen
+              Reinigungsfirma Angebot
             </Link>
           </div>
 
@@ -542,7 +723,7 @@ export default function HomePage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              "Sie wählen zuerst Düsseldorf oder Regensburg.",
+              "Sie starten für Düsseldorf direkt mit Reinigung, Objektart oder Angebotsprüfung.",
               "Sie senden kurz Objekt, Leistung, Termin und Fotos.",
               "FLOXANT prüft, was sinnvoll machbar ist.",
               "Sie erhalten eine klare Rückmeldung und entscheiden in Ruhe.",
@@ -557,6 +738,33 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <TrustProofPanel
+        allowedPage="/"
+        serviceKey="reinigung"
+        locationKey="duesseldorf"
+        title="Vertrauen auf der Startseite bleibt belegbar."
+        intro="Die wichtigsten Trust-Signale sind Anfrageweg, lokale Einordnung, Angebotsgrenzen und der bewusste Verzicht auf erfundene Sterne oder Referenzen."
+      />
+
+      <LocalProofPanel location="duesseldorf" />
+      <LocalProofPanel location="regensburg" className="bg-slate-900" />
+
+      <ProcessProofSteps
+        title="Der Ablauf ist sichtbar, bevor jemand Daten sendet."
+        intro="FLOXANT zeigt vor der Anfrage, welche Angaben helfen und wo Grenzen bleiben. Preise, Termine und Alternativen werden nicht ohne Kontext versprochen."
+      />
+
+      <ProjectStoryGrid
+        title="Projektstorys nur als gekennzeichnete Ausgangslagen."
+        intro="Solange echte Kundendaten nicht freigegeben sind, erscheinen nur typische Situationen ohne Personen, Orte oder behauptete Ergebnisse."
+      />
+
+      <ServiceVisualProofGrid
+        serviceKey="reinigung"
+        title="Visual Proof ohne private Kundendaten."
+        intro="Die sichtbaren Visuals sind abstrakt. Echte Fotos oder Vorher-Nachher-Bilder brauchen Freigabe, Privacy-Check und klare Kennzeichnung."
+      />
 
       <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -583,9 +791,15 @@ export default function HomePage() {
               WhatsApp starten
             </a>
             <Link
-              href="/kontakt"
-              data-event="hero_cta_click"
+              href={homepageLeadHref}
+              data-event="seo_cta_click"
               data-source="homepage_final"
+              data-service="reinigung"
+              data-city="duesseldorf"
+              data-page-intent="homepage-anfrage"
+              data-priority="p1"
+              data-cta-label="Kontakt oeffnen"
+              data-destination={homepageLeadHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
               Kontakt öffnen

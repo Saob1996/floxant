@@ -179,17 +179,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Grundreinigung Regensburg | Wohnung, Büro & Auszug | FLOXANT",
     description:
       "Grundreinigung in Regensburg für Wohnung, Büro, Küche, Bad, Einzug, Auszug und starke Verschmutzung. Fotos, Fläche, Zustand und Angebot prüfen.",
-    keywords: [
-      "Grundreinigung Regensburg",
-      "Wohnung Grundreinigung Regensburg",
-      "Büro Grundreinigung Regensburg",
-      "Grundreinigung Kosten Regensburg",
-      "Grundreinigung nach Auszug Regensburg",
-      "Grundreinigung vor Einzug",
-      "Küche gründlich reinigen Regensburg",
-      "Bad Grundreinigung Regensburg",
-      "starke Verschmutzung reinigen Regensburg",
-    ],
   });
 }
 

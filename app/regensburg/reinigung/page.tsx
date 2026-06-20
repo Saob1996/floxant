@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(company.url),
   title: config.metaTitle,
   description: config.metaDescription,
-  keywords: [config.mainKeyword, ...config.secondaryKeywords],
   alternates: {
     canonical: config.path,
     languages: {

@@ -33,20 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Immobilie verkaufsbereit machen - Raeumung, Reinigung & Entsorgung | FLOXANT",
   description:
     "FLOXANT unterstuetzt Eigentuemer, Makler und Erbengemeinschaften: Wohnung oder Haus vor Verkauf, Besichtigung oder Expose raeumen, entsorgen und reinigen lassen.",
-  keywords: [
-    "immobilie verkaufsbereit machen",
-    "wohnung fuer verkauf vorbereiten",
-    "haus fuer verkauf vorbereiten",
-    "wohnung vor besichtigung reinigen",
-    "immobilie vor besichtigung reinigen",
-    "wohnung entruempeln vor verkauf",
-    "makler wohnung vorbereiten regensburg",
-    "erbengemeinschaft wohnung raeumen lassen",
-    "wohnung fuer expose vorbereiten",
-    "keller raeumen vor verkauf",
-    "garage entruempeln vor hausverkauf",
-    "reinigung vor immobilienverkauf regensburg",
-  ],
 });
 
 const whatsappHref =

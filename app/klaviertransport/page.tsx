@@ -1,14 +1,22 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { generatePageSEO } from "@/lib/seo";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
-import { Music, Shield, Clock, Star, Zap, Truck } from "lucide-react";
+import { buildLeadHref } from "@/lib/lead-intents";
+import { Music, Shield, Clock, Star, Zap } from "lucide-react";
 interface PageProps {
   params: Promise<{}>;
 }
+
+const klaviertransportLeadHref = buildLeadHref({
+  service: "klaviertransport",
+  city: "bayern",
+  intent: "klaviertransport-bayern",
+  priority: "p1",
+});
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { seoContent, seoFallback, city } = await getSpecialtyPageData({
+  const { content, fallback, seoContent, seoFallback, city } = await getSpecialtyPageData({
     locale: "de",
     baseKey: "klaviertransport_spec",
     city: "Bayern",
@@ -16,8 +24,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return generatePageSEO({
     lang: "de",
     path: `klaviertransport`,
-    title: resolveField(seoContent.meta_title, seoFallback.meta_title, city, "de"),
-    description: resolveField(seoContent.meta_desc, seoFallback.meta_desc, city, "de"),
+    title: resolveField(seoContent?.meta_title || content?.meta_title, seoFallback?.meta_title || fallback?.meta_title, city, "de"),
+    description: resolveField(seoContent?.meta_desc || content?.meta_desc, seoFallback?.meta_desc || fallback?.meta_desc, city, "de"),
   });
 }
 export default async function KlaviertransportPage({ params }: PageProps) {
@@ -26,8 +34,6 @@ export default async function KlaviertransportPage({ params }: PageProps) {
     localeDict, 
     content, 
     fallback, 
-    seoContent, 
-    seoFallback, 
     city 
   } = await getSpecialtyPageData({
     locale,
@@ -40,9 +46,10 @@ export default async function KlaviertransportPage({ params }: PageProps) {
         dict={localeDict}
         city={city}
         heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-        heroTitle={resolveField(content.hero_h1, fallback.hero_h1, city, "de")}
+        heroTitle={`Klaviertransport in ${city}`}
         heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
         ctaText={resolveField(content.cta, fallback.cta, city, "de")}
+        primaryCtaHref={klaviertransportLeadHref}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Klaviertransport" }

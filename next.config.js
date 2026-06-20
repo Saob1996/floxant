@@ -33,8 +33,62 @@ const serviceRedirectPairs = [
 const umlautRedirectDestinationOverrides = new Map();
 
 const legacyRegensburgRedirects = [];
-const legacyLocalePrefixes = ['de', 'en', 'ru', 'bg', 'vi', 'tr', 'ar', 'fr', 'es', 'it', 'pl', 'uk'];
-
+const gscCtrCanonicalRedirects = [
+    ['/reinigung-duesseldorf', '/duesseldorf/reinigung'],
+    ['/praxisreinigung-duesseldorf', '/duesseldorf/praxisreinigung'],
+    ['/bueroreinigung-duesseldorf', '/duesseldorf/bueroreinigung'],
+    ['/hotelreinigung-duesseldorf', '/duesseldorf/hotelreinigung'],
+    ['/grundreinigung-duesseldorf', '/duesseldorf/grundreinigung'],
+    ['/wohnungsreinigung-duesseldorf', '/duesseldorf/wohnungsreinigung'],
+    ['/treppenhausreinigung-duesseldorf', '/duesseldorf/treppenhausreinigung'],
+    ['/putzfirma-duesseldorf', '/duesseldorf/putzfirma'],
+    ['/reinigungsfirma-duesseldorf', '/duesseldorf/reinigungsfirma'],
+    ['/reinigungsdienst-duesseldorf', '/duesseldorf/reinigungsdienst'],
+    ['/reinigungsservice-duesseldorf', '/duesseldorf/reinigung'],
+    ['/gewerbereinigung-duesseldorf', '/duesseldorf/gewerbereinigung'],
+    ['/fensterreinigung-duesseldorf', '/duesseldorf/fensterreinigung'],
+    ['/b2b-bueroreinigung', '/duesseldorf/bueroreinigung'],
+    ['/diskret-service', '/diskreter-umzug-trennung-scheidung'],
+    ['/reinigung-nach-entruempelung-landshut', '/reinigung-landshut'],
+    ['/angebot-reinigungsfirma', '/reinigungsfirma-angebot'],
+    ['/angebot-reinigung', '/reinigungsfirma-angebot'],
+    ['/umzug-im-alter-bayern', '/seniorenumzug-bayern'],
+    ['/umzug-im-alter-erlangen', '/seniorenumzug-erlangen'],
+    ['/umzug-im-alter-bamberg', '/seniorenumzug-bamberg'],
+    ['/umzug-im-alter-wuerzburg', '/seniorenumzug-wuerzburg'],
+    ['/umzugshilfe-senioren-bayern', '/seniorenumzug-bayern'],
+    ['/umzugshilfe-senioren-erlangen', '/seniorenumzug-erlangen'],
+    ['/umzugshilfe-senioren-bamberg', '/seniorenumzug-bamberg'],
+    ['/umzugshilfe-senioren-wuerzburg', '/seniorenumzug-wuerzburg'],
+    ['/umzugshilfe-senioren-nuernberg', '/seniorenumzug-nuernberg'],
+    ['/umzugshilfe-fuer-senioren-bayern', '/seniorenumzug-bayern'],
+    ['/umzugshilfe-fuer-senioren-erlangen', '/seniorenumzug-erlangen'],
+    ['/umzugshilfe-fuer-senioren-bamberg', '/seniorenumzug-bamberg'],
+    ['/umzugshilfe-fuer-senioren-wuerzburg', '/seniorenumzug-wuerzburg'],
+    ['/umzugshilfe-fuer-senioren-nuernberg', '/seniorenumzug-nuernberg'],
+    ['/umzugshelfer-senioren-bayern', '/seniorenumzug-bayern'],
+    ['/umzugshelfer-senioren-erlangen', '/seniorenumzug-erlangen'],
+    ['/umzugshelfer-senioren-bamberg', '/seniorenumzug-bamberg'],
+    ['/umzugshelfer-senioren-wuerzburg', '/seniorenumzug-wuerzburg'],
+    ['/umzugshelfer-senioren-nuernberg', '/seniorenumzug-nuernberg'],
+    ['/umzugshelfer-fuer-senioren-bayern', '/seniorenumzug-bayern'],
+    ['/umzugshelfer-fuer-senioren-erlangen', '/seniorenumzug-erlangen'],
+    ['/umzugshelfer-fuer-senioren-bamberg', '/seniorenumzug-bamberg'],
+    ['/umzugshelfer-fuer-senioren-wuerzburg', '/seniorenumzug-wuerzburg'],
+    ['/umzugshelfer-fuer-senioren-nuernberg', '/seniorenumzug-nuernberg'],
+    ['/privatumzug-muenchen', '/umzug-muenchen'],
+    ['/umzugsunternehmen-neumarkt-idopf', '/umzug-neumarkt'],
+    ['/umzugsunternehmen-neumarkt-i-d-opf', '/umzug-neumarkt'],
+    ['/umzugsfirma-neumarkt', '/umzug-neumarkt'],
+    ['/umzugsunternehmen-ingolstadt', '/umzug-ingolstadt'],
+    ['/reinigung-nach-umzug-muenchen', '/reinigung-muenchen'],
+    ['/reinigung-muenchen-sofort-termin', '/reinigung-muenchen'],
+    ['/studentenumzug-vohenstrauss', '/umzug-vohenstrauss'],
+].map(([source, destination]) => ({
+    source,
+    destination,
+    permanent: true,
+}));
 const configuredBuildWorkers = Number(process.env.NEXT_BUILD_WORKERS || process.env.NEXT_BUILD_CPUS);
 const hasConfiguredBuildWorkers = Number.isFinite(configuredBuildWorkers) && configuredBuildWorkers > 0;
 const buildWorkers = hasConfiguredBuildWorkers ? configuredBuildWorkers : 4;
@@ -58,21 +112,6 @@ function buildUmlautRedirects() {
     }
 
     return redirects;
-}
-
-function buildLegacyLocaleRedirects() {
-    return legacyLocalePrefixes.flatMap((locale) => [
-        {
-            source: `/${locale}`,
-            destination: '/',
-            permanent: true,
-        },
-        {
-            source: `/${locale}/:path*`,
-            destination: '/:path*',
-            permanent: true,
-        },
-    ]);
 }
 
 const nextConfig = {
@@ -154,18 +193,13 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: '/angebot-pruefen',
-                destination: '/angebot-vergleichen-duesseldorf',
-                permanent: true,
-            },
-            {
                 source: '/duesseldorf/angebot-pruefen',
-                destination: '/angebot-vergleichen-duesseldorf',
+                destination: '/duesseldorf/angebot-vergleichen',
                 permanent: true,
             },
             {
                 source: '/regensburg/angebot-pruefen',
-                destination: '/angebot-vergleichen-duesseldorf',
+                destination: '/regensburg/angebot-vergleichen',
                 permanent: true,
             },
             {
@@ -173,7 +207,7 @@ const nextConfig = {
                 destination: '/:slug',
                 permanent: true,
             },
-            ...buildLegacyLocaleRedirects(),
+            ...gscCtrCanonicalRedirects,
             ...legacyRegensburgRedirects,
             ...buildUmlautRedirects(),
         ];

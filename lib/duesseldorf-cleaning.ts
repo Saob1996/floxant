@@ -4,6 +4,7 @@ import {
   getDuesseldorfCleaningInternationalAliases,
   getDuesseldorfCleaningInternationalTerms,
 } from "@/lib/search-intent-aliases";
+import { getLanguageAlternatesForPath } from "@/lib/local-seo/hreflangMap";
 
 export const DUESSELDORF_CLEANING = {
   brand: "FLOXANT Reinigung Düsseldorf",
@@ -50,6 +51,14 @@ export const DUESSELDORF_CLEANING = {
 } as const;
 
 export const DUESSELDORF_CLEANING_SERVICES = [
+  {
+    slug: "reinigungsfirma",
+    href: "/duesseldorf/reinigungsfirma",
+    label: "Reinigungsfirma Düsseldorf",
+    shortLabel: "Reinigungsfirma",
+    description:
+      "Zentraler Einstieg für Büro, Praxis, Gewerbe, Kanzlei, Grundreinigung und Angebotsprüfung in Düsseldorf mit Stadtteil, Fotos, Turnus und Preisrahmen.",
+  },
   {
     slug: "wohnungsreinigung",
     href: "/duesseldorf/wohnungsreinigung",
@@ -121,6 +130,22 @@ export const DUESSELDORF_CLEANING_SERVICES = [
     shortLabel: "Gebäude",
     description:
       "Für Hausverwaltungen, Bürohäuser, Treppenhäuser, Eingänge, Sanitär, Empfang, Flure und Nebenflächen mit Raumliste, Turnus, Zugang und klaren Grenzen zu Hausmeisterdienst.",
+  },
+  {
+    slug: "gewerbeflaechen-reinigung",
+    href: "/duesseldorf/gewerbeflaechen-reinigung",
+    label: "Gewerbeflächen-Reinigung",
+    shortLabel: "Gewerbeflächen",
+    description:
+      "Für Laden, Büro, Studio, Praxis, Kanzlei und gemischte Gewerbeflächen mit Raumliste, Nutzung, Turnus, Zugang, Fotos und Angebotsprüfung.",
+  },
+  {
+    slug: "reinigung-heerdt",
+    href: "/duesseldorf/reinigung-heerdt",
+    label: "Reinigung Düsseldorf-Heerdt",
+    shortLabel: "Heerdt",
+    description:
+      "Lokaler Einstieg für Heerdt, Lörick, Oberkassel, Niederkassel, Neuss und Meerbusch mit Objektart, Zugang, Fotos, Turnus und Angebot.",
   },
   {
     slug: "objektreinigung",
@@ -296,7 +321,7 @@ export const DUESSELDORF_CLEANING_CUSTOMER_PATHS = [
   {
     title: "Reinigungsfirma in der Nähe von Düsseldorf",
     text: "Für Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel und nahe Orte wie Neuss, Ratingen oder Meerbusch. PLZ, Stadtteil, Zugang und Fotos reichen für den ersten Check.",
-    href: "/duesseldorf/reinigung-stadtteile-umgebung",
+    href: "/duesseldorf/reinigungsfirma",
     signal: "Nähe, Stadtteil, PLZ",
   },
   {
@@ -314,7 +339,7 @@ export const DUESSELDORF_CLEANING_CUSTOMER_PATHS = [
   {
     title: "Reinigungsbetrieb oder Reinigungsunternehmen Düsseldorf",
     text: "Für Kunden, die nach Reinigungsbetrieb, Reinigungsunternehmen, Reinigungsdienst oder Reinigungsfirmen suchen. FLOXANT führt die Anfrage zu Wohnung, Büro, Objekt, Grundreinigung oder Angebot.",
-    href: "/duesseldorf/reinigung",
+    href: "/duesseldorf/reinigungsfirma",
     signal: "Reinigungsbetrieb, Unternehmen",
   },
   {
@@ -346,6 +371,18 @@ export const DUESSELDORF_CLEANING_CUSTOMER_PATHS = [
     text: "Für Eingang, Treppenhaus, Flure, Sanitär, Empfang, Bürobereiche und Nebenflächen. Raumliste, Turnus, Schlüsselweg und Fotos machen die Anfrage klar.",
     href: "/duesseldorf/gebaeudereinigung",
     signal: "Gebäude, Verwaltung",
+  },
+  {
+    title: "Gewerbeflächen reinigen lassen",
+    text: "Für Laden, Studio, Büro, Praxis, Kanzlei oder gemischte Gewerbefläche zählen Nutzung, Raumliste, Turnus, Zugang, Fotos und vorhandenes Angebot.",
+    href: "/duesseldorf/gewerbeflaechen-reinigung",
+    signal: "Gewerbeflächen, Gewerbe",
+  },
+  {
+    title: "Reinigung in Düsseldorf-Heerdt",
+    text: "Für Heerdt, Lörick, Oberkassel, Niederkassel, Neuss und Meerbusch werden Objektart, Fläche, Zugang, Turnus, Fotos und Termin lokal eingeordnet.",
+    href: "/duesseldorf/reinigung-heerdt",
+    signal: "Heerdt, lokale Reinigung",
   },
   {
     title: "Objektreinigung für gemischte Flächen",
@@ -637,7 +674,7 @@ export const DUESSELDORF_CLEANING_SNIPPET_ANSWERS = [
     title: "Objektart direkt zuordnen",
     answer:
       "Für Wohnung, Büro, Hotel, Treppenhaus oder Gewerbefläche wird zuerst geklärt, was wirklich gereinigt werden soll. So landet die Anfrage sofort auf der passenden Düsseldorfer Seite.",
-    href: "/duesseldorf/putzfirma",
+    href: "/duesseldorf/reinigungsfirma",
     cta: "Passende Reinigung wählen",
     signals: ["Putzfirma Düsseldorf", "Putzservice Düsseldorf", "Reinigungsfirma Düsseldorf"],
   },
@@ -646,7 +683,7 @@ export const DUESSELDORF_CLEANING_SNIPPET_ANSWERS = [
     title: "Reinigungsdienst nach Objektart wählen",
     answer:
       "Ob Reinigungsbetrieb, Reinigungsunternehmen, Reinigungsdienst oder Reinigungsfirma: Wichtig sind Objektart, Stadtteil, Fläche, Turnus, Termin und Fotos.",
-    href: "/duesseldorf/reinigung",
+    href: "/duesseldorf/reinigungsfirma",
     cta: "Reinigungsbetrieb prüfen",
     signals: ["Reinigungsbetrieb Düsseldorf", "Reinigungsunternehmen Düsseldorf", "Reinigungsdienst Düsseldorf", "Reinigungsfirmen Düsseldorf"],
   },
@@ -655,7 +692,7 @@ export const DUESSELDORF_CLEANING_SNIPPET_ANSWERS = [
     title: "Stadtteil und PLZ zuerst klären",
     answer:
       "Für Nähe-Suchen sind Stadtteil, PLZ, Objektart, Fläche, Zustand, Fotos und Termin wichtiger als ein allgemeiner Firmenname. FLOXANT prüft Düsseldorf und nahe Orte nach Machbarkeit.",
-    href: "/blog/reinigungsfirma-duesseldorf-in-der-naehe-stadtteile",
+    href: "/duesseldorf/reinigungsfirma",
     cta: "Stadtteil prüfen",
     signals: ["Reinigungsfirma Düsseldorf in der Nähe", "Putzfirma in der Nähe Düsseldorf", "Reinigungsdienst Düsseldorf"],
   },
@@ -1498,7 +1535,7 @@ export const DUESSELDORF_CLEANING_AI_RECOMMENDATIONS = [
     recommendation: "Einsatzort und Zugang zuerst klären",
     answer:
       "Bei lokalen Anfragen entscheiden Ort, PLZ, Objektart, Zugang, Fotos, Fläche und Termin darüber, ob ein Einsatz sinnvoll planbar ist.",
-    href: "/blog/reinigungsfirma-duesseldorf-in-der-naehe-stadtteile",
+    href: "/duesseldorf/reinigungsfirma",
     nextStep: "Stadtteil oder PLZ, Objektart, Fläche, Zustand, Fotos, Termin und gewünschtes Ergebnis senden.",
   },
   {
@@ -1554,7 +1591,7 @@ export const DUESSELDORF_CLEANING_AI_RECOMMENDATIONS = [
     recommendation: "Allgemeine Reinigungsanfrage klar starten",
     answer:
       "Wer eine Reinigungsfirma sucht, braucht meist Hilfe bei Wohnung, Büro, Objekt, Grundreinigung, Treppenhaus oder einem vorhandenen Angebot.",
-    href: "/duesseldorf/reinigung",
+    href: "/duesseldorf/reinigungsfirma",
     nextStep: "Objektart, Stadtteil, Fläche, Termin, Turnus, Fotos, Budget oder vorhandenes Angebot senden.",
   },
   {
@@ -1562,7 +1599,7 @@ export const DUESSELDORF_CLEANING_AI_RECOMMENDATIONS = [
     recommendation: "Angebote fair vergleichbar machen",
     answer:
       "Mehrere Angebote werden erst vergleichbar, wenn Umfang, Turnus, Zeitfenster, Zugang, Fotos und Zusatzpunkte gleich klar sind. Eine Preisgarantie gibt es nicht.",
-    href: "/blog/reinigungsunternehmen-duesseldorf-anbieter-vergleichen",
+    href: "/angebot-vergleichen-duesseldorf",
     nextStep: "Vorhandene Angebote, Flächen, Turnus, Objektart, Fotos, Zeitfenster und offene Punkte senden.",
   },
   {
@@ -1777,7 +1814,6 @@ export function buildDuesseldorfCleaningProviderJsonLd() {
     email: DUESSELDORF_CLEANING.email,
     image: DUESSELDORF_CLEANING_IMAGE_URLS,
     logo: "https://www.floxant.de/logo_v10.png",
-    priceRange: "nach Aufwand",
     currenciesAccepted: "EUR",
     paymentAccepted: "Rechnung, Überweisung nach Vereinbarung",
     address: {
@@ -2361,6 +2397,9 @@ export function buildDuesseldorfCleaningMetadata(input: {
 }): Metadata {
   const canonical = getDuesseldorfCleaningUrl(input.path);
   const internationalTerms = getDuesseldorfCleaningInternationalTerms(48);
+  const languages = Object.fromEntries(
+    getLanguageAlternatesForPath(input.path).map((alternate) => [alternate.hreflang, alternate.path]),
+  );
 
   return {
     metadataBase: new URL("https://www.floxant.de"),
@@ -2370,118 +2409,9 @@ export function buildDuesseldorfCleaningMetadata(input: {
     category: "Reinigungsdienst",
     classification:
       "Reinigung Düsseldorf, Reinigungsfirma Düsseldorf, Putzfirma Düsseldorf, Putzservice Düsseldorf, Reinigungsdienst Düsseldorf, Büroreinigung Düsseldorf, Ladenreinigung Düsseldorf, Geschäftsreinigung Düsseldorf, Sonderreinigung Düsseldorf, Intensivreinigung Düsseldorf, Hotelreinigung Düsseldorf, Wohnungsreinigung Düsseldorf",
-    keywords: [
-      "FLOXANT Reinigung Düsseldorf",
-      "Reinigung Düsseldorf",
-      "Reinigungsdienst Düsseldorf",
-      "Reinigungsunternehmen Düsseldorf",
-      "Reinigungsbetrieb Düsseldorf",
-      "Reinigungsfirmen Düsseldorf",
-      "Reinigungsbetrieb Düsseldorf Preise",
-      "Putzfirma Düsseldorf",
-      "Putzservice Düsseldorf",
-      "Putzdienst Düsseldorf",
-      "Reinigungsfirma in der Nähe Düsseldorf",
-      "Putzfirma in der Nähe Düsseldorf",
-      "Reinigung in meiner Nähe Düsseldorf",
-      "Reinigung per WhatsApp Düsseldorf",
-      "kurzfristige Reinigung Düsseldorf",
-      "Reinigung heute Düsseldorf",
-      "Reinigung diese Woche Düsseldorf",
-      "Putzservice WhatsApp Düsseldorf",
-      "Reinigungsfirma Fotos Düsseldorf",
-      "Reinigung Schlüsselübergabe Düsseldorf",
-      "Putzfirma Wohnung Düsseldorf",
-      "Reinigungsfirma Düsseldorf Privathaushalt",
-      "Putzservice Büro Düsseldorf",
-      "Reinigung Kosten Düsseldorf",
-      "Reinigungskosten Düsseldorf",
-      "Reinigungsfirma Düsseldorf Kosten",
-      "Reinigungsfirma Düsseldorf Preise",
-      "Reinigung Angebot Düsseldorf",
-      "Reinigungsfirma Angebot",
-      "Angebot Reinigungsfirma",
-      "Angebot Reinigungsarbeiten",
-      "Büroreinigung Angebot Düsseldorf",
-      "Büroreinigung in Düsseldorf",
-      "Büroreinigung Reinigungsfirma Düsseldorf",
-      "Büro reinigen Düsseldorf",
-      "Wohnungsreinigung Düsseldorf",
-      "professionelle Wohnungsreinigung Düsseldorf",
-      "Büroreinigung Düsseldorf",
-      "Firmenreinigung Düsseldorf",
-      "B2B-Reinigung Düsseldorf",
-      "Gewerbereinigung Düsseldorf",
-      "Ladenreinigung Düsseldorf",
-      "Geschäftsreinigung Düsseldorf",
-      "Shop Reinigung Düsseldorf",
-      "Reinigung Verkaufsfläche Düsseldorf",
-      "Schaufenster Laden Düsseldorf",
-      "Sonderreinigung Düsseldorf",
-      "Intensivreinigung Düsseldorf",
-      "starke Verschmutzung reinigen Düsseldorf",
-      "Reinigung nach Leerstand Düsseldorf",
-      "Reinigung nach Mieterwechsel Düsseldorf",
-      "Hotelreinigung Düsseldorf",
-      "Hotel Reinigung Düsseldorf",
-      "Boardinghouse Reinigung Düsseldorf",
-      "Apartmenthaus Reinigung Düsseldorf",
-      "Unterhaltsreinigung Düsseldorf",
-      "Gebäudereinigung Düsseldorf",
-      "Objektreinigung Düsseldorf",
-      "Gewerbeobjekt Reinigung",
-      "Reinigungskraft Büro Düsseldorf",
-      "Reinigungsplan Büro Düsseldorf",
-      "Kanzleireinigung Düsseldorf",
-      "Praxisreinigung Düsseldorf",
-      "Krankenhausreinigung Düsseldorf",
-      "Kellerreinigung Düsseldorf",
-      "Entsorgung Düsseldorf",
-      "Reinigung kleine Unternehmen Düsseldorf",
-      "Grundreinigung Düsseldorf",
-      "Bodenreinigung Düsseldorf",
-      "Treppenhausreinigung Düsseldorf",
-      "Treppenhausreinigungen",
-      "Reinigung Hauseingang Düsseldorf",
-      "Veranstaltungsreinigung Düsseldorf",
-      "Endreinigung Düsseldorf",
-      "Übergabereinigung Düsseldorf",
-      "möblierte Wohnung Reinigung Düsseldorf",
-      "Apartment Reinigung Düsseldorf",
-      "Business Apartment Reinigung Düsseldorf",
-      "Kurzzeitvermietung Reinigung Düsseldorf",
-      "Gästewechsel Reinigung Düsseldorf",
-      "Check-in Reinigung Düsseldorf",
-      "Check-out Reinigung Düsseldorf",
-      "Reinigung nach Gästewechsel Düsseldorf",
-      "möblierte Wohnung Endreinigung Düsseldorf",
-      "Apartment Grundreinigung Düsseldorf",
-      "Kurzzeitvermietung Endreinigung Düsseldorf",
-      "Reinigung Business Apartment Düsseldorf",
-      "Reinigungsfirma Düsseldorf möblierte Wohnung",
-      "Apartment Putzservice Düsseldorf",
-      "Reinigung möblierte Apartments Düsseldorf",
-      "Reinigung Düsseldorf Stadtteile",
-      "Reinigung Düsseldorf Altstadt",
-      "Reinigung Düsseldorf Stadtmitte",
-      "Reinigung Düsseldorf Pempelfort",
-      "Reinigung Düsseldorf Bilk",
-      "Reinigung Düsseldorf Oberkassel",
-      "Reinigung Düsseldorf MedienHafen",
-      "Reinigung Neuss",
-      "Reinigung Ratingen",
-      "Reinigung Meerbusch",
-      "Reinigung Mettmann",
-      "Reinigung Duisburg",
-      "Düsseldorf Reinigung mit Fotos",
-      ...internationalTerms,
-    ],
     alternates: {
       canonical,
-      languages: {
-        "de-DE": canonical,
-        "x-default": canonical,
-      },
+      languages,
     },
     robots: {
       index: true,

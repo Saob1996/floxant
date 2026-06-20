@@ -31,14 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "In Regensburg direkt buchen statt vergleichen: klare Wege bringen oft mehr",
     description:
       "Warum direkte Buchungswege, feste Ansprechpartner und eine saubere Vorprüfung in Regensburg oft besser funktionieren als unklare Vergleichsportal-Wege.",
-    keywords: [
-      "direkt buchen Regensburg",
-      "Buchung Umzug Regensburg",
-      "direkte Anfrage Regensburg",
-      "Google Maps Buchung Regensburg",
-      "Vergleichsportal Alternative Regensburg",
-      "FLOXANT Buchung",
-    ],
   });
 }
 

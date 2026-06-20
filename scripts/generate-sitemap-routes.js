@@ -15,6 +15,8 @@ const psychologicalCleaningPagesFile = path.join(
   "psychological-cleaning-pages.ts",
 );
 const growthServicePagesFile = path.join(workspaceRoot, "lib", "growth-service-pages.ts");
+const structuredLocalSeoPagesFile = path.join(workspaceRoot, "lib", "local-seo", "localSeoPages.ts");
+const englishLocalSeoPagesFile = path.join(workspaceRoot, "lib", "local-seo", "englishLocalSeoPages.ts");
 const outputFile = path.join(workspaceRoot, "lib", "sitemap-routes.ts");
 
 const pageFileNames = new Set(["page.ts", "page.tsx"]);
@@ -30,6 +32,7 @@ const nonSeoPublicRoutes = new Set([
   "/agb",
   "/widerruf",
   "/buchungsbedingungen",
+  "/angebot-vergleichen-duesseldorf/danke",
   "/duesseldorf/reinigung/datenschutz",
   "/duesseldorf/reinigung/agb",
 ]);
@@ -45,6 +48,7 @@ const legacyRedirectRoutes = new Set([
 const removedServicePrefixes = [
   "/halteverbotszone",
 ];
+const deprioritizedCitySlugs = new Set(["forchheim", "friedberg"]);
 
 function isRouteGroup(segment) {
   return segment.startsWith("(") && segment.endsWith(")");
@@ -77,11 +81,23 @@ function isIndexableRoute(route) {
   if (legacyRedirectRoutes.has(route)) return false;
   if (removedServicePrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}-`))) return false;
   if (nonSeoPublicRoutes.has(route)) return false;
+  if (isDeprioritizedCityRoute(route)) return false;
   if (/^\/alternativen\/[^/]+$/.test(route)) return false;
   if (/^\/signature\/[^/]+$/.test(route)) return false;
 
   return !blockedPrefixes.some(
     (prefix) => route === prefix || route.startsWith(`${prefix}/`),
+  );
+}
+
+function isDeprioritizedCityRoute(route) {
+  const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
+
+  return Array.from(deprioritizedCitySlugs).some(
+    (citySlug) =>
+      normalizedRoute === citySlug ||
+      normalizedRoute.endsWith(`-${citySlug}`) ||
+      normalizedRoute.includes(`-${citySlug}-`),
   );
 }
 
@@ -173,12 +189,73 @@ function collectGrowthServiceRoutes() {
   return routes;
 }
 
+function collectStructuredLocalSeoRoutes() {
+  if (!fs.existsSync(structuredLocalSeoPagesFile)) return [];
+
+  const source = fs.readFileSync(structuredLocalSeoPagesFile, "utf8");
+  const routes = [];
+  const pageBlockRegex = /path:\s*"([^"]+)"[\s\S]*?maturity:\s*(indexableM1|indexableM2|input\.city\.maturity|district\.maturity)/g;
+  let match;
+
+  while ((match = pageBlockRegex.exec(source))) {
+    const route = match[1];
+    const maturitySource = match[2];
+    if (maturitySource === "district.maturity") continue;
+    if (isIndexableRoute(route)) routes.push(route);
+  }
+
+  for (const slug of collectConstStringArray(source, "duesseldorfCityCleaningSlugs")) {
+    const route = `/${slug}/reinigung`;
+    if (isIndexableRoute(route)) routes.push(route);
+  }
+
+  for (const slug of collectConstStringArray(source, "regensburgCityMoveSlugs")) {
+    const route = `/${slug}/umzug`;
+    if (isIndexableRoute(route)) routes.push(route);
+  }
+
+  return routes;
+}
+
+function collectEnglishLocalSeoRoutes() {
+  if (!fs.existsSync(englishLocalSeoPagesFile)) return [];
+
+  const source = fs.readFileSync(englishLocalSeoPagesFile, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    const route = match[1];
+    if (isIndexableRoute(route)) routes.push(route);
+  }
+
+  return routes;
+}
+
+function collectConstStringArray(source, constName) {
+  const arrayMatch = source.match(new RegExp(`const\\s+${constName}\\s*=\\s*\\[([\\s\\S]*?)\\]\\s*as const;`));
+  if (!arrayMatch) return [];
+
+  const values = [];
+  const stringRegex = /"([^"]+)"/g;
+  let match;
+
+  while ((match = stringRegex.exec(arrayMatch[1]))) {
+    values.push(match[1]);
+  }
+
+  return values;
+}
+
 const routes = Array.from(
   new Set([
     ...collectRoutes(appDirectory),
     ...collectDynamicLocalSeoRoutes(),
     ...collectDynamicBlogRoutes(),
     ...collectGrowthServiceRoutes(),
+    ...collectStructuredLocalSeoRoutes(),
+    ...collectEnglishLocalSeoRoutes(),
     ...extraIndexableRoutes,
   ]),
 ).sort((routeA, routeB) => routeA.localeCompare(routeB));

@@ -19,6 +19,15 @@ import {
 } from "lucide-react";
 
 import { DiscreetMoveForm } from "@/components/DiscreetMoveForm";
+import { DiscreetRequestPanel } from "@/components/DiscreetRequestPanel";
+import { DiscreetTrustPanel } from "@/components/DiscreetTrustPanel";
+import { LeadCta } from "@/components/LeadCta";
+import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
+import { PreferredContactMethodPanel } from "@/components/PreferredContactMethodPanel";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { SensitiveCaseNotice } from "@/components/SensitiveCaseNotice";
 import { generatePageSEO } from "@/lib/seo";
 import {
   buildBreadcrumbJsonLd,
@@ -32,30 +41,9 @@ const path = "/diskreter-umzug-trennung-scheidung";
 export const metadata: Metadata = generatePageSEO({
   lang: "de",
   path,
-  title: "Diskreter Umzug bei Trennung oder Scheidung | FLOXANT",
+  title: "Diskreter Service fuer Umzug, Auszug und Reinigung",
   description:
-    "FLOXANT prüft diskrete Umzüge und sensible Auszüge in Regensburg und Umgebung: Transport, Reinigung, Schlüsselübergabe und Übergabeakte nach Absprache.",
-  keywords: [
-    "diskreter umzug regensburg",
-    "trennungsumzug regensburg",
-    "scheidungsumzug regensburg",
-    "auszug nach trennung",
-    "umzug bei trennung",
-    "diskreter auszug",
-    "diskreter auszug regensburg",
-    "privater umzug diskret",
-    "umzug sensible situation",
-    "auszug aus gemeinsamer wohnung",
-    "möbel abholen nach trennung",
-    "reinigung nach trennungsauszug",
-    "schlüsselübergabe nach auszug",
-    "premium umzug diskret",
-    "diskreter rückruf regensburg",
-    "auszug mit reinigung regensburg",
-    "sensible umzugsanfrage",
-    "diskreter möbeltransport",
-    "übergabeakte nach auszug",
-  ],
+    "Sensible Anfrage ruhig klaeren: diskreter Auszug, Umzug, Reinigung, Schluesseluebergabe und sichere Kontaktmethode ohne oeffentliche Details.",
 });
 
 const whatsappHref = `https://wa.me/4915771105087?text=${encodeURIComponent(
@@ -352,19 +340,31 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 Diskreter Auszug, ruhig abgestimmt
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-black tracking-[-0.045em] text-stone-950 sm:text-5xl lg:text-6xl">
-                Diskreter Umzug bei Trennung oder Scheidung
+                Diskreter Service fuer Auszug, Reinigung und Uebergabe
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-                Wenn ein Auszug ruhig, vertraulich und klar abgestimmt werden muss, prüft FLOXANT Transport,
-                Reinigung, Entrümpelung, Schlüsselübergabe und Übergabeakte nach Absprache.
+                Wenn ein Fall ruhig und zurueckhaltend geklaert werden soll, reichen zuerst Ort,
+                Zeitfenster, grober Umfang und bevorzugter Kontaktweg. FLOXANT prueft Transport,
+                Reinigung, Entruempelung, Schluesseluebergabe und Uebergabeakte nach Absprache.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link
-                  href="#diskret-form"
+                <LeadCta
+                  service="diskret-service"
+                  city="deutschland"
+                  intent="diskret-service"
+                  priority="p0"
+                  label="Diskreten Rückruf anfragen"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-stone-950 px-6 text-sm font-black text-white transition hover:bg-stone-800"
-                  data-event="service_card_click"
                 >
                   Diskreten Rückruf anfragen
+                  <ArrowRight className="h-4 w-4" />
+                </LeadCta>
+                <Link
+                  href="#diskret-form"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-6 text-sm font-black text-stone-800 transition hover:bg-stone-50"
+                  data-event="service_card_click"
+                >
+                  Formular auf dieser Seite
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
@@ -430,6 +430,22 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <DiscreetRequestPanel />
+        <PreferredContactMethodPanel />
+        <SensitiveCaseNotice />
+        <DiscreetTrustPanel />
+        <ServiceProofChecklist serviceKey="diskret" />
+        <ProjectStoryGrid serviceKey="diskret" />
+        <ProcessProofSteps
+          title="Diskrete Anfrage Schritt fuer Schritt."
+          intro="Der Ablauf startet mit Ort, Frist und Kontaktweg. Details koennen spaeter im passenden Kanal geklaert werden."
+        />
+        <section className="px-4 py-8 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <NoFakeClaimsNotice />
           </div>
         </section>
 

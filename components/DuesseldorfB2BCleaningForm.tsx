@@ -120,7 +120,18 @@ export function DuesseldorfB2BCleaningForm({
     formData.set("type", `duesseldorf_${context}_cleaning`);
     formData.set("lead_type", `duesseldorf_${context}_cleaning`);
     formData.set("leadSubtype", "b2b_cleaning");
+    formData.set("serviceCategory", "b2b_bueroreinigung");
+    formData.set("intent", "b2b-anfrage");
     formData.set("region", "duesseldorf");
+    formData.set("city", "duesseldorf");
+    formData.set("contactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("preferredContactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("privacyConsent", "true");
+    formData.set("areaSize", String(formData.get("areaOrRooms") || ""));
+    formData.set("cleaningFrequency", String(formData.get("recurringFrequency") || ""));
+    formData.set("pageType", "b2b_contact");
+    formData.set("funnelStage", "b2b_lead");
+    formData.set("ctaLabel", "Kostenlos anfragen");
     formData.set("sourceComponent", "duesseldorf_b2b_cleaning_form");
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", `${window.location.pathname}${window.location.search}`);

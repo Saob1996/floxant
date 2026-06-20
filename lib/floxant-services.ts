@@ -47,12 +47,12 @@ export const floxantRegions: Record<FloxantRegion, FloxantRegionConfig> = {
     label: "FLOXANT Düsseldorf",
     city: "Düsseldorf",
     href: "/duesseldorf",
-    headline: "Hilfe für Umzug, Reinigung, Räumung und Übergabe in Düsseldorf.",
+    headline: "Reinigungsfirma, Gewerbereinigung und Angebotsprüfung in Düsseldorf.",
     description:
-      "FLOXANT Düsseldorf hilft bei Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und kombinierten Anfragen mit Fotos, Stadtteil und Termin.",
+      "FLOXANT Düsseldorf hilft bei Reinigungsfirma, Gewerbereinigung, Büroreinigung, Praxisreinigung, Grundreinigung und Reinigungsangebot-Prüfung mit Fotos, Stadtteil und Termin.",
     shortDescription:
-      "Reinigung, Umzug, Räumung und Übergabe verständlich anfragen.",
-    primaryCta: "Passende Hilfe finden",
+      "Reinigung, Angebot und Objekt in Düsseldorf verständlich anfragen.",
+    primaryCta: "Reinigung in Düsseldorf prüfen",
   },
   regensburg: {
     id: "regensburg",
@@ -82,6 +82,26 @@ export const floxantCategoryDescriptions: Record<FloxantServiceCategory, string>
 };
 
 const floxantServiceSeeds: FloxantServiceSeed[] = [
+  {
+    id: "duesseldorf-reinigungsfirma",
+    title: "Reinigungsfirma Düsseldorf",
+    shortTitle: "Reinigungsfirma",
+    shortDescription:
+      "Zentraler Einstieg für Büro, Praxis, Gewerbe, Grundreinigung und Angebotsprüfung in Düsseldorf.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/reinigungsfirma",
+    ctaLabel: "Reinigungsfirma ansehen",
+    keywords: [
+      "Reinigungsfirma Düsseldorf",
+      "Gewerbereinigung Düsseldorf",
+      "Büroreinigung Düsseldorf",
+      "Praxisreinigung Düsseldorf",
+      "Reinigungsangebot prüfen",
+    ],
+    googleAdsRelevant: true,
+    priority: 0.35,
+  },
   {
     id: "duesseldorf-umzug",
     title: "Umzug",
@@ -335,6 +355,66 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 11,
   },
   {
+    id: "duesseldorf-putzfirma",
+    title: "Putzfirma Düsseldorf",
+    shortDescription:
+      "Alltagsnaher Einstieg für Wohnung, Büro, Praxis, Auszug und Putzfirma-Angebot in Düsseldorf.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/putzfirma",
+    ctaLabel: "Putzfirma prüfen",
+    googleAdsRelevant: true,
+    priority: 11.2,
+  },
+  {
+    id: "duesseldorf-wohnungsreinigung",
+    title: "Wohnungsreinigung",
+    shortDescription:
+      "Wohnung reinigen lassen, Grundreinigung, Auszug und Übergabe mit Zustand und Fotos prüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/wohnungsreinigung",
+    ctaLabel: "Wohnung reinigen lassen",
+    googleAdsRelevant: true,
+    priority: 11.4,
+  },
+  {
+    id: "duesseldorf-grundreinigung",
+    title: "Grundreinigung",
+    shortDescription:
+      "Stärkere Verschmutzung, Leerstand, Wohnung, Büro oder Objektfläche nach Fotos einschätzen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/grundreinigung",
+    ctaLabel: "Grundreinigung prüfen",
+    googleAdsRelevant: true,
+    priority: 11.6,
+  },
+  {
+    id: "duesseldorf-gewerbeflaechen-reinigung",
+    title: "Gewerbeflächen-Reinigung",
+    shortDescription:
+      "Gewerbeflächen, Laden, Studio, Büro und Nebenflächen nach Raumliste, Turnus und Angebot prüfen.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/gewerbeflaechen-reinigung",
+    ctaLabel: "Gewerbefläche prüfen",
+    googleAdsRelevant: true,
+    priority: 11.8,
+  },
+  {
+    id: "duesseldorf-reinigung-heerdt",
+    title: "Reinigung Düsseldorf-Heerdt",
+    shortDescription:
+      "Lokaler Einstieg für Heerdt, Lörick, Oberkassel, Neuss und Umgebung mit Objekt, Fotos und Angebot.",
+    region: "duesseldorf",
+    category: "normal",
+    href: "/duesseldorf/reinigung-heerdt",
+    ctaLabel: "Heerdt prüfen",
+    googleAdsRelevant: true,
+    priority: 12,
+  },
+  {
     id: "duesseldorf-premium-reinigung",
     title: "Premium-Reinigung",
     shortDescription:
@@ -503,6 +583,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     priority: 1,
   },
   {
+    id: "regensburg-umzugsunternehmen",
+    title: "Umzugsunternehmen Regensburg",
+    shortDescription:
+      "Umzugsunternehmen für Start, Ziel, Volumen, Fotos, Zusatzleistungen und Angebotsprüfung in Regensburg.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/umzugsunternehmen",
+    ctaLabel: "Umzugsunternehmen prüfen",
+    googleAdsRelevant: true,
+    priority: 1.1,
+  },
+  {
     id: "regensburg-reinigung",
     title: "Reinigung",
     shortDescription:
@@ -513,6 +605,30 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Reinigung ansehen",
     googleAdsRelevant: true,
     priority: 1.4,
+  },
+  {
+    id: "regensburg-reinigungsfirma",
+    title: "Reinigungsfirma Regensburg",
+    shortDescription:
+      "Büro, Gewerbe, Wohnung, Endreinigung und Reinigungsangebot nach Objekt und Fotos einordnen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/reinigungsfirma",
+    ctaLabel: "Reinigungsfirma prüfen",
+    googleAdsRelevant: true,
+    priority: 1.45,
+  },
+  {
+    id: "regensburg-bueroreinigung",
+    title: "Büroreinigung Regensburg",
+    shortDescription:
+      "Büro, Kanzlei, Agentur und Gewerbefläche mit Raumliste, Randzeit, Turnus und Angebot prüfen.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/bueroreinigung",
+    ctaLabel: "Büroreinigung prüfen",
+    googleAdsRelevant: true,
+    priority: 1.5,
   },
   {
     id: "regensburg-gewerbereinigung",
@@ -609,6 +725,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Haushaltsauflösung ansehen",
     googleAdsRelevant: false,
     priority: 3,
+  },
+  {
+    id: "regensburg-wohnungsaufloesung",
+    title: "Wohnungsauflösung Regensburg",
+    shortDescription:
+      "Wohnungsauflösung nach Auszug, Nachlass oder Leerstand mit Fotos, Freigabe, Räumung und Reinigung klären.",
+    region: "regensburg",
+    category: "normal",
+    href: "/regensburg/wohnungsaufloesung",
+    ctaLabel: "Wohnungsauflösung prüfen",
+    googleAdsRelevant: true,
+    priority: 3.1,
   },
   {
     id: "regensburg-nachlassaufloesung",
@@ -825,6 +953,18 @@ const floxantServiceSeeds: FloxantServiceSeed[] = [
     ctaLabel: "Übergabe prüfen",
     googleAdsRelevant: false,
     priority: 1,
+  },
+  {
+    id: "regensburg-angebot-vergleichen",
+    title: "Angebot vergleichen Regensburg",
+    shortDescription:
+      "Reinigung, Umzug, Entrümpelung oder Wohnungsauflösung nach Umfang, Fotos und Preisrahmen sachlich prüfen.",
+    region: "regensburg",
+    category: "special",
+    href: "/angebot-vergleichen-regensburg",
+    ctaLabel: "Angebot vergleichen",
+    googleAdsRelevant: true,
+    priority: 1.2,
   },
   {
     id: "regensburg-objektbrief",

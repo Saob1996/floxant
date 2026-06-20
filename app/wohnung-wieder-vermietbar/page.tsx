@@ -33,13 +33,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Wohnung wieder vermietbar machen – Räumung, Reinigung & Entsorgung | FLOXANT",
   description:
     "FLOXANT unterstützt Vermieter, Eigentümer, Makler und Hausverwaltungen: Wohnung nach Auszug räumen, entsorgen, reinigen und für Besichtigung oder Vermietung vorbereiten.",
-  keywords: [
-    "Wohnung wieder vermietbar machen",
-    "Wohnung nach Auszug vorbereiten",
-    "Wohnung für Vermietung vorbereiten",
-    "Vermieter Reinigung Regensburg",
-    "Wohnung entrümpeln und reinigen Regensburg",
-  ],
 });
 
 const whatsappHref =

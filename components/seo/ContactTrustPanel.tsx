@@ -23,7 +23,7 @@ export const contactEntryPoints = [
     icon: Mail,
     title: "Direkt anfragen",
     text: "Für Kunden, die ihren Fall ohne Umweg schildern möchten: Leistung, Ort, Termin und Kontaktweg direkt angeben.",
-    href: "/buchung",
+    href: "/kontakt#direktanfrage",
     action: "Anfrage öffnen",
   },
   {
@@ -71,6 +71,8 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
             <div className="mt-8 grid gap-3">
               <a
                 href={`tel:${company.phoneRaw}`}
+                data-event="seo_phone_click"
+                data-source="contact_trust_panel"
                 className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-slate-700 transition hover:border-blue-300/25 hover:bg-blue-50 hover:text-slate-900"
               >
                 <span className="flex items-center gap-3">
@@ -83,6 +85,15 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-event="seo_cta_click"
+                data-contact-channel="whatsapp"
+                data-source="contact_trust_panel"
+                data-service="kontakt"
+                data-city="regensburg"
+                data-page-intent="whatsapp-anfrage"
+                data-priority="p2"
+                data-cta-label="WhatsApp Direktkontakt"
+                data-destination={whatsappUrl}
                 className="group flex items-center justify-between rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-100 hover:text-emerald-950"
               >
                 <span className="flex items-center gap-3">
@@ -93,6 +104,8 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
               </a>
               <a
                 href={`mailto:${company.email}`}
+                data-event="seo_email_click"
+                data-source="contact_trust_panel"
                 className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-slate-700 transition hover:border-blue-300/25 hover:bg-blue-50 hover:text-slate-900"
               >
                 <span className="flex items-center gap-3">
@@ -135,6 +148,13 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
                   <Link
                     key={entry.href}
                     href={entry.href}
+                    data-event={entry.href.startsWith("/kontakt") ? "seo_cta_click" : "service_card_click"}
+                    data-service="kontakt"
+                    data-city="regensburg"
+                    data-page-intent="kontakt-anfrage"
+                    data-priority="p2"
+                    data-cta-label={entry.action}
+                    data-destination={entry.href}
                     className="premium-scan group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5 transition hover:-translate-y-1 hover:border-blue-300/25"
                   >
                     <Icon className="h-5 w-5 text-blue-700" />
@@ -160,7 +180,14 @@ export function ContactTrustPanel({ compact = false }: { compact?: boolean }) {
                 führt direkt zu Leistung, Termin, Preisrahmen und Kontaktmöglichkeit.
               </p>
               <Link
-                href="/buchung"
+                href="/kontakt#direktanfrage"
+                data-event="seo_cta_click"
+                data-service="kontakt"
+                data-city="regensburg"
+                data-page-intent="kontakt-anfrage"
+                data-priority="p2"
+                data-cta-label="Buchungslink oeffnen"
+                data-destination="/kontakt#direktanfrage"
                 className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-blue-700 transition hover:text-blue-900"
               >
                 Buchungslink öffnen

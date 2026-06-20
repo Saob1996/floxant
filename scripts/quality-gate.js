@@ -19,6 +19,8 @@ const PSYCHOLOGICAL_CLEANING_PAGES_PATH = path.join(
   "psychological-cleaning-pages.ts",
 );
 const GROWTH_SERVICE_PAGES_PATH = path.join(ROOT, "lib", "growth-service-pages.ts");
+const LOCAL_SEO_PAGES_PATH = path.join(ROOT, "lib", "local-seo", "localSeoPages.ts");
+const ENGLISH_LOCAL_SEO_PAGES_PATH = path.join(ROOT, "lib", "local-seo", "englishLocalSeoPages.ts");
 const PUBLIC_BASE_URL = "https://www.floxant.de";
 const DEFAULT_PORT = Number(process.env.CHECK_PORT || 4317);
 
@@ -251,6 +253,58 @@ function loadGrowthServiceRoutes() {
   return routes;
 }
 
+function loadEnglishLocalSeoRoutes() {
+  if (!fs.existsSync(ENGLISH_LOCAL_SEO_PAGES_PATH)) return [];
+
+  const source = fs.readFileSync(ENGLISH_LOCAL_SEO_PAGES_PATH, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  return routes;
+}
+
+function loadLocalSeoPageRoutes() {
+  if (!fs.existsSync(LOCAL_SEO_PAGES_PATH)) return [];
+
+  const source = fs.readFileSync(LOCAL_SEO_PAGES_PATH, "utf8");
+  const routes = [];
+  const pathRegex = /path:\s*"([^"]+)"/g;
+  let match;
+
+  while ((match = pathRegex.exec(source))) {
+    routes.push(match[1]);
+  }
+
+  const duesseldorfSlugs = source.match(/const duesseldorfCityCleaningSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
+  for (const slug of extractQuotedStrings(duesseldorfSlugs)) {
+    routes.push(`/${slug}/reinigung`);
+  }
+
+  const regensburgSlugs = source.match(/const regensburgCityMoveSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
+  for (const slug of extractQuotedStrings(regensburgSlugs)) {
+    routes.push(`/${slug}/umzug`);
+  }
+
+  return routes;
+}
+
+function extractQuotedStrings(source) {
+  const values = [];
+  const regex = /"([^"]+)"/g;
+  let match;
+
+  while ((match = regex.exec(source))) {
+    values.push(match[1]);
+  }
+
+  return values;
+}
+
 function discoverRoutes({ includePrivate = false } = {}) {
   const routes = new Set(["/"]);
 
@@ -288,6 +342,14 @@ function discoverRoutes({ includePrivate = false } = {}) {
   }
 
   for (const route of loadGrowthServiceRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
+  for (const route of loadLocalSeoPageRoutes()) {
+    if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
+  }
+
+  for (const route of loadEnglishLocalSeoRoutes()) {
     if (!LEGACY_REDIRECT_ROUTES.has(route)) routes.add(route);
   }
 

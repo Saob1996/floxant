@@ -32,20 +32,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Nachlass-Raeumung Regensburg - Wohnung diskret raeumen lassen | FLOXANT",
   description:
     "FLOXANT unterstuetzt Angehoerige, Erben und Eigentuemer bei Nachlass-Raeumung, Entsorgung, Reinigung und Objektvorbereitung in Regensburg und Umgebung.",
-  keywords: [
-    "nachlass raeumung regensburg",
-    "wohnung nach erbfall raeumen lassen",
-    "wohnung nach todesfall raeumen lassen regensburg",
-    "wohnungsaufloesung regensburg",
-    "haushaltsaufloesung regensburg",
-    "nachlass entruempelung regensburg",
-    "erbengemeinschaft wohnung raeumen lassen",
-    "wohnung nach nachlass reinigen lassen",
-    "keller nach erbfall raeumen",
-    "nachlass entsorgung regensburg",
-    "diskrete wohnungsaufloesung regensburg",
-    "haus nach erbfall raeumen lassen",
-  ],
 });
 
 const whatsappHref =

@@ -6,9 +6,9 @@ import { buildDuesseldorfCleaningMetadata } from "@/lib/duesseldorf-cleaning";
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/wohnungsreinigung",
-    title: "Wohnungsreinigung Düsseldorf | Wohnung reinigen lassen",
+    title: "Wohnungsreinigung Düsseldorf | Auszug, Übergabe & Angebot | FLOXANT",
     description:
-      "Wohnungsreinigung in Düsseldorf für bewohnte oder leere Wohnungen: Stadtteil, Fläche, Zustand und Fotos senden, Preisrahmen unverbindlich prüfen lassen.",
+      "Wohnungsreinigung Düsseldorf: Wohnung reinigen lassen, Grundreinigung, Reinigung nach Auszug und Übergabe mit Fotos unverbindlich prüfen.",
   });
 }
 
@@ -159,17 +159,27 @@ const wohnungsreinigungFaqItems = [
     a: "Ja, wenn Termin, Schlüsselzugang, Zustand, gewünschtes Ergebnis und Fotos rechtzeitig geklärt werden. Für starke Rückstände oder knappe Übergaben kann Endreinigung die passendere Einordnung sein.",
   },
   {
+    q: "Kann FLOXANT eine Grundreinigung der Wohnung in Düsseldorf prüfen?",
+    a: "Ja. Für Grundreinigung sind Fotos von Küche, Bad, Böden, Rändern, Kalk, Fett, Staub, Türen und schwer erreichbaren Stellen wichtig. Danach wird geprüft, ob normale Wohnungsreinigung reicht oder Grundreinigung passender ist.",
+  },
+  {
+    q: "Kann ich ein Wohnungsreinigungsangebot prüfen lassen?",
+    a: "Ja. Senden Sie Angebot, Fläche, Zimmer, Stadtteil, Zustand, Fotos, Termin und gewünschtes Ergebnis. FLOXANT prüft sachlich, ohne eine Preisunterbietung zu garantieren.",
+  },
+  {
     q: "Kann Wohnungsreinigung mit Umzug oder Entrümpelung kombiniert werden?",
     a: "Ja, wenn Umfang, Termin und Zugang passen. Reinigung, Umzug, Entrümpelung und Entsorgung werden getrennt geprüft und über eigene Düsseldorfer Seiten sauber eingeordnet.",
   },
 ] as const;
 
 const wohnungsreinigungRelatedLinks = [
+  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+  { href: "/duesseldorf/putzfirma", label: "Putzfirma für Wohnung" },
   { href: "/duesseldorf/endreinigung", label: "Endreinigung vor Übergabe" },
   { href: "/duesseldorf/grundreinigung", label: "Grundreinigung bei stärkerem Zustand" },
   { href: "/reinigung-moeblierte-wohnung-duesseldorf", label: "Möblierte Wohnung oder Apartment" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
-  { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten oder Angebot prüfen" },
+  { href: "/angebot-vergleichen-duesseldorf", label: "Wohnungsreinigung-Angebot prüfen" },
   { href: "/duesseldorf/umzug", label: "Umzug Düsseldorf prüfen" },
   { href: "/duesseldorf/entruempelung", label: "Entrümpelung Düsseldorf prüfen" },
   { href: "/duesseldorf/entsorgung", label: "Entsorgung separat klären" },
@@ -179,11 +189,11 @@ export default function DuesseldorfWohnungsreinigungPage() {
   return (
     <DuesseldorfServicePage
       path="/duesseldorf/wohnungsreinigung"
-      metaDescription="Wohnungsreinigung in Düsseldorf für bewohnte oder leere Wohnungen: Stadtteil, Fläche, Zustand und Fotos senden, Preisrahmen unverbindlich prüfen lassen."
+      metaDescription="Wohnungsreinigung Düsseldorf: Wohnung reinigen lassen, Grundreinigung, Reinigung nach Auszug und Übergabe mit Fotos unverbindlich prüfen."
       kicker="FLOXANT Wohnungsreinigung Düsseldorf"
-      title="Wohnungsreinigung in Düsseldorf"
+      title="Wohnungsreinigung in Düsseldorf für Auszug, Übergabe und Alltag"
       serviceLabel="Wohnungsreinigung"
-      description="Wenn Wohnungen in Düsseldorf sauber, nachvollziehbar und ohne überladene Service-Mischung gereinigt werden sollen."
+      description="Wenn Wohnungen in Düsseldorf sauber, nachvollziehbar und ohne überladene Service-Mischung gereinigt werden sollen: bewohnt, leer, vor Auszug, vor Übergabe oder als Grundreinigung nach Zustand."
       contentSections={[
         {
           title: "Wohnungsreinigung mit Blick auf den echten Zustand",

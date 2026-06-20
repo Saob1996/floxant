@@ -22,10 +22,17 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { B2BRequestPanel } from "@/components/B2BRequestPanel";
+import { B2BTrustPanel } from "@/components/B2BTrustPanel";
+import { BusinessTrustPanel } from "@/components/BusinessTrustPanel";
+import { CommercialCleaningScopeSelector } from "@/components/CommercialCleaningScopeSelector";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { InternationalCustomerHint } from "@/components/conversion";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { RecurringCleaningHint } from "@/components/RecurringCleaningHint";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { company } from "@/lib/company";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -168,20 +175,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "bueroreinigung-regensburg",
-    title: "Büroreinigung Regensburg | Office Cleaning | FLOXANT",
+    title: "Bueroreinigung Regensburg mit Raumliste und Angebot",
     description:
-      "Büroreinigung in Regensburg für Büro, Kanzlei, Agentur und Verwaltung. Fläche, Turnus, Küche, Sanitär, Zeitfenster, Fotos und Angebot prüfen. Deutsch oder Englisch möglich.",
-    keywords: [
-      "Büroreinigung Regensburg",
-      "Büroreinigung Regensburg Angebot",
-      "Büroreinigung Kosten Regensburg",
-      "Büro Reinigungskraft Regensburg",
-      "Reinigungsfirma Büro Regensburg",
-      "Büro Unterhaltsreinigung Regensburg",
-      "Büroreinigung nach Feierabend Regensburg",
-      "Kanzlei Büroreinigung Regensburg",
-      "Agentur Reinigung Regensburg",
-    ],
+      "Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden.",
   });
 }
 
@@ -272,14 +268,14 @@ export default function BueroreinigungRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[17ch] text-[clamp(2.1rem,4.3vw,4rem)] font-black leading-[0.98] text-slate-950">
-                Saubere Büros, klare Abläufe, bessere Anfragen.
+                Bueroreinigung Regensburg mit Raumliste, Turnus und Randzeit klaeren.
               </h1>
 
               <p className="mt-5 max-w-[60ch] text-base leading-8 text-slate-700">
-                FLOXANT prüft Büroreinigung in Regensburg nach Bürofläche,
-                Raumliste, Turnus, Küche, Sanitär, Boden, Zeitfenster, Zugang
-                und Fotos. Ideal für Büros, Kanzleien, Agenturen, Studios und
-                Verwaltungsflächen, die zuverlässig sauber bleiben sollen.
+                FLOXANT prueft Bueroreinigung in Regensburg nach Bueroflaeche,
+                Raumliste, Turnus, Kueche, Sanitaer, Boden, Randzeit, Zugang,
+                Schluesselweg und Fotos. So wird sichtbar, ob laufende Reinigung,
+                Grundreinigung oder ein Angebotscheck der passende naechste Schritt ist.
               </p>
 
               <nav
@@ -356,6 +352,13 @@ export default function BueroreinigungRegensburgPage() {
         photoHref="#kontakt"
         offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
       />
+
+      <B2BRequestPanel city="regensburg" />
+      <CommercialCleaningScopeSelector city="regensburg" />
+      <EffortFactorsPanel group="b2b" />
+      <BusinessTrustPanel />
+      <B2BTrustPanel />
+      <ServiceProofChecklist serviceKey="b2b" />
 
       <RegensburgCleaningBuyerPath
         serviceLabel="Büroreinigung Regensburg"
@@ -565,6 +568,9 @@ export default function BueroreinigungRegensburgPage() {
             </p>
           </div>
 
+          <div className="mb-5">
+            <RecurringCleaningHint />
+          </div>
           <CommercialCleaningLeadForm />
         </div>
       </section>

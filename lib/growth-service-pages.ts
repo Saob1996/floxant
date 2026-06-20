@@ -150,9 +150,9 @@ const growthServicePageSeeds = [
     cityLabel: "Düsseldorf und Regensburg nach Prüfung",
     serviceName: "Solarreinigung",
     serviceType: "Solarreinigung und PV-Anlagen-Reinigung",
-    metaTitle: "Solarreinigung | PV-Anlage mit Fotos prüfen | FLOXANT",
+    metaTitle: "Solarreinigung mit PV-Fotos, Zugang und Termin klaeren",
     metaDescription:
-      "Solarreinigung für PV-Anlagen, Module und zugängliche Dachflächen: Fotos, Zugang, Höhe, Verschmutzung und Termin senden. FLOXANT prüft Machbarkeit ohne Risiko-Versprechen.",
+      "Solarreinigung fuer PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss und Termin sachlich klaeren.",
     eyebrow: "FLOXANT Solarreinigung",
     title: "Solarreinigung für PV-Anlagen, wenn Zugang und Risiko zuerst geklärt werden müssen",
     intro:
@@ -254,9 +254,9 @@ const growthServicePageSeeds = [
     cityLabel: "Düsseldorf, Regensburg und Umgebung nach Prüfung",
     serviceName: "PV-Anlagen-Reinigung",
     serviceType: "Photovoltaik-Reinigung",
-    metaTitle: "PV-Anlagen-Reinigung | Module & Zugang prüfen | FLOXANT",
+    metaTitle: "PV-Anlagen-Reinigung mit Modulen und Zugang klaeren",
     metaDescription:
-      "PV-Anlagen-Reinigung für Module auf Dach, Carport oder Gewerbefläche. FLOXANT prüft Fotos, Zugang, Modulfläche, Verschmutzung und Sicherheitsgrenzen.",
+      "PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos und Sicherheitsgrenzen vorab klaeren.",
     eyebrow: "FLOXANT PV-Sichtklar-Service",
     title: "PV-Anlagen-Reinigung mit sauberer Vorprüfung statt pauschalem Dachversprechen",
     intro:

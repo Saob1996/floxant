@@ -13,6 +13,7 @@ import {
   BlogLocalLinks,
   BlogOfferCheckCTA,
   BlogQuickAnswer,
+  BlogRelatedArticles,
   BlogRelatedServices,
 } from "@/components/blog/BlogSupportBlocks";
 import { company } from "@/lib/company";
@@ -340,6 +341,8 @@ export function BlogArticlePage({
                 </a>
 
                 <BlogLocalLinks title={title} intro={intro} />
+
+                <BlogRelatedArticles title={title} intro={intro} />
 
                 {sectionAnchors.length ? (
                   <div className="mt-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">

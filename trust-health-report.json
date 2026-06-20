@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-06-20T03:42:01.744Z",
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "required trust files",
+      "detail": "19 required files present.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "prioritized route coverage",
+      "detail": "20 route/template trust checks passed.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "fake review and claim scan",
+      "detail": "No positive fake-review, rating, certification or guaranteed-cheaper claims found in app/components.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "review structured-data scan",
+      "detail": "No Review or AggregateRating schema claims found without documented guardrail context.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "legacy review UI",
+      "detail": "Legacy star/rating UI is neutralized or guarded.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "project story and visual proof gates",
+      "detail": "Real cases/photos remain hidden unless consent and privacy gates are satisfied.",
+      "files": []
+    },
+    {
+      "status": "PASS",
+      "name": "local proof signals",
+      "detail": "Duesseldorf/Regensburg local proof and manual GBP boundaries are visible.",
+      "files": []
+    }
+  ]
+}

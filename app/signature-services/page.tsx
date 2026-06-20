@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MessageCircle, ShieldCheck } from "lucide-react";
 
+import { AiAnswerCard } from "@/components/AiAnswerCard";
+import { HumanReadableFAQ, QuickDecisionBox } from "@/components/ai-answer";
 import {
   ProblemBasedServiceLinks,
   ProblemSituationGrid,
@@ -11,7 +13,13 @@ import {
   SignatureServicesGrid,
   TrustProofSection,
 } from "@/components/conversion";
+import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
+import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { SignatureServiceClarityGrid } from "@/components/SignatureServiceClarityGrid";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
+import { signatureServiceClarityItems } from "@/lib/professional-copy";
 import { signatureServiceLinks } from "@/lib/signature-special-services";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 import {
@@ -82,11 +90,32 @@ const faqItems = [
   },
 ] as const;
 
+const signatureAnswerPoints = [
+  "Angebotscheck und Fairpreis-Check passen, wenn bereits ein Preis, PDF, Screenshot oder Vergleichsangebot vorliegt.",
+  "Objektbrief und Uebergabeakte passen, wenn Fotos, Zugang, Zielzustand oder Schluesselweg erst sortiert werden muessen.",
+  "Plan-B-Service, Rueckfahrt-Radar und Diskret-Service passen, wenn Frist, Route oder sensible Kommunikation wichtiger sind als ein Standardformular.",
+] as const;
+
+const signatureDecisionFaq = [
+  {
+    q: "Welcher Signature Service ist der richtige Start?",
+    a: "Wenn ein Angebot vorliegt, starten Sie mit Angebotscheck oder Fairpreis-Check. Wenn das Objekt unklar ist, passt der Objektbrief. Bei Fristdruck passt Plan B oder Uebergabe-Sprint.",
+  },
+  {
+    q: "Kann ein Signature Service auch fuer Duesseldorf genutzt werden?",
+    a: "Ja, wenn die Leistung im Code fuer Duesseldorf gefuehrt oder als manuelle Pruefung markiert ist. Unsichere Daten werden nicht als bestaetigte Verfuegbarkeit behauptet.",
+  },
+  {
+    q: "Was braucht FLOXANT fuer die Einordnung?",
+    a: "Ort, Leistung, Kontaktweg, kurze Lage und falls vorhanden Fotos, Angebot, Preis, Deadline oder Zielzustand reichen fuer den Start.",
+  },
+] as const;
+
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Signature Services | Fairpreis, Objektbrief, Plan B",
+  title: "FLOXANT Signature Services | Fairpreis, Objektbrief & Plan B",
   description:
-    "FLOXANT Signature Services für Fairpreis-Check, Angebotscheck, Anbieter-Vergleich, Objektbrief, Übergabe, Plan B, Rückfahrt, PV und diskrete Fälle.",
+    "FLOXANT Signature Services helfen bei Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt, PV und diskreten Fällen mit klarem nächsten Schritt.",
   alternates: {
     canonical,
   },
@@ -161,7 +190,7 @@ export default function SignatureServicesPage() {
             FLOXANT Signature Services
           </p>
           <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-5xl lg:text-6xl">
-            Fairpreis, Objektbrief, Übergabe, Plan B, Rückfahrt und PV-Sichtklar.
+            Signature Services für Angebot, Objekt, Übergabe und Plan B.
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-100">
             Wenn ein Auftrag nicht sauber in Umzug, Reinigung, Räumung oder Transport passt,
@@ -195,6 +224,40 @@ export default function SignatureServicesPage() {
         items={signatureSituations}
       />
 
+      <SignatureServiceClarityGrid
+        title="Welcher Signature Service passt zu welcher Lage?"
+        intro="Die Auswahl richtet sich nach dem Problem: vorhandenes Angebot, schwer beschreibbares Objekt, wackelnder Termin, diskrete Situation oder Spezialreinigung mit Zugangsrisko."
+        services={signatureServiceClarityItems}
+      />
+
+      <AiAnswerCard
+        title="Signature Services sind Entscheidungswege, keine leeren Markenbegriffe."
+        answer="FLOXANT nutzt Signature Services, wenn vor einer Anfrage zuerst Angebot, Objekt, Uebergabe, Frist, Route oder Diskretion geordnet werden muessen. Der Service fuehrt zu einem konkreten Kontaktweg mit passenden Angaben."
+        points={signatureAnswerPoints}
+        nextStep="Naechster Schritt: den Service waehlen, der zur Lage passt, und Ort, Ziel, Kontaktweg sowie vorhandene Unterlagen mitsenden."
+      />
+
+      <QuickDecisionBox
+        title="Passt ein Signature Service zu Ihrem Fall?"
+        fits={[
+          "Ein Angebot, Foto, Objekt oder Termin ist vorhanden, aber die Einordnung fehlt.",
+          "Der Fall verbindet Reinigung, Raeumung, Umzug, Uebergabe oder Anbieterwechsel.",
+          "Sie brauchen einen ruhigen Startpunkt statt einer pauschalen Sofortzusage.",
+        ]}
+        notFits={[
+          "Sie erwarten eine Preisgarantie ohne Daten.",
+          "Es geht um Rechtsberatung, Bewertung anderer Anbieter oder garantierte Verfuegbarkeit.",
+          "Adresse, Telefonnummer oder Oeffnungszeiten sollen geraten werden.",
+        ]}
+        nextSteps={[
+          "Angebot vorhanden: Angebotscheck oder Fairpreis-Check.",
+          "Objekt unklar: Objektbrief oder Uebergabeakte.",
+          "Frist oder Ausfall: Plan-B-Service oder Uebergabe-Sprint.",
+        ]}
+        ctaHref="/kontakt?service=angebot-pruefen&intent=entscheidungs-kompass&source=signature-services#direktanfrage"
+        ctaLabel="Entscheidung klaeren"
+      />
+
       <div id="signature-auswahl" className="scroll-mt-28">
         <ServiceDecisionGuide
           eyebrow="Signature-Auswahl"
@@ -208,6 +271,12 @@ export default function SignatureServicesPage() {
         title="Alle Signature Services als echte FLOXANT-Produkte."
         intro="Die Services sind keine losen Zusatzideen. Jeder Startpunkt klaert eine konkrete Situation: Angebot, Vergleich, Objekt, Uebergabe, Plan B, Rueckfahrt, PV, Diskretion, Vermieter oder Buero."
         services={signatureServiceLinks}
+      />
+
+      <HumanReadableFAQ
+        title="Fragen, die vor der Auswahl helfen."
+        intro="Die Antworten sind sichtbar und entsprechen den Daten, die FLOXANT tatsaechlich sicher verwenden kann."
+        items={signatureDecisionFaq}
       />
 
       <ProblemBasedServiceLinks />
@@ -225,6 +294,23 @@ export default function SignatureServicesPage() {
         intro="Die Services sind keine Zauberwörter, sondern klare Anfragewege für Lage, Ort, Fotos, Termin, Budget und Kontakt."
         proofs={trustProofs}
       />
+
+      <TrustProofPanel
+        allowedPage="/signature-services"
+        serviceKey="angebot-pruefen"
+        signatureServiceKey="angebotscheck"
+        title="Signature Services brauchen Belege und Grenzen."
+        intro="Jeder Spezialweg bleibt an sichtbare Angaben gebunden: Angebot, Objekt, Ort, Frist, Fotos oder Ziel. Unbelegte Ergebnisse werden nicht behauptet."
+      />
+
+      <ProjectStoryGrid serviceKey="angebot-pruefen" />
+      <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
+
+      <section className="px-5 py-10 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <NoFakeClaimsNotice />
+        </div>
+      </section>
 
       <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_auto] lg:items-center">

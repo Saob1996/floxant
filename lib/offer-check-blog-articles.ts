@@ -1243,6 +1243,470 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
     ],
   },
+  {
+    slug: "angebot-wirkt-zu-teuer-welche-fragen-stellen",
+    category: "Angebotspruefung",
+    readTime: "7 Min.",
+    date: "19. Juni 2026",
+    datePublished: "2026-06-19",
+    title: "Angebot wirkt zu teuer: welche Fragen Kunden vor der Zusage stellen sollten",
+    metaTitle: "Angebot wirkt zu teuer? Fragen vor der Zusage | FLOXANT",
+    description:
+      "Wenn ein Angebot zu teuer wirkt: welche Fragen zu Umfang, Fotos, Termin, Zugang und Zusatzkosten helfen, bevor Sie zusagen oder FLOXANT um eine zweite Einschaetzung bitten.",
+    intro:
+      "Ein Angebot kann zu teuer wirken, obwohl der Aufwand realistisch ist. Es kann aber auch guenstig wirken, obwohl wichtige Leistungen fehlen. Entscheidend ist deshalb nicht der erste Eindruck, sondern welche Annahmen im Angebot sichtbar sind.",
+    about: ["Angebot pruefen", "Preisrahmen", "Zweite Einschaetzung", "Reinigung", "Umzug"],
+    keywords: [
+      "Angebot wirkt zu teuer",
+      "Angebot pruefen Fragen",
+      "teures Angebot pruefen",
+      "FLOXANT Angebotspruefung",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Wenn ein Angebot zu teuer wirkt, sollten Kunden zuerst Umfang, Fotos, Zugang, Termin, Zusatzpositionen und Ausschluesse klaeren. Erst danach laesst sich beurteilen, ob der Preis hoch, plausibel oder unvollstaendig ist.",
+        ],
+      },
+      {
+        title: "Die wichtigsten Rueckfragen",
+        paragraphs: [
+          "Gute Rueckfragen machen aus einem Bauchgefuehl eine pruefbare Entscheidung. Sie zeigen, ob ein Angebot konkrete Arbeit beschreibt oder nur eine Summe nennt.",
+        ],
+        bullets: [
+          "Welche Leistung ist konkret enthalten und welche nicht?",
+          "Welche Annahmen zu Flaeche, Volumen, Menge oder Zustand wurden getroffen?",
+          "Sind Zugang, Etage, Laufweg, Parken oder Zeitfenster beruecksichtigt?",
+          "Welche Zusatzkosten koennen entstehen?",
+        ],
+      },
+      {
+        title: "Wann Angebot pruefen sinnvoll ist",
+        paragraphs: [
+          "Eine Angebotspruefung lohnt sich, wenn die Summe hoch wirkt, aber die Gruende nicht sichtbar sind. FLOXANT kann Preis, Umfang, Fotos, Ort, Termin und offene Punkte praktisch einordnen.",
+          "Das ist keine Rechtsberatung und keine Garantie, dass es guenstiger wird. Ziel ist eine klare zweite Einschaetzung.",
+        ],
+      },
+      {
+        title: "Wann direkte Anfrage besser ist",
+        paragraphs: [
+          "Wenn es noch gar kein Angebot gibt, ist oft eine direkte Anfrage sinnvoller. Dann helfen Ort, Fotos, Termin, Ziel und gewuenschte Leistung mehr als ein Vergleich ohne Basis.",
+        ],
+      },
+    ],
+    highlightTitle: "Vor der Zusage klaeren",
+    highlightPoints: [
+      "Nicht nur Endpreis, sondern Annahmen pruefen.",
+      "Fotos und Zugang machen Aufwand nachvollziehbarer.",
+      "Bei Unsicherheit Angebotspruefung statt Schnellzusage nutzen.",
+    ],
+    ctas: [
+      { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
+      { href: "/angebotscheck", label: "Angebotscheck starten" },
+      { href: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&source=seo", label: "Offene Punkte senden" },
+    ],
+    faqTitle: "FAQ zu teuren Angeboten",
+    faqItems: [
+      {
+        q: "Heisst teuer automatisch unserioes?",
+        a: "Nein. Ein hoher Preis kann plausibel sein, wenn Aufwand, Zugang, Termin und Risiko sichtbar sind.",
+      },
+      {
+        q: "Kann FLOXANT ein Angebot unterbieten?",
+        a: "Moeglich, aber nicht garantiert. FLOXANT prueft, ob eine passendere Alternative realistisch ist.",
+      },
+      {
+        q: "Was sollte ich vor der Pruefung senden?",
+        a: "Angebot, Ort, Termin, Fotos, Leistung, Preisrahmen und die Punkte, die unklar wirken.",
+      },
+    ],
+  },
+  {
+    slug: "praxisreinigung-duesseldorf-angebot-pruefen",
+    category: "Duesseldorf Reinigung",
+    readTime: "8 Min.",
+    date: "19. Juni 2026",
+    datePublished: "2026-06-19",
+    title: "Praxisreinigung Duesseldorf: was Praxen vor der Anfrage klaeren sollten",
+    metaTitle: "Praxisreinigung Duesseldorf Angebot pruefen | FLOXANT",
+    description:
+      "Praxisreinigung in Duesseldorf vorbereiten: Raeume, Turnus, Zeitfenster, Zugang, Fotos und Angebotsumfang ohne Hygiene- oder Preisgarantien sauber klaeren.",
+    intro:
+      "Praxisreinigung ist keine normale Wohnungsreinigung. Vor einer Anfrage sollten Flaechen, Oeffnungszeiten, Nebenraeume, Sanitärbereiche, Zugang und Turnus so klar sein, dass die Rueckmeldung realistisch bleibt.",
+    about: ["Praxisreinigung", "Duesseldorf", "Reinigungsangebot", "B2B Reinigung"],
+    keywords: [
+      "Praxisreinigung Duesseldorf Angebot",
+      "Praxisreinigung Angebot pruefen",
+      "Reinigung Praxis Duesseldorf",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Praxen sollten vor der Anfrage klaeren, welche Raeume gereinigt werden sollen, wann gereinigt werden kann, wer Zugang gibt und ob besondere Grenzen gelten. FLOXANT prueft organisatorisch, nicht medizinisch oder rechtlich.",
+        ],
+      },
+      {
+        title: "Welche Angaben wichtig sind",
+        paragraphs: [
+          "Je klarer Raumliste und Nutzung beschrieben sind, desto weniger Rueckfragen entstehen. Das gilt besonders fuer Empfang, Wartebereich, Behandlungsnaehe, Teamraum, Sanitär und Boden.",
+        ],
+        bullets: [
+          "Praxisart, Flaeche und Raumliste",
+          "Turnus, Zeitfenster und Oeffnungszeiten",
+          "Zugang, Schluesselweg und Ansprechpartner",
+          "Fotos von Boden, Sanitär, Wartebereich und Nebenflaechen",
+        ],
+      },
+      {
+        title: "Typische Fehler",
+        paragraphs: [
+          "Ein haeufiger Fehler ist, nur den Quadratmeterpreis zu vergleichen. Bei Praxen zaehlen Randzeiten, sensible Bereiche und Ansprechpartner mindestens genauso stark.",
+        ],
+      },
+      {
+        title: "Angebot pruefen oder direkt anfragen?",
+        paragraphs: [
+          "Wenn schon ein Angebot vorliegt, kann FLOXANT Umfang, Turnus und offene Annahmen pruefen. Ohne Angebot ist eine direkte Anfrage ueber die Duesseldorfer Praxisreinigungsseite sinnvoll.",
+        ],
+      },
+    ],
+    highlightTitle: "Praxisreinigung belastbar vorbereiten",
+    highlightPoints: [
+      "Raeume und Turnus statt nur Flaeche nennen.",
+      "Randzeiten und Zugang vorab klaeren.",
+      "Keine medizinische Spezialleistung pauschal versprechen.",
+    ],
+    ctas: [
+      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Duesseldorf anfragen" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot pruefen" },
+      { href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo", label: "Praxisdaten senden" },
+    ],
+    faqTitle: "FAQ zur Praxisreinigung in Duesseldorf",
+    faqItems: [
+      {
+        q: "Welche Angaben braucht FLOXANT fuer Praxisreinigung?",
+        a: "Praxisart, Raumliste, Flaeche, Turnus, Zeitfenster, Zugang, Fotos und Ansprechpartner.",
+      },
+      {
+        q: "Ist das eine medizinische Spezialdesinfektion?",
+        a: "Nein. FLOXANT prueft zugaengliche Reinigungsflaechen organisatorisch und macht keine pauschalen Hygieneversprechen.",
+      },
+      {
+        q: "Kann ein vorhandenes Angebot geprueft werden?",
+        a: "Ja. Umfang, Turnus, Raumliste, Zeitfenster, Zugang und offene Positionen koennen praktisch eingeordnet werden.",
+      },
+    ],
+  },
+  {
+    slug: "fensterreinigung-duesseldorf-angebot-aufwand",
+    category: "Duesseldorf Reinigung",
+    readTime: "7 Min.",
+    date: "19. Juni 2026",
+    datePublished: "2026-06-19",
+    title: "Fensterreinigung Duesseldorf: was Aufwand und Termin beeinflusst",
+    metaTitle: "Fensterreinigung Duesseldorf Angebot & Aufwand | FLOXANT",
+    description:
+      "Fensterreinigung und Glasreinigung in Duesseldorf richtig anfragen: Glasflaeche, Etage, Rahmen, Zugang, Verschmutzung, Termin und Angebot pruefen.",
+    intro:
+      "Bei Fensterreinigung entscheidet nicht nur die Anzahl der Fenster. Glasflaeche, Rahmen, Etage, Zugang, Verschmutzung und Terminfenster machen Angebote vergleichbar.",
+    about: ["Fensterreinigung", "Glasreinigung", "Duesseldorf", "Angebot pruefen"],
+    keywords: [
+      "Fensterreinigung Duesseldorf Angebot",
+      "Glasreinigung Duesseldorf Aufwand",
+      "Fensterreinigung Angebot pruefen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Eine gute Anfrage fuer Fensterreinigung nennt Fensterzahl, Glasflaeche, Rahmenwunsch, Etage, Zugang, Verschmutzung, Termin und Fotos. Erst dann ist ein Angebot nachvollziehbar.",
+        ],
+      },
+      {
+        title: "Was den Aufwand veraendert",
+        paragraphs: [
+          "Innen und aussen, Rahmen, Sprossen, Schaufenster, schwer erreichbare Flaechen oder starke Verschmutzung koennen den Aufwand stark veraendern.",
+        ],
+        bullets: [
+          "Fensterzahl und ungefaehre Glasflaeche",
+          "Innen, aussen, Rahmen oder nur Glas",
+          "Etage, Zugang und moegliche Steighilfe",
+          "Fotos bei Schaufenster, Praxis, Buero oder Objekt",
+        ],
+      },
+      {
+        title: "Typische Angebotsluecken",
+        paragraphs: [
+          "Unklar bleibt oft, ob Rahmen, Falze, Schaufenster, schwer erreichbare Stellen oder Terminfenster enthalten sind. Genau diese Punkte sollten vor der Zusage sichtbar sein.",
+        ],
+      },
+      {
+        title: "Wann FLOXANT pruefen sollte",
+        paragraphs: [
+          "Wenn ein Angebot nur eine Summe nennt, aber Zugang, Rahmen, Hoehe oder Umfang offen bleiben, kann FLOXANT eine praktische zweite Einschaetzung geben.",
+        ],
+      },
+    ],
+    highlightTitle: "Fenster und Glas richtig einordnen",
+    highlightPoints: [
+      "Glasflaeche und Rahmenwunsch trennen.",
+      "Zugang und Etage immer nennen.",
+      "Bei Objektflaechen Fotos statt Schätzung nutzen.",
+    ],
+    ctas: [
+      { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung Duesseldorf" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Angebot pruefen" },
+      { href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo", label: "Fensterdaten senden" },
+    ],
+    faqTitle: "FAQ zu Fensterreinigung Duesseldorf",
+    faqItems: [
+      {
+        q: "Welche Fotos helfen?",
+        a: "Aussenansicht, Innenansicht, Rahmen, Zugang, Etage und besondere Verschmutzung.",
+      },
+      {
+        q: "Sind Rahmen automatisch enthalten?",
+        a: "Nicht immer. Rahmen, Falze und Sonderbereiche sollten im Angebot klar genannt werden.",
+      },
+      {
+        q: "Kann FLOXANT eine Hebebuehne zusagen?",
+        a: "Nein. Zugang und Arbeitssicherheit muessen zuerst geprueft werden.",
+      },
+    ],
+  },
+  {
+    slug: "klaviertransport-regensburg-vor-anfrage",
+    category: "Regensburg Transport",
+    readTime: "8 Min.",
+    date: "19. Juni 2026",
+    datePublished: "2026-06-19",
+    title: "Klaviertransport Regensburg: was vor der Anfrage wichtig ist",
+    metaTitle: "Klaviertransport Regensburg vorbereiten | FLOXANT",
+    description:
+      "Klaviertransport in Regensburg vorbereiten: Instrument, Etagen, Treppenhaus, Aufzug, Laufweg, Fotos, Strecke und Termin richtig beschreiben.",
+    intro:
+      "Klaviertransport ist kein normaler Moebeltransport. Gewicht, Instrument, Treppenhaus, Laufweg, Aufzug, Strecke und Fotos entscheiden, ob eine Anfrage realistisch geprueft werden kann.",
+    about: ["Klaviertransport", "Regensburg", "Transport", "Umzug"],
+    keywords: [
+      "Klaviertransport Regensburg",
+      "Klavier transportieren Regensburg",
+      "Klaviertransport Angebot pruefen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Vor einer Anfrage sollten Instrumentart, Start, Ziel, Etage, Treppenhaus, Aufzug, Laufweg, Fotos und Termin klar sein. Ohne diese Angaben ist ein belastbares Angebot kaum moeglich.",
+        ],
+      },
+      {
+        title: "Welche Angaben FLOXANT braucht",
+        paragraphs: [
+          "Fotos vom Instrument und von den Wegen sind besonders wichtig. Sie zeigen, ob Kurven, Stufen, Tuerbreiten oder enge Stellen den Transport erschweren.",
+        ],
+        bullets: [
+          "Klavier, E-Piano oder Fluegel klar benennen",
+          "Start- und Zieladresse mit Etage und Aufzug",
+          "Fotos von Treppenhaus, Tueren und Laufwegen",
+          "Terminfenster und Parkmoeglichkeit",
+        ],
+      },
+      {
+        title: "Typische Fehler",
+        paragraphs: [
+          "Haeufig wird nur das Instrument genannt. Entscheidend ist aber der Weg: Stufen, Kurven, Engstellen, Abstand zum Fahrzeug und Zielraum.",
+        ],
+      },
+      {
+        title: "Angebot pruefen oder direkt anfragen?",
+        paragraphs: [
+          "Wenn bereits ein Klaviertransport-Angebot vorliegt, kann FLOXANT Umfang und Annahmen pruefen. Ohne Angebot ist die direkte Anfrage mit Fotos sinnvoller.",
+        ],
+      },
+    ],
+    highlightTitle: "Klaviertransport ohne falsche Annahmen",
+    highlightPoints: [
+      "Instrument und Laufwege zusammen betrachten.",
+      "Treppenhausfotos sind oft entscheidender als Text.",
+      "Keine Preiszusage ohne gepruefte Eckdaten.",
+    ],
+    ctas: [
+      { href: "/klaviertransport-regensburg", label: "Klaviertransport Regensburg" },
+      { href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo", label: "Klaviertransport anfragen" },
+      { href: "/angebot-guenstiger-pruefen", label: "Vorhandenes Angebot pruefen" },
+    ],
+    faqTitle: "FAQ zum Klaviertransport",
+    faqItems: [
+      {
+        q: "Welche Fotos sind wichtig?",
+        a: "Instrument, Treppenhaus, Tueren, Engstellen, Aufzug, Start- und Zielbereich.",
+      },
+      {
+        q: "Reicht die Angabe Klavier?",
+        a: "Nein. Instrumentart, Wege, Etagen, Aufzug und Strecke sind entscheidend.",
+      },
+      {
+        q: "Kann FLOXANT kurzfristig helfen?",
+        a: "Kurzfristige Anfragen koennen geprueft werden, aber ohne Kapazitaetsgarantie.",
+      },
+    ],
+  },
+  {
+    slug: "seniorenumzug-regensburg-angehoerige-vorbereiten",
+    category: "Regensburg Umzug",
+    readTime: "8 Min.",
+    date: "19. Juni 2026",
+    datePublished: "2026-06-19",
+    title: "Seniorenumzug Regensburg: wie Angehoerige den Umzug im Alter vorbereiten",
+    metaTitle: "Seniorenumzug Regensburg vorbereiten | FLOXANT",
+    description:
+      "Seniorenumzug in Regensburg vorbereiten: Angehoerige, Freigaben, Packhilfe, Moebel, Reinigung, Uebergabe, Fotos und ruhiger Ablauf.",
+    intro:
+      "Ein Seniorenumzug ist nicht nur Transport. Angehoerige, Freigaben, Packhilfe, Tempo, Erinnerungsstuecke, Reinigung und Uebergabe muessen so sortiert werden, dass der Ablauf ruhig bleibt.",
+    about: ["Seniorenumzug", "Regensburg", "Umzug im Alter", "Angehoerige"],
+    keywords: [
+      "Seniorenumzug Regensburg",
+      "Umzug im Alter Regensburg",
+      "Seniorenumzug Angehoerige vorbereiten",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Angehoerige sollten vor der Anfrage klaeren, wer entscheidet, was mitgenommen wird, welche Hilfe beim Packen gebraucht wird und ob Reinigung oder Uebergabe ebenfalls vorbereitet werden muessen.",
+        ],
+      },
+      {
+        title: "Was vorab geklaert werden sollte",
+        paragraphs: [
+          "Seniorenumzuege werden leichter, wenn nicht alles am Einsatztag entschieden werden muss. Freigaben, Ansprechpartner und Fotos helfen, Tempo aus der Situation zu nehmen.",
+        ],
+        bullets: [
+          "Ansprechpartner und Rueckrufweg festlegen",
+          "Moebel, Kartons und besondere Erinnerungsstuecke markieren",
+          "Packhilfe, Demontage und Entsorgung trennen",
+          "Reinigung, Uebergabe und Schluesselweg mitdenken",
+        ],
+      },
+      {
+        title: "Typische Fehler",
+        paragraphs: [
+          "Zu spaet wird geklaert, wer Entscheidungen treffen darf. Dadurch stockt der Ablauf. Besser ist eine kurze Liste: mitnehmen, pruefen, entsorgen, offen.",
+        ],
+      },
+      {
+        title: "Wann Angebot pruefen hilft",
+        paragraphs: [
+          "Wenn ein bestehendes Angebot nur Transport nennt, aber Packhilfe, Demontage, Reinigung oder Uebergabe fehlen, kann eine Angebotspruefung offene Punkte sichtbar machen.",
+        ],
+      },
+    ],
+    highlightTitle: "Seniorenumzug ruhig vorbereiten",
+    highlightPoints: [
+      "Angehoerige und Freigaben frueh klaeren.",
+      "Packhilfe, Entsorgung und Reinigung getrennt betrachten.",
+      "Direkte Anfrage, wenn Termin und Umfang schon klar sind.",
+    ],
+    ctas: [
+      { href: "/regensburg/seniorenumzug", label: "Seniorenumzug Regensburg" },
+      { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
+      { href: "/kontakt?service=seniorenumzug&city=regensburg&intent=seniorenumzug-regensburg&source=seo", label: "Angehoerigenanfrage senden" },
+    ],
+    faqTitle: "FAQ zum Seniorenumzug",
+    faqItems: [
+      {
+        q: "Wer sollte die Anfrage stellen?",
+        a: "Oft hilft ein Angehoeriger oder Ansprechpartner, der Freigaben, Rueckrufweg und Entscheidungen klaeren kann.",
+      },
+      {
+        q: "Kann Reinigung mitgedacht werden?",
+        a: "Ja. Reinigung, Uebergabe oder Restmengen sollten getrennt beschrieben und passend eingeplant werden.",
+      },
+      {
+        q: "Ist ein Seniorenumzug ein normaler Umzug?",
+        a: "Nicht immer. Tempo, Kommunikation, Packhilfe und Freigaben sind haeufig wichtiger als bei Standardumzuegen.",
+      },
+    ],
+  },
+  {
+    slug: "reinigung-nach-entruempelung-angebot-pruefen",
+    category: "Entruempelung und Reinigung",
+    readTime: "8 Min.",
+    date: "19. Juni 2026",
+    datePublished: "2026-06-19",
+    title: "Reinigung nach Entruempelung: wann sie sinnvoll ist und wie Angebote vergleichbar werden",
+    metaTitle: "Reinigung nach Entruempelung Angebot pruefen | FLOXANT",
+    description:
+      "Reinigung nach Entruempelung richtig einordnen: Restmengen, Endzustand, Fotos, Zugang, Frist und Angebot vor der Zusage pruefen.",
+    intro:
+      "Nach einer Entruempelung ist ein Raum nicht automatisch nutzbar oder uebergabebereit. Reinigung wird sinnvoll, wenn Freigabe, Restmengen, Fotos und Zielzustand klar sind.",
+    about: ["Entruempelung", "Reinigung", "Angebot pruefen", "Uebergabe", "Regensburg"],
+    keywords: [
+      "Reinigung nach Entruempelung",
+      "Entruempelung Reinigung Angebot",
+      "Angebot Entruempelung Reinigung pruefen",
+    ],
+    sections: [
+      {
+        title: "Die kurze Antwort",
+        paragraphs: [
+          "Reinigung nach Entruempelung ist sinnvoll, wenn Raeume nach der Raeumung uebergabebereit, besichtigbar oder wieder nutzbar werden sollen. Entscheidend ist, ob noch Restmengen, starke Verschmutzung oder Sonderbereiche offen sind.",
+        ],
+      },
+      {
+        title: "Erst raeumen, dann reinigen",
+        paragraphs: [
+          "Eine Reinigung vor vollstaendiger Freigabe ist oft ineffizient. Erst wenn klar ist, welche Gegenstaende weg sind und welcher Endzustand gewuenscht ist, wird der Reinigungsumfang belastbar.",
+        ],
+        bullets: [
+          "Raeume und Restmengen pro Bereich nennen",
+          "Fotos nach oder kurz vor der Freigabe senden",
+          "Endzustand klaeren: besenrein, uebergabebereit oder nutzbar",
+          "Zugang, Etage, Frist und Ansprechpartner nennen",
+        ],
+      },
+      {
+        title: "Typische Angebotsluecken",
+        paragraphs: [
+          "Viele Angebote vermischen Raeumung, Entsorgung und Reinigung. Vergleichbar wird es erst, wenn jede Leistung separat sichtbar ist.",
+        ],
+      },
+      {
+        title: "Wann FLOXANT prueft",
+        paragraphs: [
+          "FLOXANT kann vorhandene Angebote oder Kombifaelle praktisch einordnen: Menge, Entsorgung, Reinigung danach, Fotos, Zugang, Termin und Uebergabeziel.",
+        ],
+      },
+    ],
+    highlightTitle: "Raeumung und Reinigung sauber trennen",
+    highlightPoints: [
+      "Restmengen vor Reinigungszusage sichtbar machen.",
+      "Endzustand konkret beschreiben.",
+      "Kombi-Angebote nach Einzelbausteinen pruefen.",
+    ],
+    ctas: [
+      { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+      { href: "/angebot-guenstiger-pruefen", label: "Kombi-Angebot pruefen" },
+    ],
+    faqTitle: "FAQ zu Reinigung nach Entruempelung",
+    faqItems: [
+      {
+        q: "Soll zuerst gereinigt oder entrümpelt werden?",
+        a: "In der Regel zuerst raeumen und freigeben, dann reinigen. Sonst kann die Reinigung doppelt Arbeit erzeugen.",
+      },
+      {
+        q: "Was macht ein Kombi-Angebot vergleichbar?",
+        a: "Raeumung, Entsorgung, Reinigung, Zugang, Fotos, Frist und Endzustand sollten getrennt beschrieben sein.",
+      },
+      {
+        q: "Kann FLOXANT ein vorhandenes Kombi-Angebot pruefen?",
+        a: "Ja. FLOXANT prueft praktisch, welche Leistungen sichtbar sind und welche Angaben fehlen.",
+      },
+    ],
+  },
 ];
 
 export function getOfferCheckBlogArticle(slug: string) {

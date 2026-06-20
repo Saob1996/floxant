@@ -10,6 +10,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { LeadCta } from "@/components/LeadCta";
+
 type OpportunityLinkCard = {
   title: string;
   text: string;
@@ -32,9 +34,19 @@ type GscOpportunitySectionProps = {
   primaryLabel: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  trackingService?: string;
+  trackingCity?: string;
+  trackingPageIntent?: string;
+  trackingPriority?: "p0" | "p1" | "p2" | "p3";
 };
 
 const icons = [FileText, Camera, ClipboardCheck, MapPin, ShieldCheck, MessageCircle] as const;
+
+function getHrefSearchParam(href: string | undefined, key: string) {
+  if (!href || !href.includes("?")) return "";
+  const query = href.slice(href.indexOf("?") + 1).split("#")[0];
+  return new URLSearchParams(query).get(key) || "";
+}
 
 export function GscOpportunitySection({
   eyebrow,
@@ -51,7 +63,21 @@ export function GscOpportunitySection({
   primaryLabel,
   secondaryHref,
   secondaryLabel,
+  trackingService,
+  trackingCity,
+  trackingPageIntent,
+  trackingPriority,
 }: GscOpportunitySectionProps) {
+  const useLeadCta = Boolean(trackingService && trackingPageIntent);
+  const inferredTrackingService = trackingService || getHrefSearchParam(primaryHref, "service");
+  const inferredTrackingCity =
+    trackingCity || getHrefSearchParam(primaryHref, "city") || getHrefSearchParam(primaryHref, "region");
+  const rawTrackingIntent = trackingPageIntent || getHrefSearchParam(primaryHref, "intent");
+  const resolvedTrackingIntent =
+    inferredTrackingService && inferredTrackingCity && rawTrackingIntent && !rawTrackingIntent.includes(inferredTrackingCity)
+      ? `${inferredTrackingService}-${inferredTrackingCity}`
+      : rawTrackingIntent || (inferredTrackingService && inferredTrackingCity ? `${inferredTrackingService}-${inferredTrackingCity}` : inferredTrackingService);
+
   return (
     <section className="flox-section px-6 py-16">
       <div className="mx-auto max-w-6xl">
@@ -169,22 +195,61 @@ export function GscOpportunitySection({
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Link
-              href={primaryHref}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-white px-5 text-sm font-black text-slate-950"
-              data-event="hero_cta_click"
-            >
-              {primaryLabel}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            {secondaryHref && secondaryLabel ? (
-              <Link
-                href={secondaryHref}
-                className="inline-flex min-h-12 items-center justify-center rounded-[0.85rem] border border-white/20 bg-white/10 px-5 text-sm font-black text-white"
-                data-event="hero_cta_click"
+            {useLeadCta ? (
+              <LeadCta
+                service={inferredTrackingService}
+                city={inferredTrackingCity}
+                intent={resolvedTrackingIntent}
+                priority={trackingPriority || "p2"}
+                label={primaryLabel}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-white px-5 text-sm font-black text-slate-950"
               >
-                {secondaryLabel}
+                {primaryLabel}
+                <ArrowRight className="h-4 w-4" />
+              </LeadCta>
+            ) : (
+              <Link
+                href={primaryHref}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-white px-5 text-sm font-black text-slate-950"
+                data-event="seo_cta_click"
+                data-service={inferredTrackingService}
+                data-city={inferredTrackingCity}
+                data-page-intent={resolvedTrackingIntent}
+                data-priority={trackingPriority}
+                data-cta-label={primaryLabel}
+                data-destination={primaryHref}
+              >
+                {primaryLabel}
+                <ArrowRight className="h-4 w-4" />
               </Link>
+            )}
+            {secondaryHref && secondaryLabel ? (
+              useLeadCta ? (
+                <LeadCta
+                  service={inferredTrackingService}
+                  city={inferredTrackingCity}
+                  intent={resolvedTrackingIntent}
+                  priority={trackingPriority || "p2"}
+                  label={secondaryLabel}
+                  className="inline-flex min-h-12 items-center justify-center rounded-[0.85rem] border border-white/20 bg-white/10 px-5 text-sm font-black text-white"
+                >
+                  {secondaryLabel}
+                </LeadCta>
+              ) : (
+                <Link
+                  href={secondaryHref}
+                  className="inline-flex min-h-12 items-center justify-center rounded-[0.85rem] border border-white/20 bg-white/10 px-5 text-sm font-black text-white"
+                  data-event="seo_cta_click"
+                  data-service={inferredTrackingService}
+                  data-city={inferredTrackingCity}
+                  data-page-intent={resolvedTrackingIntent}
+                  data-priority={trackingPriority}
+                  data-cta-label={secondaryLabel}
+                  data-destination={secondaryHref}
+                >
+                  {secondaryLabel}
+                </Link>
+              )
             ) : null}
           </div>
         </div>

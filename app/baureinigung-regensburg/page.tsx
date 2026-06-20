@@ -184,17 +184,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Baureinigung Regensburg | Bauendreinigung & Staub | FLOXANT",
     description:
       "Baureinigung und Bauendreinigung in Regensburg nach Renovierung, Sanierung oder Handwerkern. Baustaub, Fenster, Boden, Zugang, Fotos und Angebot prüfen.",
-    keywords: [
-      "Baureinigung Regensburg",
-      "Bauendreinigung Regensburg",
-      "Baufeinreinigung Regensburg",
-      "Reinigung nach Renovierung Regensburg",
-      "Handwerkerstaub entfernen Regensburg",
-      "Wohnung nach Sanierung reinigen Regensburg",
-      "Baustaub Reinigung Regensburg",
-      "Baureinigung Kosten Regensburg",
-      "Reinigung nach Handwerkern Regensburg",
-    ],
   });
 }
 

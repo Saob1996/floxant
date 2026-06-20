@@ -90,6 +90,99 @@ function getLocalLinks(signal: string): RelatedLink[] {
   return links.slice(0, 3);
 }
 
+function getRelatedArticles(signal: string): RelatedLink[] {
+  const links: RelatedLink[] = [];
+
+  if (signal.includes("angebot") || signal.includes("preis") || signal.includes("vergleich")) {
+    links.push(
+      {
+        href: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf",
+        title: "Reinigungsangebot pruefen",
+        text: "Flaeche, Zustand, Fotos, Termin und Uebergabeziel vor der Zusage sortieren.",
+      },
+      {
+        href: "/blog/umzugsangebot-pruefen-regensburg-bayern",
+        title: "Umzugsangebot pruefen",
+        text: "Volumen, Etage, Laufweg, Strecke und Zusatzleistungen belastbar machen.",
+      },
+      {
+        href: "/blog/angebot-ohne-besichtigung-riskant",
+        title: "Angebot ohne Besichtigung",
+        text: "Wann Fotos reichen und wann Rueckfragen oder ein Vor-Ort-Blick sinnvoller sind.",
+      },
+    );
+  }
+
+  if (signal.includes("reinigung") || signal.includes("buer") || signal.includes("gewerbe")) {
+    links.push(
+      {
+        href: "/blog/bueroreinigung-angebot-pruefen-turnus-flaeche",
+        title: "Buero-Reinigungsangebot pruefen",
+        text: "Turnus, Flaeche, Raumliste und Randzeiten fair vergleichen.",
+      },
+      {
+        href: "/blog/gewerbereinigung-angebot-vergleichen",
+        title: "Gewerbereinigung vergleichen",
+        text: "Objektart, Nutzung, Zeitfenster und Leistungsumfang richtig lesen.",
+      },
+    );
+  }
+
+  if (signal.includes("umzug") || signal.includes("transport") || signal.includes("klavier")) {
+    links.push(
+      {
+        href: "/blog/anbieter-hat-abgesagt-was-tun",
+        title: "Anbieter hat abgesagt",
+        text: "Plan B bei Umzug, Reinigung oder Entruempelung ohne Rettungsversprechen.",
+      },
+      {
+        href: "/blog/beiladung-bayern-wann-lohnt-es-sich",
+        title: "Beiladung und Rueckfahrt",
+        text: "Wann eine Route oder freie Ladeflaeche praktisch helfen kann.",
+      },
+    );
+  }
+
+  if (signal.includes("entruempel") || signal.includes("haushaltsaufloesung") || signal.includes("nachlass")) {
+    links.push(
+      {
+        href: "/blog/entruempelungsangebot-pruefen-serioes",
+        title: "Entruempelungsangebot pruefen",
+        text: "Menge, Zugang, Entsorgung und Reinigung danach sichtbar machen.",
+      },
+      {
+        href: "/blog/reinigung-nach-entruempelung-angebot-pruefen",
+        title: "Reinigung nach Entruempelung",
+        text: "Wann Raeumen und Reinigen getrennt oder zusammen geplant werden sollten.",
+      },
+    );
+  }
+
+  if (!links.length) {
+    links.push(
+      {
+        href: "/blog/angebot-anderer-firma-pruefen-regensburg",
+        title: "Angebot anderer Firma pruefen",
+        text: "Preis, Umfang und offene Punkte vor einer Zusage einordnen.",
+      },
+      {
+        href: "/blog/floxant-services-nach-situation-finden",
+        title: "Service nach Situation finden",
+        text: "Wenn noch nicht klar ist, welcher FLOXANT-Weg passt.",
+      },
+    );
+  }
+
+  const seen = new Set<string>();
+  return links
+    .filter((item) => {
+      if (seen.has(item.href)) return false;
+      seen.add(item.href);
+      return true;
+    })
+    .slice(0, 3);
+}
+
 export function BlogQuickAnswer({
   title,
   intro,
@@ -211,6 +304,33 @@ export function BlogLocalLinks({ title, intro }: { title: string; intro: string 
         {links.map((item) => (
           <Link key={item.href} href={item.href} className="block rounded-xl px-3 py-3 text-sm text-slate-600 transition hover:bg-blue-50 hover:text-slate-950">
             <span className="font-semibold text-slate-950">{item.title}</span>
+            <span className="mt-1 block text-xs leading-relaxed text-slate-500">{item.text}</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function BlogRelatedArticles({ title, intro }: { title: string; intro: string }) {
+  const links = getRelatedArticles(getSignal(title, intro));
+
+  return (
+    <div className="mt-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-700">
+        Verwandte Ratgeber
+      </div>
+      <div className="mt-4 space-y-2">
+        {links.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="group block rounded-xl px-3 py-3 text-sm text-slate-600 transition hover:bg-blue-50 hover:text-slate-950"
+          >
+            <span className="flex items-center justify-between gap-2 font-semibold text-slate-950">
+              {item.title}
+              <ArrowRight className="h-4 w-4 text-blue-600 transition group-hover:translate-x-0.5" />
+            </span>
             <span className="mt-1 block text-xs leading-relaxed text-slate-500">{item.text}</span>
           </Link>
         ))}

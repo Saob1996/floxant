@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Direkt anfragen statt Vergleichsportal | FLOXANT Regensburg",
   description:
    "Warum direkte Kontaktwege für Umzug, Reinigung und Entrümpelung oft schneller, ehrlicher und planbarer sind als Vergleichsportale.",
-  keywords: [
-   "Umzug direkt anfragen",
-   "Vergleichsportal Umzug Nachteile",
-   "Buchungsseite Regensburg",
-   "direkte Anfrage Reinigung",
-  ],
  });
 }
 

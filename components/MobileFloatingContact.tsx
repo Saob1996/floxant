@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
+import { buildLeadHref } from "@/lib/lead-intents";
 
 export default function MobileFloatingContact() {
   const pathname = usePathname();
@@ -23,13 +24,14 @@ export default function MobileFloatingContact() {
     Boolean(pathname?.startsWith("/admin")) ||
     pathname === "/login";
 
-  const centerHref = isBookingPage
-    ? "#buchungssystem"
-    : isDuesseldorfDisposalPage
-      ? "/buchung?service=entsorgung&region=duesseldorf#buchungssystem"
-      : isDuesseldorfContext
-        ? "/buchung?service=reinigung&region=duesseldorf#buchungssystem"
-        : "/buchung#buchungssystem";
+  const lead = isDuesseldorfDisposalPage
+    ? { service: "entruempelung", city: "duesseldorf", intent: "entsorgung-duesseldorf" }
+    : isDuesseldorfContext
+      ? { service: "reinigung", city: "duesseldorf", intent: "reinigung-duesseldorf" }
+      : isRegensburgPage
+        ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage" }
+        : { service: "reinigung", city: "duesseldorf", intent: "homepage-anfrage" };
+  const centerHref = isBookingPage ? "#buchungssystem" : buildLeadHref(lead);
 
   const offerHref = isDuesseldorfContext
     ? "/duesseldorf/vielleicht-guenstiger"
@@ -69,11 +71,16 @@ export default function MobileFloatingContact() {
                 href={centerHref}
                 className="flox-mobile-action flox-mobile-action-primary"
                 aria-label="Anfrage an FLOXANT senden"
-                data-event="hero_cta_click"
+                data-event={isBookingPage ? "hero_cta_click" : "seo_cta_click"}
                 data-source="mobile_floating_contact"
                 data-contact-channel="booking"
                 data-intent="mobile_booking_start"
-                data-priority="hot"
+                data-service={lead.service}
+                data-city={lead.city}
+                data-page-intent={lead.intent}
+                data-priority="p2"
+                data-cta-label="Mobile Anfrage"
+                data-destination={centerHref}
               >
                 <ClipboardCheck />
                 <span className="flox-mobile-action-copy">
@@ -93,6 +100,7 @@ export default function MobileFloatingContact() {
                 data-contact-channel="whatsapp"
                 data-intent="mobile_direct_contact"
                 data-priority="hot"
+                data-destination={whatsappHref}
               >
                 <WhatsAppMark className="flox-whatsapp-mark" />
                 <span className="flox-mobile-action-copy">
@@ -105,7 +113,7 @@ export default function MobileFloatingContact() {
                 href={`tel:${company.phoneRaw.replace(/\s/g, "")}`}
                 className="flox-mobile-action flox-mobile-action-light"
                 aria-label="FLOXANT anrufen"
-                data-event="phone_click"
+                data-event="seo_phone_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="phone"
                 data-intent="mobile_direct_contact"
@@ -122,7 +130,7 @@ export default function MobileFloatingContact() {
                 href={offerHref}
                 className="flox-mobile-action flox-mobile-action-offer"
                 aria-label="Bestehendes Angebot einer anderen Firma prüfen lassen"
-                data-event="hero_cta_click"
+                data-event="service_card_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="offer_check"
                 data-intent="mobile_offer_check"
@@ -139,7 +147,7 @@ export default function MobileFloatingContact() {
                 href={budgetHref}
                 className="flox-mobile-action flox-mobile-action-dark"
                 aria-label="Budget oder Preisrahmen nennen"
-                data-event="hero_cta_click"
+                data-event="service_card_click"
                 data-source="mobile_floating_contact"
                 data-contact-channel="budget_check"
                 data-intent="mobile_budget_check"

@@ -31,13 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "In Google Maps direkt anfragen: klarer Buchungsweg für Regensburg",
     description:
       "Warum ein eindeutiger Buchungsweg in Google Maps für Regensburg mehr Vertrauen und passendere Anfragen schafft.",
-    keywords: [
-      "Google Maps Regensburg direkt anfragen",
-      "Buchungslink Google Maps Regensburg",
-      "direkte Anfrage Regensburg",
-      "Google Maps Buchung Umzug Regensburg",
-      "FLOXANT Buchung Regensburg",
-    ],
   });
 }
 

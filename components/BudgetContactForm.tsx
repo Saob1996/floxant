@@ -35,6 +35,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
     preferredContact: "telefon",
     budget: "",
     message: "",
+    privacyConsent: false,
   });
 
   async function handleSubmit(event: React.FormEvent) {
@@ -48,9 +49,15 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
       formData.name.trim().length >= 2 &&
       formData.phone.trim().length >= 6 &&
       formData.budget.trim().length >= 2 &&
-      emailLooksValid;
+      emailLooksValid &&
+      formData.privacyConsent;
 
     if (!hasRequiredBasics) {
+      if (!formData.privacyConsent) {
+        setErrorDetails("Bitte bestaetigen Sie den Datenschutz-Hinweis.");
+        setStatus("error");
+        return;
+      }
       setErrorDetails(
         emailLooksValid
           ? "Bitte Name, Telefonnummer und Preisrahmen ausfüllen. Ort/PLZ hilft bei der Einschätzung."
@@ -63,14 +70,25 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
     try {
       const fd = new FormData();
       fd.append("type", "budget_inquiry");
+      fd.append("source", "budget_contact_form");
+      fd.append("sourceComponent", "BudgetContactForm");
+      fd.append("sourcePage", "/anfrage-mit-preisrahmen");
+      fd.append("intent", "budget_inquiry");
       fd.append("name", formData.name.trim());
       fd.append("email", email);
       fd.append("phone", formData.phone.trim());
       fd.append("cityOrZip", formData.cityOrZip.trim());
       fd.append("service", formData.service);
+      fd.append("serviceCategory", formData.service);
       fd.append("urgency", formData.urgency);
       fd.append("preferredContact", formData.preferredContact);
+      fd.append("contactMethod", formData.preferredContact);
+      fd.append("preferredContactMethod", formData.preferredContact);
       fd.append("budget", formData.budget.trim());
+      fd.append("privacyConsent", "true");
+      fd.append("pageType", "budget_contact");
+      fd.append("funnelStage", "lead");
+      fd.append("ctaLabel", "Unverbindlich absenden");
       fd.append(
         "message",
         [
@@ -116,7 +134,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           Preisvorstellung eingegangen
         </h3>
         <p className="max-w-md leading-relaxed text-slate-600">
-          Ihre Anfrage ist sicher bei uns angekommen. FLOXANT prüft jetzt Ihre Angaben und
+          Ihre Anfrage wurde gesendet. FLOXANT prüft jetzt Ihre Angaben und
           gleicht Preisvorstellung, Umfang, Termin und Verfügbarkeit miteinander ab.
         </p>
         <button
@@ -312,6 +330,16 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           />
         </div>
 
+        <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
+          <input
+            type="checkbox"
+            checked={formData.privacyConsent}
+            onChange={(event) => setFormData({ ...formData, privacyConsent: event.target.checked })}
+            className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700"
+          />
+          <span>Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung dieser Anfrage verarbeitet.</span>
+        </label>
+
         {errorDetails && status === "error" ? (
           <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
@@ -366,7 +394,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
         <div className="flex items-center justify-center gap-4 py-2">
           <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase text-slate-500">
             <Sparkles size={10} className="text-blue-600" />
-            100% unverbindlich
+            Unverbindlich
           </div>
           <div className="h-1 w-1 rounded-full bg-slate-300" />
           <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase text-slate-500">

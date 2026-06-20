@@ -1,5 +1,7 @@
 ﻿import { germanizeText } from "@/lib/german-text";
 
+import { getGscClickPriority } from "@/lib/gsc-click-priorities";
+
 type Snippet = {
  title: string;
  description: string;
@@ -17,6 +19,7 @@ export const SEO_MONEY_ROUTES = [
  "/empfehlen",
  "/angebotscheck",
  "/angebot-guenstiger-pruefen",
+ "/reinigungsfirma-angebot",
  "/plattform-auftrag-pruefen",
  "/plan-b-service",
  "/makler-vermieter-link",
@@ -79,6 +82,7 @@ export const SEO_MONEY_ROUTES = [
  "/umzug-ingolstadt",
  "/umzug-weiden",
  "/umzug-muenchen",
+ "/fernumzug-muenchen",
  "/umzug-nuernberg",
  "/klaviertransport-regensburg",
  "/klaviertransport",
@@ -87,6 +91,7 @@ export const SEO_MONEY_ROUTES = [
  "/seniorenumzug-bayern",
  "/seniorenumzug-nuernberg",
  "/seniorenumzug-erlangen",
+ "/seniorenumzug-bamberg",
  "/reinigung",
  "/reinigung-muenchen",
  "/notfallreinigung-24h",
@@ -134,6 +139,7 @@ export const SEO_SUPPORT_ROUTES = [
  "/empfehlen",
  "/angebotscheck",
  "/angebot-guenstiger-pruefen",
+ "/reinigungsfirma-angebot",
  "/plattform-auftrag-pruefen",
  "/plan-b-service",
  "/makler-vermieter-link",
@@ -207,6 +213,7 @@ export const SEO_SUPPORT_ROUTES = [
  "/umzug-ingolstadt",
  "/umzug-weiden",
  "/umzug-muenchen",
+ "/fernumzug-muenchen",
  "/umzug-nuernberg",
  "/klaviertransport-regensburg",
  "/klaviertransport",
@@ -215,6 +222,7 @@ export const SEO_SUPPORT_ROUTES = [
  "/seniorenumzug-bayern",
  "/seniorenumzug-nuernberg",
  "/seniorenumzug-erlangen",
+ "/seniorenumzug-bamberg",
  "/umzug-mit-reinigung",
  "/express-anfrage",
  "/anfrage-mit-preisrahmen",
@@ -1095,17 +1103,17 @@ moneySnippets["/"] = {
 };
 
 moneySnippets["/umzug-regensburg"] = {
- title: "Umzugsunternehmen Regensburg | Fotos & Termin prüfen",
+ title: "Umzug Regensburg mit Start, Ziel und Terminwunsch",
  description:
-  "Umzug Regensburg mit Umzugsunternehmen prüfen: Start, Ziel, Volumen, Etage, Laufweg, Parken, Fotos, Termin und Preisrahmen direkt senden.",
+  "Umzug in Regensburg anfragen: Start, Ziel, Etage, Laufweg, Möbelmenge, Fotos und Termin senden. FLOXANT ordnet den nächsten Schritt ein.",
  cluster: "money",
  intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
 };
 
 moneySnippets["/reinigung-regensburg"] = {
- title: "Reinigung Regensburg | Wohnung, Büro & Angebot",
+ title: "Reinigung Regensburg mit Objekt und Termin anfragen",
  description:
-  "Reinigung in Regensburg für Wohnung, Büro, Praxis, Grundreinigung oder Übergabe: Fläche, Zustand, Fotos, Termin und Budget direkt senden.",
+  "Reinigung in Regensburg anfragen: Objekt, Fläche, Zustand, Fotos und Termin senden. FLOXANT ordnet Leistung und nächste Schritte ein.",
  cluster: "money",
  intent: "Reinigung in Regensburg mit passender Spezialleistung, Fotos, Fläche und Termin anfragen",
 };
@@ -1711,6 +1719,12 @@ function titleCaseCity(slug: string) {
 
 export function getDominanceSnippet(path: string, fallback: SnippetInput): SnippetInput {
  const route = normalizeRoute(path);
+ const gscPriority = getGscClickPriority(route);
+
+ if (gscPriority) {
+  return { title: gscPriority.title, description: gscPriority.description };
+ }
+
  const exact = moneySnippets[route];
 
  if (exact) {
@@ -1735,6 +1749,10 @@ export function getDominanceSnippet(path: string, fallback: SnippetInput): Snipp
 
 export function getDominanceIntent(path: string) {
  const route = normalizeRoute(path);
+ const gscPriority = getGscClickPriority(route);
+
+ if (gscPriority) return gscPriority.pageIntent;
+
  const exact = moneySnippets[route];
 
  if (exact) return exact.intent;

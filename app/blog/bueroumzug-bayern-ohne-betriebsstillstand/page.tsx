@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Büroumzug in Bayern ohne Chaos | FLOXANT",
     description:
       "Wie Unternehmen in Bayern Arbeitsplätze, IT, Zugang und Zeitfenster so planen, dass ein Büroumzug den Betrieb nicht unnötig ausbremst.",
-    keywords: [
-      "Büroumzug Bayern",
-      "Firmenumzug Bayern",
-      "Büroumzug planen",
-      "Arbeitsplätze Umzug Bayern",
-    ],
   });
 }
 

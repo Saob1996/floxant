@@ -157,13 +157,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Entsorgung Düsseldorf – Möbel, Sperrmüll & Abholung | FLOXANT",
     description:
       "Entsorgung in Düsseldorf für Möbel, Sperrmüll, Haushaltsgegenstände, Keller und kleinere Räumungen: Umfang, Zugang, Etage, Fotos, Termin und Budget senden. Reinigung separat möglich.",
-    keywords: [
-      "Entsorgung Düsseldorf",
-      "Möbelentsorgung Düsseldorf",
-      "Sperrmüll Entsorgung Düsseldorf",
-      "Entsorgung nach Auszug Düsseldorf",
-      "Inventar Entsorgung Düsseldorf",
-    ],
   });
 }
 

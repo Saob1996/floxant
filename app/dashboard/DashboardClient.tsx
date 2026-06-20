@@ -1534,6 +1534,15 @@ function getLeadQuality(booking: Booking): LeadQuality {
   };
 }
 
+function getStoredLeadQuality(booking: Booking) {
+  return (
+    booking.details?.admin?.leadQuality ||
+    booking.details?.configuration?.leadQuality ||
+    booking.details?.metadata?.clientContext?.leadQuality ||
+    null
+  );
+}
+
 function getLeadRevenueScore(booking: Booking): LeadRevenueScore {
   const config = booking.details?.configuration || {};
   const reasons: string[] = [];
@@ -7000,6 +7009,7 @@ function LeadRevenueBadge({ booking, compact = false }: { booking: Booking; comp
 
 function LeadQualityBadge({ booking, compact = false }: { booking: Booking; compact?: boolean }) {
   const quality = getLeadQuality(booking);
+  const storedLeadQuality = getStoredLeadQuality(booking);
   const toneMap: Record<LeadQualityTone, string> = {
     ready: "border-emerald-200 bg-emerald-50 text-emerald-700",
     "needs-info": "border-amber-200 bg-amber-50 text-amber-700",
@@ -7008,6 +7018,9 @@ function LeadQualityBadge({ booking, compact = false }: { booking: Booking; comp
   const missingText = quality.missing.length
     ? `Fehlt: ${quality.missing.slice(0, 3).join(", ")}${quality.missing.length > 3 ? " ..." : ""}`
     : "Kerninfos vorhanden";
+  const storedPriorityText = storedLeadQuality?.priority
+    ? `Lead: ${String(storedLeadQuality.priority).toUpperCase()} - Score ${storedLeadQuality.score ?? "-"}`
+    : "";
 
   return (
     <div className="max-w-[220px]">
@@ -7020,7 +7033,7 @@ function LeadQualityBadge({ booking, compact = false }: { booking: Booking; comp
         {quality.label}
       </span>
       {!compact ? (
-        <p className="mt-1 text-xs leading-snug text-slate-500">{missingText}</p>
+        <p className="mt-1 text-xs leading-snug text-slate-500">{storedPriorityText || missingText}</p>
       ) : null}
     </div>
   );

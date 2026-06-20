@@ -415,26 +415,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "FLOXANT direkt anfragen | Umzug, Reinigung & Räumung",
     description:
       "FLOXANT Anfrage direkt starten: Umzug, Reinigung, Entrümpelung, Haushaltsauflösung oder Entsorgung wählen, Fotos senden, Budget nennen und Rückmeldung erhalten.",
-    keywords: [
-      "FLOXANT Anfrage",
-      "Umzug anfragen Regensburg",
-      "Reinigung anfragen Regensburg",
-      "Entrümpelung anfragen Regensburg",
-      "Transport anfragen Regensburg",
-      "Entsorgung anfragen Regensburg",
-      "Umzug anfragen Düsseldorf",
-      "Reinigung anfragen Düsseldorf",
-      "Entrümpelung anfragen Düsseldorf",
-      "Buchung Regensburg",
-      "Express Check Umzug",
-      "Budget Preisvorschlag",
-      "Google Maps Anfrage Regensburg",
-      "Direkt anfragen FLOXANT",
-      "Anfrage mit Fotos senden",
-      "Angebot anderer Firma prüfen",
-      "Schlüsselübergabe",
-      "Beiladung Bayern",
-    ],
   });
 }
 

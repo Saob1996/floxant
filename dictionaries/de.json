@@ -372,7 +372,7 @@
   "trust": {
     "experience": "Jahrelange Erfahrung",
     "quality": "Höchste Qualität",
-    "insured": "Voll versichert",
+    "insured": "Sauber abgestimmt",
     "google_reviews": "Google-Bewertungen",
     "google_reviews_desc": "Sichtbar, öffentlich und nachvollziehbar.",
     "personal_consultation": "Persönliche Beratung",
@@ -437,7 +437,7 @@
         "l1": "Ab- & Aufbau Möbel",
         "l2": "Sicherer Transport",
         "l3": "Packservice",
-        "l4": "Voll versichert"
+        "l4": "Transport nach Absprache"
       },
       "service2": {
         "title": "Vorteile",
@@ -555,45 +555,45 @@
       "wizard_p": "Gerne kommen wir in {city} zu einer unverbindlichen Besichtigung vorbei."
     },
     "klaviertransport_spec": {
-      "meta_title": "Klaviertransport {city} ✓ Sicher ✓ Klavier-Profi | FLOXANT",
-      "meta_desc": "Profi-Klaviertransport in {city} und ganz Bayern. Spezialisiertes Equipment für Klaviere & Flügel. Voll versichert & erfahrene Teams.",
+      "meta_title": "Klaviertransport {city} | Etage, Treppe & Fotos prüfen | FLOXANT",
+      "meta_desc": "Klaviertransport in {city} anfragen: Instrument, Start, Ziel, Etage, Aufzug, Treppenhaus, Laufweg, Fotos und Termin realistisch prüfen lassen.",
       "keywords": [
         "Klaviertransport {city}",
         "Flügeltransport {city}",
-        "Spezialtransport {city}",
+        "Piano Transport {city}",
         "Klavier Umzug {city}",
         "Schwertransport {city}"
       ],
       "hero_h1": "Klaviertransport in ",
       "hero_h1_highlight": "{city}",
-      "hero_p": "Ihr wertvolles Instrument in den besten Händen. Wir transportieren Klaviere und Flügel in {city} mit Präzision und Spezial-Equipment.",
-      "hero_badge": "Meisterhafte Logistik",
-      "cta": "Spezial-Angebot anfordern",
+      "hero_p": "Klavier, E-Piano oder Flügel in {city}: FLOXANT prüft Instrument, Etage, Treppenhaus, Aufzug, Start, Ziel, Fotos und Termin, bevor ein Ablauf zugesagt wird.",
+      "hero_badge": "Klaviertransport prüfen",
+      "cta": "Klaviertransport anfragen",
       "badges": {
-        "permit": "Spezial-Equipment",
-        "signs": "Voll versichert",
-        "stressfree": "Erfahrene Teams"
+        "permit": "Instrument und Zugang prüfen",
+        "signs": "Fotos helfen beim Start",
+        "stressfree": "Termin nach Machbarkeit"
       },
       "service1": {
         "title": "Klavier & Flügel {city}",
-        "l1": "Fachgerechte Verpackung",
-        "l2": "Spezial-Schlitten & Gurte",
-        "l3": "Temperaturgeschützter Transport",
-        "l4": "Aufstellung & Schutz"
+        "l1": "Klavier, E-Piano oder Flügel getrennt beschreiben",
+        "l2": "Start, Ziel, Etage und Aufzug nennen",
+        "l3": "Fotos von Instrument, Treppe und Zugang senden",
+        "l4": "Termin und Strecke realistisch prüfen"
       },
       "service2": {
-        "title": "Schwertransport",
-        "l1": "Tresore & Sonderlasten",
-        "l2": "Hydraulik-Heber Technik",
-        "l3": "Treppen-Raupen Einsatz",
-        "l4": "Statik-Prüfung bei Bedarf"
+        "title": "Aufwandstreiber",
+        "l1": "Treppenhaus, Türbreite und Laufweg",
+        "l2": "Haltemöglichkeit und Entfernung",
+        "l3": "Gewicht, Bauform und Empfindlichkeit",
+        "l4": "Besichtigung oder Rückfragen bei engen Zugängen"
       },
-      "section2_h2": "Präzisions-Logistik für {city}",
-      "section2_p1": "Ein Klaviertransport in {city} ist keine gewöhnliche Aufgabe. Es erfordert Erfahrung und die richtige Technik. Wir schützen Ihr Instrument und die Umgebung in {city}.",
-      "section2_p2": "Verlassen Sie sich auf FLOXANT für Ihre wertvollsten Stücke in {city}.",
-      "wizard_badge": "Express-Check",
-      "wizard_h2": "Kosten für {city} anfragen",
-      "wizard_p": "Geben Sie kurz die Details an – unser Spezialist für {city} meldet sich."
+      "section2_h2": "Klaviertransport in {city}: erst Zugang klären, dann Angebot prüfen",
+      "section2_p1": "Ein Klaviertransport in {city} braucht klare Eckdaten. Entscheidend sind Instrumenttyp, Maße oder grobe Bauform, Start, Ziel, Etage, Aufzug, Treppenhaus, Laufweg, Haltemöglichkeit und Terminfenster.",
+      "section2_p2": "FLOXANT nennt keine Blindpreise und keine pauschalen Garantien. Fotos von Instrument, Eingang, Treppenhaus und Zielort helfen, Machbarkeit und nächste Rückfragen schneller einzuordnen.",
+      "wizard_badge": "Machbarkeit prüfen",
+      "wizard_h2": "Klaviertransport für {city} anfragen",
+      "wizard_p": "Senden Sie Instrument, Start, Ziel, Etage, Aufzug, Treppenhaus, Fotos und Terminwunsch. FLOXANT prüft den passenden nächsten Schritt."
     },
     "einlagerung_spec": {
       "meta_title": "Einlagerung {city} ✓ Sicher ✓ Trocken ✓ Flexibel | FLOXANT",
@@ -995,34 +995,34 @@
       "cta_text": "Kontaktieren Sie uns für eine vertrauliche Beratung. Wir erstellen Ihnen ein transparentes Angebot."
     },
     "service_schwertransport": {
-      "meta_title": "Klaviertransport & Schwertransport {city} – Sicher & Versichert",
-      "meta_desc": "Profi-Klaviertransport in {city} und ganz Bayern. Spezialisiertes Equipment für Klaviere, Flügel und Tresore. Voll versichert, erfahrene Teams, Bestpreis.",
+      "meta_title": "Klaviertransport & Schwertransport {city} | Zugang prüfen | FLOXANT",
+      "meta_desc": "Klavier- und Schwertransport in {city}: Instrument oder Last, Start, Ziel, Etage, Zugang, Gewicht, Maße, Fotos und Termin realistisch prüfen lassen.",
       "badge": "Spezialtransport",
       "hero_h1": "Klaviertransport {city}",
-      "hero_p": "Ihr wertvolles Instrument in den besten Händen. Wir transportieren Klaviere, Flügel und Tresore in {city} mit Präzision, Spezial-Equipment und Leidenschaft.",
-      "hero_badge": "Meisterhafte Logistik",
-      "cta": "Jetzt Kostenvoranschlag erhalten",
+      "hero_p": "Klavier, Flügel oder schwere Einzelstücke brauchen vor einer Zusage klare Eckdaten: Start, Ziel, Zugang, Etage, Gewicht, Maße, Fotos und Terminfenster.",
+      "hero_badge": "Transport machbar prüfen",
+      "cta": "Transport anfragen",
       "badges": {
-        "permit": "Spezial-Equipment",
-        "signs": "Voll versichert",
-        "stressfree": "Erfahrene Teams"
+        "permit": "Zugang prüfen",
+        "signs": "Fotos hilfreich",
+        "stressfree": "Termin nach Machbarkeit"
       },
       "service1": {
         "title": "Klavier- & Flügeltransport",
-        "l1": "Fachgerechte Verpackung und Sicherung",
-        "l2": "Einsatz von Klavierschlitten und Spezialgurten"
+        "l1": "Instrumenttyp, Etage und Treppenhaus beschreiben",
+        "l2": "Fotos von Instrument, Eingang und Zielort senden"
       },
       "service2": {
         "title": "Tresor- & Schwertransport",
-        "l1": "Transport schwerster Lasten bis 500kg+",
-        "l2": "Präzise Planung der Transportwege"
+        "l1": "Gewicht, Maße und Zugang vorab nennen",
+        "l2": "Machbarkeit vor Terminvereinbarung prüfen"
       },
-      "section2_h2": "Sicherheit steht an erster Stelle",
-      "section2_p1": "Ein Klaviertransport in {city} ist keine gewöhnliche Logistikaufgabe. Es erfordert physikalisches Verständnis, die richtige Technik und ein eingespieltes Team. Wir schützen nicht nur Ihr Instrument, sondern auch die Treppenhäuser und Bodenbeläge vor Ort.",
-      "section2_p2": "Jeder Transport ist durch unsere spezielle Güterversicherung abgedeckt. So können Sie sich darauf verlassen, dass Ihr wertvolles Gut in jeder Phase des Umzugs geschützt ist.",
-      "wizard_badge": "Express-Anfrage",
-      "wizard_h2": "Kosten für Klaviertransport in {city} berechnen",
-      "wizard_p": "Geben Sie die wichtigsten Eckdaten ein und Sie erhalten sofort eine erste Einschätzung für Ihren Spezialtransport."
+      "section2_h2": "Erst prüfen, dann realistisch planen",
+      "section2_p1": "Ein Klavier- oder Schwertransport in {city} hängt stark von Zugang, Etage, Türbreite, Treppenhaus, Laufweg, Haltemöglichkeit, Gewicht, Maße und Termin ab.",
+      "section2_p2": "FLOXANT gibt keine pauschale Sofortzusage. Fotos und Eckdaten helfen, den nächsten Schritt und mögliche Rückfragen sauber einzuordnen.",
+      "wizard_badge": "Machbarkeit prüfen",
+      "wizard_h2": "Klavier- oder Schwertransport in {city} anfragen",
+      "wizard_p": "Senden Sie Gewicht, Maße, Start, Ziel, Etage, Zugang, Fotos und Terminwunsch. FLOXANT prüft den passenden nächsten Schritt."
     },
     "service_montage": {
       "meta_title": "Montage – Professioneller Möbelaufbau und Küchenmontage",
@@ -4560,37 +4560,37 @@
       "h2": "Wie berechnen sich die Entsorgungskosten?"
     },
     "klaviertransport": {
-      "meta_title": "Klaviertransport & Tresortransport {city} | FLOXANT",
-      "meta_desc": "Professioneller Klavier- und Tresortransport in {city}. Voll versichert und sicher mit Spezialequipment von FLOXANT.",
-      "hero_badge": "Spezialtransporte · Schwerlast",
-      "hero_h1": "Klavier- & Tresortransport",
-      "hero_p": "Ein Klavier wiegt 200-500 kg, ein Tresor oft noch mehr. Für solche Aufträge braucht es Spezialkönnen, -equipment und -versicherung. Genau das liefern wir.",
+      "meta_title": "Klaviertransport & Schwertransport {city} | FLOXANT",
+      "meta_desc": "Klavier- und Schwertransport in {city}: Instrument oder Last, Gewicht, Maße, Zugang, Etage, Fotos und Termin realistisch prüfen lassen.",
+      "hero_badge": "Transport mit Vorprüfung",
+      "hero_h1": "Klavier- & Schwertransport",
+      "hero_p": "Klavier, E-Piano, Flügel oder schwere Einzelstücke werden nicht blind zugesagt. Entscheidend sind Gewicht, Bauform, Start, Ziel, Etage, Aufzug, Treppenhaus, Laufweg und Fotos.",
       "badges": {
-        "piano": "Klavier & Flügel",
-        "safe": "Tresore & Safes",
-        "insurance": "Spezialversicherung"
+        "piano": "Klavier, E-Piano, Flügel",
+        "safe": "Schwere Einzelstücke",
+        "insurance": "Machbarkeit prüfen"
       },
-      "cta": "Schwertransport anfragen",
+      "cta": "Transport anfragen",
       "service1": {
         "title": "Klaviertransport",
-        "l1": "Spezial-Klavierrollwagen & Tragegurte",
-        "l2": "Schutzpolsterung für Tasten, Pedale & Gehäuse",
-        "l3": "Klimatisierter Transport (Feuchtigkeit!)",
-        "l4": "Auf Wunsch: Neuformung durch Fachstimmer"
+        "l1": "Instrumenttyp und grobe Bauform nennen",
+        "l2": "Start, Ziel, Etage und Aufzug beschreiben",
+        "l3": "Fotos von Instrument, Eingang und Treppenhaus senden",
+        "l4": "Terminfenster und Laufwege angeben"
       },
       "service2": {
-        "title": "Tresortransport",
-        "l1": "Tresore bis 2.000 kg Eigengewicht",
-        "l2": "Hydraulische Hubwagen & Treppen-Raupen",
-        "l3": "Statikprüfung für Zielort (Deckenlast)",
-        "l4": "Diskrete Abwicklung für Wertgegenstände"
+        "title": "Schwere Einzelstücke",
+        "l1": "Gewicht und Maße vorab einschätzen",
+        "l2": "Türbreiten, Treppen und Zielraum prüfen",
+        "l3": "Haltemöglichkeit und Laufweg klären",
+        "l4": "Rückfragen vor einer Zusage einplanen"
       },
-      "section2_h2": "Schwertransporte in {city}: lokales Können",
-      "section2_p1": "In {city} erleben wir häufig Klaviertransporte aus Altbauwohnungen. Die Herausforderung: enge Treppenhäuser, keine Aufzüge. Unsere Lösung: Außenlift oder Krantransport über den Balkon.",
-      "section2_p2": "Tresortransporte sind dagegen oft Firmenkunden-Aufträge. Wir garantieren absolute Diskretion und volle Versicherungsdeckung.",
-      "wizard_badge": "Spezialservice",
+      "section2_h2": "Schwertransporte in {city}: Zugang und Gewicht entscheiden",
+      "section2_p1": "In {city} können enge Treppenhäuser, fehlende Aufzüge, lange Laufwege oder schwierige Haltepunkte den Aufwand stark verändern. Deshalb werden Zugang und Zielort zuerst geklärt.",
+      "section2_p2": "FLOXANT verspricht keine pauschale Speziallösung. Je besser Fotos, Maße, Gewicht und Terminwunsch beschrieben sind, desto belastbarer wird die erste Rückmeldung.",
+      "wizard_badge": "Machbarkeit prüfen",
       "wizard_h2": "Schwertransport in {city} anfragen",
-      "wizard_p": "Teilen Sie uns Gewicht, Maße und Standort mit – wir kalkulieren den sicheren Transport.",
+      "wizard_p": "Teilen Sie Gewicht, Maße, Start, Ziel, Etage, Zugang, Fotos und Terminwunsch mit. FLOXANT prüft den nächsten Schritt.",
       "link_umzug": "Umzug {city}",
       "link_senioren": "Seniorenumzug {city}",
       "link_halteverbot": "Zugang und Parken {city}"
@@ -5802,7 +5802,7 @@
     "seo_p3": "Fordern Sie noch heute Ihr kostenloses Festpreisangebot an – bequem per Online-Rechner, WhatsApp oder Telefon. Wir sind in Ihrer Nähe: Ob in Regensburg, Straubing, Schwandorf, Amberg, Kelheim, Neumarkt oder Cham – unsere mobilen Teams sind täglich in Ihrer Region im Einsatz und sorgen für höchste Kundenzufriedenheit durch Pünktlichkeit und Sorgfalt.",
     "seo_p4": "Unser Entrümpelungsservice umfasst die vollständige Haushaltsauflösung, Wohnungsauflösung und diskrete Räumung von Messie-Objekten in ganz Bayern. Wir arbeiten umweltbewusst, trennen Wertstoffe fachgerecht und hinterlassen Ihre Räumlichkeiten besenrein. Verlassen Sie sich bei Wohnungsauflösungen in München, Nürnberg oder Regensburg auf unsere Expertise und unseren diskreten Umgang mit sensiblen Nachlässen.",
     "seo_p5": "Mit der professionellen Endreinigung von FLOXANT sichern Sie sich Ihre Mietkaution. Wir reinigen streng nach den Standards führender Hausverwaltungen und bieten eine kostenlose Nachreinigungs-Garantie, falls es bei der Übergabe Beanstandungen geben sollte. Von der Baureinigung bis zur gewerblichen Büroreinigung in Regensburg, Neutraubling, Lappersdorf und Umgebung bieten wir Ihnen Sauberkeit auf höchstem Niveau.",
-    "seo_p6": "Seit unserer Gründung vertrauen uns tausende Kunden in über 100 Städten Bayerns. Wir verbinden traditionelle Werte wie Fleiß und Verlässlichkeit mit modernster Logistikplanung. Unsere Kernkompetenzen für 2026: Umzug, Entrümpelung, Reinigung, Möbelmontage, Zugang und Parken und Spezialtransporte wie Klaviertransporte. Alles aus einer Hand, alles zum garantierten Bestpreis.",
+    "seo_p6": "Seit unserer Gründung vertrauen uns Kunden in vielen Städten Bayerns. Wir verbinden traditionelle Werte wie Fleiß und Verlässlichkeit mit strukturierter Logistikplanung. Unsere Kernkompetenzen für 2026: Umzug, Entrümpelung, Reinigung, Möbelmontage, Zugang und Parken sowie Spezialtransporte wie Klaviertransporte. Alles aus einer Hand, sauber vorgeprüft und realistisch abgestimmt.",
     "faq_q1": "Was kostet ein Umzug in {city}?",
     "faq_a1": "Ein Umzug in {city} kostet zwischen 400 und 2.500 Euro je nach Wohnungsgröße, Etage und Entfernung. FLOXANT bietet verbindliche Festpreise nach kostenloser Besichtigung – ohne versteckte Kosten.",
     "faq_q2": "Bietet FLOXANT auch Reinigung und Entrümpelung in {city}?",

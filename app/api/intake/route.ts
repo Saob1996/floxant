@@ -26,7 +26,7 @@ function normalizeService(service: unknown) {
   "grundreinigung_regensburg",
  ]);
  if (regensburgCleaningServices.has(compact)) return compact.replace("büro", "buero");
- if (raw === "reinigung") return "reinigung";
+ if (raw === "reinigung" || raw === "fensterreinigung" || raw === "glasreinigung") return "reinigung";
  if (
   raw === "duesseldorf_moeblierte_wohnung_reinigung" ||
   raw === "duesseldorf_apartment_cleaning" ||
@@ -51,11 +51,30 @@ function normalizeService(service: unknown) {
  if (raw === "plan_b_service" || raw === "plan-b-service" || raw === "plan_b" || raw === "plan-b" || raw === "backup_service") return "plan_b_service";
  if (raw === "schadensbegrenzung" || raw === "damage_control" || raw === "plan_gekippt") return "schadensbegrenzung";
  if (raw === "keller_muellraum_rettung" || raw === "keller-muellraum-rettung" || raw === "cellar_trashroom_rescue" || raw === "muellraum_rettung") return "keller_muellraum_rettung";
- if (raw === "entsorgung" || raw === "entruempelung" || raw === "entrümpelung") return "entsorgung";
+ if (
+  raw === "entsorgung" ||
+  raw === "entruempelung" ||
+  raw === "entrümpelung" ||
+  raw === "wohnungsaufloesung" ||
+  raw === "wohnungsauflösung" ||
+  raw === "haushaltsaufloesung" ||
+  raw === "haushaltsauflösung" ||
+  raw === "hausaufloesung" ||
+  raw === "hausauflösung"
+ ) return "entsorgung";
+ if (raw === "fernumzug" || raw === "fern_umzug" || raw === "fern-umzug") return "umzug";
  if (raw === "bueroumzug" || raw === "büroumzug" || raw === "firmenumzug") return "bueroumzug";
  if (raw === "firmenentsorgung" || raw === "bueroentsorgung" || raw === "büroentsorgung") return "firmenentsorgung";
  if (raw === "leerfahrt" || raw === "leerfahrt-rueckfahrt" || raw === "leer-rueckfahrt") return "leerfahrt";
- if (raw === "private_client" || raw === "private-client-service" || raw === "private client" || raw === "villenservice") {
+ if (
+  raw === "private_client" ||
+  raw === "private-client-service" ||
+  raw === "private client" ||
+  raw === "villenservice" ||
+  raw === "diskret-service" ||
+  raw === "diskret_service" ||
+  raw === "diskreter-service"
+ ) {
   return "private_client";
  }
  if (raw === "beiladung") return "beiladung";

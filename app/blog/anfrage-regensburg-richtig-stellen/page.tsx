@@ -31,14 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Anfrage in Regensburg richtig stellen: so kommt FLOXANT schneller zur klaren Antwort",
     description:
       "Welche Angaben bei Umzug, Reinigung, Entrümpelung oder Büroumzug in Regensburg die Vorprüfung schneller und die Rückmeldung klarer machen.",
-    keywords: [
-      "Anfrage Regensburg Umzug",
-      "Umzugsanfrage Regensburg",
-      "Reinigung anfragen Regensburg",
-      "Entrümpelung anfragen Regensburg",
-      "Buchung Regensburg",
-      "FLOXANT Anfrage",
-    ],
   });
 }
 

@@ -97,3 +97,16 @@ In Sitemap behalten:
 - Bestehende Formulare nutzen API nur bei Submit, sind aber unterschiedlich erklaert.
 - Automatische Vercel-Usage-Reduktion darf nicht durch neue Runtime-/ISR-Flags gebrochen werden.
 - Vor Noindex/Entfernung aus Sitemap immer manuell pruefen, ob eine Seite bereits Rankings oder Leads hat.
+
+## GSC 28D Moneypage Gap Nachtrag
+
+Stand: 2026-06-19
+
+| Cluster | Entscheidung | Primaeres Ziel | Keine neue Seite fuer |
+| --- | --- | --- | --- |
+| Duesseldorf Fensterreinigung | Existing verbessern, Lead-Intent schaerfen | /duesseldorf/fensterreinigung | /fensterreinigung-duesseldorf |
+| Diskret-Service | Sensiblen Intent auf bestehende Diskret-Seite fuehren | /diskreter-umzug-trennung-scheidung | /diskret-service als duenne Alias-Seite |
+| Senioren/Umzug im Alter | Hub plus lokale Seniorenumzug-Seiten nutzen | /seniorenumzug-bayern, /seniorenumzug-nuernberg, /seniorenumzug-bamberg, /seniorenumzug-erlangen, /seniorenumzug-wuerzburg | /umzugshilfe-fuer-senioren-* Alias-Seiten |
+| Reinigungsangebot | Angebotsseite als Primaerziel halten | /reinigungsfirma-angebot | /angebot-reinigungsfirma, /angebot-reinigung |
+| Neumarkt/Ingolstadt Umzug | Anbieter-Queries auf vorhandene Umzugsseiten kanonisieren | /umzug-neumarkt, /umzug-ingolstadt | separate Umzugsunternehmen-Seiten |
+| Unsupported Orte/Services | Nicht ausbauen ohne manuelle Bestaetigung | keine | Flensburg, Leipzig, Grafenau, Starnberg, Bielingplatz, Household Clearance Munich, Innenputz |

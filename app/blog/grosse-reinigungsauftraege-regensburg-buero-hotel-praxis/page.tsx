@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Große Reinigungsaufträge in Regensburg: was Büro, Hotel und Praxis klären sollten | FLOXANT",
     description:
       "Welche Angaben bei größeren B2B-Reinigungsanfragen in Regensburg helfen, damit aus Interesse ein belastbarer Auftrag wird.",
-    keywords: [
-      "große Reinigungsaufträge Regensburg",
-      "Büroreinigung Regensburg Anfrage",
-      "Hotelreinigung Regensburg",
-      "Praxisreinigung Regensburg B2B",
-    ],
   });
 }
 

@@ -33,7 +33,9 @@ export function SiteChrome({
         variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
       />
       <RegionalRouteNotice pathname={pathname} />
-      <div id="main-content">{children}</div>
+      <div id="main-content" tabIndex={-1}>
+        {children}
+      </div>
       {!isDuesseldorfSection ? <Footer /> : null}
       <GlobalRequestCenter />
       <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection} />

@@ -18,7 +18,11 @@ import {
   SignatureServicesGrid,
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import {
   floxantCategoryLabels,
   getServicesByRegionAndCategory,
@@ -26,6 +30,7 @@ import {
 } from "@/lib/floxant-services";
 import type { RegensburgServicePageConfig } from "@/lib/regensburg-service-pages";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -166,17 +171,38 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
     path: config.path,
     serviceLabel: config.serviceType,
   });
-  const bookingHref = `/buchung?region=regensburg&service=${encodeURIComponent(config.slug)}#buchungssystem`;
+  const bookingLead = resolveLeadIntent({
+    service: config.slug,
+    city: "regensburg",
+    intent: `${config.slug}-regensburg`,
+    priority: "p3",
+  });
+  const bookingHref = buildLeadHref(bookingLead);
+  const regensburgOfferHref = "/angebot-vergleichen-regensburg";
   const category: FloxantServiceCategory =
     config.slug === "umzug" ||
+    config.slug === "umzugsunternehmen" ||
     config.slug === "entruempelung" ||
     config.slug === "haushaltsaufloesung" ||
+    config.slug === "wohnungsaufloesung" ||
+    config.slug === "bueroreinigung" ||
+    config.slug === "reinigungsfirma" ||
     config.slug === "uebergabereinigung" ||
     config.slug === "endreinigung"
       ? "normal"
-      : config.slug === "besenreine-uebergabe"
+      : config.slug === "besenreine-uebergabe" || config.slug === "angebot-vergleichen-regensburg"
         ? "special"
         : "signature";
+  const proofServiceKey =
+    config.slug.includes("entruempelung") ||
+    config.slug.includes("haushaltsaufloesung") ||
+    config.slug.includes("wohnungsaufloesung")
+      ? "entruempelung"
+      : config.slug.includes("buero") || config.slug.includes("gewerbe")
+        ? "b2b"
+        : config.slug.includes("umzug") || config.slug.includes("transport") || config.slug.includes("klavier")
+          ? "umzug"
+          : "reinigung";
   const relatedCategoryServices = getServicesByRegionAndCategory("regensburg", category)
     .filter((service) => service.href !== config.path)
     .slice(0, 5);
@@ -249,9 +275,14 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={bookingHref}
-                data-event="hero_cta_click"
+                data-event="seo_cta_click"
                 data-region="regensburg"
-                data-service={config.slug}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label={config.primaryCta}
+                data-destination={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/25 transition hover:bg-cyan-50"
               >
                 {config.primaryCta}
@@ -259,9 +290,15 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </Link>
               <a
                 href={whatsappHref}
-                data-event="whatsapp_click"
+                data-event="seo_cta_click"
                 data-region="regensburg"
-                data-service={config.slug}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label="Fotos per WhatsApp senden"
+                data-destination={whatsappHref}
+                data-contact-channel="whatsapp"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -269,7 +306,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </a>
               <a
                 href={`tel:${company.phoneRaw}`}
-                data-event="phone_click"
+                data-event="seo_phone_click"
                 data-region="regensburg"
                 data-service={config.slug}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
@@ -309,9 +346,14 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             <div className="mt-6 grid gap-3">
               <Link
                 href={bookingHref}
-                data-event="hero_cta_click"
+                data-event="seo_cta_click"
                 data-region="regensburg"
-                data-service={config.slug}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label="Anfrageformular öffnen"
+                data-destination={bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
               >
                 Anfrageformular öffnen
@@ -319,9 +361,15 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               </Link>
               <a
                 href={whatsappHref}
-                data-event="whatsapp_click"
+                data-event="seo_cta_click"
                 data-region="regensburg"
-                data-service={config.slug}
+                data-service={bookingLead.trackingService}
+                data-city={bookingLead.trackingCity}
+                data-page-intent={bookingLead.trackingIntent}
+                data-priority={bookingLead.priority}
+                data-cta-label="WhatsApp mit Fotos"
+                data-destination={whatsappHref}
+                data-contact-channel="whatsapp"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
               >
                 <MessageCircle className="h-4 w-4" />
@@ -338,7 +386,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
         tags={internationalTags}
         primaryHref={bookingHref}
         photoHref={bookingHref}
-        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+        offerHref={regensburgOfferHref}
       />
 
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
@@ -353,7 +401,7 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
             summary={buildRegensburgServiceSummary(config)}
             services={customerSectionServices}
             relatedLinks={config.related}
-            offerCheckHref="/anbieter-vergleichen"
+            offerCheckHref={regensburgOfferHref}
           />
         </div>
       </section>
@@ -389,7 +437,26 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       <OfferCheckCTA
         title={`Angebot fuer ${config.serviceType} schon vorhanden?`}
         text="FLOXANT prueft vorhandene Angebote nach Umfang, Fotos, Termin, Zugang, Zusatzpositionen und realistischen Grenzen. Keine Preisgarantie, keine Anbieter-Diffamierung."
+        href={regensburgOfferHref}
       />
+
+      <TrustProofPanel
+        allowedPage={config.path}
+        serviceKey={proofServiceKey}
+        locationKey="regensburg"
+        title={`Trust Proof fuer ${config.serviceType}`}
+        intro="Diese Regensburger Serviceseite setzt auf pruefbare Eckdaten statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte."
+      />
+
+      <ServiceProofChecklist
+        serviceKey={proofServiceKey}
+        title={`Welche Angaben ${config.serviceType} belastbarer machen`}
+        intro="Je konkreter lokale Eckdaten und sichtbare Objektinformationen sind, desto klarer wird die erste Rueckmeldung."
+      />
+
+      <ServiceVisualProofGrid serviceKey={proofServiceKey} locationKey="regensburg" />
+
+      <LocalProofPanel location="regensburg" />
 
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
@@ -401,9 +468,10 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
               Diese Seite gehört klar zu FLOXANT Regensburg.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Diese Seite bezieht sich auf Regensburg und Umgebung. Es geht um Umzug,
-              Entrümpelung, Haushaltsauflösung, Endreinigung oder Übergabevorbereitung.
-              Düsseldorfer Gewerbereinigung bleibt getrennt im eigenen Bereich.
+              Diese Seite bezieht sich auf Regensburg und Umgebung. Ort, Umfang, Zugang,
+              Fotos, Termin und vorhandene Angebote werden getrennt eingeordnet, damit
+              Umzug, Reinigung, Räumung oder Übergabe nicht unsauber vermischt werden.
+              Düsseldorfer Reinigung bleibt im eigenen Bereich.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">

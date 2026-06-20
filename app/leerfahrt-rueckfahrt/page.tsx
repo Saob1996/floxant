@@ -54,18 +54,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Leer-Rückfahrt & Beiladung Richtung Regensburg | FLOXANT",
     description:
       "FLOXANT prüft Leer-Rückfahrten, Beiladung und Rücktransporte Richtung Regensburg: freie Kapazität für Möbel, Firmeninventar, Kartons, Paletten und Teiltransporte fair nutzen.",
-    keywords: [
-      "Leer Rückfahrt Regensburg",
-      "Leerfahrt Umzug Regensburg",
-      "Rücktransport nach Regensburg",
-      "Beiladung Rückfahrt",
-      "Firmen Leerfahrt Regensburg",
-      "günstiger Möbeltransport Regensburg",
-      "Firmeninventar Rücktransport Regensburg",
-      "Teiltransport Regensburg Rückfahrt",
-      "Leerfahrt Firma Bayern",
-      "Büroinventar Mitnahme Regensburg",
-    ],
   });
 }
 

@@ -31,13 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Umzugsfirma Regensburg über Google Maps finden: worauf Kunden wirklich achten",
     description:
       "Wie Kunden eine Umzugsfirma in Regensburg über Google Maps besser einordnen können und warum direkte Buchungswege mehr Vertrauen schaffen.",
-    keywords: [
-      "Umzugsfirma Regensburg Google Maps",
-      "Umzugsunternehmen Regensburg Google Maps",
-      "Buchungslink Google Maps Regensburg",
-      "direkt anfragen Umzug Regensburg",
-      "FLOXANT Regensburg Maps",
-    ],
   });
 }
 

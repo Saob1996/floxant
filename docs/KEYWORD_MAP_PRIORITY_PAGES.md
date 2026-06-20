@@ -38,3 +38,18 @@ Ziel: Primaere Suchintentionen klar verteilen, Kannibalisierung vermeiden und in
 3. Kontakt- und Formularhinweise vereinheitlichen.
 4. LocalBusiness/NAP und Footer/Kontakt konsistent halten.
 5. Sitemap nur ueber bestehendes Skript aktualisieren.
+
+## GSC 28D Priority Addendum
+
+Stand: 2026-06-19
+
+| Prioritaet | URL | Primaeres Keyword | Suchintention | Ziel-CTA | Konsolidierung |
+| --- | --- | --- | --- | --- | --- |
+| 1 | /klaviertransport-regensburg | klaviertransport regensburg | Instrumententransport mit Zugang/Fotos | /kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo | Existing verbessern |
+| 1 | /duesseldorf/fensterreinigung | fensterreinigung duesseldorf | Fenster/Glas reinigen lassen | /kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo | Alias /fensterreinigung-duesseldorf redirecten |
+| 1 | /diskreter-umzug-trennung-scheidung | diskreter service | sensible Anfrage, diskreter Rueckruf | /kontakt?service=diskret-service&intent=diskret-service&source=seo | keine duenne /diskret-service Seite |
+| 1 | /seniorenumzug-bayern | umzug im alter bayern | Seniorenumzug-Hub | /kontakt?service=seniorenumzug&city=bayern&intent=umzug-im-alter-bayern&source=seo | lokale Seniorenumzug-Seiten stuetzen |
+| 1 | /seniorenumzug-nuernberg | umzugshilfe fuer senioren nuernberg | Seniorenumzug lokal | /kontakt?service=seniorenumzug&city=nuernberg&intent=umzugshilfe-senioren-nuernberg&source=seo | Umzugshilfe-Alias redirecten |
+| 1 | /umzug-neumarkt | umzugsunternehmen neumarkt i.d.opf. | lokales Umzugsunternehmen | /kontakt?service=umzug&city=neumarkt&intent=umzugsunternehmen-neumarkt-idopf&source=seo | Anbieter-Alias redirecten |
+| 1 | /fernumzug-muenchen | fernumzug muenchen | Fernumzug ab/nach Muenchen | /kontakt?service=fernumzug&city=muenchen&intent=fernumzug-muenchen&source=seo | Existing verbessern |
+| 2 | /reinigungsfirma-angebot | angebot reinigungsfirma | Reinigungsangebot anfordern/pruefen | /kontakt?service=reinigung&intent=reinigungsfirma-angebot&source=seo | /angebot-reinigungsfirma kanonisieren |

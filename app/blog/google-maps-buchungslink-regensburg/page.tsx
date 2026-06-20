@@ -30,12 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
   title: "Google Maps Buchungslink in Regensburg: worauf es ankommt | FLOXANT",
   description:
    "Wie ein klarer Buchungslink für Google Maps, direkte Empfehlungen und lokale Suchanfragen mehr Vertrauen und bessere Anfragen erzeugt.",
-  keywords: [
-   "Google Maps Buchungslink Regensburg",
-   "Buchungsseite Regensburg",
-   "direkte Anfrage Google Maps",
-   "lokale Buchung Umzug Regensburg",
-  ],
  });
 }
 

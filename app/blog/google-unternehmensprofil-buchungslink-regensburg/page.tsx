@@ -31,12 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Google-Unternehmensprofil in Regensburg: welcher Buchungslink wirklich hilft | FLOXANT",
     description:
       "Warum ein klarer Buchungslink im Google-Unternehmensprofil mehr Vertrauen schafft und passendere Anfragen bringt.",
-    keywords: [
-      "Google Unternehmensprofil Buchungslink Regensburg",
-      "Google Maps Buchung Regensburg",
-      "Buchungslink Regensburg",
-      "direkte Anfrage Google Maps",
-    ],
   });
 }
 

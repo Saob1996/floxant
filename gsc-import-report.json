@@ -1,0 +1,257 @@
+{
+  "status": "WARN",
+  "generatedAt": "2026-06-20T03:42:05.960Z",
+  "files": [
+    {
+      "key": "queries28d",
+      "file": "gsc-queries-28d.csv",
+      "type": "query",
+      "range": "28d",
+      "exists": false,
+      "rows": 0
+    },
+    {
+      "key": "queries90d",
+      "file": "gsc-queries-90d.csv",
+      "type": "query",
+      "range": "90d",
+      "exists": false,
+      "rows": 0
+    },
+    {
+      "key": "pages28d",
+      "file": "gsc-pages-28d.csv",
+      "type": "page",
+      "range": "28d",
+      "exists": false,
+      "rows": 0
+    },
+    {
+      "key": "pages90d",
+      "file": "gsc-pages-90d.csv",
+      "type": "page",
+      "range": "90d",
+      "exists": false,
+      "rows": 0
+    }
+  ],
+  "warnings": [
+    "Missing gsc-queries-28d.csv",
+    "Missing gsc-queries-90d.csv",
+    "Missing gsc-pages-28d.csv",
+    "Missing gsc-pages-90d.csv"
+  ],
+  "records": 0,
+  "summary": {
+    "topByImpressions": [],
+    "topByClicks": [],
+    "lowCtrTopTen": [],
+    "nearPageOneBusiness": [],
+    "highImpressionWeakPosition": [],
+    "missingTarget": [],
+    "brandQueries": [],
+    "clusters": []
+  },
+  "queryToPage": [
+    {
+      "query": "angebot pruefen",
+      "cluster": "Angebot pruefen",
+      "intent": "vorhandenes Angebot einordnen",
+      "service": "angebot-pruefen",
+      "city": "",
+      "status": "add_offercheck_cta",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "angebotscheck",
+      "cluster": "Angebot pruefen",
+      "intent": "Red Flags und offene Punkte vor Zusage",
+      "service": "angebot-pruefen",
+      "city": "",
+      "status": "improve_title_description",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "anbieter vergleichen",
+      "cluster": "Anbieter vergleichen",
+      "intent": "Dienstleister ohne reine Preisfalle vergleichen",
+      "service": "angebot-pruefen",
+      "city": "",
+      "status": "improve_internal_links",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "reinigungsfirma angebot",
+      "cluster": "Reinigungsangebot",
+      "intent": "Reinigungsangebot anfragen oder pruefen",
+      "service": "reinigung",
+      "city": "",
+      "status": "improve_title_description",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "reinigung duesseldorf",
+      "cluster": "Reinigung",
+      "intent": "lokale Reinigung anfragen",
+      "service": "reinigung",
+      "city": "duesseldorf",
+      "status": "improve_content",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "bueroreinigung duesseldorf",
+      "cluster": "Bueroreinigung",
+      "intent": "Firmenflaechen mit Raumliste und Turnus",
+      "service": "bueroreinigung",
+      "city": "duesseldorf",
+      "status": "improve_internal_links",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "gewerbereinigung duesseldorf",
+      "cluster": "Gewerbereinigung",
+      "intent": "Objekt, Flaeche und Turnus klaeren",
+      "service": "gewerbereinigung",
+      "city": "duesseldorf",
+      "status": "improve_title_description",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "praxisreinigung duesseldorf",
+      "cluster": "Praxisreinigung",
+      "intent": "Praxisraeume nach Flaeche und Zeitfenster klaeren",
+      "service": "praxisreinigung",
+      "city": "duesseldorf",
+      "status": "improve_title_description",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "fensterreinigung duesseldorf",
+      "cluster": "Fensterreinigung",
+      "intent": "Fenster, Glas und Zugang klaeren",
+      "service": "fensterreinigung",
+      "city": "duesseldorf",
+      "status": "improve_internal_links",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "umzug regensburg",
+      "cluster": "Umzug",
+      "intent": "lokalen Umzug mit Volumen und Zugang anfragen",
+      "service": "umzug",
+      "city": "regensburg",
+      "status": "add_offercheck_cta",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "reinigung regensburg",
+      "cluster": "Reinigung",
+      "intent": "Reinigung mit Objekt und Termin anfragen",
+      "service": "reinigung",
+      "city": "regensburg",
+      "status": "add_offercheck_cta",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "entruempelung regensburg",
+      "cluster": "Entruempelung",
+      "intent": "Raeumung mit Menge, Zugang und Termin klaeren",
+      "service": "entruempelung",
+      "city": "regensburg",
+      "status": "add_offercheck_cta",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "gewerbereinigung regensburg",
+      "cluster": "Gewerbereinigung",
+      "intent": "gewerbliche Flaechen in Regensburg anfragen",
+      "service": "gewerbereinigung",
+      "city": "regensburg",
+      "status": "improve_internal_links",
+      "priority": "P1",
+      "metrics": null
+    },
+    {
+      "query": "bueroreinigung regensburg",
+      "cluster": "Bueroreinigung",
+      "intent": "Bueroflaechen, Turnus und Raumliste klaeren",
+      "service": "bueroreinigung",
+      "city": "regensburg",
+      "status": "improve_internal_links",
+      "priority": "P1",
+      "metrics": null
+    },
+    {
+      "query": "klaviertransport regensburg",
+      "cluster": "Klaviertransport",
+      "intent": "Instrument, Etage und Zugang klaeren",
+      "service": "klaviertransport",
+      "city": "regensburg",
+      "status": "improve_title_description",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "b2b bueroreinigung",
+      "cluster": "B2B",
+      "intent": "Firmenreinigung mit Angebot",
+      "service": "bueroreinigung",
+      "city": "duesseldorf",
+      "status": "improve_internal_links",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "diskreter service",
+      "cluster": "Diskret-Service",
+      "intent": "sensible Anfrage mit sicherem Kontaktweg",
+      "service": "diskret-service",
+      "city": "",
+      "status": "improve_content",
+      "priority": "P0",
+      "metrics": null
+    },
+    {
+      "query": "solarreinigung",
+      "cluster": "Solarreinigung/PV",
+      "intent": "PV-Flaeche, Zugang und Sicherheit klaeren",
+      "service": "solarreinigung",
+      "city": "",
+      "status": "add_offercheck_cta",
+      "priority": "P1",
+      "metrics": null
+    },
+    {
+      "query": "pv anlagen reinigung",
+      "cluster": "Solarreinigung/PV",
+      "intent": "PV-Module und Dachzugang klaeren",
+      "service": "pv-anlagen-reinigung",
+      "city": "",
+      "status": "add_offercheck_cta",
+      "priority": "P1",
+      "metrics": null
+    },
+    {
+      "query": "seniorenumzug bayern",
+      "cluster": "Seniorenumzug",
+      "intent": "Umzug im Alter ruhig abstimmen",
+      "service": "seniorenumzug",
+      "city": "bayern",
+      "status": "improve_internal_links",
+      "priority": "P1",
+      "metrics": null
+    }
+  ]
+}

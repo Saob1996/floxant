@@ -45,31 +45,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "FLOXANT Kostenrechner Regensburg & Bayern | Umzug, Reinigung, Entrümpelung",
     description:
       "Kosten für Umzug, Reinigung, Entrümpelung, Entsorgung oder Büroumzug in Regensburg und Bayern einschätzen: Service wählen, Ort, Zugang, Fotos und Budget senden.",
-    keywords: [
-      "Umzug Rechner Regensburg",
-      "Reinigung Rechner Regensburg",
-      "Entrümpelung Rechner Bayern",
-      "Entsorgung Rechner Regensburg",
-      "Büroumzug Rechner Bayern",
-      "Umzug Kosten einschätzen",
-      "Umzug Kosten Regensburg",
-      "Umzug Kosten Bayern",
-      "Reinigung Preisrahmen",
-      "Reinigung Kosten Regensburg",
-      "Kostenrechner Bayern",
-      "Preisvorschlag Umzug Reinigung",
-      "Entrümpelung Kosten Bayern",
-      "Reinigung Kosten Bayern",
-      "Angebot günstiger prüfen",
-      "Budget nennen FLOXANT",
-      "Umzugsfirma Regensburg Rechner",
-      "Reinigungsfirma Regensburg",
-      "Google Maps Umzug Regensburg",
-      "Google Maps Anfrage Regensburg",
-      "Service Regensburg Bayern",
-      "Bayern Umzug Reinigung Entrümpelung",
-      "FLOXANT Rechner",
-    ],
   });
 }
 

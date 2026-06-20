@@ -164,17 +164,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Unterhaltsreinigung Regensburg | Büro & Objekt | FLOXANT",
     description:
       "Unterhaltsreinigung in Regensburg für Büro, Praxis, Kanzlei, Treppenhaus und Gewerbe. Turnus, Fläche, Reinigungsplan, Fotos und Angebot prüfen.",
-    keywords: [
-      "Unterhaltsreinigung Regensburg",
-      "Büroreinigung Regensburg Angebot",
-      "Reinigungsplan Büro Regensburg",
-      "Reinigungskraft Büro Regensburg",
-      "Objektreinigung Regensburg",
-      "Gebäudereinigung Regensburg",
-      "Praxisreinigung Regensburg",
-      "Kanzleireinigung Regensburg",
-      "Treppenhausreinigung Regensburg",
-    ],
   });
 }
 

@@ -32,16 +32,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Plan-B-Service für Umzug, Reinigung & Übergabe | FLOXANT",
   description:
     "Ihr Umzug, Ihre Reinigung oder Übergabe wirkt unsicher? FLOXANT prüft nach Verfügbarkeit einen Plan B für Transport, Endreinigung, Entrümpelung, Entsorgung und Schlüsselübergabe.",
-  keywords: [
-    "plan b umzug",
-    "umzug backup regensburg",
-    "ersatz umzugsfirma regensburg",
-    "reinigung plan b",
-    "endreinigung kurzfristig ersatz",
-    "wohnungsuebergabe plan b",
-    "plan b reinigung duesseldorf",
-    "entsorgung kurzfristig duesseldorf",
-  ],
 });
 
 const whatsappHref =

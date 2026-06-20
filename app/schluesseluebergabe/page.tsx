@@ -71,13 +71,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Schluesseluebergabe Service mit Uebergabeprotokoll | FLOXANT",
     description:
       "Schluesseluebergabe nach Umzug, Reinigung oder Auszug: FLOXANT klaert Termin, Fotos, Uebergabepunkte und Protokoll als organisatorische Unterstuetzung.",
-    keywords: [
-      "Schluesseluebergabe Service",
-      "Uebergabeprotokoll Wohnung",
-      "Wohnungsuebergabe vorbereiten",
-      "Umzug mit Schluesseluebergabe",
-      "Endreinigung Uebergabe",
-    ],
   });
 }
 

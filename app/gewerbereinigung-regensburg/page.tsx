@@ -16,8 +16,13 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { B2BRequestPanel } from "@/components/B2BRequestPanel";
+import { BusinessTrustPanel } from "@/components/BusinessTrustPanel";
+import { CommercialCleaningScopeSelector } from "@/components/CommercialCleaningScopeSelector";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { InternationalCustomerHint } from "@/components/conversion";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { RecurringCleaningHint } from "@/components/RecurringCleaningHint";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningConversionLift } from "@/components/RegensburgCleaningConversionLift";
 import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCleaningClickDecisionPanel";
@@ -122,36 +127,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "gewerbereinigung-regensburg",
-    title: "Gewerbereinigung Regensburg | Commercial Cleaning | FLOXANT",
+    title: "Gewerbereinigung Regensburg mit Raumliste und Turnus",
     description:
-      "Gewerbereinigung Regensburg: Büroreinigung, Praxisreinigung, Hotelreinigung, Fenster, Bau, Teppich, Treppenhaus und IT-Raum nach Prüfung direkt anfragen. Deutsch oder Englisch möglich.",
-    keywords: [
-      "Gewerbereinigung Regensburg",
-      "Büroreinigung Regensburg",
-      "Praxisreinigung Regensburg",
-      "Unterhaltsreinigung Regensburg",
-      "Fensterreinigung Regensburg",
-      "Baureinigung Regensburg",
-      "Teppichreinigung Regensburg",
-      "Treppenhausreinigung Regensburg",
-      "Grundreinigung Regensburg",
-      "IT Raum Reinigung Regensburg",
-      "Reinigungsfirma Regensburg",
-      "Putzfirma Regensburg",
-      "Putzservice Regensburg",
-      "Reinigung Kosten Regensburg",
-      "Gebäudereinigung Regensburg",
-      "Reinigung Altstadt Regensburg",
-      "Reinigung Innenstadt Regensburg",
-      "Reinigung Gewerbepark Regensburg",
-      "Reinigung Neutraubling",
-      "Reinigung Lappersdorf",
-      "gewerbliche Reinigung Regensburg",
-      "Objektreinigung Regensburg",
-      "Kanzleireinigung Regensburg",
-      "Hotelreinigung Regensburg",
-      "B2B Reinigung Regensburg",
-    ],
+      "Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei oder Objekt: Flaeche, Raumliste, Turnus, Zeitfenster und Angebot klaeren.",
   });
 }
 
@@ -302,12 +280,13 @@ export default function GewerbereinigungRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[17ch] text-[clamp(2.2rem,4.4vw,4rem)] font-bold leading-[0.96] tracking-tight text-slate-950">
-                Gewerbereinigung für Büro, Hotel und Praxis in Regensburg
+                Gewerbereinigung Regensburg mit Objekt, Raumliste und Turnus
               </h1>
 
               <p className="mt-5 max-w-[56ch] text-base leading-8 text-slate-700">
-                Klare Abstimmung, feste Ansprechpartner und dokumentierter Leistungsumfang
-                für Büros, Praxen, Kanzleien, Hotels und Hausverwaltungen in Regensburg und Umgebung.
+                Beschreiben Sie Objektart, Flaeche, Raumliste, Nutzung, Turnus, Zugang,
+                Zeitfenster und Ansprechpartner. FLOXANT ordnet ein, ob Buero, Praxis,
+                Kanzlei, Hotel oder Hausverwaltung als Gewerbereinigung realistisch passt.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2.5">
@@ -318,7 +297,7 @@ export default function GewerbereinigungRegensburgPage() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a href="#kontaktformular" className="flox-button-primary px-6">
-                  Angebot anfragen
+                  Objekt und Raumliste senden
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flox-button-secondary px-6">
@@ -375,6 +354,11 @@ export default function GewerbereinigungRegensburgPage() {
         photoHref="#kontaktformular"
         offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
       />
+
+      <B2BRequestPanel city="regensburg" />
+      <CommercialCleaningScopeSelector city="regensburg" />
+      <EffortFactorsPanel group="b2b" />
+      <BusinessTrustPanel />
 
       <RegensburgCleaningServiceHub />
       <RegensburgCleaningConversionLift />
@@ -602,6 +586,9 @@ export default function GewerbereinigungRegensburgPage() {
           </div>
 
           <div id="kontaktformular" className="flox-panel rounded-[2rem] p-4 md:p-6">
+            <div className="mb-5">
+              <RecurringCleaningHint />
+            </div>
             <CommercialCleaningLeadForm />
           </div>
 

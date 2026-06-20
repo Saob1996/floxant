@@ -2,7 +2,9 @@
 
 import { company } from "@/lib/company";
 import { getCityGeoData } from "@/lib/geo-data";
+import { getGscClickPriority } from "@/lib/gsc-click-priorities";
 import { germanizeText } from "@/lib/german-text";
+import { getLanguageAlternatesForPath } from "@/lib/local-seo/hreflangMap";
 import { getDynamicLocalSeoRoute } from "@/lib/local-seo-routes";
 import { getDominanceIntent, getDominanceSnippet } from "@/lib/seo-dominance";
 import { getRouteMultilingualIntentSummary } from "@/lib/search-intent-aliases";
@@ -36,6 +38,54 @@ const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/partnercode": "/empfehlen",
   "/airbnb-reinigung-duesseldorf": "/reinigung-moeblierte-wohnung-duesseldorf",
   "/duesseldorf/b2b-reinigung": "/duesseldorf/bueroreinigung",
+  "/reinigung-duesseldorf": "/duesseldorf/reinigung",
+  "/praxisreinigung-duesseldorf": "/duesseldorf/praxisreinigung",
+  "/bueroreinigung-duesseldorf": "/duesseldorf/bueroreinigung",
+  "/hotelreinigung-duesseldorf": "/duesseldorf/hotelreinigung",
+  "/grundreinigung-duesseldorf": "/duesseldorf/grundreinigung",
+  "/wohnungsreinigung-duesseldorf": "/duesseldorf/wohnungsreinigung",
+  "/treppenhausreinigung-duesseldorf": "/duesseldorf/treppenhausreinigung",
+  "/putzfirma-duesseldorf": "/duesseldorf/putzfirma",
+  "/reinigungsfirma-duesseldorf": "/duesseldorf/reinigungsfirma",
+  "/reinigungsdienst-duesseldorf": "/duesseldorf/reinigungsdienst",
+  "/reinigungsservice-duesseldorf": "/duesseldorf/reinigung",
+  "/gewerbereinigung-duesseldorf": "/duesseldorf/gewerbereinigung",
+  "/fensterreinigung-duesseldorf": "/duesseldorf/fensterreinigung",
+  "/b2b-bueroreinigung": "/duesseldorf/bueroreinigung",
+  "/angebot-reinigungsfirma": "/reinigungsfirma-angebot",
+  "/angebot-reinigung": "/reinigungsfirma-angebot",
+  "/umzug-im-alter-bayern": "/seniorenumzug-bayern",
+  "/umzug-im-alter-erlangen": "/seniorenumzug-erlangen",
+  "/umzug-im-alter-bamberg": "/seniorenumzug-bamberg",
+  "/umzug-im-alter-wuerzburg": "/seniorenumzug-wuerzburg",
+  "/umzugshilfe-senioren-bayern": "/seniorenumzug-bayern",
+  "/umzugshilfe-senioren-erlangen": "/seniorenumzug-erlangen",
+  "/umzugshilfe-senioren-bamberg": "/seniorenumzug-bamberg",
+  "/umzugshilfe-senioren-wuerzburg": "/seniorenumzug-wuerzburg",
+  "/umzugshilfe-senioren-nuernberg": "/seniorenumzug-nuernberg",
+  "/umzugshilfe-fuer-senioren-bayern": "/seniorenumzug-bayern",
+  "/umzugshilfe-fuer-senioren-erlangen": "/seniorenumzug-erlangen",
+  "/umzugshilfe-fuer-senioren-bamberg": "/seniorenumzug-bamberg",
+  "/umzugshilfe-fuer-senioren-wuerzburg": "/seniorenumzug-wuerzburg",
+  "/umzugshilfe-fuer-senioren-nuernberg": "/seniorenumzug-nuernberg",
+  "/umzugshelfer-senioren-bayern": "/seniorenumzug-bayern",
+  "/umzugshelfer-senioren-erlangen": "/seniorenumzug-erlangen",
+  "/umzugshelfer-senioren-bamberg": "/seniorenumzug-bamberg",
+  "/umzugshelfer-senioren-wuerzburg": "/seniorenumzug-wuerzburg",
+  "/umzugshelfer-senioren-nuernberg": "/seniorenumzug-nuernberg",
+  "/umzugshelfer-fuer-senioren-bayern": "/seniorenumzug-bayern",
+  "/umzugshelfer-fuer-senioren-erlangen": "/seniorenumzug-erlangen",
+  "/umzugshelfer-fuer-senioren-bamberg": "/seniorenumzug-bamberg",
+  "/umzugshelfer-fuer-senioren-wuerzburg": "/seniorenumzug-wuerzburg",
+  "/umzugshelfer-fuer-senioren-nuernberg": "/seniorenumzug-nuernberg",
+  "/privatumzug-muenchen": "/umzug-muenchen",
+  "/umzugsunternehmen-neumarkt-idopf": "/umzug-neumarkt",
+  "/umzugsunternehmen-neumarkt-i-d-opf": "/umzug-neumarkt",
+  "/umzugsfirma-neumarkt": "/umzug-neumarkt",
+  "/umzugsunternehmen-ingolstadt": "/umzug-ingolstadt",
+  "/reinigung-nach-umzug-muenchen": "/reinigung-muenchen",
+  "/reinigung-muenchen-sofort-termin": "/reinigung-muenchen",
+  "/studentenumzug-vohenstrauss": "/umzug-vohenstrauss",
   "/angebot-red-flag-scanner": "/angebotscheck",
   "/guenstigeres-angebot-pruefen": "/angebot-guenstiger-pruefen",
   "/villenservice": "/private-client-service",
@@ -156,7 +206,7 @@ function normalizePath(path: string) {
   const withoutLocale = withoutParameters
     .replace(/^\/+/, "")
     .replace(/\/+$/, "")
-    .replace(/^(de|en|ru|bg|vi|tr|ar|fr|es|it|pl|uk)(\/|$)/, "");
+    .replace(/^(de|en|ru|bg|vi|tr|ar|fr|es|it|pl|uk|fa)(\/|$)/, "");
 
   return withoutLocale ? `/${withoutLocale}` : "";
 }
@@ -1746,6 +1796,7 @@ export function generatePageSEO({
   });
   const geo = getCityGeoData(normalizedPath);
   const localSeoRoute = getDynamicLocalSeoRoute((normalizedPath || "/").replace(/^\//, ""));
+  const gscPriority = getGscClickPriority(normalizedPath || "/");
   const geoPlacename = geo?.name || (localSeoRoute ? germanizeText(localSeoRoute.city) : company.city);
   const safeTitle = trimTitle(
     normalizeText(dominanceSnippet.title, getDefaultTitle(resolvedLocale)),
@@ -1777,14 +1828,31 @@ export function generatePageSEO({
     if (cleaned) keywordSet.add(cleaned);
   });
 
+  if (gscPriority) {
+    keywordSet.add(normalizeText(gscPriority.primaryKeyword, ""));
+    gscPriority.secondaryKeywords.forEach((keyword) => {
+      const cleaned = normalizeText(keyword, "");
+      if (cleaned) keywordSet.add(cleaned);
+    });
+    gscPriority.internalLinkAnchors.forEach((anchor) => {
+      const cleaned = normalizeText(anchor.label, "");
+      if (cleaned) keywordSet.add(cleaned);
+    });
+  }
+
   const contentTags = Array.from(keywordSet).slice(0, 28);
+  const languages = Object.fromEntries(
+    getLanguageAlternatesForPath(canonicalPath || normalizedPath || "/").map((alternate) => [
+      alternate.hreflang,
+      alternate.path,
+    ]),
+  );
 
   return {
     metadataBase: new URL(BASE_URL),
     applicationName: company.name,
     title: safeTitle,
     description: safeDescription,
-    keywords: contentTags,
     authors: [{ name: company.name, url: BASE_URL }],
     creator: company.name,
     publisher: company.name,
@@ -1813,10 +1881,7 @@ export function generatePageSEO({
     },
     alternates: {
       canonical,
-      languages: {
-        "de-DE": canonical,
-        "x-default": canonical,
-      },
+      languages,
     },
     robots: {
       index: indexable,
@@ -1832,16 +1897,16 @@ export function generatePageSEO({
     openGraph: {
       type: "website",
       url: canonical,
-      title: safeTitle,
-      description: safeDescription,
+      title: gscPriority?.openGraphTitle || safeTitle,
+      description: gscPriority?.openGraphDescription || safeDescription,
       siteName: company.name,
       locale: getOgLocale(resolvedLocale),
       images: [{ url: socialImage, width: 1200, height: 630, alt: safeTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title: safeTitle,
-      description: safeDescription,
+      title: gscPriority?.openGraphTitle || safeTitle,
+      description: gscPriority?.openGraphDescription || safeDescription,
       images: [socialImage],
     },
     other: {
@@ -1981,6 +2046,18 @@ export function generatePageSEO({
       "long-tail-intents": searchIntentTags.longTail.join(", "),
       "local-problem-intents": searchIntentTags.localTriggers.join(" | "),
       "price-intent-signals": searchIntentTags.priceSignals.join(" | "),
+      ...(gscPriority
+        ? {
+            "gsc-priority": gscPriority.priority,
+            "gsc-primary-keyword": gscPriority.primaryKeyword,
+            "gsc-secondary-keywords": gscPriority.secondaryKeywords.join(", "),
+            "gsc-jsonld-types": gscPriority.jsonLdTypes.join(", "),
+            "gsc-page-h1": gscPriority.h1,
+            "gsc-internal-anchors": gscPriority.internalLinkAnchors
+              .map((anchor) => `${anchor.label} -> ${anchor.href}`)
+              .join(" | "),
+          }
+        : {}),
     },
   };
 }

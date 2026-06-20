@@ -36,13 +36,6 @@ export const metadata: Metadata = generatePageSEO({
   title: "Mieterwechsel-Service Regensburg – Räumung, Reinigung & Übergabe | FLOXANT",
   description:
     "FLOXANT unterstützt Vermieter, Hausverwaltungen und Makler beim Mieterwechsel: Räumung, Entsorgung, Endreinigung, Schlüsselkoordination und Übergabevorbereitung im Raum Regensburg.",
-  keywords: [
-    "Mieterwechsel Service Regensburg",
-    "Hausverwaltung Reinigung Regensburg",
-    "Wohnung nach Auszug reinigen Regensburg",
-    "Räumung und Reinigung nach Auszug",
-    "Wohnungsübergabe vorbereiten Regensburg",
-  ],
 });
 
 const whatsappHref =

@@ -38,7 +38,7 @@ export function SignatureServicesGrid({
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {visibleServices.map((service) => (
             <Link
-              key={service.href}
+              key={`${service.href}-${service.title}`}
               href={service.href}
               className="group rounded-lg border border-white/12 bg-white/[0.06] p-5 transition hover:-translate-y-0.5 hover:border-cyan-200/45 hover:bg-white/[0.09]"
             >

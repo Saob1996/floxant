@@ -1,9 +1,15 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { InternationalCustomerHint } from "@/components/conversion";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
@@ -93,6 +99,18 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                     photoHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
                     offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
                 />
+                <ServicePackageSelector groups="entruempelung" limit={4} />
+                <EffortFactorsPanel group="entruempelung" limit={6} />
+                <TrustProofPanel
+                    allowedPage="/entruempelung-regensburg"
+                    serviceKey="entruempelung"
+                    locationKey="regensburg"
+                    title="Entruempelung Regensburg mit klaren Grenzen."
+                    intro="Menge, Material, Zugang, Fotos, Freigabe und Endzustand werden sichtbar eingeordnet. Entsorgung, Preis und Termin bleiben pruefpflichtig."
+                />
+                <ServiceProofChecklist serviceKey="entruempelung" />
+                <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
+                <LocalProofPanel location="regensburg" />
                 <GscOpportunitySection
                     eyebrow="Entrümpelung Regensburg richtig starten"
                     title="Wohnung, Keller, Gewerbefläche oder Nachlass: erst klären, dann räumen."

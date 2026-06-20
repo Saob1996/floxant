@@ -30,7 +30,7 @@ export function SearchIntentExpansion({
   const groups = [
     {
       title: "Anliegen kurz schildern",
-      text: "Sie müssen nicht wissen, wie die Leistung fachlich heißt. Beschreiben Sie einfach, was vor Ort passieren soll und bis wann eine Rückmeldung hilft.",
+      text: "Sie müssen die Fachbegriffe nicht kennen. Wichtig ist, was vor Ort passieren soll und bis wann eine Rückmeldung hilft.",
       Icon: SearchCheck,
       items: [
         `${localLabel} unverbindlich anfragen`,
@@ -41,7 +41,7 @@ export function SearchIntentExpansion({
     },
     {
       title: "Aus welchem Anlass?",
-      text: "Oft beginnt die Anfrage mit einem konkreten Moment: Auszug, Übergabe, Terminnot, Leerstand, laufende Reinigung oder einem Angebot, das geprüft werden soll.",
+      text: "Viele Anfragen entstehen durch Auszug, Übergabe, Terminnot, Leerstand oder ein vorhandenes Angebot.",
       Icon: ListChecks,
       items: [
         "Auszug, Übergabe oder Mieterwechsel vorbereiten",
@@ -52,7 +52,7 @@ export function SearchIntentExpansion({
     },
     {
       title: "Ort, Zugang und Fotos",
-      text: "Adresse, Etage, Laufweg, Parken, Schlüsselweg und Zeitfenster entscheiden oft darüber, ob ein Einsatz sinnvoll geplant werden kann.",
+      text: "Adresse, Etage, Laufweg, Parken, Schlüsselweg und Zeitfenster entscheiden oft über die Planung.",
       Icon: MapPin,
       items: [
         "Stadtteil, Straße oder PLZ senden",
@@ -63,7 +63,7 @@ export function SearchIntentExpansion({
     },
     {
       title: "Budget oder Angebot",
-      text: "Ein Preisrahmen wird erst hilfreich, wenn Umfang, Zustand, Zugang, Termin und gewünschtes Ergebnis zusammen betrachtet werden.",
+      text: "Ein Preisrahmen wird hilfreich, wenn Umfang, Zustand, Zugang, Termin und Ergebnis zusammen betrachtet werden.",
       Icon: Banknote,
       items: [
         "Fläche, Räume, Volumen oder Menge grob angeben",
@@ -98,12 +98,12 @@ export function SearchIntentExpansion({
             return (
               <article
                 key={group.title}
-                className="flex min-h-[22rem] min-w-0 flex-col rounded-[1rem] border border-slate-200 bg-white p-6 shadow-[0_20px_56px_rgba(15,23,42,0.07)]"
+                className="flex min-h-[22rem] min-w-0 flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-[0_20px_56px_rgba(15,23,42,0.07)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] border border-blue-100 bg-blue-50 text-blue-700">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 text-blue-700">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-xl font-bold tracking-tight text-slate-950">
+                <h3 className="mt-5 text-xl font-bold tracking-normal text-slate-950">
                   {group.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{group.text}</p>
@@ -120,20 +120,25 @@ export function SearchIntentExpansion({
           })}
         </div>
 
-        <div className="mt-5 grid gap-4 rounded-[1.8rem] border border-blue-100 bg-[linear-gradient(135deg,#eff6ff,#ffffff)] p-5 shadow-sm shadow-slate-950/5 md:grid-cols-1 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
-          <p className="max-w-3xl text-sm leading-7 text-slate-700">
-            Am schnellsten wird es klar, wenn Sie den Weg wählen, der gerade zu Ihrer Situation
-            passt: Anfrage senden, Budget nennen, Angebot prüfen oder Fotos per WhatsApp schicken.
-          </p>
-          <div className="flex flex-wrap gap-2 xl:justify-end">
+        <div className="mt-5 grid gap-5 rounded-lg border border-blue-100 bg-[linear-gradient(135deg,#eff6ff,#ffffff)] p-5 shadow-sm shadow-slate-950/5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:items-center">
+          <div className="min-w-0">
+            <p className="text-xs font-black uppercase tracking-normal text-blue-700">
+              Passenden Start wählen
+            </p>
+            <p className="mt-2 max-w-2xl text-sm font-semibold leading-7 text-slate-700">
+              Für eine gute Rückmeldung reichen wenige klare Angaben. Wählen Sie den Weg, der zu
+              Ihrem Fall passt: Anfrage, Budget, Angebotsprüfung oder Fotos per WhatsApp.
+            </p>
+          </div>
+          <div className="grid min-w-0 gap-2 sm:grid-cols-2 xl:grid-cols-3">
             {profile.links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-xs font-black text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
+                className="inline-flex min-h-11 min-w-0 items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-4 text-xs font-black leading-5 text-slate-800 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
               >
-                {link.label}
-                <ArrowRight className="h-3.5 w-3.5 text-blue-700" />
+                <span className="min-w-0">{link.label}</span>
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-blue-700" />
               </Link>
             ))}
           </div>

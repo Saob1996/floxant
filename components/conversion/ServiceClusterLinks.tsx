@@ -32,7 +32,7 @@ export function ServiceClusterLinks({
         <div className="grid gap-3 sm:grid-cols-2">
           {links.map((link) => (
             <Link
-              key={link.href}
+              key={`${link.href}-${link.title}`}
               href={link.href}
               className="group rounded-lg border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-sm"
             >

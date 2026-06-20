@@ -11,6 +11,9 @@ import {
 import { PillarServicePage } from "@/components/PillarServicePage";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { ServiceFitGuide } from "@/components/ServiceFitGuide";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -27,15 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Entrümpelung Regensburg | Räumung & Entsorgung Bayern",
     description:
       "Entrümpelung, Wohnungsauflösung und Entsorgung in Regensburg und Bayern. FLOXANT prüft Volumen, Zugang, Material und Übergabezustand.",
-    keywords: [
-      "Entrümpelung Regensburg",
-      "Wohnungsauflösung Regensburg",
-      "Entsorgung Regensburg",
-      "Keller entrümpeln Regensburg",
-      "Räumung Bayern",
-      "Entrümpelung Kosten Regensburg",
-      "Besenreine Übergabe",
-    ],
   });
 }
 
@@ -182,6 +176,13 @@ export default async function EntruempelungPillarPage() {
           { href: "/entruempelung-landshut", label: "Entrümpelung Landshut" },
           { href: "/entruempelung-passau", label: "Entrümpelung Passau" },
         ]}
+      />
+      <ServicePackageSelector groups="entruempelung" limit={7} />
+      <EffortFactorsPanel group="entruempelung" />
+      <ServiceFitGuide
+        group="entruempelung"
+        title="Welche Raeumung passt zum Zielzustand?"
+        intro="Keller, Wohnung, Nachlass, Buero oder diskreter Fall brauchen unterschiedliche Angaben zu Menge, Freigabe, Zugang und Reinigung danach."
       />
       <GscOpportunitySection
         eyebrow="Entrümpelung verständlich anfragen"

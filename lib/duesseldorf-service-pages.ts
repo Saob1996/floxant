@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type DuesseldorfServicePageConfig = {
   slug: string;
   path: string;
@@ -44,6 +46,10 @@ const commonBoundary =
   "Düsseldorf ist bei FLOXANT ein eigener Standortbereich für Reinigung und Entsorgung. Umzug, Transport und ähnliche Umzugsleistungen werden in Düsseldorf nicht beworben und nicht mit Regensburg vermischt.";
 
 const commonLinks = [
+  { href: "/duesseldorf/reinigungsfirma", label: "Reinigungsfirma Düsseldorf" },
+  { href: "/duesseldorf/reinigungsdienst", label: "Reinigungsdienst Düsseldorf" },
+  { href: "/duesseldorf/haushaltsreinigung", label: "Haushaltsreinigung Düsseldorf" },
+  { href: "/duesseldorf/geruchsneutralisation", label: "Geruchsneutralisation Düsseldorf" },
   { href: "/duesseldorf/kurzfristige-reinigung", label: "Kurzfristige Reinigung prüfen" },
   { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung-Reinigung planen" },
   { href: "/duesseldorf/schluesseluebergabe-reinigung", label: "Schlüsselübergabe-Reinigung anfragen" },
@@ -53,6 +59,8 @@ const commonLinks = [
   { href: "/duesseldorf/reinigungskraft-buero", label: "Reinigungskraft fürs Büro planen" },
   { href: "/duesseldorf/unterhaltsreinigung", label: "Unterhaltsreinigung planen" },
   { href: "/duesseldorf/gebaeudereinigung", label: "Gebäudereinigung prüfen" },
+  { href: "/duesseldorf/gewerbeflaechen-reinigung", label: "Gewerbeflächen reinigen lassen" },
+  { href: "/duesseldorf/reinigung-heerdt", label: "Reinigung Düsseldorf-Heerdt" },
   { href: "/duesseldorf/objektreinigung", label: "Objektreinigung planen" },
   { href: "/duesseldorf/b2b-reinigung", label: "Firmenreinigung planen" },
   { href: "/duesseldorf/firmenreinigung", label: "Firmenreinigung einschätzen" },
@@ -69,6 +77,11 @@ const commonLinks = [
   { href: "/duesseldorf/sonderreinigung", label: "Sonderreinigung prüfen" },
   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+  { href: "/duesseldorf/angebot-vergleichen", label: "Angebotsprüfung Düsseldorf" },
+  { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot vergleichen" },
+  { href: "/reinigungsfirma-angebot", label: "Neues Reinigungsangebot anfragen" },
+  { href: "/angebot-pruefen", label: "Angebot zentral prüfen" },
+  { href: "/region-duesseldorf", label: "Region Düsseldorf" },
   { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung anfragen" },
   { href: "/duesseldorf/endreinigung", label: "Endreinigung vorbereiten" },
   { href: "/duesseldorf/grundreinigung", label: "Grundreinigung einschätzen" },
@@ -96,12 +109,209 @@ function faq(service: string, detail: string) {
 }
 
 export const duesseldorfServicePages = {
+  reinigungsfirma: {
+    slug: "reinigungsfirma",
+    path: "/duesseldorf/reinigungsfirma",
+    metaTitle: "Reinigungsfirma Düsseldorf | Büro, Praxis & Angebot prüfen | FLOXANT",
+    metaDescription:
+      "Reinigungsfirma Düsseldorf gesucht? FLOXANT prüft Büro, Praxis, Gewerbe, Grundreinigung und vorhandene Angebote per WhatsApp oder Formular.",
+    kicker: "FLOXANT Reinigungsfirma Düsseldorf",
+    title: "Reinigungsfirma Düsseldorf für Büro, Praxis, Gewerbe und Grundreinigung",
+    description:
+      "Für Kunden, die eine Reinigungsfirma in Düsseldorf suchen und schnell klären möchten, ob Büroreinigung, Gewerbereinigung, Praxisreinigung, Kanzleireinigung, Grundreinigung oder Angebotsprüfung der passende nächste Schritt ist.",
+    serviceLabel: "Reinigungsfirma",
+    contentSections: [
+      {
+        title: "Reinigungsfirma Düsseldorf: nicht nur ein Name, sondern der passende Ablauf",
+        paragraphs: [
+          "Wer nach Reinigungsfirma Düsseldorf sucht, meint oft sehr unterschiedliche Situationen: ein Büro in Stadtmitte, eine Praxis in Pempelfort, eine Kanzlei in Carlstadt, eine Ladenfläche in Flingern, eine Grundreinigung nach Leerstand oder ein bestehendes Reinigungsangebot, das schwer vergleichbar ist.",
+          "FLOXANT fragt deshalb zuerst nach Objektart, Stadtteil, Fläche, Turnus, Zeitfenster, Zugang, Fotos und Preisrahmen. So wird aus einer allgemeinen Suche nach Reinigungsfirma eine konkrete Düsseldorfer Anfrage, die zu Büroreinigung, Gewerbereinigung, Praxisreinigung, Grundreinigung oder Angebotsprüfung geführt werden kann.",
+        ],
+      },
+      {
+        title: "Lokal vertrauensbildend statt austauschbarer Pauschaltext",
+        paragraphs: [
+          "Düsseldorf ist dicht, unterschiedlich und oft zeitkritisch: Innenstadtlagen, Oberkassel, Bilk, Derendorf, MedienHafen, Neuss oder Ratingen verändern Anfahrt, Parkmöglichkeit, Zugang und Reinigungsfenster. Genau diese Punkte gehören in die Anfrage, bevor ein seriöser Preisrahmen entsteht.",
+          "FLOXANT verspricht keine blinde Unterbietung und keine pauschale Sofortzusage. Ein vorhandenes Angebot, Fotos oder ein Budget helfen aber, Umfang, Zusatzpositionen und offene Punkte schneller einzuordnen. Das schafft mehr Vertrauen als ein Standardpreis ohne Objektbezug.",
+        ],
+      },
+    ],
+    bullets: [
+      "Zentraler Einstieg für Reinigungsfirma Düsseldorf mit klarer Zuordnung zu Büro, Praxis, Kanzlei, Gewerbe, Grundreinigung und Angebotsprüfung.",
+      "Geeignet für Firmen, Praxen, Kanzleien, Studios, Ladenflächen, Hausverwaltungen und private Objektfälle nach Prüfung.",
+      "Keine Preisgarantie, keine medizinische Spezialdesinfektion, keine Personalvermittlung und keine Vermischung mit Regensburg- oder Bayern-Umzugsseiten.",
+    ],
+    localFocus: [
+      "Altstadt",
+      "Stadtmitte",
+      "Pempelfort",
+      "Bilk",
+      "Derendorf",
+      "Oberkassel",
+      "MedienHafen",
+      "Neuss",
+      "Ratingen",
+      "Meerbusch",
+    ],
+    priceLogic: [
+      "Objektart, Fläche, Nutzung, Turnus, Zustand, Sanitär, Küche, Boden, Zugang, Parkmöglichkeit und Zeitfenster bestimmen den Aufwand.",
+      "Ein vorhandenes Reinigungsangebot wird erst vergleichbar, wenn Leistungsumfang, Zusatzkosten, Fotos und gewünschter Turnus bekannt sind.",
+      "Düsseldorfer Stadtteil und nahe Umgebung beeinflussen Anfahrt, Schlüsselweg, Ladezone, Hausordnung und realistische Terminfenster.",
+    ],
+    faqItems: [
+      {
+        q: "Welche Reinigungsfirma in Düsseldorf passt für Büro, Praxis oder Gewerbe?",
+        a: "FLOXANT passt, wenn Objektart, Stadtteil, Fläche, Turnus, Zugang, Fotos und gewünschtes Ergebnis klar beschrieben werden können. Danach wird die Anfrage zu Büroreinigung, Gewerbereinigung, Praxisreinigung, Kanzleireinigung, Grundreinigung oder Angebotsprüfung geführt.",
+      },
+      {
+        q: "Was kostet eine Reinigungsfirma in Düsseldorf?",
+        a: "Ein seriöser Preisrahmen hängt von Fläche, Zustand, Turnus, Sanitär, Küche, Boden, Zeitfenster, Zugang, Fotos und gewünschtem Ergebnis ab. FLOXANT prüft lieber realistisch, statt einen Pauschalpreis ohne Objektbezug zu nennen.",
+      },
+      {
+        q: "Kann FLOXANT ein bestehendes Reinigungsangebot vergleichen?",
+        a: "Ja. Senden Sie Angebot, Leistungsumfang, Turnus, Preis, Zusatzpositionen, Objektart, Stadtteil und Fotos. FLOXANT prüft sachlich, ob Angaben fehlen und ob eine passende Alternative möglich ist; ohne Unterbietungsgarantie.",
+      },
+      {
+        q: "Welche Düsseldorfer Bereiche sind relevant?",
+        a: "Der Schwerpunkt liegt auf Düsseldorf mit Altstadt, Stadtmitte, Pempelfort, Bilk, Derendorf, Oberkassel, MedienHafen und nahen Orten wie Neuss, Ratingen und Meerbusch nach Machbarkeit.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
+      { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
+      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+      { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf" },
+      { href: "/duesseldorf/kanzleireinigung", label: "Kanzleireinigung Düsseldorf" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot prüfen" },
+      { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Düsseldorf Stadtteile und Umgebung" },
+    ],
+    boundaryText:
+      "Diese Seite priorisiert Reinigung in Düsseldorf. FLOXANT trennt Düsseldorf-Reinigung bewusst von Regensburg, Bayern-Umzug und nicht strategischen Nebenstadt-Signalen. Entscheidend sind Objektart, Stadtteil, Fläche, Fotos, Turnus und Angebot.",
+    customerIntentItems: [
+      {
+        searchPhrase: "Reinigungsfirma Düsseldorf",
+        title: "Zentraler Einstieg für lokale Reinigungsanfragen",
+        answer:
+          "FLOXANT ordnet Büro, Praxis, Gewerbe, Kanzlei, Wohnung oder Grundreinigung nach Stadtteil, Fläche, Turnus, Fotos und Budget sauber ein.",
+        href: "#kontakt",
+        cta: "Reinigungsfirma anfragen",
+        signal: "Reinigungsfirma",
+      },
+      {
+        searchPhrase: "Gewerbereinigung Düsseldorf",
+        title: "Gewerbeflächen nach Nutzung prüfen",
+        answer:
+          "Für Laden, Studio, Objekt, Büro oder Kanzlei zählen Nutzung, Publikumsverkehr, Sanitär, Boden, Zeitfenster und Zugang.",
+        href: "/duesseldorf/gewerbereinigung",
+        cta: "Gewerbereinigung öffnen",
+        signal: "Gewerbereinigung",
+      },
+      {
+        searchPhrase: "Büroreinigung Düsseldorf",
+        title: "Büro mit Raumliste und Turnus anfragen",
+        answer:
+          "Büroreinigung wird mit Arbeitsplätzen, Küche, Sanitär, Besprechungsräumen, Randzeit, Schlüsselweg und Ansprechpartner planbar.",
+        href: "/duesseldorf/bueroreinigung",
+        cta: "Büroreinigung prüfen",
+        signal: "Büroreinigung",
+      },
+      {
+        searchPhrase: "Praxisreinigung Düsseldorf",
+        title: "Praxisflächen mit klaren Grenzen",
+        answer:
+          "Allgemeine Praxisflächen werden nach Empfang, Wartebereich, Sanitär, Nebenräumen, Öffnungszeiten und gewünschtem Turnus geprüft.",
+        href: "/duesseldorf/praxisreinigung",
+        cta: "Praxisreinigung prüfen",
+        signal: "Praxisreinigung",
+      },
+      {
+        searchPhrase: "Grundreinigung Düsseldorf",
+        title: "Stärkere Verschmutzung realistisch einordnen",
+        answer:
+          "Bei Grundreinigung zählen Zustand, Material, Fotos, Kalk, Fett, Laufspuren, Küche, Bad, Boden und gewünschtes Ergebnis.",
+        href: "/duesseldorf/grundreinigung",
+        cta: "Grundreinigung prüfen",
+        signal: "Grundreinigung",
+      },
+      {
+        searchPhrase: "Reinigungsangebot prüfen",
+        title: "Vorhandenes Angebot sachlich vergleichen",
+        answer:
+          "Angebot, Preis, Umfang, Turnus, Zusatzpositionen, Fotos und Objektangaben helfen, eine zweite Einschätzung zu bekommen.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Angebot prüfen",
+        signal: "Angebotsprüfung",
+      },
+    ],
+    requestFieldItems: [
+      {
+        field: "Ort",
+        title: "Düsseldorfer Stadtteil oder nahe Umgebung",
+        text: "Altstadt, Stadtmitte, Pempelfort, Bilk, Derendorf, Oberkassel, MedienHafen, Neuss, Ratingen oder Meerbusch nennen.",
+      },
+      {
+        field: "Objekt",
+        title: "Büro, Praxis, Kanzlei, Gewerbe oder Wohnung?",
+        text: "Objektart, Nutzung, Fläche, Räume, Sanitär, Küche, Boden und Ansprechpartner kurz beschreiben.",
+      },
+      {
+        field: "Turnus",
+        title: "Einmalig, regelmäßig oder Grundreinigung?",
+        text: "Gewünschte Häufigkeit, Zeitfenster, Randzeit, Schlüsselweg und Deadline angeben.",
+      },
+      {
+        field: "Fotos",
+        title: "Zustand sichtbar machen",
+        text: "Fotos von Fläche, Boden, Küche, Sanitär, Eingang, Zugang und Problemstellen sparen Rückfragen.",
+      },
+      {
+        field: "Angebot",
+        title: "Vorhandenes Reinigungsangebot mitsenden",
+        text: "Preis, Leistungsumfang, Turnus, Zusatzkosten und offene Punkte helfen beim Vergleich.",
+      },
+      {
+        field: "Budget",
+        title: "Preisrahmen ehrlich nennen",
+        text: "Ein Budget ist keine Zusage, aber es macht die Machbarkeitsprüfung schneller und realistischer.",
+      },
+    ],
+    snippetAnswerItems: [
+      {
+        query: "Welche Reinigungsfirma in Düsseldorf passt für Büro oder Gewerbe?",
+        title: "FLOXANT prüft nach Objekt und Stadtteil",
+        answer:
+          "FLOXANT ordnet Reinigungsfirma-Anfragen in Düsseldorf nach Büro, Praxis, Kanzlei, Gewerbe, Grundreinigung oder Angebotsprüfung ein. Wichtig sind Stadtteil, Fläche, Turnus, Zugang und Fotos.",
+        href: "#kontakt",
+        cta: "Reinigungsfirma anfragen",
+        signals: ["Reinigungsfirma Düsseldorf", "Gewerbereinigung Düsseldorf", "Büroreinigung Düsseldorf"],
+      },
+      {
+        query: "Was kostet eine Reinigungsfirma in Düsseldorf?",
+        title: "Preisrahmen mit Fläche, Zustand und Turnus",
+        answer:
+          "Kosten hängen von Objektart, Fläche, Zustand, Turnus, Sanitär, Küche, Boden, Zugang, Zeitfenster, Fotos und gewünschtem Ergebnis ab.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Kosten und Angebot prüfen",
+        signals: ["Reinigungsfirma Düsseldorf Kosten", "Angebot Reinigung Düsseldorf"],
+      },
+      {
+        query: "Kann ich ein Reinigungsangebot vergleichen lassen?",
+        title: "Angebot mit gleichem Umfang prüfen",
+        answer:
+          "Ein Reinigungsangebot wird vergleichbar, wenn Umfang, Fläche, Turnus, Zusatzpositionen, Zeitfenster, Zugang und Fotos vorliegen. FLOXANT prüft ohne Unterbietungsgarantie.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Reinigungsangebot prüfen",
+        signals: ["Reinigungsangebot prüfen", "Reinigungsangebot vergleichen", "Angebot Reinigung vergleichen"],
+      },
+    ],
+  },
   putzfirma: {
     slug: "putzfirma",
     path: "/duesseldorf/putzfirma",
-    metaTitle: "Putzfirma Düsseldorf | Wohnung, Büro & Kosten | FLOXANT",
+    metaTitle: "Putzfirma Düsseldorf | Wohnung, Büro, Praxis & Angebot | FLOXANT",
     metaDescription:
-      "Putzfirma Düsseldorf gesucht? FLOXANT prüft Wohnung, Büro, Auszug, Übergabe und Kosten mit Stadtteil, Fotos, Termin und WhatsApp.",
+      "Zuverlässige Putzfirma Düsseldorf gesucht? FLOXANT prüft Wohnung, Büro, Praxis, Auszug und Angebote mit Stadtteil, Fotos und WhatsApp.",
     kicker: "FLOXANT Putzfirma Düsseldorf",
     title: "Putzfirma in Düsseldorf, wenn es schnell verständlich sein soll",
     description:
@@ -111,8 +321,8 @@ export const duesseldorfServicePages = {
       {
         title: "Kunden suchen selten nach Fachsprache",
         paragraphs: [
-          "Viele schreiben nicht Unterhaltsreinigung, Baufeinreinigung oder Objektreinigung. Sie suchen nach Putzfirma Düsseldorf, Putzservice in der Nähe oder Reinigungskraft für Wohnung und Büro. Diese Seite holt genau diese Alltagssprache ab und führt die Anfrage trotzdem sauber zur passenden Leistung.",
-          "Wichtig sind Stadtteil oder PLZ, Objektart, Fläche, Zustand, Termin, Fotos und ein realistischer Preisrahmen. Daraus lässt sich erkennen, ob Wohnungsreinigung, Büroreinigung, Endreinigung, Grundreinigung, Sonderreinigung oder eine andere Düsseldorfer Reinigungsseite besser passt.",
+          "Viele schreiben nicht Unterhaltsreinigung, Baufeinreinigung oder Objektreinigung. Sie suchen nach Putzfirma Düsseldorf, zuverlässige Putzfirma in Düsseldorf oder Putzfirma für Wohnung, Büro und Praxis. Diese Seite holt genau diese Alltagssprache ab und führt die Anfrage trotzdem sauber zur passenden Leistung.",
+          "Wichtig sind Stadtteil oder PLZ, Objektart, Fläche, Zustand, Termin, Fotos und ein realistischer Preisrahmen. Daraus lässt sich erkennen, ob Wohnungsreinigung, Büroreinigung, Praxisreinigung, Endreinigung, Grundreinigung, Sonderreinigung oder eine andere Düsseldorfer Reinigungsseite besser passt.",
         ],
       },
       {
@@ -125,7 +335,7 @@ export const duesseldorfServicePages = {
     ],
     bullets: [
       "Alltagsnaher Startpunkt für Putzfirma, Putzservice, Reinigungsfirma, Reinigungskosten und schnelle WhatsApp-Anfrage in Düsseldorf.",
-      "Geeignet für Wohnung, Büro, Auszug, Übergabe, Grundreinigung, Treppenhaus, Keller, Laden und kleine Objektflächen nach Prüfung.",
+      "Geeignet für Wohnung, Büro, Praxis, Auszug, Übergabe, Grundreinigung, Treppenhaus, Keller, Laden und kleine Objektflächen nach Prüfung.",
       "Keine Personalvermittlung, keine Haushaltshilfe-Vermittlung, keine Umzugsleistung und keine Preisgarantie ohne Fotos und Umfang.",
     ],
     localFocus: ["Altstadt", "Stadtmitte", "Pempelfort", "Bilk", "Oberkassel", "Neuss"],
@@ -148,6 +358,14 @@ export const duesseldorfServicePages = {
         a: "Ja. Fotos von Küche, Bad, Boden, Bürofläche, Treppenhaus, Keller, Zugang oder Problemstellen helfen sehr und verkürzen Rückfragen.",
       },
       {
+        q: "Passt FLOXANT für Wohnung, Büro und Praxis?",
+        a: "Ja, wenn Objektart, Stadtteil, Fläche, Zustand, Zugang, Zeitfenster und Fotos vorliegen. Wohnung, Büro und Praxis werden fachlich getrennt eingeordnet, damit die passende Reinigungsseite und der richtige Umfang gewählt werden.",
+      },
+      {
+        q: "Kann ich ein Putzfirma-Angebot vergleichen lassen?",
+        a: "Ja. Senden Sie Angebot, Umfang, Turnus, Fläche, Stadtteil, Fotos und offene Zusatzpositionen. FLOXANT prüft sachlich, ohne einen niedrigeren Preis zu garantieren.",
+      },
+      {
         q: "Vermittelt FLOXANT einzelne Reinigungskräfte?",
         a: "Nein. FLOXANT prüft Reinigungsaufträge und passende Abläufe. Es wird keine private Haushaltshilfe oder einzelne Reinigungskraft als Personalvermittlung angeboten.",
       },
@@ -156,8 +374,10 @@ export const duesseldorfServicePages = {
       { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
       { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung prüfen" },
       { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung prüfen" },
+      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung abklären" },
+      { href: "/duesseldorf/reinigungsfirma", label: "Reinigungsfirma Düsseldorf" },
       { href: "/duesseldorf/reinigungskraft-buero", label: "Reinigungskraft Büro richtig anfragen" },
-      { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Putzfirma-Angebot vergleichen" },
       { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Stadtteil und Umgebung prüfen" },
     ],
     boundaryText:
@@ -173,11 +393,29 @@ export const duesseldorfServicePages = {
         signal: "Putzfirma",
       },
       {
+        searchPhrase: "Zuverlässige Putzfirma Düsseldorf",
+        title: "Zuverlässigkeit beginnt mit klaren Angaben",
+        answer:
+          "FLOXANT prüft Ort, Objekt, Fläche, Zustand, Zeitfenster, Zugang und Fotos, bevor ein Reinigungsauftrag zugesagt wird.",
+        href: "#anfrage-checkliste",
+        cta: "Eckdaten senden",
+        signal: "Zuverlässige Putzfirma",
+      },
+      {
+        searchPhrase: "Putzfirma für Wohnung Büro Praxis Düsseldorf",
+        title: "Wohnung, Büro und Praxis getrennt einordnen",
+        answer:
+          "Wohnung, Büro und Praxis haben unterschiedliche Abläufe. FLOXANT führt die Anfrage je nach Objekt zu Wohnungsreinigung, Büroreinigung oder Praxisreinigung.",
+        href: "/duesseldorf/reinigungsfirma",
+        cta: "Leistung wählen",
+        signal: "Wohnung Büro Praxis",
+      },
+      {
         searchPhrase: "Putzservice Düsseldorf Kosten",
         title: "Kosten nicht ohne Zustand raten",
         answer:
           "Kosten hängen von Fläche, Küche, Bad, Boden, Sanitär, Zugang, Zeitfenster, Zustand und gewünschtem Ergebnis ab.",
-        href: "/duesseldorf/vielleicht-guenstiger",
+        href: "/angebot-vergleichen-duesseldorf",
         cta: "Kosten prüfen",
         signal: "Putzservice Kosten",
       },
@@ -242,7 +480,7 @@ export const duesseldorfServicePages = {
         title: "Preisrahmen mit Fläche und Zustand",
         answer:
           "Ein Putzservice-Preis hängt von Fläche, Zustand, Küche, Bad, Sanitär, Boden, Zugang, Zeitfenster und gewünschtem Ergebnis ab. Fotos und Budget helfen.",
-        href: "/duesseldorf/vielleicht-guenstiger",
+        href: "/angebot-vergleichen-duesseldorf",
         cta: "Preisrahmen prüfen",
         signals: ["Putzservice Düsseldorf Kosten", "Putzfirma Preis Düsseldorf"],
       },
@@ -254,6 +492,19 @@ export const duesseldorfServicePages = {
         href: "#kontakt",
         cta: "WhatsApp öffnen",
         signals: ["Putzfirma WhatsApp Düsseldorf", "Reinigung Fotos senden"],
+      },
+      {
+        query: "Welche zuverlässige Putzfirma in Düsseldorf passt für Wohnung, Büro oder Praxis?",
+        title: "FLOXANT ordnet den Objektfall vorab ein",
+        answer:
+          "Für Wohnung, Büro oder Praxis zählen Stadtteil, Fläche, Zustand, Zugang, Turnus, Zeitfenster und Fotos. Danach wird die passende Düsseldorfer Reinigungsleistung geprüft.",
+        href: "#kontakt",
+        cta: "Putzfirma anfragen",
+        signals: [
+          "zuverlässige Putzfirma Düsseldorf",
+          "Putzfirma für Wohnung Büro Praxis Düsseldorf",
+          "Reinigungsfirma Düsseldorf",
+        ],
       },
     ],
   },
@@ -1245,9 +1496,9 @@ export const duesseldorfServicePages = {
   gebaeudereinigung: {
     slug: "gebaeudereinigung",
     path: "/duesseldorf/gebaeudereinigung",
-    metaTitle: "Gebäudereinigung Düsseldorf | Objekt, Büro & Haus | FLOXANT",
+    metaTitle: "Gebäudereinigung Düsseldorf Heerdt | Objekt & Angebot | FLOXANT",
     metaDescription:
-      "Gebäudereinigung Düsseldorf für Objekt, Büro, Treppenhaus, Empfang, Sanitär und Nebenflächen. Raumliste, Turnus, Fotos und Zugang senden.",
+      "Gebäudereinigung Düsseldorf Heerdt und Umgebung: Objekt, Büro, Treppenhaus, Hauseingang, Gewerbeflächen und Angebot mit Fotos prüfen.",
     kicker: "FLOXANT Gebäudereinigung Düsseldorf",
     title: "Gebäudereinigung in Düsseldorf",
     description:
@@ -1264,7 +1515,7 @@ export const duesseldorfServicePages = {
       {
         title: "Für Eigentümer, Verwaltungen und Firmen verständlich geplant",
         paragraphs: [
-          "In Düsseldorf unterscheiden sich Objekte stark: kleine Bürohäuser in Stadtmitte, Praxen in Pempelfort, Kanzleien in Derendorf, Treppenhäuser in Bilk oder Gewerbeflächen Richtung Neuss und Ratingen. Entscheidend sind nicht nur Quadratmeter, sondern Nutzung, Publikumsverkehr, Schlüsselregelung und wer Rückfragen schnell beantworten kann.",
+          "In Düsseldorf unterscheiden sich Objekte stark: kleine Bürohäuser in Stadtmitte, Praxen in Pempelfort, Kanzleien in Derendorf, Treppenhäuser in Bilk, Hauseingänge in Heerdt oder Gewerbeflächen Richtung Neuss und Ratingen. Entscheidend sind nicht nur Quadratmeter, sondern Nutzung, Publikumsverkehr, Schlüsselregelung und wer Rückfragen schnell beantworten kann.",
           "Nicht pauschal enthalten sind Hausmeisterdienst, Winterdienst, Wartungsarbeiten, Fassadenkletterei, Gefahrstoffe, Reinraum oder medizinische Spezialdesinfektion. Diese klare Grenze macht die Anfrage ehrlicher und schützt vor falschen Erwartungen.",
         ],
       },
@@ -1274,7 +1525,7 @@ export const duesseldorfServicePages = {
       "Hilfreich für Verwaltungen, Eigentümer und Firmen, die Turnus, Zuständigkeit, Zugang und Qualitätsziel sauber klären möchten.",
       "Keine Hausmeister-, Winterdienst-, Fassaden-, Reinraum-, Gefahrstoff- oder Wartungsleistung ohne gesonderte Prüfung.",
     ],
-    localFocus: ["Stadtmitte", "Pempelfort", "Derendorf", "Bilk", "Oberkassel", "Ratingen"],
+    localFocus: ["Heerdt", "Stadtmitte", "Pempelfort", "Derendorf", "Bilk", "Oberkassel", "Ratingen"],
     priceLogic: [
       "Etagen, Raumarten, Sanitär, Küche, Eingangsbereich, Aufzug, Publikumsverkehr und gewünschter Turnus bestimmen den Aufwand.",
       "Ein Objekt mit festen Nutzern wird anders geplant als ein Haus mit viel Kundenverkehr, wechselnden Mietern oder knappen Randzeiten.",
@@ -1294,6 +1545,14 @@ export const duesseldorfServicePages = {
         a: "Hilfreich sind Objektadresse oder Stadtteil, Eingänge, Etagen, Raumliste, Fotos, gewünschter Turnus, Schlüsselregelung, Ansprechpartner und besondere Hausregeln.",
       },
       {
+        q: "Passt die Gebäudereinigung auch für Heerdt?",
+        a: "Ja. Für Heerdt, Lörick, Oberkassel, Niederkassel, Neuss und die Düsseldorfer Umgebung helfen Objektadresse, Eingang, Etagen, Turnus, Zugang, Fotos und gewünschter Leistungsumfang.",
+      },
+      {
+        q: "Kann FLOXANT Gewerbeflächen und Hauseingang gemeinsam prüfen?",
+        a: "Ja, wenn Bereiche getrennt beschrieben werden: Hauseingang, Treppenhaus, Büro- oder Gewerbefläche, Sanitär, Küche, Turnus, Zugang und Fotos.",
+      },
+      {
         q: "Übernimmt FLOXANT auch Hausmeisterdienst oder Winterdienst?",
         a: "Nein, nicht als normale Gebäudereinigung. Hausmeisterdienst, Winterdienst, Wartungsarbeiten, Fassade, Gefahrstoffe, Reinraum und medizinische Spezialdesinfektion werden nicht pauschal beworben.",
       },
@@ -1301,10 +1560,13 @@ export const duesseldorfServicePages = {
     relatedLinks: [
       { href: "/duesseldorf/unterhaltsreinigung", label: "Regelmäßige Unterhaltsreinigung" },
       { href: "/duesseldorf/objektreinigung", label: "Objektreinigung Düsseldorf" },
+      { href: "/duesseldorf/reinigung-heerdt", label: "Reinigung Düsseldorf-Heerdt" },
+      { href: "/duesseldorf/gewerbeflaechen-reinigung", label: "Gewerbeflächen reinigen lassen" },
       { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung planen" },
       { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung für Firmen" },
       { href: "/duesseldorf/fensterreinigung", label: "Fenster und Glas prüfen" },
       { href: "/duesseldorf/grundreinigung", label: "Grundreinigung einschätzen" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Gebäudereinigung-Angebot prüfen" },
     ],
     boundaryText:
       "Gebäudereinigung in Düsseldorf wird als prüfbare Reinigungsleistung für Objektbereiche, Treppenhaus, Büroflächen, Sanitär, Küche, Empfang und Nebenflächen dargestellt. FLOXANT bewirbt dabei keine Hausmeisterdienste, keinen Winterdienst, keine Wartungsarbeiten, keine Fassadenkletterei und keine Gefahrstoff- oder Reinraumleistung ohne gesonderte Prüfung.",
@@ -1998,9 +2260,9 @@ export const duesseldorfServicePages = {
   kanzleireinigung: {
     slug: "kanzleireinigung",
     path: "/duesseldorf/kanzleireinigung",
-    metaTitle: "Kanzleireinigung Düsseldorf | Diskret & planbar | FLOXANT",
+    metaTitle: "Kanzleireinigung Düsseldorf | Reinigungsfirma & Angebot | FLOXANT",
     metaDescription:
-      "Kanzleireinigung Düsseldorf für Empfang, Besprechung, Arbeitsplätze, Sanitär und Nebenräume. Diskrete Zeitfenster und klare Abgrenzung.",
+      "Kanzleireinigung Düsseldorf für Empfang, Besprechung, Arbeitsplätze, Sanitär und Nebenräume. Diskrete Reinigungsfirma mit Angebot-Prüfung.",
     kicker: "FLOXANT Kanzleireinigung Düsseldorf",
     title: "Kanzleireinigung in Düsseldorf",
     description:
@@ -2043,27 +2305,27 @@ export const duesseldorfServicePages = {
   praxisreinigung: {
     slug: "praxisreinigung",
     path: "/duesseldorf/praxisreinigung",
-    metaTitle: "Praxisreinigung Düsseldorf | Praxisflächen prüfen",
+    metaTitle: "Praxisreinigung Düsseldorf mit Raumliste und Zeitfenster",
     metaDescription:
-      "Praxisreinigung Düsseldorf für Empfang, Wartebereich, Sanitär, Flure und Teamräume: Fläche, Turnus, Randzeit, Zugang und Fotos direkt senden.",
+      "Praxisreinigung Düsseldorf für Empfang, Wartebereich, Sanitär und Nebenräume: Praxisart, Fläche, Turnus, Zugang und Fotos senden.",
     kicker: "FLOXANT Praxisreinigung Düsseldorf",
-    title: "Praxisreinigung in Düsseldorf",
+    title: "Praxisreinigung in Duesseldorf mit Raumliste, Zugang und Zeitfenster",
     description:
-      "Für allgemeine Praxisflächen nach Absprache: Empfang, Wartebereich, Nebenräume, Sanitär und sichtbare Flächen. Medizinische Spezialdesinfektion wird nicht pauschal versprochen.",
+      "Fuer allgemeine Praxisflaechen nach Absprache: Empfang, Wartebereich, Nebenraeume, Sanitaer, Zugang, Zeitfenster und sichtbare Flaechen. Medizinische Spezialdesinfektion wird nicht pauschal versprochen.",
     serviceLabel: "Praxisreinigung",
     contentSections: [
       {
         title: "Praxisreinigung nur mit klarer Einordnung",
         paragraphs: [
-          "Praxisreinigung in Düsseldorf muss vorsichtig beschrieben werden. FLOXANT prüft allgemeine Flächen wie Empfang, Wartebereich, Flure, Sanitär, Personalraum und Nebenräume. Medizinische Spezialdesinfektion, Laborbereiche, OP-nahe Bereiche oder besondere Hygieneleistungen werden nicht pauschal versprochen.",
-          "Für Praxen in Pempelfort, Derendorf, Düsseltal, Bilk, Gerresheim oder Benrath sind Zeitfenster, Patientenbetrieb, Zugang und gewünschte Häufigkeit besonders wichtig. Reinigung während laufender Sprechzeiten ist etwas anderes als ein fester Termin nach Praxisschluss.",
+          "Praxisreinigung in Duesseldorf muss vorsichtig beschrieben werden. FLOXANT prueft allgemeine Flaechen wie Empfang, Wartebereich, Flure, Sanitaer, Personalraum und Nebenraeume. Medizinische Spezialdesinfektion, Laborbereiche, OP-nahe Bereiche oder besondere Hygieneleistungen werden nicht pauschal versprochen.",
+          "Fuer Praxen in Pempelfort, Derendorf, Duesseltal, Bilk, Gerresheim oder Benrath sind Zeitfenster, Patientenbetrieb, Zugang, Schluesselweg und gewuenschte Haeufigkeit besonders wichtig. Reinigung waehrend laufender Sprechzeiten ist etwas anderes als ein fester Termin nach Praxisschluss.",
         ],
       },
       {
         title: "Was die Preislogik in Praxen verändert",
         paragraphs: [
           "Der Aufwand hängt von Raumarten, Oberflächen, Sanitärbereichen, Boden, Wartebereich, Nutzung und gewünschten Intervallen ab. Auch die Frage, ob nur sichtbare Pflegeflächen oder besonders sensible Bereiche betroffen sind, muss vorab klar beantwortet werden.",
-          "Eine Anfrage sollte deshalb Praxisart, Fläche, Stadtteil, Räume, Zugang, Fotos, gewünschte Reinigungstage und besondere Vorgaben enthalten. So bleibt die Seite ehrlich und vermeidet Leistungen, die ohne Prüfung nicht zugesagt werden dürfen.",
+          "Eine Anfrage sollte deshalb Praxisart, Flaeche, Stadtteil, Raeume, Zugang, Fotos, gewuenschte Reinigungstage, Ansprechpartner und besondere Vorgaben enthalten. So bleibt die Seite ehrlich und vermeidet Leistungen, die ohne Pruefung nicht zugesagt werden duerfen.",
         ],
       },
     ],
@@ -2281,27 +2543,27 @@ export const duesseldorfServicePages = {
   fensterreinigung: {
     slug: "fensterreinigung",
     path: "/duesseldorf/fensterreinigung",
-    metaTitle: "Fensterreinigung Düsseldorf | Glas & Rahmen prüfen | FLOXANT",
+    metaTitle: "Fensterreinigung Duesseldorf mit Glas, Rahmen und Zugang",
     metaDescription:
-      "Fensterreinigung und Glasreinigung in Düsseldorf nach Prüfung: Fenster, Rahmen, Griffspuren, Schaufenster, Zugang, Fotos und Zeitfenster senden.",
+      "Fensterreinigung Duesseldorf anfragen: Anzahl, Etage, Innen- oder Aussenseite, Rahmen, Zugang, Fotos und Zeitfenster klar senden.",
     kicker: "FLOXANT Fensterreinigung Düsseldorf",
-    title: "Fensterreinigung und Glasreinigung in Düsseldorf",
+    title: "Fensterreinigung Düsseldorf mit Glas, Rahmen und Zugang",
     description:
-      "Für Wohnungen, Büros, Kanzleien, kleine Firmen, Ladenflächen und Objekte, wenn Fenster, Glasflächen, Rahmen, Griffspuren und Zugang realistisch geprüft werden sollen.",
+      "Fuer Wohnungen, Bueros, Kanzleien, kleine Firmen, Ladenflaechen und Objekte, wenn Anzahl, Glasart, Rahmen, Innen-/Aussenseite, Etage, Griffspuren und Zugang realistisch geprueft werden sollen.",
     serviceLabel: "Fensterreinigung",
     contentSections: [
       {
         title: "Fensterreinigung wird erst mit Zugang realistisch",
         paragraphs: [
-          "Fensterreinigung in Düsseldorf klingt einfach, hängt aber stark von Erreichbarkeit, Fensteranzahl, Rahmen, Glasart, Etage, Aufzug, Balkon, Schaufenster, Innen-/Außenseite und Verschmutzung ab. Ein ebenerdiges Ladenfenster ist anders zu planen als viele Wohnungsfenster im Altbau oder Glasflächen in einem Büro.",
-          "FLOXANT fragt deshalb nach Fotos, Stadtteil, Etage, Anzahl der Fenster, Rahmenzustand, gewünschter Seite und Zeitfenster. So entsteht eine prüfbare Anfrage statt einer Pauschale, die später nicht zum Objekt passt.",
+          "Fensterreinigung in Duesseldorf klingt einfach, haengt aber stark von Erreichbarkeit, Fensteranzahl, Rahmen, Glasart, Etage, Aufzug, Balkon, Schaufenster, Innen-/Aussenseite und Verschmutzung ab. Ein ebenerdiges Ladenfenster ist anders zu planen als viele Wohnungsfenster im Altbau oder Glasflaechen in einem Buero.",
+          "FLOXANT fragt deshalb nach Fotos, Stadtteil, Etage, Anzahl der Fenster, Rahmenzustand, gewuenschter Seite, Zugang und Zeitfenster. So entsteht eine pruefbare Anfrage statt einer Pauschale, die spaeter nicht zum Objekt passt.",
         ],
       },
       {
         title: "Glasflächen für Wohnung, Büro und kleine Gewerbeobjekte",
         paragraphs: [
-          "Kunden suchen oft nach Fenster putzen lassen, Glasreinigung, Schaufensterreinigung oder Fensterreinigung Büro Düsseldorf. Gemeint sind aber sehr unterschiedliche Fälle: bewohnte Wohnung, Auszug, Übergabe, Kanzlei, Praxis, Studio, Ladenfläche oder kleine Firma mit sichtbaren Glasflächen.",
-          "Nicht beworben werden Seiltechnik, Fassadenkletterei, Hebebühnenarbeit, gefährliche Außenbereiche oder Spezialglas ohne gesonderte Prüfung. Damit bleibt die Leistung ehrlich, kundennah und passend zu Düsseldorf als Reinigungsstandort.",
+          "Kunden suchen oft nach Fenster putzen lassen, Glasreinigung, Schaufensterreinigung oder Fensterreinigung Buero Duesseldorf. Gemeint sind aber sehr unterschiedliche Faelle: bewohnte Wohnung, Auszug, Uebergabe, Kanzlei, Praxis, Studio, Ladenflaeche oder kleine Firma mit sichtbaren Glasflaechen.",
+          "Nicht beworben werden Seiltechnik, Fassadenkletterei, Hebebuehnenarbeit, gefaehrliche Aussenbereiche oder Spezialglas ohne gesonderte Pruefung. Damit bleibt die Leistung ehrlich, kundennah und passend zu Duesseldorf als Reinigungsstandort.",
         ],
       },
     ],
@@ -3154,8 +3416,330 @@ export const duesseldorfServicePages = {
     relatedLinks: commonLinks,
     boundaryText: commonBoundary,
   },
+  "gewerbeflaechen-reinigung": {
+    slug: "gewerbeflaechen-reinigung",
+    path: "/duesseldorf/gewerbeflaechen-reinigung",
+    metaTitle: "Reinigung Gewerbeflächen Düsseldorf | Gewerbereinigung & Angebot | FLOXANT",
+    metaDescription:
+      "Reinigung Gewerbeflächen Düsseldorf: Laden, Büro, Praxis, Sanitär, Nebenflächen, Turnus und Angebot mit Fotos unverbindlich prüfen.",
+    kicker: "FLOXANT Gewerbeflächen-Reinigung Düsseldorf",
+    title: "Reinigung von Gewerbeflächen in Düsseldorf",
+    description:
+      "Für Firmen, Ladenflächen, Studios, Büroeinheiten, Praxis- oder Kanzleiflächen und gemischt genutzte Objekte in Düsseldorf, wenn Fläche, Nutzung, Turnus und Angebot sauber eingeordnet werden sollen.",
+    serviceLabel: "Gewerbeflächen-Reinigung",
+    contentSections: [
+      {
+        title: "Gewerbeflächen reinigen lassen: erst Nutzung, dann Umfang",
+        paragraphs: [
+          "Wer nach Reinigung Gewerbeflächen Düsseldorf sucht, meint selten nur Quadratmeter. Eine Ladenfläche in Flingern, ein Büro in Derendorf, ein Studio in Bilk, eine Praxis in Pempelfort oder ein Gewerbeobjekt in Heerdt haben unterschiedliche Laufwege, Öffnungszeiten, Sanitärbereiche, Bodenarten und Anforderungen.",
+          "FLOXANT fragt deshalb nach Stadtteil, Fläche, Nutzungsart, Raumliste, Turnus, Zeitfenster, Zugang, Fotos und vorhandenem Angebot. So wird aus einer allgemeinen Suche nach Gewerbeflächen reinigen lassen eine konkrete Düsseldorfer Anfrage.",
+        ],
+      },
+      {
+        title: "Gewerbereinigung Düsseldorf ohne pauschale Versprechen",
+        paragraphs: [
+          "Bei gewerblichen Flächen entscheidet der Betrieb: Publikumsverkehr, Randzeiten, Schlüsselweg, Mitarbeitende vor Ort, Waren, sensible Bereiche und Sanitärnutzung verändern den Aufwand. Ein Preis ohne diese Angaben wäre nur geraten.",
+          "FLOXANT trennt Büroreinigung, Praxisreinigung, Ladenreinigung, Gebäudereinigung und Angebotsprüfung sauber. Wenn schon ein Reinigungsangebot vorliegt, kann es nach Umfang, Turnus, Zusatzpositionen, Fotos und Preisrahmen sachlich geprüft werden.",
+        ],
+      },
+    ],
+    bullets: [
+      "Geeignet für Büro, Laden, Studio, Praxis, Kanzlei, Showroom, Nebenflächen und gemischte Gewerbeobjekte nach Prüfung.",
+      "Fokus auf Raumliste, Sanitär, Küche, Boden, Eingang, Turnus, Randzeit, Zugang, Fotos und Ansprechpartner.",
+      "Keine Industrie-, Gefahrstoff-, Reinraum- oder medizinische Spezialdesinfektion ohne gesonderte Prüfung.",
+    ],
+    localFocus: ["Heerdt", "Flingern", "Derendorf", "MedienHafen", "Bilk", "Neuss", "Ratingen"],
+    priceLogic: [
+      "Fläche, Nutzungsart, Publikumsverkehr, Sanitär, Küche, Boden, Eingang, Turnus und Zeitfenster bestimmen den Aufwand.",
+      "Gewerbeflächen mit laufendem Betrieb brauchen andere Randzeiten als Leerstand, Übergabe oder Grundreinigung.",
+      "Vorhandene Angebote werden nur vergleichbar, wenn Leistungsumfang, Turnus, Zusatzpositionen, Zugang und Fotos vorliegen.",
+    ],
+    faqItems: [
+      {
+        q: "Was kostet die Reinigung von Gewerbeflächen in Düsseldorf?",
+        a: "Der Preisrahmen hängt von Fläche, Nutzung, Raumliste, Sanitär, Küche, Boden, Publikumsverkehr, Turnus, Zeitfenster, Zugang und Fotos ab.",
+      },
+      {
+        q: "Welche Gewerbeflächen kann FLOXANT prüfen?",
+        a: "Prüfbar sind Büroflächen, Ladenflächen, Studios, Kanzleien, Praxisflächen nach Absprache, Nebenflächen und gemischt genutzte Objekte in Düsseldorf und Umgebung.",
+      },
+      {
+        q: "Ist das dasselbe wie Gewerbereinigung Düsseldorf?",
+        a: "Gewerbeflächen-Reinigung ist ein konkreterer Einstieg. FLOXANT ordnet danach ein, ob Gewerbereinigung, Büroreinigung, Praxisreinigung, Ladenreinigung oder Gebäudereinigung besser passt.",
+      },
+      {
+        q: "Kann die Reinigung nach Feierabend stattfinden?",
+        a: "Randzeiten nach Feierabend, vor Öffnung oder am Wochenende können geprüft werden. Entscheidend sind Umfang, Zugang, Schlüsselweg, Hausordnung und Verfügbarkeit.",
+      },
+      {
+        q: "Kann ich ein Angebot für Gewerbeflächen prüfen lassen?",
+        a: "Ja. Senden Sie Angebot, Raumliste, Fläche, Turnus, Stadtteil, Fotos und offene Zusatzpositionen. FLOXANT prüft sachlich, ohne Preisgarantie.",
+      },
+      {
+        q: "Welche Fotos helfen bei Gewerbeflächen?",
+        a: "Hilfreich sind Fotos von Eingang, Boden, Sanitär, Küche, Arbeitsbereichen, Nebenräumen, stark genutzten Stellen und Zugang.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
+      { href: "/duesseldorf/gebaeudereinigung", label: "Gebäudereinigung Düsseldorf" },
+      { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung prüfen" },
+      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung abklären" },
+      { href: "/duesseldorf/reinigung-heerdt", label: "Reinigung Heerdt" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot vergleichen" },
+    ],
+    boundaryText:
+      "Gewerbeflächen-Reinigung in Düsseldorf wird als prüfbare Reinigungsleistung für Büro, Laden, Studio, Praxis, Kanzlei und gemischte Objektflächen beschrieben. Industrie, Gefahrstoffe, Reinraum, medizinische Spezialdesinfektion und Wartungsleistungen werden nicht pauschal beworben.",
+    customerIntentItems: [
+      {
+        searchPhrase: "Reinigung Gewerbeflächen Düsseldorf",
+        title: "Gewerbeflächen nach Nutzung prüfen",
+        answer:
+          "Für Gewerbeflächen zählen Stadtteil, Nutzungsart, Raumliste, Turnus, Sanitär, Boden, Zugang, Fotos und Zeitfenster.",
+        href: "#anfrage-checkliste",
+        cta: "Fläche beschreiben",
+        signal: "Gewerbeflächen",
+      },
+      {
+        searchPhrase: "Gewerbeflächen reinigen lassen",
+        title: "Laden, Büro oder Studio sauber trennen",
+        answer:
+          "FLOXANT ordnet ein, ob Ladenreinigung, Büroreinigung, Praxisreinigung oder Gebäudereinigung der bessere nächste Schritt ist.",
+        href: "/duesseldorf/gewerbereinigung",
+        cta: "Gewerbe einordnen",
+        signal: "Gewerbe",
+      },
+      {
+        searchPhrase: "Reinigung Gewerbe Düsseldorf",
+        title: "Turnus und Randzeit entscheiden",
+        answer:
+          "Gewerbliche Reinigung wird realistisch, wenn Turnus, Uhrzeit, Schlüsselweg, Zugang, Ansprechpartner und Fotos früh klar sind.",
+        href: "#kontakt",
+        cta: "Anfrage senden",
+        signal: "Turnus",
+      },
+      {
+        searchPhrase: "Gewerbereinigung Düsseldorf Angebot prüfen",
+        title: "Angebot mit Umfang vergleichen",
+        answer:
+          "Ein Gewerbereinigungsangebot wird vergleichbar, wenn Fläche, Turnus, Zusatzpositionen, Zeitfenster, Zugang und Fotos vorliegen.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Angebot prüfen",
+        signal: "Angebot",
+      },
+    ],
+    requestFieldItems: [
+      {
+        field: "Ort",
+        title: "Stadtteil, Objektlage und Zugang",
+        text: "Heerdt, Flingern, Derendorf, MedienHafen, Bilk, Neuss oder Ratingen sowie Etage, Parken, Lieferzone und Schlüsselweg nennen.",
+      },
+      {
+        field: "Fläche",
+        title: "Raumliste statt nur Quadratmeter",
+        text: "Büro, Laden, Studio, Sanitär, Küche, Lager, Empfang, Nebenraum und Bodenarten getrennt aufführen.",
+      },
+      {
+        field: "Nutzung",
+        title: "Publikumsverkehr und Betriebszeiten",
+        text: "Öffnungszeiten, Kundenverkehr, Mitarbeitende, Randzeit, Wochenende und sensible Bereiche beschreiben.",
+      },
+      {
+        field: "Turnus",
+        title: "Einmalig oder regelmäßig?",
+        text: "Wöchentlich, mehrmals pro Woche, täglich, einmalig, Grundreinigung oder Angebotsprüfung klar angeben.",
+      },
+      {
+        field: "Fotos & Angebot",
+        title: "Bilder und vorhandene Unterlagen",
+        text: "Fotos und vorhandene Angebote helfen, Umfang, Zusatzpunkte und Preisrahmen schneller zu prüfen.",
+      },
+    ],
+    snippetAnswerItems: [
+      {
+        query: "Was zählt bei Reinigung von Gewerbeflächen in Düsseldorf?",
+        title: "Nutzung, Turnus und Zugang sind entscheidend",
+        answer:
+          "Für Gewerbeflächen zählen nicht nur Quadratmeter. Wichtig sind Nutzung, Raumliste, Sanitär, Boden, Publikumsverkehr, Turnus, Randzeit, Zugang und Fotos.",
+        href: "#anfrage-checkliste",
+        cta: "Eckdaten senden",
+        signals: ["Reinigung Gewerbeflächen Düsseldorf", "Gewerbeflächen reinigen lassen"],
+      },
+      {
+        query: "Kann ich ein Gewerbereinigungsangebot vergleichen lassen?",
+        title: "Ja, wenn Umfang und Turnus sichtbar sind",
+        answer:
+          "FLOXANT prüft Angebote für Gewerbeflächen nach Fläche, Raumliste, Turnus, Zusatzpositionen, Zugang, Zeitfenster, Fotos und offenen Punkten.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Angebot vergleichen",
+        signals: ["Gewerbereinigung Düsseldorf", "Reinigungsangebot vergleichen"],
+      },
+    ],
+  },
+  "reinigung-heerdt": {
+    slug: "reinigung-heerdt",
+    path: "/duesseldorf/reinigung-heerdt",
+    metaTitle: "Reinigung Düsseldorf Heerdt | Gebäudereinigung & Gewerbe | FLOXANT",
+    metaDescription:
+      "Reinigung Düsseldorf Heerdt für Gebäudereinigung, Gewerbe, Büro, Treppenhaus, Wohnung und Angebot mit Fotos lokal prüfen.",
+    kicker: "FLOXANT Reinigung Düsseldorf-Heerdt",
+    title: "Reinigung in Düsseldorf-Heerdt und Umgebung",
+    description:
+      "Für Kunden in Heerdt, Lörick, Oberkassel, Niederkassel, Neuss und Meerbusch, die Reinigung lokal, konkret und ohne falsche Leistungsvermischung anfragen möchten.",
+    serviceLabel: "Reinigung Heerdt",
+    contentSections: [
+      {
+        title: "Heerdt braucht lokale Angaben, nicht nur den Begriff Reinigung",
+        paragraphs: [
+          "Gebäudereinigung Düsseldorf Heerdt, Büroreinigung in Heerdt, Treppenhausreinigung am Hauseingang oder Wohnungsreinigung nach Auszug sind unterschiedliche Fälle. Deshalb fragt FLOXANT zuerst nach Objektart, Adresse oder Stadtteil, Fläche, Zustand, Zugang, Fotos und Ziel.",
+          "Heerdt, Lörick, Oberkassel, Niederkassel, Neuss und Meerbusch liegen nah beieinander, unterscheiden sich aber bei Anfahrt, Parken, Objektarten und Zeitfenstern. Genau diese lokalen Punkte machen eine Anfrage belastbarer.",
+        ],
+      },
+      {
+        title: "Von Hauseingang bis Gewerbefläche sauber einordnen",
+        paragraphs: [
+          "Bei Reinigung in Heerdt kann es um Hauseingang, Treppenhaus, Büro, Gewerbefläche, Praxis, Wohnung, Keller, Übergabe oder Grundreinigung gehen. FLOXANT ordnet die Anfrage auf die passende Düsseldorfer Unterseite, damit Umfang und Erwartung klar bleiben.",
+          "Wenn schon ein Angebot vorliegt, kann FLOXANT prüfen, ob Turnus, Fläche, Zusatzpositionen, Fotos, Zeitfenster und Zugang nachvollziehbar beschrieben sind. Es gibt keine Unterbietungsgarantie, aber eine bessere Einordnung.",
+        ],
+      },
+    ],
+    bullets: [
+      "Lokaler Einstieg für Reinigung in Düsseldorf-Heerdt, Lörick, Oberkassel, Niederkassel, Neuss und Meerbusch.",
+      "Geeignet für Gebäude, Gewerbeflächen, Büro, Treppenhaus, Hauseingang, Wohnung, Keller und Übergabe nach Prüfung.",
+      "Anfrage wird zu Reinigungsfirma, Gebäudereinigung, Treppenhausreinigung, Wohnungsreinigung oder Angebotsprüfung geführt.",
+    ],
+    localFocus: ["Heerdt", "Lörick", "Oberkassel", "Niederkassel", "Neuss", "Meerbusch"],
+    priceLogic: [
+      "Stadtteil, Objektart, Fläche, Zustand, Zugang, Parken, Etage, Turnus, Termin und Fotos bestimmen die erste Einordnung.",
+      "Heerdter Gewerbeflächen, Hauseingänge und Wohnungsfälle werden nach Nutzung und Zielzustand getrennt geprüft.",
+      "Vorhandene Angebote helfen, wenn Leistungsumfang, Turnus, Zusatzpositionen und Preisrahmen erkennbar sind.",
+    ],
+    faqItems: [
+      {
+        q: "Bietet FLOXANT Reinigung in Düsseldorf-Heerdt an?",
+        a: "FLOXANT prüft Reinigungsanfragen für Heerdt und Umgebung nach Objektart, Fläche, Zustand, Termin, Zugang, Fotos und gewünschtem Ergebnis.",
+      },
+      {
+        q: "Welche Leistungen passen für Heerdt?",
+        a: "Typisch sind Gebäudereinigung, Gewerbeflächen-Reinigung, Büroreinigung, Treppenhausreinigung, Hauseingang, Wohnungsreinigung, Grundreinigung und Angebotsprüfung.",
+      },
+      {
+        q: "Welche Orte in der Umgebung sind relevant?",
+        a: "Neben Heerdt sind Lörick, Oberkassel, Niederkassel, Neuss und Meerbusch wichtige lokale Bezugspunkte für Anfahrt, Parken und Objektlage.",
+      },
+      {
+        q: "Kann ich Fotos per WhatsApp senden?",
+        a: "Ja. Fotos von Eingang, Treppenhaus, Büro, Gewerbefläche, Wohnung, Sanitär, Boden und Zugang machen die Prüfung schneller.",
+      },
+      {
+        q: "Kann ein Angebot aus Heerdt geprüft werden?",
+        a: "Ja. Senden Sie Angebot, Stadtteil, Fläche, Turnus, Raumliste, Fotos und offene Zusatzpositionen. FLOXANT prüft sachlich, ohne Preisgarantie.",
+      },
+      {
+        q: "Was kostet Reinigung in Heerdt?",
+        a: "Kosten hängen von Objektart, Fläche, Zustand, Nutzung, Turnus, Zugang, Etage, Parkmöglichkeit, Zeitfenster und Fotos ab.",
+      },
+    ],
+    relatedLinks: [
+      { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+      { href: "/duesseldorf/reinigungsfirma", label: "Reinigungsfirma Düsseldorf" },
+      { href: "/duesseldorf/gebaeudereinigung", label: "Gebäudereinigung Düsseldorf" },
+      { href: "/duesseldorf/gewerbeflaechen-reinigung", label: "Gewerbeflächen-Reinigung" },
+      { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung" },
+      { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung" },
+      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot prüfen" },
+    ],
+    boundaryText:
+      "Reinigung Heerdt ist ein lokaler Düsseldorfer Einstieg für Reinigung und Angebotsprüfung. FLOXANT bewirbt hier keine Umzugsleistung und keine pauschalen Sonderleistungen ohne Prüfung von Objekt, Umfang, Zugang, Fotos und Termin.",
+    customerIntentItems: [
+      {
+        searchPhrase: "Gebäudereinigung Düsseldorf Heerdt",
+        title: "Heerdt als Objektstandort klar nennen",
+        answer:
+          "Für Gebäudereinigung in Heerdt helfen Adresse oder Stadtteil, Eingänge, Etagen, Raumliste, Turnus, Zugang und Fotos.",
+        href: "/duesseldorf/gebaeudereinigung",
+        cta: "Gebäude prüfen",
+        signal: "Heerdt",
+      },
+      {
+        searchPhrase: "Reinigung Düsseldorf Heerdt",
+        title: "Leistung nach Objektart wählen",
+        answer:
+          "FLOXANT ordnet Heerdter Anfragen je nach Objekt zu Wohnungsreinigung, Büroreinigung, Treppenhaus, Gewerbeflächen oder Angebotsprüfung.",
+        href: "#anfrage-checkliste",
+        cta: "Fall beschreiben",
+        signal: "Reinigung Heerdt",
+      },
+      {
+        searchPhrase: "Reinigung Hauseingang Heerdt",
+        title: "Hauseingang und Treppenhaus trennen",
+        answer:
+          "Eingang, Treppenhaus, Kellerflur, Aufzug, Etagen, Turnus und Beschwerden sollten einzeln beschrieben und fotografiert werden.",
+        href: "/duesseldorf/treppenhausreinigung",
+        cta: "Hauseingang prüfen",
+        signal: "Hauseingang",
+      },
+      {
+        searchPhrase: "Reinigungsangebot Heerdt prüfen",
+        title: "Angebot lokal einordnen",
+        answer:
+          "Ein Angebot wird verständlicher, wenn Fläche, Turnus, Zusatzpunkte, Fotos, Zeitfenster und Zugang für Heerdt sichtbar sind.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Angebot prüfen",
+        signal: "Angebot",
+      },
+    ],
+    requestFieldItems: [
+      {
+        field: "Ort",
+        title: "Heerdt oder Umgebung",
+        text: "Heerdt, Lörick, Oberkassel, Niederkassel, Neuss oder Meerbusch sowie Etage, Parken und Zugang nennen.",
+      },
+      {
+        field: "Objekt",
+        title: "Wohnung, Büro, Haus oder Gewerbefläche?",
+        text: "Objektart, Raumliste, Fläche, Nutzung und gewünschtes Ergebnis kurz beschreiben.",
+      },
+      {
+        field: "Bereiche",
+        title: "Hauseingang, Treppenhaus oder Innenfläche",
+        text: "Eingang, Treppenhaus, Sanitär, Küche, Büro, Wohnung, Keller oder Nebenfläche getrennt aufführen.",
+      },
+      {
+        field: "Termin",
+        title: "Einmalig, regelmäßig oder Übergabe?",
+        text: "Turnus, Deadline, Übergabetermin oder Randzeit direkt mitsenden.",
+      },
+      {
+        field: "Fotos",
+        title: "Zustand sichtbar machen",
+        text: "Fotos von Boden, Eingang, Sanitär, Küche, Laufwegen und Problemstellen sparen Rückfragen.",
+      },
+    ],
+    snippetAnswerItems: [
+      {
+        query: "Welche Reinigung in Düsseldorf-Heerdt passt?",
+        title: "FLOXANT sortiert nach Objektart",
+        answer:
+          "In Heerdt werden Wohnung, Büro, Treppenhaus, Hauseingang, Gewerbefläche und Gebäudereinigung getrennt eingeordnet. Wichtig sind Ort, Fläche, Zustand, Zugang, Termin und Fotos.",
+        href: "#kontakt",
+        cta: "Reinigung Heerdt anfragen",
+        signals: ["Reinigung Düsseldorf Heerdt", "Gebäudereinigung Düsseldorf Heerdt"],
+      },
+      {
+        query: "Kann ich ein Reinigungsangebot aus Heerdt prüfen lassen?",
+        title: "Ja, mit Angebot, Fotos und Eckdaten",
+        answer:
+          "FLOXANT prüft Reinigungsangebote aus Heerdt nach Umfang, Turnus, Zusatzpositionen, Stadtteil, Zugang, Fotos und Preisrahmen.",
+        href: "/angebot-vergleichen-duesseldorf",
+        cta: "Angebot prüfen",
+        signals: ["Reinigungsangebot prüfen", "Reinigungsfirma Angebote"],
+      },
+    ],
+  },
 } as const satisfies Record<string, DuesseldorfServicePageConfig>;
 
 export function getDuesseldorfServicePage(slug: keyof typeof duesseldorfServicePages) {
-  return duesseldorfServicePages[slug];
+  return germanizeDeep(duesseldorfServicePages[slug]);
 }

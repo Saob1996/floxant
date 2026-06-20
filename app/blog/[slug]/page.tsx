@@ -53,7 +53,6 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
     path: `blog/${slug}`,
     title: article.metaTitle,
     description: article.description,
-    keywords: article.keywords,
   });
 }
 

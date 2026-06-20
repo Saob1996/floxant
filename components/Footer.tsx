@@ -5,11 +5,13 @@ import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { company } from "@/lib/company";
+import { floxantLocations } from "@/lib/floxant-locations";
 import {
   floxantRegions,
   getServicesByRegion,
   type FloxantRegion,
 } from "@/lib/floxant-services";
+import { buildLeadHref } from "@/lib/lead-intents";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const legalLinks = [
@@ -21,7 +23,33 @@ const legalLinks = [
 
 const authorityLinks = [
   { href: "/rechner", label: "Rechner" },
+  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
+  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
+  { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
+  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
+  { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung Düsseldorf" },
+  { href: "/duesseldorf/entruempelung", label: "Entrümpelung Düsseldorf" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/umzug-regensburg", label: "Umzug Regensburg anfragen" },
+  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+  { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg anfragen" },
+  { href: "/klaviertransport-regensburg", label: "Klaviertransport Regensburg" },
+  { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
+  { href: "/reinigung-landshut", label: "Reinigung Landshut" },
+  { href: "/entruempelung-landshut", label: "Entrümpelung Landshut" },
+  { href: "/umzug-neustadt-an-der-waldnaab", label: "Umzug Neustadt/Waldnaab" },
+  { href: "/umzug-vohenstrauss", label: "Umzug Vohenstrauß" },
+  { href: "/reinigungsfirma-angebot", label: "Reinigungsfirma Angebot" },
+  { href: "/fernumzug-muenchen", label: "Fernumzug München" },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen" },
+  { href: "/angebotscheck", label: "Angebotscheck" },
+  { href: "/anbieter-vergleichen", label: "Anbieter vergleichen" },
+  { href: "/solarreinigung", label: "Solarreinigung" },
+  { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
+  { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
   { href: "/umzug", label: "Umzug" },
   { href: "/reinigung", label: "Reinigung" },
   { href: "/entruempelung", label: "Entrümpelung" },
@@ -68,11 +96,18 @@ export function Footer({ dic }: { dic?: any } = {}) {
       : isRegensburgContext && !isDuesseldorfContext
         ? ["regensburg"]
         : ["duesseldorf", "regensburg"];
+  const locationsToShow = regionsToShow.map((regionId) => floxantLocations[regionId]);
   const footerIntro = isDuesseldorfContext
     ? "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten."
     : isRegensburgContext
       ? "Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe."
       : "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten. Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.";
+  const footerLead = isRegensburgContext && !isDuesseldorfContext
+    ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage" }
+    : isDuesseldorfContext
+      ? { service: "reinigung", city: "duesseldorf", intent: "reinigung-duesseldorf" }
+      : { service: "reinigung", city: "duesseldorf", intent: "homepage-anfrage" };
+  const footerContactHref = buildLeadHref(footerLead);
 
   return (
     <footer className="border-t border-slate-200 bg-slate-950 px-5 pb-12 pt-14 text-white sm:px-8 lg:px-10">
@@ -103,14 +138,22 @@ export function Footer({ dic }: { dic?: any } = {}) {
               href={whatsappHref}
               data-event="whatsapp_click"
               data-source="global_footer"
+              data-destination={whatsappHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
             >
               <MessageCircle className="h-4 w-4" />
               WhatsApp starten
             </a>
             <Link
-              href="/kontakt"
-              data-event="hero_cta_click"
+              href={footerContactHref}
+              data-event="seo_cta_click"
+              data-source="global_footer"
+              data-service={footerLead.service}
+              data-city={footerLead.city}
+              data-page-intent={footerLead.intent}
+              data-priority="p2"
+              data-cta-label="Kontakt oeffnen"
+              data-destination={footerContactHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
             >
               Kontakt öffnen
@@ -125,18 +168,42 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </Link>
             <div className="mt-5 grid gap-3 text-sm font-semibold leading-7 text-slate-300">
-              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white">
+              <a href={`mailto:${company.email}`} className="flex items-center gap-2 hover:text-white" data-event="seo_email_click">
                 <Mail className="h-4 w-4 text-cyan-200" />
                 {company.email}
               </a>
-              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white">
+              <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-2 hover:text-white" data-event="seo_phone_click">
                 <Phone className="h-4 w-4 text-cyan-200" />
                 {company.phone}
               </a>
               <div className="flex gap-2">
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-200" />
-                <span>{company.address}</span>
+                <span>
+                  {locationsToShow.length > 1
+                    ? "Standorte Duesseldorf und Regensburg"
+                    : locationsToShow[0]?.displayName}
+                </span>
               </div>
+            </div>
+            <div className="mt-5 grid gap-3">
+              {locationsToShow.map((location) => (
+                <div key={location.locationKey} className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
+                  <div className="text-sm font-black text-white">{location.displayName}</div>
+                  <div className="mt-1 text-sm font-semibold leading-6 text-slate-300">
+                    {location.addressLine1}, {location.postalCode} {location.city}
+                  </div>
+                  <Link
+                    href={location.localLandingPage}
+                    data-event="region_select"
+                    data-region={location.locationKey}
+                    data-source="global_footer_nap"
+                    className="mt-2 inline-flex items-center gap-2 text-sm font-black text-cyan-100 hover:text-white"
+                  >
+                    Standort oeffnen
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
 

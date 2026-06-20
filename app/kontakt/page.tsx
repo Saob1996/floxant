@@ -3,11 +3,26 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPinned, MessageCircle } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ContactPathChooser } from "@/components/ContactPathChooser";
 import {
   InternationalCustomerHint,
   ServiceDecisionGuide,
   TrustProofSection,
 } from "@/components/conversion";
+import { CustomerNextStepPanel } from "@/components/CustomerNextStepPanel";
+import { CustomerConcernPanel } from "@/components/CustomerConcernPanel";
+import { LeadTrustBlock } from "@/components/LeadTrustBlock";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { LocalContactPanel } from "@/components/LocalContactPanel";
+import { LocationServiceSwitcher } from "@/components/LocationServiceSwitcher";
+import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
+import { ObjectionAnswerGrid } from "@/components/ObjectionAnswerGrid";
+import { ProcessProofSteps } from "@/components/ProcessProofSteps";
+import { SeoLeadForm } from "@/components/SeoLeadForm";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
+import { ServiceIntentSelector } from "@/components/ServiceIntentSelector";
+import { WhatWeNeedChecklist } from "@/components/WhatWeNeedChecklist";
 import {
   ContactTrustPanel,
   contactEntryPoints,
@@ -15,8 +30,10 @@ import {
   whatsappUrl,
 } from "@/components/seo/ContactTrustPanel";
 import { SmartBookingWizard } from "@/components/SmartBookingWizard";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { getDictionary } from "@/get-dictionary";
 import { company } from "@/lib/company";
+import { customerNextSteps } from "@/lib/professional-copy";
 import { generatePageSEO } from "@/lib/seo";
 import {
   BAVARIA_DIRECT_DEMAND_LINKS,
@@ -27,6 +44,7 @@ import {
   buildFaqJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { resolveLeadIntent } from "@/lib/lead-intents";
 
 const faqItems = [
   {
@@ -43,7 +61,7 @@ const faqItems = [
   },
   {
     q: "Für welche Region ist FLOXANT erreichbar?",
-    a: "FLOXANT sitzt in Regensburg. Anfragen aus Bayern werden nach Strecke, Termin, Umfang und verfügbarem Team geprüft.",
+    a: "FLOXANT führt Regensburg und Düsseldorf als lokale Standorte. Regensburg ist für Umzug, Reinigung, Entrümpelung und Übergabe stark gepflegt; Düsseldorf hat einen eigenen Schwerpunkt für Reinigung und objektbezogene Anfragen.",
   },
   {
     q: "Kann ich auch nur eine Preisvorstellung senden?",
@@ -159,35 +177,51 @@ const contactTrustProofs = [
   "FLOXANT meldet sich mit Rückfragen oder realistischer Einschätzung statt mit automatischer Zusage.",
 ] as const;
 
+type KontaktSearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+function readSearchParam(
+  params: Record<string, string | string[] | undefined> | undefined,
+  key: string,
+) {
+  const value = params?.[key];
+  if (Array.isArray(value)) return value[0] || "";
+  return value || "";
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "kontakt",
-    title: "Kontakt FLOXANT | Anfrage, Booking & Fotos senden",
+    title: "FLOXANT Kontakt: Service, Ort und naechsten Schritt klaeren",
     description:
-      "FLOXANT Kontakt: Buchung, WhatsApp, Telefon, E-Mail, Standort und klare Kontaktwege für Umzug, Reinigung, Entrümpelung und Büroumzug. Deutsch oder Englisch möglich.",
-    keywords: [
-      "Kontakt Regensburg",
-      "Umzug Kontakt Regensburg",
-      "Reinigung Kontakt Regensburg",
-      "Entrümpelung Kontakt Regensburg",
-      "Google Maps Buchungslink",
-      "Google Unternehmensprofil Buchung Regensburg",
-      "FLOXANT Kontakt",
-    ],
+      "Senden Sie Service, Ort, Umfang, Fotos, Terminwunsch und bevorzugten Kontaktweg. FLOXANT ordnet die Anfrage und offene Punkte ein.",
   });
 }
 
-export default async function KontaktPage() {
+export default async function KontaktPage({
+  searchParams,
+}: {
+  searchParams?: KontaktSearchParams;
+}) {
   const dict = await getDictionary("de");
+  const params = searchParams ? await searchParams : {};
+  const leadIntent = resolveLeadIntent({
+    path: "/kontakt",
+    service: readSearchParam(params, "service"),
+    city: readSearchParam(params, "city"),
+    intent: readSearchParam(params, "intent"),
+    priority: readSearchParam(params, "priority") || "p0",
+  });
+  const initialOfferConcern = readSearchParam(params, "offerConcern");
+  const initialOfferStatus = readSearchParam(params, "offerStatus");
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "FLOXANT Kontakt Regensburg",
+        name: "FLOXANT Kontakt Düsseldorf und Regensburg",
         description:
-          "Kontaktseite für FLOXANT mit Buchung, Rechner, Express-Anfrage, Telefon, WhatsApp, E-Mail und Standort in Regensburg.",
+          "Kontaktseite für FLOXANT mit Buchung, Rechner, Anfrage, Telefon, WhatsApp, E-Mail und den Standorten Düsseldorf und Regensburg.",
         path: "/kontakt",
         about: [
           "FLOXANT Kontakt",
@@ -270,29 +304,43 @@ export default async function KontaktPage() {
         <div className="relative mx-auto max-w-6xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600">
             <MapPinned className="h-4 w-4" />
-            FLOXANT Kontakt Regensburg
+            FLOXANT Kontakt Düsseldorf und Regensburg
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Kontakt aufnehmen, Anfrage starten oder Preisrahmen prüfen.
+            FLOXANT Kontakt: Anfrage mit Ort, Service und offener Frage senden
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
-            Wählen Sie den Weg, der zu Ihrem Fall passt: direkt anfragen, erst den Preisrahmen
-            prüfen, Express-Kontakt nutzen oder per WhatsApp schreiben. Wichtig sind Service,
-            Ort, Umfang, Terminwunsch und ein Kontaktweg für die Rückmeldung.
+            {leadIntent.suggestedFormIntro} Hilfreich sind Service, Ort, Umfang,
+            Fotos, Terminwunsch und der Kontaktweg, ueber den FLOXANT gezielt nachfragen darf.
           </p>
+          <div className="mt-8 grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
+            <div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/buchung"
+              href="#direktanfrage"
               className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
+              data-event="seo_cta_click"
+              data-service={leadIntent.trackingService}
+              data-city={leadIntent.trackingCity}
+              data-page-intent={leadIntent.trackingIntent}
+              data-priority="p0"
+              data-cta-label="Anfrage mit Eckdaten senden"
+              data-destination="#direktanfrage"
             >
-              Buchungsseite öffnen
+              Anfrage mit Eckdaten senden
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/rechner"
               className="inline-flex items-center gap-2 rounded-2xl border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-semibold text-blue-900 transition hover:bg-blue-100"
+              data-event="service_card_click"
+              data-service="kontakt"
+              data-city="regensburg"
+              data-page-intent="preisrahmen-pruefen"
+              data-priority="p0"
+              data-cta-label="Aufwand erst einordnen"
             >
-              Preisrahmen prüfen
+              Aufwand erst einordnen
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
@@ -300,6 +348,13 @@ export default async function KontaktPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-2xl border border-emerald-300/20 bg-emerald-500/10 px-5 py-3 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-500/15"
+              data-event="seo_cta_click"
+              data-service="kontakt"
+              data-city="regensburg"
+              data-page-intent="whatsapp-anfrage"
+              data-priority="p0"
+              data-cta-label="WhatsApp öffnen"
+              data-destination={whatsappUrl}
             >
               WhatsApp öffnen
               <MessageCircle className="h-4 w-4" />
@@ -328,6 +383,18 @@ export default async function KontaktPage() {
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.text}</p>
               </div>
             ))}
+          </div>
+              <div className="mt-4">
+                <LeadTrustBlock />
+              </div>
+            </div>
+
+            <SeoLeadForm
+              initialIntent={leadIntent}
+              sourcePage="/kontakt"
+              initialOfferConcern={initialOfferConcern}
+              initialOfferStatus={initialOfferStatus}
+            />
           </div>
 
           <div className="mt-4 grid gap-3 md:grid-cols-4">
@@ -385,6 +452,70 @@ export default async function KontaktPage() {
         </div>
       </section>
 
+      <CustomerNextStepPanel
+        title="Was nach dem Absenden passiert."
+        intro="Die Kontaktseite soll keine Blackbox sein. FLOXANT prueft zuerst die Eckdaten und fragt gezielt nach, wenn Ort, Umfang, Fotos oder Termin noch fehlen."
+        steps={customerNextSteps}
+      />
+
+      <ContactPathChooser />
+
+      <ServiceFitAdvisor
+        currentCity={leadIntent.city && leadIntent.city !== "deutschland" ? leadIntent.city : undefined}
+        title="Nicht sicher, welcher Service passt?"
+        intro="Der Anfrageberater setzt nur service, city, intent und priority im Kontaktlink. Bestehende URL-Parameter bleiben beim Formularstart weiter massgeblich."
+      />
+
+      <LocationServiceSwitcher
+        title="Den passenden Standort direkt vor der Anfrage waehlen."
+        intro="Dueseldorf und Regensburg haben eigene lokale Schwerpunkte. Der Kontakt bleibt gleich einfach, aber city=duesseldorf oder city=regensburg wird sauber in den Anfrageweg uebernommen."
+      />
+
+      <LocalContactPanel
+        service={leadIntent.service}
+        title="Kontakt fuer beide FLOXANT Standorte."
+        intro="Adresse, Telefon und E-Mail bleiben sichtbar. Oeffnungszeiten und GBP-Profil-URLs werden nicht geraten, sondern als manuelle Pruefung behandelt."
+      />
+
+      <section className="px-4 pb-12 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <ServiceIntentSelector />
+        </div>
+      </section>
+
+      <WhatWeNeedChecklist
+        group={leadIntent.service === "angebot-pruefen" ? "angebot-pruefen" : leadIntent.service === "umzug" ? "umzug" : leadIntent.service === "entruempelung" || leadIntent.service === "wohnungsaufloesung" ? "entruempelung" : leadIntent.service === "bueroreinigung" || leadIntent.service === "gewerbereinigung" ? "b2b" : "reinigung"}
+        title="Welche Angaben jetzt reichen"
+        intro="Ort, Service, grober Umfang und Kontaktweg reichen fuer den Start. Die Details werden nach Bedarf nachgefragt."
+        limit={4}
+      />
+
+      <CustomerConcernPanel />
+
+      <ObjectionAnswerGrid />
+
+      <TrustProofPanel
+        allowedPage="/kontakt"
+        serviceKey={leadIntent.service}
+        locationKey={leadIntent.city === "regensburg" ? "regensburg" : "duesseldorf"}
+        title="Kontakt ohne erfundene Vertrauenssignale."
+        intro="Die Kontaktseite trennt echte Anfragehilfen von ungeprueften Belegen: keine Sterne ohne Quelle, keine erfundenen Kundenstimmen, keine Garantie ohne Objektangaben."
+      />
+
+      <ServiceProofChecklist
+        serviceKey={leadIntent.service === "angebot-pruefen" ? "angebot-pruefen" : leadIntent.service === "umzug" ? "umzug" : leadIntent.service === "entruempelung" || leadIntent.service === "wohnungsaufloesung" ? "entruempelung" : leadIntent.service === "bueroreinigung" || leadIntent.service === "gewerbereinigung" ? "b2b" : "reinigung"}
+        title="Was als Proof vor der Rueckmeldung wirklich hilft"
+        intro="Diese Angaben ersetzen keine Besichtigung, machen die erste Einordnung aber belastbarer und vermeiden Rueckfragen."
+      />
+
+      <ProcessProofSteps />
+
+      <section className="px-6 pb-10">
+        <div className="mx-auto max-w-6xl">
+          <NoFakeClaimsNotice />
+        </div>
+      </section>
+
       <section className="px-6 pb-10">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
           {localTrustCards.map((item) => {
@@ -433,6 +564,9 @@ export default async function KontaktPage() {
 
       <ContactTrustPanel compact />
 
+      <LocalProofPanel location="duesseldorf" />
+      <LocalProofPanel location="regensburg" className="bg-slate-900" />
+
       <InternationalCustomerHint
         cityLabel="Düsseldorf oder Regensburg"
         serviceLabel="Umzug, Reinigung, Entrümpelung, Büroumzug oder Angebotsprüfung"
@@ -448,7 +582,7 @@ export default async function KontaktPage() {
         items={contactDecisionGuide}
       />
 
-      <section id="direktanfrage" className="border-y border-slate-200 bg-slate-50/80 px-6 py-16">
+      <section id="detaillierte-anfrage" className="border-y border-slate-200 bg-slate-50/80 px-6 py-16">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>

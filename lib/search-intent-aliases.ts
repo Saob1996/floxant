@@ -18,7 +18,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "moving-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Umzug", "Umzugsunternehmen", "Büroumzug", "Transport", "Beiladung", "Leer-Rückfahrt"],
-    canonicalPages: ["/umzug-regensburg", "/umzug-bayern", "/bueroumzug", "/kleintransport-regensburg", "/leerfahrt-rueckfahrt", "/beiladung"],
+    canonicalPages: ["/regensburg/umzugsunternehmen", "/regensburg/umzug", "/umzug-regensburg", "/umzug-bayern", "/bueroumzug", "/kleintransport-regensburg", "/leerfahrt-rueckfahrt", "/beiladung"],
     aliases: [
       {
         language: "en",
@@ -46,7 +46,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "cleaning-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Büroreinigung Regensburg", "Büroreinigung Regensburg Angebot", "Büroreinigung Kosten Regensburg", "Büro Reinigungskraft Regensburg", "Büroreinigung nach Feierabend Regensburg", "Praxisreinigung Regensburg", "Arztpraxis Reinigung Regensburg", "Praxisreinigung Angebot Regensburg", "Reinigung Praxisräume Regensburg", "Praxisreinigung nach Praxisschluss Regensburg", "Hotelreinigung Regensburg", "Hotel Reinigung Firma Regensburg", "Zimmerreinigung Regensburg", "Hotel Unterhaltsreinigung Regensburg", "Pension Reinigung Regensburg", "Boardinghouse Reinigung Regensburg", "Lobby Reinigung Regensburg", "Fensterreinigung Regensburg", "Glasreinigung Regensburg", "Baureinigung Regensburg", "Bauendreinigung Regensburg", "Baufeinreinigung Regensburg", "Reinigung nach Renovierung Regensburg", "Handwerkerstaub entfernen Regensburg", "Teppichreinigung Regensburg", "Teppichbodenreinigung Regensburg", "Polsterreinigung Regensburg", "Sofa reinigen lassen Regensburg", "Bürostühle reinigen Regensburg", "Treppenhausreinigung Regensburg", "Hausverwaltung Reinigung Regensburg", "Treppenhausreinigung Kosten Regensburg", "Treppenhaus reinigen lassen Regensburg", "WEG Reinigung Regensburg", "Mehrfamilienhaus Reinigung Regensburg", "Unterhaltsreinigung Regensburg", "Grundreinigung Regensburg", "Wohnung Grundreinigung Regensburg", "Büro Grundreinigung Regensburg", "Grundreinigung nach Auszug Regensburg", "starke Verschmutzung reinigen Regensburg", "Reinigungsplan Buero Regensburg", "Objektreinigung Regensburg", "Übergabereinigung", "Notfallreinigung", "Reinigung nach Veranstaltung"],
-    canonicalPages: ["/reinigung-regensburg", "/bueroreinigung-regensburg", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
+    canonicalPages: ["/regensburg/reinigung", "/regensburg/reinigungsfirma", "/regensburg/bueroreinigung", "/angebot-vergleichen-regensburg", "/reinigung-regensburg", "/bueroreinigung-regensburg", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
     aliases: [
       {
         language: "en",
@@ -74,7 +74,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "clearance-disposal-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Entrümpelung", "Wohnungsauflösung", "Nachlass-Räumung", "Entsorgung", "Firmenentsorgung"],
-    canonicalPages: ["/entruempelung-regensburg", "/entruempelung-bayern", "/wohnungsaufloesung-regensburg", "/nachlass-raeumung-regensburg", "/firmenentsorgung", "/kleinmengen-entsorgung"],
+    canonicalPages: ["/regensburg/wohnungsaufloesung", "/regensburg/entruempelung", "/entruempelung-regensburg", "/entruempelung-bayern", "/wohnungsaufloesung-regensburg", "/nachlass-raeumung-regensburg", "/firmenentsorgung", "/kleinmengen-entsorgung"],
     aliases: [
       {
         language: "en",
@@ -130,7 +130,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "offer-check-plan-b-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Angebotscheck", "Angebot anderer Firma prüfen", "Plan-B-Service", "Schadensbegrenzung", "Plattform-Auftrag prüfen"],
-    canonicalPages: ["/angebot-guenstiger-pruefen", "/angebotscheck", "/plattform-auftrag-pruefen", "/plan-b-service", "/schadensbegrenzung"],
+    canonicalPages: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/angebotscheck", "/plattform-auftrag-pruefen", "/plan-b-service", "/schadensbegrenzung"],
     aliases: [
       {
         language: "en",
@@ -157,8 +157,8 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
   {
     id: "duesseldorf-cleaning-only",
     market: "duesseldorf-cleaning",
-    serviceScope: ["Reinigung Düsseldorf", "Putzfirma Düsseldorf", "Putzservice Düsseldorf", "Reinigung Kosten Düsseldorf", "Reinigung Angebot Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "Firmenreinigung Düsseldorf", "Büroreinigung Düsseldorf", "Unterhaltsreinigung Düsseldorf", "Gebäudereinigung Düsseldorf", "Objektreinigung Düsseldorf", "Reinigungskraft Büro Düsseldorf", "Ladenreinigung Düsseldorf", "Geschäftsreinigung Düsseldorf", "Shop Reinigung Düsseldorf", "Reinigung Verkaufsfläche Düsseldorf", "Sonderreinigung Düsseldorf", "Intensivreinigung Düsseldorf", "starke Verschmutzung reinigen Düsseldorf", "Reinigung nach Leerstand Düsseldorf", "Reinigung nach Mieterwechsel Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Baureinigung Düsseldorf", "Bauendreinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf", "Teppichreinigung Düsseldorf", "Teppichbodenreinigung Düsseldorf", "Polsterreinigung Düsseldorf", "Grundreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
-    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/unterhaltsreinigung", "/duesseldorf/ladenreinigung", "/duesseldorf/sonderreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/baureinigung", "/duesseldorf/teppichreinigung", "/duesseldorf/grundreinigung", "/duesseldorf/treppenhausreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
+    serviceScope: ["Reinigung Düsseldorf", "Reinigungsfirma Düsseldorf", "Putzfirma Düsseldorf", "Wohnungsreinigung Düsseldorf", "Treppenhausreinigung Düsseldorf", "Reinigung Hauseingang Düsseldorf", "Hausflurreinigung Düsseldorf", "Gewerbeflächen-Reinigung Düsseldorf", "Gebäudereinigung Düsseldorf Heerdt", "Putzservice Düsseldorf", "Reinigung Kosten Düsseldorf", "Reinigung Angebot Düsseldorf", "Reinigung Düsseldorf Stadtteile", "Reinigung Neuss", "Reinigung Ratingen", "Reinigung Meerbusch", "Reinigung Mettmann", "Reinigung Duisburg", "Angebot prüfen Düsseldorf", "Firmenreinigung Düsseldorf", "Büroreinigung Düsseldorf", "Unterhaltsreinigung Düsseldorf", "Gebäudereinigung Düsseldorf", "Objektreinigung Düsseldorf", "Reinigungskraft Büro Düsseldorf", "Ladenreinigung Düsseldorf", "Geschäftsreinigung Düsseldorf", "Shop Reinigung Düsseldorf", "Reinigung Verkaufsfläche Düsseldorf", "Sonderreinigung Düsseldorf", "Intensivreinigung Düsseldorf", "starke Verschmutzung reinigen Düsseldorf", "Reinigung nach Leerstand Düsseldorf", "Reinigung nach Mieterwechsel Düsseldorf", "Hotelreinigung Düsseldorf", "Hotel Reinigung Düsseldorf", "Boardinghouse Reinigung Düsseldorf", "Baureinigung Düsseldorf", "Bauendreinigung Düsseldorf", "Reinigung nach Renovierung Düsseldorf", "Teppichreinigung Düsseldorf", "Teppichbodenreinigung Düsseldorf", "Polsterreinigung Düsseldorf", "Grundreinigung Düsseldorf", "möblierte Wohnung Reinigung Düsseldorf"],
+    canonicalPages: ["/duesseldorf/reinigung", "/duesseldorf/reinigungsfirma", "/duesseldorf/putzfirma", "/duesseldorf/wohnungsreinigung", "/duesseldorf/treppenhausreinigung", "/duesseldorf/gewerbeflaechen-reinigung", "/duesseldorf/reinigung-heerdt", "/angebot-vergleichen-duesseldorf", "/duesseldorf/reinigung-stadtteile-umgebung", "/duesseldorf/vielleicht-guenstiger", "/duesseldorf/bueroreinigung", "/duesseldorf/unterhaltsreinigung", "/duesseldorf/ladenreinigung", "/duesseldorf/sonderreinigung", "/duesseldorf/hotelreinigung", "/duesseldorf/baureinigung", "/duesseldorf/teppichreinigung", "/duesseldorf/grundreinigung", "/reinigung-moeblierte-wohnung-duesseldorf"],
     excludedIntents: ["moving Düsseldorf", "relocation Düsseldorf", "Umzug Düsseldorf", "Transport Düsseldorf", "Büroumzug Düsseldorf"],
     aliases: [
       {
@@ -344,6 +344,13 @@ multilingualSearchIntentGroups.push({
   ],
   canonicalPages: [
     "/duesseldorf/reinigung",
+    "/duesseldorf/reinigungsfirma",
+    "/duesseldorf/putzfirma",
+    "/duesseldorf/wohnungsreinigung",
+    "/duesseldorf/treppenhausreinigung",
+    "/duesseldorf/gewerbeflaechen-reinigung",
+    "/duesseldorf/reinigung-heerdt",
+    "/angebot-vergleichen-duesseldorf",
     "/duesseldorf/reinigung-stadtteile-umgebung",
     "/duesseldorf/vielleicht-guenstiger",
     "/duesseldorf/bueroreinigung",

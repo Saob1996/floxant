@@ -1,0 +1,214 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-06-20T03:42:02.442Z",
+  "scanned": [
+    "app/page.tsx",
+    "app/kontakt/page.tsx",
+    "app/leistungen/page.tsx",
+    "app/angebot-guenstiger-pruefen/page.tsx",
+    "app/angebotscheck/page.tsx",
+    "app/anbieter-vergleichen/page.tsx",
+    "app/duesseldorf/page.tsx",
+    "app/duesseldorf/reinigung/page.tsx",
+    "app/duesseldorf/bueroreinigung/page.tsx",
+    "app/duesseldorf/gewerbereinigung/page.tsx",
+    "app/duesseldorf/praxisreinigung/page.tsx",
+    "app/duesseldorf/fensterreinigung/page.tsx",
+    "app/duesseldorf/umzug/page.tsx",
+    "app/duesseldorf/entruempelung/page.tsx",
+    "app/duesseldorf/haushaltsaufloesung/page.tsx",
+    "app/regensburg/page.tsx",
+    "app/reinigung-regensburg/page.tsx",
+    "app/umzug-regensburg/page.tsx",
+    "app/entruempelung-regensburg/page.tsx",
+    "app/gewerbereinigung-regensburg/page.tsx",
+    "app/bueroreinigung-regensburg/page.tsx",
+    "app/klaviertransport-regensburg/page.tsx",
+    "app/wohnungsaufloesung-regensburg/page.tsx",
+    "app/signature-services/page.tsx",
+    "app/spezialreinigung/page.tsx",
+    "app/solarreinigung/page.tsx",
+    "app/pv-anlagen-reinigung/page.tsx",
+    "app/duesseldorf/solarreinigung/page.tsx",
+    "app/regensburg/solarreinigung/page.tsx",
+    "components/ProfessionalHero.tsx",
+    "components/CustomerProblemSection.tsx",
+    "components/ServiceClarityPanel.tsx",
+    "components/ProfessionalTrustPanel.tsx",
+    "components/CustomerNextStepPanel.tsx",
+    "components/CleanFaqSection.tsx",
+    "components/OfferCheckInlineCTA.tsx",
+    "components/LocationClarityPanel.tsx",
+    "components/SignatureServiceClarityGrid.tsx",
+    "lib/professional-copy.ts",
+    "docs/FLOXANT_COPY_STYLE_GUIDE.md",
+    "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+    "docs/CUSTOMER_LANGUAGE_KEYWORD_BANK.md"
+  ],
+  "missing": [],
+  "summary": {
+    "failCount": 0,
+    "warnCount": 0,
+    "infoCount": 26,
+    "scannedCount": 42,
+    "missingCount": 0
+  },
+  "issues": [
+    {
+      "severity": "INFO",
+      "file": "docs/FLOXANT_COPY_STYLE_GUIDE.md",
+      "line": 36,
+      "message": "Forbidden phrase documented for governance: Nummer-1 Claim"
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/FLOXANT_COPY_STYLE_GUIDE.md",
+      "line": 41,
+      "message": "Forbidden phrase documented for governance: 100 Prozent Zufriedenheit"
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/FLOXANT_COPY_STYLE_GUIDE.md",
+      "line": 44,
+      "message": "Forbidden phrase documented for governance: Soforttermin garantiert"
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/FLOXANT_COPY_STYLE_GUIDE.md",
+      "line": 42,
+      "message": "Forbidden phrase documented for governance: Top-Service garantiert"
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 12,
+      "message": "Risk topic documented for governance: Rechtsberatung"
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 11,
+      "message": "Very long source line (566 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 12,
+      "message": "Very long source line (587 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 13,
+      "message": "Very long source line (568 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 14,
+      "message": "Very long source line (627 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 15,
+      "message": "Very long source line (523 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 16,
+      "message": "Very long source line (551 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 17,
+      "message": "Very long source line (555 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 18,
+      "message": "Very long source line (601 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 19,
+      "message": "Very long source line (519 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 20,
+      "message": "Very long source line (468 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 21,
+      "message": "Very long source line (515 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 22,
+      "message": "Very long source line (501 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 23,
+      "message": "Very long source line (543 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 24,
+      "message": "Very long source line (527 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 25,
+      "message": "Very long source line (519 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 26,
+      "message": "Very long source line (483 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 27,
+      "message": "Very long source line (517 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 28,
+      "message": "Very long source line (484 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
+      "line": 29,
+      "message": "Very long source line (556 chars)."
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/CUSTOMER_LANGUAGE_KEYWORD_BANK.md",
+      "line": 80,
+      "message": "Forbidden phrase documented for governance: Nummer-1 Claim"
+    },
+    {
+      "severity": "INFO",
+      "file": "docs/CUSTOMER_LANGUAGE_KEYWORD_BANK.md",
+      "line": 75,
+      "message": "Forbidden phrase documented for governance: Soforttermin garantiert"
+    }
+  ]
+}

@@ -182,17 +182,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Hotelreinigung Regensburg | Zimmer, Lobby & Turnus | FLOXANT",
     description:
       "Hotelreinigung in Regensburg für Hotel, Pension, Boardinghouse, Lobby, Flure, Zimmer, Sanitär und Frühstücksbereich. Fotos, Turnus und Angebot prüfen.",
-    keywords: [
-      "Hotelreinigung Regensburg",
-      "Hotel Reinigung Firma Regensburg",
-      "Zimmerreinigung Regensburg",
-      "Hotel Unterhaltsreinigung Regensburg",
-      "Pension Reinigung Regensburg",
-      "Boardinghouse Reinigung Regensburg",
-      "Lobby Reinigung Regensburg",
-      "Hotelreinigung Angebot Regensburg",
-      "Hotelreinigung Kosten Regensburg",
-    ],
   });
 }
 

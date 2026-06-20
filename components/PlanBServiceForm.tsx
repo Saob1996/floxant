@@ -195,6 +195,8 @@ export function PlanBServiceForm() {
     formData.set("type", "plan_b_service");
     formData.set("lead_type", "plan_b_service");
     formData.set("service", "plan_b_service");
+    formData.set("serviceCategory", "plan_b_service");
+    formData.set("intent", "plan-b");
     formData.set("riskLevel", riskLevel);
     formData.set("uncertainArea", uncertainArea);
     formData.set("problemType", uncertainArea);
@@ -208,6 +210,12 @@ export function PlanBServiceForm() {
     formData.set("source", "plan_b_service");
     formData.set("sourceComponent", "plan_b_form");
     formData.set("sourceContext", riskLevel);
+    formData.set("contactMethod", phone ? "phone" : email ? "email" : "unknown");
+    formData.set("preferredContactMethod", formData.get("preferredContact") === "whatsapp" ? "whatsapp" : phone ? "phone" : email ? "email" : "unknown");
+    formData.set("privacyConsent", "true");
+    formData.set("pageType", "plan_b");
+    formData.set("funnelStage", "urgent_lead");
+    formData.set("ctaLabel", "Plan B pruefen lassen");
     formData.set("sourcePage", "/plan-b-service");
     formData.set("landingPage", typeof window === "undefined" ? "/plan-b-service" : `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", typeof document === "undefined" ? "" : document.referrer);

@@ -69,6 +69,7 @@ type SpecialtyPageLayoutProps = {
   city: string;
   heroText?: string;
   ctaText?: string;
+  primaryCtaHref?: string;
   breadcrumbs: BreadcrumbItem[];
   chips?: IconEntry[];
   cards?: ServiceCard[];
@@ -145,6 +146,26 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
         { href: "/rechner", label: "Reinigung direkt kalkulieren" },
         { href: "/service-area-bayern", label: `Reinigung in ${region} und Bayern` },
+      ],
+    };
+  }
+
+  if (signal.includes("klaviertransport") || signal.includes("piano")) {
+    return {
+      name: "Klaviertransport",
+      pagePath: isBavariaPage ? "/klaviertransport" : `/klaviertransport-${citySlug}`,
+      primaryPath: "/klaviertransport",
+      calculatorHref: "/rechner?service=umzug",
+      calculatorService: "umzug" as const,
+      audience: `Der Klaviertransport in ${city} richtet sich an Kunden, die Klavier, E-Piano oder Flügel nicht wie ein normales Möbelstück behandeln möchten und vorab Zugang, Etage, Strecke und Fotos prüfen lassen wollen.`,
+      timing: `Er ist sinnvoll, wenn Treppenhaus, Aufzug, Türbreite, Haltemöglichkeit, Gewicht oder ein enger Termin in ${city} den Transport empfindlicher machen.`,
+      process: `FLOXANT fragt Instrumenttyp, Start, Ziel, Etage, Aufzug, Treppenhaus, Laufweg, Haltemöglichkeit, Fotos und Termin ab. Erst danach wird eingeordnet, ob ein Transport realistisch geplant werden kann.`,
+      difference: `Im Unterschied zum normalen Möbeltransport zählen beim Klaviertransport vor allem Bauform, Gewicht, Empfindlichkeit, Zugänge, Tragewege und die Frage, ob Fotos oder eine Rückfrage vor einer Zusage nötig sind.`,
+      relatedLinks: [
+        { href: "/klaviertransport", label: "Klaviertransport als Hauptservice" },
+        { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+        { href: "/regensburg/umzug", label: "Regensburger Umzugsanfrage" },
+        { href: "/angebot-guenstiger-pruefen", label: "Transportangebot prüfen" },
       ],
     };
   }
@@ -429,6 +450,26 @@ function getLocalIssueCards(serviceName: string, city: string, areaText: string)
     ];
   }
 
+  if (serviceName === "Klaviertransport") {
+    return [
+      {
+        title: "Instrument und Bauform",
+        text: `Für Klaviertransport in ${city} macht es einen großen Unterschied, ob es um Klavier, E-Piano oder Flügel geht. Fotos, Maße oder eine kurze Beschreibung helfen mehr als ein pauschaler Möbeltransport-Hinweis.`,
+        Icon: ClipboardCheck,
+      },
+      {
+        title: "Etage, Aufzug und Treppenhaus",
+        text: `Zugang, Türbreite, Kurven, Treppenabsätze, Aufzug und Laufweg in ${areaText} entscheiden darüber, ob der Transport realistisch geplant werden kann.`,
+        Icon: MapPin,
+      },
+      {
+        title: "Start, Ziel und Termin",
+        text: `Startadresse, Zieladresse, Haltemöglichkeit und Terminfenster werden zusammen geprüft. Eine Zusage ohne diese Punkte wäre bei Instrumenten zu ungenau.`,
+        Icon: Route,
+      },
+    ];
+  }
+
   return [
     {
       title: "Parken und Laufwege",
@@ -484,6 +525,15 @@ function getPriceLogicItems(serviceName: string, city: string, areaText: string,
     ];
   }
 
+  if (serviceName === "Klaviertransport") {
+    return [
+      { label: "Instrument", text: `Klavier, E-Piano und Flügel werden für ${city} getrennt betrachtet, weil Gewicht, Bauform und Schutzbedarf unterschiedlich sind.` },
+      { label: "Zugang", text: `Etage, Aufzug, Treppenhaus, Türbreite, Laufweg und Haltemöglichkeit in ${areaText} beeinflussen die Machbarkeit direkt.` },
+      { label: "Strecke", text: "Start, Ziel, Entfernung, Ladepunkt und Zielzugang müssen zusammenpassen, bevor ein Termin sinnvoll bestätigt wird." },
+      { label: "Fotos", text: "Fotos vom Instrument, Treppenhaus, Eingang und Zielort ersetzen oft lange Rückfragen und machen die erste Einschätzung belastbarer." },
+    ];
+  }
+
   return [
     { label: "Volumen", text: `Kartons, Möbel, Küche, Keller und Einzelstücke bestimmen Fahrzeuggröße und Team für ${city}.` },
     { label: "Zugang", text: `Etage, Aufzug, Laufweg, Innenhof und Parkmöglichkeit in ${areaText} wirken direkt auf die Tragezeit.` },
@@ -493,6 +543,23 @@ function getPriceLogicItems(serviceName: string, city: string, areaText: string,
 }
 
 function getLocalFaqs(serviceName: string, city: string, areaText: string, region: string) {
+  if (serviceName === "Klaviertransport") {
+    return [
+      {
+        q: `Welche Angaben braucht FLOXANT für Klaviertransport in ${city}?`,
+        a: `Hilfreich sind Instrumenttyp, Start, Ziel, Etage, Aufzug, Treppenhaus, Türbreite, Laufweg, Haltemöglichkeit, Fotos und Terminwunsch. Erst mit diesen Angaben lässt sich der Transport realistisch einordnen.`,
+      },
+      {
+        q: `Kann FLOXANT einen Klaviertransport in ${city} sofort zusagen?`,
+        a: "Nein. Bei Klavier, E-Piano oder Flügel wird zuerst geprüft, ob Zugang, Strecke, Termin, Gewicht und Fotos zusammenpassen. Ohne diese Prüfung gibt es keine pauschale Zusage.",
+      },
+      {
+        q: "Reicht ein normales Umzugsangebot für ein Klavier?",
+        a: "Oft nicht. Ein Klaviertransport braucht eigene Angaben zu Instrument, Treppenhaus, Aufzug, Türbreite, Laufweg und Zielort, weil das Risiko und der Aufwand anders sind als bei normalen Möbeln.",
+      },
+    ];
+  }
+
   const serviceLower = serviceName.toLowerCase();
   return [
     {
@@ -544,6 +611,7 @@ export function SpecialtyPageLayout({
   city,
   heroText,
   ctaText,
+  primaryCtaHref,
   breadcrumbs,
   chips = [],
   cards = [],
@@ -583,6 +651,14 @@ export function SpecialtyPageLayout({
   const regionName = geo?.region || "Bayern";
   const serviceContext = getServiceContext(serviceSignal, city, citySlug, regionName, isBavariaPage);
   const resolvedHeroTitle = heroTitle?.trim() || `${serviceContext.name} in ${city}`;
+  const resolvedPrimaryCtaHref = primaryCtaHref || "#wizard";
+  const primaryCtaQuery = resolvedPrimaryCtaHref.includes("?")
+    ? new URLSearchParams(resolvedPrimaryCtaHref.split("?")[1])
+    : null;
+  const primaryCtaService = primaryCtaQuery?.get("service") || serviceContext.name.toLowerCase();
+  const primaryCtaCity = primaryCtaQuery?.get("city") || citySlug;
+  const primaryCtaIntent = primaryCtaQuery?.get("intent") || `${primaryCtaService}-${primaryCtaCity}`;
+  const primaryCtaPriority = primaryCtaService === "klaviertransport" && primaryCtaCity === "regensburg" ? "p0" : "p1";
 
   const rawFaqs = (dict?.faqs || []) as Array<{ q: string; a: string }>;
   const resolvedFaqs = rawFaqs
@@ -827,10 +903,16 @@ export function SpecialtyPageLayout({
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
-                href="#wizard"
+                href={resolvedPrimaryCtaHref}
                 className="btn-premium flox-button-primary min-h-[3.65rem] px-8"
-                data-event="hero_cta_click"
-                data-service={serviceContext.name.toLowerCase()}
+                data-event="seo_cta_click"
+                data-service={primaryCtaService}
+                data-city={primaryCtaCity || undefined}
+                data-page-intent={primaryCtaIntent}
+                data-priority={primaryCtaPriority}
+                data-cta-label={ctaText || `${serviceContext.name} in ${city} anfragen`}
+                data-destination={resolvedPrimaryCtaHref}
+                data-source="specialty_hero"
                 data-region={city}
               >
                 {germanText(ctaText || `${serviceContext.name} in ${city} anfragen`, ctaText || `${serviceContext.name} in ${city} anfragen`)}
@@ -932,7 +1014,7 @@ export function SpecialtyPageLayout({
         title={`${serviceContext.name} in ${germanText(city, city)}: erst klären, dann passend anfragen.`}
         intro={`FLOXANT macht die wichtigsten Punkte sichtbar, bevor Kunden buchen: Ort, Termin, Umfang, Fotos, Budget und Zusatzleistungen. So wird ${serviceContext.name} in ${germanText(city, city)} nicht zur Ratesache, sondern zu einem klaren nächsten Schritt.`}
         regionLabel={`${germanText(city, city)} · ${germanText(geo?.region || "Bayern", geo?.region || "Bayern")} · FLOXANT nach Verfügbarkeit`}
-        primaryHref="#wizard"
+        primaryHref={resolvedPrimaryCtaHref}
         primaryLabel={`${serviceContext.name} anfragen`}
         secondaryHref="/angebot-guenstiger-pruefen"
         secondaryLabel="Angebot prüfen"
@@ -1447,16 +1529,108 @@ export function SpecialtyPageLayout({
       ) : null}
 
       <section className="section-glow flox-section py-18">
-        <div className="flox-shell max-w-5xl overflow-hidden rounded-[2.3rem] border border-slate-200 bg-white shadow-[0_18px_46px_rgba(15,23,42,0.08)]">
-          <iframe
-            width="100%"
-            height="420"
-            style={{ border: 0, filter: "grayscale(0.08) contrast(1.08)" }}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(`${city} Bavaria Germany`)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-          />
+        <div className="flox-shell max-w-6xl">
+          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-[0_18px_46px_rgba(15,23,42,0.08)]">
+            <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="bg-slate-950 px-6 py-8 text-white sm:px-8">
+                <div className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-xs font-black uppercase tracking-normal text-cyan-100">
+                  <MapPin className="h-4 w-4" />
+                  Lokaler Check
+                </div>
+                <h2 className="mt-5 text-3xl font-bold tracking-normal md:text-4xl">
+                  {serviceContext.name} in {germanText(city, city)}: Ort, Zugang und Ziel sauber klären.
+                </h2>
+                <p className="mt-4 text-base leading-8 text-slate-200">
+                  Kunden brauchen an dieser Stelle keine leere Kartenfläche. Entscheidend ist, wo der Einsatz liegt,
+                  wie der Zugang aussieht, welche Fotos helfen und welcher nächste Schritt wirklich passt.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {localAreaNames.slice(0, 4).map((area) => (
+                    <span
+                      key={area}
+                      className="rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-xs font-bold text-white"
+                    >
+                      {germanText(area, area)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="px-6 py-8 sm:px-8">
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {[
+                    {
+                      Icon: MapPin,
+                      title: "Einsatzort",
+                      text: `Stadtteil, Adresse, Parken und Zugang in ${city} direkt mit angeben.`,
+                    },
+                    {
+                      Icon: Route,
+                      title: "Umgebung",
+                      text: `${localAreaText} werden nach Strecke, Laufweg und Termin eingeordnet.`,
+                    },
+                    {
+                      Icon: MessageSquare,
+                      title: "Rückmeldung",
+                      text: "Fotos, Termin und Budget helfen schneller als eine unklare Kurzbeschreibung.",
+                    },
+                  ].map(({ Icon, title, text }) => (
+                    <article key={title} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                      <Icon className="h-5 w-5 text-blue-700" />
+                      <h3 className="mt-3 text-base font-bold tracking-normal text-slate-950">{title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">{text}</p>
+                    </article>
+                  ))}
+                </div>
+
+                <div className="mt-6 rounded-lg border border-blue-100 bg-blue-50 p-5">
+                  <h3 className="text-xl font-bold tracking-normal text-slate-950">
+                    Direkter starten statt lange suchen.
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">
+                    Schildern Sie kurz Ort, Umfang, Termin und Besonderheiten. FLOXANT ordnet ein,
+                    welcher Anfrageweg für {germanText(serviceContext.name, serviceContext.name)} in {germanText(city, city)} sinnvoll ist.
+                  </p>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <a
+                      href={resolvedPrimaryCtaHref}
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
+                      data-event="seo_cta_click"
+                      data-service={primaryCtaService}
+                      data-city={primaryCtaCity || undefined}
+                      data-page-intent={primaryCtaIntent}
+                      data-priority={primaryCtaPriority}
+                      data-cta-label={`${serviceContext.name} in ${city} anfragen`}
+                      data-destination={resolvedPrimaryCtaHref}
+                      data-source="local_check_block"
+                      data-region={city}
+                    >
+                      Anfrage senden
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                    <a
+                      href={whatsappHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-5 text-sm font-black text-white transition hover:bg-emerald-600"
+                      data-event="seo_cta_click"
+                      data-service={serviceContext.name.toLowerCase()}
+                      data-city={citySlug}
+                      data-page-intent={primaryCtaIntent}
+                      data-priority={primaryCtaPriority}
+                      data-cta-label="WhatsApp mit Fotos"
+                      data-destination={whatsappHref}
+                      data-source="local_check_block"
+                      data-region={city}
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                      WhatsApp mit Fotos
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

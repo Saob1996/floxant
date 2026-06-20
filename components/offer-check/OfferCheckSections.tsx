@@ -21,7 +21,6 @@ import {
   HumanReadableFAQ,
   QuickDecisionBox,
   type ComparisonAnswerRow,
-  type HumanReadableFaqItem,
 } from "@/components/ai-answer";
 import {
   BeforeAfterCard,
@@ -30,6 +29,7 @@ import {
   ProcessStepGraphic,
   VisualServiceShape,
 } from "@/components/visuals";
+import { offerCheckFaqItems } from "@/lib/faqs";
 
 const offerCheckUseCases = [
   {
@@ -111,29 +111,6 @@ const warningSigns = [
   "hoher Preis ohne nachvollziehbare Kostentreiber",
   "Fotos oder Besichtigung werden ignoriert",
   "Vorkasse oder Zahlungsweg wirkt ungewoehnlich",
-] as const;
-
-const faqItems: HumanReadableFaqItem[] = [
-  {
-    q: "Ist Angebot pruefen eine Rechtsberatung?",
-    a: "Nein. FLOXANT prueft organisatorisch und praktisch: Umfang, Preislogik, Termin, Fotos, Zugang und offene Punkte.",
-  },
-  {
-    q: "Kann FLOXANT immer guenstiger anbieten?",
-    a: "Nein. Manchmal ist ein guenstigerer Weg moeglich, manchmal ist das vorhandene Angebot plausibel. Es gibt keine Unterbietungsgarantie.",
-  },
-  {
-    q: "Welche Angebote kann FLOXANT pruefen?",
-    a: "Vor allem Angebote fuer Reinigung, Bueroreinigung, Gewerbereinigung, Umzug, Entruempelung, Haushaltsaufloesung, Solar/PV, Glas, Fassade und Kombinationen.",
-  },
-  {
-    q: "Was sollte ich senden?",
-    a: "Angebot oder Screenshot, Ort oder PLZ, Termin, Fotos, Preisrahmen, Leistung, Flaeche oder Menge und eine kurze Beschreibung der offenen Frage.",
-  },
-  {
-    q: "Wann ist eher Plan B statt Angebotscheck sinnvoll?",
-    a: "Wenn ein Anbieter abgesagt hat, der Termin sehr nah ist oder die Uebergabe kippt, ist ein Plan-B-Service oft passender als ein reiner Preisvergleich.",
-  },
 ] as const;
 
 const internalLinks = [
@@ -504,7 +481,7 @@ export function OfferCheckFAQ({ className = "" }: { className?: string }) {
       className={className}
       title="FAQ zur Angebotspruefung"
       intro="Die haeufigsten Fragen knapp beantwortet, bevor Sie ein Angebot zusagen."
-      items={faqItems}
+      items={offerCheckFaqItems.slice(0, 7)}
     />
   );
 }

@@ -182,17 +182,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Teppichreinigung Regensburg | Polster & Sofa | FLOXANT",
     description:
       "Teppichreinigung, Teppichbodenreinigung und Polsterreinigung in Regensburg nach Prüfung: Sofa, Bürostühle, Flecken, Fotos, Material und Angebot senden.",
-    keywords: [
-      "Teppichreinigung Regensburg",
-      "Teppichbodenreinigung Regensburg",
-      "Polsterreinigung Regensburg",
-      "Sofa reinigen lassen Regensburg",
-      "Bürostühle reinigen Regensburg",
-      "Teppichreinigung Kosten Regensburg",
-      "Büro Teppich reinigen Regensburg",
-      "Teppich nach Auszug reinigen Regensburg",
-      "Flecken entfernen Teppich Regensburg",
-    ],
   });
 }
 

@@ -10,6 +10,9 @@ import {
 
 import { PillarServicePage } from "@/components/PillarServicePage";
 import { PsychologicalCleaningInternalLinks } from "@/components/PsychologicalCleaningLandingRoute";
+import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { ServiceFitGuide } from "@/components/ServiceFitGuide";
+import { ServicePackageSelector } from "@/components/ServicePackageSelector";
 import { getDictionary } from "@/get-dictionary";
 import { generatePageSEO } from "@/lib/seo";
 import {
@@ -26,15 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reinigung Regensburg | Wohnung, Büro & Übergabe",
     description:
       "Reinigung in Regensburg und Bayern für Wohnung, Büro, Endreinigung und Übergabe. FLOXANT prüft Fläche, Zustand, Termin und Umfang realistisch.",
-    keywords: [
-      "Reinigung Regensburg",
-      "Reinigungsfirma Regensburg",
-      "Endreinigung Regensburg",
-      "Wohnungsreinigung Regensburg",
-      "Büroreinigung Regensburg",
-      "Übergabereinigung Bayern",
-      "Reinigung Kosten Regensburg",
-    ],
   });
 }
 
@@ -184,6 +178,13 @@ export default async function ReinigungPillarPage() {
           { href: "/reinigung-landshut", label: "Reinigung Landshut" },
           { href: "/reinigung-passau", label: "Reinigung Passau" },
         ]}
+      />
+      <ServicePackageSelector groups="reinigung" limit={7} />
+      <EffortFactorsPanel group="reinigung" />
+      <ServiceFitGuide
+        group="reinigung"
+        title="Welche Reinigungsanfrage passt zu Ihrem Fall?"
+        intro="Einmalig, regelmaessig, Uebergabe, Gewerbe oder Sonderfall: Die Auswahl bestimmt, welche Angaben FLOXANT zuerst braucht."
       />
       <PsychologicalCleaningInternalLinks
         title="Problemnahe Reinigung in Regensburg"
