@@ -156,10 +156,11 @@ export default function ObjektbriefPage() {
 
       <section className="relative isolate min-h-[78svh] overflow-hidden bg-slate-950 px-5 pb-12 pt-32 text-white sm:px-8 lg:px-10">
         <Image
-          src="/assets/floxant-hero-neu-gedacht.png"
+          src="/assets/floxant-hero-neu-gedacht.webp"
           alt="FLOXANT Objektbrief für strukturierte Anfragen"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover object-center opacity-55"
         />

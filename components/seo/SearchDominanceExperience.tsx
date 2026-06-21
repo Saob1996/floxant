@@ -768,9 +768,9 @@ export function SearchDominanceExperience({
                 Google, Maps & klare Antworten
               </div>
               <div className="flex flex-wrap gap-2">
-                {config.searchChips.map((chip) => (
+                {config.searchChips.map((chip, index) => (
                   <span
-                    key={chip}
+                    key={`${chip}-${index}`}
                     className="flox-search-chip rounded-full border border-white/12 bg-white/8 px-3 py-2 text-xs font-bold text-white"
                   >
                     {chip}

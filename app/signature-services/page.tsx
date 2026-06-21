@@ -176,10 +176,11 @@ export default function SignatureServicesPage() {
 
       <section className="relative isolate min-h-[78svh] overflow-hidden bg-slate-950 px-5 pb-14 pt-32 text-white sm:px-8 lg:px-10">
         <Image
-          src="/assets/floxant-hero-neu-gedacht.png"
+          src="/assets/floxant-hero-neu-gedacht.webp"
           alt="FLOXANT Signature Services für besondere Servicefälle"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover object-center opacity-58"
         />

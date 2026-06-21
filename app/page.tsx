@@ -339,10 +339,11 @@ export default function HomePage() {
 
       <section className="relative isolate min-h-[88svh] overflow-hidden bg-slate-950 text-white">
         <Image
-          src="/assets/floxant-hero-neu-gedacht.png"
+          src="/assets/floxant-hero-neu-gedacht.webp"
           alt="FLOXANT als regionale Dienstleistungsmarke"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="absolute inset-0 -z-20 object-cover object-center opacity-70"
         />
