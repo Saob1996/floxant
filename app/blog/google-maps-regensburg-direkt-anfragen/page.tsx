@@ -113,7 +113,7 @@ export default function BlogGoogleMapsRegensburgDirektAnfragenPage() {
         ctas={[
           { href: "/buchung", label: "Direkt zur Buchung" },
           { href: "/kontakt", label: "Kontakt & Standort ansehen" },
-          { href: "/gewerbereinigung-regensburg", label: "Zur B2B-Reinigung" },
+          { href: "/regensburg/gewerbereinigung", label: "Zur B2B-Reinigung" },
         ]}
         faqTitle="FAQ zu Google Maps und direkter Anfrage"
         faqItems={faqItems}

@@ -38,28 +38,23 @@ export function WebSiteJsonLd() {
       },
       {
         "@type": "WebPage",
-        name: "Servicegebiet Bayern",
+        name: "Regensburg",
         url: company.serviceAreaUrl,
       },
       {
         "@type": "WebPage",
-        name: "Einsatzgebiet Regensburg ca. 200 km",
-        url: `${company.url}/einsatzgebiet-regensburg-200km`,
-      },
-      {
-        "@type": "WebPage",
         name: "Umzug Regensburg",
-        url: `${company.url}/umzug-regensburg`,
+        url: `${company.url}/regensburg/umzug`,
       },
       {
         "@type": "WebPage",
         name: "Reinigung Regensburg",
-        url: `${company.url}/reinigung-regensburg`,
+        url: `${company.url}/regensburg/reinigung`,
       },
       {
         "@type": "WebPage",
         name: "Büroreinigung Regensburg",
-        url: `${company.url}/bueroreinigung-regensburg`,
+        url: `${company.url}/regensburg/bueroreinigung`,
       },
       {
         "@type": "WebPage",
@@ -104,7 +99,7 @@ export function WebSiteJsonLd() {
       {
         "@type": "WebPage",
         name: "Entrümpelung Regensburg",
-        url: `${company.url}/entruempelung-regensburg`,
+        url: `${company.url}/regensburg/entruempelung`,
       },
       {
         "@type": "WebPage",

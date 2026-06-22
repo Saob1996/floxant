@@ -30,13 +30,13 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       relevanceScore: 91,
     },
     {
-      url: "/service-area-bayern",
-      anchorText: `Servicegebiet in Bayern für ${city} prüfen`,
+      url: "/standorte",
+      anchorText: `Standorte und Verfuegbarkeit fuer ${city} pruefen`,
       relevanceScore: 88,
     },
     {
-      url: "/einsatzgebiet-regensburg-200km",
-      anchorText: `200-km-Einsatzgebiet ab Regensburg für ${city}`,
+      url: "/regensburg",
+      anchorText: `Regensburg-Bereich fuer ${city} pruefen`,
       relevanceScore: 86,
     },
   ];
@@ -47,7 +47,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       { url: "/reinigung", anchorText: "Reinigung in Bayern erklärt", relevanceScore: 95 },
       { url: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Reinigungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/umzug-mit-reinigung", anchorText: "Umzug mit Reinigung kombinieren", relevanceScore: 82 },
-      { url: "/bueroreinigung-regensburg", anchorText: "Büroreinigung Regensburg", relevanceScore: 84 },
+      { url: "/regensburg/bueroreinigung", anchorText: "Büroreinigung Regensburg", relevanceScore: 84 },
       { url: "/praxisreinigung-regensburg", anchorText: "Praxisreinigung Regensburg", relevanceScore: 83 },
       { url: "/hotelreinigung-regensburg", anchorText: "Hotelreinigung Regensburg", relevanceScore: 83 },
       { url: "/fensterreinigung-regensburg", anchorText: "Fensterreinigung Regensburg", relevanceScore: 82 },
@@ -55,7 +55,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       { url: "/teppichreinigung-regensburg", anchorText: "Teppichreinigung Regensburg", relevanceScore: 82 },
       { url: "/treppenhausreinigung-regensburg", anchorText: "Treppenhausreinigung Regensburg", relevanceScore: 82 },
       { url: "/grundreinigung-regensburg", anchorText: "Grundreinigung Regensburg", relevanceScore: 81 },
-      { url: "/reinigung-regensburg", anchorText: "Reinigung Regensburg", relevanceScore: 78 },
+      { url: "/regensburg/reinigung", anchorText: "Reinigung Regensburg", relevanceScore: 78 },
     ];
   }
 
@@ -66,7 +66,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       { url: "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Entsorgungs- oder Entrümpelungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/firmenentsorgung", anchorText: "Firmenentsorgung und Büroentsorgung prüfen", relevanceScore: 90 },
       { url: "/kleinmengen-entsorgung", anchorText: "Kleinmengen fachgerecht entsorgen", relevanceScore: 84 },
-      { url: "/entruempelung-regensburg", anchorText: "Entrümpelung Regensburg", relevanceScore: 78 },
+      { url: "/regensburg/entruempelung", anchorText: "Entrümpelung Regensburg", relevanceScore: 78 },
     ];
   }
 
@@ -104,6 +104,6 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
     { url: "/umzug", anchorText: "Umzug in Bayern erklärt", relevanceScore: 95 },
     { url: "/blog/umzugsangebot-pruefen-regensburg-bayern", anchorText: `Umzugsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
     { url: "/beiladung", anchorText: "Beiladung für Einzelstücke prüfen", relevanceScore: 82 },
-    { url: "/umzug-regensburg", anchorText: "Umzug Regensburg", relevanceScore: 78 },
+    { url: "/regensburg/umzug", anchorText: "Umzug Regensburg", relevanceScore: 78 },
   ];
 }

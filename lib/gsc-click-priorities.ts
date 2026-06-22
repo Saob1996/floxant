@@ -72,7 +72,7 @@ const regensburgMoveAnchors = [
 const regensburgClearanceAnchors = [
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
-  { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg Einstieg" },
+  { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg Einstieg" },
   { href: "/regensburg/endreinigung", label: "Endreinigung nach Räumung" },
   { href: "/angebot-vergleichen-regensburg", label: "Räumungsangebot prüfen" },
 ] as const;
@@ -308,7 +308,7 @@ export const gscClickPriorities = {
     secondaryKeywords: ["pianotransport regensburg", "instrumententransport regensburg", "klavier umzug regensburg"],
     jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
     internalLinkAnchors: [
-      { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/umzug", label: "Umzug in Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Transportangebot pruefen" },
       { href: "/kontakt?service=klaviertransport&city=regensburg&intent=klaviertransport-regensburg&source=seo", label: "Klaviertransport anfragen" },
@@ -570,7 +570,7 @@ export const gscClickPriorities = {
       { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
       { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
       { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
-      { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
       { href: "/reinigungsfirma-angebot", label: "Reinigungsfirma Angebot" },
     ],
   },
@@ -746,7 +746,7 @@ export const gscClickPriorities = {
     internalLinkAnchors: cleaningClusterAnchors,
   },
   "/regensburg/umzug": {
-    priority: "P3",
+    priority: "P2",
     path: "/regensburg/umzug",
     canonical: "/regensburg/umzug",
     title: "Umzug Regensburg | Fotos senden, Angebot klären",
@@ -768,7 +768,7 @@ export const gscClickPriorities = {
     internalLinkAnchors: regensburgMoveAnchors,
   },
   "/regensburg/entruempelung": {
-    priority: "P3",
+    priority: "P2",
     path: "/regensburg/entruempelung",
     canonical: "/regensburg/entruempelung",
     title: "Entrümpelung Regensburg | Räume & Angebot klären",
@@ -790,7 +790,7 @@ export const gscClickPriorities = {
     internalLinkAnchors: regensburgClearanceAnchors,
   },
   "/regensburg/wohnungsaufloesung": {
-    priority: "P3",
+    priority: "P2",
     path: "/regensburg/wohnungsaufloesung",
     canonical: "/regensburg/wohnungsaufloesung",
     title: "Wohnungsauflösung Regensburg | Räume klären",
@@ -865,88 +865,10 @@ export const gscClickPriorities = {
       { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
     ],
   },
-  "/entruempelung-regensburg": {
+  "/regensburg/umzugsunternehmen": {
     priority: "P2",
-    path: "/entruempelung-regensburg",
-    canonical: "/entruempelung-regensburg",
-    title: "Entruempelung Regensburg mit Menge und Angebot klaeren",
-    description:
-      "Entruempelung Regensburg fuer Wohnung, Keller, Garage oder Hausaufloesung: Fotos, Menge, Zugang, Termin und Angebot klaeren.",
-    openGraphTitle: "Entrümpelung Regensburg",
-    openGraphDescription:
-      "Räumung und Entsorgung in Regensburg mit Fotos, Volumen, Zugang und Reinigung danach einordnen.",
-    h1: "Entrümpelung Regensburg für Wohnung, Keller und Restmengen",
-    pageIntent: "Entrümpelung, Haushaltsauflösung oder Wohnungsauflösung in Regensburg anfragen",
-    primaryKeyword: "entrümpelung regensburg",
-    secondaryKeywords: [
-      "haushaltsauflösung regensburg",
-      "hausauflösung regensburg",
-      "wohnung räumen regensburg",
-    ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
-    internalLinkAnchors: [
-      { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
-      { href: "/entruempelung", label: "Entrümpelung" },
-      { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum Regensburg" },
-      { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
-    ],
-  },
-  "/wohnungsaufloesung-regensburg": {
-    priority: "P2",
-    path: "/wohnungsaufloesung-regensburg",
-    canonical: "/wohnungsaufloesung-regensburg",
-    title: "Wohnungsauflösung Regensburg | Hausauflösung anfragen",
-    description:
-      "Wohnungsauflösung Regensburg: Räume, Keller, Möbel, Fotos, Zugang, Entsorgung, Reinigung danach und Termin strukturiert klären.",
-    openGraphTitle: "Wohnungsauflösung Regensburg",
-    openGraphDescription:
-      "Wohnung oder Haus in Regensburg mit Räumung, Entsorgung und optionaler Reinigung vorbereiten.",
-    h1: "Wohnungsauflösung Regensburg für Wohnung, Haus und Keller",
-    pageIntent: "Wohnungsauflösung oder Hausauflösung in Regensburg anfragen",
-    primaryKeyword: "wohnungsauflösung regensburg",
-    secondaryKeywords: [
-      "hausauflösung regensburg",
-      "haushaltsauflösung regensburg",
-      "wohnung auflösen regensburg",
-    ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
-    internalLinkAnchors: [
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
-      { href: "/nachlass-raeumung-regensburg", label: "Nachlassräumung Regensburg" },
-      { href: "/wohnung-wieder-vermietbar", label: "Wohnung wieder vermietbar machen" },
-      { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-    ],
-  },
-  "/umzug-regensburg": {
-    priority: "P2",
-    path: "/umzug-regensburg",
-    canonical: "/umzug-regensburg",
-    title: "Umzug Regensburg mit Start, Ziel und Angebot klaeren",
-    description:
-      "Umzug Regensburg anfragen: Start, Ziel, Etage, Laufweg, Moebelmenge, Fotos, Termin und vorhandenes Angebot vorab klaeren.",
-    openGraphTitle: "Umzug Regensburg klar anfragen",
-    openGraphDescription:
-      "Umzugsanfrage in Regensburg mit Start, Ziel, Zugang, Möbelmenge, Fotos und Terminwunsch einordnen.",
-    h1: "Umzug Regensburg mit Start, Ziel und Angebot klaeren anfragen",
-    pageIntent: "Umzug in Regensburg anfragen",
-    primaryKeyword: "umzug regensburg",
-    secondaryKeywords: [
-      "umzugsunternehmen regensburg",
-      "umzugsservice regensburg",
-      "privatumzug regensburg",
-    ],
-    jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
-    internalLinkAnchors: [
-      { href: "/umzugsunternehmen-regensburg", label: "Umzugsunternehmen Regensburg" },
-      { href: "/regensburg/umzug-kosten", label: "Umzugskosten Regensburg" },
-      { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
-      { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-    ],
-  },
-  "/umzugsunternehmen-regensburg": {
-    priority: "P2",
-    path: "/umzugsunternehmen-regensburg",
-    canonical: "/umzugsunternehmen-regensburg",
+    path: "/regensburg/umzugsunternehmen",
+    canonical: "/regensburg/umzugsunternehmen",
     title: "Umzugsunternehmen Regensburg mit Angebot und Termin",
     description:
       "Umzugsunternehmen Regensburg anfragen: Volumen, Strecke, Etage, Laufweg, Fotos, Termin und Zusatzleistungen vorab klaeren.",
@@ -963,7 +885,7 @@ export const gscClickPriorities = {
     ],
     jsonLdTypes: ["WebPage", "Service", "BreadcrumbList", "FAQPage"],
     internalLinkAnchors: [
-      { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/umzug-kosten", label: "Umzugskosten Regensburg" },
       { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
@@ -1000,7 +922,6 @@ const monitoredMoneyPageTargets = [
   { path: "/regensburg/umzug", priorityPath: "/regensburg/umzug" },
   { path: "/regensburg/entruempelung", priorityPath: "/regensburg/entruempelung" },
   { path: "/regensburg/wohnungsaufloesung", priorityPath: "/regensburg/wohnungsaufloesung" },
-  { path: "/wohnungsaufloesung-regensburg", priorityPath: "/wohnungsaufloesung-regensburg" },
   { path: "/reinigung-muenchen", priorityPath: "/reinigung-muenchen" },
   { path: "/private-client-service", priorityPath: "/private-client-service" },
   { path: "/kontakt", priorityPath: "/kontakt" },
@@ -1066,13 +987,7 @@ const monitoredMoneyPageContext = {
     service: "wohnungsaufloesung",
     city: "regensburg",
     intent: "City-first Wohnungsaufloesung in Regensburg",
-    expectedRelatedLinks: ["/regensburg/entruempelung", "/wohnungsaufloesung-regensburg", "/angebot-vergleichen-regensburg"],
-  },
-  "/wohnungsaufloesung-regensburg": {
-    service: "wohnungsaufloesung",
-    city: "regensburg",
-    intent: "Wohnungsaufloesung Regensburg als klassische Root-Variante",
-    expectedRelatedLinks: ["/entruempelung-regensburg", "/regensburg/wohnungsaufloesung", "/angebot-guenstiger-pruefen"],
+    expectedRelatedLinks: ["/regensburg/entruempelung", "/regensburg/umzug", "/angebot-vergleichen-regensburg"],
   },
   "/reinigung-muenchen": {
     service: "reinigung",

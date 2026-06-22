@@ -102,7 +102,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                 <ServicePackageSelector groups="entruempelung" limit={4} />
                 <EffortFactorsPanel group="entruempelung" limit={6} />
                 <TrustProofPanel
-                    allowedPage="/entruempelung-regensburg"
+                    allowedPage="/regensburg/entruempelung"
                     serviceKey="entruempelung"
                     locationKey="regensburg"
                     title="Entruempelung Regensburg mit klaren Grenzen."
@@ -125,7 +125,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                         {
                             title: "Wohnung oder Haus räumen",
                             text: "Zimmer, Keller, Balkon, Garage und Restmengen beschreiben. Fotos reichen oft, um den ersten Aufwand einzuschätzen.",
-                            href: "/wohnungsaufloesung-regensburg",
+                            href: "/regensburg/wohnungsaufloesung",
                             cta: "Wohnungsauflösung ansehen",
                         },
                         {
@@ -153,12 +153,12 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                         {
                             title: "Entrümpelung + Endreinigung",
                             text: "Nach dem Räumen werden Küche, Bad, Böden und Laufwege oft erst richtig sichtbar.",
-                            href: "/endreinigung-regensburg",
+                            href: "/regensburg/endreinigung",
                         },
                         {
                             title: "Haushaltsauflösung + Übergabe",
                             text: "Für Nachlass, Umzug ins Pflegeheim oder Wohnungsaufgabe mit klarer Freigabe.",
-                            href: "/wohnungsaufloesung-regensburg",
+                            href: "/regensburg/wohnungsaufloesung",
                         },
                         {
                             title: "Kleinmengen + Entsorgung",
@@ -179,7 +179,7 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                 <LocalSeoSearchIntentBridge
                     service="entruempelung"
                     city={city}
-                    currentHref="/entruempelung-regensburg"
+                    currentHref="/regensburg/entruempelung"
                 />
             </SpecialtyPageLayout>
     );

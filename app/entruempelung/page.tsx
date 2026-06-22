@@ -169,7 +169,7 @@ export default async function EntruempelungPillarPage() {
         ]}
         cityLinksTitle="Entrümpelung lokal in wichtigen Regionen"
         cityLinks={[
-          { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+          { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
           { href: "/entruempelung-muenchen", label: "Entrümpelung München" },
           { href: "/entruempelung-nuernberg", label: "Entrümpelung Nürnberg" },
           { href: "/entruempelung-augsburg", label: "Entrümpelung Augsburg" },
@@ -204,7 +204,7 @@ export default async function EntruempelungPillarPage() {
           {
             title: "Entrümpelung Regensburg",
             text: "In Regensburg zählen Termin, Laufwege, Parkmöglichkeit, Schlüsselweg und ob danach Reinigung oder Übergabe folgt.",
-            href: "/entruempelung-regensburg",
+            href: "/regensburg/entruempelung",
             cta: "Regensburg anfragen",
           },
           {

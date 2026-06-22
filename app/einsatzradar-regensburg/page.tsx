@@ -249,7 +249,7 @@ export default function EinsatzradarRegensburgPage() {
               Typische Anfrage senden
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/einsatzgebiet-regensburg-200km" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700">
+            <Link href="/regensburg" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700">
               Servicegebiet ansehen
             </Link>
           </div>

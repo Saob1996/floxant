@@ -77,7 +77,7 @@ export default function RegensburgWohnungsaufloesungPage() {
           {
             title: "Bestehende Auflösungsseite",
             text: "Für Nutzer, die direkt nach Wohnungsauflösung Regensburg suchen, bleibt die vertraute Einstiegsseite erreichbar.",
-            href: "/wohnungsaufloesung-regensburg",
+            href: "/regensburg/wohnungsaufloesung",
             cta: "Auflösungsseite öffnen",
           },
         ]}
@@ -103,7 +103,7 @@ export default function RegensburgWohnungsaufloesungPage() {
           {
             title: "Nachlass + Rückruf",
             text: "Sensible Abstimmung über Ansprechpartner, Freigabe und Kontaktweg.",
-            href: "/nachlass-raeumung-regensburg",
+            href: "/regensburg/haushaltsaufloesung",
           },
           {
             title: "Angebot prüfen",

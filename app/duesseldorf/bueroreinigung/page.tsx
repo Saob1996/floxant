@@ -75,23 +75,23 @@ function htmlLangForAlias(language: SearchIntentAliasLanguage) {
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: pagePath,
-    title: "Bueroreinigung Duesseldorf: Raumliste, Turnus und Angebot",
+    title: "Büroreinigung Düsseldorf | Angebot für Ihr Büro",
     description:
-      "Bueroreinigung Duesseldorf fuer Buero, Kanzlei, Praxis und Firma: Raumliste, Turnus, Randzeit, Zugang, Fotos und vorhandenes Angebot klaeren.",
+      "Reinigung für Arbeitsplätze, Sanitär, Küche und Empfang. FLOXANT prüft Fläche, Turnus und Randzeiten für Ihr Büro in Düsseldorf.",
   });
 }
 
 const targetGroups = [
   {
     title: "Kleine Büros",
-    text: "Regelmäßige Reinigung ohne überdimensionierten Großvertrag: Fläche, Turnus, Zeitfenster und Umfang einfach senden.",
+    text: "Regelmäßige Reinigung ohne überdimensionierten Großvertrag: Fläche, Raumliste, Sanitär, Küche, Turnus, Randzeit und Stadtteil einfach senden.",
     cta: "Büroreinigung anfragen",
     Icon: Building2,
   },
   {
-    title: "Hotels & Boardinghouses",
-    text: "Lobby, Flure, Frühstücksbereiche, Sanitär und Gästebereiche nach Turnus, Belegung und Zeitfenster prüfen lassen.",
-    cta: "Hotelreinigung anfragen",
+    title: "Empfang & Besprechung",
+    text: "Empfang, Besprechungsräume, Flure und sichtbare Arbeitsbereiche werden nach Nutzung, Kundenkontakt und Zeitfenster eingeordnet.",
+    cta: "Bürobereiche senden",
     Icon: Workflow,
   },
   {
@@ -102,26 +102,26 @@ const targetGroups = [
   },
   {
     title: "Kanzleien",
-    text: "Ruhige Zeitfenster, seriöser Eindruck und klare Zugangsklärung für kleinere Kanzlei- und Beratungsflächen.",
+    text: "Ruhige Zeitfenster, vertrauliche Bereiche, seriöser Eindruck und klare Zugangsklärung für kleinere Kanzlei- und Beratungsflächen.",
     cta: "Kanzlei-Reinigung anfragen",
     Icon: FileText,
   },
   {
     title: "Kleine Praxen nach Absprache",
-    text: "Allgemeine Reinigung kleiner Praxisflächen nach Objektprüfung. Keine medizinische Spezialdesinfektion oder zertifizierte Hygienereinigung.",
+    text: "Empfang, Wartebereich, Sanitär und Nebenräume nach Objektprüfung. Keine medizinische Spezialdesinfektion oder zertifizierte Hygienereinigung.",
     cta: "Praxisfläche anfragen",
     Icon: ShieldCheck,
   },
   {
-    title: "Hausverwaltungen / Treppenhaus",
-    text: "Treppenhäuser, Eingangsbereiche oder Gemeinschaftsflächen mit Turnus, Zugang und Umfang nach Absprache einordnen.",
-    cta: "Treppenhaus prüfen",
+    title: "Wenn es kein Büro ist",
+    text: "Treppenhaus, Hausverwaltung, Laden oder gemischtes Objekt führen besser zur Gewerbe- oder Objektreinigung statt zur Büroreinigung.",
+    cta: "Passende Seite wählen",
     Icon: DoorOpen,
   },
   {
-    title: "Kleine Gewerbeflächen",
-    text: "Laden, Studio, Büro oder Nebenfläche einmalig, regelmäßig oder als Grundreinigung prüfen lassen.",
-    cta: "Gewerbefläche reinigen",
+    title: "Studios & kleine Teams",
+    text: "Für Agenturen, Beratungen, Studios und kleine Firmen zählen Arbeitsplätze, Küche, Sanitär, Randzeiten und ein klarer Ansprechpartner.",
+    cta: "Teamfläche prüfen",
     Icon: SquareStack,
   },
 ] as const;
@@ -129,7 +129,7 @@ const targetGroups = [
 const b2bDecisionCards = [
   {
     title: "Passt die Büroreinigung zu meinem Objekt?",
-    text: "Ja, wenn es um Büro, Hotel, Kanzlei, Studio, kleine Praxisfläche, Treppenhaus oder Gewerbefläche in Düsseldorf geht.",
+    text: "Ja, wenn es um Büro, Kanzlei, Agentur, Studio oder kleine Firmenfläche mit Arbeitsplätzen, Besprechung, Küche und Sanitär in Düsseldorf geht.",
     href: "#b2b-reinigung-form",
     cta: "Objektangaben senden",
   },
@@ -158,21 +158,21 @@ const b2bSearchIntentCards = [
   {
     query: "Firmenreinigung Düsseldorf",
     title: "Firmenflächen sauber einordnen",
-    text: "Ob kleine Firma, Kanzlei, Agentur, Studio oder Gewerbefläche: FLOXANT prüft Objektart, Nutzung, Fläche, Zeitfenster, Zugang und Fotos vor der Rückmeldung.",
+    text: "Ob kleine Firma, Kanzlei, Agentur oder Studio: FLOXANT prüft Arbeitsbereiche, Nutzung, Fläche, Zeitfenster, Zugang und Fotos vor der Rückmeldung.",
     href: "#schnell-entscheiden",
     cta: "Firmenfläche einordnen",
   },
   {
     query: "Gewerbliche Reinigung Düsseldorf",
     title: "Gewerbliche Reinigung ohne falsche Pauschale",
-    text: "Gewerbliche Reinigung kann Büro, Laden, Praxisfläche, Hotelbereich, Treppenhaus oder Mischfläche bedeuten. Entscheidend ist, welche Bereiche wirklich gereinigt werden sollen.",
-    href: "#b2b-reinigung-form",
-    cta: "Bereiche senden",
+    text: "Wenn es um Laden, Treppenhaus, Hotelbereich oder gemischte Objektfläche geht, ist die Gewerbereinigung der sauberere Einstieg als diese Büroseite.",
+    href: "/duesseldorf/gewerbereinigung",
+    cta: "Gewerbereinigung öffnen",
   },
   {
     query: "Gebäudereinigung Düsseldorf",
     title: "Gebäude mit mehreren Bereichen planen",
-    text: "Bei Gebäudereinigung helfen Eingänge, Etagen, Treppenhaus, Büroflächen, Sanitär, Kellerflur, Turnus, Zugang und Fotos für eine saubere erste Einschätzung.",
+    text: "Bei Gebäudereinigung helfen Eingänge, Etagen, Büroflächen, Sanitär, Kellerflur, Turnus, Zugang und Fotos für eine saubere erste Einschätzung.",
     href: "/duesseldorf/gebaeudereinigung",
     cta: "Gebäude prüfen",
   },
@@ -200,14 +200,14 @@ const b2bSearchIntentCards = [
   {
     query: "Putzfirma für kleine Firma Düsseldorf",
     title: "Kleine Firmen statt Großvertrag",
-    text: "Für kleine Teams, Büros, Studios und Gewerbeflächen, wenn ein schlanker, klarer Kontaktweg wichtiger ist als ein großer Vertrag.",
+    text: "Für kleine Teams, Büros, Kanzleien, Agenturen und Studios, wenn ein schlanker, klarer Kontaktweg wichtiger ist als ein großer Vertrag.",
     href: "#b2b-reinigung-form",
     cta: "Firmenfall senden",
   },
   {
     query: "Kanzlei Agentur Studio Reinigung Düsseldorf",
     title: "Objektart sauber trennen",
-    text: "Kanzlei, Agentur, Studio, Praxisfläche oder Treppenhaus brauchen unterschiedliche Angaben zu Zugang, Ruhezeiten und Bereichen.",
+    text: "Kanzlei, Agentur, Studio und kleine Praxis-Nebenflächen brauchen unterschiedliche Angaben zu Zugang, Ruhezeiten und Bereichen.",
     href: "#schnell-entscheiden",
     cta: "Passenden Weg wählen",
   },
@@ -255,15 +255,15 @@ const b2bRequestChecklist = [
 
 const serviceBlocks = [
   "Büroreinigung",
-  "Hotelreinigung nach Absprache",
-  "Lobby, Flure und Frühstücksbereich",
-  "Boardinghouse- und Apartmenthaus-Reinigung",
+  "Empfang und Besprechungsräume",
+  "Arbeitsplätze und Laufwege",
+  "Meetingräume und Kundenbereiche",
   "Unterhaltsreinigung nach Absprache",
-  "Reinigung kleiner Gewerbeflächen",
+  "Reinigung kleiner Büroflächen",
   "Agentur-/Studio-Reinigung",
   "Kanzlei-Reinigung",
   "kleine Praxisflächen nach Absprache",
-  "Treppenhausreinigung nach Absprache",
+  "klare Abgrenzung zu Treppenhaus und Hausverwaltung",
   "Grundreinigung nach Absprache",
   "Sanitärbereiche",
   "Küchen- und Pausenbereiche",
@@ -276,12 +276,12 @@ const serviceBlocks = [
 
 const objectChecks = [
   { label: "Büro", detail: "Arbeitsplätze, Besprechungsräume, Küche, Sanitär.", Icon: Building2 },
-  { label: "Hotel", detail: "Lobby, Flure, Gästebereiche, Frühstücksbereich.", Icon: Workflow },
+  { label: "Empfang", detail: "Kundenkontakt, Besprechungsbereich, sichtbare Laufwege.", Icon: Workflow },
   { label: "Agentur / Studio", detail: "Kreativfläche, Kundenbereich, Pausenbereich.", Icon: Layers3 },
   { label: "Kanzlei", detail: "ruhige Zeitfenster, diskreter Zugang, Flächenumfang.", Icon: ClipboardList },
   { label: "Praxisfläche", detail: "nur allgemeine Reinigung nach Absprache.", Icon: ShieldCheck },
-  { label: "Treppenhaus", detail: "Turnus, Zugang, Etagen und Gemeinschaftsflächen.", Icon: DoorOpen },
-  { label: "Gewerbefläche", detail: "einmalig oder regelmäßig nach Objektprüfung.", Icon: SquareStack },
+  { label: "Kein Büro?", detail: "Treppenhaus, Laden oder Hotel besser zur Gewerbereinigung führen.", Icon: DoorOpen },
+  { label: "Teamfläche", detail: "kleine Firmenfläche regelmäßig nach Raumliste prüfen.", Icon: SquareStack },
 ] as const;
 
 const frequencyItems = [
@@ -313,15 +313,15 @@ const boundaryItems = [
 const faqItems = [
   {
     q: "Für welche Unternehmen ist die Reinigung gedacht?",
-    a: "Für kleine Unternehmen, Hotels, Boardinghouses, Büros, Agenturen, Studios, Kanzleien, Hausverwaltungen, Treppenhäuser und kleinere Gewerbeflächen in Düsseldorf. FLOXANT prüft Umfang, Fläche, Turnus, Zeitfenster und Zugang nach Absprache.",
+    a: "Für Büros, Agenturen, Studios, Kanzleien, kleine Teams und allgemeine Praxis-Nebenflächen in Düsseldorf. FLOXANT prüft Raumliste, Fläche, Turnus, Zeitfenster, Zugang und Fotos nach Absprache.",
   },
   {
     q: "Reinigt FLOXANT Büros in Düsseldorf?",
     a: "Ja, Büroreinigung in Düsseldorf kann angefragt werden. Wichtig sind Objektart, Fläche, Anzahl der Räume, Sanitär- und Küchenbereiche, gewünschter Turnus und ein realistisches Zeitfenster.",
   },
   {
-    q: "Ist Hotelreinigung in Düsseldorf möglich?",
-    a: "Ja, Hotelreinigung, Boardinghouse-Reinigung oder Apartmenthaus-Reinigung kann nach Objektprüfung angefragt werden. Wichtig sind Anzahl der Bereiche, Turnus, Belegung, Lobby, Flure, Sanitär, Frühstücksbereich, Zeitfenster und Fotos.",
+    q: "Wann passt eher Gewerbereinigung?",
+    a: "Wenn Ladenfläche, Hotelbereich, Treppenhaus, gemischtes Objekt oder Hausverwaltung im Mittelpunkt stehen, ist die Gewerbereinigung oder Gebäudereinigung der bessere Einstieg als die Büroreinigung.",
   },
   {
     q: "Sind regelmäßige Reinigungen möglich?",
@@ -332,8 +332,8 @@ const faqItems = [
     a: "Ja, allgemeine Reinigung kleiner Praxisflächen kann nach Absprache geprüft werden. FLOXANT behauptet keine medizinische Spezialdesinfektion, keine Krankenhausreinigung und keine zertifizierte Hygienereinigung.",
   },
   {
-    q: "Ist Treppenhausreinigung möglich?",
-    a: "Treppenhausreinigung oder Reinigung kleiner Gemeinschaftsflächen kann nach Objektart, Zugang, Etagen, Turnus und Umfang geprüft werden.",
+    q: "Ist Treppenhausreinigung hier richtig?",
+    a: "Nur wenn es Teil einer Bürofläche ist. Ein eigenes Treppenhaus, eine Hausverwaltung oder WEG-Anfrage sollte über die passende Düsseldorfer Objekt- oder Hausverwaltungsseite geklärt werden.",
   },
   {
     q: "Welche Angaben braucht FLOXANT?",
@@ -345,7 +345,7 @@ const faqItems = [
   },
   {
     q: "Bietet FLOXANT in Düsseldorf Umzüge an?",
-    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite behandelt Büroreinigung, Hotelreinigung und Firmenreinigung für Unternehmen und Gewerbeflächen in Düsseldorf.",
+    a: "Nein. Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite behandelt Büroreinigung und Firmenreinigung für Arbeitsbereiche in Düsseldorf.",
   },
   {
     q: "Kann Entsorgung ergänzt werden?",
@@ -360,16 +360,16 @@ function buildJsonLd() {
       buildWebPageJsonLd({
         name: "Büroreinigung Düsseldorf für kleine Unternehmen",
         description:
-          "FLOXANT prüft Büroreinigung, Firmenreinigung, Hotelreinigung, Treppenhausreinigung und Gewerbeflächenreinigung in Düsseldorf nach Fläche, Turnus, Zeitfenster und Zugang.",
+          "FLOXANT prüft Büroreinigung und Firmenreinigung in Düsseldorf nach Raumliste, Fläche, Turnus, Zeitfenster, Zugang und Fotos.",
         path: pagePath,
         about: [
           "Firmenreinigung Düsseldorf",
           "Büroreinigung Düsseldorf",
-          "Hotelreinigung Düsseldorf",
-          "Hotel Reinigung Düsseldorf",
-          "Gewerbeflächenreinigung",
+          "Kanzleireinigung Düsseldorf",
+          "Agenturreinigung Düsseldorf",
+          "Office Cleaning Düsseldorf",
           "regelmäßige Reinigung",
-          "Treppenhausreinigung Düsseldorf",
+          "Unterhaltsreinigung Büro Düsseldorf",
         ],
         potentialActions: [
           { name: "Büroreinigung anfragen", target: `${pagePath}#b2b-reinigung-form`, type: "ContactAction" },
@@ -378,10 +378,10 @@ function buildJsonLd() {
       buildDuesseldorfCleaningProviderJsonLd(),
       buildDuesseldorfServiceJsonLd({
         path: pagePath,
-        name: "Büroreinigung / Firmenreinigung Düsseldorf nach Absprache",
+        name: "Büroreinigung Düsseldorf nach Raumliste und Turnus",
         description:
-          "Büroreinigung, Firmenreinigung, Hotelreinigung und Gewerbeflächenreinigung in Düsseldorf für kleine Unternehmen, Hotels und Objekte nach Prüfung von Fläche, Turnus, Zeitfenster, Zugang und Umfang.",
-        serviceType: "Büroreinigung / Firmenreinigung / Hotelreinigung / Gewerbeflächenreinigung Düsseldorf nach Absprache",
+          "Büroreinigung und Firmenreinigung in Düsseldorf für Büros, Agenturen, Kanzleien, Studios und kleine Teams nach Prüfung von Raumliste, Fläche, Turnus, Zeitfenster, Zugang und Umfang.",
+        serviceType: "Büroreinigung / Firmenreinigung Düsseldorf nach Absprache",
         areaServed: ["Düsseldorf", "Neuss", "Ratingen", "Meerbusch", "Mettmann"],
       }),
       buildBreadcrumbJsonLd([
@@ -421,7 +421,7 @@ function buildJsonLd() {
 
 export default function DuesseldorfBueroreinigungPage() {
   const whatsappHref = buildDuesseldorfCleaningWhatsAppHref(
-    "Hallo FLOXANT, ich möchte eine Büro- oder Firmenreinigung in Düsseldorf anfragen. Es geht um [Büro/Hotel/Boardinghouse/Agentur/Studio/Kanzlei/Gewerbefläche]. Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
+    "Hallo FLOXANT, ich möchte eine Büroreinigung in Düsseldorf anfragen. Es geht um [Büro/Agentur/Studio/Kanzlei/kleines Team]. Raumliste, Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
   );
   const jsonLd = buildJsonLd();
   const faqJsonLd = buildFaqJsonLd(faqItems);
@@ -440,12 +440,13 @@ export default function DuesseldorfBueroreinigungPage() {
               FLOXANT Büroreinigung Düsseldorf
             </div>
             <h1 className="mt-6 max-w-[14ch] text-[clamp(2.55rem,6vw,5.6rem)] font-black leading-[0.94] tracking-normal text-slate-950">
-              Bueroreinigung Duesseldorf mit Raumliste, Turnus und Randzeit
+              Büroreinigung Düsseldorf mit Raumliste, Turnus und Randzeit
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700 md:text-lg">
-              Fuer Bueros, Agenturen, Studios, Kanzleien, Boardinghouses und kleine Gewerbeflaechen:
-              Senden Sie Raumliste, Flaeche, Turnus, Randzeit, Zugang, Fotos und Ansprechpartner.
-              FLOXANT prueft, ob laufende Reinigung, Grundreinigung oder Angebotspruefung sinnvoll ist.
+              Für Büros, Agenturen, Studios, Kanzleien und kleine Teams:
+              Senden Sie Arbeitsplätze, Empfang, Besprechungsräume, Küche, Sanitär, Fläche, Turnus,
+              Randzeit, Zugang, Fotos und Ansprechpartner. FLOXANT prüft, ob laufende Reinigung,
+              Grundreinigung oder Angebotsprüfung sinnvoll ist.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
@@ -456,10 +457,10 @@ export default function DuesseldorfBueroreinigungPage() {
                 data-city="duesseldorf"
                 data-page-intent="bueroreinigung-duesseldorf"
                 data-priority="p0"
-                data-cta-label="Bueroreinigung anfragen"
+                data-cta-label="Büroreinigung Düsseldorf anfragen"
                 data-destination={bueroreinigungLeadHref}
               >
-                Büroreinigung anfragen
+                Büroreinigung Düsseldorf anfragen
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
@@ -471,7 +472,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 data-destination={whatsappHref}
               >
                 <MessageCircle className="h-4 w-4" />
-                Per WhatsApp anfragen
+                Büroangaben per WhatsApp senden
               </a>
               <a
                 href={`tel:${DUESSELDORF_CLEANING.phoneRaw}`}
@@ -505,14 +506,14 @@ export default function DuesseldorfBueroreinigungPage() {
               </div>
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-3">
-              {["Büro", "Hotel", "Boardinghouse", "Kanzlei", "Studio", "Gewerbefläche"].map((item) => (
+              {["Büro", "Kanzlei", "Agentur", "Studio", "Empfang", "Teeküche"].map((item) => (
                 <div key={item} className="rounded-[0.8rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
                   {item}
                 </div>
               ))}
             </div>
             <div className="mt-5 rounded-[0.85rem] border border-amber-200 bg-amber-50 px-4 py-4 text-sm leading-7 text-amber-900">
-              Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite behandelt Büroreinigung, Hotelreinigung und Firmenreinigung in Düsseldorf.
+              Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite behandelt Büroreinigung und Firmenreinigung. Hotel, Treppenhaus, Laden oder gemischte Objekte gehören auf die passende Gewerbe- oder Objektseite.
             </div>
           </div>
         </div>
@@ -520,11 +521,11 @@ export default function DuesseldorfBueroreinigungPage() {
 
       <InternationalCustomerHint
         cityLabel="Düsseldorf"
-        serviceLabel="Büroreinigung, Firmenreinigung, Hotelreinigung oder Gewerbeflächenreinigung"
+        serviceLabel="Büroreinigung oder Office Cleaning in Düsseldorf"
         tags={["Office cleaning", "Commercial cleaning", "Cleaning company", "Cleaning quote", "Photos welcome"]}
         primaryHref={bueroreinigungLeadHref}
         photoHref={bueroreinigungLeadHref}
-        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+        offerHref="/angebot-vergleichen-duesseldorf"
       />
 
       <nav
@@ -535,7 +536,7 @@ export default function DuesseldorfBueroreinigungPage() {
           { href: "#bueroreinigung-klick-Startpunkte", label: "Suche", note: "B2B" },
           { href: "#bueroreinigung-anfragefelder", label: "Senden", note: "Angaben" },
           { href: "#b2b-reinigung-form", label: "Formular", note: "Fotos" },
-          { href: "/duesseldorf/vielleicht-guenstiger", label: "Kosten", note: "Budget" },
+          { href: "/angebot-vergleichen-duesseldorf", label: "Kosten", note: "Budget" },
         ].map((item) => (
           <Link
             key={item.href}
@@ -659,7 +660,7 @@ export default function DuesseldorfBueroreinigungPage() {
               Büroreinigung Düsseldorf schneller einschätzen
             </h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              Wer nach Büroreinigung, Hotelreinigung oder Reinigung für Firmen in Düsseldorf sucht,
+              Wer nach Büroreinigung oder Reinigung für kleine Firmen in Düsseldorf sucht,
               braucht schnelle Orientierung: Passt das Objekt, welche Angaben werden gebraucht
               und wo lassen sich Kosten oder vorhandene Angebote prüfen?
             </p>
@@ -757,7 +758,7 @@ export default function DuesseldorfBueroreinigungPage() {
               Für kleine Unternehmen statt anonyme Großdienstleister
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-                Kleine Unternehmen, Hotels und Objektbetreiber brauchen oft keine überdimensionierte Konzernlösung, sondern einen klaren Anfrageprozess: Was ist das Objekt, wie groß ist die Fläche, wie oft soll gereinigt werden und wann passt es betrieblich?
+                Kleine Unternehmen, Agenturen, Kanzleien, Studios und Büroteams brauchen oft keine überdimensionierte Konzernlösung, sondern einen klaren Anfrageprozess: Welche Räume gehören dazu, wie groß ist die Fläche, wie oft soll gereinigt werden und wann passt es betrieblich?
             </p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -807,10 +808,10 @@ export default function DuesseldorfBueroreinigungPage() {
             <div>
               <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Service-Bausteine</div>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 md:text-4xl">
-                Büroreinigung, Unterhaltsreinigung und Gewerbereinigung in Düsseldorf
+                Büroreinigung, Unterhaltsreinigung und Angebotsprüfung in Düsseldorf
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-700">
-                Der Fokus liegt auf allgemeiner Büroreinigung, Hotelreinigung, Unterhaltsreinigung und Gewerbeflächenreinigung für kleine Unternehmen. FLOXANT prüft Fläche, Turnus, Zeitfenster, Zugang und Budget. Spezialleistungen wie medizinische Desinfektion, Reinraum, Gefahrstoff oder 24/7-Zusage werden nicht behauptet.
+                Der Fokus liegt auf allgemeiner Büroreinigung, Unterhaltsreinigung und Firmenreinigung für kleine Arbeitsbereiche. FLOXANT prüft Raumliste, Fläche, Turnus, Zeitfenster, Zugang und Budget. Spezialleistungen wie medizinische Desinfektion, Reinraum, Gefahrstoff oder 24/7-Zusage werden nicht behauptet.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/duesseldorf/reinigung" className="rounded-[0.75rem] border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
@@ -819,11 +820,11 @@ export default function DuesseldorfBueroreinigungPage() {
                 <Link href="/duesseldorf/grundreinigung" className="rounded-[0.75rem] border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
                   Grundreinigung Düsseldorf
                 </Link>
-                <Link href="/duesseldorf/hotelreinigung" className="rounded-[0.75rem] border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-800 hover:bg-emerald-100">
-                  Hotelreinigung Düsseldorf
+                <Link href="/duesseldorf/gewerbereinigung" className="rounded-[0.75rem] border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-800 hover:bg-emerald-100">
+                  Gewerbereinigung Düsseldorf
                 </Link>
-                <Link href="/duesseldorf/treppenhausreinigung" className="rounded-[0.75rem] border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
-                  Treppenhausreinigung
+                <Link href="/duesseldorf/praxisreinigung" className="rounded-[0.75rem] border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-800 hover:border-cyan-200">
+                  Praxisreinigung Düsseldorf
                 </Link>
                 <Link href="/reinigungsfirma-angebot" className="rounded-[0.75rem] border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-bold text-cyan-900 hover:bg-cyan-100">
                   Reinigungsfirma Angebot
@@ -891,7 +892,7 @@ export default function DuesseldorfBueroreinigungPage() {
                 Reinigung und Entsorgung. Keine Umzüge.
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite ist für Büroreinigung und Firmenreinigung kleiner Unternehmen, Hotels, Büros, Studios, Kanzleien, Treppenhäuser und Gewerbeflächen gedacht.
+                Düsseldorf ist bei FLOXANT auf Reinigung und Entsorgung ausgerichtet. Diese Seite ist für Büroreinigung und Firmenreinigung kleiner Unternehmen, Büros, Studios, Agenturen und Kanzleien gedacht.
               </p>
             </div>
             <div className="rounded-[1rem] border border-amber-200 bg-amber-50 p-6">
@@ -956,7 +957,7 @@ export default function DuesseldorfBueroreinigungPage() {
             <div>
               <div className="text-xs font-black uppercase tracking-normal text-cyan-900">Schnelle Entscheidung</div>
               <h2 className="mt-3 text-2xl font-black text-slate-950">
-                Geeignet, wenn Büro, Hotel oder Firma klar geprüft werden soll
+                Geeignet, wenn Büro, Kanzlei oder kleine Firma klar geprüft werden soll
               </h2>
               <p className="mt-3 text-sm leading-7 text-slate-700">
                 Senden Sie Objektart, Fläche, Turnus, Zeitfenster, Fotos und einen Ansprechpartner.

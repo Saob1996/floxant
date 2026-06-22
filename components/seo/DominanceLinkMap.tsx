@@ -35,7 +35,7 @@ const clusters = [
    { href: "/kostenfaktoren", label: "Kostenfaktoren verstehen" },
    { href: "/qualitaet-ablauf", label: "Qualität und Ablauf prüfen" },
    { href: "/praxisfaelle", label: "Praxisfälle vergleichen" },
-   { href: "/einsatzgebiet-regensburg-200km", label: "Einsatzgebiet ab Regensburg" },
+   { href: "/regensburg", label: "Regensburg-Bereich" },
    { href: "/blog", label: "Blog und Ratgeber" },
   ],
  },

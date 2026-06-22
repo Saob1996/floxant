@@ -39,7 +39,7 @@ const urgentMoveCards = [
     Icon: Truck,
     title: "Umzug mit Abbau und Tragen",
     text: "Für Möbel, Kartons, Demontagewunsch und Tragewege. Je genauer die Fotos, desto schneller lässt sich der Aufwand einschätzen.",
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     cta: "Umzug anfragen",
   },
   {

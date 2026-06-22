@@ -603,6 +603,7 @@ export function SeoLeadForm({
       <input
         type="text"
         name="companyWebsite"
+        aria-label="Bitte leer lassen"
         value={honeypot}
         onChange={(event) => setHoneypot(event.target.value)}
         className="sr-only"
@@ -931,6 +932,7 @@ export function SeoLeadForm({
       <button
         type="submit"
         disabled={status === "submitting"}
+        aria-label="SEO-Anfrage senden"
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-slate-400"
         data-event="seo_lead_submit_attempt"
         data-service={lead.trackingService}

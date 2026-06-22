@@ -71,7 +71,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Regensburg ist der Ausgangspunkt",
     text:
       "Viele Anfragen werden schneller klar, wenn Ort, Termin, Zugang und Ziel der Uebergabe von Regensburg aus eingeordnet werden. Bayern bleibt wichtig, aber Regensburg ist der erste Schwerpunkt.",
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     cta: "Regensburg-Services ansehen",
     Icon: MapPin,
     region: "regensburg",
@@ -81,8 +81,8 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Regensburg, Umgebung und Bayern sauber einordnen",
     text:
       "FLOXANT arbeitet mit Regensburg als Kern. Orte wie Neutraubling, Lappersdorf, Pentling, Sinzing oder Regenstauf sind Nahbereich; Bayern wird nach Strecke, Termin und Umfang geprueft.",
-    href: "/einsatzgebiet-regensburg-200km",
-    cta: "Servicegebiet ansehen",
+    href: "/regensburg",
+    cta: "Regensburg ansehen",
     Icon: Route,
     region: "bayern",
   },
@@ -91,8 +91,8 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Bayern nach Verfuegbarkeit",
     text:
       "Bayern wird nicht als pauschales Versprechen behandelt. FLOXANT prueft Strecke, Kapazitaet, Termin und Leistungsumfang, bevor ein Auftrag zugesagt wird.",
-    href: "/service-area-bayern",
-    cta: "Bayern-Logik lesen",
+    href: "/standorte",
+    cta: "Standorte ansehen",
     Icon: ShieldCheck,
     region: "bayern",
   },
@@ -131,7 +131,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Entruempelung und Reinigung kombiniert",
     text:
       "Bei Keller, Wohnung, Garage oder Nachlass ist oft nicht nur der Abtransport wichtig. Nach dem Leeren kann die Flaeche fuer Uebergabe, Verkauf oder Nutzung vorbereitet werden.",
-    href: "/entruempelung-regensburg",
+    href: "/regensburg/entruempelung",
     cta: "Kombi anfragen",
     Icon: PackageCheck,
     service: "entruempelung",
@@ -161,7 +161,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Was Reinigung realistisch macht",
     text:
       "Flaeche, Reinigungsart, Zustand, Termin, Fotos und Ziel der Uebergabe bestimmen, ob eine Reinigung sauber kalkuliert werden kann.",
-    href: "/reinigung-regensburg#faq",
+    href: "/regensburg/reinigung#faq",
     cta: "Reinigung einordnen",
     Icon: Sparkles,
     service: "reinigung",
@@ -171,7 +171,7 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     title: "Was Entruempelung oder Entsorgung beeinflusst",
     text:
       "Menge, Materialart, Etage, Zugang, Laufweg, Fotos und Entsorgungsaufwand bestimmen, wie belastbar ein Angebot werden kann.",
-    href: "/entruempelung-regensburg#faq",
+    href: "/regensburg/entruempelung#faq",
     cta: "Aufwand klaeren",
     Icon: Trash2,
     service: "entsorgung",

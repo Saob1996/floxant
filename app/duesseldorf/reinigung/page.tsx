@@ -63,9 +63,9 @@ import { getDuesseldorfCleaningInternationalAliases } from "@/lib/search-intent-
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
     path: "/duesseldorf/reinigung",
-    title: "Reinigung Düsseldorf: Objekt, Fläche und Termin klaeren",
+    title: "Reinigung Düsseldorf | Welche Leistung passt?",
     description:
-      "Reinigung in Duesseldorf fuer Wohnung, Buero, Praxis oder Uebergabe anfragen: Stadtteil, Flaeche, Fotos, Termin, Turnus und Angebot klaeren.",
+      "Reinigung Düsseldorf für Wohnung, Büro, Praxis oder Übergabe: Objektart, Stadtteil, Fläche, Zustand, Fotos, Termin und passende Seite klären.",
   });
 }
 
@@ -628,13 +628,13 @@ export default function DuesseldorfReinigungPage() {
               FLOXANT Reinigung Düsseldorf
             </div>
             <h1 className="duesseldorf-hero-title mt-5 max-w-[17ch] text-[clamp(2.55rem,5.4vw,5rem)] font-bold">
-              Reinigung Düsseldorf mit Objekt, Fläche und Terminwunsch
+              Reinigung Düsseldorf nach Objekt, Situation und Termin klären
             </h1>
             <p className="duesseldorf-hero-copy mt-5 max-w-3xl text-lg">
-              Beschreiben Sie Wohnung, Buero, Praxis, Treppenhaus oder Gewerbeflaeche mit
-              Stadtteil, Flaeche, Zustand, Zugang, Fotos und Terminwunsch. FLOXANT ordnet ein,
+              Beschreiben Sie Wohnung, Büro, Praxis, Treppenhaus oder Gewerbefläche mit
+              Stadtteil, Fläche, Zustand, Zugang, Fotos und Terminwunsch. FLOXANT ordnet ein,
               welche Reinigung passt, welche Angaben fehlen und ob ein vorhandenes Angebot
-              sachlich geprueft werden sollte.
+              sachlich geprüft werden sollte.
             </p>
             <div className="mt-8 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-[1.05fr_1fr_0.95fr]">
               <a
@@ -795,7 +795,7 @@ export default function DuesseldorfReinigungPage() {
           allowedPage="/duesseldorf/reinigung"
           serviceKey="reinigung"
           locationKey="duesseldorf"
-          title="Duesseldorf Reinigung mit belegbaren Trust-Signalen."
+          title="Düsseldorf Reinigung mit belegbaren Trust-Signalen."
           intro="FLOXANT zeigt Anfrageweg, Objektangaben, Local Proof und Review-Grenzen, ohne Bewertungen oder Ergebnisse zu erfinden."
         />
         <ServiceProofChecklist serviceKey="reinigung" />
@@ -1531,7 +1531,7 @@ export default function DuesseldorfReinigungPage() {
                     href={item.href}
                     className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900"
                   >
-                    Leistung ansehen
+                    {item.label} prüfen
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </article>
@@ -1558,21 +1558,21 @@ export default function DuesseldorfReinigungPage() {
         />
 
         <RelatedSpecialServices
-          title="PV, Glas, Fassade, Treppenhaus und Uebergabe richtig zuordnen."
-          intro="Viele Reinigungsanfragen in Duesseldorf sind keine Standard-Wohnungsreinigung. Der Spezialservice-Cluster fuehrt zu den passenden Einstiegen, bevor Umfang, Zugang und Preisrahmen geklaert werden."
+          title="PV, Glas, Fassade, Treppenhaus und Übergabe richtig zuordnen."
+          intro="Viele Reinigungsanfragen in Düsseldorf sind keine Standard-Wohnungsreinigung. Der Spezialservice-Cluster führt zu den passenden Einstiegen, bevor Umfang, Zugang und Preisrahmen geklärt werden."
           services={specialCleaningLinks}
           className="pt-12"
         />
 
         <SignatureServicesGrid
-          title="Fairpreis, Objektbrief und Plan B fuer Reinigungsanfragen nutzen."
-          intro="Wenn bereits ein Angebot vorliegt, die Uebergabe drueckt oder der Umfang noch unklar ist, verbinden diese Services die lokale Reinigungsanfrage mit klarer Entscheidungslogik."
+          title="Fairpreis, Objektbrief und Plan B für Reinigungsanfragen nutzen."
+          intro="Wenn bereits ein Angebot vorliegt, die Übergabe drückt oder der Umfang noch unklar ist, verbinden diese Services die lokale Reinigungsanfrage mit klarer Entscheidungslogik."
           services={signatureServiceLinks.filter((item) =>
             [
               "FLOXANT Fairpreis-Check",
               "FLOXANT Angebotscheck",
               "FLOXANT Objektbrief",
-              "FLOXANT Uebergabeakte",
+              "FLOXANT Übergabeakte",
               "FLOXANT Plan-B-Service",
               "FLOXANT PV-Sichtklar-Service",
               "FLOXANT Vermieter-Ready-Service",
@@ -1584,7 +1584,7 @@ export default function DuesseldorfReinigungPage() {
 
         <OfferCheckCTA
           title="Reinigungsangebot vor der Zusage einordnen lassen."
-          text="Schicken Sie Preis, Umfang, Fotos und Termin. FLOXANT prueft, ob der Preisrahmen, die Leistung und die Erwartung zusammenpassen."
+          text="Schicken Sie Preis, Umfang, Fotos und Termin. FLOXANT prüft, ob der Preisrahmen, die Leistung und die Erwartung zusammenpassen."
           className="pt-12"
         />
 

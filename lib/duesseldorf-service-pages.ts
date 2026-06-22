@@ -833,57 +833,61 @@ export const duesseldorfServicePages = {
   "hausverwaltung-reinigung": {
     slug: "hausverwaltung-reinigung",
     path: "/duesseldorf/hausverwaltung-reinigung",
-    metaTitle: "Hausverwaltung Reinigung Düsseldorf | Treppenhaus & WEG",
+    metaTitle: "Hausverwaltungsreinigung Düsseldorf | Objekt & Turnus",
     metaDescription:
-      "Hausverwaltung-Reinigung Düsseldorf für Treppenhaus, Eingang, Kellerflur, Müllbereich und WEG: Raumliste, Turnus, Fotos und Ansprechpartner senden.",
+      "Hausverwaltungsreinigung Düsseldorf für WEG, Mietobjekt und Mehrparteienhaus: Eingänge, Etagen, Aufzug, Müllplatznähe, Turnus und Fotos klären.",
     kicker: "FLOXANT Hausverwaltung Reinigung Düsseldorf",
-    title: "Hausverwaltung-Reinigung in Düsseldorf, wenn Beschwerden nicht eskalieren sollen",
+    title: "Hausverwaltungsreinigung Düsseldorf für Treppenhaus, Eingang und Turnus",
     description:
-      "Für Hausverwaltungen, Eigentümer und WEGs, die Reinigung nicht als loses Versprechen, sondern als klaren Objektablauf prüfen möchten: Eingang, Treppenhaus, Kellerflur, Müllraum, Laufwege, Turnus, Fotos, Schlüsselweg und Ansprechpartner.",
+      "Für Hausverwaltungen, WEGs, Eigentümer, Mietobjekte und Mehrparteienhäuser in Düsseldorf: Eingang, Treppenhaus, Aufzug, Kellerzugang, Müllplatznähe, Flure, Sichtreinigung, Turnus, Problemstellen, Starttermin und Ansprechpartner werden vorab konkret abgefragt.",
     serviceLabel: "Hausverwaltung-Reinigung",
     contentSections: [
       {
         title: "Verwaltungen brauchen Ruhe im Objekt",
         paragraphs: [
-          "Bei Hausverwaltung, WEG und Eigentümern entsteht Druck selten durch einen einzelnen Fleck. Es geht um wiederkehrende Beschwerden, unklare Zuständigkeit, verschobene Termine, schmutzige Eingänge, Kellerflure, Müllbereiche oder Treppenhäuser, die im Alltag sichtbar nachlassen.",
-          "FLOXANT fragt deshalb nicht nur nach Quadratmetern. Wichtig sind Etagen, Eingänge, Aufzug, Kellerflur, Müllplatz, Laufwege, Turnus, Schlüsselweg, Hausordnung, Ansprechpartner und ob Fotos oder Beschwerdebilder vorliegen.",
+          "Bei Hausverwaltungen, WEGs, Eigentümern und Mietobjekten entsteht Druck meist durch wiederkehrende Bereiche: Eingang, Treppenhaus, Aufzug, Kellerzugang, Müllplatznähe, Flure oder sichtbare Laufwege. Deshalb muss die Anfrage nach Objekt, Etagen, Eingängen und Turnus aufgebaut sein.",
+          "FLOXANT fragt nicht nur nach Quadratmetern. Wichtig sind Adresse oder Stadtteil, Anzahl Etagen, Anzahl Eingänge, Aufzug ja oder nein, Kellerzugang, Müllplatznähe, Problemstellen, gewünschter Starttermin, Schlüsselweg, Hausordnung, Ansprechpartner und Fotos.",
         ],
       },
       {
         title: "Vom Beschwerdefall zum prüfbaren Reinigungsplan",
         paragraphs: [
-          "Die Anfrage wird so aufgebaut, dass Verwaltung, Eigentümer und Nutzer dieselbe Erwartung sehen: Welche Bereiche gehören dazu, wie oft soll gereinigt werden, welche Grenzen gibt es zu Hausmeisterdienst, Winterdienst oder Reparaturen?",
-          "Dadurch kann FLOXANT eine Hausverwaltung-Reinigung in Düsseldorf sauber von allgemeiner Gebäudereinigung, Treppenhausreinigung, Sonderreinigung oder Entsorgung trennen und direkt zur passenden Leistung führen.",
+          "Die Anfrage wird so aufgebaut, dass Verwaltung, Eigentümer und Nutzer dieselbe Erwartung sehen: Welche Bereiche gehören dazu, welche Sichtreinigung reicht nicht aus, wie oft soll gereinigt werden und welche Grenzen gibt es zu Hausmeisterdienst, Winterdienst, Reparaturen oder Gefahrstoffen?",
+          "So kann FLOXANT Hausverwaltungsreinigung in Düsseldorf sauber von einzelner Treppenhausreinigung, allgemeiner Gebäudereinigung, Sonderreinigung oder Entsorgung trennen und den passenden nächsten Schritt vorbereiten.",
         ],
       },
     ],
     bullets: [
-      "Für Hausverwaltung, WEG, Eigentümer, Treppenhaus, Eingang, Kellerflur, Müllraum und Objektbereiche.",
-      "Raumliste, Turnus, Schlüsselweg, Ansprechpartner und Fotos stehen im Mittelpunkt.",
-      "Klare Grenzen zu Hausmeisterdienst, Winterdienst, Reparaturen, Schädlingsbekämpfung und Gefahrstoffen.",
+      "Für Hausverwaltungen, WEGs, Eigentümer, Mietobjekte und Mehrparteienhäuser mit Eingang, Treppenhaus, Aufzug, Kellerzugang, Fluren und Müllplatznähe.",
+      "Adresse, Etagen, Eingänge, Aufzug, Turnus, Problemstellen, Starttermin, Ansprechpartner und Fotos stehen im Mittelpunkt.",
+      "Klare Grenzen zu Hausmeisterdienst, Winterdienst, Reparaturen, Schädlingsbekämpfung, Gefahrstoffen und Rechtsfragen.",
     ],
-    localFocus: ["Stadtmitte", "Pempelfort", "Derendorf", "Bilk", "Oberkassel", "Ratingen"],
+    localFocus: ["Bilk", "Unterbilk", "Flingern", "Derendorf", "Pempelfort", "Gerresheim", "Benrath", "Eller"],
     priceLogic: [
-      "Etagen, Eingänge, Aufzug, Kellerflur, Müllbereich, Sanitär, Turnus und Laufwege bestimmen den Aufwand.",
-      "Beschwerdefotos und eine klare Raumliste helfen, Prioritäten und Grenzen schnell zu erkennen.",
-      "Regelmäßige Reinigung braucht andere Planung als einmalige Sonderreinigung nach Mieterwechsel.",
+      "Etagen, Eingänge, Aufzug, Kellerzugang, Müllplatznähe, Flure, Sichtreinigung, Turnus und Laufwege bestimmen den Aufwand.",
+      "Problemstellen, Beschwerdefotos und eine klare Bereichsliste helfen, Prioritäten und Grenzen schnell zu erkennen.",
+      "Ein regelmäßiger Reinigungsturnus braucht andere Planung als eine einmalige Sonderreinigung nach Mieterwechsel oder Beschwerdefall.",
     ],
     faqItems: [
       {
-        q: "Welche Angaben braucht FLOXANT von einer Hausverwaltung?",
-        a: "Hilfreich sind Objektadresse oder Stadtteil, Anzahl Eingänge, Etagen, Aufzug, Kellerflur, Müllbereich, gewünschter Turnus, Schlüsselweg, Ansprechpartner, Fotos und aktuelle Beschwerden.",
+        q: "Welche Angaben braucht FLOXANT für ein Mehrparteienhaus?",
+        a: "Hilfreich sind Adresse oder Stadtteil, Anzahl Etagen, Anzahl Eingänge, Aufzug ja oder nein, Kellerzugang, Müllplatznähe, Flure, gewünschter Turnus, Problemstellen, Starttermin, Schlüsselweg, Ansprechpartner und Fotos.",
       },
       {
-        q: "Ist Hausverwaltung-Reinigung dasselbe wie Treppenhausreinigung?",
-        a: "Treppenhausreinigung ist oft ein Teil davon. Hausverwaltung-Reinigung betrachtet zusätzlich Eingang, Laufwege, Kellerflur, Müllbereich, Objektzustand, Kommunikation und Turnus.",
+        q: "Können mehrere Eingänge getrennt kalkuliert werden?",
+        a: "Ja. Mehrere Eingänge sollten getrennt beschrieben werden, wenn Etagenzahl, Nutzung, Aufzug, Laufwege, Verschmutzung oder gewünschter Turnus unterschiedlich sind.",
       },
       {
-        q: "Übernimmt FLOXANT auch Hausmeisterdienst?",
-        a: "Nein. Diese Seite betrifft Reinigung. Hausmeisterdienst, Winterdienst, Reparaturen, Schädlingsbekämpfung und Gefahrstoffthemen werden nicht automatisch mit angeboten.",
+        q: "Wie wird der Reinigungsturnus abgestimmt?",
+        a: "Der Turnus richtet sich nach Nutzung, Beschwerden, Sichtflächen, Müllplatznähe, Etagen, Aufzug, Hausordnung und Budgetrahmen. Wöchentlich, mehrmals monatlich oder bedarfsbezogen wird vorab geklärt.",
       },
       {
-        q: "Kann eine einmalige Reinigung nach Beschwerden geprüft werden?",
-        a: "Ja, wenn Fotos, betroffene Bereiche, Zugang, Termin und gewünschtes Ergebnis klar sind. Bei stärkerem Zustand kann Sonderreinigung passender sein.",
+        q: "Was gehört nicht automatisch zur Hausverwaltungsreinigung?",
+        a: "Nicht automatisch enthalten sind Hausmeisterdienst, Winterdienst, Reparaturen, Schädlingsbekämpfung, Gefahrstoffe, Rechtsfragen, Entsorgung und Sonderreinigung nach starkem Schadenbild.",
+      },
+      {
+        q: "Ist eine Besichtigung sinnvoll?",
+        a: "Bei mehreren Eingängen, unklarem Turnus, wiederkehrenden Beschwerden, Aufzug, Kellerbereichen oder stark unterschiedlichen Etagen ist eine Besichtigung oder eine saubere Fotodokumentation sinnvoll.",
       },
     ],
     relatedLinks: [
@@ -938,12 +942,12 @@ export const duesseldorfServicePages = {
       {
         field: "Objekt",
         title: "Adresse, Eingänge und Etagen",
-        text: "Stadtteil, Anzahl Eingänge, Etagen, Aufzug, Kellerflur, Müllbereich und Laufwege nennen.",
+        text: "Adresse oder Stadtteil, Anzahl Eingänge, Etagen, Aufzug ja/nein, Kellerzugang, Müllplatznähe und Laufwege nennen.",
       },
       {
         field: "Turnus",
-        title: "Einmalig oder regelmäßig?",
-        text: "Wöchentlich, mehrmals monatlich, nach Bedarf oder einmalig nach Beschwerde klar angeben.",
+        title: "Turnus und Starttermin",
+        text: "Wöchentlich, mehrmals monatlich, nach Bedarf oder einmalig nach Beschwerde plus gewünschten Starttermin klar angeben.",
       },
       {
         field: "Zugang",
@@ -953,7 +957,7 @@ export const duesseldorfServicePages = {
       {
         field: "Fotos",
         title: "Beschwerden sichtbar machen",
-        text: "Fotos von Eingang, Treppenhaus, Kellerflur, Müllbereich oder Problemstellen beschleunigen die Einordnung.",
+        text: "Fotos von Eingang, Treppenhaus, Aufzug, Kellerzugang, Müllplatznähe oder Problemstellen beschleunigen die Einordnung.",
       },
       {
         field: "Grenzen",
@@ -2305,47 +2309,141 @@ export const duesseldorfServicePages = {
   praxisreinigung: {
     slug: "praxisreinigung",
     path: "/duesseldorf/praxisreinigung",
-    metaTitle: "Praxisreinigung Düsseldorf mit Raumliste und Zeitfenster",
+    metaTitle: "Praxisreinigung Düsseldorf | Räume & Randzeiten",
     metaDescription:
-      "Praxisreinigung Düsseldorf für Empfang, Wartebereich, Sanitär und Nebenräume: Praxisart, Fläche, Turnus, Zugang und Fotos senden.",
+      "Praxisreinigung Düsseldorf für Empfang, Wartebereich, Behandlungsräume, Sanitär und Personalbereich: Praxisart, Turnus, Sprechzeiten und Fotos senden.",
     kicker: "FLOXANT Praxisreinigung Düsseldorf",
-    title: "Praxisreinigung in Duesseldorf mit Raumliste, Zugang und Zeitfenster",
+    title: "Praxisreinigung Düsseldorf für Empfang, Wartebereich und Randzeiten",
     description:
-      "Fuer allgemeine Praxisflaechen nach Absprache: Empfang, Wartebereich, Nebenraeume, Sanitaer, Zugang, Zeitfenster und sichtbare Flaechen. Medizinische Spezialdesinfektion wird nicht pauschal versprochen.",
+      "Für Praxen in Düsseldorf, die allgemeine Flächen klar abstimmen möchten: Empfang, Wartebereich, Behandlungsräume nach Absprache, Flure, Sanitär, Personalbereich, Turnus, Sprechzeiten, Randzeiten, Zugang und Fotos. Medizinische Spezialdesinfektion oder Hygienezertifikate werden ohne Nachweis nicht pauschal beworben.",
     serviceLabel: "Praxisreinigung",
     contentSections: [
       {
         title: "Praxisreinigung nur mit klarer Einordnung",
         paragraphs: [
-          "Praxisreinigung in Duesseldorf muss vorsichtig beschrieben werden. FLOXANT prueft allgemeine Flaechen wie Empfang, Wartebereich, Flure, Sanitaer, Personalraum und Nebenraeume. Medizinische Spezialdesinfektion, Laborbereiche, OP-nahe Bereiche oder besondere Hygieneleistungen werden nicht pauschal versprochen.",
-          "Fuer Praxen in Pempelfort, Derendorf, Duesseltal, Bilk, Gerresheim oder Benrath sind Zeitfenster, Patientenbetrieb, Zugang, Schluesselweg und gewuenschte Haeufigkeit besonders wichtig. Reinigung waehrend laufender Sprechzeiten ist etwas anderes als ein fester Termin nach Praxisschluss.",
+          "Praxisreinigung in Düsseldorf muss präzise bleiben. FLOXANT prüft allgemeine Praxisflächen wie Empfang, Wartebereich, Flure, Sanitär, Personalbereich, Nebenräume und Behandlungsräume nach Absprache. Laborbereiche, OP-nahe Bereiche, Reinraumleistung und medizinische Spezialdesinfektion werden nicht pauschal zugesagt.",
+          "Für Praxen in Pempelfort, Bilk, Derendorf, Stadtmitte, Oberkassel oder Düsseltal sind Praxisart, Sprechzeiten, gewünschte Randzeiten, Zugang, Schlüsselweg und Turnus besonders wichtig. Reinigung während laufender Sprechzeiten ist etwas anderes als ein fester Termin vor Öffnung oder nach Praxisschluss.",
         ],
       },
       {
         title: "Was die Preislogik in Praxen verändert",
         paragraphs: [
-          "Der Aufwand hängt von Raumarten, Oberflächen, Sanitärbereichen, Boden, Wartebereich, Nutzung und gewünschten Intervallen ab. Auch die Frage, ob nur sichtbare Pflegeflächen oder besonders sensible Bereiche betroffen sind, muss vorab klar beantwortet werden.",
-          "Eine Anfrage sollte deshalb Praxisart, Flaeche, Stadtteil, Raeume, Zugang, Fotos, gewuenschte Reinigungstage, Ansprechpartner und besondere Vorgaben enthalten. So bleibt die Seite ehrlich und vermeidet Leistungen, die ohne Pruefung nicht zugesagt werden duerfen.",
+          "Der Aufwand hängt von Raumarten, Oberflächen, Sanitärbereichen, Boden, Wartebereich, Nutzung und gewünschten Intervallen ab. Auch die Frage, welche sensiblen Bereiche nur nach genauer Absprache berührt werden dürfen, muss vorab beantwortet werden.",
+          "Eine Anfrage sollte deshalb Praxisart, Raumliste, Fläche, Stadtteil, Sprechzeiten, gewünschte Randzeiten, Zugang, Fotos, Reinigungstage, Ansprechpartner und besondere sensible Bereiche enthalten. So bleibt die Seite belastbar und vermeidet Zusagen, die ohne Prüfung nicht seriös wären.",
         ],
       },
     ],
     bullets: [
-      "Geeignet für allgemeine Reinigungsflächen in kleinen Praxen, wenn Umfang und Hygieneerwartung klar beschrieben werden.",
-      "Nicht beworben werden OP-, Labor-, Reinraum- oder medizinische Spezialdesinfektion ohne gesonderte Prüfung.",
-      "Zeitfenster, Zugang, Fläche, Fotos und gewünschter Turnus werden vorab eingeordnet.",
+      "Für Empfang, Wartebereich, Behandlungsräume nach Absprache, Flure, Sanitär, Personalbereich und Nebenräume.",
+      "Nicht beworben werden OP-, Labor-, Reinraum- oder medizinische Spezialdesinfektion und keine Hygienezertifikate ohne gesonderten Nachweis.",
+      "Praxisart, Räume, Fläche, Turnus, Sprechzeiten, Randzeiten, Adresse/Stadtteil, Zugang, Fotos und sensible Bereiche werden vorab eingeordnet.",
     ],
-    localFocus: ["Pempelfort", "Derendorf", "Düsseltal", "Bilk", "Gerresheim", "Benrath"],
+    localFocus: ["Pempelfort", "Bilk", "Derendorf", "Stadtmitte", "Oberkassel", "Düsseltal"],
     priceLogic: [
-      "Empfang, Wartebereich, Behandlungsnähe, Sanitär und Nebenräume werden getrennt betrachtet.",
-      "Hygieneanforderungen müssen klar beschrieben werden; Spezialdesinfektion wird nicht pauschal zugesagt.",
-      "Turnus, Zeitfenster und Zugang entscheiden, ob eine regelmäßige Reinigung sinnvoll planbar ist.",
+      "Empfang, Wartebereich, Behandlungsräume nach Absprache, Sanitär, Flure und Personalbereich werden getrennt betrachtet.",
+      "Hygieneanforderungen und sensible Bereiche müssen klar beschrieben werden; Spezialdesinfektion wird nicht pauschal zugesagt.",
+      "Turnus, Sprechzeiten, Randzeiten und Zugang entscheiden, ob eine regelmäßige Reinigung sinnvoll planbar ist.",
     ],
-    faqItems: faq(
-      "Praxisreinigung",
-      "Bitte nennen Sie Praxisart, Flächen, Räume, gewünschte Hygienestufe und ob nur allgemeine Reinigung oder besondere Anforderungen vorliegen.",
-    ),
+    faqItems: [
+      {
+        q: "Welche Angaben braucht FLOXANT für ein Praxisangebot?",
+        a: "Wichtig sind Praxisart, Adresse oder Stadtteil, Räume, Fläche, Empfang, Wartebereich, Behandlungsräume nach Absprache, Sanitär, Personalbereich, Turnus, Sprechzeiten, gewünschte Randzeiten, Zugang, Ansprechpartner, sensible Bereiche und Fotos.",
+      },
+      {
+        q: "Kann die Reinigung außerhalb der Sprechzeiten geplant werden?",
+        a: "Ja, Randzeiten vor Öffnung, nach Praxisschluss oder am Wochenende können nach Zugang, Hausordnung, Umfang und Verfügbarkeit geprüft werden.",
+      },
+      {
+        q: "Welche Bereiche werden vorab abgestimmt?",
+        a: "Abgestimmt werden Empfang, Wartebereich, Flure, Sanitär, Personalbereich, Nebenräume und Behandlungsräume nach Absprache. OP-nahe Bereiche, Labor, Reinraum und Spezialdesinfektion gehören nicht automatisch dazu.",
+      },
+      {
+        q: "Wann ist eine Besichtigung sinnvoll?",
+        a: "Eine Besichtigung oder ausführliche Fotodokumentation ist sinnvoll, wenn mehrere Behandlungsräume, sensible Bereiche, unklare Hygieneanforderungen, komplexer Zugang oder ein regelmäßiger Turnus geplant sind.",
+      },
+      {
+        q: "Was unterscheidet Praxisreinigung von Büroreinigung?",
+        a: "Praxisreinigung braucht mehr Abstimmung zu Sprechzeiten, Wartebereich, Sanitär, sensiblen Bereichen und Zugang. Büroreinigung ist meist weniger stark an Patientenbetrieb und besondere Raumgrenzen gekoppelt.",
+      },
+    ],
     relatedLinks: commonLinks,
     boundaryText: commonBoundary,
+    customerIntentItems: [
+      {
+        searchPhrase: "Praxisreinigung Düsseldorf",
+        title: "Praxisräume und Turnus beschreiben",
+        answer:
+          "Für eine erste Einordnung zählen Praxisart, Räume, Fläche, Sprechzeiten, Randzeiten, Turnus, Zugang, sensible Bereiche und Fotos.",
+        href: "#anfrage-checkliste",
+        cta: "Praxisreinigung Düsseldorf anfragen",
+        signal: "Praxisreinigung",
+      },
+      {
+        searchPhrase: "Praxisreinigung nach Sprechzeiten",
+        title: "Reinigung außerhalb der Sprechzeiten prüfen",
+        answer:
+          "Randzeiten vor Öffnung, nach Praxisschluss oder am Wochenende werden nach Zugang, Hausordnung, Umfang und Verfügbarkeit geprüft.",
+        href: "#kontakt",
+        cta: "Randzeiten prüfen lassen",
+        signal: "Randzeiten",
+      },
+      {
+        searchPhrase: "Praxisräume reinigen lassen",
+        title: "Räume sauber abgrenzen",
+        answer:
+          "Empfang, Wartebereich, Flure, Sanitär, Personalbereich und Behandlungsräume nach Absprache werden getrennt von Labor, OP-nahen Bereichen und Spezialdesinfektion betrachtet.",
+        href: "#anfrage-checkliste",
+        cta: "Praxisräume beschreiben",
+        signal: "Raumliste",
+      },
+    ],
+    requestFieldItems: [
+      {
+        field: "Praxisart",
+        title: "Praxisart und Räume",
+        text: "Praxisart, Empfang, Wartebereich, Behandlungsräume nach Absprache, Flure, Sanitär, Personalbereich und Nebenräume nennen.",
+      },
+      {
+        field: "Fläche",
+        title: "Fläche und Stadtteil",
+        text: "Quadratmeter, Adresse oder Stadtteil, Etage, Zugang, Parken und Fotos von typischen Flächen senden.",
+      },
+      {
+        field: "Turnus",
+        title: "Turnus und Sprechzeiten",
+        text: "Gewünschte Reinigungstage, Sprechzeiten, Randzeiten vor Öffnung oder nach Praxisschluss und Startwunsch angeben.",
+      },
+      {
+        field: "Sensible Bereiche",
+        title: "Grenzen klar benennen",
+        text: "Sensible Bereiche, Labor, OP-nahe Räume, Tabubereiche und Hygieneerwartungen ausdrücklich beschreiben.",
+      },
+      {
+        field: "Kontakt",
+        title: "Ansprechpartner",
+        text: "Ansprechpartner, Rückrufnummer, Schlüsselweg und erlaubte Zeiten für Rückfragen oder Besichtigung nennen.",
+      },
+    ],
+    snippetAnswerItems: [
+      {
+        query: "Welche Angaben braucht eine Praxisreinigung in Düsseldorf?",
+        title: "Praxisart, Räume und Randzeiten zuerst",
+        answer:
+          "FLOXANT braucht Praxisart, Raumliste, Fläche, Stadtteil, Turnus, Sprechzeiten, gewünschte Randzeiten, Zugang, Fotos und sensible Bereiche. Medizinische Spezialdesinfektion wird nicht pauschal versprochen.",
+        href: "#anfrage-checkliste",
+        cta: "Praxisräume beschreiben",
+        signals: ["Praxisreinigung Düsseldorf", "Praxisräume reinigen"],
+      },
+      {
+        query: "Kann Praxisreinigung außerhalb der Sprechzeiten stattfinden?",
+        title: "Randzeiten nach Zugang prüfen",
+        answer:
+          "Reinigung vor Öffnung, nach Praxisschluss oder am Wochenende kann geprüft werden, wenn Zugang, Hausordnung, Umfang, Turnus und Ansprechpartner klar sind.",
+        href: "#kontakt",
+        cta: "Randzeiten prüfen",
+        signals: ["Reinigung nach Praxisschluss", "Randzeiten Praxis"],
+      },
+    ],
   },
   "it-raum-reinigung": {
     slug: "it-raum-reinigung",
@@ -2543,27 +2641,27 @@ export const duesseldorfServicePages = {
   fensterreinigung: {
     slug: "fensterreinigung",
     path: "/duesseldorf/fensterreinigung",
-    metaTitle: "Fensterreinigung Duesseldorf mit Glas, Rahmen und Zugang",
+    metaTitle: "Fensterreinigung Düsseldorf mit Glas, Rahmen und Zugang",
     metaDescription:
-      "Fensterreinigung Duesseldorf anfragen: Anzahl, Etage, Innen- oder Aussenseite, Rahmen, Zugang, Fotos und Zeitfenster klar senden.",
+      "Fensterreinigung Düsseldorf anfragen: Anzahl, Etage, Innen- oder Außenseite, Rahmen, Zugang, Fotos und Zeitfenster klar senden.",
     kicker: "FLOXANT Fensterreinigung Düsseldorf",
     title: "Fensterreinigung Düsseldorf mit Glas, Rahmen und Zugang",
     description:
-      "Fuer Wohnungen, Bueros, Kanzleien, kleine Firmen, Ladenflaechen und Objekte, wenn Anzahl, Glasart, Rahmen, Innen-/Aussenseite, Etage, Griffspuren und Zugang realistisch geprueft werden sollen.",
+      "Für Wohnungen, Büros, Kanzleien, kleine Firmen, Ladenflächen und Objekte, wenn Anzahl, Glasart, Rahmen, Innen-/Außenseite, Etage, Griffspuren und Zugang realistisch geprüft werden sollen.",
     serviceLabel: "Fensterreinigung",
     contentSections: [
       {
         title: "Fensterreinigung wird erst mit Zugang realistisch",
         paragraphs: [
-          "Fensterreinigung in Duesseldorf klingt einfach, haengt aber stark von Erreichbarkeit, Fensteranzahl, Rahmen, Glasart, Etage, Aufzug, Balkon, Schaufenster, Innen-/Aussenseite und Verschmutzung ab. Ein ebenerdiges Ladenfenster ist anders zu planen als viele Wohnungsfenster im Altbau oder Glasflaechen in einem Buero.",
-          "FLOXANT fragt deshalb nach Fotos, Stadtteil, Etage, Anzahl der Fenster, Rahmenzustand, gewuenschter Seite, Zugang und Zeitfenster. So entsteht eine pruefbare Anfrage statt einer Pauschale, die spaeter nicht zum Objekt passt.",
+          "Fensterreinigung in Düsseldorf klingt einfach, hängt aber stark von Erreichbarkeit, Fensteranzahl, Rahmen, Glasart, Etage, Aufzug, Balkon, Schaufenster, Innen-/Außenseite und Verschmutzung ab. Ein ebenerdiges Ladenfenster ist anders zu planen als viele Wohnungsfenster im Altbau oder Glasflächen in einem Büro.",
+          "FLOXANT fragt deshalb nach Fotos, Stadtteil, Etage, Anzahl der Fenster, Rahmenzustand, gewünschter Seite, Zugang und Zeitfenster. So entsteht eine prüfbare Anfrage statt einer Pauschale, die später nicht zum Objekt passt.",
         ],
       },
       {
         title: "Glasflächen für Wohnung, Büro und kleine Gewerbeobjekte",
         paragraphs: [
-          "Kunden suchen oft nach Fenster putzen lassen, Glasreinigung, Schaufensterreinigung oder Fensterreinigung Buero Duesseldorf. Gemeint sind aber sehr unterschiedliche Faelle: bewohnte Wohnung, Auszug, Uebergabe, Kanzlei, Praxis, Studio, Ladenflaeche oder kleine Firma mit sichtbaren Glasflaechen.",
-          "Nicht beworben werden Seiltechnik, Fassadenkletterei, Hebebuehnenarbeit, gefaehrliche Aussenbereiche oder Spezialglas ohne gesonderte Pruefung. Damit bleibt die Leistung ehrlich, kundennah und passend zu Duesseldorf als Reinigungsstandort.",
+          "Kunden suchen oft nach Fenster putzen lassen, Glasreinigung, Schaufensterreinigung oder Fensterreinigung Büro Düsseldorf. Gemeint sind aber sehr unterschiedliche Fälle: bewohnte Wohnung, Auszug, Übergabe, Kanzlei, Praxis, Studio, Ladenfläche oder kleine Firma mit sichtbaren Glasflächen.",
+          "Nicht beworben werden Seiltechnik, Fassadenkletterei, Hebebühnenarbeit, gefährliche Außenbereiche oder Spezialglas ohne gesonderte Prüfung. Damit bleibt die Leistung ehrlich, kundennah und passend zu Düsseldorf als Reinigungsstandort.",
         ],
       },
     ],

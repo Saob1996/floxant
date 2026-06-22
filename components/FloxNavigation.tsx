@@ -283,13 +283,15 @@ export function PublicHeader({
       </div>
 
       {mobileOpen ? (
-        <div
-          className="fixed inset-0 z-[9001] bg-slate-950/34 backdrop-blur-sm lg:hidden"
-          onClick={() => setMobileOpen(false)}
-        >
+        <div className="fixed inset-0 z-[9001] bg-slate-950/34 backdrop-blur-sm lg:hidden">
+          <button
+            type="button"
+            aria-label="Mobiles Menü schließen"
+            className="absolute inset-0 z-0 h-full w-full cursor-default"
+            onClick={() => setMobileOpen(false)}
+          />
           <div
-            className="mx-3 mt-[5.4rem] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-lg border border-white/70 bg-white p-3 text-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.28)]"
-            onClick={(event) => event.stopPropagation()}
+            className="relative z-10 mx-3 mt-[5.4rem] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-lg border border-white/70 bg-white p-3 text-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.28)]"
           >
             <div className="flex items-start justify-between gap-3 rounded-lg bg-slate-950 p-4 text-white">
               <div>

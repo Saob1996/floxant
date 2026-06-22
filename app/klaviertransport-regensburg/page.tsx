@@ -20,6 +20,9 @@ import {
 } from "lucide-react";
 
 import { LeadCta } from "@/components/LeadCta";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
@@ -32,9 +35,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/klaviertransport-regensburg";
-const title = "Klaviertransport Regensburg | Instrument, Zugang und Termin prüfen";
+const title = "Klaviertransport Regensburg | Etage und Zugang prüfen";
 const description =
-  "Klaviertransport Regensburg anfragen: Klavier, E-Piano oder Flügel mit Etage, Treppenhaus, Aufzug, Laufweg, Fotos und Termin sauber vorbereiten.";
+  "Klaviertransport Regensburg anfragen: Klavier, E-Piano oder Flügel mit Etage, Treppenhaus, Aufzug, Laufweg, Haltepunkt, Fotos und Termin prüfen.";
 
 const leadHref = buildLeadHref({
   service: "klaviertransport",
@@ -59,11 +62,11 @@ const heroFacts = [
 ] as const;
 
 const neededDetails = [
-  "Instrumenttyp und ungefähre Maße, falls bekannt",
+  "Instrumenttyp, Bauform und ungefähre Maße, falls bekannt",
   "Start- und Zieladresse mit Etage",
   "Aufzug vorhanden: ja/nein und grobe Größe",
   "Fotos von Instrument, Eingang, Treppe und Zielraum",
-  "Laufweg, Haltemöglichkeit und enge Stellen",
+  "Laufweg, Haltemöglichkeit, Türen, Kurven und enge Stellen",
   "Terminwunsch und Zeitfenster",
 ] as const;
 
@@ -102,8 +105,9 @@ const processSteps = [
 
 const localSignals = [
   "Regensburger Altstadt und Stadtamhof: oft enge Zugänge und kurze Haltepunkte",
-  "Kumpfmühl, Prüfening, Westenviertel: Etagen, Innenhöfe und Laufwege vorab beschreiben",
-  "Neutraubling, Lappersdorf, Pentling oder Umland: Strecke und Zieladresse sauber angeben",
+  "Kumpfmühl, Prüfening, Westenviertel, Reinhausen oder Galgenberg: Etagen, Innenhöfe und Laufwege vorab beschreiben",
+  "Neutraubling, Lappersdorf, Pentling, Obertraubling oder Umland: Strecke, Zieladresse und Haltemöglichkeit sauber angeben",
+  "Weiter entfernte Start- oder Zielorte gehören in die Angebotsprüfung, wenn Strecke, Rückfahrt oder Kombination den Transport realistisch machen",
 ] as const;
 
 const faqItems = [
@@ -301,10 +305,10 @@ export default function KlaviertransportRegensburgPage() {
                   Fotos per WhatsApp senden
                 </a>
                 <Link
-                  href="/angebot-guenstiger-pruefen"
+                  href="/angebot-vergleichen-regensburg"
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 text-sm font-black text-slate-900 transition hover:border-cyan-300 hover:text-cyan-800 sm:w-auto"
                 >
-                  Transportangebot prüfen
+                  Transportangebot vergleichen
                 </Link>
               </div>
 
@@ -444,6 +448,22 @@ export default function KlaviertransportRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <TrustProofPanel
+        allowedPage={path}
+        serviceKey="umzug"
+        locationKey="regensburg"
+        title="Trust Proof für Klaviertransport Regensburg"
+        intro="Diese Seite setzt auf prüfbare Transport-Eckdaten statt schneller Blindzusagen: Instrument, Zugang, Fotos, Laufweg, Haltepunkt und Termin bleiben sichtbar."
+      />
+
+      <ServiceProofChecklist
+        serviceKey="umzug"
+        title="Welche Angaben den Klaviertransport belastbarer machen"
+        intro="Ein Klaviertransport wird planbarer, wenn Instrument, Treppenhaus, Laufweg, Haltepunkt und Zielraum vor der Zusage nachvollziehbar sind."
+      />
+
+      <LocalProofPanel location="regensburg" />
 
       <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">

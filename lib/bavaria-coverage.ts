@@ -12,9 +12,9 @@ export type CoverageGroup = {
 };
 
 export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
-  { href: "/umzug-regensburg", label: "Umzug Regensburg", note: "Lokaler Kernpfad fuer direkte Nachfrage." },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg", note: "Starker Uebergabe- und Objektservice-Startpunkt." },
-  { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg", note: "Raeumung und Entsorgung fuer Anfragen aus der Region." },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg", note: "Lokaler Kernpfad fuer direkte Nachfrage." },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg", note: "Starker Uebergabe- und Objektservice-Startpunkt." },
+  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg", note: "Raeumung und Entsorgung fuer Anfragen aus der Region." },
   { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg", note: "Firmen- und Standortwechsel mit lokalem Anker." },
   { href: "/einlagerung", label: "Einlagerung Regensburg", note: "Lagerung und Zwischenloesungen mit direkter lokaler Suchabsicht." },
   { href: "/akteneinlagerung-regensburg", label: "Akteneinlagerung Regensburg", note: "Gezielter B2B-Lagerpfad fuer Archive und Dokumente." },
@@ -67,7 +67,7 @@ export const BAVARIA_COVERAGE_GROUPS: CoverageGroup[] = [
     description:
       "Regensburger Basis mit kurzen Wegen fuer Umzug, Reinigung, Entruempelung und Bueroumzug.",
     links: [
-      { href: "/umzug-regensburg", label: "Regensburg" },
+      { href: "/regensburg/umzug", label: "Regensburg" },
       { href: "/umzug-landkreis-regensburg", label: "Landkreis Regensburg" },
       { href: "/umzug-neutraubling", label: "Neutraubling" },
       { href: "/umzug-obertraubling", label: "Obertraubling" },
@@ -270,7 +270,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "umzug, umzugsfirma, umzugsunternehmen",
     description:
       "Der wichtigste Maps-Pfad fuer private Umzuege, Firmenwechsel und direkte Anfragen mit Regensburg als lokalem Kern.",
-    primary: { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+    primary: { href: "/regensburg/umzug", label: "Umzug Regensburg" },
     supporting: [
       { href: "/umzug-bayern", label: "Umzug Bayern" },
       { href: "/umzug-muenchen", label: "Umzug Muenchen" },
@@ -284,11 +284,11 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "reinigung, reinigungsfirma, endreinigung",
     description:
       "Klarer Startpunkt fuer Wohnungsreinigung, Uebergabe, Objektpflege und lokale Reinigungsanfragen in Bayern.",
-    primary: { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+    primary: { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
     supporting: [
       { href: "/reinigung-bayern", label: "Reinigung Bayern" },
-      { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
-      { href: "/bueroreinigung-regensburg", label: "Bueroreinigung Regensburg" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
+      { href: "/regensburg/bueroreinigung", label: "Bueroreinigung Regensburg" },
       { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
       { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
       { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
@@ -296,7 +296,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
       { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
       { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
       { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
-      { href: "/endreinigung-regensburg", label: "Endreinigung Regensburg" },
+      { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
       { href: "/reinigung-muenchen", label: "Reinigung Muenchen" },
     ],
   },
@@ -306,10 +306,10 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "entruempelung, entsorgung, wohnungsaufloesung",
     description:
       "Gebundene klare Wege fuer Raeumung, Entsorgung, Wohnungsaufloesung und Firmenentsorgung.",
-    primary: { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+    primary: { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
     supporting: [
       { href: "/entruempelung-bayern", label: "Entruempelung Bayern" },
-      { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsaufloesung Regensburg" },
+      { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsaufloesung Regensburg" },
       { href: "/firmenentsorgung", label: "Firmenentsorgung" },
       { href: "/entruempelung-muenchen", label: "Entruempelung Muenchen" },
     ],
@@ -346,10 +346,10 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "wohnungsaufloesung, haushaltsaufloesung, nachlassraeumung",
     description:
       "Eigener Pfad fuer Wohnungsaufloesung, Nachlass, Keller, Restmengen und anschliessende Uebergabevorbereitung.",
-    primary: { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsaufloesung Regensburg" },
+    primary: { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsaufloesung Regensburg" },
     supporting: [
       { href: "/wohnungsaufloesung-bayern", label: "Wohnungsaufloesung Bayern" },
-      { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
       { href: "/kleinmengen-entsorgung", label: "Kleinmengen entsorgen" },
     ],
   },
@@ -373,10 +373,10 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "gewerbereinigung, bueroreinigung, praxisreinigung",
     description:
       "Separater B2B-Reinigungsweg fuer Buero, Praxis, Hotel, Kanzlei, Treppenhaus und Objektbetrieb.",
-    primary: { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+    primary: { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
     supporting: [
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
-      { href: "/bueroreinigung-regensburg", label: "Bueroreinigung Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+      { href: "/regensburg/bueroreinigung", label: "Bueroreinigung Regensburg" },
       { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
       { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
       { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
@@ -392,7 +392,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
 ];
 
 export const BAVARIA_REGENSBURG_PROXIMITY_LINKS: CoverageLink[] = [
-  { href: "/umzug-regensburg", label: "Regensburg Zentrum", note: "Hauptanker fuer Maps und direkte lokale Suche." },
+  { href: "/regensburg/umzug", label: "Regensburg Zentrum", note: "Hauptanker fuer Maps und direkte lokale Suche." },
   { href: "/umzug-landkreis-regensburg", label: "Landkreis Regensburg", note: "Erweiterter Kernraum fuer Regensburg-nahe Anfragen." },
   { href: "/umzug-neutraubling", label: "Neutraubling", note: "Nahraum mit starker Wohn- und Gewerbenachfrage." },
   { href: "/umzug-obertraubling", label: "Obertraubling", note: "Direkter Regensburger Suedost-Korridor." },

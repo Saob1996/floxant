@@ -19,10 +19,12 @@ import {
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { LocalConversionDecisionBox } from "@/components/LocalConversionDecisionBox";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
+import { B2BTrustPanel } from "@/components/B2BTrustPanel";
 import {
   floxantCategoryLabels,
   getServicesByRegionAndCategory,
@@ -163,6 +165,96 @@ function buildRegensburgServiceSummary(config: RegensburgServicePageConfig) {
   return `FLOXANT unterstützt bei ${config.serviceType} mit einer ruhigen Vorprüfung von Ort, Umfang, Zugang, Termin und Fotos. Ziel ist eine klare Rückmeldung, welcher Ablauf für Regensburg und Umgebung sinnvoll ist und welche offenen Punkte vor einem Angebot geklärt werden müssen.`;
 }
 
+function buildRegensburgDecisionCopy(config: RegensburgServicePageConfig) {
+  if (config.slug === "umzug") {
+    return {
+      intro:
+        "Ein Umzug in Regensburg wird erst belastbar, wenn Start, Ziel, Volumen, Etage, Trageweg und Termin zusammen sichtbar sind. Reinigung oder Entrümpelung werden nur als optionale Zusatzpunkte getrennt geplant.",
+      offerLabel: "Umzugsangebot Regensburg vergleichen",
+      checklist: [
+        "Start- und Zieladresse mit Etage, Aufzug und Haltemöglichkeit",
+        "Möbelmenge, Kartons, große Einzelstücke und Fotos",
+        "Terminfenster, Trageweg, Treppenhaus und Ansprechpartner",
+        "Zusatzpunkte wie Montage, Packhilfe, Restmengen oder Reinigung separat nennen",
+      ],
+      localLogic: [
+        "Bei Altstadt-Umzügen sind Zufahrt, Ladezone und Trageweg früh zu klären.",
+        "In Kumpfmühl, Westenviertel oder Prüfening entscheiden Etage, Aufzug und Parkmöglichkeit häufig über den Aufwand.",
+      ],
+    };
+  }
+
+  if (config.slug === "entruempelung") {
+    return {
+      intro:
+        "Entrümpelung braucht Fotos, Menge, Zugang und Zielzustand. So wird klar, ob es um Keller, Wohnung, Nachlass, Übergabevorbereitung oder nur um einzelne Restmengen geht.",
+      offerLabel: "Entrümpelungsangebot Regensburg vergleichen",
+      checklist: [
+        "Räume: Wohnung, Keller, Dachboden, Garage oder Nebenfläche",
+        "Menge, Material, was bleibt und was raus soll",
+        "Fotos, Etage, Aufzug, Laufweg, Parkmöglichkeit und Freigabe",
+        "Termin, Zielzustand und ob danach Reinigung nötig ist",
+      ],
+      localLogic: [
+        "In Altstadt, Stadtamhof oder dicht belegten Wohnhäusern sind Zugang und Laufweg wichtiger als eine grobe Mengenangabe.",
+        "In Burgweinting, Reinhausen oder Prüfening helfen Fotos von Keller, Garage und Haltepunkt, damit der Aufwand realistisch bleibt.",
+      ],
+    };
+  }
+
+  if (config.slug === "wohnungsaufloesung") {
+    return {
+      intro:
+        "Wohnungsauflösung ist kein harter Schnellauftrag. Freigaben, persönliche Gegenstände, Ansprechpartner, Räume und Übergabeziel müssen ruhig geklärt werden.",
+      offerLabel: "Auflösungsangebot Regensburg vergleichen",
+      checklist: [
+        "Situation: Nachlass, Auszug, Pflegeheimwechsel oder Leerstand",
+        "Räume, Keller, Menge, was bleiben soll und wer freigibt",
+        "Fotos von Wohnung, Laufwegen, Möbeln und sensiblen Bereichen",
+        "Zielzustand: geräumt, besenrein, gereinigt oder übergabefähig",
+      ],
+      localLogic: [
+        "Bei Nachlasswohnungen in Regensburg zählen Freigabe, Schlüsselweg und Ansprechpartner mehr als eine schnelle Preisfrage.",
+        "Wenn Vermieterübergabe oder Nachnutzung ansteht, werden Räumung, Entsorgung und Reinigung getrennt eingeordnet.",
+      ],
+    };
+  }
+
+  if (config.slug === "bueroreinigung") {
+    return {
+      intro:
+        "Büroreinigung passt, wenn Arbeitsplätze, Besprechung, Empfang, Teeküche, Sanitär, Turnus und Randzeit konkret beschrieben werden. Für breitere Objektflächen führt Gewerbereinigung weiter.",
+      offerLabel: "Büroreinigungsangebot Regensburg vergleichen",
+      checklist: [
+        "Arbeitsplätze, Besprechungsräume, Empfang, Küche und Sanitär",
+        "Fläche, Raumliste, Boden, Turnus und gewünschte Randzeit",
+        "Schlüsselweg, Zugang, Ansprechpartner und Hausordnung",
+        "Fotos und vorhandenes Angebot, falls ein Vergleich gewünscht ist",
+      ],
+      localLogic: [
+        "Büros in Altstadt oder Stadtamhof brauchen oft klare Randzeiten und Zugangspunkte.",
+        "In Gewerbelagen oder größeren Objekten entscheidet die Raumliste, ob Büroreinigung oder Gewerbereinigung besser passt.",
+      ],
+    };
+  }
+
+  return {
+    intro:
+      "Eine gute Rückmeldung entsteht, wenn Ort, Umfang, Zugang, Termin und Zielzustand zusammenpassen. Diese Punkte helfen, die Anfrage ohne Blindpreis sauber vorzubereiten.",
+    offerLabel: "Angebot Regensburg vergleichen",
+    checklist: [
+      "Regensburg, Stadtteil, PLZ oder Umland-Ort nennen",
+      `${config.serviceType}: Umfang, Zielzustand und Termin beschreiben`,
+      "Fotos, vorhandenes Angebot, Raumliste oder grobe Menge mitschicken",
+      "Zugang, Etage, Parken, Schlüsselweg und Ansprechpartner klären",
+    ],
+    localLogic: [
+      "Regensburg und Landkreis Regensburg werden zuerst nach Machbarkeit, Route und Zeitfenster geprüft.",
+      "Weiter entfernte Orte gehören in die Angebotsprüfung, wenn Route, Rückfahrt oder Kombination den Auftrag realistisch machen.",
+    ],
+  };
+}
+
 export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, config.whatsappMessage);
   const serviceVisual = getServiceVisual({
@@ -232,6 +324,8 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       : config.slug === "entruempelung" || config.slug === "haushaltsaufloesung"
         ? "clearance"
         : "cleaning";
+  const decisionCopy = buildRegensburgDecisionCopy(config);
+  const decisionServiceName = config.serviceType.replace(/\s+Regensburg$/u, "");
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
@@ -389,6 +483,21 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
         offerHref={regensburgOfferHref}
       />
 
+      <LocalConversionDecisionBox
+        cityName="Regensburg"
+        serviceName={decisionServiceName}
+        region="regensburg"
+        primaryHref={bookingHref}
+        primaryLabel={config.primaryCta}
+        offerHref={regensburgOfferHref}
+        offerLabel={decisionCopy.offerLabel}
+        intro={decisionCopy.intro}
+        checklist={decisionCopy.checklist}
+        decisionItems={config.scope.slice(0, 4)}
+        localLogic={decisionCopy.localLogic}
+        trustItems={config.trust.slice(0, 3)}
+      />
+
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <ServicePageCustomerSections
@@ -408,15 +517,15 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
 
       <AiAnswerBlock
         eyebrow="Regensburg Antwort"
-        title={`${config.serviceType}: was fuer eine schnelle Einschaetzung zaehlt.`}
-        answer="FLOXANT kann lokale Regensburg-Anfragen besser einordnen, wenn Ort, Termin, Umfang, Zugang und Fotos frueh sichtbar sind."
+        title={`${config.serviceType}: was für eine schnelle Einschätzung zählt.`}
+        answer="FLOXANT kann lokale Regensburg-Anfragen besser einordnen, wenn Ort, Termin, Umfang, Zugang und Fotos früh sichtbar sind."
         points={[
           "Regensburg, Landkreis und Bayern werden nach Machbarkeit getrennt.",
-          "Fotos reduzieren Rueckfragen zu Zustand, Menge oder Flaeche.",
-          "Vorhandene Angebote koennen praktisch eingeordnet werden.",
+          "Fotos reduzieren Rückfragen zu Zustand, Menge oder Fläche.",
+          "Vorhandene Angebote können praktisch eingeordnet werden.",
           "Bei Zeitdruck ist Plan B oft wichtiger als ein reiner Preisvergleich.",
         ]}
-        usefulWhen={["Termin oder Uebergabe naeherrueckt", "Fotos oder Angebot vorliegen", "Serviceumfang noch nicht sauber beschrieben ist"]}
+        usefulWhen={["Termin oder Übergabe näherrückt", "Fotos oder Angebot vorliegen", "Serviceumfang noch nicht sauber beschrieben ist"]}
         notUsefulWhen={["eine Rechtsberatung erwartet wird", "ohne Angaben eine feste Zusage erwartet wird"]}
         neededInfo={["Ort/PLZ", "Termin", "Fotos", "kurze Beschreibung"]}
       />
@@ -424,34 +533,36 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
       <RelatedSpecialServices
         kind={relatedSpecialKind}
         title={`Spezialservices passend zu ${config.serviceType} in Regensburg.`}
-        intro="Wenn Umzug, Reinigung, Raeumung, Uebergabe oder Angebot zusammenhaengen, helfen diese Spezialseiten beim naechsten sinnvollen Schritt."
+        intro="Wenn Umzug, Reinigung, Räumung, Übergabe oder Angebot zusammenhängen, helfen diese Spezialseiten beim nächsten sinnvollen Schritt."
         limit={4}
       />
 
       <SignatureServicesGrid
-        title="Signature Services fuer Regensburger Sonderfaelle."
-        intro="Objektbrief, Uebergabeakte, Plan B, Fairpreis-Check und Rueckfahrt helfen, wenn die Anfrage mehr Abstimmung braucht als ein Standardformular."
+        title="Signature Services für Regensburger Sonderfälle."
+        intro="Objektbrief, Übergabeakte, Plan B, Fairpreis-Check und Rückfahrt helfen, wenn die Anfrage mehr Abstimmung braucht als ein Standardformular."
         limit={4}
       />
 
       <OfferCheckCTA
-        title={`Angebot fuer ${config.serviceType} schon vorhanden?`}
-        text="FLOXANT prueft vorhandene Angebote nach Umfang, Fotos, Termin, Zugang, Zusatzpositionen und realistischen Grenzen. Keine Preisgarantie, keine Anbieter-Diffamierung."
+        title={`Angebot für ${config.serviceType} schon vorhanden?`}
+        text="FLOXANT prüft vorhandene Angebote nach Umfang, Fotos, Termin, Zugang, Zusatzpositionen und realistischen Grenzen. Keine Preisgarantie, keine Anbieter-Diffamierung."
         href={regensburgOfferHref}
       />
+
+      {proofServiceKey === "b2b" ? <B2BTrustPanel /> : null}
 
       <TrustProofPanel
         allowedPage={config.path}
         serviceKey={proofServiceKey}
         locationKey="regensburg"
-        title={`Trust Proof fuer ${config.serviceType}`}
-        intro="Diese Regensburger Serviceseite setzt auf pruefbare Eckdaten statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte."
+        title={`Trust Proof für ${config.serviceType}`}
+        intro="Diese Regensburger Serviceseite setzt auf prüfbare Eckdaten statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte."
       />
 
       <ServiceProofChecklist
         serviceKey={proofServiceKey}
         title={`Welche Angaben ${config.serviceType} belastbarer machen`}
-        intro="Je konkreter lokale Eckdaten und sichtbare Objektinformationen sind, desto klarer wird die erste Rueckmeldung."
+        intro="Je konkreter lokale Eckdaten und sichtbare Objektinformationen sind, desto klarer wird die erste Rückmeldung."
       />
 
       <ServiceVisualProofGrid serviceKey={proofServiceKey} locationKey="regensburg" />

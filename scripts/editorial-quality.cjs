@@ -22,13 +22,13 @@ const P0_ROUTES = [
   "/duesseldorf/umzug",
   "/duesseldorf/entruempelung",
   "/duesseldorf/haushaltsaufloesung",
-  "/umzug-regensburg",
-  "/reinigung-regensburg",
-  "/entruempelung-regensburg",
-  "/gewerbereinigung-regensburg",
-  "/bueroreinigung-regensburg",
+  "/regensburg/umzug",
+  "/regensburg/reinigung",
+  "/regensburg/entruempelung",
+  "/regensburg/gewerbereinigung",
+  "/regensburg/bueroreinigung",
   "/klaviertransport-regensburg",
-  "/wohnungsaufloesung-regensburg",
+  "/regensburg/wohnungsaufloesung",
   "/diskreter-umzug-trennung-scheidung",
   "/b2b-bueroreinigung",
 ];
@@ -65,11 +65,11 @@ const EDITED_THIS_ROUND = new Set([
   "/duesseldorf/entruempelung",
   "/duesseldorf/haushaltsaufloesung",
   "/regensburg",
-  "/umzug-regensburg",
-  "/reinigung-regensburg",
-  "/entruempelung-regensburg",
-  "/bueroreinigung-regensburg",
-  "/gewerbereinigung-regensburg",
+  "/regensburg/umzug",
+  "/regensburg/reinigung",
+  "/regensburg/entruempelung",
+  "/regensburg/bueroreinigung",
+  "/regensburg/gewerbereinigung",
   "/klaviertransport-regensburg",
   "/diskreter-umzug-trennung-scheidung",
   "/solarreinigung",
@@ -524,7 +524,7 @@ function linksFor(item) {
   if (item.city === "Duesseldorf") links.push("/duesseldorf");
   if (item.city === "Regensburg") links.push("/regensburg");
   if (item.service.includes("Reinigung")) links.push("/leistungen", "/reinigungsfirma-angebot");
-  if (item.service.includes("Umzug")) links.push("/umzug-regensburg", "/anbieter-vergleichen");
+  if (item.service.includes("Umzug")) links.push("/regensburg/umzug", "/anbieter-vergleichen");
   return Array.from(new Set(links)).slice(0, 5);
 }
 

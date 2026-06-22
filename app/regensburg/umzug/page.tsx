@@ -84,13 +84,13 @@ export default function RegensburgUmzugPage() {
           {
             title: "Seniorenumzug mit Angehörigen",
             text: "Wenn Angehörige mitorganisieren, helfen klare Freigaben, Rückruf, Packhilfe, Übergabe und ein ruhiger Ablauf.",
-            href: "/seniorenumzug-regensburg",
+            href: "/regensburg/seniorenumzug",
             cta: "Ruhig planen",
           },
           {
             title: "Umzugsangebot prüfen",
             text: "Vorhandenes Angebot, Fotos, Strecke, Etage, Volumen und Budget können für eine zweite Einschätzung gesendet werden.",
-            href: "/angebot-guenstiger-pruefen",
+            href: "/angebot-vergleichen-regensburg",
             cta: "Angebot prüfen",
           },
           {
@@ -122,18 +122,18 @@ export default function RegensburgUmzugPage() {
           {
             title: "Seniorenumzug + Übergabe",
             text: "Ruhige Abstimmung mit Angehörigen, Packhilfe und Rückmeldung.",
-            href: "/seniorenumzug-regensburg",
+            href: "/regensburg/seniorenumzug",
           },
           {
             title: "Angebot prüfen",
             text: "Vorhandenes Angebot mit Fotos und Eckdaten sachlich einordnen.",
-            href: "/angebot-guenstiger-pruefen",
+            href: "/angebot-vergleichen-regensburg",
           },
         ]}
         primaryHref="/buchung?service=umzug#buchungssystem"
         primaryLabel="Umzug Regensburg anfragen"
-        secondaryHref="/angebot-guenstiger-pruefen"
-        secondaryLabel="Angebot prüfen"
+        secondaryHref="/angebot-vergleichen-regensburg"
+        secondaryLabel="Umzugsangebot vergleichen"
         trackingService="umzug"
         trackingCity="regensburg"
         trackingPageIntent="umzug-regensburg"

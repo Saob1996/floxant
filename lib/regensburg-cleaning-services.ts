@@ -15,7 +15,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
   {
     label: "Büroreinigung Regensburg",
     shortLabel: "Büroreinigung",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
     icon: "building",
     intro: "Für Büros, Kanzleien, Agenturen und Verwaltungsflächen mit regelmäßigem Ablauf.",
     clickHook: "Kunden sehen sofort: saubere Arbeitsplätze, Empfang, Küche und Sanitär ohne Störung im Tagesbetrieb.",
@@ -123,7 +123,7 @@ export const regensburgCleaningServices: RegensburgCleaningService[] = [
   {
     label: "IT-Raum und Technikflächen",
     shortLabel: "IT-Raum Reinigung",
-    href: "/gewerbereinigung-regensburg#kontaktformular",
+    href: "/regensburg/gewerbereinigung#kontaktformular",
     icon: "server",
     intro: "Für Serverraum-nahe Flächen, Technikräume und sensible Nebenflächen nach Prüfung.",
     clickHook: "Sensible Technikflächen brauchen klare Grenzen: Boden, Staub, Zugang und Tabubereiche werden vorab festgelegt.",
@@ -166,7 +166,7 @@ export const regensburgCleaningLocalAreas = [
     area: "Altstadt & Innenstadt",
     intent: "Innenstadt und Altstadt",
     text: "Für Büros, Praxen, Kanzleien, Ladenflächen und stark sichtbare Kundenbereiche zählen Zeitfenster, Zugang und Parkmöglichkeit besonders.",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
     cta: "Büro oder Laden prüfen",
     needs: ["Adresse und Zugang", "Randzeit oder Öffnungszeiten", "Fotos von Empfang und Laufwegen"],
   },
@@ -190,7 +190,7 @@ export const regensburgCleaningLocalAreas = [
     area: "Gewerbepark & Ostenviertel",
     intent: "Gewerbeflächen",
     text: "Bei Büros, Technikflächen, Lagerbüros oder Objektbetrieb geht es meist um Turnus, Leistungsverzeichnis und feste Ansprechpartner.",
-    href: "/gewerbereinigung-regensburg#kontaktformular",
+    href: "/regensburg/gewerbereinigung#kontaktformular",
     cta: "Gewerbe anfragen",
     needs: ["Objektart", "Turnus", "Leistungsverzeichnis"],
   },
@@ -216,7 +216,7 @@ export const regensburgCleaningRequestExamples = [
   {
     label: "Büro oder Kanzlei",
     text: "Wir suchen Büroreinigung in Regensburg. Fläche, Raumliste, Turnus, Randzeit und Fotos können wir senden.",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
   },
   {
     label: "Wohnung, Einzug oder Auszug",
@@ -231,7 +231,7 @@ export const regensburgCleaningRequestExamples = [
   {
     label: "Fotos statt langer Telefonie",
     text: "Wir möchten zuerst Fotos senden, damit Aufwand, Zugang, Material und möglicher Preisrahmen sauber geprüft werden.",
-    href: "/gewerbereinigung-regensburg#kontaktformular",
+    href: "/regensburg/gewerbereinigung#kontaktformular",
   },
 ];
 
@@ -273,7 +273,7 @@ export const regensburgCleaningSearchSituations: RegensburgCleaningSearchSituati
     customerSays: "Unser Büro soll montags wieder ordentlich wirken.",
     answer:
       "Für Büro, Kanzlei, Praxis oder Objektbetrieb zählen Turnus, Randzeiten und klar abgegrenzte Leistungen.",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
     cta: "Büroreinigung öffnen",
     proofPoints: ["Turnus", "Raumliste", "Randzeiten"],
   },
@@ -326,25 +326,25 @@ export const regensburgCleaningSnippetTargets = [
     query: "Reinigungsdienst oder Putzdienst Regensburg",
     answer:
       "Ob Sie Reinigungsdienst, Putzdienst oder allgemeine Reinigung meinen: Für den Start helfen Ort, Objektart, Fläche, gewünschtes Ergebnis, Termin und Fotos.",
-    href: "/reinigung-regensburg",
+    href: "/regensburg/reinigung",
   },
   {
     query: "Gewerbliche Reinigung oder Firma reinigen lassen",
     answer:
       "Bei Büro, Kanzlei, Praxis, Hotel, Laden oder Objektbetrieb zählen Nutzung, Raumliste, Turnus, Zeitfenster, Zugang und ein Ansprechpartner vor Ort.",
-    href: "/gewerbereinigung-regensburg",
+    href: "/regensburg/gewerbereinigung",
   },
   {
     query: "Büro regelmäßig sauber halten",
     answer:
       "Für Büroreinigung in Regensburg helfen Arbeitsplätze, Küche, Sanitär, Empfang, Turnus, Randzeiten, Schlüsselweg und Fotos für die erste Abstimmung.",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
   },
   {
     query: "Objekt von Verwaltung oder Kommune anfragen",
     answer:
       "Bei Verwaltungsflächen, Eingängen, Wartebereichen oder gemeinschaftlichen Flächen braucht FLOXANT Objektart, Bereichsliste, Turnus, Zugang, Zuständigkeit und Fotos.",
-    href: "/gewerbereinigung-regensburg",
+    href: "/regensburg/gewerbereinigung",
   },
   {
     query: "Geruch oder Ursache einordnen lassen",
@@ -380,7 +380,7 @@ export const regensburgCleaningSnippetTargets = [
     query: "Zuverlässige Reinigung planbar machen",
     answer:
       "Zuverlässigkeit entsteht durch klare Angaben: Objekt, Fläche, Turnus, Ansprechpartner, Zeitfenster, Zugang und Fotos vor der Terminplanung.",
-    href: "/reinigung-regensburg",
+    href: "/regensburg/reinigung",
   },
   {
     query: "Treppenhaus und Eingang reinigen lassen",
@@ -410,7 +410,7 @@ export const regensburgCleaningSnippetTargets = [
     query: "Büroreinigung richtig anfragen",
     answer:
       "Ein gutes Angebot braucht Fläche, Turnus, Raumliste, Randzeiten, Zugang und Ansprechpartner statt nur einen Quadratmeterpreis.",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
   },
   {
     query: "Baustaub nach Renovierung entfernen",
@@ -441,7 +441,7 @@ export type RegensburgCleaningBuyerPath = {
 export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
   {
     label: "Büroreinigung ohne Betriebsstörung",
-    href: "/bueroreinigung-regensburg",
+    href: "/regensburg/bueroreinigung",
     customerPhrase: "Unser Büro soll sauber wirken, aber der Betrieb darf nicht leiden.",
     problem: "Für Büroreinigung zählen Angebot, Kostenrahmen, Randzeiten und eine klare Raumliste.",
     answer:
@@ -461,7 +461,7 @@ export const regensburgCleaningBuyerPaths: RegensburgCleaningBuyerPath[] = [
   },
   {
     label: "Gewerbereinigung richtig starten",
-    href: "/gewerbereinigung-regensburg",
+    href: "/regensburg/gewerbereinigung",
     customerPhrase: "Wir suchen eine Reinigungsfirma für Büro, Praxis, Hotel oder Objekt.",
     problem: "Gewerbliche Anfragen brauchen zuerst eine klare Zuordnung der passenden Leistung.",
     answer:

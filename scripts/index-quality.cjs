@@ -36,11 +36,11 @@ const P0_MONEY_PAGES = [
   "/duesseldorf/praxisreinigung",
   "/duesseldorf/fensterreinigung",
   "/regensburg",
-  "/umzug-regensburg",
-  "/reinigung-regensburg",
-  "/entruempelung-regensburg",
-  "/gewerbereinigung-regensburg",
-  "/bueroreinigung-regensburg",
+  "/regensburg/umzug",
+  "/regensburg/reinigung",
+  "/regensburg/entruempelung",
+  "/regensburg/gewerbereinigung",
+  "/regensburg/bueroreinigung",
   "/klaviertransport-regensburg",
   "/solarreinigung",
   "/pv-anlagen-reinigung",
@@ -72,8 +72,8 @@ const INTENT_TARGETS = [
   ["Angebot prüfen allgemein", "angebot prüfen", "/angebot-guenstiger-pruefen", ["/angebotscheck", "/anbieter-vergleichen", "/leistungen-vergleichen"], "HIGH"],
   ["Angebotscheck", "angebotscheck", "/angebotscheck", ["/angebot-guenstiger-pruefen", "/anbieter-vergleichen"], "MEDIUM"],
   ["Reinigungsangebot prüfen", "reinigungsangebot prüfen", "/angebot-vergleichen-duesseldorf", ["/duesseldorf/angebot-vergleichen", "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf"], "HIGH"],
-  ["Umzugsangebot prüfen", "umzugsangebot prüfen", "/angebot-guenstiger-pruefen", ["/blog/umzugsangebot-pruefen-regensburg-bayern", "/umzug-regensburg"], "MEDIUM"],
-  ["Entrümpelungsangebot prüfen", "entruempelungsangebot prüfen", "/angebot-guenstiger-pruefen", ["/entruempelung-regensburg", "/blog/entruempelungsangebot-pruefen-serioes"], "MEDIUM"],
+  ["Umzugsangebot prüfen", "umzugsangebot prüfen", "/angebot-guenstiger-pruefen", ["/blog/umzugsangebot-pruefen-regensburg-bayern", "/regensburg/umzug"], "MEDIUM"],
+  ["Entrümpelungsangebot prüfen", "entruempelungsangebot prüfen", "/angebot-guenstiger-pruefen", ["/regensburg/entruempelung", "/blog/entruempelungsangebot-pruefen-serioes"], "MEDIUM"],
   ["Anbieter vergleichen", "anbieter vergleichen", "/anbieter-vergleichen", ["/leistungen-vergleichen", "/angebotscheck"], "MEDIUM"],
   ["Reinigung Düsseldorf", "reinigung düsseldorf", "/duesseldorf/reinigung", ["/duesseldorf/reinigungsfirma", "/duesseldorf/putzfirma"], "HIGH"],
   ["Büroreinigung Düsseldorf", "büroreinigung düsseldorf", "/duesseldorf/bueroreinigung", ["/duesseldorf/gewerbereinigung", "/duesseldorf/reinigungskraft-buero"], "HIGH"],
@@ -83,18 +83,18 @@ const INTENT_TARGETS = [
   ["Umzug Düsseldorf", "umzug düsseldorf", "/duesseldorf/umzug", ["/region-duesseldorf"], "MEDIUM"],
   ["Entrümpelung Düsseldorf", "entruempelung düsseldorf", "/duesseldorf/entruempelung", ["/duesseldorf/haushaltsaufloesung"], "MEDIUM"],
   ["Haushaltsauflösung Düsseldorf", "haushaltsauflösung düsseldorf", "/duesseldorf/haushaltsaufloesung", ["/duesseldorf/entruempelung"], "MEDIUM"],
-  ["Umzug Regensburg", "umzug regensburg", "/umzug-regensburg", ["/regensburg/umzug", "/regensburg/umzugsunternehmen"], "HIGH"],
-  ["Reinigung Regensburg", "reinigung regensburg", "/reinigung-regensburg", ["/regensburg/reinigung", "/bueroreinigung-regensburg"], "HIGH"],
-  ["Entrümpelung Regensburg", "entruempelung regensburg", "/entruempelung-regensburg", ["/regensburg/entruempelung", "/wohnungsaufloesung-regensburg"], "HIGH"],
-  ["Gewerbereinigung Regensburg", "gewerbereinigung regensburg", "/gewerbereinigung-regensburg", ["/regensburg/gewerbereinigung", "/bueroreinigung-regensburg"], "HIGH"],
-  ["Büroreinigung Regensburg", "büroreinigung regensburg", "/bueroreinigung-regensburg", ["/regensburg/bueroreinigung", "/gewerbereinigung-regensburg"], "HIGH"],
+  ["Umzug Regensburg", "umzug regensburg", "/regensburg/umzug", ["/regensburg/umzug", "/regensburg/umzugsunternehmen"], "HIGH"],
+  ["Reinigung Regensburg", "reinigung regensburg", "/regensburg/reinigung", ["/regensburg/reinigung", "/regensburg/bueroreinigung"], "HIGH"],
+  ["Entrümpelung Regensburg", "entruempelung regensburg", "/regensburg/entruempelung", ["/regensburg/entruempelung", "/regensburg/wohnungsaufloesung"], "HIGH"],
+  ["Gewerbereinigung Regensburg", "gewerbereinigung regensburg", "/regensburg/gewerbereinigung", ["/regensburg/gewerbereinigung", "/regensburg/bueroreinigung"], "HIGH"],
+  ["Büroreinigung Regensburg", "büroreinigung regensburg", "/regensburg/bueroreinigung", ["/regensburg/bueroreinigung", "/regensburg/gewerbereinigung"], "HIGH"],
   ["Klaviertransport Regensburg", "klaviertransport regensburg", "/klaviertransport-regensburg", ["/klaviertransport"], "MEDIUM"],
-  ["Wohnungsauflösung Regensburg", "wohnungsauflösung regensburg", "/wohnungsaufloesung-regensburg", ["/regensburg/wohnungsaufloesung", "/entruempelung-regensburg"], "HIGH"],
+  ["Wohnungsauflösung Regensburg", "wohnungsauflösung regensburg", "/regensburg/wohnungsaufloesung", ["/regensburg/wohnungsaufloesung", "/regensburg/entruempelung"], "HIGH"],
   ["B2B Büroreinigung", "b2b büroreinigung", "/duesseldorf/bueroreinigung", ["/duesseldorf/b2b-reinigung", "/gewerbereinigung"], "MEDIUM"],
   ["Diskret Service", "diskret service", "/diskreter-umzug-trennung-scheidung", ["/plan-b-service", "/private-client-service"], "MEDIUM"],
   ["Solarreinigung", "solarreinigung", "/solarreinigung", ["/pv-anlagen-reinigung", "/duesseldorf/solarreinigung"], "MEDIUM"],
-  ["Reinigung nach Entrümpelung", "reinigung nach entrümpelung", "/reinigung-regensburg", ["/entruempelung-regensburg", "/blog/entruempelung-endreinigung-uebergabe-regensburg-kombinieren"], "MEDIUM"],
-  ["Seniorenumzug", "seniorenumzug", "/seniorenumzug", ["/seniorenumzug-regensburg", "/regensburg/seniorenumzug"], "MEDIUM"],
+  ["Reinigung nach Entrümpelung", "reinigung nach entrümpelung", "/regensburg/reinigung", ["/regensburg/entruempelung", "/blog/entruempelung-endreinigung-uebergabe-regensburg-kombinieren"], "MEDIUM"],
+  ["Seniorenumzug", "seniorenumzug", "/seniorenumzug", ["/regensburg/seniorenumzug", "/regensburg/seniorenumzug"], "MEDIUM"],
   ["Fernumzug", "fernumzug", "/fernumzug-muenchen", ["/blog/fernumzug-bayern-nrw-tipps", "/umzug-muenchen"], "LOW"],
 ];
 
@@ -375,13 +375,13 @@ function choosePrimaryTarget(name, affected) {
     "Düsseldorf Reinigung Cluster": "/duesseldorf/reinigung",
     "Düsseldorf Putzfirma/Reinigungsfirma Cluster": "/duesseldorf/reinigungsfirma",
     "Büroreinigung/Gewerbereinigung Cluster": "/duesseldorf/bueroreinigung",
-    "Regensburg Umzug Cluster": "/umzug-regensburg",
-    "Regensburg Entrümpelung/Wohnungsauflösung Cluster": "/entruempelung-regensburg",
+    "Regensburg Umzug Cluster": "/regensburg/umzug",
+    "Regensburg Entrümpelung/Wohnungsauflösung Cluster": "/regensburg/entruempelung",
     "Klaviertransport Regensburg Cluster": "/klaviertransport-regensburg",
     "Seniorenumzug Cluster": "/seniorenumzug",
     "Diskret/Private Client Cluster": "/diskreter-umzug-trennung-scheidung",
     "Solar/PV Cluster": "/solarreinigung",
-    "Bayern/München/Landshut Longtail Cluster": "/service-area-bayern",
+    "Bayern/München/Landshut Longtail Cluster": "/regensburg",
     "Dynamic Local SEO Cluster": "/region-duesseldorf",
   };
   return preferred[name] || affected.find((route) => route.isMoneyPage)?.url || affected[0]?.url || "";
@@ -400,8 +400,8 @@ function supportTargetForBlog(route) {
   const lower = route.url.toLowerCase();
   if (lower.includes("angebot") || lower.includes("vergleich")) return "/angebot-guenstiger-pruefen";
   if (lower.includes("duesseldorf") && lower.includes("reinigung")) return "/duesseldorf/reinigung";
-  if (lower.includes("regensburg") && lower.includes("umzug")) return "/umzug-regensburg";
-  if (lower.includes("entruempel")) return "/entruempelung-regensburg";
+  if (lower.includes("regensburg") && lower.includes("umzug")) return "/regensburg/umzug";
+  if (lower.includes("entruempel")) return "/regensburg/entruempelung";
   if (lower.includes("bueroreinigung") || lower.includes("gewerbe")) return "/duesseldorf/bueroreinigung";
   return "/leistungen";
 }
@@ -545,7 +545,7 @@ function writeCanonicalNoindex(inventory) {
 
 function chooseManualPrimary(route) {
   const match = INTENT_TARGETS.find(([, , target, support]) => target === route.url || support.includes(route.url));
-  return match?.[2] || (route.region.includes("Düsseldorf") ? "/duesseldorf/reinigung" : route.region.includes("Regensburg") ? "/umzug-regensburg" : "/angebot-guenstiger-pruefen");
+  return match?.[2] || (route.region.includes("Düsseldorf") ? "/duesseldorf/reinigung" : route.region.includes("Regensburg") ? "/regensburg/umzug" : "/angebot-guenstiger-pruefen");
 }
 
 function writeIndexQuality(inventory) {
@@ -627,13 +627,13 @@ function writeDualLocation(inventory) {
     "/duesseldorf/entruempelung",
     "/duesseldorf/haushaltsaufloesung",
     "/regensburg",
-    "/umzug-regensburg",
-    "/reinigung-regensburg",
-    "/entruempelung-regensburg",
-    "/gewerbereinigung-regensburg",
-    "/bueroreinigung-regensburg",
+    "/regensburg/umzug",
+    "/regensburg/reinigung",
+    "/regensburg/entruempelung",
+    "/regensburg/gewerbereinigung",
+    "/regensburg/bueroreinigung",
     "/klaviertransport-regensburg",
-    "/wohnungsaufloesung-regensburg",
+    "/regensburg/wohnungsaufloesung",
   ];
   const rows = watched.map((url) => {
     const route = inventory.find((item) => item.url === url);

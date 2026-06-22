@@ -25,11 +25,11 @@ const targetSeeds = [
   ["gewerbereinigung duesseldorf", "Gewerbereinigung", "Objekt, Flaeche und Turnus klaeren", "gewerbereinigung", "duesseldorf", "/duesseldorf/gewerbereinigung", "improve_title_description", "P0"],
   ["praxisreinigung duesseldorf", "Praxisreinigung", "Praxisraeume nach Flaeche und Zeitfenster klaeren", "praxisreinigung", "duesseldorf", "/duesseldorf/praxisreinigung", "improve_title_description", "P0"],
   ["fensterreinigung duesseldorf", "Fensterreinigung", "Fenster, Glas und Zugang klaeren", "fensterreinigung", "duesseldorf", "/duesseldorf/fensterreinigung", "improve_internal_links", "P0"],
-  ["umzug regensburg", "Umzug", "lokalen Umzug mit Volumen und Zugang anfragen", "umzug", "regensburg", "/umzug-regensburg", "add_offercheck_cta", "P0"],
-  ["reinigung regensburg", "Reinigung", "Reinigung mit Objekt und Termin anfragen", "reinigung", "regensburg", "/reinigung-regensburg", "add_offercheck_cta", "P0"],
-  ["entruempelung regensburg", "Entruempelung", "Raeumung mit Menge, Zugang und Termin klaeren", "entruempelung", "regensburg", "/entruempelung-regensburg", "add_offercheck_cta", "P0"],
-  ["gewerbereinigung regensburg", "Gewerbereinigung", "gewerbliche Flaechen in Regensburg anfragen", "gewerbereinigung", "regensburg", "/gewerbereinigung-regensburg", "improve_internal_links", "P1"],
-  ["bueroreinigung regensburg", "Bueroreinigung", "Bueroflaechen, Turnus und Raumliste klaeren", "bueroreinigung", "regensburg", "/bueroreinigung-regensburg", "improve_internal_links", "P1"],
+  ["umzug regensburg", "Umzug", "lokalen Umzug mit Volumen und Zugang anfragen", "umzug", "regensburg", "/regensburg/umzug", "add_offercheck_cta", "P0"],
+  ["reinigung regensburg", "Reinigung", "Reinigung mit Objekt und Termin anfragen", "reinigung", "regensburg", "/regensburg/reinigung", "add_offercheck_cta", "P0"],
+  ["entruempelung regensburg", "Entruempelung", "Raeumung mit Menge, Zugang und Termin klaeren", "entruempelung", "regensburg", "/regensburg/entruempelung", "add_offercheck_cta", "P0"],
+  ["gewerbereinigung regensburg", "Gewerbereinigung", "gewerbliche Flaechen in Regensburg anfragen", "gewerbereinigung", "regensburg", "/regensburg/gewerbereinigung", "improve_internal_links", "P1"],
+  ["bueroreinigung regensburg", "Bueroreinigung", "Bueroflaechen, Turnus und Raumliste klaeren", "bueroreinigung", "regensburg", "/regensburg/bueroreinigung", "improve_internal_links", "P1"],
   ["klaviertransport regensburg", "Klaviertransport", "Instrument, Etage und Zugang klaeren", "klaviertransport", "regensburg", "/klaviertransport-regensburg", "improve_title_description", "P0"],
   ["b2b bueroreinigung", "B2B", "Firmenreinigung mit Angebot", "bueroreinigung", "duesseldorf", "/duesseldorf/bueroreinigung", "improve_internal_links", "P0"],
   ["diskreter service", "Diskret-Service", "sensible Anfrage mit sicherem Kontaktweg", "diskret-service", "", "/diskreter-umzug-trennung-scheidung", "improve_content", "P0"],
@@ -227,11 +227,11 @@ function recommendTarget(label, clusters, page = "") {
   if (clusters.includes("Bueroreinigung") && normalized.includes("duesseldorf")) return { targetPage: "/duesseldorf/bueroreinigung", status: "improve_internal_links", priority: "P0" };
   if (clusters.includes("Gewerbereinigung") && normalized.includes("duesseldorf")) return { targetPage: "/duesseldorf/gewerbereinigung", status: "improve_title_description", priority: "P0" };
   if (clusters.includes("Reinigung") && normalized.includes("duesseldorf")) return { targetPage: "/duesseldorf/reinigung", status: "improve_content", priority: "P0" };
-  if (clusters.includes("Umzug") && normalized.includes("regensburg")) return { targetPage: "/umzug-regensburg", status: "add_offercheck_cta", priority: "P0" };
-  if (clusters.includes("Reinigung") && normalized.includes("regensburg")) return { targetPage: "/reinigung-regensburg", status: "add_offercheck_cta", priority: "P0" };
-  if (clusters.includes("Entruempelung") && normalized.includes("regensburg")) return { targetPage: "/entruempelung-regensburg", status: "add_offercheck_cta", priority: "P0" };
-  if (clusters.includes("Bueroreinigung") && normalized.includes("regensburg")) return { targetPage: "/bueroreinigung-regensburg", status: "improve_internal_links", priority: "P1" };
-  if (clusters.includes("Gewerbereinigung") && normalized.includes("regensburg")) return { targetPage: "/gewerbereinigung-regensburg", status: "improve_internal_links", priority: "P1" };
+  if (clusters.includes("Umzug") && normalized.includes("regensburg")) return { targetPage: "/regensburg/umzug", status: "add_offercheck_cta", priority: "P0" };
+  if (clusters.includes("Reinigung") && normalized.includes("regensburg")) return { targetPage: "/regensburg/reinigung", status: "add_offercheck_cta", priority: "P0" };
+  if (clusters.includes("Entruempelung") && normalized.includes("regensburg")) return { targetPage: "/regensburg/entruempelung", status: "add_offercheck_cta", priority: "P0" };
+  if (clusters.includes("Bueroreinigung") && normalized.includes("regensburg")) return { targetPage: "/regensburg/bueroreinigung", status: "improve_internal_links", priority: "P1" };
+  if (clusters.includes("Gewerbereinigung") && normalized.includes("regensburg")) return { targetPage: "/regensburg/gewerbereinigung", status: "improve_internal_links", priority: "P1" };
   if (clusters.includes("Solarreinigung/PV")) return { targetPage: normalized.includes("pv") ? "/pv-anlagen-reinigung" : "/solarreinigung", status: "add_offercheck_cta", priority: "P1" };
   if (clusters.includes("Seniorenumzug")) return { targetPage: "/seniorenumzug-bayern", status: "improve_internal_links", priority: "P1" };
   if (clusters.includes("Duesseldorf")) return { targetPage: "/duesseldorf", status: "improve_internal_links", priority: "P1" };

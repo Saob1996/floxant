@@ -21,6 +21,10 @@ import {
   SignatureServicesGrid,
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
+import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { LocalConversionDecisionBox } from "@/components/LocalConversionDecisionBox";
+import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
+import { TrustProofPanel } from "@/components/TrustProofPanel";
 import type { LocalServiceSeoPageConfig } from "@/lib/local-service-seo-pages";
 import { getServiceVisual } from "@/lib/service-visuals";
 import {
@@ -59,6 +63,82 @@ function getContact(config: LocalServiceSeoPageConfig) {
     city: company.city,
     countryCode: company.countryCode,
     url: `${company.url}/regensburg`,
+  };
+}
+
+function buildLocalDecisionCopy(config: LocalServiceSeoPageConfig) {
+  const service = config.serviceName.toLowerCase();
+
+  if (config.cityKey === "regensburg" && service.includes("gewerbe")) {
+    return {
+      intro:
+        "Gewerbereinigung wird belastbar, wenn Objektart, Raumliste, Turnus, Randzeit und Zugang klar sind. Senden Sie lieber wenige konkrete Eckdaten als eine allgemeine Bitte um Reinigung.",
+      offerLabel: "Gewerbereinigungsangebot vergleichen",
+      checklist: [
+        "Objektart: Büro, Kanzlei, Praxisfläche, Studio, Laden oder Hausverwaltung",
+        "Raumliste mit Arbeitsplätzen, Empfang, Sanitär, Küche und Nebenflächen",
+        "Turnus, Randzeit, Schlüsselweg und Ansprechpartner",
+        "Fotos, Starttermin und vorhandenes Angebot oder Budgetrahmen",
+      ],
+      localLogic: [
+        "In Altstadt, Stadtamhof und Innenstadt sind Zugang, Parken und Reinigungszeitfenster oft früher zu klären als der Quadratmeterpreis.",
+        "In Prüfening, Galgenberg, Burgweinting, Reinhausen oder im Kasernenviertel zählen Raumliste, Turnus und ein fester Ansprechpartner besonders stark.",
+      ],
+    };
+  }
+
+  if (config.cityKey === "regensburg" && service.includes("reinigung")) {
+    return {
+      intro:
+        "Diese Reinigungsseite ist der Regensburger Einstieg für Wohnung, Übergabe und allgemeine Objektfälle. Für Büro oder Gewerbe führen die Links bewusst auf die spezielleren Seiten.",
+      offerLabel: "Reinigungsangebot Regensburg vergleichen",
+      checklist: [
+        "Objektart: Wohnung, Übergabe, Treppenhaus, Büro oder Gewerbefläche",
+        "Fläche, Räume, Zustand, Küche, Bad, Böden und gewünschtes Ergebnis",
+        "Termin, Zugang, Schlüsselweg, Etage und Parkmöglichkeit",
+        "Fotos und vorhandenes Angebot, wenn Umfang oder Preis unklar sind",
+      ],
+      localLogic: [
+        "In Altstadt und Stadtamhof sind Zugang und Zeitfenster oft entscheidend; in Kumpfmühl, Prüfening oder Galgenberg hilft eine klare Raumliste.",
+        "Wenn es um laufende Büro- oder Gewerbereinigung geht, ist die spezialisierte B2B-Seite meist der bessere nächste Schritt.",
+      ],
+    };
+  }
+
+  if (config.cityKey === "duesseldorf" && service.includes("umzug")) {
+    return {
+      intro:
+        "Diese Düsseldorfer Anfrage braucht Start, Ziel, Etage, Volumen und Zugang. Reinigung oder Entsorgung werden nur als Zusatzpunkte getrennt eingeordnet.",
+      offerLabel: "Umzugsangebot Düsseldorf prüfen",
+      checklist: [
+        "Start- und Zieladresse mit Etage, Aufzug und Laufweg",
+        "Möbelmenge, Kartons, große Einzelstücke und Fotos",
+        "Terminfenster, Haltemöglichkeit und gewünschte Zusatzleistungen",
+        "Vorhandenes Angebot oder Budgetrahmen für die Einordnung",
+      ],
+      localLogic: [
+        "In Bilk, Pempelfort, Flingern oder Friedrichstadt entscheiden Haltepunkt, Etage und Treppenhaus oft über den Aufwand.",
+        "Reinigung bleibt in Düsseldorf ein eigener Serviceweg und wird nicht automatisch in den Umzug gemischt.",
+      ],
+    };
+  }
+
+  return {
+    intro:
+      "Eine gute Rückmeldung entsteht, wenn Leistung, Ort, Umfang, Zugang und Zielzustand zusammenpassen. Diese Punkte helfen, die Anfrage ohne Blindpreis sauber vorzubereiten.",
+    offerLabel: config.cityKey === "regensburg" ? "Angebot Regensburg vergleichen" : "Reinigungsangebot Düsseldorf prüfen",
+    checklist: [
+      `${config.cityName}, Stadtteil oder PLZ nennen`,
+      `${config.serviceName}: Umfang, Zielzustand und Termin beschreiben`,
+      "Fotos, Raumliste, vorhandenes Angebot oder Budgetrahmen mitschicken",
+      "Zugang, Etage, Parken, Schlüsselweg und Ansprechpartner klären",
+    ],
+    localLogic: [
+      config.localText,
+      config.cityKey === "regensburg"
+        ? "Regensburg wird zuerst lokal geprüft. Weitere Orte gehören in die Angebotsprüfung, wenn Route, Termin oder Kombination den Auftrag realistisch machen."
+        : "Düsseldorf wird als eigener Reinigungsbereich behandelt. Randlagen werden nach Objekt, Zugang und Zeitfenster eingeordnet.",
+    ],
   };
 }
 
@@ -161,6 +241,15 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
     : config.serviceName.toLowerCase().includes("entr") || config.serviceName.toLowerCase().includes("haushalts")
       ? "clearance"
       : "cleaning";
+  const proofServiceKey =
+    relatedSpecialKind === "moving"
+      ? "umzug"
+      : relatedSpecialKind === "clearance"
+        ? "entruempelung"
+        : "reinigung";
+  const decisionCopy = buildLocalDecisionCopy(config);
+  const offerCheckHref =
+    config.cityKey === "regensburg" ? "/angebot-vergleichen-regensburg" : "/angebot-vergleichen-duesseldorf";
 
   return (
     <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
@@ -267,7 +356,22 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         tags={internationalTags}
         primaryHref={config.bookingHref}
         photoHref={config.bookingHref}
-        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+        offerHref={offerCheckHref}
+      />
+
+      <LocalConversionDecisionBox
+        cityName={config.cityName}
+        serviceName={config.serviceName}
+        region={config.cityKey}
+        primaryHref={config.bookingHref}
+        primaryLabel={config.primaryCta}
+        offerHref={offerCheckHref}
+        offerLabel={decisionCopy.offerLabel}
+        intro={decisionCopy.intro}
+        checklist={decisionCopy.checklist}
+        decisionItems={config.scopeItems.slice(0, 4)}
+        localLogic={decisionCopy.localLogic}
+        trustItems={config.trustItems.slice(0, 3)}
       />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
@@ -407,37 +511,53 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         </div>
       </section>
 
+      <TrustProofPanel
+        allowedPage={config.path}
+        serviceKey={proofServiceKey}
+        locationKey={config.cityKey}
+        title={`Trust Proof für ${config.serviceName} in ${config.cityName}`}
+        intro="Diese lokale Seite arbeitet mit prüfbaren Angaben statt erfundener Bewertungen: Ort, Umfang, Fotos, Zugang, Termin und offene Punkte bleiben sichtbar."
+      />
+
+      <ServiceProofChecklist
+        serviceKey={proofServiceKey}
+        title={`Welche Angaben ${config.serviceName} belastbarer machen`}
+        intro="Je konkreter lokale Eckdaten und sichtbare Objektinformationen sind, desto klarer wird die erste Rückmeldung."
+      />
+
+      <LocalProofPanel location={config.cityKey} />
+
       <AiAnswerBlock
         eyebrow="Lokale Antwort"
         title={`${config.serviceName} in ${config.cityName}: was vor der Anfrage klar sein sollte.`}
-        answer="Eine lokale Anfrage wird belastbarer, wenn Ort, Objekt, Zugang, Termin, Fotos und ein moeglicher Preisrahmen direkt sichtbar sind."
+        answer="Eine lokale Anfrage wird belastbarer, wenn Ort, Objekt, Zugang, Termin, Fotos und ein möglicher Preisrahmen direkt sichtbar sind."
         points={[
           "Stadtteil oder PLZ hilft bei Anfahrt und Zeitfenster.",
-          "Fotos zeigen Zustand, Menge, Flaeche oder Zugang.",
+          "Fotos zeigen Zustand, Menge, Fläche oder Zugang.",
           "Ein vorhandenes Angebot kann vor der Zusage eingeordnet werden.",
-          "FLOXANT trennt Duesseldorf und Regensburg nach passendem Serviceweg.",
+          "FLOXANT trennt Düsseldorf und Regensburg nach passendem Serviceweg.",
         ]}
-        usefulWhen={["Ort und Leistung grob klar sind", "Fotos oder Angebotsdaten vorliegen", "eine lokale Rueckmeldung gebraucht wird"]}
+        usefulWhen={["Ort und Leistung grob klar sind", "Fotos oder Angebotsdaten vorliegen", "eine lokale Rückmeldung gebraucht wird"]}
         notUsefulWhen={["eine Rechtsberatung erwartet wird", "ein Festpreis ohne Angaben erwartet wird"]}
         neededInfo={["Ort/PLZ", "Termin", "Fotos oder Beschreibung", "Kontaktweg"]}
       />
 
       <RelatedSpecialServices
         kind={relatedSpecialKind}
-        title={`Verwandte Spezialservices fuer ${config.serviceName} in ${config.cityName}.`}
+        title={`Verwandte Spezialservices für ${config.serviceName} in ${config.cityName}.`}
         intro="Wenn der konkrete Fall mehr als eine Standardleistung braucht, helfen diese Spezialwege bei Umfang, Fotos, Termin, Zugang und Zielzustand."
         limit={4}
       />
 
       <SignatureServicesGrid
-        title="Passende FLOXANT Signature Services fuer diese Anfrage."
-        intro="Angebotscheck, Objektbrief, Uebergabe, Plan B oder Rueckfahrt koennen helfen, wenn die lokale Anfrage noch unsicher ist."
+        title="Passende FLOXANT Signature Services für diese Anfrage."
+        intro="Angebotscheck, Objektbrief, Übergabe, Plan B oder Rückfahrt können helfen, wenn die lokale Anfrage noch unsicher ist."
         limit={4}
       />
 
       <OfferCheckCTA
-        title={`Angebot fuer ${config.serviceName} schon vorhanden?`}
-        text="FLOXANT prueft Umfang, Preislogik, Fotos, Zusatzpositionen, Termin und offene Risiken sachlich. Keine Preisgarantie, keine Abwertung anderer Anbieter."
+        title={`Angebot für ${config.serviceName} schon vorhanden?`}
+        text="FLOXANT prüft Umfang, Preislogik, Fotos, Zusatzpositionen, Termin und offene Risiken sachlich. Keine Preisgarantie, keine Abwertung anderer Anbieter."
       />
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">

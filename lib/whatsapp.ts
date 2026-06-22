@@ -28,7 +28,7 @@ function buildPathLabel(pathname: string) {
   if (pathname === "/rechner") return "Rechner";
   if (pathname === "/buchung") return "Buchung";
   if (pathname === "/kontakt") return "Kontakt";
-  if (pathname === "/service-area-bayern") return "Servicegebiet Bayern";
+  if (pathname === "/regensburg") return "Regensburg";
   if (pathname === "/standorte") return "Standorte";
 
   const slug = pathname.replace(/^\//, "");

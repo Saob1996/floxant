@@ -166,12 +166,12 @@ export default async function ReinigungPillarPage() {
           { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
           { href: "/express-anfrage", label: "Kurzfristige Reinigung anfragen" },
           { href: "/anfrage-mit-preisrahmen", label: "Reinigung mit Preisrahmen planen" },
-          { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
+          { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
           { href: "/umzug", label: "Umzug und Reinigung zusammen denken" },
         ]}
         cityLinksTitle="Reinigung lokal in wichtigen Regionen"
         cityLinks={[
-          { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+          { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
           { href: "/reinigung-muenchen", label: "Reinigung München" },
           { href: "/reinigung-nuernberg", label: "Reinigung Nürnberg" },
           { href: "/reinigung-augsburg", label: "Reinigung Augsburg" },

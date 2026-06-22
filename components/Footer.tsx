@@ -30,12 +30,10 @@ const authorityLinks = [
   { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung Düsseldorf" },
   { href: "/duesseldorf/entruempelung", label: "Entrümpelung Düsseldorf" },
   { href: "/regensburg/umzug", label: "Umzug Regensburg" },
-  { href: "/umzug-regensburg", label: "Umzug Regensburg anfragen" },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
-  { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg anfragen" },
   { href: "/klaviertransport-regensburg", label: "Klaviertransport Regensburg" },
   { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
   { href: "/reinigung-landshut", label: "Reinigung Landshut" },
@@ -44,7 +42,7 @@ const authorityLinks = [
   { href: "/umzug-vohenstrauss", label: "Umzug Vohenstrauß" },
   { href: "/reinigungsfirma-angebot", label: "Reinigungsfirma Angebot" },
   { href: "/fernumzug-muenchen", label: "Fernumzug München" },
-  { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen" },
+  { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
   { href: "/angebotscheck", label: "Angebotscheck" },
   { href: "/anbieter-vergleichen", label: "Anbieter vergleichen" },
   { href: "/solarreinigung", label: "Solarreinigung" },
@@ -180,7 +178,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 <MapPin className="mt-1 h-4 w-4 shrink-0 text-cyan-200" />
                 <span>
                   {locationsToShow.length > 1
-                    ? "Standorte Duesseldorf und Regensburg"
+                    ? "Standorte Düsseldorf und Regensburg"
                     : locationsToShow[0]?.displayName}
                 </span>
               </div>

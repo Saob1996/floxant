@@ -34,6 +34,24 @@ const SIGNATURE_ROOT_SLUGS = new Set([
 ]);
 const PRIVATE_NOINDEX_PREFIXES = ["/api", "/admin", "/dashboard", "/login"];
 const LOW_VALUE_NOINDEX_PREFIXES = ["/angebote", "/guenstig", "/feedback"];
+const REDIRECTED_NOINDEX_ROUTES = new Set([
+  "/einsatzgebiet-regensburg-200km",
+  "/service-area-bayern",
+]);
+const OUT_OF_RADIUS_CITY_SLUGS = new Set([
+  "wuerzburg",
+  "kempten",
+  "lindau",
+  "memmingen",
+  "kaufbeuren",
+  "traunstein",
+  "berlin",
+  "bremen",
+  "frankfurt",
+  "hamburg",
+  "leipzig",
+  "stuttgart",
+]);
 const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/partnercode": "/empfehlen",
   "/airbnb-reinigung-duesseldorf": "/reinigung-moeblierte-wohnung-duesseldorf",
@@ -86,8 +104,21 @@ const LEGACY_CANONICAL_PATHS: Record<string, string> = {
   "/reinigung-nach-umzug-muenchen": "/reinigung-muenchen",
   "/reinigung-muenchen-sofort-termin": "/reinigung-muenchen",
   "/studentenumzug-vohenstrauss": "/umzug-vohenstrauss",
+  "/umzug-regensburg": "/regensburg/umzug",
+  "/reinigung-regensburg": "/regensburg/reinigung",
+  "/entruempelung-regensburg": "/regensburg/entruempelung",
+  "/entrümpelung-regensburg": "/regensburg/entruempelung",
+  "/gewerbereinigung-regensburg": "/regensburg/gewerbereinigung",
+  "/bueroreinigung-regensburg": "/regensburg/bueroreinigung",
+  "/wohnungsaufloesung-regensburg": "/regensburg/wohnungsaufloesung",
+  "/umzugsunternehmen-regensburg": "/regensburg/umzugsunternehmen",
+  "/seniorenumzug-regensburg": "/regensburg/seniorenumzug",
+  "/umzug-reinigung-regensburg": "/regensburg/umzug-reinigung",
+  "/endreinigung-regensburg": "/regensburg/endreinigung",
   "/angebot-red-flag-scanner": "/angebotscheck",
   "/guenstigeres-angebot-pruefen": "/angebot-guenstiger-pruefen",
+  "/einsatzgebiet-regensburg-200km": "/regensburg",
+  "/service-area-bayern": "/regensburg",
   "/villenservice": "/private-client-service",
 };
 
@@ -206,7 +237,7 @@ function normalizePath(path: string) {
   const withoutLocale = withoutParameters
     .replace(/^\/+/, "")
     .replace(/\/+$/, "")
-    .replace(/^(de|en|ru|bg|vi|tr|ar|fr|es|it|pl|uk|fa)(\/|$)/, "");
+    .replace(/^(de|en|ru|bg|vi|tr|ar|fr|es|it|pl|uk|fa|ja|ro)(\/|$)/, "");
 
   return withoutLocale ? `/${withoutLocale}` : "";
 }
@@ -242,6 +273,11 @@ function resolveSocialImagePath(path: string) {
     "/rechner": "rechner",
     "/umzug": "umzug",
     "/reinigung": "reinigung",
+    "/regensburg/umzug": "umzug",
+    "/regensburg/reinigung": "reinigung",
+    "/regensburg/entruempelung": "entruempelung",
+    "/regensburg/gewerbereinigung": "reinigung",
+    "/regensburg/bueroreinigung": "reinigung",
     "/gewerbereinigung-regensburg": "reinigung",
     "/bueroreinigung-regensburg": "reinigung",
     "/praxisreinigung-regensburg": "reinigung",
@@ -257,7 +293,6 @@ function resolveSocialImagePath(path: string) {
     "/firmenentsorgung": "firmenentsorgung",
     "/leerfahrt-rueckfahrt": "leerfahrt-rueckfahrt",
     "/private-client-service": "private-client-service",
-    "/service-area-bayern": "service-area-bayern",
     "/qualitaet-ablauf": "qualitaet-ablauf",
     "/praxisfaelle": "praxisfaelle",
     "/kostenfaktoren": "kostenfaktoren",
@@ -271,7 +306,7 @@ function resolveSocialImagePath(path: string) {
     "/plattform-auftrag-pruefen": "anfrage-mit-preisrahmen",
     "/angebot-guenstiger-pruefen": "anfrage-mit-preisrahmen",
     "/plan-b-service": "express-anfrage",
-    "/einsatzradar-regensburg": "service-area-bayern",
+    "/einsatzradar-regensburg": "floxant",
     "/entsorgung-duesseldorf": "kleinmengen-entsorgung",
     "/duesseldorf/reinigung": "reinigung",
     "/duesseldorf/bueroreinigung": "reinigung",
@@ -316,6 +351,8 @@ function isPrivateRoute(path: string) {
 }
 
 function isLowValueRoute(path: string) {
+  if (REDIRECTED_NOINDEX_ROUTES.has(path)) return true;
+
   if (
     LOW_VALUE_NOINDEX_PREFIXES.some(
       (prefix) => path === prefix || path.startsWith(`${prefix}/`),
@@ -328,6 +365,18 @@ function isLowValueRoute(path: string) {
   if (/^\/signature\/[^/]+$/.test(path)) return true;
 
   return false;
+}
+
+function isOutOfRadiusLocalRoute(path: string) {
+  const route = path.toLowerCase().replace(/^\/+|\/+$/g, "");
+  if (!route) return false;
+
+  return Array.from(OUT_OF_RADIUS_CITY_SLUGS).some(
+    (citySlug) =>
+      route === citySlug ||
+      route.endsWith(`-${citySlug}`) ||
+      route.includes(`-${citySlug}-`),
+  );
 }
 
 function getMetadataKeywords(path: string, geoName?: string) {
@@ -714,12 +763,6 @@ function getMetadataKeywords(path: string, geoName?: string) {
     keywords.add("Standorte Bayern");
     keywords.add("Google Unternehmensprofil Regensburg");
   }
-  if (route.includes("service-area-bayern")) {
-    keywords.add("Servicegebiet Bayern");
-    keywords.add("Umzug Bayern");
-    keywords.add("Reinigung Bayern");
-    keywords.add("Regensburg Bayern");
-  }
   if (route.includes("/blog") || route.includes("/ratgeber")) {
     keywords.add("Ratgeber");
     keywords.add("FAQ");
@@ -985,9 +1028,9 @@ function getRecommendedServicePath(path: string) {
   if (path.includes("schadensbegrenzung")) return "/schadensbegrenzung";
   if (path.includes("rechner")) return "/rechner";
   if (path.includes("buchung")) return "/buchung";
-  if (path.includes("reinigung")) return "/reinigung-regensburg";
-  if (path.includes("entruempelung")) return "/entruempelung-regensburg";
-  if (path.includes("umzug")) return "/umzug-regensburg";
+  if (path.includes("reinigung")) return "/regensburg/reinigung";
+  if (path.includes("entruempelung")) return "/regensburg/entruempelung";
+  if (path.includes("umzug")) return "/regensburg/umzug";
   return "/buchung";
 }
 
@@ -1399,7 +1442,7 @@ function getSerpSitelinkTargets(path: string) {
     return "/rechner#rechner-wizard, /buchung, /angebot-guenstiger-pruefen, /kontakt";
   }
 
-  return "/buchung, /rechner, /angebot-guenstiger-pruefen, /umzug-regensburg, /reinigung-regensburg, /entruempelung-regensburg";
+  return "/buchung, /rechner, /angebot-guenstiger-pruefen, /regensburg/umzug, /regensburg/reinigung, /regensburg/entruempelung";
 }
 
 function getCustomerAttractionHook(path: string, geoPlacename: string) {
@@ -1809,7 +1852,10 @@ export function generatePageSEO({
     ),
   );
   const searchIntent = germanizeText(getDominanceIntent(normalizedPath || "/"));
-  const indexable = !isPrivateRoute(normalizedPath) && !isLowValueRoute(normalizedPath);
+  const indexable =
+    !isPrivateRoute(normalizedPath) &&
+    !isLowValueRoute(normalizedPath) &&
+    !isOutOfRadiusLocalRoute(normalizedPath);
   const followable = !isPrivateRoute(normalizedPath);
   const socialImage = resolveSocialImagePath(canonicalPath || normalizedPath || "/");
   const keywordSet = new Set(getMetadataKeywords(normalizedPath || "/", geo?.name));

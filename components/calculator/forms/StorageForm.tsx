@@ -46,6 +46,7 @@ export default function StorageForm({ dic, currentStep = 1 }: { dic?: any; curre
           <input
            type="number"
            min={1}
+           aria-label={dic?.calculator?.storage_volume || "Lagervolumen"}
            value={einlagerungData.volumeM3 || ""}
            onChange={(e) => updateEinlagerungData({ volumeM3: parseNumber(e.target.value) })}
            placeholder="z. B. 10"
@@ -60,6 +61,7 @@ export default function StorageForm({ dic, currentStep = 1 }: { dic?: any; curre
           <input
            type="number"
            min={1}
+           aria-label={dic?.calculator?.duration || "Lagerdauer"}
            value={einlagerungData.durationMonths || ""}
            onChange={(e) => updateEinlagerungData({ durationMonths: parseNumber(e.target.value) })}
            placeholder="z. B. 3"
@@ -86,6 +88,7 @@ export default function StorageForm({ dic, currentStep = 1 }: { dic?: any; curre
          <input
           type="number"
           step={1000}
+          aria-label="Versicherungswert"
           value={einlagerungData.insuranceValue || ""}
           onChange={(e) => updateEinlagerungData({ insuranceValue: parseNumber(e.target.value) })}
           className="w-full bg-transparent text-sm font-bold text-white outline-none"

@@ -173,7 +173,7 @@ export default async function ExpressPage() {
             { href: "/umzug", label: "Umzug als Hauptservice" },
             { href: "/reinigung", label: "Reinigung als Hauptservice" },
             { href: "/entruempelung", label: "Entrümpelung als Hauptservice" },
-            { href: "/service-area-bayern", label: "Servicegebiet Bayern" },
+            { href: "/regensburg", label: "Regensburg-Bereich" },
           ].map((item) => (
             <Link
               key={item.href}

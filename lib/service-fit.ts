@@ -135,10 +135,9 @@ export const serviceFitOptions: readonly ServiceFitOption[] = [
 ] as const;
 
 export function getServiceFitOption(optionKey: string) {
-  return serviceFitOptions.find((option) => option.optionKey === optionKey) || serviceFitOptions.at(-1)!;
+  return serviceFitOptions.find((option) => option.optionKey === optionKey) || serviceFitOptions[serviceFitOptions.length - 1]!;
 }
 
 export function getServiceFitHref(option: ServiceFitOption, cityOverride?: string) {
   return buildContactHref(option, cityOverride);
 }
-

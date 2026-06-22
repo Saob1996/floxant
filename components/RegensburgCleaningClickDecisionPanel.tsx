@@ -22,7 +22,7 @@ const decisionRows: Array<{
     signal: "Budget klären",
     title: "Erst Eckdaten senden, dann realistisch entscheiden",
     text: "Für eine brauchbare Rückmeldung reichen Quadratmeter allein nicht aus. Wichtig sind Fläche, Zustand, Fotos, Turnus, Zugang und Zeitfenster.",
-    href: "/gewerbereinigung-regensburg#kontaktformular",
+    href: "/regensburg/gewerbereinigung#kontaktformular",
     cta: "Eckdaten senden",
     Icon: FileText,
     checks: ["m² und Objektart", "Fotos vom Zustand", "Turnus oder Anlass"],

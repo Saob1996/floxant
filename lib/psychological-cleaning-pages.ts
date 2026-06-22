@@ -1972,7 +1972,7 @@ function buildBlogArticle(
     ctas: [
       { href: `/${page.slug}`, label: `${page.serviceName} ansehen` },
       { href: "/buchung", label: "Fall direkt senden" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
     ],
     faqTitle: `FAQ zu ${page.shortName}`,
     faqItems: page.faqItems.slice(0, 4),

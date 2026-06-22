@@ -148,10 +148,10 @@ const relatedLinks = [
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
   { href: "/blog/bueroreinigung-regensburg-angebot-einholen", label: "Büroreinigung Angebot" },
   { href: "/blog/unterhaltsreinigung-regensburg-buero-praxis-hotel", label: "Ratgeber Unterhaltsreinigung" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -178,7 +178,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Unterhaltsreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -234,7 +234,7 @@ export default function UnterhaltsreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Unterhaltsreinigung Regensburg" },
         ]}
       />
@@ -335,10 +335,10 @@ export default function UnterhaltsreinigungRegensburgPage() {
         headline="Regelmäßige Reinigung braucht einen Plan, den Kunden sofort verstehen."
         intro="Unterhaltsreinigung wird besser angefragt, wenn Objektart, Turnus, Raumliste, Sanitär, Küche, Schlüsselzugang und Starttermin klar sind. Genau darauf führt der Regensburg-Kundenweg hin."
         focusHrefs={[
-          "/bueroreinigung-regensburg",
+          "/regensburg/bueroreinigung",
           "/praxisreinigung-regensburg",
           "/treppenhausreinigung-regensburg",
-          "/gewerbereinigung-regensburg",
+          "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=unterhaltsreinigung_regensburg#buchungssystem"
       />

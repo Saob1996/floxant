@@ -38,8 +38,8 @@ export default function AngebotVergleichenDankePage() {
           fehlen, melden wir uns persönlich bei Ihnen.
         </p>
         <div className="mt-7 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-4 text-sm leading-7 text-cyan-950">
-          Die Prüfung ist kostenlos und unverbindlich. Eine Preisgarantie oder automatische Zusage
-          ist damit nicht verbunden.
+          Die Prüfung ordnet Umfang, Turnus und offene Punkte ein. Eine Preisgarantie oder
+          automatische Zusage ist damit nicht verbunden.
         </div>
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
           <a

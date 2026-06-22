@@ -81,6 +81,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
           <input
            type="number"
            min={0}
+           aria-label={dic?.calculator?.living_area || "Wohnfläche"}
            value={umzugData.areaM2 || ""}
            onChange={(event) => updateStoreData({ areaM2: parseNumber(event.target.value) })}
            placeholder="z. B. 80"
@@ -93,6 +94,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
          <input
           type="number"
           min={0}
+          aria-label={dic?.calculator?.rooms || "Zimmeranzahl"}
           value={umzugData.rooms || ""}
           onChange={(event) => updateStoreData({ rooms: parseNumber(event.target.value) })}
           placeholder="z. B. 3"
@@ -217,6 +219,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
          <input
           type="number"
           min={0}
+          aria-label="Geschätzte Kartonanzahl"
           value={umzugData.boxesCount || ""}
           onChange={(event) => updateStoreData({ boxesCount: parseNumber(event.target.value) })}
           placeholder="z. B. 40"
@@ -339,6 +342,7 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
        ) : null}
        <FieldCard label="Zeitliche Flexibilität">
         <select
+         aria-label="Zeitliche Flexibilität"
          value={umzugData.timeConstraint}
          onChange={(event) =>
           updateStoreData({ timeConstraint: event.target.value as TimeConstraint })
@@ -356,8 +360,9 @@ export default function UmzugForm({ dic, currentStep = 1 }: { dic?: any; current
       <div className="space-y-4">
        <label className="calc-label">Besondere Hinweise</label>
        <textarea
-        value={umzugData.freeTextNote || ""}
-        onChange={(event) => updateStoreData({ freeTextNote: event.target.value })}
+       value={umzugData.freeTextNote || ""}
+       aria-label="Besondere Hinweise"
+       onChange={(event) => updateStoreData({ freeTextNote: event.target.value })}
         placeholder="Details zu engen Gängen, kostbaren Stücken oder Terminen..."
         className="calc-field calc-textarea h-32 p-4 text-sm"
        />
@@ -459,6 +464,7 @@ function AddressBlock({
     <FieldCard label={addressLabel}>
      <input
       type="text"
+      aria-label={addressLabel}
       placeholder={addressPlaceholder}
       value={addressValue}
       onChange={(event) => onAddressChange(event.target.value)}
@@ -469,6 +475,7 @@ function AddressBlock({
      <FieldCard label={floorLabel}>
       <input
        type="number"
+       aria-label={floorLabel}
        placeholder={floorPlaceholder}
        value={floorValue}
        onChange={(event) => onFloorChange(event.target.value)}
@@ -479,6 +486,7 @@ function AddressBlock({
       <input
        type="number"
        min={0}
+       aria-label={walkingDistanceLabel}
        placeholder={walkingDistancePlaceholder}
        value={walkingDistanceValue}
        onChange={(event) => onWalkingDistanceChange(event.target.value)}

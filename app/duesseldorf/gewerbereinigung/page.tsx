@@ -84,14 +84,14 @@ const heroTrustItems = [
   "Bestehendes Angebot prüfbar",
   "Keine Preisversprechen",
 ];
-const pageTitle = "Gewerbereinigung Düsseldorf | Büro, Praxis & Angebot prüfen | FLOXANT";
+const pageTitle = "Gewerbereinigung Düsseldorf | Büro, Praxis & Objekt";
 const pageDescription =
-  "Gewerbereinigung Düsseldorf mit FLOXANT: Reinigungsfirma für Büro, Praxis, Kanzlei und Objekt anfragen oder vorhandenes Angebot prüfen lassen.";
+  "Gewerbereinigung Düsseldorf für Büro, Praxis, Kanzlei und Objekt: Raumliste, Turnus, Randzeit, Fotos und vorhandenes Angebot prüfen lassen.";
 
 const requestHints = [
-  "Objektart: Büro, Praxis, Kanzlei, Treppenhaus oder Gewerbeobjekt",
-  "Ort oder PLZ in Düsseldorf, Zugang und Ansprechpartner",
-  "Fläche, Räume, Sanitärbereiche und gewünschter Turnus",
+  "Objektart: Büro, Praxis, Kanzlei, Treppenhaus, Ladenfläche, Studio oder Gewerbeobjekt",
+  "Stadtteil oder PLZ in Düsseldorf, Zugang, Schlüsselweg und Ansprechpartner",
+  "Fläche, Raumliste, Sanitärbereiche, Küche, Boden und gewünschter Turnus",
   "Fotos, Zeitfenster und besondere Anforderungen",
 ];
 
@@ -106,7 +106,7 @@ const processSteps = [
   },
   {
     title: "Rückmeldung erhalten",
-    text: "Sie bekommen Rückfragen, einen Vorschlag für den nächsten Schritt oder ein unverbindliches Angebot.",
+    text: "Sie bekommen Rückfragen, einen Vorschlag für den nächsten Schritt oder ein Angebot nach geklärtem Umfang.",
   },
   {
     title: "Sauber entscheiden",
@@ -198,8 +198,8 @@ const faqItems = [
     a: "Ja. Fotos, Raumlisten oder ein bestehendes Angebot können per WhatsApp oder über das Formular gesendet werden. Zugangscodes und sensible Daten sollten nicht unverschlüsselt geschickt werden.",
   },
   {
-    q: "Ist die Anfrage kostenlos und unverbindlich?",
-    a: "Ja. Die erste Anfrage ist kostenlos und unverbindlich. Eine verbindliche Planung entsteht erst nach Abstimmung von Umfang, Termin und Leistung.",
+    q: "Wann entsteht eine verbindliche Planung?",
+    a: "Eine verbindliche Planung entsteht erst nach Abstimmung von Umfang, Termin und Leistung. Vorher dient die Anfrage der sachlichen Einordnung.",
   },
   {
     q: "Prüft FLOXANT auch bestehende Reinigungsangebote?",
@@ -363,12 +363,12 @@ export default function GewerbereinigungDuesseldorfPage() {
               FLOXANT Düsseldorf
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Gewerbereinigung Düsseldorf nach Objekt, Nutzung und Turnus klaeren
+              Gewerbereinigung Düsseldorf nach Objekt, Nutzung und Turnus klären
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100">
-              Senden Sie Objektart, Flaeche, Nutzung, Raumliste, gewuenschten Turnus,
-              Zeitfenster, Zugang und Fotos. FLOXANT prueft, welche Reinigung realistisch
-              passt und ob ein vorhandenes Angebot offene Punkte enthaelt.
+              Senden Sie Objektart, Fläche, Nutzung, Raumliste, gewünschten Turnus,
+              Zeitfenster, Zugang und Fotos. FLOXANT prüft, welche Reinigung realistisch
+              passt und ob ein vorhandenes Angebot offene Punkte enthält.
             </p>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {heroTrustItems.map((item) => (
@@ -440,22 +440,22 @@ export default function GewerbereinigungDuesseldorfPage() {
         tags={["Commercial cleaning", "Office cleaning", "Cleaning company", "Cleaning quote", "Photos welcome"]}
         primaryHref={gewerbereinigungLeadHref}
         photoHref={gewerbereinigungLeadHref}
-        offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
+        offerHref="/angebot-vergleichen-duesseldorf"
       />
 
       <AiAnswerBlock
         eyebrow="Kurze Antwort"
-        title="Gewerbereinigung Duesseldorf: erst Umfang klaeren, dann Angebot bewerten."
-        answer="Eine realistische Gewerbereinigungsanfrage braucht Objektart, Flaeche, Turnus, Zeitfenster, Zugang und besondere Bereiche. Wenn schon ein Angebot vorliegt, prueft FLOXANT die sichtbaren Annahmen, ohne einen niedrigeren Preis zu garantieren."
+        title="Gewerbereinigung Düsseldorf: erst Umfang klären, dann Angebot bewerten."
+        answer="Eine realistische Gewerbereinigungsanfrage braucht Objektart, Fläche, Turnus, Zeitfenster, Zugang und besondere Bereiche. Wenn schon ein Angebot vorliegt, prüft FLOXANT die sichtbaren Annahmen, ohne einen niedrigeren Preis zu garantieren."
         points={[
-          "Bueros, Praxen, Kanzleien und Gewerbeflaechen haben unterschiedliche Reinigungslogik.",
-          "Turnus, Sanitaerbereiche, Kuechen und Zeitfenster beeinflussen den Aufwand stark.",
-          "Fotos und Raumlisten reduzieren unnoetige Rueckfragen.",
+          "Büros, Praxen, Kanzleien und Gewerbeflächen haben unterschiedliche Reinigungslogik.",
+          "Turnus, Sanitärbereiche, Küchen und Zeitfenster beeinflussen den Aufwand stark.",
+          "Fotos und Raumlisten reduzieren unnötige Rückfragen.",
           "Ein Angebotscheck ist sinnvoll, wenn Leistungen, Zusatzpunkte oder Annahmen unklar sind.",
         ]}
-        usefulWhen={["Objektart und Flaeche grob bekannt sind", "Turnus oder Leistungsumfang verglichen werden soll", "ein bestehendes Angebot vorliegt"]}
-        notUsefulWhen={["eine pauschale Quadratmeter-Preisgarantie erwartet wird", "medizinische Spezialdesinfektion ohne Einzelfallpruefung zugesagt werden soll"]}
-        neededInfo={["Objektart", "Flaeche und Raumliste", "Turnus und Zeitfenster", "Fotos oder bestehendes Angebot"]}
+        usefulWhen={["Objektart und Fläche grob bekannt sind", "Turnus oder Leistungsumfang verglichen werden soll", "ein bestehendes Angebot vorliegt"]}
+        notUsefulWhen={["eine pauschale Quadratmeter-Preisgarantie erwartet wird", "medizinische Spezialdesinfektion ohne Einzelfallprüfung zugesagt werden soll"]}
+        neededInfo={["Objektart", "Fläche und Raumliste", "Turnus und Zeitfenster", "Fotos oder bestehendes Angebot"]}
         ctaHref={gewerbereinigungLeadHref}
         ctaLabel="Gewerbereinigung anfragen"
       />
@@ -568,7 +568,7 @@ export default function GewerbereinigungDuesseldorfPage() {
                 <h3 className="mt-4 text-lg font-black text-slate-950">{card.title}</h3>
                 <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{card.text}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                  Ansehen
+                  {card.title} prüfen
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </Link>
@@ -645,7 +645,7 @@ export default function GewerbereinigungDuesseldorfPage() {
               Reinigungsangebot sachlich prüfen lassen.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
-              Wenn bereits ein Angebot vorliegt, prüft FLOXANT kostenlos und unverbindlich, ob eine
+              Wenn bereits ein Angebot vorliegt, prüft FLOXANT sachlich, ob eine
               passende Alternative möglich ist. Es geht nicht um leere Preisversprechen, sondern um
               Objekt, Umfang, Turnus und realistische Machbarkeit.
             </p>

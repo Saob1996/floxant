@@ -476,7 +476,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
     };
   }
 
-  if (route === "/umzug-regensburg" || route === "/umzugsunternehmen-regensburg") {
+  if (route === "/regensburg/umzug" || route === "/regensburg/umzugsunternehmen") {
     return {
       shortTail: [
         "Umzug Regensburg",
@@ -503,7 +503,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Ein Klick zu Buchung, Rechner oder Angebotsprüfung soll die Entscheidung einfacher machen.",
       ],
       links: [
-        { href: "/umzugsunternehmen-regensburg", label: "Umzugsunternehmen Regensburg" },
+        { href: "/regensburg/umzugsunternehmen", label: "Umzugsunternehmen Regensburg" },
         { href: "/buchung", label: "Umzug direkt anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
@@ -529,7 +529,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: `${place}-Umzug anfragen` },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
@@ -552,7 +552,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Umzug Aufhausen anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+        { href: "/regensburg/umzug", label: "Umzug Regensburg" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung" },
       ],
     };
@@ -575,7 +575,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Neumarkt-Umzug anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
@@ -597,7 +597,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Weiden-Umzug anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
@@ -626,12 +626,12 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Ingolstadt-Umzug anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-        { href: "/service-area-bayern", label: "Bayern-Servicegebiet" },
+        { href: "/regensburg", label: "Regensburg-Bereich" },
       ],
     };
   }
 
-  if (route === "/reinigung-regensburg") {
+  if (route === "/regensburg/reinigung") {
     return {
       shortTail: [
         "Reinigung Regensburg",
@@ -711,7 +711,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: isDuesseldorfHotel ? "/duesseldorf/vielleicht-guenstiger" : "/angebot-guenstiger-pruefen", label: "Hotelangebot prüfen" },
-        { href: isDuesseldorfHotel ? "/duesseldorf/reinigung" : "/reinigung-regensburg", label: `Reinigung ${place}` },
+        { href: isDuesseldorfHotel ? "/duesseldorf/reinigung" : "/regensburg/reinigung", label: `Reinigung ${place}` },
         { href: "/buchung", label: "Anfrage starten" },
       ],
     };
@@ -960,7 +960,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       ],
       links: [
         { href: "/angebot-guenstiger-pruefen", label: "Räumungsangebot prüfen" },
-        { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+        { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
         { href: "/wohnungsaufloesung-bayern", label: "Wohnungsauflösung Bayern" },
         { href: "/kleinmengen-entsorgung", label: "Kleinmengen" },
       ],
@@ -993,7 +993,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
     };
   }
 
-  if (route === "/entruempelung-regensburg" || route === "/wohnungsaufloesung-regensburg") {
+  if (route === "/regensburg/entruempelung" || route === "/regensburg/wohnungsaufloesung") {
     return {
       shortTail: [
         "Haushaltsauflösung Regensburg",
@@ -1021,7 +1021,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
         "Fotos helfen schneller als pauschale Kubikmeter-Schätzungen.",
       ],
       links: [
-        { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+        { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
         { href: "/angebot-guenstiger-pruefen", label: "Entrümpelungsangebot prüfen" },
         { href: "/kleinmengen-entsorgung", label: "Container Alternative" },
         { href: "/blog/haushaltsaufloesung-regensburg-container-mieten-alternative", label: "Container oder Team?" },
@@ -1047,7 +1047,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Auflösung anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-        { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+        { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       ],
     };
   }
@@ -1166,7 +1166,7 @@ function routeDominanceBoosters(route: string, city: string, serviceName: string
       links: [
         { href: "/buchung", label: "Praxisreinigung anfragen" },
         { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
-        { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+        { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
       ],
     };
   }

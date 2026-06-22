@@ -273,6 +273,7 @@ function Input({
         {label}
       </span>
       <input
+        aria-label={label}
         required={required}
         type={type}
         value={value}

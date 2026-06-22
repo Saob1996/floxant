@@ -23,9 +23,9 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildWebPageJsonLd } from "@/lib
 
 
 const path = "/duesseldorf/reinigung-stadtteile-umgebung";
-const title = "Reinigungsfirma Düsseldorf Umgebung | Stadtteil prüfen";
+const title = "Reinigung Düsseldorf Umgebung | passende Leistung finden";
 const description =
-  "Reinigung in Düsseldorf, Neuss, Ratingen, Meerbusch und Umgebung: Büro, Praxis, Wohnung, Endreinigung oder Angebot mit Fotos prüfen lassen.";
+  "Orientierung für Düsseldorf und nahe Umgebung: Büro, Praxis, Wohnung, Treppenhaus oder Übergabe richtig zuordnen und Anfrage mit Fotos vorbereiten.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildDuesseldorfCleaningMetadata({
@@ -136,11 +136,11 @@ const requestSteps = [
   "Sie senden Ort, Objektart, gewünschte Leistung und Terminwunsch.",
   "Fotos, bestehende Angebote oder kurze Notizen können direkt mitgeschickt werden.",
   "FLOXANT prüft Umfang, Zugang, Zustand, Zeitfenster und Machbarkeit.",
-  "Sie erhalten eine Rückmeldung und entscheiden kostenlos und unverbindlich über den nächsten Schritt.",
+  "Sie erhalten eine Rückmeldung und entscheiden erst nach geklärtem Umfang über den nächsten Schritt.",
 ] as const;
 
 const helpfulInputs = [
-  "Düsseldorf oder nahe Umgebung, zum Beispiel Neuss, Ratingen, Meerbusch, Mettmann oder Hilden",
+  "Düsseldorfer Stadtteil oder nahe Umgebung mit Zugang, Anfahrt und Ansprechpartner",
   "Objektart: Büro, Praxis, Wohnung, Treppenhaus, Gewerbefläche oder Hausverwaltung",
   "Fläche, Räume, Sanitärbereiche, Küche, Böden, Fenster oder besondere Stellen",
   "Fotos vom Zustand, vorhandenes Angebot oder grober Leistungswunsch",
@@ -157,8 +157,8 @@ const faqItems = [
     a: "Ja. Fotos, ein vorhandenes Reinigungsangebot oder kurze Eckdaten helfen, Umfang, Zustand und mögliche offene Punkte besser einzuordnen.",
   },
   {
-    q: "Ist die Anfrage kostenlos und unverbindlich?",
-    a: "Ja. Die Anfrage ist kostenlos und unverbindlich. Ein Auftrag entsteht erst, wenn Umfang, Termin und Leistung gemeinsam geklärt und bestätigt sind.",
+    q: "Wann entsteht ein Auftrag?",
+    a: "Ein Auftrag entsteht erst, wenn Umfang, Termin und Leistung gemeinsam geklärt und bestätigt sind. Vorher dient die Anfrage der sachlichen Einordnung.",
   },
   {
     q: "Kann Reinigung mit Übergabe, Entrümpelung oder Umzug kombiniert werden?",
@@ -172,7 +172,7 @@ const faqItems = [
 
 export default function DuesseldorfStadtteileUmgebungPage() {
   const whatsappHref = buildDuesseldorfCleaningWhatsAppHref(
-    "Hallo FLOXANT, ich möchte eine Reinigung in Düsseldorf oder Umgebung unverbindlich anfragen. Ort, Objektart, Fotos, Termin und vorhandene Angebote kann ich senden.",
+    "Hallo FLOXANT, ich möchte eine Reinigung in Düsseldorf oder Umgebung einordnen lassen. Ort, Objektart, Fotos, Termin und vorhandene Angebote kann ich senden.",
   );
 
   const jsonLd = {
@@ -196,7 +196,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
           "Übergabereinigung Düsseldorf",
         ],
         potentialActions: [
-          { name: "Reinigung unverbindlich anfragen", target: "/duesseldorf/reinigung#kontakt", type: "ContactAction" },
+          { name: "Reinigung in Düsseldorf einordnen", target: "/duesseldorf/reinigung#kontakt", type: "ContactAction" },
         ],
       }),
       buildDuesseldorfCleaningProviderJsonLd(),
@@ -235,14 +235,13 @@ export default function DuesseldorfStadtteileUmgebungPage() {
           Reinigung in Düsseldorf und Umgebung
         </h1>
         <p className="mt-6 max-w-3xl text-base leading-8 text-slate-700">
-          FLOXANT ist Ihre Reinigungsfirma in Düsseldorf für Gewerbe, Büro, Praxis, Wohnung,
-          Treppenhaus, Endreinigung und Übergabereinigung. Wir prüfen jede Anfrage nach Objekt,
-          Zustand, Zugang, Fotos und gewünschtem Termin. Kostenlos, unverbindlich und ohne
-          übertriebene Versprechen.
+          Diese Seite ist kein Stadtteil-Keywordblock. Sie hilft, eine Düsseldorfer Reinigungsanfrage
+          richtig einzuordnen: Büro, Praxis, Wohnung, Treppenhaus, Endreinigung, Übergabe oder
+          Angebotsprüfung. Senden Sie Ort, Objektart, Fläche, Fotos, Zugang und Termin.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link href="/duesseldorf/reinigung#kontakt" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-slate-800">
-            Reinigung unverbindlich anfragen
+            Reinigung Düsseldorf einordnen
             <ArrowRight className="h-4 w-4" />
           </Link>
           <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[0.85rem] border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100" data-event="whatsapp_click">
@@ -286,7 +285,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
                 <h3 className="mt-4 text-lg font-black text-slate-950">{service.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-slate-700">{service.text}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
-                  Leistung ansehen
+                  {service.title} prüfen
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                 </span>
               </Link>
@@ -334,7 +333,7 @@ export default function DuesseldorfStadtteileUmgebungPage() {
             Anfrageablauf
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            So läuft eine unverbindliche Anfrage ab
+            So läuft eine Anfrage zur Einordnung ab
           </h2>
           <div className="mt-6 grid gap-3">
             {requestSteps.map((step, index) => (

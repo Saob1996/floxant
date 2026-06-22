@@ -9,7 +9,7 @@ export type RegionalRoutePolicy = {
 
 export const regensburgCleaningReviewRoutes: RegionalRoutePolicy[] = [
   {
-    path: "/reinigung-regensburg",
+    path: "/regensburg/reinigung",
     label: "Reinigung Regensburg nach Prüfung",
     shortLabel: "Reinigung",
     customerNeed: "Wenn Reinigung in Regensburg mit Auszug, Übergabe, Objektzustand oder Fotos eingeordnet werden soll.",
@@ -17,7 +17,7 @@ export const regensburgCleaningReviewRoutes: RegionalRoutePolicy[] = [
     targetLabel: "Übergabereinigung ansehen",
   },
   {
-    path: "/gewerbereinigung-regensburg",
+    path: "/regensburg/gewerbereinigung",
     label: "Gewerbliche Reinigung Regensburg nach Prüfung",
     shortLabel: "Gewerbliche Reinigung",
     customerNeed: "Für gewerbliche Flächen in Regensburg, wenn Objekt, Turnus, Zugang und Umfang zuerst sauber geprüft werden müssen.",
@@ -25,7 +25,7 @@ export const regensburgCleaningReviewRoutes: RegionalRoutePolicy[] = [
     targetLabel: "Regensburg-Einordnung öffnen",
   },
   {
-    path: "/bueroreinigung-regensburg",
+    path: "/regensburg/bueroreinigung",
     label: "Büroreinigung Regensburg nach Prüfung",
     shortLabel: "Büroreinigung",
     customerNeed: "Für Büroflächen, wenn Raumliste, Turnus, Zugang und Fotos vor einer Zusage geprüft werden sollen.",

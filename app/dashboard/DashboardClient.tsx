@@ -388,9 +388,13 @@ const priorityInquiryFilterIds: InquiryFilter[] = [
   "duesseldorf-cleaning",
 ];
 
-const inquiryFilterById = Object.fromEntries(
-  inquiryFilters.map((filter) => [filter.id, filter]),
-) as Record<InquiryFilter, { id: InquiryFilter; label: string }>;
+const inquiryFilterById = inquiryFilters.reduce(
+  (filtersById, filter) => {
+    filtersById[filter.id] = filter;
+    return filtersById;
+  },
+  {} as Record<InquiryFilter, { id: InquiryFilter; label: string }>,
+);
 
 const documentRows: Array<{
   type: FloxDocumentType;
@@ -692,9 +696,10 @@ function formatDateTime(value?: string) {
 }
 
 function formatStatus(status: string) {
-  const map: Record<string, string> = Object.fromEntries(
-    STATUS_OPTIONS.map((item) => [item.value, item.label]),
-  );
+  const map: Record<string, string> = {};
+  for (const item of STATUS_OPTIONS) {
+    map[item.value] = item.label;
+  }
 
   Object.assign(map, {
     in_bearbeitung: "In Prüfung",
@@ -4789,6 +4794,7 @@ function ShortcutButton({ label, onClick }: { label: string; onClick: () => void
     <button
       type="button"
       onClick={onClick}
+      aria-label={label}
       className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
     >
       {label}
@@ -4848,6 +4854,7 @@ function InquiriesWorkspace({
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               value={searchTerm}
+              aria-label="Anfragen suchen"
               onChange={(event) => setSearchTerm(event.target.value)}
               placeholder="Name, Telefon, E-Mail, Ort oder Service suchen"
               className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-10 text-sm text-slate-950 outline-none focus:border-blue-300 focus:bg-white"
@@ -5698,6 +5705,7 @@ function ReturnTripsWorkspace({
             <DashboardTextarea label="Interne Notiz" value={form.adminNote || ""} onChange={(value) => onChange("adminNote", value)} />
             <button
               type="submit"
+              aria-label="Rueckfahrt speichern"
               disabled={saving}
               className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-bold text-white transition hover:bg-blue-700 disabled:opacity-60"
             >
@@ -6165,6 +6173,7 @@ function DeleteBookingDialog({
           </button>
           <button
             type="button"
+            aria-label="Anfrage loeschen"
             onClick={onConfirm}
             disabled={saving}
             className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-red-600 px-4 text-sm font-bold text-white transition hover:bg-red-700 disabled:opacity-60"
@@ -7162,6 +7171,7 @@ function TogglePill({
     <button
       type="button"
       onClick={onClick}
+      aria-label={label}
       className={cn(
         "rounded-full border px-3 py-2 text-xs font-bold transition",
         active

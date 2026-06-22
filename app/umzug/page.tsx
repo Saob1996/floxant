@@ -164,11 +164,11 @@ export default async function UmzugPillarPage() {
           { href: "/property-operations", label: "Immobilienbetreuung mit Uebergaben und Objektstatus" },
           { href: "/express-anfrage", label: "Express-Anfrage für kurzfristige Umzüge" },
           { href: "/anfrage-mit-preisrahmen", label: "Umzug mit Preisrahmen planen" },
-          { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
+          { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
         ]}
         cityLinksTitle="Umzug lokal in wichtigen Regionen"
         cityLinks={[
-          { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+          { href: "/regensburg/umzug", label: "Umzug Regensburg" },
           { href: "/umzug-muenchen", label: "Umzug München" },
           { href: "/umzug-nuernberg", label: "Umzug Nürnberg" },
           { href: "/umzug-augsburg", label: "Umzug Augsburg" },

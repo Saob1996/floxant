@@ -299,7 +299,7 @@ export default function ReinigungNachVeranstaltungPage() {
                 {[
                   { href: "/notfallreinigung-24h", label: "Notfallreinigung 24h" },
                   { href: "/reinigung", label: "Reinigung Hauptseite" },
-                  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+                  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
                   { href: "/duesseldorf/hotelreinigung", label: "Hotelreinigung Duesseldorf" },
                   { href: "/duesseldorf/bueroreinigung", label: "Bueroreinigung Duesseldorf" },
                   { href: "/duesseldorf/reinigung-stadtteile-umgebung", label: "Duesseldorf Stadtteile und Umgebung" },

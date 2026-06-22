@@ -259,6 +259,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
                 required
                 disabled={isSubmitting}
                 type="text"
+                aria-label="Ihr Name"
                 placeholder="Max Mustermann"
                 className="w-full bg-transparent font-semibold text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
                 value={leadDetails.customerName}
@@ -270,6 +271,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
                 required
                 disabled={isSubmitting}
                 type="tel"
+                aria-label="Telefon"
                 placeholder="+49 123 456789"
                 className="w-full bg-transparent font-semibold text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
                 value={leadDetails.customerPhone}
@@ -282,6 +284,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             <input
               disabled={isSubmitting}
               type="email"
+              aria-label="E-Mail optional"
               placeholder="max@beispiel.de, falls gewünscht"
               className="w-full bg-transparent font-semibold text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
               value={leadDetails.customerEmail}
@@ -300,6 +303,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             <textarea
               disabled={isSubmitting}
               rows={3}
+              aria-label="Kurze Ergänzung optional"
               placeholder="z. B. Übergabetermin, Fotos vorhanden, Parkplatz schwierig, bitte erst nach 17 Uhr anrufen..."
               className="w-full resize-none bg-transparent font-semibold leading-6 text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
               value={leadDetails.customerNote}
@@ -314,6 +318,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
             <input
               disabled={isSubmitting}
               type="text"
+              aria-label="Zielbudget oder Preisvorstellung"
               placeholder="z. B. 2.800 EUR"
               className="w-full bg-transparent font-semibold text-slate-950 outline-none placeholder:text-slate-400 disabled:opacity-50"
               value={leadDetails.customerBudget}
@@ -354,6 +359,7 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
                 <button
                   key={time}
                   type="button"
+                  aria-label={`Rückfragezeit ${time} auswählen`}
                   disabled={isSubmitting}
                   onClick={() => updateLeadDetails({ callbackTime: time })}
                   className={cn(

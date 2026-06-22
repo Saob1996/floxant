@@ -363,6 +363,7 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
          <button
           disabled={isSubmitting}
           type="submit"
+          aria-label={isSubmitting ? "Express-Anfrage wird gesendet" : "Express prüfen lassen"}
           className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-orange-300 font-black uppercase tracking-[0.08em] text-slate-950 shadow-xl shadow-orange-900/20 transition-all hover:bg-orange-200 disabled:opacity-50"
          >
           {isSubmitting ? "Wird gesendet..." : "Express prüfen lassen"}

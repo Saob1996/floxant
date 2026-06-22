@@ -493,6 +493,7 @@ export function InquiryIntentModal({
                   <div className="sticky bottom-0 -mx-5 -mb-5 grid gap-2 border-t border-slate-100 bg-white/95 p-5 backdrop-blur sm:-mx-7 sm:-mb-7 sm:grid-cols-[1fr_0.9fr] sm:p-7">
                     <button
                       type="submit"
+                      aria-label={submitState === "submitting" ? "Anfrage wird gesendet" : config.primaryCta}
                       disabled={submitState === "submitting" || submitState === "success"}
                       className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 text-sm font-black text-white shadow-[0_14px_30px_rgba(15,23,42,0.18)] transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
                     >

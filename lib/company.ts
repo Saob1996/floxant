@@ -15,7 +15,7 @@ export const company = {
   bookingUrl: "https://www.floxant.de/buchung",
   contactUrl: "https://www.floxant.de/kontakt",
   locationsUrl: "https://www.floxant.de/standorte",
-  serviceAreaUrl: "https://www.floxant.de/service-area-bayern",
+  serviceAreaUrl: "https://www.floxant.de/regensburg",
   businessProfilePreferredUrl: "https://www.floxant.de/buchung",
   mapsPreferredEntryUrl: "https://www.floxant.de/buchung",
   mapsSearchUrl:

@@ -88,7 +88,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
             </p>
             <h2>Schritt 3: Die praktische Umsetzung der Wohnungsauflösung</h2>
             <p>
-              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/entruempelung-regensburg`}>Regensburg, München und ganz Bayern</a> am besten vor:
+              Haben Sie das Erbe angetreten und den Mietvertrag termingerecht gekündigt, beginnt die logistische Arbeit. So gehen Sie in <a href={`/regensburg/entruempelung`}>Regensburg, München und ganz Bayern</a> am besten vor:
             </p>
             <ol>
               <li>
@@ -127,7 +127,7 @@ export default async function BlogWohnungsaufloesungTodesfall() {
         <h3 className="text-xl font-bold mb-4 text-primary w-full">Regionale Ressourcen & Ratgeber</h3>
         <p className="text-muted-foreground mb-6">Sie suchen noch den passenden Partner für Ihr Projekt? FLOXANT ist in ganz Ostbayern aktiv.</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href={"/umzug-regensburg"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
+          <a href={"/regensburg/umzug"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Regensburg</a>
           <a href={"/umzug-neutraubling"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Neutraubling</a>
           <a href={"/umzug-landshut"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Landshut</a>
           <a href={"/umzug-oberpfalz"} className="text-sm font-semibold hover:text-primary transition underline decoration-primary/30 underline-offset-4">Umzug Oberpfalz</a>

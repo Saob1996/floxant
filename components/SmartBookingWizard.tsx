@@ -1444,6 +1444,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               icon={<MapPin className="h-4 w-4" />}
             >
               <input
+                aria-label={primaryLocationLabel}
                 value={state.details.startAddress}
                 onChange={(e) =>
                   setState((prev) => ({
@@ -1465,6 +1466,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 required={false}
               >
                 <input
+                  aria-label={`${state.service === "leerfahrt" ? "Zielort oder Richtung" : t?.form?.end_address || "Zieladresse"} falls bekannt`}
                   value={state.details.endAddress}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1486,6 +1488,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 icon={isExpressFlow ? <MessageSquare className="h-4 w-4" /> : <PackageOpen className="h-4 w-4" />}
               >
                 <input
+                  aria-label={flowDetailsIntro.scopeLabel}
                   value={state.details.scope}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1502,6 +1505,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             {showFlowBudgetField ? (
               <FieldBox label={briefingLabels.budget} icon={<Clock className="h-4 w-4" />}>
                 <input
+                  aria-label={briefingLabels.budget}
                   value={state.details.budget}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1546,6 +1550,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
                 <input
                   type="date"
                   min={todayInputValue || undefined}
+                  aria-label={`${t?.form?.date || "Wunschtermin"} falls bekannt`}
                   value={state.details.date}
                   onChange={(e) =>
                     setState((prev) => ({
@@ -1560,6 +1565,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FieldBox label={briefingLabels.scope} icon={<PackageOpen className="h-4 w-4" />} required={false}>
               <input
+                aria-label={briefingLabels.scope}
                 value={state.details.scope}
                 onChange={(e) =>
                   setState((prev) => ({
@@ -1574,6 +1580,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
 
             <FieldBox label={briefingLabels.access} icon={<Shield className="h-4 w-4" />} required={false}>
               <input
+                aria-label={briefingLabels.access}
                 value={state.details.access}
                 onChange={(e) =>
                   setState((prev) => ({
@@ -1907,6 +1914,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
             <FieldBox label={t?.form?.name || "Name"}>
               <input
                 required
+                aria-label={t?.form?.name || "Name"}
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -1920,6 +1928,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <input
                 type="tel"
                 required
+                aria-label={t?.form?.phone || "Telefon"}
                 value={formData.phone}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, phone: e.target.value }))
@@ -1949,6 +1958,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               <FieldBox label={`${t?.form?.email || "E-Mail"} falls gewünscht`} required={false}>
                 <input
                   type="email"
+                  aria-label={`${t?.form?.email || "E-Mail"} falls gewünscht`}
                   value={formData.email}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, email: e.target.value }))

@@ -31,7 +31,7 @@ import {
 } from "@/lib/structured-data";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
-const path = "/wohnungsaufloesung-regensburg";
+const path = "/regensburg/wohnungsaufloesung";
 const title = "Wohnungsauflösung Regensburg | Räume, Freigabe und Übergabe klären";
 const description =
   "Wohnungsauflösung Regensburg anfragen: Wohnung, Keller, Nachlass, Möbel, Fotos, Entsorgung, Endzustand und Übergabe ruhig vorbereiten.";
@@ -107,10 +107,10 @@ const localSignals = [
 ] as const;
 
 const relatedLinks = [
-  { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
   { href: "/nachlass-raeumung-regensburg", label: "Nachlassräumung Regensburg" },
   { href: "/regensburg/endreinigung", label: "Endreinigung nach Räumung" },
-  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Räumungsangebot prüfen" },
 ] as const;
 

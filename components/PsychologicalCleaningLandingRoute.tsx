@@ -73,7 +73,7 @@ function pageJsonLd(page: PsychologicalCleaningLandingPage) {
     "@graph": [
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
-        { name: "Reinigung Regensburg", item: "/reinigung-regensburg" },
+        { name: "Reinigung Regensburg", item: "/regensburg/reinigung" },
         { name: page.serviceName, item: path },
       ]),
       buildServiceJsonLd({
@@ -149,7 +149,7 @@ export function PsychologicalCleaningLandingRoute({
           <Breadcrumbs
             items={[
               { label: "Reinigung", href: "/reinigung" },
-              { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
+              { label: "Reinigung Regensburg", href: "/regensburg/reinigung" },
               { label: page.serviceName },
             ]}
           />

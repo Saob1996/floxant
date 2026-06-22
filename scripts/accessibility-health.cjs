@@ -38,9 +38,9 @@ function lineFor(text, index) {
   return text.slice(0, index).split(/\r?\n/).length;
 }
 
-function collectTags(text, tagName) {
+function collectTags(text, tagName, flags = "g") {
   const tags = [];
-  const regex = new RegExp(`<${tagName}\\b`, "gi");
+  const regex = new RegExp(`<${tagName}\\b`, flags);
   let match;
   while ((match = regex.exec(text))) {
     const start = match.index;
@@ -67,6 +67,13 @@ function collectButtonBlocks(text) {
     });
   }
   return blocks;
+}
+
+function hasWrappingLabel(text, start) {
+  const before = text.slice(0, start);
+  const lastOpen = before.lastIndexOf("<label");
+  const lastClose = before.lastIndexOf("</label>");
+  return lastOpen > lastClose;
 }
 
 function visibleText(text) {
@@ -151,6 +158,7 @@ function main() {
       const idMatch = input.tag.match(/\bid=["']([^"']+)["']/);
       const hasProgrammaticName =
         /\baria-label=|\baria-labelledby=/.test(input.tag) ||
+        hasWrappingLabel(text, input.start) ||
         (idMatch && new RegExp(`htmlFor=["']${idMatch[1]}["']`).test(text));
       if (!hasProgrammaticName) {
         stats.unlabeledInputs += 1;

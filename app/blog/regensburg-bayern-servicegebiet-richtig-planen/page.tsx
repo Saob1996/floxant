@@ -104,8 +104,8 @@ export default function RegensburgBayernServicegebietBlogPage() {
      "Starke Ortsseiten brauchen echte Erklärung statt bloßer Städtenamen.",
     ]}
     ctas={[
-     { href: "/service-area-bayern", label: "Servicegebiet Bayern" },
-     { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+     { href: "/regensburg", label: "Regensburg-Bereich" },
+     { href: "/regensburg/umzug", label: "Umzug Regensburg" },
      { href: "/rechner", label: "Region im Rechner prüfen" },
     ]}
     faqTitle="FAQ zu Regensburg und Bayern"

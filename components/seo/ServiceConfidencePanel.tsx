@@ -36,8 +36,8 @@ const confidenceSignals = [
   icon: MapPinned,
   title: "Einsatzgebiet ehrlich geprüft",
   text: "Regensburg ist die Basis. Weitere Orte werden nach Verfügbarkeit, Route und Machbarkeit geprüft, statt pauschal alles zu versprechen.",
-  href: "/einsatzgebiet-regensburg-200km",
-  label: "Einsatzgebiet",
+  href: "/regensburg",
+  label: "Regensburg",
  },
  {
   icon: MessageCircle,

@@ -22,13 +22,13 @@ const priorityFiles = [
   "app/duesseldorf/entruempelung/page.tsx",
   "app/duesseldorf/haushaltsaufloesung/page.tsx",
   "app/regensburg/page.tsx",
-  "app/reinigung-regensburg/page.tsx",
-  "app/umzug-regensburg/page.tsx",
-  "app/entruempelung-regensburg/page.tsx",
-  "app/gewerbereinigung-regensburg/page.tsx",
-  "app/bueroreinigung-regensburg/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
+  "app/regensburg/umzug/page.tsx",
+  "app/regensburg/entruempelung/page.tsx",
+  "app/regensburg/gewerbereinigung/page.tsx",
+  "app/regensburg/bueroreinigung/page.tsx",
   "app/klaviertransport-regensburg/page.tsx",
-  "app/wohnungsaufloesung-regensburg/page.tsx",
+  "app/regensburg/wohnungsaufloesung/page.tsx",
   "app/signature-services/page.tsx",
   "app/spezialreinigung/page.tsx",
   "app/solarreinigung/page.tsx",
@@ -139,7 +139,7 @@ function scanFile(file, content, issues) {
   }
 
   if (/(reinigung|umzug|entruempelung|bueroreinigung|gewerbereinigung|praxisreinigung|fensterreinigung)/i.test(file)) {
-    const hasTemplateOfferBridge = /GrowthServiceLandingPage|LocalServiceSeoPage|DuesseldorfServicePage|SpecialtyPageLayout/.test(content);
+    const hasTemplateOfferBridge = /GrowthServiceLandingPage|LocalServiceSeoPage|DuesseldorfServicePage|RegensburgServicePage|SpecialtyPageLayout/.test(content);
     if (!hasTemplateOfferBridge && !/angebot-guenstiger-pruefen|OfferCheckCTA|OfferCheckInlineCTA|Angebot.*pr[uü]fen|Angebot.*pruefen/i.test(content)) {
       addIssue(issues, "WARN", file, "Service page has no visible offer-check bridge in source.");
     }

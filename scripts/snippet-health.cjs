@@ -5,6 +5,23 @@ const root = process.cwd();
 const reportPath = path.join(root, "SNIPPET_HEALTH_REPORT.md");
 const jsonPath = path.join(root, "snippet-health-report.json");
 const priorityPath = path.join(root, "lib", "gsc-click-priorities.ts");
+const localServiceSeoPagesPath = path.join(root, "lib", "local-service-seo-pages.ts");
+const regensburgServicePagesPath = path.join(root, "lib", "regensburg-service-pages.ts");
+
+const centralSnippetSources = {
+  "/regensburg/reinigung": {
+    file: localServiceSeoPagesPath,
+    marker: '"regensburg-reinigung":',
+  },
+  "/regensburg/gewerbereinigung": {
+    file: localServiceSeoPagesPath,
+    marker: '"regensburg-gewerbereinigung":',
+  },
+  "/regensburg/bueroreinigung": {
+    file: regensburgServicePagesPath,
+    marker: "bueroreinigung:",
+  },
+};
 
 const targets = [
   { route: "/", service: "floxant", city: "", offer: false, cta: ["/angebot-guenstiger-pruefen", "/reinigungsfirma-angebot"] },
@@ -20,13 +37,13 @@ const targets = [
   { route: "/duesseldorf/fensterreinigung", service: "fensterreinigung", city: "duesseldorf", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
   { route: "/duesseldorf/umzug", service: "umzug", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/duesseldorf/entruempelung", service: "entruempelung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/regensburg", service: "service", city: "regensburg", offer: false, cta: ["/umzug-regensburg", "/kontakt"] },
-  { route: "/umzug-regensburg", service: "umzug", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/reinigung-regensburg", service: "reinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/entruempelung-regensburg", service: "entruempelung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/gewerbereinigung-regensburg", service: "gewerbereinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/bueroreinigung-regensburg"] },
-  { route: "/bueroreinigung-regensburg", service: "bueroreinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/klaviertransport-regensburg", service: "klaviertransport", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
+  { route: "/regensburg", service: "service", city: "regensburg", offer: false, cta: ["/regensburg/umzug", "/kontakt"] },
+  { route: "/regensburg/umzug", service: "umzug", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
+  { route: "/regensburg/reinigung", service: "reinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
+  { route: "/regensburg/entruempelung", service: "entruempelung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
+  { route: "/regensburg/gewerbereinigung", service: "gewerbereinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/regensburg/bueroreinigung"] },
+  { route: "/regensburg/bueroreinigung", service: "bueroreinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
+  { route: "/klaviertransport-regensburg", service: "klaviertransport", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/kontakt"] },
   { route: "/solarreinigung", service: "solarreinigung", city: "", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/pv-anlagen-reinigung", service: "pv", city: "", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/seniorenumzug-bayern", service: "seniorenumzug", city: "bayern", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
@@ -35,6 +52,10 @@ const targets = [
 
 function normalize(value) {
   return String(value || "")
+    .replace(/\u00c3\u0192\u00c2\u00bc|\u00c3\u00bc|\u00fc/gi, "ue")
+    .replace(/\u00c3\u0192\u00c2\u00b6|\u00c3\u00b6|\u00f6/gi, "oe")
+    .replace(/\u00c3\u0192\u00c2\u00a4|\u00c3\u00a4|\u00e4/gi, "ae")
+    .replace(/\u00c3\u0192\u00c2\u0178|\u00c3\u0178|\u00df/gi, "ss")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/Ã¼|ü/g, "ue")
@@ -64,6 +85,16 @@ function readPriorityBlock(route, priorityText) {
   return priorityText.slice(index, index + 3200);
 }
 
+function readCentralBlock(route) {
+  const source = centralSnippetSources[route];
+  if (!source || !fs.existsSync(source.file)) return "";
+
+  const text = fs.readFileSync(source.file, "utf8");
+  const index = text.indexOf(source.marker);
+  if (index === -1) return "";
+  return text.slice(index, index + 9000);
+}
+
 function readPrioritySnippet(route, priorityText) {
   const block = readPriorityBlock(route, priorityText);
   if (!block) return null;
@@ -82,6 +113,24 @@ function readPageSnippet(file) {
   return { title: unquote(title), description: unquote(description), h1: unquote(h1), source: "page-source" };
 }
 
+function readCentralSnippet(route) {
+  const source = centralSnippetSources[route];
+  if (!source || !fs.existsSync(source.file)) return null;
+
+  const text = fs.readFileSync(source.file, "utf8");
+  const index = text.indexOf(source.marker);
+  if (index === -1) return null;
+
+  const block = text.slice(index, index + 2400);
+  const title = block.match(/metaTitle:\s*"([^"]+)"/)?.[1] || "";
+  const description = block.match(/metaDescription:\s*"([^"]+)"/)?.[1] ||
+    block.match(/metaDescription:\s*\r?\n\s*"([^"]+)"/)?.[1] ||
+    "";
+
+  if (!title && !description) return null;
+  return { title: unquote(title), description: unquote(description), h1: "", source: "central-config" };
+}
+
 function hasKeywordChain(title) {
   const normalized = normalize(title);
   const separators = (title.match(/[|,]/g) || []).length;
@@ -97,6 +146,8 @@ function hasBannedClaim(text) {
 function sourceContains(file, needles, priorityText, route) {
   const parts = [];
   if (fs.existsSync(file)) parts.push(fs.readFileSync(file, "utf8"));
+  const centralBlock = readCentralBlock(route);
+  if (centralBlock) parts.push(centralBlock);
   const priority = readPrioritySnippet(route, priorityText);
   if (priority) parts.push(`${priority.title} ${priority.description} ${priority.h1}`);
   const block = readPriorityBlock(route, priorityText);
@@ -124,7 +175,7 @@ function expandPriorityContext(block) {
 
 function checkTarget(target, priorityText) {
   const file = routeToFile(target.route);
-  const snippet = readPrioritySnippet(target.route, priorityText) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
+  const snippet = readPrioritySnippet(target.route, priorityText) || readCentralSnippet(target.route) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
   const priorityContext = expandPriorityContext(readPriorityBlock(target.route, priorityText));
   const checks = [];
   const title = snippet.title || "";

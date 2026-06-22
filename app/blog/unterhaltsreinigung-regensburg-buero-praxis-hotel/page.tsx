@@ -106,7 +106,7 @@ export default function BlogUnterhaltsreinigungPage() {
     ctas={[
      { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg ansehen" },
      { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg ansehen" },
-     { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg ansehen" },
+     { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg ansehen" },
      { href: "/kontakt", label: "Direkt Kontakt aufnehmen" },
     ]}
     faqTitle="FAQ zur Unterhaltsreinigung"

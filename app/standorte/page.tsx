@@ -62,8 +62,8 @@ const regionalSignalCards = [
   {
     title: "Bayern als Einsatzgebiet",
     text: "Die Standortseite zeigt Staedte und Regionen so, dass Kunden schnell sehen, ob ihr Ort sinnvoll angefragt werden kann.",
-    href: "/service-area-bayern",
-    cta: "Bayern-Seite oeffnen",
+    href: "/regensburg",
+    cta: "Regensburg oeffnen",
   },
   {
     title: "Direkter Buchungsweg",
@@ -131,7 +131,7 @@ export default function StandortePage() {
         ],
         potentialActions: [
           { name: "Direkte Anfrage starten", target: "/buchung" },
-          { name: "Servicegebiet Bayern ansehen", target: "/service-area-bayern" },
+          { name: "Regensburg ansehen", target: "/regensburg" },
         ],
       }),
       buildBreadcrumbJsonLd([
@@ -205,10 +205,10 @@ export default function StandortePage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/service-area-bayern"
+                  href="/regensburg"
                   className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
                 >
-                  Bayern-Seite öffnen
+                  Regensburg oeffnen
                   <Radar className="h-4 w-4" />
                 </Link>
               </div>
@@ -411,7 +411,7 @@ export default function StandortePage() {
               text: "Der direkteste Weg fuer Google Maps, direkte Empfehlungen und klare Anfragen.",
             },
             {
-              href: "/gewerbereinigung-regensburg",
+              href: "/regensburg/gewerbereinigung",
               title: "Gewerbereinigung Regensburg",
               text: "Gezielter B2B-Startpunkt fuer Buero, Praxis, Hotel, Kanzlei und Objektbetrieb.",
             },

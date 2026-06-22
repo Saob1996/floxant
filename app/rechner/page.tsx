@@ -455,11 +455,11 @@ export default async function RechnerPage() {
   const regensburgCoreLinks = BAVARIA_DIRECT_DEMAND_LINKS.slice(0, 6);
 
   const localSeoTags = [
-    { label: "Umzug Regensburg", href: "/umzug-regensburg" },
-    { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
-    { label: "Entrümpelung Regensburg", href: "/entruempelung-regensburg" },
+    { label: "Umzug Regensburg", href: "/regensburg/umzug" },
+    { label: "Reinigung Regensburg", href: "/regensburg/reinigung" },
+    { label: "Entrümpelung Regensburg", href: "/regensburg/entruempelung" },
     { label: "Büroumzug Regensburg", href: "/bueroumzug-regensburg" },
-    { label: "Wohnungsauflösung Regensburg", href: "/wohnungsaufloesung-regensburg" },
+    { label: "Wohnungsauflösung Regensburg", href: "/regensburg/wohnungsaufloesung" },
     { label: "Beiladung Regensburg", href: "/beiladung-regensburg" },
     { label: "Einlagerung Regensburg", href: "/einlagerung" },
     { label: "Kostenrechner Bayern", href: "/rechner" },

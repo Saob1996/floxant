@@ -41,14 +41,50 @@ const legacyRedirectRoutes = new Set([
   "/airbnb-reinigung-duesseldorf",
   "/angebot-red-flag-scanner",
   "/guenstigeres-angebot-pruefen",
+  "/einsatzgebiet-regensburg-200km",
+  "/service-area-bayern",
   "/villenservice",
   "/umzug-duesseldorf",
+  "/umzug-regensburg",
+  "/reinigung-regensburg",
+  "/entruempelung-regensburg",
+  "/gewerbereinigung-regensburg",
+  "/bueroreinigung-regensburg",
+  "/wohnungsaufloesung-regensburg",
+  "/umzugsunternehmen-regensburg",
+  "/seniorenumzug-regensburg",
+  "/umzug-reinigung-regensburg",
+  "/endreinigung-regensburg",
   "/seo-gone",
 ]);
 const removedServicePrefixes = [
   "/halteverbotszone",
 ];
-const deprioritizedCitySlugs = new Set(["forchheim", "friedberg"]);
+const broadRootCityServicePrefixes = [
+  "bueroumzug",
+  "entruempelung",
+  "klaviertransport",
+  "reinigung",
+  "seniorenumzug",
+  "umzug",
+  "wohnungsaufloesung",
+];
+const deprioritizedCitySlugs = new Set([
+  "forchheim",
+  "friedberg",
+  "wuerzburg",
+  "kempten",
+  "lindau",
+  "memmingen",
+  "kaufbeuren",
+  "traunstein",
+  "berlin",
+  "bremen",
+  "frankfurt",
+  "hamburg",
+  "leipzig",
+  "stuttgart",
+]);
 
 function isRouteGroup(segment) {
   return segment.startsWith("(") && segment.endsWith(")");
@@ -82,12 +118,27 @@ function isIndexableRoute(route) {
   if (removedServicePrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}-`))) return false;
   if (nonSeoPublicRoutes.has(route)) return false;
   if (isDeprioritizedCityRoute(route)) return false;
+  if (isBroadRootCityServiceRoute(route)) return false;
   if (/^\/alternativen\/[^/]+$/.test(route)) return false;
   if (/^\/signature\/[^/]+$/.test(route)) return false;
 
   return !blockedPrefixes.some(
     (prefix) => route === prefix || route.startsWith(`${prefix}/`),
   );
+}
+
+function isBroadRootCityServiceRoute(route) {
+  const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
+
+  if (normalizedRoute === "seniorenumzug-landshut") {
+    return false;
+  }
+
+  if (normalizedRoute.includes("regensburg") || normalizedRoute.endsWith("-bayern")) {
+    return false;
+  }
+
+  return broadRootCityServicePrefixes.some((prefix) => normalizedRoute.startsWith(`${prefix}-`));
 }
 
 function isDeprioritizedCityRoute(route) {

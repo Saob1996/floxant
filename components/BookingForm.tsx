@@ -34,12 +34,12 @@ export function BookingForm() {
               {/* Common Fields */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Name</label>
-                  <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Max Mustermann" />
+                  <label htmlFor="booking-name" className="text-sm font-medium">Name</label>
+                  <input id="booking-name" name="name" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Max Mustermann" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Email</label>
-                  <input type="email" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="max@example.com" />
+                  <label htmlFor="booking-email" className="text-sm font-medium">Email</label>
+                  <input id="booking-email" name="email" type="email" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="max@example.com" />
                 </div>
               </div>
 
@@ -48,12 +48,12 @@ export function BookingForm() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-muted-foreground flex items-center gap-2"><MapPin size={16} /> Start-Adresse</label>
-                      <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4" placeholder="Alte Straße 1" />
+                      <label htmlFor="booking-start-address" className="text-sm font-medium text-muted-foreground flex items-center gap-2"><MapPin size={16} /> Start-Adresse</label>
+                      <input id="booking-start-address" name="startAddress" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4" placeholder="Alte Straße 1" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-muted-foreground flex items-center gap-2"><MapPin size={16} /> Ziel-Adresse</label>
-                      <input className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4" placeholder="Neue Allee 10" />
+                      <label htmlFor="booking-destination-address" className="text-sm font-medium text-muted-foreground flex items-center gap-2"><MapPin size={16} /> Ziel-Adresse</label>
+                      <input id="booking-destination-address" name="destinationAddress" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4" placeholder="Neue Allee 10" />
                     </div>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export function BookingForm() {
               {/* Calendar */}
               <div className="pt-4">
                 <h4 className="flex items-center gap-2 font-medium mb-3"><Calendar size={18} /> Wunschtermin</h4>
-                <input type="date" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4" />
+                <input id="booking-desired-date" name="desiredDate" type="date" aria-label="Wunschtermin" className="w-full bg-white/5 border border-white/10 rounded-lg h-11 px-4" />
               </div>
 
               <div className="pt-6">

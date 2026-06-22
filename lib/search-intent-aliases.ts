@@ -18,7 +18,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "moving-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Umzug", "Umzugsunternehmen", "Büroumzug", "Transport", "Beiladung", "Leer-Rückfahrt"],
-    canonicalPages: ["/regensburg/umzugsunternehmen", "/regensburg/umzug", "/umzug-regensburg", "/umzug-bayern", "/bueroumzug", "/kleintransport-regensburg", "/leerfahrt-rueckfahrt", "/beiladung"],
+    canonicalPages: ["/regensburg/umzugsunternehmen", "/regensburg/umzug", "/regensburg/umzug", "/umzug-bayern", "/bueroumzug", "/kleintransport-regensburg", "/leerfahrt-rueckfahrt", "/beiladung"],
     aliases: [
       {
         language: "en",
@@ -46,7 +46,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "cleaning-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Reinigung", "Endreinigung", "Gewerbereinigung", "Büroreinigung", "Büroreinigung Regensburg", "Büroreinigung Regensburg Angebot", "Büroreinigung Kosten Regensburg", "Büro Reinigungskraft Regensburg", "Büroreinigung nach Feierabend Regensburg", "Praxisreinigung Regensburg", "Arztpraxis Reinigung Regensburg", "Praxisreinigung Angebot Regensburg", "Reinigung Praxisräume Regensburg", "Praxisreinigung nach Praxisschluss Regensburg", "Hotelreinigung Regensburg", "Hotel Reinigung Firma Regensburg", "Zimmerreinigung Regensburg", "Hotel Unterhaltsreinigung Regensburg", "Pension Reinigung Regensburg", "Boardinghouse Reinigung Regensburg", "Lobby Reinigung Regensburg", "Fensterreinigung Regensburg", "Glasreinigung Regensburg", "Baureinigung Regensburg", "Bauendreinigung Regensburg", "Baufeinreinigung Regensburg", "Reinigung nach Renovierung Regensburg", "Handwerkerstaub entfernen Regensburg", "Teppichreinigung Regensburg", "Teppichbodenreinigung Regensburg", "Polsterreinigung Regensburg", "Sofa reinigen lassen Regensburg", "Bürostühle reinigen Regensburg", "Treppenhausreinigung Regensburg", "Hausverwaltung Reinigung Regensburg", "Treppenhausreinigung Kosten Regensburg", "Treppenhaus reinigen lassen Regensburg", "WEG Reinigung Regensburg", "Mehrfamilienhaus Reinigung Regensburg", "Unterhaltsreinigung Regensburg", "Grundreinigung Regensburg", "Wohnung Grundreinigung Regensburg", "Büro Grundreinigung Regensburg", "Grundreinigung nach Auszug Regensburg", "starke Verschmutzung reinigen Regensburg", "Reinigungsplan Buero Regensburg", "Objektreinigung Regensburg", "Übergabereinigung", "Notfallreinigung", "Reinigung nach Veranstaltung"],
-    canonicalPages: ["/regensburg/reinigung", "/regensburg/reinigungsfirma", "/regensburg/bueroreinigung", "/angebot-vergleichen-regensburg", "/reinigung-regensburg", "/bueroreinigung-regensburg", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/gewerbereinigung-regensburg", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
+    canonicalPages: ["/regensburg/reinigung", "/regensburg/reinigungsfirma", "/regensburg/bueroreinigung", "/angebot-vergleichen-regensburg", "/regensburg/reinigung", "/regensburg/bueroreinigung", "/praxisreinigung-regensburg", "/hotelreinigung-regensburg", "/fensterreinigung-regensburg", "/baureinigung-regensburg", "/teppichreinigung-regensburg", "/treppenhausreinigung-regensburg", "/unterhaltsreinigung-regensburg", "/grundreinigung-regensburg", "/notfallreinigung-24h", "/reinigung-nach-veranstaltung", "/reinigung-bayern", "/regensburg/gewerbereinigung", "/umzug-mit-reinigung", "/wohnung-wieder-vermietbar"],
     aliases: [
       {
         language: "en",
@@ -74,7 +74,7 @@ export const multilingualSearchIntentGroups: SearchIntentAliasGroup[] = [
     id: "clearance-disposal-regensburg-bayern",
     market: "regensburg-bayern",
     serviceScope: ["Entrümpelung", "Wohnungsauflösung", "Nachlass-Räumung", "Entsorgung", "Firmenentsorgung"],
-    canonicalPages: ["/regensburg/wohnungsaufloesung", "/regensburg/entruempelung", "/entruempelung-regensburg", "/entruempelung-bayern", "/wohnungsaufloesung-regensburg", "/nachlass-raeumung-regensburg", "/firmenentsorgung", "/kleinmengen-entsorgung"],
+    canonicalPages: ["/regensburg/wohnungsaufloesung", "/regensburg/entruempelung", "/regensburg/entruempelung", "/entruempelung-bayern", "/regensburg/wohnungsaufloesung", "/nachlass-raeumung-regensburg", "/firmenentsorgung", "/kleinmengen-entsorgung"],
     aliases: [
       {
         language: "en",
@@ -196,7 +196,7 @@ multilingualSearchIntentGroups.push({
     "Bürostühle reinigen Regensburg",
     "Teppichreinigung Kosten Regensburg",
   ],
-  canonicalPages: ["/teppichreinigung-regensburg", "/grundreinigung-regensburg", "/bueroreinigung-regensburg", "/hotelreinigung-regensburg", "/praxisreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  canonicalPages: ["/teppichreinigung-regensburg", "/grundreinigung-regensburg", "/regensburg/bueroreinigung", "/hotelreinigung-regensburg", "/praxisreinigung-regensburg", "/angebot-guenstiger-pruefen"],
   aliases: [
     {
       language: "en",
@@ -233,7 +233,7 @@ multilingualSearchIntentGroups.push({
     "Wohnung nach Sanierung reinigen Regensburg",
     "Baustaub Reinigung Regensburg",
   ],
-  canonicalPages: ["/baureinigung-regensburg", "/grundreinigung-regensburg", "/fensterreinigung-regensburg", "/gewerbereinigung-regensburg", "/endreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  canonicalPages: ["/baureinigung-regensburg", "/grundreinigung-regensburg", "/fensterreinigung-regensburg", "/regensburg/gewerbereinigung", "/regensburg/endreinigung", "/angebot-guenstiger-pruefen"],
   aliases: [
     {
       language: "en",
@@ -271,7 +271,7 @@ multilingualSearchIntentGroups.push({
     "Fensterreinigung vor Uebergabe Regensburg",
     "Rahmen reinigen Regensburg",
   ],
-  canonicalPages: ["/fensterreinigung-regensburg", "/gewerbereinigung-regensburg", "/bueroreinigung-regensburg", "/grundreinigung-regensburg", "/angebot-guenstiger-pruefen"],
+  canonicalPages: ["/fensterreinigung-regensburg", "/regensburg/gewerbereinigung", "/regensburg/bueroreinigung", "/grundreinigung-regensburg", "/angebot-guenstiger-pruefen"],
   aliases: [
     {
       language: "en",

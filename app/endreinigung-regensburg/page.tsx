@@ -51,7 +51,7 @@ export default async function EndreinigungRegensburgPage({ params }: PageProps) 
       heroImage="/assets/service-cleaning.png"
       breadcrumbs={[
         { label: "Home", href: "/" },
-        { label: "Reinigung Regensburg", href: `/reinigung-regensburg` },
+        { label: "Reinigung Regensburg", href: `/regensburg/reinigung` },
         { label: "Endreinigung" }
       ]}
       chips={[

@@ -106,7 +106,7 @@ export default function BlogCommercialCleaningB2BPage() {
     ctas={[
      { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },
      { href: "/praxisreinigung-regensburg", label: "Praxisreinigung prüfen" },
-     { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
+     { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
      { href: "/buchung", label: "Direkte Anfrage starten" },
     ]}
     faqTitle="FAQ zur Gewerbereinigung für große Objekte"

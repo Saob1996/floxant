@@ -178,6 +178,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="Name"
                 required
                 type="text"
                 placeholder="Max Mustermann"
@@ -195,6 +196,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="E-Mail optional"
                 type="email"
                 placeholder="name@beispiel.de"
                 value={formData.email}
@@ -211,6 +213,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <Phone className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="Telefonnummer"
                 required
                 type="tel"
                 placeholder="+49 123 4567890"
@@ -228,6 +231,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <MapPin className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
+                aria-label="Ort oder PLZ"
                 type="text"
                 placeholder="z.B. Düsseldorf, Regensburg, Neuss"
                 value={formData.cityOrZip}
@@ -242,6 +246,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
               Projekt-Art
             </label>
             <select
+              aria-label="Projekt-Art"
               value={formData.service}
               onChange={(event) => setFormData({ ...formData, service: event.target.value })}
               className="w-full appearance-none rounded-2xl border border-slate-200 bg-white px-6 py-4 text-slate-950 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
@@ -265,6 +270,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <Clock3 className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <select
+                aria-label="Dringlichkeit"
                 value={formData.urgency}
                 onChange={(event) => setFormData({ ...formData, urgency: event.target.value })}
                 className="w-full appearance-none rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-slate-950 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
@@ -284,6 +290,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             <div className="relative">
               <MessageCircle className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <select
+                aria-label="Kontaktwunsch"
                 value={formData.preferredContact}
                 onChange={(event) => setFormData({ ...formData, preferredContact: event.target.value })}
                 className="w-full appearance-none rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-slate-950 outline-none transition-all focus:border-blue-300 focus:bg-blue-50/40"
@@ -303,6 +310,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
           <div className="relative">
             <Banknote className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
+              aria-label="Ihre Preisvorstellung"
               required
               type="text"
               placeholder="z.B. 600 bis 900 EUR"
@@ -322,6 +330,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
             Zusatzinfos
           </label>
           <textarea
+            aria-label="Zusatzinfos"
             rows={3}
             placeholder="Ein paar Details zu Ihrem Projekt, z.B. Termin, Umfang oder besondere Bedingungen."
             value={formData.message}
@@ -348,6 +357,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
         ) : null}
 
         <button
+          aria-label="Budget-Anfrage senden"
           disabled={status === "loading"}
           type="submit"
           className={cn(

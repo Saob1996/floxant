@@ -161,7 +161,7 @@ export function GewerbereinigungAdsForm() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-normal text-blue-700">
-            Kostenlos und unverbindlich
+            Anfrage mit Eckdaten
           </p>
           <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
             Rückmeldung zur Gewerbereinigung erhalten
@@ -178,6 +178,7 @@ export function GewerbereinigungAdsForm() {
             <button
               key={item.id}
               type="button"
+              aria-label={`Anfragemodus ${item.label}`}
               onClick={() => setMode(item.id as Mode)}
               className={`min-h-10 rounded-md px-4 text-sm font-black transition ${
                 mode === item.id ? "bg-white text-slate-950 shadow-sm" : "text-slate-600 hover:text-slate-950"
@@ -205,17 +206,17 @@ export function GewerbereinigungAdsForm() {
 
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Name*">
-            <input name="name" autoComplete="name" className="duesseldorf-input" placeholder="Vorname Nachname" />
+            <input name="name" autoComplete="name" aria-label="Name" className="duesseldorf-input" placeholder="Vorname Nachname" />
           </Field>
           <Field label="Telefon / WhatsApp / E-Mail*">
-            <input name="contact" autoComplete="tel" className="duesseldorf-input" placeholder="+49 ... oder name@firma.de" />
+            <input name="contact" autoComplete="tel" aria-label="Telefon, WhatsApp oder E-Mail" className="duesseldorf-input" placeholder="+49 ... oder name@firma.de" />
           </Field>
           <Field label="Objektort / PLZ*">
-            <input name="objectLocation" autoComplete="address-level2" className="duesseldorf-input" placeholder="z. B. 40213, Bilk, Pempelfort" />
+            <input name="objectLocation" autoComplete="address-level2" aria-label="Objektort oder PLZ" className="duesseldorf-input" placeholder="z. B. 40213, Bilk, Pempelfort" />
           </Field>
           {mode === "detailed" ? (
             <Field label="Firma">
-              <input name="companyName" autoComplete="organization" className="duesseldorf-input" placeholder="Optional" />
+              <input name="companyName" autoComplete="organization" aria-label="Firma" className="duesseldorf-input" placeholder="Optional" />
             </Field>
           ) : null}
         </div>
@@ -241,10 +242,10 @@ export function GewerbereinigungAdsForm() {
               </select>
             </Field>
             <Field label="Fläche / Räume">
-              <input name="areaOrRooms" className="duesseldorf-input" placeholder="z. B. 220 m², 8 Räume" />
+              <input name="areaOrRooms" aria-label="Fläche oder Räume" className="duesseldorf-input" placeholder="z. B. 220 m², 8 Räume" />
             </Field>
             <Field label="Gewünschte Zeiten">
-              <input name="preferredTime" className="duesseldorf-input" placeholder="z. B. abends, Wochenende, morgens" />
+              <input name="preferredTime" aria-label="Gewünschte Zeiten" className="duesseldorf-input" placeholder="z. B. abends, Wochenende, morgens" />
             </Field>
           </div>
         ) : null}
@@ -297,7 +298,7 @@ export function GewerbereinigungAdsForm() {
           <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
           <span>
             Ich stimme zu, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet.
-            Die Anfrage ist kostenlos und unverbindlich.
+            Die Anfrage führt nicht automatisch zu einer Beauftragung.
           </span>
         </label>
 
@@ -325,10 +326,11 @@ export function GewerbereinigungAdsForm() {
           <button
             type="submit"
             disabled={isSubmitting}
+            aria-label={mode === "quick" ? "Gewerbereinigung Düsseldorf schnell anfragen" : "Rückmeldung zur Gewerbereinigung Düsseldorf erhalten"}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
-            {mode === "quick" ? "Kostenlos anfragen" : "Rückmeldung erhalten"}
+            {mode === "quick" ? "Gewerbereinigung Düsseldorf anfragen" : "Rückmeldung zur Gewerbereinigung erhalten"}
           </button>
           <a
             href={whatsappHref}

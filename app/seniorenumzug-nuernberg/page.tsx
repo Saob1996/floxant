@@ -127,8 +127,8 @@ export default async function SeniorenumzugNuernbergPage({ params }: PageProps) 
                         {
                             title: "Bayernweite Route prüfen",
                             text: "Nürnberg wird nach Strecke, Termin, Umfang und verfügbaren Kombinationen eingeordnet.",
-                            href: "/service-area-bayern",
-                            cta: "Machbarkeit prüfen",
+                            href: "/regensburg",
+                            cta: "Regensburg ansehen",
                         },
                     ]}
                     checklistTitle="Für die erste Rückmeldung"

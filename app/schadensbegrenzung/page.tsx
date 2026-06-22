@@ -451,9 +451,9 @@ export default function SchadensbegrenzungPage() {
         <section className="px-4 pb-24 pt-6 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-3 md:grid-cols-2 lg:grid-cols-4">
             {[
-              ["/umzug-regensburg", "Umzug Regensburg"],
-              ["/reinigung-regensburg", "Kurzfristige Reinigung Regensburg"],
-              ["/entruempelung-regensburg", "Entruempelung Regensburg"],
+              ["/regensburg/umzug", "Umzug Regensburg"],
+              ["/regensburg/reinigung", "Kurzfristige Reinigung Regensburg"],
+              ["/regensburg/entruempelung", "Entruempelung Regensburg"],
               ["/rueckfahrt-boerse", "Rueckfahrt/Leerfahrt pruefen"],
               ["/mieterwechsel-service-regensburg", "Mieterwechsel-Service"],
               ["/wohnung-wieder-vermietbar", "Wohnung wieder vermietbar"],

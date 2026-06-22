@@ -322,7 +322,7 @@ const supplementalProducts: readonly ServiceProduct[] = [
     effortFactors: ["Volumen", "Etage", "Strecke", "Haltezone", "Montage"],
     dusseldorfAvailability: "needs_manual_confirmation",
     regensburgAvailability: "available",
-    recommendedRoute: "/umzug-regensburg",
+    recommendedRoute: "/regensburg/umzug",
     hasPage: true,
     relatedServices: ["umzug", "mini-umzug", "umzug-mit-reinigung"],
     seoIntent: "Privatumzug nach Volumen und Zugang anfragen",

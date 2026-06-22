@@ -33,7 +33,7 @@ import {
 } from "@/lib/structured-data";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
-const path = "/umzug-regensburg";
+const path = "/regensburg/umzug";
 const title = "Umzug Regensburg | Start, Ziel, Volumen und Termin klären";
 const description =
   "Umzug Regensburg anfragen: Start, Ziel, Etage, Aufzug, Möbelmenge, Fotos, Termin, Reinigung, Entrümpelung und Übergabe sauber vorbereiten.";
@@ -109,9 +109,9 @@ const localSignals = [
 ] as const;
 
 const relatedLinks = [
-  { href: "/umzugsunternehmen-regensburg", label: "Umzugsunternehmen Regensburg" },
-  { href: "/umzug-reinigung-regensburg", label: "Umzug mit Reinigung" },
-  { href: "/entruempelung-regensburg", label: "Entrümpelung vor dem Umzug" },
+  { href: "/regensburg/umzugsunternehmen", label: "Umzugsunternehmen Regensburg" },
+  { href: "/regensburg/umzug-reinigung", label: "Umzug mit Reinigung" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung vor dem Umzug" },
   { href: "/beiladung-regensburg", label: "Beiladung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
 ] as const;

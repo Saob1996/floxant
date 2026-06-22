@@ -439,9 +439,9 @@ export default function PlanBServicePage() {
         <section className="px-4 pb-24 pt-6 sm:px-6">
           <div className="mx-auto grid max-w-7xl gap-3 md:grid-cols-2 lg:grid-cols-4">
             {[
-              ["/umzug-regensburg", "Backup fuer Umzug oder Transport"],
-              ["/reinigung-regensburg", "Reinigungs-Backup Regensburg"],
-              ["/entruempelung-regensburg", "Raeumung/Entsorgung pruefen"],
+              ["/regensburg/umzug", "Backup fuer Umzug oder Transport"],
+              ["/regensburg/reinigung", "Reinigungs-Backup Regensburg"],
+              ["/regensburg/entruempelung", "Raeumung/Entsorgung pruefen"],
               ["/rueckfahrt-boerse", "Rueckfahrt als Alternative"],
               ["/uebergabeakte", "Plan B vor Uebergabe"],
               ["/diskreter-umzug-trennung-scheidung", "Diskreten Auszug absichern"],

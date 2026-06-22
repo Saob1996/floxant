@@ -13,6 +13,8 @@
     "check:links": "node scripts/quality-gate.js links",
     "check:seo": "node scripts/quality-gate.js seo",
     "check:quality": "node scripts/quality-gate.js links seo dominance",
+    "check:quality:required": "npm run index:health && node scripts/quality-gate.js links seo dominance",
+    "check:quality:optional": "node scripts/quality-gate.js dominance-optional",
     "check:http": "node scripts/quality-gate.js http",
     "check:deploy": "npm run typecheck && npm run build && node scripts/quality-gate.js links seo dominance http",
     "seo:audit": "node scripts/seo-audit.js",
@@ -38,6 +40,7 @@
     "editorial:quality": "node scripts/editorial-quality.cjs",
     "risk:closure": "node scripts/risk-closure.cjs",
     "make:blog": "node scripts/generate-blog.js",
+    "index:health": "node scripts/index-health.cjs",
     "index:quality": "node scripts/index-quality.cjs",
     "search:coverage": "node scripts/index-quality.cjs",
     "content:quality": "npm run editorial:quality"

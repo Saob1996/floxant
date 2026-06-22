@@ -125,7 +125,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
         { href: "/bueroumzug", label: "Büroumzug als Hauptservice" },
         { href: "/firmenentsorgung", label: "Firmenentsorgung für Büroinventar" },
         { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt für Firmen nutzen" },
-        { href: "/service-area-bayern", label: `Büroumzug in ${region} und Bayern` },
+        { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
       ],
     };
   }
@@ -145,7 +145,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
         { href: "/reinigung", label: "Reinigung in Bayern im Überblick" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
         { href: "/rechner", label: "Reinigung direkt kalkulieren" },
-        { href: "/service-area-bayern", label: `Reinigung in ${region} und Bayern` },
+        { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
       ],
     };
   }
@@ -163,7 +163,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
       difference: `Im Unterschied zum normalen Möbeltransport zählen beim Klaviertransport vor allem Bauform, Gewicht, Empfindlichkeit, Zugänge, Tragewege und die Frage, ob Fotos oder eine Rückfrage vor einer Zusage nötig sind.`,
       relatedLinks: [
         { href: "/klaviertransport", label: "Klaviertransport als Hauptservice" },
-        { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+        { href: "/regensburg/umzug", label: "Umzug Regensburg" },
         { href: "/regensburg/umzug", label: "Regensburger Umzugsanfrage" },
         { href: "/angebot-guenstiger-pruefen", label: "Transportangebot prüfen" },
       ],
@@ -185,7 +185,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
         { href: "/entruempelung", label: "Entrümpelung in Bayern erklärt" },
         { href: "/kleinmengen-entsorgung", label: "Kleinmengen fachgerecht entsorgen" },
         { href: "/entruempelung-kosten-regensburg", label: "Entrümpelungskosten in Regensburg einordnen" },
-        { href: "/service-area-bayern", label: `Entrümpelung in ${region} und Bayern` },
+        { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
       ],
     };
   }
@@ -204,7 +204,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
       { href: "/umzug", label: "Umzug in Bayern im Überblick" },
       { href: "/beiladung", label: "Beiladung für einzelne Möbel prüfen" },
       { href: "/rechner", label: "Umzug direkt kalkulieren" },
-      { href: "/service-area-bayern", label: `Umzug in ${region} und Bayern` },
+      { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
     ],
   };
 }

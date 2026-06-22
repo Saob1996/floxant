@@ -73,8 +73,8 @@ export const SEO_MONEY_ROUTES = [
  "/buchung",
  "/rechner",
  "/umzug",
- "/umzug-regensburg",
- "/umzugsunternehmen-regensburg",
+ "/regensburg/umzug",
+ "/regensburg/umzugsunternehmen",
  "/umzug-aufhausen",
  "/umzug-friedberg",
  "/umzug-forchheim",
@@ -96,8 +96,8 @@ export const SEO_MONEY_ROUTES = [
  "/reinigung-muenchen",
  "/notfallreinigung-24h",
  "/reinigung-nach-veranstaltung",
- "/gewerbereinigung-regensburg",
- "/bueroreinigung-regensburg",
+ "/regensburg/gewerbereinigung",
+ "/regensburg/bueroreinigung",
  "/praxisreinigung-regensburg",
  "/hotelreinigung-regensburg",
  "/fensterreinigung-regensburg",
@@ -108,10 +108,10 @@ export const SEO_MONEY_ROUTES = [
  "/grundreinigung-regensburg",
  "/entruempelung",
  "/entruempelung-bayern",
- "/entruempelung-regensburg",
+ "/regensburg/entruempelung",
  "/entruempelung-nuernberg",
  "/entruempelung-landshut",
- "/wohnungsaufloesung-regensburg",
+ "/regensburg/wohnungsaufloesung",
  "/wohnungsaufloesung-bayern",
  "/bueroumzug",
  "/bueroumzug-regensburg",
@@ -121,8 +121,7 @@ export const SEO_MONEY_ROUTES = [
  "/geruchslos-protokoll",
  "/leerfahrt-rueckfahrt",
  "/private-client-service",
- "/service-area-bayern",
- "/einsatzgebiet-regensburg-200km",
+ "/regensburg",
  "/qualitaet-ablauf",
  "/praxisfaelle",
  "/kostenfaktoren",
@@ -191,8 +190,8 @@ export const SEO_SUPPORT_ROUTES = [
  "/regensburg/reinigung",
  "/regensburg/gewerbereinigung",
  "/buchung",
- "/gewerbereinigung-regensburg",
- "/bueroreinigung-regensburg",
+ "/regensburg/gewerbereinigung",
+ "/regensburg/bueroreinigung",
  "/praxisreinigung-regensburg",
  "/hotelreinigung-regensburg",
  "/fensterreinigung-regensburg",
@@ -204,8 +203,8 @@ export const SEO_SUPPORT_ROUTES = [
  "/notfallreinigung-24h",
  "/reinigung-nach-veranstaltung",
  "/beiladung",
- "/umzug-regensburg",
- "/umzugsunternehmen-regensburg",
+ "/regensburg/umzug",
+ "/regensburg/umzugsunternehmen",
  "/umzug-aufhausen",
  "/umzug-friedberg",
  "/umzug-forchheim",
@@ -227,11 +226,11 @@ export const SEO_SUPPORT_ROUTES = [
  "/express-anfrage",
  "/anfrage-mit-preisrahmen",
  "/kleinmengen-entsorgung",
- "/entruempelung-regensburg",
+ "/regensburg/entruempelung",
  "/entruempelung-nuernberg",
  "/entruempelung-bayern",
  "/entruempelung-landshut",
- "/wohnungsaufloesung-regensburg",
+ "/regensburg/wohnungsaufloesung",
  "/wohnungsaufloesung-bayern",
  "/bueroumzug-regensburg",
  "/bueroumzug-nuernberg",
@@ -386,14 +385,14 @@ const moneySnippets: Record<string, Snippet> = {
   cluster: "money",
   intent: "Reinigung nach Veranstaltung, Party, Firmenfeier oder Anlass anfragen",
  },
- "/gewerbereinigung-regensburg": {
+ "/regensburg/gewerbereinigung": {
  title: "Gewerbereinigung Regensburg | Büro, Praxis & Angebot",
  description:
    "Gewerbereinigung Regensburg für Büro, Praxis, Hotel und Objekt: Raumliste, Turnus, Fläche, Zeitfenster, Zugang und Fotos direkt senden.",
   cluster: "money",
   intent: "Gewerbereinigung in Regensburg für Büro, Praxis, Hotel, Treppenhaus, Glas, Bau oder IT-Raum anfragen",
  },
- "/bueroreinigung-regensburg": {
+ "/regensburg/bueroreinigung": {
   title: "Büroreinigung Regensburg | Angebot & Kosten",
   description:
    "Büroreinigung Regensburg für Büro, Kanzlei, Agentur und Verwaltung: Fläche, Turnus, Küche, Sanitär, Zeitfenster und Fotos senden.",
@@ -491,13 +490,6 @@ const moneySnippets: Record<string, Snippet> = {
   cluster: "money",
   intent: "Diskrete Hilfe für sensible Privathaushalte finden",
  },
- "/service-area-bayern": {
-  title: "FLOXANT Bayern | Umzug & Reinigung ab Regensburg",
-  description:
-   "Regensburg ist Kernregion, Bayern das Einsatzgebiet: Umzug, Reinigung, Entrümpelung, Büroumzug und Zusatzleistungen realistisch prüfen.",
-  cluster: "geo",
-  intent: "FLOXANT Einsatzgebiet in Bayern prüfen",
- },
  "/standorte": {
   title: "FLOXANT Standorte | Regensburg, Bayern, Umgebung",
   description:
@@ -511,13 +503,6 @@ const moneySnippets: Record<string, Snippet> = {
    "Kompakte Fakten zu FLOXANT: Umzug, Reinigung, Entrümpelung, Regensburg, Bayern, Preisrahmen, Grenzen und kanonische Startpunkte.",
   cluster: "support",
   intent: "FLOXANT schnell und korrekt einordnen",
- },
- "/einsatzgebiet-regensburg-200km": {
-  title: "Einsatzgebiet Regensburg 200 km | FLOXANT Bayern",
-  description:
-   "Umzug, Reinigung, Entrümpelung und Büroumzug ab Regensburg: Bayernweit anfragen und Einsatz nach Strecke realistisch prüfen.",
-  cluster: "geo",
-  intent: "Einsatzgebiet rund um Regensburg verstehen",
  },
  "/qualitaet-ablauf": {
   title: "FLOXANT Qualität & Ablauf | Warum Kunden anfragen",
@@ -654,7 +639,7 @@ const moneySnippets: Record<string, Snippet> = {
  },
 };
 
-moneySnippets["/endreinigung-regensburg"] = {
+moneySnippets["/regensburg/endreinigung"] = {
  title: "Endreinigung Regensburg | Auszug & Übergabe",
  description:
   "Endreinigung in Regensburg für Wohnung, Auszug und Übergabe: Fläche, Zustand, Fotos, Termin und Budget realistisch prüfen lassen.",
@@ -1102,7 +1087,7 @@ moneySnippets["/"] = {
  intent: "Direkten Dienstleister für Umzug, Reinigung und Entrümpelung mit Buchung finden",
 };
 
-moneySnippets["/umzug-regensburg"] = {
+moneySnippets["/regensburg/umzug"] = {
  title: "Umzug Regensburg mit Start, Ziel und Terminwunsch",
  description:
   "Umzug in Regensburg anfragen: Start, Ziel, Etage, Laufweg, Möbelmenge, Fotos und Termin senden. FLOXANT ordnet den nächsten Schritt ein.",
@@ -1110,7 +1095,7 @@ moneySnippets["/umzug-regensburg"] = {
  intent: "Umzug oder Umzugsunternehmen in Regensburg anfragen",
 };
 
-moneySnippets["/reinigung-regensburg"] = {
+moneySnippets["/regensburg/reinigung"] = {
  title: "Reinigung Regensburg mit Objekt und Termin anfragen",
  description:
   "Reinigung in Regensburg anfragen: Objekt, Fläche, Zustand, Fotos und Termin senden. FLOXANT ordnet Leistung und nächste Schritte ein.",
@@ -1198,7 +1183,7 @@ moneySnippets["/umzug-nuernberg"] = {
  intent: "Privatumzug in Nürnberg mit Fotos und Angebot anfragen",
 };
 
-moneySnippets["/umzugsunternehmen-regensburg"] = {
+moneySnippets["/regensburg/umzugsunternehmen"] = {
  title: "Umzugsunternehmen Regensburg | Fotos & Angebot prüfen",
  description:
   "Umzugsunternehmen Regensburg: Etage, Strecke, Möbel, Fotos, Termin und Preisrahmen senden. FLOXANT prüft Ablauf, Reinigung und Übergabe.",
@@ -1278,7 +1263,7 @@ moneySnippets["/bueroumzug-nuernberg"] = {
  intent: "Büroumzug oder Firmenumzug in Nürnberg anfragen",
 };
 
-moneySnippets["/entruempelung-regensburg"] = {
+moneySnippets["/regensburg/entruempelung"] = {
  title: "Entrümpelung Regensburg | Wohnung & Keller räumen",
  description:
   "Entrümpelung Regensburg für Wohnung, Keller, Garage, Hausauflösung und Restmengen: Fotos, Menge, Zugang, Termin und Angebot direkt prüfen lassen.",
@@ -1310,7 +1295,7 @@ moneySnippets["/entruempelung-landshut"] = {
  intent: "Küchenentsorgung oder Entrümpelung in Landshut anfragen",
 };
 
-moneySnippets["/wohnungsaufloesung-regensburg"] = {
+moneySnippets["/regensburg/wohnungsaufloesung"] = {
  title: "Hausauflösung Regensburg | Wohnung räumen lassen",
  description:
   "Wohnungsauflösung und Hausauflösung Regensburg, auch Bielingplatz: Räume, Keller, Möbel, Fotos, Zugang, Termin und Entsorgung prüfen.",
@@ -1444,22 +1429,6 @@ moneySnippets["/leistungen-vergleichen"] = {
   "Welcher Service passt? Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Angebotsprüfung klar vergleichen.",
  cluster: "support",
  intent: "Passenden FLOXANT Service schnell auswählen",
-};
-
-moneySnippets["/service-area-bayern"] = {
- title: "FLOXANT Bayern | aus Regensburg bayernweit tätig",
- description:
-  "FLOXANT arbeitet ab Regensburg für Bayern: Umzug, Reinigung, Entrümpelung, Büroumzug und Leerfahrt nach Strecke prüfen.",
- cluster: "geo",
- intent: "FLOXANT Einsatzgebiet in Bayern und rund um Regensburg prüfen",
-};
-
-moneySnippets["/einsatzgebiet-regensburg-200km"] = {
- title: "Servicegebiet Regensburg & Umgebung | FLOXANT",
- description:
-  "Regensburg als Kern: Umzug, Reinigung, Entrümpelung und Transport in der Umgebung bis ca. 200 km und Bayern nach Verfügbarkeit prüfen.",
- cluster: "geo",
- intent: "FLOXANT Servicegebiet rund um Regensburg und Bayern einordnen",
 };
 
 const serviceCityPatterns = [

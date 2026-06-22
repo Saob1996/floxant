@@ -30,9 +30,66 @@ const serviceRedirectPairs = [
     ['seniorenumzug', 'seniorenumzug'],
 ];
 
-const umlautRedirectDestinationOverrides = new Map();
+const umlautRedirectDestinationOverrides = new Map([
+    ['/entruempelung-regensburg', '/regensburg/entruempelung'],
+]);
 
-const legacyRegensburgRedirects = [];
+const legacyLocaleCodes = ['ar', 'bg', 'de', 'fa', 'ja', 'pl', 'ro', 'ru', 'uk', 'tr', 'vi'];
+const legacyLocalePattern = legacyLocaleCodes.join('|');
+const legacyRegensburgRedirectPairs = [
+    ['/umzug-regensburg', '/regensburg/umzug'],
+    ['/reinigung-regensburg', '/regensburg/reinigung'],
+    ['/entruempelung-regensburg', '/regensburg/entruempelung'],
+    ['/entr%C3%BCmpelung-regensburg', '/regensburg/entruempelung'],
+    ['/entrümpelung-regensburg', '/regensburg/entruempelung'],
+    ['/gewerbereinigung-regensburg', '/regensburg/gewerbereinigung'],
+    ['/bueroreinigung-regensburg', '/regensburg/bueroreinigung'],
+    ['/wohnungsaufloesung-regensburg', '/regensburg/wohnungsaufloesung'],
+    ['/umzugsunternehmen-regensburg', '/regensburg/umzugsunternehmen'],
+    ['/seniorenumzug-regensburg', '/regensburg/seniorenumzug'],
+    ['/umzug-reinigung-regensburg', '/regensburg/umzug-reinigung'],
+    ['/endreinigung-regensburg', '/regensburg/endreinigung'],
+];
+const legacyLocaleRegensburgRedirects = [...legacyLocaleCodes, 'en'].flatMap((locale) =>
+    legacyRegensburgRedirectPairs.map(([source, destination]) => ({
+        source: `/${locale}${source}`,
+        destination,
+        permanent: true,
+    })),
+);
+const legacyLocaleRedirects = [
+    {
+        source: '/de/umzug-duesseldorf',
+        destination: '/seo-gone',
+        permanent: true,
+    },
+    {
+        source: '/de/wissen/halteverbotszone-duesseldorf',
+        destination: '/seo-gone',
+        permanent: true,
+    },
+    {
+        source: '/ru/wissen/halteverbotszone-duesseldorf',
+        destination: '/seo-gone',
+        permanent: true,
+    },
+    {
+        source: `/:locale(${legacyLocalePattern})`,
+        destination: '/',
+        permanent: true,
+    },
+    {
+        source: `/:locale(${legacyLocalePattern})/:path*`,
+        destination: '/:path*',
+        permanent: true,
+    },
+];
+
+const legacyRegensburgRedirects = legacyRegensburgRedirectPairs.map(([source, destination]) => ({
+    source,
+    destination,
+    permanent: true,
+}));
 const gscCtrCanonicalRedirects = [
     ['/reinigung-duesseldorf', '/duesseldorf/reinigung'],
     ['/praxisreinigung-duesseldorf', '/duesseldorf/praxisreinigung'],
@@ -193,6 +250,16 @@ const nextConfig = {
                 permanent: true,
             },
             {
+                source: '/einsatzgebiet-regensburg-200km',
+                destination: '/regensburg',
+                permanent: true,
+            },
+            {
+                source: '/service-area-bayern',
+                destination: '/regensburg',
+                permanent: true,
+            },
+            {
                 source: '/duesseldorf/angebot-pruefen',
                 destination: '/duesseldorf/angebot-vergleichen',
                 permanent: true,
@@ -207,6 +274,8 @@ const nextConfig = {
                 destination: '/:slug',
                 permanent: true,
             },
+            ...legacyLocaleRegensburgRedirects,
+            ...legacyLocaleRedirects,
             ...gscCtrCanonicalRedirects,
             ...legacyRegensburgRedirects,
             ...buildUmlautRedirects(),

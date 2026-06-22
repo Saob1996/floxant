@@ -169,8 +169,8 @@ const relatedLinks = [
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl", label: "Ratgeber Reinigungsfirma" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -197,7 +197,7 @@ export default function PraxisreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Praxisreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -252,7 +252,7 @@ export default function PraxisreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Praxisreinigung Regensburg" },
         ]}
       />

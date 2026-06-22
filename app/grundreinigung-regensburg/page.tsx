@@ -164,11 +164,11 @@ const relatedLinks = [
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
-  { href: "/endreinigung-regensburg", label: "Endreinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
 ];
 
@@ -193,7 +193,7 @@ export default function GrundreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Reinigung Regensburg", item: "/reinigung-regensburg" },
+        { name: "Reinigung Regensburg", item: "/regensburg/reinigung" },
         { name: "Grundreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -248,7 +248,7 @@ export default function GrundreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Reinigung Regensburg", href: "/reinigung-regensburg" },
+          { label: "Reinigung Regensburg", href: "/regensburg/reinigung" },
           { label: "Grundreinigung Regensburg" },
         ]}
       />

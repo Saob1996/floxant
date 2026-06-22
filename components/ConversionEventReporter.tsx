@@ -223,9 +223,7 @@ function getHighIntentPageSignal(pathname: string) {
   path.startsWith("/umzug") ||
   path.startsWith("/reinigung") ||
   path.startsWith("/entruempelung") ||
-  path.startsWith("/bueroumzug") ||
-  path.includes("service-area-bayern") ||
-  path.includes("einsatzgebiet-regensburg-200km")
+  path.startsWith("/bueroumzug")
  ) {
   return { path, source: "service_area_page_dwell", label: "Service-/Ortsseite aktiv gelesen", priority: "warm", intent: "local_service_review" };
  }

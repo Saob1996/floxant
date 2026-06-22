@@ -610,6 +610,7 @@ export function FloxantObjectBriefBuilder() {
               </a>
               <button
                 type="button"
+                aria-label={copied ? "Objektbrief-Nachricht kopiert" : "Objektbrief-Nachricht kopieren"}
                 onClick={copyMessage}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
                 data-event="hero_cta_click"

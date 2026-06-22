@@ -87,11 +87,11 @@ const audiences = [
 const services = [
   ["Umzug Regensburg", "Wohnungswechsel, Transportvorbereitung, Zugang und Übergabe nach Absprache.", "/regensburg/umzug"],
   ["Reinigung Düsseldorf", "Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Übergaben.", "/duesseldorf/reinigung"],
-  ["Reinigung Regensburg", "Endreinigung, Übergabereinigung und Reinigung nach Umzug oder Räumung.", "/reinigung-regensburg"],
+  ["Reinigung Regensburg", "Endreinigung, Übergabereinigung und Reinigung nach Umzug oder Räumung.", "/regensburg/reinigung"],
   ["Entrümpelung Regensburg", "Wohnung, Keller, Haus oder Objektfläche mit Fotos und klarer Vorprüfung.", "/regensburg/entruempelung"],
   ["Haushaltsauflösung Regensburg", "Räumung, Sortierung, Restpunkte und Vorbereitung für Übergabe oder Nachnutzung.", "/regensburg/haushaltsaufloesung"],
   ["Übergabereinigung", "Wohnung oder Objekt vor Rückgabe, Besichtigung oder Mieterwechsel vorbereiten.", "/regensburg/uebergabereinigung"],
-  ["Angebotsprüfung Düsseldorf", "Bestehendes Reinigungsangebot oder Eckdaten kostenlos und unverbindlich prüfen lassen.", "/angebot-vergleichen-duesseldorf"],
+  ["Angebotsprüfung Düsseldorf", "Bestehendes Reinigungsangebot oder Eckdaten sachlich einordnen lassen.", "/angebot-vergleichen-duesseldorf"],
   ["Angebotsprüfung allgemein", "Angebot für Umzug, Reinigung, Entrümpelung oder Entsorgung sachlich prüfen lassen.", "/angebot-guenstiger-pruefen"],
 ];
 

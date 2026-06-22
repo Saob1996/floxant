@@ -310,12 +310,11 @@ export function germanizeDeep<T>(value: T, parentKey?: string): T {
   }
 
   if (value && typeof value === "object") {
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, nestedValue]) => [
-        key,
-        germanizeDeep(nestedValue, key),
-      ]),
-    ) as T;
+    const normalized: Record<string, unknown> = {};
+    for (const [key, nestedValue] of Object.entries(value as Record<string, unknown>)) {
+      normalized[key] = germanizeDeep(nestedValue, key);
+    }
+    return normalized as T;
   }
 
   return value;

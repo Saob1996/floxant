@@ -248,7 +248,6 @@ export const BAVARIA_AUTHORITY_PAGES = [
   "entruempelung-bayern",
   "reinigung-bayern",
   "wohnungsaufloesung-bayern",
-  "service-area-bayern",
 ] as const;
 
 /** Signature SEO landing pages */
@@ -318,7 +317,6 @@ export const HUB_PAGES = [
   "regensburg/umzugsunternehmen",
   "regensburg/reinigungsfirma",
   "angebot-vergleichen-regensburg",
-  "einsatzgebiet-regensburg-200km",
   "buchung-ablauf",
   "leistungen-vergleichen",
   "anbieter-vergleichen",

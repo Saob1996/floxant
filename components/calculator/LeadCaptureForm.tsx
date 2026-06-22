@@ -251,6 +251,8 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     )}
 
     <button
+     type="button"
+     aria-label={dic?.common?.back_to_home || "Zurück"}
      onClick={() => setMode("express")}
      className="rounded-full border border-white/10 bg-white/[0.04] px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/[0.08]"
     >
@@ -295,6 +297,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       <input
        required
        type="text"
+       aria-label={dic?.calculator?.contact_person || "Kontaktperson"}
        placeholder={dic?.calculator?.name_placeholder || ""}
        className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
        value={leadDetails.customerName}
@@ -311,6 +314,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
       <input
        required
        type="tel"
+       aria-label={dic?.calculator?.phone_number || "Telefonnummer"}
        placeholder="+49 170 1234567"
        className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
        value={leadDetails.customerPhone}
@@ -327,6 +331,7 @@ export default function LeadCaptureForm({ dic }: { dic?: any }) {
     >
      <input
        type="email"
+      aria-label={dic?.calculator?.email_address || "E-Mail optional"}
       placeholder="max@beispiel.de"
       className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/30"
       value={leadDetails.customerEmail}

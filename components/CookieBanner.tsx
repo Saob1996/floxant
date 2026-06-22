@@ -106,6 +106,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
                     
                     <div className="grid w-full grid-cols-3 gap-1.5 sm:gap-2">
                       <button
+                        aria-label={dic?.cookie?.settings || "Einstellungen"}
                         onClick={() => setShowSettings(true)}
                         className="min-h-10 rounded-lg border border-slate-500 bg-slate-800 px-2 py-2 text-[11px] font-bold leading-tight transition-colors hover:bg-slate-700 sm:text-xs"
                         style={{ color: "#f8fafc", WebkitTextFillColor: "#f8fafc" }}
@@ -114,6 +115,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
                       </button>
                       {/* Note: In Germany (DSGVO/TTDSG), 'Reject' and 'Accept' must be visually comparable */}
                       <button
+                        aria-label={dic?.cookie?.essential_only || "Nur Essenzielle"}
                         onClick={handleAcceptNecessary}
                         className="min-h-10 rounded-lg border border-slate-500 bg-neutral-800 px-2 py-2 text-[11px] font-bold leading-tight transition-colors hover:bg-neutral-700 sm:text-xs"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
@@ -121,6 +123,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
                         {dic?.cookie?.essential_only || "Nur Essenzielle"}
                       </button>
                       <button
+                        aria-label={dic?.cookie?.accept_all || "Alle akzeptieren"}
                         onClick={handleAcceptAll}
                         className="min-h-10 whitespace-nowrap rounded-lg bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-2 text-[11px] font-bold text-white transition-colors hover:from-blue-700 hover:to-cyan-600 sm:text-xs"
                         style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
@@ -192,6 +195,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
 
                   <div className="flex flex-col justify-end gap-2 border-t border-white/10 pt-3 sm:flex-row sm:gap-3 sm:pt-4">
                     <button
+                      type="button"
                       onClick={handleAcceptAll}
                       className="min-h-10 rounded-[0.75rem] px-5 py-2 text-sm font-bold transition-colors hover:bg-white/10 sm:min-h-11 sm:py-2.5"
                       style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
@@ -199,6 +203,8 @@ export function CookieBanner({ dic }: { dic?: any }) {
                       Alle auswählen
                     </button>
                     <button
+                      type="button"
+                      aria-label="Cookie-Auswahl speichern"
                       onClick={handleSaveSettings}
                       className="min-h-10 rounded-[0.75rem] bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 px-8 text-sm font-bold text-white transition-colors hover:from-blue-700 hover:to-cyan-600 sm:min-h-11"
                       style={{ color: "#ffffff", WebkitTextFillColor: "#ffffff" }}

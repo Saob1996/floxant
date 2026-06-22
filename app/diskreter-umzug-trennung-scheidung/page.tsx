@@ -218,8 +218,8 @@ const notIncluded = [
 
 const relatedLinks = [
   { href: "/private-client-service", label: "Diskrete Abstimmung" },
-  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-  { href: "/reinigung-regensburg", label: "Reinigung nach Auszug" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung nach Auszug" },
   { href: "/uebergabeakte", label: "Übergabeakte ergänzen" },
   { href: "/schluesseluebergabe", label: "Schlüsselübergabe abstimmen" },
   { href: "/schadensbegrenzung", label: "Wenn der Plan bereits gekippt ist" },
@@ -227,7 +227,7 @@ const relatedLinks = [
   { href: "/immobilie-verkaufsbereit-machen", label: "Objekt nach Auszug vorbereiten" },
   { href: "/buchung", label: "Anfrage starten" },
   { href: "/rechner", label: "Preisrahmen einschaetzen" },
-  { href: "/einsatzgebiet-regensburg-200km", label: "Servicegebiet Regensburg" },
+  { href: "/regensburg", label: "Regensburg-Bereich" },
 ];
 
 const faqItems = [
@@ -474,7 +474,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
                     <Navigation className="h-4 w-4" />
                   </Link>
                   <Link
-                    href="/einsatzgebiet-regensburg-200km"
+                    href="/regensburg"
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-5 text-sm font-black text-stone-800 transition hover:bg-white"
                   >
                     Servicegebiet ansehen

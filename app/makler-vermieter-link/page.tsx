@@ -74,7 +74,7 @@ const objectCases = [
   {
     title: "Reinigung fehlt",
     text: "Endreinigung, Auszugsreinigung oder Reinigung vor Besichtigung nach Zustand einordnen.",
-    link: "/reinigung-regensburg",
+    link: "/regensburg/reinigung",
     cta: "Reinigung Regensburg",
     Icon: Sparkles,
   },
@@ -422,11 +422,11 @@ export default function MaklerVermieterLinkPage() {
                 Der Objekt-Link ist fuer Regensburg und Umgebung gebaut. Bayern wird nach Termin, Umfang, Zugang und Verfuegbarkeit geprueft.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/einsatzgebiet-regensburg-200km" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
+                <Link href="/regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
                   Servicegebiet ansehen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/entruempelung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
+                <Link href="/regensburg/entruempelung" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
                   Entruempelung Regensburg
                   <ArrowRight className="h-4 w-4" />
                 </Link>

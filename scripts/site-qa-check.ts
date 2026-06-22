@@ -33,13 +33,13 @@ const CRITICAL_ROUTES = [
   { route: "/duesseldorf/haushaltsaufloesung", purpose: "Dusseldorf estate clearance", intent: "Household clearance Dusseldorf", funnel: "Lead", service: "wohnungsaufloesung", city: "duesseldorf", priority: "P1", structuredData: true },
   { route: "/regensburg", purpose: "Regensburg hub", intent: "Local service selection", funnel: "Consideration", service: "multi", city: "regensburg", priority: "P1", structuredData: true },
   { route: "/regensburg/umzug", purpose: "Regensburg moving canonical local route", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P2", structuredData: true },
-  { route: "/umzug-regensburg", purpose: "Regensburg moving money page", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P0", structuredData: true },
-  { route: "/reinigung-regensburg", purpose: "Regensburg cleaning money page", intent: "Cleaning Regensburg", funnel: "Lead", service: "reinigung", city: "regensburg", priority: "P1", structuredData: true },
-  { route: "/entruempelung-regensburg", purpose: "Regensburg clearance money page", intent: "Clearance Regensburg", funnel: "Lead", service: "entruempelung", city: "regensburg", priority: "P1", structuredData: true },
-  { route: "/gewerbereinigung-regensburg", purpose: "Regensburg commercial cleaning", intent: "Commercial cleaning Regensburg", funnel: "Lead", service: "gewerbereinigung", city: "regensburg", priority: "P1", structuredData: true },
-  { route: "/bueroreinigung-regensburg", purpose: "Regensburg office cleaning", intent: "Office cleaning Regensburg", funnel: "Lead", service: "bueroreinigung", city: "regensburg", priority: "P1", structuredData: true },
+  { route: "/regensburg/umzug", purpose: "Regensburg moving money page", intent: "Moving Regensburg", funnel: "Lead", service: "umzug", city: "regensburg", priority: "P0", structuredData: true },
+  { route: "/regensburg/reinigung", purpose: "Regensburg cleaning money page", intent: "Cleaning Regensburg", funnel: "Lead", service: "reinigung", city: "regensburg", priority: "P1", structuredData: true },
+  { route: "/regensburg/entruempelung", purpose: "Regensburg clearance money page", intent: "Clearance Regensburg", funnel: "Lead", service: "entruempelung", city: "regensburg", priority: "P1", structuredData: true },
+  { route: "/regensburg/gewerbereinigung", purpose: "Regensburg commercial cleaning", intent: "Commercial cleaning Regensburg", funnel: "Lead", service: "gewerbereinigung", city: "regensburg", priority: "P1", structuredData: true },
+  { route: "/regensburg/bueroreinigung", purpose: "Regensburg office cleaning", intent: "Office cleaning Regensburg", funnel: "Lead", service: "bueroreinigung", city: "regensburg", priority: "P1", structuredData: true },
   { route: "/klaviertransport-regensburg", purpose: "Regensburg piano transport", intent: "Piano transport Regensburg", funnel: "Lead", service: "klaviertransport", city: "regensburg", priority: "P0", structuredData: true },
-  { route: "/wohnungsaufloesung-regensburg", purpose: "Regensburg estate clearance", intent: "Estate clearance Regensburg", funnel: "Lead", service: "wohnungsaufloesung", city: "regensburg", priority: "P1", structuredData: true },
+  { route: "/regensburg/wohnungsaufloesung", purpose: "Regensburg estate clearance", intent: "Estate clearance Regensburg", funnel: "Lead", service: "wohnungsaufloesung", city: "regensburg", priority: "P1", structuredData: true },
   { route: "/b2b-bueroreinigung", purpose: "GSC alias for Dusseldorf office cleaning", intent: "B2B office cleaning", funnel: "Lead", service: "bueroreinigung", city: "duesseldorf", priority: "P0", aliasOf: "/duesseldorf/bueroreinigung" },
   { route: "/diskret-service", purpose: "GSC alias for discreet service", intent: "Discreet service", funnel: "Lead", service: "diskret-service", city: "deutschland", priority: "P0", aliasOf: "/diskreter-umzug-trennung-scheidung" },
   { route: "/diskreter-umzug-trennung-scheidung", purpose: "Discreet move service", intent: "Discreet move", funnel: "Lead", service: "diskret-service", city: "deutschland", priority: "P0", structuredData: true, form: "DiscreetMoveForm" },
@@ -342,9 +342,9 @@ function checkLeadToBookingEnhancements() {
     "app/duesseldorf/bueroreinigung/page.tsx",
     "app/duesseldorf/gewerbereinigung/page.tsx",
     "app/diskreter-umzug-trennung-scheidung/page.tsx",
-    "app/umzug-regensburg/page.tsx",
-    "app/reinigung-regensburg/page.tsx",
-    "app/entruempelung-regensburg/page.tsx",
+    "app/regensburg/umzug/page.tsx",
+    "app/regensburg/reinigung/page.tsx",
+    "app/regensburg/entruempelung/page.tsx",
   ].map((file) => path.join(ROOT, file));
 
   const packageNeedles = ["geeignetWenn", "nichtGeeignetWenn", "benoetigteAngaben", "optionaleAngaben", "typischeAufwandstreiber", "kontaktParameter"];
@@ -366,7 +366,7 @@ function checkLeadToBookingEnhancements() {
 
   const missingIntegrations = pageFiles.filter((file) => {
     const source = read(file);
-    return !/(ServicePackageSelector|EffortFactorsPanel|ContactPathChooser|OfferConcernSelector|B2BRequestPanel|DiscreetRequestPanel)/.test(source);
+    return !/(ServicePackageSelector|EffortFactorsPanel|ContactPathChooser|OfferConcernSelector|B2BRequestPanel|DiscreetRequestPanel|RegensburgServicePage|LocalServiceSeoPage|GscOpportunitySection)/.test(source);
   });
   results.push(missingIntegrations.length
     ? item("FAIL", "Lead-to-Booking", null, "", `Page-Integrationen fehlen/unklar: ${missingIntegrations.map(rel).join(", ")}.`, "P0", "Kritische Seiten mit passenden Lead-to-Booking-Komponenten verbinden.")

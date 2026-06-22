@@ -109,7 +109,7 @@ export default async function KurzfristigerUmzugBayern() {
                   Notfall-Umzug
                 </Link>
                 <Link
-                  href={`/umzug-regensburg`}
+                  href={`/regensburg/umzug`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 >
                   Umzug Regensburg

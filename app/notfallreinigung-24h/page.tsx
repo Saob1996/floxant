@@ -316,8 +316,8 @@ export default function Notfallreinigung24hPage() {
                 <h2 className="mt-3 text-3xl font-black">Senden Sie Ort, Fotos und Deadline. FLOXANT prueft den schnellsten sinnvollen Weg.</h2>
                 <p className="mt-4 max-w-3xl leading-8 text-slate-200">
                   Passende Wege zur Anfrage: <Link className="font-black text-white underline" href="/reinigung">Reinigung</Link>,{" "}
-                  <Link className="font-black text-white underline" href="/endreinigung-regensburg">Endreinigung Regensburg</Link>,{" "}
-                  <Link className="font-black text-white underline" href="/gewerbereinigung-regensburg">Gewerbereinigung Regensburg</Link> und{" "}
+                  <Link className="font-black text-white underline" href="/regensburg/endreinigung">Endreinigung Regensburg</Link>,{" "}
+                  <Link className="font-black text-white underline" href="/regensburg/gewerbereinigung">Gewerbereinigung Regensburg</Link> und{" "}
                   <Link className="font-black text-white underline" href="/duesseldorf/reinigung">Reinigung Duesseldorf</Link>.
                 </p>
               </div>

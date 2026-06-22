@@ -17,9 +17,9 @@ import {
 import { company } from "@/lib/company";
 
 const regensburgServices = [
-  { label: "Umzug", href: "/umzug-regensburg", text: "Privat, Familie, Firma oder kurzfristiger Wechsel." },
-  { label: "Reinigung", href: "/reinigung-regensburg", text: "Endreinigung, Übergabe, Objekt oder Gewerbe." },
-  { label: "Entrümpelung", href: "/entruempelung-regensburg", text: "Wohnung, Keller, Nachlass oder Restmengen." },
+  { label: "Umzug", href: "/regensburg/umzug", text: "Privat, Familie, Firma oder kurzfristiger Wechsel." },
+  { label: "Reinigung", href: "/regensburg/reinigung", text: "Endreinigung, Übergabe, Objekt oder Gewerbe." },
+  { label: "Entrümpelung", href: "/regensburg/entruempelung", text: "Wohnung, Keller, Nachlass oder Restmengen." },
   { label: "Übergabe", href: "/uebergabeakte", text: "Schlüssel, Fotos, Protokoll und offene Punkte." },
   { label: "Plan B", href: "/plan-b-service", text: "Wenn Termin, Anbieter oder Ablauf kippt." },
   { label: "Rückfahrt", href: "/leerfahrt-rueckfahrt", text: "Transport und freie Kapazität rund um Bayern." },

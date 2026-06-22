@@ -111,7 +111,7 @@ export default function BlogHausverwaltungTreppenhausPage() {
         ]}
         ctas={[
           { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung anfragen" },
-          { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
+          { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
           { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service prüfen" },
         ]}
         faqTitle="FAQ zur Treppenhausreinigung für Hausverwaltungen"

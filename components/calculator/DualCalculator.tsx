@@ -112,6 +112,7 @@ function BackButton({ onClick, label }: { onClick: () => void; label: string }) 
  return (
   <div className="mb-6 flex justify-start">
    <button
+    aria-label={label}
     onClick={onClick}
     className="flex items-center text-sm font-medium text-white/40 transition-colors hover:text-white"
    >

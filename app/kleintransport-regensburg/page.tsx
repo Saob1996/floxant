@@ -44,7 +44,7 @@ export default async function KleintransportRegensburgPage({ params }: PageProps
       heroImage="/assets/service-moving.png"
       breadcrumbs={[
         { label: "Home", href: "/" },
-        { label: "Umzug Regensburg", href: `/umzug-regensburg` },
+        { label: "Umzug Regensburg", href: `/regensburg/umzug` },
         { label: "Kleintransport" }
       ]}
       chips={[

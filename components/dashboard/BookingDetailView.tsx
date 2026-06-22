@@ -659,7 +659,7 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
           <div className="space-y-3 pt-4">
            {error ? <p className="mb-4 text-xs font-medium text-red-700">{error}</p> : null}
 
-           <PremiumButton className="h-12 w-full bg-blue-600 text-sm font-bold shadow-sm shadow-blue-700/20" onClick={handleSave} disabled={saving}>
+           <PremiumButton className="h-12 w-full bg-blue-600 text-sm font-bold shadow-sm shadow-blue-700/20" onClick={handleSave} disabled={saving} aria-label="Aenderungen speichern">
             {saving ? (
              <Loader2 className="mx-auto h-5 w-5 animate-spin" />
             ) : (
@@ -681,6 +681,8 @@ const detailTabs: Array<{ id: DetailTab; label: string; hint: string }> = [
              Dokumente
             </a>
             <button
+             type="button"
+             aria-label="Detailansicht schliessen"
              onClick={onClose}
              className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-600 transition-colors hover:bg-slate-100"
             >

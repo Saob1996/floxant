@@ -38,7 +38,6 @@ const commonRelated = [
   { href: "/regensburg/reinigung-nach-umzug", label: "Reinigung nach Umzug Regensburg" },
   { href: "/regensburg/angebot-vergleichen", label: "Angebotsprüfung Regensburg" },
   { href: "/angebot-vergleichen-regensburg", label: "Angebot vergleichen Regensburg" },
-  { href: "/angebot-pruefen", label: "Angebot zentral prüfen" },
   { href: "/region-regensburg", label: "Region Regensburg" },
 ] as const;
 
@@ -46,29 +45,29 @@ export const regensburgServicePages = {
   umzug: {
     slug: "umzug",
     path: "/regensburg/umzug",
-    title: "Umzug in Regensburg mit klarer Planung und Angebot nach Prüfung",
-    metaTitle: "Umzugsfirma Regensburg | Bilder senden, Angebot klären",
+    title: "Umzug Regensburg mit Start, Ziel, Etage und Volumen klären",
+    metaTitle: "Umzug Regensburg | Angebot nach Etage und Umfang",
     metaDescription:
-      "Umzug in Regensburg anfragen: Start, Ziel, Etage, Laufweg, Volumen und Fotos senden. FLOXANT prüft Angebot, Ablauf und Rückmeldung sauber.",
+      "FLOXANT prüft Start, Ziel, Etagen, Volumen, Zugang und Termin. Umzug in Regensburg beschreiben und Angebot vorbereiten.",
     eyebrow: "FLOXANT Regensburg",
     description:
-      "FLOXANT unterstützt private und objektbezogene Umzüge in Regensburg, wenn Volumen, Zugang, Zeitfenster und zusätzliche Aufgaben sauber abgestimmt werden sollen.",
-    primaryCta: "Umzug kostenlos anfragen",
+      "FLOXANT prüft Ihren Umzug in Regensburg nach Start- und Zieladresse, Etage, Aufzug, Trageweg, Volumen, Möbelmontage, Kartons, Termin und Fotos. Reinigung oder Entrümpelung werden nur ergänzt, wenn sie wirklich dazugehören.",
+    primaryCta: "Umzug in Regensburg anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte einen Umzug in Regensburg anfragen. Ort, Ziel, Termin, Volumen und Fotos kann ich senden.",
     serviceType: "Umzug Regensburg",
-    suitableFor: ["Wohnungswechsel", "kleine Objektumzüge", "Möbeltransport nach Absprache", "Umzug mit Endreinigung"],
-    scope: ["Volumen und Laufwege", "Etage, Aufzug und Parkmöglichkeit", "Terminfenster", "Restmengen und Übergabe"],
+    suitableFor: ["Wohnungswechsel", "kleine Objektumzüge", "Möbeltransport nach Absprache", "Umzug mit Endreinigung", "Angebotsprüfung"],
+    scope: ["Start- und Zieladresse", "Etage, Aufzug und Trageweg", "Möbelmenge, Kartons und Fotos", "Haltemöglichkeit, Termin und Ansprechpartner"],
     process: [
       "Sie senden Start, Ziel, Terminwunsch und groben Umfang.",
       "FLOXANT prüft Volumen, Zugang, Laufwege und mögliche Zusatzleistungen.",
-      "Offene Punkte wie Reinigung, Entsorgung oder Übergabe werden getrennt geklärt.",
+      "Möbelmontage, Packhilfe, Reinigung oder Entsorgung werden nur als getrennte Zusatzpunkte geklärt.",
       "Sie erhalten eine klare Rückmeldung und ein unverbindliches Angebot, wenn es passt.",
     ],
     trust: [
       "Keine blinden Pauschalpreise ohne Umfang.",
       "Fotos helfen bei Volumen, Laufwegen und Restmengen.",
-      "Umzug und Reinigung können getrennt, aber zusammen gedacht werden.",
+      "Umzug bleibt die Hauptleistung; Reinigung oder Entrümpelung werden nicht in den Preis hineingemischt.",
     ],
     faq: [
       {
@@ -81,7 +80,7 @@ export const regensburgServicePages = {
       },
       {
         q: "Ist die Anfrage unverbindlich?",
-        a: "Ja. FLOXANT prüft kostenlos und unverbindlich, ob der Auftrag realistisch geplant werden kann.",
+        a: "Ein Auftrag entsteht erst, wenn Machbarkeit, Umfang, Termin und Leistung gemeinsam geklärt sind.",
       },
       {
         q: "Welche Kostenfaktoren bestimmen den Umzug?",
@@ -101,21 +100,21 @@ export const regensburgServicePages = {
   entruempelung: {
     slug: "entruempelung",
     path: "/regensburg/entruempelung",
-    title: "Entrümpelung in Regensburg für Wohnung, Keller und Objekt",
-    metaTitle: "Entrümpelung Regensburg | Wohnung & Keller klären",
+    title: "Entrümpelung Regensburg für Wohnung, Keller, Garage und Nachlass",
+    metaTitle: "Entrümpelung Regensburg | Wohnung, Keller, Nachlass",
     metaDescription:
-      "Entrümpelung in Regensburg für Wohnung, Keller, Garage oder Objekt: Fotos, Menge, Zugang, Entsorgung und Reinigung danach prüfen, Termin klären.",
+      "Entrümpelung in Regensburg mit klarer Abstimmung zu Räumen, Menge, Zugang und Termin. Anfrage mit Fotos oder Objektangaben senden.",
     eyebrow: "FLOXANT Regensburg",
     description:
-      "FLOXANT hilft, Räume wieder nutzbar zu machen: sortieren, räumen, tragbare Mengen einschätzen und die Fläche für Übergabe, Verkauf oder Nachnutzung vorbereiten.",
+      "FLOXANT prüft Entrümpelung in Regensburg nach Wohnung, Keller, Dachboden, Garage, Nachlass, Menge, Zugang, Fotos und gewünschtem Endzustand. Was bleibt, was raus soll und ob danach gereinigt wird, wird vorab getrennt geklärt.",
     primaryCta: "Entrümpelung anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte eine Entrümpelung in Regensburg anfragen. Fotos, Ort, Umfang und Termin kann ich senden.",
     serviceType: "Entrümpelung Regensburg",
-    suitableFor: ["Wohnungen", "Keller", "Nebenräume", "Objektflächen", "Räumung vor Übergabe"],
-    scope: ["Fotos und Menge", "Etage und Laufweg", "Parkmöglichkeit", "Entsorgung nach Prüfung"],
+    suitableFor: ["Wohnungen", "Keller", "Nebenräume", "Nachlass", "Objektflächen", "Räumung vor Übergabe"],
+    scope: ["Wohnung, Keller, Dachboden, Garage oder Nebenraum", "Menge, Fotos und Materialarten", "Was bleibt und was raus soll", "Zugang, Etage, Freigabe und Termin"],
     process: [
-      "Sie senden Fotos, Ort, Menge und gewünschtes Ziel.",
+      "Sie senden Fotos, Ort, Räume, Menge und was entfernt werden soll.",
       "FLOXANT prüft Zugang, Umfang, Material und Terminfenster.",
       "Entsorgung, Reinigung und Übergabevorbereitung werden getrennt eingeordnet.",
       "Sie erhalten eine unverbindliche Rückmeldung zum nächsten Schritt.",
@@ -407,19 +406,19 @@ export const regensburgServicePages = {
   bueroreinigung: {
     slug: "bueroreinigung",
     path: "/regensburg/bueroreinigung",
-    title: "Büroreinigung in Regensburg mit Raumliste, Turnus und Angebot nach Prüfung",
-    metaTitle: "Büroreinigung Regensburg | Büro, Kanzlei & Angebot | FLOXANT",
+    title: "Büroreinigung Regensburg für Arbeitsplätze, Küche und Sanitär",
+    metaTitle: "Büroreinigung Regensburg | Raumliste und Turnus",
     metaDescription:
-      "Büroreinigung Regensburg für Büro, Kanzlei, Agentur und Gewerbefläche: Raumliste, Turnus, Randzeit, Fotos und Angebot prüfen.",
+      "Büroreinigung Regensburg für Arbeitsplätze, Besprechung, Teeküche und Sanitär: Raumliste, Turnus, Randzeit, Zugang und Angebot klären.",
     eyebrow: "FLOXANT Büroreinigung Regensburg",
     description:
-      "FLOXANT prüft Büroreinigung in Regensburg, wenn Arbeitsplätze, Küche, Sanitär, Besprechungsräume, Randzeiten, Schlüsselweg und vorhandene Angebote sauber eingeordnet werden sollen.",
+      "FLOXANT prüft Büroreinigung in Regensburg, wenn Arbeitsplätze, Empfang, Besprechungsräume, Teeküche, Sanitär, Randzeiten, Schlüsselweg, Stadtteil und vorhandene Angebote sauber eingeordnet werden sollen.",
     primaryCta: "Büroreinigung anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Büroreinigung in Regensburg anfragen. Fläche, Räume, Turnus, Randzeit, Zugang und Fotos kann ich senden.",
     serviceType: "Büroreinigung Regensburg",
-    suitableFor: ["Büros", "Agenturen", "Kanzleien", "Praxisnahe Nebenflächen", "kleine Gewerbeflächen"],
-    scope: ["Raumliste und Arbeitsplätze", "Küche, Sanitär und Böden", "Turnus und Randzeit", "Schlüsselweg, Zugang und Fotos"],
+    suitableFor: ["Büros", "Agenturen", "Kanzleien", "Studios", "kleine Teams mit festen Arbeitsplätzen"],
+    scope: ["Arbeitsplätze und Besprechungsräume", "Empfang, Teeküche, Sanitär und Böden", "Turnus, Randzeit und Schlüsselweg", "Zugang, Fotos, Ansprechpartner und Angebot"],
     process: [
       "Sie senden Stadtteil, Fläche, Raumliste, Turnus und gewünschtes Zeitfenster.",
       "FLOXANT prüft Arbeitsplätze, Sanitär, Küche, Boden, Zugang und Schlüsselweg.",
@@ -429,7 +428,7 @@ export const regensburgServicePages = {
     trust: [
       "Keine Blindpreise ohne Raumliste und Turnus.",
       "Randzeiten und Schlüsselweg werden früh geklärt.",
-      "Büro, Gewerbe und Übergabe bleiben getrennt nachvollziehbar.",
+      "Büro bleibt Büro; breitere Gewerbeflächen werden auf die Gewerbereinigung geführt.",
     ],
     faq: [
       {
@@ -438,7 +437,7 @@ export const regensburgServicePages = {
       },
       {
         q: "Welche Büros kann FLOXANT prüfen?",
-        a: "Prüfbar sind Büros, Agenturen, Kanzleien, kleine Gewerbeflächen und Praxis-Nebenflächen nach Absprache in Regensburg und Umgebung.",
+        a: "Prüfbar sind Büros, Agenturen, Kanzleien, Studios und kleine Teams mit festen Arbeitsplätzen. Für Ladenflächen, größere Objektflächen oder Mischflächen ist Gewerbereinigung meist passender.",
       },
       {
         q: "Kann die Büroreinigung nach Feierabend stattfinden?",
@@ -468,19 +467,19 @@ export const regensburgServicePages = {
   wohnungsaufloesung: {
     slug: "wohnungsaufloesung",
     path: "/regensburg/wohnungsaufloesung",
-    title: "Wohnungsauflösung in Regensburg ruhig mit Räumung, Entsorgung und Reinigung klären",
-    metaTitle: "Wohnungsauflösung Regensburg | Räumung, Nachlass & Reinigung | FLOXANT",
+    title: "Wohnungsauflösung Regensburg bei Nachlass, Auszug und Übergabe",
+    metaTitle: "Wohnungsauflösung Regensburg | Nachlass ruhig klären",
     metaDescription:
-      "Wohnungsauflösung Regensburg für Auszug, Nachlass oder Leerstand: Fotos, Freigabe, Räumung, Entsorgung und Reinigung prüfen.",
+      "Wohnungsauflösung Regensburg bei Nachlass, Auszug oder Pflegeheimwechsel: Fotos, Freigabe, Räume, Zielzustand und Übergabe ruhig klären.",
     eyebrow: "FLOXANT Wohnungsauflösung Regensburg",
     description:
-      "FLOXANT prüft Wohnungsauflösungen in Regensburg, wenn Räume nach Auszug, Nachlass, Pflegeheimwechsel oder Leerstand geordnet geräumt und für Übergabe oder Nachnutzung vorbereitet werden sollen.",
+      "FLOXANT prüft Wohnungsauflösungen in Regensburg ruhig und sachlich, wenn Nachlass, Auszug, Pflegeheimwechsel, Familienorganisation, Vermieterübergabe oder Nachnutzung zusammenkommen.",
     primaryCta: "Wohnungsauflösung anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte eine Wohnungsauflösung in Regensburg anfragen. Fotos, Ort, Freigabe, Umfang und Zielzustand kann ich senden.",
     serviceType: "Wohnungsauflösung Regensburg",
     suitableFor: ["Nachlasswohnung", "Auszug", "Leerstand", "Pflegeheimwechsel", "Übergabevorbereitung"],
-    scope: ["Fotos und Raumumfang", "Freigabe und Ansprechpartner", "Räumung und Entsorgung nach Prüfung", "Reinigung oder Übergabe danach"],
+    scope: ["Nachlass, Auszug, Pflegeheimwechsel oder Leerstand", "Räume, Keller, Fotos und persönliche Gegenstände", "Freigabe, Ansprechpartner und Schlüsselweg", "Räumung, Reinigung oder Übergabeziel getrennt klären"],
     process: [
       "Sie senden Fotos, Adresse oder Stadtteil, Freigabe, Räume und gewünschtes Ziel.",
       "FLOXANT prüft Menge, Zugang, Etage, Laufwege, Entsorgung und sensible Punkte.",
@@ -488,7 +487,7 @@ export const regensburgServicePages = {
       "Sie erhalten eine unverbindliche Rückmeldung zum realistischen nächsten Schritt.",
     ],
     trust: [
-      "Ruhige Abstimmung bei Nachlass oder belastenden Situationen.",
+      "Ruhige Abstimmung bei Nachlass, Pflegeheimwechsel oder Familienorganisation.",
       "Keine Zusage für Gefahrstoffe oder Spezialfälle ohne Prüfung.",
       "Räumung, Entsorgung und Reinigung werden transparent getrennt.",
     ],
@@ -529,19 +528,19 @@ export const regensburgServicePages = {
   umzugsunternehmen: {
     slug: "umzugsunternehmen",
     path: "/regensburg/umzugsunternehmen",
-    title: "Umzugsunternehmen in Regensburg für Umzug, Fotos und Angebot nach Prüfung",
-    metaTitle: "Umzugsunternehmen Regensburg | Umzug & Angebot prüfen | FLOXANT",
+    title: "Umzugsunternehmen Regensburg mit Fotos, Laufweg und Angebot prüfen",
+    metaTitle: "Umzugsunternehmen Regensburg | Angebot & Fotos prüfen",
     metaDescription:
-      "Umzugsunternehmen Regensburg anfragen: Start, Ziel, Etage, Volumen, Fotos, Termin, Reinigung und vorhandenes Angebot prüfen.",
+      "Umzugsunternehmen Regensburg anfragen: Start, Ziel, Etage, Volumen, Laufweg, Fotos, Termin, Reinigung und vorhandenes Angebot prüfen.",
     eyebrow: "FLOXANT Umzugsunternehmen Regensburg",
     description:
-      "FLOXANT ist der lokale Einstieg, wenn ein Umzugsunternehmen in Regensburg gesucht wird und Start, Ziel, Volumen, Laufwege, Termin, Zusatzleistungen und vorhandene Angebote realistisch eingeordnet werden sollen.",
+      "FLOXANT ist der lokale Einstieg, wenn ein Umzugsunternehmen in Regensburg gesucht wird und Start, Ziel, Volumen, Laufwege, Haltemöglichkeit, Termin, Zusatzleistungen und vorhandene Angebote realistisch eingeordnet werden sollen.",
     primaryCta: "Umzugsunternehmen anfragen",
     whatsappMessage:
       "Hallo FLOXANT, ich suche ein Umzugsunternehmen in Regensburg. Start, Ziel, Etage, Volumen, Termin und Fotos kann ich senden.",
     serviceType: "Umzugsunternehmen Regensburg",
     suitableFor: ["Privatumzug", "Wohnungswechsel", "kleiner Objektumzug", "Umzug mit Endreinigung", "Angebotsprüfung"],
-    scope: ["Start und Ziel", "Etage, Aufzug und Laufweg", "Möbelmenge, Kartons und Fotos", "Termin, Zusatzleistungen und Angebot"],
+    scope: ["Start und Ziel", "Etage, Aufzug und Laufweg", "Möbelmenge, Kartons und Fotos", "Termin, Zusatzleistungen und Angebot", "Regensburg Altstadt, Stadtamhof, Westenviertel oder Umland nach Machbarkeit"],
     process: [
       "Sie senden Start, Ziel, Termin, Etagen, Aufzug, Möbelumfang und Fotos.",
       "FLOXANT prüft Laufwege, Parken, Volumen, Team, Zeitfenster und Zusatzleistungen.",
@@ -652,16 +651,16 @@ export const regensburgServicePages = {
   "angebot-vergleichen-regensburg": {
     slug: "angebot-vergleichen-regensburg",
     path: "/angebot-vergleichen-regensburg",
-    title: "Angebot in Regensburg vergleichen für Reinigung, Umzug oder Wohnungsauflösung",
+    title: "Angebot aus Regensburg sachlich prüfen für Reinigung, Umzug oder Wohnungsauflösung",
     metaTitle: "Angebot vergleichen Regensburg | Reinigung, Umzug & Räumung | FLOXANT",
     metaDescription:
       "Angebot vergleichen Regensburg: Reinigung, Büroreinigung, Umzug, Wohnungsauflösung oder Entrümpelung mit Fotos sachlich prüfen.",
     eyebrow: "FLOXANT Angebotsprüfung Regensburg",
     description:
       "FLOXANT prüft vorhandene Angebote aus Regensburg sachlich nach Umfang, Fotos, Termin, Zugang, Zusatzpositionen und offenen Annahmen. Es geht um bessere Einordnung, nicht um eine automatische Unterbietung.",
-    primaryCta: "Angebot prüfen lassen",
+    primaryCta: "Angebot aus Regensburg prüfen lassen",
     whatsappMessage:
-      "Hallo FLOXANT, ich möchte ein Angebot aus Regensburg prüfen lassen. Angebot, Fotos, Ort, Umfang, Termin und Budget kann ich senden.",
+      "Hallo FLOXANT, ich möchte ein Angebot aus Regensburg prüfen lassen. Angebot, Fotos, Ort, Umfang, Termin, Zugang und Budgetrahmen kann ich senden.",
     serviceType: "Angebot vergleichen Regensburg",
     suitableFor: ["Reinigungsangebot", "Büroreinigungsangebot", "Umzugsangebot", "Wohnungsauflösung", "Entrümpelung"],
     scope: ["Angebot oder Eckdaten", "Ort, Umfang und Termin", "Fotos und Zugang", "Preisrahmen, Zusatzpositionen und offene Punkte"],
@@ -669,7 +668,7 @@ export const regensburgServicePages = {
       "Sie senden Angebot, Fotos oder die wichtigsten Eckdaten.",
       "FLOXANT prüft Umfang, Annahmen, Zusatzpositionen, Zugang, Termin und realistische Grenzen.",
       "Fehlende Angaben werden benannt, damit der Vergleich fairer wird.",
-      "Sie erhalten eine unverbindliche Rückmeldung, ob FLOXANT eine passende Alternative prüfen kann.",
+      "Sie erhalten eine Rückmeldung, welche Angaben fehlen und ob FLOXANT eine passende Alternative prüfen kann.",
     ],
     trust: [
       "Keine Preisgarantie und keine Unterbietungszusage.",
@@ -679,7 +678,7 @@ export const regensburgServicePages = {
     faq: [
       {
         q: "Kann FLOXANT ein Angebot aus Regensburg prüfen?",
-        a: "Ja. Senden Sie Angebot, Ort, Umfang, Fotos, Termin, Zugang und offene Punkte. FLOXANT prüft kostenlos und unverbindlich.",
+        a: "Ja. Senden Sie Angebot, Ort, Umfang, Fotos, Termin, Zugang und offene Punkte. FLOXANT prüft die Annahmen sachlich und ohne Preisgarantie.",
       },
       {
         q: "Welche Angebote passen auf diese Seite?",

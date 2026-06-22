@@ -286,7 +286,7 @@ const signatureServices = [
   {
     title: "Entrümpelung + Reinigung",
     text: "Räume leeren und auf Wunsch sauberer übergabebereit machen.",
-    href: "/entruempelung-regensburg",
+    href: "/regensburg/entruempelung",
     Icon: PackageCheck,
   },
   {

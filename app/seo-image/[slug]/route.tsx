@@ -85,13 +85,6 @@ const imageProfiles: Record<
   chips: ["Diskretion", "Anwesen", "Hochwertig"],
   accent: "#d6b56d",
  },
- "service-area-bayern": {
-  eyebrow: "Servicegebiet Bayern",
-  title: "FLOXANT ab Regensburg in Bayern einordnen.",
-  subtitle: "Region, Strecke, Terminlage und Leistung realistisch prüfen.",
-  chips: ["Regensburg", "Bayern", "Einsatzgebiet"],
-  accent: "#60a5fa",
- },
  "qualitaet-ablauf": {
   eyebrow: "Qualität und Ablauf",
   title: "Erst sauber prüfen, dann stark umsetzen.",

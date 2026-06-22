@@ -39,16 +39,16 @@ const whatsappHref = buildWhatsAppHref(
   duesseldorfCompany.phoneRaw,
   [
     "Hallo FLOXANT,",
-    "ich habe ein Reinigungsangebot für Düsseldorf erhalten und möchte es kostenlos prüfen lassen.",
+    "ich habe ein Reinigungsangebot für Düsseldorf erhalten und möchte Umfang, Turnus und offene Punkte prüfen lassen.",
     "Objektart, Stadtteil, Fläche, Turnus, Angebot oder Eckdaten kann ich senden.",
   ].join("\n"),
 );
 
 const trustItems = [
-  "Kostenlos und unverbindlich",
+  "Unverbindliche Einordnung",
   "Keine Preisgarantie",
   "Keine Unterbietungszusage",
-  "Individuelle Bewertung",
+  "Prüfung nach Objekt und Umfang",
   "WhatsApp oder Upload möglich",
   "Für Düsseldorfer Reinigungsangebote",
 ] as const;
@@ -67,15 +67,15 @@ const processSteps = [
     text: "Sie erfahren, ob Angaben fehlen und ob FLOXANT für die Reinigungsanfrage eine passende Alternative anbieten kann.",
   },
   {
-    title: "Unverbindlich entscheiden",
-    text: "Sie erhalten eine Rückmeldung und entscheiden danach in Ruhe.",
+    title: "Nächsten Schritt klären",
+    text: "Sie erhalten eine Rückmeldung, welche Angaben fehlen und ob FLOXANT eine passende Alternative prüfen kann.",
   },
 ];
 
 const faqItems = [
   {
-    q: "Ist die Angebotsprüfung kostenlos?",
-    a: "Ja. Die FLOXANT Angebotsprüfung ist kostenlos und unverbindlich. Eine verbindliche Leistung entsteht erst nach separater Abstimmung.",
+    q: "Was passiert nach dem Absenden?",
+    a: "FLOXANT prüft Objektart, Umfang, Fläche, Turnus, Zeitfenster, Zugang, Fotos und offene Punkte. Eine verbindliche Leistung entsteht erst nach separater Abstimmung.",
   },
   {
     q: "Muss ich bereits ein Angebot haben?",
@@ -208,7 +208,7 @@ function JsonLd() {
           "Endreinigung Düsseldorf Angebot",
         ],
         potentialActions: [
-          { name: "Angebot prüfen lassen", target: `${path}#angebot-pruefen`, type: "ContactAction" },
+          { name: "Reinigungsangebot Düsseldorf prüfen", target: `${path}#angebot-pruefen`, type: "ContactAction" },
           { name: "Per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
         ],
       }),
@@ -277,7 +277,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
               FLOXANT Angebotsprüfung
             </p>
             <h1 className="mt-6 max-w-full min-w-0 break-words text-4xl font-black leading-[1.04] tracking-normal [overflow-wrap:anywhere] sm:text-5xl lg:max-w-4xl lg:text-[3.55rem]">
-              Angebot erhalten? FLOXANT prüft kostenlos und unverbindlich.
+              Reinigungsangebot aus Düsseldorf sachlich prüfen lassen.
             </h1>
             <p className="mt-6 max-w-full min-w-0 break-words text-lg leading-8 text-slate-100 [overflow-wrap:anywhere] lg:max-w-2xl">
               Senden Sie uns Ihr bestehendes Reinigungsangebot oder die wichtigsten Eckdaten.
@@ -310,7 +310,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
                 data-channel="form"
                 className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/25 transition hover:bg-cyan-50 sm:w-auto"
               >
-                Angebot prüfen lassen
+                Reinigungsangebot Düsseldorf prüfen
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
@@ -353,7 +353,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               "Jede Anfrage wird individuell bewertet.",
-              "Die Prüfung ist kostenlos und unverbindlich.",
+              "Die Prüfung ordnet Umfang, Turnus und offene Punkte ein.",
               "Wir sprechen keine Garantie für einen niedrigeren Preis aus.",
               "Sie erhalten eine klare Rückmeldung, wenn Angaben fehlen.",
             ].map((item) => (
@@ -523,7 +523,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
               Nächster Schritt
             </p>
             <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-              Angebot senden, prüfen lassen und danach in Ruhe entscheiden.
+              Angebot senden, Rückmeldung erhalten und nächsten Schritt klären.
             </h2>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -533,7 +533,7 @@ export default function AngebotVergleichenDuesseldorfPage() {
               data-source="offer_comparison_bottom"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-blue-800"
             >
-              Angebot prüfen lassen
+              Reinigungsangebot Düsseldorf prüfen
               <ArrowRight className="h-4 w-4" />
             </a>
             <a

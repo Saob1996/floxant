@@ -36,6 +36,8 @@ export function AdminHealthControl() {
           <h3 className="text-xs font-bold uppercase tracking-[0.2em]">Live Readiness</h3>
         </div>
         <button 
+          type="button"
+          aria-label="Live Readiness neu pruefen"
           onClick={checkHealth}
           disabled={loading}
           className="p-1 hover:bg-white/5 rounded-lg transition-colors"

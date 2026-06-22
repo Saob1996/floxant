@@ -144,13 +144,13 @@ export default function GewerbereinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
       ]),
       buildServiceJsonLd({
         name: "Gewerbereinigung Regensburg",
         description:
           "Gewerbereinigung für Büros, Praxen, Kanzleien, Hotels, Hausverwaltungen und Objektbetrieb in Regensburg und Umgebung.",
-        path: "/gewerbereinigung-regensburg",
+        path: "/regensburg/gewerbereinigung",
         serviceType:
           "Gewerbereinigung, Unterhaltsreinigung, Büroreinigung, Praxisreinigung und Objektservice in Regensburg",
         areaServed: ["Regensburg", "Altstadt Regensburg", "Innenstadt Regensburg", "Kumpfmühl", "Galgenberg", "Gewerbepark Regensburg", "Neutraubling", "Barbing", "Lappersdorf", "Wenzenbach"],
@@ -160,7 +160,7 @@ export default function GewerbereinigungRegensburgPage() {
         name: "Gewerbereinigung in Regensburg für Büro, Praxis und Objektbetrieb",
         description:
           "Gewerbliche Reinigung in Regensburg mit passenden Leistungen für Büro, Praxis, Hotel, Hausverwaltung, Objektbetrieb, FAQ und direktem Anfrageformular.",
-        path: "/gewerbereinigung-regensburg",
+        path: "/regensburg/gewerbereinigung",
         about: [
           "Gewerbereinigung",
           "Büroreinigung",
@@ -182,8 +182,8 @@ export default function GewerbereinigungRegensburgPage() {
           "Regensburg",
         ],
         potentialActions: [
-          { name: "Gewerbereinigung anfragen", target: "/gewerbereinigung-regensburg#kontaktformular", type: "ContactAction" },
-          { name: "Passende Reinigungsleistung finden", target: "/gewerbereinigung-regensburg#reinigungsservice-regensburg", type: "Action" },
+          { name: "Gewerbereinigung anfragen", target: "/regensburg/gewerbereinigung#kontaktformular", type: "ContactAction" },
+          { name: "Passende Reinigungsleistung finden", target: "/regensburg/gewerbereinigung#reinigungsservice-regensburg", type: "Action" },
         ],
       }),
       {
@@ -200,7 +200,7 @@ export default function GewerbereinigungRegensburgPage() {
       {
         "@type": "OfferCatalog",
         name: "Gewerbliche Reinigung Regensburg Servicekatalog",
-        url: `${company.url}/gewerbereinigung-regensburg`,
+        url: `${company.url}/regensburg/gewerbereinigung`,
         itemListElement: regensburgCleaningServices.map((service, index) => ({
           "@type": "Offer",
           position: index + 1,
@@ -424,7 +424,7 @@ export default function GewerbereinigungRegensburgPage() {
                 Angebot anfragen
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <Link href="/bueroreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
+              <Link href="/regensburg/bueroreinigung" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">
                 Büroreinigung
               </Link>
               <Link href="/praxisreinigung-regensburg" className="flox-button-secondary border-white/12 bg-white/6 px-6 text-white">

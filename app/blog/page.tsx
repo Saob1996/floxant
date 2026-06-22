@@ -290,7 +290,7 @@ export default function BlogHubPage() {
               text: "Kosten, Ablauf, Beiladung und Expressfälle besser verstehen.",
             },
             {
-              href: "/gewerbereinigung-regensburg",
+              href: "/regensburg/gewerbereinigung",
               title: "Gewerbereinigung",
               text: "Büro, Praxis, Hotel und Objektbetrieb gezielt einordnen.",
             },

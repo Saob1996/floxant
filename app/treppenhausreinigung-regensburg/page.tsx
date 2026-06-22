@@ -166,7 +166,7 @@ const relatedLinks = [
   { href: "/hotelreinigung-regensburg", label: "Hotelreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service" },
@@ -195,7 +195,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Treppenhausreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -250,7 +250,7 @@ export default function TreppenhausreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Treppenhausreinigung Regensburg" },
         ]}
       />

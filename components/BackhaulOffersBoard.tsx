@@ -443,6 +443,7 @@ function Input({
         {label}
       </span>
       <input
+        aria-label={label}
         required={required}
         type={type}
         value={value}
@@ -473,6 +474,7 @@ function Textarea({
         {label}
       </span>
       <textarea
+        aria-label={label}
         required={required}
         value={value}
         placeholder={placeholder}

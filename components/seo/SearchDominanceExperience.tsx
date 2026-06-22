@@ -126,8 +126,8 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Region ansehen",
-        text: "Regensburg, 200 km und Bayern nach Verfügbarkeit einordnen.",
-        href: "/einsatzgebiet-regensburg-200km",
+        text: "Regensburg und Bayern nach Verfuegbarkeit einordnen.",
+        href: "/regensburg",
         Icon: MapPin,
       },
     ],

@@ -162,13 +162,13 @@ const faqItems = [
 ];
 
 const relatedLinks = [
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/baureinigung-regensburg", label: "Baureinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg" },
   { href: "/blog/grosse-reinigungsauftraege-regensburg-buero-hotel-praxis", label: "Ratgeber B2B-Reinigung" },
@@ -196,7 +196,7 @@ export default function HotelreinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Hotelreinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -251,7 +251,7 @@ export default function HotelreinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Hotelreinigung Regensburg" },
         ]}
       />

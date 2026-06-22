@@ -426,11 +426,11 @@ export default function KellerMuellraumRettungPage() {
                 Diese Seite ist keine Sondermuell- oder Gefahrstoff-Seite und keine rechtliche Raeumungsfreigabe.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/entruempelung-regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
+                <Link href="/regensburg/entruempelung" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-black text-white">
                   Entruempelung Regensburg
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/einsatzgebiet-regensburg-200km" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
+                <Link href="/regensburg" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800">
                   Servicegebiet ansehen
                   <ArrowRight className="h-4 w-4" />
                 </Link>

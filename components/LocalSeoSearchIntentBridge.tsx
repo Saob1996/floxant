@@ -48,7 +48,7 @@ function localSearchIntents({
             city === "Düsseldorf"
               ? "/duesseldorf/bueroreinigung"
               : city === "Regensburg"
-                ? "/bueroreinigung-regensburg"
+                ? "/regensburg/bueroreinigung"
                 : currentHref,
           label: "Firmenreinigung prüfen",
         },
@@ -131,7 +131,7 @@ function localSearchIntents({
         {
           title: "Haushaltsauflösung ruhig klären",
           text: "Bei Haushalt, Nachlass oder Wohnungsauflösung sollten Räume, Keller, Menge, Fotos, Ansprechpartner, Termin und Endzustand früh geklärt werden.",
-          href: city === "Regensburg" ? "/wohnungsaufloesung-regensburg" : currentHref,
+          href: city === "Regensburg" ? "/regensburg/wohnungsaufloesung" : currentHref,
           label: "Auflösung einordnen",
         },
         {
@@ -141,7 +141,7 @@ function localSearchIntents({
             city === "Neutraubling"
               ? "/wohnungsaufloesung-neutraubling"
               : city === "Regensburg"
-                ? "/wohnungsaufloesung-regensburg"
+                ? "/regensburg/wohnungsaufloesung"
                 : currentHref,
           label: "Haushalt schildern",
         },

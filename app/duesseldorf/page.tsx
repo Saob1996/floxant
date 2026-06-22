@@ -45,24 +45,24 @@ const whatsappHref = buildWhatsAppHref(
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Reinigung Duesseldorf mit Objekt, Flaeche und Termin",
+  title: "FLOXANT Düsseldorf | Reinigung für Büro, Praxis und Gewerbe",
   description:
-    "Stadtteil, Objekt, Flaeche, Turnus, Fotos und Termin nennen. FLOXANT ordnet die passende Reinigung in Duesseldorf strukturiert ein.",
+    "FLOXANT Düsseldorf sortiert Reinigungsanfragen für Büro, Praxis, Gewerbe, Wohnung und Angebot nach Objekt, Stadtteil, Turnus, Fotos und Termin.",
   alternates: { canonical: "/duesseldorf" },
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: `${company.url}/duesseldorf`,
     siteName: "FLOXANT",
-    title: "Reinigung Duesseldorf mit Objekt, Flaeche und Termin",
+    title: "FLOXANT Düsseldorf | Reinigung für Büro, Praxis und Gewerbe",
     description:
-      "Stadtteil, Objekt, Flaeche, Turnus, Fotos und Termin nennen. FLOXANT ordnet die passende Duesseldorfer Reinigung ein.",
+      "Objekt, Stadtteil, Fläche, Turnus, Fotos und Termin senden. FLOXANT führt zur passenden Düsseldorfer Reinigung.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reinigung Duesseldorf mit Objekt, Flaeche und Termin",
+    title: "FLOXANT Düsseldorf | Reinigung für Büro, Praxis und Gewerbe",
     description:
-      "Stadtteil, Objekt, Flaeche, Turnus, Fotos und Termin nennen. FLOXANT ordnet die passende Duesseldorfer Reinigung ein.",
+      "Objekt, Stadtteil, Fläche, Turnus, Fotos und Termin senden. FLOXANT führt zur passenden Düsseldorfer Reinigung.",
   },
 };
 
@@ -208,13 +208,13 @@ export default function DuesseldorfHubPage() {
             {region.label}
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-            Reinigung Düsseldorf mit Objekt, Fläche und Termin anfragen
+            FLOXANT Düsseldorf für Reinigung von Büro, Praxis und Gewerbe
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             Sagen Sie kurz, ob es um Büro, Praxis, Kanzlei, Gewerbefläche,
-            Grundreinigung oder ein vorhandenes Reinigungsangebot geht. Mit
-            Stadtteil, Fläche, Termin und Fotos kann FLOXANT den passenden
-            Düsseldorfer Reinigungsweg einschätzen.
+            Wohnung, Grundreinigung oder ein vorhandenes Reinigungsangebot geht.
+            Mit Stadtteil, Fläche, Termin, Zugang und Fotos kann FLOXANT den
+            passenden Düsseldorfer Reinigungsweg einschätzen.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
@@ -222,7 +222,7 @@ export default function DuesseldorfHubPage() {
               data-event="hero_cta_click"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950"
             >
-              Reinigungsfirma öffnen
+              Reinigungsfirma Düsseldorf prüfen
               <ArrowRight className="h-4 w-4" />
             </Link>
             <a
@@ -231,7 +231,7 @@ export default function DuesseldorfHubPage() {
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950"
             >
               <MessageCircle className="h-4 w-4" />
-              WhatsApp
+              Objektangaben per WhatsApp senden
             </a>
             <a
               href={`tel:${duesseldorfCompany.phoneRaw}`}
@@ -247,7 +247,7 @@ export default function DuesseldorfHubPage() {
 
       <LocationClarityPanel
         title="Düsseldorf bleibt ein eigener Reinigungsstandort."
-        intro="Duesseldorf wird nicht mit Regensburg vermischt. Fuer die Einordnung zaehlen Stadtteil, Objektart, Flaeche, Turnus, Zugang, Fotos und Terminfenster."
+        intro="Düsseldorf wird nicht mit Regensburg vermischt. Für die Einordnung zählen Stadtteil, Objektart, Fläche, Turnus, Zugang, Fotos und Terminfenster."
         locations={locationClarityItems}
       />
 
@@ -262,8 +262,8 @@ export default function DuesseldorfHubPage() {
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
               Keine Fachbegriffe nötig. Stadtteil, Fotos, Termin und eine kurze
-              Beschreibung reichen, damit wir Reinigung, Umzug, Räumung oder
-              Entsorgung sauber einordnen können.
+              Beschreibung reichen, damit FLOXANT Büro, Praxis, Gewerbe,
+              Wohnung, Übergabe oder Entsorgung sauber einordnen kann.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -307,19 +307,19 @@ export default function DuesseldorfHubPage() {
 
       <AiAnswerBlock
         eyebrow="Kurze Antwort"
-        title="Duesseldorf: der beste Start haengt vom Objekt ab."
-        answer="FLOXANT ordnet Duesseldorfer Anfragen nach Stadtteil, Objektart, Flaeche, Turnus, Zugang und vorhandenen Fotos ein. Bei Bueros, Praxen und Gewerbe ist oft eine direkte Reinigungsanfrage sinnvoll; bei unklarem Leistungsumfang oder bestehendem Angebot hilft die Angebotspruefung."
+        title="Düsseldorf: der beste Start hängt vom Objekt ab."
+        answer="FLOXANT ordnet Düsseldorfer Anfragen nach Stadtteil, Objektart, Fläche, Turnus, Zugang und vorhandenen Fotos ein. Bei Büros, Praxen und Gewerbe ist oft eine direkte Reinigungsanfrage sinnvoll; bei unklarem Leistungsumfang oder bestehendem Angebot hilft die Angebotsprüfung."
         points={[
-          "Reinigung, Bueroreinigung, Gewerbereinigung und Praxisreinigung bleiben fachlich getrennt.",
+          "Reinigung, Büroreinigung, Gewerbereinigung und Praxisreinigung bleiben fachlich getrennt.",
           "Vorhandene Angebote werden ohne Preisgarantie nach Umfang, Zusatzpunkten und Annahmen eingeordnet.",
-          "Stadtteil, Fotos und Zeitfenster machen Rueckfragen konkreter.",
-          "Bei Spezialfaellen wie Glas, PV, Fassade oder Raeumung fuehren passende Links weiter.",
+          "Stadtteil, Fotos und Zeitfenster machen Rückfragen konkreter.",
+          "Bei Spezialfällen wie Glas, PV, Fassade oder Räumung führen passende Links weiter.",
         ]}
-        usefulWhen={["Objektart und Stadtteil bekannt sind", "ein Reinigungsangebot geprueft werden soll", "Fotos oder Raumliste vorliegen"]}
+        usefulWhen={["Objektart und Stadtteil bekannt sind", "ein Reinigungsangebot geprüft werden soll", "Fotos oder Raumliste vorliegen"]}
         notUsefulWhen={["eine sofort verbindliche Preiszusage erwartet wird", "noch gar kein Objekt beschrieben werden kann"]}
-        neededInfo={["Stadtteil", "Objektart", "Flaeche oder Raumliste", "Fotos oder vorhandenes Angebot"]}
+        neededInfo={["Stadtteil", "Objektart", "Fläche oder Raumliste", "Fotos oder vorhandenes Angebot"]}
         ctaHref="/kontakt?service=reinigung&city=duesseldorf&intent=reinigung-duesseldorf&source=seo"
-        ctaLabel="Duesseldorf-Anfrage starten"
+        ctaLabel="Düsseldorf-Anfrage starten"
       />
 
       <LocationFaq
@@ -331,21 +331,21 @@ export default function DuesseldorfHubPage() {
       <LocalContactPanel
         locationKeys={["duesseldorf"]}
         service="reinigung"
-        title="FLOXANT Duesseldorf mit sichtbaren Standortdaten."
-        intro="Die Duesseldorfer Adresse, Telefon und E-Mail kommen aus zentralen Standortdaten. Oeffnungszeiten und GBP-Profil-URL bleiben bis zur manuellen Pruefung ungenannt."
+        title="FLOXANT Düsseldorf mit sichtbaren Standortdaten."
+        intro="Die Düsseldorfer Adresse, Telefon und E-Mail kommen aus zentralen Standortdaten. Öffnungszeiten und GBP-Profil-URL bleiben bis zur manuellen Prüfung ungenannt."
       />
 
       <ServiceFitAdvisor
         currentCity="duesseldorf"
-        title="Duesseldorfer Anfrage schnell richtig einordnen."
-        intro="Die Auswahl fuehrt zu Kontaktlinks mit city=duesseldorf und passendem Intent. Es wird nichts automatisch gesendet."
+        title="Düsseldorfer Anfrage schnell richtig einordnen."
+        intro="Die Auswahl führt zu Kontaktlinks mit city=duesseldorf und passendem Intent. Es wird nichts automatisch gesendet."
       />
 
       <ServiceClusterGrid
         locationKey="duesseldorf"
         categories={["reinigung", "angebot_pruefen", "signature_service"]}
-        title="Duesseldorfer Services nach Reinigungs- und Entscheidungsfall."
-        intro="Die zentrale Inventur trennt direkte Reinigungsleistungen, Angebotspruefung und Signature Services. Unklare Verfuegbarkeiten werden sichtbar als manuelle Pruefung markiert."
+        title="Düsseldorfer Services nach Reinigungs- und Entscheidungsfall."
+        intro="Die zentrale Inventur trennt direkte Reinigungsleistungen, Angebotsprüfung und Signature Services. Unklare Verfügbarkeiten werden sichtbar als manuelle Prüfung markiert."
         limitPerCategory={5}
       />
 
@@ -377,14 +377,14 @@ export default function DuesseldorfHubPage() {
         allowedPage="/duesseldorf"
         serviceKey="reinigung"
         locationKey="duesseldorf"
-        title="Duesseldorf-Trust ohne GBP-Raten."
-        intro="Die Seite zeigt nur belegbare lokale Signale aus vorhandenen Daten und markiert GBP, Oeffnungszeiten und Review-Belege als manuell zu pruefen."
+        title="Düsseldorf-Trust ohne GBP-Raten."
+        intro="Die Seite zeigt nur belegbare lokale Signale aus vorhandenen Daten und markiert GBP, Öffnungszeiten und Review-Belege als manuell zu prüfen."
       />
 
       <ServiceProofChecklist
         serviceKey="reinigung"
-        title="Was Duesseldorfer Reinigungsanfragen belegbarer macht"
-        intro="Objektart, Flaeche, Fotos, Zugang, Turnus und Zielzustand machen aus einer lokalen Anfrage einen pruefbaren Start."
+        title="Was Düsseldorfer Reinigungsanfragen belegbarer macht"
+        intro="Objektart, Fläche, Fotos, Zugang, Turnus und Zielzustand machen aus einer lokalen Anfrage einen prüfbaren Start."
       />
 
       <ProjectStoryGrid serviceKey="angebot-pruefen" locationKey="duesseldorf" />

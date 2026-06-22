@@ -145,6 +145,7 @@ export function IncomeExpenseTracker() {
       <h3 className="font-bold text-slate-800">Transaktionen</h3>
       <input
        type="month"
+       aria-label="Monat filtern"
        value={filterMonth}
        onChange={(e) => setFilterMonth(e.target.value)}
        className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm outline-none focus:border-blue-400"

@@ -373,9 +373,9 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/regensburg", label: "Regensburg Bereich ansehen" },
-      { href: "/umzug-regensburg", label: "Umzug Regensburg" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg" },
       { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung Regensburg" },
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
     ],
     faqTitle: "FAQ zu Regensburg und Bayern",
     faqItems: [
@@ -654,9 +654,9 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       "Bayernweite Einsätze bleiben verfügbarkeitsabhängig und damit glaubwürdig.",
     ],
     ctas: [
-      { href: "/umzug-regensburg", label: "Umzug Regensburg ansehen" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg ansehen" },
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg ansehen" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg ansehen" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg ansehen" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg ansehen" },
       { href: "/buchung", label: "Fall prüfen lassen" },
     ],
     faqTitle: "FAQ zu FLOXANT in Regensburg und Bayern",
@@ -1006,7 +1006,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-      { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
       { href: "/duesseldorf/b2b-reinigung", label: "B2B-Reinigung Düsseldorf" },
       { href: "/buchung", label: "Reinigung anfragen" },
     ],
@@ -1192,7 +1192,7 @@ export const aiRecommendationBlogArticles: StrategicBlogArticle[] = [
       "Regensburg/Bayern sind der richtige Bereich für diese Kombi-Leistung.",
     ],
     ctas: [
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
       { href: "/regensburg/uebergabereinigung", label: "Übergabereinigung ansehen" },
       { href: "/buchung", label: "Kombi-Fall anfragen" },

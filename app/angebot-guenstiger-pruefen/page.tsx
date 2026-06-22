@@ -152,19 +152,19 @@ const serviceTargets = [
   {
     title: "Umzugsangebot prüfen",
     text: "Volumen, Etage, Strecke, Zugang, Rückfahrt und Reinigung nach Auszug prüfen.",
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     cta: "Umzug Regensburg ansehen",
   },
   {
     title: "Reinigungsangebot prüfen",
     text: "Endreinigung, Grundreinigung, Wohnungsübergabe, Fotos, Fläche und Terminfenster einordnen.",
-    href: "/reinigung-regensburg",
+    href: "/regensburg/reinigung",
     cta: "Reinigung Regensburg ansehen",
   },
   {
     title: "Entsorgungsangebot prüfen",
     text: "Menge, Material, Zugang, Keller, Garage, Sperrmüll, Entsorgung und Reinigung danach klären.",
-    href: "/entruempelung-regensburg",
+    href: "/regensburg/entruempelung",
     cta: "Entrümpelung ansehen",
   },
   {
@@ -256,7 +256,7 @@ const highIntentSearchCards = [
     query: "Angebot Reinigung oder Reinigungsarbeiten prüfen",
     answer:
       "Bei Reinigungsangeboten werden Fläche, Zustand, Reinigungsart, Turnus, Fotos, Zugang und gewünschtes Ergebnis geprüft, bevor ein Preisrahmen sinnvoll verglichen werden kann.",
-    target: "/reinigung-regensburg",
+    target: "/regensburg/reinigung",
   },
   {
     query: "Umzug mit Preisrahmen ohne falsches Sparrisiko",
@@ -297,8 +297,8 @@ const highIntentSearchCards = [
   {
     query: "Angebot prüfen in der Nähe von Regensburg",
     answer:
-      "FLOXANT sitzt in Regensburg. Orte im 200-km-Umfeld und Bayern werden nach Strecke, Umfang, Fotos, Termin und Kapazität geprüft.",
-    target: "/service-area-bayern",
+      "FLOXANT sitzt in Regensburg. Anfragen aus der Umgebung und passende Bayern-Strecken werden nach Strecke, Umfang, Fotos, Termin und Kapazität geprüft.",
+    target: "/angebot-guenstiger-pruefen#guenstiger-form",
   },
   {
     query: "Besseres Angebot finden",
@@ -408,7 +408,7 @@ const offerClusterCards = [
 ];
 
 const localRadiusLinks = [
-  { href: "/umzug-regensburg", label: "Regensburg Angebot prüfen" },
+  { href: "/regensburg/umzug", label: "Regensburg Angebot prüfen" },
   { href: "/umzug-neutraubling", label: "Neutraubling Angebot prüfen" },
   { href: "/umzug-lappersdorf", label: "Lappersdorf Angebot prüfen" },
   { href: "/umzug-kelheim", label: "Kelheim Angebot prüfen" },
@@ -421,11 +421,11 @@ const localRadiusLinks = [
   { href: "/seniorenumzug-erlangen", label: "Seniorenumzug Erlangen" },
   { href: "/seniorenumzug-bamberg", label: "Umzug im Alter Bamberg" },
   { href: "/seniorenumzug-fuerth", label: "Seniorenumzug Fürth" },
-  { href: "/reinigung-regensburg", label: "Reinigungsangebot Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigungsangebot Regensburg" },
   { href: "/reinigung-muenchen", label: "Reinigung München prüfen" },
   { href: "/reinigung-straubing", label: "Reinigungsangebot Straubing" },
   { href: "/reinigung-landshut", label: "Reinigungsangebot Landshut" },
-  { href: "/entruempelung-regensburg", label: "Entsorgungsangebot Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entsorgungsangebot Regensburg" },
   { href: "/entruempelung-kelheim", label: "Entsorgungsangebot Kelheim" },
   { href: "/entruempelung-schwandorf", label: "Entsorgungsangebot Schwandorf" },
   { href: "/duesseldorf/vielleicht-guenstiger", label: "Düsseldorf Angebot prüfen" },
@@ -479,7 +479,7 @@ const faqItems = [
   },
   {
     q: "Gilt die Angebotsprüfung auch für Orte im Umkreis von Regensburg?",
-    a: "Ja. FLOXANT sitzt in Regensburg. Orte in der Umgebung bis ca. 200 km und Bayern werden nach Strecke, Umfang, Fotos, Termin und Kapazität geprüft.",
+    a: "Ja. FLOXANT sitzt in Regensburg. Orte in der Umgebung und passende Bayern-Strecken werden nach Strecke, Umfang, Fotos, Termin und Kapazität geprüft.",
   },
   {
     q: "Was braucht FLOXANT für eine schnelle Rückmeldung?",
@@ -495,7 +495,7 @@ const faqItems = [
   },
   {
     q: "Welche Orte rund um Regensburg sind für Angebotsprüfung wichtig?",
-    a: "Besonders relevant sind Regensburg, Landkreis Regensburg, Neutraubling, Lappersdorf, Kelheim, Straubing, Schwandorf, Landshut, Ingolstadt, Nürnberg, München und weitere bayerische Orte nach Strecke, Umfang und Kapazität.",
+    a: "Besonders relevant sind Regensburg, Landkreis Regensburg, Neutraubling, Lappersdorf, Kelheim, Straubing, Schwandorf und weitere Orte nach Strecke, Umfang und Kapazität.",
   },
   {
     q: "Was ist der Unterschied zwischen Angebotscheck und Angebotsprüfung?",
@@ -578,7 +578,7 @@ const jsonLd = {
         "Reinigungsangebot prüfen",
         "Entsorgungsangebot prüfen",
         "Entrümpelungsangebot prüfen",
-        "Regensburg 200 km Angebotsprüfung",
+        "Regensburg Angebotsprüfung",
         "Angebot verständlich prüfen",
         "Alternative nach Verfügbarkeit anfragen",
       ],
@@ -595,7 +595,7 @@ const jsonLd = {
       serviceType: "Angebot prüfen, Preisrahmen klären und Alternative nach Verfügbarkeit anfragen",
       areaServed: [
         "Regensburg",
-        "Umgebung Regensburg ca. 200 km",
+        "Umgebung Regensburg",
         "Bayern nach Verfügbarkeit",
         "Düsseldorf Reinigung",
       ],
@@ -775,7 +775,7 @@ export default function AngebotGuenstigerPruefenPage() {
           eyebrow="Angebot verständlich machen"
           title="Erst Angebot zeigen, dann Preis, Umfang und Alternative sauber prüfen."
           intro="Diese Seite ist für Kunden gebaut, die bereits ein Angebot haben und nicht sicher sind, ob Preis, Leistung, Termin und Zusatzkosten wirklich zusammenpassen. FLOXANT prüft praktisch, nicht rechtlich, und schaut nach Verfügbarkeit, ob eine klarere oder passendere Alternative möglich ist."
-          regionLabel="Regensburg · 200 km · Bayern · Düsseldorf passend zum Anliegen"
+          regionLabel="Regensburg · Umgebung · Bayern nach Verfügbarkeit · Düsseldorf passend zum Anliegen"
           primaryHref="#guenstiger-form"
           primaryLabel="Angebot hochladen"
           secondaryHref="/plattform-auftrag-pruefen"
@@ -955,7 +955,7 @@ export default function AngebotGuenstigerPruefenPage() {
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
                   <MapPin className="h-4 w-4 text-blue-700" />
-                  Regensburg · 200 km · Bayern
+                  Regensburg · Umgebung · Bayern nach Verfügbarkeit
                 </div>
                 <h2 className="mt-5 text-3xl font-black tracking-[-0.035em] text-slate-950">
                   Angebot aus der Region prüfen lassen

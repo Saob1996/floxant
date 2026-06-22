@@ -33,15 +33,43 @@ import {
 } from "@/lib/local-seo-routes";
 
 const DYNAMIC_CORE_SERVICE_PARAMS = ["fernumzug", "montage"] as const;
-const DEPRIORITIZED_DYNAMIC_CITY_SLUGS = new Set(["forchheim", "friedberg"]);
+const DEPRIORITIZED_DYNAMIC_CITY_SLUGS = new Set([
+  "forchheim",
+  "friedberg",
+  "wuerzburg",
+  "kempten",
+  "lindau",
+  "memmingen",
+  "kaufbeuren",
+  "traunstein",
+  "berlin",
+  "bremen",
+  "frankfurt",
+  "hamburg",
+  "leipzig",
+  "stuttgart",
+]);
+const LEGACY_REDIRECT_SERVICE_SLUGS = new Set([
+  "umzug-regensburg",
+  "reinigung-regensburg",
+  "entruempelung-regensburg",
+  "gewerbereinigung-regensburg",
+  "bueroreinigung-regensburg",
+  "wohnungsaufloesung-regensburg",
+  "umzugsunternehmen-regensburg",
+  "seniorenumzug-regensburg",
+  "umzug-reinigung-regensburg",
+  "endreinigung-regensburg",
+]);
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return [
-    ...dynamicLocalSeoRoutes.map((entry) => ({
-      serviceSlug: entry.route.replace(/^\//, ""),
-    })),
+    ...dynamicLocalSeoRoutes
+      .map((entry) => entry.route.replace(/^\//, ""))
+      .filter((serviceSlug) => !LEGACY_REDIRECT_SERVICE_SLUGS.has(serviceSlug))
+      .map((serviceSlug) => ({ serviceSlug })),
     ...growthServiceRootPageSlugs.map((serviceSlug) => ({ serviceSlug })),
     ...DYNAMIC_CORE_SERVICE_PARAMS.map((serviceSlug) => ({ serviceSlug })),
   ];

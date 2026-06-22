@@ -52,6 +52,7 @@ export default function ArchiveForm({ dic, currentStep = 1 }: { dic?: any; curre
           <input
            type="number"
            min={0}
+           aria-label={archiveDic.box_count || "Anzahl Archivkartons"}
            value={data.boxCount || ""}
            onChange={(e) => updateData({ boxCount: parseNumber(e.target.value) })}
            placeholder="z. B. 50"
@@ -69,6 +70,7 @@ export default function ArchiveForm({ dic, currentStep = 1 }: { dic?: any; curre
           <input
            type="number"
            min={0}
+           aria-label={archiveDic.shelf_meters || "Regalmeter"}
            value={data.shelfMeters || ""}
            onChange={(e) => updateData({ shelfMeters: parseNumber(e.target.value) })}
            placeholder="z. B. 20"
@@ -83,6 +85,7 @@ export default function ArchiveForm({ dic, currentStep = 1 }: { dic?: any; curre
           <input
            type="number"
            min={1}
+           aria-label={archiveDic.duration || "Lagerdauer in Monaten"}
            value={data.durationMonths || ""}
            onChange={(e) => updateData({ durationMonths: parseNumber(e.target.value) })}
            placeholder="z. B. 12"
@@ -101,6 +104,7 @@ export default function ArchiveForm({ dic, currentStep = 1 }: { dic?: any; curre
           <input
            type="number"
            step={1000}
+           aria-label={archiveDic.insurance_value || "Versicherungswert"}
            value={data.insuranceValue || ""}
            onChange={(e) => updateData({ insuranceValue: parseNumber(e.target.value) })}
            className="w-full bg-transparent text-sm font-bold text-white outline-none"
@@ -121,8 +125,8 @@ export default function ArchiveForm({ dic, currentStep = 1 }: { dic?: any; curre
        />
        <OptionCard
         checked={data.securityShredding}
-         title={archiveDic.shredding || "Dokumentenvernichtung pruefen"}
-         description="Vernichtungsweg und Datenschutzanforderungen vorab klaeren."
+         title={archiveDic.shredding || "Dokumentenvernichtung prüfen"}
+         description="Vernichtungsweg und Datenschutzanforderungen vorab klären."
         onChange={(c) => updateData({ securityShredding: c })}
         icon={<Trash2 size={18} className="text-red-400" />}
        />

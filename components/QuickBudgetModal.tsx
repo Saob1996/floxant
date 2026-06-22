@@ -311,6 +311,7 @@ export function QuickBudgetModal({ isOpen, onClose }: QuickBudgetModalProps) {
                   <button
                     disabled={isSubmitting}
                     type="submit"
+                    aria-label={isSubmitting ? "Vorschlag wird gesendet" : "Vorschlag senden"}
                     className="group relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-blue-600 font-bold uppercase tracking-wider text-white shadow-xl shadow-blue-900/40 transition-all hover:bg-blue-500 hover:shadow-blue-900/60 disabled:opacity-50"
                   >
                     <span className="relative z-10">

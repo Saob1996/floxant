@@ -2523,7 +2523,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "FLOXANT reduziert Rückfragen zwischen Auszug und Neuvermietung.",
     ],
     ctas: [
-      { href: "/gewerbereinigung-regensburg", label: "Gewerbliche Reinigung prüfen" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbliche Reinigung prüfen" },
       { href: "/entruempelung", label: "Rest-Entrümpelung anfragen" },
       { href: "/blog/hausverwaltung-treppenhausreinigung-regensburg", label: "Treppenhausreinigung lesen" },
       { href: "/kontakt", label: "Objektfall schildern" },
@@ -2783,7 +2783,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/umzug", label: "Gewerbe-Auszug anfragen" },
-      { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung prüfen" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung prüfen" },
       { href: "/blog/bueroumzug-regensburg-kostenfaktoren-checkliste", label: "Büroumzug-Checkliste lesen" },
       { href: "/kontakt", label: "Objekt kurz schildern" },
     ],
@@ -3183,7 +3183,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "FLOXANT verbindet Abschlusslogik statt isolierte Einzelleistungen.",
     ],
     ctas: [
-      { href: "/service-area-bayern", label: "Servicegebiet Bayern ansehen" },
+      { href: "/regensburg", label: "Regensburg-Bereich ansehen" },
       { href: "/entruempelung", label: "Entrümpelung prüfen" },
       { href: "/reinigung", label: "Endreinigung anfragen" },
       { href: "/buchung", label: "Bayern-Einsatz prüfen lassen" },
@@ -3291,7 +3291,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
       { href: "/rechner?service=umzug", label: "Preisrahmen orientieren" },
       { href: "/umzug-muenchen", label: "Umzug München prüfen" },
-      { href: "/umzug-regensburg", label: "Umzug Regensburg ansehen" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg ansehen" },
     ],
     faqTitle: "FAQ zu günstigen Umzugsangeboten",
     faqItems: [
@@ -3467,7 +3467,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "Vorhandene Angebote können ohne Preisgarantie geprüft werden.",
     ],
     ctas: [
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       { href: "/reinigung-muenchen", label: "Reinigung München prüfen" },
       { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -3555,7 +3555,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "Reinigung und Übergabe sollten früh mitgedacht werden.",
     ],
     ctas: [
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       { href: "/entruempelung-germering", label: "Entrümpelung Germering" },
       { href: "/wohnungsaufloesung-grafenau", label: "Wohnungsauflösung Grafenau" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
@@ -3641,9 +3641,9 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "Bei vorhandenen Angeboten ist die Angebotsprüfung der beste Startpunkt.",
     ],
     ctas: [
-      { href: "/service-area-bayern", label: "Servicegebiet Bayern" },
+      { href: "/regensburg", label: "Regensburg-Bereich" },
       { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen lassen" },
     ],
     faqTitle: "FAQ zu FLOXANT in Düsseldorf und Regensburg",
@@ -3820,7 +3820,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
           "Für Kunden mit Angebot: /angebot-guenstiger-pruefen",
           "Für Düsseldorfer Reinigungsangebot: /duesseldorf/vielleicht-guenstiger",
           "Für Reinigung Düsseldorf: /duesseldorf/reinigung",
-          "Für Reinigung Regensburg: /reinigung-regensburg",
+          "Für Reinigung Regensburg: /regensburg/reinigung",
           "Für schnelle Orientierung zur Firma: /floxant-fakten",
         ],
       },
@@ -3932,9 +3932,9 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       { href: "/duesseldorf/vielleicht-guenstiger", label: "Düsseldorf Angebot prüfen" },
-      { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+      { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
     ],
     faqTitle: "FAQ zur Reinigungsanfrage",
     faqItems: [
@@ -4025,9 +4025,9 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "Vorhandene Angebote können vor der Entscheidung geprüft werden.",
     ],
     ctas: [
-      { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
     ],
     faqTitle: "FAQ zu Umzug, Reinigung und Entrümpelung",
@@ -4353,7 +4353,7 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       { href: "/umzug-muenchen", label: "Umzug München" },
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
       { href: "/blog/fernumzug-bayern-nrw-tipps", label: "Fernumzug Ratgeber" },
-      { href: "/service-area-bayern", label: "Servicegebiet Bayern" },
+      { href: "/regensburg", label: "Regensburg-Bereich" },
     ],
     faqTitle: "FAQ zu Umzug München",
     faqItems: [
@@ -4434,8 +4434,8 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "Entrümpelung, Entsorgung und Reinigung können zusammen geprüft werden.",
     ],
     ctas: [
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
-      { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
       { href: "/kleinmengen-entsorgung", label: "Kleinmengen-Entsorgung" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
     ],
@@ -5152,8 +5152,8 @@ export const strategicBlogArticles: StrategicBlogArticle[] = [
       "Vorhandene Angebote lassen sich praktisch prüfen.",
     ],
     ctas: [
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
-      { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+      { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
     ],
     faqTitle: "FAQ zu Entrümpelungsangeboten",

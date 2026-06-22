@@ -68,11 +68,17 @@ export function GalleryModal({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md"
-      onClick={onClose}
     >
+      <button
+        type="button"
+        aria-label="Galerie schließen"
+        className="absolute inset-0 z-0 h-full w-full cursor-default"
+        onClick={onClose}
+      />
       <div className="absolute right-4 top-4 z-50 flex gap-3">
         <button
           type="button"
+          aria-label="Aktuelles Bild in neuem Tab öffnen"
           onClick={(event) => {
             event.stopPropagation();
             window.open(images[index], "_blank");
@@ -83,6 +89,7 @@ export function GalleryModal({
         </button>
         <button
           type="button"
+          aria-label="Galerie schließen"
           onClick={onClose}
           className="rounded-full bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
         >
@@ -94,6 +101,7 @@ export function GalleryModal({
         <>
           <button
             type="button"
+            aria-label="Vorheriges Galeriebild anzeigen"
             className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20"
             onClick={(event) => {
               event.stopPropagation();
@@ -104,6 +112,7 @@ export function GalleryModal({
           </button>
           <button
             type="button"
+            aria-label="Nächstes Galeriebild anzeigen"
             className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white transition-colors hover:bg-white/20"
             onClick={(event) => {
               event.stopPropagation();
@@ -122,8 +131,7 @@ export function GalleryModal({
       ) : null}
 
       <div
-        className="relative flex h-full max-h-[90vh] w-full max-w-7xl items-center justify-center overflow-hidden p-4"
-        onClick={(event) => event.stopPropagation()}
+        className="relative z-10 flex h-full max-h-[90vh] w-full max-w-7xl items-center justify-center overflow-hidden p-4"
       >
         <AnimatePresence initial={false} custom={direction}>
           <m.div
@@ -163,7 +171,6 @@ export function GalleryModal({
       {images.length > 1 ? (
         <div
           className="absolute bottom-6 right-6 z-50 hidden max-w-md gap-2 overflow-x-auto rounded-xl border border-white/10 bg-black/50 p-2 backdrop-blur-sm md:flex"
-          onClick={(event) => event.stopPropagation()}
         >
           {images.map((image, imageIndex) => (
             <button

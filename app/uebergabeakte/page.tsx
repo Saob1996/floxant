@@ -147,9 +147,9 @@ const audiences = [
 ];
 
 const combinations = [
-  { href: "/reinigung-regensburg", title: "Mit Endreinigung", text: "Wenn Bad, Küche, Böden und Übergabepunkte nach Absprache dokumentiert werden sollen." },
+  { href: "/regensburg/reinigung", title: "Mit Endreinigung", text: "Wenn Bad, Küche, Böden und Übergabepunkte nach Absprache dokumentiert werden sollen." },
   { href: "/schluesseluebergabe", title: "Mit Schlüsselübergabe", text: "Wenn Schlüsselstatus, Termin und Zugang sauberer abgestimmt werden müssen." },
-  { href: "/entruempelung-regensburg", title: "Mit Entrümpelung", text: "Wenn erst Restmengen oder Nebenräume geklärt werden müssen, bevor Reinigung oder Übergabe Sinn ergeben." },
+  { href: "/regensburg/entruempelung", title: "Mit Entrümpelung", text: "Wenn erst Restmengen oder Nebenräume geklärt werden müssen, bevor Reinigung oder Übergabe Sinn ergeben." },
   { href: "/mieterwechsel-service-regensburg", title: "Im Mieterwechsel-Service", text: "Für Hausverwaltungen, Vermieter und Makler, wenn ein Objekt nach Auszug vorbereitet wird." },
   { href: "/wohnung-wieder-vermietbar", title: "Mit Objekt-Ready-Service", text: "Wenn eine Wohnung nach Auszug, Leerstand oder Mieterwechsel wieder nutzbarer und präsentierbarer vorbereitet werden soll." },
   { href: "/immobilie-verkaufsbereit-machen", title: "Mit Property-Ready-Service", text: "Wenn Wohnung, Haus oder Nebenflaechen vor Verkauf, Besichtigung oder Expose dokumentiert vorbereitet werden sollen." },

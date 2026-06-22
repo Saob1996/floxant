@@ -33,12 +33,12 @@ const faqItems = [
 
 const relatedServices = [
   {
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     title: "Umzug Regensburg mit Schluesseluebergabe",
     text: "Wenn Transport, Reinigung, Fotos und Uebergabetermin in einem Ablauf gedacht werden sollen.",
   },
   {
-    href: "/reinigung-regensburg",
+    href: "/regensburg/reinigung",
     title: "Reinigung vor Wohnungsuebergabe",
     text: "Wenn Endreinigung, Zustand, Schluessel und sichtbare Uebergabepunkte zusammenpassen muessen.",
   },

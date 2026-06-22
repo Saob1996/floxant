@@ -142,8 +142,8 @@ export default async function SeniorenumzugBayernPage({ params }: PageProps) {
           {
             title: "Bayern nach Machbarkeit",
             text: "Regensburg ist der starke Ausgangspunkt. Weitere Orte werden nach Strecke, Termin, Umfang und Kombination geprüft.",
-            href: "/service-area-bayern",
-            cta: "Einsatzgebiet ansehen",
+            href: "/regensburg",
+            cta: "Regensburg ansehen",
           },
         ]}
         checklistTitle="Diese Angaben helfen besonders"

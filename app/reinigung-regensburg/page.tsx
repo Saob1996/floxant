@@ -63,13 +63,13 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
             buildBreadcrumbJsonLd([
                 { name: "FLOXANT", item: "/" },
                 { name: "Reinigung", item: "/reinigung" },
-                { name: "Reinigung Regensburg", item: "/reinigung-regensburg" },
+                { name: "Reinigung Regensburg", item: "/regensburg/reinigung" },
             ]),
             buildServiceJsonLd({
                 name: "Reinigung Regensburg",
                 description:
                     "Reinigung in Regensburg für Büro, Praxis, Hotel, Fenster, Teppich, Treppenhaus, Baustaub, Grundreinigung, Übergabe und kurzfristige Situationen.",
-                path: "/reinigung-regensburg",
+                path: "/regensburg/reinigung",
                 serviceType:
                     "Reinigungsfirma, Putzfirma, Gebäudereinigung, Gewerbereinigung und Spezialreinigung in Regensburg",
                 areaServed: [
@@ -92,7 +92,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 name: "Reinigung Regensburg mit Service-Finder und direkter Anfrage",
                 description:
                     "Reinigung in Regensburg für Büro, Praxis, Treppenhaus, Hotel, Grundreinigung, Baureinigung und Übergabe mit Fotos, Termin, Objektangaben und direkter Anfrage.",
-                path: "/reinigung-regensburg",
+                path: "/regensburg/reinigung",
                 about: [
                     "Reinigung Regensburg",
                     "Reinigungsfirma Regensburg",
@@ -121,7 +121,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 potentialActions: [
                     { name: "Reinigung in Regensburg anfragen", target: "/buchung?service=reinigung&city=regensburg#buchungssystem", type: "ContactAction" },
                     { name: "WhatsApp mit Fotos senden", target: `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}`, type: "ContactAction" },
-                    { name: "Passende Reinigungsleistung finden", target: "/reinigung-regensburg#reinigungsservice-regensburg", type: "Action" },
+                    { name: "Passende Reinigungsleistung finden", target: "/regensburg/reinigung#reinigungsservice-regensburg", type: "Action" },
                 ],
             }),
             {
@@ -138,7 +138,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
             {
                 "@type": "OfferCatalog",
                 name: "FLOXANT Reinigung Regensburg Servicekatalog",
-                url: `${company.url}/reinigung-regensburg`,
+                url: `${company.url}/regensburg/reinigung`,
                 itemListElement: regensburgCleaningServices.map((service, index) => ({
                     "@type": "Offer",
                     position: index + 1,
@@ -286,7 +286,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 <ServicePackageSelector groups="reinigung" limit={4} />
                 <EffortFactorsPanel group="reinigung" limit={6} />
                 <TrustProofPanel
-                    allowedPage="/reinigung-regensburg"
+                    allowedPage="/regensburg/reinigung"
                     serviceKey="reinigung"
                     locationKey="regensburg"
                     title="Reinigung Regensburg mit sichtbarer Proof-Logik."

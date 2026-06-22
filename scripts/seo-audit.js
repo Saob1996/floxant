@@ -29,14 +29,14 @@ const PRIORITY_ROUTES = [
   "/umzug-muenchen",
   "/reinigung-muenchen",
   "/bueroumzug-muenchen",
-  "/umzug-regensburg",
+  "/regensburg/umzug",
   "/umzug-aufhausen",
   "/umzug-friedberg",
   "/umzug-forchheim",
   "/entruempelung",
-  "/entruempelung-regensburg",
-  "/reinigung-regensburg",
-  "/gewerbereinigung-regensburg",
+  "/regensburg/entruempelung",
+  "/regensburg/reinigung",
+  "/regensburg/gewerbereinigung",
 ];
 
 const REQUIRED_SITEMAP_ROUTES = [
@@ -58,14 +58,14 @@ const REQUIRED_SITEMAP_ROUTES = [
   "/umzug-muenchen",
   "/reinigung-muenchen",
   "/bueroumzug-muenchen",
-  "/umzug-regensburg",
+  "/regensburg/umzug",
   "/umzug-aufhausen",
   "/umzug-friedberg",
   "/umzug-forchheim",
   "/entruempelung",
-  "/entruempelung-regensburg",
-  "/reinigung-regensburg",
-  "/gewerbereinigung-regensburg",
+  "/regensburg/entruempelung",
+  "/regensburg/reinigung",
+  "/regensburg/gewerbereinigung",
 ];
 
 const ASSET_EXTENSIONS = new Set([

@@ -118,7 +118,7 @@ export default function BlogLargeCommercialCleaningPage() {
         ]}
         ctas={[
           { href: "/hotelreinigung-regensburg", label: "Hotelreinigung prüfen" },
-          { href: "/gewerbereinigung-regensburg", label: "B2B-Reinigungsseite öffnen" },
+          { href: "/regensburg/gewerbereinigung", label: "B2B-Reinigungsseite öffnen" },
           { href: "/buchung", label: "Direkt anfragen" },
           { href: "/kontakt", label: "Kontakt ansehen" },
         ]}

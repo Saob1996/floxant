@@ -156,7 +156,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen lassen" },
-      { href: "/umzug-regensburg", label: "Umzug Regensburg ansehen" },
+      { href: "/regensburg/umzug", label: "Umzug Regensburg ansehen" },
       { href: "/rueckfahrt-boerse", label: "Rückfahrt prüfen" },
     ],
     faqTitle: "FAQ zum Umzugsangebot",
@@ -235,7 +235,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg ansehen" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg ansehen" },
       { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf ansehen" },
     ],
     faqTitle: "FAQ zum Reinigungsangebot",
@@ -586,7 +586,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Entsorgungsangebot prüfen" },
-      { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg ansehen" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg ansehen" },
       { href: "/entsorgung-duesseldorf", label: "Entsorgung Düsseldorf ansehen" },
     ],
     faqTitle: "FAQ zum Entsorgungsangebot",
@@ -1145,7 +1145,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Entruempelungsangebot pruefen" },
-      { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
       { href: "/duesseldorf/entruempelung", label: "Entruempelung Duesseldorf" },
     ],
     faqTitle: "FAQ zum Entruempelungsangebot",
@@ -1687,8 +1687,8 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Kombi-Angebote nach Einzelbausteinen pruefen.",
     ],
     ctas: [
-      { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
-      { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Kombi-Angebot pruefen" },
     ],
     faqTitle: "FAQ zu Reinigung nach Entruempelung",

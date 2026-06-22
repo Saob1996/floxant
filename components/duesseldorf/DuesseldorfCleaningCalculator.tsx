@@ -266,6 +266,7 @@ export function DuesseldorfCleaningCalculator() {
             <input
               type="number"
               min={10}
+              aria-label="Fläche in Quadratmetern"
               value={areaM2}
               onChange={(event) => setAreaM2(Number(event.target.value) || 0)}
               className="duesseldorf-input"
@@ -320,10 +321,10 @@ export function DuesseldorfCleaningCalculator() {
           <label className="rounded-[0.85rem] border border-slate-200 bg-slate-50 p-4">
             <span className="text-sm font-semibold text-slate-900">Küche intensiv</span>
             <div className="mt-3 flex gap-2">
-              <Toggle active={!kitchenIntensive} onClick={() => setKitchenIntensive(false)}>
+              <Toggle active={!kitchenIntensive} onClick={() => setKitchenIntensive(false)} ariaLabel="Küche intensiv nein">
                 nein
               </Toggle>
-              <Toggle active={kitchenIntensive} onClick={() => setKitchenIntensive(true)}>
+              <Toggle active={kitchenIntensive} onClick={() => setKitchenIntensive(true)} ariaLabel="Küche intensiv ja">
                 ja
               </Toggle>
             </div>
@@ -331,10 +332,10 @@ export function DuesseldorfCleaningCalculator() {
           <label className="rounded-[0.85rem] border border-slate-200 bg-slate-50 p-4">
             <span className="text-sm font-semibold text-slate-900">Bad intensiv</span>
             <div className="mt-3 flex gap-2">
-              <Toggle active={!bathroomIntensive} onClick={() => setBathroomIntensive(false)}>
+              <Toggle active={!bathroomIntensive} onClick={() => setBathroomIntensive(false)} ariaLabel="Bad intensiv nein">
                 nein
               </Toggle>
-              <Toggle active={bathroomIntensive} onClick={() => setBathroomIntensive(true)}>
+              <Toggle active={bathroomIntensive} onClick={() => setBathroomIntensive(true)} ariaLabel="Bad intensiv ja">
                 ja
               </Toggle>
             </div>
@@ -344,6 +345,7 @@ export function DuesseldorfCleaningCalculator() {
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <Field label="Stadtteil / PLZ">
             <input
+              aria-label="Stadtteil oder PLZ"
               value={districtOrZip}
               onChange={(event) => setDistrictOrZip(event.target.value)}
               placeholder="z. B. Bilk oder 40213"
@@ -353,6 +355,7 @@ export function DuesseldorfCleaningCalculator() {
           <Field label="Name">
             <input
               required
+              aria-label="Name"
               value={name}
               onChange={(event) => setName(event.target.value)}
               placeholder="Ihr Name"
@@ -362,6 +365,7 @@ export function DuesseldorfCleaningCalculator() {
           <Field label="Telefon">
             <input
               required
+              aria-label="Telefon"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
               placeholder="0157..."
@@ -371,6 +375,7 @@ export function DuesseldorfCleaningCalculator() {
           <Field label="E-Mail optional">
             <input
               type="email"
+              aria-label="E-Mail optional"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               placeholder="name@beispiel.de"
@@ -381,6 +386,7 @@ export function DuesseldorfCleaningCalculator() {
 
         <Field label="Budget / Preisrahmen optional" className="mt-4">
           <input
+            aria-label="Budget oder Preisrahmen optional"
             value={budgetSuggestion}
             onChange={(event) => setBudgetSuggestion(event.target.value)}
             placeholder="z. B. bis 180 €, 250-300 € oder bitte prüfen"
@@ -418,7 +424,7 @@ export function DuesseldorfCleaningCalculator() {
             data-region="duesseldorf"
           >
             {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-            Anfrage unverbindlich senden
+            Reinigung Düsseldorf anfragen
           </button>
           <a
             href={whatsappHref}
@@ -498,16 +504,19 @@ function Field({
 function Toggle({
   active,
   onClick,
+  ariaLabel,
   children,
 }: {
   active: boolean;
   onClick: () => void;
+  ariaLabel: string;
   children: ReactNode;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      aria-label={ariaLabel}
       className={
         active
           ? "rounded-[0.75rem] bg-slate-950 px-4 py-2 text-xs font-bold text-white"

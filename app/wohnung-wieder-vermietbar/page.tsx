@@ -462,7 +462,7 @@ export default function WohnungWiederVermietbarPage() {
                 Wohnung vorbereiten lassen
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/reinigung-regensburg" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-orange-200 hover:bg-orange-50">
+              <Link href="/regensburg/reinigung" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 text-sm font-black text-slate-800 transition hover:border-orange-200 hover:bg-orange-50">
                 Endreinigung Regensburg ansehen
               </Link>
             </div>

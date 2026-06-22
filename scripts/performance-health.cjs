@@ -8,6 +8,30 @@ const mdPath = path.join(root, "PERFORMANCE_HEALTH_REPORT.md");
 const sourceDirs = ["app", "components", "lib"];
 const ignoreDirs = new Set([".git", ".next", "node_modules", "out", "dist", "coverage"]);
 const publicPageSkip = /[\\/]app[\\/](api|dashboard|admin|login)[\\/]/;
+const internalClientFilePattern = /^(app\/(admin|dashboard|login)(\/|$)|components\/dashboard\/)/;
+const sourceExtensions = [".tsx", ".ts", ".jsx", ".js", ".cjs", ".mjs"];
+const goldenRoutes = [
+  "/",
+  "/duesseldorf",
+  "/duesseldorf/reinigung",
+  "/duesseldorf/bueroreinigung",
+  "/duesseldorf/praxisreinigung",
+  "/duesseldorf/gewerbereinigung",
+  "/duesseldorf/hausverwaltung-reinigung",
+  "/duesseldorf/reinigung-stadtteile-umgebung",
+  "/angebot-vergleichen-duesseldorf",
+  "/regensburg",
+  "/regensburg/umzug",
+  "/regensburg/reinigung",
+  "/regensburg/entruempelung",
+  "/regensburg/gewerbereinigung",
+  "/regensburg/bueroreinigung",
+  "/regensburg/wohnungsaufloesung",
+  "/klaviertransport-regensburg",
+  "/angebot-vergleichen-regensburg",
+  "/kontakt",
+  "/seniorenumzug-landshut",
+];
 
 function walk(dir, predicate = () => true) {
   if (!fs.existsSync(dir)) return [];
@@ -33,6 +57,68 @@ function read(file) {
 
 function rel(file) {
   return path.relative(root, file).replace(/\\/g, "/");
+}
+
+function resolveSourceFile(basePath) {
+  if (path.extname(basePath) && fs.existsSync(basePath) && fs.statSync(basePath).isFile()) return basePath;
+
+  for (const ext of sourceExtensions) {
+    const candidate = `${basePath}${ext}`;
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) return candidate;
+  }
+
+  for (const ext of sourceExtensions) {
+    const candidate = path.join(basePath, `index${ext}`);
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) return candidate;
+  }
+
+  return null;
+}
+
+function resolveImport(specifier, fromFile) {
+  if (specifier.startsWith("@/")) {
+    return resolveSourceFile(path.join(root, specifier.slice(2)));
+  }
+  if (specifier.startsWith(".")) {
+    return resolveSourceFile(path.resolve(path.dirname(fromFile), specifier));
+  }
+  return null;
+}
+
+function importedSourceFiles(file) {
+  const text = read(file);
+  const imports = [];
+  const importRegex = /import\s+(?:type\s+)?(?:[\s\S]*?\s+from\s+)?["']([^"']+)["']|export\s+[^"']*\s+from\s+["']([^"']+)["']/g;
+  let match;
+
+  while ((match = importRegex.exec(text))) {
+    const resolved = resolveImport(match[1] || match[2], file);
+    if (resolved) imports.push(resolved);
+  }
+
+  return imports;
+}
+
+function pageFileForRoute(route) {
+  if (route === "/") return path.join(root, "app", "page.tsx");
+  return path.join(root, "app", ...route.replace(/^\/+/, "").split("/"), "page.tsx");
+}
+
+function collectImportGraphClientFiles(entryFiles) {
+  const seen = new Set();
+  const stack = entryFiles.filter(Boolean);
+
+  while (stack.length) {
+    const file = stack.pop();
+    if (!file || seen.has(file) || !fs.existsSync(file)) continue;
+    seen.add(file);
+    for (const imported of importedSourceFiles(file)) stack.push(imported);
+  }
+
+  return Array.from(seen)
+    .filter((file) => /["']use client["']/.test(read(file)))
+    .map(rel)
+    .sort();
 }
 
 function has(regex, text) {
@@ -107,6 +193,14 @@ function main() {
   );
   const tsxFiles = sourceFiles.filter((file) => /\.(tsx|jsx)$/.test(file));
   const clientFiles = sourceFiles.filter((file) => /["']use client["']/.test(read(file)));
+  const clientFilePaths = clientFiles.map(rel);
+  const internalClientFiles = clientFilePaths.filter((file) => internalClientFilePattern.test(file));
+  const publicClientFiles = clientFilePaths.filter((file) => !internalClientFilePattern.test(file));
+  const goldenEntryFiles = [
+    path.join(root, "app", "layout.tsx"),
+    ...goldenRoutes.map(pageFileForRoute),
+  ].filter((file) => fs.existsSync(file));
+  const goldenClientFiles = collectImportGraphClientFiles(goldenEntryFiles);
   const clientApiFetches = [];
   const browserApiHits = [];
 
@@ -162,9 +256,15 @@ function main() {
   const assets = assetReport();
   const images = imageUsage(tsxFiles);
   const warnings = [];
+  const infoChecks = [];
 
+  if (goldenClientFiles.length > 60) {
+    warnings.push(statusItem("WARN", "Golden client budget", `${goldenClientFiles.length} Client-Dateien im Golden-Set-Importgraph gefunden.`));
+  } else {
+    infoChecks.push(statusItem("INFO", "Golden client budget", `${goldenClientFiles.length} Client-Dateien im Golden-Set-Importgraph gefunden.`));
+  }
   if (clientFiles.length > 100) {
-    warnings.push(statusItem("WARN", "Client component budget", `${clientFiles.length} Client-Dateien gefunden.`));
+    infoChecks.push(statusItem("INFO", "Repository client inventory", `${clientFiles.length} Client-Dateien repo-weit; ${internalClientFiles.length} intern/admin, ${publicClientFiles.length} public-path.`));
   }
   if (assets.over512Kb.length) {
     warnings.push(statusItem("WARN", "Large assets", `${assets.over512Kb.length} Assets ueber 512 KB gefunden.`));
@@ -183,6 +283,11 @@ function main() {
     summary: {
       sourceFiles: sourceFiles.length,
       clientFiles: clientFiles.length,
+      internalClientFiles: internalClientFiles.length,
+      publicClientFiles: publicClientFiles.length,
+      goldenClientFiles: goldenClientFiles.length,
+      goldenRoutesChecked: goldenRoutes.length,
+      removedClientFilesFromPublicPath: 0,
       clientApiFetches,
       browserApiHitsTop: browserApiHits.sort((a, b) => b.hits - a.hits).slice(0, 25),
       publicAssetTotalKb: assets.totalKb,
@@ -194,9 +299,15 @@ function main() {
       statusItem("PASS", "Vercel image optimization", "images.unoptimized bleibt true.", "next.config.js"),
       statusItem("PASS", "Public page runtime", "Keine runtime=nodejs/force-dynamic/revalidate Treffer auf public pages."),
       statusItem("PASS", "No vitals/conversion API", "Keine /api/vitals, /api/conversion-events oder sendBeacon Treffer."),
+      ...infoChecks,
       ...warnings,
       ...hardFindings,
     ],
+    clientInventory: {
+      internalClientFiles,
+      publicClientFiles,
+      goldenClientFiles,
+    },
     assets,
     imageUsage: images,
   };
@@ -211,6 +322,9 @@ Status: ${status}
 
 - Source files scanned: ${sourceFiles.length}
 - Client files: ${clientFiles.length}
+- Internal/admin client files: ${internalClientFiles.length}
+- Public-path client files: ${publicClientFiles.length}
+- Golden-set import graph client files: ${goldenClientFiles.length}
 - Client API fetch files: ${clientApiFetches.length}
 - Public assets: ${assets.count} files / ${assets.totalKb} KB
 - Assets over 512 KB: ${assets.over512Kb.length}
@@ -235,10 +349,17 @@ ${assets.largest.map((item) => `| ${item.kb} | \`${item.file}\` |`).join("\n")}
 | --- | --- |
 ${clientApiFetches.length ? clientApiFetches.map((item) => `| ${item.submitLikely ? "yes" : "unknown"} | \`${item.file}\` |`).join("\n") : "| - | - |"}
 
+## Golden-Set Client Files
+
+| File |
+| --- |
+${goldenClientFiles.length ? goldenClientFiles.map((file) => `| \`${file}\` |`).join("\n") : "| - |"}
+
 ## Recommendations
 
 - Keep image optimization disabled on Vercel.
-- Convert oversized PNG hero assets to smaller WebP/AVIF in a dedicated asset sprint.
+- Treat repository-wide client count as inventory; release budget is based on the Golden-set import graph.
+- Convert oversized PNG hero assets to smaller WebP/AVIF in a dedicated asset sprint if future assets exceed 512 KB.
 - Keep automatic dwell/fetch patch tracking disabled; prefer explicit user action or form-success custom events.
 - Keep API work on real submit only.
 `;

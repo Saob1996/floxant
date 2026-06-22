@@ -21,19 +21,19 @@ const DEFAULT_SERVICE_CONTEXT: CleaningServiceContext = {
  shortLabel: "B2B-Reinigung",
  serviceType: "gewerbereinigung_regensburg",
  source: "gewerbereinigung_regensburg",
- entryPoint: "/gewerbereinigung-regensburg",
+ entryPoint: "/regensburg/gewerbereinigung",
  defaultPropertyType: "Büro & Office",
  helper: "Objektart, Größenordnung, Turnus und Kontaktdaten",
 };
 
 const SERVICE_CONTEXT_BY_PATH: Record<string, CleaningServiceContext> = {
- "/gewerbereinigung-regensburg": DEFAULT_SERVICE_CONTEXT,
- "/bueroreinigung-regensburg": {
+ "/regensburg/gewerbereinigung": DEFAULT_SERVICE_CONTEXT,
+ "/regensburg/bueroreinigung": {
   label: "Büroreinigung Regensburg",
   shortLabel: "Büroreinigung",
   serviceType: "bueroreinigung_regensburg",
   source: "bueroreinigung_regensburg",
-  entryPoint: "/bueroreinigung-regensburg",
+  entryPoint: "/regensburg/bueroreinigung",
   defaultPropertyType: "Büro & Office",
   helper: "Bürofläche, Turnus, Randzeiten und Ansprechpartner",
  },

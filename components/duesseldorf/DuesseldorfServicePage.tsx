@@ -651,38 +651,38 @@ export function DuesseldorfServicePage({
         />
 
         <AiAnswerBlock
-          eyebrow="Duesseldorf Antwort"
-          title={`${serviceLabel}: was fuer eine schnelle Einschaetzung zaehlt.`}
-          answer="FLOXANT kann Duesseldorfer Reinigungsanfragen besser einordnen, wenn Objekt, Stadtteil, Flaeche, Zustand, Zugang und Fotos frueh sichtbar sind."
+          eyebrow="Düsseldorf Antwort"
+          title={`${serviceLabel}: was für eine schnelle Einschätzung zählt.`}
+          answer="FLOXANT kann Düsseldorfer Reinigungsanfragen besser einordnen, wenn Objekt, Stadtteil, Fläche, Zustand, Zugang und Fotos früh sichtbar sind."
           points={[
-            "Der Stadtteil hilft bei Terminfenster, Anfahrt und realistischen Rueckfragen.",
-            "Fotos zeigen Zustand, Flaeche und besondere Stellen schneller als lange Beschreibungen.",
-            "Vorhandene Angebote koennen nach Umfang, Zusatzpositionen und Annahmen geprueft werden.",
-            "Bei Bueros, Praxen und Gewerbeflaechen zaehlen Turnus, Uhrzeit und Zugang besonders stark.",
+            "Der Stadtteil hilft bei Terminfenster, Anfahrt und realistischen Rückfragen.",
+            "Fotos zeigen Zustand, Fläche und besondere Stellen schneller als lange Beschreibungen.",
+            "Vorhandene Angebote können nach Umfang, Zusatzpositionen und Annahmen geprüft werden.",
+            "Bei Büros, Praxen und Gewerbeflächen zählen Turnus, Uhrzeit und Zugang besonders stark.",
           ]}
-          usefulWhen={["Fotos oder Angebot vorliegen", "Turnus oder Flaeche noch unsicher sind", "ein schneller naechster Schritt gebraucht wird"]}
+          usefulWhen={["Fotos oder Angebot vorliegen", "Turnus oder Fläche noch unsicher sind", "ein schneller nächster Schritt gebraucht wird"]}
           notUsefulWhen={["eine feste Preisgarantie erwartet wird", "ohne Objektangaben sofort gebucht werden soll"]}
-          neededInfo={["Stadtteil", "Flaeche", "Fotos", "Terminfenster"]}
+          neededInfo={["Stadtteil", "Fläche", "Fotos", "Terminfenster"]}
         />
 
         <RelatedSpecialServices
           kind="cleaning"
-          title={`Spezialservices passend zu ${serviceLabel} in Duesseldorf.`}
-          intro="Wenn Glas, Fassade, PV, Event, Uebergabe oder Gewerbeflaechen Teil des Falls sind, helfen diese Spezialwege bei Umfang, Fotos, Zugang und Termin."
+          title={`Spezialservices passend zu ${serviceLabel} in Düsseldorf.`}
+          intro="Wenn Glas, Fassade, PV, Event, Übergabe oder Gewerbeflächen Teil des Falls sind, helfen diese Spezialwege bei Umfang, Fotos, Zugang und Termin."
           limit={4}
           className="mt-6 rounded-[0.95rem] border border-slate-200"
         />
 
         <SignatureServicesGrid
-          title="Signature Services fuer Duesseldorfer Reinigungsfaelle."
-          intro="Angebotscheck, Objektbrief, Plan B, PV-Sichtklar und Buero-Startklar machen aus unklaren Reinigungsanfragen einen konkreteren naechsten Schritt."
+          title="Signature Services für Düsseldorfer Reinigungsfälle."
+          intro="Angebotscheck, Objektbrief, Plan B, PV-Sichtklar und Büro-Startklar machen aus unklaren Reinigungsanfragen einen konkreteren nächsten Schritt."
           limit={4}
           className="mt-6 rounded-[0.95rem]"
         />
 
       <OfferCheckCTA
-        title={`Reinigungsangebot fuer ${serviceLabel} schon vorhanden?`}
-        text="FLOXANT prueft vorhandene Angebote nach Flaeche, Turnus, Zusatzpositionen, Zugang, Fotos und Zeitfenster. Keine Preisgarantie, keine Anbieter-Diffamierung."
+        title={`Reinigungsangebot für ${serviceLabel} schon vorhanden?`}
+        text="FLOXANT prüft vorhandene Angebote nach Fläche, Turnus, Zusatzpositionen, Zugang, Fotos und Zeitfenster. Keine Preisgarantie, keine Anbieter-Diffamierung."
         href="/angebot-vergleichen-duesseldorf"
         className="mt-6 rounded-[0.95rem]"
       />
@@ -1222,8 +1222,8 @@ export function DuesseldorfServicePage({
           allowedPage={path}
           serviceKey="reinigung"
           locationKey="duesseldorf"
-          title={`Trust Proof fuer ${serviceLabel}`}
-          intro="Diese lokale Reinigungsseite nutzt konkrete Anfragebelege statt erfundener Bewertungen: Objekt, Flaeche, Zustand, Fotos, Zugang und Termin."
+          title={`Trust Proof für ${serviceLabel}`}
+          intro="Diese lokale Reinigungsseite nutzt konkrete Anfragebelege statt erfundener Bewertungen: Objekt, Fläche, Zustand, Fotos, Zugang und Termin."
           className="-mx-5 bg-white px-5 sm:-mx-8 sm:px-8 lg:-mx-10 lg:px-10"
         />
 

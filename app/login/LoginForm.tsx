@@ -82,6 +82,7 @@ export default function LoginForm({ dict }: LoginFormProps) {
             <button
               disabled={loading}
               type="submit"
+              aria-label={loading ? t.loading_button : t.submit_button}
               className={cn(
                 "w-full rounded-lg bg-primary h-10 text-primary-foreground font-medium transition-all hover:opacity-90 disabled:opacity-50",
                 loading && "opacity-70 cursor-wait"

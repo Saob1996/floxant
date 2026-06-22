@@ -61,7 +61,7 @@ const offerConcernOptions = [
   { value: "addons_unclear", label: "Zusatzleistungen / Nebenkosten unklar" },
   { value: "deadline", label: "Termin oder Deadline kritisch" },
   { value: "alternative_needed", label: "Alternative gesucht" },
-  { value: "general_second_opinion", label: "Zweite Einschaetzung" },
+  { value: "general_second_opinion", label: "Zweite Einschätzung" },
 ] as const;
 
 const urgencyOptions = [
@@ -177,7 +177,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     event.target.value = "";
   }
 
-  function handleDrop(event: DragEvent<HTMLDivElement>) {
+  function handleDrop(event: DragEvent<HTMLButtonElement>) {
     event.preventDefault();
     setDragActive(false);
     markUploadStarted("drop");
@@ -258,14 +258,14 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       cityOrZip ? `Ort/PLZ: ${cityOrZip}` : "",
       selectedServiceLabel ? `Leistungsbereich: ${selectedServiceLabel}` : "",
       offerStatusLabel ? `Ausgangslage: ${offerStatusLabel}` : "",
-      offerConcernLabel ? `Pruefgrund: ${offerConcernLabel}` : "",
+      offerConcernLabel ? `Prüfgrund: ${offerConcernLabel}` : "",
       propertyTypeLabel ? `Objekt/Fläche: ${propertyTypeLabel}` : "",
       urgencyLabel ? `Dringlichkeit: ${urgencyLabel}` : "",
       preferredContactLabel ? `Kontaktwunsch: ${preferredContactLabel}` : "",
       desiredDate ? `Zeitraum: ${desiredDate}` : "",
       quotedPrice ? `Bisheriger Preis: ${quotedPrice}` : "",
       budget ? `Budget/Preisrahmen: ${budget}` : "",
-      message ? `Hinweis: ${message}` : "Hinweis: Bitte pruefen, ob eine passende Alternative oder offene Punkte erkennbar sind.",
+      message ? `Hinweis: ${message}` : "Hinweis: Bitte prüfen, ob eine passende Alternative oder offene Punkte erkennbar sind.",
     ]
       .filter(Boolean)
       .join("\n");
@@ -299,7 +299,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("privacyConsent", "true");
     formData.set("pageType", "offer_check");
     formData.set("funnelStage", "offer_check");
-    formData.set("ctaLabel", "Pruefung anfordern");
+    formData.set("ctaLabel", "Prüfung anfordern");
     formData.set("timestamp", new Date().toISOString());
     formData.set("landingPage", `${window.location.pathname}${window.location.search}`);
     formData.set("referrer", document.referrer);
@@ -372,17 +372,17 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       onSubmit={handleSubmit}
       data-event="offer_check_started"
       data-source="google_ads_offer_comparison_landingpage"
-      aria-label="Angebotspruefung anfordern"
+      aria-label="Angebotsprüfung anfordern"
     >
       <div className="min-w-0">
         <p className="text-sm font-black uppercase tracking-normal text-blue-700">
           FLOXANT Angebotsprüfung
         </p>
         <h2 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-          Angebot pruefen lassen
+          Angebot prüfen lassen
         </h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. FLOXANT prueft
+          Senden Sie Ihr bestehendes Angebot oder die wichtigsten Eckdaten. FLOXANT prüft
           unverbindlich, ob eine passende Alternative oder offene Punkte erkennbar sind.
         </p>
         <p className="mt-2 text-sm font-semibold leading-6 text-blue-700">
@@ -453,7 +453,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           </select>
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
-          Wichtigster Pruefgrund
+          Wichtigster Prüfgrund
           <select name="offerConcern" defaultValue="price_unclear" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 text-base outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100">
             {offerConcernOptions.map((item) => (
               <option key={item.value} value={item.value}>
@@ -497,19 +497,20 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       </div>
 
       <div>
-        <div
-          role="button"
-          tabIndex={0}
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+          multiple
+          className="sr-only"
+          onChange={handleInputChange}
+          data-event={uploadStarted ? "upload_completed" : "upload_started"}
+        />
+        <button
+          type="button"
           onClick={() => {
             markUploadStarted("click");
             inputRef.current?.click();
-          }}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              markUploadStarted("click");
-              inputRef.current?.click();
-            }
           }}
           onDragEnter={(event) => {
             event.preventDefault();
@@ -522,7 +523,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           }}
           onDragLeave={() => setDragActive(false)}
           onDrop={handleDrop}
-          className={`grid min-h-44 cursor-pointer place-items-center rounded-lg border border-dashed p-5 text-center transition focus:outline-none focus:ring-4 focus:ring-blue-100 ${
+          className={`grid min-h-44 w-full cursor-pointer place-items-center rounded-lg border border-dashed p-5 text-center transition focus:outline-none focus:ring-4 focus:ring-blue-100 ${
             dragActive
               ? "border-blue-600 bg-blue-50"
               : "border-slate-300 bg-slate-50 hover:border-blue-500 hover:bg-white"
@@ -530,15 +531,6 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
           aria-label="Bestehendes Angebot als PDF, JPG oder PNG hochladen"
           data-event={uploadStarted ? "upload_completed" : "upload_started"}
         >
-          <input
-            ref={inputRef}
-            type="file"
-            accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-            multiple
-            className="sr-only"
-            onChange={handleInputChange}
-            data-event={uploadStarted ? "upload_completed" : "upload_started"}
-          />
           <div className="max-w-md">
             <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-slate-950 text-white">
               <UploadCloud className="h-6 w-6" />
@@ -550,7 +542,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
               PDF, JPG oder PNG ablegen oder Datei auswählen. Die Anfrage funktioniert auch ohne Upload.
             </p>
           </div>
-        </div>
+        </button>
 
         {files.length ? (
           <div className="mt-3 grid gap-2" aria-live="polite">
@@ -597,7 +589,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         <input name="privacy" type="checkbox" className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-700" />
         <span>
           Ich bin damit einverstanden, dass FLOXANT meine Angaben zur Bearbeitung der Anfrage verarbeitet.
-          Die Pruefung ist unverbindlich; es wird keine Preisgarantie gegeben.
+          Die Prüfung ist unverbindlich; es wird keine Preisgarantie gegeben.
         </span>
       </label>
 
@@ -615,7 +607,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
         data-event="offer_check_started"
       >
         {isSubmitting ? <Loader2 className="h-5 w-5 animate-spin" /> : <ArrowRight className="h-5 w-5" />}
-        Pruefung anfordern
+        Prüfung anfordern
       </button>
 
       <a
@@ -631,7 +623,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
       <div className="grid gap-3 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm font-bold leading-6 text-cyan-950 sm:grid-cols-[auto_1fr]">
         <CheckCircle2 className="mt-0.5 h-5 w-5 text-cyan-700" />
         <p>
-          FLOXANT prueft unverbindlich, ob eine passende Alternative oder offene Punkte erkennbar sind. Jede Anfrage wird individuell bewertet.
+          FLOXANT prüft, ob eine passende Alternative oder offene Punkte erkennbar sind. Jede Anfrage wird individuell bewertet.
         </p>
       </div>
     </form>

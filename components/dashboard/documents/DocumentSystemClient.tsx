@@ -436,18 +436,21 @@ export function DocumentSystemClient() {
        <div className="grid gap-3 sm:grid-cols-3">
         <input
          value={manualCustomer.name || ""}
+         aria-label="Kundenname"
          onChange={(event) => setManualCustomer((current) => ({ ...current, name: event.target.value }))}
          className="dashboard-input"
          placeholder="Kundenname"
         />
         <input
          value={manualCustomer.email || ""}
+         aria-label="E-Mail"
          onChange={(event) => setManualCustomer((current) => ({ ...current, email: event.target.value }))}
          className="dashboard-input"
          placeholder="E-Mail"
         />
         <input
          value={manualCustomer.phone || ""}
+         aria-label="Telefon"
          onChange={(event) => setManualCustomer((current) => ({ ...current, phone: event.target.value }))}
          className="dashboard-input"
          placeholder="Telefon"
@@ -474,6 +477,7 @@ export function DocumentSystemClient() {
        <div className="grid gap-3">
         <input
          value={query}
+         aria-label="Dokumente suchen"
          onChange={(event) => setQuery(event.target.value)}
          className="dashboard-input"
          placeholder="Suchen: Kunde, Nummer, Ort..."
@@ -794,7 +798,7 @@ function TextField({ label, value, onChange }: { label: string; value: string; o
  return (
   <label className="block">
    <FieldLabel>{label}</FieldLabel>
-   <input value={value} onChange={(event) => onChange(event.target.value)} className="dashboard-input" />
+   <input value={value} aria-label={label} onChange={(event) => onChange(event.target.value)} className="dashboard-input" />
   </label>
  );
 }
@@ -813,7 +817,7 @@ function NumberField({
  return (
   <label className="block">
    <FieldLabel>{label}</FieldLabel>
-   <input type="number" value={Number.isFinite(value) ? value : 0} step={step} onChange={(event) => onChange(Number(event.target.value) || 0)} className="dashboard-input" />
+   <input type="number" value={Number.isFinite(value) ? value : 0} step={step} aria-label={label} onChange={(event) => onChange(Number(event.target.value) || 0)} className="dashboard-input" />
   </label>
  );
 }
@@ -822,7 +826,7 @@ function DateField({ label, value, onChange }: { label: string; value?: string; 
  return (
   <label className="block">
    <FieldLabel>{label}</FieldLabel>
-   <input type="date" value={formatDateForInput(value) || todayInput()} onChange={(event) => onChange(toIsoDate(event.target.value))} className="dashboard-input" />
+   <input type="date" value={formatDateForInput(value) || todayInput()} aria-label={label} onChange={(event) => onChange(toIsoDate(event.target.value))} className="dashboard-input" />
   </label>
  );
 }

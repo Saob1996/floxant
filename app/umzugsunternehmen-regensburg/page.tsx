@@ -62,9 +62,9 @@ const faqItems = [
 ];
 
 const relatedLinks = [
-  { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-  { href: "/entruempelung-regensburg", label: "Entrümpelung Regensburg" },
-  { href: "/wohnungsaufloesung-regensburg", label: "Wohnungsauflösung Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
+  { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
   { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen" },
   { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
@@ -75,10 +75,10 @@ export default function UmzugsunternehmenRegensburgPage() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "@id": `${company.url}/umzugsunternehmen-regensburg#service`,
+      "@id": `${company.url}/regensburg/umzugsunternehmen#service`,
       name: "Umzugsunternehmen Regensburg",
       serviceType: "MovingService",
-      url: `${company.url}/umzugsunternehmen-regensburg`,
+      url: `${company.url}/regensburg/umzugsunternehmen`,
       provider: {
         "@type": "MovingCompany",
         name: company.name,
@@ -105,7 +105,7 @@ export default function UmzugsunternehmenRegensburgPage() {
           "@type": "ListItem",
           position: 3,
           name: "Umzugsunternehmen Regensburg",
-          item: `${company.url}/umzugsunternehmen-regensburg`,
+          item: `${company.url}/regensburg/umzugsunternehmen`,
         },
       ],
     },

@@ -177,7 +177,7 @@ const boundaries = [
 ];
 
 const relatedLinks = [
-  { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
   { href: "/immobilie-verkaufsbereit-machen", label: "Nachlass-Objekt vorbereiten" },
   { href: "/wohnung-wieder-vermietbar", label: "Wohnung wieder vermietbar machen" },
   { href: "/uebergabeakte", label: "Uebergabeakte ergaenzen" },
@@ -185,8 +185,8 @@ const relatedLinks = [
   { href: "/keller-muellraum-rettung-regensburg", label: "Keller, Garage oder Nebenraeume klaeren" },
   { href: "/makler-vermieter-link", label: "Makler-/Vermieter-Fall senden" },
   { href: "/mieterwechsel-service-regensburg", label: "Mieterwechsel-Service" },
-  { href: "/reinigung-regensburg", label: "Reinigung nach Raeumung" },
-  { href: "/einsatzgebiet-regensburg-200km", label: "Servicegebiet Regensburg" },
+  { href: "/regensburg/reinigung", label: "Reinigung nach Raeumung" },
+  { href: "/regensburg", label: "Regensburg-Bereich" },
   { href: "/buchung", label: "Buchung / Anfrage starten" },
   { href: "/rechner", label: "Preisrahmen einschaetzen" },
 ];

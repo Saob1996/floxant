@@ -132,9 +132,9 @@ export const localServiceSeoPages = {
       "Senioren-Umzug Düsseldorf",
       "Umzug mit Endreinigung Düsseldorf",
     ],
-    metaTitle: "Umzug Duesseldorf mit Start, Ziel und Angebot klaeren",
+    metaTitle: "Umzug Düsseldorf mit Start, Ziel und Angebot klären",
     metaDescription:
-      "Umzug Duesseldorf anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klaeren.",
+      "Umzug Düsseldorf anfragen: Start, Ziel, Etage, Laufweg, Fotos, Terminwunsch und vorhandenes Angebot vor der Zusage klären.",
     titleAlternatives: [
       "Umzugsfirma Düsseldorf | Fotos senden, Ablauf klären",
       "Umzugsfirma Düsseldorf | Online-Besichtigung nutzen",
@@ -233,9 +233,9 @@ export const localServiceSeoPages = {
       "Entrümpelungsangebot prüfen Düsseldorf",
       "Entrümpelung mit Reinigung Düsseldorf",
     ],
-    metaTitle: "Entruempelung Duesseldorf mit Raeumen und Zugang",
+    metaTitle: "Entrümpelung Düsseldorf mit Räumen und Zugang",
     metaDescription:
-      "Entruempelung Duesseldorf anfragen: Raeume, Menge, Zugang, Fotos, Frist und moegliche Reinigung danach strukturiert klaeren.",
+      "Entrümpelung Düsseldorf anfragen: Räume, Menge, Zugang, Fotos, Frist und mögliche Reinigung danach strukturiert klären.",
     titleAlternatives: [
       "Entrümpelung Düsseldorf | Fotos senden, Räume klären",
       "Entrümpelung Düsseldorf | Räume prüfen lassen",
@@ -436,36 +436,36 @@ export const localServiceSeoPages = {
       "Umzugsreinigung Regensburg",
       "Reinigungsangebot prüfen Regensburg",
     ],
-    metaTitle: "Reinigung Regensburg | Fotos senden, Aufwand klären",
+    metaTitle: "Reinigung Regensburg | Wohnung, Übergabe und Angebot",
     metaDescription:
-      "FLOXANT prüft Reinigung in Regensburg für Wohnung, Büro, Übergabe und Umzug. Fläche, Zustand, Fotos und Termin senden, Budget nennen, Rückmeldung erhalten.",
+      "Reinigung Regensburg für Wohnung, Übergabe und Objekt: Fläche, Räume, Zustand, Fotos, Termin, Zugang und Angebot prüfen lassen.",
     titleAlternatives: [
       "Reinigung Regensburg | Fotos senden, Aufwand klären",
       "Reinigungsfirma Regensburg | Schnell einschätzen lassen",
       "Reinigung in Regensburg | Angebot sauber klären",
     ],
-    headline: "Reinigung in Regensburg für Wohnung, Büro und Übergabe",
+    headline: "Reinigung Regensburg für Wohnung, Objekt und Übergabe",
     intro:
-      "FLOXANT prüft Reinigungsanfragen in Regensburg nach Objekt, Fläche, Zustand, Termin und gewünschtem Ergebnis. Besonders hilfreich sind Fotos, Videos oder ein vorhandenes Angebot.",
+      "FLOXANT prüft Reinigungsanfragen in Regensburg nach Objektart, Fläche, Räumen, Zustand, Zugang, Termin und gewünschtem Ergebnis. Für laufende Büro- oder Gewerbereinigung führen die passenden B2B-Seiten weiter.",
     primaryCta: "Reinigung in Regensburg anfragen",
-    secondaryCta: "Bilder hochladen",
+    secondaryCta: "Fotos zum Zustand senden",
     bookingHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Reinigung in Regensburg anfragen. Objektart, Ort, Fläche, Zustand, Termin und Fotos kann ich senden.",
     proofItems: [
-      "Wohnung, Büro, Treppenhaus, Endreinigung oder Reinigung nach Umzug.",
+      "Wohnung, Treppenhaus, Endreinigung oder Reinigung nach Umzug in Regensburg.",
       "Fotos, Fläche und Zielzustand machen die Einschätzung schneller.",
-      "Umzug, Entrümpelung und Reinigung können sauber kombiniert werden.",
+      "Büroreinigung und Gewerbereinigung werden klar verlinkt, damit der Hub nicht kannibalisiert.",
     ],
     problemTitle: "Wenn Reinigung nicht nur Putzen heißt",
     problemText: [
       "Kunden suchen häufig schnelle Hilfe, weil Übergabe, Umzug, Nachmieter, Besuch oder ein Objekttermin näher rückt. Dann zählt nicht nur ein Preis, sondern die Frage, welche Bereiche wirklich gereinigt werden müssen.",
-      "FLOXANT ordnet Küche, Bad, Böden, Fensterbereiche, Treppenhaus, Gewerbeflächen, Restmengen und Zeitdruck getrennt ein. So wird aus einer vagen Anfrage ein klarer Ablauf.",
+      "FLOXANT ordnet Küche, Bad, Böden, Fensterbereiche, Treppenhaus, Restmengen, Zugang und Zeitdruck getrennt ein. Wenn Büro, Turnus oder Gewerbefläche im Mittelpunkt stehen, führt die Seite bewusst weiter.",
     ],
     scopeTitle: "Welche Reinigung in Regensburg geprüft wird",
     scopeItems: [
       "Wohnungsreinigung, Endreinigung, Übergabereinigung und Reinigung nach Umzug.",
-      "Büro, Praxis, Gewerbefläche, Treppenhaus, Grundreinigung und objektbezogene Reinigung.",
+      "Private Reinigung, Umzugsreinigung, Übergabereinigung, Treppenhaus und objektbezogene Reinigung.",
       "Küche, Bad, Böden, sichtbare Rückstände, Fensterbereiche und stark genutzte Flächen.",
       "Vorhandene Angebote, Budgetrahmen und Kombi-Anfragen mit Umzug oder Entrümpelung.",
     ],
@@ -478,7 +478,7 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Reinigung nach Stadtteil und Objekt einordnen",
     localText:
-      "In der Innenstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug.",
+      "In der Altstadt und Stadtamhof zählen Zugang, Parken und enge Zeitfenster. In Kumpfmühl, Prüfening, Galgenberg, Königswiesen, Reinhausen oder Burgweinting geht es häufig um Wohnung, Auszug, Bürofläche, Treppenhaus oder Reinigung nach Umzug.",
     districts: regensburgDistricts,
     trustItems: [
       "Klare Einschätzung statt pauschaler Reinigungsgarantie.",
@@ -492,6 +492,11 @@ export const localServiceSeoPages = {
         href: "/regensburg/gewerbereinigung",
         label: "Gewerbereinigung Regensburg prüfen",
         text: "Für Büro, Praxis, Hausverwaltung und Objektflächen mit Turnus oder Raumliste.",
+      },
+      {
+        href: "/angebot-vergleichen-regensburg",
+        label: "Reinigungsangebot Regensburg vergleichen",
+        text: "Wenn bereits ein Angebot vorliegt und Umfang, Turnus, Fotos oder Zusatzpunkte unklar sind.",
       },
     ],
     faq: [
@@ -538,17 +543,17 @@ export const localServiceSeoPages = {
       "Reinigungsangebot Regensburg",
       "Büroreinigung Angebot Regensburg",
     ],
-    metaTitle: "Gewerbereinigung Regensburg mit Raumliste und Angebot",
+    metaTitle: "Gewerbereinigung Regensburg | Raumliste und Turnus",
     metaDescription:
-      "Gewerbereinigung Regensburg fuer Buero, Praxis, Kanzlei und Objekt: Raumliste, Turnus, Fotos, Angebot und Starttermin klaeren.",
+      "Gewerbereinigung Regensburg für Büro, Kanzlei, Praxis, Studio und Objekt: Raumliste, Turnus, Randzeit, Zugang, Fotos und Angebot prüfen.",
     titleAlternatives: [
       "Gewerbereinigung Regensburg | Raumliste senden",
       "Büroreinigung Regensburg | Turnus & Räume klären",
       "Reinigungsfirma Regensburg | Büro und Objekt prüfen",
     ],
-    headline: "Gewerbereinigung in Regensburg für Büro, Praxis und Objekt",
+    headline: "Gewerbereinigung Regensburg für Büro, Kanzlei, Praxis und Objekt",
     intro:
-      "FLOXANT prüft gewerbliche Reinigung in Regensburg nach Objektart, Raumliste, Turnus, Zeitfenster, Zugang und Fotos. So entsteht ein nachvollziehbarer Leistungsumfang für Büro, Praxis, Kanzlei, Hausverwaltung oder Gewerbefläche.",
+      "FLOXANT prüft gewerbliche Reinigung in Regensburg nach Objektart, Raumliste, Turnus, Randzeit, Zugang, Schlüsselweg, Stadtteil und Fotos. So entsteht ein nachvollziehbarer Leistungsumfang für Büro, Kanzlei, Praxisfläche nach Absprache, Studio, Hausverwaltung oder Gewerbefläche.",
     primaryCta: "Gewerbereinigung anfragen",
     secondaryCta: "Raumliste senden",
     bookingHref: "/buchung?region=regensburg&service=gewerbereinigung#buchungssystem",
@@ -556,17 +561,17 @@ export const localServiceSeoPages = {
       "Hallo FLOXANT, ich möchte Gewerbereinigung in Regensburg anfragen. Objektart, Raumliste, Fläche, Turnus, Zeitfenster und Fotos kann ich senden.",
     proofItems: [
       "Raumliste, Turnus und Zeitfenster werden vor einem Angebot geklärt.",
-      "Büro, Praxis, Kanzlei, Treppenhaus und Objektflächen nach Absprache.",
+      "Büro, Kanzlei, Praxisfläche, Studio, Treppenhaus und Objektflächen nach Absprache.",
       "Vorhandene Angebote können sachlich geprüft werden.",
     ],
     problemTitle: "Wenn Gewerbereinigung planbar sein muss",
     problemText: [
-      "Bei Büros, Praxen, Kanzleien oder Hausverwaltungen reicht ein kurzer Satz selten aus. Entscheidend sind Räume, Nutzung, Sanitär, Küche, Boden, Zugang, Schlüsselweg und ob die Reinigung vor Öffnung, nach Feierabend oder am Wochenende stattfinden soll.",
+      "Bei Büros, Praxen, Kanzleien, Studios oder Hausverwaltungen reicht ein kurzer Satz selten aus. Entscheidend sind Räume, Nutzung, Sanitär, Küche, Boden, Zugang, Schlüsselweg und ob die Reinigung vor Öffnung, nach Feierabend oder am Wochenende stattfinden soll.",
       "FLOXANT macht daraus eine prüfbare Anfrage: Welche Bereiche sind wichtig, wie oft soll gereinigt werden, wer ist Ansprechpartner und welche Punkte müssen im Angebot sichtbar sein?",
     ],
     scopeTitle: "Was zur Gewerbereinigung gehören kann",
     scopeItems: [
-      "Büroreinigung, Unterhaltsreinigung, Praxisflächen nach Absprache und Kanzleireinigung.",
+      "Büroreinigung, Unterhaltsreinigung, Kanzleien, Studios, Praxisflächen nach Absprache und Hausverwaltungsbereiche.",
       "Empfang, Arbeitsplätze, Besprechungsräume, Küchen, Sanitär, Flure und Treppenhaus.",
       "Einmalige Grundreinigung, regelmäßiger Turnus oder Reinigung nach Renovierung.",
       "Angebotsprüfung mit Raumliste, Leistungsumfang, Turnus, Fotos und Budgetrahmen.",
@@ -580,7 +585,7 @@ export const localServiceSeoPages = {
     ],
     localTitle: "Regensburg: Gewerbeflächen unterschiedlich einordnen",
     localText:
-      "In Innenstadt, Stadtamhof und Altstadt sind Zugang und Zeitfenster oft entscheidend. Im Westenviertel, in Prüfening, Galgenberg, Burgweinting oder im Kasernenviertel zählen vor allem Raumliste, Parkmöglichkeit, Turnus und ein klarer Ansprechpartner.",
+      "In Altstadt, Stadtamhof und Innenstadt sind Zugang und Zeitfenster oft entscheidend. Im Westenviertel, in Prüfening, Galgenberg, Burgweinting, Reinhausen oder im Kasernenviertel zählen vor allem Raumliste, Parkmöglichkeit, Turnus und ein klarer Ansprechpartner.",
     districts: regensburgDistricts,
     trustItems: [
       "Strukturierte Anfrage mit Raumliste, Fotos und Leistungsumfang.",
@@ -594,7 +599,17 @@ export const localServiceSeoPages = {
         label: "Reinigung Regensburg",
         text: "Für allgemeine Reinigung, Endreinigung, Wohnung und Übergabe.",
       },
+      {
+        href: "/regensburg/bueroreinigung",
+        label: "Büroreinigung Regensburg",
+        text: "Wenn Raumliste, Arbeitsplätze, Küche, Sanitär, Randzeit und Schlüsselweg den Auftrag bestimmen.",
+      },
       ...regensburgServiceLinks,
+      {
+        href: "/angebot-vergleichen-regensburg",
+        label: "Gewerbereinigungsangebot vergleichen",
+        text: "Wenn Umfang, Turnus, Zusatzpositionen oder Preislogik eines Angebots vorab geklärt werden sollen.",
+      },
       {
         href: "/blog/gewerbereinigung-regensburg-objekte-b2b",
         label: "Ratgeber Gewerbereinigung Regensburg",

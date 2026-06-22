@@ -231,6 +231,7 @@ export function ReferralPartnerCodeForm() {
         <div className="mt-4 grid gap-2 sm:grid-cols-3">
           <button
             type="button"
+            aria-label={copied ? "Empfehlungslink kopiert" : "Empfehlungslink kopieren"}
             onClick={copyLink}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-xs font-black text-slate-800"
             data-event="form_submit"

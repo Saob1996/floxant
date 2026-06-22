@@ -346,7 +346,7 @@ const serviceLocalLinks: Partial<
   umzug: [
     {
       label: "Umzug Regensburg",
-      href: "/umzug-regensburg",
+      href: "/regensburg/umzug",
       text: "Lokaler Hauptpfad für Wohnungswechsel, Transport und Übergabe im Regensburger Raum.",
       tone: "border-blue-200 bg-blue-50 text-blue-800",
     },
@@ -366,13 +366,13 @@ const serviceLocalLinks: Partial<
   reinigung: [
     {
       label: "Reinigung Regensburg",
-      href: "/reinigung-regensburg",
+      href: "/regensburg/reinigung",
       text: "Für Wohnungsreinigung, Endreinigung und Übergabe im Regensburger Kerngebiet.",
       tone: "border-emerald-200 bg-emerald-50 text-emerald-800",
     },
     {
       label: "Gewerbereinigung",
-      href: "/gewerbereinigung-regensburg",
+      href: "/regensburg/gewerbereinigung",
       text: "Eigener Startpunkt für Büros, Praxen, Kanzleien, Treppenhäuser und Objektflächen.",
       tone: "border-blue-200 bg-blue-50 text-blue-800",
     },
@@ -386,13 +386,13 @@ const serviceLocalLinks: Partial<
   entsorgung: [
     {
       label: "Entrümpelung Regensburg",
-      href: "/entruempelung-regensburg",
+      href: "/regensburg/entruempelung",
       text: "Direkter Kontaktweg für Keller, Wohnung, Restmengen und besenreine Vorbereitung.",
       tone: "border-orange-200 bg-orange-50 text-orange-800",
     },
     {
       label: "Wohnungsauflösung",
-      href: "/wohnungsaufloesung-regensburg",
+      href: "/regensburg/wohnungsaufloesung",
       text: "Für komplette Auflösungen, Nachlass, Räumung und Übergabevorbereitung.",
       tone: "border-amber-200 bg-amber-50 text-amber-900",
     },

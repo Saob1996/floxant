@@ -166,12 +166,12 @@ const faqItems = [
 ];
 
 const relatedLinks = [
-  { href: "/gewerbereinigung-regensburg", label: "Gewerbereinigung Regensburg" },
+  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
   { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
   { href: "/teppichreinigung-regensburg", label: "Teppichreinigung Regensburg" },
-  { href: "/endreinigung-regensburg", label: "Endreinigung Regensburg" },
-  { href: "/bueroreinigung-regensburg", label: "Büroreinigung Regensburg" },
+  { href: "/regensburg/endreinigung", label: "Endreinigung Regensburg" },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
   { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg" },
   { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung Regensburg" },
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
@@ -198,7 +198,7 @@ export default function BaureinigungRegensburgPage() {
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
         { name: "Reinigung", item: "/reinigung" },
-        { name: "Gewerbereinigung Regensburg", item: "/gewerbereinigung-regensburg" },
+        { name: "Gewerbereinigung Regensburg", item: "/regensburg/gewerbereinigung" },
         { name: "Baureinigung Regensburg", item: pagePath },
       ]),
       buildServiceJsonLd({
@@ -253,7 +253,7 @@ export default function BaureinigungRegensburgPage() {
       <Breadcrumbs
         items={[
           { label: "Reinigung", href: "/reinigung" },
-          { label: "Gewerbereinigung Regensburg", href: "/gewerbereinigung-regensburg" },
+          { label: "Gewerbereinigung Regensburg", href: "/regensburg/gewerbereinigung" },
           { label: "Baureinigung Regensburg" },
         ]}
       />
@@ -357,7 +357,7 @@ export default function BaureinigungRegensburgPage() {
           "/baustaub-ende",
           "/grundreinigung-regensburg",
           "/fensterreinigung-regensburg",
-          "/gewerbereinigung-regensburg",
+          "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=baureinigung_regensburg#buchungssystem"
       />

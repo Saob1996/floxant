@@ -302,7 +302,7 @@ export function OfferRedFlagScanner({
               onClick: scrollToForm,
             },
             {
-              title: "Text einfuegen",
+              title: "Text einfügen",
               text: "Angebotstext kopieren.",
               Icon: FileText,
               event: "hero_cta_click",
@@ -315,6 +315,7 @@ export function OfferRedFlagScanner({
               <button
                 key={item.title}
                 type="button"
+                aria-label={item.title}
                 onClick={item.onClick}
                 data-event={item.event}
                 data-source={item.source}

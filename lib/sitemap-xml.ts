@@ -47,8 +47,20 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "partnercode",
   "airbnb-reinigung-duesseldorf",
   "angebot-red-flag-scanner",
+  "einsatzgebiet-regensburg-200km",
+  "service-area-bayern",
   "villenservice",
   "umzug-duesseldorf",
+  "umzug-regensburg",
+  "reinigung-regensburg",
+  "entruempelung-regensburg",
+  "gewerbereinigung-regensburg",
+  "bueroreinigung-regensburg",
+  "wohnungsaufloesung-regensburg",
+  "umzugsunternehmen-regensburg",
+  "seniorenumzug-regensburg",
+  "umzug-reinigung-regensburg",
+  "endreinigung-regensburg",
   "seo-gone",
 ]);
 
@@ -87,6 +99,16 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
 
 const REMOVED_SERVICE_ROUTE_PREFIXES = [
   "halteverbotszone",
+] as const;
+
+const BROAD_ROOT_CITY_SERVICE_PREFIXES = [
+  "bueroumzug",
+  "entruempelung",
+  "klaviertransport",
+  "reinigung",
+  "seniorenumzug",
+  "umzug",
+  "wohnungsaufloesung",
 ] as const;
 
 const MACHINE_READABLE_ROUTES = ["llms.txt", "service-graph.json"] as const;
@@ -144,6 +166,18 @@ const highValueLocalSitemapServices = new Set([
 const DEPRIORITIZED_CITY_SLUGS = new Set([
   "forchheim",
   "friedberg",
+  "wuerzburg",
+  "kempten",
+  "lindau",
+  "memmingen",
+  "kaufbeuren",
+  "traunstein",
+  "berlin",
+  "bremen",
+  "frankfurt",
+  "hamburg",
+  "leipzig",
+  "stuttgart",
 ]);
 
 function getDynamicLocalSitemapRoute(route: string) {
@@ -201,8 +235,23 @@ function shouldSkipSitemapRoute(route: string): boolean {
     REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
     NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||
     isDeprioritizedCityRoute(normalizedRoute) ||
+    isBroadRootCityServiceRoute(normalizedRoute) ||
     isForbiddenDuesseldorfMovingRoute(normalizedRoute)
   );
+}
+
+function isBroadRootCityServiceRoute(route: string): boolean {
+  const normalizedRoute = route.toLowerCase();
+
+  if (normalizedRoute === "seniorenumzug-landshut") {
+    return false;
+  }
+
+  if (normalizedRoute.includes("regensburg") || normalizedRoute.endsWith("-bayern")) {
+    return false;
+  }
+
+  return BROAD_ROOT_CITY_SERVICE_PREFIXES.some((prefix) => normalizedRoute.startsWith(`${prefix}-`));
 }
 
 function isDeprioritizedCityRoute(route: string): boolean {
@@ -374,7 +423,6 @@ function priorityForRoute(route: string): string {
     return "0.35";
   }
   if (route === "leerfahrt-rueckfahrt") return "0.88";
-  if (route === "einsatzgebiet-regensburg-200km") return "0.88";
   if (route === "standorte") return "0.88";
   if (route === "leistungen") return "0.88";
   if (route === "kontakt") return "0.88";
@@ -385,7 +433,7 @@ function priorityForRoute(route: string): string {
   if (route === "praxisfaelle") return "0.82";
   if (route === "kostenfaktoren") return "0.84";
   if (route === "floxant-fakten") return "0.8";
-  if (route.includes("regensburg") || route.endsWith("-bayern") || route === "service-area-bayern") return "0.85";
+  if (route.includes("regensburg") || route.endsWith("-bayern")) return "0.85";
   if (route.startsWith("blog") || route.startsWith("ratgeber") || route.startsWith("wissen")) return "0.65";
   if (["impressum", "datenschutz", "agb", "widerruf", "buchungsbedingungen"].includes(route)) return "0.3";
   return "0.7";

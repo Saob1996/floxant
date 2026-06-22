@@ -45,9 +45,9 @@ const whatsappHref = buildWhatsAppHref(
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Regensburg Service: Umzug, Reinigung und Raeumung klaeren",
+  title: "Regensburg Service: Umzug, Reinigung und Räumung klären",
   description:
-    "Regensburg-Anfrage fuer Umzug, Reinigung, Entruempelung oder Uebergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden.",
+    "Regensburg-Anfrage für Umzug, Reinigung, Entrümpelung oder Übergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden.",
   alternates: { canonical: "/regensburg" },
 };
 
@@ -66,7 +66,7 @@ const regensburgDecisionGuide = [
     cta: "Umzug öffnen",
   },
   {
-    title: "Region Regensburg und 200 km Umfeld",
+    title: "Region Regensburg und Umgebung",
     text: "Kuratierter Hub für Umzug, Räumung, Reinigung nach Umzug und Angebotsprüfung im Regensburger Einsatzgebiet.",
     href: "/region-regensburg",
     cta: "Region öffnen",
@@ -119,12 +119,12 @@ export default function RegensburgHubPage() {
               {region.label}
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Regensburg: Umzug, Reinigung, Raeumung und Uebergabe sauber einordnen
+              Regensburg: Umzug, Reinigung, Räumung und Übergabe sauber einordnen
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Beschreiben Sie Start, Ziel, Objekt, Raeume, Umfang, Fotos und Terminwunsch.
-              FLOXANT trennt Umzug, Reinigung, Entruempelung, Wohnungsaufloesung und Angebotscheck,
-              damit aus einer groben Anfrage ein sinnvoller naechster Schritt wird.
+              Beschreiben Sie Start, Ziel, Objekt, Räume, Umfang, Fotos und Terminwunsch.
+              FLOXANT trennt Umzug, Reinigung, Entrümpelung, Wohnungsauflösung und Angebotscheck,
+              damit aus einer groben Anfrage ein sinnvoller nächster Schritt wird.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
@@ -181,7 +181,7 @@ export default function RegensburgHubPage() {
 
       <LocationClarityPanel
         title="Regensburg bleibt der eigene Servicebereich für Wechsel und Übergabe."
-        intro="Regensburg wird nicht mit Duesseldorf vermischt. Fuer die erste Einordnung zaehlen Start, Ziel, Etage, Laufweg, Menge, Fotos, Zugang und Terminwunsch."
+        intro="Regensburg wird nicht mit Düsseldorf vermischt. Für die erste Einordnung zählen Start, Ziel, Etage, Laufweg, Menge, Fotos, Zugang und Terminwunsch."
         locations={locationClarityItems}
       />
 
@@ -239,16 +239,16 @@ export default function RegensburgHubPage() {
 
       <AiAnswerBlock
         eyebrow="Kurze Antwort"
-        title="Regensburg: Umzug, Reinigung oder Entruempelung zuerst sauber einordnen."
-        answer="FLOXANT Regensburg fuehrt Anfragen ueber den konkreten Bedarf: Start- und Zielort, Termin, Umfang, Fotos und vorhandene Angebote. So wird klar, ob eine direkte Anfrage, eine Angebotspruefung oder ein Plan-B-Weg der bessere naechste Schritt ist."
+        title="Regensburg: Umzug, Reinigung oder Entrümpelung zuerst sauber einordnen."
+        answer="FLOXANT Regensburg führt Anfragen über den konkreten Bedarf: Start- und Zielort, Termin, Umfang, Fotos und vorhandene Angebote. So wird klar, ob eine direkte Anfrage, eine Angebotsprüfung oder ein Plan-B-Weg der bessere nächste Schritt ist."
         points={[
           "Umzug und Transport brauchen Strecke, Etage, Laufweg und Volumen.",
-          "Reinigung und Uebergabe brauchen Zielzustand, Flaeche, Fotos und Termin.",
-          "Entruempelung und Aufloesung brauchen Menge, Material, Zugang und Freigabe.",
-          "Klaviertransport und Seniorenumzug werden als Spezialfaelle getrennt vorbereitet.",
+          "Reinigung und Übergabe brauchen Zielzustand, Fläche, Fotos und Termin.",
+          "Entrümpelung und Auflösung brauchen Menge, Material, Zugang und Freigabe.",
+          "Klaviertransport und Seniorenumzug werden als Spezialfälle getrennt vorbereitet.",
         ]}
-        usefulWhen={["Termin oder Frist absehbar ist", "Fotos oder ein Angebot vorliegen", "mehrere Leistungen kombiniert werden muessen"]}
-        notUsefulWhen={["eine Preisgarantie ohne Orts- und Objektangaben erwartet wird", "rechtliche Beratung zur Uebergabe gesucht wird"]}
+        usefulWhen={["Termin oder Frist absehbar ist", "Fotos oder ein Angebot vorliegen", "mehrere Leistungen kombiniert werden müssen"]}
+        notUsefulWhen={["eine Preisgarantie ohne Orts- und Objektangaben erwartet wird", "rechtliche Beratung zur Übergabe gesucht wird"]}
         neededInfo={["Ort und Termin", "Leistung", "Fotos", "vorhandenes Angebot oder kurze Lagebeschreibung"]}
         ctaHref="/kontakt?service=umzug&city=regensburg&intent=umzug-regensburg&source=seo"
         ctaLabel="Regensburg-Anfrage starten"
@@ -264,13 +264,13 @@ export default function RegensburgHubPage() {
         locationKeys={["regensburg"]}
         service="umzug"
         title="FLOXANT Regensburg mit sichtbaren Standortdaten."
-        intro="Regensburger Adresse, Telefon, E-Mail und Maps-Suchlink kommen aus zentralen Standortdaten. Oeffnungszeiten und GBP-Profil-URL bleiben bis zur manuellen Pruefung ungenannt."
+        intro="Regensburger Adresse, Telefon, E-Mail und Maps-Suchlink kommen aus zentralen Standortdaten. Öffnungszeiten und GBP-Profil-URL bleiben bis zur manuellen Prüfung ungenannt."
       />
 
       <ServiceFitAdvisor
         currentCity="regensburg"
         title="Regensburger Anfrage schnell richtig einordnen."
-        intro="Die Auswahl fuehrt zu Kontaktlinks mit city=regensburg und passendem Intent. Es wird nichts automatisch gesendet."
+        intro="Die Auswahl führt zu Kontaktlinks mit city=regensburg und passendem Intent. Es wird nichts automatisch gesendet."
       />
 
       <ServiceClusterGrid
@@ -282,8 +282,8 @@ export default function RegensburgHubPage() {
           "angebot_pruefen",
           "signature_service",
         ]}
-        title="Regensburger Services nach Umzug, Raeumung, Reinigung und Plan B."
-        intro="Die zentrale Inventur zeigt, welche Leistungen direkt gepflegt sind und welche manuell bestaetigt werden muessen."
+        title="Regensburger Services nach Umzug, Räumung, Reinigung und Plan B."
+        intro="Die zentrale Inventur zeigt, welche Leistungen direkt gepflegt sind und welche manuell bestätigt werden müssen."
         limitPerCategory={5}
       />
 
@@ -315,8 +315,8 @@ export default function RegensburgHubPage() {
         allowedPage="/regensburg"
         serviceKey="umzug"
         locationKey="regensburg"
-        title="Regensburg-Trust bleibt lokal und pruefbar."
-        intro="Regensburg wird mit sichtbaren Kontaktwegen, lokalen Serviceclustern und manuellen Grenzen fuer GBP, Reviews und Oeffnungszeiten gefuehrt."
+        title="Regensburg-Trust bleibt lokal und prüfbar."
+        intro="Regensburg wird mit sichtbaren Kontaktwegen, lokalen Serviceclustern und manuellen Grenzen für GBP, Reviews und Öffnungszeiten geführt."
       />
 
       <ServiceProofChecklist

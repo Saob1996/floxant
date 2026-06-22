@@ -115,6 +115,7 @@ export default function BueroumzugForm({
          <input
           type="number"
           min={1}
+          aria-label={dic?.calculator?.workstations || "Arbeitsplätze"}
           value={bueroumzugData.workstations || ""}
           onChange={(event) =>
            updateBueroumzugData({ workstations: parseNumber(event.target.value) })
@@ -129,6 +130,7 @@ export default function BueroumzugForm({
           <input
            type="number"
            min={0}
+           aria-label={dic?.calculator?.archive_meters || "Archivmeter"}
            value={bueroumzugData.archiveMeters || ""}
            onChange={(event) =>
             updateBueroumzugData({ archiveMeters: parseNumber(event.target.value) })
@@ -307,6 +309,7 @@ function AddressBlock({
      <FieldCard label={addressLabel}>
       <input
        type="text"
+       aria-label={addressLabel}
        placeholder={addressPlaceholder}
        value={addressValue}
        onChange={(event) => onAddressChange(event.target.value)}
@@ -317,6 +320,7 @@ function AddressBlock({
       <FieldCard label={floorLabel}>
        <input
         type="number"
+        aria-label={floorLabel}
         placeholder={floorPlaceholder}
         value={floorValue}
         onChange={(event) => onFloorChange(event.target.value)}
@@ -327,6 +331,7 @@ function AddressBlock({
        <input
         type="number"
         min={0}
+        aria-label={walkingDistanceLabel}
         placeholder={walkingDistancePlaceholder}
         value={walkingDistanceValue}
         onChange={(event) => onWalkingDistanceChange(event.target.value)}
