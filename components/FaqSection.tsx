@@ -1,6 +1,7 @@
 import { HelpCircle } from "lucide-react";
 
 import type { FloxantFaqItem } from "@/lib/faqs";
+import { germanText, germanizeDeep } from "@/lib/german-text";
 import { buildFaqJsonLd } from "@/lib/structured-data";
 
 type FaqSectionProps = {
@@ -20,7 +21,7 @@ export function FaqSection({
   maxItems = 6,
   className = "",
 }: FaqSectionProps) {
-  const visibleItems = items.slice(0, Math.max(1, Math.min(maxItems, 8)));
+  const visibleItems = germanizeDeep(items.slice(0, Math.max(1, Math.min(maxItems, 8))));
 
   return (
     <section className={`bg-white px-5 py-14 text-slate-950 sm:px-8 lg:px-10 ${className}`}>
@@ -36,8 +37,8 @@ export function FaqSection({
             <HelpCircle className="h-4 w-4" aria-hidden="true" />
             FAQ
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>
         <div className="grid gap-3">
           {visibleItems.map((item, index) => (
@@ -47,9 +48,9 @@ export function FaqSection({
               className="rounded-lg border border-slate-200 bg-slate-50 p-5"
             >
               <summary className="cursor-pointer list-none text-lg font-black text-slate-950">
-                {item.q}
+                {germanText(item.q, item.q)}
               </summary>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.a}</p>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(item.a, item.a)}</p>
             </details>
           ))}
         </div>

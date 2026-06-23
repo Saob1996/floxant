@@ -6,6 +6,7 @@ import {
   getLocationContactHref,
   type FloxantLocationKey,
 } from "@/lib/floxant-locations";
+import { germanText } from "@/lib/german-text";
 
 type LocalContactPanelProps = {
   locationKeys?: readonly FloxantLocationKey[];
@@ -18,7 +19,7 @@ type LocalContactPanelProps = {
 export function LocalContactPanel({
   locationKeys,
   title = "Lokale Kontaktwege mit echten NAP-Daten.",
-  intro = "FLOXANT zeigt die vorhandenen Standortdaten sichtbar und trennt offene manuelle Pruefungen von bestaetigten Kontaktdaten.",
+  intro = "FLOXANT zeigt die vorhandenen Standortdaten sichtbar und trennt offene manuelle Prüfungen von bestätigten Kontaktdaten.",
   service = "anfrage",
   className = "",
 }: LocalContactPanelProps) {
@@ -34,8 +35,8 @@ export function LocalContactPanel({
             <MapPin className="h-4 w-4" aria-hidden="true" />
             Kontakt und NAP
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-2">
@@ -50,13 +51,13 @@ export function LocalContactPanel({
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-                      {location.displayName}
+                      {germanText(location.displayName, location.displayName)}
                     </p>
                     <h3 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-                      {location.addressLine1}
+                      {germanText(location.addressLine1, location.addressLine1)}
                     </h3>
                     <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">
-                      {location.postalCode} {location.city}, {location.country}
+                      {location.postalCode} {germanText(location.city, location.city)}, {germanText(location.country, location.country)}
                     </p>
                   </div>
                   <Link
@@ -106,7 +107,7 @@ export function LocalContactPanel({
                       key={note}
                       className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-semibold leading-6 text-slate-700"
                     >
-                      {note}
+                      {germanText(note, note)}
                     </div>
                   ))}
                 </div>

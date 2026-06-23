@@ -8,13 +8,13 @@ export function OfferCheckCommercialHero() {
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-normal text-blue-700">
             <FileSearch className="h-4 w-4" />
-            Angebot strukturiert pruefen
+            Angebot strukturiert prüfen
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            Aus einem unsicheren Angebot wird eine klare Prueffrage.
+            Aus einem unsicheren Angebot wird eine klare Prüffrage.
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-700">
-            FLOXANT schaut auf Umfang, Termin, Zugang, Zusatzkosten und die Frage, ob ein sinnvoller naechster Schritt moeglich ist. Das ist keine Rechtsberatung und kein Unterbietungsversprechen.
+            FLOXANT schaut auf Umfang, Termin, Zugang, Zusatzkosten und die Frage, ob ein sinnvoller nächster Schritt möglich ist. Das ist keine Rechtsberatung und kein Unterbietungsversprechen.
           </p>
           <Link
             href="/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
@@ -27,7 +27,7 @@ export function OfferCheckCommercialHero() {
             data-cta-label="Angebot pruefen lassen"
             data-destination="/kontakt?service=angebot-pruefen&city=regensburg&intent=angebot-pruefen&source=seo"
           >
-            Angebot pruefen lassen
+            Angebot prüfen lassen
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -35,8 +35,8 @@ export function OfferCheckCommercialHero() {
           {[
             "Was ist enthalten?",
             "Was ist ausgeschlossen?",
-            "Welche Zusatzkosten sind moeglich?",
-            "Welcher naechste Schritt ist sinnvoll?",
+            "Welche Zusatzkosten sind möglich?",
+            "Welcher nächste Schritt ist sinnvoll?",
           ].map((item) => (
             <div key={item} className="flex gap-3 rounded-lg border border-blue-100 bg-blue-50 p-4 text-sm font-bold leading-6 text-blue-950">
               <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" />

@@ -11,6 +11,7 @@ import {
   getServicesByRegion,
   type FloxantRegion,
 } from "@/lib/floxant-services";
+import { germanText } from "@/lib/german-text";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
@@ -179,16 +180,16 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 <span>
                   {locationsToShow.length > 1
                     ? "Standorte Düsseldorf und Regensburg"
-                    : locationsToShow[0]?.displayName}
+                    : germanText(locationsToShow[0]?.displayName, locationsToShow[0]?.displayName || "")}
                 </span>
               </div>
             </div>
             <div className="mt-5 grid gap-3">
               {locationsToShow.map((location) => (
                 <div key={location.locationKey} className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
-                  <div className="text-sm font-black text-white">{location.displayName}</div>
+                  <div className="text-sm font-black text-white">{germanText(location.displayName, location.displayName)}</div>
                   <div className="mt-1 text-sm font-semibold leading-6 text-slate-300">
-                    {location.addressLine1}, {location.postalCode} {location.city}
+                    {germanText(location.addressLine1, location.addressLine1)}, {location.postalCode} {germanText(location.city, location.city)}
                   </div>
                   <Link
                     href={location.localLandingPage}
@@ -197,7 +198,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                     data-source="global_footer_nap"
                     className="mt-2 inline-flex items-center gap-2 text-sm font-black text-cyan-100 hover:text-white"
                   >
-                    Standort oeffnen
+                    Standort öffnen
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
@@ -214,9 +215,9 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 <div key={regionId} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-lg font-black">{region.label}</h3>
+                      <h3 className="text-lg font-black">{germanText(region.label, region.label)}</h3>
                       <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-                        {region.shortDescription}
+                        {germanText(region.shortDescription, region.shortDescription)}
                       </p>
                     </div>
                     <Link
@@ -225,7 +226,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                       data-region={regionId}
                       data-source="global_footer"
                       className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-slate-950"
-                      aria-label={`${region.label} öffnen`}
+                      aria-label={`${germanText(region.label, region.label)} öffnen`}
                     >
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -241,7 +242,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                         data-source="global_footer"
                         className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
                       >
-                        {service.title}
+                        {germanText(service.title, service.title)}
                       </Link>
                     ))}
                   </div>
@@ -255,7 +256,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
           <nav aria-label="Wichtige FLOXANT Startpunkte" className="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
             {authorityLinks.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-white">
-                {item.label}
+                {germanText(item.label, item.label)}
               </Link>
             ))}
           </nav>

@@ -3,6 +3,7 @@ const path = require("node:path");
 
 const ROOT = process.cwd();
 const PUBLIC_BASE_URL = "https://www.floxant.de";
+const EXPECTED_SITEMAP_ROUTE_COUNT = 423;
 
 const OUTPUT_MD = path.join(ROOT, "INDEX_HEALTH_REPORT.md");
 const OUTPUT_JSON = path.join(ROOT, "index-health-report.json");
@@ -252,6 +253,15 @@ async function main() {
   const missingGolden = goldenRows.filter((row) => !row.inSitemap);
   if (missingGolden.length) addIssue(issues, "FAIL", "Golden-set URL missing in Sitemap", missingGolden.map((row) => row.route).join(", "));
 
+  if (sitemapRoutes.length !== EXPECTED_SITEMAP_ROUTE_COUNT) {
+    addIssue(
+      issues,
+      "WARN",
+      "Sitemap route count changed",
+      `Expected documented baseline ${EXPECTED_SITEMAP_ROUTE_COUNT}, found ${sitemapRoutes.length}. Review generator output before preview promotion.`,
+    );
+  }
+
   const rootCityCount = buckets["root-city-service"] || 0;
   if (rootCityCount > 1000) {
     addIssue(
@@ -282,6 +292,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     summary: {
       sitemapRoutes: sitemapRoutes.length,
+      expectedSitemapRoutes: EXPECTED_SITEMAP_ROUTE_COUNT,
       buildRoutesAvailable: build.available,
       buildRoutes: build.routes.length,
       buildDynamicRoutePatterns: build.dynamicRoutes.length,
@@ -319,6 +330,7 @@ async function main() {
       ["Metric", "Value"],
       [
         ["Sitemap routes", sitemapRoutes.length],
+        ["Expected sitemap routes", EXPECTED_SITEMAP_ROUTE_COUNT],
         ["Build routes available", build.available ? "yes" : "no"],
         ["Build prerender routes", build.routes.length],
         ["Build dynamic route patterns", build.dynamicRoutes.length],

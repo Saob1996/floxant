@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { germanText } from "@/lib/german-text";
 import {
   AlertTriangle,
   ArrowRight,
@@ -390,20 +391,33 @@ export function PublicAuthorityModules({
 
   if (modules.length === 0) return null;
 
+  const visibleBadge = germanText(badge, "Gut vorbereitet anfragen");
+  const visibleTitle = germanText(title, "Was vor der Anfrage hilfreich ist");
+  const visibleSubtitle = germanText(
+    subtitle,
+    "Hier sehen Sie, welche Angaben FLOXANT für eine ehrliche Einschätzung braucht: Ort, Objekt, Termin, Fotos, Budgetrahmen und offene Punkte.",
+  );
+
   return (
     <section className="flox-section flox-authority-section content-auto py-14">
       <div className="flox-shell">
         <div className="flox-section-intro mb-8 max-w-3xl">
-          <div className="flox-kicker">{badge}</div>
+          <div className="flox-kicker">{visibleBadge}</div>
           <h2 className="mt-4 flox-title-lg flox-display-section text-slate-950">
-            {title}
+            {visibleTitle}
           </h2>
-          <p className="mt-4 text-base leading-8 text-slate-700">{subtitle}</p>
+          <p className="mt-4 text-base leading-8 text-slate-700">{visibleSubtitle}</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {modules.map((item) => {
             const Icon = item.Icon;
+            const visibleItem = {
+              badge: germanText(item.badge, ""),
+              title: germanText(item.title, ""),
+              text: germanText(item.text, ""),
+              cta: germanText(item.cta, ""),
+            };
 
             return (
               <article
@@ -415,13 +429,13 @@ export function PublicAuthorityModules({
                     <Icon className="h-5 w-5" />
                   </span>
                   <span className="flox-tag text-slate-500">
-                    {item.badge}
+                    {visibleItem.badge}
                   </span>
                 </div>
                 <h3 className="flox-card-title-lg mt-5 text-slate-950">
-                  {item.title}
+                  {visibleItem.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{visibleItem.text}</p>
                 <Link
                   href={item.href}
                   className="flox-row-link mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-700"
@@ -431,7 +445,7 @@ export function PublicAuthorityModules({
                   data-service={item.service}
                   data-region={item.region}
                 >
-                  {item.cta}
+                  {visibleItem.cta}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>

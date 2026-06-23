@@ -5,6 +5,7 @@ import {
   getRelatedSpecialServices,
   type SignatureSpecialLink,
 } from "@/lib/signature-special-services";
+import { germanText } from "@/lib/german-text";
 
 type RelatedSpecialServicesProps = {
   kind?: "cleaning" | "moving" | "clearance" | "offer";
@@ -33,8 +34,8 @@ export function RelatedSpecialServices({
             <Sparkles className="h-4 w-4" aria-hidden="true" />
             Spezialservices
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {visibleServices.map((service) => (
@@ -43,10 +44,10 @@ export function RelatedSpecialServices({
               href={service.href}
               className="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-md"
             >
-              <h3 className="text-lg font-black text-slate-950">{service.title}</h3>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{service.text}</p>
+              <h3 className="text-lg font-black text-slate-950">{germanText(service.title, service.title)}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(service.text, service.text)}</p>
               <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                {service.cta || "Mehr erfahren"}
+                {germanText(service.cta, "Mehr erfahren")}
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
               </span>
             </Link>

@@ -1,5 +1,7 @@
 import { HelpCircle } from "lucide-react";
 
+import { germanText } from "@/lib/german-text";
+
 export type HumanReadableFaqItem = {
   q: string;
   a: string;
@@ -13,7 +15,7 @@ type HumanReadableFAQProps = {
 };
 
 export function HumanReadableFAQ({
-  title = "Haeufige Fragen",
+  title = "Häufige Fragen",
   intro = "Kurze Antworten, die vor einer Anfrage helfen.",
   items,
   className = "",
@@ -26,8 +28,8 @@ export function HumanReadableFAQ({
             <HelpCircle className="h-4 w-4" aria-hidden="true" />
             FAQ
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>
         <div className="grid gap-3">
           {items.map((item, index) => (
@@ -37,9 +39,9 @@ export function HumanReadableFAQ({
               className="rounded-lg border border-slate-200 bg-slate-50 p-5"
             >
               <summary className="cursor-pointer list-none text-lg font-black text-slate-950">
-                {item.q}
+                {germanText(item.q, item.q)}
               </summary>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{item.a}</p>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(item.a, item.a)}</p>
             </details>
           ))}
         </div>

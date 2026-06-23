@@ -1,3 +1,5 @@
+import { germanText } from "@/lib/german-text";
+
 type VisualTone = "blue" | "emerald" | "amber" | "slate";
 
 type VisualProps = {
@@ -42,13 +44,13 @@ export function VisualServiceShape({
 }: VisualProps) {
   const t = toneClasses[tone];
   return (
-    <div className={`overflow-hidden rounded-lg border ${t.line} ${t.bg} p-5 ${className}`} aria-label={title}>
+    <div className={`overflow-hidden rounded-lg border ${t.line} ${t.bg} p-5 ${className}`} aria-label={germanText(title, title || "Service-Cluster")}>
       <div className="grid gap-3">
         <div className="flex items-center justify-between gap-3">
-          <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{label}</p>
+          <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Anfrage sortieren")}</p>
           <span className={`h-3 w-14 rounded-full ${t.accent}`} />
         </div>
-        <svg viewBox="0 0 420 180" role="img" aria-label={title} className="h-auto w-full">
+        <svg viewBox="0 0 420 180" role="img" aria-label={germanText(title, title || "Service-Cluster")} className="h-auto w-full">
           <rect x="12" y="24" width="116" height="82" rx="14" fill="white" opacity="0.96" />
           <rect x="152" y="24" width="116" height="82" rx="14" fill="white" opacity="0.96" />
           <rect x="292" y="24" width="116" height="82" rx="14" fill="white" opacity="0.96" />
@@ -72,8 +74,8 @@ export function BeforeAfterCard({
   const t = toneClasses[tone];
   return (
     <div className={`rounded-lg border ${t.line} bg-white p-5 shadow-sm ${className}`}>
-      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{label}</p>
-      <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
+      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Neutraler Sichtcheck")}</p>
+      <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(title, title || "Vorher / Nachher")}</h3>
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <div className="rounded-lg border border-slate-200 bg-slate-100 p-4">
           <div className="mb-3 text-xs font-black uppercase tracking-normal text-slate-500">Vorher</div>
@@ -93,14 +95,14 @@ export function BeforeAfterCard({
         </div>
       </div>
       <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-        Visualisierung ohne Personen, Kennzeichen oder private Gegenstaende. Gedacht fuer Glas, PV, Boden, Keller oder Bueroflaeche.
+        Visualisierung ohne Personen, Kennzeichen oder private Gegenstände. Gedacht für Glas, PV, Boden, Keller oder Bürofläche.
       </p>
     </div>
   );
 }
 
 export function OfferCheckVisual({
-  title = "Angebot pruefen",
+  title = "Angebot prüfen",
   label = "Preis, Umfang, Termin",
   tone = "blue",
   className = "",
@@ -108,9 +110,9 @@ export function OfferCheckVisual({
   const t = toneClasses[tone];
   return (
     <div className={`rounded-lg border ${t.line} ${t.bg} p-5 ${className}`}>
-      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{label}</p>
-      <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
-      <svg viewBox="0 0 420 220" role="img" aria-label={title} className="mt-4 h-auto w-full">
+      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Preis, Umfang, Termin")}</p>
+      <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(title, title || "Angebot prüfen")}</h3>
+      <svg viewBox="0 0 420 220" role="img" aria-label={germanText(title, title || "Angebot prüfen")} className="mt-4 h-auto w-full">
         <rect x="38" y="24" width="210" height="164" rx="18" fill="white" />
         <rect x="70" y="58" width="120" height="10" rx="5" fill="currentColor" className={t.text} opacity="0.8" />
         <rect x="70" y="88" width="148" height="10" rx="5" fill="currentColor" className={t.text} opacity="0.35" />
@@ -127,15 +129,15 @@ export function OfferCheckVisual({
 
 export function BlogInsightGraphic({
   title = "Blog-Entscheidungshilfe",
-  label = "Antwort, Checkliste, naechster Schritt",
+  label = "Antwort, Checkliste, nächster Schritt",
   tone = "amber",
   className = "",
 }: VisualProps) {
   const t = toneClasses[tone];
   return (
     <div className={`rounded-lg border ${t.line} bg-white p-5 shadow-sm ${className}`}>
-      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{label}</p>
-      <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
+      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Antwort, Checkliste, nächster Schritt")}</p>
+      <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(title, title || "Blog-Entscheidungshilfe")}</h3>
       <div className="mt-5 grid gap-3">
         {["Direkte Antwort", "Entscheidung", "Checkliste", "Anfragepfad"].map((item, index) => (
           <div key={item} className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
@@ -159,8 +161,8 @@ export function LocalServiceVisual({
   const t = toneClasses[tone];
   return (
     <div className={`rounded-lg border ${t.line} ${t.bg} p-5 ${className}`}>
-      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{label}</p>
-      <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
+      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Ort, Kontakt, Leistung")}</p>
+      <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(title, title || "Lokales Signal")}</h3>
       <div className="mt-5 grid gap-3">
         <div className="h-28 rounded-lg border border-white bg-white/80 p-4">
           <div className={`h-3 w-28 rounded-full ${t.accent}`} />
@@ -181,22 +183,22 @@ export function LocalServiceVisual({
 
 export function ProcessStepGraphic({
   title = "Ablaufgrafik",
-  label = "Von Anfrage bis Rueckmeldung",
+  label = "Von Anfrage bis Rückmeldung",
   tone = "blue",
   className = "",
 }: VisualProps) {
   const t = toneClasses[tone];
   return (
     <div className={`rounded-lg border ${t.line} bg-white p-5 shadow-sm ${className}`}>
-      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{label}</p>
-      <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
+      <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Von Anfrage bis Rückmeldung")}</p>
+      <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(title, title || "Ablaufgrafik")}</h3>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-        {["Senden", "Sortieren", "Pruefen", "Antwort"].map((item, index) => (
+        {["Senden", "Sortieren", "Prüfen", "Antwort"].map((item, index) => (
           <div key={item} className={`relative flex-1 rounded-lg border ${t.line} ${t.bg} p-4`}>
             <span className={`inline-flex h-8 w-8 items-center justify-center rounded-md ${t.accent} text-xs font-black text-white`}>
               {index + 1}
             </span>
-            <p className="mt-3 text-sm font-black text-slate-800">{item}</p>
+            <p className="mt-3 text-sm font-black text-slate-800">{germanText(item, item)}</p>
           </div>
         ))}
       </div>

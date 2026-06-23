@@ -20,7 +20,7 @@ export function OfferCheckCTA({
         <div className="min-w-0">
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-200">
             <FileSearch className="h-4 w-4" aria-hidden="true" />
-            Angebotspruefung
+            Angebotsprüfung
           </p>
           <h2 className="mt-2 text-2xl font-black tracking-normal">{title}</h2>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-7 text-slate-300">{text}</p>
@@ -29,7 +29,7 @@ export function OfferCheckCTA({
           href={href}
           className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
         >
-          Angebot pruefen lassen
+          Angebot prüfen lassen
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>

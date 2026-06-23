@@ -12,10 +12,10 @@ export function OfferCheckNextStepBox() {
               Nach dem Absenden
             </div>
             <h2 className="mt-3 text-3xl font-black tracking-normal">
-              FLOXANT prueft Angaben und meldet Rueckfragen oder den naechsten Schritt.
+              FLOXANT prüft Angaben und meldet Rückfragen oder den nächsten Schritt.
             </h2>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-300">
-              Wenn Angebot, Fotos oder Umfang fehlen, kann FLOXANT zuerst Rueckfragen stellen. Eine Anfrage bestaetigt noch keinen Auftrag.
+              Wenn Angebot, Fotos oder Umfang fehlen, kann FLOXANT zuerst Rückfragen stellen. Eine Anfrage bestätigt noch keinen Auftrag.
             </p>
           </div>
           <Link

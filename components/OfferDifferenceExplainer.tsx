@@ -3,15 +3,15 @@ import { AlertTriangle, CheckCircle2, Scale } from "lucide-react";
 const differences = [
   {
     title: "Nicht gleicher Umfang",
-    text: "Ein Angebot kann guenstiger wirken, wenn Reinigung, Etage, Laufweg, Entsorgung oder Zusatzpositionen fehlen.",
+    text: "Ein Angebot kann günstiger wirken, wenn Reinigung, Etage, Laufweg, Entsorgung oder Zusatzpositionen fehlen.",
   },
   {
     title: "Andere Annahmen",
-    text: "Flaeche, Volumen, Fotos, Zugang und Terminfenster werden oft unterschiedlich eingeschaetzt.",
+    text: "Fläche, Volumen, Fotos, Zugang und Terminfenster werden oft unterschiedlich eingeschätzt.",
   },
   {
     title: "Andere Grenzen",
-    text: "Manche Angebote schliessen bestimmte Leistungen aus oder rechnen sie erst spaeter ab.",
+    text: "Manche Angebote schließen bestimmte Leistungen aus oder rechnen sie erst später ab.",
   },
 ];
 

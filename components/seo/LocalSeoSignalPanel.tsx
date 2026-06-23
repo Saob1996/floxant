@@ -6,8 +6,8 @@ import { company } from "@/lib/company";
 const localSignals = [
   "24h Online-Anfrage und WhatsApp",
   "Düsseldorf und Regensburg getrennt",
-  "Regensburg-Umgebung ca. 200 km nach Absprache",
-  "Bayern nach Verfügbarkeit",
+  "Regensburg und Umgebung nach Machbarkeit",
+  "Ort, Umfang und Termin werden geprüft",
   "Direkte Anfrage ohne Umwege",
 ];
 
@@ -31,8 +31,8 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-700">
             FLOXANT trennt Düsseldorf und Regensburg sauber nach Region, Leistung und Anfrage.
-            Regensburg prüft zusätzlich Einsätze in der Umgebung bis ca. 200 km sowie in Bayern
-            nach Termin, Umfang und Strecke.
+            Regensburg und Umgebung werden nach Ort, Umfang, Termin, Zugang und Strecke
+            sachlich eingeordnet.
           </p>
           <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
             Wichtig ist nicht nur die Entfernung, sondern der Ablauf: Umzug, Reinigung,
@@ -100,7 +100,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
           </p>
 
           <div className="flox-info-panel mt-6 px-4 py-3.5 text-sm font-mono">
-            Düsseldorf · Regensburg · Bayern nach Verfügbarkeit
+            Düsseldorf · Regensburg · Umgebung nach Machbarkeit
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">

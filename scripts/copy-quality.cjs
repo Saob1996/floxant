@@ -44,7 +44,14 @@ const priorityFiles = [
   "components/OfferCheckInlineCTA.tsx",
   "components/LocationClarityPanel.tsx",
   "components/SignatureServiceClarityGrid.tsx",
+  "components/SeoLeadForm.tsx",
+  "components/LocalServiceSeoPage.tsx",
+  "components/regensburg/RegensburgServicePage.tsx",
+  "components/seo/SearchDominanceExperience.tsx",
+  "components/seo/LocalSeoSignalPanel.tsx",
+  "components/SpecialtyPageLayout.tsx",
   "lib/professional-copy.ts",
+  "lib/german-text.ts",
   "docs/FLOXANT_COPY_STYLE_GUIDE.md",
   "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
   "docs/CUSTOMER_LANGUAGE_KEYWORD_BANK.md",
@@ -72,6 +79,48 @@ const fakeClaimPatterns = [
 const safeBoundary =
   /(keine|kein|nicht|ohne|Nein\.|erwartet wird|gesucht wird|muss eigenstaendig|muessen eigenstaendig|müssen eigenständig|keine.*Garantie|keine.*Rechtsberatung|keine.*Rechts|kein.*Preisversprechen|keine.*Ersparnis)/i;
 
+const renderedCopyRoutes = [
+  "/",
+  "/duesseldorf",
+  "/duesseldorf/reinigung",
+  "/duesseldorf/bueroreinigung",
+  "/duesseldorf/praxisreinigung",
+  "/duesseldorf/gewerbereinigung",
+  "/duesseldorf/hausverwaltung-reinigung",
+  "/duesseldorf/reinigung-stadtteile-umgebung",
+  "/regensburg",
+  "/regensburg/umzug",
+  "/regensburg/reinigung",
+  "/regensburg/entruempelung",
+  "/regensburg/gewerbereinigung",
+  "/regensburg/bueroreinigung",
+  "/regensburg/wohnungsaufloesung",
+  "/angebot-vergleichen-duesseldorf",
+  "/angebot-vergleichen-regensburg",
+  "/angebot-guenstiger-pruefen",
+  "/kontakt",
+  "/seniorenumzug-landshut",
+];
+
+const renderedAsciiPatterns = [
+  { label: "pruefen/prueft/geprueft", pattern: /\b(?:Pruefen|pruefen|prueft|geprueft|Pruefgrund|pruefbar)\b/ },
+  { label: "fuer/Fuer", pattern: /\b(?:fuer|Fuer)\b/ },
+  { label: "Flaeche/flaeche", pattern: /\b(?:Flaeche|flaeche|Flaechen|flaechen)\b/ },
+  { label: "Duesseldorf", pattern: /\bDuesseldorf\b/ },
+  { label: "koennen/Koennen", pattern: /\b(?:koennen|Koennen)\b/ },
+  { label: "zurueck/Zurueck", pattern: /\b(?:zurueck|Zurueck)\b/ },
+  { label: "Uebergabe", pattern: /\bUebergabe\b/ },
+  { label: "Bueros/Buero", pattern: /\b(?:Bueros|Buero)\b/ },
+  { label: "Raeume", pattern: /\bRaeume\b/ },
+  { label: "Entruempelung", pattern: /\bEntruempelung\b/ },
+  { label: "Haushaltsaufloesung/Wohnungsaufloesung", pattern: /\b(?:Haushaltsaufloesung|Wohnungsaufloesung)\b/ },
+];
+
+const renderedDilutionPatterns = [
+  { label: "200-km claim", pattern: /\b(?:ca\.\s*)?200\s?-?\s?km\b/i },
+  { label: "Bayern-wide claim", pattern: /\b(?:bayernweit|ganz Bayern|Bayern nach Verf(?:ü|ue)gbarkeit|Regensburg\/Bayern|Bayern-Strecken|Bayern-Reichweite)\b/i },
+];
+
 function read(file) {
   const absolute = path.join(root, file);
   if (!fs.existsSync(absolute)) return null;
@@ -84,6 +133,61 @@ function lineNumber(content, index) {
 
 function addIssue(issues, severity, file, message, line = null) {
   issues.push({ severity, file, line, message });
+}
+
+function renderedHtmlPath(route) {
+  if (route === "/") return path.join(root, ".next", "server", "app", "index.html");
+  const segments = route.replace(/^\/+/, "").split("/");
+  return path.join(root, ".next", "server", "app", ...segments) + ".html";
+}
+
+function htmlToVisibleText(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;|&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function scanRenderedHtmlCopy(issues) {
+  for (const route of renderedCopyRoutes) {
+    const htmlPath = renderedHtmlPath(route);
+    const relative = path.relative(root, htmlPath).replace(/\\/g, "/");
+    if (!fs.existsSync(htmlPath)) {
+      addIssue(issues, "WARN", relative, `Rendered HTML for ${route} is missing. Run npm run build before copy:quality for live-copy checks.`);
+      continue;
+    }
+
+    const html = fs.readFileSync(htmlPath, "utf8");
+    const visibleText = htmlToVisibleText(html);
+
+    for (const item of renderedAsciiPatterns) {
+      if (item.pattern.test(visibleText)) {
+        addIssue(issues, "FAIL", relative, `Rendered visible copy contains ASCII umlaut residue (${item.label}) on ${route}.`);
+      }
+    }
+
+    if (["/", "/angebot-guenstiger-pruefen", "/seniorenumzug-landshut"].includes(route)) {
+      for (const item of renderedDilutionPatterns) {
+        if (item.pattern.test(visibleText)) {
+          addIssue(issues, "FAIL", relative, `Rendered visible copy contains service-area dilution (${item.label}) on ${route}.`);
+        }
+      }
+    }
+
+    if (route === "/angebot-vergleichen-regensburg" && !/<form\b/i.test(html)) {
+      addIssue(issues, "FAIL", relative, "Regensburg offer comparison page must render an inline form.");
+    }
+
+    if (route === "/seniorenumzug-landshut" && /\bSeniorenumzug in(?:\s*[.!?]|$)/.test(visibleText)) {
+      addIssue(issues, "FAIL", relative, "Seniorenumzug Landshut H1 is incomplete.");
+    }
+  }
 }
 
 function scanFile(file, content, issues) {
@@ -213,6 +317,7 @@ function main() {
   }
 
   scanVercelSafety(issues);
+  scanRenderedHtmlCopy(issues);
 
   const failCount = issues.filter((item) => item.severity === "FAIL").length;
   const warnCount = issues.filter((item) => item.severity === "WARN").length;

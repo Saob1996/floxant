@@ -23,6 +23,7 @@ import { LocalConversionDecisionBox } from "@/components/LocalConversionDecision
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePageCustomerSections } from "@/components/ServicePageCustomerSections";
+import { SeoLeadForm } from "@/components/SeoLeadForm";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { B2BTrustPanel } from "@/components/B2BTrustPanel";
 import {
@@ -263,12 +264,21 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
     path: config.path,
     serviceLabel: config.serviceType,
   });
-  const bookingLead = resolveLeadIntent({
-    service: config.slug,
-    city: "regensburg",
-    intent: `${config.slug}-regensburg`,
-    priority: "p3",
-  });
+  const bookingLead = resolveLeadIntent(
+    config.slug === "angebot-vergleichen-regensburg"
+      ? {
+          service: "angebot-pruefen",
+          city: "regensburg",
+          intent: "angebot-vergleichen-regensburg",
+          priority: "p0",
+        }
+      : {
+          service: config.slug,
+          city: "regensburg",
+          intent: `${config.slug}-regensburg`,
+          priority: "p3",
+        },
+  );
   const bookingHref = buildLeadHref(bookingLead);
   const regensburgOfferHref = "/angebot-vergleichen-regensburg";
   const category: FloxantServiceCategory =
@@ -437,39 +447,49 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
                 </div>
               ))}
             </div>
-            <div className="mt-6 grid gap-3">
-              <Link
-                href={bookingHref}
-                data-event="seo_cta_click"
-                data-region="regensburg"
-                data-service={bookingLead.trackingService}
-                data-city={bookingLead.trackingCity}
-                data-page-intent={bookingLead.trackingIntent}
-                data-priority={bookingLead.priority}
-                data-cta-label="Anfrageformular öffnen"
-                data-destination={bookingHref}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
-              >
-                Anfrageformular öffnen
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href={whatsappHref}
-                data-event="seo_cta_click"
-                data-region="regensburg"
-                data-service={bookingLead.trackingService}
-                data-city={bookingLead.trackingCity}
-                data-page-intent={bookingLead.trackingIntent}
-                data-priority={bookingLead.priority}
-                data-cta-label="WhatsApp mit Fotos"
-                data-destination={whatsappHref}
-                data-contact-channel="whatsapp"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
-              >
-                <MessageCircle className="h-4 w-4" />
-                WhatsApp mit Fotos
-              </a>
-            </div>
+            {config.slug === "angebot-vergleichen-regensburg" ? (
+              <div className="mt-6">
+                <SeoLeadForm
+                  initialIntent={bookingLead}
+                  sourcePage={config.path}
+                  initialOfferStatus="written_offer"
+                />
+              </div>
+            ) : (
+              <div className="mt-6 grid gap-3">
+                <Link
+                  href={bookingHref}
+                  data-event="seo_cta_click"
+                  data-region="regensburg"
+                  data-service={bookingLead.trackingService}
+                  data-city={bookingLead.trackingCity}
+                  data-page-intent={bookingLead.trackingIntent}
+                  data-priority={bookingLead.priority}
+                  data-cta-label="Anfrageformular öffnen"
+                  data-destination={bookingHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-800"
+                >
+                  Anfrageformular öffnen
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href={whatsappHref}
+                  data-event="seo_cta_click"
+                  data-region="regensburg"
+                  data-service={bookingLead.trackingService}
+                  data-city={bookingLead.trackingCity}
+                  data-page-intent={bookingLead.trackingIntent}
+                  data-priority={bookingLead.priority}
+                  data-cta-label="WhatsApp mit Fotos"
+                  data-destination={whatsappHref}
+                  data-contact-channel="whatsapp"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-5 text-sm font-black text-emerald-800 transition hover:bg-emerald-100"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp mit Fotos
+                </a>
+              </div>
+            )}
           </aside>
         </div>
       </section>

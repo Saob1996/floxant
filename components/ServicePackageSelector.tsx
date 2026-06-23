@@ -7,6 +7,7 @@ import {
   servicePackageGroups,
   type ServicePackageGroup,
 } from "@/lib/service-packages";
+import { germanText } from "@/lib/german-text";
 
 type ServicePackageSelectorProps = {
   groups: ServicePackageGroup | ServicePackageGroup[];
@@ -26,10 +27,13 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
         <div className="max-w-3xl">
           <div className="text-xs font-black uppercase tracking-normal text-blue-700">Service-Pakete</div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            {title || fallback?.title || "Passenden Service-Pfad waehlen"}
+            {germanText(title || fallback?.title || "Passenden Service-Pfad wählen", title || fallback?.title || "Passenden Service-Pfad wählen")}
           </h2>
           <p className="mt-3 text-base leading-8 text-slate-700">
-            {intro || fallback?.intro || "Die Paketlogik hilft, aus einer groben Anfrage einen klareren naechsten Schritt zu machen."}
+            {germanText(
+              intro || fallback?.intro || "Die Paketlogik hilft, aus einer groben Anfrage einen klareren nächsten Schritt zu machen.",
+              intro || fallback?.intro || "Die Paketlogik hilft, aus einer groben Anfrage einen klareren nächsten Schritt zu machen.",
+            )}
           </p>
         </div>
 
@@ -47,15 +51,15 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="text-[11px] font-black uppercase tracking-normal text-slate-500">
-                      {item.group.replace("-", " ")}
+                      {germanText(item.group.replace("-", " "), item.group.replace("-", " "))}
                     </div>
-                    <h3 className="mt-2 text-xl font-black tracking-normal text-slate-950">{item.title}</h3>
+                    <h3 className="mt-2 text-xl font-black tracking-normal text-slate-950">{germanText(item.title, item.title)}</h3>
                   </div>
                   <span className="rounded-md border border-blue-100 bg-blue-50 px-2 py-1 text-[10px] font-black uppercase text-blue-800">
                     {item.priority.toUpperCase()}
                   </span>
                 </div>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{item.shortDescription}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{germanText(item.shortDescription, item.shortDescription)}</p>
 
                 <div className="mt-4 grid gap-3 text-sm leading-6">
                   <div>
@@ -64,7 +68,7 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                       {item.geeignetWenn.slice(0, 2).map((entry) => (
                         <li key={entry} className="flex gap-2">
                           <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700" />
-                          <span>{entry}</span>
+                          <span>{germanText(entry, entry)}</span>
                         </li>
                       ))}
                     </ul>
@@ -75,7 +79,7 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                       {item.nichtGeeignetWenn.slice(0, 1).map((entry) => (
                         <li key={entry} className="flex gap-2">
                           <CircleSlash2 className="mt-1 h-4 w-4 shrink-0 text-amber-700" />
-                          <span>{entry}</span>
+                          <span>{germanText(entry, entry)}</span>
                         </li>
                       ))}
                     </ul>
@@ -85,7 +89,7 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.typischeAufwandstreiber.slice(0, 4).map((factor) => (
                     <span key={factor} className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
-                      {factor}
+                      {germanText(factor, factor)}
                     </span>
                   ))}
                 </div>
@@ -101,7 +105,7 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                   data-cta-label={item.empfohlenerCTA}
                   data-destination={href}
                 >
-                  {item.empfohlenerCTA}
+                  {germanText(item.empfohlenerCTA, item.empfohlenerCTA)}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>

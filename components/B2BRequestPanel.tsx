@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { ArrowRight, Building2, ClipboardCheck } from "lucide-react";
 
+import { germanText } from "@/lib/german-text";
+
 const b2bFields = [
   "Firma",
   "Objektart",
-  "Flaeche",
-  "gewuenschter Turnus",
+  "Fläche",
+  "gewünschter Turnus",
   "bevorzugte Reinigungszeit",
   "Ansprechpartner",
   "Ort/Stadt",
@@ -28,10 +30,10 @@ export function B2BRequestPanel({ city = "duesseldorf" }: B2BRequestPanelProps) 
             B2B-Anfrage
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            Fuer Unternehmen helfen Flaeche, Turnus und Zeiten.
+            Für Unternehmen helfen Fläche, Turnus und Zeiten.
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-700">
-            Eine Firmenanfrage wird besser, wenn Objektart, gewuenschte Reinigungszeit und Ansprechpartner direkt sichtbar sind. Eine Anfrage ist noch keine Beauftragung.
+            Eine Firmenanfrage wird besser, wenn Objektart, gewünschte Reinigungszeit und Ansprechpartner direkt sichtbar sind. Eine Anfrage ist noch keine Beauftragung.
           </p>
           <Link
             href={href}
@@ -52,7 +54,7 @@ export function B2BRequestPanel({ city = "duesseldorf" }: B2BRequestPanelProps) 
           {b2bFields.map((field) => (
             <div key={field} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
               <ClipboardCheck className="mt-0.5 h-5 w-5 shrink-0 text-cyan-800" />
-              <span>{field}</span>
+              <span>{germanText(field, field)}</span>
             </div>
           ))}
         </div>

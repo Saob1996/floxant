@@ -3,19 +3,19 @@ import { HelpCircle } from "lucide-react";
 const questionGroups = [
   {
     title: "Reinigung",
-    items: ["Flaeche?", "Objektart?", "Turnus?", "Zustand?", "gewuenschter Termin?"],
+    items: ["Fläche?", "Objektart?", "Turnus?", "Zustand?", "gewünschter Termin?"],
   },
   {
     title: "Umzug",
     items: ["Start/Ziel?", "Etage/Aufzug?", "Menge?", "Termin?", "besondere Stuecke?"],
   },
   {
-    title: "Entruempelung",
-    items: ["Raeume?", "Menge?", "Zugang?", "Entsorgung?", "Frist?"],
+    title: "Entrümpelung",
+    items: ["Räume?", "Menge?", "Zugang?", "Entsorgung?", "Frist?"],
   },
   {
     title: "Solarreinigung",
-    items: ["Dachart?", "Modulflaeche?", "Zugang?", "Fotos?"],
+    items: ["Dachart?", "Modulfläche?", "Zugang?", "Fotos?"],
   },
 ] as const;
 

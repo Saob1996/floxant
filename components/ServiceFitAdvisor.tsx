@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Route } from "lucide-react";
 
+import { germanText, germanizeDeep } from "@/lib/german-text";
 import { getServiceFitHref, serviceFitOptions } from "@/lib/service-fit";
 
 type ServiceFitAdvisorProps = {
@@ -33,39 +34,40 @@ export function ServiceFitAdvisor({
         </div>
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {serviceFitOptions.map((option) => {
-            const href = getServiceFitHref(option, currentCity || option.city);
+          {serviceFitOptions.map((rawOption) => {
+            const href = getServiceFitHref(rawOption, currentCity || rawOption.city);
+            const option = germanizeDeep(rawOption);
 
             return (
               <Link
-                key={option.optionKey}
+                key={rawOption.optionKey}
                 href={href}
                 className="group min-w-0 rounded-lg border border-slate-200 bg-slate-50 p-4 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-sm"
                 data-event="seo_cta_click"
                 data-source="service_fit_advisor"
-                data-service={option.service}
-                data-city={currentCity || option.city || ""}
-                data-page-intent={option.intent}
-                data-priority={option.priority}
-                data-cta-label={option.ctaLabel}
+                data-service={rawOption.service}
+                data-city={currentCity || rawOption.city || ""}
+                data-page-intent={rawOption.intent}
+                data-priority={rawOption.priority}
+                data-cta-label={rawOption.ctaLabel}
                 data-destination={href}
               >
                 <span className="rounded-md bg-blue-50 px-2 py-1 text-xs font-black text-blue-700">
-                  {option.priority.toUpperCase()}
+                  {rawOption.priority.toUpperCase()}
                 </span>
-                <h3 className="mt-3 text-lg font-black leading-tight text-slate-950">{option.label}</h3>
+                <h3 className="mt-3 text-lg font-black leading-tight text-slate-950">{germanText(option.label, option.label)}</h3>
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
-                  {option.suggestedFormIntro}
+                  {germanText(option.suggestedFormIntro, option.suggestedFormIntro)}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {option.recommendedFields.slice(0, 3).map((field) => (
                     <span key={field} className="rounded-md bg-white px-2 py-1 text-xs font-bold text-slate-600 ring-1 ring-slate-200">
-                      {field}
+                      {germanText(field, field)}
                     </span>
                   ))}
                 </div>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                  {option.ctaLabel}
+                  {germanText(option.ctaLabel, option.ctaLabel)}
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
                 </span>
               </Link>
@@ -76,4 +78,3 @@ export function ServiceFitAdvisor({
     </section>
   );
 }
-

@@ -2,11 +2,11 @@ import { CheckCircle2 } from "lucide-react";
 
 const objectionAnswers = [
   ["Schon ein Angebot", "Angebot kann strukturiert nach Umfang, Zusatzkosten und offenen Punkten eingeordnet werden."],
-  ["Es ist dringend", "Dringlichkeit angeben. Termine werden nach Verfuegbarkeit geprueft, ohne Sofortgarantie."],
-  ["Sensibler Fall", "Diskrete Kontaktaufnahme und zurueckhaltende Kommunikation sind moeglich."],
-  ["Gewerbekunde", "Objektart, Flaeche, Turnus, Zeiten und Ansprechpartner helfen bei der ersten Einordnung."],
-  ["Noch keine Adresse", "Ort/Stadt und grobe Beschreibung reichen fuer den ersten Schritt."],
-  ["Nur grober Umfang", "Fotos und eine kurze Lagebeschreibung sind fuer die Vorpruefung oft ausreichend."],
+  ["Es ist dringend", "Dringlichkeit angeben. Termine werden nach Verfügbarkeit geprüft, ohne Sofortgarantie."],
+  ["Sensibler Fall", "Diskrete Kontaktaufnahme und zurückhaltende Kommunikation sind möglich."],
+  ["Gewerbekunde", "Objektart, Fläche, Turnus, Zeiten und Ansprechpartner helfen bei der ersten Einordnung."],
+  ["Noch keine Adresse", "Ort/Stadt und grobe Beschreibung reichen für den ersten Schritt."],
+  ["Nur grober Umfang", "Fotos und eine kurze Lagebeschreibung sind für die Vorprüfung oft ausreichend."],
 ] as const;
 
 export function ObjectionAnswerGrid() {
@@ -14,9 +14,9 @@ export function ObjectionAnswerGrid() {
     <section className="px-4 py-12 sm:px-6" data-component="ObjectionAnswerGrid">
       <div className="mx-auto max-w-7xl rounded-lg border border-slate-200 bg-slate-50 p-6 md:p-8">
         <div className="max-w-3xl">
-          <div className="text-xs font-black uppercase tracking-normal text-blue-700">Einwaende klaeren</div>
+          <div className="text-xs font-black uppercase tracking-normal text-blue-700">Einwände klären</div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            Was haeufig gegen das Absenden spricht und wie FLOXANT damit umgeht.
+            Was häufig gegen das Absenden spricht und wie FLOXANT damit umgeht.
           </h2>
         </div>
         <div className="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-3">

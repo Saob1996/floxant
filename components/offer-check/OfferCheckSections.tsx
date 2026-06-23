@@ -30,8 +30,9 @@ import {
   VisualServiceShape,
 } from "@/components/visuals";
 import { offerCheckFaqItems } from "@/lib/faqs";
+import { germanText, germanizeDeep } from "@/lib/german-text";
 
-const offerCheckUseCases = [
+const offerCheckUseCases = germanizeDeep([
   {
     title: "Angebot wirkt zu teuer",
     text: "FLOXANT prueft, ob Preis, Umfang, Ort, Zugang und Termin nachvollziehbar zusammenpassen.",
@@ -62,33 +63,33 @@ const offerCheckUseCases = [
     text: "Dann ist oft Plan B wichtiger als ein weiterer Preisvergleich. FLOXANT prueft Machbarkeit und naechsten Schritt.",
     icon: Sparkles,
   },
-] as const;
+] as const);
 
-const processSteps = [
+const processSteps = germanizeDeep([
   "Angebot, Preis oder Situation beschreiben",
   "Fotos oder Dateien optional senden",
   "Leistung und Ort angeben",
   "FLOXANT strukturiert Umfang, Aufwand und offene Punkte",
   "Einschaetzung, Rueckfragen oder passende Alternative erhalten",
-] as const;
+] as const);
 
-const scopeCan = [
+const scopeCan = germanizeDeep([
   "Preis und Leistungsumfang praktisch einordnen",
   "fehlende Angaben und Rueckfragen sichtbar machen",
   "Reinigung, Umzug, Entsorgung, Solar/PV und Gewerbe unterscheiden",
   "Düsseldorf und Regensburg nach passendem Kontaktweg trennen",
   "eine FLOXANT Alternative pruefen, wenn Region, Termin und Umfang passen",
-] as const;
+] as const);
 
-const scopeCannot = [
+const scopeCannot = germanizeDeep([
   "keine Rechtsberatung und keine Vertragspruefung im juristischen Sinn",
   "keine garantierte Preisunterbietung",
   "keine Abwertung oder Bewertung fremder Anbieter",
   "keine Dumpingpreise ohne realistischen Umfang",
   "keine Zusage ohne Ort, Termin, Umfang und Machbarkeit",
-] as const;
+] as const);
 
-const matrixRows = [
+const matrixRows = germanizeDeep([
   ["Reinigung", "Flaeche, Zustand, Kueche, Bad, Fenster, Uebergabeziel, Fotos"],
   ["Bueroreinigung", "Flaeche, Turnus, Zeitfenster, Raumliste, Schluesselweg, Ansprechpartner"],
   ["Gewerbereinigung", "Objektart, Nutzung, Oeffnungszeiten, Sanitär, Laufwege, Zusatzbereiche"],
@@ -100,9 +101,9 @@ const matrixRows = [
   ["Glas / Fassade", "Hoehe, Flaeche, Zugang, Verschmutzung, Steighilfe, Termin"],
   ["Eventreinigung", "Flaeche, Besucher, Zeitfenster, Abfall, Nachreinigung"],
   ["Sonderreinigung", "Risiko, Material, Zustand, Grenzen, keine falschen Zusagen"],
-] as const;
+] as const);
 
-const warningSigns = [
+const warningSigns = germanizeDeep([
   "Leistungsbeschreibung bleibt allgemein",
   "Flaeche, Volumen oder Menge fehlen",
   "Entsorgung, Zusatzkosten oder Anfahrt sind unklar",
@@ -111,9 +112,9 @@ const warningSigns = [
   "hoher Preis ohne nachvollziehbare Kostentreiber",
   "Fotos oder Besichtigung werden ignoriert",
   "Vorkasse oder Zahlungsweg wirkt ungewoehnlich",
-] as const;
+] as const);
 
-const internalLinks = [
+const internalLinks = germanizeDeep([
   { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen", text: "zentrale Seite fuer vorhandene Angebote" },
   { href: "/angebotscheck", label: "Angebotscheck", text: "Red-Flag-Scanner und Uploadpfad" },
   { href: "/anbieter-vergleichen", label: "Anbieter vergleichen", text: "Portal, Direktanbieter und Leistungsumfang trennen" },
@@ -123,12 +124,12 @@ const internalLinks = [
   { href: "/entruempelung", label: "Entruempelung", text: "Menge, Material und Zugang klaeren" },
   { href: "/solarreinigung", label: "Solarreinigung", text: "PV-Angebot und Zugang pruefen" },
   { href: "/duesseldorf", label: "Duesseldorf", text: "lokale Reinigungs- und Servicewege" },
-  { href: "/regensburg", label: "Regensburg", text: "lokaler Schwerpunkt und Bayern-Nahbereich" },
+  { href: "/regensburg", label: "Regensburg", text: "lokaler Schwerpunkt und Umgebung nach Machbarkeit" },
   { href: "/signature-services", label: "Signature Services", text: "Fairpreis, Objektbrief, Plan B und Rueckfahrt" },
   { href: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf", label: "Blog: Reinigungsangebot", text: "Fläche, Zustand und Uebergabe verstehen" },
-] as const;
+] as const);
 
-const trustItems = [
+const trustItems = germanizeDeep([
   {
     title: "Echte zweite Einschaetzung",
     text: "FLOXANT ordnet Angebot, Fotos, Umfang und Termin praktisch ein. Es geht nicht um pauschales Unterbieten.",
@@ -145,9 +146,9 @@ const trustItems = [
     title: "Passender naechster Schritt",
     text: "Je nach Situation fuehrt FLOXANT zu Rueckfrage, normaler Anfrage, Plan B, Objektbrief oder passender Service-Seite.",
   },
-] as const;
+] as const);
 
-const relatedBlogs = [
+const relatedBlogs = germanizeDeep([
   {
     href: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf",
     title: "Reinigungsangebot pruefen",
@@ -178,9 +179,9 @@ const relatedBlogs = [
     title: "Anbieter hat abgesagt",
     text: "Wenn Deadline oder Uebergabe naeher ruecken, zaehlt Plan B statt weiterer Preisvergleich.",
   },
-] as const;
+] as const);
 
-const localLinks = [
+const localLinks = germanizeDeep([
   {
     href: "/duesseldorf",
     title: "Duesseldorf Hub",
@@ -194,16 +195,16 @@ const localLinks = [
   {
     href: "/regensburg",
     title: "Regensburg Hub",
-    text: "FLOXANT Schwerpunkt fuer Umzug, Reinigung, Entruempelung und Bayern-Nahbereich.",
+    text: "FLOXANT Schwerpunkt für Umzug, Reinigung, Entrümpelung und Umgebung nach Machbarkeit.",
   },
   {
     href: "/regensburg/solarreinigung",
     title: "Solarreinigung Regensburg",
     text: "PV-Anlage, Dachzugang, Wasser und Sicherheit ohne Ertragsversprechen pruefen.",
   },
-] as const;
+] as const);
 
-const comparisonRows: ComparisonAnswerRow[] = [
+const comparisonRows: readonly ComparisonAnswerRow[] = germanizeDeep([
   {
     topic: "Pauschalpreis vs. Aufwand",
     left: "Pauschal wirkt einfach, kann aber Luecken verdecken.",
@@ -234,11 +235,11 @@ const comparisonRows: ComparisonAnswerRow[] = [
     right: "Normale Anfrage passt bei planbarer Frist.",
     decision: "Bei Deadline lieber Machbarkeit als Preisvergleich priorisieren.",
   },
-];
+]);
 
 export function OfferCheckHero({
-  title = "Angebot pruefen lassen, bevor aus einem Preis ein Problem wird.",
-  intro = "FLOXANT ordnet Preis, Umfang, Termin, Ort, Fotos und offene Punkte praktisch ein. Keine Rechtsberatung, keine Dumpinggarantie, sondern eine klare zweite Einschaetzung.",
+  title = "Angebot prüfen lassen, bevor aus einem Preis ein Problem wird.",
+  intro = "FLOXANT ordnet Preis, Umfang, Termin, Ort, Fotos und offene Punkte praktisch ein. Keine Rechtsberatung, keine Dumpinggarantie, sondern eine klare zweite Einschätzung.",
   primaryHref = "/angebot-guenstiger-pruefen#guenstiger-form",
   secondaryHref = "/angebotscheck#red-flag-scanner",
 }: {
@@ -253,13 +254,13 @@ export function OfferCheckHero({
         <div>
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-200">
             <FileSearch className="h-4 w-4" aria-hidden="true" />
-            FLOXANT Angebotspruefung
+            FLOXANT Angebotsprüfung
           </p>
-          <h1 className="mt-4 max-w-5xl text-4xl font-black tracking-normal sm:text-6xl">{title}</h1>
-          <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">{intro}</p>
+          <h1 className="mt-4 max-w-5xl text-4xl font-black tracking-normal sm:text-6xl">{germanText(title, title)}</h1>
+          <p className="mt-5 max-w-3xl text-base font-semibold leading-8 text-slate-300">{germanText(intro, intro)}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link href={primaryHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50">
-              Angebot pruefen lassen
+              Angebot prüfen lassen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link href={secondaryHref} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-black text-white transition hover:bg-white hover:text-slate-950">
@@ -268,12 +269,12 @@ export function OfferCheckHero({
             </Link>
           </div>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-black text-slate-200">
-            {["keine Rechtsberatung", "keine Preisgarantie", "Düsseldorf und Regensburg", "nur echter Submit loest API aus"].map((item) => (
-              <span key={item} className="rounded-md border border-white/12 bg-white/10 px-3 py-2">{item}</span>
+            {["keine Rechtsberatung", "keine Preisgarantie", "Düsseldorf und Regensburg", "nur echter Submit löst API aus"].map((item) => (
+              <span key={item} className="rounded-md border border-white/12 bg-white/10 px-3 py-2">{germanText(item, item)}</span>
             ))}
           </div>
         </div>
-        <OfferCheckVisual tone="blue" title="Preis, Umfang, Termin und offene Punkte" label="sichtbarer Pruefpfad" />
+        <OfferCheckVisual tone="blue" title="Preis, Umfang, Termin und offene Punkte" label="sichtbarer Prüfpfad" />
       </div>
     </section>
   );
@@ -309,14 +310,14 @@ export function OfferCheckUseCases({ className = "" }: { className?: string }) {
             <Sparkles className="h-4 w-4" aria-hidden="true" />
             Typische Situationen
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Wann Angebot pruefen wirklich hilft.</h2>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Wann Angebot prüfen wirklich hilft.</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {offerCheckUseCases.map(({ title, text, icon: Icon }) => (
             <article key={title} className="rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
               <Icon className="h-6 w-6 text-blue-700" aria-hidden="true" />
-              <h3 className="mt-4 text-xl font-black text-slate-950">{title}</h3>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{text}</p>
+              <h3 className="mt-4 text-xl font-black text-slate-950">{germanText(title, title)}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(text, text)}</p>
             </article>
           ))}
         </div>
@@ -334,9 +335,9 @@ export function OfferCheckProcess({ className = "" }: { className?: string }) {
             <UploadCloud className="h-4 w-4" aria-hidden="true" />
             Ablauf
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Vom unklaren Angebot zur belastbaren Rueckfrage.</h2>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Vom unklaren Angebot zur belastbaren Rückfrage.</h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-            Der Ablauf ist bewusst einfach: erst Angaben sammeln, dann sortieren, dann entscheiden, ob Rueckfragen, Alternative oder Plan B sinnvoll sind.
+            Der Ablauf ist bewusst einfach: erst Angaben sammeln, dann sortieren, dann entscheiden, ob Rückfragen, Alternative oder Plan B sinnvoll sind.
           </p>
           <ProcessStepGraphic className="mt-6" title="Angebotscheck-Ablauf" />
         </div>
@@ -344,7 +345,7 @@ export function OfferCheckProcess({ className = "" }: { className?: string }) {
           {processSteps.map((step, index) => (
             <div key={step} className="flex gap-4 rounded-lg border border-slate-200 bg-white p-4">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-blue-700 text-sm font-black text-white">{index + 1}</span>
-              <p className="text-sm font-semibold leading-7 text-slate-700">{step}</p>
+              <p className="text-sm font-semibold leading-7 text-slate-700">{germanText(step, step)}</p>
             </div>
           ))}
         </div>
@@ -358,12 +359,12 @@ export function OfferCheckScopePanel({ className = "" }: { className?: string })
     <section className={`bg-white px-5 py-14 text-slate-950 sm:px-8 lg:px-10 ${className}`}>
       <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
         <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-6">
-          <p className="text-sm font-black uppercase tracking-normal text-emerald-800">FLOXANT kann pruefen</p>
+          <p className="text-sm font-black uppercase tracking-normal text-emerald-800">FLOXANT kann prüfen</p>
           <ul className="mt-5 grid gap-3">
             {scopeCan.map((item) => (
               <li key={item} className="flex gap-3 text-sm font-semibold leading-7 text-emerald-950">
                 <CheckCircle2 className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>{item}</span>
+                <span>{germanText(item, item)}</span>
               </li>
             ))}
           </ul>
@@ -374,7 +375,7 @@ export function OfferCheckScopePanel({ className = "" }: { className?: string })
             {scopeCannot.map((item) => (
               <li key={item} className="flex gap-3 text-sm font-semibold leading-7 text-amber-950">
                 <AlertTriangle className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>{item}</span>
+                <span>{germanText(item, item)}</span>
               </li>
             ))}
           </ul>
@@ -395,14 +396,14 @@ export function OfferCheckServiceMatrix({ className = "" }: { className?: string
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">Welche Angebote FLOXANT praktisch einordnen kann.</h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-300">
-            Jede Leistung hat andere Kostentreiber. Die Matrix zeigt, welche Angaben fuer die erste Einschaetzung wichtig sind.
+            Jede Leistung hat andere Kostentreiber. Die Matrix zeigt, welche Angaben für die erste Einschätzung wichtig sind.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {matrixRows.map(([service, factors]) => (
             <article key={service} className="rounded-lg border border-white/12 bg-white/[0.06] p-5">
-              <h3 className="text-lg font-black text-white">{service}</h3>
-              <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">{factors}</p>
+              <h3 className="text-lg font-black text-white">{germanText(service, service)}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-slate-300">{germanText(factors, factors)}</p>
             </article>
           ))}
         </div>
@@ -415,8 +416,8 @@ export function OfferCheckWarningSigns({ className = "" }: { className?: string 
   return (
     <ChecklistBlock
       className={className}
-      title="Warnsignale, die vor der Zusage geklaert werden sollten."
-      intro="Ein Warnsignal bedeutet nicht automatisch, dass ein Angebot unserioes ist. Es zeigt nur, wo Rueckfragen sinnvoll sind."
+      title="Warnsignale, die vor der Zusage geklärt werden sollten."
+      intro="Ein Warnsignal bedeutet nicht automatisch, dass ein Angebot unseriös ist. Es zeigt nur, wo Rückfragen sinnvoll sind."
       items={warningSigns}
       columns={2}
     />
@@ -433,15 +434,15 @@ export function OfferCheckTrustPanel({ className = "" }: { className?: string })
             Vertrauen und Grenzen
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-            Professionell pruefen heisst: ehrlich, nachvollziehbar und ohne falsche Versprechen.
+            Professionell prüfen heißt: ehrlich, nachvollziehbar und ohne falsche Versprechen.
           </h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {trustItems.map((item) => (
             <article key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
               <CheckCircle2 className="h-5 w-5 text-blue-700" aria-hidden="true" />
-              <h3 className="mt-4 text-lg font-black text-slate-950">{item.title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+              <h3 className="mt-4 text-lg font-black text-slate-950">{germanText(item.title, item.title)}</h3>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{germanText(item.text, item.text)}</p>
             </article>
           ))}
         </div>
@@ -460,16 +461,16 @@ export function OfferCheckFormIntro({ className = "" }: { className?: string }) 
       <div className="mt-4 grid min-w-0 gap-3 md:grid-cols-3">
         {[
           "Pflicht: Name, Kontakt, Ort/Stadt, Service und kurze Beschreibung.",
-          "Optional: vorhandenes Angebot, Preis, Fotos, Termin, Flaeche oder Umfang.",
-          "Nach dem Submit prueft FLOXANT Rueckfragen, Machbarkeit und passenden naechsten Schritt.",
+          "Optional: vorhandenes Angebot, Preis, Fotos, Termin, Fläche oder Umfang.",
+          "Nach dem Submit prüft FLOXANT Rückfragen, Machbarkeit und passenden nächsten Schritt.",
         ].map((item) => (
           <div key={item} className="min-w-0 break-words rounded-md border border-blue-100 bg-white p-4 text-sm font-semibold leading-7">
-            {item}
+            {germanText(item, item)}
           </div>
         ))}
       </div>
       <p className="mt-4 min-w-0 break-words text-sm font-semibold leading-7 text-blue-900">
-        Keine automatische Pruefung beim Seitenaufruf: Die Anfrage wird erst gesendet, wenn Sie das Formular bewusst abschicken.
+        Keine automatische Prüfung beim Seitenaufruf: Die Anfrage wird erst gesendet, wenn Sie das Formular bewusst abschicken.
       </p>
     </section>
   );
@@ -479,8 +480,8 @@ export function OfferCheckFAQ({ className = "" }: { className?: string }) {
   return (
     <HumanReadableFAQ
       className={className}
-      title="FAQ zur Angebotspruefung"
-      intro="Die haeufigsten Fragen knapp beantwortet, bevor Sie ein Angebot zusagen."
+      title="FAQ zur Angebotsprüfung"
+      intro="Die häufigsten Fragen knapp beantwortet, bevor Sie ein Angebot zusagen."
       items={offerCheckFaqItems.slice(0, 7)}
     />
   );
@@ -496,16 +497,16 @@ export function OfferCheckRelatedBlogs({ className = "" }: { className?: string 
             Ratgeber, die bei der Entscheidung helfen
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-            Angebot pruefen besser verstehen, bevor Sie zusagen.
+            Angebot prüfen besser verstehen, bevor Sie zusagen.
           </h2>
         </div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {relatedBlogs.map((item) => (
             <Link key={item.href} href={item.href} className="group rounded-lg border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md">
-              <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+              <h3 className="text-lg font-black text-slate-950">{germanText(item.title, item.title)}</h3>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{germanText(item.text, item.text)}</p>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                Ratgeber oeffnen
+                Ratgeber öffnen
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
               </span>
             </Link>
@@ -526,14 +527,14 @@ export function OfferCheckLocalLinks({ className = "" }: { className?: string })
             Lokale Wege
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
-            Duesseldorf und Regensburg bleiben getrennt und nachvollziehbar.
+            Düsseldorf und Regensburg bleiben getrennt und nachvollziehbar.
           </h2>
         </div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {localLinks.map((item) => (
             <Link key={item.href} href={item.href} className="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-md">
-              <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+              <h3 className="text-lg font-black text-slate-950">{germanText(item.title, item.title)}</h3>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{germanText(item.text, item.text)}</p>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
                 Lokal ansehen
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
@@ -560,10 +561,10 @@ export function OfferCheckInternalLinks({ className = "" }: { className?: string
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {internalLinks.map((item) => (
             <Link key={item.href} href={item.href} className="group rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-white hover:shadow-md">
-              <h3 className="text-lg font-black text-slate-950">{item.label}</h3>
-              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{item.text}</p>
+              <h3 className="text-lg font-black text-slate-950">{germanText(item.label, item.label)}</h3>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">{germanText(item.text, item.text)}</p>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                Oeffnen
+                Öffnen
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
               </span>
             </Link>
@@ -603,15 +604,15 @@ export function OfferCheckAuthoritySections({ className = "" }: { className?: st
       <OfferCheckServiceMatrix />
       <ComparisonAnswerTable
         title="Vergleiche, die vor einer Zusage wichtig sind."
-        intro="So bleiben Preis, Umfang und naechster Schritt fuer Kunden nachvollziehbar."
+        intro="So bleiben Preis, Umfang und nächster Schritt für Kunden nachvollziehbar."
         leftLabel="Erster Eindruck"
-        rightLabel="Praktische Pruefung"
+        rightLabel="Praktische Prüfung"
         rows={comparisonRows}
       />
       <section className="bg-slate-50 px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
-          <VisualServiceShape title="Service-Cluster fuer Angebotspruefung" />
-          <BeforeAfterCard title="Before/After als neutrales Pruefvisual" />
+          <VisualServiceShape title="Service-Cluster für Angebotsprüfung" />
+          <BeforeAfterCard title="Before/After als neutrales Prüfvisual" />
           <BlogInsightGraphic title="Blogartikel als Entscheidungshilfe" />
         </div>
       </section>

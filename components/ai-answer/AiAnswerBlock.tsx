@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Info, XCircle } from "lucide-react";
 
+import { germanText } from "@/lib/german-text";
+
 type AiAnswerBlockProps = {
   eyebrow?: string;
   title: string;
@@ -23,7 +25,7 @@ export function AiAnswerBlock({
   notUsefulWhen = [],
   neededInfo,
   ctaHref = "/angebot-guenstiger-pruefen#guenstiger-form",
-  ctaLabel = "Angebot pruefen lassen",
+  ctaLabel = "Angebot prüfen lassen",
   className = "",
 }: AiAnswerBlockProps) {
   return (
@@ -33,15 +35,15 @@ export function AiAnswerBlock({
           <article>
             <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
               <Info className="h-4 w-4" aria-hidden="true" />
-              {eyebrow}
+              {germanText(eyebrow, eyebrow)}
             </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-            <p className="mt-5 text-base font-semibold leading-8 text-slate-700">{answer}</p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+            <p className="mt-5 text-base font-semibold leading-8 text-slate-700">{germanText(answer, answer)}</p>
             <Link
               href={ctaHref}
               className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-700"
             >
-              {ctaLabel}
+              {germanText(ctaLabel, ctaLabel)}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </article>
@@ -51,7 +53,7 @@ export function AiAnswerBlock({
               {points.slice(0, 6).map((point) => (
                 <div key={point} className="rounded-lg border border-slate-200 bg-white p-4">
                   <CheckCircle2 className="h-5 w-5 text-blue-700" aria-hidden="true" />
-                  <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{point}</p>
+                  <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(point, point)}</p>
                 </div>
               ))}
             </div>
@@ -61,17 +63,17 @@ export function AiAnswerBlock({
                 <p className="text-sm font-black text-emerald-900">Sinnvoll, wenn</p>
                 <ul className="mt-3 space-y-2 text-sm font-semibold leading-6 text-emerald-950">
                   {usefulWhen.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{germanText(item, item)}</li>
                   ))}
                 </ul>
               </div>
               <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
                 <p className="text-sm font-black text-amber-900">Eher nicht passend, wenn</p>
                 <ul className="mt-3 space-y-2 text-sm font-semibold leading-6 text-amber-950">
-                  {(notUsefulWhen.length ? notUsefulWhen : ["ein verbindlicher Rechtscheck erwartet wird", "nur der niedrigste Preis zaehlt"]).map((item) => (
+                  {(notUsefulWhen.length ? notUsefulWhen : ["ein verbindlicher Rechtscheck erwartet wird", "nur der niedrigste Preis zählt"]).map((item) => (
                     <li key={item} className="flex gap-2">
                       <XCircle className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-                      <span>{item}</span>
+                      <span>{germanText(item, item)}</span>
                     </li>
                   ))}
                 </ul>
@@ -80,7 +82,7 @@ export function AiAnswerBlock({
                 <p className="text-sm font-black text-slate-950">FLOXANT braucht</p>
                 <ul className="mt-3 space-y-2 text-sm font-semibold leading-6 text-slate-700">
                   {neededInfo.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>{germanText(item, item)}</li>
                   ))}
                 </ul>
               </div>

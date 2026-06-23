@@ -6,6 +6,7 @@ import {
   getLocationContactHref,
   type FloxantLocation,
 } from "@/lib/floxant-locations";
+import { germanText } from "@/lib/german-text";
 
 type LocationServiceSwitcherProps = {
   title?: string;
@@ -18,8 +19,8 @@ function locationServiceList(location: FloxantLocation) {
 }
 
 export function LocationServiceSwitcher({
-  title = "Dueseldorf und Regensburg sauber getrennt.",
-  intro = "Beide Standorte fuehren zu eigenen lokalen Einstiegen. Sichtbar sind nur Daten, die im Code vorhanden sind; offene Angaben bleiben als manuelle Pruefung markiert.",
+  title = "Düsseldorf und Regensburg sauber getrennt.",
+  intro = "Beide Standorte führen zu eigenen lokalen Einstiegen. Sichtbar sind nur Daten, die im Code vorhanden sind; offene Angaben bleiben als manuelle Prüfung markiert.",
   className = "",
 }: LocationServiceSwitcherProps) {
   return (
@@ -30,8 +31,8 @@ export function LocationServiceSwitcher({
             <MapPin className="h-4 w-4" aria-hidden="true" />
             Standortlogik
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
@@ -40,13 +41,13 @@ export function LocationServiceSwitcher({
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-                    {location.displayName}
+                    {germanText(location.displayName, location.displayName)}
                   </p>
                   <h3 className="mt-2 text-2xl font-black tracking-normal text-slate-950">
-                    {location.city}
+                    {germanText(location.city, location.city)}
                   </h3>
                   <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">
-                    {location.addressLine1}, {location.postalCode} {location.city}
+                    {germanText(location.addressLine1, location.addressLine1)}, {location.postalCode} {germanText(location.city, location.city)}
                   </p>
                 </div>
                 <Link
@@ -74,7 +75,7 @@ export function LocationServiceSwitcher({
                     data-cta-label={service}
                     className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold leading-6 text-slate-800 transition hover:border-blue-200 hover:bg-white"
                   >
-                    {service}
+                    {germanText(service, service)}
                   </Link>
                 ))}
               </div>
@@ -82,11 +83,11 @@ export function LocationServiceSwitcher({
               <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4">
                 <div className="inline-flex items-center gap-2 text-sm font-black text-amber-900">
                   <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                  Manuelle Datenpruefung
+                  Manuelle Datenprüfung
                 </div>
                 <p className="mt-2 text-sm font-semibold leading-7 text-amber-950">
-                  Oeffnungszeiten und GBP-Profil-URL sind nicht als bestaetigte Daten hinterlegt.
-                  Sie werden nicht erfunden und muessen vor Merge/GBP-Abgleich manuell geprueft werden.
+                  Öffnungszeiten und GBP-Profil-URL sind nicht als bestätigte Daten hinterlegt.
+                  Sie werden nicht erfunden und müssen vor Merge/GBP-Abgleich manuell geprüft werden.
                 </p>
               </div>
             </article>

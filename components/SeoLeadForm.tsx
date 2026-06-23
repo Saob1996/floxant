@@ -13,6 +13,7 @@ import {
   type LeadService,
 } from "@/lib/lead-intents";
 import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
+import { germanText, germanizeDeep } from "@/lib/german-text";
 
 type SeoLeadFormProps = {
   initialIntent: LeadIntent;
@@ -68,18 +69,20 @@ function Field({
   children: ReactNode;
 }) {
   const errorId = `${htmlFor}-error`;
+  const visibleLabel = germanText(label, label);
+  const visibleError = error ? germanText(error, error) : "";
 
   return (
     <div className="space-y-2">
       <label htmlFor={htmlFor} className="block text-sm font-black text-slate-950">
-        {label}
+        {visibleLabel}
         {required ? <span className="ml-1 text-red-500">*</span> : null}
       </label>
       {children}
-      {error ? (
+      {visibleError ? (
         <p id={errorId} className="flex gap-2 text-sm font-semibold leading-6 text-red-700">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-          {error}
+          {visibleError}
         </p>
       ) : null}
     </div>
@@ -528,7 +531,7 @@ export function SeoLeadForm({
   }
 
   if (status === "success") {
-    const successCopy = getSuccessCopy({ service, isOfferCheck, isB2B, trackingIntent: lead.trackingIntent });
+    const successCopy = germanizeDeep(getSuccessCopy({ service, isOfferCheck, isB2B, trackingIntent: lead.trackingIntent })) as ReturnType<typeof getSuccessCopy>;
     return (
       <div
         className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-emerald-950 shadow-sm shadow-slate-950/5"
@@ -542,9 +545,7 @@ export function SeoLeadForm({
           <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
         </div>
         <h2 className="mt-4 text-2xl font-black tracking-tight">Anfrage erhalten</h2>
-        <p className="mt-3 text-sm font-semibold leading-7">
-          {successCopy.body}
-        </p>
+        <p className="mt-3 text-sm font-semibold leading-7">{successCopy.body}</p>
         <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6">
           {successCopy.bullets.map((item) => (
             <li key={item} className="flex gap-2">
@@ -596,8 +597,12 @@ export function SeoLeadForm({
         <div className="text-[11px] font-black uppercase tracking-[0.16em] text-blue-700">
           Schnelle Anfrage
         </div>
-        <h2 className="mt-2 text-2xl font-black tracking-tight">{lead.suggestedFormTitle}</h2>
-        <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">{lead.suggestedFormIntro}</p>
+        <h2 className="mt-2 text-2xl font-black tracking-tight">
+          {germanText(lead.suggestedFormTitle, lead.suggestedFormTitle)}
+        </h2>
+        <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">
+          {germanText(lead.suggestedFormIntro, lead.suggestedFormIntro)}
+        </p>
       </div>
 
       <input
@@ -638,7 +643,7 @@ export function SeoLeadForm({
           >
             {leadServiceOptions.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {germanText(option.label, option.label)}
               </option>
             ))}
           </select>
@@ -684,9 +689,9 @@ export function SeoLeadForm({
           className={fieldClass(false)}
         >
           <option value="auto">automatisch nach Angabe</option>
-          <option value="phone">Rueckruf bevorzugt</option>
+          <option value="phone">Rückruf bevorzugt</option>
           <option value="email">E-Mail bevorzugt</option>
-          <option value="whatsapp">WhatsApp moeglich</option>
+          <option value="whatsapp">WhatsApp möglich</option>
         </select>
       </Field>
 
@@ -714,7 +719,7 @@ export function SeoLeadForm({
           >
             {leadObjectTypeOptions.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {germanText(option.label, option.label)}
               </option>
             ))}
           </select>
@@ -734,14 +739,14 @@ export function SeoLeadForm({
               placeholder="Firma optional"
             />
           </Field>
-          <Field label="Flaeche / Raeume" htmlFor="seo-lead-area-size">
+          <Field label="Fläche / Räume" htmlFor="seo-lead-area-size">
             <input
               id="seo-lead-area-size"
               name="areaSize"
               value={areaSize}
               onChange={(event) => setAreaSize(event.target.value)}
               className={fieldClass(false)}
-              placeholder="z. B. 180 m2, 6 Raeume"
+              placeholder="z. B. 180 m2, 6 Räume"
             />
           </Field>
           <Field label="Turnus" htmlFor="seo-lead-cleaning-frequency">
@@ -754,13 +759,13 @@ export function SeoLeadForm({
             >
               <option value="">noch offen</option>
               <option value="einmalig">einmalig</option>
-              <option value="woechentlich">woechentlich</option>
+              <option value="woechentlich">wöchentlich</option>
               <option value="mehrmals-pro-woche">mehrmals pro Woche</option>
               <option value="monatlich">monatlich</option>
               <option value="nach-bedarf">nach Bedarf</option>
             </select>
           </Field>
-          <Field label="Gewuenschte Zeit" htmlFor="seo-lead-cleaning-time">
+          <Field label="Gewünschte Zeit" htmlFor="seo-lead-cleaning-time">
             <input
               id="seo-lead-cleaning-time"
               name="preferredCleaningTime"
@@ -787,11 +792,11 @@ export function SeoLeadForm({
               value={serviceScope}
               onChange={(event) => setServiceScope(event.target.value)}
               className={fieldClass(false)}
-              placeholder="z. B. Sanitär, Boeden, Kueche"
+              placeholder="z. B. Sanitär, Böden, Küche"
             />
           </Field>
           <p className="sm:col-span-2 text-xs font-semibold leading-5 text-slate-600">
-            Fuer Unternehmen helfen Flaeche, Turnus und gewuenschte Reinigungszeiten bei der ersten Einordnung. Eine Anfrage ist noch keine Beauftragung.
+            Für Unternehmen helfen Fläche, Turnus und gewünschte Reinigungszeiten bei der ersten Einordnung. Eine Anfrage ist noch keine Beauftragung.
           </p>
         </div>
       ) : null}
@@ -808,7 +813,7 @@ export function SeoLeadForm({
             >
               {offerStatusOptions.map((option) => (
                 <option key={option.value} value={option.value}>
-                  {option.label}
+                  {germanText(option.label, option.label)}
                 </option>
               ))}
             </select>
@@ -824,7 +829,7 @@ export function SeoLeadForm({
               placeholder="optional, z. B. 950 EUR"
             />
           </Field>
-          <Field label="Pruefgrund" htmlFor="seo-lead-offer-concern">
+          <Field label="Prüfgrund" htmlFor="seo-lead-offer-concern">
             <select
               id="seo-lead-offer-concern"
               name="offerConcern"
@@ -834,7 +839,7 @@ export function SeoLeadForm({
             >
               {offerConcernOptions.map((option) => (
                 <option key={option.value} value={option.value}>
-                  {option.label}
+                  {germanText(option.label, option.label)}
                 </option>
               ))}
             </select>
@@ -863,7 +868,7 @@ export function SeoLeadForm({
           >
             {leadUrgencyOptions.map((option) => (
               <option key={option.value} value={option.value}>
-                {option.label}
+                {germanText(option.label, option.label)}
               </option>
             ))}
           </select>
@@ -889,12 +894,12 @@ export function SeoLeadForm({
           onChange={(event) => setMessage(event.target.value)}
           className={`${fieldClass(Boolean(errors.message))} min-h-28 resize-y py-3`}
           aria-describedby={errors.message ? "seo-lead-message-error" : undefined}
-          placeholder={lead.defaultMessagePlaceholder}
+          placeholder={germanText(lead.defaultMessagePlaceholder, lead.defaultMessagePlaceholder)}
         />
       </Field>
 
       <p className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold leading-6 text-slate-600">
-        Datenschutz: Eine Anfrage ist noch keine Buchung. Bitte keine Zugangscodes, Ausweisdaten oder Zahlungsdaten senden. Adresse und Fotos koennen spaeter ergaenzt werden.
+        Datenschutz: Eine Anfrage ist noch keine Buchung. Bitte keine Zugangscodes, Ausweisdaten oder Zahlungsdaten senden. Adresse und Fotos können später ergänzt werden.
       </p>
 
       <label className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700">
@@ -912,7 +917,7 @@ export function SeoLeadForm({
       {errors.privacy ? (
         <p className="flex gap-2 text-sm font-semibold leading-6 text-red-700">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-          {errors.privacy}
+          {germanText(errors.privacy, errors.privacy)}
         </p>
       ) : null}
 
@@ -925,7 +930,7 @@ export function SeoLeadForm({
           data-page-intent={lead.trackingIntent}
           data-priority={lead.priority}
         >
-          {errors.spam || errors.form}
+          {germanText(errors.spam || errors.form, errors.spam || errors.form || "")}
         </div>
       ) : null}
 

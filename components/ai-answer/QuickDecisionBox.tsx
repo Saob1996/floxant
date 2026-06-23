@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, HelpCircle, XCircle } from "lucide-react";
 
+import { germanText } from "@/lib/german-text";
+
 type QuickDecisionBoxProps = {
   title?: string;
   fits: readonly string[];
@@ -12,7 +14,7 @@ type QuickDecisionBoxProps = {
 };
 
 export function QuickDecisionBox({
-  title = "Passt Angebot pruefen zu Ihrer Situation?",
+  title = "Passt Angebot prüfen zu Ihrer Situation?",
   fits,
   notFits,
   nextSteps,
@@ -28,23 +30,23 @@ export function QuickDecisionBox({
             <HelpCircle className="h-4 w-4" aria-hidden="true" />
             Entscheidung
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-4xl">{title}</h2>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-4xl">{germanText(title, title)}</h2>
         </div>
         <div className="grid gap-4 lg:grid-cols-3">
           <DecisionColumn title="Passt, wenn" tone="green" items={fits} icon="check" />
           <DecisionColumn title="Eher nicht passend, wenn" tone="amber" items={notFits} icon="x" />
           <div className="rounded-lg border border-blue-200 bg-white p-5 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-normal text-blue-700">Dann naechster Schritt</p>
+            <p className="text-sm font-black uppercase tracking-normal text-blue-700">Dann nächster Schritt</p>
             <ul className="mt-4 space-y-3 text-sm font-semibold leading-7 text-slate-700">
               {nextSteps.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>{germanText(item, item)}</li>
               ))}
             </ul>
             <Link
               href={ctaHref}
               className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-700"
             >
-              {ctaLabel}
+              {germanText(ctaLabel, ctaLabel)}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
@@ -73,12 +75,12 @@ function DecisionColumn({
 
   return (
     <div className={`rounded-lg border p-5 ${colors}`}>
-      <p className="text-sm font-black uppercase tracking-normal">{title}</p>
+      <p className="text-sm font-black uppercase tracking-normal">{germanText(title, title)}</p>
       <ul className="mt-4 space-y-3 text-sm font-semibold leading-7">
         {items.map((item) => (
           <li key={item} className="flex gap-3">
             <Icon className="mt-1 h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>{item}</span>
+            <span>{germanText(item, item)}</span>
           </li>
         ))}
       </ul>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, FileSearch } from "lucide-react";
 
+import { germanText } from "@/lib/german-text";
+
 type OfferCheckInlineCTAProps = {
   title?: string;
   text?: string;
@@ -10,9 +12,9 @@ type OfferCheckInlineCTAProps = {
 
 export function OfferCheckInlineCTA({
   title = "Schon ein Angebot erhalten?",
-  text = "Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, offene Punkte und naechste sinnvolle Schritte einordnen. Keine Rechtsberatung, keine Preisgarantie.",
+  text = "Wenn bereits ein Angebot vorliegt, kann FLOXANT Umfang, offene Punkte und nächste sinnvolle Schritte einordnen. Keine Rechtsberatung, keine Preisgarantie.",
   href = "/angebot-guenstiger-pruefen",
-  label = "Angebot pruefen lassen",
+  label = "Angebot prüfen lassen",
 }: OfferCheckInlineCTAProps) {
   return (
     <aside className="border-b border-slate-200 bg-blue-50 px-5 py-10 sm:px-8 lg:px-10">
@@ -22,8 +24,8 @@ export function OfferCheckInlineCTA({
             <FileSearch className="h-5 w-5" aria-hidden="true" />
           </span>
           <div>
-            <h2 className="text-xl font-black tracking-normal text-slate-950">{title}</h2>
-            <p className="mt-2 max-w-3xl text-sm font-semibold leading-7 text-slate-600">{text}</p>
+            <h2 className="text-xl font-black tracking-normal text-slate-950">{germanText(title, title)}</h2>
+            <p className="mt-2 max-w-3xl text-sm font-semibold leading-7 text-slate-600">{germanText(text, text)}</p>
           </div>
         </div>
         <Link
@@ -35,7 +37,7 @@ export function OfferCheckInlineCTA({
           data-destination={href}
           className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-blue-700"
         >
-          {label}
+          {germanText(label, label)}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>

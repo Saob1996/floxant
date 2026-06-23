@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ArrowRight, Building2, Clock3, DoorOpen, Sparkles } from "lucide-react";
 
-const scopes = [
+import { germanText, germanizeDeep } from "@/lib/german-text";
+
+const scopes = germanizeDeep([
   {
     title: "Buero / Kanzlei",
     text: "Arbeitsplaetze, Meetingraeume, Empfang, Kueche und Sanitaer.",
@@ -26,7 +28,7 @@ const scopes = [
     href: "/kontakt?service=bueroreinigung&intent=regelmaessige-reinigung&source=b2b",
     Icon: Clock3,
   },
-] as const;
+] as const);
 
 type CommercialCleaningScopeSelectorProps = {
   city?: string;
@@ -45,9 +47,9 @@ export function CommercialCleaningScopeSelector({ city = "duesseldorf" }: Commer
     <section className="px-4 py-12 sm:px-6" data-component="CommercialCleaningScopeSelector">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
-          <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Objektart waehlen</div>
+          <div className="text-xs font-black uppercase tracking-normal text-cyan-800">Objektart wählen</div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
-            Welche gewerbliche Flaeche soll gereinigt werden?
+            Welche gewerbliche Fläche soll gereinigt werden?
           </h2>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -70,10 +72,10 @@ export function CommercialCleaningScopeSelector({ city = "duesseldorf" }: Commer
                 data-destination={href}
               >
                 <scope.Icon className="h-5 w-5 text-cyan-800" />
-                <h3 className="mt-4 text-lg font-black text-slate-950">{scope.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-700">{scope.text}</p>
+                <h3 className="mt-4 text-lg font-black text-slate-950">{germanText(scope.title, scope.title)}</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-700">{germanText(scope.text, scope.text)}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-cyan-800">
-                  Auswaehlen
+                  Auswählen
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                 </span>
               </Link>

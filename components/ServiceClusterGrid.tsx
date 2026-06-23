@@ -7,26 +7,27 @@ import {
   type ServiceInventoryItem,
 } from "@/lib/service-inventory";
 import type { FloxantLocationKey } from "@/lib/floxant-locations";
+import { germanText } from "@/lib/german-text";
 
 const categoryLabels: Record<ServiceCategory, string> = {
   reinigung: "Reinigung",
   umzug_transport: "Umzug und Transport",
-  entruempelung_aufloesung: "Entruempelung und Aufloesung",
-  angebot_pruefen: "Angebot pruefen",
+  entruempelung_aufloesung: "Entrümpelung und Auflösung",
+  angebot_pruefen: "Angebot prüfen",
   signature_service: "Signature Services",
 };
 
 const categoryIntros: Record<ServiceCategory, string> = {
   reinigung:
-    "Von Bueroreinigung bis Spezialreinigung: Entscheidend sind Objekt, Flaeche, Zustand, Zugang und Ziel.",
+    "Von Büroreinigung bis Spezialreinigung: Entscheidend sind Objekt, Fläche, Zustand, Zugang und Ziel.",
   umzug_transport:
     "Transport und Umzug werden nach Volumen, Strecke, Laufweg, Termin und Zusatzleistungen eingeordnet.",
   entruempelung_aufloesung:
-    "Raeumung, Aufloesung und Nachlass brauchen Fotos, Freigabe, Menge, Zugang und klare Grenzen.",
+    "Räumung, Auflösung und Nachlass brauchen Fotos, Freigabe, Menge, Zugang und klare Grenzen.",
   angebot_pruefen:
-    "Vorhandene Angebote werden nach Umfang, Annahmen, Zusatzpositionen und Machbarkeit geprueft.",
+    "Vorhandene Angebote werden nach Umfang, Annahmen, Zusatzpositionen und Machbarkeit geprüft.",
   signature_service:
-    "FLOXANT-Startpunkte fuer Faelle mit Angebot, Objektbrief, Uebergabe, Plan B oder Diskretion.",
+    "FLOXANT-Startpunkte für Fälle mit Angebot, Objektbrief, Übergabe, Plan B oder Diskretion.",
 };
 
 type ServiceClusterGridProps = {
@@ -48,9 +49,9 @@ function availabilityLabel(service: ServiceInventoryItem, locationKey?: FloxantL
   if (!locationKey) return service.priority;
   const availability =
     locationKey === "duesseldorf" ? service.dusseldorfAvailability : service.regensburgAvailability;
-  if (availability === "available") return "verfuegbar";
-  if (availability === "limited") return "nach Pruefung";
-  if (availability === "needs_manual_confirmation") return "manuell pruefen";
+  if (availability === "available") return "verfügbar";
+  if (availability === "limited") return "nach Prüfung";
+  if (availability === "needs_manual_confirmation") return "manuell prüfen";
   return "nicht angeboten";
 }
 
@@ -70,8 +71,8 @@ export function ServiceClusterGrid({
             <Layers3 className="h-4 w-4" aria-hidden="true" />
             Service-Cluster
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>
 
         <div className="mt-8 grid gap-5 xl:grid-cols-2">
@@ -87,10 +88,10 @@ export function ServiceClusterGrid({
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <h3 className="text-2xl font-black tracking-normal text-slate-950">
-                      {categoryLabels[category]}
+                      {germanText(categoryLabels[category], categoryLabels[category])}
                     </h3>
                     <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">
-                      {categoryIntros[category]}
+                      {germanText(categoryIntros[category], categoryIntros[category])}
                     </p>
                   </div>
                 </div>
@@ -109,18 +110,18 @@ export function ServiceClusterGrid({
                     >
                       <div className="flex flex-wrap gap-2">
                         <span className="rounded-md bg-blue-50 px-2 py-1 text-xs font-black text-blue-700">
-                          {availabilityLabel(service, locationKey)}
+                          {germanText(availabilityLabel(service, locationKey), availabilityLabel(service, locationKey))}
                         </span>
                         <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-black text-slate-600">
                           {service.priority}
                         </span>
                       </div>
-                      <h4 className="mt-3 text-lg font-black text-slate-950">{service.name}</h4>
+                      <h4 className="mt-3 text-lg font-black text-slate-950">{germanText(service.name, service.name)}</h4>
                       <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
-                        {service.shortDescription}
+                        {germanText(service.shortDescription, service.shortDescription)}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                        Service oeffnen
+                        Service öffnen
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
                       </span>
                     </Link>

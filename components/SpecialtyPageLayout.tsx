@@ -96,6 +96,15 @@ function nonEmpty(values: Array<string | undefined | null>) {
   return values.filter((value): value is string => Boolean(value && value.trim()));
 }
 
+function resolveVisibleHeroTitle(heroTitle: string, city: string, serviceName: string) {
+  const safeCity = germanText(city, city);
+  const title = germanText(heroTitle, "");
+
+  if (!title) return `${serviceName} in ${safeCity}`;
+  if (/\bin\s*$/i.test(title)) return `${title} ${safeCity}`.replace(/\s+/g, " ").trim();
+  return title;
+}
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -125,7 +134,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
         { href: "/bueroumzug", label: "Büroumzug als Hauptservice" },
         { href: "/firmenentsorgung", label: "Firmenentsorgung für Büroinventar" },
         { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt für Firmen nutzen" },
-        { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
+        { href: "/standorte", label: `Standorte und Verfügbarkeit für ${region}` },
       ],
     };
   }
@@ -142,10 +151,10 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
       process: `Wir klären Objekt, Flächen und Verschmutzungsgrad, stimmen die Leistungen ab und planen einen festen Termin für die Reinigung in ${city}.`,
       difference: `Im Unterschied zur spontanen Alltagsreinigung ist der Service auf Abnahme, Hygiene und klar definierte Leistungen ausgelegt.`,
       relatedLinks: [
-        { href: "/reinigung", label: "Reinigung in Bayern im Überblick" },
+        { href: "/reinigung", label: "Reinigung im Überblick" },
         { href: "/umzug-mit-reinigung", label: "Umzug mit Reinigung kombinieren" },
         { href: "/rechner", label: "Reinigung direkt kalkulieren" },
-        { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
+        { href: "/standorte", label: `Standorte und Verfügbarkeit für ${region}` },
       ],
     };
   }
@@ -182,10 +191,10 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
       process: `Wir sichten Umfang und Zugangswege, trennen verwertbare Materialien, organisieren Abtransport und hinterlassen die Flächen in ${city} besenrein.`,
       difference: `Im Unterschied zur reinen Sperrmüllabholung umfasst der Service Sortierung, Tragearbeit, Transport und fachgerechte Entsorgung aus einer Hand.`,
       relatedLinks: [
-        { href: "/entruempelung", label: "Entrümpelung in Bayern erklärt" },
+        { href: "/entruempelung", label: "Entrümpelung erklärt" },
         { href: "/kleinmengen-entsorgung", label: "Kleinmengen fachgerecht entsorgen" },
         { href: "/entruempelung-kosten-regensburg", label: "Entrümpelungskosten in Regensburg einordnen" },
-        { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
+        { href: "/standorte", label: `Standorte und Verfügbarkeit für ${region}` },
       ],
     };
   }
@@ -201,10 +210,10 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
     process: `Wir erfassen Strecke, Volumen und Zusatzleistungen, planen Fahrzeuge und Team und setzen den Umzug in ${city} strukturiert am Wunschtermin um.`,
     difference: `Im Unterschied zu improvisierten Einzeltransporten erhalten Sie eine abgestimmte Einsatzplanung mit festen Leistungen und klarer regionaler Verfügbarkeit.`,
     relatedLinks: [
-      { href: "/umzug", label: "Umzug in Bayern im Überblick" },
+      { href: "/umzug", label: "Umzug im Überblick" },
       { href: "/beiladung", label: "Beiladung für einzelne Möbel prüfen" },
       { href: "/rechner", label: "Umzug direkt kalkulieren" },
-      { href: "/standorte", label: `Standorte und Verfuegbarkeit fuer ${region}` },
+      { href: "/standorte", label: `Standorte und Verfügbarkeit für ${region}` },
     ],
   };
 }
@@ -335,7 +344,7 @@ function getRegensburgAuthorityContent(serviceName: string) {
       },
       {
         q: "Arbeitet FLOXANT nur in Regensburg?",
-        a: "Regensburg ist der feste Ausgangspunkt. Einsätze in der Umgebung und in Bayern werden nach Strecke, Kapazität und Leistungsumfang geprüft.",
+        a: "Regensburg ist der feste Ausgangspunkt. Einsätze in der Umgebung werden nach Strecke, Kapazität und Leistungsumfang geprüft.",
       },
     ],
     trust: sharedTrust,
@@ -648,9 +657,9 @@ export function SpecialtyPageLayout({
   const isBavariaPage =
     city.toLowerCase().includes("bayern") ||
     breadcrumbs.some((item) => item.label.toLowerCase().includes("bayern") || item.href?.endsWith("-bayern"));
-  const regionName = geo?.region || "Bayern";
+  const regionName = geo?.region || "Region";
   const serviceContext = getServiceContext(serviceSignal, city, citySlug, regionName, isBavariaPage);
-  const resolvedHeroTitle = heroTitle?.trim() || `${serviceContext.name} in ${city}`;
+  const resolvedHeroTitle = resolveVisibleHeroTitle(heroTitle, city, serviceContext.name);
   const resolvedPrimaryCtaHref = primaryCtaHref || "#wizard";
   const primaryCtaQuery = resolvedPrimaryCtaHref.includes("?")
     ? new URLSearchParams(resolvedPrimaryCtaHref.split("?")[1])
@@ -819,9 +828,7 @@ export function SpecialtyPageLayout({
         areaServed: Array.from(
           new Set([
             city,
-            "Regensburg",
-            "Umgebung Regensburg ca. 200 km",
-            geo?.region || "Bayern",
+            `${city} und Umgebung`,
           ]),
         ),
       }),
@@ -832,7 +839,6 @@ export function SpecialtyPageLayout({
         about: [
           serviceContext.name,
           city,
-          geo?.region || "Bayern",
           "Angebot prüfen",
           "Preisrahmen",
           "FLOXANT Alternative",
@@ -988,7 +994,7 @@ export function SpecialtyPageLayout({
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#0c1630]/22 via-transparent to-white/24" />
                 <div className="absolute left-5 top-5 rounded-[1.15rem] border border-white/75 bg-white/92 px-4 py-4 shadow-sm shadow-slate-950/5">
                   <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-                    {germanText(city, city)} · {germanText(geo?.region || "Bayern", geo?.region || "Bayern")}
+                    {germanText(city, city)} · Umgebung · FLOXANT
                   </div>
                   <div className="mt-1 text-sm font-black text-slate-950">
                     Regional geplant, klar umgesetzt
@@ -1013,7 +1019,7 @@ export function SpecialtyPageLayout({
         eyebrow={`${serviceContext.name} verständlich planen`}
         title={`${serviceContext.name} in ${germanText(city, city)}: erst klären, dann passend anfragen.`}
         intro={`FLOXANT macht die wichtigsten Punkte sichtbar, bevor Kunden buchen: Ort, Termin, Umfang, Fotos, Budget und Zusatzleistungen. So wird ${serviceContext.name} in ${germanText(city, city)} nicht zur Ratesache, sondern zu einem klaren nächsten Schritt.`}
-        regionLabel={`${germanText(city, city)} · ${germanText(geo?.region || "Bayern", geo?.region || "Bayern")} · FLOXANT nach Verfügbarkeit`}
+        regionLabel={`${germanText(city, city)} · Umgebung · FLOXANT nach Machbarkeit`}
         primaryHref={resolvedPrimaryCtaHref}
         primaryLabel={`${serviceContext.name} anfragen`}
         secondaryHref="/angebot-guenstiger-pruefen"
@@ -1393,7 +1399,7 @@ export function SpecialtyPageLayout({
                   Schon ein Angebot für {germanText(city, city)} bekommen?
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-slate-700">
-                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für Regensburg, die Umgebung bis ca. 200 km und Bayern geht es um Umzug, Reinigung, Entrümpelung, Entsorgung, Transport und passende Zusatzleistungen. In Düsseldorf führt die Prüfung je nach Leistung zum passenden lokalen Kontaktweg.
+                  Wenn bereits ein Preis einer anderen Firma vorliegt, kann FLOXANT Angebot, Umfang, Fotos, Termin, Zugang und Budget organisatorisch prüfen. Für {germanText(city, city)} geht es um den konkreten Auftrag vor Ort, mögliche Zusatzleistungen und den passenden nächsten Schritt. In Düsseldorf führt die Prüfung je nach Leistung zum passenden lokalen Kontaktweg.
                 </p>
                 <p className="mt-3 text-xs font-bold leading-6 text-slate-500">
                   Keine Preisgarantie, keine Rechtsberatung und keine Bewertung anderer Anbieter. FLOXANT prüft nur, ob nach Verfügbarkeit eine klarere, günstigere oder passendere Alternative möglich ist.
@@ -1466,7 +1472,7 @@ export function SpecialtyPageLayout({
           {nearbyCities.length > 0 ? (
             <div className="mt-12 rounded-[2.2rem] border border-slate-200 bg-white/96 px-7 py-7 shadow-[0_18px_46px_rgba(15,23,42,0.06)]">
               <h3 className="text-2xl font-bold tracking-tight text-slate-950">
-                Weitere relevante Orte in {germanText(geo?.region || "Bayern", geo?.region || "Bayern")}
+                Weitere passende Orte
               </h3>
               <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {nearbyCities.map((nearby) => (
@@ -1481,7 +1487,7 @@ export function SpecialtyPageLayout({
                     <div>
                       <div className="font-bold text-slate-900">{germanText(nearby.name, nearby.name)}</div>
                       <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">
-                        {germanText(geo?.region || "Bayern", geo?.region || "Bayern")}
+                        Regionale Anfrage
                       </div>
                     </div>
                   </Link>

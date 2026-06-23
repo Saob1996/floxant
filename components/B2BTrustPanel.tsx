@@ -14,11 +14,11 @@ export function B2BTrustPanel({ className = "" }: { className?: string }) {
             Gewerbekunden brauchen Struktur, keine erfundenen Referenzen.
           </h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
-            FLOXANT fragt Flaeche, Turnus, Zeitfenster, Ansprechpartner, Zugang und besondere Anforderungen ab. Firmenlogos, Zertifikate oder Kundenstimmen werden nicht erfunden.
+            FLOXANT fragt Fläche, Turnus, Zeitfenster, Ansprechpartner, Zugang und besondere Anforderungen ab. Firmenlogos, Zertifikate oder Kundenstimmen werden nicht erfunden.
           </p>
         </div>
         <div className="grid gap-3 md:grid-cols-2">
-          {["Flaeche und Raumliste", "Turnus und Reinigungszeiten", "Ansprechpartner und Zugang", "keine Fake-Firmenreferenzen"].map((item) => (
+          {["Fläche und Raumliste", "Turnus und Reinigungszeiten", "Ansprechpartner und Zugang", "keine Fake-Firmenreferenzen"].map((item) => (
             <div key={item} className="flex gap-3 rounded-lg border border-cyan-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm">
               <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-cyan-800" aria-hidden="true" />
               <span>{item}</span>

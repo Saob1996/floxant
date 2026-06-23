@@ -1,6 +1,7 @@
 import { Camera, CheckCircle2 } from "lucide-react";
 
 import { getServiceProofInput } from "@/lib/trust-proof";
+import { germanText } from "@/lib/german-text";
 
 type ServiceProofChecklistProps = {
   serviceKey?: string;
@@ -25,11 +26,11 @@ export function ServiceProofChecklist({
             <Camera className="h-4 w-4" aria-hidden="true" />
             Proof-Checkliste
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{title || proof.title}</h2>
-          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{intro || proof.intro}</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title || proof.title, proof.title)}</h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro || proof.intro, proof.intro)}</p>
           {proof.photosHelp ? (
             <p className="mt-4 rounded-lg border border-blue-100 bg-white p-4 text-sm font-bold leading-7 text-slate-700">
-              Fotos sind freiwillig, helfen aber bei Zustand, Zugang, Menge oder Flaeche. Bitte keine privaten Dokumente, Kennzeichen oder sensiblen Details senden.
+              Fotos sind freiwillig, helfen aber bei Zustand, Zugang, Menge oder Fläche. Bitte keine privaten Dokumente, Kennzeichen oder sensiblen Details senden.
             </p>
           ) : null}
         </div>
@@ -38,7 +39,7 @@ export function ServiceProofChecklist({
           {proof.items.map((item) => (
             <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm">
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-700" aria-hidden="true" />
-              <span>{item}</span>
+              <span>{germanText(item, item)}</span>
             </div>
           ))}
         </div>

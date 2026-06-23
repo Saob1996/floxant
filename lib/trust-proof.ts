@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type TrustProofType =
   | "process"
   | "service"
@@ -263,9 +265,9 @@ export function selectTrustSignals(input: {
     return true;
   });
 
-  return filtered.slice(0, input.limit ?? 4);
+  return germanizeDeep(filtered.slice(0, input.limit ?? 4));
 }
 
 export function getServiceProofInput(serviceKey = "reinigung") {
-  return serviceProofInputs[serviceKey] ?? serviceProofInputs.reinigung;
+  return germanizeDeep(serviceProofInputs[serviceKey] ?? serviceProofInputs.reinigung);
 }

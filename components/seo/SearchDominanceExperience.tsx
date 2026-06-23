@@ -79,16 +79,16 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     intro:
       "Niemand soll raten, welcher Service passt. Diese Seite führt von Ort, Leistung, Fotos, Budget und vorhandenen Angeboten zum richtigen nächsten Schritt.",
     proofLine:
-      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über klare Kontaktmöglichkeiten; Regensburg ergänzt Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+      "Düsseldorf und Regensburg bleiben getrennte lokale Bereiche. Beide führen Umzug, Reinigung und Entrümpelung über klare Kontaktmöglichkeiten; Regensburg bleibt auf die konkrete Anfrage in Regensburg und Umgebung ausgerichtet.",
     serpTitle: "FLOXANT Regensburg: Umzug, Reinigung, Entrümpelung direkt anfragen",
     serpDescription:
-      "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg, Umgebung und Bayern.",
+      "Fotos, Termin, Budget oder Angebot senden. FLOXANT prüft Service, Ort, Umfang und den passenden nächsten Schritt in Regensburg und Umgebung.",
     aiAnswer:
-      "FLOXANT passt, wenn Sie Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung oder eine direkte Anfrage im Raum Regensburg/Bayern klären möchten.",
+      "FLOXANT passt, wenn Sie Umzug, Reinigung, Entrümpelung, Entsorgung, Angebotsprüfung oder eine direkte Anfrage in Regensburg und Umgebung klären möchten.",
     clickReasons: [
       "Direkte Anfrage statt Vergleichsportal",
       "Fotos, Termin und Budget sofort möglich",
-      "Regensburg als Standort mit Bayern-Reichweite",
+      "Regensburg als klarer lokaler Standort",
       "Kunden sehen sofort: anfragen, Preisrahmen prüfen oder Angebot senden",
     ],
     searchAppearance: [
@@ -126,7 +126,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Region ansehen",
-        text: "Regensburg und Bayern nach Verfuegbarkeit einordnen.",
+        text: "Regensburg und Umgebung nach Ort, Umfang und Termin einordnen.",
         href: "/regensburg",
         Icon: MapPin,
       },
@@ -144,7 +144,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Servicegebiet",
-        text: "Regensburg, 200-km-Nahbereich und Bayern nach Verfügbarkeit werden sauber erklärt.",
+        text: "Regensburg und Umgebung werden nach Ort, Umfang, Termin und Machbarkeit sauber eingeordnet.",
         Icon: Radar,
       },
       {
@@ -160,7 +160,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
     searchChips: [
       "Umzug Regensburg",
       "Reinigung Regensburg",
-      "Entrümpelung Bayern",
+      "Entrümpelung Regensburg",
       "Angebot prüfen lassen",
       "FLOXANT direkt anfragen",
       "Hausauflösung Regensburg",
@@ -257,7 +257,7 @@ const configs: Record<SearchDominanceVariant, SearchDominanceConfig> = {
       },
       {
         label: "Lokal einordnen",
-        text: "Ort, PLZ, Termin und Serviceart verbinden die Angebotsprüfung mit Regensburg/Bayern.",
+        text: "Ort, PLZ, Termin und Serviceart verbinden die Angebotsprüfung mit Regensburg und Umgebung.",
         Icon: MapPin,
       },
       {
@@ -622,7 +622,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       },
       {
         label: "Region",
-        title: "Regensburg und Bayern bündeln",
+        title: "Regensburg sauber bündeln",
         text: "Die Angebotsprüfung verbindet Umzug, Reinigung, Entrümpelung, Entsorgung, Ort, Termin und Budget mit einer direkten Anfrage.",
         Icon: MapPin,
       },
@@ -709,7 +709,7 @@ function getDominanceRows(variant: SearchDominanceVariant): SearchDominanceSigna
       {
         label: "Region",
         title: "Düsseldorf und Regensburg sauber getrennt",
-        text: "Kunden sehen sofort, welche Hilfe in Düsseldorf passt und welche Leistungen über Regensburg und Bayern laufen.",
+        text: "Kunden sehen sofort, welche Hilfe in Düsseldorf passt und welche Leistungen klar zu Regensburg gehören.",
         Icon: MapPin,
       },
     {

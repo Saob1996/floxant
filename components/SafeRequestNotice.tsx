@@ -7,8 +7,8 @@ type SafeRequestNoticeProps = {
 export function SafeRequestNotice({ tone = "default" }: SafeRequestNoticeProps) {
   const copy = {
     default: "Eine Anfrage ist noch keine Buchung. Bitte senden Sie keine Zugangscodes, Zahlungsdaten oder sensiblen Dokumente im ersten Schritt.",
-    discreet: "Sensible Details muessen nicht in die erste Nachricht. Ort, grober Umfang und bevorzugter Kontaktweg reichen fuer den Start.",
-    b2b: "Fuer Unternehmen helfen Flaeche, Turnus, gewuenschte Reinigungszeiten und Ansprechpartner. Eine Anfrage ist noch keine Beauftragung.",
+    discreet: "Sensible Details müssen nicht in die erste Nachricht. Ort, grober Umfang und bevorzugter Kontaktweg reichen für den Start.",
+    b2b: "Für Unternehmen helfen Fläche, Turnus, gewünschte Reinigungszeiten und Ansprechpartner. Eine Anfrage ist noch keine Beauftragung.",
   }[tone];
 
   return (

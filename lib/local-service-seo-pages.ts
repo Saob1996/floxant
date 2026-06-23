@@ -1,3 +1,5 @@
+import { germanizeDeep } from "@/lib/german-text";
+
 export type LocalServiceCityKey = "duesseldorf" | "regensburg";
 export type LocalServiceSchemaType = "LocalBusiness" | "MovingCompany" | "CleaningService";
 
@@ -648,5 +650,5 @@ export const localServiceSeoPages = {
 export type LocalServiceSeoPageKey = keyof typeof localServiceSeoPages;
 
 export function getLocalServiceSeoPage(key: LocalServiceSeoPageKey) {
-  return localServiceSeoPages[key];
+  return germanizeDeep(localServiceSeoPages[key]);
 }
