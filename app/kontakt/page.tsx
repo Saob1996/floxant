@@ -105,7 +105,7 @@ const localTrustCards = [
   },
   {
     title: "FLOXANT empfehlen",
-    text: "Kunden, Freunde, Vermieter oder Makler koennen einen Partnercode teilen. Der 50-Euro-Bonus wird nur bei bestaetigtem und bezahltem Auftrag geprueft.",
+    text: "Kunden, Freunde, Vermieter oder Makler können einen Partnercode teilen. Der 50-Euro-Bonus wird nur bei bestätigtem und bezahltem Auftrag geprüft.",
     href: "/empfehlen",
     cta: "Empfehlungslink ansehen",
   },
@@ -192,7 +192,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "kontakt",
-    title: "FLOXANT Kontakt: Service, Ort und naechsten Schritt klaeren",
+    title: "FLOXANT Kontakt: Service, Ort und nächsten Schritt klären",
     description:
       "Senden Sie Service, Ort, Umfang, Fotos, Terminwunsch und bevorzugten Kontaktweg. FLOXANT ordnet die Anfrage und offene Punkte ein.",
   });
@@ -311,7 +311,7 @@ export default async function KontaktPage({
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
             {leadIntent.suggestedFormIntro} Hilfreich sind Service, Ort, Umfang,
-            Fotos, Terminwunsch und der Kontaktweg, ueber den FLOXANT gezielt nachfragen darf.
+            Fotos, Terminwunsch und der Kontaktweg, über den FLOXANT gezielt nachfragen darf.
           </p>
           <div className="mt-8 grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
             <div>
@@ -454,7 +454,7 @@ export default async function KontaktPage({
 
       <CustomerNextStepPanel
         title="Was nach dem Absenden passiert."
-        intro="Die Kontaktseite soll keine Blackbox sein. FLOXANT prueft zuerst die Eckdaten und fragt gezielt nach, wenn Ort, Umfang, Fotos oder Termin noch fehlen."
+        intro="Die Kontaktseite soll keine Blackbox sein. FLOXANT prüft zuerst die Eckdaten und fragt gezielt nach, wenn Ort, Umfang, Fotos oder Termin noch fehlen."
         steps={customerNextSteps}
       />
 
@@ -467,14 +467,14 @@ export default async function KontaktPage({
       />
 
       <LocationServiceSwitcher
-        title="Den passenden Standort direkt vor der Anfrage waehlen."
-        intro="Dueseldorf und Regensburg haben eigene lokale Schwerpunkte. Der Kontakt bleibt gleich einfach, aber city=duesseldorf oder city=regensburg wird sauber in den Anfrageweg uebernommen."
+        title="Den passenden Standort direkt vor der Anfrage wählen."
+        intro="Düsseldorf und Regensburg haben eigene lokale Schwerpunkte. Der Kontakt bleibt gleich einfach, aber city=duesseldorf oder city=regensburg wird sauber in den Anfrageweg übernommen."
       />
 
       <LocalContactPanel
         service={leadIntent.service}
-        title="Kontakt fuer beide FLOXANT Standorte."
-        intro="Adresse, Telefon und E-Mail bleiben sichtbar. Oeffnungszeiten und GBP-Profil-URLs werden nicht geraten, sondern als manuelle Pruefung behandelt."
+        title="Kontakt für beide FLOXANT Standorte."
+        intro="Adresse, Telefon und E-Mail bleiben sichtbar. Öffnungszeiten und GBP-Profil-URLs werden nicht geraten, sondern als manuelle Prüfung behandelt."
       />
 
       <section className="px-4 pb-12 sm:px-6">
@@ -486,7 +486,7 @@ export default async function KontaktPage({
       <WhatWeNeedChecklist
         group={leadIntent.service === "angebot-pruefen" ? "angebot-pruefen" : leadIntent.service === "umzug" ? "umzug" : leadIntent.service === "entruempelung" || leadIntent.service === "wohnungsaufloesung" ? "entruempelung" : leadIntent.service === "bueroreinigung" || leadIntent.service === "gewerbereinigung" ? "b2b" : "reinigung"}
         title="Welche Angaben jetzt reichen"
-        intro="Ort, Service, grober Umfang und Kontaktweg reichen fuer den Start. Die Details werden nach Bedarf nachgefragt."
+        intro="Ort, Service, grober Umfang und Kontaktweg reichen für den Start. Die Details werden nach Bedarf nachgefragt."
         limit={4}
       />
 
@@ -499,13 +499,13 @@ export default async function KontaktPage({
         serviceKey={leadIntent.service}
         locationKey={leadIntent.city === "regensburg" ? "regensburg" : "duesseldorf"}
         title="Kontakt ohne erfundene Vertrauenssignale."
-        intro="Die Kontaktseite trennt echte Anfragehilfen von ungeprueften Belegen: keine Sterne ohne Quelle, keine erfundenen Kundenstimmen, keine Garantie ohne Objektangaben."
+        intro="Die Kontaktseite trennt echte Anfragehilfen von ungeprüften Belegen: keine Sterne ohne Quelle, keine erfundenen Kundenstimmen, keine Garantie ohne Objektangaben."
       />
 
       <ServiceProofChecklist
         serviceKey={leadIntent.service === "angebot-pruefen" ? "angebot-pruefen" : leadIntent.service === "umzug" ? "umzug" : leadIntent.service === "entruempelung" || leadIntent.service === "wohnungsaufloesung" ? "entruempelung" : leadIntent.service === "bueroreinigung" || leadIntent.service === "gewerbereinigung" ? "b2b" : "reinigung"}
-        title="Was als Proof vor der Rueckmeldung wirklich hilft"
-        intro="Diese Angaben ersetzen keine Besichtigung, machen die erste Einordnung aber belastbarer und vermeiden Rueckfragen."
+        title="Was als Proof vor der Rückmeldung wirklich hilft"
+        intro="Diese Angaben ersetzen keine Besichtigung, machen die erste Einordnung aber belastbarer und vermeiden Rückfragen."
       />
 
       <ProcessProofSteps />

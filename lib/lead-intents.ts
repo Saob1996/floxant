@@ -48,10 +48,10 @@ export type LeadIntent = {
 
 export const leadServiceOptions: Array<{ value: LeadService; label: string }> = [
   { value: "reinigung", label: "Reinigung" },
-  { value: "bueroreinigung", label: "Bueroreinigung" },
+  { value: "bueroreinigung", label: "Büroreinigung" },
   { value: "gewerbereinigung", label: "Gewerbereinigung" },
-  { value: "entruempelung", label: "Entruempelung" },
-  { value: "wohnungsaufloesung", label: "Wohnungsaufloesung" },
+  { value: "entruempelung", label: "Entrümpelung" },
+  { value: "wohnungsaufloesung", label: "Wohnungsauflösung" },
   { value: "umzug", label: "Umzug" },
   { value: "fernumzug", label: "Fernumzug" },
   { value: "seniorenumzug", label: "Seniorenumzug" },
@@ -60,34 +60,34 @@ export const leadServiceOptions: Array<{ value: LeadService; label: string }> = 
   { value: "fensterreinigung", label: "Fensterreinigung" },
   { value: "diskret-service", label: "Diskret-Service" },
   { value: "private-client", label: "Private Client" },
-  { value: "angebot-pruefen", label: "Angebot pruefen" },
+  { value: "angebot-pruefen", label: "Angebot prüfen" },
   { value: "sonstiges", label: "Sonstiges" },
 ];
 
 export const leadUrgencyOptions = [
   { value: "flexibel", label: "flexibel" },
   { value: "diese-woche", label: "diese Woche" },
-  { value: "kurzfristig-nach-verfuegbarkeit", label: "kurzfristig nach Verfuegbarkeit" },
-  { value: "fester-termin-gewuenscht", label: "fester Termin gewuenscht" },
+  { value: "kurzfristig-nach-verfuegbarkeit", label: "kurzfristig nach Verfügbarkeit" },
+  { value: "fester-termin-gewuenscht", label: "fester Termin gewünscht" },
 ] as const;
 
 export const leadObjectTypeOptions = [
   { value: "wohnung", label: "Wohnung" },
   { value: "haus", label: "Haus" },
-  { value: "buero", label: "Buero" },
+  { value: "buero", label: "Büro" },
   { value: "praxis", label: "Praxis" },
-  { value: "gewerbeflaeche", label: "Gewerbeflaeche" },
+  { value: "gewerbeflaeche", label: "Gewerbefläche" },
   { value: "keller-garage", label: "Keller/Garage" },
-  { value: "gaestehaus-unterkunft", label: "Gaestehaus/Unterkunft" },
+  { value: "gaestehaus-unterkunft", label: "Gästehaus/Unterkunft" },
   { value: "sonstiges", label: "Sonstiges" },
 ] as const;
 
 const serviceLabels: Record<LeadService, string> = {
   reinigung: "Reinigung",
-  bueroreinigung: "Bueroreinigung",
+  bueroreinigung: "Büroreinigung",
   gewerbereinigung: "Gewerbereinigung",
-  entruempelung: "Entruempelung",
-  wohnungsaufloesung: "Wohnungsaufloesung",
+  entruempelung: "Entrümpelung",
+  wohnungsaufloesung: "Wohnungsauflösung",
   umzug: "Umzug",
   fernumzug: "Fernumzug",
   seniorenumzug: "Seniorenumzug",
@@ -96,7 +96,7 @@ const serviceLabels: Record<LeadService, string> = {
   fensterreinigung: "Fensterreinigung",
   "diskret-service": "Diskret-Service",
   "private-client": "Private Client Service",
-  "angebot-pruefen": "Angebot pruefen",
+  "angebot-pruefen": "Angebot prüfen",
   kontakt: "FLOXANT Anfrage",
   sonstiges: "Anfrage",
 };
@@ -105,17 +105,17 @@ const cityLabels: Record<string, string> = {
   bayern: "Bayern",
   bamberg: "Bamberg",
   deutschland: "",
-  duesseldorf: "Duesseldorf",
+  duesseldorf: "Düsseldorf",
   erlangen: "Erlangen",
   ingolstadt: "Ingolstadt",
   landshut: "Landshut",
-  muenchen: "Muenchen",
+  muenchen: "München",
   neumarkt: "Neumarkt i.d.OPf.",
   "neustadt-an-der-waldnaab": "Neustadt an der Waldnaab",
-  nuernberg: "Nuernberg",
+  nuernberg: "Nürnberg",
   regensburg: "Regensburg",
   vohenstrauss: "Vohenstrauss",
-  wuerzburg: "Wuerzburg",
+  wuerzburg: "Würzburg",
 };
 
 const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
@@ -145,7 +145,7 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     city: "landshut",
     intent: "entruempelung-landshut",
     priority: "p0",
-    ctaLabel: "Entruempelung in Landshut anfragen",
+    ctaLabel: "Entrümpelung in Landshut anfragen",
   },
   "/klaviertransport": {
     service: "klaviertransport",
@@ -180,21 +180,21 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     city: "duesseldorf",
     intent: "reinigung-duesseldorf",
     priority: "p1",
-    ctaLabel: "Reinigung in Duesseldorf anfragen",
+    ctaLabel: "Reinigung in Düsseldorf anfragen",
   },
   "/duesseldorf/bueroreinigung": {
     service: "bueroreinigung",
     city: "duesseldorf",
     intent: "bueroreinigung-duesseldorf",
     priority: "p0",
-    ctaLabel: "Bueroreinigung anfragen",
+    ctaLabel: "Büroreinigung anfragen",
   },
   "/duesseldorf/b2b-reinigung": {
     service: "bueroreinigung",
     city: "duesseldorf",
     intent: "b2b-bueroreinigung-duesseldorf",
     priority: "p0",
-    ctaLabel: "B2B Bueroreinigung anfragen",
+    ctaLabel: "B2B Büroreinigung anfragen",
   },
   "/duesseldorf/gewerbereinigung": {
     service: "gewerbereinigung",
@@ -236,28 +236,28 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     city: "regensburg",
     intent: "entruempelung-regensburg",
     priority: "p2",
-    ctaLabel: "Entruempelung in Regensburg anfragen",
+    ctaLabel: "Entrümpelung in Regensburg anfragen",
   },
   "/regensburg/wohnungsaufloesung": {
     service: "wohnungsaufloesung",
     city: "regensburg",
     intent: "wohnungsaufloesung-regensburg",
     priority: "p2",
-    ctaLabel: "Wohnungsaufloesung in Regensburg anfragen",
+    ctaLabel: "Wohnungsauflösung in Regensburg anfragen",
   },
   "/reinigung-muenchen": {
     service: "reinigung",
     city: "muenchen",
     intent: "reinigung-muenchen",
     priority: "p1",
-    ctaLabel: "Reinigung in Muenchen anfragen",
+    ctaLabel: "Reinigung in München anfragen",
   },
   "/fernumzug-muenchen": {
     service: "fernumzug",
     city: "muenchen",
     intent: "fernumzug-muenchen",
     priority: "p0",
-    ctaLabel: "Fernumzug Muenchen anfragen",
+    ctaLabel: "Fernumzug München anfragen",
   },
   "/reinigungsfirma-angebot": {
     service: "reinigung",
@@ -271,21 +271,21 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     city: "regensburg",
     intent: "angebotscheck",
     priority: "p0",
-    ctaLabel: "Angebot pruefen lassen",
+    ctaLabel: "Angebot prüfen lassen",
   },
   "/angebot-guenstiger-pruefen": {
     service: "angebot-pruefen",
     city: "regensburg",
     intent: "angebot-guenstiger-pruefen",
     priority: "p0",
-    ctaLabel: "Angebot pruefen lassen",
+    ctaLabel: "Angebot prüfen lassen",
   },
   "/angebot-vergleichen-duesseldorf": {
     service: "angebot-pruefen",
     city: "duesseldorf",
     intent: "angebot-vergleichen-duesseldorf",
     priority: "p0",
-    ctaLabel: "Angebot pruefen lassen",
+    ctaLabel: "Angebot prüfen lassen",
   },
   "/private-client-service": {
     service: "private-client",
@@ -334,14 +334,14 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     city: "nuernberg",
     intent: "umzugshilfe-senioren-nuernberg",
     priority: "p0",
-    ctaLabel: "Seniorenumzug Nuernberg anfragen",
+    ctaLabel: "Seniorenumzug Nürnberg anfragen",
   },
   "/seniorenumzug-wuerzburg": {
     service: "seniorenumzug",
     city: "wuerzburg",
     intent: "umzug-im-alter-wuerzburg",
     priority: "p1",
-    ctaLabel: "Seniorenumzug Wuerzburg anfragen",
+    ctaLabel: "Seniorenumzug Würzburg anfragen",
   },
   "/umzug-neumarkt": {
     service: "umzug",
@@ -362,14 +362,14 @@ const pathLeadIntents: Record<string, Partial<LeadIntent>> = {
     city: "muenchen",
     intent: "bueroumzug-muenchen",
     priority: "p1",
-    ctaLabel: "Bueroumzug Muenchen anfragen",
+    ctaLabel: "Büroumzug München anfragen",
   },
   "/bueroumzug-nuernberg": {
     service: "umzug",
     city: "nuernberg",
     intent: "bueroumzug-nuernberg",
     priority: "p1",
-    ctaLabel: "Bueroumzug Nuernberg anfragen",
+    ctaLabel: "Büroumzug Nürnberg anfragen",
   },
 };
 
@@ -489,66 +489,66 @@ function buildTitle(serviceLabel: string, cityLabel: string) {
   if (serviceLabel === "FLOXANT Anfrage") return "FLOXANT Anfrage stellen";
   if (serviceLabel === "Diskret-Service") return "Diskret-Service vertraulich anfragen";
   if (serviceLabel === "Private Client Service") return `${serviceLabel} vertraulich anfragen`;
-  if (serviceLabel === "Angebot pruefen") return cityLabel ? `Angebot fuer ${cityLabel} pruefen lassen` : "Angebot pruefen lassen";
+  if (serviceLabel === "Angebot prüfen") return cityLabel ? `Angebot für ${cityLabel} prüfen lassen` : "Angebot prüfen lassen";
   if (cityLabel) return `${serviceLabel} in ${cityLabel} anfragen`;
   return `${serviceLabel} anfragen`;
 }
 
 function buildIntro(service: LeadService, cityLabel: string) {
   if (service === "angebot-pruefen") {
-    return `Nennen Sie Angebot, Ort, Termin, Umfang und den wichtigsten Pruefgrund${cityLabel ? ` fuer ${cityLabel}` : ""}. FLOXANT prueft organisatorisch und praktisch, ohne Preisgarantie.`;
+    return `Nennen Sie Angebot, Ort, Termin, Umfang und den wichtigsten Prüfgrund${cityLabel ? ` für ${cityLabel}` : ""}. FLOXANT prüft organisatorisch und praktisch, ohne Preisgarantie.`;
   }
   if (service === "bueroreinigung") {
-    return `Beschreiben Sie kurz Flaeche, Turnus, Zugang und gewuenschte Zeiten${cityLabel ? ` in ${cityLabel}` : ""}. FLOXANT prueft den Bedarf und meldet sich zurueck.`;
+    return `Beschreiben Sie kurz Fläche, Turnus, Zugang und gewünschte Zeiten${cityLabel ? ` in ${cityLabel}` : ""}. FLOXANT prüft den Bedarf und meldet sich zurück.`;
   }
   if (service === "gewerbereinigung") {
-    return `Nennen Sie Objektart, Flaeche, Turnus, Zeitfenster und Zugang${cityLabel ? ` in ${cityLabel}` : ""}. FLOXANT ordnet die Anfrage sachlich ein.`;
+    return `Nennen Sie Objektart, Fläche, Turnus, Zeitfenster und Zugang${cityLabel ? ` in ${cityLabel}` : ""}. FLOXANT ordnet die Anfrage sachlich ein.`;
   }
   if (service === "praxisreinigung") {
-    return `Nennen Sie Praxisart, Flaeche, Raumliste, Turnus, Zeitfenster und Zugang${cityLabel ? ` in ${cityLabel}` : ""}. FLOXANT prueft allgemeine Reinigungsflaechen ohne pauschale Spezialdesinfektionszusage.`;
+    return `Nennen Sie Praxisart, Fläche, Raumliste, Turnus, Zeitfenster und Zugang${cityLabel ? ` in ${cityLabel}` : ""}. FLOXANT prüft allgemeine Reinigungsflächen ohne pauschale Spezialdesinfektionszusage.`;
   }
   if (service === "fensterreinigung") {
-    return `Nennen Sie Glasflaechen, Rahmen, Etage, Zugang, Turnus, Zustand und Terminwunsch${cityLabel ? ` in ${cityLabel}` : ""}. Fotos helfen bei schwer erreichbaren Flaechen.`;
+    return `Nennen Sie Glasflächen, Rahmen, Etage, Zugang, Turnus, Zustand und Terminwunsch${cityLabel ? ` in ${cityLabel}` : ""}. Fotos helfen bei schwer erreichbaren Flächen.`;
   }
   if (service === "klaviertransport") {
-    return `Beschreiben Sie Instrument, Start, Ziel, Etage, Aufzug, Treppenhaus, Laufweg und Terminwunsch${cityLabel ? ` in ${cityLabel}` : ""}. Fotos helfen bei der Machbarkeitspruefung.`;
+    return `Beschreiben Sie Instrument, Start, Ziel, Etage, Aufzug, Treppenhaus, Laufweg und Terminwunsch${cityLabel ? ` in ${cityLabel}` : ""}. Fotos helfen bei der Machbarkeitsprüfung.`;
   }
   if (service === "umzug" || service === "fernumzug" || service === "seniorenumzug") {
-    return `Beschreiben Sie Start, Ziel, Umfang und Terminwunsch${cityLabel ? ` fuer ${cityLabel}` : ""}. FLOXANT prueft die Anfrage und meldet sich zurueck.`;
+    return `Beschreiben Sie Start, Ziel, Umfang und Terminwunsch${cityLabel ? ` für ${cityLabel}` : ""}. FLOXANT prüft die Anfrage und meldet sich zurück.`;
   }
   if (service === "entruempelung" || service === "wohnungsaufloesung") {
-    return `Beschreiben Sie Raeume, Menge, Zugang, Freigabe und Zielzustand${cityLabel ? ` in ${cityLabel}` : ""}. Fotos koennen spaeter ergaenzt werden.`;
+    return `Beschreiben Sie Räume, Menge, Zugang, Freigabe und Zielzustand${cityLabel ? ` in ${cityLabel}` : ""}. Fotos können später ergänzt werden.`;
   }
   if (service === "diskret-service" || service === "private-client") {
-    return "Beschreiben Sie Objekt, gewuenschte Diskretion, Leistungsumfang und sicheren Kontaktweg. FLOXANT prueft den Fall ruhig und ohne Standardzusage.";
+    return "Beschreiben Sie Objekt, gewünschte Diskretion, Leistungsumfang und sicheren Kontaktweg. FLOXANT prüft den Fall ruhig und ohne Standardzusage.";
   }
-  return "Beschreiben Sie kurz Leistung, Ort, Umfang und gewuenschten Kontaktweg. FLOXANT prueft die Angaben und meldet sich zurueck.";
+  return "Beschreiben Sie kurz Leistung, Ort, Umfang und gewünschten Kontaktweg. FLOXANT prüft die Angaben und meldet sich zurück.";
 }
 
 function buildPlaceholder(service: LeadService, cityLabel: string) {
   if (service === "angebot-pruefen") {
-    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Angebot liegt vor, Preis ca. 950 EUR, Termin naechste Woche, unklar sind Zusatzleistungen/Zugang`;
+    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Angebot liegt vor, Preis ca. 950 EUR, Termin nächste Woche, unklar sind Zusatzleistungen/Zugang`;
   }
   if (service === "bueroreinigung" || service === "gewerbereinigung") {
-    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Buero/Praxis, ca. 250 m2, 2x pro Woche, Zugang ab 18 Uhr, Rueckruf gewuenscht`;
+    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Büro/Praxis, ca. 250 m2, 2x pro Woche, Zugang ab 18 Uhr, Rückruf gewünscht`;
   }
   if (service === "praxisreinigung") {
-    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Praxis, Empfang/Wartebereich/Sanitaer, ca. 140 m2, 3x pro Woche, nach Praxisschluss`;
+    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Praxis, Empfang/Wartebereich/Sanitär, ca. 140 m2, 3x pro Woche, nach Praxisschluss`;
   }
   if (service === "fensterreinigung") {
-    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Glasflaechen/Rahmen, Etage, Zugang, ca. Anzahl Fenster, Zustand, Terminfenster`;
+    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Glasflächen/Rahmen, Etage, Zugang, ca. Anzahl Fenster, Zustand, Terminfenster`;
   }
   if (service === "klaviertransport") {
     return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Klavier oder E-Piano, Start/Ziel, Etage, Aufzug, Treppenhaus, Fotos, Terminfenster`;
   }
   if (service === "umzug" || service === "fernumzug" || service === "seniorenumzug") {
-    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Start/Ziel, Etage, grobe Moebelmenge, Terminfenster, Reinigung danach`;
+    return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Start/Ziel, Etage, grobe Möbelmenge, Terminfenster, Reinigung danach`;
   }
   if (service === "entruempelung" || service === "wohnungsaufloesung") {
     return `z. B. ${cityLabel ? `${cityLabel}, ` : ""}Wohnung/Keller, Menge, Etage, Freigabe, Entsorgung und Reinigung danach`;
   }
   if (service === "diskret-service" || service === "private-client") {
-    return "z. B. Anwesen/Residenz, gewuenschte Leistung, Zugang, Schutzbedarf, diskreter Rueckruf";
+    return "z. B. Anwesen/Residenz, gewünschte Leistung, Zugang, Schutzbedarf, diskreter Rückruf";
   }
   return "Kurz beschreiben: Leistung, Ort, Umfang, Terminwunsch und bester Kontaktweg.";
 }
@@ -578,7 +578,7 @@ export function resolveLeadIntent(input: LeadIntentInput = {}): LeadIntent {
     suggestedFormIntro: buildIntro(resolvedService, cityLabel),
     defaultMessagePlaceholder: buildPlaceholder(resolvedService, cityLabel),
     ctaLabel,
-    successMessage: "Anfrage erhalten. FLOXANT prueft die Angaben und meldet sich ueber die angegebene Kontaktmoeglichkeit.",
+    successMessage: "Anfrage erhalten. FLOXANT prüft die Angaben und meldet sich über die angegebene Kontaktmöglichkeit.",
     trackingService: resolvedService,
     trackingCity: resolvedCity,
     trackingIntent: intent,

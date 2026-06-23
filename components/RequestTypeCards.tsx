@@ -4,7 +4,7 @@ import { ArrowRight, Building2, HelpCircle, Home, Package, SearchCheck, ShieldCh
 const requestTypes = [
   {
     title: "Ich brauche Reinigung",
-    text: "Wohnung, Buero, Endreinigung, Grundreinigung oder Reinigung nach Raeumung.",
+    text: "Wohnung, Büro, Endreinigung, Grundreinigung oder Reinigung nach Räumung.",
     href: "/kontakt?service=reinigung&intent=reinigung-anfrage&priority=p1&source=contact-routing",
     service: "reinigung",
     intent: "reinigung-anfrage",
@@ -13,7 +13,7 @@ const requestTypes = [
   },
   {
     title: "Ich brauche Umzug/Transport",
-    text: "Privatumzug, Moebeltransport, Beiladung, Seniorenumzug oder Plan-B.",
+    text: "Privatumzug, Möbeltransport, Beiladung, Seniorenumzug oder Plan-B.",
     href: "/kontakt?service=umzug&intent=umzug-transport&priority=p1&source=contact-routing",
     service: "umzug",
     intent: "umzug-transport",
@@ -21,8 +21,8 @@ const requestTypes = [
     Icon: Package,
   },
   {
-    title: "Ich brauche Entruempelung",
-    text: "Keller, Wohnung, Haushaltsaufloesung, Nachlass oder Raeumung mit Reinigung.",
+    title: "Ich brauche Entrümpelung",
+    text: "Keller, Wohnung, Haushaltsauflösung, Nachlass oder Räumung mit Reinigung.",
     href: "/kontakt?service=entruempelung&intent=entruempelung-aufloesung&priority=p1&source=contact-routing",
     service: "entruempelung",
     intent: "entruempelung-aufloesung",
@@ -30,7 +30,7 @@ const requestTypes = [
     Icon: Home,
   },
   {
-    title: "Ich moechte ein Angebot pruefen",
+    title: "Ich möchte ein Angebot prüfen",
     text: "Vorhandenes Angebot, unklare Zusatzkosten oder mehrere Anbieter vergleichen.",
     href: "/kontakt?service=angebot-pruefen&intent=angebot-pruefen&priority=p0&source=contact-routing",
     service: "angebot-pruefen",
@@ -40,7 +40,7 @@ const requestTypes = [
   },
   {
     title: "Ich bin Gewerbekunde",
-    text: "Buero, Gewerbe, Praxis, Hotel, Turnus, Zeitfenster oder vorhandenes B2B-Angebot.",
+    text: "Büro, Gewerbe, Praxis, Hotel, Turnus, Zeitfenster oder vorhandenes B2B-Angebot.",
     href: "/kontakt?service=bueroreinigung&intent=b2b-bueroreinigung&priority=p0&source=contact-routing",
     service: "bueroreinigung",
     intent: "b2b-bueroreinigung",
@@ -58,7 +58,7 @@ const requestTypes = [
   },
   {
     title: "Ich bin unsicher",
-    text: "Kurze Lage beschreiben. FLOXANT ordnet Service, Aufwand und Rueckfragen ein.",
+    text: "Kurze Lage beschreiben. FLOXANT ordnet Service, Aufwand und Rückfragen ein.",
     href: "/kontakt?service=sonstiges&intent=unsichere-anfrage&priority=p2&source=contact-routing",
     service: "sonstiges",
     intent: "unsichere-anfrage",
@@ -92,7 +92,7 @@ export function RequestTypeCards() {
           <h3 className="mt-4 text-lg font-black text-slate-950">{item.title}</h3>
           <p className="mt-2 text-sm leading-7 text-slate-700">{item.text}</p>
           <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-            Auswaehlen
+            Auswählen
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
           </span>
         </Link>

@@ -8,6 +8,10 @@ const jsonPath = path.join(root, "copy-quality-report.json");
 const priorityFiles = [
   "app/page.tsx",
   "app/kontakt/page.tsx",
+  "components/ContactPathChooser.tsx",
+  "components/LeadTrustBlock.tsx",
+  "components/RequestTypeCards.tsx",
+  "components/ServiceIntentSelector.tsx",
   "app/leistungen/page.tsx",
   "app/angebot-guenstiger-pruefen/page.tsx",
   "app/angebotscheck/page.tsx",
@@ -52,6 +56,8 @@ const priorityFiles = [
   "components/SpecialtyPageLayout.tsx",
   "lib/professional-copy.ts",
   "lib/german-text.ts",
+  "lib/lead-intents.ts",
+  "lib/floxant-locations.ts",
   "docs/FLOXANT_COPY_STYLE_GUIDE.md",
   "docs/PROFESSIONAL_KEYWORD_AND_INTENT_MAP.md",
   "docs/CUSTOMER_LANGUAGE_KEYWORD_BANK.md",
@@ -116,6 +122,17 @@ const renderedAsciiPatterns = [
   { label: "Haushaltsaufloesung/Wohnungsaufloesung", pattern: /\b(?:Haushaltsaufloesung|Wohnungsaufloesung)\b/ },
 ];
 
+const contactVisibleSourceFiles = [
+  "app/kontakt/page.tsx",
+  "components/ContactPathChooser.tsx",
+  "components/LeadTrustBlock.tsx",
+  "components/RequestTypeCards.tsx",
+  "components/SeoLeadForm.tsx",
+  "components/ServiceIntentSelector.tsx",
+  "lib/lead-intents.ts",
+  "lib/floxant-locations.ts",
+];
+
 const renderedDilutionPatterns = [
   { label: "200-km claim", pattern: /\b(?:ca\.\s*)?200\s?-?\s?km\b/i },
   { label: "Bayern-wide claim", pattern: /\b(?:bayernweit|ganz Bayern|Bayern nach Verf(?:ü|ue)gbarkeit|Regensburg\/Bayern|Bayern-Strecken|Bayern-Reichweite)\b/i },
@@ -154,11 +171,67 @@ function htmlToVisibleText(html) {
     .trim();
 }
 
+function extractStringLiterals(content) {
+  const literals = [];
+  const pattern = /(["'`])((?:\\[\s\S]|(?!\1)[\s\S])*?)\1/g;
+  let match;
+
+  while ((match = pattern.exec(content))) {
+    literals.push({
+      value: match[2],
+      line: lineNumber(content, match.index || 0),
+    });
+  }
+
+  return literals;
+}
+
+function isMachineCopyLiteral(value) {
+  const trimmed = String(value || "").trim();
+  const withoutTemplatePlaceholders = trimmed.replace(/\$\{[^}]+\}/g, "");
+  if (!trimmed) return true;
+  if (/^(?:https?:|mailto:|tel:|sms:|whatsapp:|\/|#)/i.test(trimmed)) return true;
+  if (/(?:^|[?&#])(service|intent|source|priority|city|utm_|data-)=/i.test(trimmed)) return true;
+  if (/^[a-z0-9_./:?=&%#+,[\]{}|-]+$/.test(withoutTemplatePlaceholders) && !/\s/.test(withoutTemplatePlaceholders)) return true;
+  if (/^[a-z0-9_-]+$/.test(trimmed)) return true;
+  return false;
+}
+
+function scanContactSourceCopyFallback(issues) {
+  for (const file of contactVisibleSourceFiles) {
+    const content = read(file);
+    if (content === null) {
+      addIssue(issues, "WARN", file, "Contact source file for /kontakt fallback copy scan is missing.");
+      continue;
+    }
+
+    for (const literal of extractStringLiterals(content)) {
+      if (isMachineCopyLiteral(literal.value)) continue;
+
+      for (const item of renderedAsciiPatterns) {
+        if (item.pattern.test(literal.value)) {
+          addIssue(
+            issues,
+            "FAIL",
+            file,
+            `/kontakt source copy contains ASCII umlaut residue (${item.label}) in a visible string literal.`,
+            literal.line,
+          );
+        }
+      }
+    }
+  }
+}
+
 function scanRenderedHtmlCopy(issues) {
   for (const route of renderedCopyRoutes) {
     const htmlPath = renderedHtmlPath(route);
     const relative = path.relative(root, htmlPath).replace(/\\/g, "/");
     if (!fs.existsSync(htmlPath)) {
+      if (route === "/kontakt") {
+        scanContactSourceCopyFallback(issues);
+        continue;
+      }
       addIssue(issues, "WARN", relative, `Rendered HTML for ${route} is missing. Run npm run build before copy:quality for live-copy checks.`);
       continue;
     }

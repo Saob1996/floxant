@@ -98,15 +98,15 @@ function fieldClass(hasError: boolean) {
 }
 
 const offerStatusOptions = [
-  { value: "", label: "Bitte waehlen" },
+  { value: "", label: "Bitte wählen" },
   { value: "written_offer", label: "Schriftliches Angebot liegt vor" },
-  { value: "verbal_offer", label: "Nur muendliche Preisnennung" },
+  { value: "verbal_offer", label: "Nur mündliche Preisnennung" },
   { value: "multiple_offers", label: "Mehrere Angebote vergleichen" },
   { value: "no_offer_yet", label: "Noch kein Angebot" },
 ] as const;
 
 const offerConcernOptions = [
-  { value: "", label: "Bitte waehlen" },
+  { value: "", label: "Bitte wählen" },
   { value: "price_too_high", label: "Wirkt zu teuer" },
   { value: "scope_unclear", label: "Leistungsumfang unklar" },
   { value: "too_cheap_risky", label: "Sehr billiges Angebot wirkt riskant" },
@@ -118,7 +118,7 @@ const offerConcernOptions = [
   { value: "multiple_offers", label: "Mehrere Angebote schwer vergleichbar" },
   { value: "no_offer_yet", label: "Noch kein Angebot, Orientierung gesucht" },
   { value: "alternative_needed", label: "Alternative zu bestehendem Angebot gesucht" },
-  { value: "general_second_opinion", label: "Zweite Einschaetzung gewuenscht" },
+  { value: "general_second_opinion", label: "Zweite Einschätzung gewünscht" },
 ] as const;
 
 function getSuccessCopy({
@@ -137,7 +137,7 @@ function getSuccessCopy({
   if (isOfferCheck) {
     return {
       body:
-        "FLOXANT prueft Angaben, Umfang und naechste sinnvolle Schritte. Rueckfragen koennen folgen; es gibt keine Rechtsberatung und keine Preisgarantie.",
+        "FLOXANT prüft Angaben, Umfang und nächste sinnvolle Schritte. Rückfragen können folgen; es gibt keine Rechtsberatung und keine Preisgarantie.",
       bullets: [
         "Angebot, Umfang und offene Punkte werden sortiert.",
         "Falls Angaben fehlen, fragt FLOXANT nach.",
@@ -148,21 +148,21 @@ function getSuccessCopy({
   if (intentText.includes("plan-b") || intentText.includes("plan_b")) {
     return {
       body:
-        "FLOXANT prueft Dringlichkeit, Ort, offene Punkte und realistische naechste Schritte. Eine Sofortzusage oder Terminbestaetigung entsteht dadurch nicht.",
+        "FLOXANT prüft Dringlichkeit, Ort, offene Punkte und realistische nächste Schritte. Eine Sofortzusage oder Terminbestätigung entsteht dadurch nicht.",
       bullets: [
         "Deadline und Kontaktweg werden zuerst eingeordnet.",
-        "Rueckfragen koennen folgen, wenn Angaben fehlen.",
-        "Keine Sofort- oder Verfuegbarkeitsgarantie.",
+        "Rückfragen können folgen, wenn Angaben fehlen.",
+        "Keine Sofort- oder Verfügbarkeitsgarantie.",
       ],
     };
   }
   if (isB2B) {
     return {
       body:
-        "FLOXANT ordnet Flaeche, Turnus, Reinigungszeiten und Ansprechpartner ein und meldet sich ueber den gewaehlten Kontaktweg.",
+        "FLOXANT ordnet Fläche, Turnus, Reinigungszeiten und Ansprechpartner ein und meldet sich über den gewählten Kontaktweg.",
       bullets: [
-        "Objektart, Flaeche und Turnus helfen besonders.",
-        "Bestehende Angebote koennen spaeter ergaenzt werden.",
+        "Objektart, Fläche und Turnus helfen besonders.",
+        "Bestehende Angebote können später ergänzt werden.",
         "Eine Anfrage ist noch keine Beauftragung.",
       ],
     };
@@ -170,7 +170,7 @@ function getSuccessCopy({
   if (service === "klaviertransport") {
     return {
       body:
-        "FLOXANT prueft Etage, Zugang, Instrumentart, Termin und Fotos, bevor ein Transportweg sinnvoll eingeordnet werden kann.",
+        "FLOXANT prüft Etage, Zugang, Instrumentart, Termin und Fotos, bevor ein Transportweg sinnvoll eingeordnet werden kann.",
       bullets: [
         "Start, Ziel und Zugang sind besonders wichtig.",
         "Fotos helfen, sind aber nicht zwingend im ersten Schritt.",
@@ -181,10 +181,10 @@ function getSuccessCopy({
   if (service === "umzug" || service === "fernumzug" || service === "seniorenumzug") {
     return {
       body:
-        "FLOXANT prueft Start, Ziel, Etage, Menge, Termin und besondere Stuecke, bevor ein naechster Schritt vorgeschlagen wird.",
+        "FLOXANT prüft Start, Ziel, Etage, Menge, Termin und besondere Stücke, bevor ein nächster Schritt vorgeschlagen wird.",
       bullets: [
         "Start/Ziel und Zugang sind besonders wichtig.",
-        "Fotos oder grobe Menge koennen spaeter ergaenzt werden.",
+        "Fotos oder grobe Menge können später ergänzt werden.",
         "Eine Anfrage ist noch keine Buchung.",
       ],
     };
@@ -192,7 +192,7 @@ function getSuccessCopy({
   if (service === "entruempelung" || service === "wohnungsaufloesung") {
     return {
       body:
-        "FLOXANT prueft Raeume, Menge, Zugang, Entsorgung, Zielzustand und Fotos, damit die Raeumung besser einordenbar wird.",
+        "FLOXANT prüft Räume, Menge, Zugang, Entsorgung, Zielzustand und Fotos, damit die Räumung besser einordenbar wird.",
       bullets: [
         "Menge, Zugang und Zielzustand sind wichtig.",
         "Fotos helfen, sind aber nicht zwingend im ersten Schritt.",
@@ -205,18 +205,18 @@ function getSuccessCopy({
       body:
         "FLOXANT beruecksichtigt den bevorzugten Kontaktweg soweit moeglich. Private Details muessen nicht oeffentlich oder ausfuehrlich im Formular stehen.",
       bullets: [
-        "Ort, Zeitraum und grober Umfang reichen fuer den Start.",
-        "Rueckfragen koennen diskret erfolgen.",
+        "Ort, Zeitraum und grober Umfang reichen für den Start.",
+        "Rückfragen können diskret erfolgen.",
         "Keine Rechtsberatung, keine Sicherheitsdienstleistung.",
       ],
     };
   }
   return {
     body:
-      "FLOXANT prueft Flaeche, Objektart, Termin, Zugang und Fotos und meldet sich ueber die angegebene Kontaktmoeglichkeit.",
+      "FLOXANT prüft Fläche, Objektart, Termin, Zugang und Fotos und meldet sich über die angegebene Kontaktmöglichkeit.",
     bullets: [
-      "Flaeche, Objektart und Termin helfen besonders.",
-      "Fotos koennen spaeter ergaenzt werden.",
+      "Fläche, Objektart und Termin helfen besonders.",
+      "Fotos können später ergänzt werden.",
       "Eine Anfrage ist noch keine Buchung.",
     ],
   };
@@ -286,16 +286,16 @@ export function SeoLeadForm({
 
     if (honeypot.trim()) nextErrors.spam = "Die Anfrage wurde nicht gesendet. Bitte laden Sie die Seite neu.";
     if (Date.now() - startedAt < 2500) {
-      nextErrors.spam = "Bitte pruefen Sie die Angaben kurz und senden Sie die Anfrage danach erneut.";
+      nextErrors.spam = "Bitte prüfen Sie die Angaben kurz und senden Sie die Anfrage danach erneut.";
     }
     if (trimmedName.length < 2) nextErrors.name = "Bitte geben Sie Ihren Namen ein.";
     if (!trimmedEmail && !trimmedPhone) nextErrors.contact = "Bitte E-Mail oder Telefon angeben.";
-    if (trimmedEmail && !isEmailValid(trimmedEmail)) nextErrors.email = "Bitte eine gueltige E-Mail-Adresse eintragen.";
+    if (trimmedEmail && !isEmailValid(trimmedEmail)) nextErrors.email = "Bitte eine gültige E-Mail-Adresse eintragen.";
     if (trimmedPhone && trimmedPhone.length < 6) nextErrors.contact = "Die Telefonnummer ist zu kurz.";
-    if (!service) nextErrors.service = "Bitte eine Leistung auswaehlen.";
+    if (!service) nextErrors.service = "Bitte eine Leistung auswählen.";
     if (!trimmedCity) nextErrors.city = "Bitte Ort oder Einsatzgebiet eintragen.";
     if (trimmedMessage.length < 10) nextErrors.message = "Bitte beschreiben Sie den Bedarf in einem kurzen Satz.";
-    if (!privacyConsent) nextErrors.privacy = "Bitte bestaetigen Sie den Datenschutz-Hinweis.";
+    if (!privacyConsent) nextErrors.privacy = "Bitte bestätigen Sie den Datenschutz-Hinweis.";
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -337,7 +337,7 @@ export function SeoLeadForm({
         priceRangeMin: 0,
         priceRangeMax: 0,
         valuationLabel: "SEO-Anfrage mit kurzer Vorqualifizierung",
-        valuationStage: "Anfrage wird geprueft",
+        valuationStage: "Anfrage wird geprüft",
         accuracyState: "Kurzer Lead mit kaufnahen Eckdaten",
         topDrivers: [
           `Leistung: ${lead.serviceLabel}`,
@@ -346,13 +346,13 @@ export function SeoLeadForm({
           urgency ? `Dringlichkeit: ${urgency}` : "",
           isOfferCheck && offerStatus ? `Angebotsstatus: ${offerStatus}` : "",
           isOfferCheck && offerAmount.trim() ? "Angebotspreis genannt" : "",
-          isOfferCheck && offerConcern ? `Pruefgrund: ${offerConcern}` : "",
+          isOfferCheck && offerConcern ? `Prüfgrund: ${offerConcern}` : "",
           scope.trim() ? "Umfang genannt" : "",
           desiredDate ? "Wunschtermin vorhanden" : "",
           isB2B && companyName.trim() ? "Firma genannt" : "",
         ].filter(Boolean),
         priceExplanation:
-          "Diese SEO-Anfrage enthaelt die wichtigsten Angaben fuer eine erste fachliche Rueckmeldung. FLOXANT macht daraus keine automatische Preiszusage.",
+          "Diese SEO-Anfrage enthält die wichtigsten Angaben für eine erste fachliche Rückmeldung. FLOXANT macht daraus keine automatische Preiszusage.",
         pricingSignals: {
           inquiryMode: "seo_quick_lead",
           serviceType: service,

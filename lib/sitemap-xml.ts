@@ -97,6 +97,21 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "duesseldorf/reinigung/agb",
 ]);
 
+const CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES = new Set([
+  "anti-scham-reinigung",
+  "atemruhig-reinigung",
+  "baustaub-ende",
+  "geruchslos-protokoll",
+  "hidden-dirt-check",
+  "mama-kommt-morgen-service",
+  "montagmorgen-effekt",
+  "panikfrei-in-24h",
+  "reset-reinigung",
+  "schluesselruhe-service",
+  "sichtbar-sauber-protokoll",
+  "vermieter-schockschutz-reinigung",
+]);
+
 const REMOVED_SERVICE_ROUTE_PREFIXES = [
   "halteverbotszone",
 ] as const;
@@ -232,6 +247,7 @@ function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   return (
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
+    CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.has(normalizedRoute) ||
     REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
     NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||
     isDeprioritizedCityRoute(normalizedRoute) ||

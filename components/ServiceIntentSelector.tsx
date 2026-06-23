@@ -9,7 +9,7 @@ const intentOptions = [
     intent: "angebot-mit-fotos",
   },
   {
-    label: "Rueckruf gewuenscht",
+    label: "Rückruf gewünscht",
     href: "/kontakt?service=sonstiges&intent=rueckruf-gewuenscht&source=contact-routing",
     service: "sonstiges",
     intent: "rueckruf-gewuenscht",

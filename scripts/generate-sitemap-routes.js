@@ -36,6 +36,20 @@ const nonSeoPublicRoutes = new Set([
   "/duesseldorf/reinigung/datenschutz",
   "/duesseldorf/reinigung/agb",
 ]);
+const consciouslyExcludedSignatureLandingRoutes = new Set([
+  "/anti-scham-reinigung",
+  "/atemruhig-reinigung",
+  "/baustaub-ende",
+  "/geruchslos-protokoll",
+  "/hidden-dirt-check",
+  "/mama-kommt-morgen-service",
+  "/montagmorgen-effekt",
+  "/panikfrei-in-24h",
+  "/reset-reinigung",
+  "/schluesselruhe-service",
+  "/sichtbar-sauber-protokoll",
+  "/vermieter-schockschutz-reinigung",
+]);
 const legacyRedirectRoutes = new Set([
   "/partnercode",
   "/airbnb-reinigung-duesseldorf",
@@ -115,6 +129,7 @@ function getRouteFromDirectory(directory) {
 
 function isIndexableRoute(route) {
   if (legacyRedirectRoutes.has(route)) return false;
+  if (consciouslyExcludedSignatureLandingRoutes.has(route)) return false;
   if (removedServicePrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}-`))) return false;
   if (nonSeoPublicRoutes.has(route)) return false;
   if (isDeprioritizedCityRoute(route)) return false;

@@ -18,6 +18,13 @@ function locationServiceList(location: FloxantLocation) {
   return [...location.primaryServices.slice(0, 6), ...location.secondaryServices.slice(0, 3)];
 }
 
+function toContactServiceSlug(service: string) {
+  return service
+    .toLowerCase()
+    .replace(/[äöüß]/g, (match) => ({ ä: "ae", ö: "oe", ü: "ue", ß: "ss" })[match] || match)
+    .replace(/\s+/g, "-");
+}
+
 export function LocationServiceSwitcher({
   title = "Düsseldorf und Regensburg sauber getrennt.",
   intro = "Beide Standorte führen zu eigenen lokalen Einstiegen. Sichtbar sind nur Daten, die im Code vorhanden sind; offene Angaben bleiben als manuelle Prüfung markiert.",
@@ -66,11 +73,11 @@ export function LocationServiceSwitcher({
                 {locationServiceList(location).map((service) => (
                   <Link
                     key={service}
-                    href={getLocationContactHref(location.locationKey, service.toLowerCase().replace(/\s+/g, "-"))}
+                    href={getLocationContactHref(location.locationKey, toContactServiceSlug(service))}
                     data-event="seo_cta_click"
-                    data-service={service.toLowerCase().replace(/\s+/g, "-")}
+                    data-service={toContactServiceSlug(service)}
                     data-city={location.locationKey}
-                    data-page-intent={`${service.toLowerCase().replace(/\s+/g, "-")}-${location.locationKey}`}
+                    data-page-intent={`${toContactServiceSlug(service)}-${location.locationKey}`}
                     data-priority="p2"
                     data-cta-label={service}
                     className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold leading-6 text-slate-800 transition hover:border-blue-200 hover:bg-white"

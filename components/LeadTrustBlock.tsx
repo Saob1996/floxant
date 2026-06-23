@@ -3,9 +3,9 @@ import { CheckCircle2 } from "lucide-react";
 const defaultTrustItems = [
   "Anfrage kostenlos und unverbindlich stellen.",
   "Leistungsumfang wird individuell abgestimmt.",
-  "Termine werden nach Verfuegbarkeit geprueft.",
-  "Reinigung, Umzug und Entruempelung koennen kombiniert werden.",
-  "Klare Rueckmeldung nach Sichtung der Angaben.",
+  "Termine werden nach Verfügbarkeit geprüft.",
+  "Reinigung, Umzug und Entrümpelung können kombiniert werden.",
+  "Klare Rückmeldung nach Sichtung der Angaben.",
 ] as const;
 
 export function LeadTrustBlock({

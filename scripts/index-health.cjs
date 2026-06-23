@@ -3,7 +3,7 @@ const path = require("node:path");
 
 const ROOT = process.cwd();
 const PUBLIC_BASE_URL = "https://www.floxant.de";
-const EXPECTED_SITEMAP_ROUTE_COUNT = 423;
+const EXPECTED_SITEMAP_ROUTE_COUNT = 411;
 
 const OUTPUT_MD = path.join(ROOT, "INDEX_HEALTH_REPORT.md");
 const OUTPUT_JSON = path.join(ROOT, "index-health-report.json");
@@ -68,6 +68,20 @@ const NON_SITEMAP_PUBLIC_PATTERNS = [
   /^\/angebote(?:\/|$)/,
   /^\/guenstig(?:\/|$)/,
   /^\/signature(?:\/|$)/,
+];
+const CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES = [
+  "/anti-scham-reinigung",
+  "/atemruhig-reinigung",
+  "/baustaub-ende",
+  "/geruchslos-protokoll",
+  "/hidden-dirt-check",
+  "/mama-kommt-morgen-service",
+  "/montagmorgen-effekt",
+  "/panikfrei-in-24h",
+  "/reset-reinigung",
+  "/schluesselruhe-service",
+  "/sichtbar-sauber-protokoll",
+  "/vermieter-schockschutz-reinigung",
 ];
 
 function read(filePath) {
@@ -228,6 +242,7 @@ async function main() {
     LEGACY_LANGUAGE_PREFIXES.some((locale) => exactSegmentPrefix(route, locale)),
   );
   const englishRoutes = sitemapRoutes.filter((route) => exactSegmentPrefix(route, "en"));
+  const excludedSignatureHits = CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.filter((route) => sitemapSet.has(route));
   const goldenRows = GOLDEN_SET.map((route) => ({
     route,
     inSitemap: sitemapSet.has(route),
@@ -249,6 +264,14 @@ async function main() {
   if (legacyRootHits.length) addIssue(issues, "FAIL", "Legacy root URLs in Sitemap", legacyRootHits.join(", "));
   if (removedCityHits.length) addIssue(issues, "FAIL", "Removed city URLs in Sitemap", removedCityHits.slice(0, 40).join(", "));
   if (legacyLanguageHits.length) addIssue(issues, "FAIL", "Legacy language URLs in Sitemap", legacyLanguageHits.join(", "));
+  if (excludedSignatureHits.length) {
+    addIssue(
+      issues,
+      "FAIL",
+      "Consciously excluded signature landing URLs in Sitemap",
+      excludedSignatureHits.join(", "),
+    );
+  }
 
   const missingGolden = goldenRows.filter((row) => !row.inSitemap);
   if (missingGolden.length) addIssue(issues, "FAIL", "Golden-set URL missing in Sitemap", missingGolden.map((row) => row.route).join(", "));
@@ -306,6 +329,8 @@ async function main() {
       removedCityHits: removedCityHits.length,
       legacyLanguageHits: legacyLanguageHits.length,
       englishRoutes: englishRoutes.length,
+      consciouslyExcludedSignatureLandingRoutes: CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.length,
+      excludedSignatureHits: excludedSignatureHits.length,
     },
     buckets,
     buildOnlyBuckets,
@@ -315,6 +340,7 @@ async function main() {
       sitemapNotBuild: sitemapNotBuild.slice(0, 40),
       removedCityHits: removedCityHits.slice(0, 40),
       englishRoutes,
+      consciouslyExcludedSignatureLandingRoutes: CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES,
     },
     issues,
   };
@@ -344,6 +370,8 @@ async function main() {
         ["Removed city URLs in sitemap", removedCityHits.length],
         ["Legacy language URLs in sitemap", legacyLanguageHits.length],
         ["English indexable routes", englishRoutes.length],
+        ["Consciously excluded signature landing baseline", CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.length],
+        ["Excluded signature landing URLs in sitemap", excludedSignatureHits.length],
       ],
     ),
     "",
