@@ -122,6 +122,14 @@ const renderedAsciiPatterns = [
   { label: "Haushaltsaufloesung/Wohnungsaufloesung", pattern: /\b(?:Haushaltsaufloesung|Wohnungsaufloesung)\b/ },
 ];
 
+const contactBlockerPatterns = [
+  { label: "Gewuenschten", pattern: /\bGewuenschten\b/ },
+  { label: "Verfuegbarkeit", pattern: /\bVerfuegbarkeit\b/ },
+  { label: "abhaengig", pattern: /\babhaengig\b/ },
+  { label: "Entruempelung Regensburg", pattern: /\bEntruempelung\s+Regensburg\b/ },
+  { label: "Bueroumzug Regensburg", pattern: /\bBueroumzug\s+Regensburg\b/ },
+];
+
 const contactVisibleSourceFiles = [
   "app/kontakt/page.tsx",
   "components/ContactPathChooser.tsx",
@@ -131,6 +139,12 @@ const contactVisibleSourceFiles = [
   "components/ServiceIntentSelector.tsx",
   "lib/lead-intents.ts",
   "lib/floxant-locations.ts",
+];
+
+const contactVisibleExactSourceFiles = [
+  "components/NoFakeClaimsNotice.tsx",
+  "lib/bavaria-coverage.ts",
+  "lib/service-effort-factors.ts",
 ];
 
 const renderedDilutionPatterns = [
@@ -208,13 +222,37 @@ function scanContactSourceCopyFallback(issues) {
     for (const literal of extractStringLiterals(content)) {
       if (isMachineCopyLiteral(literal.value)) continue;
 
-      for (const item of renderedAsciiPatterns) {
+      for (const item of [...renderedAsciiPatterns, ...contactBlockerPatterns]) {
         if (item.pattern.test(literal.value)) {
           addIssue(
             issues,
             "FAIL",
             file,
             `/kontakt source copy contains ASCII umlaut residue (${item.label}) in a visible string literal.`,
+            literal.line,
+          );
+        }
+      }
+    }
+  }
+
+  for (const file of contactVisibleExactSourceFiles) {
+    const content = read(file);
+    if (content === null) {
+      addIssue(issues, "WARN", file, "Contact exact-source file for /kontakt fallback copy scan is missing.");
+      continue;
+    }
+
+    for (const literal of extractStringLiterals(content)) {
+      if (isMachineCopyLiteral(literal.value)) continue;
+
+      for (const item of contactBlockerPatterns) {
+        if (item.pattern.test(literal.value)) {
+          addIssue(
+            issues,
+            "FAIL",
+            file,
+            `/kontakt source copy contains confirmed live ASCII umlaut blocker (${item.label}) in a visible string literal.`,
             literal.line,
           );
         }
@@ -242,6 +280,14 @@ function scanRenderedHtmlCopy(issues) {
     for (const item of renderedAsciiPatterns) {
       if (item.pattern.test(visibleText)) {
         addIssue(issues, "FAIL", relative, `Rendered visible copy contains ASCII umlaut residue (${item.label}) on ${route}.`);
+      }
+    }
+
+    if (route === "/kontakt") {
+      for (const item of contactBlockerPatterns) {
+        if (item.pattern.test(visibleText)) {
+          addIssue(issues, "FAIL", relative, `Rendered /kontakt copy contains confirmed live ASCII umlaut blocker (${item.label}).`);
+        }
       }
     }
 

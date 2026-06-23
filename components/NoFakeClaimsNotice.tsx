@@ -8,7 +8,7 @@ export function NoFakeClaimsNotice({ className = "" }: { className?: string }) {
         <div>
           <h3 className="text-lg font-black text-slate-950">Keine Fake-Claims</h3>
           <p className="mt-2 text-sm font-semibold leading-7 text-slate-700">
-            FLOXANT zeigt keine erfundenen Sterne, keine Kundenlogos, keine Garantien und keine Fake-Case-Studies. Termine, Preise und Alternativen bleiben von Ort, Umfang, Zugang und Verfuegbarkeit abhaengig.
+            FLOXANT zeigt keine erfundenen Sterne, keine Kundenlogos, keine Garantien und keine Fake-Case-Studies. Termine, Preise und Alternativen bleiben von Ort, Umfang, Zugang und Verfügbarkeit abhängig.
           </p>
         </div>
       </div>

@@ -14,8 +14,8 @@ export type CoverageGroup = {
 export const BAVARIA_DIRECT_DEMAND_LINKS: CoverageLink[] = [
   { href: "/regensburg/umzug", label: "Umzug Regensburg", note: "Lokaler Kernpfad fuer direkte Nachfrage." },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg", note: "Starker Uebergabe- und Objektservice-Startpunkt." },
-  { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg", note: "Raeumung und Entsorgung fuer Anfragen aus der Region." },
-  { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg", note: "Firmen- und Standortwechsel mit lokalem Anker." },
+  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg", note: "Raeumung und Entsorgung fuer Anfragen aus der Region." },
+  { href: "/bueroumzug-regensburg", label: "Büroumzug Regensburg", note: "Firmen- und Standortwechsel mit lokalem Anker." },
   { href: "/einlagerung", label: "Einlagerung Regensburg", note: "Lagerung und Zwischenloesungen mit direkter lokaler Suchabsicht." },
   { href: "/akteneinlagerung-regensburg", label: "Akteneinlagerung Regensburg", note: "Gezielter B2B-Lagerpfad fuer Archive und Dokumente." },
   { href: "/umzug-landshut", label: "Umzug Landshut", note: "Niederbayerischer Hauptpfad fuer Wohn- und Firmenwechsel." },
@@ -306,7 +306,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "entruempelung, entsorgung, wohnungsaufloesung",
     description:
       "Gebundene klare Wege fuer Raeumung, Entsorgung, Wohnungsaufloesung und Firmenentsorgung.",
-    primary: { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
+    primary: { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
     supporting: [
       { href: "/entruempelung-bayern", label: "Entruempelung Bayern" },
       { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsaufloesung Regensburg" },
@@ -349,7 +349,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     primary: { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsaufloesung Regensburg" },
     supporting: [
       { href: "/wohnungsaufloesung-bayern", label: "Wohnungsaufloesung Bayern" },
-      { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
+      { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
       { href: "/kleinmengen-entsorgung", label: "Kleinmengen entsorgen" },
     ],
   },
@@ -359,7 +359,7 @@ export const BAVARIA_MAPS_SERVICE_INTENTS: MapsServiceIntent[] = [
     query: "bueroumzug, firmenumzug, buero umziehen",
     description:
       "B2B-Pfade fuer Teams, Akten, Inventar und planbare Standortwechsel in Regensburg und Bayern.",
-    primary: { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg" },
+    primary: { href: "/bueroumzug-regensburg", label: "Büroumzug Regensburg" },
     supporting: [
       { href: "/bueroumzug-bayern", label: "Bueroumzug Bayern" },
       { href: "/bueroumzug-muenchen", label: "Bueroumzug Muenchen" },
