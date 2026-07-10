@@ -166,7 +166,7 @@ export default function SpezialentruempelungPage() {
 
       <section className="relative isolate overflow-hidden bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
         <Image
-          src="/assets/service-clearance.png"
+          src="/assets/service-clearance.webp"
           alt="FLOXANT Spezialentruempelung mit sortierter Raeumung"
           fill
           priority
