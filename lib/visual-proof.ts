@@ -25,7 +25,7 @@ export const visualProofItems: VisualProofItem[] = [
     type: "offer-check",
     title: "Angebot sichtbar strukturieren",
     description: "Abstrakte Grafik fuer Preis, Umfang, Termin und offene Punkte. Kein echtes Dokument.",
-    alt: "Abstrakte Angebotspruefung ohne echte Kundendaten",
+    alt: "Abstrakte Angebotsprüfung ohne echte Kundendaten",
     isRealPhoto: false,
     isBeforeAfter: false,
     privacyChecked: true,

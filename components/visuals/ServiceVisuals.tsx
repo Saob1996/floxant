@@ -37,20 +37,20 @@ const toneClasses: Record<VisualTone, { bg: string; accent: string; text: string
 };
 
 export function VisualServiceShape({
-  title = "Service-Cluster",
+  title = "Leistungen im Überblick",
   label = "Anfrage sortieren",
   tone = "blue",
   className = "",
 }: VisualProps) {
   const t = toneClasses[tone];
   return (
-    <div className={`overflow-hidden rounded-lg border ${t.line} ${t.bg} p-5 ${className}`} aria-label={germanText(title, title || "Service-Cluster")}>
+    <div className={`overflow-hidden rounded-lg border ${t.line} ${t.bg} p-5 ${className}`} aria-label={germanText(title, title || "Leistungen im Überblick")}>
       <div className="grid gap-3">
         <div className="flex items-center justify-between gap-3">
           <p className={`text-xs font-black uppercase tracking-normal ${t.text}`}>{germanText(label, label || "Anfrage sortieren")}</p>
           <span className={`h-3 w-14 rounded-full ${t.accent}`} />
         </div>
-        <svg viewBox="0 0 420 180" role="img" aria-label={germanText(title, title || "Service-Cluster")} className="h-auto w-full">
+        <svg viewBox="0 0 420 180" role="img" aria-label={germanText(title, title || "Leistungen im Überblick")} className="h-auto w-full">
           <rect x="12" y="24" width="116" height="82" rx="14" fill="white" opacity="0.96" />
           <rect x="152" y="24" width="116" height="82" rx="14" fill="white" opacity="0.96" />
           <rect x="292" y="24" width="116" height="82" rx="14" fill="white" opacity="0.96" />

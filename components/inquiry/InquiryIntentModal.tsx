@@ -34,7 +34,7 @@ const regionLabels: Record<InquiryRegion, { title: string; text: string }> = {
   },
   duesseldorf: {
     title: "Düsseldorf",
-    text: "Reinigung zuerst. Keine Vermischung mit Regensburg/Bayern.",
+    text: "Reinigung zuerst. Keine Vermischung mit Regensburg.",
   },
 };
 
@@ -58,13 +58,13 @@ function getInitialValues(config: InquiryConfig, region?: InquiryRegion) {
 }
 
 function getServiceType(config: InquiryConfig, values: Record<string, string>) {
-  if (config.intent === "cleaning" && values.region === "duesseldorf") {
-    return "duesseldorf_moeblierte_wohnung_reinigung";
+  if (config.intent === "cleaning" && values.region === "regensburg") {
+    return "regensburg_moeblierte_wohnung_reinigung";
   }
 
   if (config.intent === "express") {
     const concern = `${values.concern} ${values.location}`.toLowerCase();
-    if (concern.includes("reinigung") || concern.includes("düsseldorf") || concern.includes("duesseldorf")) return "reinigung";
+    if (concern.includes("reinigung") || concern.includes("Regensburg") || concern.includes("regensburg")) return "reinigung";
     if (concern.includes("entrümpel") || concern.includes("entruempel") || concern.includes("entsorgung")) return "entsorgung";
     return "umzug";
   }
@@ -88,7 +88,7 @@ function buildSummary(config: InquiryConfig, values: Record<string, string>) {
 
   if (config.intent === "cleaning") {
     return [
-      `Region: ${values.region === "duesseldorf" ? "Düsseldorf Reinigung" : "Regensburg/Bayern Reinigung"}`,
+      `Region: ${values.region === "regensburg" ? "Reinigung Regensburg" : "Regensburg Reinigung"}`,
       `Ort: ${values.location || "nicht angegeben"}`,
       `Objektart: ${values.objectType || "nicht angegeben"}`,
       `Größe: ${values.size || "nicht angegeben"}`,

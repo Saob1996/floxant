@@ -10,13 +10,13 @@ type ProcessProofStepsProps = {
 const defaultSteps = [
   "Anfrage mit Ort, Leistung und Kontaktweg senden",
   "Fotos, Angebot oder kurze Lage optional ergänzen",
-  "FLOXANT ordnet Umfang, offene Punkte und Machbarkeit ein",
-  "Rückfragen, Angebotspfad oder nächster Schritt werden klar",
+  "FLOXANT prüft Umfang, offene Punkte und Machbarkeit",
+  "Sie erhalten Rückfragen oder erfahren, wie es weitergeht",
 ] as const;
 
 export function ProcessProofSteps({
-  title = "So wird aus einer Anfrage ein prüfbarer nächster Schritt",
-  intro = "Der Ablauf bleibt sichtbar und statisch. Beim Seitenbesuch wird keine Lead-API ausgelöst.",
+  title = "So läuft Ihre Anfrage ab",
+  intro = "Senden Sie zunächst die wichtigsten Angaben. Wir prüfen diese und melden uns bei Rückfragen über Ihre gewählte Kontaktmöglichkeit.",
   steps = defaultSteps,
   className = "",
 }: ProcessProofStepsProps) {
@@ -24,7 +24,7 @@ export function ProcessProofSteps({
     <section className={`bg-slate-50 px-5 py-14 text-slate-950 sm:px-8 lg:px-10 ${className}`} data-component="ProcessProofSteps">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 max-w-3xl">
-          <p className="text-sm font-black uppercase tracking-normal text-blue-700">Prozessbeweis</p>
+          <p className="text-sm font-black uppercase tracking-normal text-blue-700">So geht es weiter</p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
         </div>

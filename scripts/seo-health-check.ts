@@ -541,7 +541,7 @@ function buildHealthMarkdown(results, generatedAt, baseUrl) {
   lines.push(...(warningRows.length ? warningRows : ["- keine"]), "", "## Empfohlene manuelle Prüfung", "");
   lines.push(
     "- In Google Search Console die Canonical-Auswahl für alle `/de/`-Varianten prüfen.",
-    "- `/fa/reinigung-muenchen` nur kontrollieren, nicht aktiv als persische Zielseite pushen.",
+    "- `/fa/regensburg/reinigung` nur kontrollieren, nicht aktiv als persische Zielseite pushen.",
     "- CTR nach 72 Stunden und 7 Tagen gegen `SEO_SNIPPET_MATRIX.md` bewerten.",
     "- Kontaktformular mobil einmal live testen, ohne personenbezogene Testdaten dauerhaft zu speichern.",
     "",
@@ -623,7 +623,7 @@ function buildIndexingActions(results, generatedAt) {
     "",
     "## Nicht aktiv einreichen",
     "",
-    "- `/fa/reinigung-muenchen`: nur i18n/Canonical prüfen, keine persische Zielseite pushen.",
+    "- `/fa/regensburg/reinigung`: nur i18n/Canonical prüfen, keine persische Zielseite pushen.",
     "- `/de/*`-Varianten: in GSC prüfen, aber Canonical-URL als Ziel bewerten.",
     "- `/de/studentenumzug-vohenstrauss`: nur Redirect auf `/umzug-vohenstrauss` kontrollieren, keine Studentenumzug-Seite aufbauen.",
     "",
@@ -640,8 +640,8 @@ function buildCanonicalMap(results, generatedAt) {
   const groups = [
     {
       name: "Düsseldorf",
-      canonical: "/duesseldorf/reinigung",
-      variants: ["/de/duesseldorf", "/de/duesseldorf/reinigung", "/de/duesseldorf/bueroreinigung", "/de/duesseldorf/gewerbereinigung", "/reinigung-duesseldorf"],
+      canonical: "/regensburg/reinigung",
+      variants: ["/de/regensburg", "/de/regensburg/reinigung", "/de/regensburg/reinigung", "/de/regensburg/reinigung", "/reinigung-regensburg"],
       rule: "City-Hub und Service-Seiten getrennt halten; Root-Slugs auf City-first-Servicepfade führen.",
     },
     {
@@ -651,10 +651,10 @@ function buildCanonicalMap(results, generatedAt) {
       rule: "City-first-Pfade stärken; klassische Root-Slugs nur behalten, wenn sie eigene GSC-Signale tragen.",
     },
     {
-      name: "München",
-      canonical: "/reinigung-muenchen",
-      variants: ["/de/reinigung-muenchen", "/fa/reinigung-muenchen", "/de/umzug-muenchen", "/de/fernumzug-muenchen", "/de/reinigung-nach-umzug-muenchen"],
-      rule: "Locale-Varianten redirecten; Reinigungs- und Umzugsintent nicht vermischen.",
+      name: "Regensburg Reinigung",
+      canonical: "/regensburg/reinigung",
+      variants: ["/de/regensburg/reinigung", "/fa/regensburg/reinigung", "/de/reinigung-regensburg", "/de/reinigung-nach-umzug-regensburg"],
+      rule: "Locale-Varianten redirecten; Reinigung bleibt auf Regensburg und den 50-km-Umkreis begrenzt.",
     },
     {
       name: "Senioren",

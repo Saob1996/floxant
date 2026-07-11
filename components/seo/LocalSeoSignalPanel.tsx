@@ -4,7 +4,7 @@ import { MapPin, Navigation, PhoneCall } from "lucide-react";
 import { company } from "@/lib/company";
 
 const localSignals = [
-  "24h Online-Anfrage und WhatsApp",
+  "Anfrage online oder per WhatsApp senden",
   "Düsseldorf und Regensburg getrennt",
   "Regensburg und Umgebung nach Machbarkeit",
   "Ort, Umfang und Termin werden geprüft",
@@ -37,7 +37,7 @@ export function LocalSeoSignalPanel({ sectionId = "region" }: { sectionId?: stri
           <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
             Wichtig ist nicht nur die Entfernung, sondern der Ablauf: Umzug, Reinigung,
             Entrümpelung, Transport, Übergabe, Plan B oder Angebotsprüfung werden passend
-            zum Auftrag besprochen. Düsseldorf führt Umzug, Reinigung, Entrümpelung,
+            zum Auftrag besprochen. Regensburg führt Umzug, Reinigung, Entrümpelung,
             Haushaltsauflösung und Entsorgung mit klaren lokalen Kontaktmöglichkeiten.
           </p>
 

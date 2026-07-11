@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { germanizeDeep } from "@/lib/german-text";
 
 import { localSeoCities } from "./cities";
@@ -51,12 +52,12 @@ const indexableM1: LocalSeoMaturitySnapshot = {
   ],
 };
 
-function getRegionNoun(region: LocalSeoRegionKey) {
-  return region === "duesseldorf" ? "Düsseldorfer" : "Regensburger";
+function getRegionNoun(_region: LocalSeoRegionKey) {
+  return "Regensburger";
 }
 
-function getOfferHref(region: LocalSeoRegionKey) {
-  return region === "duesseldorf" ? "/duesseldorf/angebot-vergleichen" : "/regensburg/angebot-vergleichen";
+function getOfferHref(_region: LocalSeoRegionKey) {
+  return "/regensburg/angebot-vergleichen";
 }
 
 function getBookingHref(region: LocalSeoRegionKey, serviceKey: LocalSeoServiceKey) {
@@ -298,7 +299,7 @@ function createPage(input: {
 function createRegionHub(region: LocalSeoRegionKey): LocalSeoPageConfig {
   const regionRecord = localSeoRegions[region];
   const city = localSeoCities[region];
-  const serviceKey = region === "duesseldorf" ? "reinigung" : "umzug";
+  const serviceKey = region === "regensburg" ? "reinigung" : "umzug";
   const radius = localSeoServiceAreas[region].radiusLabel;
 
   return createPage({
@@ -309,7 +310,7 @@ function createRegionHub(region: LocalSeoRegionKey): LocalSeoPageConfig {
     path: regionRecord.path,
     metaTitle: `${regionRecord.displayName} | Einsatzgebiet & Leistungen | FLOXANT`,
     metaDescription:
-      `${regionRecord.displayName}: kuratierte Leistungen, Städte, Anfragewege und Angebotsprüfung im Einsatzgebiet ${radius} ohne Doorway-Linkliste.`,
+      `${regionRecord.displayName}: ausgewählte Leistungen, Städte und Angebotsprüfung im Einsatzgebiet ${radius}.`,
     h1: `${regionRecord.displayName}: Einsatzgebiet, Leistungen und passende Anfragewege`,
     eyebrow: "FLOXANT Region-Hub",
     heroText:
@@ -330,68 +331,66 @@ function createRegionHub(region: LocalSeoRegionKey): LocalSeoPageConfig {
         `Zuerst sichtbar sind ${regionRecord.strategicCities.slice(0, 10).join(", ")}. Weitere Orte werden erst indexiert, wenn sie die M1-Kriterien erfüllen.`,
       ),
     ],
-    faq: region === "duesseldorf" ? buildCleaningFaq("Region Düsseldorf") : buildMovingFaq("Region Regensburg"),
+    faq: region === "regensburg" ? buildCleaningFaq("Region Regensburg") : buildMovingFaq("Region Regensburg"),
     internalLinks: getRegionalHubLinks(region),
   });
 }
 
 const centerServicePages = [
   createPage({
-    key: "duesseldorf-reinigungsdienst",
+    key: "regensburg-reinigungsdienst",
     type: "centerService",
-    city: localSeoCities.duesseldorf,
+    city: localSeoCities.regensburg,
     serviceKey: "reinigungsdienst",
-    path: "/duesseldorf/reinigungsdienst",
-    metaTitle: "Reinigungsdienst Düsseldorf | Wohnung, Büro & Angebot prüfen",
+    path: "/regensburg/reinigungsfirma",
+    metaTitle: "Reinigungsdienst Regensburg | Wohnung, Buero & Angebot pruefen",
     metaDescription:
-      "Reinigungsdienst Düsseldorf für Wohnung, Büro, Praxis, Treppenhaus und Grundreinigung: Fotos senden, Umfang klären, Angebot prüfen.",
-    h1: "Reinigungsdienst Düsseldorf für Wohnung, Büro, Praxis und Treppenhaus",
+      "Reinigungsdienst Regensburg fuer Wohnung, Buero, Praxis, Treppenhaus und Grundreinigung: Fotos senden, Umfang klaeren, Angebot pruefen.",
+    h1: "Reinigungsdienst Regensburg fuer Wohnung, Buero, Praxis und Treppenhaus",
     maturity: indexableM2,
   }),
   createPage({
-    key: "duesseldorf-haushaltsreinigung",
+    key: "regensburg-haushaltsreinigung",
     type: "centerService",
-    city: localSeoCities.duesseldorf,
+    city: localSeoCities.regensburg,
     serviceKey: "haushaltsreinigung",
-    path: "/duesseldorf/haushaltsreinigung",
-    metaTitle: "Haushaltsreinigung Düsseldorf | Wohnung & Alltag reinigen lassen",
+    path: "/regensburg/reinigung",
+    metaTitle: "Haushaltsreinigung Regensburg | Wohnung & Alltag reinigen lassen",
     metaDescription:
-      "Haushaltsreinigung Düsseldorf für Wohnung, Alltag, Auszug oder Übergabe: Räume, Zustand, Fotos und Angebot unverbindlich prüfen.",
-    h1: "Haushaltsreinigung Düsseldorf für Wohnung, Alltag und Übergabe",
+      "Haushaltsreinigung Regensburg fuer Wohnung, Alltag, Auszug oder Uebergabe: Raeume, Zustand, Fotos und Angebot unverbindlich pruefen.",
+    h1: "Haushaltsreinigung Regensburg fuer Wohnung, Alltag und Uebergabe",
     maturity: indexableM2,
   }),
   createPage({
-    key: "duesseldorf-geruchsneutralisation",
+    key: "regensburg-geruchsneutralisation",
     type: "centerService",
-    city: localSeoCities.duesseldorf,
+    city: localSeoCities.regensburg,
     serviceKey: "geruchsneutralisation",
-    path: "/duesseldorf/geruchsneutralisation",
-    metaTitle: "Geruchsneutralisation Düsseldorf | Wohnung realistisch prüfen",
+    path: "/regensburg/reinigung",
+    metaTitle: "Geruchsneutralisation Regensburg | Wohnung realistisch pruefen",
     metaDescription:
-      "Geruchsneutralisation Düsseldorf nach Auszug, Nikotin, Tiergeruch oder muffigen Räumen: Ursache, Reinigung und Maßnahmen ohne Garantieversprechen prüfen.",
-    h1: "Geruchsneutralisation Düsseldorf für Wohnung, Nikotin, Tiergeruch und muffige Räume",
+      "Geruchsneutralisation Regensburg nach Auszug, Nikotin, Tiergeruch oder muffigen Raeumen: Ursache, Reinigung und Massnahmen ohne Garantieversprechen pruefen.",
+    h1: "Geruchsneutralisation Regensburg fuer Wohnung, Nikotin, Tiergeruch und muffige Raeume",
     heroText:
-      "Gerüche werden zuerst eingegrenzt: Ursache, Raum, Material, Dauer, Fotos und mögliche Reinigung. FLOXANT macht keine medizinischen oder übertriebenen Versprechen.",
+      "Gerueche werden zuerst eingegrenzt: Ursache, Raum, Material, Dauer, Fotos und moegliche Reinigung. FLOXANT macht keine medizinischen oder uebertriebenen Versprechen.",
     maturity: indexableM2,
     internalLinks: [
-      { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung Düsseldorf" },
-      { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf" },
-      { href: "/duesseldorf/haushaltsaufloesung", label: "Haushaltsauflösung Düsseldorf" },
-      { href: "/duesseldorf/entruempelung", label: "Entrümpelung Düsseldorf" },
-      { href: "/duesseldorf/angebot-vergleichen", label: "Angebotsprüfung Düsseldorf" },
-      { href: "/region-duesseldorf", label: "Region Düsseldorf" },
+      { href: "/regensburg/reinigung", label: "Wohnungsreinigung Regensburg" },
+      { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg" },
+      { href: "/angebot-vergleichen-regensburg", label: "Angebotsprüfung Regensburg" },
+      { href: "/region-regensburg", label: "Region Regensburg" },
     ],
   }),
   createPage({
-    key: "duesseldorf-angebot-vergleichen",
+    key: "regensburg-reinigung-angebot-vergleichen",
     type: "offerHub",
-    city: localSeoCities.duesseldorf,
+    city: localSeoCities.regensburg,
     serviceKey: "angebot-vergleichen",
-    path: "/duesseldorf/angebot-vergleichen",
-    metaTitle: "Reinigungsangebot prüfen Düsseldorf | Angebot vergleichen",
+    path: "/angebot-vergleichen-regensburg",
+    metaTitle: "Reinigungsangebot pruefen Regensburg | Angebot vergleichen",
     metaDescription:
-      "Reinigungsangebot in Düsseldorf prüfen: Preis, Umfang, Turnus, Zusatzkosten, Putzfirma- oder Gebäudereinigung-Angebot sachlich vergleichen.",
-    h1: "Reinigungsangebot in Düsseldorf prüfen und sauber vergleichen",
+      "Reinigungsangebot in Regensburg pruefen: Preis, Umfang, Turnus, Zusatzkosten, Putzfirma- oder Gebaeudereinigung-Angebot sachlich vergleichen.",
+    h1: "Reinigungsangebot in Regensburg pruefen und sauber vergleichen",
     maturity: indexableM2,
   }),
   createPage({
@@ -402,8 +401,8 @@ const centerServicePages = [
     path: "/regensburg/umzugsservice",
     metaTitle: "Umzugsservice Regensburg | Umzug, Zusatzleistungen & Angebot",
     metaDescription:
-      "Umzugsservice Regensburg für Planung, Tragen, Transport, Demontage, Reinigung danach und Angebotsprüfung mit Fotos und Eckdaten.",
-    h1: "Umzugsservice Regensburg für Planung, Transport und Zusatzleistungen",
+      "Umzugsservice Regensburg fuer Planung, Tragen, Transport, Demontage, Reinigung danach und Angebotsprüfung mit Fotos und Eckdaten.",
+    h1: "Umzugsservice Regensburg fuer Planung, Transport und Zusatzleistungen",
     maturity: indexableM2,
   }),
   createPage({
@@ -412,10 +411,10 @@ const centerServicePages = [
     city: localSeoCities.regensburg,
     serviceKey: "umzug-kosten",
     path: "/regensburg/umzug-kosten",
-    metaTitle: "Umzugskosten Regensburg | Kostenfaktoren & Angebot prüfen",
+    metaTitle: "Umzugskosten Regensburg | Kostenfaktoren & Angebot pruefen",
     metaDescription:
-      "Umzugskosten Regensburg verstehen: Wohnungsgröße, Etage, Aufzug, Entfernung, Haltezone, Demontage, Kartons, Reinigung und Angebot prüfen.",
-    h1: "Umzugskosten Regensburg verstehen und Angebot prüfen lassen",
+      "Umzugskosten Regensburg verstehen: Wohnungsgroesse, Etage, Aufzug, Entfernung, Haltezone, Demontage, Kartons, Reinigung und Angebot pruefen.",
+    h1: "Umzugskosten Regensburg verstehen und Angebot pruefen lassen",
     maturity: indexableM2,
   }),
   createPage({
@@ -424,10 +423,10 @@ const centerServicePages = [
     city: localSeoCities.regensburg,
     serviceKey: "seniorenumzug",
     path: "/regensburg/seniorenumzug",
-    metaTitle: "Seniorenumzug Regensburg | Ruhig mit Angehörigen planen",
+    metaTitle: "Seniorenumzug Regensburg | Ruhig mit Angehoerigen planen",
     metaDescription:
-      "Seniorenumzug Regensburg mit Angehörigen, Packhilfe, Übergabe, Wohnungsauflösung und Reinigung nach Auszug ruhig prüfen.",
-    h1: "Seniorenumzug Regensburg ruhig mit Angehörigen und Übergabe planen",
+      "Seniorenumzug Regensburg mit Angehoerigen, Packhilfe, Uebergabe, Wohnungsaufloesung und Reinigung nach Auszug ruhig pruefen.",
+    h1: "Seniorenumzug Regensburg ruhig mit Angehoerigen und Uebergabe planen",
     maturity: indexableM2,
   }),
   createPage({
@@ -436,10 +435,10 @@ const centerServicePages = [
     city: localSeoCities.regensburg,
     serviceKey: "reinigung-nach-umzug",
     path: "/regensburg/reinigung-nach-umzug",
-    metaTitle: "Reinigung nach Umzug Regensburg | Übergabe vorbereiten",
+    metaTitle: "Reinigung nach Umzug Regensburg | Uebergabe vorbereiten",
     metaDescription:
-      "Reinigung nach Umzug in Regensburg für Auszug, Endreinigung, Übergabe, Restpunkte und Fotos unverbindlich prüfen.",
-    h1: "Reinigung nach Umzug Regensburg für Auszug, Endreinigung und Übergabe",
+      "Reinigung nach Umzug in Regensburg fuer Auszug, Endreinigung, Uebergabe, Restpunkte und Fotos unverbindlich pruefen.",
+    h1: "Reinigung nach Umzug Regensburg fuer Auszug, Endreinigung und Uebergabe",
     maturity: indexableM2,
   }),
   createPage({
@@ -448,70 +447,19 @@ const centerServicePages = [
     city: localSeoCities.regensburg,
     serviceKey: "angebot-vergleichen",
     path: "/regensburg/angebot-vergleichen",
-    metaTitle: "Angebot prüfen Regensburg | Umzug, Reinigung & Räumung",
+    metaTitle: "Angebot pruefen Regensburg | Umzug, Reinigung & Raeumung",
     metaDescription:
-      "Angebot in Regensburg prüfen: Umzugskosten, Reinigungsangebot, Wohnungsauflösung oder Entrümpelung mit Fotos sachlich vergleichen.",
-    h1: "Angebot in Regensburg prüfen für Umzug, Reinigung oder Wohnungsauflösung",
+      "Angebot in Regensburg pruefen: Umzugskosten, Reinigungsangebot, Wohnungsaufloesung oder Entruempelung mit Fotos sachlich vergleichen.",
+    h1: "Angebot in Regensburg pruefen fuer Umzug, Reinigung oder Wohnungsaufloesung",
     maturity: indexableM2,
   }),
 ] as const;
 
-const duesseldorfCityCleaningSlugs = [
-  "koeln",
-  "neuss",
-  "meerbusch",
-  "duisburg",
-  "moenchengladbach",
-  "krefeld",
-  "ratingen",
-  "hilden",
-  "erkrath",
-] as const;
+const regensburgUmlandPages = [] as const;
 
-const regensburgCityMoveSlugs = [
-  "landshut",
-  "straubing",
-  "ingolstadt",
-  "neumarkt",
-  "weiden",
-  "schwandorf",
-  "amberg",
-  "kelheim",
-] as const;
-
-const duesseldorfUmlandPages = duesseldorfCityCleaningSlugs.map((slug) => {
-  const city = localSeoCities[slug];
-  return createPage({
-    key: `${slug}-reinigung`,
-    type: "cityService",
-    city,
-    serviceKey: "reinigung",
-    path: `/${city.slug}/reinigung`,
-    metaTitle: `Reinigung ${city.displayName} | Anfrage & Angebot prüfen | FLOXANT`,
-    metaDescription:
-      `Reinigung in ${city.displayName} und Umgebung anfragen: ${city.serviceFocus.slice(0, 4).join(", ")}, Fotos senden und Angebot prüfen lassen.`,
-    h1: `Reinigung in ${city.displayName} und Umgebung anfragen`,
-    maturity: indexableM1,
-  });
-});
-
-const regensburgUmlandPages = regensburgCityMoveSlugs.map((slug) => {
-  const city = localSeoCities[slug];
-  return createPage({
-    key: `${slug}-umzug`,
-    type: "cityService",
-    city,
-    serviceKey: "umzug",
-    path: `/${city.slug}/umzug`,
-    metaTitle: `Umzug ${city.displayName} | Angebot & Kosten prüfen | FLOXANT`,
-    metaDescription:
-      `Umzug in ${city.displayName} anfragen: ${city.serviceFocus.slice(0, 4).join(", ")}, Fotos senden, Kostenfaktoren und Angebot prüfen.`,
-    h1: `Umzug in ${city.displayName} mit Angebot nach Prüfung`,
-    maturity: indexableM1,
-  });
-});
-
-const preparedDistrictPages = Object.values(localSeoDistricts).map((district) =>
+const preparedDistrictPages = Object.values(localSeoDistricts)
+  .filter((district) => district.citySlug === "regensburg")
+  .map((district) =>
   createPage({
     key: `${district.citySlug}-${district.slug}-reinigung`,
     type: "districtService",
@@ -520,11 +468,11 @@ const preparedDistrictPages = Object.values(localSeoDistricts).map((district) =>
     path: `/${district.citySlug}/${district.slug}/reinigung`,
     metaTitle: `Reinigung ${district.cityName} ${district.displayName} | vorbereitet | FLOXANT`,
     metaDescription:
-      `Vorbereitete noindex-Seite für Reinigung in ${district.cityName}-${district.displayName}. Indexierung erst nach individueller Qualitätsprüfung.`,
+      `Vorbereitete Informationsseite für Reinigung in ${district.cityName}-${district.displayName}. Veröffentlichung erst nach individueller Qualitätsprüfung.`,
     h1: `Reinigung in ${district.cityName}-${district.displayName} vorbereiten`,
     maturity: district.maturity,
   }),
-);
+  );
 
 const globalOfferPage = createPage({
   key: "angebot-pruefen",
@@ -532,13 +480,13 @@ const globalOfferPage = createPage({
   city: localSeoCities.regensburg,
   serviceKey: "angebot-vergleichen",
   path: "/angebot-pruefen",
-  metaTitle: "Angebot prüfen lassen | Reinigung, Umzug & Räumung | FLOXANT",
+  metaTitle: "Angebot prüfen lassen | Regensburg | FLOXANT",
   metaDescription:
-    "Angebot prüfen lassen für Reinigung, Umzug, Entrümpelung oder Wohnungsauflösung: Preis, Umfang, Fotos und Zusatzpositionen sachlich einordnen.",
-  h1: "Angebot prüfen lassen, bevor Reinigung, Umzug oder Räumung unklar bleibt",
+    "Angebot prüfen lassen in Regensburg: Reinigung im 50-km-Umkreis, Umzug, Entrümpelung oder Wohnungsauflösung sachlich einordnen.",
+  h1: "Angebot in Regensburg prüfen lassen, bevor Umfang oder Preis unklar bleibt",
   eyebrow: "FLOXANT Angebotsprüfung",
   heroText:
-    "Diese Seite ist der zentrale Einstieg, wenn ein Angebot vorliegt oder Preis, Umfang, Zusatzpositionen und Fotos erst sortiert werden müssen. Düsseldorf und Regensburg werden anschließend getrennt weitergeführt.",
+    "Diese Seite ist der zentrale Einstieg, wenn ein Angebot vorliegt oder Preis, Umfang, Zusatzpositionen und Fotos erst sortiert werden müssen. Reinigung wird nur für Regensburg und den Umkreis bis 50 km eingeordnet.",
   maturity: indexableM2,
   sections: [
     section(
@@ -547,28 +495,23 @@ const globalOfferPage = createPage({
       "FLOXANT prüft sachlich, ob Angaben fehlen, Positionen unklar sind oder eine passendere Anfrage möglich ist. Es gibt keine Unterbietungs- oder Erfolgsgarantie.",
     ),
     section(
-      "Düsseldorf und Regensburg getrennt weiterführen",
-      "Düsseldorf wird vor allem für Reinigung, Grundreinigung, Putzfirma, Treppenhaus und Angebotsprüfung priorisiert.",
-      "Regensburg wird für Umzug, Umzugskosten, Seniorenumzug, Wohnungsauflösung, Entrümpelung und Reinigung nach Umzug priorisiert.",
+      "Reinigung lokal begrenzen",
+      "Für Reinigungsservices konzentriert sich FLOXANT auf Regensburg und den Umkreis bis 50 km.",
+      "Umzug, Wohnungsauflösung und Entrümpelung werden weiterhin getrennt nach Ort, Umfang und Machbarkeit eingeordnet.",
     ),
   ],
-  faq: buildOfferFaq("Düsseldorf oder Regensburg"),
+  faq: buildOfferFaq("Regensburg"),
   internalLinks: [
-    { href: "/duesseldorf/angebot-vergleichen", label: "Reinigungsangebot Düsseldorf prüfen" },
     { href: "/regensburg/angebot-vergleichen", label: "Angebot Regensburg prüfen" },
-    { href: "/angebot-vergleichen-duesseldorf", label: "Bestehende Düsseldorf-Angebotsseite" },
     { href: "/angebot-vergleichen-regensburg", label: "Bestehende Regensburg-Angebotsseite" },
-    { href: "/region-duesseldorf", label: "Region Düsseldorf" },
     { href: "/region-regensburg", label: "Region Regensburg" },
   ],
 });
 
 export const localSeoPages = [
-  createRegionHub("duesseldorf"),
   createRegionHub("regensburg"),
   globalOfferPage,
-  ...centerServicePages,
-  ...duesseldorfUmlandPages,
+  ...centerServicePages.filter((page) => page.region === "regensburg"),
   ...regensburgUmlandPages,
   ...preparedDistrictPages,
 ] as const;

@@ -150,10 +150,10 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
     eyebrow: "Düsseldorf",
     title: "Reinigung anfragen. Klar getrennt.",
     intro:
-      "Für Düsseldorf steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
+      "Für Regensburg steht Reinigung im Mittelpunkt: Wohnungen, möblierte Apartments, Büros, Treppenhaus, Grundreinigung und Firmenreinigung nach Absprache.",
     signal:
-      "Düsseldorf und Regensburg bleiben sauber getrennt. Beide führen Umzug, Reinigung und Entrümpelung über eigene lokale Kontaktmöglichkeiten.",
-    primaryHref: "/duesseldorf/reinigung#kontakt",
+      "Regensburg und Regensburg bleiben sauber getrennt. Beide führen Umzug, Reinigung und Entrümpelung über eigene lokale Kontaktmöglichkeiten.",
+    primaryHref: "/regensburg/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
     secondaryHref: "/entsorgung-duesseldorf",
     secondaryLabel: "Entsorgung prüfen",
@@ -161,21 +161,21 @@ const panelConfigs: Record<NextStepVariant, PanelConfig> = {
       {
         title: "Wohnung reinigen",
         text: "Für Auszug, Übergabe, möblierte Wohnung oder Grundreinigung.",
-        href: "/duesseldorf/reinigung#kontakt",
+        href: "/regensburg/reinigung#kontakt",
         label: "Reinigung starten",
         Icon: Sparkles,
       },
       {
         title: "Firmenreinigung",
         text: "Für kleine Büros, Agenturen, Studios und Gewerbeflächen.",
-        href: "/duesseldorf/bueroreinigung",
+        href: "/regensburg/bueroreinigung",
         label: "Gewerbe anfragen",
         Icon: ClipboardCheck,
       },
       {
         title: "Direkt schreiben",
         text: "Wenn Fläche, Frequenz, Fotos oder Zeitfenster schon vorliegen.",
-        href: "/buchung?service=reinigung&region=duesseldorf#buchungssystem",
+        href: "/buchung?service=reinigung&region=regensburg#buchungssystem",
         label: "Anfrage senden",
         Icon: MessageCircle,
       },

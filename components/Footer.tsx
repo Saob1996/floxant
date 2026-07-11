@@ -13,6 +13,7 @@ import {
 } from "@/lib/floxant-services";
 import { germanText } from "@/lib/german-text";
 import { buildLeadHref } from "@/lib/lead-intents";
+import { footerNavigationGroups } from "@/lib/service-navigation";
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const legalLinks = [
@@ -23,46 +24,14 @@ const legalLinks = [
 ] as const;
 
 const authorityLinks = [
-  { href: "/rechner", label: "Rechner" },
-  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf" },
-  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf" },
-  { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Düsseldorf" },
-  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf" },
-  { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung Düsseldorf" },
-  { href: "/duesseldorf/entruempelung", label: "Entrümpelung Düsseldorf" },
-  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
-  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
-  { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
-  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg" },
-  { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg" },
-  { href: "/klaviertransport-regensburg", label: "Klaviertransport Regensburg" },
-  { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung Regensburg" },
-  { href: "/reinigung-landshut", label: "Reinigung Landshut" },
-  { href: "/entruempelung-landshut", label: "Entrümpelung Landshut" },
-  { href: "/umzug-neustadt-an-der-waldnaab", label: "Umzug Neustadt/Waldnaab" },
-  { href: "/umzug-vohenstrauss", label: "Umzug Vohenstrauß" },
-  { href: "/reinigungsfirma-angebot", label: "Reinigungsfirma Angebot" },
-  { href: "/fernumzug-muenchen", label: "Fernumzug München" },
+  { href: "/duesseldorf", label: "Düsseldorf" },
+  { href: "/regensburg", label: "Regensburg" },
+  { href: "/leistungen", label: "Leistungen" },
   { href: "/angebot-guenstiger-pruefen", label: "Angebot prüfen" },
-  { href: "/angebotscheck", label: "Angebotscheck" },
-  { href: "/anbieter-vergleichen", label: "Anbieter vergleichen" },
-  { href: "/solarreinigung", label: "Solarreinigung" },
-  { href: "/pv-anlagen-reinigung", label: "PV-Anlagen-Reinigung" },
-  { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern" },
-  { href: "/umzug", label: "Umzug" },
-  { href: "/reinigung", label: "Reinigung" },
-  { href: "/entruempelung", label: "Entrümpelung" },
-  { href: "/bueroumzug", label: "Büroumzug" },
-  { href: "/firmenentsorgung", label: "Firmenentsorgung" },
-  { href: "/leerfahrt-rueckfahrt", label: "Leer-Rückfahrt" },
-  { href: "/signature-services", label: "Signature Services" },
-  { href: "/empfehlen", label: "Empfehlen" },
-  { href: "/makler-vermieter-link", label: "Makler/Vermieter" },
-  { href: "/wohnung-wieder-vermietbar", label: "Wieder vermietbar" },
-  { href: "/schadensbegrenzung", label: "Schadensbegrenzung" },
-  { href: "/keller-muellraum-rettung-regensburg", label: "Keller/Müllraum" },
-  { href: "/uebergabeakte", label: "Übergabeakte" },
-  { href: "/private-client-service", label: "Private Client" },
+  { href: "/kontakt", label: "Kontakt" },
+  { href: "/signature-services", label: "Besondere Leistungen" },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+  { href: "/regensburg/umzug", label: "Umzug Regensburg" },
 ] as const;
 
 export function Footer({ dic }: { dic?: any } = {}) {
@@ -89,23 +58,23 @@ export function Footer({ dic }: { dic?: any } = {}) {
 
   const isDuesseldorfContext = pathname.includes("duesseldorf");
   const isRegensburgContext = pathname.startsWith("/regensburg") || pathname.includes("regensburg");
-  const regionsToShow: FloxantRegion[] =
-    isDuesseldorfContext && !isRegensburgContext
-      ? ["duesseldorf"]
-      : isRegensburgContext && !isDuesseldorfContext
-        ? ["regensburg"]
-        : ["duesseldorf", "regensburg"];
-  const locationsToShow = regionsToShow.map((regionId) => floxantLocations[regionId]);
-  const footerIntro = isDuesseldorfContext
-    ? "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten."
+  const regionsToShow: FloxantRegion[] = [];
+  const locationsToShow: FloxantRegion[] = isDuesseldorfContext
+    ? ["duesseldorf"]
     : isRegensburgContext
-      ? "Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe."
-      : "Düsseldorf steht für Reinigung von Unternehmen, Praxen und Gewerbeobjekten. Regensburg steht für Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung und Übergabe.";
+      ? ["regensburg"]
+      : ["duesseldorf", "regensburg"];
+  const footerLocations = locationsToShow.map((regionId) => floxantLocations[regionId]).filter(Boolean);
+  const footerIntro = isDuesseldorfContext
+    ? "Düsseldorf bündelt Angebot prüfen, Umzug, Räumung und Servicegebiet ohne zusätzliche Scheinstandorte."
+    : isRegensburgContext
+      ? "Regensburg steht für Reinigung im 50-km-Umkreis, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe."
+      : "FLOXANT ordnet Anfragen für Düsseldorf und Regensburg nach Ort, Service, Umfang und nächstem Schritt.";
   const footerLead = isRegensburgContext && !isDuesseldorfContext
     ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage" }
     : isDuesseldorfContext
-      ? { service: "reinigung", city: "duesseldorf", intent: "reinigung-duesseldorf" }
-      : { service: "reinigung", city: "duesseldorf", intent: "homepage-anfrage" };
+      ? { service: "angebot-pruefen", city: "duesseldorf", intent: "duesseldorf-anfrage" }
+      : { service: "sonstiges", city: "deutschland", intent: "homepage-anfrage" };
   const footerContactHref = buildLeadHref(footerLead);
 
   return (
@@ -117,7 +86,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
               FLOXANT
             </p>
             <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal sm:text-5xl">
-              Passende Anfrage klar senden.
+              Klare Anfrage statt langer Suchwege.
             </h2>
             <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-slate-300">
               {footerIntro}
@@ -180,12 +149,12 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 <span>
                   {locationsToShow.length > 1
                     ? "Standorte Düsseldorf und Regensburg"
-                    : germanText(locationsToShow[0]?.displayName, locationsToShow[0]?.displayName || "")}
+                    : germanText(footerLocations[0]?.displayName, footerLocations[0]?.displayName || "")}
                 </span>
               </div>
             </div>
             <div className="mt-5 grid gap-3">
-              {locationsToShow.map((location) => (
+              {footerLocations.map((location) => (
                 <div key={location.locationKey} className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
                   <div className="text-sm font-black text-white">{germanText(location.displayName, location.displayName)}</div>
                   <div className="mt-1 text-sm font-semibold leading-6 text-slate-300">
@@ -193,6 +162,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                   </div>
                   <Link
                     href={location.localLandingPage}
+                    prefetch={false}
                     data-event="region_select"
                     data-region={location.locationKey}
                     data-source="global_footer_nap"
@@ -204,6 +174,26 @@ export function Footer({ dic }: { dic?: any } = {}) {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {footerNavigationGroups.map((group) => (
+              <nav key={group.title} aria-label={`Footer ${group.title}`} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                <h3 className="text-lg font-black text-white">{group.title}</h3>
+                <div className="mt-4 grid gap-2">
+                  {group.links.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      prefetch={false}
+                      className="rounded-lg border border-white/10 bg-slate-900/70 px-3 py-3 text-sm font-bold leading-5 text-slate-200 transition hover:bg-white hover:text-slate-950"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+            ))}
           </div>
 
           <div className={`grid gap-5${regionsToShow.length > 1 ? " lg:grid-cols-2" : ""}`}>
@@ -222,6 +212,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                     </div>
                     <Link
                       href={region.href}
+                      prefetch={false}
                       data-event="region_select"
                       data-region={regionId}
                       data-source="global_footer"
@@ -236,6 +227,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
                       <Link
                         key={service.id}
                         href={service.href}
+                        prefetch={false}
                         data-event="service_card_click"
                         data-service={service.id}
                         data-region={service.region}
@@ -255,7 +247,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
         <section className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
           <nav aria-label="Wichtige FLOXANT Startpunkte" className="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
             {authorityLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-white">
+              <Link key={item.href} href={item.href} prefetch={false} className="hover:text-white">
                 {germanText(item.label, item.label)}
               </Link>
             ))}
@@ -265,7 +257,7 @@ export function Footer({ dic }: { dic?: any } = {}) {
         <section className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-4 text-sm font-semibold text-slate-400">
             {legalLinks.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-white">
+              <Link key={item.href} href={item.href} prefetch={false} className="hover:text-white">
                 {item.label}
               </Link>
             ))}

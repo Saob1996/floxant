@@ -44,8 +44,8 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
   if (service.includes("reinigung")) {
     return [
       ...baseLinks,
-      { url: "/reinigung", anchorText: "Reinigung in Bayern erklärt", relevanceScore: 95 },
-      { url: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Reinigungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
+      { url: "/reinigung", anchorText: "Reinigung in Regensburg erklärt", relevanceScore: 95 },
+      { url: "/blog/reinigungsangebot-pruefen-regensburg", anchorText: `Reinigungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/umzug-mit-reinigung", anchorText: "Umzug mit Reinigung kombinieren", relevanceScore: 82 },
       { url: "/regensburg/bueroreinigung", anchorText: "Büroreinigung Regensburg", relevanceScore: 84 },
       { url: "/praxisreinigung-regensburg", anchorText: "Praxisreinigung Regensburg", relevanceScore: 83 },
@@ -63,7 +63,7 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
     return [
       ...baseLinks,
       { url: "/entruempelung", anchorText: "Entrümpelung in Bayern erklärt", relevanceScore: 95 },
-      { url: "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf", anchorText: `Entsorgungs- oder Entrümpelungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
+      { url: "/blog/angebot-anderer-firma-pruefen-regensburg", anchorText: `Entsorgungs- oder Entrümpelungsangebot für ${city} prüfen lassen`, relevanceScore: 93 },
       { url: "/firmenentsorgung", anchorText: "Firmenentsorgung und Büroentsorgung prüfen", relevanceScore: 90 },
       { url: "/kleinmengen-entsorgung", anchorText: "Kleinmengen fachgerecht entsorgen", relevanceScore: 84 },
       { url: "/regensburg/entruempelung", anchorText: "Entrümpelung Regensburg", relevanceScore: 78 },
@@ -87,6 +87,20 @@ export function generateSemanticLinks(currentCity: string, contentType: string):
       { url: "/firmenentsorgung", anchorText: "Firmenentsorgung für Büroinventar anfragen", relevanceScore: 92 },
       { url: "/leerfahrt-rueckfahrt", anchorText: "Leer-Rückfahrt für Firmen Richtung Regensburg prüfen", relevanceScore: 88 },
       { url: "/bueroumzug-regensburg", anchorText: "Büroumzug Regensburg", relevanceScore: 82 },
+    ];
+  }
+
+  if (service.includes("seniorenumzug") || service.includes("umzug-im-alter") || service.includes("senior")) {
+    return [
+      ...baseLinks,
+      { url: "/seniorenumzug-bayern", anchorText: "Seniorenumzug anfragen", relevanceScore: 99 },
+      { url: "/regensburg/seniorenumzug", anchorText: `Seniorenumzug in ${city} lokal einordnen`, relevanceScore: 94 },
+      { url: "/angebot-guenstiger-pruefen", anchorText: "Seniorenumzug-Angebot pruefen lassen", relevanceScore: 93 },
+      { url: "/regensburg/entruempelung", anchorText: "Seniorenumzug mit Entruempelung kombinieren", relevanceScore: 90 },
+      { url: "/regensburg/reinigung", anchorText: "Reinigung nach Umzug im Alter vorbereiten", relevanceScore: 88 },
+      { url: "/diskreter-umzug-trennung-scheidung", anchorText: "Diskreten Seniorenumzug beschreiben", relevanceScore: 86 },
+      { url: "/objektbrief", anchorText: "Objektbrief fuer Seniorenumzug vorbereiten", relevanceScore: 84 },
+      { url: "/uebergabeakte", anchorText: "Uebergabe nach Seniorenumzug vorbereiten", relevanceScore: 83 },
     ];
   }
 

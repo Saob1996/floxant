@@ -76,8 +76,8 @@ const platformSituations = [
     Icon: ClipboardCheck,
   },
   {
-    title: "Düsseldorf Reinigung oder Entsorgung",
-    text: "Für Düsseldorf wird je nach Leistung die passende lokale Seite geprüft, inklusive /duesseldorf/umzug.",
+    title: "Reinigung Regensburg oder Entsorgung",
+    text: "Für Düsseldorf wählen Sie die passende Leistung und geben Ort, Umfang und Termin an.",
     action: "Düsseldorf prüfen",
     href: "#plattform-form",
     Icon: Route,
@@ -159,7 +159,7 @@ const faqItems = [
   },
   {
     q: "Funktioniert das für Düsseldorf?",
-    a: "Ja, aber nur für Reinigung und Entsorgung. Düsseldorf-Umzüge werden bei FLOXANT separat geprüft.",
+    a: "Ja, aber nur für Reinigung und Entsorgung. Regensburg-Umzüge werden bei FLOXANT separat geprüft.",
   },
   {
     q: "Was passiert nach dem Absenden?",
@@ -191,7 +191,7 @@ const jsonLd = {
         "Regensburg",
         "Umgebung Regensburg ca. 200 km",
         "Bayern nach Verfügbarkeit",
-        "Düsseldorf Reinigung und Entsorgung",
+        "Reinigung Regensburg und Entsorgung",
       ],
     }),
     buildBreadcrumbJsonLd([
@@ -420,12 +420,12 @@ export default function PlattformAuftragPruefenPage() {
                 ["/regensburg/entruempelung", "Entrümpelung Regensburg"],
                 ["/rueckfahrt-boerse", "Rückfahrt-Börse"],
                 ["/uebergabeakte", "Übergabeakte"],
-                ["/duesseldorf/reinigung", "Reinigung Düsseldorf"],
+                ["/regensburg/reinigung", "Reinigung Regensburg"],
                 ["/entsorgung-duesseldorf", "Entsorgung Düsseldorf"],
                 ["/buchung", "Direkt anfragen"],
                 ["/rechner", "Preisrahmen prüfen"],
               ].map(([href, label]) => (
-                <Link key={href} href={href} className="rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
+                <Link key={href} href={href} prefetch={false} className="rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800">
                   {label}
                 </Link>
               ))}

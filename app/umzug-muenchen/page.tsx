@@ -78,7 +78,7 @@ const munichCustomerIntents = [
         Icon: ClipboardCheck,
         title: "Nach dem Umzug: Reinigung, Restmengen und Übergabe",
         text: "Wenn die alte Wohnung noch übergeben werden muss, sollten Endreinigung, Restmengen, Schlüsselweg, Fotos und Übergabetermin früh mitgedacht werden.",
-        href: "/reinigung-muenchen",
+        href: "/regensburg/reinigung",
         cta: "Übergabe vorbereiten",
     },
 ] as const;
@@ -237,9 +237,9 @@ export default async function UmzugMuenchenPage({ params }: PageProps) {
                             cta: "Angebot senden",
                         },
                         {
-                            title: "Reinigung nach Umzug München",
+                            title: "Reinigung im Raum Regensburg nach Umzug",
                             text: "Wenn die alte Wohnung übergeben werden muss, helfen Räume, Zustand, Fotos, Schlüsselweg und Übergabetermin.",
-                            href: "/reinigung-muenchen",
+                            href: "/regensburg/reinigung",
                             cta: "Reinigung mitdenken",
                         },
                         {
@@ -267,7 +267,7 @@ export default async function UmzugMuenchenPage({ params }: PageProps) {
                         {
                             title: "Umzug + Reinigung",
                             text: "Alte Wohnung, Übergabetermin, Schlüsselweg und Restpunkte früh mitplanen.",
-                            href: "/reinigung-muenchen",
+                            href: "/regensburg/reinigung",
                         },
                         {
                             title: "Umzug + Angebot prüfen",

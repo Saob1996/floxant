@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { getBookingUploadPublicUrls } from "@/lib/booking-attachments";
 import { company } from "@/lib/company";
+import { formatLeadInternalSummaryLines, type PiiSafeLeadInternalSummary } from "@/lib/lead-summary";
 import { IntakePayload } from "@/lib/types/intake";
 
 const NOTIFICATION_EMAIL = process.env.INTAKE_NOTIFICATION_EMAIL;
@@ -13,6 +14,20 @@ function escapeHtml(value: unknown) {
   .replace(/>/g, "&gt;")
   .replace(/"/g, "&quot;")
   .replace(/'/g, "&#039;");
+}
+
+function listHtml(values: unknown[], emptyLabel = "-") {
+ const items = values.map((value) => String(value || "").trim()).filter(Boolean);
+ if (!items.length) return `<span>${escapeHtml(emptyLabel)}</span>`;
+ return `<ul style="margin: 8px 0 0 18px; padding: 0;">${items
+  .map((item) => `<li style="margin: 4px 0;">${escapeHtml(item)}</li>`)
+  .join("")}</ul>`;
+}
+
+function labelFromService(value: unknown) {
+ return String(value || "service")
+  .replace(/[_-]+/g, " ")
+  .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 type InternalIntakeNotificationContext = {
@@ -40,9 +55,20 @@ export async function sendInternalIntakeNotification(
 
  const { contact, service, valuation, configuration, metadata } = payload;
  const serviceType = String(service.type || "service");
- const serviceDisplayName = serviceType.charAt(0).toUpperCase() + serviceType.slice(1);
+ const serviceDisplayName = labelFromService(serviceType);
+ const leadQuality = payload.admin?.leadQuality || configuration?.leadQuality || metadata?.clientContext?.leadQuality;
+ const operations = leadQuality?.operations;
+ const internalSummary: PiiSafeLeadInternalSummary | undefined = operations?.internalSummary;
+ const responseRecommendation = operations?.responseRecommendation;
  const leadRouting = payload.admin?.leadRouting || configuration?.leadRouting || metadata?.clientContext?.leadRouting;
- const leadPriority = String(leadRouting?.priority || configuration?.leadPriority || "normal").toUpperCase();
+ const leadPriority = String(
+  leadQuality?.priority ||
+   responseRecommendation?.internalPriority ||
+   leadRouting?.internalPriority ||
+   leadRouting?.priority ||
+   configuration?.leadPriority ||
+   "normal",
+ ).toUpperCase();
  const wantsPhotosLink = Boolean(configuration?.wantsPhotosLink || metadata?.clientContext?.wantsPhotosLink);
  const customerBudgetText = valuation.customerBudget
   ? `${valuation.customerBudget.toLocaleString()} EUR`
@@ -54,8 +80,18 @@ export async function sendInternalIntakeNotification(
  const dashboardUrl = context.bookingId
   ? `${company.url}/dashboard?tab=inquiries`
   : `${company.url}/dashboard`;
- const subject = `[${leadPriority}] Neue ${serviceDisplayName}-Anfrage${attachmentUrls.length ? " mit Upload" : ""}: ${contact.fullName}`;
- const safeConfiguration = escapeHtml(JSON.stringify(configuration, null, 2));
+ const subjectService = internalSummary?.service || serviceDisplayName;
+ const subjectCity = internalSummary?.city && internalSummary.city !== "unknown" ? ` ${internalSummary.city}` : "";
+ const subjectIntent = internalSummary?.intent && internalSummary.intent !== "unknown" ? ` - ${internalSummary.intent}` : "";
+ const subject = `[FLOXANT Lead ${leadPriority}] ${subjectService}${subjectCity}${subjectIntent}${attachmentUrls.length ? " mit Upload" : ""}`;
+ const redactedLeadResponse = {
+  internalSummary,
+  responseRecommendation,
+  doNotPromise: operations?.doNotPromise,
+  internalChecklist: operations?.internalChecklist,
+ };
+ const safeConfiguration = escapeHtml(JSON.stringify(redactedLeadResponse, null, 2));
+ const summaryLines = internalSummary ? formatLeadInternalSummaryLines(internalSummary) : [];
  const attachmentLinksHtml = attachmentUrls.length
   ? `
    <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
@@ -83,10 +119,16 @@ export async function sendInternalIntakeNotification(
    </div>
    <div style="background: #ECFEFF; border: 1px solid #BAE6FD; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
     <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #075985;">Lead-Prioritaet: ${escapeHtml(leadPriority)}</h3>
-    <p style="margin: 5px 0; font-size: 13px;"><strong>Score:</strong> ${escapeHtml(leadRouting?.score ?? "-")}</p>
-    <p style="margin: 5px 0; font-size: 13px;"><strong>SLA:</strong> ${escapeHtml(leadRouting?.responseSla || "-")}</p>
-    <p style="margin: 5px 0; font-size: 13px;"><strong>Naechster Schritt:</strong> ${escapeHtml(leadRouting?.nextAction || "-")}</p>
-    <p style="margin: 8px 0 0 0; font-size: 12px; color: #334155;"><strong>Gruende:</strong> ${escapeHtml((leadRouting?.reasons || []).join(", ") || "-")}</p>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>Score:</strong> ${escapeHtml(leadQuality?.score ?? leadRouting?.score ?? "-")}</p>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>Antwortvorlage:</strong> ${escapeHtml(responseRecommendation?.responseTemplateKey || leadRouting?.responseTemplateKey || "-")}</p>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>Empfohlene Rueckfrage:</strong> ${escapeHtml(responseRecommendation?.recommendedFollowUpQuestion || internalSummary?.recommendedFollowUpQuestion || "-")}</p>
+    <p style="margin: 5px 0; font-size: 13px;"><strong>Naechster Schritt:</strong> ${escapeHtml(responseRecommendation?.recommendedNextStep || leadRouting?.recommendedNextStep || leadRouting?.nextAction || "-")}</p>
+    <p style="margin: 8px 0 0 0; font-size: 12px; color: #334155;"><strong>Gruende:</strong> ${escapeHtml((leadQuality?.reasons || leadRouting?.reasons || []).join(", ") || "-")}</p>
+   </div>
+   <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+    <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #166534;">Lead-Response-Summary ohne PII fuer Reports</h3>
+    ${summaryLines.length ? listHtml(summaryLines) : "<p style=\"margin: 5px 0; font-size: 13px;\">Noch keine strukturierte Summary vorhanden.</p>"}
+    <p style="margin: 12px 0 0 0; font-size: 12px; color: #166534;"><strong>Datenschutz:</strong> Keine unnoetige Weitergabe; Reports duerfen keine Namen, E-Mails, Telefonnummern, Adressen oder vollstaendigen Kundennachrichten enthalten.</p>
    </div>
    <p style="font-size: 14px; color: #666;">Ein neuer Lead wurde über den FLOXANT Rechner generiert.</p>
   <div style="background: #F8FAFC; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
@@ -112,7 +154,7 @@ export async function sendInternalIntakeNotification(
    ${attachmentLinksHtml}
 
    <div style="padding: 15px; border: 1px solid #DDD; border-radius: 8px;">
-    <h3 style="margin-top: 0; font-size: 16px;">Konfiguration (${escapeHtml(serviceDisplayName)})</h3>
+    <h3 style="margin-top: 0; font-size: 16px;">Redigierte Lead-Response-Struktur (${escapeHtml(serviceDisplayName)})</h3>
     <pre style="font-size: 12px; white-space: pre-wrap; background: #FFF; padding: 10px; border-radius: 4px;">${safeConfiguration}</pre>
    </div>
 

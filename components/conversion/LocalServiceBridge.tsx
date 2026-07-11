@@ -18,7 +18,7 @@ export function LocalServiceBridge({
     {
       city: "Duesseldorf",
       href: duesseldorfHref,
-      text: "Gewerbe, Reinigung, Solar/PV, Glas, Fassade, Umzug oder Raeumung mit Stadtteil, Objekt und Fotos einordnen.",
+      text: "Umzug, Raeumung, Entsorgung oder Objektanfrage mit Stadtteil, Umfang und Fotos einordnen.",
     },
     {
       city: "Regensburg",

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { buildLeadHref, resolveLeadIntent, type LeadPriority, type LeadService } from "@/lib/lead-intents";
+import { resolveCtaConfig } from "@/lib/cta-config";
+import { resolveLeadIntent, type LeadPriority, type LeadService } from "@/lib/lead-intents";
 
 type LeadCtaProps = {
   path?: string;
@@ -38,32 +39,32 @@ export function LeadCta({
     priority,
     ctaLabel: label,
   });
-  const destination =
-    href ||
-    buildLeadHref({
-      path,
-      service: lead.service,
-      city: lead.city,
-      intent: lead.intent,
-      priority: lead.priority,
-    });
-  const text = label || lead.ctaLabel;
+  const cta = resolveCtaConfig({
+    ctaKey: "service-contact",
+    href,
+    serviceKey: lead.service,
+    city: lead.city,
+    intent: lead.intent,
+    priority: lead.priority,
+    label: label || lead.ctaLabel,
+    source,
+  });
 
   return (
     <Link
-      href={destination}
+      href={cta.href}
       prefetch={prefetch}
       className={className}
-      data-event="seo_cta_click"
-      data-service={lead.trackingService}
-      data-city={lead.trackingCity || undefined}
-      data-page-intent={lead.trackingIntent}
-      data-priority={lead.priority}
-      data-cta-label={text}
-      data-destination={destination}
-      data-source={source}
+      data-event={cta.dataAttributes.event}
+      data-service={cta.dataAttributes.service}
+      data-city={cta.dataAttributes.city}
+      data-page-intent={cta.dataAttributes.pageIntent}
+      data-priority={cta.dataAttributes.priority}
+      data-cta-label={cta.dataAttributes.ctaLabel}
+      data-destination={cta.dataAttributes.destination}
+      data-source={cta.dataAttributes.source}
     >
-      {children || text}
+      {children || cta.label}
     </Link>
   );
 }

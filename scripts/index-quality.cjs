@@ -30,11 +30,11 @@ const P0_MONEY_PAGES = [
   "/angebotscheck",
   "/anbieter-vergleichen",
   "/duesseldorf",
-  "/duesseldorf/reinigung",
-  "/duesseldorf/bueroreinigung",
-  "/duesseldorf/gewerbereinigung",
-  "/duesseldorf/praxisreinigung",
-  "/duesseldorf/fensterreinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
   "/regensburg",
   "/regensburg/umzug",
   "/regensburg/reinigung",
@@ -71,15 +71,15 @@ const SERVICE_TERMS = [
 const INTENT_TARGETS = [
   ["Angebot prüfen allgemein", "angebot prüfen", "/angebot-guenstiger-pruefen", ["/angebotscheck", "/anbieter-vergleichen", "/leistungen-vergleichen"], "HIGH"],
   ["Angebotscheck", "angebotscheck", "/angebotscheck", ["/angebot-guenstiger-pruefen", "/anbieter-vergleichen"], "MEDIUM"],
-  ["Reinigungsangebot prüfen", "reinigungsangebot prüfen", "/angebot-vergleichen-duesseldorf", ["/duesseldorf/angebot-vergleichen", "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf"], "HIGH"],
+  ["Reinigungsangebot prüfen", "reinigungsangebot prüfen", "/angebot-vergleichen-regensburg", ["/regensburg/angebot-vergleichen", "/blog/reinigungsangebot-pruefen-regensburg"], "HIGH"],
   ["Umzugsangebot prüfen", "umzugsangebot prüfen", "/angebot-guenstiger-pruefen", ["/blog/umzugsangebot-pruefen-regensburg-bayern", "/regensburg/umzug"], "MEDIUM"],
   ["Entrümpelungsangebot prüfen", "entruempelungsangebot prüfen", "/angebot-guenstiger-pruefen", ["/regensburg/entruempelung", "/blog/entruempelungsangebot-pruefen-serioes"], "MEDIUM"],
   ["Anbieter vergleichen", "anbieter vergleichen", "/anbieter-vergleichen", ["/leistungen-vergleichen", "/angebotscheck"], "MEDIUM"],
-  ["Reinigung Düsseldorf", "reinigung düsseldorf", "/duesseldorf/reinigung", ["/duesseldorf/reinigungsfirma", "/duesseldorf/putzfirma"], "HIGH"],
-  ["Büroreinigung Düsseldorf", "büroreinigung düsseldorf", "/duesseldorf/bueroreinigung", ["/duesseldorf/gewerbereinigung", "/duesseldorf/reinigungskraft-buero"], "HIGH"],
-  ["Gewerbereinigung Düsseldorf", "gewerbereinigung düsseldorf", "/duesseldorf/gewerbereinigung", ["/duesseldorf/gewerbeflaechen-reinigung", "/duesseldorf/bueroreinigung"], "HIGH"],
-  ["Praxisreinigung Düsseldorf", "praxisreinigung düsseldorf", "/duesseldorf/praxisreinigung", ["/duesseldorf/reinigung", "/duesseldorf/bueroreinigung"], "MEDIUM"],
-  ["Fensterreinigung Düsseldorf", "fensterreinigung düsseldorf", "/duesseldorf/fensterreinigung", ["/duesseldorf/reinigung"], "MEDIUM"],
+  ["Reinigung Regensburg", "reinigung Regensburg", "/regensburg/reinigung", ["/regensburg/reinigung", "/regensburg/reinigung"], "HIGH"],
+  ["Büroreinigung Regensburg", "büroreinigung Regensburg", "/regensburg/reinigung", ["/regensburg/reinigung", "/regensburg/reinigung"], "HIGH"],
+  ["Gewerbereinigung Regensburg", "gewerbereinigung Regensburg", "/regensburg/reinigung", ["/regensburg/reinigung", "/regensburg/reinigung"], "HIGH"],
+  ["Praxisreinigung Regensburg", "praxisreinigung Regensburg", "/regensburg/reinigung", ["/regensburg/reinigung", "/regensburg/reinigung"], "MEDIUM"],
+  ["Fensterreinigung Regensburg", "fensterreinigung Regensburg", "/regensburg/reinigung", ["/regensburg/reinigung"], "MEDIUM"],
   ["Umzug Düsseldorf", "umzug düsseldorf", "/duesseldorf/umzug", ["/region-duesseldorf"], "MEDIUM"],
   ["Entrümpelung Düsseldorf", "entruempelung düsseldorf", "/duesseldorf/entruempelung", ["/duesseldorf/haushaltsaufloesung"], "MEDIUM"],
   ["Haushaltsauflösung Düsseldorf", "haushaltsauflösung düsseldorf", "/duesseldorf/haushaltsaufloesung", ["/duesseldorf/entruempelung"], "MEDIUM"],
@@ -90,9 +90,9 @@ const INTENT_TARGETS = [
   ["Büroreinigung Regensburg", "büroreinigung regensburg", "/regensburg/bueroreinigung", ["/regensburg/bueroreinigung", "/regensburg/gewerbereinigung"], "HIGH"],
   ["Klaviertransport Regensburg", "klaviertransport regensburg", "/klaviertransport-regensburg", ["/klaviertransport"], "MEDIUM"],
   ["Wohnungsauflösung Regensburg", "wohnungsauflösung regensburg", "/regensburg/wohnungsaufloesung", ["/regensburg/wohnungsaufloesung", "/regensburg/entruempelung"], "HIGH"],
-  ["B2B Büroreinigung", "b2b büroreinigung", "/duesseldorf/bueroreinigung", ["/duesseldorf/b2b-reinigung", "/gewerbereinigung"], "MEDIUM"],
+  ["B2B Büroreinigung", "b2b büroreinigung", "/regensburg/reinigung", ["/regensburg/reinigung", "/gewerbereinigung"], "MEDIUM"],
   ["Diskret Service", "diskret service", "/diskreter-umzug-trennung-scheidung", ["/plan-b-service", "/private-client-service"], "MEDIUM"],
-  ["Solarreinigung", "solarreinigung", "/solarreinigung", ["/pv-anlagen-reinigung", "/duesseldorf/solarreinigung"], "MEDIUM"],
+  ["Solarreinigung", "solarreinigung", "/solarreinigung", ["/pv-anlagen-reinigung", "/regensburg/reinigung"], "MEDIUM"],
   ["Reinigung nach Entrümpelung", "reinigung nach entrümpelung", "/regensburg/reinigung", ["/regensburg/entruempelung", "/blog/entruempelung-endreinigung-uebergabe-regensburg-kombinieren"], "MEDIUM"],
   ["Seniorenumzug", "seniorenumzug", "/seniorenumzug", ["/regensburg/seniorenumzug", "/regensburg/seniorenumzug"], "MEDIUM"],
   ["Fernumzug", "fernumzug", "/fernumzug-muenchen", ["/blog/fernumzug-bayern-nrw-tipps", "/umzug-muenchen"], "LOW"],
@@ -340,8 +340,8 @@ function buildInventory() {
 function buildClusters(inventory) {
   const clusterDefinitions = [
     ["Offer Check Cluster", (route) => OFFER_TERMS.some((term) => route.url.includes(term))],
-    ["Düsseldorf Reinigung Cluster", (route) => route.region.includes("Düsseldorf") && route.service.includes("reinigung")],
-    ["Düsseldorf Putzfirma/Reinigungsfirma Cluster", (route) => route.url.includes("putzfirma") || route.url.includes("reinigungsfirma") || route.url.includes("reinigungsdienst")],
+    ["Reinigung Regensburg Cluster", (route) => route.region.includes("Regensburg") && route.service.includes("reinigung")],
+    ["Regensburg Putzfirma/Reinigungsfirma Cluster", (route) => route.url.includes("putzfirma") || route.url.includes("reinigungsfirma") || route.url.includes("reinigungsdienst")],
     ["Büroreinigung/Gewerbereinigung Cluster", (route) => route.url.includes("bueroreinigung") || route.url.includes("gewerbereinigung")],
     ["Regensburg Umzug Cluster", (route) => route.region.includes("Regensburg") && route.service.includes("umzug")],
     ["Regensburg Entrümpelung/Wohnungsauflösung Cluster", (route) => route.region.includes("Regensburg") && (route.service.includes("entruempelung") || route.service.includes("wohnungsaufloesung"))],
@@ -372,9 +372,9 @@ function buildClusters(inventory) {
 function choosePrimaryTarget(name, affected) {
   const preferred = {
     "Offer Check Cluster": "/angebot-guenstiger-pruefen",
-    "Düsseldorf Reinigung Cluster": "/duesseldorf/reinigung",
-    "Düsseldorf Putzfirma/Reinigungsfirma Cluster": "/duesseldorf/reinigungsfirma",
-    "Büroreinigung/Gewerbereinigung Cluster": "/duesseldorf/bueroreinigung",
+    "Reinigung Regensburg Cluster": "/regensburg/reinigung",
+    "Regensburg Putzfirma/Reinigungsfirma Cluster": "/regensburg/reinigung",
+    "Büroreinigung/Gewerbereinigung Cluster": "/regensburg/reinigung",
     "Regensburg Umzug Cluster": "/regensburg/umzug",
     "Regensburg Entrümpelung/Wohnungsauflösung Cluster": "/regensburg/entruempelung",
     "Klaviertransport Regensburg Cluster": "/klaviertransport-regensburg",
@@ -399,10 +399,10 @@ function sitemapTier(route) {
 function supportTargetForBlog(route) {
   const lower = route.url.toLowerCase();
   if (lower.includes("angebot") || lower.includes("vergleich")) return "/angebot-guenstiger-pruefen";
-  if (lower.includes("duesseldorf") && lower.includes("reinigung")) return "/duesseldorf/reinigung";
+  if (lower.includes("regensburg") && lower.includes("reinigung")) return "/regensburg/reinigung";
   if (lower.includes("regensburg") && lower.includes("umzug")) return "/regensburg/umzug";
   if (lower.includes("entruempel")) return "/regensburg/entruempelung";
-  if (lower.includes("bueroreinigung") || lower.includes("gewerbe")) return "/duesseldorf/bueroreinigung";
+  if (lower.includes("bueroreinigung") || lower.includes("gewerbe")) return "/regensburg/reinigung";
   return "/leistungen";
 }
 
@@ -545,7 +545,7 @@ function writeCanonicalNoindex(inventory) {
 
 function chooseManualPrimary(route) {
   const match = INTENT_TARGETS.find(([, , target, support]) => target === route.url || support.includes(route.url));
-  return match?.[2] || (route.region.includes("Düsseldorf") ? "/duesseldorf/reinigung" : route.region.includes("Regensburg") ? "/regensburg/umzug" : "/angebot-guenstiger-pruefen");
+  return match?.[2] || (route.region.includes("Regensburg") ? "/regensburg/reinigung" : route.region.includes("Regensburg") ? "/regensburg/umzug" : "/angebot-guenstiger-pruefen");
 }
 
 function writeIndexQuality(inventory) {
@@ -618,11 +618,11 @@ function writeBlogReport(inventory) {
 function writeDualLocation(inventory) {
   const watched = [
     "/duesseldorf",
-    "/duesseldorf/reinigung",
-    "/duesseldorf/bueroreinigung",
-    "/duesseldorf/gewerbereinigung",
-    "/duesseldorf/praxisreinigung",
-    "/duesseldorf/fensterreinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
     "/duesseldorf/umzug",
     "/duesseldorf/entruempelung",
     "/duesseldorf/haushaltsaufloesung",
@@ -641,7 +641,7 @@ function writeDualLocation(inventory) {
   });
   fs.writeFileSync(
     OUTPUTS.dualLocation,
-    `# Dual Location Indexation Report\n\nDüsseldorf und Regensburg bleiben getrennte lokale Strukturen. Düsseldorf priorisiert Reinigung, Regensburg priorisiert Umzug, Entrümpelung/Wohnungsauflösung und Reinigung.\n\n${mdTable(["URL", "Existiert", "Sitemap", "Canonical", "Risiko", "Maßnahme"], rows)}\n`,
+    `# Dual Location Indexation Report\n\nRegensburg und Regensburg bleiben getrennte lokale Strukturen. Regensburg priorisiert Reinigung, Regensburg priorisiert Umzug, Entrümpelung/Wohnungsauflösung und Reinigung.\n\n${mdTable(["URL", "Existiert", "Sitemap", "Canonical", "Risiko", "Maßnahme"], rows)}\n`,
   );
 }
 
@@ -656,7 +656,7 @@ function writeOfferArchitecture(inventory) {
   ]);
   fs.writeFileSync(
     OUTPUTS.offerCheck,
-    `# Offer Check Indexation Architecture\n\nPrimäre allgemeine Zielseite: /angebot-guenstiger-pruefen\n\nPrimäre Anbieter-Vergleichsseite: /anbieter-vergleichen\n\nLokale Reinigungsangebot-Seite: /angebot-vergleichen-duesseldorf\n\n${mdTable(["URL", "Rolle", "Sitemap", "Kannibalisierungsrisiko", "Maßnahme"], rows)}\n`,
+    `# Offer Check Indexation Architecture\n\nPrimäre allgemeine Zielseite: /angebot-guenstiger-pruefen\n\nPrimäre Anbieter-Vergleichsseite: /anbieter-vergleichen\n\nLokale Reinigungsangebot-Seite: /angebot-vergleichen-regensburg\n\n${mdTable(["URL", "Rolle", "Sitemap", "Kannibalisierungsrisiko", "Maßnahme"], rows)}\n`,
   );
 }
 

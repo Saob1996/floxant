@@ -12,7 +12,7 @@ import {
 const faqItems = [
   {
     q: "Wann gilt eine Reinigungsanfrage als größerer B2B-Auftrag?",
-    a: "Sobald mehrere Flächen, regelmäßige Einsätze, feste Ansprechpartner, Randzeiten oder besondere Objektanforderungen zusammenkommen, sollte die Anfrage als strukturierter B2B-Auftrag vorbereitet werden.",
+    a: "Sobald mehrere Flächen, regelmäßige Einsätze, feste Ansprechpartner, Randzeiten oder besondere Objektanforderungen zusammenkommen, sollte die Anfrage als B2B-Auftrag mit klaren Eckdaten vorbereitet werden.",
   },
   {
     q: "Welche Angaben helfen bei großen Büro-, Hotel- oder Praxisanfragen am meisten?",

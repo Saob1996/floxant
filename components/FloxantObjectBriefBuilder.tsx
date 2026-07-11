@@ -88,18 +88,18 @@ const urgencyOptions = [
 
 const serviceLinks: Record<RegionKey, Record<string, string>> = {
   duesseldorf: {
-    Gewerbereinigung: "/duesseldorf/gewerbereinigung",
-    "Gewerbereinigung / Commercial cleaning": "/duesseldorf/gewerbereinigung",
-    Büroreinigung: "/duesseldorf/bueroreinigung",
-    "Büroreinigung / Office cleaning": "/duesseldorf/bueroreinigung",
-    Praxisreinigung: "/duesseldorf/praxisreinigung",
-    Treppenhausreinigung: "/duesseldorf/treppenhausreinigung",
-    Endreinigung: "/duesseldorf/endreinigung",
-    "Solar- / PV-Reinigung": "/duesseldorf/solarreinigung",
+    Gewerbereinigung: "/regensburg/gewerbereinigung",
+    "Gewerbereinigung / Commercial cleaning": "/regensburg/gewerbereinigung",
+    Büroreinigung: "/regensburg/bueroreinigung",
+    "Büroreinigung / Office cleaning": "/regensburg/bueroreinigung",
+    Praxisreinigung: "/praxisreinigung-regensburg",
+    Treppenhausreinigung: "/treppenhausreinigung-regensburg",
+    Endreinigung: "/regensburg/endreinigung",
+    "Solar- / PV-Reinigung": "/regensburg/reinigung",
     "Glas- oder Fassadenreinigung": "/spezialreinigung",
-    "Büro startklar machen": "/duesseldorf/bueroreinigung",
-    "Angebot prüfen lassen": "/angebot-vergleichen-duesseldorf",
-    "Angebot prüfen lassen / Quote check": "/angebot-vergleichen-duesseldorf",
+    "Büro startklar machen": "/regensburg/bueroreinigung",
+    "Angebot prüfen lassen": "/angebot-vergleichen-regensburg",
+    "Angebot prüfen lassen / Quote check": "/angebot-vergleichen-regensburg",
   },
   regensburg: {
     Umzug: "/regensburg/umzug",
@@ -227,7 +227,7 @@ export function FloxantObjectBriefBuilder() {
   );
 
   const whatsappHref = buildWhatsAppHref(company.phoneRaw, message);
-  const serviceHref = serviceLinks[region][service] || (region === "duesseldorf" ? "/duesseldorf/reinigung" : "/regensburg");
+  const serviceHref = serviceLinks[region][service] || "/regensburg";
   const nextAction = useMemo(() => {
     const urgent = deadline.includes("Heute") || deadline.includes("morgen") || deadline.includes("Diese Woche");
 
@@ -255,7 +255,7 @@ export function FloxantObjectBriefBuilder() {
     if (region === "duesseldorf") {
       return {
         label: "Reinigungsumfang sauber festlegen",
-        text: "Für Düsseldorf sind Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos entscheidend. So wird aus einer Anfrage ein planbarer Reinigungsfall.",
+        text: "Für Regensburg sind Objektart, Fläche, Turnus, Zeitfenster, Zugang und Fotos entscheidend. So wird aus einer Anfrage ein planbarer Reinigungsfall.",
       };
     }
 
@@ -440,7 +440,7 @@ export function FloxantObjectBriefBuilder() {
                   <input
                     value={budget}
                     onChange={(event) => setBudget(event.target.value)}
-                    placeholder="optional, z. B. 500 bis 800 Euro"
+                    placeholder="Ihr gewünschter Rahmen, falls vorhanden"
                     className="min-h-12 w-full rounded-lg border border-slate-200 bg-white px-4 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
                   />
                 </label>

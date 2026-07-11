@@ -100,7 +100,7 @@ export default async function KurzfristigerUmzugBayern() {
                   href={`/24h-umzug-bayern`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
                 >
-                  24h Umzug Bayern
+                  Kurzfristiger Umzug in Bayern
                 </Link>
                 <Link
                   href={`/notfall-umzug-bayern`}

@@ -90,11 +90,11 @@ export function LocationServiceSwitcher({
               <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4">
                 <div className="inline-flex items-center gap-2 text-sm font-black text-amber-900">
                   <ShieldCheck className="h-4 w-4" aria-hidden="true" />
-                  Manuelle Datenprüfung
+                  Vor einer Zusage
                 </div>
                 <p className="mt-2 text-sm font-semibold leading-7 text-amber-950">
-                  Öffnungszeiten und GBP-Profil-URL sind nicht als bestätigte Daten hinterlegt.
-                  Sie werden nicht erfunden und müssen vor Merge/GBP-Abgleich manuell geprüft werden.
+                  Einsatzzeiten und Verfügbarkeit richten sich nach Ihrer konkreten Anfrage.
+                  Nutzen Sie für den ersten Kontakt die angegebenen Kontaktdaten.
                 </p>
               </div>
             </article>

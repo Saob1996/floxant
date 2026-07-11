@@ -56,7 +56,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   faqs: [
    {
     q: "Wann ist eine Endreinigung besonders wichtig?",
-    a: "Vor Wohnungsübergabe, Wiedervermietung, Verkauf oder nach einem Umzug ist eine strukturierte Endreinigung sinnvoll, weil Ergebnis, Termin und Leistungsumfang klar sein müssen.",
+    a: "Vor Wohnungsübergabe, Wiedervermietung, Verkauf oder nach einem Umzug ist eine Endreinigung mit abgestimmtem Leistungsumfang sinnvoll, weil Ergebnis, Termin und Leistungsumfang klar sein müssen.",
    },
    {
     q: "Welche Kostentreiber zählen bei Reinigung besonders?",
@@ -82,7 +82,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   faqs: [
    {
     q: "Wann ist eine Entrümpelung mehr als Sperrmüllabholung?",
-    a: "Sobald Sortierung, Demontage, Tragearbeit, mehrere Räume, Keller, Nachlass, Gewerbeflächen oder besenreine Übergabe nötig sind, wird eine strukturierte Entrümpelung sinnvoll.",
+    a: "Sobald Sortierung, Demontage, Tragearbeit, mehrere Räume, Keller, Nachlass, Gewerbeflächen oder besenreine Übergabe nötig sind, wird eine Entrümpelung mit geklärtem Zielzustand sinnvoll.",
    },
    {
     q: "Welche Angaben braucht FLOXANT für eine erste Einschätzung?",
@@ -130,7 +130,7 @@ export const serviceAuthorityFaqs: Record<ServiceAuthorityKey, AuthorityData> = 
   eyebrow: "Preiswahrheit",
   title: "Was der Rechner leisten soll und was nicht",
   intro:
-   "Der FLOXANT Rechner ist ein strukturierter Startpunkt in die Einschätzung. Er soll Klarheit schaffen, ohne einen scheinbar sicheren Endpreis zu versprechen.",
+   "Der FLOXANT Rechner ist ein kurzer Einstieg in die Einschätzung. Er soll Klarheit schaffen, ohne einen scheinbar sicheren Endpreis zu versprechen.",
   faqs: [
    {
     q: "Ist der Rechnerpreis verbindlich?",
@@ -216,7 +216,7 @@ export function ServiceAuthorityFaq({ service }: { service: ServiceAuthorityKey 
 
     <div className="mt-8 grid gap-4 rounded-[2rem] border border-blue-100 bg-[#f8fbff] p-5 shadow-sm md:grid-cols-[1fr_auto_auto] md:items-center">
      <p className="text-sm leading-relaxed text-slate-600">
-      Nach den Entscheidungsfragen führt der beste nächste Schritt in eine strukturierte Anfrage oder in eine kurze Rückfrage. So bleibt nicht nur die Antwort sichtbar, sondern auch der passende Anschluss.
+      Nach den Entscheidungsfragen führt der beste nächste Schritt in eine Anfrage mit den wichtigsten Eckdaten oder in eine kurze Rückfrage. So bleibt nicht nur die Antwort sichtbar, sondern auch der passende Anschluss.
      </p>
      <Link
       href="/buchung"

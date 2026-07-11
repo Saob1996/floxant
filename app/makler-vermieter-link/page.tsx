@@ -276,8 +276,8 @@ export default function MaklerVermieterLinkPage() {
                   ))}
                 </div>
                 <div className="mt-6 rounded-2xl border border-white/10 bg-white/8 p-4 text-sm leading-7 text-slate-200">
-                  Nutzbar fuer E-Mail-Signatur, WhatsApp, GBP-Posts, QR-Code, Flyer und Partnerkommunikation.
-                  UTM-Parameter duerfen Quelle und Kampagne enthalten, aber keine personenbezogenen Daten.
+                  Sie können den Link in E-Mails, WhatsApp, QR-Codes, Flyern und Partnernachrichten teilen.
+                  Fügen Sie dabei keine personenbezogenen Daten in den Link ein.
                 </div>
               </div>
             </div>
@@ -379,8 +379,8 @@ export default function MaklerVermieterLinkPage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Share- und QR-Strategie</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Kurz, merkbar und UTM-kompatibel</h2>
                 <p className="mt-4 text-sm leading-7 text-blue-950">
-                  Nutzen Sie die kurze URL in Signaturen, WhatsApp, QR-Codes, Angeboten, Rechnungen oder GBP-Posts.
-                  Die Canonical-URL bleibt ohne UTM. UTM darf nur Quelle und Kampagne enthalten, niemals Objektadresse oder Kundendaten.
+                  Nutzen Sie den kurzen Link in Signaturen, WhatsApp, QR-Codes, Angeboten oder Rechnungen.
+                  Teilen Sie im Link niemals Objektadressen oder Kundendaten.
                 </p>
                 <div className="mt-5 grid gap-3">
                   {[
@@ -438,9 +438,9 @@ export default function MaklerVermieterLinkPage() {
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               {[
-                ["Reinigung Duesseldorf", "Nur Reinigung, Endreinigung, B2B-Reinigung und Objektvorbereitung ohne Umzugssprache.", "/duesseldorf/reinigung"],
-                ["Moeblierte Wohnung Duesseldorf", "Apartment-Reset fuer Hosts, Vermieter und Kurzzeitvermietung in Duesseldorf.", "/reinigung-moeblierte-wohnung-duesseldorf"],
-                ["Entsorgung Duesseldorf", "Entsorgung und Reinigungskombination; Umzug separat ueber /duesseldorf/umzug.", "/entsorgung-duesseldorf"],
+                ["Reinigung Regensburg", "Nur Reinigung, Endreinigung, B2B-Reinigung und Objektvorbereitung ohne Umzugssprache.", "/regensburg/reinigung"],
+                ["Moeblierte Wohnung Regensburg", "Apartment-Reset fuer Hosts, Vermieter und Kurzzeitvermietung in Regensburg.", "/regensburg/reinigung"],
+                ["Entsorgung separat", "Nur Entsorgung; Umzug separat ueber /regensburg/umzug.", "/entsorgung-duesseldorf"],
                 ["Buchung/Rechner", "Falls ein Objektfall doch breiter eingeordnet werden muss.", "/buchung"],
                 ["Angebotscheck", "Wenn bereits ein Fremdangebot vorliegt und Umfang oder Zusatzleistungen unklar sind.", "/angebotscheck"],
               ].map(([title, text, href]) => (

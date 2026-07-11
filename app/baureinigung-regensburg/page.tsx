@@ -20,6 +20,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
@@ -31,6 +35,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/baureinigung-regensburg";
@@ -208,7 +213,7 @@ export default function BaureinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Baureinigung, Bauendreinigung, Baufeinreinigung und Reinigung nach Renovierung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Baureinigung Regensburg nach Renovierung, Sanierung und Handwerkern",
@@ -313,7 +318,7 @@ export default function BaureinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/service-cleaning.png"
+                  src="/assets/service-cleaning.webp"
                 alt="Renovierungsbereich als Beispiel für Baureinigung und Bauendreinigung in Regensburg"
                 fill
                 priority
@@ -360,6 +365,25 @@ export default function BaureinigungRegensburgPage() {
           "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=baureinigung_regensburg#buchungssystem"
+      />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Baureinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Bauzustand vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Baureinigung"
+        intro="Diese Links verbinden Baustaub, Grundreinigung, Fensterreinigung, Gewerbe und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
       />
 
       <section id="kunden-suchen" className="flox-section pt-0">

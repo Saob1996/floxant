@@ -7,30 +7,20 @@ import {
   BAVARIA_METRO_DISTRICT_LINKS,
 } from "@/lib/bavaria-coverage";
 import { floxantLocationList } from "@/lib/floxant-locations";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 export function LocalBusinessJsonLd() {
   const geoLatitude = Number(company.geo.lat.toFixed(5));
   const geoLongitude = Number(company.geo.lng.toFixed(5));
   const multilingualAliases = getSchemaKnowAboutAliases(48);
 
-  const areaServed = company.primaryServiceAreas.map((area) => ({
-    "@type":
-      area === "Bayern" || area.startsWith("Baden")
-        ? "State"
-        : area === "Oberpfalz" ||
-            area === "Landkreis Regensburg" ||
-            area.includes("200 km") ||
-            area.includes("Umgebung")
-          ? "AdministrativeArea"
-          : "City",
-    name: area,
-  }));
+  const areaServed = buildRegensburgCleaningAreaServedJsonLd();
 
   const servicePages = [
     { name: "Buchung und Anfrage", url: company.bookingUrl },
     { name: "Umzug", url: `${company.url}/umzug` },
     { name: "Reinigung", url: `${company.url}/reinigung` },
-    { name: "Notfallreinigung 24h", url: `${company.url}/notfallreinigung-24h` },
+    { name: "Kurzfristige Reinigung", url: `${company.url}/notfallreinigung-24h` },
     { name: "Reinigung nach Veranstaltung", url: `${company.url}/reinigung-nach-veranstaltung` },
     { name: "Entrümpelung", url: `${company.url}/entruempelung` },
     { name: "Büroumzug", url: `${company.url}/bueroumzug` },
@@ -54,36 +44,11 @@ export function LocalBusinessJsonLd() {
     { name: "Private Client Service", url: `${company.url}/private-client-service` },
     { name: "Angebotscheck", url: `${company.url}/angebotscheck` },
     { name: "Angebot günstiger prüfen", url: `${company.url}/angebot-guenstiger-pruefen` },
-    { name: "Duesseldorf Reinigungsangebot pruefen", url: `${company.url}/angebot-vergleichen-duesseldorf` },
     { name: "Plan-B-Service", url: `${company.url}/plan-b-service` },
     { name: "Schadensbegrenzung", url: `${company.url}/schadensbegrenzung` },
     { name: "Übergabeakte", url: `${company.url}/uebergabeakte` },
     { name: "Immobilie verkaufsbereit machen", url: `${company.url}/immobilie-verkaufsbereit-machen` },
     { name: "Nachlass-Räumung Regensburg", url: `${company.url}/regensburg/haushaltsaufloesung` },
-    { name: "Düsseldorf Reinigung", url: `${company.url}/duesseldorf/reinigung` },
-    { name: "Düsseldorf Reinigung Stadtteile und Umgebung", url: `${company.url}/duesseldorf/reinigung-stadtteile-umgebung` },
-    { name: "Düsseldorf Angebot vielleicht günstiger prüfen", url: `${company.url}/duesseldorf/vielleicht-guenstiger` },
-    { name: "Düsseldorf Firmenreinigung", url: `${company.url}/duesseldorf/bueroreinigung` },
-    { name: "Düsseldorf Firmenreinigung eigene Seite", url: `${company.url}/duesseldorf/b2b-reinigung` },
-    { name: "Düsseldorf Firmenreinigung", url: `${company.url}/duesseldorf/firmenreinigung` },
-    { name: "Düsseldorf Fensterreinigung", url: `${company.url}/duesseldorf/fensterreinigung` },
-    { name: "Düsseldorf Baureinigung", url: `${company.url}/duesseldorf/baureinigung` },
-    { name: "Düsseldorf Teppichreinigung", url: `${company.url}/duesseldorf/teppichreinigung` },
-    { name: "Düsseldorf Unterhaltsreinigung", url: `${company.url}/duesseldorf/unterhaltsreinigung` },
-    { name: "Düsseldorf Ladenreinigung", url: `${company.url}/duesseldorf/ladenreinigung` },
-    { name: "Düsseldorf Sonderreinigung", url: `${company.url}/duesseldorf/sonderreinigung` },
-    { name: "Düsseldorf Gewerbereinigung", url: `${company.url}/duesseldorf/gewerbereinigung` },
-    { name: "Düsseldorf Hotelreinigung", url: `${company.url}/duesseldorf/hotelreinigung` },
-    { name: "Düsseldorf Kanzleireinigung", url: `${company.url}/duesseldorf/kanzleireinigung` },
-    { name: "Düsseldorf Praxisreinigung", url: `${company.url}/duesseldorf/praxisreinigung` },
-    { name: "Düsseldorf IT-Raum Reinigung", url: `${company.url}/duesseldorf/it-raum-reinigung` },
-    { name: "Düsseldorf Krankenhausreinigung", url: `${company.url}/duesseldorf/krankenhausreinigung` },
-    { name: "Düsseldorf Treppenhausreinigung", url: `${company.url}/duesseldorf/treppenhausreinigung` },
-    { name: "Düsseldorf Kellerreinigung", url: `${company.url}/duesseldorf/kellerreinigung` },
-    { name: "Düsseldorf Grundreinigung", url: `${company.url}/duesseldorf/grundreinigung` },
-    { name: "Düsseldorf Wohnungsreinigung", url: `${company.url}/duesseldorf/wohnungsreinigung` },
-    { name: "Düsseldorf Endreinigung", url: `${company.url}/duesseldorf/endreinigung` },
-    { name: "Düsseldorf Entsorgung", url: `${company.url}/entsorgung-duesseldorf` },
   ];
 
   const mapsLandingPages = [
@@ -171,7 +136,7 @@ export function LocalBusinessJsonLd() {
     name: company.name,
     alternateName: ["FLOXANT Service Regensburg"],
     description:
-      "FLOXANT bietet Umzug, Reinigung, Entrümpelung, Büroumzug, Firmenentsorgung, Gewerbereinigung, Leer-Rückfahrt und strukturierte Kontaktwege mit Schwerpunkt Regensburg, Umgebung ca. 200 km und Bayern nach Verfügbarkeit.",
+      "FLOXANT bietet Umzug, Entrümpelung, Büroumzug, Firmenentsorgung, Leer-Rückfahrt und verständliche Kontaktwege mit Schwerpunkt Regensburg. Reinigungsleistungen sind auf Regensburg und den 50-km-Umkreis begrenzt.",
     image: [
       `${company.url}/og.jpg`,
       `${company.url}/opengraph-image`,
@@ -207,7 +172,7 @@ export function LocalBusinessJsonLd() {
     knowsAbout: [
       "Umzugsunternehmen Regensburg",
       "Reinigungsfirma Regensburg",
-      "Notfallreinigung 24h",
+      "Kurzfristige Reinigung",
       "Reinigung nach Veranstaltung",
       "Reinigung nach Party",
       "Eventreinigung",
@@ -263,7 +228,6 @@ export function LocalBusinessJsonLd() {
       "Reinigungsplan Buero Regensburg",
       "Reinigungskraft Buero Regensburg",
       "Objektreinigung Regensburg",
-      "Umzug im 200-km-Umkreis Regensburg",
       "Kurzfristiger Umzug Regensburg",
       "Umzug mit Reinigung",
       "Umzug mit Übergabe",
@@ -278,7 +242,6 @@ export function LocalBusinessJsonLd() {
       "Teppichreinigung Regensburg",
       "Polsterreinigung Regensburg",
       "Treppenhausreinigung Regensburg",
-      "Private Client Service Bayern",
       "Beiladung",
       "Angebotscheck",
       "Plan-B-Service",
@@ -291,46 +254,12 @@ export function LocalBusinessJsonLd() {
       "Übergabe vorbereiten",
       "Immobilie verkaufsbereit machen",
       "Nachlass-Räumung Regensburg",
-      "Düsseldorf Reinigung",
-      "Düsseldorf Reinigung Stadtteile",
-      "Reinigung Neuss",
-      "Reinigung Ratingen",
-      "Reinigung Meerbusch",
-      "Reinigung Mettmann",
-      "Reinigung Duisburg",
-      "Angebot prüfen Düsseldorf",
-      "Düsseldorf Firmenreinigung",
-      "Düsseldorf Firmenreinigung",
-      "Düsseldorf Gewerbereinigung",
-      "Düsseldorf Hotelreinigung",
-      "Hotel Reinigung Duesseldorf",
-      "Boardinghouse Reinigung Duesseldorf",
-      "Bueroreinigung Duesseldorf",
-      "Kanzleireinigung Duesseldorf",
-      "Praxisreinigung Duesseldorf",
-      "Treppenhausreinigung Duesseldorf",
-      "Kellerreinigung Duesseldorf",
-      "Grundreinigung Duesseldorf",
-      "Wohnungsreinigung Duesseldorf",
-      "Endreinigung Duesseldorf",
-      "Krankenhausreinigung Duesseldorf",
-      "Düsseldorf Entsorgung",
       "Leer-Rückfahrt",
       "Rückladung",
       "Buchung über Google Maps",
       "Direkter Buchungslink",
       "Google Unternehmensprofil Regensburg",
-      "Standorte Bayern",
-      "Servicegebiet Bayern",
-      "Umzug Muenchen",
-      "Reinigung Nuernberg",
-      "Umzug Landshut",
-      "Umzug Ingolstadt",
-      "Reinigung Bamberg",
-      "Entruempelung Rosenheim",
-      "Umzug Wuerzburg",
       ...multilingualAliases,
-      ...BAVARIA_MAPS_SERVICE_INTENTS.flatMap((intent) => [intent.title, intent.query]),
     ],
     contactPoint: [
       {
@@ -346,7 +275,7 @@ export function LocalBusinessJsonLd() {
         telephone: company.phoneRaw,
         email: company.email,
         contactType: "sales",
-        areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
+        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
         availableLanguage: ["de", "en"],
       },
     ],

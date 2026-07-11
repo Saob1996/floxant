@@ -14,7 +14,7 @@ const categoryLabels: Record<ServiceCategory, string> = {
   umzug_transport: "Umzug und Transport",
   entruempelung_aufloesung: "Entrümpelung und Auflösung",
   angebot_pruefen: "Angebot prüfen",
-  signature_service: "Signature Services",
+  signature_service: "Besondere Leistungen",
 };
 
 const categoryIntros: Record<ServiceCategory, string> = {
@@ -46,7 +46,7 @@ function isAvailableForLocation(service: ServiceInventoryItem, locationKey?: Flo
 }
 
 function availabilityLabel(service: ServiceInventoryItem, locationKey?: FloxantLocationKey) {
-  if (!locationKey) return service.priority;
+  if (!locationKey) return "Leistung";
   const availability =
     locationKey === "duesseldorf" ? service.dusseldorfAvailability : service.regensburgAvailability;
   if (availability === "available") return "verfügbar";
@@ -56,8 +56,8 @@ function availabilityLabel(service: ServiceInventoryItem, locationKey?: FloxantL
 }
 
 export function ServiceClusterGrid({
-  title = "Services nach echter Kundensituation sortiert.",
-  intro = "Die Cluster helfen, von einer unscharfen Anfrage zum passenden Service, Standort und Kontaktweg zu kommen.",
+  title = "Leistungen nach Ihrer Situation auswählen.",
+  intro = "Vergleichen Sie passende Leistungen und sehen Sie, welche Angaben für eine erste Einschätzung helfen.",
   categories = ["reinigung", "umzug_transport", "entruempelung_aufloesung", "angebot_pruefen"],
   locationKey,
   limitPerCategory = 6,
@@ -69,7 +69,7 @@ export function ServiceClusterGrid({
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
             <Layers3 className="h-4 w-4" aria-hidden="true" />
-            Service-Cluster
+            Welche Leistung passt?
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title, title)}</h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro, intro)}</p>
@@ -112,16 +112,13 @@ export function ServiceClusterGrid({
                         <span className="rounded-md bg-blue-50 px-2 py-1 text-xs font-black text-blue-700">
                           {germanText(availabilityLabel(service, locationKey), availabilityLabel(service, locationKey))}
                         </span>
-                        <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-black text-slate-600">
-                          {service.priority}
-                        </span>
                       </div>
                       <h4 className="mt-3 text-lg font-black text-slate-950">{germanText(service.name, service.name)}</h4>
                       <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
                         {germanText(service.shortDescription, service.shortDescription)}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                        Service öffnen
+                        Leistung ansehen
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
                       </span>
                     </Link>

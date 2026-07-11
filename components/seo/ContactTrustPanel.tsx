@@ -36,7 +36,7 @@ export const contactEntryPoints = [
   {
     icon: Calculator,
     title: "Preisrahmen prüfen",
-    text: "Für Umzug, Reinigung, Entrümpelung und Büroumzug mit strukturierter Einschätzung und ehrlicher Einordnung.",
+    text: "Für Umzug, Reinigung, Entrümpelung und Büroumzug mit Prüfung der konkreten Eckdaten und ehrlicher Rückmeldung.",
     href: "/rechner",
     action: "Rechner starten",
   },

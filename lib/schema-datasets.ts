@@ -4,9 +4,9 @@ export const serviceGraphDatasetJsonLd = {
   "@id": `${company.url}/service-graph.json#dataset`,
   "@type": "Dataset",
   name: "FLOXANT Leistungsübersicht",
-  alternateName: "Strukturierte FLOXANT Übersicht für Leistungen, Regionen und Kontaktwege",
+  alternateName: "FLOXANT Übersicht für Leistungen, Regionen und Kontaktwege",
   description:
-    "Strukturierte FLOXANT Übersicht für Leistungen, Einsatzregionen, Kontaktwege und passende nächste Schritte zu Umzug, Reinigung, Entrümpelung und Entsorgung.",
+    "FLOXANT Übersicht für Leistungen, Einsatzregionen, Kontaktwege und passende nächste Schritte zu Umzug, Reinigung, Entrümpelung und Entsorgung.",
   identifier: "floxant-service-graph",
   inLanguage: "de",
   creator: {
@@ -51,7 +51,7 @@ export const serviceGraphDatasetJsonLd = {
     "Reinigung Regensburg",
     "Gewerbereinigung Regensburg",
     "Entruempelung Regensburg",
-    "Duesseldorf Reinigung",
+    "Reinigung Regensburg",
     "Kontaktwege",
     "Servicegebiet",
   ],

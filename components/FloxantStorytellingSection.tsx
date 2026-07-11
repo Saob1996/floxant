@@ -17,7 +17,7 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { germanizeDeep } from "@/lib/german-text";
 import { cn } from "@/lib/utils";
 
-type StoryVariant = "operations" | "cleaning" | "clearance" | "offer" | "duesseldorf";
+type StoryVariant = "operations" | "cleaning" | "clearance" | "offer" | "local";
 
 type StoryStep = {
   title: string;
@@ -204,17 +204,17 @@ const variantConfig: Record<StoryVariant, VariantConfig> = {
       },
     ],
   },
-  duesseldorf: {
+  local: {
     image: "/assets/floxant-story-duesseldorf.svg",
     accent: "from-teal-600 to-sky-500",
-    badge: "Reinigung in Düsseldorf",
-    title: "Düsseldorf bleibt klar: Umzug, Reinigung und Räumung über klare Kontaktmöglichkeiten.",
+    badge: "Reinigung in Regensburg",
+    title: "Regensburg bleibt klar: Umzug, Reinigung und Räumung über klare Kontaktmöglichkeiten.",
     intro:
-      "Für Wohnungen, Apartments, Büros, kleine Unternehmen, Treppenhäuser und Grundreinigung werden Objekt, Fläche, Frequenz, Zeitfenster und Fotos strukturiert abgefragt.",
-    region: "Düsseldorf · Reinigung · Entsorgung separat",
-    primaryHref: "/duesseldorf/reinigung#kontakt",
+      "Für Wohnungen, Apartments, Büros, kleine Unternehmen, Treppenhäuser und Grundreinigung werden Objekt, Fläche, Frequenz, Zeitfenster und Fotos konkret abgefragt.",
+    region: "Regensburg · Reinigung · Entsorgung separat",
+    primaryHref: "/regensburg/reinigung#kontakt",
     primaryLabel: "Reinigung anfragen",
-    secondaryHref: "/duesseldorf/bueroreinigung",
+    secondaryHref: "/regensburg/bueroreinigung",
     secondaryLabel: "B2B-Reinigung",
     chips: ["Objekt", "Fläche", "Zeitfenster"],
     metrics: [

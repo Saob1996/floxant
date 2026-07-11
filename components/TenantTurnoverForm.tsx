@@ -338,7 +338,7 @@ export function TenantTurnoverForm() {
           <UploadDropCard
             title="Fotos optional"
             description="Wohnung, Keller, Restmengen, Zugang oder Muellraum."
-            helper="Fotos helfen bei der Einschaetzung und bleiben ohne PII-Tracking."
+            helper="Fotos helfen bei der Einschätzung und werden nur für Ihre Anfrage verwendet."
             accept="image/jpeg,image/png,image/webp"
             files={photos}
             dataEvent="upload_tenant_turnover_photos"

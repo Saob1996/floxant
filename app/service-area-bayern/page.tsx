@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "service-area-bayern",
     title: "Servicegebiet Bayern | FLOXANT in Regensburg und ganz Bayern",
     description:
-      "FLOXANT plant Umzug, Reinigung, Entruempelung und Bueroumzug ab Regensburg in Bayern. Regionen, Staedte, Bezirke und direkte Kontaktwege klar eingeordnet.",
+      "FLOXANT plant Umzug, Reinigung, Entruempelung und Bueroumzug ab Regensburg in Regensburg. Regionen, Staedte, Bezirke und direkte Kontaktwege klar eingeordnet.",
   });
 }
 
@@ -97,7 +97,7 @@ export default async function ServiceAreaBayern() {
         "@type": "ItemList",
         name: "FLOXANT Bayern Service-Intentionen",
         description:
-          "Direkte Bayern-Pfade fuer Maps- und Suchanfragen nach Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung, Bueroumzug und Gewerbereinigung.",
+          "Direkte Regensburg-Pfade fuer Maps- und Suchanfragen nach Umzug, Reinigung, Entruempelung, Entsorgung, Lagerung, Bueroumzug und Gewerbereinigung.",
         itemListElement: BAVARIA_MAPS_SERVICE_INTENTS.map((intent, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -115,9 +115,9 @@ export default async function ServiceAreaBayern() {
       desc:
         "Die Regensburger Basis mit kurzer Abstimmung fuer Umzug, Reinigung, Entruempelung und Bueroumzug.",
       links: [
-        { href: "/umzug-regensburg", label: "Umzug Regensburg" },
-        { href: "/reinigung-regensburg", label: "Reinigung Regensburg" },
-        { href: "/entruempelung-regensburg", label: "Entruempelung Regensburg" },
+        { href: "/regensburg/umzug", label: "Umzug Regensburg" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+        { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
         { href: "/bueroumzug-regensburg", label: "Bueroumzug Regensburg" },
       ],
     },
@@ -127,7 +127,7 @@ export default async function ServiceAreaBayern() {
         "Wichtige Nachfrage-Region fuer Umzuege, Entruempelung, Bueroumzug und kurzfristige Anfragen im erweiterten Einsatzraum.",
       links: [
         { href: "/umzug-nuernberg", label: "Umzug Nuernberg" },
-        { href: "/reinigung-nuernberg", label: "Reinigung Nuernberg" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
         { href: "/entruempelung-nuernberg", label: "Entruempelung Nuernberg" },
         { href: "/bueroumzug-nuernberg", label: "Bueroumzug Nuernberg" },
       ],
@@ -138,7 +138,7 @@ export default async function ServiceAreaBayern() {
         "Starker Ausbaukorridor fuer Umzug, Objektservice und kombinierte Leistungen mit klarer wirtschaftlicher Einordnung.",
       links: [
         { href: "/umzug-muenchen", label: "Umzug Muenchen" },
-        { href: "/reinigung-muenchen", label: "Reinigung Muenchen" },
+        { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
         { href: "/entruempelung-muenchen", label: "Entruempelung Muenchen" },
         { href: "/bueroumzug-muenchen", label: "Bueroumzug Muenchen" },
       ],
@@ -231,7 +231,7 @@ export default async function ServiceAreaBayern() {
 
   const hubLinks = [
     { href: "/umzug-bayern", label: "Umzug Bayern" },
-    { href: "/reinigung-bayern", label: "Reinigung Bayern" },
+    { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
     { href: "/entruempelung-bayern", label: "Entruempelung Bayern" },
     { href: "/bueroumzug-bayern", label: "Bueroumzug Bayern" },
     { href: "/standorte", label: "Standorte in Bayern" },
@@ -272,7 +272,7 @@ export default async function ServiceAreaBayern() {
 
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
               FLOXANT arbeitet mit Schwerpunkt Regensburg und prüft Anfragen für Umzug,
-              Reinigung, Entrümpelung und Büroumzug in Bayern nach Strecke, Umfang, Termin
+              Reinigung, Entrümpelung und Büroumzug in Regensburg nach Strecke, Umfang, Termin
               und Zugang. Diese Seite zeigt, welche Region und welcher Startpunkt zu Ihrem Fall passt.
             </p>
 
@@ -357,6 +357,7 @@ export default async function ServiceAreaBayern() {
                 <div className="mt-5 flex flex-wrap gap-2">
                   <Link
                     href={intent.primary.href}
+                    prefetch={false}
                     className="rounded-full bg-blue-600 px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-white"
                   >
                     {intent.primary.label}
@@ -365,6 +366,7 @@ export default async function ServiceAreaBayern() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      prefetch={false}
                       className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
                     >
                       {item.label}
@@ -386,7 +388,7 @@ export default async function ServiceAreaBayern() {
               className="card-premium rounded-[1.9rem] p-6 transition-all hover:-translate-y-1 hover:border-blue-300/30"
             >
               <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">
-                Passender nächster Schritt
+                So geht es weiter
               </div>
               <h2 className="mt-3 text-2xl font-bold text-slate-950">{item.title}</h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">{item.text}</p>
@@ -436,6 +438,7 @@ export default async function ServiceAreaBayern() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="rounded-[1.15rem] border border-slate-200 bg-white px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
               >
                 {item.label}
@@ -472,6 +475,7 @@ export default async function ServiceAreaBayern() {
                     <Link
                       key={link.href}
                       href={link.href}
+                      prefetch={false}
                       className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white/86 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/80 hover:text-slate-950"
                     >
                       <span>{link.label}</span>
@@ -535,6 +539,7 @@ export default async function ServiceAreaBayern() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="card-premium rounded-[1.6rem] p-5 transition-all hover:-translate-y-1 hover:border-blue-300/30"
               >
                 <div className="text-[10px] font-black uppercase tracking-[0.16em] text-blue-700">

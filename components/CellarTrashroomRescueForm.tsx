@@ -83,7 +83,7 @@ const areaCards = [
   {
     value: "mehrere Bereiche",
     title: "Mehrere Nebenflaechen",
-    text: "Bei Hausverwaltung, WEG oder Gewerbe lohnt sich eine strukturierte Objektanfrage.",
+    text: "Bei Hausverwaltung, WEG oder Gewerbe lohnt sich eine Objektanfrage mit klaren Eckdaten.",
     recommendation: "Objektflaechen-Check",
     Icon: CheckCircle2,
   },

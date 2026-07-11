@@ -78,7 +78,7 @@ const serviceLinks = [
     title: "Umzug in Regensburg und Umgebung",
     text:
       "Privatumzug, Transport, Etagen, Zugang, Reinigung und Schluesselthemen werden aus Regensburg heraus geplant.",
-    href: "/umzug-regensburg",
+    href: "/regensburg/umzug",
     cta: "Umzug anfragen",
     Icon: Truck,
   },
@@ -86,7 +86,7 @@ const serviceLinks = [
     title: "Reinigung nahe Regensburg",
     text:
       "Endreinigung, Auszugsreinigung und Wohnungsuebergabe sind besonders stark, wenn Fotos, Flaeche und Termin frueh vorliegen.",
-    href: "/reinigung-regensburg",
+    href: "/regensburg/reinigung",
     cta: "Reinigung pruefen",
     Icon: Sparkles,
   },
@@ -94,7 +94,7 @@ const serviceLinks = [
     title: "Entruempelung mit Fotoeinschaetzung",
     text:
       "Wohnung, Keller, Garage, Restmengen oder Nachlass koennen besser eingeordnet werden, wenn Zugang, Etage und Fotos sichtbar sind.",
-    href: "/entruempelung-regensburg",
+    href: "/regensburg/entruempelung",
     cta: "Entruempelung einschaetzen",
     Icon: Trash2,
   },
@@ -173,7 +173,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "einsatzgebiet-regensburg-200km",
     title: "Servicegebiet Regensburg und Umgebung | FLOXANT",
     description:
-      "FLOXANT arbeitet mit Regensburg als Kern: Umzug, Reinigung, Entruempelung und Transport in der Umgebung bis ca. 200 km und Bayern nach Verfuegbarkeit.",
+      "FLOXANT arbeitet mit Regensburg als Kern: Umzug, Reinigung, Entruempelung und Transport in der Umgebung bis ca. 200 km und Regensburg nach Verfuegbarkeit.",
   });
 }
 
@@ -212,7 +212,7 @@ export default async function RegensburgServiceArea200KmPage() {
       buildServiceJsonLd({
         name: "FLOXANT Servicegebiet Regensburg und Umgebung",
         description:
-          "Umzug, Reinigung, Entruempelung und Transport aus Regensburg heraus mit Umgebung bis ca. 200 km und Bayern nach Verfuegbarkeit.",
+          "Umzug, Reinigung, Entruempelung und Transport aus Regensburg heraus mit Umgebung bis ca. 200 km und Regensburg nach Verfuegbarkeit.",
         path: pagePath,
         serviceType: "Servicegebiet fuer Umzug, Reinigung, Entruempelung und Transport",
         areaServed: [

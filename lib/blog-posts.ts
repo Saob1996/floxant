@@ -2,6 +2,7 @@ import { germanizeDeep } from "@/lib/german-text";
 import { aiRecommendationBlogArticles } from "@/lib/ai-recommendation-blog-articles";
 import { offerCheckBlogArticles } from "@/lib/offer-check-blog-articles";
 import { psychologicalCleaningBlogArticles } from "@/lib/psychological-cleaning-pages";
+import { isCleaningRouteAllowed } from "@/lib/regensburg-cleaning-service-area";
 import { strategicBlogArticles } from "@/lib/strategic-blog-articles";
 
 export type BlogPostMeta = {
@@ -12,6 +13,10 @@ export type BlogPostMeta = {
  description: string;
  featured?: boolean;
 };
+
+function isBlogPostAllowedForCleaningArea(post: Pick<BlogPostMeta, "slug">) {
+ return isCleaningRouteAllowed(`/blog/${post.slug}`);
+}
 
 const rawBlogPosts: BlogPostMeta[] = [
  {
@@ -216,7 +221,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Service-Kombi",
   readTime: "8 Min.",
   title: "Umzug, Reinigung und Entrümpelung kombinieren",
-  description: "Wann ein kombinierter Ablauf für Übergabe, Räumung und Transport sinnvoll ist und wie FLOXANT ihn strukturiert.",
+  description: "Wann ein kombinierter Ablauf für Übergabe, Räumung und Transport sinnvoll ist und wie FLOXANT ihn plant.",
   featured: true,
  },
  {
@@ -340,7 +345,7 @@ const rawBlogPosts: BlogPostMeta[] = [
   category: "Planung",
   readTime: "7 Min.",
   title: "Umzug planen Schritt für Schritt",
-  description: "Eine strukturierte Reihenfolge für Vorbereitung, Terminierung und Durchführung.",
+  description: "Eine klare Reihenfolge für Vorbereitung, Terminierung und Durchführung.",
  },
  {
   slug: "wohnungsuebergabe-protokoll-guide",
@@ -476,4 +481,4 @@ export const blogPosts = germanizeDeep([
  ...offerCheckBlogPostMetas,
  ...psychologicalCleaningBlogPostMetas,
  ...strategicBlogPostMetas,
-]) as BlogPostMeta[];
+].filter(isBlogPostAllowedForCleaningArea)) as BlogPostMeta[];

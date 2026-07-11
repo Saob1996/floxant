@@ -20,7 +20,7 @@ const standardServices = [
 ];
 
 const duesseldorfServices = [
-  { value: "reinigung", label: "Düsseldorf Reinigung" },
+  { value: "reinigung", label: "Reinigung Regensburg" },
   { value: "entsorgung", label: "Düsseldorf Entsorgung" },
 ];
 
@@ -33,7 +33,7 @@ const situationOptions = [
   "Termin unklar",
   "Möchte Alternative",
   "Direkte zweite Einschätzung",
-  "Düsseldorf Reinigung/Entsorgung prüfen",
+  "Reinigung Regensburg/Entsorgung prüfen",
 ];
 
 const platformOptions = [
@@ -86,7 +86,7 @@ export function PlatformOrderCheckForm() {
 
   const whatsappText = useMemo(() => {
     const duesseldorfText =
-      "Hallo FLOXANT, ich habe bereits über eine Plattform oder einen anderen Anbieter angefragt. Es geht um Reinigung/Entsorgung in Düsseldorf. Angebot/Screenshot/Fotos/Preis kann ich senden.";
+      "Hallo FLOXANT, ich habe bereits über eine Plattform oder einen anderen Anbieter angefragt. Es geht um Reinigung/Entsorgung in Regensburg. Angebot/Screenshot/Fotos/Preis kann ich senden.";
     const standardText =
       "Hallo FLOXANT, ich habe bereits über eine Plattform oder einen anderen Anbieter angefragt und möchte den Auftrag prüfen lassen. Es geht um [Service] in [Ort]. Angebot/Screenshot/Fotos/Preis kann ich senden.";
     return encodeURIComponent(region === "duesseldorf" ? duesseldorfText : standardText);
@@ -94,9 +94,9 @@ export function PlatformOrderCheckForm() {
 
   function updateRegion(nextRegion: string) {
     setRegion(nextRegion);
-    if (nextRegion === "duesseldorf" && !["reinigung", "entsorgung"].includes(service)) {
+    if (nextRegion === "regensburg" && !["reinigung", "entsorgung"].includes(service)) {
       setService("reinigung");
-      setPlatformSituation("Düsseldorf Reinigung/Entsorgung prüfen");
+      setPlatformSituation("Reinigung Regensburg/Entsorgung prüfen");
     }
   }
 
@@ -247,7 +247,7 @@ export function PlatformOrderCheckForm() {
               <option value="regensburg">Regensburg</option>
               <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="duesseldorf">Düsseldorf: Reinigung/Entsorgung</option>
+              <option value="regensburg">Regensburg: Reinigung/Entsorgung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">

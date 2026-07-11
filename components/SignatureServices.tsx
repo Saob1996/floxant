@@ -36,7 +36,7 @@ export type SignatureServiceId =
   | "short_notice"
   | "plan_b_service"
   | "premium_discreet"
-  | "duesseldorf_b2b_cleaning"
+  | "regensburg_b2b_cleaning"
   | "duesseldorf_disposal";
 
 type ServiceContent = {
@@ -193,10 +193,10 @@ export const signatureServiceCatalog: Readonly<Record<SignatureServiceId, Signat
     icon: Shield,
     accent: "from-slate-950 via-blue-900 to-amber-500",
   },
-  duesseldorf_b2b_cleaning: {
-    title: "Firmenreinigung Düsseldorf",
+  regensburg_b2b_cleaning: {
+    title: "Firmenreinigung Regensburg",
     desc: "Für kleine Unternehmen, Büros, Agenturen, Studios, Kanzleien und Gewerbeflächen, wenn Fläche, Turnus, Zeitfenster und Zugang klar geprüft werden sollen.",
-    href: "/duesseldorf/bueroreinigung",
+    href: "/regensburg/bueroreinigung",
     label: "Firmenreinigung",
     eyebrow: "Düsseldorf",
     icon: BriefcaseBusiness,
@@ -243,7 +243,7 @@ const signatureIconBackgrounds = Object.freeze({
   short_notice: "linear-gradient(135deg, #f59e0b 0%, #f97316 54%, #f87171 100%)",
   plan_b_service: "linear-gradient(135deg, #020617 0%, #0e7490 54%, #f59e0b 100%)",
   premium_discreet: "linear-gradient(135deg, #020617 0%, #1e3a8a 55%, #f59e0b 100%)",
-  duesseldorf_b2b_cleaning: "linear-gradient(135deg, #0d9488 0%, #06b6d4 55%, #2563eb 100%)",
+  regensburg_b2b_cleaning: "linear-gradient(135deg, #0d9488 0%, #06b6d4 55%, #2563eb 100%)",
   duesseldorf_disposal: "linear-gradient(135deg, #ea580c 0%, #f59e0b 55%, #334155 100%)",
 } satisfies Record<SignatureServiceId, string>);
 

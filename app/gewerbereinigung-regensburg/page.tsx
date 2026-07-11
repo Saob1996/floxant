@@ -22,6 +22,8 @@ import { CommercialCleaningScopeSelector } from "@/components/CommercialCleaning
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { InternationalCustomerHint } from "@/components/conversion";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { RecurringCleaningHint } from "@/components/RecurringCleaningHint";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningConversionLift } from "@/components/RegensburgCleaningConversionLift";
@@ -29,6 +31,10 @@ import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCle
 import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
 import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
 import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
+import { ServiceAreaBlock } from "@/components/cleaning-seo/ServiceAreaBlock";
 import { company } from "@/lib/company";
 import {
   regensburgCleaningBuyerPaths,
@@ -37,6 +43,7 @@ import {
   regensburgCleaningServices,
   regensburgCleaningSnippetFaqs,
 } from "@/lib/regensburg-cleaning-services";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 import { generatePageSEO } from "@/lib/seo";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
@@ -138,6 +145,7 @@ export async function generateMetadata(): Promise<Metadata> {
 /* ------------------------------------------------------------------ */
 
 export default function GewerbereinigungRegensburgPage() {
+  const cleaningAreaServed = buildRegensburgCleaningAreaServedJsonLd();
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -153,7 +161,7 @@ export default function GewerbereinigungRegensburgPage() {
         path: "/regensburg/gewerbereinigung",
         serviceType:
           "Gewerbereinigung, Unterhaltsreinigung, Büroreinigung, Praxisreinigung und Objektservice in Regensburg",
-        areaServed: ["Regensburg", "Altstadt Regensburg", "Innenstadt Regensburg", "Kumpfmühl", "Galgenberg", "Gewerbepark Regensburg", "Neutraubling", "Barbing", "Lappersdorf", "Wenzenbach"],
+        areaServed: cleaningAreaServed,
         availableLanguage: ["de", "en"],
       }),
       buildWebPageJsonLd({
@@ -359,8 +367,27 @@ export default function GewerbereinigungRegensburgPage() {
       <CommercialCleaningScopeSelector city="regensburg" />
       <EffortFactorsPanel group="b2b" />
       <BusinessTrustPanel />
+      <RequestBriefChecklistBlock
+        serviceKey="gewerbereinigung"
+        ctaHref="#kontaktformular"
+        ctaLabel="Objektdaten als Anfragebrief vorbereiten"
+        compact
+      />
+      <PhotoGuidanceBlock serviceKey="gewerbereinigung" compact />
 
       <RegensburgCleaningServiceHub />
+      <ServiceAreaBlock
+        title="Gewerbereinigung im Regensburger 50-km-Servicegebiet"
+        intro="FLOXANT ordnet gewerbliche Reinigung für Regensburg und den Umkreis bis 50 km ein. Der Fokus liegt auf realistischen Randzeiten, Zugang, Raumliste, Turnus und Ansprechpartnern."
+      />
+      <LocalTrustBlock ctaHref="#kontaktformular" ctaLabel="Gewerbereinigung anfragen" />
+      <RequestChecklistBlock ctaHref="#kontaktformular" ctaLabel="Objektdaten vorbereiten" />
+      <RelatedServicesBlock
+        currentHref="/regensburg/gewerbereinigung"
+        title="Weitere Reinigungsseiten zur Gewerbereinigung"
+        intro="Diese Links führen von Gewerbereinigung zu Hub, Büroreinigung, Unterhalt, Praxis, Treppenhaus und Angebotsprüfung im Regensburger Cluster."
+        limit={5}
+      />
       <RegensburgCleaningConversionLift />
       <RegensburgCleaningClickDecisionPanel />
       <RegensburgCleaningLocalSignals />
@@ -514,7 +541,7 @@ export default function GewerbereinigungRegensburgPage() {
               Regensburg und Umgebung klar im Fokus.
             </h2>
             <p className="mt-4 text-base leading-8 text-slate-700">
-              FLOXANT ist kein bundesweiter Reinigungskonzern, sondern ein regional
+              FLOXANT ist kein anonymer Reinigungskonzern, sondern ein regional
               geführtes Unternehmen mit Sitz und festen Abläufen in Regensburg. Das macht
               Abstimmung, Erreichbarkeit und Reaktionszeit verlässlicher als bei
               überregionalen Anbietern.

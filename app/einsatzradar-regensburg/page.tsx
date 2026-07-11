@@ -42,7 +42,7 @@ export default function EinsatzradarRegensburgPage() {
       buildWebPageJsonLd({
         name: "FLOXANT Einsatzradar Regensburg",
         description:
-          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege fuer FLOXANT im Raum Regensburg und getrennt fuer Duesseldorf Reinigung/Entsorgung.",
+          "Typische Einsatzarten, grobe Servicezonen und passende Kontaktwege fuer FLOXANT im Raum Regensburg und getrennt fuer Reinigung Regensburg/Entsorgung.",
         path,
         about: [
           "Einsatzradar",
@@ -66,7 +66,7 @@ export default function EinsatzradarRegensburgPage() {
           "Typische Einsatzarten fuer Umzug, Reinigung, Entruempelung, Transport, Uebergabe, Rueckfahrt und Objektvorbereitung im Raum Regensburg.",
         path,
         serviceType: "Einsatzarten und Servicezonen fuer FLOXANT Regensburg",
-        areaServed: ["Regensburg", "Umgebung Regensburg", "Bayern nach Verfuegbarkeit", "Duesseldorf Reinigung und Entsorgung"],
+        areaServed: ["Regensburg", "Umgebung Regensburg", "Regensburg nach Verfuegbarkeit", "Reinigung Regensburg und Entsorgung"],
       }),
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
@@ -181,7 +181,7 @@ export default function EinsatzradarRegensburgPage() {
                 "Keine personenbezogenen Fotos ohne Freigabe",
                 "Keine Live- oder Heute-Behauptung",
                 "Nur grobe Regionen",
-                "Düsseldorf getrennt fuer Reinigung/Entsorgung",
+                "Regensburg getrennt fuer Reinigung/Entsorgung",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 rounded-[1rem] border border-blue-100 bg-blue-50/70 px-4 py-3 text-sm font-bold leading-6 text-blue-950">
                   <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-blue-700" />

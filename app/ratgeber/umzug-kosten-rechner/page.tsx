@@ -52,18 +52,18 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Grenzen von Online-Rechnern</h2>
-            <p className="text-muted-foreground leading-relaxed">Online-Rechner können individuelle Faktoren wie Zufahrtsschwierigkeiten, Treppenhaus-Breite oder Balkon-Ausfädelung nicht berücksichtigen. Deshalb empfehlen wir immer eine kostenlose Vor-Ort-Besichtigung.</p>
+            <p className="text-muted-foreground leading-relaxed">Online-Rechner können individuelle Faktoren wie Zufahrtsschwierigkeiten, Treppenhaus-Breite oder Balkon-Ausfädelung nicht vollständig berücksichtigen. Ergänzen Sie deshalb möglichst genaue Angaben und Fotos.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Unser Ansatz</h2>
-            <p className="text-muted-foreground leading-relaxed">FLOXANT bietet nach einer persönlichen Besichtigung einen verbindlichen Festpreis an. So haben Sie volle Kostensicherheit ohne Nachverhandlungen.</p>
+            <p className="text-muted-foreground leading-relaxed">FLOXANT prüft Umfang, Zugänge, Strecke, Termin und Zusatzleistungen. Erst danach kann ein konkretes Angebot für Ihren Auftrag entstehen.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
             <div className="space-y-4">
               {[
               { q: "Sind Online-Umzugsrechner genau?", a: "Sie geben eine grobe Orientierung. Für einen verbindlichen Preis ist eine Besichtigung vor Ort nötig." },
-              { q: "Bietet FLOXANT eine kostenlose Besichtigung an?", a: "Ja. Die Besichtigung ist kostenlos und unverbindlich." }
+              { q: "Wie erhalte ich einen belastbaren Preis?", a: "Senden Sie uns die wichtigsten Angaben zu Umfang, Zugängen, Entfernung und gewünschten Leistungen. Falls nötig, stimmen wir anschließend eine genauere Prüfung mit Ihnen ab." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">
                   <h3 className="font-bold mb-2">{item.q}</h3>

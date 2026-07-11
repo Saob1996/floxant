@@ -25,14 +25,14 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
     <section className="px-4 py-12 sm:px-6" data-component="ServicePackageSelector">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
-          <div className="text-xs font-black uppercase tracking-normal text-blue-700">Service-Pakete</div>
+          <div className="text-xs font-black uppercase tracking-normal text-blue-700">Leistungen nach Situation</div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
             {germanText(title || fallback?.title || "Passenden Service-Pfad wählen", title || fallback?.title || "Passenden Service-Pfad wählen")}
           </h2>
           <p className="mt-3 text-base leading-8 text-slate-700">
             {germanText(
-              intro || fallback?.intro || "Die Paketlogik hilft, aus einer groben Anfrage einen klareren nächsten Schritt zu machen.",
-              intro || fallback?.intro || "Die Paketlogik hilft, aus einer groben Anfrage einen klareren nächsten Schritt zu machen.",
+              intro || fallback?.intro || "Wählen Sie die Leistung, die zu Ihrer Situation und dem gewünschten Ergebnis passt.",
+              intro || fallback?.intro || "Wählen Sie die Leistung, die zu Ihrer Situation und dem gewünschten Ergebnis passt.",
             )}
           </p>
         </div>
@@ -55,9 +55,6 @@ export function ServicePackageSelector({ groups, title, intro, limit }: ServiceP
                     </div>
                     <h3 className="mt-2 text-xl font-black tracking-normal text-slate-950">{germanText(item.title, item.title)}</h3>
                   </div>
-                  <span className="rounded-md border border-blue-100 bg-blue-50 px-2 py-1 text-[10px] font-black uppercase text-blue-800">
-                    {item.priority.toUpperCase()}
-                  </span>
                 </div>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{germanText(item.shortDescription, item.shortDescription)}</p>
 

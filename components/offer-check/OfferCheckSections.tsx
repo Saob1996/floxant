@@ -69,7 +69,7 @@ const processSteps = germanizeDeep([
   "Angebot, Preis oder Situation beschreiben",
   "Fotos oder Dateien optional senden",
   "Leistung und Ort angeben",
-  "FLOXANT strukturiert Umfang, Aufwand und offene Punkte",
+  "FLOXANT prüft Umfang, Aufwand und offene Punkte",
   "Einschaetzung, Rueckfragen oder passende Alternative erhalten",
 ] as const);
 
@@ -123,10 +123,10 @@ const internalLinks = germanizeDeep([
   { href: "/umzug", label: "Umzug", text: "Volumen, Strecke und Zusatzleistungen einordnen" },
   { href: "/entruempelung", label: "Entruempelung", text: "Menge, Material und Zugang klaeren" },
   { href: "/solarreinigung", label: "Solarreinigung", text: "PV-Angebot und Zugang pruefen" },
-  { href: "/duesseldorf", label: "Duesseldorf", text: "lokale Reinigungs- und Servicewege" },
+  { href: "/regensburg", label: "Regensburg", text: "lokale Reinigung und weitere Leistungen" },
   { href: "/regensburg", label: "Regensburg", text: "lokaler Schwerpunkt und Umgebung nach Machbarkeit" },
   { href: "/signature-services", label: "Signature Services", text: "Fairpreis, Objektbrief, Plan B und Rueckfahrt" },
-  { href: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf", label: "Blog: Reinigungsangebot", text: "Fläche, Zustand und Uebergabe verstehen" },
+  { href: "/blog/reinigungsangebot-pruefen-regensburg", label: "Blog: Reinigungsangebot", text: "Fläche, Zustand und Uebergabe verstehen" },
 ] as const);
 
 const trustItems = germanizeDeep([
@@ -136,21 +136,21 @@ const trustItems = germanizeDeep([
   },
   {
     title: "Klare Grenzen",
-    text: "Keine Rechtsberatung, keine Preisgarantie, keine Bewertung fremder Anbieter und keine Google-Maps-Rankingversprechen.",
+    text: "Keine Rechtsberatung, keine Preisgarantie und keine pauschale Bewertung fremder Anbieter.",
   },
   {
     title: "Schneller Start mit wenigen Angaben",
     text: "Name, Kontakt, Ort, Service und eine kurze Beschreibung reichen. Angebot, Preis und Fotos bleiben optional.",
   },
   {
-    title: "Passender naechster Schritt",
-    text: "Je nach Situation fuehrt FLOXANT zu Rueckfrage, normaler Anfrage, Plan B, Objektbrief oder passender Service-Seite.",
+    title: "So geht es weiter",
+    text: "Je nach Situation folgt eine Rückfrage, eine normale Anfrage, Plan B, der Objektbrief oder die passende Leistungsseite.",
   },
 ] as const);
 
 const relatedBlogs = germanizeDeep([
   {
-    href: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf",
+    href: "/blog/reinigungsangebot-pruefen-regensburg",
     title: "Reinigungsangebot pruefen",
     text: "Flaeche, Zustand, Fotos, Termin und Uebergabeziel vor der Zusage einordnen.",
   },
@@ -183,13 +183,13 @@ const relatedBlogs = germanizeDeep([
 
 const localLinks = germanizeDeep([
   {
-    href: "/duesseldorf",
-    title: "Duesseldorf Hub",
-    text: "Lokale Wege fuer Reinigung, Gewerbe, Umzug, Entruempelung und Angebotspruefung.",
+    href: "/regensburg",
+    title: "Regensburg Hub",
+    text: "Lokale Wege fuer Reinigung, Gewerbe, Umzug, Entruempelung und Angebotsprüfung.",
   },
   {
-    href: "/angebot-vergleichen-duesseldorf",
-    title: "Reinigungsangebot Duesseldorf",
+    href: "/angebot-vergleichen-regensburg",
+    title: "Reinigungsangebot Regensburg",
     text: "Turnus, Objektart, Stadtteil, Fotos und Preisrahmen lokal einordnen.",
   },
   {
@@ -269,7 +269,7 @@ export function OfferCheckHero({
             </Link>
           </div>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-black text-slate-200">
-            {["keine Rechtsberatung", "keine Preisgarantie", "Düsseldorf und Regensburg", "nur echter Submit löst API aus"].map((item) => (
+            {["keine Rechtsberatung", "keine Preisgarantie", "Düsseldorf und Regensburg", "Anfrage erst nach dem Absenden"].map((item) => (
               <span key={item} className="rounded-md border border-white/12 bg-white/10 px-3 py-2">{germanText(item, item)}</span>
             ))}
           </div>
@@ -611,7 +611,7 @@ export function OfferCheckAuthoritySections({ className = "" }: { className?: st
       />
       <section className="bg-slate-50 px-5 py-12 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-4 lg:grid-cols-3">
-          <VisualServiceShape title="Service-Cluster für Angebotsprüfung" />
+          <VisualServiceShape title="Leistungen für die Angebotsprüfung" />
           <BeforeAfterCard title="Before/After als neutrales Prüfvisual" />
           <BlogInsightGraphic title="Blogartikel als Entscheidungshilfe" />
         </div>

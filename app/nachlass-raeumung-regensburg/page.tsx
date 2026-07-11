@@ -98,7 +98,7 @@ const audiences = [
   {
     title: "Fuer Erben / Erbengemeinschaften",
     problem: "Mehrere Personen muessen Freigabe, Umfang, Zugang und naechste Nutzung klaeren.",
-    benefit: "Fotos, Objektstatus, Leistungen und optionale Dokumentation werden strukturiert abgefragt.",
+    benefit: "Fotos, Objektstatus, Leistungen und optionale Dokumentation werden konkret abgefragt.",
     cta: "Nachlass-Objekt pruefen lassen",
     Icon: FileCheck2,
   },
@@ -238,7 +238,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist der Service moeglich?",
-    a: "Regensburg ist der feste Ausgangspunkt. Umgebung Regensburg und Bayern werden nach Verfuegbarkeit geprueft. Duesseldorf bleibt getrennt auf Reinigung und Entsorgung begrenzt.",
+    a: "Regensburg ist der feste Ausgangspunkt. Reinigung wird nur in Regensburg und im Umkreis bis 50 km geprueft; weitere Leistungen werden nach Verfuegbarkeit getrennt bewertet.",
   },
 ];
 
@@ -291,7 +291,7 @@ export default function NachlassRaeumungRegensburgPage() {
                 FLOXANT Diskret-Modus
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-[-0.045em] text-stone-950 sm:text-5xl lg:text-6xl">
-                Nachlass-Raeumung in Regensburg - diskret, ruhig und strukturiert
+                Nachlass-Raeumung in Regensburg - diskret, ruhig und mit klaren Angaben
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
                 Wenn nach einem Erbfall eine Wohnung, ein Haus, Keller oder Nebenraeume geraeumt und gereinigt werden muessen,
@@ -517,7 +517,7 @@ export default function NachlassRaeumungRegensburgPage() {
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {relatedLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-stone-400 hover:bg-white">
+                <Link key={item.href} href={item.href} prefetch={false} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-stone-400 hover:bg-white">
                   {item.label}
                   <ArrowRight className="h-4 w-4" />
                 </Link>

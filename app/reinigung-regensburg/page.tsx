@@ -5,9 +5,16 @@ import { RegensburgCleaningClickDecisionPanel } from "@/components/RegensburgCle
 import { RegensburgCleaningLocalSignals } from "@/components/RegensburgCleaningLocalSignals";
 import { RegensburgCleaningServiceHub } from "@/components/RegensburgCleaningServiceHub";
 import { RegensburgCleaningSnippetAnswers } from "@/components/RegensburgCleaningSnippetAnswers";
+import { CleaningProcessBlock } from "@/components/cleaning-seo/CleaningProcessBlock";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
+import { ServiceAreaBlock } from "@/components/cleaning-seo/ServiceAreaBlock";
 import { InternationalCustomerHint } from "@/components/conversion";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePackageSelector } from "@/components/ServicePackageSelector";
@@ -28,6 +35,7 @@ import {
     buildServiceJsonLd,
     buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
 
 interface PageProps {
@@ -37,10 +45,10 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     return generatePageSEO({
         lang: "de",
-        path: "reinigung-regensburg",
-        title: "Reinigung Regensburg mit Objekt, Termin und Angebot",
+        path: "regensburg/reinigung",
+        title: "Gebäudereinigung Regensburg mit Objekt und Angebot",
         description:
-            "Reinigung Regensburg anfragen: Objekt, Flaeche, Zustand, Fotos, Termin, Zielzustand und vorhandenes Angebot strukturiert klaeren.",
+            "Reinigung Regensburg anfragen: Objekt, Fläche, Zustand, Fotos, Termin, Zielzustand und Angebot im 50-km-Umkreis klären.",
     });
 }
 
@@ -56,6 +64,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
         baseKey: "reinigung_spec",
         city: "Regensburg",
     });
+    const cleaningAreaServed = buildRegensburgCleaningAreaServedJsonLd();
 
     const jsonLd = {
         "@context": "https://schema.org",
@@ -72,20 +81,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                 path: "/regensburg/reinigung",
                 serviceType:
                     "Reinigungsfirma, Putzfirma, Gebäudereinigung, Gewerbereinigung und Spezialreinigung in Regensburg",
-                areaServed: [
-                    "Regensburg",
-                    "Altstadt Regensburg",
-                    "Innenstadt Regensburg",
-                    "Kumpfmühl",
-                    "Galgenberg",
-                    "Gewerbepark Regensburg",
-                    "Neutraubling",
-                    "Barbing",
-                    "Lappersdorf",
-                    "Wenzenbach",
-                    "Oberpfalz",
-                    "Bayern",
-                ],
+                areaServed: cleaningAreaServed,
                 availableLanguage: ["de", "en"],
             }),
             buildWebPageJsonLd({
@@ -115,8 +111,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     "Wohnungsübergabe Reinigung",
                     "kurzfristige Reinigung Regensburg",
                     "Regensburg",
-                    "Oberpfalz",
-                    "Bayern",
+                    "Regensburg plus 50 km",
                 ],
                 potentialActions: [
                     { name: "Reinigung in Regensburg anfragen", target: "/buchung?service=reinigung&city=regensburg#buchungssystem", type: "ContactAction" },
@@ -199,10 +194,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     latitude: company.geo.lat,
                     longitude: company.geo.lng,
                 },
-                areaServed: company.primaryServiceAreas.map((area) => ({
-                    "@type": "AdministrativeArea",
-                    name: area,
-                })),
+                areaServed: cleaningAreaServed,
                 knowsAbout: [
                     "Reinigung Regensburg",
                     "Reinigungsfirma Regensburg",
@@ -216,6 +208,7 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     "Angebot Reinigung",
                     "Angebot für Reinigungsarbeiten",
                     "Reinigung nach Umzug",
+                    "Reinigung Regensburg plus 50 km",
                     "Schlüsselübergabeprotokoll Reinigungsfirma",
                 ],
                 sameAs: company.sameAs,
@@ -277,12 +270,37 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
             >
                 <InternationalCustomerHint
                     cityLabel="Regensburg"
-                    serviceLabel="Reinigung, Büroreinigung, Grundreinigung oder Übergabereinigung"
-                    tags={["Cleaning service", "Office cleaning", "Apartment cleaning", "End of tenancy cleaning", "Photos welcome"]}
+                    serviceLabel="Reinigung, Büroreinigung, Solarreinigung, PV-Anlagen-Reinigung oder Übergabereinigung"
+                    tags={["Cleaning service", "Office cleaning", "Solar panel cleaning", "PV cleaning", "Photos welcome"]}
                     primaryHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
                     photoHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
                     offerHref="/angebot-guenstiger-pruefen#guenstiger-form"
                 />
+                <section className="mx-auto my-10 max-w-6xl rounded-lg border border-cyan-100 bg-cyan-50 p-5 text-slate-950">
+                    <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Solarreinigung Regensburg</p>
+                    <h2 className="mt-3 text-2xl font-black tracking-normal">
+                        PV-Anlage, Dachzugang und Verschmutzung vorab beschreiben.
+                    </h2>
+                    <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
+                        Für Solarreinigung oder PV-Anlagen-Reinigung in Regensburg helfen Ort, Dachart, Zugang,
+                        ungefähre Modulfläche, sichtbare Verschmutzung und Fotos. FLOXANT ordnet Anfrage oder Angebot
+                        anhand dieser Eckdaten ein. Ertrag, Preis und Termin werden dadurch nicht zugesagt.
+                    </p>
+                    <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                        <a
+                            href="/regensburg/solarreinigung"
+                            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
+                        >
+                            Solarreinigung Regensburg ansehen
+                        </a>
+                        <a
+                            href="/kontakt?service=solarreinigung&city=regensburg&intent=solarreinigung-angebot-pruefen&source=seo"
+                            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-4 text-sm font-black text-slate-950"
+                        >
+                            Solarreinigungsangebot prüfen
+                        </a>
+                    </div>
+                </section>
                 <ServicePackageSelector groups="reinigung" limit={4} />
                 <EffortFactorsPanel group="reinigung" limit={6} />
                 <TrustProofPanel
@@ -290,12 +308,41 @@ export default async function ReinigungRegensburgPage({ params }: PageProps) {
                     serviceKey="reinigung"
                     locationKey="regensburg"
                     title="Reinigung Regensburg mit sichtbarer Proof-Logik."
-                    intro="Flaeche, Zustand, Fotos, Zugang, Turnus und Zielzustand machen die Rueckmeldung belastbarer. Bewertungen, Sterne und Ergebnisse werden nicht erfunden."
+                    intro="Fläche, Zustand, Fotos, Zugang, Turnus und Zielzustand machen die R?ckmeldung belastbarer. Bewertungen, Sterne und Ergebnisse werden nicht erfunden."
                 />
                 <ServiceProofChecklist serviceKey="reinigung" />
+                <RequestBriefChecklistBlock
+                    serviceKey="reinigung"
+                    ctaHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
+                    ctaLabel="Anfragebrief vorbereiten"
+                    compact
+                />
+                <PhotoGuidanceBlock serviceKey="reinigung" compact />
                 <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
                 <LocalProofPanel location="regensburg" />
                 <RegensburgCleaningServiceHub />
+                <ServiceAreaBlock
+                    title="Reinigungs-Servicegebiet Regensburg bis 50 km"
+                    intro="Der Reinigungshub bündelt Regensburg, Stadtteile und Orte im Umkreis bis 50 km. Weiter entfernte Orte werden nicht als eigene Reinigungsziele aufgebaut."
+                />
+                <LocalTrustBlock
+                    ctaHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
+                    ctaLabel="Reinigung in Regensburg anfragen"
+                />
+                <CleaningProcessBlock
+                    ctaHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
+                    ctaLabel="Objektangaben senden"
+                />
+                <RequestChecklistBlock
+                    ctaHref="/buchung?service=reinigung&city=regensburg#buchungssystem"
+                    ctaLabel="Reinigungsanfrage vorbereiten"
+                />
+                <RelatedServicesBlock
+                    currentHref="/regensburg/reinigung"
+                    title="Reinigungscluster Regensburg"
+                    intro="Vom Hub führen die Links zu passenden Leistungsseiten, Angebotsprüfung und Ratgebern für Büro, Gewerbe, Unterhalt, Praxis, Treppenhaus, Fenster, Bau und Grundreinigung."
+                    limit={8}
+                />
                 <RegensburgCleaningConversionLift />
                 <RegensburgCleaningClickDecisionPanel />
                 <RegensburgCleaningLocalSignals />

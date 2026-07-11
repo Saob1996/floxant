@@ -64,12 +64,12 @@ const faqItems = [
 ] as const;
 
 const cleaningLinks = [
-  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf", text: "Zentraler Einstieg für Wohnung, Büro, Praxis und Objekt." },
-  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf", text: "Für Büro, Kanzlei, Agentur und Gewerbefläche." },
-  { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Düsseldorf", text: "Für Empfang, Wartebereich, Sanitär und Nebenflächen." },
-  { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf", text: "Für Auszug, Einzug, starke Verschmutzung oder Objektstart." },
-  { href: "/duesseldorf/wohnungsreinigung", label: "Wohnungsreinigung Düsseldorf", text: "Für Wohnung, Privathaushalt, Übergabe oder Einzug." },
-  { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung Düsseldorf", text: "Für Hausverwaltung, WEG, Mietshaus und Turnus." },
+  { href: "/regensburg/reinigung", label: "Reinigung Regensburg", text: "Zentraler Einstieg für Wohnung, Büro, Praxis und Objekt." },
+  { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg", text: "Für Büro, Kanzlei, Agentur und Gewerbefläche." },
+  { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg", text: "Für Empfang, Wartebereich, Sanitär und Nebenflächen." },
+  { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg", text: "Für Auszug, Einzug, starke Verschmutzung oder Objektstart." },
+  { href: "/regensburg/reinigung", label: "Wohnungsreinigung Regensburg", text: "Für Wohnung, Privathaushalt, Übergabe oder Einzug." },
+  { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg", text: "Für Hausverwaltung, WEG, Mietshaus und Turnus." },
 ] as const;
 
 const requestFacts = [
@@ -109,7 +109,8 @@ function JsonLd() {
           "Grundreinigung",
           "Wohnungsreinigung",
           "Treppenhausreinigung",
-          "Düsseldorf",
+          "Regensburg",
+          "Reinigung Regensburg 50 km",
         ],
         potentialActions: [
           { name: "Reinigungsangebot anfragen", target: leadHref, type: "ContactAction" },
@@ -121,7 +122,7 @@ function JsonLd() {
         description,
         path,
         serviceType: "Reinigung und Reinigungsangebot",
-        areaServed: ["Düsseldorf", "Regensburg", "München", "Bayern"],
+        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -234,16 +235,16 @@ export default function ReinigungsfirmaAngebotPage() {
                   WhatsApp mit Fotos
                 </a>
                 <Link
-                  href="/duesseldorf/reinigung"
+                  href="/regensburg/reinigung"
                   data-event="service_card_click"
                   data-service="reinigung"
-                  data-city="duesseldorf"
-                  data-page-intent="reinigung-duesseldorf"
+                  data-city="regensburg"
+                  data-page-intent="reinigung-regensburg"
                   data-priority="p1"
-                  data-cta-label="Reinigung Düsseldorf"
+                  data-cta-label="Reinigung Regensburg"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
                 >
-                  Reinigung Düsseldorf
+                  Reinigung Regensburg
                 </Link>
               </div>
             </div>
@@ -305,7 +306,7 @@ export default function ReinigungsfirmaAngebotPage() {
                   href={item.href}
                   data-event="service_card_click"
                   data-service="reinigung"
-                  data-city="duesseldorf"
+                  data-city="regensburg"
                   data-page-intent="reinigungsfirma-angebot"
                   className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg"
                 >

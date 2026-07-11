@@ -3,19 +3,19 @@ const path = require("node:path");
 
 const ROOT = process.cwd();
 const PUBLIC_BASE_URL = "https://www.floxant.de";
-const EXPECTED_SITEMAP_ROUTE_COUNT = 411;
+const EXPECTED_SITEMAP_ROUTE_COUNT = 380;
 
 const OUTPUT_MD = path.join(ROOT, "INDEX_HEALTH_REPORT.md");
 const OUTPUT_JSON = path.join(ROOT, "index-health-report.json");
 
 const GOLDEN_SET = [
   "/duesseldorf",
-  "/duesseldorf/reinigung",
-  "/duesseldorf/bueroreinigung",
-  "/duesseldorf/praxisreinigung",
-  "/duesseldorf/gewerbereinigung",
-  "/duesseldorf/hausverwaltung-reinigung",
-  "/duesseldorf/reinigung-stadtteile-umgebung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
   "/regensburg",
   "/regensburg/umzug",
   "/regensburg/reinigung",
@@ -24,7 +24,6 @@ const GOLDEN_SET = [
   "/regensburg/bueroreinigung",
   "/regensburg/wohnungsaufloesung",
   "/klaviertransport-regensburg",
-  "/angebot-vergleichen-duesseldorf",
   "/angebot-vergleichen-regensburg",
 ];
 

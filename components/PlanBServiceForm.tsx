@@ -29,7 +29,7 @@ const uncertainOptions = [
   "Fairpreis-Check",
   "Objektbrief",
   "Solar / PV / Solar panel cleaning",
-  "Duesseldorf Reinigung / Cleaning service",
+  "Reinigung Regensburg / Cleaning service",
   "Duesseldorf Entsorgung",
   "mehrere Punkte",
 ];
@@ -64,7 +64,7 @@ const packageOptions = [
   "Fairpreis- oder Angebots-Backup",
   "Objektbrief zur Sortierung",
   "Solar/PV-Sichtklar",
-  "Duesseldorf Reinigung/Entsorgung",
+  "Reinigung Regensburg/Entsorgung",
   "Diskreter Rueckruf",
 ];
 
@@ -134,7 +134,7 @@ export function PlanBServiceForm() {
   const whatsappHref = useMemo(() => {
     const text =
       uncertainArea.includes("Duesseldorf") || uncertainArea.includes("Düsseldorf")
-        ? "Hallo FLOXANT, ich brauche einen Plan B fuer Reinigung/Entsorgung in Duesseldorf. Ort, Termin und Fotos kann ich senden."
+        ? "Hallo FLOXANT, ich brauche einen Plan B fuer Reinigung/Entsorgung in Regensburg. Ort, Termin und Fotos kann ich senden."
         : "Hallo FLOXANT, ich brauche einen Plan B. Mein aktueller Ablauf ist unsicher. Es geht um [Umzug/Reinigung/Entruempelung/Uebergabe] in [Ort]. Deadline: [Datum]. Fotos/Angebot/offene Punkte kann ich senden.";
     return `https://wa.me/${PHONE_TEL.replace("+", "")}?text=${encodeURIComponent(text)}`;
   }, [uncertainArea]);
@@ -204,7 +204,7 @@ export function PlanBServiceForm() {
     formData.set("requestType", desiredPackage);
     formData.set("selectedOpenItems", JSON.stringify(selectedOpenItems));
     formData.set("selectedAddons", JSON.stringify([desiredPackage, ...selectedOpenItems]));
-    formData.set("region", "regensburg_bayern_duesseldorf_cleaning_disposal");
+    formData.set("region", "regensburg_regensburg_regensburg_cleaning_disposal");
     formData.set("timestamp", new Date().toISOString());
     formData.set("leadSource", "plan_b_service");
     formData.set("source", "plan_b_service");

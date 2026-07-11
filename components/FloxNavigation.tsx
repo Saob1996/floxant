@@ -1,113 +1,85 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BadgeEuro, FileSearch, Menu, MessageCircle, Phone, X } from "lucide-react";
+import { BadgeEuro, ChevronDown, FileSearch, FileText, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { FloxBrandUI as BrandLogo } from "@/components/FloxBrandUI";
 import { FloxServicesMegaMenu } from "@/components/FloxServicesMegaMenu";
+import { WhatsAppMark } from "@/components/icons/WhatsAppMark";
 import { company } from "@/lib/company";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
-import { cn } from "@/lib/utils";
-import type { FloxantRegion } from "@/lib/floxant-services";
 import { buildLeadHref } from "@/lib/lead-intents";
+import { cn } from "@/lib/utils";
 
 export type PublicHeaderVariant = "default" | "duesseldorf";
+type DesktopMenu = "services" | "locations" | "special" | null;
 
-const navLinks = [
-  { label: "Leistungen", href: "/leistungen" },
-  { label: "Düsseldorf", href: "/duesseldorf" },
-  { label: "Regensburg", href: "/regensburg" },
-  { label: "Kontakt", href: "/kontakt" },
-];
+const requestHref = buildLeadHref({
+  service: "sonstiges",
+  intent: "allgemeine-anfrage",
+  priority: "p1",
+});
+const headerOfferHref = buildLeadHref({
+  service: "reinigung",
+  intent: "reinigungsfirma-angebot",
+  priority: "p1",
+});
+const headerBudgetHref = "/anfrage-mit-preisrahmen";
+const headerWhatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent("Hallo FLOXANT, ich möchte eine Anfrage stellen.")}`;
 
-function inferRegion(pathname: string, variant: PublicHeaderVariant): FloxantRegion {
-  if (variant === "duesseldorf" || pathname.includes("duesseldorf")) return "duesseldorf";
-  if (pathname.startsWith("/regensburg") || pathname.includes("regensburg")) return "regensburg";
-  return "duesseldorf";
+const locationLinks = [
+  {
+    label: "Düsseldorf",
+    href: "/duesseldorf",
+    text: "Reinigung, Büro und Gewerbe, Umzug und Entrümpelung",
+  },
+  {
+    label: "Regensburg",
+    href: "/regensburg",
+    text: "Umzug, Reinigung, Entrümpelung und Klaviertransport",
+  },
+] as const;
+
+const specialLinks = [
+  { label: "Angebot prüfen", href: "/angebot-guenstiger-pruefen" },
+  { label: "Diskret-Service", href: "/diskret-service" },
+  { label: "Plan-B-Service", href: "/plan-b-service" },
+  { label: "Objektbrief", href: "/objektbrief" },
+] as const;
+
+function isActive(pathname: string, href: string) {
+  return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 }
 
 export function PublicHeader({
-  variant = "default",
+  variant: _variant = "default",
 }: {
-  dic?: any;
+  dic?: unknown;
   variant?: PublicHeaderVariant;
 }) {
-  const pathname = usePathname();
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const pathname = usePathname() || "/";
+  const [openMenu, setOpenMenu] = useState<DesktopMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const servicesCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
+  const lastDesktopTriggerRef = useRef<HTMLButtonElement | null>(null);
 
-  const activeRegion = useMemo(
-    () => inferRegion(pathname || "/", variant),
-    [pathname, variant],
-  );
-  const isDuesseldorfContext = variant === "duesseldorf" || pathname.includes("duesseldorf");
-  const isRegensburgContext = pathname.startsWith("/regensburg") || pathname.includes("regensburg");
-  const contextualNavLinks = useMemo(() => {
-    if (isDuesseldorfContext && !isRegensburgContext) {
-      return navLinks.filter((item) => item.href !== "/regensburg");
-    }
-
-    if (isRegensburgContext && !isDuesseldorfContext) {
-      return navLinks.filter((item) => item.href !== "/duesseldorf");
-    }
-
-    return navLinks;
-  }, [isDuesseldorfContext, isRegensburgContext]);
-  const headerLead = isRegensburgContext && !isDuesseldorfContext
-    ? { service: "umzug", city: "regensburg", intent: "regensburg-anfrage", label: "Anfrage senden" }
-    : isDuesseldorfContext
-      ? { service: "reinigung", city: "duesseldorf", intent: "reinigung-duesseldorf", label: "Reinigung anfragen" }
-      : { service: "reinigung", city: "deutschland", intent: "reinigungsfirma-angebot", label: "Angebot anfragen" };
-  const headerCta = {
-    ...headerLead,
-    href: buildLeadHref(headerLead),
-  };
-  const budgetHref =
-    isDuesseldorfContext && !isRegensburgContext
-      ? "/duesseldorf/reinigung#preisvorschlag"
-      : "/anfrage-mit-preisrahmen";
-
-  const whatsappHref = useMemo(
-    () =>
-      buildWhatsAppHref(
-        company.phoneRaw,
-        [
-          "Hallo FLOXANT,",
-          "ich möchte eine Anfrage stellen.",
-          activeRegion === "duesseldorf"
-            ? "Region: Düsseldorf. Es geht um Reinigung."
-            : "Region: Regensburg. Es geht um Umzug, Entrümpelung oder Übergabe.",
-        ].join("\n"),
-      ),
-    [activeRegion],
-  );
-
-  function clearServicesCloseTimer() {
-    if (servicesCloseTimerRef.current) {
-      clearTimeout(servicesCloseTimerRef.current);
-      servicesCloseTimerRef.current = null;
-    }
+  function closeDesktopMenu(restoreFocus = false) {
+    setOpenMenu(null);
+    if (restoreFocus) window.setTimeout(() => lastDesktopTriggerRef.current?.focus(), 0);
   }
 
-  function openServicesMenu() {
-    clearServicesCloseTimer();
-    setServicesOpen(true);
+  function toggleDesktopMenu(menu: Exclude<DesktopMenu, null>, trigger: HTMLButtonElement) {
+    lastDesktopTriggerRef.current = trigger;
+    setOpenMenu((current) => (current === menu ? null : menu));
   }
 
-  function scheduleServicesClose() {
-    clearServicesCloseTimer();
-    servicesCloseTimerRef.current = setTimeout(() => {
-      setServicesOpen(false);
-    }, 700);
-  }
-
-  function toggleServicesMenu() {
-    clearServicesCloseTimer();
-    setServicesOpen((value) => !value);
+  function closeMobileMenu(restoreFocus = false) {
+    setMobileOpen(false);
+    if (restoreFocus) window.setTimeout(() => mobileTriggerRef.current?.focus(), 0);
   }
 
   useEffect(() => {
@@ -118,33 +90,71 @@ export function PublicHeader({
   }, []);
 
   useEffect(() => {
-    clearServicesCloseTimer();
-    setServicesOpen(false);
+    setOpenMenu(null);
     setMobileOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    return () => {
-      if (servicesCloseTimerRef.current) {
-        clearTimeout(servicesCloseTimerRef.current);
+    function handlePointerDown(event: PointerEvent) {
+      if (openMenu && headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        closeDesktopMenu();
       }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape" && openMenu) {
+        event.preventDefault();
+        closeDesktopMenu(true);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [openMenu]);
 
   useEffect(() => {
     if (!mobileOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    const panel = mobilePanelRef.current;
+    const getFocusable = () =>
+      panel
+        ? Array.from(
+            panel.querySelectorAll<HTMLElement>(
+              'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
+            ),
+          ).filter((element) => element.getClientRects().length > 0)
+        : [];
+    getFocusable()[0]?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setMobileOpen(false);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMobileMenu(true);
+        return;
+      }
+      const focusable = getFocusable();
+      if (event.key !== "Tab" || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
-    window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [mobileOpen]);
 
@@ -158,220 +168,225 @@ export function PublicHeader({
     return null;
   }
 
+  const menuButtonClass = (active: boolean) =>
+    cn(
+      "inline-flex h-11 items-center gap-1.5 rounded-lg px-3 text-sm font-black transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 xl:px-4",
+      active ? "bg-slate-100 text-slate-950" : "text-slate-700 hover:bg-slate-100 hover:text-slate-950",
+    );
+
   return (
-    <header className="fixed inset-x-0 top-0 z-[9000] px-3 pt-3 text-slate-950 sm:px-5">
+    <header ref={headerRef} className="fixed inset-x-0 top-0 z-[9000] px-3 pt-3 text-slate-950 sm:px-5">
       <div
         className={cn(
-          "mx-auto w-full max-w-[1380px] rounded-lg border border-white/75 bg-white/[0.92] px-3 py-3 shadow-[0_20px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl transition duration-300 sm:px-4",
-          scrolled && "border-slate-200/90 bg-white/[0.96] shadow-[0_18px_52px_rgba(15,23,42,0.18)]",
+          "mx-auto w-full max-w-[1380px] rounded-xl border border-white/75 bg-white/95 px-3 py-2.5 shadow-[0_18px_55px_rgba(15,23,42,0.14)] backdrop-blur-xl transition sm:px-4",
+          scrolled && "border-slate-200 bg-white shadow-[0_14px_40px_rgba(15,23,42,0.18)]",
         )}
       >
-        <div className="flex min-h-12 items-center gap-3">
+        <div className="flex min-h-12 items-center gap-2">
           <Link
             href="/"
-            className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={() => closeDesktopMenu()}
+            className="group flex min-w-0 flex-1 items-center gap-3 rounded-lg px-1 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:max-w-[12rem] xl:max-w-[14rem]"
             aria-label="FLOXANT Startseite"
           >
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)]">
-              <BrandLogo size={28} />
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-950 text-white">
+              <BrandLogo size={26} />
             </span>
             <span className="hidden min-w-0 sm:block">
-              <span className="block text-sm font-black tracking-[0.18em]" translate="no">
-                FLOXANT
-              </span>
-              <span className="mt-1 block max-w-[25rem] truncate text-[11px] font-semibold text-slate-600">
-                Region wählen. Passende Leistung klar anfragen.
-              </span>
+              <span className="block text-sm font-black tracking-[0.18em]" translate="no">FLOXANT</span>
+              <span className="mt-0.5 block truncate text-[10px] font-semibold text-slate-500">Einfach anfragen</span>
             </span>
           </Link>
 
-          <nav aria-label="Hauptnavigation" className="hidden shrink-0 items-center gap-1 lg:flex">
-            <div
-              className="relative"
-              onMouseEnter={openServicesMenu}
-              onMouseLeave={scheduleServicesClose}
-            >
+          <nav aria-label="Hauptnavigation" className="hidden items-center lg:flex">
+            <div className="relative">
               <button
                 type="button"
-                onClick={toggleServicesMenu}
-                onFocus={openServicesMenu}
-                data-event="service_card_click"
-                data-source="desktop_header"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-black text-slate-800 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                aria-expanded={servicesOpen}
+                onClick={(event) => toggleDesktopMenu("services", event.currentTarget)}
+                className={menuButtonClass(openMenu === "services" || isActive(pathname, "/leistungen"))}
+                aria-expanded={openMenu === "services"}
+                aria-controls="services-mega-menu"
                 aria-haspopup="menu"
+                data-menu-trigger="services"
               >
-                Services
-                <ArrowRight
-                  className={cn("h-4 w-4 transition", servicesOpen && "rotate-90")}
-                  aria-hidden="true"
-                />
+                Leistungen
+                <ChevronDown className={cn("h-4 w-4 transition", openMenu === "services" && "rotate-180")} aria-hidden="true" />
               </button>
-
-              {servicesOpen ? (
-                <div
-                  className="absolute left-1/2 top-full z-[9010] w-[min(50rem,calc(100vw-2rem))] -translate-x-1/2 pt-3"
-                  onMouseEnter={openServicesMenu}
-                  onMouseLeave={scheduleServicesClose}
-                >
-                  <FloxServicesMegaMenu
-                    initialRegion={activeRegion}
-                    onNavigate={() => setServicesOpen(false)}
-                  />
+              {openMenu === "services" ? (
+                <div className="absolute left-0 top-full pt-3">
+                  <FloxServicesMegaMenu onNavigate={() => closeDesktopMenu()} />
                 </div>
               ) : null}
             </div>
 
-            {contextualNavLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="inline-flex h-11 items-center rounded-lg px-3 text-sm font-black text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-blue-500 xl:px-4"
+            <div className="relative">
+              <button
+                type="button"
+                onClick={(event) => toggleDesktopMenu("locations", event.currentTarget)}
+                className={menuButtonClass(openMenu === "locations" || isActive(pathname, "/duesseldorf") || isActive(pathname, "/regensburg"))}
+                aria-expanded={openMenu === "locations"}
+                aria-controls="locations-menu"
+                aria-haspopup="menu"
+                data-menu-trigger="locations"
               >
-                {item.label}
-              </Link>
-            ))}
+                Standorte
+                <ChevronDown className={cn("h-4 w-4 transition", openMenu === "locations" && "rotate-180")} aria-hidden="true" />
+              </button>
+              {openMenu === "locations" ? (
+                <div id="locations-menu" role="menu" className="absolute left-1/2 top-full w-[31rem] -translate-x-1/2 pt-3" data-desktop-mega-menu>
+                  <div className="grid grid-cols-2 gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
+                    {locationLinks.map((item) => (
+                      <Link key={item.href} href={item.href} prefetch={false} role="menuitem" onClick={() => closeDesktopMenu()} className="rounded-lg border border-slate-200 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                        <span className="block font-black text-slate-950">{item.label}</span>
+                        <span className="mt-2 block text-xs font-semibold leading-5 text-slate-600">{item.text}</span>
+                      </Link>
+                    ))}
+                    <p className="col-span-2 px-1 text-xs font-semibold text-slate-500">Einsatzort im Umfeld? Ort einfach im Anfrageformular angeben.</p>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+
+            <Link href="/angebot-guenstiger-pruefen" onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/angebot-guenstiger-pruefen"))}>
+              Angebot prüfen
+            </Link>
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={(event) => toggleDesktopMenu("special", event.currentTarget)}
+                className={menuButtonClass(openMenu === "special" || isActive(pathname, "/signature-services"))}
+                aria-expanded={openMenu === "special"}
+                aria-controls="special-menu"
+                aria-haspopup="menu"
+                data-menu-trigger="special"
+              >
+                Besondere Lösungen
+                <ChevronDown className={cn("h-4 w-4 transition", openMenu === "special" && "rotate-180")} aria-hidden="true" />
+              </button>
+              {openMenu === "special" ? (
+                <div id="special-menu" role="menu" className="absolute right-0 top-full w-72 pt-3" data-desktop-mega-menu>
+                  <div className="grid gap-1 rounded-xl border border-slate-200 bg-white p-3 shadow-[0_24px_70px_rgba(15,23,42,0.18)]">
+                    {specialLinks.map((item) => (
+                      <Link key={item.href} href={item.href} prefetch={false} role="menuitem" onClick={() => closeDesktopMenu()} className="flex min-h-11 items-center rounded-md px-3 text-sm font-bold text-slate-700 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+
+            <Link href="/kontakt" onClick={() => closeDesktopMenu()} className={menuButtonClass(isActive(pathname, "/kontakt"))}>
+              Kontakt
+            </Link>
           </nav>
 
-          <div className="hidden shrink-0 items-center justify-end gap-2 lg:flex">
+          <Link
+            href={requestHref}
+            data-event="seo_cta_click"
+            data-source="header"
+            data-service="sonstiges"
+            data-page-intent="allgemeine-anfrage"
+            data-priority="p1"
+            data-cta-label="Anfrage senden"
+            data-destination={requestHref}
+            className="hidden h-11 shrink-0 items-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:inline-flex xl:hidden"
+          >
+            <FileText className="h-4 w-4" aria-hidden="true" />
+            Anfrage senden
+          </Link>
+
+          <div className="hidden shrink-0 items-center gap-2 xl:flex">
             <Link
-              href={budgetHref}
-              data-event="hero_cta_click"
+              href={headerBudgetHref}
+              data-event="service_card_click"
               data-source="header"
-              data-contact-channel="budget_check"
-              className="hidden h-11 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-black text-slate-900 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 2xl:inline-flex"
+              data-page-intent="preisrahmen"
+              data-destination={headerBudgetHref}
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-3 text-sm font-black text-slate-950 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               <BadgeEuro className="h-4 w-4" aria-hidden="true" />
               Budget nennen
             </Link>
             <Link
-              href={headerCta.href}
+              href={headerOfferHref}
               data-event="seo_cta_click"
               data-source="header"
-              data-service={headerCta.service}
-              data-city={headerCta.city || undefined}
-              data-page-intent={headerCta.intent}
-              data-priority="p2"
-              data-cta-label={headerCta.label}
-              data-destination={headerCta.href}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-black text-slate-800 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              data-service="reinigung"
+              data-page-intent="reinigungsfirma-angebot"
+              data-priority="p1"
+              data-cta-label="Angebot anfragen"
+              data-destination={headerOfferHref}
+              className="inline-flex h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-black text-slate-950 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               <FileSearch className="h-4 w-4" aria-hidden="true" />
-              {headerCta.label}
+              Angebot anfragen
             </Link>
             <a
-              href={whatsappHref}
+              href={headerWhatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
               data-event="whatsapp_click"
               data-source="header"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 text-sm font-black text-slate-950 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              data-destination={headerWhatsappHref}
+              className="inline-flex h-11 items-center gap-2 rounded-lg bg-emerald-500 px-3 text-sm font-black text-white transition hover:bg-emerald-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
             >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              <WhatsAppMark className="h-4 w-4" aria-hidden="true" />
               WhatsApp
             </a>
           </div>
 
           <button
+            ref={mobileTriggerRef}
             type="button"
-            onClick={() => setMobileOpen((value) => !value)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white shadow-[0_12px_30px_rgba(15,23,42,0.22)] focus:outline-none focus:ring-2 focus:ring-blue-500 lg:hidden"
-            aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+            onClick={() => setMobileOpen(true)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 lg:hidden"
+            aria-label="Menü öffnen"
             aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
       </div>
 
       {mobileOpen ? (
-        <div className="fixed inset-0 z-[9001] bg-slate-950/34 backdrop-blur-sm lg:hidden">
-          <button
-            type="button"
-            aria-label="Mobiles Menü schließen"
-            className="absolute inset-0 z-0 h-full w-full cursor-default"
-            onClick={() => setMobileOpen(false)}
-          />
-          <div
-            className="relative z-10 mx-3 mt-[5.4rem] max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-lg border border-white/70 bg-white p-3 text-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.28)]"
-          >
-            <div className="flex items-start justify-between gap-3 rounded-lg bg-slate-950 p-4 text-white">
-              <div>
-                <p className="text-xs font-black uppercase tracking-normal text-cyan-100">
-                  Services wählen
-                </p>
-                <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">
-                  Erst Region, dann Kategorie, dann passende Servicekarte.
-                </p>
+        <div id="mobile-navigation" className="fixed inset-0 z-[9001] bg-white lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+          <div ref={mobilePanelRef} className="h-full overflow-y-auto px-5 pb-8 pt-4 text-slate-950">
+            <div className="mx-auto max-w-2xl">
+              <div className="flex min-h-14 items-center justify-between border-b border-slate-200 pb-3">
+                <span className="text-sm font-black tracking-[0.18em]" translate="no">FLOXANT</span>
+                <button type="button" onClick={() => closeMobileMenu(true)} className="grid h-11 w-11 place-items-center rounded-lg bg-slate-950 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600" aria-label="Menü schließen">
+                  <X className="h-5 w-5" aria-hidden="true" />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-cyan-200"
-                aria-label="Menü schließen"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
 
-            <div className="mt-3">
-              <FloxServicesMegaMenu
-                mode="mobile"
-                initialRegion={activeRegion}
-                onNavigate={() => setMobileOpen(false)}
-              />
-            </div>
+              <nav aria-label="Mobile Hauptnavigation" className="mt-3">
+                <FloxServicesMegaMenu mode="mobile" onNavigate={() => closeMobileMenu()} />
+                <details className="border-b border-slate-200" data-mobile-nav-group>
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-base font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Standorte <span aria-hidden="true">+</span></summary>
+                  <div className="grid gap-1 pb-3 pl-3">
+                    {locationLinks.map((item) => (
+                      <Link key={item.href} href={item.href} prefetch={false} onClick={() => closeMobileMenu()} className="flex min-h-11 items-center rounded-md px-2 text-sm font-bold text-slate-700 hover:bg-slate-100">{item.label}</Link>
+                    ))}
+                  </div>
+                </details>
+                <Link href="/angebot-guenstiger-pruefen" onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Angebot prüfen</Link>
+                <details className="border-b border-slate-200" data-mobile-nav-group>
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between py-3 text-base font-black focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600">Besondere Lösungen <span aria-hidden="true">+</span></summary>
+                  <div className="grid gap-1 pb-3 pl-3">
+                    {specialLinks.map((item) => (
+                      <Link key={item.href} href={item.href} prefetch={false} onClick={() => closeMobileMenu()} className="flex min-h-11 items-center rounded-md px-2 text-sm font-bold text-slate-700 hover:bg-slate-100">{item.label}</Link>
+                    ))}
+                  </div>
+                </details>
+                <Link href="/kontakt" onClick={() => closeMobileMenu()} className="flex min-h-12 items-center border-b border-slate-200 py-3 text-base font-black">Kontakt</Link>
+              </nav>
 
-            <div className="mt-3 grid gap-2 sm:grid-cols-5">
-              <Link
-                href="/leistungen"
-                data-event="service_card_click"
-                data-source="mobile_header_all_services"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm font-black text-slate-800"
-              >
-                Leistungen
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href={whatsappHref}
-                data-event="whatsapp_click"
-                data-source="mobile_header"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 text-sm font-black text-slate-950"
-              >
-                <MessageCircle className="h-4 w-4" />
-                WhatsApp
-              </a>
-              <a
-                href={`tel:${company.phoneRaw}`}
-                data-event="phone_click"
-                data-source="mobile_header"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 text-sm font-black text-slate-800"
-              >
-                <Phone className="h-4 w-4" />
-                Anrufen
-              </a>
-              <Link
-                href={budgetHref}
-                data-event="hero_cta_click"
-                data-source="mobile_header"
-                data-contact-channel="budget_check"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-cyan-200 bg-cyan-50 px-4 text-sm font-black text-slate-900"
-              >
-                <BadgeEuro className="h-4 w-4" />
-                Budget nennen
-              </Link>
-              <Link
-                href={headerCta.href}
-                data-event="seo_cta_click"
-                data-source="mobile_header"
-                data-service={headerCta.service}
-                data-city={headerCta.city || undefined}
-                data-page-intent={headerCta.intent}
-                data-priority="p2"
-                data-cta-label={headerCta.label}
-                data-destination={headerCta.href}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
-              >
-                {headerCta.label}
-                <ArrowRight className="h-4 w-4" />
+              <Link href={requestHref} onClick={() => closeMobileMenu()} className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white">
+                Anfrage senden
+                <FileText className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -381,7 +396,7 @@ export function PublicHeader({
   );
 }
 
-export function FloxNavigation({ dic }: { dic: any }) {
+export function FloxNavigation({ dic }: { dic: unknown }) {
   return <PublicHeader dic={dic} />;
 }
 

@@ -25,6 +25,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 const path = "/spezialreinigung";
 const canonical = `${company.url}${path}`;
@@ -54,7 +55,7 @@ const specialCleaningClarityItems = [
   },
   {
     title: "Wann ein anderer Weg besser ist",
-    text: "Wenn es um normale Unterhaltsreinigung, Umzug, Raeumung oder reine Angebotspruefung geht, fuehrt FLOXANT auf die passende Seite.",
+    text: "Wenn es um normale Unterhaltsreinigung, Umzug, Raeumung oder reine Angebotsprüfung geht, fuehrt FLOXANT auf die passende Seite.",
   },
   {
     title: "Was FLOXANT braucht",
@@ -93,7 +94,7 @@ const cleaningComparisonRows = [
   {
     topic: "Vorhandenes Angebot",
     left: "Direkte Anfrage, wenn noch kein Preis oder Anbieter vorliegt.",
-    right: "Angebotspruefung, wenn PDF, Screenshot, Preis oder Leistungsumfang vorhanden ist.",
+    right: "Angebotsprüfung, wenn PDF, Screenshot, Preis oder Leistungsumfang vorhanden ist.",
     decision: "Mit Angebot immer den Pruefpfad nutzen.",
   },
   {
@@ -161,7 +162,7 @@ function JsonLd() {
           "Praktische Machbarkeitspruefung fuer Spezialreinigung mit Fotos, Zugang, Material, Termin und klaren Grenzen.",
         path,
         serviceType: "Spezialreinigung",
-        areaServed: ["Duesseldorf", "Regensburg", "Bayern nach Pruefung"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -230,7 +231,7 @@ export default function SpezialreinigungPage() {
 
       <ServiceClarityPanel
         title="Spezialreinigung braucht erst Machbarkeit, dann Zusage."
-        intro="PV, Glas, Fassade, Event, Praxis, Hotel oder Uebergabe koennen sehr unterschiedliche Anforderungen haben. FLOXANT trennt deshalb normale Reinigung, Spezialfall und Angebotspruefung sauber."
+        intro="PV, Glas, Fassade, Event, Praxis, Hotel oder Uebergabe koennen sehr unterschiedliche Anforderungen haben. FLOXANT trennt deshalb normale Reinigung, Spezialfall und Angebotsprüfung sauber."
         items={specialCleaningClarityItems}
       />
 
@@ -248,13 +249,13 @@ export default function SpezialreinigungPage() {
 
       <AiAnswerCard
         title="Spezialreinigung beginnt mit Zugang, Fotos und Zielzustand."
-        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotspruefung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Uebergabe nicht als pauschaler Standardfall behandelt werden."
+        answer="FLOXANT trennt normale Reinigung, Spezialreinigung und Angebotsprüfung, damit PV, Glas, Fassade, Praxis, Hotel, Bauendreinigung oder Uebergabe nicht als pauschaler Standardfall behandelt werden."
         points={cleaningAnswerPoints}
         nextStep="Naechster Schritt: Fotos, Objektart, Ort, Termin und vorhandenes Angebot mitsenden."
       />
 
       <ComparisonAnswerTable
-        title="Reinigung, Spezialreinigung oder Angebotspruefung?"
+        title="Reinigung, Spezialreinigung oder Angebotsprüfung?"
         intro="Der richtige Weg haengt davon ab, ob nur gereinigt werden soll, ob technische Grenzen offen sind oder ob bereits ein Angebot vorliegt."
         leftLabel="Direkte Reinigung"
         rightLabel="Spezial-/Pruefpfad"
@@ -295,7 +296,7 @@ export default function SpezialreinigungPage() {
       <ServiceClusterLinks
         eyebrow="Grenzen und Sicherheit"
         title="Was bei Spezialreinigung nicht versprochen wird."
-        intro="Klare Grenzen schuetzen Kundenerwartung und Ausfuehrung. FLOXANT trennt Reinigung von Technik, Sanierung, Garantie und Haftungsversprechen."
+        intro="Klare Grenzen schützen Erwartungen und Ausführung. FLOXANT trennt Reinigungsarbeiten von Technik, Sanierung und rechtlicher Haftungsbewertung."
         links={boundaries.map((text) => ({
           title: text,
           text: "Diese Grenze wird vor einer Zusage sichtbar gemacht, damit aus der Anfrage kein falsches Versprechen wird.",
@@ -314,7 +315,6 @@ export default function SpezialreinigungPage() {
 
       <LocalServiceBridge
         serviceLabel="Spezialreinigung"
-        duesseldorfHref="/duesseldorf/reinigung"
         regensburgHref="/regensburg/reinigung"
       />
 

@@ -3,6 +3,7 @@ const path = require("node:path");
 
 const workspaceRoot = process.cwd();
 const appDirectory = path.join(workspaceRoot, "app");
+const regensburgCleaningArea = require(path.join(workspaceRoot, "data", "serviceAreas", "regensburgCleaning.json"));
 const dynamicLocalRoutesFile = path.join(workspaceRoot, "lib", "local-seo-routes.ts");
 const dynamicBlogSourceFiles = [
   path.join(workspaceRoot, "lib", "ai-recommendation-blog-articles.ts"),
@@ -20,10 +21,7 @@ const englishLocalSeoPagesFile = path.join(workspaceRoot, "lib", "local-seo", "e
 const outputFile = path.join(workspaceRoot, "lib", "sitemap-routes.ts");
 
 const pageFileNames = new Set(["page.ts", "page.tsx"]);
-const extraIndexableRoutes = new Set([
-  "/llms.txt",
-  "/service-graph.json",
-]);
+const nonHtmlSitemapExtensionPattern = /\.(?:txt|json|xml|png|jpe?g|webp|avif|svg|ico|gif|pdf|webmanifest)$/i;
 const blockedSegments = new Set(["api", "admin", "dashboard", "login"]);
 const blockedPrefixes = ["/api", "/admin", "/dashboard", "/login", "/angebote", "/guenstig", "/feedback"];
 const nonSeoPublicRoutes = new Set([
@@ -33,8 +31,8 @@ const nonSeoPublicRoutes = new Set([
   "/widerruf",
   "/buchungsbedingungen",
   "/angebot-vergleichen-duesseldorf/danke",
-  "/duesseldorf/reinigung/datenschutz",
-  "/duesseldorf/reinigung/agb",
+  "/regensburg/reinigung/datenschutz",
+  "/regensburg/reinigung/agb",
 ]);
 const consciouslyExcludedSignatureLandingRoutes = new Set([
   "/anti-scham-reinigung",
@@ -52,13 +50,15 @@ const consciouslyExcludedSignatureLandingRoutes = new Set([
 ]);
 const legacyRedirectRoutes = new Set([
   "/partnercode",
-  "/airbnb-reinigung-duesseldorf",
+  "/airbnb-reinigung-regensburg",
   "/angebot-red-flag-scanner",
   "/guenstigeres-angebot-pruefen",
   "/einsatzgebiet-regensburg-200km",
   "/service-area-bayern",
   "/villenservice",
   "/umzug-duesseldorf",
+  "/duesseldorf/angebot-vergleichen",
+  "/duesseldorf/umzug",
   "/umzug-regensburg",
   "/reinigung-regensburg",
   "/entruempelung-regensburg",
@@ -70,6 +70,14 @@ const legacyRedirectRoutes = new Set([
   "/umzug-reinigung-regensburg",
   "/endreinigung-regensburg",
   "/seo-gone",
+]);
+const allowedDuesseldorfCleaningRoutes = new Set([
+  "/duesseldorf/reinigung",
+  "/duesseldorf/bueroreinigung",
+  "/duesseldorf/gewerbereinigung",
+  "/duesseldorf/praxisreinigung",
+  "/duesseldorf/fensterreinigung",
+  "/duesseldorf/luxusreinigung",
 ]);
 const removedServicePrefixes = [
   "/halteverbotszone",
@@ -83,6 +91,11 @@ const broadRootCityServicePrefixes = [
   "umzug",
   "wohnungsaufloesung",
 ];
+const gscValidatedRootCityServiceRoutes = new Set([
+  "/entruempelung-landshut",
+  "/umzug-neustadt-an-der-waldnaab",
+  "/umzug-vohenstrauss",
+]);
 const deprioritizedCitySlugs = new Set([
   "forchheim",
   "friedberg",
@@ -99,6 +112,76 @@ const deprioritizedCitySlugs = new Set([
   "leipzig",
   "stuttgart",
 ]);
+const cleaningRouteTerms = [
+  "reinigung",
+  "reinigungsfirma",
+  "reinigungsdienst",
+  "putzfirma",
+  "gebaeudereinigung",
+  "bueroreinigung",
+  "praxisreinigung",
+  "treppenhausreinigung",
+  "grundreinigung",
+  "glasreinigung",
+  "fensterreinigung",
+  "baureinigung",
+  "bauendreinigung",
+  "sonderreinigung",
+  "gewerbereinigung",
+  "unterhaltsreinigung",
+  "wohnungsreinigung",
+  "haushaltsreinigung",
+  "hotelreinigung",
+  "kanzleireinigung",
+  "objektreinigung",
+  "teppichreinigung",
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+  "endreinigung",
+  "uebergabereinigung",
+  "cleaning",
+];
+const genericRegensburgCleaningRoutes = new Set([
+  "reinigung",
+  "gewerbereinigung",
+  "notfallreinigung-24h",
+  "reinigung-nach-veranstaltung",
+  "reinigungsfirma-angebot",
+  "reinigung-preis-rechner",
+  "reinigungsgarantie",
+  "spezialreinigung",
+  "solarreinigung",
+  "pv-anlagen-reinigung",
+  "clean-start",
+]);
+
+function normalizeCleaningPlaceKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[äöüß]/g, (char) => ({ ä: "ae", ö: "oe", ü: "ue", ß: "ss" })[char] || char)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, " und ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+const allowedCleaningPlaceKeys = new Set(
+  [
+    "Regensburg",
+    ...regensburgCleaningArea.allowedCitiesAndMunicipalities,
+    ...regensburgCleaningArea.regensburgDistricts,
+    ...regensburgCleaningArea.regensburgSubdistricts,
+    ...regensburgCleaningArea.localVillagesAndHamlets,
+  ].map(normalizeCleaningPlaceKey),
+);
+
+for (const [canonical, aliases] of Object.entries(regensburgCleaningArea.aliases)) {
+  const canonicalKey = normalizeCleaningPlaceKey(canonical);
+  allowedCleaningPlaceKeys.add(canonicalKey);
+  for (const alias of aliases) allowedCleaningPlaceKeys.add(normalizeCleaningPlaceKey(alias));
+}
 
 function isRouteGroup(segment) {
   return segment.startsWith("(") && segment.endsWith(")");
@@ -128,9 +211,11 @@ function getRouteFromDirectory(directory) {
 }
 
 function isIndexableRoute(route) {
+  if (nonHtmlSitemapExtensionPattern.test(route)) return false;
   if (legacyRedirectRoutes.has(route)) return false;
   if (consciouslyExcludedSignatureLandingRoutes.has(route)) return false;
   if (removedServicePrefixes.some((prefix) => route === prefix || route.startsWith(`${prefix}-`))) return false;
+  if (!isCleaningRouteAllowed(route)) return false;
   if (nonSeoPublicRoutes.has(route)) return false;
   if (isDeprioritizedCityRoute(route)) return false;
   if (isBroadRootCityServiceRoute(route)) return false;
@@ -142,10 +227,65 @@ function isIndexableRoute(route) {
   );
 }
 
+function isCleaningRoute(route) {
+  const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
+  const segments = normalizedRoute.split("/");
+  return cleaningRouteTerms.some((term) =>
+    normalizedRoute === term ||
+    segments.some((segment) => segment === term || segment.includes(term)),
+  );
+}
+
+function extractCleaningPlaceSlug(route) {
+  const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
+  if (normalizedRoute.startsWith("reinigung-")) return normalizedRoute.replace(/^reinigung-/, "");
+  if (normalizedRoute.endsWith("-reinigung")) return normalizedRoute.replace(/-reinigung$/, "");
+  if (normalizedRoute.startsWith("en/")) {
+    const parts = normalizedRoute.split("/");
+    if (parts.length >= 3 && (parts[2].includes("cleaning") || parts[2].includes("quote-review"))) return parts[1];
+  }
+
+  const parts = normalizedRoute.split("/");
+  if (parts[0] === "regensburg") return "regensburg";
+  if (parts.length >= 2 && isCleaningRoute(parts.slice(1).join("/"))) return parts[0];
+
+  return null;
+}
+
+function isCleaningRouteAllowed(route) {
+  if (!isCleaningRoute(route)) return true;
+
+  const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
+  if (allowedDuesseldorfCleaningRoutes.has(`/${normalizedRoute}`)) return true;
+
+  if (normalizedRoute.startsWith("blog/")) {
+    return (
+      normalizedRoute.includes("regensburg") ||
+      normalizedRoute.includes("50-km") ||
+      normalizedRoute.includes("50km")
+    );
+  }
+
+  if (genericRegensburgCleaningRoutes.has(normalizedRoute)) return true;
+
+  const placeSlug = extractCleaningPlaceSlug(normalizedRoute);
+  if (!placeSlug) return genericRegensburgCleaningRoutes.has(normalizedRoute);
+
+  return allowedCleaningPlaceKeys.has(normalizeCleaningPlaceKey(placeSlug));
+}
+
 function isBroadRootCityServiceRoute(route) {
   const normalizedRoute = route.toLowerCase().replace(/^\/+|\/+$/g, "");
 
+  if (gscValidatedRootCityServiceRoutes.has(`/${normalizedRoute}`)) {
+    return false;
+  }
+
   if (normalizedRoute === "seniorenumzug-landshut") {
+    return false;
+  }
+
+  if (isCleaningRoute(normalizedRoute) && isCleaningRouteAllowed(normalizedRoute)) {
     return false;
   }
 
@@ -270,7 +410,7 @@ function collectStructuredLocalSeoRoutes() {
     if (isIndexableRoute(route)) routes.push(route);
   }
 
-  for (const slug of collectConstStringArray(source, "duesseldorfCityCleaningSlugs")) {
+  for (const slug of collectConstStringArray(source, "regensburgCityCleaningSlugs")) {
     const route = `/${slug}/reinigung`;
     if (isIndexableRoute(route)) routes.push(route);
   }
@@ -322,7 +462,6 @@ const routes = Array.from(
     ...collectGrowthServiceRoutes(),
     ...collectStructuredLocalSeoRoutes(),
     ...collectEnglishLocalSeoRoutes(),
-    ...extraIndexableRoutes,
   ]),
 ).sort((routeA, routeB) => routeA.localeCompare(routeB));
 

@@ -1,19 +1,42 @@
 import Link from "next/link";
 import { ArrowRight, FileSearch } from "lucide-react";
 
+import { resolveCtaConfig } from "@/lib/cta-config";
+
 type OfferCheckCTAProps = {
   title?: string;
   text?: string;
   href?: string;
+  service?: string;
+  city?: string;
+  intent?: string;
+  source?: string;
+  ctaLabel?: string;
   className?: string;
 };
 
 export function OfferCheckCTA({
   title = "Liegt schon ein Angebot vor?",
-  text = "FLOXANT kann Preis, Umfang, Zusatzpositionen, Termin, Fotos und fehlende Angaben sachlich einordnen. Keine Preisgarantie, keine Abwertung anderer Anbieter.",
-  href = "/angebot-guenstiger-pruefen#guenstiger-form",
+  text = "Schon ein Angebot erhalten? Wenn Preis, Umfang oder Termin unklar wirken, kann FLOXANT Leistungsumfang und offene Punkte prüfen. Keine Rechtsberatung und keine Ersparnisgarantie.",
+  href,
+  service = "angebot-pruefen",
+  city,
+  intent = "angebot-pruefen",
+  source = "seo",
+  ctaLabel = "Angebot prüfen lassen",
   className = "",
 }: OfferCheckCTAProps) {
+  const cta = resolveCtaConfig({
+    ctaKey: "offer-check",
+    href,
+    serviceKey: service,
+    city,
+    intent,
+    source,
+    priority: "p0",
+    label: ctaLabel,
+  });
+
   return (
     <section className={`bg-slate-950 px-5 py-10 text-white sm:px-8 lg:px-10 ${className}`}>
       <div className="mx-auto flex max-w-7xl flex-col gap-5 rounded-lg border border-white/12 bg-white/[0.06] p-5 sm:flex-row sm:items-center sm:justify-between">
@@ -26,10 +49,18 @@ export function OfferCheckCTA({
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-7 text-slate-300">{text}</p>
         </div>
         <Link
-          href={href}
+          href={cta.href}
+          data-event={cta.dataAttributes.event}
+          data-service={cta.dataAttributes.service}
+          data-city={cta.dataAttributes.city}
+          data-page-intent={cta.dataAttributes.pageIntent}
+          data-priority={cta.dataAttributes.priority}
+          data-source={cta.dataAttributes.source}
+          data-cta-label={cta.dataAttributes.ctaLabel}
+          data-destination={cta.dataAttributes.destination}
           className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
         >
-          Angebot prüfen lassen
+          {cta.label}
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>

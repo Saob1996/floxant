@@ -9,7 +9,7 @@ const files = {
   englishPages: path.join(root, "lib", "local-seo", "englishLocalSeoPages.ts"),
   localMetadata: path.join(root, "lib", "local-seo", "seoMetadata.ts"),
   globalSeo: path.join(root, "lib", "seo.ts"),
-  duesseldorfMetadata: path.join(root, "lib", "duesseldorf-cleaning.ts"),
+  regensburgMetadata: path.join(root, "lib", "regensburg-cleaning.ts"),
 };
 
 const issues = [];
@@ -64,30 +64,24 @@ function ensureKeywordStrategies() {
   }
 
   const requiredPaths = [
-    "/duesseldorf/reinigungsfirma",
-    "/duesseldorf/gewerbereinigung",
-    "/duesseldorf/praxisreinigung",
-    "/duesseldorf/bueroreinigung",
-    "/duesseldorf/grundreinigung",
-    "/duesseldorf/putzfirma",
-    "/duesseldorf/wohnungsreinigung",
-    "/duesseldorf/treppenhausreinigung",
-    "/duesseldorf/gebaeudereinigung",
-    "/duesseldorf/gewerbeflaechen-reinigung",
-    "/duesseldorf/angebot-vergleichen",
-    "/angebot-vergleichen-duesseldorf",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
+    "/regensburg/reinigung",
     "/regensburg/bueroreinigung",
     "/regensburg/wohnungsaufloesung",
     "/regensburg/umzugsunternehmen",
     "/regensburg/reinigungsfirma",
     "/regensburg/angebot-vergleichen",
-    "/en/duesseldorf/cleaning",
-    "/en/duesseldorf/odor-removal",
-    "/en/duesseldorf/cleaning-quote-review",
-    "/en/koeln/cleaning",
-    "/en/neuss/cleaning",
-    "/en/meerbusch/cleaning",
-    "/en/duisburg/cleaning",
+    "/en/regensburg/cleaning",
+    "/en/regensburg/office-cleaning",
+    "/en/regensburg/cleaning-quote-review",
     "/en/regensburg/moving",
     "/en/regensburg/apartment-clearance",
     "/en/regensburg/moving-quote-review",
@@ -105,9 +99,8 @@ function ensureEnglishPagesAndHreflang() {
   const dePairs = extractStrings(hreflangSource, /de:\s*"([^"]+)"/g);
   const enPairs = extractStrings(hreflangSource, /en:\s*"([^"]+)"/g);
 
-  if (!englishPaths.has("/en/duesseldorf/cleaning")) fail("Missing English Düsseldorf cleaning page");
+  if (!englishPaths.has("/en/regensburg/cleaning")) fail("Missing English Regensburg cleaning page");
   if (!englishPaths.has("/en/regensburg/moving")) fail("Missing English Regensburg moving page");
-  if (!englishPaths.has("/en/duesseldorf/odor-removal")) fail("Missing English Dusseldorf odor-removal page");
   if (!englishPaths.has("/en/regensburg/apartment-clearance")) fail("Missing English Regensburg apartment-clearance page");
 
   for (const englishPath of enPairs) {
@@ -120,9 +113,9 @@ function ensureEnglishPagesAndHreflang() {
 
   const duplicateEnTargets = findDuplicates(enPairs);
   const allowedSharedEnglishTargets = new Set([
-    "/en/duesseldorf/cleaning",
-    "/en/duesseldorf/office-cleaning",
-    "/en/duesseldorf/cleaning-quote-review",
+    "/en/regensburg/reinigung",
+    "/en/regensburg/reinigung",
+    "/en/regensburg/reinigung",
     "/en/regensburg/moving",
     "/en/regensburg/cleaning-after-moving",
     "/en/regensburg/moving-quote-review",

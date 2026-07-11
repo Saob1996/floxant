@@ -12,7 +12,7 @@ const clusters = [
   "reinigungsfirma-angebot",
   "bueroreinigung",
   "gewerbereinigung",
-  "duesseldorf-reinigung",
+  "regensburg-reinigung",
   "regensburg-umzug",
   "duesseldorf-regensburg",
   "seniorenumzug",
@@ -150,7 +150,7 @@ ${h1Duplicates.length ? h1Duplicates.slice(0, 20).map((item) => `| ${item.value.
 
 - PASS: eindeutige Seiten mit eigener lokaler Substanz behalten.
 - WARN: Cluster mit vielen aehnlichen Routen erst nach GSC-CSV bewerten.
-- Angebot-pruefen, Buero/Gewerbe, Duesseldorf-Reinigung, Regensburg-Umzug, Seniorenumzug, Diskret-Service und Solar/PV werden separat beobachtet.
+- Angebot-pruefen, Buero/Gewerbe, Regensburg-Reinigung, Regensburg-Umzug, Seniorenumzug, Diskret-Service und Solar/PV werden separat beobachtet.
 - Moegliche Aktionen spaeter: improve_existing, canonicalize, merge_later, noindex_candidate, remove_from_sitemap_candidate.
 - Keine radikalen Loeschungen in diesem Sprint.
 `;

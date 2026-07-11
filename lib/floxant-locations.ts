@@ -93,20 +93,20 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     localFaq: [
       {
         q: "Welche FLOXANT Leistungen sind für Düsseldorf zentral?",
-        a: "Düsseldorf ist im Code vor allem als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
+        a: "Regensburg ist im Code vor allem als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
       },
       {
         q: "Sind Öffnungszeiten für Düsseldorf hinterlegt?",
-        a: "Nein. Öffnungszeiten müssen manuell bestätigt werden und werden deshalb nicht in strukturierte Daten geschrieben.",
+        a: "Nein. Öffnungszeiten müssen manuell bestätigt werden und werden deshalb nicht in öffentlich als Öffnungszeit ausgegeben.",
       },
       {
-        q: "Gibt es eine bestätigte Google-Maps-URL?",
-        a: "Im Code ist keine eigene Google-Maps-URL für Düsseldorf hinterlegt. Sie muss vor GBP-Verknüpfung manuell geprüft werden.",
+        q: "Wie frage ich eine Leistung in Düsseldorf an?",
+        a: "Nutzen Sie das Kontaktformular und nennen Sie Ort, Umfang und Termin. Wir prüfen die Angaben vor einer Zusage.",
       },
     ],
     localTrustNotes: [
       "Daten stammen aus bestehendem Code, nicht aus neu erfundenen Angaben.",
-      "Düsseldorfer Reinigung bleibt getrennt von Regensburger Umzug/Entrümpelung.",
+      "Regensburger Reinigung bleibt getrennt von Regensburger Umzug/Entrümpelung.",
       "Keine Öffnungszeiten oder Maps-Links ohne manuelle Bestätigung.",
     ],
     dataStatus: {
@@ -177,17 +177,17 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       },
       {
         q: "Sind Öffnungszeiten für Regensburg hinterlegt?",
-        a: "Nein. Öffnungszeiten müssen manuell bestätigt werden und werden deshalb nicht in strukturierte Daten geschrieben.",
+        a: "Nein. Öffnungszeiten müssen manuell bestätigt werden und werden deshalb nicht in öffentlich als Öffnungszeit ausgegeben.",
       },
       {
-        q: "Gibt es eine bestätigte Google-Business-Profile-URL?",
-        a: "Im Code ist ein Maps-Suchlink zur Adresse vorhanden, aber keine eindeutig bestätigte GBP-Profil-URL. Die GBP-URL bleibt eine manuelle Aufgabe.",
+        q: "Wie finde ich FLOXANT in Regensburg?",
+        a: "Nutzen Sie die hinterlegte Adresse und den Kartensuchlink. Termine werden passend zur Anfrage abgestimmt.",
       },
     ],
     localTrustNotes: [
-      "Regensburg ist die zentrale NAP-Quelle in lib/company.ts.",
-      "Maps-Suchlink und Geo-Koordinaten stammen aus bestehendem Code.",
-      "Keine Öffnungszeiten oder GBP-Profil-URL ohne manuelle Bestätigung.",
+      "Die Regensburger Kontaktdaten stammen aus den zentral gepflegten Unternehmensangaben.",
+      "Kartenlink und Standortangaben werden aus den vorhandenen Daten übernommen.",
+      "Öffnungszeiten oder Profilangaben werden nur nach Bestätigung veröffentlicht.",
     ],
     dataStatus: {
       address: "confirmed_from_code",

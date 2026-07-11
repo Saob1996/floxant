@@ -4,9 +4,6 @@ import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { Music, Shield, Clock, Star, Zap } from "lucide-react";
-interface PageProps {
-  params: Promise<{}>;
-}
 
 const klaviertransportLeadHref = buildLeadHref({
   service: "klaviertransport",
@@ -15,20 +12,16 @@ const klaviertransportLeadHref = buildLeadHref({
   priority: "p1",
 });
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { content, fallback, seoContent, seoFallback, city } = await getSpecialtyPageData({
-    locale: "de",
-    baseKey: "klaviertransport_spec",
-    city: "Bayern",
-  });
+export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: `klaviertransport`,
-    title: resolveField(seoContent?.meta_title || content?.meta_title, seoFallback?.meta_title || fallback?.meta_title, city, "de"),
-    description: resolveField(seoContent?.meta_desc || content?.meta_desc, seoFallback?.meta_desc || fallback?.meta_desc, city, "de"),
+    title: "Klaviertransport anfragen - Instrument, Treppe und Zugang beschreiben",
+    description:
+      "Klaviertransport allgemein anfragen: Instrumentart, Start, Ziel, Etage, Treppenhaus, Aufzug, Zugang, Fotos und Terminwunsch konkret beschreiben.",
   });
 }
-export default async function KlaviertransportPage({ params }: PageProps) {
+export default async function KlaviertransportPage() {
   const locale = "de";
   const { 
     localeDict, 
@@ -46,8 +39,8 @@ export default async function KlaviertransportPage({ params }: PageProps) {
         dict={localeDict}
         city={city}
         heroBadge={resolveField(content.hero_badge, fallback.hero_badge, city, "de")}
-        heroTitle={`Klaviertransport in ${city}`}
-        heroText={resolveField(content.hero_p, fallback.hero_p, city, "de")}
+        heroTitle="Klaviertransport anfragen - Instrument, Treppe und Zugang beschreiben"
+        heroText="Ob Klavier, E-Piano oder schweres Einzelstueck: Entscheidend sind Instrumentart, Start, Ziel, Etage, Treppenhaus, Aufzug, Zugang, Fotos und Terminwunsch. FLOXANT prüft die Anfrage anhand der genannten Eckdaten, ohne Preis- oder Verfuegbarkeitsgarantie."
         ctaText={resolveField(content.cta, fallback.cta, city, "de")}
         primaryCtaHref={klaviertransportLeadHref}
         breadcrumbs={[

@@ -11,7 +11,7 @@ type PriceDriverPanelProps = {
 
 export function PriceDriverPanel({
   eyebrow = "Preis und Aufwand",
-  title = "Aufwandstreiber offen benennen.",
+  title = "Wovon der Aufwand abhängt.",
   intro = "Ein realistischer Rahmen entsteht erst, wenn die wichtigsten Einflussfaktoren sichtbar sind.",
   drivers,
   note = "Keine Lockpreise, keine pauschale Zusage: FLOXANT prüft Umfang, Zugang, Termin und Fotos vor dem nächsten Schritt.",

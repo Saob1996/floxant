@@ -56,43 +56,31 @@ function section(title: string, ...body: string[]): LocalSeoSection {
 }
 
 function getCity(region: LocalSeoRegionKey, citySlug?: keyof typeof localSeoCities): LocalSeoCityRecord {
-  const fallbackCitySlug = region === "duesseldorf" ? "duesseldorf" : "regensburg";
+  const fallbackCitySlug = "regensburg";
   return localSeoCities[citySlug || fallbackCitySlug];
 }
 
 function buildEnglishLocalIntro(input: EnglishPageInput, city: LocalSeoCityRecord) {
-  if (input.region === "duesseldorf" && city.slug !== "duesseldorf") {
-    return `${city.displayName} is handled as a nearby cleaning market within FLOXANT's Düsseldorf service context. The useful first details are district, property type, photos, timing, access and whether an existing quote should be reviewed.`;
+  if (localSeoServices[input.serviceKey].category === "cleaning") {
+    return "FLOXANT accepts cleaning requests in Regensburg. The useful first details are district, property type, access, photos, timing and desired result.";
   }
 
-  if (input.region === "duesseldorf") {
-    return "Düsseldorf is FLOXANT's priority area for cleaning requests. The useful first details are district, property type, access, photos, timing and desired result.";
-  }
-
-  return "Regensburg is FLOXANT's priority area for moving, clearance and cleaning after moving. The useful first details are volume, access, photos, timing and the handover situation.";
+  return "FLOXANT accepts moving, clearance and cleaning-after-moving requests in Regensburg. The useful first details are volume, access, photos, timing and the handover situation.";
 }
 
 function buildEnglishLocalProofNotes(input: EnglishPageInput, city: LocalSeoCityRecord) {
-  if (input.region === "duesseldorf" && city.slug !== "duesseldorf") {
+  if (localSeoServices[input.serviceKey].category === "cleaning") {
     return [
-      `${city.displayName} is treated as a regional cleaning request, not as a separate FLOXANT local office.`,
-      `Nearby context such as ${city.nearbyCities.slice(0, 4).join(", ")} is used only where it helps scope access, timing and service fit.`,
-      "English search terms are handled with real service content and quote-review logic.",
-    ];
-  }
-
-  if (input.region === "duesseldorf") {
-    return [
-      "Düsseldorf cleaning is kept separate from Regensburg moving pages.",
-      "Districts such as Heerdt, Oberkassel, Bilk and Pempelfort are used as real local context.",
-      "English terms are handled as service intent, not as hidden keyword stuffing.",
+      "Regensburg cleaning is kept separate from moving pages.",
+      "Districts such as Altstadt, Westenviertel, Galgenberg and Burgweinting are used as real local context.",
+      "The English information describes the real service and the details customers need to provide.",
     ];
   }
 
   return [
     "Regensburg is the main FLOXANT company location.",
     "Moving, clearance and cleaning after moving are separated before pricing.",
-    "English terms are handled as service intent with real translated content.",
+    "The English information describes the real service and links to the matching request.",
   ];
 }
 
@@ -115,8 +103,8 @@ function buildEnglishFaq(input: EnglishPageInput, city: LocalSeoCityRecord): Loc
       a: `The first focus is ${city.displayName}. Nearby areas such as ${city.nearbyCities.slice(0, 4).join(", ")} can be checked depending on scope and timing.`,
     },
     {
-      q: "Is this a real English page or only a keyword alias?",
-      a: "This is a real English service page with its own title, description, local content, FAQ, canonical URL and hreflang connection to the German page.",
+      q: "Can I use this page to contact FLOXANT in English?",
+      a: "Yes. This page explains the service in English and links to the matching German information when it is available.",
     },
   ];
 }
@@ -208,19 +196,14 @@ function createEnglishPage(input: EnglishPageInput): LocalSeoPageConfig {
   };
 }
 
-const duesseldorfCleaningLinks: readonly LocalSeoLink[] = [
-  { href: "/en/duesseldorf/cleaning", label: "Cleaning service Düsseldorf" },
-  { href: "/en/duesseldorf/office-cleaning", label: "Office cleaning Düsseldorf" },
-  { href: "/en/duesseldorf/apartment-cleaning", label: "Apartment cleaning Düsseldorf" },
-  { href: "/en/duesseldorf/deep-cleaning", label: "Deep cleaning Düsseldorf" },
-  { href: "/en/duesseldorf/stairwell-cleaning", label: "Stairwell cleaning Düsseldorf" },
-  { href: "/en/duesseldorf/odor-removal", label: "Odor removal Düsseldorf" },
-  { href: "/en/duesseldorf/cleaning-quote-review", label: "Cleaning quote review" },
-  { href: "/en/koeln/cleaning", label: "Cleaning service Cologne" },
-  { href: "/en/neuss/cleaning", label: "Cleaning service Neuss" },
-  { href: "/en/meerbusch/cleaning", label: "Cleaning service Meerbusch" },
-  { href: "/en/duisburg/cleaning", label: "Cleaning service Duisburg" },
-  { href: "/duesseldorf/angebot-vergleichen", label: "German quote review page" },
+const regensburgCleaningLinks: readonly LocalSeoLink[] = [
+  { href: "/en/regensburg/cleaning", label: "Cleaning service Regensburg" },
+  { href: "/en/regensburg/office-cleaning", label: "Office cleaning Regensburg" },
+  { href: "/en/regensburg/apartment-cleaning", label: "Apartment cleaning Regensburg" },
+  { href: "/en/regensburg/deep-cleaning", label: "Deep cleaning Regensburg" },
+  { href: "/en/regensburg/stairwell-cleaning", label: "Stairwell cleaning Regensburg" },
+  { href: "/en/regensburg/cleaning-quote-review", label: "Cleaning quote review" },
+  { href: "/regensburg/reinigung", label: "German cleaning page" },
 ];
 
 const regensburgMovingLinks: readonly LocalSeoLink[] = [
@@ -234,26 +217,26 @@ const regensburgMovingLinks: readonly LocalSeoLink[] = [
   { href: "/regensburg/angebot-vergleichen", label: "German quote review page" },
 ];
 
-export const englishLocalSeoPages = [
+const allEnglishLocalSeoPages = [
   createEnglishPage({
-    key: "en-duesseldorf-cleaning",
-    path: "/en/duesseldorf/cleaning",
-    region: "duesseldorf",
+    key: "en-regensburg-cleaning",
+    path: "/en/regensburg/cleaning",
+    region: "regensburg",
     serviceKey: "reinigung",
     serviceName: "Cleaning service",
-    metaTitle: "Cleaning Service Düsseldorf | English Quote & WhatsApp",
+    metaTitle: "Cleaning Service Regensburg | English Quote & WhatsApp",
     metaDescription:
-      "English cleaning service in Düsseldorf for apartment, office, practice and commercial spaces. Send photos, timing and an existing quote for review.",
-    h1: "Cleaning service in Düsseldorf for apartment, office and practice",
+      "English cleaning service in Regensburg for apartment, office, practice and commercial spaces. Send photos, timing and an existing quote for review.",
+    h1: "Cleaning service in Regensburg for apartment, office and practice",
     heroText:
-      "For English-speaking customers in Düsseldorf who need cleaning, clear scope, photos by WhatsApp and a realistic first assessment before booking.",
+      "For English-speaking customers in Regensburg who need cleaning, clear scope, photos by WhatsApp and a realistic first assessment before booking.",
     scope: ["apartment cleaning", "office cleaning", "practice cleaning", "commercial cleaning", "quote review"],
     customerTypes: ["expats", "office managers", "property managers", "tenants", "landlords"],
     typicalCases: ["move-out cleaning", "office before Monday", "practice rooms", "existing cleaning quote"],
     sections: [
       section(
-        "Cleaning in Düsseldorf with clear local context",
-        "Düsseldorf cleaning requests often differ by district, access, parking, property type and timing. A flat in Bilk is not the same as an office in Stadtmitte or a practice in Pempelfort.",
+        "Cleaning in Regensburg with clear local context",
+        "Regensburg cleaning requests often differ by district, access, parking, property type and timing. A flat in Altstadt is not the same as an office near Galgenberg or a practice in Westenviertel.",
         "FLOXANT starts with facts: photos, scope, timing, access and, if available, an existing quote.",
       ),
       section(
@@ -261,26 +244,26 @@ export const englishLocalSeoPages = [
         "Useful details are rooms, floors, sanitary areas, kitchen, visible dirt, desired result, key handover and whether the service is one-time or recurring.",
       ),
       section(
-        "No keyword-only English page",
-        "This page exists for customers who search in English. It links to a real German equivalent and uses hreflang only where the corresponding page exists.",
+        "Information for English-speaking customers",
+        "This page explains the service in English and links to the matching German information when it is available.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    internalLinks: regensburgCleaningLinks,
+    primaryCtaHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I need a cleaning service in Düsseldorf. I can send district, scope, photos, timing and an existing quote if available.",
+      "Hello FLOXANT, I need a cleaning service in Regensburg. I can send district, scope, photos, timing and an existing quote if available.",
   }),
   createEnglishPage({
-    key: "en-duesseldorf-office-cleaning",
-    path: "/en/duesseldorf/office-cleaning",
-    region: "duesseldorf",
+    key: "en-regensburg-office-cleaning",
+    path: "/en/regensburg/office-cleaning",
+    region: "regensburg",
     serviceKey: "bueroreinigung",
     serviceName: "Office cleaning",
-    metaTitle: "Office Cleaning Düsseldorf | English Request & Quote Review",
+    metaTitle: "Office Cleaning Regensburg | English Request & Quote Review",
     metaDescription:
-      "Office cleaning in Düsseldorf for workplaces, kitchen, sanitary areas and after-hours access. Send photos and review an existing cleaning quote.",
-    h1: "Office cleaning in Düsseldorf with scope, timing and quote review",
+      "Office cleaning in Regensburg for workplaces, kitchen, sanitary areas and after-hours access. Send photos and review an existing cleaning quote.",
+    h1: "Office cleaning in Regensburg with scope, timing and quote review",
     heroText:
       "For offices, studios, agencies, practices and commercial spaces where cleaning scope, access, timing and recurring tasks need to be clear before pricing.",
     scope: ["workplaces", "kitchen", "sanitary areas", "meeting rooms", "after-hours access"],
@@ -293,30 +276,30 @@ export const englishLocalSeoPages = [
         "A useful request includes room list, team size, cleaning frequency, preferred time window and photos.",
       ),
       section(
-        "Düsseldorf office districts",
-        "Stadtmitte, MedienHafen, Derendorf, Heerdt, Oberkassel and nearby Neuss can create different access and timing needs.",
+        "Regensburg office districts",
+        "Altstadt, Galgenberg, Gewerbepark, Westenviertel and nearby Neutraubling can create different access and timing needs.",
       ),
       section(
         "Quote review for office cleaning",
         "If you already received a Büroreinigung or Gewerbereinigung offer, FLOXANT can check whether recurring scope, extras and assumptions are clear.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    internalLinks: regensburgCleaningLinks,
+    primaryCtaHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I need office cleaning in Düsseldorf. I can send room list, frequency, photos, timing and an existing quote.",
+      "Hello FLOXANT, I need office cleaning in Regensburg. I can send room list, frequency, photos, timing and an existing quote.",
   }),
   createEnglishPage({
-    key: "en-duesseldorf-apartment-cleaning",
-    path: "/en/duesseldorf/apartment-cleaning",
-    region: "duesseldorf",
+    key: "en-regensburg-apartment-cleaning",
+    path: "/en/regensburg/apartment-cleaning",
+    region: "regensburg",
     serviceKey: "wohnungsreinigung",
     serviceName: "Apartment cleaning",
-    metaTitle: "Apartment Cleaning Düsseldorf | Move-Out & Handover",
+    metaTitle: "Apartment Cleaning Regensburg | Move-Out & Handover",
     metaDescription:
-      "Apartment cleaning in Düsseldorf for move-out, handover, empty flats and deep cleaning. English request with photos and quote review.",
-    h1: "Apartment cleaning in Düsseldorf before move-out or handover",
+      "Apartment cleaning in Regensburg for move-out, handover, empty flats and deep cleaning. English request with photos and quote review.",
+    h1: "Apartment cleaning in Regensburg before move-out or handover",
     heroText:
       "For tenants, landlords and expats who need a flat cleaned before handover, after moving out or before the next use.",
     scope: ["bathroom", "kitchen", "floors", "empty flat", "handover preparation"],
@@ -328,30 +311,30 @@ export const englishLocalSeoPages = [
         "The important details are room count, kitchen and bathroom condition, floor type, remaining items, access, key handover and photos.",
       ),
       section(
-        "Düsseldorf local fit",
-        "Bilk, Pempelfort, Oberkassel, Derendorf, Benrath and Heerdt often have different parking, access and timing constraints.",
+        "Regensburg local fit",
+        "Altstadt, Westenviertel, Galgenberg, Kumpfm?hl and Burgweinting often have different parking, access and timing constraints.",
       ),
       section(
         "Move-out clarity",
         "FLOXANT helps separate normal apartment cleaning, deep cleaning and handover preparation so expectations stay realistic.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    internalLinks: regensburgCleaningLinks,
+    primaryCtaHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I need apartment cleaning in Düsseldorf. I can send district, rooms, condition, photos and handover timing.",
+      "Hello FLOXANT, I need apartment cleaning in Regensburg. I can send district, rooms, condition, photos and handover timing.",
   }),
   createEnglishPage({
-    key: "en-duesseldorf-deep-cleaning",
-    path: "/en/duesseldorf/deep-cleaning",
-    region: "duesseldorf",
+    key: "en-regensburg-deep-cleaning",
+    path: "/en/regensburg/deep-cleaning",
+    region: "regensburg",
     serviceKey: "grundreinigung",
     serviceName: "Deep cleaning",
-    metaTitle: "Deep Cleaning Düsseldorf | Apartment, Office & Move-Out",
+    metaTitle: "Deep Cleaning Regensburg | Apartment, Office & Move-Out",
     metaDescription:
-      "Deep cleaning in Düsseldorf after move-out, renovation or heavy dirt. Send photos, scope and timing for a realistic English assessment.",
-    h1: "Deep cleaning in Düsseldorf after move-out, renovation or heavy dirt",
+      "Deep cleaning in Regensburg after move-out, renovation or heavy dirt. Send photos, scope and timing for a realistic English assessment.",
+    h1: "Deep cleaning in Regensburg after move-out, renovation or heavy dirt",
     heroText:
       "Deep cleaning needs a realistic look at rooms, materials, dirt level, access and the desired final condition before any promise makes sense.",
     scope: ["heavy dirt", "renovation dust", "bathroom", "kitchen", "floors"],
@@ -371,22 +354,22 @@ export const englishLocalSeoPages = [
         "FLOXANT does not promise medical disinfection or guaranteed stain removal without checking material, cause and condition.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    internalLinks: regensburgCleaningLinks,
+    primaryCtaHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I need deep cleaning in Düsseldorf. I can send rooms, condition, photos, access and timing.",
+      "Hello FLOXANT, I need deep cleaning in Regensburg. I can send rooms, condition, photos, access and timing.",
   }),
   createEnglishPage({
-    key: "en-duesseldorf-move-out-cleaning",
-    path: "/en/duesseldorf/move-out-cleaning",
-    region: "duesseldorf",
+    key: "en-regensburg-move-out-cleaning",
+    path: "/en/regensburg/move-out-cleaning",
+    region: "regensburg",
     serviceKey: "wohnungsreinigung",
     serviceName: "Move-out cleaning",
-    metaTitle: "Move-Out Cleaning Düsseldorf | Apartment Handover",
+    metaTitle: "Move-Out Cleaning Regensburg | Apartment Handover",
     metaDescription:
-      "Move-out cleaning in Düsseldorf for apartment handover, empty flats and key return. English WhatsApp request with photos and quote review.",
-    h1: "Move-out cleaning in Düsseldorf for apartment handover",
+      "Move-out cleaning in Regensburg for apartment handover, empty flats and key return. English WhatsApp request with photos and quote review.",
+    h1: "Move-out cleaning in Regensburg for apartment handover",
     heroText:
       "For handover dates where kitchen, bathroom, floors, visible dirt, keys and timing need to be coordinated calmly.",
     scope: ["handover cleaning", "bathroom", "kitchen", "floors", "key timing"],
@@ -398,7 +381,7 @@ export const englishLocalSeoPages = [
         "A useful request includes handover date, room list, photos, remaining items, kitchen and bathroom condition and access details.",
       ),
       section(
-        "Düsseldorf timing matters",
+        "Regensburg timing matters",
         "Parking, elevator, city district and handover window can change what is realistic on short notice.",
       ),
       section(
@@ -406,22 +389,22 @@ export const englishLocalSeoPages = [
         "If another offer is unclear, FLOXANT can check scope, price, assumptions and missing line items before you commit.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    internalLinks: regensburgCleaningLinks,
+    primaryCtaHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I need move-out cleaning in Düsseldorf. I can send handover date, rooms, photos and access details.",
+      "Hello FLOXANT, I need move-out cleaning in Regensburg. I can send handover date, rooms, photos and access details.",
   }),
   createEnglishPage({
-    key: "en-duesseldorf-stairwell-cleaning",
-    path: "/en/duesseldorf/stairwell-cleaning",
-    region: "duesseldorf",
+    key: "en-regensburg-stairwell-cleaning",
+    path: "/en/regensburg/stairwell-cleaning",
+    region: "regensburg",
     serviceKey: "treppenhausreinigung",
     serviceName: "Stairwell cleaning",
-    metaTitle: "Stairwell Cleaning Düsseldorf | Entrance & Hallway",
+    metaTitle: "Stairwell Cleaning Regensburg | Entrance & Hallway",
     metaDescription:
-      "Stairwell cleaning in Düsseldorf for entrances, hallways and property management. English request with floors, access, photos and quote review.",
-    h1: "Stairwell cleaning in Düsseldorf for entrance, hallway and property management",
+      "Stairwell cleaning in Regensburg for entrances, hallways and property management. English request with floors, access, photos and quote review.",
+    h1: "Stairwell cleaning in Regensburg for entrance, hallway and property management",
     heroText:
       "For houses and managed properties where entrance, stairs, floors, frequency and access need to be clarified before a cleaning plan is useful.",
     scope: ["entrance", "stairs", "hallway", "floors", "recurring plan"],
@@ -434,221 +417,29 @@ export const englishLocalSeoPages = [
       ),
       section(
         "Useful local details",
-        "Heerdt, Oberkassel, Bilk, Derendorf and Pempelfort can differ by parking, access and building type.",
+        "Altstadt, Westenviertel, Galgenberg, Kumpfm?hl and Burgweinting can differ by parking, access and building type.",
       ),
       section(
         "For property management",
         "FLOXANT can check whether a Treppenhausreinigung offer covers the right areas, frequency and extra tasks.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
+    internalLinks: regensburgCleaningLinks,
+    primaryCtaHref: "/buchung?region=regensburg&service=reinigung#buchungssystem",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I need stairwell cleaning in Düsseldorf. I can send address area, floors, photos, frequency and access details.",
+      "Hello FLOXANT, I need stairwell cleaning in Regensburg. I can send address area, floors, photos, frequency and access details.",
   }),
   createEnglishPage({
-    key: "en-duesseldorf-odor-removal",
-    path: "/en/duesseldorf/odor-removal",
-    region: "duesseldorf",
-    serviceKey: "geruchsneutralisation",
-    serviceName: "Odor removal",
-    metaTitle: "Odor Removal Düsseldorf | Apartment Smell Assessment",
-    metaDescription:
-      "Odor removal in Düsseldorf for smoke, pet smell, musty rooms or move-out situations. Send photos, context and an existing quote for review.",
-    h1: "Odor removal in Düsseldorf for apartments and rooms after move-out",
-    heroText:
-      "For rooms where smoke, pet smell, musty air or move-out odor needs a careful first assessment before promises or pricing make sense.",
-    scope: ["smoke smell", "pet odor", "musty rooms", "move-out odor", "quote review"],
-    customerTypes: ["tenants", "landlords", "property managers", "relocation customers"],
-    typicalCases: ["smell after move-out", "smoke smell", "pet odor", "unclear cleaning quote"],
-    sections: [
-      section(
-        "Odor removal needs honest context",
-        "The first check depends on source, duration, room size, surfaces, ventilation, remaining furniture and photos.",
-        "FLOXANT treats odor removal carefully and does not promise medical disinfection, guaranteed stain removal or miracle results without checking the situation.",
-      ),
-      section(
-        "Düsseldorf handover and rental situations",
-        "Odor questions often appear before handover, reletting or after a tenant move-out in districts such as Bilk, Pempelfort, Heerdt and Oberkassel.",
-      ),
-      section(
-        "Quote review for odor-related cleaning",
-        "If another offer combines cleaning, odor treatment and extras, FLOXANT can check whether scope, assumptions and limits are understandable.",
-      ),
-    ],
-    internalLinks: duesseldorfCleaningLinks,
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
-    whatsappMessage:
-      "Hello FLOXANT, I need odor removal in Düsseldorf. I can send rooms, suspected source, photos, timing and any existing quote.",
-  }),
-  createEnglishPage({
-    key: "en-koeln-cleaning",
-    path: "/en/koeln/cleaning",
-    region: "duesseldorf",
-    citySlug: "koeln",
-    serviceKey: "reinigung",
-    serviceName: "Cleaning service",
-    metaTitle: "Cleaning Service Cologne | Apartment, Office & Quote Review",
-    metaDescription:
-      "English cleaning service requests in Cologne for apartments, offices, practices and stairwells. Send photos or review an existing quote.",
-    h1: "Cleaning service in Cologne for apartment, office and practice requests",
-    heroText:
-      "For English-speaking customers in Cologne who need cleaning scope, access, timing, photos and quote assumptions clarified before booking.",
-    scope: ["apartment cleaning", "office cleaning", "practice cleaning", "stairwell cleaning", "quote review"],
-    customerTypes: ["expats", "office managers", "tenants", "landlords", "property managers"],
-    typicalCases: ["move-out cleaning", "office cleaning", "practice rooms", "existing cleaning quote"],
-    sections: [
-      section(
-        "Cologne cleaning with regional context",
-        "Cologne requests are checked by property type, district, access, parking, timing and desired result. A flat in Ehrenfeld is different from an office in Innenstadt or a practice in Lindenthal.",
-      ),
-      section(
-        "No Cologne local-office claim",
-        "This page handles English cleaning intent for Cologne within the regional service context. FLOXANT does not claim a separate local office there.",
-      ),
-      section(
-        "What to send first",
-        "Useful details are rooms, square meters, photos, floor type, sanitary areas, kitchen, access window, handover date and any existing offer.",
-      ),
-    ],
-    internalLinks: [
-      ...duesseldorfCleaningLinks,
-      { href: "/koeln/reinigung", label: "German Cologne cleaning page" },
-    ],
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
-    whatsappMessage:
-      "Hello FLOXANT, I need cleaning in Cologne. I can send district, property type, rooms, photos, timing and an existing quote.",
-  }),
-  createEnglishPage({
-    key: "en-neuss-cleaning",
-    path: "/en/neuss/cleaning",
-    region: "duesseldorf",
-    citySlug: "neuss",
-    serviceKey: "reinigung",
-    serviceName: "Cleaning service",
-    metaTitle: "Cleaning Service Neuss | Apartment, Office & Quote Review",
-    metaDescription:
-      "English cleaning requests in Neuss for apartments, offices, stairwells and move-out situations. Send photos or review a cleaning quote.",
-    h1: "Cleaning service in Neuss near Düsseldorf for homes and offices",
-    heroText:
-      "For Neuss cleaning requests where apartment handover, office scope, stairwell cleaning or an existing quote should be checked clearly.",
-    scope: ["apartment cleaning", "office cleaning", "stairwell cleaning", "move-out cleaning", "quote review"],
-    customerTypes: ["tenants", "landlords", "office managers", "property managers", "expats"],
-    typicalCases: ["handover cleaning", "office before opening", "stairwell scope", "quote comparison"],
-    sections: [
-      section(
-        "Neuss is close, but scope still matters",
-        "Neuss, Düsseldorf-Heerdt, Meerbusch and Kaarst are close geographically, but access, district, parking, photos and timing still decide whether the request is realistic.",
-      ),
-      section(
-        "Apartment, office and stairwell requests",
-        "FLOXANT separates one-time apartment cleaning, recurring office cleaning and stairwell cleaning so the offer can be compared fairly.",
-      ),
-      section(
-        "No false local office",
-        "The page is for English search intent in Neuss and does not describe a separate local office.",
-      ),
-    ],
-    internalLinks: [
-      ...duesseldorfCleaningLinks,
-      { href: "/neuss/reinigung", label: "German Neuss cleaning page" },
-    ],
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
-    whatsappMessage:
-      "Hello FLOXANT, I need cleaning in Neuss. I can send location, scope, photos, access and timing.",
-  }),
-  createEnglishPage({
-    key: "en-meerbusch-cleaning",
-    path: "/en/meerbusch/cleaning",
-    region: "duesseldorf",
-    citySlug: "meerbusch",
-    serviceKey: "reinigung",
-    serviceName: "Cleaning service",
-    metaTitle: "Cleaning Service Meerbusch | Home, Practice & Quote Review",
-    metaDescription:
-      "English cleaning requests in Meerbusch for homes, practices, offices and stairwells. Send photos, timing and any existing offer for review.",
-    h1: "Cleaning service in Meerbusch for homes, practices and offices",
-    heroText:
-      "For Meerbusch customers who need a clear first cleaning assessment for home, practice, office, stairwell or move-out situations.",
-    scope: ["home cleaning", "practice cleaning", "office cleaning", "stairwell cleaning", "quote review"],
-    customerTypes: ["private households", "practice teams", "office managers", "property managers"],
-    typicalCases: ["home cleaning", "practice rooms", "handover cleaning", "existing quote"],
-    sections: [
-      section(
-        "Meerbusch cleaning requests near Düsseldorf and Neuss",
-        "Büderich, Osterath and Lank-Latum often involve homes, practices, stairwells or office spaces where access, timing and photos shape the scope.",
-      ),
-      section(
-        "What FLOXANT checks",
-        "Object type, rooms, sanitary areas, kitchen, floors, current condition, key access, timing and existing quote details are reviewed before the next step.",
-      ),
-      section(
-        "Regional service context",
-        "Meerbusch is handled as a regional cleaning request near Düsseldorf, without claiming a separate local office there.",
-      ),
-    ],
-    internalLinks: [
-      ...duesseldorfCleaningLinks,
-      { href: "/meerbusch/reinigung", label: "German Meerbusch cleaning page" },
-    ],
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
-    whatsappMessage:
-      "Hello FLOXANT, I need cleaning in Meerbusch. I can send district, property type, photos, timing and an existing quote.",
-  }),
-  createEnglishPage({
-    key: "en-duisburg-cleaning",
-    path: "/en/duisburg/cleaning",
-    region: "duesseldorf",
-    citySlug: "duisburg",
-    serviceKey: "reinigung",
-    serviceName: "Cleaning service",
-    metaTitle: "Cleaning Service Duisburg | Commercial, Apartment & Quote Review",
-    metaDescription:
-      "English cleaning requests in Duisburg for commercial spaces, offices, apartments and stairwells. Send photos or review a cleaning quote.",
-    h1: "Cleaning service in Duisburg for commercial spaces, offices and apartments",
-    heroText:
-      "For Duisburg cleaning requests where commercial space, office, apartment, stairwell or move-out scope needs a realistic first check.",
-    scope: ["commercial cleaning", "office cleaning", "apartment cleaning", "stairwell cleaning", "quote review"],
-    customerTypes: ["commercial customers", "office managers", "tenants", "landlords", "property managers"],
-    typicalCases: ["commercial space", "apartment handover", "office cleaning", "quote review"],
-    sections: [
-      section(
-        "Duisburg cleaning between Ruhr area and Düsseldorf context",
-        "Duisburg requests can involve commercial spaces, offices, apartments or stairwells. Access, parking, district, timing and photos make the first assessment more realistic.",
-      ),
-      section(
-        "Commercial and apartment scope separated",
-        "A commercial space, apartment handover and recurring office clean should not be priced from one vague description.",
-      ),
-      section(
-        "No separate Duisburg local-office claim",
-        "FLOXANT uses Duisburg as a real regional service context, not as a doorway page with an invented local office.",
-      ),
-    ],
-    internalLinks: [
-      ...duesseldorfCleaningLinks,
-      { href: "/duisburg/reinigung", label: "German Duisburg cleaning page" },
-    ],
-    primaryCtaHref: "/buchung?region=duesseldorf&service=reinigung#buchungssystem",
-    secondaryCtaHref: "/en/duesseldorf/cleaning-quote-review",
-    whatsappMessage:
-      "Hello FLOXANT, I need cleaning in Duisburg. I can send district, commercial or apartment scope, photos and timing.",
-  }),
-  createEnglishPage({
-    key: "en-duesseldorf-cleaning-quote-review",
-    path: "/en/duesseldorf/cleaning-quote-review",
-    region: "duesseldorf",
+    key: "en-regensburg-cleaning-quote-review",
+    path: "/en/regensburg/cleaning-quote-review",
+    region: "regensburg",
     serviceKey: "angebot-vergleichen",
     serviceName: "Cleaning quote review",
-    metaTitle: "Cleaning Quote Review Düsseldorf | Compare Before Booking",
+    metaTitle: "Cleaning Quote Review Regensburg | Compare Before Booking",
     metaDescription:
-      "Review a cleaning quote in Düsseldorf before booking. FLOXANT checks price, scope, timing, access, extra items and photos in English.",
-    h1: "Cleaning quote review in Düsseldorf before you book",
+      "Review a cleaning quote in Regensburg before booking. FLOXANT checks price, scope, timing, access, extra items and photos in English.",
+    h1: "Cleaning quote review in Regensburg before you book",
     heroText:
       "If a cleaning quote is hard to compare, send the offer, photos and project facts. FLOXANT checks whether the scope and assumptions are clear.",
     scope: ["price", "scope", "extra items", "timing", "photos"],
@@ -668,11 +459,11 @@ export const englishLocalSeoPages = [
         "Send the offer, photos, city district, desired result, timing and any constraints such as keys, elevator, parking or opening hours.",
       ),
     ],
-    internalLinks: duesseldorfCleaningLinks,
+    internalLinks: regensburgCleaningLinks,
     primaryCtaHref: "/angebot-pruefen",
-    secondaryCtaHref: "/duesseldorf/angebot-vergleichen",
+    secondaryCtaHref: "/en/regensburg/cleaning-quote-review",
     whatsappMessage:
-      "Hello FLOXANT, I want to review a cleaning quote in Düsseldorf. I can send the offer, photos, scope, timing and location.",
+      "Hello FLOXANT, I want to review a cleaning quote in Regensburg. I can send the offer, photos, scope, timing and location.",
   }),
   createEnglishPage({
     key: "en-regensburg-moving",
@@ -920,6 +711,10 @@ export const englishLocalSeoPages = [
       "Hello FLOXANT, I want to review a moving quote in Regensburg. I can send the quote, photos, start, destination, access and timing.",
   }),
 ] as const;
+
+export const englishLocalSeoPages = allEnglishLocalSeoPages.filter(
+  (page) => page.region === "regensburg",
+) as readonly LocalSeoPageConfig[];
 
 export const englishLocalSeoPaths = englishLocalSeoPages.map((page) => page.path) as readonly string[];
 export const englishLocalSeoIndexablePathSet = new Set(englishLocalSeoPaths);

@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "de",
     path: "buchungsbedingungen",
     title: "Buchungsbedingungen – FLOXANT",
-    description: "Buchungsbedingungen von Floxant. Sofortpreis online berechnen oder bequem per WhatsApp / Telefon anfragen: +49 1577 1105087.",
+    description: "Buchungsbedingungen von FLOXANT. Fragen können Sie per WhatsApp oder Telefon klären: +49 1577 1105087.",
   });
 }
 export default async function Buchungsbedingungen() {

@@ -5,22 +5,20 @@ type HreflangPair = {
   en: string;
 };
 
-export const localSeoHreflangPairs = [
-  { de: "/duesseldorf/reinigung", en: "/en/duesseldorf/cleaning" },
-  { de: "/duesseldorf/reinigungsfirma", en: "/en/duesseldorf/cleaning" },
-  { de: "/duesseldorf/bueroreinigung", en: "/en/duesseldorf/office-cleaning" },
-  { de: "/duesseldorf/gewerbereinigung", en: "/en/duesseldorf/office-cleaning" },
-  { de: "/duesseldorf/gewerbeflaechen-reinigung", en: "/en/duesseldorf/office-cleaning" },
-  { de: "/duesseldorf/wohnungsreinigung", en: "/en/duesseldorf/apartment-cleaning" },
-  { de: "/duesseldorf/grundreinigung", en: "/en/duesseldorf/deep-cleaning" },
-  { de: "/duesseldorf/treppenhausreinigung", en: "/en/duesseldorf/stairwell-cleaning" },
-  { de: "/duesseldorf/geruchsneutralisation", en: "/en/duesseldorf/odor-removal" },
-  { de: "/duesseldorf/angebot-vergleichen", en: "/en/duesseldorf/cleaning-quote-review" },
-  { de: "/angebot-vergleichen-duesseldorf", en: "/en/duesseldorf/cleaning-quote-review" },
-  { de: "/koeln/reinigung", en: "/en/koeln/cleaning" },
-  { de: "/neuss/reinigung", en: "/en/neuss/cleaning" },
-  { de: "/meerbusch/reinigung", en: "/en/meerbusch/cleaning" },
-  { de: "/duisburg/reinigung", en: "/en/duisburg/cleaning" },
+const allLocalSeoHreflangPairs = [
+  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
+  { de: "/regensburg/reinigungsfirma", en: "/en/regensburg/cleaning" },
+  { de: "/regensburg/bueroreinigung", en: "/en/regensburg/office-cleaning" },
+  { de: "/regensburg/gewerbereinigung", en: "/en/regensburg/office-cleaning" },
+  { de: "/regensburg/reinigung", en: "/en/regensburg/apartment-cleaning" },
+  { de: "/regensburg/reinigung", en: "/en/regensburg/move-out-cleaning" },
+  { de: "/grundreinigung-regensburg", en: "/en/regensburg/deep-cleaning" },
+  { de: "/treppenhausreinigung-regensburg", en: "/en/regensburg/stairwell-cleaning" },
+  { de: "/regensburg/angebot-vergleichen", en: "/en/regensburg/cleaning-quote-review" },
+  { de: "/angebot-vergleichen-regensburg", en: "/en/regensburg/cleaning-quote-review" },
+  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
+  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
+  { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
   { de: "/regensburg/umzug", en: "/en/regensburg/moving" },
   { de: "/regensburg/umzugsservice", en: "/en/regensburg/moving" },
   { de: "/regensburg/umzugsunternehmen", en: "/en/regensburg/moving-company" },
@@ -32,6 +30,10 @@ export const localSeoHreflangPairs = [
   { de: "/regensburg/angebot-vergleichen", en: "/en/regensburg/moving-quote-review" },
   { de: "/angebot-vergleichen-regensburg", en: "/en/regensburg/moving-quote-review" },
 ] as const satisfies readonly HreflangPair[];
+
+export const localSeoHreflangPairs = allLocalSeoHreflangPairs.filter(
+  (pair) => pair.de.includes("regensburg") || pair.de === "/angebot-vergleichen-regensburg",
+) as readonly HreflangPair[];
 
 const pairByPath = new Map<string, HreflangPair>();
 

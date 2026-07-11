@@ -21,6 +21,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { company } from "@/lib/company";
@@ -31,6 +35,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/fensterreinigung-regensburg";
@@ -178,6 +183,9 @@ const relatedLinks = [
   { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
 ];
 
+const fensterLeadHref =
+  "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=seo";
+
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
@@ -209,7 +217,7 @@ export default function FensterreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Fensterreinigung, Glasreinigung, Schaufensterreinigung, Rahmenreinigung und Objekt-Glasreinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Fensterreinigung Regensburg für Glasflächen, Rahmen, Büro, Praxis und Objekt",
@@ -301,10 +309,21 @@ export default function FensterreinigungRegensburgPage() {
               </nav>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href="#kontakt" className="flox-button-primary px-6">
+                <Link
+                  href={fensterLeadHref}
+                  className="flox-button-primary px-6"
+                  data-event="seo_cta_click"
+                  data-region="regensburg"
+                  data-service="fensterreinigung"
+                  data-city="regensburg"
+                  data-page-intent="fensterreinigung-regensburg"
+                  data-priority="p0"
+                  data-cta-label="Fensterreinigung anfragen"
+                  data-destination={fensterLeadHref}
+                >
                   Fensterreinigung anfragen
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flox-button-secondary px-6">
                   <MessageCircle className="h-4 w-4" />
                   Fotos per WhatsApp senden
@@ -314,7 +333,7 @@ export default function FensterreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/service-cleaning.png"
+                  src="/assets/service-cleaning.webp"
                 alt="Fenster- und Schaufensterreinigung mit Abzieher als Beispiel für Regensburg"
                 fill
                 priority
@@ -349,6 +368,25 @@ export default function FensterreinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Fensterreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Fensterangaben vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Fensterreinigung"
+        intro="Diese Links verbinden Glas, Grundreinigung, Gewerbe, Büro und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
+      />
 
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">

@@ -97,7 +97,7 @@ export default async function UmzugPillarPage() {
         heroBadge="Umzug mit Fokus auf Regensburg und Bayern"
         heroTitle="Umzugsunternehmen für Regensburg und Bayern"
         heroIntro="FLOXANT organisiert Privat- und Firmenumzüge mit klaren Zuständigkeiten, planbaren Zeitfenstern und sauber abgestimmten Zusatzleistungen. Ein Umzug scheitert selten am Tragen allein, sondern an falschem Volumen, fehlenden Zeitfenstern, zu kleinen Fahrzeugen, langen Laufwegen oder ungeklärten Übergabeaufgaben."
-        heroImageSrc="/assets/service-moving.png"
+        heroImageSrc="/assets/service-moving.webp"
         heroImageAlt="FLOXANT Umzug in Regensburg und Bayern"
         heroCards={[
           { label: "Planung", value: "Route, Volumen und Zugang sauber erfasst" },
@@ -109,7 +109,7 @@ export default async function UmzugPillarPage() {
           {
             icon: Package,
             title: "Was ist das?",
-            text: "Ein strukturierter Umzugsservice für Wohnungen, Häuser und Unternehmen mit klarer Einsatzplanung statt improvisiertem Transport.",
+            text: "Ein geplanter Umzugsservice für Wohnungen, Häuser und Unternehmen mit klarer Einsatzplanung statt improvisiertem Transport.",
           },
           {
             icon: ShieldCheck,

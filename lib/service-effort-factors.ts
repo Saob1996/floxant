@@ -42,7 +42,7 @@ export const serviceEffortFactors: Record<EffortFactorGroup, EffortFactorDefinit
   b2b: {
     group: "b2b",
     title: "Was bei Buero- und Gewerbereinigung zaehlt",
-    intro: "Bei Unternehmen wird ein Lead besser, wenn Flaeche, Turnus, Reinigungszeiten und Ansprechpartner direkt klar sind.",
+    intro: "Für Unternehmen helfen Fläche, Turnus, Reinigungszeiten und Ansprechpartner bei der ersten Einschätzung.",
     factors: [
       { key: "flaeche", label: "Flaeche", whyItMatters: "Quadratmeter und Raumanzahl bestimmen Zeit und Personalbedarf.", helpfulInput: "Flaeche und Raumliste nennen." },
       { key: "reinigungszeiten", label: "Reinigungszeiten", whyItMatters: "Vor Arbeitsbeginn, nach Feierabend oder Wochenende hat Einfluss auf Planung.", helpfulInput: "Moegliche Zeitfenster angeben." },
@@ -64,7 +64,7 @@ export const serviceEffortFactors: Record<EffortFactorGroup, EffortFactorDefinit
       { key: "etage-aufzug", label: "Etage/Aufzug", whyItMatters: "Treppen und fehlender Aufzug veraendern Zeit und Teamstaerke.", helpfulInput: "Etage und Aufzug an beiden Orten nennen." },
       { key: "volumen", label: "Volumen", whyItMatters: "Menge entscheidet ueber Fahrzeug, Team und Zeitfenster.", helpfulInput: "Zimmerzahl, Kubikmeter oder Fotos senden." },
       { key: "moebelmontage", label: "Moebelmontage", whyItMatters: "Abbau und Aufbau brauchen eigene Zeit.", helpfulInput: "Moebel nennen, die zerlegt werden muessen." },
-      { key: "haltezone", label: "Haltezone", whyItMatters: "Lange Laufwege oder fehlendes Parken sind echte Aufwandstreiber.", helpfulInput: "Parkmoeglichkeit und Laufweg beschreiben." },
+      { key: "haltezone", label: "Haltezone", whyItMatters: "Lange Laufwege oder fehlende Parkmöglichkeiten erhöhen den Aufwand.", helpfulInput: "Parkmoeglichkeit und Laufweg beschreiben." },
       { key: "entfernung", label: "Entfernung", whyItMatters: "Fern- und Nahumzug haben andere Logistik.", helpfulInput: "Strecke und Zwischenstopps nennen." },
       { key: "terminfenster", label: "Terminfenster", whyItMatters: "Feste Termine sind schwerer zu planen als flexible Zeitfenster.", helpfulInput: "Wunschtermin und Ausweichfenster nennen." },
       { key: "verpackung", label: "Verpackung", whyItMatters: "Kartons, Schutzmaterial und Packhilfe veraendern den Umfang.", helpfulInput: "Packstatus nennen." },

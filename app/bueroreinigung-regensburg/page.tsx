@@ -22,6 +22,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { B2BRequestPanel } from "@/components/B2BRequestPanel";
 import { B2BTrustPanel } from "@/components/B2BTrustPanel";
 import { BusinessTrustPanel } from "@/components/BusinessTrustPanel";
@@ -29,6 +33,8 @@ import { CommercialCleaningScopeSelector } from "@/components/CommercialCleaning
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { InternationalCustomerHint } from "@/components/conversion";
 import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { RecurringCleaningHint } from "@/components/RecurringCleaningHint";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
@@ -41,6 +47,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/regensburg/bueroreinigung";
@@ -175,7 +182,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "bueroreinigung-regensburg",
-    title: "Bueroreinigung Regensburg mit Raumliste und Angebot",
+    title: "Büroreinigung Regensburg mit Raumliste und Angebot",
     description:
       "Bueroreinigung Regensburg anfragen: Raumliste, Flaeche, Turnus, Zeitfenster, Fotos und Ansprechpartner fuer ein klares Angebot senden.",
   });
@@ -202,7 +209,7 @@ export default function BueroreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Büroreinigung, Büro-Unterhaltsreinigung, Kanzleireinigung, Agenturreinigung und gewerbliche Reinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
         availableLanguage: ["de", "en"],
       }),
       buildWebPageJsonLd({
@@ -308,7 +315,7 @@ export default function BueroreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/gewerbereinigung/gewerbliche-reinigung-duesseldorf-hero.webp"
+                  src="/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp"
                 alt="Helles Büro als Beispiel für Büroreinigung in Regensburg"
                 fill
                 priority
@@ -359,6 +366,13 @@ export default function BueroreinigungRegensburgPage() {
       <BusinessTrustPanel />
       <B2BTrustPanel />
       <ServiceProofChecklist serviceKey="b2b" />
+      <RequestBriefChecklistBlock
+        serviceKey="bueroreinigung"
+        ctaHref={`${pagePath}#kontaktformular`}
+        ctaLabel="Buerodaten als Anfragebrief vorbereiten"
+        compact
+      />
+      <PhotoGuidanceBlock serviceKey="bueroreinigung" compact />
 
       <RegensburgCleaningBuyerPath
         serviceLabel="Büroreinigung Regensburg"
@@ -371,6 +385,25 @@ export default function BueroreinigungRegensburgPage() {
           "/regensburg/gewerbereinigung",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=bueroreinigung_regensburg#buchungssystem"
+      />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontaktformular`} ctaLabel="Büroreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontaktformular`} ctaLabel="Bürodaten vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Büroreinigung"
+        intro="Diese Links verbinden Büroreinigung, Gewerbereinigung, Unterhalt, Praxis und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
       />
 
       <section id="kunden-suchen" className="flox-section pt-0">
@@ -544,7 +577,7 @@ export default function BueroreinigungRegensburgPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="flox-chip hover:border-blue-200 hover:bg-white">
+                  <Link key={item.href} href={item.href} prefetch={false} className="flox-chip hover:border-blue-200 hover:bg-white">
                     {item.label}
                   </Link>
                 ))}

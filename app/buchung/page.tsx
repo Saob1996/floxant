@@ -233,7 +233,7 @@ const secondaryRequestCases = [
   },
   {
     title: "Makler/Vermieter",
-    text: "Objektfall mit Übergabe, Fotos, Reinigung oder Räumung strukturiert starten.",
+    text: "Objektfall mit Übergabe, Fotos, Reinigung oder Räumung mit konkreten Eckdaten starten.",
     action: "/buchung?entry=objektfall#buchungssystem",
     detail: "/makler-vermieter-link",
     Icon: UsersRound,
@@ -388,7 +388,7 @@ const faqItems = [
   },
   {
     q: "Welcher Startpunkt passt für normale Anfragen?",
-    a: "Für die meisten Fälle passt die strukturierte Anfrage. Dort wählen Sie Leistung, Ort, Termin und wichtige Hinweise aus.",
+    a: "Für die meisten Fälle passt die Anfrage mit den wichtigsten Eckdaten. Dort wählen Sie Leistung, Ort, Termin und wichtige Hinweise aus.",
   },
   {
     q: "Wann nutze ich den Express-Check?",
@@ -404,7 +404,7 @@ const faqItems = [
   },
   {
     q: "Kann ich auch direkt per WhatsApp starten?",
-    a: "Ja. WhatsApp eignet sich besonders für kurze Rückfragen, Fotos oder schnelle Abstimmung vor der strukturierten Anfrage.",
+    a: "Ja. WhatsApp eignet sich besonders für kurze Rückfragen, Fotos oder schnelle Abstimmung vor der Anfrage mit den wichtigsten Eckdaten.",
   },
 ];
 
@@ -624,7 +624,7 @@ export default async function BuchungPage() {
           "clear_cleaning_combo",
           "rental_ready",
           "realtor_landlord_link",
-          "duesseldorf_apartment_cleaning",
+          "regensburg_cleaning",
           "referral_partnercode",
           "damage_control",
           "cellar_trashroom_rescue",

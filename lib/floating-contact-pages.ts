@@ -13,7 +13,7 @@ export const PAGES_WITH_OWN_MOBILE_CTA = new Set([
   "/plan-b-service",
   "/plattform-auftrag-pruefen",
   "/rechner",
-  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/regensburg/reinigung",
   "/rueckfahrt-boerse",
   "/schadensbegrenzung",
   "/uebergabeakte",

@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "leistungen-vergleichen",
   title: "FLOXANT Leistungen vergleichen | Umzug, Reinigung & Entrümpelung",
   description:
-   "Welche FLOXANT Leistung passt? Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Private Client für Regensburg und Bayern vergleichen.",
+   "Welche FLOXANT Leistung passt? Umzug, Reinigung, Entrümpelung, Büroumzug, Leer-Rückfahrt und Private Client für Regensburg und Regensburg vergleichen.",
  });
 }
 

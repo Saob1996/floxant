@@ -17,11 +17,11 @@ const priorityFiles = [
   "app/angebotscheck/page.tsx",
   "app/anbieter-vergleichen/page.tsx",
   "app/duesseldorf/page.tsx",
-  "app/duesseldorf/reinigung/page.tsx",
-  "app/duesseldorf/bueroreinigung/page.tsx",
-  "app/duesseldorf/gewerbereinigung/page.tsx",
-  "app/duesseldorf/praxisreinigung/page.tsx",
-  "app/duesseldorf/fensterreinigung/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
   "app/duesseldorf/umzug/page.tsx",
   "app/duesseldorf/entruempelung/page.tsx",
   "app/duesseldorf/haushaltsaufloesung/page.tsx",
@@ -37,7 +37,7 @@ const priorityFiles = [
   "app/spezialreinigung/page.tsx",
   "app/solarreinigung/page.tsx",
   "app/pv-anlagen-reinigung/page.tsx",
-  "app/duesseldorf/solarreinigung/page.tsx",
+  "app/regensburg/reinigung/page.tsx",
   "app/regensburg/solarreinigung/page.tsx",
   "components/ProfessionalHero.tsx",
   "components/CustomerProblemSection.tsx",
@@ -88,12 +88,12 @@ const safeBoundary =
 const renderedCopyRoutes = [
   "/",
   "/duesseldorf",
-  "/duesseldorf/reinigung",
-  "/duesseldorf/bueroreinigung",
-  "/duesseldorf/praxisreinigung",
-  "/duesseldorf/gewerbereinigung",
-  "/duesseldorf/hausverwaltung-reinigung",
-  "/duesseldorf/reinigung-stadtteile-umgebung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
   "/regensburg",
   "/regensburg/umzug",
   "/regensburg/reinigung",
@@ -174,8 +174,11 @@ function renderedHtmlPath(route) {
 
 function htmlToVisibleText(html) {
   return html
+    .replace(/<head[\s\S]*?<\/head>/gi, " ")
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<template[\s\S]*?<\/template>/gi, " ")
+    .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
@@ -341,7 +344,7 @@ function scanFile(file, content, issues) {
     }
   }
 
-  if (/Mehr erfahren/.test(content) && /(angebot|anbieter|duesseldorf|regensburg|bueroreinigung|reinigung|umzug|entruempelung)/i.test(file)) {
+  if (/Mehr erfahren/.test(content) && /(angebot|anbieter|regensburg|regensburg|bueroreinigung|reinigung|umzug|entruempelung)/i.test(file)) {
     addIssue(issues, "WARN", file, "Generic CTA 'Mehr erfahren' found on a priority route.");
   }
 

@@ -43,7 +43,7 @@ export function generatePsychologicalCleaningLandingMetadata(
       lang: "de",
       path: slug,
       title: "FLOXANT Reinigung Regensburg",
-      description: "FLOXANT Reinigung, Übergabe und Objektservice in Regensburg und Bayern.",
+      description: "FLOXANT Reinigung, Übergabe und Objektservice in Regensburg und Regensburg.",
     });
   }
 
@@ -52,7 +52,7 @@ export function generatePsychologicalCleaningLandingMetadata(
     path: page.slug,
     title: page.seoTitle,
     description: page.metaDescription,
-    keywords: [...page.searchIntents, page.serviceName, "Reinigung Regensburg", "Oberpfalz", "Bayern"],
+    keywords: [...page.searchIntents, page.serviceName, "Reinigung Regensburg", "Oberpfalz", "Regensburg"],
   });
 }
 
@@ -215,7 +215,7 @@ export function PsychologicalCleaningLandingRoute({
           <aside className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 text-white shadow-[0_24px_80px_rgba(15,23,42,0.18)]">
             <div className="relative h-56 sm:h-72 lg:h-80">
               <Image
-                src="/assets/service-cleaning.png"
+                src="/assets/service-cleaning.webp"
                 alt={`${page.serviceName} mit FLOXANT Reinigung in Regensburg`}
                 fill
                 sizes="(min-width: 1024px) 44vw, 100vw"

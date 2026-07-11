@@ -281,8 +281,8 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     formData.set("intent", "angebot_pruefen");
     formData.set("region", region || "duesseldorf");
     formData.set("regionPreset", region || "duesseldorf");
-    formData.set("entryPoint", "/angebot-vergleichen-duesseldorf");
-    formData.set("sourcePage", "/angebot-vergleichen-duesseldorf");
+    formData.set("entryPoint", "/angebot-vergleichen-regensburg");
+    formData.set("sourcePage", "/angebot-vergleichen-regensburg");
     formData.set("offerStatus", offerStatus || "details");
     formData.set("existingOffer", offerStatus && offerStatus !== "no_offer" ? "true" : "false");
     formData.set("offerConcern", offerConcern || "general_second_opinion");
@@ -351,7 +351,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
 
       form.reset();
       setFiles([]);
-      router.push("/angebot-vergleichen-duesseldorf/danke");
+      router.push("/angebot-vergleichen-regensburg");
     } catch (error) {
       setSubmitState("error");
       setErrorMessage(error instanceof Error ? error.message : "Die Anfrage konnte nicht gesendet werden.");

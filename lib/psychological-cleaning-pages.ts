@@ -257,13 +257,13 @@ const urgentArticles: PsychologicalCleaningArticleSeed[] = [
   {
     articleSlug: "kurzfristige-reinigung-regensburg-24h-realistisch",
     category: "Express",
-    title: "Kurzfristige Reinigung in Regensburg: was in 24 Stunden realistisch ist",
-    metaTitle: "Kurzfristige Reinigung Regensburg 24h | FLOXANT",
+    title: "Kurzfristige Reinigung in Regensburg: Was realistisch ist",
+    metaTitle: "Kurzfristige Reinigung Regensburg prüfen | FLOXANT",
     description:
       "Was bei kurzfristiger Reinigung bis morgen wirklich machbar ist und welche Angaben FLOXANT fuer eine schnelle Pruefung braucht.",
     intro:
       "Wenn die Uhr laeuft, braucht niemand leere Versprechen. Wichtig ist eine schnelle, ehrliche Pruefung von Flaeche, Zustand, Zugang und Ziel.",
-    keywordFocus: ["kurzfristige Reinigung Regensburg", "24h Reinigung"],
+    keywordFocus: ["kurzfristige Reinigung Regensburg", "dringende Reinigung"],
     readerProblem:
       "Morgen ist Termin, Besuch oder Uebergabe und die Wohnung ist noch nicht bereit.",
     practicalAngle:
@@ -302,10 +302,10 @@ const urgentArticles: PsychologicalCleaningArticleSeed[] = [
     title: "Notfallreinigung ohne falsche Versprechen: was Kunden erwarten duerfen",
     metaTitle: "Notfallreinigung realistisch pruefen | FLOXANT",
     description:
-      "Warum eine ehrliche Express-Pruefung besser ist als ein blindes 24h-Versprechen und wie FLOXANT in Bayern vorgeht.",
+      "Warum eine ehrliche Prüfung besser ist als eine ungeprüfte Terminzusage und wie FLOXANT im Regensburger Umkreis bis 50 Kilometer vorgeht.",
     intro:
       "Notfallreinigung klingt nach sofortiger Rettung. Seriös wird sie erst, wenn klar ist, ob Umfang, Zeitfenster und Team wirklich zusammenpassen.",
-    keywordFocus: ["Notfallreinigung", "Express Reinigung Bayern"],
+    keywordFocus: ["Notfallreinigung", "Express Reinigung Regensburg"],
     readerProblem:
       "Kunden brauchen schnelle Hilfe, wollen aber keine Zusage, die am Ende kippt.",
     practicalAngle:
@@ -368,7 +368,7 @@ const resetArticles: PsychologicalCleaningArticleSeed[] = [
     title: "Warum kleine Restaufgaben mental gross werden",
     metaTitle: "Kleine Restaufgaben vor Reinigung | FLOXANT",
     description:
-      "Wie viele kleine Putz- und Ordnungsaufgaben zu Stress werden und warum ein strukturierter Reset oft mehr hilft als Einzelaktionismus.",
+      "Wie viele kleine Putz- und Ordnungsaufgaben zu Stress werden und warum ein klarer Neustart oft mehr hilft als Einzelaktionismus.",
     intro:
       "Es ist selten nur eine Ecke. Es sind zehn kleine Punkte, die zusammen den Eindruck machen, dass alles zu viel ist.",
     keywordFocus: ["Putzstress", "Reinigung Entlastung"],
@@ -1111,16 +1111,16 @@ export const psychologicalCleaningLandingPages = [
   },
   {
     slug: "panikfrei-in-24h",
-    serviceName: "Panikfrei in 24h",
-    shortName: "Panikfrei 24h",
+    serviceName: "Kurzfristige Reinigung ohne Panik",
+    shortName: "Kurzfristige Reinigung",
     category: "Kurzfristige Reinigung",
-    seoTitle: "Panikfrei in 24h Regensburg | Kurzfristige Reinigung pruefen",
+    seoTitle: "Kurzfristige Reinigung Regensburg prüfen | FLOXANT",
     metaDescription:
-      "Panikfrei in 24h: kurzfristige Reinigung in Regensburg und Bayern fuer Besuch, Uebergabe, Besichtigung oder Notfalltermin realistisch pruefen lassen.",
+      "Kurzfristige Reinigung in Regensburg und im Umkreis bis 50 Kilometer für Besuch, Übergabe, Besichtigung oder dringenden Termin prüfen lassen.",
     heroHeadline: "Wenn morgen jemand kommt, muss heute Ruhe rein.",
     heroSubheadline:
       "FLOXANT prueft kurzfristige Reinigung ohne falsche Versprechen: Was ist in der Zeit machbar, was zaehlt zuerst und wie wird der Termin ruhiger?",
-    primaryCta: "24h-Fall pruefen",
+    primaryCta: "Dringende Anfrage prüfen",
     whatsappText:
       "Hallo FLOXANT, ich brauche kurzfristige Reinigung. Deadline, Ort, Fotos und Ziel:",
     emotionalPromise:
@@ -1140,7 +1140,7 @@ export const psychologicalCleaningLandingPages = [
     ],
     stressSituations: [
       "Besichtigung morgen",
-      "Uebergabe innerhalb von 24 Stunden",
+      "Sehr kurzfristige Übergabe",
       "Familienbesuch kuendigt sich an",
       "Kurzfristiger Objekttermin im Gewerbe",
     ],
@@ -1193,7 +1193,7 @@ export const psychologicalCleaningLandingPages = [
       },
     ],
     relatedSlugs: ["mama-kommt-morgen-service", "reset-reinigung", "schluesselruhe-service"],
-    searchIntents: ["kurzfristige Reinigung Regensburg", "24h Reinigung", "Notfallreinigung"],
+    searchIntents: ["kurzfristige Reinigung Regensburg", "dringende Reinigung", "Notfallreinigung"],
     supportingArticles: urgentArticles,
   },
   {
@@ -1599,7 +1599,7 @@ export const psychologicalCleaningLandingPages = [
       "Bewertungs-Hinweis: Gruendlichkeit wird besonders bei Details wahrgenommen",
     ],
     guarantees: [
-      "Strukturierter Blick auf typische Risikostellen",
+      "Gezielter Blick auf typische Risikostellen",
       "Keine Garantie, dass niemand weitere Punkte findet",
       "Ehrliche Trennung von sauber, nachreinigbar und nicht reinigungsbezogen",
     ],
@@ -1612,7 +1612,7 @@ export const psychologicalCleaningLandingPages = [
     faqItems: [
       {
         q: "Ist Hidden Dirt Check eine komplette Reinigung?",
-        a: "Nicht zwingend. Der Check kann mit Nachreinigung kombiniert werden, ist aber vor allem ein strukturierter Blick auf typische Detailstellen.",
+        a: "Nicht zwingend. Der Check kann mit Nachreinigung kombiniert werden, ist aber vor allem ein gezielter Blick auf typische Detailstellen.",
       },
       {
         q: "Welche Stellen werden oft uebersehen?",
@@ -1929,7 +1929,7 @@ function buildBlogArticle(
     metaTitle: seed.metaTitle,
     description: seed.description,
     intro: seed.intro,
-    about: [page.serviceName, page.category, "Reinigung", "Regensburg", "Oberpfalz", "Bayern"],
+    about: [page.serviceName, page.category, "Reinigung", "Regensburg", "50 km Umkreis"],
     keywords: [...seed.keywordFocus, ...page.searchIntents, "FLOXANT"].slice(0, 12),
     sections: [
       {

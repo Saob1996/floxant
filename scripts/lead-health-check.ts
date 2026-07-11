@@ -176,7 +176,7 @@ function checkLeadOperations() {
 function checkB2BLeadFields() {
   const files = [
     "components/SeoLeadForm.tsx",
-    "components/DuesseldorfB2BCleaningForm.tsx",
+    "components/RegensburgB2BCleaningForm.tsx",
     "lib/lead-normalization.ts",
     "lib/lead-validation.ts",
   ];

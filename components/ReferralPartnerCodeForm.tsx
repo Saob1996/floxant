@@ -25,7 +25,7 @@ const serviceOptions = [
   "Haushaltsauflösung",
   "Übergabereinigung",
   "Angebotsprüfung",
-  "Düsseldorf Reinigung",
+  "Reinigung Regensburg",
   "Düsseldorf Angebotsprüfung",
   "Regensburg Umzug",
   "Regensburg Entrümpelung",
@@ -328,7 +328,7 @@ export function ReferralPartnerCodeForm() {
 
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Nachricht optional
-          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-600" placeholder="z. B. Person sucht Endreinigung in Regensburg oder ein Unternehmen braucht Reinigung in Düsseldorf." />
+          <textarea name="message" rows={4} className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-600" placeholder="z. B. Person sucht Endreinigung in Regensburg oder ein Unternehmen braucht Reinigung in Regensburg." />
         </label>
 
         <label className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold leading-5 text-slate-700">

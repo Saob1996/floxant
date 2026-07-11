@@ -18,7 +18,7 @@ type ServiceJsonLdInput = {
   description: string;
   path: string;
   serviceType?: string;
-  areaServed?: string[];
+  areaServed?: Array<string | Record<string, unknown>>;
   availableLanguage?: string[];
 };
 
@@ -127,7 +127,7 @@ export function buildServiceJsonLd({
   description,
   path,
   serviceType,
-  areaServed = ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern"],
+  areaServed = ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
   availableLanguage = ["de"],
 }: ServiceJsonLdInput) {
   const url = absoluteUrl(path);
@@ -140,10 +140,14 @@ export function buildServiceJsonLd({
     description: clean(description),
     serviceType: clean(serviceType || name),
     url,
-    areaServed: areaServed.map((area) => ({
-      "@type": schemaPlaceType(area),
-      name: clean(area),
-    })),
+    areaServed: areaServed.map((area) =>
+      typeof area === "string"
+        ? {
+            "@type": schemaPlaceType(area),
+            name: clean(area),
+          }
+        : area,
+    ),
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: url,

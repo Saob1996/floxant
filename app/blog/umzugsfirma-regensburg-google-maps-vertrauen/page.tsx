@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     q: "Warum ist ein direkter Buchungsweg besser als ein allgemeines Kontaktformular?",
-    a: "Weil Service, Eckdaten, Termin und Hinweise strukturierter erfasst werden. Das beschleunigt die Rückmeldung und macht den nächsten Schritt für beide Seiten klarer.",
+    a: "Weil Service, Eckdaten, Termin und Hinweise vollständiger erfasst werden. Das beschleunigt die Rückmeldung und macht den nächsten Schritt für beide Seiten klarer.",
   },
   {
     q: "Hilft das auch für Google Maps und lokale Empfehlungen?",

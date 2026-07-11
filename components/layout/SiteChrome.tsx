@@ -21,7 +21,7 @@ export function SiteChrome({
   const isDuesseldorfSection = pathname.startsWith("/duesseldorf");
   const usesDuesseldorfHeader =
     isDuesseldorfSection ||
-    pathname === "/reinigung-moeblierte-wohnung-duesseldorf" ||
+    pathname === "/regensburg/reinigung" ||
     pathname === "/entsorgung-duesseldorf";
 
   return (

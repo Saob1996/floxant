@@ -44,7 +44,7 @@ const imageProfiles: Record<
   accent: "#3b82f6",
  },
  reinigung: {
-  eyebrow: "Reinigung Regensburg + Bayern",
+  eyebrow: "Reinigung Regensburg + Regensburg",
   title: "Reinigung für Übergabe, Objekt und Neustart.",
   subtitle: "Fläche, Zustand, Fenster, Küche, Bad und Terminlage realistisch prüfen.",
   chips: ["Endreinigung", "Übergabe", "Objektservice"],
@@ -81,7 +81,7 @@ const imageProfiles: Record<
  "private-client-service": {
   eyebrow: "Private Client",
   title: "Diskreter Service für Anwesen und sensible Haushalte.",
-  subtitle: "Umzug, Reinigung und Räumung mit ruhiger Abstimmung in Bayern und Baden-Württemberg.",
+  subtitle: "Umzug, Reinigung und Räumung mit ruhiger Abstimmung in Regensburg und Baden-Württemberg.",
   chips: ["Diskretion", "Anwesen", "Hochwertig"],
   accent: "#d6b56d",
  },
@@ -94,9 +94,9 @@ const imageProfiles: Record<
  },
  praxisfaelle: {
   eyebrow: "Praxisfälle",
-  title: "Typische Situationen. Klare Servicewege.",
+  title: "Typische Situationen. Passende Leistungen.",
   subtitle: "Umzug, Reinigung, Entrümpelung, Büroumzug und Leer-Rückfahrt richtig einordnen.",
-  chips: ["Entscheidung", "Serviceweg", "Regensburg"],
+  chips: ["Entscheidung", "Leistung", "Regensburg"],
   accent: "#38bdf8",
  },
  kostenfaktoren: {

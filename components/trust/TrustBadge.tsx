@@ -22,7 +22,7 @@ const badgeConfig = {
     iconTone: "text-emerald-600",
   },
   expert: {
-    de: "Strukturierte Vorbereitung",
+    de: "Vorbereitung mit klaren Angaben",
     en: "Structured preparation",
     icon: ClipboardCheck,
     tone:

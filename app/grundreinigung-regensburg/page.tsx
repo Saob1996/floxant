@@ -21,6 +21,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { RegensburgCleaningBuyerPath } from "@/components/RegensburgCleaningBuyerPath";
 import { company } from "@/lib/company";
@@ -31,6 +35,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/grundreinigung-regensburg";
@@ -203,7 +208,7 @@ export default function GrundreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Grundreinigung, Intensivreinigung, Wohnungsreinigung, Büro-Grundreinigung und Reinigung nach Auszug in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Grundreinigung Regensburg für Wohnung, Büro, Küche und Bad",
@@ -308,7 +313,7 @@ export default function GrundreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/service-cleaning.png"
+                  src="/assets/service-cleaning.webp"
                 alt="Grundreinigung einer stark genutzten Fläche als Beispiel für Regensburg"
                 fill
                 priority
@@ -355,6 +360,25 @@ export default function GrundreinigungRegensburgPage() {
           "/fensterreinigung-regensburg",
         ]}
         bookingHref="/buchung?service=reinigung&city=regensburg&source=grundreinigung_regensburg#buchungssystem"
+      />
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Grundreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Zustand und Ziel vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Grundreinigung"
+        intro="Diese Links verbinden Grundreinigung, Baureinigung, Fensterreinigung, Gewerbe und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
       />
 
       <section id="kunden-suchen" className="flox-section pt-0">
@@ -550,7 +574,7 @@ export default function GrundreinigungRegensburgPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedLinks.map((item) => (
-                  <Link key={item.href} href={item.href} className="flox-chip hover:border-blue-200 hover:bg-white">
+                  <Link key={item.href} href={item.href} prefetch={false} className="flox-chip hover:border-blue-200 hover:bg-white">
                     {item.label}
                   </Link>
                 ))}
@@ -591,7 +615,7 @@ export default function GrundreinigungRegensburgPage() {
                 <span>
                   <span className="block text-xl font-black text-slate-950">Allgemeine Buchung</span>
                   <span className="mt-3 block text-sm leading-7 text-slate-700">
-                    Für strukturierte Anfrage mit Kontaktdaten und Serviceauswahl.
+                    Für Anfrage mit den wichtigsten Eckdaten mit Kontaktdaten und Serviceauswahl.
                   </span>
                 </span>
               </Link>

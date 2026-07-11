@@ -78,7 +78,7 @@ const trustProofs = [
 const faqItems = [
   {
     q: "Was sind FLOXANT Signature Services?",
-    a: "Signature Services sind strukturierte Startpunkte für Fälle mit Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt, PV oder besonderem Abstimmungsbedarf.",
+    a: "Signature Services sind verständliche Einstiege für Fälle mit Angebot, Objektbrief, Übergabe, Plan B, Rückfahrt, PV oder besonderem Abstimmungsbedarf.",
   },
   {
     q: "Muss ich vorher genau wissen, welcher Service passt?",
@@ -247,7 +247,7 @@ export default function SignatureServicesPage() {
         ]}
         notFits={[
           "Sie erwarten eine Preisgarantie ohne Daten.",
-          "Es geht um Rechtsberatung, Bewertung anderer Anbieter oder garantierte Verfuegbarkeit.",
+          "Sie benötigen Rechtsberatung, eine Bewertung anderer Anbieter oder eine feste Verfügbarkeitszusage.",
           "Adresse, Telefonnummer oder Oeffnungszeiten sollen geraten werden.",
         ]}
         nextSteps={[
@@ -284,7 +284,7 @@ export default function SignatureServicesPage() {
 
       <RelatedSpecialServices
         kind="offer"
-        title="Wenn Signature Service und Angebotspruefung zusammenhaengen."
+        title="Wenn Signature Service und Angebotsprüfung zusammenhaengen."
         intro="Viele besondere Faelle beginnen mit einem vorhandenen Angebot, einer unsicheren Anbieterwahl oder einer Deadline. Diese Wege halten die Entscheidung sachlich."
         limit={3}
       />

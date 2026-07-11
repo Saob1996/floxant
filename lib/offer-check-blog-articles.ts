@@ -1,6 +1,7 @@
 import type { StrategicBlogArticle } from "@/lib/strategic-blog-articles";
+import { isCleaningRouteAllowed } from "@/lib/regensburg-cleaning-service-area";
 
-export const offerCheckBlogArticles: StrategicBlogArticle[] = [
+const allOfferCheckBlogArticles: StrategicBlogArticle[] = [
   {
     slug: "angebot-anderer-firma-pruefen-regensburg",
     category: "Angebotsprüfung",
@@ -10,7 +11,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     title: "Angebot einer anderen Firma prüfen lassen: was FLOXANT praktisch klärt",
     metaTitle: "Angebot anderer Firma prüfen lassen | FLOXANT Regensburg",
     description:
-      "Vor Zusage Preis, Umfang, Termin, Fotos und offene Punkte prüfen lassen: FLOXANT klärt Angebote für Umzug, Reinigung, Entrümpelung und Entsorgung in Regensburg, Umgebung und Bayern.",
+      "Vor Zusage Preis, Umfang, Termin, Fotos und offene Punkte prüfen lassen: FLOXANT klärt Angebote für Umzug, Reinigung, Entrümpelung und Entsorgung in Regensburg, Umgebung und Regensburg.",
     intro:
       "Ein Angebot wirkt auf den ersten Blick oft eindeutig: ein Preis, ein Termin, ein Anbieter. In der Praxis entscheidet aber nicht nur die Zahl unten auf der Seite, sondern ob Umfang, Zugang, Fotos, Zusatzleistungen und Zeitfenster wirklich zusammenpassen. Genau hier setzt die FLOXANT Angebotsprüfung an.",
     about: [
@@ -36,7 +37,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft vorhandene Angebote organisatorisch und praktisch: Was ist enthalten, was fehlt, welche Angaben sind unklar und ob nach Verfügbarkeit eine eigene Alternative möglich ist. Das gilt für Umzug, Reinigung, Entrümpelung und Entsorgung im Raum Regensburg, im 200-km-Nahbereich und in Bayern nach Verfügbarkeit.",
+          "FLOXANT prüft vorhandene Angebote organisatorisch und praktisch: Was ist enthalten, was fehlt, welche Angaben sind unklar und ob nach Verfügbarkeit eine eigene Alternative möglich ist. Das gilt für Umzug, Reinigung, Entrümpelung und Entsorgung im Raum Regensburg, im 200-km-Nahbereich und in Regensburg nach Verfügbarkeit.",
           "Wichtig: Das ist keine Rechtsberatung und keine Preisgarantie. FLOXANT bewertet nicht andere Firmen, sondern prüft Auftrag, Umfang, Termin und Machbarkeit.",
         ],
       },
@@ -63,7 +64,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Regionale Einordnung",
         paragraphs: [
-          "Regensburg ist der feste Ausgangspunkt für Bayern/Nahbereich. Düsseldorf bleibt getrennt mit eigenen Seiten für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung.",
+          "Regensburg ist der feste Ausgangspunkt für Regensburg/Nahbereich. Regensburg bleibt getrennt mit eigenen Seiten für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbereinigung und Entsorgung.",
           "Wer schnell eine zweite Einschätzung möchte, sollte Angebot oder Screenshot, Ort/PLZ, Termin, Fotos und Zielbudget senden.",
         ],
       },
@@ -91,7 +92,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       },
       {
         q: "Für welche Services gilt das?",
-        a: "Für Umzug, Reinigung, Entrümpelung, Transport, Entsorgung und Kombinationen in Regensburg, Umgebung und Bayern. In Düsseldorf wird passend zum Anliegen über klare lokale Kontaktmöglichkeiten geprüft.",
+        a: "Für Umzug, Reinigung, Entrümpelung, Transport, Entsorgung und Kombinationen in Regensburg, Umgebung und Regensburg. In Regensburg wird passend zum Anliegen über klare lokale Kontaktmöglichkeiten geprüft.",
       },
     ],
   },
@@ -104,7 +105,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     title: "Umzugsangebot prüfen lassen: Preis, Etage, Volumen und Strecke richtig einordnen",
     metaTitle: "Umzugsangebot prüfen Regensburg & Bayern | FLOXANT",
     description:
-      "Umzugsangebot prüfen lassen: FLOXANT klärt Preis, Volumen, Etage, Laufweg, Strecke, Rückfahrt, Reinigung und Übergabe für Regensburg, Umgebung und Bayern.",
+      "Umzugsangebot prüfen lassen: FLOXANT klärt Preis, Volumen, Etage, Laufweg, Strecke, Rückfahrt, Reinigung und Übergabe für Regensburg, Umgebung und Regensburg.",
     intro:
       "Bei Umzugsangeboten entstehen die größten Missverständnisse selten beim Preis selbst. Häufig fehlen Volumen, Etage, Laufwege, Zugang, Zusatzfahrt, Montage, Reinigung oder Übergabe. FLOXANT hilft, diese Punkte vor einer Entscheidung praktisch einzuordnen.",
     about: ["Umzugsangebot", "Umzug Regensburg", "Umzug Bayern", "Rückfahrt", "Übergabe", "Preisrahmen"],
@@ -120,7 +121,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         title: "Die kurze Antwort",
         paragraphs: [
           "Ein Umzugsangebot sollte nicht nur Start, Ziel und Endpreis enthalten. Wichtig sind Volumen, Etage, Zugang, Laufweg, Fahrzeugbedarf, Terminfenster, mögliche Rückfahrt, Reinigung nach Auszug und Übergabeziel.",
-          "FLOXANT prüft diese Punkte für Regensburg, den Nahbereich und Bayern nach Verfügbarkeit sowie für Düsseldorf über die eigenen Umzugsbereich.",
+          "FLOXANT prüft diese Punkte für Regensburg, den Nahbereich und Bayern nach Verfügbarkeit sowie für Regensburg über die eigenen Umzugsbereich.",
         ],
       },
       {
@@ -152,7 +153,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Volumen, Etage, Laufwege und Fahrzeugbedarf sichtbar machen.",
       "Rückfahrt, Reinigung und Übergabe als mögliche Preishebel prüfen.",
-      "Regensburg, Bayern und Düsseldorf sauber einordnen; Düsseldorf-Umzug separat anfragen.",
+      "Regensburg, Bayern und Regensburg sauber einordnen; Regensburg-Umzug separat anfragen.",
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen lassen" },
@@ -176,22 +177,22 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "reinigungsangebot-pruefen-regensburg-duesseldorf",
+    slug: "reinigungsangebot-pruefen-regensburg",
     category: "Reinigungsangebot",
     readTime: "7 Min.",
     date: "13. Mai 2026",
     datePublished: "2026-05-13",
     title: "Reinigungsangebot prüfen lassen: Fläche, Zustand, Termin und Übergabe klären",
-    metaTitle: "Reinigungsangebot prüfen | Regensburg & Düsseldorf | FLOXANT",
+    metaTitle: "Reinigungsangebot prüfen | Regensburg & Regensburg | FLOXANT",
     description:
-      "Reinigungsangebot prüfen lassen: FLOXANT klärt Fläche, Zustand, Fotos, Termin, Übergabeziel und Preisrahmen in Regensburg, Bayern und Düsseldorf.",
+      "Reinigungsangebot prüfen lassen: FLOXANT klärt Fläche, Zustand, Fotos, Termin, Übergabeziel und Preisrahmen in Regensburg, Regensburg und Regensburg.",
     intro:
       "Ein Reinigungsangebot wirkt oft einfach, solange nur eine Fläche und ein Preis genannt werden. Entscheidend ist aber, welche Reinigung gemeint ist: Endreinigung, Grundreinigung, Übergabereinigung, Büroreinigung oder Objektwechsel. FLOXANT prüft, ob Angaben und Ziel zusammenpassen.",
-    about: ["Reinigungsangebot", "Reinigung Regensburg", "Reinigung Düsseldorf", "Endreinigung", "Grundreinigung", "Büroreinigung"],
+    about: ["Reinigungsangebot", "Reinigung Regensburg", "Reinigung Regensburg", "Endreinigung", "Grundreinigung", "Büroreinigung"],
     keywords: [
       "Reinigungsangebot prüfen",
       "Reinigungsangebot Regensburg",
-      "Reinigungsangebot Düsseldorf",
+      "Reinigungsangebot Regensburg",
       "Endreinigung Angebot prüfen",
       "Grundreinigung Angebot prüfen",
     ],
@@ -199,7 +200,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft Reinigungsangebote anhand von Fläche, Reinigungsart, Zustand, Fotos, Termin, Übergabeziel, Zugang und Preisrahmen. Für Düsseldorf bleibt diese Logik auf Reinigung bezogen; Umzug und Entrümpelung haben klare Kontaktmöglichkeiten.",
+          "FLOXANT prüft Reinigungsangebote anhand von Fläche, Reinigungsart, Zustand, Fotos, Termin, Übergabeziel, Zugang und Preisrahmen. Für Regensburg bleibt diese Logik auf Reinigung bezogen; Umzug und Entrümpelung haben klare Kontaktmöglichkeiten.",
         ],
       },
       {
@@ -215,9 +216,9 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Regensburg, Bayern und Düsseldorf richtig trennen",
+        title: "Regensburg, Bayern und Regensburg richtig trennen",
         paragraphs: [
-          "In Regensburg, Bayern und Düsseldorf kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden, wenn die passende lokale Seite und Machbarkeit geklärt sind.",
+          "In Regensburg, Regensburg und Regensburg kann FLOXANT Reinigung mit Umzug, Entrümpelung, Übergabeakte oder Objektvorbereitung verbinden, wenn die passende lokale Seite und Machbarkeit geklärt sind.",
         ],
       },
       {
@@ -231,12 +232,12 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Fläche, Zustand und Reinigungsziel sauber unterscheiden.",
       "Übergabe, Objektwechsel oder B2B-Reinigung mitdenken.",
-      "Düsseldorf klar einordnen: Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbe oder Entsorgung bleiben getrennt verständlich.",
+      "Regensburg klar einordnen: Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung, Gewerbe oder Entsorgung bleiben getrennt verständlich.",
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Reinigungsangebot prüfen" },
       { href: "/regensburg/reinigung", label: "Reinigung Regensburg ansehen" },
-      { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf ansehen" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg ansehen" },
     ],
     faqTitle: "FAQ zum Reinigungsangebot",
     faqItems: [
@@ -245,8 +246,8 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         a: "Ja. FLOXANT prüft Fläche, Zustand, Termin, Fotos, Reinigungsart, Übergabeziel und Preisrahmen.",
       },
       {
-        q: "Gilt das auch für Düsseldorf?",
-        a: "Ja, auch in Düsseldorf, wenn die passende lokale Seite genutzt wird: /duesseldorf/umzug, /duesseldorf/reinigung, /duesseldorf/entruempelung oder /entsorgung-duesseldorf.",
+        q: "Gilt das auch außerhalb von Regensburg?",
+        a: "Für Reinigungsservices gilt Regensburg und der 50-km-Umkreis. Andere Leistungen werden separat über die passende lokale Seite geprüft.",
       },
       {
         q: "Welche Fotos helfen?",
@@ -255,38 +256,38 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "grundreinigung-duesseldorf-angebot-kosten-pruefen",
-    category: "Grundreinigung Düsseldorf",
+    slug: "grundreinigung-regensburg-angebot-kosten-pruefen",
+    category: "Grundreinigung Regensburg",
     readTime: "6 Min.",
     date: "31. Mai 2026",
     datePublished: "2026-05-31",
-    title: "Grundreinigung in Düsseldorf: Angebot, Kosten und Aufwand richtig prüfen",
-    metaTitle: "Grundreinigung Düsseldorf Angebot prüfen | FLOXANT",
+    title: "Grundreinigung in Regensburg: Angebot, Kosten und Aufwand richtig prüfen",
+    metaTitle: "Grundreinigung Regensburg Angebot prüfen | FLOXANT",
     description:
-      "Grundreinigung in Düsseldorf richtig anfragen: FLOXANT hilft, Angebot, Kosten, Fläche, Zustand, Fotos, Termin und Reinigungsumfang praktisch einzuordnen.",
+      "Grundreinigung in Regensburg richtig anfragen: FLOXANT hilft, Angebot, Kosten, Fläche, Zustand, Fotos, Termin und Reinigungsumfang praktisch einzuordnen.",
     intro:
       "Eine Grundreinigung wird oft gesucht, wenn normale Reinigung nicht mehr reicht: nach Leerstand, Renovierung, Mieterwechsel, starker Nutzung oder vor einer Übergabe. Damit ein Angebot passt, müssen Zustand, Fläche, Fotos, Termin und gewünschtes Ergebnis zusammen betrachtet werden.",
     about: [
-      "Grundreinigung Düsseldorf",
-      "Grundreinigung in Düsseldorf",
-      "Reinigungsfirma Düsseldorf",
-      "Putzfirma Düsseldorf",
-      "Reinigungsangebot Düsseldorf",
-      "Wohnungsreinigung Düsseldorf",
+      "Grundreinigung Regensburg",
+      "Grundreinigung in Regensburg",
+      "Reinigungsfirma Regensburg",
+      "Putzfirma Regensburg",
+      "Reinigungsangebot Regensburg",
+      "Wohnungsreinigung Regensburg",
     ],
     keywords: [
-      "Grundreinigung in Düsseldorf",
-      "Grundreinigung Düsseldorf Angebot",
-      "Grundreinigung Düsseldorf Kosten",
-      "Reinigungsfirma Düsseldorf Angebot",
-      "Putzfirmen Düsseldorf",
-      "Reinigungsangebot Düsseldorf prüfen",
+      "Grundreinigung in Regensburg",
+      "Grundreinigung Regensburg Angebot",
+      "Grundreinigung Regensburg Kosten",
+      "Reinigungsfirma Regensburg Angebot",
+      "Putzfirmen Regensburg",
+      "Reinigungsangebot Regensburg prüfen",
     ],
     sections: [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Für eine Grundreinigung in Düsseldorf sollte nicht nur die Quadratmeterzahl genannt werden. Wichtig sind Fotos, Zustand, Räume, Küche, Bad, Böden, Fensterbereiche, Zugang, Etage, Termin und das Ziel: soll die Wohnung wieder nutzbar sein, übergabebereit wirken oder nach Renovierung sauber starten?",
+          "Für eine Grundreinigung in Regensburg sollte nicht nur die Quadratmeterzahl genannt werden. Wichtig sind Fotos, Zustand, Räume, Küche, Bad, Böden, Fensterbereiche, Zugang, Etage, Termin und das Ziel: soll die Wohnung wieder nutzbar sein, übergabebereit wirken oder nach Renovierung sauber starten?",
           "FLOXANT kann ein vorhandenes Angebot oder eine neue Anfrage praktisch einordnen. Manchmal ist eine günstigere Alternative möglich, manchmal zeigt die Prüfung, dass der Aufwand realistisch höher liegt.",
         ],
       },
@@ -306,7 +307,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Welche Düsseldorfer Angaben helfen",
         paragraphs: [
-          "Für Altstadt, Stadtmitte, Pempelfort, Bilk, Oberkassel, MedienHafen, Neuss, Ratingen oder Meerbusch reichen zuerst Stadtteil oder PLZ, Fläche, Termin und Fotos. Danach lässt sich besser prüfen, ob der Umfang in den Preisrahmen passt.",
+          "Für Altstadt, Innenstadt, Stadtamhof, Galgenberg, Westenviertel, MedienOsthafen, Neutraubling, Pentling oder Lappersdorf reichen zuerst Stadtteil oder PLZ, Fläche, Termin und Fotos. Danach lässt sich besser prüfen, ob der Umfang in den Preisrahmen passt.",
           "Wenn bereits ein Angebot einer Reinigungsfirma vorliegt, können Leistungsumfang, Preis, Zusatzpunkte und mögliche Lücken sauberer eingeordnet werden.",
         ],
       },
@@ -325,14 +326,14 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Vorhandenes Angebot prüfen lassen, bevor unklare Zusatzkosten entstehen.",
     ],
     ctas: [
-      { href: "/duesseldorf/grundreinigung", label: "Grundreinigung Düsseldorf ansehen" },
-      { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen lassen" },
-      { href: "/duesseldorf/reinigung#kontakt", label: "Reinigung anfragen" },
+      { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg ansehen" },
+      { href: "/angebot-vergleichen-regensburg", label: "Angebot prüfen lassen" },
+      { href: "/regensburg/reinigung#kontakt", label: "Reinigung anfragen" },
     ],
-    faqTitle: "FAQ zur Grundreinigung Düsseldorf",
+    faqTitle: "FAQ zur Grundreinigung Regensburg",
     faqItems: [
       {
-        q: "Was braucht FLOXANT für eine Grundreinigung in Düsseldorf?",
+        q: "Was braucht FLOXANT für eine Grundreinigung in Regensburg?",
         a: "Hilfreich sind Stadtteil oder PLZ, Fläche, Fotos, Räume, Zustand, Termin, Zugang und das gewünschte Ergebnis.",
       },
       {
@@ -346,38 +347,38 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "buero-praxisreinigung-duesseldorf-angebot",
+    slug: "buero-praxisreinigung-regensburg-angebot",
     category: "Büro- und Praxisreinigung",
     readTime: "6 Min.",
     date: "31. Mai 2026",
     datePublished: "2026-05-31",
-    title: "Büro- und Praxisreinigung in Düsseldorf: welches Angebot wirklich passt",
-    metaTitle: "Büro- und Praxisreinigung Düsseldorf Angebot | FLOXANT",
+    title: "Büro- und Praxisreinigung in Regensburg: welches Angebot wirklich passt",
+    metaTitle: "Büro- und Praxisreinigung Regensburg Angebot | FLOXANT",
     description:
-      "Büroreinigung, Büro putzen und Praxisreinigung in Düsseldorf oder Neuss: FLOXANT hilft, Angebot, Turnus, Fläche, Zugang und Leistungsumfang richtig einzuordnen.",
+      "Büroreinigung, Büro putzen und Praxisreinigung in Regensburg oder Regensburg: FLOXANT hilft, Angebot, Turnus, Fläche, Zugang und Leistungsumfang richtig einzuordnen.",
     intro:
       "Wenn ein Büro, eine Kanzlei oder eine Praxis sauber bleiben soll, reicht ein einzelner Preis selten aus. Entscheidend sind Turnus, Raumliste, Sanitär, Küche, Empfang, Zeitfenster, Schlüsselweg und ein verlässlicher Ansprechpartner.",
     about: [
-      "Büroreinigung Düsseldorf",
-      "Büro Reinigungsfirma Düsseldorf",
-      "Büro putzen Düsseldorf",
+      "Büroreinigung Regensburg",
+      "Büro Reinigungsfirma Regensburg",
+      "Büro putzen Regensburg",
       "Büro und Praxisreinigung",
-      "Praxisreinigung Neuss",
+      "Praxisreinigung Regensburg",
       "Reinigung für Firmen",
     ],
     keywords: [
-      "büro reinigungsfirma düsseldorf",
-      "büro putzen düsseldorf",
+      "büro reinigungsfirma Regensburg",
+      "büro putzen Regensburg",
       "büro und praxisreinigung",
-      "praxisreinigung neuss",
+      "praxisreinigung regensburg",
       "reinigung für firmen",
-      "reinigungsdienst düsseldorf",
+      "reinigungsdienst Regensburg",
     ],
     sections: [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein gutes Angebot für Büro- oder Praxisreinigung in Düsseldorf nennt nicht nur Preis und Fläche. Es beschreibt, welche Räume gereinigt werden, wie oft die Reinigung stattfindet, welche Zeitfenster passen und wie Zugang, Schlüssel und Rückmeldung organisiert sind.",
+          "Ein gutes Angebot für Büro- oder Praxisreinigung in Regensburg nennt nicht nur Preis und Fläche. Es beschreibt, welche Räume gereinigt werden, wie oft die Reinigung stattfindet, welche Zeitfenster passen und wie Zugang, Schlüssel und Rückmeldung organisiert sind.",
           "FLOXANT prüft vorhandene Angebote oder neue Anfragen nach Umfang, Turnus, Machbarkeit und Preisrahmen.",
         ],
       },
@@ -395,9 +396,9 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Praxisreinigung in Neuss und Umgebung",
+        title: "Praxisreinigung in Regensburg und Umgebung",
         paragraphs: [
-          "Anfragen aus Neuss, Ratingen, Meerbusch oder Mettmann werden nach Ort, Fläche, Nutzung, Terminfenster und Kapazität eingeordnet. FLOXANT prüft praktische Reinigungsanforderungen; spezielle medizinische Hygieneversprechen werden nicht pauschal gegeben.",
+          "Anfragen aus Regensburg, Regensburg, Regensburg oder Regensburg werden nach Ort, Fläche, Nutzung, Terminfenster und Kapazität eingeordnet. FLOXANT prüft praktische Reinigungsanforderungen; spezielle medizinische Hygieneversprechen werden nicht pauschal gegeben.",
           "Wichtig ist, ehrlich zu beschreiben, welche Räume betroffen sind und welches Ergebnis erwartet wird.",
         ],
       },
@@ -415,9 +416,9 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Schlüsselweg, Ansprechpartner und Fotos vorab klären.",
     ],
     ctas: [
-      { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf ansehen" },
-      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung prüfen" },
-      { href: "/duesseldorf/vielleicht-guenstiger", label: "Reinigungsangebot prüfen" },
+      { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg ansehen" },
+      { href: "/praxisreinigung-regensburg", label: "Praxisreinigung prüfen" },
+      { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot prüfen" },
     ],
     faqTitle: "FAQ zur Büro- und Praxisreinigung",
     faqItems: [
@@ -430,44 +431,44 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         a: "Ja. FLOXANT ordnet Preis, Umfang, Turnus, Zeitfenster und mögliche Lücken praktisch ein.",
       },
       {
-        q: "Gilt das auch für Neuss?",
-        a: "Anfragen aus Neuss und naher Umgebung können nach Ort, Fläche, Termin und Kapazität geprüft werden.",
+        q: "Gilt das auch für Neutraubling?",
+        a: "Anfragen aus Neutraubling und naher Umgebung können nach Ort, Fläche, Termin und Kapazität geprüft werden.",
       },
     ],
   },
   {
-    slug: "treppenhausreinigung-duesseldorf-hausverwaltung-angebot",
-    category: "Treppenhausreinigung Düsseldorf",
+    slug: "treppenhausreinigung-regensburg-hausverwaltung-angebot",
+    category: "Treppenhausreinigung Regensburg",
     readTime: "6 Min.",
     date: "31. Mai 2026",
     datePublished: "2026-05-31",
-    title: "Treppenhausreinigung in Düsseldorf: Angebot für Hausverwaltung und WEG prüfen",
-    metaTitle: "Treppenhausreinigung Düsseldorf Angebot prüfen | FLOXANT",
+    title: "Treppenhausreinigung in Regensburg: Angebot für Hausverwaltung und WEG prüfen",
+    metaTitle: "Treppenhausreinigung Regensburg Angebot prüfen | FLOXANT",
     description:
-      "Treppenhausreinigung in Düsseldorf für Hausverwaltung und WEG: FLOXANT prüft Angebot, Turnus, Etagen, Eingänge, Kellerflur, Müllbereich, Fotos und Zugang.",
+      "Treppenhausreinigung in Regensburg für Hausverwaltung und WEG: FLOXANT prüft Angebot, Turnus, Etagen, Eingänge, Kellerflur, Müllbereich, Fotos und Zugang.",
     intro:
       "Bei Treppenhausreinigung geht es selten nur um die Treppe. Für Hausverwaltungen und Eigentümergemeinschaften zählen Eingang, Etagen, Handläufe, Kellerflur, Müllbereich, Beschwerden, Schlüsselweg und ein verlässlicher Turnus.",
     about: [
-      "Treppenhausreinigung Düsseldorf",
-      "Treppenreinigung Düsseldorf",
-      "Reinigungsdienst für Treppenhäuser Düsseldorf",
-      "Hausverwaltung Reinigung Düsseldorf",
-      "WEG Reinigung Düsseldorf",
-      "Gebäudereinigung Düsseldorf Pempelfort",
+      "Treppenhausreinigung Regensburg",
+      "Treppenreinigung Regensburg",
+      "Reinigungsdienst für Treppenhäuser Regensburg",
+      "Hausverwaltung Reinigung Regensburg",
+      "WEG Reinigung Regensburg",
+      "Gebäudereinigung Regensburg Stadtamhof",
     ],
     keywords: [
-      "reinigungsdienst für treppenhäuser düsseldorf",
-      "treppenreinigung düsseldorf",
-      "treppenhausreinigung düsseldorf",
-      "hausverwaltung reinigung düsseldorf angebot",
-      "gebäudereinigung düsseldorf pempelfort",
-      "reinigungsdienst düsseldorf",
+      "reinigungsdienst für treppenhäuser Regensburg",
+      "treppenreinigung Regensburg",
+      "treppenhausreinigung Regensburg",
+      "hausverwaltung reinigung Regensburg angebot",
+      "gebäudereinigung Regensburg stadtamhof",
+      "reinigungsdienst Regensburg",
     ],
     sections: [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "Ein Angebot für Treppenhausreinigung in Düsseldorf sollte Eingänge, Etagen, Handläufe, Kellerflur, Müllbereich, Turnus, Schlüsselweg, Fotos und Beschwerden klar berücksichtigen.",
+          "Ein Angebot für Treppenhausreinigung in Regensburg sollte Eingänge, Etagen, Handläufe, Kellerflur, Müllbereich, Turnus, Schlüsselweg, Fotos und Beschwerden klar berücksichtigen.",
           "FLOXANT prüft vorhandene Angebote und neue Anfragen für Hausverwaltungen, WEGs und Eigentümer praktisch nach Umfang, Aufwand und Machbarkeit.",
         ],
       },
@@ -485,9 +486,9 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Pempelfort, Stadtmitte, Bilk und nahe Stadtteile",
+        title: "Stadtamhof, Innenstadt, Galgenberg und nahe Stadtteile",
         paragraphs: [
-          "Gerade in Pempelfort, Stadtmitte, Derendorf, Bilk oder Oberkassel unterscheiden sich Objekte stark: Altbau, Mehrparteienhaus, Gewerbe im Erdgeschoss, enge Laufwege oder eingeschränkte Parkmöglichkeiten verändern den Aufwand.",
+          "Gerade in Stadtamhof, Innenstadt, Reinhausen, Galgenberg oder Westenviertel unterscheiden sich Objekte stark: Altbau, Mehrparteienhaus, Gewerbe im Erdgeschoss, enge Laufwege oder eingeschränkte Parkmöglichkeiten verändern den Aufwand.",
           "Darum helfen Stadtteil, Objektart, Fotos und eine kurze Bereichsliste bereits vor dem ersten Angebot.",
         ],
       },
@@ -506,11 +507,11 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Bestehendes Angebot prüfen lassen, bevor der Wechsel startet.",
     ],
     ctas: [
-      { href: "/duesseldorf/treppenhausreinigung", label: "Treppenhausreinigung Düsseldorf ansehen" },
-      { href: "/duesseldorf/hausverwaltung-reinigung", label: "Hausverwaltung Reinigung prüfen" },
-      { href: "/duesseldorf/vielleicht-guenstiger", label: "Angebot prüfen lassen" },
+      { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg ansehen" },
+      { href: "/regensburg/reinigung", label: "Hausverwaltung Reinigung prüfen" },
+      { href: "/angebot-vergleichen-regensburg", label: "Angebot prüfen lassen" },
     ],
-    faqTitle: "FAQ zur Treppenhausreinigung Düsseldorf",
+    faqTitle: "FAQ zur Treppenhausreinigung Regensburg",
     faqItems: [
       {
         q: "Welche Angaben braucht FLOXANT für Treppenhausreinigung?",
@@ -527,30 +528,30 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "entsorgungsangebot-pruefen-regensburg-duesseldorf",
+    slug: "entsorgungsangebot-pruefen-regensburg-regensburg",
     category: "Entsorgungsangebot",
     readTime: "7 Min.",
     date: "13. Mai 2026",
     datePublished: "2026-05-13",
     title: "Entsorgungsangebot prüfen lassen: Menge, Material, Zugang und Reinigung danach",
-    metaTitle: "Entsorgungsangebot prüfen | FLOXANT Regensburg & Düsseldorf",
+    metaTitle: "Entsorgungsangebot prüfen | FLOXANT Regensburg & Regensburg",
     description:
-      "Entsorgungsangebot prüfen lassen: FLOXANT klärt Menge, Material, Zugang, Fotos, Termin, Keller, Garage und Reinigung danach in Regensburg, Bayern und Düsseldorf.",
+      "Entsorgungsangebot prüfen lassen: FLOXANT klärt Menge, Material, Zugang, Fotos, Termin, Keller, Garage und Reinigung danach in Regensburg, Regensburg und Regensburg.",
     intro:
       "Bei Entsorgung und Entrümpelung ist der Preis stark davon abhängig, was wirklich weg soll. Menge, Material, Zugang, Etage, Laufweg und Fotos entscheiden, ob ein Angebot realistisch ist. FLOXANT prüft diese Punkte und klärt, ob eine passendere Alternative möglich ist.",
-    about: ["Entsorgungsangebot", "Entrümpelung", "Entsorgung Regensburg", "Entsorgung Düsseldorf", "Keller räumen", "Garage räumen"],
+    about: ["Entsorgungsangebot", "Entrümpelung", "Entsorgung Regensburg", "Entsorgung Regensburg", "Keller räumen", "Garage räumen"],
     keywords: [
       "Entsorgungsangebot prüfen",
       "Entrümpelungsangebot prüfen",
       "Entsorgung Regensburg Angebot",
-      "Entsorgung Düsseldorf Angebot",
+      "Entsorgung Regensburg Angebot",
       "Kellerentrümpelung Angebot prüfen",
     ],
     sections: [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Regensburg und Bayern werden nach Verfügbarkeit geprüft; Düsseldorf wird passend zum Anliegen über klare lokale Kontaktmöglichkeiten eingeordnet.",
+          "FLOXANT prüft Entsorgungs- und Entrümpelungsangebote nach Menge, Material, Zugang, Fotos, Termin, Etage, Keller, Garage, Dachboden und möglicher Reinigung danach. Regensburg und Regensburg werden nach Verfügbarkeit geprüft; Regensburg wird passend zum Anliegen über klare lokale Kontaktmöglichkeiten eingeordnet.",
         ],
       },
       {
@@ -572,9 +573,9 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         ],
       },
       {
-        title: "Düsseldorf sauber einordnen",
+        title: "Regensburg sauber einordnen",
         paragraphs: [
-          "Für Düsseldorf richtet sich die Anfrage nach der Leistung: Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung oder Entsorgung haben eigene Kontaktmöglichkeiten. Wenn Möbel oder Gegenstände entfernt werden müssen, sind /duesseldorf/entruempelung oder /entsorgung-duesseldorf passend.",
+          "Für Regensburg richtet sich die Anfrage nach der Leistung: Reinigung, Umzug, Entrümpelung, Haushaltsauflösung, Endreinigung oder Entsorgung haben eigene Kontaktmöglichkeiten. Wenn Möbel oder Gegenstände entfernt werden müssen, starten Sie mit der Entrümpelung in Regensburg.",
         ],
       },
     ],
@@ -582,12 +583,12 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Menge, Material, Fotos und Zugang vorab klären.",
       "Entrümpelung, Entsorgung und Reinigung nach Räumung trennen.",
-      "Regensburg/Bayern und Düsseldorf sauber nach Geschäftslogik einordnen.",
+      "Regensburg/Bayern und Regensburg sauber nach Geschäftslogik einordnen.",
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Entsorgungsangebot prüfen" },
       { href: "/regensburg/entruempelung", label: "Entrümpelung Regensburg ansehen" },
-      { href: "/entsorgung-duesseldorf", label: "Entsorgung Düsseldorf ansehen" },
+      { href: "/firmenentsorgung", label: "Entsorgung Regensburg ansehen" },
     ],
     faqTitle: "FAQ zum Entsorgungsangebot",
     faqItems: [
@@ -600,8 +601,8 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         a: "Nicht immer. Entrümpelung beschreibt oft die Räumung von Bereichen, Entsorgung die Abgabe oder Entfernung der Gegenstände. FLOXANT prüft beides praktisch zusammen.",
       },
       {
-        q: "Gilt das für Düsseldorf?",
-        a: "Ja, für Reinigung, Umzug, Entrümpelung und Entsorgung über die jeweiligen eigenen Düsseldorfer Seiten.",
+        q: "Gilt das für Regensburg?",
+        a: "Ja, für Reinigung, Umzug, Entrümpelung und Entsorgung über die jeweiligen eigenen Regensburger Seiten.",
       },
     ],
   },
@@ -617,7 +618,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Gewerbereinigung Angebot vergleichen: FLOXANT zeigt, welche Punkte vor einer Zusage bei Flaeche, Turnus, Zugang, Uhrzeit, Sonderflaechen und Zusatzleistungen wichtig sind.",
     intro:
       "Bei Gewerbereinigung entscheidet selten nur der Quadratmeterpreis. Wichtig ist, welche Flaechen gemeint sind, wie oft gereinigt wird, wann Zugang moeglich ist und welche Zusatzleistungen separat berechnet werden. Ein Angebotsvergleich hilft, diese Punkte vor der Zusage sichtbar zu machen.",
-    about: ["Gewerbereinigung", "Angebot vergleichen", "Buero", "Praxis", "Turnus", "Duesseldorf"],
+    about: ["Gewerbereinigung", "Angebot vergleichen", "Buero", "Praxis", "Turnus", "Regensburg"],
     keywords: [
       "Gewerbereinigung Angebot vergleichen",
       "Reinigungsangebot Gewerbe pruefen",
@@ -668,7 +669,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Gewerbereinigungsangebot pruefen" },
       { href: "/angebotscheck", label: "Angebotscheck ansehen" },
-      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Duesseldorf" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
     ],
     faqTitle: "FAQ zum Gewerbereinigungsangebot",
     faqItems: [
@@ -698,11 +699,11 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Bueroreinigung Angebot pruefen: Welche Angaben zu Turnus, Flaeche, Sanitär, Kueche, Muell, Zugang und Uhrzeit vor einer Zusage wichtig sind.",
     intro:
       "Bueroreinigung klingt nach Standardleistung, ist aber fast immer objektabhaengig. Kleine Unterschiede bei Turnus, Sanitärbereichen, Kueche, Abfall, Bodenart und Uhrzeit entscheiden, ob ein Angebot wirklich passt.",
-    about: ["Bueroreinigung", "Angebot pruefen", "Turnus", "Flaeche", "Duesseldorf", "Gewerbekunden"],
+    about: ["Bueroreinigung", "Angebot pruefen", "Turnus", "Flaeche", "Regensburg", "Gewerbekunden"],
     keywords: [
       "Bueroreinigung Angebot pruefen",
       "Buero Reinigung Preis vergleichen",
-      "Bueroreinigung Duesseldorf Angebot",
+      "Bueroreinigung Regensburg Angebot",
       "Office cleaning Angebot pruefen",
       "Reinigungsfirma Buero Angebot",
     ],
@@ -746,8 +747,8 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Flaeche, Fotos und Nutzung als Grundlage fuer eine faire Anfrage nutzen.",
     ],
     ctas: [
-      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot Duesseldorf pruefen" },
-      { href: "/duesseldorf/bueroreinigung", label: "Bueroreinigung Duesseldorf" },
+      { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot Regensburg pruefen" },
+      { href: "/regensburg/bueroreinigung", label: "Bueroreinigung Regensburg" },
       { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
     ],
     faqTitle: "FAQ zur Bueroreinigung",
@@ -1058,7 +1059,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
         ],
       },
     ],
-    highlightTitle: "Plan B strukturiert starten",
+    highlightTitle: "Plan B mit konkreten Eckdaten starten",
     highlightPoints: [
       "Frist, Fotos und Muss-Leistungen zuerst klaeren.",
       "Vorhandenes Angebot oder Absage als Kontext nutzen.",
@@ -1146,7 +1147,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Entruempelungsangebot pruefen" },
       { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
-      { href: "/duesseldorf/entruempelung", label: "Entruempelung Duesseldorf" },
+      { href: "/regensburg/entruempelung", label: "Entruempelung Regensburg" },
     ],
     faqTitle: "FAQ zum Entruempelungsangebot",
     faqItems: [
@@ -1165,30 +1166,30 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "reinigungsangebot-duesseldorf-pruefen",
-    category: "Duesseldorf",
+    slug: "reinigungsangebot-regensburg-pruefen",
+    category: "Regensburg",
     readTime: "8 Min.",
     date: "16. Juni 2026",
     datePublished: "2026-06-16",
-    title: "Reinigungsangebot in Duesseldorf pruefen: Stadtteil, Objekt und Fotos richtig nutzen",
-    metaTitle: "Reinigungsangebot Duesseldorf pruefen | FLOXANT",
+    title: "Reinigungsangebot in Regensburg pruefen: Stadtteil, Objekt und Fotos richtig nutzen",
+    metaTitle: "Reinigungsangebot Regensburg pruefen | FLOXANT",
     description:
-      "Reinigungsangebot in Duesseldorf pruefen: Welche Angaben zu Stadtteil, Objektart, Flaeche, Zustand, Termin, Fotos und Uebergabe vor einer Zusage helfen.",
+      "Reinigungsangebot in Regensburg pruefen: Welche Angaben zu Stadtteil, Objektart, Flaeche, Zustand, Termin, Fotos und Uebergabe vor einer Zusage helfen.",
     intro:
-      "In Duesseldorf unterscheiden sich Reinigungsanfragen nach Stadtteil, Objektart, Zugang, Zeitfenster und Nutzung. Ein Angebot laesst sich besser vergleichen, wenn diese Punkte nicht nur nebenbei genannt werden.",
-    about: ["Duesseldorf", "Reinigungsangebot", "Angebot pruefen", "Stadtteil", "Flaeche", "Fotos"],
+      "In Regensburg unterscheiden sich Reinigungsanfragen nach Stadtteil, Objektart, Zugang, Zeitfenster und Nutzung. Ein Angebot laesst sich besser vergleichen, wenn diese Punkte nicht nur nebenbei genannt werden.",
+    about: ["Regensburg", "Reinigungsangebot", "Angebot pruefen", "Stadtteil", "Flaeche", "Fotos"],
     keywords: [
-      "Reinigungsangebot Duesseldorf pruefen",
-      "Reinigung Duesseldorf Angebot vergleichen",
-      "Putzfirma Duesseldorf Angebot",
-      "Gewerbereinigung Duesseldorf Angebot",
-      "FLOXANT Duesseldorf Angebot",
+      "Reinigungsangebot Regensburg pruefen",
+      "Reinigung Regensburg Angebot vergleichen",
+      "Putzfirma Regensburg Angebot",
+      "Gewerbereinigung Regensburg Angebot",
+      "FLOXANT Regensburg Angebot",
     ],
     sections: [
       {
         title: "Die kurze Antwort",
         paragraphs: [
-          "FLOXANT prueft Reinigungsangebote in Duesseldorf nach Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und Leistungsumfang. Wichtig ist, ob es um private Reinigung, Endreinigung, Gewerbereinigung, Buero, Praxis oder Sonderreinigung geht.",
+          "FLOXANT prueft Reinigungsangebote in Regensburg nach Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und Leistungsumfang. Wichtig ist, ob es um private Reinigung, Endreinigung, Gewerbereinigung, Buero, Praxis oder Sonderreinigung geht.",
         ],
       },
       {
@@ -1212,25 +1213,25 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wie FLOXANT die Anfrage weiterfuehrt",
         paragraphs: [
-          "Wenn ein Angebot oder Fotos vorliegen, kann FLOXANT klaeren, welche Informationen fehlen und ob eine passendere Anfrage ueber die Duesseldorfer Reinigungsseiten sinnvoll ist.",
+          "Wenn ein Angebot oder Fotos vorliegen, kann FLOXANT klaeren, welche Informationen fehlen und ob eine passendere Anfrage ueber die Regensburger Reinigungsseiten sinnvoll ist.",
         ],
       },
     ],
-    highlightTitle: "Duesseldorfer Reinigungsangebote klarer lesen",
+    highlightTitle: "Regensburger Reinigungsangebote klarer lesen",
     highlightPoints: [
       "Stadtteil, Objektart und Fotos als Basis nutzen.",
       "Private Reinigung, Gewerbe und Sonderreinigung trennen.",
       "Angebot vor Zusage nach Umfang und offenen Annahmen pruefen.",
     ],
     ctas: [
-      { href: "/angebot-vergleichen-duesseldorf", label: "Angebot in Duesseldorf pruefen" },
-      { href: "/duesseldorf/reinigung", label: "Reinigung Duesseldorf" },
-      { href: "/duesseldorf/gewerbereinigung", label: "Gewerbereinigung Duesseldorf" },
+      { href: "/angebot-vergleichen-regensburg", label: "Angebot in Regensburg pruefen" },
+      { href: "/regensburg/reinigung", label: "Reinigung Regensburg" },
+      { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung Regensburg" },
     ],
-    faqTitle: "FAQ zum Reinigungsangebot in Duesseldorf",
+    faqTitle: "FAQ zum Reinigungsangebot in Regensburg",
     faqItems: [
       {
-        q: "Kann FLOXANT ein Reinigungsangebot in Duesseldorf pruefen?",
+        q: "Kann FLOXANT ein Reinigungsangebot in Regensburg pruefen?",
         a: "Ja. FLOXANT prueft Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und Leistungsumfang organisatorisch.",
       },
       {
@@ -1245,7 +1246,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
   },
   {
     slug: "angebot-wirkt-zu-teuer-welche-fragen-stellen",
-    category: "Angebotspruefung",
+    category: "Angebotsprüfung",
     readTime: "7 Min.",
     date: "19. Juni 2026",
     datePublished: "2026-06-19",
@@ -1260,7 +1261,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Angebot wirkt zu teuer",
       "Angebot pruefen Fragen",
       "teures Angebot pruefen",
-      "FLOXANT Angebotspruefung",
+      "FLOXANT Angebotsprüfung",
     ],
     sections: [
       {
@@ -1284,7 +1285,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wann Angebot pruefen sinnvoll ist",
         paragraphs: [
-          "Eine Angebotspruefung lohnt sich, wenn die Summe hoch wirkt, aber die Gruende nicht sichtbar sind. FLOXANT kann Preis, Umfang, Fotos, Ort, Termin und offene Punkte praktisch einordnen.",
+          "Eine Angebotsprüfung lohnt sich, wenn die Summe hoch wirkt, aber die Gruende nicht sichtbar sind. FLOXANT kann Preis, Umfang, Fotos, Ort, Termin und offene Punkte praktisch einordnen.",
           "Das ist keine Rechtsberatung und keine Garantie, dass es guenstiger wird. Ziel ist eine klare zweite Einschaetzung.",
         ],
       },
@@ -1299,7 +1300,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     highlightPoints: [
       "Nicht nur Endpreis, sondern Annahmen pruefen.",
       "Fotos und Zugang machen Aufwand nachvollziehbarer.",
-      "Bei Unsicherheit Angebotspruefung statt Schnellzusage nutzen.",
+      "Bei Unsicherheit Angebotsprüfung statt Schnellzusage nutzen.",
     ],
     ctas: [
       { href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" },
@@ -1323,22 +1324,22 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "praxisreinigung-duesseldorf-angebot-pruefen",
-    category: "Duesseldorf Reinigung",
+    slug: "praxisreinigung-regensburg-angebot-pruefen",
+    category: "Reinigung Regensburg",
     readTime: "8 Min.",
     date: "19. Juni 2026",
     datePublished: "2026-06-19",
-    title: "Praxisreinigung Duesseldorf: was Praxen vor der Anfrage klaeren sollten",
-    metaTitle: "Praxisreinigung Duesseldorf Angebot pruefen | FLOXANT",
+    title: "Praxisreinigung Regensburg: was Praxen vor der Anfrage klaeren sollten",
+    metaTitle: "Praxisreinigung Regensburg Angebot pruefen | FLOXANT",
     description:
-      "Praxisreinigung in Duesseldorf vorbereiten: Raeume, Turnus, Zeitfenster, Zugang, Fotos und Angebotsumfang ohne Hygiene- oder Preisgarantien sauber klaeren.",
+      "Praxisreinigung in Regensburg vorbereiten: Raeume, Turnus, Zeitfenster, Zugang, Fotos und Angebotsumfang ohne Hygiene- oder Preisgarantien sauber klaeren.",
     intro:
       "Praxisreinigung ist keine normale Wohnungsreinigung. Vor einer Anfrage sollten Flaechen, Oeffnungszeiten, Nebenraeume, Sanitärbereiche, Zugang und Turnus so klar sein, dass die Rueckmeldung realistisch bleibt.",
-    about: ["Praxisreinigung", "Duesseldorf", "Reinigungsangebot", "B2B Reinigung"],
+    about: ["Praxisreinigung", "Regensburg", "Reinigungsangebot", "B2B Reinigung"],
     keywords: [
-      "Praxisreinigung Duesseldorf Angebot",
+      "Praxisreinigung Regensburg Angebot",
       "Praxisreinigung Angebot pruefen",
-      "Reinigung Praxis Duesseldorf",
+      "Reinigung Praxis Regensburg",
     ],
     sections: [
       {
@@ -1368,7 +1369,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Angebot pruefen oder direkt anfragen?",
         paragraphs: [
-          "Wenn schon ein Angebot vorliegt, kann FLOXANT Umfang, Turnus und offene Annahmen pruefen. Ohne Angebot ist eine direkte Anfrage ueber die Duesseldorfer Praxisreinigungsseite sinnvoll.",
+          "Wenn schon ein Angebot vorliegt, kann FLOXANT Umfang, Turnus und offene Annahmen pruefen. Ohne Angebot ist eine direkte Anfrage ueber die Regensburger Praxisreinigungsseite sinnvoll.",
         ],
       },
     ],
@@ -1379,11 +1380,11 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Keine medizinische Spezialleistung pauschal versprechen.",
     ],
     ctas: [
-      { href: "/duesseldorf/praxisreinigung", label: "Praxisreinigung Duesseldorf anfragen" },
-      { href: "/angebot-vergleichen-duesseldorf", label: "Reinigungsangebot pruefen" },
-      { href: "/kontakt?service=praxisreinigung&city=duesseldorf&intent=praxisreinigung-duesseldorf&source=seo", label: "Praxisdaten senden" },
+      { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg anfragen" },
+      { href: "/angebot-vergleichen-regensburg", label: "Reinigungsangebot pruefen" },
+      { href: "/kontakt?service=praxisreinigung&city=regensburg&intent=praxisreinigung-regensburg&source=seo", label: "Praxisdaten senden" },
     ],
-    faqTitle: "FAQ zur Praxisreinigung in Duesseldorf",
+    faqTitle: "FAQ zur Praxisreinigung in Regensburg",
     faqItems: [
       {
         q: "Welche Angaben braucht FLOXANT fuer Praxisreinigung?",
@@ -1400,21 +1401,21 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
   {
-    slug: "fensterreinigung-duesseldorf-angebot-aufwand",
-    category: "Duesseldorf Reinigung",
+    slug: "fensterreinigung-regensburg-angebot-aufwand",
+    category: "Reinigung Regensburg",
     readTime: "7 Min.",
     date: "19. Juni 2026",
     datePublished: "2026-06-19",
-    title: "Fensterreinigung Duesseldorf: was Aufwand und Termin beeinflusst",
-    metaTitle: "Fensterreinigung Duesseldorf Angebot & Aufwand | FLOXANT",
+    title: "Fensterreinigung Regensburg: was Aufwand und Termin beeinflusst",
+    metaTitle: "Fensterreinigung Regensburg Angebot & Aufwand | FLOXANT",
     description:
-      "Fensterreinigung und Glasreinigung in Duesseldorf richtig anfragen: Glasflaeche, Etage, Rahmen, Zugang, Verschmutzung, Termin und Angebot pruefen.",
+      "Fensterreinigung und Glasreinigung in Regensburg richtig anfragen: Glasflaeche, Etage, Rahmen, Zugang, Verschmutzung, Termin und Angebot pruefen.",
     intro:
       "Bei Fensterreinigung entscheidet nicht nur die Anzahl der Fenster. Glasflaeche, Rahmen, Etage, Zugang, Verschmutzung und Terminfenster machen Angebote vergleichbar.",
-    about: ["Fensterreinigung", "Glasreinigung", "Duesseldorf", "Angebot pruefen"],
+    about: ["Fensterreinigung", "Glasreinigung", "Regensburg", "Angebot pruefen"],
     keywords: [
-      "Fensterreinigung Duesseldorf Angebot",
-      "Glasreinigung Duesseldorf Aufwand",
+      "Fensterreinigung Regensburg Angebot",
+      "Glasreinigung Regensburg Aufwand",
       "Fensterreinigung Angebot pruefen",
     ],
     sections: [
@@ -1456,11 +1457,11 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       "Bei Objektflaechen Fotos statt Schätzung nutzen.",
     ],
     ctas: [
-      { href: "/duesseldorf/fensterreinigung", label: "Fensterreinigung Duesseldorf" },
-      { href: "/angebot-vergleichen-duesseldorf", label: "Angebot pruefen" },
-      { href: "/kontakt?service=fensterreinigung&city=duesseldorf&intent=fensterreinigung-duesseldorf&source=seo", label: "Fensterdaten senden" },
+      { href: "/fensterreinigung-regensburg", label: "Fensterreinigung Regensburg" },
+      { href: "/angebot-vergleichen-regensburg", label: "Angebot pruefen" },
+      { href: "/kontakt?service=fensterreinigung&city=regensburg&intent=fensterreinigung-regensburg&source=seo", label: "Fensterdaten senden" },
     ],
-    faqTitle: "FAQ zu Fensterreinigung Duesseldorf",
+    faqTitle: "FAQ zu Fensterreinigung Regensburg",
     faqItems: [
       {
         q: "Welche Fotos helfen?",
@@ -1599,7 +1600,7 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
       {
         title: "Wann Angebot pruefen hilft",
         paragraphs: [
-          "Wenn ein bestehendes Angebot nur Transport nennt, aber Packhilfe, Demontage, Reinigung oder Uebergabe fehlen, kann eine Angebotspruefung offene Punkte sichtbar machen.",
+          "Wenn ein bestehendes Angebot nur Transport nennt, aber Packhilfe, Demontage, Reinigung oder Uebergabe fehlen, kann eine Angebotsprüfung offene Punkte sichtbar machen.",
         ],
       },
     ],
@@ -1708,6 +1709,10 @@ export const offerCheckBlogArticles: StrategicBlogArticle[] = [
     ],
   },
 ];
+
+export const offerCheckBlogArticles: StrategicBlogArticle[] = allOfferCheckBlogArticles.filter((article) =>
+  isCleaningRouteAllowed(`/blog/${article.slug}`),
+);
 
 export function getOfferCheckBlogArticle(slug: string) {
   return offerCheckBlogArticles.find((article) => article.slug === slug);

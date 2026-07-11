@@ -33,7 +33,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = [
   },
   {
     title: "FLOXANT Angebotscheck",
-    text: "Ordnet Leistungsumfang, Aufwandstreiber, fehlende Positionen, unrealistische Billigangebote und ueberzogene Preise sachlich ein.",
+    text: "Prüft Leistungsumfang, mögliche Zusatzkosten, fehlende Positionen und auffällige Preisunterschiede sachlich.",
     href: "/angebotscheck",
     cta: "Angebot einordnen",
     type: "Signature Service",
@@ -42,7 +42,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = [
   },
   {
     title: "FLOXANT Anbieter-Vergleich",
-    text: "Vergleicht Anbieter nicht nach Portal-Ranking, sondern nach Leistung, Risiko, Termin, Kommunikation, Zusatzpositionen und Nachvollziehbarkeit.",
+    text: "Vergleicht Angebote nach Leistung, Risiko, Termin, Kommunikation, Zusatzpositionen und Nachvollziehbarkeit.",
     href: "/anbieter-vergleichen",
     cta: "Anbieter vergleichen",
     type: "Signature Service",
@@ -106,10 +106,10 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = [
   {
     title: "FLOXANT Diskret-Service",
     text: "Fuer sensible Umzuege, Nachlass, Trennung, Messie-Kontext oder diskrete Entruempelung mit ruhiger Kommunikation und wuerdevoller Sprache.",
-    href: "/private-client-service",
+    href: "/diskret-service",
     cta: "Diskret anfragen",
     type: "Signature Service",
-    priority: "B",
+    priority: "A",
     tags: ["Diskretion", "Nachlass", "sensibel"],
   },
   {
@@ -124,7 +124,7 @@ export const signatureServiceLinks: readonly SignatureSpecialLink[] = [
   {
     title: "FLOXANT Buero-Startklar-Service",
     text: "Fuer Bueros, Praxen und Gewerbeflaechen vor Einzug, nach Umbau oder vor Uebergabe, mit Fokus auf Zeitfenster und Betriebsunterbrechung.",
-    href: "/duesseldorf/bueroreinigung",
+    href: "/regensburg/bueroreinigung",
     cta: "Buero startklar machen",
     type: "Signature Service",
     priority: "B",
@@ -181,7 +181,7 @@ export const specialCleaningLinks: readonly SignatureSpecialLink[] = [
   {
     title: "Bauendreinigung",
     text: "Baustaub, Handwerkerreste, Uebergabeziel und Grenzen zu Sanierung oder Maengelhaftung sauber trennen.",
-    href: "/duesseldorf/baureinigung",
+    href: "/baureinigung-regensburg",
     cta: "Baureinigung pruefen",
     type: "Spezialservice",
     priority: "B",
@@ -190,7 +190,7 @@ export const specialCleaningLinks: readonly SignatureSpecialLink[] = [
   {
     title: "Praxisreinigung",
     text: "Praxis- und Empfangsflaechen nach Raumliste, Turnus, Zeitfenster und klarer Grenze zu medizinischer Spezialdesinfektion pruefen.",
-    href: "/duesseldorf/praxisreinigung",
+    href: "/praxisreinigung-regensburg",
     cta: "Praxisreinigung ansehen",
     type: "Spezialservice",
     priority: "B",
@@ -199,7 +199,7 @@ export const specialCleaningLinks: readonly SignatureSpecialLink[] = [
   {
     title: "Treppenhaus- und Hausverwaltungsreinigung",
     text: "Eingang, Etagen, Gemeinschaftsflaechen, Turnus, Schluesselweg und Ansprechpartner fuer Verwaltungen klaeren.",
-    href: "/duesseldorf/hausverwaltung-reinigung",
+    href: "/regensburg/reinigung",
     cta: "Hausverwaltung pruefen",
     type: "Spezialservice",
     priority: "B",
@@ -337,7 +337,7 @@ export const signatureSpecialClusters: readonly SignatureSpecialCluster[] = [
     links: specialClearanceLinks,
   },
   {
-    title: "Angebotspruefung und Vergleich",
+    title: "Angebotsprüfung und Vergleich",
     intro: "Wenn Preis, Umfang, Anbieter oder Plan B vor einer Zusage sachlich eingeordnet werden sollen.",
     links: offerCheckLinks,
   },
@@ -389,7 +389,7 @@ export const problemBasedServiceLinks: readonly SignatureSpecialLink[] = [
   {
     title: "Buero muss startklar werden",
     text: "Bueroreinigung, Praxis, Gewerbeflaeche oder Bauendreinigung light mit Terminfenster einordnen.",
-    href: "/duesseldorf/bueroreinigung",
+    href: "/regensburg/bueroreinigung",
     cta: "Buero startklar machen",
     type: "Signature Service",
   },

@@ -549,7 +549,7 @@ async function main() {
       path: "/kontakt",
       service: "bueroreinigung",
       city: "duesseldorf",
-      intent: "bueroreinigung-duesseldorf",
+      intent: "bueroreinigung-regensburg",
       priority: "p0",
     });
     const contactPath = leadTools.buildLeadHref(contactLead);

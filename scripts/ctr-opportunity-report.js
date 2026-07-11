@@ -15,7 +15,7 @@ const IMPORTANT_ROUTES = [
   "/regensburg/endreinigung",
   "/regensburg/entruempelung",
   "/kleintransport-regensburg",
-  "/duesseldorf/reinigung",
+  "/regensburg/reinigung",
   "/umzug",
   "/reinigung",
   "/entruempelung",
@@ -53,10 +53,10 @@ const CLUSTERS = [
     patterns: ["umzug bayern", "umzugsunternehmen bayern", "transport bayern", "umzug innerhalb bayern"],
   },
   {
-    id: "duesseldorf_reinigung",
-    label: "Düsseldorf Reinigung",
-    target: "/duesseldorf/reinigung",
-    patterns: ["reinigung duesseldorf", "reinigung düsseldorf", "wohnungsreinigung duesseldorf", "wohnungsreinigung düsseldorf", "endreinigung duesseldorf", "endreinigung düsseldorf", "grundreinigung duesseldorf", "grundreinigung düsseldorf", "reinigungsfirma duesseldorf", "reinigungsfirma düsseldorf"],
+    id: "regensburg_reinigung",
+    label: "Reinigung Regensburg",
+    target: "/regensburg/reinigung",
+    patterns: ["reinigung regensburg", "reinigung Regensburg", "wohnungsreinigung regensburg", "wohnungsreinigung Regensburg", "endreinigung regensburg", "endreinigung Regensburg", "grundreinigung regensburg", "grundreinigung Regensburg", "reinigungsfirma regensburg", "reinigungsfirma Regensburg"],
   },
   {
     id: "signature",

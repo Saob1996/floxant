@@ -24,11 +24,11 @@ Packdecken statt Plastikfolie – wir setzen auf wiederverwendbare Schutzmateria
     {
         slug: 'reinigung-checkliste-uebergabe',
         title: 'Die perfekte Reinigung zur Wohnungsübergabe',
-        desc: 'Checkliste für Mieter und Vermieter in Bayern: Was bei der Endreinigung wirklich zählt.',
+        desc: 'Checkliste für Mieter und Vermieter in Regensburg: Was bei der Endreinigung wirklich zählt.',
         content: `
 # Endreinigung mit Abnahmegarantie
 
-In Bayern sind die Anforderungen an die Sauberkeit bei einer Wohnungsübergabe oft hoch. Eine oberflächliche Reinigung reicht selten aus.
+In Regensburg sind die Anforderungen an die Sauberkeit bei einer Wohnungsübergabe oft hoch. Eine oberflächliche Reinigung reicht selten aus.
 
 ### Die kritischen Zonen:
 - **Fenster & Rahmen**: Kalkablagerungen und Staub in den Schienen.

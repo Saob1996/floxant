@@ -11,7 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import { company, duesseldorfCompany } from "@/lib/company";
+import { company } from "@/lib/company";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -26,21 +26,6 @@ type LocalSeoPageProps = {
 };
 
 function getProvider(page: LocalSeoPageConfig) {
-  if (page.region === "duesseldorf") {
-    return {
-      name: duesseldorfCompany.name,
-      phone: duesseldorfCompany.phone,
-      phoneRaw: duesseldorfCompany.phoneRaw,
-      email: duesseldorfCompany.email,
-      streetAddress: duesseldorfCompany.streetAddress,
-      postalCode: duesseldorfCompany.postalCode,
-      city: duesseldorfCompany.city,
-      state: "Nordrhein-Westfalen",
-      countryCode: duesseldorfCompany.countryCode,
-      url: `${company.url}/duesseldorf`,
-    };
-  }
-
   return {
     name: company.name,
     phone: company.phone,
@@ -75,7 +60,7 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       linksLabel: "Internal links",
       linksHeading: "Relevant nearby pages, not a link wall.",
       linksText:
-        "Only pages that match this search intent are linked: region, main service, nearby services, quote review and contact options.",
+        "You will find links to the region, the main service, nearby services, quote review and contact options.",
       openLabel: "Open",
       faqLabel: "FAQ",
       faqHeading: `Common questions about ${page.serviceName} in ${page.city.displayName}`,
@@ -188,7 +173,7 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
       },
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
-        { name: page.region === "duesseldorf" ? "Düsseldorf" : "Regensburg", item: `/${page.region}` },
+        { name: "Regensburg", item: "/regensburg" },
         { name: page.city.displayName, item: page.city.parentHub },
         { name: page.serviceName, item: page.path },
       ]),

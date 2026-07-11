@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   title: dict.ratgeber?.meta_title || "Ratgeber für Umzug, Reinigung und Entrümpelung | FLOXANT",
   description:
    dict.ratgeber?.meta_desc ||
-   "Praxisnahe Ratgeber, Checklisten und Kostenhilfen für Umzug, Reinigung und Entrümpelung in Regensburg und Bayern.",
+   "Praxisnahe Ratgeber, Checklisten und Kostenhilfen für Umzug, Reinigung und Entrümpelung in Regensburg und Regensburg.",
  });
 }
 
@@ -98,6 +98,7 @@ export default async function RatgeberPage() {
         <Link
          key={slug}
          href={`/ratgeber/${slug}`}
+         prefetch={false}
          className="group rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-6 transition-all hover:-translate-y-1 hover:border-blue-400/20 hover:bg-white/[0.04]"
         >
          <h2 className="text-lg font-semibold text-white transition-colors group-hover:text-blue-300">

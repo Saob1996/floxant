@@ -33,7 +33,7 @@ export const ValuationSummary: React.FC<ValuationSummaryProps> = ({
   const localSupportTiles = [
     {
       label: "Lokaler Rahmen",
-      value: serviceType === "reinigung" ? "Reinigung in Regensburg & Bayern" : "Regensburg & Bayern",
+      value: serviceType === "reinigung" ? "Reinigung in Regensburg + 50 km" : "Regensburg & Regensburg",
       icon: <MapPin size={16} />,
     },
     {

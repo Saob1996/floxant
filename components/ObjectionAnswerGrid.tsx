@@ -1,7 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 
 const objectionAnswers = [
-  ["Schon ein Angebot", "Angebot kann strukturiert nach Umfang, Zusatzkosten und offenen Punkten eingeordnet werden."],
+  ["Schon ein Angebot", "Das Angebot kann nach Leistungsumfang, Zusatzkosten und offenen Punkten geprüft werden."],
   ["Es ist dringend", "Dringlichkeit angeben. Termine werden nach Verfügbarkeit geprüft, ohne Sofortgarantie."],
   ["Sensibler Fall", "Diskrete Kontaktaufnahme und zurückhaltende Kommunikation sind möglich."],
   ["Gewerbekunde", "Objektart, Fläche, Turnus, Zeiten und Ansprechpartner helfen bei der ersten Einordnung."],

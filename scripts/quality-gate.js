@@ -47,7 +47,7 @@ async function findAvailablePort(startPort) {
 const PRIVATE_SEGMENTS = new Set(["api", "dashboard", "admin", "login"]);
 const LEGACY_REDIRECT_ROUTES = new Set([
   "/partnercode",
-  "/airbnb-reinigung-duesseldorf",
+  "/airbnb-reinigung-regensburg",
   "/angebot-red-flag-scanner",
   "/guenstigeres-angebot-pruefen",
   "/villenservice",
@@ -119,7 +119,7 @@ const IMPORTANT_ROUTES = [
   "/empfehlen",
   "/angebotscheck",
   "/angebot-guenstiger-pruefen",
-  "/reinigung-moeblierte-wohnung-duesseldorf",
+  "/reinigung-moeblierte-wohnung-regensburg",
   "/makler-vermieter-link",
   "/mieterwechsel-service-regensburg",
   "/wohnung-wieder-vermietbar",
@@ -150,7 +150,7 @@ const IMPORTANT_ROUTES = [
 
 const REDIRECT_EXPECTATIONS = [
   ["/partnercode", "/empfehlen"],
-  ["/airbnb-reinigung-duesseldorf", "/reinigung-moeblierte-wohnung-duesseldorf"],
+  ["/airbnb-reinigung-regensburg", "/reinigung-moeblierte-wohnung-regensburg"],
   ["/angebot-red-flag-scanner", "/angebotscheck#red-flag-scanner"],
   ["/guenstigeres-angebot-pruefen", "/angebot-guenstiger-pruefen"],
   ["/de", "/"],
@@ -177,10 +177,10 @@ const REDIRECT_EXPECTATIONS = [
   ["/einsatzgebiet-regensburg-200km", "/regensburg"],
   ["/service-area-bayern", "/regensburg"],
   ["/umzug-n%C3%BCrnberg", "/umzug-nuernberg"],
-  ["/reinigung-n%C3%BCrnberg", "/reinigung-nuernberg"],
+  ["/reinigung-n%C3%BCrnberg", "/regensburg/reinigung"],
   ["/entr%C3%BCmpelung-n%C3%BCrnberg", "/entruempelung-nuernberg"],
   ["/umzug-m%C3%BCnchen", "/umzug-muenchen"],
-  ["/reinigung-m%C3%BCnchen", "/reinigung-muenchen"],
+  ["/reinigung-m%C3%BCnchen", "/regensburg/reinigung"],
   ["/entr%C3%BCmpelung-m%C3%BCnchen", "/entruempelung-muenchen"],
   ["/villenservice", "/private-client-service"],
   ["/signature/clean-start", "/clean-start"],
@@ -305,13 +305,13 @@ function loadLocalSeoPageRoutes() {
     routes.push(match[1]);
   }
 
-  const duesseldorfSlugs = source.match(/const duesseldorfCityCleaningSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
-  for (const slug of extractQuotedStrings(duesseldorfSlugs)) {
+  const regensburgCleaningSlugs = source.match(/const regensburgCityCleaningSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
+  for (const slug of extractQuotedStrings(regensburgCleaningSlugs)) {
     routes.push(`/${slug}/reinigung`);
   }
 
-  const regensburgSlugs = source.match(/const regensburgCityMoveSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
-  for (const slug of extractQuotedStrings(regensburgSlugs)) {
+  const regensburgMoveSlugs = source.match(/const regensburgCityMoveSlugs = \[([\s\S]*?)\] as const;/)?.[1] || "";
+  for (const slug of extractQuotedStrings(regensburgMoveSlugs)) {
     routes.push(`/${slug}/umzug`);
   }
 
@@ -670,7 +670,7 @@ function runDominanceCheck({ optionalOnly = false } = {}) {
     "/buchung": ["generatePageSEO", "buildFaqJsonLd", "SmartBookingWizard", "Google Maps"],
     "/rechner": ["generatePageSEO", "buildFaqJsonLd", "Orientierungsrahmen"],
     "/empfehlen": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd", "ReferralPartnerCodeForm"],
-    "/reinigung-moeblierte-wohnung-duesseldorf": ["buildDuesseldorfCleaningMetadata", "buildFaqJsonLd", "DuesseldorfApartmentCleaningForm", "Apartment-Reset"],
+    "/reinigung-moeblierte-wohnung-regensburg": ["buildRegensburgCleaningMetadata", "buildFaqJsonLd", "RegensburgApartmentCleaningForm", "Apartment-Reset"],
     "/umzug": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/reinigung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
     "/entruempelung": ["generatePageSEO", "buildFaqJsonLd", "buildServiceJsonLd"],
@@ -755,7 +755,7 @@ function runDominanceCheck({ optionalOnly = false } = {}) {
     optionalWarnings.push("Search dominance experience component is missing expanded conversion and AI/search signals");
   }
 
-  if (!fileContains(manifestPath, ["shortcuts", "Angebot prüfen lassen", "Reinigung Düsseldorf", "germanizeDeep"])) {
+  if (!fileContains(manifestPath, ["shortcuts", "Angebot prüfen lassen", "Reinigung Regensburg", "germanizeDeep"])) {
     failures.push("manifest is missing mobile discovery shortcuts or German normalization");
   }
 

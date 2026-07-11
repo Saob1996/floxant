@@ -14,6 +14,10 @@ import {
 } from "@/lib/lead-intents";
 import { appendConversionJourneyToFormData } from "@/lib/conversion-journey";
 import { germanText, germanizeDeep } from "@/lib/german-text";
+import { getCustomerFacingErrorMessage } from "@/lib/customer-labels";
+import { buildRequestSummaryPayload } from "@/lib/missing-info";
+import { getLeadReplyTemplateForServiceKey } from "@/lib/lead-reply-templates";
+import { getMissingInfoQuestionsForServiceKey } from "@/lib/missing-info-questions";
 
 type SeoLeadFormProps = {
   initialIntent: LeadIntent;
@@ -121,23 +125,251 @@ const offerConcernOptions = [
   { value: "general_second_opinion", label: "Zweite Einschätzung gewünscht" },
 ] as const;
 
+const b2bSpecialAreaOptions = [
+  { value: "kueche", label: "Küche" },
+  { value: "sanitaer", label: "Sanitär" },
+  { value: "empfang", label: "Empfang" },
+  { value: "besprechungsraeume", label: "Besprechungsräume" },
+  { value: "lager-gewerbeflaeche", label: "Lager/Gewerbefläche" },
+  { value: "praxisraeume", label: "Praxisräume" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const propertyCleaningRoleOptions = [
+  { value: "", label: "noch offen" },
+  { value: "hausverwaltung", label: "Hausverwaltung" },
+  { value: "vermieter", label: "Vermieter" },
+  { value: "eigentuemergemeinschaft", label: "Eigentümergemeinschaft" },
+  { value: "unternehmen", label: "Unternehmen" },
+  { value: "privat", label: "Privat" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const propertyCleaningObjectTypeOptions = [
+  { value: "", label: "noch offen" },
+  { value: "mehrfamilienhaus", label: "Mehrfamilienhaus" },
+  { value: "wohnanlage", label: "Wohnanlage" },
+  { value: "gewerbeobjekt", label: "Gewerbeobjekt" },
+  { value: "buerogebaeude", label: "Bürogebäude" },
+  { value: "praxis-gewerbeflaeche", label: "Praxis/Gewerbefläche" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const propertyCleaningAreaOptions = [
+  { value: "treppenhaus", label: "Treppenhaus" },
+  { value: "eingangsbereich", label: "Eingangsbereich" },
+  { value: "keller-garage", label: "Keller/Garage" },
+  { value: "aufzug", label: "Aufzug" },
+  { value: "gemeinschaftsflaechen", label: "Gemeinschaftsflächen" },
+  { value: "buero-gewerbeflaeche", label: "Büro/Gewerbefläche" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const propertyCleaningFrequencyOptions = [
+  { value: "", label: "noch offen" },
+  { value: "einmalig", label: "einmalig" },
+  { value: "woechentlich", label: "wöchentlich" },
+  { value: "vierzehntaegig", label: "14-tägig" },
+  { value: "monatlich", label: "monatlich" },
+  { value: "unklar", label: "noch unklar" },
+] as const;
+
+const propertyCleaningYesNoOptions = [
+  { value: "", label: "noch offen" },
+  { value: "ja", label: "Ja" },
+  { value: "nein", label: "Nein" },
+  { value: "unklar", label: "Unklar / mehrere Angebote" },
+] as const;
+
+const solarObjectTypeOptions = [
+  { value: "", label: "noch offen" },
+  { value: "privat", label: "Privat" },
+  { value: "gewerbe", label: "Gewerbe" },
+  { value: "hausverwaltung", label: "Hausverwaltung" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const pianoInstrumentOptions = [
+  { value: "", label: "noch offen" },
+  { value: "klavier", label: "Klavier" },
+  { value: "e-piano", label: "E-Piano" },
+  { value: "fluegel-pruefen", label: "Flügel, nur nach Prüfung" },
+  { value: "schweres-einzelstueck", label: "Sonstiges schweres Stück" },
+] as const;
+
+const pianoAccessOptions = [
+  { value: "", label: "noch offen" },
+  { value: "ja", label: "Ja" },
+  { value: "nein", label: "Nein" },
+  { value: "unklar", label: "Unklar" },
+] as const;
+
+const pianoConcernOptions = [
+  { value: "", label: "noch offen" },
+  { value: "zugang-unklar", label: "Zugang unklar" },
+  { value: "angebot-teuer", label: "Angebot wirkt teuer" },
+  { value: "termin-unklar", label: "Termin unklar" },
+  { value: "anbieter-abgesagt", label: "Anbieter abgesagt" },
+  { value: "treppe-schwierig", label: "Treppe schwierig" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const seniorRequesterRoleOptions = [
+  { value: "", label: "noch offen" },
+  { value: "selbst", label: "selbst" },
+  { value: "angehoerige", label: "Angehörige" },
+  { value: "betreuung-organisation", label: "Betreuung / Organisation" },
+  { value: "sonstiges", label: "Sonstiges" },
+] as const;
+
+const seniorScopeOptions = [
+  { value: "", label: "noch offen" },
+  { value: "wenige-moebel", label: "wenige Möbel" },
+  { value: "komplette-wohnung", label: "komplette Wohnung" },
+  { value: "mit-keller-garage", label: "mit Keller/Garage" },
+  { value: "unklar", label: "unklar" },
+] as const;
+
+const seniorYesNoOptions = [
+  { value: "", label: "noch offen" },
+  { value: "ja", label: "Ja" },
+  { value: "nein", label: "Nein" },
+  { value: "unklar", label: "Unklar" },
+] as const;
+
+const seniorExtraNeedOptions = [
+  { value: "entruempelung", label: "Entrümpelung" },
+  { value: "reinigung", label: "Reinigung" },
+  { value: "wohnungsaufloesung", label: "Wohnungsauflösung" },
+  { value: "objektbrief", label: "Objektbrief" },
+  { value: "uebergabe", label: "Übergabe" },
+  { value: "diskret-service", label: "Diskret-Service" },
+] as const;
+
+const handoverSituationOptions = [
+  { value: "", label: "noch offen" },
+  { value: "auszug", label: "Auszug / Wohnungswechsel" },
+  { value: "nach-entruempelung", label: "nach Entrümpelung" },
+  { value: "vermieter-ready", label: "Vermieter-Ready" },
+  { value: "verwaltung-uebergabe", label: "Übergabe an Verwaltung" },
+  { value: "besichtigung-nachnutzung", label: "Besichtigung / Nachnutzung" },
+] as const;
+
+const handoverConditionOptions = [
+  { value: "", label: "noch offen" },
+  { value: "leer-besenrein", label: "leer / besenrein" },
+  { value: "sichtbar-verschmutzt", label: "sichtbar verschmutzt" },
+  { value: "restmengen", label: "Restmengen vorhanden" },
+  { value: "nach-raeumung", label: "nach Räumung" },
+  { value: "fotos-vorhanden", label: "Fotos vorhanden" },
+] as const;
+
+const handoverExtraNeedOptions = [
+  { value: "objektbrief", label: "Objektbrief" },
+  { value: "uebergabeakte", label: "Übergabeakte" },
+  { value: "uebergabe-sprint", label: "Übergabe-Sprint" },
+  { value: "vermieter-ready-service", label: "Vermieter-Ready-Service" },
+  { value: "angebot-pruefen", label: "Angebot prüfen" },
+  { value: "entruempelung", label: "Restmengen / Entrümpelung" },
+] as const;
+
 function getSuccessCopy({
   service,
   isOfferCheck,
   isB2B,
+  isSolarPv,
+  isPianoTransport,
+  isSeniorMove,
+  isHandoverCleaningFlow,
+  isPropertyCleaningFlow,
   trackingIntent,
 }: {
   service: LeadService;
   isOfferCheck: boolean;
   isB2B: boolean;
+  isSolarPv: boolean;
+  isPianoTransport: boolean;
+  isSeniorMove: boolean;
+  isHandoverCleaningFlow: boolean;
+  isPropertyCleaningFlow: boolean;
   trackingIntent: string;
 }) {
   const intentText = trackingIntent.toLowerCase();
 
+  if (isPropertyCleaningFlow) {
+    return {
+      body:
+        "Ihre Anfrage zur Reinigung für Hausverwaltungen wurde gesendet. Wir prüfen Objektart, Bereiche, Turnus, Zugang und Leistungsumfang. Falls Angaben fehlen, melden wir uns über Ihre gewählte Kontaktmöglichkeit. Eine Verfügbarkeit oder ein Preis wird nicht garantiert.",
+      bullets: [
+        "Objektart, Bereiche, Turnus, Zugang und Ansprechpartner helfen besonders.",
+        "Ein vorhandenes Reinigungsangebot kann zur Einordnung ergänzt werden.",
+        "Keine Rechtsberatung, keine Preisgarantie und keine Soforttermin-Zusage.",
+      ],
+    };
+  }
+
+  if (isHandoverCleaningFlow) {
+    return {
+      body:
+        "Ihre Anfrage zur Endreinigung oder Übergabevorbereitung wurde gesendet. Wir prüfen Fläche, Zustand, Frist, Restmengen, Fotos und mögliche Ergänzungen wie Objektbrief oder Übergabeakte. Eine Abnahme, Kautionsrückzahlung, Preis- oder Sofortterminzusage wird nicht garantiert.",
+      bullets: [
+        "Fotos von Küche, Bad, Böden, Restmengen und Zugang helfen besonders.",
+        "Objektbrief, Übergabeakte, Übergabe-Sprint oder Angebotsprüfung können optional ergänzt werden.",
+        "Eine Anfrage ist noch keine Buchung und keine rechtliche Übergabebewertung.",
+      ],
+    };
+  }
+
+  if (isPianoTransport) {
+    return {
+      body:
+        "Ihre Anfrage zum Klaviertransport wurde gesendet. Wir prüfen Instrumentart, Start, Ziel, Etage, Zugang und Terminwunsch. Falls Angaben fehlen, melden wir uns über Ihre gewählte Kontaktmöglichkeit. Eine Verfügbarkeit oder ein Preis wird nicht garantiert.",
+      bullets: [
+        "Instrumentart, Start, Ziel, Etage und Zugang helfen besonders.",
+        "Fotos oder ein vorhandenes Angebot können später ergänzt werden.",
+        "Keine Preis-, Soforttermin- oder Verfügbarkeitsgarantie.",
+      ],
+    };
+  }
+
+  if (isSolarPv) {
+    return {
+      body:
+        "Ihre Anfrage zur Solar- oder PV-Anlagen-Reinigung wurde gesendet. Wir prüfen Dachart, Zugang, Modulfläche und sichtbare Verschmutzung. Falls Angaben fehlen, melden wir uns über Ihre gewählte Kontaktmöglichkeit. Eine Ertragssteigerung oder Verfügbarkeit wird nicht garantiert.",
+      bullets: [
+        "Dachart, Zugang, Modulfläche und Fotos helfen besonders.",
+        "Ein vorhandenes Angebot kann zur Einordnung ergänzt werden.",
+        "Keine Ertrags-, Preis- oder Soforttermin-Garantie.",
+      ],
+    };
+  }
+
+  if (isB2B) {
+    return {
+      body:
+        "Ihre Anfrage zur Büro- oder Gewerbereinigung wurde gesendet. Wir prüfen Fläche, Turnus, Reinigungszeiten und Leistungsumfang. Falls Angaben fehlen, melden wir uns über Ihre gewählte Kontaktmöglichkeit.",
+      bullets: [
+        "Objektart, Fläche, Turnus und Reinigungszeiten helfen besonders.",
+        "Ein vorhandenes Angebot kann zur Einordnung ergänzt werden.",
+        "Eine Anfrage ist noch keine Beauftragung.",
+      ],
+    };
+  }
+  if (isSeniorMove) {
+    return {
+      body:
+        "Ihre Anfrage zum Seniorenumzug wurde gesendet. Wir prüfen Start, Ziel, Umfang, Termin und gewünschte Zusatzleistungen. Falls Angaben fehlen, melden wir uns über Ihre gewählte Kontaktmöglichkeit. Eine Verfügbarkeit oder ein Preis wird nicht garantiert.",
+      bullets: [
+        "Start, Ziel, Etage, Umfang und Termin helfen besonders.",
+        "Entrümpelung, Reinigung, Übergabe oder Diskret-Service können nach Bedarf ergänzt werden.",
+        "Eine Anfrage ist noch keine Buchung, kein Preis und keine Soforttermin-Zusage.",
+      ],
+    };
+  }
   if (isOfferCheck) {
     return {
       body:
-        "FLOXANT prüft Angaben, Umfang und nächste sinnvolle Schritte. Rückfragen können folgen; es gibt keine Rechtsberatung und keine Preisgarantie.",
+        "Wir prüfen das Angebot, den Leistungsumfang und Ihre offenen Fragen. Rückfragen können folgen; es gibt keine Rechtsberatung, keine Preisgarantie und keine Ersparnisgarantie.",
       bullets: [
         "Angebot, Umfang und offene Punkte werden sortiert.",
         "Falls Angaben fehlen, fragt FLOXANT nach.",
@@ -153,17 +385,6 @@ function getSuccessCopy({
         "Deadline und Kontaktweg werden zuerst eingeordnet.",
         "Rückfragen können folgen, wenn Angaben fehlen.",
         "Keine Sofort- oder Verfügbarkeitsgarantie.",
-      ],
-    };
-  }
-  if (isB2B) {
-    return {
-      body:
-        "FLOXANT ordnet Fläche, Turnus, Reinigungszeiten und Ansprechpartner ein und meldet sich über den gewählten Kontaktweg.",
-      bullets: [
-        "Objektart, Fläche und Turnus helfen besonders.",
-        "Bestehende Angebote können später ergänzt werden.",
-        "Eine Anfrage ist noch keine Beauftragung.",
       ],
     };
   }
@@ -203,7 +424,7 @@ function getSuccessCopy({
   if (service === "diskret-service" || service === "private-client") {
     return {
       body:
-        "FLOXANT beruecksichtigt den bevorzugten Kontaktweg soweit moeglich. Private Details muessen nicht oeffentlich oder ausfuehrlich im Formular stehen.",
+        "FLOXANT berücksichtigt den bevorzugten Kontaktweg soweit möglich. Im ersten Schritt reichen Ort, Zeitraum und eine kurze Beschreibung; weitere Einzelheiten können später folgen.",
       bullets: [
         "Ort, Zeitraum und grober Umfang reichen für den Start.",
         "Rückfragen können diskret erfolgen.",
@@ -240,6 +461,11 @@ export function SeoLeadForm({
   const [objectType, setObjectType] = useState("wohnung");
   const [urgency, setUrgency] = useState("flexibel");
   const [scope, setScope] = useState("");
+  const [handoverSituation, setHandoverSituation] = useState("");
+  const [handoverCondition, setHandoverCondition] = useState("");
+  const [handoverDeadline, setHandoverDeadline] = useState("");
+  const [handoverKeyAccess, setHandoverKeyAccess] = useState("");
+  const [handoverExtraNeeds, setHandoverExtraNeeds] = useState<string[]>([]);
   const [companyName, setCompanyName] = useState("");
   const [offerStatus, setOfferStatus] = useState(initialOfferStatus);
   const [offerAmount, setOfferAmount] = useState("");
@@ -250,6 +476,44 @@ export function SeoLeadForm({
   const [preferredCleaningTime, setPreferredCleaningTime] = useState("");
   const [contactPersonRole, setContactPersonRole] = useState("");
   const [serviceScope, setServiceScope] = useState("");
+  const [existingCleaningOffer, setExistingCleaningOffer] = useState("");
+  const [specialAreas, setSpecialAreas] = useState<string[]>([]);
+  const [propertyCleaningRole, setPropertyCleaningRole] = useState("");
+  const [propertyCleaningObjectType, setPropertyCleaningObjectType] = useState("");
+  const [propertyCleaningAreas, setPropertyCleaningAreas] = useState<string[]>([]);
+  const [propertyCleaningFrequency, setPropertyCleaningFrequency] = useState("");
+  const [propertyCleaningAccess, setPropertyCleaningAccess] = useState("");
+  const [propertyCleaningContactPerson, setPropertyCleaningContactPerson] = useState("");
+  const [propertyCleaningExistingOffer, setPropertyCleaningExistingOffer] = useState("");
+  const [propertyCleaningStartDate, setPropertyCleaningStartDate] = useState("");
+  const [solarRoofType, setSolarRoofType] = useState("");
+  const [solarAccess, setSolarAccess] = useState("");
+  const [solarModuleScope, setSolarModuleScope] = useState("");
+  const [solarVisibleDirt, setSolarVisibleDirt] = useState("");
+  const [solarExistingOffer, setSolarExistingOffer] = useState("");
+  const [solarTimeframe, setSolarTimeframe] = useState("");
+  const [solarObjectType, setSolarObjectType] = useState("");
+  const [pianoInstrumentType, setPianoInstrumentType] = useState("");
+  const [pianoStartLocation, setPianoStartLocation] = useState("");
+  const [pianoDestination, setPianoDestination] = useState("");
+  const [pianoStartFloor, setPianoStartFloor] = useState("");
+  const [pianoDestinationFloor, setPianoDestinationFloor] = useState("");
+  const [pianoElevator, setPianoElevator] = useState("");
+  const [pianoNarrowStairs, setPianoNarrowStairs] = useState("");
+  const [pianoPhotos, setPianoPhotos] = useState("");
+  const [pianoExistingOffer, setPianoExistingOffer] = useState("");
+  const [pianoConcern, setPianoConcern] = useState("");
+  const [seniorRequesterRole, setSeniorRequesterRole] = useState("");
+  const [seniorStartLocation, setSeniorStartLocation] = useState("");
+  const [seniorDestination, setSeniorDestination] = useState("");
+  const [seniorStartFloor, setSeniorStartFloor] = useState("");
+  const [seniorDestinationFloor, setSeniorDestinationFloor] = useState("");
+  const [seniorElevator, setSeniorElevator] = useState("");
+  const [seniorScope, setSeniorScope] = useState("");
+  const [seniorExtraNeeds, setSeniorExtraNeeds] = useState<string[]>([]);
+  const [seniorDeadline, setSeniorDeadline] = useState("");
+  const [seniorExistingOffer, setSeniorExistingOffer] = useState("");
+  const [seniorSensitiveSituation, setSeniorSensitiveSituation] = useState("");
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [startedAt] = useState(() => Date.now());
@@ -273,8 +537,60 @@ export function SeoLeadForm({
     [city, initialCityInput, initialIntent.city, initialIntent.intent, initialIntent.priority, initialService, service],
   );
   const isB2B = service === "bueroreinigung" || service === "gewerbereinigung";
-  const isOfferCheck = service === "angebot-pruefen" || lead.trackingIntent.includes("angebot");
+  const isPropertyCleaningFlow =
+    service === "hausverwaltung-reinigung" ||
+    service === "treppenhausreinigung" ||
+    service === "unterhaltsreinigung" ||
+    service === "gebaeudereinigung" ||
+    /hausverwaltung|treppenhaus|unterhalt|gebaeude|gebaude|objekt-reinigung|objektreinigung|wohnanlage|property-management|staircase|stairwell|building-cleaning|common-area/.test(
+      `${lead.trackingIntent} ${sourcePage}`.toLowerCase(),
+    );
+  const isSolarPv = service === "solarreinigung" || service === "pv-anlagen-reinigung";
+  const isPianoTransport = service === "klaviertransport" || lead.trackingIntent.includes("klaviertransport");
+  const isSeniorMove =
+    service === "seniorenumzug" ||
+    lead.trackingIntent.includes("seniorenumzug") ||
+    lead.trackingIntent.includes("umzug-im-alter");
+  const isOfferCheck = service === "angebot-pruefen" || (lead.trackingIntent.includes("angebot") && !isPianoTransport);
+  const isHandoverCleaningFlow =
+    service === "reinigung" &&
+    /endreinigung|uebergabe|ubergabe|vermieter-ready|objektbrief|reinigung-nach-entruempelung|post-clearance|end-of-tenancy|move-out-cleaning/.test(
+      `${lead.trackingIntent} ${sourcePage}`.toLowerCase(),
+    );
   const resolvedContactMethod = contactMethod === "auto" ? (phone.trim() ? "phone" : "email") : contactMethod;
+  const funnelStage = isPropertyCleaningFlow && isOfferCheck
+    ? "property_cleaning_offer_check"
+    : isPropertyCleaningFlow
+      ? "property_cleaning_lead"
+      : isOfferCheck
+        ? "offer_check"
+      : isB2B
+        ? "b2b_lead"
+        : "lead";
+
+  function toggleSpecialArea(value: string) {
+    setSpecialAreas((current) =>
+      current.includes(value) ? current.filter((item) => item !== value) : [...current, value],
+    );
+  }
+
+  function togglePropertyCleaningArea(value: string) {
+    setPropertyCleaningAreas((current) =>
+      current.includes(value) ? current.filter((item) => item !== value) : [...current, value],
+    );
+  }
+
+  function toggleSeniorExtraNeed(value: string) {
+    setSeniorExtraNeeds((current) =>
+      current.includes(value) ? current.filter((item) => item !== value) : [...current, value],
+    );
+  }
+
+  function toggleHandoverExtraNeed(value: string) {
+    setHandoverExtraNeeds((current) =>
+      current.includes(value) ? current.filter((item) => item !== value) : [...current, value],
+    );
+  }
 
   function validate() {
     const nextErrors: FormErrors = {};
@@ -316,6 +632,61 @@ export function SeoLeadForm({
     const bookingService = getBookingServiceForLead(service);
     const landingPage = typeof window !== "undefined" ? `${window.location.pathname}${window.location.search}` : sourcePage;
     const referrer = typeof document !== "undefined" ? document.referrer : "";
+    const photoSignalText = [
+      message,
+      scope,
+      handoverCondition,
+      handoverKeyAccess,
+      solarVisibleDirt,
+      pianoPhotos,
+      seniorSensitiveSituation,
+    ]
+      .join(" ")
+      .toLowerCase();
+    const hasPhotos =
+      /foto|fotos|bild|bilder|photo|photos|screenshot/.test(photoSignalText) ||
+      pianoPhotos === "ja" ||
+      handoverCondition === "fotos-vorhanden";
+    const hasOffer =
+      Boolean(isOfferCheck && offerStatus && offerStatus !== "no_offer_yet") ||
+      existingCleaningOffer === "ja" ||
+      propertyCleaningExistingOffer === "ja" ||
+      solarExistingOffer === "ja" ||
+      pianoExistingOffer === "ja" ||
+      seniorExistingOffer === "ja";
+    const requestSummaryPayload = buildRequestSummaryPayload({
+      serviceKey: service,
+      intent: lead.trackingIntent,
+      cityOrZip: city.trim() ? "present" : "",
+      objectType:
+        objectType ||
+        propertyCleaningObjectType ||
+        solarObjectType ||
+        pianoInstrumentType ||
+        seniorRequesterRole ||
+        handoverSituation,
+      urgency,
+      desiredDate: desiredDate || handoverDeadline || solarTimeframe || seniorDeadline,
+      scope:
+        scope.trim() ||
+        serviceScope.trim() ||
+        areaSize.trim() ||
+        solarModuleScope.trim() ||
+        pianoInstrumentType ||
+        seniorScope ||
+        propertyCleaningAreas.join(","),
+      hasPhotos,
+      hasOffer,
+    });
+    const responseTemplate = getLeadReplyTemplateForServiceKey(service, lead.trackingIntent);
+    const responseMissingInfoQuestions = getMissingInfoQuestionsForServiceKey(service, lead.trackingIntent, 4);
+    const leadResponseHints = {
+      responseTemplateKey: responseTemplate.templateKey,
+      subjectSuggestion: responseTemplate.subjectSuggestion,
+      recommendedNextStep: responseTemplate.recommendedNextStep,
+      missingInfoQuestions: responseMissingInfoQuestions,
+      customerAcknowledgement: responseTemplate.customerReplyDE,
+    };
     const details = {
       contact: {
         fullName: name.trim(),
@@ -336,23 +707,55 @@ export function SeoLeadForm({
         systemPriceRangeMax: 0,
         priceRangeMin: 0,
         priceRangeMax: 0,
-        valuationLabel: "SEO-Anfrage mit kurzer Vorqualifizierung",
+        valuationLabel: "Anfrage mit ersten Eckdaten",
         valuationStage: "Anfrage wird geprüft",
-        accuracyState: "Kurzer Lead mit kaufnahen Eckdaten",
+        accuracyState: "Erste Angaben für die Prüfung",
         topDrivers: [
           `Leistung: ${lead.serviceLabel}`,
           `Ort: ${city.trim()}`,
           objectType ? `Objekt: ${objectType}` : "",
           urgency ? `Dringlichkeit: ${urgency}` : "",
+          isHandoverCleaningFlow && handoverSituation ? `Übergabe-Situation: ${handoverSituation}` : "",
+          isHandoverCleaningFlow && handoverCondition ? `Zustand: ${handoverCondition}` : "",
+          isHandoverCleaningFlow && handoverDeadline.trim() ? `Übergabe-Frist: ${handoverDeadline.trim()}` : "",
+          isHandoverCleaningFlow && handoverKeyAccess.trim() ? "Schlüsselweg/Zugang genannt" : "",
+          isHandoverCleaningFlow && handoverExtraNeeds.length > 0 ? "Übergabe-Zusatzbedarf genannt" : "",
           isOfferCheck && offerStatus ? `Angebotsstatus: ${offerStatus}` : "",
           isOfferCheck && offerAmount.trim() ? "Angebotspreis genannt" : "",
           isOfferCheck && offerConcern ? `Prüfgrund: ${offerConcern}` : "",
           scope.trim() ? "Umfang genannt" : "",
           desiredDate ? "Wunschtermin vorhanden" : "",
           isB2B && companyName.trim() ? "Firma genannt" : "",
+          isB2B && existingCleaningOffer ? `Vorhandenes Angebot: ${existingCleaningOffer}` : "",
+          isB2B && specialAreas.length > 0 ? "Besondere B2B-Bereiche genannt" : "",
+          isPropertyCleaningFlow && propertyCleaningRole ? `Objektrolle: ${propertyCleaningRole}` : "",
+          isPropertyCleaningFlow && propertyCleaningObjectType ? `Objektart: ${propertyCleaningObjectType}` : "",
+          isPropertyCleaningFlow && propertyCleaningAreas.length > 0 ? "Objektbereiche genannt" : "",
+          isPropertyCleaningFlow && propertyCleaningFrequency ? `Turnus: ${propertyCleaningFrequency}` : "",
+          isPropertyCleaningFlow && propertyCleaningAccess.trim() ? "Zugang/Schluesselweg genannt" : "",
+          isPropertyCleaningFlow && propertyCleaningExistingOffer ? `Vorhandenes Angebot: ${propertyCleaningExistingOffer}` : "",
+          isPropertyCleaningFlow && propertyCleaningStartDate.trim() ? "Startfenster genannt" : "",
+          isSolarPv && solarRoofType.trim() ? `Dachart: ${solarRoofType.trim()}` : "",
+          isSolarPv && solarAccess.trim() ? "PV-Zugang beschrieben" : "",
+          isSolarPv && solarModuleScope.trim() ? "Modulfläche/-umfang genannt" : "",
+          isSolarPv && solarExistingOffer ? `Solar/PV-Angebot: ${solarExistingOffer}` : "",
+          isPianoTransport && pianoInstrumentType ? `Instrumentart: ${pianoInstrumentType}` : "",
+          isPianoTransport && pianoStartFloor.trim() ? `Etage Start: ${pianoStartFloor.trim()}` : "",
+          isPianoTransport && pianoDestinationFloor.trim() ? `Etage Ziel: ${pianoDestinationFloor.trim()}` : "",
+          isPianoTransport && pianoElevator ? `Aufzug: ${pianoElevator}` : "",
+          isPianoTransport && pianoNarrowStairs ? `Treppenhaus eng: ${pianoNarrowStairs}` : "",
+          isPianoTransport && pianoExistingOffer ? `Klaviertransport-Angebot: ${pianoExistingOffer}` : "",
+          isPianoTransport && pianoConcern ? `Problem/Sorge: ${pianoConcern}` : "",
+          isSeniorMove && seniorRequesterRole ? `Seniorenumzug Rolle: ${seniorRequesterRole}` : "",
+          isSeniorMove && seniorStartLocation.trim() ? `Startort: ${seniorStartLocation.trim()}` : "",
+          isSeniorMove && seniorDestination.trim() ? `Zielort: ${seniorDestination.trim()}` : "",
+          isSeniorMove && seniorScope ? `Seniorenumzug Umfang: ${seniorScope}` : "",
+          isSeniorMove && seniorExtraNeeds.length > 0 ? "Seniorenumzug Zusatzbedarf genannt" : "",
+          isSeniorMove && seniorExistingOffer ? `Seniorenumzug-Angebot: ${seniorExistingOffer}` : "",
+          isSeniorMove && seniorSensitiveSituation ? "Sensible Situation optional markiert" : "",
         ].filter(Boolean),
         priceExplanation:
-          "Diese SEO-Anfrage enthält die wichtigsten Angaben für eine erste fachliche Rückmeldung. FLOXANT macht daraus keine automatische Preiszusage.",
+          "Diese Anfrage enthält die wichtigsten Angaben für eine erste fachliche Rückmeldung. Ein Preis wird erst nach Prüfung der Eckdaten zugesagt.",
         pricingSignals: {
           inquiryMode: "seo_quick_lead",
           serviceType: service,
@@ -364,6 +767,11 @@ export function SeoLeadForm({
           urgency,
           desiredDate,
           scopeSummary: scope.trim(),
+          handoverSituation: isHandoverCleaningFlow ? handoverSituation : "",
+          handoverCondition: isHandoverCleaningFlow ? handoverCondition : "",
+          handoverDeadline: isHandoverCleaningFlow ? handoverDeadline.trim() : "",
+          handoverKeyAccess: isHandoverCleaningFlow ? handoverKeyAccess.trim() : "",
+          handoverExtraNeeds: isHandoverCleaningFlow ? handoverExtraNeeds : [],
           offerStatus: isOfferCheck ? offerStatus : "",
           existingOffer: Boolean(isOfferCheck && offerStatus && offerStatus !== "no_offer_yet"),
           offerAmountText: isOfferCheck ? offerAmount.trim() : "",
@@ -374,8 +782,55 @@ export function SeoLeadForm({
           preferredCleaningTime: isB2B ? preferredCleaningTime.trim() : "",
           contactPersonRole: isB2B ? contactPersonRole.trim() : "",
           serviceScope: isB2B ? serviceScope.trim() : "",
+          existingCleaningOffer: isB2B ? existingCleaningOffer : "",
+          specialAreas: isB2B ? specialAreas : [],
+          propertyCleaningRole: isPropertyCleaningFlow ? propertyCleaningRole : "",
+          propertyCleaningObjectType: isPropertyCleaningFlow ? propertyCleaningObjectType : "",
+          propertyCleaningAreas: isPropertyCleaningFlow ? propertyCleaningAreas : [],
+          propertyCleaningFrequency: isPropertyCleaningFlow ? propertyCleaningFrequency : "",
+          propertyCleaningAccess: isPropertyCleaningFlow ? propertyCleaningAccess.trim() : "",
+          propertyCleaningContactPerson: isPropertyCleaningFlow ? propertyCleaningContactPerson.trim() : "",
+          propertyCleaningExistingOffer: isPropertyCleaningFlow ? propertyCleaningExistingOffer : "",
+          propertyCleaningStartDate: isPropertyCleaningFlow ? propertyCleaningStartDate.trim() : "",
+          solarRoofType: isSolarPv ? solarRoofType.trim() : "",
+          solarAccess: isSolarPv ? solarAccess.trim() : "",
+          solarModuleScope: isSolarPv ? solarModuleScope.trim() : "",
+          solarVisibleDirt: isSolarPv ? solarVisibleDirt.trim() : "",
+          solarExistingOffer: isSolarPv ? solarExistingOffer : "",
+          solarTimeframe: isSolarPv ? solarTimeframe.trim() : "",
+          solarObjectType: isSolarPv ? solarObjectType : "",
+          pianoInstrumentType: isPianoTransport ? pianoInstrumentType : "",
+          pianoStartLocation: isPianoTransport ? pianoStartLocation.trim() : "",
+          pianoDestination: isPianoTransport ? pianoDestination.trim() : "",
+          pianoStartFloor: isPianoTransport ? pianoStartFloor.trim() : "",
+          pianoDestinationFloor: isPianoTransport ? pianoDestinationFloor.trim() : "",
+          pianoElevator: isPianoTransport ? pianoElevator : "",
+          pianoNarrowStairs: isPianoTransport ? pianoNarrowStairs : "",
+          pianoPhotos: isPianoTransport ? pianoPhotos : "",
+          pianoExistingOffer: isPianoTransport ? pianoExistingOffer : "",
+          pianoConcern: isPianoTransport ? pianoConcern : "",
+          seniorRequesterRole: isSeniorMove ? seniorRequesterRole : "",
+          seniorStartLocation: isSeniorMove ? seniorStartLocation.trim() : "",
+          seniorDestination: isSeniorMove ? seniorDestination.trim() : "",
+          seniorStartFloor: isSeniorMove ? seniorStartFloor.trim() : "",
+          seniorDestinationFloor: isSeniorMove ? seniorDestinationFloor.trim() : "",
+          seniorElevator: isSeniorMove ? seniorElevator : "",
+          seniorScope: isSeniorMove ? seniorScope : "",
+          seniorExtraNeeds: isSeniorMove ? seniorExtraNeeds : [],
+          seniorDeadline: isSeniorMove ? seniorDeadline.trim() : "",
+          seniorExistingOffer: isSeniorMove ? seniorExistingOffer : "",
+          seniorSensitiveSituation: isSeniorMove ? seniorSensitiveSituation : "",
           contactMethod: resolvedContactMethod,
           preferredContactMethod: resolvedContactMethod,
+          requestSummary: requestSummaryPayload.requestSummary,
+          missingInfoFlags: requestSummaryPayload.missingInfoFlags,
+          hasPhotos: requestSummaryPayload.hasPhotos,
+          hasOffer: requestSummaryPayload.hasOffer,
+          signatureServiceHint: requestSummaryPayload.signatureServiceHint,
+          leadPriority: requestSummaryPayload.leadPriority,
+          responseTemplateKey: leadResponseHints.responseTemplateKey,
+          recommendedNextStep: leadResponseHints.recommendedNextStep,
+          missingInfoQuestions: responseMissingInfoQuestions,
           privacyConsent,
           isSensitiveCase: service === "diskret-service" || service === "private-client",
           sourcePage,
@@ -401,6 +856,11 @@ export function SeoLeadForm({
         desiredDate,
         deadline: desiredDate,
         scopeSummary: scope.trim(),
+        handoverSituation: isHandoverCleaningFlow ? handoverSituation : "",
+        handoverCondition: isHandoverCleaningFlow ? handoverCondition : "",
+        handoverDeadline: isHandoverCleaningFlow ? handoverDeadline.trim() : "",
+        handoverKeyAccess: isHandoverCleaningFlow ? handoverKeyAccess.trim() : "",
+        handoverExtraNeeds: isHandoverCleaningFlow ? handoverExtraNeeds : [],
         offerStatus: isOfferCheck ? offerStatus : "",
         existingOffer: Boolean(isOfferCheck && offerStatus && offerStatus !== "no_offer_yet"),
         offerAmountText: isOfferCheck ? offerAmount.trim() : "",
@@ -416,9 +876,57 @@ export function SeoLeadForm({
         preferredCleaningTime: isB2B ? preferredCleaningTime.trim() : "",
         contactPersonRole: isB2B ? contactPersonRole.trim() : "",
         serviceScope: isB2B ? serviceScope.trim() : "",
+        existingCleaningOffer: isB2B ? existingCleaningOffer : "",
+        specialAreas: isB2B ? specialAreas : [],
+        propertyCleaningRole: isPropertyCleaningFlow ? propertyCleaningRole : "",
+        propertyCleaningObjectType: isPropertyCleaningFlow ? propertyCleaningObjectType : "",
+        propertyCleaningAreas: isPropertyCleaningFlow ? propertyCleaningAreas : [],
+        propertyCleaningFrequency: isPropertyCleaningFlow ? propertyCleaningFrequency : "",
+        propertyCleaningAccess: isPropertyCleaningFlow ? propertyCleaningAccess.trim() : "",
+        propertyCleaningContactPerson: isPropertyCleaningFlow ? propertyCleaningContactPerson.trim() : "",
+        propertyCleaningExistingOffer: isPropertyCleaningFlow ? propertyCleaningExistingOffer : "",
+        propertyCleaningStartDate: isPropertyCleaningFlow ? propertyCleaningStartDate.trim() : "",
+        solarRoofType: isSolarPv ? solarRoofType.trim() : "",
+        solarAccess: isSolarPv ? solarAccess.trim() : "",
+        solarModuleScope: isSolarPv ? solarModuleScope.trim() : "",
+        solarVisibleDirt: isSolarPv ? solarVisibleDirt.trim() : "",
+        solarExistingOffer: isSolarPv ? solarExistingOffer : "",
+        solarTimeframe: isSolarPv ? solarTimeframe.trim() : "",
+        solarObjectType: isSolarPv ? solarObjectType : "",
+        pianoInstrumentType: isPianoTransport ? pianoInstrumentType : "",
+        pianoStartLocation: isPianoTransport ? pianoStartLocation.trim() : "",
+        pianoDestination: isPianoTransport ? pianoDestination.trim() : "",
+        pianoStartFloor: isPianoTransport ? pianoStartFloor.trim() : "",
+        pianoDestinationFloor: isPianoTransport ? pianoDestinationFloor.trim() : "",
+        pianoElevator: isPianoTransport ? pianoElevator : "",
+        pianoNarrowStairs: isPianoTransport ? pianoNarrowStairs : "",
+        pianoPhotos: isPianoTransport ? pianoPhotos : "",
+        pianoExistingOffer: isPianoTransport ? pianoExistingOffer : "",
+        pianoConcern: isPianoTransport ? pianoConcern : "",
+        seniorRequesterRole: isSeniorMove ? seniorRequesterRole : "",
+        seniorStartLocation: isSeniorMove ? seniorStartLocation.trim() : "",
+        seniorDestination: isSeniorMove ? seniorDestination.trim() : "",
+        seniorStartFloor: isSeniorMove ? seniorStartFloor.trim() : "",
+        seniorDestinationFloor: isSeniorMove ? seniorDestinationFloor.trim() : "",
+        seniorElevator: isSeniorMove ? seniorElevator : "",
+        seniorScope: isSeniorMove ? seniorScope : "",
+        seniorExtraNeeds: isSeniorMove ? seniorExtraNeeds : [],
+        seniorDeadline: isSeniorMove ? seniorDeadline.trim() : "",
+        seniorExistingOffer: isSeniorMove ? seniorExistingOffer : "",
+        seniorSensitiveSituation: isSeniorMove ? seniorSensitiveSituation : "",
         pageType: "contact",
-        funnelStage: isOfferCheck ? "offer_check" : isB2B ? "b2b_lead" : "lead",
+        funnelStage,
         ctaLabel: "Anfrage senden",
+        requestSummary: requestSummaryPayload.requestSummary,
+        missingInfoFlags: requestSummaryPayload.missingInfoFlags,
+        hasPhotos: requestSummaryPayload.hasPhotos,
+        hasOffer: requestSummaryPayload.hasOffer,
+        signatureServiceHint: requestSummaryPayload.signatureServiceHint,
+        leadPriority: requestSummaryPayload.leadPriority,
+        leadResponseHints,
+        responseTemplateKey: leadResponseHints.responseTemplateKey,
+        recommendedNextStep: leadResponseHints.recommendedNextStep,
+        missingInfoQuestions: responseMissingInfoQuestions,
         isSensitiveCase: service === "diskret-service" || service === "private-client",
         message: message.trim(),
         formStartedAt: startedAt,
@@ -441,12 +949,65 @@ export function SeoLeadForm({
           city: city.trim(),
           intent: lead.trackingIntent,
           priority: lead.priority,
+          handoverSituation: isHandoverCleaningFlow ? handoverSituation : "",
+          handoverCondition: isHandoverCleaningFlow ? handoverCondition : "",
+          handoverDeadline: isHandoverCleaningFlow ? handoverDeadline.trim() : "",
+          handoverKeyAccess: isHandoverCleaningFlow ? handoverKeyAccess.trim() : "",
+          handoverExtraNeeds: isHandoverCleaningFlow ? handoverExtraNeeds : [],
           offerStatus: isOfferCheck ? offerStatus : "",
           offerConcern: isOfferCheck ? offerConcern : "",
+          existingCleaningOffer: isB2B ? existingCleaningOffer : "",
+          specialAreas: isB2B ? specialAreas : [],
+          propertyCleaningRole: isPropertyCleaningFlow ? propertyCleaningRole : "",
+          propertyCleaningObjectType: isPropertyCleaningFlow ? propertyCleaningObjectType : "",
+          propertyCleaningAreas: isPropertyCleaningFlow ? propertyCleaningAreas : [],
+          propertyCleaningFrequency: isPropertyCleaningFlow ? propertyCleaningFrequency : "",
+          propertyCleaningAccess: isPropertyCleaningFlow ? propertyCleaningAccess.trim() : "",
+          propertyCleaningContactPerson: isPropertyCleaningFlow ? propertyCleaningContactPerson.trim() : "",
+          propertyCleaningExistingOffer: isPropertyCleaningFlow ? propertyCleaningExistingOffer : "",
+          propertyCleaningStartDate: isPropertyCleaningFlow ? propertyCleaningStartDate.trim() : "",
+          solarRoofType: isSolarPv ? solarRoofType.trim() : "",
+          solarAccess: isSolarPv ? solarAccess.trim() : "",
+          solarModuleScope: isSolarPv ? solarModuleScope.trim() : "",
+          solarVisibleDirt: isSolarPv ? solarVisibleDirt.trim() : "",
+          solarExistingOffer: isSolarPv ? solarExistingOffer : "",
+          solarTimeframe: isSolarPv ? solarTimeframe.trim() : "",
+          solarObjectType: isSolarPv ? solarObjectType : "",
+          pianoInstrumentType: isPianoTransport ? pianoInstrumentType : "",
+          pianoStartLocation: isPianoTransport ? pianoStartLocation.trim() : "",
+          pianoDestination: isPianoTransport ? pianoDestination.trim() : "",
+          pianoStartFloor: isPianoTransport ? pianoStartFloor.trim() : "",
+          pianoDestinationFloor: isPianoTransport ? pianoDestinationFloor.trim() : "",
+          pianoElevator: isPianoTransport ? pianoElevator : "",
+          pianoNarrowStairs: isPianoTransport ? pianoNarrowStairs : "",
+          pianoPhotos: isPianoTransport ? pianoPhotos : "",
+          pianoExistingOffer: isPianoTransport ? pianoExistingOffer : "",
+          pianoConcern: isPianoTransport ? pianoConcern : "",
+          seniorRequesterRole: isSeniorMove ? seniorRequesterRole : "",
+          seniorStartLocation: isSeniorMove ? seniorStartLocation.trim() : "",
+          seniorDestination: isSeniorMove ? seniorDestination.trim() : "",
+          seniorStartFloor: isSeniorMove ? seniorStartFloor.trim() : "",
+          seniorDestinationFloor: isSeniorMove ? seniorDestinationFloor.trim() : "",
+          seniorElevator: isSeniorMove ? seniorElevator : "",
+          seniorScope: isSeniorMove ? seniorScope : "",
+          seniorExtraNeeds: isSeniorMove ? seniorExtraNeeds : [],
+          seniorDeadline: isSeniorMove ? seniorDeadline.trim() : "",
+          seniorExistingOffer: isSeniorMove ? seniorExistingOffer : "",
+          seniorSensitiveSituation: isSeniorMove ? seniorSensitiveSituation : "",
           contactMethod: resolvedContactMethod,
           preferredContactMethod: resolvedContactMethod,
+          requestSummary: requestSummaryPayload.requestSummary,
+          missingInfoFlags: requestSummaryPayload.missingInfoFlags,
+          hasPhotos: requestSummaryPayload.hasPhotos,
+          hasOffer: requestSummaryPayload.hasOffer,
+          signatureServiceHint: requestSummaryPayload.signatureServiceHint,
+          leadPriority: requestSummaryPayload.leadPriority,
+          leadResponseHints,
+          responseTemplateKey: leadResponseHints.responseTemplateKey,
+          recommendedNextStep: leadResponseHints.recommendedNextStep,
+          missingInfoQuestions: responseMissingInfoQuestions,
           pageType: "contact",
-          funnelStage: isOfferCheck ? "offer_check" : isB2B ? "b2b_lead" : "lead",
+          funnelStage,
           ctaLabel: "Anfrage senden",
         },
       },
@@ -475,6 +1036,11 @@ export function SeoLeadForm({
     payload.set("urgency", urgency);
     payload.set("desiredDate", desiredDate);
     payload.set("deadline", desiredDate);
+    payload.set("handoverSituation", isHandoverCleaningFlow ? handoverSituation : "");
+    payload.set("handoverCondition", isHandoverCleaningFlow ? handoverCondition : "");
+    payload.set("handoverDeadline", isHandoverCleaningFlow ? handoverDeadline.trim() : "");
+    payload.set("handoverKeyAccess", isHandoverCleaningFlow ? handoverKeyAccess.trim() : "");
+    payload.set("handoverExtraNeeds", isHandoverCleaningFlow ? handoverExtraNeeds.join(",") : "");
     payload.set("offerStatus", isOfferCheck ? offerStatus : "");
     payload.set("existingOffer", isOfferCheck && offerStatus && offerStatus !== "no_offer_yet" ? "true" : "false");
     payload.set("offerAmount", isOfferCheck ? offerAmount.trim() : "");
@@ -486,11 +1052,58 @@ export function SeoLeadForm({
     payload.set("preferredCleaningTime", isB2B ? preferredCleaningTime.trim() : "");
     payload.set("contactPersonRole", isB2B ? contactPersonRole.trim() : "");
     payload.set("serviceScope", isB2B ? serviceScope.trim() : "");
+    payload.set("existingCleaningOffer", isB2B ? existingCleaningOffer : "");
+    payload.set("specialAreas", isB2B ? specialAreas.join(",") : "");
+    payload.set("propertyCleaningRole", isPropertyCleaningFlow ? propertyCleaningRole : "");
+    payload.set("propertyCleaningObjectType", isPropertyCleaningFlow ? propertyCleaningObjectType : "");
+    payload.set("propertyCleaningAreas", isPropertyCleaningFlow ? propertyCleaningAreas.join(",") : "");
+    payload.set("propertyCleaningFrequency", isPropertyCleaningFlow ? propertyCleaningFrequency : "");
+    payload.set("propertyCleaningAccess", isPropertyCleaningFlow ? propertyCleaningAccess.trim() : "");
+    payload.set("propertyCleaningContactPerson", isPropertyCleaningFlow ? propertyCleaningContactPerson.trim() : "");
+    payload.set("propertyCleaningExistingOffer", isPropertyCleaningFlow ? propertyCleaningExistingOffer : "");
+    payload.set("propertyCleaningStartDate", isPropertyCleaningFlow ? propertyCleaningStartDate.trim() : "");
+    payload.set("solarRoofType", isSolarPv ? solarRoofType.trim() : "");
+    payload.set("solarAccess", isSolarPv ? solarAccess.trim() : "");
+    payload.set("solarModuleScope", isSolarPv ? solarModuleScope.trim() : "");
+    payload.set("solarVisibleDirt", isSolarPv ? solarVisibleDirt.trim() : "");
+    payload.set("solarExistingOffer", isSolarPv ? solarExistingOffer : "");
+    payload.set("solarTimeframe", isSolarPv ? solarTimeframe.trim() : "");
+    payload.set("solarObjectType", isSolarPv ? solarObjectType : "");
+    payload.set("pianoInstrumentType", isPianoTransport ? pianoInstrumentType : "");
+    payload.set("pianoStartLocation", isPianoTransport ? pianoStartLocation.trim() : "");
+    payload.set("pianoDestination", isPianoTransport ? pianoDestination.trim() : "");
+    payload.set("pianoStartFloor", isPianoTransport ? pianoStartFloor.trim() : "");
+    payload.set("pianoDestinationFloor", isPianoTransport ? pianoDestinationFloor.trim() : "");
+    payload.set("pianoElevator", isPianoTransport ? pianoElevator : "");
+    payload.set("pianoNarrowStairs", isPianoTransport ? pianoNarrowStairs : "");
+    payload.set("pianoPhotos", isPianoTransport ? pianoPhotos : "");
+    payload.set("pianoExistingOffer", isPianoTransport ? pianoExistingOffer : "");
+    payload.set("pianoConcern", isPianoTransport ? pianoConcern : "");
+    payload.set("seniorRequesterRole", isSeniorMove ? seniorRequesterRole : "");
+    payload.set("seniorStartLocation", isSeniorMove ? seniorStartLocation.trim() : "");
+    payload.set("seniorDestination", isSeniorMove ? seniorDestination.trim() : "");
+    payload.set("seniorStartFloor", isSeniorMove ? seniorStartFloor.trim() : "");
+    payload.set("seniorDestinationFloor", isSeniorMove ? seniorDestinationFloor.trim() : "");
+    payload.set("seniorElevator", isSeniorMove ? seniorElevator : "");
+    payload.set("seniorScope", isSeniorMove ? seniorScope : "");
+    payload.set("seniorExtraNeeds", isSeniorMove ? seniorExtraNeeds.join(",") : "");
+    payload.set("seniorDeadline", isSeniorMove ? seniorDeadline.trim() : "");
+    payload.set("seniorExistingOffer", isSeniorMove ? seniorExistingOffer : "");
+    payload.set("seniorSensitiveSituation", isSeniorMove ? seniorSensitiveSituation : "");
     payload.set("scope", scope.trim());
     payload.set("message", message.trim());
     payload.set("pageType", "contact");
-    payload.set("funnelStage", isOfferCheck ? "offer_check" : isB2B ? "b2b_lead" : "lead");
+    payload.set("funnelStage", funnelStage);
     payload.set("ctaLabel", "Anfrage senden");
+    payload.set("requestSummary", requestSummaryPayload.requestSummary);
+    payload.set("missingInfoFlags", requestSummaryPayload.missingInfoFlags.join(","));
+    payload.set("hasPhotos", requestSummaryPayload.hasPhotos ? "true" : "false");
+    payload.set("hasOffer", requestSummaryPayload.hasOffer ? "true" : "false");
+    payload.set("signatureServiceHint", requestSummaryPayload.signatureServiceHint);
+    payload.set("leadPriority", requestSummaryPayload.leadPriority);
+    payload.set("responseTemplateKey", leadResponseHints.responseTemplateKey);
+    payload.set("recommendedNextStep", leadResponseHints.recommendedNextStep);
+    payload.set("missingInfoQuestions", responseMissingInfoQuestions.join(" | "));
     payload.set("privacyConsent", privacyConsent ? "true" : "false");
     payload.set("isSensitiveCase", service === "diskret-service" || service === "private-client" ? "true" : "false");
     payload.set("timestamp", now);
@@ -518,20 +1131,19 @@ export function SeoLeadForm({
 
       dispatchSeoConversionEvent("seo_lead_submit_success", lead, "SEO-Anfrage erfolgreich gesendet");
       setStatus("success");
-    } catch (error) {
+    } catch {
       dispatchSeoConversionEvent("seo_lead_submit_error", lead, "SEO-Anfrage Fehler");
       setErrors({
-        form:
-          error instanceof Error
-            ? error.message
-            : "Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder nutzen Sie WhatsApp.",
+        form: getCustomerFacingErrorMessage("submit-error"),
       });
       setStatus("error");
     }
   }
 
   if (status === "success") {
-    const successCopy = germanizeDeep(getSuccessCopy({ service, isOfferCheck, isB2B, trackingIntent: lead.trackingIntent })) as ReturnType<typeof getSuccessCopy>;
+    const successCopy = germanizeDeep(getSuccessCopy({ service, isOfferCheck, isB2B, isSolarPv, isPianoTransport, isSeniorMove, isHandoverCleaningFlow, isPropertyCleaningFlow, trackingIntent: lead.trackingIntent })) as ReturnType<typeof getSuccessCopy>;
+    const responseTemplate = getLeadReplyTemplateForServiceKey(service, lead.trackingIntent);
+    const followUpQuestions = getMissingInfoQuestionsForServiceKey(service, lead.trackingIntent, 3);
     return (
       <div
         className="rounded-lg border border-emerald-200 bg-emerald-50 p-6 text-emerald-950 shadow-sm shadow-slate-950/5"
@@ -544,7 +1156,7 @@ export function SeoLeadForm({
         <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-emerald-700">
           <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
         </div>
-        <h2 className="mt-4 text-2xl font-black tracking-tight">Anfrage erhalten</h2>
+        <h2 className="mt-4 text-2xl font-black tracking-tight">Anfrage gesendet</h2>
         <p className="mt-3 text-sm font-semibold leading-7">{successCopy.body}</p>
         <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6">
           {successCopy.bullets.map((item) => (
@@ -554,6 +1166,22 @@ export function SeoLeadForm({
             </li>
           ))}
         </ul>
+        <div className="mt-5 rounded-lg border border-emerald-200 bg-white/80 p-4 text-sm font-semibold leading-6 text-emerald-950">
+          <p className="font-black">Was FLOXANT als Nächstes prüft</p>
+          <p className="mt-2">{responseTemplate.recommendedNextStep}</p>
+          <p className="mt-3 font-black">Falls noch Angaben fehlen</p>
+          <ul className="mt-2 grid gap-1">
+            {followUpQuestions.map((item) => (
+              <li key={item} className="flex gap-2">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs font-bold leading-5">
+            Sie können Informationen später ergänzen. Diese Bestätigung ist keine Buchung, keine Preiszusage und keine Termin- oder Verfügbarkeitsgarantie.
+          </p>
+        </div>
         <button
           type="button"
           onClick={() => {
@@ -795,8 +1423,620 @@ export function SeoLeadForm({
               placeholder="z. B. Sanitär, Böden, Küche"
             />
           </Field>
+          <Field label="Vorhandenes Angebot" htmlFor="seo-lead-existing-cleaning-offer">
+            <select
+              id="seo-lead-existing-cleaning-offer"
+              name="existingCleaningOffer"
+              value={existingCleaningOffer}
+              onChange={(event) => setExistingCleaningOffer(event.target.value)}
+              className={fieldClass(false)}
+            >
+              <option value="">noch offen</option>
+              <option value="ja">Ja</option>
+              <option value="nein">Nein</option>
+              <option value="unklar">Unklar / mehrere Angebote</option>
+            </select>
+          </Field>
+          <div className="space-y-3 sm:col-span-2">
+            <p className="text-sm font-black text-slate-950">Besondere Bereiche</p>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {b2bSpecialAreaOptions.map((option) => (
+                <label
+                  key={option.value}
+                  className="flex min-h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700"
+                >
+                  <input
+                    type="checkbox"
+                    name="specialAreas"
+                    value={option.value}
+                    checked={specialAreas.includes(option.value)}
+                    onChange={() => toggleSpecialArea(option.value)}
+                    className="h-4 w-4 rounded border-slate-300 text-blue-700"
+                  />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </div>
           <p className="sm:col-span-2 text-xs font-semibold leading-5 text-slate-600">
             Für Unternehmen helfen Fläche, Turnus und gewünschte Reinigungszeiten bei der ersten Einordnung. Eine Anfrage ist noch keine Beauftragung.
+          </p>
+        </div>
+      ) : null}
+
+      {isPropertyCleaningFlow ? (
+        <div className="grid gap-4 rounded-lg border border-emerald-100 bg-emerald-50/50 p-4 sm:grid-cols-2">
+          <Field label="Rolle" htmlFor="seo-lead-property-role">
+            <select
+              id="seo-lead-property-role"
+              name="propertyCleaningRole"
+              value={propertyCleaningRole}
+              onChange={(event) => setPropertyCleaningRole(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {propertyCleaningRoleOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Objektart" htmlFor="seo-lead-property-object-type">
+            <select
+              id="seo-lead-property-object-type"
+              name="propertyCleaningObjectType"
+              value={propertyCleaningObjectType}
+              onChange={(event) => setPropertyCleaningObjectType(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {propertyCleaningObjectTypeOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Turnus" htmlFor="seo-lead-property-frequency">
+            <select
+              id="seo-lead-property-frequency"
+              name="propertyCleaningFrequency"
+              value={propertyCleaningFrequency}
+              onChange={(event) => setPropertyCleaningFrequency(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {propertyCleaningFrequencyOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Vorhandenes Angebot" htmlFor="seo-lead-property-existing-offer">
+            <select
+              id="seo-lead-property-existing-offer"
+              name="propertyCleaningExistingOffer"
+              value={propertyCleaningExistingOffer}
+              onChange={(event) => setPropertyCleaningExistingOffer(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {propertyCleaningYesNoOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Zugang / Schluesselweg" htmlFor="seo-lead-property-access">
+            <input
+              id="seo-lead-property-access"
+              name="propertyCleaningAccess"
+              value={propertyCleaningAccess}
+              onChange={(event) => setPropertyCleaningAccess(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Schluessel bei Verwaltung, Code, Hausmeister"
+            />
+          </Field>
+          <Field label="Ansprechpartner" htmlFor="seo-lead-property-contact">
+            <input
+              id="seo-lead-property-contact"
+              name="propertyCleaningContactPerson"
+              value={propertyCleaningContactPerson}
+              onChange={(event) => setPropertyCleaningContactPerson(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Verwaltung, Beirat, Objektleitung"
+            />
+          </Field>
+          <Field label="Start / Wechsel" htmlFor="seo-lead-property-start-date">
+            <input
+              id="seo-lead-property-start-date"
+              name="propertyCleaningStartDate"
+              value={propertyCleaningStartDate}
+              onChange={(event) => setPropertyCleaningStartDate(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. ab Monatswechsel, nach Kuendigung, flexibel"
+            />
+          </Field>
+          <div className="space-y-3 sm:col-span-2">
+            <p className="text-sm font-black text-slate-950">Bereiche</p>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {propertyCleaningAreaOptions.map((option) => (
+                <label
+                  key={option.value}
+                  className="flex min-h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700"
+                >
+                  <input
+                    type="checkbox"
+                    name="propertyCleaningAreas"
+                    value={option.value}
+                    checked={propertyCleaningAreas.includes(option.value)}
+                    onChange={() => togglePropertyCleaningArea(option.value)}
+                    className="h-4 w-4 rounded border-slate-300 text-emerald-700"
+                  />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <p className="sm:col-span-2 text-xs font-semibold leading-5 text-slate-600">
+            Diese Angaben helfen bei Hausverwaltung-Reinigung, Treppenhausreinigung, Unterhaltsreinigung und Objekt-/Wohnanlagenreinigung. Eine Anfrage ist noch keine Beauftragung.
+          </p>
+        </div>
+      ) : null}
+
+      {isHandoverCleaningFlow ? (
+        <div className="grid gap-4 rounded-lg border border-blue-100 bg-blue-50/50 p-4 sm:grid-cols-2">
+          <Field label="Übergabe-Situation" htmlFor="seo-lead-handover-situation">
+            <select
+              id="seo-lead-handover-situation"
+              name="handoverSituation"
+              value={handoverSituation}
+              onChange={(event) => setHandoverSituation(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {handoverSituationOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Zustand / Restmengen" htmlFor="seo-lead-handover-condition">
+            <select
+              id="seo-lead-handover-condition"
+              name="handoverCondition"
+              value={handoverCondition}
+              onChange={(event) => setHandoverCondition(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {handoverConditionOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Übergabe-Frist" htmlFor="seo-lead-handover-deadline">
+            <input
+              id="seo-lead-handover-deadline"
+              name="handoverDeadline"
+              value={handoverDeadline}
+              onChange={(event) => setHandoverDeadline(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Freitag, Monatsende, 6 Tage"
+            />
+          </Field>
+          <Field label="Schlüsselweg / Zugang" htmlFor="seo-lead-handover-key-access">
+            <input
+              id="seo-lead-handover-key-access"
+              name="handoverKeyAccess"
+              value={handoverKeyAccess}
+              onChange={(event) => setHandoverKeyAccess(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Schlüssel bei Verwaltung, EG, Aufzug"
+            />
+          </Field>
+          <div className="space-y-3 sm:col-span-2">
+            <p className="text-sm font-black text-slate-950">Optionaler Zusatzbedarf</p>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {handoverExtraNeedOptions.map((option) => (
+                <label
+                  key={option.value}
+                  className="flex min-h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700"
+                >
+                  <input
+                    type="checkbox"
+                    name="handoverExtraNeeds"
+                    value={option.value}
+                    checked={handoverExtraNeeds.includes(option.value)}
+                    onChange={() => toggleHandoverExtraNeed(option.value)}
+                    className="h-4 w-4 rounded border-slate-300 text-blue-700"
+                  />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <p className="text-xs font-semibold leading-5 text-slate-600 sm:col-span-2">
+            Diese Felder sind optional und helfen bei Endreinigung vor Übergabe, Reinigung nach Entrümpelung, Vermieter-Ready-Service,
+            Objektbrief oder Übergabeakte. Bitte keine Zugangscodes im Formular senden.
+          </p>
+        </div>
+      ) : null}
+
+      {isSeniorMove ? (
+        <div className="grid gap-4 rounded-lg border border-emerald-100 bg-emerald-50/50 p-4 sm:grid-cols-2">
+          <Field label="Wer fragt an?" htmlFor="seo-lead-senior-requester-role">
+            <select
+              id="seo-lead-senior-requester-role"
+              name="seniorRequesterRole"
+              value={seniorRequesterRole}
+              onChange={(event) => setSeniorRequesterRole(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {seniorRequesterRoleOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Startort" htmlFor="seo-lead-senior-start-location">
+            <input
+              id="seo-lead-senior-start-location"
+              name="seniorStartLocation"
+              value={seniorStartLocation}
+              onChange={(event) => setSeniorStartLocation(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Regensburg, Stadtteil, grob"
+            />
+          </Field>
+          <Field label="Zielort" htmlFor="seo-lead-senior-destination">
+            <input
+              id="seo-lead-senior-destination"
+              name="seniorDestination"
+              value={seniorDestination}
+              onChange={(event) => setSeniorDestination(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. neue Wohnung, Angehörige, Einrichtung"
+            />
+          </Field>
+          <Field label="Etage Start" htmlFor="seo-lead-senior-start-floor">
+            <input
+              id="seo-lead-senior-start-floor"
+              name="seniorStartFloor"
+              value={seniorStartFloor}
+              onChange={(event) => setSeniorStartFloor(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. 2. OG, EG, Keller"
+            />
+          </Field>
+          <Field label="Etage Ziel" htmlFor="seo-lead-senior-destination-floor">
+            <input
+              id="seo-lead-senior-destination-floor"
+              name="seniorDestinationFloor"
+              value={seniorDestinationFloor}
+              onChange={(event) => setSeniorDestinationFloor(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. EG, 1. OG, Aufzug"
+            />
+          </Field>
+          <Field label="Aufzug vorhanden?" htmlFor="seo-lead-senior-elevator">
+            <select
+              id="seo-lead-senior-elevator"
+              name="seniorElevator"
+              value={seniorElevator}
+              onChange={(event) => setSeniorElevator(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {seniorYesNoOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Umfang" htmlFor="seo-lead-senior-scope">
+            <select
+              id="seo-lead-senior-scope"
+              name="seniorScope"
+              value={seniorScope}
+              onChange={(event) => setSeniorScope(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {seniorScopeOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Frist / Termin" htmlFor="seo-lead-senior-deadline">
+            <input
+              id="seo-lead-senior-deadline"
+              name="seniorDeadline"
+              value={seniorDeadline}
+              onChange={(event) => setSeniorDeadline(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. bis Monatsende, flexibel"
+            />
+          </Field>
+          <Field label="Vorhandenes Angebot" htmlFor="seo-lead-senior-existing-offer">
+            <select
+              id="seo-lead-senior-existing-offer"
+              name="seniorExistingOffer"
+              value={seniorExistingOffer}
+              onChange={(event) => setSeniorExistingOffer(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {seniorYesNoOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Sensible Situation optional" htmlFor="seo-lead-senior-sensitive-situation">
+            <select
+              id="seo-lead-senior-sensitive-situation"
+              name="seniorSensitiveSituation"
+              value={seniorSensitiveSituation}
+              onChange={(event) => setSeniorSensitiveSituation(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {seniorYesNoOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <div className="space-y-3 sm:col-span-2">
+            <p className="text-sm font-black text-slate-950">Zusatzbedarf</p>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {seniorExtraNeedOptions.map((option) => (
+                <label
+                  key={option.value}
+                  className="flex min-h-11 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700"
+                >
+                  <input
+                    type="checkbox"
+                    name="seniorExtraNeeds"
+                    value={option.value}
+                    checked={seniorExtraNeeds.includes(option.value)}
+                    onChange={() => toggleSeniorExtraNeed(option.value)}
+                    className="h-4 w-4 rounded border-slate-300 text-emerald-700"
+                  />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <p className="text-xs font-semibold leading-5 text-slate-600 sm:col-span-2">
+            Alle Seniorenumzug-Zusatzfelder sind optional. Bitte keine privaten Details senden, die für die erste Einordnung nicht nötig sind. Keine Pflege-, Rechts-, Preis- oder Soforttermin-Garantie.
+          </p>
+        </div>
+      ) : null}
+
+      {isPianoTransport ? (
+        <div className="grid gap-4 rounded-lg border border-amber-100 bg-amber-50/50 p-4 sm:grid-cols-2">
+          <Field label="Instrumentart" htmlFor="seo-lead-piano-instrument-type">
+            <select
+              id="seo-lead-piano-instrument-type"
+              name="pianoInstrumentType"
+              value={pianoInstrumentType}
+              onChange={(event) => setPianoInstrumentType(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {pianoInstrumentOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Startort" htmlFor="seo-lead-piano-start-location">
+            <input
+              id="seo-lead-piano-start-location"
+              name="pianoStartLocation"
+              value={pianoStartLocation}
+              onChange={(event) => setPianoStartLocation(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Regensburg Westenviertel"
+            />
+          </Field>
+          <Field label="Zielort" htmlFor="seo-lead-piano-destination">
+            <input
+              id="seo-lead-piano-destination"
+              name="pianoDestination"
+              value={pianoDestination}
+              onChange={(event) => setPianoDestination(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Lappersdorf, Innenstadt, Umland"
+            />
+          </Field>
+          <Field label="Etage Start" htmlFor="seo-lead-piano-start-floor">
+            <input
+              id="seo-lead-piano-start-floor"
+              name="pianoStartFloor"
+              value={pianoStartFloor}
+              onChange={(event) => setPianoStartFloor(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. 2. OG, EG, Keller"
+            />
+          </Field>
+          <Field label="Etage Ziel" htmlFor="seo-lead-piano-destination-floor">
+            <input
+              id="seo-lead-piano-destination-floor"
+              name="pianoDestinationFloor"
+              value={pianoDestinationFloor}
+              onChange={(event) => setPianoDestinationFloor(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. 1. OG, EG"
+            />
+          </Field>
+          <Field label="Aufzug vorhanden?" htmlFor="seo-lead-piano-elevator">
+            <select
+              id="seo-lead-piano-elevator"
+              name="pianoElevator"
+              value={pianoElevator}
+              onChange={(event) => setPianoElevator(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {pianoAccessOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Treppenhaus eng?" htmlFor="seo-lead-piano-narrow-stairs">
+            <select
+              id="seo-lead-piano-narrow-stairs"
+              name="pianoNarrowStairs"
+              value={pianoNarrowStairs}
+              onChange={(event) => setPianoNarrowStairs(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {pianoAccessOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Fotos vorhanden?" htmlFor="seo-lead-piano-photos">
+            <select
+              id="seo-lead-piano-photos"
+              name="pianoPhotos"
+              value={pianoPhotos}
+              onChange={(event) => setPianoPhotos(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {pianoAccessOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Vorhandenes Angebot" htmlFor="seo-lead-piano-existing-offer">
+            <select
+              id="seo-lead-piano-existing-offer"
+              name="pianoExistingOffer"
+              value={pianoExistingOffer}
+              onChange={(event) => setPianoExistingOffer(event.target.value)}
+              className={fieldClass(false)}
+            >
+              <option value="">noch offen</option>
+              <option value="ja">Ja</option>
+              <option value="nein">Nein</option>
+              <option value="unklar">Unklar / mehrere Angebote</option>
+            </select>
+          </Field>
+          <Field label="Sorge / Problem" htmlFor="seo-lead-piano-concern">
+            <select
+              id="seo-lead-piano-concern"
+              name="pianoConcern"
+              value={pianoConcern}
+              onChange={(event) => setPianoConcern(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {pianoConcernOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <p className="text-xs font-semibold leading-5 text-slate-600 sm:col-span-2">
+            Alle Klaviertransport-Zusatzfelder sind optional. Fotos können später ergänzt werden. Eine Anfrage ist keine Buchung, keine Preiszusage und keine Verfügbarkeitsgarantie.
+          </p>
+        </div>
+      ) : null}
+
+      {isSolarPv ? (
+        <div className="grid gap-4 rounded-lg border border-cyan-100 bg-cyan-50/50 p-4 sm:grid-cols-2">
+          <Field label="Dachart" htmlFor="seo-lead-solar-roof-type">
+            <input
+              id="seo-lead-solar-roof-type"
+              name="solarRoofType"
+              value={solarRoofType}
+              onChange={(event) => setSolarRoofType(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Flachdach, Schrägdach, Carport"
+            />
+          </Field>
+          <Field label="Zugang zur Anlage" htmlFor="seo-lead-solar-access">
+            <input
+              id="seo-lead-solar-access"
+              name="solarAccess"
+              value={solarAccess}
+              onChange={(event) => setSolarAccess(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Leiter, Dachausstieg, unklar"
+            />
+          </Field>
+          <Field label="Modulumfang" htmlFor="seo-lead-solar-module-scope">
+            <input
+              id="seo-lead-solar-module-scope"
+              name="solarModuleScope"
+              value={solarModuleScope}
+              onChange={(event) => setSolarModuleScope(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. 24 Module, ca. 60 m2"
+            />
+          </Field>
+          <Field label="Sichtbare Verschmutzung" htmlFor="seo-lead-solar-visible-dirt">
+            <input
+              id="seo-lead-solar-visible-dirt"
+              name="solarVisibleDirt"
+              value={solarVisibleDirt}
+              onChange={(event) => setSolarVisibleDirt(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Pollen, Staub, Vogelkot"
+            />
+          </Field>
+          <Field label="Vorhandenes Angebot" htmlFor="seo-lead-solar-existing-offer">
+            <select
+              id="seo-lead-solar-existing-offer"
+              name="solarExistingOffer"
+              value={solarExistingOffer}
+              onChange={(event) => setSolarExistingOffer(event.target.value)}
+              className={fieldClass(false)}
+            >
+              <option value="">noch offen</option>
+              <option value="ja">Ja</option>
+              <option value="nein">Nein</option>
+              <option value="unklar">Unklar / mehrere Angebote</option>
+            </select>
+          </Field>
+          <Field label="Gewünschter Zeitraum" htmlFor="seo-lead-solar-timeframe">
+            <input
+              id="seo-lead-solar-timeframe"
+              name="solarTimeframe"
+              value={solarTimeframe}
+              onChange={(event) => setSolarTimeframe(event.target.value)}
+              className={fieldClass(false)}
+              placeholder="z. B. Frühjahr, flexibel, vor Übergabe"
+            />
+          </Field>
+          <Field label="Objektart Solar/PV" htmlFor="seo-lead-solar-object-type">
+            <select
+              id="seo-lead-solar-object-type"
+              name="solarObjectType"
+              value={solarObjectType}
+              onChange={(event) => setSolarObjectType(event.target.value)}
+              className={fieldClass(false)}
+            >
+              {solarObjectTypeOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <p className="text-xs font-semibold leading-5 text-slate-600 sm:col-span-2">
+            Fotos können später ergänzt werden. Die Anfrage löst keine automatische Buchung aus und enthält keine Ertrags- oder Verfügbarkeitszusage.
           </p>
         </div>
       ) : null}
@@ -937,7 +2177,7 @@ export function SeoLeadForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        aria-label="SEO-Anfrage senden"
+        aria-label="Anfrage senden"
         className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-slate-400"
         data-event="seo_lead_submit_attempt"
         data-service={lead.trackingService}

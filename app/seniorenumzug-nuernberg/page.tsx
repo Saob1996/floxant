@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { generatePageSEO } from "@/lib/seo";
 import { GscOpportunitySection } from "@/components/GscOpportunitySection";
+import { LocalSeniorMoveSupport, SeniorMoveOfferCheckCTA } from "@/components/seniorenumzug/SeniorMoveSections";
 import { SpecialtyPageLayout } from "@/components/SpecialtyPageLayout";
 import { getSpecialtyPageData, resolveField, resolveNestedField } from "@/lib/specialty-page";
 import { Truck, Shield, Clock, Star, Zap } from "lucide-react";
@@ -83,10 +84,12 @@ export default async function SeniorenumzugNuernbergPage({ params }: PageProps) 
                 wizardTitle={resolveField(content.wizard_h2, fallback.wizard_h2, city, "de")}
                 wizardText={resolveField(content.wizard_p, fallback.wizard_p, city, "de")}
             >
+                <LocalSeniorMoveSupport city="Nuernberg" route="nuernberg" />
+                <SeniorMoveOfferCheckCTA compact />
                 <GscOpportunitySection
                     eyebrow="Seniorenumzug Nürnberg"
                     title="Wenn ein Umzug ruhig, verständlich und mit Rücksicht geplant werden muss."
-                    intro="Ein Seniorenumzug in Nürnberg betrifft oft mehrere Personen: die umziehende Person, Angehörige, Vermieter, Pflegeeinrichtung oder Hausverwaltung. FLOXANT prüft Möbelmenge, Zugang, Termin, Packhilfe, Reinigung und mögliche Wohnungsauflösung gemeinsam."
+                    intro="Ein Seniorenumzug in Regensburg betrifft oft mehrere Personen: die umziehende Person, Angehörige, Vermieter, Pflegeeinrichtung oder Hausverwaltung. FLOXANT prüft Möbelmenge, Zugang, Termin, Packhilfe, Reinigung und mögliche Wohnungsauflösung gemeinsam."
                     proofTitle="Gut zu wissen"
                     proofItems={[
                         "Fotos, Möbelmenge, Etage, Aufzug und Laufwege helfen, den Aufwand ohne Vor-Ort-Termin besser einzuschätzen.",

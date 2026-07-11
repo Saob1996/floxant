@@ -8,6 +8,7 @@ import {
   getPsychologicalCleaningBlogArticle,
   getPsychologicalCleaningBlogArticleSlugs,
 } from "@/lib/psychological-cleaning-pages";
+import { isCleaningRouteAllowed } from "@/lib/regensburg-cleaning-service-area";
 import { generatePageSEO } from "@/lib/seo";
 import { getStrategicBlogArticle, strategicBlogArticles } from "@/lib/strategic-blog-articles";
 
@@ -15,9 +16,11 @@ type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
-
 export const dynamicParams = false;
+
 function getArticle(slug: string) {
+  if (!isCleaningRouteAllowed(`/blog/${slug}`)) return undefined;
+
   return (
     aiRecommendationBlogArticles.find((article) => article.slug === slug) ||
     getOfferCheckBlogArticle(slug) ||
@@ -34,7 +37,9 @@ export function generateStaticParams() {
     ...getPsychologicalCleaningBlogArticleSlugs(),
   ]);
 
-  return Array.from(slugs).map((slug) => ({ slug }));
+  return Array.from(slugs)
+    .filter((slug) => isCleaningRouteAllowed(`/blog/${slug}`))
+    .map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: BlogArticlePageProps): Promise<Metadata> {

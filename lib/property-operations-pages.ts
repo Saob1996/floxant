@@ -183,7 +183,7 @@ export const propertyOperationsPages = {
     shortName: "Urlaubsretter",
     seoTitle: "Urlaubsretter Regensburg | Schlüssel, Check & Übergabe",
     metaDescription:
-      "Urlaubsretter von FLOXANT: Hilfe vor der Reise für Wohnungscheck, Schlüsselübergabe, letzte Erledigungen, Reinigung und Übergaben in Regensburg, Oberpfalz und Bayern.",
+      "Urlaubsretter von FLOXANT: Hilfe vor der Reise für Wohnungscheck, Schlüsselübergabe, letzte Erledigungen, Reinigung und Übergaben in Regensburg, Oberpfalz und Regensburg.",
     keywords: [
       "Urlaubsretter Regensburg",
       "Schlüsselübergabe vor Urlaub",
@@ -304,7 +304,7 @@ export const propertyOperationsPages = {
     shortName: "Gästewechsel",
     seoTitle: "Gästewechsel-Service Regensburg | Ferienwohnung vorbereiten",
     metaDescription:
-      "Gästewechsel-Service von FLOXANT: Gästewechsel mit Reinigung, Kontrolle, Fotos, Schlüsselmanagement und Vorbereitung für Ferienwohnungen in Regensburg, Oberpfalz und Bayern.",
+      "Gästewechsel-Service von FLOXANT: Gästewechsel mit Reinigung, Kontrolle, Fotos, Schlüsselmanagement und Vorbereitung für Ferienwohnungen in Regensburg, Oberpfalz und Regensburg.",
     keywords: [
       "Airbnb Reinigung Regensburg",
       "Gästewechsel Service",
@@ -499,7 +499,7 @@ export const propertyOperationsPages = {
     workflow: [
       { label: "01", title: "Objektprofil klären", text: "Adresse, Zugang, Berechtigung, Räume, Risiken und gewünschte Kontrollpunkte festlegen." },
       { label: "02", title: "Rhythmus planen", text: "Einmaliger Check oder wiederkehrende Betreuung nach Verfügbarkeit und Objektlage." },
-      { label: "03", title: "Vor Ort kontrollieren", text: "Lüften, Sichtprüfung, Fotopunkte und Auffälligkeiten strukturiert abarbeiten." },
+      { label: "03", title: "Vor Ort kontrollieren", text: "Lüften, Sichtprüfung, Fotopunkte und Auffälligkeiten Punkt für Punkt abarbeiten." },
       { label: "04", title: "Bericht senden", text: "Status, Fotos und Hinweise kommen in einer Form, mit der Entscheidungen möglich sind." },
     ],
     benefits: [
@@ -707,7 +707,7 @@ export const propertyOperationsPages = {
     },
     stress: [
       {
-        title: "Digitale Tickets bleiben abstrakt",
+        title: "Eine Nachricht zeigt nicht immer den Zustand vor Ort",
         text: "Ohne Vor-Ort-Status entstehen Rückfragen, Vermutungen und falsche Entscheidungen.",
       },
       {
@@ -763,7 +763,7 @@ export const propertyOperationsPages = {
       },
       {
         q: "Ist das eine Software?",
-        a: "Nein. Es geht um echte Aufgaben vor Ort. Gerade dann, wenn ein digitales Ticket nicht reicht und jemand den Zustand selbst sehen muss.",
+        a: "Nein. Es geht um echte Aufgaben vor Ort. Das ist besonders hilfreich, wenn eine Nachricht nicht ausreicht und jemand den Zustand selbst sehen muss.",
       },
       {
         q: "Kann FLOXANT Bestände aufnehmen?",

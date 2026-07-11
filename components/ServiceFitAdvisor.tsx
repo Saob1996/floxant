@@ -14,7 +14,7 @@ type ServiceFitAdvisorProps = {
 export function ServiceFitAdvisor({
   currentCity,
   title = "Welcher Anfrageweg passt?",
-  intro = "Diese Auswahl setzt nur Kontaktparameter. Es wird keine API aufgerufen und nichts gesendet, bevor das Formular bewusst abgeschickt wird.",
+  intro = "Wählen Sie die Situation, die am besten passt. Ihre Anfrage wird erst gesendet, wenn Sie das Formular abschicken.",
   className = "",
 }: ServiceFitAdvisorProps) {
   return (
@@ -52,9 +52,6 @@ export function ServiceFitAdvisor({
                 data-cta-label={rawOption.ctaLabel}
                 data-destination={href}
               >
-                <span className="rounded-md bg-blue-50 px-2 py-1 text-xs font-black text-blue-700">
-                  {rawOption.priority.toUpperCase()}
-                </span>
                 <h3 className="mt-3 text-lg font-black leading-tight text-slate-950">{germanText(option.label, option.label)}</h3>
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
                   {germanText(option.suggestedFormIntro, option.suggestedFormIntro)}

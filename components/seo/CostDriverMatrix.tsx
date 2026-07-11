@@ -48,7 +48,7 @@ export function CostDriverMatrix({ compact = false }: { compact?: boolean }) {
       </h2>
      </div>
      <p className="max-w-2xl text-sm leading-relaxed text-foreground/50 lg:ml-auto">
-      Jeder Service hat andere Aufwandstreiber. Diese Matrix macht sichtbar, warum eine erste Einschätzung hilfreich ist und welche Angaben den nächsten Schritt belastbarer machen.
+      Bei jeder Leistung hängt der Aufwand von anderen Angaben ab. Die Übersicht zeigt, welche Informationen eine erste Einschätzung erleichtern.
      </p>
     </div>
 

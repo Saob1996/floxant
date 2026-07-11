@@ -52,7 +52,7 @@ const faqItems = [
  },
  {
   q: "Wie unterscheidet sich FLOXANT von anderen Anbietern?",
-  a: "FLOXANT setzt auf strukturierte Einschätzung, unverbindlichen Orientierungsrahmen, sichtbare Kostentreiber, klare Servicewege und regionale Einordnung für Regensburg, Bayern und ausgewählte Spezialanfragen.",
+  a: "FLOXANT prüft die konkreten Eckdaten, nennt einen unverbindlichen Orientierungsrahmen und zeigt passende Anfragemöglichkeiten für Regensburg, Bayern und ausgewählte besondere Fälle.",
  },
  {
   q: "Was ist der Unterschied zwischen FLOXANT und einem Vergleichsportal?",
@@ -67,7 +67,7 @@ const faqItems = [
 const comparisonSteps = [
  "Nicht nur Preis ansehen, sondern klären, ob die Leistung vollständig beschrieben ist.",
  "Kostentreiber trennen: Volumen, Fläche, Zugang, Laufwege, Terminlage, Zusatzleistungen.",
- "Serviceweg wählen: Rechner, Preisvorstellung, Express, Leer-Rückfahrt oder direkter Hauptservice.",
+ "Passende Anfrage wählen: Rechner, Preisvorstellung, Express, Leer-Rückfahrt oder direkte Leistung.",
  "Auf realistische Kommunikation achten: keine Festpreis-Anmutung ohne geklärten Umfang.",
 ];
 
@@ -102,9 +102,9 @@ export async function generateMetadata(): Promise<Metadata> {
  return generatePageSEO({
   lang: "de",
   path: "anbieter-vergleichen",
-  title: "Anbieter vergleichen: Umfang, Termin und Angebot klaeren",
+  title: "Anbieter vergleichen - Leistung, Umfang und Risiko einordnen",
   description:
-   "Dienstleisterangebote sachlich vergleichen: Umfang, Zugang, Fotos, Termin und Zusatzpunkte klaeren, bevor der Preis allein entscheidet.",
+   "Dienstleister sachlich vergleichen: Leistung, Umfang, Kommunikation, Termin und Risiko einordnen. Kein Vergleichsportal und kein Sparversprechen.",
  });
 }
 
@@ -165,11 +165,11 @@ export default function AnbieterVergleichenPage() {
    <ProfessionalHero
     eyebrow="Vergleich mit klaren Kriterien"
     title="Anbieter vergleichen, ohne nur auf den Preis zu schauen."
-    intro="Ein sinnvoller Vergleich beginnt mit gleichem Umfang: Ort, Leistung, Zugang, Fotos, Termin, Zusatzpunkte und nächster Schritt. FLOXANT erstellt kein Anbieter-Ranking, sondern hilft, Angebote und offene Fragen sachlich einzuordnen."
+    intro="Ein sinnvoller Vergleich beginnt mit gleichem Umfang: Ort, Leistung, Zugang, Fotos, Termin und Zusatzpunkte. FLOXANT hilft, Angebote und offene Fragen sachlich zu vergleichen."
     primaryCta={{ href: "/angebot-guenstiger-pruefen", label: "Angebot pruefen lassen" }}
     secondaryCta={{ href: "/leistungen-vergleichen", label: "Leistungen vergleichbar machen" }}
     trustItems={[
-     "kein Anbieter-Ranking und keine Abwertung",
+     "keine pauschale Rangliste und keine Abwertung",
      "Umfang, Zugang und Termin vor Preis vergleichen",
      "Regensburg, Duesseldorf und Bayern sauber trennen",
     ]}
@@ -187,7 +187,7 @@ export default function AnbieterVergleichenPage() {
     <ServiceVisualProofGrid serviceKey="angebot-pruefen" />
     <ProcessProofSteps
      title="Vergleich heisst Rueckfragen klaeren."
-     intro="FLOXANT vergleicht keine Anbieter als Ranking. Der pruefbare Teil sind Umfang, Annahmen, Termin, Zugang, Fotos und offene Zusatzpunkte."
+     intro="FLOXANT erstellt keine pauschale Rangliste. Vergleichbar sind Umfang, Annahmen, Termin, Zugang, Fotos und offene Zusatzpunkte."
     />
 
     <OfferDifferenceExplainer />

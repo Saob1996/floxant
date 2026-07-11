@@ -47,8 +47,8 @@ export default async function Article() {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Durchschnittliche Kosten pro m³</h2>
-            <p className="text-muted-foreground leading-relaxed">Die Entrümpelung kostet in Bayern durchschnittlich 30 bis 80 Euro pro Kubikmeter. Der Preis hängt von der Art des Materials ab: Sperrmüll ist günstiger als Sondermüll oder Elektroaltgeräte.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Wovon die Kosten abhängen</h2>
+            <p className="text-muted-foreground leading-relaxed">Entscheidend sind Menge, Materialart, Zugang, Etage, Laufweg und Entsorgungsaufwand. Erst mit diesen Angaben lässt sich ein belastbarer Preis für Ihre Entrümpelung ermitteln.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Was beeinflusst den Preis?</h2>
@@ -62,8 +62,8 @@ export default async function Article() {
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
             <div className="space-y-4">
               {[
-              { q: "Was kostet Entrümpelung pro m³?", a: "30 bis 80 Euro im Durchschnitt, je nach Material und Zugänglichkeit." },
-              { q: "Ist eine Entrümpelung auch kurzfristig möglich?", a: "Ja. FLOXANT bietet auch Express-Entrümpelung innerhalb von 24 bis 48 Stunden." }
+              { q: "Wie wird der Preis für eine Entrümpelung ermittelt?", a: "Wir berücksichtigen unter anderem Menge, Materialart, Zugänglichkeit, Etage und Entsorgungsaufwand." },
+              { q: "Ist eine Entrümpelung auch kurzfristig möglich?", a: "Das hängt von Umfang, Ort und verfügbarer Kapazität ab. Nennen Sie uns Ihren Wunschtermin, damit wir ihn prüfen können." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">
                   <h3 className="font-bold mb-2">{item.q}</h3>

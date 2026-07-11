@@ -19,6 +19,10 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CleaningServiceArea } from "@/components/CleaningServiceArea";
+import { LocalTrustBlock } from "@/components/cleaning-seo/LocalTrustBlock";
+import { RelatedServicesBlock } from "@/components/cleaning-seo/RelatedServicesBlock";
+import { RequestChecklistBlock } from "@/components/cleaning-seo/RequestChecklistBlock";
 import { CommercialCleaningLeadForm } from "@/components/CommercialCleaningLeadForm";
 import { FloxantSymbolLayer } from "@/components/FloxantSymbolLayer";
 import { company } from "@/lib/company";
@@ -29,6 +33,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 
 const pagePath = "/teppichreinigung-regensburg";
@@ -206,7 +211,7 @@ export default function TeppichreinigungRegensburgPage() {
         path: pagePath,
         serviceType:
           "Teppichreinigung, Teppichbodenreinigung, Polsterreinigung, Sofa-Reinigung und Bürostuhl-Reinigung in Regensburg",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Neutraubling", "Lappersdorf", "Pentling", "Bayern nach Verfügbarkeit"],
+        areaServed: buildRegensburgCleaningAreaServedJsonLd(),
       }),
       buildWebPageJsonLd({
         name: "Teppichreinigung Regensburg für Teppichboden, Sofa, Polster und Bürostühle",
@@ -311,7 +316,7 @@ export default function TeppichreinigungRegensburgPage() {
 
             <aside className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
               <Image
-                  src="/assets/service-cleaning.png"
+                  src="/assets/service-cleaning.webp"
                 alt="Teppichreinigung mit Reinigungsgerät als Beispiel für Regensburg"
                 fill
                 priority
@@ -346,6 +351,25 @@ export default function TeppichreinigungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <section className="flox-section pt-0">
+        <div className="flox-shell">
+          <CleaningServiceArea
+            compact
+            title="Reinigungsservicegebiet Regensburg"
+            intro="Für Reinigungsservices fokussiert FLOXANT Regensburg und den Umkreis bis 50 km. Das gilt auch für spezialisierte Reinigungsanfragen mit Fotos, Termin und klarer Objektbeschreibung."
+          />
+        </div>
+      </section>
+
+      <LocalTrustBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Teppichreinigung anfragen" />
+      <RequestChecklistBlock ctaHref={`${pagePath}#kontakt`} ctaLabel="Material und Fotos vorbereiten" />
+      <RelatedServicesBlock
+        currentHref={pagePath}
+        title="Weitere Reinigungsseiten zur Teppichreinigung"
+        intro="Diese Links verbinden Teppich, Grundreinigung, Gewerbe, Praxis und Angebotsprüfung im Regensburger Reinigungscluster."
+        limit={5}
+      />
 
       <section id="kunden-suchen" className="flox-section pt-0">
         <div className="flox-shell">

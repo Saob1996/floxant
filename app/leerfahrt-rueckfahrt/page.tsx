@@ -127,11 +127,12 @@ export default async function LeerfahrtRueckfahrtPage() {
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
               FLOXANT fährt nach Aufträgen regelmäßig Richtung Regensburg zurück. Wenn dabei freie
               Fahrzeugkapazität vorhanden ist, können Privatkunden, Firmen und größere Büros Möbel,
-              Büroinventar, Kartons, Paletten, Einzelstücke oder Teilmengen fair mitnehmen lassen.
-              Kein Lockpreis, sondern eine ehrliche Prüfung: Datum, Route, Volumen, Ladeaufwand und
-              möglicher Umweg müssen zur Rückfahrt passen. So wird freie Strecke sinnvoll genutzt,
-              ohne dass Sie direkt einen kompletten Transport buchen müssen. Kurz gesagt: wenn es
-              gut auf die Route passt, wird es oft deutlich entspannter und fairer.
+              Büroinventar, Kartons, Paletten, Einzelstücke oder Teilmengen mitnehmen lassen.
+            </p>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+              Datum, Strecke, Umfang, Ladeaufwand und möglicher Umweg müssen zur Rückfahrt passen.
+              So kann freie Fahrzeugkapazität sinnvoll genutzt werden, ohne dass Sie direkt einen
+              kompletten Transport buchen müssen.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link

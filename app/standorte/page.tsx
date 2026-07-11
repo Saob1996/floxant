@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     path: "/standorte",
     title: "Standorte & Einsatzgebiet | FLOXANT Regensburg, Bayern und direkter Buchungsweg",
     description:
-      "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entruempelung, Bueroumzug und direkter Buchungsweg fuer ganz Bayern.",
+      "Standorte, Staedte, Bezirke und Einsatzgebiet von FLOXANT ab Regensburg. Umzug, Reinigung, Entruempelung, Bueroumzug und direkter Buchungsweg fuer ganz Regensburg.",
   });
 }
 
@@ -455,6 +455,7 @@ export default function StandortePage() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className="rounded-[1.15rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-slate-950"
               >
                 {item.label}
@@ -481,6 +482,7 @@ export default function StandortePage() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    prefetch={false}
                     className="group flex items-center justify-between rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5 transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
                   >
                     <div className="flex items-center gap-4">

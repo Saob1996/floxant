@@ -28,6 +28,8 @@ export type TrustSignal = {
   };
   relatedFAQ: readonly string[];
   needsManualProof: boolean;
+  visibleIfDataConfirmed: boolean;
+  riskLevel: "low" | "medium" | "high";
 };
 
 export type ServiceProofInput = {
@@ -54,7 +56,7 @@ export type LocalProof = {
 export const trustSignals: TrustSignal[] = [
   {
     key: "structured-request",
-    title: "Strukturierte Anfrage statt Schnellversprechen",
+    title: "Klare Anfrage statt Schnellversprechen",
     shortText:
       "FLOXANT fragt zuerst Ort, Leistung, Umfang, Termin und Kontaktweg ab. Eine Anfrage ist noch keine Buchung.",
     serviceKeys: ["reinigung", "umzug", "entruempelung", "bueroreinigung", "gewerbereinigung"],
@@ -66,10 +68,12 @@ export const trustSignals: TrustSignal[] = [
     cta: { label: "Anfrage sauber starten", href: "/kontakt" },
     relatedFAQ: ["Welche Angaben helfen?", "Ist die Anfrage eine Buchung?"],
     needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "low",
   },
   {
     key: "offer-check-boundary",
-    title: "Angebotspruefung mit klaren Grenzen",
+    title: "Angebotsprüfung mit klaren Grenzen",
     shortText:
       "Angebote werden nach Umfang, Aufwand, Termin und offenen Punkten eingeordnet. Keine Rechtsberatung und keine Ersparnisgarantie.",
     serviceKeys: ["angebot-pruefen", "reinigung", "umzug", "entruempelung"],
@@ -81,27 +85,31 @@ export const trustSignals: TrustSignal[] = [
     cta: { label: "Angebot pruefen", href: "/angebot-guenstiger-pruefen" },
     relatedFAQ: ["Kann FLOXANT guenstigere Preise garantieren?", "Ist das rechtliche Beratung?"],
     needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "low",
   },
   {
     key: "duesseldorf-local-proof",
     title: "Duesseldorf lokal ohne erfundene Daten",
     shortText:
-      "Duesseldorf wird fuer Reinigung, Buero, Gewerbe, Praxis, Fenster und Angebotspruefung separat gefuehrt. Unbestaetigte GBP-Daten bleiben manuell.",
-    serviceKeys: ["reinigung", "bueroreinigung", "gewerbereinigung", "praxisreinigung", "fensterreinigung"],
+      "Duesseldorf wird als eigener Hub fuer Angebotspruefung, Umzug, Raeumung und manuell zu pruefende Servicegebiete gefuehrt. Unbestaetigte GBP-Daten bleiben manuell.",
+    serviceKeys: ["angebot-pruefen", "umzug", "entruempelung", "wohnungsaufloesung"],
     locationKeys: ["duesseldorf"],
-    signatureServiceKeys: ["angebot-pruefen", "buero-startklar-service"],
+    signatureServiceKeys: ["angebot-pruefen", "plan-b-service", "diskret-service"],
     proofType: "local",
-    allowedPages: ["/duesseldorf", "/duesseldorf/reinigung", "/duesseldorf/bueroreinigung", "/duesseldorf/gewerbereinigung"],
+    allowedPages: ["/duesseldorf", "/duesseldorf/angebot-vergleichen", "/duesseldorf/umzug", "/duesseldorf/entruempelung"],
     forbiddenClaims: ["erfundene Oeffnungszeiten", "erfundene GBP-URL", "Google-Maps-Rankingversprechen"],
     cta: { label: "Duesseldorf-Anfrage starten", href: "/kontakt?city=duesseldorf&source=trust-proof" },
     relatedFAQ: ["Welche Services bietet FLOXANT in Duesseldorf?"],
     needsManualProof: true,
+    visibleIfDataConfirmed: false,
+    riskLevel: "medium",
   },
   {
     key: "regensburg-local-proof",
     title: "Regensburg lokal mit klarer Einsatzlogik",
     shortText:
-      "Regensburg bleibt fuer Umzug, Reinigung, Entruempelung, Buero, Klaviertransport und Angebotspruefung getrennt sichtbar.",
+      "Regensburg bleibt fuer Umzug, Reinigung, Entruempelung, Buero, Klaviertransport und Angebotsprüfung getrennt sichtbar.",
     serviceKeys: ["umzug", "reinigung", "entruempelung", "bueroreinigung", "klaviertransport"],
     locationKeys: ["regensburg"],
     signatureServiceKeys: ["objektbrief", "plan-b-service", "rueckfahrt-radar"],
@@ -111,6 +119,8 @@ export const trustSignals: TrustSignal[] = [
     cta: { label: "Regensburg-Anfrage starten", href: "/kontakt?city=regensburg&source=trust-proof" },
     relatedFAQ: ["Welche Services bietet FLOXANT in Regensburg?"],
     needsManualProof: true,
+    visibleIfDataConfirmed: false,
+    riskLevel: "medium",
   },
   {
     key: "discreet-contact",
@@ -126,6 +136,8 @@ export const trustSignals: TrustSignal[] = [
     cta: { label: "Diskret anfragen", href: "/kontakt?service=diskret-service&source=trust-proof" },
     relatedFAQ: ["Was muss ich bei sensiblen Faellen angeben?"],
     needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "low",
   },
   {
     key: "b2b-cleaning-proof",
@@ -136,11 +148,13 @@ export const trustSignals: TrustSignal[] = [
     locationKeys: ["duesseldorf", "regensburg"],
     signatureServiceKeys: ["buero-startklar-service"],
     proofType: "b2b",
-    allowedPages: ["/duesseldorf/bueroreinigung", "/duesseldorf/gewerbereinigung", "/regensburg/bueroreinigung"],
+    allowedPages: ["/regensburg/bueroreinigung", "/regensburg/gewerbereinigung", "/regensburg/bueroreinigung"],
     forbiddenClaims: ["Fake-Referenzen", "erfundene Firmenkunden", "unbelegte Zertifikate"],
     cta: { label: "B2B-Anfrage starten", href: "/kontakt?service=bueroreinigung&source=trust-proof" },
     relatedFAQ: ["Welche Angaben braucht FLOXANT fuer B2B-Reinigung?"],
     needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "low",
   },
   {
     key: "review-boundary",
@@ -156,6 +170,59 @@ export const trustSignals: TrustSignal[] = [
     cta: { label: "Kontaktweg pruefen", href: "/kontakt" },
     relatedFAQ: ["Warum zeigt FLOXANT keine erfundenen Bewertungen?"],
     needsManualProof: true,
+    visibleIfDataConfirmed: false,
+    riskLevel: "high",
+  },
+  {
+    key: "signature-plan-b-trust",
+    title: "Plan B als Machbarkeitspruefung",
+    shortText:
+      "Plan-B-Anfragen werden nach Frist, Ort, Umfang, Fotos und verfuegbaren naechsten Schritten eingeordnet. Es gibt keine Sofort- oder Verfuegbarkeitszusage.",
+    serviceKeys: ["angebot-pruefen", "umzug", "entruempelung", "reinigung"],
+    locationKeys: ["duesseldorf", "regensburg"],
+    signatureServiceKeys: ["plan-b-service", "entscheidungs-kompass"],
+    proofType: "process",
+    allowedPages: ["/plan-b-service", "/signature-services", "/angebot-guenstiger-pruefen", "/kontakt"],
+    forbiddenClaims: ["Sofortgarantie", "Verfuegbarkeitsgarantie", "Erfolgsgarantie"],
+    cta: { label: "Plan B einordnen", href: "/kontakt?service=angebot-pruefen&intent=plan-b-service&source=trust-proof" },
+    relatedFAQ: ["Was ist noch machbar?", "Welche Angaben helfen bei Dringlichkeit?"],
+    needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "low",
+  },
+  {
+    key: "signature-pv-safety-trust",
+    title: "PV-Sichtklar ohne Ertragsversprechen",
+    shortText:
+      "PV- oder Solarreinigung wird ueber Dachart, Zugang, Modulbereich, Fotos und Sicherheitsgrenzen eingeordnet, nicht ueber garantierte Ertraege.",
+    serviceKeys: ["reinigung", "solarreinigung", "angebot-pruefen"],
+    locationKeys: ["regensburg"],
+    signatureServiceKeys: ["pv-sichtklar", "fairpreis-check"],
+    proofType: "service",
+    allowedPages: ["/pv-anlagen-reinigung", "/solarreinigung", "/regensburg/solarreinigung"],
+    forbiddenClaims: ["Ertragsgarantie", "Dachbegehung ohne Pruefung", "technische Leistungszusage"],
+    cta: { label: "PV-Sichtklar pruefen", href: "/kontakt?service=reinigung&city=regensburg&intent=pv-sichtklar&source=trust-proof" },
+    relatedFAQ: ["Welche Fotos helfen bei PV-Reinigung?", "Wann ist Dachzugang unsicher?"],
+    needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "medium",
+  },
+  {
+    key: "visual-proof-boundary",
+    title: "Visual Proof ohne private Daten",
+    shortText:
+      "Sichtbare Proof-Elemente bleiben abstrakt oder freigegeben. Keine Menschen, Gesichter, Kennzeichen, privaten Dokumente oder Fake-Before-/After-Bilder.",
+    serviceKeys: ["reinigung", "umzug", "entruempelung", "angebot-pruefen"],
+    locationKeys: ["duesseldorf", "regensburg"],
+    signatureServiceKeys: ["objektbrief", "uebergabeakte", "pv-sichtklar"],
+    proofType: "visual",
+    allowedPages: ["*", "/leistungen", "/regensburg", "/duesseldorf"],
+    forbiddenClaims: ["Fake-Before-/After", "private Daten", "unfreigegebenes Projektfoto"],
+    cta: { label: "Anfrage mit sicheren Fotos starten", href: "/kontakt" },
+    relatedFAQ: ["Welche Fotos darf ich senden?", "Was sollte nicht fotografiert werden?"],
+    needsManualProof: false,
+    visibleIfDataConfirmed: true,
+    riskLevel: "low",
   },
 ];
 
@@ -186,7 +253,7 @@ export const serviceProofInputs: Record<string, ServiceProofInput> = {
   },
   "angebot-pruefen": {
     serviceKey: "angebot-pruefen",
-    title: "Was eine Angebotspruefung belastbarer macht",
+    title: "Was eine Angebotsprüfung belastbarer macht",
     intro: "Ein Angebot wird nur vergleichbar, wenn Preis, Leistung und Annahmen zusammen sichtbar sind.",
     items: ["Angebot, PDF oder Screenshot", "Leistungsumfang", "Ort und Termin", "Fotos oder Objektbeschreibung", "Was unklar oder zu teuer wirkt"],
     photosHelp: false,
@@ -213,28 +280,28 @@ export const serviceProofInputs: Record<string, ServiceProofInput> = {
 export const localProofs: Record<TrustLocationKey, LocalProof> = {
   duesseldorf: {
     locationKey: "duesseldorf",
-    title: "Local Proof fuer Duesseldorf",
+    title: "FLOXANT-Leistungen in Düsseldorf",
     shortText:
-      "Duesseldorf wird auf der Website als eigener Reinigungs- und B2B-Schwerpunkt gefuehrt. Echte Standortdaten kommen aus zentralen Unternehmensdaten.",
+      "In Düsseldorf können Sie vorhandene Angebote prüfen lassen sowie Umzug, Räumung und Haushaltsauflösung anfragen. Wir prüfen Ort, Umfang und Termin vor einer Zusage.",
     visibleProofs: [
-      "Eigene Hub-Seite fuer Duesseldorf",
-      "Lokale Servicewege fuer Reinigung, Buero, Gewerbe, Praxis und Fenster",
-      "Kontaktlinks mit city=duesseldorf",
-      "FAQ und LocalBusiness-Daten nur aus vorhandenen Datenquellen",
+      "Angebote nach Umfang, Preis und offenen Punkten prüfen lassen",
+      "Umzug, Entrümpelung und Haushaltsauflösung anfragen",
+      "Ort, Fotos, Zugang und Termin direkt im Formular angeben",
+      "Rückmeldung erst nach Prüfung der konkreten Angaben",
     ],
     manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],
     cta: { label: "Duesseldorf kontaktieren", href: "/kontakt?city=duesseldorf&source=local-proof" },
   },
   regensburg: {
     locationKey: "regensburg",
-    title: "Local Proof fuer Regensburg",
+    title: "FLOXANT-Leistungen in Regensburg",
     shortText:
-      "Regensburg bleibt als eigener Standortbereich fuer Umzug, Reinigung, Entruempelung, Buero und Spezialfaelle sichtbar.",
+      "In Regensburg können Sie Umzug, Reinigung, Entrümpelung, Büroreinigung und besondere Hilfe anfragen. Die nötigen Angaben richten sich nach der gewählten Leistung.",
     visibleProofs: [
-      "Eigene Hub-Seite fuer Regensburg",
-      "Lokale Servicewege fuer Umzug, Reinigung, Entruempelung und Klaviertransport",
-      "Kontaktlinks mit city=regensburg",
-      "Standortdaten nur aus vorhandenen Unternehmensdaten",
+      "Umzug, Reinigung, Entrümpelung und Klaviertransport anfragen",
+      "Start, Ziel, Objekt, Zugang oder Fläche passend zur Leistung nennen",
+      "Fotos und Terminwunsch direkt im Formular ergänzen",
+      "Rückmeldung nach Prüfung von Ort, Umfang und Verfügbarkeit",
     ],
     manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],
     cta: { label: "Regensburg kontaktieren", href: "/kontakt?city=regensburg&source=local-proof" },
@@ -254,6 +321,7 @@ export function selectTrustSignals(input: {
   const allowedPage = input.allowedPage?.toLowerCase();
 
   const filtered = trustSignals.filter((signal) => {
+    if (!signal.visibleIfDataConfirmed) return false;
     if (input.proofType && signal.proofType !== input.proofType) return false;
     if (serviceKey && !signal.serviceKeys.includes(serviceKey) && !signal.serviceKeys.includes("*")) return false;
     if (input.locationKey && !signal.locationKeys.includes(input.locationKey)) return false;

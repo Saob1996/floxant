@@ -28,7 +28,7 @@ const problemOptions = [
   "Übergabe",
   "Schlüssel",
   "Kombination",
-  "Düsseldorf Reinigung",
+  "Reinigung Regensburg",
   "Düsseldorf Entsorgung",
   "Sonstiges",
 ];
@@ -133,14 +133,14 @@ const damageDefaults = {
     whatsappMessage:
       "Hallo FLOXANT, ein Objektfall ist kurzfristig dringend. Es geht um Räumung/Reinigung/Übergabevorbereitung in [Ort]. Termin und Fotos kann ich senden.",
   },
-  duesseldorf_reinigung: {
-    problemType: "Düsseldorf Reinigung",
+  regensburg_reinigung: {
+    problemType: "Reinigung Regensburg",
     urgency: "Morgen",
     situation: "cleaning_not_ready",
     openItems: ["Reinigung", "Bad / Küche / Böden", "Fotos vorhanden", "Budget vorhanden"],
     addons: ["Endreinigung", "Diskreter Rückruf"],
     whatsappMessage:
-      "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Düsseldorf. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
+      "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Regensburg. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
   duesseldorf_entsorgung: {
     problemType: "Düsseldorf Entsorgung",
@@ -151,14 +151,14 @@ const damageDefaults = {
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Entsorgung in Düsseldorf. Umfang, Zugang, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
-  duesseldorf_apartment_cleaning: {
-    problemType: "Düsseldorf Reinigung",
+  regensburg_cleaning: {
+    problemType: "Reinigung Regensburg",
     urgency: "Morgen",
     situation: "cleaning_not_ready",
     openItems: ["Reinigung", "Bad / Küche / Böden", "Fotos vorhanden"],
     addons: ["Endreinigung", "Diskreter Rückruf"],
     whatsappMessage:
-      "Hallo FLOXANT, ich brauche kurzfristig Reinigung für eine möblierte Wohnung / ein Apartment in Düsseldorf. Termin, Fotos und Objektangaben kann ich senden.",
+      "Hallo FLOXANT, ich brauche kurzfristig Reinigung für eine möblierte Wohnung / ein Apartment in Regensburg. Termin, Fotos und Objektangaben kann ich senden.",
   },
 } as const;
 
@@ -341,7 +341,7 @@ export function DamageControlForm() {
     formData.set("damageSituation", situation);
     formData.set("selectedOpenItems", JSON.stringify(selectedOpenItems));
     formData.set("selectedAddons", JSON.stringify(selectedAddons));
-    formData.set("region", "regensburg_bayern_duesseldorf_cleaning_disposal");
+    formData.set("region", "regensburg_regensburg_regensburg_cleaning_disposal");
     formData.set("timestamp", new Date().toISOString());
     formData.set("leadSource", planButtonSource ? "plan_gekippt_button" : "damage_control");
     formData.set("source", planButtonSource ? "plan_gekippt_button" : "damage_control");

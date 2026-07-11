@@ -25,7 +25,7 @@ import {
 } from "@/lib/specialty-page";
 import { germanizeText } from "@/lib/german-text";
 import { getGscClickPriority } from "@/lib/gsc-click-priorities";
-import { buildLeadHref } from "@/lib/lead-intents";
+import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import {
   dynamicLocalSeoRoutes,
   getDynamicLocalSeoRoute,
@@ -126,7 +126,7 @@ const SERVICE_SUPPORT_LINKS: Record<
     {
       title: "Firmenumzug anfragen",
       href: "/buchung?service=umzug#buchungssystem",
-      text: "Wenn Büroflächen, Teamgröße und Zeitfenster strukturiert geprüft werden sollen.",
+      text: "Wenn Büroflächen, Teamgröße und Zeitfenster anhand der Eckdaten geprüft werden sollen.",
     },
     {
       title: "Aufwand vorrechnen",
@@ -646,6 +646,10 @@ export default async function CoreServicePage({ params }: PageProps) {
   const dict = (await getDictionary("de")) as unknown as Record<string, unknown>;
   const isDe = true;
   const content = getServiceContent(dict, serviceSlug);
+  const coreServicePath = `/${serviceSlug}`;
+  const coreLead = resolveLeadIntent({ path: coreServicePath });
+  const coreContactHref = buildLeadHref({ path: coreServicePath });
+  const showCoreLeadCta = ["vermieter-ready-service", "uebergabe-sprint"].includes(serviceSlug);
   const area = getNestedRecord(dict, "area");
   const cities = getNestedRecord(area, "cities");
   const common = getNestedRecord(dict, "common");
@@ -747,7 +751,7 @@ export default async function CoreServicePage({ params }: PageProps) {
     { href: "#leistungen", title: "Leistungsbild", text: "Prinzipien und Einordnung auf einen Blick." },
     { href: "#ablauf", title: "Ablauf", text: "So wird Anfrage, Prüfung und Umsetzung geführt." },
     { href: "#faq", title: "FAQ", text: "Häufige Fragen direkt vor der Anfrage klären." },
-    { href: "#anfrage", title: "Anfrage", text: "Zum strukturierten Startpunkt oder WhatsApp-Pfad." },
+    { href: "#anfrage", title: "Anfrage", text: "Zum kurzen Einstieg oder WhatsApp-Pfad." },
   ];
   const whatsappHref = buildWhatsAppHref(
     company.phoneRaw,
@@ -792,6 +796,24 @@ export default async function CoreServicePage({ params }: PageProps) {
               {content.hero_desc}
             </p>
           )}
+          {showCoreLeadCta ? (
+            <div className="mt-8 flex justify-center">
+              <Link
+                href={coreContactHref}
+                data-event="seo_cta_click"
+                data-service={coreLead.trackingService}
+                data-city={coreLead.trackingCity}
+                data-page-intent={coreLead.trackingIntent}
+                data-priority={coreLead.priority}
+                data-cta-label={coreLead.ctaLabel}
+                data-destination={coreContactHref}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white shadow-sm transition hover:bg-primary"
+              >
+                {coreLead.ctaLabel}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          ) : null}
         </div>
       </section>
       <section className="px-6 pb-10">

@@ -52,7 +52,7 @@ export default async function Article() {
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Kosten und Ablauf</h2>
-            <p className="text-muted-foreground leading-relaxed">Eine Wohnungsauflösung kostet je nach Wohnungsgröße 500 bis 3.000 Euro. Verwertbare Gegenstände werden gegengerechnet. FLOXANT bietet Festpreise nach Besichtigung.</p>
+            <p className="text-muted-foreground leading-relaxed">Der Preis hängt unter anderem von Wohnungsgröße, Menge, Materialarten, Zugänglichkeit und Entsorgungsaufwand ab. Nach Prüfung Ihrer Angaben erhalten Sie ein passendes Angebot.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Emotionale Begleitung</h2>

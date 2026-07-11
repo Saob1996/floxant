@@ -99,14 +99,14 @@ export default function BlogBueroumzugBayernPage() {
           {
             title: "Warum ein sauberer Kontaktweg so viel bringt",
             paragraphs: [
-              "Ein guter Büroumzug beginnt nicht mit Hektik, sondern mit einer strukturierten Anfrage. So werden Preisrahmen, Terminlogik und Verantwortung im Unternehmen früh sortiert.",
+              "Ein guter Büroumzug beginnt nicht mit Hektik, sondern mit einer Anfrage mit den wichtigsten Eckdaten. So werden Preisrahmen, Terminlogik und Verantwortung im Unternehmen früh sortiert.",
               "Kurz gesagt: lieber gscheid geplant und sauber abgestimmt als am Umzugstag improvisiert.",
             ],
           },
         ]}
         highlightPoints={[
           "Arbeitsplätze, IT und Zeitfenster sind bei Firmenumzügen zentrale Kostentreiber.",
-          "Eine strukturierte Vorprüfung ist oft wertvoller als ein vorschneller Festpreis.",
+          "Eine Prüfung der wichtigsten Eckdaten ist oft wertvoller als ein vorschneller Festpreis.",
           "Klare Kontaktwege helfen Unternehmen und FLOXANT gleichermaßen bei Planung und Umsetzung.",
         ]}
         ctas={[

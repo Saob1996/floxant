@@ -36,7 +36,7 @@ const serviceTone: Record<string, string> = {
   mieterwechsel: "border-slate-200 bg-slate-100 text-slate-800",
   hausverwaltung: "border-stone-200 bg-stone-100 text-stone-800",
   premium: "border-zinc-300 bg-zinc-950 text-white",
-  duesseldorf_reinigung: "border-teal-200 bg-teal-50 text-teal-800",
+  regensburg_reinigung: "border-teal-200 bg-teal-50 text-teal-800",
   duesseldorf_entsorgung: "border-rose-200 bg-rose-50 text-rose-800",
 };
 
@@ -50,7 +50,7 @@ const serviceLabels: Record<EinsatzradarServiceType, string> = {
   mieterwechsel: "Mieterwechsel",
   hausverwaltung: "Hausverwaltung",
   premium: "Diskrete Abstimmung",
-  duesseldorf_reinigung: "Düsseldorf Reinigung",
+  regensburg_reinigung: "Reinigung Regensburg",
   duesseldorf_entsorgung: "Düsseldorf Entsorgung",
 };
 

@@ -23,6 +23,8 @@ import {
   TrustProofSection,
 } from "@/components/conversion";
 import { AiAnswerBlock } from "@/components/ai-answer";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company, duesseldorfCompany } from "@/lib/company";
 import type { GrowthServicePageConfig } from "@/lib/growth-service-pages";
 import { getServiceVisual } from "@/lib/service-visuals";
@@ -48,9 +50,15 @@ const kindLabels: Record<GrowthServicePageConfig["kind"], string> = {
 const internationalGrowthHintPaths = new Set([
   "/solarreinigung",
   "/pv-anlagen-reinigung",
-  "/duesseldorf/solarreinigung",
+  "/regensburg/reinigung",
   "/regensburg/solarreinigung",
 ]);
+
+const solarPvPaths = new Set(["/solarreinigung", "/pv-anlagen-reinigung", "/regensburg/solarreinigung"]);
+
+function isSolarPvPage(config: GrowthServicePageConfig) {
+  return solarPvPaths.has(config.path) || config.slug.includes("solarreinigung") || config.slug.includes("pv-anlagen");
+}
 
 function getRelatedSpecialKind(config: GrowthServicePageConfig) {
   if (config.kind === "moving") return "moving";
@@ -82,9 +90,150 @@ function getLocalBridgeTargets(config: GrowthServicePageConfig) {
   }
 
   return {
-    duesseldorfHref: "/duesseldorf/reinigung",
+    duesseldorfHref: "/regensburg",
     regensburgHref: "/regensburg/reinigung",
   };
+}
+
+function getSolarPvOfferLinks(config: GrowthServicePageConfig) {
+  const city =
+    config.path.includes("/regensburg") || config.cityLabel.toLowerCase().includes("regensburg")
+      ? "&city=regensburg"
+      : config.cityLabel.toLowerCase().includes("duesseldorf") || config.cityLabel.toLowerCase().includes("düsseldorf")
+        ? "&city=duesseldorf"
+        : "";
+
+  return {
+    solarRequest: `/kontakt?service=solarreinigung${city}&intent=solarreinigung-anfragen&source=seo`,
+    solarOffer: `/kontakt?service=solarreinigung${city}&intent=solarreinigung-angebot-pruefen&source=seo`,
+    pvRequest: `/kontakt?service=pv-anlagen-reinigung${city}&intent=pv-reinigung-anfragen&source=seo`,
+    pvOffer: `/kontakt?service=pv-anlagen-reinigung${city}&intent=pv-reinigung-angebot-pruefen&source=seo`,
+  };
+}
+
+function SolarPvAuthorityPanel({ config }: { config: GrowthServicePageConfig }) {
+  const links = getSolarPvOfferLinks(config);
+  const quickAnswer =
+    config.slug === "pv-anlagen-reinigung"
+      ? "Für eine PV-Anlagen-Reinigung helfen Angaben zu Modulfläche, Dachart, Zugang, sichtbarer Verschmutzung, Fotos und gewünschtem Zeitraum. FLOXANT prüft diese Angaben oder ein vorhandenes Angebot anhand der genannten Eckdaten. Eine Ertragssteigerung, Preisersparnis oder Verfügbarkeit wird nicht garantiert."
+      : "Für eine Solarreinigungsanfrage helfen Dachart, Zugang, Modulfläche, sichtbare Verschmutzung, Fotos und gewünschter Zeitraum. FLOXANT kann die Angaben strukturieren und ein vorhandenes Angebot einordnen. Eine Ertragssteigerung oder Preisersparnis wird nicht garantiert.";
+
+  return (
+    <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+        <article className="rounded-lg border border-cyan-100 bg-cyan-50 p-5">
+          <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Kurz erklärt</p>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+            Zugang, Dachart und Fotos zuerst klären.
+          </h2>
+          <p className="mt-4 text-sm font-semibold leading-7 text-slate-700">{quickAnswer}</p>
+        </article>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <article className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+            <h3 className="text-lg font-black text-slate-950">Was FLOXANT braucht</h3>
+            <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6 text-slate-700">
+              {[
+                "Stadt, Ort oder Einsatzgebiet",
+                "Dachart, Zugang und Sicherheitslage",
+                "ungefähre Modulfläche oder Modulanzahl",
+                "sichtbare Verschmutzung und optionale Fotos",
+                "vorhandenes Angebot und gewünschter Zeitraum",
+              ].map((item) => (
+                <li key={item} className="flex gap-2">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="rounded-lg border border-slate-200 bg-slate-950 p-5 text-white">
+            <h3 className="text-lg font-black">Was nicht versprochen wird</h3>
+            <ul className="mt-4 grid gap-2 text-sm font-semibold leading-6 text-slate-200">
+              {[
+                "keine Ertragsgarantie",
+                "keine Preis- oder Ersparnisgarantie",
+                "keine Soforttermin-Garantie",
+                "keine technische Sicherheitszusage ohne Prüfung",
+                "keine automatische Buchung durch Anfrage",
+              ].map((item) => (
+                <li key={item} className="flex gap-2">
+                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-8 grid max-w-7xl gap-4 rounded-lg border border-slate-200 bg-slate-50 p-5 md:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p className="text-sm font-black uppercase tracking-normal text-blue-700">Solarreinigungsangebot prüfen lassen</p>
+          <h2 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+            Angebot für Solar- oder PV-Reinigung sachlich einordnen.
+          </h2>
+          <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
+            Wenn ein Angebot für Solarreinigung oder PV-Anlagen-Reinigung unklar wirkt, kann FLOXANT Dachart, Zugang,
+            Modulfläche, sichtbare Verschmutzung, Sicherheitslage und mögliche Zusatzkosten strukturieren. Es gibt keine
+            Ertragsgarantie, keine Ersparnisgarantie und keine Rechtsberatung.
+          </p>
+        </div>
+        <div className="grid content-center gap-3 sm:grid-cols-2">
+          <Link
+            href={links.solarOffer}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white"
+          >
+            Solarreinigungsangebot prüfen
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+          <Link
+            href={links.pvOffer}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 text-sm font-black text-slate-950"
+          >
+            PV-Reinigungsangebot prüfen
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SolarPvDifferentiation() {
+  return (
+    <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-sm font-black uppercase tracking-normal text-blue-700">Solarreinigung oder PV-Anlagen-Reinigung?</p>
+        <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+          Zwei Suchbegriffe, ein sauber getrennter Anfrageweg.
+        </h2>
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <article className="rounded-lg border border-slate-200 bg-white p-5">
+            <h3 className="text-xl font-black text-slate-950">Solarreinigung</h3>
+            <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
+              Der breitere Einstieg, wenn Solarmodule sichtbar verschmutzt sind oder eine Reinigung grundsätzlich geprüft
+              werden soll. Wichtig sind Standort, Dachart, Zugang, Verschmutzung und Fotos.
+            </p>
+            <Link href="/solarreinigung" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+              Solarreinigung ansehen <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </article>
+          <article className="rounded-lg border border-slate-200 bg-white p-5">
+            <h3 className="text-xl font-black text-slate-950">PV-Anlagen-Reinigung</h3>
+            <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
+              Der konkretere Anlagen-/Modul-Fokus: Modulfläche, Reihen, Dachzugang, Wasser, Sicherheitslage und
+              vorhandenes PV-Reinigungsangebot werden genauer eingeordnet.
+            </p>
+            <Link href="/pv-anlagen-reinigung" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-blue-700">
+              PV-Anlagen-Reinigung ansehen <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function getContact(config: GrowthServicePageConfig) {
@@ -117,7 +266,7 @@ function getBreadcrumbItems(config: GrowthServicePageConfig) {
   const items = [{ name: "FLOXANT", item: "/" }];
 
   if (config.path.startsWith("/duesseldorf/")) {
-    items.push({ name: "Düsseldorf", item: "/duesseldorf" });
+    items.push({ name: "Leistungen", item: "/leistungen" });
   } else if (config.path.startsWith("/regensburg/")) {
     items.push({ name: "Regensburg", item: "/regensburg" });
   } else {
@@ -214,8 +363,17 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
     serviceLabel: config.serviceName,
   });
   const showInternationalCustomerHint = internationalGrowthHintPaths.has(config.path);
+  const showSolarPvAuthority = isSolarPvPage(config);
   const relatedSpecialKind = getRelatedSpecialKind(config);
   const localBridgeTargets = getLocalBridgeTargets(config);
+  const bookingUrl = new URL(config.bookingHref, company.url);
+  const bookingTrackingService = bookingUrl.searchParams.get("service") || config.slug;
+  const bookingTrackingCity =
+    bookingUrl.searchParams.get("city") ||
+    (config.region === "regensburg" || config.region === "duesseldorf" ? config.region : "");
+  const bookingTrackingIntent = bookingUrl.searchParams.get("intent") || config.slug;
+  const bookingTrackingPriority = config.kind === "signature" ? "p0" : "p1";
+  const requestBriefServiceKey = showSolarPvAuthority ? "solar-pv" : config.slug;
 
   return (
     <main className="overflow-hidden bg-white pb-24 text-slate-950 md:pb-0">
@@ -253,8 +411,13 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
               <Link
                 href={config.bookingHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 shadow-lg shadow-slate-950/20 transition hover:bg-cyan-50"
-                data-event="hero_cta_click"
-                data-service={config.slug}
+                data-event="seo_cta_click"
+                data-service={bookingTrackingService}
+                data-city={bookingTrackingCity || undefined}
+                data-page-intent={bookingTrackingIntent}
+                data-priority={bookingTrackingPriority}
+                data-cta-label={config.primaryCta}
+                data-destination={config.bookingHref}
                 data-source="growth_service_hero"
               >
                 {config.primaryCta}
@@ -305,6 +468,19 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
         items={config.situations}
       />
 
+      {showSolarPvAuthority ? <SolarPvAuthorityPanel config={config} /> : null}
+
+      {showSolarPvAuthority ? <SolarPvDifferentiation /> : null}
+
+      <RequestChecklistBlock
+        serviceKey={requestBriefServiceKey}
+        ctaHref={config.bookingHref}
+        ctaLabel="Anfragebrief mit Eckdaten starten"
+        compact
+      />
+
+      <PhotoGuidanceBlock serviceKey={requestBriefServiceKey} compact />
+
       {showInternationalCustomerHint ? (
         <InternationalCustomerHint
           cityLabel={config.cityLabel}
@@ -321,13 +497,13 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.78fr_1.22fr]">
             <div>
               <p className="text-sm font-black uppercase tracking-normal text-cyan-200">
-                Signature Service
+                Besondere Leistung
               </p>
               <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">
                 Klarer Nutzen statt leerem Sondernamen.
               </h2>
               <p className="mt-4 text-base font-semibold leading-8 text-slate-300">
-                Dieser FLOXANT-Service ist ein strukturierter Anfrageweg für Fälle, die vor einem
+                Dieser FLOXANT-Service ist ein Anfrageweg mit konkreten Angaben für Fälle, die vor einem
                 normalen Auftrag erst sortiert werden müssen.
               </p>
             </div>
@@ -420,7 +596,7 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
       />
 
       <SignatureServicesGrid
-        title="Passende FLOXANT Signature Services mitdenken."
+        title="Passende zusätzliche Unterstützung prüfen."
         intro="Wenn Angebot, Objekt, Uebergabe, Plan B oder Rueckfahrt Teil des Falls sind, fuehren diese Startpunkte zu einer klareren Anfrage."
         limit={4}
       />
@@ -480,8 +656,13 @@ export function GrowthServiceLandingPage({ config }: GrowthServiceLandingPagePro
           <Link
             href={config.bookingHref}
             className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-slate-950"
-            data-event="hero_cta_click"
-            data-service={config.slug}
+            data-event="seo_cta_click"
+            data-service={bookingTrackingService}
+            data-city={bookingTrackingCity || undefined}
+            data-page-intent={bookingTrackingIntent}
+            data-priority={bookingTrackingPriority}
+            data-cta-label={config.primaryCta}
+            data-destination={config.bookingHref}
             data-source="growth_service_final"
           >
             {config.primaryCta}

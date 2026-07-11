@@ -5,37 +5,12 @@ const preparedM0 = {
   maturityLevel: "M0",
   passedChecks: ["Route vorbereitet", "Datenstruktur vorhanden", "nicht in Sitemap"],
   missingChecks: [
-    "eigenständiger lokaler Hauptinhalt",
+    "eigenstaendiger lokaler Hauptinhalt",
     "ausreichende Suchintention",
     "individuelle FAQ",
-    "Freigabe für Indexierung",
+    "Freigabe fuer Indexierung",
   ],
 } as const;
-
-function duesseldorfDistrict(slug: string, displayName: string, nearby: readonly string[]): LocalSeoDistrictRecord {
-  return {
-    slug,
-    displayName,
-    citySlug: "duesseldorf",
-    cityName: "Düsseldorf",
-    region: "duesseldorf",
-    parentHub: "/duesseldorf/reinigung-stadtteile-umgebung",
-    serviceFocus: ["Reinigung", "Wohnungsreinigung", "Treppenhausreinigung", "Grundreinigung"],
-    nearbyCities: nearby,
-    districts: [displayName, ...nearby],
-    customerTypes: ["Privathaushalte", "Hausverwaltungen", "Büros", "Vermieter"],
-    relevantServices: ["reinigung", "wohnungsreinigung", "treppenhausreinigung", "grundreinigung"],
-    specialCases: ["Übergabe", "Treppenhaus", "Grundreinigung", "Angebotsprüfung"],
-    localIntro:
-      `Die Stadtteilseite für ${displayName} ist vorbereitet, bleibt aber noindex, bis genügend eigenständiger lokaler Inhalt und echte Suchintention vorliegen.`,
-    localProofNotes: [
-      "Keine automatische Indexierung von Stadtteilseiten.",
-      "Kein Footer-Link und kein Sitemap-Eintrag.",
-      "Freigabe erst ab M1 nach Qualitätsprüfung.",
-    ],
-    maturity: preparedM0,
-  };
-}
 
 function regensburgDistrict(slug: string, displayName: string, nearby: readonly string[]): LocalSeoDistrictRecord {
   return {
@@ -45,17 +20,17 @@ function regensburgDistrict(slug: string, displayName: string, nearby: readonly 
     cityName: "Regensburg",
     region: "regensburg",
     parentHub: "/region-regensburg",
-    serviceFocus: ["Reinigung", "Reinigung nach Umzug", "Wohnungsübergabe"],
+    serviceFocus: ["Reinigung", "Reinigung nach Umzug", "Wohnungsuebergabe"],
     nearbyCities: nearby,
     districts: [displayName, ...nearby],
-    customerTypes: ["Privathaushalte", "Mieter", "Vermieter", "Angehörige"],
-    relevantServices: ["reinigung", "reinigung-nach-umzug", "wohnungsaufloesung"],
-    specialCases: ["Auszug", "Übergabe", "Restmengen", "Reinigung nach Umzug"],
+    customerTypes: ["Privathaushalte", "Mieter", "Vermieter", "Hausverwaltungen"],
+    relevantServices: ["reinigung", "reinigung-nach-umzug", "wohnungsreinigung"],
+    specialCases: ["Auszug", "Uebergabe", "Treppenhaus", "Reinigung nach Umzug"],
     localIntro:
-      `Die Regensburger Stadtteilseite für ${displayName} ist vorbereitet und bleibt noindex, bis sie mehr bietet als eine generische Reinigungsseite.`,
+      `Die Regensburger Stadtteilseite fuer ${displayName} ist vorbereitet und bleibt noindex, bis sie mehr bietet als eine generische Reinigungsseite.`,
     localProofNotes: [
       "M0-Seite ist nicht in der Sitemap.",
-      "Keine künstliche Stadtteil-Linkfarm.",
+      "Keine kuenstliche Stadtteil-Linkfarm.",
       "Indexierung erst nach individueller FAQ und Kundensituationen.",
     ],
     maturity: preparedM0,
@@ -63,14 +38,26 @@ function regensburgDistrict(slug: string, displayName: string, nearby: readonly 
 }
 
 export const localSeoDistricts = {
-  "duesseldorf-heerdt": duesseldorfDistrict("heerdt", "Heerdt", ["Lörick", "Oberkassel", "Niederkassel", "Neuss"]),
-  "duesseldorf-oberkassel": duesseldorfDistrict("oberkassel", "Oberkassel", ["Heerdt", "Lörick", "Niederkassel", "Carlstadt"]),
-  "duesseldorf-bilk": duesseldorfDistrict("bilk", "Bilk", ["Unterbilk", "Friedrichstadt", "Hamm", "Oberbilk"]),
-  "duesseldorf-pempelfort": duesseldorfDistrict("pempelfort", "Pempelfort", ["Derendorf", "Golzheim", "Stadtmitte", "Düsseltal"]),
-  "duesseldorf-derendorf": duesseldorfDistrict("derendorf", "Derendorf", ["Pempelfort", "Golzheim", "Mörsenbroich", "Rath"]),
   "regensburg-altstadt": regensburgDistrict("altstadt", "Altstadt", ["Stadtamhof", "Innenstadt", "Westenviertel"]),
   "regensburg-innenstadt": regensburgDistrict("innenstadt", "Innenstadt", ["Altstadt", "Galgenberg", "Stadtamhof"]),
-  "regensburg-westenviertel": regensburgDistrict("westenviertel", "Westenviertel", ["Prüfening", "Königswiesen", "Kumpfmühl"]),
-  "regensburg-kumpfmuehl": regensburgDistrict("kumpfmuehl", "Kumpfmühl", ["Westenviertel", "Königswiesen", "Galgenberg"]),
-  "regensburg-pruefening": regensburgDistrict("pruefening", "Prüfening", ["Westenviertel", "Königswiesen", "Ziegetsdorf"]),
+  "regensburg-westenviertel": regensburgDistrict("westenviertel", "Westenviertel", [
+    "Pruefening",
+    "Koenigswiesen",
+    "Kumpfmuehl",
+  ]),
+  "regensburg-kumpfmuehl": regensburgDistrict("kumpfmuehl", "Kumpfmuehl", [
+    "Westenviertel",
+    "Koenigswiesen",
+    "Galgenberg",
+  ]),
+  "regensburg-pruefening": regensburgDistrict("pruefening", "Pruefening", [
+    "Westenviertel",
+    "Koenigswiesen",
+    "Ziegetsdorf",
+  ]),
+  "regensburg-burgweinting": regensburgDistrict("burgweinting", "Burgweinting", [
+    "Harting",
+    "Oberisling",
+    "Grass",
+  ]),
 } as const satisfies Record<string, LocalSeoDistrictRecord>;

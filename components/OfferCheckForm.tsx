@@ -29,7 +29,7 @@ const allServiceOptions = [
 ];
 
 const duesseldorfServiceOptions = [
-  { value: "reinigung", label: "Reinigung Düsseldorf" },
+  { value: "reinigung", label: "Reinigung Regensburg" },
   { value: "entsorgung", label: "Entsorgung Düsseldorf" },
 ];
 
@@ -113,7 +113,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
 
   function updateRegion(nextRegion: string) {
     setRegion(nextRegion);
-    if (nextRegion === "duesseldorf" && !["reinigung", "entsorgung"].includes(service)) {
+    if (nextRegion === "regensburg" && !["reinigung", "entsorgung"].includes(service)) {
       setService("reinigung");
     }
   }
@@ -307,7 +307,7 @@ export function OfferCheckForm({ redFlagResult = null }: { redFlagResult?: RedFl
               <option value="regensburg">Regensburg</option>
               <option value="regensburg_200km">Umgebung Regensburg ca. 200 km</option>
               <option value="bayern">Bayern nach Verfügbarkeit</option>
-              <option value="duesseldorf">Düsseldorf: Reinigung/Entsorgung</option>
+              <option value="regensburg">Regensburg: Reinigung/Entsorgung</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold text-slate-800">

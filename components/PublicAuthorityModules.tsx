@@ -48,9 +48,9 @@ export type PublicAuthorityModuleId =
   | "route_board"
   | "empty_return_fit"
   | "premium_discreet"
-  | "duesseldorf_cleaning_private"
-  | "duesseldorf_cleaning_b2b"
-  | "duesseldorf_apartment_cleaning"
+  | "regensburg_cleaning_private"
+  | "regensburg_cleaning_b2b"
+  | "regensburg_cleaning"
   | "duesseldorf_disposal_private"
   | "duesseldorf_disposal_b2b";
 
@@ -314,38 +314,38 @@ const authorityModules: Record<PublicAuthorityModuleId, AuthorityModule> = {
     Icon: ShieldCheck,
     service: "diskret",
   },
-  duesseldorf_cleaning_private: {
+  regensburg_cleaning_private: {
     badge: "Privat",
-    title: "Reinigung Duesseldorf fuer Wohnung und Auszug",
+    title: "Reinigung Regensburg fuer Wohnung und Auszug",
     text:
       "Bei Wohnungsreinigung, Endreinigung und Reinigung nach Auszug zählen Fläche, Zustand, Termin, Fotos und ein klares Übergabeziel.",
-    href: "/duesseldorf/reinigung#leistungen",
+    href: "/regensburg/reinigung#leistungen",
     cta: "Private Reinigung ansehen",
     Icon: Home,
     service: "reinigung",
     region: "duesseldorf",
   },
-  duesseldorf_cleaning_b2b: {
+  regensburg_cleaning_b2b: {
     badge: "Firma",
-    title: "Firmenreinigung Düsseldorf mit Objektangaben",
+    title: "Firmenreinigung Regensburg mit Objektangaben",
     text:
       "Büros und kleine Gewerbeflächen brauchen Angaben zu Objektart, Fläche, Turnus, Zeitfenster und besonderen Bereichen, damit der Ablauf zum Betrieb passt.",
-    href: "/duesseldorf/reinigung#leistungen",
+    href: "/regensburg/reinigung#leistungen",
     cta: "Firmenreinigung anfragen",
     Icon: BriefcaseBusiness,
     service: "reinigung_b2b",
     region: "duesseldorf",
   },
-  duesseldorf_apartment_cleaning: {
+  regensburg_cleaning: {
     badge: "Apartment-Reset",
     title: "Möblierte Wohnung und Kurzzeitvermietung reinigen",
     text:
-      "Für Hosts, Vermieter und kleine Betreiber in Düsseldorf: Gästewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwünsche werden ohne Airbnb-Partnerschaftsversprechen geprüft.",
-    href: "/reinigung-moeblierte-wohnung-duesseldorf",
+      "Für Hosts, Vermieter und kleine Betreiber in Regensburg: Gästewechsel, Endreinigung, Fotos, Zeitfenster und Zusatzwünsche werden ohne Airbnb-Partnerschaftsversprechen geprüft.",
+    href: "/regensburg/reinigung",
     cta: "Apartment-Reinigung ansehen",
     Icon: Sparkles,
     event: "start_apartment_cleaning_lead",
-    service: "duesseldorf_moeblierte_wohnung_reinigung",
+    service: "regensburg_moeblierte_wohnung_reinigung",
     region: "duesseldorf",
   },
   duesseldorf_disposal_private: {

@@ -45,7 +45,7 @@ const faqItems = [
   },
   {
     q: "Wie bekomme ich einen Preisrahmen?",
-    a: "Der schnellste Startpunkt ist der FLOXANT Rechner. Dort werden Umfang, Zugang, Termin und Zusatzleistungen strukturiert abgefragt.",
+    a: "Der schnellste Startpunkt ist der FLOXANT Rechner. Dort werden Umfang, Zugang, Termin und Zusatzleistungen konkret abgefragt.",
   },
   {
     q: "Welche Angaben braucht FLOXANT für ein Umzugsangebot?",
@@ -197,7 +197,7 @@ export default function UmzugsunternehmenRegensburgPage() {
         <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[2rem] border border-blue-100 bg-blue-50/70 p-7">
             <div className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Nächster sinnvoller Schritt
+              So geht es weiter
             </div>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950">
               Erst Aufwand einordnen, dann Angebot prüfen.

@@ -93,7 +93,7 @@ export default function BudgetPlanungUmzugKostenPage() {
      {
       title: "So formulieren Sie Ihr Budget sinnvoll",
       paragraphs: [
-       "Hilfreich ist ein Zielkorridor mit Kontext. Beispiel: 'Wir planen etwa 1.200 Euro ein, wenn Demontage und Transport enthalten sind, Reinigung aber separat geprüft wird.'",
+       "Hilfreich ist ein Zielkorridor mit Kontext. Nennen Sie dazu, welche Leistungen enthalten sein sollen und welche Punkte getrennt geprüft werden können.",
        "So wird das Budget nicht zur Forderung, sondern zu einer Planungsinformation. Das erhöht die Chance auf eine ehrliche und passende Rückmeldung.",
       ],
      },

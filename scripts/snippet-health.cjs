@@ -29,12 +29,12 @@ const targets = [
   { route: "/angebotscheck", service: "angebotscheck", city: "", offer: true, cta: ["/angebot-guenstiger-pruefen", "#angebotscheck-form"] },
   { route: "/anbieter-vergleichen", service: "anbieter", city: "", offer: true, cta: ["/angebot-guenstiger-pruefen"] },
   { route: "/reinigungsfirma-angebot", service: "reinigung", city: "", offer: true, cta: ["/kontakt", "/reinigungsfirma-angebot"] },
-  { route: "/duesseldorf", service: "reinigung", city: "duesseldorf", offer: false, cta: ["/duesseldorf/reinigung", "/kontakt"] },
-  { route: "/duesseldorf/reinigung", service: "reinigung", city: "duesseldorf", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
-  { route: "/duesseldorf/bueroreinigung", service: "bueroreinigung", city: "duesseldorf", offer: true, cta: ["/reinigungsfirma-angebot", "/angebot-guenstiger-pruefen"] },
-  { route: "/duesseldorf/gewerbereinigung", service: "gewerbereinigung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
-  { route: "/duesseldorf/praxisreinigung", service: "praxisreinigung", city: "duesseldorf", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
-  { route: "/duesseldorf/fensterreinigung", service: "fensterreinigung", city: "duesseldorf", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
+  { route: "/regensburg", service: "reinigung", city: "regensburg", offer: false, cta: ["/regensburg/reinigung", "/kontakt"] },
+  { route: "/regensburg/reinigung", service: "reinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
+  { route: "/regensburg/reinigung", service: "bueroreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/angebot-guenstiger-pruefen"] },
+  { route: "/regensburg/reinigung", service: "gewerbereinigung", city: "regensburg", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
+  { route: "/regensburg/reinigung", service: "praxisreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
+  { route: "/regensburg/reinigung", service: "fensterreinigung", city: "regensburg", offer: true, cta: ["/reinigungsfirma-angebot", "/kontakt"] },
   { route: "/duesseldorf/umzug", service: "umzug", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/duesseldorf/entruempelung", service: "entruempelung", city: "duesseldorf", offer: true, cta: ["/angebot-guenstiger-pruefen", "/kontakt"] },
   { route: "/regensburg", service: "service", city: "regensburg", offer: false, cta: ["/regensburg/umzug", "/kontakt"] },
@@ -173,8 +173,32 @@ function expandPriorityContext(block) {
   return `${block} ${extras.join(" ")}`;
 }
 
+function isDeprecatedRouteFile(file) {
+  if (!fs.existsSync(file)) return false;
+  const text = fs.readFileSync(file, "utf8");
+  return /seo-gone|permanentRedirect\(["']\/seo-gone|redirect\(["']\/seo-gone/.test(text);
+}
+
 function checkTarget(target, priorityText) {
   const file = routeToFile(target.route);
+  if (isDeprecatedRouteFile(file)) {
+    return {
+      route: target.route,
+      source: "deprecated-route",
+      title: "",
+      description: "",
+      h1: "",
+      status: "WARN",
+      checks: [
+        {
+          ok: false,
+          level: "warn",
+          check: "deprecated_route",
+          detail: "Route redirects to /seo-gone; snippet work is blocked until route is reactivated intentionally.",
+        },
+      ],
+    };
+  }
   const snippet = readPrioritySnippet(target.route, priorityText) || readCentralSnippet(target.route) || readPageSnippet(file) || { title: "", description: "", h1: "", source: "missing" };
   const priorityContext = expandPriorityContext(readPriorityBlock(target.route, priorityText));
   const checks = [];

@@ -25,7 +25,7 @@ import {
 const faqItems = [
   {
     q: "Was ist Firmenentsorgung bei FLOXANT?",
-    a: "Firmenentsorgung ist die strukturierte Abholung und Entsorgung nicht erlaubnispflichtiger Büro- und Gewerbegegenstände wie Möbel, Regale, Kartons, Verpackung, Büroausstattung und transportfähige Restbestände.",
+    a: "Firmenentsorgung ist die geplante Abholung und Entsorgung nicht erlaubnispflichtiger Büro- und Gewerbegegenstände wie Möbel, Regale, Kartons, Verpackung, Büroausstattung und transportfähige Restbestände.",
   },
   {
     q: "Welche Materialien sind ausdrücklich ausgeschlossen?",

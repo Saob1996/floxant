@@ -14,9 +14,9 @@ type PlanContext =
   | "entruempelung"
   | "transport"
   | "objektfall"
-  | "duesseldorf_reinigung"
+  | "regensburg_reinigung"
   | "duesseldorf_entsorgung"
-  | "duesseldorf_apartment_cleaning";
+  | "regensburg_cleaning";
 
 type TriggerCopy = {
   context: PlanContext;
@@ -43,9 +43,9 @@ const HIDE_PREFIXES = [
 ];
 
 const HIDE_EXACT = new Set([
-  "/duesseldorf/reinigung/agb",
-  "/duesseldorf/reinigung/datenschutz",
-  "/duesseldorf/reinigung/impressum",
+  "/regensburg/reinigung/agb",
+  "/regensburg/reinigung/datenschutz",
+  "/regensburg/reinigung/impressum",
 ]);
 
 const PLAN_PROMPT_DELAY_MS = 120000;
@@ -107,14 +107,14 @@ const CONTEXT_COPY: Record<PlanContext, TriggerCopy> = {
     whatsappMessage:
       "Hallo FLOXANT, ein Objektfall ist kurzfristig dringend. Es geht um Räumung/Reinigung/Übergabevorbereitung in [Ort]. Termin und Fotos kann ich senden.",
   },
-  duesseldorf_reinigung: {
-    context: "duesseldorf_reinigung",
-    eyebrow: "Düsseldorf Reinigung",
-    title: "Reinigung in Düsseldorf kurzfristig?",
+  regensburg_reinigung: {
+    context: "regensburg_reinigung",
+    eyebrow: "Reinigung Regensburg",
+    title: "Reinigung in Regensburg kurzfristig?",
     teaser: "Termin, Objektart und Fotos senden. FLOXANT prüft Reinigung nach Verfügbarkeit.",
     buttonLabel: "Reinigung prüfen",
     whatsappMessage:
-      "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Düsseldorf. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
+      "Hallo FLOXANT, ich brauche kurzfristig Reinigung in Regensburg. Ort, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
   duesseldorf_entsorgung: {
     context: "duesseldorf_entsorgung",
@@ -125,14 +125,14 @@ const CONTEXT_COPY: Record<PlanContext, TriggerCopy> = {
     whatsappMessage:
       "Hallo FLOXANT, ich brauche kurzfristig Entsorgung in Düsseldorf. Umfang, Zugang, Termin und Fotos kann ich senden. Bitte prüfen, ob etwas machbar ist.",
   },
-  duesseldorf_apartment_cleaning: {
-    context: "duesseldorf_apartment_cleaning",
+  regensburg_cleaning: {
+    context: "regensburg_cleaning",
     eyebrow: "Apartment-Reset",
     title: "Gästewechsel oder Reinigung kurzfristig?",
-    teaser: "Check-in, Check-out, Objektart und Fotos senden. FLOXANT prüft Reinigung in Düsseldorf nach Verfügbarkeit.",
+    teaser: "Check-in, Check-out, Objektart und Fotos senden. FLOXANT prüft Reinigung in Regensburg nach Verfügbarkeit.",
     buttonLabel: "Apartment prüfen",
     whatsappMessage:
-      "Hallo FLOXANT, ich brauche kurzfristig Reinigung für eine möblierte Wohnung / ein Apartment in Düsseldorf. Termin, Fotos und Objektangaben kann ich senden.",
+      "Hallo FLOXANT, ich brauche kurzfristig Reinigung für eine möblierte Wohnung / ein Apartment in Regensburg. Termin, Fotos und Objektangaben kann ich senden.",
   },
 };
 
@@ -146,10 +146,10 @@ function inferContext(pathname: string, serviceParam: string | null): PlanContex
   const source = `${pathname} ${serviceParam || ""}`.toLowerCase();
 
   if (pathname === "/entsorgung-duesseldorf") return "duesseldorf_entsorgung";
-  if (pathname === "/reinigung-moeblierte-wohnung-duesseldorf") return "duesseldorf_apartment_cleaning";
-  if (pathname.startsWith("/duesseldorf") && source.includes("reinigung")) return "duesseldorf_reinigung";
+  if (pathname === "/regensburg/reinigung") return "regensburg_cleaning";
+  if (pathname.startsWith("/regensburg") && source.includes("reinigung")) return "regensburg_reinigung";
   if (source.includes("duesseldorf") && source.includes("entsorgung")) return "duesseldorf_entsorgung";
-  if (source.includes("duesseldorf") && source.includes("reinigung")) return "duesseldorf_reinigung";
+  if (source.includes("regensburg") && source.includes("reinigung")) return "regensburg_reinigung";
   if (source.includes("mieterwechsel") || source.includes("wohnung-wieder") || source.includes("immobilie-verkaufsbereit") || source.includes("makler-vermieter") || source.includes("uebergabeakte")) return "objektfall";
   if (source.includes("rueckfahrt") || source.includes("leerfahrt") || source.includes("transport") || source.includes("kleintransport")) return "transport";
   if (source.includes("keller-muellraum") || source.includes("entruempel") || source.includes("entsorgung")) return "entruempelung";
@@ -241,7 +241,7 @@ export function PlanGekipptTrigger() {
   const choices = Array.from(
     new Set<PlanContext>([
       routeContext,
-      routeContext.startsWith("duesseldorf") ? "duesseldorf_reinigung" : "reinigung",
+      routeContext.startsWith("regensburg") ? "regensburg_reinigung" : "reinigung",
       routeContext.startsWith("duesseldorf") ? "duesseldorf_entsorgung" : "entruempelung",
     ]),
   ).slice(0, 3);

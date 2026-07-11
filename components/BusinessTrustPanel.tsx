@@ -6,7 +6,7 @@ const trustItems = germanizeDeep([
   "Keine Fake-Referenzen und keine erfundenen Firmenkunden.",
   "Keine erfundenen Zertifikate oder Spezialhygiene-Versprechen.",
   "Flaeche, Turnus, Zeitfenster und Zugang werden vor einem Angebot geklaert.",
-  "Bestehende Angebote koennen nach Umfang und offenen Punkten strukturiert werden.",
+  "Bestehende Angebote koennen nach Umfang und offenen Punkten gemeinsam geklärt werden.",
 ] as const);
 
 export function BusinessTrustPanel() {

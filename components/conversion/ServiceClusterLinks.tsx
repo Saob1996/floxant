@@ -12,7 +12,7 @@ type ServiceClusterLinksProps = {
 };
 
 export function ServiceClusterLinks({
-  eyebrow = "Service-Cluster",
+  eyebrow = "Ähnliche Leistungen",
   title,
   intro,
   links,

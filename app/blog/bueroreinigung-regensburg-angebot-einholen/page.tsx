@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Ist diese Art Anfrage auch für mehrere Büroeinheiten oder Verwaltungen geeignet?",
-    a: "Ja. Wenn mehrere Etagen, Gebäude oder Ansprechpartner relevant sind, hilft eine strukturierte Anfrage sogar besonders, weil Turnus, Zugang und Zuständigkeit dann sauber zusammengeführt werden können.",
+    a: "Ja. Wenn mehrere Etagen, Gebäude oder Ansprechpartner relevant sind, hilft eine Anfrage mit den wichtigsten Eckdaten sogar besonders, weil Turnus, Zugang und Zuständigkeit dann sauber zusammengeführt werden können.",
   },
 ];
 

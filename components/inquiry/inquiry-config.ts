@@ -67,7 +67,7 @@ export const inquiryConfigs: Record<InquiryIntent, InquiryConfig> = {
     label: "Reinigung",
     title: "Reinigung anfragen.",
     subtitle: "Wählen Sie zuerst das Einsatzgebiet. Düsseldorf bleibt klar getrennt.",
-    regionScope: "Düsseldorf: Reinigung über eigene lokale Kontaktmöglichkeiten. Regensburg/Bayern: Reinigung nach Einsatzgebiet und Verfügbarkeit.",
+    regionScope: "Regensburg: Reinigung über eigene lokale Kontaktmöglichkeiten. Regensburg: Reinigung nach Einsatzgebiet und Verfügbarkeit.",
     primaryCta: "Reinigung anfragen",
     serviceType: "reinigung",
     defaultRegion: "regensburg-bayern",
@@ -88,8 +88,8 @@ export const inquiryConfigs: Record<InquiryIntent, InquiryConfig> = {
     ],
     whatsappText: (values) =>
       values.region === "duesseldorf"
-        ? `Hallo FLOXANT, ich möchte eine Reinigung in Düsseldorf anfragen. Objekt: ${valueOrBlank(values.objectType)}. Umfang: ${valueOrBlank(values.size)}. Zeitraum: ${valueOrBlank(values.timeframe)}. Bitte melden Sie sich bei mir.`
-        : `Hallo FLOXANT, ich möchte eine Reinigung in Regensburg/Bayern anfragen. Ort: ${valueOrBlank(values.location)}. Objekt: ${valueOrBlank(values.objectType)}. Umfang: ${valueOrBlank(values.size)}. Zeitraum: ${valueOrBlank(values.timeframe)}. Bitte melden Sie sich bei mir.`,
+        ? `Hallo FLOXANT, ich möchte eine Reinigung in Regensburg anfragen. Objekt: ${valueOrBlank(values.objectType)}. Umfang: ${valueOrBlank(values.size)}. Zeitraum: ${valueOrBlank(values.timeframe)}. Bitte melden Sie sich bei mir.`
+        : `Hallo FLOXANT, ich möchte eine Reinigung in Regensburg anfragen. Ort: ${valueOrBlank(values.location)}. Objekt: ${valueOrBlank(values.objectType)}. Umfang: ${valueOrBlank(values.size)}. Zeitraum: ${valueOrBlank(values.timeframe)}. Bitte melden Sie sich bei mir.`,
   },
   clearance: {
     intent: "clearance",

@@ -74,7 +74,7 @@ const planningFacts = [
 const relatedLinks = [
   { href: "/umzug-muenchen", label: "Umzug München", text: "Zentraler Einstieg für Privat-, Büro- und Kombiumzug." },
   { href: "/angebot-guenstiger-pruefen", label: "Umzugsangebot prüfen", text: "Vorhandenes Angebot mit Strecke, Volumen und Zusatzpositionen einordnen." },
-  { href: "/reinigung-muenchen", label: "Reinigung nach Umzug München", text: "Wenn Auszug, Endreinigung und Übergabe zusammenhängen." },
+  { href: "/regensburg/reinigung", label: "Reinigung im Raum Regensburg nach Umzug", text: "Wenn Auszug, Endreinigung und Übergabe zusammenhängen." },
   { href: "/bueroumzug-muenchen", label: "Büroumzug München", text: "Für Büro, Praxis, kleine Firma und planbare Randzeiten." },
   { href: "/seniorenumzug-bayern", label: "Seniorenumzug Bayern", text: "Wenn Rückruf, Angehörige, Packhilfe und Übergabe wichtig sind." },
   { href: "/blog/fernumzug-bayern-nrw-tipps", label: "Ratgeber Fernumzug", text: "Zusätzliche Hinweise zu Strecke, Rückfahrt und Vorbereitung." },
@@ -107,7 +107,7 @@ function JsonLd() {
           "Umzugsangebot München prüfen",
           "Privatumzug München",
           "Büroumzug München",
-          "Reinigung nach Umzug München",
+          "Reinigung im Raum Regensburg nach Umzug",
         ],
         potentialActions: [
           { name: "Fernumzug München anfragen", target: leadHref, type: "ContactAction" },

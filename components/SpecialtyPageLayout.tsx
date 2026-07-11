@@ -142,7 +142,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
   if (signal.includes("reinigung")) {
     return {
       name: "Reinigung",
-      pagePath: isBavariaPage ? "/reinigung-bayern" : `/reinigung-${citySlug}`,
+      pagePath: isBavariaPage ? "/regensburg/reinigung" : `/reinigung-${citySlug}`,
       primaryPath: "/reinigung",
       calculatorHref: "/rechner?service=reinigung",
       calculatorService: "reinigung" as const,
@@ -207,7 +207,7 @@ function getServiceContext(signal: string, city: string, citySlug: string, regio
     calculatorService: "umzug" as const,
     audience: `Der Umzugsservice in ${city} ist für Privatkunden, Familien und Unternehmen gedacht, die einen planbaren Ortswechsel mit klaren Zuständigkeiten brauchen.`,
     timing: `Er lohnt sich, wenn Volumen, Tragewege, Zeitfenster oder Zusatzleistungen in ${city} sauber koordiniert werden müssen.`,
-    process: `Wir erfassen Strecke, Volumen und Zusatzleistungen, planen Fahrzeuge und Team und setzen den Umzug in ${city} strukturiert am Wunschtermin um.`,
+    process: `Wir erfassen Strecke, Volumen und Zusatzleistungen, planen Fahrzeuge und Team und setzen den Umzug in ${city} nach dem bestätigten Ablauf um.`,
     difference: `Im Unterschied zu improvisierten Einzeltransporten erhalten Sie eine abgestimmte Einsatzplanung mit festen Leistungen und klarer regionaler Verfügbarkeit.`,
     relatedLinks: [
       { href: "/umzug", label: "Umzug im Überblick" },
@@ -352,7 +352,7 @@ function getRegensburgAuthorityContent(serviceName: string) {
 }
 
 function getOfferCheckBlogHref(serviceName: string) {
-  if (serviceName === "Reinigung") return "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf";
+  if (serviceName === "Reinigung") return "/blog/reinigungsangebot-pruefen-regensburg";
   if (serviceName === "Entrümpelung") return "/blog/entsorgungsangebot-pruefen-regensburg-duesseldorf";
   return "/blog/umzugsangebot-pruefen-regensburg-bayern";
 }
@@ -630,7 +630,7 @@ export function SpecialtyPageLayout({
   wizardTitle,
   wizardText,
   neighborhoods = [],
-  heroImage = "/assets/service-moving.png",
+  heroImage = "/assets/service-moving.webp",
   highlightWord,
   signatureServices = [],
   signatureBadge,

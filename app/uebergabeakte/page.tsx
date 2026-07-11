@@ -40,6 +40,7 @@ export const metadata: Metadata = generatePageSEO({
 
 const whatsappHref =
   "https://wa.me/4915771105087?text=Hallo%20FLOXANT%2C%20ich%20m%C3%B6chte%20eine%20%C3%9Cbergabeakte%20anfragen.%20Es%20geht%20um%20ein%20Objekt%20in%20%5BOrt%5D.%20Gew%C3%BCnscht%20sind%20Dokumentation%2C%20Fotos%2FSchl%C3%BCsselstatus%2FEndreinigung%2F%C3%9Cbergabevorbereitung%20nach%20Absprache.%20Termin%20und%20Details%20kann%20ich%20senden.";
+const handoverFileContactHref = "/kontakt?service=reinigung&city=regensburg&intent=uebergabeakte&source=seo";
 
 const statusSteps = ["Objekt", "Leistungen", "Fotos", "Schlüssel", "Hinweise", "Übergabe"];
 
@@ -126,7 +127,7 @@ const audiences = [
   {
     title: "Für Hausverwaltungen",
     text:
-      "Bei wiederkehrenden Mieterwechseln hilft eine strukturierte Erfassung von Objekt, Leistungen, Fotos, Schlüsselstatus und Hinweisen.",
+      "Bei wiederkehrenden Mieterwechseln hilft eine gemeinsame Erfassung von Objekt, Leistungen, Fotos, Schlüsselstatus und Hinweisen.",
     cta: "Übergabeakte für Mieterwechsel anfragen",
     Icon: Building2,
   },
@@ -147,9 +148,11 @@ const audiences = [
 ];
 
 const combinations = [
-  { href: "/regensburg/reinigung", title: "Mit Endreinigung", text: "Wenn Bad, Küche, Böden und Übergabepunkte nach Absprache dokumentiert werden sollen." },
+  { href: "/regensburg/endreinigung", title: "Mit Endreinigung vor Übergabe", text: "Wenn Bad, Küche, Böden, Restmengen und Übergabepunkte nach Absprache dokumentiert werden sollen." },
   { href: "/schluesseluebergabe", title: "Mit Schlüsselübergabe", text: "Wenn Schlüsselstatus, Termin und Zugang sauberer abgestimmt werden müssen." },
   { href: "/regensburg/entruempelung", title: "Mit Entrümpelung", text: "Wenn erst Restmengen oder Nebenräume geklärt werden müssen, bevor Reinigung oder Übergabe Sinn ergeben." },
+  { href: "/vermieter-ready-service", title: "Mit Vermieter-Ready-Service", text: "Wenn Reinigung, Fotos, Schlüsselweg, Nachnutzung und offene Punkte für Vermieter oder Verwaltung gemeinsam sortiert werden sollen." },
+  { href: "/uebergabe-sprint", title: "Mit Übergabe-Sprint", text: "Wenn kurz vor Übergabe noch Frist, Zustand, Angebot, Restmengen und Dokumentationsbedarf geklärt werden müssen." },
   { href: "/mieterwechsel-service-regensburg", title: "Im Mieterwechsel-Service", text: "Für Hausverwaltungen, Vermieter und Makler, wenn ein Objekt nach Auszug vorbereitet wird." },
   { href: "/wohnung-wieder-vermietbar", title: "Mit Objekt-Ready-Service", text: "Wenn eine Wohnung nach Auszug, Leerstand oder Mieterwechsel wieder nutzbarer und präsentierbarer vorbereitet werden soll." },
   { href: "/immobilie-verkaufsbereit-machen", title: "Mit Property-Ready-Service", text: "Wenn Wohnung, Haus oder Nebenflaechen vor Verkauf, Besichtigung oder Expose dokumentiert vorbereitet werden sollen." },
@@ -158,7 +161,7 @@ const combinations = [
   { href: "/makler-vermieter-link", title: "Mit Makler-/Vermieter-Link", text: "Wenn ein Objektfall direkt mit Fotos, Termin und Empfänger der Akte übermittelt werden soll." },
   { href: "/keller-muellraum-rettung-regensburg", title: "Mit Keller-/Müllraum-Rettung", text: "Wenn Nebenflächen, Keller oder Müllraum nach Freigabe geräumt und dokumentiert werden sollen." },
   { href: "/schadensbegrenzung", title: "Mit Schadensbegrenzung", text: "Wenn kurz vor Übergabe noch Reinigung, Räumung, Schlüssel oder Fotos offen sind." },
-  { href: "/angebotscheck", title: "Mit Angebotscheck", text: "Wenn vor Auftragserteilung geklärt werden soll, ob Dokumentation oder Übergabeakte sinnvoll ist." },
+  { href: "/angebot-guenstiger-pruefen", title: "Mit Angebotsprüfung", text: "Wenn vor Auftragserteilung geklärt werden soll, ob Preis, Umfang, Dokumentation oder Übergabeakte sinnvoll eingeordnet sind." },
   { href: "/private-client-service", title: "Mit diskreter Abstimmung", text: "Für sensible Objekt- oder Auszugssituationen mit mehr Abstimmung und Rückrufwunsch." },
 ];
 
@@ -189,11 +192,11 @@ const faqItems = [
   },
   {
     q: "Ist die Übergabeakte für Vermieter oder Hausverwaltungen geeignet?",
-    a: "Ja. Gerade bei Mieterwechseln kann sie helfen, Leistungen, Objektstatus, Fotos und offene Punkte strukturierter zu kommunizieren.",
+    a: "Ja. Gerade bei Mieterwechseln kann sie helfen, Leistungen, Objektstatus, Fotos und offene Punkte klarer zu kommunizieren.",
   },
   {
     q: "Garantiert FLOXANT damit die Wohnungsübergabe?",
-    a: "Nein. FLOXANT kann den Ablauf vorbereiten und dokumentieren, aber keine Abnahme, Kautionsentscheidung oder Vermieterentscheidung garantieren.",
+    a: "Nein. FLOXANT kann den Ablauf vorbereiten und dokumentieren. Abnahme, Kautionsentscheidung und Vermieterentscheidung bleiben davon unberührt.",
   },
   {
     q: "Wer bekommt die Übergabeakte?",
@@ -227,7 +230,7 @@ const jsonLd = {
         "Übergabeakte",
       ],
       potentialActions: [
-        { name: "Übergabeakte anfragen", target: `${path}#uebergabeakte-form` },
+        { name: "Übergabeakte anfragen", target: handoverFileContactHref, type: "ContactAction" },
         { name: "Beispielakte ansehen", target: `${path}#uebergabeakte-demo` },
         { name: "WhatsApp Anfrage senden", target: whatsappHref, type: "ContactAction" },
       ],
@@ -238,7 +241,7 @@ const jsonLd = {
         "Organisatorische Dokumentation nach Absprache für erledigte Leistungen, Fotos, Schlüsselstatus und Hinweise rund um Auszug und Übergabe.",
       path,
       serviceType: "Übergabeakte und organisatorische Wohnungsübergabe-Dokumentation",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Düsseldorf Reinigung und Entsorgung"],
+      areaServed: ["Regensburg", "Umgebung Regensburg", "Reinigung Regensburg plus 50 km"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -268,7 +271,17 @@ export default function UebergabeaktePage() {
                 Fotos, Schlüsselstatus und offene Hinweise in einer organisatorischen Übergabeakte bündeln.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Link href="#uebergabeakte-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700" data-event="service_card_click">
+                <Link
+                  href={handoverFileContactHref}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-amber-700"
+                  data-event="seo_cta_click"
+                  data-service="reinigung"
+                  data-city="regensburg"
+                  data-page-intent="uebergabeakte"
+                  data-priority="p1"
+                  data-cta-label="Übergabeakte anfragen"
+                  data-destination={handoverFileContactHref}
+                >
                   Übergabeakte anfragen
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -425,7 +438,7 @@ export default function UebergabeaktePage() {
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {combinations.map((item) => (
-                  <Link key={item.href} href={item.href} className="rounded-[1.25rem] border border-white/10 bg-white/6 p-4 transition hover:bg-white/10">
+                  <Link key={item.href} href={item.href} prefetch={false} className="rounded-[1.25rem] border border-white/10 bg-white/6 p-4 transition hover:bg-white/10">
                     <p className="text-sm font-black text-white">{item.title}</p>
                     <p className="mt-1 text-xs leading-6 text-slate-300">{item.text}</p>
                   </Link>

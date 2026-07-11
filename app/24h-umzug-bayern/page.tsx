@@ -48,7 +48,7 @@ export default async function TwentyFourHourUmzugBayernPage({ params }: PageProp
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Umzug Bayern", href: `/umzug-bayern` },
-        { label: "24h Service" }
+        { label: "Kurzfristige Anfrage" }
       ]}
       chips={[
         { icon: Clock, text: resolveNestedField(content.badges, fallback.badges, "stressfree", city) },

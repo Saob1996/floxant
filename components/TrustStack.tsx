@@ -62,7 +62,7 @@ export function TrustStack({ className = "" }: { className?: string }) {
           <div className="max-w-2xl">
             <h3 className="text-xl font-bold mb-2">FLOXANT in Kürze</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              FLOXANT unterstuetzt bei Umzuegen, Entruempelungen und Reinigungen in Bayern mit klarem Ablauf, direkter Kommunikation und lokaler Einordnung. Der Fokus liegt auf sauberer Organisation, realistischen Rueckmeldungen und besser vorbereiteten Uebergaben.
+              FLOXANT unterstuetzt bei Umzuegen, Entruempelungen und Reinigungen in Regensburg mit klarem Ablauf, direkter Kommunikation und lokaler Einordnung. Der Fokus liegt auf sauberer Organisation, realistischen Rueckmeldungen und besser vorbereiteten Uebergaben.
             </p>
           </div>
 

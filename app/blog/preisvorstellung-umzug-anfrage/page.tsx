@@ -93,7 +93,7 @@ export default function BlogPreisvorstellungPage() {
      {
       title: "Wie Sie Ihre Preisvorstellung sinnvoll formulieren",
       paragraphs: [
-       "Am besten als Rahmen in Kundensprache. Nicht 'es darf auf keinen Fall mehr kosten', sondern zum Beispiel: 'Wir stellen uns einen Rahmen von 900 bis 1.200 Euro vor, wenn Reinigung und Kleinmöbel bereits enthalten sind.'",
+       "Formulieren Sie Ihren Rahmen am besten zusammen mit den gewünschten Leistungen. So lässt sich nachvollziehen, was enthalten sein soll und welche Punkte getrennt geprüft werden können.",
       ],
      },
     ]}

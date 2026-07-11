@@ -16,7 +16,7 @@ export const bookingActionCards = [
  {
   icon: ClipboardCheck,
   title: "Anfrage starten",
-  text: "Leistung, Ort, Termin und Hinweise strukturiert erfassen und als sauberen Startpunkt an FLOXANT senden.",
+  text: "Leistung, Ort, Termin und Hinweise vollständig erfassen und als sauberen Startpunkt an FLOXANT senden.",
   href: "/buchung",
   action: "Buchung öffnen",
  },
@@ -47,7 +47,7 @@ export const bookingDocumentSteps = [
  {
   icon: FileText,
   title: "Anfrage-Zusammenfassung",
-  text: "Ihre Angaben werden strukturiert gesichert: Service, Umfang, Region, Kostentreiber und Kontakt.",
+  text: "Ihre Angaben werden zusammengefasst: Service, Umfang, Region, Kostentreiber und Kontakt.",
  },
  {
   icon: FileCheck,

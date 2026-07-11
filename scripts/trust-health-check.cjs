@@ -18,19 +18,22 @@ const requiredFiles = [
   "components/ProjectStoryGrid.tsx",
   "components/ServiceVisualProofGrid.tsx",
   "docs/TRUST_PROOF_SYSTEM.md",
-  "docs/PROJECT_STORY_GUIDELINES.md",
+  "docs/REVIEW_TRUST_CLAIM_AUDIT.md",
+  "docs/PROJECT_STORY_AND_CASE_STUDY_GUIDELINES.md",
   "docs/VISUAL_PROOF_ASSET_GUIDELINES.md",
-  "docs/GBP_REVIEW_AND_LOCAL_PROOF_SYSTEM.md",
+  "docs/DUAL_LOCATION_GBP_LOCAL_PROOF_PLAN.md",
+  "docs/SIGNATURE_SERVICE_TRUST_MAP.md",
+  "docs/SERVICE_SPECIFIC_TRUST_MAP.md",
   "docs/TRUST_STRUCTURED_DATA_REPORT.md",
   "docs/TRUST_IMPLEMENTATION_MAP.md",
 ];
 
 const routeChecks = [
-  { route: "/", files: ["app/page.tsx"], mustContain: ["TrustProofPanel", "LocalProofPanel", "ProcessProofSteps"] },
+  { route: "/", files: ["app/page.tsx"], mustContain: ["LocationClarityPanel", "FloxantObjectBrief"] },
   { route: "/kontakt", files: ["app/kontakt/page.tsx"], mustContain: ["TrustProofPanel", "ServiceProofChecklist", "NoFakeClaimsNotice"] },
   { route: "/leistungen", files: ["app/leistungen/page.tsx"], mustContain: ["TrustProofPanel", "ServiceVisualProofGrid", "ProjectStoryGrid"] },
   { route: "/duesseldorf", files: ["app/duesseldorf/page.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
-  { route: "/duesseldorf/reinigung", files: ["app/duesseldorf/reinigung/page.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
+  { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/regensburg", files: ["app/regensburg/page.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/regensburg/umzug", files: ["app/regensburg/umzug/page.tsx", "components/regensburg/RegensburgServicePage.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
   { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["LocalProofPanel", "ServiceProofChecklist", "TrustProofPanel"] },
@@ -41,10 +44,10 @@ const routeChecks = [
   { route: "/anbieter-vergleichen", files: ["app/anbieter-vergleichen/page.tsx"], mustContain: ["OfferCheckTrustPanel", "ProcessProofSteps"] },
   { route: "/signature-services", files: ["app/signature-services/page.tsx"], mustContain: ["TrustProofPanel", "NoFakeClaimsNotice"] },
   { route: "/diskret-service", files: ["next.config.js", "app/diskreter-umzug-trennung-scheidung/page.tsx"], mustContain: ["/diskret-service", "DiscreetTrustPanel"] },
-  { route: "/duesseldorf/bueroreinigung", files: ["app/duesseldorf/bueroreinigung/page.tsx"], mustContain: ["B2BTrustPanel", "ServiceProofChecklist"] },
-  { route: "/duesseldorf/gewerbereinigung", files: ["app/duesseldorf/gewerbereinigung/page.tsx"], mustContain: ["B2BTrustPanel", "ServiceVisualProofGrid"] },
+  { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["B2BTrustPanel", "ServiceProofChecklist"] },
+  { route: "/regensburg/reinigung", files: ["app/regensburg/reinigung/page.tsx", "components/LocalServiceSeoPage.tsx"], mustContain: ["B2BTrustPanel", "ServiceVisualProofGrid"] },
   { route: "/regensburg/bueroreinigung", files: ["app/regensburg/bueroreinigung/page.tsx", "components/regensburg/RegensburgServicePage.tsx"], mustContain: ["B2BTrustPanel", "ServiceProofChecklist"] },
-  { route: "/duesseldorf service template", files: ["components/duesseldorf/DuesseldorfServicePage.tsx"], mustContain: ["TrustProofPanel", "LocalProofPanel", "ServiceVisualProofGrid"] },
+  { route: "/duesseldorf hub", files: ["app/duesseldorf/page.tsx"], mustContain: ["TrustProofPanel", "LocalProofPanel", "ServiceVisualProofGrid"] },
   { route: "/regensburg service template", files: ["components/regensburg/RegensburgServicePage.tsx"], mustContain: ["TrustProofPanel", "LocalProofPanel", "ServiceVisualProofGrid"] },
 ];
 
@@ -98,6 +101,34 @@ function checkRequiredFiles(results) {
     "required trust files",
     missing.length ? `Missing files: ${missing.join(", ")}` : `${requiredFiles.length} required files present.`,
     missing,
+  );
+}
+
+function checkTrustSignalFields(results) {
+  const content = exists("lib/trust-proof.ts") ? read("lib/trust-proof.ts") : "";
+  const signalCount = (content.match(/\n\s*key:\s*"/g) || []).length;
+  const visibleCount = (content.match(/\n\s*visibleIfDataConfirmed:\s*(?:true|false)/g) || []).length;
+  const riskCount = (content.match(/\n\s*riskLevel:\s*"(?:low|medium|high)"/g) || []).length;
+  const findings = [];
+
+  if (!/visibleIfDataConfirmed:\s*boolean/.test(content)) {
+    findings.push("TrustSignal type is missing visibleIfDataConfirmed.");
+  }
+  if (!/riskLevel:\s*"low"\s*\|\s*"medium"\s*\|\s*"high"/.test(content)) {
+    findings.push("TrustSignal type is missing low/medium/high riskLevel.");
+  }
+  if (signalCount && visibleCount < signalCount) {
+    findings.push(`Only ${visibleCount}/${signalCount} trust signals define visibleIfDataConfirmed.`);
+  }
+  if (signalCount && riskCount < signalCount) {
+    findings.push(`Only ${riskCount}/${signalCount} trust signals define riskLevel.`);
+  }
+
+  push(
+    results,
+    findings.length ? "FAIL" : "PASS",
+    "trust signal data gates",
+    findings.length ? findings.join("\n") : `${signalCount} trust signals include visibility and risk gates.`,
   );
 }
 
@@ -221,16 +252,16 @@ function checkLocalProof(results) {
   const requiredTokens = [
     "city=duesseldorf",
     "city=regensburg",
-    "Local Proof fuer Duesseldorf",
-    "Local Proof fuer Regensburg",
-    "GBP-Profil-URL",
+    "FLOXANT-Leistungen in Düsseldorf",
+    "FLOXANT-Leistungen in Regensburg",
+    "Rückmeldung nach Prüfung",
   ];
   const missing = requiredTokens.filter((token) => !content.includes(token));
   push(
     results,
     missing.length ? "FAIL" : "PASS",
     "local proof signals",
-    missing.length ? `Missing local proof tokens: ${missing.join(", ")}` : "Duesseldorf/Regensburg local proof and manual GBP boundaries are visible.",
+    missing.length ? `Missing customer-facing location tokens: ${missing.join(", ")}` : "Düsseldorf and Regensburg show customer-facing location guidance without internal proof labels.",
   );
 }
 
@@ -262,6 +293,7 @@ function writeReports(results) {
 function main() {
   const results = [];
   checkRequiredFiles(results);
+  checkTrustSignalFields(results);
   checkRoutes(results);
   checkFakeClaims(results);
   checkStructuredData(results);

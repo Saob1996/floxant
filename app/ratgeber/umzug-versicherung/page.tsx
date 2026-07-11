@@ -48,7 +48,7 @@ export default async function Article() {
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Gesetzliche Haftung der Umzugsfirma</h2>
-            <p className="text-muted-foreground leading-relaxed">Nach § 451e HGB haftet die Umzugsfirma gesetzlich mit 620 Euro pro Kubikmeter. Das deckt nicht immer den tatsächlichen Wert einzelner Möbel oder Gegenstände.</p>
+            <p className="text-muted-foreground leading-relaxed">Für Umzüge können gesetzliche Haftungsgrenzen und vertragliche Bedingungen gelten. Prüfen Sie vorab, wie besonders wertvolle Gegenstände abgesichert sind. Diese allgemeine Information ist keine Rechtsberatung.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Allgefahrenversicherung</h2>

@@ -34,10 +34,12 @@ export function CityServiceCluster({ locale, city, citySlug }: CityServiceCluste
     "muenchen-maxvorstadt",
     "muenchen-sendling",
     "muenchen-schwabing",
+    "neustadt-an-der-waldnaab",
     "nuernberg-gostenhof",
     "nuernberg-moegeldorf",
     "nuernberg-suedstadt",
     "nuernberg-ziegelstein",
+    "vohenstrauss",
   ]);
 
   const useServiceFallbacks = incompleteServiceCitySlugs.has(citySlug);

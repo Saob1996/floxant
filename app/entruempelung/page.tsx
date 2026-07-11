@@ -98,7 +98,7 @@ export default async function EntruempelungPillarPage() {
         heroBadge="Entrümpelung mit Schwerpunkt Regensburg und Bayern"
         heroTitle="Entrümpelung und Wohnungsauflösung in Regensburg und Bayern"
         heroIntro="FLOXANT organisiert Räumungen für Wohnungen, Häuser, Keller und Gewerbeflächen. Entrümpelung bedeutet dabei nicht nur Wegtragen, sondern Räume wieder entscheidbar machen: trennen, tragen, entsorgen und den nächsten Schritt ermöglichen."
-        heroImageSrc="/assets/service-clearance.png"
+        heroImageSrc="/assets/service-clearance.webp"
         heroImageAlt="FLOXANT Entrümpelung in Regensburg und Bayern"
         heroCards={[
           { label: "Volumen", value: "Umfang und Materialarten sichtbar bewertet" },
@@ -142,7 +142,7 @@ export default async function EntruempelungPillarPage() {
           },
         ]}
         costTitle="Regionale Einordnung"
-        costIntro="Der Fokus auf Regensburg und Bayern hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
+        costIntro="Der Fokus auf Regensburg und Regensburg hilft bei realistischer Terminierung, kurzen Wegen und einer sinnvollen Kombination mit Reinigung, Umzug oder Schlüsselübergabe."
         costFactors={[
           "Volumen und Materialarten",
           "Zugang, Laufwege und Stockwerke",

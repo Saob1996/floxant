@@ -28,7 +28,7 @@ export function OfferDifferenceExplainer() {
             Warum ein Angebot teuer, billig oder unklar wirken kann
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-700">
-            FLOXANT vergleicht keine Anbieter-Rankings. Es geht um die praktische Frage, ob Umfang, Termin, Zugang und Zusatzkosten sauber beschrieben sind.
+            FLOXANT erstellt keine pauschale Rangliste. Wir prüfen, ob Umfang, Termin, Zugang und Zusatzkosten verständlich beschrieben sind.
           </p>
           <div className="mt-5 flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm font-bold leading-7 text-amber-950">
             <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />

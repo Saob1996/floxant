@@ -9,6 +9,8 @@ import {
   ServiceDecisionGuide,
   TrustProofSection,
 } from "@/components/conversion";
+import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
+import { ServiceFinder } from "@/components/ContactPathChooser";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalContactPanel } from "@/components/LocalContactPanel";
 import { LocationClarityPanel } from "@/components/LocationClarityPanel";
@@ -21,6 +23,8 @@ import { FloxServiceCard } from "@/components/FloxServiceCard";
 import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
 import { company } from "@/lib/company";
 import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
+import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
+import { ServiceNavigationOverview } from "@/components/ServiceNavigationOverview";
 import { AiAnswerBlock } from "@/components/ai-answer";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
 import {
@@ -45,7 +49,7 @@ const whatsappHref = buildWhatsAppHref(
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "Regensburg Service: Umzug, Reinigung und Räumung klären",
+  title: "FLOXANT Regensburg: Umzug, Reinigung und Räumung anfragen",
   description:
     "Regensburg-Anfrage für Umzug, Reinigung, Entrümpelung oder Übergabe: Start, Ziel, Objekt, Umfang, Fotos und Terminwunsch senden.",
   alternates: { canonical: "/regensburg" },
@@ -119,7 +123,7 @@ export default function RegensburgHubPage() {
               {region.label}
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              Regensburg: Umzug, Reinigung, Räumung und Übergabe sauber einordnen
+              Umzug, Reinigung, Räumung und Übergabe in Regensburg anfragen
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
               Beschreiben Sie Start, Ziel, Objekt, Räume, Umfang, Fotos und Terminwunsch.
@@ -156,7 +160,7 @@ export default function RegensburgHubPage() {
 
           <div className="relative min-h-[320px] overflow-hidden rounded-lg border border-white/10 bg-slate-900 shadow-2xl shadow-black/40 sm:min-h-[420px]">
             <Image
-              src="/assets/service-moving.png"
+              src="/assets/service-moving.webp"
               alt="FLOXANT Umzugsfahrzeug für Umzug und Räumung in Regensburg"
               fill
               priority
@@ -178,6 +182,17 @@ export default function RegensburgHubPage() {
       </section>
 
       <FloxantObjectBrief variant="regensburg" className="border-b border-slate-200" />
+
+      <ServiceNavigationOverview
+        location="regensburg"
+        title="Regensburg-Services nach Anfrageziel."
+        intro="Reinigung im Umkreis, Umzug, Räumung, Angebotsprüfung und besondere Leistungen sind getrennt aufgeführt, damit Sie schneller die passende Anfrage finden."
+      />
+
+      <DecisionCompassPanel
+        title="Unsicher in Regensburg?"
+        intro="Der Kompass führt von Übergabe, Angebot, Plan B, B2B, Sonderstück oder PV/Glas direkt zum passenden nächsten Schritt."
+      />
 
       <LocationClarityPanel
         title="Regensburg bleibt der eigene Servicebereich für Wechsel und Übergabe."
@@ -264,13 +279,28 @@ export default function RegensburgHubPage() {
         locationKeys={["regensburg"]}
         service="umzug"
         title="FLOXANT Regensburg mit sichtbaren Standortdaten."
-        intro="Regensburger Adresse, Telefon, E-Mail und Maps-Suchlink kommen aus zentralen Standortdaten. Öffnungszeiten und GBP-Profil-URL bleiben bis zur manuellen Prüfung ungenannt."
+        intro="Adresse, Telefon, E-Mail und Wegbeschreibung stammen aus den aktuellen Kontaktdaten. Einsatzzeiten nennen wir nach Prüfung der konkreten Anfrage."
       />
 
       <ServiceFitAdvisor
         currentCity="regensburg"
-        title="Regensburger Anfrage schnell richtig einordnen."
-        intro="Die Auswahl führt zu Kontaktlinks mit city=regensburg und passendem Intent. Es wird nichts automatisch gesendet."
+        title="Regensburger Anfrage schnell vorbereiten."
+        intro="Wählen Sie Leistung und Anliegen für Regensburg. Ihre Angaben werden erst im Formular gesendet."
+      />
+
+      <ServicePackageDecisionExperience
+        variant="regensburg"
+        limitPerGroup={2}
+        heading="Regensburg-Anfragen nach Paket, Kombi-Fall und Aufwand sortieren."
+        intro="Bei Reinigung zählt der Einsatzort, bei Umzug und Räumung zusätzlich Strecke, Menge und Termin. Für unklare Angebote oder besondere Situationen gibt es eigene Anfragen."
+      />
+
+      <ServiceFinder
+        compact
+        currentCity="regensburg"
+        title="Welche Leistung brauchen Sie in Regensburg?"
+        intro="Wählen Sie Leistung, Ort und Anliegen. Einzelheiten ergänzen Sie anschließend im Formular."
+        source="regensburg-service-finder"
       />
 
       <ServiceClusterGrid
@@ -316,7 +346,7 @@ export default function RegensburgHubPage() {
         serviceKey="umzug"
         locationKey="regensburg"
         title="Regensburg-Trust bleibt lokal und prüfbar."
-        intro="Regensburg wird mit sichtbaren Kontaktwegen, lokalen Serviceclustern und manuellen Grenzen für GBP, Reviews und Öffnungszeiten geführt."
+        intro="In Regensburg finden Sie direkte Kontaktwege für Umzug, Reinigung, Räumung und besondere Situationen. Zusagen erfolgen erst nach Prüfung Ihrer Angaben."
       />
 
       <ServiceProofChecklist

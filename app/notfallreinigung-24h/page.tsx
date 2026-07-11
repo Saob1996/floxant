@@ -24,6 +24,7 @@ import {
   buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
+import { buildRegensburgCleaningAreaServedJsonLd } from "@/lib/regensburg-cleaning-service-area";
 
 const path = "/notfallreinigung-24h";
 const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
@@ -32,8 +33,8 @@ const whatsappHref = `https://wa.me/${company.phoneRaw.replace(/\D/g, "")}?text=
 
 const faqItems = [
   {
-    q: "Ist die Notfallreinigung 24 Stunden garantiert?",
-    a: "Die Seite ist fuer dringende Reinigungsanfragen gedacht, die jederzeit vorbereitet und gesendet werden koennen. FLOXANT prueft den Fall priorisiert nach Ort, Umfang, Fotos, Zugang und verfuegbarer Kapazitaet. Eine automatische Sofortgarantie oder feste 24/7-Zusage entsteht dadurch nicht.",
+    q: "Wie wird eine dringende Reinigungsanfrage geprüft?",
+    a: "Senden Sie Ort, Umfang, Fotos, Zugang und Wunschtermin. FLOXANT prüft die verfügbare Kapazität und bestätigt einen Termin erst anschließend.",
   },
   {
     q: "Welche Faelle passen zu einer Notfallreinigung?",
@@ -49,7 +50,7 @@ const faqItems = [
   },
   {
     q: "Ist die Seite auch fuer Firmen und Hausverwaltungen geeignet?",
-    a: "Ja. Bueros, Praxen, Kanzleien, Hausverwaltungen, Vermieter, Ferienwohnungen und kleine Gewerbeflaechen koennen eine dringende Reinigung strukturiert anfragen. Entscheidend sind klare Angaben zu Flaeche, Zeitfenster, Zugang und Verantwortlichem vor Ort.",
+    a: "Ja. Bueros, Praxen, Kanzleien, Hausverwaltungen, Vermieter, Ferienwohnungen und kleine Gewerbeflaechen koennen eine dringende Reinigung mit konkreten Eckdaten anfragen. Entscheidend sind klare Angaben zu Flaeche, Zeitfenster, Zugang und Verantwortlichem vor Ort.",
   },
 ];
 
@@ -59,24 +60,24 @@ const jsonLd = {
     buildBreadcrumbJsonLd([
       { name: "FLOXANT", item: "/" },
       { name: "Reinigung", item: "/reinigung" },
-      { name: "Notfallreinigung 24h", item: path },
+      { name: "Kurzfristige Reinigung", item: path },
     ]),
     buildServiceJsonLd({
-      name: "Notfallreinigung 24h anfragen",
+      name: "Kurzfristige Reinigung anfragen",
       description:
         "Dringende Reinigung fuer Wohnung, Buero, Gewerbe, Veranstaltung, Uebergabe und Objektfaelle nach Fotos, Ort, Termin und Verfuegbarkeit pruefen lassen.",
       path,
       serviceType: "Notfallreinigung",
-      areaServed: ["Regensburg", "Umgebung Regensburg ca. 200 km", "Bayern", "Duesseldorf Reinigung nach Verfuegbarkeit"],
+      areaServed: buildRegensburgCleaningAreaServedJsonLd(),
     }),
     buildWebPageJsonLd({
-      name: "Notfallreinigung 24h anfragen | FLOXANT",
+      name: "Kurzfristige Reinigung anfragen | FLOXANT",
       description:
         "Schnelle Reinigungsanfrage fuer akute Faelle mit Fotos, Ort, Termin, Zugang und klarer Priorisierung.",
       path,
       about: [
         "Notfallreinigung",
-        "24h Reinigungsanfrage",
+        "kurzfristige Reinigungsanfrage",
         "Reinigung nach Party",
         "Reinigung vor Uebergabe",
         "Bueroreinigung kurzfristig",
@@ -93,9 +94,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "notfallreinigung-24h",
-    title: "Notfallreinigung 24h | schnelle Reinigung anfragen",
+    title: "Kurzfristige Reinigung anfragen | FLOXANT",
     description:
-      "Notfallreinigung 24h anfragen: Wohnung, Buero, Gewerbe, Veranstaltung oder Uebergabe. Fotos, Ort, Termin und Zugang senden. FLOXANT prueft schnell.",
+      "Kurzfristige Reinigung für Wohnung, Büro, Gewerbe, Veranstaltung oder Übergabe anfragen. Fotos, Ort, Termin und Zugang senden; FLOXANT prüft die Machbarkeit.",
   });
 }
 
@@ -161,7 +162,7 @@ export default function Notfallreinigung24hPage() {
                   Dringende Reinigungsanfrage
                 </p>
                 <h1 className="mt-7 max-w-4xl text-4xl font-black tracking-normal text-white md:text-6xl">
-                  Notfallreinigung 24h anfragen
+                  Kurzfristige Reinigung anfragen
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-9 text-slate-100">
                   Wenn ein Objekt kurzfristig sauber, begehbar oder uebergabebereit werden muss, zaehlt nicht ein langer Text,
@@ -243,8 +244,8 @@ export default function Notfallreinigung24hPage() {
             <div className="grid gap-4">
               {[
                 "Regensburg und Umgebung werden als Kerngebiet besonders direkt eingeordnet.",
-                "Bayernweite Anfragen werden nach Strecke, Uhrzeit, Kapazitaet und Umfang geprueft.",
-                "Duesseldorf wird sauber passend zum Anliegen behandelt: Reinigung, Entsorgung und Umzug haben eigene Kontaktmöglichkeiten.",
+                "Reinigungsanfragen ausserhalb des 50-km-Umkreises werden nicht als Reinigungsauftrag beworben.",
+                "Regensburg wird passend zum Anliegen behandelt: Reinigung ist auf den 50-km-Umkreis begrenzt, weitere Leistungen werden getrennt geprueft.",
                 "Bei starkem Zeitdruck helfen klare Fotos, kurze Sprachnachricht und erreichbare Kontaktperson am meisten.",
               ].map((text) => (
                 <div key={text} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
@@ -318,7 +319,7 @@ export default function Notfallreinigung24hPage() {
                   Passende Wege zur Anfrage: <Link className="font-black text-white underline" href="/reinigung">Reinigung</Link>,{" "}
                   <Link className="font-black text-white underline" href="/regensburg/endreinigung">Endreinigung Regensburg</Link>,{" "}
                   <Link className="font-black text-white underline" href="/regensburg/gewerbereinigung">Gewerbereinigung Regensburg</Link> und{" "}
-                  <Link className="font-black text-white underline" href="/duesseldorf/reinigung">Reinigung Duesseldorf</Link>.
+                  <Link className="font-black text-white underline" href="/regensburg/reinigung">Reinigung Regensburg</Link>.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

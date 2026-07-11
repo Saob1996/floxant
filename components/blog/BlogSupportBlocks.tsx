@@ -24,7 +24,10 @@ function getRelatedServices(signal: string): RelatedLink[] {
   if (signal.includes("reinigung") || signal.includes("buer") || signal.includes("gewerbe")) {
     links.push(
       { href: "/reinigung", title: "Reinigung", text: "Flaeche, Zustand, Termin und Fotos sauber vorbereiten." },
-      { href: "/duesseldorf/reinigung", title: "Reinigung Duesseldorf", text: "Lokale Reinigungsanfragen mit Stadtteil und Objektart einordnen." },
+      { href: "/regensburg/bueroreinigung", title: "Bueroreinigung Regensburg", text: "Raumliste, Turnus, Zugang und Fotos lokal einordnen." },
+      { href: "/duesseldorf/reinigung", title: "Reinigung Duesseldorf", text: "Objektart, Flaeche, Zustand und Termin fuer Duesseldorf klaeren." },
+      { href: "/duesseldorf/bueroreinigung", title: "Bueroreinigung Duesseldorf", text: "Turnus, Raumliste, Randzeiten und Schluesselweg vorbereiten." },
+      { href: "/duesseldorf/gewerbereinigung", title: "Gewerbereinigung Duesseldorf", text: "Gewerbeflaeche, Nutzung und Leistungsumfang sachlich einordnen." },
     );
   }
 
@@ -49,6 +52,21 @@ function getRelatedServices(signal: string): RelatedLink[] {
     );
   }
 
+  if (
+    signal.includes("diskret") ||
+    signal.includes("nachlass") ||
+    signal.includes("uebergabe") ||
+    signal.includes("Ã¼bergabe") ||
+    signal.includes("objekt") ||
+    signal.includes("fotos")
+  ) {
+    links.push(
+      { href: "/diskret-service", title: "Diskret-Service", text: "Sensible Faelle mit Kontaktweg und wenigen Startdaten beschreiben." },
+      { href: "/objektbrief", title: "Objektbrief", text: "Unklare Faelle mit Fotos, Zugang, Termin und Ziel sortieren." },
+      { href: "/uebergabe-sprint", title: "Uebergabe-Sprint", text: "Restpunkte, Reinigung, Schluessel und Termin praktisch vorbereiten." },
+    );
+  }
+
   links.push(
     { href: "/angebot-guenstiger-pruefen", title: "Angebot pruefen lassen", text: "Vorhandenes Angebot mit Preis, Umfang, Fotos und Termin einordnen." },
     { href: "/leistungen-vergleichen", title: "Passenden Service finden", text: "Wenn noch unklar ist, welcher FLOXANT-Weg passt." },
@@ -67,14 +85,14 @@ function getLocalLinks(signal: string): RelatedLink[] {
 
   if (signal.includes("duesseldorf") || signal.includes("düsseldorf")) {
     links.push(
-      { href: "/duesseldorf", title: "Duesseldorf", text: "Lokaler Hub fuer Reinigung, Umzug, Entruempelung und Angebot pruefen." },
-      { href: "/angebot-vergleichen-duesseldorf", title: "Reinigungsangebot Duesseldorf", text: "Turnus, Objektart, Stadtteil und Fotos pruefen lassen." },
+      { href: "/regensburg/reinigung", title: "Reinigung Regensburg", text: "Reinigungsanfragen im 50-km-Umkreis lokal pruefen." },
+      { href: "/angebot-vergleichen-regensburg", title: "Reinigungsangebot Regensburg", text: "Turnus, Objektart, Ort und Fotos pruefen lassen." },
     );
   }
 
   if (signal.includes("regensburg") || signal.includes("bayern")) {
     links.push(
-      { href: "/regensburg", title: "Regensburg", text: "Lokaler Hub fuer Umzug, Reinigung, Entruempelung und Bayern-Nahbereich." },
+      { href: "/regensburg", title: "Regensburg", text: "Lokaler Hub fuer Umzug, Reinigung im 50-km-Umkreis und Entruempelung." },
       { href: "/kontakt", title: "Kontakt", text: "Ort, Termin, Fotos und kurze Beschreibung direkt senden." },
     );
   }
@@ -82,7 +100,6 @@ function getLocalLinks(signal: string): RelatedLink[] {
   if (!links.length) {
     links.push(
       { href: "/kontakt", title: "Kontakt", text: "Anfrage mit Ort, Termin und Fotos starten." },
-      { href: "/duesseldorf", title: "Duesseldorf", text: "Lokale Services in Duesseldorf ansehen." },
       { href: "/regensburg", title: "Regensburg", text: "Lokale Services in Regensburg ansehen." },
     );
   }
@@ -96,7 +113,7 @@ function getRelatedArticles(signal: string): RelatedLink[] {
   if (signal.includes("angebot") || signal.includes("preis") || signal.includes("vergleich")) {
     links.push(
       {
-        href: "/blog/reinigungsangebot-pruefen-regensburg-duesseldorf",
+        href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
         title: "Reinigungsangebot pruefen",
         text: "Flaeche, Zustand, Fotos, Termin und Uebergabeziel vor der Zusage sortieren.",
       },

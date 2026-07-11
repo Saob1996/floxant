@@ -86,12 +86,12 @@ const audiences = [
 
 const services = [
   ["Umzug Regensburg", "Wohnungswechsel, Transportvorbereitung, Zugang und Übergabe nach Absprache.", "/regensburg/umzug"],
-  ["Reinigung Düsseldorf", "Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Übergaben.", "/duesseldorf/reinigung"],
+  ["Reinigung Regensburg", "Reinigung für Unternehmen, Praxen, Wohnungen, Treppenhäuser und Übergaben.", "/regensburg/reinigung"],
   ["Reinigung Regensburg", "Endreinigung, Übergabereinigung und Reinigung nach Umzug oder Räumung.", "/regensburg/reinigung"],
   ["Entrümpelung Regensburg", "Wohnung, Keller, Haus oder Objektfläche mit Fotos und klarer Vorprüfung.", "/regensburg/entruempelung"],
   ["Haushaltsauflösung Regensburg", "Räumung, Sortierung, Restpunkte und Vorbereitung für Übergabe oder Nachnutzung.", "/regensburg/haushaltsaufloesung"],
   ["Übergabereinigung", "Wohnung oder Objekt vor Rückgabe, Besichtigung oder Mieterwechsel vorbereiten.", "/regensburg/uebergabereinigung"],
-  ["Angebotsprüfung Düsseldorf", "Bestehendes Reinigungsangebot oder Eckdaten sachlich einordnen lassen.", "/angebot-vergleichen-duesseldorf"],
+  ["Angebotsprüfung Regensburg", "Bestehendes Reinigungsangebot oder Eckdaten sachlich einordnen lassen.", "/angebot-vergleichen-regensburg"],
   ["Angebotsprüfung allgemein", "Angebot für Umzug, Reinigung, Entrümpelung oder Entsorgung sachlich prüfen lassen.", "/angebot-guenstiger-pruefen"],
 ];
 
@@ -122,7 +122,7 @@ const faqItems = [
   },
   {
     q: "Für welche Services gilt die Empfehlung?",
-    a: "Die Aktion gilt für FLOXANT-Leistungen in Düsseldorf und Regensburg, insbesondere für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Übergabereinigung und Angebotsprüfung.",
+    a: "Die Aktion gilt für FLOXANT-Leistungen in Regensburg und Umgebung, insbesondere für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Übergabereinigung und Angebotsprüfung.",
   },
   {
     q: "Wie wird der Bonus ausgezahlt?",
@@ -156,7 +156,7 @@ const jsonLd = {
         "Empfehlungsbonus für FLOXANT Services. Bei erfolgreicher Vermittlung eines neuen Kunden kann ein 50 Euro Bonus ausgezahlt werden.",
       path,
       serviceType: "Empfehlungsbonus",
-      areaServed: ["Regensburg", "Düsseldorf", "FLOXANT Leistungen nach Verfügbarkeit"],
+      areaServed: ["Regensburg", "Umgebung Regensburg", "Reinigung Regensburg plus 50 km"],
     }),
     buildBreadcrumbJsonLd([
       { name: "Startseite", item: "/" },
@@ -202,7 +202,7 @@ export default function EmpfehlenPage() {
               <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-600">
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">50 Euro bei erfolgreicher Vermittlung</span>
                 <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Transparent weiterempfehlen</span>
-                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Düsseldorf und Regensburg</span>
+                <span className="rounded-full border border-slate-200 bg-white px-3 py-2">Regensburg und Umgebung</span>
               </div>
             </div>
 
@@ -311,7 +311,7 @@ export default function EmpfehlenPage() {
                 <div className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Empfehlbare Services</div>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">Wofür kann FLOXANT empfohlen werden?</h2>
                 <p className="mt-4 text-base leading-8 text-slate-700">
-                  Die Aktion gilt für FLOXANT-Leistungen in Düsseldorf und Regensburg,
+                  Die Aktion gilt für FLOXANT-Leistungen in Regensburg und Umgebung,
                   insbesondere für Umzug, Reinigung, Entrümpelung, Haushaltsauflösung,
                   Übergabereinigung und Angebotsprüfung.
                 </p>

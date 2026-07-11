@@ -1,4 +1,6 @@
 import type { IntakePayload } from "@/lib/types/intake";
+import { getLeadReplyTemplateForServiceKey } from "@/lib/lead-reply-templates";
+import { getMissingInfoQuestionsForServiceKey } from "@/lib/missing-info-questions";
 
 export type LeadPriority = "critical" | "hot" | "warm" | "normal";
 
@@ -7,6 +9,15 @@ export type LeadRoutingDecision = {
   score: number;
   responseSla: string;
   nextAction: string;
+  responseTemplateKey: string;
+  missingInfoQuestions: string[];
+  internalPriority: "p0" | "p1" | "p2" | "p3";
+  recommendedNextStep: string;
+  signatureServiceSuggestion: string;
+  offerCheckSuggestion: string;
+  sensitiveHandlingRequired: boolean;
+  b2bHandlingRequired: boolean;
+  englishReplyPossible: boolean;
   reasons: string[];
   tags: string[];
 };
@@ -55,6 +66,30 @@ function addReason(
   state.score += points;
   state.reasons.push(reason);
   state.tags.push(tag);
+}
+
+function serviceKeyForRouting(payload: IntakePayload) {
+  const raw = normalize([payload.service?.type, payload.service?.source, payload.service?.entryPoint].join(" "));
+  if (/angebot|offer|quote/.test(raw)) return "angebot-pruefen";
+  if (/diskret|private client|sensible|trennung|scheidung/.test(raw)) return "diskret-service";
+  if (/plan b|backup|schadensbegrenzung/.test(raw)) return "plan-b-service";
+  if (/buero|buro|gewerbe|praxis|b2b/.test(raw)) return "bueroreinigung";
+  if (/klavier|piano/.test(raw)) return "klaviertransport";
+  if (/senior/.test(raw)) return "seniorenumzug";
+  if (/entruempel|entsorgung|raeum|raumung/.test(raw)) return "entruempelung";
+  if (/wohnungsaufloesung|haushaltsaufloesung|nachlass/.test(raw)) return "wohnungsaufloesung";
+  if (/solar|pv|photovoltaik/.test(raw)) return "solarreinigung";
+  if (/uebergabe|ubergabe|endreinigung|objektbrief|vermieter/.test(raw)) return "uebergabe";
+  if (/umzug|transport|moving/.test(raw)) return "umzug";
+  if (/reinigung|cleaning/.test(raw)) return "reinigung";
+  return String(payload.service?.type || "sonstiges");
+}
+
+function internalPriorityFor(priority: LeadPriority): LeadRoutingDecision["internalPriority"] {
+  if (priority === "critical") return "p0";
+  if (priority === "hot") return "p1";
+  if (priority === "warm") return "p2";
+  return "p3";
 }
 
 export function buildLeadRoutingDecision(payload: IntakePayload): LeadRoutingDecision {
@@ -119,6 +154,22 @@ export function buildLeadRoutingDecision(payload: IntakePayload): LeadRoutingDec
 
   const priority: LeadPriority =
     state.score >= 70 ? "critical" : state.score >= 50 ? "hot" : state.score >= 30 ? "warm" : "normal";
+  const serviceKey = serviceKeyForRouting(payload);
+  const template = getLeadReplyTemplateForServiceKey(serviceKey, payload.service?.source || payload.service?.entryPoint);
+  const internalPriority = internalPriorityFor(priority);
+  const sensitiveHandlingRequired = /(diskret|sensible|private client|trennung|scheidung)/.test(combinedText);
+  const b2bHandlingRequired = /(buero|buro|gewerbe|praxis|b2b|firma|turnus)/.test(combinedText);
+  const offerCheckSuggestion =
+    template.templateKey === "reply-offer-check" || /(angebot|preis|quote|teuer|vergleich)/.test(combinedText)
+      ? "Angebotspruefung organisatorisch einordnen, ohne Preis- oder Ersparnisgarantie."
+      : "";
+  const signatureServiceSuggestion = sensitiveHandlingRequired
+    ? "floxant-diskret-service"
+    : /(uebergabe|ubergabe|objektbrief|vermieter)/.test(combinedText)
+      ? "floxant-uebergabeakte"
+      : /(solar|pv)/.test(combinedText)
+        ? "floxant-pv-sichtklar-service"
+        : "";
 
   const responseMap: Record<LeadPriority, Pick<LeadRoutingDecision, "responseSla" | "nextAction">> = {
     critical: {
@@ -144,6 +195,15 @@ export function buildLeadRoutingDecision(payload: IntakePayload): LeadRoutingDec
     score: state.score,
     reasons: [...new Set(state.reasons)],
     tags: [...new Set(state.tags)],
+    responseTemplateKey: template.templateKey,
+    missingInfoQuestions: getMissingInfoQuestionsForServiceKey(serviceKey, payload.service?.source || payload.service?.entryPoint),
+    internalPriority,
+    recommendedNextStep: template.recommendedNextStep,
+    signatureServiceSuggestion,
+    offerCheckSuggestion,
+    sensitiveHandlingRequired,
+    b2bHandlingRequired,
+    englishReplyPossible: /\b(english|hello|moving company|cleaning request|quote request)\b/.test(combinedText),
     ...responseMap[priority],
   };
 }

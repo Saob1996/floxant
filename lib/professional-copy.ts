@@ -1,13 +1,13 @@
 export const locationClarityItems = [
   {
-    title: "Duesseldorf: Reinigung, Gewerbe und objektbezogene Anfragen",
-    text: "Duesseldorf ist bei FLOXANT auf Reinigung, Bueroreinigung, Gewerbereinigung, Praxisreinigung, Fenster/Glas, Solar/PV und objektbezogene Anfragen ausgerichtet. Wichtig sind Stadtteil, Objektart, Flaeche, Turnus, Zugang, Fotos und Termin.",
+    title: "Düsseldorf: Umzug, Reinigung, Räumung und Angebotsprüfung",
+    text: "Für Düsseldorf helfen Ort, Objektart, Fläche, Umfang, Zugang, Fotos und Termin. Wählen Sie die passende Leistung oder senden Sie ein vorhandenes Angebot zur Prüfung.",
     href: "/duesseldorf",
-    cta: "Duesseldorf-Bereich ansehen",
+    cta: "Düsseldorf-Bereich ansehen",
   },
   {
-    title: "Regensburg: Umzug, Reinigung, Raeumung und Uebergabe",
-    text: "Regensburg bleibt der zweite reale Standort fuer Umzug, Reinigung, Entruempelung, Wohnungsaufloesung, Klaviertransport und Uebergabe. Wichtig sind Start, Ziel, Etage, Menge, Fotos, Zugang und Terminwunsch.",
+    title: "Regensburg: Umzug, Reinigung, Räumung und Übergabe",
+    text: "Für Regensburg helfen je nach Leistung Start, Ziel, Etage, Fläche, Menge, Fotos, Zugang und Terminwunsch.",
     href: "/regensburg",
     cta: "Regensburg-Bereich ansehen",
   },
@@ -62,7 +62,7 @@ export const providerComparisonClarityItems = [
   },
   {
     title: "Grenzen",
-    text: "Es entsteht kein Anbieter-Ranking und keine Garantie, dass ein anderes Angebot guenstiger wird.",
+    text: "Es entsteht keine pauschale Anbieter-Rangliste und keine Garantie, dass ein anderes Angebot günstiger wird.",
   },
 ] as const;
 
@@ -77,7 +77,7 @@ export const customerNextSteps = [
   },
   {
     title: "Passenden Weg nennen",
-    text: "Je nach Fall folgt ein direkter Serviceweg, ein Angebotscheck, ein Objektbrief oder ein Plan-B-naechster Schritt.",
+    text: "Je nach Fall folgt eine direkte Anfrage, eine Angebotsprüfung, ein Objektbrief oder eine Plan-B-Prüfung.",
   },
   {
     title: "Angebot erst nach Einordnung",

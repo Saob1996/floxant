@@ -5,6 +5,8 @@ import { EffortFactorsPanel } from "@/components/EffortFactorsPanel";
 import { InternationalCustomerHint } from "@/components/conversion";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalSeoSearchIntentBridge } from "@/components/LocalSeoSearchIntentBridge";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
 import { ServicePackageSelector } from "@/components/ServicePackageSelector";
@@ -105,10 +107,17 @@ export default async function EntruempelungRegensburgPage({ params }: PageProps)
                     allowedPage="/regensburg/entruempelung"
                     serviceKey="entruempelung"
                     locationKey="regensburg"
-                    title="Entruempelung Regensburg mit klaren Grenzen."
-                    intro="Menge, Material, Zugang, Fotos, Freigabe und Endzustand werden sichtbar eingeordnet. Entsorgung, Preis und Termin bleiben pruefpflichtig."
+                    title="Entrümpelung Regensburg mit klaren Grenzen."
+                    intro="Menge, Material, Zugang, Fotos, Freigabe und Endzustand werden sichtbar eingeordnet. Entsorgung, Preis und Termin bleiben prüfpflichtig."
                 />
                 <ServiceProofChecklist serviceKey="entruempelung" />
+                <RequestChecklistBlock
+                    serviceKey="entruempelung"
+                    ctaHref="/buchung?service=entruempelung&city=regensburg#buchungssystem"
+                    ctaLabel="Räumungsdaten vorbereiten"
+                    compact
+                />
+                <PhotoGuidanceBlock serviceKey="entruempelung" compact />
                 <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
                 <LocalProofPanel location="regensburg" />
                 <GscOpportunitySection

@@ -66,7 +66,6 @@ function toAnchorId(value: string) {
 function resolveStoryVariant(title: string, intro: string) {
   const signal = germanizeText(`${title} ${intro}`).toLowerCase();
 
-  if (signal.includes("düsseldorf")) return "duesseldorf" as const;
   if (
     signal.includes("angebot") ||
     signal.includes("preis") ||

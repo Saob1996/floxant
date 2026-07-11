@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{}> }) {
     lang: "de",
     path: "alternativen",
     title: "FLOXANT vs. Wettbewerber | Der ehrliche Vergleich | Umzug Bayern",
-    description: "FLOXANT im Vergleich: nachvollziehbarer Preisrahmen, klare Leistungen und strukturierte Umzugsplanung in Bayern.",
+    description: "FLOXANT im Vergleich: nachvollziehbarer Preisrahmen, klare Leistungen und nachvollziehbare Umzugsplanung in Bayern.",
   });
 }
 export default async function AlternativenLandingPage() {
@@ -26,7 +26,7 @@ export default async function AlternativenLandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-start">
           {[
             { title: "Klarer als viele Pauschalen", slug: "anbieter-regensburg", desc: "Wie Leistungsumfang, Preisrahmen und nächster Schritt besser vergleichbar werden." },
-            { title: "Service im Vergleich", slug: "umzugsfirma-bayern", desc: "Warum ein strukturierter Ablauf oft hilfreicher ist als starre Pauschalaussagen." },
+            { title: "Service im Vergleich", slug: "umzugsfirma-bayern", desc: "Warum ein nachvollziehbarer Ablauf oft hilfreicher ist als starre Pauschalaussagen." },
           ].map((item) => (
             <Link 
               key={item.slug} 

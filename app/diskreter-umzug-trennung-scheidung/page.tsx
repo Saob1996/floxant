@@ -71,7 +71,7 @@ const localSearchSignals = [
   },
   {
     title: "Klare Düsseldorf-Grenze",
-    text: "Düsseldorf bleibt bei FLOXANT Reinigung und Entsorgung. Diese Seite sendet kein Düsseldorf-Umzug-Hinweis.",
+    text: "Regensburg bleibt der Startpunkt für Reinigung im 50-km-Umkreis. Weitere Leistungen werden nach Ort und Machbarkeit getrennt geprüft.",
   },
 ];
 
@@ -142,7 +142,7 @@ const discretionBlocks = [
   },
   {
     title: "Transport / Umzug",
-    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; Düsseldorf-Umzug läuft über den eigenen lokalen Kontaktweg.",
+    text: "Diskreter Transport im Raum Regensburg und Bayern nach Verfügbarkeit; externe Umzugsanfrage läuft über den eigenen lokalen Kontaktweg.",
     Icon: Truck,
   },
   {
@@ -277,7 +277,7 @@ const faqItems = [
   },
   {
     q: "In welchem Gebiet ist das möglich?",
-    a: "Regensburg ist der Kern für Bayern/Nahbereich. Für Düsseldorf prüft FLOXANT passende lokale Kontaktwege, darunter /duesseldorf/umzug, /duesseldorf/reinigung und /duesseldorf/entruempelung.",
+    a: "Regensburg ist der Kern für den Nahbereich. Reinigung bleibt auf Regensburg und maximal 50 km Umkreis begrenzt; andere Anfragen werden getrennt nach Ort und Machbarkeit geprüft.",
   },
 ];
 
@@ -731,7 +731,7 @@ export default function DiskreterUmzugTrennungScheidungPage() {
             </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {relatedLinks.map((item) => (
-                <Link key={item.href} href={item.href} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-stone-400 hover:bg-white">
+                <Link key={item.href} href={item.href} prefetch={false} className="inline-flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm font-black text-stone-800 transition hover:border-stone-400 hover:bg-white">
                   {item.label}
                   <ArrowRight className="h-4 w-4" />
                 </Link>

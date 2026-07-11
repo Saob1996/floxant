@@ -10,17 +10,22 @@ import {
   DoorOpen,
   FileSearch,
   KeyboardMusic,
+  Languages,
   MapPin,
   MessageCircle,
+  PackageOpen,
   Piano,
   Route,
   Ruler,
   ShieldCheck,
   Truck,
+  XCircle,
 } from "lucide-react";
 
 import { LeadCta } from "@/components/LeadCta";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company } from "@/lib/company";
@@ -35,9 +40,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/klaviertransport-regensburg";
-const title = "Klaviertransport Regensburg | Etage und Zugang prüfen";
+const title = "Klaviertransport Regensburg - Etage, Zugang und Termin klären";
 const description =
-  "Klaviertransport Regensburg anfragen: Klavier, E-Piano oder Flügel mit Etage, Treppenhaus, Aufzug, Laufweg, Haltepunkt, Fotos und Termin prüfen.";
+  "Klaviertransport in Regensburg geplant? Instrumentart, Etage, Treppenhaus, Zugang und Termin beschreiben. FLOXANT prüft die Anfrage anhand der genannten Eckdaten.";
 
 const leadHref = buildLeadHref({
   service: "klaviertransport",
@@ -45,6 +50,18 @@ const leadHref = buildLeadHref({
   intent: "klaviertransport-regensburg",
   priority: "p0",
 });
+
+const offerCheckHref = buildLeadHref({
+  service: "klaviertransport",
+  city: "regensburg",
+  intent: "klaviertransport-angebot-pruefen",
+  priority: "p0",
+});
+
+const furnitureTransportHref =
+  "/kontakt?service=moebeltransport&city=regensburg&intent=moebeltransport-regensburg&source=seo";
+const backhaulCheckHref =
+  "/kontakt?service=moebeltransport&city=regensburg&intent=rueckfahrt-beiladung-regensburg&source=seo";
 
 const whatsappHref = buildWhatsAppHref(
   company.phoneRaw,
@@ -56,18 +73,52 @@ const whatsappHref = buildWhatsAppHref(
 );
 
 const heroFacts = [
-  { label: "Instrument", value: "Klavier, E-Piano oder Flügel" },
+  { label: "Instrument", value: "Klavier, E-Piano oder Flügel nach Prüfung" },
   { label: "Zugang", value: "Etage, Treppe, Aufzug, Türen" },
   { label: "Planung", value: "Fotos, Strecke, Termin, Rückfrage" },
 ] as const;
 
 const neededDetails = [
-  "Instrumenttyp, Bauform und ungefähre Maße, falls bekannt",
+  "Startort und Zielort in oder rund um Regensburg",
+  "Instrumentart: Klavier, E-Piano, Flügel nach Prüfung oder schweres Einzelstück",
   "Start- und Zieladresse mit Etage",
   "Aufzug vorhanden: ja/nein und grobe Größe",
-  "Fotos von Instrument, Eingang, Treppe und Zielraum",
-  "Laufweg, Haltemöglichkeit, Türen, Kurven und enge Stellen",
+  "Treppenhaus, Türen, Kurven, Engstellen und Laufweg",
+  "Fotos von Instrument, Eingang, Treppe und Zielraum optional",
+  "Vorhandenes Angebot optional",
   "Terminwunsch und Zeitfenster",
+  "Kontaktwunsch für Rückfragen",
+] as const;
+
+const quickAnswerItems = [
+  "Instrumentart, Etage, Aufzug, Treppenhaus, Trageweg und Zugang sind wichtiger als ein schneller Blindpreis.",
+  "Fotos vom Instrument und vom Weg können die Einschätzung erleichtern, sind aber im ersten Schritt optional.",
+  "Eine Anfrage ist noch keine Buchung und keine Preis-, Soforttermin- oder Verfügbarkeitsgarantie.",
+] as const;
+
+const customerSituations = [
+  "Klavier innerhalb Regensburg transportieren",
+  "Klavier aus Regensburg ins Umland bringen",
+  "Klavier nach Regensburg liefern lassen",
+  "E-Piano oder schweres Einzelstück transportieren",
+  "Klavier über Treppe oder mit engem Treppenhaus",
+  "Aufzug vorhanden, aber Zugang oder Größe unklar",
+  "Klaviertransport als Teil eines Umzugs",
+  "Vorhandenes Angebot wirkt teuer oder unklar",
+  "Anbieter hat abgesagt oder Termin passt nicht",
+] as const;
+
+const effortFactors = [
+  "Instrumentart und Bauform",
+  "Gewicht und Größe, falls bekannt",
+  "Etage an Start und Ziel",
+  "Treppenhausbreite und Engstellen",
+  "Aufzug, Türen und Kurven",
+  "Trageweg und Haltemöglichkeit",
+  "Startort, Zielort und Entfernung",
+  "Terminfenster und Flexibilität",
+  "Fotos vom Instrument und Zugang",
+  "Kombination mit Umzug, Möbeltransport oder Beiladung",
 ] as const;
 
 const carePoints = [
@@ -90,16 +141,32 @@ const carePoints = [
 
 const processSteps = [
   {
-    title: "Eckdaten senden",
-    text: "Sie senden Instrument, Start, Ziel, Etagen, Zugang, Fotos und Terminwunsch.",
+    title: "Instrumentart angeben",
+    text: "Klavier, E-Piano, Flügel nach Prüfung oder schweres Einzelstück kurz benennen.",
   },
   {
-    title: "Machbarkeit prüfen",
-    text: "FLOXANT ordnet Zugang, Laufweg, Strecke und offene Risiken ein, bevor etwas zugesagt wird.",
+    title: "Start und Ziel beschreiben",
+    text: "Ort, Etage, Zielraum und grobe Strecke in oder rund um Regensburg nennen.",
   },
   {
-    title: "Nächsten Schritt abstimmen",
-    text: "Je nach Fall folgt Rückfrage, Angebotseinordnung, WhatsApp-Abstimmung oder Anfrageformular.",
+    title: "Etage, Aufzug und Treppe nennen",
+    text: "Treppenhaus, Aufzug, Türen, Engstellen und Laufweg machen die Anfrage belastbarer.",
+  },
+  {
+    title: "Fotos optional ergänzen",
+    text: "Bilder von Instrument, Eingang, Treppe, Aufzug und Zielraum können Rückfragen reduzieren.",
+  },
+  {
+    title: "Terminwunsch nennen",
+    text: "Datum, Zeitfenster, Flexibilität und Dringlichkeit helfen bei der realistischen Einordnung.",
+  },
+  {
+    title: "FLOXANT ordnet ein",
+    text: "Anfrage, Zugang, Transportart und nächste Schritte werden anhand der Eckdaten geprüft.",
+  },
+  {
+    title: "Rückmeldung erhalten",
+    text: "Wenn Angaben fehlen, meldet sich FLOXANT über die gewünschte Kontaktmöglichkeit.",
   },
 ] as const;
 
@@ -110,26 +177,76 @@ const localSignals = [
   "Weiter entfernte Start- oder Zielorte gehören in die Angebotsprüfung, wenn Strecke, Rückfahrt oder Kombination den Transport realistisch machen",
 ] as const;
 
+const noPromiseItems = [
+  "keine Preisgarantie",
+  "keine Soforttermin-Garantie",
+  "keine garantierte Verfügbarkeit",
+  "keine Schädenfreiheit-Garantie",
+  "keine erfundene Spezialausrüstung",
+  "keine automatische Buchung durch eine Anfrage",
+] as const;
+
+const comparisonCards = [
+  {
+    title: "Klaviertransport",
+    text: "Ein einzelnes empfindliches oder schweres Instrument. Treppe, Zugang, Gewicht, Schutzbedarf, Laufweg und Fotos sind besonders wichtig.",
+    href: leadHref,
+    label: "Klaviertransport anfragen",
+  },
+  {
+    title: "Möbeltransport / Kleintransport",
+    text: "Einzelne Möbel oder wenige Stücke. Weniger umfangreich als ein kompletter Umzug, aber Zugang, Termin und Trageweg bleiben entscheidend.",
+    href: furnitureTransportHref,
+    label: "Möbeltransport prüfen",
+  },
+  {
+    title: "Umzug Regensburg",
+    text: "Kompletter Wohnungswechsel mit Kartons, Möbeln, Montage, Start, Ziel und Termin. Klaviertransport kann ein Sonderpunkt im Umzug sein.",
+    href: "/regensburg/umzug",
+    label: "Umzug Regensburg ansehen",
+  },
+] as const;
+
 const faqItems = [
   {
     q: "Was braucht FLOXANT für einen Klaviertransport in Regensburg?",
-    a: "Hilfreich sind Instrumenttyp, Start- und Zieladresse, Etagen, Aufzug, Fotos von Instrument und Zugängen, Laufweg, Haltemöglichkeit und Terminwunsch.",
+    a: "Hilfreich sind Instrumentart, Start, Ziel, Etagen, Aufzug, Treppenhaus, Laufweg, Haltemöglichkeit, Terminwunsch und optional Fotos von Instrument und Zugängen.",
   },
   {
     q: "Kann ich zuerst Fotos per WhatsApp senden?",
     a: "Ja. Fotos von Klavier, Eingang, Treppenhaus, Türrahmen, Aufzug und Zielraum helfen, den Fall schneller einzuordnen.",
   },
   {
-    q: "Gibt es sofort einen festen Preis?",
-    a: "Nicht seriös ohne Eckdaten. Der Aufwand hängt stark von Instrument, Gewicht, Etage, Treppenhaus, Laufweg, Strecke und Termin ab.",
+    q: "Was ist bei Treppen wichtig?",
+    a: "Wichtig sind Etage, Treppenhausbreite, Kurven, Podeste, Geländer, Türen, Bodenbeläge und der Weg vom Haltepunkt bis zum Instrument. Fotos helfen besonders.",
+  },
+  {
+    q: "Kann ein E-Piano transportiert werden?",
+    a: "Ein E-Piano oder schweres Einzelstück kann angefragt werden. Entscheidend sind Gewicht, Abmessungen, Verpackung, Zugang, Etage und Zielort.",
   },
   {
     q: "Transportiert FLOXANT auch Flügel?",
-    a: "Flügel werden besonders vorsichtig geprüft. Je nach Zugang, Gewicht, Strecke und Situation kann eine Rückfrage oder Spezialabstimmung nötig sein.",
+    a: "Flügel werden nur nach konkreter Prüfung eingeordnet. Je nach Gewicht, Zugang, Strecke und Situation kann eine Rückfrage oder externe Spezialabstimmung nötig sein.",
   },
   {
     q: "Ist Klaviertransport mit Umzug kombinierbar?",
     a: "Ja, wenn Umfang, Termin und Zugang zusammenpassen. Dafür sind Fotos und eine klare Beschreibung des Gesamtumzugs wichtig.",
+  },
+  {
+    q: "Kann ich ein Klaviertransport-Angebot prüfen lassen?",
+    a: "Ja. Senden Sie vorhandenes Angebot, Instrumentart, Start, Ziel, Etage, Zugang, Fotos und Termin. FLOXANT ordnet offene Punkte ein, ohne Preis- oder Ersparnisgarantie.",
+  },
+  {
+    q: "Wann kann Rückfahrt oder Beiladung sinnvoll sein?",
+    a: "Wenn Termin und Strecke flexibel sind und Transportgut, Zugang und Umfang zur Route passen könnten. Das wird als Option geprüft, nicht garantiert.",
+  },
+  {
+    q: "Was passiert nach dem Absenden?",
+    a: "Die Anfrage ist noch keine Buchung. FLOXANT prüft die Angaben, fragt bei Bedarf nach und meldet sich über den gewählten Kontaktweg.",
+  },
+  {
+    q: "Can I ask in English?",
+    a: "Yes. International customers can describe piano transport in Regensburg in simple English with instrument type, start, destination, floor, stairs or elevator, access, preferred date and optional photos.",
   },
 ] as const;
 
@@ -142,7 +259,9 @@ export const metadata: Metadata = generatePageSEO({
     "klaviertransport regensburg",
     "klavier transportieren regensburg",
     "pianotransport regensburg",
+    "piano transport regensburg",
     "klaviertransport mit treppe regensburg",
+    "klaviertransport angebot prüfen",
   ],
 });
 
@@ -162,6 +281,7 @@ function JsonLd() {
         ],
         potentialActions: [
           { name: "Klaviertransport anfragen", target: leadHref, type: "ContactAction" },
+          { name: "Klaviertransport-Angebot prüfen lassen", target: offerCheckHref, type: "ContactAction" },
           { name: "Fotos per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
         ],
       }),
@@ -170,7 +290,7 @@ function JsonLd() {
         description,
         path,
         serviceType: "Klaviertransport und Pianotransport",
-        areaServed: ["Regensburg", "Stadtamhof", "Kumpfmühl", "Prüfening", "Lappersdorf", "Neutraubling"],
+        areaServed: ["Regensburg", "Stadtamhof", "Kumpfmühl", "Prüfening", "Lappersdorf", "Neutraubling", "Umgebung Regensburg auf Anfrage"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -266,13 +386,14 @@ export default function KlaviertransportRegensburgPage() {
               </div>
 
               <h1 className="mt-6 max-w-[22rem] break-words text-3xl font-black leading-[1.05] tracking-normal text-slate-950 sm:max-w-4xl sm:text-5xl xl:text-6xl">
-                Klaviertransport in Regensburg ruhig vorbereiten statt riskant improvisieren.
+                Klaviertransport in Regensburg anfragen - Etage, Zugang und Termin klären.
               </h1>
 
               <p className="mt-6 max-w-[22rem] break-words text-base font-semibold leading-8 text-slate-700 sm:max-w-3xl sm:text-lg">
-                Ein Klavier ist kein normales Möbelstück. FLOXANT klärt zuerst Instrument, Etage,
-                Treppenhaus, Aufzug, Laufweg, Haltemöglichkeit und Termin. So wird aus einer
-                unsicheren Anfrage ein sauber einschätzbarer Transportfall.
+                Ein Klaviertransport in Regensburg braucht mehr Vorbereitung als ein normaler
+                Möbeltransport. Entscheidend sind Instrumentart, Etage, Treppenhaus, Aufzug,
+                Trageweg, Zugang und Terminwunsch. FLOXANT prüft die Anfrage anhand der genannten Eckdaten
+                und hilft, den passenden nächsten Schritt zu klären.
               </p>
 
               <div className="mt-7 flex max-w-[22rem] flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-start">
@@ -305,10 +426,17 @@ export default function KlaviertransportRegensburgPage() {
                   Fotos per WhatsApp senden
                 </a>
                 <Link
-                  href="/angebot-vergleichen-regensburg"
+                  href={offerCheckHref}
+                  data-event="seo_cta_click"
+                  data-service="klaviertransport"
+                  data-city="regensburg"
+                  data-page-intent="klaviertransport-angebot-pruefen"
+                  data-priority="p0"
+                  data-cta-label="Klaviertransport-Angebot prüfen lassen"
+                  data-destination={offerCheckHref}
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 text-sm font-black text-slate-900 transition hover:border-cyan-300 hover:text-cyan-800 sm:w-auto"
                 >
-                  Transportangebot vergleichen
+                  Klaviertransport-Angebot prüfen
                 </Link>
               </div>
 
@@ -328,8 +456,37 @@ export default function KlaviertransportRegensburgPage() {
 
             <PianoTransportVisual />
           </div>
+
+          <div className="mt-8 rounded-lg border border-cyan-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
+              <FileSearch className="h-5 w-5" aria-hidden="true" />
+              Kurz erklärt
+            </div>
+            <p className="mt-3 text-base font-semibold leading-8 text-slate-700">
+              Für einen Klaviertransport in Regensburg helfen Angaben zu Instrumentart, Etage,
+              Aufzug, Treppenhaus, Trageweg, Zugang und Termin. Fotos vom Instrument und vom Weg
+              können die Einschätzung erleichtern. Eine Anfrage ist noch keine Buchung und keine
+              Preisgarantie.
+            </p>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {quickAnswerItems.map((item) => (
+                <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700" aria-hidden="true" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
+      <RequestChecklistBlock
+        serviceKey="klaviertransport"
+        ctaHref={leadHref}
+        ctaLabel="Klavierdaten vorbereiten"
+        compact
+      />
+      <PhotoGuidanceBlock serviceKey="klaviertransport" compact />
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">
@@ -357,6 +514,21 @@ export default function KlaviertransportRegensburgPage() {
             ))}
           </div>
         </div>
+
+        <div className="mx-auto mt-10 max-w-7xl rounded-lg border border-slate-200 bg-slate-50 p-5">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
+            <PackageOpen className="h-5 w-5" aria-hidden="true" />
+            Typische Kundensituationen
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {customerSituations.map((item) => (
+              <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 text-sm font-bold leading-6 text-slate-700">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700" aria-hidden="true" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="bg-[#f6f8fb] px-5 py-14 sm:px-8 lg:px-10">
@@ -377,6 +549,19 @@ export default function KlaviertransportRegensburgPage() {
                 </div>
               ))}
             </div>
+            <div className="mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+              <div className="flex items-center gap-2 text-sm font-black uppercase tracking-normal text-amber-800">
+                <XCircle className="h-5 w-5" aria-hidden="true" />
+                Was nicht versprochen wird
+              </div>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                {noPromiseItems.map((item) => (
+                  <p key={item} className="rounded-lg bg-white px-3 py-2 text-sm font-bold text-slate-700">
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
           </article>
 
           <article className="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
@@ -396,6 +581,23 @@ export default function KlaviertransportRegensburgPage() {
             </div>
           </article>
         </div>
+
+        <div className="mx-auto mt-8 max-w-7xl rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
+            <Ruler className="h-5 w-5" aria-hidden="true" />
+            Wovon der Aufwand abhängt
+          </div>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+            Diese Punkte entscheiden, ob normaler Möbeltransport reicht.
+          </h2>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {effortFactors.map((item) => (
+              <div key={item} className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
@@ -403,10 +605,10 @@ export default function KlaviertransportRegensburgPage() {
           <div className="max-w-3xl">
             <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Ablauf</p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Drei Schritte, damit aus Unsicherheit ein klarer Plan wird.
+              Sieben Schritte, damit aus Unsicherheit ein klarer Transportfall wird.
             </h2>
           </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {processSteps.map((step, index) => (
               <article key={step.title} className="rounded-lg border border-slate-200 bg-slate-50 p-6">
                 <div className="text-sm font-black text-cyan-800">0{index + 1}</div>
@@ -418,7 +620,75 @@ export default function KlaviertransportRegensburgPage() {
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-[#f6f8fb] px-5 py-14 sm:px-8 lg:px-10">
+      <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Welche Anfrage passt?</p>
+            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
+              Klaviertransport, Möbeltransport oder kompletter Umzug?
+            </h2>
+            <p className="mt-5 text-base font-semibold leading-8 text-slate-600">
+              Nicht jeder Transport ist ein Umzug. FLOXANT trennt Spezialstück, Möbeltransport,
+              Kleintransport, Beiladung und vollständigen Wohnungswechsel, damit die Anfrage nicht
+              im falschen Ablauf landet.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {comparisonCards.map((item) => (
+              <article key={item.title} className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black tracking-normal text-slate-950">{item.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.text}</p>
+                <Link
+                  href={item.href}
+                  className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 text-sm font-black text-slate-900 transition hover:border-cyan-300 hover:text-cyan-800"
+                >
+                  {item.label}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-6">
+            <div className="flex items-center gap-2 text-sm font-black uppercase tracking-normal text-emerald-800">
+              <Route className="h-5 w-5" aria-hidden="true" />
+              Rückfahrt / Beiladung
+            </div>
+            <h3 className="mt-3 text-2xl font-black tracking-normal text-slate-950">
+              Wenn Strecke oder Termin flexibel sind, kann eine Prüfung sinnvoll sein.
+            </h3>
+            <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">
+              Bei einzelnen Möbeln, E-Piano oder schweren Einzelstücken kann Rückfahrt oder
+              Beiladung eine Option sein, wenn Route, Umfang, Zugang und Zeitfenster passen. Es gibt
+              keine Preisersparnis-, Verfügbarkeits- oder Soforttermin-Garantie.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href="/leerfahrt-rueckfahrt"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-5 text-sm font-black text-white transition hover:bg-emerald-800"
+              >
+                Leerfahrt/Rückfahrt ansehen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href={backhaulCheckHref}
+                data-event="seo_cta_click"
+                data-service="moebeltransport"
+                data-city="regensburg"
+                data-page-intent="rueckfahrt-beiladung-regensburg"
+                data-priority="p1"
+                data-cta-label="Rückfahrt oder Beiladung prüfen"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-emerald-300 bg-white px-5 text-sm font-black text-emerald-900 transition hover:bg-emerald-100"
+              >
+                Rückfahrt oder Beiladung prüfen
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f6f8fb] px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-cyan-800">Kosten und Angebot</p>
@@ -447,13 +717,40 @@ export default function KlaviertransportRegensburgPage() {
             ))}
           </div>
         </div>
+        <div className="mx-auto mt-8 max-w-7xl rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <h3 className="text-2xl font-black tracking-normal text-slate-950">
+                Vorhandenes Klaviertransport-Angebot unklar?
+              </h3>
+              <p className="mt-2 text-sm font-semibold leading-7 text-slate-600">
+                FLOXANT kann Angaben wie Instrumentart, Start, Ziel, Etage, Zugang, Termin,
+                Leistungsumfang und offene Positionen einordnen. Das ist keine Rechtsberatung,
+                keine Preisgarantie und keine Ersparnisgarantie.
+              </p>
+            </div>
+            <Link
+              href={offerCheckHref}
+              data-event="seo_cta_click"
+              data-service="klaviertransport"
+              data-city="regensburg"
+              data-page-intent="klaviertransport-angebot-pruefen"
+              data-priority="p0"
+              data-cta-label="Klaviertransport-Angebot prüfen lassen"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white transition hover:bg-cyan-800"
+            >
+              Angebot prüfen lassen
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
       </section>
 
       <TrustProofPanel
         allowedPage={path}
         serviceKey="umzug"
         locationKey="regensburg"
-        title="Trust Proof für Klaviertransport Regensburg"
+        title="Was Sie beim Klaviertransport in Regensburg erwarten können"
         intro="Diese Seite setzt auf prüfbare Transport-Eckdaten statt schneller Blindzusagen: Instrument, Zugang, Fotos, Laufweg, Haltepunkt und Termin bleiben sichtbar."
       />
 
@@ -464,6 +761,23 @@ export default function KlaviertransportRegensburgPage() {
       />
 
       <LocalProofPanel location="regensburg" />
+
+      <section className="bg-white px-5 py-12 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <div className="flex items-center gap-2 text-sm font-black uppercase tracking-normal text-cyan-800">
+            <Languages className="h-5 w-5" aria-hidden="true" />
+            English request possible
+          </div>
+          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
+            Piano transport in Regensburg can be described in simple English.
+          </h2>
+          <p className="mt-4 text-base font-semibold leading-8 text-slate-600">
+            International customers can also describe a piano transport request in simple English.
+            For piano transport in Regensburg, FLOXANT needs instrument type, start, destination,
+            floor, access, stairs or elevator, preferred date and optional photos.
+          </p>
+        </div>
+      </section>
 
       <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">

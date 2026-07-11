@@ -177,7 +177,7 @@ export default function BueroumzugForm({
        <OptionCard
         checked={bueroumzugData.packingService}
         title="Einpackservice (Akten / Material)"
-        description="Wir verpacken Archiv, Material und sensible Bereiche strukturiert."
+        description="Wir verpacken Archiv, Material und sensible Bereiche nach Bereichen und Anforderungen."
         onChange={(checked) => updateBueroumzugData({ packingService: checked })}
        />
        <OptionCard

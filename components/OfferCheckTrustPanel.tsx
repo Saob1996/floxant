@@ -35,7 +35,7 @@ export function OfferCheckTrustPanel({ className = "" }: { className?: string })
           ))}
           <div className="md:col-span-2 flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm font-bold leading-7 text-amber-950">
             <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-            <span>Kein Claim auf Rechtsberatung, niedrigsten Preis, Soforteinsatz oder garantierte Ersparnis.</span>
+            <span>Die Prüfung ist keine Rechtsberatung und sagt weder einen niedrigsten Preis noch einen Soforteinsatz oder eine Ersparnis zu.</span>
           </div>
         </div>
       </div>

@@ -47,8 +47,8 @@ export default async function Article() {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Durchschnittliche Umzugskosten in Regensburg</h2>
-            <p className="text-muted-foreground leading-relaxed">Ein lokaler Umzug einer 2-Zimmer-Wohnung kostet in Regensburg durchschnittlich 600 bis 1.200 Euro. Für eine 4-Zimmer-Wohnung müssen Sie mit 1.200 bis 2.500 Euro rechnen. Diese Preise beinhalten Transport, Be- und Entladung durch ein erfahrenes Team.</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">Wovon die Umzugskosten in Regensburg abhängen</h2>
+            <p className="text-muted-foreground leading-relaxed">Wohnungsgröße, Umzugsgut, Etagen, Laufwege, Entfernung und gewünschte Zusatzleistungen bestimmen den Aufwand. Deshalb erhalten Sie einen belastbaren Preis erst nach Prüfung Ihrer Angaben.</p>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Faktoren, die den Preis beeinflussen</h2>
@@ -62,7 +62,7 @@ export default async function Article() {
             <h2 className="text-2xl font-bold text-foreground mb-6">{dict.common.faq_title}</h2>
             <div className="space-y-4">
               {[
-              { q: "Was kostet ein Umzug in Regensburg?", a: "Zwischen 400 und 2.500 Euro je nach Wohnungsgröße und Service." },
+              { q: "Wie wird der Preis für einen Umzug in Regensburg ermittelt?", a: "Maßgeblich sind unter anderem Umfang, Etagen, Laufwege, Entfernung und gewünschte Zusatzleistungen." },
               { q: "Gibt es verbindliche Angebote?", a: "Ein Auftrag wird erst verbindlich, wenn Volumen, Zugang, Etagen, Termin, Strecke und Zusatzleistungen geprüft und bestätigt wurden." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">

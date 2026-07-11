@@ -15,8 +15,8 @@ export function LocationFaq({ location, includeJsonLd = false, className }: Loca
       title={isDuesseldorf ? "FAQ zu Duesseldorf" : "FAQ zu Regensburg"}
       intro={
         isDuesseldorf
-          ? "Lokale Antworten fuer Reinigung, B2B und Angebotspruefung in Duesseldorf."
-          : "Lokale Antworten fuer Umzug, Reinigung, Entruempelung und Angebotspruefung in Regensburg."
+          ? "Lokale Antworten fuer Reinigung, B2B und Angebotsprüfung in Regensburg."
+          : "Lokale Antworten fuer Umzug, Reinigung, Entruempelung und Angebotsprüfung in Regensburg."
       }
       items={isDuesseldorf ? duesseldorfFaqItems : regensburgFaqItems}
       includeJsonLd={includeJsonLd}

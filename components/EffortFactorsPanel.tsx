@@ -18,7 +18,7 @@ export function EffortFactorsPanel({ group, title, intro, limit }: EffortFactors
     <section className="px-4 py-12 sm:px-6" data-component="EffortFactorsPanel" data-effort-group={group}>
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
-          <div className="text-xs font-black uppercase tracking-normal text-blue-700">Aufwandstreiber</div>
+          <div className="text-xs font-black uppercase tracking-normal text-blue-700">Wovon der Aufwand abhängt</div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">{germanText(title || definition.title, title || definition.title)}</h2>
           <p className="mt-3 text-base leading-8 text-slate-700">{germanText(intro || definition.intro, intro || definition.intro)}</p>
         </div>

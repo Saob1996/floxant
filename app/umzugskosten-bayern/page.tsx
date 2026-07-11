@@ -73,49 +73,49 @@ export default async function UmzugskostenBayern() {
           <div className="prose prose-lg max-w-none text-muted-foreground text-start">
             <h2 className="text-3xl font-bold text-foreground mb-6">Was kostet ein Umzug in Bayern?</h2>
             <p>Die Kosten eines Umzugs hängen von vielen Faktoren ab: Wohnungsgröße, Etage, Entfernung, Zeitpunkt und gewünschte Zusatzleistungen. FLOXANT zeigt deshalb zuerst einen unverbindlichen Orientierungsrahmen und erstellt das konkrete Angebot nach Prüfung der Details.</p>
-            <p>Als Orientierung haben wir typische Preisspannen für Umzüge in Bayern zusammengestellt:</p>
+            <p>Für eine brauchbare Einschätzung sollten vor allem die folgenden Angaben vollständig sein:</p>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-8">Orientierungspreise (lokaler Umzug)</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-8">Angaben für eine belastbare Einschätzung</h2>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="text-start py-4 px-4 font-semibold">Wohnungsgröße</th>
-                    <th className="text-start py-4 px-4 font-semibold">Preisbereich*</th>
-                    <th className="text-start py-4 px-4 font-semibold">Leistungen</th>
+                    <th className="text-start py-4 px-4 font-semibold">Angabe</th>
+                    <th className="text-start py-4 px-4 font-semibold">Warum sie wichtig ist</th>
+                    <th className="text-start py-4 px-4 font-semibold">Hilfreiche Details</th>
                   </tr>
                 </thead>
                 <tbody className="text-muted-foreground">
                   <tr className="border-b border-border/30">
-                    <td className="py-4 px-4">1-Zimmer / Studio</td>
-                    <td className="py-4 px-4 font-medium">ab 400 €</td>
-                    <td className="py-4 px-4">Transport, 2 Personen, Versicherung</td>
+                    <td className="py-4 px-4">Umfang</td>
+                    <td className="py-4 px-4 font-medium">Bestimmt Fahrzeug-, Trage- und Zeitbedarf</td>
+                    <td className="py-4 px-4">Zimmer, Möbel, Kartons und Fotos</td>
                   </tr>
                   <tr className="border-b border-border/30">
-                    <td className="py-4 px-4">2-Zimmer-Wohnung</td>
-                    <td className="py-4 px-4 font-medium">ab 700 €</td>
-                    <td className="py-4 px-4">Transport, 2-3 Personen, Versicherung</td>
+                    <td className="py-4 px-4">Zugänge</td>
+                    <td className="py-4 px-4 font-medium">Beeinflussen Laufwege und Trageaufwand</td>
+                    <td className="py-4 px-4">Etagen, Aufzug, Treppen und Parksituation</td>
                   </tr>
                   <tr className="border-b border-border/30">
-                    <td className="py-4 px-4">3-Zimmer-Wohnung</td>
-                    <td className="py-4 px-4 font-medium">ab 1.100 €</td>
-                    <td className="py-4 px-4">Transport, 3 Personen, Schutzverpackung</td>
+                    <td className="py-4 px-4">Strecke</td>
+                    <td className="py-4 px-4 font-medium">Beeinflusst Fahr- und Einsatzplanung</td>
+                    <td className="py-4 px-4">Start, Ziel und mögliche Zwischenstopps</td>
                   </tr>
                   <tr className="border-b border-border/30">
-                    <td className="py-4 px-4">4+ Zimmer / Haus</td>
-                    <td className="py-4 px-4 font-medium">ab 1.800 €</td>
-                    <td className="py-4 px-4">Full-Service Transport, 3-4 Personen</td>
+                    <td className="py-4 px-4">Zusatzleistungen</td>
+                    <td className="py-4 px-4 font-medium">Verändern den Leistungsumfang</td>
+                    <td className="py-4 px-4">Demontage, Verpackung, Räumung oder Reinigung</td>
                   </tr>
                   <tr>
-                    <td className="py-4 px-4">Fernumzug (ab Bayern)</td>
-                    <td className="py-4 px-4 font-medium">ab 1.500 €</td>
-                    <td className="py-4 px-4">Langstrecke, individuelle Kalkulation</td>
+                    <td className="py-4 px-4">Termin</td>
+                    <td className="py-4 px-4 font-medium">Muss zu Umfang und Kapazität passen</td>
+                    <td className="py-4 px-4">Wunschtermin und mögliche Ausweichzeiten</td>
                   </tr>
                 </tbody>
               </table>
               <p className="text-xs text-muted-foreground mt-4 italic">
-                * Unverbindliche Richtwerte. Der tatsächliche Preis wird nach kostenloser Besichtigung individuell kalkuliert.
+                Einen konkreten Preis nennt FLOXANT erst nach Prüfung der für Ihren Umzug relevanten Angaben.
               </p>
             </div>
           </div>

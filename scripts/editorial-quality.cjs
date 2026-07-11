@@ -14,11 +14,11 @@ const P0_ROUTES = [
   "/anbieter-vergleichen",
   "/duesseldorf",
   "/regensburg",
-  "/duesseldorf/reinigung",
-  "/duesseldorf/bueroreinigung",
-  "/duesseldorf/gewerbereinigung",
-  "/duesseldorf/praxisreinigung",
-  "/duesseldorf/fensterreinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
   "/duesseldorf/umzug",
   "/duesseldorf/entruempelung",
   "/duesseldorf/haushaltsaufloesung",
@@ -46,8 +46,8 @@ const P1_ROUTES = [
   "/regensburg/wohnungsaufloesung",
   "/regensburg/bueroreinigung",
   "/regensburg/umzugsunternehmen",
-  "/duesseldorf/reinigungsfirma",
-  "/duesseldorf/gewerbeflaechen-reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
 ];
 
 const EDITED_THIS_ROUND = new Set([
@@ -56,11 +56,11 @@ const EDITED_THIS_ROUND = new Set([
   "/anbieter-vergleichen",
   "/angebot-guenstiger-pruefen",
   "/angebotscheck",
-  "/duesseldorf/reinigung",
-  "/duesseldorf/bueroreinigung",
-  "/duesseldorf/gewerbereinigung",
-  "/duesseldorf/praxisreinigung",
-  "/duesseldorf/fensterreinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
+  "/regensburg/reinigung",
   "/duesseldorf/umzug",
   "/duesseldorf/entruempelung",
   "/duesseldorf/haushaltsaufloesung",
@@ -224,7 +224,7 @@ function inferType(route) {
   if (["/impressum", "/datenschutz", "/agb"].includes(route)) return "Recht/Organisation";
   if (route.startsWith("/blog")) return "Blog/Ratgeber";
   if (route === "/" || route === "/leistungen" || route === "/kontakt") return "Core";
-  if (route.includes("angebot") || route.includes("anbieter") || route.includes("angebotscheck")) return "Angebotspruefung";
+  if (route.includes("angebot") || route.includes("anbieter") || route.includes("angebotscheck")) return "Angebotsprüfung";
   if (route === "/duesseldorf" || route === "/regensburg" || route.startsWith("/region-")) return "Standortseite";
   if (route.includes("signature") || route.includes("diskret") || route.includes("plan-b") || route.includes("spezial")) return "Signature/Spezial";
   if (inferCity(route) !== "-") return "Lokale Service-Seite";
@@ -245,7 +245,7 @@ function targetCustomer(route) {
   const type = inferType(route);
   if (type === "Blog/Ratgeber") return "Informationssuchende vor Anfrage";
   if (type === "Recht/Organisation") return "Besucher mit Pflichtinformationen";
-  if (type === "Angebotspruefung") return "Kunden mit vorhandenem Angebot oder Unsicherheit";
+  if (type === "Angebotsprüfung") return "Kunden mit vorhandenem Angebot oder Unsicherheit";
   if (route.includes("buer") || route.includes("gewerbe") || route.includes("praxis")) return "B2B, Praxis, Buero, Verwaltung";
   if (route.includes("diskret") || route.includes("nachlass") || route.includes("senior")) return "Kunden mit sensibler Situation";
   return "Privat- oder Geschaeftskunden mit konkretem Bedarf";
@@ -256,7 +256,7 @@ function searchIntent(route) {
   const city = inferCity(route);
   if (inferType(route) === "Blog/Ratgeber") return "Frage klaeren und passenden naechsten Schritt finden";
   if (inferType(route) === "Recht/Organisation") return "Pflichtangaben nachlesen";
-  if (inferType(route) === "Angebotspruefung") return "Angebot, Umfang oder Anbieter sachlich einordnen";
+  if (inferType(route) === "Angebotsprüfung") return "Angebot, Umfang oder Anbieter sachlich einordnen";
   if (city !== "-") return `${service} in ${city} mit Umfang, Termin und Zugang anfragen`;
   return `${service} verstehen und Anfrage vorbereiten`;
 }
@@ -510,7 +510,7 @@ function buildPriorityQueue(items, generatedAt) {
 }
 
 function ctaFor(item) {
-  if (item.pageType === "Angebotspruefung") return "Angebot pruefen lassen";
+  if (item.pageType === "Angebotsprüfung") return "Angebot pruefen lassen";
   if (item.service.includes("Bueroreinigung")) return "Bueroreinigung anfragen";
   if (item.service.includes("Gewerbereinigung")) return "Objekt und Raumliste senden";
   if (item.service.includes("Umzug")) return "Umzug vorbereiten";
@@ -601,7 +601,7 @@ Kunden sagen: sensibler Fall, bevorzugter Kontaktweg, diskrete Anfrage, zurueckh
 
 ## Duesseldorf
 
-Kunden sagen: Reinigung in Duesseldorf anfragen, Bueroreinigung Duesseldorf, Praxisreinigung Duesseldorf, Fensterreinigung Duesseldorf, Umzug Duesseldorf, Entruempelung Duesseldorf.
+Kunden sagen: Reinigung in Regensburg und Umgebung anfragen, Bueroreinigung Regensburg, Praxisreinigung Regensburg, Fensterreinigung Regensburg, Umzug Regensburg, Entruempelung Regensburg.
 
 ## Regensburg
 
@@ -645,7 +645,7 @@ Eine gute Seite beantwortet eine echte Kundenfrage, erklaert Aufwandstreiber, ha
 
 Konkrete H1, kurze Intro, Kundensituationen, Ablauf, Aufwandstreiber, FAQ, CTA, interne Links, klare Grenzen und lokale Besonderheit, wenn die Seite lokal ist.
 
-## Angebotspruefung
+## Angebotsprüfung
 
 Als hilfreiche Option einbauen: Umfang, offene Punkte, Fotos, Termin und Preislogik einordnen. Keine Ersparnisgarantie, keine Rechtsberatung, kein Preisversprechen.
 
@@ -685,7 +685,7 @@ function buildMetadataReport(items, generatedAt) {
 
 function suggestedTitle(item) {
   if (item.city !== "-" && item.service !== "Allgemein") return `${item.service} ${item.city} mit Umfang und Termin klaeren`;
-  if (item.pageType === "Angebotspruefung") return `${item.service}: Umfang, Termin und offene Punkte klaeren`;
+  if (item.pageType === "Angebotsprüfung") return `${item.service}: Umfang, Termin und offene Punkte klaeren`;
   return `${item.primaryKeyword} klar und ohne leere Versprechen`;
 }
 
@@ -746,7 +746,7 @@ function buildInternalLinkReport(items, generatedAt) {
       item.url,
       linksFor(item).join("; "),
       ctaFor(item),
-      item.wins.includes("offercheck_link_present") ? "Angebotspruefung verlinkt" : "Angebotspruefung passend einbauen",
+      item.wins.includes("offercheck_link_present") ? "Angebotsprüfung verlinkt" : "Angebotsprüfung passend einbauen",
       EDITED_THIS_ROUND.has(item.url) ? "Ja" : "Nein",
     ]);
   return [
@@ -754,7 +754,7 @@ function buildInternalLinkReport(items, generatedAt) {
     "",
     `Stand: ${generatedAt}`,
     "",
-    table(["URL", "empfohlene interne Links", "CTA-Linktext", "Angebotspruefung", "in dieser Runde geprueft"], rows),
+    table(["URL", "empfohlene interne Links", "CTA-Linktext", "Angebotsprüfung", "in dieser Runde geprueft"], rows),
     "",
   ].join("\n");
 }
@@ -835,7 +835,7 @@ function buildScoreboard(items, generatedAt) {
     "- Echte GSC CSV-Daten importieren und Scoreboard mit Klick/Impression abgleichen.",
     "- P0/P1-Seiten mit Score C oder schlechter einzeln bearbeiten.",
     "- P3-Orts-/Longtail-Seiten nur konsolidieren oder verbessern, wenn echte Nachfrage/Substanz belegt ist.",
-    "- Angebotspruefung als hilfreiche Option weiter sichtbar halten, ohne Preis- oder Rechtsversprechen.",
+    "- Angebotsprüfung als hilfreiche Option weiter sichtbar halten, ohne Preis- oder Rechtsversprechen.",
     "",
   ].join("\n");
 }

@@ -86,13 +86,13 @@ export default async function EntruempelungLandshutPage({ params }: PageProps) {
             >
                 <GscOpportunitySection
                     eyebrow="Entrümpelung Landshut"
-                    title="Entrümpelung Landshut mit Menge, Zugang und Zielzustand klären."
-                    intro="Für Entrümpelung in Landshut sind Fotos, Menge, Material, Etage, Laufweg, Freigabe und gewünschter Endzustand wichtiger als ein pauschaler Schnellpreis. FLOXANT prüft, ob Räumung, Entsorgung und Reinigung danach zusammen oder getrennt sinnvoll sind."
+                    title="Entrümpelung Landshut mit Reinigung danach klären."
+                    intro="Für Reinigung nach Entrümpelung in Landshut sind Fotos, Menge, Material, Etage, Laufweg, Freigabe und gewünschter Endzustand wichtiger als ein pauschaler Schnellpreis. FLOXANT prüft, ob Räumung, Entsorgung und Reinigung danach zusammen oder getrennt sinnvoll sind."
                     proofTitle="Wichtig vor dem Angebot"
                     proofItems={[
                         "Fotos von Räumen, Keller, Garage, Möbeln, Zugang und Laufwegen beschleunigen die Einschätzung.",
                         "Menge, Material, Gewicht, Etage, Aufzug und Parkmöglichkeit verändern Aufwand und Ablauf deutlich.",
-                        "Reinigung nach Räumung, Übergabe oder Restmengen werden getrennt geprüft und nicht pauschal versprochen.",
+                        "Reinigung nach Räumung, Übergabe, Staub, Geruch oder Restmengen wird getrennt geprüft und nicht pauschal versprochen.",
                     ]}
                     cards={[
                         {
@@ -104,7 +104,7 @@ export default async function EntruempelungLandshutPage({ params }: PageProps) {
                         {
                             title: "Reinigung danach",
                             text: "Wenn danach übergeben, vermietet oder verkauft werden soll, hilft ein sauberer Reinigungsplan nach der Räumung.",
-                            href: "/reinigung-landshut",
+                            href: "/regensburg/reinigung",
                             cta: "Reinigung prüfen",
                         },
                         {
@@ -114,11 +114,11 @@ export default async function EntruempelungLandshutPage({ params }: PageProps) {
                             cta: "Angebot prüfen",
                         },
                     ]}
-                    checklistTitle="Diese Angaben helfen bei Entrümpelung in Landshut"
+                    checklistTitle="Diese Angaben helfen bei Entrümpelung und Reinigung in Landshut"
                     checklist={[
                         "Räume, Menge, Fotos, Materialarten, schwere Gegenstände und gewünschter Endzustand.",
                         "Etage, Aufzug, Laufweg, Parkmöglichkeit, Schlüsselweg und Ansprechpartner.",
-                        "Ob danach Reinigung, Übergabe, Verkaufsvorbereitung oder weitere Entsorgung nötig ist.",
+                        "Ob danach besenreine Übergabe, gründliche Reinigung, Geruchsneutralisation oder Verkaufsvorbereitung nötig ist.",
                         "Vorhandenes Angebot, Budget oder Deadline optional mitsenden.",
                     ]}
                     combinationsTitle="Sinnvolle Kombinationen"
@@ -126,7 +126,7 @@ export default async function EntruempelungLandshutPage({ params }: PageProps) {
                         {
                             title: "Entrümpelung + Reinigung",
                             text: "Wenn nach der Räumung Küche, Bad, Böden oder Übergabe vorbereitet werden müssen.",
-                            href: "/reinigung-landshut",
+                            href: "/regensburg/reinigung",
                         },
                         {
                             title: "Entrümpelung + Wohnungsauflösung",

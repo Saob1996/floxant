@@ -13,11 +13,7 @@ function getRequestHref(pathname: string | null) {
   if (pathname?.includes("/duesseldorf/umzug")) return "/buchung?region=duesseldorf&service=umzug#buchungssystem";
   if (pathname?.includes("/duesseldorf/entruempelung")) return "/buchung?region=duesseldorf&service=entruempelung#buchungssystem";
   if (pathname?.includes("/duesseldorf/haushaltsaufloesung")) return "/buchung?region=duesseldorf&service=haushaltsaufloesung#buchungssystem";
-  if (pathname?.includes("/duesseldorf/endreinigung")) return "/buchung?region=duesseldorf&service=endreinigung#buchungssystem";
-  if (pathname?.includes("/duesseldorf/reinigung")) return "/buchung?region=duesseldorf&service=reinigung#buchungssystem";
-  if (pathname?.includes("bueroreinigung")) return "#b2b-reinigung-form";
-  if (pathname?.includes("gewerbereinigung") || pathname?.includes("luxusreinigung")) return "#kontakt";
-  return "/buchung?region=duesseldorf#buchungssystem";
+          return "/buchung?region=duesseldorf#buchungssystem";
 }
 
 export function DuesseldorfStickyActions() {
@@ -76,7 +72,7 @@ export function DuesseldorfStickyActions() {
             </span>
           </a>
           <Link
-            href="/angebot-vergleichen-duesseldorf"
+            href="/angebot-vergleichen-regensburg"
             className="flox-mobile-action flox-mobile-action-offer"
             aria-label="Bestehendes Angebot prüfen lassen"
             data-event="hero_cta_click"
@@ -89,7 +85,7 @@ export function DuesseldorfStickyActions() {
             </span>
           </Link>
           <Link
-            href="/duesseldorf/reinigung#preisvorschlag"
+            href="/angebot-vergleichen-regensburg"
             className="flox-mobile-action flox-mobile-action-dark"
             aria-label="Budget oder Preisrahmen nennen"
             data-event="hero_cta_click"

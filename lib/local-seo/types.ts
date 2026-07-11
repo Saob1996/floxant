@@ -1,4 +1,4 @@
-export type LocalSeoRegionKey = "duesseldorf" | "regensburg";
+export type LocalSeoRegionKey = "regensburg";
 export type LocalSeoMaturityLevel = "M0" | "M1" | "M2" | "M3";
 export type LocalSeoIndexStatus = "index" | "noindex";
 export type LocalSeoLanguage = "de-DE" | "en";
@@ -101,8 +101,8 @@ export type LocalSeoCityRecord = {
 };
 
 export type LocalSeoDistrictRecord = LocalSeoCityRecord & {
-  citySlug: "duesseldorf" | "regensburg";
-  cityName: "Düsseldorf" | "Regensburg";
+  citySlug: "regensburg";
+  cityName: "Regensburg";
 };
 
 export type LocalSeoPageConfig = {

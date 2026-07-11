@@ -70,7 +70,7 @@ export function CookieBanner({ dic }: { dic?: any }) {
       {showTrigger && !isVisible && (
           <button
             onClick={() => setIsVisible(true)}
-            className="fixed bottom-5 start-5 z-[90] rounded-full border border-slate-200 bg-white/95 p-3 text-slate-900 shadow-[0_16px_34px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_42px_rgba(15,23,42,0.22)] group"
+            className="fixed bottom-24 start-5 z-[90] rounded-full border border-slate-200 bg-white/95 p-3 text-slate-900 shadow-[0_16px_34px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_42px_rgba(15,23,42,0.22)] group sm:bottom-5"
             title={dic?.cookie?.settings || "Cookie Einstellungen"}
             aria-label={dic?.cookie?.settings || "Cookie Einstellungen anpassen"}
           >

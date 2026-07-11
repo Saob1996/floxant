@@ -8,7 +8,7 @@ export function OfferCheckCommercialHero() {
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-normal text-blue-700">
             <FileSearch className="h-4 w-4" />
-            Angebot strukturiert prüfen
+            Angebot Punkt für Punkt prüfen
           </div>
           <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
             Aus einem unsicheren Angebot wird eine klare Prüffrage.

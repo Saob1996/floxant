@@ -11,7 +11,7 @@ type SearchIntentExpansionProps = {
   route?: string;
   city?: string;
   serviceName?: string;
-  market?: "regensburg" | "duesseldorf";
+  market?: "regensburg";
   relatedLinks?: readonly SearchIntentLink[];
   className?: string;
 };

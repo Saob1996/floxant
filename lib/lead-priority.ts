@@ -92,11 +92,24 @@ export function calculateLeadPriority(
   if (lead.leadKind === "b2b" && (lead.companyName || lead.company || lead.areaSize || lead.cleaningFrequency)) {
     add(16, "B2B/Gewerbe mit verwertbaren Angaben", "b2b_qualified");
   }
+  if (
+    lead.leadKind === "b2b" &&
+    (lead.areaSize || lead.cleaningFrequency) &&
+    (lead.serviceCanonical === "bueroreinigung" || lead.serviceCanonical === "gewerbereinigung" || lead.serviceCanonical === "praxisreinigung")
+  ) {
+    add(20, "P0-Signal: B2B-Reinigung mit Flaeche oder Turnus", "p0_b2b_cleaning_scope");
+  }
   if (lead.serviceCanonical === "klaviertransport" && (lead.cityOrZip || lead.deadline || lead.desiredDate)) {
     add(14, "Klaviertransport mit Ort oder Termin", "piano_transport");
   }
+  if (lead.serviceCanonical === "klaviertransport" && (lead.objectType || lead.scope || lead.cityOrZip) && (lead.deadline || lead.desiredDate || lead.message)) {
+    add(18, "P0-Signal: Klaviertransport mit Zugang oder Termin", "p0_piano_access_or_date");
+  }
   if (lead.serviceCanonical === "seniorenumzug" && (lead.deadline || lead.desiredDate || lead.message)) {
     add(12, "Seniorenumzug mit Frist oder Kontext", "senior_move");
+  }
+  if (lead.serviceCanonical === "seniorenumzug" && (lead.scope || lead.serviceScope || lead.deadline || lead.desiredDate)) {
+    add(16, "P0-Signal: Seniorenumzug mit Zusatzbedarf oder Frist", "p0_senior_extra_need");
   }
   if (
     ["entruempelung", "haushaltsaufloesung", "wohnungsaufloesung"].includes(lead.serviceCanonical) &&
@@ -105,10 +118,19 @@ export function calculateLeadPriority(
     add(12, "Raeumung/Aufloesung mit Termin oder Umfang", "clearance_scope");
   }
   if (
+    ["entruempelung", "haushaltsaufloesung", "wohnungsaufloesung"].includes(lead.serviceCanonical) &&
+    (lead.deadline || lead.desiredDate || lead.offer.hasPhotoUpload || lead.offer.photoCount > 0 || lead.scope)
+  ) {
+    add(16, "P0-Signal: Raeumung/Aufloesung mit Frist, Fotos oder Umfang", "p0_clearance_deadline_or_photos");
+  }
+  if (
     (lead.serviceCanonical === "reinigung" || lead.serviceCanonical === "bueroreinigung" || lead.serviceCanonical === "gewerbereinigung") &&
     /(uebergabe|abnahme|auszug|endreinigung|rueckgabe|ruckgabe)/.test(urgencyText)
   ) {
     add(14, "Reinigung vor Uebergabe", "handover_cleaning");
+  }
+  if (/(uebergabe|abnahme|auszug|endreinigung|vermieter ready|vermieter-ready)/.test(urgencyText) && (lead.deadline || lead.desiredDate || lead.message)) {
+    add(18, "P0-Signal: Uebergabe/Endreinigung mit Frist", "p0_handover_deadline");
   }
   if (lead.signatureServiceKey) {
     add(10, "Signature-Service erkennbar", "signature_service");
@@ -125,6 +147,19 @@ export function calculateLeadPriority(
     add(20, "Termin heute oder morgen", "date_0_1_days");
   } else if (dueInDays !== null && dueInDays <= 7) {
     add(10, "Termin innerhalb einer Woche", "date_2_7_days");
+  }
+
+  const hasOperationalP0Signal =
+    tags.some((tag) => tag.startsWith("p0_")) ||
+    (isOfferCheck && (lead.offer.existingOffer || lead.offer.offerConcern || lead.offer.hasOfferUpload)) ||
+    lead.intentCanonical === "plan-b" ||
+    (lead.leadKind === "discreet" && (lead.phone || lead.email)) ||
+    (lead.serviceCanonical === "plan-b-service" && (lead.deadline || lead.message));
+
+  if (hasOperationalP0Signal && validation.errors.length === 0 && validation.spamSignals.length === 0) {
+    score = Math.max(score, 76);
+    reasons.push("Operatives P0-Signal fuer schnelle Rueckmeldung");
+    tags.push("p0_operational_response");
   }
 
   score -= validation.errors.length * 30;

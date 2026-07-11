@@ -4,6 +4,11 @@ import type {
   NormalizedLeadSubmission,
   OperationalLeadKind,
 } from "@/lib/lead-types";
+import {
+  buildLeadResponseRecommendation,
+  type LeadResponseRecommendation,
+} from "@/lib/lead-response-recommendations";
+import { buildLeadInternalSummary, type PiiSafeLeadInternalSummary } from "@/lib/lead-summary";
 
 export type SignatureServiceLeadDefinition = {
   signatureServiceKey: string;
@@ -37,6 +42,11 @@ export type LeadOperationsSnapshot = {
   signatureService?: SignatureServiceLeadDefinition;
   missingInfo: string[];
   responseTemplate: string;
+  responseTemplateKey: string;
+  responseRecommendation: LeadResponseRecommendation;
+  internalSummary: PiiSafeLeadInternalSummary;
+  missingInfoQuestions: string[];
+  customerAcknowledgement: string;
   successState: string;
   nextSteps: string[];
   doNotPromise: string[];
@@ -292,6 +302,8 @@ export function buildLeadOperationsSnapshot(
   decision: LeadPriorityDecision,
 ): LeadOperationsSnapshot {
   const signatureService = getSignatureServiceDefinition(lead.signatureServiceKey);
+  const responseRecommendation = buildLeadResponseRecommendation(lead, validation, decision);
+  const internalSummary = buildLeadInternalSummary(lead, validation, decision, responseRecommendation);
   const missingInfo = [...new Set([...lead.missingInfoHints, ...validation.missingRecommended])];
   const doNotPromise = [
     "keine Buchungsbestaetigung bei reiner Anfrage",
@@ -314,10 +326,15 @@ export function buildLeadOperationsSnapshot(
     },
     ...(signatureService ? { signatureService } : {}),
     missingInfo,
+    responseTemplateKey: responseRecommendation.responseTemplateKey,
+    responseRecommendation,
+    internalSummary,
+    missingInfoQuestions: responseRecommendation.missingInfoQuestions,
+    customerAcknowledgement: responseRecommendation.customerAcknowledgement,
     responseTemplate: signatureService?.responseTemplate || defaultResponseTemplate(lead),
     successState: signatureService?.successState || defaultSuccessState(lead),
     nextSteps: [
-      decision.nextAction,
+      responseRecommendation.recommendedNextStep || decision.nextAction,
       missingInfo.length ? `Fehlende Angaben nachfassen: ${missingInfo.join(", ")}` : "Lead ist fuer die erste Einordnung ausreichend.",
       lead.locationKey === "unknown" ? "Standort nicht erzwingen; Stadt/Region nachfragen." : `Standort ${lead.locationKey} verwenden.`,
     ],

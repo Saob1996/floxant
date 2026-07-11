@@ -24,6 +24,7 @@ import {
   getEnglishLocalSeoPageByPath,
 } from "./local-seo/englishLocalSeoPages";
 import { dynamicLocalSeoRouteSet, dynamicLocalSeoRoutes } from "./local-seo-routes";
+import { isCleaningRouteAllowed } from "./regensburg-cleaning-service-area";
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 
@@ -45,7 +46,7 @@ const APP_PAGE_CANDIDATES = ["page.tsx", "page.ts", "page.jsx", "page.js", "rout
 
 const LEGACY_REDIRECT_ROUTES = new Set([
   "partnercode",
-  "airbnb-reinigung-duesseldorf",
+  "airbnb-reinigung-regensburg",
   "angebot-red-flag-scanner",
   "einsatzgebiet-regensburg-200km",
   "service-area-bayern",
@@ -62,6 +63,8 @@ const LEGACY_REDIRECT_ROUTES = new Set([
   "umzug-reinigung-regensburg",
   "endreinigung-regensburg",
   "seo-gone",
+  "duesseldorf/angebot-vergleichen",
+  "duesseldorf/umzug",
 ]);
 
 const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
@@ -77,13 +80,12 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
   "leerfahrt",
   "seniorenumzug",
   "entruempelung",
+  "haushaltsaufloesung",
   "wohnungsaufloesung",
 ] as const;
 
-const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set([
-  "duesseldorf/umzug",
-  "duesseldorf/entruempelung",
-  "duesseldorf/haushaltsaufloesung",
+const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
+  "duesseldorf/luxusreinigung",
 ]);
 
 const NON_SEO_PUBLIC_ROUTES = new Set([
@@ -93,8 +95,8 @@ const NON_SEO_PUBLIC_ROUTES = new Set([
   "widerruf",
   "buchungsbedingungen",
   "angebot-vergleichen-duesseldorf/danke",
-  "duesseldorf/reinigung/datenschutz",
-  "duesseldorf/reinigung/agb",
+  "regensburg/reinigung/datenschutz",
+  "regensburg/reinigung/agb",
 ]);
 
 const CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES = new Set([
@@ -126,7 +128,7 @@ const BROAD_ROOT_CITY_SERVICE_PREFIXES = [
   "wohnungsaufloesung",
 ] as const;
 
-const MACHINE_READABLE_ROUTES = ["llms.txt", "service-graph.json"] as const;
+const NON_HTML_SITEMAP_EXTENSION_PATTERN = /\.(?:txt|json|xml|png|jpe?g|webp|avif|svg|ico|gif|pdf|webmanifest)$/i;
 
 const dynamicLocalRouteByPath = new Map(
   dynamicLocalSeoRoutes.map((entry) => [entry.route.replace(/^\/+|\/+$/g, ""), entry]),
@@ -246,10 +248,12 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
   return (
+    NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
     CONSCIOUSLY_EXCLUDED_SIGNATURE_LANDING_ROUTES.has(normalizedRoute) ||
     REMOVED_SERVICE_ROUTE_PREFIXES.some((prefix) => normalizedRoute === prefix || normalizedRoute.startsWith(`${prefix}-`)) ||
     NON_SEO_PUBLIC_ROUTES.has(normalizedRoute) ||
+    (!DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(normalizedRoute) && !isCleaningRouteAllowed(normalizedRoute)) ||
     isDeprioritizedCityRoute(normalizedRoute) ||
     isBroadRootCityServiceRoute(normalizedRoute) ||
     isForbiddenDuesseldorfMovingRoute(normalizedRoute)
@@ -260,6 +264,10 @@ function isBroadRootCityServiceRoute(route: string): boolean {
   const normalizedRoute = route.toLowerCase();
 
   if (normalizedRoute === "seniorenumzug-landshut") {
+    return false;
+  }
+
+  if (normalizedRoute.startsWith("reinigung-") && isCleaningRouteAllowed(normalizedRoute)) {
     return false;
   }
 
@@ -366,15 +374,13 @@ function priorityForRoute(route: string): string {
   const englishLocalSeoPage = getEnglishLocalSeoPageByPath(`/${route}`);
   if (englishLocalSeoPage) {
     if (englishLocalSeoPage.type === "offerHub") return "0.86";
-    return englishLocalSeoPage.region === "duesseldorf" ? "0.87" : "0.84";
+    return "0.84";
   }
   if (DUESSELDORF_ALLOWED_SERVICE_ROUTES.has(route)) return "0.9";
-  if (route === "service-graph.json") return "0.82";
-  if (route === "llms.txt") return "0.82";
   if (route === "reinigungsfirma-angebot") return "0.91";
   if (route === "fernumzug-muenchen") return "0.89";
   if (growthServicePathSet.has(`/${route}`)) return route.includes("solarreinigung") ? "0.9" : "0.88";
-  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-duesseldorf", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
+  if (["umzug", "reinigung", "notfallreinigung-24h", "reinigung-nach-veranstaltung", "entruempelung", "bueroumzug", "firmenentsorgung", "private-client-service", "empfehlen", "makler-vermieter-link", "mieterwechsel-service-regensburg", "wohnung-wieder-vermietbar", "immobilie-verkaufsbereit-machen", "nachlass-raeumung-regensburg", "diskreter-umzug-trennung-scheidung", "schadensbegrenzung", "keller-muellraum-rettung-regensburg", "rueckfahrt-boerse", "uebergabeakte", "reinigung-moeblierte-wohnung-regensburg", "rechner", "buchung", "angebotscheck", "angebot-guenstiger-pruefen"].includes(route)) return "0.9";
   const dynamicLocalRoute = getDynamicLocalSitemapRoute(route);
   if (dynamicLocalRoute) {
     if (dynamicLocalRoute.citySlug === "regensburg") return "0.88";
@@ -382,60 +388,60 @@ function priorityForRoute(route: string): string {
     if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "0.8";
     return highValueLocalSitemapServices.has(dynamicLocalRoute.service) ? "0.77" : "0.74";
   }
-  if (route === "duesseldorf/reinigungsfirma") return "0.93";
-  if (route === "duesseldorf/putzfirma") return "0.92";
-  if (route === "duesseldorf/wohnungsreinigung") return "0.91";
-  if (route === "duesseldorf/treppenhausreinigung") return "0.9";
-  if (route === "duesseldorf/gewerbeflaechen-reinigung") return "0.9";
-  if (route === "duesseldorf/reinigung-heerdt") return "0.89";
+  if (route === "regensburg/reinigung") return "0.93";
+  if (route === "regensburg/reinigung") return "0.92";
+  if (route === "regensburg/reinigung") return "0.91";
+  if (route === "regensburg/reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.89";
   if (route === "angebot-vergleichen-duesseldorf") return "0.91";
   if (route === "angebot-vergleichen-regensburg") return "0.88";
   if (route === "regensburg/bueroreinigung") return "0.88";
   if (route === "regensburg/reinigungsfirma") return "0.88";
   if (route === "regensburg/wohnungsaufloesung") return "0.88";
   if (route === "regensburg/umzugsunternehmen") return "0.88";
-  if (route === "duesseldorf/reinigung") return "0.91";
-  if (route === "duesseldorf/reinigung-stadtteile-umgebung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.91";
+  if (route === "regensburg/reinigung") return "0.9";
   if (route === "duesseldorf/vielleicht-guenstiger") return "0.9";
-  if (route === "duesseldorf/hotelreinigung") return "0.9";
-  if (route === "duesseldorf/bueroreinigung") return "0.9";
-  if (route === "duesseldorf/ladenreinigung") return "0.9";
-  if (route === "duesseldorf/sonderreinigung") return "0.9";
-  if (route === "duesseldorf/b2b-reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.9";
+  if (route === "regensburg/reinigung") return "0.9";
   if (route === "duesseldorf/entsorgung") return "0.88";
   if (
     [
-      "duesseldorf/bueroreinigung",
-      "duesseldorf/b2b-reinigung",
-      "duesseldorf/firmenreinigung",
-      "duesseldorf/fensterreinigung",
-      "duesseldorf/baureinigung",
-      "duesseldorf/teppichreinigung",
-      "duesseldorf/unterhaltsreinigung",
-      "duesseldorf/ladenreinigung",
-      "duesseldorf/sonderreinigung",
-      "duesseldorf/gewerbereinigung",
-      "duesseldorf/gewerbeflaechen-reinigung",
-      "duesseldorf/gebaeudereinigung",
-      "duesseldorf/reinigung-heerdt",
-      "duesseldorf/hotelreinigung",
-      "duesseldorf/reinigung-stadtteile-umgebung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
       "duesseldorf/vielleicht-guenstiger",
-      "duesseldorf/kanzleireinigung",
-      "duesseldorf/praxisreinigung",
-      "duesseldorf/it-raum-reinigung",
-      "duesseldorf/krankenhausreinigung",
-      "duesseldorf/kellerreinigung",
+      "regensburg/kanzleireinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
       "duesseldorf/entsorgung",
-      "duesseldorf/wohnungsreinigung",
-      "duesseldorf/grundreinigung",
-      "duesseldorf/treppenhausreinigung",
-      "duesseldorf/endreinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
+      "regensburg/reinigung",
     ].includes(route)
   ) {
     return "0.88";
   }
-  if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) {
+  if (["regensburg/reinigung/datenschutz", "regensburg/reinigung/agb"].includes(route)) {
     return "0.35";
   }
   if (route === "leerfahrt-rueckfahrt") return "0.88";
@@ -457,7 +463,6 @@ function priorityForRoute(route: string): string {
 
 function changefreqForRoute(route: string): string {
   if (!route) return "daily";
-  if (route === "service-graph.json" || route === "llms.txt") return "weekly";
   const localSeoPage = getLocalSeoPageByPath(`/${route}`);
   if (localSeoPage) {
     return localSeoPage.type === "cityService" ? "monthly" : "weekly";
@@ -474,14 +479,14 @@ function changefreqForRoute(route: string): string {
     if (bayernHubSitemapCities.has(dynamicLocalRoute.citySlug)) return "weekly";
     return "monthly";
   }
-  if (["duesseldorf/reinigung/datenschutz", "duesseldorf/reinigung/agb"].includes(route)) return "yearly";
+  if (["regensburg/reinigung/datenschutz", "regensburg/reinigung/agb"].includes(route)) return "yearly";
   if (
-    route === "duesseldorf/reinigung" ||
-    route === "duesseldorf/reinigung-stadtteile-umgebung" ||
+    route === "regensburg/reinigung" ||
+    route === "regensburg/reinigung" ||
     route === "duesseldorf/vielleicht-guenstiger" ||
-    route === "duesseldorf/hotelreinigung" ||
-    route === "duesseldorf/bueroreinigung" ||
-    route === "duesseldorf/b2b-reinigung" ||
+    route === "regensburg/reinigung" ||
+    route === "regensburg/reinigung" ||
+    route === "regensburg/reinigung" ||
     route === "duesseldorf/entsorgung"
   ) return "weekly";
   if (route.startsWith("duesseldorf/")) return "weekly";
@@ -559,9 +564,6 @@ export function generateSitemapResponse(): Response {
 
   // Real English equivalents with hreflang pairs.
   addEntries(urls, englishLocalSeoPaths, "0.84", "weekly");
-
-  // Machine-readable AI/search discovery routes.
-  addEntries(urls, MACHINE_READABLE_ROUTES, "0.82", "weekly");
 
   // City pages
   addEntries(urls, CITY_PAGES, "0.9", "daily");

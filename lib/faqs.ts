@@ -5,7 +5,7 @@ export type FloxantFaqItem = {
 
 export const offerCheckFaqItems: FloxantFaqItem[] = [
   {
-    q: "Wann lohnt sich eine Angebotspruefung?",
+    q: "Wann lohnt sich eine Angebotsprüfung?",
     a: "Sie lohnt sich, wenn Preis, Leistungsumfang, Termin, Fotos, Zugang oder Zusatzpositionen vor einer Zusage unklar sind.",
   },
   {
@@ -118,18 +118,18 @@ export const clearanceFaqItems: FloxantFaqItem[] = [
 export const duesseldorfFaqItems: FloxantFaqItem[] = [
   {
     q: "Welche Services bietet FLOXANT in Duesseldorf?",
-    a: "Duesseldorf ist bei FLOXANT besonders stark fuer Reinigung, Buero-, Gewerbe-, Praxis-, Fenster-, End- und objektbezogene Reinigungsanfragen.",
+    a: "Regensburg ist bei FLOXANT besonders stark fuer Reinigung, Buero-, Gewerbe-, Praxis-, Fenster-, End- und objektbezogene Reinigungsanfragen.",
   },
   {
-    q: "Wie frage ich Reinigung in Duesseldorf an?",
+    q: "Wie frage ich Reinigung in Regensburg und Umgebung an?",
     a: "Nennen Sie Stadtteil, Objektart, Flaeche, Zustand, Fotos, Termin, Zugang und gewuenschtes Ergebnis.",
   },
   {
-    q: "Wie frage ich Buero- oder Gewerbereinigung in Duesseldorf an?",
+    q: "Wie frage ich Buero- oder Gewerbereinigung in Regensburg an?",
     a: "Hilfreich sind Raumliste, Flaeche, Turnus, Zeitfenster, Ansprechpartner, Schluesselweg, Sanitaer, Kueche und Fotos.",
   },
   {
-    q: "Kann ich ein Reinigungsangebot in Duesseldorf pruefen lassen?",
+    q: "Kann ich ein Reinigungsangebot in Regensburg pruefen lassen?",
     a: "Ja. FLOXANT prueft Umfang, Turnus, Objektart, Fotos, Zusatzpunkte und Preisrahmen ohne Preisgarantie.",
   },
   {
@@ -141,7 +141,7 @@ export const duesseldorfFaqItems: FloxantFaqItem[] = [
 export const regensburgFaqItems: FloxantFaqItem[] = [
   {
     q: "Welche Services bietet FLOXANT in Regensburg?",
-    a: "Regensburg ist der breite Hub fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Klaviertransport, Seniorenumzug und Angebotspruefung.",
+    a: "Regensburg ist der breite Hub fuer Umzug, Reinigung, Entruempelung, Haushaltsaufloesung, Klaviertransport, Seniorenumzug und Angebotsprüfung.",
   },
   {
     q: "Wie frage ich Umzug in Regensburg an?",
@@ -184,6 +184,6 @@ export const signatureServiceFaqItems: FloxantFaqItem[] = [
   },
   {
     q: "Was ist der PV-Sichtklar-Service?",
-    a: "Eine strukturierte Anfrage fuer Solar- oder PV-Reinigung mit Fotos, Zugang, Dachlage, Wasser, Sicherheit und Leistungsgrenzen.",
+    a: "Eine Anfrage mit den wichtigsten Eckdaten fuer Solar- oder PV-Reinigung mit Fotos, Zugang, Dachlage, Wasser, Sicherheit und Leistungsgrenzen.",
   },
 ];

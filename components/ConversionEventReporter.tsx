@@ -193,7 +193,7 @@ function eventNameFor(element: HTMLElement, href: string) {
 
 function getHighIntentPageSignal(pathname: string) {
  const path = pathname || "/";
- const isDuesseldorf = path.includes("duesseldorf");
+ const isRegensburg = path.includes("regensburg");
 
  if (path === "/buchung") {
   return { path, source: "booking_page_dwell", label: "Buchungsseite aktiv gelesen", priority: "hot", intent: "booking_review" };
@@ -201,7 +201,7 @@ function getHighIntentPageSignal(pathname: string) {
  if (path === "/rechner") {
   return { path, source: "calculator_page_dwell", label: "Rechner aktiv gelesen", priority: "hot", intent: "price_orientation" };
  }
- if (["/angebot-guenstiger-pruefen", "/angebot-vergleichen-duesseldorf", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
+ if (["/angebot-guenstiger-pruefen", "/angebot-vergleichen-regensburg", "/angebotscheck", "/plattform-auftrag-pruefen"].includes(path)) {
   return { path, source: "offer_check_page_dwell", label: "Angebotsprüfung aktiv gelesen", priority: "hot", intent: "offer_check" };
  }
  if (["/plan-b-service", "/schadensbegrenzung"].includes(path)) {
@@ -216,8 +216,8 @@ function getHighIntentPageSignal(pathname: string) {
  ) {
   return { path, source: "signature_service_page_dwell", label: "Zusatzleistung aktiv gelesen", priority: "warm", intent: "signature_service" };
  }
- if (isDuesseldorf && path.includes("reinigung")) {
-  return { path, source: "duesseldorf_cleaning_page_dwell", label: "Düsseldorf-Reinigung aktiv gelesen", priority: "warm", intent: "duesseldorf_cleaning_only" };
+ if (isRegensburg && path.includes("reinigung")) {
+  return { path, source: "regensburg_cleaning_page_dwell", label: "Regensburg-Reinigung aktiv gelesen", priority: "warm", intent: "regensburg_cleaning_only" };
  }
  if (
   path.startsWith("/umzug") ||

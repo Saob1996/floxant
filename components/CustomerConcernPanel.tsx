@@ -15,7 +15,7 @@ const concerns = [
   },
   {
     title: "Ich habe Angst vor hohen Kosten.",
-    answer: "FLOXANT erklärt Aufwandstreiber. Es gibt keine Preisgarantie, aber eine klare Einordnung.",
+    answer: "FLOXANT erklärt, wovon der Aufwand abhängt. Es gibt keine Preisgarantie, aber Sie erhalten eine verständliche Einschätzung.",
     Icon: ShieldCheck,
   },
 ];

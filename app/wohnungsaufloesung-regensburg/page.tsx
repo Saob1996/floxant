@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 
 import { LeadCta } from "@/components/LeadCta";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
@@ -337,6 +339,14 @@ export default function WohnungsaufloesungRegensburgPage() {
           </div>
         </div>
       </section>
+
+      <RequestChecklistBlock
+        serviceKey="wohnungsaufloesung"
+        ctaHref={leadHref}
+        ctaLabel="Aufloesungsdaten vorbereiten"
+        compact
+      />
+      <PhotoGuidanceBlock serviceKey="wohnungsaufloesung" compact />
 
       <section className="border-y border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]">

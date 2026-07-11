@@ -33,9 +33,9 @@ export function ServiceIntentSelector() {
 
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/5" data-component="ServiceIntentSelector">
-      <h3 className="text-lg font-black text-slate-950">Optionale Richtung</h3>
+      <h3 className="text-lg font-black text-slate-950">Was ist Ihnen besonders wichtig?</h3>
       <p className="mt-2 text-sm leading-7 text-slate-700">
-        Diese Schnellwahl setzt nur Query-Parameter. Es wird keine API aufgerufen.
+        Wählen Sie eine passende Situation. Ihre Anfrage wird erst im Formular gesendet.
       </p>
       <div className="mt-4 grid gap-2 sm:grid-cols-2">
         {intentOptions.map((item) => {

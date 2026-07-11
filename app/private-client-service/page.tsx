@@ -17,7 +17,11 @@ import {
 const faqItems = germanizeDeep([
   {
     q: "Was ist der FLOXANT Private Client Service?",
-    a: "Der Private Client Service ist eine diskrete Kombination aus Umzug, Reinigung, Räumung und koordinierter Objektabstimmung für Residenzen, Anwesen, große Häuser, Penthouses und sensible Interieurs in Bayern und Baden-Württemberg.",
+    a: "Der Private Client Service ist die persoenliche Koordination individueller privater Serviceanfragen, wenn Umzug, Reinigung, Raeumung, Uebergabe oder Angebotspruefung nicht in einen Standardablauf passen.",
+  },
+  {
+    q: "Was bedeutet diskreter Service bei FLOXANT?",
+    a: "Diskreter Service bedeutet: sensible Situation knapp beschreiben, bevorzugten Kontaktweg wählen und erst die nötigen Eckdaten klären. FLOXANT vermeidet reißerische Sprache, rechtliche Beratung und öffentliche Detailangaben.",
   },
   {
     q: "Warum gibt es keine öffentliche Kalkulation?",
@@ -41,7 +45,7 @@ const faqItems = germanizeDeep([
   },
   {
     q: "Kann eine Assistenz, Hausverwaltung oder ein Family Office die Abstimmung übernehmen?",
-    a: "Ja. Genau dafür ist der Bereich geeignet. Wenn Zuständigkeiten, Entscheidungswege und gewünschte Diskretion klar sind, kann FLOXANT die Abstimmung auch strukturiert über Assistenz, Eigentümervertretung oder Family Office führen.",
+    a: "Ja. Genau dafür ist der Bereich geeignet. Wenn Zuständigkeiten, Entscheidungswege und gewünschte Diskretion klar sind, kann FLOXANT die Abstimmung auch über Assistenz, Eigentümervertretung oder Family Office führen.",
   },
   {
     q: "Ist der Service auch für Zweitwohnsitze, Eigentümerwechsel oder vorbereitete Übergaben geeignet?",
@@ -49,7 +53,7 @@ const faqItems = germanizeDeep([
   },
   {
     q: "Warum ist diese Seite bewusst getrennt von Rechner, Express und Preisvorschlag?",
-    a: "Weil Residenzen, Anwesen und sensible Übergänge nicht in einen Standardprozess gedrückt werden sollten. Diese Seite ist bewusst persönlich, diskret und auf individuelle Vorprüfung ausgelegt.",
+    a: "Weil individuelle private Servicekoordination erst eine ruhige Vorpruefung braucht. Allgemeine sensible Faelle laufen ueber den Diskret-Service; diese Seite bleibt fuer persoenlich gefuehrte Private-Client-Anfragen.",
   },
   {
     q: "Warum ist dieser Bereich bewusst getrennt von den normalen Kontaktwegen?",
@@ -70,9 +74,9 @@ export async function generateMetadata(): Promise<Metadata> {
     lang: "de",
     path: "private-client-service",
     title:
-      "Private Client Service Bayern | Diskreter Umzug, Reinigung & Objektlogistik",
+      "Private Client Service – sensible private Anfragen abstimmen",
     description:
-      "Diskreter Private Client Service für Residenzen, Anwesen und sensible Interieurs in Bayern und Baden-Württemberg. Umzug, Reinigung, Räumung und Objektabstimmung mit persönlicher Führung.",
+      "Private Client Service für individuelle private Anfragen: Umzug, Reinigung, Räumung, Übergabe oder Angebotsprüfung mit persönlicher Abstimmung.",
   });
 }
 
@@ -87,24 +91,24 @@ export default function PrivateClientServicePage() {
       buildWebPageJsonLd({
         name: "FLOXANT Private Client Service",
         description:
-          "Diskreter Service für Residenzen, Anwesen, große Häuser und sensible Interieurs in Bayern und Baden-Württemberg.",
+          "Private Client Service fuer individuell koordinierte private Anfragen zu Umzug, Reinigung, Raeumung, Uebergabe und Angebotspruefung.",
         path: "/private-client-service",
         about: [
           "Private Client",
-          "Luxusumzug",
-          "Residenzreinigung",
-          "Anwesen",
+          "Private Servicekoordination",
+          "Sensible Objektabstimmung",
+          "Persoenlicher Kontaktweg",
           "Bayern",
-          "Baden-Württemberg",
+          "Deutschland",
         ],
       }),
       buildServiceJsonLd({
-        name: "FLOXANT Private Client in Bayern und Baden-Württemberg",
+        name: "FLOXANT Private Client Service",
         description:
-          "Kombinierter Service für Umzug, Reinigung, Räumung und diskrete Objektlogistik in Residenzen, Anwesen und großen Häusern.",
+          "Persoenlich koordinierter Service fuer private Anfragen, die eine ruhige Vorpruefung und einen klaren Kontaktweg brauchen.",
         path: "/private-client-service",
-        serviceType: "Private Client Service für Residenzen und Anwesen",
-        areaServed: ["Bayern", "Baden-Württemberg", "München", "Stuttgart", "Regensburg", "Baden-Baden"],
+        serviceType: "Private Client Service",
+        areaServed: ["Bayern", "Deutschland", "Regensburg", "Duesseldorf"],
       }),
       buildFaqJsonLd(faqItems),
     ],
@@ -113,13 +117,13 @@ export default function PrivateClientServicePage() {
   const pillars = germanizeDeep([
     {
       icon: Crown,
-      title: "Residenz- und Anwesenumzug",
-      text: "Koordinierter Umzug mit Schutzkonzept für Designmöbel, Kunst, empfindliche Oberflächen, Garderoben, Bibliotheken und sensible Privatbereiche.",
+      title: "Private Servicekoordination",
+      text: "Koordinierte Abstimmung, wenn Umzug, Reinigung, Raeumung oder Uebergabe mehrere Beteiligte und einen klaren Kontaktweg brauchen.",
     },
     {
       icon: Sparkles,
-      title: "Private Residence Cleaning",
-      text: "Reinigung mit Blick auf Materialien, Raumwirkung, Übergabe, Servicepersonal und die Erwartungen gehobener Haushalte.",
+      title: "Reinigung und Uebergabe",
+      text: "Reinigung mit Blick auf Zustand, Termin, Zugang, Rueckmeldung und die praktische Vorbereitung des naechsten Schritts.",
     },
     {
       icon: Leaf,
@@ -130,10 +134,10 @@ export default function PrivateClientServicePage() {
 
   const process = germanizeDeep([
     "Persönlicher Erstkontakt",
-    "Diskrete Objekt- und Inventarprüfung",
-    "Schutzkonzept für Räume, Wege und Werte",
-    "Kuratiertes Team und Zeitfenster",
-    "Umsetzung mit Übergabeprotokoll",
+    "Ruhige Objekt- und Umfangspruefung",
+    "Kontaktweg, Zugang und Zustaendigkeit klaeren",
+    "Passendes Team und Zeitfenster",
+    "Umsetzung mit Rueckmeldung oder Uebergabeprotokoll",
   ]);
 
   const premiumSignatureBlocks = germanizeDeep([
@@ -204,18 +208,16 @@ export default function PrivateClientServicePage() {
           <div>
             <div className="private-copy mb-7 inline-flex items-center gap-3 rounded-full border border-[#D8B76E]/20 bg-[#D8B76E]/8 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">
               <ShieldCheck className="h-4 w-4" />
-              Diskret in Bayern und Baden-Württemberg
+              Persönliche Abstimmung
             </div>
             <h1 className="max-w-5xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] text-[#F6EBDD] md:text-7xl lg:text-[6.7rem]">
-              Diskreter Private Client Service für Residenzen und Anwesen
+              Private Client Service für sensible private Anfragen
             </h1>
             <p className="private-copy mt-8 max-w-2xl text-lg leading-relaxed text-[#E6D8C3]/68">
-              Für Eigentümer, Family Offices, Assistenzen und anspruchsvolle Privathaushalte, bei
-              denen Umzug, Reinigung, Räumung und Objektlogistik nicht wie ein Standardauftrag
-              behandelt werden dürfen. FLOXANT plant persönlich, diskret und mit Blick auf Werte,
-              Räume, Zugang und Vertrauen. So bleibt der Ablauf ruhig, planbar und souverän geführt.
-              Weniger Hektik, mehr Kontrolle und mehr Respekt für das Objekt. Genau so soll sich ein
-              diskreter Service anfühlen.
+              Für Eigentümer, Family Offices, Assistenzen und Privathaushalte, bei denen Umzug,
+              Reinigung, Räumung, Übergabe oder Angebotsprüfung persönlich abgestimmt werden
+              sollen. FLOXANT klärt zuerst Kontaktweg, Zuständigkeit, Umfang und nächste Schritte.
+              Für allgemeine sensible Fälle gibt es den separaten Diskret-Service.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
@@ -243,7 +245,7 @@ export default function PrivateClientServicePage() {
                 Persönlich sprechen
               </a>
               <Link
-                href="/angebotscheck"
+                href="/diskret-service"
                 className="private-copy inline-flex h-14 items-center justify-center rounded-full border border-[#D8B76E]/22 px-8 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E8D2A2] transition hover:border-[#D8B76E]/50 hover:bg-[#D8B76E]/8"
                 data-event="service_card_click"
                 data-source="private_client_hero"
@@ -251,9 +253,9 @@ export default function PrivateClientServicePage() {
                 data-city="bayern"
                 data-page-intent="private-client-service"
                 data-priority="p0"
-                data-cta-label="Angebot diskret prüfen"
+                data-cta-label="Diskret-Service ansehen"
               >
-                Angebot diskret prüfen
+                Diskret-Service ansehen
               </Link>
             </div>
           </div>
@@ -262,17 +264,17 @@ export default function PrivateClientServicePage() {
             <div className="aspect-[4/5] overflow-hidden rounded-[2rem] border border-[#D8B76E]/16 bg-[linear-gradient(145deg,rgba(216,183,110,0.22),rgba(42,9,7,0.35)),radial-gradient(circle_at_50%_24%,rgba(246,235,221,0.16),transparent_28%)] p-8">
               <div className="flex h-full flex-col justify-between">
                 <div>
-                  <div className="private-copy text-[10px] uppercase tracking-[0.28em] text-[#D8B76E]">White-glove planning</div>
+                  <div className="private-copy text-[10px] uppercase tracking-[0.28em] text-[#D8B76E]">Persoenliche Planung</div>
                   <p className="mt-6 text-4xl font-medium leading-tight text-[#F6EBDD] md:text-5xl">
-                    Werte schützen. Räume respektieren. Abläufe souverän koordinieren.
+                    Anfrage fuehren. Kontaktweg klaeren. Naechste Schritte strukturieren.
                   </p>
                 </div>
                 <div className="grid gap-3 private-copy">
                   {[
-                    "Kunst und Designobjekte",
-                    "Diskrete Zeitfenster",
-                    "Reinigung und Übergabe",
-                    "Family-Office-taugliche Abstimmung",
+                    "Bevorzugter Kontaktweg",
+                    "Zustaendigkeiten und Zugang",
+                    "Reinigung und Uebergabe",
+                    "Persoenliche Abstimmung",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3 rounded-full border border-[#D8B76E]/14 bg-black/20 px-4 py-3 text-sm text-[#E6D8C3]/72">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#D8B76E]" />
@@ -298,7 +300,7 @@ export default function PrivateClientServicePage() {
             {[
               {
                 title: "Was ist das?",
-                text: "Ein diskreter Bereich für Privathaushalte, Residenzen, Anwesen und sensible Übergänge.",
+                text: "Ein persoenlicher Bereich fuer private Anfragen, die Koordination, Rueckruf und ruhige Vorpruefung brauchen.",
               },
               {
                 title: "Für wen?",
@@ -306,11 +308,11 @@ export default function PrivateClientServicePage() {
               },
               {
                 title: "Wann sinnvoll?",
-                text: "Wenn Schutzbedarf, Diskretion, Werte, Materialqualität und ruhige Koordination wichtiger sind als ein schneller Standardprozess.",
+                text: "Wenn Kontaktweg, Zustaendigkeit, Umfang und naechste Schritte wichtiger sind als ein schneller Standardprozess.",
               },
               {
                 title: "Wie läuft es ab?",
-                text: "Zuerst vertrauliche Vorprüfung, dann ruhige Abstimmung zu Zugang, Inventar, Schutzkonzept, Team und Zeitfenster.",
+                text: "Zuerst persoenliche Vorpruefung, dann ruhige Abstimmung zu Zugang, Serviceumfang, Team und Zeitfenster.",
               },
             ].map((item) => (
               <article key={item.title} className="rounded-[1.6rem] border border-[#D8B76E]/12 bg-black/20 p-5">
@@ -353,11 +355,11 @@ export default function PrivateClientServicePage() {
               Diskrete Bausteine
             </div>
             <h2 className="mt-4 text-4xl font-medium tracking-tight text-[#F6EBDD] md:text-5xl">
-              Diskreter Service heißt: weniger Schnittstellen, mehr Kontrolle
+              Private Client heisst: weniger Schnittstellen, klarere Abstimmung
             </h2>
             <p className="private-copy mt-5 text-sm leading-relaxed text-[#E6D8C3]/58">
-              FLOXANT verspricht keine Luxus-Siegel. Entscheidend ist, dass sensible
-              Aufgaben wie Übergabe, Reinigung, Schutz, Schlüssel und Rückrufwunsch ruhig zusammen
+              FLOXANT verspricht keine pauschalen Sonderstatus-Siegel. Entscheidend ist, dass sensible
+              Aufgaben wie Uebergabe, Reinigung, Zugang, Schluessel und Rueckrufwunsch ruhig zusammen
               geplant werden.
             </p>
           </div>
@@ -394,17 +396,17 @@ export default function PrivateClientServicePage() {
               Keine öffentliche Standardabwicklung. Keine Massenlogik.
             </h2>
             <p className="private-copy mt-6 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Bei Residenzen und Anwesen zählt nicht nur Volumen. Entscheidend sind Zugang,
-              Wegeführung, Materialschutz, Vertraulichkeit, Personal, Terminfenster, Nachbarn,
-              Hausverwaltung, Kunst, Designobjekte und die gewünschte Unsichtbarkeit der Arbeit.
+              Bei privaten Sonderanfragen zaehlt nicht nur Volumen. Entscheidend sind Zugang,
+              Wegefuehrung, Kontaktweg, Terminfenster, Ansprechpartner, Hausverwaltung,
+              Materialschutz und die gewuenschte Rueckmeldung.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {[
-              { icon: KeyRound, title: "Diskretion", text: "Abstimmung mit Eigentümern, Assistenz, Hausverwaltung oder Family Office." },
-              { icon: Home, title: "Objektverständnis", text: "Schutz für Böden, Wände, Treppen, Aufzüge, Einfahrten und sensible Räume." },
-              { icon: Gem, title: "Werte", text: "Umgang mit Designmöbeln, Kunst, Sammlungen, Bibliotheken und empfindlichen Oberflächen." },
-              { icon: ShieldCheck, title: "Grenzen", text: "Keine Gefahrstoffe oder Sonderabfälle. Keine falschen Zusagen für regulierte Materialien." },
+              { icon: KeyRound, title: "Kontaktweg", text: "Abstimmung mit Eigentuemer, Assistenz, Verwaltung oder beauftragter Kontaktperson." },
+              { icon: Home, title: "Objektverstaendnis", text: "Zugang, Wege, Etagen, Schluessel, Zeitfenster und praktische Grenzen vorab klaeren." },
+              { icon: Gem, title: "Koordination", text: "Umzug, Reinigung, Raeumung, Uebergabe oder Angebotspruefung in einen Ablauf bringen." },
+              { icon: ShieldCheck, title: "Grenzen", text: "Keine Gefahrstoffe oder Sonderabfaelle. Keine falschen Zusagen fuer regulierte Materialien." },
             ].map((item) => {
               const Icon = item.icon;
               return (
@@ -449,9 +451,9 @@ export default function PrivateClientServicePage() {
                 Bayern und Baden-Württemberg
               </h2>
               <p className="private-copy mt-6 text-sm leading-relaxed text-[#E6D8C3]/58">
-                FLOXANT betreut Privathaushalte, Residenzen und Anwesen in
-                Süddeutschland. Besonders relevant: München, Starnberg, Tegernsee, Regensburg,
-                Nürnberg, Stuttgart, Baden-Baden, Heidelberg, Freiburg, Ulm und die umliegenden
+                FLOXANT betreut individuelle private Serviceanfragen in
+                Deutschland. Besonders relevant: Regensburg, Bayern, Duesseldorf, Nordrhein-Westfalen
+                sowie abgestimmte ueberregionale Anfragen in umliegenden
                 Regionen.
               </p>
             </div>
@@ -506,11 +508,11 @@ export default function PrivateClientServicePage() {
               Fuer sensible private Auszugssituationen, wenn Rueckruf, sichere Kontaktmethode, Transport, Reinigung und Uebergabe ruhig abgestimmt werden sollen.
             </p>
           </Link>
-          <Link href="/umzug" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
+          <Link href="/diskret-service" className="rounded-[1.7rem] border border-[#D8B76E]/12 bg-[#0B0805] p-7 transition hover:border-[#D8B76E]/30 hover:bg-[#110a06]">
             <div className="private-copy text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D8B76E]">Kontaktweg</div>
-            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Allgemeinen Umzugsservice ansehen</h2>
+            <h2 className="mt-3 text-2xl font-medium text-[#F6EBDD]">Diskret-Service fuer sensible Faelle</h2>
             <p className="private-copy mt-4 text-sm leading-relaxed text-[#E6D8C3]/58">
-              Wenn das Projekt sensibel ist, aber nicht vollständig im Private-Client-Rahmen liegt, ist dies der richtige Weg.
+              Wenn die Anfrage sensibel ist, aber keine persoenlich gefuehrte Private-Client-Koordination braucht, beginnt sie hier.
             </p>
           </Link>
           <Link
@@ -552,7 +554,7 @@ export default function PrivateClientServicePage() {
           <div>
             <div className="text-[12px] font-semibold uppercase tracking-[0.34em] text-[#F6EBDD]">FLOXANT Private Client</div>
             <p className="private-copy mt-2 text-sm text-[#E6D8C3]/45">
-              Diskreter Service für Residenzen, Anwesen und sensible Privathaushalte.
+              Private Client Service für sensible private Anfragen.
             </p>
           </div>
           <div className="private-copy flex flex-wrap gap-3 text-sm text-[#E6D8C3]/55">

@@ -75,7 +75,7 @@ export default async function NotfallUmzugBayern() {
                 },
                 { 
                   title: "Räumungsklage", 
-                  desc: "Schnelle und strukturierte Räumung unter Einhaltung gesetzlicher Anforderungen." 
+                  desc: "Kurzfristige Räumung nach Prüfung von Umfang, Zugang, Termin und rechtlichen Zuständigkeiten."
                 },
                 { 
                   title: "Familiäre Notfälle", 
@@ -104,7 +104,7 @@ export default async function NotfallUmzugBayern() {
                   href={`/24h-umzug-bayern`}
                   className="px-5 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all font-sans"
                 >
-                  24h Umzug Bayern
+                  Kurzfristigen Umzug anfragen
                 </Link>
                 <Link
                   href={`/kurzfristiger-umzug-bayern`}

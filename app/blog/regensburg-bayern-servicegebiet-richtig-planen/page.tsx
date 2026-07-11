@@ -11,7 +11,7 @@ import {
 const faqItems = [
  {
   q: "Warum ist Regensburg für FLOXANT so wichtig?",
-  a: "Regensburg ist der Ausgangspunkt. Von dort lassen sich Umzug, Reinigung und Entrümpelung regional sauber planen und in Bayern ausbauen.",
+  a: "Regensburg ist der Ausgangspunkt. Reinigung bleibt auf Regensburg und 50 km Umkreis begrenzt; Umzug und Entrümpelung werden separat nach Machbarkeit eingeordnet.",
  },
  {
   q: "Bedient FLOXANT ganz Bayern?",
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   path: "blog/regensburg-bayern-servicegebiet-richtig-planen",
   title: "Regensburg & Bayern | Servicegebiet richtig planen",
   description:
-   "Warum Region, Strecke und Verfügbarkeit bei Umzug, Reinigung und Entrümpelung wichtig sind und wie FLOXANT Bayern realistisch einordnet.",
+   "Warum Region, Strecke und Verfügbarkeit wichtig sind: Reinigung lokal um Regensburg, andere Services separat nach Machbarkeit.",
  });
 }
 
@@ -41,7 +41,7 @@ export default function RegensburgBayernServicegebietBlogPage() {
     name: "Regensburg und Bayern als Servicegebiet planen",
     description: "Ratgeber zur regionalen Einordnung von FLOXANT Services.",
     path: "/blog/regensburg-bayern-servicegebiet-richtig-planen",
-    about: ["Regensburg", "Bayern", "Umzug", "Reinigung", "Entrümpelung", "Servicegebiet"],
+    about: ["Regensburg", "50 km Reinigung", "Umzug", "Entrümpelung", "Servicegebiet"],
    }),
    buildBreadcrumbJsonLd([
     { name: "FLOXANT", item: "/" },
@@ -74,14 +74,14 @@ export default function RegensburgBayernServicegebietBlogPage() {
      {
       title: "Warum die Region für Ihre Planung wichtig ist",
       paragraphs: [
-       "Für Google ist die regionale Einordnung wichtig. Für Kunden ist sie noch wichtiger. Wer einen Umzug, eine Reinigung oder eine Entrümpelung plant, braucht keine leere Bayern-Floskel, sondern die Frage: Ist der Einsatz realistisch planbar?",
+       "Für Google ist die regionale Einordnung wichtig. Für Kunden ist sie noch wichtiger. Wer einen Umzug, eine Reinigung oder eine Entrümpelung plant, braucht keine leere Floskel, sondern die Frage: Ist der Einsatz realistisch planbar? Für Reinigung gilt dabei Regensburg plus 50 km.",
        "Regionale Relevanz entsteht durch Verfügbarkeit, Fahrtwege, lokale Erfahrung, Zeitfenster und die Fähigkeit, Zusatzleistungen sinnvoll zu kombinieren.",
       ],
      },
      {
       title: "Regensburg als Ausgangspunkt",
       paragraphs: [
-       "Regensburg ist der natürliche Schwerpunkt für FLOXANT. Hier lassen sich viele Anfragen schneller prüfen, Wege besser einschätzen und Zusatzleistungen wie Reinigung, Beiladung oder Entrümpelung enger koordinieren.",
+       "Regensburg ist der natürliche Schwerpunkt für FLOXANT. Hier lassen sich viele Anfragen schneller prüfen, Wege besser einschätzen und Zusatzleistungen wie Reinigung im 50-km-Umkreis, Beiladung oder Entrümpelung enger koordinieren.",
       ],
       bullets: [
        "Kürzere Wege bei Einsätzen im Stadtgebiet und Landkreis",

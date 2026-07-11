@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  BookOpen,
   Building2,
   CheckCircle2,
   ClipboardList,
@@ -55,6 +56,25 @@ const quickRoutes = [
   },
 ];
 
+const supportArticleLinks = [
+  {
+    label: "Büroreinigung-Angebot vorbereiten",
+    href: "/blog/bueroreinigung-regensburg-angebot-einholen",
+  },
+  {
+    label: "Gewerbereinigung für B2B-Objekte",
+    href: "/blog/gewerbereinigung-regensburg-objekte-b2b",
+  },
+  {
+    label: "Treppenhausreinigung für Hausverwaltung",
+    href: "/blog/hausverwaltung-treppenhausreinigung-regensburg",
+  },
+  {
+    label: "Reinigungsfirma auswählen",
+    href: "/blog/reinigungsfirma-regensburg-buero-praxis-auswahl",
+  },
+] as const;
+
 export function RegensburgCleaningServiceHub() {
   return (
     <section id="reinigungsservice-regensburg" className="flox-section pt-0">
@@ -72,6 +92,10 @@ export function RegensburgCleaningServiceHub() {
               Ob Büro, Praxis, Hotel, Treppenhaus, Baustelle, Teppich oder Fenster:
               Wählen Sie den Fall, der Ihrem Objekt am nächsten kommt. Ort, Fotos,
               Termin, Zugang und gewünschtes Ergebnis reichen oft für den ersten sinnvollen Schritt.
+            </p>
+            <p className="mt-3 text-sm font-bold leading-7 text-slate-600">
+              Für Reinigungsservices bleibt FLOXANT bei Regensburg und dem Umkreis bis 50 km. Der Hub ist kein Aufbau
+              für beliebige Standortseiten, sondern ein Wegweiser zu konkreten Regensburger Reinigungsanfragen.
             </p>
 
             <div className="mt-7 rounded-[1.6rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_24px_70px_rgba(15,23,42,0.16)]">
@@ -91,6 +115,29 @@ export function RegensburgCleaningServiceHub() {
                       <ArrowRight className="h-4 w-4 shrink-0 text-cyan-200 transition group-hover:translate-x-0.5" />
                     </span>
                     <span className="mt-2 block text-xs leading-6 text-slate-300">{item.answer}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-lg border border-slate-200 bg-slate-50 p-5">
+              <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-normal text-blue-700">
+                <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
+                Ratgeber-Cluster
+              </div>
+              <div className="mt-4 grid gap-2">
+                {supportArticleLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    data-event="internal_cluster_click"
+                    data-region="regensburg"
+                    data-service="reinigung"
+                    data-source="cleaning_hub_support"
+                    className="group flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:text-blue-700"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5" aria-hidden="true" />
                   </Link>
                 ))}
               </div>

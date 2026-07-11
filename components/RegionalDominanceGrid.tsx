@@ -34,7 +34,7 @@ export function RegionalDominanceGrid({ dic }: { dic?: any }) {
               {germanText(t.badge, "Einsatzgebiet Regensburg")}
             </div>
             <h2 className="mt-4 max-w-4xl text-4xl font-bold tracking-tight text-slate-950 md:text-[3rem]">
-              Services im strukturierten Raum rund um Regensburg
+              Services im klar abgegrenzten Raum rund um Regensburg
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-700">
               FLOXANT bündelt Umzug, Entrümpelung, Büroumzug, Reinigung und direkte Kontaktwege mit

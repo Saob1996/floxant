@@ -3,7 +3,9 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPinned, MessageCircle } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ContactPathChooser } from "@/components/ContactPathChooser";
+import { ContactPathChooser, ServiceFinder } from "@/components/ContactPathChooser";
+import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
+import { BetterRequestNotice } from "@/components/BetterRequestNotice";
 import {
   InternationalCustomerHint,
   ServiceDecisionGuide,
@@ -11,6 +13,7 @@ import {
 } from "@/components/conversion";
 import { CustomerNextStepPanel } from "@/components/CustomerNextStepPanel";
 import { CustomerConcernPanel } from "@/components/CustomerConcernPanel";
+import { ContactHeroCopy, ContactLeadForm } from "@/components/ContactQueryPersonalization";
 import { LeadTrustBlock } from "@/components/LeadTrustBlock";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalContactPanel } from "@/components/LocalContactPanel";
@@ -18,7 +21,9 @@ import { LocationServiceSwitcher } from "@/components/LocationServiceSwitcher";
 import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
 import { ObjectionAnswerGrid } from "@/components/ObjectionAnswerGrid";
 import { ProcessProofSteps } from "@/components/ProcessProofSteps";
-import { ContactHeroCopy, ContactLeadForm } from "@/components/ContactQueryPersonalization";
+import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
+import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
 import { ServiceIntentSelector } from "@/components/ServiceIntentSelector";
@@ -45,6 +50,8 @@ import {
   buildWebPageJsonLd,
 } from "@/lib/structured-data";
 import { resolveLeadIntent } from "@/lib/lead-intents";
+import { resolveServiceRoute } from "@/lib/service-routing";
+import { resolveRequestChecklistKey } from "@/lib/request-checklists";
 
 const faqItems = [
   {
@@ -61,7 +68,7 @@ const faqItems = [
   },
   {
     q: "Für welche Region ist FLOXANT erreichbar?",
-    a: "FLOXANT führt Regensburg und Düsseldorf als lokale Standorte. Regensburg ist für Umzug, Reinigung, Entrümpelung und Übergabe stark gepflegt; Düsseldorf hat einen eigenen Schwerpunkt für Reinigung und objektbezogene Anfragen.",
+    a: "FLOXANT führt Regensburg als Basis für Umzug, Reinigung, Entrümpelung und Übergabe. Reinigung wird nur für Regensburg und den Umkreis bis 50 km angenommen.",
   },
   {
     q: "Kann ich auch nur eine Preisvorstellung senden?",
@@ -73,7 +80,7 @@ const faqItems = [
   },
   {
     q: "Gibt es auch einen gezielten Kontaktweg für Firmen oder sensible Anfragen?",
-    a: "Ja. Für gewerbliche Reinigung gibt es die B2B-Seite in Regensburg. Wenn es um sensible private Themen geht, ist der Private-Client-Bereich der ruhigere Startpunkt.",
+    a: "Ja. Für gewerbliche Reinigung gibt es die B2B-Seite in Regensburg. Sensible Fälle starten über den Diskret-Service; Private Client bleibt für persönlich koordinierte private Serviceanfragen.",
   },
 ];
 
@@ -128,7 +135,7 @@ const mapsClosingSignals = [
   },
   {
     title: "Spezialbereiche sauber getrennt",
-    text: "Für Reinigung in Düsseldorf gibt es einen eigenen lokalen Bereich mit eigenem Kontaktweg und klarer Adresse.",
+    text: "Für Reinigung gibt es einen lokalen Regensburg-Bereich mit 50-km-Umkreis, Kontaktweg und klarer Adresse.",
   },
 ];
 
@@ -164,6 +171,12 @@ const contactDecisionGuide = [
     cta: "Angebot prüfen",
   },
   {
+    title: "Diskreten Fall beschreiben",
+    text: "Wenn Kontaktweg, sensible Situation oder private Details zuerst vorsichtig sortiert werden sollen.",
+    href: "/diskret-service",
+    cta: "Diskret-Service",
+  },
+  {
     title: "Objektbrief senden",
     text: "Wenn Ziel, Fotos, Zugang, Termin oder Budget noch sortiert werden sollen.",
     href: "/objektbrief#schnellstart",
@@ -173,7 +186,7 @@ const contactDecisionGuide = [
 
 const contactTrustProofs = [
   "Pflicht für den Start: Name, Kontaktweg, Ort oder Einsatzort, Leistung und kurze Beschreibung.",
-  "Optional hilfreich: Telefon/WhatsApp, Fotos, Termin, Dringlichkeit, Angebot, Budget, Objektart und Umfang.",
+  "Optional hilfreich: Telefon/WhatsApp, Fotos, Termin, Dringlichkeit, Angebot, Budget, Objektart, Umfang und bevorzugter Kontaktweg bei sensiblen Faellen.",
   "FLOXANT meldet sich mit Rückfragen oder realistischer Einschätzung statt mit automatischer Zusage.",
 ] as const;
 
@@ -183,9 +196,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
     lang: "de",
     path: "kontakt",
-    title: "FLOXANT Kontakt: Service, Ort und nächsten Schritt klären",
+    title: "FLOXANT Kontakt: Leistung, Ort und Anliegen klären",
     description:
-      "Senden Sie Service, Ort, Umfang, Fotos, Terminwunsch und bevorzugten Kontaktweg. FLOXANT ordnet die Anfrage und offene Punkte ein.",
+      "Senden Sie Leistung, Ort, Umfang, Fotos, Terminwunsch und bevorzugten Kontaktweg. FLOXANT prüft Ihre Angaben und meldet sich bei Rückfragen.",
   });
 }
 
@@ -195,14 +208,26 @@ export default async function KontaktPage() {
     path: "/kontakt",
     priority: "p0",
   });
+  const contactRoute = resolveServiceRoute({
+    service: leadIntent.service,
+    city: leadIntent.city,
+    intent: leadIntent.intent,
+    priority: leadIntent.priority,
+    source: "contact-page",
+  });
+  const requestChecklistKey = resolveRequestChecklistKey({
+    service: leadIntent.service,
+    intent: leadIntent.intent,
+    path: "/kontakt",
+  });
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: "FLOXANT Kontakt Düsseldorf und Regensburg",
+        name: "FLOXANT Kontakt Regensburg",
         description:
-          "Kontaktseite für FLOXANT mit Buchung, Rechner, Anfrage, Telefon, WhatsApp, E-Mail und den Standorten Düsseldorf und Regensburg.",
+          "Kontaktseite für FLOXANT mit Buchung, Rechner, Anfrage, Telefon, WhatsApp, E-Mail und dem Standort Regensburg.",
         path: "/kontakt",
         about: [
           "FLOXANT Kontakt",
@@ -285,7 +310,7 @@ export default async function KontaktPage() {
         <div className="relative mx-auto max-w-6xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-blue-600">
             <MapPinned className="h-4 w-4" />
-            FLOXANT Kontakt Düsseldorf und Regensburg
+            FLOXANT Kontakt Regensburg
           </div>
           <ContactHeroCopy fallbackIntent={leadIntent} />
           <div className="mt-8 grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
@@ -362,17 +387,42 @@ export default async function KontaktPage() {
               <div className="mt-4">
                 <LeadTrustBlock />
               </div>
+              <div className="mt-6 overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white/88 shadow-sm shadow-slate-950/5">
+                <ServiceFinder
+                  compact
+                  currentCity={contactRoute.city && contactRoute.city !== "deutschland" ? contactRoute.city : undefined}
+                  title="Leistung vor dem Absenden auswählen"
+                  intro="Wählen Sie die passende Leistung und ergänzen Sie anschließend Ort, Umfang und Termin."
+                  source="contact-page-inline"
+                />
+              </div>
+              <div className="mt-6">
+                <RequestChecklistBlock
+                  serviceKey={requestChecklistKey}
+                  ctaHref="#direktanfrage"
+                  ctaLabel="Checkliste im Formular nutzen"
+                  compact
+                  embedded
+                />
+              </div>
+              <BetterRequestNotice serviceKey={requestChecklistKey} className="mt-4" />
             </div>
 
             <ContactLeadForm fallbackIntent={leadIntent} />
           </div>
+
+          <PhotoGuidanceBlock
+            serviceKey={requestChecklistKey}
+            compact
+            className="mt-8 rounded-[1.35rem] border border-slate-200 bg-white/88 shadow-sm shadow-slate-950/5"
+          />
 
           <div className="mt-4 grid gap-3 md:grid-cols-4">
             {[
               {
                 label: "Direkt zur Buchung",
                 href: "/buchung",
-                text: "Wenn der Fall klar ist und Sie ohne Umweg in die strukturierte Anfrage wollen.",
+                text: "Wenn die Leistung klar ist und Sie direkt ausführliche Angaben senden möchten.",
               },
               {
                 label: "Zum Rechner",
@@ -430,21 +480,33 @@ export default async function KontaktPage() {
 
       <ContactPathChooser />
 
+      <DecisionCompassPanel
+        title="Noch unsicher, welcher Service passt?"
+        intro="Diese Wege helfen, wenn nur das Problem klar ist. Es wird nichts gesendet, bevor das Formular bewusst abgeschickt wird."
+      />
+
       <ServiceFitAdvisor
         currentCity={leadIntent.city && leadIntent.city !== "deutschland" ? leadIntent.city : undefined}
         title="Nicht sicher, welcher Service passt?"
-        intro="Der Anfrageberater setzt nur service, city, intent und priority im Kontaktlink. Bestehende URL-Parameter bleiben beim Formularstart weiter massgeblich."
+        intro="Wählen Sie die Situation, die am besten passt. Das Formular übernimmt die Auswahl und fragt nach den nötigen Einzelheiten."
+      />
+
+      <ServicePackageDecisionExperience
+        variant="contact"
+        limitPerGroup={2}
+        heading="Vor dem Absenden die passende Leistung finden."
+        intro="Wenn eine Angebotsprüfung, eine Kombination oder besondere Unterstützung besser passt, gelangen Sie direkt zur passenden Anfrage."
       />
 
       <LocationServiceSwitcher
         title="Den passenden Standort direkt vor der Anfrage wählen."
-        intro="Düsseldorf und Regensburg haben eigene lokale Schwerpunkte. Der Kontakt bleibt gleich einfach, aber city=duesseldorf oder city=regensburg wird sauber in den Anfrageweg übernommen."
+        intro="Wählen Sie Regensburg, Düsseldorf oder einen anderen Einsatzort. Wir prüfen, ob die gewünschte Leistung dort möglich ist."
       />
 
       <LocalContactPanel
         service={leadIntent.service}
         title="Kontakt für beide FLOXANT Standorte."
-        intro="Adresse, Telefon und E-Mail bleiben sichtbar. Öffnungszeiten und GBP-Profil-URLs werden nicht geraten, sondern als manuelle Prüfung behandelt."
+        intro="Adresse, Telefon und E-Mail bleiben sichtbar. Weitere Angaben veröffentlichen wir nur, wenn sie bestätigt sind."
       />
 
       <section className="px-4 pb-12 sm:px-6">
@@ -533,17 +595,46 @@ export default async function KontaktPage() {
       </section>
 
       <ContactTrustPanel compact />
-
-      <LocalProofPanel location="duesseldorf" />
       <LocalProofPanel location="regensburg" className="bg-slate-900" />
 
       <InternationalCustomerHint
-        cityLabel="Düsseldorf oder Regensburg"
+        cityLabel="Regensburg und Umgebung"
         serviceLabel="Umzug, Reinigung, Entrümpelung, Büroumzug oder Angebotsprüfung"
         tags={["Cleaning service", "Moving help", "Office cleaning", "House clearance", "Quote check"]}
         primaryHref="#direktanfrage"
         photoHref="/buchung#buchungssystem"
       />
+
+      <section className="px-6 py-10">
+        <div className="mx-auto max-w-6xl rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
+          <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <div>
+              <p className="text-[11px] font-black uppercase tracking-normal text-blue-700">Request in English</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
+                International customers can describe a quote in simple English.
+              </h2>
+            </div>
+            <div>
+              <p className="text-sm leading-7 text-slate-600">
+                You can ask about cleaning, moving, office cleaning, house clearance, piano transport or solar panel
+                cleaning in Düsseldorf and Regensburg. Please include the location, scope, preferred date and any open
+                questions. This is not legal advice and does not guarantee a lower price.
+              </p>
+              <Link
+                href="/kontakt?service=offer-check&intent=english-offer-check&source=seo"
+                className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-blue-700"
+                data-event="seo_cta_click"
+                data-service="offer-check"
+                data-page-intent="english-offer-check"
+                data-source="seo"
+              >
+                Start English offer check
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <ServiceDecisionGuide
         eyebrow="Kontaktweg wählen"
@@ -639,17 +730,16 @@ export default async function KontaktPage() {
             </div>
             <div className="mt-5 rounded-[1.15rem] border border-emerald-200 bg-emerald-50 px-4 py-4">
               <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-800">
-                Separater Reinigungsbereich
+                Lokaler Reinigungsbereich
               </div>
               <p className="mt-2 text-sm leading-relaxed text-emerald-950/80">
-                Für lokale Reinigungsanfragen in Düsseldorf gibt es einen eigenen Bereich mit
-                Adresse, Rechner, Kontakt und klarer Reinigungspositionierung.
+                Für lokale Reinigungsanfragen in Regensburg und im 50-km-Umkreis gibt es einen eigenen Bereich mit Adresse, Rechner, Kontakt und klarer Reinigungspositionierung.
               </p>
               <Link
-                href="/duesseldorf/reinigung"
+                href="/regensburg/reinigung"
                 className="mt-3 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-800"
               >
-                Düsseldorf Reinigung ansehen
+                Reinigung Regensburg ansehen
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

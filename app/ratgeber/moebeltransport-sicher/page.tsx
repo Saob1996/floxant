@@ -63,7 +63,7 @@ export default async function Article() {
             <div className="space-y-4">
               {[
               { q: "Wie werden Möbel beim Umzug geschützt?", a: "Durch fachgerechte Demontage, Polsterung, Verpackung und Ladungssicherung." },
-              { q: "Was passiert bei Transportschäden?", a: "FLOXANT ist voll versichert. Schäden werden dokumentiert und reguliert." }
+              { q: "Was passiert bei Transportschäden?", a: "Dokumentieren Sie einen Schaden unmittelbar und melden Sie ihn über den vereinbarten Kontaktweg. Welcher Versicherungsschutz gilt, richtet sich nach dem konkreten Auftrag und den Vertragsbedingungen." }
               ].map((item, i) => (
                 <div key={i} className="p-5 rounded-xl bg-muted/10 border border-border/50">
                   <h3 className="font-bold mb-2">{item.q}</h3>

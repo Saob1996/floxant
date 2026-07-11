@@ -42,7 +42,7 @@ function getHrefParam(href: string, key: string) {
   return new URLSearchParams(href.slice(href.indexOf("?") + 1)).get(key) || "";
 }
 
-export function CommercialCleaningScopeSelector({ city = "duesseldorf" }: CommercialCleaningScopeSelectorProps) {
+export function CommercialCleaningScopeSelector({ city = "regensburg" }: CommercialCleaningScopeSelectorProps) {
   return (
     <section className="px-4 py-12 sm:px-6" data-component="CommercialCleaningScopeSelector">
       <div className="mx-auto max-w-7xl">

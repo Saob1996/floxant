@@ -55,8 +55,8 @@ const cleaningRelated = [
     text: "Wenn erst die passende Reinigungsart gefunden werden soll.",
   },
   {
-    href: "/duesseldorf/gewerbereinigung",
-    label: "Gewerbereinigung Düsseldorf",
+    href: "/regensburg/gewerbereinigung",
+    label: "Gewerbereinigung Regensburg",
     text: "Für Unternehmen, Büros, Praxen, Ladenflächen und Hausverwaltungen.",
   },
   {
@@ -150,21 +150,21 @@ const growthServicePageSeeds = [
     cityLabel: "Düsseldorf und Regensburg nach Prüfung",
     serviceName: "Solarreinigung",
     serviceType: "Solarreinigung und PV-Anlagen-Reinigung",
-    metaTitle: "Solarreinigung mit PV-Fotos, Zugang und Termin klaeren",
+    metaTitle: "Solarreinigung anfragen - Dachart, Zugang und Zustand klären",
     metaDescription:
-      "Solarreinigung fuer PV-Anlagen vorbereiten: Modulzahl, Zugang, Dachart, Fotos, Verschmutzung, Wasseranschluss und Termin sachlich klaeren.",
+      "Solar- oder PV-Reinigung geplant? Dachart, Zugang, Modulfläche und Verschmutzung beschreiben. FLOXANT prüft Anfrage oder Angebot anhand der genannten Eckdaten.",
     eyebrow: "FLOXANT Solarreinigung",
-    title: "Solarreinigung für PV-Anlagen, wenn Zugang und Risiko zuerst geklärt werden müssen",
+    title: "Solarreinigung anfragen - Zugang, Dachart und Verschmutzung klären",
     intro:
-      "FLOXANT prüft Solar- und PV-Reinigungen nicht als Blindpreis. Entscheidend sind Modultyp, Dachneigung, Erreichbarkeit, Verschmutzung, Wasserzugang, Arbeitssicherheit und ob eine Reinigung überhaupt sinnvoll machbar ist.",
+      "Wenn Solarmodule sichtbar verschmutzt sind oder eine Reinigung geprüft werden soll, helfen klare Angaben zu Dachart, Zugang, Modulfläche, Verschmutzung und Fotos. FLOXANT prüft die Anfrage anhand der genannten Eckdaten und hilft, den nächsten Schritt zu klären. Eine Ertragssteigerung oder Verfügbarkeit wird nicht garantiert.",
     primaryCta: "Solarreinigung anfragen",
     secondaryCta: "PV-Fotos senden",
-    bookingHref: "/buchung?service=reinigung&addon=solarreinigung#buchungssystem",
+    bookingHref: "/kontakt?service=solarreinigung&intent=solarreinigung-anfragen&source=seo",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte Solarreinigung prüfen lassen. Ort, PV-Größe, Dachzugang, Verschmutzung und Fotos kann ich senden.",
     heroHighlights: [
       "Fotos und Zugangsdaten zuerst",
-      "Keine Dachzusage ohne Prüfung",
+      "Keine Ertrags- oder Dachzusage ohne Prüfung",
       "Für private und gewerbliche PV-Anlagen",
     ],
     situations: [
@@ -184,6 +184,10 @@ const growthServicePageSeeds = [
         title: "Angebot liegt schon vor",
         text: "FLOXANT kann Umfang, Zugang, Positionen und Preislogik eines vorhandenen Angebots sachlich einordnen.",
       },
+      {
+        title: "Solar panel cleaning auf Englisch",
+        text: "International customers can describe a solar panel cleaning request in simple English with location, roof type, access, module area and photos.",
+      },
     ],
     included: [
       "Prüfung von Modulfläche, Zugang, Dachart und Wasseranschluss.",
@@ -191,17 +195,25 @@ const growthServicePageSeeds = [
       "Trennung zwischen normaler Reinigung und nicht passenden Dach-/Elektroarbeiten.",
       "Optionale Verbindung mit Glas-, Fassaden- oder Außenflächenreinigung.",
     ],
-    process: baseProcess,
+    process: [
+      "Standort und Anlagentyp beschreiben.",
+      "Dachart, Zugang und Modulfläche angeben.",
+      "Fotos und sichtbare Verschmutzung optional ergänzen.",
+      "Vorhandenes Angebot optional mitschicken.",
+      "FLOXANT ordnet Anfrage und nächste Schritte ein.",
+      "Rückmeldung erfolgt über die gewünschte Kontaktmöglichkeit.",
+    ],
     costFactors: [
       "Anzahl und Lage der Module.",
       "Dachneigung, Höhe, Absturzrisiko und Zugang.",
-      "Verschmutzungsgrad, Wasseranschluss und Materialverträglichkeit.",
-      "Anfahrt, Zeitfenster, Sicherheitsbedarf und Fotodokumentation.",
+      "Verschmutzungsgrad, Wasser-/Stromzugang und Materialverträglichkeit.",
+      "Anfahrt, Zeitfenster, Sicherheitslage, Fotos und vorhandenes Angebot.",
     ],
     boundaries: [
       "Keine Elektroarbeiten, Reparaturen oder Ertragsgarantien.",
       "Keine Zusage für gefährliche Dachflächen ohne gesonderte Prüfung.",
       "Keine Hochdruck- oder Chemie-Zusage ohne Materialklärung.",
+      "Keine Preis-, Ersparnis- oder Soforttermin-Garantie.",
     ],
     localSignals: [
       "Düsseldorf: gewerbliche Dächer, Flachdächer, Carports und Objektflächen nach Zugang.",
@@ -215,9 +227,9 @@ const growthServicePageSeeds = [
         text: "Wenn die Anlage technisch beschrieben und nach Modulen geprüft werden soll.",
       },
       {
-        href: "/duesseldorf/solarreinigung",
-        label: "Solarreinigung Düsseldorf",
-        text: "Lokaler Einstieg für Düsseldorf mit Gewerbe- und Objektbezug.",
+        href: "/regensburg/reinigung",
+        label: "Solarreinigung Regensburg",
+        text: "Regensburger Reinigungshub mit Solar-/PV-Verknüpfung.",
       },
       {
         href: "/regensburg/solarreinigung",
@@ -228,20 +240,28 @@ const growthServicePageSeeds = [
     ],
     faq: [
       {
-        q: "Was kostet Solarreinigung?",
-        a: "Der Preis hängt von Modulzahl, Dachart, Höhe, Zugang, Verschmutzung, Wasseranschluss, Sicherheit und Anfahrt ab. Fotos sind für eine realistische Einschätzung wichtig.",
+        q: "Wann ist Solarreinigung sinnvoll?",
+        a: "Solarreinigung kann sinnvoll sein, wenn Module sichtbar durch Pollen, Staub, Vogelkot oder Ablagerungen verschmutzt sind. FLOXANT prüft zuerst Fotos, Zugang und Machbarkeit.",
       },
       {
-        q: "Reinigt FLOXANT jede PV-Anlage?",
-        a: "Nein. Wenn Zugang, Dachneigung, Absturzrisiko oder Material ungeklärt sind, wird keine Zusage gemacht. Sicherheit geht vor.",
+        q: "Welche Angaben braucht FLOXANT?",
+        a: "Hilfreich sind Ort, Dachart, Zugang, ungefähre Modulfläche oder Modulanzahl, sichtbare Verschmutzung, Fotos, vorhandenes Angebot und gewünschter Zeitraum.",
       },
       {
-        q: "Kann ich nur Fotos senden?",
+        q: "Sind Fotos hilfreich?",
         a: "Ja. Fotos von Modulen, Dachzugang, Abstand, Verschmutzung und Wasseranschluss reichen oft für den ersten Schritt.",
       },
       {
-        q: "Gibt es eine Ertragsgarantie?",
-        a: "Nein. FLOXANT prüft Reinigungsaufwand und Machbarkeit, gibt aber keine Garantie auf Stromertrag oder technische Leistung.",
+        q: "Wird eine Ertragssteigerung garantiert?",
+        a: "Nein. FLOXANT prüft Reinigungsaufwand und Machbarkeit, gibt aber keine Garantie auf Stromertrag, technische Leistung, Verfügbarkeit oder Preisersparnis.",
+      },
+      {
+        q: "Kann ich ein Solarreinigungsangebot prüfen lassen?",
+        a: "Ja. FLOXANT kann Dachart, Zugang, Modulfläche, sichtbare Verschmutzung, Sicherheitslage und mögliche Zusatzkosten sachlich einordnen.",
+      },
+      {
+        q: "Can I request solar panel cleaning in English?",
+        a: "Yes. International customers can describe solar panel cleaning in simple English. Location, roof type, access, module area, visible dirt and photos are helpful.",
       },
     ],
   },
@@ -254,16 +274,16 @@ const growthServicePageSeeds = [
     cityLabel: "Düsseldorf, Regensburg und Umgebung nach Prüfung",
     serviceName: "PV-Anlagen-Reinigung",
     serviceType: "Photovoltaik-Reinigung",
-    metaTitle: "PV-Anlagen-Reinigung mit Modulen und Zugang klaeren",
+    metaTitle: "PV-Anlagen-Reinigung - Modulfläche und Zugang klären",
     metaDescription:
-      "PV-Anlagen-Reinigung anfragen: Module, Dachform, Zugang, Wasseranschluss, Verschmutzung, Fotos und Sicherheitsgrenzen vorab klaeren.",
+      "PV-Anlagen-Reinigung anfragen: Modulfläche, Dachart, Zugang, Verschmutzung, Fotos und Angebot ohne Ertragsversprechen einordnen lassen.",
     eyebrow: "FLOXANT PV-Sichtklar-Service",
-    title: "PV-Anlagen-Reinigung mit sauberer Vorprüfung statt pauschalem Dachversprechen",
+    title: "PV-Anlagen-Reinigung anfragen - Modulfläche, Zugang und Zustand klären",
     intro:
       "Bei Photovoltaik zählt nicht nur die Modulfläche. FLOXANT fragt nach Dachform, Begehbarkeit, Abstand, Wasser, Verschmutzung und möglichem Risiko. So wird klar, ob Reinigung sinnvoll und sicher planbar ist.",
-    primaryCta: "PV-Anlage prüfen lassen",
+    primaryCta: "PV-Anlagen-Reinigung anfragen",
     secondaryCta: "Modul-Fotos senden",
-    bookingHref: "/buchung?service=reinigung&addon=pv-anlagen-reinigung#buchungssystem",
+    bookingHref: "/kontakt?service=pv-anlagen-reinigung&intent=pv-reinigung-anfragen&source=seo",
     whatsappMessage:
       "Hallo FLOXANT, bitte prüfen Sie eine PV-Anlagen-Reinigung. Ort, Modulzahl, Dachform, Zugang, Wasseranschluss und Fotos kann ich senden.",
     heroHighlights: [
@@ -295,7 +315,14 @@ const growthServicePageSeeds = [
       "Prüfung, ob Glas- oder Fassadenreinigung sinnvoll kombinierbar ist.",
       "Hinweis, wenn eine Fachprüfung vor Ort nötig ist.",
     ],
-    process: baseProcess,
+    process: [
+      "Standort und PV-Anlagentyp beschreiben.",
+      "Modulfläche, Dachart, Zugang und Sicherheitslage angeben.",
+      "Fotos von Modulen, Verschmutzung und Zugang optional ergänzen.",
+      "Vorhandenes PV-Reinigungsangebot optional mitschicken.",
+      "FLOXANT ordnet Umfang, Grenzen und nächste Schritte ein.",
+      "Rückmeldung erfolgt über die gewünschte Kontaktmöglichkeit.",
+    ],
     costFactors: [
       "Modulfläche, Reihe, Neigung und Erreichbarkeit.",
       "Flach- oder Schrägdach, Laufwege und Absturzrisiko.",
@@ -306,6 +333,7 @@ const growthServicePageSeeds = [
       "Keine Arbeiten an Elektrik, Wechselrichter oder Verkabelung.",
       "Keine Reinigung bei unsicherem Dachzugang.",
       "Keine pauschale Zusage für Spezialbeschichtungen oder Garantiefragen.",
+      "Keine Ertrags-, Preis- oder Soforttermin-Garantie.",
     ],
     localSignals: [
       "Düsseldorf: Gewerbeobjekte, Bürostandorte, Carports und Flachdächer nach Zugang.",
@@ -317,6 +345,11 @@ const growthServicePageSeeds = [
         href: "/solarreinigung",
         label: "Solarreinigung",
         text: "Breiter Einstieg für Solar- und PV-Reinigungsanfragen.",
+      },
+      {
+        href: "/angebot-guenstiger-pruefen",
+        label: "PV-Reinigungsangebot prüfen",
+        text: "Wenn ein vorhandenes Angebot nach Dachzugang, Modulfläche und Zusatzkosten unklar wirkt.",
       },
       ...cleaningRelated,
       {
@@ -331,6 +364,10 @@ const growthServicePageSeeds = [
         a: "Im Alltag wird beides ähnlich genutzt. Diese Seite fokussiert stärker auf Module, Dachzugang und technische Grenzen.",
       },
       {
+        q: "Was sollte in einem PV-Reinigungsangebot stehen?",
+        a: "Wichtig sind Modulfläche, Dachart, Zugang, sichtbare Verschmutzung, Wasser-/Stromzugang, Sicherheitslage, Terminfenster und mögliche Zusatzkosten.",
+      },
+      {
         q: "Welche Fotos helfen?",
         a: "Hilfreich sind Gesamtansicht, Modulreihen, Zugang, Dachneigung, Verschmutzung, Wasseranschluss und mögliche Stellflächen.",
       },
@@ -342,29 +379,37 @@ const growthServicePageSeeds = [
         q: "Kann die Reinigung mit anderen Leistungen kombiniert werden?",
         a: "Ja, wenn Glas-, Fassaden- oder Außenflächenreinigung sinnvoll und sicher zusammen geplant werden kann.",
       },
+      {
+        q: "Gibt es eine Ertragsgarantie?",
+        a: "Nein. FLOXANT ordnet Reinigung und Machbarkeit ein, garantiert aber keine Ertragssteigerung, technische Leistung oder Verfügbarkeit.",
+      },
+      {
+        q: "Can I request solar panel cleaning in English?",
+        a: "Yes. You can describe PV cleaning or solar panel cleaning in simple English with location, roof type, access, module area and photos.",
+      },
     ],
   },
   {
-    slug: "duesseldorf-solarreinigung",
-    path: "/duesseldorf/solarreinigung",
+    slug: "regensburg-solarreinigung",
+    path: "/regensburg/reinigung",
     kind: "cleaning",
     visualRegion: "duesseldorf",
     region: "duesseldorf",
     cityLabel: "Düsseldorf",
-    serviceName: "Solarreinigung Düsseldorf",
-    serviceType: "Solarreinigung Düsseldorf",
-    metaTitle: "Solarreinigung Düsseldorf | PV-Fotos senden | FLOXANT",
+    serviceName: "Solarreinigung Regensburg",
+    serviceType: "Solarreinigung Regensburg",
+    metaTitle: "Solarreinigung Regensburg | PV-Fotos senden | FLOXANT",
     metaDescription:
-      "Solarreinigung in Düsseldorf für PV-Anlagen auf Gewerbe, Carport oder Dach. FLOXANT prüft Fotos, Zugang, Dachart, Sicherheit und Aufwand.",
+      "Solarreinigung in Regensburg für PV-Anlagen auf Gewerbe, Carport oder Dach. FLOXANT prüft Fotos, Zugang, Dachart, Sicherheit und Aufwand.",
     eyebrow: "FLOXANT Düsseldorf",
-    title: "Solarreinigung in Düsseldorf mit klarer Prüfung von Zugang, Dach und Modulen",
+    title: "Solarreinigung in Regensburg mit klarer Prüfung von Zugang, Dach und Modulen",
     intro:
-      "Für Düsseldorf prüft FLOXANT Solar- und PV-Reinigung besonders nach Objektlage, Dachzugang, Park- oder Lieferzone, Wasseranschluss und Sicherheit. Erst danach ist eine seriöse Rückmeldung möglich.",
+      "Für Regensburg prüft FLOXANT Solar- und PV-Reinigung besonders nach Objektlage, Dachzugang, Park- oder Lieferzone, Wasseranschluss und Sicherheit. Erst danach ist eine seriöse Rückmeldung möglich.",
     primaryCta: "Düsseldorfer PV-Anlage anfragen",
     secondaryCta: "Fotos per WhatsApp senden",
-    bookingHref: "/buchung?region=duesseldorf&service=reinigung&addon=solarreinigung#buchungssystem",
+    bookingHref: "/buchung?region=regensburg&service=reinigung&addon=solarreinigung#buchungssystem",
     whatsappMessage:
-      "Hallo FLOXANT Düsseldorf, ich möchte Solarreinigung prüfen lassen. Stadtteil, Objekt, Dachzugang, PV-Fläche und Fotos kann ich senden.",
+      "Hallo FLOXANT Regensburg, ich möchte Solarreinigung prüfen lassen. Stadtteil, Objekt, Dachzugang, PV-Fläche und Fotos kann ich senden.",
     heroHighlights: [
       "Düsseldorf mit Stadtteil und Objektlage",
       "Gewerbe, Carport und Dach nach Prüfung",
@@ -426,7 +471,7 @@ const growthServicePageSeeds = [
     ],
     faq: [
       {
-        q: "Was kostet Solarreinigung in Düsseldorf?",
+        q: "Was kostet Solarreinigung in Regensburg?",
         a: "Kosten hängen von Modulfläche, Dachzugang, Höhe, Stadtteil, Parken, Verschmutzung und Sicherheitsbedarf ab.",
       },
       {
@@ -452,16 +497,16 @@ const growthServicePageSeeds = [
     cityLabel: "Regensburg",
     serviceName: "Solarreinigung Regensburg",
     serviceType: "Solarreinigung Regensburg",
-    metaTitle: "Solarreinigung Regensburg | PV-Anlage prüfen | FLOXANT",
+    metaTitle: "Solarreinigung Regensburg - PV-Anlage und Zugang klären",
     metaDescription:
-      "Solarreinigung in Regensburg und Umgebung: PV-Fotos, Modulfläche, Dachzugang, Verschmutzung und Termin senden. FLOXANT prüft Machbarkeit.",
+      "Solarreinigung Regensburg: PV-Fotos, Modulfläche, Dachzugang, Verschmutzung, Angebot und Zeitraum senden. FLOXANT prüft Machbarkeit ohne Ertragsgarantie.",
     eyebrow: "FLOXANT Regensburg",
-    title: "Solarreinigung in Regensburg für PV-Anlagen mit sicherem Zugang",
+    title: "Solarreinigung Regensburg anfragen - PV-Anlage, Fotos und Zugang beschreiben",
     intro:
       "In Regensburg und Umgebung prüft FLOXANT Solarreinigung nach Modulfläche, Dachzugang, Wasseranschluss, Verschmutzung und Terminfenster. Besonders wichtig ist, ob die Anlage ohne unverhältnismäßiges Risiko erreichbar ist.",
     primaryCta: "Solarreinigung Regensburg anfragen",
     secondaryCta: "PV-Fotos senden",
-    bookingHref: "/buchung?region=regensburg&service=reinigung&addon=solarreinigung#buchungssystem",
+    bookingHref: "/kontakt?service=solarreinigung&city=regensburg&intent=solarreinigung-regensburg&source=seo",
     whatsappMessage:
       "Hallo FLOXANT Regensburg, ich möchte Solarreinigung prüfen lassen. Ort, PV-Fläche, Dachzugang, Verschmutzung und Fotos kann ich senden.",
     heroHighlights: [
@@ -493,7 +538,14 @@ const growthServicePageSeeds = [
       "Klare Grenze zu Elektro- und Dacharbeiten.",
       "Rückmeldung mit offenen Punkten vor einem Termin.",
     ],
-    process: baseProcess,
+    process: [
+      "Ort in Regensburg oder Umgebung nennen.",
+      "PV-Fläche, Dachart, Zugang und Wasseranschluss beschreiben.",
+      "Fotos von Anlage, Verschmutzung und Zugang optional senden.",
+      "Vorhandenes Angebot optional ergänzen.",
+      "FLOXANT prüft Machbarkeit und offene Punkte.",
+      "Rückmeldung erfolgt über den gewünschten Kontaktweg.",
+    ],
     costFactors: [
       "Modulanzahl, Dachhöhe und Erreichbarkeit.",
       "Regensburg, Umland, Anfahrt und Zeitfenster.",
@@ -504,6 +556,7 @@ const growthServicePageSeeds = [
       "Keine technische PV-Wartung oder Reparatur.",
       "Keine Reinigung, wenn Zugang nicht sicher ist.",
       "Keine Zusage für Ertragssteigerung.",
+      "Keine Preis-, Verfügbarkeits- oder Soforttermin-Garantie.",
     ],
     localSignals: [
       "Regensburg Innenstadt, Westenviertel, Prüfening und Burgweinting unterscheiden sich bei Zugang und Parken.",
@@ -539,6 +592,14 @@ const growthServicePageSeeds = [
       {
         q: "Wird jede Anlage gereinigt?",
         a: "Nein. Wenn Sicherheit, Material oder Zugang nicht passen, wird der Auftrag abgelehnt oder anders eingeordnet.",
+      },
+      {
+        q: "Kann ich ein Solarreinigungsangebot für Regensburg prüfen lassen?",
+        a: "Ja. Senden Sie Angebot, Fotos, Dachart, Zugang und Modulfläche. FLOXANT prüft Umfang und offene Punkte ohne Preis- oder Ertragsgarantie.",
+      },
+      {
+        q: "Can I request solar panel cleaning in English?",
+        a: "Yes. International customers in Regensburg or nearby areas can describe solar panel cleaning in simple English.",
       },
     ],
   },
@@ -611,8 +672,8 @@ const growthServicePageSeeds = [
     ],
     relatedLinks: [
       {
-        href: "/duesseldorf/fensterreinigung",
-        label: "Fensterreinigung Düsseldorf",
+        href: "/fensterreinigung-regensburg",
+        label: "Fensterreinigung Regensburg",
         text: "Lokale Detaillierung für Düsseldorf.",
       },
       {
@@ -992,15 +1053,15 @@ const growthServicePageSeeds = [
     ],
     localSignals: [
       "Regensburg: Keller in Altstadt, Mehrfamilienhaus oder Umland nach Zugang.",
-      "Düsseldorf: Kellerreinigung und Entsorgung mit Stadtteil, Hausordnung und Laufweg.",
+      "Regensburg: Kellerreinigung und Entsorgung mit Stadtteil, Hausordnung und Laufweg.",
       "Bei jeder Anfrage helfen Fotos von Eingang, Treppe und Inhalt.",
     ],
     relatedLinks: [
       ...clearanceRelated,
       {
-        href: "/duesseldorf/kellerreinigung",
-        label: "Kellerreinigung Düsseldorf",
-        text: "Wenn nach der Räumung Reinigung im Düsseldorfer Bereich nötig ist.",
+        href: "/regensburg/reinigung",
+        label: "Kellerreinigung Regensburg",
+        text: "Wenn nach der Räumung Reinigung im Regensburger Bereich nötig ist.",
       },
     ],
     faq: [
@@ -1087,7 +1148,7 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg und Bayern: Wohnungen, Häuser und Nebenflächen nach Ort und Zugang.",
       "Bei nicht vor Ort lebenden Angehörigen helfen Fotos, Schlüsselweg und Rückrufwunsch.",
-      "Düsseldorf kann bei passenden lokalen Räumungs- und Reinigungsanfragen geprüft werden.",
+      "Regensburg kann bei passenden lokalen Räumungs- und Reinigungsanfragen geprüft werden.",
     ],
     relatedLinks: [
       ...clearanceRelated,
@@ -1546,7 +1607,7 @@ const growthServicePageSeeds = [
       "Keine verbindliche Zusage ohne eigene Machbarkeitsprüfung.",
     ],
     localSignals: [
-      "Düsseldorf: besonders für Reinigung, Gewerbereinigung, Umzug und Entsorgung.",
+      "Regensburg: besonders für Reinigung, Gewerbereinigung, Umzug und Entsorgung.",
       "Regensburg: Umzug, Räumung, Haushaltsauflösung, Reinigung und Übergabe.",
       "Lokale Faktoren wie Zugang, Parken und Zeitfenster werden mitbewertet.",
     ],
@@ -1581,14 +1642,14 @@ const growthServicePageSeeds = [
     serviceType: "Übergabe-Sprint",
     metaTitle: "Übergabe-Sprint | Wohnung vor Termin vorbereiten",
     metaDescription:
-      "FLOXANT Übergabe-Sprint für Auszug, Rückgabe oder Besichtigung: Restmengen, Reinigung, Fotos, Schlüsselweg und Deadline strukturiert prüfen.",
+      "FLOXANT Übergabe-Sprint für Auszug, Rückgabe oder Besichtigung: Restmengen, Reinigung, Fotos, Schlüsselweg und Deadline Punkt für Punkt prüfen.",
     eyebrow: "Signature Service",
     title: "FLOXANT Übergabe-Sprint, wenn der Übergabetermin näher rückt",
     intro:
       "Der Übergabe-Sprint bündelt die letzten praktischen Punkte vor Rückgabe, Besichtigung oder Nachnutzung: Restmengen, Reinigung, Fotos, Schlüssel, Zugang und sichtbare Problemstellen.",
     primaryCta: "Übergabe-Sprint starten",
     secondaryCta: "Deadline senden",
-    bookingHref: "/buchung?service=reinigung&addon=uebergabe-sprint#buchungssystem",
+    bookingHref: "/kontakt?service=reinigung&city=regensburg&intent=uebergabe-sprint&source=seo",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte den Übergabe-Sprint prüfen lassen. Ort, Deadline, Fotos, Restpunkte, Schlüsselweg und Zielzustand kann ich senden.",
     heroHighlights: [
@@ -1642,7 +1703,7 @@ const growthServicePageSeeds = [
     localSignals: [
       "Regensburg: besonders passend für Auszug, Mietwechsel und Übergabe.",
       "Bayern: nach Strecke, Schlüsselweg und Deadline.",
-      "Düsseldorf: passende Reinigungs- und Entsorgungsfälle nach Standortbereich.",
+      "Regensburg: passende Reinigungs- und Entsorgungsfälle nach Standortbereich.",
     ],
     relatedLinks: [
       {
@@ -1655,7 +1716,7 @@ const growthServicePageSeeds = [
     faq: [
       {
         q: "Was ist der Übergabe-Sprint?",
-        a: "Eine strukturierte Prüfung der letzten praktischen Aufgaben vor Übergabe, Rückgabe oder Besichtigung.",
+        a: "Eine Prüfung der letzten praktischen Aufgaben vor Übergabe, Rückgabe oder Besichtigung.",
       },
       {
         q: "Garantiert FLOXANT die Abnahme?",
@@ -1689,7 +1750,7 @@ const growthServicePageSeeds = [
       "Vermieter-ready heißt nicht perfekte Garantie, sondern sichtbar geordnete Vorbereitung: Restmengen, Reinigung, Fotos, Schlüsselstatus und offene Punkte werden vor Rückgabe oder Neuvermietung sortiert.",
     primaryCta: "Wohnung vorbereiten lassen",
     secondaryCta: "Restpunkte senden",
-    bookingHref: "/buchung?service=reinigung&addon=vermieter-ready#buchungssystem",
+    bookingHref: "/kontakt?service=reinigung&city=regensburg&intent=vermieter-ready-service&source=seo",
     whatsappMessage:
       "Hallo FLOXANT, ich möchte den Vermieter-Ready-Service prüfen lassen. Ort, Termin, Fotos, Restpunkte und Schlüsselweg kann ich senden.",
     heroHighlights: [
@@ -1742,7 +1803,7 @@ const growthServicePageSeeds = [
     ],
     localSignals: [
       "Regensburg: Mieterwechsel, Übergabe, Besichtigung und Nachnutzung.",
-      "Düsseldorf: Reinigung, Entsorgung und lokale Objektvorbereitung.",
+      "Regensburg: Reinigung, Entsorgung und lokale Objektvorbereitung.",
       "Bei beiden Regionen zählt der konkrete Termin.",
     ],
     relatedLinks: signatureRelated,
@@ -1840,7 +1901,7 @@ const growthServicePageSeeds = [
       "Keine Zusage bei Gefahrstoffen, Schimmel oder ungeklärten Schäden.",
     ],
     localSignals: [
-      "Düsseldorf: Gewerbe-, Büro-, Wohnungs- und Endreinigung nach Stadtteil.",
+      "Regensburg: Gewerbe-, Büro-, Wohnungs- und Endreinigung nach Stadtteil.",
       "Regensburg: Übergabe, Auszug, Reinigung nach Umzug und Objektvorbereitung.",
       "Je knapper der Termin, desto wichtiger sind Fotos und Telefonkontakt.",
     ],
