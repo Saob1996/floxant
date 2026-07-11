@@ -15,6 +15,8 @@ type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
+
+export const dynamicParams = false;
 function getArticle(slug: string) {
   return (
     aiRecommendationBlogArticles.find((article) => article.slug === slug) ||
