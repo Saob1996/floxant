@@ -18,7 +18,7 @@ import { LocationServiceSwitcher } from "@/components/LocationServiceSwitcher";
 import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
 import { ObjectionAnswerGrid } from "@/components/ObjectionAnswerGrid";
 import { ProcessProofSteps } from "@/components/ProcessProofSteps";
-import { SeoLeadForm } from "@/components/SeoLeadForm";
+import { ContactHeroCopy, ContactLeadForm } from "@/components/ContactQueryPersonalization";
 import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
 import { ServiceFitAdvisor } from "@/components/ServiceFitAdvisor";
 import { ServiceIntentSelector } from "@/components/ServiceIntentSelector";
@@ -177,16 +177,7 @@ const contactTrustProofs = [
   "FLOXANT meldet sich mit Rückfragen oder realistischer Einschätzung statt mit automatischer Zusage.",
 ] as const;
 
-type KontaktSearchParams = Promise<Record<string, string | string[] | undefined>>;
-
-function readSearchParam(
-  params: Record<string, string | string[] | undefined> | undefined,
-  key: string,
-) {
-  const value = params?.[key];
-  if (Array.isArray(value)) return value[0] || "";
-  return value || "";
-}
+export const dynamic = "force-static";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generatePageSEO({
@@ -198,22 +189,12 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function KontaktPage({
-  searchParams,
-}: {
-  searchParams?: KontaktSearchParams;
-}) {
+export default async function KontaktPage() {
   const dict = await getDictionary("de");
-  const params = searchParams ? await searchParams : {};
   const leadIntent = resolveLeadIntent({
     path: "/kontakt",
-    service: readSearchParam(params, "service"),
-    city: readSearchParam(params, "city"),
-    intent: readSearchParam(params, "intent"),
-    priority: readSearchParam(params, "priority") || "p0",
+    priority: "p0",
   });
-  const initialOfferConcern = readSearchParam(params, "offerConcern");
-  const initialOfferStatus = readSearchParam(params, "offerStatus");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -306,13 +287,7 @@ export default async function KontaktPage({
             <MapPinned className="h-4 w-4" />
             FLOXANT Kontakt Düsseldorf und Regensburg
           </div>
-          <h1 className="mt-6 max-w-5xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            FLOXANT Kontakt: Anfrage mit Ort, Service und offener Frage senden
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-foreground/58">
-            {leadIntent.suggestedFormIntro} Hilfreich sind Service, Ort, Umfang,
-            Fotos, Terminwunsch und der Kontaktweg, über den FLOXANT gezielt nachfragen darf.
-          </p>
+          <ContactHeroCopy fallbackIntent={leadIntent} />
           <div className="mt-8 grid gap-6 lg:grid-cols-[0.84fr_1.16fr] lg:items-start">
             <div>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -389,12 +364,7 @@ export default async function KontaktPage({
               </div>
             </div>
 
-            <SeoLeadForm
-              initialIntent={leadIntent}
-              sourcePage="/kontakt"
-              initialOfferConcern={initialOfferConcern}
-              initialOfferStatus={initialOfferStatus}
-            />
+            <ContactLeadForm fallbackIntent={leadIntent} />
           </div>
 
           <div className="mt-4 grid gap-3 md:grid-cols-4">

@@ -2,12 +2,14 @@ import { MetadataRoute } from "next";
 
 import { germanizeDeep } from "@/lib/german-text";
 
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   return germanizeDeep({
     name: "FLOXANT | Umzug, Reinigung und Entrümpelung",
     short_name: "FLOXANT",
     description:
-      "FLOXANT prüft Umzug, Reinigung, Entrümpelung, Haushaltsauflösung, Gewerbereinigung und Endreinigung in Düsseldorf und Regensburg.",
+      "FLOXANT prueft Umzug, Entruempelung und Reinigung lokal ab Regensburg. Reinigung gilt fuer Regensburg und maximal 50 km Umkreis.",
     start_url: "/",
     display: "standalone",
     background_color: "#EEF5FF",
@@ -42,17 +44,17 @@ export default function manifest(): MetadataRoute.Manifest {
         icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
       },
       {
-        name: "Reinigung Düsseldorf",
-        short_name: "Düsseldorf",
-        description: "Umzug, Reinigung, Entrümpelung oder Endreinigung in Düsseldorf anfragen.",
-        url: "/duesseldorf/reinigung",
+        name: "Reinigung Regensburg",
+        short_name: "Reinigung",
+        description: "Reinigung, Bueroreinigung oder Endreinigung in Regensburg und im 50-km-Umkreis anfragen.",
+        url: "/regensburg/reinigung",
         icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
       },
       {
-        name: "Umzug Düsseldorf",
-        short_name: "Umzug DUS",
-        description: "Umzug in Düsseldorf mit Fotos, Termin und Angebot prüfen lassen.",
-        url: "/duesseldorf/umzug",
+        name: "Umzug Regensburg",
+        short_name: "Umzug",
+        description: "Umzug in Regensburg mit Fotos, Termin und Angebot prüfen lassen.",
+        url: "/regensburg/umzug",
         icons: [{ src: "/icon.png", sizes: "any", type: "image/png" }],
       },
     ],

@@ -7,6 +7,8 @@ const { spawn } = require("child_process");
 
 const ROOT = process.cwd();
 const APP_DIR = path.join(ROOT, "app");
+const FUNCTIONS_DIR = path.join(ROOT, "functions");
+const CLOUDFLARE_REDIRECTS_PATH = path.join(ROOT, "public", "_redirects");
 const DYNAMIC_LOCAL_ROUTES_PATH = path.join(ROOT, "lib", "local-seo-routes.ts");
 const DYNAMIC_BLOG_SOURCE_FILES = [
   path.join(ROOT, "lib", "ai-recommendation-blog-articles.ts"),
@@ -352,6 +354,28 @@ function discoverRoutes({ includePrivate = false } = {}) {
 
   walk(APP_DIR);
 
+  function walkFunctions(directory, segments = []) {
+    if (!fs.existsSync(directory)) return;
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (!entry.name.startsWith("_")) walkFunctions(path.join(directory, entry.name), [...segments, entry.name]);
+        continue;
+      }
+      if (!/\.(js|ts)$/.test(entry.name) || entry.name.startsWith("_")) continue;
+      const name = entry.name.replace(/\.(js|ts)$/, "");
+      routes.add(routeFromSegments(name === "index" ? segments : [...segments, name]));
+    }
+  }
+
+  walkFunctions(FUNCTIONS_DIR);
+
+  if (fs.existsSync(CLOUDFLARE_REDIRECTS_PATH)) {
+    for (const line of fs.readFileSync(CLOUDFLARE_REDIRECTS_PATH, "utf8").split(/\r?\n/)) {
+      const source = line.trim().split(/\s+/, 1)[0];
+      if (source?.startsWith("/") && !source.includes("*") && !source.includes(":")) routes.add(source);
+    }
+  }
+
   for (const route of STATIC_METADATA_ROUTES) {
     routes.add(route);
   }
@@ -381,6 +405,7 @@ function discoverRoutes({ includePrivate = false } = {}) {
 
 function walkFiles(directory, files = []) {
   if (!fs.existsSync(directory)) return files;
+  if (path.relative(ROOT, directory).replace(/\\/g, "/") === "components/dashboard") return files;
 
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (["node_modules", ".next", "out", ".git"].includes(entry.name)) continue;

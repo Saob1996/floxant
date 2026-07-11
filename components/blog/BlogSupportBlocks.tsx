@@ -38,7 +38,7 @@ function getRelatedServices(signal: string): RelatedLink[] {
   if (signal.includes("entruempel") || signal.includes("entsorgung") || signal.includes("haushaltsaufloesung")) {
     links.push(
       { href: "/entruempelung", title: "Entruempelung", text: "Menge, Material, Zugang und Entsorgung sichtbar machen." },
-      { href: "/duesseldorf/entruempelung", title: "Entruempelung Duesseldorf", text: "Lokale Raeumung mit Fotos und Termin klaeren." },
+      { href: "/duesseldorf/entsorgung", title: "Entsorgung Duesseldorf", text: "Lokale Raeumung mit Fotos und Termin klaeren." },
     );
   }
 

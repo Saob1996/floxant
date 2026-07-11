@@ -302,7 +302,7 @@ export default function SpezialentruempelungPage() {
 
       <LocalServiceBridge
         serviceLabel="Spezialentruempelung"
-        duesseldorfHref="/duesseldorf/entruempelung"
+        duesseldorfHref="/duesseldorf/entsorgung"
         regensburgHref="/regensburg/entruempelung"
       />
 

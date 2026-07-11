@@ -62,14 +62,14 @@ function getRelatedSpecialKind(config: GrowthServicePageConfig) {
 function getLocalBridgeTargets(config: GrowthServicePageConfig) {
   if (config.kind === "moving") {
     return {
-      duesseldorfHref: "/duesseldorf/umzug",
+      duesseldorfHref: "/regensburg/umzug",
       regensburgHref: "/regensburg/umzug",
     };
   }
 
   if (config.kind === "clearance") {
     return {
-      duesseldorfHref: "/duesseldorf/entruempelung",
+      duesseldorfHref: "/duesseldorf/entsorgung",
       regensburgHref: "/regensburg/entruempelung",
     };
   }
