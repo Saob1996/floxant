@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Shield, Check, X, Settings2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 type ConsentState = {
   necessary: boolean;
@@ -10,6 +11,7 @@ type ConsentState = {
 };
 
 export function CookieBanner({ dic }: { dic?: any }) {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showTrigger, setShowTrigger] = useState(false);
@@ -64,6 +66,10 @@ export function CookieBanner({ dic }: { dic?: any }) {
   const handleSaveSettings = () => {
     saveConsent(preferences);
   };
+
+  if (pathname.startsWith("/dashboard") || pathname.startsWith("/admin") || pathname.startsWith("/login")) {
+    return null;
+  }
 
   return (
     <>

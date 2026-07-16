@@ -19,6 +19,8 @@ export function SiteChrome({
 }) {
   const pathname = usePathname();
   const isDuesseldorfSection = pathname.startsWith("/duesseldorf");
+  const isPrivateSection =
+    pathname.startsWith("/dashboard") || pathname.startsWith("/admin") || pathname.startsWith("/login");
   const usesDuesseldorfHeader =
     isDuesseldorfSection ||
     pathname === "/regensburg/reinigung" ||
@@ -26,8 +28,8 @@ export function SiteChrome({
 
   return (
     <>
-      {!isDuesseldorfSection ? <JsonLd lang="de" /> : null}
-      {!isDuesseldorfSection ? <WebSiteJsonLd /> : null}
+      {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang="de" /> : null}
+      {!isDuesseldorfSection && !isPrivateSection ? <WebSiteJsonLd /> : null}
       <PublicHeader
         dic={{}}
         variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
@@ -38,7 +40,7 @@ export function SiteChrome({
       </div>
       {!isDuesseldorfSection ? <Footer /> : null}
       <GlobalRequestCenter />
-      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection} />
+      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection} />
     </>
   );
 }
