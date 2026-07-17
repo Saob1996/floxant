@@ -160,6 +160,20 @@ export const searchAuthorityPages = {
     searchIntent: "Leistungsanfrage strukturiert vorbereiten",
     locale: "de-DE",
   },
+  "/leistungsfinder": {
+    seoTitle: "Leistungsfinder: Reinigung, Umzug oder Räumung | FLOXANT",
+    shortTitle: "FLOXANT Leistungsfinder",
+    headline: "Die passende FLOXANT-Leistung nach Region und Aufgabe finden",
+    description:
+      "Ordnen Sie Ihr Anliegen clientseitig ein: Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – mit passenden Angaben und nächstem Schritt.",
+    ogTitle: "FLOXANT Leistungsfinder für Düsseldorf und Regensburg",
+    ogDescription:
+      "Region, Aufgabenart und Auftragssituation auswählen und zur passenden vorhandenen Leistungsseite gelangen.",
+    primaryQuery: "FLOXANT Leistungsfinder",
+    secondaryQueries: ["welche Reinigungsleistung", "Umzug oder Räumung Regensburg", "Reinigungsservice Düsseldorf finden"],
+    searchIntent: "Passende vorhandene FLOXANT-Leistung bestimmen",
+    locale: "de-DE",
+  },
   "/en": {
     seoTitle: "FLOXANT Services in English | Düsseldorf & Regensburg",
     shortTitle: "Services in English",
@@ -302,6 +316,20 @@ export const searchAuthorityPages = {
     primaryQuery: "create service request Germany",
     secondaryQueries: ["cleaning request Düsseldorf", "moving request Regensburg", "service request brief"],
     searchIntent: "English preparation of a structured local service request",
+    locale: "en",
+  },
+  "/en/service-finder": {
+    seoTitle: "Service Finder for Düsseldorf & Regensburg | FLOXANT",
+    shortTitle: "Service Finder",
+    headline: "Find the relevant FLOXANT service for your region and task",
+    description:
+      "Use the client-side service finder for cleaning in Düsseldorf or cleaning, moving and clearance in Regensburg, Germany, with clear next steps in English.",
+    ogTitle: "FLOXANT Service Finder in English",
+    ogDescription:
+      "Match the region, type of work and request situation to an existing FLOXANT service page.",
+    primaryQuery: "FLOXANT service finder English",
+    secondaryQueries: ["cleaning service Düsseldorf", "moving service Regensburg", "house clearance Regensburg"],
+    searchIntent: "English selection of an existing local FLOXANT service",
     locale: "en",
   },
 } as const satisfies Record<string, SearchAuthorityMetadata>;
