@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2, FileSearch, MapPin, ShieldCheck } from "lucide-react";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
@@ -333,6 +334,8 @@ export default function DuesseldorfHubPage() {
           </div>
         </div>
       </section>
+
+      <ToolJourneyPanel intent="cleaning" region="duesseldorf" />
 
       <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.78fr_1.22fr]">

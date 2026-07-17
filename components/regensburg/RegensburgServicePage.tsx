@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import {
   InternationalCustomerHint,
   OfferCheckCTA,
@@ -873,6 +874,11 @@ export function RegensburgServicePage({ config }: RegensburgServicePageProps) {
           </div>
         </div>
       </section>
+
+      <ToolJourneyPanel
+        intent={config.slug.includes("umzug") ? "moving" : config.slug.includes("entruempelung") || config.slug.includes("aufloesung") ? "clearance" : "cleaning"}
+        region="regensburg"
+      />
 
       <section className="px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">

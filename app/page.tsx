@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
@@ -421,6 +422,8 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      <ToolJourneyPanel intent="overview" region="both" />
 
       <section data-home-section="faq-final" className="bg-slate-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.8fr]">

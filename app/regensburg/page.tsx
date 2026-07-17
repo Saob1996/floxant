@@ -10,6 +10,7 @@ import {
   TrustProofSection,
 } from "@/components/conversion";
 import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { ServiceFinder } from "@/components/ContactPathChooser";
 import { LocalProofPanel } from "@/components/LocalProofPanel";
 import { LocalContactPanel } from "@/components/LocalContactPanel";
@@ -66,7 +67,7 @@ const regensburgDecisionGuide = [
   {
     title: "Umzug, Mini-Umzug und Transport",
     text: "Für Wohnungswechsel, Möbeltransport, Express-Umzug oder flexible Rückfahrt mit Route, Volumen und Zugang.",
-    href: "/regensburg/umzugsunternehmen",
+    href: "/regensburg/umzug",
     cta: "Umzug öffnen",
   },
   {
@@ -82,10 +83,16 @@ const regensburgDecisionGuide = [
     cta: "Kosten prüfen",
   },
   {
-    title: "Büroreinigung und Reinigungsfirma",
-    text: "Für Büro, Kanzlei, Gewerbefläche oder Endreinigung mit Raumliste, Turnus, Fotos und Angebot.",
+    title: "Reinigungsfirma für Wohnung und Übergabe",
+    text: "Für Wohnung, Endreinigung oder Übergabe mit Fläche, Zustand, Fotos und Terminwunsch.",
+    href: "/regensburg/reinigungsfirma",
+    cta: "Reinigungsfirma wählen",
+  },
+  {
+    title: "Büro- und Gewerbereinigung",
+    text: "Für Büro, Kanzlei oder Gewerbefläche mit Raumliste, Turnus, Zeitfenster und Angebot.",
     href: "/regensburg/bueroreinigung",
-    cta: "Büroreinigung prüfen",
+    cta: "Büroreinigung wählen",
   },
   {
     title: "Entrümpelung und Haushaltsauflösung",
@@ -96,7 +103,7 @@ const regensburgDecisionGuide = [
   {
     title: "Reinigung und Übergabe",
     text: "Für Endreinigung, Übergabereinigung, Mieterwechsel oder sichtbare Restpunkte vor Rückgabe und Besichtigung.",
-    href: "/regensburg/reinigung-nach-umzug",
+    href: "/regensburg/reinigung",
     cta: "Reinigung wählen",
   },
   {
@@ -242,6 +249,9 @@ export default function RegensburgHubPage() {
           { href: "/regensburg/umzug-kosten", label: "Umzugskosten" },
           { href: "/regensburg/seniorenumzug", label: "Seniorenumzug" },
           { href: "/regensburg/bueroreinigung", label: "Büroreinigung" },
+          { href: "/regensburg/gewerbereinigung", label: "Gewerbereinigung" },
+          { href: "/praxisreinigung-regensburg", label: "Praxisreinigung" },
+          { href: "/unterhaltsreinigung-regensburg", label: "Unterhaltsreinigung" },
           { href: "/regensburg/wohnungsaufloesung", label: "Wohnungsauflösung" },
           { href: "/regensburg/reinigungsfirma", label: "Reinigungsfirma" },
           { href: "/regensburg/entruempelung", label: "Entrümpelung" },
@@ -357,6 +367,8 @@ export default function RegensburgHubPage() {
 
       <ProjectStoryGrid serviceKey="umzug" locationKey="regensburg" />
       <ServiceVisualProofGrid serviceKey="reinigung" locationKey="regensburg" />
+
+      <ToolJourneyPanel intent="overview" region="regensburg" />
 
       <section className="bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">

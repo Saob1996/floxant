@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
 import {
@@ -923,6 +924,7 @@ export default function RegensburgUmzugPage() {
       <RegensburgLocalProofPanel />
       <MovingNoGuaranteePanel />
       <RelatedMovingServices />
+      <ToolJourneyPanel intent="moving" region="regensburg" />
       <EnglishMovingHint />
       <ClosingTrust />
       <MovingFAQ />

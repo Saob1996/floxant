@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { SeoLeadForm } from "@/components/SeoLeadForm";
 import { company } from "@/lib/company";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
@@ -373,6 +374,8 @@ export default function ReinigungsfirmaAngebotPage() {
             ))}
           </div>
         </section>
+
+        <ToolJourneyPanel intent="quote" region="both" />
 
         <section className="bg-slate-950 px-5 py-14 text-white sm:px-8 lg:px-10">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { RequestChecklistBlock as RequestBriefChecklistBlock } from "@/components/RequestChecklistBlock";
 import { company } from "@/lib/company";
 import { searchAuthorityPages } from "@/lib/search-authority";
@@ -1629,6 +1630,7 @@ export function DuesseldorfCleaningServicePage({ pageKey }: { pageKey: Duesseldo
       <DuesseldorfLocalProofPanel />
       <B2BTrustPanel config={config} />
       <CleaningNoGuaranteePanel />
+      <ToolJourneyPanel intent="cleaning" region="duesseldorf" />
       <EnglishCleaningHint config={config} />
       <CleaningFAQ config={config} />
     </main>
