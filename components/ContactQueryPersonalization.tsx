@@ -59,8 +59,15 @@ export function ContactLeadForm({
   fallbackIntent: LeadIntent;
 }) {
   const query = useCurrentQuery();
+  const [handoff, setHandoff] = useState("");
   const intent = useMemo(() => resolveQueryIntent(query, fallbackIntent), [fallbackIntent, query]);
   const params = useMemo(() => new URLSearchParams(query), [query]);
+
+  useEffect(() => {
+    const storedHandoff = window.sessionStorage.getItem("floxant:tool-handoff") || "";
+    setHandoff(storedHandoff);
+    if (storedHandoff) window.sessionStorage.removeItem("floxant:tool-handoff");
+  }, []);
 
   return (
     <SeoLeadForm
@@ -69,6 +76,7 @@ export function ContactLeadForm({
       sourcePage="/kontakt"
       initialOfferConcern={params.get("offerConcern") || ""}
       initialOfferStatus={params.get("offerStatus") || ""}
+      initialMessage={handoff}
     />
   );
 }

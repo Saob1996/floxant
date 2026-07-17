@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 
 import {
@@ -24,6 +24,7 @@ type SeoLeadFormProps = {
   sourcePage?: string;
   initialOfferConcern?: string;
   initialOfferStatus?: string;
+  initialMessage?: string;
 };
 
 type FormErrors = Partial<Record<"name" | "contact" | "email" | "service" | "city" | "message" | "privacy" | "spam" | "form", string>>;
@@ -448,6 +449,7 @@ export function SeoLeadForm({
   sourcePage = "/kontakt",
   initialOfferConcern = "",
   initialOfferStatus = "",
+  initialMessage = "",
 }: SeoLeadFormProps) {
   const initialService = initialIntent.service === "kontakt" ? "reinigung" : initialIntent.service;
   const initialCityInput = initialIntent.cityLabel || "";
@@ -519,6 +521,10 @@ export function SeoLeadForm({
   const [startedAt] = useState(() => Date.now());
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  useEffect(() => {
+    if (initialMessage) setMessage((current) => current || initialMessage);
+  }, [initialMessage]);
 
   const lead = useMemo(
     () => {

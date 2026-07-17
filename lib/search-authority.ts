@@ -146,6 +146,20 @@ export const searchAuthorityPages = {
     searchIntent: "Vorhandenes Dienstleistungsangebot auf offene Angaben prüfen",
     locale: "de-DE",
   },
+  "/objektbrief": {
+    seoTitle: "Anfragebrief für Reinigung, Umzug oder Räumung | FLOXANT",
+    shortTitle: "FLOXANT Anfragebrief",
+    headline: "Leistung, Ort und Umfang für eine klare Anfrage vorbereiten",
+    description:
+      "Erstellen Sie clientseitig einen strukturierten Anfragebrief für Reinigung in Düsseldorf oder Reinigung, Umzug und Räumung in Regensburg – ohne Preisberechnung.",
+    ogTitle: "FLOXANT Anfragebrief für klare Leistungsanfragen",
+    ogDescription:
+      "Leistung, Ort, Umfang, Zugang und Termin geordnet vorbereiten und offene Angaben erkennen.",
+    primaryQuery: "dienstleistungsanfrage vorbereiten",
+    secondaryQueries: ["reinigungsanfrage erstellen", "umzugsanfrage vorbereiten", "räumungsanfrage schreiben"],
+    searchIntent: "Leistungsanfrage strukturiert vorbereiten",
+    locale: "de-DE",
+  },
   "/en": {
     seoTitle: "FLOXANT Services in English | Düsseldorf & Regensburg",
     shortTitle: "Services in English",
@@ -274,6 +288,20 @@ export const searchAuthorityPages = {
     primaryQuery: "service quote scope check",
     secondaryQueries: ["cleaning quote review", "moving quote review", "quote checklist Germany"],
     searchIntent: "English review of scope details in an existing service quote",
+    locale: "en",
+  },
+  "/en/create-request": {
+    seoTitle: "Create a Cleaning or Moving Request Brief | FLOXANT",
+    shortTitle: "Create a Request",
+    headline: "Prepare a clear service request before contacting FLOXANT",
+    description:
+      "Create a structured request brief in English for cleaning in Düsseldorf or cleaning, moving and clearance in Regensburg. No price or appointment is calculated.",
+    ogTitle: "Create a structured FLOXANT request brief",
+    ogDescription:
+      "Organise the service, location, scope, access and timing before you send an English request.",
+    primaryQuery: "create service request Germany",
+    secondaryQueries: ["cleaning request Düsseldorf", "moving request Regensburg", "service request brief"],
+    searchIntent: "English preparation of a structured local service request",
     locale: "en",
   },
 } as const satisfies Record<string, SearchAuthorityMetadata>;

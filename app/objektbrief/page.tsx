@@ -1,323 +1,100 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BadgeCheck,
-  Building2,
-  Camera,
-  CheckCircle2,
-  ClipboardCheck,
-  MessageCircle,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, LockKeyhole } from "lucide-react";
 
-import { FloxantObjectBrief } from "@/components/FloxantObjectBrief";
-import { FloxantObjectBriefBuilder } from "@/components/FloxantObjectBriefBuilder";
-import { MissingInfoHelper } from "@/components/MissingInfoHelper";
-import { ObjectBriefPreview } from "@/components/ObjectBriefPreview";
-import { PhotoGuidanceBlock } from "@/components/PhotoGuidanceBlock";
-import { RelatedSignatureSuggestion } from "@/components/RelatedSignatureSuggestion";
-import { RequestChecklistBlock } from "@/components/RequestChecklistBlock";
+import { RequestBriefBuilder } from "@/components/tools/RequestBriefBuilder";
 import { company } from "@/lib/company";
-import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { getSearchAuthorityMetadata } from "@/lib/search-authority";
+import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/objektbrief";
-const canonical = `${company.url}${path}`;
-const objectBriefContactHref = "/kontakt?service=reinigung&city=regensburg&intent=objektbrief-uebergabe&source=seo";
-const whatsappHref = buildWhatsAppHref(
-  company.phoneRaw,
-  [
-    "Hallo FLOXANT,",
-    "ich möchte einen Objektbrief senden.",
-    "Region:",
-    "Leistung:",
-    "Ort / PLZ:",
-    "Termin / Deadline:",
-    "Zugang / Ansprechpartner:",
-    "Budgetrahmen, falls vorhanden:",
-    "Fotos oder Angebot kann ich senden.",
-  ].join("\n"),
-);
-
-const faqItems = [
-  {
-    q: "Was ist der FLOXANT Objektbrief?",
-    a: "Der Objektbrief ist ein kurzer, kurzer Einstieg für Anfragen. Er sammelt Region, Leistung, Ort, Termin, Zugang, Fotos und optional einen Budgetrahmen, damit FLOXANT den Fall besser einordnen kann.",
-  },
-  {
-    q: "Muss ich den Objektbrief vollständig ausfüllen?",
-    a: "Nein. Auch wenige klare Angaben helfen. Wichtig sind vor allem Region, Leistung, Ort oder PLZ, Terminlage und ein kurzer Hinweis zum Zustand oder Ziel.",
-  },
-  {
-    q: "Ist ein Budgetrahmen verbindlich?",
-    a: "Nein. Ein Budgetrahmen ist nur eine Orientierung. Er hilft bei der ehrlichen Einschätzung, ersetzt aber kein geprüftes Angebot.",
-  },
-  {
-    q: "Kann ich Fotos oder ein vorhandenes Angebot senden?",
-    a: "Ja. Fotos, Screenshots oder ein vorhandenes Angebot können nach dem Start der WhatsApp-Anfrage im Chat gesendet werden.",
-  },
-  {
-    q: "Was ist das Anfrage-Kurzzeichen?",
-    a: "Das Anfrage-Kurzzeichen fasst Region, Leistung, Terminlage und Ort kurz zusammen. Es ist keine Auftragsnummer, hilft aber dabei, Ihre Anfrage im Gespräch schneller wiederzuerkennen.",
-  },
-];
+const pageMeta = getSearchAuthorityMetadata(path)!;
+const contactHref = "/kontakt?intent=objektbrief-uebergabe&source=objektbrief";
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Objektbrief | Anfrage klar vorbereiten",
-  description:
-    "Mit dem FLOXANT Objektbrief Reinigung, Umzug, Entrümpelung, Haushaltsauflösung oder Übergabe besser anfragen: Region, Ziel, Fotos, Zugang, Termin und Budgetrahmen senden.",
-  alternates: { canonical },
+  title: pageMeta.seoTitle,
+  description: pageMeta.description,
+  alternates: {
+    canonical: `${company.url}${path}`,
+    languages: {
+      "de-DE": `${company.url}${path}`,
+      en: `${company.url}/en/create-request`,
+      "x-default": `${company.url}${path}`,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "de_DE",
-    url: canonical,
-    siteName: "FLOXANT",
-    title: "FLOXANT Objektbrief",
-    description:
-      "Ein klarer Weg für bessere Anfragen: Ziel, Fotos, Zugang, Termin und Budgetrahmen übersichtlich senden.",
-    images: [
-      {
-        url: "/assets/floxant-hero-neu-gedacht.png",
-        width: 1200,
-        height: 630,
-        alt: "FLOXANT Objektbrief",
-      },
-    ],
+    url: `${company.url}${path}`,
+    siteName: company.name,
+    title: pageMeta.ogTitle,
+    description: pageMeta.ogDescription,
   },
 };
 
-function JsonLd() {
-  const graph = {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageJsonLd({
-        name: "FLOXANT Objektbrief",
-        description:
-          "FLOXANT Objektbrief für Anfragen mit konkreten Eckdaten zu Reinigung, Umzug, Entrümpelung, Haushaltsauflösung und Übergabe.",
-        path,
-        about: [
-          "Objektbrief",
-          "Reinigung Regensburg",
-          "Umzug Regensburg",
-          "Entrümpelung Regensburg",
-          "Angebot prüfen",
-          "Übergabevorbereitung",
-        ],
-        potentialActions: [
-          { name: "Objektbrief per WhatsApp senden", target: whatsappHref, type: "ContactAction" },
-          { name: "Regensburg Reinigung anfragen", target: "/regensburg/reinigung", type: "Action" },
-          { name: "Regensburg Services ansehen", target: "/regensburg", type: "Action" },
-        ],
-      }),
-      buildFaqJsonLd(faqItems),
-    ],
-  };
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    buildWebPageJsonLd({
+      name: pageMeta.headline,
+      description: pageMeta.description,
+      path,
+      about: ["FLOXANT Anfragebrief", "Reinigungsanfrage", "Umzugsanfrage", "Räumungsanfrage"],
+    }),
+    buildBreadcrumbJsonLd([
+      { name: "Startseite", item: "/" },
+      { name: pageMeta.shortTitle, item: path },
+    ]),
+  ],
+};
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }}
-    />
-  );
-}
-
-const useCases = [
-  {
-    title: "Regensburg: Reinigung besser einschätzen",
-    text: "Für Büro, Praxis, Gewerbefläche, Wohnung, Treppenhaus oder Übergabe werden Ort, Fläche, Zustand, Turnus, Fotos und Zugang gemeinsam betrachtet.",
-    href: "/regensburg/reinigung",
-    cta: "Reinigung Regensburg öffnen",
-    Icon: Building2,
-  },
-  {
-    title: "Regensburg: Wechsel und Übergabe vorbereiten",
-    text: "Für Umzug, Entrümpelung, Haushaltsauflösung oder Endreinigung vor Übergabe hilft ein klares Bild aus Ort, Termin, Umfang, Zugang und Fotos.",
-    href: "/regensburg/endreinigung",
-    cta: "Endreinigung öffnen",
-    Icon: ClipboardCheck,
-  },
-  {
-    title: "Vermieter-Ready: Objekt sortieren",
-    text: "Wenn Reinigung, Restmengen, Schlüsselweg, Fotos und Übergabe-Sprint zusammenhängen, kann der Objektbrief die erste Sortierung übernehmen.",
-    href: "/vermieter-ready-service",
-    cta: "Vermieter-Ready ansehen",
-    Icon: Camera,
-  },
-  {
-    title: "Angebot prüfen lassen",
-    text: "Wenn schon ein Angebot vorliegt, kann FLOXANT Umfang, Zusatzpunkte, Termin, Zugang und Preisrahmen besser nachvollziehen.",
-    href: "/angebot-vergleichen-regensburg",
-    cta: "Angebot prüfen",
-    Icon: BadgeCheck,
-  },
-] as const;
-
-const qualityPoints = [
-  "Bessere Rückfragen statt langer Erklärungen",
-  "Fotos und Terminlage werden von Anfang an mitgedacht",
-  "Ein Anfrage-Kurzzeichen hilft bei WhatsApp, Telefon und Formular",
-  "Budgetrahmen möglich, aber ohne Preisgarantie",
-  "Regensburg und Umgebung bleiben sauber getrennt",
+const benefits = [
+  { Icon: FileText, text: "Leistung, Ort, Umfang und Zugang geordnet zusammenfassen" },
+  { Icon: LockKeyhole, text: "Eingaben bleiben bis zur bewussten Übergabe in diesem Browser" },
+  { Icon: CheckCircle2, text: "Offene Pflichtangaben werden transparent benannt" },
 ] as const;
 
 export default function ObjektbriefPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
-      <JsonLd />
-
-      <section className="relative isolate min-h-[78svh] overflow-hidden bg-slate-950 px-5 pb-12 pt-32 text-white sm:px-8 lg:px-10">
-        <Image
-          src="/assets/floxant-hero-neu-gedacht.webp"
-          alt="FLOXANT Objektbrief für Anfragen mit konkreten Eckdaten"
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover object-center opacity-55"
-        />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.94)_0%,rgba(15,23,42,0.82)_52%,rgba(15,23,42,0.48)_100%)]" />
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+    <main className="overflow-hidden bg-slate-50 text-slate-950">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <section className="bg-slate-950 px-5 pb-16 pt-32 text-white sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-lg border border-cyan-200/25 bg-cyan-300/10 px-3 py-2 text-sm font-black uppercase tracking-normal text-cyan-100">
-              <Camera className="h-4 w-4" aria-hidden="true" />
-              FLOXANT Objektbrief
-            </p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.98] tracking-normal sm:text-6xl lg:text-7xl">
-              Objektbrief: Ihre Anfrage mit Fotos und Eckdaten vorbereiten.
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-100">
-              Der Objektbrief hilft, wenn mehrere Dinge zusammenkommen: Reinigung, Umzug,
-              Entrümpelung, Haushaltsauflösung, Übergabe oder Angebotsprüfung. Sie senden die
-              wichtigsten Angaben geordnet und erhalten ein kurzes Anfrage-Zeichen, das Sie in
-              WhatsApp, Telefon oder Formular nennen können.
-            </p>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-200">FLOXANT Anfragebrief</p>
+            <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight sm:text-6xl">{pageMeta.headline}</h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200">{pageMeta.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link
-                href={objectBriefContactHref}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
-                data-event="seo_cta_click"
-                data-service="reinigung"
-                data-city="regensburg"
-                data-page-intent="objektbrief-uebergabe"
-                data-priority="p1"
-                data-cta-label="Objektbrief anfragen"
-                data-destination={objectBriefContactHref}
-              >
-                Objektbrief anfragen
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <a href="#anfragebrief" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-black text-slate-950">
+                Anfragebrief starten <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <Link href="/angebotscheck" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/25 bg-white/10 px-6 text-sm font-black text-white">
+                Vorhandenes Angebot prüfen
               </Link>
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-emerald-400 px-6 text-sm font-black text-slate-950 transition hover:bg-emerald-300"
-                data-event="whatsapp_click"
-                data-region="regensburg-umgebung"
-                data-source="object_brief_hero"
-              >
-                <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                Objektbrief per WhatsApp
-              </a>
-              <a
-                href="#schnellstart"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white transition hover:bg-white/15"
-                data-event="hero_cta_click"
-                data-source="object_brief_hero"
-              >
-                Objektbrief starten
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
             </div>
           </div>
-
-          <div className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-2xl shadow-black/30 backdrop-blur">
-            <p className="text-sm font-black uppercase tracking-normal text-cyan-100">
-              Was FLOXANT dadurch schneller erkennt
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {qualityPoints.map((item) => (
-                <div key={item} className="rounded-lg border border-white/15 bg-slate-950/55 p-4">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-300" aria-hidden="true" />
-                  <p className="mt-3 text-sm font-bold leading-6 text-slate-100">{item}</p>
-                </div>
-              ))}
-            </div>
+          <div className="grid gap-3">
+            {benefits.map(({ Icon, text }) => (
+              <div key={text} className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/10 p-4 text-sm font-bold">
+                <Icon className="h-5 w-5 shrink-0 text-cyan-200" aria-hidden="true" />
+                {text}
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+      <section id="anfragebrief" className="scroll-mt-24 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Für welche Fälle?
-            </p>
-            <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Ein Startpunkt für echte Situationen, nicht für perfekte Formulierungen.
-            </h2>
-          </div>
-          <div className="grid gap-4 lg:grid-cols-3">
-            {useCases.map(({ title, text, href, cta, Icon }) => (
-              <Link
-                key={title}
-                href={href}
-                className="group rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_52px_rgba(15,23,42,0.08)]"
-                data-event="service_card_click"
-                data-source="object_brief_use_case"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-950 text-white">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <h3 className="mt-4 text-xl font-black tracking-normal text-slate-950">{title}</h3>
-                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{text}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-slate-900 group-hover:text-blue-800">
-                  {cta}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
+          <RequestBriefBuilder locale="de" contactHref={contactHref} />
         </div>
       </section>
-
-      <div id="schnellstart" className="scroll-mt-24">
-        <FloxantObjectBriefBuilder />
-      </div>
-
-      <RequestChecklistBlock
-        serviceKey="objektbrief"
-        ctaHref={objectBriefContactHref}
-        ctaLabel="Objektbrief mit Eckdaten senden"
-      />
-
-      <ObjectBriefPreview serviceKey="objektbrief" />
-
-      <PhotoGuidanceBlock serviceKey="objektbrief" />
-
-      <MissingInfoHelper serviceKey="objektbrief" />
-
-      <RelatedSignatureSuggestion serviceKey="objektbrief" />
-
-      <FloxantObjectBrief variant="homepage" className="border-t border-slate-200" />
-
-      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-            Häufige Fragen
+      <section className="border-t border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl font-black tracking-tight">Was der Anfragebrief leistet</h2>
+          <p className="mt-4 text-base leading-8 text-slate-700">
+            Der Anfragebrief strukturiert Ihre eigenen Angaben. Er berechnet keinen Preis, reserviert keinen Termin und ist noch keine Beauftragung. Erst wenn Sie den Text bewusst in das bestehende Kontaktformular übernehmen und dieses absenden, werden Daten übertragen.
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-            Kurz geklärt, bevor Sie senden.
-          </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {faqItems.map((item) => (
-              <article key={item.q} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-                <h3 className="text-lg font-black text-slate-950">{item.q}</h3>
-                <p className="mt-3 text-sm font-semibold leading-7 text-slate-600">{item.a}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
     </main>
