@@ -132,6 +132,20 @@ export const searchAuthorityPages = {
     searchIntent: "Vorhandene Reinigungsangebote vergleichen und offene Punkte erkennen",
     locale: "de-DE",
   },
+  "/angebotscheck": {
+    seoTitle: "Angebotscheck: 12 Punkte zum Leistungsumfang | FLOXANT",
+    shortTitle: "FLOXANT Klarheitscheck",
+    headline: "Zwölf Punkte eines Angebots strukturiert klären",
+    description:
+      "Vorhandenes Angebot für Reinigung, Umzug oder Räumung clientseitig prüfen: 12 Bereiche markieren, Rückfragen erstellen und Ergebnis übernehmen.",
+    ogTitle: "FLOXANT Klarheitscheck für vorhandene Angebote",
+    ogDescription:
+      "Zwölf Bereiche zu Umfang, Ablauf und Preisstruktur ohne Upload und ohne Rechtsbewertung prüfen.",
+    primaryQuery: "angebotscheck dienstleistung",
+    secondaryQueries: ["reinigungsangebot prüfen", "umzugsangebot prüfen", "angebot leistungsumfang prüfen"],
+    searchIntent: "Vorhandenes Dienstleistungsangebot auf offene Angaben prüfen",
+    locale: "de-DE",
+  },
   "/en": {
     seoTitle: "FLOXANT Services in English | Düsseldorf & Regensburg",
     shortTitle: "Services in English",
@@ -247,6 +261,19 @@ export const searchAuthorityPages = {
     primaryQuery: "cleaning quote review düsseldorf",
     secondaryQueries: ["cleaning quote düsseldorf", "compare cleaning offers düsseldorf"],
     searchIntent: "English review of an existing cleaning quote",
+    locale: "en",
+  },
+  "/en/quote-check": {
+    seoTitle: "Quote Scope Check: 12 Details to Clarify | FLOXANT",
+    shortTitle: "FLOXANT Scope Check",
+    headline: "Clarify twelve scope details before accepting a service quote",
+    description:
+      "Use the client-side FLOXANT Scope Check for a cleaning, moving or clearance quote in Germany. Mark open details and create clear follow-up questions.",
+    ogTitle: "FLOXANT Scope Check for service quotes",
+    ogDescription: "Check twelve scope areas without uploading or transmitting quote data.",
+    primaryQuery: "service quote scope check",
+    secondaryQueries: ["cleaning quote review", "moving quote review", "quote checklist Germany"],
+    searchIntent: "English review of scope details in an existing service quote",
     locale: "en",
   },
 } as const satisfies Record<string, SearchAuthorityMetadata>;

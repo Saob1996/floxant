@@ -1,13 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 type SubmitState = "idle" | "sending" | "success" | "error";
 
-export function EnglishRequestForm() {
+type EnglishRequestFormProps = {
+  initialDetails?: string;
+  source?: string;
+  intent?: string;
+  defaultService?: string;
+  formId?: string;
+};
+
+export function EnglishRequestForm({
+  initialDetails = "",
+  source = "/en/contact",
+  intent = "english-contact",
+  defaultService = "",
+  formId = "english-request-form",
+}: EnglishRequestFormProps) {
   const [state, setState] = useState<SubmitState>("idle");
+  const [details, setDetails] = useState(initialDetails);
+
+  useEffect(() => {
+    if (initialDetails) setDetails(initialDetails);
+  }, [initialDetails]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -17,14 +36,15 @@ export function EnglishRequestForm() {
     const data = new FormData(form);
     data.set("type", "booking_request");
     data.set("lead_type", "english-service-request");
-    data.set("source", "/en/contact");
-    data.set("intent", "english-contact");
+    data.set("source", source);
+    data.set("intent", intent);
     data.set("privacyConsent", "true");
 
     try {
       const response = await fetch("/api/bookings", { method: "POST", body: data });
       if (!response.ok) throw new Error("Request could not be submitted");
       form.reset();
+      setDetails("");
       setState("success");
     } catch {
       setState("error");
@@ -44,7 +64,7 @@ export function EnglishRequestForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" aria-label="English FLOXANT request form">
+    <form id={formId} onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-slate-200 bg-white p-6 shadow-sm" aria-label="English FLOXANT request form">
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Name
@@ -72,7 +92,7 @@ export function EnglishRequestForm() {
         </label>
         <label className="grid gap-2 text-sm font-bold text-slate-800">
           Service
-          <select name="service" required defaultValue="" className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 font-semibold">
+          <select name="service" required defaultValue={defaultService} className="min-h-12 rounded-lg border border-slate-300 bg-white px-4 font-semibold">
             <option value="" disabled>Select a service</option>
             <option value="reinigung">Cleaning service</option>
             <option value="bueroreinigung">Office cleaning</option>
@@ -91,6 +111,8 @@ export function EnglishRequestForm() {
           name="details"
           required
           rows={7}
+          value={details}
+          onChange={(event) => setDetails(event.target.value)}
           placeholder="Please describe the property or move, approximate size, current condition, preferred date, access and whether photos or an existing quote are available."
           className="rounded-lg border border-slate-300 px-4 py-3 font-semibold leading-7"
         />

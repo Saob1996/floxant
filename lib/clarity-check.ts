@@ -1,6 +1,19 @@
 export type ClarityCheckServiceType = "cleaning" | "moving" | "clearance" | "general";
 export type ClarityCheckStatus = "present" | "unclear" | "missing" | "not-relevant";
 
+export type ClarityCheckResult = {
+  completed: boolean;
+  serviceType: ClarityCheckServiceType;
+  statuses: Record<string, ClarityCheckStatus>;
+  scoreLevel: "gering" | "mittel" | "hoch";
+  scoreLabel: string;
+  scoreValue: number;
+  categories: string[];
+  items: string[];
+  questions: string[];
+  summary: string;
+};
+
 export type ClarityCheckItem = {
   id: string;
   titleDe: string;

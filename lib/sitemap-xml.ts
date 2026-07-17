@@ -255,7 +255,10 @@ function shouldSkipSitemapRoute(route: string): boolean {
   if (
     englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`) ||
     normalizedRoute === "en" ||
-    normalizedRoute === "en/contact"
+    normalizedRoute === "en/contact" ||
+    normalizedRoute === "en/quote-check" ||
+    normalizedRoute === "en/create-request" ||
+    normalizedRoute === "en/service-finder"
   ) {
     return false;
   }
@@ -576,7 +579,7 @@ export function generateSitemapResponse(): Response {
 
   // Real English equivalents with hreflang pairs.
   addEntries(urls, englishLocalSeoPaths, "0.84", "weekly");
-  addEntries(urls, ["/en", "/en/contact"], "0.82", "weekly");
+  addEntries(urls, ["/en", "/en/contact", "/en/quote-check", "/en/create-request", "/en/service-finder"], "0.82", "weekly");
 
   // City pages
   addEntries(urls, CITY_PAGES, "0.9", "daily");
