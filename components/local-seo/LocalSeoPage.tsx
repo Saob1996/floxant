@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { company } from "@/lib/company";
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -201,6 +202,13 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
   const languageAlternate = page.languageAlternates.find((alternate) =>
     page.locale === "en" ? alternate.hreflang === "de-DE" : alternate.hreflang === "en",
   );
+  const toolIntent = page.serviceKey.includes("umzug")
+    ? "moving"
+    : page.serviceKey === "entruempelung" || page.serviceKey === "wohnungsaufloesung"
+      ? "clearance"
+      : page.serviceKey === "angebot-vergleichen"
+        ? "quote"
+        : "cleaning";
 
   return (
     <main className="overflow-hidden bg-white text-slate-950">
@@ -455,6 +463,8 @@ export function LocalSeoPage({ page: rawPage }: LocalSeoPageProps) {
           </div>
         </div>
       </section>
+
+      {page.locale === "en" ? <ToolJourneyPanel locale="en" region={page.region} intent={toolIntent} /> : null}
 
       <section className="border-t border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">

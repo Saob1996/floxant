@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Languages, MapPin } from "lucide-react";
 
+import { ToolJourneyPanel } from "@/components/conversion/ToolJourneyPanel";
 import { company } from "@/lib/company";
 import { englishLocalSeoPages } from "@/lib/local-seo/englishLocalSeoPages";
 import type { LocalSeoPageConfig } from "@/lib/local-seo/types";
@@ -66,6 +67,7 @@ export default function EnglishHubPage() {
           <ServiceGroup title="Regensburg services" pages={regensburgPages} />
         </div>
       </section>
+      <ToolJourneyPanel locale="en" intent="overview" region="both" />
     </main>
   );
 }
