@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-07-17T23:09:47.446Z",
+  "baselineNote": "Budgets use the measured pre-change export (4.06 GiB, 3.11 MB JS, 475,979 B CSS, 198,492 B largest JS) plus only bounded headroom for the required static tool routes.",
+  "budgets": {
+    "fileCount": 20000,
+    "largestFileBytes": 26214400,
+    "totalOutputBytes": 4450000000,
+    "totalJavaScriptBytes": 4194304,
+    "largestJavaScriptBytes": 262144,
+    "totalCssBytes": 614400,
+    "largestHtmlBytes": 2097152,
+    "largestReactServerPayloadBytes": 1572864,
+    "largestImageBytes": 5242880,
+    "totalFontBytes": 1048576,
+    "sourceMapFiles": 0,
+    "toolRouteJavaScriptBytes": 112640
+  },
+  "measurements": {
+    "fileCount": 13199,
+    "largestFileBytes": 1648954,
+    "totalOutputBytes": 4360986711,
+    "totalJavaScriptBytes": 3147003,
+    "largestJavaScriptBytes": 198492,
+    "totalCssBytes": 475626,
+    "largestHtmlBytes": 1648954,
+    "largestReactServerPayloadBytes": 1081584,
+    "largestImageBytes": 341317,
+    "totalFontBytes": 0,
+    "sourceMapFiles": 0,
+    "largestToolRouteJavaScriptBytes": 27600,
+    "toolRouteBundles": [
+      {
+        "path": "_next/static/chunks/app/objektbrief/page-fa776f2dfa889110.js",
+        "bytes": 236
+      },
+      {
+        "path": "_next/static/chunks/app/leistungsfinder/page-ab6291945ada9672.js",
+        "bytes": 235
+      },
+      {
+        "path": "_next/static/chunks/app/en/service-finder/page-7d6a6c55ed451a50.js",
+        "bytes": 189
+      },
+      {
+        "path": "_next/static/chunks/app/en/quote-check/page-54b40081316d17eb.js",
+        "bytes": 6946
+      },
+      {
+        "path": "_next/static/chunks/app/en/create-request/page-7fec9ea711d7f941.js",
+        "bytes": 6907
+      },
+      {
+        "path": "_next/static/chunks/app/angebotscheck/page-dfa290d72dbe7278.js",
+        "bytes": 27600
+      }
+    ],
+    "externalScriptOrigins": []
+  },
+  "checks": [
+    {
+      "name": "fileCount",
+      "actual": 13199,
+      "budget": 20000,
+      "passed": true
+    },
+    {
+      "name": "largestFileBytes",
+      "actual": 1648954,
+      "budget": 26214400,
+      "passed": true
+    },
+    {
+      "name": "totalOutputBytes",
+      "actual": 4360986711,
+      "budget": 4450000000,
+      "passed": true
+    },
+    {
+      "name": "totalJavaScriptBytes",
+      "actual": 3147003,
+      "budget": 4194304,
+      "passed": true
+    },
+    {
+      "name": "largestJavaScriptBytes",
+      "actual": 198492,
+      "budget": 262144,
+      "passed": true
+    },
+    {
+      "name": "totalCssBytes",
+      "actual": 475626,
+      "budget": 614400,
+      "passed": true
+    },
+    {
+      "name": "largestHtmlBytes",
+      "actual": 1648954,
+      "budget": 2097152,
+      "passed": true
+    },
+    {
+      "name": "largestReactServerPayloadBytes",
+      "actual": 1081584,
+      "budget": 1572864,
+      "passed": true
+    },
+    {
+      "name": "largestImageBytes",
+      "actual": 341317,
+      "budget": 5242880,
+      "passed": true
+    },
+    {
+      "name": "totalFontBytes",
+      "actual": 0,
+      "budget": 1048576,
+      "passed": true
+    },
+    {
+      "name": "sourceMapFiles",
+      "actual": 0,
+      "budget": 0,
+      "passed": true
+    },
+    {
+      "name": "toolRouteJavaScriptBytes",
+      "actual": 27600,
+      "budget": 112640,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "failures": []
+}
