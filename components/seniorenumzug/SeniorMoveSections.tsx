@@ -599,7 +599,7 @@ export function RelatedSeniorMoveServices() {
         <SectionHeader
           eyebrow="Interne Verlinkung"
           title="Passende Wege nach einem Seniorenumzug"
-          intro="Diese Links führen zu Support-Seiten, die den Fall differenzieren, statt dieselbe Suchintention zu wiederholen."
+          intro="Diese Seiten helfen, den konkreten Fall und den passenden nächsten Schritt zu unterscheiden."
         />
         <div className="mt-6 flex flex-wrap gap-3">
           {links.map((link) => (

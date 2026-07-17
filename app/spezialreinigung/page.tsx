@@ -112,7 +112,7 @@ const faqItems = [
   },
   {
     q: "Warum gibt es nicht fuer jede Reinigungsart eine eigene lokale Seite?",
-    a: "FLOXANT erstellt nur eigene Seiten, wenn Suchintention, Kundennutzen und Inhalt genug Substanz haben. Sonst wird der Service als Abschnitt, FAQ oder interner Link gefuehrt.",
+    a: "FLOXANT erstellt nur eigene Seiten, wenn Kundennutzen und Inhalt genug Substanz haben. Sonst wird der Service als Abschnitt, häufige Frage oder passende Weiterleitung erklärt.",
   },
   {
     q: "Kann ich ein vorhandenes Reinigungsangebot pruefen lassen?",

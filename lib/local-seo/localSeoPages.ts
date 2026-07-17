@@ -327,7 +327,7 @@ function createRegionHub(region: LocalSeoRegionKey): LocalSeoPageConfig {
         `Schwerpunkte sind ${regionRecord.primaryFocus.join(", ")}. Diese Bereiche werden in eigenen Seiten und internen Links geführt, damit Reinigung, Umzug, Räumung und Angebotsprüfung nicht verschwimmen.`,
       ),
       section(
-        "Kuratierte Städte statt Linkfarm",
+        "Gezielt ausgewählte Städte im Servicegebiet",
         `Zuerst sichtbar sind ${regionRecord.strategicCities.slice(0, 10).join(", ")}. Weitere Orte werden erst indexiert, wenn sie die M1-Kriterien erfüllen.`,
       ),
     ],

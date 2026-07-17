@@ -2,17 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2, FileSearch, MapPin, ShieldCheck } from "lucide-react";
-
-import { ServiceFinder } from "@/components/ContactPathChooser";
-import { DecisionCompassPanel } from "@/components/DecisionCompassPanel";
-import { LocalProofPanel } from "@/components/LocalProofPanel";
-import { NoFakeClaimsNotice } from "@/components/NoFakeClaimsNotice";
-import { ServicePackageDecisionExperience } from "@/components/packages/ServicePackageDecisionExperience";
-import { ProjectStoryGrid } from "@/components/ProjectStoryGrid";
-import { ServiceProofChecklist } from "@/components/ServiceProofChecklist";
-import { ServiceVisualProofGrid } from "@/components/ServiceVisualProofGrid";
-import { ServiceNavigationOverview } from "@/components/ServiceNavigationOverview";
-import { TrustProofPanel } from "@/components/TrustProofPanel";
 import { company, duesseldorfCompany } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { buildFaqJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
@@ -27,18 +16,11 @@ const offerHref = buildLeadHref({
   priority: "p0",
 });
 
-const movingHref = buildLeadHref({
-  service: "umzug",
+const cleaningHref = buildLeadHref({
+  service: "reinigung",
   city: "duesseldorf",
-  intent: "umzug-duesseldorf",
-  priority: "p1",
-});
-
-const clearanceHref = buildLeadHref({
-  service: "entruempelung",
-  city: "duesseldorf",
-  intent: "entruempelung-duesseldorf",
-  priority: "p1",
+  intent: "reinigung-duesseldorf",
+  priority: "p0",
 });
 
 const duesseldorfCleaningLinks = [
@@ -88,8 +70,8 @@ const duesseldorfCleaningLinks = [
 
 const faqItems = [
   {
-    q: "Ist Düsseldorf ein echter FLOXANT Standort?",
-    a: "Düsseldorf wird als eigener FLOXANT Standort geführt. Website, Kontaktweg, Adresse und Google-Business-Profile-Daten müssen vor Production manuell mit den vorhandenen Unternehmensdaten abgeglichen werden.",
+    q: "Wie erreiche ich FLOXANT in Düsseldorf?",
+    a: "FLOXANT ist in Düsseldorf unter Breite Str. 22, 40213 Düsseldorf geführt. Für eine Reinigungsanfrage können Sie Telefon, WhatsApp oder das Formular nutzen.",
   },
   {
     q: "Gibt es eine 50-km-Umgebung um Düsseldorf?",
@@ -107,9 +89,9 @@ const faqItems = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT Düsseldorf | Servicezentrum, Angebot prüfen, Umzug und Räumung",
+  title: "FLOXANT Düsseldorf | Reinigung für Büro, Praxis & Objekt",
   description:
-    "FLOXANT Düsseldorf bündelt lokale Anfragewege für Angebot prüfen, Umzug, Entrümpelung, Haushaltsauflösung und manuell geprüfte Servicegebiete im Umkreis.",
+    "FLOXANT Düsseldorf für Reinigung von Wohnung, Büro, Praxis, Gewerbe und Glas. Fläche, Turnus, Zugang, Termin oder vorhandenes Angebot senden.",
   alternates: {
     canonical,
     languages: {
@@ -126,7 +108,7 @@ function JsonLd() {
       buildWebPageJsonLd({
         name: "FLOXANT Düsseldorf",
         description:
-          "Düsseldorfer Übersicht für Angebotsprüfung, Umzug, Entrümpelung, Haushaltsauflösung, Entsorgung und Anfragen auf Englisch.",
+          "Düsseldorfer Übersicht für Reinigung von Wohnung, Büro, Praxis, Gewerbe und Glas sowie die Prüfung vorhandener Reinigungsangebote.",
         path,
         about: [
           "FLOXANT Düsseldorf",
@@ -136,17 +118,13 @@ function JsonLd() {
           "Gewerbereinigung Düsseldorf",
           "Praxisreinigung Düsseldorf",
           "Fensterreinigung Düsseldorf",
-          "Umzug Düsseldorf",
-          "Entrümpelung Düsseldorf",
-          "Haushaltsauflösung Düsseldorf",
           "Düsseldorf 50 km Servicegebiet",
         ],
         potentialActions: [
           { name: "Angebot prüfen", target: offerHref, type: "ContactAction" },
           { name: "Reinigung Düsseldorf anfragen", target: "/duesseldorf/reinigung", type: "Action" },
           { name: "Büroreinigung Düsseldorf anfragen", target: "/duesseldorf/bueroreinigung", type: "Action" },
-          { name: "Umzug Düsseldorf anfragen", target: movingHref, type: "ContactAction" },
-          { name: "Entrümpelung Düsseldorf anfragen", target: clearanceHref, type: "ContactAction" },
+          { name: "Reinigung Düsseldorf anfragen", target: cleaningHref, type: "ContactAction" },
         ],
       }),
       {
@@ -194,17 +172,31 @@ export default function DuesseldorfHubPage() {
               FLOXANT Düsseldorf
             </p>
             <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-            FLOXANT in Düsseldorf: Angebot prüfen, Umzug und Räumung anfragen.
+              FLOXANT Düsseldorf für Reinigung von Büro, Praxis und Objekt.
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-200">
-              Starten Sie mit Angebot prüfen, Umzug, Entrümpelung, Haushaltsauflösung oder einer
-              englischen Anfrage. Der Umkreis wird als Servicegebiet geprüft, nicht als weitere
-              Niederlassung behauptet.
+              Wählen Sie die passende Reinigungsleistung und senden Sie Stadtteil, Objektart, Fläche,
+              Turnus, Zugang, Termin und bei Bedarf Fotos oder ein vorhandenes Angebot.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
-                href={offerHref}
+                href={cleaningHref}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-cyan-50"
+                data-event="seo_cta_click"
+                data-region="duesseldorf"
+                data-service="reinigung"
+                data-city="duesseldorf"
+                data-page-intent="reinigung-duesseldorf"
+                data-priority="p0"
+                data-cta-label="Reinigung anfragen"
+                data-destination={cleaningHref}
+              >
+                Reinigung anfragen
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href={offerHref}
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white backdrop-blur transition hover:bg-white/15"
                 data-event="seo_cta_click"
                 data-region="duesseldorf"
                 data-service="angebot-pruefen"
@@ -215,31 +207,16 @@ export default function DuesseldorfHubPage() {
                 data-destination={offerHref}
               >
                 Angebot prüfen
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href={movingHref}
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 text-sm font-black text-white backdrop-blur transition hover:bg-white/15"
-                data-event="seo_cta_click"
-                data-region="duesseldorf"
-                data-service="umzug"
-                data-city="duesseldorf"
-                data-page-intent="umzug-duesseldorf"
-                data-priority="p1"
-                data-cta-label="Umzug anfragen"
-                data-destination={movingHref}
-              >
-                Umzug anfragen
               </Link>
             </div>
           </div>
 
           <div className="grid gap-3">
             {[
-              "Düsseldorf bleibt ein eigener Standort, keine erfundene Zusatzadresse.",
-              "Neuss, Ratingen, Meerbusch und weitere Orte sind Servicegebiet-Kandidaten.",
-              "Reinigung, Büroreinigung, Gewerbereinigung, Praxisreinigung und Fensterreinigung sind direkt gebündelt.",
-              "English customer path: service, city, photos, date and contact preference are enough to start.",
+              "Reinigung für Wohnung, Büro, Praxis, Gewerbe und Glas klar auswählen.",
+              "Grund-, Bauend-, Unterhalts- und Treppenhausreinigung im Reinigungsbereich einordnen.",
+              "Stadtteil, Fläche, Turnus, Zugang, Termin und Fotos reduzieren Rückfragen.",
+              "Vorhandene Reinigungsangebote anhand von Umfang und offenen Positionen prüfen.",
             ].map((item) => (
               <div key={item} className="flex gap-3 rounded-lg border border-white/15 bg-slate-950/70 p-4 text-sm font-semibold leading-6 text-slate-100 backdrop-blur">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" aria-hidden="true" />
@@ -250,29 +227,6 @@ export default function DuesseldorfHubPage() {
         </div>
       </section>
 
-      <ServicePackageDecisionExperience
-        variant="duesseldorf"
-        groups={["angebot-pruefen", "umzug", "entruempelung", "signature"]}
-        limitPerGroup={2}
-        heading="Düsseldorf-Anfragen ohne ungeprüfte Serviceversprechen sortieren."
-        intro="Die Übersicht führt zu Angebotsprüfung, Umzug, Räumung, besonderen Leistungen und den wichtigsten Reinigungsangeboten in Düsseldorf."
-      />
-
-      <ServiceFinder
-        compact
-        currentCity="duesseldorf"
-        title="Welche Leistung brauchen Sie in Düsseldorf?"
-        intro="Wählen Sie eine Leistung. Ihre Angaben werden erst gesendet, wenn Sie das Formular abschicken."
-        source="duesseldorf-service-finder"
-      />
-
-      <ServiceNavigationOverview
-        location="duesseldorf"
-        groups={["umzug_transport", "entruempelung_aufloesung", "angebot_pruefen", "signature"]}
-        title="Düsseldorf-Services nach Anfrageziel."
-        intro="Düsseldorf führt zu Angebot prüfen, Umzug, Räumung, Haushaltsauflösung und diskreten Sonderwegen. Die wichtigsten Reinigungsseiten sind direkt darunter gebündelt."
-      />
-
       <section className="border-y border-slate-200 bg-slate-50 px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 max-w-3xl">
@@ -281,7 +235,7 @@ export default function DuesseldorfHubPage() {
               Reinigung Düsseldorf
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950 sm:text-5xl">
-              Fünf Reinigungsleistungen im direkten Überblick.
+              Reinigungsleistungen im direkten Überblick.
             </h2>
             <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
               Die Reinigungsthemen sind auf wenige klare Zielseiten verteilt. Jede Seite führt zu einer Anfrage mit Stadtparameter und zur Angebotsprüfung, ohne Preis-, Termin- oder Verfügbarkeitsgarantie.
@@ -310,46 +264,6 @@ export default function DuesseldorfHubPage() {
         </div>
       </section>
 
-      <DecisionCompassPanel
-        title="Unsicher in Düsseldorf?"
-        intro="Wenn Service, Umfang oder Angebot noch nicht klar sind, führt der Kompass zu einem Kontaktweg mit passenden Parametern."
-      />
-
-      <TrustProofPanel
-        allowedPage="/duesseldorf"
-        locationKey="duesseldorf"
-        title="Was Sie bei einer Anfrage in Düsseldorf erwarten können"
-        intro="Nennen Sie Leistung, Ort, Umfang und Termin. Wir prüfen die Angaben und melden uns, bevor etwas zugesagt wird."
-      />
-
-      <ServiceProofChecklist
-        serviceKey="angebot-pruefen"
-        title="Was Düsseldorf-Anfragen prüfbarer macht"
-        intro="Ein belastbarer erster Schritt entsteht aus Service, Ort, Fotos, Termin, vorhandenen Angeboten und klaren Grenzen."
-      />
-
-      <LocalProofPanel location="duesseldorf" />
-
-      <ServiceVisualProofGrid
-        serviceKey="angebot-pruefen"
-        locationKey="duesseldorf"
-        title="Düsseldorf Visual Proof ohne Kundendaten"
-        intro="Sichtbare Grafiken bleiben abstrakt. Echte Projektfotos, Dokumente oder Before-/After-Belege erscheinen nur nach Freigabe."
-      />
-
-      <ProjectStoryGrid
-        serviceKey="angebot-pruefen"
-        locationKey="duesseldorf"
-        title="Typische Düsseldorf-Anfragen statt Fake-Cases"
-        intro="Diese Projektlogik beschreibt neutrale Ausgangslagen für Angebotsprüfung und Anfragevorbereitung, keine behaupteten Kundenfälle."
-      />
-
-      <section className="bg-white px-5 py-14 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <NoFakeClaimsNotice />
-        </div>
-      </section>
-
       <section className="border-b border-slate-200 bg-white px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.84fr_1.16fr]">
           <div>
@@ -371,7 +285,7 @@ export default function DuesseldorfHubPage() {
               <div key={city} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <div className="text-sm font-black text-slate-950">{city}</div>
                 <div className="mt-1 text-xs font-semibold leading-5 text-slate-600">
-                  Servicegebiet-Kandidat, manuell zu bestätigen.
+                  Einsatz je nach Auftrag, Umfang und Termin prüfen.
                 </div>
               </div>
             ))}
@@ -396,25 +310,25 @@ export default function DuesseldorfHubPage() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link
-              href={clearanceHref}
+              href={cleaningHref}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950 transition hover:bg-slate-100"
               data-event="seo_cta_click"
               data-region="duesseldorf"
-              data-service="entruempelung"
+              data-service="reinigung"
               data-city="duesseldorf"
-              data-page-intent="entruempelung-duesseldorf"
-              data-priority="p1"
-              data-cta-label="Räumung anfragen"
-              data-destination={clearanceHref}
+              data-page-intent="reinigung-duesseldorf"
+              data-priority="p0"
+              data-cta-label="Reinigung anfragen"
+              data-destination={cleaningHref}
             >
-              Räumung anfragen
+              Reinigung anfragen
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/kontakt?service=angebot-pruefen&intent=english-offer-check&source=seo"
+              href="/en"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-black text-white transition hover:bg-white/10"
             >
-              English contact path
+              Services in English
             </Link>
           </div>
         </div>

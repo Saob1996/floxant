@@ -209,7 +209,7 @@ export const trustSignals: TrustSignal[] = [
   },
   {
     key: "visual-proof-boundary",
-    title: "Visual Proof ohne private Daten",
+    title: "Anschauliche Beispiele ohne private Daten",
     shortText:
       "Sichtbare Proof-Elemente bleiben abstrakt oder freigegeben. Keine Menschen, Gesichter, Kennzeichen, privaten Dokumente oder Fake-Before-/After-Bilder.",
     serviceKeys: ["reinigung", "umzug", "entruempelung", "angebot-pruefen"],
@@ -289,7 +289,7 @@ export const localProofs: Record<TrustLocationKey, LocalProof> = {
       "Ort, Fotos, Zugang und Termin direkt im Formular angeben",
       "Rückmeldung erst nach Prüfung der konkreten Angaben",
     ],
-    manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],
+    manualProofs: ["Unternehmensprofil abgleichen", "Öffnungszeiten bestätigen", "Adressdaten vor Veröffentlichungen prüfen"],
     cta: { label: "Duesseldorf kontaktieren", href: "/kontakt?city=duesseldorf&source=local-proof" },
   },
   regensburg: {
@@ -303,7 +303,7 @@ export const localProofs: Record<TrustLocationKey, LocalProof> = {
       "Fotos und Terminwunsch direkt im Formular ergänzen",
       "Rückmeldung nach Prüfung von Ort, Umfang und Verfügbarkeit",
     ],
-    manualProofs: ["GBP-Profil-URL", "Oeffnungszeiten", "NAP-Abgleich vor GBP-Posts"],
+    manualProofs: ["Unternehmensprofil abgleichen", "Öffnungszeiten bestätigen", "Adressdaten vor Veröffentlichungen prüfen"],
     cta: { label: "Regensburg kontaktieren", href: "/kontakt?city=regensburg&source=local-proof" },
   },
 };

@@ -17,6 +17,61 @@ const indexableM2 = {
 } as const;
 
 export const localSeoCities = {
+  duesseldorf: {
+    slug: "duesseldorf",
+    displayName: "Düsseldorf",
+    region: "duesseldorf",
+    parentHub: "/duesseldorf/reinigung",
+    serviceFocus: [
+      "Reinigung",
+      "Büroreinigung",
+      "Gewerbereinigung",
+      "Praxisreinigung",
+      "Fensterreinigung",
+      "Grundreinigung",
+      "Bauendreinigung",
+      "Unterhaltsreinigung",
+      "Treppenhausreinigung",
+      "Angebotsprüfung",
+    ],
+    nearbyCities: ["Neuss", "Ratingen", "Meerbusch", "Hilden", "Erkrath", "Mettmann"],
+    districts: [
+      "Altstadt",
+      "Stadtmitte",
+      "Pempelfort",
+      "Derendorf",
+      "Oberkassel",
+      "Bilk",
+      "Benrath",
+      "Kaiserswerth",
+    ],
+    customerTypes: ["households", "offices", "practices", "property managers", "shops", "companies"],
+    relevantServices: [
+      "reinigung",
+      "bueroreinigung",
+      "gewerbereinigung",
+      "praxisreinigung",
+      "wohnungsreinigung",
+      "grundreinigung",
+      "gebaeudereinigung",
+      "angebot-vergleichen",
+    ],
+    specialCases: [
+      "apartment handover",
+      "office schedules",
+      "commercial properties",
+      "post-construction cleaning",
+      "quote review",
+    ],
+    localIntro:
+      "Düsseldorf cleaning requests are assessed by property type, district, access, timing and the required result.",
+    localProofNotes: [
+      "FLOXANT does not claim an additional office or walk-in location in Düsseldorf.",
+      "Home, office, practice and commercial cleaning are separated by actual scope.",
+      "Property type, size, photos, access, timing and the desired result determine feasibility.",
+    ],
+    maturity: indexableM2,
+  },
   regensburg: {
     slug: "regensburg",
     displayName: "Regensburg",

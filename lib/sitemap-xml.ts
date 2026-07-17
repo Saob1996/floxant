@@ -85,6 +85,11 @@ const DUESSELDORF_FORBIDDEN_SERVICE_TERMS = [
 ] as const;
 
 const DUESSELDORF_ALLOWED_SERVICE_ROUTES = new Set<string>([
+  "duesseldorf/reinigung",
+  "duesseldorf/bueroreinigung",
+  "duesseldorf/gewerbereinigung",
+  "duesseldorf/praxisreinigung",
+  "duesseldorf/fensterreinigung",
   "duesseldorf/luxusreinigung",
 ]);
 
@@ -247,6 +252,13 @@ function shouldSkipSitemapSegment(segment: string): boolean {
 
 function shouldSkipSitemapRoute(route: string): boolean {
   const normalizedRoute = route.replace(/^\/+|\/+$/g, "");
+  if (
+    englishLocalSeoIndexablePathSet.has(`/${normalizedRoute}`) ||
+    normalizedRoute === "en" ||
+    normalizedRoute === "en/contact"
+  ) {
+    return false;
+  }
   return (
     NON_HTML_SITEMAP_EXTENSION_PATTERN.test(normalizedRoute) ||
     LEGACY_REDIRECT_ROUTES.has(normalizedRoute) ||
@@ -564,6 +576,7 @@ export function generateSitemapResponse(): Response {
 
   // Real English equivalents with hreflang pairs.
   addEntries(urls, englishLocalSeoPaths, "0.84", "weekly");
+  addEntries(urls, ["/en", "/en/contact"], "0.82", "weekly");
 
   // City pages
   addEntries(urls, CITY_PAGES, "0.9", "daily");

@@ -36,7 +36,7 @@ function getProvider(page: LocalSeoPageConfig) {
     city: company.city,
     state: company.state,
     countryCode: company.countryCode,
-    url: `${company.url}/regensburg`,
+    url: company.url,
   };
 }
 
@@ -49,7 +49,7 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       firstFeedbackTitle: "What matters for the first reply",
       firstFeedbackItems: ["city/district", "photos", "timing", "scope", "existing quote"],
       localEntryLabel: "Local context",
-      localEntryHeading: `${page.city.displayName} without false local claims`,
+      localEntryHeading: `${page.city.displayName} service area and practical details`,
       scopeHeading: "Service scope and customer value",
       scopeText:
         "This page focuses on concrete services, local context, typical customer situations and the right next step: direct request, WhatsApp with photos or a clear quote review.",
@@ -57,8 +57,8 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       processHeading: "First facts, then a clear next step.",
       offerCheckLabel: "Quote review",
       offerCheckButton: "Review quote",
-      linksLabel: "Internal links",
-      linksHeading: "Relevant nearby pages, not a link wall.",
+      linksLabel: "Related services",
+      linksHeading: "Continue with the service that fits your request.",
       linksText:
         "You will find links to the region, the main service, nearby services, quote review and contact options.",
       openLabel: "Open",
@@ -66,7 +66,7 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
       faqHeading: `Common questions about ${page.serviceName} in ${page.city.displayName}`,
       nextStepLabel: "Next step",
       nextStepText:
-        "Send city, photos, timing and, if available, an existing quote. FLOXANT checks the request clearly and without invented local promises.",
+        "Send city, photos, timing and, if available, an existing quote. FLOXANT checks the request based on the details provided.",
       languageSwitchLabel: "Deutsch",
       whatsappShort: "WhatsApp",
     } as const;
@@ -87,10 +87,10 @@ function getLocalizedCopy(page: LocalSeoPageConfig) {
     processHeading: "Erst Eckdaten, dann Entscheidung.",
     offerCheckLabel: "Angebotsprüfung",
     offerCheckButton: "Angebot prüfen",
-    linksLabel: "Interne Linkstruktur",
-    linksHeading: "Passende Nachbarseiten statt Linkfarm.",
+    linksLabel: "Passende Leistungen",
+    linksHeading: "Mit der passenden Leistung fortfahren.",
     linksText:
-      "Verlinkt werden nur Seiten, die für die aktuelle Suchintention sinnvoll sind: Region, Hauptleistung, Nachbarorte, Angebotsprüfung und Kontaktweg.",
+      "Zur Auswahl stehen die Region, die Hauptleistung, nahe Leistungen, die Angebotsprüfung und der direkte Kontakt.",
     openLabel: "Öffnen",
     faqLabel: "FAQ",
     faqHeading: `Häufige Fragen zu ${page.serviceName} in ${page.city.displayName}`,
@@ -112,6 +112,7 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         name: page.h1,
         description: page.metaDescription,
         path: page.path,
+        inLanguage: page.locale === "en" ? "en" : "de",
         about: [
           page.serviceType,
           page.city.displayName,
@@ -120,7 +121,11 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
         ],
         potentialActions: [
           { name: page.primaryCta.label, target: page.primaryCta.href, type: "ContactAction" },
-          { name: "WhatsApp mit Fotos senden", target: whatsappHref, type: "ContactAction" },
+          {
+            name: page.locale === "en" ? "Send photos by WhatsApp" : "WhatsApp mit Fotos senden",
+            target: whatsappHref,
+            type: "ContactAction",
+          },
         ],
       }),
       {
@@ -173,8 +178,7 @@ function JsonLd({ page, whatsappHref }: { page: LocalSeoPageConfig; whatsappHref
       },
       buildBreadcrumbJsonLd([
         { name: "FLOXANT", item: "/" },
-        { name: "Regensburg", item: "/regensburg" },
-        { name: page.city.displayName, item: page.city.parentHub },
+        { name: page.city.displayName, item: `/${page.region}` },
         { name: page.serviceName, item: page.path },
       ]),
       buildFaqJsonLd(page.faq),

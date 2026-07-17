@@ -93,7 +93,7 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
     localFaq: [
       {
         q: "Welche FLOXANT Leistungen sind für Düsseldorf zentral?",
-        a: "Regensburg ist im Code vor allem als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
+        a: "Düsseldorf ist vor allem als Reinigungsstandort mit Büroreinigung, Gewerbereinigung, Praxisreinigung, Fensterreinigung, Grundreinigung und Übergabereinigung gepflegt.",
       },
       {
         q: "Sind Öffnungszeiten für Düsseldorf hinterlegt?",
@@ -105,8 +105,8 @@ export const floxantLocations: Record<FloxantLocationKey, FloxantLocation> = {
       },
     ],
     localTrustNotes: [
-      "Daten stammen aus bestehendem Code, nicht aus neu erfundenen Angaben.",
-      "Regensburger Reinigung bleibt getrennt von Regensburger Umzug/Entrümpelung.",
+      "Die Düsseldorfer Adresse und Kontaktdaten stimmen mit der offiziellen FLOXANT-Website überein.",
+      "Düsseldorfer Reinigung bleibt von den Regensburger Leistungsbereichen getrennt.",
       "Keine Öffnungszeiten oder Maps-Links ohne manuelle Bestätigung.",
     ],
     dataStatus: {

@@ -3,6 +3,15 @@ import { CheckCircle2 } from "lucide-react";
 import { germanText, germanizeDeep } from "@/lib/german-text";
 import type { VisualProofItem } from "@/lib/visual-proof";
 
+const typeLabels: Record<VisualProofItem["type"], string> = {
+  process: "Ablauf",
+  checklist: "Benötigte Angaben",
+  "offer-check": "Angebotsprüfung",
+  "neutral-before-after": "Vorher und nachher",
+  local: "Standorte",
+  material: "Material und Flächen",
+};
+
 function ProofShape({ shape }: { shape: VisualProofItem["fallbackShape"] }) {
   const labels: Record<VisualProofItem["fallbackShape"], string[]> = {
     process: ["Senden", "Sortieren", "Prüfen", "Antwort"],
@@ -29,7 +38,7 @@ export function VisualProofCard({ item }: { item: VisualProofItem }) {
 
   return (
     <article className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm" data-component="VisualProofCard" data-real-photo={visibleItem.isRealPhoto ? "true" : "false"}>
-      <p className="text-xs font-black uppercase tracking-normal text-blue-700">{visibleItem.type}</p>
+      <p className="text-xs font-black uppercase tracking-normal text-blue-700">{typeLabels[visibleItem.type]}</p>
       <h3 className="mt-2 text-xl font-black text-slate-950">{germanText(visibleItem.title, visibleItem.title)}</h3>
       <p className="mt-3 text-sm font-semibold leading-7 text-slate-700">{germanText(visibleItem.description, visibleItem.description)}</p>
       <ProofShape shape={visibleItem.fallbackShape} />

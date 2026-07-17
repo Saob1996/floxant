@@ -1,4 +1,4 @@
-export type LocalSeoRegionKey = "regensburg";
+export type LocalSeoRegionKey = "regensburg" | "duesseldorf";
 export type LocalSeoMaturityLevel = "M0" | "M1" | "M2" | "M3";
 export type LocalSeoIndexStatus = "index" | "noindex";
 export type LocalSeoLanguage = "de-DE" | "en";

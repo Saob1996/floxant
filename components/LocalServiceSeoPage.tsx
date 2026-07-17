@@ -373,7 +373,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <article>
             <p className="text-sm font-black uppercase tracking-normal text-blue-700">
-              Suchintention
+              Passende Leistung
             </p>
             <h2 className="mt-3 text-3xl font-black tracking-normal text-slate-950">
               {config.problemTitle}
@@ -603,7 +603,7 @@ export function LocalServiceSeoPage({ config }: LocalServiceSeoPageProps) {
       <ServiceVisualProofGrid
         serviceKey={proofServiceKey}
         locationKey={config.cityKey}
-        title={`Visual Proof für ${config.serviceName} in ${config.cityName}`}
+        title={`${config.serviceName} in ${config.cityName} anschaulich erklärt`}
         intro="Sichtbare Visuals bleiben neutral oder freigegeben. Echte Fotos brauchen Privacy-Check, Einwilligung und duerfen keine privaten Daten zeigen."
       />
 

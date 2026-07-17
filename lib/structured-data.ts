@@ -27,6 +27,7 @@ type WebPageJsonLdInput = {
   description: string;
   path: string;
   about?: string[];
+  inLanguage?: "de" | "en";
   potentialActions?: Array<{
     name: string;
     target: string;
@@ -179,6 +180,7 @@ export function buildWebPageJsonLd({
   description,
   path,
   about = [],
+  inLanguage = "de",
   potentialActions = [],
 }: WebPageJsonLdInput) {
   return {
@@ -188,7 +190,7 @@ export function buildWebPageJsonLd({
     name: clean(name),
     description: clean(description),
     url: absoluteUrl(path),
-    inLanguage: "de",
+    inLanguage,
     isPartOf: {
       "@type": "WebSite",
       "@id": `${company.url}/#website`,

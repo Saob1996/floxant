@@ -15,6 +15,7 @@ import { SeoLeadForm } from "@/components/SeoLeadForm";
 import { company } from "@/lib/company";
 import { buildLeadHref, resolveLeadIntent } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
+import { searchAuthorityPages } from "@/lib/search-authority";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -24,9 +25,9 @@ import {
 import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 const path = "/reinigungsfirma-angebot";
-const title = "Reinigungsfirma Angebot | Reinigung kostenlos anfragen";
-const description =
-  "Reinigungsfirma Angebot anfragen: Objekt, Fläche, Turnus, Zustand, Fotos und Termin senden. FLOXANT prüft Reinigung ohne Preisversprechen.";
+const pageMetadata = searchAuthorityPages[path];
+const title = pageMetadata.seoTitle;
+const description = pageMetadata.description;
 const leadIntent = resolveLeadIntent({
   path,
   service: "reinigung",
@@ -64,34 +65,50 @@ const faqItems = [
 ] as const;
 
 const cleaningLinks = [
+  { href: "/duesseldorf/reinigung", label: "Reinigung Düsseldorf", text: "Für Wohnung, Büro, Praxis, Gewerbe und weitere Objekte in Düsseldorf." },
+  { href: "/duesseldorf/bueroreinigung", label: "Büroreinigung Düsseldorf", text: "Für Arbeitsplätze, Raumliste, Turnus, Zeitfenster und Zugang." },
+  { href: "/angebot-vergleichen-duesseldorf", label: "Angebote Düsseldorf vergleichen", text: "Für ein bereits vorhandenes Reinigungsangebot mit offenen Positionen." },
   { href: "/regensburg/reinigung", label: "Reinigung Regensburg", text: "Zentraler Einstieg für Wohnung, Büro, Praxis und Objekt." },
   { href: "/regensburg/bueroreinigung", label: "Büroreinigung Regensburg", text: "Für Büro, Kanzlei, Agentur und Gewerbefläche." },
-  { href: "/praxisreinigung-regensburg", label: "Praxisreinigung Regensburg", text: "Für Empfang, Wartebereich, Sanitär und Nebenflächen." },
   { href: "/grundreinigung-regensburg", label: "Grundreinigung Regensburg", text: "Für Auszug, Einzug, starke Verschmutzung oder Objektstart." },
-  { href: "/regensburg/reinigung", label: "Wohnungsreinigung Regensburg", text: "Für Wohnung, Privathaushalt, Übergabe oder Einzug." },
-  { href: "/treppenhausreinigung-regensburg", label: "Treppenhausreinigung Regensburg", text: "Für Hausverwaltung, WEG, Mietshaus und Turnus." },
 ] as const;
 
 const requestFacts = [
-  "Ort oder Stadtteil und Objektart",
-  "Fläche, Räume oder grober Umfang",
-  "Einmalige Reinigung oder regelmäßiger Turnus",
-  "Fotos von Zustand, Zugang und besonderen Stellen",
-  "Terminwunsch, Zeitfenster und Ansprechpartner",
-  "Vorhandenes Angebot oder Budgetrahmen, falls vorhanden",
+  { title: "Ort oder Postleitzahl", question: "Wo liegt das Objekt?", why: "Anfahrt und zuständiger Standort müssen zum Auftrag passen.", risk: "Ohne Ort ist keine belastbare Machbarkeitsprüfung möglich.", provide: "Stadt, Stadtteil oder PLZ.", check: "Eine Besichtigung ist dafür nicht nötig." },
+  { title: "Objektart und Nutzung", question: "Handelt es sich um Wohnung, Büro, Praxis, Laden oder Gemeinschaftsfläche?", why: "Nutzung und Abläufe verändern den benötigten Leistungsumfang.", risk: "Eine falsche Objektannahme führt zu fehlenden Positionen.", provide: "Objektart, Nutzung und besondere Bereiche.", check: "Fotos helfen bei gemischten oder ungewöhnlichen Flächen." },
+  { title: "Fläche und Räume", question: "Wie groß ist das Objekt und welche Räume gehören dazu?", why: "Fläche und Raumarten machen Mengen und Wege nachvollziehbar.", risk: "Fehlende Räume können Aufwand und Angebot verzerren.", provide: "Quadratmeter, Raumzahl sowie Küche, Sanitär und Nebenflächen.", check: "Grundriss oder Besichtigung helfen bei komplexen Objekten." },
+  { title: "Gewünschte Leistung", question: "Was soll gereinigt werden und welcher Zustand wird erwartet?", why: "Normale Reinigung, Grundreinigung und Übergabe haben andere Ziele.", risk: "Ein unklarer Zielzustand erzeugt unterschiedliche Erwartungen.", provide: "Flächen, Tätigkeiten, Ausschlüsse und gewünschtes Ergebnis.", check: "Fotos sind bei starker Verschmutzung oder empfindlichen Materialien sinnvoll." },
+  { title: "Einmalig oder Turnus", question: "Ist die Reinigung einmalig oder regelmäßig?", why: "Ein Turnus bestimmt Ablauf, Zeitfenster und wiederkehrende Aufgaben.", risk: "Ohne Rhythmus lassen sich Leistungen nicht sauber vergleichen.", provide: "Einmaltermin oder Häufigkeit, Wochentage und bevorzugte Zeiten.", check: "Eine Besichtigung ist bei großen regelmäßigen Objekten sinnvoll." },
+  { title: "Zugang und Besonderheiten", question: "Wie gelangt das Team zu allen Bereichen?", why: "Etage, Aufzug, Schlüsselweg und sensible Flächen beeinflussen die Durchführung.", risk: "Ungeklärter Zugang kann einen Termin verhindern oder Zusatzaufwand erzeugen.", provide: "Etage, Aufzug, Parken, Schlüsselübergabe und Ansprechpartner – keine Zugangscodes im Formular.", check: "Fotos von Zugängen oder schwer erreichbaren Stellen helfen." },
+  { title: "Termin und Frist", question: "Wann soll die Leistung stattfinden?", why: "Wunschtermin, Übergabe und Zeitfenster bestimmen, was realistisch planbar ist.", risk: "Eine unbekannte Frist kann zu falschen Verfügbarkeitsannahmen führen.", provide: "Wunschtermin, alternatives Zeitfenster und feste Übergabefrist.", check: "Bei engem Zeitfenster sollten Fotos oder Besichtigung früh geklärt werden." },
 ] as const;
 
-export const metadata: Metadata = generatePageSEO({
-  path,
+export const metadata: Metadata = {
+  ...generatePageSEO({
+    path,
+    title,
+    description,
+    keywords: [
+      "reinigungsfirma angebot",
+      "angebot reinigung",
+      "angebot für reinigungsarbeiten",
+      "reinigungsangebot prüfen",
+    ],
+  }),
   title,
   description,
-  keywords: [
-    "reinigungsfirma angebot",
-    "angebot reinigung",
-    "angebot für reinigungsarbeiten",
-    "reinigungsangebot prüfen",
-  ],
-});
+  alternates: {
+    canonical: path,
+    languages: { "de-DE": path, "x-default": path },
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: path,
+    title: pageMetadata.ogTitle,
+    description: pageMetadata.ogDescription,
+  },
+};
 
 function JsonLd() {
   const graph = {
@@ -122,7 +139,7 @@ function JsonLd() {
         description,
         path,
         serviceType: "Reinigung und Reinigungsangebot",
-        areaServed: ["Regensburg", "Landkreis Regensburg", "Regensburg plus 50 km"],
+        areaServed: ["Düsseldorf", "Regensburg", "Landkreis Regensburg"],
         availableLanguage: ["de", "en"],
       }),
       buildBreadcrumbJsonLd([
@@ -162,7 +179,7 @@ export default function ReinigungsfirmaAngebotPage() {
                 Angebot Reinigung
               </div>
               <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl xl:text-6xl">
-                Reinigungsfirma Angebot anfragen: Objekt, Fläche und Termin klar senden
+                {pageMetadata.headline}
               </h1>
               <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-slate-100">
                 Für ein gutes Reinigungsangebot zählen keine großen Versprechen, sondern klare
@@ -192,9 +209,9 @@ export default function ReinigungsfirmaAngebotPage() {
                     </h2>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {requestFacts.slice(0, 4).map((item) => (
-                        <div key={item} className="flex gap-2 text-sm font-semibold leading-6 text-slate-200">
+                        <div key={item.title} className="flex gap-2 text-sm font-semibold leading-6 text-slate-200">
                           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" aria-hidden="true" />
-                          {item}
+                          {item.title}
                         </div>
                       ))}
                     </div>
@@ -278,14 +295,20 @@ export default function ReinigungsfirmaAngebotPage() {
                 Grundreinigung, Wohnungsreinigung oder Treppenhausreinigung der passende Weg ist.
               </p>
             </article>
-            <div className="grid gap-3 md:grid-cols-2">
-              {requestFacts.map((item) => (
-                <div key={item} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm font-bold leading-6 text-slate-700">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-blue-700" aria-hidden="true" />
-                  {item}
-                </div>
+            <ol className="grid gap-3 md:grid-cols-2">
+              {requestFacts.map((item, index) => (
+                <li key={item.title} className="flex gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-blue-700 text-xs font-black text-white">{index + 1}</span>
+                  <span>
+                    <strong className="block text-slate-950">{item.title}: {item.question}</strong>
+                    <span className="mt-2 block"><strong>Warum:</strong> {item.why}</span>
+                    <span className="mt-1 block"><strong>Risiko:</strong> {item.risk}</span>
+                    <span className="mt-1 block"><strong>Ihre Angabe:</strong> {item.provide}</span>
+                    <span className="mt-1 block"><strong>Fotos/Besichtigung:</strong> {item.check}</span>
+                  </span>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 

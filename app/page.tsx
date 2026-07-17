@@ -8,6 +8,7 @@ import {
   Check,
   FileSearch,
   KeyRound,
+  Languages,
   MapPin,
   PackageOpen,
   ShieldCheck,
@@ -19,6 +20,7 @@ import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import { company } from "@/lib/company";
 import { buildLeadHref } from "@/lib/lead-intents";
 import { generatePageSEO } from "@/lib/seo";
+import { searchAuthorityPages } from "@/lib/search-authority";
 import { buildFaqJsonLd, buildServiceJsonLd, buildWebPageJsonLd } from "@/lib/structured-data";
 
 const path = "/";
@@ -31,37 +33,37 @@ const requestHref = buildLeadHref({
 });
 const offerHref = "/angebot-guenstiger-pruefen";
 
-const homepageTitle = "FLOXANT | Umzug, Reinigung, Entrümpelung und Angebot prüfen";
-const homepageDescription =
-  "Umzug, Reinigung, Entrümpelung oder Angebotsprüfung in Regensburg, Düsseldorf und Umgebung anfragen. Auftrag kurz beschreiben und Rückmeldung erhalten.";
+const homepageAuthority = searchAuthorityPages["/"];
+const homepageTitle = homepageAuthority.seoTitle;
+const homepageDescription = homepageAuthority.description;
 
 const mainServices = [
   {
-    title: "Umzug & Transport",
-    text: "Privat-, Senioren-, Möbel- und Klaviertransporte mit klaren Angaben zu Strecke, Etage und Termin.",
-    cta: "Umzug & Transport ansehen",
+    title: "Umzug in Regensburg",
+    text: "Privat-, Senioren-, Möbel- und Klaviertransporte mit klaren Angaben zu Strecke, Etage, Zugang und Termin.",
+    cta: "Umzug in Regensburg ansehen",
     href: "/regensburg/umzug",
     icon: Truck,
   },
   {
-    title: "Reinigung",
-    text: "Reinigung für Wohnung, Büro, Gewerbe, Fenster oder Übergabe – einmalig oder regelmäßig.",
-    cta: "Reinigung ansehen",
-    href: "/regensburg/reinigung",
+    title: "Reinigung in Düsseldorf",
+    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe oder Fenster – mit Fläche, Turnus und Terminwunsch.",
+    cta: "Reinigung in Düsseldorf ansehen",
+    href: "/duesseldorf/reinigung",
     icon: Sparkles,
   },
   {
-    title: "Entrümpelung & Auflösung",
+    title: "Räumung in Regensburg",
     text: "Keller, Wohnung, Haushalt oder Gewerbefläche räumen – auf Wunsch mit anschließender Reinigung.",
-    cta: "Entrümpelung ansehen",
+    cta: "Räumung in Regensburg ansehen",
     href: "/regensburg/entruempelung",
     icon: PackageOpen,
   },
   {
-    title: "Büro & Gewerbe",
-    text: "Büro-, Gewerbe-, Praxis- und Hausverwaltungsreinigung nach Fläche, Turnus und Zeitfenster.",
-    cta: "Für Unternehmen ansehen",
-    href: "/regensburg/gewerbereinigung",
+    title: "Büro & Gewerbe in Düsseldorf",
+    text: "Büro-, Gewerbe- und Praxisreinigung nach Fläche, Raumliste, Turnus, Zugang und Zeitfenster.",
+    cta: "Reinigung für Unternehmen ansehen",
+    href: "/duesseldorf/bueroreinigung",
     icon: BriefcaseBusiness,
   },
   {
@@ -83,7 +85,7 @@ const mainServices = [
 const locations = [
   {
     title: "Düsseldorf",
-    text: "Reinigung, Büro- und Gewerbereinigung, Umzug, Entrümpelung und Haushaltsauflösung.",
+    text: "Reinigung für Wohnung, Büro, Praxis, Gewerbe und Fenster sowie Prüfung vorhandener Reinigungsangebote.",
     cta: "Leistungen in Düsseldorf",
     href: "/duesseldorf",
   },
@@ -152,7 +154,7 @@ export const metadata: Metadata = {
   description: homepageDescription,
   alternates: {
     canonical,
-    languages: { "de-DE": path, "x-default": path },
+    languages: { "de-DE": path, en: "/en", "x-default": path },
   },
   openGraph: {
     type: "website",
@@ -183,7 +185,7 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageJsonLd({
-        name: homepageTitle,
+        name: homepageAuthority.headline,
         description: homepageDescription,
         path,
         about: ["Umzug", "Reinigung", "Entrümpelung", "Angebotsprüfung"],
@@ -250,7 +252,7 @@ export default function HomePage() {
               Düsseldorf und Regensburg
             </p>
             <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              Umzug, Reinigung und Entrümpelung einfach anfragen
+              {homepageAuthority.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-slate-100 sm:text-xl">
               FLOXANT unterstützt Privatkunden, Unternehmen und Hausverwaltungen. Beschreiben Sie kurz Ihren Auftrag oder senden Sie ein vorhandenes Angebot zur Prüfung.
@@ -392,6 +394,31 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section data-home-section="language" className="border-t border-slate-200 bg-cyan-50 px-5 py-14 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-wider text-blue-800">
+              <Languages className="h-4 w-4" aria-hidden="true" />
+              Deutsch or English
+            </p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
+              Service information is also available in English.
+            </h2>
+            <p className="mt-4 text-base font-semibold leading-8 text-slate-700">
+              English-speaking customers can choose localized information for cleaning in Düsseldorf and for moving,
+              clearance or cleaning in Regensburg. Services are provided in Germany.
+            </p>
+          </div>
+          <Link
+            href="/en"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-slate-950 px-6 text-sm font-black text-white hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
+          >
+            View services in English
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 

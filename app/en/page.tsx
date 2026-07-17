@@ -5,12 +5,14 @@ import { ArrowRight, Languages, MapPin } from "lucide-react";
 import { company } from "@/lib/company";
 import { englishLocalSeoPages } from "@/lib/local-seo/englishLocalSeoPages";
 import type { LocalSeoPageConfig } from "@/lib/local-seo/types";
+import { searchAuthorityPages } from "@/lib/search-authority";
+
+const pageMetadata = searchAuthorityPages["/en"];
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.url),
-  title: "FLOXANT English Services | Regensburg Cleaning & Moving",
-  description:
-    "English FLOXANT service pages for Regensburg cleaning, quote review, moving, house clearance and moving quote review.",
+  title: pageMetadata.seoTitle,
+  description: pageMetadata.description,
   alternates: {
     canonical: "/en",
     languages: {
@@ -22,9 +24,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/en",
-    title: "FLOXANT English Services",
-    description:
-      "English service pages for Regensburg cleaning and moving with WhatsApp requests and quote review.",
+    title: pageMetadata.ogTitle,
+    description: pageMetadata.ogDescription,
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "FLOXANT English Services" }],
   },
   robots: {
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default function EnglishHubPage() {
+  const duesseldorfPages = englishLocalSeoPages.filter((page) => page.region === "duesseldorf");
   const regensburgPages = englishLocalSeoPages.filter((page) => page.region === "regensburg");
 
   return (
@@ -45,17 +47,22 @@ export default function EnglishHubPage() {
             English FLOXANT services
           </div>
           <h1 className="mt-6 max-w-5xl text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-            English pages for Regensburg cleaning, moving and clearance
+            {pageMetadata.headline}
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-slate-100">
-            Choose the matching English service page, send photos by WhatsApp and review existing
-            quotes before booking. A matching German page is linked whenever the same service is available.
+            Choose Düsseldorf for cleaning requests or Regensburg for cleaning, moving and clearance.
+            Each page explains the scope, useful details, realistic limits and the next contact step in English.
           </p>
+          <Link href="/en/contact" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-slate-950">
+            Send an English request
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
       <section className="px-5 py-14 sm:px-8 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-8">
+          <ServiceGroup title="Düsseldorf cleaning services" pages={duesseldorfPages} />
           <ServiceGroup title="Regensburg services" pages={regensburgPages} />
         </div>
       </section>

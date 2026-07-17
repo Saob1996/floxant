@@ -1095,7 +1095,7 @@ function getLongMetaDescription(path: string, shortDescription: string, geoPlace
   }
 
   if (path.includes("angebot-guenstiger")) {
-    return `${shortDescription} Relevante Suchintentionen: Angebot anderer Firma prüfen, Umzugsangebot vergleichen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen und mögliche FLOXANT-Alternative nach Verfügbarkeit anfragen, ohne Preisgarantie.`;
+    return `${shortDescription} Passend für: Angebot einer anderen Firma prüfen, Umzugsangebot vergleichen, Reinigungsangebot prüfen, Entsorgungsangebot prüfen und eine mögliche FLOXANT-Alternative nach Verfügbarkeit anfragen, ohne Preisgarantie.`;
   }
 
   if (path.includes("regensburg")) {

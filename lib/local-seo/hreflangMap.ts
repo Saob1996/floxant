@@ -6,6 +6,14 @@ type HreflangPair = {
 };
 
 const allLocalSeoHreflangPairs = [
+  { de: "/duesseldorf/reinigung", en: "/en/duesseldorf/cleaning" },
+  { de: "/duesseldorf/bueroreinigung", en: "/en/duesseldorf/office-cleaning" },
+  { de: "/duesseldorf/gewerbereinigung", en: "/en/duesseldorf/commercial-cleaning" },
+  { de: "/duesseldorf/reinigung", en: "/en/duesseldorf/apartment-cleaning" },
+  { de: "/duesseldorf/reinigung", en: "/en/duesseldorf/deep-cleaning" },
+  { de: "/duesseldorf/reinigung", en: "/en/duesseldorf/move-out-cleaning" },
+  { de: "/duesseldorf/fensterreinigung", en: "/en/duesseldorf/window-cleaning" },
+  { de: "/angebot-vergleichen-duesseldorf", en: "/en/duesseldorf/cleaning-quote-review" },
   { de: "/regensburg/reinigung", en: "/en/regensburg/cleaning" },
   { de: "/regensburg/reinigungsfirma", en: "/en/regensburg/cleaning" },
   { de: "/regensburg/bueroreinigung", en: "/en/regensburg/office-cleaning" },
@@ -32,7 +40,10 @@ const allLocalSeoHreflangPairs = [
 ] as const satisfies readonly HreflangPair[];
 
 export const localSeoHreflangPairs = allLocalSeoHreflangPairs.filter(
-  (pair) => pair.de.includes("regensburg") || pair.de === "/angebot-vergleichen-regensburg",
+  (pair) =>
+    pair.de.includes("regensburg") ||
+    pair.de.includes("duesseldorf") ||
+    pair.de === "/angebot-vergleichen-regensburg",
 ) as readonly HreflangPair[];
 
 const pairByPath = new Map<string, HreflangPair>();

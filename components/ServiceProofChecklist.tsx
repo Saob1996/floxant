@@ -24,7 +24,7 @@ export function ServiceProofChecklist({
         <div>
           <p className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-normal text-blue-700">
             <Camera className="h-4 w-4" aria-hidden="true" />
-            Proof-Checkliste
+            Angaben für eine klare Anfrage
           </p>
           <h2 className="mt-3 text-3xl font-black tracking-normal sm:text-5xl">{germanText(title || proof.title, proof.title)}</h2>
           <p className="mt-4 text-base font-semibold leading-8 text-slate-700">{germanText(intro || proof.intro, proof.intro)}</p>

@@ -765,7 +765,7 @@ export function SearchDominanceExperience({
 
             <div className="mt-7 grid gap-2">
               <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
-                Google, Maps & klare Antworten
+                Kontakt, Standort und klare Antworten
               </div>
               <div className="flex flex-wrap gap-2">
                 {config.searchChips.map((chip, index) => (
@@ -945,7 +945,7 @@ export function SearchDominanceExperience({
               <div className="flox-serp-preview-card flox-card-lift rounded-[1.55rem] border border-slate-200 bg-white p-5 text-slate-950">
                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
                   <Search className="h-3.5 w-3.5" />
-                  Suchergebnis-Vorschau
+                  Vorschau für Seitentitel und Beschreibung
                 </div>
                 <div className="mt-4 text-xs font-semibold text-emerald-700">
                   www.floxant.de
@@ -958,7 +958,7 @@ export function SearchDominanceExperience({
                 </p>
                 <div className="mt-4 rounded-[1.15rem] border border-slate-200 bg-slate-50 p-3">
                   <div className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-500">
-                    Klick-Gründe im Suchergebnis
+                    Wichtige Informationen auf einen Blick
                   </div>
                   <div className="mt-2 grid gap-2">
                     {config.clickReasons.map((reason) => (

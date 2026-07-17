@@ -366,7 +366,7 @@ export default function LeistungenPage() {
       />
 
       <ServiceVisualProofGrid
-        title="Visual Proof mit Privacy-Grenzen."
+        title="Anschauliche Beispiele mit Schutz privater Daten."
         intro="Sichtbare Visuals sind neutral. Echte Vorher-Nachher-Fotos oder Objektbilder werden erst nach Freigabe und Anonymisierung genutzt."
       />
 

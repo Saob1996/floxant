@@ -11,6 +11,8 @@ import { RegionalRouteNotice } from "@/components/RegionalRouteNotice";
 import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 
 import { GlobalRequestCenter } from "@/components/GlobalRequestCenter";
+import { EnglishFooter } from "@/components/english/EnglishFooter";
+import { EnglishHeader } from "@/components/english/EnglishHeader";
 
 export function SiteChrome({
   children,
@@ -19,6 +21,7 @@ export function SiteChrome({
 }) {
   const pathname = usePathname();
   const isDuesseldorfSection = pathname.startsWith("/duesseldorf");
+  const isEnglishSection = pathname === "/en" || pathname.startsWith("/en/");
   const isPrivateSection =
     pathname.startsWith("/dashboard") || pathname.startsWith("/admin") || pathname.startsWith("/login");
   const usesDuesseldorfHeader =
@@ -28,19 +31,23 @@ export function SiteChrome({
 
   return (
     <>
-      {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang="de" /> : null}
-      {!isDuesseldorfSection && !isPrivateSection ? <WebSiteJsonLd /> : null}
-      <PublicHeader
-        dic={{}}
-        variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
-      />
-      <RegionalRouteNotice pathname={pathname} />
+      {!isDuesseldorfSection && !isPrivateSection ? <JsonLd lang={isEnglishSection ? "en" : "de"} /> : null}
+      {!isDuesseldorfSection && !isPrivateSection && !isEnglishSection ? <WebSiteJsonLd /> : null}
+      {isEnglishSection ? (
+        <EnglishHeader />
+      ) : (
+        <PublicHeader
+          dic={{}}
+          variant={usesDuesseldorfHeader ? "duesseldorf" : "default"}
+        />
+      )}
+      {!isEnglishSection ? <RegionalRouteNotice pathname={pathname} /> : null}
       <div id="main-content" tabIndex={-1} className="min-h-[100svh]">
         {children}
       </div>
-      {!isDuesseldorfSection ? <Footer /> : null}
-      <GlobalRequestCenter />
-      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection} />
+      {isEnglishSection ? <EnglishFooter /> : !isDuesseldorfSection ? <Footer /> : null}
+      {!isEnglishSection ? <GlobalRequestCenter /> : null}
+      <DeferredSiteWidgets showFloatingContact={!isDuesseldorfSection && !isPrivateSection && !isEnglishSection} />
     </>
   );
 }
