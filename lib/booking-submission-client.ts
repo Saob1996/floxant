@@ -16,6 +16,66 @@ type ResponseSnapshot = {
 
 const inFlightRequests = new Map<string, Promise<ResponseSnapshot>>();
 
+function pruneEmptySubmissionValue(value: unknown): unknown {
+  if (typeof value === "string") {
+    const normalized = value.trim();
+    return normalized || undefined;
+  }
+  if (typeof value === "number") return Number.isFinite(value) ? value : undefined;
+  if (typeof value === "boolean") return value;
+  if (!value || typeof value !== "object") return undefined;
+  if (Array.isArray(value)) {
+    const normalized = value
+      .map(pruneEmptySubmissionValue)
+      .filter((item) => item !== undefined);
+    return normalized.length ? normalized : undefined;
+  }
+  const normalized = Object.fromEntries(
+    Object.entries(value)
+      .map(([key, item]) => [key, pruneEmptySubmissionValue(item)] as const)
+      .filter(([, item]) => item !== undefined),
+  );
+  return Object.keys(normalized).length ? normalized : undefined;
+}
+
+function normalizeJsonString(value: string) {
+  try {
+    const normalized = pruneEmptySubmissionValue(JSON.parse(value));
+    return normalized === undefined ? "" : JSON.stringify(normalized);
+  } catch {
+    return value.trim();
+  }
+}
+
+function normalizeFormData(body: FormData) {
+  const normalized = new FormData();
+  for (const [key, value] of body.entries()) {
+    if (typeof value === "string") {
+      const nextValue = key === "details" || key === "upgrades"
+        ? normalizeJsonString(value)
+        : value.trim();
+      if (nextValue) normalized.append(key, nextValue);
+    } else if (value.size > 0) {
+      normalized.append(key, value);
+    }
+  }
+  return normalized;
+}
+
+function normalizeRequestInit(init?: RequestInit): RequestInit | undefined {
+  if (!init?.body) return init;
+  if (init.body instanceof FormData) return { ...init, body: normalizeFormData(init.body) };
+  if (typeof init.body !== "string") return init;
+  const contentType = new Headers(init.headers).get("Content-Type") || "";
+  if (!contentType.includes("application/json")) return init;
+  try {
+    const normalized = pruneEmptySubmissionValue(JSON.parse(init.body));
+    return { ...init, body: JSON.stringify(normalized || {}) };
+  } catch {
+    return init;
+  }
+}
+
 function currentLocale() {
   if (typeof document !== "undefined" && document.documentElement.lang.toLowerCase().startsWith("en")) {
     return "en";
@@ -43,7 +103,7 @@ function clientMessage(payload: BookingResponsePayload, locale: "de" | "en") {
 async function executeRequest(input: RequestInfo | URL, init?: RequestInit): Promise<ResponseSnapshot> {
   let response: Response;
   try {
-    response = await fetch(input, init);
+    response = await fetch(input, normalizeRequestInit(init));
   } catch {
     return {
       status: 500,

@@ -1,8 +1,12 @@
+import {
+  PayloadValidationError,
+  assertAllowedFileFields,
+  normalizeLeadPayload,
+} from "./lead-payload.js";
+
 const MAX_FILE_BYTES = 12 * 1024 * 1024;
 const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
 const MAX_FILES = 12;
-const MAX_PAYLOAD_FIELDS = 240;
-const MAX_PAYLOAD_DEPTH = 8;
 const ALLOWED_FILE_TYPES = new Set(["application/pdf", "image/jpeg", "image/png", "image/webp"]);
 const PUBLIC_ORIGINS = new Set([
   "https://www.floxant.de",
@@ -255,27 +259,6 @@ async function parsePayload(request) {
   return { payload, files };
 }
 
-function validatePayloadShape(value, depth = 0, counter = { fields: 0 }, key = "") {
-  if (depth > MAX_PAYLOAD_DEPTH) {
-    throw new ValidationFailure({ form: "Die Anfrage enthält zu viele verschachtelte Angaben." });
-  }
-  if (typeof value === "string") {
-    const longField = /message|note|details|description|scope|items/i.test(key);
-    if (value.length > (longField ? 10_000 : 2_000)) {
-      throw new ValidationFailure({ [key || "form"]: "Die Angabe ist zu lang." });
-    }
-    return;
-  }
-  if (!value || typeof value !== "object") return;
-  for (const [childKey, childValue] of Object.entries(value)) {
-    counter.fields += 1;
-    if (counter.fields > MAX_PAYLOAD_FIELDS) {
-      throw new ValidationFailure({ form: "Die Anfrage enthält zu viele Angaben." });
-    }
-    validatePayloadShape(childValue, depth + 1, counter, childKey);
-  }
-}
-
 async function fileMatchesType(file) {
   const bytes = new Uint8Array(await file.slice(0, 16).arrayBuffer());
   if (file.type === "application/pdf") {
@@ -310,7 +293,6 @@ async function validateFiles(files) {
 }
 
 function validateSubmission(payload) {
-  validatePayloadShape(payload);
   const fields = {};
   const existingContact = payload.details?.contact || payload.contact || {};
   const contact = {
@@ -378,7 +360,18 @@ function buildDetails(payload, contact, service, uploadedFiles) {
         metadata: payload.metadata && typeof payload.metadata === "object" ? payload.metadata : undefined,
       };
   const now = new Date().toISOString();
-  const excludedRawFields = new Set(["details", "companyWebsite", "website", "url"]);
+  const excludedRawFields = new Set([
+    "details",
+    "upgrades",
+    "contact",
+    "service",
+    "valuation",
+    "configuration",
+    "metadata",
+    "companyWebsite",
+    "website",
+    "url",
+  ]);
   const rawFields = Object.fromEntries(Object.entries(payload).filter(([key]) => !excludedRawFields.has(key)));
   return {
     ...existing,
@@ -548,8 +541,10 @@ export async function handleLeadSubmission(context) {
       return json({ ok: false, code: "CONFIGURATION_ERROR", requestId }, 503, context.request, env);
     }
 
-    const { payload, files } = await parsePayload(context.request);
+    const { payload: rawPayload, files } = await parsePayload(context.request);
+    const payload = normalizeLeadPayload(rawPayload, context.request);
     const contact = validateSubmission(payload);
+    assertAllowedFileFields(files, context.request);
     await validateFiles(files);
     const uploadedFiles = await uploadFiles(files, configuration, requestId);
     const service = normalizeService(firstText(payload.details?.service?.type, payload.service?.type, payload.service, payload.type, payload.lead_type));
@@ -575,7 +570,7 @@ export async function handleLeadSubmission(context) {
     }
     return json({ ok: true, requestId, bookingId }, 201, context.request, env);
   } catch (error) {
-    if (error instanceof ValidationFailure) {
+    if (error instanceof ValidationFailure || error instanceof PayloadValidationError) {
       return json({ ok: false, code: "VALIDATION_ERROR", requestId, fields: error.fields }, 400, context.request, env);
     }
     console.error("Cloudflare lead submission failed", {
