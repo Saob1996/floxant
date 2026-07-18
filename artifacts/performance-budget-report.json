@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T00:17:05.298Z",
+  "generatedAt": "2026-07-18T02:21:27.158Z",
   "baselineNote": "Budgets use the measured pre-change export (4.06 GiB, 3.11 MB JS, 475,979 B CSS, 198,492 B largest JS) plus only bounded headroom for the required static tool routes.",
   "budgets": {
     "fileCount": 20000,
@@ -18,10 +18,10 @@
   "measurements": {
     "fileCount": 13199,
     "largestFileBytes": 1648826,
-    "totalOutputBytes": 4360267906,
-    "totalJavaScriptBytes": 3147132,
+    "totalOutputBytes": 4360297025,
+    "totalJavaScriptBytes": 3173841,
     "largestJavaScriptBytes": 198492,
-    "totalCssBytes": 475626,
+    "totalCssBytes": 476772,
     "largestHtmlBytes": 1648826,
     "largestReactServerPayloadBytes": 1081472,
     "largestImageBytes": 341317,
@@ -42,12 +42,12 @@
         "bytes": 189
       },
       {
-        "path": "_next/static/chunks/app/en/quote-check/page-54b40081316d17eb.js",
-        "bytes": 6946
+        "path": "_next/static/chunks/app/en/quote-check/page-8328dd1df3fe3f2a.js",
+        "bytes": 7499
       },
       {
-        "path": "_next/static/chunks/app/en/create-request/page-7fec9ea711d7f941.js",
-        "bytes": 6907
+        "path": "_next/static/chunks/app/en/create-request/page-8ce710efb5a1c4d9.js",
+        "bytes": 7460
       },
       {
         "path": "_next/static/chunks/app/angebotscheck/page-dfa290d72dbe7278.js",
@@ -71,13 +71,13 @@
     },
     {
       "name": "totalOutputBytes",
-      "actual": 4360267906,
+      "actual": 4360297025,
       "budget": 4450000000,
       "passed": true
     },
     {
       "name": "totalJavaScriptBytes",
-      "actual": 3147132,
+      "actual": 3173841,
       "budget": 4194304,
       "passed": true
     },
@@ -89,7 +89,7 @@
     },
     {
       "name": "totalCssBytes",
-      "actual": 475626,
+      "actual": 476772,
       "budget": 614400,
       "passed": true
     },

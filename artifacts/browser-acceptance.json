@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-07-18",
+  "baseUrl": "http://127.0.0.1:4173",
+  "desktop": {
+    "routes": [
+      "/",
+      "/duesseldorf",
+      "/duesseldorf/reinigung",
+      "/angebotscheck",
+      "/kontakt",
+      "/en",
+      "/en/contact",
+      "/objektbrief",
+      "/leistungsfinder",
+      "/dashboard/login",
+      "/dashboard"
+    ],
+    "germanFormMockedWithoutSubmit": true,
+    "englishFormMockedWithoutSubmit": true,
+    "offerCheckClientInteraction": true,
+    "requestBriefGeneratedClientSide": true,
+    "clipboardVerified": true,
+    "dashboardUnauthenticatedRedirect": "/dashboard/login",
+    "dashboardRobots": "noindex, nofollow, nocache"
+  },
+  "mobile": {
+    "viewportRequested": { "width": 390, "height": 844 },
+    "routes": ["/", "/duesseldorf/reinigung", "/en/contact", "/angebotscheck", "/dashboard/login"],
+    "horizontalOverflowRoutes": 0
+  },
+  "consoleErrors": 0,
+  "realSubmissions": 0,
+  "realEmails": 0,
+  "customerFilesUploaded": 0
+}

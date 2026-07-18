@@ -1,0 +1,114 @@
+{
+  "generatedAt": "2026-07-18T02:21:32.384Z",
+  "checks": {
+    "noIsr": true,
+    "noDynamicPublicPages": true,
+    "noDynamicFallbacks": true,
+    "publicSourceIsRequestIndependent": true,
+    "imageOptimizationDisabled": true,
+    "proxyNotGlobal": true,
+    "noVercelAnalyticsPackages": true
+  },
+  "counts": {
+    "prerenderedRoutes": 1584,
+    "prerenderedPatterns": 10,
+    "isrRoutes": 0,
+    "dynamicRoutes": 0,
+    "publicDynamicPages": 0,
+    "functions": 0,
+    "publicAssets": 34
+  },
+  "estimatedNormalPublicPage": {
+    "isrReads": 0,
+    "functionInvocations": 0
+  },
+  "staticOutputBytes": 4385091013,
+  "isrRoutes": [],
+  "fallbackPatterns": [],
+  "dynamicRoutes": [],
+  "publicDynamicPages": [],
+  "functions": [],
+  "sourceFindings": [],
+  "largestAssets": [
+    {
+      "path": "public/uploads/1770296622700_image006.png",
+      "bytes": 341317
+    },
+    {
+      "path": "public/favicon.ico",
+      "bytes": 324068
+    },
+    {
+      "path": "public/assets/floxant-hero-neu-gedacht.png",
+      "bytes": 298001
+    },
+    {
+      "path": "public/assets/service-clearance.png",
+      "bytes": 295172
+    },
+    {
+      "path": "public/assets/diskret-service-hero.png",
+      "bytes": 270250
+    },
+    {
+      "path": "public/assets/service-cleaning.png",
+      "bytes": 230200
+    },
+    {
+      "path": "public/assets/service-moving.png",
+      "bytes": 199056
+    },
+    {
+      "path": "public/assets/property-operations/urlaubsretter.png",
+      "bytes": 131837
+    },
+    {
+      "path": "public/assets/property-operations/objekt-springer.png",
+      "bytes": 130833
+    },
+    {
+      "path": "public/assets/service-clearance.webp",
+      "bytes": 125312
+    },
+    {
+      "path": "public/assets/floxant-hero-neu-gedacht.webp",
+      "bytes": 120118
+    },
+    {
+      "path": "public/assets/property-operations/airbnb-turnover-express.png",
+      "bytes": 112001
+    },
+    {
+      "path": "public/assets/property-operations/human-api.png",
+      "bytes": 107413
+    },
+    {
+      "path": "public/assets/property-operations/business-errand-service.png",
+      "bytes": 87121
+    },
+    {
+      "path": "public/assets/property-operations/property-operations.png",
+      "bytes": 86502
+    },
+    {
+      "path": "public/assets/property-operations/leerstandsmanagement.png",
+      "bytes": 85310
+    },
+    {
+      "path": "public/assets/gewerbereinigung/gewerbliche-reinigung-regensburg-hero.webp",
+      "bytes": 84338
+    },
+    {
+      "path": "public/assets/service-moving.webp",
+      "bytes": 77928
+    },
+    {
+      "path": "public/assets/gewerbereinigung/reinigungsanfrage-checkliste-regensburg.webp",
+      "bytes": 77002
+    },
+    {
+      "path": "public/assets/gewerbereinigung/schluessel-treppenhausreinigung-regensburg.webp",
+      "bytes": 72466
+    }
+  ]
+}
