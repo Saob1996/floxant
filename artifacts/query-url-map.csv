@@ -1,0 +1,813 @@
+query,locale,intent,primaryUrl,secondaryUrls,impressions,clicks,position,cannibalizationRisk,recommendedAction,manualReview
+b2b büroreinigung,de,commercial,/regensburg/bueroreinigung,,192,0,2.69,none_detected,keep_and_measure,true
+reinigung nach entrümpelung landshut,de,commercial,/leistungsfinder,,191,0,6.18,none_detected,keep_and_measure,true
+diskreter service,de,transactional,/diskreter-umzug-trennung-scheidung,,168,0,5.64,none_detected,keep_and_measure,true
+grundreinigung düsseldorf,de,commercial,/duesseldorf,,142,0,8.94,none_detected,keep_and_measure,true
+fensterreinigung düsseldorf,de,commercial,/duesseldorf/fensterreinigung,,111,0,10.63,none_detected,keep_and_measure,false
+putzfirma düsseldorf,de,transactional,/duesseldorf,,102,0,14.01,none_detected,keep_and_measure,true
+reinigungsdienst düsseldorf,de,commercial,/duesseldorf,,94,0,11.28,none_detected,keep_and_measure,true
+umzug neustadt an der waldnaab,de,commercial,/,,93,0,5.55,none_detected,keep_and_measure,true
+büroreinigung duesseldorf,de,commercial,/regensburg/bueroreinigung,,88,0,10.16,none_detected,keep_and_measure,true
+büroreinigung,de,commercial,/regensburg/bueroreinigung,,80,0,17.94,none_detected,keep_and_measure,true
+praxisentrümpelung nürnberg,de,commercial,/blog/praxisentruempelung-nuernberg-richtig-anfragen,,75,0,9.67,none_detected,keep_and_measure,true
+fensterreiniger düsseldorf,de,unknown,/duesseldorf,,72,0,12.97,none_detected,keep_and_measure,true
+umzug vohenstrauß,de,commercial,/,,71,0,7.18,none_detected,keep_and_measure,true
+umzug im alter bamberg,de,commercial,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,70,0,7.59,none_detected,keep_and_measure,true
+umzug im alter erlangen,de,commercial,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,69,0,7.58,none_detected,keep_and_measure,true
+reinigungsunternehmen düsseldorf,de,commercial,/duesseldorf,,65,0,12.06,none_detected,keep_and_measure,true
+unterhaltsreinigung düsseldorf,de,commercial,/duesseldorf,,60,0,13.35,none_detected,keep_and_measure,true
+glasreinigung düsseldorf,de,commercial,/duesseldorf,,57,0,10.33,none_detected,keep_and_measure,true
+wohnungsreinigung düsseldorf,de,commercial,/duesseldorf,,56,0,14.29,none_detected,keep_and_measure,true
+umzugshelfer für senioren erlangen,de,commercial,/blog/seniorenumzug-fuer-angehoerige,,53,0,18.00,none_detected,keep_and_measure,true
+geruchsneutralisation wohnung düsseldorf,de,unknown,/duesseldorf/reinigung,,51,0,9.69,none_detected,keep_and_measure,false
+reinigung münchen sofort termin,de,commercial,/fernumzug-muenchen,,50,0,19.46,none_detected,keep_and_measure,true
+umzug im alter würzburg,de,commercial,/alternativen,,44,0,8.64,none_detected,keep_and_measure,true
+bodenreinigung düsseldorf,de,commercial,/duesseldorf,,44,0,9.43,none_detected,keep_and_measure,true
+bauendreinigung düsseldorf,de,commercial,/duesseldorf,,41,0,5.66,none_detected,keep_and_measure,true
+umzugshelfer für senioren bayern,de,commercial,/umzug,,40,0,19.38,none_detected,keep_and_measure,true
+umzug nabburg,de,commercial,/,,39,0,4.97,none_detected,keep_and_measure,true
+wohnung geruchsentfernung düsseldorf,de,unknown,/duesseldorf/reinigung,,39,0,11.41,none_detected,keep_and_measure,false
+entrümpelung und reinigung,de,commercial,/,,35,0,8.34,none_detected,keep_and_measure,true
+umzugshelfer für senioren nürnberg,de,commercial,/blog/seniorenumzug-fuer-angehoerige,,35,0,18.51,none_detected,keep_and_measure,true
+umzug im alter bayern,de,commercial,/alternativen,,34,0,4.29,none_detected,keep_and_measure,true
+büroumzug rosenheim,de,commercial,/bueroumzug,,34,0,9.12,none_detected,keep_and_measure,true
+umzugshelfer für senioren bamberg,de,commercial,/blog/seniorenumzug-fuer-angehoerige,,34,0,15.94,none_detected,keep_and_measure,true
+fensterreinigung,de,commercial,/fensterreinigung-regensburg,,32,0,9.09,none_detected,keep_and_measure,true
+büro putzen düsseldorf,de,unknown,/duesseldorf,,31,0,12.77,none_detected,keep_and_measure,false
+professionelle lagerhallenreinigung in düsseldorf und umkreis,de,commercial,/duesseldorf,,30,0,5.43,none_detected,keep_and_measure,true
+treppenreinigung düsseldorf,de,commercial,/duesseldorf,,30,0,6.10,none_detected,keep_and_measure,true
+seniorenumzug landshut,de,commercial,/seniorenumzug-landshut,,30,0,8.60,none_detected,keep_and_measure,false
+geruchsneutralisation düsseldorf,de,unknown,/duesseldorf,,29,0,7.69,none_detected,keep_and_measure,true
+desinfektionsreinigung düsseldorf,de,commercial,/duesseldorf,,29,0,16.55,none_detected,keep_and_measure,true
+umzug münchen haidhausen,de,commercial,/klaviertransport,,27,0,6.52,none_detected,keep_and_measure,true
+grundreinigung wohnung düsseldorf,de,commercial,/duesseldorf/reinigung,,27,0,13.67,none_detected,keep_and_measure,false
+professionelle desinfektion düsseldorf,de,unknown,/duesseldorf,,27,0,16.56,none_detected,keep_and_measure,true
+klaviertransport regensburg,de,unknown,/klaviertransport,,26,2,4.35,none_detected,keep_and_measure,false
+hausreinigung düsseldorf,de,commercial,/duesseldorf,,26,0,14.69,none_detected,keep_and_measure,true
+umzugshelfer für senioren würzburg,de,commercial,/blog/seniorenumzug-fuer-angehoerige,,25,0,12.64,none_detected,keep_and_measure,true
+umzugsreinigung,de,commercial,/,,24,0,8.42,none_detected,keep_and_measure,true
+spezialreinigung düsseldorf,de,commercial,/duesseldorf,,24,0,11.79,none_detected,keep_and_measure,true
+bauendreinigung,de,commercial,/,,24,0,13.33,none_detected,keep_and_measure,true
+desinfektion für privat und gewerbe düsseldorf,de,unknown,/duesseldorf,,23,0,9.78,none_detected,keep_and_measure,false
+fernumzug münchen,de,commercial,/fernumzug-muenchen,,23,0,13.22,none_detected,keep_and_measure,false
+umzug münchen schwabing,de,commercial,/klaviertransport,,23,0,13.74,none_detected,keep_and_measure,true
+grundreinigung duesseldorf,de,commercial,/grundreinigung-regensburg,,23,0,17.87,none_detected,keep_and_measure,true
+desinfektion büro düsseldorf,de,unknown,/duesseldorf,,21,0,16.19,none_detected,keep_and_measure,false
+professionelle praxisreinigung düsseldorf,de,commercial,/duesseldorf/praxisreinigung,,20,0,4.65,none_detected,keep_and_measure,false
+verkehrsmittelreinigung düsseldorf,de,commercial,/duesseldorf,,20,0,12.95,none_detected,keep_and_measure,true
+fenster putzen düsseldorf,de,unknown,/duesseldorf,,20,0,16.50,none_detected,keep_and_measure,false
+reinigungsdienst,de,commercial,/blog/reinigungsbetrieb-reinigungsunternehmen-regensburg-kosten,,50,0,3.92,none_detected,keep_and_measure,true
+international moving services,en,transactional,/en,,38,0,1.00,none_detected,keep_and_measure,true
+günstige umzüge münchen,de,commercial,/mini-umzug,,31,0,34.42,none_detected,keep_and_measure,true
+reinigungsservice münchen buchen,de,transactional,/klaviertransport,,28,0,29.96,none_detected,keep_and_measure,true
+zuverlässige büroreiniger in düsseldorf,de,unknown,/duesseldorf,,27,0,49.00,none_detected,keep_and_measure,true
+seniorenumzug erding,de,commercial,/seniorenumzug,,24,0,3.33,none_detected,keep_and_measure,true
+professioneller wlan umzugsservice in bayern,de,transactional,/umzug,,24,0,55.62,none_detected,keep_and_measure,true
+umzüge mit abbau regensburg,de,commercial,/,,23,0,25.43,none_detected,keep_and_measure,true
+günstiges umzugsunternehmen münchen,de,transactional,/umzug,,23,0,37.39,none_detected,keep_and_measure,true
+verkaufsflächenreinigung,de,commercial,/,,23,0,54.52,none_detected,keep_and_measure,true
+umzug münchen günstig,de,commercial,/fairpreis-check,,22,0,27.09,none_detected,keep_and_measure,true
+beste objektbetreuung und umzugsservice mit reinigung in münchen und umgebung,de,transactional,/reinigung,,22,0,32.45,none_detected,keep_and_measure,true
+fachkundige umzugshelfer in regensburg,de,commercial,/,,22,0,55.50,none_detected,keep_and_measure,true
+günstiger umzug münchen,de,commercial,/klaviertransport,,20,0,32.25,none_detected,keep_and_measure,true
+wohnungsauflösung bielingplatz,de,unknown,/entruempelung,,19,0,29.58,none_detected,keep_and_measure,true
+seniorenumzug starnberg,de,commercial,/seniorenumzug,,18,0,8.89,none_detected,keep_and_measure,true
+besenreine übergabe landshut,de,unknown,/seniorenumzug-landshut,,18,0,12.78,none_detected,keep_and_measure,true
+bestes reinigungsunternehmen für privatkunden in vilsbiburg,de,commercial,/blog,,17,0,10.88,none_detected,keep_and_measure,true
+günstig umzug,de,commercial,/fairpreis-check,,17,0,15.41,none_detected,keep_and_measure,true
+umzugsunternehmen münchen günstig,de,transactional,/umzug,,17,0,31.59,none_detected,keep_and_measure,true
+gewerbeflächen reinigen,de,unknown,/firmenentsorgung,,17,0,41.18,none_detected,keep_and_measure,true
+seniorenumzug germering,de,commercial,/seniorenumzug,,16,0,16.31,none_detected,keep_and_measure,true
+umzug im alter nürnberg,de,commercial,/alternativen,,16,0,20.56,none_detected,keep_and_measure,true
+reinigung münchen anfrage,de,commercial,/klaviertransport,,16,0,24.25,none_detected,keep_and_measure,true
+professionelle lagerhallen reinigung in düsseldorf und umkreis,de,commercial,/duesseldorf,,16,0,39.94,none_detected,keep_and_measure,false
+reinigungsdienst in der nähe,de,commercial,/uebergabe-sprint,,15,0,3.53,none_detected,keep_and_measure,true
+umzug münchen bogenhausen,de,commercial,/klaviertransport,,15,0,6.60,none_detected,keep_and_measure,true
+reinigung für firmen,de,commercial,/firmenentsorgung,,15,0,25.13,none_detected,keep_and_measure,true
+endreinigung wohnung münchen,de,commercial,/reinigung-laaber,,15,0,38.47,none_detected,keep_and_measure,true
+desinfektion privatkunden düsseldorf,de,unknown,/duesseldorf,,14,0,17.07,none_detected,keep_and_measure,true
+wohnungsauflösung katzwanger straße,de,unknown,/entruempelung,,14,0,26.43,none_detected,keep_and_measure,true
+reinigungsangebot,de,transactional,/reinigungsfirma-angebot,,14,0,36.14,none_detected,keep_and_measure,true
+gebäudereinigung düsseldorf düsseltal,de,commercial,/duesseldorf,,14,0,36.79,none_detected,keep_and_measure,true
+reinigung offerte schreiben,de,commercial,/kontakt,,14,0,53.79,none_detected,keep_and_measure,true
+leerfahrten,de,unknown,/rueckfahrt-radar,,14,0,55.50,none_detected,keep_and_measure,true
+kompetente büroreiniger in düsseldorf,de,unknown,/duesseldorf,,13,0,48.54,none_detected,keep_and_measure,true
+zimmer räumen roth,de,unknown,/duesseldorf/praxisreinigung,,12,0,5.75,none_detected,keep_and_measure,true
+treppenreinigung,de,commercial,/,,12,0,7.50,none_detected,keep_and_measure,true
+umzug erding kosten,de,transactional,/rechner,,12,0,18.58,none_detected,keep_and_measure,true
+desinfektion wohnung nach krankheit düsseldorf,de,unknown,/duesseldorf/reinigung,,12,0,19.75,none_detected,keep_and_measure,false
+innenputz kosten schwandorf,de,transactional,/rechner,,12,0,27.25,none_detected,keep_and_measure,true
+gebäudereinigung düsseldorf heerdt,de,commercial,/duesseldorf,,12,0,36.33,none_detected,keep_and_measure,true
+beste reinigung für senioren in bamberg und umgebung,de,commercial,/einsatzradar-regensburg,,12,0,50.67,none_detected,keep_and_measure,true
+putzservice münchen schnell,de,transactional,/express-anfrage,,12,0,59.17,none_detected,keep_and_measure,true
+wohnungsauflösung flensburg,de,unknown,/entruempelung,,12,0,67.75,none_detected,keep_and_measure,true
+umzugskosten pauschal schriesheim,de,transactional,/umzugskosten-bayern,,12,0,81.92,none_detected,keep_and_measure,true
+umzug in der nähe,de,commercial,/uebergabe-sprint,,11,0,11.82,none_detected,keep_and_measure,true
+"professionelle umzüge und entrümpelungen in regensburg, deutschland und europaweit",de,commercial,/malerarbeiten,,11,0,24.09,none_detected,keep_and_measure,false
+gewerbeflächen reinigung,de,commercial,/firmenentsorgung,,11,0,25.36,none_detected,keep_and_measure,true
+umziehen friedberg,de,unknown,/,,11,0,28.64,none_detected,keep_and_measure,true
+innenputz kosten sulzbach-rosenberg,de,transactional,/rechner,,11,0,31.82,none_detected,keep_and_measure,true
+umziehen forchheim,de,unknown,/,,11,0,33.64,none_detected,keep_and_measure,true
+regelmäßige reinigungsdienste für gewerbeflächen in germersheim und umkreis,de,commercial,/firmenentsorgung,,11,0,40.00,none_detected,keep_and_measure,true
+household clearance münchen,en,commercial,/en/regensburg/house-clearance,,11,0,67.82,none_detected,keep_and_measure,true
+umzug erding festpreis,de,transactional,/blog/preisrahmen-vorpruefung-statt-festpreis,,10,0,13.90,none_detected,keep_and_measure,true
+desinfektion haus düsseldorf,de,unknown,/duesseldorf,,10,0,19.00,none_detected,keep_and_measure,true
+umzug-muenchen,de,commercial,/,,10,0,47.50,none_detected,keep_and_measure,true
+preiswerter umzugs- und reinigungsservice in bad honnef,de,transactional,/umzug,,10,0,56.70,none_detected,keep_and_measure,true
+umzug mit ab- und aufbau regensburg,de,commercial,/,,10,0,58.10,none_detected,keep_and_measure,false
+entrümpelungen flensburg,de,commercial,/,,10,0,92.50,none_detected,keep_and_measure,true
+household clearance nürnberg,en,commercial,/en/regensburg/house-clearance,,10,0,97.10,none_detected,keep_and_measure,true
+umzug flensburg,de,commercial,/,,10,0,99.10,none_detected,keep_and_measure,true
+angebot für reinigungsarbeiten,de,transactional,/blog,,9,0,17.56,none_detected,keep_and_measure,true
+umzugsunternehmen regensburg kosten,de,transactional,/umzug,,9,0,20.67,none_detected,keep_and_measure,false
+gebäudereinigung düsseldorf pempelfort,de,commercial,/duesseldorf,,9,0,24.00,none_detected,keep_and_measure,true
+"bestes umzugsunternehmen in konstanz, regensburg",de,transactional,/umzug,,9,0,31.33,none_detected,keep_and_measure,false
+wohnung putzen münchen,de,unknown,/grundreinigung-regensburg,,9,0,33.33,none_detected,keep_and_measure,true
+reinigungsfirma düsseldorf privathaushalt,de,transactional,/duesseldorf,,9,0,34.33,none_detected,keep_and_measure,true
+werbeflächenreinigung,de,commercial,/,,9,0,40.11,none_detected,keep_and_measure,true
+wohnungsauflösung oberpfalz,de,unknown,/entruempelung,,9,0,63.89,none_detected,keep_and_measure,true
+umzugsunternehmen münchen preise,de,transactional,/blog,,9,0,85.11,none_detected,keep_and_measure,true
+entrümpelung flensburg,de,commercial,/,,9,0,87.56,none_detected,keep_and_measure,true
+lackiertechnologien kosten anbieter,de,transactional,/rechner,,8,0,12.00,none_detected,keep_and_measure,true
+umzug grafing,de,commercial,/,,8,0,15.00,none_detected,keep_and_measure,true
+zuverlässiges reinigungsunternehmen in düsseldorf und umgebung,de,commercial,/duesseldorf,,8,0,18.00,none_detected,keep_and_measure,true
+günstige montageleistungen in düsseldorf,de,unknown,/duesseldorf,,8,0,46.75,none_detected,keep_and_measure,true
+reinigungsservice düsseldorf privathaushalt,de,transactional,/duesseldorf,,8,0,54.88,none_detected,keep_and_measure,true
+klavierentsorgung pirna,de,unknown,/,,8,0,72.38,none_detected,keep_and_measure,true
+zügige umzugsreinigung für privatkunden in münchen,de,commercial,/blog,,8,0,81.50,none_detected,keep_and_measure,true
+gewerbeflächenreinigung,de,commercial,/,,7,0,9.00,none_detected,keep_and_measure,true
+entrümpelung neustadt an der donau,de,commercial,/reinigung-donaustauf,,7,0,12.86,none_detected,keep_and_measure,true
+umzug günstig,de,commercial,/fairpreis-check,,7,0,16.29,none_detected,keep_and_measure,true
+umzüge münchen günstig,de,commercial,/mini-umzug,,7,0,32.00,none_detected,keep_and_measure,true
+umzug günstig münchen,de,commercial,/fairpreis-check,,7,0,32.86,none_detected,keep_and_measure,true
+billige transporte,de,unknown,/rueckfahrt-radar,,7,0,36.00,none_detected,keep_and_measure,true
+umzugsunternehmen mit aufbauservice regensburg,de,transactional,/umzug,,7,0,37.00,none_detected,keep_and_measure,false
+umzüge für privat münchen,de,commercial,/mini-umzug,,7,0,43.86,none_detected,keep_and_measure,true
+lkw leerfahrten nutzen,de,unknown,/rueckfahrt-radar,,7,0,54.14,none_detected,keep_and_measure,true
+umzugsunternehmen ingolstadt,de,transactional,/umzug,,7,0,80.00,none_detected,keep_and_measure,true
+fensterreinigung in der nähe,de,commercial,/uebergabe-sprint,,6,0,5.17,none_detected,keep_and_measure,true
+umzugshilfe,de,commercial,/,,6,0,5.67,none_detected,keep_and_measure,true
+"ich brauche eine schnelle und effiziente reinigung für meine gewerbeimmobilie, wer kann das leisten?",de,commercial,/gewerbereinigung,,6,0,12.50,none_detected,keep_and_measure,false
+gebäudereinigung düsseldorf golzheim,de,commercial,/duesseldorf,,6,0,17.50,none_detected,keep_and_measure,true
+umzug mit möbelaufbau regensburg,de,commercial,/,,6,0,20.17,none_detected,keep_and_measure,false
+intensive grundreinigung von wohnungen und gewerbeflächen in ansbach und umgebung,de,commercial,/reinigung,,6,0,35.50,none_detected,keep_and_measure,true
+günstige umzugsunternehmen münchen,de,transactional,/umzug,,6,0,40.50,none_detected,keep_and_measure,true
+günstige umzüge in münchen,de,commercial,/mini-umzug,,6,0,41.67,none_detected,keep_and_measure,true
+professionelle wohnungsreinigung düsseldorf,de,commercial,/duesseldorf,,6,0,47.50,none_detected,keep_and_measure,true
+umzug muenchen,de,commercial,/,,6,0,52.00,none_detected,keep_and_measure,true
+umzugsservice für privat und gewerbliche kunden in kreis traunstein,de,transactional,/gewerbereinigung,,5,0,5.80,none_detected,keep_and_measure,true
+entrümpelung sofort termin landshut,de,commercial,/express-umzug,,5,0,14.60,none_detected,keep_and_measure,true
+reinigung firma in der nähe,de,transactional,/uebergabe-sprint,,5,0,15.80,none_detected,keep_and_measure,true
+haus räumen landshut,de,unknown,/clean-start,,5,0,17.40,none_detected,keep_and_measure,true
+preiswerter umzug,de,transactional,/,,5,0,19.20,none_detected,keep_and_measure,true
+guenstig umzug,de,commercial,/,,5,0,19.40,none_detected,keep_and_measure,true
+feuchtigkeitsentfernung aus wänden traunstein,de,unknown,/clean-start,,5,0,21.40,none_detected,keep_and_measure,true
+büroreinigung in der nähe,de,commercial,/uebergabe-sprint,,5,0,26.60,none_detected,keep_and_measure,true
+wohnungsauflösung bayern,de,unknown,/entruempelung,,5,0,31.40,none_detected,keep_and_measure,true
+gewerbe reinigung,de,commercial,/lageraufloesung,,5,0,41.60,none_detected,keep_and_measure,true
+klavierentsorgung lichtenfels,de,unknown,/,,5,0,55.00,none_detected,keep_and_measure,true
+vermüllte wohnung reinigen kosten,de,transactional,/ratgeber/wohnungsaufloesung-tipps,,5,0,66.80,none_detected,keep_and_measure,true
+umfangreiche grundreinigungsarbeiten in bürogebäuden in gummersbach,de,commercial,/,,5,0,69.40,none_detected,keep_and_measure,true
+umzug ingolstadt,de,commercial,/,,5,0,79.00,none_detected,keep_and_measure,true
+wohnungsauflösung gauting,de,unknown,/entruempelung,,5,0,91.40,none_detected,keep_and_measure,true
+professioneller reinigungsservice,de,transactional,/,,4,0,4.50,none_detected,keep_and_measure,true
+klaviertransport in der nähe,de,unknown,/uebergabe-sprint,,4,0,5.50,none_detected,keep_and_measure,true
+wohnungsauflösung brunn,de,unknown,/entruempelung,,4,0,5.50,none_detected,keep_and_measure,true
+günstige reinigung von glasoberflächen für privatkunden in düsseldorf und umgebung,de,commercial,/duesseldorf,,4,0,10.50,none_detected,keep_and_measure,false
+entrümpelung vohenstrauss,de,commercial,/,,4,0,12.00,none_detected,keep_and_measure,true
+gebäudereinigung heerdt,de,commercial,/reinigung,,4,0,12.00,none_detected,keep_and_measure,true
+moving,en,commercial,/en,,4,0,13.00,none_detected,keep_and_measure,true
+reinigungskraft duesseldorf,de,commercial,/,,4,0,14.75,none_detected,keep_and_measure,true
+transport ab sofort buchen,de,transactional,/beiladung,,4,0,15.75,none_detected,keep_and_measure,true
+sperrmüll container hagelstadt,de,unknown,/reinigung-hagelstadt,,4,0,19.75,none_detected,keep_and_measure,true
+reinigungsfirma angebot erstellen,de,transactional,/reinigung-brunn,,4,0,20.75,none_detected,keep_and_measure,true
+sperrmüll container köfering,de,unknown,/entsorgung-duesseldorf,,4,0,25.00,none_detected,keep_and_measure,true
+sperrgut container köfering,de,unknown,/kleinmengen-entsorgung,,4,0,25.25,none_detected,keep_and_measure,true
+professionelle schlussdesinfektion düsseldorf,de,unknown,/duesseldorf,,4,0,26.25,none_detected,keep_and_measure,true
+flexibler reinigungsservice,de,transactional,/,,4,0,28.25,none_detected,keep_and_measure,true
+angebot schreiben reinigung,de,transactional,/kontakt,,4,0,34.00,none_detected,keep_and_measure,false
+cleanpany,de,unknown,/,,4,0,39.00,none_detected,keep_and_measure,true
+expressanfrage,de,unknown,/,,4,0,46.75,none_detected,keep_and_measure,true
+gebäudereinigung düsseldorf wersten,de,commercial,/duesseldorf,,4,0,47.25,none_detected,keep_and_measure,true
+umzug in muenchen,de,commercial,/,,4,0,47.75,none_detected,keep_and_measure,true
+klavierentsorgung coburg,de,unknown,/,,4,0,54.00,none_detected,keep_and_measure,true
+professionelle geruchsbeseitigung wohnung münchen,de,unknown,/entruempelung,,4,0,57.75,none_detected,keep_and_measure,true
+wohnungsauflösung neutraubling,de,unknown,/entruempelung,,4,0,62.50,none_detected,keep_and_measure,true
+schmutzfangmatten mieten düsseldorf,de,unknown,/duesseldorf,,4,0,67.00,none_detected,keep_and_measure,true
+umzugsunternehmen münchen kosten,de,transactional,/ratgeber/umzug-kosten-rechner,,4,0,88.25,none_detected,keep_and_measure,true
+moving house,en,commercial,/en,,3,0,5.67,none_detected,keep_and_measure,true
+einzugsreinigung,de,commercial,/,,3,0,8.33,none_detected,keep_and_measure,true
+professioneller reinigungsdienst,de,commercial,/blog/reinigungsbetrieb-reinigungsunternehmen-regensburg-kosten,,3,0,9.33,none_detected,keep_and_measure,true
+gewerbliche objektpflege mit reinigung und grünflächenbetreuung in regensburg und umgebung,de,commercial,/reinigung,,3,0,9.67,none_detected,keep_and_measure,false
+hausverwaltung sucht reinigungsfirma,de,transactional,/reinigung-brunn,,3,0,11.00,none_detected,keep_and_measure,true
+wie lange sich baustaub absetzt.,de,informational,/blog/warum-baustaub-wiederkommt,,3,0,11.33,none_detected,keep_and_measure,true
+cleaning duesseldorf,en,commercial,/en,,3,0,13.00,none_detected,keep_and_measure,true
+komplette räumung landshut,de,commercial,/buchung,,3,0,13.00,none_detected,keep_and_measure,true
+entrümplung geisenfeld,de,unknown,/,,3,0,13.33,none_detected,keep_and_measure,true
+seniorenumzüge,de,commercial,/,,3,0,17.67,none_detected,keep_and_measure,true
+angebot fur reinigung,de,transactional,/blog,,3,0,19.33,none_detected,keep_and_measure,false
+betriebsumzug altdorf,de,commercial,/,,3,0,31.67,none_detected,keep_and_measure,true
+oberflächenreinigung gewerbe,de,commercial,/lageraufloesung,,3,0,32.33,none_detected,keep_and_measure,true
+marketingagentur angebot prüfen,de,transactional,/umzug,,3,0,34.33,none_detected,keep_and_measure,true
+desinfektion arztpraxis düsseldorf,de,unknown,/duesseldorf,,3,0,34.67,none_detected,keep_and_measure,true
+ordnungsgemäß entrümpelung bayern,de,commercial,/umzug,,3,0,36.33,none_detected,keep_and_measure,true
+günstiger reinigungsservice in augsburg,de,transactional,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,3,0,37.00,none_detected,keep_and_measure,true
+umzug mit kran münchen,de,commercial,/klaviertransport,,3,0,38.00,none_detected,keep_and_measure,true
+gebäudereinigung düsseldorf oberkassel,de,commercial,/duesseldorf,,3,0,42.67,none_detected,keep_and_measure,true
+cleanpany gebäudeservice,de,transactional,/,,3,0,44.67,none_detected,keep_and_measure,true
+amft dienstleistung düsseldorf,de,unknown,/duesseldorf,,3,0,46.67,none_detected,keep_and_measure,true
+reinigungsservice seniorenheim,de,transactional,/,,3,0,65.00,none_detected,keep_and_measure,true
+household clearance nuremberg,en,commercial,/en/regensburg/house-clearance,,3,0,79.33,none_detected,keep_and_measure,true
+umzugsfirma münchen kosten,de,transactional,/rechner,,3,0,84.00,none_detected,keep_and_measure,true
+umzug kosten münchen,de,transactional,/rechner,,3,0,88.67,none_detected,keep_and_measure,true
+umzüge münchen preise,de,transactional,/blog,,3,0,88.67,none_detected,keep_and_measure,true
+reinigung für coworking spaces,de,commercial,/blog,,3,0,91.33,none_detected,keep_and_measure,true
+entrümpelung waldfeucht,de,commercial,/,,3,0,95.33,none_detected,keep_and_measure,true
+möbelmontage,de,unknown,/,,2,0,1.00,none_detected,keep_and_measure,true
+professional packing and moving,en,commercial,/en,,2,0,1.00,none_detected,keep_and_measure,true
+fahrzeugtransport,de,unknown,/,,2,0,7.00,none_detected,keep_and_measure,true
+professionelle glasreinigung,de,commercial,/malerarbeiten,,2,0,7.50,none_detected,keep_and_measure,true
+putzfirma,de,transactional,/,,2,0,8.00,none_detected,keep_and_measure,true
+praxenreinigung,de,commercial,/,,2,0,8.50,none_detected,keep_and_measure,true
+seriöse sperrmüll-services ohne online-buchung,de,transactional,/buchung-ablauf,,2,0,9.00,none_detected,keep_and_measure,true
+wohnung putzen lassen,de,unknown,/grundreinigung-regensburg,,2,0,9.50,none_detected,keep_and_measure,true
+gewerbereinigung bayern,de,commercial,/umzug,,2,0,10.00,none_detected,keep_and_measure,true
+check übergabe,de,unknown,/ratgeber,,2,0,10.50,none_detected,keep_and_measure,true
+glasreinigung firma,de,transactional,/,,2,0,11.00,none_detected,keep_and_measure,true
+professionelle praxisreinigung,de,commercial,/malerarbeiten,,2,0,11.00,none_detected,keep_and_measure,true
+mischabfall container köfering,de,unknown,/kleinmengen-entsorgung,,2,0,12.00,none_detected,keep_and_measure,true
+gewerbliche büroreinigung,de,commercial,/gewerbereinigung,,2,0,12.50,none_detected,keep_and_measure,true
+reinigung nach entrümpelung ebersberg,de,commercial,/leistungsfinder,,2,0,13.50,none_detected,keep_and_measure,true
+wohnungsentrümpelung,de,commercial,/,,2,0,13.50,none_detected,keep_and_measure,true
+cleaner duesseldorf,de,unknown,/,,2,0,16.00,none_detected,keep_and_measure,true
+preiswert transportieren,de,transactional,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,2,0,18.50,none_detected,keep_and_measure,true
+umzug in schweinfurt,de,commercial,/,,2,0,19.00,none_detected,keep_and_measure,true
+gerüche lokalisieren,de,unknown,/,,2,0,19.50,none_detected,keep_and_measure,true
+entrümpelung neumarkt in der oberpfalz,de,commercial,/,,2,0,21.00,none_detected,keep_and_measure,true
+sperrgut container pettendorf,de,unknown,/reinigung-pettendorf,,2,0,21.00,none_detected,keep_and_measure,true
+wohnungsauflösung,de,unknown,/entruempelung,,2,0,22.00,none_detected,keep_and_measure,true
+sperrmüll container pettendorf,de,unknown,/reinigung-pettendorf,,2,0,22.50,none_detected,keep_and_measure,true
+umzug bayern material,de,commercial,/umzug,,2,0,24.00,none_detected,keep_and_measure,true
+betriebsumzug weilheim,de,commercial,/,,2,0,24.50,none_detected,keep_and_measure,true
+angebote reinigungsfirmen,de,transactional,/fairpreis-check,,2,0,25.00,none_detected,keep_and_measure,true
+sperrmüll container aufhausen,de,unknown,/reinigung-aufhausen,,2,0,25.50,none_detected,keep_and_measure,true
+geruchsneutralisation nach fäkalien düsseldorf,de,unknown,/duesseldorf/gewerbereinigung,,2,0,26.00,none_detected,keep_and_measure,false
+gipsputz auftragen windischeschenbach,de,unknown,/buchung-ablauf,,2,0,30.00,none_detected,keep_and_measure,true
+professionelle reinigungsfirma düsseldorf und umgeb,de,transactional,/duesseldorf,,2,0,30.00,none_detected,keep_and_measure,true
+münchen günstiger umzug,de,commercial,/klaviertransport,,2,0,31.00,none_detected,keep_and_measure,true
+umzugsunternehmen in der nähe preise,de,transactional,/blog,,2,0,32.00,none_detected,keep_and_measure,true
+reinigungsfirma landshut privathaushalt,de,transactional,/reinigung-brunn,,2,0,33.00,none_detected,keep_and_measure,true
+umzugskostenübernahme mobil münchen,de,transactional,/klaviertransport,,2,0,33.00,none_detected,keep_and_measure,true
+günstige reinigungsfirma in augsburg,de,transactional,/reinigung-brunn,,2,0,34.50,none_detected,keep_and_measure,true
+reinigungsfirma angebote,de,transactional,/fairpreis-check,,2,0,35.50,none_detected,keep_and_measure,true
+kleinumzug müchen,de,commercial,/,,2,0,36.50,none_detected,keep_and_measure,true
+individuell gestaltetes reinigungsangebot,de,transactional,/reinigungsfirma-angebot,,2,0,39.00,none_detected,keep_and_measure,true
+halteverbot münchen kvr,de,unknown,/klaviertransport,,2,0,40.50,none_detected,keep_and_measure,true
+umziehen roth,de,unknown,/,,2,0,40.50,none_detected,keep_and_measure,true
+innenputz kosten neumarkt,de,transactional,/rechner,,2,0,41.00,none_detected,keep_and_measure,true
+angebot für reinigung,de,transactional,/blog,,2,0,41.50,none_detected,keep_and_measure,false
+entrümpelung bilder,de,commercial,/blog/reinigungsergebnis-dokumentieren-regensburg,,2,0,43.50,none_detected,keep_and_measure,true
+sperrgut container pfatter,de,unknown,/reinigung-pfatter,,2,0,43.50,none_detected,keep_and_measure,true
+tonnenreinigung augsburg,de,commercial,/,,2,0,43.50,none_detected,keep_and_measure,true
+kompletter umzugsservice münchen,de,transactional,/klaviertransport,,2,0,47.50,none_detected,keep_and_measure,true
+halteverbot wegen umzug beantragen münchen,de,commercial,/klaviertransport,,2,0,49.00,none_detected,keep_and_measure,true
+angebote reinigungsfirma,de,transactional,/fairpreis-check,,2,0,50.00,none_detected,keep_and_measure,true
+hauswartung,de,unknown,/,,2,0,50.00,none_detected,keep_and_measure,true
+privatumzüge,de,commercial,/,,2,0,51.00,none_detected,keep_and_measure,true
+umzug düsseldorf,de,commercial,/entsorgung-duesseldorf,/duesseldorf/entsorgung,2,0,51.00,possible,manual_primary_url_review,true
+neubau putzen,de,unknown,/grundreinigung-regensburg,,2,0,55.50,none_detected,keep_and_measure,true
+professioneller reinigungsservice mit entrümpelungen für firmen in kamen,de,transactional,/firmenentsorgung,,2,0,56.00,none_detected,keep_and_measure,true
+reinigungs angebot schreiben,de,transactional,/kontakt,,2,0,58.50,none_detected,keep_and_measure,true
+aktenvernichtung privathaushalt düsseldorf,de,unknown,/duesseldorf,,2,0,60.50,none_detected,keep_and_measure,true
+keller räumen landshut,de,unknown,/entruempelung,,2,0,62.00,none_detected,keep_and_measure,true
+reinigungsdienst mit rechnung,de,commercial,/blog/entrumpelung-kosten-bayern,,2,0,62.00,none_detected,keep_and_measure,true
+reinifgungsfirma dauerhaft buchen,de,transactional,/blog/regensburg-direkt-buchen-statt-vergleichsportal,,2,0,64.00,none_detected,keep_and_measure,true
+haushaltsauflösungen flensburg,de,unknown,/,,2,0,71.00,none_detected,keep_and_measure,true
+wohnungsauflosung,de,unknown,/entruempelung,,2,0,72.00,none_detected,keep_and_measure,true
+wohnungsauflösung landshut,de,unknown,/entruempelung,,2,0,73.00,none_detected,keep_and_measure,true
+5 umzug offerte erhalten,de,commercial,/empfehlen,,2,0,73.50,none_detected,keep_and_measure,true
+umzug zuverlässig,de,commercial,/,,2,0,85.00,none_detected,keep_and_measure,true
+gebäudereinigung münchen online buchen,de,transactional,/reinigung,,2,0,86.50,none_detected,keep_and_measure,true
+umzug münchen kosten,de,transactional,/rechner,,2,0,88.00,none_detected,keep_and_measure,true
+umzug m?nchen kosten,de,transactional,/rechner,,2,0,93.00,none_detected,keep_and_measure,true
+zu wohnungsauflösung,de,unknown,/entruempelung,,2,0,99.50,none_detected,keep_and_measure,true
+möbelmontage in der nähe,de,unknown,/uebergabe-sprint,,1,0,1.00,none_detected,keep_and_measure,true
+wohnung aufräumen lassen,de,unknown,/blog/wohnung-wieder-bewohnbar-bekommen,,1,0,1.00,none_detected,keep_and_measure,true
+moving group,en,commercial,/en,,1,0,2.00,none_detected,keep_and_measure,true
+rümpelwelt gmbh,de,unknown,/,,1,0,2.00,none_detected,keep_and_measure,true
+umzug putzfirma,de,transactional,/,,1,0,2.00,none_detected,keep_and_measure,true
+anfragen kalkulieren oder liegen lassen bei knapper zeit,de,unknown,/regensburg/wohnungsaufloesung,,1,0,5.00,none_detected,keep_and_measure,true
+entrümpelung angebot,de,transactional,/,,1,0,6.00,none_detected,keep_and_measure,true
+notfallreinigung,de,commercial,/,,1,0,7.00,none_detected,keep_and_measure,true
+umzugsgeld mobil münchen,de,commercial,/klaviertransport,,1,0,7.00,none_detected,keep_and_measure,true
+moving cleaning services,en,transactional,/en,,1,0,9.00,none_detected,keep_and_measure,true
+ausstellungsflächenreinigung,de,commercial,/,,1,0,10.00,none_detected,keep_and_measure,true
+umzug,de,commercial,/,,1,0,10.00,none_detected,keep_and_measure,true
+welches reinigungsunternehmen bietet die flexibelsten terminoptionen?,de,commercial,/blog/buero-praxisreinigung-regensburg-angebot,,1,0,10.00,none_detected,keep_and_measure,true
+entrümpelung neustadt an der waldnaab,de,commercial,/,,1,0,11.00,none_detected,keep_and_measure,true
+seniorenumzug fürth,de,commercial,/seniorenumzug,,1,0,11.00,none_detected,keep_and_measure,true
+umzug münchen pauschalpreis,de,transactional,/klaviertransport,,1,0,11.00,none_detected,keep_and_measure,true
+cleaning service near me,en,transactional,/en,,1,0,12.00,none_detected,keep_and_measure,true
+reinigungen,de,commercial,/,,1,0,12.00,none_detected,keep_and_measure,true
+sperrmüll container beratzhausen,de,unknown,/reinigung-beratzhausen,,1,0,12.00,none_detected,keep_and_measure,true
+fahrzeugtransport in der nähe,de,unknown,/uebergabe-sprint,,1,0,13.00,none_detected,keep_and_measure,true
+reinigungsdienst günstig,de,commercial,/fairpreis-check,,1,0,13.00,none_detected,keep_and_measure,true
+gebäudereinigung angebot,de,transactional,/reinigung,,1,0,14.00,none_detected,keep_and_measure,true
+guenstige umzuege,de,unknown,/,,1,0,14.00,none_detected,keep_and_measure,true
+intensive grundreinigung von wohnungen und gewerbeflächen in hensbach und umgebung,de,commercial,/reinigung,,1,0,14.00,none_detected,keep_and_measure,true
+wohnung reinigen lassen,de,unknown,/blog/wohnung-wieder-bewohnbar-bekommen,,1,0,14.00,none_detected,keep_and_measure,true
+demontage,de,unknown,/,,1,0,15.00,none_detected,keep_and_measure,true
+desk cleaning,en,commercial,/en,,1,0,15.00,none_detected,keep_and_measure,true
+reinigungskraft arztpraxis regensburg,de,commercial,/,,1,0,16.00,none_detected,keep_and_measure,true
+wohnung ausräumen landshut,de,unknown,/entruempelung,,1,0,16.00,none_detected,keep_and_measure,true
+büro reinigen lassen,de,unknown,/blog/firmenentsorgung-buero-inventar-regensburg,,1,0,17.00,none_detected,keep_and_measure,true
+putzfirma in der nähe,de,transactional,/uebergabe-sprint,,1,0,17.00,none_detected,keep_and_measure,true
+umzug in,de,commercial,/,,1,0,17.00,none_detected,keep_and_measure,true
+halteverbotszone erding,de,unknown,/,,1,0,19.00,none_detected,keep_and_measure,true
+preiswerte umzuege,de,transactional,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,1,0,19.00,none_detected,keep_and_measure,true
+umzug erding angebot,de,transactional,/,,1,0,19.00,none_detected,keep_and_measure,true
+umzugsfirma grafing,de,transactional,/ratgeber/gute-umzugsfirma-finden,,1,0,19.00,none_detected,keep_and_measure,true
+firmenreinigung,de,commercial,/,,1,0,20.00,none_detected,keep_and_measure,true
+umzug münchen angebot,de,transactional,/klaviertransport,,1,0,20.00,none_detected,keep_and_measure,false
+umzug münchen in der nähe,de,commercial,/uebergabe-sprint,,1,0,20.00,none_detected,keep_and_measure,true
+gebäudereinigung münchen buchen,de,transactional,/reinigung,,1,0,21.00,none_detected,keep_and_measure,true
+sperrmüll container schierling,de,unknown,/reinigung-schierling,,1,0,21.00,none_detected,keep_and_measure,true
+top-bauendreinigung in düsseldorf und umgebung,de,commercial,/duesseldorf,,1,0,21.00,none_detected,keep_and_measure,true
+haushaltsreinigung,de,commercial,/,,1,0,23.00,none_detected,keep_and_measure,true
+entrümpelung amberg faq,de,commercial,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,1,0,24.00,none_detected,keep_and_measure,true
+firma für putzen,de,transactional,/blog,,1,0,24.00,none_detected,keep_and_measure,true
+kleintransporte bayern,de,unknown,/umzug,,1,0,24.00,none_detected,keep_and_measure,true
+reinigungskraft arztpraxis düsseldorf,de,commercial,/duesseldorf,,1,0,24.00,none_detected,keep_and_measure,true
+büroreinigungsfirma,de,transactional,/,,1,0,25.00,none_detected,keep_and_measure,true
+privatumzug,de,commercial,/,,1,0,25.00,none_detected,keep_and_measure,true
+umzugsfirma ingolstadt,de,transactional,/ratgeber/gute-umzugsfirma-finden,,1,0,25.00,none_detected,keep_and_measure,true
+1 plus hygiene düsseldorf,de,unknown,/duesseldorf,,1,0,27.00,none_detected,keep_and_measure,true
+wohnungsendreinigung,de,commercial,/,,1,0,28.00,none_detected,keep_and_measure,true
+mischabfall container freyung,de,unknown,/kleinmengen-entsorgung,,1,0,29.00,none_detected,keep_and_measure,true
+sauberkeit dienst,de,unknown,/,,1,0,30.00,none_detected,keep_and_measure,true
+umzugskosten mobil münchen,de,transactional,/klaviertransport,,1,0,30.00,none_detected,keep_and_measure,true
+professionelle büroreinigung,de,commercial,/malerarbeiten,,1,0,31.00,none_detected,keep_and_measure,true
+gebäudereinigung düsseldorf altstadt,de,commercial,/duesseldorf,,1,0,32.00,none_detected,keep_and_measure,true
+hotelreinigungen,de,commercial,/,,1,0,32.00,none_detected,keep_and_measure,true
+marketingagentur angebot vor unterschrift prüfen,de,transactional,/angebot-pruefen,,1,0,34.00,none_detected,keep_and_measure,false
+commercial office cleaning services,en,transactional,/en/regensburg/cleaning,,1,0,35.00,none_detected,keep_and_measure,true
+erdaushub container geiselhoering,de,unknown,/kleinmengen-entsorgung,,1,0,35.00,none_detected,keep_and_measure,true
+preisrahmen,de,transactional,/blog,,1,0,35.00,none_detected,keep_and_measure,true
+putzen mit abnahmegarantie,de,unknown,/grundreinigung-regensburg,,1,0,35.00,none_detected,keep_and_measure,true
+wie schreibt man ein angebot fur reinigung,de,transactional,/ratgeber/gute-umzugsfirma-finden,,1,0,35.00,none_detected,keep_and_measure,false
+miettoilette freyung,de,unknown,/,,1,0,36.00,none_detected,keep_and_measure,true
+reinigungsfirma beauftragen,de,transactional,/buchung-ablauf,,1,0,36.00,none_detected,keep_and_measure,true
+musterangebote für reinigung,de,transactional,/blog,,1,0,37.00,none_detected,keep_and_measure,true
+wie schreibt man ein angebot für reinigung,de,transactional,/ratgeber/gute-umzugsfirma-finden,,1,0,37.00,none_detected,keep_and_measure,false
+regensburg amalgam entfernen,de,unknown,/,,1,0,38.00,none_detected,keep_and_measure,true
+reinigungsunternehmen finden,de,commercial,/blog/reinigungsbetrieb-reinigungsunternehmen-regensburg-kosten,,1,0,38.00,none_detected,keep_and_measure,true
+günstig umziehen münchen,de,unknown,/fairpreis-check,,1,0,39.00,none_detected,keep_and_measure,true
+reinigung gewerbe,de,commercial,/lageraufloesung,,1,0,39.00,none_detected,keep_and_measure,true
+boarding-house / appartment reinigung,de,commercial,/,,1,0,40.00,none_detected,keep_and_measure,true
+reinigung angebot schreiben,de,transactional,/kontakt,,1,0,40.00,none_detected,keep_and_measure,false
+kreisverwaltungsreferat münchen halteverbot beantragen,de,unknown,/klaviertransport,,1,0,41.00,none_detected,keep_and_measure,true
+reinigungsservice für grundreinigung,de,transactional,/blog,,1,0,41.00,none_detected,keep_and_measure,true
+tonnenreinigung augsburg deutschland,de,commercial,/,,1,0,41.00,none_detected,keep_and_measure,true
+günstige reinigungsfirma münchen,de,transactional,/reinigung-brunn,,1,0,43.00,none_detected,keep_and_measure,true
+angebote schreiben reinigungsfirma,de,transactional,/kontakt,,1,0,44.00,none_detected,keep_and_measure,true
+beste unterhaltsreinigung in düsseldorf,de,commercial,/duesseldorf,,1,0,45.00,none_detected,keep_and_measure,true
+gebäudereinigung düsseldorf hassels,de,commercial,/duesseldorf,,1,0,45.00,none_detected,keep_and_measure,true
+klaviertransporte 24,de,unknown,/,,1,0,45.00,none_detected,keep_and_measure,true
+kontaktwege,de,unknown,/,,1,0,45.00,none_detected,keep_and_measure,true
+reinigungsvermittlung,de,commercial,/,,1,0,45.00,none_detected,keep_and_measure,true
+umzugsunternehmen preisliste,de,transactional,/umzug,,1,0,46.00,none_detected,keep_and_measure,true
+desinfektion hotel düsseldorf,de,unknown,/duesseldorf,,1,0,47.00,none_detected,keep_and_measure,true
+ufer umzug,de,commercial,/,,1,0,47.00,none_detected,keep_and_measure,true
+clemens kleine düsseldorf,de,unknown,/entsorgung-duesseldorf,/duesseldorf/entsorgung,1,0,48.00,possible,manual_primary_url_review,true
+reinigungsdienste für unternehmen,de,commercial,/blog,,1,0,48.00,none_detected,keep_and_measure,true
+reinigungsservice für firmen satteldorf,de,transactional,/firmenentsorgung,,1,0,49.00,none_detected,keep_and_measure,true
+angebot reinigung muster,de,transactional,/,,1,0,50.00,none_detected,keep_and_measure,true
+sperrmüll container wackersdorf,de,unknown,/entsorgung-duesseldorf,,1,0,50.00,none_detected,keep_and_measure,true
+umzug düsseldorf stadtmitte,de,commercial,/entsorgung-duesseldorf,/duesseldorf/entsorgung,1,0,53.00,possible,manual_primary_url_review,true
+umzugsunternehmen kostenvoranschlag,de,transactional,/umzug,,1,0,57.00,none_detected,keep_and_measure,true
+vent cleaning near me,en,commercial,/en,,1,0,57.00,none_detected,keep_and_measure,true
+reinigungsservice gewerbe,de,transactional,/lageraufloesung,,1,0,58.00,none_detected,keep_and_measure,true
+lüftungsanlagen reinigen düsseldorf,de,unknown,/duesseldorf,,1,0,59.00,none_detected,keep_and_measure,true
+transport kurzfristig organisieren,de,unknown,/ratgeber/moebeltransport-sicher,,1,0,59.00,none_detected,keep_and_measure,true
+angebot für gebäudereinigung,de,transactional,/blog,,1,0,60.00,none_detected,keep_and_measure,true
+angebot gebäudereinigung,de,transactional,/reinigung,,1,0,60.00,none_detected,keep_and_measure,true
+entrümpelung günstig münchen,de,commercial,/fairpreis-check,,1,0,65.00,none_detected,keep_and_measure,true
+filialnetz reinigung outsourcing,de,commercial,/,,1,0,67.00,none_detected,keep_and_measure,true
+sauberlaufmatten mieten münchen,de,unknown,/klaviertransport,,1,0,67.00,none_detected,keep_and_measure,true
+leichengeruch aus wohnung entfernen münchen,de,unknown,/regensburg/reinigung,,1,0,68.00,none_detected,keep_and_measure,true
+office cleaning commercial cleaning,en,commercial,/en/regensburg/cleaning,,1,0,69.00,none_detected,keep_and_measure,true
+professioneller reinigungsservice und umzüge in frankfurt und stuttgart,de,transactional,/mini-umzug,,1,0,70.00,none_detected,keep_and_measure,true
+apartment reinigung,de,commercial,/mini-umzug,,1,0,72.00,none_detected,keep_and_measure,true
+mold removal near me,en,unknown,/en,,1,0,73.00,none_detected,keep_and_measure,true
+flügeltransport wipperfürth,de,unknown,/,,1,0,76.00,none_detected,keep_and_measure,true
+reinigung münchen angebot,de,transactional,/klaviertransport,,1,0,76.00,none_detected,keep_and_measure,false
+wohnung nach todesfall räumen iserlohn,de,unknown,/blog/wohnungsaufloesung-was-tun,,1,0,76.00,none_detected,keep_and_measure,true
+commercial cleaning office,en,commercial,/en/regensburg/cleaning,,1,0,77.00,none_detected,keep_and_measure,true
+pur flensburg,de,unknown,/,,1,0,77.00,none_detected,keep_and_measure,true
+entrümpelung regensburg kosten,de,transactional,/rechner,,1,0,79.00,none_detected,keep_and_measure,false
+garagenentrümpelung rosenheim,de,commercial,/,,1,0,83.00,none_detected,keep_and_measure,true
+mould removal near me,en,unknown,/en,,1,0,83.00,none_detected,keep_and_measure,true
+umzugsfirma münchen preise,de,transactional,/blog,,1,0,83.00,none_detected,keep_and_measure,true
+desinfektion düsseldorf köln ruhrgebiet,de,unknown,/duesseldorf,,1,0,84.00,none_detected,keep_and_measure,true
+professionelle entrümpelung im landkreis traunstein und umgebung,de,commercial,/reinigung,,1,0,84.00,none_detected,keep_and_measure,true
+checklist für privaten umzug bad cannstatt,de,commercial,/ratgeber,,1,0,87.00,none_detected,keep_and_measure,true
+entrümpelung forchheim,de,commercial,/,,1,0,87.00,none_detected,keep_and_measure,true
+apartmentreinigung,de,commercial,/,,1,0,90.00,none_detected,keep_and_measure,true
+entrümpler flensburg,de,unknown,/,,1,0,90.00,none_detected,keep_and_measure,true
+haus entrümpeln münchen,de,unknown,/clean-start,,1,0,91.00,none_detected,keep_and_measure,true
+günstige reinigung von privathaushalten in münchen und augsburg,de,commercial,/klaviertransport,,1,0,96.00,none_detected,keep_and_measure,true
+seniorenumzug münchen,de,commercial,/seniorenumzug,,1,0,97.00,none_detected,keep_and_measure,true
+verwesungsgeruch entfernen düsseldorf,de,unknown,/duesseldorf,,1,0,97.00,none_detected,keep_and_measure,true
+praxisreinigung düsseldorf,de,commercial,/duesseldorf/praxisreinigung,,440,0,21.12,none_detected,keep_and_measure,false
+büroreinigung düsseldorf,de,commercial,/duesseldorf/bueroreinigung,,401,0,21.06,none_detected,keep_and_measure,false
+gewerbereinigung,de,commercial,/gewerbereinigung,,194,0,26.38,none_detected,keep_and_measure,false
+angebot reinigungsfirma,de,transactional,/reinigungsfirma-angebot,,183,0,22.48,none_detected,keep_and_measure,false
+entrümpelung regensburg,de,commercial,/entruempelung,,131,0,76.85,none_detected,keep_and_measure,false
+umzug regensburg,de,commercial,/umzug,,115,0,61.58,none_detected,keep_and_measure,false
+umzug münchen,de,commercial,/klaviertransport,,100,0,56.22,none_detected,keep_and_measure,true
+wohnungsauflösung regensburg,de,unknown,/regensburg/wohnungsaufloesung,,89,0,34.78,none_detected,keep_and_measure,false
+umzugsunternehmen regensburg,de,transactional,/regensburg/umzugsunternehmen,,85,0,62.62,none_detected,keep_and_measure,false
+büroreinigung in düsseldorf,de,commercial,/duesseldorf/bueroreinigung,,70,0,23.33,none_detected,keep_and_measure,false
+putzfirmen düsseldorf,de,unknown,/duesseldorf,,63,0,26.16,none_detected,keep_and_measure,true
+praxisreinigung,de,commercial,/praxisreinigung-regensburg,,56,0,29.57,none_detected,keep_and_measure,true
+hotelreinigung düsseldorf,de,commercial,/duesseldorf,,46,0,20.63,none_detected,keep_and_measure,true
+reinigung nach umzug münchen,de,commercial,/leistungsfinder,,46,0,57.76,none_detected,keep_and_measure,true
+floxant,de,unknown,/,,45,3,3.00,none_detected,keep_and_measure,true
+reinigungsfirma angebot,de,transactional,/reinigung-brunn,,44,0,44.02,none_detected,keep_and_measure,true
+entrümpelung amberg,de,commercial,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,42,0,83.69,none_detected,keep_and_measure,true
+wohnungsauflösungen regensburg,de,unknown,/,,41,0,51.56,none_detected,keep_and_measure,true
+haushaltsauflösung flensburg,de,unknown,/regensburg/haushaltsaufloesung,,38,0,69.11,none_detected,keep_and_measure,true
+privatumzug münchen,de,commercial,/klaviertransport,,33,0,56.85,none_detected,keep_and_measure,true
+praxis entrümpelung nürnberg,de,commercial,/blog/praxisentruempelung-nuernberg-richtig-anfragen,,32,0,28.72,none_detected,keep_and_measure,true
+reinigungsfirma düsseldorf,de,transactional,/duesseldorf,,30,0,53.60,none_detected,keep_and_measure,true
+internationale umzüge,de,commercial,/mini-umzug,,27,0,1.00,none_detected,keep_and_measure,true
+reinigungsservice düsseldorf,de,transactional,/duesseldorf,,25,0,46.60,none_detected,keep_and_measure,true
+umzüge regensburg,de,commercial,/,,24,0,52.71,none_detected,keep_and_measure,true
+wohnungsreinigung münchen,de,commercial,/reinigung-laaber,,24,0,53.29,none_detected,keep_and_measure,true
+umzugsservice regensburg,de,transactional,/regensburg/umzugsservice,,23,0,22.87,none_detected,keep_and_measure,false
+büro reinigen düsseldorf,de,unknown,/duesseldorf,,23,0,30.04,none_detected,keep_and_measure,false
+haushaltsauflösung grafenau,de,unknown,/regensburg/haushaltsaufloesung,,23,0,35.30,none_detected,keep_and_measure,true
+angebot reinigung,de,transactional,/,,21,0,30.81,none_detected,keep_and_measure,true
+baustellenreinigung düsseldorf,de,commercial,/duesseldorf,,19,0,9.63,none_detected,keep_and_measure,true
+gewerbeobjekt reinigung,de,commercial,/,,19,0,15.95,none_detected,keep_and_measure,true
+büroreinigung regensburg,de,commercial,/regensburg/bueroreinigung,,19,0,35.47,none_detected,keep_and_measure,false
+wohnungsentrümpelung regensburg,de,commercial,/,,19,0,65.58,none_detected,keep_and_measure,true
+reinigungsfirmen düsseldorf,de,commercial,/duesseldorf,,18,0,18.22,none_detected,keep_and_measure,true
+reinigung umzugsreinigung,de,commercial,/,,18,0,30.83,none_detected,keep_and_measure,true
+schlüsselübergabeprotokoll reinigungsfirma,de,transactional,/schluesseluebergabe,,18,0,36.44,none_detected,keep_and_measure,false
+umzugsfirma mit aufbauservice regensburg,de,transactional,/blog/umzugsfirma-regensburg-google-maps-vertrauen,,18,0,40.39,none_detected,keep_and_measure,false
+baureinigung,de,commercial,/baureinigung-regensburg,,17,0,5.76,none_detected,keep_and_measure,true
+maschinenreinigung düsseldorf,de,commercial,/duesseldorf,,17,0,13.53,none_detected,keep_and_measure,true
+baureinigung düsseldorf,de,commercial,/duesseldorf,,17,0,19.94,none_detected,keep_and_measure,true
+krankenhausreinigung nrw,de,commercial,/blog/fernumzug-bayern-nrw-tipps,,17,0,32.94,none_detected,keep_and_measure,true
+hausauflösung regensburg,de,unknown,/,,17,0,63.29,none_detected,keep_and_measure,true
+umzugsreinigung düsseldorf,de,commercial,/duesseldorf,,16,0,5.25,none_detected,keep_and_measure,true
+desinfektion gewerbe düsseldorf,de,unknown,/duesseldorf/gewerbereinigung,,16,0,13.75,none_detected,keep_and_measure,false
+desinfektion düsseldorf,de,unknown,/duesseldorf,,16,0,42.31,none_detected,keep_and_measure,true
+räumungsservice landshut,de,transactional,/seniorenumzug-landshut,,15,0,4.67,none_detected,keep_and_measure,true
+klaviertransport nürnberg,de,unknown,/klaviertransport,,15,0,13.73,none_detected,keep_and_measure,true
+umzug im alter fürth,de,commercial,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,15,0,18.40,none_detected,keep_and_measure,true
+reinigungsprodukte düsseldorf,de,commercial,/duesseldorf,,15,0,21.07,none_detected,keep_and_measure,true
+reinigung düsseldorf,de,commercial,/duesseldorf/reinigung,,15,0,39.07,none_detected,keep_and_measure,false
+reinigung wartung rigole düsseldorf,de,commercial,/duesseldorf,,15,0,71.33,none_detected,keep_and_measure,false
+baufeinreinigung düsseldorf,de,commercial,/duesseldorf,,14,0,8.57,none_detected,keep_and_measure,true
+düsseldorf reinigungsfirma büro,de,transactional,/duesseldorf,,14,0,36.57,none_detected,keep_and_measure,false
+reinigung gewerbeflächen düsseldorf,de,commercial,/duesseldorf,,14,0,42.29,none_detected,keep_and_measure,false
+umzug in münchen,de,commercial,/klaviertransport,,14,0,47.36,none_detected,keep_and_measure,true
+gebäudereinigungsfirma düsseldorf,de,transactional,/duesseldorf,,13,0,9.77,none_detected,keep_and_measure,true
+reinigung von lüftungsanlagen düsseldorf,de,commercial,/duesseldorf,,13,0,10.85,none_detected,keep_and_measure,false
+grundreinigung,de,commercial,/grundreinigung-regensburg,,13,0,12.62,none_detected,keep_and_measure,true
+schulreinigung düsseldorf,de,commercial,/duesseldorf,,13,0,20.62,none_detected,keep_and_measure,true
+büroumzug münchen,de,commercial,/bueroumzug,,13,0,42.08,none_detected,keep_and_measure,true
+entrümpelungen neutraubling,de,commercial,/reinigung-neutraubling,,13,0,72.23,none_detected,keep_and_measure,true
+reinigung,de,commercial,/,,12,0,8.50,none_detected,keep_and_measure,true
+umzug erding preise,de,transactional,/blog,,12,0,11.67,none_detected,keep_and_measure,true
+desinfektion wohnung düsseldorf,de,unknown,/duesseldorf/reinigung,,12,0,14.00,none_detected,keep_and_measure,false
+reinigungsbetrieb,de,commercial,/blog/reinigungsbetrieb-reinigungsunternehmen-regensburg-kosten,,12,0,16.42,none_detected,keep_and_measure,true
+düsseldorf putzfirma büro,de,transactional,/duesseldorf,,12,0,18.67,none_detected,keep_and_measure,false
+garagenauflösung nürnberg,de,unknown,/klaviertransport,,12,0,22.17,none_detected,keep_and_measure,true
+krankenhausreinigung düsseldorf,de,commercial,/duesseldorf,,12,0,27.08,none_detected,keep_and_measure,true
+bürogebäude reinigung,de,commercial,/,,12,0,28.33,none_detected,keep_and_measure,true
+geruchsbeseitigung düsseldorf,de,unknown,/duesseldorf,,12,0,34.42,none_detected,keep_and_measure,true
+sonderreinigung düsseldorf,de,commercial,/duesseldorf,,12,0,45.33,none_detected,keep_and_measure,true
+büro reinigungsfirma düsseldorf,de,transactional,/duesseldorf,,12,0,46.67,none_detected,keep_and_measure,false
+firmenumzug regensburg,de,commercial,/bueroumzug,,12,0,69.42,none_detected,keep_and_measure,false
+büroumzug nürnberg,de,commercial,/bueroumzug,,12,0,74.92,none_detected,keep_and_measure,true
+verkaufsflächen reinigen,de,unknown,/blog/buero-reinigen-regensburg-bueroreinigung-angebot,,12,0,94.00,none_detected,keep_and_measure,true
+grundreinigung in düsseldorf,de,commercial,/duesseldorf,,11,0,12.36,none_detected,keep_and_measure,true
+cleaner dusseldorf,de,unknown,/duesseldorf,,11,0,14.00,none_detected,keep_and_measure,true
+reinigungsdienste düsseldorf,de,commercial,/duesseldorf,,11,0,14.45,none_detected,keep_and_measure,true
+düsseldorf reinigungsdienst büro,de,commercial,/duesseldorf,,11,0,17.45,none_detected,keep_and_measure,false
+umzug planen lassen regensburg,de,commercial,/bueroumzug,,11,0,19.64,none_detected,keep_and_measure,false
+komplettumzüge münchen,de,commercial,/klaviertransport,,11,0,21.45,none_detected,keep_and_measure,true
+apartment düsseldorf mit wöchentlicher reinigung,de,commercial,/duesseldorf,,11,0,22.64,none_detected,keep_and_measure,false
+reinigung sanitäranlagen düsseldorf,de,commercial,/duesseldorf,,11,0,33.00,none_detected,keep_and_measure,false
+privatumzug nürnberg,de,commercial,/klaviertransport,,11,0,50.18,none_detected,keep_and_measure,true
+umzug münchen festpreis,de,transactional,/blog/umzug-muenchen-festpreis-fernumzug-organisieren,,10,0,17.30,none_detected,keep_and_measure,true
+düsseldorf reinigung,de,commercial,/duesseldorf,,10,0,18.00,none_detected,keep_and_measure,false
+hygienereinigung düsseldorf,de,commercial,/duesseldorf,,10,0,24.20,none_detected,keep_and_measure,true
+putzdienst düsseldorf,de,unknown,/duesseldorf,,10,0,26.40,none_detected,keep_and_measure,true
+umzüge neutraubling,de,commercial,/mini-umzug,,10,0,27.00,none_detected,keep_and_measure,true
+umzugsfirma regensburg,de,transactional,/blog/umzugsfirma-regensburg-google-maps-vertrauen,,10,1,35.00,none_detected,keep_and_measure,false
+fernumzug,de,commercial,/fernumzug-muenchen,,10,0,50.80,none_detected,keep_and_measure,true
+umzug münchen preise,de,transactional,/blog,,10,0,85.80,none_detected,keep_and_measure,true
+firmenumzug rosenheim,de,commercial,/bueroumzug,,9,0,11.89,none_detected,keep_and_measure,true
+b2b reinigung,de,commercial,/,,9,0,16.00,none_detected,keep_and_measure,true
+commercial cleaning,en,commercial,/en/duesseldorf/commercial-cleaning,,9,0,16.33,none_detected,keep_and_measure,true
+umzug planen regensburg,de,commercial,/bueroumzug,,9,0,30.89,none_detected,keep_and_measure,false
+reinigungsfirma regensburg privathaushalt,de,transactional,/regensburg/reinigungsfirma,,9,0,42.89,none_detected,keep_and_measure,false
+umzug pauschalpreis,de,transactional,/blog/pauschalpreis-oder-aufwand-angebot-pruefen,,9,0,46.00,none_detected,keep_and_measure,true
+mülltonnenreinigung münchen,de,commercial,/klaviertransport,,9,0,53.00,none_detected,keep_and_measure,true
+hochwertige umzüge bayern,de,commercial,/blog/family-office-umzug-bayern-diskret-abstimmen,,9,0,65.89,none_detected,keep_and_measure,true
+unterhaltsreiniger düsseldorf,de,unknown,/duesseldorf,,9,0,69.56,none_detected,keep_and_measure,true
+küchenentsorgung landshut,de,unknown,/seniorenumzug-landshut,,8,0,1.62,none_detected,keep_and_measure,true
+24 stunden reinigung düsseldorf,de,commercial,/duesseldorf,,8,0,2.50,none_detected,keep_and_measure,false
+reinigung hauseingang düsseldorf,de,commercial,/duesseldorf,,8,0,8.75,none_detected,keep_and_measure,false
+endreinigung düsseldorf,de,commercial,/duesseldorf,,8,0,9.88,none_detected,keep_and_measure,true
+beschlussreinigung düsseldorf,de,commercial,/duesseldorf,,8,0,11.12,none_detected,keep_and_measure,true
+reinigungsdienst büro düsseldorf,de,commercial,/duesseldorf,,8,0,13.12,none_detected,keep_and_measure,false
+reinigungsmittel düsseldorf,de,commercial,/duesseldorf,,8,0,13.38,none_detected,keep_and_measure,true
+räumung landshut,de,commercial,/buchung,,8,0,15.62,none_detected,keep_and_measure,true
+reinigungen düsseldorf,de,commercial,/duesseldorf,,8,0,17.00,none_detected,keep_and_measure,true
+ladenreinigung düsseldorf,de,commercial,/duesseldorf,,8,0,17.25,none_detected,keep_and_measure,true
+putzfirma büro düsseldorf,de,transactional,/duesseldorf,,8,0,23.38,none_detected,keep_and_measure,false
+büroreinigung reinigungsfirma düsseldorf,de,transactional,/duesseldorf/bueroreinigung,,8,0,49.38,none_detected,keep_and_measure,false
+entrümpelung landshut,de,commercial,/seniorenumzug-landshut,,8,0,67.88,none_detected,keep_and_measure,true
+wohnungsräumung landshut,de,commercial,/seniorenumzug-landshut,,8,0,68.88,none_detected,keep_and_measure,true
+entrümpler regensburg,de,unknown,/,,8,0,78.25,none_detected,keep_and_measure,true
+umzug burglengenfeld,de,commercial,/reinigung-burglengenfeld,,7,0,10.57,none_detected,keep_and_measure,true
+praxisauflösung düsseldorf,de,unknown,/duesseldorf,,7,0,21.29,none_detected,keep_and_measure,true
+günstiger umzug thalkirchen,de,commercial,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,7,0,24.71,none_detected,keep_and_measure,true
+umzug organisieren münchen,de,commercial,/blog/umzug-muenchen-festpreis-fernumzug-organisieren,,7,0,33.43,none_detected,keep_and_measure,true
+erledigungsservice,de,transactional,/business-errand-service,,7,0,36.43,none_detected,keep_and_measure,true
+haushaltsauflösung regensburg,de,unknown,/regensburg/haushaltsaufloesung,,7,0,42.29,none_detected,keep_and_measure,false
+grundreinigung wohnung münchen,de,commercial,/grundreinigung-regensburg,,7,0,61.57,none_detected,keep_and_measure,true
+reinigungsfirma werbung,de,transactional,/reinigung-brunn,,7,0,74.57,none_detected,keep_and_measure,true
+reinigung regensburg,de,commercial,/reinigung,,7,0,76.57,none_detected,keep_and_measure,false
+professionelle büroreinigung düsseldorf,de,commercial,/duesseldorf/bueroreinigung,,6,0,6.83,none_detected,keep_and_measure,false
+gebäudereinigungsfirmen in düsseldorf,de,commercial,/duesseldorf,,6,0,10.00,none_detected,keep_and_measure,true
+düsseldorf unterhaltsreinigung,de,commercial,/duesseldorf,,6,0,13.33,none_detected,keep_and_measure,true
+zuverlässige reinigung,de,commercial,/,,6,0,19.17,none_detected,keep_and_measure,true
+cleaning service düsseldorf,en,transactional,/en/duesseldorf/cleaning,,6,0,22.00,none_detected,keep_and_measure,false
+ozonbehandlung wohnung düsseldorf,de,unknown,/duesseldorf/reinigung,,6,0,23.67,none_detected,keep_and_measure,false
+reinigungskraft büro düsseldorf,de,commercial,/duesseldorf,,6,0,42.33,none_detected,keep_and_measure,false
+lüftungsreinigung düsseldorf,de,commercial,/duesseldorf,,6,0,46.83,none_detected,keep_and_measure,true
+umzug bayern,de,commercial,/umzug-bayern,,6,0,65.83,none_detected,keep_and_measure,false
+umzugsreinigung münchen,de,commercial,/klaviertransport,,6,0,68.33,none_detected,keep_and_measure,true
+grundreinigung regensburg,de,commercial,/grundreinigung-regensburg,,6,0,76.50,none_detected,keep_and_measure,false
+regensburg entrümpelung,de,commercial,/,,6,0,79.83,none_detected,keep_and_measure,false
+baugrundreinigung düsseldorf,de,commercial,/duesseldorf,,5,0,1.60,none_detected,keep_and_measure,true
+bauschlussreinigung düsseldorf,de,commercial,/duesseldorf,,5,0,2.80,none_detected,keep_and_measure,true
+baustellereinigung düsseldorf,de,commercial,/duesseldorf,,5,0,9.40,none_detected,keep_and_measure,true
+düsseldorf treppenreinigung,de,commercial,/duesseldorf,,5,0,11.00,none_detected,keep_and_measure,true
+cleaning services dusseldorf,en,transactional,/en/duesseldorf/cleaning,,5,0,12.20,none_detected,keep_and_measure,false
+umzugskosten senken,de,transactional,/blog/umzugskosten-senken-7-tipps,,5,0,13.60,none_detected,keep_and_measure,false
+praxis putzen,de,unknown,/duesseldorf,,5,0,14.00,none_detected,keep_and_measure,true
+reinigungsservice büro düsseldorf,de,transactional,/duesseldorf,,5,0,18.80,none_detected,keep_and_measure,false
+umzugsservice in deggendorf,de,transactional,/regensburg/umzugsservice,,5,0,19.20,none_detected,keep_and_measure,true
+full service klaviertransport,de,transactional,/klaviertransport,,5,0,24.80,none_detected,keep_and_measure,true
+haushaltsreinigung düsseldorf,de,commercial,/duesseldorf,,5,0,29.00,none_detected,keep_and_measure,true
+bauschutt container mengen,de,unknown,/kleinmengen-entsorgung,,5,0,39.20,none_detected,keep_and_measure,true
+günstiger umzug schwanthalerhöhe,de,commercial,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,5,0,41.60,none_detected,keep_and_measure,true
+kaugummientfernung düsseldorf,de,unknown,/duesseldorf,,5,0,42.00,none_detected,keep_and_measure,true
+regensburg umzug,de,commercial,/,,5,0,51.20,none_detected,keep_and_measure,false
+klaviertransport,de,unknown,/klaviertransport,,4,0,3.00,none_detected,keep_and_measure,true
+reinigung hausverwaltungen,de,commercial,/mieterwechsel-service-regensburg,,4,0,9.50,none_detected,keep_and_measure,true
+sperrmüllabholung regensburg,de,unknown,/,,4,0,9.50,none_detected,keep_and_measure,true
+entkalkung düsseldorf,de,unknown,/duesseldorf,,4,0,10.00,none_detected,keep_and_measure,true
+reinigungskräfte düsseldorf,de,commercial,/duesseldorf,,4,0,10.00,none_detected,keep_and_measure,true
+klaviertransport nürnberg kosten,de,transactional,/klaviertransport,,4,0,10.50,none_detected,keep_and_measure,true
+endreinigung rosenberg,de,commercial,/reinigung,,4,0,12.00,none_detected,keep_and_measure,true
+reinigung düsseldorf preise,de,transactional,/duesseldorf,,4,0,15.25,none_detected,keep_and_measure,false
+schaufensterreinigung düsseldorf,de,commercial,/duesseldorf,,4,0,15.50,none_detected,keep_and_measure,true
+cleaning service dusseldorf,en,transactional,/en/duesseldorf/cleaning,,4,0,16.00,none_detected,keep_and_measure,false
+preiswert umzug,de,transactional,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,4,0,16.50,none_detected,keep_and_measure,true
+fensterreinigung düsseldorf preise,de,transactional,/duesseldorf/fensterreinigung,,4,0,17.25,none_detected,keep_and_measure,false
+günstiger umzugsservice,de,transactional,/regensburg/umzugsservice,,4,0,19.25,none_detected,keep_and_measure,true
+umzugskosten akzo nobel bayern,de,transactional,/umzugskosten-bayern,,4,0,21.00,none_detected,keep_and_measure,true
+baustaub entfernen neubau,de,unknown,/blog/baustaub-nach-renovierung-reihenfolge,,4,0,22.25,none_detected,keep_and_measure,true
+umzugspreisvergleich fürth,de,transactional,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,4,0,27.00,none_detected,keep_and_measure,true
+düsseldorf reinigungsservice büro,de,transactional,/duesseldorf,,4,0,27.50,none_detected,keep_and_measure,false
+kostengünstige reinigung,de,transactional,/,,4,0,28.00,none_detected,keep_and_measure,true
+hotelreinigung,de,commercial,/hotelreinigung-regensburg,,4,0,30.00,none_detected,keep_and_measure,true
+wohnungsreinigung,de,commercial,/reinigung-laaber,,4,0,30.75,none_detected,keep_and_measure,true
+umzugspreisvergleich regensburg,de,transactional,/,,4,0,31.50,none_detected,keep_and_measure,true
+sperrmüll container mengen,de,unknown,/kleinmengen-entsorgung,,4,0,37.50,none_detected,keep_and_measure,true
+cleaning service regensburg,en,transactional,/en/regensburg/cleaning,,4,0,38.00,none_detected,keep_and_measure,false
+mietfußmatten düsseldorf,de,unknown,/duesseldorf,,4,0,38.50,none_detected,keep_and_measure,true
+büro reinigen gebäudereinigung düsseldorf,de,commercial,/duesseldorf,,4,0,52.50,none_detected,keep_and_measure,false
+umzug munchen,de,commercial,/klaviertransport,,4,0,55.25,none_detected,keep_and_measure,true
+renigungsfirma düsseldorf,de,transactional,/duesseldorf,,4,0,56.50,none_detected,keep_and_measure,true
+reinigung kommune,de,commercial,/,,4,0,70.00,none_detected,keep_and_measure,true
+treppenhausreinigung hausverwaltungen,de,commercial,/blog/hausverwaltung-treppenhausreinigung-regensburg,,4,0,75.00,none_detected,keep_and_measure,true
+landshut reinigung,de,commercial,/seniorenumzug-landshut,,4,0,80.75,none_detected,keep_and_measure,true
+umzugshilfe regensburg,de,commercial,/,,3,0,1.33,none_detected,keep_and_measure,true
+bau reinigung düsseldorf,de,commercial,/duesseldorf,,3,0,1.67,none_detected,keep_and_measure,false
+düsseldorf bodenpflege,de,unknown,/duesseldorf,,3,0,9.00,none_detected,keep_and_measure,true
+putzfee düsseldorf,de,unknown,/duesseldorf,,3,0,9.33,none_detected,keep_and_measure,true
+unterhaltsreinigung,de,commercial,/unterhaltsreinigung-regensburg,,3,0,10.33,none_detected,keep_and_measure,true
+reinigungsservice dusseldorf,de,transactional,/duesseldorf,,3,0,11.67,none_detected,keep_and_measure,true
+hausreinigung dusseldorf,de,commercial,/duesseldorf,,3,0,12.67,none_detected,keep_and_measure,true
+anbieter von fassadenzugang,de,unknown,/anbieter-vergleichen,,3,0,13.00,none_detected,keep_and_measure,true
+gebäudereinigungen düsseldorf,de,commercial,/duesseldorf,,3,0,13.00,none_detected,keep_and_measure,true
+containerdienst altenthann,de,unknown,/reinigung-altenthann,,3,0,13.67,none_detected,keep_and_measure,true
+reinigung düsseldorf heerdt,de,commercial,/duesseldorf,,3,0,14.00,none_detected,keep_and_measure,false
+fernumzug transport,de,commercial,/beiladung,,3,0,14.67,none_detected,keep_and_measure,true
+gewerbliche reinigung,de,commercial,/gewerbereinigung,,3,0,14.67,none_detected,keep_and_measure,true
+klaviertransporte nürnberg,de,unknown,/klaviertransport,,3,0,14.67,none_detected,keep_and_measure,true
+reinraumreinigung düsseldorf,de,commercial,/duesseldorf,,3,0,16.33,none_detected,keep_and_measure,true
+umzug günstige,de,commercial,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,3,0,18.67,none_detected,keep_and_measure,true
+putzservice düsseldorf,de,transactional,/duesseldorf,,3,0,20.00,none_detected,keep_and_measure,true
+praxisreinigung passau,de,commercial,/praxisreinigung-regensburg,,3,0,20.33,none_detected,keep_and_measure,true
+endreinigung ansbach,de,commercial,/reinigung,,3,0,21.33,none_detected,keep_and_measure,true
+umzugsreinigung preise,de,transactional,/blog,,3,0,21.33,none_detected,keep_and_measure,true
+büro putzen,de,unknown,/bueroumzug,,3,0,23.00,none_detected,keep_and_measure,true
+reinigung angebot,de,transactional,/,,3,0,23.00,none_detected,keep_and_measure,true
+reinigungsfirma freilassung,de,transactional,/reinigung-brunn,,3,0,25.33,none_detected,keep_and_measure,true
+reinigung verwaltung,de,commercial,/treppenhausreinigung-regensburg,,3,0,29.33,none_detected,keep_and_measure,true
+putzarbeiten düsseldorf,de,unknown,/duesseldorf,,3,0,31.00,none_detected,keep_and_measure,true
+günstiger umzug obersendling,de,commercial,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,3,0,31.67,none_detected,keep_and_measure,true
+übergabereinigung,de,commercial,/regensburg/uebergabereinigung,,3,0,31.67,none_detected,keep_and_measure,true
+desinfektion praxis düsseldorf,de,unknown,/duesseldorf,,3,0,32.00,none_detected,keep_and_measure,false
+cleaner regensburg,de,unknown,/,,3,0,32.67,none_detected,keep_and_measure,true
+umzugsservice mit grundreinigung,de,transactional,/regensburg/umzugsservice,,3,0,33.00,none_detected,keep_and_measure,true
+reinigungsdienst für treppenhäuser düsseldorf,de,commercial,/duesseldorf,,3,0,33.67,none_detected,keep_and_measure,false
+leerfahrt,de,unknown,/rueckfahrt-radar,,3,0,34.33,none_detected,keep_and_measure,true
+fäkalien düsseldorf,de,unknown,/duesseldorf,,3,0,34.67,none_detected,keep_and_measure,true
+reinigung augsburg,de,commercial,/,,3,0,36.67,none_detected,keep_and_measure,true
+düsseldorf reinigungsfirma,de,transactional,/duesseldorf,,3,0,38.67,none_detected,keep_and_measure,true
+endreinigung münchen,de,commercial,/reinigung,,3,0,39.67,none_detected,keep_and_measure,true
+spezialist für büroreinigung düsseldorf,de,commercial,/duesseldorf,,3,0,42.00,none_detected,keep_and_measure,false
+klavier verkaufen nürnberg,de,unknown,/klaviertransport,,3,0,44.00,none_detected,keep_and_measure,true
+umzug firma regensburg,de,transactional,/,,3,0,50.67,none_detected,keep_and_measure,false
+putzdienst regensburg,de,unknown,/,,3,0,51.67,none_detected,keep_and_measure,true
+reinigungsunternehmen regensburg,de,commercial,/blog/reinigungsunternehmen-regensburg-anbieter-vergleichen,,3,0,51.67,none_detected,keep_and_measure,false
+entrümpelung düsseldorf,de,commercial,/duesseldorf/reinigung,,3,0,54.33,none_detected,keep_and_measure,false
+rezeption reinigen,de,unknown,/blog/buero-reinigen-regensburg-bueroreinigung-angebot,,3,0,55.67,none_detected,keep_and_measure,true
+reinigungsdienste regensburg,de,commercial,/,,3,0,59.00,none_detected,keep_and_measure,true
+firma,de,transactional,/,,2,0,1.00,none_detected,keep_and_measure,true
+möbel montage,de,unknown,/beiladung,,2,0,1.00,none_detected,keep_and_measure,true
+büroumzug schweinfurt,de,commercial,/bueroumzug,,2,0,3.00,none_detected,keep_and_measure,true
+angebot zu teuer prüfen,de,transactional,/fairpreis-check,,2,0,4.00,none_detected,keep_and_measure,false
+treppen reinigung,de,commercial,/treppenhausreinigung-regensburg,,2,0,4.00,none_detected,keep_and_measure,true
+firma düsseldorf,de,transactional,/duesseldorf,,2,0,5.50,none_detected,keep_and_measure,true
+container altenthann,de,unknown,/reinigung-altenthann,,2,0,6.50,none_detected,keep_and_measure,true
+grundreinigung wohnung,de,commercial,/grundreinigung-regensburg,,2,0,7.00,none_detected,keep_and_measure,true
+umzug aufhausen,de,commercial,/reinigung-aufhausen,,2,0,7.00,none_detected,keep_and_measure,true
+unterhalt reinigung düsseldorf,de,commercial,/duesseldorf,,2,0,9.50,none_detected,keep_and_measure,false
+fensterreinigung service,de,transactional,/fensterreinigung-regensburg,,2,0,11.00,none_detected,keep_and_measure,true
+putzfirmen in düsseldorf,de,unknown,/duesseldorf,,2,0,11.00,none_detected,keep_and_measure,true
+büroumzug landshut,de,commercial,/bueroumzug,,2,0,12.50,none_detected,keep_and_measure,true
+umziehen regensburg,de,unknown,/,,2,0,12.50,none_detected,keep_and_measure,true
+umzug reinigung,de,commercial,/,,2,0,13.00,none_detected,keep_and_measure,true
+flexible reinigungsdienste,de,commercial,/lager-rotation,,2,0,14.50,none_detected,keep_and_measure,true
+reinigung düsseldorf in der nähe,de,commercial,/duesseldorf,,2,0,17.00,none_detected,keep_and_measure,false
+umzug privat,de,commercial,/private-client-service,,2,0,18.00,none_detected,keep_and_measure,true
+büroumzug erding,de,commercial,/bueroumzug,,2,0,18.50,none_detected,keep_and_measure,true
+umzug preiswert,de,transactional,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,2,0,18.50,none_detected,keep_and_measure,true
+büroreinigung 40231 düsseldorf,de,commercial,/duesseldorf/bueroreinigung,,2,0,19.00,none_detected,keep_and_measure,false
+reinigung küchenabluft regensburg,de,commercial,/,,2,0,20.50,none_detected,keep_and_measure,false
+reinigung düsseldorf pempelfort,de,commercial,/duesseldorf,,2,0,21.00,none_detected,keep_and_measure,false
+unterhaltsreinigungen düsseldorf,de,commercial,/duesseldorf,,2,0,22.00,none_detected,keep_and_measure,true
+reinigung düsseldorf unterbach,de,commercial,/duesseldorf,,2,0,23.00,none_detected,keep_and_measure,false
+reinigungsfirma in der nähe,de,transactional,/blog/reinigungsfirma-regensburg-in-der-naehe-stadtteile,,2,0,25.00,none_detected,keep_and_measure,true
+kosten umzugsreinigung,de,transactional,/rechner,,2,0,25.50,none_detected,keep_and_measure,true
+küchenabluft reinigung regensburg,de,commercial,/,,2,0,26.00,none_detected,keep_and_measure,false
+flyer reinigungsfirma,de,transactional,/reinigung-brunn,,2,0,27.00,none_detected,keep_and_measure,true
+professionelle reinigung regensburg,de,commercial,/malerarbeiten,,2,0,29.50,none_detected,keep_and_measure,false
+möbellagerung regensburg,de,unknown,/,,2,0,30.50,none_detected,keep_and_measure,true
+reinigung landshut,de,commercial,/seniorenumzug-landshut,,2,0,30.50,none_detected,keep_and_measure,true
+gewerbe reinigungsfirma,de,transactional,/regensburg/reinigungsfirma,,2,0,32.00,none_detected,keep_and_measure,true
+express reinigung regensburg,de,commercial,/express-anfrage,,2,0,34.00,none_detected,keep_and_measure,false
+fernumzüge münchen,de,commercial,/klaviertransport,,2,0,35.00,none_detected,keep_and_measure,true
+büro reinigung,de,commercial,/bueroumzug,,2,0,36.50,none_detected,keep_and_measure,true
+flexibles reinigungsunternehmen,de,commercial,/lager-rotation,,2,0,37.00,none_detected,keep_and_measure,true
+op reinigung düsseldorf,de,commercial,/duesseldorf,,2,0,40.50,none_detected,keep_and_measure,false
+gebäudereinigung büro düsseldorf,de,commercial,/duesseldorf,,2,0,41.50,none_detected,keep_and_measure,false
+reinigung in regensburg,de,commercial,/,,2,0,42.00,none_detected,keep_and_measure,false
+umzugsangebot münchen,de,transactional,/blog/umzugsangebot-muenchen-pruefen-festpreis-guenstiger,,2,0,42.50,none_detected,keep_and_measure,true
+reinigung duesseldorf,de,commercial,/,,2,0,44.00,none_detected,keep_and_measure,true
+büroräume reinigen,de,unknown,/blog/buero-reinigen-regensburg-bueroreinigung-angebot,,2,0,46.00,none_detected,keep_and_measure,true
+reinigung ergolding,de,commercial,/,,2,0,48.50,none_detected,keep_and_measure,true
+parkhausreinigung düsseldorf,de,commercial,/duesseldorf,,2,0,49.00,none_detected,keep_and_measure,true
+reinigung kanzleien,de,commercial,/,,2,0,64.50,none_detected,keep_and_measure,true
+ufer umzüge,de,commercial,/mini-umzug,,2,0,69.00,none_detected,keep_and_measure,true
+kellerentrümpelung landshut,de,commercial,/kellerentruempelung,,2,0,73.50,none_detected,keep_and_measure,true
+praxisreinigung regensburg,de,commercial,/praxisreinigung-regensburg,,2,0,75.00,none_detected,keep_and_measure,false
+entrümpelung schwandorf,de,commercial,/reinigung-schwandorf,,2,0,80.00,none_detected,keep_and_measure,true
+umzüge ingolstadt,de,commercial,/mini-umzug,,2,0,83.00,none_detected,keep_and_measure,true
+seniorenumzug düsseldorf,de,commercial,/duesseldorf,,2,0,88.00,none_detected,keep_and_measure,true
+baugrobreinigung düsseldorf,de,commercial,/duesseldorf,,1,0,1.00,none_detected,keep_and_measure,true
+umzug kosten,de,transactional,/rechner,,1,0,1.00,none_detected,keep_and_measure,true
+büroumzug eschenbach,de,commercial,/bueroumzug,,1,0,2.00,none_detected,keep_and_measure,true
+matratzenreinigung düsseldorf,de,commercial,/duesseldorf,,1,0,2.00,none_detected,keep_and_measure,true
+umzugsservice,de,transactional,/regensburg/umzugsservice,,1,0,2.00,none_detected,keep_and_measure,true
+entrümpelungsfirma düsseldorf,de,transactional,/duesseldorf,,1,0,3.00,none_detected,keep_and_measure,true
+f reinigung,de,commercial,/,,1,0,4.00,none_detected,keep_and_measure,true
+deep clean apartment service,en,transactional,/en/regensburg/deep-cleaning,,1,0,5.00,none_detected,keep_and_measure,true
+storage regensburg,de,unknown,/,,1,0,5.00,none_detected,keep_and_measure,true
+entsorgung regensburg,de,unknown,/entruempelung,,1,0,6.00,none_detected,keep_and_measure,false
+klavier umzug,de,commercial,/klaviertransport,,1,0,6.00,none_detected,keep_and_measure,true
+eilumzug münchen,de,commercial,/klaviertransport,,1,0,7.00,none_detected,keep_and_measure,true
+hausverwaltung reinigung,de,commercial,/treppenhausreinigung-regensburg,,1,0,7.00,none_detected,keep_and_measure,true
+endreinigung privat,de,commercial,/reinigung,,1,0,9.00,none_detected,keep_and_measure,true
+endreinigung wohnung,de,commercial,/reinigung-laaber,,1,0,9.00,none_detected,keep_and_measure,true
+grünschnitt container köfering,de,unknown,/kleinmengen-entsorgung,,1,0,9.00,none_detected,keep_and_measure,true
+privat service,de,transactional,/private-client-service,,1,0,9.00,none_detected,keep_and_measure,true
+bereich diskret,de,unknown,/diskret-service,,1,0,10.00,none_detected,keep_and_measure,true
+reinigung preise,de,transactional,/blog,,1,0,10.00,none_detected,keep_and_measure,true
+gastronomiereinigung regensburg,de,commercial,/,,1,0,11.00,none_detected,keep_and_measure,true
+regensburg wohnungsauflösung,de,unknown,/entruempelung,,1,0,11.00,none_detected,keep_and_measure,false
+reinigung häuser,de,commercial,/,,1,0,11.00,none_detected,keep_and_measure,true
+reinigung in der umgebung,de,commercial,/reinigung,,1,0,12.00,none_detected,keep_and_measure,true
+tiefenreinigung wohnung,de,commercial,/entruempelung,,1,0,12.00,none_detected,keep_and_measure,true
+eintrag optimieren google maps regensburg,de,unknown,/blog/google-maps-buchungslink-regensburg,,1,0,13.00,none_detected,keep_and_measure,false
+reinigungsbetrieb düsseldorf,de,commercial,/duesseldorf,,1,0,13.00,none_detected,keep_and_measure,true
+reinigungsfirma maxhütte,de,transactional,/reinigung-brunn,,1,0,13.00,none_detected,keep_and_measure,true
+unterhaltsreinigung dusseldorf,de,commercial,/duesseldorf,,1,0,13.00,none_detected,keep_and_measure,true
+unterhaltsreinigung in düsseldorf,de,commercial,/duesseldorf,,1,0,13.00,none_detected,keep_and_measure,true
+entrümpelungsdienst düsseldorf,de,commercial,/duesseldorf,,1,0,14.00,none_detected,keep_and_measure,true
+move,de,unknown,/blog/remote-move-out-service,,1,0,14.00,none_detected,keep_and_measure,true
+arztpraxis reinigung regensburg,de,commercial,/,,1,0,15.00,none_detected,keep_and_measure,false
+büroumzug weilheim,de,commercial,/bueroumzug,,1,0,15.00,none_detected,keep_and_measure,true
+container koefering,de,unknown,/reinigung-koefering,,1,0,18.00,none_detected,keep_and_measure,true
+büroreinigung mit vertrag,de,commercial,/regensburg/bueroreinigung,,1,0,19.00,none_detected,keep_and_measure,true
+fensterreinigung ratingen,de,commercial,/fensterreinigung-regensburg,,1,0,19.00,none_detected,keep_and_measure,true
+kellerentrümpelung,de,commercial,/kellerentruempelung,,1,0,19.00,none_detected,keep_and_measure,false
+umzugsservice angebot,de,transactional,/regensburg/umzugsservice,,1,0,19.00,none_detected,keep_and_measure,true
+preise umzugsreinigung,de,transactional,/blog,,1,0,21.00,none_detected,keep_and_measure,true
+reinigung büroräume,de,commercial,/,,1,0,21.00,none_detected,keep_and_measure,true
+reinigungsfirma buchen,de,transactional,/reinigung-brunn,,1,0,21.00,none_detected,keep_and_measure,true
+treppenhausreinigung mettman,de,commercial,/treppenhausreinigung-regensburg,,1,0,21.00,none_detected,keep_and_measure,true
+cleaning services regensburg,en,transactional,/en,,1,0,22.00,none_detected,keep_and_measure,false
+reinigung von bürogebäuden,de,commercial,/,,1,0,24.00,none_detected,keep_and_measure,true
+umzüge in deggendorf,de,commercial,/mini-umzug,,1,0,24.00,none_detected,keep_and_measure,true
+umzugsfirmen regensburg,de,commercial,/,,1,0,25.00,none_detected,keep_and_measure,true
+angebot büroreinigung,de,transactional,/regensburg/bueroreinigung,,1,0,26.00,none_detected,keep_and_measure,true
+umzug reinigungsfirma,de,transactional,/reinigung-brunn,,1,0,26.00,none_detected,keep_and_measure,true
+klavierentsorgung bamberg,de,unknown,/blog/umzug-im-alter-erlangen-bamberg-fuerth,,1,0,27.00,none_detected,keep_and_measure,true
+wohnungsräumung starnberg,de,commercial,/wohnungsaufloesung-bayern,,1,0,27.00,none_detected,keep_and_measure,true
+container mintraching,de,unknown,/reinigung-mintraching,,1,0,28.00,none_detected,keep_and_measure,true
+düsseldorf treppenhausreinigung,de,commercial,/duesseldorf,,1,0,28.00,none_detected,keep_and_measure,true
+gewerbeimmobilien reinigung,de,commercial,/,,1,0,28.00,none_detected,keep_and_measure,true
+reinigungsfirma für unternehmen,de,transactional,/reinigungsfirma-angebot,,1,0,30.00,none_detected,keep_and_measure,true
+helpling düsseldorf,de,unknown,/duesseldorf,,1,0,31.00,none_detected,keep_and_measure,true
+lokaler entrümpelungsdienst,de,commercial,/blog/lokaler-dienstleister-regensburg-vorteile,,1,0,31.00,none_detected,keep_and_measure,true
+reinigung und entsorgung,de,commercial,/entruempelung,,1,0,31.00,none_detected,keep_and_measure,true
+haus- und wohnungsräumung,de,commercial,/wohnungsaufloesung-bayern,,1,0,32.00,none_detected,keep_and_measure,true
+günstiger umzug sendling,de,commercial,/blog/guenstiger-umzug-angebot-preiswert-pruefen,,1,0,33.00,none_detected,keep_and_measure,true
+entrümpelungsfirma,de,transactional,/entruempelung-bayern,,1,0,34.00,none_detected,keep_and_measure,true
+reinigung in düsseldorf,de,commercial,/duesseldorf,,1,0,35.00,none_detected,keep_and_measure,false
+reinigungsfirma für büro,de,transactional,/regensburg/reinigungsfirma,,1,0,35.00,none_detected,keep_and_measure,true
+treppenhausreinigung düsseldorf,de,commercial,/duesseldorf,,1,0,35.00,none_detected,keep_and_measure,true
+düsseldorf treppenhaus reinigung,de,commercial,/duesseldorf,,1,0,37.00,none_detected,keep_and_measure,false
+sauber düsseldorf,de,unknown,/duesseldorf,,1,0,38.00,none_detected,keep_and_measure,true
+familienumzug,de,commercial,/familienumzug-bayern,,1,0,39.00,none_detected,keep_and_measure,true
+reinigung für unternehmen,de,commercial,/blog,,1,0,39.00,none_detected,keep_and_measure,true
+tapetenentfernung nürnberg,de,unknown,/klaviertransport,,1,0,39.00,none_detected,keep_and_measure,true
+klaviertransport wipperfürth,de,unknown,/klaviertransport,,1,0,40.00,none_detected,keep_and_measure,true
+regensburg reinigung,de,commercial,/,,1,0,40.00,none_detected,keep_and_measure,false
+toilettenvermietung hemau,de,unknown,/reinigung-hemau,,1,0,40.00,none_detected,keep_and_measure,true
+umzugshelfer für senioren mittelfranken,de,commercial,/blog/seniorenumzug-fuer-angehoerige,,1,0,40.00,none_detected,keep_and_measure,true
+kleine firma neustadt,de,transactional,/mini-umzug,,1,0,41.00,none_detected,keep_and_measure,true
+reinigungsfirma in meiner nähe,de,transactional,/blog/reinigungsfirma-regensburg-in-der-naehe-stadtteile,,1,0,41.00,none_detected,keep_and_measure,true
+containerdienst moetzing,de,unknown,/reinigung-moetzing,,1,0,42.00,none_detected,keep_and_measure,true
+entrümpelungsfirma finden germering,de,transactional,/blog/entruempelungsfirma-regensburg-finden,,1,0,43.00,none_detected,keep_and_measure,true
+grünschnitt container schierling,de,unknown,/kleinmengen-entsorgung,,1,0,43.00,none_detected,keep_and_measure,true
+büro praxisreinigung,de,commercial,/blog/buero-praxisreinigung-regensburg-angebot,,1,0,45.00,none_detected,keep_and_measure,true
+reinigungsfirma bockholdt,de,transactional,/reinigung-brunn,,1,0,45.00,none_detected,keep_and_measure,true
+schlüsselübergabe ohne kontakt,de,unknown,/blog/schluesseluebergabe-ohne-stress,,1,0,45.00,none_detected,keep_and_measure,true
+grünschnitt container mainburg,de,unknown,/kleinmengen-entsorgung,,1,0,47.00,none_detected,keep_and_measure,true
+privatumzüge münchen,de,commercial,/klaviertransport,,1,0,47.00,none_detected,keep_and_measure,true
+hausreinigung in düsseldorf,de,commercial,/duesseldorf,,1,0,48.00,none_detected,keep_and_measure,true
+flexible reinigung,de,commercial,/lager-rotation,,1,0,49.00,none_detected,keep_and_measure,true
+grünschnitt container vohburg,de,unknown,/kleinmengen-entsorgung,,1,0,49.00,none_detected,keep_and_measure,true
+büroreinigung für unternehmen,de,commercial,/regensburg/bueroreinigung,,1,0,50.00,none_detected,keep_and_measure,true
+containerdienst koefering,de,unknown,/reinigung-koefering,,1,0,50.00,none_detected,keep_and_measure,true
+münchen umzugsservice,de,transactional,/klaviertransport,,1,0,50.00,none_detected,keep_and_measure,true
+praxisreinigung augsburg,de,commercial,/praxisreinigung-regensburg,,1,0,50.00,none_detected,keep_and_measure,true
+umzugsfirmen kosten,de,transactional,/rechner,,1,0,50.00,none_detected,keep_and_measure,true
+umziehen düsseldorf,de,unknown,/duesseldorf,,1,0,51.00,none_detected,keep_and_measure,true
+umzug service münchen,de,transactional,/klaviertransport,,1,0,51.00,none_detected,keep_and_measure,true
+reinigung outsourcen,de,commercial,/,,1,0,52.00,none_detected,keep_and_measure,true
+putzfirma regensburg,de,transactional,/,,1,0,56.00,none_detected,keep_and_measure,true
+reinigungsfirma wechseln,de,transactional,/reinigung-brunn,,1,0,56.00,none_detected,keep_and_measure,true
+umzug planen kosten schriesheim,de,transactional,/blog/umzug-kosten-regensburg,,1,0,59.00,none_detected,keep_and_measure,true
+firmenumzug düsseldorf,de,commercial,/duesseldorf,,1,0,65.00,none_detected,keep_and_measure,true
+büroentrümpelung nürnberg,de,commercial,/klaviertransport,,1,0,66.00,none_detected,keep_and_measure,true
+anfrage reinigungsfirma muster,de,transactional,/reinigungsfirma-angebot,,1,0,71.00,none_detected,keep_and_measure,true
+dienstleistung düsseldorf,de,unknown,/duesseldorf,,1,0,71.00,none_detected,keep_and_measure,true
+wohnungsräumung,de,commercial,/wohnungsaufloesung-bayern,,1,0,72.00,none_detected,keep_and_measure,true
+offices cleaning,en,commercial,/en/duesseldorf/cleaning,,1,0,74.00,none_detected,keep_and_measure,true
+wohnungsreinigung augsburg,de,commercial,/reinigung-laaber,,1,0,74.00,none_detected,keep_and_measure,true
+haushaltsauflösung landshut,de,unknown,/seniorenumzug-landshut,,1,0,75.00,none_detected,keep_and_measure,true
+werbung reinigungsfirma,de,transactional,/reinigung-brunn,,1,0,81.00,none_detected,keep_and_measure,true
+grundreinigung augsburg,de,commercial,/grundreinigung-regensburg,,1,0,82.00,none_detected,keep_and_measure,true
+preisvergleich umzüge,de,transactional,/mini-umzug,,1,0,83.00,none_detected,keep_and_measure,true
+wohnungsentrümpelung düsseldorf,de,commercial,/duesseldorf,,1,0,83.00,none_detected,keep_and_measure,true
+büroentrümpelung landshut,de,commercial,/seniorenumzug-landshut,,1,0,86.00,none_detected,keep_and_measure,true
+reinigen firma,de,transactional,/blog/buero-reinigen-regensburg-bueroreinigung-angebot,,1,0,86.00,none_detected,keep_and_measure,true
+fernumzug kosten,de,transactional,/blog/fernumzug-bayern-nrw-tipps,,1,0,90.00,none_detected,keep_and_measure,true
+office cleaning,en,commercial,/en/regensburg/cleaning,,1,0,92.00,none_detected,keep_and_measure,true
+entrümpelungen regensburg,de,commercial,/,,1,0,94.00,none_detected,keep_and_measure,true
+komfortumzug münchen,de,commercial,/klaviertransport,,1,0,99.00,none_detected,keep_and_measure,true

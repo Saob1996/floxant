@@ -1,0 +1,813 @@
+query,clicks,impressions,ctr,position,language,intent,brandQuery,sourceCount
+praxisreinigung düsseldorf,0,440,0.000000,21.12,de,commercial,false,1
+büroreinigung düsseldorf,0,401,0.000000,21.06,de,commercial,false,1
+gewerbereinigung,0,194,0.000000,26.38,de,commercial,false,1
+b2b büroreinigung,0,192,0.000000,2.69,de,commercial,false,1
+reinigung nach entrümpelung landshut,0,191,0.000000,6.18,de,commercial,false,1
+angebot reinigungsfirma,0,183,0.000000,22.48,de,transactional,false,1
+diskreter service,0,168,0.000000,5.64,de,transactional,false,1
+grundreinigung düsseldorf,0,142,0.000000,8.94,de,commercial,false,1
+entrümpelung regensburg,0,131,0.000000,76.85,de,commercial,false,1
+umzug regensburg,0,115,0.000000,61.58,de,commercial,false,1
+fensterreinigung düsseldorf,0,111,0.000000,10.63,de,commercial,false,1
+putzfirma düsseldorf,0,102,0.000000,14.01,de,transactional,false,1
+umzug münchen,0,100,0.000000,56.22,de,commercial,false,1
+reinigungsdienst düsseldorf,0,94,0.000000,11.28,de,commercial,false,1
+umzug neustadt an der waldnaab,0,93,0.000000,5.55,de,commercial,false,1
+wohnungsauflösung regensburg,0,89,0.000000,34.78,de,unknown,false,1
+büroreinigung duesseldorf,0,88,0.000000,10.16,de,commercial,false,1
+umzugsunternehmen regensburg,0,85,0.000000,62.62,de,transactional,false,1
+büroreinigung,0,80,0.000000,17.94,de,commercial,false,1
+praxisentrümpelung nürnberg,0,75,0.000000,9.67,de,commercial,false,1
+fensterreiniger düsseldorf,0,72,0.000000,12.97,de,unknown,false,1
+umzug vohenstrauß,0,71,0.000000,7.18,de,commercial,false,1
+umzug im alter bamberg,0,70,0.000000,7.59,de,commercial,false,1
+büroreinigung in düsseldorf,0,70,0.000000,23.33,de,commercial,false,1
+umzug im alter erlangen,0,69,0.000000,7.58,de,commercial,false,1
+reinigungsunternehmen düsseldorf,0,65,0.000000,12.06,de,commercial,false,1
+putzfirmen düsseldorf,0,63,0.000000,26.16,de,unknown,false,1
+unterhaltsreinigung düsseldorf,0,60,0.000000,13.35,de,commercial,false,1
+glasreinigung düsseldorf,0,57,0.000000,10.33,de,commercial,false,1
+wohnungsreinigung düsseldorf,0,56,0.000000,14.29,de,commercial,false,1
+praxisreinigung,0,56,0.000000,29.57,de,commercial,false,1
+umzugshelfer für senioren erlangen,0,53,0.000000,18.00,de,commercial,false,1
+geruchsneutralisation wohnung düsseldorf,0,51,0.000000,9.69,de,unknown,false,1
+reinigungsdienst,0,50,0.000000,3.92,de,commercial,false,1
+reinigung münchen sofort termin,0,50,0.000000,19.46,de,commercial,false,1
+hotelreinigung düsseldorf,0,46,0.000000,20.63,de,commercial,false,1
+reinigung nach umzug münchen,0,46,0.000000,57.76,de,commercial,false,1
+floxant,3,45,0.066667,3.00,de,unknown,true,1
+umzug im alter würzburg,0,44,0.000000,8.64,de,commercial,false,1
+bodenreinigung düsseldorf,0,44,0.000000,9.43,de,commercial,false,1
+reinigungsfirma angebot,0,44,0.000000,44.02,de,transactional,false,1
+entrümpelung amberg,0,42,0.000000,83.69,de,commercial,false,1
+bauendreinigung düsseldorf,0,41,0.000000,5.66,de,commercial,false,1
+wohnungsauflösungen regensburg,0,41,0.000000,51.56,de,unknown,false,1
+umzugshelfer für senioren bayern,0,40,0.000000,19.38,de,commercial,false,1
+umzug nabburg,0,39,0.000000,4.97,de,commercial,false,1
+wohnung geruchsentfernung düsseldorf,0,39,0.000000,11.41,de,unknown,false,1
+international moving services,0,38,0.000000,1.00,en,transactional,false,1
+haushaltsauflösung flensburg,0,38,0.000000,69.11,de,unknown,false,1
+entrümpelung und reinigung,0,35,0.000000,8.34,de,commercial,false,1
+umzugshelfer für senioren nürnberg,0,35,0.000000,18.51,de,commercial,false,1
+umzug im alter bayern,0,34,0.000000,4.29,de,commercial,false,1
+büroumzug rosenheim,0,34,0.000000,9.12,de,commercial,false,1
+umzugshelfer für senioren bamberg,0,34,0.000000,15.94,de,commercial,false,1
+privatumzug münchen,0,33,0.000000,56.85,de,commercial,false,1
+fensterreinigung,0,32,0.000000,9.09,de,commercial,false,1
+praxis entrümpelung nürnberg,0,32,0.000000,28.72,de,commercial,false,1
+büro putzen düsseldorf,0,31,0.000000,12.77,de,unknown,false,1
+günstige umzüge münchen,0,31,0.000000,34.42,de,commercial,false,1
+professionelle lagerhallenreinigung in düsseldorf und umkreis,0,30,0.000000,5.43,de,commercial,false,1
+treppenreinigung düsseldorf,0,30,0.000000,6.10,de,commercial,false,1
+seniorenumzug landshut,0,30,0.000000,8.60,de,commercial,false,1
+reinigungsfirma düsseldorf,0,30,0.000000,53.60,de,transactional,false,1
+geruchsneutralisation düsseldorf,0,29,0.000000,7.69,de,unknown,false,1
+desinfektionsreinigung düsseldorf,0,29,0.000000,16.55,de,commercial,false,1
+reinigungsservice münchen buchen,0,28,0.000000,29.96,de,transactional,false,1
+internationale umzüge,0,27,0.000000,1.00,de,commercial,false,1
+umzug münchen haidhausen,0,27,0.000000,6.52,de,commercial,false,1
+grundreinigung wohnung düsseldorf,0,27,0.000000,13.67,de,commercial,false,1
+professionelle desinfektion düsseldorf,0,27,0.000000,16.56,de,unknown,false,1
+zuverlässige büroreiniger in düsseldorf,0,27,0.000000,49.00,de,unknown,false,1
+klaviertransport regensburg,2,26,0.076923,4.35,de,unknown,false,1
+hausreinigung düsseldorf,0,26,0.000000,14.69,de,commercial,false,1
+umzugshelfer für senioren würzburg,0,25,0.000000,12.64,de,commercial,false,1
+reinigungsservice düsseldorf,0,25,0.000000,46.60,de,transactional,false,1
+seniorenumzug erding,0,24,0.000000,3.33,de,commercial,false,1
+umzugsreinigung,0,24,0.000000,8.42,de,commercial,false,1
+spezialreinigung düsseldorf,0,24,0.000000,11.79,de,commercial,false,1
+bauendreinigung,0,24,0.000000,13.33,de,commercial,false,1
+umzüge regensburg,0,24,0.000000,52.71,de,commercial,false,1
+wohnungsreinigung münchen,0,24,0.000000,53.29,de,commercial,false,1
+professioneller wlan umzugsservice in bayern,0,24,0.000000,55.62,de,transactional,false,1
+desinfektion für privat und gewerbe düsseldorf,0,23,0.000000,9.78,de,unknown,false,1
+fernumzug münchen,0,23,0.000000,13.22,de,commercial,false,1
+umzug münchen schwabing,0,23,0.000000,13.74,de,commercial,false,1
+grundreinigung duesseldorf,0,23,0.000000,17.87,de,commercial,false,1
+umzugsservice regensburg,0,23,0.000000,22.87,de,transactional,false,1
+umzüge mit abbau regensburg,0,23,0.000000,25.43,de,commercial,false,1
+büro reinigen düsseldorf,0,23,0.000000,30.04,de,unknown,false,1
+haushaltsauflösung grafenau,0,23,0.000000,35.30,de,unknown,false,1
+günstiges umzugsunternehmen münchen,0,23,0.000000,37.39,de,transactional,false,1
+verkaufsflächenreinigung,0,23,0.000000,54.52,de,commercial,false,1
+umzug münchen günstig,0,22,0.000000,27.09,de,commercial,false,1
+beste objektbetreuung und umzugsservice mit reinigung in münchen und umgebung,0,22,0.000000,32.45,de,transactional,false,1
+fachkundige umzugshelfer in regensburg,0,22,0.000000,55.50,de,commercial,false,1
+desinfektion büro düsseldorf,0,21,0.000000,16.19,de,unknown,false,1
+angebot reinigung,0,21,0.000000,30.81,de,transactional,false,1
+professionelle praxisreinigung düsseldorf,0,20,0.000000,4.65,de,commercial,false,1
+verkehrsmittelreinigung düsseldorf,0,20,0.000000,12.95,de,commercial,false,1
+fenster putzen düsseldorf,0,20,0.000000,16.50,de,unknown,false,1
+günstiger umzug münchen,0,20,0.000000,32.25,de,commercial,false,1
+baustellenreinigung düsseldorf,0,19,0.000000,9.63,de,commercial,false,1
+gewerbeobjekt reinigung,0,19,0.000000,15.95,de,commercial,false,1
+wohnungsauflösung bielingplatz,0,19,0.000000,29.58,de,unknown,false,1
+büroreinigung regensburg,0,19,0.000000,35.47,de,commercial,false,1
+wohnungsentrümpelung regensburg,0,19,0.000000,65.58,de,commercial,false,1
+seniorenumzug starnberg,0,18,0.000000,8.89,de,commercial,false,1
+besenreine übergabe landshut,0,18,0.000000,12.78,de,unknown,false,1
+reinigungsfirmen düsseldorf,0,18,0.000000,18.22,de,commercial,false,1
+reinigung umzugsreinigung,0,18,0.000000,30.83,de,commercial,false,1
+schlüsselübergabeprotokoll reinigungsfirma,0,18,0.000000,36.44,de,transactional,false,1
+umzugsfirma mit aufbauservice regensburg,0,18,0.000000,40.39,de,transactional,false,1
+baureinigung,0,17,0.000000,5.76,de,commercial,false,1
+bestes reinigungsunternehmen für privatkunden in vilsbiburg,0,17,0.000000,10.88,de,commercial,false,1
+maschinenreinigung düsseldorf,0,17,0.000000,13.53,de,commercial,false,1
+günstig umzug,0,17,0.000000,15.41,de,commercial,false,1
+baureinigung düsseldorf,0,17,0.000000,19.94,de,commercial,false,1
+umzugsunternehmen münchen günstig,0,17,0.000000,31.59,de,transactional,false,1
+krankenhausreinigung nrw,0,17,0.000000,32.94,de,commercial,false,1
+gewerbeflächen reinigen,0,17,0.000000,41.18,de,unknown,false,1
+hausauflösung regensburg,0,17,0.000000,63.29,de,unknown,false,1
+umzugsreinigung düsseldorf,0,16,0.000000,5.25,de,commercial,false,1
+desinfektion gewerbe düsseldorf,0,16,0.000000,13.75,de,unknown,false,1
+seniorenumzug germering,0,16,0.000000,16.31,de,commercial,false,1
+umzug im alter nürnberg,0,16,0.000000,20.56,de,commercial,false,1
+reinigung münchen anfrage,0,16,0.000000,24.25,de,commercial,false,1
+professionelle lagerhallen reinigung in düsseldorf und umkreis,0,16,0.000000,39.94,de,commercial,false,1
+desinfektion düsseldorf,0,16,0.000000,42.31,de,unknown,false,1
+reinigungsdienst in der nähe,0,15,0.000000,3.53,de,commercial,false,1
+räumungsservice landshut,0,15,0.000000,4.67,de,transactional,false,1
+umzug münchen bogenhausen,0,15,0.000000,6.60,de,commercial,false,1
+klaviertransport nürnberg,0,15,0.000000,13.73,de,unknown,false,1
+umzug im alter fürth,0,15,0.000000,18.40,de,commercial,false,1
+reinigungsprodukte düsseldorf,0,15,0.000000,21.07,de,commercial,false,1
+reinigung für firmen,0,15,0.000000,25.13,de,commercial,false,1
+endreinigung wohnung münchen,0,15,0.000000,38.47,de,commercial,false,1
+reinigung düsseldorf,0,15,0.000000,39.07,de,commercial,false,1
+reinigung wartung rigole düsseldorf,0,15,0.000000,71.33,de,commercial,false,1
+baufeinreinigung düsseldorf,0,14,0.000000,8.57,de,commercial,false,1
+desinfektion privatkunden düsseldorf,0,14,0.000000,17.07,de,unknown,false,1
+wohnungsauflösung katzwanger straße,0,14,0.000000,26.43,de,unknown,false,1
+reinigungsangebot,0,14,0.000000,36.14,de,transactional,false,1
+düsseldorf reinigungsfirma büro,0,14,0.000000,36.57,de,transactional,false,1
+gebäudereinigung düsseldorf düsseltal,0,14,0.000000,36.79,de,commercial,false,1
+reinigung gewerbeflächen düsseldorf,0,14,0.000000,42.29,de,commercial,false,1
+umzug in münchen,0,14,0.000000,47.36,de,commercial,false,1
+reinigung offerte schreiben,0,14,0.000000,53.79,de,commercial,false,1
+leerfahrten,0,14,0.000000,55.50,de,unknown,false,1
+gebäudereinigungsfirma düsseldorf,0,13,0.000000,9.77,de,transactional,false,1
+reinigung von lüftungsanlagen düsseldorf,0,13,0.000000,10.85,de,commercial,false,1
+grundreinigung,0,13,0.000000,12.62,de,commercial,false,1
+schulreinigung düsseldorf,0,13,0.000000,20.62,de,commercial,false,1
+büroumzug münchen,0,13,0.000000,42.08,de,commercial,false,1
+kompetente büroreiniger in düsseldorf,0,13,0.000000,48.54,de,unknown,false,1
+entrümpelungen neutraubling,0,13,0.000000,72.23,de,commercial,false,1
+zimmer räumen roth,0,12,0.000000,5.75,de,unknown,false,1
+treppenreinigung,0,12,0.000000,7.50,de,commercial,false,1
+reinigung,0,12,0.000000,8.50,de,commercial,false,1
+umzug erding preise,0,12,0.000000,11.67,de,transactional,false,1
+desinfektion wohnung düsseldorf,0,12,0.000000,14.00,de,unknown,false,1
+reinigungsbetrieb,0,12,0.000000,16.42,de,commercial,false,1
+umzug erding kosten,0,12,0.000000,18.58,de,transactional,false,1
+düsseldorf putzfirma büro,0,12,0.000000,18.67,de,transactional,false,1
+desinfektion wohnung nach krankheit düsseldorf,0,12,0.000000,19.75,de,unknown,false,1
+garagenauflösung nürnberg,0,12,0.000000,22.17,de,unknown,false,1
+krankenhausreinigung düsseldorf,0,12,0.000000,27.08,de,commercial,false,1
+innenputz kosten schwandorf,0,12,0.000000,27.25,de,transactional,false,1
+bürogebäude reinigung,0,12,0.000000,28.33,de,commercial,false,1
+geruchsbeseitigung düsseldorf,0,12,0.000000,34.42,de,unknown,false,1
+gebäudereinigung düsseldorf heerdt,0,12,0.000000,36.33,de,commercial,false,1
+sonderreinigung düsseldorf,0,12,0.000000,45.33,de,commercial,false,1
+büro reinigungsfirma düsseldorf,0,12,0.000000,46.67,de,transactional,false,1
+beste reinigung für senioren in bamberg und umgebung,0,12,0.000000,50.67,de,commercial,false,1
+putzservice münchen schnell,0,12,0.000000,59.17,de,transactional,false,1
+wohnungsauflösung flensburg,0,12,0.000000,67.75,de,unknown,false,1
+firmenumzug regensburg,0,12,0.000000,69.42,de,commercial,false,1
+büroumzug nürnberg,0,12,0.000000,74.92,de,commercial,false,1
+umzugskosten pauschal schriesheim,0,12,0.000000,81.92,de,transactional,false,1
+verkaufsflächen reinigen,0,12,0.000000,94.00,de,unknown,false,1
+umzug in der nähe,0,11,0.000000,11.82,de,commercial,false,1
+grundreinigung in düsseldorf,0,11,0.000000,12.36,de,commercial,false,1
+cleaner dusseldorf,0,11,0.000000,14.00,de,unknown,false,1
+reinigungsdienste düsseldorf,0,11,0.000000,14.45,de,commercial,false,1
+düsseldorf reinigungsdienst büro,0,11,0.000000,17.45,de,commercial,false,1
+umzug planen lassen regensburg,0,11,0.000000,19.64,de,commercial,false,1
+komplettumzüge münchen,0,11,0.000000,21.45,de,commercial,false,1
+apartment düsseldorf mit wöchentlicher reinigung,0,11,0.000000,22.64,de,commercial,false,1
+"professionelle umzüge und entrümpelungen in regensburg, deutschland und europaweit",0,11,0.000000,24.09,de,commercial,false,1
+gewerbeflächen reinigung,0,11,0.000000,25.36,de,commercial,false,1
+umziehen friedberg,0,11,0.000000,28.64,de,unknown,false,1
+innenputz kosten sulzbach-rosenberg,0,11,0.000000,31.82,de,transactional,false,1
+reinigung sanitäranlagen düsseldorf,0,11,0.000000,33.00,de,commercial,false,1
+umziehen forchheim,0,11,0.000000,33.64,de,unknown,false,1
+regelmäßige reinigungsdienste für gewerbeflächen in germersheim und umkreis,0,11,0.000000,40.00,de,commercial,false,1
+privatumzug nürnberg,0,11,0.000000,50.18,de,commercial,false,1
+household clearance münchen,0,11,0.000000,67.82,en,commercial,false,1
+umzug erding festpreis,0,10,0.000000,13.90,de,transactional,false,1
+umzug münchen festpreis,0,10,0.000000,17.30,de,transactional,false,1
+düsseldorf reinigung,0,10,0.000000,18.00,de,commercial,false,1
+desinfektion haus düsseldorf,0,10,0.000000,19.00,de,unknown,false,1
+hygienereinigung düsseldorf,0,10,0.000000,24.20,de,commercial,false,1
+putzdienst düsseldorf,0,10,0.000000,26.40,de,unknown,false,1
+umzüge neutraubling,0,10,0.000000,27.00,de,commercial,false,1
+umzugsfirma regensburg,1,10,0.100000,35.00,de,transactional,false,1
+umzug-muenchen,0,10,0.000000,47.50,de,commercial,false,1
+fernumzug,0,10,0.000000,50.80,de,commercial,false,1
+preiswerter umzugs- und reinigungsservice in bad honnef,0,10,0.000000,56.70,de,transactional,false,1
+umzug mit ab- und aufbau regensburg,0,10,0.000000,58.10,de,commercial,false,1
+umzug münchen preise,0,10,0.000000,85.80,de,transactional,false,1
+entrümpelungen flensburg,0,10,0.000000,92.50,de,commercial,false,1
+household clearance nürnberg,0,10,0.000000,97.10,en,commercial,false,1
+umzug flensburg,0,10,0.000000,99.10,de,commercial,false,1
+firmenumzug rosenheim,0,9,0.000000,11.89,de,commercial,false,1
+b2b reinigung,0,9,0.000000,16.00,de,commercial,false,1
+commercial cleaning,0,9,0.000000,16.33,en,commercial,false,1
+angebot für reinigungsarbeiten,0,9,0.000000,17.56,de,transactional,false,1
+umzugsunternehmen regensburg kosten,0,9,0.000000,20.67,de,transactional,false,1
+gebäudereinigung düsseldorf pempelfort,0,9,0.000000,24.00,de,commercial,false,1
+umzug planen regensburg,0,9,0.000000,30.89,de,commercial,false,1
+"bestes umzugsunternehmen in konstanz, regensburg",0,9,0.000000,31.33,de,transactional,false,1
+wohnung putzen münchen,0,9,0.000000,33.33,de,unknown,false,1
+reinigungsfirma düsseldorf privathaushalt,0,9,0.000000,34.33,de,transactional,false,1
+werbeflächenreinigung,0,9,0.000000,40.11,de,commercial,false,1
+reinigungsfirma regensburg privathaushalt,0,9,0.000000,42.89,de,transactional,false,1
+umzug pauschalpreis,0,9,0.000000,46.00,de,transactional,false,1
+mülltonnenreinigung münchen,0,9,0.000000,53.00,de,commercial,false,1
+wohnungsauflösung oberpfalz,0,9,0.000000,63.89,de,unknown,false,1
+hochwertige umzüge bayern,0,9,0.000000,65.89,de,commercial,false,1
+unterhaltsreiniger düsseldorf,0,9,0.000000,69.56,de,unknown,false,1
+umzugsunternehmen münchen preise,0,9,0.000000,85.11,de,transactional,false,1
+entrümpelung flensburg,0,9,0.000000,87.56,de,commercial,false,1
+küchenentsorgung landshut,0,8,0.000000,1.62,de,unknown,false,1
+24 stunden reinigung düsseldorf,0,8,0.000000,2.50,de,commercial,false,1
+reinigung hauseingang düsseldorf,0,8,0.000000,8.75,de,commercial,false,1
+endreinigung düsseldorf,0,8,0.000000,9.88,de,commercial,false,1
+beschlussreinigung düsseldorf,0,8,0.000000,11.12,de,commercial,false,1
+lackiertechnologien kosten anbieter,0,8,0.000000,12.00,de,transactional,false,1
+reinigungsdienst büro düsseldorf,0,8,0.000000,13.12,de,commercial,false,1
+reinigungsmittel düsseldorf,0,8,0.000000,13.38,de,commercial,false,1
+umzug grafing,0,8,0.000000,15.00,de,commercial,false,1
+räumung landshut,0,8,0.000000,15.62,de,commercial,false,1
+reinigungen düsseldorf,0,8,0.000000,17.00,de,commercial,false,1
+ladenreinigung düsseldorf,0,8,0.000000,17.25,de,commercial,false,1
+zuverlässiges reinigungsunternehmen in düsseldorf und umgebung,0,8,0.000000,18.00,de,commercial,false,1
+putzfirma büro düsseldorf,0,8,0.000000,23.38,de,transactional,false,1
+günstige montageleistungen in düsseldorf,0,8,0.000000,46.75,de,unknown,false,1
+büroreinigung reinigungsfirma düsseldorf,0,8,0.000000,49.38,de,transactional,false,1
+reinigungsservice düsseldorf privathaushalt,0,8,0.000000,54.88,de,transactional,false,1
+entrümpelung landshut,0,8,0.000000,67.88,de,commercial,false,1
+wohnungsräumung landshut,0,8,0.000000,68.88,de,commercial,false,1
+klavierentsorgung pirna,0,8,0.000000,72.38,de,unknown,false,1
+entrümpler regensburg,0,8,0.000000,78.25,de,unknown,false,1
+zügige umzugsreinigung für privatkunden in münchen,0,8,0.000000,81.50,de,commercial,false,1
+gewerbeflächenreinigung,0,7,0.000000,9.00,de,commercial,false,1
+umzug burglengenfeld,0,7,0.000000,10.57,de,commercial,false,1
+entrümpelung neustadt an der donau,0,7,0.000000,12.86,de,commercial,false,1
+umzug günstig,0,7,0.000000,16.29,de,commercial,false,1
+praxisauflösung düsseldorf,0,7,0.000000,21.29,de,unknown,false,1
+günstiger umzug thalkirchen,0,7,0.000000,24.71,de,commercial,false,1
+umzüge münchen günstig,0,7,0.000000,32.00,de,commercial,false,1
+umzug günstig münchen,0,7,0.000000,32.86,de,commercial,false,1
+umzug organisieren münchen,0,7,0.000000,33.43,de,commercial,false,1
+billige transporte,0,7,0.000000,36.00,de,unknown,false,1
+erledigungsservice,0,7,0.000000,36.43,de,transactional,false,1
+umzugsunternehmen mit aufbauservice regensburg,0,7,0.000000,37.00,de,transactional,false,1
+haushaltsauflösung regensburg,0,7,0.000000,42.29,de,unknown,false,1
+umzüge für privat münchen,0,7,0.000000,43.86,de,commercial,false,1
+lkw leerfahrten nutzen,0,7,0.000000,54.14,de,unknown,false,1
+grundreinigung wohnung münchen,0,7,0.000000,61.57,de,commercial,false,1
+reinigungsfirma werbung,0,7,0.000000,74.57,de,transactional,false,1
+reinigung regensburg,0,7,0.000000,76.57,de,commercial,false,1
+umzugsunternehmen ingolstadt,0,7,0.000000,80.00,de,transactional,false,1
+fensterreinigung in der nähe,0,6,0.000000,5.17,de,commercial,false,1
+umzugshilfe,0,6,0.000000,5.67,de,commercial,false,1
+professionelle büroreinigung düsseldorf,0,6,0.000000,6.83,de,commercial,false,1
+gebäudereinigungsfirmen in düsseldorf,0,6,0.000000,10.00,de,commercial,false,1
+"ich brauche eine schnelle und effiziente reinigung für meine gewerbeimmobilie, wer kann das leisten?",0,6,0.000000,12.50,de,commercial,false,1
+düsseldorf unterhaltsreinigung,0,6,0.000000,13.33,de,commercial,false,1
+gebäudereinigung düsseldorf golzheim,0,6,0.000000,17.50,de,commercial,false,1
+zuverlässige reinigung,0,6,0.000000,19.17,de,commercial,false,1
+umzug mit möbelaufbau regensburg,0,6,0.000000,20.17,de,commercial,false,1
+cleaning service düsseldorf,0,6,0.000000,22.00,en,transactional,false,1
+ozonbehandlung wohnung düsseldorf,0,6,0.000000,23.67,de,unknown,false,1
+intensive grundreinigung von wohnungen und gewerbeflächen in ansbach und umgebung,0,6,0.000000,35.50,de,commercial,false,1
+günstige umzugsunternehmen münchen,0,6,0.000000,40.50,de,transactional,false,1
+günstige umzüge in münchen,0,6,0.000000,41.67,de,commercial,false,1
+reinigungskraft büro düsseldorf,0,6,0.000000,42.33,de,commercial,false,1
+lüftungsreinigung düsseldorf,0,6,0.000000,46.83,de,commercial,false,1
+professionelle wohnungsreinigung düsseldorf,0,6,0.000000,47.50,de,commercial,false,1
+umzug muenchen,0,6,0.000000,52.00,de,commercial,false,1
+umzug bayern,0,6,0.000000,65.83,de,commercial,false,1
+umzugsreinigung münchen,0,6,0.000000,68.33,de,commercial,false,1
+grundreinigung regensburg,0,6,0.000000,76.50,de,commercial,false,1
+regensburg entrümpelung,0,6,0.000000,79.83,de,commercial,false,1
+baugrundreinigung düsseldorf,0,5,0.000000,1.60,de,commercial,false,1
+bauschlussreinigung düsseldorf,0,5,0.000000,2.80,de,commercial,false,1
+umzugsservice für privat und gewerbliche kunden in kreis traunstein,0,5,0.000000,5.80,de,transactional,false,1
+baustellereinigung düsseldorf,0,5,0.000000,9.40,de,commercial,false,1
+düsseldorf treppenreinigung,0,5,0.000000,11.00,de,commercial,false,1
+cleaning services dusseldorf,0,5,0.000000,12.20,en,transactional,false,1
+umzugskosten senken,0,5,0.000000,13.60,de,transactional,false,1
+praxis putzen,0,5,0.000000,14.00,de,unknown,false,1
+entrümpelung sofort termin landshut,0,5,0.000000,14.60,de,commercial,false,1
+reinigung firma in der nähe,0,5,0.000000,15.80,de,transactional,false,1
+haus räumen landshut,0,5,0.000000,17.40,de,unknown,false,1
+reinigungsservice büro düsseldorf,0,5,0.000000,18.80,de,transactional,false,1
+preiswerter umzug,0,5,0.000000,19.20,de,transactional,false,1
+umzugsservice in deggendorf,0,5,0.000000,19.20,de,transactional,false,1
+guenstig umzug,0,5,0.000000,19.40,de,commercial,false,1
+feuchtigkeitsentfernung aus wänden traunstein,0,5,0.000000,21.40,de,unknown,false,1
+full service klaviertransport,0,5,0.000000,24.80,de,transactional,false,1
+büroreinigung in der nähe,0,5,0.000000,26.60,de,commercial,false,1
+haushaltsreinigung düsseldorf,0,5,0.000000,29.00,de,commercial,false,1
+wohnungsauflösung bayern,0,5,0.000000,31.40,de,unknown,false,1
+bauschutt container mengen,0,5,0.000000,39.20,de,unknown,false,1
+gewerbe reinigung,0,5,0.000000,41.60,de,commercial,false,1
+günstiger umzug schwanthalerhöhe,0,5,0.000000,41.60,de,commercial,false,1
+kaugummientfernung düsseldorf,0,5,0.000000,42.00,de,unknown,false,1
+regensburg umzug,0,5,0.000000,51.20,de,commercial,false,1
+klavierentsorgung lichtenfels,0,5,0.000000,55.00,de,unknown,false,1
+vermüllte wohnung reinigen kosten,0,5,0.000000,66.80,de,transactional,false,1
+umfangreiche grundreinigungsarbeiten in bürogebäuden in gummersbach,0,5,0.000000,69.40,de,commercial,false,1
+umzug ingolstadt,0,5,0.000000,79.00,de,commercial,false,1
+wohnungsauflösung gauting,0,5,0.000000,91.40,de,unknown,false,1
+klaviertransport,0,4,0.000000,3.00,de,unknown,false,1
+professioneller reinigungsservice,0,4,0.000000,4.50,de,transactional,false,1
+klaviertransport in der nähe,0,4,0.000000,5.50,de,unknown,false,1
+wohnungsauflösung brunn,0,4,0.000000,5.50,de,unknown,false,1
+reinigung hausverwaltungen,0,4,0.000000,9.50,de,commercial,false,1
+sperrmüllabholung regensburg,0,4,0.000000,9.50,de,unknown,false,1
+entkalkung düsseldorf,0,4,0.000000,10.00,de,unknown,false,1
+reinigungskräfte düsseldorf,0,4,0.000000,10.00,de,commercial,false,1
+günstige reinigung von glasoberflächen für privatkunden in düsseldorf und umgebung,0,4,0.000000,10.50,de,commercial,false,1
+klaviertransport nürnberg kosten,0,4,0.000000,10.50,de,transactional,false,1
+endreinigung rosenberg,0,4,0.000000,12.00,de,commercial,false,1
+entrümpelung vohenstrauss,0,4,0.000000,12.00,de,commercial,false,1
+gebäudereinigung heerdt,0,4,0.000000,12.00,de,commercial,false,1
+moving,0,4,0.000000,13.00,en,commercial,false,1
+reinigungskraft duesseldorf,0,4,0.000000,14.75,de,commercial,false,1
+reinigung düsseldorf preise,0,4,0.000000,15.25,de,transactional,false,1
+schaufensterreinigung düsseldorf,0,4,0.000000,15.50,de,commercial,false,1
+transport ab sofort buchen,0,4,0.000000,15.75,de,transactional,false,1
+cleaning service dusseldorf,0,4,0.000000,16.00,en,transactional,false,1
+preiswert umzug,0,4,0.000000,16.50,de,transactional,false,1
+fensterreinigung düsseldorf preise,0,4,0.000000,17.25,de,transactional,false,1
+günstiger umzugsservice,0,4,0.000000,19.25,de,transactional,false,1
+sperrmüll container hagelstadt,0,4,0.000000,19.75,de,unknown,false,1
+reinigungsfirma angebot erstellen,0,4,0.000000,20.75,de,transactional,false,1
+umzugskosten akzo nobel bayern,0,4,0.000000,21.00,de,transactional,false,1
+baustaub entfernen neubau,0,4,0.000000,22.25,de,unknown,false,1
+sperrmüll container köfering,0,4,0.000000,25.00,de,unknown,false,1
+sperrgut container köfering,0,4,0.000000,25.25,de,unknown,false,1
+professionelle schlussdesinfektion düsseldorf,0,4,0.000000,26.25,de,unknown,false,1
+umzugspreisvergleich fürth,0,4,0.000000,27.00,de,transactional,false,1
+düsseldorf reinigungsservice büro,0,4,0.000000,27.50,de,transactional,false,1
+kostengünstige reinigung,0,4,0.000000,28.00,de,transactional,false,1
+flexibler reinigungsservice,0,4,0.000000,28.25,de,transactional,false,1
+hotelreinigung,0,4,0.000000,30.00,de,commercial,false,1
+wohnungsreinigung,0,4,0.000000,30.75,de,commercial,false,1
+umzugspreisvergleich regensburg,0,4,0.000000,31.50,de,transactional,false,1
+angebot schreiben reinigung,0,4,0.000000,34.00,de,transactional,false,1
+sperrmüll container mengen,0,4,0.000000,37.50,de,unknown,false,1
+cleaning service regensburg,0,4,0.000000,38.00,en,transactional,false,1
+mietfußmatten düsseldorf,0,4,0.000000,38.50,de,unknown,false,1
+cleanpany,0,4,0.000000,39.00,de,unknown,false,1
+expressanfrage,0,4,0.000000,46.75,de,unknown,false,1
+gebäudereinigung düsseldorf wersten,0,4,0.000000,47.25,de,commercial,false,1
+umzug in muenchen,0,4,0.000000,47.75,de,commercial,false,1
+büro reinigen gebäudereinigung düsseldorf,0,4,0.000000,52.50,de,commercial,false,1
+klavierentsorgung coburg,0,4,0.000000,54.00,de,unknown,false,1
+umzug munchen,0,4,0.000000,55.25,de,commercial,false,1
+renigungsfirma düsseldorf,0,4,0.000000,56.50,de,transactional,false,1
+professionelle geruchsbeseitigung wohnung münchen,0,4,0.000000,57.75,de,unknown,false,1
+wohnungsauflösung neutraubling,0,4,0.000000,62.50,de,unknown,false,1
+schmutzfangmatten mieten düsseldorf,0,4,0.000000,67.00,de,unknown,false,1
+reinigung kommune,0,4,0.000000,70.00,de,commercial,false,1
+treppenhausreinigung hausverwaltungen,0,4,0.000000,75.00,de,commercial,false,1
+landshut reinigung,0,4,0.000000,80.75,de,commercial,false,1
+umzugsunternehmen münchen kosten,0,4,0.000000,88.25,de,transactional,false,1
+umzugshilfe regensburg,0,3,0.000000,1.33,de,commercial,false,1
+bau reinigung düsseldorf,0,3,0.000000,1.67,de,commercial,false,1
+moving house,0,3,0.000000,5.67,en,commercial,false,1
+einzugsreinigung,0,3,0.000000,8.33,de,commercial,false,1
+düsseldorf bodenpflege,0,3,0.000000,9.00,de,unknown,false,1
+professioneller reinigungsdienst,0,3,0.000000,9.33,de,commercial,false,1
+putzfee düsseldorf,0,3,0.000000,9.33,de,unknown,false,1
+gewerbliche objektpflege mit reinigung und grünflächenbetreuung in regensburg und umgebung,0,3,0.000000,9.67,de,commercial,false,1
+unterhaltsreinigung,0,3,0.000000,10.33,de,commercial,false,1
+hausverwaltung sucht reinigungsfirma,0,3,0.000000,11.00,de,transactional,false,1
+wie lange sich baustaub absetzt.,0,3,0.000000,11.33,de,informational,false,1
+reinigungsservice dusseldorf,0,3,0.000000,11.67,de,transactional,false,1
+hausreinigung dusseldorf,0,3,0.000000,12.67,de,commercial,false,1
+anbieter von fassadenzugang,0,3,0.000000,13.00,de,unknown,false,1
+cleaning duesseldorf,0,3,0.000000,13.00,en,commercial,false,1
+gebäudereinigungen düsseldorf,0,3,0.000000,13.00,de,commercial,false,1
+komplette räumung landshut,0,3,0.000000,13.00,de,commercial,false,1
+entrümplung geisenfeld,0,3,0.000000,13.33,de,unknown,false,1
+containerdienst altenthann,0,3,0.000000,13.67,de,unknown,false,1
+reinigung düsseldorf heerdt,0,3,0.000000,14.00,de,commercial,false,1
+fernumzug transport,0,3,0.000000,14.67,de,commercial,false,1
+gewerbliche reinigung,0,3,0.000000,14.67,de,commercial,false,1
+klaviertransporte nürnberg,0,3,0.000000,14.67,de,unknown,false,1
+reinraumreinigung düsseldorf,0,3,0.000000,16.33,de,commercial,false,1
+seniorenumzüge,0,3,0.000000,17.67,de,commercial,false,1
+umzug günstige,0,3,0.000000,18.67,de,commercial,false,1
+angebot fur reinigung,0,3,0.000000,19.33,de,transactional,false,1
+putzservice düsseldorf,0,3,0.000000,20.00,de,transactional,false,1
+praxisreinigung passau,0,3,0.000000,20.33,de,commercial,false,1
+endreinigung ansbach,0,3,0.000000,21.33,de,commercial,false,1
+umzugsreinigung preise,0,3,0.000000,21.33,de,transactional,false,1
+büro putzen,0,3,0.000000,23.00,de,unknown,false,1
+reinigung angebot,0,3,0.000000,23.00,de,transactional,false,1
+reinigungsfirma freilassung,0,3,0.000000,25.33,de,transactional,false,1
+reinigung verwaltung,0,3,0.000000,29.33,de,commercial,false,1
+putzarbeiten düsseldorf,0,3,0.000000,31.00,de,unknown,false,1
+betriebsumzug altdorf,0,3,0.000000,31.67,de,commercial,false,1
+günstiger umzug obersendling,0,3,0.000000,31.67,de,commercial,false,1
+übergabereinigung,0,3,0.000000,31.67,de,commercial,false,1
+desinfektion praxis düsseldorf,0,3,0.000000,32.00,de,unknown,false,1
+oberflächenreinigung gewerbe,0,3,0.000000,32.33,de,commercial,false,1
+cleaner regensburg,0,3,0.000000,32.67,de,unknown,false,1
+umzugsservice mit grundreinigung,0,3,0.000000,33.00,de,transactional,false,1
+reinigungsdienst für treppenhäuser düsseldorf,0,3,0.000000,33.67,de,commercial,false,1
+leerfahrt,0,3,0.000000,34.33,de,unknown,false,1
+marketingagentur angebot prüfen,0,3,0.000000,34.33,de,transactional,false,1
+desinfektion arztpraxis düsseldorf,0,3,0.000000,34.67,de,unknown,false,1
+fäkalien düsseldorf,0,3,0.000000,34.67,de,unknown,false,1
+ordnungsgemäß entrümpelung bayern,0,3,0.000000,36.33,de,commercial,false,1
+reinigung augsburg,0,3,0.000000,36.67,de,commercial,false,1
+günstiger reinigungsservice in augsburg,0,3,0.000000,37.00,de,transactional,false,1
+umzug mit kran münchen,0,3,0.000000,38.00,de,commercial,false,1
+düsseldorf reinigungsfirma,0,3,0.000000,38.67,de,transactional,false,1
+endreinigung münchen,0,3,0.000000,39.67,de,commercial,false,1
+spezialist für büroreinigung düsseldorf,0,3,0.000000,42.00,de,commercial,false,1
+gebäudereinigung düsseldorf oberkassel,0,3,0.000000,42.67,de,commercial,false,1
+klavier verkaufen nürnberg,0,3,0.000000,44.00,de,unknown,false,1
+cleanpany gebäudeservice,0,3,0.000000,44.67,de,transactional,false,1
+amft dienstleistung düsseldorf,0,3,0.000000,46.67,de,unknown,false,1
+umzug firma regensburg,0,3,0.000000,50.67,de,transactional,false,1
+putzdienst regensburg,0,3,0.000000,51.67,de,unknown,false,1
+reinigungsunternehmen regensburg,0,3,0.000000,51.67,de,commercial,false,1
+entrümpelung düsseldorf,0,3,0.000000,54.33,de,commercial,false,1
+rezeption reinigen,0,3,0.000000,55.67,de,unknown,false,1
+reinigungsdienste regensburg,0,3,0.000000,59.00,de,commercial,false,1
+reinigungsservice seniorenheim,0,3,0.000000,65.00,de,transactional,false,1
+household clearance nuremberg,0,3,0.000000,79.33,en,commercial,false,1
+umzugsfirma münchen kosten,0,3,0.000000,84.00,de,transactional,false,1
+umzug kosten münchen,0,3,0.000000,88.67,de,transactional,false,1
+umzüge münchen preise,0,3,0.000000,88.67,de,transactional,false,1
+reinigung für coworking spaces,0,3,0.000000,91.33,de,commercial,false,1
+entrümpelung waldfeucht,0,3,0.000000,95.33,de,commercial,false,1
+firma,0,2,0.000000,1.00,de,transactional,false,1
+möbel montage,0,2,0.000000,1.00,de,unknown,false,1
+möbelmontage,0,2,0.000000,1.00,de,unknown,false,1
+professional packing and moving,0,2,0.000000,1.00,en,commercial,false,1
+büroumzug schweinfurt,0,2,0.000000,3.00,de,commercial,false,1
+angebot zu teuer prüfen,0,2,0.000000,4.00,de,transactional,false,1
+treppen reinigung,0,2,0.000000,4.00,de,commercial,false,1
+firma düsseldorf,0,2,0.000000,5.50,de,transactional,false,1
+container altenthann,0,2,0.000000,6.50,de,unknown,false,1
+fahrzeugtransport,0,2,0.000000,7.00,de,unknown,false,1
+grundreinigung wohnung,0,2,0.000000,7.00,de,commercial,false,1
+umzug aufhausen,0,2,0.000000,7.00,de,commercial,false,1
+professionelle glasreinigung,0,2,0.000000,7.50,de,commercial,false,1
+putzfirma,0,2,0.000000,8.00,de,transactional,false,1
+praxenreinigung,0,2,0.000000,8.50,de,commercial,false,1
+seriöse sperrmüll-services ohne online-buchung,0,2,0.000000,9.00,de,transactional,false,1
+unterhalt reinigung düsseldorf,0,2,0.000000,9.50,de,commercial,false,1
+wohnung putzen lassen,0,2,0.000000,9.50,de,unknown,false,1
+gewerbereinigung bayern,0,2,0.000000,10.00,de,commercial,false,1
+check übergabe,0,2,0.000000,10.50,de,unknown,false,1
+fensterreinigung service,0,2,0.000000,11.00,de,transactional,false,1
+glasreinigung firma,0,2,0.000000,11.00,de,transactional,false,1
+professionelle praxisreinigung,0,2,0.000000,11.00,de,commercial,false,1
+putzfirmen in düsseldorf,0,2,0.000000,11.00,de,unknown,false,1
+mischabfall container köfering,0,2,0.000000,12.00,de,unknown,false,1
+büroumzug landshut,0,2,0.000000,12.50,de,commercial,false,1
+gewerbliche büroreinigung,0,2,0.000000,12.50,de,commercial,false,1
+umziehen regensburg,0,2,0.000000,12.50,de,unknown,false,1
+umzug reinigung,0,2,0.000000,13.00,de,commercial,false,1
+reinigung nach entrümpelung ebersberg,0,2,0.000000,13.50,de,commercial,false,1
+wohnungsentrümpelung,0,2,0.000000,13.50,de,commercial,false,1
+flexible reinigungsdienste,0,2,0.000000,14.50,de,commercial,false,1
+cleaner duesseldorf,0,2,0.000000,16.00,de,unknown,false,1
+reinigung düsseldorf in der nähe,0,2,0.000000,17.00,de,commercial,false,1
+umzug privat,0,2,0.000000,18.00,de,commercial,false,1
+büroumzug erding,0,2,0.000000,18.50,de,commercial,false,1
+preiswert transportieren,0,2,0.000000,18.50,de,transactional,false,1
+umzug preiswert,0,2,0.000000,18.50,de,transactional,false,1
+büroreinigung 40231 düsseldorf,0,2,0.000000,19.00,de,commercial,false,1
+umzug in schweinfurt,0,2,0.000000,19.00,de,commercial,false,1
+gerüche lokalisieren,0,2,0.000000,19.50,de,unknown,false,1
+reinigung küchenabluft regensburg,0,2,0.000000,20.50,de,commercial,false,1
+entrümpelung neumarkt in der oberpfalz,0,2,0.000000,21.00,de,commercial,false,1
+reinigung düsseldorf pempelfort,0,2,0.000000,21.00,de,commercial,false,1
+sperrgut container pettendorf,0,2,0.000000,21.00,de,unknown,false,1
+unterhaltsreinigungen düsseldorf,0,2,0.000000,22.00,de,commercial,false,1
+wohnungsauflösung,0,2,0.000000,22.00,de,unknown,false,1
+sperrmüll container pettendorf,0,2,0.000000,22.50,de,unknown,false,1
+reinigung düsseldorf unterbach,0,2,0.000000,23.00,de,commercial,false,1
+umzug bayern material,0,2,0.000000,24.00,de,commercial,false,1
+betriebsumzug weilheim,0,2,0.000000,24.50,de,commercial,false,1
+angebote reinigungsfirmen,0,2,0.000000,25.00,de,transactional,false,1
+reinigungsfirma in der nähe,0,2,0.000000,25.00,de,transactional,false,1
+kosten umzugsreinigung,0,2,0.000000,25.50,de,transactional,false,1
+sperrmüll container aufhausen,0,2,0.000000,25.50,de,unknown,false,1
+geruchsneutralisation nach fäkalien düsseldorf,0,2,0.000000,26.00,de,unknown,false,1
+küchenabluft reinigung regensburg,0,2,0.000000,26.00,de,commercial,false,1
+flyer reinigungsfirma,0,2,0.000000,27.00,de,transactional,false,1
+professionelle reinigung regensburg,0,2,0.000000,29.50,de,commercial,false,1
+gipsputz auftragen windischeschenbach,0,2,0.000000,30.00,de,unknown,false,1
+professionelle reinigungsfirma düsseldorf und umgeb,0,2,0.000000,30.00,de,transactional,false,1
+möbellagerung regensburg,0,2,0.000000,30.50,de,unknown,false,1
+reinigung landshut,0,2,0.000000,30.50,de,commercial,false,1
+münchen günstiger umzug,0,2,0.000000,31.00,de,commercial,false,1
+gewerbe reinigungsfirma,0,2,0.000000,32.00,de,transactional,false,1
+umzugsunternehmen in der nähe preise,0,2,0.000000,32.00,de,transactional,false,1
+reinigungsfirma landshut privathaushalt,0,2,0.000000,33.00,de,transactional,false,1
+umzugskostenübernahme mobil münchen,0,2,0.000000,33.00,de,transactional,false,1
+express reinigung regensburg,0,2,0.000000,34.00,de,commercial,false,1
+günstige reinigungsfirma in augsburg,0,2,0.000000,34.50,de,transactional,false,1
+fernumzüge münchen,0,2,0.000000,35.00,de,commercial,false,1
+reinigungsfirma angebote,0,2,0.000000,35.50,de,transactional,false,1
+büro reinigung,0,2,0.000000,36.50,de,commercial,false,1
+kleinumzug müchen,0,2,0.000000,36.50,de,commercial,false,1
+flexibles reinigungsunternehmen,0,2,0.000000,37.00,de,commercial,false,1
+individuell gestaltetes reinigungsangebot,0,2,0.000000,39.00,de,transactional,false,1
+halteverbot münchen kvr,0,2,0.000000,40.50,de,unknown,false,1
+op reinigung düsseldorf,0,2,0.000000,40.50,de,commercial,false,1
+umziehen roth,0,2,0.000000,40.50,de,unknown,false,1
+innenputz kosten neumarkt,0,2,0.000000,41.00,de,transactional,false,1
+angebot für reinigung,0,2,0.000000,41.50,de,transactional,false,1
+gebäudereinigung büro düsseldorf,0,2,0.000000,41.50,de,commercial,false,1
+reinigung in regensburg,0,2,0.000000,42.00,de,commercial,false,1
+umzugsangebot münchen,0,2,0.000000,42.50,de,transactional,false,1
+entrümpelung bilder,0,2,0.000000,43.50,de,commercial,false,1
+sperrgut container pfatter,0,2,0.000000,43.50,de,unknown,false,1
+tonnenreinigung augsburg,0,2,0.000000,43.50,de,commercial,false,1
+reinigung duesseldorf,0,2,0.000000,44.00,de,commercial,false,1
+büroräume reinigen,0,2,0.000000,46.00,de,unknown,false,1
+kompletter umzugsservice münchen,0,2,0.000000,47.50,de,transactional,false,1
+reinigung ergolding,0,2,0.000000,48.50,de,commercial,false,1
+halteverbot wegen umzug beantragen münchen,0,2,0.000000,49.00,de,commercial,false,1
+parkhausreinigung düsseldorf,0,2,0.000000,49.00,de,commercial,false,1
+angebote reinigungsfirma,0,2,0.000000,50.00,de,transactional,false,1
+hauswartung,0,2,0.000000,50.00,de,unknown,false,1
+privatumzüge,0,2,0.000000,51.00,de,commercial,false,1
+umzug düsseldorf,0,2,0.000000,51.00,de,commercial,false,1
+neubau putzen,0,2,0.000000,55.50,de,unknown,false,1
+professioneller reinigungsservice mit entrümpelungen für firmen in kamen,0,2,0.000000,56.00,de,transactional,false,1
+reinigungs angebot schreiben,0,2,0.000000,58.50,de,transactional,false,1
+aktenvernichtung privathaushalt düsseldorf,0,2,0.000000,60.50,de,unknown,false,1
+keller räumen landshut,0,2,0.000000,62.00,de,unknown,false,1
+reinigungsdienst mit rechnung,0,2,0.000000,62.00,de,commercial,false,1
+reinifgungsfirma dauerhaft buchen,0,2,0.000000,64.00,de,transactional,false,1
+reinigung kanzleien,0,2,0.000000,64.50,de,commercial,false,1
+ufer umzüge,0,2,0.000000,69.00,de,commercial,false,1
+haushaltsauflösungen flensburg,0,2,0.000000,71.00,de,unknown,false,1
+wohnungsauflosung,0,2,0.000000,72.00,de,unknown,false,1
+wohnungsauflösung landshut,0,2,0.000000,73.00,de,unknown,false,1
+5 umzug offerte erhalten,0,2,0.000000,73.50,de,commercial,false,1
+kellerentrümpelung landshut,0,2,0.000000,73.50,de,commercial,false,1
+praxisreinigung regensburg,0,2,0.000000,75.00,de,commercial,false,1
+entrümpelung schwandorf,0,2,0.000000,80.00,de,commercial,false,1
+umzüge ingolstadt,0,2,0.000000,83.00,de,commercial,false,1
+umzug zuverlässig,0,2,0.000000,85.00,de,commercial,false,1
+gebäudereinigung münchen online buchen,0,2,0.000000,86.50,de,transactional,false,1
+seniorenumzug düsseldorf,0,2,0.000000,88.00,de,commercial,false,1
+umzug münchen kosten,0,2,0.000000,88.00,de,transactional,false,1
+umzug m?nchen kosten,0,2,0.000000,93.00,de,transactional,false,1
+zu wohnungsauflösung,0,2,0.000000,99.50,de,unknown,false,1
+baugrobreinigung düsseldorf,0,1,0.000000,1.00,de,commercial,false,1
+möbelmontage in der nähe,0,1,0.000000,1.00,de,unknown,false,1
+umzug kosten,0,1,0.000000,1.00,de,transactional,false,1
+wohnung aufräumen lassen,0,1,0.000000,1.00,de,unknown,false,1
+büroumzug eschenbach,0,1,0.000000,2.00,de,commercial,false,1
+matratzenreinigung düsseldorf,0,1,0.000000,2.00,de,commercial,false,1
+moving group,0,1,0.000000,2.00,en,commercial,false,1
+rümpelwelt gmbh,0,1,0.000000,2.00,de,unknown,false,1
+umzug putzfirma,0,1,0.000000,2.00,de,transactional,false,1
+umzugsservice,0,1,0.000000,2.00,de,transactional,false,1
+entrümpelungsfirma düsseldorf,0,1,0.000000,3.00,de,transactional,false,1
+f reinigung,0,1,0.000000,4.00,de,commercial,false,1
+anfragen kalkulieren oder liegen lassen bei knapper zeit,0,1,0.000000,5.00,de,unknown,false,1
+deep clean apartment service,0,1,0.000000,5.00,en,transactional,false,1
+storage regensburg,0,1,0.000000,5.00,de,unknown,false,1
+entrümpelung angebot,0,1,0.000000,6.00,de,transactional,false,1
+entsorgung regensburg,0,1,0.000000,6.00,de,unknown,false,1
+klavier umzug,0,1,0.000000,6.00,de,commercial,false,1
+eilumzug münchen,0,1,0.000000,7.00,de,commercial,false,1
+hausverwaltung reinigung,0,1,0.000000,7.00,de,commercial,false,1
+notfallreinigung,0,1,0.000000,7.00,de,commercial,false,1
+umzugsgeld mobil münchen,0,1,0.000000,7.00,de,commercial,false,1
+endreinigung privat,0,1,0.000000,9.00,de,commercial,false,1
+endreinigung wohnung,0,1,0.000000,9.00,de,commercial,false,1
+grünschnitt container köfering,0,1,0.000000,9.00,de,unknown,false,1
+moving cleaning services,0,1,0.000000,9.00,en,transactional,false,1
+privat service,0,1,0.000000,9.00,de,transactional,false,1
+ausstellungsflächenreinigung,0,1,0.000000,10.00,de,commercial,false,1
+bereich diskret,0,1,0.000000,10.00,de,unknown,false,1
+reinigung preise,0,1,0.000000,10.00,de,transactional,false,1
+umzug,0,1,0.000000,10.00,de,commercial,false,1
+welches reinigungsunternehmen bietet die flexibelsten terminoptionen?,0,1,0.000000,10.00,de,commercial,false,1
+entrümpelung neustadt an der waldnaab,0,1,0.000000,11.00,de,commercial,false,1
+gastronomiereinigung regensburg,0,1,0.000000,11.00,de,commercial,false,1
+regensburg wohnungsauflösung,0,1,0.000000,11.00,de,unknown,false,1
+reinigung häuser,0,1,0.000000,11.00,de,commercial,false,1
+seniorenumzug fürth,0,1,0.000000,11.00,de,commercial,false,1
+umzug münchen pauschalpreis,0,1,0.000000,11.00,de,transactional,false,1
+cleaning service near me,0,1,0.000000,12.00,en,transactional,false,1
+reinigung in der umgebung,0,1,0.000000,12.00,de,commercial,false,1
+reinigungen,0,1,0.000000,12.00,de,commercial,false,1
+sperrmüll container beratzhausen,0,1,0.000000,12.00,de,unknown,false,1
+tiefenreinigung wohnung,0,1,0.000000,12.00,de,commercial,false,1
+eintrag optimieren google maps regensburg,0,1,0.000000,13.00,de,unknown,false,1
+fahrzeugtransport in der nähe,0,1,0.000000,13.00,de,unknown,false,1
+reinigungsbetrieb düsseldorf,0,1,0.000000,13.00,de,commercial,false,1
+reinigungsdienst günstig,0,1,0.000000,13.00,de,commercial,false,1
+reinigungsfirma maxhütte,0,1,0.000000,13.00,de,transactional,false,1
+unterhaltsreinigung dusseldorf,0,1,0.000000,13.00,de,commercial,false,1
+unterhaltsreinigung in düsseldorf,0,1,0.000000,13.00,de,commercial,false,1
+entrümpelungsdienst düsseldorf,0,1,0.000000,14.00,de,commercial,false,1
+gebäudereinigung angebot,0,1,0.000000,14.00,de,transactional,false,1
+guenstige umzuege,0,1,0.000000,14.00,de,unknown,false,1
+intensive grundreinigung von wohnungen und gewerbeflächen in hensbach und umgebung,0,1,0.000000,14.00,de,commercial,false,1
+move,0,1,0.000000,14.00,de,unknown,false,1
+wohnung reinigen lassen,0,1,0.000000,14.00,de,unknown,false,1
+arztpraxis reinigung regensburg,0,1,0.000000,15.00,de,commercial,false,1
+büroumzug weilheim,0,1,0.000000,15.00,de,commercial,false,1
+demontage,0,1,0.000000,15.00,de,unknown,false,1
+desk cleaning,0,1,0.000000,15.00,en,commercial,false,1
+reinigungskraft arztpraxis regensburg,0,1,0.000000,16.00,de,commercial,false,1
+wohnung ausräumen landshut,0,1,0.000000,16.00,de,unknown,false,1
+büro reinigen lassen,0,1,0.000000,17.00,de,unknown,false,1
+putzfirma in der nähe,0,1,0.000000,17.00,de,transactional,false,1
+umzug in,0,1,0.000000,17.00,de,commercial,false,1
+container koefering,0,1,0.000000,18.00,de,unknown,false,1
+büroreinigung mit vertrag,0,1,0.000000,19.00,de,commercial,false,1
+fensterreinigung ratingen,0,1,0.000000,19.00,de,commercial,false,1
+halteverbotszone erding,0,1,0.000000,19.00,de,unknown,false,1
+kellerentrümpelung,0,1,0.000000,19.00,de,commercial,false,1
+preiswerte umzuege,0,1,0.000000,19.00,de,transactional,false,1
+umzug erding angebot,0,1,0.000000,19.00,de,transactional,false,1
+umzugsfirma grafing,0,1,0.000000,19.00,de,transactional,false,1
+umzugsservice angebot,0,1,0.000000,19.00,de,transactional,false,1
+firmenreinigung,0,1,0.000000,20.00,de,commercial,false,1
+umzug münchen angebot,0,1,0.000000,20.00,de,transactional,false,1
+umzug münchen in der nähe,0,1,0.000000,20.00,de,commercial,false,1
+gebäudereinigung münchen buchen,0,1,0.000000,21.00,de,transactional,false,1
+preise umzugsreinigung,0,1,0.000000,21.00,de,transactional,false,1
+reinigung büroräume,0,1,0.000000,21.00,de,commercial,false,1
+reinigungsfirma buchen,0,1,0.000000,21.00,de,transactional,false,1
+sperrmüll container schierling,0,1,0.000000,21.00,de,unknown,false,1
+top-bauendreinigung in düsseldorf und umgebung,0,1,0.000000,21.00,de,commercial,false,1
+treppenhausreinigung mettman,0,1,0.000000,21.00,de,commercial,false,1
+cleaning services regensburg,0,1,0.000000,22.00,en,transactional,false,1
+haushaltsreinigung,0,1,0.000000,23.00,de,commercial,false,1
+entrümpelung amberg faq,0,1,0.000000,24.00,de,commercial,false,1
+firma für putzen,0,1,0.000000,24.00,de,transactional,false,1
+kleintransporte bayern,0,1,0.000000,24.00,de,unknown,false,1
+reinigung von bürogebäuden,0,1,0.000000,24.00,de,commercial,false,1
+reinigungskraft arztpraxis düsseldorf,0,1,0.000000,24.00,de,commercial,false,1
+umzüge in deggendorf,0,1,0.000000,24.00,de,commercial,false,1
+büroreinigungsfirma,0,1,0.000000,25.00,de,transactional,false,1
+privatumzug,0,1,0.000000,25.00,de,commercial,false,1
+umzugsfirma ingolstadt,0,1,0.000000,25.00,de,transactional,false,1
+umzugsfirmen regensburg,0,1,0.000000,25.00,de,commercial,false,1
+angebot büroreinigung,0,1,0.000000,26.00,de,transactional,false,1
+umzug reinigungsfirma,0,1,0.000000,26.00,de,transactional,false,1
+1 plus hygiene düsseldorf,0,1,0.000000,27.00,de,unknown,false,1
+klavierentsorgung bamberg,0,1,0.000000,27.00,de,unknown,false,1
+wohnungsräumung starnberg,0,1,0.000000,27.00,de,commercial,false,1
+container mintraching,0,1,0.000000,28.00,de,unknown,false,1
+düsseldorf treppenhausreinigung,0,1,0.000000,28.00,de,commercial,false,1
+gewerbeimmobilien reinigung,0,1,0.000000,28.00,de,commercial,false,1
+wohnungsendreinigung,0,1,0.000000,28.00,de,commercial,false,1
+mischabfall container freyung,0,1,0.000000,29.00,de,unknown,false,1
+reinigungsfirma für unternehmen,0,1,0.000000,30.00,de,transactional,false,1
+sauberkeit dienst,0,1,0.000000,30.00,de,unknown,false,1
+umzugskosten mobil münchen,0,1,0.000000,30.00,de,transactional,false,1
+helpling düsseldorf,0,1,0.000000,31.00,de,unknown,false,1
+lokaler entrümpelungsdienst,0,1,0.000000,31.00,de,commercial,false,1
+professionelle büroreinigung,0,1,0.000000,31.00,de,commercial,false,1
+reinigung und entsorgung,0,1,0.000000,31.00,de,commercial,false,1
+gebäudereinigung düsseldorf altstadt,0,1,0.000000,32.00,de,commercial,false,1
+haus- und wohnungsräumung,0,1,0.000000,32.00,de,commercial,false,1
+hotelreinigungen,0,1,0.000000,32.00,de,commercial,false,1
+günstiger umzug sendling,0,1,0.000000,33.00,de,commercial,false,1
+entrümpelungsfirma,0,1,0.000000,34.00,de,transactional,false,1
+marketingagentur angebot vor unterschrift prüfen,0,1,0.000000,34.00,de,transactional,false,1
+commercial office cleaning services,0,1,0.000000,35.00,en,transactional,false,1
+erdaushub container geiselhoering,0,1,0.000000,35.00,de,unknown,false,1
+preisrahmen,0,1,0.000000,35.00,de,transactional,false,1
+putzen mit abnahmegarantie,0,1,0.000000,35.00,de,unknown,false,1
+reinigung in düsseldorf,0,1,0.000000,35.00,de,commercial,false,1
+reinigungsfirma für büro,0,1,0.000000,35.00,de,transactional,false,1
+treppenhausreinigung düsseldorf,0,1,0.000000,35.00,de,commercial,false,1
+wie schreibt man ein angebot fur reinigung,0,1,0.000000,35.00,de,transactional,false,1
+miettoilette freyung,0,1,0.000000,36.00,de,unknown,false,1
+reinigungsfirma beauftragen,0,1,0.000000,36.00,de,transactional,false,1
+düsseldorf treppenhaus reinigung,0,1,0.000000,37.00,de,commercial,false,1
+musterangebote für reinigung,0,1,0.000000,37.00,de,transactional,false,1
+wie schreibt man ein angebot für reinigung,0,1,0.000000,37.00,de,transactional,false,1
+regensburg amalgam entfernen,0,1,0.000000,38.00,de,unknown,false,1
+reinigungsunternehmen finden,0,1,0.000000,38.00,de,commercial,false,1
+sauber düsseldorf,0,1,0.000000,38.00,de,unknown,false,1
+familienumzug,0,1,0.000000,39.00,de,commercial,false,1
+günstig umziehen münchen,0,1,0.000000,39.00,de,unknown,false,1
+reinigung für unternehmen,0,1,0.000000,39.00,de,commercial,false,1
+reinigung gewerbe,0,1,0.000000,39.00,de,commercial,false,1
+tapetenentfernung nürnberg,0,1,0.000000,39.00,de,unknown,false,1
+boarding-house / appartment reinigung,0,1,0.000000,40.00,de,commercial,false,1
+klaviertransport wipperfürth,0,1,0.000000,40.00,de,unknown,false,1
+regensburg reinigung,0,1,0.000000,40.00,de,commercial,false,1
+reinigung angebot schreiben,0,1,0.000000,40.00,de,transactional,false,1
+toilettenvermietung hemau,0,1,0.000000,40.00,de,unknown,false,1
+umzugshelfer für senioren mittelfranken,0,1,0.000000,40.00,de,commercial,false,1
+kleine firma neustadt,0,1,0.000000,41.00,de,transactional,false,1
+kreisverwaltungsreferat münchen halteverbot beantragen,0,1,0.000000,41.00,de,unknown,false,1
+reinigungsfirma in meiner nähe,0,1,0.000000,41.00,de,transactional,false,1
+reinigungsservice für grundreinigung,0,1,0.000000,41.00,de,transactional,false,1
+tonnenreinigung augsburg deutschland,0,1,0.000000,41.00,de,commercial,false,1
+containerdienst moetzing,0,1,0.000000,42.00,de,unknown,false,1
+entrümpelungsfirma finden germering,0,1,0.000000,43.00,de,transactional,false,1
+grünschnitt container schierling,0,1,0.000000,43.00,de,unknown,false,1
+günstige reinigungsfirma münchen,0,1,0.000000,43.00,de,transactional,false,1
+angebote schreiben reinigungsfirma,0,1,0.000000,44.00,de,transactional,false,1
+beste unterhaltsreinigung in düsseldorf,0,1,0.000000,45.00,de,commercial,false,1
+büro praxisreinigung,0,1,0.000000,45.00,de,commercial,false,1
+gebäudereinigung düsseldorf hassels,0,1,0.000000,45.00,de,commercial,false,1
+klaviertransporte 24,0,1,0.000000,45.00,de,unknown,false,1
+kontaktwege,0,1,0.000000,45.00,de,unknown,false,1
+reinigungsfirma bockholdt,0,1,0.000000,45.00,de,transactional,false,1
+reinigungsvermittlung,0,1,0.000000,45.00,de,commercial,false,1
+schlüsselübergabe ohne kontakt,0,1,0.000000,45.00,de,unknown,false,1
+umzugsunternehmen preisliste,0,1,0.000000,46.00,de,transactional,false,1
+desinfektion hotel düsseldorf,0,1,0.000000,47.00,de,unknown,false,1
+grünschnitt container mainburg,0,1,0.000000,47.00,de,unknown,false,1
+privatumzüge münchen,0,1,0.000000,47.00,de,commercial,false,1
+ufer umzug,0,1,0.000000,47.00,de,commercial,false,1
+clemens kleine düsseldorf,0,1,0.000000,48.00,de,unknown,false,1
+hausreinigung in düsseldorf,0,1,0.000000,48.00,de,commercial,false,1
+reinigungsdienste für unternehmen,0,1,0.000000,48.00,de,commercial,false,1
+flexible reinigung,0,1,0.000000,49.00,de,commercial,false,1
+grünschnitt container vohburg,0,1,0.000000,49.00,de,unknown,false,1
+reinigungsservice für firmen satteldorf,0,1,0.000000,49.00,de,transactional,false,1
+angebot reinigung muster,0,1,0.000000,50.00,de,transactional,false,1
+büroreinigung für unternehmen,0,1,0.000000,50.00,de,commercial,false,1
+containerdienst koefering,0,1,0.000000,50.00,de,unknown,false,1
+münchen umzugsservice,0,1,0.000000,50.00,de,transactional,false,1
+praxisreinigung augsburg,0,1,0.000000,50.00,de,commercial,false,1
+sperrmüll container wackersdorf,0,1,0.000000,50.00,de,unknown,false,1
+umzugsfirmen kosten,0,1,0.000000,50.00,de,transactional,false,1
+umziehen düsseldorf,0,1,0.000000,51.00,de,unknown,false,1
+umzug service münchen,0,1,0.000000,51.00,de,transactional,false,1
+reinigung outsourcen,0,1,0.000000,52.00,de,commercial,false,1
+umzug düsseldorf stadtmitte,0,1,0.000000,53.00,de,commercial,false,1
+putzfirma regensburg,0,1,0.000000,56.00,de,transactional,false,1
+reinigungsfirma wechseln,0,1,0.000000,56.00,de,transactional,false,1
+umzugsunternehmen kostenvoranschlag,0,1,0.000000,57.00,de,transactional,false,1
+vent cleaning near me,0,1,0.000000,57.00,en,commercial,false,1
+reinigungsservice gewerbe,0,1,0.000000,58.00,de,transactional,false,1
+lüftungsanlagen reinigen düsseldorf,0,1,0.000000,59.00,de,unknown,false,1
+transport kurzfristig organisieren,0,1,0.000000,59.00,de,unknown,false,1
+umzug planen kosten schriesheim,0,1,0.000000,59.00,de,transactional,false,1
+angebot für gebäudereinigung,0,1,0.000000,60.00,de,transactional,false,1
+angebot gebäudereinigung,0,1,0.000000,60.00,de,transactional,false,1
+entrümpelung günstig münchen,0,1,0.000000,65.00,de,commercial,false,1
+firmenumzug düsseldorf,0,1,0.000000,65.00,de,commercial,false,1
+büroentrümpelung nürnberg,0,1,0.000000,66.00,de,commercial,false,1
+filialnetz reinigung outsourcing,0,1,0.000000,67.00,de,commercial,false,1
+sauberlaufmatten mieten münchen,0,1,0.000000,67.00,de,unknown,false,1
+leichengeruch aus wohnung entfernen münchen,0,1,0.000000,68.00,de,unknown,false,1
+office cleaning commercial cleaning,0,1,0.000000,69.00,en,commercial,false,1
+professioneller reinigungsservice und umzüge in frankfurt und stuttgart,0,1,0.000000,70.00,de,transactional,false,1
+anfrage reinigungsfirma muster,0,1,0.000000,71.00,de,transactional,false,1
+dienstleistung düsseldorf,0,1,0.000000,71.00,de,unknown,false,1
+apartment reinigung,0,1,0.000000,72.00,de,commercial,false,1
+wohnungsräumung,0,1,0.000000,72.00,de,commercial,false,1
+mold removal near me,0,1,0.000000,73.00,en,unknown,false,1
+offices cleaning,0,1,0.000000,74.00,en,commercial,false,1
+wohnungsreinigung augsburg,0,1,0.000000,74.00,de,commercial,false,1
+haushaltsauflösung landshut,0,1,0.000000,75.00,de,unknown,false,1
+flügeltransport wipperfürth,0,1,0.000000,76.00,de,unknown,false,1
+reinigung münchen angebot,0,1,0.000000,76.00,de,transactional,false,1
+wohnung nach todesfall räumen iserlohn,0,1,0.000000,76.00,de,unknown,false,1
+commercial cleaning office,0,1,0.000000,77.00,en,commercial,false,1
+pur flensburg,0,1,0.000000,77.00,de,unknown,false,1
+entrümpelung regensburg kosten,0,1,0.000000,79.00,de,transactional,false,1
+werbung reinigungsfirma,0,1,0.000000,81.00,de,transactional,false,1
+grundreinigung augsburg,0,1,0.000000,82.00,de,commercial,false,1
+garagenentrümpelung rosenheim,0,1,0.000000,83.00,de,commercial,false,1
+mould removal near me,0,1,0.000000,83.00,en,unknown,false,1
+preisvergleich umzüge,0,1,0.000000,83.00,de,transactional,false,1
+umzugsfirma münchen preise,0,1,0.000000,83.00,de,transactional,false,1
+wohnungsentrümpelung düsseldorf,0,1,0.000000,83.00,de,commercial,false,1
+desinfektion düsseldorf köln ruhrgebiet,0,1,0.000000,84.00,de,unknown,false,1
+professionelle entrümpelung im landkreis traunstein und umgebung,0,1,0.000000,84.00,de,commercial,false,1
+büroentrümpelung landshut,0,1,0.000000,86.00,de,commercial,false,1
+reinigen firma,0,1,0.000000,86.00,de,transactional,false,1
+checklist für privaten umzug bad cannstatt,0,1,0.000000,87.00,de,commercial,false,1
+entrümpelung forchheim,0,1,0.000000,87.00,de,commercial,false,1
+apartmentreinigung,0,1,0.000000,90.00,de,commercial,false,1
+entrümpler flensburg,0,1,0.000000,90.00,de,unknown,false,1
+fernumzug kosten,0,1,0.000000,90.00,de,transactional,false,1
+haus entrümpeln münchen,0,1,0.000000,91.00,de,unknown,false,1
+office cleaning,0,1,0.000000,92.00,en,commercial,false,1
+entrümpelungen regensburg,0,1,0.000000,94.00,de,commercial,false,1
+günstige reinigung von privathaushalten in münchen und augsburg,0,1,0.000000,96.00,de,commercial,false,1
+seniorenumzug münchen,0,1,0.000000,97.00,de,commercial,false,1
+verwesungsgeruch entfernen düsseldorf,0,1,0.000000,97.00,de,unknown,false,1
+komfortumzug münchen,0,1,0.000000,99.00,de,commercial,false,1

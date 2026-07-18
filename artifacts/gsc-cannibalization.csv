@@ -1,0 +1,4 @@
+query,primaryUrl,secondaryUrls,impressions,clicks,position,risk,reason,manualReview
+umzug düsseldorf,/entsorgung-duesseldorf,/duesseldorf/entsorgung,2,0,51.00,medium,"Mehrere Sitemap-URLs decken semantisch dieselbe reale Query ab; Standard-GSC-Export enthält keinen Query/Page-Join.",true
+clemens kleine düsseldorf,/entsorgung-duesseldorf,/duesseldorf/entsorgung,1,0,48.00,medium,"Mehrere Sitemap-URLs decken semantisch dieselbe reale Query ab; Standard-GSC-Export enthält keinen Query/Page-Join.",true
+umzug düsseldorf stadtmitte,/entsorgung-duesseldorf,/duesseldorf/entsorgung,1,0,53.00,medium,"Mehrere Sitemap-URLs decken semantisch dieselbe reale Query ab; Standard-GSC-Export enthält keinen Query/Page-Join.",true

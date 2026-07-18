@@ -9,4 +9,5 @@ out
 .env.local
 .env.production
 public/uploads
+data/private/search-console/
 *.log
