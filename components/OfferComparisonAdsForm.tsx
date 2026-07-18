@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import {
   type ChangeEvent,
   type DragEvent,
@@ -324,7 +326,7 @@ export function OfferComparisonAdsForm({ whatsappHref }: OfferComparisonAdsFormP
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });

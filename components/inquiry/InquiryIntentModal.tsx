@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { AnimatePresence, m } from "framer-motion";
 import { AlertCircle, ArrowRight, CheckCircle2, ExternalLink, MessageCircle, X } from "lucide-react";
 import Link from "next/link";
@@ -261,6 +264,7 @@ export function InquiryIntentModal({
     submitData.append("email", values.email?.trim() || "");
     submitData.append("phone", values.phone?.trim() || "");
     submitData.append("message", details.configuration.message);
+    submitData.append("privacyConsent", "true");
     submitData.append("leadSource", "header-modal");
     submitData.append("sourceComponent", "InquiryIntentModal");
     submitData.append("sourcePage", pathname);
@@ -271,7 +275,7 @@ export function InquiryIntentModal({
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -475,6 +479,8 @@ export function InquiryIntentModal({
                       Fotos sind optional. Wenn sie helfen, können Sie sie nach dem Absenden direkt per WhatsApp senden.
                     </p>
                   ) : null}
+
+                  <PrivacyConsentField />
 
                   {submitState === "success" ? (
                     <div className="flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-black text-emerald-800">

@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { AnimatePresence, m } from "framer-motion";
 import { AlertCircle, Calendar, CheckCircle2, Mail, MapPin, Phone, Send, Sparkles, Truck, User, X, Zap } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -192,11 +195,12 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
   submitData.append("email", formData.email.trim());
   submitData.append("phone", formData.phone.trim());
   submitData.append("message", formData.note.trim());
+  submitData.append("privacyConsent", "true");
   submitData.append("details", JSON.stringify(details));
   submitData.append("timestamp", new Date().toISOString());
 
   try {
-   const response = await fetch("/api/bookings", {
+   const response = await bookingFetch("/api/bookings", {
     method: "POST",
     body: submitData,
    });
@@ -352,6 +356,8 @@ export function QuickExpressModal({ isOpen, onClose }: QuickExpressModalProps) {
            className="h-24 w-full resize-none rounded-2xl border border-slate-600 bg-slate-900 px-4 py-3 text-sm text-white placeholder:text-slate-300 outline-none transition-all focus:border-orange-300 focus:bg-slate-800"
           />
          </label>
+
+         <PrivacyConsentField inverted />
 
          {errorMessage ? (
           <div className="flex items-start gap-3 rounded-2xl border border-red-400/20 bg-red-500/10 p-4 text-sm leading-6 text-red-100">

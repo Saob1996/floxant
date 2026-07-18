@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import { FormEvent, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 
@@ -23,7 +26,7 @@ export function RegensburgApartmentCleaningForm() {
     ) as Record<string, string>;
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -219,6 +222,10 @@ export function RegensburgApartmentCleaningForm() {
         Budgetrahmen optional
         <input name="budget" className={inputClass} placeholder="optional" />
       </label>
+
+      <div className="mt-4">
+        <PrivacyConsentField />
+      </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button

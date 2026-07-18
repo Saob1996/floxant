@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import {
   ArrowRight,
@@ -229,7 +231,7 @@ export function PlanBServiceForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", { method: "POST", body: formData });
+      const response = await bookingFetch("/api/bookings", { method: "POST", body: formData });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.message || result.error || "Die Anfrage konnte nicht gesendet werden.");
 

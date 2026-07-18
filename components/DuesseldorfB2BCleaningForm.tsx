@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Loader2, MessageCircle, Phone, UploadCloud } from "lucide-react";
@@ -144,7 +146,7 @@ export function DuesseldorfB2BCleaningForm({
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });

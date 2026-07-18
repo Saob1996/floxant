@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { type FormEvent, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, FileText, Loader2, Mail, MessageCircle, Phone, UploadCloud } from "lucide-react";
 
@@ -183,7 +185,7 @@ export function PlatformOrderCheckForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });

@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch, bookingFieldErrors } from "@/lib/booking-submission-client";
+
 import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 
@@ -1113,7 +1115,7 @@ export function SeoLeadForm({
     appendConversionJourneyToFormData(payload);
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: payload,
       });
@@ -1125,8 +1127,23 @@ export function SeoLeadForm({
         responsePayload = null;
       }
 
-      if (!response.ok || responsePayload?.success === false) {
-        throw new Error(responsePayload?.message || responsePayload?.error || "Die Anfrage konnte nicht gesendet werden.");
+      if (response.status !== 201 || responsePayload?.ok !== true) {
+        const serverFields = bookingFieldErrors(responsePayload);
+        const mappedErrors: FormErrors = {};
+        if (serverFields.name) mappedErrors.name = serverFields.name;
+        if (serverFields.email) mappedErrors.email = serverFields.email;
+        if (serverFields.phone || serverFields.contact) mappedErrors.contact = serverFields.phone || serverFields.contact;
+        if (serverFields.service) mappedErrors.service = serverFields.service;
+        if (serverFields.city || serverFields.cityOrZip) mappedErrors.city = serverFields.city || serverFields.cityOrZip;
+        if (serverFields.message) mappedErrors.message = serverFields.message;
+        if (serverFields.privacyConsent) mappedErrors.privacy = serverFields.privacyConsent;
+        if (!Object.keys(mappedErrors).length) {
+          mappedErrors.form = responsePayload?.error || getCustomerFacingErrorMessage("submit-error");
+        }
+        dispatchSeoConversionEvent("seo_lead_submit_error", lead, "SEO-Anfrage Fehler");
+        setErrors(mappedErrors);
+        setStatus("error");
+        return;
       }
 
       dispatchSeoConversionEvent("seo_lead_submit_success", lead, "SEO-Anfrage erfolgreich gesendet");

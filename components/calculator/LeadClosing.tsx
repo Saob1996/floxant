@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import React, { useMemo, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import {
@@ -91,9 +94,9 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
     setIsError(false);
 
     try {
-      const payload = serializeIntakeStore(store);
+      const payload = { ...serializeIntakeStore(store), privacyConsent: true };
 
-      const response = await fetch("/api/intake", {
+      const response = await bookingFetch("/api/intake", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -374,6 +377,8 @@ export default function LeadClosing({ dic, onBack }: { dic?: any; onBack: () => 
               ))}
             </div>
           </div>
+
+          <PrivacyConsentField />
 
           <AnimatePresence>
             {isError ? (

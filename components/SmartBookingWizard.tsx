@@ -1,5 +1,8 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+import { PrivacyConsentField } from "@/components/PrivacyConsentField";
+
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
@@ -1101,6 +1104,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
     submitData.append("name", formData.name.trim());
     submitData.append("email", formData.email.trim());
     submitData.append("phone", formData.phone.trim());
+    submitData.append("privacyConsent", "true");
     submitData.append("timestamp", createdAt);
     if (state.details.budget.trim()) {
       submitData.append("budget", state.details.budget.trim());
@@ -1138,7 +1142,7 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
         }
       }
 
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: submitData,
       });
@@ -1981,6 +1985,8 @@ function SmartBookingWizardInner({ dict, initialService, initialRegion, initialE
               </div>
             </div>
           )}
+
+          <PrivacyConsentField />
 
           {submitError ? (
             <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">

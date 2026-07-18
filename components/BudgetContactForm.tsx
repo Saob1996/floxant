@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import React, { useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import {
@@ -102,7 +104,7 @@ export function BudgetContactForm({ className }: BudgetContactFormProps) {
       );
       fd.append("timestamp", new Date().toISOString());
 
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: fd,
       });

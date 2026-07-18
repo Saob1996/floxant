@@ -1,5 +1,7 @@
 "use client";
 
+import { bookingFetch } from "@/lib/booking-submission-client";
+
 import { FormEvent, useMemo, useState } from "react";
 import { ArrowRight, Building2, CheckCircle2, Home, Loader2, Mail, Phone, UsersRound } from "lucide-react";
 
@@ -174,7 +176,7 @@ export function TenantTurnoverForm() {
     setSubmitState("submitting");
 
     try {
-      const response = await fetch("/api/bookings", {
+      const response = await bookingFetch("/api/bookings", {
         method: "POST",
         body: formData,
       });
